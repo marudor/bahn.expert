@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "dev": "webpack-dashboard -- webpack-dev-server --inline --content-base dist/ --history-api-fallback --quiet"
+    "dev": "webpack-dashboard -- webpack-dev-server --inline --content-base dist/ --history-api-fallback --quiet",
+    "build": "webpack --bail"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
