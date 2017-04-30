@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "module": "commonjs",
+        "removeComments": true,
+        "target": "es5",
+        "jsx": "react",
+        "strict": true,
+        "baseUrl": "src",
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "lib": [
+            "dom",
+            "es5",
+            "es6"
+        ],
+        "jsxFactory": "cxsReact"
+    },
+    "include": [
+        "./src/**/*",
+        "./@types/**/*.d.ts"
+    ]
+}
