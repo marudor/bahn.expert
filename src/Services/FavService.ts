@@ -5,8 +5,12 @@ import StationService from './StationService';
 class FavService {
   @observable public favs: Map<string, IStation>;
   constructor() {
-    const favs: IStation[] = JSON.parse(localStorage.getItem('favs') || '{}');
-    this.favs = Map<string, IStation>(favs);
+    try {
+      const favs: IStation[] = JSON.parse(localStorage.getItem('favs') || '{}');
+      this.favs = Map<string, IStation>(favs);
+    } catch (e) {
+      this.favs = Map<string, IStation>({});
+    }
   }
   @action public fav(station: IStation) {
     this.favs = this.favs.set(String(station.id), station);
