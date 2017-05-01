@@ -6,7 +6,19 @@ class FavService {
   @observable public favs: Map<string, IStation>;
   constructor() {
     try {
-      const favs: IStation[] = JSON.parse(localStorage.getItem('favs') || '{}');
+      const favs: object = JSON.parse(localStorage.getItem('favs') || '{}');
+      if (typeof favs === 'object') {
+        const keys = Object.keys(favs);
+        keys.forEach((k) => {
+          if (typeof k !== 'string') {
+            throw new Error();
+          }
+          const val = (favs as any)[k];
+          if (typeof val !== 'object' || !('id' in val) || !('title' in val)) {
+            throw new Error();
+          }
+        });
+      }
       this.favs = Map<string, IStation>(favs);
     } catch (e) {
       this.favs = Map<string, IStation>({});
