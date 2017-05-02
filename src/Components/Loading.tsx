@@ -17,8 +17,8 @@ const Loading = (props: IProps) => {
             left: 0;
             bottom: 0;
             right: 0;
-  width: 200px;
-  height: 200px;
+  width: 35vmin;
+  height: 35vmin;
   margin: auto;
 }
 
