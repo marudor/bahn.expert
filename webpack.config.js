@@ -32,7 +32,7 @@ module.exports = {
   plugins,
   entry: 'index.tsx',
   output: {
-    filename: 'bundle.js',
+    filename: 'abfahrten-[hash].js',
     path: __dirname + '/dist',
   },
 
