@@ -5,6 +5,11 @@ const DashboardPlugin = require('webpack-dashboard/plugin');
 const OfflinePlugin = require('offline-plugin');
 
 const plugins = [
+  new webpack.DefinePlugin({
+    'process.env': {
+      NODE_ENV: JSON.stringify('production'),
+    },
+  }),
   new HtmlWebpackPlugin({
     filename: 'index.html',
     template: 'html-loader!src/index.html',
