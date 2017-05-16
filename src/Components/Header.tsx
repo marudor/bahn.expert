@@ -52,9 +52,13 @@ export default class Header extends React.PureComponent<IProps, IState> {
       isSearch: false,
     });
   }
+  private filterOption(option: any) {
+    return option;
+  }
   private SearchBar = (
     <div className="selectWrap">
       <Select.Async
+        filterOption={this.filterOption}
         autoload={false}
         ignoreAccents={false}
         loadOptions={stationLoad}

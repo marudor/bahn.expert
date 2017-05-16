@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
-const OfflinePlugin = require('offline-plugin');
 
 const plugins = [
   new webpack.DefinePlugin({
@@ -14,14 +13,6 @@ const plugins = [
     filename: 'index.html',
     template: 'html-loader!src/index.html',
     minify: {},
-  }),
-  new OfflinePlugin({
-    caches: {
-      main: [],
-      additional: [':rest:'],
-    },
-    safeToUseOptionalCaches: true,
-    updateStrategy: 'changed',
   }),
 ];
 
