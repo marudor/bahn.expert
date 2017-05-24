@@ -9,11 +9,13 @@
         "iOS": 9
       },
       "loose": true,
-      "useBuiltIns": true
+      "useBuiltIns": true,
+      "modules": false
       }],
       "react"
     ],
   "plugins": [
+    ["transform-react-jsx", { "pragma": "cxsReact", "useBuiltIns": true }],
     "transform-decorators-legacy",
     "transform-class-properties",
     "transform-object-rest-spread"
