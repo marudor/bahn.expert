@@ -72,10 +72,8 @@ export default class Header extends React.PureComponent<IProps, IState> {
   );
   public render() {
     const { isSearch } = this.state;
-    let title;
-    if (isSearch) {
-      title = this.SearchBar;
-    } else {
+    let title = this.SearchBar;
+    if (!isSearch) {
       title = StationService.currentStation ? StationService.currentStation.title : 'Bahnhofs abfahrten';
     }
     return (

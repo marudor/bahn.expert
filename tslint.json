@@ -18,6 +18,7 @@
     "jsx-no-multiline-js": [
       false
     ],
-    "object-literal-sort-keys": false
+    "object-literal-sort-keys": false,
+    "prefer-conditional-expression": false
   }
 }

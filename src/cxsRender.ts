@@ -48,9 +48,9 @@ export const transformProps = ({
 };
 
 global.cxsReact = (tag: any, originalProps: any, ...children: any[]) => {
-  let props;
+  let props = originalProps;
   if (!originalProps || typeof tag !== 'string') {
-    props = originalProps;
+    // props = originalProps;
   } else {
     props = transformProps(originalProps);
   }
