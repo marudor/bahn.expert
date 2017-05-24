@@ -1,3 +1,4 @@
+// @flow
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -35,33 +36,36 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   plugins,
-  entry: 'index.tsx',
+  entry: ['babel-polyfill', 'index.jsx'],
   output: {
     filename: 'abfahrten-[hash].js',
-    path: __dirname + '/dist',
+    path: `${__dirname}/dist`,
   },
 
   // Enable sourcemaps for debugging webpack's output.
   devtool: 'source-map',
 
   resolve: {
-    // Add '.ts' and '.tsx' as resolvable extensions.
-    extensions: ['.ts', '.tsx', '.js', '.json'],
+    extensions: ['.jsx', '.js', '.json'],
     modules: [path.resolve('src'), 'node_modules'],
   },
 
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
         enforce: 'pre',
-        loader: 'tslint-loader',
-        options: {
-          /* Loader options go here */
-        },
+        test: /.jsx?$/,
+        loader: 'eslint-loader',
+        include: [path.resolve(__dirname, 'src')],
+        exclude: /(.*\.config.*|.*node_modules.*|.*inferno.*)/,
       },
       // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
-      { test: /\.tsx?$/, loader: 'awesome-typescript-loader' },
+      {
+        test: /\.jsx?$/,
+        exclude: /(node_modules|primusClient)/,
+        loader: 'babel-loader',
+        query: { cacheDirectory: true },
+      },
       { test: /\.less$/, loader: 'style-loader!css-loader!less-loader' },
       { test: /\.css$/, loader: 'style-loader!css-loader' },
 

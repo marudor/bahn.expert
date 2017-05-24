@@ -1,0 +1,36 @@
+{
+  "presets": [["env", {
+      "targets": {
+        "chrome": 45,
+        "firefox": 42,
+        "safari": 9,
+        "opera": 32,
+        "edge": 12,
+        "iOS": 9
+      },
+      "loose": true,
+      "useBuiltIns": true
+      }],
+      "react"
+    ],
+  "plugins": [
+    "transform-decorators-legacy",
+    "transform-class-properties",
+    "transform-object-rest-spread"
+  ],
+  "env": {
+    "development": {
+        "plugins": [
+          "transform-react-jsx-source",
+          "flow-react-proptypes",
+          "transform-dev-warning"
+        ]
+      },
+    "production": {
+      "compact": true,
+      "plugins": [
+        "transform-react-constant-elements"
+      ]
+    }
+  }
+}
