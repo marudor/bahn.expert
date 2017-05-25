@@ -24,7 +24,7 @@ const Times = ({ abfahrt, detail }: Props) => (
       ? [
           abfahrt.scheduledArrival &&
             <div key="a">
-              <div>
+              <div style={style.timeWrapper}>
                 {Boolean(abfahrt.delayArrival) &&
                   <span style={delayStyle(abfahrt.delayArrival)}>
                     {delayString(abfahrt.delayArrival)}
@@ -34,7 +34,7 @@ const Times = ({ abfahrt, detail }: Props) => (
             </div>,
           abfahrt.scheduledDeparture &&
             <div key="d">
-              <div>
+              <div style={style.timeWrapper}>
                 {Boolean(abfahrt.delayDeparture) &&
                   <span style={delayStyle(abfahrt.delayDeparture)}>
                     {delayString(abfahrt.delayDeparture)}
@@ -52,6 +52,10 @@ const Times = ({ abfahrt, detail }: Props) => (
 export default Times;
 
 const style = {
+  timeWrapper: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
   time: { fontSize: '2.4em' },
   early: { color: 'green', marginRight: '0.4em' },
   delay: { color: 'red', marginRight: '0.4em' },
