@@ -13,7 +13,8 @@ class ReihungService {
       this.getReihung(station, Number.parseInt(filtered[0], 10));
     }
   }
-  @action async getReihung(station: number, train: number) {
+  @action
+  async getReihung(station: number, train: number) {
     this.cancelToken = axios.CancelToken.source();
     const rawReihung = (await axios.get(`/api/wagen/${station}/${train}`, {
       cancelToken: this.cancelToken.token,

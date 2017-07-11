@@ -21,7 +21,11 @@ function getInfo(abfahrt: IAbfahrt) {
   for (let i = 1; i < abfahrt.messages.delay.length; i++) {
     info += ` +++ ${abfahrt.messages.delay[i].text}`;
   }
-  return info ? <div key="i" style={style.info}>{info}</div> : null;
+  return info
+    ? <div key="i" style={style.info}>
+        {info}
+      </div>
+    : null;
 }
 
 function getAbfahrt(
@@ -42,16 +46,16 @@ function getAbfahrt(
   via.push(
     <span
       key={`${index}i`}
-      style={[
-        isCancelled && style.cancelled,
-        isAdditional && style.additional,
-        isHbf && style.hbf,
-      ]}>
+      style={[isCancelled && style.cancelled, isAdditional && style.additional, isHbf && style.hbf]}>
       {AbfahrtenService.normalizeName(name)}
     </span>
   );
   if (index + 1 !== length) {
-    via.push(<span key={index}>{' - '}</span>);
+    via.push(
+      <span key={index}>
+        {' - '}
+      </span>
+    );
   }
   return via;
 }
@@ -60,9 +64,7 @@ function getNormalVia(abfahrt: IAbfahrt) {
   let via = [];
   const abfahrten = abfahrt.via;
   abfahrten.forEach((v, index) => {
-    via = via.concat(
-      getAbfahrt(v, index, abfahrten.length, abfahrt, abfahrt.isCancelled)
-    );
+    via = via.concat(getAbfahrt(v, index, abfahrten.length, abfahrt, abfahrt.isCancelled));
   });
   return via;
 }
@@ -72,14 +74,7 @@ function getDetailedVia(abfahrt: IAbfahrt) {
   const abfahrten = abfahrt.route;
   abfahrten.forEach((v, index) => {
     via = via.concat(
-      getAbfahrt(
-        v.name,
-        index,
-        abfahrten.length,
-        abfahrt,
-        v.isCancelled || abfahrt.isCancelled,
-        v.isAdditional
-      )
+      getAbfahrt(v.name, index, abfahrten.length, abfahrt, v.isCancelled || abfahrt.isCancelled, v.isAdditional)
     );
   });
   return via;

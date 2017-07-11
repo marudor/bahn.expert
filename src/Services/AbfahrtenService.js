@@ -44,14 +44,14 @@ class AbfahrtenService {
   @observable abfahrten: List<IAbfahrt> = List([]);
   @observable selectedDetail: ?string;
   async getStation(stationString: string): Promise<IStation> {
-    const possibleStations = (await axios.get(`/api/search/${stationString}`))
-      .data;
+    const possibleStations = (await axios.get(`/api/search/${stationString}`)).data;
     if (possibleStations.length) {
       return possibleStations[0];
     }
     return { title: '', id: 0 };
   }
-  @action async getAbfahrtenByStation(station: IStation) {
+  @action
+  async getAbfahrtenByStation(station: IStation) {
     StationService.setStation(station);
     const abfahrten: {
       error?: any,
@@ -77,7 +77,8 @@ class AbfahrtenService {
     normalizedName = name.replace(/Frankfurt \(M\)/, 'Frankfurt (Main)');
     return normalizedName;
   }
-  @action setDetail(abfahrt: IAbfahrt) {
+  @action
+  setDetail(abfahrt: IAbfahrt) {
     if (this.selectedDetail === abfahrt.id) {
       this.selectedDetail = undefined;
     } else {

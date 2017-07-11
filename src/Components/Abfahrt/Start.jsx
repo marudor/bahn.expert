@@ -5,11 +5,10 @@ interface Props {
   train: string,
   cancelled: 0 | 1,
 }
-const Start = ({ train, cancelled }: Props) => (
+const Start = ({ train, cancelled }: Props) =>
   <div style={[style.train, cancelled && style.cancelled]}>
     {train}
-  </div>
-);
+  </div>;
 
 export default Start;
 

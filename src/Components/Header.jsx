@@ -38,7 +38,11 @@ export default class Header extends React.PureComponent {
     router: PropTypes.object.isRequired,
   };
   HomeButton = (
-    <Link to="/"><IconButton><ActionHome color="white" /></IconButton></Link>
+    <Link to="/">
+      <IconButton>
+        <ActionHome color="white" />
+      </IconButton>
+    </Link>
   );
   submit = (station: IStation) => {
     if (!station) {
@@ -48,9 +52,7 @@ export default class Header extends React.PureComponent {
     this.setState({
       isSearch: false,
     });
-    this.context.router.history.push(
-      `/${station.title.replace('/', '$SLASH$')}`
-    );
+    this.context.router.history.push(`/${station.title.replace('/', '$SLASH$')}`);
   };
   onBlur = () => {
     this.setState({
@@ -71,27 +73,25 @@ export default class Header extends React.PureComponent {
         labelKey="title"
         placeholder="Bahnhof..."
         onBlur={this.onBlur}
-        onChange={this.submit}/>
+        onChange={this.submit}
+      />
     </div>
   );
   render() {
     const { isSearch } = this.state;
     let title = this.SearchBar;
     if (!isSearch) {
-      title = StationService.currentStation
-        ? StationService.currentStation.title
-        : 'Bahnhofs abfahrten';
+      title = StationService.currentStation ? StationService.currentStation.title : 'Bahnhofs abfahrten';
     }
     return (
       <AppBar
         titleStyle={style.title}
         onTitleTouchTap={this.handleTitleClick}
         iconElementLeft={this.HomeButton}
-        iconElementRight={
-          <HeaderButtons handleSearchClick={this.handleTitleClick} />
-        }
+        iconElementRight={<HeaderButtons handleSearchClick={this.handleTitleClick} />}
         title={title}
-        style={style.wrapper}/>
+        style={style.wrapper}
+      />
     );
   }
   componentDidUpdate() {

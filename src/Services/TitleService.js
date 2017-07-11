@@ -8,7 +8,8 @@ class TitleService {
   isSearch: boolean = false;
   oldTitle: string | React.Element<any> = DEFAULT_TITLE;
   oldIsSearch: boolean = false;
-  @action changeTitle(title: string | React.Element<any>, isSearch: boolean) {
+  @action
+  changeTitle(title: string | React.Element<any>, isSearch: boolean) {
     this.oldTitle = this.title;
     this.title = title;
     this.oldIsSearch = this.isSearch;

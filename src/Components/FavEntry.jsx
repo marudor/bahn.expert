@@ -6,15 +6,14 @@ import React from 'react';
 interface Props {
   fav: string,
 }
-const FavEntry = ({ fav }: Props) => (
+const FavEntry = ({ fav }: Props) =>
   <Link to={fav.replace('%2F', '/')}>
     <Paper style={style.fav}>
       <div style={style.station}>
         {fav.replace('%2F', '/')}
       </div>
     </Paper>
-  </Link>
-);
+  </Link>;
 
 export default FavEntry;
 

@@ -31,9 +31,7 @@ export default class HeaderButtons extends React.PureComponent {
     const isFaved = FavService.isFaved(StationService.currentStation);
     return (
       <IconButton onTouchTap={this.toggleFav}>
-        {isFaved
-          ? <ToggleStar color="white" />
-          : <ToggleStarBorder color="white" />}
+        {isFaved ? <ToggleStar color="white" /> : <ToggleStarBorder color="white" />}
       </IconButton>
     );
   }

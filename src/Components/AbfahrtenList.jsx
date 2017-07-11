@@ -37,12 +37,7 @@ export default class AbfahrtenList extends React.PureComponent {
       <Loading isLoading={loading}>
         <div style={style.list}>
           {AbfahrtenService.abfahrten.map(
-            a =>
-              a &&
-              <Abfahrt
-                abfahrt={a}
-                detail={AbfahrtenService.selectedDetail === a.id}
-                key={a.id}/>
+            a => a && <Abfahrt abfahrt={a} detail={AbfahrtenService.selectedDetail === a.id} key={a.id} />
           )}
         </div>
       </Loading>

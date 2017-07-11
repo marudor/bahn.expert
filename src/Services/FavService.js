@@ -25,11 +25,13 @@ class FavService {
       this.favs = Map({});
     }
   }
-  @action fav(station: IStation) {
+  @action
+  fav(station: IStation) {
     this.favs = this.favs.set(String(station.id), station);
     this.updateStorage();
   }
-  @action unfav(station: IStation) {
+  @action
+  unfav(station: IStation) {
     this.favs = this.favs.delete(String(station.id));
     this.updateStorage();
   }

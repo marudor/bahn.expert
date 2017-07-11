@@ -4,7 +4,8 @@ import { IStation } from './AbfahrtenService';
 
 class StationServivce {
   @observable currentStation: ?IStation;
-  @action setStation(station?: IStation) {
+  @action
+  setStation(station?: IStation) {
     this.currentStation = station;
   }
 }

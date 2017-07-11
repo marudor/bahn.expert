@@ -9,10 +9,7 @@ interface Props {
 }
 
 function getDelay(abfahrt: IAbfahrt) {
-  if (
-    (!abfahrt.delayDeparture && !abfahrt.delayArrival) ||
-    abfahrt.isCancelled
-  ) {
+  if ((!abfahrt.delayDeparture && !abfahrt.delayArrival) || abfahrt.isCancelled) {
     return null;
   }
   const numberDelay = abfahrt.delayDeparture || abfahrt.delayArrival;
@@ -23,26 +20,24 @@ function getDelay(abfahrt: IAbfahrt) {
     delay = `-${Math.abs(numberDelay)}`;
   }
   return (
-    <span
-      style={
-        (abfahrt.delayDeparture || abfahrt.delayArrival) > 0
-          ? style.delay
-          : style.early
-      }>
-      {'('}{delay}{')'}
+    <span style={(abfahrt.delayDeparture || abfahrt.delayArrival) > 0 ? style.delay : style.early}>
+      {'('}
+      {delay}
+      {')'}
     </span>
   );
 }
 
-const End = ({ abfahrt, detail }: Props) => (
+const End = ({ abfahrt, detail }: Props) =>
   <div style={[style.end, abfahrt.isCancelled && style.cancelled]}>
     <Times abfahrt={abfahrt} detail={detail} />
     <div>
       {getDelay(abfahrt)}
-      <span style={style.platform}>{abfahrt.platform}</span>
+      <span style={style.platform}>
+        {abfahrt.platform}
+      </span>
     </div>
-  </div>
-);
+  </div>;
 
 export default End;
 

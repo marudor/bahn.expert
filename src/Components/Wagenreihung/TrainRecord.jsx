@@ -14,14 +14,25 @@ export default class TrainRecordComponent extends React.PureComponent {
     return (
       <div>
         <div>
-          <span>{'A'}</span>
-          <span>{'B'}</span>
-          <span>{'C'}</span>
-          <span>{'D'}</span>
-          <span>{'E'}</span>
-          <span>{'F'}</span>
+          <span>
+            {'A'}
+          </span>
+          <span>
+            {'B'}
+          </span>
+          <span>
+            {'C'}
+          </span>
+          <span>
+            {'D'}
+          </span>
+          <span>
+            {'E'}
+          </span>
+          <span>
+            {'F'}
+          </span>
         </div>
-
       </div>
     );
   }

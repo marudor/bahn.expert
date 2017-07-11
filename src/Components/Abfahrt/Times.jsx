@@ -18,7 +18,7 @@ function delayStyle(delay: number) {
   return delay > 0 ? style.delay : style.early;
 }
 
-const Times = ({ abfahrt, detail }: Props) => (
+const Times = ({ abfahrt, detail }: Props) =>
   <div style={style.time}>
     {detail
       ? [
@@ -29,7 +29,9 @@ const Times = ({ abfahrt, detail }: Props) => (
                   <span style={delayStyle(abfahrt.delayArrival)}>
                     {delayString(abfahrt.delayArrival)}
                   </span>}
-                <span>{'An:'} {abfahrt.scheduledArrival}</span>
+                <span>
+                  {'An:'} {abfahrt.scheduledArrival}
+                </span>
               </div>
             </div>,
           abfahrt.scheduledDeparture &&
@@ -39,15 +41,16 @@ const Times = ({ abfahrt, detail }: Props) => (
                   <span style={delayStyle(abfahrt.delayDeparture)}>
                     {delayString(abfahrt.delayDeparture)}
                   </span>}
-                <span>{'Ab:'} {abfahrt.scheduledDeparture}</span>
+                <span>
+                  {'Ab:'} {abfahrt.scheduledDeparture}
+                </span>
               </div>
             </div>,
         ]
       : <div>
           {abfahrt.scheduledDeparture || abfahrt.scheduledArrival}
         </div>}
-  </div>
-);
+  </div>;
 
 export default Times;
 
