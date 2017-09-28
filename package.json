@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dev": "webpack-dashboard -- webpack-dev-server --inline --content-base dist/ --history-api-fallback --quiet",
-    "build": "webpack --bail"
+    "build": "rm -rf dist && webpack --bail"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
