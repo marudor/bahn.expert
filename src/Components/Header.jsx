@@ -1,7 +1,7 @@
 // @flow
 import axios from 'axios';
 import './Header.less';
-import { IStation } from '../Services/AbfahrtenService';
+import { type IStation } from '../Services/AbfahrtenService';
 import { observer } from 'mobx-react';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import 'react-select/dist/react-select.css';
@@ -17,7 +17,8 @@ import StationService from '../Services/StationService';
 import type { ContextRouter } from 'react-router';
 
 async function stationLoad(input: string) {
-  const stations = (await axios.get(`/api/search/${input}`)).data;
+  const stations = (await axios.get(`/api/searchHAFAS/${input}`)).data;
+
   return {
     options: stations,
   };
@@ -25,12 +26,11 @@ async function stationLoad(input: string) {
 
 type Props = ContextRouter;
 interface State {
-  isSearch: boolean,
+  isSearch: boolean;
 }
 
 @observer
-export default class Header extends React.PureComponent {
-  props: Props;
+export default class Header extends React.PureComponent<Props, State> {
   state: State = {
     isSearch: false,
   };
@@ -80,9 +80,11 @@ export default class Header extends React.PureComponent {
   render() {
     const { isSearch } = this.state;
     let title = this.SearchBar;
+
     if (!isSearch) {
       title = StationService.currentStation ? StationService.currentStation.title : 'Bahnhofs abfahrten';
     }
+
     return (
       <AppBar
         titleStyle={style.title}
@@ -95,10 +97,13 @@ export default class Header extends React.PureComponent {
     );
   }
   componentDidUpdate() {
+    // eslint-disable-next-line
     const dom = ReactDOM.findDOMNode(this);
+
     if (dom) {
       // $FlowFixMe
       const inputs = dom.querySelectorAll('input');
+
       if (inputs[0]) {
         inputs[0].focus();
       }

@@ -1,5 +1,5 @@
-// flow-typed signature: b371e1002f7439f9f053dc08186c5375
-// flow-typed version: dbaff82b4f/axios_v0.16.x/flow_>=v0.28.x
+// flow-typed signature: a8f530bf7bd4adfd4d341940ae3f907a
+// flow-typed version: 917c84794d/axios_v0.17.x/flow_>=v0.25.x
 
 declare module 'axios' {
   declare interface ProxyConfig {
@@ -40,7 +40,7 @@ declare module 'axios' {
     params?: Object;
     paramsSerializer?: (params: Object) => string;
     progress?: (progressEvent: Event) => void | mixed;
-    proxy?: ProxyConfig;
+    proxy?: ProxyConfig | false;
     responseType?: 'arraybuffer' | 'blob' | 'document' | 'json' | 'text' | 'stream';
     timeout?: number;
     transformRequest?: Array<<U>(data: T) => U|Array<<U>(data: T) => U>>;
@@ -60,12 +60,12 @@ declare module 'axios' {
   declare class AxiosXHR<T> {
     config: AxiosXHRConfig<T>;
     data: T;
-    headers: Object;
+    headers?: Object;
     status: number;
     statusText: string,
     request: http$ClientRequest | XMLHttpRequest
   }
-  declare type $AxiosXHR<T> = $AxiosXHR<T>;
+  declare type $AxiosXHR<T> = AxiosXHR<T>;
   declare class AxiosInterceptorIdent extends String {}
   declare class AxiosRequestInterceptor<T> {
     use(
@@ -77,7 +77,7 @@ declare module 'axios' {
   declare class AxiosResponseInterceptor<T> {
     use(
       successHandler: ?(response: AxiosXHR<T>) => mixed,
-      errorHandler: ?(error: mixed) => mixed,
+      errorHandler: ?(error: $AxiosError<any>) => mixed,
     ): AxiosInterceptorIdent;
     eject(ident: AxiosInterceptorIdent): void;
   }

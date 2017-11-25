@@ -1,14 +1,15 @@
 // @flow
-import AbfahrtenService, { IAbfahrt } from '../../Services/AbfahrtenService';
+import AbfahrtenService, { type IAbfahrt } from '../../Services/AbfahrtenService';
 import React from 'react';
 
-interface Props {
+type Props = {
   abfahrt: IAbfahrt,
   detail: boolean,
-}
+};
 
 function getInfo(abfahrt: IAbfahrt) {
   let info = '';
+
   if (abfahrt.messages.delay.length > 0) {
     info += abfahrt.messages.delay[0].text;
   }
@@ -18,14 +19,15 @@ function getInfo(abfahrt: IAbfahrt) {
     }
     info += q.text;
   });
-  for (let i = 1; i < abfahrt.messages.delay.length; i++) {
+  for (let i = 1; i < abfahrt.messages.delay.length; i += 1) {
     info += ` +++ ${abfahrt.messages.delay[i].text}`;
   }
-  return info
-    ? <div key="i" style={style.info}>
-        {info}
-      </div>
-    : null;
+
+  return info ? (
+    <div key="i" style={style.info}>
+      {info}
+    </div>
+  ) : null;
 }
 
 function getAbfahrt(
@@ -43,46 +45,50 @@ function getAbfahrt(
     lowerName.includes('centraal') ||
     lowerName.includes('centrale') ||
     lowerName.includes('termini');
+
   via.push(
     <span
       key={`${index}i`}
-      style={[isCancelled && style.cancelled, isAdditional && style.additional, isHbf && style.hbf]}>
+      style={[isCancelled && style.cancelled, isAdditional && style.additional, isHbf && style.hbf]}
+    >
       {AbfahrtenService.normalizeName(name)}
     </span>
   );
   if (index + 1 !== length) {
-    via.push(
-      <span key={index}>
-        {' - '}
-      </span>
-    );
+    via.push(<span key={index}>{' - '}</span>);
   }
+
   return via;
 }
 
 function getNormalVia(abfahrt: IAbfahrt) {
   let via = [];
   const abfahrten = abfahrt.via;
+
   abfahrten.forEach((v, index) => {
     via = via.concat(getAbfahrt(v, index, abfahrten.length, abfahrt, abfahrt.isCancelled));
   });
+
   return via;
 }
 
 function getDetailedVia(abfahrt: IAbfahrt) {
   let via = [];
   const abfahrten = abfahrt.route;
+
   abfahrten.forEach((v, index) => {
     via = via.concat(
       getAbfahrt(v.name, index, abfahrten.length, abfahrt, v.isCancelled || abfahrt.isCancelled, v.isAdditional)
     );
   });
+
   return via;
 }
 
 const Via = ({ abfahrt, detail }: Props) => {
   const info = getInfo(abfahrt);
   const via = detail ? getDetailedVia(abfahrt) : getNormalVia(abfahrt);
+
   return (
     <div style={[style.via, abfahrt.isCancelled && style.cancelled]}>
       {info}
@@ -90,6 +96,7 @@ const Via = ({ abfahrt, detail }: Props) => {
     </div>
   );
 };
+
 export default Via;
 
 const style = {

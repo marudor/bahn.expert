@@ -28,8 +28,10 @@ export const transformProps = (
   }
 
   let combinedCss;
+
   if (Array.isArray(style)) {
     const compactCss = compact(style);
+
     if (isEmpty(compactCss)) {
       return {
         className,
@@ -49,8 +51,10 @@ export const transformProps = (
   };
 };
 
+// eslint-disable-next-line
 global.cxsReact = (tag: any, originalProps: any, ...children: any[]) => {
   let props = originalProps;
+
   if (!originalProps || typeof tag !== 'string') {
     // props = originalProps;
   } else {
@@ -62,5 +66,6 @@ global.cxsReact = (tag: any, originalProps: any, ...children: any[]) => {
 
 global.cxsReactClone = (tag: any, originalProps: any, ...children: any[]) => {
   const props = transformProps(originalProps);
+
   return React.cloneElement(tag, props, ...children);
 };

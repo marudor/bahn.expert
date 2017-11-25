@@ -3,6 +3,7 @@ import { action, observable } from 'mobx';
 import type React from 'react';
 
 const DEFAULT_TITLE = 'Bahnhofs Abfahrten';
+
 class TitleService {
   @observable title: string | React.Element<any> = DEFAULT_TITLE;
   isSearch: boolean = false;

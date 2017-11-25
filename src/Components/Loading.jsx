@@ -1,11 +1,11 @@
 // @flow
 import React from 'react';
 
-interface Props {
+type Props = {
   isLoading?: boolean,
   style?: Object,
   children?: any,
-}
+};
 
 const Loading = (props: Props) => {
   if (props.isLoading) {
@@ -95,6 +95,7 @@ const Loading = (props: Props) => {
       </div>
     );
   }
+
   return props.children;
 };
 

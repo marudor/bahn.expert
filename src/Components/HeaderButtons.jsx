@@ -8,14 +8,14 @@ import StationService from 'Services/StationService';
 import ToggleStar from 'material-ui/svg-icons/toggle/star';
 import ToggleStarBorder from 'material-ui/svg-icons/toggle/star-border';
 
-interface Props {
+type Props = {
   handleSearchClick: () => void,
-}
+};
 @observer
-export default class HeaderButtons extends React.PureComponent {
-  prips: Props;
+export default class HeaderButtons extends React.PureComponent<Props> {
   toggleFav() {
     const station = StationService.currentStation;
+
     if (station) {
       if (FavService.isFaved(station)) {
         FavService.unfav(station);
@@ -29,6 +29,7 @@ export default class HeaderButtons extends React.PureComponent {
       return null;
     }
     const isFaved = FavService.isFaved(StationService.currentStation);
+
     return (
       <IconButton onTouchTap={this.toggleFav}>
         {isFaved ? <ToggleStar color="white" /> : <ToggleStarBorder color="white" />}

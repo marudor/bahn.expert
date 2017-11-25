@@ -1,12 +1,12 @@
 // @flow
-import { IAbfahrt } from '../../Services/AbfahrtenService';
+import { type IAbfahrt } from '../../Services/AbfahrtenService';
 import React from 'react';
 import Times from './Times';
 
-interface Props {
+type Props = {
   abfahrt: IAbfahrt,
   detail: boolean,
-}
+};
 
 function getDelay(abfahrt: IAbfahrt) {
   if ((!abfahrt.delayDeparture && !abfahrt.delayArrival) || abfahrt.isCancelled) {
@@ -14,11 +14,13 @@ function getDelay(abfahrt: IAbfahrt) {
   }
   const numberDelay = abfahrt.delayDeparture || abfahrt.delayArrival;
   let delay;
+
   if ((abfahrt.delayDeparture || abfahrt.delayArrival) > 0) {
     delay = `+${numberDelay}`;
   } else {
     delay = `-${Math.abs(numberDelay)}`;
   }
+
   return (
     <span style={(abfahrt.delayDeparture || abfahrt.delayArrival) > 0 ? style.delay : style.early}>
       {'('}
@@ -28,16 +30,15 @@ function getDelay(abfahrt: IAbfahrt) {
   );
 }
 
-const End = ({ abfahrt, detail }: Props) =>
+const End = ({ abfahrt, detail }: Props) => (
   <div style={[style.end, abfahrt.isCancelled && style.cancelled]}>
     <Times abfahrt={abfahrt} detail={detail} />
     <div>
       {getDelay(abfahrt)}
-      <span style={style.platform}>
-        {abfahrt.platform}
-      </span>
+      <span style={style.platform}>{abfahrt.platform}</span>
     </div>
-  </div>;
+  </div>
+);
 
 export default End;
 

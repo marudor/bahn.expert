@@ -1,9 +1,12 @@
 module.exports = {
-  extends: 'marudor',
+  extends: 'joblift/2space',
+  parser: 'babel-eslint',
   env: {
     browser: true,
     node: true
   },
   globals: {},
-  rules: {}
+  rules: {
+    'no-use-before-define': 0,
+  }
 };

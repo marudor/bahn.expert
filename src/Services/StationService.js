@@ -1,6 +1,6 @@
 // @flow
 import { action, observable } from 'mobx';
-import { IStation } from './AbfahrtenService';
+import { type IStation } from './AbfahrtenService';
 
 class StationServivce {
   @observable currentStation: ?IStation;

@@ -6,7 +6,7 @@ import Header from './Header';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import React from 'react';
 
-const BahnhofsAbfahrten = () =>
+const BahnhofsAbfahrten = () => (
   <Router>
     <MuiThemeProvider>
       <div style={style.wrapper}>
@@ -15,7 +15,8 @@ const BahnhofsAbfahrten = () =>
         <Route path="/:station" component={AbfahrtenList} />
       </div>
     </MuiThemeProvider>
-  </Router>;
+  </Router>
+);
 
 export default BahnhofsAbfahrten;
 

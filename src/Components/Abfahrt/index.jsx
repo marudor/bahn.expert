@@ -1,19 +1,20 @@
 // @flow
-import AbfahrtenService, { IAbfahrt } from 'Services/AbfahrtenService';
+import AbfahrtenService, { type IAbfahrt } from 'Services/AbfahrtenService';
 import End from './End';
 import Mid from './Mid';
 import Paper from 'material-ui/Paper';
 import React from 'react';
 import Start from './Start';
 
-interface Props {
+type Props = {
   abfahrt: IAbfahrt,
   detail: boolean,
-}
+};
 const Abfahrt = ({ abfahrt, detail }: Props) => {
   function setDetail() {
     AbfahrtenService.setDetail(abfahrt);
   }
+
   return (
     <Paper onClick={setDetail} style={style.wrapper}>
       <div style={style.entry}>

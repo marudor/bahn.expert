@@ -9,4 +9,11 @@ import BahnhofsAbfahrten from 'Components/BahnhofsAbfahrten';
 
 injectTapEventPlugin();
 
-ReactDOM.render(<BahnhofsAbfahrten />, document.getElementById('example'));
+const container = document.getElementById('abfahrten');
+
+if (container) {
+  ReactDOM.render(<BahnhofsAbfahrten />, container);
+} else {
+  // eslint-disable-next-line
+  alert('trollololo');
+}

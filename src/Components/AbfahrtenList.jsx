@@ -9,11 +9,10 @@ import type { ContextRouter } from 'react-router';
 
 type Props = ContextRouter;
 interface State {
-  loading: boolean,
+  loading: boolean;
 }
 @observer
-export default class AbfahrtenList extends React.PureComponent {
-  props: Props;
+export default class AbfahrtenList extends React.PureComponent<Props, State> {
   state: State = {
     loading: true,
   };
@@ -33,6 +32,7 @@ export default class AbfahrtenList extends React.PureComponent {
   }
   render() {
     const { loading } = this.state;
+
     return (
       <Loading isLoading={loading}>
         <div style={style.list}>

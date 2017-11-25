@@ -1,6 +1,6 @@
 // @flow
 import { action, observable } from 'mobx';
-import { IStation } from './AbfahrtenService';
+import { type IStation } from './AbfahrtenService';
 import { Map } from 'immutable';
 
 class FavService {
@@ -8,13 +8,16 @@ class FavService {
   constructor() {
     try {
       const favs: Object = JSON.parse(localStorage.getItem('favs') || '{}');
+
       if (typeof favs === 'object') {
         const keys = Object.keys(favs);
+
         keys.forEach(k => {
           if (typeof k !== 'string') {
             throw new Error();
           }
           const val = (favs: any)[k];
+
           if (typeof val !== 'object' || !('id' in val) || !('title' in val)) {
             throw new Error();
           }

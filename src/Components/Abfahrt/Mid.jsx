@@ -1,19 +1,20 @@
 // @flow
-import AbfahrtenService, { IAbfahrt } from '../../Services/AbfahrtenService';
+import AbfahrtenService, { type IAbfahrt } from '../../Services/AbfahrtenService';
 import React from 'react';
 import Via from './Via';
-interface Props {
+type Props = {
   abfahrt: IAbfahrt,
   detail: boolean,
-}
+};
 
-const Mid = ({ abfahrt, detail }: Props) =>
+const Mid = ({ abfahrt, detail }: Props) => (
   <div style={[style.mid, detail && style.detail]}>
     <Via abfahrt={abfahrt} detail={detail} />
     <div style={[style.destination, abfahrt.isCancelled && style.cancelled]}>
       {AbfahrtenService.normalizeName(abfahrt.destination)}
     </div>
-  </div>;
+  </div>
+);
 
 export default Mid;
 
