@@ -8,7 +8,10 @@ import React from 'react';
 const FavList = () => (
   <div style={style.wrap}>
     {FavService.favs.size ? (
-      FavService.favs.map(fav => fav && <FavEntry key={fav.id} fav={fav.title} />).toList()
+      FavService.favs
+        .sort((a, b) => (a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1))
+        .map(fav => fav && <FavEntry key={fav.id} fav={fav.title} />)
+        .toList()
     ) : (
       <Paper>{'Bisher hast du keine Favoriten.'}</Paper>
     )}
