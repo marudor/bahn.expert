@@ -1,12 +1,12 @@
 // @flow
-import axios from 'axios';
 import './Header.less';
+import 'react-select/dist/react-select.css';
 import { type IStation } from '../Services/AbfahrtenService';
+import { Link } from 'react-router-dom';
 import { observer } from 'mobx-react';
 import ActionHome from 'material-ui/svg-icons/action/home';
-import 'react-select/dist/react-select.css';
-import { Link } from 'react-router-dom';
 import AppBar from 'material-ui/AppBar';
+import axios from 'axios';
 import HeaderButtons from './HeaderButtons';
 import IconButton from 'material-ui/IconButton';
 import PropTypes from 'prop-types';
@@ -17,7 +17,7 @@ import StationService from '../Services/StationService';
 import type { ContextRouter } from 'react-router';
 
 async function stationLoad(input: string) {
-  const stations = (await axios.get(`/api/searchHAFAS/${input}`)).data;
+  const stations = (await axios.get(`/api/search/${input}`)).data;
 
   return {
     options: stations,
