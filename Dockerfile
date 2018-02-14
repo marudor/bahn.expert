@@ -1,6 +1,6 @@
 FROM node:8-alpine as build
 WORKDIR /app
-COPY .babelrc /app
+COPY .babelrc.js /app
 COPY package.json /app
 COPY yarn.lock /app
 RUN yarn

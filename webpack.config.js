@@ -2,7 +2,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const plugins = [
   new webpack.DefinePlugin({
@@ -14,10 +13,6 @@ const plugins = [
     filename: 'index.html',
     template: 'html-loader!src/index.html',
     minify: {},
-  }),
-  new BundleAnalyzerPlugin({
-    openAnalyzer: false,
-    defaultSizes: 'gzip',
   }),
 ];
 
@@ -37,9 +32,16 @@ if (process.env.NODE_ENV === 'production') {
     ]
   );
 } else {
+  const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
   const DashboardPlugin = require('webpack-dashboard/plugin');
 
   plugins.push(new DashboardPlugin());
+  plugins.push(
+    new BundleAnalyzerPlugin({
+      openAnalyzer: false,
+      defaultSizes: 'gzip',
+    })
+  );
 }
 
 module.exports = {

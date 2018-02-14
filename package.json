@@ -1,6 +1,7 @@
 {
   "name": "bahnhofs-abfahrten",
   "version": "0.0",
+  "license": "MIT",
   "scripts": {
     "dev": "webpack-dashboard -- webpack-dev-server --inline --content-base dist/ --history-api-fallback --quiet",
     "build": "rm -rf dist && webpack --bail",
@@ -39,7 +40,6 @@
     "html-webpack-plugin": "^2.30.1",
     "lodash-webpack-plugin": "^0.11.4",
     "node-sass": "^4.7.2",
-    "prepack-webpack-plugin": "^1.1.0",
     "prettier": "^1.10.2",
     "redux-unhandled-action": "^1.3.0",
     "sass-loader": "^6.0.6",
