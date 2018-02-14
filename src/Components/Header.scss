@@ -1,0 +1,18 @@
+.selectWrap {
+  margin-top: 16px;
+  line-height: 32px;
+}
+
+:global {
+  .Select-input > input {
+    padding: 0 !important;
+  }
+}
+
+.wrapper {
+  > div {
+    overflow: visible!important;
+  }
+  flex-shrink: 0;
+  position: fixed!important;
+}

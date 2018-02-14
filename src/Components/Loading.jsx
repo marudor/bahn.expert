@@ -3,7 +3,7 @@ import React from 'react';
 
 type Props = {
   isLoading?: boolean,
-  style?: Object,
+  className?: string,
   children?: any,
 };
 
@@ -79,7 +79,7 @@ const Loading = (props: Props) => {
   }
 }`}
         </style>
-        <div style={props.style}>
+        <div className={props.className}>
           <div className="sk-cube-grid">
             <div className="sk-cube sk-cube1" />
             <div className="sk-cube sk-cube2" />

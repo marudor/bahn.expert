@@ -1,37 +1,46 @@
 // @flow
-import { observer } from 'mobx-react';
+import { connect } from 'react-redux';
+import { fav, unfav } from 'actions/fav';
 import ActionSearch from 'material-ui/svg-icons/action/search';
-import FavService from 'Services/FavService';
 import IconButton from 'material-ui/IconButton';
 import React from 'react';
-import StationService from 'Services/StationService';
 import ToggleStar from 'material-ui/svg-icons/toggle/star';
 import ToggleStarBorder from 'material-ui/svg-icons/toggle/star-border';
+import type { AppState } from 'AppState';
+import type { Station } from 'types/abfahrten';
 
-type Props = {
-  handleSearchClick: () => void,
+type ReduxProps = {
+  isFaved: boolean,
+  currentStation: ?Station,
 };
-@observer
-export default class HeaderButtons extends React.PureComponent<Props> {
-  toggleFav() {
-    const station = StationService.currentStation;
 
-    if (station) {
-      if (FavService.isFaved(station)) {
-        FavService.unfav(station);
+type Props = ReduxProps & {
+  handleSearchClick: () => void,
+  fav: typeof fav,
+  unfav: typeof unfav,
+};
+
+class HeaderButtons extends React.Component<Props> {
+  toggleFav = () => {
+    const { isFaved, fav, unfav, currentStation } = this.props;
+
+    if (currentStation) {
+      if (isFaved) {
+        unfav(currentStation);
       } else {
-        FavService.fav(station);
+        fav(currentStation);
       }
     }
-  }
+  };
   getFavButton() {
-    if (!StationService.currentStation) {
+    const { currentStation, isFaved } = this.props;
+
+    if (!currentStation || currentStation.id === 0) {
       return null;
     }
-    const isFaved = FavService.isFaved(StationService.currentStation);
 
     return (
-      <IconButton onTouchTap={this.toggleFav}>
+      <IconButton onClick={this.toggleFav}>
         {isFaved ? <ToggleStar color="white" /> : <ToggleStarBorder color="white" />}
       </IconButton>
     );
@@ -39,7 +48,7 @@ export default class HeaderButtons extends React.PureComponent<Props> {
   render() {
     return (
       <div>
-        <IconButton onTouchTap={this.props.handleSearchClick}>
+        <IconButton onClick={this.props.handleSearchClick}>
           <ActionSearch color="white" />
         </IconButton>
         {this.getFavButton()}
@@ -47,3 +56,14 @@ export default class HeaderButtons extends React.PureComponent<Props> {
     );
   }
 }
+
+export default connect(
+  (state: AppState): ReduxProps => ({
+    isFaved: Boolean(state.abfahrten.currentStation && state.fav.favs.has(state.abfahrten.currentStation.id)),
+    currentStation: state.abfahrten.currentStation,
+  }),
+  {
+    fav,
+    unfav,
+  }
+)(HeaderButtons);

@@ -1,13 +1,14 @@
 // @flow
-import { type IAbfahrt } from '../../Services/AbfahrtenService';
+import { type Abfahrt } from 'types/abfahrten';
 import React from 'react';
+import styles from './Times.scss';
 
 type Props = {
-  abfahrt: IAbfahrt,
+  abfahrt: Abfahrt,
   detail: boolean,
 };
 
-function delayString(delay: number) {
+function delayString(delay: number = 0) {
   if (delay > 0) {
     return `+${delay}`;
   }
@@ -15,19 +16,19 @@ function delayString(delay: number) {
   return `-${Math.abs(delay)}`;
 }
 
-function delayStyle(delay: number) {
-  return delay > 0 ? style.delay : style.early;
+function delayStyle(delay: number = 0) {
+  return delay > 0 ? styles.delay : styles.early;
 }
 
 const Times = ({ abfahrt, detail }: Props) => (
-  <div style={style.time}>
+  <div className={styles.time}>
     {detail ? (
       [
         abfahrt.scheduledArrival && (
           <div key="a">
-            <div style={style.timeWrapper}>
+            <div className={styles.timeWrapper}>
               {Boolean(abfahrt.delayArrival) && (
-                <span style={delayStyle(abfahrt.delayArrival)}>{delayString(abfahrt.delayArrival)}</span>
+                <span className={delayStyle(abfahrt.delayArrival)}>{delayString(abfahrt.delayArrival)}</span>
               )}
               <span>
                 {'An:'} {abfahrt.scheduledArrival}
@@ -37,9 +38,9 @@ const Times = ({ abfahrt, detail }: Props) => (
         ),
         abfahrt.scheduledDeparture && (
           <div key="d">
-            <div style={style.timeWrapper}>
+            <div className={styles.timeWrapper}>
               {Boolean(abfahrt.delayDeparture) && (
-                <span style={delayStyle(abfahrt.delayDeparture)}>{delayString(abfahrt.delayDeparture)}</span>
+                <span className={delayStyle(abfahrt.delayDeparture)}>{delayString(abfahrt.delayDeparture)}</span>
               )}
               <span>
                 {'Ab:'} {abfahrt.scheduledDeparture}
@@ -55,13 +56,3 @@ const Times = ({ abfahrt, detail }: Props) => (
 );
 
 export default Times;
-
-const style = {
-  timeWrapper: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-  },
-  time: { fontSize: '2.4em' },
-  early: { color: 'green', marginRight: '0.4em' },
-  delay: { color: 'red', marginRight: '0.4em' },
-};

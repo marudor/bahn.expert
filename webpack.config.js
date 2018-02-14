@@ -2,7 +2,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const DashboardPlugin = require('webpack-dashboard/plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const plugins = [
   new webpack.DefinePlugin({
@@ -15,28 +15,36 @@ const plugins = [
     template: 'html-loader!src/index.html',
     minify: {},
   }),
+  new BundleAnalyzerPlugin({
+    openAnalyzer: false,
+    defaultSizes: 'gzip',
+  }),
 ];
 
 if (process.env.NODE_ENV === 'production') {
+  const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
   plugins.push(
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-      },
-      output: {
-        comments: false,
-      },
-      screwIe8: true,
-      sourceMap: false,
-    })
+    ...[
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          output: {
+            comments: false,
+          },
+          sourceMap: false,
+        },
+      }),
+    ]
   );
 } else {
+  const DashboardPlugin = require('webpack-dashboard/plugin');
+
   plugins.push(new DashboardPlugin());
 }
 
 module.exports = {
   plugins,
-  entry: ['babel-polyfill', 'index.jsx'],
+  entry: ['@babel/polyfill', 'index.jsx'],
   output: {
     filename: 'abfahrten-[hash].js',
     path: `${__dirname}/dist`,
@@ -66,8 +74,33 @@ module.exports = {
         loader: 'babel-loader',
         query: { cacheDirectory: true },
       },
-      { test: /\.less$/, loader: 'style-loader!css-loader!less-loader' },
-      { test: /\.css$/, loader: 'style-loader!css-loader' },
+      {
+        test: /\.scss/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 1,
+            },
+          },
+          'sass-loader',
+        ],
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 0,
+            },
+          },
+        ],
+      },
 
       // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
       { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },

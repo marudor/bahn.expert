@@ -5,11 +5,12 @@ import FavList from './FavList';
 import Header from './Header';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import React from 'react';
+import styles from './BahnhofsAbfahrten.scss';
 
 const BahnhofsAbfahrten = () => (
   <Router>
     <MuiThemeProvider>
-      <div style={style.wrapper}>
+      <div className={styles.wrapper}>
         <Route path="/" component={Header} />
         <Route path="/" exact component={FavList} />
         <Route path="/:station" component={AbfahrtenList} />
@@ -19,11 +20,3 @@ const BahnhofsAbfahrten = () => (
 );
 
 export default BahnhofsAbfahrten;
-
-const style = {
-  wrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100%',
-  },
-};

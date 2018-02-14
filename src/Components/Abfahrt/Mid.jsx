@@ -1,34 +1,23 @@
 // @flow
-import AbfahrtenService, { type IAbfahrt } from '../../Services/AbfahrtenService';
+import { type Abfahrt } from 'types/abfahrten';
+import { normalizeName } from 'util';
+import cc from 'classcat';
 import React from 'react';
+import styles from './Mid.scss';
 import Via from './Via';
+
 type Props = {
-  abfahrt: IAbfahrt,
+  abfahrt: Abfahrt,
   detail: boolean,
 };
 
 const Mid = ({ abfahrt, detail }: Props) => (
-  <div style={[style.mid, detail && style.detail]}>
+  <div className={cc([styles.mid, { [styles.detail]: detail }])}>
     <Via abfahrt={abfahrt} detail={detail} />
-    <div style={[style.destination, abfahrt.isCancelled && style.cancelled]}>
-      {AbfahrtenService.normalizeName(abfahrt.destination)}
+    <div className={cc([styles.destination, { [styles.cancelled]: abfahrt.isCancelled }])}>
+      {normalizeName(abfahrt.destination)}
     </div>
   </div>
 );
 
 export default Mid;
-
-const style = {
-  detail: { whiteSpace: 'normal' },
-  destination: { fontSize: '4em' },
-  cancelled: { textDecoration: 'line-through' },
-  mid: {
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    lineHeight: 1.2,
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-  },
-};

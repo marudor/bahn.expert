@@ -1,9 +1,7 @@
 // @flow
-import './Header.less';
-import 'react-select/dist/react-select.css';
-import { type IStation } from '../Services/AbfahrtenService';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { observer } from 'mobx-react';
+import { setCurrentStation } from 'actions/abfahrten';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import AppBar from 'material-ui/AppBar';
 import axios from 'axios';
@@ -13,8 +11,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Select from 'react-select';
-import StationService from '../Services/StationService';
+import styles from './Header.scss';
+import type { AppState } from 'AppState';
 import type { ContextRouter } from 'react-router';
+import type { Station } from 'types/abfahrten';
 
 async function stationLoad(input: string) {
   const stations = (await axios.get(`/api/search/${input}`)).data;
@@ -24,13 +24,19 @@ async function stationLoad(input: string) {
   };
 }
 
-type Props = ContextRouter;
-interface State {
-  isSearch: boolean;
-}
+type ReduxProps = {
+  currentStation: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'currentStation'>,
+};
 
-@observer
-export default class Header extends React.PureComponent<Props, State> {
+type Props = ReduxProps &
+  ContextRouter & {
+    setCurrentStation: typeof setCurrentStation,
+  };
+type State = {
+  isSearch: boolean,
+};
+
+class Header extends React.Component<Props, State> {
   state: State = {
     isSearch: false,
   };
@@ -44,11 +50,13 @@ export default class Header extends React.PureComponent<Props, State> {
       </IconButton>
     </Link>
   );
-  submit = (station: IStation) => {
+  submit = (station: Station) => {
     if (!station) {
       return;
     }
-    StationService.setStation(station);
+    const { setCurrentStation } = this.props;
+
+    setCurrentStation(station);
     this.setState({
       isSearch: false,
     });
@@ -63,7 +71,7 @@ export default class Header extends React.PureComponent<Props, State> {
     return option;
   }
   SearchBar = (
-    <div className="selectWrap">
+    <div className={styles.selectWrap}>
       <Select.Async
         filterOption={this.filterOption}
         autoload={false}
@@ -79,20 +87,20 @@ export default class Header extends React.PureComponent<Props, State> {
   );
   render() {
     const { isSearch } = this.state;
+    const { currentStation } = this.props;
     let title = this.SearchBar;
 
     if (!isSearch) {
-      title = StationService.currentStation ? StationService.currentStation.title : 'Bahnhofs abfahrten';
+      title = currentStation ? currentStation.title : 'Bahnhofs abfahrten';
     }
 
     return (
       <AppBar
-        titleStyle={style.title}
-        onTitleTouchTap={this.handleTitleClick}
+        onTitleClick={this.handleTitleClick}
         iconElementLeft={this.HomeButton}
         iconElementRight={<HeaderButtons handleSearchClick={this.handleTitleClick} />}
         title={title}
-        style={style.wrapper}
+        className={styles.wrapper}
       />
     );
   }
@@ -119,11 +127,11 @@ export default class Header extends React.PureComponent<Props, State> {
   };
 }
 
-const style = {
-  wrapper: {
-    flexShrink: 0,
-  },
-  title: {
-    overflow: 'visible',
-  },
-};
+export default connect(
+  (state: AppState): ReduxProps => ({
+    currentStation: state.abfahrten.currentStation,
+  }),
+  {
+    setCurrentStation,
+  }
+)(Header);

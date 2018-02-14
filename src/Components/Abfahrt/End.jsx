@@ -1,28 +1,30 @@
 // @flow
-import { type IAbfahrt } from '../../Services/AbfahrtenService';
+import { type Abfahrt } from 'types/abfahrten';
+import cc from 'classcat';
 import React from 'react';
+import styles from './End.scss';
 import Times from './Times';
 
 type Props = {
-  abfahrt: IAbfahrt,
+  abfahrt: Abfahrt,
   detail: boolean,
 };
 
-function getDelay(abfahrt: IAbfahrt) {
+function getDelay(abfahrt: Abfahrt) {
   if ((!abfahrt.delayDeparture && !abfahrt.delayArrival) || abfahrt.isCancelled) {
     return null;
   }
-  const numberDelay = abfahrt.delayDeparture || abfahrt.delayArrival;
+  const numberDelay = abfahrt.delayDeparture || abfahrt.delayArrival || 0;
   let delay;
 
-  if ((abfahrt.delayDeparture || abfahrt.delayArrival) > 0) {
+  if (numberDelay > 0) {
     delay = `+${numberDelay}`;
   } else {
     delay = `-${Math.abs(numberDelay)}`;
   }
 
   return (
-    <span style={(abfahrt.delayDeparture || abfahrt.delayArrival) > 0 ? style.delay : style.early}>
+    <span className={numberDelay > 0 ? styles.delay : styles.early}>
       {'('}
       {delay}
       {')'}
@@ -31,27 +33,13 @@ function getDelay(abfahrt: IAbfahrt) {
 }
 
 const End = ({ abfahrt, detail }: Props) => (
-  <div style={[style.end, abfahrt.isCancelled && style.cancelled]}>
+  <div className={cc([styles.end, { [styles.cancelled]: abfahrt.isCancelled }])}>
     <Times abfahrt={abfahrt} detail={detail} />
     <div>
       {getDelay(abfahrt)}
-      <span style={style.platform}>{abfahrt.platform}</span>
+      <span className={styles.platform}>{abfahrt.platform}</span>
     </div>
   </div>
 );
 
 export default End;
-
-const style = {
-  end: {
-    alignItems: 'flex-end',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    marginLeft: 15,
-  },
-  cancelled: { textDecoration: 'line-through' },
-  platform: { fontSize: '3em' },
-  early: { color: 'green', fontSize: '3em', marginRight: '0.4em' },
-  delay: { color: 'red', fontSize: '3em', marginRight: '0.4em' },
-};

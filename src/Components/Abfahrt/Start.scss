@@ -1,0 +1,13 @@
+.cancelled {
+  text-decoration: line-through;
+}
+
+.train {
+  @media screen and (max-width: 1200px) {
+    max-width: 75px;
+  }
+  flex: 1;
+  font-size: 3em;
+  line-height: 1.2;
+  max-width: 200px;
+}

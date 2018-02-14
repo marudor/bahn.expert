@@ -1,0 +1,27 @@
+.end {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 15px;
+}
+
+.cancelled {
+  text-decoration: line-through;
+}
+
+.platform {
+  font-size: 3em;
+}
+
+.early {
+  color: green;
+  font-size: 3em;
+  margin-right:0.4em;
+}
+
+.delay {
+  color: red;
+  font-size: 3em;
+  margin-right: 0.4em;
+}

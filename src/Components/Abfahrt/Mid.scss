@@ -1,0 +1,21 @@
+.detail {
+  white-space: normal;
+}
+
+.destination {
+  font-size: 4em;
+}
+
+.cancelled {
+  text-decoration: line-through;
+}
+
+.mid {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  line-height: 1.2;
+  overflow: hidden;
+  white-space: nowrap;
+}

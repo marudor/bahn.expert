@@ -1,33 +1,30 @@
 [ignore]
 .*/node_modules/fbjs.*
-.*/node_modules/babel.*
-.*/node_modules/radium.*
-.*/node_modules/react.*
-.*/node_modules/flow-typed.*
+<PROJECT_ROOT>/node_modules/babel.*
+<PROJECT_ROOT>/node_modules/react/.*
+<PROJECT_ROOT>/node_modules/react-dom/.*
+<PROJECT_ROOT>/node_modules/flow-typed/.*
 
 [include]
-src/
+./src/index.jsx
 
 [libs]
-interfaces/
 
 
 [options]
-module.name_mapper='react-tap-event-plugin$' -> 'ModuleStub'
-module.name_mapper='react-select$' -> 'ModuleStub'
-module.name_mapper='babel-polyfill$' -> 'ModuleStub'
-module.name_mapper='imports-loader\?.*' -> 'ModuleStub'
-module.name_mapper='.*\.css$' -> 'ModuleStub'
-module.name_mapper='.*\.less$' -> 'ModuleStub'
-module.system=haste
+module.name_mapper='.*\.css$' -> 'cssFile'
+module.name_mapper='.*\.less$' -> 'cssFile'
+module.name_mapper='.*\.scss$' -> 'cssFile'
+module.use_strict=true
+include_warnings=true
+emoji=true
 
 module.system.node.resolve_dirname=src
 module.system.node.resolve_dirname=node_modules
+module.file_ext=.js
+module.file_ext=.jsx
+module.file_ext=.json
+module.system=haste
 esproposal.decorators=ignore
 esproposal.class_static_fields=enable
 esproposal.class_instance_fields=enable
-unsafe.enable_getters_and_setters=true
-
-suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe\\($\\|[^(]\\|(\\(>=0\\.\\(2[0-0]\\|1[0-9]\\|[0-9]\\).[0-9]\\)? *\\(site=[a-z,_]*react_native[a-z,_]*\\)?)\\)
-suppress_comment=\\(.\\|\n\\)*\\$FlowIssue\\((\\(>=0\\.\\(2[0-0]\\|1[0-9]\\|[0-9]\\).[0-9]\\)? *\\(site=[a-z,_]*react_native[a-z,_]*\\)?)\\)?:? #[0-9]+
-suppress_comment=\\(.\\|\n\\)*\\$FlowFixedInNextDeploy

@@ -1,13 +1,16 @@
 // @flow
-import AbfahrtenService, { type IAbfahrt } from '../../Services/AbfahrtenService';
+import { type Abfahrt } from 'types/abfahrten';
+import { normalizeName } from 'util';
+import cc from 'classcat';
 import React from 'react';
+import styles from './Via.scss';
 
 type Props = {
-  abfahrt: IAbfahrt,
+  abfahrt: Abfahrt,
   detail: boolean,
 };
 
-function getInfo(abfahrt: IAbfahrt) {
+function getInfo(abfahrt: Abfahrt) {
   let info = '';
 
   if (abfahrt.messages.delay.length > 0) {
@@ -24,7 +27,7 @@ function getInfo(abfahrt: IAbfahrt) {
   }
 
   return info ? (
-    <div key="i" style={style.info}>
+    <div key="i" className={styles.info}>
       {info}
     </div>
   ) : null;
@@ -34,7 +37,7 @@ function getAbfahrt(
   name: string,
   index: number,
   length: number,
-  abfahrt: IAbfahrt,
+  abfahrt: Abfahrt,
   isCancelled?: number,
   isAdditional?: number
 ) {
@@ -49,9 +52,13 @@ function getAbfahrt(
   via.push(
     <span
       key={`${index}i`}
-      style={[isCancelled && style.cancelled, isAdditional && style.additional, isHbf && style.hbf]}
+      className={cc({
+        [styles.cancelled]: isCancelled,
+        [styles.additional]: isAdditional,
+        [styles.hbf]: isHbf,
+      })}
     >
-      {AbfahrtenService.normalizeName(name)}
+      {normalizeName(name)}
     </span>
   );
   if (index + 1 !== length) {
@@ -61,7 +68,7 @@ function getAbfahrt(
   return via;
 }
 
-function getNormalVia(abfahrt: IAbfahrt) {
+function getNormalVia(abfahrt: Abfahrt) {
   let via = [];
   const abfahrten = abfahrt.via;
 
@@ -72,7 +79,7 @@ function getNormalVia(abfahrt: IAbfahrt) {
   return via;
 }
 
-function getDetailedVia(abfahrt: IAbfahrt) {
+function getDetailedVia(abfahrt: Abfahrt) {
   let via = [];
   const abfahrten = abfahrt.route;
 
@@ -90,7 +97,7 @@ const Via = ({ abfahrt, detail }: Props) => {
   const via = detail ? getDetailedVia(abfahrt) : getNormalVia(abfahrt);
 
   return (
-    <div style={[style.via, abfahrt.isCancelled && style.cancelled]}>
+    <div className={cc([styles.via, { [styles.cancelled]: abfahrt.isCancelled }])}>
       {info}
       {(detail || !info) && via}
     </div>
@@ -98,20 +105,3 @@ const Via = ({ abfahrt, detail }: Props) => {
 };
 
 export default Via;
-
-const style = {
-  info: {
-    textDecoration: 'none',
-    color: 'red',
-    overflow: 'hidden',
-  },
-  cancelled: { textDecoration: 'line-through' },
-  via: {
-    fontSize: '2.1em',
-    lineHeight: 1.2,
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-  },
-  additional: { color: 'red' },
-  hbf: { fontWeight: 'bold' },
-};

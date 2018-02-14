@@ -1,0 +1,24 @@
+.info {
+  text-decoration: none;
+  color: red;
+  overflow: hidden;
+}
+
+.cancelled {
+  text-decoration: line-through;
+}
+
+.via {
+  font-size: 2.1em;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.additional  {
+  color: red;
+}
+
+.hbf {
+  font-weight: bold;
+}
