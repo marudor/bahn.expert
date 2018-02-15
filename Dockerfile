@@ -12,4 +12,6 @@ RUN yarn build
 
 FROM nginx:alpine
 COPY --from=build /app/dist /usr/share/nginx/html
-COPY abfahrten.conf /etc/nginx/conf.d/abfahrten.template
+COPY docker/abfahrten.conf /etc/nginx/conf.d/abfahrten.template
+COPY docker/entry.sh /entry.sh
+CMD ["/bin/sh", "/entry.sh"]
