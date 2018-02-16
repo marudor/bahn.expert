@@ -2,6 +2,12 @@
   text-decoration: none;
   color: red;
   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.detail {
+  white-space: normal;
 }
 
 .cancelled {
@@ -13,6 +19,7 @@
   line-height: 1.2;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: normal;
 }
 
 .additional  {

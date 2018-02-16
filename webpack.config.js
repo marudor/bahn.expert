@@ -2,6 +2,9 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const PROD = process.env.NODE_ENV === 'production';
 
 const plugins = [
   new webpack.DefinePlugin({
@@ -16,7 +19,37 @@ const plugins = [
   }),
 ];
 
-if (process.env.NODE_ENV === 'production') {
+function StyleLoader(prod, scss) {
+  const loader = [
+    'style-loader',
+    {
+      loader: 'css-loader',
+      options: {
+        modules: true,
+        importLoaders: scss ? 2 : 1,
+        localIdentName: prod ? undefined : '[path][name]__[local]',
+      },
+    },
+    'postcss-loader',
+  ];
+
+  if (scss) {
+    loader.push('sass-loader');
+  }
+
+  if (prod) {
+    loader.shift();
+
+    return ExtractTextPlugin.extract({
+      fallback: 'style-loader',
+      use: loader,
+    });
+  }
+
+  return loader;
+}
+
+if (PROD) {
   const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
   plugins.push(
@@ -29,6 +62,7 @@ if (process.env.NODE_ENV === 'production') {
           sourceMap: false,
         },
       }),
+      new ExtractTextPlugin('[name]-[contenthash].css'),
     ]
   );
 } else {
@@ -78,34 +112,12 @@ module.exports = {
       },
       {
         test: /\.scss/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              importLoaders: 1,
-            },
-          },
-          'sass-loader',
-        ],
+        use: StyleLoader(PROD, true),
       },
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              importLoaders: 0,
-            },
-          },
-        ],
+        use: StyleLoader(PROD, false),
       },
-
-      // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-      { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
     ],
   },
   devServer: {

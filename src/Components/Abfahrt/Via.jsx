@@ -10,7 +10,7 @@ type Props = {
   detail: boolean,
 };
 
-function getInfo(abfahrt: Abfahrt) {
+function getInfo(abfahrt: Abfahrt, detail: boolean) {
   let info = '';
 
   if (abfahrt.messages.delay.length > 0) {
@@ -27,7 +27,15 @@ function getInfo(abfahrt: Abfahrt) {
   }
 
   return info ? (
-    <div key="i" className={styles.info}>
+    <div
+      key="i"
+      className={cc([
+        styles.info,
+        {
+          [styles.detail]: detail,
+        },
+      ])}
+    >
       {info}
     </div>
   ) : null;
@@ -93,7 +101,7 @@ function getDetailedVia(abfahrt: Abfahrt) {
 }
 
 const Via = ({ abfahrt, detail }: Props) => {
-  const info = getInfo(abfahrt);
+  const info = getInfo(abfahrt, detail);
   const via = detail ? getDetailedVia(abfahrt) : getNormalVia(abfahrt);
 
   return (
