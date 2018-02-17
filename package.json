@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "webpack-dashboard -- webpack-dev-server --inline --content-base dist/ --history-api-fallback --quiet --hot",
     "build": "rimraf dist && webpack --bail",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "test": "exit 0"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.40",
