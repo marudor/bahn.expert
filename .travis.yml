@@ -1,5 +1,7 @@
 sudo: required
 language: node_js
+notifications:
+  email: false
 node_js:
   - "lts/*"
 services:
