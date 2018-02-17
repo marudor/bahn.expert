@@ -7,7 +7,7 @@ services:
 before_install:
   - docker build -t marudor/bahnhofsabfahrten .
 install:
-  - exit 0
+  - 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
     docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
