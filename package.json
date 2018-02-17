@@ -1,6 +1,6 @@
 {
   "name": "bahnhofs-abfahrten",
-  "version": "0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dashboard -- webpack-dev-server --inline --content-base dist/ --history-api-fallback --quiet --hot",
