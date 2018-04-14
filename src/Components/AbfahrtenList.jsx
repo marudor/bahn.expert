@@ -43,7 +43,7 @@ class AbfahrtenList extends React.Component<Props, State> {
 
     this.setState({ loading: true });
     setCurrentStation({
-      title: props.match.params.station,
+      title: decodeURIComponent(props.match.params.station || ''),
       id: 0,
     });
     await getAbfahrtenByString(props.match.params.station);

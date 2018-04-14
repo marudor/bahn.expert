@@ -60,7 +60,7 @@ class Header extends React.Component<Props, State> {
     this.setState({
       isSearch: false,
     });
-    this.context.router.history.push(`/${station.title.replace('/', '$SLASH$')}`);
+    this.context.router.history.push(`/${station.title.replace('/', '%2F')}`);
   };
   onBlur = () => {
     this.setState({
