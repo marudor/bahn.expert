@@ -1,9 +1,9 @@
 [ignore]
 .*/node_modules/fbjs.*
-<PROJECT_ROOT>/node_modules/babel.*
 <PROJECT_ROOT>/node_modules/react/.*
 <PROJECT_ROOT>/node_modules/react-dom/.*
 <PROJECT_ROOT>/node_modules/flow-typed/.*
+<PROJECT_ROOT>/node_modules/config-chain/.*
 
 [include]
 ./src/index.jsx

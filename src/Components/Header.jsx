@@ -1,4 +1,5 @@
 // @flow
+import './Header.scss';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setCurrentStation } from 'actions/abfahrten';
@@ -11,7 +12,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Select from 'react-select';
-import styles from './Header.scss';
 import type { AppState } from 'AppState';
 import type { ContextRouter } from 'react-router';
 import type { Station } from 'types/abfahrten';
@@ -71,7 +71,7 @@ class Header extends React.Component<Props, State> {
     return option;
   }
   SearchBar = (
-    <div className={styles.selectWrap}>
+    <div className="Header__select">
       <Select.Async
         filterOption={this.filterOption}
         autoload={false}
@@ -100,7 +100,7 @@ class Header extends React.Component<Props, State> {
         iconElementLeft={this.HomeButton}
         iconElementRight={<HeaderButtons handleSearchClick={this.handleTitleClick} />}
         title={title}
-        className={styles.wrapper}
+        className="Header"
       />
     );
   }

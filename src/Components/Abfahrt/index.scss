@@ -1,21 +1,25 @@
-.entry {
-  @media screen and (max-width: 1200px) {
-    font-size: 0.3em;
-  }
-  display: flex;
-  flex-shrink: 0;
-  font-size: 0.6em;
-  line-height: 1;
-  padding-top: 5px;
-  user-select: none;
-}
-
-.wrapper {
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.24)!important;
+.Abfahrt {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.24) !important;
   cursor: pointer;
   flex-shrink: 0;
   margin-bottom: 5px;
   overflow: hidden;
   padding-left: 15px;
   padding-right: 15px;
+
+  &__entry {
+    @media screen and (max-width: 1200px) {
+      font-size: 0.3em;
+    }
+    display: flex;
+    flex-shrink: 0;
+    font-size: 0.6em;
+    line-height: 1;
+    padding-top: 5px;
+    user-select: none;
+  }
+}
+
+.cancelled {
+  text-decoration: line-through;
 }

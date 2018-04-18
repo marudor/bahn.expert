@@ -34,3 +34,5 @@ export type Abfahrt = {
   train: string,
   via: string[],
 };
+
+export default {};

@@ -1,9 +1,9 @@
 // @flow
 import './index.scss';
+import 'babel-polyfill';
 import { applyMiddleware, compose, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import BahnhofsAbfahrten from 'Components/BahnhofsAbfahrten';
-// import injectTapEventPlugin from 'react-tap-event-plugin';
 import promiseMiddleware from 'redux-promise';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -27,6 +27,7 @@ const store = createStore(
   composeEnhancers(applyMiddleware(...middlewares))
 );
 
+// $FlowFixMe
 if (module.hot) {
   // Enable Webpack hot module replacement for reducers
   // $FlowFixMe

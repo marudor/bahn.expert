@@ -1,9 +1,9 @@
 // @flow
+import './Mid.scss';
 import { type Abfahrt } from 'types/abfahrten';
 import { normalizeName } from 'util';
 import cc from 'classcat';
 import React from 'react';
-import styles from './Mid.scss';
 import Via from './Via';
 
 type Props = {
@@ -12,9 +12,9 @@ type Props = {
 };
 
 const Mid = ({ abfahrt, detail }: Props) => (
-  <div className={cc([styles.mid, { [styles.detail]: detail }])}>
+  <div className={cc(['Mid', { 'Mid--detail': detail }])}>
     <Via abfahrt={abfahrt} detail={detail} />
-    <div className={cc([styles.destination, { [styles.cancelled]: abfahrt.isCancelled }])}>
+    <div className={cc(['Mid__destination', { cancelled: abfahrt.isCancelled }])}>
       {normalizeName(abfahrt.destination)}
     </div>
   </div>

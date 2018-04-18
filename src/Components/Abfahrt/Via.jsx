@@ -1,9 +1,9 @@
 // @flow
+import './Via.scss';
 import { type Abfahrt } from 'types/abfahrten';
 import { normalizeName } from 'util';
 import cc from 'classcat';
 import React from 'react';
-import styles from './Via.scss';
 
 type Props = {
   abfahrt: Abfahrt,
@@ -30,9 +30,9 @@ function getInfo(abfahrt: Abfahrt, detail: boolean) {
     <div
       key="i"
       className={cc([
-        styles.info,
+        'Via__info',
         {
-          [styles.detail]: detail,
+          'Via--detail': detail,
         },
       ])}
     >
@@ -61,9 +61,9 @@ function getAbfahrt(
     <span
       key={`${index}i`}
       className={cc({
-        [styles.cancelled]: isCancelled,
-        [styles.additional]: isAdditional,
-        [styles.hbf]: isHbf,
+        cancelled: isCancelled,
+        'Via--additional': isAdditional,
+        'Via--hbf': isHbf,
       })}
     >
       {normalizeName(name)}
@@ -105,7 +105,7 @@ const Via = ({ abfahrt, detail }: Props) => {
   const via = detail ? getDetailedVia(abfahrt) : getNormalVia(abfahrt);
 
   return (
-    <div className={cc([styles.via, { [styles.cancelled]: abfahrt.isCancelled }])}>
+    <div className={cc(['Via', { cancelled: abfahrt.isCancelled }])}>
       {info}
       {(detail || !info) && via}
     </div>

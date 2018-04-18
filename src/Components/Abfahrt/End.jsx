@@ -1,8 +1,8 @@
 // @flow
+import './End.scss';
 import { type Abfahrt } from 'types/abfahrten';
 import cc from 'classcat';
 import React from 'react';
-import styles from './End.scss';
 import Times from './Times';
 
 type Props = {
@@ -24,7 +24,7 @@ function getDelay(abfahrt: Abfahrt) {
   }
 
   return (
-    <span className={numberDelay > 0 ? styles.delay : styles.early}>
+    <span className={numberDelay > 0 ? 'End--delay' : 'End--early'}>
       {'('}
       {delay}
       {')'}
@@ -33,11 +33,11 @@ function getDelay(abfahrt: Abfahrt) {
 }
 
 const End = ({ abfahrt, detail }: Props) => (
-  <div className={cc([styles.end, { [styles.cancelled]: abfahrt.isCancelled }])}>
+  <div className={cc(['End', { cancelled: abfahrt.isCancelled }])}>
     <Times abfahrt={abfahrt} detail={detail} />
     <div>
       {getDelay(abfahrt)}
-      <span className={styles.platform}>{abfahrt.platform}</span>
+      <span className={'End__platform'}>{abfahrt.platform}</span>
     </div>
   </div>
 );

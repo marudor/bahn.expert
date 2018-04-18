@@ -1,31 +1,26 @@
-.info {
-  text-decoration: none;
-  color: red;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.detail {
-  white-space: normal;
-}
-
-.cancelled {
-  text-decoration: line-through;
-}
-
-.via {
+.Via {
   font-size: 2.1em;
   line-height: 1.2;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
-}
+  &__info {
+    text-decoration: none;
+    color: red;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 
-.additional  {
-  color: red;
-}
+  &--detail {
+    white-space: normal;
+  }
 
-.hbf {
-  font-weight: bold;
+  &--additional  {
+    color: red;
+  }
+
+  &--hbf {
+    font-weight: bold;
+  }
 }

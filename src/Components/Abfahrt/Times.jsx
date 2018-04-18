@@ -1,7 +1,7 @@
 // @flow
+import './Times.scss';
 import { type Abfahrt } from 'types/abfahrten';
 import React from 'react';
-import styles from './Times.scss';
 
 type Props = {
   abfahrt: Abfahrt,
@@ -17,16 +17,16 @@ function delayString(delay: number = 0) {
 }
 
 function delayStyle(delay: number = 0) {
-  return delay > 0 ? styles.delay : styles.early;
+  return delay > 0 ? 'Times--delay' : 'Times--early';
 }
 
 const Times = ({ abfahrt, detail }: Props) => (
-  <div className={styles.time}>
+  <div className="Times">
     {detail ? (
       [
         abfahrt.scheduledArrival && (
           <div key="a">
-            <div className={styles.timeWrapper}>
+            <div className="Times__wrapper">
               {Boolean(abfahrt.delayArrival) && (
                 <span className={delayStyle(abfahrt.delayArrival)}>{delayString(abfahrt.delayArrival)}</span>
               )}
@@ -38,7 +38,7 @@ const Times = ({ abfahrt, detail }: Props) => (
         ),
         abfahrt.scheduledDeparture && (
           <div key="d">
-            <div className={styles.timeWrapper}>
+            <div className="Times__wrapper">
               {Boolean(abfahrt.delayDeparture) && (
                 <span className={delayStyle(abfahrt.delayDeparture)}>{delayString(abfahrt.delayDeparture)}</span>
               )}

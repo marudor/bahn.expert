@@ -1,18 +1,18 @@
-.timeWrapper {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.time {
+.Times {
   font-size: 2.4em;
-}
 
-.early {
-  color: green;
-  margin-right: 0.4em;
-}
+  &__wrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
 
-.delay {
-  color: red;
-  margin-right: 0.4em;
+  &--early {
+    color: green;
+    margin-right: 0.4em;
+  }
+
+  &--delay {
+    color: red;
+    margin-right: 0.4em;
+  }
 }

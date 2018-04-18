@@ -1,27 +1,23 @@
-.end {
+.End {
   align-items: flex-end;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin-left: 15px;
-}
 
-.cancelled {
-  text-decoration: line-through;
-}
+  &--early {
+    color: green;
+    font-size: 3em;
+    margin-right: 0.4em;
+  }
 
-.platform {
-  font-size: 3em;
-}
+  &--delay {
+    color: red;
+    font-size: 3em;
+    margin-right: 0.4em;
+  }
 
-.early {
-  color: green;
-  font-size: 3em;
-  margin-right:0.4em;
-}
-
-.delay {
-  color: red;
-  font-size: 3em;
-  margin-right: 0.4em;
+  &__platform {
+    font-size: 3em;
+  }
 }

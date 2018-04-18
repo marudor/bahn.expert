@@ -1,10 +1,10 @@
 // @flow
+import './FavList.scss';
 import { connect } from 'react-redux';
 import { setCurrentStation } from 'actions/abfahrten';
 import FavEntry from './FavEntry';
 import Paper from 'material-ui/Paper';
 import React from 'react';
-import styles from './FavList.scss';
 import type { AppState } from 'AppState';
 
 type ReduxProps = {
@@ -18,7 +18,7 @@ const FavList = ({ favs, setCurrentStation }: Props) => {
   setCurrentStation(null);
 
   return (
-    <div className={styles.wrapper}>
+    <div className="FavList">
       {favs.size ? (
         favs
           .sort((a, b) => (a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1))

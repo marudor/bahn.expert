@@ -1,18 +1,16 @@
-.selectWrap {
-  margin-top: 16px;
-  line-height: 32px;
+.Select-input > input {
+  padding: 0 !important;
 }
 
-:global {
-  .Select-input > input {
-    padding: 0 !important;
-  }
-}
-
-.wrapper {
+.Header {
   > div {
-    overflow: visible!important;
+    overflow: visible !important;
   }
   flex-shrink: 0;
-  position: fixed!important;
+  position: fixed !important;
+
+  &__select {
+    margin-top: 16px;
+    line-height: 32px;
+  }
 }

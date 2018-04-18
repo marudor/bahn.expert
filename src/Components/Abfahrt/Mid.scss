@@ -1,18 +1,4 @@
-.detail {
-  white-space: normal;
-}
-
-.destination {
-  font-size: 4em;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.cancelled {
-  text-decoration: line-through;
-}
-
-.mid {
+.Mid {
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -20,4 +6,18 @@
   line-height: 1.2;
   overflow: hidden;
   white-space: nowrap;
+
+  &--cancelled {
+    text-decoration: line-through;
+  }
+
+  &--detail {
+    white-space: normal;
+  }
+
+  &__destination {
+    font-size: 4em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
