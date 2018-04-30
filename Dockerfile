@@ -5,7 +5,6 @@ COPY package.json /app
 COPY yarn.lock /app
 RUN yarn
 COPY src/ /app/src
-COPY webpack.config.js /app
 COPY .eslintrc.js /app
 COPY postcss.config.js /app
 ENV NODE_ENV production
