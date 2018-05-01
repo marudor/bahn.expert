@@ -22,13 +22,13 @@ function delayStyle(delay: number = 0) {
   return delay > 0 ? 'delay' : 'early';
 }
 
-function getDelayTime(time: ?string, delay: ?number) {
+function getDelayTime(time: ?string, delay: ?number, isCancelled: 1 | 0) {
   if (!time) {
     return null;
   }
-  if (delay) {
-    const parsedTime = DateTime.fromFormat(time, 'hh:mm');
-    const newTime = parsedTime.plus({ minutes: delay }).toFormat('hh:mm');
+  if (delay && !isCancelled) {
+    const parsedTime = DateTime.fromFormat(time, 'HH:mm');
+    const newTime = parsedTime.plus({ minutes: delay }).toFormat('HH:mm');
 
     return <span className={delayStyle(delay)}>{newTime}</span>;
   }
@@ -36,7 +36,10 @@ function getDelayTime(time: ?string, delay: ?number) {
   return <span>{time}</span>;
 }
 
-const Times = ({ abfahrt: { scheduledArrival, scheduledDeparture, delayArrival, delayDeparture }, detail }: Props) => (
+const Times = ({
+  abfahrt: { scheduledArrival, scheduledDeparture, delayArrival, delayDeparture, isCancelled },
+  detail,
+}: Props) => (
   <div className="Times">
     {detail ? (
       <React.Fragment>
@@ -47,7 +50,7 @@ const Times = ({ abfahrt: { scheduledArrival, scheduledDeparture, delayArrival, 
                 <span className={cc([delayStyle(delayArrival), 'Times--offset'])}>{delayString(delayArrival)}</span>
               )}
               <span>
-                {'An:'} {getDelayTime(scheduledArrival, delayArrival)}
+                {'An:'} {getDelayTime(scheduledArrival, delayArrival, isCancelled)}
               </span>
             </div>
           </div>
@@ -59,16 +62,16 @@ const Times = ({ abfahrt: { scheduledArrival, scheduledDeparture, delayArrival, 
                 <span className={cc([delayStyle(delayDeparture), 'Times--offset'])}>{delayString(delayDeparture)}</span>
               )}
               <span>
-                {'Ab:'} {getDelayTime(scheduledDeparture, delayDeparture)}
+                {'Ab:'} {getDelayTime(scheduledDeparture, delayDeparture, isCancelled)}
               </span>
             </div>
           </div>
         )}
       </React.Fragment>
     ) : scheduledDeparture ? (
-      getDelayTime(scheduledDeparture, delayDeparture)
+      getDelayTime(scheduledDeparture, delayDeparture, isCancelled)
     ) : (
-      getDelayTime(scheduledArrival, delayArrival)
+      getDelayTime(scheduledArrival, delayArrival, isCancelled)
     )}
   </div>
 );
