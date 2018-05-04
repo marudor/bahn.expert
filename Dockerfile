@@ -7,6 +7,7 @@ RUN yarn
 COPY src/ /app/src
 COPY .eslintrc.js /app
 COPY postcss.config.js /app
+COPY webpack.config.js /app
 ENV NODE_ENV production
 RUN yarn build
 

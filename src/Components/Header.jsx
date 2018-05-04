@@ -57,10 +57,12 @@ class Header extends React.Component<Props, State> {
     const { setCurrentStation } = this.props;
 
     setCurrentStation(station);
-    this.setState({
-      isSearch: false,
-    });
-    this.context.router.history.push(`/${station.title.replace('/', '%2F')}`);
+    this.setState(
+      {
+        isSearch: false,
+      },
+      () => this.context.router.history.push(`/${station.title.replace('/', '%2F')}`)
+    );
   };
   onBlur = () => {
     this.setState({

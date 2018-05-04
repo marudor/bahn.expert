@@ -1,0 +1,26 @@
+.Auslastung {
+  display: flex;
+  margin-bottom: 10px;
+  &__entry {
+    display: flex;
+    flex-direction: column;
+    margin-right: 0.5em;
+    align-items: center;
+  }
+
+  &__icon {
+    height: 0.7em;
+    width: 0.7em;
+    display: inline-block;
+    border-radius: 50%;
+    &.A0 {
+      background-color: green;
+    }
+    &.A1 {
+      background-color: yellow;
+    }
+    &.A2 {
+      background-color: red;
+    }
+  }
+}

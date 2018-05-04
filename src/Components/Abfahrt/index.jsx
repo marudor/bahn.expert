@@ -17,7 +17,7 @@ type Props = {
 const Abfahrt = ({ abfahrt, detail, setDetail }: Props) => (
   <Paper onClick={() => setDetail(abfahrt.id)} className="Abfahrt">
     <div className="Abfahrt__entry">
-      <Start train={abfahrt.train} cancelled={abfahrt.isCancelled} />
+      <Start abfahrt={abfahrt} detail={detail} />
       <Mid abfahrt={abfahrt} detail={detail} />
       <End abfahrt={abfahrt} detail={detail} />
     </div>

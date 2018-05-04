@@ -31,22 +31,22 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
     router: PropTypes.object.isRequired,
   };
   componentDidMount() {
-    this.getAbfahrten(this.props);
+    this.getAbfahrten();
   }
   componentDidUpdate(prevProps: Props) {
     if (prevProps.match.params.station !== this.props.match.params.station) {
-      this.getAbfahrten(prevProps);
+      this.getAbfahrten();
     }
   }
-  async getAbfahrten(props: Props) {
-    const { getAbfahrtenByString, setCurrentStation } = props;
+  async getAbfahrten() {
+    const { getAbfahrtenByString, setCurrentStation, match } = this.props;
 
     this.setState({ loading: true });
     setCurrentStation({
-      title: decodeURIComponent(props.match.params.station || ''),
+      title: decodeURIComponent(match.params.station || ''),
       id: 0,
     });
-    await getAbfahrtenByString(props.match.params.station);
+    await getAbfahrtenByString(match.params.station);
     this.setState({ loading: false });
   }
   render() {
