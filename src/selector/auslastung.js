@@ -20,7 +20,7 @@ export const getAuslastungForIdAndStation = createSelector(
     if (!station || !auslastung) {
       return null;
     }
-    while (auslastung.length && auslastung[0].start !== station.title) {
+    while (auslastung.length && auslastung[0].start.replace(/ /g, '') !== station.title.replace(/ /g, '')) {
       auslastung.shift();
     }
     if (!auslastung.length) {
