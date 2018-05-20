@@ -1,7 +1,6 @@
 // @flow
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const webpack = require('webpack');
 
 const isDev = process.env.NODE_ENV !== 'production';
@@ -14,7 +13,7 @@ const plugins = [
 ];
 
 if (isDev) {
-  plugins.push(...[new HardSourceWebpackPlugin(), new webpack.HotModuleReplacementPlugin()]);
+  plugins.push(...[new webpack.HotModuleReplacementPlugin()]);
 }
 
 module.exports = {
@@ -30,15 +29,16 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        loader: 'babel-loader',
+        use: ['cache-loader', 'babel-loader'],
       },
       {
         test: /\.s?css$/,
         use: [
+          { loader: 'cache-loader' },
           {
             loader: 'style-loader',
           },
-          { loader: 'css-loader', options: { importLoaders: 1 } },
+          { loader: 'css-loader' },
           { loader: 'postcss-loader' },
           { loader: 'sass-loader' },
         ],

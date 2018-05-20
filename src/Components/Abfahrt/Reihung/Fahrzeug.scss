@@ -1,0 +1,45 @@
+.Fahrzeug {
+  position: absolute;
+  height: 2em;
+  border: black 1px solid;
+
+  &__nummer {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &__klasse {
+    &--0 {
+      &::after {
+        content: "?";
+      }
+    }
+
+    &--1 {
+      background-color: yellow;
+      &::after {
+        content: "1";
+      }
+    }
+
+    &--2 {
+      background-color: red;
+      &::after {
+        content: "2";
+      }
+    }
+
+    &--3 {
+      background: linear-gradient(to right, yellow, red);
+      &::after {
+        content: "1/2";
+      }
+    }
+  }
+
+  &--rollstuhl {
+    width: 1em!important;
+    height: 1em!important;
+  }
+}

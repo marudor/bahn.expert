@@ -1,12 +1,12 @@
 // @flow
 import { createSelector } from 'reselect';
 import { maxBy } from 'lodash';
+import type { Abfahrt, Station } from 'types/abfahrten';
 import type { AppState } from 'AppState';
 import type { AuslastungEntry } from 'types/auslastung';
-import type { Station } from 'types/abfahrten';
 
 export const getAuslastung = (state: AppState) => state.auslastung.auslastung;
-export const getTrainIdFromProps = (_: AppState, props: any) => props.abfahrt.trainId;
+export const getTrainIdFromProps = (_: AppState, props: { abfahrt: Abfahrt }) => props.abfahrt.trainId;
 export const getStation = (state: AppState) => state.abfahrten.currentStation;
 
 export const getAuslastungForId = createSelector(
@@ -18,7 +18,7 @@ export const getAuslastungForIdAndStation = createSelector(
   [getAuslastungForId, getStation],
   (auslastung: ?(AuslastungEntry[]), station: ?Station) => {
     if (!station || !auslastung) {
-      return null;
+      return undefined;
     }
     while (auslastung.length && auslastung[0].start.replace(/ /g, '') !== station.title.replace(/ /g, '')) {
       auslastung.shift();

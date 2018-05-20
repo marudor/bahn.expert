@@ -20,11 +20,12 @@ export type Messages = {
   delay: Message[],
 };
 export type Abfahrt = {
-  id: string,
   delayArrival?: number,
   delayDeparture?: number,
   destination: string,
+  id: string,
   isCancelled: 0 | 1,
+  longDistance: boolean,
   messages: Messages,
   platform: string,
   route: Train[],

@@ -10,11 +10,10 @@ type Props = {
   detail: boolean,
 };
 
-const LongDistanceRegex = /(ICE?|TGV|ECE?).*/;
 const Start = ({ abfahrt, detail }: Props) => (
   <div className={cc(['Start', { cancelled: abfahrt.isCancelled }])}>
     {abfahrt.train}
-    {detail && LongDistanceRegex.test(abfahrt.train) && <Auslastung abfahrt={abfahrt} />}
+    {detail && abfahrt.longDistance && <Auslastung abfahrt={abfahrt} />}
   </div>
 );
 

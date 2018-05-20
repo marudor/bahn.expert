@@ -4,6 +4,7 @@ import { type Abfahrt } from 'types/abfahrten';
 import { connect } from 'react-redux';
 import { getAuslastung } from 'actions/auslastung';
 import { getAuslastungForIdAndStation } from 'selector/auslastung';
+import Loading from '../Loading';
 import React from 'react';
 import type { AppState } from 'AppState';
 
@@ -30,8 +31,12 @@ class Auslastung extends React.PureComponent<Props> {
   render() {
     const { auslastung } = this.props;
 
-    if (!auslastung) {
+    if (auslastung === null) {
       return null;
+    }
+
+    if (auslastung === undefined) {
+      return <Loading type={1} />;
     }
 
     return (
