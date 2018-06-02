@@ -3,6 +3,7 @@ import './index.scss';
 import { connect } from 'react-redux';
 import { getReihung } from 'actions/reihung';
 import { getReihungForId } from 'selector/reihung';
+import cc from 'classcat';
 import Gruppe from './Gruppe';
 import Loading from 'Components/Loading';
 import React from 'react';
@@ -49,8 +50,18 @@ class ReihungComp extends React.PureComponent<Props> {
           {reihung.halt.allSektor.map(s => <Sektor key={s.sektorbezeichnung} sektor={s} />)}
         </div>
         <div className="Reihung__reihung">
-        {reihung.allFahrzeuggruppe.map(g => <Gruppe key={g.fahrzeuggruppebezeichnung} gruppe={g} />)}
+          {reihung.allFahrzeuggruppe.map(g => (
+            <Gruppe showDestination={reihung.differentDestination} key={g.fahrzeuggruppebezeichnung} gruppe={g} />
+          ))}
         </div>
+        <span
+          className={cc([
+            'Reihung__richtung',
+            {
+              'Reihung__richtung--reverse': reihung.reverseRichtung,
+            },
+          ])}
+        />
       </div>
     );
   }

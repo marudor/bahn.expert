@@ -63,6 +63,10 @@ export type Halt = {
 
 export type Formation = {
   fahrtrichtung: 'VORWAERTS' | 'RUCKWAERTS',
+  /* Custom */
+  reverseRichtung: boolean,
+  differentDestination: boolean,
+  /* End Custom */
   allFahrzeuggruppe: Fahrzeuggruppe[],
   halt: Halt,
   liniebezeichnung: string,

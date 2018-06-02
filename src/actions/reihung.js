@@ -13,7 +13,7 @@ async function getWagenreihungForAbfahrt({
 }: Abfahrt): Promise<{ id: string, data: ?Reihung }> {
   try {
     if (!scheduledDeparture) {
-      return Promise.reject();
+      throw new Error();
     }
 
     const time = DateTime.fromFormat(scheduledDeparture, 'HH:mm').toFormat('yyyyMMddHHmm');

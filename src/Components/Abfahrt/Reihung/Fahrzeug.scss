@@ -36,10 +36,32 @@
         content: "1/2";
       }
     }
+    &--4 {
+      &::after {
+        content: "TK";
+      }
+    }
   }
 
   &--rollstuhl {
-    width: 1em!important;
-    height: 1em!important;
+    width: 1em !important;
+    height: 1em !important;
+  }
+
+  &--type {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &--comfort {
+    position: absolute;
+    top: 0.2em;
+    right: 0.3em;
+    width: 0.7em;
+    height: 0.7em;
+    background-color: red;
+    border-radius: 50%;
   }
 }
