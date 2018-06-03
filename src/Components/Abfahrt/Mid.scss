@@ -4,8 +4,8 @@
   flex-direction: column;
   justify-content: space-between;
   line-height: 1.2;
-  overflow: hidden;
   white-space: nowrap;
+  overflow: hidden;
 
   &--cancelled {
     text-decoration: line-through;

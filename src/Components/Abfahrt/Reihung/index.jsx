@@ -46,12 +46,21 @@ class ReihungComp extends React.PureComponent<Props> {
 
     return (
       <div className="Reihung">
+        {Boolean(reihung.specificTrainType) && (
+          <span className="Reihung__specificType">{reihung.specificTrainType}</span>
+        )}
         <div className="Reihung__sektoren">
           {reihung.halt.allSektor.map(s => <Sektor key={s.sektorbezeichnung} sektor={s} />)}
         </div>
         <div className="Reihung__reihung">
           {reihung.allFahrzeuggruppe.map(g => (
-            <Gruppe showDestination={reihung.differentDestination} key={g.fahrzeuggruppebezeichnung} gruppe={g} />
+            <Gruppe
+              specificType={reihung.specificTrainType}
+              type={reihung.zuggattung}
+              showDestination={reihung.differentDestination}
+              key={g.fahrzeuggruppebezeichnung}
+              gruppe={g}
+            />
           ))}
         </div>
         <span

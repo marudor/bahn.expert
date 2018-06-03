@@ -1,12 +1,16 @@
 // @flow
 import './Fahrzeug.scss';
 import ActionAccessible from 'material-ui/svg-icons/action/accessible';
+import cc from 'classcat';
+import MapsLocalDining from 'material-ui/svg-icons/maps/local-dining';
 import React from 'react';
-import type { Fahrzeug } from 'types/reihung';
+import type { Fahrzeug, FahrzeugType, SpecificType } from 'types/reihung';
 
 type Props = {
   fahrzeug: Fahrzeug,
   destination: ?string,
+  type: FahrzeugType,
+  specificType: ?SpecificType,
 };
 
 type State = {
@@ -25,28 +29,49 @@ type AdditionalFahrzeugInfos = {
   comfort: boolean,
 };
 
-const firstClassComfort = ['11', '26', '36', '28', '38'];
-const secondClassComfort = ['7', '23', '33', '27', '37'];
+const comfort = [
+  {
+    ICE1: ['11'],
+    ICE2: ['26', '36'],
+    ICE3: ['28', '38'],
+    ICE3V: ['26', '36'],
+    ICE4: ['11'],
+    ICET411: ['28', '38'],
+    ICET415: ['28', '38'],
+    IC2: ['5'],
+  },
+  {
+    ICE1: ['7'],
+    ICE2: ['23', '33'],
+    ICE3: ['27', '37'],
+    ICE3V: ['25', '35'],
+    ICE4: ['7'],
+    ICET411: ['27', '37'],
+    ICET415: ['23', '33'],
+    IC2: ['4'],
+  },
+];
 
-function comfortLogic(fahrzeug: Fahrzeug, klasse: number) {
-  if (fahrzeug.wagenordnungsnummer === '12' && fahrzeug.fahrzeugtyp === 'Avmz') {
-    return true;
-  } else if (
-    fahrzeug.wagenordnungsnummer === '10' &&
-    (fahrzeug.fahrzeugtyp === 'Bvmsz' || fahrzeug.fahrzeugtyp === 'Bimz')
-  ) {
-    return true;
-  }
-  if (klasse === 1) {
-    return firstClassComfort.includes(fahrzeug.wagenordnungsnummer);
-  } else if (klasse === 2) {
-    return secondClassComfort.includes(fahrzeug.wagenordnungsnummer);
+function comfortLogic(fahrzeug: Fahrzeug, klasse: number, type: FahrzeugType, specificType: ?SpecificType) {
+  const comfortSeats: ?(string[]) = specificType && comfort[klasse - 1]?.[specificType];
+
+  if (comfortSeats) {
+    return comfortSeats.includes(fahrzeug.wagenordnungsnummer);
+  } else if (type === 'IC') {
+    if (fahrzeug.wagenordnungsnummer === '12' && fahrzeug.fahrzeugtyp === 'Avmz') {
+      return true;
+    } else if (
+      fahrzeug.wagenordnungsnummer === '10' &&
+      (fahrzeug.fahrzeugtyp === 'Bvmsz' || fahrzeug.fahrzeugtyp === 'Bimz')
+    ) {
+      return true;
+    }
   }
 
   return false;
 }
 
-function getFahrzeugInfo(fahrzeug: Fahrzeug): AdditionalFahrzeugInfos {
+function getFahrzeugInfo(fahrzeug: Fahrzeug, type: FahrzeugType, specificType: ?SpecificType): AdditionalFahrzeugInfos {
   const data: AdditionalFahrzeugInfos = {
     klasse: 0,
     speise: false,
@@ -55,6 +80,8 @@ function getFahrzeugInfo(fahrzeug: Fahrzeug): AdditionalFahrzeugInfos {
   };
 
   switch (fahrzeug.kategorie) {
+    case 'DOPPELSTOCKSTEUERWAGENZWEITEKLASSE':
+    case 'DOPPELSTOCKWAGENZWEITEKLASSE':
     case 'REISEZUGWAGENZWEITEKLASSE':
     case 'STEUERWAGENZWEITEKLASSE':
       data.klasse = 2;
@@ -69,6 +96,11 @@ function getFahrzeugInfo(fahrzeug: Fahrzeug): AdditionalFahrzeugInfos {
     case 'REISEZUGWAGENERSTEZWEITEKLASSE':
       data.klasse = 3;
       break;
+    case 'HALBSPEISEWAGENERSTEKLASSE':
+      data.klasse = 1;
+      data.speise = true;
+      break;
+    case 'DOPPELSTOCKWAGENERSTEKLASSE':
     case 'REISEZUGWAGENERSTEKLASSE':
     case 'STEUERWAGENERSTEKLASSE':
       data.klasse = 1;
@@ -78,7 +110,7 @@ function getFahrzeugInfo(fahrzeug: Fahrzeug): AdditionalFahrzeugInfos {
       data.klasse = 4;
   }
 
-  data.comfort = comfortLogic(fahrzeug, data.klasse);
+  data.comfort = comfortLogic(fahrzeug, data.klasse, type, specificType);
 
   return data;
 }
@@ -86,7 +118,7 @@ function getFahrzeugInfo(fahrzeug: Fahrzeug): AdditionalFahrzeugInfos {
 export default class FahrzeugComp extends React.PureComponent<Props, State> {
   static getDerivedStateFromProps(props: Props) {
     return {
-      info: getFahrzeugInfo(props.fahrzeug),
+      info: getFahrzeugInfo(props.fahrzeug, props.type, props.specificType),
     };
   }
   render() {
@@ -104,10 +136,19 @@ export default class FahrzeugComp extends React.PureComponent<Props, State> {
     };
 
     return (
-      <div style={pos} className="Fahrzeug">
+      <div
+        style={pos}
+        className={cc([
+          'Fahrzeug',
+          {
+            'Fahrzeug--closed': fahrzeug.status === 'GESCHLOSSEN',
+          },
+        ])}
+      >
         <span className={`Fahrzeug__klasse Fahrzeug__klasse--${info.klasse}`} />
         <span className="Fahrzeug__nummer">{fahrzeug.wagenordnungsnummer}</span>
-        {info.rollstuhl && <ActionAccessible className="Fahrzeug--rollstuhl" />}
+        {info.rollstuhl && <ActionAccessible className="Fahrzeug--icon" />}
+        {info.speise && <MapsLocalDining className="Fahrzeug--icon" />}
         {info.comfort && <span className="Fahrzeug--comfort" />}
         <span className="Fahrzeug--type">{fahrzeug.fahrzeugtyp}</span>
         {/* {destination && <span className="Fahrzeug--destination">{destination}</span>} */}

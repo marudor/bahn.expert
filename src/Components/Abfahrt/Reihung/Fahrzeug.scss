@@ -3,6 +3,10 @@
   height: 2em;
   border: black 1px solid;
 
+  &--closed {
+    background: repeating-linear-gradient(135deg, #999, #999, 5px, transparent 5px, transparent 10px);
+  }
+
   &__nummer {
     position: absolute;
     left: 50%;
@@ -12,38 +16,38 @@
   &__klasse {
     &--0 {
       &::after {
-        content: "?";
+        content: '?';
       }
     }
 
     &--1 {
       background-color: yellow;
       &::after {
-        content: "1";
+        content: '1';
       }
     }
 
     &--2 {
       background-color: red;
       &::after {
-        content: "2";
+        content: '2';
       }
     }
 
     &--3 {
       background: linear-gradient(to right, yellow, red);
       &::after {
-        content: "1/2";
+        content: '1/2';
       }
     }
     &--4 {
       &::after {
-        content: "TK";
+        content: 'TK';
       }
     }
   }
 
-  &--rollstuhl {
+  &--icon {
     width: 1em !important;
     height: 1em !important;
   }

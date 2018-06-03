@@ -1,4 +1,7 @@
 // @flow
+export type FahrzeugType = 'IC' | 'EC' | 'ICE' | 'TGV';
+export type SpecificType = 'ICET411' | 'ICET415' | 'ICE4' | 'ICE3' | 'ICE3V' | 'ICE2' | 'ICE1' | 'IC2';
+
 export type Meta = {
   id: string,
   owner: 'vz',
@@ -66,11 +69,12 @@ export type Formation = {
   /* Custom */
   reverseRichtung: boolean,
   differentDestination: boolean,
+  specificTrainType: ?SpecificType,
   /* End Custom */
   allFahrzeuggruppe: Fahrzeuggruppe[],
   halt: Halt,
   liniebezeichnung: string,
-  zuggattung: string,
+  zuggattung: FahrzeugType,
   zugnummer: string,
   serviceid: string,
   planstarttag: string,
