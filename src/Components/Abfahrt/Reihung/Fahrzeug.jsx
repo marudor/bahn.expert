@@ -93,6 +93,7 @@ function getFahrzeugInfo(fahrzeug: Fahrzeug, type: FahrzeugType, specificType: ?
       break;
     default:
       break;
+    case 'STEUERWAGENERSTEZWEITEKLASSE':
     case 'REISEZUGWAGENERSTEZWEITEKLASSE':
       data.klasse = 3;
       break;
