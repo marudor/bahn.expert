@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { setDetail } from 'actions/abfahrten';
 import End from './End';
 import Mid from './Mid';
-import Paper from 'material-ui/Paper';
+import Paper from '@material-ui/core/Paper';
 import React from 'react';
 import Start from './Start';
 
@@ -24,6 +24,9 @@ const Abfahrt = ({ abfahrt, detail, setDetail }: Props) => (
   </Paper>
 );
 
-export default connect(null, {
-  setDetail,
-})(Abfahrt);
+export default connect(
+  null,
+  {
+    setDetail,
+  }
+)(Abfahrt);

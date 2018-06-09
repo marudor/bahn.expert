@@ -1,16 +1,27 @@
 // @flow
 import './BahnhofsAbfahrten.scss';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import { hot } from 'react-hot-loader';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import AbfahrtenList from './AbfahrtenList';
 import FavList from './FavList';
 import Header from './Header';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import React from 'react';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#00bcd4',
+    },
+    secondary: {
+      main: '#fff',
+    },
+  },
+});
 
 const BahnhofsAbfahrten = () => (
   <Router>
-    <MuiThemeProvider>
+    <MuiThemeProvider theme={theme}>
       <div className="BahnhofsAbfahrten">
         <Route path="/" component={Header} />
         <Route path="/" exact component={FavList} />

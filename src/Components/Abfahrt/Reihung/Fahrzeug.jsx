@@ -1,8 +1,8 @@
 // @flow
 import './Fahrzeug.scss';
-import ActionAccessible from 'material-ui/svg-icons/action/accessible';
+import ActionAccessible from '@material-ui/icons/Accessible';
 import cc from 'classcat';
-import MapsLocalDining from 'material-ui/svg-icons/maps/local-dining';
+import MapsLocalDining from '@material-ui/icons/LocalDining';
 import React from 'react';
 import type { Fahrzeug, FahrzeugType, SpecificType } from 'types/reihung';
 

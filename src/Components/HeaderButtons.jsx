@@ -1,11 +1,11 @@
 // @flow
 import { connect } from 'react-redux';
 import { fav, unfav } from 'actions/fav';
-import ActionSearch from 'material-ui/svg-icons/action/search';
-import IconButton from 'material-ui/IconButton';
+import ActionSearch from '@material-ui/icons/search';
+import IconButton from '@material-ui/core/IconButton';
 import React from 'react';
-import ToggleStar from 'material-ui/svg-icons/toggle/star';
-import ToggleStarBorder from 'material-ui/svg-icons/toggle/star-border';
+import ToggleStar from '@material-ui/icons/Star';
+import ToggleStarBorder from '@material-ui/icons/StarBorder';
 import type { AppState } from 'AppState';
 import type { Station } from 'types/abfahrten';
 
@@ -41,7 +41,7 @@ class HeaderButtons extends React.Component<Props> {
 
     return (
       <IconButton onClick={this.toggleFav}>
-        {isFaved ? <ToggleStar color="white" /> : <ToggleStarBorder color="white" />}
+        {isFaved ? <ToggleStar color="secondary" /> : <ToggleStarBorder color="secondary" />}
       </IconButton>
     );
   }
@@ -49,7 +49,7 @@ class HeaderButtons extends React.Component<Props> {
     return (
       <div>
         <IconButton onClick={this.props.handleSearchClick}>
-          <ActionSearch color="white" />
+          <ActionSearch color="secondary" />
         </IconButton>
         {this.getFavButton()}
       </div>

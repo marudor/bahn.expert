@@ -1,7 +1,7 @@
 // @flow
 import './FavEntry.scss';
 import { Link } from 'react-router-dom';
-import Paper from 'material-ui/Paper';
+import Paper from '@material-ui/core/Paper';
 import React from 'react';
 
 type Props = {

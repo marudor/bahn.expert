@@ -3,14 +3,15 @@
 }
 
 .Header {
+  &__title {
+    flex: 1;
+  }
   > div {
     overflow: visible !important;
   }
   flex-shrink: 0;
-  position: fixed !important;
 
   &__select {
-    margin-top: 16px;
     line-height: 32px;
   }
 }

@@ -5,6 +5,8 @@
 <PROJECT_ROOT>/node_modules/flow-typed/.*
 <PROJECT_ROOT>/node_modules/config-chain/.*
 <PROJECT_ROOT>/.cache/.*
+<PROJECT_ROOT>/node_modules/react-router/node_modules/warning/.*
+<PROJECT_ROOT>/node_modules/react-router-dom/node_modules/warning/.*
 
 [include]
 ./src/index.jsx

@@ -3,15 +3,17 @@ import './Header.scss';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setCurrentStation } from 'actions/abfahrten';
-import ActionHome from 'material-ui/svg-icons/action/home';
-import AppBar from 'material-ui/AppBar';
+import ActionHome from '@material-ui/icons/Home';
+import AppBar from '@material-ui/core/AppBar';
 import axios from 'axios';
 import HeaderButtons from './HeaderButtons';
-import IconButton from 'material-ui/IconButton';
+import IconButton from '@material-ui/core/IconButton';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Select from 'react-select';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 import type { AppState } from 'AppState';
 import type { ContextRouter } from 'react-router';
 import type { Station } from 'types/abfahrten';
@@ -43,13 +45,6 @@ class Header extends React.Component<Props, State> {
   static contextTypes = {
     router: PropTypes.object.isRequired,
   };
-  HomeButton = (
-    <Link to="/">
-      <IconButton>
-        <ActionHome color="white" />
-      </IconButton>
-    </Link>
-  );
   submit = (station: Station) => {
     if (!station) {
       return;
@@ -93,17 +88,27 @@ class Header extends React.Component<Props, State> {
     let title = this.SearchBar;
 
     if (!isSearch) {
-      title = currentStation ? currentStation.title : 'Bahnhofs abfahrten';
+      title = (
+        <Typography variant="headline" color="secondary">
+          {currentStation ? currentStation.title : 'Bahnhofs abfahrten'}
+        </Typography>
+      );
     }
 
     return (
-      <AppBar
-        onTitleClick={this.handleTitleClick}
-        iconElementLeft={this.HomeButton}
-        iconElementRight={<HeaderButtons handleSearchClick={this.handleTitleClick} />}
-        title={title}
-        className="Header"
-      />
+      <AppBar position="fixed">
+        <Toolbar className="Header">
+          <Link to="/">
+            <IconButton>
+              <ActionHome color="secondary" />
+            </IconButton>
+          </Link>
+          <div className="Header__title" onClick={this.handleTitleClick}>
+            {title}
+          </div>
+          <HeaderButtons handleSearchClick={this.handleTitleClick} />
+        </Toolbar>
+      </AppBar>
     );
   }
   componentDidUpdate() {

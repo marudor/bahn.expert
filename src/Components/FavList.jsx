@@ -3,7 +3,7 @@ import './FavList.scss';
 import { connect } from 'react-redux';
 import { setCurrentStation } from 'actions/abfahrten';
 import FavEntry from './FavEntry';
-import Paper from 'material-ui/Paper';
+import Paper from '@material-ui/core/Paper';
 import React from 'react';
 import type { AppState } from 'AppState';
 
