@@ -1,7 +1,7 @@
 // @flow
 import { connect } from 'react-redux';
 import { fav, unfav } from 'actions/fav';
-import ActionSearch from '@material-ui/icons/search';
+import ActionSearch from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
 import React from 'react';
 import ToggleStar from '@material-ui/icons/Star';
