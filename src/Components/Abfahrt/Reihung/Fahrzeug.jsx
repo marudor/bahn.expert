@@ -117,11 +117,9 @@ function getFahrzeugInfo(fahrzeug: Fahrzeug, type: FahrzeugType, specificType: ?
 }
 
 export default class FahrzeugComp extends React.PureComponent<Props, State> {
-  static getDerivedStateFromProps(props: Props) {
-    return {
-      info: getFahrzeugInfo(props.fahrzeug, props.type, props.specificType),
-    };
-  }
+  state = {
+    info: getFahrzeugInfo(this.props.fahrzeug, this.props.type, this.props.specificType),
+  };
   render() {
     const { fahrzeug /* , destination*/ } = this.props;
     const { info } = this.state;

@@ -3,8 +3,11 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
+    "build:perf": "npm run cleanup && NODE_ENV=production webpack --profile --json > ./webpack-stats.json && webpack-bundle-analyzer ./webpack-stats.json dist/ --mode static -s gzip --report ./BundleReport.html --no-open",
+    "build:webpack": "npm run cleanup && webpack",
+    "build": "npm run build:webpack",
+    "cleanup": "rimraf dist",
     "dev": "webpack-dev-server",
-    "build": "rimraf dist && webpack",
     "lint": "eslint src",
     "test": "exit 0"
   },
@@ -45,6 +48,7 @@
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
     "webpack": "^4.12.0",
+    "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.0.3",
     "webpack-dev-server": "^3.1.4"
   },
@@ -55,7 +59,6 @@
     "axios": "^0.18.0",
     "classcat": "^3.1.2",
     "create-react-class": "^15.6.3",
-    "immutable": "^4.0.0-rc.9",
     "lodash": "^4.17.10",
     "luxon": "^1.2.1",
     "prop-types": "^15.6.1",
@@ -66,7 +69,6 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-select": "^1.2.1",
-    "react-tap-event-plugin": "^3.0.3",
     "redux": "^4.0.0",
     "redux-actions": "^2.4.0",
     "redux-promise": "^0.6.0",

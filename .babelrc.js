@@ -10,9 +10,12 @@ module.exports = {
     ],
     '@babel/preset-react',
     '@babel/preset-flow',
-    ['@babel/preset-stage-1', {
-      decoratorsLegacy: true
-    }]
+    [
+      '@babel/preset-stage-1',
+      {
+        decoratorsLegacy: true,
+      },
+    ],
   ],
   plugins: [
     'lodash',

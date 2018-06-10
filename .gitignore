@@ -40,3 +40,5 @@ jspm_packages
 dist/
 .cache/
 .cache-loader/
+webpack-stats.json
+BundleReport.html

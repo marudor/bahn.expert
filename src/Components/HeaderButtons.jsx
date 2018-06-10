@@ -59,7 +59,7 @@ class HeaderButtons extends React.Component<Props> {
 
 export default connect(
   (state: AppState): ReduxProps => ({
-    isFaved: Boolean(state.abfahrten.currentStation && state.fav.favs.has(state.abfahrten.currentStation.id)),
+    isFaved: Boolean(state.abfahrten.currentStation && state.fav.favs[state.abfahrten.currentStation.id]),
     currentStation: state.abfahrten.currentStation,
   }),
   {

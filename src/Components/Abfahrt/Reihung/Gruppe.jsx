@@ -21,7 +21,7 @@ export default class Gruppe extends React.PureComponent<Props> {
             specificType={specificType}
             type={type}
             destination={showDestination ? gruppe.zielbetriebsstellename : null}
-            key={f.fahrzeugnummer}
+            key={`${f.fahrzeugnummer}${f.positioningruppe}`}
             fahrzeug={f}
           />
         ))}

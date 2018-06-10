@@ -1,6 +1,5 @@
 // @flow
 import { createAction } from 'redux-actions';
-import { List } from 'immutable';
 import axios from 'axios';
 import uuid from 'uuid';
 import type { Abfahrt, Station } from 'types/abfahrten';
@@ -30,7 +29,7 @@ async function abfahrtenByStation(station: Station) {
   }
   abfahrten.departures.forEach(a => (a.id = uuid.v4()));
 
-  return List(abfahrten.departures);
+  return abfahrten.departures;
 }
 
 export const getAbfahrtenByStation = createAction('ABFAHRTEN_BY_STATION', async (station: Station) => ({
@@ -50,7 +49,7 @@ export const getAbfahrtenByString = createAction('ABFAHRTEN_BY_STRING', async (s
 
   return {
     station: null,
-    abfahrten: List(),
+    abfahrten: [],
   };
 });
 

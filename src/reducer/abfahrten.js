@@ -1,19 +1,18 @@
 // @flow
 import * as Actions from 'actions/abfahrten';
 import { combineActions, handleActions } from 'redux-actions';
-import { List } from 'immutable';
 import type { Abfahrt, Station } from 'types/abfahrten';
 
 export type State = {
   selectedDetail: ?string,
-  abfahrten: List<Abfahrt>,
+  abfahrten: Array<Abfahrt>,
   currentStation: ?Station,
   error: ?Error,
 };
 
 const defaultState = {
   selectedDetail: null,
-  abfahrten: List(),
+  abfahrten: [],
   currentStation: null,
   error: null,
 };
@@ -25,7 +24,7 @@ export default handleActions(
         ? {
             ...state,
             currentStation: null,
-            abfahrten: List(),
+            abfahrten: [],
             error: payload,
           }
         : {

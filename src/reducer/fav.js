@@ -1,11 +1,10 @@
 // @flow
 import * as Actions from 'actions/fav';
 import { handleActions } from 'redux-actions';
-import { Map } from 'immutable';
 import type { Station } from 'types/abfahrten';
 
 export type State = {
-  favs: Map<string | number, Station>,
+  favs: { [key: string | number]: Station },
 };
 
 let initialFavs;
@@ -27,9 +26,9 @@ try {
       }
     });
   }
-  initialFavs = Map(rawFavs);
+  initialFavs = rawFavs;
 } catch (e) {
-  initialFavs = Map({});
+  initialFavs = {};
 }
 
 const defaultState = {
@@ -39,7 +38,10 @@ const defaultState = {
 export default handleActions(
   {
     [String(Actions.fav)]: (state: State, { payload }) => {
-      const favs = state.favs.set(payload.id, payload);
+      const favs = {
+        ...state.favs,
+        [payload.id]: payload,
+      };
 
       localStorage.setItem('favs', JSON.stringify(favs));
 
@@ -49,7 +51,10 @@ export default handleActions(
       };
     },
     [String(Actions.unfav)]: (state: State, { payload }) => {
-      const favs = state.favs.remove(payload.id);
+      // eslint-disable-next-line no-unused-vars
+      delete state.favs[payload.id];
+      // Create new Object for immutability
+      const favs = { ...state.favs };
 
       localStorage.setItem('favs', JSON.stringify(favs));
 
