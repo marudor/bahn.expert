@@ -1,4 +1,4 @@
-FROM node:8-alpine as build
+FROM node:10-alpine as build
 WORKDIR /app
 COPY .babelrc.js /app
 COPY package.json /app

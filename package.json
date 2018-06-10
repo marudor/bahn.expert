@@ -1,7 +1,12 @@
 {
   "name": "bahnhofs-abfahrten",
   "version": "0.0.1",
+  "description": "",
   "license": "MIT",
+  "engines": {
+    "node": "^10"
+  },
+  "engineStrict": true,
   "scripts": {
     "build:perf": "npm run cleanup && NODE_ENV=production webpack --profile --json > ./webpack-stats.json && webpack-bundle-analyzer ./webpack-stats.json dist/ --mode static -s gzip --report ./BundleReport.html --no-open",
     "build:webpack": "npm run cleanup && webpack",
@@ -78,5 +83,16 @@
     "reselect": "^3.0.1",
     "typeface-roboto": "^0.0.54",
     "uuid": "^3.2.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marudor/BahnhofsAbfahrten.git"
+  },
+  "author": "marudor",
+  "bugs": {
+    "url": "https://github.com/marudor/BahnhofsAbfahrten/issues"
+  },
+  "keywords": [],
+  "contributors": [],
+  "homepage": "http://marudor.de"
 }
