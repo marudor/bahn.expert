@@ -71,6 +71,7 @@
     "redux-actions": "^2.4.0",
     "redux-promise": "^0.6.0",
     "reselect": "^3.0.1",
+    "typeface-roboto": "^0.0.54",
     "uuid": "^3.2.1"
   }
 }

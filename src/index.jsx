@@ -1,6 +1,7 @@
 // @flow
 import './index.scss';
 import '@babel/polyfill';
+import 'typeface-roboto';
 import { applyMiddleware, compose, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import BahnhofsAbfahrten from 'Components/BahnhofsAbfahrten';
