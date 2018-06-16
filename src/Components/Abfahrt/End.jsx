@@ -1,14 +1,10 @@
 // @flow
 import './End.scss';
 import { type Abfahrt } from 'types/abfahrten';
+import AbfahrtContext from './AbfahrtContext';
 import cc from 'classcat';
 import React from 'react';
 import Times from './Times';
-
-type Props = {
-  abfahrt: Abfahrt,
-  detail: boolean,
-};
 
 function getDelay(abfahrt: Abfahrt) {
   if ((!abfahrt.delayDeparture && !abfahrt.delayArrival) || abfahrt.isCancelled) {
@@ -32,14 +28,18 @@ function getDelay(abfahrt: Abfahrt) {
   );
 }
 
-const End = ({ abfahrt, detail }: Props) => (
-  <div className={cc(['End', { cancelled: abfahrt.isCancelled }])}>
-    <Times abfahrt={abfahrt} detail={detail} />
-    <div>
-      {!detail && getDelay(abfahrt)}
-      <span className={'End__platform'}>{abfahrt.platform}</span>
-    </div>
-  </div>
+const End = () => (
+  <AbfahrtContext.Consumer>
+    {({ abfahrt, detail }) => (
+      <div className={cc(['End', { cancelled: abfahrt.isCancelled }])}>
+        <Times />
+        <div>
+          {!detail && getDelay(abfahrt)}
+          <span className={'End__platform'}>{abfahrt.platform}</span>
+        </div>
+      </div>
+    )}
+  </AbfahrtContext.Consumer>
 );
 
 export default End;

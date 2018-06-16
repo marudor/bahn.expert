@@ -7,6 +7,7 @@ import cc from 'classcat';
 import Gruppe from './Gruppe';
 import Loading from 'Components/Loading';
 import React from 'react';
+import ReihungContext from './ReihungContext';
 import Sektor from './Sektor';
 import type { Abfahrt } from 'types/abfahrten';
 import type { AppState } from 'AppState';
@@ -53,15 +54,17 @@ class ReihungComp extends React.PureComponent<Props> {
           {reihung.halt.allSektor.map(s => <Sektor key={s.sektorbezeichnung} sektor={s} />)}
         </div>
         <div className="Reihung__reihung">
-          {reihung.allFahrzeuggruppe.map(g => (
-            <Gruppe
-              specificType={reihung.specificTrainType}
-              type={reihung.zuggattung}
-              showDestination={reihung.differentDestination}
-              key={g.fahrzeuggruppebezeichnung}
-              gruppe={g}
-            />
-          ))}
+          <ReihungContext.Provider value={{ specificType: reihung.specificTrainType, type: reihung.zuggattung }}>
+            {reihung.allFahrzeuggruppe.map(g => (
+              <Gruppe
+                specificType={reihung.specificTrainType}
+                type={reihung.zuggattung}
+                showDestination={reihung.differentDestination}
+                key={g.fahrzeuggruppebezeichnung}
+                gruppe={g}
+              />
+            ))}
+          </ReihungContext.Provider>
         </div>
         <span
           className={cc([

@@ -2,13 +2,9 @@
 import './Via.scss';
 import { type Abfahrt } from 'types/abfahrten';
 import { normalizeName } from 'util';
+import AbfahrtContext from './AbfahrtContext';
 import cc from 'classcat';
 import React from 'react';
-
-type Props = {
-  abfahrt: Abfahrt,
-  detail: boolean,
-};
 
 function getInfo(abfahrt: Abfahrt, detail: boolean) {
   let info = '';
@@ -100,16 +96,20 @@ function getDetailedVia(abfahrt: Abfahrt) {
   return via;
 }
 
-const Via = ({ abfahrt, detail }: Props) => {
-  const info = getInfo(abfahrt, detail);
-  const via = detail ? getDetailedVia(abfahrt) : getNormalVia(abfahrt);
+const Via = () => (
+  <AbfahrtContext.Consumer>
+    {({ abfahrt, detail }) => {
+      const info = getInfo(abfahrt, detail);
+      const via = detail ? getDetailedVia(abfahrt) : getNormalVia(abfahrt);
 
-  return (
-    <div className={cc(['Via', { cancelled: abfahrt.isCancelled }])}>
-      {info}
-      {(detail || !info) && via}
-    </div>
-  );
-};
+      return (
+        <div className={cc(['Via', { cancelled: abfahrt.isCancelled }])}>
+          {info}
+          {(detail || !info) && via}
+        </div>
+      );
+    }}
+  </AbfahrtContext.Consumer>
+);
 
 export default Via;

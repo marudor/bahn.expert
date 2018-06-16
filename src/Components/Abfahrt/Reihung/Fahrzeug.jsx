@@ -4,17 +4,12 @@ import ActionAccessible from '@material-ui/icons/Accessible';
 import cc from 'classcat';
 import MapsLocalDining from '@material-ui/icons/LocalDining';
 import React from 'react';
+import ReihungContext from './ReihungContext';
 import type { Fahrzeug, FahrzeugType, SpecificType } from 'types/reihung';
 
 type Props = {
   fahrzeug: Fahrzeug,
   destination: ?string,
-  type: FahrzeugType,
-  specificType: ?SpecificType,
-};
-
-type State = {
-  info: AdditionalFahrzeugInfos,
 };
 
 // Klasse: 0 = unknown
@@ -116,13 +111,9 @@ function getFahrzeugInfo(fahrzeug: Fahrzeug, type: FahrzeugType, specificType: ?
   return data;
 }
 
-export default class FahrzeugComp extends React.PureComponent<Props, State> {
-  state = {
-    info: getFahrzeugInfo(this.props.fahrzeug, this.props.type, this.props.specificType),
-  };
+export default class FahrzeugComp extends React.PureComponent<Props> {
   render() {
     const { fahrzeug /* , destination*/ } = this.props;
-    const { info } = this.state;
 
     const { startprozent, endeprozent } = fahrzeug.positionamhalt;
 
@@ -135,23 +126,31 @@ export default class FahrzeugComp extends React.PureComponent<Props, State> {
     };
 
     return (
-      <div
-        style={pos}
-        className={cc([
-          'Fahrzeug',
-          {
-            'Fahrzeug--closed': fahrzeug.status === 'GESCHLOSSEN',
-          },
-        ])}
-      >
-        <span className={`Fahrzeug__klasse Fahrzeug__klasse--${info.klasse}`} />
-        <span className="Fahrzeug__nummer">{fahrzeug.wagenordnungsnummer}</span>
-        {info.rollstuhl && <ActionAccessible className="Fahrzeug--icon" />}
-        {info.speise && <MapsLocalDining className="Fahrzeug--icon" />}
-        {info.comfort && <span className="Fahrzeug--comfort" />}
-        <span className="Fahrzeug--type">{fahrzeug.fahrzeugtyp}</span>
-        {/* {destination && <span className="Fahrzeug--destination">{destination}</span>} */}
-      </div>
+      <ReihungContext.Consumer>
+        {({ type, specificType }) => {
+          const info = getFahrzeugInfo(fahrzeug, type, specificType);
+
+          return (
+            <div
+              style={pos}
+              className={cc([
+                'Fahrzeug',
+                {
+                  'Fahrzeug--closed': fahrzeug.status === 'GESCHLOSSEN',
+                },
+              ])}
+            >
+              <span className={`Fahrzeug__klasse Fahrzeug__klasse--${info.klasse}`} />
+              <span className="Fahrzeug__nummer">{fahrzeug.wagenordnungsnummer}</span>
+              {info.rollstuhl && <ActionAccessible className="Fahrzeug--icon" />}
+              {info.speise && <MapsLocalDining className="Fahrzeug--icon" />}
+              {info.comfort && <span className="Fahrzeug--comfort" />}
+              <span className="Fahrzeug--type">{fahrzeug.fahrzeugtyp}</span>
+              {/* {destination && <span className="Fahrzeug--destination">{destination}</span>} */}
+            </div>
+          );
+        }}
+      </ReihungContext.Consumer>
     );
   }
 }

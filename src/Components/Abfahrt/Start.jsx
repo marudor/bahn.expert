@@ -1,20 +1,19 @@
 // @flow
 import './Start.scss';
-import { type Abfahrt } from 'types/abfahrten';
+import AbfahrtContext from './AbfahrtContext';
 import Auslastung from './Auslastung';
 import cc from 'classcat';
 import React from 'react';
 
-type Props = {
-  abfahrt: Abfahrt,
-  detail: boolean,
-};
-
-const Start = ({ abfahrt, detail }: Props) => (
-  <div className={cc(['Start', { cancelled: abfahrt.isCancelled }])}>
-    {abfahrt.train}
-    {detail && abfahrt.longDistance && <Auslastung abfahrt={abfahrt} />}
-  </div>
+const Start = () => (
+  <AbfahrtContext.Consumer>
+    {({ abfahrt, detail }) => (
+      <div className={cc(['Start', { cancelled: abfahrt.isCancelled }])}>
+        {abfahrt.train}
+        {detail && abfahrt.longDistance && <Auslastung abfahrt={abfahrt} />}
+      </div>
+    )}
+  </AbfahrtContext.Consumer>
 );
 
 export default Start;

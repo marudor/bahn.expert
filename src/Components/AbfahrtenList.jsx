@@ -9,16 +9,16 @@ import React from 'react';
 import type { AppState } from 'AppState';
 import type { ContextRouter } from 'react-router';
 
-type ReduxProps = {
+type ReduxProps = {|
   abfahrten: $PropertyType<$PropertyType<AppState, 'abfahrten'>, 'abfahrten'>,
   selectedDetail: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'selectedDetail'>,
-};
+|};
 
 type Props = ReduxProps &
-  ContextRouter & {
+  ContextRouter & {|
     getAbfahrtenByString: typeof getAbfahrtenByString,
     setCurrentStation: typeof setCurrentStation,
-  };
+  |};
 type State = {
   loading: boolean,
 };
