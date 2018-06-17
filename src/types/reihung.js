@@ -67,9 +67,10 @@ export type Halt = {
 export type Formation = {
   fahrtrichtung: 'VORWAERTS' | 'RUCKWAERTS',
   /* Custom */
-  reverseRichtung: boolean,
   differentDestination: boolean,
   specificTrainType: ?SpecificType,
+  // 1 = Vorwärts, 0 = Rückwärts
+  realFahrtrichtung: boolean,
   /* End Custom */
   allFahrzeuggruppe: Fahrzeuggruppe[],
   halt: Halt,

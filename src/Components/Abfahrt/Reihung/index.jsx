@@ -70,7 +70,7 @@ class ReihungComp extends React.PureComponent<Props> {
           className={cc([
             'Reihung__richtung',
             {
-              'Reihung__richtung--reverse': reihung.reverseRichtung,
+              'Reihung__richtung--reverse': !reihung.realFahrtrichtung,
             },
           ])}
         />

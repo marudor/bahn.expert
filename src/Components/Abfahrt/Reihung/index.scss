@@ -1,7 +1,7 @@
 .Reihung {
   line-height: 1.3;
   font-size: 120%;
-  height: 4em;
+  height: 5em;
   margin-bottom:1em;
   margin-right: 3em;
   margin-left: 2em;
@@ -18,5 +18,28 @@
   &__reihung {
     position: relative;
     margin-top:1em;
+  }
+
+  &__richtung {
+    &--reverse {
+      transform: rotate(180deg) translateX(50%);
+    }
+    background-color: black;
+    width: 50%;
+    height: 2px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0px;
+    &::after {
+      border: solid black;
+      border-width: 0 2px 2px 0;
+      display: inline-block;
+      padding: 3px;
+      content: "";
+      transform: rotate(135deg);
+      position: absolute;
+      top: -3px;
+    }
   }
 }

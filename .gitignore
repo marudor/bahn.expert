@@ -42,3 +42,4 @@ dist/
 .cache-loader/
 webpack-stats.json
 BundleReport.html
+.node-version
