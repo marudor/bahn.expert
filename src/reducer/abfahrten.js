@@ -11,7 +11,7 @@ export type State = {
 };
 
 const defaultState = {
-  selectedDetail: null,
+  selectedDetail: localStorage.getItem('selectedDetail'),
   abfahrten: [],
   currentStation: null,
   error: null,
@@ -33,10 +33,20 @@ export default handleActions(
             abfahrten: payload.abfahrten,
             error: null,
           },
-    [String(Actions.setDetail)]: (state: State, { payload }) => ({
-      ...state,
-      selectedDetail: state.selectedDetail === payload ? null : payload,
-    }),
+    [String(Actions.setDetail)]: (state: State, { payload }) => {
+      const selectedDetail: ?string = state.selectedDetail === payload ? null : payload;
+
+      if (selectedDetail) {
+        localStorage.setItem('selectedDetail', selectedDetail);
+      } else {
+        localStorage.removeItem('selectedDetail');
+      }
+
+      return {
+        ...state,
+        selectedDetail,
+      };
+    },
     [String(Actions.setCurrentStation)]: (state: State, { payload }) => ({
       ...state,
       currentStation: payload,

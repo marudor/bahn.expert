@@ -1,7 +1,6 @@
 // @flow
 import { createAction } from 'redux-actions';
 import axios from 'axios';
-import uuid from 'uuid';
 import type { Abfahrt, Station } from 'types/abfahrten';
 
 async function getStationFromAPI(stationString: ?string) {
@@ -19,17 +18,9 @@ async function getStationFromAPI(stationString: ?string) {
 export const getStation = createAction('GET_STATION', getStationFromAPI);
 
 async function abfahrtenByStation(station: Station) {
-  const abfahrten: {
-    error?: any,
-    departures: Abfahrt[],
-  } = (await axios.get(`/api/abfahrten/${station.id}`)).data;
+  const abfahrten: Abfahrt[] = (await axios.get(`/api/abfahrten/${station.id}`)).data;
 
-  if (abfahrten.error) {
-    throw new Error(abfahrten.error);
-  }
-  abfahrten.departures.forEach(a => (a.id = uuid.v4()));
-
-  return abfahrten.departures;
+  return abfahrten;
 }
 
 export const getAbfahrtenByStation = createAction('ABFAHRTEN_BY_STATION', async (station: Station) => ({
@@ -55,4 +46,4 @@ export const getAbfahrtenByString = createAction('ABFAHRTEN_BY_STRING', async (s
 
 export const setDetail = createAction('SET_DETAIL');
 
-export const setCurrentStation = createAction('SET_CURRENT_STATION', station => station);
+export const setCurrentStation = createAction('SET_CURRENT_STATION');
