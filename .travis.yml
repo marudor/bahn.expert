@@ -3,15 +3,21 @@ language: node_js
 notifications:
   email: false
 node_js:
-  - "lts/*"
+- 10
 services:
-  - docker
-before_install:
-  - docker build -t marudor/bahnhofsabfahrten .
-install:
-  - 
+- docker
+script:
+- export TAG=`if [[ $TRAVIS_BRANCH = "master" ]]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
+- docker build -t $CLIENT:$TAG -f Dockerfile.client .
+- docker build -t $SERVER:$TAG -f Dockerfile.server .
 after_success:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-    docker push marudor/bahnhofsabfahrten;
-    fi
+- docker login -u $DOCKER_USER -p $DOCKER_PASS
+- docker push $CLIENT:$TAG
+- docker push $SERVER:$TAG
+env:
+  global:
+  - CLIENT=marudor/bahnhofsabfahrten
+  - SERVER=marudor/bahnhofsabfahrtenserver
+  - COMMIT=${TRAVIS_COMMIT::8}
+  - secure: OfRNlTLZ9T8vb8AlYK8aB/q61Z/sBvkEiyJX9UK/6A3gAZXMX3DMrL4lYc2IoFOzyNyfHt5FqLdHyX3rw+nBL1mfq9nZrzyVRBQA74P+4oquk4q1jZHAfrf5WjDd4ypkOTohzBkMdl4bGVePJRJmTpx+97JQqK7B4BcfH8sAbfLgTKpCiUISDKX0RJqX7Ksj0L0qodqP+4OeJElia106JZ7NgZwVNJ4HIPahuwDMmbMkiBHp1qjIU8aEQcDSM23lf8cTxTPMHnhTGg23Zx/nv5VLtTfowkgw253XBQ6/eGtrMD1iOS7xKcy9b9ydDpSJUxr787X6c1jEmprikkelBfnwRZpAGxzImdY2c9v4XGkxEwj6B/V3FqihhiIGBE2V+uvK76J5lzchEPKccCVdcuJrLe8kYDU0Dl4Qa6sTqqJHortcB4eD2X+kUOA3ApmBXsyH22+wg7q7+9M7ugQuvIRRN5362EhYFZelhV6o+d0GBzZE8YV6ZPuIwgYYHOxAaWGCaUcZrECDjzao48pfNr9AtZqv/uGXT0J7uOmbAPn7aQFAfqZHh1uWezDt3jQh8jdNS7SGcsqbeyO1kgRKXbnHwd/eAFMhzLuszIKfRtL7gt9532tVICtMrSXwUc6Cf7YKRpIGpyVynyE+Pk6OH49V65NbBlq78GmpkGmvKQE=
+  - secure: vBWr1jm2m80IqZWTbRiucUP13P1IIkH9bftb0z3CZlnbcmTDUzxM96UfhPha6Vtb3oGBP2f5sxMtMMOIP64E6XyoiKvmCGYAQC1k+Po7nz+7UeX4Z53y0QjXUYcCd/7VoZguDYhaPjrJwAQFTpXoDdBN1jKK7PS86jpe1sSXSrhg8wuPn9U/XkAnsbBDkdUBRwRpwMj/mACU+/QIeHTey9hb84ys37o5oWrPhYI63hT9QM9c4Nu9mkt89GF83iv8LYAqVqJ0iTg056vUaQudBOaS5ypXIIrIHoN2qrXDQbpliTdK6AGpkrdwe8yoOE+2oG8ZJN/THWdumgiN+y7azmRntoasMBJwgewsozPMRBr/r5QPjnKxklv7Rkj6xnhUxr9Kro4bF+g5fYKgObwEpOvqmsy0MIOeGptDoJJJdmgk79X+TQZUmdgs0Ah1n8dIzu2dcdcbmZt3GaPXWURwcy5eHwjZ94DSVDU+h7lpkc35Tha/Rot9itbKnfgAeUIfZQ5ld+wFVwWMaFPzbk9ghynpmf+jFQGlyQYqok8B7P0rKVashrnttROAYpRgToiplGkbIwpBLd1BZjW3sXDJIQARD1cQ33P5B8ebix4OK/y3cYzoL897HTVQiZRTXMZhbedQioHKpSXFh39jRDzaP3mMRAGU8cb5+jdJi7t1Rjc=

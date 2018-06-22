@@ -15,7 +15,7 @@ const plugins = [
     },
   }),
   new HtmlWebpackPlugin({
-    template: path.resolve(__dirname, 'src/index.html'),
+    template: path.resolve(__dirname, 'app/index.html'),
     minifiy: !isDev,
   }),
 ];
@@ -70,16 +70,16 @@ module.exports = {
   plugins,
   mode: isDev ? 'development' : 'production',
   devtool: isDev ? 'source-map' : false,
-  entry: './src/index.jsx',
+  entry: './app/index.jsx',
   resolve: {
-    modules: ['node_modules', path.resolve(__dirname, 'src')],
+    modules: ['node_modules', path.resolve(__dirname, 'app')],
     extensions: ['.js', '.json', '.jsx'],
     alias: {
       'lodash-es': 'lodash',
     },
   },
   output: {
-    path: path.resolve('dist'),
+    path: path.resolve('dist/client'),
     filename: '[name]-[hash].js',
     publicPath: '/',
   },
@@ -87,7 +87,7 @@ module.exports = {
     rules,
   },
   devServer: {
-    contentBase: path.resolve(__dirname, 'public'),
+    contentBase: path.resolve(__dirname, 'dist/client'),
     historyApiFallback: true,
     inline: true,
     hot: true,
