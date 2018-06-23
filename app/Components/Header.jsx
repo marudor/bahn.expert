@@ -19,7 +19,7 @@ import type { ContextRouter } from 'react-router';
 import type { Station } from 'types/abfahrten';
 
 async function stationLoad(input: string) {
-  const stations = (await axios.get(`/api/search/${input}`)).data;
+  const stations = (await axios.get(`/api/searchHAFAS/${input}`)).data;
 
   return {
     options: stations,

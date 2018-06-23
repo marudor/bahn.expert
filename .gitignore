@@ -44,3 +44,4 @@ webpack-stats.json
 BundleReport.html
 .node-version
 bahntests/
+.env

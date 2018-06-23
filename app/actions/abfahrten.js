@@ -5,7 +5,7 @@ import type { Abfahrt, Station } from 'types/abfahrten';
 
 async function getStationFromAPI(stationString: ?string) {
   if (stationString) {
-    const possibleStations = (await axios.get(`/api/search/${stationString}`)).data;
+    const possibleStations = (await axios.get(`/api/searchHAFAS/${stationString}`)).data;
 
     if (possibleStations.length) {
       return possibleStations[0];
