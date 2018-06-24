@@ -78,6 +78,8 @@
     "cheerio": "^1.0.0-rc.2",
     "classcat": "^3.1.2",
     "create-react-class": "^15.6.3",
+    "db-stations": "^2.6.0",
+    "fuse.js": "^3.2.1",
     "iconv-lite": "^0.4.23",
     "koa": "^2.5.1",
     "koa-bodyparser": "^4.2.1",
