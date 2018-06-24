@@ -1,4 +1,5 @@
 // @flow
+import { orderBy } from 'lodash';
 import axios from 'axios';
 import Fuse from 'fuse.js';
 import iconv from 'iconv-lite';
@@ -31,8 +32,8 @@ type OpenDataStation = {
 const searchableStations = new Fuse(rawStations, {
   threshold: 0.3,
   minMatchCharLength: 2,
-  tokenize: true,
   location: 0,
+  distance: 0,
   keys: ['name'],
 });
 
@@ -51,7 +52,7 @@ function encodeSearchTerm(term: string) {
 export function stationSearchOffline(searchTerm: string): { title: string, id: string }[] {
   const matches: OpenDataStation[] = searchableStations.search(searchTerm);
 
-  return matches.map(match => ({
+  return orderBy(matches, 'weight', ['desc']).map(match => ({
     title: match.name,
     id: match.id,
   }));
