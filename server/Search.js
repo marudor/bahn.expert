@@ -30,6 +30,7 @@ type OpenDataStation = {
 };
 
 const searchableStations = new Fuse(rawStations, {
+  includeScore: true,
   threshold: 0.3,
   minMatchCharLength: 2,
   location: 0,
@@ -50,11 +51,19 @@ function encodeSearchTerm(term: string) {
 }
 
 export function stationSearchOffline(searchTerm: string): { title: string, id: string }[] {
-  const matches: OpenDataStation[] = searchableStations.search(searchTerm);
+  const matches: {
+    item: OpenDataStation,
+    score: number,
+  }[] = searchableStations.search(searchTerm);
 
-  return orderBy(matches, 'weight', ['desc']).map(match => ({
-    title: match.name,
-    id: match.id,
+  const weightedMatches = matches.map(m => ({
+    item: m.item,
+    score: (1 - m.score) * m.item.weight,
+  }));
+
+  return orderBy(weightedMatches, 'score', ['desc']).map(({ item }) => ({
+    title: item.name,
+    id: item.id,
   }));
 }
 
