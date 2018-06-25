@@ -3,13 +3,19 @@ import { createAction } from 'redux-actions';
 import axios from 'axios';
 import type { Abfahrt, Station } from 'types/abfahrten';
 
-async function getStationFromAPI(stationString: ?string) {
+export async function getStationsFromAPI(stationString: ?string): Promise<Station[]> {
   if (stationString) {
-    const possibleStations = (await axios.get(`/api/search/off/${stationString}`)).data;
+    return (await axios.get(`/api/search/off/${stationString}`)).data;
+  }
 
-    if (possibleStations.length) {
-      return possibleStations[0];
-    }
+  return [];
+}
+
+async function getStationFromAPI(stationString: ?string): Promise<Station> {
+  const stations = await getStationsFromAPI(stationString);
+
+  if (stations.length) {
+    return stations[0];
   }
 
   return Promise.resolve({ title: '', id: '0' });

@@ -14,6 +14,12 @@ module.exports = {
       },
     ],
     '@babel/preset-flow',
+    [
+      '@babel/preset-stage-1',
+      {
+        decoratorsLegacy: true,
+      },
+    ],
   ],
   plugins: [
     '@babel/plugin-proposal-object-rest-spread',

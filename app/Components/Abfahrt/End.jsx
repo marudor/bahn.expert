@@ -31,11 +31,11 @@ function getDelay(abfahrt: Abfahrt) {
 const End = () => (
   <AbfahrtContext.Consumer>
     {({ abfahrt, detail }) => (
-      <div className={cc(['End', { cancelled: abfahrt.isCancelled }])}>
+      <div className="End">
         <Times />
         <div>
           {!detail && getDelay(abfahrt)}
-          <span className={'End__platform'}>{abfahrt.platform}</span>
+          <span className={cc(['End__platform', { cancelled: abfahrt.isCancelled }])}>{abfahrt.platform}</span>
         </div>
       </div>
     )}

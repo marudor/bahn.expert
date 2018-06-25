@@ -17,6 +17,7 @@
     "dev:client": "webpack-dev-server",
     "dev:server:test": "npm run watch:server & npm run start:server:test",
     "dev:server": "npm run watch:server & npm run start:server",
+    "dev:test": "npm run dev:server:test & npm run dev:client",
     "dev": "npm run dev:server & npm run dev:client",
     "lint": "eslint app server",
     "start:server:test": "NODE_ENV=test npm run start:server",

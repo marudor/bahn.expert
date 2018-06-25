@@ -47,18 +47,18 @@ const comfort = [
   },
 ];
 
+const comfortICRegexp = [/Avmm?z$/, /Bvmm?sz|Bimm?z$/];
+
 function comfortLogic(fahrzeug: Fahrzeug, klasse: number, type: FahrzeugType, specificType: ?SpecificType) {
-  const comfortSeats: ?(string[]) = specificType && comfort[klasse - 1]?.[specificType];
+  const klasseIndex = klasse - 1;
+  const comfortSeats: ?(string[]) = specificType && comfort[klasseIndex]?.[specificType];
 
   if (comfortSeats) {
     return comfortSeats.includes(fahrzeug.wagenordnungsnummer);
   } else if (type === 'IC') {
-    if (fahrzeug.wagenordnungsnummer === '12' && fahrzeug.fahrzeugtyp === 'Avmz') {
+    if (fahrzeug.wagenordnungsnummer === '12' && fahrzeug.fahrzeugtyp.match(comfortICRegexp[klasseIndex])) {
       return true;
-    } else if (
-      fahrzeug.wagenordnungsnummer === '10' &&
-      (fahrzeug.fahrzeugtyp === 'Bvmsz' || fahrzeug.fahrzeugtyp === 'Bimz')
-    ) {
+    } else if (fahrzeug.wagenordnungsnummer === '10' && fahrzeug.fahrzeugtyp.match(comfortICRegexp[klasseIndex])) {
       return true;
     }
   }

@@ -35,7 +35,7 @@ function getDelayTime(time: ?string, delay: ?number, isCancelled: 1 | 0) {
 const Times = () => (
   <AbfahrtContext.Consumer>
     {({ abfahrt: { scheduledArrival, scheduledDeparture, delayArrival, delayDeparture, isCancelled }, detail }) => (
-      <div className="Times">
+      <div className={cc(['Times', { cancelled: isCancelled }])}>
         {detail ? (
           <React.Fragment>
             {scheduledArrival && (

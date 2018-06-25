@@ -4,6 +4,7 @@ import { wagenReihung, wagenReihungStation } from './Reihung';
 import axios from 'axios';
 import createAuslastung from './Auslastung';
 import KoaRouter from 'koa-router';
+import type { Abfahrt } from 'types/abfahrten';
 import type Koa from 'koa';
 
 const useTestData = process.env.NODE_ENV === 'test';
@@ -11,6 +12,7 @@ const useTestData = process.env.NODE_ENV === 'test';
 export default function setRoutes(koa: Koa, prefix: string = '/api') {
   const router = new KoaRouter();
 
+  // Favendo offline?
   async function stationInfo(station: number) {
     const info = (await axios.get(`https://si.favendo.de/station-info/rest/api/station/${station}`)).data;
 
@@ -30,9 +32,9 @@ export default function setRoutes(koa: Koa, prefix: string = '/api') {
   // http://dbf.finalrewind.org/KD?mode=marudor&backend=iris&version=2
   function evaIdAbfahrten(evaId: string) {
     return axios.get(`http://dbf.finalrewind.org/${evaId}?mode=marudor&backend=iris&version=2`).then(d => {
-      const departures = d.data.departures.map(dep => ({
+      const departures: Abfahrt[] = d.data.departures.map(dep => ({
         ...dep,
-        id: `${dep.train}${dep.scheduledArrival}${dep.scheduledDeparture}`,
+        id: `${dep.train}${dep.scheduledArrival}${dep.scheduledDeparture}${dep.destination}${dep.route?.[0]?.name}`,
         trainId: getTrainNumber(dep.train),
         longDistance: longDistanceRegex.test(dep.train),
       }));
@@ -88,12 +90,13 @@ export default function setRoutes(koa: Koa, prefix: string = '/api') {
         return;
       }
       const { station } = ctx.params;
-      let evaId = station;
+      const evaId = station;
 
       if (evaId.length < 6) {
-        const info = await stationInfo(station);
-
-        evaId = info.evaId;
+        ctx.status = 400;
+        ctx.body = {
+          message: 'Please provide a evaID',
+        };
       }
       ctx.body = await evaIdAbfahrten(evaId);
     })
