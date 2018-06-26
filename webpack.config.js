@@ -16,7 +16,10 @@ const plugins = [
   }),
   new HtmlWebpackPlugin({
     template: path.resolve(__dirname, 'app/index.html'),
-    minifiy: !isDev,
+    minify: {
+      collapseWhitespace: true,
+      removeComments: true,
+    },
   }),
 ];
 
@@ -51,14 +54,14 @@ if (isDev) {
         filename: '[name]-[hash].css',
         chunkFilename: '[id]-[hash].css',
       }),
-    ]
-  );
-  optimization.minimizer = [
+    ],
     new UglifyJsPlugin({
-      cache: true,
+      // cache: true,
       parallel: true,
       extractComments: true,
     }),
+  );
+  optimization.minimizer = [
     new OptimizeCSSAssetsPlugin({
       cssProcessor: require('cssnano'),
       cssProcessorOptions: { discardComments: { removeAll: true } },
