@@ -31,12 +31,12 @@ type OpenDataStation = {
 
 const searchableStations = new Fuse(rawStations, {
   includeScore: true,
-  threshold: 0.2,
+  threshold: 0.3,
   tokenize: true,
   matchAllTokens: true,
   minMatchCharLength: 2,
   location: 0,
-  distance: 0,
+  distance: 100,
   maxPatternLength: 50,
   keys: ['name', 'ds100'],
 });

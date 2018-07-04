@@ -59,7 +59,7 @@ if (isDev) {
       // cache: true,
       parallel: true,
       extractComments: true,
-    }),
+    })
   );
   optimization.minimizer = [
     new OptimizeCSSAssetsPlugin({
