@@ -61,7 +61,7 @@ export function stationSearchOffline(searchTerm: string): { title: string, id: s
 
   const weightedMatches = matches.map(m => ({
     item: m.item,
-    score: (1 - m.score) * m.item.weight,
+    score: (1 - m.score * 2) * m.item.weight,
   }));
 
   return orderBy(weightedMatches, 'score', ['desc']).map(({ item }) => ({
