@@ -1,5 +1,5 @@
-// flow-typed signature: 5d9615c28b25849187653b0a990dbac2
-// flow-typed version: e30a2fde54/react-router_v4.x.x/flow_>=v0.53.x
+// flow-typed signature: e15aeed0d3686f71822b54cde7b71c83
+// flow-typed version: fbf3e77efa/react-router_v4.x.x/flow_>=v0.63.x
 
 declare module "react-router" {
   // NOTE: many of these are re-exported by react-router-dom and
@@ -91,23 +91,30 @@ declare module "react-router" {
     when?: boolean
   }> {}
 
-  declare export class Redirect extends React$Component<{
+  declare export class Redirect extends React$Component<{|
     to: string | LocationShape,
-    push?: boolean
-  }> {}
+    push?: boolean,
+    from?: string,
+    exact?: boolean,
+    strict?: boolean
+  |}> {}
 
-  declare export class Route extends React$Component<{
+
+  declare export class Route extends React$Component<{|
     component?: React$ComponentType<*>,
     render?: (router: ContextRouter) => React$Node,
     children?: React$ComponentType<ContextRouter> | React$Node,
     path?: string,
     exact?: boolean,
-    strict?: boolean
-  }> {}
+    strict?: boolean,
+    location?: LocationShape,
+    sensitive?: boolean
+  |}> {}
 
-  declare export class Switch extends React$Component<{
-    children?: React$Node
-  }> {}
+  declare export class Switch extends React$Component<{|
+    children?: React$Node,
+    location?: Location
+  |}> {}
 
   declare export function withRouter<P>(
     Component: React$ComponentType<{| ...ContextRouter, ...P |}>
@@ -119,6 +126,7 @@ declare module "react-router" {
     strict?: boolean,
     sensitive?: boolean
   };
+
   declare export function matchPath(
     pathname: string,
     options?: MatchPathOptions | string

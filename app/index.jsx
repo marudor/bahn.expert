@@ -39,8 +39,6 @@ if (module.hot) {
   });
 }
 
-// injectTapEventPlugin();
-
 const container = document.getElementById('abfahrten');
 
 if (container) {

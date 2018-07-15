@@ -23,11 +23,13 @@ export default function setRoutes(koa: Koa, prefix: string = '/api') {
   const longDistanceRegex = /(ICE?|TGV|ECE?|RJ).*/;
 
   function getTrainNumber(train: string) {
-    try {
-      return Number.parseInt(numberRegex.exec(train)[1], 10);
-    } catch (e) {
-      return undefined;
+    const parsedNumber = numberRegex.exec(train);
+
+    if (parsedNumber) {
+      return Number.parseInt(parsedNumber[1], 10);
     }
+
+    return undefined;
   }
   // http://dbf.finalrewind.org/KD?mode=marudor&backend=iris&version=2
   function evaIdAbfahrten(evaId: string) {

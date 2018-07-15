@@ -13,9 +13,11 @@ function getLastUpdated($) {
   const lastUpdateText = $('p.blockquote-footer > small').text();
 
   if (lastUpdateText) {
-    const timeString = updatedRegex.exec(lastUpdateText)[0];
+    const timeRegexResult = updatedRegex.exec(lastUpdateText);
 
-    return DateTime.fromFormat(timeString, 'dd.MM.yyyy HH:mm');
+    if (timeRegexResult) {
+      return DateTime.fromFormat(timeRegexResult[0], 'dd.MM.yyyy HH:mm');
+    }
   }
 
   return null;
