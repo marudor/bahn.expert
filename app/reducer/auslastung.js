@@ -4,7 +4,7 @@ import { handleActions } from 'redux-actions';
 import type { Auslastung } from 'types/auslastung';
 
 export type State = {
-  auslastung: { [key: string]: Auslastung },
+  auslastung: { [key: number]: Auslastung },
 };
 
 const defaultState: State = {

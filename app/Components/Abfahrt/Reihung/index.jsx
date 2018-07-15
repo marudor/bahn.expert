@@ -14,7 +14,7 @@ import type { AppState } from 'AppState';
 import type { Reihung } from 'types/reihung';
 
 type ReduxProps = {
-  reihung: Reihung,
+  reihung: ?Reihung,
 };
 
 type OwnProps = {

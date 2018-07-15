@@ -9,7 +9,7 @@ import React from 'react';
 import type { AppState } from 'AppState';
 
 type ReduxProps = {
-  auslastung: { first: 0 | 1 | 2, second: 0 | 1 | 2 },
+  auslastung: ?{ first: 0 | 1 | 2, second: 0 | 1 | 2 },
 };
 type OwnProps = {
   abfahrt: Abfahrt,

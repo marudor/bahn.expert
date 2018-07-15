@@ -39,7 +39,7 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
     }
   }
   async getAbfahrten() {
-    const { getAbfahrtenByString, setCurrentStation, match } = this.props;
+    const { getAbfahrtenByString, setCurrentStation, match, selectedDetail } = this.props;
 
     this.setState({ loading: true });
     setCurrentStation({
@@ -47,7 +47,15 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
       id: 0,
     });
     await getAbfahrtenByString(match.params.station);
-    this.setState({ loading: false });
+    this.setState({ loading: false }, () => {
+      if (selectedDetail) {
+        const detailDom = document.getElementById(selectedDetail);
+
+        if (detailDom) {
+          detailDom.scrollIntoView(false);
+        }
+      }
+    });
   }
   render() {
     const { loading } = this.state;

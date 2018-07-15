@@ -24,7 +24,7 @@ class Abfahrt extends React.PureComponent<Props> {
     const { abfahrt, detail } = this.props;
 
     return (
-      <Paper onClick={this.setDetail} className="Abfahrt">
+      <Paper id={abfahrt.id} onClick={this.setDetail} className="Abfahrt">
         <div className="Abfahrt__entry">
           <AbfahrtContext.Provider value={{ abfahrt, detail }}>
             <Start />
