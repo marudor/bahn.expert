@@ -63,7 +63,7 @@ class Header extends React.Component<Props> {
               valueKey="id"
               labelKey="title"
               placeholder="Bahnhof (z.B. Hamburg Hbf)"
-              value={currentStation?.title}
+              value={currentStation}
               onChange={this.submit}
             />
           </div>
