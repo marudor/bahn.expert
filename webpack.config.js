@@ -41,12 +41,13 @@ const rules = [
       { loader: 'sass-loader' },
     ],
   },
+  { test: /\.(jpg|jpeg|png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' },
 ];
 
 if (isDev) {
   plugins.push(...[new webpack.HotModuleReplacementPlugin()]);
 
-  rules.forEach(r => r.use.unshift({ loader: 'cache-loader' }));
+  rules.forEach(r => r.use && r.use.unshift({ loader: 'cache-loader' }));
 } else {
   plugins.push(
     ...[
