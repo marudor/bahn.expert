@@ -2,17 +2,14 @@
 import './Header.scss';
 import { connect } from 'react-redux';
 import { getStationsFromAPI, setCurrentStation } from 'actions/abfahrten';
-import { Link } from 'react-router-dom';
 import ActionHome from '@material-ui/icons/Home';
 import AppBar from '@material-ui/core/AppBar';
 import HeaderButtons from './HeaderButtons';
 import IconButton from '@material-ui/core/IconButton';
-import PropTypes from 'prop-types';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Select from 'react-select';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import type { AppState } from 'AppState';
 import type { ContextRouter } from 'react-router';
 import type { Station } from 'types/abfahrten';
@@ -33,17 +30,8 @@ type Props = ReduxProps &
   ContextRouter & {
     setCurrentStation: typeof setCurrentStation,
   };
-type State = {
-  isSearch: boolean,
-};
 
-class Header extends React.Component<Props, State> {
-  state: State = {
-    isSearch: false,
-  };
-  static contextTypes = {
-    router: PropTypes.object.isRequired,
-  };
+class Header extends React.Component<Props> {
   submit = (station: Station) => {
     if (!station) {
       return;
@@ -51,61 +39,35 @@ class Header extends React.Component<Props, State> {
     const { setCurrentStation } = this.props;
 
     setCurrentStation(station);
-    this.setState(
-      {
-        isSearch: false,
-      },
-      () => this.context.router.history.push(`/${station.title.replace('/', '%2F')}`)
-    );
+    this.props.history.push(`/${station.title.replace('/', '%2F')}`);
   };
-  onBlur = () => {
-    this.setState({
-      isSearch: false,
-    });
-  };
+  toRoot = () => this.props.history.push('/');
   filterOption(option: any) {
     return option;
   }
-  SearchBar = (
-    <div className="Header__select">
-      <Select.Async
-        filterOption={this.filterOption}
-        autoload={false}
-        ignoreAccents={false}
-        loadOptions={stationLoad}
-        valueKey="id"
-        labelKey="title"
-        placeholder="Bahnhof..."
-        onBlur={this.onBlur}
-        onChange={this.submit}
-      />
-    </div>
-  );
   render() {
-    const { isSearch } = this.state;
     const { currentStation } = this.props;
-    let title = this.SearchBar;
-
-    if (!isSearch) {
-      title = (
-        <Typography variant="headline" color="secondary">
-          {currentStation ? currentStation.title : 'Bahnhofs abfahrten'}
-        </Typography>
-      );
-    }
 
     return (
       <AppBar position="fixed">
         <Toolbar className="Header">
-          <Link to="/">
-            <IconButton>
-              <ActionHome color="secondary" />
-            </IconButton>
-          </Link>
-          <div className="Header__title" onClick={this.handleTitleClick}>
-            {title}
+          <IconButton onClick={this.toRoot} color="inherit">
+            <ActionHome color="inherit" />
+          </IconButton>
+          <div className="Header__select">
+            <Select.Async
+              filterOption={this.filterOption}
+              autoload={false}
+              ignoreAccents={false}
+              loadOptions={stationLoad}
+              valueKey="id"
+              labelKey="title"
+              placeholder="Bahnhof (z.B. Hamburg Hbf)"
+              value={currentStation?.title}
+              onChange={this.submit}
+            />
           </div>
-          <HeaderButtons handleSearchClick={this.handleTitleClick} />
+          <HeaderButtons />
         </Toolbar>
       </AppBar>
     );
@@ -123,14 +85,6 @@ class Header extends React.Component<Props, State> {
       }
     }
   }
-  handleTitleClick = () => {
-    if (this.state.isSearch) {
-      return;
-    }
-    this.setState({
-      isSearch: true,
-    });
-  };
 }
 
 export default connect(

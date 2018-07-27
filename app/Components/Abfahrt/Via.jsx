@@ -1,12 +1,39 @@
 // @flow
 import './Via.scss';
 import { type Abfahrt } from 'types/abfahrten';
+import { DateTime } from 'luxon';
 import { normalizeName } from 'util';
 import AbfahrtContext from './AbfahrtContext';
 import cc from 'classcat';
 import React from 'react';
 
-function getInfo(abfahrt: Abfahrt, detail: boolean) {
+function getDetailedInfo(abfahrt: Abfahrt) {
+  const messages = [...abfahrt.messages.delay, ...abfahrt.messages.qos];
+
+  if (messages.length) {
+    const sorted = messages
+      .map(m => ({
+        date: DateTime.fromISO(m.timestamp),
+        ...m,
+      }))
+      // $FlowFixMe Yes I can compare DateTime!
+      .sort((a, b) => (a.date > b.date ? -1 : 1));
+
+    return (
+      <div key="i" className={cc(['Via__info'])}>
+        {sorted.map(m => (
+          <div key={m.timestamp}>
+            {m.date.toFormat('HH:mm')}: {m.text}
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  return null;
+}
+
+function getInfo(abfahrt: Abfahrt) {
   let info = '';
 
   if (abfahrt.messages.delay.length > 0) {
@@ -23,15 +50,7 @@ function getInfo(abfahrt: Abfahrt, detail: boolean) {
   }
 
   return info ? (
-    <div
-      key="i"
-      className={cc([
-        'Via__info',
-        {
-          'Via--detail': detail,
-        },
-      ])}
-    >
+    <div key="i" className={cc(['Via__info'])}>
       {info}
     </div>
   ) : null;
@@ -99,7 +118,7 @@ function getDetailedVia(abfahrt: Abfahrt) {
 const Via = () => (
   <AbfahrtContext.Consumer>
     {({ abfahrt, detail }) => {
-      const info = getInfo(abfahrt, detail);
+      const info = detail ? getDetailedInfo(abfahrt) : getInfo(abfahrt);
       const via = detail ? getDetailedVia(abfahrt) : getNormalVia(abfahrt);
 
       return (

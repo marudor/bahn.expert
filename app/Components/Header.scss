@@ -3,9 +3,6 @@
 }
 
 .Header {
-  &__title {
-    flex: 1;
-  }
   > div {
     overflow: visible !important;
   }
@@ -13,5 +10,6 @@
 
   &__select {
     line-height: 32px;
+    flex: 1;
   }
 }

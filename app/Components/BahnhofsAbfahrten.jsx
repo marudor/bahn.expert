@@ -9,14 +9,15 @@ import Header from './Header';
 import React from 'react';
 
 const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#00bcd4',
-    },
-    secondary: {
-      main: '#fff',
-    },
-  },
+  type: 'dark',
+  // palette: {
+  //   primary: {
+  //     main: '#00bcd4',
+  //   },
+  //   secondary: {
+  //     main: '#fff',
+  //   },
+  // },
 });
 
 const BahnhofsAbfahrten = () => (
