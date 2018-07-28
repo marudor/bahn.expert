@@ -1,5 +1,5 @@
-// flow-typed signature: acb22200b3bf5b15bf7e627f36c19123
-// flow-typed version: 6de4ffcf55/@material-ui/core_v1.x.x/flow_>=v0.58.x
+// flow-typed signature: 48242bb9a517db0ed0e1cdaa5111119e
+// flow-typed version: 9c34110c61/@material-ui/core_v1.x.x/flow_>=v0.58.x
 
 declare module "@material-ui/core/AppBar/AppBar" {
   declare type Color = "inherit" | "primary" | "secondary" | "default";
@@ -897,8 +897,7 @@ declare module "@material-ui/core/IconButton/IconButton" {
     | "default"
     | "inherit"
     | "primary"
-    | "contrast"
-    | "accent";
+    | "secondary";
 
   declare module.exports: React$ComponentType<{
     buttonRef?: Function,
@@ -2510,7 +2509,7 @@ declare module "@material-ui/core/withWidth/withWidth" {
     noSSR?: boolean,
     initialWidth?: Breakpoint,
     resizeInterval?: number
-  |}) => <Props: {}>(
+  |}) => <Props: { width: Breakpoint }>(
     Component: React$ComponentType<Props>
   ) => React$ComponentType<$Diff<Props, { width: Breakpoint }>>;
 }

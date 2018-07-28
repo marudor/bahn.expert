@@ -55,7 +55,7 @@ export default function setRoutes(koa: Koa, prefix: string = '/api') {
       }
       const { searchTerm } = ctx.params;
 
-      ctx.body = stationSearchOffline(searchTerm);
+      ctx.body = stationSearchOffline(searchTerm).slice(0, 6);
     })
     // https://si.favendo.de/station-info/rest/api/search?searchTerm=Bochum
     .get('/search/:searchTerm', async ctx => {

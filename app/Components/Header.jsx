@@ -8,19 +8,11 @@ import HeaderButtons from './HeaderButtons';
 import IconButton from '@material-ui/core/IconButton';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Select from 'react-select';
+import Select from 'react-select/lib/Async';
 import Toolbar from '@material-ui/core/Toolbar';
 import type { AppState } from 'AppState';
 import type { ContextRouter } from 'react-router';
 import type { Station } from 'types/abfahrten';
-
-async function stationLoad(input: string) {
-  const stations = await getStationsFromAPI(input);
-
-  return {
-    options: stations,
-  };
-}
 
 type ReduxProps = {
   currentStation: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'currentStation'>,
@@ -30,6 +22,14 @@ type Props = ReduxProps &
   ContextRouter & {
     setCurrentStation: typeof setCurrentStation,
   };
+
+const selectStyles = {
+  option: (base, state) => ({
+    ...base,
+    background: state.isFocused ? 'lightgrey' : 'white',
+    color: 'black',
+  }),
+};
 
 class Header extends React.Component<Props> {
   submit = (station: Station) => {
@@ -45,6 +45,8 @@ class Header extends React.Component<Props> {
   filterOption(option: any) {
     return option;
   }
+  getOptionLabel = (station: Station) => station.title;
+  getOptionValue = (station: Station) => station.id;
   render() {
     const { currentStation } = this.props;
 
@@ -55,13 +57,11 @@ class Header extends React.Component<Props> {
             <ActionHome color="inherit" />
           </IconButton>
           <div className="Header__select">
-            <Select.Async
-              filterOption={this.filterOption}
-              autoload={false}
-              ignoreAccents={false}
-              loadOptions={stationLoad}
-              valueKey="id"
-              labelKey="title"
+            <Select
+              styles={selectStyles}
+              loadOptions={getStationsFromAPI}
+              getOptionLabel={this.getOptionLabel}
+              getOptionValue={this.getOptionValue}
               placeholder="Bahnhof (z.B. Hamburg Hbf)"
               value={currentStation}
               onChange={this.submit}
