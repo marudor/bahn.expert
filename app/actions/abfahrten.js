@@ -5,7 +5,7 @@ import type { Abfahrt, Station } from 'types/abfahrten';
 
 export async function getStationsFromAPI(stationString: ?string): Promise<Station[]> {
   if (stationString) {
-    return (await axios.get(`/api/search/off/${stationString}`)).data;
+    return (await axios.get(`/api/search/${stationString}`)).data;
   }
 
   return [];

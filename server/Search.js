@@ -94,6 +94,6 @@ export async function stationSearch(searchTerm: string) {
 
   return stations.map(station => ({
     title: station.title,
-    id: station.id,
+    id: station.eva_ids[0],
   }));
 }
