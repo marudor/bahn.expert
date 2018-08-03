@@ -10,14 +10,6 @@ import React from 'react';
 
 const theme = createMuiTheme({
   type: 'dark',
-  // palette: {
-  //   primary: {
-  //     main: '#00bcd4',
-  //   },
-  //   secondary: {
-  //     main: '#fff',
-  //   },
-  // },
 });
 
 const BahnhofsAbfahrten = () => (

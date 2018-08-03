@@ -1,5 +1,4 @@
 // @flow
-import './Header.scss';
 import { connect } from 'react-redux';
 import { getStationsFromAPI, setCurrentStation } from 'actions/abfahrten';
 import ActionHome from '@material-ui/icons/Home';
@@ -7,7 +6,6 @@ import AppBar from '@material-ui/core/AppBar';
 import HeaderButtons from './HeaderButtons';
 import IconButton from '@material-ui/core/IconButton';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Select from 'react-select/lib/Async';
 import Toolbar from '@material-ui/core/Toolbar';
 import type { AppState } from 'AppState';
@@ -29,6 +27,10 @@ const selectStyles = {
     background: state.isFocused ? 'lightgrey' : 'white',
     color: 'black',
   }),
+  container: () => ({
+    flex: 1,
+    position: 'relative',
+  }),
 };
 
 class Header extends React.Component<Props> {
@@ -39,7 +41,7 @@ class Header extends React.Component<Props> {
     const { setCurrentStation } = this.props;
 
     setCurrentStation(station);
-    this.props.history.push(`/${station.title.replace('/', '%2F')}`);
+    this.props.history.push(`/${encodeURIComponent(station.title)}`);
   };
   toRoot = () => this.props.history.push('/');
   filterOption(option: any) {
@@ -52,38 +54,23 @@ class Header extends React.Component<Props> {
 
     return (
       <AppBar position="fixed">
-        <Toolbar className="Header">
+        <Toolbar>
           <IconButton onClick={this.toRoot} color="inherit">
             <ActionHome color="inherit" />
           </IconButton>
-          <div className="Header__select">
-            <Select
-              styles={selectStyles}
-              loadOptions={getStationsFromAPI}
-              getOptionLabel={this.getOptionLabel}
-              getOptionValue={this.getOptionValue}
-              placeholder="Bahnhof (z.B. Hamburg Hbf)"
-              value={currentStation}
-              onChange={this.submit}
-            />
-          </div>
+          <Select
+            styles={selectStyles}
+            loadOptions={getStationsFromAPI}
+            getOptionLabel={this.getOptionLabel}
+            getOptionValue={this.getOptionValue}
+            placeholder="Bahnhof (z.B. Hamburg Hbf)"
+            value={currentStation}
+            onChange={this.submit}
+          />
           <HeaderButtons />
         </Toolbar>
       </AppBar>
     );
-  }
-  componentDidUpdate() {
-    // eslint-disable-next-line
-    const dom = ReactDOM.findDOMNode(this);
-
-    if (dom) {
-      // $FlowFixMe
-      const inputs = dom.querySelectorAll('input');
-
-      if (inputs[0]) {
-        inputs[0].focus();
-      }
-    }
   }
 }
 

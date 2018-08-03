@@ -33,7 +33,8 @@ class HeaderButtons extends React.Component<Props> {
   render() {
     const { currentStation, isFaved } = this.props;
 
-    if (!currentStation || currentStation.id === 0) {
+    // this includes station id 0
+    if (!currentStation?.id) {
       return null;
     }
 

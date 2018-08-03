@@ -10,9 +10,9 @@ type Props = {
 };
 const FavEntry = ({ fav }: Props) => (
   <Paper className="FavEntry__fav">
-    <Link to={fav.replace('%2F', '/')}>
+    <Link to={encodeURIComponent(fav)}>
       <Typography variant="display2" className="FavEntry__station">
-        {fav.replace('%2F', '/')}
+        {fav}
       </Typography>
     </Link>
   </Paper>
