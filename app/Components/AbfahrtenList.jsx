@@ -4,14 +4,17 @@ import { connect } from 'react-redux';
 import { getAbfahrtenByString, setCurrentStation } from 'actions/abfahrten';
 import Abfahrt from './Abfahrt';
 import Loading from './Loading';
+import Paper from '@material-ui/core/Paper';
 import PropTypes from 'prop-types';
 import React from 'react';
+import Typography from '@material-ui/core/Typography';
 import type { AppState } from 'AppState';
 import type { ContextRouter } from 'react-router';
 
 type ReduxProps = {|
   abfahrten: $PropertyType<$PropertyType<AppState, 'abfahrten'>, 'abfahrten'>,
   selectedDetail: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'selectedDetail'>,
+  error: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'error'>,
 |};
 
 type Props = ReduxProps &
@@ -38,7 +41,7 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
       this.getAbfahrten();
     }
   }
-  async getAbfahrten() {
+  getAbfahrten = async () => {
     const { getAbfahrtenByString, setCurrentStation, match, selectedDetail } = this.props;
 
     this.setState({ loading: true });
@@ -46,25 +49,36 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
       title: decodeURIComponent(match.params.station || ''),
       id: 0,
     });
-    await getAbfahrtenByString(match.params.station);
-    this.setState({ loading: false }, () => {
-      if (selectedDetail) {
-        const detailDom = document.getElementById(selectedDetail);
+    try {
+      await getAbfahrtenByString(match.params.station);
+    } finally {
+      this.setState({ loading: false }, () => {
+        if (selectedDetail) {
+          const detailDom = document.getElementById(selectedDetail);
 
-        if (detailDom) {
-          detailDom.scrollIntoView(false);
+          if (detailDom) {
+            detailDom.scrollIntoView(false);
+          }
         }
-      }
-    });
-  }
+      });
+    }
+  };
   render() {
     const { loading } = this.state;
-    const { abfahrten, selectedDetail } = this.props;
+    const { abfahrten, selectedDetail, error } = this.props;
 
     return (
       <Loading isLoading={loading}>
         <div className="AbfahrtenList">
-          {abfahrten.map(a => a && <Abfahrt abfahrt={a} detail={selectedDetail === a.id} key={a.id} />)}
+          {error ? (
+            <Paper className="FavEntry__fav" onClick={this.getAbfahrten}>
+              <Typography variant="display2" className="FavEntry__station">
+                Failed to load data. Please click to retry
+              </Typography>
+            </Paper>
+          ) : (
+            abfahrten.map(a => a && <Abfahrt abfahrt={a} detail={selectedDetail === a.id} key={a.id} />)
+          )}
         </div>
       </Loading>
     );
@@ -75,6 +89,7 @@ export default connect(
   (state: AppState): ReduxProps => ({
     abfahrten: state.abfahrten.abfahrten,
     selectedDetail: state.abfahrten.selectedDetail,
+    error: state.abfahrten.error,
   }),
   {
     getAbfahrtenByString,

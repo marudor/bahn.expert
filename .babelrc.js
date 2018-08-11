@@ -20,6 +20,7 @@ module.exports = {
         root: 'app',
       },
     ],
+    'babel-plugin-stateless-func-to-pure',
   ],
   env: {
     development: {

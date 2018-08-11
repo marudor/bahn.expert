@@ -23,7 +23,6 @@ export default handleActions(
       error
         ? {
             ...state,
-            currentStation: null,
             abfahrten: [],
             error: payload,
           }
