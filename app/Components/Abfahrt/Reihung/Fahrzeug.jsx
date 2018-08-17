@@ -1,7 +1,7 @@
 // @flow
 import './Fahrzeug.scss';
 import ActionAccessible from '@material-ui/icons/Accessible';
-import cc from 'classcat';
+import cc from 'classnames';
 import MapsLocalDining from '@material-ui/icons/LocalDining';
 import React from 'react';
 import ReihungContext from './ReihungContext';

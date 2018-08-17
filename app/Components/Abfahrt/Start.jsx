@@ -2,7 +2,7 @@
 import './Start.scss';
 import AbfahrtContext from './AbfahrtContext';
 import Auslastung from './Auslastung';
-import cc from 'classcat';
+import cc from 'classnames';
 import React from 'react';
 
 const Start = () => (

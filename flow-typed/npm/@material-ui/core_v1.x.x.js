@@ -1,5 +1,5 @@
-// flow-typed signature: 48242bb9a517db0ed0e1cdaa5111119e
-// flow-typed version: 9c34110c61/@material-ui/core_v1.x.x/flow_>=v0.58.x
+// flow-typed signature: dd43fd57004ff82287d3f458851a09c5
+// flow-typed version: 50a6909c02/@material-ui/core_v1.x.x/flow_>=v0.58.x
 
 declare module "@material-ui/core/AppBar/AppBar" {
   declare type Color = "inherit" | "primary" | "secondary" | "default";
@@ -92,6 +92,8 @@ declare module "@material-ui/core/BottomNavigationAction" {
 
 declare module "@material-ui/core/Button/Button" {
   declare type Color = "default" | "inherit" | "primary" | "secondary";
+  declare type Variant = "text" | "flat" | "outlined" | "contained" | "raised" | "fab" | "extendedFab"
+  declare type Size = "small" | "medium" | "large"
 
   declare module.exports: React$ComponentType<{
     children: React$Node,
@@ -99,14 +101,14 @@ declare module "@material-ui/core/Button/Button" {
     classes?: Object,
     color?: Color,
     component?: React$ElementType,
-    dense?: boolean,
-    disableFocusRipple?: boolean,
     disabled?: boolean,
+    disableFocusRipple?: boolean,
     disableRipple?: boolean,
-    fab?: boolean,
+    fullWidth?: boolean,
     href?: string,
-    raised?: boolean,
-    type?: string
+    mini?: boolean,
+    size?: Size,
+    variant?: Variant
   }>;
 }
 
@@ -505,11 +507,12 @@ declare module "@material-ui/core/Drawer/Drawer" {
   import type { TransitionDuration } from "@material-ui/core/internal/transition";
 
   declare type Anchor = "left" | "top" | "right" | "bottom";
-  declare type Type = "permanent" | "persistent" | "temporary";
+  declare type Variant = "permanent" | "persistent" | "temporary";
 
   declare module.exports: React$ComponentType<{
     ModalProps?: Object,
     SlideProps?: Object,
+    PaperProps?: Object,
     anchor?: Anchor,
     children: React$Node,
     className?: string,
@@ -518,7 +521,7 @@ declare module "@material-ui/core/Drawer/Drawer" {
     onClose?: Function,
     open?: boolean,
     transitionDuration?: TransitionDuration,
-    type?: Type
+    variant?: Variant,
   }>;
 }
 declare module "@material-ui/core/Drawer" {
@@ -526,24 +529,19 @@ declare module "@material-ui/core/Drawer" {
 }
 
 declare module "@material-ui/core/SwipeableDrawer/SwipeableDrawer" {
+  import typeof Drawer from "@material-ui/core/Drawer/Drawer"
   import type { TransitionDuration } from "@material-ui/core/internal/transition";
 
-  declare type Anchor = "left" | "top" | "right" | "bottom";
-  declare type Type = "permanent" | "persistent" | "temporary";
-
   declare module.exports: React$ComponentType<{
-    ModalProps?: Object,
-    SlideProps?: Object,
-    anchor?: Anchor,
-    children: React$Node,
-    className?: string,
-    classes?: Object,
-    elevation?: number,
+    disableBackdropTransition: boolean,
+    disableDiscovery: boolean,
+    disableSwipeToOpen: boolean,
     onClose?: Function,
+    onOpen?: Function,
     open?: boolean,
+    swipeAreaWidth: number,
     transitionDuration?: TransitionDuration,
-    type?: Type
-  }>;
+  } & Drawer>;
 }
 
 declare module "@material-ui/core/SwipeableDrawer" {
@@ -745,8 +743,7 @@ declare module "@material-ui/core/Grid/Grid" {
     | "space-around";
   declare type Spacing = 0 | 8 | 16 | 24 | 32 | 40;
   declare type Wrap = "nowrap" | "wrap" | "wrap-reverse";
-
-  declare module.exports: React$ComponentType<{
+  declare type GridProps = {
     children?: React$Node,
     classes?: Object,
     className?: string,
@@ -765,7 +762,8 @@ declare module "@material-ui/core/Grid/Grid" {
     md?: GridSizes,
     lg?: GridSizes,
     xl?: GridSizes
-  }>;
+  }
+  declare module.exports: React$ComponentType<GridProps>;
 }
 
 declare module "@material-ui/core/Grid" {
@@ -1239,7 +1237,7 @@ declare module "@material-ui/core/MobileStepper" {
 
 declare module "@material-ui/core/MobileStepper/MobileStepper" {
   declare type Position = "bottom" | "top" | "static";
-  declare type Type = "text" | "dots" | "progress";
+  declare type Variant = "text" | "dots" | "progress";
 
   declare module.exports: React$ComponentType<{
     activeStep?: number,
@@ -1249,7 +1247,7 @@ declare module "@material-ui/core/MobileStepper/MobileStepper" {
     nextButton: React$Element<any>,
     position?: Position,
     steps: number,
-    type?: Type
+    variant?: Variant
   }>;
 }
 
@@ -1399,8 +1397,9 @@ declare module "@material-ui/core/Popover/Popover" {
 }
 
 declare module "@material-ui/core/CircularProgress/CircularProgress" {
-  declare type Color = "primary" | "accent" | "inherit";
+  declare type Color = "primary" | "secondary" | "inherit";
   declare type Mode = "determinate" | "indeterminate";
+  declare type Variant = "determinate" | "indeterminate" | "static";
 
   declare module.exports: React$ComponentType<{
     classes?: Object,
@@ -1409,10 +1408,11 @@ declare module "@material-ui/core/CircularProgress/CircularProgress" {
     max?: number,
     min?: number,
     mode?: Mode,
-    size?: number,
+    size?: number | string,
     style?: Object,
     thickness?: number,
-    value?: number
+    value?: number,
+    variant?: Variant
   }>;
 }
 
@@ -1501,7 +1501,7 @@ declare module "@material-ui/core/Select/Select" {
     open?: boolean,
     MenuProps?: Object,
     renderValue?: Function,
-    value?: $ReadOnlyArray<string | number> | string | number
+    value?: ?($ReadOnlyArray<string | number> | string | number)
   }>;
 }
 
@@ -1850,17 +1850,12 @@ declare module "@material-ui/core/styles/withStyles" {
   declare module.exports: (
     stylesOrCreator: Object,
     options?: Options
-  ) => <
-    OwnProps: {},
-    Props: $Supertype<
-      OwnProps & {
-        classes: { +[string]: string },
-        innerRef: React$Ref<React$ElementType>
-      }
-    >
-  >(
+  ) => <Props: {}>(
     Component: React$ComponentType<Props>
-  ) => React$ComponentType<OwnProps>;
+  ) => React$ComponentType<$Diff<Props, {
+    classes?: Object,
+    innerRef?: React$Ref<React$ElementType>
+  }>>;
 }
 
 declare module "@material-ui/core/styles/withTheme" {
@@ -2404,7 +2399,7 @@ declare module "@material-ui/core/Typography/Typography" {
     | "textSecondary"
     | "error"
     | "default";
-  declare type Type =
+  declare type Variant =
     | "display4"
     | "display3"
     | "display2"
@@ -2425,10 +2420,10 @@ declare module "@material-ui/core/Typography/Typography" {
     component?: React$ElementType,
     color?: Color,
     gutterBottom?: boolean,
-    headlineMapping?: { [key: Type]: string },
+    headlineMapping?: { [key: Variant]: string },
     noWrap?: boolean,
     paragraph?: boolean,
-    type?: Type
+    variant?: Variant
   }>;
 }
 

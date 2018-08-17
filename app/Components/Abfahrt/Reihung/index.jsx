@@ -3,7 +3,7 @@ import './index.scss';
 import { connect } from 'react-redux';
 import { getReihung } from 'actions/reihung';
 import { getReihungForId } from 'selector/reihung';
-import cc from 'classcat';
+import cc from 'classnames';
 import Gruppe from './Gruppe';
 import Loading from 'Components/Loading';
 import React from 'react';

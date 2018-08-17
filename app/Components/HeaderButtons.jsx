@@ -1,8 +1,10 @@
 // @flow
 import { connect } from 'react-redux';
 import { fav, unfav } from 'actions/fav';
+import { openSettings } from 'actions/config';
 import IconButton from '@material-ui/core/IconButton';
 import React from 'react';
+import Settings from '@material-ui/icons/Settings';
 import ToggleStar from '@material-ui/icons/Star';
 import ToggleStarBorder from '@material-ui/icons/StarBorder';
 import type { AppState } from 'AppState';
@@ -16,6 +18,7 @@ type ReduxProps = {
 type Props = ReduxProps & {
   fav: typeof fav,
   unfav: typeof unfav,
+  openSettings: typeof openSettings,
 };
 
 class HeaderButtons extends React.Component<Props> {
@@ -30,18 +33,23 @@ class HeaderButtons extends React.Component<Props> {
       }
     }
   };
+  openSettings = () => {
+    this.props.openSettings();
+  };
   render() {
     const { currentStation, isFaved } = this.props;
 
-    // this includes station id 0
-    if (!currentStation?.id) {
-      return null;
-    }
-
     return (
-      <IconButton onClick={this.toggleFav} color="inherit">
-        {isFaved ? <ToggleStar /> : <ToggleStarBorder />}
-      </IconButton>
+      <>
+        {Boolean(currentStation?.id) && (
+          <IconButton onClick={this.toggleFav} color="inherit">
+            {isFaved ? <ToggleStar /> : <ToggleStarBorder />}
+          </IconButton>
+        )}
+        <IconButton onClick={this.openSettings} color="inherit">
+          <Settings />
+        </IconButton>
+      </>
     );
   }
 }
@@ -54,5 +62,6 @@ export default connect(
   {
     fav,
     unfav,
+    openSettings,
   }
 )(HeaderButtons);

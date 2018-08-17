@@ -2,7 +2,7 @@
 import './Mid.scss';
 import { normalizeName } from 'util';
 import AbfahrtContext from './AbfahrtContext';
-import cc from 'classcat';
+import cc from 'classnames';
 import React from 'react';
 import Reihung from './Reihung';
 import Via from './Via';

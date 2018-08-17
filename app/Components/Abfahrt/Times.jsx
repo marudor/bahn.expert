@@ -2,10 +2,12 @@
 /* eslint no-nested-ternary: 0 */
 import './Times.scss';
 import * as React from 'react';
+import { connect } from 'react-redux';
 import { DateTime } from 'luxon';
+import { TIME_NEW_TIME, type TimeConfig } from 'reducer/config';
 import AbfahrtContext from './AbfahrtContext';
-import cc from 'classcat';
-
+import cc from 'classnames';
+import type { AppState } from 'AppState';
 function delayString(delay: number = 0) {
   if (delay > 0) {
     return `+${delay}`;
@@ -18,11 +20,11 @@ function delayStyle(delay: number = 0) {
   return delay > 0 ? 'delay' : 'early';
 }
 
-function getDelayTime(time: ?string, delay: ?number, isCancelled: 1 | 0) {
+function getDelayTime(time: ?string, delay: ?number, isCancelled: 1 | 0, timeConfig: TimeConfig) {
   if (!time) {
     return null;
   }
-  if (delay && !isCancelled) {
+  if (timeConfig === TIME_NEW_TIME && delay && !isCancelled) {
     const parsedTime = DateTime.fromFormat(time, 'HH:mm');
     const newTime = parsedTime.plus({ minutes: delay }).toFormat('HH:mm');
 
@@ -32,7 +34,11 @@ function getDelayTime(time: ?string, delay: ?number, isCancelled: 1 | 0) {
   return <span>{time}</span>;
 }
 
-const Times = () => (
+type Props = {
+  timeConfig: TimeConfig,
+};
+
+const Times = ({ timeConfig }: Props) => (
   <AbfahrtContext.Consumer>
     {({ abfahrt: { scheduledArrival, scheduledDeparture, delayArrival, delayDeparture, isCancelled }, detail }) => (
       <div className={cc(['Times', { cancelled: isCancelled }])}>
@@ -45,7 +51,7 @@ const Times = () => (
                     <span className={cc([delayStyle(delayArrival), 'Times--offset'])}>{delayString(delayArrival)}</span>
                   )}
                   <span>
-                    {'An:'} {getDelayTime(scheduledArrival, delayArrival, isCancelled)}
+                    {'An:'} {getDelayTime(scheduledArrival, delayArrival, isCancelled, timeConfig)}
                   </span>
                 </div>
               </div>
@@ -59,20 +65,22 @@ const Times = () => (
                     </span>
                   )}
                   <span>
-                    {'Ab:'} {getDelayTime(scheduledDeparture, delayDeparture, isCancelled)}
+                    {'Ab:'} {getDelayTime(scheduledDeparture, delayDeparture, isCancelled, timeConfig)}
                   </span>
                 </div>
               </div>
             )}
           </React.Fragment>
         ) : scheduledDeparture ? (
-          getDelayTime(scheduledDeparture, delayDeparture, isCancelled)
+          getDelayTime(scheduledDeparture, delayDeparture, isCancelled, timeConfig)
         ) : (
-          getDelayTime(scheduledArrival, delayArrival, isCancelled)
+          getDelayTime(scheduledArrival, delayArrival, isCancelled, timeConfig)
         )}
       </div>
     )}
   </AbfahrtContext.Consumer>
 );
 
-export default Times;
+export default connect((state: AppState) => ({
+  timeConfig: state.config.time,
+}))(Times);

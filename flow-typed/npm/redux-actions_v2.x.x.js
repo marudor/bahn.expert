@@ -1,5 +1,5 @@
-// flow-typed signature: e2c7590c6650a080179505dfc8b95673
-// flow-typed version: 1febbeccad/redux-actions_v2.x.x/flow_>=v0.39.x
+// flow-typed signature: a162cca82c36beb11175755d31cad408
+// flow-typed version: fd5f73ad43/redux-actions_v2.x.x/flow_>=v0.39.x
 
 declare module "redux-actions" {
   /*
@@ -33,13 +33,13 @@ declare module "redux-actions" {
 
   declare function createAction<T, A, P>(
     type: T,
-    payloadCreator: (...rest: A) => P,
+    payloadCreator: (...rest: A) => Promise<P> | P,
     $?: empty
   ): {(...rest: A): { type: T, payload: P, error?: boolean }, +toString: () => T};
 
   declare function createAction<T, A, P, M>(
     type: T,
-    payloadCreator: (...rest: A) => P,
+    payloadCreator: (...rest: A) => Promise<P> | P,
     metaCreator: (...rest: A) => M
   ): {(...rest: A): { type: T, payload: P, error?: boolean, meta: M }, +toString: () => T};
 

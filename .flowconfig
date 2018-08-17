@@ -7,6 +7,7 @@
 <PROJECT_ROOT>/.cache/.*
 <PROJECT_ROOT>/node_modules/react-router/node_modules/warning/.*
 <PROJECT_ROOT>/node_modules/react-router-dom/node_modules/warning/.*
+<PROJECT_ROOT>/node_modules/react-event-listener/node_modules/warning/warning.js
 
 [include]
 
@@ -26,7 +27,7 @@ module.system.node.resolve_dirname=node_modules
 module.file_ext=.js
 module.file_ext=.jsx
 module.file_ext=.json
-; module.system=haste
+module.system=haste
 esproposal.decorators=ignore
 esproposal.class_static_fields=enable
 esproposal.class_instance_fields=enable

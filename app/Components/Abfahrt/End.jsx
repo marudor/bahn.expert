@@ -2,7 +2,7 @@
 import './End.scss';
 import { type Abfahrt } from 'types/abfahrten';
 import AbfahrtContext from './AbfahrtContext';
-import cc from 'classcat';
+import cc from 'classnames';
 import React from 'react';
 import Times from './Times';
 
