@@ -10,11 +10,9 @@ import React from 'react';
 import Switch from '@material-ui/core/Switch';
 import type { AppState } from 'AppState';
 
-type ReduxProps = {
+type Props = {
   open: boolean,
   timeConfig: 0 | 1,
-};
-type Props = ReduxProps & {
   closeSettings: typeof closeSettings,
   setTime: typeof setTime,
 };
