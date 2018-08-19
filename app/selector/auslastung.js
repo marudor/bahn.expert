@@ -14,8 +14,13 @@ export const getAuslastungForId = createSelector(
   (auslastung, trainId) => auslastung[trainId]?.data
 );
 
+export const getAuslastungForIdCopy = createSelector(
+  getAuslastungForId,
+  auslastung => (auslastung ? [...auslastung] : auslastung)
+);
+
 export const getAuslastungForIdAndStation = createSelector(
-  [getAuslastungForId, getStation],
+  [getAuslastungForIdCopy, getStation],
   (auslastung: ?(AuslastungEntry[]), station: ?Station) => {
     if (!station || !auslastung) {
       return undefined;

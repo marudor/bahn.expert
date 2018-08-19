@@ -23,6 +23,19 @@ function getLastUpdated($) {
   return null;
 }
 
+function mapStop(stop) {
+  switch (stop) {
+    case 'Berlin Hbf (tief)':
+      return 'Berlin Hauptbahnhof';
+    default:
+      return stop;
+  }
+}
+
+function mapStops(stops) {
+  return stops.map(mapStop);
+}
+
 export default function createAuslastungsFunction(username: string, password: string) {
   return async function zugAuslastung(trainId: number, date: string) {
     const html = (await axios.post(
@@ -66,7 +79,7 @@ export default function createAuslastungsFunction(username: string, password: st
       const time = $(columns[1]).text();
 
       const stops = $(columns[2]).text();
-      const [start, stop] = stops.split(' - ');
+      const [start, stop] = mapStops(stops.split(' - '));
 
       const firstColumn = $(columns[3]).children();
       const secondColumn = $(columns[4]).children();
