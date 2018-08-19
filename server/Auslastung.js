@@ -1,27 +1,7 @@
 // @flow
-import { DateTime } from 'luxon';
 import axios from 'axios';
 import cheerio from 'cheerio';
 import qs from 'qs';
-
-const cache = new Map();
-let lastUpdateCache;
-
-const updatedRegex = /\d\d?\.\d\d\.\d\d\d\d \d\d:\d\d/;
-
-function getLastUpdated($) {
-  const lastUpdateText = $('p.blockquote-footer > small').text();
-
-  if (lastUpdateText) {
-    const timeRegexResult = updatedRegex.exec(lastUpdateText);
-
-    if (timeRegexResult) {
-      return DateTime.fromFormat(timeRegexResult[0], 'dd.MM.yyyy HH:mm');
-    }
-  }
-
-  return null;
-}
 
 function mapStop(stop) {
   switch (stop) {
@@ -57,20 +37,6 @@ export default function createAuslastungsFunction(username: string, password: st
 
     const $ = cheerio.load(html);
 
-    const lastUpdate = getLastUpdated($);
-
-    if (lastUpdate) {
-      if (lastUpdate === lastUpdateCache) {
-        const cached = cache.get(`${trainId}${date}`);
-
-        if (cached) {
-          return cached;
-        }
-      } else {
-        lastUpdateCache = lastUpdate;
-      }
-    }
-
     const entries = $('#tab_laufweg tbody > tr').toArray();
 
     const data = entries.map(e => {
@@ -93,11 +59,8 @@ export default function createAuslastungsFunction(username: string, password: st
     });
 
     const result = {
-      lastUpdate,
       data,
     };
-
-    cache.set(`${trainId}${date}`, result);
 
     return result;
   };
