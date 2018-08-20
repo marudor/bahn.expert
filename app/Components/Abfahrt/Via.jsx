@@ -20,7 +20,7 @@ function getDetailedInfo(abfahrt: Abfahrt) {
       .sort((a, b) => (a.date > b.date ? -1 : 1));
 
     return (
-      <div key="i" className={cc(['Via__info'])}>
+      <div key="i" className="Via__info">
         {sorted.map(m => (
           <div key={m.timestamp}>
             {m.date.toFormat('HH:mm')}: {m.text}
@@ -50,7 +50,7 @@ function getInfo(abfahrt: Abfahrt) {
   }
 
   return info ? (
-    <div key="i" className={cc(['Via__info'])}>
+    <div key="i" className="Via__info">
       {info}
     </div>
   ) : null;
@@ -122,7 +122,7 @@ const Via = () => (
       const via = detail ? getDetailedVia(abfahrt) : getNormalVia(abfahrt);
 
       return (
-        <div className={cc(['Via', { cancelled: abfahrt.isCancelled }])}>
+        <div className={cc(['Via', { detail, cancelled: abfahrt.isCancelled }])}>
           {info}
           {(detail || !info) && via}
         </div>

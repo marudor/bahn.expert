@@ -3,13 +3,15 @@
   line-height: 1.2;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: normal;
+
+  &:not(.detail) {
+    white-space:nowrap;
+  }
   &__info {
     text-decoration: none;
     color: red;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
   }
 
   &--additional  {
