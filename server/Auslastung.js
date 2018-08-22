@@ -2,6 +2,16 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
 import qs from 'qs';
+import NodeCache from 'node-cache';
+
+// 15 Minutes in seconds
+const stdTTL = 15 * 60;
+const cache: NodeCache<
+  number,
+  {
+    data: Object,
+  }
+> = new NodeCache({ stdTTL });
 
 function mapStop(stop) {
   switch (stop) {
@@ -18,6 +28,10 @@ function mapStops(stops) {
 
 export default function createAuslastungsFunction(username: string, password: string) {
   return async function zugAuslastung(trainId: number, date: string) {
+    const cached = cache.get(trainId);
+    if (cached) {
+      return cached;
+    }
     const html = (await axios.post(
       'https://services.cio-fernverkehr.de/ar/',
       qs.stringify({
@@ -61,6 +75,8 @@ export default function createAuslastungsFunction(username: string, password: st
     const result = {
       data,
     };
+
+    cache.set(trainId, result);
 
     return result;
   };
