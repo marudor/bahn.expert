@@ -3,7 +3,11 @@ import { flatten } from 'lodash';
 import axios from 'axios';
 import type { Fahrzeug, Formation, Wagenreihung } from 'types/reihung';
 import type { WagenreihungStation } from 'types/reihungStation';
+import NodeCache from 'node-cache';
 
+// 45 Minutes in seconds
+const stdTTL = 45 * 60;
+const cache: NodeCache<string, Wagenreihung> = new NodeCache({ stdTTL });
 // Rausfinden ob alle Teile zum gleichen Ort fahren
 function differentDestination(formation: Formation) {
   const groups = formation.allFahrzeuggruppe;
@@ -88,14 +92,20 @@ function fahrtrichtung(fahrzeuge: Fahrzeug[]) {
 
 // https://www.apps-bahn.de/wr/wagenreihung/1.0/6/201802021930
 export async function wagenReihung(trainNumber: string, date: string) {
-  const info: Wagenreihung = (await axios.get(`https://www.apps-bahn.de/wr/wagenreihung/1.0/${trainNumber}/${date}`))
-    .data;
+  const cacheKey = `${trainNumber}/${date}`;
+  const cached = cache.get(cacheKey);
+  if (cached) {
+    return cached;
+  }
+  const info: Wagenreihung = (await axios.get(`https://www.apps-bahn.de/wr/wagenreihung/1.0/${cacheKey}`)).data;
 
   const fahrzeuge = flatten(info.data.istformation.allFahrzeuggruppe.map(g => g.allFahrzeug));
 
   info.data.istformation.differentDestination = differentDestination(info.data.istformation);
   info.data.istformation.specificTrainType = specificTrainType(info.data.istformation, fahrzeuge);
   info.data.istformation.realFahrtrichtung = fahrtrichtung(fahrzeuge);
+
+  cache.set(cacheKey, info);
 
   return info;
 }
