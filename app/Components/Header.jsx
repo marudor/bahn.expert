@@ -11,6 +11,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import type { AppState } from 'AppState';
 import type { ContextRouter } from 'react-router';
 import type { Station } from 'types/abfahrten';
+import debounce from 'debounce-promise';
 
 type ReduxProps = {
   currentStation: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'currentStation'>,
@@ -34,6 +35,8 @@ const selectStyles = {
   }),
 };
 
+const debouncedGetStationFromAPI = debounce(getStationsFromAPI, 500);
+
 class Header extends React.Component<Props> {
   submit = (station: Station) => {
     if (!station) {
@@ -50,7 +53,7 @@ class Header extends React.Component<Props> {
   }
   getOptionLabel = (station: Station) => station.title;
   getOptionValue = (station: Station) => station.id;
-  loadOptions = (term: string) => getStationsFromAPI(term, this.props.searchType);
+  loadOptions = (term: string) => debouncedGetStationFromAPI(term, this.props.searchType);
   render() {
     const { currentStation } = this.props;
 

@@ -88,6 +88,7 @@
     "cheerio": "^1.0.0-rc.2",
     "create-react-class": "^15.6.3",
     "db-stations": "^2.9.0",
+    "debounce-promise": "^3.1.0",
     "fuse.js": "^3.2.1",
     "iconv-lite": "^0.4.24",
     "koa": "^2.5.2",
