@@ -15,6 +15,7 @@ const theme = createMuiTheme({
     MuiFormControlLabel: {
       root: {
         marginLeft: 0,
+        justifyContent: 'space-between',
       },
     },
   },

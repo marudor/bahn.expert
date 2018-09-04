@@ -14,6 +14,7 @@ import type { Station } from 'types/abfahrten';
 
 type ReduxProps = {
   currentStation: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'currentStation'>,
+  searchType?: string,
 };
 
 type Props = ReduxProps &
@@ -49,6 +50,7 @@ class Header extends React.Component<Props> {
   }
   getOptionLabel = (station: Station) => station.title;
   getOptionValue = (station: Station) => station.id;
+  loadOptions = (term: string) => getStationsFromAPI(term, this.props.searchType);
   render() {
     const { currentStation } = this.props;
 
@@ -60,7 +62,7 @@ class Header extends React.Component<Props> {
           </IconButton>
           <Select
             styles={selectStyles}
-            loadOptions={getStationsFromAPI}
+            loadOptions={this.loadOptions}
             getOptionLabel={this.getOptionLabel}
             getOptionValue={this.getOptionValue}
             placeholder="Bahnhof (z.B. Hamburg Hbf)"
@@ -77,6 +79,7 @@ class Header extends React.Component<Props> {
 export default connect(
   (state: AppState): ReduxProps => ({
     currentStation: state.abfahrten.currentStation,
+    searchType: state.config.searchType,
   }),
   {
     setCurrentStation,

@@ -3,16 +3,16 @@ import { createAction } from 'redux-actions';
 import axios from 'axios';
 import type { Abfahrt, Station } from 'types/abfahrten';
 
-export async function getStationsFromAPI(stationString: ?string): Promise<Station[]> {
+export async function getStationsFromAPI(stationString: ?string, type: string = ''): Promise<Station[]> {
   if (stationString) {
-    return (await axios.get(`/api/search/${stationString}`)).data;
+    return (await axios.get(`/api/search/${stationString}?type=${type}`)).data;
   }
 
   return [];
 }
 
-async function getStationFromAPI(stationString: ?string): Promise<Station> {
-  const stations = await getStationsFromAPI(stationString);
+async function getStationFromAPI(stationString: ?string, type: string): Promise<Station> {
+  const stations = await getStationsFromAPI(stationString, type);
 
   if (stations.length) {
     return stations[0];
@@ -34,21 +34,24 @@ export const getAbfahrtenByStation = createAction('ABFAHRTEN_BY_STATION', async 
   abfahrten: await abfahrtenByStation(station),
 }));
 
-export const getAbfahrtenByString = createAction('ABFAHRTEN_BY_STRING', async (stationString: ?string) => {
-  const station = await getStationFromAPI(stationString);
+export const getAbfahrtenByString = createAction(
+  'ABFAHRTEN_BY_STRING',
+  async (stationString: ?string, type: string) => {
+    const station = await getStationFromAPI(stationString, type);
 
-  if (station.id !== '0') {
+    if (station.id !== '0') {
+      return {
+        station,
+        abfahrten: await abfahrtenByStation(station),
+      };
+    }
+
     return {
-      station,
-      abfahrten: await abfahrtenByStation(station),
+      station: null,
+      abfahrten: [],
     };
   }
-
-  return {
-    station: null,
-    abfahrten: [],
-  };
-});
+);
 
 export const setDetail = createAction('SET_DETAIL');
 

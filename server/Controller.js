@@ -1,5 +1,5 @@
 // @flow
-import { stationSearch, stationSearchHAFAS, stationSearchOffline } from './Search';
+import stationSearch from './Search';
 import { wagenReihung, wagenReihungStation } from './Reihung';
 import axios from 'axios';
 import createAuslastung from './Auslastung';
@@ -36,6 +36,9 @@ export default function setRoutes(koa: Koa, prefix: string = '/api') {
   // http://dbf.finalrewind.org/KD?mode=marudor&backend=iris&version=2
   function evaIdAbfahrten(evaId: string) {
     return axios.get(`${DBFHost}/${evaId}?mode=marudor&backend=iris&version=2`).then(d => {
+      if (d.data.error) {
+        throw d.data;
+      }
       const departures: Abfahrt[] = d.data.departures.map(dep => ({
         ...dep,
         id: `${dep.train}${dep.scheduledArrival}${dep.scheduledDeparture}${dep.destination}${dep.route?.[0]?.name}`,
@@ -49,17 +52,6 @@ export default function setRoutes(koa: Koa, prefix: string = '/api') {
 
   router
     .prefix(prefix)
-    .get('/search/off/:searchTerm', ctx => {
-      if (useTestData) {
-        ctx.body = require('./testData/search');
-
-        return;
-      }
-      const { searchTerm } = ctx.params;
-
-      ctx.body = stationSearchOffline(searchTerm).slice(0, 6);
-    })
-    // https://si.favendo.de/station-info/rest/api/search?searchTerm=Bochum
     .get('/search/:searchTerm', async ctx => {
       if (useTestData) {
         ctx.body = require('./testData/search');
@@ -67,19 +59,9 @@ export default function setRoutes(koa: Koa, prefix: string = '/api') {
         return;
       }
       const { searchTerm } = ctx.params;
+      const { type } = ctx.query;
 
-      ctx.body = await stationSearch(searchTerm);
-    })
-    // http://reiseauskunft.bahn.de/bin/ajax-getstop.exe/dn?S=Tauberbischofsheim
-    .get('/search/HAFAS/:searchTerm', async ctx => {
-      if (useTestData) {
-        ctx.body = require('./testData/search');
-
-        return;
-      }
-      const { searchTerm } = ctx.params;
-
-      ctx.body = await stationSearchHAFAS(searchTerm);
+      ctx.body = await stationSearch(searchTerm, type);
     })
     // https://si.favendo.de/station-info/rest/api/station/724
     .get('/station/:station', async ctx => {
@@ -102,7 +84,12 @@ export default function setRoutes(koa: Koa, prefix: string = '/api') {
           message: 'Please provide a evaID',
         };
       }
-      ctx.body = await evaIdAbfahrten(evaId);
+      try {
+        ctx.body = await evaIdAbfahrten(evaId);
+      } catch (e) {
+        ctx.body = e;
+        ctx.status = 500;
+      }
     })
     .get('/wagenstation/:train/:station', async ctx => {
       const { train, station } = ctx.params;

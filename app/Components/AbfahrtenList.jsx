@@ -15,6 +15,7 @@ type ReduxProps = {|
   abfahrten: $PropertyType<$PropertyType<AppState, 'abfahrten'>, 'abfahrten'>,
   selectedDetail: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'selectedDetail'>,
   error: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'error'>,
+  searchType: string,
 |};
 
 type Props = ReduxProps &
@@ -25,6 +26,12 @@ type Props = ReduxProps &
 type State = {
   loading: boolean,
 };
+
+function getErrorText(error: any) {
+  if (error.response?.data?.error) {
+    return error.response.data.error;
+  }
+}
 
 class AbfahrtenList extends React.PureComponent<Props, State> {
   state: State = {
@@ -42,7 +49,7 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
     }
   }
   getAbfahrten = async () => {
-    const { getAbfahrtenByString, setCurrentStation, match, selectedDetail } = this.props;
+    const { getAbfahrtenByString, setCurrentStation, match, selectedDetail, searchType } = this.props;
 
     this.setState({ loading: true });
     setCurrentStation({
@@ -50,7 +57,7 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
       id: 0,
     });
     try {
-      await getAbfahrtenByString(match.params.station);
+      await getAbfahrtenByString(match.params.station, searchType);
     } finally {
       this.setState({ loading: false }, () => {
         if (selectedDetail) {
@@ -73,7 +80,7 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
           {error ? (
             <Paper className="FavEntry__fav" onClick={this.getAbfahrten}>
               <Typography variant="display2" className="FavEntry__station">
-                Failed to load data. Please click to retry
+                {getErrorText(error)}
               </Typography>
             </Paper>
           ) : (
@@ -90,6 +97,7 @@ export default connect(
     abfahrten: state.abfahrten.abfahrten,
     selectedDetail: state.abfahrten.selectedDetail,
     error: state.abfahrten.error,
+    searchType: state.config.searchType,
   }),
   {
     getAbfahrtenByString,

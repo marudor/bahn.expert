@@ -1,45 +1,9 @@
 // @flow
-import { orderBy } from 'lodash';
 import axios from 'axios';
-import Fuse from 'fuse.js';
 import iconv from 'iconv-lite';
-import rawStations from 'db-stations/data.json';
-
-type OpenDataStation = {
-  type: 'station',
-  id: string,
-  ds100: string,
-  nr: number,
-  name: string,
-  weight: number,
-  location: {
-    type: 'location',
-    latitude: number,
-    longitude: number,
-  },
-  operator: {
-    type: 'operator',
-    id: string,
-    name: string,
-  },
-  address: {
-    city: string,
-    zipcode: string,
-    street: string,
-  },
-};
-
-const searchableStations = new Fuse(rawStations, {
-  includeScore: true,
-  threshold: 0.3,
-  tokenize: true,
-  matchAllTokens: true,
-  minMatchCharLength: 2,
-  location: 0,
-  distance: 100,
-  maxPatternLength: 50,
-  keys: ['name', 'ds100'],
-});
+import OpenDataSearch from './OpenData';
+import DBNavigatorSearch from './DBNavigator';
+import OpenDBSearch from './OpenDB';
 
 function encodeSearchTerm(term: string) {
   return term
@@ -51,23 +15,6 @@ function encodeSearchTerm(term: string) {
     .replace(/Ö/g, 'OE')
     .replace(/ß/g, 'ss')
     .replace(/%2F/g, '/');
-}
-
-export function stationSearchOffline(searchTerm: string): { title: string, id: string }[] {
-  const matches: {
-    item: OpenDataStation,
-    score: number,
-  }[] = searchableStations.search(searchTerm);
-
-  const weightedMatches = matches.map(m => ({
-    item: m.item,
-    score: (1 - m.score * 2) * m.item.weight,
-  }));
-
-  return orderBy(weightedMatches, 'score', ['desc']).map(({ item }) => ({
-    title: item.name,
-    id: item.id,
-  }));
 }
 
 export async function stationSearchHAFAS(searchTerm: string) {
@@ -87,6 +34,7 @@ export async function stationSearchHAFAS(searchTerm: string) {
   }));
 }
 
+// https://si.favendo.de/station-info/rest/api/search?searchTerm=Bochum
 export async function stationSearch(searchTerm: string) {
   const stations = (await axios.get(
     `https://si.favendo.de/station-info/rest/api/search?searchTerm=${encodeSearchTerm(searchTerm)}`
@@ -97,3 +45,19 @@ export async function stationSearch(searchTerm: string) {
     id: station.eva_ids[0],
   }));
 }
+
+export default (searchTerm: string, type: ?string) => {
+  switch (type) {
+    case 'dbNav':
+      return DBNavigatorSearch(searchTerm);
+    case 'openData':
+      return OpenDataSearch(searchTerm);
+    case 'openDB':
+      return OpenDBSearch(searchTerm);
+    case 'hafas':
+      return stationSearchHAFAS(searchTerm);
+    case 'favendo':
+    default:
+      return stationSearch(searchTerm);
+  }
+};

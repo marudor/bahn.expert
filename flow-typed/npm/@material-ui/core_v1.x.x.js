@@ -1325,7 +1325,7 @@ declare module "@material-ui/core/NativeSelect" {
 
 declare module "@material-ui/core/NativeSelect/NativeSelect" {
   declare module.exports: React$ComponentType<{
-    classes: Object,
+    classes?: Object,
     children?: React$Node,
     IconComponent?: React$ElementType | Function,
     input?: React$Element<any>,
