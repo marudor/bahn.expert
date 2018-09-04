@@ -8,6 +8,7 @@ import FavList from './FavList';
 import Header from './Header';
 import React from 'react';
 import SettingsModal from './SettingsModal';
+import Privacy from './Privacy';
 
 const theme = createMuiTheme({
   overrides: {
@@ -27,7 +28,10 @@ const BahnhofsAbfahrten = () => (
       <div className="BahnhofsAbfahrten">
         <Route path="/" component={Header} />
         <Route path="/" exact component={FavList} />
+        {/* <Switch>
+          <Route path="/Privacy" exact component={Privacy} /> */}
         <Route path="/:station" component={AbfahrtenList} />
+        {/* </Switch> */}
       </div>
     </MuiThemeProvider>
   </Router>

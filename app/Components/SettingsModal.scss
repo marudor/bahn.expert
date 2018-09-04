@@ -1,0 +1,8 @@
+.SettingsModal {
+  display: flex;
+  flex-direction: column;
+
+  &__privacy {
+    align-self: flex-end;
+  }
+}
