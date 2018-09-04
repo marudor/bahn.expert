@@ -14,7 +14,10 @@ export default async (searchTerm: string): Promise<{ title: string, id: string }
   if (!Array.isArray(result.LocationList.StopLocation)) {
     result.LocationList.StopLocation = [result.LocationList.StopLocation];
   }
-  return result.LocationList.StopLocation.map(s => ({
+  const stations = result.LocationList.StopLocation.filter(
+    s => s.name !== s.name.toUpperCase() && s.name.substr(0, 3) !== s.name.substr(0, 3).toUpperCase()
+  );
+  return stations.map(s => ({
     title: s.name,
     id: Number.parseInt(s.id, 10).toString(),
   }));
