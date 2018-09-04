@@ -15,14 +15,14 @@ import { Link } from 'react-router-dom';
 
 type Props = {
   open: boolean,
-  timeConfig: 0 | 1,
+  timeConfig: boolean,
   closeSettings: typeof closeSettings,
   setTime: typeof setTime,
 };
 
 class SettingsModal extends React.PureComponent<Props> {
   handleTimeChange = e => {
-    this.props.setTime(e.target.checked ? 1 : 0);
+    this.props.setTime(e.target.checked);
   };
   render() {
     const { open, closeSettings, timeConfig } = this.props;
@@ -34,7 +34,7 @@ class SettingsModal extends React.PureComponent<Props> {
           <FormControl component="fieldset">
             <FormGroup>
               <FormControlLabel
-                control={<Switch checked={Boolean(timeConfig)} value="timeConfig" onChange={this.handleTimeChange} />}
+                control={<Switch checked={timeConfig} value="timeConfig" onChange={this.handleTimeChange} />}
                 label="Zeige neue Ankunft bei Verspätung"
               />
             </FormGroup>

@@ -4,10 +4,10 @@ import './Times.scss';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { DateTime } from 'luxon';
-import { TIME_NEW_TIME, type TimeConfig } from 'reducer/config';
 import AbfahrtContext from './AbfahrtContext';
 import cc from 'classnames';
 import type { AppState } from 'AppState';
+
 function delayString(delay: number = 0) {
   if (delay > 0) {
     return `+${delay}`;
@@ -20,11 +20,11 @@ function delayStyle(delay: number = 0) {
   return delay > 0 ? 'delay' : 'early';
 }
 
-function getDelayTime(time: ?string, delay: ?number, isCancelled: 1 | 0, timeConfig: TimeConfig) {
+function getDelayTime(time: ?string, delay: ?number, isCancelled: 1 | 0, timeConfig: boolean) {
   if (!time) {
     return null;
   }
-  if (timeConfig === TIME_NEW_TIME && delay && !isCancelled) {
+  if (timeConfig && delay && !isCancelled) {
     const parsedTime = DateTime.fromFormat(time, 'HH:mm');
     const newTime = parsedTime.plus({ minutes: delay }).toFormat('HH:mm');
 
@@ -35,7 +35,7 @@ function getDelayTime(time: ?string, delay: ?number, isCancelled: 1 | 0, timeCon
 }
 
 type Props = {
-  timeConfig: TimeConfig,
+  timeConfig: boolean,
 };
 
 const Times = ({ timeConfig }: Props) => (

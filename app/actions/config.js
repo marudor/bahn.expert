@@ -4,7 +4,11 @@ import { createAction } from 'redux-actions';
 export const TIME_CONFIG_KEY = 'TIME_CONFIG';
 
 export const setTime = createAction('SET_TIME', timeConfig => {
-  localStorage.setItem(TIME_CONFIG_KEY, String(timeConfig));
+  if (timeConfig) {
+    localStorage.removeItem(TIME_CONFIG_KEY);
+  } else {
+    localStorage.setItem(TIME_CONFIG_KEY, '1');
+  }
 
   return timeConfig;
 });
