@@ -4,10 +4,12 @@ import Koa from 'koa';
 import KoaBodyparser from 'koa-bodyparser';
 import KoaCompress from 'koa-compress';
 import setupRoutes from './Controller';
+import { middlewares } from './logger';
 
 const koa = new Koa();
 const server = http.createServer(koa.callback());
 
+middlewares.forEach(m => koa.use(m));
 koa.use(KoaCompress()).use(KoaBodyparser());
 setupRoutes(koa);
 
