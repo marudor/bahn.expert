@@ -51,7 +51,7 @@ export default (searchTerm: string) => {
     .then(stations =>
       stations.map(s => ({
         title: s.name,
-        id: s.extId,
+        id: s.extId.substr(2),
       }))
     );
 };
