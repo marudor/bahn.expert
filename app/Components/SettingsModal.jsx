@@ -48,6 +48,7 @@ class SettingsModal extends React.PureComponent<Props> {
                 <option value="openDB">Open DB</option>
                 <option value="openData">Open Data</option>
                 <option value="hafas">HAFAS</option>
+                <option value="dbNav">DB Navigator</option>
               </NativeSelect>
             }
             label="API zur Stationssuche"
