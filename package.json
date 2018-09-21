@@ -53,6 +53,7 @@
     "css-loader": "^1.0.0",
     "eslint": "^5.5.0",
     "eslint-config-joblift": "^3.0.1",
+    "eslint-import-resolver-webpack": "^0.10.1",
     "eslint-plugin-flowtype": "^2.50.0",
     "eslint-plugin-header": "^2.0.0",
     "eslint-plugin-import": "^2.14.0",

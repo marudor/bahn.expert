@@ -10,5 +10,9 @@ module.exports = {
   rules: {
     'no-use-before-define': 0,
     'no-shadow': 0,
+    'import/no-unresolved': 2,
+  },
+  settings: {
+    'import/resolver': 'webpack',
   },
 };

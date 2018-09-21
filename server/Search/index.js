@@ -1,7 +1,7 @@
 // @flow
 import { flatten, uniqBy } from 'lodash';
 import DBNavigatorSearch from './DBNavigator';
-import FavendoSearch from './favendo';
+import FavendoSearch from './Favendo';
 import HafasSearch from './Hafas';
 import OpenDataOfflineSearch from './OpenDataOffline';
 import OpenDataSearch from './OpenData';
