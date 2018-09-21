@@ -1,4 +1,5 @@
 // @flow
+import { logger } from '../logger';
 import axios from 'axios';
 import type { Station } from 'types/abfahrten';
 
@@ -13,14 +14,22 @@ export default async (rawSearchTerm: string): Promise<Station[]> => {
   }
   let result;
 
+  const url = `https://api.deutschebahn.com/stada/v2/stations?searchstring=*${encodeURIComponent(searchTerm)}*`;
+
   try {
-    result = (await axios.get(`https://api.deutschebahn.com/stada/v2/stations?searchstring=*${searchTerm}*`, {
+    result = (await axios.get(url, {
       withCredentials: true,
       headers: {
         Authorization: authKey,
       },
     })).data;
   } catch (e) {
+    logger.warn(`OpenData failed`, {
+      url,
+      searchTerm,
+      error: e,
+    });
+
     return [];
   }
 
