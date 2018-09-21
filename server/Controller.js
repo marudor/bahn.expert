@@ -1,9 +1,9 @@
 // @flow
-import stationSearch from './Search';
 import { wagenReihung, wagenReihungStation } from './Reihung';
 import axios from 'axios';
 import createAuslastung from './Auslastung';
 import KoaRouter from 'koa-router';
+import stationSearch from './Search';
 import type { Abfahrt } from 'types/abfahrten';
 import type Koa from 'koa';
 

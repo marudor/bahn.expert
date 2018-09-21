@@ -1,18 +1,15 @@
 // @flow
 import './SettingsModal.scss';
-import { closeSettings, setTime, setSearchType } from 'actions/config';
+import { closeSettings, setSearchType, setTime } from 'actions/config';
 import { connect } from 'react-redux';
 import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
-import FormControl from '@material-ui/core/FormControl';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import NativeSelect from '@material-ui/core/NativeSelect';
-import FormGroup from '@material-ui/core/FormGroup';
 import React from 'react';
 import Switch from '@material-ui/core/Switch';
 import type { AppState } from 'AppState';
-import { Link } from 'react-router-dom';
 
 type Props = {
   open: boolean,
@@ -46,7 +43,9 @@ class SettingsModal extends React.PureComponent<Props> {
               <NativeSelect value={searchType} name="searchType" onChange={this.changeSearchType}>
                 <option value="favendo">Favendo</option>
                 <option value="openDB">Open DB</option>
+                <option value="favOpenDB">Open DB + Favendo</option>
                 <option value="openData">Open Data</option>
+                <option value="openDataOffline">Open Data Offline</option>
                 <option value="hafas">HAFAS</option>
                 <option value="dbNav">DB Navigator</option>
               </NativeSelect>

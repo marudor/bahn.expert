@@ -1,8 +1,8 @@
 // @flow
 import axios from 'axios';
 import cheerio from 'cheerio';
-import qs from 'qs';
 import NodeCache from 'node-cache';
+import qs from 'qs';
 
 // 15 Minutes in seconds
 const stdTTL = 15 * 60;
@@ -29,6 +29,7 @@ function mapStops(stops) {
 export default function createAuslastungsFunction(username: string, password: string) {
   return async function zugAuslastung(trainId: number, date: string) {
     const cached = cache.get(trainId);
+
     if (cached) {
       return cached;
     }

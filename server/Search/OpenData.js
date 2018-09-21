@@ -1,57 +1,33 @@
 // @flow
-import Fuse from 'fuse.js';
-import rawStations from 'db-stations/data.json';
-import { orderBy } from 'lodash';
+import axios from 'axios';
+import type { Station } from 'types/abfahrten';
 
-type OpenDataStation = {
-  type: 'station',
-  id: string,
-  ds100: string,
-  nr: number,
-  name: string,
-  weight: number,
-  location: {
-    type: 'location',
-    latitude: number,
-    longitude: number,
-  },
-  operator: {
-    type: 'operator',
-    id: string,
-    name: string,
-  },
-  address: {
-    city: string,
-    zipcode: string,
-    street: string,
-  },
+// https://developer.deutschebahn.com/store/apis/info?name=StaDa-Station_Data&version=v2&provider=DBOpenData
+const authKey = `Bearer ${process.env.OPENDATA_AUTH_KEY || ''}`;
+
+export default async (rawSearchTerm: string): Promise<Station[]> => {
+  let searchTerm = rawSearchTerm;
+
+  if (searchTerm.length === 2) {
+    searchTerm = searchTerm[0];
+  }
+  let result;
+
+  try {
+    result = (await axios.get(`https://api.deutschebahn.com/stada/v2/stations?searchstring=*${searchTerm}*`, {
+      withCredentials: true,
+      headers: {
+        Authorization: authKey,
+      },
+    })).data;
+  } catch (e) {
+    return [];
+  }
+
+  return result.result.map(s => ({
+    title: s.name,
+    favendoId: s.number,
+    id: s.evaNumbers[0]?.number,
+    DS100: s.ril100Identifiers[0]?.rilIdentifier,
+  }));
 };
-
-const searchableStations = new Fuse(rawStations, {
-  includeScore: true,
-  threshold: 0.3,
-  tokenize: true,
-  matchAllTokens: true,
-  minMatchCharLength: 2,
-  location: 0,
-  distance: 100,
-  maxPatternLength: 50,
-  keys: ['name', 'ds100'],
-});
-
-export default function(searchTerm: string): { title: string, id: string }[] {
-  const matches: {
-    item: OpenDataStation,
-    score: number,
-  }[] = searchableStations.search(searchTerm);
-
-  const weightedMatches = matches.map(m => ({
-    item: m.item,
-    score: (1 - m.score * 2) * m.item.weight,
-  }));
-
-  return orderBy(weightedMatches, 'score', ['desc']).map(({ item }) => ({
-    title: item.name,
-    id: item.id,
-  }));
-}

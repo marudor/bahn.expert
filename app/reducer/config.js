@@ -8,7 +8,7 @@ export type State = {
   searchType: string,
 };
 
-const savedTimeConfig: boolean = !Boolean(localStorage.getItem(Actions.TIME_CONFIG_KEY));
+const savedTimeConfig: boolean = !localStorage.getItem(Actions.TIME_CONFIG_KEY);
 const savedSearchType = localStorage.getItem(Actions.SEARCHTYPE_CONFIG_KEY) || '';
 
 const defaultState: State = {

@@ -20,6 +20,7 @@ export const setSearchType = createAction('SET_SERACH_TYPE', searchType => {
   } else {
     localStorage.removeItem(SEARCHTYPE_CONFIG_KEY);
   }
+
   return searchType;
 });
 
