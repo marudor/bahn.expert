@@ -41,7 +41,7 @@ export default function setRoutes(koa: Koa, prefix: string = '/api') {
       }
       const departures: Abfahrt[] = d.data.departures.map(dep => ({
         ...dep,
-        id: `${dep.trainId}${dep.trainNumber}`,
+        id: `${dep.train}${dep.trainNumber}`,
         trainId: getTrainNumber(dep.train),
         longDistance: longDistanceRegex.test(dep.train),
       }));
