@@ -4,7 +4,7 @@ COPY .babelrc.js /app
 COPY package.json /app
 COPY yarn.lock /app
 RUN yarn
-COPY app/ /app/app
+COPY src/ /app/src
 COPY .eslintrc.js /app
 COPY postcss.config.js /app
 COPY webpack.config.js /app
