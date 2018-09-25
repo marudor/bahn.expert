@@ -1,25 +1,25 @@
 // @flow
-import * as Actions from 'actions/reihung';
+import * as Actions from 'client/actions/auslastung';
 import { handleActions } from 'redux-actions';
-import type { Reihung } from 'types/reihung';
+import type { Auslastung } from 'types/auslastung';
 
 export type State = {
-  reihung: { [key: string]: ?Reihung },
+  auslastung: { [key: number]: Auslastung },
 };
 
 const defaultState: State = {
-  reihung: {},
+  auslastung: {},
 };
 
 export default handleActions(
   {
-    [String(Actions.getReihung)]: (state: State, { payload, error }) =>
+    [String(Actions.getAuslastung)]: (state: State, { payload, error }) =>
       error
         ? state
         : {
             ...state,
-            reihung: {
-              ...state.reihung,
+            auslastung: {
+              ...state.auslastung,
               [payload.id]: payload.data,
             },
           },

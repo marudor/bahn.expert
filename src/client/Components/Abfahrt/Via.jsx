@@ -2,7 +2,7 @@
 import './Via.scss';
 import { type Abfahrt } from 'types/abfahrten';
 import { DateTime } from 'luxon';
-import { normalizeName } from 'util';
+import { normalizeName } from 'client/util';
 import AbfahrtContext from './AbfahrtContext';
 import cc from 'classnames';
 import React from 'react';

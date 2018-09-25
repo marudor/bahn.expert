@@ -15,7 +15,7 @@ const plugins = [
     },
   }),
   new HtmlWebpackPlugin({
-    template: path.resolve(__dirname, 'app/index.html'),
+    template: path.resolve(__dirname, 'src/client/index.html'),
     minify: {
       collapseWhitespace: true,
       removeComments: true,
@@ -74,12 +74,13 @@ module.exports = {
   plugins,
   mode: isDev ? 'development' : 'production',
   devtool: isDev ? 'source-map' : false,
-  entry: './app/index.jsx',
+  entry: './src/client/index.jsx',
   resolve: {
-    modules: ['node_modules', path.resolve(__dirname, 'app')],
+    modules: ['node_modules', path.resolve(__dirname, 'src')],
     extensions: ['.js', '.json', '.jsx'],
     alias: {
       'lodash-es': 'lodash',
+      AppState: 'client/AppState',
     },
   },
   output: {

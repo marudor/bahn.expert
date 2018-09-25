@@ -1,3 +1,5 @@
+const TestConfig = require('./.babelrc.server.js');
+
 module.exports = {
   presets: [
     [
@@ -17,7 +19,7 @@ module.exports = {
     [
       'module-resolver',
       {
-        root: 'app',
+        root: 'src',
       },
     ],
     'babel-plugin-stateless-func-to-pure',
@@ -30,5 +32,6 @@ module.exports = {
       compact: true,
       plugins: ['@babel/plugin-transform-react-constant-elements'],
     },
+    test: TestConfig,
   },
 };

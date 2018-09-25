@@ -2,7 +2,7 @@
 import './index.scss';
 import { type Abfahrt as AbfahrtType } from 'types/abfahrten';
 import { connect } from 'react-redux';
-import { setDetail } from 'actions/abfahrten';
+import { setDetail } from 'client/actions/abfahrten';
 import AbfahrtContext from './AbfahrtContext';
 import End from './End';
 import Mid from './Mid';

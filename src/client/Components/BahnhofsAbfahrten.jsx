@@ -8,7 +8,7 @@ import FavList from './FavList';
 import Header from './Header';
 import React from 'react';
 import SettingsModal from './SettingsModal';
-import Privacy from './Privacy';
+// import Privacy from './Privacy';
 
 const theme = createMuiTheme({
   overrides: {

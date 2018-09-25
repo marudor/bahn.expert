@@ -1,5 +1,5 @@
 // @flow
-import * as Actions from 'actions/fav';
+import * as Actions from 'client/actions/fav';
 import { handleActions } from 'redux-actions';
 import type { Station } from 'types/abfahrten';
 

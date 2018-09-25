@@ -1,8 +1,8 @@
 // @flow
-import React from 'react';
-import Paper from '@material-ui/core/Paper';
-import { setCurrentStation } from 'actions/abfahrten';
 import { connect } from 'react-redux';
+import { setCurrentStation } from 'client/actions/abfahrten';
+import Paper from '@material-ui/core/Paper';
+import React from 'react';
 
 type Props = {|
   setCurrentStation: typeof setCurrentStation,

@@ -2,8 +2,8 @@
 import './Auslastung.scss';
 import { type Abfahrt } from 'types/abfahrten';
 import { connect } from 'react-redux';
-import { getAuslastung } from 'actions/auslastung';
-import { getAuslastungForIdAndStation } from 'selector/auslastung';
+import { getAuslastung } from 'client/actions/auslastung';
+import { getAuslastungForIdAndStation } from 'client/selector/auslastung';
 import Loading from '../Loading';
 import React from 'react';
 import Tooltip from '@material-ui/core/Tooltip';

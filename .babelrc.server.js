@@ -20,7 +20,7 @@ module.exports = {
     [
       'module-resolver',
       {
-        root: 'app',
+        root: 'src',
       },
     ],
   ],

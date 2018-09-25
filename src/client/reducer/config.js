@@ -1,5 +1,5 @@
 // @flow
-import * as Actions from 'actions/config';
+import * as Actions from 'client/actions/config';
 import { handleActions } from 'redux-actions';
 
 export type State = {

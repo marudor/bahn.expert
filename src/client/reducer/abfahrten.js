@@ -1,5 +1,5 @@
 // @flow
-import * as Actions from 'actions/abfahrten';
+import * as Actions from 'client/actions/abfahrten';
 import { combineActions, handleActions } from 'redux-actions';
 import type { Abfahrt, Station } from 'types/abfahrten';
 

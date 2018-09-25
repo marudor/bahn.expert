@@ -1,7 +1,7 @@
 // @flow
 import './AbfahrtenList.scss';
 import { connect } from 'react-redux';
-import { getAbfahrtenByString, setCurrentStation } from 'actions/abfahrten';
+import { getAbfahrtenByString, setCurrentStation } from 'client/actions/abfahrten';
 import Abfahrt from './Abfahrt';
 import Loading from './Loading';
 import Paper from '@material-ui/core/Paper';

@@ -1,7 +1,7 @@
 // @flow
 import { connect } from 'react-redux';
-import { fav, unfav } from 'actions/fav';
-import { openSettings } from 'actions/config';
+import { fav, unfav } from 'client/actions/fav';
+import { openSettings } from 'client/actions/config';
 import IconButton from '@material-ui/core/IconButton';
 import React from 'react';
 import Settings from '@material-ui/icons/Settings';

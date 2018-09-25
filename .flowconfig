@@ -1,15 +1,7 @@
 [ignore]
-.*/node_modules/fbjs.*
-<PROJECT_ROOT>/node_modules/react/.*
-<PROJECT_ROOT>/node_modules/react-dom/.*
-<PROJECT_ROOT>/node_modules/flow-typed/.*
-<PROJECT_ROOT>/node_modules/config-chain/.*
-<PROJECT_ROOT>/.cache/.*
-<PROJECT_ROOT>/node_modules/react-router/node_modules/warning/.*
-<PROJECT_ROOT>/node_modules/react-router-dom/node_modules/warning/.*
-<PROJECT_ROOT>/node_modules/react-event-listener/node_modules/warning/warning.js
-
+.*/node_modules/warning
 [include]
+
 
 [libs]
 
@@ -18,11 +10,12 @@
 module.name_mapper='.*\.css$' -> 'cssFile'
 module.name_mapper='.*\.less$' -> 'cssFile'
 module.name_mapper='.*\.scss$' -> 'cssFile'
+module.name_mapper='^AppState$' -> 'client/AppState'
 module.use_strict=true
 include_warnings=true
 emoji=true
 
-module.system.node.resolve_dirname=app
+module.system.node.resolve_dirname=src
 module.system.node.resolve_dirname=node_modules
 module.file_ext=.js
 module.file_ext=.jsx

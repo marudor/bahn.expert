@@ -1,6 +1,6 @@
 // @flow
 import './Mid.scss';
-import { normalizeName } from 'util';
+import { normalizeName } from 'client/util';
 import AbfahrtContext from './AbfahrtContext';
 import cc from 'classnames';
 import React from 'react';

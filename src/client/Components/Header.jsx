@@ -1,8 +1,9 @@
 // @flow
 import { connect } from 'react-redux';
-import { getStationsFromAPI, setCurrentStation } from 'actions/abfahrten';
+import { getStationsFromAPI, setCurrentStation } from 'client/actions/abfahrten';
 import ActionHome from '@material-ui/icons/Home';
 import AppBar from '@material-ui/core/AppBar';
+import debounce from 'debounce-promise';
 import HeaderButtons from './HeaderButtons';
 import IconButton from '@material-ui/core/IconButton';
 import React from 'react';
@@ -11,7 +12,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import type { AppState } from 'AppState';
 import type { ContextRouter } from 'react-router';
 import type { Station } from 'types/abfahrten';
-import debounce from 'debounce-promise';
 
 type ReduxProps = {
   currentStation: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'currentStation'>,

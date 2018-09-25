@@ -1,8 +1,8 @@
 // @flow
 import './FavList.scss';
 import { connect } from 'react-redux';
-import { setCurrentStation } from 'actions/abfahrten';
-import { sortedFavValues } from 'selector/fav';
+import { setCurrentStation } from 'client/actions/abfahrten';
+import { sortedFavValues } from 'client/selector/fav';
 import FavEntry from './FavEntry';
 import React from 'react';
 import Typography from '@material-ui/core/Typography';

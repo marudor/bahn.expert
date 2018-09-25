@@ -4,7 +4,7 @@ import '@babel/polyfill';
 import 'typeface-roboto';
 import { applyMiddleware, compose, createStore } from 'redux';
 import { Provider } from 'react-redux';
-import BahnhofsAbfahrten from 'Components/BahnhofsAbfahrten';
+import BahnhofsAbfahrten from './Components/BahnhofsAbfahrten';
 import promiseMiddleware from 'redux-promise';
 import React from 'react';
 import ReactDOM from 'react-dom';

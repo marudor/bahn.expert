@@ -1,11 +1,11 @@
 // @flow
 import './index.scss';
 import { connect } from 'react-redux';
-import { getReihung } from 'actions/reihung';
-import { getReihungForId } from 'selector/reihung';
+import { getReihung } from 'client/actions/reihung';
+import { getReihungForId } from 'client/selector/reihung';
 import cc from 'classnames';
 import Gruppe from './Gruppe';
-import Loading from 'Components/Loading';
+import Loading from 'client/Components/Loading';
 import React from 'react';
 import ReihungContext from './ReihungContext';
 import Sektor from './Sektor';
@@ -51,7 +51,9 @@ class ReihungComp extends React.PureComponent<Props> {
           <span className="Reihung__specificType">{reihung.specificTrainType}</span>
         )}
         <div className="Reihung__sektoren">
-          {reihung.halt.allSektor.map(s => <Sektor key={s.sektorbezeichnung} sektor={s} />)}
+          {reihung.halt.allSektor.map(s => (
+            <Sektor key={s.sektorbezeichnung} sektor={s} />
+          ))}
         </div>
         <div className="Reihung__reihung">
           <ReihungContext.Provider value={{ specificType: reihung.specificTrainType, type: reihung.zuggattung }}>
