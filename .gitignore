@@ -45,3 +45,6 @@ BundleReport.html
 .node-version
 bahntests/
 .env
+
+.yalc.lock
+.yalc/

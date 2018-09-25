@@ -21,6 +21,9 @@ module.exports = {
       'module-resolver',
       {
         root: 'src',
+        alias: {
+          'koa-bunyan-logger': '@marudor/koa-bunyan-logger',
+        },
       },
     ],
   ],

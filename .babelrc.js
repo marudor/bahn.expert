@@ -19,7 +19,7 @@ module.exports = {
     [
       'module-resolver',
       {
-        root: 'src',
+        root: 'src'
       },
     ],
     'babel-plugin-stateless-func-to-pure',
