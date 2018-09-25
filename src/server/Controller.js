@@ -35,13 +35,13 @@ export default function setRoutes(koa: Koa, prefix: string = '/api') {
 
   // http://dbf.finalrewind.org/KD?mode=marudor&backend=iris&version=2
   function evaIdAbfahrten(evaId: string) {
-    return axios.get(`${DBFHost}/${evaId}?mode=marudor&backend=iris&version=2`).then(d => {
+    return axios.get(`${DBFHost}/${evaId}?mode=marudor&backend=iris&version=3`).then(d => {
       if (d.data.error) {
         throw d.data;
       }
       const departures: Abfahrt[] = d.data.departures.map(dep => ({
         ...dep,
-        id: `${dep.train}${dep.scheduledArrival}${dep.scheduledDeparture}${dep.destination}${dep.route?.[0]?.name}`,
+        id: `${dep.trainId}${dep.trainNumber}`,
         trainId: getTrainNumber(dep.train),
         longDistance: longDistanceRegex.test(dep.train),
       }));
