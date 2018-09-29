@@ -2,7 +2,7 @@
 import bunyan, { INFO } from 'bunyan';
 import bunyanFormat from 'bunyan-format';
 import bunyanLoggly from 'bunyan-loggly';
-import bunyanMiddleware from 'koa-bunyan-logger';
+import bunyanMiddleware from '@marudor/koa-bunyan-logger';
 
 const config = {
   level: INFO,

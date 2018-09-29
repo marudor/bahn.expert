@@ -1,12 +1,12 @@
 // @flow
-import DBNavSearch from 'server/Search/DBNavigator';
-import exampleRespone from './__fixtures__/DBNavigator.example';
+import exampleRespone from './__fixtures__/Favendo.example';
+import FavendoSearch from 'server/Search/Favendo';
 import Nock from 'nock';
 
-describe('DBNavigator Search', () => {
+describe('Favendo Search', () => {
   // if (process.env.ONLINE_TEST) {
   //   it('success Search', async () => {
-  //     const result = await DBNavSearch('Bochum');
+  //     const result = await FavendoSearch('Bochum');
   //
   //     expect(result).not.toHaveLength(0);
   //     expect(result).toMatchSnapshot();
@@ -22,20 +22,26 @@ describe('DBNavigator Search', () => {
     });
 
     it('Returns correct mapping', async () => {
-      Nock('https://reiseauskunft.bahn.de')
-        .post('/bin/mgate.exe')
-        .query(true)
+      Nock('https://si.favendo.de')
+        .get('/station-info/rest/api/search')
+        .query({
+          searchTerm: 'Hamburg',
+        })
         .reply(200, exampleRespone);
 
-      const result = await DBNavSearch('Hamburg');
+      const result = await FavendoSearch('Hamburg');
 
       expect(result).not.toHaveLength(0);
-      expect(result).toEqual([{ id: '8002549', title: 'Hamburg Hbf' }, { id: '8002553', title: 'Hamburg-Altona' }]);
+      expect(result).toEqual([
+        { favendoId: 2514, id: '8002549', title: 'Hamburg Hbf' },
+        { id: '8002553', favendoId: 2517, title: 'Hamburg-Altona' },
+        { id: '8002548', favendoId: 2513, title: 'Hamburg Dammtor' },
+      ]);
     });
 
     it('Throws exception on error', async () => {
       try {
-        await DBNavSearch('Hamburg');
+        await FavendoSearch('Hamburg');
         expect(true).toBeFalse();
       } catch (e) {
         expect(e).toBeDefined();
