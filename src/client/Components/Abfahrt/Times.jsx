@@ -20,18 +20,17 @@ function delayStyle(delay: number = 0) {
   return delay > 0 ? 'delay' : 'early';
 }
 
-function getDelayTime(time: ?string, delay: ?number, isCancelled: 1 | 0, timeConfig: boolean) {
+function getDelayTime(time: ?DateTime, delay: ?number, isCancelled: 1 | 0, timeConfig: boolean) {
   if (!time) {
     return null;
   }
   if (timeConfig && delay && !isCancelled) {
-    const parsedTime = DateTime.fromFormat(time, 'HH:mm');
-    const newTime = parsedTime.plus({ minutes: delay }).toFormat('HH:mm');
+    const newTime = time.plus({ minutes: delay });
 
-    return <span className={delayStyle(delay)}>{newTime}</span>;
+    return <span className={delayStyle(delay)}>{newTime.toFormat('HH:mm')}</span>;
   }
 
-  return <span>{time}</span>;
+  return <span>{time.toFormat('HH:mm')}</span>;
 }
 
 type Props = {

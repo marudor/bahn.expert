@@ -4,7 +4,7 @@ module.exports = {
   moduleNameMapper: {
     '\\.(scss|css)$': 'identity-obj-proxy',
   },
-  // reporters: ['jest-dot-reporter'],
+  reporters: ['jest-dot-reporter'],
   setupTestFrameworkScriptFile: '<rootDir>/test/server/config.js',
   collectCoverage: !!process.env.COVERAGE,
   collectCoverageFrom: ['<rootDir>/src/server/**/*.{js,jsx}'],

@@ -1,6 +1,7 @@
 // @flow
 import * as Actions from 'client/actions/abfahrten';
 import { combineActions, handleActions } from 'redux-actions';
+import { DateTime } from 'luxon';
 import type { Abfahrt, Station } from 'types/abfahrten';
 
 export type State = {
@@ -17,6 +18,17 @@ const defaultState = {
   error: null,
 };
 
+function parseDates(abfahrt: Object) {
+  if (abfahrt.scheduledArrival) {
+    abfahrt.scheduledArrival = DateTime.fromISO(abfahrt.scheduledArrival);
+  }
+  if (abfahrt.scheduledDeparture) {
+    abfahrt.scheduledDeparture = DateTime.fromISO(abfahrt.scheduledDeparture);
+  }
+
+  return abfahrt;
+}
+
 export default handleActions(
   {
     [combineActions(Actions.getAbfahrtenByStation, Actions.getAbfahrtenByString)]: (state: State, { payload, error }) =>
@@ -29,7 +41,7 @@ export default handleActions(
         : {
             ...state,
             currentStation: payload.station,
-            abfahrten: payload.abfahrten,
+            abfahrten: payload.abfahrten.map(parseDates),
             error: null,
           },
     [String(Actions.setDetail)]: (state: State, { payload }) => {

@@ -1,4 +1,6 @@
 // @flow
+import type { DateTime } from 'luxon';
+
 export type Station = {
   title: string,
   id: string | number,
@@ -31,11 +33,13 @@ export type Abfahrt = {
   messages: Messages,
   platform: string,
   route: Train[],
-  scheduledArrival?: string,
-  scheduledDeparture?: string,
+  scheduledArrival?: DateTime,
+  scheduledDeparture?: DateTime,
   scheduledPlatform: string,
   train: string,
+  trainNumber: string,
   trainId: number,
+  trainType: string,
   via: string[],
 };
 

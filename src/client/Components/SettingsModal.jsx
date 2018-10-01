@@ -1,6 +1,6 @@
 // @flow
 import './SettingsModal.scss';
-import { closeSettings, setSearchType, setTime } from 'client/actions/config';
+import { closeSettings, setSearchType, setTime, setTraewelling } from 'client/actions/config';
 import { connect } from 'react-redux';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -12,28 +12,39 @@ import Switch from '@material-ui/core/Switch';
 import type { AppState } from 'AppState';
 
 type Props = {
-  open: boolean,
-  timeConfig: boolean,
-  searchType: string,
   closeSettings: typeof closeSettings,
+  open: boolean,
   setTime: typeof setTime,
+  timeConfig: boolean,
   setSearchType: typeof setSearchType,
+  searchType: string,
+  setTraewelling: typeof setTraewelling,
+  traewellingConfig: boolean,
 };
 
 class SettingsModal extends React.PureComponent<Props> {
   handleTimeChange = e => {
     this.props.setTime(e.target.checked);
   };
+  handleTraewellingChange = e => {
+    this.props.setTraewelling(e.target.checked);
+  };
   changeSearchType = e => {
     this.props.setSearchType(e.target.value);
   };
   render() {
-    const { open, closeSettings, timeConfig, searchType } = this.props;
+    const { open, closeSettings, timeConfig, searchType, traewellingConfig } = this.props;
 
     return (
       <Dialog fullWidth open={open} onClose={closeSettings}>
         <DialogTitle>Settings</DialogTitle>
         <DialogContent className="SettingsModal">
+          <FormControlLabel
+            control={
+              <Switch checked={traewellingConfig} value="traewellingConfig" onChange={this.handleTraewellingChange} />
+            }
+            label="Zeige Traewelling Link"
+          />
           <FormControlLabel
             control={<Switch checked={timeConfig} value="timeConfig" onChange={this.handleTimeChange} />}
             label="Zeige neue Ankunft bei Verspätung"
@@ -66,10 +77,12 @@ export default connect(
     open: state.config.open,
     timeConfig: state.config.time,
     searchType: state.config.searchType,
+    traewellingConfig: state.config.traewelling,
   }),
   {
     closeSettings,
     setTime,
     setSearchType,
+    setTraewelling,
   }
 )(SettingsModal);

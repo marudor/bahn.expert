@@ -9,6 +9,24 @@ import type Koa from 'koa';
 
 const useTestData = process.env.NODE_ENV === 'test';
 
+const trainRegex = /(RE|RB|IC|ICE|EC|ECE|TGV|NJ|RJ|S) ?(\d+)/;
+
+export function splitTrainType(train: string = '') {
+  const parsed = trainRegex.exec(train);
+
+  if (parsed) {
+    return {
+      trainType: parsed[1] || undefined,
+      trainId: parsed[2] ? Number.parseInt(parsed[2], 10) : undefined,
+    };
+  }
+
+  return {
+    trainType: undefined,
+    trainId: undefined,
+  };
+}
+
 export default function setRoutes(koa: Koa, prefix: string = '/api') {
   const router = new KoaRouter();
 
@@ -19,30 +37,20 @@ export default function setRoutes(koa: Koa, prefix: string = '/api') {
     return { id: info.id, title: info.title, evaId: info.eva_ids[0], recursive: info.eva_ids.length > 1 };
   }
 
-  const numberRegex = /\w+ (\d+)/;
   const longDistanceRegex = /(ICE?|TGV|ECE?|RJ).*/;
 
-  function getTrainNumber(train: string) {
-    const parsedNumber = numberRegex.exec(train);
-
-    if (parsedNumber) {
-      return Number.parseInt(parsedNumber[1], 10);
-    }
-
-    return undefined;
-  }
   const DBFHost = process.env.DBF_HOST || 'https://dbf.finalrewind.org';
 
   // http://dbf.finalrewind.org/KD?mode=marudor&backend=iris&version=2
   function evaIdAbfahrten(evaId: string) {
-    return axios.get(`${DBFHost}/${evaId}?mode=marudor&backend=iris&version=3`).then(d => {
+    return axios.get(`${DBFHost}/${evaId}?mode=marudor&backend=iris&version=4`).then(d => {
       if (d.data.error) {
         throw d.data;
       }
       const departures: Abfahrt[] = d.data.departures.map(dep => ({
         ...dep,
         id: `${dep.train}${dep.trainNumber}`,
-        trainId: getTrainNumber(dep.train),
+        ...splitTrainType(dep.train),
         longDistance: longDistanceRegex.test(dep.train),
       }));
 

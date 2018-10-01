@@ -2,7 +2,6 @@
 /* eslint import/prefer-default-export: 0 */
 
 import { createAction } from 'redux-actions';
-import { DateTime } from 'luxon';
 import axios from 'axios';
 import type { Abfahrt } from 'types/abfahrten';
 import type { Reihung, Wagenreihung } from 'types/reihung';
@@ -16,7 +15,7 @@ async function getWagenreihungForAbfahrt({
       throw new Error();
     }
 
-    const time = DateTime.fromFormat(scheduledDeparture, 'HH:mm').toFormat('yyyyMMddHHmm');
+    const time = scheduledDeparture.toFormat('yyyyMMddHHmm');
     const reihung: Wagenreihung = (await axios.get(`/api/wagen/${trainId}/${time}`)).data;
 
     return {
