@@ -9,6 +9,7 @@ import Header from './Header';
 import React from 'react';
 import SettingsModal from './SettingsModal';
 // import Privacy from './Privacy';
+import SentryBoundry from './SentryBoundry';
 
 const theme = createMuiTheme({
   overrides: {
@@ -23,19 +24,21 @@ const theme = createMuiTheme({
 });
 
 const BahnhofsAbfahrten = () => (
-  <Router>
-    <MuiThemeProvider theme={theme}>
-      <SettingsModal />
-      <div className="BahnhofsAbfahrten">
-        <Route path="/" component={Header} />
-        <Route path="/" exact component={FavList} />
-        {/* <Switch>
+  <SentryBoundry>
+    <Router>
+      <MuiThemeProvider theme={theme}>
+        <SettingsModal />
+        <div className="BahnhofsAbfahrten">
+          <Route path="/" component={Header} />
+          <Route path="/" exact component={FavList} />
+          {/* <Switch>
           <Route path="/Privacy" exact component={Privacy} /> */}
-        <Route path="/:station" component={AbfahrtenList} />
-        {/* </Switch> */}
-      </div>
-    </MuiThemeProvider>
-  </Router>
+          <Route path="/:station" component={AbfahrtenList} />
+          {/* </Switch> */}
+        </div>
+      </MuiThemeProvider>
+    </Router>
+  </SentryBoundry>
 );
 
 export default hot(module)(BahnhofsAbfahrten);

@@ -5,6 +5,7 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const SentryCliPlugin = require('@sentry/webpack-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
 
@@ -12,6 +13,7 @@ const plugins = [
   new webpack.DefinePlugin({
     'process.env': {
       NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+      SENTRY_DSN: JSON.stringify(process.env.SENTRY_DSN_CLIENT),
     },
   }),
   new HtmlWebpackPlugin({
@@ -50,12 +52,10 @@ if (isDev) {
   rules.forEach(r => r.use && r.use.unshift({ loader: 'cache-loader' }));
 } else {
   plugins.push(
-    ...[
-      new MiniCssExtractPlugin({
-        filename: '[name]-[hash].css',
-        chunkFilename: '[id]-[hash].css',
-      }),
-    ],
+    new MiniCssExtractPlugin({
+      filename: '[name]-[hash].css',
+      chunkFilename: '[id]-[hash].css',
+    }),
     new UglifyJsPlugin({
       // cache: true,
       parallel: true,
@@ -68,6 +68,15 @@ if (isDev) {
       cssProcessorOptions: { discardComments: { removeAll: true } },
     }),
   ];
+}
+
+if (process.env.SENTRY_RELEASE) {
+  plugins.push(
+    new SentryCliPlugin({
+      include: './src/client',
+      ignore: ['node_modules', 'webpack.config.js'],
+    })
+  );
 }
 
 module.exports = {
