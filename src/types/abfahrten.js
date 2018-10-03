@@ -24,6 +24,7 @@ export type Messages = {
   delay: Message[],
 };
 export type Abfahrt = {
+  currentStation: string,
   delayArrival?: number,
   delayDeparture?: number,
   destination: string,
@@ -38,7 +39,7 @@ export type Abfahrt = {
   scheduledPlatform: string,
   train: string,
   trainNumber: string,
-  trainId: number,
+  trainId: string,
   trainType: string,
   via: string[],
 };

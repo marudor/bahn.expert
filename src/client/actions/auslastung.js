@@ -5,13 +5,13 @@ import { DateTime } from 'luxon';
 import axios from 'axios';
 import type { Auslastung } from 'types/auslastung';
 
-async function getAuslastungForId(trainId: number): Promise<{ id: string, data: Auslastung }> {
+async function getAuslastungForId(trainId: string): Promise<{ id: string, data: Auslastung }> {
   const time = DateTime.local();
 
   const auslastung = (await axios.get(`/api/auslastung/${trainId}/${time.toFormat('yyyyMMdd')}`)).data;
 
   return {
-    id: String(trainId),
+    id: trainId,
     data: auslastung,
   };
 }

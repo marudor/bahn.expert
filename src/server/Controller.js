@@ -9,19 +9,49 @@ import type Koa from 'koa';
 
 const useTestData = process.env.NODE_ENV === 'test';
 
-const trainRegex = /(RE|RB|IC|ICE|EC|ECE|TGV|NJ|RJ|S) ?(\d+)/;
+const trainRegex = /(\w+?)?? ?(RS|STB|IRE|RE|RB|IC|ICE|EC|ECE|TGV|NJ|RJ|S)? ?(\d+\w*)/;
+
+function getTrainType(thirdParty, trainType) {
+  if ((thirdParty === 'NWB' && trainType === 'RS') || thirdParty === 'BSB') {
+    return 'S';
+  }
+  if (thirdParty === 'FLX') {
+    return 'IR';
+  }
+  if (thirdParty) {
+    return 'RB';
+  }
+  if (trainType === 'ECE') {
+    return 'EC';
+  }
+
+  return trainType;
+}
+
+function getTrainId(thirdParty, rawTrainType, trainId) {
+  if (thirdParty === 'NWB' && rawTrainType === 'RS') {
+    return `${rawTrainType}${trainId}`;
+  }
+
+  return trainId || undefined;
+}
 
 export function splitTrainType(train: string = '') {
   const parsed = trainRegex.exec(train);
 
   if (parsed) {
+    const thirdParty = parsed[1] || undefined;
+    const trainType = getTrainType(thirdParty, parsed[2]);
+
     return {
-      trainType: parsed[1] || undefined,
-      trainId: parsed[2] ? Number.parseInt(parsed[2], 10) : undefined,
+      thirdParty,
+      trainType,
+      trainId: getTrainId(thirdParty, parsed[2], parsed[3]),
     };
   }
 
   return {
+    thirdParty: undefined,
     trainType: undefined,
     trainId: undefined,
   };
@@ -49,7 +79,7 @@ export default function setRoutes(koa: Koa, prefix: string = '/api') {
       }
       const departures: Abfahrt[] = d.data.departures.map(dep => ({
         ...dep,
-        id: `${dep.train}${dep.trainNumber}`,
+        // id: calculateTrainId(dep),
         ...splitTrainType(dep.train),
         longDistance: longDistanceRegex.test(dep.train),
       }));

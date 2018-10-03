@@ -1,60 +1,37 @@
 // @flow
 import { splitTrainType } from 'server/Controller';
 
+function testTrainType(input, expThirdParty, expTrainType, expTrainId) {
+  // $FlowFixMe
+  it(`${input} to match ${expThirdParty}, ${expTrainType}, ${expTrainId}`, () => {
+    const { thirdParty, trainId, trainType } = splitTrainType(input);
+
+    expect(thirdParty).toBe(expThirdParty);
+    expect(trainId).toBe(expTrainId);
+    expect(trainType).toBe(expTrainType);
+  });
+}
+
 describe('Correct train split', () => {
-  it('id and type', () => {
-    const { trainId, trainType } = splitTrainType('RE 123');
-
-    expect(trainId).toBe(123);
-    expect(trainType).toBe('RE');
-  });
-
-  it('id with missing type => undefined', () => {
-    const { trainId, trainType } = splitTrainType('123');
-
-    expect(trainId).toBeUndefined();
-    expect(trainType).toBeUndefined();
-  });
-
-  it('type with missing id => undefined', () => {
-    const { trainId, trainType } = splitTrainType('IC');
-
-    expect(trainId).toBeUndefined();
-    expect(trainType).toBeUndefined();
-  });
-
-  it('empty string without error', () => {
-    const { trainId, trainType } = splitTrainType('');
-
-    expect(trainId).toBeUndefined();
-    expect(trainType).toBeUndefined();
-  });
-
-  it('undefined without error', () => {
-    const { trainId, trainType } = splitTrainType();
-
-    expect(trainId).toBeUndefined();
-    expect(trainType).toBeUndefined();
-  });
-
-  it('Handles extra characters', () => {
-    const { trainId, trainType } = splitTrainType('IC 2123foo');
-
-    expect(trainId).toBe(2123);
-    expect(trainType).toBe('IC');
-  });
-
-  it('Handles private company prefix 1', () => {
-    const { trainId, trainType } = splitTrainType('VIA RB10');
-
-    expect(trainId).toBe(10);
-    expect(trainType).toBe('RB');
-  });
-
-  it('Handles private company prefix 2', () => {
-    const { trainId, trainType } = splitTrainType('NWB RE2');
-
-    expect(trainId).toBe(2);
-    expect(trainType).toBe('RE');
-  });
+  testTrainType('');
+  testTrainType();
+  testTrainType('RE 123', undefined, 'RE', '123');
+  testTrainType('VIA RB10', 'VIA', 'RB', '10');
+  testTrainType('NWB RE2', 'NWB', 'RB', '2');
+  testTrainType('WFB RE60', 'WFB', 'RB', '60');
+  testTrainType('S 5X', undefined, 'S', '5X');
+  testTrainType('EBx 12', 'EBx', 'RB', '12');
+  testTrainType('ALX 84111', 'ALX', 'RB', '84111');
+  testTrainType('M 79073', 'M', 'RB', '79073');
+  testTrainType('BOB 86975', 'BOB', 'RB', '86975');
+  testTrainType('BSB 88378', 'BSB', 'S', '88378');
+  testTrainType('ECE 123', undefined, 'EC', '123');
+  testTrainType('IRE 87488', undefined, 'IRE', '87488');
+  testTrainType('ABR RB40', 'ABR', 'RB', '40');
+  testTrainType('NWB RB75', 'NWB', 'RB', '75');
+  testTrainType('NWB RE18', 'NWB', 'RB', '18');
+  testTrainType('ERB 61', 'E', 'RB', '61');
+  testTrainType('ME RE5', 'ME', 'RB', '5');
+  testTrainType('ME RB61', 'ME', 'RB', '61');
+  testTrainType('FLX 1807', 'FLX', 'IR', '1807');
 });
