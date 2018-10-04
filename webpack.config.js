@@ -43,7 +43,10 @@ const rules = [
       { loader: 'sass-loader' },
     ],
   },
-  { test: /\.(jpg|jpeg|png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' },
+  {
+    test: /\.(jpg|jpeg|png|woff|woff2|eot|ttf|svg)$/,
+    loader: 'url-loader?limit=100000',
+  },
 ];
 
 if (isDev) {
@@ -73,6 +76,7 @@ if (isDev) {
 if (process.env.SENTRY_RELEASE) {
   plugins.push(
     new SentryCliPlugin({
+      release: process.env.SENTRY_RELEASE,
       include: './src/client',
       ignore: ['node_modules', 'webpack.config.js'],
     })
