@@ -9,7 +9,7 @@ services:
 script:
   - export TAG=`if [[ $TRAVIS_BRANCH = "master" ]]; then echo "latest"; else echo $TRAVIS_BRANCH;
     fi`
-  - docker build --build-arg SENTRY_RELEASE=$TRAVIS_COMMIT --build-arg SENTRY_AUTH_TOKEN=$SENTRY_AUTH_TOKEN --build-arg SENTRY_URL=$SENTRY_URL --build-arg SENTRY_ORG=$SENTRY_ORG -t $CLIENT:$TAG -f Dockerfile.client .
+  - docker build --build-arg SENTRY_DSN_CLIENT=$SENTRY_DSN_CLIENT --build-arg SENTRY_RELEASE=$TRAVIS_COMMIT --build-arg SENTRY_AUTH_TOKEN=$SENTRY_AUTH_TOKEN --build-arg SENTRY_URL=$SENTRY_URL --build-arg SENTRY_ORG=$SENTRY_ORG -t $CLIENT:$TAG -f Dockerfile.client .
   - docker build -t $SERVER:$TAG -f Dockerfile.server .
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
