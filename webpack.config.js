@@ -14,6 +14,7 @@ const plugins = [
     'process.env': {
       NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       SENTRY_DSN: JSON.stringify(process.env.SENTRY_DSN_CLIENT),
+      SENTRY_RELEASE: JSON.stringify(process.env.SENTRY_RELEASE),
     },
   }),
   new HtmlWebpackPlugin({

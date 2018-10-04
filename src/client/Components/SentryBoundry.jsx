@@ -14,7 +14,7 @@ const dsn = process.env.SENTRY_DSN;
 let SentryBoundry;
 
 if (dsn) {
-  Sentry.init({ dsn });
+  Sentry.init({ dsn, release: process.env.SENTRY_RELEASE, environment: process.env.NODE_ENV });
   SentryBoundry = class SentryBoundry extends React.PureComponent<Props, State> {
     state = {
       error: null,
