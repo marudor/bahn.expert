@@ -9,7 +9,7 @@ import React from 'react';
 import Tooltip from '@material-ui/core/Tooltip';
 import type { AppState } from 'AppState';
 import Done from '@material-ui/icons/Done';
-import Warning from '@material-ui/icons/Warning';
+import ErrorOutline from '@material-ui/icons/ErrorOutline';
 import Close from '@material-ui/icons/Close';
 import Help from '@material-ui/icons/Help';
 
@@ -46,7 +46,7 @@ function getIcon(auslastung) {
     case 0:
       return <Done />;
     case 1:
-      return <Warning />;
+      return <ErrorOutline />;
     case 2:
       return <Close />;
     default:

@@ -9,21 +9,24 @@
   }
 
   &__icon {
-    font-size: 70%;
-    height: 1.4em;
-    width: 1.4em;
+    font-size: 0.5em;
+    height: 1.6em;
+    width: 1.6em;
     display: inline-block;
     border-radius: 50%;
     text-align: center;
-    color: #fff;
+    padding: 0.2em;
     &.A0 {
       background-color: green;
+      color: #fff;
     }
     &.A1 {
       background-color: yellow;
+      color: black;
     }
     &.A2 {
       background-color: red;
+      color: #fff;
     }
   }
 }
