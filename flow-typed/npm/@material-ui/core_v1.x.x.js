@@ -152,7 +152,7 @@ declare module "@material-ui/core/ButtonBase/createRippleHandler" {
     eventName: string,
     action: string,
     cb: ?Function
-  ) => handleEvent;
+  ) => typeof handleEvent;
 }
 
 declare module "@material-ui/core/ButtonBase" {
