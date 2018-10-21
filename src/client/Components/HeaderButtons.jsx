@@ -39,18 +39,16 @@ class HeaderButtons extends React.Component<Props> {
   render() {
     const { currentStation, isFaved } = this.props;
 
-    return (
-      <>
-        {Boolean(currentStation?.id) && (
-          <IconButton onClick={this.toggleFav} color="inherit">
-            {isFaved ? <ToggleStar /> : <ToggleStarBorder />}
-          </IconButton>
-        )}
-        <IconButton onClick={this.openSettings} color="inherit">
-          <Settings />
+    return [
+      Boolean(currentStation?.id) && (
+        <IconButton key="1" onClick={this.toggleFav} color="inherit">
+          {isFaved ? <ToggleStar /> : <ToggleStarBorder />}
         </IconButton>
-      </>
-    );
+      ),
+      <IconButton key="2" onClick={this.openSettings} color="inherit">
+        <Settings />
+      </IconButton>,
+    ];
   }
 }
 

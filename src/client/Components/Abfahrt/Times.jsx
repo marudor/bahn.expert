@@ -4,8 +4,8 @@ import './Times.scss';
 import * as React from 'react';
 import { addMinutes, format } from 'date-fns';
 import { connect } from 'react-redux';
-import AbfahrtContext from './AbfahrtContext';
 import cc from 'classnames';
+import type { Abfahrt } from 'types/abfahrten';
 import type { AppState } from 'AppState';
 
 function delayString(delay: number = 0) {
@@ -35,49 +35,49 @@ function getDelayTime(time: ?string, delay: ?number, isCancelled: 1 | 0, timeCon
 
 type Props = {
   timeConfig: boolean,
+  abfahrt: Abfahrt,
+  detail: boolean,
 };
 
-const Times = ({ timeConfig }: Props) => (
-  <AbfahrtContext.Consumer>
-    {({ abfahrt: { scheduledArrival, scheduledDeparture, delayArrival, delayDeparture, isCancelled }, detail }) => (
-      <div className={cc(['Times', { cancelled: isCancelled }])}>
-        {detail ? (
-          <React.Fragment>
-            {scheduledArrival && (
-              <div>
-                <div className="Times__wrapper">
-                  {Boolean(delayArrival) && (
-                    <span className={cc([delayStyle(delayArrival), 'Times--offset'])}>{delayString(delayArrival)}</span>
-                  )}
-                  <span>
-                    {'An:'} {getDelayTime(scheduledArrival, delayArrival, isCancelled, timeConfig)}
-                  </span>
-                </div>
-              </div>
-            )}
-            {scheduledDeparture && (
-              <div key="d">
-                <div className="Times__wrapper">
-                  {Boolean(delayDeparture) && (
-                    <span className={cc([delayStyle(delayDeparture), 'Times--offset'])}>
-                      {delayString(delayDeparture)}
-                    </span>
-                  )}
-                  <span>
-                    {'Ab:'} {getDelayTime(scheduledDeparture, delayDeparture, isCancelled, timeConfig)}
-                  </span>
-                </div>
-              </div>
-            )}
-          </React.Fragment>
-        ) : scheduledDeparture ? (
-          getDelayTime(scheduledDeparture, delayDeparture, isCancelled, timeConfig)
-        ) : (
-          getDelayTime(scheduledArrival, delayArrival, isCancelled, timeConfig)
+const Times = ({
+  timeConfig,
+  abfahrt: { scheduledArrival, scheduledDeparture, delayArrival, delayDeparture, isCancelled },
+  detail,
+}: Props) => (
+  <div className={cc(['Times', { cancelled: isCancelled }])}>
+    {detail ? (
+      <React.Fragment>
+        {scheduledArrival && (
+          <div>
+            <div className="Times__wrapper">
+              {Boolean(delayArrival) && (
+                <span className={cc([delayStyle(delayArrival), 'Times--offset'])}>{delayString(delayArrival)}</span>
+              )}
+              <span>
+                {'An:'} {getDelayTime(scheduledArrival, delayArrival, isCancelled, timeConfig)}
+              </span>
+            </div>
+          </div>
         )}
-      </div>
+        {scheduledDeparture && (
+          <div key="d">
+            <div className="Times__wrapper">
+              {Boolean(delayDeparture) && (
+                <span className={cc([delayStyle(delayDeparture), 'Times--offset'])}>{delayString(delayDeparture)}</span>
+              )}
+              <span>
+                {'Ab:'} {getDelayTime(scheduledDeparture, delayDeparture, isCancelled, timeConfig)}
+              </span>
+            </div>
+          </div>
+        )}
+      </React.Fragment>
+    ) : scheduledDeparture ? (
+      getDelayTime(scheduledDeparture, delayDeparture, isCancelled, timeConfig)
+    ) : (
+      getDelayTime(scheduledArrival, delayArrival, isCancelled, timeConfig)
     )}
-  </AbfahrtContext.Consumer>
+  </div>
 );
 
 export default connect((state: AppState) => ({

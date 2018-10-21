@@ -3,7 +3,6 @@ import './index.scss';
 import { type Abfahrt as AbfahrtType } from 'types/abfahrten';
 import { connect } from 'react-redux';
 import { setDetail } from 'client/actions/abfahrten';
-import AbfahrtContext from './AbfahrtContext';
 import End from './End';
 import Mid from './Mid';
 import Paper from '@material-ui/core/Paper';
@@ -26,11 +25,9 @@ class Abfahrt extends React.PureComponent<Props> {
     return (
       <Paper id={abfahrt.id} onClick={this.setDetail} className="Abfahrt">
         <div className="Abfahrt__entry">
-          <AbfahrtContext.Provider value={{ abfahrt, detail }}>
-            <Start />
-            <Mid />
-            <End />
-          </AbfahrtContext.Provider>
+          <Start abfahrt={abfahrt} detail={detail} />
+          <Mid abfahrt={abfahrt} detail={detail} />
+          <End abfahrt={abfahrt} detail={detail} />
         </div>
       </Paper>
     );

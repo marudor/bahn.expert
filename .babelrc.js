@@ -22,12 +22,8 @@ module.exports = {
         root: 'src'
       },
     ],
-    'babel-plugin-stateless-func-to-pure',
   ],
   env: {
-    development: {
-      plugins: ['@babel/plugin-transform-react-jsx-source'],
-    },
     production: {
       compact: true,
       plugins: ['@babel/plugin-transform-react-constant-elements'],
