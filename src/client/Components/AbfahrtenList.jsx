@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { getAbfahrtenByString, setCurrentStation } from 'client/actions/abfahrten';
 import Abfahrt from './Abfahrt';
 import Loading from './Loading';
-import Paper from '@material-ui/core/Paper';
 import PropTypes from 'prop-types';
 import React from 'react';
 import type { AppState } from 'AppState';
@@ -77,9 +76,9 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
       <Loading isLoading={loading}>
         <div className="AbfahrtenList">
           {error ? (
-            <Paper className="FavEntry__fav" onClick={this.getAbfahrten}>
-              <span className="FavEntry__station">{getErrorText(error)}</span>
-            </Paper>
+            <div className="FavEntry" onClick={this.getAbfahrten}>
+              {getErrorText(error)}
+            </div>
           ) : (
             abfahrten.map(a => a && <Abfahrt abfahrt={a} detail={selectedDetail === a.id} key={a.id} />)
           )}

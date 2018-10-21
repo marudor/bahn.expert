@@ -1,15 +1,18 @@
 .FavEntry {
-  &__fav {
-    margin-bottom: 1px;
+  margin-bottom: 1px;
+  font-size: 2em;
+  color: black;
+  line-height: 1.3;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.24);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  > a {
+    color: black;
   }
 
-  &__station {
-    font-size: 3rem;
-    color: black;
-    line-height: 1.3;
-
-    &:hover {
-      background-color: rgb(238, 238, 238);
-    }
+  &:hover {
+    background-color: rgb(238, 238, 238);
   }
 }

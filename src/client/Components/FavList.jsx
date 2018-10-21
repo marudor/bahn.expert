@@ -21,9 +21,9 @@ const FavList = ({ favs, setCurrentStation }: Props) => {
   return (
     <div className="FavList">
       {favs.length ? (
-        favs.map(fav => fav && <FavEntry key={fav.id} fav={fav.title} />)
+        favs.map(fav => fav && <FavEntry key={fav.id} fav={fav} />)
       ) : (
-        <span className="FavEntry__station">Bisher hast du keine Favoriten.</span>
+        <span className="FavEntry">Bisher hast du keine Favoriten.</span>
       )}
     </div>
   );

@@ -1,18 +1,40 @@
 // @flow
 import './FavEntry.scss';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Paper from '@material-ui/core/Paper';
+import { unfav } from 'client/actions/fav';
+import ActionDelete from '@material-ui/icons/Delete';
+import IconButton from '@material-ui/core/IconButton';
 import React from 'react';
+import type { Station } from 'types/abfahrten';
 
 type Props = {
-  fav: string,
+  fav: Station,
+  unfav: typeof unfav,
 };
-const FavEntry = ({ fav }: Props) => (
-  <Paper className="FavEntry__fav">
-    <Link to={encodeURIComponent(fav)}>
-      <span className="FavEntry__station">{fav}</span>
-    </Link>
-  </Paper>
-);
+class FavEntry extends React.PureComponent<Props> {
+  deleteFav = () => {
+    this.props.unfav(this.props.fav);
+  };
+  render() {
+    const { fav } = this.props;
 
-export default FavEntry;
+    return (
+      <div className="FavEntry">
+        <Link to={encodeURIComponent(fav.title)}>
+          <span>{fav.title}</span>
+        </Link>
+        <IconButton onClick={this.deleteFav} color="inherit">
+          <ActionDelete />
+        </IconButton>
+      </div>
+    );
+  }
+}
+
+export default connect(
+  undefined,
+  {
+    unfav,
+  }
+)(FavEntry);
