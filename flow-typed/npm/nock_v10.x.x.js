@@ -1,5 +1,5 @@
-// flow-typed signature: 5dce8cbf15f68fe0212db04d1f901aae
-// flow-typed version: 08b5253e98/nock_v10.x.x/flow_>=v0.75.x
+// flow-typed signature: f2350be8b4c83dca927aa028f7de6f35
+// flow-typed version: 00cdfecf02/nock_v10.x.x/flow_>=v0.75.x
 
 declare type $npm$nock$Path = string | RegExp | ((url: string) => boolean);
 declare type $npm$nock$Parameter =
@@ -39,13 +39,13 @@ declare type $npm$nock$InterceptorOptions = {
 };
 
 declare class $npm$nock$NockBack {
-  [[call]](path: string, cb: (cb: Function) => any): void;
+  static (path: string, cb: (cb: Function) => any): void;
   fixtures: string;
   setMode(mode: string): void;
 }
 
 declare class $npm$nock$Nock {
-  static [[call]](
+  static (
     url: string | RegExp,
     options?: {
       reqheaders?: Object,

@@ -7,7 +7,6 @@ import Loading from './Loading';
 import Paper from '@material-ui/core/Paper';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
 import type { AppState } from 'AppState';
 import type { ContextRouter } from 'react-router';
 
@@ -79,9 +78,7 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
         <div className="AbfahrtenList">
           {error ? (
             <Paper className="FavEntry__fav" onClick={this.getAbfahrten}>
-              <Typography variant="display2" className="FavEntry__station">
-                {getErrorText(error)}
-              </Typography>
+              <span className="FavEntry__station">{getErrorText(error)}</span>
             </Paper>
           ) : (
             abfahrten.map(a => a && <Abfahrt abfahrt={a} detail={selectedDetail === a.id} key={a.id} />)

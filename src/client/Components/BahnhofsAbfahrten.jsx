@@ -21,6 +21,9 @@ const theme = createMuiTheme({
     },
   },
   type: 'dark',
+  typography: {
+    useNextVariants: true,
+  },
 });
 
 const BahnhofsAbfahrten = () => (

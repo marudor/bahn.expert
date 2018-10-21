@@ -4,8 +4,10 @@
   }
 
   &__station {
-    line-height: 1.3 !important;
-    color: black !important;
+    font-size: 3rem;
+    color: black;
+    line-height: 1.3;
+
     &:hover {
       background-color: rgb(238, 238, 238);
     }
