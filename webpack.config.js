@@ -43,7 +43,7 @@ const rules = [
   },
   {
     test: /\.(jpg|jpeg|png|woff|woff2|eot|ttf|svg)$/,
-    loader: 'url-loader?limit=100000',
+    loader: 'url-loader?limit=8192',
   },
 ];
 

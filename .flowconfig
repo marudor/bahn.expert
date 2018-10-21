@@ -1,5 +1,7 @@
 [ignore]
 .*/node_modules/warning
+<PROJECT_ROOT>/webpack-stats.json
+
 [include]
 
 

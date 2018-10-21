@@ -69,7 +69,7 @@ export default function setRoutes(koa: Koa, prefix: string = '/api') {
 
   const longDistanceRegex = /(ICE?|TGV|ECE?|RJ).*/;
 
-  const DBFHost = process.env.DBF_HOST || 'https://dbf.finalrewind.org';
+  const DBFHost = process.env.DBF_HOST || 'https://dbf.marudor.de';
 
   // http://dbf.finalrewind.org/KD?mode=marudor&backend=iris&version=2
   function evaIdAbfahrten(evaId: string) {
