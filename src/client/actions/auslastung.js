@@ -1,14 +1,12 @@
 // @flow
 /* eslint import/prefer-default-export: 0 */
 import { createAction } from 'redux-actions';
-import { DateTime } from 'luxon';
+import { format } from 'date-fns';
 import axios from 'axios';
 import type { Auslastung } from 'types/auslastung';
 
 async function getAuslastungForId(trainId: string): Promise<{ id: string, data: Auslastung }> {
-  const time = DateTime.local();
-
-  const auslastung = (await axios.get(`/api/auslastung/${trainId}/${time.toFormat('yyyyMMdd')}`)).data;
+  const auslastung = (await axios.get(`/api/auslastung/${trainId}/${format(new Date(), 'yyyyMMdd')}`)).data;
 
   return {
     id: trainId,

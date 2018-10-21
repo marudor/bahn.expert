@@ -1,7 +1,7 @@
 // @flow
 import './Via.scss';
 import { type Abfahrt } from 'types/abfahrten';
-import { DateTime } from 'luxon';
+import { format, isBefore } from 'date-fns';
 import { normalizeName } from 'client/util';
 import AbfahrtContext from './AbfahrtContext';
 import cc from 'classnames';
@@ -11,19 +11,13 @@ function getDetailedInfo(abfahrt: Abfahrt) {
   const messages = [...abfahrt.messages.delay, ...abfahrt.messages.qos];
 
   if (messages.length) {
-    const sorted = messages
-      .map(m => ({
-        date: DateTime.fromISO(m.timestamp),
-        ...m,
-      }))
-      // $FlowFixMe Yes I can compare DateTime!
-      .sort((a, b) => (a.date > b.date ? -1 : 1));
+    const sorted = messages.sort((a, b) => (isBefore(a.timestamp, b.timestamp) ? 1 : -1));
 
     return (
       <div key="i" className="Via__info">
         {sorted.map(m => (
           <div key={m.timestamp}>
-            {m.date.toFormat('HH:mm')}: {m.text}
+            {format(m.timestamp, 'HH:mm')}: {m.text}
           </div>
         ))}
       </div>

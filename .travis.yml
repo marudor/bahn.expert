@@ -9,7 +9,7 @@ services:
 script:
   - export TAG=`if [[ $TRAVIS_BRANCH = "master" ]]; then echo "latest"; else echo $TRAVIS_BRANCH;
     fi`
-  - docker build --build-arg SENTRY_DSN_CLIENT=$SENTRY_DSN_CLIENT --build-arg SENTRY_RELEASE=$TRAVIS_COMMIT --build-arg SENTRY_AUTH_TOKEN=$SENTRY_AUTH_TOKEN --build-arg SENTRY_URL=$SENTRY_URL --build-arg SENTRY_ORG=$SENTRY_ORG -t $CLIENT:$TAG -f Dockerfile.client .
+  - docker build -t $CLIENT:$TAG -f Dockerfile.client .
   - docker build -t $SERVER:$TAG -f Dockerfile.server .
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
@@ -20,9 +20,5 @@ env:
     - CLIENT=marudor/bahnhofsabfahrten
     - SERVER=marudor/bahnhofsabfahrtenserver
     - COMMIT=${TRAVIS_COMMIT::8}
-    - SENTRY_URL=https://sentry.eskalation.rocks
-    - SENTRY_ORG=marudor
     - secure: OfRNlTLZ9T8vb8AlYK8aB/q61Z/sBvkEiyJX9UK/6A3gAZXMX3DMrL4lYc2IoFOzyNyfHt5FqLdHyX3rw+nBL1mfq9nZrzyVRBQA74P+4oquk4q1jZHAfrf5WjDd4ypkOTohzBkMdl4bGVePJRJmTpx+97JQqK7B4BcfH8sAbfLgTKpCiUISDKX0RJqX7Ksj0L0qodqP+4OeJElia106JZ7NgZwVNJ4HIPahuwDMmbMkiBHp1qjIU8aEQcDSM23lf8cTxTPMHnhTGg23Zx/nv5VLtTfowkgw253XBQ6/eGtrMD1iOS7xKcy9b9ydDpSJUxr787X6c1jEmprikkelBfnwRZpAGxzImdY2c9v4XGkxEwj6B/V3FqihhiIGBE2V+uvK76J5lzchEPKccCVdcuJrLe8kYDU0Dl4Qa6sTqqJHortcB4eD2X+kUOA3ApmBXsyH22+wg7q7+9M7ugQuvIRRN5362EhYFZelhV6o+d0GBzZE8YV6ZPuIwgYYHOxAaWGCaUcZrECDjzao48pfNr9AtZqv/uGXT0J7uOmbAPn7aQFAfqZHh1uWezDt3jQh8jdNS7SGcsqbeyO1kgRKXbnHwd/eAFMhzLuszIKfRtL7gt9532tVICtMrSXwUc6Cf7YKRpIGpyVynyE+Pk6OH49V65NbBlq78GmpkGmvKQE=
     - secure: vBWr1jm2m80IqZWTbRiucUP13P1IIkH9bftb0z3CZlnbcmTDUzxM96UfhPha6Vtb3oGBP2f5sxMtMMOIP64E6XyoiKvmCGYAQC1k+Po7nz+7UeX4Z53y0QjXUYcCd/7VoZguDYhaPjrJwAQFTpXoDdBN1jKK7PS86jpe1sSXSrhg8wuPn9U/XkAnsbBDkdUBRwRpwMj/mACU+/QIeHTey9hb84ys37o5oWrPhYI63hT9QM9c4Nu9mkt89GF83iv8LYAqVqJ0iTg056vUaQudBOaS5ypXIIrIHoN2qrXDQbpliTdK6AGpkrdwe8yoOE+2oG8ZJN/THWdumgiN+y7azmRntoasMBJwgewsozPMRBr/r5QPjnKxklv7Rkj6xnhUxr9Kro4bF+g5fYKgObwEpOvqmsy0MIOeGptDoJJJdmgk79X+TQZUmdgs0Ah1n8dIzu2dcdcbmZt3GaPXWURwcy5eHwjZ94DSVDU+h7lpkc35Tha/Rot9itbKnfgAeUIfZQ5ld+wFVwWMaFPzbk9ghynpmf+jFQGlyQYqok8B7P0rKVashrnttROAYpRgToiplGkbIwpBLd1BZjW3sXDJIQARD1cQ33P5B8ebix4OK/y3cYzoL897HTVQiZRTXMZhbedQioHKpSXFh39jRDzaP3mMRAGU8cb5+jdJi7t1Rjc=
-    - secure: DRnYfeu1VoDkYzDYYjAOvqUzzuh0XFOsYPHc5WPxawh/US8pbGJTPJAjKwjLWkZfJZ2P80rSvGbK8l/t1Xf9h8R84FrxZCwDGYb1hjCjpPNbnDkIMTQxMQtJ2bQAqqR5M/9lT0MC+4jflytze3opw3JAbTh5ZeNgJDxYe89NhJ2S0i7uPNErIadN+d1U8cEnP6gzOj97HOlRXORf8VI3DsHL58z3xlJUCCEc05uGQqD0UDN4OK2hMCIZIQirOgPaoigDuX5iwLPFLAnw4PIv8+eOQWIzyOEV5Z+2WBV3ewqEuVLwdpu1A9qHRSI06D87Zo65dK/vSYNwqEJeF1kdZNGAFjqXw5WMUlEX7j+zTYj58wYyWMClkUKTYt00EgTiecirJwzAhXqS+V6KuRhGeKvwb2AzDnNl8AwRK6x4KnHMGYwybZIzpaIHRuRur0uTMwCaEQ4h5R4g9TK5Sz6UvQlp48yMBsg5/MwxwoX1aap8vOO/6Sk/ERdjHVL4G6P1KdruEbVUiE8bPbueGWTSW+QS2HqnlkEbchriI5oCVUdg0alS5ZpbOxuTD9FZ2hJdEiVNLV9eKf3V3n/Ud1QQm4RVxyWC+Cma8lJKLz6fq3qtPHVVW3kxyijgN0hKUlG/oWU1zQuAPNOWiyeILiCuC0gWrOF/VzMynNhAyqXyUF0=
-    - secure: i8KFjyHqz+Nn1I/UCJBAbyvKbdOBr96kew/cJNOvy++E6qdwJsLtv0O8gRX+9xdT+zn8GU8Q9gsfFRvePzyfsZHCK5/gnsE6DwAZ+X4FgY/yxOwAa2ZM6CS77Zqu+yvkQo8tw1Omd6P1zBZ1f0AMH6epfhd+/XgtCrxdcz1unMc6tjBEiM8Q2J19tZXQzJdTz6Hq+LQStePXxfkQFtNrTEtpiMYZZ/H12wcT2jYY8nyPGVetkzTfKarZq7Ezwq7/dt2fM9FkNTO9TnDSrgrUMr429X9UyepwLsG4v5hhlcKjntPKXAWtcw8wQq9K4g7QQqK/QYq5ru/Se+8jEn+tSwmfTGFheW7Zi2u8LNf3diL95/bHfognZ195dFgvoY1AnuiX9/ynEzaDrMgi7HAhx1B0OTKNdfD2Me7gk9Jzq1LYcF+cuofhHy/3wD6CvsbgGtu/aYIcakcW4U/Q25L9+BWrE8gn9p2UzYKDvptW7Rm8LzxsGjWJ7+cYpsvT3ykasNo9opKRp4AwP2FK55o9AkQya2908LGbf7vt5zcJy19FWn6DHxCNoPHSfPmRFYeH20XwEqpFLjDtheRtHGg38Ys9Tpcjio5yCOm2ndJUnh1TxGY/4oNPNbAT1A25p793YYgY4cwU7aQKNVzf9bqVb0048xBJIrwj43LSlNIUkzA=

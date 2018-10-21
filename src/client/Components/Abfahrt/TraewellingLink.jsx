@@ -2,6 +2,7 @@
 /* eslint max-len: 0 */
 import './TraewellingLink.scss';
 import { connect } from 'react-redux';
+import { format } from 'date-fns';
 import React from 'react';
 import type { Abfahrt } from 'types/abfahrten';
 import type { AppState } from 'AppState';
@@ -33,8 +34,8 @@ const TraewellingLink = ({ abfahrt, show }: Props) => {
   }
   // const start = abfahrt.route[0].name;
   const destination = abfahrt.route[abfahrt.route.length - 1].name.replace(/ß/g, 'ss');
-  const time = departure.toFormat('HH:mm').replace(':', '%3A');
-  const date = departure.toFormat('yyyy-MM-dd');
+  const time = format(departure, 'HH:mm').replace(':', '%3A');
+  const date = format(departure, 'yyyy-MM-dd');
 
   return (
     <a

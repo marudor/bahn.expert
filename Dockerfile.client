@@ -8,14 +8,9 @@ RUN yarn
 COPY src/ /app/src
 COPY .eslintrc.js /app
 COPY postcss.config.js /app
+COPY .browserslistrc /app
 COPY webpack.config.js /app
 ENV NODE_ENV production
-ENV SENTRY_PROJECT bahnhofsabfahrten
-ARG SENTRY_RELEASE
-ARG SENTRY_AUTH_TOKEN
-ARG SENTRY_URL
-ARG SENTRY_ORG
-ARG SENTRY_DSN_CLIENT
 RUN yarn build:client
 
 FROM nginx:alpine
