@@ -1,6 +1,5 @@
 // @flow
 import { createSelector } from 'reselect';
-import { maxBy } from 'lodash';
 import type { Abfahrt, Station } from 'types/abfahrten';
 import type { AppState } from 'AppState';
 import type { AuslastungEntry } from 'types/auslastung';
@@ -33,8 +32,8 @@ export const getAuslastungForIdAndStation = createSelector(
     }
 
     return {
-      first: maxBy(auslastung, e => e.first).first,
-      second: maxBy(auslastung, e => e.second).second,
+      first: auslastung.reduce((p, c) => (p > c.first ? p : c.first), 0),
+      second: auslastung.reduce((p, c) => (p > c.second ? p : c.second), 0),
     };
   }
 );
