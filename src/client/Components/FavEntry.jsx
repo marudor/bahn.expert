@@ -13,21 +13,23 @@ type Props = {
   unfav: typeof unfav,
 };
 class FavEntry extends React.PureComponent<Props> {
-  deleteFav = () => {
+  deleteFav = (e: SyntheticMouseEvent<>) => {
+    e.stopPropagation();
+    e.preventDefault();
     this.props.unfav(this.props.fav);
   };
   render() {
     const { fav } = this.props;
 
     return (
-      <div className="FavEntry">
-        <Link to={encodeURIComponent(fav.title)}>
+      <Link to={encodeURIComponent(fav.title)}>
+        <div className="FavEntry">
           <span>{fav.title}</span>
-        </Link>
-        <IconButton onClick={this.deleteFav} color="inherit">
-          <ActionDelete />
-        </IconButton>
-      </div>
+          <IconButton onClick={this.deleteFav} color="inherit">
+            <ActionDelete />
+          </IconButton>
+        </div>
+      </Link>
     );
   }
 }
