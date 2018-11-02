@@ -1,17 +1,7 @@
-FROM node:10-alpine as build
-WORKDIR /app
-COPY package.json /app/
-COPY yarn.lock /app/
-RUN yarn
-COPY .flowconfig /app/
-COPY .babelrc.server.js /app/
-COPY src/ /app/src/
-RUN yarn build:server
-
 FROM node:10-alpine
 RUN mkdir -p /app
 WORKDIR /app
-COPY --from=build /app/dist/server /app/dist/
+COPY dist/server /app/dist/
 COPY package.json /app
 COPY yarn.lock /app/
 ENV NODE_ENV=production

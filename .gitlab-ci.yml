@@ -1,0 +1,136 @@
+image: node:10-alpine
+
+stages:
+  - install
+  - test
+  - build
+  - docker
+  - deploy
+  - cleanup
+
+install:
+  stage: install
+  script: yarn
+  cache:
+    key: '$CI_COMMIT_REF_SLUG'
+    paths:
+      - node_modules/
+  artifacts:
+    paths:
+      - node_modules/
+
+test:server:
+  stage: test
+  script: yarn test:server
+  artifacts:
+    paths:
+      - reports/server/
+
+test:client:
+  stage: test
+  script: yarn test:client
+  artifacts:
+    paths:
+      - reports/client/
+
+lint:
+  stage: test
+  script: yarn lint
+
+flow:
+  image: node:10
+  stage: test
+  script: yarn flow
+
+build:app:
+  stage: build
+  variables:
+    NODE_ENV: production
+  script: yarn build:client
+  artifacts:
+    paths:
+      - dist/client
+  dependencies:
+    - install
+
+build:server:
+  stage: build
+  variables:
+    NODE_ENV: production
+  script: yarn build:server
+  artifacts:
+    paths:
+      - dist/server
+  dependencies:
+    - install
+
+codecov:
+  stage: build
+  script: yarn test:codecov
+  dependencies:
+    - install
+    - test:server
+    - test:client
+
+docker:app:
+  variables:
+    DOCKER_HOST: tcp://localhost:2375
+    DOCKER_DRIVER: overlay2
+  services:
+    - docker:dind
+  image: docker:latest
+  stage: docker
+  script:
+    - docker build -t registry.gitlab.com/marudor/bahnhofsabfahrten/client -f ./Dockerfile.client .
+    - docker tag registry.gitlab.com/marudor/bahnhofsabfahrten/client registry.gitlab.com/marudor/bahnhofsabfahrten/client:${CI_COMMIT_SHA}
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker push registry.gitlab.com/marudor/bahnhofsabfahrten/client
+    - docker push registry.gitlab.com/marudor/bahnhofsabfahrten/client:${CI_COMMIT_SHA}
+  dependencies:
+    - build:app
+
+docker:server:
+  variables:
+    DOCKER_HOST: tcp://localhost:2375
+    DOCKER_DRIVER: overlay2
+  services:
+    - docker:dind
+  image: docker:latest
+  stage: docker
+  script:
+    - docker build -t registry.gitlab.com/marudor/bahnhofsabfahrten/server -f ./Dockerfile.server .
+    - docker tag registry.gitlab.com/marudor/bahnhofsabfahrten/server registry.gitlab.com/marudor/bahnhofsabfahrten/server:${CI_COMMIT_SHA}
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker push registry.gitlab.com/marudor/bahnhofsabfahrten/server
+    - docker push registry.gitlab.com/marudor/bahnhofsabfahrten/server:${CI_COMMIT_SHA}
+  dependencies:
+    - build:server
+
+deploy:beta:
+  stage: deploy
+  image: alpine
+  script: ./deploy.sh "$CI_COMMIT_SHA" "-beta"
+  environment:
+    name: beta
+  only:
+    - master
+  dependencies: []
+
+deploy:prod:
+  stage: deploy
+  image: alpine
+  script: ./deploy.sh "$CI_COMMIT_SHA" ""
+  environment:
+    name: production
+  when: manual
+  only:
+    - master
+  dependencies: []
+
+cleanup:
+  stage: cleanup
+  script:
+    - apk update && apk add --no-cache jq curl
+    - ./cleanupOld.sh server
+    - ./cleanupOld.sh client
+  dependencies: []
