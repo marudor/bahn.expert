@@ -3681,10 +3681,10 @@ escodegen@^1.9.1:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-config-joblift@^3.1.2:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/eslint-config-joblift/-/eslint-config-joblift-3.1.2.tgz#299a13288a834c2331eacdc4162425d03d42ffa2"
-  integrity sha512-8jhITl5HpwyxuuR8K9E4YIkOfpIfBpbcXV+I9sOLKnr40BET7FHju/IY2usq8b8fGcebACOgUNw9BSE4KI7cMQ==
+eslint-config-joblift@^3.1.3:
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/eslint-config-joblift/-/eslint-config-joblift-3.1.3.tgz#650620b1c47d96e530ee541dc8ef2076c739c1ed"
+  integrity sha512-Z92UATALdpBA7Obtju+ytIhgiefMqVSL4cQTaQOugxRhWJFDlgKHkwsqeZQl4gLODMSALLqcd/Xwf3YGrKuXTA==
 
 eslint-import-resolver-node@^0.3.1:
   version "0.3.2"

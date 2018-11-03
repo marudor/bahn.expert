@@ -3,7 +3,7 @@ export type Station = {
   title: string,
   id: string | number,
   favendoId?: number,
-  ds100?: string,
+  DS100?: string,
 };
 
 export type Message = {

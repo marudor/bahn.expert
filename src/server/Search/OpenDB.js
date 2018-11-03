@@ -2,6 +2,7 @@
 import axios from 'axios';
 import type { Station } from 'types/abfahrten';
 
+// istanbul ignore next
 const authKey = process.env.OPENDB_AUTH_KEY || '';
 
 // https://open-api.bahn.de/bin/rest.exe/location.name?format=json&input=Hamburg&products=1&authKey=

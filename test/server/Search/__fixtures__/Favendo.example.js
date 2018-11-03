@@ -9,14 +9,6 @@ export default [
   },
   {
     type: 'station_search',
-    id: 2517,
-    title: 'Hamburg-Altona',
-    eva_ids: ['8002553', '8098553'],
-    distanceInKm: 0,
-    location: [9.934554, 53.551855],
-  },
-  {
-    type: 'station_search',
     id: 2513,
     title: 'Hamburg Dammtor',
     eva_ids: ['8002548'],
