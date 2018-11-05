@@ -23,6 +23,7 @@ const logglyConfig = {
   subdomain: process.env.LOGGLY_SUBDOMAIN,
 };
 
+// istanbul ignore next
 if (process.env.NODE_ENV === 'production' && logglyConfig.token && logglyConfig.subdomain) {
   // eslint-disable-next-line
   console.log('Using loggly to log');
@@ -33,4 +34,7 @@ if (process.env.NODE_ENV === 'production' && logglyConfig.token && logglyConfig.
 }
 
 export const logger = bunyan.createLogger(config);
-export const middlewares = [bunyanMiddleware(logger), bunyanMiddleware.requestLogger()];
+export const middlewares = [bunyanMiddleware(logger)];
+if (process.env.NODE_ENV !== 'test') {
+  middlewares.push(bunyanMiddleware.requestLogger());
+}
