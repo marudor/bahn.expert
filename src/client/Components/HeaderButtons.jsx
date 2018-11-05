@@ -10,18 +10,22 @@ import ToggleStarBorder from '@material-ui/icons/StarBorder';
 import type { AppState } from 'AppState';
 import type { Station } from 'types/abfahrten';
 
-type ReduxProps = {
+type StateProps = {|
   isFaved: boolean,
   currentStation: ?Station,
-};
-
-type Props = ReduxProps & {
+|};
+type DispatchProps = {|
   fav: typeof fav,
   unfav: typeof unfav,
   openSettings: typeof openSettings,
-};
+|};
 
-class HeaderButtons extends React.Component<Props> {
+type Props = {|
+  ...StateProps,
+  ...DispatchProps,
+|};
+
+class HeaderButtons extends React.PureComponent<Props> {
   toggleFav = () => {
     const { isFaved, fav, unfav, currentStation } = this.props;
 
@@ -52,8 +56,8 @@ class HeaderButtons extends React.Component<Props> {
   }
 }
 
-export default connect(
-  (state: AppState): ReduxProps => ({
+export default connect<AppState, Function, {||}, StateProps, DispatchProps>(
+  state => ({
     isFaved: Boolean(state.abfahrten.currentStation && state.fav.favs[state.abfahrten.currentStation.id]),
     currentStation: state.abfahrten.currentStation,
   }),

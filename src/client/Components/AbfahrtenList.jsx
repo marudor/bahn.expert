@@ -9,18 +9,24 @@ import React from 'react';
 import type { AppState } from 'AppState';
 import type { ContextRouter } from 'react-router';
 
-type ReduxProps = {|
+type StateProps = {|
   abfahrten: $PropertyType<$PropertyType<AppState, 'abfahrten'>, 'abfahrten'>,
   selectedDetail: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'selectedDetail'>,
   error: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'error'>,
   searchType: string,
 |};
 
-type Props = ReduxProps &
-  ContextRouter & {|
-    getAbfahrtenByString: typeof getAbfahrtenByString,
-    setCurrentStation: typeof setCurrentStation,
-  |};
+type DispatchProps = {|
+  getAbfahrtenByString: typeof getAbfahrtenByString,
+  setCurrentStation: typeof setCurrentStation,
+|};
+
+type Props = {|
+  ...StateProps,
+  ...DispatchProps,
+  ...ContextRouter,
+|};
+
 type State = {
   loading: boolean,
 };
@@ -88,8 +94,8 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
   }
 }
 
-export default connect(
-  (state: AppState): ReduxProps => ({
+export default connect<AppState, Function, {||}, StateProps, DispatchProps>(
+  state => ({
     abfahrten: state.abfahrten.abfahrten,
     selectedDetail: state.abfahrten.selectedDetail,
     error: state.abfahrten.error,
@@ -99,4 +105,5 @@ export default connect(
     getAbfahrtenByString,
     setCurrentStation,
   }
+  // $FlowFixMe
 )(AbfahrtenList);

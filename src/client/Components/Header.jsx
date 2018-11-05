@@ -13,15 +13,20 @@ import type { AppState } from 'AppState';
 import type { ContextRouter } from 'react-router';
 import type { Station } from 'types/abfahrten';
 
-type ReduxProps = {
+type StateProps = {|
   currentStation: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'currentStation'>,
   searchType?: string,
-};
+|};
 
-type Props = ReduxProps &
-  ContextRouter & {
-    setCurrentStation: typeof setCurrentStation,
-  };
+type DispatchProps = {|
+  setCurrentStation: typeof setCurrentStation,
+|};
+
+type Props = {|
+  ...StateProps,
+  ...DispatchProps,
+  ...ContextRouter,
+|};
 
 const selectStyles = {
   option: (base, state) => ({
@@ -79,12 +84,13 @@ class Header extends React.Component<Props> {
   }
 }
 
-export default connect(
-  (state: AppState): ReduxProps => ({
+export default connect<AppState, Function, {||}, StateProps, DispatchProps>(
+  state => ({
     currentStation: state.abfahrten.currentStation,
     searchType: state.config.searchType,
   }),
   {
     setCurrentStation,
   }
+  // $FlowFixMe
 )(Header);

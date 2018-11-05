@@ -6,12 +6,19 @@ import { unfav } from 'client/actions/fav';
 import ActionDelete from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import React from 'react';
+import type { AppState } from 'AppState';
 import type { Station } from 'types/abfahrten';
 
-type Props = {
+type OwnProps = {|
   fav: Station,
+|};
+type DispatchProps = {|
   unfav: typeof unfav,
-};
+|};
+type Props = {|
+  ...OwnProps,
+  ...DispatchProps,
+|};
 class FavEntry extends React.PureComponent<Props> {
   deleteFav = (e: SyntheticMouseEvent<>) => {
     e.stopPropagation();
@@ -34,7 +41,7 @@ class FavEntry extends React.PureComponent<Props> {
   }
 }
 
-export default connect(
+export default connect<AppState, Function, OwnProps, void, DispatchProps>(
   undefined,
   {
     unfav,

@@ -11,16 +11,24 @@ import React from 'react';
 import Switch from '@material-ui/core/Switch';
 import type { AppState } from 'AppState';
 
-type Props = {
-  closeSettings: typeof closeSettings,
+type StateProps = {|
   open: boolean,
-  setTime: typeof setTime,
   timeConfig: boolean,
-  setSearchType: typeof setSearchType,
   searchType: string,
-  setTraewelling: typeof setTraewelling,
   traewellingConfig: boolean,
-};
+|};
+
+type DispatchProps = {|
+  closeSettings: typeof closeSettings,
+  setTime: typeof setTime,
+  setSearchType: typeof setSearchType,
+  setTraewelling: typeof setTraewelling,
+|};
+
+type Props = {|
+  ...StateProps,
+  ...DispatchProps,
+|};
 
 class SettingsModal extends React.PureComponent<Props> {
   handleTimeChange = e => {
@@ -72,8 +80,8 @@ class SettingsModal extends React.PureComponent<Props> {
   }
 }
 
-export default connect(
-  (state: AppState) => ({
+export default connect<AppState, Function, {||}, StateProps, DispatchProps>(
+  state => ({
     open: state.config.open,
     timeConfig: state.config.time,
     searchType: state.config.searchType,

@@ -9,16 +9,20 @@ import React from 'react';
 import Tooltip from '@material-ui/core/Tooltip';
 import type { AppState } from 'AppState';
 
-type ReduxProps = {
+type StateProps = {|
   auslastung: ?{ first: 0 | 1 | 2, second: 0 | 1 | 2 },
-};
-type OwnProps = {
+|};
+type DispatchProps = {|
+  getAuslastung: typeof getAuslastung,
+|};
+type OwnProps = {|
   abfahrt: Abfahrt,
-};
-type Props = ReduxProps &
-  OwnProps & {
-    getAuslastung: typeof getAuslastung,
-  };
+|};
+type Props = {|
+  ...StateProps,
+  ...DispatchProps,
+  ...OwnProps,
+|};
 
 function getTooltipText(auslastung) {
   switch (auslastung) {
@@ -77,11 +81,11 @@ class Auslastung extends React.PureComponent<Props> {
   }
 }
 
-export default connect(
-  (state: AppState, props: OwnProps): ReduxProps => ({
+export default connect<AppState, Function, OwnProps, StateProps, DispatchProps>(
+  (state: AppState, props: OwnProps): StateProps => ({
     auslastung: getAuslastungForIdAndStation(state, props),
   }),
-  {
+  ({
     getAuslastung,
-  }
+  }: DispatchProps)
 )(Auslastung);

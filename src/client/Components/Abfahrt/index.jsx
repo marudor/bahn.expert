@@ -8,12 +8,19 @@ import Mid from './Mid';
 import Paper from '@material-ui/core/Paper';
 import React from 'react';
 import Start from './Start';
+import type { AppState } from 'AppState';
 
-type Props = {
+type OwnProps = {|
   abfahrt: AbfahrtType,
   detail: boolean,
+|};
+type DispatchProps = {|
   setDetail: typeof setDetail,
-};
+|};
+type Props = {|
+  ...OwnProps,
+  ...DispatchProps,
+|};
 
 class Abfahrt extends React.PureComponent<Props> {
   setDetail = () => {
@@ -34,8 +41,8 @@ class Abfahrt extends React.PureComponent<Props> {
   }
 }
 
-export default connect(
-  null,
+export default connect<AppState, Function, OwnProps, void, DispatchProps>(
+  undefined,
   {
     setDetail,
   }

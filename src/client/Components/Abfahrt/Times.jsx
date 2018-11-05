@@ -33,13 +33,17 @@ function getDelayTime(time: ?string, delay: ?number, isCancelled: 1 | 0, timeCon
   return <span>{format(time, 'HH:mm')}</span>;
 }
 
-type ReduxProps = {
+type StateProps = {|
   timeConfig: boolean,
-};
-type Props = ReduxProps & {
+|};
+type OwnProps = {|
   abfahrt: Abfahrt,
   detail: boolean,
-};
+|};
+type Props = {|
+  ...StateProps,
+  ...OwnProps,
+|};
 
 const Times = ({
   timeConfig,
@@ -82,8 +86,6 @@ const Times = ({
   </div>
 );
 
-export default connect(
-  (state: AppState): ReduxProps => ({
-    timeConfig: state.config.time,
-  })
-)(Times);
+export default connect<AppState, Function, OwnProps, StateProps>(state => ({
+  timeConfig: state.config.time,
+}))(Times);

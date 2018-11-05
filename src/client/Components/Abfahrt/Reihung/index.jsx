@@ -12,18 +12,23 @@ import type { Abfahrt } from 'types/abfahrten';
 import type { AppState } from 'AppState';
 import type { Reihung } from 'types/reihung';
 
-type ReduxProps = {
+type StateProps = {|
   reihung: ?Reihung,
-};
+|};
 
-type OwnProps = {
+type OwnProps = {|
   abfahrt: Abfahrt,
-};
+|};
 
-type Props = ReduxProps &
-  OwnProps & {
-    getReihung: typeof getReihung,
-  };
+type DispatchProps = {|
+  getReihung: typeof getReihung,
+|};
+
+type Props = {|
+  ...StateProps,
+  ...OwnProps,
+  ...DispatchProps,
+|};
 
 class ReihungComp extends React.PureComponent<Props> {
   componentDidMount() {
@@ -78,8 +83,8 @@ class ReihungComp extends React.PureComponent<Props> {
   }
 }
 
-export default connect(
-  (state: AppState, props: OwnProps): ReduxProps => ({
+export default connect<AppState, Function, OwnProps, StateProps, DispatchProps>(
+  (state, props) => ({
     reihung: getReihungForId(state, props),
   }),
   { getReihung }

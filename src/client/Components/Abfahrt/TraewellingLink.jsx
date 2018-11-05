@@ -7,13 +7,18 @@ import React from 'react';
 import type { Abfahrt } from 'types/abfahrten';
 import type { AppState } from 'AppState';
 
-type StateProps = {
+type StateProps = {|
   show: boolean,
-};
+|};
 
-type Props = StateProps & {
+type OwnProps = {|
   abfahrt: Abfahrt,
-};
+|};
+
+type Props = {|
+  ...StateProps,
+  ...OwnProps,
+|};
 
 function preventDefault(e: SyntheticMouseEvent<>) {
   e.stopPropagation();
@@ -52,6 +57,6 @@ const TraewellingLink = ({ abfahrt, show }: Props) => {
   );
 };
 
-export default connect((state: AppState) => ({
+export default connect<AppState, Function, OwnProps, StateProps>(state => ({
   show: state.config.traewelling,
 }))(TraewellingLink);
