@@ -6,8 +6,9 @@ import HafasSearch from './Hafas';
 import OpenDataOfflineSearch from './OpenDataOffline';
 import OpenDataSearch from './OpenData';
 import OpenDBSearch from './OpenDB';
+import type { Station } from 'types/abfahrten';
 
-export async function favendoOpenDBCombined(searchTerm: string) {
+export async function favendoOpenDBCombined(searchTerm: string): Promise<Station[]> {
   const stations = await Promise.all([FavendoSearch(searchTerm), OpenDBSearch(searchTerm)]);
 
   return uniqBy(flatten(stations), 'id');

@@ -26,24 +26,24 @@ declare module "redux-actions" {
    *     const increment = createAction(INCREMENT, (count: number) => count)
    *
    */
-  declare function createAction<T, P>(
+  declare function createAction<T: string, P>(
     type: T,
     $?: empty // hack to force Flow to not use this signature when more than one argument is given
   ): {(payload: P, ...rest: any[]): { type: T, payload: P, error?: boolean }, +toString: () => T};
 
-  declare function createAction<T, A, P>(
+  declare function createAction<T: string, A, P>(
     type: T,
     payloadCreator: (...rest: A) => Promise<P> | P,
     $?: empty
   ): {(...rest: A): { type: T, payload: P, error?: boolean }, +toString: () => T};
 
-  declare function createAction<T, A, P, M>(
+  declare function createAction<T: string, A, P, M>(
     type: T,
     payloadCreator: (...rest: A) => Promise<P> | P,
     metaCreator: (...rest: A) => M
   ): {(...rest: A): { type: T, payload: P, error?: boolean, meta: M }, +toString: () => T};
 
-  declare function createAction<T, P, M>(
+  declare function createAction<T: string, P, M>(
     type: T,
     payloadCreator: null | void,
     metaCreator: (payload: P, ...rest: any[]) => M

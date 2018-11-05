@@ -8,7 +8,7 @@ module.exports = {
         targets: {
           node: '10',
         },
-        loose: true,
+        loose: false,
         useBuiltIns: 'entry',
         modules: 'commonjs',
       },
@@ -22,7 +22,6 @@ module.exports = {
       {
         root: 'src',
         alias: {
-          'koa-bunyan-logger': '@marudor/koa-bunyan-logger',
         },
       },
     ],
