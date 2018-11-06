@@ -1,5 +1,8 @@
 image: node:10-alpine
 
+variables:
+  DOCKER_DRIVER: overlay2
+
 stages:
   - install
   - test
