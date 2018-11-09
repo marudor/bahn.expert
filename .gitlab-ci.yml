@@ -27,6 +27,12 @@ test:server:
     key: '$CI_COMMIT_REF_SLUG'
     paths:
       - node_modules/
+  artifacts:
+    reports:
+      junit: reports/junitresults.xml
+    paths:
+      - reports
+
 
 test:client:
   stage: test
@@ -36,6 +42,11 @@ test:client:
     key: '$CI_COMMIT_REF_SLUG'
     paths:
       - node_modules/
+  artifacts:
+    reports:
+      junit: reports/junitresults.xml
+    paths:
+      - reports
 
 lint:
   stage: test
@@ -65,7 +76,11 @@ build:app:
     key: '$CI_COMMIT_REF_SLUG'
     paths:
       - node_modules/
+  cache:
+    key: '$CI_COMMIT_REF_SLUG-client'
+    paths:
       - dist/client
+  dependencies: []
 
 build:server:
   stage: build
@@ -76,7 +91,11 @@ build:server:
     key: '$CI_COMMIT_REF_SLUG'
     paths:
       - node_modules/
+  cache:
+    key: '$CI_COMMIT_REF_SLUG-server'
+    paths:
       - dist/server
+  dependencies: []
 
 codecov:
   stage: build
@@ -86,7 +105,9 @@ codecov:
     key: '$CI_COMMIT_REF_SLUG'
     paths:
       - node_modules/
-      - dist/
+  dependencies:
+    - test:client
+    - test:server
 
 docker:app:
   variables:
@@ -104,9 +125,11 @@ docker:app:
     - docker push registry.gitlab.com/marudor/bahnhofsabfahrten/client:${CI_COMMIT_SHA}
   cache:
     policy: pull
-    key: '$CI_COMMIT_REF_SLUG'
+    key: '$CI_COMMIT_REF_SLUG-client'
     paths:
       - dist/
+  dependencies: []
+
 
 docker:server:
   variables:
@@ -124,9 +147,11 @@ docker:server:
     - docker push registry.gitlab.com/marudor/bahnhofsabfahrten/server:${CI_COMMIT_SHA}
   cache:
     policy: pull
-    key: '$CI_COMMIT_REF_SLUG'
+    key: '$CI_COMMIT_REF_SLUG-server'
     paths:
       - dist/
+  dependencies: []
+
 
 deploy:beta:
   stage: deploy
@@ -136,6 +161,8 @@ deploy:beta:
     name: beta
   only:
     - master
+  dependencies: []
+
 
 deploy:prod:
   stage: deploy
@@ -146,6 +173,8 @@ deploy:prod:
   when: manual
   only:
     - master
+  dependencies: []
+
 
 cleanup:
   stage: cleanup
@@ -153,3 +182,4 @@ cleanup:
     - apk update && apk add --no-cache jq curl
     - ./cleanupOld.sh server
     - ./cleanupOld.sh client
+  dependencies: []
