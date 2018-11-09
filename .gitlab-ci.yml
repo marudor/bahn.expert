@@ -76,10 +76,9 @@ build:app:
     key: '$CI_COMMIT_REF_SLUG'
     paths:
       - node_modules/
-  cache:
-    key: '$CI_COMMIT_REF_SLUG-client'
+  artifacts:
     paths:
-      - dist/client
+      - dist
   dependencies: []
 
 build:server:
@@ -91,10 +90,9 @@ build:server:
     key: '$CI_COMMIT_REF_SLUG'
     paths:
       - node_modules/
-  cache:
-    key: '$CI_COMMIT_REF_SLUG-server'
+  artifacts:
     paths:
-      - dist/server
+      - dist
   dependencies: []
 
 codecov:
@@ -123,12 +121,8 @@ docker:app:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
     - docker push registry.gitlab.com/marudor/bahnhofsabfahrten/client
     - docker push registry.gitlab.com/marudor/bahnhofsabfahrten/client:${CI_COMMIT_SHA}
-  cache:
-    policy: pull
-    key: '$CI_COMMIT_REF_SLUG-client'
-    paths:
-      - dist/
-  dependencies: []
+  dependencies:
+    - build:app
 
 
 docker:server:
@@ -145,12 +139,8 @@ docker:server:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
     - docker push registry.gitlab.com/marudor/bahnhofsabfahrten/server
     - docker push registry.gitlab.com/marudor/bahnhofsabfahrten/server:${CI_COMMIT_SHA}
-  cache:
-    policy: pull
-    key: '$CI_COMMIT_REF_SLUG-server'
-    paths:
-      - dist/
-  dependencies: []
+  dependencies:
+    - build:server
 
 
 deploy:beta:
