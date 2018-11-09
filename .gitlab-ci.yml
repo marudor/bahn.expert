@@ -82,10 +82,11 @@ codecov:
   stage: build
   script: yarn test:codecov
   cache:
+    policy: pull
     key: '$CI_COMMIT_REF_SLUG'
     paths:
       - node_modules/
-      - dist
+      - dist/
 
 docker:app:
   variables:
@@ -105,7 +106,7 @@ docker:app:
     policy: pull
     key: '$CI_COMMIT_REF_SLUG'
     paths:
-      - dist/client
+      - dist/
 
 docker:server:
   variables:
@@ -125,7 +126,7 @@ docker:server:
     policy: pull
     key: '$CI_COMMIT_REF_SLUG'
     paths:
-      - dist/server
+      - dist/
 
 deploy:beta:
   stage: deploy
