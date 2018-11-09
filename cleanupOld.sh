@@ -26,7 +26,7 @@ echo "$TAGS" | jq -r '.[]' | while read -r i; do
     continue
   fi
   created=$(curl -s -H "Authorization: Bearer $TOKEN" "https://registry.gitlab.com/v2/marudor/bahnhofsabfahrten/$1/manifests/$i" | jq -r '.history[0].v1Compatibility' | jq -r '.created')
-  ifOlderThan=$(node -e "console.log(new Date('$created').getTime() + 12096e5)")
+  ifOlderThan=$(node -e "console.log(new Date('$created').getTime() + 604800000)")
   if [[ "$current" -gt "$ifOlderThan" ]]; then
     digest=$(curl -I -s -H "Accept: application/vnd.docker.distribution.manifest.v2+json" -H "Authorization: Bearer $TOKEN" "https://registry.gitlab.com/v2/marudor/bahnhofsabfahrten/$1/manifests/$i" | grep -Fi "Docker-Content-Digest" | sed 's/Docker-Content-Digest: //' | tr -d '[:space:]')
     curl -X "DELETE" -H "Authorization: Bearer $TOKEN" "https://registry.gitlab.com/v2/marudor/bahnhofsabfahrten/$1/manifests/$digest"
