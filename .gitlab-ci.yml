@@ -145,8 +145,10 @@ docker:server:
 
 deploy:beta:
   stage: deploy
-  image: alpine
-  script: ./deploy.sh "$CI_COMMIT_SHA" "-beta"
+  image: registry.gitlab.com/marudor/deploy-helper
+  script:
+    - /deploy.sh "bahnhofsabfahrten-beta" "$CI_COMMIT_SHA" "marudor" "/client"
+    - /deploy.sh "bahnhofsabfahrtenserver-beta" "$CI_COMMIT_SHA" "marudor" "/server"
   environment:
     name: beta
   only:
@@ -156,8 +158,10 @@ deploy:beta:
 
 deploy:prod:
   stage: deploy
-  image: alpine
-  script: ./deploy.sh "$CI_COMMIT_SHA" ""
+  image: registry.gitlab.com/marudor/deploy-helper
+  script:
+    - /deploy.sh "bahnhofsabfahrten" "$CI_COMMIT_SHA" "marudor" "/client"
+    - /deploy.sh "bahnhofsabfahrtenserver" "$CI_COMMIT_SHA" "marudor" "/server"
   environment:
     name: production
   when: manual
@@ -168,8 +172,8 @@ deploy:prod:
 
 cleanup:
   stage: cleanup
+  image: registry.gitlab.com/marudor/deploy-helper
   script:
-    - apk update && apk add --no-cache jq curl
-    - ./cleanupOld.sh server
-    - ./cleanupOld.sh client
+    - /cleanup.sh "marudor" /server
+    - /cleanup.sh "marudor" /client
   dependencies: []

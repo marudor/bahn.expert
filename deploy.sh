@@ -1,4 +1,4 @@
-#!/usr/bin/env ash
+#!/usr/bin/env bash
 # shellcheck shell=bash
 # shellcheck disable=SC2169
 apk update  && apk add --no-cache curl
