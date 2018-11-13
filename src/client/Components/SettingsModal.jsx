@@ -2,6 +2,7 @@
 import './SettingsModal.scss';
 import { closeSettings, setSearchType, setTime, setTraewelling } from 'client/actions/config';
 import { connect } from 'react-redux';
+import BrowserstackThanks from './BrowserstackThanks';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -71,9 +72,7 @@ class SettingsModal extends React.PureComponent<Props> {
             }
             label="API zur Stationssuche"
           />
-          {/* <Link to="/Privacy" className="SettingsModal__privacy" onClick={closeSettings}>
-            Datenschutz
-          </Link> */}
+          <BrowserstackThanks />
         </DialogContent>
       </Dialog>
     );

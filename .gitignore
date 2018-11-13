@@ -49,3 +49,4 @@ bahntests/
 .yalc.lock
 .yalc/
 reports/
+.DS_STORE

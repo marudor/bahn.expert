@@ -10,6 +10,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import reducer from './reducer';
 
+global.smallScreen = window.matchMedia('(max-width: 480px)').matches;
+
 const middlewares = [promiseMiddleware];
 
 if (process.env.NODE_ENV !== 'production') {
