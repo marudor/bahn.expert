@@ -1,5 +1,6 @@
 // @flow
 import { flatten, uniqBy } from 'lodash';
+import { logger } from 'server/logger';
 import DBNavigatorSearch from './DBNavigator';
 import FavendoSearch from './Favendo';
 import HafasSearch from './Hafas';
@@ -34,4 +35,19 @@ export function getSearchMethod(type: ?string) {
   }
 }
 
-export default (searchTerm: string, type: ?string) => getSearchMethod(type)(searchTerm);
+export default async (searchTerm: string, type: ?string) => {
+  try {
+    return await getSearchMethod(type)(searchTerm);
+  } catch (e) {
+    logger.error('search failed, falling back to default', {
+      searchMethod: type,
+      error: {
+        statusText: e.response?.statusText,
+        data: e.response?.data,
+        status: e.response?.status,
+      },
+    });
+
+    return getSearchMethod('favendo')(searchTerm);
+  }
+};
