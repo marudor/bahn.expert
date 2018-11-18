@@ -108,39 +108,58 @@ codecov:
     - test:server
 
 docker:app:
-  variables:
-    DOCKER_HOST: tcp://localhost:2375
-    DOCKER_DRIVER: overlay2
   services:
     - docker:dind
-  image: docker:latest
+  image: registry.gitlab.com/marudor/deploy-helper/docker
   stage: docker
   script:
-    - docker build -t registry.gitlab.com/marudor/bahnhofsabfahrten/client -f ./Dockerfile.client .
-    - docker tag registry.gitlab.com/marudor/bahnhofsabfahrten/client registry.gitlab.com/marudor/bahnhofsabfahrten/client:${CI_COMMIT_SHA}
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker push registry.gitlab.com/marudor/bahnhofsabfahrten/client
-    - docker push registry.gitlab.com/marudor/bahnhofsabfahrten/client:${CI_COMMIT_SHA}
+    - /build.sh "Dockerfile.client" "/client"
   dependencies:
     - build:app
 
+# docker:app:
+#   variables:
+#     DOCKER_HOST: tcp://localhost:2375
+#     DOCKER_DRIVER: overlay2
+#   services:
+#     - docker:dind
+#   image: docker:latest
+#   stage: docker
+#   script:
+#     - docker build -t registry.gitlab.com/marudor/bahnhofsabfahrten/client -f ./Dockerfile.client .
+#     - docker tag registry.gitlab.com/marudor/bahnhofsabfahrten/client registry.gitlab.com/marudor/bahnhofsabfahrten/client:${CI_COMMIT_SHA}
+#     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+#     - docker push registry.gitlab.com/marudor/bahnhofsabfahrten/client
+#     - docker push registry.gitlab.com/marudor/bahnhofsabfahrten/client:${CI_COMMIT_SHA}
+#   dependencies:
+#     - build:app
 
 docker:server:
-  variables:
-    DOCKER_HOST: tcp://localhost:2375
-    DOCKER_DRIVER: overlay2
   services:
     - docker:dind
-  image: docker:latest
+  image: registry.gitlab.com/marudor/deploy-helper/docker
   stage: docker
   script:
-    - docker build -t registry.gitlab.com/marudor/bahnhofsabfahrten/server -f ./Dockerfile.server .
-    - docker tag registry.gitlab.com/marudor/bahnhofsabfahrten/server registry.gitlab.com/marudor/bahnhofsabfahrten/server:${CI_COMMIT_SHA}
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker push registry.gitlab.com/marudor/bahnhofsabfahrten/server
-    - docker push registry.gitlab.com/marudor/bahnhofsabfahrten/server:${CI_COMMIT_SHA}
+    - /build.sh "Dockerfile.server" "/server"
   dependencies:
     - build:server
+
+# docker:server:
+#   variables:
+#     DOCKER_HOST: tcp://localhost:2375
+#     DOCKER_DRIVER: overlay2
+#   services:
+#     - docker:dind
+#   image: docker:latest
+#   stage: docker
+#   script:
+#     - docker build -t registry.gitlab.com/marudor/bahnhofsabfahrten/server -f ./Dockerfile.server .
+#     - docker tag registry.gitlab.com/marudor/bahnhofsabfahrten/server registry.gitlab.com/marudor/bahnhofsabfahrten/server:${CI_COMMIT_SHA}
+#     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+#     - docker push registry.gitlab.com/marudor/bahnhofsabfahrten/server
+#     - docker push registry.gitlab.com/marudor/bahnhofsabfahrten/server:${CI_COMMIT_SHA}
+#   dependencies:
+#     - build:server
 
 
 deploy:beta:
