@@ -12,4 +12,8 @@ export const getReihungForId = createSelector<
   ?Reihung,
   $PropertyType<$PropertyType<AppState, 'reihung'>, 'reihung'>,
   string
->(getReihung, getTrainIdFromProps, (reihung, trainId) => reihung[String(trainId)]);
+>(
+  getReihung,
+  getTrainIdFromProps,
+  (reihung, trainId) => reihung[String(trainId)]
+);

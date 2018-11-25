@@ -14,8 +14,10 @@ export default async function(searchTerm: string): Promise<Station[]> {
 
   const stations = JSON.parse(stringReply).suggestions;
 
-  return stations.filter(s => s.value !== s.value.toUpperCase()).map(s => ({
-    title: s.value,
-    id: Number.parseInt(s.extId, 10).toString(),
-  }));
+  return stations
+    .filter(s => s.value !== s.value.toUpperCase())
+    .map(s => ({
+      title: s.value,
+      id: Number.parseInt(s.extId, 10).toString(),
+    }));
 }

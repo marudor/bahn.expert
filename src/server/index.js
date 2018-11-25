@@ -1,7 +1,7 @@
 // @flow
+import createAdmin from './admin';
 import createApp from './app';
 import http from 'http';
-import createAdmin from './admin';
 
 const app = createApp();
 const server = http.createServer(app.callback());

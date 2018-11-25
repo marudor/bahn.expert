@@ -20,7 +20,10 @@ export const getAuslastungForIdCopy = createSelector<
   AuslastungProps,
   ?(AuslastungEntry[]),
   ?(AuslastungEntry[])
->(getAuslastungForId, auslastung => (auslastung ? [...auslastung] : auslastung));
+>(
+  getAuslastungForId,
+  auslastung => (auslastung ? [...auslastung] : auslastung)
+);
 
 export const getAuslastungForIdAndStation = createSelector<
   AppState,
@@ -28,19 +31,23 @@ export const getAuslastungForIdAndStation = createSelector<
   any,
   ?(AuslastungEntry[]),
   ?Station
->(getAuslastungForIdCopy, getStation, (auslastung, station) => {
-  if (!station || !auslastung) {
-    return undefined;
-  }
-  while (auslastung.length && auslastung[0].start.replace(/ /g, '') !== station.title.replace(/ /g, '')) {
-    auslastung.shift();
-  }
-  if (!auslastung.length) {
-    return null;
-  }
+>(
+  getAuslastungForIdCopy,
+  getStation,
+  (auslastung, station) => {
+    if (!station || !auslastung) {
+      return undefined;
+    }
+    while (auslastung.length && auslastung[0].start.replace(/ /g, '') !== station.title.replace(/ /g, '')) {
+      auslastung.shift();
+    }
+    if (!auslastung.length) {
+      return null;
+    }
 
-  return {
-    first: auslastung.reduce((p, c) => (p > c.first ? p : c.first), 0),
-    second: auslastung.reduce((p, c) => (p > c.second ? p : c.second), 0),
-  };
-});
+    return {
+      first: auslastung.reduce((p, c) => (p > c.first ? p : c.first), 0),
+      second: auslastung.reduce((p, c) => (p > c.second ? p : c.second), 0),
+    };
+  }
+);

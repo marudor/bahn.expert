@@ -18,6 +18,7 @@ export const favValues = createSelector<
   }
 );
 
-export const sortedFavValues = createSelector<AppState, any, Station[], Station[]>(favValues, favs =>
-  favs.sort((a, b) => (a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1))
+export const sortedFavValues = createSelector<AppState, any, Station[], Station[]>(
+  favValues,
+  favs => favs.sort((a, b) => (a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1))
 );

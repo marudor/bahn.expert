@@ -55,9 +55,11 @@ export default (searchTerm: string): Promise<Station[]> => {
     .then(r => r.data)
     .then(d => d.svcResL[0].res.match.locL)
     .then(stations =>
-      stations.filter(s => !s.meta).map(s => ({
-        title: s.name,
-        id: s.extId.substr(2),
-      }))
+      stations
+        .filter(s => !s.meta)
+        .map(s => ({
+          title: s.name,
+          id: s.extId.substr(2),
+        }))
     );
 };
