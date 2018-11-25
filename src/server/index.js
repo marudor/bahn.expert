@@ -1,6 +1,7 @@
 // @flow
 import createApp from './app';
 import http from 'http';
+import createAdmin from './admin';
 
 const app = createApp();
 const server = http.createServer(app.callback());
@@ -16,3 +17,5 @@ if (process.env.NODE_ENV === 'test') {
   // eslint-disable-next-line
   console.log('using TEST data!');
 }
+
+createAdmin();
