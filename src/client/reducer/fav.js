@@ -1,6 +1,6 @@
 // @flow
-import * as Actions from 'client/actions/fav';
-import { handleActions } from 'redux-actions';
+import { Actions } from 'client/actions/fav';
+import { type ActionType, handleActions } from 'redux-actions';
 import type { Station } from 'types/abfahrten';
 
 export type State = {
@@ -35,9 +35,9 @@ const defaultState = {
   favs: initialFavs,
 };
 
-export default handleActions(
+export default handleActions<State, *>(
   {
-    [String(Actions.fav)]: (state: State, { payload }) => {
+    [String(Actions.fav)]: (state: State, { payload }: ActionType<typeof Actions.fav>) => {
       const favs = {
         ...state.favs,
         [payload.id]: payload,
@@ -50,7 +50,7 @@ export default handleActions(
         favs,
       };
     },
-    [String(Actions.unfav)]: (state: State, { payload }) => {
+    [String(Actions.unfav)]: (state: State, { payload }: ActionType<typeof Actions.unfav>) => {
       // eslint-disable-next-line no-unused-vars
       delete state.favs[payload.id];
       // Create new Object for immutability

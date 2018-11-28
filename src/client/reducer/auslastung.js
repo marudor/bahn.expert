@@ -1,6 +1,6 @@
 // @flow
-import * as Actions from 'client/actions/auslastung';
-import { handleActions } from 'redux-actions';
+import { Actions } from 'client/actions/auslastung';
+import { type ActionType, handleActions } from 'redux-actions';
 import type { Auslastung } from 'types/auslastung';
 
 export type State = {
@@ -11,18 +11,15 @@ const defaultState: State = {
   auslastung: {},
 };
 
-export default handleActions(
+export default handleActions<State, *>(
   {
-    [String(Actions.getAuslastung)]: (state: State, { payload, error }) =>
-      error
-        ? state
-        : {
-            ...state,
-            auslastung: {
-              ...state.auslastung,
-              [payload.id]: payload.data,
-            },
-          },
+    [String(Actions.gotAuslastung)]: (state: State, { payload }: ActionType<typeof Actions.gotAuslastung>) => ({
+      ...state,
+      auslastung: {
+        ...state.auslastung,
+        [payload.id]: payload.data,
+      },
+    }),
   },
   defaultState
 );

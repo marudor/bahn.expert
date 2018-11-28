@@ -8733,6 +8733,11 @@ redux-promise@^0.6.0:
     flux-standard-action "^2.0.3"
     is-promise "^2.1.0"
 
+redux-thunk@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.3.0.tgz#51c2c19a185ed5187aaa9a2d08b666d0d6467622"
+  integrity sha512-km6dclyFnmcvxhAcrQV2AkZmPQjzPDjgVlQtR0EQjxZPyJ0BnMf3in1ryuR8A2qU0HldVRfxYXbFSKlI3N7Slw==
+
 redux-unhandled-action@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/redux-unhandled-action/-/redux-unhandled-action-1.3.0.tgz#d25acb478a429957bc297298ec9f4bed489fd0e4"

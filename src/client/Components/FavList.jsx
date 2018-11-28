@@ -1,7 +1,7 @@
 // @flow
 import './FavList.scss';
+import { Actions } from 'client/actions/abfahrten';
 import { connect } from 'react-redux';
-import { setCurrentStation } from 'client/actions/abfahrten';
 import { sortedFavValues } from 'client/selector/fav';
 import FavEntry from './FavEntry';
 import React from 'react';
@@ -9,7 +9,7 @@ import type { AppState } from 'AppState';
 import type { Station } from 'types/abfahrten';
 
 type DispatchProps = {|
-  setCurrentStation: typeof setCurrentStation,
+  setCurrentStation: typeof Actions.setCurrentStation,
 |};
 type StateProps = {|
   favs: Station[],
@@ -43,6 +43,6 @@ export default connect<AppState, Function, void, StateProps, DispatchProps>(
     favs: sortedFavValues(state),
   }),
   {
-    setCurrentStation,
+    setCurrentStation: Actions.setCurrentStation,
   }
 )(FavList);

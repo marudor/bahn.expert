@@ -1,6 +1,6 @@
 // @flow
-import * as Actions from 'client/actions/abfahrten';
-import { combineActions, handleActions } from 'redux-actions';
+import { Actions } from 'client/actions/abfahrten';
+import { type ActionType, handleActions } from 'redux-actions';
 import type { Abfahrt, Station } from 'types/abfahrten';
 
 export type State = {
@@ -17,22 +17,20 @@ const defaultState = {
   error: null,
 };
 
-export default handleActions(
+export default handleActions<State, *>(
   {
-    [combineActions(Actions.getAbfahrtenByStation, Actions.getAbfahrtenByString)]: (state: State, { payload, error }) =>
-      error
-        ? {
-            ...state,
-            abfahrten: [],
-            error: payload,
-          }
-        : {
-            ...state,
-            currentStation: payload.station,
-            abfahrten: payload.abfahrten,
-            error: null,
-          },
-    [String(Actions.setDetail)]: (state: State, { payload }) => {
+    [String(Actions.gotAbfahrten)]: (state: State, { payload }: ActionType<typeof Actions.gotAbfahrten>) => ({
+      ...state,
+      currentStation: payload.station,
+      abfahrten: payload.abfahrten,
+      error: null,
+    }),
+    [String(Actions.gotAbfahrtenError)]: (state: State, { payload }: ActionType<typeof Actions.gotAbfahrtenError>) => ({
+      ...state,
+      abfahrten: [],
+      error: payload,
+    }),
+    [String(Actions.setDetail)]: (state: State, { payload }: ActionType<typeof Actions.setDetail>) => {
       const selectedDetail: ?string = state.selectedDetail === payload ? null : payload;
 
       if (selectedDetail) {
@@ -46,7 +44,7 @@ export default handleActions(
         selectedDetail,
       };
     },
-    [String(Actions.setCurrentStation)]: (state: State, { payload }) => ({
+    [String(Actions.setCurrentStation)]: (state: State, { payload }: ActionType<typeof Actions.setCurrentStation>) => ({
       ...state,
       currentStation: payload,
     }),

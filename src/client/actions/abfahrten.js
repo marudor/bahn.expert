@@ -2,6 +2,20 @@
 import { createAction } from 'redux-actions';
 import axios from 'axios';
 import type { Abfahrt, Station } from 'types/abfahrten';
+import type { ThunkAction } from 'AppState';
+
+export const Actions = {
+  gotAbfahrten: createAction<
+    string,
+    {
+      station: ?Station,
+      abfahrten: Abfahrt[],
+    }
+  >('GOT_ABFAHRTEN'),
+  gotAbfahrtenError: createAction<string, Error>('GOT_ABFAHRTEN_ERROR'),
+  setDetail: createAction<string, ?string>('SET_DETAIL'),
+  setCurrentStation: createAction<string, ?Station>('SET_CURRENT_STATION'),
+};
 
 export async function getStationsFromAPI(stationString: ?string, type: string = ''): Promise<Station[]> {
   if (stationString) {
@@ -18,10 +32,8 @@ async function getStationFromAPI(stationString: ?string, type: string): Promise<
     return stations[0];
   }
 
-  return Promise.resolve({ title: '', id: '0' });
+  return { title: '', id: '0' };
 }
-
-export const getStation = createAction('GET_STATION', getStationFromAPI);
 
 async function abfahrtenByStation(station: Station) {
   const abfahrten: Abfahrt[] = (await axios.get(`/api/abfahrten/${station.id}`)).data;
@@ -29,30 +41,35 @@ async function abfahrtenByStation(station: Station) {
   return abfahrten;
 }
 
-export const getAbfahrtenByStation = createAction('ABFAHRTEN_BY_STATION', async (station: Station) => ({
-  station,
-  abfahrten: await abfahrtenByStation(station),
-}));
+export const getAbfahrtenByStation: ThunkAction<Station> = station => async dispatch => {
+  try {
+    const abfahrten = await abfahrtenByStation(station);
 
-export const getAbfahrtenByString = createAction(
-  'ABFAHRTEN_BY_STRING',
-  async (stationString: ?string, type: string) => {
+    dispatch(
+      Actions.gotAbfahrten({
+        station,
+        abfahrten,
+      })
+    );
+  } catch (e) {
+    dispatch(Actions.gotAbfahrtenError(e));
+  }
+};
+
+export const getAbfahrtenByString: ThunkAction<?string, string> = (stationString, type) => async dispatch => {
+  try {
     const station = await getStationFromAPI(stationString, type);
 
     if (station.id !== '0') {
-      return {
-        station,
-        abfahrten: await abfahrtenByStation(station),
-      };
+      return dispatch(getAbfahrtenByStation(station));
     }
-
-    return {
-      station: null,
-      abfahrten: [],
-    };
+    dispatch(
+      Actions.gotAbfahrten({
+        station: null,
+        abfahrten: [],
+      })
+    );
+  } catch (e) {
+    dispatch(Actions.gotAbfahrtenError(e));
   }
-);
-
-export const setDetail = createAction('SET_DETAIL');
-
-export const setCurrentStation = createAction('SET_CURRENT_STATION');
+};

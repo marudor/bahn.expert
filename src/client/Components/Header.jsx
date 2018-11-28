@@ -1,6 +1,6 @@
 // @flow
+import { Actions, getStationsFromAPI } from 'client/actions/abfahrten';
 import { connect } from 'react-redux';
-import { getStationsFromAPI, setCurrentStation } from 'client/actions/abfahrten';
 import ActionHome from '@material-ui/icons/Home';
 import AppBar from '@material-ui/core/AppBar';
 import debounce from 'debounce-promise';
@@ -19,7 +19,7 @@ type StateProps = {|
 |};
 
 type DispatchProps = {|
-  setCurrentStation: typeof setCurrentStation,
+  setCurrentStation: typeof Actions.setCurrentStation,
 |};
 
 type Props = {|
@@ -90,7 +90,7 @@ export default connect<AppState, Function, {||}, StateProps, DispatchProps>(
     searchType: state.config.searchType,
   }),
   {
-    setCurrentStation,
+    setCurrentStation: Actions.setCurrentStation,
   }
   // $FlowFixMe
 )(Header);

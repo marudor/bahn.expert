@@ -1,7 +1,7 @@
 // @flow
 import './AbfahrtenList.scss';
+import { Actions, getAbfahrtenByString } from 'client/actions/abfahrten';
 import { connect } from 'react-redux';
-import { getAbfahrtenByString, setCurrentStation } from 'client/actions/abfahrten';
 import Abfahrt from './Abfahrt';
 import Loading from './Loading';
 import PropTypes from 'prop-types';
@@ -18,7 +18,7 @@ type StateProps = {|
 
 type DispatchProps = {|
   getAbfahrtenByString: typeof getAbfahrtenByString,
-  setCurrentStation: typeof setCurrentStation,
+  setCurrentStation: typeof Actions.setCurrentStation,
 |};
 
 type Props = {|
@@ -103,7 +103,7 @@ export default connect<AppState, Function, {||}, StateProps, DispatchProps>(
   }),
   {
     getAbfahrtenByString,
-    setCurrentStation,
+    setCurrentStation: Actions.setCurrentStation,
   }
   // $FlowFixMe
 )(AbfahrtenList);

@@ -1,6 +1,6 @@
 // @flow
-import * as Actions from 'client/actions/reihung';
-import { handleActions } from 'redux-actions';
+import { Actions } from 'client/actions/reihung';
+import { type ActionType, handleActions } from 'redux-actions';
 import type { Reihung } from 'types/reihung';
 
 export type State = {
@@ -11,18 +11,15 @@ const defaultState: State = {
   reihung: {},
 };
 
-export default handleActions(
+export default handleActions<State, *>(
   {
-    [String(Actions.getReihung)]: (state: State, { payload, error }) =>
-      error
-        ? state
-        : {
-            ...state,
-            reihung: {
-              ...state.reihung,
-              [payload.id]: payload.data,
-            },
-          },
+    [String(Actions.gotReihung)]: (state: State, { payload }: ActionType<typeof Actions.gotReihung>) => ({
+      ...state,
+      reihung: {
+        ...state.reihung,
+        [payload.id]: payload.data,
+      },
+    }),
   },
   defaultState
 );

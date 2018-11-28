@@ -2,6 +2,8 @@
 import { createAction } from 'redux-actions';
 import type { Station } from 'types/abfahrten';
 
-export const fav = createAction('FAV', (station: Station) => station);
-
-export const unfav = createAction('UNFAV', (station: Station) => station);
+// eslint-disable-next-line import/prefer-default-export
+export const Actions = {
+  fav: createAction<string, Station>('FAV'),
+  unfav: createAction<string, Station>('UNFAV'),
+};

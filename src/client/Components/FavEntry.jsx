@@ -1,8 +1,8 @@
 // @flow
 import './FavEntry.scss';
 import { connect } from 'react-redux';
+import { Actions as favActions } from 'client/actions/fav';
 import { Link } from 'react-router-dom';
-import { unfav } from 'client/actions/fav';
 import ActionDelete from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import React from 'react';
@@ -13,7 +13,7 @@ type OwnProps = {|
   fav: Station,
 |};
 type DispatchProps = {|
-  unfav: typeof unfav,
+  unfav: typeof favActions.unfav,
 |};
 type Props = {|
   ...OwnProps,
@@ -44,6 +44,6 @@ class FavEntry extends React.PureComponent<Props> {
 export default connect<AppState, Function, OwnProps, void, DispatchProps>(
   undefined,
   {
-    unfav,
+    unfav: favActions.unfav,
   }
 )(FavEntry);

@@ -9,10 +9,11 @@ import promiseMiddleware from 'redux-promise';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reducer from './reducer';
+import thunkMiddleware from 'redux-thunk';
 
 global.smallScreen = window.matchMedia('(max-width: 480px)').matches;
 
-const middlewares = [promiseMiddleware];
+const middlewares = [promiseMiddleware, thunkMiddleware];
 
 if (process.env.NODE_ENV !== 'production') {
   const reduxUnhandledAction = require('redux-unhandled-action').default;

@@ -6,11 +6,13 @@ import { format } from 'date-fns';
 import axios from 'axios';
 import type { Abfahrt } from 'types/abfahrten';
 import type { Reihung, Wagenreihung } from 'types/reihung';
+import type { ThunkAction } from 'AppState';
 
-async function getWagenreihungForAbfahrt({
-  scheduledDeparture,
-  trainId,
-}: Abfahrt): Promise<{ id: string, data: ?Reihung }> {
+export const Actions = {
+  gotReihung: createAction<string, { id: string, data: ?Reihung }>('GOT_REIHUNG'),
+};
+
+export const getReihung: ThunkAction<Abfahrt> = ({ scheduledDeparture, trainId }) => async dispatch => {
   try {
     if (!scheduledDeparture) {
       throw new Error();
@@ -19,16 +21,13 @@ async function getWagenreihungForAbfahrt({
     const time = format(scheduledDeparture, 'yyyyMMddHHmm');
     const reihung: Wagenreihung = (await axios.get(`/api/wagen/${trainId}/${time}`)).data;
 
-    return {
-      id: String(trainId),
-      data: reihung.data.istformation,
-    };
+    dispatch(
+      Actions.gotReihung({
+        id: String(trainId),
+        data: reihung.data.istformation,
+      })
+    );
   } catch (e) {
-    return {
-      id: String(trainId),
-      data: null,
-    };
+    dispatch(Actions.gotReihung({ id: String(trainId), data: null }));
   }
-}
-
-export const getReihung = createAction('GET_REIHUNG', getWagenreihungForAbfahrt);
+};

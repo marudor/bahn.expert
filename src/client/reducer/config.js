@@ -1,6 +1,6 @@
 // @flow
-import * as Actions from 'client/actions/config';
-import { handleActions } from 'redux-actions';
+import { Actions } from 'client/actions/config';
+import { type ActionType, handleActions } from 'redux-actions';
 
 export type State = {|
   time: boolean,
@@ -9,15 +9,9 @@ export type State = {|
   traewelling: boolean,
 |};
 
-// This is migration, remvoe this soonish
-const savedTimeConfig: boolean = !localStorage.getItem(Actions.TIME_CONFIG_KEY);
-const savedSearchType = localStorage.getItem(Actions.SEARCHTYPE_CONFIG_KEY) || '';
-
-localStorage.removeItem(Actions.TIME_CONFIG_KEY);
-localStorage.removeItem(Actions.SEARCHTYPE_CONFIG_KEY);
 let defaultState: State = {
-  searchType: savedSearchType,
-  time: savedTimeConfig,
+  searchType: '',
+  time: true,
   open: false,
   traewelling: false,
 };
@@ -36,12 +30,9 @@ if (rawConfig) {
 
 localStorage.setItem('config', JSON.stringify(defaultState));
 
-export default handleActions(
+export default handleActions<State, *>(
   {
-    [String(Actions.setConfig)]: (
-      state: State,
-      { payload: { key, value } }: { payload: { key: string, value: any } }
-    ) => {
+    [String(Actions.setConfig)]: (state: State, { payload: { key, value } }: ActionType<typeof Actions.setConfig>) => {
       const newState = {
         ...state,
         [key]: value,

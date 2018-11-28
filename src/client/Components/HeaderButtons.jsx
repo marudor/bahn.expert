@@ -1,6 +1,6 @@
 // @flow
 import { connect } from 'react-redux';
-import { fav, unfav } from 'client/actions/fav';
+import { Actions as favActions } from 'client/actions/fav';
 import { openSettings } from 'client/actions/config';
 import IconButton from '@material-ui/core/IconButton';
 import React from 'react';
@@ -15,8 +15,8 @@ type StateProps = {|
   currentStation: ?Station,
 |};
 type DispatchProps = {|
-  fav: typeof fav,
-  unfav: typeof unfav,
+  fav: typeof favActions.fav,
+  unfav: typeof favActions.unfav,
   openSettings: typeof openSettings,
 |};
 
@@ -62,8 +62,8 @@ export default connect<AppState, Function, {||}, StateProps, DispatchProps>(
     currentStation: state.abfahrten.currentStation,
   }),
   {
-    fav,
-    unfav,
+    fav: favActions.fav,
+    unfav: favActions.unfav,
     openSettings,
   }
 )(HeaderButtons);
