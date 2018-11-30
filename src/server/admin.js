@@ -9,6 +9,7 @@ export default (adminPort: number = 9000) => {
   koa.use(ctx => {
     switch (ctx.request.url) {
       case '/metrics':
+        console.log('SERVED METRICS');
         ctx.body = Client.register.metrics();
         break;
       case '/ping':
