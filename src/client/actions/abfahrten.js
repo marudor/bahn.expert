@@ -25,43 +25,14 @@ export async function getStationsFromAPI(stationString: ?string, type: string = 
   return [];
 }
 
-async function getStationFromAPI(stationString: ?string, type: string): Promise<Station> {
-  const stations = await getStationsFromAPI(stationString, type);
-
-  if (stations.length) {
-    return stations[0];
-  }
-
-  return { title: '', id: '0' };
-}
-
-async function abfahrtenByStation(station: Station) {
-  const abfahrten: Abfahrt[] = (await axios.get(`/api/abfahrten/${station.id}`)).data;
-
-  return abfahrten;
-}
-
-export const getAbfahrtenByStation: ThunkAction<Station> = station => async dispatch => {
-  try {
-    const abfahrten = await abfahrtenByStation(station);
-
-    dispatch(
-      Actions.gotAbfahrten({
-        station,
-        abfahrten,
-      })
-    );
-  } catch (e) {
-    dispatch(Actions.gotAbfahrtenError(e));
-  }
-};
-
 export const getAbfahrtenByString: ThunkAction<?string, string> = (stationString, type) => async dispatch => {
   try {
-    const station = await getStationFromAPI(stationString, type);
+    const stations = await getStationsFromAPI(stationString, type);
 
-    if (station.id !== '0') {
-      return dispatch(getAbfahrtenByStation(station));
+    if (stations.length) {
+      const abfahrten: Abfahrt[] = await (await axios.get(`/api/abfahrten/${stations[0].id}`)).data;
+
+      return dispatch(Actions.gotAbfahrten({ station: stations[0], abfahrten }));
     }
     dispatch(
       Actions.gotAbfahrten({
