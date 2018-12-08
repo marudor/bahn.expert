@@ -5,19 +5,20 @@ import type { Sektor } from 'types/reihung';
 
 type Props = {
   sektor: Sektor,
+  scale: number,
 };
 
 export default class SektorComp extends React.PureComponent<Props> {
   render() {
-    const { sektor } = this.props;
+    const { sektor, scale } = this.props;
 
     const { startprozent, endeprozent } = sektor.positionamgleis;
 
-    const start = Number.parseInt(startprozent, 10);
-    const end = Number.parseInt(endeprozent, 10);
+    const start = Number.parseInt(startprozent, 10) * scale;
+    const end = Number.parseInt(endeprozent, 10) * scale;
 
     const pos = {
-      left: `${startprozent}%`,
+      left: `${start}%`,
       width: `${end - start}%`,
     };
 

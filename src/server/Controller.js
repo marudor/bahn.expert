@@ -9,6 +9,11 @@ import type Koa from 'koa';
 
 const useTestData = !!process.env.TESTDATA;
 
+if (useTestData) {
+  // eslint-disable-next-line
+  console.log('using TEST data!');
+}
+
 export default function setRoutes(koa: Koa, prefix: string = '/api') {
   const router = new KoaRouter();
 

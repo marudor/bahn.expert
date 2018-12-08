@@ -240,6 +240,8 @@ module.exports = {
       differentDestination: false,
       specificTrainType: 'ICE1',
       realFahrtrichtung: false,
+      startPercentage: 5,
+      endPercentage: 87,
     },
   },
 };

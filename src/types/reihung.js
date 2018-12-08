@@ -69,6 +69,7 @@ export type Formation = {
   /* Custom */
   differentDestination: boolean,
   specificTrainType: ?SpecificType,
+  scale: number,
   // 1 = Vorwärts, 0 = Rückwärts
   realFahrtrichtung: boolean,
   /* End Custom */

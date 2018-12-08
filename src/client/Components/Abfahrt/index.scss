@@ -12,11 +12,16 @@
       font-size: 0.3em;
     }
     display: flex;
+    flex-direction: column;
     flex-shrink: 0;
     font-size: 0.6em;
     line-height: 1;
     padding-top: 5px;
     user-select: none;
+
+    &__main {
+      display: flex;
+    }
   }
 }
 

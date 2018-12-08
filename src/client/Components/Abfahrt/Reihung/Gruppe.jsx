@@ -1,11 +1,9 @@
 // @flow
-import Fahrzeug from './Fahrzeug';
+import Fahrzeug, { type InheritedProps } from './Fahrzeug';
 import React from 'react';
-import type { Fahrzeuggruppe, FahrzeugType, SpecificType } from 'types/reihung';
+import type { Fahrzeuggruppe } from 'types/reihung';
 
-type Props = {
-  specificType: ?SpecificType,
-  type: FahrzeugType,
+type Props = InheritedProps & {
   gruppe: Fahrzeuggruppe,
   showDestination: boolean,
 };

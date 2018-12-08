@@ -6,11 +6,15 @@ import MapsLocalDining from '@material-ui/icons/LocalDining';
 import React from 'react';
 import type { Fahrzeug, FahrzeugType, SpecificType } from 'types/reihung';
 
-type Props = {
-  fahrzeug: Fahrzeug,
-  destination: ?string,
+export type InheritedProps = {
   specificType: ?SpecificType,
   type: FahrzeugType,
+  scale: number,
+};
+
+type Props = InheritedProps & {
+  fahrzeug: Fahrzeug,
+  destination: ?string,
 };
 
 // Klasse: 0 = unknown
@@ -114,7 +118,7 @@ function getFahrzeugInfo(fahrzeug: Fahrzeug, type: FahrzeugType, specificType: ?
 
 export default class FahrzeugComp extends React.PureComponent<Props> {
   render() {
-    const { fahrzeug, type, specificType /* , destination*/ } = this.props;
+    const { fahrzeug, type, specificType, scale /* , destination*/ } = this.props;
 
     const { startprozent, endeprozent } = fahrzeug.positionamhalt;
 
@@ -122,8 +126,8 @@ export default class FahrzeugComp extends React.PureComponent<Props> {
     const end = Number.parseInt(endeprozent, 10);
 
     const pos = {
-      left: `${startprozent}%`,
-      width: `${end - start}%`,
+      left: `${start * scale}%`,
+      width: `${(end - start) * scale}%`,
     };
     const info = getFahrzeugInfo(fahrzeug, type, specificType);
 

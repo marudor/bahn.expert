@@ -13,9 +13,4 @@ if (process.env.NODE_ENV !== 'production') {
   console.log('running in DEV mode!');
 }
 
-if (process.env.NODE_ENV === 'test') {
-  // eslint-disable-next-line
-  console.log('using TEST data!');
-}
-
 createAdmin();

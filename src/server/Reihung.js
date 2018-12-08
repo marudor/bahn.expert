@@ -93,9 +93,27 @@ export async function wagenReihung(trainNumber: string, date: string) {
 
   const fahrzeuge = flatten(info.data.istformation.allFahrzeuggruppe.map(g => g.allFahrzeug));
 
+  let startPercentage = 100;
+  let endPercentage = 0;
+
   info.data.istformation.differentDestination = differentDestination(info.data.istformation);
   info.data.istformation.specificTrainType = specificTrainType(info.data.istformation, fahrzeuge);
   info.data.istformation.realFahrtrichtung = fahrtrichtung(fahrzeuge);
+  info.data.istformation.allFahrzeuggruppe.forEach(g => {
+    g.allFahrzeug.forEach(f => {
+      const start = Number.parseInt(f.positionamhalt.startprozent, 10);
+      const end = Number.parseInt(f.positionamhalt.endeprozent, 10);
+
+      if (start < startPercentage) {
+        startPercentage = start;
+      }
+      if (end > endPercentage) {
+        endPercentage = end;
+      }
+    });
+  });
+
+  info.data.istformation.scale = 100 / (endPercentage + startPercentage);
 
   return info;
 }

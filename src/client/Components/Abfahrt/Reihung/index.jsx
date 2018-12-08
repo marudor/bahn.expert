@@ -56,12 +56,13 @@ class ReihungComp extends React.PureComponent<Props> {
         )}
         <div className="Reihung__sektoren">
           {reihung.halt.allSektor.map(s => (
-            <Sektor key={s.sektorbezeichnung} sektor={s} />
+            <Sektor scale={reihung.scale} key={s.sektorbezeichnung} sektor={s} />
           ))}
         </div>
         <div className="Reihung__reihung">
           {reihung.allFahrzeuggruppe.map(g => (
             <Gruppe
+              scale={reihung.scale}
               specificType={reihung.specificTrainType}
               type={reihung.zuggattung}
               showDestination={reihung.differentDestination}

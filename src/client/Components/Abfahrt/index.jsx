@@ -7,6 +7,7 @@ import End from './End';
 import Mid from './Mid';
 import Paper from '@material-ui/core/Paper';
 import React from 'react';
+import Reihung from './Reihung';
 import Start from './Start';
 import type { AppState } from 'AppState';
 
@@ -32,9 +33,12 @@ class Abfahrt extends React.PureComponent<Props> {
     return (
       <Paper id={abfahrt.id} onClick={this.setDetail} className="Abfahrt">
         <div className="Abfahrt__entry">
-          <Start abfahrt={abfahrt} detail={detail} />
-          <Mid abfahrt={abfahrt} detail={detail} />
-          <End abfahrt={abfahrt} detail={detail} />
+          <div className="Abfahrt__entry__main">
+            <Start abfahrt={abfahrt} detail={detail} />
+            <Mid abfahrt={abfahrt} detail={detail} />
+            <End abfahrt={abfahrt} detail={detail} />
+          </div>
+          {detail && abfahrt.longDistance && <Reihung abfahrt={abfahrt} />}
         </div>
       </Paper>
     );
