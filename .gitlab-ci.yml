@@ -33,7 +33,6 @@ test:server:
     paths:
       - reports
 
-
 test:client:
   stage: test
   script: yarn test:client
@@ -73,6 +72,7 @@ build:app:
     NODE_ENV: production
   script: yarn build:client
   cache:
+    policy: pull
     key: '$CI_COMMIT_REF_SLUG'
     paths:
       - node_modules/
@@ -87,6 +87,7 @@ build:server:
     NODE_ENV: production
   script: yarn build:server
   cache:
+    policy: pull
     key: '$CI_COMMIT_REF_SLUG'
     paths:
       - node_modules/
@@ -161,7 +162,6 @@ docker:server:
 #   dependencies:
 #     - build:server
 
-
 deploy:beta:
   stage: deploy
   image: registry.gitlab.com/marudor/deploy-helper
@@ -173,7 +173,6 @@ deploy:beta:
   only:
     - master
   dependencies: []
-
 
 deploy:prod:
   stage: deploy
@@ -187,7 +186,6 @@ deploy:prod:
   only:
     - master
   dependencies: []
-
 
 cleanup:
   stage: cleanup

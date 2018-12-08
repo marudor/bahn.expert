@@ -14,6 +14,7 @@ import type { Reihung } from 'types/reihung';
 
 type StateProps = {|
   reihung: ?Reihung,
+  useZoom: boolean,
 |};
 
 type OwnProps = {|
@@ -40,7 +41,7 @@ class ReihungComp extends React.PureComponent<Props> {
   }
 
   render() {
-    const { reihung } = this.props;
+    const { reihung, useZoom } = this.props;
 
     if (reihung === null) {
       return null;
@@ -49,6 +50,9 @@ class ReihungComp extends React.PureComponent<Props> {
       return <Loading type={1} />;
     }
 
+    const correctLeft = useZoom ? reihung.startPercentage : 0;
+    const scale = useZoom ? reihung.scale : 1;
+
     return (
       <div className="Reihung">
         {Boolean(reihung.specificTrainType) && (
@@ -56,13 +60,14 @@ class ReihungComp extends React.PureComponent<Props> {
         )}
         <div className="Reihung__sektoren">
           {reihung.halt.allSektor.map(s => (
-            <Sektor scale={reihung.scale} key={s.sektorbezeichnung} sektor={s} />
+            <Sektor correctLeft={correctLeft} scale={scale} key={s.sektorbezeichnung} sektor={s} />
           ))}
         </div>
         <div className="Reihung__reihung">
           {reihung.allFahrzeuggruppe.map(g => (
             <Gruppe
-              scale={reihung.scale}
+              correctLeft={correctLeft}
+              scale={scale}
               specificType={reihung.specificTrainType}
               type={reihung.zuggattung}
               showDestination={reihung.differentDestination}
@@ -87,6 +92,7 @@ class ReihungComp extends React.PureComponent<Props> {
 export default connect<AppState, Function, OwnProps, StateProps, DispatchProps>(
   (state, props) => ({
     reihung: getReihungForId(state, props),
+    useZoom: state.config.zoomReihung,
   }),
   { getReihung }
 )(ReihungComp);

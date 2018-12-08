@@ -70,6 +70,8 @@ export type Formation = {
   differentDestination: boolean,
   specificTrainType: ?SpecificType,
   scale: number,
+  startPercentage: number,
+  endPercentage: number,
   // 1 = Vorwärts, 0 = Rückwärts
   realFahrtrichtung: boolean,
   /* End Custom */

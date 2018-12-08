@@ -1,6 +1,6 @@
 // @flow
 import './SettingsModal.scss';
-import { closeSettings, setSearchType, setTime, setTraewelling } from 'client/actions/config';
+import { closeSettings, setSearchType, setTime, setTraewelling, setZoomReihung } from 'client/actions/config';
 import { connect } from 'react-redux';
 import BrowserstackThanks from './BrowserstackThanks';
 import Dialog from '@material-ui/core/Dialog';
@@ -17,6 +17,7 @@ type StateProps = {|
   timeConfig: boolean,
   searchType: string,
   traewellingConfig: boolean,
+  zoomReihungConfig: boolean,
 |};
 
 type DispatchProps = {|
@@ -24,6 +25,7 @@ type DispatchProps = {|
   setTime: typeof setTime,
   setSearchType: typeof setSearchType,
   setTraewelling: typeof setTraewelling,
+  setZoomReihung: typeof setZoomReihung,
 |};
 
 type Props = {|
@@ -41,8 +43,11 @@ class SettingsModal extends React.PureComponent<Props> {
   changeSearchType = e => {
     this.props.setSearchType(e.target.value);
   };
+  handleZoomReihungChange = e => {
+    this.props.setZoomReihung(e.target.checked);
+  };
   render() {
-    const { open, closeSettings, timeConfig, searchType, traewellingConfig } = this.props;
+    const { open, closeSettings, timeConfig, searchType, traewellingConfig, zoomReihungConfig } = this.props;
 
     return (
       <Dialog fullWidth open={open} onClose={closeSettings}>
@@ -57,6 +62,12 @@ class SettingsModal extends React.PureComponent<Props> {
           <FormControlLabel
             control={<Switch checked={timeConfig} value="timeConfig" onChange={this.handleTimeChange} />}
             label="Zeige neue Ankunft bei Verspätung"
+          />
+          <FormControlLabel
+            control={
+              <Switch checked={zoomReihungConfig} value="zoomReihungConfig" onChange={this.handleZoomReihungChange} />
+            }
+            label="Zeige Reihung maximal groß"
           />
           <FormControlLabel
             control={
@@ -85,11 +96,13 @@ export default connect<AppState, Function, {||}, StateProps, DispatchProps>(
     timeConfig: state.config.time,
     searchType: state.config.searchType,
     traewellingConfig: state.config.traewelling,
+    zoomReihungConfig: state.config.zoomReihung,
   }),
   {
     closeSettings,
     setTime,
     setSearchType,
     setTraewelling,
+    setZoomReihung,
   }
 )(SettingsModal);

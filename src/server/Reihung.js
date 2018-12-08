@@ -113,7 +113,9 @@ export async function wagenReihung(trainNumber: string, date: string) {
     });
   });
 
-  info.data.istformation.scale = 100 / (endPercentage + startPercentage);
+  info.data.istformation.scale = 100 / (endPercentage - startPercentage);
+  info.data.istformation.startPercentage = startPercentage;
+  info.data.istformation.endPercentage = endPercentage;
 
   return info;
 }

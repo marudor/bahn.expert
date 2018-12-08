@@ -7,6 +7,7 @@ export type State = {|
   open: boolean,
   searchType: string,
   traewelling: boolean,
+  zoomReihung: boolean,
 |};
 
 let defaultState: State = {
@@ -14,12 +15,14 @@ let defaultState: State = {
   time: true,
   open: false,
   traewelling: false,
+  zoomReihung: true,
 };
 const rawConfig = localStorage.getItem('config');
 
 if (rawConfig) {
   try {
     defaultState = {
+      ...defaultState,
       ...JSON.parse(rawConfig),
       open: false,
     };
