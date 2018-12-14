@@ -30,7 +30,7 @@ describe('Abfahrten', () => {
 
     it('invalid evaID', () =>
       request
-        .get('/api/abfahrten/KD')
+        .get('/api/dbfAbfahrten/KD')
         .expect(400)
         .expect({
           message: 'Please provide a evaID',
