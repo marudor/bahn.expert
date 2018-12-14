@@ -1,15 +1,13 @@
 // @flow
 /* eslint no-continue: 0 */
-import { de } from 'date-fns/locale';
+import { compareAsc, format } from 'date-fns';
 import { diffArrays } from 'diff';
 import { flatten, last } from 'lodash';
-import { format, parse } from 'date-fns';
 import { irisBase } from './index';
+import { parseFromTimeZone } from 'date-fns-timezone';
 import axios from 'axios';
 import messageLookup, { messageTypeLookup, supersededMessages } from './messageLookup';
 import xmljs from 'libxmljs';
-
-const locale = { locale: de };
 
 type Route = {
   name: string,
@@ -26,7 +24,7 @@ function getAttr(node, name) {
 
 function parseTs(ts) {
   if (ts) {
-    return parse(ts, 'yyMMddHHmm', 0, locale);
+    return parseFromTimeZone(ts, 'YYMMDDHHmm', { timeZone: 'Europe/Berlin' });
   }
 }
 
@@ -138,13 +136,14 @@ export default class Timetable {
   }
   parseMessage(mNode: any) {
     const value = getAttr(mNode, 'c');
+    const type = messageTypeLookup[getAttr(mNode, 't')];
 
-    if (value && value <= 1) {
-      return [];
+    if (!type || (value && value <= 1)) {
+      return undefined;
     }
 
     return [
-      getAttr(mNode, 't'),
+      type,
       {
         text: messageLookup[value],
         timestamp: parseTs(getAttr(mNode, 'ts')),
@@ -172,25 +171,22 @@ export default class Timetable {
       qos: {},
     };
 
-    for (let i = mArr.length - 1; i >= 0; i -= 1) {
-      const m = mArr[i];
-      const [type, message, value] = this.parseMessage(m);
+    mArr
+      .map(m => this.parseMessage(m))
+      .filter(Boolean)
+      .sort((a, b) => compareAsc(a[1].timestamp, b[1].timestamp))
+      .forEach(([messageType, message, value]) => {
+        const supersedes = supersededMessages[value];
 
-      if (!type) continue;
-      const messageType = messageTypeLookup[type];
-
-      if (!messageType) continue;
-      const supersedes = supersededMessages[value];
-
-      if (supersedes) {
-        supersedes.forEach(v => {
-          if (messages[messageType][v]) {
-            messages[messageType][v].superseded = true;
-          }
-        });
-      }
-      messages[messageType][value] = message;
-    }
+        if (supersedes) {
+          supersedes.forEach(v => {
+            if (messages[messageType][v]) {
+              messages[messageType][v].superseded = true;
+            }
+          });
+        }
+        messages[messageType][value] = message;
+      });
 
     return {
       id,

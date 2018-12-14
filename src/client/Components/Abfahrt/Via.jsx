@@ -20,9 +20,9 @@ function getDetailedInfo(abfahrt: Abfahrt, showSupersededMessages: boolean) {
 
     return (
       <div key="i" className="Via__info">
-        {sorted.map(m => (
+        {sorted.map((m, i) => (
           <div
-            key={m.timestamp}
+            key={i}
             className={cc({
               cancelled: m.superseded,
             })}
