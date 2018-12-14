@@ -1,4 +1,4 @@
-FROM node:10-alpine
+FROM node:10
 RUN mkdir -p /app
 WORKDIR /app
 COPY dist/server /app/dist/
