@@ -36,7 +36,17 @@ const End = ({ abfahrt, detail }: Props) => (
     <Times abfahrt={abfahrt} detail={detail} />
     <div>
       {!detail && getDelay(abfahrt)}
-      <span className={cc(['End__platform', { cancelled: abfahrt.isCancelled }])}>{abfahrt.platform}</span>
+      <span
+        className={cc([
+          'End__platform',
+          {
+            cancelled: abfahrt.isCancelled,
+            'End__platform--different': abfahrt.scheduledPlatform && abfahrt.scheduledPlatform !== abfahrt.platform,
+          },
+        ])}
+      >
+        {abfahrt.platform}
+      </span>
     </div>
   </div>
 );

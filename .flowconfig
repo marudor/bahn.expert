@@ -1,6 +1,7 @@
 [ignore]
 .*/node_modules/warning
 <PROJECT_ROOT>/webpack-stats.json
+<PROJECT_ROOT>/dist/
 
 [include]
 
@@ -14,7 +15,6 @@ module.name_mapper='.*\.less$' -> 'cssFile'
 module.name_mapper='.*\.scss$' -> 'cssFile'
 module.name_mapper='^AppState$' -> 'client/AppState'
 module.use_strict=true
-include_warnings=true
 emoji=true
 
 module.system.node.resolve_dirname=node_modules
@@ -23,7 +23,12 @@ module.file_ext=.js
 module.file_ext=.jsx
 module.file_ext=.json
 module.system=haste
+
+include_warnings=true
 esproposal.decorators=ignore
 esproposal.class_static_fields=enable
 esproposal.class_instance_fields=enable
+esproposal.export_star_as=enable
 esproposal.optional_chaining=enable
+esproposal.nullish_coalescing=enable
+experimental.const_params=true

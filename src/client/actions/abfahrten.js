@@ -25,12 +25,18 @@ export async function getStationsFromAPI(stationString: ?string, type: string = 
   return [];
 }
 
-export const getAbfahrtenByString: ThunkAction<?string, string> = (stationString, type) => async dispatch => {
+export const getAbfahrtenByString: ThunkAction<?string, string> = (stationString, type) => async (
+  dispatch,
+  getState
+) => {
   try {
     const stations = await getStationsFromAPI(stationString, type);
 
     if (stations.length) {
-      const abfahrten: Abfahrt[] = await (await axios.get(`/api/abfahrten/${stations[0].id}`)).data;
+      const url = getState().config.useOwnAbfahrten
+        ? `/api/ownAbfahrten/${stations[0].id}`
+        : `/api/dbfAbfahrten/${stations[0].id}`;
+      const abfahrten: Abfahrt[] = (await axios.get(url)).data;
 
       return dispatch(Actions.gotAbfahrten({ station: stations[0], abfahrten }));
     }

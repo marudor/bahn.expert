@@ -52,7 +52,7 @@ export default function(searchTerm: string): Promise<Station[]> {
   }));
 
   return Promise.resolve(
-    orderBy(weightedMatches, 'score', ['desc']).map(({ item }) => ({
+    orderBy<any>(weightedMatches, 'score', ['desc']).map(({ item }) => ({
       title: item.name,
       id: item.id,
       ds100: item.ds100,

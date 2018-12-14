@@ -1,5 +1,5 @@
 // @flow
-import { evaIdAbfahrten } from './Abfahrten';
+import { dbfAbfahrten, ownAbfahrten } from './Abfahrten';
 import { wagenReihung, wagenReihungStation } from './Reihung';
 import axios from 'axios';
 import createAuslastung from './Auslastung';
@@ -42,7 +42,7 @@ export default function setRoutes(koa: Koa, prefix: string = '/api') {
 
       ctx.body = await stationInfo(station);
     })
-    .get('/abfahrten/:station', async ctx => {
+    .get('/dbfAbfahrten/:station', async ctx => {
       if (useTestData) {
         ctx.body = require('./testData/abfahrten');
 
@@ -57,7 +57,25 @@ export default function setRoutes(koa: Koa, prefix: string = '/api') {
           message: 'Please provide a evaID',
         };
       } else {
-        ctx.body = await evaIdAbfahrten(evaId);
+        ctx.body = await dbfAbfahrten(evaId);
+      }
+    })
+    .get('/ownAbfahrten/:station', async ctx => {
+      if (useTestData) {
+        ctx.body = require('./testData/abfahrten');
+
+        return;
+      }
+      const { station } = ctx.params;
+      const evaId = station;
+
+      if (evaId.length < 6) {
+        ctx.status = 400;
+        ctx.body = {
+          message: 'Please provide a evaID',
+        };
+      } else {
+        ctx.body = await ownAbfahrten(evaId);
       }
     })
     .get('/wagenstation/:train/:station', async ctx => {

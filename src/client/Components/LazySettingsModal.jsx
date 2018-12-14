@@ -12,11 +12,9 @@ type Props = {|
   ...StateProps,
 |};
 
-// $FlowFixMe
 const SettingsModal = React.lazy(() => import('./SettingsModal'));
 const LazySettingsModal = ({ open }: Props) =>
   open && (
-    // $FlowFixMe
     <React.Suspense fallback={<Loading />}>
       <SettingsModal />
     </React.Suspense>

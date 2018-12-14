@@ -1,6 +1,14 @@
 // @flow
 import './SettingsModal.scss';
-import { closeSettings, setSearchType, setTime, setTraewelling, setZoomReihung } from 'client/actions/config';
+import {
+  closeSettings,
+  setSearchType,
+  setShowSupersededMessages,
+  setTime,
+  setTraewelling,
+  setUseOwnAbfahrten,
+  setZoomReihung,
+} from 'client/actions/config';
 import { connect } from 'react-redux';
 import BrowserstackThanks from './BrowserstackThanks';
 import Dialog from '@material-ui/core/Dialog';
@@ -14,17 +22,21 @@ import type { AppState } from 'AppState';
 
 type StateProps = {|
   open: boolean,
-  timeConfig: boolean,
   searchType: string,
+  showSupersededMessagesConfig: boolean,
+  timeConfig: boolean,
   traewellingConfig: boolean,
+  useOwnAbfahrtenConfig: boolean,
   zoomReihungConfig: boolean,
 |};
 
 type DispatchProps = {|
   closeSettings: typeof closeSettings,
-  setTime: typeof setTime,
   setSearchType: typeof setSearchType,
+  setShowSupersededMessages: typeof setShowSupersededMessages,
+  setTime: typeof setTime,
   setTraewelling: typeof setTraewelling,
+  setUseOwnAbfahrten: typeof setUseOwnAbfahrten,
   setZoomReihung: typeof setZoomReihung,
 |};
 
@@ -34,20 +46,25 @@ type Props = {|
 |};
 
 class SettingsModal extends React.PureComponent<Props> {
-  handleTimeChange = e => {
-    this.props.setTime(e.target.checked);
-  };
-  handleTraewellingChange = e => {
-    this.props.setTraewelling(e.target.checked);
-  };
-  changeSearchType = e => {
-    this.props.setSearchType(e.target.value);
-  };
-  handleZoomReihungChange = e => {
-    this.props.setZoomReihung(e.target.checked);
-  };
+  handleCheckedChange = fn => e => fn(e.target.checked);
+  handleValueChange = fn => e => fn(e.target.value);
   render() {
-    const { open, closeSettings, timeConfig, searchType, traewellingConfig, zoomReihungConfig } = this.props;
+    const {
+      open,
+      closeSettings,
+      timeConfig,
+      searchType,
+      traewellingConfig,
+      zoomReihungConfig,
+      showSupersededMessagesConfig,
+      useOwnAbfahrtenConfig,
+      setShowSupersededMessages,
+      setUseOwnAbfahrten,
+      setSearchType,
+      setZoomReihung,
+      setTraewelling,
+      setTime,
+    } = this.props;
 
     return (
       <Dialog fullWidth open={open} onClose={closeSettings}>
@@ -55,23 +72,51 @@ class SettingsModal extends React.PureComponent<Props> {
         <DialogContent className="SettingsModal">
           <FormControlLabel
             control={
-              <Switch checked={traewellingConfig} value="traewellingConfig" onChange={this.handleTraewellingChange} />
+              <Switch
+                checked={useOwnAbfahrtenConfig}
+                value="useOwnAbfahrtenConfig"
+                onChange={this.handleCheckedChange(setUseOwnAbfahrten)}
+              />
+            }
+            label="Nutze eignene Abfahrts Parser statt dbf"
+          />
+          <FormControlLabel
+            control={
+              <Switch
+                checked={showSupersededMessagesConfig}
+                value="showSupersededMessagesConfig"
+                onChange={this.handleCheckedChange(setShowSupersededMessages)}
+              />
+            }
+            label="Zeige obsolete Messages"
+          />
+          <FormControlLabel
+            control={
+              <Switch
+                checked={traewellingConfig}
+                value="traewellingConfig"
+                onChange={this.handleCheckedChange(setTraewelling)}
+              />
             }
             label="Zeige Traewelling Link"
           />
           <FormControlLabel
-            control={<Switch checked={timeConfig} value="timeConfig" onChange={this.handleTimeChange} />}
+            control={<Switch checked={timeConfig} value="timeConfig" onChange={this.handleCheckedChange(setTime)} />}
             label="Zeige neue Ankunft bei Verspätung"
           />
           <FormControlLabel
             control={
-              <Switch checked={zoomReihungConfig} value="zoomReihungConfig" onChange={this.handleZoomReihungChange} />
+              <Switch
+                checked={zoomReihungConfig}
+                value="zoomReihungConfig"
+                onChange={this.handleCheckedChange(setZoomReihung)}
+              />
             }
             label="Zeige Reihung maximal groß"
           />
           <FormControlLabel
             control={
-              <NativeSelect value={searchType} name="searchType" onChange={this.changeSearchType}>
+              <NativeSelect value={searchType} name="searchType" onChange={this.handleValueChange(setSearchType)}>
                 <option value="favendo">Favendo</option>
                 <option value="openDB">Open DB</option>
                 <option value="favOpenDB">Open DB + Favendo</option>
@@ -93,9 +138,11 @@ class SettingsModal extends React.PureComponent<Props> {
 export default connect<AppState, Function, {||}, StateProps, DispatchProps>(
   state => ({
     open: state.config.open,
-    timeConfig: state.config.time,
     searchType: state.config.searchType,
+    showSupersededMessagesConfig: state.config.showSupersededMessages,
+    timeConfig: state.config.time,
     traewellingConfig: state.config.traewelling,
+    useOwnAbfahrtenConfig: state.config.useOwnAbfahrten,
     zoomReihungConfig: state.config.zoomReihung,
   }),
   {
@@ -104,5 +151,7 @@ export default connect<AppState, Function, {||}, StateProps, DispatchProps>(
     setSearchType,
     setTraewelling,
     setZoomReihung,
+    setShowSupersededMessages,
+    setUseOwnAbfahrten,
   }
 )(SettingsModal);

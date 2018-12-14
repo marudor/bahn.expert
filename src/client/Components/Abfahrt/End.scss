@@ -19,5 +19,9 @@
 
   &__platform {
     font-size: 3em;
+
+    &--different {
+      color: red;
+    }
   }
 }

@@ -5,10 +5,9 @@
   text-overflow: ellipsis;
 
   &:not(.detail) {
-    white-space:nowrap;
+    white-space: nowrap;
   }
   &__info {
-    text-decoration: none;
     color: red;
     overflow: hidden;
     text-overflow: ellipsis;

@@ -2,12 +2,12 @@
 import './AbfahrtenList.scss';
 import { Actions, getAbfahrtenByString } from 'client/actions/abfahrten';
 import { connect } from 'react-redux';
+import { type ContextRouter, withRouter } from 'react-router-dom';
 import Abfahrt from './Abfahrt';
 import Loading from './Loading';
-import PropTypes from 'prop-types';
 import React from 'react';
 import type { AppState } from 'AppState';
-import type { ContextRouter } from 'react-router';
+// import type { ContextRouter } from 'react-router';
 
 type StateProps = {|
   abfahrten: $PropertyType<$PropertyType<AppState, 'abfahrten'>, 'abfahrten'>,
@@ -21,10 +21,14 @@ type DispatchProps = {|
   setCurrentStation: typeof Actions.setCurrentStation,
 |};
 
+type OwnProps = {|
+  ...ContextRouter,
+|};
+
 type Props = {|
   ...StateProps,
   ...DispatchProps,
-  ...ContextRouter,
+  ...OwnProps,
 |};
 
 type State = {
@@ -40,9 +44,6 @@ function getErrorText(error: any) {
 class AbfahrtenList extends React.PureComponent<Props, State> {
   state: State = {
     loading: true,
-  };
-  static contextTypes = {
-    router: PropTypes.object.isRequired,
   };
   componentDidMount() {
     this.getAbfahrten();
@@ -94,16 +95,17 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
   }
 }
 
-export default connect<AppState, Function, {||}, StateProps, DispatchProps>(
-  state => ({
-    abfahrten: state.abfahrten.abfahrten,
-    selectedDetail: state.abfahrten.selectedDetail,
-    error: state.abfahrten.error,
-    searchType: state.config.searchType,
-  }),
-  {
-    getAbfahrtenByString,
-    setCurrentStation: Actions.setCurrentStation,
-  }
-  // $FlowFixMe
-)(AbfahrtenList);
+export default withRouter(
+  connect<AppState, Function, OwnProps, StateProps, DispatchProps>(
+    state => ({
+      abfahrten: state.abfahrten.abfahrten,
+      selectedDetail: state.abfahrten.selectedDetail,
+      error: state.abfahrten.error,
+      searchType: state.config.searchType,
+    }),
+    {
+      getAbfahrtenByString,
+      setCurrentStation: Actions.setCurrentStation,
+    }
+  )(AbfahrtenList)
+);

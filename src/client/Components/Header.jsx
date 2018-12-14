@@ -1,6 +1,7 @@
 // @flow
 import { Actions, getStationsFromAPI } from 'client/actions/abfahrten';
 import { connect } from 'react-redux';
+import { type ContextRouter, withRouter } from 'react-router-dom';
 import ActionHome from '@material-ui/icons/Home';
 import AppBar from '@material-ui/core/AppBar';
 import debounce from 'debounce-promise';
@@ -10,7 +11,6 @@ import React from 'react';
 import Select from 'react-select/lib/Async';
 import Toolbar from '@material-ui/core/Toolbar';
 import type { AppState } from 'AppState';
-import type { ContextRouter } from 'react-router';
 import type { Station } from 'types/abfahrten';
 
 type StateProps = {|
@@ -22,10 +22,14 @@ type DispatchProps = {|
   setCurrentStation: typeof Actions.setCurrentStation,
 |};
 
+type OwnProps = {|
+  ...ContextRouter,
+|};
+
 type Props = {|
   ...StateProps,
   ...DispatchProps,
-  ...ContextRouter,
+  ...OwnProps,
 |};
 
 const selectStyles = {
@@ -84,13 +88,14 @@ class Header extends React.Component<Props> {
   }
 }
 
-export default connect<AppState, Function, {||}, StateProps, DispatchProps>(
-  state => ({
-    currentStation: state.abfahrten.currentStation,
-    searchType: state.config.searchType,
-  }),
-  {
-    setCurrentStation: Actions.setCurrentStation,
-  }
-  // $FlowFixMe
-)(Header);
+export default withRouter(
+  connect<AppState, Function, OwnProps, StateProps, DispatchProps>(
+    state => ({
+      currentStation: state.abfahrten.currentStation,
+      searchType: state.config.searchType,
+    }),
+    {
+      setCurrentStation: Actions.setCurrentStation,
+    }
+  )(Header)
+);

@@ -1,5 +1,9 @@
-// flow-typed signature: f2350be8b4c83dca927aa028f7de6f35
-// flow-typed version: 00cdfecf02/nock_v10.x.x/flow_>=v0.75.x
+// flow-typed signature: 27fa0a30b42e746edc64507c6a0dc172
+// flow-typed version: 985a69a25e/nock_v10.x.x/flow_>=v0.75.x
+
+
+
+
 
 declare type $npm$nock$Path = string | RegExp | ((url: string) => boolean);
 declare type $npm$nock$Parameter =

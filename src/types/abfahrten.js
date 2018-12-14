@@ -9,6 +9,7 @@ export type Station = {
 export type Message = {
   text: string,
   timestamp: string,
+  superseded?: boolean,
 };
 
 export type Train = {
