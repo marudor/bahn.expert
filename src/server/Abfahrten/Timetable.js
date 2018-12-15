@@ -160,7 +160,7 @@ export default class Timetable {
     return [
       type,
       {
-        text: messageLookup[value],
+        text: messageLookup[value] || `${value} (?)`,
         timestamp: parseTs(getAttr(mNode, 'ts')),
       },
       value,
