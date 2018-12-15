@@ -3,7 +3,6 @@ import './Via.scss';
 import { type Abfahrt } from 'types/abfahrten';
 import { compareDesc, format } from 'date-fns';
 import { connect } from 'react-redux';
-import { normalizeName } from 'client/util';
 import cc from 'classnames';
 import React from 'react';
 import type { AppState } from 'AppState';
@@ -92,7 +91,7 @@ function getAbfahrt(
         'Via--hbf': isHbf,
       })}
     >
-      {normalizeName(name)}
+      {name}
     </span>
   );
   if (index + 1 !== length) {

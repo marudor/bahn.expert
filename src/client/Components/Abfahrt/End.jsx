@@ -19,7 +19,7 @@ function getDelay(abfahrt: Abfahrt) {
   }
 
   return (
-    <span className={numberDelay > 0 ? 'End--delay' : 'End--early'}>
+    <span className={cc('End--delay', numberDelay > 0 ? 'delayed' : 'early')}>
       {'('}
       {delay}
       {')'}
@@ -41,7 +41,7 @@ const End = ({ abfahrt, detail }: Props) => (
           'End__platform',
           {
             cancelled: abfahrt.isCancelled,
-            'End__platform--different': abfahrt.scheduledPlatform && abfahrt.scheduledPlatform !== abfahrt.platform,
+            changed: abfahrt.scheduledPlatform && abfahrt.scheduledPlatform !== abfahrt.platform,
           },
         ])}
       >

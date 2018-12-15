@@ -1,4 +1,8 @@
 // @flow
+/*
+ ** Initially this file is copied from https://github.com/derf/Travel-Status-DE-IRIS
+ ** Thanks for finding these!
+ */
 export default {
   '2': 'Polizeiliche Ermittlung',
   '3': 'Feuerwehreinsatz neben der Strecke',

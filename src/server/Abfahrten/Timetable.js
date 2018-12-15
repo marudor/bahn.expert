@@ -1,13 +1,18 @@
 // @flow
 /* eslint no-continue: 0 */
-import { compareAsc, format } from 'date-fns';
+/*
+ ** This algorithm is heavily inspired by https://github.com/derf/Travel-Status-DE-IRIS
+ ** derf did awesome work reverse engineering the XML stuff!
+ */
+import { compareAsc, compareDesc, format } from 'date-fns';
 import { diffArrays } from 'diff';
-import { flatten, last } from 'lodash';
+import { findLast, flatten, last } from 'lodash';
 import { irisBase } from './index';
 import { parseFromTimeZone } from 'date-fns-timezone';
 import axios from 'axios';
 import messageLookup, { messageTypeLookup, supersededMessages } from './messageLookup';
 import xmljs from 'libxmljs';
+import type { Message } from 'types/abfahrten';
 
 type Route = {
   name: string,
@@ -16,6 +21,11 @@ type Route = {
 };
 
 const routeMap: string => Route = name => ({ name });
+const normalizeRouteName: string => string = name =>
+  name
+    .replace('(', ' (')
+    .replace(')', ') ')
+    .trim();
 
 function getAttr(node, name) {
   // $FlowFixMe
@@ -37,7 +47,7 @@ export function parseDp(dp: any) {
     departureTs: getAttr(dp, 'ct'),
     scheduledDepartureTs: getAttr(dp, 'pt'),
     platform: getAttr(dp, 'cp'),
-    routePost: routePost ? routePost.split('|') : undefined,
+    routePost: routePost ? routePost.split('|').map(normalizeRouteName) : undefined,
     // plannedRoutePost: getAttr(dp, 'ppth')?.split('|'),
     status: getAttr(dp, 'cs'),
   };
@@ -52,7 +62,7 @@ export function parseAr(ar: any) {
     arrivalTs: getAttr(ar, 'ct'),
     scheduledArrivalTs: getAttr(ar, 'pt'),
     platform: getAttr(ar, 'cp'),
-    routePre: routePre ? routePre.split('|') : undefined,
+    routePre: routePre ? routePre.split('|').map(normalizeRouteName) : undefined,
     // plannedRoutePre: getAttr(ar, 'ppth')?.split('|'),
     status: getAttr(ar, 'cs'),
     // statusSince: getAttr(ar, 'clt'),
@@ -69,15 +79,20 @@ export default class Timetable {
   constructor(evaId: string, segments: Date[], currentStation: string) {
     this.evaId = evaId;
     this.segments = segments;
-    this.currentStation = currentStation;
+    this.currentStation = normalizeRouteName(currentStation);
   }
   computeExtra(timetable: any) {
     timetable.isCancelled = timetable.arrivalIsCancelled || timetable.departureIsCancelled;
+    const addInfo =
+      timetable.routePre.some(r => r.isCancelled || r.isAdditional) ||
+      timetable.routePost.some(r => r.isCancelled || r.isAdditional);
+
     timetable.route = [
       ...timetable.routePre,
-      { name: timetable.currentStation, isCancelled: timetable.isCancelled },
+      { name: timetable.currentStation, isCancelled: addInfo && timetable.isCancelled },
       ...timetable.routePost,
     ];
+    timetable.destination = findLast(timetable.route, r => !r.isCancelled)?.name || timetable.scheduledDestination;
     timetable.via = this.getVia(timetable);
 
     delete timetable.routePre;
@@ -152,7 +167,8 @@ export default class Timetable {
     ];
   }
   parseRealtimeS(sNode: any): any {
-    const id = getAttr(sNode, 'id');
+    const rawId = getAttr(sNode, 'id');
+    const id = rawId.match(/-?(\w+)/)[1] || rawId;
     const tl = sNode.get('tl');
 
     if (!this.timetable[id] && tl) {
@@ -166,7 +182,14 @@ export default class Timetable {
     const ar = sNode.get('ar');
     const dp = sNode.get('dp');
     const mArr = sNode.find(`${sNode.path()}//m`);
-    const messages = {
+    const messages: {
+      delay: {
+        [key: string]: Message,
+      },
+      qos: {
+        [key: string]: Message,
+      },
+    } = {
       delay: {},
       qos: {},
     };
@@ -188,11 +211,14 @@ export default class Timetable {
         messages[messageType][value] = message;
       });
 
+    const delay: Message[] = (Object.values(messages.delay): any);
+    const qos: Message[] = (Object.values(messages.qos): any);
+
     return {
       id,
       messages: {
-        delay: Object.values(messages.delay),
-        qos: Object.values(messages.qos),
+        delay: delay.sort((a, b) => compareDesc(a.timestamp, b.timestamp)),
+        qos: qos.sort((a, b) => compareDesc(a.timestamp, b.timestamp)),
       },
       arrival: parseAr(ar),
       departure: parseDp(dp),
@@ -271,7 +297,8 @@ export default class Timetable {
     });
   }
   parseTimetableS(sNode: any) {
-    const id = getAttr(sNode, 'id');
+    const rawId = getAttr(sNode, 'id');
+    const id = rawId.match(/-?(\w+)/)[1] || rawId;
     const tl = sNode.get('tl');
 
     if (!tl) {
@@ -287,9 +314,9 @@ export default class Timetable {
     const trainType = getAttr(tl, 'c');
     const train = `${trainType} ${lineNumber || trainNumber}`;
     // $FlowFixMe
-    const routePost: string[] = getAttr(dp, 'ppth')?.split('|') || [];
+    const routePost: string[] = (getAttr(dp, 'ppth')?.split('|') || []).map(normalizeRouteName);
     // $FlowFixMe
-    const routePre: string[] = getAttr(ar, 'ppth')?.split('|') || [];
+    const routePre: string[] = (getAttr(ar, 'ppth')?.split('|') || []).map(normalizeRouteName);
 
     return {
       arrival: scheduledArrival,
@@ -298,7 +325,7 @@ export default class Timetable {
       currentStation: this.currentStation,
       // departureWingIds: getAttr(dp, 'wings')?.split('|') || [],
       departure: scheduledDeparture,
-      destination: last(routePost) || this.currentStation,
+      scheduledDestination: last(routePost) || this.currentStation,
       lineNumber,
       platform: getAttr(dp, 'pp') || getAttr(ar, 'pp'),
       id,

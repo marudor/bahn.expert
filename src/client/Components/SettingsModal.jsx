@@ -67,7 +67,7 @@ class SettingsModal extends React.PureComponent<Props> {
     } = this.props;
 
     return (
-      <Dialog fullWidth open={open} onClose={closeSettings}>
+      <Dialog maxWidth="md" fullWidth open={open} onClose={closeSettings}>
         <DialogTitle>Settings</DialogTitle>
         <DialogContent className="SettingsModal">
           <FormControlLabel
@@ -80,16 +80,20 @@ class SettingsModal extends React.PureComponent<Props> {
             }
             label="Nutze eignene Abfahrts Parser statt dbf"
           />
-          <FormControlLabel
-            control={
-              <Switch
-                checked={showSupersededMessagesConfig}
-                value="showSupersededMessagesConfig"
-                onChange={this.handleCheckedChange(setShowSupersededMessages)}
+          {useOwnAbfahrtenConfig && (
+            <>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={showSupersededMessagesConfig}
+                    value="showSupersededMessagesConfig"
+                    onChange={this.handleCheckedChange(setShowSupersededMessages)}
+                  />
+                }
+                label="Obsolete Messages"
               />
-            }
-            label="Zeige obsolete Messages"
-          />
+            </>
+          )}
           <FormControlLabel
             control={
               <Switch
@@ -98,11 +102,11 @@ class SettingsModal extends React.PureComponent<Props> {
                 onChange={this.handleCheckedChange(setTraewelling)}
               />
             }
-            label="Zeige Traewelling Link"
+            label="Traewelling Link"
           />
           <FormControlLabel
             control={<Switch checked={timeConfig} value="timeConfig" onChange={this.handleCheckedChange(setTime)} />}
-            label="Zeige neue Ankunft bei Verspätung"
+            label="Neue Ankunft bei Verspätung"
           />
           <FormControlLabel
             control={
@@ -112,7 +116,7 @@ class SettingsModal extends React.PureComponent<Props> {
                 onChange={this.handleCheckedChange(setZoomReihung)}
               />
             }
-            label="Zeige Reihung maximal groß"
+            label="Reihung maximal groß"
           />
           <FormControlLabel
             control={

@@ -1,7 +1,7 @@
 // @flow
 import './BahnhofsAbfahrten.scss';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-import { hot } from 'react-hot-loader';
+import { hot } from 'react-hot-loader/root';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import AbfahrtenList from './AbfahrtenList';
 import FavList from './FavList';
@@ -10,15 +10,13 @@ import React from 'react';
 import SettingsModal from './LazySettingsModal';
 // import Privacy from './Privacy';
 
+if (process.env.NODE_ENV !== 'production') {
+  require('react-hot-loader').setConfig({
+    pureRender: true,
+  });
+}
+
 const theme = createMuiTheme({
-  overrides: {
-    MuiFormControlLabel: {
-      root: {
-        marginLeft: 0,
-        justifyContent: 'space-between',
-      },
-    },
-  },
   type: 'dark',
   typography: {
     useNextVariants: true,
@@ -41,4 +39,4 @@ const BahnhofsAbfahrten = () => (
   </Router>
 );
 
-export default hot(module)(BahnhofsAbfahrten);
+export default hot(BahnhofsAbfahrten);

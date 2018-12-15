@@ -5,23 +5,12 @@
   justify-content: space-between;
   margin-left: 15px;
 
-  &--early {
-    color: green;
-    font-size: 3em;
-    margin-right: 0.4em;
-  }
-
   &--delay {
-    color: red;
     font-size: 3em;
     margin-right: 0.4em;
   }
 
   &__platform {
     font-size: 3em;
-
-    &--different {
-      color: red;
-    }
   }
 }

@@ -35,10 +35,11 @@ export type Abfahrt = {
   route: Train[],
   scheduledArrival?: string,
   scheduledDeparture?: string,
+  scheduledDestination: string,
   scheduledPlatform: string,
   train: string,
-  trainNumber: string,
   trainId: string,
+  trainNumber: string,
   trainType: string,
   via: string[],
 };

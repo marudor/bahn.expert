@@ -118,6 +118,7 @@ export function dbfAbfahrten(evaId: string) {
     }
     const departures: Abfahrt[] = d.data.departures.map(dep => ({
       ...dep,
+      scheduledDestination: dep.scheduledDestination || dep.destination,
       // id: calculateTrainId(dep),
       ...splitTrainType(dep.train),
       longDistance: longDistanceRegex.test(dep.train),

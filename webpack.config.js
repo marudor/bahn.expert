@@ -28,7 +28,7 @@ const optimization = {};
 const rules = [
   {
     test: /\.jsx?$/,
-    use: ['babel-loader'],
+    use: ['react-hot-loader/webpack', 'babel-loader'],
   },
   {
     test: /\.s?css$/,
@@ -73,7 +73,7 @@ if (isDev) {
 module.exports = {
   plugins,
   mode: isDev ? 'development' : 'production',
-  devtool: isDev ? 'source-map' : false,
+  devtool: isDev ? 'cheap-module-eval-source-map' : false,
   entry: './src/client/index.jsx',
   resolve: {
     modules: ['node_modules', path.resolve(__dirname, 'src')],

@@ -17,7 +17,7 @@ function delayString(delay: number = 0) {
 }
 
 function delayStyle(delay: number = 0) {
-  return delay > 0 ? 'delay' : 'early';
+  return delay > 0 ? 'delayed' : 'early';
 }
 
 function getDelayTime(time: ?string, delay: ?number, isCancelled: 1 | 0, timeConfig: boolean) {
