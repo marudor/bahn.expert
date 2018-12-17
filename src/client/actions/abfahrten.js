@@ -33,9 +33,9 @@ export const getAbfahrtenByString: ThunkAction<?string, string> = (stationString
     const stations = await getStationsFromAPI(stationString, type);
 
     if (stations.length) {
-      const url = getState().config.useOwnAbfahrten
-        ? `/api/ownAbfahrten/${stations[0].id}`
-        : `/api/dbfAbfahrten/${stations[0].id}`;
+      const url = getState().config.useDbf
+        ? `/api/dbfAbfahrten/${stations[0].id}`
+        : `/api/ownAbfahrten/${stations[0].id}`;
       const abfahrten: Abfahrt[] = (await axios.get(url)).data;
 
       return dispatch(Actions.gotAbfahrten({ station: stations[0], abfahrten }));

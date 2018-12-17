@@ -8,7 +8,7 @@ export type State = {|
   searchType: string,
   traewelling: boolean,
   zoomReihung: boolean,
-  useOwnAbfahrten: boolean,
+  useDbf: boolean,
   showSupersededMessages: boolean,
 |};
 
@@ -18,7 +18,7 @@ let defaultState: State = {
   open: false,
   traewelling: false,
   zoomReihung: true,
-  useOwnAbfahrten: false,
+  useDbf: false,
   showSupersededMessages: false,
 };
 const rawConfig = localStorage.getItem('config');

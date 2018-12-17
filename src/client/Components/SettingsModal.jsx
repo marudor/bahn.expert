@@ -6,7 +6,7 @@ import {
   setShowSupersededMessages,
   setTime,
   setTraewelling,
-  setUseOwnAbfahrten,
+  setUseDbf,
   setZoomReihung,
 } from 'client/actions/config';
 import { connect } from 'react-redux';
@@ -26,7 +26,7 @@ type StateProps = {|
   showSupersededMessagesConfig: boolean,
   timeConfig: boolean,
   traewellingConfig: boolean,
-  useOwnAbfahrtenConfig: boolean,
+  useDbfConfig: boolean,
   zoomReihungConfig: boolean,
 |};
 
@@ -36,7 +36,7 @@ type DispatchProps = {|
   setShowSupersededMessages: typeof setShowSupersededMessages,
   setTime: typeof setTime,
   setTraewelling: typeof setTraewelling,
-  setUseOwnAbfahrten: typeof setUseOwnAbfahrten,
+  setUseDbf: typeof setUseDbf,
   setZoomReihung: typeof setZoomReihung,
 |};
 
@@ -57,9 +57,9 @@ class SettingsModal extends React.PureComponent<Props> {
       traewellingConfig,
       zoomReihungConfig,
       showSupersededMessagesConfig,
-      useOwnAbfahrtenConfig,
+      useDbfConfig,
       setShowSupersededMessages,
-      setUseOwnAbfahrten,
+      setUseDbf,
       setSearchType,
       setZoomReihung,
       setTraewelling,
@@ -72,15 +72,11 @@ class SettingsModal extends React.PureComponent<Props> {
         <DialogContent className="SettingsModal">
           <FormControlLabel
             control={
-              <Switch
-                checked={useOwnAbfahrtenConfig}
-                value="useOwnAbfahrtenConfig"
-                onChange={this.handleCheckedChange(setUseOwnAbfahrten)}
-              />
+              <Switch checked={useDbfConfig} value="useDbfConfig" onChange={this.handleCheckedChange(setUseDbf)} />
             }
-            label="Nutze eignene Abfahrts Parser statt dbf"
+            label="Nutze dbf für Abfahrten (deprecated)"
           />
-          {useOwnAbfahrtenConfig && (
+          {!useDbfConfig && (
             <>
               <FormControlLabel
                 control={
@@ -146,7 +142,7 @@ export default connect<AppState, Function, {||}, StateProps, DispatchProps>(
     showSupersededMessagesConfig: state.config.showSupersededMessages,
     timeConfig: state.config.time,
     traewellingConfig: state.config.traewelling,
-    useOwnAbfahrtenConfig: state.config.useOwnAbfahrten,
+    useDbfConfig: state.config.useDbf,
     zoomReihungConfig: state.config.zoomReihung,
   }),
   {
@@ -156,6 +152,6 @@ export default connect<AppState, Function, {||}, StateProps, DispatchProps>(
     setTraewelling,
     setZoomReihung,
     setShowSupersededMessages,
-    setUseOwnAbfahrten,
+    setUseDbf,
   }
 )(SettingsModal);

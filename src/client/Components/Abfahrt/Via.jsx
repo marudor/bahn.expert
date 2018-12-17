@@ -18,7 +18,7 @@ function getDetailedInfo(abfahrt: Abfahrt, showSupersededMessages: boolean) {
     const sorted = messages.sort((a, b) => compareDesc(a.timestamp, b.timestamp));
 
     return (
-      <div key="i" className="Via__info">
+      <div key="i" className={cc('Via__info', { cancelled: abfahrt.isCancelled })}>
         {sorted.map((m, i) => (
           <div
             key={i}
