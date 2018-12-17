@@ -11,8 +11,13 @@ import { irisBase } from './index';
 import { parseFromTimeZone } from 'date-fns-timezone';
 import axios from 'axios';
 import messageLookup, { messageTypeLookup, supersededMessages } from './messageLookup';
+import NodeCache from 'node-cache';
 import xmljs from 'libxmljs';
 import type { Message } from 'types/abfahrten';
+
+// 6 Hours in seconds
+const stdTTL = 6 * 60 * 60;
+const timetableCache: NodeCache<string, Object> = new NodeCache({ stdTTL });
 
 type Route = {
   name: string,
@@ -346,19 +351,33 @@ export default class Timetable {
 
     const sArr = timetableXml.find('/timetable/s');
 
+    const timetables = {};
+
     sArr.forEach(s => {
       const departure = this.parseTimetableS(s);
 
       if (!departure) return;
-      this.timetable[departure.id] = departure;
+      timetables[departure.id] = departure;
     });
+
+    return timetables;
   }
   getTimetables() {
     return Promise.all(
       this.segments.map(async date => {
-        const rawXml = await axios.get(`${irisBase}/plan/${this.evaId}/${format(date, 'yyMMdd/HH')}`).then(x => x.data);
+        const key = `/plan/${this.evaId}/${format(date, 'yyMMdd/HH')}`;
+        let result = timetableCache.get(key);
 
-        return this.getTimetable(rawXml);
+        if (!result) {
+          const rawXml = await axios.get(`${irisBase}${key}`).then(x => x.data);
+
+          result = this.getTimetable(rawXml);
+        }
+
+        this.timetable = {
+          ...this.timetable,
+          ...result,
+        };
       })
     );
   }

@@ -1,5 +1,6 @@
 // @flow
 import { dbfAbfahrten, ownAbfahrten } from './Abfahrten';
+import { getStation } from './Abfahrten/station';
 import { wagenReihung, wagenReihungStation } from './Reihung';
 import axios from 'axios';
 import createAuslastung from './Auslastung';
@@ -42,14 +43,13 @@ export default function setRoutes(koa: Koa, prefix: string = '/api') {
 
       ctx.body = await stationInfo(station);
     })
-    .get('/dbfAbfahrten/:station', async ctx => {
-      if (useTestData) {
-        ctx.body = require('./testData/abfahrten');
+    .get('/irisStation/:evaId', async ctx => {
+      const { evaId } = ctx.params;
 
-        return;
-      }
-      const { station } = ctx.params;
-      const evaId = station;
+      ctx.body = await getStation(evaId, 1);
+    })
+    .get('/dbfAbfahrten/:evaId', async ctx => {
+      const { evaId } = ctx.params;
 
       if (evaId.length < 6) {
         ctx.status = 400;
@@ -60,14 +60,8 @@ export default function setRoutes(koa: Koa, prefix: string = '/api') {
         ctx.body = await dbfAbfahrten(evaId);
       }
     })
-    .get('/ownAbfahrten/:station', async ctx => {
-      if (useTestData) {
-        ctx.body = require('./testData/abfahrten');
-
-        return;
-      }
-      const { station } = ctx.params;
-      const evaId = station;
+    .get('/ownAbfahrten/:evaId', async ctx => {
+      const { evaId } = ctx.params;
 
       if (evaId.length < 6) {
         ctx.status = 400;

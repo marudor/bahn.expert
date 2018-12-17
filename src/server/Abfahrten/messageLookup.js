@@ -6,7 +6,7 @@
 export default {
   '2': 'Polizeiliche Ermittlung',
   '3': 'Feuerwehreinsatz neben der Strecke',
-  // '4': 'Kurzfristiger Personalausfall',
+  '4': 'Kurzfristiger Personalausfall',
   '5': 'Ärztliche Versorgung eines Fahrgastes',
   '6': 'Betätigen der Notbremse',
   '7': 'Personen im Gleis',
