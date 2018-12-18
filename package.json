@@ -9,7 +9,7 @@
   "engineStrict": true,
   "scripts": {
     "build:client:perf": "npm run cleanup && NODE_ENV=production webpack --profile --json > ./webpack-stats.json && webpack-bundle-analyzer ./webpack-stats.json dist/client --mode static -s gzip --report ./BundleReport.html --no-open",
-    "build:client": "webpack",
+    "build:client": "node scripts/buildClient",
     "build:server": "babel src --no-babelrc --config-file ./.babelrc.server.js --out-dir dist/server --copy-files",
     "build": "npm run cleanup && npm run build:client && npm run build:server",
     "cleanup": "rimraf dist && mkdir dist",
