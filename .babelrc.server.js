@@ -13,6 +13,7 @@ module.exports = {
         modules: 'commonjs',
       },
     ],
+    '@babel/preset-react',
     '@babel/preset-flow',
     'babel-preset-joblift',
   ],
@@ -21,8 +22,15 @@ module.exports = {
       'module-resolver',
       {
         root: 'src',
-        alias: {
-        },
+        alias: {},
+      },
+    ],
+    'dynamic-import-webpack',
+    'remove-webpack',
+    [
+      'transform-require-ignore',
+      {
+        extensions: ['.scss', '.css'],
       },
     ],
   ],

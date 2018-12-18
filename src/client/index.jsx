@@ -2,52 +2,36 @@
 import './index.scss';
 import '@babel/polyfill';
 import 'typeface-roboto';
-import { applyMiddleware, compose, createStore } from 'redux';
+// $FlowFixMe
+import { createGenerateClassName, MuiThemeProvider } from '@material-ui/core/styles';
+import { HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 import BahnhofsAbfahrten from './Components/BahnhofsAbfahrten';
-import promiseMiddleware from 'redux-promise';
+import createStore from './createStore';
+import createTheme from './createTheme';
+import JssProvider from 'react-jss/lib/JssProvider';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import reducer from './reducer';
-import thunkMiddleware from 'redux-thunk';
 
 global.smallScreen = window.matchMedia('(max-width: 480px)').matches;
 
-const middlewares = [promiseMiddleware, thunkMiddleware];
-
-if (process.env.NODE_ENV !== 'production') {
-  const reduxUnhandledAction = require('redux-unhandled-action').default;
-
-  middlewares.push(reduxUnhandledAction());
-}
-
-// eslint-disable-next-line
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const store = createStore(
-  reducer,
-  // eslint-disable-next-line
-  undefined,
-  composeEnhancers(applyMiddleware(...middlewares))
-);
-
-// $FlowFixMe
-if (module.hot) {
-  // Enable Webpack hot module replacement for reducers
-  // $FlowFixMe
-  module.hot.accept('./reducer', () => {
-    const nextRootReducer = require('./reducer/index').default;
-
-    store.replaceReducer(nextRootReducer);
-  });
-}
-
-const container = document.getElementById('abfahrten');
+const container = document.getElementById('app');
+const theme = createTheme();
+const generateClassName = createGenerateClassName();
 
 if (container) {
   ReactDOM.render(
-    <Provider store={store}>
-      <BahnhofsAbfahrten />
+    <Provider store={createStore()}>
+      <Router>
+        <HelmetProvider context={{}}>
+          <JssProvider generateClassName={generateClassName}>
+            <MuiThemeProvider theme={theme}>
+              <BahnhofsAbfahrten />
+            </MuiThemeProvider>
+          </JssProvider>
+        </HelmetProvider>
+      </Router>
     </Provider>,
     container
   );

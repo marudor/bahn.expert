@@ -1,10 +1,11 @@
 // @flow
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const { StatsWriterPlugin } = require('webpack-stats-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
 
@@ -14,27 +15,31 @@ const plugins = [
       NODE_ENV: JSON.stringify(process.env.NODE_ENV),
     },
   }),
-  new HtmlWebpackPlugin({
-    template: path.resolve(__dirname, 'src/client/index.html'),
-    minify: {
-      collapseWhitespace: true,
-      removeComments: true,
-    },
+  new MiniCssExtractPlugin({
+    filename: '[name]-[contenthash].css',
+    chunkFilename: '[id]-[hash].css',
   }),
 ];
 
-const optimization = {};
+const optimization = {
+  minimizer: [
+    new OptimizeCSSAssetsPlugin({
+      cssProcessor: require('cssnano'),
+      cssProcessorOptions: { discardComments: { removeAll: true } },
+    }),
+  ],
+};
 
 const rules = [
   {
     test: /\.jsx?$/,
-    use: ['react-hot-loader/webpack', 'babel-loader'],
+    use: ['babel-loader'],
   },
   {
     test: /\.s?css$/,
     use: [
       {
-        loader: isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+        loader: MiniCssExtractPlugin.loader,
       },
       { loader: 'css-loader' },
       { loader: 'postcss-loader' },
@@ -48,33 +53,29 @@ const rules = [
 ];
 
 if (isDev) {
-  plugins.push(...[new webpack.HotModuleReplacementPlugin()]);
-
-  rules.forEach(r => r.use && r.use.unshift({ loader: 'cache-loader' }));
+  // rules.forEach(r => r.use && r.use.unshift({ loader: 'cache-loader' }));
 } else {
-  plugins.push(
-    new MiniCssExtractPlugin({
-      filename: '[name]-[hash].css',
-      chunkFilename: '[id]-[hash].css',
-    })
-  );
-  optimization.minimizer = [
+  optimization.minimizer.push(
     new TerserPlugin({
       parallel: true,
       extractComments: true,
-    }),
-    new OptimizeCSSAssetsPlugin({
-      cssProcessor: require('cssnano'),
-      cssProcessorOptions: { discardComments: { removeAll: true } },
-    }),
-  ];
+    })
+  );
+  plugins.push(new CompressionPlugin());
+  plugins.push(
+    new StatsWriterPlugin({
+      filename: 'stats.json', // Default
+    })
+  );
 }
 
 module.exports = {
   plugins,
   mode: isDev ? 'development' : 'production',
   devtool: isDev ? 'cheap-module-eval-source-map' : false,
-  entry: './src/client/index.jsx',
+  entry: {
+    main: ['./src/client/index.jsx'],
+  },
   resolve: {
     modules: ['node_modules', path.resolve(__dirname, 'src')],
     extensions: ['.js', '.json', '.jsx'],
@@ -86,20 +87,20 @@ module.exports = {
   output: {
     path: path.resolve('dist/client'),
     filename: '[name]-[hash].js',
-    publicPath: '/',
+    publicPath: '/static/',
   },
   module: {
     rules,
   },
-  devServer: {
-    contentBase: path.resolve(__dirname, 'dist/client'),
-    historyApiFallback: true,
-    inline: true,
-    hot: true,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:9042',
-      },
-    },
-  },
+  // devServer: {
+  //   contentBase: path.resolve(__dirname, 'dist/client'),
+  //   historyApiFallback: true,
+  //   inline: true,
+  //   hot: true,
+  //   proxy: {
+  //     '/api': {
+  //       target: 'http://localhost:9042',
+  //     },
+  //   },
+  // },
 };

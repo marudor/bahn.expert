@@ -1,5 +1,6 @@
 [ignore]
 .*/node_modules/warning
+<PROJECT_ROOT>/node_modules/jss
 <PROJECT_ROOT>/webpack-stats.json
 <PROJECT_ROOT>/dist/
 

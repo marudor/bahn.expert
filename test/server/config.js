@@ -1,5 +1,6 @@
 // @flow
 import '@babel/polyfill';
+import 'server/localStorageShim';
 import Nock from 'nock';
 
 beforeAll(() => {

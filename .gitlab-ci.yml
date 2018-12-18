@@ -78,7 +78,7 @@ build:app:
       - node_modules/
   artifacts:
     paths:
-      - dist
+      - dist/client
   dependencies: []
 
 build:server:
@@ -93,7 +93,7 @@ build:server:
       - node_modules/
   artifacts:
     paths:
-      - dist
+      - dist/server
   dependencies: []
 
 codecov:
@@ -108,32 +108,22 @@ codecov:
     - test:client
     - test:server
 
-docker:app:
-  services:
-    - docker:dind
-  image: registry.gitlab.com/marudor/deploy-helper/docker
-  stage: docker
-  script:
-    - /build.sh "docker/Dockerfile.client" "/client"
-  dependencies:
-    - build:app
-
 docker:server:
   services:
     - docker:dind
   image: registry.gitlab.com/marudor/deploy-helper/docker
   stage: docker
   script:
-    - /build.sh "docker/Dockerfile.server" "/server"
+    - /build.sh "Dockerfile"
   dependencies:
     - build:server
+    - build:app
 
 deploy:beta:
   stage: deploy
   image: registry.gitlab.com/marudor/deploy-helper
   script:
-    - /deploy.sh "bahnhofsabfahrten-beta" "$CI_COMMIT_SHA" "marudor" "/client"
-    - /deploy.sh "bahnhofsabfahrtenserver-beta" "$CI_COMMIT_SHA" "marudor" "/server"
+    - /deploy.sh "bahnhofsabfahrten-beta" "$CI_COMMIT_SHA" "marudor"
   environment:
     name: beta
   only:
@@ -144,8 +134,7 @@ deploy:prod:
   stage: deploy
   image: registry.gitlab.com/marudor/deploy-helper
   script:
-    - /deploy.sh "bahnhofsabfahrten" "$CI_COMMIT_SHA" "marudor" "/client"
-    - /deploy.sh "bahnhofsabfahrtenserver" "$CI_COMMIT_SHA" "marudor" "/server"
+    - /deploy.sh "bahnhofsabfahrten" "$CI_COMMIT_SHA" "marudor"
   environment:
     name: production
   when: manual
@@ -157,6 +146,5 @@ cleanup:
   stage: cleanup
   image: registry.gitlab.com/marudor/deploy-helper
   script:
-    - /cleanup.sh "marudor" /server
-    - /cleanup.sh "marudor" /client
+    - /cleanup.sh "marudor"
   dependencies: []

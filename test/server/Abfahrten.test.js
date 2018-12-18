@@ -1,6 +1,6 @@
 // @flow
+import { createApp } from 'server/app';
 import { splitTrainType } from 'server/Abfahrten';
-import createApp from 'server/app';
 import supertest from 'supertest';
 
 function testTrainType(input, expThirdParty, expTrainType, expTrainId) {
@@ -18,8 +18,8 @@ describe('Abfahrten', () => {
     let server;
     let request;
 
-    beforeAll(() => {
-      const app = createApp();
+    beforeAll(async () => {
+      const app = await createApp();
 
       server = app.listen();
       request = supertest(server);

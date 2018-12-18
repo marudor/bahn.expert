@@ -2,6 +2,7 @@
 import { Actions, getStationsFromAPI } from 'client/actions/abfahrten';
 import { connect } from 'react-redux';
 import { type ContextRouter, withRouter } from 'react-router-dom';
+import Helmet from 'react-helmet-async';
 import ActionHome from '@material-ui/icons/Home';
 import AppBar from '@material-ui/core/AppBar';
 import debounce from 'debounce-promise';
@@ -66,24 +67,35 @@ class Header extends React.Component<Props> {
   render() {
     const { currentStation } = this.props;
 
+    let title = 'Bahnhofs Abfahrten';
+
+    if (currentStation) {
+      title = `${currentStation.title} - ${title}`;
+    }
+
     return (
-      <AppBar position="fixed">
-        <Toolbar>
-          <IconButton onClick={this.toRoot} color="inherit">
-            <ActionHome color="inherit" />
-          </IconButton>
-          <Select
-            styles={selectStyles}
-            loadOptions={this.loadOptions}
-            getOptionLabel={this.getOptionLabel}
-            getOptionValue={this.getOptionValue}
-            placeholder="Bahnhof (z.B. Hamburg Hbf)"
-            value={currentStation}
-            onChange={this.submit}
-          />
-          <HeaderButtons />
-        </Toolbar>
-      </AppBar>
+      <>
+        <Helmet>
+          <title>{title}</title>
+        </Helmet>
+        <AppBar position="fixed">
+          <Toolbar>
+            <IconButton onClick={this.toRoot} color="inherit">
+              <ActionHome color="inherit" />
+            </IconButton>
+            <Select
+              styles={selectStyles}
+              loadOptions={this.loadOptions}
+              getOptionLabel={this.getOptionLabel}
+              getOptionValue={this.getOptionValue}
+              placeholder="Bahnhof (z.B. Hamburg Hbf)"
+              value={currentStation}
+              onChange={this.submit}
+            />
+            <HeaderButtons />
+          </Toolbar>
+        </AppBar>
+      </>
     );
   }
 }
