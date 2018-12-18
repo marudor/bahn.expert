@@ -37,7 +37,7 @@ export const closeSettings = () => Actions.setMenu(false);
 
 export const setCookies: ThunkAction<Cookies> = cookies => dispatch => {
   dispatch(Actions.setCookies(cookies));
-  dispatch(favActions.setFavs(cookies.get('favs')));
+  dispatch(favActions.setFavs(cookies.get('favs') || {}));
   dispatch(abfahrtenActions.setDetail(cookies.get('selectedDetail')));
 
   return Promise.resolve();

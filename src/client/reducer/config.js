@@ -33,7 +33,7 @@ export default handleActions<State, *>(
   {
     [String(Actions.setCookies)]: (state: State, { payload }: ActionType<typeof Actions.setCookies>) => ({
       open: false,
-      config: payload.get('config'),
+      config: payload.get('config') || defaultState.config,
       cookies: payload,
     }),
     [String(Actions.setMenu)]: (state: State, { payload }: ActionType<typeof Actions.setMenu>) => ({
