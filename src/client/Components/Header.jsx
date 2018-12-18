@@ -2,11 +2,11 @@
 import { Actions, getStationsFromAPI } from 'client/actions/abfahrten';
 import { connect } from 'react-redux';
 import { type ContextRouter, withRouter } from 'react-router-dom';
-import Helmet from 'react-helmet-async';
 import ActionHome from '@material-ui/icons/Home';
 import AppBar from '@material-ui/core/AppBar';
 import debounce from 'debounce-promise';
 import HeaderButtons from './HeaderButtons';
+import Helmet from 'react-helmet-async';
 import IconButton from '@material-ui/core/IconButton';
 import React from 'react';
 import Select from 'react-select/lib/Async';
@@ -19,17 +19,12 @@ type StateProps = {|
   searchType?: string,
 |};
 
-type DispatchProps = {|
-  setCurrentStation: typeof Actions.setCurrentStation,
-|};
-
 type OwnProps = {|
   ...ContextRouter,
 |};
 
 type Props = {|
   ...StateProps,
-  ...DispatchProps,
   ...OwnProps,
 |};
 
@@ -52,9 +47,6 @@ class Header extends React.Component<Props> {
     if (!station) {
       return;
     }
-    const { setCurrentStation } = this.props;
-
-    setCurrentStation(station);
     this.props.history.push(`/${encodeURIComponent(station.title)}`);
   };
   toRoot = () => this.props.history.push('/');
@@ -101,13 +93,8 @@ class Header extends React.Component<Props> {
 }
 
 export default withRouter(
-  connect<AppState, Function, OwnProps, StateProps, DispatchProps>(
-    state => ({
-      currentStation: state.abfahrten.currentStation,
-      searchType: state.config.searchType,
-    }),
-    {
-      setCurrentStation: Actions.setCurrentStation,
-    }
-  )(Header)
+  connect<AppState, Function, OwnProps, StateProps>(state => ({
+    currentStation: state.abfahrten.currentStation,
+    searchType: state.config.config.searchType,
+  }))(Header)
 );

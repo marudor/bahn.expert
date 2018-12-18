@@ -2,11 +2,11 @@
 import './index.scss';
 import '@babel/polyfill';
 import 'typeface-roboto';
+import { BrowserRouter } from 'react-router-dom';
 // $FlowFixMe
 import { createGenerateClassName, MuiThemeProvider } from '@material-ui/core/styles';
 import { HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router } from 'react-router-dom';
 import BahnhofsAbfahrten from './Components/BahnhofsAbfahrten';
 import createStore from './createStore';
 import createTheme from './createTheme';
@@ -23,15 +23,15 @@ const generateClassName = createGenerateClassName();
 if (container) {
   ReactDOM.render(
     <Provider store={createStore()}>
-      <Router>
-        <HelmetProvider context={{}}>
-          <JssProvider generateClassName={generateClassName}>
-            <MuiThemeProvider theme={theme}>
+      <HelmetProvider context={{}}>
+        <JssProvider generateClassName={generateClassName}>
+          <MuiThemeProvider theme={theme}>
+            <BrowserRouter>
               <BahnhofsAbfahrten />
-            </MuiThemeProvider>
-          </JssProvider>
-        </HelmetProvider>
-      </Router>
+            </BrowserRouter>
+          </MuiThemeProvider>
+        </JssProvider>
+      </HelmetProvider>
     </Provider>,
     container
   );

@@ -87,5 +87,5 @@ const Times = ({
 );
 
 export default connect<AppState, Function, OwnProps, StateProps>(state => ({
-  timeConfig: state.config.time,
+  timeConfig: state.config.config.time,
 }))(Times);

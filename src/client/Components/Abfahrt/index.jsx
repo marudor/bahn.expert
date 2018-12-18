@@ -1,8 +1,8 @@
 // @flow
 import './index.scss';
 import { type Abfahrt as AbfahrtType } from 'types/abfahrten';
-import { Actions } from 'client/actions/abfahrten';
 import { connect } from 'react-redux';
+import { setDetail } from 'client/actions/abfahrten';
 import End from './End';
 import Mid from './Mid';
 import Paper from '@material-ui/core/Paper';
@@ -16,7 +16,7 @@ type OwnProps = {|
   detail: boolean,
 |};
 type DispatchProps = {|
-  setDetail: typeof Actions.setDetail,
+  setDetail: typeof setDetail,
 |};
 type Props = {|
   ...OwnProps,
@@ -48,6 +48,6 @@ class Abfahrt extends React.PureComponent<Props> {
 export default connect<AppState, Function, OwnProps, void, DispatchProps>(
   undefined,
   {
-    setDetail: Actions.setDetail,
+    setDetail,
   }
 )(Abfahrt);

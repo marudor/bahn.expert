@@ -913,6 +913,11 @@
     "@babel/runtime" "7.2.0"
     react-is "^16.6.3"
 
+"@types/cookie@^0.3.1":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@types/cookie/-/cookie-0.3.2.tgz#453f4b14b25da6a8ea4494842dedcbf0151deef9"
+  integrity sha512-aHQA072E10/8iUQsPH7mQU/KUyQBZAGzTVRCUvnSz8mSvbrYsP4xEO2RSA0Pjltolzi0j8+8ixrm//Hr4umPzw==
+
 "@types/jss@^9.5.6":
   version "9.5.7"
   resolved "https://registry.yarnpkg.com/@types/jss/-/jss-9.5.7.tgz#fa57a6d0b38a3abef8a425e3eb6a53495cb9d5a0"
@@ -925,6 +930,11 @@
   version "10.12.15"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.15.tgz#20e85651b62fd86656e57c9c9bc771ab1570bc59"
   integrity sha512-9kROxduaN98QghwwHmxXO2Xz3MaWf+I1sLVAA6KJDF5xix+IyXVhds0MAfdNwtcpSrzhaTsNB0/jnL86fgUhqA==
+
+"@types/object-assign@^4.0.30":
+  version "4.0.30"
+  resolved "https://registry.yarnpkg.com/@types/object-assign/-/object-assign-4.0.30.tgz#8949371d5a99f4381ee0f1df0a9b7a187e07e652"
+  integrity sha1-iUk3HVqZ9Dge4PHfCpt6GH4H5lI=
 
 "@types/prop-types@*":
   version "15.5.8"
@@ -2576,7 +2586,7 @@ cookie-signature@1.0.6:
   resolved "https://registry.yarnpkg.com/cookie-signature/-/cookie-signature-1.0.6.tgz#e303a882b342cc3ee8ca513a79999734dab3ae2c"
   integrity sha1-4wOogrNCzD7oylE6eZmXNNqzriw=
 
-cookie@0.3.1:
+cookie@0.3.1, cookie@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.3.1.tgz#e7e0a1f9ef43b4c8ba925c5c5a96e806d16873bb"
   integrity sha1-5+Ch+e9DtMi6klxcWpboBtFoc7s=
@@ -6009,14 +6019,6 @@ koa-is-json@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/koa-is-json/-/koa-is-json-1.0.0.tgz#273c07edcdcb8df6a2c1ab7d59ee76491451ec14"
   integrity sha1-JzwH7c3Ljfaiwat9We52SRRR7BQ=
-
-koa-mount@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/koa-mount/-/koa-mount-4.0.0.tgz#e0265e58198e1a14ef889514c607254ff386329c"
-  integrity sha512-rm71jaA/P+6HeCpoRhmCv8KVBIi0tfGuO/dMKicbQnQW/YJntJ6MnnspkodoA4QstMVEZArsCphmd0bJEtoMjQ==
-  dependencies:
-    debug "^4.0.1"
-    koa-compose "^4.1.0"
 
 koa-router@^7.4.0:
   version "7.4.0"
@@ -9799,6 +9801,16 @@ unique-slug@^2.0.0:
   integrity sha512-n9cU6+gITaVu7VGj1Z8feKMmfAjEAQGhwD9fE3zvpRRa0wEIx8ODYkVGfSc94M2OX00tUFV8wH3zYbm1I8mxFg==
   dependencies:
     imurmurhash "^0.1.4"
+
+universal-cookie@^3.0.7:
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/universal-cookie/-/universal-cookie-3.0.7.tgz#722e8bc455bb33ed3c74988344fad9d9bb88278e"
+  integrity sha512-wfZRbaEzFTDbP64fzTfGDfokB3pWkDNjtsuRAZQWaiuj/Up+3/0AEvN4IhFHPK24iGNtGJ6PNIxv1GQzMSiyMw==
+  dependencies:
+    "@types/cookie" "^0.3.1"
+    "@types/object-assign" "^4.0.30"
+    cookie "^0.3.1"
+    object-assign "^4.1.0"
 
 unpipe@1.0.0, unpipe@~1.0.0:
   version "1.0.0"

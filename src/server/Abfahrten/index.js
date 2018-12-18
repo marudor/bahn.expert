@@ -51,9 +51,15 @@ export async function getAbfahrten(
     );
   });
 
-  const sorted: any = filtered.sort((a, b) =>
-    compareAsc(a.scheduledDeparture || a.scheduledArrival, b.scheduledDeparture || b.scheduledArrival)
-  );
+  const sorted: any = filtered.sort((a, b) => {
+    const sort = compareAsc(a.scheduledDeparture || a.scheduledArrival, b.scheduledDeparture || b.scheduledArrival);
+
+    if (!sort) {
+      return a.id > b.id ? 1 : -1;
+    }
+
+    return sort;
+  });
 
   return sorted;
 }

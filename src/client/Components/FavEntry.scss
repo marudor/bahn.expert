@@ -1,4 +1,5 @@
 .FavEntry {
+  height: 48px;
   margin-bottom: 1px;
   font-size: 2em;
   color: black;
@@ -8,7 +9,7 @@
   justify-content: space-between;
   align-items: center;
 
-  > a {
+  > a  {
     color: black;
   }
 

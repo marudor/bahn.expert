@@ -1,5 +1,9 @@
 // @flow
+import { Actions as abfahrtenActions } from './abfahrten';
 import { createAction } from 'redux-actions';
+import { Actions as favActions } from './fav';
+import type { ThunkAction } from 'AppState';
+import type Cookies from 'universal-cookie';
 
 export const TIME_CONFIG_KEY = 'TIME_CONFIG';
 export const SEARCHTYPE_CONFIG_KEY = 'SEARCH_TYPE';
@@ -12,6 +16,8 @@ export const Actions = {
       value: any,
     }
   >('SET_CONFIG'),
+  setCookies: createAction<string, Cookies>('SET_COOKIES'),
+  setMenu: createAction<string, boolean>('SET_MENU'),
 };
 
 export const setSearchType = (value: string) =>
@@ -26,5 +32,13 @@ export const setUseDbf = (value: boolean) => Actions.setConfig({ key: 'useDbf', 
 export const setShowSupersededMessages = (value: boolean) =>
   Actions.setConfig({ key: 'showSupersededMessages', value }, value);
 
-export const openSettings = () => Actions.setConfig({ key: 'open', value: true });
-export const closeSettings = () => Actions.setConfig({ key: 'open', value: false });
+export const openSettings = () => Actions.setMenu(true);
+export const closeSettings = () => Actions.setMenu(false);
+
+export const setCookies: ThunkAction<Cookies> = cookies => dispatch => {
+  dispatch(Actions.setCookies(cookies));
+  dispatch(favActions.setFavs(cookies.get('favs')));
+  dispatch(abfahrtenActions.setDetail(cookies.get('selectedDetail')));
+
+  return Promise.resolve();
+};

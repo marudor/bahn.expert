@@ -138,12 +138,12 @@ class SettingsModal extends React.PureComponent<Props> {
 export default connect<AppState, Function, {||}, StateProps, DispatchProps>(
   state => ({
     open: state.config.open,
-    searchType: state.config.searchType,
-    showSupersededMessagesConfig: state.config.showSupersededMessages,
-    timeConfig: state.config.time,
-    traewellingConfig: state.config.traewelling,
-    useDbfConfig: state.config.useDbf,
-    zoomReihungConfig: state.config.zoomReihung,
+    searchType: state.config.config.searchType,
+    showSupersededMessagesConfig: state.config.config.showSupersededMessages,
+    timeConfig: state.config.config.time,
+    traewellingConfig: state.config.config.traewelling,
+    useDbfConfig: state.config.config.useDbf,
+    zoomReihungConfig: state.config.config.zoomReihung,
   }),
   {
     closeSettings,

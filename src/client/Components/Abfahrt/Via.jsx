@@ -154,5 +154,5 @@ const Via = ({ abfahrt, detail, showSupersededMessages }: Props) => {
 };
 
 export default connect<AppState, Function, OwnProps, StateProps>(state => ({
-  showSupersededMessages: state.config.showSupersededMessages,
+  showSupersededMessages: state.config.config.showSupersededMessages,
 }))(Via);

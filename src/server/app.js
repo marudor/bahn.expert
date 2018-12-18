@@ -1,13 +1,14 @@
 // @flow
 import { middlewares } from './logger';
+import axios from 'axios';
 import createAdmin from './admin';
 import errorHandler from './errorHandler';
+import generateSitemap from './sitemap';
 import http from 'http';
 import Koa from 'koa';
 import KoaBodyparser from 'koa-bodyparser';
 import KoaCompress from 'koa-compress';
 import koaStatic from 'koa-static';
-import mount from 'koa-mount';
 import path from 'path';
 import setupRoutes from './Controller';
 
@@ -47,6 +48,15 @@ export async function createApp() {
     })
   );
 
+  app.use((ctx, next) => {
+    if (ctx.req.url === '/sitemap.xml') {
+      ctx.body = generateSitemap();
+      ctx.set('Content-Type', 'text/xml; charset=utf-8');
+    } else {
+      return next();
+    }
+  });
+
   if (process.env.NODE_ENV !== 'test') {
     let serverRender = require('./render').default;
 
@@ -78,8 +88,11 @@ export async function createApp() {
 export default async () => {
   const app = await createApp();
   const server = http.createServer(app.callback());
+  const port = process.env.WEB_PORT || 9042;
 
-  server.listen(process.env.WEB_PORT || 9042);
+  axios.defaults.baseURL = `http://localhost:${port}`;
+
+  server.listen(port);
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line no-console
     console.log('running in DEV mode!');

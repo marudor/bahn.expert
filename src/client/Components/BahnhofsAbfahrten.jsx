@@ -1,14 +1,12 @@
 // @flow
 import './BahnhofsAbfahrten.scss';
-import { Route } from 'react-router-dom';
-import AbfahrtenList from './AbfahrtenList';
-import FavList from './FavList';
-import Header from './Header';
 import React from 'react';
 import SettingsModal from './LazySettingsModal';
 // import Privacy from './Privacy';
+import { Route } from 'react-router-dom';
+import routes from '../routes';
 
-class BahnhofsAbfahrten extends React.PureComponent<{||}> {
+class BahnhofsAbfahrten extends React.Component<{||}> {
   componentDidMount() {
     const jssStyles = document.getElementById('jss-server-side');
 
@@ -18,17 +16,12 @@ class BahnhofsAbfahrten extends React.PureComponent<{||}> {
   }
   render() {
     return (
-      <>
+      <div className="BahnhofsAbfahrten">
         <SettingsModal />
-        <div className="BahnhofsAbfahrten">
-          <Route path="/" component={Header} />
-          <Route path="/" exact component={FavList} />
-          {/* <Switch>
-          <Route path="/Privacy" exact component={Privacy} /> */}
-          <Route path="/:station" component={AbfahrtenList} />
-          {/* </Switch> */}
-        </div>
-      </>
+        {routes.map((r, i) => (
+          <Route key={i} {...r} />
+        ))}
+      </div>
     );
   }
 }

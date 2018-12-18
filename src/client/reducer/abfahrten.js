@@ -30,23 +30,14 @@ export default handleActions<State, *>(
       abfahrten: [],
       error: payload,
     }),
-    [String(Actions.setDetail)]: (state: State, { payload }: ActionType<typeof Actions.setDetail>) => {
-      const selectedDetail: ?string = state.selectedDetail === payload ? null : payload;
-
-      if (selectedDetail) {
-        localStorage.setItem('selectedDetail', selectedDetail);
-      } else {
-        localStorage.removeItem('selectedDetail');
-      }
-
-      return {
-        ...state,
-        selectedDetail,
-      };
-    },
+    [String(Actions.setDetail)]: (state: State, { payload }: ActionType<typeof Actions.setDetail>) => ({
+      ...state,
+      selectedDetail: payload,
+    }),
     [String(Actions.setCurrentStation)]: (state: State, { payload }: ActionType<typeof Actions.setCurrentStation>) => ({
       ...state,
       currentStation: payload,
+      abfahrten: [],
     }),
   },
   defaultState

@@ -1,5 +1,6 @@
 // @flow
 import { applyMiddleware, compose, createStore } from 'redux';
+import Cookies from 'universal-cookie';
 import promiseMiddleware from 'redux-promise';
 import reducer from './reducer';
 import thunkMiddleware from 'redux-thunk';
@@ -17,10 +18,16 @@ export default () => {
   // eslint-disable-next-line
   const composeEnhancers = global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+  // eslint-disable-next-line no-underscore-dangle
+  if (global.__DATA__) {
+    // eslint-disable-next-line no-underscore-dangle
+    global.__DATA__.config.cookies = new Cookies();
+  }
+
   const store = createStore<AppState, *, *>(
     reducer,
-    // eslint-disable-next-line
-    undefined,
+    // eslint-disable-next-line no-underscore-dangle
+    global.__DATA__,
     composeEnhancers(applyMiddleware(...middlewares))
   );
 

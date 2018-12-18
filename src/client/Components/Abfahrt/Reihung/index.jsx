@@ -92,7 +92,7 @@ class ReihungComp extends React.PureComponent<Props> {
 export default connect<AppState, Function, OwnProps, StateProps, DispatchProps>(
   (state, props) => ({
     reihung: getReihungForId(state, props),
-    useZoom: state.config.zoomReihung,
+    useZoom: state.config.config.zoomReihung,
   }),
   { getReihung }
 )(ReihungComp);

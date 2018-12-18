@@ -11,9 +11,9 @@ import type { AppState } from 'AppState';
 
 type StateProps = {|
   abfahrten: $PropertyType<$PropertyType<AppState, 'abfahrten'>, 'abfahrten'>,
+  currentStation: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'currentStation'>,
   selectedDetail: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'selectedDetail'>,
   error: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'error'>,
-  searchType: string,
 |};
 
 type DispatchProps = {|
@@ -42,19 +42,44 @@ function getErrorText(error: any) {
 }
 
 class AbfahrtenList extends React.PureComponent<Props, State> {
+  static loadData = (store, match) => {
+    store.dispatch(
+      Actions.setCurrentStation({
+        title: decodeURIComponent(match.params.station || ''),
+        id: 0,
+      })
+    );
+
+    return store.dispatch(getAbfahrtenByString(match.params.station));
+  };
   state: State = {
-    loading: true,
+    loading: !this.props.abfahrten,
   };
   componentDidMount() {
-    this.getAbfahrten();
+    if (!this.props.currentStation) {
+      this.getAbfahrten();
+    } else {
+      this.scrollToDetail();
+    }
   }
   componentDidUpdate(prevProps: Props) {
     if (prevProps.match.params.station !== this.props.match.params.station) {
       this.getAbfahrten();
     }
   }
+  scrollToDetail = () => {
+    const { selectedDetail } = this.props;
+
+    if (selectedDetail) {
+      const detailDom = document.getElementById(selectedDetail);
+
+      if (detailDom) {
+        detailDom.scrollIntoView(false);
+      }
+    }
+  };
   getAbfahrten = async () => {
-    const { getAbfahrtenByString, setCurrentStation, match, selectedDetail, searchType } = this.props;
+    const { getAbfahrtenByString, setCurrentStation, match } = this.props;
 
     this.setState({ loading: true });
     setCurrentStation({
@@ -62,17 +87,9 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
       id: 0,
     });
     try {
-      await getAbfahrtenByString(match.params.station, searchType);
+      await getAbfahrtenByString(match.params.station);
     } finally {
-      this.setState({ loading: false }, () => {
-        if (selectedDetail) {
-          const detailDom = document.getElementById(selectedDetail);
-
-          if (detailDom) {
-            detailDom.scrollIntoView(false);
-          }
-        }
-      });
+      this.setState({ loading: false }, this.scrollToDetail);
     }
   };
   render() {
@@ -100,8 +117,8 @@ export default withRouter(
     state => ({
       abfahrten: state.abfahrten.abfahrten,
       selectedDetail: state.abfahrten.selectedDetail,
+      currentStation: state.abfahrten.currentStation,
       error: state.abfahrten.error,
-      searchType: state.config.searchType,
     }),
     {
       getAbfahrtenByString,

@@ -25,17 +25,13 @@ export async function getStationsFromAPI(stationString: ?string, type: string = 
   return [];
 }
 
-export const getAbfahrtenByString: ThunkAction<?string, string> = (stationString, type) => async (
-  dispatch,
-  getState
-) => {
+export const getAbfahrtenByString: ThunkAction<?string> = stationString => async (dispatch, getState) => {
   try {
-    const stations = await getStationsFromAPI(stationString, type);
+    const config = getState().config.config;
+    const stations = await getStationsFromAPI(stationString, config.searchType);
 
     if (stations.length) {
-      const url = getState().config.useDbf
-        ? `/api/dbfAbfahrten/${stations[0].id}`
-        : `/api/ownAbfahrten/${stations[0].id}`;
+      const url = config.useDbf ? `/api/dbfAbfahrten/${stations[0].id}` : `/api/ownAbfahrten/${stations[0].id}`;
       const abfahrten: Abfahrt[] = (await axios.get(url)).data;
 
       return dispatch(Actions.gotAbfahrten({ station: stations[0], abfahrten }));
@@ -49,4 +45,19 @@ export const getAbfahrtenByString: ThunkAction<?string, string> = (stationString
   } catch (e) {
     dispatch(Actions.gotAbfahrtenError(e));
   }
+};
+
+export const setDetail: ThunkAction<?string> = selectedDetail => (dispatch, getState) => {
+  const state = getState();
+  const cookies = state.config.cookies;
+  const detail: ?string = state.abfahrten.selectedDetail === selectedDetail ? null : selectedDetail;
+
+  if (detail) {
+    cookies.set('selectedDetail', detail);
+  } else {
+    cookies.remove('selectedDetail');
+  }
+  dispatch(Actions.setDetail(detail));
+
+  return Promise.resolve();
 };

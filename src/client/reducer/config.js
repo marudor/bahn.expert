@@ -1,51 +1,55 @@
 // @flow
 import { Actions } from 'client/actions/config';
 import { type ActionType, handleActions } from 'redux-actions';
+import Cookies from 'universal-cookie';
 
 export type State = {|
-  time: boolean,
+  cookies: Cookies,
   open: boolean,
-  searchType: string,
-  traewelling: boolean,
-  zoomReihung: boolean,
-  useDbf: boolean,
-  showSupersededMessages: boolean,
+  config: {
+    time: boolean,
+    searchType: string,
+    traewelling: boolean,
+    zoomReihung: boolean,
+    useDbf: boolean,
+    showSupersededMessages: boolean,
+  },
 |};
 
-let defaultState: State = {
-  searchType: '',
-  time: true,
+const defaultState: State = {
+  cookies: new Cookies(),
   open: false,
-  traewelling: false,
-  zoomReihung: true,
-  useDbf: false,
-  showSupersededMessages: false,
+  config: {
+    searchType: '',
+    time: true,
+    traewelling: false,
+    zoomReihung: true,
+    useDbf: false,
+    showSupersededMessages: false,
+  },
 };
-const rawConfig = localStorage.getItem('config');
-
-if (rawConfig) {
-  try {
-    defaultState = {
-      ...defaultState,
-      ...JSON.parse(rawConfig),
-      open: false,
-    };
-  } catch (e) {
-    // We ignore fails here
-  }
-}
-
-localStorage.setItem('config', JSON.stringify(defaultState));
 
 export default handleActions<State, *>(
   {
+    [String(Actions.setCookies)]: (state: State, { payload }: ActionType<typeof Actions.setCookies>) => ({
+      open: false,
+      config: payload.get('config'),
+      cookies: payload,
+    }),
+    [String(Actions.setMenu)]: (state: State, { payload }: ActionType<typeof Actions.setMenu>) => ({
+      ...state,
+      open: payload,
+    }),
     [String(Actions.setConfig)]: (state: State, { payload: { key, value } }: ActionType<typeof Actions.setConfig>) => {
       const newState = {
         ...state,
-        [key]: value,
+        config: {
+          ...state.config,
+          [key]: value,
+        },
       };
 
-      localStorage.setItem('config', JSON.stringify(newState));
+      state.cookies.set('config', JSON.stringify(newState.config));
 
       return newState;
     },

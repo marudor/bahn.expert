@@ -58,5 +58,5 @@ const TraewellingLink = ({ abfahrt, show }: Props) => {
 };
 
 export default connect<AppState, Function, OwnProps, StateProps>(state => ({
-  show: state.config.traewelling,
+  show: state.config.config.traewelling,
 }))(TraewellingLink);
