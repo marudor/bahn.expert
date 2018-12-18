@@ -85,7 +85,7 @@ module.exports = {
     },
   },
   output: {
-    path: path.resolve('dist/client'),
+    path: path.resolve('dist/client/static'),
     filename: '[name]-[hash].js',
     publicPath: '/static/',
   },

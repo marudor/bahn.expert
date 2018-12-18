@@ -42,12 +42,9 @@ export async function createApp() {
   app.use(KoaCompress()).use(KoaBodyparser());
   setupRoutes(app);
   app.use(
-    mount(
-      '/static',
-      koaStatic(path.resolve('dist/client'), {
-        maxAge: 2592000000, // 30 days
-      })
-    )
+    koaStatic(path.resolve('dist/client'), {
+      maxAge: 2592000000, // 30 days
+    })
   );
 
   if (process.env.NODE_ENV !== 'test') {
@@ -64,7 +61,7 @@ export async function createApp() {
       app.use(ctx => serverRender(ctx));
     } else {
       // $FlowFixMe
-      const stats = require(path.resolve('dist/client/stats.json'));
+      const stats = require(path.resolve('dist/client/static/stats.json'));
 
       app.use((ctx, next) => {
         ctx.stats = transformStats(stats.assetsByChunkName);
