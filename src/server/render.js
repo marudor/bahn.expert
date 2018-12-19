@@ -20,6 +20,7 @@ import JssProvider from 'react-jss/lib/JssProvider';
 import path from 'path';
 import React from 'react';
 import routes from 'client/routes';
+import serialize from 'fast-safe-stringify';
 
 function matchRoutes(routes, pathname, /* not public API*/ branch = []) {
   routes.forEach(route => {
@@ -80,6 +81,7 @@ export default async (ctx: any) => {
               <StaticRouter location={ctx.req.url} context={routeContext}>
                 <BahnhofsAbfahrten />
               </StaticRouter>
+              :
             </MuiThemeProvider>
           </JssProvider>
         </HelmetProvider>
@@ -100,7 +102,7 @@ export default async (ctx: any) => {
       header: helmetContext.helmet,
       cssBundles: ctx.stats.main.css,
       materialCss,
-      clientState: JSON.stringify(state),
+      clientState: serialize(state),
     });
     ctx.body += app;
     ctx.body += footerTemplate({

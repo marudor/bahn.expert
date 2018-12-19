@@ -5,6 +5,7 @@ import createAdmin from './admin';
 import errorHandler from './errorHandler';
 import generateSitemap from './sitemap';
 import http from 'http';
+import https from 'https';
 import Koa from 'koa';
 import KoaBodyparser from 'koa-bodyparser';
 import KoaCompress from 'koa-compress';
@@ -87,10 +88,30 @@ export async function createApp() {
 
 export default async () => {
   const app = await createApp();
-  const server = http.createServer(app.callback());
+
+  let server;
+
+  if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
+    const https = require('https');
+    const fs = require('fs');
+    // eslint-disable-next-line no-sync
+    const key = fs.readFileSync('./secrets/selfSignedSSL/server.key');
+    // eslint-disable-next-line no-sync
+    const cert = fs.readFileSync('./secrets/selfSignedSSL/server.crt');
+
+    server = https.createServer(
+      {
+        key,
+        cert,
+      },
+      app.callback()
+    );
+  } else {
+    server = http.createServer(app.callback());
+  }
   const port = process.env.WEB_PORT || 9042;
 
-  axios.defaults.baseURL = `http://localhost:${port}`;
+  axios.defaults.baseURL = `https://local.marudor.de:${port}`;
 
   server.listen(port);
   if (process.env.NODE_ENV !== 'production') {

@@ -6,6 +6,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const iltorb = require('iltorb');
 
 const isDev = process.env.NODE_ENV !== 'production';
 
@@ -52,7 +53,7 @@ const rules = [
   },
 ];
 
-if (isDev) {
+if (!isDev) {
   // rules.forEach(r => r.use && r.use.unshift({ loader: 'cache-loader' }));
 } else {
   optimization.minimizer.push(
@@ -62,6 +63,14 @@ if (isDev) {
     })
   );
   plugins.push(new CompressionPlugin());
+  plugins.push(
+    new CompressionPlugin({
+      filename: '[path].br',
+      algorithm(input, compressionOptions, callback) {
+        return iltorb.compress(input, callback);
+      },
+    })
+  );
   plugins.push(
     new StatsWriterPlugin({
       filename: 'stats.json', // Default
