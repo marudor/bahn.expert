@@ -86,6 +86,7 @@ export async function createApp() {
 
 export default async () => {
   const app = await createApp();
+  const port = process.env.WEB_PORT || 9042;
 
   let server;
 
@@ -104,12 +105,11 @@ export default async () => {
       },
       app.callback()
     );
+    axios.defaults.baseURL = `https://local.marudor.de:${port}`;
   } else {
+    axios.defaults.baseURL = `http://localhost:${port}`;
     server = http.createServer(app.callback());
   }
-  const port = process.env.WEB_PORT || 9042;
-
-  axios.defaults.baseURL = `https://local.marudor.de:${port}`;
 
   server.listen(port);
   if (process.env.NODE_ENV !== 'production') {
