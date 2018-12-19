@@ -53,7 +53,7 @@ const rules = [
   },
 ];
 
-if (!isDev) {
+if (isDev) {
   // rules.forEach(r => r.use && r.use.unshift({ loader: 'cache-loader' }));
 } else {
   optimization.minimizer.push(
