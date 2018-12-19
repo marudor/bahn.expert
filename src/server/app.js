@@ -5,10 +5,8 @@ import createAdmin from './admin';
 import errorHandler from './errorHandler';
 import generateSitemap from './sitemap';
 import http from 'http';
-import https from 'https';
 import Koa from 'koa';
 import KoaBodyparser from 'koa-bodyparser';
-import KoaCompress from 'koa-compress';
 import koaStatic from 'koa-static';
 import path from 'path';
 import setupRoutes from './Controller';
@@ -41,7 +39,7 @@ export async function createApp() {
 
   app.use(errorHandler);
   middlewares.forEach(m => app.use(m));
-  app.use(KoaCompress()).use(KoaBodyparser());
+  app.use(KoaBodyparser());
   setupRoutes(app);
   app.use(
     koaStatic(path.resolve('dist/client'), {
