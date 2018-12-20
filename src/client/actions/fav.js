@@ -1,5 +1,6 @@
 // @flow
 import { createAction } from 'redux-actions';
+import { setCookieOptions } from 'client/util';
 import type { Station } from 'types/abfahrten';
 import type { ThunkAction } from 'AppState';
 
@@ -16,7 +17,7 @@ export const fav: ThunkAction<Station> = station => (dispatch, getState) => {
   };
 
   dispatch(Actions.setFavs(favs));
-  state.config.cookies.set('favs', JSON.stringify(favs));
+  state.config.cookies.set('favs', favs, setCookieOptions);
 
   return Promise.resolve();
 };
@@ -27,7 +28,7 @@ export const unfav: ThunkAction<Station> = station => (dispatch, getState) => {
 
   delete favs[station.id];
   dispatch(Actions.setFavs(favs));
-  state.config.cookies.set('favs', JSON.stringify(favs));
+  state.config.cookies.set('favs', favs, setCookieOptions);
 
   return Promise.resolve();
 };

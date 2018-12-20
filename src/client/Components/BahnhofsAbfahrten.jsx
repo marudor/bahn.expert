@@ -3,8 +3,10 @@ import './BahnhofsAbfahrten.scss';
 import React from 'react';
 import SettingsModal from './LazySettingsModal';
 // import Privacy from './Privacy';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import routes from '../routes';
+import { renderRoutes } from 'react-router-config';
+import Header from './Header';
 
 class BahnhofsAbfahrten extends React.Component<{||}> {
   componentDidMount() {
@@ -17,10 +19,9 @@ class BahnhofsAbfahrten extends React.Component<{||}> {
   render() {
     return (
       <div className="BahnhofsAbfahrten">
+        <Header />
         <SettingsModal />
-        {routes.map((r, i) => (
-          <Route key={i} {...r} />
-        ))}
+        {renderRoutes(routes)}
       </div>
     );
   }

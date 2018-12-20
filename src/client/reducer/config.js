@@ -1,6 +1,7 @@
 // @flow
 import { Actions } from 'client/actions/config';
 import { type ActionType, handleActions } from 'redux-actions';
+import { setCookieOptions } from 'client/util';
 import Cookies from 'universal-cookie';
 
 export type State = {|
@@ -49,7 +50,7 @@ export default handleActions<State, *>(
         },
       };
 
-      state.cookies.set('config', JSON.stringify(newState.config));
+      state.cookies.set('config', newState.config, setCookieOptions);
 
       return newState;
     },

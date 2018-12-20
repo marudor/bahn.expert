@@ -132,6 +132,7 @@
     "react-jss": "^8.6.1",
     "react-redux": "^6.0.0",
     "react-router": "^4.3.1",
+    "react-router-config": "^4.4.0-beta.6",
     "react-router-dom": "^4.3.1",
     "react-select": "^2.1.2",
     "redux": "^4.0.1",

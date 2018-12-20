@@ -1,5 +1,6 @@
 // @flow
 import { createAction } from 'redux-actions';
+import { setCookieOptions } from 'client/util';
 import axios from 'axios';
 import type { Abfahrt, Station } from 'types/abfahrten';
 import type { ThunkAction } from 'AppState';
@@ -36,12 +37,9 @@ export const getAbfahrtenByString: ThunkAction<?string> = stationString => async
 
       return dispatch(Actions.gotAbfahrten({ station: stations[0], abfahrten }));
     }
-    dispatch(
-      Actions.gotAbfahrten({
-        station: null,
-        abfahrten: [],
-      })
-    );
+    throw {
+      type: '404',
+    };
   } catch (e) {
     dispatch(Actions.gotAbfahrtenError(e));
   }
@@ -53,7 +51,7 @@ export const setDetail: ThunkAction<?string> = selectedDetail => (dispatch, getS
   const detail: ?string = state.abfahrten.selectedDetail === selectedDetail ? null : selectedDetail;
 
   if (detail) {
-    cookies.set('selectedDetail', detail);
+    cookies.set('selectedDetail', detail, setCookieOptions);
   } else {
     cookies.remove('selectedDetail');
   }

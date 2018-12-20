@@ -3,7 +3,7 @@ import { setCookies } from 'client/actions/config';
 // $FlowFixMe
 import { createGenerateClassName, MuiThemeProvider } from '@material-ui/core/styles';
 import { HelmetProvider } from 'react-helmet-async';
-import { matchPath, Router } from 'react-router';
+import { matchRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
 import { renderStylesToString } from 'emotion-server';
 import { renderToString } from 'react-dom/server';
@@ -21,29 +21,6 @@ import path from 'path';
 import React from 'react';
 import routes from 'client/routes';
 import serialize from 'fast-safe-stringify';
-
-function matchRoutes(routes, pathname, /* not public API*/ branch = []) {
-  routes.forEach(route => {
-    // eslint-disable-next-line no-nested-ternary
-    const match = route.path
-      ? matchPath(pathname, route)
-      : branch.length
-      ? branch[branch.length - 1].match // use parent match
-      : // $FlowFixMe
-        Router.computeRootMatch(pathname); // use default "root" match
-
-    if (match) {
-      branch.push({ route, match });
-
-      // $FlowFixMe
-      if (route.routes) {
-        matchRoutes(route.routes, pathname, branch);
-      }
-    }
-  });
-
-  return branch;
-}
 
 // eslint-disable-next-line
 const headerEjs = fs.readFileSync(path.resolve(__dirname, './views/header.ejs'), 'utf8');
@@ -66,8 +43,7 @@ export default async (ctx: any) => {
   await Promise.all(
     matchRoutes(routes, ctx.req.url).map(({ route, match }) =>
       route.component.loadData
-        ? // $FlowFixMe
-          route.component.loadData(store, match).catch(() => Promise.resolve())
+        ? route.component.loadData(store, match).catch(() => Promise.resolve())
         : Promise.resolve()
     )
   );
@@ -81,7 +57,6 @@ export default async (ctx: any) => {
               <StaticRouter location={ctx.req.url} context={routeContext}>
                 <BahnhofsAbfahrten />
               </StaticRouter>
-              :
             </MuiThemeProvider>
           </JssProvider>
         </HelmetProvider>
@@ -92,6 +67,9 @@ export default async (ctx: any) => {
   if (routeContext.url) {
     ctx.redirect(routeContext.url);
   } else {
+    if (routeContext.status) {
+      ctx.status = routeContext.status;
+    }
     const state = store.getState();
 
     delete state.config.cookies;
