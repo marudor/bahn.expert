@@ -90,7 +90,7 @@ export default async () => {
 
   let server;
 
-  if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
+  if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test' && !process.env.NO_SSL) {
     const https = require('https');
     const fs = require('fs');
     // eslint-disable-next-line no-sync

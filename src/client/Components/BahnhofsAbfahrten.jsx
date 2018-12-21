@@ -3,10 +3,9 @@ import './BahnhofsAbfahrten.scss';
 import React from 'react';
 import SettingsModal from './LazySettingsModal';
 // import Privacy from './Privacy';
-import { Route, Switch } from 'react-router-dom';
-import routes from '../routes';
 import { renderRoutes } from 'react-router-config';
 import Header from './Header';
+import routes from '../routes';
 
 class BahnhofsAbfahrten extends React.Component<{||}> {
   componentDidMount() {

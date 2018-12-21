@@ -113,7 +113,7 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
 
     return (
       <Loading isLoading={loading}>
-        <div className="AbfahrtenList">
+        <main className="AbfahrtenList">
           {error ? (
             <>
               <div className="FavEntry">{getErrorText(error, staticContext)}</div>
@@ -123,7 +123,7 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
           ) : (
             abfahrten.map(a => a && <Abfahrt abfahrt={a} detail={selectedDetail === a.id} key={a.id} />)
           )}
-        </div>
+        </main>
       </Loading>
     );
   }

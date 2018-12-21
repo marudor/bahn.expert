@@ -45,11 +45,11 @@ class HeaderButtons extends React.PureComponent<Props> {
 
     return [
       Boolean(currentStation?.id) && (
-        <IconButton key="1" onClick={this.toggleFav} color="inherit">
+        <IconButton aria-label={isFaved ? 'unfav' : 'fav'} key="1" onClick={this.toggleFav} color="inherit">
           {isFaved ? <ToggleStar /> : <ToggleStarBorder />}
         </IconButton>
       ),
-      <IconButton key="2" onClick={this.openSettings} color="inherit">
+      <IconButton aria-label="settings" key="2" onClick={this.openSettings} color="inherit">
         <Settings />
       </IconButton>,
     ];

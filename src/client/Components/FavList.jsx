@@ -28,7 +28,7 @@ class FavList extends React.PureComponent<Props> {
     const { favs } = this.props;
 
     return (
-      <div className="FavList">
+      <main className="FavList">
         {favs.length ? (
           favs.map(fav => fav && <FavEntry key={fav.id} fav={fav} />)
         ) : (
@@ -38,7 +38,7 @@ class FavList extends React.PureComponent<Props> {
             <MostUsed />
           </>
         )}
-      </div>
+      </main>
     );
   }
 }

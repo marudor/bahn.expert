@@ -1,7 +1,7 @@
 // @flow
-import { Actions, getStationsFromAPI } from 'client/actions/abfahrten';
 import { connect } from 'react-redux';
 import { type ContextRouter, withRouter } from 'react-router-dom';
+import { getStationsFromAPI } from 'client/actions/abfahrten';
 import ActionHome from '@material-ui/icons/Home';
 import AppBar from '@material-ui/core/AppBar';
 import debounce from 'debounce-promise';
@@ -29,6 +29,10 @@ type Props = {|
 |};
 
 const selectStyles = {
+  placeholder: base => ({
+    ...base,
+    color: 'hsl(0, 0%, 45%)',
+  }),
   option: (base, state) => ({
     ...base,
     background: state.isFocused ? 'lightgrey' : 'white',
@@ -39,6 +43,36 @@ const selectStyles = {
     position: 'relative',
   }),
 };
+
+function getMetaDescription(currentStation) {
+  let content = 'Bahnhofs Abfahrten';
+
+  if (currentStation) {
+    content += ` ${currentStation.title}`;
+  }
+
+  return <meta name="Description" content={content} />;
+}
+
+function getTitle(currentStation) {
+  let title = 'Bahnhofs Abfahrten';
+
+  if (currentStation) {
+    title = `${currentStation.title} - ${title}`;
+  }
+
+  return <title>{title}</title>;
+}
+
+function getMetaKeywords(currentStation) {
+  let keywords = 'Bahnhofs Abfahrten, Bahn, Abfahrten, Bahnhof, Verspätung, Pünktlich';
+
+  if (currentStation) {
+    keywords = `${currentStation.title}, ${keywords}`;
+  }
+
+  return <meta name="keywords" content={keywords} />;
+}
 
 const debouncedGetStationFromAPI = debounce(getStationsFromAPI, 500);
 
@@ -59,23 +93,20 @@ class Header extends React.Component<Props> {
   render() {
     const { currentStation } = this.props;
 
-    let title = 'Bahnhofs Abfahrten';
-
-    if (currentStation) {
-      title = `${currentStation.title} - ${title}`;
-    }
-
     return (
       <>
         <Helmet>
-          <title>{title}</title>
+          {getTitle(currentStation)}
+          {getMetaDescription(currentStation)}
+          {getMetaKeywords(currentStation)}
         </Helmet>
         <AppBar position="fixed">
-          <Toolbar>
-            <IconButton onClick={this.toRoot} color="inherit">
+          <Toolbar disableGutters>
+            <IconButton aria-label="Home" onClick={this.toRoot} color="inherit">
               <ActionHome color="inherit" />
             </IconButton>
             <Select
+              aria-label="Suche nach Bahnhof"
               styles={selectStyles}
               loadOptions={this.loadOptions}
               getOptionLabel={this.getOptionLabel}
