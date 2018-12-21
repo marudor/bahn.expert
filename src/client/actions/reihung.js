@@ -12,7 +12,7 @@ export const Actions = {
   gotReihung: createAction<string, { id: string, data: ?Reihung }>('GOT_REIHUNG'),
 };
 
-export const getReihung: ThunkAction<Abfahrt> = ({ scheduledDeparture, trainId }) => async dispatch => {
+export const getReihung: ThunkAction<Abfahrt> = ({ scheduledDeparture, trainId, currentStation }) => async dispatch => {
   try {
     if (!scheduledDeparture) {
       throw new Error();
@@ -23,7 +23,7 @@ export const getReihung: ThunkAction<Abfahrt> = ({ scheduledDeparture, trainId }
 
     dispatch(
       Actions.gotReihung({
-        id: String(trainId),
+        id: trainId + currentStation,
         data: reihung.data.istformation,
       })
     );

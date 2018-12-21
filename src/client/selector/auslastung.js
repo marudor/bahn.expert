@@ -7,6 +7,7 @@ import type { AuslastungEntry } from 'types/auslastung';
 export type AuslastungProps = { abfahrt: Abfahrt };
 export const getAuslastung = (state: AppState) => state.auslastung.auslastung;
 export const getTrainIdFromProps = (_: AppState, props: AuslastungProps) => props.abfahrt.trainId;
+export const getCurrentStationFromProps = (_: AppState, props: AuslastungProps) => props.abfahrt.currentStation;
 export const getStation = (state: AppState): ?Station => state.abfahrten.currentStation;
 
 export const getAuslastungForId = createSelector<AppState, AuslastungProps, ?(AuslastungEntry[]), Object, string>(

@@ -1,5 +1,5 @@
 // @flow
-import { type AuslastungProps, getTrainIdFromProps } from './auslastung';
+import { type AuslastungProps, getCurrentStationFromProps, getTrainIdFromProps } from './auslastung';
 import { createSelector } from 'reselect';
 import type { AppState } from 'AppState';
 import type { Reihung } from 'types/reihung';
@@ -11,9 +11,11 @@ export const getReihungForId = createSelector<
   AuslastungProps,
   ?Reihung,
   $PropertyType<$PropertyType<AppState, 'reihung'>, 'reihung'>,
+  string,
   string
 >(
   getReihung,
   getTrainIdFromProps,
-  (reihung, trainId) => reihung[String(trainId)]
+  getCurrentStationFromProps,
+  (reihung, trainId, currentStation) => reihung[trainId + currentStation]
 );

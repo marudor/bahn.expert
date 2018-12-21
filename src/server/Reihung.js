@@ -83,7 +83,7 @@ function fahrtrichtung(fahrzeuge: Fahrzeug[]) {
   const last = fahrzeuge[fahrzeuge.length - 1];
 
   // "Algorithmus" so bei der DB im Code gefunden
-  return last.positionamhalt.startprozent > first.positionamhalt.startprozent;
+  return Number.parseInt(last.positionamhalt.startprozent, 10) > Number.parseInt(first.positionamhalt.startprozent, 10);
 }
 
 // https://www.apps-bahn.de/wr/wagenreihung/1.0/6/201802021930
