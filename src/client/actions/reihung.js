@@ -28,6 +28,6 @@ export const getReihung: ThunkAction<Abfahrt> = ({ scheduledDeparture, trainId, 
       })
     );
   } catch (e) {
-    dispatch(Actions.gotReihung({ id: String(trainId), data: null }));
+    dispatch(Actions.gotReihung({ id: trainId + currentStation, data: null }));
   }
 };

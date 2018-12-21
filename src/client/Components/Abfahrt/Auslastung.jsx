@@ -41,7 +41,7 @@ class Auslastung extends React.PureComponent<Props> {
   componentDidMount() {
     const { auslastung, getAuslastung, abfahrt } = this.props;
 
-    if (!auslastung) {
+    if (!auslastung && !abfahrt.isCancelled) {
       getAuslastung(abfahrt.trainId);
     }
   }
@@ -52,9 +52,9 @@ class Auslastung extends React.PureComponent<Props> {
   };
 
   render() {
-    const { auslastung } = this.props;
+    const { auslastung, abfahrt } = this.props;
 
-    if (auslastung === null) {
+    if (auslastung === null || abfahrt.isCancelled) {
       return null;
     }
 

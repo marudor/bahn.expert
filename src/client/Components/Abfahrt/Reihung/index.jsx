@@ -35,15 +35,15 @@ class ReihungComp extends React.PureComponent<Props> {
   componentDidMount() {
     const { reihung, getReihung, abfahrt } = this.props;
 
-    if (!reihung) {
+    if (!reihung && !abfahrt.isCancelled) {
       getReihung(abfahrt);
     }
   }
 
   render() {
-    const { reihung, useZoom } = this.props;
+    const { reihung, useZoom, abfahrt } = this.props;
 
-    if (reihung === null) {
+    if (reihung === null || abfahrt.isCancelled) {
       return null;
     }
     if (reihung === undefined) {
