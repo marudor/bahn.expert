@@ -50,7 +50,11 @@ export async function createApp() {
   app.use((ctx, next) => {
     if (ctx.req.url === '/sitemap.xml') {
       ctx.body = generateSitemap();
-      ctx.set('Content-Type', 'text/xml; charset=utf-8');
+      if (ctx.body) {
+        ctx.set('Content-Type', 'text/xml; charset=utf-8');
+      } else {
+        ctx.status = 404;
+      }
     } else {
       return next();
     }
