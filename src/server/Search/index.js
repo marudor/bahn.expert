@@ -39,7 +39,13 @@ export default async (searchTerm: string, type: ?string) => {
   try {
     return await getSearchMethod(type)(searchTerm);
   } catch (e) {
-    logger.error('search failed, falling back to default', {
+    const isDefault = !type || type === 'favendo';
+    let message = 'search failed';
+
+    if (!isDefault) {
+      message += ', falling back to default';
+    }
+    logger.error(message, {
       searchMethod: type,
       error: {
         statusText: e.response?.statusText,
@@ -47,6 +53,10 @@ export default async (searchTerm: string, type: ?string) => {
         status: e.response?.status,
       },
     });
+
+    if (isDefault) {
+      throw e;
+    }
 
     return getSearchMethod('favendo')(searchTerm);
   }

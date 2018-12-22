@@ -6,7 +6,6 @@ import { type ContextRouter, withRouter } from 'react-router-dom';
 import { Redirect } from 'react-router';
 import Abfahrt from './Abfahrt';
 import Loading from './Loading';
-import MostUsed from './MostUsed';
 import React from 'react';
 import type { AppState } from 'AppState';
 
@@ -36,26 +35,6 @@ type State = {
   loading: boolean,
 };
 
-function getErrorText(error: any, staticContext) {
-  switch (error.type) {
-    case 'redirect':
-      return <Redirect to={error.redirect} />;
-    case '404':
-      if (staticContext) {
-        // $FlowFixMe
-        staticContext.status = 404;
-      }
-
-      return 'Die Abfahrt existiert nicht';
-    default:
-      if (error.response?.data?.error) {
-        return error.response.data.error;
-      }
-
-      return 'Unbekannter Fehler';
-  }
-}
-
 class AbfahrtenList extends React.PureComponent<Props, State> {
   static loadData = (store, match) => {
     store.dispatch(
@@ -68,7 +47,7 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
     return store.dispatch(getAbfahrtenByString(match.params.station));
   };
   state: State = {
-    loading: !this.props.abfahrten,
+    loading: !this.props.abfahrten || !this.props.abfahrten.length,
   };
   componentDidMount() {
     if (!this.props.currentStation) {
@@ -109,20 +88,14 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
   };
   render() {
     const { loading } = this.state;
-    const { abfahrten, selectedDetail, error, staticContext } = this.props;
+    const { abfahrten, selectedDetail, error } = this.props;
 
     return (
       <Loading isLoading={loading}>
         <main className="AbfahrtenList">
-          {error ? (
-            <>
-              <div className="FavEntry">{getErrorText(error, staticContext)}</div>
-              <div className="FavEntry">Versuch einen der folgenden</div>
-              <MostUsed />
-            </>
-          ) : (
-            abfahrten.map(a => a && <Abfahrt abfahrt={a} detail={selectedDetail === a.id} key={a.id} />)
-          )}
+          {error
+            ? !loading && <Redirect to="/" />
+            : abfahrten.map(a => a && <Abfahrt abfahrt={a} detail={selectedDetail === a.id} key={a.id} />)}
         </main>
       </Loading>
     );

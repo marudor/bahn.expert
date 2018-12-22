@@ -1,4 +1,6 @@
 // @ƒlow
+import serialize from 'fast-safe-stringify';
+
 export default async (ctx, next) => {
   try {
     // eslint-disable-next-line callback-return
@@ -7,11 +9,11 @@ export default async (ctx, next) => {
     if (e.response) {
       ctx.body = {
         statusText: e.response.statusText,
-        data: e.response.data,
+        data: serialize(e.response.data),
       };
       ctx.status = e.response.status || 500;
     } else {
-      ctx.body = e;
+      ctx.body = serialize(e);
       ctx.status = 500;
     }
   }

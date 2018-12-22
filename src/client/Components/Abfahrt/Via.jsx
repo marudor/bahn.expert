@@ -8,6 +8,7 @@ import React from 'react';
 import type { AppState } from 'AppState';
 
 function getDetailedInfo(abfahrt: Abfahrt, showSupersededMessages: boolean) {
+  const today = new Date().getDate();
   let messages = [...abfahrt.messages.delay, ...abfahrt.messages.qos];
 
   if (!showSupersededMessages) {
@@ -19,16 +20,20 @@ function getDetailedInfo(abfahrt: Abfahrt, showSupersededMessages: boolean) {
 
     return (
       <div key="i" className={cc('Via__info', { cancelled: abfahrt.isCancelled })}>
-        {sorted.map((m, i) => (
-          <div
-            key={i}
-            className={cc({
-              cancelled: m.superseded,
-            })}
-          >
-            {format(m.timestamp, 'HH:mm')}: {m.text}
-          </div>
-        ))}
+        {sorted.map((m, i) => {
+          const ts = new Date(m.timestamp);
+
+          return (
+            <div
+              key={i}
+              className={cc({
+                cancelled: m.superseded,
+              })}
+            >
+              {format(ts, ts.getDate() === today ? 'HH:mm' : 'dd.MM HH:mm')}: {m.text}
+            </div>
+          );
+        })}
       </div>
     );
   }
