@@ -68,7 +68,13 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
       const detailDom = document.getElementById(selectedDetail);
 
       if (detailDom) {
-        detailDom.scrollIntoView(false);
+        const scrollIntoView = () => setTimeout(() => detailDom.scrollIntoView(false));
+
+        if (document.readyState === 'complete') {
+          scrollIntoView();
+        } else {
+          window.addEventListener('load', scrollIntoView);
+        }
       }
     }
   };
