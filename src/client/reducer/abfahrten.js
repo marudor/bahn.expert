@@ -5,14 +5,14 @@ import type { Abfahrt, Station } from 'types/abfahrten';
 
 export type State = {
   selectedDetail: ?string,
-  abfahrten: Array<Abfahrt>,
+  abfahrten: ?Array<Abfahrt>,
   currentStation: ?Station,
   error: ?Error,
 };
 
 const defaultState = {
   selectedDetail: localStorage.getItem('selectedDetail'),
-  abfahrten: [],
+  abfahrten: null,
   currentStation: null,
   error: null,
 };
@@ -27,7 +27,7 @@ export default handleActions<State, *>(
     }),
     [String(Actions.gotAbfahrtenError)]: (state: State, { payload }: ActionType<typeof Actions.gotAbfahrtenError>) => ({
       ...state,
-      abfahrten: [],
+      abfahrten: null,
       error: payload,
     }),
     [String(Actions.setDetail)]: (state: State, { payload }: ActionType<typeof Actions.setDetail>) => ({
@@ -37,7 +37,7 @@ export default handleActions<State, *>(
     [String(Actions.setCurrentStation)]: (state: State, { payload }: ActionType<typeof Actions.setCurrentStation>) => ({
       ...state,
       currentStation: payload,
-      abfahrten: [],
+      abfahrten: null,
     }),
   },
   defaultState

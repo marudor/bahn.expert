@@ -9,12 +9,21 @@ import Loading from './Loading';
 import React from 'react';
 import type { AppState } from 'AppState';
 
-type StateProps = {|
+type InnerAbfahrtenProps = {|
   abfahrten: $PropertyType<$PropertyType<AppState, 'abfahrten'>, 'abfahrten'>,
-  currentStation: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'currentStation'>,
   selectedDetail: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'selectedDetail'>,
+|};
+type StateProps = {|
+  ...InnerAbfahrtenProps,
+  currentStation: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'currentStation'>,
   error: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'error'>,
 |};
+const InnerAbfahrten = ({ abfahrten, selectedDetail }: InnerAbfahrtenProps) =>
+  abfahrten && abfahrten.length ? (
+    abfahrten.map(a => a && <Abfahrt abfahrt={a} detail={selectedDetail === a.id} key={a.id} />)
+  ) : (
+    <div className="FavEntry">Leider keine Abhfarten in nächster Zeit</div>
+  );
 
 type DispatchProps = {|
   getAbfahrtenByString: typeof getAbfahrtenByString,
@@ -47,7 +56,7 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
     return store.dispatch(getAbfahrtenByString(match.params.station));
   };
   state: State = {
-    loading: !this.props.abfahrten || !this.props.abfahrten.length,
+    loading: !this.props.abfahrten,
   };
   componentDidMount() {
     if (!this.props.currentStation) {
@@ -99,9 +108,11 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
     return (
       <Loading isLoading={loading}>
         <main className="AbfahrtenList">
-          {error
-            ? !loading && <Redirect to="/" />
-            : abfahrten.map(a => a && <Abfahrt abfahrt={a} detail={selectedDetail === a.id} key={a.id} />)}
+          {error ? (
+            !loading && <Redirect to="/" />
+          ) : (
+            <InnerAbfahrten abfahrten={abfahrten} selectedDetail={selectedDetail} />
+          )}
         </main>
       </Loading>
     );
