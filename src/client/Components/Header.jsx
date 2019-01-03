@@ -6,7 +6,6 @@ import ActionHome from '@material-ui/icons/Home';
 import AppBar from '@material-ui/core/AppBar';
 import debounce from 'debounce-promise';
 import HeaderButtons from './HeaderButtons';
-import Helmet from 'react-helmet-async';
 import IconButton from '@material-ui/core/IconButton';
 import React from 'react';
 import Select from 'react-select/lib/Async';
@@ -44,36 +43,6 @@ const selectStyles = {
   }),
 };
 
-function getMetaDescription(currentStation) {
-  let content = 'Bahnhofs Abfahrten';
-
-  if (currentStation) {
-    content += ` ${currentStation.title}`;
-  }
-
-  return <meta name="Description" content={content} />;
-}
-
-function getTitle(currentStation) {
-  let title = 'Bahnhofs Abfahrten';
-
-  if (currentStation) {
-    title = `${currentStation.title} - ${title}`;
-  }
-
-  return <title>{title}</title>;
-}
-
-function getMetaKeywords(currentStation) {
-  let keywords = 'Bahnhofs Abfahrten, Bahn, Abfahrten, Bahnhof, Verspätung, Pünktlich';
-
-  if (currentStation) {
-    keywords = `${currentStation.title}, ${keywords}`;
-  }
-
-  return <meta name="keywords" content={keywords} />;
-}
-
 const debouncedGetStationFromAPI = debounce(getStationsFromAPI, 500);
 
 class Header extends React.Component<Props> {
@@ -84,9 +53,6 @@ class Header extends React.Component<Props> {
     this.props.history.push(`/${encodeURIComponent(station.title)}`);
   };
   toRoot = () => this.props.history.push('/');
-  filterOption(option: any) {
-    return option;
-  }
   getOptionLabel = (station: Station) => station.title;
   getOptionValue = (station: Station) => station.id;
   loadOptions = (term: string) => debouncedGetStationFromAPI(term, this.props.searchType);
@@ -95,11 +61,6 @@ class Header extends React.Component<Props> {
 
     return (
       <>
-        <Helmet>
-          {getTitle(currentStation)}
-          {getMetaDescription(currentStation)}
-          {getMetaKeywords(currentStation)}
-        </Helmet>
         <AppBar position="fixed">
           <Toolbar disableGutters>
             <IconButton aria-label="Home" onClick={this.toRoot} color="inherit">

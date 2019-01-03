@@ -12,6 +12,7 @@ import BahnhofsAbfahrten from './Components/BahnhofsAbfahrten';
 import createStore from './createStore';
 import createTheme from './createTheme';
 import JssProvider from 'react-jss/lib/JssProvider';
+import MetaHeader from './Components/MetaHeader';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -25,17 +26,18 @@ const theme = createTheme();
 const generateClassName = createGenerateClassName();
 
 if (container) {
-  ReactDOM.render(
+  ReactDOM.hydrate(
     <Provider store={createStore()}>
-      <HelmetProvider context={{}}>
-        <JssProvider generateClassName={generateClassName}>
-          <MuiThemeProvider theme={theme}>
-            <BrowserRouter>
-              <BahnhofsAbfahrten />
-            </BrowserRouter>
-          </MuiThemeProvider>
-        </JssProvider>
-      </HelmetProvider>
+      <JssProvider generateClassName={generateClassName}>
+        <MuiThemeProvider theme={theme}>
+          <HelmetProvider context={{}}>
+            <MetaHeader />
+          </HelmetProvider>
+          <BrowserRouter>
+            <BahnhofsAbfahrten />
+          </BrowserRouter>
+        </MuiThemeProvider>
+      </JssProvider>
     </Provider>,
     container
   );

@@ -113,8 +113,6 @@ export default class Timetable {
 
     const timetables: any[] = Object.values(this.timetable);
 
-    console.log(this.timetable);
-
     timetables
       .filter(t => !this.realtimeIds.includes(t.id))
       .forEach(t => {
