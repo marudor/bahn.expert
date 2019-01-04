@@ -27,7 +27,7 @@ export default handleActions<State, *>(
     }),
     [String(Actions.gotAbfahrtenError)]: (state: State, { payload }: ActionType<typeof Actions.gotAbfahrtenError>) => ({
       ...state,
-      abfahrten: null,
+      abfahrten: [],
       error: payload,
     }),
     [String(Actions.setDetail)]: (state: State, { payload }: ActionType<typeof Actions.setDetail>) => ({

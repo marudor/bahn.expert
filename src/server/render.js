@@ -43,9 +43,7 @@ export default async (ctx: any) => {
 
   await Promise.all(
     matchRoutes(routes, ctx.req.url).map(({ route, match }) =>
-      route.component.loadData
-        ? route.component.loadData(store, match).catch(() => Promise.resolve())
-        : Promise.resolve()
+      route.component.loadData ? route.component.loadData(store, match) : Promise.resolve()
     )
   );
 
