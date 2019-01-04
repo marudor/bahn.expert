@@ -6,7 +6,6 @@ import {
   setShowSupersededMessages,
   setTime,
   setTraewelling,
-  setUseDbf,
   setZoomReihung,
 } from 'client/actions/config';
 import { connect } from 'react-redux';
@@ -26,7 +25,6 @@ type StateProps = {|
   showSupersededMessagesConfig: boolean,
   timeConfig: boolean,
   traewellingConfig: boolean,
-  useDbfConfig: boolean,
   zoomReihungConfig: boolean,
 |};
 
@@ -36,7 +34,6 @@ type DispatchProps = {|
   setShowSupersededMessages: typeof setShowSupersededMessages,
   setTime: typeof setTime,
   setTraewelling: typeof setTraewelling,
-  setUseDbf: typeof setUseDbf,
   setZoomReihung: typeof setZoomReihung,
 |};
 
@@ -57,9 +54,7 @@ class SettingsModal extends React.PureComponent<Props> {
       traewellingConfig,
       zoomReihungConfig,
       showSupersededMessagesConfig,
-      useDbfConfig,
       setShowSupersededMessages,
-      setUseDbf,
       setSearchType,
       setZoomReihung,
       setTraewelling,
@@ -72,24 +67,14 @@ class SettingsModal extends React.PureComponent<Props> {
         <DialogContent className="SettingsModal">
           <FormControlLabel
             control={
-              <Switch checked={useDbfConfig} value="useDbfConfig" onChange={this.handleCheckedChange(setUseDbf)} />
-            }
-            label="Nutze dbf für Abfahrten (deprecated)"
-          />
-          {!useDbfConfig && (
-            <>
-              <FormControlLabel
-                control={
-                  <Switch
-                    checked={showSupersededMessagesConfig}
-                    value="showSupersededMessagesConfig"
-                    onChange={this.handleCheckedChange(setShowSupersededMessages)}
-                  />
-                }
-                label="Obsolete Messages"
+              <Switch
+                checked={showSupersededMessagesConfig}
+                value="showSupersededMessagesConfig"
+                onChange={this.handleCheckedChange(setShowSupersededMessages)}
               />
-            </>
-          )}
+            }
+            label="Obsolete Messages"
+          />
           <FormControlLabel
             control={
               <Switch
@@ -142,7 +127,6 @@ export default connect<AppState, Function, {||}, StateProps, DispatchProps>(
     showSupersededMessagesConfig: state.config.config.showSupersededMessages,
     timeConfig: state.config.config.time,
     traewellingConfig: state.config.config.traewelling,
-    useDbfConfig: state.config.config.useDbf,
     zoomReihungConfig: state.config.config.zoomReihung,
   }),
   {
@@ -152,6 +136,5 @@ export default connect<AppState, Function, {||}, StateProps, DispatchProps>(
     setTraewelling,
     setZoomReihung,
     setShowSupersededMessages,
-    setUseDbf,
   }
 )(SettingsModal);

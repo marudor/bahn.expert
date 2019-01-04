@@ -12,7 +12,6 @@ import BahnhofsAbfahrten from './Components/BahnhofsAbfahrten';
 import createStore from './createStore';
 import createTheme from './createTheme';
 import JssProvider from 'react-jss/lib/JssProvider';
-import MetaHeader from './Components/MetaHeader';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -31,11 +30,10 @@ if (container) {
       <JssProvider generateClassName={generateClassName}>
         <MuiThemeProvider theme={theme}>
           <HelmetProvider context={{}}>
-            <MetaHeader />
+            <BrowserRouter>
+              <BahnhofsAbfahrten />
+            </BrowserRouter>
           </HelmetProvider>
-          <BrowserRouter>
-            <BahnhofsAbfahrten />
-          </BrowserRouter>
         </MuiThemeProvider>
       </JssProvider>
     </Provider>,

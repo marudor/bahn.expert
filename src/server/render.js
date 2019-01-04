@@ -5,8 +5,8 @@ import { createGenerateClassName, MuiThemeProvider } from '@material-ui/core/sty
 import { HelmetProvider } from 'react-helmet-async';
 import { matchRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
-import { renderStylesToNodeStream } from 'emotion-server';
-import { renderToNodeStream, renderToString } from 'react-dom/server';
+import { renderStylesToString } from 'emotion-server';
+import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 // $FlowFixMe
 import { SheetsRegistry } from 'jss';
@@ -17,7 +17,6 @@ import createTheme from 'client/createTheme';
 import ejs from 'ejs';
 import fs from 'fs';
 import JssProvider from 'react-jss/lib/JssProvider';
-import MetaHeader from 'client/Components/MetaHeader';
 import path from 'path';
 import React from 'react';
 import routes from 'client/routes';
@@ -47,27 +46,21 @@ export default async (ctx: any) => {
     )
   );
 
-  renderToString(
-    <Provider store={store}>
-      <HelmetProvider context={helmetContext}>
-        <MetaHeader />
-      </HelmetProvider>
-    </Provider>
-  );
-
   const App = (
     <Provider store={store}>
       <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
         <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
-          <StaticRouter location={ctx.req.url} context={routeContext}>
-            <BahnhofsAbfahrten />
-          </StaticRouter>
+          <HelmetProvider context={helmetContext}>
+            <StaticRouter location={ctx.req.url} context={routeContext}>
+              <BahnhofsAbfahrten />
+            </StaticRouter>
+          </HelmetProvider>
         </MuiThemeProvider>
       </JssProvider>
     </Provider>
   );
 
-  const stream = renderToNodeStream(App).pipe(renderStylesToNodeStream());
+  const app = renderStylesToString(renderToString(App));
 
   if (routeContext.url) {
     ctx.redirect(routeContext.url);
@@ -79,37 +72,17 @@ export default async (ctx: any) => {
 
     delete state.config.cookies;
 
-    ctx.set('Content-Type', 'text/html');
-    ctx.body = ctx.res;
-
-    ctx.res.write('<!DOCTYPE html>');
-    ctx.res.write(
-      headerTemplate({
-        header: helmetContext.helmet,
-        cssBundles: ctx.stats.main.css,
-        clientState: serialize(state),
-      })
-    );
-    ctx.res.markupHeaderSend = true;
-
-    await new Promise((resolve, reject) => {
-      stream.pipe(
-        ctx.body,
-        { end: false }
-      );
-      stream.on('end', resolve);
-      stream.on('error', reject);
+    ctx.body = headerTemplate({
+      header: helmetContext.helmet,
+      cssBundles: ctx.stats.main.css,
+      clientState: serialize(state),
     });
-    // ctx.res.write(app);
-
+    ctx.body += app;
     const materialCss = sheetsRegistry.toString();
 
-    ctx.res.write(
-      footerTemplate({
-        jsBundles: ctx.stats.main.js,
-        materialCss,
-      })
-    );
-    ctx.res.end();
+    ctx.body += footerTemplate({
+      jsBundles: ctx.stats.main.js,
+      materialCss,
+    });
   }
 };

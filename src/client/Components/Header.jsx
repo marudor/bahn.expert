@@ -6,12 +6,43 @@ import ActionHome from '@material-ui/icons/Home';
 import AppBar from '@material-ui/core/AppBar';
 import debounce from 'debounce-promise';
 import HeaderButtons from './HeaderButtons';
+import Helmet from 'react-helmet-async';
 import IconButton from '@material-ui/core/IconButton';
 import React from 'react';
 import Select from 'react-select/lib/Async';
 import Toolbar from '@material-ui/core/Toolbar';
 import type { AppState } from 'AppState';
 import type { Station } from 'types/abfahrten';
+
+function getMetaDescription(currentStation) {
+  let content = 'Bahnhofs Abfahrten';
+
+  if (currentStation) {
+    content += ` ${currentStation.title}`;
+  }
+
+  return <meta name="Description" content={content} />;
+}
+
+function getTitle(currentStation) {
+  let title = 'Bahnhofs Abfahrten';
+
+  if (currentStation) {
+    title = `${currentStation.title} - ${title}`;
+  }
+
+  return <title>{title}</title>;
+}
+
+function getMetaKeywords(currentStation) {
+  let keywords = 'Bahnhofs Abfahrten, Bahn, Abfahrten, Bahnhof, Verspätung, Pünktlich';
+
+  if (currentStation) {
+    keywords = `${currentStation.title}, ${keywords}`;
+  }
+
+  return <meta name="keywords" content={keywords} />;
+}
 
 type StateProps = {|
   currentStation: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'currentStation'>,
@@ -61,6 +92,11 @@ class Header extends React.Component<Props> {
 
     return (
       <>
+        <Helmet>
+          {getTitle(currentStation)}
+          {getMetaDescription(currentStation)}
+          {getMetaKeywords(currentStation)}
+        </Helmet>
         <AppBar position="fixed">
           <Toolbar disableGutters>
             <IconButton aria-label="Home" onClick={this.toRoot} color="inherit">

@@ -12,7 +12,6 @@ export type State = {|
     searchType: string,
     traewelling: boolean,
     zoomReihung: boolean,
-    useDbf: boolean,
     showSupersededMessages: boolean,
   },
 |};
@@ -25,7 +24,6 @@ const defaultState: State = {
     time: true,
     traewelling: false,
     zoomReihung: true,
-    useDbf: false,
     showSupersededMessages: false,
   },
 };

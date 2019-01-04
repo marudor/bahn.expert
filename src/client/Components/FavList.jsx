@@ -43,7 +43,7 @@ function getErrorText(error: any, staticContext) {
         return 'Timeout - bitte erneut versuchen';
       }
       if (error.response?.data?.error) {
-        return error.response.data.error;
+        return getErrorText(error.response.data.error, staticContext);
       }
 
       return 'Unbekannter Fehler';

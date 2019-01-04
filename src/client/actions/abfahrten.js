@@ -32,7 +32,7 @@ export const getAbfahrtenByString: ThunkAction<?string> = stationString => async
     const stations = await getStationsFromAPI(stationString, config.searchType);
 
     if (stations.length) {
-      const url = config.useDbf ? `/api/dbfAbfahrten/${stations[0].id}` : `/api/ownAbfahrten/${stations[0].id}`;
+      const url = `/api/ownAbfahrten/${stations[0].id}`;
       const abfahrten: Abfahrt[] = (await axios.get(url)).data;
 
       return dispatch(Actions.gotAbfahrten({ station: stations[0], abfahrten }));

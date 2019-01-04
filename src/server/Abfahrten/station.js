@@ -44,7 +44,17 @@ export async function getSingleStation(evaId: string) {
   const rawXml = (await axios.get(`${irisBase}/station/${evaId}`)).data;
   const xml = xmljs.parseXml(rawXml);
 
-  const station = parseStation(xml.get('//station'));
+  const xmlStation = xml.get('//station');
+
+  if (!xmlStation) {
+    throw {
+      error: {
+        type: '404',
+        description: 'Unbekannte Station',
+      },
+    };
+  }
+  const station = parseStation(xmlStation);
 
   cache.set(evaId, station);
 
