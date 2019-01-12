@@ -8,13 +8,6 @@ import KoaRouter from 'koa-router';
 import stationSearch from './Search';
 import type Koa from 'koa';
 
-const useTestData = !!process.env.TESTDATA;
-
-if (useTestData) {
-  // eslint-disable-next-line
-  console.log('using TEST data!');
-}
-
 export default function setRoutes(koa: Koa, prefix: string = '/api') {
   const router = new KoaRouter();
 
@@ -27,11 +20,6 @@ export default function setRoutes(koa: Koa, prefix: string = '/api') {
   router
     .prefix(prefix)
     .get('/search/:searchTerm', async ctx => {
-      if (useTestData) {
-        ctx.body = require('./testData/search');
-
-        return;
-      }
       const { searchTerm } = ctx.params;
       const { type } = ctx.query;
 
@@ -78,11 +66,6 @@ export default function setRoutes(koa: Koa, prefix: string = '/api') {
       ctx.body = await wagenReihungStation([train], station);
     })
     .get('/wagen/:trainNumber/:date', async ctx => {
-      if (useTestData) {
-        ctx.body = require('./testData/reihung');
-
-        return;
-      }
       const { date, trainNumber } = ctx.params;
 
       ctx.body = await wagenReihung(trainNumber, date);
@@ -96,11 +79,6 @@ export default function setRoutes(koa: Koa, prefix: string = '/api') {
 
     // YYYYMMDD
     router.get('/auslastung/:trainNumber/:date', async ctx => {
-      if (useTestData) {
-        ctx.body = require('./testData/auslastung');
-
-        return;
-      }
       const { date, trainNumber } = ctx.params;
 
       ctx.body = await auslastung(trainNumber, date);
