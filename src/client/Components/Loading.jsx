@@ -1,11 +1,11 @@
 // @flow
 import './Loading.scss';
-import React from 'react';
+import * as React from 'react';
 
 type Props = {
   isLoading?: boolean,
   className?: string,
-  children?: any,
+  children?: React.Node,
   type?: 0 | 1,
 };
 

@@ -7,7 +7,8 @@ import { Redirect } from 'react-router';
 import Abfahrt from './Abfahrt';
 import Loading from './Loading';
 import React from 'react';
-import type { AppState } from 'AppState';
+import type { AppState, AppStore } from 'AppState';
+import type { Match } from 'react-router';
 
 type InnerAbfahrtenProps = {|
   abfahrten: $PropertyType<$PropertyType<AppState, 'abfahrten'>, 'abfahrten'>,
@@ -45,7 +46,7 @@ type State = {
 };
 
 class AbfahrtenList extends React.PureComponent<Props, State> {
-  static loadData = (store, match) => {
+  static loadData = (store: AppStore, match: Match) => {
     store.dispatch(
       Actions.setCurrentStation({
         title: decodeURIComponent(match.params.station || ''),

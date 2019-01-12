@@ -46,7 +46,7 @@ class Auslastung extends React.PureComponent<Props> {
     }
   }
 
-  preventDefault = e => {
+  preventDefault = (e: SyntheticEvent<>) => {
     e.preventDefault();
     e.stopPropagation();
   };

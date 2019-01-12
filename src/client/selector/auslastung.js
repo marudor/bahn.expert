@@ -13,7 +13,7 @@ export const getStation = (state: AppState): ?Station => state.abfahrten.current
 export const getAuslastungForId = createSelector<AppState, AuslastungProps, ?(AuslastungEntry[]), Object, string>(
   getAuslastung,
   getTrainIdFromProps,
-  (auslastung, trainId) => auslastung[trainId]?.data
+  (auslastung: $PropertyType<$PropertyType<AppState, 'auslastung'>, 'auslastung'>, trainId) => auslastung[trainId]?.data
 );
 
 export const getAuslastungForIdCopy = createSelector<
