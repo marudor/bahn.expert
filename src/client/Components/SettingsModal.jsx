@@ -43,8 +43,8 @@ type Props = {|
 |};
 
 class SettingsModal extends React.PureComponent<Props> {
-  handleCheckedChange = fn => e => fn(e.target.checked);
-  handleValueChange = fn => e => fn(e.target.value);
+  handleCheckedChange = fn => (e: SyntheticEvent<HTMLInputElement>) => fn(e.currentTarget.checked);
+  handleValueChange = fn => (e: SyntheticEvent<HTMLInputElement>) => fn(e.currentTarget.value);
   render() {
     const {
       open,

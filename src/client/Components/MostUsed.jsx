@@ -20,6 +20,7 @@ const mostUsed = [
   { title: 'München Hbf', id: '8000261' },
 ];
 
+// eslint-disable-next-line react/display-name
 export default () => (
   <>
     {mostUsed.map(m => (

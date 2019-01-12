@@ -59,7 +59,7 @@ type Props = {|
 |};
 
 const selectStyles = {
-  placeholder: base => ({
+  placeholder: (base: Object) => ({
     ...base,
     color: 'hsl(0, 0%, 45%)',
   }),
