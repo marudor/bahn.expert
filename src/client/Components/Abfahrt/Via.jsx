@@ -12,7 +12,7 @@ function getDetailedInfo(abfahrt: Abfahrt, showSupersededMessages: boolean) {
   let messages = [...abfahrt.messages.delay, ...abfahrt.messages.qos];
 
   if (!showSupersededMessages) {
-    messages = messages.filter(m => !m.superseded);
+    messages = messages.filter(m => !m.superseded && !m.superseeds);
   }
 
   if (messages.length) {
@@ -48,7 +48,7 @@ function getInfo(abfahrt: Abfahrt) {
     info += abfahrt.messages.delay[0].text;
   }
   abfahrt.messages.qos
-    .filter(m => !m.superseded)
+    .filter(m => !m.superseded && !m.superseeds)
     .forEach(q => {
       if (info.length > 0) {
         info += ' +++ ';

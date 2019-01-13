@@ -257,6 +257,7 @@ export default class Timetable {
         const supersedes = supersededMessages[value];
 
         if (supersedes) {
+          message.superseeds = true;
           supersedes.forEach(v => {
             if (messages[messageType][v]) {
               messages[messageType][v].superseded = true;
