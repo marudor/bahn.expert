@@ -10,6 +10,7 @@ export type Message = {
   text: string,
   timestamp: string,
   superseded?: boolean,
+  superseeds?: boolean,
 };
 
 export type Train = {
