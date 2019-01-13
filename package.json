@@ -109,6 +109,7 @@
     "date-fns-timezone": "^0.1.4",
     "db-stations": "^2.10.0",
     "debounce-promise": "^3.1.0",
+    "diff": "^4.0.1",
     "ejs": "^2.6.1",
     "emotion-server": "^9",
     "fast-safe-stringify": "^2.0.6",
