@@ -25,12 +25,13 @@ module.exports = function webpackDev(koa: any) {
 
   const watcher = chokidar.watch(path.resolve('./src/server/**'));
 
-  watcher.on('change', path => {
+  watcher.on('change', changedPath => {
     // eslint-disable-next-line no-console
-    console.log(`${path} changed`);
-    delete require.cache[path];
+    console.log(`${changedPath} changed`);
+    delete require.cache[changedPath];
     // Magic to make webpack full reload the page
     // whm.publish({ action: 'sync', errors: [], warnings: [], hash: Math.random() });
+    delete require.cache[path.resolve('src/server/Controller.js')];
   });
 
   return koaWebpack({ compiler, devMiddleware: { serverSideRender: true } }).then(middleware => {

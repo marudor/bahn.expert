@@ -74,6 +74,56 @@ export function parseAr(ar: any) {
   };
 }
 
+const trainRegex = /(\w+?)?? ?(RS|STB|IRE|RE|RB|IC|ICE|EC|ECE|TGV|NJ|RJ|S)? ?(\d+\w*)/;
+
+function getTrainType(thirdParty, trainType) {
+  if ((thirdParty === 'NWB' && trainType === 'RS') || thirdParty === 'BSB') {
+    return 'S';
+  }
+  if (thirdParty === 'FLX') {
+    return 'IR';
+  }
+  if (thirdParty) {
+    return 'RB';
+  }
+  if (trainType === 'ECE') {
+    return 'EC';
+  }
+
+  return trainType;
+}
+
+function getTrainId(thirdParty, rawTrainType, trainId) {
+  if (thirdParty === 'NWB' && rawTrainType === 'RS') {
+    return `${rawTrainType}${trainId}`;
+  }
+
+  return trainId || undefined;
+}
+
+export function splitTrainType(train: string = '') {
+  const parsed = trainRegex.exec(train);
+
+  if (parsed) {
+    const thirdParty = parsed[1] || undefined;
+    const trainType = getTrainType(thirdParty, parsed[2]);
+
+    return {
+      thirdParty,
+      trainType,
+      trainId: getTrainId(thirdParty, parsed[2], parsed[3]),
+    };
+  }
+
+  return {
+    thirdParty: undefined,
+    trainType: undefined,
+    trainId: undefined,
+  };
+}
+
+const longDistanceRegex = /(ICE?|TGV|ECE?|RJ).*/;
+
 export default class Timetable {
   timetable: Object = {};
   realtimeIds: string[] = [];
@@ -344,6 +394,8 @@ export default class Timetable {
       trainNumber,
       // transfer: getAttr(dp || ar, 'tra'),
       train,
+      longDistance: longDistanceRegex.test(train),
+      ...splitTrainType(train),
     };
   }
   getTimetable(rawXml: string) {

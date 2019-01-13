@@ -1,7 +1,5 @@
 // @flow
-import { createApp } from 'server/app';
-import { splitTrainType } from 'server/Abfahrten';
-import supertest from 'supertest';
+import { splitTrainType } from 'server/Abfahrten/Timetable';
 
 function testTrainType(input, expThirdParty, expTrainType, expTrainId) {
   // $FlowFixMe
@@ -14,31 +12,6 @@ function testTrainType(input, expThirdParty, expTrainType, expTrainId) {
   });
 }
 describe('Abfahrten', () => {
-  describe('Abfahrten', () => {
-    let server;
-    let request;
-
-    beforeAll(async () => {
-      const app = await createApp();
-
-      server = app.listen();
-      request = supertest(server);
-    });
-    afterAll(done => {
-      server.close(done);
-    });
-
-    it('invalid evaID', () =>
-      request
-        .get('/api/dbfAbfahrten/KD')
-        .expect(400)
-        .expect({
-          message: 'Please provide a evaID',
-        }));
-
-    // it('dbf errors', () => request.get('/api/abfahrten/8098105').expect(500));
-  });
-
   describe('Correct train split', () => {
     testTrainType('');
     testTrainType();

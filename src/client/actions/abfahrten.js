@@ -20,10 +20,14 @@ export const Actions = {
 
 export async function getStationsFromAPI(stationString: ?string, type: string = ''): Promise<Station[]> {
   if (stationString) {
-    return (await axios.get(`/api/search/${stationString}?type=${type}`)).data;
+    return (await axios.get(`/api/search/${stationString}`, {
+      params: {
+        type,
+      },
+    })).data;
   }
 
-  return [];
+  return Promise.resolve([]);
 }
 
 export const getAbfahrtenByString: ThunkAction<?string> = stationString => async (dispatch, getState) => {
@@ -33,7 +37,11 @@ export const getAbfahrtenByString: ThunkAction<?string> = stationString => async
 
     if (stations.length) {
       const url = `/api/ownAbfahrten/${stations[0].id}`;
-      const abfahrten: Abfahrt[] = (await axios.get(url)).data;
+      const abfahrten: Abfahrt[] = (await axios.get(url, {
+        params: {
+          lookahead: config.lookahead,
+        },
+      })).data;
 
       return dispatch(Actions.gotAbfahrten({ station: stations[0], abfahrten }));
     }

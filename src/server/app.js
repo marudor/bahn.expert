@@ -5,11 +5,13 @@ import createAdmin from './admin';
 import errorHandler from './errorHandler';
 import generateSitemap from './sitemap';
 import http from 'http';
-import Koa from 'koa';
+import Koa, { type Middleware } from 'koa';
 import KoaBodyparser from 'koa-bodyparser';
 import koaStatic from 'koa-static';
 import path from 'path';
-import setupRoutes from './Controller';
+
+// eslint-disable-next-line no-underscore-dangle
+global.__SERVER__ = true;
 
 function transformStats(stats) {
   const newStats = {};
@@ -34,15 +36,39 @@ function transformStats(stats) {
   return newStats;
 }
 
+function hotHelper(getMiddleware: () => Middleware) {
+  if (process.env.NODE_ENV === 'production') {
+    return getMiddleware();
+  }
+
+  return (ctx, next) => getMiddleware()(ctx, next);
+}
+
 export async function createApp() {
   const app = new Koa();
 
   app.use(errorHandler);
   middlewares.forEach(m => app.use(m));
   app.use(KoaBodyparser());
-  setupRoutes(app);
+
+  let apiRoutes = require('./Controller').default;
+  let serverRender = require('./render').default;
+
+  if (process.env.NODE_ENV !== 'test' && process.env.NODE_ENV !== 'production') {
+    await require('./middleware/webpackDev')(app);
+    app.use((ctx, next) => {
+      serverRender = require('./render').default;
+      apiRoutes = require('./Controller').default;
+      ctx.stats = transformStats(ctx.state.webpackStats.toJson().assetsByChunkName);
+
+      return next();
+    });
+  }
+
+  app.use(hotHelper(() => apiRoutes.routes()));
+
   app.use(
-    koaStatic(path.resolve('dist/client'), {
+    koaStatic(path.resolve(process.env.NODE_ENV === 'production' ? 'dist/client' : 'public'), {
       maxAge: 2592000000, // 30 days
     })
   );
@@ -60,30 +86,18 @@ export async function createApp() {
     }
   });
 
-  if (process.env.NODE_ENV !== 'test') {
-    let serverRender = require('./render').default;
+  if (process.env.NODE_ENV === 'production') {
+    // $FlowFixMe
+    const stats = require(path.resolve('dist/client/static/stats.json'));
 
-    if (process.env.NODE_ENV !== 'production') {
-      await require('./middleware/webpackDev')(app);
-      app.use((ctx, next) => {
-        serverRender = require('./render').default;
-        ctx.stats = transformStats(ctx.state.webpackStats.toJson().assetsByChunkName);
+    app.use((ctx, next) => {
+      ctx.stats = transformStats(stats.assetsByChunkName);
 
-        return next();
-      });
-      app.use(ctx => serverRender(ctx));
-    } else {
-      // $FlowFixMe
-      const stats = require(path.resolve('dist/client/static/stats.json'));
-
-      app.use((ctx, next) => {
-        ctx.stats = transformStats(stats.assetsByChunkName);
-
-        return next();
-      });
-      app.use(serverRender);
-    }
+      return next();
+    });
   }
+
+  app.use(hotHelper(() => serverRender));
 
   return app;
 }
