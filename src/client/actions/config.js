@@ -30,6 +30,7 @@ export const setTraewelling = (value: boolean) => Actions.setConfig({ key: 'trae
 export const setZoomReihung = (value: boolean) => Actions.setConfig({ key: 'zoomReihung', value });
 export const setShowSupersededMessages = (value: boolean) =>
   Actions.setConfig({ key: 'showSupersededMessages', value }, value);
+export const setLookahead = (value: string) => Actions.setConfig({ key: 'lookahead', value });
 
 export const openSettings = () => Actions.setMenu(true);
 export const closeSettings = () => Actions.setMenu(false);

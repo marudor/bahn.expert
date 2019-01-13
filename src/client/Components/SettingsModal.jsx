@@ -2,6 +2,7 @@
 import './SettingsModal.scss';
 import {
   closeSettings,
+  setLookahead,
   setSearchType,
   setShowSupersededMessages,
   setTime,
@@ -21,11 +22,7 @@ import type { AppState } from 'AppState';
 
 type StateProps = {|
   open: boolean,
-  searchType: string,
-  showSupersededMessagesConfig: boolean,
-  timeConfig: boolean,
-  traewellingConfig: boolean,
-  zoomReihungConfig: boolean,
+  ...marudorConfig,
 |};
 
 type DispatchProps = {|
@@ -35,6 +32,7 @@ type DispatchProps = {|
   setTime: typeof setTime,
   setTraewelling: typeof setTraewelling,
   setZoomReihung: typeof setZoomReihung,
+  setLookahead: typeof setLookahead,
 |};
 
 type Props = {|
@@ -49,16 +47,18 @@ class SettingsModal extends React.PureComponent<Props> {
     const {
       open,
       closeSettings,
-      timeConfig,
+      time,
       searchType,
-      traewellingConfig,
-      zoomReihungConfig,
-      showSupersededMessagesConfig,
+      traewelling,
+      zoomReihung,
+      showSupersededMessages,
+      lookahead,
       setShowSupersededMessages,
       setSearchType,
       setZoomReihung,
       setTraewelling,
       setTime,
+      setLookahead,
     } = this.props;
 
     return (
@@ -68,7 +68,7 @@ class SettingsModal extends React.PureComponent<Props> {
           <FormControlLabel
             control={
               <Switch
-                checked={showSupersededMessagesConfig}
+                checked={showSupersededMessages}
                 value="showSupersededMessagesConfig"
                 onChange={this.handleCheckedChange(setShowSupersededMessages)}
               />
@@ -78,7 +78,7 @@ class SettingsModal extends React.PureComponent<Props> {
           <FormControlLabel
             control={
               <Switch
-                checked={traewellingConfig}
+                checked={traewelling}
                 value="traewellingConfig"
                 onChange={this.handleCheckedChange(setTraewelling)}
               />
@@ -86,18 +86,31 @@ class SettingsModal extends React.PureComponent<Props> {
             label="Traewelling Link"
           />
           <FormControlLabel
-            control={<Switch checked={timeConfig} value="timeConfig" onChange={this.handleCheckedChange(setTime)} />}
+            control={<Switch checked={time} value="timeConfig" onChange={this.handleCheckedChange(setTime)} />}
             label="Neue Ankunft bei Verspätung"
           />
           <FormControlLabel
             control={
               <Switch
-                checked={zoomReihungConfig}
+                checked={zoomReihung}
                 value="zoomReihungConfig"
                 onChange={this.handleCheckedChange(setZoomReihung)}
               />
             }
             label="Reihung maximal groß"
+          />
+          <FormControlLabel
+            control={
+              <NativeSelect value={lookahead} name="lookahead" onChange={this.handleValueChange(setLookahead)}>
+                <option value="60">60</option>
+                <option value="120">120</option>
+                <option value="150">150</option>
+                <option value="180">180</option>
+                <option value="240">240</option>
+                <option value="300">300</option>
+              </NativeSelect>
+            }
+            label="Lookahead in Minuten"
           />
           <FormControlLabel
             control={
@@ -123,11 +136,7 @@ class SettingsModal extends React.PureComponent<Props> {
 export default connect<AppState, Function, {||}, StateProps, DispatchProps>(
   state => ({
     open: state.config.open,
-    searchType: state.config.config.searchType,
-    showSupersededMessagesConfig: state.config.config.showSupersededMessages,
-    timeConfig: state.config.config.time,
-    traewellingConfig: state.config.config.traewelling,
-    zoomReihungConfig: state.config.config.zoomReihung,
+    ...state.config.config,
   }),
   {
     closeSettings,
@@ -136,5 +145,6 @@ export default connect<AppState, Function, {||}, StateProps, DispatchProps>(
     setTraewelling,
     setZoomReihung,
     setShowSupersededMessages,
+    setLookahead,
   }
 )(SettingsModal);

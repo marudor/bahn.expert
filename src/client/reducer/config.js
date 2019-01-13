@@ -1,38 +1,29 @@
 // @flow
 import { Actions } from 'client/actions/config';
 import { type ActionType, handleActions } from 'redux-actions';
-import { setCookieOptions } from 'client/util';
+import { defaultConfig, setCookieOptions } from 'client/util';
 import Cookies from 'universal-cookie';
 
 export type State = {|
   cookies: Cookies,
   open: boolean,
-  config: {
-    time: boolean,
-    searchType: string,
-    traewelling: boolean,
-    zoomReihung: boolean,
-    showSupersededMessages: boolean,
-  },
+  config: marudorConfig,
 |};
 
 const defaultState: State = {
   cookies: new Cookies(),
   open: false,
-  config: {
-    searchType: '',
-    time: true,
-    traewelling: false,
-    zoomReihung: true,
-    showSupersededMessages: false,
-  },
+  config: defaultConfig,
 };
 
 export default handleActions<State, *>(
   {
     [String(Actions.setCookies)]: (state: State, { payload }: ActionType<typeof Actions.setCookies>) => ({
       open: false,
-      config: payload.get('config') || defaultState.config,
+      config: {
+        ...defaultConfig,
+        ...payload.get('config'),
+      },
       cookies: payload,
     }),
     [String(Actions.setMenu)]: (state: State, { payload }: ActionType<typeof Actions.setMenu>) => ({
