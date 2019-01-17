@@ -1,6 +1,6 @@
 // @flow
 export type FahrzeugType = 'IC' | 'EC' | 'ICE' | 'TGV';
-export type SpecificType = 'ICET411' | 'ICET415' | 'ICE4' | 'ICE3' | 'ICE3V' | 'ICE2' | 'ICE1' | 'IC2';
+export type SpecificType = 'ICET411' | 'ICET415' | 'ICE4' | 'ICE3' | 'ICE3V' | 'ICE2' | 'ICE1' | 'IC2' | 'MET';
 
 export type Meta = {
   id: string,

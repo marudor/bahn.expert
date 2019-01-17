@@ -22,6 +22,7 @@ const ICETspecific = ['ABpmz', 'Bpmkz'];
 const ICE4specific = ['Bpmdz', 'Bpmdzf'];
 const ICE3Velarospecific = ['ARmz'];
 const ICE3specific = ['Apmzf', 'Bpmbz', 'BRmz'];
+const METspecific = ['Apmbzf'];
 const ICE2specific = ['Apmz', 'Bpmz'];
 const ICE1specific = ['Avmz', 'Bvmbz', 'Bvmz'];
 const IC2specific = ['DBpbzfa', 'DBpza'];
@@ -62,6 +63,10 @@ function specificTrainType(formation: Formation, fahrzeuge: Fahrzeug[]) {
     }
     if (tkPerGroup === 2) {
       return 'ICE1';
+    }
+
+    if (wagenTypes.some(t => METspecific.includes(t))) {
+      return 'MET';
     }
 
     if (wagenTypes.some(t => ICE3specific.includes(t))) {
