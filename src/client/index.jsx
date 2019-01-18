@@ -43,3 +43,10 @@ if (container) {
   // eslint-disable-next-line
   alert('trollololo');
 }
+
+if ('serviceWorker' in navigator) {
+  // $FlowFixMe
+  navigator.serviceWorker?.ready.then(registration => {
+    registration.unregister();
+  });
+}
