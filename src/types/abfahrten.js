@@ -1,4 +1,9 @@
 // @flow
+export type SubstituteRef = {
+  trainNumber: string,
+  trainType: string,
+  train: string,
+};
 export type Station = {
   title: string,
   id: string | number,
@@ -30,6 +35,7 @@ export type Abfahrt = {
   destination: string,
   id: string,
   rawId: string,
+  ref?: SubstituteRef,
   isCancelled: 0 | 1,
   longDistance: boolean,
   messages: Messages,
@@ -39,6 +45,7 @@ export type Abfahrt = {
   scheduledDeparture?: string,
   scheduledDestination: string,
   scheduledPlatform: string,
+  substitute: boolean,
   train: string,
   trainId: string,
   trainNumber: string,

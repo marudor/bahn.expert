@@ -16,10 +16,6 @@ const plugins = [
       NODE_ENV: JSON.stringify(process.env.NODE_ENV),
     },
   }),
-  new MiniCssExtractPlugin({
-    filename: '[name]-[contenthash].css',
-    chunkFilename: '[id]-[hash].css',
-  }),
 ];
 
 const optimization = {
@@ -40,7 +36,7 @@ const rules = [
     test: /\.s?css$/,
     use: [
       {
-        loader: MiniCssExtractPlugin.loader,
+        loader: isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
       },
       { loader: 'css-loader' },
       { loader: 'postcss-loader' },
@@ -60,6 +56,12 @@ if (isDev) {
     new TerserPlugin({
       parallel: true,
       extractComments: true,
+    })
+  );
+  plugins.push(
+    new MiniCssExtractPlugin({
+      filename: '[name]-[contenthash].css',
+      chunkFilename: '[id]-[hash].css',
     })
   );
   plugins.push(new CompressionPlugin());
