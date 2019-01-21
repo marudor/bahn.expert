@@ -5,4 +5,5 @@ type marudorConfig = {|
   zoomReihung: boolean,
   showSupersededMessages: boolean,
   lookahead: string,
+  fahrzeugGruppe: boolean,
 |};

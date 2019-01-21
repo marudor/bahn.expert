@@ -39,6 +39,10 @@ export type Fahrzeug = {
 };
 
 export type Fahrzeuggruppe = {
+  // custom
+  startProzent: number,
+  endeProzent: number,
+  // custom
   allFahrzeug: Fahrzeug[],
   fahrzeuggruppebezeichnung: string,
   zielbetriebsstellename: string,

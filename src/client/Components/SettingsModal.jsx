@@ -2,6 +2,7 @@
 import './SettingsModal.scss';
 import {
   closeSettings,
+  setFahrzeugGruppe,
   setLookahead,
   setSearchType,
   setShowSupersededMessages,
@@ -33,6 +34,7 @@ type DispatchProps = {|
   setTraewelling: typeof setTraewelling,
   setZoomReihung: typeof setZoomReihung,
   setLookahead: typeof setLookahead,
+  setFahrzeugGruppe: typeof setFahrzeugGruppe,
 |};
 
 type Props = {|
@@ -59,6 +61,8 @@ class SettingsModal extends React.PureComponent<Props> {
       setTraewelling,
       setTime,
       setLookahead,
+      setFahrzeugGruppe,
+      fahrzeugGruppe,
     } = this.props;
 
     return (
@@ -98,6 +102,16 @@ class SettingsModal extends React.PureComponent<Props> {
               />
             }
             label="Reihung maximal groß"
+          />
+          <FormControlLabel
+            control={
+              <Switch
+                checked={fahrzeugGruppe}
+                value="fahrzeugGruppeConfig"
+                onChange={this.handleCheckedChange(setFahrzeugGruppe)}
+              />
+            }
+            label="Zeige Fahrzeuggruppen Name"
           />
           <FormControlLabel
             control={
@@ -146,5 +160,6 @@ export default connect<AppState, Function, {||}, StateProps, DispatchProps>(
     setZoomReihung,
     setShowSupersededMessages,
     setLookahead,
+    setFahrzeugGruppe,
   }
 )(SettingsModal);
