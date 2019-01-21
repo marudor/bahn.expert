@@ -21,7 +21,7 @@ type StateProps = {|
 |};
 const InnerAbfahrten = ({ abfahrten, selectedDetail }: InnerAbfahrtenProps) =>
   abfahrten && abfahrten.length ? (
-    abfahrten.map(a => a && <Abfahrt abfahrt={a} detail={selectedDetail === a.id} key={a.id} />)
+    abfahrten.map(a => a && <Abfahrt abfahrt={a} detail={selectedDetail === a.id} key={a.rawId} />)
   ) : (
     <div className="FavEntry">Leider keine Abhfarten in nächster Zeit</div>
   );

@@ -19,7 +19,7 @@
     "dev": "NODE_EXTRA_CA_CERTS=./secrets/selfSignedSSL/server_rootCA.pem npm run dev:server",
     "lint": "eslint src",
     "start:server:test": "TESTDATA=1 npm run start:server",
-    "start:server": "node src/server/index.js",
+    "start:server": "node --inspect src/server/index.js",
     "flow": "flow check",
     "test": "npm run lint && npm run test:server && npm run test:client && flow",
     "test:codecov": "codecov",

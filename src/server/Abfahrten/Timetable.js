@@ -226,11 +226,11 @@ export default class Timetable {
     const id = rawId.match(/-?(\w+)/)[1] || rawId;
     const tl = sNode.get('tl');
 
-    if (!this.timetable[id] && tl) {
-      this.timetable[id] = this.parseTimetableS(sNode);
+    if (!this.timetable[rawId] && tl) {
+      this.timetable[rawId] = this.parseTimetableS(sNode);
     }
 
-    if (!this.timetable[id]) {
+    if (!this.timetable[rawId]) {
       return;
     }
 
@@ -272,6 +272,7 @@ export default class Timetable {
 
     return {
       id,
+      rawId,
       messages: {
         delay: delay.sort((a, b) => compareDesc(a.timestamp, b.timestamp)),
         qos: qos.sort((a, b) => compareDesc(a.timestamp, b.timestamp)),
@@ -343,7 +344,7 @@ export default class Timetable {
       const realtime = this.parseRealtimeS(s);
 
       if (!realtime) return;
-      const timetable = this.timetable[realtime.id];
+      const timetable = this.timetable[realtime.rawId];
 
       if (!timetable) return;
       this.realtimeIds.push(realtime.id);
@@ -353,7 +354,8 @@ export default class Timetable {
     });
   }
   parseTimetableS(sNode: any) {
-    const rawId = getAttr(sNode, 'id');
+    const rawId: string = getAttr(sNode, 'id');
+    // $FlowFixMe we know this works!
     const id = rawId.match(/-?(\w+)/)[1] || rawId;
     const tl = sNode.get('tl');
 
@@ -385,6 +387,7 @@ export default class Timetable {
       lineNumber,
       platform: getAttr(dp, 'pp') || getAttr(ar, 'pp'),
       id,
+      rawId,
       // routeEnd: getAttr(dp, 'pde'),
       routePost: routePost.map<Route>(routeMap),
       routePre: routePre.map<Route>(routeMap),
@@ -410,7 +413,7 @@ export default class Timetable {
       const departure = this.parseTimetableS(s);
 
       if (!departure) return;
-      timetables[departure.id] = departure;
+      timetables[departure.rawId] = departure;
     });
 
     return timetables;

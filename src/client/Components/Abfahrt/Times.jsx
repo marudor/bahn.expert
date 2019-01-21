@@ -24,7 +24,7 @@ function getDelayTime(time: ?string, delay: ?number, isCancelled: 1 | 0, timeCon
   if (!time) {
     return null;
   }
-  if (timeConfig && delay && !isCancelled) {
+  if (timeConfig && delay) {
     const newTime = addMinutes(time, delay);
 
     return <span className={delayStyle(delay)}>{format(newTime, 'HH:mm')}</span>;

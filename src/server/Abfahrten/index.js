@@ -39,7 +39,7 @@ export async function getAbfahrten(evaId: string, withRelated: boolean = true, o
 
   const timetable = new Timetable(evaId, segments, station.name);
   const abfahrten = flatten(await Promise.all([timetable.start(), relatedAbfahrten]));
-  const filtered = uniqBy(abfahrten, 'id').filter(a => {
+  const filtered = uniqBy(abfahrten, 'rawId').filter(a => {
     const time = a.departure || a.arrival;
 
     return (

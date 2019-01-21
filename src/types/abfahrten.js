@@ -29,6 +29,7 @@ export type Abfahrt = {
   delayDeparture?: number,
   destination: string,
   id: string,
+  rawId: string,
   isCancelled: 0 | 1,
   longDistance: boolean,
   messages: Messages,
