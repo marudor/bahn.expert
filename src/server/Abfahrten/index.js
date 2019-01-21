@@ -51,7 +51,12 @@ export async function getAbfahrten(evaId: string, withRelated: boolean = true, o
     const sort = compareAsc(a.scheduledDeparture || a.scheduledArrival, b.scheduledDeparture || b.scheduledArrival);
 
     if (!sort) {
-      return a.id > b.id ? 1 : -1;
+      const splittedA = a.rawId.split('-');
+      const splittedB = b.rawId.split('-');
+
+      console.log(splittedA, splittedB);
+
+      return splittedA[splittedA.length - 2] > splittedB[splittedB.length - 2] ? 1 : -1;
     }
 
     return sort;
