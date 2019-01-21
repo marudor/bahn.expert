@@ -13,7 +13,8 @@ export const getStation = (state: AppState): ?Station => state.abfahrten.current
 export const getAuslastungForId = createSelector<AppState, AuslastungProps, ?(AuslastungEntry[]), Object, string>(
   getAuslastung,
   getTrainIdFromProps,
-  (auslastung: $PropertyType<$PropertyType<AppState, 'auslastung'>, 'auslastung'>, trainId) => auslastung[trainId]?.data
+  (auslastung: $PropertyType<$PropertyType<AppState, 'auslastung'>, 'auslastung'>, trainId) =>
+    auslastung[trainId] ? auslastung[trainId].data : auslastung[trainId]
 );
 
 export const getAuslastungForIdCopy = createSelector<
@@ -36,8 +37,11 @@ export const getAuslastungForIdAndStation = createSelector<
   getAuslastungForIdCopy,
   getStation,
   (auslastung, station) => {
-    if (!station || !auslastung) {
+    if (!station || auslastung === undefined) {
       return undefined;
+    }
+    if (auslastung === null) {
+      return null;
     }
     while (auslastung.length && auslastung[0].start.replace(/ /g, '') !== station.title.replace(/ /g, '')) {
       auslastung.shift();

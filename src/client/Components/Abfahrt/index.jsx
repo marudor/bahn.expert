@@ -38,7 +38,7 @@ class Abfahrt extends React.PureComponent<Props> {
             <Mid abfahrt={abfahrt} detail={detail} />
             <End abfahrt={abfahrt} detail={detail} />
           </div>
-          {detail && abfahrt.longDistance && <Reihung abfahrt={abfahrt} />}
+          {detail && abfahrt.reihung && <Reihung abfahrt={abfahrt} />}
         </div>
       </Paper>
     );

@@ -51,6 +51,8 @@ export type Abfahrt = {
   trainNumber: string,
   trainType: string,
   via: string[],
+  auslastung: boolean,
+  reihung: boolean,
 };
 
 export default {};

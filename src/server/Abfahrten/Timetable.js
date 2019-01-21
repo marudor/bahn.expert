@@ -158,6 +158,8 @@ export default class Timetable {
     ];
     timetable.destination = findLast(timetable.route, r => !r.isCancelled)?.name || timetable.scheduledDestination;
     timetable.via = this.getVia(timetable);
+    timetable.auslastung = !timetable.isCancelled && timetable.longDistance && !timetable.substitute;
+    timetable.reihung = !timetable.isCancelled && timetable.longDistance;
 
     delete timetable.routePre;
     delete timetable.routePost;
