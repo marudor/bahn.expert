@@ -18,7 +18,7 @@ const Start = ({ abfahrt, detail }: Props) => (
     {detail && <TraewellingLink abfahrt={abfahrt} />}
     {abfahrt.isCancelled && <span className="Start__cancelled">Zugausfall</span>}
     {abfahrt.substitute && abfahrt.ref && <Substitute substitute={abfahrt.ref} />}
-    {detail && abfahrt.longDistance && <Auslastung abfahrt={abfahrt} />}
+    {detail && abfahrt.auslastung && <Auslastung abfahrt={abfahrt} />}
   </div>
 );
 

@@ -11,18 +11,27 @@ export const Actions = {
     string,
     {
       id: string,
-      data: Auslastung,
+      data: ?Auslastung,
     }
   >('GOT_AUSLASTUNG'),
 };
 
 export const getAuslastung: ThunkAction<string> = id => async dispatch => {
-  const data = (await axios.get(`/api/auslastung/${id}/${format(new Date(), 'yyyyMMdd')}`)).data;
+  try {
+    const data = (await axios.get(`/api/auslastung/${id}/${format(new Date(), 'yyyyMMdd')}`)).data;
 
-  dispatch(
-    Actions.gotAuslastung({
-      id,
-      data,
-    })
-  );
+    dispatch(
+      Actions.gotAuslastung({
+        id,
+        data,
+      })
+    );
+  } catch (e) {
+    dispatch(
+      Actions.gotAuslastung({
+        id,
+        data: null,
+      })
+    );
+  }
 };
