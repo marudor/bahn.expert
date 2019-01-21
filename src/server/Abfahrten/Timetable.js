@@ -122,6 +122,15 @@ export function splitTrainType(train: string = '') {
   };
 }
 
+export function parseTl(tl: any) {
+  return {
+    trainNumber: getAttr(tl, 'n'),
+    trainType: getAttr(tl, 'c'),
+    t: getAttr(tl, 't'),
+    f: getAttr(tl, 'f'),
+  };
+}
+
 const longDistanceRegex = /(ICE?|TGV|ECE?|RJ).*/;
 
 export default class Timetable {
@@ -204,6 +213,16 @@ export default class Timetable {
 
     return viaShow.map(v => v.replace(' Hbf', ''));
   }
+  parseRef(tl: any) {
+    const { trainType, trainNumber } = parseTl(tl);
+    const train = `${trainType} ${trainNumber}`;
+
+    return {
+      trainType,
+      trainNumber,
+      train,
+    };
+  }
   parseMessage(mNode: any) {
     const value = getAttr(mNode, 'c');
     const type = messageTypeLookup[getAttr(mNode, 't')];
@@ -225,6 +244,7 @@ export default class Timetable {
     const rawId = getAttr(sNode, 'id');
     const id = rawId.match(/-?(\w+)/)[1] || rawId;
     const tl = sNode.get('tl');
+    const ref = sNode.get('ref/tl');
 
     if (!this.timetable[rawId] && tl) {
       this.timetable[rawId] = this.parseTimetableS(sNode);
@@ -279,6 +299,7 @@ export default class Timetable {
       },
       arrival: parseAr(ar),
       departure: parseDp(dp),
+      ref: ref ? this.parseRef(ref) : undefined,
     };
   }
   addArrivalInfo(timetable: any, ar: any) {
@@ -351,6 +372,7 @@ export default class Timetable {
       this.addArrivalInfo(timetable, realtime.arrival);
       this.addDepartureInfo(timetable, realtime.departure);
       timetable.messages = realtime.messages;
+      timetable.ref = realtime.ref;
     });
   }
   parseTimetableS(sNode: any) {
@@ -368,8 +390,7 @@ export default class Timetable {
     const scheduledArrival = parseTs(getAttr(ar, 'pt'));
     const scheduledDeparture = parseTs(getAttr(dp, 'pt'));
     const lineNumber = getAttr(dp || ar, 'l');
-    const trainNumber = getAttr(tl, 'n');
-    const trainType = getAttr(tl, 'c');
+    const { trainNumber, trainType, t } = parseTl(tl);
     const train = `${trainType} ${lineNumber || trainNumber}`;
     // $FlowFixMe
     const routePost: string[] = (getAttr(dp, 'ppth')?.split('|') || []).map(normalizeRouteName);
@@ -398,6 +419,7 @@ export default class Timetable {
       trainNumber,
       // transfer: getAttr(dp || ar, 'tra'),
       train,
+      substitute: t === 'e',
       longDistance: longDistanceRegex.test(train),
       ...splitTrainType(train),
     };

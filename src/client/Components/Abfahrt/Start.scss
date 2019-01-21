@@ -8,4 +8,9 @@
   max-width: 200px;
   display: flex;
   flex-direction: column;
+
+  &__cancelled {
+    color: red;
+    text-decoration: none;
+  }
 }
