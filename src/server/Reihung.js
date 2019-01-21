@@ -1,5 +1,5 @@
 // @flow
-import { flatten } from 'lodash';
+import { flatten, maxBy, minBy } from 'lodash';
 import axios from 'axios';
 import type { Fahrzeug, Formation, Wagenreihung } from 'types/reihung';
 import type { WagenreihungStation } from 'types/reihungStation';
@@ -31,6 +31,17 @@ const IC2specific = ['DBpbzfa', 'DBpza'];
 function specificTrainType(formation: Formation, fahrzeuge: Fahrzeug[]) {
   const wagenTypes = fahrzeuge.map(f => f.fahrzeugtyp);
   const groupLength = formation.allFahrzeuggruppe.length;
+
+  formation.allFahrzeuggruppe.forEach(g => {
+    g.startProzent = Number.parseInt(
+      minBy(g.allFahrzeug, f => Number.parseInt(f.positionamhalt.startprozent, 10)).positionamhalt.startprozent,
+      10
+    );
+    g.endeProzent = Number.parseInt(
+      maxBy(g.allFahrzeug, f => Number.parseInt(f.positionamhalt.endeprozent, 10)).positionamhalt.endeprozent,
+      10
+    );
+  });
 
   if (formation.zuggattung === 'IC') {
     if (wagenTypes.some(t => IC2specific.includes(t))) {

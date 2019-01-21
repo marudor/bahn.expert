@@ -15,6 +15,7 @@ import type { Reihung } from 'types/reihung';
 type StateProps = {|
   reihung: ?Reihung,
   useZoom: boolean,
+  fahrzeugGruppe: boolean,
 |};
 
 type OwnProps = {|
@@ -41,7 +42,7 @@ class ReihungComp extends React.PureComponent<Props> {
   }
 
   render() {
-    const { reihung, useZoom } = this.props;
+    const { reihung, useZoom, fahrzeugGruppe } = this.props;
 
     if (reihung === null) {
       return null;
@@ -53,8 +54,12 @@ class ReihungComp extends React.PureComponent<Props> {
     const correctLeft = useZoom ? reihung.startPercentage : 0;
     const scale = useZoom ? reihung.scale : 1;
 
+    const style = {
+      height: fahrzeugGruppe ? '6em' : '5em',
+    };
+
     return (
-      <div className="Reihung">
+      <div className="Reihung" style={style}>
         {Boolean(reihung.specificTrainType) && (
           <span className="Reihung__specificType">{reihung.specificTrainType}</span>
         )}
@@ -66,6 +71,7 @@ class ReihungComp extends React.PureComponent<Props> {
         <div className="Reihung__reihung">
           {reihung.allFahrzeuggruppe.map(g => (
             <Gruppe
+              showFahrzeugGruppe={fahrzeugGruppe}
               correctLeft={correctLeft}
               scale={scale}
               specificType={reihung.specificTrainType}
@@ -93,6 +99,7 @@ export default connect<AppState, Function, OwnProps, StateProps, DispatchProps>(
   (state, props) => ({
     reihung: getReihungForId(state, props),
     useZoom: state.config.config.zoomReihung,
+    fahrzeugGruppe: state.config.config.fahrzeugGruppe,
   }),
   { getReihung }
 )(ReihungComp);

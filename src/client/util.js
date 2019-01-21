@@ -11,4 +11,5 @@ export const defaultConfig = {
   zoomReihung: true,
   showSupersededMessages: false,
   lookahead: '150',
+  fahrzeugGruppe: false,
 };

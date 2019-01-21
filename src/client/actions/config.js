@@ -31,6 +31,7 @@ export const setZoomReihung = (value: boolean) => Actions.setConfig({ key: 'zoom
 export const setShowSupersededMessages = (value: boolean) =>
   Actions.setConfig({ key: 'showSupersededMessages', value }, value);
 export const setLookahead = (value: string) => Actions.setConfig({ key: 'lookahead', value });
+export const setFahrzeugGruppe = (value: boolean) => Actions.setConfig({ key: 'fahrzeugGruppe', value });
 
 export const openSettings = () => Actions.setMenu(true);
 export const closeSettings = () => Actions.setMenu(false);

@@ -1,7 +1,6 @@
 .Reihung {
   line-height: 1.3;
   font-size: 120%;
-  height: 5em;
   margin-bottom: 1em;
   position: relative;
 
@@ -17,6 +16,7 @@
   &__reihung {
     position: relative;
     margin-top: 1em;
+    height: 100%;
   }
 
   &__richtung {
