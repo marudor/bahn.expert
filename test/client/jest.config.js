@@ -4,7 +4,7 @@ module.exports = {
   moduleNameMapper: {
     '\\.(scss|css)$': 'identity-obj-proxy',
   },
-  setupTestFrameworkScriptFile: '<rootDir>/test/client/config.js',
+  setupFilesAfterEnv: ['<rootDir>/test/client/config.js'],
   collectCoverage: true,
   collectCoverageFrom: ['<rootDir>/src/client/**/*.{js,jsx}'],
   coverageReporters: ['text-summary', 'lcov'],
