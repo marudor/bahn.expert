@@ -2,7 +2,6 @@
 /* eslint import/prefer-default-export: 0 */
 
 import { createAction } from 'redux-actions';
-import { format } from 'date-fns';
 import axios from 'axios';
 import type { Abfahrt } from 'types/abfahrten';
 import type { Reihung, Wagenreihung } from 'types/reihung';
@@ -18,8 +17,7 @@ export const getReihung: ThunkAction<Abfahrt> = ({ scheduledDeparture, trainId, 
       throw new Error();
     }
 
-    const time = format(scheduledDeparture, 'yyyyMMddHHmm');
-    const reihung: Wagenreihung = (await axios.get(`/api/wagen/${trainId}/${time}`)).data;
+    const reihung: Wagenreihung = (await axios.get(`/api/wagen/${trainId}/${scheduledDeparture}`)).data;
 
     dispatch(
       Actions.gotReihung({

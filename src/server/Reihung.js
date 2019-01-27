@@ -1,5 +1,7 @@
 // @flow
+import { convertToTimeZone } from 'date-fns-timezone';
 import { flatten, maxBy, minBy } from 'lodash';
+import { format } from 'date-fns';
 import axios from 'axios';
 import type { Fahrzeug, Formation, Wagenreihung } from 'types/reihung';
 import type { WagenreihungStation } from 'types/reihungStation';
@@ -104,8 +106,10 @@ function fahrtrichtung(fahrzeuge: Fahrzeug[]) {
 
 // https://www.apps-bahn.de/wr/wagenreihung/1.0/6/201802021930
 export async function wagenReihung(trainNumber: string, date: string) {
-  const info: Wagenreihung = (await axios.get(`https://www.apps-bahn.de/wr/wagenreihung/1.0/${trainNumber}/${date}`))
-    .data;
+  const parsedDate = format(convertToTimeZone(date, { timeZone: 'Europe/Berlin' }), 'yyyyMMddHHmm');
+  const info: Wagenreihung = (await axios.get(
+    `https://www.apps-bahn.de/wr/wagenreihung/1.0/${trainNumber}/${parsedDate}`
+  )).data;
 
   const fahrzeuge = flatten(info.data.istformation.allFahrzeuggruppe.map(g => g.allFahrzeug));
 
