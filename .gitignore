@@ -50,3 +50,4 @@ bahntests/
 .yalc/
 reports/
 .DS_STORE
+secrets/ssl/*.pem
