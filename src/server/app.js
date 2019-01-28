@@ -112,9 +112,9 @@ export default async () => {
     const https = require('https');
     const fs = require('fs');
     // eslint-disable-next-line no-sync
-    const key = fs.readFileSync('./secrets/selfSignedSSL/server.key');
+    const key = fs.readFileSync('./secrets/ssl/privkey.pem');
     // eslint-disable-next-line no-sync
-    const cert = fs.readFileSync('./secrets/selfSignedSSL/server.crt');
+    const cert = fs.readFileSync('./secrets/ssl/server.pem');
 
     server = https.createServer(
       {

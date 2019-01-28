@@ -16,7 +16,7 @@
     "dev:server:test": "npm run start:server:test",
     "dev:server": "npm run start:server",
     "dev:test": "npm run dev:server:test",
-    "dev": "NODE_EXTRA_CA_CERTS=./secrets/selfSignedSSL/server_rootCA.pem npm run dev:server",
+    "dev": "npm run dev:server",
     "lint": "eslint src",
     "start:server:test": "TESTDATA=1 npm run start:server",
     "start:server": "node --inspect src/server/index.js",
