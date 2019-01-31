@@ -146,7 +146,7 @@ export default class Timetable {
     this.currentStation = normalizeRouteName(currentStation);
   }
   computeExtra(timetable: any) {
-    timetable.isCancelled = timetable.arrivalIsCancelled || timetable.departureIsCancelled;
+    timetable.isCancelled = timetable.departureIsCancelled || (timetable.arrivalIsCancelled && !timetable.departure);
     const addInfo =
       timetable.routePre.some(r => r.isCancelled || r.isAdditional) ||
       timetable.routePost.some(r => r.isCancelled || r.isAdditional);
