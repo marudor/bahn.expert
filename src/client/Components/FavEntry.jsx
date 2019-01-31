@@ -34,7 +34,7 @@ class FavEntry extends React.PureComponent<Props> {
         <div className="FavEntry">
           <span>{fav.title}</span>
           {!noDelete && (
-            <IconButton onClick={this.deleteFav} color="inherit">
+            <IconButton aria-label={`${fav.title} entfernen`} onClick={this.deleteFav} color="inherit">
               <ActionDelete />
             </IconButton>
           )}
