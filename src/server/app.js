@@ -3,7 +3,6 @@ import { middlewares } from './logger';
 import axios from 'axios';
 import createAdmin from './admin';
 import errorHandler from './errorHandler';
-import generateSitemap from './sitemap';
 import http from 'http';
 import Koa, { type Middleware } from 'koa';
 import KoaBodyparser from 'koa-bodyparser';
@@ -53,12 +52,14 @@ export async function createApp() {
 
   let apiRoutes = require('./Controller').default;
   let serverRender = require('./render').default;
+  let seoController = require('./seo').default;
 
   if (process.env.NODE_ENV !== 'test' && process.env.NODE_ENV !== 'production') {
     await require('./middleware/webpackDev')(app);
     app.use((ctx, next) => {
       serverRender = require('./render').default;
       apiRoutes = require('./Controller').default;
+      seoController = require('./seo').default;
       ctx.stats = transformStats(ctx.state.webpackStats.toJson().assetsByChunkName);
 
       return next();
@@ -73,18 +74,7 @@ export async function createApp() {
     })
   );
 
-  app.use((ctx, next) => {
-    if (ctx.req.url === '/sitemap.xml') {
-      ctx.body = generateSitemap();
-      if (ctx.body) {
-        ctx.set('Content-Type', 'text/xml; charset=utf-8');
-      } else {
-        ctx.status = 404;
-      }
-    } else {
-      return next();
-    }
-  });
+  app.use(hotHelper(() => seoController));
 
   if (process.env.NODE_ENV === 'production') {
     // $FlowFixMe
