@@ -15,6 +15,7 @@ module.exports = {
     'babel-preset-joblift',
   ],
   plugins: [
+    'react-hot-loader/babel',
     'lodash',
     [
       'module-resolver',
