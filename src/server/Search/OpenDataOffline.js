@@ -1,32 +1,8 @@
 // @flow
 import { orderBy } from 'lodash';
 import Fuse from 'fuse.js';
-import rawStations from 'db-stations/data.json';
+import rawStations, { type OpenDataStation } from 'db-stations/data.json';
 import type { Station } from 'types/abfahrten';
-
-type OpenDataStation = {
-  type: 'station',
-  id: string,
-  ds100: string,
-  nr: number,
-  name: string,
-  weight: number,
-  location: {
-    type: 'location',
-    latitude: number,
-    longitude: number,
-  },
-  operator: {
-    type: 'operator',
-    id: string,
-    name: string,
-  },
-  address: {
-    city: string,
-    zipcode: string,
-    street: string,
-  },
-};
 
 const searchableStations = new Fuse(rawStations, {
   includeScore: true,
@@ -55,7 +31,7 @@ export default function(searchTerm: string): Promise<Station[]> {
     orderBy<any>(weightedMatches, 'score', ['desc']).map(({ item }) => ({
       title: item.name,
       id: item.id,
-      ds100: item.ds100,
+      DS100: item.ds100,
       favendoId: item.nr,
     }))
   );

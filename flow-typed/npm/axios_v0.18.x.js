@@ -1,5 +1,5 @@
-// flow-typed signature: 35b5dccea9ee9419c97754d1fe8960da
-// flow-typed version: 00cdfecf02/axios_v0.18.x/flow_>=v0.75.x
+// flow-typed signature: 904dc3622c07747d5bf26f4052ac8c6c
+// flow-typed version: 241636a89e/axios_v0.18.x/flow_>=v0.75.x
 
 declare module "axios" {
   declare interface AxiosTransformer<T> {
@@ -99,8 +99,8 @@ declare module "axios" {
   }
   declare type AxiosPromise<T,R = T> = Promise<AxiosXHR<T,R>>;
   declare class Axios {
+    <T,R>(config: AxiosXHRConfig<T,R> | string, config?: AxiosXHRConfig<T,R>): AxiosPromise<T,R>;
     constructor<T,R>(config?: AxiosXHRConfigBase<T,R>): void;
-    static <T,R>(config: AxiosXHRConfig<T,R> | string, config?: AxiosXHRConfig<T,R>): AxiosPromise<T,R>;
     request<T,R>(config: AxiosXHRConfig<T,R>): AxiosPromise<T,R>;
     delete<T,R>(url: string, config?: AxiosXHRConfigBase<T,R>): AxiosPromise<T,R>;
     get<T,R>(url: string, config?: AxiosXHRConfigBase<T,R>): AxiosPromise<T,R>;
