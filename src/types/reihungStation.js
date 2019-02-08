@@ -15,7 +15,7 @@
   C - ???
   A - ???
 */
-type Waggon = {
+type Waggon = {|
   position: number,
   waggon: boolean,
   sections: string[],
@@ -24,19 +24,19 @@ type Waggon = {
   symbols: string,
   differentDestination: string,
   length: number,
-};
+|};
 
-type Destination = {
+type Destination = {|
   destinationName: string,
   destinationVia: string[],
-};
+|};
 
-type Subtrain = {
+type Subtrain = {|
   destination: Destination,
   sections: string[],
-};
+|};
 
-type TrackRecord = {
+type TrackRecord = {|
   time: string,
   additionalText: string,
   name: string,
@@ -45,18 +45,18 @@ type TrackRecord = {
   subtrains: Subtrain[],
   waggons: Waggon[],
   traintypes: string,
-};
+|};
 
-type SpecificWagenreihung = {
+type SpecificWagenreihung = {|
   name: string,
-  additionalId: {
+  additionalId: {|
     evaNr: string,
     shortName: string,
-  },
+  |},
   trackRecords: TrackRecord[],
-};
+|};
 
-export type WagenreihungStation = {
+export type WagenreihungStation = {|
   trainNubmer: string,
   trainType: ?any,
   time: ?any,
@@ -66,4 +66,4 @@ export type WagenreihungStation = {
   waggon: ?any,
   trainId: ?any,
   stations: SpecificWagenreihung[],
-};
+|};

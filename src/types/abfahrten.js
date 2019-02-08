@@ -1,34 +1,34 @@
 // @flow
-export type SubstituteRef = {
+export type SubstituteRef = {|
   trainNumber: string,
   trainType: string,
   train: string,
-};
-export type Station = {
+|};
+export type Station = {|
   title: string,
   id: string | number,
   favendoId?: number,
   DS100?: string,
-};
+|};
 
-export type Message = {
+export type Message = {|
   text: string,
   timestamp: string,
   superseded?: boolean,
   superseeds?: boolean,
-};
+|};
 
-export type Train = {
+export type Train = {|
   isAdditional?: 0 | 1,
   isCancelled?: 0 | 1,
   name: string,
-};
+|};
 
-export type Messages = {
+export type Messages = {|
   qos: Message[],
   delay: Message[],
-};
-export type Abfahrt = {
+|};
+export type Abfahrt = {|
   currentStation: string,
   delayArrival?: number,
   delayDeparture?: number,
@@ -53,6 +53,6 @@ export type Abfahrt = {
   via: string[],
   auslastung: boolean,
   reihung: boolean,
-};
+|};
 
 export default {};
