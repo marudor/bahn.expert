@@ -38,6 +38,7 @@ export const getAbfahrtenByString: ThunkAction<?string> = stationString => async
     if (stations.length) {
       const url = `/api/ownAbfahrten/${stations[0].id}`;
       const abfahrten: Abfahrt[] = (await axios.get(url, {
+        station: stations[0],
         params: {
           lookahead: config.lookahead,
         },
@@ -49,6 +50,7 @@ export const getAbfahrtenByString: ThunkAction<?string> = stationString => async
       type: '404',
     };
   } catch (e) {
+    e.station = stationString;
     dispatch(Actions.gotAbfahrtenError(e));
   }
 };
