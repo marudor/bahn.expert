@@ -7,7 +7,7 @@ export type State = {
   selectedDetail: ?string,
   abfahrten: ?Array<Abfahrt>,
   currentStation: ?Station,
-  error: ?Error,
+  error: ?(Error & { station?: string }),
 };
 
 const defaultState = {

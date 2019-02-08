@@ -3,6 +3,7 @@ import './FavList.scss';
 import { Actions } from 'client/actions/abfahrten';
 import { connect } from 'react-redux';
 import { type ContextRouter, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
 import { sortedFavValues } from 'client/selector/fav';
 import FavEntry from './FavEntry';
@@ -63,6 +64,11 @@ class FavList extends React.PureComponent<Props> {
         {error ? (
           <>
             <div className="FavEntry">{getErrorText(error, staticContext)}</div>
+            {error.station && (
+              <Link to={encodeURIComponent(error.station)}>
+                <div className="FavEntry">{error.station}</div>
+              </Link>
+            )}
             <div className="FavEntry">Versuch einen der folgenden</div>
             <MostUsed />
           </>
