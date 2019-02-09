@@ -1,3 +1,4 @@
+// @flow
 export default [
   {
     type: 'station_search',
