@@ -14,14 +14,14 @@ import Toolbar from '@material-ui/core/Toolbar';
 import type { AppState } from 'AppState';
 import type { Station } from 'types/abfahrten';
 
-function metaTags(currentStation: ?Station) {
+function metaTags(currentStation: ?Station, baseUrl: string) {
   let keywords = 'Bahnhofs Abfahrten, Bahn, Abfahrten, Bahnhof, Verspätung, Pünktlich';
   let title = 'Bahnhofs Abfahrten';
   let description = 'Bahnhofs Abfahrten';
 
   if (currentStation) {
     title = `${currentStation.title} - ${title}`;
-    description += ` - ${currentStation.title}`;
+    description = `Zugabfahrten für ${currentStation.title}`;
     keywords = `${currentStation.title}, ${keywords}`;
   }
 
@@ -41,6 +41,7 @@ function metaTags(currentStation: ?Station) {
       <meta property="og:title" content={title} />
       <meta property="og:type" content="article" />
       <meta property="og:description" content={description} />
+      <meta property="og:image" content={`${baseUrl}/android-chrome-384x384.png`} />
       {/* Open Graph End */}
     </>
   );
@@ -49,6 +50,7 @@ function metaTags(currentStation: ?Station) {
 type StateProps = {|
   currentStation: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'currentStation'>,
   searchType?: string,
+  baseUrl: string,
 |};
 
 type OwnProps = {|
@@ -90,11 +92,11 @@ class Header extends React.Component<Props> {
   getOptionValue = (station: Station) => station.id;
   loadOptions = (term: string) => debouncedGetStationFromAPI(term, this.props.searchType);
   render() {
-    const { currentStation } = this.props;
+    const { currentStation, baseUrl } = this.props;
 
     return (
       <>
-        <Helmet>{metaTags(currentStation)}</Helmet>
+        <Helmet>{metaTags(currentStation, baseUrl)}</Helmet>
         <AppBar position="fixed">
           <Toolbar disableGutters>
             <IconButton aria-label="Home" onClick={this.toRoot} color="inherit">
@@ -122,5 +124,6 @@ export default withRouter(
   connect<AppState, Function, OwnProps, StateProps>(state => ({
     currentStation: state.abfahrten.currentStation,
     searchType: state.config.config.searchType,
+    baseUrl: state.config.baseUrl,
   }))(Header)
 );

@@ -9,6 +9,7 @@ export type State = {|
   open: boolean,
   config: marudorConfig,
   online: boolean,
+  baseUrl: string,
 |};
 
 const defaultState: State = {
@@ -16,15 +17,21 @@ const defaultState: State = {
   open: false,
   config: defaultConfig,
   online: true,
+  baseUrl: '',
 };
 
 export default handleActions<State, *>(
   {
+    [String(Actions.setBaseUrl)]: (state: State, { payload }: ActionType<typeof Actions.setBaseUrl>) => ({
+      ...state,
+      baseUrl: payload,
+    }),
     [String(Actions.setOnline)]: (state: State, { payload }: ActionType<typeof Actions.setOnline>) => ({
       ...state,
       online: payload,
     }),
     [String(Actions.setCookies)]: (state: State, { payload }: ActionType<typeof Actions.setCookies>) => ({
+      ...state,
       open: false,
       config: {
         ...defaultConfig,
