@@ -3,7 +3,7 @@ import { createAction } from 'redux-actions';
 import { setCookieOptions } from 'client/util';
 import axios from 'axios';
 import type { Abfahrt, Station } from 'types/abfahrten';
-import type { ThunkAction } from 'AppState';
+import type { InnerThunkAction, ThunkAction } from 'AppState';
 
 export const Actions = {
   gotAbfahrten: createAction<
@@ -30,19 +30,36 @@ export async function getStationsFromAPI(stationString: ?string, type: string = 
   return Promise.resolve([]);
 }
 
+const pendingMap = new Map<string | number, Promise<Abfahrt[]>>();
+
+function getAbfahrtenFromAPI(station: Station, lookahead: string): Promise<Abfahrt[]> {
+  const pending = pendingMap.get(station.id);
+
+  if (pending) {
+    return pending;
+  }
+  const abfahrtPromise = axios
+    .get(`/api/ownAbfahrten/${station.id}`, {
+      station,
+      params: {
+        lookahead,
+      },
+    })
+    .then(d => d.data);
+
+  pendingMap.set(station.id, abfahrtPromise);
+  abfahrtPromise.finally(() => pendingMap.delete(station.id));
+
+  return abfahrtPromise;
+}
+
 export const getAbfahrtenByString: ThunkAction<?string> = stationString => async (dispatch, getState) => {
   try {
     const config = getState().config.config;
     const stations = await getStationsFromAPI(stationString, config.searchType);
 
     if (stations.length) {
-      const url = `/api/ownAbfahrten/${stations[0].id}`;
-      const abfahrten: Abfahrt[] = (await axios.get(url, {
-        station: stations[0],
-        params: {
-          lookahead: config.lookahead,
-        },
-      })).data;
+      const abfahrten = await getAbfahrtenFromAPI(stations[0], config.lookahead);
 
       return dispatch(Actions.gotAbfahrten({ station: stations[0], abfahrten }));
     }
@@ -68,4 +85,19 @@ export const setDetail: ThunkAction<?string> = selectedDetail => (dispatch, getS
   dispatch(Actions.setDetail(detail));
 
   return Promise.resolve();
+};
+
+export const refreshCurrentAbfahrten: InnerThunkAction = async (dispatch, getState) => {
+  try {
+    const state = getState();
+
+    if (!state.abfahrten.currentStation) {
+      return;
+    }
+    const abfahrten = await getAbfahrtenFromAPI(state.abfahrten.currentStation, state.config.config.lookahead);
+
+    return dispatch(Actions.gotAbfahrten({ station: state.abfahrten.currentStation, abfahrten }));
+  } catch (e) {
+    // We ignore errors here - otherwise we might display error automatically due to refresh after back online
+  }
 };

@@ -18,6 +18,7 @@ export const Actions = {
   >('SET_CONFIG'),
   setCookies: createAction<string, Cookies>('SET_COOKIES'),
   setMenu: createAction<string, boolean>('SET_MENU'),
+  setOnline: createAction<string, boolean>('SET_ONLINE'),
 };
 
 export const setSearchType = (value: string) =>
