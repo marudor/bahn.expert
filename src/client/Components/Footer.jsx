@@ -10,7 +10,7 @@ type StateProps = {|
 |};
 type Props = {| ...StateProps |};
 
-const Footer = ({ online }: Props) => (
+const Footer = ({ online = true }: Props) => (
   <div
     className={cc('Footer', {
       Footer__offline: !online,
