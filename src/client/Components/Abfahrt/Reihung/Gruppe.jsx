@@ -20,7 +20,7 @@ export default class Gruppe extends React.PureComponent<Props> {
     };
 
     return (
-      <div>
+      <>
         {gruppe.allFahrzeug.map(f => (
           <Fahrzeug
             {...rest}
@@ -34,7 +34,7 @@ export default class Gruppe extends React.PureComponent<Props> {
             {gruppe.fahrzeuggruppebezeichnung}
           </span>
         )}
-      </div>
+      </>
     );
   }
 }

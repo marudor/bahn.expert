@@ -8,13 +8,13 @@
     white-space: nowrap;
   }
   &__info {
-    color: red;
+    color: $red;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
   &--additional  {
-    color: red;
+    color: $red;
   }
 
   &--hbf {

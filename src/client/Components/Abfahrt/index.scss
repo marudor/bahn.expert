@@ -9,7 +9,7 @@
 
   &__entry {
     @media screen and (max-width: 1200px) {
-      font-size: 0.3em;
+      font-size: 0.36em;
     }
     display: flex;
     flex-direction: column;
@@ -32,9 +32,9 @@
 
 .changed,
 .delayed {
-  color: red;
+  color: $red;
 }
 
 .early {
-  color: green;
+  color: $green;
 }

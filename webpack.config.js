@@ -38,7 +38,12 @@ const rules = [
       },
       { loader: 'css-loader' },
       { loader: 'postcss-loader' },
-      { loader: 'sass-loader' },
+      {
+        loader: 'sass-loader',
+        options: {
+          data: '@import "./src/client/variables.scss";',
+        },
+      },
     ],
   },
   {

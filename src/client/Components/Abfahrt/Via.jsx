@@ -100,7 +100,7 @@ function getAbfahrt(
     </span>
   );
   if (index + 1 !== length) {
-    via.push(<span key={index}>{' - '}</span>);
+    via.push(' - ');
   }
 
   return via;
