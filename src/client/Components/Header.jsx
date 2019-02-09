@@ -14,34 +14,36 @@ import Toolbar from '@material-ui/core/Toolbar';
 import type { AppState } from 'AppState';
 import type { Station } from 'types/abfahrten';
 
-function getMetaDescription(currentStation) {
-  let content = 'Bahnhofs Abfahrten';
-
-  if (currentStation) {
-    content += ` ${currentStation.title}`;
-  }
-
-  return <meta name="Description" content={content} />;
-}
-
-function getTitle(currentStation) {
+function metaTags(currentStation: ?Station) {
+  let keywords = 'Bahnhofs Abfahrten, Bahn, Abfahrten, Bahnhof, Verspätung, Pünktlich';
   let title = 'Bahnhofs Abfahrten';
+  let description = 'Bahnhofs Abfahrten';
 
   if (currentStation) {
     title = `${currentStation.title} - ${title}`;
-  }
-
-  return <title>{title}</title>;
-}
-
-function getMetaKeywords(currentStation) {
-  let keywords = 'Bahnhofs Abfahrten, Bahn, Abfahrten, Bahnhof, Verspätung, Pünktlich';
-
-  if (currentStation) {
+    description += ` - ${currentStation.title}`;
     keywords = `${currentStation.title}, ${keywords}`;
   }
 
-  return <meta name="keywords" content={keywords} />;
+  return (
+    <>
+      <title>{title}</title>
+      <meta name="description" content={description} />
+      <meta name="keywords" content={keywords} />
+      {/* Twitter Start */}
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:site" content="@marudor" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:creator" content="@marudor" />
+      {/* Twitter End */}
+      {/* Open Graph Start */}
+      <meta property="og:title" content={title} />
+      <meta property="og:type" content="article" />
+      <meta property="og:description" content={description} />
+      {/* Open Graph End */}
+    </>
+  );
 }
 
 type StateProps = {|
@@ -92,11 +94,7 @@ class Header extends React.Component<Props> {
 
     return (
       <>
-        <Helmet>
-          {getTitle(currentStation)}
-          {getMetaDescription(currentStation)}
-          {getMetaKeywords(currentStation)}
-        </Helmet>
+        <Helmet>{metaTags(currentStation)}</Helmet>
         <AppBar position="fixed">
           <Toolbar disableGutters>
             <IconButton aria-label="Home" onClick={this.toRoot} color="inherit">

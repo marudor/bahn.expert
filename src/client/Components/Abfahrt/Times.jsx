@@ -54,27 +54,23 @@ const Times = ({
     {detail ? (
       <React.Fragment>
         {scheduledArrival && (
-          <div>
-            <div className="Times__wrapper">
-              {Boolean(delayArrival) && (
-                <span className={cc([delayStyle(delayArrival), 'Times--offset'])}>{delayString(delayArrival)}</span>
-              )}
-              <span>
-                {'An:'} {getDelayTime(scheduledArrival, delayArrival, isCancelled, timeConfig)}
-              </span>
-            </div>
+          <div className="Times__wrapper">
+            {Boolean(delayArrival) && (
+              <span className={cc([delayStyle(delayArrival), 'Times--offset'])}>{delayString(delayArrival)}</span>
+            )}
+            <span>
+              {'An:'} {getDelayTime(scheduledArrival, delayArrival, isCancelled, timeConfig)}
+            </span>
           </div>
         )}
         {scheduledDeparture && (
-          <div key="d">
-            <div className="Times__wrapper">
-              {Boolean(delayDeparture) && (
-                <span className={cc([delayStyle(delayDeparture), 'Times--offset'])}>{delayString(delayDeparture)}</span>
-              )}
-              <span>
-                {'Ab:'} {getDelayTime(scheduledDeparture, delayDeparture, isCancelled, timeConfig)}
-              </span>
-            </div>
+          <div className="Times__wrapper">
+            {Boolean(delayDeparture) && (
+              <span className={cc([delayStyle(delayDeparture), 'Times--offset'])}>{delayString(delayDeparture)}</span>
+            )}
+            <span>
+              {'Ab:'} {getDelayTime(scheduledDeparture, delayDeparture, isCancelled, timeConfig)}
+            </span>
           </div>
         )}
       </React.Fragment>
