@@ -4,6 +4,10 @@ import { type Abfahrt } from 'types/abfahrten';
 import { connect } from 'react-redux';
 import { getAuslastung } from 'client/actions/auslastung';
 import { getAuslastungForIdAndStation } from 'client/selector/auslastung';
+import Close from '@material-ui/icons/Close';
+import Done from '@material-ui/icons/Done';
+import ErrorOutline from '@material-ui/icons/ErrorOutline';
+import Help from '@material-ui/icons/Help';
 import Loading from '../Loading';
 import React from 'react';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -37,6 +41,19 @@ function getTooltipText(auslastung) {
   }
 }
 
+function getIcon(auslastung) {
+  switch (auslastung) {
+    case 0:
+      return <Done />;
+    case 1:
+      return <ErrorOutline />;
+    case 2:
+      return <Close />;
+    default:
+      return <Help />;
+  }
+}
+
 class Auslastung extends React.PureComponent<Props> {
   componentDidMount() {
     const { auslastung, getAuslastung, abfahrt } = this.props;
@@ -67,13 +84,13 @@ class Auslastung extends React.PureComponent<Props> {
         <div className="Auslastung__entry">
           <span>1</span>
           <Tooltip title={getTooltipText(auslastung.first)}>
-            <span className={`Auslastung__icon A${auslastung.first}`} />
+            <span className={`Auslastung__icon A${auslastung.first}`}>{getIcon(auslastung.first)}</span>
           </Tooltip>
         </div>
         <div className="Auslastung__entry">
           <span>2</span>
           <Tooltip title={getTooltipText(auslastung.second)}>
-            <span className={`Auslastung__icon A${auslastung.second}`} />
+            <span className={`Auslastung__icon A${auslastung.second}`}>{getIcon(auslastung.second)}</span>
           </Tooltip>
         </div>
       </div>
