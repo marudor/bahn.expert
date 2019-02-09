@@ -2,18 +2,17 @@
 /* eslint import/prefer-default-export: 0 */
 import type { Station } from 'types/abfahrten';
 
-type BuiltOptions = {
+type BuiltOptions = {|
   includeFavendoId?: boolean,
   includeDS100?: boolean,
-};
-type CustomOptions = {
-  customResponse: any[],
-};
+|};
+type CustomOptions = {|
+  customResponse: Station[],
+|};
 type Options = BuiltOptions | CustomOptions;
 
 function buildResults(options: Options): any[] {
   if (options.customResponse) {
-    // $FlowFixMe
     return options.customResponse;
   }
   const Hbf: Station = { id: '8002549', title: 'Hamburg Hbf' };
@@ -31,7 +30,7 @@ function buildResults(options: Options): any[] {
   return [Hbf, Dammtor];
 }
 
-export async function testHamburgSearch(searchFn: Function, options?: Options = {}) {
+export async function testHamburgSearch(searchFn: string => Promise<Station[]>, options?: Options = ({}: any)) {
   const result = await searchFn('Hamburg');
 
   const expectedResult = buildResults(options);

@@ -1,3 +1,4 @@
+// @flow
 export default {
   ver: '1.20',
   lang: 'deu',

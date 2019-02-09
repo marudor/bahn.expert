@@ -1,3 +1,4 @@
+// @flow
 export default {
   offset: 0,
   limit: 10000,
