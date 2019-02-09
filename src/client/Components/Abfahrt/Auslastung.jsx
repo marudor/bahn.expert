@@ -4,14 +4,14 @@ import { type Abfahrt } from 'types/abfahrten';
 import { connect } from 'react-redux';
 import { getAuslastung } from 'client/actions/auslastung';
 import { getAuslastungForIdAndStation } from 'client/selector/auslastung';
+import Close from '@material-ui/icons/Close';
+import Done from '@material-ui/icons/Done';
+import ErrorOutline from '@material-ui/icons/ErrorOutline';
+import Help from '@material-ui/icons/Help';
 import Loading from '../Loading';
 import React from 'react';
 import Tooltip from '@material-ui/core/Tooltip';
 import type { AppState } from 'AppState';
-import Done from '@material-ui/icons/Done';
-import ErrorOutline from '@material-ui/icons/ErrorOutline';
-import Close from '@material-ui/icons/Close';
-import Help from '@material-ui/icons/Help';
 
 type StateProps = {|
   auslastung: ?{ first: 0 | 1 | 2, second: 0 | 1 | 2 },
@@ -84,17 +84,13 @@ class Auslastung extends React.PureComponent<Props> {
         <div className="Auslastung__entry">
           <span>1</span>
           <Tooltip title={getTooltipText(auslastung.first)}>
-            <span className={`Auslastung__icon A${auslastung.first}`}>
-              {getIcon(auslastung.first)}
-            </span>
+            <span className={`Auslastung__icon A${auslastung.first}`}>{getIcon(auslastung.first)}</span>
           </Tooltip>
         </div>
         <div className="Auslastung__entry">
           <span>2</span>
           <Tooltip title={getTooltipText(auslastung.second)}>
-            <span className={`Auslastung__icon A${auslastung.second}`}>
-              {getIcon(auslastung.second)}
-            </span>
+            <span className={`Auslastung__icon A${auslastung.second}`}>{getIcon(auslastung.second)}</span>
           </Tooltip>
         </div>
       </div>
