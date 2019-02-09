@@ -5,6 +5,7 @@ import SettingsModal from './LazySettingsModal';
 // import Privacy from './Privacy';
 import { hot } from 'react-hot-loader/root';
 import { renderRoutes } from 'react-router-config';
+import Footer from './Footer';
 import Header from './Header';
 import routes from '../routes';
 
@@ -22,6 +23,7 @@ class BahnhofsAbfahrten extends React.Component<{||}> {
         <Header />
         <SettingsModal />
         {renderRoutes(routes)}
+        <Footer />
       </div>
     );
   }

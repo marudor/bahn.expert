@@ -8,16 +8,22 @@ export type State = {|
   cookies: Cookies,
   open: boolean,
   config: marudorConfig,
+  online: boolean,
 |};
 
 const defaultState: State = {
   cookies: new Cookies(),
   open: false,
   config: defaultConfig,
+  online: true,
 };
 
 export default handleActions<State, *>(
   {
+    [String(Actions.setOnline)]: (state: State, { payload }: ActionType<typeof Actions.setOnline>) => ({
+      ...state,
+      online: payload,
+    }),
     [String(Actions.setCookies)]: (state: State, { payload }: ActionType<typeof Actions.setCookies>) => ({
       open: false,
       config: {
