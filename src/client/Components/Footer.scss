@@ -1,6 +1,6 @@
 .Footer {
   position: fixed;
-  bottom: 0;
+  bottom: -32px;
   left: auto;
   width: 100%;
   right: 0;
@@ -9,12 +9,11 @@
   text-align: center;
   color: white;
   line-height: 32px;
-  transform: translateY(32px);
   visibility: hidden;
   transition: 0.5s;
 
   &__offline {
     visibility: visible;
-    transform: translateY(0);
+    transform: translateY(-32px);
   }
 }
