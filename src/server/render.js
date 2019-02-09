@@ -1,5 +1,5 @@
 // @flow
-import { setCookies } from 'client/actions/config';
+import { Actions, setCookies } from 'client/actions/config';
 // $FlowFixMe
 import { createGenerateClassName, MuiThemeProvider } from '@material-ui/core/styles';
 import { HelmetProvider } from 'react-helmet-async';
@@ -39,6 +39,7 @@ export default async (ctx: any) => {
   const store = createStore();
 
   store.dispatch(setCookies(new Cookies(ctx.req.headers.cookie)));
+  store.dispatch(Actions.setBaseUrl(`${ctx.protocol}://${String(process.env.BASE_URL)}`));
 
   await Promise.all(
     matchRoutes(routes, ctx.req.url).map(({ route, match }) =>

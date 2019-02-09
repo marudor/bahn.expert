@@ -2,13 +2,11 @@
 import KoaRouter from 'koa-router';
 import rawStations from 'db-stations/data.json';
 
-const baseUrl = process.env.BASE_URL;
+// $FlowFixMe
+const baseUrl: string = process.env.BASE_URL;
 
 const router = new KoaRouter();
 const sitemap = () => {
-  if (!baseUrl) {
-    return;
-  }
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
 
   rawStations.forEach(s => {
@@ -20,17 +18,11 @@ const sitemap = () => {
   return xml;
 };
 
-const robots = () => {
-  if (!baseUrl) {
-    return;
-  }
-
-  return `User-agent: *
+const robots = () => `User-agent: *
 Allow: *
 
 Sitemap: https://${baseUrl}/sitemap.xml
 `;
-};
 
 router
   .get('/sitemap.xml', ctx => {
