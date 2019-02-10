@@ -34,7 +34,7 @@ type Props = {
 const End = ({ abfahrt, detail }: Props) => (
   <div className="End">
     <Times abfahrt={abfahrt} detail={detail} />
-    <div>
+    <div className="End__bottom">
       {!detail && getDelay(abfahrt)}
       <span
         className={cc([
