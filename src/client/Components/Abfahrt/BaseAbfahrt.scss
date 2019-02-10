@@ -1,10 +1,3 @@
-@mixin wing {
-  position: absolute;
-  border-left: 1px solid black;
-  content: ' ';
-  left: 0.3em;
-}
-
 .Abfahrt {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.24) !important;
   cursor: pointer;
@@ -34,23 +27,30 @@
     }
   }
 
-  & > .wing0 {
-    @include wing;
-    top: 0;
+  & > .wing {
+    position: absolute;
+    border-left: 1px solid black;
+    content: ' ';
+    left: 0.3em;
+    top: -1em;
     bottom: 0;
+
+    &.wing--start {
+      top: 0;
+    }
+
+    &.wing--end {
+      bottom: 0.3em;
+    }
   }
-  & > .wing0:before {
+
+  & > .wing--start:before {
     content: '';
     border-left: 1em solid black;
     position: absolute;
     height: 1px;
   }
-  & > .wing1 {
-    @include wing;
-    top: -0.5em;
-    bottom: 0.2em;
-  }
-  & > .wing1:after {
+  & > .wing--end:after {
     content: '';
     border-left: 1em solid black;
     position: absolute;
