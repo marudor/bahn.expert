@@ -17,7 +17,7 @@ import type { Station } from 'types/abfahrten';
 function metaTags(currentStation: ?Station, baseUrl: string) {
   let keywords = 'Bahnhofs Abfahrten, Bahn, Abfahrten, Bahnhof, Verspätung, Pünktlich';
   let title = 'Bahnhofs Abfahrten';
-  let description = 'Bahnhofs Abfahrten';
+  let description = 'Zugabfahrten für Stationen der Deutsche Bahn';
 
   if (currentStation) {
     title = `${currentStation.title} - ${title}`;
