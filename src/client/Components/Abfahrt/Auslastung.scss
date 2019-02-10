@@ -9,13 +9,14 @@
   }
 
   &__icon {
-    font-size: 0.5em;
-    height: 1.6em;
-    width: 1.6em;
+    font-size: 0.7em;
     display: inline-block;
     border-radius: 50%;
     text-align: center;
     padding: 0.2em;
+    line-height: 0;
+    color: white;
+    background-color: black;
     &.A0 {
       background-color: green;
       color: #fff;
