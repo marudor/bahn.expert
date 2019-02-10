@@ -1,13 +1,24 @@
+@mixin wing {
+  position: absolute;
+  border-left: 1px solid black;
+  content: ' ';
+  left: 0.3em;
+}
+
 .Abfahrt {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.24) !important;
   cursor: pointer;
   flex-shrink: 0;
-  margin-bottom: 5px;
-  overflow: hidden;
-  padding-left: 15px;
-  padding-right: 15px;
+  margin-bottom: 0.3em;
+  margin-top: 0.2em;
+  overflow: visible;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  padding-bottom: 0.2em;
+  position: relative;
 
   &__entry {
+    overflow: hidden;
     @media screen and (max-width: 1200px) {
       font-size: 0.36em;
     }
@@ -16,12 +27,35 @@
     flex-shrink: 0;
     font-size: 0.6em;
     line-height: 1;
-    padding-top: 5px;
     user-select: none;
 
     &__main {
       display: flex;
     }
+  }
+
+  & > .wing0 {
+    @include wing;
+    top: 0;
+    bottom: 0;
+  }
+  & > .wing0:before {
+    content: '';
+    border-left: 1em solid black;
+    position: absolute;
+    height: 1px;
+  }
+  & > .wing1 {
+    @include wing;
+    top: -0.5em;
+    bottom: 0.2em;
+  }
+  & > .wing1:after {
+    content: '';
+    border-left: 1em solid black;
+    position: absolute;
+    height: 1px;
+    bottom: 0;
   }
 }
 

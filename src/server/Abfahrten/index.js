@@ -1,6 +1,5 @@
 // @flow
-import { addHours, addMinutes, compareAsc, isAfter, isBefore, subHours } from 'date-fns';
-import { flatten, uniqBy } from 'lodash';
+import { compareAsc } from 'date-fns';
 import { getStation } from './station';
 import Timetable from './Timetable';
 
@@ -16,38 +15,43 @@ const defaultOptions = {
   lookbehind: 20,
 };
 
+type Result = {
+  departures: any[],
+  wings: Object,
+};
+
+const baseResult: Result = { departures: [], wings: {} };
+
+function reduceResults(agg: Result, r: Result) {
+  return {
+    departures: [...agg.departures, ...r.departures],
+    wings: {
+      ...agg.wings,
+      ...r.wings,
+    },
+  };
+}
+
 export async function getAbfahrten(evaId: string, withRelated: boolean = true, options: AbfahrtenOptions = {}) {
   const lookahead = options.lookahead || defaultOptions.lookahead;
   const lookbehind = options.lookbehind || defaultOptions.lookbehind;
 
   const { station, relatedStations } = await getStation(evaId, 1);
-  let relatedAbfahrten = Promise.resolve([]);
+  let relatedAbfahrten = Promise.resolve(baseResult);
 
   if (withRelated) {
-    relatedAbfahrten = Promise.all(relatedStations.map(s => getAbfahrten(s.eva, false, options))).then(a => flatten(a));
-  }
-  const date = new Date();
-  const maxDate = addMinutes(date, lookahead);
-  const segments = [date];
-
-  for (let i = 1; i <= Math.ceil(lookahead / 60); i += 1) {
-    segments.push(addHours(date, i));
-  }
-  for (let i = 1; i <= Math.ceil(lookbehind / 60); i += 1) {
-    segments.push(subHours(date, i));
-  }
-
-  const timetable = new Timetable(evaId, segments, station.name);
-  const abfahrten = flatten(await Promise.all([timetable.start(), relatedAbfahrten]));
-  const filtered = uniqBy(abfahrten, 'rawId').filter(a => {
-    const time = a.departure || a.arrival;
-
-    return (
-      isAfter(time, date) && (isBefore(time, maxDate) || isBefore(a.scheduledDeparture || a.scheduledArrival, maxDate))
+    relatedAbfahrten = Promise.all(relatedStations.map(s => getAbfahrten(s.eva, false, options))).then(r =>
+      r.reduce(reduceResults, baseResult)
     );
-  });
+  }
 
-  const sorted: any = filtered.sort((a, b) => {
+  const timetable = new Timetable(evaId, station.name, {
+    lookahead,
+    lookbehind,
+  });
+  const result: Result = (await Promise.all([timetable.start(), relatedAbfahrten])).reduce(reduceResults, baseResult);
+
+  result.departures.sort((a, b) => {
     const sort = compareAsc(a.scheduledDeparture || a.scheduledArrival, b.scheduledDeparture || b.scheduledArrival);
 
     if (!sort) {
@@ -60,5 +64,5 @@ export async function getAbfahrten(evaId: string, withRelated: boolean = true, o
     return sort;
   });
 
-  return sorted;
+  return result;
 }
