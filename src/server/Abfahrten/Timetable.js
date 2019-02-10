@@ -15,6 +15,35 @@ import NodeCache from 'node-cache';
 import xmljs from 'libxmljs';
 import type { Message } from 'types/abfahrten';
 
+type XmlAttr = {
+  value(): ?string,
+};
+type XmlNode = {
+  get(childNode: string): ?XmlNode,
+  find(xpath: string): ?XmlNode,
+  path(): string,
+  map<U>((XmlNode) => U): U[],
+  attr(name: string): ?XmlAttr,
+};
+
+type ArDp = {|
+  platform: ?string,
+  status: ?string,
+|};
+type ParsedDp = {|
+  ...ArDp,
+  departureTs: ?string,
+  scheduledDepartureTs: ?string,
+  routePost: ?(string[]),
+|};
+
+type ParsedAr = {|
+  ...ArDp,
+  arrivalTs: ?string,
+  scheduledArrivalTs: ?string,
+  routePre: ?(string[]),
+|};
+
 // 6 Hours in seconds
 const stdTTL = 6 * 60 * 60;
 const timetableCache: NodeCache<string, Object> = new NodeCache({ stdTTL });
@@ -37,7 +66,7 @@ const normalizeRouteName = (name: string) =>
     .replace(')', ') ')
     .trim();
 
-function getAttr(node, name): ?string {
+function getAttr(node: ?XmlNode, name): ?string {
   // $FlowFixMe - optional chaining call
   return node?.attr(name)?.value();
 }
@@ -50,13 +79,13 @@ function getNumberAttr(node, name): ?number {
   return Number.parseInt(attr, 10);
 }
 
-function parseTs(ts) {
+function parseTs(ts): ?Date {
   if (ts) {
     return parseFromTimeZone(ts, 'YYMMDDHHmm', { timeZone: 'Europe/Berlin' });
   }
 }
 
-export function parseDp(dp: any) {
+export function parseDp(dp: ?XmlNode): ?ParsedDp {
   if (!dp) return undefined;
 
   const routePost = getAttr(dp, 'cpth');
@@ -71,7 +100,7 @@ export function parseDp(dp: any) {
   };
 }
 
-export function parseAr(ar: any) {
+export function parseAr(ar: ?XmlNode): ?ParsedAr {
   if (!ar) return undefined;
 
   const routePre = getAttr(ar, 'cpth');
@@ -135,7 +164,7 @@ export function splitTrainType(train: string = '') {
   };
 }
 
-export function parseTl(tl: any) {
+export function parseTl(tl: XmlNode) {
   return {
     trainNumber: getAttr(tl, 'n') || '',
     trainType: getAttr(tl, 'c') || '',
@@ -279,7 +308,7 @@ export default class Timetable {
 
     return viaShow.map(v => v.replace(' Hbf', ''));
   }
-  parseRef(tl: any) {
+  parseRef(tl: XmlNode) {
     const { trainType, trainNumber } = parseTl(tl);
     const train = `${trainType} ${trainNumber}`;
 
@@ -289,27 +318,28 @@ export default class Timetable {
       train,
     };
   }
-  parseMessage(mNode: any) {
+  parseMessage(mNode: XmlNode) {
     const value = getNumberAttr(mNode, 'c');
     const indexType = getAttr(mNode, 't');
 
     if (!indexType) return undefined;
-    const type = messageTypeLookup[indexType];
+    const type: ?string = messageTypeLookup[indexType];
 
     if (!type || !value || value <= 1) {
       return undefined;
     }
 
-    return [
+    return {
       type,
-      {
+      value,
+      message: {
+        superseeds: false,
         text: messageLookup[value] || `${value} (?)`,
         timestamp: parseTs(getAttr(mNode, 'ts')),
       },
-      value,
-    ];
+    };
   }
-  parseRealtimeS(sNode: any) {
+  parseRealtimeS(sNode: XmlNode) {
     const rawId = getAttr(sNode, 'id');
 
     if (!rawId) return;
@@ -328,6 +358,8 @@ export default class Timetable {
     const ar = sNode.get('ar');
     const dp = sNode.get('dp');
     const mArr = sNode.find(`${sNode.path()}//m`);
+
+    if (!mArr) return;
     const messages: {
       delay: {
         [key: string]: Message,
@@ -343,19 +375,20 @@ export default class Timetable {
     mArr
       .map(m => this.parseMessage(m))
       .filter(Boolean)
-      .sort((a, b) => compareAsc(a[1].timestamp, b[1].timestamp))
-      .forEach(([messageType, message, value]) => {
+      // $FlowFixMe - undefined as timestamp is okay here
+      .sort((a, b) => compareAsc(a.message.timestamp, b.message.timestamp))
+      .forEach(({ type, message, value }) => {
         const supersedes = supersededMessages[value];
 
         if (supersedes) {
           message.superseeds = true;
           supersedes.forEach(v => {
-            if (messages[messageType][v]) {
-              messages[messageType][v].superseded = true;
+            if (messages[type][v]) {
+              messages[type][v].superseded = true;
             }
           });
         }
-        messages[messageType][value] = message;
+        messages[type][value] = message;
       });
 
     const delay: Message[] = (Object.values(messages.delay): any);
@@ -377,7 +410,7 @@ export default class Timetable {
       ref: ref ? this.parseRef(ref) : undefined,
     };
   }
-  addArrivalInfo(timetable: any, ar: any) {
+  addArrivalInfo(timetable: any, ar: ?ParsedAr) {
     if (!ar) return;
     timetable.arrivalIsCancelled = ar.status === 'c';
     timetable.arrivalIsAdditional = ar.status === 'a';
@@ -404,7 +437,7 @@ export default class Timetable {
     }
     timetable.platform = ar.platform || timetable.scheduledPlatform;
   }
-  addDepartureInfo(timetable: any, dp: any) {
+  addDepartureInfo(timetable: any, dp: ?ParsedDp) {
     if (!dp) return;
     timetable.departureIsCancelled = dp.status === 'c';
     timetable.departureIsAdditional = dp.status === 'a';
@@ -450,7 +483,7 @@ export default class Timetable {
       timetable.ref = realtime.ref;
     });
   }
-  getWings(node: any, displayAsWing: boolean) {
+  getWings(node: ?XmlNode, displayAsWing: boolean) {
     // $FlowFixMe - optional chaining call
     const rawWings: ?(string[]) = getAttr(node, 'wings')?.split('|');
 
@@ -464,7 +497,7 @@ export default class Timetable {
 
     return mediumWings;
   }
-  parseTimetableS(sNode: any) {
+  parseTimetableS(sNode: XmlNode) {
     const rawId = getAttr(sNode, 'id');
 
     if (!rawId) {
