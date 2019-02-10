@@ -453,7 +453,7 @@ export default class Timetable {
     const mediumWings = rawWings.map<string>(w => parseRawId(w).mediumId);
 
     if (displayAsWing) {
-      this.wingIds.add(...mediumWings);
+      mediumWings.forEach(i => this.wingIds.add(i));
     }
 
     return mediumWings;

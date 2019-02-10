@@ -1,8 +1,11 @@
 // @flow
 import { createSelector } from 'reselect';
-import type { OwnProps as AbfahrtProps } from '../Components/Abfahrt';
+import type { Abfahrt, ResolvedWings, Wings } from 'types/abfahrten';
 import type { AppState } from 'AppState';
-import type { ResolvedWings, Wings } from 'types/abfahrten';
+
+type AbfahrtProps = {
+  abfahrt: Abfahrt,
+};
 
 export const getWings = (state: AppState) => state.abfahrten.wings;
 export const getSelectedDetail = (state: AppState) => state.abfahrten.selectedDetail;

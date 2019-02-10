@@ -1,0 +1,71 @@
+// @flow
+import './BaseAbfahrt.scss';
+import { connect } from 'react-redux';
+import { getDetailForAbfahrt } from 'client/selector/abfahrten';
+import { setDetail } from 'client/actions/abfahrten';
+import cc from 'classnames';
+import End from './End';
+import Mid from './Mid';
+import Paper from '@material-ui/core/Paper';
+import React from 'react';
+import Reihung from './Reihung';
+import Start from './Start';
+import type { Abfahrt } from 'types/abfahrten';
+import type { AppState } from 'AppState';
+
+export type OwnProps = {|
+  abfahrt: Abfahrt,
+  wing?: boolean,
+  wingEnd?: boolean,
+  wingStart?: boolean,
+|};
+type StateProps = {|
+  detail: boolean,
+|};
+type DispatchProps = {|
+  setDetail: typeof setDetail,
+|};
+export type Props = {|
+  ...OwnProps,
+  ...StateProps,
+  ...DispatchProps,
+|};
+
+class BaseAbfahrt extends React.PureComponent<Props> {
+  setDetail = () => {
+    this.props.setDetail(this.props.abfahrt.id);
+  };
+  render() {
+    const { abfahrt, detail, wing, wingEnd, wingStart } = this.props;
+
+    return (
+      <Paper id={abfahrt.id} onClick={this.setDetail} className="Abfahrt">
+        {wing && (
+          <span
+            className={cc(`wing`, {
+              'wing--start': wingStart,
+              'wing--end': wingEnd,
+            })}
+          />
+        )}
+        <div className="Abfahrt__entry">
+          <div className="Abfahrt__entry__main">
+            <Start abfahrt={abfahrt} detail={detail} />
+            <Mid abfahrt={abfahrt} detail={detail} />
+            <End abfahrt={abfahrt} detail={detail} />
+          </div>
+          {detail && abfahrt.reihung && <Reihung abfahrt={abfahrt} />}
+        </div>
+      </Paper>
+    );
+  }
+}
+
+export default connect<AppState, Function, OwnProps, StateProps, DispatchProps>(
+  (state, props) => ({
+    detail: getDetailForAbfahrt(state, props),
+  }),
+  {
+    setDetail,
+  }
+)(BaseAbfahrt);
