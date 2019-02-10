@@ -116,7 +116,7 @@ export function parseAr(ar: ?XmlNode): ?ParsedAr {
   };
 }
 
-const trainRegex = /(\w+?)?? ?(RS|STB|IRE|RE|RB|IC|ICE|EC|ECE|TGV|NJ|RJ|S)? ?(\d+\w*)/;
+const trainRegex = /(\w+?)?? ?(RS|IRE|RE|RB|IC|ICE|EC|ECE|TGV|NJ|RJ|S)? ?(\d+\w*)/;
 
 function getTrainType(thirdParty, trainType) {
   if ((thirdParty === 'NWB' && trainType === 'RS') || thirdParty === 'BSB') {
@@ -166,10 +166,11 @@ export function splitTrainType(train: string = '') {
 
 export function parseTl(tl: XmlNode) {
   return {
+    f: getAttr(tl, 'f'),
+    o: getAttr(tl, 'o'),
+    t: getAttr(tl, 't'),
     trainNumber: getAttr(tl, 'n') || '',
     trainType: getAttr(tl, 'c') || '',
-    t: getAttr(tl, 't'),
-    f: getAttr(tl, 'f'),
   };
 }
 
@@ -515,7 +516,7 @@ export default class Timetable {
     const scheduledArrival = parseTs(getAttr(ar, 'pt'));
     const scheduledDeparture = parseTs(getAttr(dp, 'pt'));
     const lineNumber = getAttr(dp || ar, 'l');
-    const { trainNumber, trainType, t } = parseTl(tl);
+    const { trainNumber, trainType, t, o } = parseTl(tl);
     const train = `${trainType} ${lineNumber || trainNumber}`;
     // $FlowFixMe - optional chaining call
     const routePost: string[] = (getAttr(dp, 'ppth')?.split('|') || []).map(normalizeRouteName);
@@ -523,6 +524,7 @@ export default class Timetable {
     const routePre: string[] = (getAttr(ar, 'ppth')?.split('|') || []).map(normalizeRouteName);
 
     return {
+      o,
       arrival: scheduledArrival,
       arrivalWingIds: this.getWings(ar, false),
       // classes: getAttr(tl, 'f'),

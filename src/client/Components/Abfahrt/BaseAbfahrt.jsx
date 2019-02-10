@@ -15,7 +15,8 @@ import type { AppState } from 'AppState';
 
 export type OwnProps = {|
   abfahrt: Abfahrt,
-  wing?: boolean,
+  sameTrainWing: boolean,
+  wing: boolean,
   wingEnd?: boolean,
   wingStart?: boolean,
 |};
@@ -36,13 +37,14 @@ class BaseAbfahrt extends React.PureComponent<Props> {
     this.props.setDetail(this.props.abfahrt.id);
   };
   render() {
-    const { abfahrt, detail, wing, wingEnd, wingStart } = this.props;
+    const { abfahrt, detail, wing, sameTrainWing, wingEnd, wingStart } = this.props;
 
     return (
       <Paper id={abfahrt.id} onClick={this.setDetail} className="Abfahrt">
         {wing && (
           <span
             className={cc(`wing`, {
+              'wing--same': sameTrainWing,
               'wing--start': wingStart,
               'wing--end': wingEnd,
             })}

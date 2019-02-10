@@ -34,7 +34,7 @@ function preventDefault(e: SyntheticMouseEvent<>) {
 const TraewellingLink = ({ abfahrt, show }: Props) => {
   const departure = abfahrt.scheduledDeparture;
 
-  if (!departure || !show || !abfahrt.trainType || abfahrt.trainType === 'STB') {
+  if (!departure || !show || !abfahrt.trainType) {
     return null;
   }
   // const start = abfahrt.route[0].name;

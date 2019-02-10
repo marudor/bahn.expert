@@ -21,12 +21,28 @@ class Abfahrt extends React.PureComponent<Props> {
     const { resolvedWings, abfahrt } = this.props;
 
     const wings = resolvedWings?.arrivalWings || resolvedWings?.departureWings;
+    const sameTrainWing = Boolean(
+      wings && wings.every(w => w.trainNumber.endsWith(abfahrt.trainNumber) && w.trainType !== abfahrt.trainType)
+    );
 
     return (
       <>
-        <BaseAbfahrt abfahrt={abfahrt} wing={Boolean(wings?.length)} wingStart={Boolean(wings)} />
+        <BaseAbfahrt
+          abfahrt={abfahrt}
+          sameTrainWing={sameTrainWing}
+          wing={Boolean(wings?.length)}
+          wingStart={Boolean(wings)}
+        />
         {wings &&
-          wings.map((w, index) => <BaseAbfahrt abfahrt={w} key={w.rawId} wing wingEnd={wings.length === index + 1} />)}
+          wings.map((w, index) => (
+            <BaseAbfahrt
+              sameTrainWing={sameTrainWing}
+              abfahrt={w}
+              key={w.rawId}
+              wing
+              wingEnd={wings.length === index + 1}
+            />
+          ))}
       </>
     );
   }
