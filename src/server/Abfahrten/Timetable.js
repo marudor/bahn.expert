@@ -4,9 +4,9 @@
  ** This algorithm is heavily inspired by https://github.com/derf/Travel-Status-DE-IRIS
  ** derf did awesome work reverse engineering the XML stuff!
  */
-import { compareAsc, compareDesc, format } from 'date-fns';
+import { addHours, addMinutes, compareAsc, compareDesc, format, isAfter, isBefore, subHours } from 'date-fns';
 import { diffArrays } from 'diff';
-import { findLast, flatten, last } from 'lodash';
+import { findLast, flatten, last, uniqBy } from 'lodash';
 import { irisBase } from './index';
 import { parseFromTimeZone } from 'date-fns-timezone';
 import axios from 'axios';
@@ -25,16 +25,29 @@ type Route = {
   isAdditional?: boolean,
 };
 
+export type TimetableOptions = {
+  lookahead: number,
+  lookbehind: number,
+};
+
 const routeMap: string => Route = name => ({ name });
-const normalizeRouteName: string => string = name =>
+const normalizeRouteName = (name: string) =>
   name
     .replace('(', ' (')
     .replace(')', ') ')
     .trim();
 
-function getAttr(node, name) {
-  // $FlowFixMe
+function getAttr(node, name): ?string {
+  // $FlowFixMe - optional chaining call
   return node?.attr(name)?.value();
+}
+
+function getNumberAttr(node, name): ?number {
+  const attr = getAttr(node, name);
+
+  if (!attr) return undefined;
+
+  return Number.parseInt(attr, 10);
 }
 
 function parseTs(ts) {
@@ -52,7 +65,7 @@ export function parseDp(dp: any) {
     departureTs: getAttr(dp, 'ct'),
     scheduledDepartureTs: getAttr(dp, 'pt'),
     platform: getAttr(dp, 'cp'),
-    routePost: routePost ? routePost.split('|').map(normalizeRouteName) : undefined,
+    routePost: routePost ? routePost.split('|').map<string>(normalizeRouteName) : undefined,
     // plannedRoutePost: getAttr(dp, 'ppth')?.split('|'),
     status: getAttr(dp, 'cs'),
   };
@@ -67,7 +80,7 @@ export function parseAr(ar: any) {
     arrivalTs: getAttr(ar, 'ct'),
     scheduledArrivalTs: getAttr(ar, 'pt'),
     platform: getAttr(ar, 'cp'),
-    routePre: routePre ? routePre.split('|').map(normalizeRouteName) : undefined,
+    routePre: routePre ? routePre.split('|').map<string>(normalizeRouteName) : undefined,
     // plannedRoutePre: getAttr(ar, 'ppth')?.split('|'),
     status: getAttr(ar, 'cs'),
     // statusSince: getAttr(ar, 'clt'),
@@ -124,10 +137,20 @@ export function splitTrainType(train: string = '') {
 
 export function parseTl(tl: any) {
   return {
-    trainNumber: getAttr(tl, 'n'),
-    trainType: getAttr(tl, 'c'),
+    trainNumber: getAttr(tl, 'n') || '',
+    trainType: getAttr(tl, 'c') || '',
     t: getAttr(tl, 't'),
     f: getAttr(tl, 'f'),
+  };
+}
+
+const idRegex = /-?(\w+)/;
+const mediumIdRegex = /-?(\w+-\w+)/;
+
+function parseRawId(rawId: string) {
+  return {
+    id: rawId.match(idRegex)?.[1] || rawId,
+    mediumId: rawId.match(mediumIdRegex)?.[1] || rawId,
   };
 }
 
@@ -139,10 +162,21 @@ export default class Timetable {
   evaId: string;
   segments: Date[];
   currentStation: string;
+  wingIds: Set<string> = new Set();
+  currentDate: Date;
+  maxDate: Date;
 
-  constructor(evaId: string, segments: Date[], currentStation: string) {
+  constructor(evaId: string, currentStation: string, options: TimetableOptions) {
     this.evaId = evaId;
-    this.segments = segments;
+    this.currentDate = new Date();
+    this.maxDate = addMinutes(this.currentDate, options.lookahead);
+    this.segments = [this.currentDate];
+    for (let i = 1; i <= Math.ceil(options.lookahead / 60); i += 1) {
+      this.segments.push(addHours(this.currentDate, i));
+    }
+    for (let i = 1; i <= Math.ceil(options.lookbehind / 60); i += 1) {
+      this.segments.push(subHours(this.currentDate, i));
+    }
     this.currentStation = normalizeRouteName(currentStation);
   }
   computeExtra(timetable: any) {
@@ -168,7 +202,12 @@ export default class Timetable {
     delete timetable.departureIsCancelled;
     delete timetable.departureIsAdditional;
   }
-  async start() {
+  async start(): Promise<{
+    departures: any[],
+    wings: {
+      [key: string]: any,
+    },
+  }> {
     await this.getTimetables();
     await this.getRealtime();
 
@@ -184,9 +223,32 @@ export default class Timetable {
         t.platform = t.scheduledPlatform;
       });
 
-    timetables.forEach(t => this.computeExtra(t));
+    const wings = {};
 
-    return timetables;
+    const filtered: any[] = uniqBy<any>(timetables, 'rawId').filter((a: any) => {
+      const isWing = this.wingIds.has(a.mediumId);
+
+      if (isWing) {
+        wings[a.mediumId] = a;
+        this.computeExtra(a);
+
+        return false;
+      }
+
+      const time = a.departure || a.arrival;
+
+      return (
+        isAfter(time, this.currentDate) &&
+        (isBefore(time, this.maxDate) || isBefore(a.scheduledDeparture || a.scheduledArrival, this.maxDate))
+      );
+    });
+
+    filtered.forEach(t => this.computeExtra(t));
+
+    return {
+      departures: filtered,
+      wings,
+    };
   }
   getVia(timetable: any, maxParts: number = 3): string[] {
     const via: string[] = [...timetable.routePost].filter(v => !v.isCancelled).map(r => r.name);
@@ -226,10 +288,13 @@ export default class Timetable {
     };
   }
   parseMessage(mNode: any) {
-    const value = getAttr(mNode, 'c');
-    const type = messageTypeLookup[getAttr(mNode, 't')];
+    const value = getNumberAttr(mNode, 'c');
+    const indexType = getAttr(mNode, 't');
 
-    if (!type || (value && value <= 1)) {
+    if (!indexType) return undefined;
+    const type = messageTypeLookup[indexType];
+
+    if (!type || !value || value <= 1) {
       return undefined;
     }
 
@@ -244,7 +309,9 @@ export default class Timetable {
   }
   parseRealtimeS(sNode: any): any {
     const rawId = getAttr(sNode, 'id');
-    const id = rawId.match(/-?(\w+)/)[1] || rawId;
+
+    if (!rawId) return;
+    const id = parseRawId(rawId);
     const tl = sNode.get('tl');
     const ref = sNode.get('ref/tl');
 
@@ -377,10 +444,27 @@ export default class Timetable {
       timetable.ref = realtime.ref;
     });
   }
+  getWings(node: any, displayAsWing: boolean) {
+    // $FlowFixMe - optional chaining call
+    const rawWings: ?(string[]) = getAttr(node, 'wings')?.split('|');
+
+    if (!rawWings) return undefined;
+
+    const mediumWings = rawWings.map<string>(w => parseRawId(w).mediumId);
+
+    if (displayAsWing) {
+      this.wingIds.add(...mediumWings);
+    }
+
+    return mediumWings;
+  }
   parseTimetableS(sNode: any) {
-    const rawId: string = getAttr(sNode, 'id');
-    // $FlowFixMe we know this works!
-    const id = rawId.match(/-?(\w+)/)[1] || rawId;
+    const rawId = getAttr(sNode, 'id');
+
+    if (!rawId) {
+      return undefined;
+    }
+    const { id, mediumId } = parseRawId(rawId);
     const tl = sNode.get('tl');
 
     if (!tl) {
@@ -394,23 +478,24 @@ export default class Timetable {
     const lineNumber = getAttr(dp || ar, 'l');
     const { trainNumber, trainType, t } = parseTl(tl);
     const train = `${trainType} ${lineNumber || trainNumber}`;
-    // $FlowFixMe
+    // $FlowFixMe - optional chaining call
     const routePost: string[] = (getAttr(dp, 'ppth')?.split('|') || []).map(normalizeRouteName);
-    // $FlowFixMe
+    // $FlowFixMe - optional chaining call
     const routePre: string[] = (getAttr(ar, 'ppth')?.split('|') || []).map(normalizeRouteName);
 
     return {
       arrival: scheduledArrival,
-      // arrivalWingIds: getAttr(ar, 'wings')?.split('|') || [],
+      arrivalWingIds: this.getWings(ar, false),
       // classes: getAttr(tl, 'f'),
       currentStation: this.currentStation,
-      // departureWingIds: getAttr(dp, 'wings')?.split('|') || [],
+      departureWingIds: this.getWings(dp, true),
       departure: scheduledDeparture,
       scheduledDestination: last(routePost) || this.currentStation,
       lineNumber,
       platform: getAttr(dp, 'pp') || getAttr(ar, 'pp'),
       id,
       rawId,
+      mediumId,
       // routeEnd: getAttr(dp, 'pde'),
       routePost: routePost.map<Route>(routeMap),
       routePre: routePre.map<Route>(routeMap),

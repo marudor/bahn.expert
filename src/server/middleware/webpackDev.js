@@ -20,17 +20,18 @@ module.exports = function webpackDev(koa: any) {
         delete require.cache[id];
       }
     });
-    delete require.cache[path.resolve('src/server/render.js')];
   });
   const watcher = chokidar.watch(path.resolve('./src/server/**'));
 
-  watcher.on('change', changedPath => {
+  watcher.on('change', () => {
     // eslint-disable-next-line no-console
-    console.log(`${changedPath} changed`);
-    delete require.cache[changedPath];
+    Object.keys(require.cache).forEach(id => {
+      if (id.match(/src\/server/)) {
+        delete require.cache[id];
+      }
+    });
     // Magic to make webpack full reload the page
     // whm.publish({ action: 'sync', errors: [], warnings: [], hash: Math.random() });
-    delete require.cache[path.resolve('src/server/Controller.js')];
   });
 
   return koaWebpack({ compiler, devMiddleware: { serverSideRender: true } }).then(middleware => {

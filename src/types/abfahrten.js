@@ -29,17 +29,22 @@ export type Messages = {|
   delay: Message[],
 |};
 export type Abfahrt = {|
+  arrivalWingIds: ?(string[]),
+  auslastung: boolean,
   currentStation: string,
   delayArrival?: number,
   delayDeparture?: number,
+  departureWingIds: ?(string[]),
   destination: string,
   id: string,
-  rawId: string,
-  ref?: SubstituteRef,
   isCancelled: 0 | 1,
   longDistance: boolean,
+  mediumId: string,
   messages: Messages,
   platform: string,
+  rawId: string,
+  ref?: SubstituteRef,
+  reihung: boolean,
   route: Train[],
   scheduledArrival?: string,
   scheduledDeparture?: string,
@@ -51,8 +56,20 @@ export type Abfahrt = {|
   trainNumber: string,
   trainType: string,
   via: string[],
-  auslastung: boolean,
-  reihung: boolean,
+|};
+
+export type Wings = {
+  [mediumId: string]: Abfahrt,
+};
+
+export type ResolvedWings = {|
+  arrivalWings: ?(Abfahrt[]),
+  departureWings: ?(Abfahrt[]),
+|};
+
+export type AbfahrtAPIResult = {|
+  departures: Abfahrt[],
+  wings: Wings,
 |};
 
 export default {};

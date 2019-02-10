@@ -2,16 +2,17 @@
 import { createAction } from 'redux-actions';
 import { setCookieOptions } from 'client/util';
 import axios from 'axios';
-import type { Abfahrt, Station } from 'types/abfahrten';
+import type { Abfahrt, AbfahrtAPIResult, Station, Wings } from 'types/abfahrten';
 import type { InnerThunkAction, ThunkAction } from 'AppState';
 
 export const Actions = {
   gotAbfahrten: createAction<
     string,
-    {
+    {|
       station: ?Station,
-      abfahrten: Abfahrt[],
-    }
+      departures: Abfahrt[],
+      wings: Wings,
+    |}
   >('GOT_ABFAHRTEN'),
   gotAbfahrtenError: createAction<string, Error>('GOT_ABFAHRTEN_ERROR'),
   setDetail: createAction<string, ?string>('SET_DETAIL'),
@@ -30,9 +31,9 @@ export async function getStationsFromAPI(stationString: ?string, type: string = 
   return Promise.resolve([]);
 }
 
-const pendingMap = new Map<string | number, Promise<Abfahrt[]>>();
+const pendingMap = new Map<string | number, Promise<AbfahrtAPIResult>>();
 
-function getAbfahrtenFromAPI(station: Station, lookahead: string): Promise<Abfahrt[]> {
+function getAbfahrtenFromAPI(station: Station, lookahead: string): Promise<AbfahrtAPIResult> {
   const pending = pendingMap.get(station.id);
 
   if (pending) {
@@ -61,7 +62,7 @@ export const getAbfahrtenByString: ThunkAction<?string> = stationString => async
     if (stations.length) {
       const abfahrten = await getAbfahrtenFromAPI(stations[0], config.lookahead);
 
-      return dispatch(Actions.gotAbfahrten({ station: stations[0], abfahrten }));
+      return dispatch(Actions.gotAbfahrten({ station: stations[0], ...abfahrten }));
     }
     throw {
       type: '404',
@@ -96,7 +97,7 @@ export const refreshCurrentAbfahrten: InnerThunkAction = async (dispatch, getSta
     }
     const abfahrten = await getAbfahrtenFromAPI(state.abfahrten.currentStation, state.config.config.lookahead);
 
-    return dispatch(Actions.gotAbfahrten({ station: state.abfahrten.currentStation, abfahrten }));
+    return dispatch(Actions.gotAbfahrten({ station: state.abfahrten.currentStation, ...abfahrten }));
   } catch (e) {
     // We ignore errors here - otherwise we might display error automatically due to refresh after back online
   }

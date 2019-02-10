@@ -12,16 +12,16 @@ import type { Match } from 'react-router';
 
 type InnerAbfahrtenProps = {|
   abfahrten: $PropertyType<$PropertyType<AppState, 'abfahrten'>, 'abfahrten'>,
-  selectedDetail: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'selectedDetail'>,
 |};
 type StateProps = {|
   ...InnerAbfahrtenProps,
+  selectedDetail: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'selectedDetail'>,
   currentStation: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'currentStation'>,
   error: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'error'>,
 |};
-const InnerAbfahrten = ({ abfahrten, selectedDetail }: InnerAbfahrtenProps) =>
+const InnerAbfahrten = ({ abfahrten }: InnerAbfahrtenProps) =>
   abfahrten && abfahrten.length ? (
-    abfahrten.map(a => a && <Abfahrt abfahrt={a} detail={selectedDetail === a.id} key={a.rawId} />)
+    abfahrten.map(a => a && <Abfahrt abfahrt={a} key={a.rawId} />)
   ) : (
     <div className="FavEntry">Leider keine Abhfarten in nächster Zeit</div>
   );
@@ -104,16 +104,12 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
   };
   render() {
     const { loading } = this.state;
-    const { abfahrten, selectedDetail, error } = this.props;
+    const { abfahrten, error } = this.props;
 
     return (
       <Loading isLoading={loading}>
         <main className="AbfahrtenList">
-          {error ? (
-            !loading && <Redirect to="/" />
-          ) : (
-            <InnerAbfahrten abfahrten={abfahrten} selectedDetail={selectedDetail} />
-          )}
+          {error ? !loading && <Redirect to="/" /> : <InnerAbfahrten abfahrten={abfahrten} />}
         </main>
       </Loading>
     );
