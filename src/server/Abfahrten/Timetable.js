@@ -157,7 +157,9 @@ function parseRawId(rawId: string) {
 const longDistanceRegex = /(ICE?|TGV|ECE?|RJ).*/;
 
 export default class Timetable {
-  timetable: Object = {};
+  timetable: {
+    [key: string]: any,
+  } = {};
   realtimeIds: string[] = [];
   evaId: string;
   segments: Date[];
@@ -307,11 +309,11 @@ export default class Timetable {
       value,
     ];
   }
-  parseRealtimeS(sNode: any): any {
+  parseRealtimeS(sNode: any) {
     const rawId = getAttr(sNode, 'id');
 
     if (!rawId) return;
-    const id = parseRawId(rawId);
+    const { id, mediumId } = parseRawId(rawId);
     const tl = sNode.get('tl');
     const ref = sNode.get('ref/tl');
 
@@ -359,12 +361,16 @@ export default class Timetable {
     const delay: Message[] = (Object.values(messages.delay): any);
     const qos: Message[] = (Object.values(messages.qos): any);
 
+    delay.sort((a, b) => compareDesc(a.timestamp, b.timestamp));
+    qos.sort((a, b) => compareDesc(a.timestamp, b.timestamp));
+
     return {
       id,
+      mediumId,
       rawId,
       messages: {
-        delay: delay.sort((a, b) => compareDesc(a.timestamp, b.timestamp)),
-        qos: qos.sort((a, b) => compareDesc(a.timestamp, b.timestamp)),
+        delay,
+        qos,
       },
       arrival: parseAr(ar),
       departure: parseDp(dp),
