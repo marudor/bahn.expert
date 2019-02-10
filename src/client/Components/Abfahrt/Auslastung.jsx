@@ -44,13 +44,13 @@ function getTooltipText(auslastung) {
 function getIcon(auslastung) {
   switch (auslastung) {
     case 0:
-      return <Done />;
+      return <Done fontSize="inherit" />;
     case 1:
-      return <ErrorOutline />;
+      return <ErrorOutline fontSize="inherit" />;
     case 2:
-      return <Close />;
+      return <Close fontSize="inherit" />;
     default:
-      return <Help />;
+      return <Help fontSize="inherit" />;
   }
 }
 
