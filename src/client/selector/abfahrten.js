@@ -12,6 +12,11 @@ export const getSelectedDetail = (state: AppState) => state.abfahrten.selectedDe
 export const getArrivalWingIdsFromProps = (_: AppState, props: AbfahrtProps) => props.abfahrt.arrivalWingIds;
 export const getDepartureWingIdsFromProps = (_: AppState, props: AbfahrtProps) => props.abfahrt.departureWingIds;
 export const getIdFromProps = (_: AppState, props: AbfahrtProps) => props.abfahrt.id;
+export const getNextDeparture = (state: AppState) => {
+  if (state.abfahrten.abfahrten) {
+    return state.abfahrten.abfahrten.find(a => a.scheduledDeparture);
+  }
+};
 
 export const getWingsForAbfahrt = createSelector<
   AppState,

@@ -1,6 +1,8 @@
 // @flow
 import { connect } from 'react-redux';
 import { type ContextRouter, withRouter } from 'react-router-dom';
+import { format } from 'date-fns';
+import { getNextDeparture } from 'client/selector/abfahrten';
 import { getStationsFromAPI } from 'client/actions/abfahrten';
 import ActionHome from '@material-ui/icons/Home';
 import AppBar from '@material-ui/core/AppBar';
@@ -11,46 +13,14 @@ import IconButton from '@material-ui/core/IconButton';
 import React from 'react';
 import Select from 'react-select/lib/Async';
 import Toolbar from '@material-ui/core/Toolbar';
+import type { Abfahrt, Station } from 'types/abfahrten';
 import type { AppState } from 'AppState';
-import type { Station } from 'types/abfahrten';
-
-function metaTags(currentStation: ?Station, baseUrl: string) {
-  let keywords = 'Bahnhofs Abfahrten, Bahn, Abfahrten, Bahnhof, Verspätung, Pünktlich';
-  let title = 'Bahnhofs Abfahrten';
-  let description = 'Zugabfahrten für Stationen der Deutsche Bahn';
-
-  if (currentStation) {
-    title = `${currentStation.title} - ${title}`;
-    description = `Zugabfahrten für ${currentStation.title}`;
-    keywords = `${currentStation.title}, ${keywords}`;
-  }
-
-  return (
-    <>
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      <meta name="keywords" content={keywords} />
-      {/* Twitter Start */}
-      <meta name="twitter:card" content="summary" />
-      <meta name="twitter:site" content="@marudor" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:creator" content="@marudor" />
-      {/* Twitter End */}
-      {/* Open Graph Start */}
-      <meta property="og:title" content={title} />
-      <meta property="og:type" content="article" />
-      <meta property="og:description" content={description} />
-      <meta property="og:image" content={`${baseUrl}/android-chrome-384x384.png`} />
-      {/* Open Graph End */}
-    </>
-  );
-}
 
 type StateProps = {|
   currentStation: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'currentStation'>,
   searchType?: string,
   baseUrl: string,
+  nextAbfahrt: ?Abfahrt,
 |};
 
 type OwnProps = {|
@@ -81,6 +51,54 @@ const selectStyles = {
 const debouncedGetStationFromAPI = debounce(getStationsFromAPI, 500);
 
 class Header extends React.Component<Props> {
+  metaTags = () => {
+    const { currentStation, baseUrl, nextAbfahrt } = this.props;
+
+    let keywords =
+      'Bahnhofs Abfahrten, Bahn, Abfahrten, Bahnhof, Verspätung, Pünktlich, ICE, IC, RE, RB, EC, ECE, S, RRX';
+    let title = 'Bahnhofs Abfahrten';
+    let ogDescription = 'Zugabfahrten für Stationen der Deutsche Bahn';
+    let description = ogDescription;
+    let url = `https://${baseUrl}`;
+
+    if (currentStation) {
+      title = `${currentStation.title} - ${title}`;
+      description = `Zugabfahrten für ${currentStation.title}`;
+      ogDescription = description;
+      if (nextAbfahrt && nextAbfahrt.scheduledDeparture) {
+        keywords += `, ${nextAbfahrt.train}`;
+        description = `Nächste Abfahrt: ${nextAbfahrt.train} - ${nextAbfahrt.destination} - ${format(
+          nextAbfahrt.scheduledDeparture,
+          'HH:mm'
+        )} (${nextAbfahrt.delayDeparture < 0 ? '-' : '+'}${nextAbfahrt.delayDeparture})`;
+      }
+      keywords = `${currentStation.title}, ${keywords}`;
+      url += `/${currentStation.title}`;
+    }
+
+    return (
+      <Helmet>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="keywords" content={keywords} />
+        {/* Twitter Start */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@marudor" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={ogDescription} />
+        <meta name="twitter:creator" content="@marudor" />
+        {/* Twitter End */}
+        {/* Open Graph Start */}
+        <meta property="og:title" content={title} />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content={ogDescription} />
+        <meta property="og:image" content={`https://${baseUrl}/android-chrome-384x384.png`} />
+        <meta property="og:url" content={url} />
+        <meta property="og:locale" content="de_DE" />
+        {/* Open Graph End */}
+      </Helmet>
+    );
+  };
   submit = (station: Station) => {
     if (!station) {
       return;
@@ -92,11 +110,11 @@ class Header extends React.Component<Props> {
   getOptionValue = (station: Station) => station.id;
   loadOptions = (term: string) => debouncedGetStationFromAPI(term, this.props.searchType);
   render() {
-    const { currentStation, baseUrl } = this.props;
+    const { currentStation } = this.props;
 
     return (
       <>
-        <Helmet>{metaTags(currentStation, baseUrl)}</Helmet>
+        {this.metaTags()}
         <AppBar position="fixed">
           <Toolbar disableGutters>
             <IconButton aria-label="Home" onClick={this.toRoot} color="inherit">
@@ -125,5 +143,6 @@ export default withRouter(
     currentStation: state.abfahrten.currentStation,
     searchType: state.config.config.searchType,
     baseUrl: state.config.baseUrl,
+    nextAbfahrt: getNextDeparture(state),
   }))(Header)
 );

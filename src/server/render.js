@@ -39,7 +39,8 @@ export default async (ctx: any) => {
   const store = createStore();
 
   store.dispatch(setCookies(new Cookies(ctx.req.headers.cookie)));
-  store.dispatch(Actions.setBaseUrl(`${ctx.protocol}://${String(process.env.BASE_URL)}`));
+  // $FlowFixMe we already checked that BASE_URL exists
+  store.dispatch(Actions.setBaseUrl(process.env.BASE_URL));
 
   await Promise.all(
     matchRoutes(routes, ctx.req.url).map(({ route, match }) =>
