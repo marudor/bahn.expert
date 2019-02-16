@@ -7,3 +7,5 @@ type marudorConfig = {|
   lookahead: string,
   fahrzeugGruppe: boolean,
 |};
+
+declare var PROD: boolean;

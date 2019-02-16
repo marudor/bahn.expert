@@ -9,6 +9,7 @@ export type Station = {|
   id: string | number,
   favendoId?: number,
   DS100?: string,
+  raw?: Object,
 |};
 
 export type Message = {|

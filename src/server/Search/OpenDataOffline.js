@@ -33,6 +33,7 @@ export default function(searchTerm: string): Promise<Station[]> {
       id: item.id,
       DS100: item.ds100,
       favendoId: item.nr,
+      raw: PROD ? undefined : item,
     }))
   );
 }

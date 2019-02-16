@@ -27,5 +27,6 @@ export default async (rawSearchTerm: string): Promise<Station[]> => {
     favendoId: s.number,
     id: String(s.evaNumbers[0]?.number),
     DS100: s.ril100Identifiers[0]?.rilIdentifier,
+    raw: PROD ? undefined : s,
   }));
 };

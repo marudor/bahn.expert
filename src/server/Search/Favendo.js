@@ -24,5 +24,6 @@ export default async function(searchTerm: string): Promise<Station[]> {
     title: s.title,
     id: s.eva_ids[0],
     favendoId: s.id,
+    raw: PROD ? undefined : s,
   }));
 }
