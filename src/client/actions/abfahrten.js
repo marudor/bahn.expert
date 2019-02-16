@@ -12,11 +12,13 @@ export const Actions = {
       station: ?Station,
       departures: Abfahrt[],
       wings: Wings,
+      lageplan?: ?string,
     |}
   >('GOT_ABFAHRTEN'),
   gotAbfahrtenError: createAction<string, Error>('GOT_ABFAHRTEN_ERROR'),
   setDetail: createAction<string, ?string>('SET_DETAIL'),
   setCurrentStation: createAction<string, ?Station>('SET_CURRENT_STATION'),
+  gotLageplan: createAction<string, ?string>('GOT_LAGEPLAN'),
 };
 
 export async function getStationsFromAPI(stationString: ?string, type: string = ''): Promise<Station[]> {
@@ -53,6 +55,14 @@ function getAbfahrtenFromAPI(station: Station, lookahead: string): Promise<Abfah
 
   return abfahrtPromise;
 }
+
+export const getLageplan: ThunkAction<string> = stationName => async dispatch => {
+  const lageplan = (await axios.get(`/api/lageplan/${stationName}`)).data.lageplan;
+
+  dispatch(Actions.gotLageplan(lageplan));
+
+  return lageplan;
+};
 
 export const getAbfahrtenByString: ThunkAction<?string> = stationString => async (dispatch, getState) => {
   try {

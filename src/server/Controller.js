@@ -1,5 +1,6 @@
 // @flow
 import { getAbfahrten } from './Abfahrten';
+import { getLageplan } from './Bahnhof/Lageplan';
 import { getStation } from './Abfahrten/station';
 import { wagenReihung, wagenReihungStation } from './Reihung';
 import axios from 'axios';
@@ -18,6 +19,13 @@ async function stationInfo(station: number) {
 
 router
   .prefix('/api')
+  .get('/lageplan/:stationName', async ctx => {
+    const { stationName } = ctx.params;
+
+    ctx.body = {
+      lageplan: await getLageplan(stationName),
+    };
+  })
   .get('/search/:searchTerm', async ctx => {
     const { searchTerm } = ctx.params;
     const { type } = ctx.query;

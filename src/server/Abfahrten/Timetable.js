@@ -15,6 +15,11 @@ import NodeCache from 'node-cache';
 import xmljs from 'libxmljs';
 import type { Message } from 'types/abfahrten';
 
+export type Result = {
+  departures: any[],
+  wings: Object,
+  lageplan?: ?string,
+};
 type XmlAttr = {
   value(): ?string,
 };
@@ -234,12 +239,7 @@ export default class Timetable {
     delete timetable.departureIsCancelled;
     delete timetable.departureIsAdditional;
   }
-  async start(): Promise<{
-    departures: any[],
-    wings: {
-      [key: string]: any,
-    },
-  }> {
+  async start(): Promise<Result> {
     await this.getTimetables();
     await this.getRealtime();
 
