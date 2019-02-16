@@ -124,6 +124,7 @@
     "libxmljs": "^0.19.5",
     "lodash": "^4.17.11",
     "node-cache": "^4.2.0",
+    "notistack": "^0.4.2",
     "prom-client": "^11.2.1",
     "qs": "^6.6.0",
     "react": "^16.8.1",

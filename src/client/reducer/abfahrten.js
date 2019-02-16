@@ -9,6 +9,7 @@ export type State = {
   wings: ?Wings,
   currentStation: ?Station,
   error: ?(Error & { station?: string }),
+  lageplan?: ?string,
 };
 
 const defaultState = {
@@ -17,21 +18,28 @@ const defaultState = {
   wings: null,
   currentStation: null,
   error: null,
+  lageplan: undefined,
 };
 
 export default handleActions<State, *>(
   {
+    [String(Actions.gotLageplan)]: (state: State, { payload }: ActionType<typeof Actions.gotLageplan>) => ({
+      ...state,
+      lageplan: payload,
+    }),
     [String(Actions.gotAbfahrten)]: (state: State, { payload }: ActionType<typeof Actions.gotAbfahrten>) => ({
       ...state,
       currentStation: payload.station,
       abfahrten: payload.departures,
       wings: payload.wings,
+      lageplan: payload.lageplan,
       error: null,
     }),
     [String(Actions.gotAbfahrtenError)]: (state: State, { payload }: ActionType<typeof Actions.gotAbfahrtenError>) => ({
       ...state,
       abfahrten: [],
       wings: {},
+      lageplan: undefined,
       error: payload,
     }),
     [String(Actions.setDetail)]: (state: State, { payload }: ActionType<typeof Actions.setDetail>) => ({
@@ -42,6 +50,8 @@ export default handleActions<State, *>(
       ...state,
       currentStation: payload,
       abfahrten: null,
+      wings: null,
+      lageplan: undefined,
     }),
   },
   defaultState

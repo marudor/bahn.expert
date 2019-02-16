@@ -1,7 +1,8 @@
 // @flow
 import { compareAsc } from 'date-fns';
+import { getCachedLageplan, getLageplan } from '../Bahnhof/Lageplan';
 import { getStation } from './station';
-import Timetable from './Timetable';
+import Timetable, { type Result } from './Timetable';
 
 // @flow
 export const irisBase = 'http://iris.noncd.db.de/iris-tts/timetable';
@@ -15,12 +16,7 @@ const defaultOptions = {
   lookbehind: 20,
 };
 
-type Result = {
-  departures: any[],
-  wings: Object,
-};
-
-const baseResult: Result = { departures: [], wings: {} };
+const baseResult: Result = { departures: [], wings: {}, lageplan: undefined };
 
 function reduceResults(agg: Result, r: Result) {
   return {
@@ -29,6 +25,7 @@ function reduceResults(agg: Result, r: Result) {
       ...agg.wings,
       ...r.wings,
     },
+    lageplan: agg.lageplan || r.lageplan,
   };
 }
 
@@ -63,6 +60,11 @@ export async function getAbfahrten(evaId: string, withRelated: boolean = true, o
 
     return sort;
   });
+
+  result.lageplan = getCachedLageplan(station.name);
+  if (result.lageplan === undefined) {
+    getLageplan(station.name);
+  }
 
   return result;
 }
