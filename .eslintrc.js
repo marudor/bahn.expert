@@ -6,7 +6,9 @@ module.exports = {
     node: true,
     es6: true,
   },
-  globals: {},
+  globals: {
+    PROD: false,
+  },
   rules: {
     'no-use-before-define': 0,
     'no-shadow': 0,

@@ -60,6 +60,7 @@ export default (searchTerm: string): Promise<Station[]> => {
         .map(s => ({
           title: s.name,
           id: s.extId.substr(2),
+          raw: PROD ? undefined : s,
         }))
     );
 };

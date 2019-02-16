@@ -26,5 +26,6 @@ export default async (rawSearchTerm: string): Promise<Station[]> => {
   return stations.map(s => ({
     title: s.name,
     id: Number.parseInt(s.id, 10).toString(),
+    raw: PROD ? undefined : s,
   }));
 };
