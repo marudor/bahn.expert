@@ -97,15 +97,19 @@ class HeaderButtons extends React.PureComponent<Props> {
 
     return (
       <>
-        {Boolean(currentStation?.id) && (
-          <IconButton aria-label={isFaved ? 'unfav' : 'fav'} onClick={this.toggleFav} color="inherit">
-            {isFaved ? <ToggleStar /> : <ToggleStarBorder />}
-          </IconButton>
+        {currentStation && Boolean(currentStation.id) && (
+          <Tooltip title={`${isFaved ? 'entferne' : 'merke'} ${currentStation.title}`}>
+            <IconButton aria-label={isFaved ? 'unfav' : 'fav'} onClick={this.toggleFav} color="inherit">
+              {isFaved ? <ToggleStar /> : <ToggleStarBorder />}
+            </IconButton>
+          </Tooltip>
         )}
         {Boolean(currentStation?.id) && this.getLageplan()}
-        <IconButton aria-label="settings" onClick={this.openSettings} color="inherit">
-          <Settings />
-        </IconButton>
+        <Tooltip title="Einstellungen">
+          <IconButton aria-label="settings" onClick={this.openSettings} color="inherit">
+            <Settings />
+          </IconButton>
+        </Tooltip>
       </>
     );
   }
