@@ -79,6 +79,7 @@ class Header extends React.Component<Props> {
     return (
       <Helmet>
         <title>{title}</title>
+        <link rel="canonical" href={url} />
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
         {/* Twitter Start */}
