@@ -73,7 +73,7 @@ class Header extends React.Component<Props> {
         )} (${nextAbfahrt.delayDeparture < 0 ? '-' : '+'}${nextAbfahrt.delayDeparture})`;
       }
       keywords = `${currentStation.title}, ${keywords}`;
-      url += `/${currentStation.title}`;
+      url += `/${encodeURIComponent(currentStation.title)}`;
     }
 
     return (
