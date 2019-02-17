@@ -67,7 +67,7 @@ class Header extends React.Component<Props> {
       ogDescription = description;
       if (nextAbfahrt && nextAbfahrt.scheduledDeparture) {
         keywords += `, ${nextAbfahrt.train}`;
-        description = `Nächste Abfahrt: ${nextAbfahrt.train} - ${nextAbfahrt.destination} - ${format(
+        ogDescription = `Nächste Abfahrt: ${nextAbfahrt.train} - ${nextAbfahrt.destination} - ${format(
           nextAbfahrt.scheduledDeparture,
           'HH:mm'
         )} (${nextAbfahrt.delayDeparture < 0 ? '-' : '+'}${nextAbfahrt.delayDeparture})`;
