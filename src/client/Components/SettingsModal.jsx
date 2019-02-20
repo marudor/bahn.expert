@@ -3,6 +3,7 @@ import './SettingsModal.scss';
 import {
   closeSettings,
   setFahrzeugGruppe,
+  setLineAndNumber,
   setLookahead,
   setSearchType,
   setShowSupersededMessages,
@@ -35,6 +36,7 @@ type DispatchProps = {|
   setZoomReihung: typeof setZoomReihung,
   setLookahead: typeof setLookahead,
   setFahrzeugGruppe: typeof setFahrzeugGruppe,
+  setLineAndNumber: typeof setLineAndNumber,
 |};
 
 type Props = {|
@@ -63,6 +65,8 @@ class SettingsModal extends React.PureComponent<Props> {
       setLookahead,
       setFahrzeugGruppe,
       fahrzeugGruppe,
+      lineAndNumber,
+      setLineAndNumber,
     } = this.props;
 
     return (
@@ -102,6 +106,16 @@ class SettingsModal extends React.PureComponent<Props> {
               />
             }
             label="Reihung maximal groß"
+          />
+          <FormControlLabel
+            control={
+              <Switch
+                checked={lineAndNumber}
+                value="lineAndNumberConfig"
+                onChange={this.handleCheckedChange(setLineAndNumber)}
+              />
+            }
+            label="Zeige Linie und Zugnummer"
           />
           <FormControlLabel
             control={
@@ -161,5 +175,6 @@ export default connect<AppState, Function, {||}, StateProps, DispatchProps>(
     setShowSupersededMessages,
     setLookahead,
     setFahrzeugGruppe,
+    setLineAndNumber,
   }
 )(SettingsModal);

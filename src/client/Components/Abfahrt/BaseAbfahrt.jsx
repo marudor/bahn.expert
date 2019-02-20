@@ -22,6 +22,7 @@ export type OwnProps = {|
 |};
 type StateProps = {|
   detail: boolean,
+  lineAndNumber: boolean,
 |};
 type DispatchProps = {|
   setDetail: typeof setDetail,
@@ -37,7 +38,7 @@ class BaseAbfahrt extends React.PureComponent<Props> {
     this.props.setDetail(this.props.abfahrt.id);
   };
   render() {
-    const { abfahrt, detail, wing, sameTrainWing, wingEnd, wingStart } = this.props;
+    const { abfahrt, detail, wing, sameTrainWing, wingEnd, wingStart, lineAndNumber } = this.props;
 
     return (
       <Paper id={abfahrt.id} onClick={this.setDetail} className="Abfahrt">
@@ -52,7 +53,7 @@ class BaseAbfahrt extends React.PureComponent<Props> {
         )}
         <div className="Abfahrt__entry">
           <div className="Abfahrt__entry__main">
-            <Start abfahrt={abfahrt} detail={detail} />
+            <Start abfahrt={abfahrt} detail={detail} lineAndNumber={lineAndNumber} />
             <Mid abfahrt={abfahrt} detail={detail} />
             <End abfahrt={abfahrt} detail={detail} />
           </div>
@@ -66,6 +67,7 @@ class BaseAbfahrt extends React.PureComponent<Props> {
 export default connect<AppState, Function, OwnProps, StateProps, DispatchProps>(
   (state, props) => ({
     detail: getDetailForAbfahrt(state, props),
+    lineAndNumber: state.config.config.lineAndNumber,
   }),
   {
     setDetail,
