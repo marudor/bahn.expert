@@ -7,6 +7,7 @@
 import { addHours, addMinutes, compareAsc, compareDesc, format, isAfter, isBefore, subHours } from 'date-fns';
 import { diffArrays } from 'diff';
 import { findLast, flatten, last, uniqBy } from 'lodash';
+import { getCachedLageplan, getLageplan } from '../Bahnhof/Lageplan';
 import { irisBase } from './index';
 import { parseFromTimeZone } from 'date-fns-timezone';
 import axios from 'axios';
@@ -240,6 +241,11 @@ export default class Timetable {
     delete timetable.departureIsAdditional;
   }
   async start(): Promise<Result> {
+    const lageplan = getCachedLageplan(this.currentStation);
+
+    if (lageplan === undefined) {
+      getLageplan(this.currentStation);
+    }
     await this.getTimetables();
     await this.getRealtime();
 
@@ -280,6 +286,7 @@ export default class Timetable {
     return {
       departures: filtered,
       wings,
+      lageplan,
     };
   }
   getVia(timetable: any, maxParts: number = 3): string[] {

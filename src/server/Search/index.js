@@ -4,6 +4,7 @@ import { logger } from 'server/logger';
 import DBNavigatorSearch from './DBNavigator';
 import FavendoSearch from './Favendo';
 import HafasSearch from './Hafas';
+import NodeCache from 'node-cache';
 import OpenDataOfflineSearch from './OpenDataOffline';
 import OpenDataSearch from './OpenData';
 import OpenDBSearch from './OpenDB';
@@ -35,9 +36,38 @@ export function getSearchMethod(type: ?string) {
   }
 }
 
+const searchCaches: Map<Function, NodeCache<string, Station[]>> = new Map();
+// 6 Hours in seconds
+const stdTTL = 6 * 60 * 60;
+
+function getCache(key: Function) {
+  const cached = searchCaches.get(key);
+
+  if (cached) {
+    return cached;
+  }
+  const cache: NodeCache<string, Station[]> = new NodeCache({ stdTTL });
+
+  searchCaches.set(key, cache);
+
+  return cache;
+}
+
 export default async (searchTerm: string, type: ?string) => {
   try {
-    return await getSearchMethod(type)(searchTerm);
+    const searchMethod = getSearchMethod(type);
+    const cache = getCache(searchMethod);
+    const cached = cache.get(searchTerm);
+
+    if (cached) {
+      return cached;
+    }
+
+    const result = await getSearchMethod(type)(searchTerm);
+
+    cache.set(searchTerm, result);
+
+    return result;
   } catch (e) {
     const isDefault = !type || type === 'favendo';
     let message = 'search failed';

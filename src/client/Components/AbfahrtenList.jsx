@@ -50,7 +50,7 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
     store.dispatch(
       Actions.setCurrentStation({
         title: decodeURIComponent(match.params.station || ''),
-        id: 0,
+        id: '0',
       })
     );
 
@@ -94,7 +94,7 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
     this.setState({ loading: true });
     setCurrentStation({
       title: decodeURIComponent(match.params.station || ''),
-      id: 0,
+      id: '0',
     });
     try {
       await getAbfahrtenByString(match.params.station);

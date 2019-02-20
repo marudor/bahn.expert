@@ -6,7 +6,7 @@ export type SubstituteRef = {|
 |};
 export type Station = {|
   title: string,
-  id: string | number,
+  id: string,
   favendoId?: number,
   DS100?: string,
   raw?: Object,
