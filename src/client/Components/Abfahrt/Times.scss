@@ -4,6 +4,11 @@
   &__wrapper {
     display: flex;
     justify-content: flex-end;
+
+    > span {
+      color: black;
+      white-space: pre-wrap;
+    }
   }
 
   &--offset {

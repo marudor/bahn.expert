@@ -58,7 +58,7 @@ if (isDev) {
   optimization.minimizer.push(
     new TerserPlugin({
       parallel: true,
-      extractComments: true,
+      extractComments: 'all',
     })
   );
   plugins.push(

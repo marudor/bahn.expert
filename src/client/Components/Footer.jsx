@@ -1,25 +1,37 @@
 // @flow
 import './Footer.scss';
 import { connect } from 'react-redux';
-import cc from 'classnames';
 import React from 'react';
 import type { AppState } from 'AppState';
+import type { Station } from 'types/abfahrten';
 
 type StateProps = {|
-  online: boolean,
+  currentStation: ?Station,
 |};
 type Props = {| ...StateProps |};
 
-const Footer = ({ online = true }: Props) => (
-  <div
-    className={cc('Footer', {
-      Footer__offline: !online,
-    })}
-  >
-    Offline - momentan keine Aktualisierung möglich
-  </div>
+const Footer = ({ currentStation }: Props) => (
+  <footer className="Footer">
+    <div className="Footer__seo">
+      <a title="Bahnhofstafeln" href="http://bahnhofstafeln.de/">
+        Bahnhofstafeln
+      </a>
+      {currentStation && (
+        <>
+          <a
+            title={`Bahnhofstafeln für ${currentStation.title}`}
+            href={`https://iris.noncd.db.de/wbt/js/index.html?typ=ab&bhf=${
+              currentStation.id
+            }&zeilen=12&via=1&impressum=1&style=ab&lang=de`}
+          >
+            Bahnhofstafeln für {currentStation.title}
+          </a>
+        </>
+      )}
+    </div>
+  </footer>
 );
 
 export default connect<AppState, Function, {||}, StateProps>(state => ({
-  online: state.config.online,
+  currentStation: state.abfahrten.currentStation,
 }))(Footer);
