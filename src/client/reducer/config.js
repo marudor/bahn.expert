@@ -8,7 +8,6 @@ export type State = {|
   cookies: Cookies,
   open: boolean,
   config: marudorConfig,
-  online: boolean,
   baseUrl: string,
 |};
 
@@ -16,7 +15,6 @@ const defaultState: State = {
   cookies: new Cookies(),
   open: false,
   config: defaultConfig,
-  online: true,
   baseUrl: '',
 };
 
@@ -25,10 +23,6 @@ export default handleActions<State, *>(
     [String(Actions.setBaseUrl)]: (state: State, { payload }: ActionType<typeof Actions.setBaseUrl>) => ({
       ...state,
       baseUrl: payload,
-    }),
-    [String(Actions.setOnline)]: (state: State, { payload }: ActionType<typeof Actions.setOnline>) => ({
-      ...state,
-      online: payload,
     }),
     [String(Actions.setCookies)]: (state: State, { payload }: ActionType<typeof Actions.setCookies>) => ({
       ...state,

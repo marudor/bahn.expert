@@ -30,7 +30,7 @@ class FavEntry extends React.PureComponent<Props> {
     const { fav, noDelete } = this.props;
 
     return (
-      <Link to={encodeURIComponent(fav.title)}>
+      <Link to={encodeURIComponent(fav.title)} title={`Zugabfahrten für ${fav.title}`}>
         <div className="FavEntry">
           <span>{fav.title}</span>
           {!noDelete && (

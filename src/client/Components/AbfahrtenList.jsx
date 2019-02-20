@@ -104,11 +104,12 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
   };
   render() {
     const { loading } = this.state;
-    const { abfahrten, error } = this.props;
+    const { abfahrten, error, currentStation } = this.props;
 
     return (
       <Loading isLoading={loading}>
         <main className="AbfahrtenList">
+          {currentStation && <h1>Abfahrten für {currentStation.title}</h1>}
           {error ? !loading && <Redirect to="/" /> : <InnerAbfahrten abfahrten={abfahrten} />}
         </main>
       </Loading>

@@ -20,17 +20,13 @@ function delayStyle(delay: number = 0) {
   return delay > 0 ? 'delayed' : 'early';
 }
 
-function getDelayTime(time: ?string, delay: ?number, isCancelled: 1 | 0, timeConfig: boolean) {
-  if (!time) {
+function getDelayTime(rawTime: ?string, delay: ?number, timeConfig: boolean) {
+  if (!rawTime) {
     return null;
   }
-  if (timeConfig && delay) {
-    const newTime = addMinutes(time, delay);
+  const time = timeConfig && delay ? addMinutes(rawTime, delay) : rawTime;
 
-    return <span className={delayStyle(delay)}>{format(newTime, 'HH:mm')}</span>;
-  }
-
-  return <span>{format(time, 'HH:mm')}</span>;
+  return format(time, 'HH:mm');
 }
 
 type StateProps = {|
@@ -50,34 +46,45 @@ const Times = ({
   abfahrt: { scheduledArrival, scheduledDeparture, delayArrival, delayDeparture, isCancelled },
   detail,
 }: Props) => (
-  <div className={cc(['Times', { cancelled: isCancelled }])}>
+  <div
+    className={cc([
+      'Times',
+      {
+        cancelled: isCancelled,
+        [delayStyle(scheduledDeparture ? delayDeparture : delayArrival)]:
+          !detail && (scheduledDeparture ? delayDeparture : delayArrival),
+      },
+    ])}
+  >
     {detail ? (
       <React.Fragment>
         {scheduledArrival && (
-          <div className="Times__wrapper">
-            {Boolean(delayArrival) && (
-              <span className={cc([delayStyle(delayArrival), 'Times--offset'])}>{delayString(delayArrival)}</span>
-            )}
-            <span>
-              {'An:'} {getDelayTime(scheduledArrival, delayArrival, isCancelled, timeConfig)}
-            </span>
+          <div
+            className={cc('Times__wrapper', {
+              [delayStyle(delayArrival)]: delayArrival,
+            })}
+          >
+            {Boolean(delayArrival) && delayString(delayArrival)}
+            <span>{'  An: '}</span>
+            {getDelayTime(scheduledArrival, delayArrival, timeConfig)}
           </div>
         )}
         {scheduledDeparture && (
-          <div className="Times__wrapper">
-            {Boolean(delayDeparture) && (
-              <span className={cc([delayStyle(delayDeparture), 'Times--offset'])}>{delayString(delayDeparture)}</span>
-            )}
-            <span>
-              {'Ab:'} {getDelayTime(scheduledDeparture, delayDeparture, isCancelled, timeConfig)}
-            </span>
+          <div
+            className={cc('Times__wrapper', {
+              [delayStyle(delayDeparture)]: delayDeparture,
+            })}
+          >
+            {Boolean(delayDeparture) && delayString(delayDeparture)}
+            <span>{'  Ab: '}</span>
+            {getDelayTime(scheduledDeparture, delayDeparture, timeConfig)}
           </div>
         )}
       </React.Fragment>
     ) : scheduledDeparture ? (
-      getDelayTime(scheduledDeparture, delayDeparture, isCancelled, timeConfig)
+      getDelayTime(scheduledDeparture, delayDeparture, timeConfig)
     ) : (
-      getDelayTime(scheduledArrival, delayArrival, isCancelled, timeConfig)
+      getDelayTime(scheduledArrival, delayArrival, timeConfig)
     )}
   </div>
 );

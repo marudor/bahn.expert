@@ -1,21 +1,5 @@
 .Footer {
-  position: fixed;
-  bottom: -32px;
-  left: auto;
-  width: 100%;
-  right: 0;
-  background: red;
-  height: 32px;
-  text-align: center;
-  color: white;
-  line-height: 32px;
-  visibility: hidden;
-  transition: 0.5s;
-  display: none;
-
-  &__offline {
-    display: initial;
-    visibility: visible;
-    transform: translateY(-32px);
+  &__seo {
+    display: none;
   }
 }

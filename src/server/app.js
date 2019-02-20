@@ -70,7 +70,7 @@ export async function createApp() {
 
   app.use(
     koaStatic(path.resolve(process.env.NODE_ENV === 'production' ? 'dist/client' : 'public'), {
-      maxAge: 2592000000, // 30 days
+      maxAge: 31536000000, // 1 year
     })
   );
 

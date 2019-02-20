@@ -2,13 +2,11 @@
 import './index.scss';
 import '@babel/polyfill';
 import 'typeface-roboto';
-import { Actions } from './actions/config';
 import { BrowserRouter } from 'react-router-dom';
 // $FlowFixMe
 import { createGenerateClassName, MuiThemeProvider } from '@material-ui/core/styles';
 import { HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
-import { refreshCurrentAbfahrten } from './actions/abfahrten';
 import axios from 'axios';
 import BahnhofsAbfahrten from './Components/BahnhofsAbfahrten';
 import createStore from './createStore';
@@ -40,15 +38,7 @@ if (container) {
         </MuiThemeProvider>
       </JssProvider>
     </Provider>,
-    container,
-    () => {
-      store.dispatch(Actions.setOnline(navigator.onLine));
-      window.addEventListener('online', () => {
-        store.dispatch(Actions.setOnline(true));
-        store.dispatch(refreshCurrentAbfahrten);
-      });
-      window.addEventListener('offline', () => store.dispatch(Actions.setOnline(false)));
-    }
+    container
   );
 } else {
   // eslint-disable-next-line
