@@ -11,8 +11,10 @@
   line-height: 32px;
   visibility: hidden;
   transition: 0.5s;
+  display: none;
 
   &__offline {
+    display: initial;
     visibility: visible;
     transform: translateY(-32px);
   }

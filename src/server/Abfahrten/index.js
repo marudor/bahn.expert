@@ -1,6 +1,5 @@
 // @flow
 import { compareAsc } from 'date-fns';
-import { getCachedLageplan, getLageplan } from '../Bahnhof/Lageplan';
 import { getStation } from './station';
 import Timetable, { type Result } from './Timetable';
 
@@ -60,11 +59,6 @@ export async function getAbfahrten(evaId: string, withRelated: boolean = true, o
 
     return sort;
   });
-
-  result.lageplan = getCachedLageplan(station.name);
-  if (result.lageplan === undefined) {
-    getLageplan(station.name);
-  }
 
   return result;
 }
