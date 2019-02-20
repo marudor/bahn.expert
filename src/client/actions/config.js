@@ -12,8 +12,8 @@ export const Actions = {
   setConfig: createAction<
     string,
     {
-      key: string,
-      value: any,
+      key: $Keys<marudorConfig>,
+      value: $Values<marudorConfig>,
     }
   >('SET_CONFIG'),
   setCookies: createAction<string, Cookies>('SET_COOKIES'),
@@ -34,6 +34,7 @@ export const setShowSupersededMessages = (value: boolean) =>
   Actions.setConfig({ key: 'showSupersededMessages', value }, value);
 export const setLookahead = (value: string) => Actions.setConfig({ key: 'lookahead', value });
 export const setFahrzeugGruppe = (value: boolean) => Actions.setConfig({ key: 'fahrzeugGruppe', value });
+export const setLineAndNumber = (value: boolean) => Actions.setConfig({ key: 'lineAndNumber', value });
 
 export const openSettings = () => Actions.setMenu(true);
 export const closeSettings = () => Actions.setMenu(false);

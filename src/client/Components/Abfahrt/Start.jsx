@@ -10,11 +10,21 @@ import type { Abfahrt } from 'types/abfahrten';
 type Props = {
   abfahrt: Abfahrt,
   detail: boolean,
+  lineAndNumber: boolean,
 };
 
-const Start = ({ abfahrt, detail }: Props) => (
+const Start = ({ abfahrt, detail, lineAndNumber }: Props) => (
   <div className="Start">
-    <span className={cc({ cancelled: abfahrt.isCancelled })}>{abfahrt.train}</span>
+    <div className={cc('Start__number', { cancelled: abfahrt.isCancelled })}>
+      <span>{abfahrt.train}</span>
+      {lineAndNumber && abfahrt.trainNumber !== abfahrt.trainId && (
+        <>
+          <span>
+            {abfahrt.trainType} {abfahrt.trainNumber}
+          </span>
+        </>
+      )}
+    </div>
     {detail && <TraewellingLink abfahrt={abfahrt} />}
     {abfahrt.isCancelled && <span className="Start__cancelled">Zugausfall</span>}
     {abfahrt.substitute && abfahrt.ref && <Substitute substitute={abfahrt.ref} />}

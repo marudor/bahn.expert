@@ -6,6 +6,7 @@ type marudorConfig = {|
   showSupersededMessages: boolean,
   lookahead: string,
   fahrzeugGruppe: boolean,
+  lineAndNumber: boolean,
 |};
 
 declare var PROD: boolean;

@@ -6,6 +6,11 @@
   display: flex;
   flex-direction: column;
 
+  &__number {
+    display: flex;
+    flex-direction: column;
+  }
+
   &__cancelled {
     color: $red;
     text-decoration: none;

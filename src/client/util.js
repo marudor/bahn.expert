@@ -12,4 +12,5 @@ export const defaultConfig = {
   showSupersededMessages: false,
   lookahead: '150',
   fahrzeugGruppe: false,
+  lineAndNumber: false,
 };
