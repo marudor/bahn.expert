@@ -120,7 +120,7 @@ class Header extends React.Component<Props> {
               <ActionHome color="inherit" />
             </IconButton>
             <Select
-              autoFocus
+              autoFocus={!currentStation}
               aria-label="Suche nach Bahnhof"
               styles={selectStyles}
               loadOptions={this.loadOptions}
