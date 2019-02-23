@@ -89,7 +89,7 @@ export async function createApp() {
 
   app.use(hotHelper(() => serverRender));
 
-  return app;
+  return (app: any);
 }
 
 export default async () => {

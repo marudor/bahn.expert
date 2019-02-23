@@ -41,7 +41,7 @@ declare module 'koa' {
   declare type RequestInspect = void | RequestJSON;
   declare type Request = {
     app: Application,
-    req: http$IncomingMessage,
+    req: http$IncomingMessage<>,
     res: http$ServerResponse,
     ctx: Context,
     response: Response,
@@ -139,7 +139,7 @@ declare module 'koa' {
   };
   declare type Response = {
     app: Application,
-    req: http$IncomingMessage,
+    req: http$IncomingMessage<>,
     res: http$ServerResponse,
     ctx: Context,
     request: Request,
@@ -217,7 +217,7 @@ declare module 'koa' {
     cookies: Cookies,
     name?: string, // ?
     originalUrl: string,
-    req: http$IncomingMessage,
+    req: http$IncomingMessage<>,
     request: Request,
     res: http$ServerResponse,
     respond?: boolean, // should not be used, allow bypassing koa application.js#L193
@@ -295,7 +295,7 @@ declare module 'koa' {
   declare class Application extends events$EventEmitter {
     context: Context;
     // request handler for node's native http server.
-    callback: () => (req: http$IncomingMessage, res: http$ServerResponse) => void;
+    callback: () => (req: http$IncomingMessage<>, res: http$ServerResponse) => void;
     env: string;
     keys?: Array<string> | Object; // https://github.com/crypto-utils/keygrip
     middleware: Array<Middleware>;
