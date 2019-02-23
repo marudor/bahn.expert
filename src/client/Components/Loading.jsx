@@ -45,4 +45,4 @@ const Loading = ({ isLoading, className, children, type = 0 }: Props) => {
   return children;
 };
 
-export default Loading;
+export default React.memo<Props>(Loading);

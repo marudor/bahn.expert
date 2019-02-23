@@ -13,4 +13,4 @@ const BrowserstackThanks = () => (
   </span>
 );
 
-export default BrowserstackThanks;
+export default React.memo<*>(BrowserstackThanks);

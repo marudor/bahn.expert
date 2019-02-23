@@ -15,4 +15,4 @@ const Substitute = ({ substitute }: Props) => (
   </>
 );
 
-export default Substitute;
+export default React.memo<Props>(Substitute);

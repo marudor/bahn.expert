@@ -21,10 +21,12 @@ const mostUsed = [
 ];
 
 // eslint-disable-next-line react/display-name
-export default () => (
+const MostUsed = () => (
   <>
     {mostUsed.map(m => (
       <FavEntry noDelete key={m.id} fav={m} />
     ))}
   </>
 );
+
+export default React.memo<*>(MostUsed);

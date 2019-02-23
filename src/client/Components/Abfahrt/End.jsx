@@ -51,4 +51,4 @@ const End = ({ abfahrt, detail }: Props) => (
   </div>
 );
 
-export default End;
+export default React.memo<Props>(End);

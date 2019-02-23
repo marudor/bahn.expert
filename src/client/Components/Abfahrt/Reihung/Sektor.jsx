@@ -9,24 +9,22 @@ type Props = {
   correctLeft: number,
 };
 
-export default class SektorComp extends React.PureComponent<Props> {
-  render() {
-    const { sektor, scale, correctLeft } = this.props;
+const SektorComp = ({ sektor, scale, correctLeft }: Props) => {
+  const { startprozent, endeprozent } = sektor.positionamgleis;
 
-    const { startprozent, endeprozent } = sektor.positionamgleis;
+  const start = Number.parseInt(startprozent, 10);
+  const end = Number.parseInt(endeprozent, 10);
 
-    const start = Number.parseInt(startprozent, 10);
-    const end = Number.parseInt(endeprozent, 10);
+  const pos = {
+    left: `${(start - correctLeft) * scale}%`,
+    width: `${(end - start) * scale}%`,
+  };
 
-    const pos = {
-      left: `${(start - correctLeft) * scale}%`,
-      width: `${(end - start) * scale}%`,
-    };
+  return (
+    <div className="Sektor" style={pos}>
+      {sektor.sektorbezeichnung}
+    </div>
+  );
+};
 
-    return (
-      <div className="Sektor" style={pos}>
-        {sektor.sektorbezeichnung}
-      </div>
-    );
-  }
-}
+export default React.memo<Props>(SektorComp);

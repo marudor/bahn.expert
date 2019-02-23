@@ -119,39 +119,37 @@ function getFahrzeugInfo(fahrzeug: Fahrzeug, type: FahrzeugType, specificType: ?
   return data;
 }
 
-export default class FahrzeugComp extends React.PureComponent<Props> {
-  render() {
-    const { fahrzeug, type, specificType, scale, correctLeft /* , destination*/ } = this.props;
+const FahrzeugComp = ({ fahrzeug, type, specificType, scale, correctLeft }: Props) => {
+  const { startprozent, endeprozent } = fahrzeug.positionamhalt;
 
-    const { startprozent, endeprozent } = fahrzeug.positionamhalt;
+  const start = Number.parseInt(startprozent, 10);
+  const end = Number.parseInt(endeprozent, 10);
 
-    const start = Number.parseInt(startprozent, 10);
-    const end = Number.parseInt(endeprozent, 10);
+  const pos = {
+    left: `${(start - correctLeft) * scale}%`,
+    width: `${(end - start) * scale}%`,
+  };
+  const info = getFahrzeugInfo(fahrzeug, type, specificType);
 
-    const pos = {
-      left: `${(start - correctLeft) * scale}%`,
-      width: `${(end - start) * scale}%`,
-    };
-    const info = getFahrzeugInfo(fahrzeug, type, specificType);
+  return (
+    <div
+      style={pos}
+      className={cc([
+        'Fahrzeug',
+        {
+          'Fahrzeug--closed': fahrzeug.status === 'GESCHLOSSEN',
+        },
+      ])}
+    >
+      <span className={`Fahrzeug__klasse Fahrzeug__klasse--${info.klasse}`} />
+      <span className="Fahrzeug__nummer">{fahrzeug.wagenordnungsnummer}</span>
+      {info.rollstuhl && <ActionAccessible className="Fahrzeug--icon" />}
+      {info.speise && <MapsLocalDining className="Fahrzeug--icon" />}
+      {info.comfort && <span className="Fahrzeug--comfort" />}
+      <span className="Fahrzeug--type">{fahrzeug.fahrzeugtyp}</span>
+      {/* {destination && <span className="Fahrzeug--destination">{destination}</span>} */}
+    </div>
+  );
+};
 
-    return (
-      <div
-        style={pos}
-        className={cc([
-          'Fahrzeug',
-          {
-            'Fahrzeug--closed': fahrzeug.status === 'GESCHLOSSEN',
-          },
-        ])}
-      >
-        <span className={`Fahrzeug__klasse Fahrzeug__klasse--${info.klasse}`} />
-        <span className="Fahrzeug__nummer">{fahrzeug.wagenordnungsnummer}</span>
-        {info.rollstuhl && <ActionAccessible className="Fahrzeug--icon" />}
-        {info.speise && <MapsLocalDining className="Fahrzeug--icon" />}
-        {info.comfort && <span className="Fahrzeug--comfort" />}
-        <span className="Fahrzeug--type">{fahrzeug.fahrzeugtyp}</span>
-        {/* {destination && <span className="Fahrzeug--destination">{destination}</span>} */}
-      </div>
-    );
-  }
-}
+export default React.memo<Props>(FahrzeugComp);

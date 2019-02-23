@@ -10,31 +10,29 @@ type Props = InheritedProps & {
   showFahrzeugGruppe: boolean,
 };
 
-export default class Gruppe extends React.PureComponent<Props> {
-  render() {
-    const { gruppe, showDestination, showFahrzeugGruppe, ...rest } = this.props;
+const Gruppe = ({ gruppe, showDestination, showFahrzeugGruppe, ...rest }: Props) => {
+  const gruppenPos = {
+    left: `${(gruppe.startProzent - rest.correctLeft) * rest.scale}%`,
+    width: `${(gruppe.endeProzent - gruppe.startProzent) * rest.scale}%`,
+  };
 
-    const gruppenPos = {
-      left: `${(gruppe.startProzent - rest.correctLeft) * rest.scale}%`,
-      width: `${(gruppe.endeProzent - gruppe.startProzent) * rest.scale}%`,
-    };
+  return (
+    <>
+      {gruppe.allFahrzeug.map(f => (
+        <Fahrzeug
+          {...rest}
+          destination={showDestination ? gruppe.zielbetriebsstellename : null}
+          key={`${f.fahrzeugnummer}${f.positioningruppe}`}
+          fahrzeug={f}
+        />
+      ))}
+      {showFahrzeugGruppe && (
+        <span className="Gruppe__bezeichnung" style={gruppenPos}>
+          {gruppe.fahrzeuggruppebezeichnung}
+        </span>
+      )}
+    </>
+  );
+};
 
-    return (
-      <>
-        {gruppe.allFahrzeug.map(f => (
-          <Fahrzeug
-            {...rest}
-            destination={showDestination ? gruppe.zielbetriebsstellename : null}
-            key={`${f.fahrzeugnummer}${f.positioningruppe}`}
-            fahrzeug={f}
-          />
-        ))}
-        {showFahrzeugGruppe && (
-          <span className="Gruppe__bezeichnung" style={gruppenPos}>
-            {gruppe.fahrzeuggruppebezeichnung}
-          </span>
-        )}
-      </>
-    );
-  }
-}
+export default React.memo<Props>(Gruppe);
