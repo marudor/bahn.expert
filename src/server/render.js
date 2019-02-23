@@ -22,9 +22,12 @@ import React from 'react';
 import routes from 'client/routes';
 import serialize from 'fast-safe-stringify';
 
+const headerFilename = path.resolve(__dirname, './views/header.ejs');
 // eslint-disable-next-line
-const headerEjs = fs.readFileSync(path.resolve(__dirname, './views/header.ejs'), 'utf8').trim();
-const headerTemplate = ejs.compile(headerEjs);
+const headerEjs = fs.readFileSync(headerFilename, 'utf8').trim();
+const headerTemplate = ejs.compile(headerEjs, {
+  filename: headerFilename,
+});
 // eslint-disable-next-line
 const footerEjs = fs.readFileSync(path.resolve(__dirname, './views/footer.ejs'), 'utf8').trim();
 const footerTemplate = ejs.compile(footerEjs);

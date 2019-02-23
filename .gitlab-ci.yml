@@ -7,6 +7,7 @@ stages:
   - install
   - test
   - build
+  - critical
   - docker
   - deploy
   - cleanup
@@ -108,6 +109,25 @@ codecov:
     - test:client
     - test:server
 
+build:critical:
+  stage: critical
+  image: registry.gitlab.com/marudor/deploy-helper/puppeteer
+  variables:
+    CHROME_PATH: /usr/bin/chromium-browser
+  script: yarn build:critical
+  cache:
+    policy: pull
+    key: '$CI_COMMIT_REF_SLUG'
+    paths:
+      - node_modules/
+  artifacts:
+    paths:
+      - dist/server
+      - dist/client
+  dependencies:
+    - build:server
+    - build:app
+
 docker:server:
   services:
     - docker:dind
@@ -116,8 +136,7 @@ docker:server:
   script:
     - /build.sh "Dockerfile"
   dependencies:
-    - build:server
-    - build:app
+    - build:critical
 
 deploy:beta:
   stage: deploy
