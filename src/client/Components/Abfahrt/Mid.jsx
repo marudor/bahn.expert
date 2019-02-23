@@ -27,4 +27,4 @@ const Mid = ({ abfahrt, detail }: Props) => (
   </div>
 );
 
-export default Mid;
+export default React.memo<Props>(Mid);

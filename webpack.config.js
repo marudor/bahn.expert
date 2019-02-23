@@ -28,7 +28,7 @@ const optimization = {
 const rules = [
   {
     test: /\.jsx?$/,
-    use: ['babel-loader'],
+    use: ['react-hot-loader/webpack', 'babel-loader'],
   },
   {
     test: /\.s?css$/,
