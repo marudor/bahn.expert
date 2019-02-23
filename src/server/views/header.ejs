@@ -15,10 +15,12 @@
   <meta name="viewport" content="initial-scale=1, minimum-scale=1, width=device-width">
   <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
   <meta name="robots" content="all" />
-  <%- header.title.toString() %>
-  <%- header.meta.toString() %>
-  <%- header.link.toString() %>
-  <%- header.script.toString() %>
+  <% if (header) { %>
+    <%- header.title.toString() %>
+    <%- header.meta.toString() %>
+    <%- header.link.toString() %>
+    <%- header.script.toString() %>
+  <% } %>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=qABYO4lXNJ">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=qABYO4lXNJ">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=qABYO4lXNJ">
@@ -32,6 +34,7 @@
       <link rel="stylesheet" href="/static/<%- css %>" />
     <% }
   }); %>
+  <style><%- include('critical') %></style>
 </head>
 <body>
   <script>window.__DATA__=<%- clientState %></script>
