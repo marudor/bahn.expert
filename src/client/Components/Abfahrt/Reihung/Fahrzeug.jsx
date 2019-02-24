@@ -1,6 +1,7 @@
 // @flow
 import './Fahrzeug.scss';
 import ActionAccessible from '@material-ui/icons/Accessible';
+import ActionMotorcycle from '@material-ui/icons/Motorcycle';
 import cc from 'classnames';
 import MapsLocalDining from '@material-ui/icons/LocalDining';
 import React from 'react';
@@ -27,6 +28,7 @@ type AdditionalFahrzeugInfos = {
   klasse: 0 | 1 | 2 | 3 | 4,
   speise: boolean,
   rollstuhl: boolean,
+  fahrrad: boolean,
   comfort: boolean,
 };
 
@@ -79,6 +81,7 @@ function getFahrzeugInfo(fahrzeug: Fahrzeug, type: FahrzeugType, specificType: ?
     klasse: 0,
     speise: false,
     rollstuhl: Boolean(fahrzeug.allFahrzeugausstattung.find(a => a.ausstattungsart === 'PLAETZEROLLSTUHL')),
+    fahrrad: Boolean(fahrzeug.allFahrzeugausstattung.find(a => a.ausstattungsart === 'PLAETZEFAHRRAD')),
     comfort: false,
   };
 
@@ -144,6 +147,7 @@ const FahrzeugComp = ({ fahrzeug, type, specificType, scale, correctLeft }: Prop
       <span className={`Fahrzeug__klasse Fahrzeug__klasse--${info.klasse}`} />
       <span className="Fahrzeug__nummer">{fahrzeug.wagenordnungsnummer}</span>
       {info.rollstuhl && <ActionAccessible className="Fahrzeug--icon" />}
+      {info.fahrrad && <ActionMotorcycle className="Fahrzeug--icon" />}
       {info.speise && <MapsLocalDining className="Fahrzeug--icon" />}
       {info.comfort && <span className="Fahrzeug--comfort" />}
       <span className="Fahrzeug--type">{fahrzeug.fahrzeugtyp}</span>
