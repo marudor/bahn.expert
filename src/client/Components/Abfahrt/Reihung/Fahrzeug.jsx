@@ -79,7 +79,7 @@ function comfortLogic(fahrzeug: Fahrzeug, klasse: number, type: FahrzeugType, sp
 function getFahrzeugInfo(fahrzeug: Fahrzeug, type: FahrzeugType, specificType: ?SpecificType): AdditionalFahrzeugInfos {
   const data: AdditionalFahrzeugInfos = {
     klasse: 0,
-    speise: false,
+    speise: Boolean(fahrzeug.allFahrzeugausstattung.find(a => a.ausstattungsart === 'BISTRO')),
     rollstuhl: Boolean(fahrzeug.allFahrzeugausstattung.find(a => a.ausstattungsart === 'PLAETZEROLLSTUHL')),
     fahrrad: Boolean(fahrzeug.allFahrzeugausstattung.find(a => a.ausstattungsart === 'PLAETZEFAHRRAD')),
     comfort: false,
