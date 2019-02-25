@@ -13,6 +13,8 @@ export default async (ctx, next) => {
       };
       ctx.status = e.response.status || 500;
     } else {
+      // eslint-disable-next-line no-console
+      console.error(e);
       ctx.body = serialize(e);
       ctx.status = 500;
     }
