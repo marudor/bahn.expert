@@ -252,7 +252,7 @@ export default class Timetable {
     const timetables: any[] = Object.values(this.timetable);
 
     timetables
-      .filter(t => !this.realtimeIds.includes(t.id))
+      .filter(t => !this.realtimeIds.includes(t.rawId))
       .forEach(t => {
         t.messages = {
           qos: [],
@@ -486,7 +486,7 @@ export default class Timetable {
       const timetable = this.timetable[realtime.rawId];
 
       if (!timetable) return;
-      this.realtimeIds.push(realtime.id);
+      this.realtimeIds.push(realtime.rawId);
       this.addArrivalInfo(timetable, realtime.arrival);
       this.addDepartureInfo(timetable, realtime.departure);
       timetable.messages = realtime.messages;
