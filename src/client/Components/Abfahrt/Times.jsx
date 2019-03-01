@@ -6,7 +6,7 @@ import { addMinutes, format } from 'date-fns';
 import { connect } from 'react-redux';
 import cc from 'classnames';
 import type { Abfahrt } from 'types/abfahrten';
-import type { AppState } from 'AppState';
+import type { AppState, Dispatch } from 'AppState';
 
 function delayString(delay: number = 0) {
   if (delay > 0) {
@@ -39,6 +39,7 @@ type OwnProps = {|
 type Props = {|
   ...StateProps,
   ...OwnProps,
+  dispatch: Dispatch,
 |};
 
 const Times = ({
@@ -89,6 +90,6 @@ const Times = ({
   </div>
 );
 
-export default connect<AppState, Function, OwnProps, StateProps>(state => ({
+export default connect<Props, OwnProps, StateProps, _, AppState, _>(state => ({
   timeConfig: state.config.config.time,
 }))(Times);

@@ -20,6 +20,6 @@ const LazySettingsModal = ({ open }: Props) =>
     </React.Suspense>
   );
 
-export default connect<AppState, Function, {||}, StateProps>(state => ({
+export default connect<Props, *, StateProps, _, AppState, _>(state => ({
   open: state.config.open,
 }))(LazySettingsModal);

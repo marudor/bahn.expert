@@ -1,5 +1,5 @@
-// flow-typed signature: 913544cc68b8b8e005726dd1e9689f85
-// flow-typed version: 5d209e063b/webpack_v4.x.x/flow_>=v0.71.x
+// flow-typed signature: 00c0b8bad05897ae6e78ac4015cdb942
+// flow-typed version: a6d114b682/webpack_v4.x.x/flow_>=v0.71.x
 
 import * as http from 'http'
 import fs from 'fs'
@@ -566,6 +566,6 @@ declare module 'webpack' {
 
   declare module.exports: (
     options: WebpackOptions,
-    callback: (error: WebpackError, stats: WebpackStats) => void
+    callback?: (error: WebpackError, stats: WebpackStats) => void
   ) => WebpackCompiler | WebpackMultiCompiler;
 }

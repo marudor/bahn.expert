@@ -64,7 +64,7 @@ class BaseAbfahrt extends React.PureComponent<Props> {
   }
 }
 
-export default connect<AppState, Function, OwnProps, StateProps, DispatchProps>(
+export default connect<Props, OwnProps, StateProps, DispatchProps, AppState, _>(
   (state, props) => ({
     detail: getDetailForAbfahrt(state, props),
     lineAndNumber: state.config.config.lineAndNumber,

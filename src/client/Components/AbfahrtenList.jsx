@@ -31,14 +31,13 @@ type DispatchProps = {|
   setCurrentStation: typeof Actions.setCurrentStation,
 |};
 
-type OwnProps = {|
-  ...ContextRouter,
-|};
+type OwnProps = {||};
 
 type Props = {|
   ...StateProps,
   ...DispatchProps,
   ...OwnProps,
+  ...ContextRouter,
 |};
 
 type State = {
@@ -117,17 +116,15 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
   }
 }
 
-export default withRouter(
-  connect<AppState, Function, OwnProps, StateProps, DispatchProps>(
-    state => ({
-      abfahrten: state.abfahrten.abfahrten,
-      selectedDetail: state.abfahrten.selectedDetail,
-      currentStation: state.abfahrten.currentStation,
-      error: state.abfahrten.error,
-    }),
-    {
-      getAbfahrtenByString,
-      setCurrentStation: Actions.setCurrentStation,
-    }
-  )(AbfahrtenList)
-);
+export default connect<_, *, StateProps, DispatchProps, AppState, _>(
+  state => ({
+    abfahrten: state.abfahrten.abfahrten,
+    selectedDetail: state.abfahrten.selectedDetail,
+    currentStation: state.abfahrten.currentStation,
+    error: state.abfahrten.error,
+  }),
+  {
+    getAbfahrtenByString,
+    setCurrentStation: Actions.setCurrentStation,
+  }
+)(withRouter(AbfahrtenList));

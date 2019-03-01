@@ -98,8 +98,8 @@ class Auslastung extends React.PureComponent<Props> {
   }
 }
 
-export default connect<AppState, Function, OwnProps, StateProps, DispatchProps>(
-  (state: AppState, props: OwnProps): StateProps => ({
+export default connect<Props, OwnProps, StateProps, DispatchProps, AppState, _>(
+  (state, props) => ({
     auslastung: getAuslastungForIdAndStation(state, props),
   }),
   ({

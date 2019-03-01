@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const webpackConfig = require('../../../webpack.config');
 const chokidar = require('chokidar');
 const path = require('path');
-// $FlowFixMe
 const compiler = webpack(webpackConfig);
 const koaWebpack = require('koa-webpack');
 

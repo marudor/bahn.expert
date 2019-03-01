@@ -115,7 +115,7 @@ class HeaderButtons extends React.PureComponent<Props> {
   }
 }
 
-export default connect<AppState, Function, {||}, StateProps, DispatchProps>(
+export default connect<Props, *, StateProps, DispatchProps, AppState, _>(
   state => ({
     isFaved: Boolean(state.abfahrten.currentStation && state.fav.favs[state.abfahrten.currentStation.id]),
     currentStation: state.abfahrten.currentStation,
