@@ -45,8 +45,8 @@ type Props = {|
 |};
 
 class SettingsModal extends React.PureComponent<Props> {
-  handleCheckedChange = fn => (e: SyntheticEvent<HTMLInputElement>) => fn(e.currentTarget.checked);
-  handleValueChange = fn => (e: SyntheticEvent<HTMLInputElement>) => fn(e.currentTarget.value);
+  handleCheckedChange = (fn: boolean => any) => (e: SyntheticEvent<HTMLInputElement>) => fn(e.currentTarget.checked);
+  handleValueChange = (fn: string => any) => (e: SyntheticEvent<HTMLInputElement>) => fn(e.currentTarget.value);
   render() {
     const {
       open,
@@ -161,7 +161,7 @@ class SettingsModal extends React.PureComponent<Props> {
   }
 }
 
-export default connect<AppState, Function, {||}, StateProps, DispatchProps>(
+export default connect<Props, *, StateProps, DispatchProps, AppState, _>(
   state => ({
     open: state.config.open,
     ...state.config.config,

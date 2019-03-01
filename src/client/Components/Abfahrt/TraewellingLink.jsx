@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { format } from 'date-fns';
 import React from 'react';
 import type { Abfahrt } from 'types/abfahrten';
-import type { AppState } from 'AppState';
+import type { AppState, Dispatch } from 'AppState';
 
 type StateProps = {|
   show: boolean,
@@ -18,6 +18,7 @@ type OwnProps = {|
 type Props = {|
   ...StateProps,
   ...OwnProps,
+  dispatch: Dispatch,
 |};
 
 function preventDefault(e: SyntheticMouseEvent<>) {
@@ -57,6 +58,6 @@ const TraewellingLink = ({ abfahrt, show }: Props) => {
   );
 };
 
-export default connect<AppState, Function, OwnProps, StateProps>(state => ({
+export default connect<Props, OwnProps, StateProps, _, AppState, _>(state => ({
   show: state.config.config.traewelling,
 }))(TraewellingLink);

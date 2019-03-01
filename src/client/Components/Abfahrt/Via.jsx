@@ -5,7 +5,7 @@ import { compareDesc, format } from 'date-fns';
 import { connect } from 'react-redux';
 import cc from 'classnames';
 import React from 'react';
-import type { AppState } from 'AppState';
+import type { AppState, Dispatch } from 'AppState';
 
 function getDetailedInfo(abfahrt: Abfahrt, showSupersededMessages: boolean) {
   const today = new Date().getDate();
@@ -145,6 +145,7 @@ type OwnProps = {|
 type Props = {|
   ...StateProps,
   ...OwnProps,
+  dispatch: Dispatch,
 |};
 
 const Via = ({ abfahrt, detail, showSupersededMessages }: Props) => {
@@ -158,6 +159,6 @@ const Via = ({ abfahrt, detail, showSupersededMessages }: Props) => {
   );
 };
 
-export default connect<AppState, Function, OwnProps, StateProps>(state => ({
+export default connect<Props, OwnProps, StateProps, _, AppState, _>(state => ({
   showSupersededMessages: state.config.config.showSupersededMessages,
 }))(Via);

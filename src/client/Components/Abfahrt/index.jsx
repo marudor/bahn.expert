@@ -4,7 +4,7 @@ import { getWingsForAbfahrt } from 'client/selector/abfahrten';
 import BaseAbfahrt from './BaseAbfahrt';
 import React from 'react';
 import type { Abfahrt as AbfahrtType, ResolvedWings } from 'types/abfahrten';
-import type { AppState } from 'AppState';
+import type { AppState, Dispatch } from 'AppState';
 export type OwnProps = {|
   abfahrt: AbfahrtType,
 |};
@@ -14,6 +14,7 @@ type StateProps = {|
 type Props = {|
   ...OwnProps,
   ...StateProps,
+  dispatch: Dispatch,
 |};
 
 class Abfahrt extends React.PureComponent<Props> {
@@ -48,6 +49,6 @@ class Abfahrt extends React.PureComponent<Props> {
   }
 }
 
-export default connect<AppState, Function, OwnProps, StateProps>((state, props) => ({
+export default connect<Props, OwnProps, StateProps, _, AppState, _>((state, props) => ({
   resolvedWings: getWingsForAbfahrt(state, props),
 }))(Abfahrt);

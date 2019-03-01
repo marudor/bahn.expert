@@ -32,6 +32,6 @@ const Footer = ({ currentStation }: Props) => (
   </footer>
 );
 
-export default connect<AppState, Function, {||}, StateProps>(state => ({
+export default connect<Props, *, StateProps, _, AppState, _>(state => ({
   currentStation: state.abfahrten.currentStation,
 }))(Footer);

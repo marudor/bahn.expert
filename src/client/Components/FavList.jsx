@@ -12,9 +12,7 @@ import React from 'react';
 import type { AppState } from 'AppState';
 import type { Station } from 'types/abfahrten';
 
-type OwnProps = {|
-  ...ContextRouter,
-|};
+type OwnProps = {||};
 type DispatchProps = {|
   setCurrentStation: typeof Actions.setCurrentStation,
 |};
@@ -26,6 +24,7 @@ type Props = {|
   ...OwnProps,
   ...StateProps,
   ...DispatchProps,
+  ...ContextRouter,
 |};
 
 function getErrorText(error: any, staticContext) {
@@ -86,14 +85,12 @@ class FavList extends React.PureComponent<Props> {
   }
 }
 
-export default withRouter(
-  connect<AppState, Function, OwnProps, StateProps, DispatchProps>(
-    state => ({
-      favs: sortedFavValues(state),
-      error: state.abfahrten.error,
-    }),
-    {
-      setCurrentStation: Actions.setCurrentStation,
-    }
-  )(FavList)
-);
+export default connect<_, OwnProps, StateProps, DispatchProps, AppState, Function>(
+  state => ({
+    favs: sortedFavValues(state),
+    error: state.abfahrten.error,
+  }),
+  {
+    setCurrentStation: Actions.setCurrentStation,
+  }
+)(withRouter(FavList));

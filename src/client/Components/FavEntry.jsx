@@ -44,7 +44,7 @@ class FavEntry extends React.PureComponent<Props> {
   }
 }
 
-export default connect<AppState, Function, OwnProps, void, DispatchProps>(
+export default connect<Props, OwnProps, _, DispatchProps, AppState, _>(
   undefined,
   {
     unfav,

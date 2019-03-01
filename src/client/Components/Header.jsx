@@ -23,13 +23,9 @@ type StateProps = {|
   nextAbfahrt: ?Abfahrt,
 |};
 
-type OwnProps = {|
-  ...ContextRouter,
-|};
-
 type Props = {|
   ...StateProps,
-  ...OwnProps,
+  ...ContextRouter,
 |};
 
 const selectStyles = {
@@ -138,11 +134,9 @@ class Header extends React.Component<Props> {
   }
 }
 
-export default withRouter(
-  connect<AppState, Function, OwnProps, StateProps>(state => ({
-    currentStation: state.abfahrten.currentStation,
-    searchType: state.config.config.searchType,
-    baseUrl: state.config.baseUrl,
-    nextAbfahrt: getNextDeparture(state),
-  }))(Header)
-);
+export default connect<_, *, StateProps, _, AppState, _>(state => ({
+  currentStation: state.abfahrten.currentStation,
+  searchType: state.config.config.searchType,
+  baseUrl: state.config.baseUrl,
+  nextAbfahrt: getNextDeparture(state),
+}))(withRouter(Header));
