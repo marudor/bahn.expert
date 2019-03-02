@@ -7,13 +7,19 @@ import type { Fahrzeuggruppe } from 'types/reihung';
 type Props = InheritedProps & {
   gruppe: Fahrzeuggruppe,
   showDestination: boolean,
+  showGruppenZugnummer: boolean,
   showFahrzeugGruppe: boolean,
 };
 
-const Gruppe = ({ gruppe, showDestination, showFahrzeugGruppe, ...rest }: Props) => {
+const Gruppe = ({ gruppe, showDestination, showFahrzeugGruppe, showGruppenZugnummer, ...rest }: Props) => {
   const gruppenPos = {
     left: `${(gruppe.startProzent - rest.correctLeft) * rest.scale}%`,
     width: `${(gruppe.endeProzent - gruppe.startProzent) * rest.scale}%`,
+  };
+
+  const nummerPos = {
+    ...gruppenPos,
+    bottom: showFahrzeugGruppe ? '2.5em' : '1.5em',
   };
 
   return (
@@ -26,6 +32,11 @@ const Gruppe = ({ gruppe, showDestination, showFahrzeugGruppe, ...rest }: Props)
           fahrzeug={f}
         />
       ))}
+      {showGruppenZugnummer && gruppe.verkehrlichezugnummer && (
+        <span className="Gruppe__bezeichnung" style={nummerPos}>
+          {rest.type} {gruppe.verkehrlichezugnummer}
+        </span>
+      )}
       {showFahrzeugGruppe && (
         <span className="Gruppe__bezeichnung" style={gruppenPos}>
           {gruppe.fahrzeuggruppebezeichnung}
