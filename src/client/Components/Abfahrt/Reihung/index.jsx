@@ -53,9 +53,12 @@ class ReihungComp extends React.PureComponent<Props> {
 
     const correctLeft = useZoom ? reihung.startPercentage : 0;
     const scale = useZoom ? reihung.scale : 1;
+    const showGruppenZugnummer = reihung.allFahrzeuggruppe.every((nummer, index, array) =>
+      index > 0 ? array[index - 1].verkehrlichezugnummer !== nummer.verkehrlichezugnummer : true
+    );
 
     const style = {
-      height: fahrzeugGruppe ? '6em' : '5em',
+      height: fahrzeugGruppe ? '7em' : '6em',
     };
 
     return (
@@ -71,6 +74,7 @@ class ReihungComp extends React.PureComponent<Props> {
         <div className="Reihung__reihung">
           {reihung.allFahrzeuggruppe.map(g => (
             <Gruppe
+              showGruppenZugnummer={showGruppenZugnummer}
               showFahrzeugGruppe={fahrzeugGruppe}
               correctLeft={correctLeft}
               scale={scale}
