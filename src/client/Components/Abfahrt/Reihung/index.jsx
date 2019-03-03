@@ -53,12 +53,20 @@ class ReihungComp extends React.PureComponent<Props> {
 
     const correctLeft = useZoom ? reihung.startPercentage : 0;
     const scale = useZoom ? reihung.scale : 1;
-    const showGruppenZugnummer = reihung.allFahrzeuggruppe.every((nummer, index, array) =>
-      index > 0 ? array[index - 1].verkehrlichezugnummer !== nummer.verkehrlichezugnummer : true
-    );
+    const showGruppenZugnummer =
+      reihung.allFahrzeuggruppe.length <= 1
+        ? false
+        : reihung.allFahrzeuggruppe.every((nummer, index, array) =>
+            index > 0 ? array[index - 1].verkehrlichezugnummer !== nummer.verkehrlichezugnummer : true
+          );
+
+    let height = 5;
+
+    if (fahrzeugGruppe) height += 1;
+    if (showGruppenZugnummer) height += 1;
 
     const style = {
-      height: fahrzeugGruppe ? '7em' : '6em',
+      height: `${height}em`,
     };
 
     return (

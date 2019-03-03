@@ -33,27 +33,22 @@ export async function getStationsFromAPI(stationString: ?string, type: string = 
   return Promise.resolve([]);
 }
 
-const pendingMap = new Map<string | number, Promise<AbfahrtAPIResult>>();
+let cancelGetAbfahrten = () => {};
 
 function getAbfahrtenFromAPI(station: Station, lookahead: string): Promise<AbfahrtAPIResult> {
-  const pending = pendingMap.get(station.id);
+  cancelGetAbfahrten();
 
-  if (pending) {
-    return pending;
-  }
-  const abfahrtPromise = axios
+  return axios
     .get(`/api/ownAbfahrten/${station.id}`, {
+      cancelToken: new axios.CancelToken(c => {
+        cancelGetAbfahrten = c;
+      }),
       station,
       params: {
         lookahead,
       },
     })
     .then(d => d.data);
-
-  pendingMap.set(station.id, abfahrtPromise);
-  abfahrtPromise.finally(() => pendingMap.delete(station.id));
-
-  return abfahrtPromise;
 }
 
 export const getLageplan: ThunkAction<string> = stationName => async dispatch => {
@@ -64,10 +59,13 @@ export const getLageplan: ThunkAction<string> = stationName => async dispatch =>
   return lageplan;
 };
 
-export const getAbfahrtenByString: ThunkAction<?string> = stationString => async (dispatch, getState) => {
+export const getAbfahrtenByString: ThunkAction<?string, ?string> = (stationString, searchType) => async (
+  dispatch,
+  getState
+) => {
   try {
     const config = getState().config.config;
-    const stations = await getStationsFromAPI(stationString, config.searchType);
+    const stations = await getStationsFromAPI(stationString, searchType || config.searchType);
 
     if (stations.length) {
       const abfahrten = await getAbfahrtenFromAPI(stations[0], config.lookahead);
@@ -78,8 +76,10 @@ export const getAbfahrtenByString: ThunkAction<?string> = stationString => async
       type: '404',
     };
   } catch (e) {
-    e.station = stationString;
-    dispatch(Actions.gotAbfahrtenError(e));
+    if (!axios.isCancel(e)) {
+      e.station = stationString;
+      dispatch(Actions.gotAbfahrtenError(e));
+    }
   }
 };
 

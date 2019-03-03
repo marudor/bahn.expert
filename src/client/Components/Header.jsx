@@ -29,6 +29,12 @@ type Props = {|
 |};
 
 const selectStyles = {
+  dropdownIndicator: () => ({
+    display: 'none',
+  }),
+  indicatorSeparator: () => ({
+    display: 'none',
+  }),
   placeholder: (base: Object) => ({
     ...base,
     color: 'hsl(0, 0%, 45%)',
