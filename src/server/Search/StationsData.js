@@ -5,7 +5,7 @@ import Fuse from 'fuse.js';
 import path from 'path';
 import type { Station } from 'types/abfahrten';
 
-const dataPath = path.resolve('data/Stationsdaten.csv');
+const dataPath = path.resolve(__dirname, 'data/Stationsdaten.csv');
 // eslint-disable-next-line no-sync
 const csv = fs.readFileSync(dataPath, 'utf8');
 
