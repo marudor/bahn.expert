@@ -150,6 +150,7 @@ class SettingsModal extends React.PureComponent<Props> {
                 <option value="openDataOffline">Open Data Offline</option>
                 <option value="hafas">HAFAS</option>
                 <option value="dbNav">DB Navigator</option>
+                <option value="stationsdata">Open Data Stationsdaten</option>
               </NativeSelect>
             }
             label="API zur Stationssuche"

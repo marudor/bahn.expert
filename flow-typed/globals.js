@@ -1,6 +1,15 @@
 type marudorConfig = {|
   time: boolean,
-  searchType: string,
+  searchType:
+    | 'dbNav'
+    | 'opendata'
+    | 'openDataOffline'
+    | 'openDB'
+    | 'hafas'
+    | 'favOpenDb'
+    | 'stationsData'
+    | 'favendo'
+    | '',
   traewelling: boolean,
   zoomReihung: boolean,
   showSupersededMessages: boolean,

@@ -3,6 +3,7 @@ import './Via.scss';
 import { type Abfahrt } from 'types/abfahrten';
 import { compareDesc, format } from 'date-fns';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import cc from 'classnames';
 import React from 'react';
 import type { AppState, Dispatch } from 'AppState';
@@ -77,7 +78,8 @@ function getAbfahrt(
   length: number,
   abfahrt: Abfahrt,
   isCancelled?: number,
-  isAdditional?: number
+  isAdditional?: number,
+  isDetail?: boolean = false
 ) {
   const via = [];
   const lowerName = name.toLowerCase();
@@ -86,18 +88,30 @@ function getAbfahrt(
     lowerName.includes('centraal') ||
     lowerName.includes('centrale') ||
     lowerName.includes('termini');
+  const commonProps = {
+    className: cc({
+      cancelled: isCancelled,
+      'Via--additional': isAdditional,
+      'Via--hbf': isHbf,
+    }),
+    key: `${index}i`,
+    children: name,
+  };
 
   via.push(
-    <span
-      key={`${index}i`}
-      className={cc({
-        cancelled: isCancelled,
-        'Via--additional': isAdditional,
-        'Via--hbf': isHbf,
-      })}
-    >
-      {name}
-    </span>
+    isDetail ? (
+      <Link
+        {...commonProps}
+        onClick={e => e.stopPropagation()}
+        to={{
+          pathname: encodeURIComponent(name),
+          state: { searchType: 'stationsData' },
+        }}
+        title={`Zugabfahrten für ${name}`}
+      />
+    ) : (
+      <span {...commonProps} />
+    )
   );
   if (index + 1 !== length) {
     via.push(' - ');
@@ -127,7 +141,7 @@ function getDetailedVia(abfahrt: Abfahrt) {
     if (v.isCancelled || v.isAdditional) {
       cancelled = false;
     }
-    via = via.concat(getAbfahrt(v.name, index, abfahrten.length, abfahrt, v.isCancelled, v.isAdditional));
+    via = via.concat(getAbfahrt(v.name, index, abfahrten.length, abfahrt, v.isCancelled, v.isAdditional, true));
   });
 
   return <div className={cc({ cancelled })}>{via}</div>;

@@ -8,6 +8,7 @@ import NodeCache from 'node-cache';
 import OpenDataOfflineSearch from './OpenDataOffline';
 import OpenDataSearch from './OpenData';
 import OpenDBSearch from './OpenDB';
+import StationsDataSearch from './StationsData';
 import type { Station } from 'types/abfahrten';
 
 export async function favendoOpenDBCombined(searchTerm: string): Promise<Station[]> {
@@ -30,6 +31,8 @@ export function getSearchMethod(type: ?string) {
       return HafasSearch;
     case 'favOpenDB':
       return favendoOpenDBCombined;
+    case 'stationsData':
+      return StationsDataSearch;
     case 'favendo':
     default:
       return FavendoSearch;
@@ -63,7 +66,12 @@ export default async (searchTerm: string, type: ?string) => {
       return cached;
     }
 
-    const result = await getSearchMethod(type)(searchTerm);
+    let result = await getSearchMethod(type)(searchTerm);
+
+    if (type !== 'stationsData' && result.length === 0) {
+      // this may be a station named from iris - lets try that first
+      result = await getSearchMethod('stationsData')(searchTerm);
+    }
 
     cache.set(searchTerm, result);
 

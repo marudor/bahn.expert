@@ -15,7 +15,6 @@ type InnerAbfahrtenProps = {|
 |};
 type StateProps = {|
   ...InnerAbfahrtenProps,
-  selectedDetail: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'selectedDetail'>,
   currentStation: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'currentStation'>,
   error: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'error'>,
 |};
@@ -61,8 +60,6 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
   componentDidMount() {
     if (!this.props.currentStation) {
       this.getAbfahrten();
-    } else {
-      this.scrollToDetail();
     }
   }
   componentDidUpdate(prevProps: Props) {
@@ -70,25 +67,8 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
       this.getAbfahrten();
     }
   }
-  scrollToDetail = () => {
-    const { selectedDetail } = this.props;
-
-    if (selectedDetail) {
-      const detailDom = document.getElementById(selectedDetail);
-
-      if (detailDom) {
-        const scrollIntoView = () => setTimeout(() => detailDom.scrollIntoView(false));
-
-        if (document.readyState === 'complete') {
-          scrollIntoView();
-        } else {
-          window.addEventListener('load', scrollIntoView);
-        }
-      }
-    }
-  };
   getAbfahrten = async () => {
-    const { getAbfahrtenByString, setCurrentStation, match } = this.props;
+    const { getAbfahrtenByString, setCurrentStation, match, location } = this.props;
 
     this.setState({ loading: true });
     setCurrentStation({
@@ -96,9 +76,9 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
       id: '0',
     });
     try {
-      await getAbfahrtenByString(match.params.station);
+      await getAbfahrtenByString(match.params.station, location.state?.searchType);
     } finally {
-      this.setState({ loading: false }, this.scrollToDetail);
+      this.setState({ loading: false });
     }
   };
   render() {
@@ -119,7 +99,6 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
 export default connect<_, *, StateProps, DispatchProps, AppState, _>(
   state => ({
     abfahrten: state.abfahrten.abfahrten,
-    selectedDetail: state.abfahrten.selectedDetail,
     currentStation: state.abfahrten.currentStation,
     error: state.abfahrten.error,
   }),
