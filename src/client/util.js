@@ -7,10 +7,10 @@ export const setCookieOptions = {
 export const defaultConfig = {
   searchType: '',
   time: true,
-  traewelling: false,
   zoomReihung: true,
   showSupersededMessages: false,
   lookahead: '150',
   fahrzeugGruppe: false,
   lineAndNumber: false,
+  checkIn: '',
 };

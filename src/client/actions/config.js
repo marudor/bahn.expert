@@ -27,7 +27,6 @@ export const setSearchType = (value: string) =>
     value,
   });
 export const setTime = (value: boolean) => Actions.setConfig({ key: 'time', value });
-export const setTraewelling = (value: boolean) => Actions.setConfig({ key: 'traewelling', value });
 export const setZoomReihung = (value: boolean) => Actions.setConfig({ key: 'zoomReihung', value });
 export const setShowSupersededMessages = (value: boolean) =>
   Actions.setConfig({ key: 'showSupersededMessages', value }, value);
@@ -37,6 +36,14 @@ export const setLineAndNumber = (value: boolean) => Actions.setConfig({ key: 'li
 
 export const openSettings = () => Actions.setMenu(true);
 export const closeSettings = () => Actions.setMenu(false);
+
+export const setCheckIn: ThunkAction<string> = value => dispatch => {
+  dispatch(Actions.setConfig({ key: 'checkIn', value }));
+  // $FlowFixMe - migration
+  dispatch(Actions.setConfig({ key: 'traewelling', value: null }));
+
+  return Promise.resolve();
+};
 
 export const setCookies: ThunkAction<Cookies> = cookies => dispatch => {
   dispatch(Actions.setCookies(cookies));

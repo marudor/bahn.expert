@@ -1,6 +1,6 @@
 type marudorConfig = {|
-  time: boolean,
-  searchType:
+  +time: boolean,
+  +searchType:
     | 'dbNav'
     | 'opendata'
     | 'openDataOffline'
@@ -10,12 +10,12 @@ type marudorConfig = {|
     | 'stationsData'
     | 'favendo'
     | '',
-  traewelling: boolean,
-  zoomReihung: boolean,
-  showSupersededMessages: boolean,
-  lookahead: string,
-  fahrzeugGruppe: boolean,
-  lineAndNumber: boolean,
+  +checkIn: 'traewelling' | 'travelynx' | '',
+  +zoomReihung: boolean,
+  +showSupersededMessages: boolean,
+  +lookahead: string,
+  +fahrzeugGruppe: boolean,
+  +lineAndNumber: boolean,
 |};
 
 declare var PROD: boolean;

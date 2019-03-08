@@ -24,15 +24,23 @@ export default handleActions<State, *>(
       ...state,
       baseUrl: payload,
     }),
-    [String(Actions.setCookies)]: (state: State, { payload }: ActionType<typeof Actions.setCookies>) => ({
-      ...state,
-      open: false,
-      config: {
+    [String(Actions.setCookies)]: (state: State, { payload }: ActionType<typeof Actions.setCookies>) => {
+      const config = {
         ...defaultConfig,
         ...payload.get('config'),
-      },
-      cookies: payload,
-    }),
+      };
+
+      if (!config.checkIn && config.traewelling) {
+        config.checkIn = 'traewelling';
+      }
+
+      return {
+        ...state,
+        open: false,
+        config,
+        cookies: payload,
+      };
+    },
     [String(Actions.setMenu)]: (state: State, { payload }: ActionType<typeof Actions.setMenu>) => ({
       ...state,
       open: payload,
