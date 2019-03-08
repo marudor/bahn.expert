@@ -1,9 +1,9 @@
 // @flow
 import './Start.scss';
 import Auslastung from './Auslastung';
+import CheckInLink from './CheckInLink';
 import React from 'react';
 import Substitute from './Substitute';
-import TraewellingLink from './TraewellingLink';
 import type { Abfahrt } from 'types/abfahrten';
 
 type Props = {
@@ -22,7 +22,7 @@ const Start = ({ abfahrt, detail, lineAndNumber }: Props) => (
         </span>
       </>
     )}
-    {detail && <TraewellingLink abfahrt={abfahrt} />}
+    {detail && <CheckInLink abfahrt={abfahrt} />}
     {abfahrt.isCancelled && <span className="Start__cancelled">Zugausfall</span>}
     {abfahrt.substitute && abfahrt.ref && <Substitute substitute={abfahrt.ref} />}
     {detail && abfahrt.auslastung && <Auslastung abfahrt={abfahrt} />}

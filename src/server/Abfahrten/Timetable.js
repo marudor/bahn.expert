@@ -538,6 +538,7 @@ export default class Timetable {
       arrivalWingIds: this.getWings(ar, false),
       // classes: getAttr(tl, 'f'),
       currentStation: this.currentStation,
+      currentStationEva: this.evaId,
       departureWingIds: this.getWings(dp, true),
       departure: scheduledDeparture,
       scheduledDestination: last(routePost) || this.currentStation,

@@ -1,41 +1,27 @@
 // @flow
 /* eslint max-len: 0 */
-import './TraewellingLink.scss';
-import { connect } from 'react-redux';
 import { format } from 'date-fns';
+import { preventDefault } from '.';
 import React from 'react';
 import type { Abfahrt } from 'types/abfahrten';
-import type { AppState, Dispatch } from 'AppState';
-
-type StateProps = {|
-  show: boolean,
-|};
 
 type OwnProps = {|
   abfahrt: Abfahrt,
 |};
 
 type Props = {|
-  ...StateProps,
   ...OwnProps,
-  dispatch: Dispatch,
 |};
-
-function preventDefault(e: SyntheticMouseEvent<>) {
-  e.stopPropagation();
-
-  return false;
-}
 
 // Mobile Traewelling
 // https://mobile.traewelling.de/page.php?module=ris&ris=2&2_cat=${abfahrt.trainType}&2_id=${abfahrt.trainType === 'S' ? abfahrt.trainId : abfahrt.trainNumber}&2_start=${abfahrt.currentStation}&2_to=${destination}&2_tm=${time}&2_date=${date}
 // Traewelling
 // https://traewelling.de/checkin?ris=2&2_cat=${abfahrt.trainType}&2_id=${abfahrt.trainType === 'S' ? abfahrt.trainId : abfahrt.trainNumber}&2_start=${abfahrt.currentStation}&2_to=${destination}&2_tm=${time}&2_date=${date}
 
-const TraewellingLink = ({ abfahrt, show }: Props) => {
+const TraewellingLink = ({ abfahrt }: Props) => {
   const departure = abfahrt.scheduledDeparture;
 
-  if (!departure || !show || !abfahrt.trainType) {
+  if (!departure || !abfahrt.trainType) {
     return null;
   }
   // const start = abfahrt.route[0].name;
@@ -45,7 +31,7 @@ const TraewellingLink = ({ abfahrt, show }: Props) => {
 
   return (
     <a
-      className="TraewellingLink"
+      className="CheckInLink"
       onClick={preventDefault}
       rel="noopener noreferrer"
       target="_blank"
@@ -58,6 +44,4 @@ const TraewellingLink = ({ abfahrt, show }: Props) => {
   );
 };
 
-export default connect<Props, OwnProps, StateProps, _, AppState, _>(state => ({
-  show: state.config.config.traewelling,
-}))(TraewellingLink);
+export default React.memo<Props>(TraewellingLink);

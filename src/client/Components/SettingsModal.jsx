@@ -2,13 +2,13 @@
 import './SettingsModal.scss';
 import {
   closeSettings,
+  setCheckIn,
   setFahrzeugGruppe,
   setLineAndNumber,
   setLookahead,
   setSearchType,
   setShowSupersededMessages,
   setTime,
-  setTraewelling,
   setZoomReihung,
 } from 'client/actions/config';
 import { connect } from 'react-redux';
@@ -32,7 +32,7 @@ type DispatchProps = {|
   setSearchType: typeof setSearchType,
   setShowSupersededMessages: typeof setShowSupersededMessages,
   setTime: typeof setTime,
-  setTraewelling: typeof setTraewelling,
+  setCheckIn: typeof setCheckIn,
   setZoomReihung: typeof setZoomReihung,
   setLookahead: typeof setLookahead,
   setFahrzeugGruppe: typeof setFahrzeugGruppe,
@@ -49,24 +49,24 @@ class SettingsModal extends React.PureComponent<Props> {
   handleValueChange = (fn: string => any) => (e: SyntheticEvent<HTMLInputElement>) => fn(e.currentTarget.value);
   render() {
     const {
-      open,
+      checkIn,
       closeSettings,
-      time,
-      searchType,
-      traewelling,
-      zoomReihung,
-      showSupersededMessages,
-      lookahead,
-      setShowSupersededMessages,
-      setSearchType,
-      setZoomReihung,
-      setTraewelling,
-      setTime,
-      setLookahead,
-      setFahrzeugGruppe,
       fahrzeugGruppe,
       lineAndNumber,
+      lookahead,
+      open,
+      searchType,
+      setCheckIn,
+      setFahrzeugGruppe,
       setLineAndNumber,
+      setLookahead,
+      setSearchType,
+      setShowSupersededMessages,
+      setTime,
+      setZoomReihung,
+      showSupersededMessages,
+      time,
+      zoomReihung,
     } = this.props;
 
     return (
@@ -85,11 +85,11 @@ class SettingsModal extends React.PureComponent<Props> {
           />
           <FormControlLabel
             control={
-              <Switch
-                checked={traewelling}
-                value="traewellingConfig"
-                onChange={this.handleCheckedChange(setTraewelling)}
-              />
+              <NativeSelect value={checkIn} name="checkIn" onChange={this.handleValueChange(setCheckIn)}>
+                <option value="">Kein</option>
+                <option value="travelynx">travelynx.de</option>
+                <option value="traewelling">traewelling.de</option>
+              </NativeSelect>
             }
             label="Traewelling Link"
           />
@@ -171,7 +171,7 @@ export default connect<Props, *, StateProps, DispatchProps, AppState, _>(
     closeSettings,
     setTime,
     setSearchType,
-    setTraewelling,
+    setCheckIn,
     setZoomReihung,
     setShowSupersededMessages,
     setLookahead,
