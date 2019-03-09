@@ -20,7 +20,7 @@ function delayStyle(delay: number = 0) {
   return delay > 0 ? 'delayed' : 'early';
 }
 
-function getDelayTime(rawTime: ?string, delay: ?number, timeConfig: boolean) {
+function getDelayTime(rawTime: ?number, delay: ?number, timeConfig: boolean) {
   if (!rawTime) {
     return null;
   }
