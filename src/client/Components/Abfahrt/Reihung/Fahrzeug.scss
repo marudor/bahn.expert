@@ -2,6 +2,7 @@
   position: absolute;
   height: 2em;
   border: black 1px solid;
+  box-sizing: border-box;
 
   &--closed {
     background: repeating-linear-gradient(135deg, #999, #999, 5px, transparent 5px, transparent 10px);
@@ -9,11 +10,13 @@
 
   &__nummer {
     position: absolute;
+    z-index: 1;
     left: 50%;
     transform: translateX(-50%);
   }
 
   &__klasse {
+    position: absolute;
     &--0 {
       &::after {
         content: '?';
@@ -41,13 +44,16 @@
       }
     }
     &--4 {
+      left: 50%;
+      transform: translateX(-50%);
       &::after {
         content: 'LOK';
-        left: 50%;
-        transform: translateX(-50%);
-        position: absolute;
       }
     }
+  }
+
+  &__icons {
+    margin-left: 0.4em;
   }
 
   &--icon {
