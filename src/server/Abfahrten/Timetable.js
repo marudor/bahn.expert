@@ -87,7 +87,7 @@ function getNumberAttr(node, name): ?number {
 
 function parseTs(ts): ?Date {
   if (ts) {
-    return parseFromTimeZone(ts, 'YYMMDDHHmm', { timeZone: 'Europe/Berlin' });
+    return parseFromTimeZone(ts, 'YYMMDDHHmm', { timeZone: 'Europe/Berlin' }).getTime();
   }
 }
 

@@ -105,8 +105,9 @@ function fahrtrichtung(fahrzeuge: Fahrzeug[]) {
 }
 
 // https://www.apps-bahn.de/wr/wagenreihung/1.0/6/201802021930
-export async function wagenReihung(trainNumber: string, date: string) {
-  const parsedDate = format(convertToTimeZone(date, { timeZone: 'Europe/Berlin' }), 'yyyyMMddHHmm');
+export async function wagenReihung(trainNumber: string, date: number) {
+  const parsedDate = format(convertToTimeZone(new Date(date), { timeZone: 'Europe/Berlin' }), 'yyyyMMddHHmm');
+
   const info: Wagenreihung = (await axios.get(
     `https://www.apps-bahn.de/wr/wagenreihung/1.0/${trainNumber}/${parsedDate}`
   )).data;

@@ -67,7 +67,7 @@ router
   .get('/wagen/:trainNumber/:date', async ctx => {
     const { date, trainNumber } = ctx.params;
 
-    ctx.body = await wagenReihung(trainNumber, date);
+    ctx.body = await wagenReihung(trainNumber, Number.parseInt(date, 10));
   });
 
 const AuslastungsUser = process.env.AUSLASTUNGS_USER;
