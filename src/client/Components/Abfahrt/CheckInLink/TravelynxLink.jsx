@@ -13,8 +13,7 @@ type Props = {|
 |};
 
 const TravelynxLink = ({ abfahrt }: Props) =>
-  abfahrt.scheduledDeparture &&
-  isBefore(abfahrt.scheduledArrival || abfahrt.scheduledDeparture, Date.now() + 600000) ? (
+  abfahrt.departure && isBefore(abfahrt.arrival || abfahrt.departure, Date.now() + 600000) ? (
     <a
       className="CheckInLink"
       onClick={preventDefault}
