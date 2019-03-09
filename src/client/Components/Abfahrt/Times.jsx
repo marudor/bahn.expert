@@ -30,16 +30,16 @@ function getDelayTime(rawTime: ?number, delay: ?number, timeConfig: boolean) {
 }
 
 type StateProps = {|
-  timeConfig: boolean,
+  +timeConfig: boolean,
 |};
 type OwnProps = {|
-  abfahrt: Abfahrt,
-  detail: boolean,
+  +abfahrt: Abfahrt,
+  +detail: boolean,
 |};
 type Props = {|
   ...StateProps,
   ...OwnProps,
-  dispatch: Dispatch,
+  +dispatch: Dispatch,
 |};
 
 const Times = ({

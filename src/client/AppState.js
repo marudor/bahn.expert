@@ -6,13 +6,13 @@ import type { State as FavState } from 'client/reducer/fav';
 import type { Dispatch as ReduxDispatch, Store } from 'redux';
 import type { State as ReihungState } from 'client/reducer/reihung';
 
-export type AppState = {
-  abfahrten: AbfahrtenState,
-  auslastung: AuslastungState,
-  config: ConfigState,
-  fav: FavState,
-  reihung: ReihungState,
-};
+export type AppState = {|
+  +abfahrten: AbfahrtenState,
+  +auslastung: AuslastungState,
+  +config: ConfigState,
+  +fav: FavState,
+  +reihung: ReihungState,
+|};
 export type Action = any;
 export type Dispatch = ReduxDispatch<Action>;
 export type AppStore = Store<AppState, Action>;

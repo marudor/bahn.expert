@@ -15,8 +15,8 @@ type InnerAbfahrtenProps = {|
 |};
 type StateProps = {|
   ...InnerAbfahrtenProps,
-  currentStation: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'currentStation'>,
-  error: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'error'>,
+  +currentStation: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'currentStation'>,
+  +error: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'error'>,
 |};
 const InnerAbfahrten = ({ abfahrten }: InnerAbfahrtenProps) =>
   abfahrten && abfahrten.length ? (
@@ -26,8 +26,8 @@ const InnerAbfahrten = ({ abfahrten }: InnerAbfahrtenProps) =>
   );
 
 type DispatchProps = {|
-  getAbfahrtenByString: typeof getAbfahrtenByString,
-  setCurrentStation: typeof Actions.setCurrentStation,
+  +getAbfahrtenByString: typeof getAbfahrtenByString,
+  +setCurrentStation: typeof Actions.setCurrentStation,
 |};
 
 type OwnProps = {||};

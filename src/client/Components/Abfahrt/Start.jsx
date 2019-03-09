@@ -7,9 +7,9 @@ import Substitute from './Substitute';
 import type { Abfahrt } from 'types/abfahrten';
 
 type Props = {
-  abfahrt: Abfahrt,
-  detail: boolean,
-  lineAndNumber: boolean,
+  +abfahrt: Abfahrt,
+  +detail: boolean,
+  +lineAndNumber: boolean,
 };
 
 const Start = ({ abfahrt, detail, lineAndNumber }: Props) => (

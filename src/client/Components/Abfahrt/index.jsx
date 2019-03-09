@@ -6,15 +6,15 @@ import React from 'react';
 import type { Abfahrt as AbfahrtType, ResolvedWings } from 'types/abfahrten';
 import type { AppState, Dispatch } from 'AppState';
 export type OwnProps = {|
-  abfahrt: AbfahrtType,
+  +abfahrt: AbfahrtType,
 |};
 type StateProps = {|
-  resolvedWings: ?ResolvedWings,
+  +resolvedWings: ?ResolvedWings,
 |};
 type Props = {|
   ...OwnProps,
   ...StateProps,
-  dispatch: Dispatch,
+  +dispatch: Dispatch,
 |};
 
 class Abfahrt extends React.PureComponent<Props> {

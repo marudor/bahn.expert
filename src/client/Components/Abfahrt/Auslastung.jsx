@@ -14,13 +14,13 @@ import Tooltip from '@material-ui/core/Tooltip';
 import type { AppState } from 'AppState';
 
 type StateProps = {|
-  auslastung: ?{ first: 0 | 1 | 2, second: 0 | 1 | 2 },
+  +auslastung: ?{ +first: 0 | 1 | 2, +second: 0 | 1 | 2 },
 |};
 type DispatchProps = {|
-  getAuslastung: typeof getAuslastung,
+  +getAuslastung: typeof getAuslastung,
 |};
 type OwnProps = {|
-  abfahrt: Abfahrt,
+  +abfahrt: Abfahrt,
 |};
 type Props = {|
   ...StateProps,

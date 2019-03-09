@@ -148,18 +148,18 @@ function getDetailedVia(abfahrt: Abfahrt) {
 }
 
 type StateProps = {|
-  showSupersededMessages: boolean,
+  +showSupersededMessages: boolean,
 |};
 
 type OwnProps = {|
-  abfahrt: Abfahrt,
-  detail: boolean,
+  +abfahrt: Abfahrt,
+  +detail: boolean,
 |};
 
 type Props = {|
   ...StateProps,
   ...OwnProps,
-  dispatch: Dispatch,
+  +dispatch: Dispatch,
 |};
 
 const Via = ({ abfahrt, detail, showSupersededMessages }: Props) => {

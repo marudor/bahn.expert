@@ -4,7 +4,7 @@ import type { Abfahrt, ResolvedWings, Wings } from 'types/abfahrten';
 import type { AppState } from 'AppState';
 
 type AbfahrtProps = {
-  abfahrt: Abfahrt,
+  +abfahrt: Abfahrt,
 };
 
 export const getWings = (state: AppState) => state.abfahrten.wings;

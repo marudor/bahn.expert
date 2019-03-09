@@ -5,7 +5,7 @@ import React from 'react';
 import type { AppState } from 'AppState';
 
 type StateProps = {|
-  open: boolean,
+  +open: boolean,
 |};
 
 type Props = {|

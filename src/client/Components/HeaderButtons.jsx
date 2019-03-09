@@ -15,15 +15,15 @@ import Tooltip from '@material-ui/core/Tooltip';
 import type { AppState } from 'AppState';
 import type { Station } from 'types/abfahrten';
 type StateProps = {|
-  isFaved: boolean,
-  currentStation: ?Station,
-  lageplan?: ?string,
+  +isFaved: boolean,
+  +currentStation: ?Station,
+  +lageplan?: ?string,
 |};
 type DispatchProps = {|
-  fav: typeof fav,
-  unfav: typeof unfav,
-  openSettings: typeof openSettings,
-  getLageplan: typeof getLageplan,
+  +fav: typeof fav,
+  +unfav: typeof unfav,
+  +openSettings: typeof openSettings,
+  +getLageplan: typeof getLageplan,
 |};
 
 declare opaque type SnackId;

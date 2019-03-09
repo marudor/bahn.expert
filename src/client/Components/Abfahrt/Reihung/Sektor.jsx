@@ -4,9 +4,9 @@ import React from 'react';
 import type { Sektor } from 'types/reihung';
 
 type Props = {
-  sektor: Sektor,
-  scale: number,
-  correctLeft: number,
+  +sektor: Sektor,
+  +scale: number,
+  +correctLeft: number,
 };
 
 const SektorComp = ({ sektor, scale, correctLeft }: Props) => {

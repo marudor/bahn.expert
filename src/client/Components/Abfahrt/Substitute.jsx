@@ -4,7 +4,7 @@ import React from 'react';
 import type { SubstituteRef } from 'types/abfahrten';
 
 type OwnProps = {|
-  substitute: SubstituteRef,
+  +substitute: SubstituteRef,
 |};
 type Props = {| ...OwnProps |};
 

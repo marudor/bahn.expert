@@ -17,10 +17,10 @@ import type { Abfahrt, Station } from 'types/abfahrten';
 import type { AppState } from 'AppState';
 
 type StateProps = {|
-  currentStation: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'currentStation'>,
-  searchType?: string,
-  baseUrl: string,
-  nextAbfahrt: ?Abfahrt,
+  +currentStation: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'currentStation'>,
+  +searchType?: string,
+  +baseUrl: string,
+  +nextAbfahrt: ?Abfahrt,
 |};
 
 type Props = {|

@@ -6,7 +6,7 @@ import type { AppState } from 'AppState';
 import type { Station } from 'types/abfahrten';
 
 type StateProps = {|
-  currentStation: ?Station,
+  +currentStation: ?Station,
 |};
 type Props = {| ...StateProps |};
 

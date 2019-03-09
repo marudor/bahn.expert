@@ -6,8 +6,8 @@ import Via from './Via';
 import type { Abfahrt } from 'types/abfahrten';
 
 type Props = {
-  abfahrt: Abfahrt,
-  detail: boolean,
+  +abfahrt: Abfahrt,
+  +detail: boolean,
 };
 
 const Mid = ({ abfahrt, detail }: Props) => (

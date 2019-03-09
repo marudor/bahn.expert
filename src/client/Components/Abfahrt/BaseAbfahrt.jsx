@@ -14,18 +14,18 @@ import type { Abfahrt } from 'types/abfahrten';
 import type { AppState } from 'AppState';
 
 export type OwnProps = {|
-  abfahrt: Abfahrt,
-  sameTrainWing: boolean,
-  wing: boolean,
-  wingEnd?: boolean,
-  wingStart?: boolean,
+  +abfahrt: Abfahrt,
+  +sameTrainWing: boolean,
+  +wing: boolean,
+  +wingEnd?: boolean,
+  +wingStart?: boolean,
 |};
 type StateProps = {|
-  detail: boolean,
-  lineAndNumber: boolean,
+  +detail: boolean,
+  +lineAndNumber: boolean,
 |};
 type DispatchProps = {|
-  setDetail: typeof setDetail,
+  +setDetail: typeof setDetail,
 |};
 export type Props = {|
   ...OwnProps,
