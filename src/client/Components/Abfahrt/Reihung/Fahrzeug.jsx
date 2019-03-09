@@ -17,6 +17,7 @@ export type InheritedProps = {
 type Props = InheritedProps & {
   +fahrzeug: Fahrzeug,
   +destination: ?string,
+  +wrongWing: boolean,
 };
 
 // Klasse: 0 = unknown
@@ -122,7 +123,7 @@ function getFahrzeugInfo(fahrzeug: Fahrzeug, type: FahrzeugType, specificType: ?
   return data;
 }
 
-const FahrzeugComp = ({ fahrzeug, type, specificType, scale, correctLeft }: Props) => {
+const FahrzeugComp = ({ fahrzeug, type, specificType, scale, correctLeft, wrongWing }: Props) => {
   const { startprozent, endeprozent } = fahrzeug.positionamhalt;
 
   const start = Number.parseInt(startprozent, 10);
@@ -141,6 +142,7 @@ const FahrzeugComp = ({ fahrzeug, type, specificType, scale, correctLeft }: Prop
         'Fahrzeug',
         {
           'Fahrzeug--closed': fahrzeug.status === 'GESCHLOSSEN',
+          wrongWing,
         },
       ])}
     >
