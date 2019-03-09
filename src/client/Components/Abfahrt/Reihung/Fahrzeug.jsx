@@ -148,9 +148,11 @@ const FahrzeugComp = ({ fahrzeug, type, specificType, scale, correctLeft, wrongW
     >
       <span className={`Fahrzeug__klasse Fahrzeug__klasse--${info.klasse}`} />
       <span className="Fahrzeug__nummer">{fahrzeug.wagenordnungsnummer}</span>
-      {info.rollstuhl && <ActionAccessible className="Fahrzeug--icon" />}
-      {info.fahrrad && <ActionMotorcycle className="Fahrzeug--icon" />}
-      {info.speise && <MapsLocalDining className="Fahrzeug--icon" />}
+      <span className="Fahrzeug__icons">
+        {info.rollstuhl && <ActionAccessible className="Fahrzeug--icon" />}
+        {info.fahrrad && <ActionMotorcycle className="Fahrzeug--icon" />}
+        {info.speise && <MapsLocalDining className="Fahrzeug--icon" />}
+      </span>
       {info.comfort && <span className="Fahrzeug--comfort" />}
       <span className="Fahrzeug--type">{fahrzeug.fahrzeugtyp}</span>
       {/* {destination && <span className="Fahrzeug--destination">{destination}</span>} */}
