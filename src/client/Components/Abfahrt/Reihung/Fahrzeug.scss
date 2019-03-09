@@ -42,7 +42,10 @@
     }
     &--4 {
       &::after {
-        content: 'TK';
+        content: 'LOK';
+        left: 50%;
+        transform: translateX(-50%);
+        position: absolute;
       }
     }
   }
