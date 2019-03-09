@@ -72,6 +72,7 @@ export type Formation = {|
   fahrtrichtung: 'VORWAERTS' | 'RUCKWAERTS',
   /* Custom */
   differentDestination: boolean,
+  differentZugnummer: boolean,
   specificTrainType: ?SpecificType,
   scale: number,
   startPercentage: number,
