@@ -143,7 +143,7 @@ const FahrzeugComp = ({ fahrzeug, type, specificType, scale, correctLeft, wrongW
         'Fahrzeug',
         {
           'Fahrzeug--closed': fahrzeug.status === 'GESCHLOSSEN',
-          wrongWing,
+          'Fahrzeug--wrongWing': wrongWing,
         },
       ])}
     >

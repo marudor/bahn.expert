@@ -5,21 +5,6 @@
   margin-right: 0.3em;
   position: relative;
 
-  .wrongWing {
-    background: darkgrey;
-
-    &::after {
-      content: ' ';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: -2.4em;
-      z-index: 10;
-      background: rgba(255, 255, 255, 0.65);
-    }
-  }
-
   &__specificType {
     position: absolute;
     bottom: -0.5em;
@@ -46,6 +31,7 @@
     left: 50%;
     transform: translateX(-50%);
     bottom: 0px;
+    z-index: 10;
     &::after {
       border: solid black;
       border-width: 0 2px 2px 0;
