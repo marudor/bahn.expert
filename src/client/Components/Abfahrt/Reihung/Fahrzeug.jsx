@@ -7,18 +7,19 @@ import MapsLocalDining from '@material-ui/icons/LocalDining';
 import React from 'react';
 import type { Fahrzeug, FahrzeugType, SpecificType } from 'types/reihung';
 
-export type InheritedProps = {
-  specificType: ?SpecificType,
-  type: FahrzeugType,
-  scale: number,
-  correctLeft: number,
-};
+export type InheritedProps = {|
+  +specificType: ?SpecificType,
+  +type: FahrzeugType,
+  +scale: number,
+  +correctLeft: number,
+|};
 
-type Props = InheritedProps & {
+type Props = {|
+  ...InheritedProps,
   +fahrzeug: Fahrzeug,
   +destination: ?string,
   +wrongWing: boolean,
-};
+|};
 
 // Klasse: 0 = unknown
 // Klasse: 1 = Nur erste

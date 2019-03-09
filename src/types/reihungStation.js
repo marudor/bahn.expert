@@ -16,54 +16,54 @@
   A - ???
 */
 type Waggon = {|
-  position: number,
-  waggon: boolean,
-  sections: string[],
-  number: string,
-  type: '2' | '1' | 's' | 'e',
-  symbols: string,
-  differentDestination: string,
-  length: number,
+  +position: number,
+  +waggon: boolean,
+  +sections: string[],
+  +number: string,
+  +type: '2' | '1' | 's' | 'e',
+  +symbols: string,
+  +differentDestination: string,
+  +length: number,
 |};
 
 type Destination = {|
-  destinationName: string,
-  destinationVia: string[],
+  +destinationName: string,
+  +destinationVia: string[],
 |};
 
 type Subtrain = {|
-  destination: Destination,
-  sections: string[],
+  +destination: Destination,
+  +sections: string[],
 |};
 
 type TrackRecord = {|
-  time: string,
-  additionalText: string,
-  name: string,
-  trainNumbers: string[],
-  days: any[],
-  subtrains: Subtrain[],
-  waggons: Waggon[],
-  traintypes: string,
+  +time: string,
+  +additionalText: string,
+  +name: string,
+  +trainNumbers: string[],
+  +days: any[],
+  +subtrains: Subtrain[],
+  +waggons: Waggon[],
+  +traintypes: string,
 |};
 
 type SpecificWagenreihung = {|
-  name: string,
-  additionalId: {|
-    evaNr: string,
-    shortName: string,
+  +name: string,
+  +additionalId: {|
+    +evaNr: string,
+    +shortName: string,
   |},
-  trackRecords: TrackRecord[],
+  +trackRecords: TrackRecord[],
 |};
 
 export type WagenreihungStation = {|
-  trainNubmer: string,
-  trainType: ?any,
-  time: ?any,
-  timeOffset: ?any,
-  weekday: ?any,
-  platform: ?any,
-  waggon: ?any,
-  trainId: ?any,
-  stations: SpecificWagenreihung[],
+  +trainNubmer: string,
+  +trainType: ?any,
+  +time: ?any,
+  +timeOffset: ?any,
+  +weekday: ?any,
+  +platform: ?any,
+  +waggon: ?any,
+  +trainId: ?any,
+  +stations: SpecificWagenreihung[],
 |};

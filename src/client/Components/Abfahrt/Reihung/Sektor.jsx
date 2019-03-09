@@ -3,11 +3,11 @@ import './Sektor.scss';
 import React from 'react';
 import type { Sektor } from 'types/reihung';
 
-type Props = {
+type Props = {|
   +sektor: Sektor,
   +scale: number,
   +correctLeft: number,
-};
+|};
 
 const SektorComp = ({ sektor, scale, correctLeft }: Props) => {
   const { startprozent, endeprozent } = sektor.positionamgleis;

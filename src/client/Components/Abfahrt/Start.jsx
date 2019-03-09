@@ -6,11 +6,11 @@ import React from 'react';
 import Substitute from './Substitute';
 import type { Abfahrt } from 'types/abfahrten';
 
-type Props = {
+type Props = {|
   +abfahrt: Abfahrt,
   +detail: boolean,
   +lineAndNumber: boolean,
-};
+|};
 
 const Start = ({ abfahrt, detail, lineAndNumber }: Props) => (
   <div className="Start">
