@@ -9,9 +9,17 @@ type Props = InheritedProps & {
   +showDestination: boolean,
   +showGruppenZugnummer: boolean,
   +showFahrzeugGruppe: boolean,
+  +originalTrainNumber: string,
 };
 
-const Gruppe = ({ gruppe, showDestination, showFahrzeugGruppe, showGruppenZugnummer, ...rest }: Props) => {
+const Gruppe = ({
+  gruppe,
+  showDestination,
+  showFahrzeugGruppe,
+  showGruppenZugnummer,
+  originalTrainNumber,
+  ...rest
+}: Props) => {
   const gruppenPos = {
     left: `${(gruppe.startProzent - rest.correctLeft) * rest.scale}%`,
     width: `${(gruppe.endeProzent - gruppe.startProzent) * rest.scale}%`,
@@ -27,6 +35,7 @@ const Gruppe = ({ gruppe, showDestination, showFahrzeugGruppe, showGruppenZugnum
       {gruppe.allFahrzeug.map(f => (
         <Fahrzeug
           {...rest}
+          wrongWing={originalTrainNumber !== gruppe.verkehrlichezugnummer}
           destination={showDestination ? gruppe.zielbetriebsstellename : null}
           key={`${f.fahrzeugnummer}${f.positioningruppe}`}
           fahrzeug={f}

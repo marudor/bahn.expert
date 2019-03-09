@@ -130,9 +130,6 @@ export async function wagenReihung(trainNumber: string, date: number) {
   info.data.istformation.specificTrainType = specificTrainType(info.data.istformation, fahrzeuge);
   info.data.istformation.realFahrtrichtung = fahrtrichtung(fahrzeuge);
   info.data.istformation.allFahrzeuggruppe.forEach(g => {
-    if (info.data.istformation.differentZugnummer && g.verkehrlichezugnummer !== trainNumber) {
-      return;
-    }
     g.allFahrzeug.forEach(f => {
       const start = Number.parseInt(f.positionamhalt.startprozent, 10);
       const end = Number.parseInt(f.positionamhalt.endeprozent, 10);

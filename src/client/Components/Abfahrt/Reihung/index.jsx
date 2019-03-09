@@ -60,10 +60,6 @@ class ReihungComp extends React.PureComponent<Props> {
     if (fahrzeugGruppe) height += 1;
     if (differentZugnummer) height += 1;
 
-    const gruppen = differentZugnummer
-      ? reihung.allFahrzeuggruppe.filter(g => g.verkehrlichezugnummer === abfahrt.trainNumber)
-      : reihung.allFahrzeuggruppe;
-
     const style = {
       height: `${height}em`,
     };
@@ -79,9 +75,10 @@ class ReihungComp extends React.PureComponent<Props> {
           ))}
         </div>
         <div className="Reihung__reihung">
-          {gruppen.map(g => (
+          {reihung.allFahrzeuggruppe.map(g => (
             <Gruppe
               showGruppenZugnummer={differentZugnummer}
+              originalTrainNumber={abfahrt.trainNumber}
               showFahrzeugGruppe={fahrzeugGruppe}
               correctLeft={correctLeft}
               scale={scale}

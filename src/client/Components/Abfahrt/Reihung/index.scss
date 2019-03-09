@@ -5,9 +5,24 @@
   margin-right: 0.3em;
   position: relative;
 
+  .wrongWing {
+    background: darkgrey;
+
+    &::after {
+      content: ' ';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: -2.4em;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.65);
+    }
+  }
+
   &__specificType {
     position: absolute;
-    top: 4em;
+    bottom: -0.5em;
   }
 
   &__sektoren {
