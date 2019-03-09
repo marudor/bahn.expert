@@ -19,6 +19,14 @@ function differentDestination(formation: Formation) {
   return false;
 }
 
+function differentZugunummer(formation: Formation) {
+  return formation.allFahrzeuggruppe.length <= 1
+    ? false
+    : formation.allFahrzeuggruppe.every((nummer, index, array) =>
+        index > 0 ? array[index - 1].verkehrlichezugnummer !== nummer.verkehrlichezugnummer : true
+      );
+}
+
 // Reihenfolge wichtig! Wenn nicht eines der oberen DANN sind die unteren "unique"
 const ICETspecific = ['ABpmz', 'Bpmkz'];
 const ICE4specific = ['Bpmdz', 'Bpmdzf'];
@@ -118,9 +126,13 @@ export async function wagenReihung(trainNumber: string, date: number) {
   let endPercentage = 0;
 
   info.data.istformation.differentDestination = differentDestination(info.data.istformation);
+  info.data.istformation.differentZugnummer = differentZugunummer(info.data.istformation);
   info.data.istformation.specificTrainType = specificTrainType(info.data.istformation, fahrzeuge);
   info.data.istformation.realFahrtrichtung = fahrtrichtung(fahrzeuge);
   info.data.istformation.allFahrzeuggruppe.forEach(g => {
+    if (info.data.istformation.differentZugnummer && g.verkehrlichezugnummer !== trainNumber) {
+      return;
+    }
     g.allFahrzeug.forEach(f => {
       const start = Number.parseInt(f.positionamhalt.startprozent, 10);
       const end = Number.parseInt(f.positionamhalt.endeprozent, 10);
