@@ -5,10 +5,10 @@ import React from 'react';
 import type { Fahrzeuggruppe } from 'types/reihung';
 
 type Props = InheritedProps & {
-  gruppe: Fahrzeuggruppe,
-  showDestination: boolean,
-  showGruppenZugnummer: boolean,
-  showFahrzeugGruppe: boolean,
+  +gruppe: Fahrzeuggruppe,
+  +showDestination: boolean,
+  +showGruppenZugnummer: boolean,
+  +showFahrzeugGruppe: boolean,
 };
 
 const Gruppe = ({ gruppe, showDestination, showFahrzeugGruppe, showGruppenZugnummer, ...rest }: Props) => {

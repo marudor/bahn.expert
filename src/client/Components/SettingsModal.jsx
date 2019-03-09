@@ -23,20 +23,20 @@ import Switch from '@material-ui/core/Switch';
 import type { AppState } from 'AppState';
 
 type StateProps = {|
-  open: boolean,
+  +open: boolean,
   ...marudorConfig,
 |};
 
 type DispatchProps = {|
-  closeSettings: typeof closeSettings,
-  setSearchType: typeof setSearchType,
-  setShowSupersededMessages: typeof setShowSupersededMessages,
-  setTime: typeof setTime,
-  setCheckIn: typeof setCheckIn,
-  setZoomReihung: typeof setZoomReihung,
-  setLookahead: typeof setLookahead,
-  setFahrzeugGruppe: typeof setFahrzeugGruppe,
-  setLineAndNumber: typeof setLineAndNumber,
+  +closeSettings: typeof closeSettings,
+  +setSearchType: typeof setSearchType,
+  +setShowSupersededMessages: typeof setShowSupersededMessages,
+  +setTime: typeof setTime,
+  +setCheckIn: typeof setCheckIn,
+  +setZoomReihung: typeof setZoomReihung,
+  +setLookahead: typeof setLookahead,
+  +setFahrzeugGruppe: typeof setFahrzeugGruppe,
+  +setLineAndNumber: typeof setLineAndNumber,
 |};
 
 type Props = {|

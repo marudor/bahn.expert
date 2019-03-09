@@ -1,80 +1,80 @@
 // @flow
 export type SubstituteRef = {|
-  trainNumber: string,
-  trainType: string,
-  train: string,
+  +trainNumber: string,
+  +trainType: string,
+  +train: string,
 |};
 export type Station = {|
-  title: string,
-  id: string,
-  favendoId?: number,
-  DS100?: string,
-  raw?: Object,
+  +title: string,
+  +id: string,
+  +favendoId?: number,
+  +DS100?: string,
+  +raw?: Object,
 |};
 
 export type Message = {|
-  text: string,
-  timestamp: string,
-  superseded?: boolean,
-  superseeds?: boolean,
+  +text: string,
+  +timestamp: number,
+  +superseded?: boolean,
+  +superseeds?: boolean,
 |};
 
 export type Train = {|
-  isAdditional?: 0 | 1,
-  isCancelled?: 0 | 1,
-  name: string,
+  +isAdditional?: 0 | 1,
+  +isCancelled?: 0 | 1,
+  +name: string,
 |};
 
 export type Messages = {|
-  qos: Message[],
-  delay: Message[],
+  +qos: Message[],
+  +delay: Message[],
 |};
 export type Abfahrt = {|
-  arrival?: number,
-  arrivalWingIds: ?(string[]),
-  auslastung: boolean,
-  currentStation: string,
-  currentStationEva: string,
-  delayArrival: number,
-  delayDeparture: number,
-  departure?: number,
-  departureWingIds: ?(string[]),
-  destination: string,
-  id: string,
-  isCancelled: 0 | 1,
-  longDistance: boolean,
-  mediumId: string,
-  messages: Messages,
-  platform: string,
-  rawId: string,
-  ref?: SubstituteRef,
-  reihung: boolean,
-  route: Train[],
-  scheduledArrival?: number,
-  scheduledDeparture?: number,
-  scheduledDestination: string,
-  scheduledPlatform: string,
-  substitute: boolean,
-  thirdParty?: string,
-  train: string,
-  trainId: string,
-  trainNumber: string,
-  trainType: string,
-  via: string[],
+  +arrival?: number,
+  +arrivalWingIds: ?(string[]),
+  +auslastung: boolean,
+  +currentStation: string,
+  +currentStationEva: string,
+  +delayArrival: number,
+  +delayDeparture: number,
+  +departure?: number,
+  +departureWingIds: ?(string[]),
+  +destination: string,
+  +id: string,
+  +isCancelled: 0 | 1,
+  +longDistance: boolean,
+  +mediumId: string,
+  +messages: Messages,
+  +platform: string,
+  +rawId: string,
+  +ref?: SubstituteRef,
+  +reihung: boolean,
+  +route: Train[],
+  +scheduledArrival?: number,
+  +scheduledDeparture?: number,
+  +scheduledDestination: string,
+  +scheduledPlatform: string,
+  +substitute: boolean,
+  +thirdParty?: string,
+  +train: string,
+  +trainId: string,
+  +trainNumber: string,
+  +trainType: string,
+  +via: string[],
 |};
 
 export type Wings = {
-  [mediumId: string]: Abfahrt,
+  +[mediumId: string]: Abfahrt,
 };
 
 export type ResolvedWings = {|
-  arrivalWings: ?(Abfahrt[]),
-  departureWings: ?(Abfahrt[]),
+  +arrivalWings: ?(Abfahrt[]),
+  +departureWings: ?(Abfahrt[]),
 |};
 
 export type AbfahrtAPIResult = {|
-  departures: Abfahrt[],
-  wings: Wings,
+  +departures: Abfahrt[],
+  +wings: Wings,
 |};
 
 export default {};

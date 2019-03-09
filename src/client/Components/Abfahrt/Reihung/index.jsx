@@ -13,17 +13,17 @@ import type { AppState } from 'AppState';
 import type { Reihung } from 'types/reihung';
 
 type StateProps = {|
-  reihung: ?Reihung,
-  useZoom: boolean,
-  fahrzeugGruppe: boolean,
+  +reihung: ?Reihung,
+  +useZoom: boolean,
+  +fahrzeugGruppe: boolean,
 |};
 
 type OwnProps = {|
-  abfahrt: Abfahrt,
+  +abfahrt: Abfahrt,
 |};
 
 type DispatchProps = {|
-  getReihung: typeof getReihung,
+  +getReihung: typeof getReihung,
 |};
 
 type Props = {|

@@ -4,7 +4,7 @@ import type { Abfahrt, Station } from 'types/abfahrten';
 import type { AppState } from 'AppState';
 import type { AuslastungEntry } from 'types/auslastung';
 
-export type AuslastungProps = { abfahrt: Abfahrt };
+export type AuslastungProps = { +abfahrt: Abfahrt };
 export const getAuslastung = (state: AppState) => state.auslastung.auslastung;
 export const getTrainIdFromProps = (_: AppState, props: AuslastungProps) => props.abfahrt.trainId;
 export const getCurrentStationFromProps = (_: AppState, props: AuslastungProps) => props.abfahrt.currentStation;

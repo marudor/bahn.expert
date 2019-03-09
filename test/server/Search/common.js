@@ -15,17 +15,18 @@ function buildResults(options: Options): any[] {
   if (options.customResponse) {
     return options.customResponse;
   }
-  const Hbf: Station = { id: '8002549', title: 'Hamburg Hbf' };
-  const Dammtor: Station = { id: '8002548', title: 'Hamburg Dammtor' };
-
-  if (options.includeDS100) {
-    Hbf.DS100 = 'AH';
-    Dammtor.DS100 = 'ADF';
-  }
-  if (options.includeFavendoId) {
-    Hbf.favendoId = 2514;
-    Dammtor.favendoId = 2513;
-  }
+  const Hbf: Station = {
+    id: '8002549',
+    title: 'Hamburg Hbf',
+    DS100: options.includeDS100 ? 'AH' : undefined,
+    favendoId: options.includeFavendoId ? 2514 : undefined,
+  };
+  const Dammtor: Station = {
+    id: '8002548',
+    title: 'Hamburg Dammtor',
+    DS100: options.includeDS100 ? 'ADF' : undefined,
+    favendoId: options.includeFavendoId ? 2513 : undefined,
+  };
 
   return [Hbf, Dammtor];
 }

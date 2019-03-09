@@ -10,11 +10,11 @@ import type { AppState } from 'AppState';
 import type { Station } from 'types/abfahrten';
 
 type OwnProps = {|
-  fav: Station,
-  noDelete?: boolean,
+  +fav: Station,
+  +noDelete?: boolean,
 |};
 type DispatchProps = {|
-  unfav: typeof unfav,
+  +unfav: typeof unfav,
 |};
 type Props = {|
   ...OwnProps,

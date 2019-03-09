@@ -15,8 +15,8 @@ export type InheritedProps = {
 };
 
 type Props = InheritedProps & {
-  fahrzeug: Fahrzeug,
-  destination: ?string,
+  +fahrzeug: Fahrzeug,
+  +destination: ?string,
 };
 
 // Klasse: 0 = unknown

@@ -3,10 +3,10 @@ import './Loading.scss';
 import * as React from 'react';
 
 type Props = {
-  isLoading?: boolean,
-  className?: string,
-  children?: React.Node,
-  type?: 0 | 1,
+  +isLoading?: boolean,
+  +className?: string,
+  +children?: React.Node,
+  +type?: 0 | 1,
 };
 
 function getType(type: 0 | 1) {

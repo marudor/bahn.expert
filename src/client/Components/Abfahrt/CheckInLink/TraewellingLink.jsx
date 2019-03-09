@@ -6,7 +6,7 @@ import React from 'react';
 import type { Abfahrt } from 'types/abfahrten';
 
 type OwnProps = {|
-  abfahrt: Abfahrt,
+  +abfahrt: Abfahrt,
 |};
 
 type Props = {|

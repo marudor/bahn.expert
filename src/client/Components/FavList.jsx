@@ -14,11 +14,11 @@ import type { Station } from 'types/abfahrten';
 
 type OwnProps = {||};
 type DispatchProps = {|
-  setCurrentStation: typeof Actions.setCurrentStation,
+  +setCurrentStation: typeof Actions.setCurrentStation,
 |};
 type StateProps = {|
-  favs: Station[],
-  error: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'error'>,
+  +favs: Station[],
+  +error: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'error'>,
 |};
 type Props = {|
   ...OwnProps,
