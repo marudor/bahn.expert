@@ -27,10 +27,10 @@ function getDelay(abfahrt: Abfahrt) {
   );
 }
 
-type Props = {
+type Props = {|
   +abfahrt: Abfahrt,
   +detail: boolean,
-};
+|};
 const End = ({ abfahrt, detail }: Props) => (
   <div className="End">
     <Times abfahrt={abfahrt} detail={detail} />

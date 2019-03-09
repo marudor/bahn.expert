@@ -5,10 +5,10 @@ import React from 'react';
 import Via from './Via';
 import type { Abfahrt } from 'types/abfahrten';
 
-type Props = {
+type Props = {|
   +abfahrt: Abfahrt,
   +detail: boolean,
-};
+|};
 
 const Mid = ({ abfahrt, detail }: Props) => (
   <div className={cc(['Mid', { 'Mid--detail': detail }])}>

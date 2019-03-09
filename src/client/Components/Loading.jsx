@@ -2,12 +2,12 @@
 import './Loading.scss';
 import * as React from 'react';
 
-type Props = {
+type Props = {|
   +isLoading?: boolean,
   +className?: string,
   +children?: React.Node,
   +type?: 0 | 1,
-};
+|};
 
 function getType(type: 0 | 1) {
   switch (type) {
