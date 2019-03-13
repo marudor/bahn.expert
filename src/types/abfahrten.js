@@ -31,6 +31,7 @@ export type Messages = {|
 |};
 export type Abfahrt = {|
   +arrival?: number,
+  +arrivalIsCancelled: boolean,
   +arrivalWingIds: ?(string[]),
   +auslastung: boolean,
   +currentStation: string,
@@ -38,6 +39,7 @@ export type Abfahrt = {|
   +delayArrival: number,
   +delayDeparture: number,
   +departure?: number,
+  +departureIsCancelled: boolean,
   +departureWingIds: ?(string[]),
   +destination: string,
   +id: string,

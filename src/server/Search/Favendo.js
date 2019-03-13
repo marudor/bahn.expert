@@ -22,7 +22,7 @@ export default async function(searchTerm: string): Promise<Station[]> {
 
   return stations.map(s => ({
     title: s.title,
-    id: s.eva_ids[0],
+    id: s.eva_ids.shift(),
     favendoId: s.id,
     raw: PROD ? undefined : s,
   }));

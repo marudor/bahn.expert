@@ -48,7 +48,11 @@ export async function getAbfahrten(evaId: string, withRelated: boolean = true, o
   const result: Result = (await Promise.all([timetable.start(), relatedAbfahrten])).reduce(reduceResults, baseResult);
 
   result.departures.sort((a, b) => {
-    const sort = compareAsc(a.scheduledDeparture || a.scheduledArrival, b.scheduledDeparture || b.scheduledArrival);
+    const timeA =
+      a.departureIsCancelled && !a.isCancelled ? a.scheduledArrival : a.scheduledDeparture || a.scheduledArrival;
+    const timeB =
+      b.departureIsCancelled && !b.isCancelled ? b.scheduledArrival : b.scheduledDeparture || b.scheduledArrival;
+    const sort = compareAsc(timeA, timeB);
 
     if (!sort) {
       const splittedA = a.rawId.split('-');

@@ -44,7 +44,15 @@ type Props = {|
 
 const Times = ({
   timeConfig,
-  abfahrt: { scheduledArrival, scheduledDeparture, delayArrival, delayDeparture, isCancelled },
+  abfahrt: {
+    scheduledArrival,
+    scheduledDeparture,
+    delayArrival,
+    delayDeparture,
+    isCancelled,
+    arrivalIsCancelled,
+    departureIsCancelled,
+  },
   detail,
 }: Props) => (
   <div
@@ -63,6 +71,7 @@ const Times = ({
           <div
             className={cc('Times__wrapper', {
               [delayStyle(delayArrival)]: delayArrival,
+              cancelled: arrivalIsCancelled,
             })}
           >
             {Boolean(delayArrival) && delayString(delayArrival)}
@@ -74,6 +83,7 @@ const Times = ({
           <div
             className={cc('Times__wrapper', {
               [delayStyle(delayDeparture)]: delayDeparture,
+              cancelled: departureIsCancelled,
             })}
           >
             {Boolean(delayDeparture) && delayString(delayDeparture)}
@@ -82,7 +92,7 @@ const Times = ({
           </div>
         )}
       </React.Fragment>
-    ) : scheduledDeparture ? (
+    ) : scheduledDeparture && !departureIsCancelled ? (
       getDelayTime(scheduledDeparture, delayDeparture, timeConfig)
     ) : (
       getDelayTime(scheduledArrival, delayArrival, timeConfig)
