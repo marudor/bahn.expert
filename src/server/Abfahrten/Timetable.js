@@ -218,7 +218,9 @@ export default class Timetable {
     this.currentStation = normalizeRouteName(currentStation);
   }
   computeExtra(timetable: any) {
-    timetable.isCancelled = timetable.departureIsCancelled || (timetable.arrivalIsCancelled && !timetable.departure);
+    timetable.isCancelled =
+      (timetable.arrivalIsCancelled && (timetable.departureIsCancelled || !timetable.scheduledDeparture)) ||
+      (timetable.departureIsCancelled && !timetable.scheduledArrival);
     const addInfo =
       timetable.routePre.some(r => r.isCancelled || r.isAdditional) ||
       timetable.routePost.some(r => r.isCancelled || r.isAdditional);
@@ -230,14 +232,16 @@ export default class Timetable {
     ];
     timetable.destination = findLast(timetable.route, r => !r.isCancelled)?.name || timetable.scheduledDestination;
     timetable.via = this.getVia(timetable);
-    timetable.auslastung = !timetable.isCancelled && timetable.longDistance && !timetable.substitute;
-    timetable.reihung = !timetable.isCancelled && timetable.longDistance;
+    // $FlowFixMe - optional chaining call
+    const filteredRoutePost = timetable.routePost?.filter(r => !r.isCancelled);
+
+    timetable.auslastung =
+      !timetable.isCancelled && timetable.longDistance && !timetable.substitute && Boolean(filteredRoutePost?.length);
+    timetable.reihung = !timetable.isCancelled && timetable.longDistance && Boolean(filteredRoutePost?.length);
 
     delete timetable.routePre;
     delete timetable.routePost;
-    delete timetable.arrivalIsCancelled;
     delete timetable.arrivalIsAdditional;
-    delete timetable.departureIsCancelled;
     delete timetable.departureIsAdditional;
   }
   async start(): Promise<Result> {
@@ -467,15 +471,33 @@ export default class Timetable {
           d.value.map(v => ({
             name: v,
             isAdditional: d.added,
-            isCancelled: d.removed,
+            isCancelled: d.removed || timetable.departureIsCancelled,
           }))
         )
       );
+    } else if (timetable.departureIsCancelled && timetable.routePost) {
+      timetable.routePost.forEach(r => (r.isCancelled = true));
     }
     timetable.platform = dp.platform || timetable.scheduledPlatform;
   }
+  async fetchRealtime() {
+    const url = `${irisBase}/fchg/${this.evaId}`;
+
+    if (process.env.NODE_ENV !== 'production') {
+      const cached = timetableCache.get(url);
+
+      if (cached) return cached;
+    }
+    const result = await axios.get(url).then(x => x.data);
+
+    if (process.env.NODE_ENV !== 'production') {
+      timetableCache.set(url, result);
+    }
+
+    return result;
+  }
   async getRealtime() {
-    const rawXml = await axios.get(`${irisBase}/fchg/${this.evaId}`).then(x => x.data);
+    const rawXml = await this.fetchRealtime();
     const realtimeXml = xmljs.parseXml(rawXml);
     const sArr = realtimeXml.find('/timetable/s');
 
@@ -588,6 +610,7 @@ export default class Timetable {
           const rawXml = await axios.get(`${irisBase}${key}`).then(x => x.data);
 
           result = this.getTimetable(rawXml);
+          timetableCache.set(key, result);
         }
 
         this.timetable = {
