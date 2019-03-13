@@ -604,18 +604,17 @@ export default class Timetable {
     return Promise.all(
       this.segments.map(async date => {
         const key = `/plan/${this.evaId}/${format(date, 'yyMMdd/HH')}`;
-        let result = timetableCache.get(key);
+        let rawXml = timetableCache.get(key);
 
-        if (!result) {
-          const rawXml = await axios.get(`${irisBase}${key}`).then(x => x.data);
+        if (!rawXml) {
+          rawXml = await axios.get(`${irisBase}${key}`).then(x => x.data);
 
-          result = this.getTimetable(rawXml);
-          // timetableCache.set(key, result);
+          timetableCache.set(key, rawXml);
         }
 
         this.timetable = {
           ...this.timetable,
-          ...result,
+          ...this.getTimetable(rawXml),
         };
       })
     );
