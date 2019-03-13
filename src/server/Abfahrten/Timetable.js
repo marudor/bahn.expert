@@ -277,7 +277,7 @@ export default class Timetable {
         return false;
       }
 
-      const time = a.departure || a.arrival;
+      const time = a.departureIsCancelled ? a.arrival : a.departure || a.arrival;
 
       return (
         isAfter(time, this.currentDate) &&
