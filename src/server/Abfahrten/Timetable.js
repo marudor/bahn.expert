@@ -610,7 +610,7 @@ export default class Timetable {
           const rawXml = await axios.get(`${irisBase}${key}`).then(x => x.data);
 
           result = this.getTimetable(rawXml);
-          timetableCache.set(key, result);
+          // timetableCache.set(key, result);
         }
 
         this.timetable = {
