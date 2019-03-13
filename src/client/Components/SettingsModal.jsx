@@ -1,5 +1,4 @@
 // @flow
-import './SettingsModal.scss';
 import {
   closeSettings,
   setCheckIn,
@@ -20,6 +19,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import React from 'react';
 import Switch from '@material-ui/core/Switch';
+import withStyles, { type StyledProps } from 'react-jss';
 import type { AppState } from 'AppState';
 
 type StateProps = {|
@@ -39,10 +39,12 @@ type DispatchProps = {|
   +setLineAndNumber: typeof setLineAndNumber,
 |};
 
-type Props = {|
+type ReduxProps = {|
   ...StateProps,
   ...DispatchProps,
 |};
+
+type Props = StyledProps<ReduxProps, typeof styles>;
 
 class SettingsModal extends React.PureComponent<Props> {
   handleCheckedChange = (fn: boolean => any) => (e: SyntheticEvent<HTMLInputElement>) => fn(e.currentTarget.checked);
@@ -67,12 +69,13 @@ class SettingsModal extends React.PureComponent<Props> {
       showSupersededMessages,
       time,
       zoomReihung,
+      classes,
     } = this.props;
 
     return (
       <Dialog maxWidth="md" fullWidth open={open} onClose={closeSettings}>
         <DialogTitle>Settings</DialogTitle>
-        <DialogContent className="SettingsModal">
+        <DialogContent className={classes.main}>
           <FormControlLabel
             control={
               <Switch
@@ -162,7 +165,14 @@ class SettingsModal extends React.PureComponent<Props> {
   }
 }
 
-export default connect<Props, *, StateProps, DispatchProps, AppState, _>(
+export const styles = {
+  main: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+};
+
+export default connect<ReduxProps, *, StateProps, DispatchProps, AppState, _>(
   state => ({
     open: state.config.open,
     ...state.config.config,
@@ -178,4 +188,4 @@ export default connect<Props, *, StateProps, DispatchProps, AppState, _>(
     setFahrzeugGruppe,
     setLineAndNumber,
   }
-)(SettingsModal);
+)(withStyles(styles)(SettingsModal));

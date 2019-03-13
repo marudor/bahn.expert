@@ -10,12 +10,13 @@ type OwnProps = {|
 
 type Props = {|
   ...OwnProps,
+  +className?: string,
 |};
 
-const TravelynxLink = ({ abfahrt }: Props) =>
+const TravelynxLink = ({ abfahrt, className }: Props) =>
   abfahrt.departure && isBefore(abfahrt.arrival || abfahrt.departure, Date.now() + 600000) ? (
     <a
-      className="CheckInLink"
+      className={className}
       onClick={preventDefault}
       rel="noopener noreferrer"
       target="_blank"

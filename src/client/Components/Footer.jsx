@@ -1,18 +1,19 @@
 // @flow
-import './Footer.scss';
 import { connect } from 'react-redux';
 import React from 'react';
+import withStyles, { type StyledProps } from 'react-jss';
 import type { AppState } from 'AppState';
 import type { Station } from 'types/abfahrten';
 
 type StateProps = {|
   +currentStation: ?Station,
 |};
-type Props = {| ...StateProps |};
+type ReduxProps = {| ...StateProps |};
+type Props = StyledProps<ReduxProps, typeof styles>;
 
-const Footer = ({ currentStation }: Props) => (
-  <footer className="Footer">
-    <div className="Footer__seo">
+const Footer = ({ currentStation, classes }: Props) => (
+  <footer>
+    <div className={classes.seo}>
       <a title="Bahnhofstafeln" href="http://bahnhofstafeln.de/">
         Bahnhofstafeln
       </a>
@@ -32,6 +33,12 @@ const Footer = ({ currentStation }: Props) => (
   </footer>
 );
 
-export default connect<Props, *, StateProps, _, AppState, _>(state => ({
+const styles = {
+  seo: {
+    display: 'none',
+  },
+};
+
+export default connect<ReduxProps, *, StateProps, _, AppState, _>(state => ({
   currentStation: state.abfahrten.currentStation,
-}))(Footer);
+}))(withStyles(styles)(Footer));

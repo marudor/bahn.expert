@@ -18,6 +18,7 @@ module.exports = function webpackDev(koa: any) {
       if (id.match(/src\/client/)) {
         delete require.cache[id];
       }
+      delete require.cache[path.resolve('src/server/render.js')];
     });
   });
   const watcher = chokidar.watch(path.resolve('./src/server/**'));

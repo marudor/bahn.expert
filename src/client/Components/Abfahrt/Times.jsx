@@ -1,10 +1,11 @@
 // @flow
 /* eslint no-nested-ternary: 0 */
-import './Times.scss';
 import * as React from 'react';
 import { addMinutes, format } from 'date-fns';
 import { connect } from 'react-redux';
 import cc from 'classnames';
+import styles from './Times.styles';
+import withStyles, { type StyledProps } from 'react-jss';
 import type { Abfahrt } from 'types/abfahrten';
 import type { AppState, Dispatch } from 'AppState';
 
@@ -14,10 +15,6 @@ function delayString(delay: number = 0) {
   }
 
   return `-${Math.abs(delay)}`;
-}
-
-function delayStyle(delay: number = 0) {
-  return delay > 0 ? 'delayed' : 'early';
 }
 
 function getDelayTime(rawTime: ?number, delay: ?number, timeConfig: boolean) {
@@ -36,11 +33,13 @@ type OwnProps = {|
   +abfahrt: Abfahrt,
   +detail: boolean,
 |};
-type Props = {|
+export type ReduxProps = {|
   ...StateProps,
   ...OwnProps,
   +dispatch: Dispatch,
 |};
+
+type Props = StyledProps<ReduxProps, typeof styles>;
 
 const Times = ({
   timeConfig,
@@ -54,14 +53,13 @@ const Times = ({
     departureIsCancelled,
   },
   detail,
+  classes,
 }: Props) => (
   <div
     className={cc([
-      'Times',
+      classes.main,
       {
-        cancelled: isCancelled,
-        [delayStyle(scheduledDeparture ? delayDeparture : delayArrival)]:
-          !detail && (scheduledDeparture ? delayDeparture : delayArrival),
+        [classes.cancelled]: isCancelled,
       },
     ])}
   >
@@ -69,9 +67,8 @@ const Times = ({
       <React.Fragment>
         {scheduledArrival && (
           <div
-            className={cc('Times__wrapper', {
-              [delayStyle(delayArrival)]: delayArrival,
-              cancelled: arrivalIsCancelled,
+            className={cc(classes.wrapper, classes.detailAn, {
+              [classes.cancelled]: arrivalIsCancelled,
             })}
           >
             {Boolean(delayArrival) && delayString(delayArrival)}
@@ -81,9 +78,8 @@ const Times = ({
         )}
         {scheduledDeparture && (
           <div
-            className={cc('Times__wrapper', {
-              [delayStyle(delayDeparture)]: delayDeparture,
-              cancelled: departureIsCancelled,
+            className={cc(classes.wrapper, classes.detailAb, {
+              [classes.cancelled]: departureIsCancelled,
             })}
           >
             {Boolean(delayDeparture) && delayString(delayDeparture)}
@@ -100,6 +96,6 @@ const Times = ({
   </div>
 );
 
-export default connect<Props, OwnProps, StateProps, _, AppState, _>(state => ({
+export default connect<ReduxProps, OwnProps, StateProps, _, AppState, _>(state => ({
   timeConfig: state.config.config.time,
-}))(Times);
+}))(withStyles(styles)(Times));

@@ -1,14 +1,15 @@
 // @flow
-import './Via.scss';
 import { type Abfahrt } from 'types/abfahrten';
 import { compareDesc, format } from 'date-fns';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import cc from 'classnames';
 import React from 'react';
+import styles from './Via.styles';
+import withStyles, { type StyledProps } from 'react-jss';
 import type { AppState, Dispatch } from 'AppState';
 
-function getDetailedInfo(abfahrt: Abfahrt, showSupersededMessages: boolean) {
+function getDetailedInfo(abfahrt: Abfahrt, showSupersededMessages: boolean, classes) {
   const today = new Date().getDate();
   let messages = [...abfahrt.messages.delay, ...abfahrt.messages.qos];
 
@@ -20,7 +21,7 @@ function getDetailedInfo(abfahrt: Abfahrt, showSupersededMessages: boolean) {
     const sorted = messages.sort((a, b) => compareDesc(a.timestamp, b.timestamp));
 
     return (
-      <div key="i" className={cc('Via__info', { cancelled: abfahrt.isCancelled })}>
+      <div key="i" className={cc(classes.info, { [classes.cancelled]: abfahrt.isCancelled })}>
         {sorted.map((m, i) => {
           const ts = new Date(m.timestamp);
 
@@ -28,7 +29,7 @@ function getDetailedInfo(abfahrt: Abfahrt, showSupersededMessages: boolean) {
             <div
               key={i}
               className={cc({
-                cancelled: m.superseded,
+                [classes.cancelled]: m.superseded,
               })}
             >
               {format(ts, ts.getDate() === today ? 'HH:mm' : 'dd.MM HH:mm')}: {m.text}
@@ -42,7 +43,7 @@ function getDetailedInfo(abfahrt: Abfahrt, showSupersededMessages: boolean) {
   return null;
 }
 
-function getInfo(abfahrt: Abfahrt) {
+function getInfo(abfahrt: Abfahrt, classes) {
   let info = '';
 
   if (abfahrt.messages.delay.length > 0) {
@@ -63,8 +64,8 @@ function getInfo(abfahrt: Abfahrt) {
   return info ? (
     <div
       key="i"
-      className={cc('Via__info', {
-        cancelled: abfahrt.isCancelled,
+      className={cc(classes.info, {
+        [classes.cancelled]: abfahrt.isCancelled,
       })}
     >
       {info}
@@ -79,7 +80,8 @@ function getAbfahrt(
   abfahrt: Abfahrt,
   isCancelled?: number,
   isAdditional?: number,
-  isDetail?: boolean = false
+  isDetail?: boolean = false,
+  classes
 ) {
   const via = [];
   const lowerName = name.toLowerCase();
@@ -90,9 +92,9 @@ function getAbfahrt(
     lowerName.includes('termini');
   const commonProps = {
     className: cc({
-      cancelled: isCancelled,
-      'Via--additional': isAdditional,
-      'Via--hbf': isHbf,
+      [classes.cancelled]: isCancelled,
+      [classes.additional]: isAdditional,
+      [classes.hbf]: isHbf,
     }),
     key: `${index}i`,
     children: name,
@@ -120,18 +122,18 @@ function getAbfahrt(
   return via;
 }
 
-function getNormalVia(abfahrt: Abfahrt) {
+function getNormalVia(abfahrt: Abfahrt, classes) {
   let via = [];
   const abfahrten = abfahrt.via;
 
   abfahrten.forEach((v, index) => {
-    via = via.concat(getAbfahrt(v, index, abfahrten.length, abfahrt, abfahrt.isCancelled));
+    via = via.concat(getAbfahrt(v, index, abfahrten.length, abfahrt, abfahrt.isCancelled, 0, false, classes));
   });
 
   return via;
 }
 
-function getDetailedVia(abfahrt: Abfahrt) {
+function getDetailedVia(abfahrt: Abfahrt, classes) {
   let via = [];
   const abfahrten = abfahrt.route;
 
@@ -141,10 +143,12 @@ function getDetailedVia(abfahrt: Abfahrt) {
     if (v.isCancelled || v.isAdditional) {
       cancelled = false;
     }
-    via = via.concat(getAbfahrt(v.name, index, abfahrten.length, abfahrt, v.isCancelled, v.isAdditional, true));
+    via = via.concat(
+      getAbfahrt(v.name, index, abfahrten.length, abfahrt, v.isCancelled, v.isAdditional, true, classes)
+    );
   });
 
-  return <div className={cc({ cancelled })}>{via}</div>;
+  return <div className={cc({ [classes.cancelled]: cancelled })}>{via}</div>;
 }
 
 type StateProps = {|
@@ -156,23 +160,25 @@ type OwnProps = {|
   +detail: boolean,
 |};
 
-type Props = {|
+export type ReduxProps = {|
   ...StateProps,
   ...OwnProps,
   +dispatch: Dispatch,
 |};
 
-const Via = ({ abfahrt, detail, showSupersededMessages }: Props) => {
-  const info = detail ? getDetailedInfo(abfahrt, showSupersededMessages) : getInfo(abfahrt);
+type Props = StyledProps<ReduxProps, typeof styles>;
+
+const Via = ({ abfahrt, detail, showSupersededMessages, classes }: Props) => {
+  const info = detail ? getDetailedInfo(abfahrt, showSupersededMessages, classes) : getInfo(abfahrt, classes);
 
   return (
-    <div className={cc(['Via', { detail }])}>
+    <div className={classes.main}>
       {info}
-      {(detail || !info) && (detail ? getDetailedVia(abfahrt) : getNormalVia(abfahrt))}
+      {(detail || !info) && (detail ? getDetailedVia(abfahrt, classes) : getNormalVia(abfahrt, classes))}
     </div>
   );
 };
 
-export default connect<Props, OwnProps, StateProps, _, AppState, _>(state => ({
+export default connect<ReduxProps, OwnProps, StateProps, _, AppState, _>(state => ({
   showSupersededMessages: state.config.config.showSupersededMessages,
-}))(Via);
+}))(withStyles(styles)(Via));

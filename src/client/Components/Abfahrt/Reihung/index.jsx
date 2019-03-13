@@ -1,5 +1,4 @@
 // @flow
-import './index.scss';
 import { connect } from 'react-redux';
 import { getReihung } from 'client/actions/reihung';
 import { getReihungForId } from 'client/selector/reihung';
@@ -8,6 +7,8 @@ import Gruppe from './Gruppe';
 import Loading from 'client/Components/Loading';
 import React from 'react';
 import Sektor from './Sektor';
+import styles from './index.styles';
+import withStyles, { type StyledProps } from 'react-jss';
 import type { Abfahrt } from 'types/abfahrten';
 import type { AppState } from 'AppState';
 import type { Reihung } from 'types/reihung';
@@ -26,11 +27,13 @@ type DispatchProps = {|
   +getReihung: typeof getReihung,
 |};
 
-type Props = {|
+export type ReduxProps = {|
   ...StateProps,
   ...OwnProps,
   ...DispatchProps,
 |};
+
+type Props = StyledProps<ReduxProps, typeof styles>;
 
 class ReihungComp extends React.PureComponent<Props> {
   componentDidMount() {
@@ -42,7 +45,7 @@ class ReihungComp extends React.PureComponent<Props> {
   }
 
   render() {
-    const { reihung, useZoom, fahrzeugGruppe, abfahrt } = this.props;
+    const { reihung, useZoom, fahrzeugGruppe, abfahrt, classes } = this.props;
 
     if (reihung === null) {
       return null;
@@ -55,26 +58,17 @@ class ReihungComp extends React.PureComponent<Props> {
     const scale = useZoom ? reihung.scale : 1;
     const differentZugnummer = reihung.differentZugnummer;
 
-    let height = 5;
-
-    if (fahrzeugGruppe) height += 1;
-    if (differentZugnummer) height += 1;
-
-    const style = {
-      height: `${height}em`,
-    };
-
     return (
-      <div className="Reihung" style={style}>
+      <div className={cc(classes.main, classes.mainD)}>
         {Boolean(reihung.specificTrainType) && (
-          <span className="Reihung__specificType">{reihung.specificTrainType}</span>
+          <span className={classes.specificType}>{reihung.specificTrainType}</span>
         )}
-        <div className="Reihung__sektoren">
+        <div className={classes.sektoren}>
           {reihung.halt.allSektor.map(s => (
             <Sektor correctLeft={correctLeft} scale={scale} key={s.sektorbezeichnung} sektor={s} />
           ))}
         </div>
-        <div className="Reihung__reihung">
+        <div className={classes.reihung}>
           {reihung.allFahrzeuggruppe.map(g => (
             <Gruppe
               showGruppenZugnummer={differentZugnummer}
@@ -90,24 +84,17 @@ class ReihungComp extends React.PureComponent<Props> {
             />
           ))}
         </div>
-        <span
-          className={cc([
-            'Reihung__richtung',
-            {
-              'Reihung__richtung--reverse': !reihung.realFahrtrichtung,
-            },
-          ])}
-        />
+        <span className={cc(classes.richtung, classes.richtungD)} />
       </div>
     );
   }
 }
 
-export default connect<Props, OwnProps, StateProps, DispatchProps, AppState, _>(
+export default connect<ReduxProps, OwnProps, StateProps, DispatchProps, AppState, _>(
   (state, props) => ({
     reihung: getReihungForId(state, props),
     useZoom: state.config.config.zoomReihung,
     fahrzeugGruppe: state.config.config.fahrzeugGruppe,
   }),
   { getReihung }
-)(ReihungComp);
+)(withStyles(styles)(ReihungComp));
