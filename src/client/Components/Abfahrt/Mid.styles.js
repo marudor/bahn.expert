@@ -1,15 +1,17 @@
 // @flow
 import { red } from 'style/colors';
-import type { OwnProps } from './Mid';
 
 export default {
+  detail: {
+    whiteSpace: 'normal !important',
+  },
   main: {
     display: 'flex',
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
     lineHeight: 1.2,
-    whiteSpace: ({ detail }: OwnProps) => (detail ? 'normal' : 'nowrap'),
+    whiteSpace: 'nowrap',
     overflow: 'hidden',
   },
   cancelled: {
@@ -19,8 +21,8 @@ export default {
     fontSize: '4em',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    textDecoration: ({ abfahrt }: OwnProps) => (abfahrt.isCancelled ? 'line-through' : undefined),
-    color: ({ abfahrt }: OwnProps) =>
-      !abfahrt.isCancelled && abfahrt.destination !== abfahrt.scheduledDestination ? red : undefined,
+  },
+  different: {
+    color: red,
   },
 };
