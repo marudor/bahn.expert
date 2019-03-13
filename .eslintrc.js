@@ -8,6 +8,7 @@ module.exports = {
   },
   globals: {
     PROD: false,
+    SERVER: false,
   },
   rules: {
     'no-use-before-define': 0,

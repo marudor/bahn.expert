@@ -19,3 +19,4 @@ type marudorConfig = {|
 |};
 
 declare var PROD: boolean;
+declare var SERVER: boolean;

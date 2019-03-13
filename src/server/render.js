@@ -1,17 +1,15 @@
 // @flow
 import { Actions, setCookies } from 'client/actions/config';
-// $FlowFixMe
-import { createGenerateClassName, MuiThemeProvider } from '@material-ui/core/styles';
 import { HelmetProvider } from 'react-helmet-async';
 import { matchRoutes } from 'react-router-config';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
 import { renderStylesToString } from 'emotion-server';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
-// $FlowFixMe
-import { SheetsRegistry } from 'jss';
 import BahnhofsAbfahrten from 'client/Components/BahnhofsAbfahrten';
 import Cookies from 'universal-cookie';
+import createJssProviderProps from 'client/createJssProviderProps';
 import createStore from 'client/createStore';
 import createTheme from 'client/createTheme';
 import ejs from 'ejs';
@@ -34,9 +32,7 @@ const footerTemplate = ejs.compile(footerEjs);
 
 export default async (ctx: any) => {
   const theme = createTheme();
-  const generateClassName = createGenerateClassName();
   const sheetsManager = new Map();
-  const sheetsRegistry = new SheetsRegistry();
   const routeContext = {};
   const helmetContext = {};
   const store = createStore();
@@ -51,9 +47,11 @@ export default async (ctx: any) => {
     )
   );
 
+  const jssProps = createJssProviderProps();
+
   const App = (
     <Provider store={store}>
-      <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
+      <JssProvider {...jssProps}>
         <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
           <HelmetProvider context={helmetContext}>
             <StaticRouter location={ctx.req.url} context={routeContext}>
@@ -83,11 +81,12 @@ export default async (ctx: any) => {
       clientState: serialize(state),
     });
     ctx.body += app;
-    const materialCss = sheetsRegistry.toString();
+    // $FlowFixMe
+    const jssCss = jssProps.registry?.toString();
 
     ctx.body += footerTemplate({
       jsBundles: ctx.stats.main.js,
-      materialCss,
+      jssCss,
     });
   }
 };

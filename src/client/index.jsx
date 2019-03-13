@@ -2,12 +2,12 @@
 import '@babel/polyfill';
 import 'typeface-roboto';
 import { BrowserRouter } from 'react-router-dom';
-// $FlowFixMe
-import { createGenerateClassName, MuiThemeProvider } from '@material-ui/core/styles';
 import { HelmetProvider } from 'react-helmet-async';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
 import axios from 'axios';
 import BahnhofsAbfahrten from './Components/BahnhofsAbfahrten';
+import createJssProviderProps from './createJssProviderProps';
 import createStore from './createStore';
 import createTheme from './createTheme';
 import JssProvider from 'react-jss/lib/JssProvider';
@@ -21,12 +21,11 @@ global.smallScreen = window.matchMedia('(max-width: 480px)').matches;
 
 const container = document.getElementById('app');
 const theme = createTheme();
-const generateClassName = createGenerateClassName();
 const store = createStore();
 
 const render = App => (
   <Provider store={store}>
-    <JssProvider generateClassName={generateClassName}>
+    <JssProvider {...createJssProviderProps()}>
       <MuiThemeProvider theme={theme}>
         <HelmetProvider context={{}}>
           <BrowserRouter>

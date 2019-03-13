@@ -7,16 +7,14 @@ export default {
     marginBottom: '1em',
     marginRight: '.3em',
     position: 'relative',
-  },
-  mainD: ({ reihung, fahrzeugGruppe }: ReduxProps) => {
-    let height = 5;
+    height: ({ reihung, fahrzeugGruppe }: ReduxProps) => {
+      let height = 5;
 
-    if (fahrzeugGruppe) height += 1;
-    if (reihung?.differentZugnummer) height += 1;
+      if (fahrzeugGruppe) height += 1;
+      if (reihung?.differentZugnummer) height += 1;
 
-    return {
-      height: `${height}em`,
-    };
+      return `${height}em`;
+    },
   },
   specificType: {
     position: 'absolute',
@@ -31,18 +29,16 @@ export default {
     marginTop: '1.3em',
     height: '100%',
   },
-  richtungD: ({ reihung }: ReduxProps) => ({
-    transform: reihung?.realFahrtrichtung ? 'translateX(-50%)' : 'rotate(180deg) translateX(50%)',
-  }),
   richtung: {
     backgroundColor: 'black',
     width: '50%',
     height: 2,
     position: 'absolute',
     left: '50%',
-    transform: 'translateX(-50%)',
     bottom: 0,
     zIndex: 10,
+    transform: ({ reihung }: ReduxProps) =>
+      reihung?.realFahrtrichtung ? 'translateX(-50%)' : 'rotate(180deg) translateX(50%)',
     '&::after': {
       border: 'solid black',
       borderWidth: '0 2px 2px 0',
