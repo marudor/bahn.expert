@@ -1,5 +1,4 @@
 // @flow
-import './index.scss';
 import '@babel/polyfill';
 import 'typeface-roboto';
 import { BrowserRouter } from 'react-router-dom';
@@ -25,24 +24,31 @@ const theme = createTheme();
 const generateClassName = createGenerateClassName();
 const store = createStore();
 
-if (container) {
-  ReactDOM.hydrate(
-    <Provider store={store}>
-      <JssProvider generateClassName={generateClassName}>
-        <MuiThemeProvider theme={theme}>
-          <HelmetProvider context={{}}>
-            <BrowserRouter>
-              <BahnhofsAbfahrten />
-            </BrowserRouter>
-          </HelmetProvider>
-        </MuiThemeProvider>
-      </JssProvider>
-    </Provider>,
-    container
-  );
-} else {
-  // eslint-disable-next-line
-  alert('trollololo');
+const render = App => (
+  <Provider store={store}>
+    <JssProvider generateClassName={generateClassName}>
+      <MuiThemeProvider theme={theme}>
+        <HelmetProvider context={{}}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </HelmetProvider>
+      </MuiThemeProvider>
+    </JssProvider>
+  </Provider>
+);
+
+// $FlowFixMe
+ReactDOM.hydrate(render(BahnhofsAbfahrten), container);
+
+// $FlowFixMe
+if (module.hot) {
+  module.hot.accept('./Components/BahnhofsAbfahrten', () => {
+    const App = require('./Components/BahnhofsAbfahrten').default;
+
+    // $FlowFixMe
+    ReactDOM.render(render(App), container);
+  });
 }
 
 if ('serviceWorker' in navigator) {

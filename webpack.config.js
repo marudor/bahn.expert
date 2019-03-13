@@ -3,7 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+// const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
@@ -16,19 +16,19 @@ const plugins = [
   }),
 ];
 
-const optimization = {
-  minimizer: [
-    new OptimizeCSSAssetsPlugin({
-      cssProcessor: require('cssnano'),
-      cssProcessorOptions: { discardComments: { removeAll: true } },
-    }),
-  ],
-};
+// const optimization = {
+//   minimizer: [
+//     new OptimizeCSSAssetsPlugin({
+//       cssProcessor: require('cssnano'),
+//       cssProcessorOptions: { discardComments: { removeAll: true } },
+//     }),
+//   ],
+// };
 
 const rules = [
   {
     test: /\.jsx?$/,
-    use: ['react-hot-loader/webpack', 'babel-loader'],
+    use: ['babel-loader'],
   },
   {
     test: /\.s?css$/,

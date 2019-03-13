@@ -1,5 +1,4 @@
 // @flow
-import './BaseAbfahrt.scss';
 import { connect } from 'react-redux';
 import { getDetailForAbfahrt } from 'client/selector/abfahrten';
 import { setDetail } from 'client/actions/abfahrten';
@@ -10,6 +9,8 @@ import Paper from '@material-ui/core/Paper';
 import React from 'react';
 import Reihung from './Reihung';
 import Start from './Start';
+import styles from './BaseAbfahrt.styles';
+import withStyles, { type StyledProps } from 'react-jss';
 import type { Abfahrt } from 'types/abfahrten';
 import type { AppState } from 'AppState';
 
@@ -27,11 +28,13 @@ type StateProps = {|
 type DispatchProps = {|
   +setDetail: typeof setDetail,
 |};
-export type Props = {|
+export type ReduxProps = {|
   ...OwnProps,
   ...StateProps,
   ...DispatchProps,
 |};
+
+export type Props = StyledProps<ReduxProps, typeof styles>;
 
 function scrollToDetail(selectedDetail) {
   if (selectedDetail) {
@@ -59,21 +62,20 @@ class BaseAbfahrt extends React.PureComponent<Props> {
     this.props.setDetail(this.props.abfahrt.id);
   };
   render() {
-    const { abfahrt, detail, wing, sameTrainWing, wingEnd, wingStart, lineAndNumber } = this.props;
+    const { abfahrt, detail, wing, wingEnd, wingStart, lineAndNumber, classes } = this.props;
 
     return (
-      <Paper id={abfahrt.id} onClick={this.setDetail} className="Abfahrt">
+      <Paper id={abfahrt.id} onClick={this.setDetail} className={classes.main}>
         {wing && (
           <span
-            className={cc(`wing`, {
-              'wing--same': sameTrainWing,
-              'wing--start': wingStart,
-              'wing--end': wingEnd,
+            className={cc(classes.wing, {
+              [classes.wingStart]: wingStart,
+              [classes.wingEnd]: wingEnd,
             })}
           />
         )}
-        <div className="Abfahrt__entry">
-          <div className="Abfahrt__entry__main">
+        <div className={classes.entry}>
+          <div className={classes.entryMain}>
             <Start abfahrt={abfahrt} detail={detail} lineAndNumber={lineAndNumber} />
             <Mid abfahrt={abfahrt} detail={detail} />
             <End abfahrt={abfahrt} detail={detail} />
@@ -85,7 +87,7 @@ class BaseAbfahrt extends React.PureComponent<Props> {
   }
 }
 
-export default connect<Props, OwnProps, StateProps, DispatchProps, AppState, _>(
+export default connect<ReduxProps, OwnProps, StateProps, DispatchProps, AppState, _>(
   (state, props) => ({
     detail: getDetailForAbfahrt(state, props),
     lineAndNumber: state.config.config.lineAndNumber,
@@ -93,4 +95,4 @@ export default connect<Props, OwnProps, StateProps, DispatchProps, AppState, _>(
   {
     setDetail,
   }
-)(BaseAbfahrt);
+)(withStyles(styles)(BaseAbfahrt));

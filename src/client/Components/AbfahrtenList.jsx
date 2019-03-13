@@ -1,5 +1,4 @@
 // @flow
-import './AbfahrtenList.scss';
 import { Actions, getAbfahrtenByString } from 'client/actions/abfahrten';
 import { connect } from 'react-redux';
 import { type ContextRouter, withRouter } from 'react-router-dom';
@@ -7,6 +6,7 @@ import { Redirect } from 'react-router';
 import Abfahrt from './Abfahrt';
 import Loading from './Loading';
 import React from 'react';
+import withStyles, { type StyledProps } from 'react-jss';
 import type { AppState, AppStore } from 'AppState';
 import type { Match } from 'react-router';
 
@@ -30,15 +30,17 @@ type DispatchProps = {|
   +setCurrentStation: typeof Actions.setCurrentStation,
 |};
 
-type OwnProps = {||};
-
-type Props = {|
+type ReduxProps = {|
   ...StateProps,
   ...DispatchProps,
-  ...OwnProps,
+|};
+
+type RouterProps = {|
+  ...ReduxProps,
   ...ContextRouter,
 |};
 
+type Props = StyledProps<RouterProps, typeof styles>;
 type State = {
   loading: boolean,
 };
@@ -83,11 +85,11 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
   };
   render() {
     const { loading } = this.state;
-    const { abfahrten, error, currentStation } = this.props;
+    const { abfahrten, error, currentStation, classes } = this.props;
 
     return (
       <Loading isLoading={loading}>
-        <main className="AbfahrtenList">
+        <main className={classes.main}>
           {currentStation && <h1>Abfahrten für {currentStation.title}</h1>}
           {error ? !loading && <Redirect to="/" /> : <InnerAbfahrten abfahrten={abfahrten} />}
         </main>
@@ -96,7 +98,19 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
   }
 }
 
-export default connect<_, *, StateProps, DispatchProps, AppState, _>(
+const styles = {
+  main: {
+    display: 'flex',
+    flexDirection: 'column',
+    overflowX: 'auto',
+    marginTop: 64,
+    '& > h1': {
+      display: 'none',
+    },
+  },
+};
+
+export default connect<ReduxProps, *, StateProps, DispatchProps, AppState, _>(
   state => ({
     abfahrten: state.abfahrten.abfahrten,
     currentStation: state.abfahrten.currentStation,
@@ -106,4 +120,4 @@ export default connect<_, *, StateProps, DispatchProps, AppState, _>(
     getAbfahrtenByString,
     setCurrentStation: Actions.setCurrentStation,
   }
-)(withRouter(AbfahrtenList));
+)(withRouter(withStyles(styles)(AbfahrtenList)));

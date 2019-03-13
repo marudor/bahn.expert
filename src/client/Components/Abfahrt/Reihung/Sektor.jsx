@@ -1,15 +1,18 @@
 // @flow
-import './Sektor.scss';
+import cc from 'classnames';
 import React from 'react';
+import withStyles, { type StyledProps } from 'react-jss';
 import type { Sektor } from 'types/reihung';
 
-type Props = {|
-  +sektor: Sektor,
-  +scale: number,
-  +correctLeft: number,
+type OwnProps = {|
+  sektor: Sektor,
+  scale: number,
+  correctLeft: number,
 |};
 
-const SektorComp = ({ sektor, scale, correctLeft }: Props) => {
+type Props = StyledProps<OwnProps, typeof styles>;
+
+const SektorComp = ({ sektor, scale, correctLeft, classes }: Props) => {
   const { startprozent, endeprozent } = sektor.positionamgleis;
 
   const start = Number.parseInt(startprozent, 10);
@@ -21,10 +24,29 @@ const SektorComp = ({ sektor, scale, correctLeft }: Props) => {
   };
 
   return (
-    <div className="Sektor" style={pos}>
+    <div className={cc(classes.main, classes.position)} style={pos}>
       {sektor.sektorbezeichnung}
     </div>
   );
 };
 
-export default React.memo<Props>(SektorComp);
+const styles = {
+  main: {
+    position: 'absolute',
+    fontWeight: 'bolder',
+    textAlign: 'center',
+  },
+  position: ({ sektor, scale, correctLeft }: OwnProps) => {
+    const { startprozent, endeprozent } = sektor.positionamgleis;
+
+    const start = Number.parseInt(startprozent, 10);
+    const end = Number.parseInt(endeprozent, 10);
+
+    return {
+      left: `${(start - correctLeft) * scale}%`,
+      width: `${(end - start) * scale}%`,
+    };
+  },
+};
+
+export default React.memo<OwnProps>(withStyles(styles)(SektorComp));

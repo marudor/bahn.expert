@@ -1,10 +1,11 @@
 // @flow
-import './Fahrzeug.scss';
 import ActionAccessible from '@material-ui/icons/Accessible';
 import ActionMotorcycle from '@material-ui/icons/Motorcycle';
 import cc from 'classnames';
 import MapsLocalDining from '@material-ui/icons/LocalDining';
 import React from 'react';
+import styles from './Fahrzeug.styles';
+import withStyles, { type StyledProps } from 'react-jss';
 import type { Fahrzeug, FahrzeugType, SpecificType } from 'types/reihung';
 
 export type InheritedProps = {|
@@ -14,12 +15,14 @@ export type InheritedProps = {|
   +correctLeft: number,
 |};
 
-type Props = {|
+export type OwnProps = {|
   ...InheritedProps,
   +fahrzeug: Fahrzeug,
   +destination: ?string,
   +wrongWing: boolean,
 |};
+
+type Props = StyledProps<OwnProps, typeof styles>;
 
 // Klasse: 0 = unknown
 // Klasse: 1 = Nur erste
@@ -124,41 +127,28 @@ function getFahrzeugInfo(fahrzeug: Fahrzeug, type: FahrzeugType, specificType: ?
   return data;
 }
 
-const FahrzeugComp = ({ fahrzeug, type, specificType, scale, correctLeft, wrongWing }: Props) => {
-  const { startprozent, endeprozent } = fahrzeug.positionamhalt;
-
-  const start = Number.parseInt(startprozent, 10);
-  const end = Number.parseInt(endeprozent, 10);
-
-  const pos = {
-    left: `${(start - correctLeft) * scale}%`,
-    width: `${(end - start) * scale}%`,
-  };
+const FahrzeugComp = ({ fahrzeug, type, specificType, wrongWing, classes }: Props) => {
   const info = getFahrzeugInfo(fahrzeug, type, specificType);
 
   return (
     <div
-      style={pos}
-      className={cc([
-        'Fahrzeug',
-        {
-          'Fahrzeug--closed': fahrzeug.status === 'GESCHLOSSEN',
-          'Fahrzeug--wrongWing': wrongWing,
-        },
-      ])}
+      className={cc(classes.main, classes.position, {
+        [classes.closed]: fahrzeug.status === 'GESCHLOSSEN',
+        [classes.wrongWing]: wrongWing,
+      })}
     >
-      <span className={`Fahrzeug__klasse Fahrzeug__klasse--${info.klasse}`} />
-      <span className="Fahrzeug__nummer">{fahrzeug.wagenordnungsnummer}</span>
-      <span className="Fahrzeug__icons">
-        {info.rollstuhl && <ActionAccessible className="Fahrzeug--icon" />}
-        {info.fahrrad && <ActionMotorcycle className="Fahrzeug--icon" />}
-        {info.speise && <MapsLocalDining className="Fahrzeug--icon" />}
+      <span className={cc(classes.klasse, classes[`klasse${info.klasse}`])} />
+      <span className={classes.nummer}>{fahrzeug.wagenordnungsnummer}</span>
+      <span className={classes.icons}>
+        {info.rollstuhl && <ActionAccessible className={classes.icon} />}
+        {info.fahrrad && <ActionMotorcycle className={classes.icon} />}
+        {info.speise && <MapsLocalDining className={classes.icon} />}
       </span>
-      {info.comfort && <span className="Fahrzeug--comfort" />}
-      <span className="Fahrzeug--type">{fahrzeug.fahrzeugtyp}</span>
+      {info.comfort && <span className={classes.comfort} />}
+      <span className={classes.type}>{fahrzeug.fahrzeugtyp}</span>
       {/* {destination && <span className="Fahrzeug--destination">{destination}</span>} */}
     </div>
   );
 };
 
-export default React.memo<Props>(FahrzeugComp);
+export default React.memo<OwnProps>(withStyles(styles)(FahrzeugComp));

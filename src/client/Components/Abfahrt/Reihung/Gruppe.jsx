@@ -1,10 +1,10 @@
 // @flow
-import './Gruppe.scss';
 import Fahrzeug, { type InheritedProps } from './Fahrzeug';
 import React from 'react';
+import withStyles, { type StyledProps } from 'react-jss';
 import type { Fahrzeuggruppe } from 'types/reihung';
 
-type Props = {|
+type OwnProps = {|
   ...InheritedProps,
   +gruppe: Fahrzeuggruppe,
   +showDestination: boolean,
@@ -12,6 +12,7 @@ type Props = {|
   +showFahrzeugGruppe: boolean,
   +originalTrainNumber: string,
 |};
+type Props = StyledProps<OwnProps, typeof styles>;
 
 const Gruppe = ({
   gruppe,
@@ -19,6 +20,7 @@ const Gruppe = ({
   showFahrzeugGruppe,
   showGruppenZugnummer,
   originalTrainNumber,
+  classes,
   ...rest
 }: Props) => {
   const gruppenPos = {
@@ -43,12 +45,12 @@ const Gruppe = ({
         />
       ))}
       {showGruppenZugnummer && gruppe.verkehrlichezugnummer && (
-        <span className="Gruppe__bezeichnung" style={nummerPos}>
+        <span className={classes.bezeichnung} style={nummerPos}>
           {rest.type} {gruppe.verkehrlichezugnummer}
         </span>
       )}
       {showFahrzeugGruppe && (
-        <span className="Gruppe__bezeichnung" style={gruppenPos}>
+        <span className={classes.bezeichnung} style={gruppenPos}>
           {gruppe.fahrzeuggruppebezeichnung}
         </span>
       )}
@@ -56,4 +58,12 @@ const Gruppe = ({
   );
 };
 
-export default React.memo<Props>(Gruppe);
+export const styles = {
+  bezeichnung: {
+    position: 'absolute',
+    bottom: '1.5em',
+    textAlign: 'center',
+  },
+};
+
+export default React.memo<OwnProps>(withStyles(styles)(Gruppe));

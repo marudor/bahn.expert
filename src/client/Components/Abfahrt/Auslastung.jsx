@@ -1,5 +1,5 @@
 // @flow
-import './Auslastung.scss';
+import * as React from 'react';
 import { type Abfahrt } from 'types/abfahrten';
 import { connect } from 'react-redux';
 import { getAuslastung } from 'client/actions/auslastung';
@@ -9,8 +9,8 @@ import Done from '@material-ui/icons/Done';
 import ErrorOutline from '@material-ui/icons/ErrorOutline';
 import Help from '@material-ui/icons/Help';
 import Loading from '../Loading';
-import React from 'react';
 import Tooltip from '@material-ui/core/Tooltip';
+import withStyles, { type StyledProps } from 'react-jss';
 import type { AppState } from 'AppState';
 
 type StateProps = {|
@@ -22,11 +22,13 @@ type DispatchProps = {|
 type OwnProps = {|
   +abfahrt: Abfahrt,
 |};
-type Props = {|
+type ReduxProps = {|
   ...StateProps,
   ...DispatchProps,
   ...OwnProps,
 |};
+
+type Props = StyledProps<ReduxProps, typeof styles>;
 
 function getTooltipText(auslastung) {
   switch (auslastung) {
@@ -69,7 +71,7 @@ class Auslastung extends React.PureComponent<Props> {
   };
 
   render() {
-    const { auslastung } = this.props;
+    const { auslastung, classes } = this.props;
 
     if (auslastung === null) {
       return null;
@@ -80,17 +82,17 @@ class Auslastung extends React.PureComponent<Props> {
     }
 
     return (
-      <div className="Auslastung">
-        <div className="Auslastung__entry">
+      <div className={classes.main}>
+        <div className={classes.entry}>
           <span>1</span>
           <Tooltip title={getTooltipText(auslastung.first)}>
-            <span className={`Auslastung__icon A${auslastung.first}`}>{getIcon(auslastung.first)}</span>
+            <span className={`${classes.icon} ${classes.first}`}>{getIcon(auslastung.first)}</span>
           </Tooltip>
         </div>
-        <div className="Auslastung__entry">
+        <div className={classes.entry}>
           <span>2</span>
           <Tooltip title={getTooltipText(auslastung.second)}>
-            <span className={`Auslastung__icon A${auslastung.second}`}>{getIcon(auslastung.second)}</span>
+            <span className={`${classes.icon} ${classes.second}`}>{getIcon(auslastung.second)}</span>
           </Tooltip>
         </div>
       </div>
@@ -98,11 +100,52 @@ class Auslastung extends React.PureComponent<Props> {
   }
 }
 
-export default connect<Props, OwnProps, StateProps, DispatchProps, AppState, _>(
+function getBGColor(auslastung) {
+  switch (auslastung) {
+    case 0:
+      return 'green';
+    case 1:
+      return 'yellow';
+    case 2:
+      return 'red';
+    default:
+      return 'black';
+  }
+}
+const getColor = auslastung => ({
+  backgroundColor: getBGColor(auslastung),
+  color: auslastung === 1 ? 'black' : 'white',
+});
+
+export const styles = {
+  main: {
+    display: 'flex',
+    marginBottom: '.3em',
+  },
+  entry: {
+    display: 'flex',
+    flexDirection: 'column',
+    marginRight: '.5em',
+    alignItems: 'center',
+  },
+  icon: {
+    fontSize: '.7em',
+    display: 'inline-block',
+    borderRadius: '50%',
+    textAlign: 'center',
+    padding: '.2em',
+    lineHeight: 0,
+    color: 'white',
+  },
+  first: (props: ReduxProps) => getColor(props.auslastung?.first),
+  second: (props: ReduxProps) => getColor(props.auslastung?.second),
+};
+
+export default connect<ReduxProps, OwnProps, StateProps, DispatchProps, AppState, _>(
   (state, props) => ({
     auslastung: getAuslastungForIdAndStation(state, props),
   }),
   ({
     getAuslastung,
   }: DispatchProps)
-)(Auslastung);
+)(withStyles<Props>(styles)(Auslastung));

@@ -11,6 +11,7 @@ type OwnProps = {|
 
 type Props = {|
   ...OwnProps,
+  +className?: string,
 |};
 
 // Mobile Traewelling
@@ -18,7 +19,7 @@ type Props = {|
 // Traewelling
 // https://traewelling.de/checkin?ris=2&2_cat=${abfahrt.trainType}&2_id=${abfahrt.trainType === 'S' ? abfahrt.trainId : abfahrt.trainNumber}&2_start=${abfahrt.currentStation}&2_to=${destination}&2_tm=${time}&2_date=${date}
 
-const TraewellingLink = ({ abfahrt }: Props) => {
+const TraewellingLink = ({ abfahrt, className }: Props) => {
   const departure = abfahrt.scheduledDeparture;
 
   if (!departure || !abfahrt.trainType) {
@@ -31,7 +32,7 @@ const TraewellingLink = ({ abfahrt }: Props) => {
 
   return (
     <a
-      className="CheckInLink"
+      className={className}
       onClick={preventDefault}
       rel="noopener noreferrer"
       target="_blank"

@@ -1,22 +1,16 @@
 // @flow
-import './BahnhofsAbfahrten.scss';
 import React from 'react';
 import SettingsModal from './LazySettingsModal';
 // import Privacy from './Privacy';
-import { hot } from 'react-hot-loader/root';
 import { renderRoutes } from 'react-router-config';
-import { setConfig } from 'react-hot-loader';
 import { SnackbarProvider } from 'notistack';
 import Footer from './Footer';
 import Header from './Header';
 import routes from '../routes';
+import withStyles, { type StyledProps } from 'react-jss';
 
-setConfig({
-  ignoreSFC: true, // RHL will be __completely__ disabled for SFC
-  pureRender: true, // RHL will not change render method
-});
-
-class BahnhofsAbfahrten extends React.Component<{||}> {
+type Props = StyledProps<{||}, typeof styles>;
+class BahnhofsAbfahrten extends React.Component<Props> {
   componentDidMount() {
     const jssStyles = document.getElementById('jss-server-side');
 
@@ -27,7 +21,7 @@ class BahnhofsAbfahrten extends React.Component<{||}> {
   render() {
     return (
       <SnackbarProvider maxSnack={3}>
-        <div className="BahnhofsAbfahrten">
+        <div className={this.props.classes.main}>
           <Header />
           <SettingsModal />
           {renderRoutes(routes)}
@@ -38,4 +32,21 @@ class BahnhofsAbfahrten extends React.Component<{||}> {
   }
 }
 
-export default hot(BahnhofsAbfahrten);
+const styles = {
+  main: {
+    display: 'flex',
+    flexDirection: 'column',
+    fontFamily: 'Roboto, sans-serif',
+  },
+  '@global': {
+    body: {
+      margin: 0,
+    },
+    a: {
+      textDecoration: 'none',
+      color: 'blue',
+    },
+  },
+};
+
+export default withStyles(styles)(BahnhofsAbfahrten);

@@ -1,30 +1,24 @@
 // @flow
-import './Mid.scss';
-import cc from 'classnames';
 import React from 'react';
+import styles from './Mid.styles';
 import Via from './Via';
+import withStyles, { type StyledProps } from 'react-jss';
 import type { Abfahrt } from 'types/abfahrten';
 
-type Props = {|
-  +abfahrt: Abfahrt,
-  +detail: boolean,
+export type OwnProps = {|
+  abfahrt: Abfahrt,
+  detail: boolean,
 |};
 
-const Mid = ({ abfahrt, detail }: Props) => (
-  <div className={cc(['Mid', { 'Mid--detail': detail }])}>
+type Props = StyledProps<OwnProps, typeof styles>;
+
+const Mid = ({ abfahrt, detail, classes }: Props) => (
+  <div className={classes.main}>
     <Via abfahrt={abfahrt} detail={detail} />
-    <div
-      className={cc([
-        'Mid__destination',
-        {
-          cancelled: abfahrt.isCancelled,
-          changed: !abfahrt.isCancelled && abfahrt.destination !== abfahrt.scheduledDestination,
-        },
-      ])}
-    >
+    <div className={classes.destination}>
       {abfahrt.isCancelled ? abfahrt.scheduledDestination : abfahrt.destination}
     </div>
   </div>
 );
 
-export default React.memo<Props>(Mid);
+export default React.memo<OwnProps>(withStyles(styles)(Mid));

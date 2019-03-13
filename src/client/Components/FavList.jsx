@@ -1,14 +1,14 @@
 // @flow
-import './FavList.scss';
 import { Actions } from 'client/actions/abfahrten';
 import { connect } from 'react-redux';
 import { type ContextRouter, withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
 import { sortedFavValues } from 'client/selector/fav';
-import FavEntry from './FavEntry';
+import FavEntry, { styles as FavEntryStyles } from './FavEntry';
 import MostUsed from './MostUsed';
 import React from 'react';
+import withStyles, { type StyledProps } from 'react-jss';
 import type { AppState } from 'AppState';
 import type { Station } from 'types/abfahrten';
 
@@ -20,12 +20,17 @@ type StateProps = {|
   +favs: Station[],
   +error: ?$PropertyType<$PropertyType<AppState, 'abfahrten'>, 'error'>,
 |};
-type Props = {|
+type ReduxProps = {|
   ...OwnProps,
   ...StateProps,
   ...DispatchProps,
+|};
+type RouterProps = {|
+  ...ReduxProps,
   ...ContextRouter,
 |};
+
+type Props = StyledProps<RouterProps, typeof styles>;
 
 function getErrorText(error: any, staticContext) {
   switch (error.type) {
@@ -55,28 +60,28 @@ class FavList extends React.PureComponent<Props> {
     this.props.setCurrentStation(null);
   }
   render() {
-    const { favs, error, staticContext } = this.props;
+    const { favs, error, staticContext, classes } = this.props;
 
     return (
-      <main className="FavList">
+      <main className={classes.main}>
         {/* eslint-disable-next-line no-nested-ternary */}
         {error ? (
           <>
-            <div className="FavEntry">{getErrorText(error, staticContext)}</div>
+            <div className={classes.favEntry}>{getErrorText(error, staticContext)}</div>
             {error.station && (
               <Link to={encodeURIComponent(error.station)}>
-                <div className="FavEntry">{error.station}</div>
+                <div className={classes.favEntry}>{error.station}</div>
               </Link>
             )}
-            <div className="FavEntry">Versuch einen der folgenden</div>
+            <div className={classes.favEntry}>Versuch einen der folgenden</div>
             <MostUsed />
           </>
         ) : favs.length ? (
           favs.map(fav => fav && <FavEntry key={fav.id} fav={fav} />)
         ) : (
           <>
-            <span className="FavEntry">Keine Favoriten</span>
-            <span className="FavEntry">Oft gesucht:</span>
+            <span className={classes.favEntry}>Keine Favoriten</span>
+            <span className={classes.favEntry}>Oft gesucht:</span>
             <MostUsed />
           </>
         )}
@@ -85,7 +90,17 @@ class FavList extends React.PureComponent<Props> {
   }
 }
 
-export default connect<_, OwnProps, StateProps, DispatchProps, AppState, Function>(
+const styles = {
+  main: {
+    marginTop: 64,
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 1,
+  },
+  favEntry: FavEntryStyles.main,
+};
+
+export default connect<ReduxProps, OwnProps, StateProps, DispatchProps, AppState, Function>(
   state => ({
     favs: sortedFavValues(state),
     error: state.abfahrten.error,
@@ -93,4 +108,4 @@ export default connect<_, OwnProps, StateProps, DispatchProps, AppState, Functio
   {
     setCurrentStation: Actions.setCurrentStation,
   }
-)(withRouter(FavList));
+)(withRouter(withStyles(styles)(FavList)));

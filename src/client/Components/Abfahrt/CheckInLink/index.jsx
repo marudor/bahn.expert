@@ -1,9 +1,9 @@
 // @flow
-import './index.scss';
 import { connect } from 'react-redux';
 import React from 'react';
 import TraewellingLink from './TraewellingLink';
 import TravelynxLink from './TravelynxLink';
+import withStyles, { type StyledProps } from 'react-jss';
 import type { Abfahrt } from 'types/abfahrten';
 import type { AppState } from 'AppState';
 
@@ -15,20 +15,28 @@ type OwnProps = {|
   +abfahrt: Abfahrt,
 |};
 
-type Props = {|
+type ReduxProps = {|
   ...StateProps,
   ...OwnProps,
   +dispatch: Function,
 |};
-const CheckInLink = ({ abfahrt, type }: Props) => {
+
+type Props = StyledProps<ReduxProps, typeof styles>;
+const CheckInLink = ({ type, abfahrt, classes }: Props) => {
   switch (type) {
     case 'traewelling':
-      return <TraewellingLink abfahrt={abfahrt} />;
+      return <TraewellingLink abfahrt={abfahrt} className={classes.link} />;
     case 'travelynx':
-      return <TravelynxLink abfahrt={abfahrt} />;
+      return <TravelynxLink abfahrt={abfahrt} className={classes.link} />;
     default:
       return null;
   }
+};
+
+export const styles = {
+  link: {
+    fontSize: '0.6em',
+  },
 };
 
 export function preventDefault(e: SyntheticMouseEvent<>) {
@@ -37,6 +45,6 @@ export function preventDefault(e: SyntheticMouseEvent<>) {
   return false;
 }
 
-export default connect<Props, OwnProps, StateProps, _, AppState, _>(state => ({
+export default connect<ReduxProps, OwnProps, StateProps, _, AppState, _>(state => ({
   type: state.config.config.checkIn,
-}))(CheckInLink);
+}))(withStyles(styles)(CheckInLink));

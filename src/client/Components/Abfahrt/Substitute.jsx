@@ -1,18 +1,24 @@
 // @flow
-import './Substitute.scss';
 import React from 'react';
+import withStyles, { type StyledProps } from 'react-jss';
 import type { SubstituteRef } from 'types/abfahrten';
 
 type OwnProps = {|
-  +substitute: SubstituteRef,
+  substitute: SubstituteRef,
 |};
-type Props = {| ...OwnProps |};
+type Props = StyledProps<OwnProps, typeof styles>;
 
-const Substitute = ({ substitute }: Props) => (
+const Substitute = ({ substitute, classes }: Props) => (
   <>
-    <span className="Substitute">Ersatzzug für</span>
-    <span className="Substitute">{substitute.train}</span>
+    <span className={classes.main}>Ersatzzug für</span>
+    <span className={classes.main}>{substitute.train}</span>
   </>
 );
 
-export default React.memo<Props>(Substitute);
+const styles = {
+  main: {
+    fontSize: '.7em',
+  },
+};
+
+export default React.memo<OwnProps>(withStyles(styles)(Substitute));

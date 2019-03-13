@@ -1,11 +1,12 @@
 // @flow
-import './End.scss';
 import { type Abfahrt } from 'types/abfahrten';
 import cc from 'classnames';
 import React from 'react';
+import styles from './End.styles';
 import Times from './Times';
+import withStyles, { type StyledProps } from 'react-jss';
 
-function getDelay(abfahrt: Abfahrt) {
+function getDelay(abfahrt: Abfahrt, classes) {
   if ((!abfahrt.delayDeparture && !abfahrt.delayArrival) || abfahrt.isCancelled) {
     return null;
   }
@@ -19,7 +20,7 @@ function getDelay(abfahrt: Abfahrt) {
   }
 
   return (
-    <span className={cc('End--delay', numberDelay > 0 ? 'delayed' : 'early')}>
+    <span className={cc(classes.delay, numberDelay > 0 ? classes.delayed : classes.early)}>
       {'('}
       {delay}
       {')'}
@@ -27,21 +28,22 @@ function getDelay(abfahrt: Abfahrt) {
   );
 }
 
-type Props = {|
-  +abfahrt: Abfahrt,
-  +detail: boolean,
+type OwnProps = {|
+  abfahrt: Abfahrt,
+  detail: boolean,
 |};
-const End = ({ abfahrt, detail }: Props) => (
-  <div className="End">
+type Props = StyledProps<OwnProps, typeof styles>;
+const End = ({ abfahrt, detail, classes }: Props) => (
+  <div className={classes.main}>
     <Times abfahrt={abfahrt} detail={detail} />
-    <div className="End__bottom">
-      {!detail && getDelay(abfahrt)}
+    <div className={classes.bottom}>
+      {!detail && getDelay(abfahrt, classes)}
       <span
         className={cc([
-          'End__platform',
+          classes.platform,
           {
-            cancelled: abfahrt.isCancelled,
-            changed: abfahrt.scheduledPlatform && abfahrt.scheduledPlatform !== abfahrt.platform,
+            [classes.cancelled]: abfahrt.isCancelled,
+            [classes.delayed]: abfahrt.scheduledPlatform && abfahrt.scheduledPlatform !== abfahrt.platform,
           },
         ])}
       >
@@ -51,4 +53,4 @@ const End = ({ abfahrt, detail }: Props) => (
   </div>
 );
 
-export default React.memo<Props>(End);
+export default React.memo<OwnProps>(withStyles(styles)(End));
