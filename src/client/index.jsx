@@ -1,6 +1,5 @@
 // @flow
 import '@babel/polyfill';
-import 'typeface-roboto';
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { MuiThemeProvider } from '@material-ui/core/styles';

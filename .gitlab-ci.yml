@@ -7,7 +7,6 @@ stages:
   - install
   - test
   - build
-  - critical
   - docker
   - deploy
   - cleanup

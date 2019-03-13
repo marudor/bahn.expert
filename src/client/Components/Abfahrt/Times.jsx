@@ -17,6 +17,10 @@ function delayString(delay: number = 0) {
   return `-${Math.abs(delay)}`;
 }
 
+function delayStyle(classes, delay: number = 0) {
+  return delay > 0 ? classes.delayed : classes.early;
+}
+
 function getDelayTime(rawTime: ?number, delay: ?number, timeConfig: boolean) {
   if (!rawTime) {
     return null;
@@ -60,6 +64,8 @@ const Times = ({
       classes.main,
       {
         [classes.cancelled]: isCancelled,
+        [delayStyle(classes, scheduledDeparture ? delayDeparture : delayArrival)]:
+          !detail && (scheduledDeparture ? delayDeparture : delayArrival),
       },
     ])}
   >
@@ -67,8 +73,9 @@ const Times = ({
       <React.Fragment>
         {scheduledArrival && (
           <div
-            className={cc(classes.wrapper, classes.detailAn, {
+            className={cc(classes.wrapper, {
               [classes.cancelled]: arrivalIsCancelled,
+              [delayStyle(classes, delayArrival)]: delayArrival,
             })}
           >
             {Boolean(delayArrival) && delayString(delayArrival)}
@@ -78,8 +85,9 @@ const Times = ({
         )}
         {scheduledDeparture && (
           <div
-            className={cc(classes.wrapper, classes.detailAb, {
+            className={cc(classes.wrapper, {
               [classes.cancelled]: departureIsCancelled,
+              [delayStyle(classes, delayDeparture)]: delayDeparture,
             })}
           >
             {Boolean(delayDeparture) && delayString(delayDeparture)}

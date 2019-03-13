@@ -172,7 +172,11 @@ const Via = ({ abfahrt, detail, showSupersededMessages, classes }: Props) => {
   const info = detail ? getDetailedInfo(abfahrt, showSupersededMessages, classes) : getInfo(abfahrt, classes);
 
   return (
-    <div className={classes.main}>
+    <div
+      className={cc(classes.main, {
+        [classes.detail]: detail,
+      })}
+    >
       {info}
       {(detail || !info) && (detail ? getDetailedVia(abfahrt, classes) : getNormalVia(abfahrt, classes))}
     </div>
