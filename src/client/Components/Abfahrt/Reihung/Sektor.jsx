@@ -1,5 +1,4 @@
 // @flow
-import cc from 'classnames';
 import React from 'react';
 import withStyles, { type StyledProps } from 'react-jss';
 import type { Sektor } from 'types/reihung';
@@ -24,7 +23,7 @@ const SektorComp = ({ sektor, scale, correctLeft, classes }: Props) => {
   };
 
   return (
-    <div className={cc(classes.main, classes.position)} style={pos}>
+    <div className={classes.main} style={pos}>
       {sektor.sektorbezeichnung}
     </div>
   );
@@ -35,17 +34,6 @@ const styles = {
     position: 'absolute',
     fontWeight: 'bolder',
     textAlign: 'center',
-  },
-  position: ({ sektor, scale, correctLeft }: OwnProps) => {
-    const { startprozent, endeprozent } = sektor.positionamgleis;
-
-    const start = Number.parseInt(startprozent, 10);
-    const end = Number.parseInt(endeprozent, 10);
-
-    return {
-      left: `${(start - correctLeft) * scale}%`,
-      width: `${(end - start) * scale}%`,
-    };
   },
 };
 

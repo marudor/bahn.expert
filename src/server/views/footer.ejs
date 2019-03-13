@@ -1,6 +1,6 @@
 </div>
-<% if (materialCss) {%>
-    <style id="jss-server-side"><%- materialCss %></style>
+<% if (jssCss) {%>
+    <style id="jss-server-side"><%- jssCss %></style>
   <%}%>
 <% jsBundles.forEach(function(js){ %>
   <script src="/static/<%- js %>" defer></script>

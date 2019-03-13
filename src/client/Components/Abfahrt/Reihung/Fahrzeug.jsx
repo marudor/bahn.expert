@@ -127,12 +127,22 @@ function getFahrzeugInfo(fahrzeug: Fahrzeug, type: FahrzeugType, specificType: ?
   return data;
 }
 
-const FahrzeugComp = ({ fahrzeug, type, specificType, wrongWing, classes }: Props) => {
+const FahrzeugComp = ({ fahrzeug, type, specificType, wrongWing, classes, scale, correctLeft }: Props) => {
   const info = getFahrzeugInfo(fahrzeug, type, specificType);
+
+  const { startprozent, endeprozent } = fahrzeug.positionamhalt;
+  const start = Number.parseInt(startprozent, 10);
+  const end = Number.parseInt(endeprozent, 10);
+
+  const position = {
+    left: `${(start - correctLeft) * scale}%`,
+    width: `${(end - start) * scale}%`,
+  };
 
   return (
     <div
-      className={cc(classes.main, classes.position, {
+      style={position}
+      className={cc(classes.main, {
         [classes.closed]: fahrzeug.status === 'GESCHLOSSEN',
         [classes.wrongWing]: wrongWing,
       })}

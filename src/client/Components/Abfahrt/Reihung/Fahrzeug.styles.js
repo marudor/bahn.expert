@@ -1,5 +1,4 @@
 // @flow
-import type { OwnProps } from './Fahrzeug';
 export default {
   main: {
     position: 'absolute',
@@ -9,16 +8,6 @@ export default {
   },
   closed: {
     background: 'repeating-linear-gradient(135deg, #999, #999, 5px, transparent 5px, transparent 10px);',
-  },
-  position: ({ fahrzeug, scale, correctLeft }: OwnProps) => {
-    const { startprozent, endeprozent } = fahrzeug.positionamhalt;
-    const start = Number.parseInt(startprozent, 10);
-    const end = Number.parseInt(endeprozent, 10);
-
-    return {
-      left: `${(start - correctLeft) * scale}%`,
-      width: `${(end - start) * scale}%`,
-    };
   },
   wrongWing: {
     background: 'darkgrey',

@@ -2,7 +2,6 @@
 import { connect } from 'react-redux';
 import { getReihung } from 'client/actions/reihung';
 import { getReihungForId } from 'client/selector/reihung';
-import cc from 'classnames';
 import Gruppe from './Gruppe';
 import Loading from 'client/Components/Loading';
 import React from 'react';
@@ -59,7 +58,7 @@ class ReihungComp extends React.PureComponent<Props> {
     const differentZugnummer = reihung.differentZugnummer;
 
     return (
-      <div className={cc(classes.main, classes.mainD)}>
+      <div className={classes.main}>
         {Boolean(reihung.specificTrainType) && (
           <span className={classes.specificType}>{reihung.specificTrainType}</span>
         )}
@@ -84,7 +83,7 @@ class ReihungComp extends React.PureComponent<Props> {
             />
           ))}
         </div>
-        <span className={cc(classes.richtung, classes.richtungD)} />
+        <span className={classes.richtung} />
       </div>
     );
   }
