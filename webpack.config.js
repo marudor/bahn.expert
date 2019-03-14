@@ -14,6 +14,10 @@ const plugins = [
       NODE_ENV: JSON.stringify(process.env.NODE_ENV),
     },
   }),
+  new MiniCssExtractPlugin({
+    filename: '[name]-[contenthash].css',
+    chunkFilename: '[id]-[hash].css',
+  }),
 ];
 
 // const optimization = {
@@ -34,15 +38,12 @@ const rules = [
     test: /\.s?css$/,
     use: [
       {
-        loader: isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+        loader: MiniCssExtractPlugin.loader,
       },
       { loader: 'css-loader' },
       { loader: 'postcss-loader' },
       {
         loader: 'sass-loader',
-        options: {
-          data: '@import "./src/client/variables.scss";',
-        },
       },
     ],
   },
@@ -62,12 +63,6 @@ if (isDev) {
         condition: 'all',
         banner: () => '',
       },
-    })
-  );
-  plugins.push(
-    new MiniCssExtractPlugin({
-      filename: '[name]-[contenthash].css',
-      chunkFilename: '[id]-[hash].css',
     })
   );
   plugins.push(
@@ -100,15 +95,4 @@ module.exports = {
   module: {
     rules,
   },
-  // devServer: {
-  //   contentBase: path.resolve(__dirname, 'dist/client'),
-  //   historyApiFallback: true,
-  //   inline: true,
-  //   hot: true,
-  //   proxy: {
-  //     '/api': {
-  //       target: 'http://localhost:9042',
-  //     },
-  //   },
-  // },
 };

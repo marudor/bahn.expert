@@ -3,5 +3,6 @@ module.exports = {
   rules: {
     'font-family-no-missing-generic-family-keyword': null,
     'declaration-colon-newline-after': null,
+    'value-list-comma-newline-after': null,
   },
 };
