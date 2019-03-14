@@ -221,13 +221,19 @@ export default class Timetable {
     timetable.isCancelled =
       (timetable.arrivalIsCancelled && (timetable.departureIsCancelled || !timetable.scheduledDeparture)) ||
       (timetable.departureIsCancelled && !timetable.scheduledArrival);
-    const addInfo =
-      timetable.routePre.some(r => r.isCancelled || r.isAdditional) ||
-      timetable.routePost.some(r => r.isCancelled || r.isAdditional);
+
+    if (timetable.isCancelled) {
+      const anyCancelled = timetable.routePre.some(r => r.isCancelled) || timetable.routePost.some(r => r.isCancelled);
+
+      if (anyCancelled) {
+        timetable.routePre.forEach(r => (r.isCancelled = true));
+        timetable.routePost.forEach(r => (r.isCancelled = true));
+      }
+    }
 
     timetable.route = [
       ...timetable.routePre,
-      { name: timetable.currentStation, isCancelled: addInfo && timetable.isCancelled },
+      { name: timetable.currentStation, isCancelled: timetable.isCancelled },
       ...timetable.routePost,
     ];
     timetable.destination = findLast(timetable.route, r => !r.isCancelled)?.name || timetable.scheduledDestination;
