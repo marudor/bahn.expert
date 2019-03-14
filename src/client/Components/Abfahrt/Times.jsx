@@ -96,7 +96,7 @@ const Times = ({
           </div>
         )}
       </React.Fragment>
-    ) : scheduledDeparture && !departureIsCancelled ? (
+    ) : scheduledDeparture && (!departureIsCancelled || isCancelled) ? (
       getDelayTime(scheduledDeparture, delayDeparture, timeConfig)
     ) : (
       getDelayTime(scheduledArrival, delayArrival, timeConfig)
