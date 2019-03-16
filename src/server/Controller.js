@@ -7,6 +7,7 @@ import axios from 'axios';
 import createAuslastung from './Auslastung';
 import KoaRouter from 'koa-router';
 import stationSearch from './Search';
+import wingInfo from './Abfahrten/wings';
 
 const router = new KoaRouter();
 
@@ -68,6 +69,11 @@ router
     const { date, trainNumber } = ctx.params;
 
     ctx.body = await wagenReihung(trainNumber, Number.parseInt(date, 10));
+  })
+  .get('/wings/:rawId1/:rawId2', async ctx => {
+    const { rawId1, rawId2 } = ctx.params;
+
+    ctx.body = await wingInfo(rawId1, rawId2);
   });
 
 const AuslastungsUser = process.env.AUSLASTUNGS_USER;
