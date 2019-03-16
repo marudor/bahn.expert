@@ -7,29 +7,19 @@
 import { addHours, addMinutes, compareAsc, compareDesc, format, isAfter, isBefore, subHours } from 'date-fns';
 import { diffArrays } from 'diff';
 import { findLast, flatten, last, uniqBy } from 'lodash';
+import { getAttr, getNumberAttr, parseTs } from './helper';
 import { getCachedLageplan, getLageplan } from '../Bahnhof/Lageplan';
 import { irisBase } from './index';
-import { parseFromTimeZone } from 'date-fns-timezone';
 import axios from 'axios';
 import messageLookup, { messageTypeLookup, supersededMessages } from './messageLookup';
 import NodeCache from 'node-cache';
-import xmljs from 'libxmljs';
+import xmljs, { type XmlNode } from 'libxmljs';
 import type { Message } from 'types/abfahrten';
 
 export type Result = {
   departures: any[],
   wings: Object,
   lageplan?: ?string,
-};
-type XmlAttr = {
-  value(): ?string,
-};
-type XmlNode = {
-  get(childNode: string): ?XmlNode,
-  find(xpath: string): ?XmlNode,
-  path(): string,
-  map<U>((XmlNode) => U): U[],
-  attr(name: string): ?XmlAttr,
 };
 
 type ArDp = {|
@@ -71,25 +61,6 @@ const normalizeRouteName = (name: string) =>
     .replace('(', ' (')
     .replace(')', ') ')
     .trim();
-
-function getAttr(node: ?XmlNode, name): ?string {
-  // $FlowFixMe - optional chaining call
-  return node?.attr(name)?.value();
-}
-
-function getNumberAttr(node, name): ?number {
-  const attr = getAttr(node, name);
-
-  if (!attr) return undefined;
-
-  return Number.parseInt(attr, 10);
-}
-
-function parseTs(ts): ?Date {
-  if (ts) {
-    return parseFromTimeZone(ts, 'YYMMDDHHmm', { timeZone: 'Europe/Berlin' }).getTime();
-  }
-}
 
 export function parseDp(dp: ?XmlNode): ?ParsedDp {
   if (!dp) return undefined;
@@ -507,6 +478,8 @@ export default class Timetable {
     const realtimeXml = xmljs.parseXml(rawXml);
     const sArr = realtimeXml.find('/timetable/s');
 
+    if (!sArr) return;
+
     sArr.forEach(s => {
       const realtime = this.parseRealtimeS(s);
 
@@ -597,12 +570,14 @@ export default class Timetable {
 
     const timetables = {};
 
-    sArr.forEach(s => {
-      const departure = this.parseTimetableS(s);
+    if (sArr) {
+      sArr.forEach(s => {
+        const departure = this.parseTimetableS(s);
 
-      if (!departure) return;
-      timetables[departure.rawId] = departure;
-    });
+        if (!departure) return;
+        timetables[departure.rawId] = departure;
+      });
+    }
 
     return timetables;
   }

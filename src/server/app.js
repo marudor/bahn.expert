@@ -43,7 +43,7 @@ function hotHelper(getMiddleware: () => Middleware) {
   return (ctx, next) => getMiddleware()(ctx, next);
 }
 
-export async function createApp() {
+export async function createApp(wsServer: ?https$Server) {
   const app = new Koa();
 
   app.use(errorHandler);
@@ -55,7 +55,7 @@ export async function createApp() {
   let seoController = require('./seo').default;
 
   if (process.env.NODE_ENV !== 'test' && process.env.NODE_ENV !== 'production') {
-    await require('./middleware/webpackDev')(app);
+    await require('./middleware/webpackDev')(app, wsServer);
     app.use((ctx, next) => {
       serverRender = require('./render').default;
       apiRoutes = require('./Controller').default;
@@ -93,10 +93,10 @@ export async function createApp() {
 }
 
 export default async () => {
-  const app = await createApp();
   const port = process.env.WEB_PORT || 9042;
 
   let server;
+  let wsServer;
 
   if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test' && !process.env.NO_SSL) {
     const https = require('https');
@@ -106,19 +106,22 @@ export default async () => {
     // eslint-disable-next-line no-sync
     const cert = fs.readFileSync('./secrets/ssl/server.pem');
 
-    server = https.createServer(
-      {
-        key,
-        cert,
-      },
-      app.callback()
-    );
+    server = https.createServer({
+      key,
+      cert,
+    });
+    wsServer = https.createServer({
+      key,
+      cert,
+    });
     axios.defaults.baseURL = `https://local.marudor.de:${port}`;
   } else {
     axios.defaults.baseURL = `http://localhost:${port}`;
-    server = http.createServer(app.callback());
+    server = http.createServer();
   }
+  const app = await createApp(wsServer);
 
+  server.addListener('request', app.callback());
   server.listen(port);
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line no-console

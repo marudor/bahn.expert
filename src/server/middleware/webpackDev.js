@@ -1,4 +1,5 @@
 // @flow
+import type Koa from 'koa';
 const webpack = require('webpack');
 const webpackConfig = require('../../../webpack.config');
 const chokidar = require('chokidar');
@@ -6,7 +7,7 @@ const path = require('path');
 const compiler = webpack(webpackConfig);
 const koaWebpack = require('koa-webpack');
 
-module.exports = function webpackDev(koa: any) {
+module.exports = function webpackDev(koa: Koa, server: ?https$Server) {
   // Do "hot-reloading" of react stuff on the server
   // Throw away the cached client modules and let them be re-required next time
   // see https://github.com/glenjamin/ultimate-hot-reloading-example
@@ -34,7 +35,11 @@ module.exports = function webpackDev(koa: any) {
     // whm.publish({ action: 'sync', errors: [], warnings: [], hash: Math.random() });
   });
 
-  return koaWebpack({ compiler, devMiddleware: { serverSideRender: true } }).then(middleware => {
+  return koaWebpack({
+    compiler,
+    devMiddleware: { serverSideRender: true },
+    hotClient: { https: true, host: 'local.marudor.de', server },
+  }).then(middleware => {
     koa.use(middleware);
   });
 };
