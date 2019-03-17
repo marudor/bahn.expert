@@ -1,6 +1,6 @@
 // @flow
 import { parseFromTimeZone } from 'date-fns-timezone';
-import { type XmlNode } from 'libxmljs';
+import { type XmlNode } from 'libxmljs2';
 
 export function getAttr(node: ?XmlNode, name: string): ?string {
   // $FlowFixMe - optional chaining call

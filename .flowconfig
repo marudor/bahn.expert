@@ -17,6 +17,7 @@ module.name_mapper='.*\.less$' -> 'cssFile'
 module.name_mapper='.*\.scss$' -> 'cssFile'
 module.name_mapper='^AppState$' -> 'client/AppState'
 module.use_strict=true
+module.ignore_non_literal_requires=true
 emoji=true
 
 module.system.node.resolve_dirname=node_modules

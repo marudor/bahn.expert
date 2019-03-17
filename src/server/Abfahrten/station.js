@@ -4,7 +4,7 @@ import { flatten } from 'lodash';
 import { irisBase } from './index';
 import axios from 'axios';
 import NodeCache from 'node-cache';
-import xmljs from 'libxmljs';
+import xmljs from 'libxmljs2';
 
 export type Station = {
   name: string,

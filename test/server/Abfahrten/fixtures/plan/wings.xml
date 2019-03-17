@@ -1,0 +1,7 @@
+<timetable station="Hannover Hbf" eva="8000152">
+  <s id="7616096009230090656-1903171328-5">
+    <tl f="F" t="p" o="80" c="ICE" n="1587" />
+    <ar pt="1903171451" pp="4" wings="4249721926697031159-1903171328" ppth="Hamburg Hbf|Hamburg-Harburg|Lüneburg|Uelzen" />
+    <dp pt="1903171454" pp="4" wings="4249721926697031159-1903171328" ppth="Göttingen|Kassel-Wilhelmshöhe|Fulda|Würzburg Hbf|Treuchtlingen|Donauwörth|Augsburg Hbf|München Hbf" />
+  </s>
+</timetable>

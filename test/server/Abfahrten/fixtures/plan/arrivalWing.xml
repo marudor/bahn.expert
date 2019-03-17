@@ -1,0 +1,12 @@
+<timetable station="Hannover Hbf" eva="8000152">
+  <s id="4771830392602697451-1903170818-10">
+    <tl f="F" t="p" o="80" c="ICE" n="1680" />
+    <ar pt="1903171332" pp="8" wings="-4550748245722881479-1903170818" ppth="München Hbf|München-Pasing|Augsburg Hbf|Donauwörth|Nürnberg Hbf|Würzburg Hbf|Fulda|Kassel-Wilhelmshöhe|Göttingen" />
+    <dp pt="1903171336" pp="8 D-G" ppth="Hamburg-Harburg|Hamburg Hbf|Hamburg Dammtor|Hamburg-Altona" />
+  </s>
+  <s id="-4550748245722881479-1903170818-10">
+    <tl f="F" t="p" o="80" c="ICE" n="1580" />
+    <ar pt="1903171332" pp="8" ppth="München Hbf|München-Pasing|Augsburg Hbf|Donauwörth|Nürnberg Hbf|Würzburg Hbf|Fulda|Kassel-Wilhelmshöhe|Göttingen" />
+    <dp pt="1903171345" pp="8 A-D" ppth="Bremen Hbf" />
+  </s>
+</timetable>
