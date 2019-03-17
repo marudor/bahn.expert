@@ -1,0 +1,5 @@
+<timetable station="Düsseldorf Hbf" eva="8000085">
+  <s id="425081070176277607-1903171100-11" eva="8000085">
+    <ar ct="1903171324" l="RE11" />
+  </s>
+</timetable>

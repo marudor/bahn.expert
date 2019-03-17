@@ -1,0 +1,14 @@
+<timetable station="München Hbf Gl.27-36" eva="8098261">
+  <s id="4645697665836328305-1903171304-1">
+    <tl f="D" t="p" o="T8" c="BOB" n="86871" />
+    <dp pt="1903171304" pp="34" wings="-2583448959431566845-1903171304|-7715731422484591852-1903171304" ppth="München Harras|München-Solln|Holzkirchen|Darching|Miesbach|Agatharied|Hausham|Schliersee|Fischhausen-Neuhaus|Fischbachau|Geitau|Osterhofen(Oberbay)|Bayrischzell" />
+  </s>
+  <s id="-2583448959431566845-1903171304-1">
+    <tl f="D" t="p" o="T8" c="BOB" n="86971" />
+    <dp pt="1903171304" pp="34" ppth="München Harras|München-Solln|Holzkirchen|Warngau|Schaftlach|Moosrain|Finsterwald|Gmund(Tegernsee)|Tegernsee" />
+  </s>
+  <s id="-7715731422484591852-1903171304-1">
+    <tl f="D" t="p" o="T8" c="BOB" n="86921" />
+    <dp pt="1903171304" pp="34" ppth="München Harras|München-Solln|Holzkirchen|Warngau|Schaftlach|Reichersbeuern|Bad Tölz|Gaißach|Obergries|Lenggries" />
+  </s>
+</timetable>

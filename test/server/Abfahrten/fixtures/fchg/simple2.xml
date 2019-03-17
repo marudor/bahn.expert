@@ -1,0 +1,13 @@
+<timetable station="Düsseldorf Hbf" eva="8000085">
+  <s id="1869793107893408377-1903171038-6" eva="8000085">
+    <m id="r797652" t="h" from="1903171253" to="1903172359" cat="Information" ts="1903171212" pr="1" />
+    <ar cpth="Amsterdam Centraal|Utrecht Centraal|Arnhem Centraal|Oberhausen Hbf|Duisburg Hbf" ct="1903171349">
+      <m id="r47310516" t="f" c="0" ts="1903171230" />
+      <m id="r47311041" t="d" c="55" ts="1903171300" />
+    </ar>
+    <dp cpth="Köln Hbf|Frankfurt(M) Flughafen Fernbf" ct="1903171351">
+      <m id="r47310516" t="f" c="0" ts="1903171230" />
+      <m id="r47311041" t="d" c="55" ts="1903171300" />
+    </dp>
+  </s>
+</timetable>

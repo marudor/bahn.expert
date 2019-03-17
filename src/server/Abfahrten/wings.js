@@ -2,7 +2,7 @@
 import { getAttr, getBoolAttr, parseTs } from './helper';
 import { irisBase } from '.';
 import axios from 'axios';
-import xmljs from 'libxmljs';
+import xmljs from 'libxmljs2';
 
 function parseNode(node) {
   if (!node) return;

@@ -13,7 +13,7 @@ import { irisBase } from './index';
 import axios from 'axios';
 import messageLookup, { messageTypeLookup, supersededMessages } from './messageLookup';
 import NodeCache from 'node-cache';
-import xmljs, { type XmlNode } from 'libxmljs';
+import xmljs, { type XmlNode } from 'libxmljs2';
 import type { Message } from 'types/abfahrten';
 
 export type Result = {
@@ -77,7 +77,7 @@ export function parseDp(dp: ?XmlNode): ?ParsedDp {
   };
 }
 
-export function parseAr(ar: ?XmlNode): ?ParsedAr {
+export function parseRealtimeAr(ar: ?XmlNode): ?ParsedAr {
   if (!ar) return undefined;
 
   const routePre = getAttr(ar, 'cpth');
@@ -394,7 +394,7 @@ export default class Timetable {
         delay,
         qos,
       },
-      arrival: parseAr(ar),
+      arrival: parseRealtimeAr(ar),
       departure: parseDp(dp),
       ref: ref ? this.parseRef(ref) : undefined,
     };

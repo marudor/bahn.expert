@@ -1,0 +1,6 @@
+<timetable station="Hannover Hbf" eva="8000152">
+  <s id="7616096009230090656-1903171328-5" eva="8000152">
+    <ar ct="1903171451" />
+    <dp ct="1903171456" />
+  </s>
+</timetable>

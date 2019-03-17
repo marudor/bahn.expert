@@ -77,7 +77,6 @@ export async function createApp(wsServer: ?https$Server) {
   app.use(hotHelper(() => seoController));
 
   if (process.env.NODE_ENV === 'production') {
-    // $FlowFixMe
     const stats = require(path.resolve('dist/client/static/stats.json'));
 
     app.use((ctx, next) => {

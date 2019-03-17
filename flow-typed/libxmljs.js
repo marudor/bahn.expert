@@ -1,5 +1,5 @@
 // @flow
-declare module 'libxmljs' {
+declare module 'libxmljs2' {
   declare export type XmlAttr = {
     name(): string,
     value(): ?string,
@@ -12,6 +12,7 @@ declare module 'libxmljs' {
     attr(name: string): ?XmlAttr,
     forEach((XmlNode) => any): void,
     attrs(): XmlAttr[],
+    root(): XmlNode,
   };
   declare function parseXml(rawXml: string): XmlNode;
 
