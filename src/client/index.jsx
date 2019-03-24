@@ -1,6 +1,7 @@
 // @flow
 import './font.css';
-import '@babel/polyfill';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { MuiThemeProvider } from '@material-ui/core/styles';
