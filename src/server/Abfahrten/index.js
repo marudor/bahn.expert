@@ -17,14 +17,15 @@ const defaultOptions = {
 
 const baseResult: Result = { departures: [], wings: {}, lageplan: undefined };
 
-function reduceResults(agg: Result, r: Result) {
+export function reduceResults(agg: Result, r: Result) {
   return {
     departures: [...agg.departures, ...r.departures],
     wings: {
       ...agg.wings,
       ...r.wings,
     },
-    lageplan: agg.lageplan || r.lageplan,
+    // eslint-disable-next-line no-nested-ternary
+    lageplan: r.lageplan ? r.lageplan : agg.lageplan !== undefined ? agg.lageplan : r.lageplan,
   };
 }
 
