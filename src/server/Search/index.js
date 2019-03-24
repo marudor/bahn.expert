@@ -56,7 +56,9 @@ function getCache(key: Function) {
   return cache;
 }
 
-export default async (searchTerm: string, type: ?string) => {
+export default async (rawSearchTerm: string, type: ?string) => {
+  const searchTerm = rawSearchTerm.replace(/ {2}/g, ' ');
+
   try {
     const searchMethod = getSearchMethod(type);
     const cache = getCache(searchMethod);
