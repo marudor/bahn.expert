@@ -4,7 +4,7 @@ import cheerio from 'cheerio';
 import NodeCache from 'node-cache';
 import qs from 'qs';
 
-const cache: NodeCache<string, ?Object> = new NodeCache();
+export const cache: NodeCache<string, ?Object> = new NodeCache();
 
 export async function getLageplan(stationName: string) {
   const cached = cache.get(stationName);
