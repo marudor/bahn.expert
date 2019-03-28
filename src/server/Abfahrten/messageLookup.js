@@ -56,6 +56,7 @@ export default {
   '63': 'Technische Untersuchung am Zug',
   '64': 'Weichenstörung',
   '65': 'Erdrutsch',
+  '66': 'Hochwasser',
   '70': 'Kein WLAN',
   '71': 'WLAN in einzelnen Wagen nicht verfügbar',
   '73': 'Mehrzweckabteil vorne',
