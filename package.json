@@ -102,7 +102,7 @@
     "webpack-stats-plugin": "^0.2.1"
   },
   "dependencies": {
-    "@material-ui/core": "^3.9.2",
+    "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
     "axios": "^0.18.0",
     "bunyan": "^1.8.12",
@@ -133,8 +133,8 @@
     "notistack": "^0.5.1",
     "prom-client": "^11.2.1",
     "qs": "^6.7.0",
-    "react": "^16.8.5",
-    "react-dom": "^16.8.5",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-helmet-async": "^0.2.0",
     "react-jss": "^8.6.1",
     "react-redux": "^6.0.1",

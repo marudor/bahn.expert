@@ -48,6 +48,7 @@ export type Abfahrt = {|
   +mediumId: string,
   +messages: Messages,
   +platform: string,
+  +productClass: 'D' | 'N' | 'S' | 'F',
   +rawId: string,
   +ref?: SubstituteRef,
   +reihung: boolean,
@@ -77,6 +78,15 @@ export type ResolvedWings = {|
 export type AbfahrtAPIResult = {|
   +departures: Abfahrt[],
   +wings: Wings,
+|};
+
+export type WingNode = {|
+  +station: {|
+    +id: string,
+    +title: string,
+  |},
+  +pt: number,
+  +fl: boolean,
 |};
 
 export default {};

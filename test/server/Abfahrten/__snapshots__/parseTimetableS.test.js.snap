@@ -14,6 +14,7 @@ Object {
   "mediumId": "6062058741531589910-1903161424",
   "o": "800354",
   "platform": "13",
+  "productClass": "S",
   "rawId": "-6062058741531589910-1903161424-13",
   "routePost": Array [
     Object {
@@ -159,6 +160,7 @@ Object {
   "mediumId": "4771830392602697451-1903170818",
   "o": "80",
   "platform": "8 D-G",
+  "productClass": "F",
   "rawId": "4771830392602697451-1903170818-10",
   "routePost": Array [
     Object {
@@ -230,6 +232,7 @@ Object {
   "mediumId": "4550748245722881479-1903170818",
   "o": "80",
   "platform": "8 A-D",
+  "productClass": "F",
   "rawId": "-4550748245722881479-1903170818-10",
   "routePost": Array [
     Object {
@@ -292,6 +295,7 @@ Object {
   "mediumId": "6062058741531589910-1903161424",
   "o": "800354",
   "platform": "13",
+  "productClass": "S",
   "rawId": "-6062058741531589910-1903161424-13",
   "routePost": Array [
     Object {
@@ -435,6 +439,7 @@ Object {
   "mediumId": "6062058741531589910-1903161424",
   "o": "800354",
   "platform": "13",
+  "productClass": "S",
   "rawId": "-6062058741531589910-1903161424-13",
   "routePost": Array [
     Object {
@@ -580,6 +585,7 @@ Object {
   "mediumId": "6523045328284948841-1903171246",
   "o": "80",
   "platform": "4",
+  "productClass": "F",
   "rawId": "6523045328284948841-1903171246-5",
   "routePost": Array [
     Object {
@@ -645,6 +651,7 @@ Object {
   "mediumId": "8086827825752200553-1903171315",
   "o": "80",
   "platform": "4",
+  "productClass": "F",
   "rawId": "-8086827825752200553-1903171315-2",
   "routePost": Array [
     Object {
@@ -701,6 +708,7 @@ Object {
   "mediumId": "6062058741531589910-1903161424",
   "o": "800354",
   "platform": "13",
+  "productClass": "S",
   "rawId": "-6062058741531589910-1903161424-13",
   "routePost": Array [
     Object {
@@ -847,6 +855,7 @@ Object {
   "mediumId": "4645697665836328305-1903171304",
   "o": "T8",
   "platform": "34",
+  "productClass": "D",
   "rawId": "4645697665836328305-1903171304-1",
   "routePost": Array [
     Object {
@@ -917,6 +926,7 @@ Object {
   "mediumId": "2583448959431566845-1903171304",
   "o": "T8",
   "platform": "34",
+  "productClass": "D",
   "rawId": "-2583448959431566845-1903171304-1",
   "routePost": Array [
     Object {
@@ -975,6 +985,7 @@ Object {
   "mediumId": "7715731422484591852-1903171304",
   "o": "T8",
   "platform": "34",
+  "productClass": "D",
   "rawId": "-7715731422484591852-1903171304-1",
   "routePost": Array [
     Object {
@@ -1036,6 +1047,7 @@ Object {
   "mediumId": "425081070176277607-1903171100",
   "o": "AR",
   "platform": "10",
+  "productClass": "D",
   "rawId": "425081070176277607-1903171100-11",
   "routePost": Array [],
   "routePre": Array [
@@ -1097,6 +1109,7 @@ Object {
   "mediumId": "1178432179369711067-1903171236",
   "o": "AR",
   "platform": "10",
+  "productClass": "D",
   "rawId": "1178432179369711067-1903171236-1",
   "routePost": Array [
     Object {
@@ -1167,6 +1180,7 @@ Object {
   "mediumId": "6062058741531589910-1903161424",
   "o": "800354",
   "platform": "13",
+  "productClass": "S",
   "rawId": "-6062058741531589910-1903161424-13",
   "routePost": Array [
     Object {
@@ -1310,6 +1324,7 @@ Object {
   "mediumId": "1869793107893408377-1903171038",
   "o": "84",
   "platform": "16",
+  "productClass": "F",
   "rawId": "1869793107893408377-1903171038-6",
   "routePost": Array [
     Object {
@@ -1366,6 +1381,7 @@ Object {
   "mediumId": "6062058741531589910-1903161424",
   "o": "800354",
   "platform": "13",
+  "productClass": "S",
   "rawId": "-6062058741531589910-1903161424-13",
   "routePost": Array [
     Object {
@@ -1513,6 +1529,7 @@ Object {
   "mediumId": "7616096009230090656-1903171328",
   "o": "80",
   "platform": "4",
+  "productClass": "F",
   "rawId": "7616096009230090656-1903171328-5",
   "routePost": Array [
     Object {

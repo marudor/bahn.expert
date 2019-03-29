@@ -40,11 +40,11 @@ describe('Lageplan', () => {
     });
   });
 
-  describe.only('Example with Lageplan', () => {
+  describe('Example with Lageplan', () => {
     afterAll(() => {
       cache.flushAll();
     });
-    it.only('is null if non existant', async () => {
+    it('is null if non existant', async () => {
       nock
         .get('/service/search/bahnhof-de/520608')
         .query({
