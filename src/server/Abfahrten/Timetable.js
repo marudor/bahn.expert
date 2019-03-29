@@ -143,7 +143,11 @@ export function splitTrainType(train: string = '') {
 
 export function parseTl(tl: XmlNode) {
   return {
-    f: getAttr(tl, 'f'),
+    // D = Irregular, like third party
+    // N = Nahverkehr
+    // S = Sbahn
+    // F = Fernverkehr
+    productClass: getAttr(tl, 'f'),
     o: getAttr(tl, 'o'),
     t: getAttr(tl, 't'),
     trainNumber: getAttr(tl, 'n') || '',
@@ -526,7 +530,7 @@ export default class Timetable {
     const scheduledArrival = parseTs(getAttr(ar, 'pt'));
     const scheduledDeparture = parseTs(getAttr(dp, 'pt'));
     const lineNumber = getAttr(dp || ar, 'l');
-    const { trainNumber, trainType, t, o } = parseTl(tl);
+    const { trainNumber, trainType, t, o, productClass } = parseTl(tl);
     const train = `${trainType} ${lineNumber || trainNumber}`;
     // $FlowFixMe - optional chaining call
     const routePost: string[] = (getAttr(dp, 'ppth')?.split('|') || []).map(normalizeRouteName);
@@ -536,6 +540,7 @@ export default class Timetable {
     return {
       o,
       arrival: scheduledArrival,
+      productClass,
       arrivalWingIds: this.getWings(ar, false),
       // classes: getAttr(tl, 'f'),
       currentStation: this.currentStation,
