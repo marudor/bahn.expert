@@ -11,4 +11,5 @@ module.exports = {
   coverageDirectory: '<rootDir>/reports/client',
   rootDir: '../..',
   roots: ['<rootDir>/src', '<rootDir>/test/client'],
+  verbose: false,
 };
