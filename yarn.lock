@@ -5384,6 +5384,11 @@ invert-kv@^2.0.0:
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-2.0.0.tgz#7393f5afa59ec9ff5f67a27620d11c226e3eec02"
   integrity sha512-wPVv/y/QQ/Uiirj/vh3oP+1Ww+AWehmi1g5fFWGPF6IpCBCDVrhgHRMvrLfdYcwDh3QJbGXDW4JAuzxElLSqKA==
 
+ip@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/ip/-/ip-1.1.5.tgz#bdded70114290828c0a039e72ef25f5aaec4354a"
+  integrity sha1-vd7XARQpCCjAoDnnLvJfWq7ENUo=
+
 ipaddr.js@1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.8.0.tgz#eaa33d6ddd7ace8f7f6fe0c9ca0440e706738b1e"
@@ -7163,6 +7168,11 @@ multipipe@^1.0.2:
   dependencies:
     duplexer2 "^0.1.2"
     object-assign "^4.1.0"
+
+murmurhash3js@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/murmurhash3js/-/murmurhash3js-3.0.1.tgz#3e983e5b47c2a06f43a713174e7e435ca044b998"
+  integrity sha1-Ppg+W0fCoG9DpxMXTn5DXKBEuZg=
 
 mute-stream@0.0.7:
   version "0.0.7"
@@ -10790,6 +10800,15 @@ universal-cookie@^3.1.0:
     "@types/object-assign" "^4.0.30"
     cookie "^0.3.1"
     object-assign "^4.1.0"
+
+unleash-client@^3.2.3:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/unleash-client/-/unleash-client-3.2.3.tgz#11f93f085979fa256eb950d957c13e5833d489b5"
+  integrity sha512-EIrzOa4qCCOeLj8xgVntEH9ro4MRi5IXYLJqBXC7RrYOMl2GhAz4xcawGOiTJ4fmOgHJhuBYJx1zNOdcacFaOQ==
+  dependencies:
+    ip "^1.1.5"
+    murmurhash3js "^3.0.1"
+    request "^2.88.0"
 
 unpipe@1.0.0, unpipe@~1.0.0:
   version "1.0.0"

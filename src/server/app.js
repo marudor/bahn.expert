@@ -1,4 +1,5 @@
 // @flow
+import './features';
 import { middlewares } from './logger';
 import axios from 'axios';
 import createAdmin from './admin';

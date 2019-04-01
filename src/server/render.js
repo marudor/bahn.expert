@@ -1,6 +1,7 @@
 // @flow
 import { Actions, setCookies } from 'client/actions/config';
 import { HelmetProvider } from 'react-helmet-async';
+import { isEnabled } from 'unleash-client';
 import { matchRoutes } from 'react-router-config';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
@@ -76,6 +77,7 @@ export default async (ctx: any) => {
     delete state.config.cookies;
 
     ctx.body = headerTemplate({
+      googleAnalytics: isEnabled('google-analytics'),
       header: helmetContext.helmet,
       cssBundles: ctx.stats.main.css,
       clientState: serialize(state),
