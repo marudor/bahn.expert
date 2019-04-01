@@ -14,10 +14,10 @@ import axios from 'axios';
 import messageLookup, { messageTypeLookup, supersededMessages } from './messageLookup';
 import NodeCache from 'node-cache';
 import xmljs, { type XmlNode } from 'libxmljs2';
-import type { Message } from 'types/abfahrten';
+import type { Abfahrt, Message } from 'types/abfahrten';
 
 export type Result = {
-  departures: any[],
+  departures: Abfahrt[],
   wings: Object,
   lageplan?: ?string,
 };

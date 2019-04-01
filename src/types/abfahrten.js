@@ -78,6 +78,7 @@ export type ResolvedWings = {|
 export type AbfahrtAPIResult = {|
   +departures: Abfahrt[],
   +wings: Wings,
+  +lageplan?: ?string,
 |};
 
 export type WingNode = {|
