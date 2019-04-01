@@ -18,5 +18,7 @@ type marudorConfig = {|
   +lineAndNumber: boolean,
 |};
 
+type FeatureKeys = 'google-analytics';
+
 declare var PROD: boolean;
 declare var SERVER: boolean;
