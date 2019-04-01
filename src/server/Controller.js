@@ -2,7 +2,7 @@
 import { getAbfahrten } from './Abfahrten';
 import { getLageplan } from './Bahnhof/Lageplan';
 import { getStation } from './Abfahrten/station';
-import { wagenReihung, wagenReihungStation } from './Reihung';
+import { wagenReihung, wagenReihungMonitoring, wagenReihungStation } from './Reihung';
 import axios from 'axios';
 import createAuslastung from './Auslastung';
 import KoaRouter from 'koa-router';
@@ -69,6 +69,9 @@ router
     const { date, trainNumber } = ctx.params;
 
     ctx.body = await wagenReihung(trainNumber, Number.parseInt(date, 10));
+  })
+  .get('/monitoring/wagen', async ctx => {
+    ctx.body = await wagenReihungMonitoring();
   })
   .get('/wings/:rawId1/:rawId2', async ctx => {
     const { rawId1, rawId2 } = ctx.params;

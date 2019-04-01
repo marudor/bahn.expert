@@ -17,7 +17,7 @@ const defaultOptions = {
 
 const baseResult: Result = { departures: [], wings: {}, lageplan: undefined };
 
-export function reduceResults(agg: Result, r: Result) {
+export function reduceResults(agg: Result, r: Result): Result {
   return {
     departures: [...agg.departures, ...r.departures],
     wings: {
@@ -29,7 +29,11 @@ export function reduceResults(agg: Result, r: Result) {
   };
 }
 
-export async function getAbfahrten(evaId: string, withRelated: boolean = true, options: AbfahrtenOptions = {}) {
+export async function getAbfahrten(
+  evaId: string,
+  withRelated: boolean = true,
+  options: AbfahrtenOptions = {}
+): Promise<Result> {
   const lookahead = options.lookahead || defaultOptions.lookahead;
   const lookbehind = options.lookbehind || defaultOptions.lookbehind;
 
@@ -46,13 +50,14 @@ export async function getAbfahrten(evaId: string, withRelated: boolean = true, o
     lookahead,
     lookbehind,
   });
-  const result: Result = (await Promise.all([timetable.start(), relatedAbfahrten])).reduce(reduceResults, baseResult);
+  const result = (await Promise.all([timetable.start(), relatedAbfahrten])).reduce(reduceResults, baseResult);
 
   result.departures.sort((a, b) => {
     const timeA =
       a.departureIsCancelled && !a.isCancelled ? a.scheduledArrival : a.scheduledDeparture || a.scheduledArrival;
     const timeB =
       b.departureIsCancelled && !b.isCancelled ? b.scheduledArrival : b.scheduledDeparture || b.scheduledArrival;
+    // $FlowFixMe - either arrival or departure always exists
     const sort = compareAsc(timeA, timeB);
 
     if (!sort) {

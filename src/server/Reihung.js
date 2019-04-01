@@ -2,6 +2,7 @@
 import { convertToTimeZone } from 'date-fns-timezone';
 import { flatten, maxBy, minBy } from 'lodash';
 import { format } from 'date-fns';
+import { getAbfahrten } from './Abfahrten';
 import axios from 'axios';
 import type { Fahrzeug, Formation, Wagenreihung } from 'types/reihung';
 import type { WagenreihungStation } from 'types/reihungStation';
@@ -160,4 +161,13 @@ export async function wagenReihungStation(trainNumbers: string[], station: numbe
   )).data;
 
   return info;
+}
+
+export async function wagenReihungMonitoring() {
+  const abfahrten = await getAbfahrten('8002549', false);
+  const firstWithReihung = abfahrten.departures.find(d => d.reihung && d.scheduledDeparture);
+
+  if (firstWithReihung && firstWithReihung.scheduledDeparture) {
+    return wagenReihung(firstWithReihung.trainId, firstWithReihung.scheduledDeparture);
+  }
 }
