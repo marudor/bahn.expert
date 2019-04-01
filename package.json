@@ -148,6 +148,7 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "universal-cookie": "^3.1.0",
+    "unleash-client": "^3.2.3",
     "uuid": "^3.3.2"
   },
   "repository": {

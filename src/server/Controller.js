@@ -2,6 +2,7 @@
 import { getAbfahrten } from './Abfahrten';
 import { getLageplan } from './Bahnhof/Lageplan';
 import { getStation } from './Abfahrten/station';
+import { isEnabled } from 'unleash-client';
 import { wagenReihung, wagenReihungMonitoring, wagenReihungStation } from './Reihung';
 import axios from 'axios';
 import createAuslastung from './Auslastung';
@@ -32,6 +33,9 @@ router
     const { type } = ctx.query;
 
     ctx.body = await stationSearch(searchTerm, type);
+  })
+  .get('/feature/:name', ctx => {
+    ctx.body = isEnabled(ctx.params.name);
   })
   // https://si.favendo.de/station-info/rest/api/station/724
   .get('/station/:station', async ctx => {
