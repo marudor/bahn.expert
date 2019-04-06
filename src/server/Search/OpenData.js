@@ -1,6 +1,6 @@
 // @flow
 import axios from 'axios';
-import type { Station } from 'types/abfahrten';
+import type { Station } from 'types/station';
 
 // https://developer.deutschebahn.com/store/apis/info?name=StaDa-Station_Data&version=v2&provider=DBOpenData
 // istanbul ignore next

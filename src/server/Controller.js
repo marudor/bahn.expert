@@ -7,6 +7,7 @@ import { wagenReihung, wagenReihungMonitoring, wagenReihungStation } from './Rei
 import axios from 'axios';
 import createAuslastung from './Auslastung';
 import KoaRouter from 'koa-router';
+import routing from './Routing';
 import stationSearch from './Search';
 import wingInfo from './Abfahrten/wings';
 
@@ -32,10 +33,18 @@ router
     const { searchTerm } = ctx.params;
     const { type } = ctx.query;
 
+    // $FlowFixMe - assume type is StationSearchType
     ctx.body = await stationSearch(searchTerm, type);
   })
   .get('/feature/:name', ctx => {
     ctx.body = isEnabled(ctx.params.name);
+  })
+  .post('/route', async ctx => {
+    ctx.body = await routing({
+      ...ctx.request.body,
+      // $FlowFixMe - we assume user enters correct params
+      time: Number.parseInt(ctx.request.body.time, 10),
+    });
   })
   // https://si.favendo.de/station-info/rest/api/station/724
   .get('/station/:station', async ctx => {

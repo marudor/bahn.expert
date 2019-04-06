@@ -1,6 +1,6 @@
 // @flow
 import axios from 'axios';
-import type { Station } from 'types/abfahrten';
+import type { Station } from 'types/station';
 
 // istanbul ignore next
 const authKey = process.env.OPENDB_AUTH_KEY || '';

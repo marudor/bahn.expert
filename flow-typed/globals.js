@@ -1,15 +1,17 @@
+type StationSearchType =
+  | 'dbNav'
+  | 'openData'
+  | 'openDataOffline'
+  | 'openDB'
+  | 'hafas'
+  | 'favOpenDB'
+  | 'stationsData'
+  | 'favendo'
+  | '';
+
 type marudorConfig = {|
   +time: boolean,
-  +searchType:
-    | 'dbNav'
-    | 'opendata'
-    | 'openDataOffline'
-    | 'openDB'
-    | 'hafas'
-    | 'favOpenDb'
-    | 'stationsData'
-    | 'favendo'
-    | '',
+  +searchType: StationSearchType,
   +checkIn: 'traewelling' | 'travelynx' | '',
   +zoomReihung: boolean,
   +showSupersededMessages: boolean,

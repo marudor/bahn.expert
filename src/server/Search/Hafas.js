@@ -1,7 +1,7 @@
 // @flow
 import axios from 'axios';
 import iconv from 'iconv-lite';
-import type { Station } from 'types/abfahrten';
+import type { Station } from 'types/station';
 
 export default async function(searchTerm: string): Promise<Station[]> {
   const buffer = (await axios.get(`http://reiseauskunft.bahn.de/bin/ajax-getstop.exe/dn?S=${searchTerm}*`, {

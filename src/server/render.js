@@ -1,5 +1,4 @@
 // @flow
-import { Actions, setCookies } from 'client/actions/config';
 import { HelmetProvider } from 'react-helmet-async';
 import { isEnabled } from 'unleash-client';
 import { matchRoutes } from 'react-router-config';
@@ -8,7 +7,7 @@ import { Provider } from 'react-redux';
 import { renderStylesToString } from 'emotion-server';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
-import BahnhofsAbfahrten from 'client/Components/BahnhofsAbfahrten';
+import Actions, { setCookies } from 'Abfahrten/actions/config';
 import Cookies from 'universal-cookie';
 import createJssProviderProps from 'client/createJssProviderProps';
 import createStore from 'client/createStore';
@@ -16,9 +15,10 @@ import createTheme from 'client/createTheme';
 import ejs from 'ejs';
 import fs from 'fs';
 import JssProvider from 'react-jss/lib/JssProvider';
+import MainApp from 'client/App';
 import path from 'path';
 import React from 'react';
-import routes from 'client/routes';
+import routes from 'Abfahrten/routes';
 import serialize from 'fast-safe-stringify';
 
 const headerFilename = path.resolve(__dirname, './views/header.ejs');
@@ -56,7 +56,7 @@ export default async (ctx: any) => {
         <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
           <HelmetProvider context={helmetContext}>
             <StaticRouter location={ctx.req.url} context={routeContext}>
-              <BahnhofsAbfahrten />
+              <MainApp />
             </StaticRouter>
           </HelmetProvider>
         </MuiThemeProvider>

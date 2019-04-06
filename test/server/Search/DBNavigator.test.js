@@ -1,6 +1,6 @@
 // @flow
 import { testHamburgSearch } from './common';
-import DBNavSearch from 'server/Search/DBNavigator';
+import DBNavigatorSearch from 'server/Search/DBNavigator';
 import exampleRespone from './__fixtures__/DBNavigator.example';
 import Nock from 'nock';
 
@@ -11,10 +11,10 @@ describe('DBNavigator Search', () => {
       .query(true)
       .reply(200, exampleRespone);
 
-    await testHamburgSearch(DBNavSearch);
+    await testHamburgSearch(DBNavigatorSearch);
   });
 
   it('Throws exception on error', async () => {
-    await expect(DBNavSearch('Hamburg')).rejects.toBeTruthy();
+    await expect(DBNavigatorSearch('Hamburg')).rejects.toBeTruthy();
   });
 });

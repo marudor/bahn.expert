@@ -1,6 +1,6 @@
 // @flow
 /* eslint import/prefer-default-export: 0 */
-import type { Station } from 'types/abfahrten';
+import type { Station } from 'types/station';
 
 type BuiltOptions = {|
   includeFavendoId?: boolean,

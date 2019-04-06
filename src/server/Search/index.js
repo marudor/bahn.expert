@@ -9,7 +9,7 @@ import OpenDataOfflineSearch from './OpenDataOffline';
 import OpenDataSearch from './OpenData';
 import OpenDBSearch from './OpenDB';
 import StationsDataSearch from './StationsData';
-import type { Station } from 'types/abfahrten';
+import type { Station } from 'types/station';
 
 export async function favendoOpenDBCombined(searchTerm: string): Promise<Station[]> {
   const stations = await Promise.all([FavendoSearch(searchTerm), OpenDBSearch(searchTerm)]);
@@ -17,7 +17,7 @@ export async function favendoOpenDBCombined(searchTerm: string): Promise<Station
   return uniqBy(flatten(stations), 'id');
 }
 
-export function getSearchMethod(type: ?string) {
+export function getSearchMethod(type: ?StationSearchType) {
   switch (type) {
     case 'dbNav':
       return DBNavigatorSearch;
@@ -56,7 +56,7 @@ function getCache(key: Function) {
   return cache;
 }
 
-export default async (rawSearchTerm: string, type: ?string) => {
+export default async (rawSearchTerm: string, type: ?StationSearchType) => {
   const searchTerm = rawSearchTerm.replace(/ {2}/g, ' ');
 
   try {
@@ -91,6 +91,7 @@ export default async (rawSearchTerm: string, type: ?string) => {
         statusText: e.response?.statusText,
         data: e.response?.data,
         status: e.response?.status,
+        raw: e,
       },
     });
 

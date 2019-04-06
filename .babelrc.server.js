@@ -23,7 +23,14 @@ module.exports = {
       'module-resolver',
       {
         root: 'src',
-        alias: {},
+        resolvePath: (sourcePath, currentFile, opts) => {
+          const path = require('babel-plugin-module-resolver').resolvePath(
+            sourcePath.replace(/^(Abfahrten|Common|Routing)\//, 'client/$1/'),
+            currentFile,
+            opts
+          );
+          return path;
+        },
       },
     ],
     'dynamic-import-webpack',
