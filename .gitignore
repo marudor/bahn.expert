@@ -53,3 +53,4 @@ reports/
 .DS_STORE
 secrets/ssl/*.pem
 research/
+.out

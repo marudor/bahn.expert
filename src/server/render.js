@@ -1,4 +1,5 @@
 // @flow
+import { getFeatures } from './features';
 import { HelmetProvider } from 'react-helmet-async';
 import { isEnabled } from 'unleash-client';
 import { matchRoutes } from 'react-router-config';
@@ -36,7 +37,10 @@ export default async (ctx: any) => {
   const sheetsManager = new Map();
   const routeContext = {};
   const helmetContext = {};
-  const store = createStore();
+
+  const store = createStore({
+    features: getFeatures(),
+  });
 
   store.dispatch(setCookies(new Cookies(ctx.req.headers.cookie)));
   // $FlowFixMe we already checked that BASE_URL exists

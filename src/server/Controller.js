@@ -39,13 +39,6 @@ router
   .get('/feature/:name', ctx => {
     ctx.body = isEnabled(ctx.params.name);
   })
-  .post('/route', async ctx => {
-    ctx.body = await routing({
-      ...ctx.request.body,
-      // $FlowFixMe - we assume user enters correct params
-      time: Number.parseInt(ctx.request.body.time, 10),
-    });
-  })
   // https://si.favendo.de/station-info/rest/api/station/724
   .get('/station/:station', async ctx => {
     const { station } = ctx.params;
@@ -103,6 +96,16 @@ if (AuslastungsUser && AuslastungsPW) {
     const { date, trainNumber } = ctx.params;
 
     ctx.body = await auslastung(trainNumber, date);
+  });
+}
+
+if (isEnabled('routing')) {
+  router.post('/route', async ctx => {
+    ctx.body = await routing({
+      ...ctx.request.body,
+      // $FlowFixMe - we assume user enters correct params
+      time: Number.parseInt(ctx.request.body.time, 10),
+    });
   });
 }
 

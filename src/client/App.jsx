@@ -1,11 +1,25 @@
 // @flow
+import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import Abfahrten from './Abfahrten';
 import React from 'react';
 import Routing from './Routing';
 import withStyles, { type StyledProps } from 'react-jss';
+import type { AppState } from 'AppState';
 
-type Props = StyledProps<{||}, typeof styles>;
+type DispatchProps = {|
+  dispatch: Function,
+|};
+type OwnProps = {||};
+type StateProps = {|
+  routingFeature: boolean,
+|};
+type ReduxProps = {|
+  ...DispatchProps,
+  ...OwnProps,
+  ...StateProps,
+|};
+type Props = StyledProps<ReduxProps, typeof styles>;
 
 class App extends React.Component<Props> {
   componentDidMount() {
@@ -16,9 +30,11 @@ class App extends React.Component<Props> {
     }
   }
   render() {
+    const { routingFeature } = this.props;
+
     return (
       <Switch>
-        <Route component={Routing} path="/routing" />
+        {routingFeature && <Route component={Routing} path="/routing" />}
         <Route component={Abfahrten} path="/" />
       </Switch>
     );
@@ -38,4 +54,6 @@ const styles = {
   },
 };
 
-export default withStyles(styles)(App);
+export default connect<ReduxProps, OwnProps, StateProps, DispatchProps, AppState, _>(state => ({
+  routingFeature: state.features.routing,
+}))(withStyles(styles)(App));

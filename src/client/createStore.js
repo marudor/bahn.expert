@@ -7,7 +7,8 @@ import reducer from './reducer';
 import thunkMiddleware from 'redux-thunk';
 import type { AppState } from 'AppState';
 
-export default () => {
+// eslint-disable-next-line no-underscore-dangle
+export default (state: $Shape<AppState> = global.__DATA__) => {
   const middlewares = [promiseMiddleware, thunkMiddleware];
 
   if (process.env.NODE_ENV !== 'production') {
@@ -19,12 +20,7 @@ export default () => {
   // eslint-disable-next-line
   const composeEnhancers = global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-  const store = createStore<AppState, *, *>(
-    reducer,
-    // eslint-disable-next-line no-underscore-dangle
-    global.__DATA__,
-    composeEnhancers(applyMiddleware(...middlewares))
-  );
+  const store = createStore<AppState, *, *>(reducer, state, composeEnhancers(applyMiddleware(...middlewares)));
 
   store.dispatch(Actions.setCookies(new Cookies()));
 

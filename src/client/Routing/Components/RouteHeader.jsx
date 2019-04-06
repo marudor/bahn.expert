@@ -1,5 +1,5 @@
 // @flow
-import ColumnStyles from './Column.styles';
+import { gridStyle } from './Route';
 import Paper from '@material-ui/core/Paper';
 import React from 'react';
 import withStyles, { type StyledProps } from 'react-jss';
@@ -9,19 +9,18 @@ type Props = StyledProps<OwnProps, typeof styles>;
 
 const RouteHeader = ({ classes }: Props) => (
   <Paper square className={classes.main}>
-    <span className={classes.ab}>Ab</span>
-    <span className={classes.an}>An</span>
-    <span className={classes.dauer}>Dauer</span>
-    <span className={classes.umstiege}>Umstiege</span>
+    <span>Ab</span>
+    <span>An</span>
+    <span>Dauer</span>
+    <span>Umstiege</span>
   </Paper>
 );
 
 const styles = {
   main: {
-    display: 'flex',
-    marginBottom: '.2em',
+    fontSize: '0.7em',
+    ...gridStyle,
   },
-  ...ColumnStyles,
 };
 
 export default withStyles(styles)(RouteHeader);
