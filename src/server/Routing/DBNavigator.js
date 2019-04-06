@@ -28,13 +28,14 @@ function createRequest({
     svcReqL: [
       {
         req: {
-          jnyFltrL: [
-            {
-              value: '1023',
-              mode: 'INC',
-              type: 'PROD',
-            },
-          ],
+          // jnyFltrL: [
+          //   {
+          //     // value: '1023',
+          //     // mode: 'INC',
+          //     type: 'PROD',
+          //   },
+          // ],
+          numF: 6,
           outDate: formatToTimeZone(time, 'YYYYMMDD', { timeZone: 'Europe/Berlin' }),
           outTime: formatToTimeZone(time, 'HHmmss', { timeZone: 'Europe/Berlin' }),
           maxChg: maxChanges,
@@ -43,7 +44,7 @@ function createRequest({
           getPasslist: true,
           economic: true,
           getTariff: true,
-          ushrp: false,
+          ushrp: true,
           getPolyline: false,
           // arrival / departure
           outFrwd: searchForDeparture,
