@@ -1,13 +1,16 @@
 // @flow
 import type { AbfahrtenRootState } from 'Abfahrten/reducer';
+import type { CommonRootState } from 'Common/reducer';
 import type { Dispatch as ReduxDispatch, Store } from 'redux';
 import type { RoutingRootState } from 'Routing/reducer';
 
 export type RoutingState = RoutingRootState;
 export type AbfahrtenState = AbfahrtenRootState;
+export type CommonState = CommonRootState;
 export type AppState = {|
   ...AbfahrtenRootState,
   ...RoutingRootState,
+  ...CommonRootState,
 |};
 export type Action = any;
 export type Dispatch = ReduxDispatch<Action>;

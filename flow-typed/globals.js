@@ -20,7 +20,12 @@ type marudorConfig = {|
   +lineAndNumber: boolean,
 |};
 
-type FeatureKeys = 'google-analytics';
+type Features = {|
+  +'google-analytics': boolean,
+  +routing: boolean,
+|};
+
+type FeatureKeys = $Keys<Features>;
 
 declare var PROD: boolean;
 declare var SERVER: boolean;

@@ -8,7 +8,6 @@ import { delayed, early } from 'style/mixins';
 import { delayString, delayStyle } from 'client/util/delay';
 import { getDetailForRoute } from 'Routing/selector/routing';
 import cc from 'classnames';
-import ColumnStyles from './Column.styles';
 import Paper from '@material-ui/core/Paper';
 import RoutingActions from 'Routing/actions/routing';
 import withStyles, { type StyledProps } from 'react-jss';
@@ -32,11 +31,11 @@ type ReduxProps = {|
 type Props = StyledProps<ReduxProps, typeof styles>;
 
 class Route extends React.PureComponent<Props> {
-  getTime(real, delay, className) {
+  getTime(real, delay) {
     const { classes } = this.props;
 
     return (
-      <div className={cc(className, classes.time, delayStyle(classes, delay))}>
+      <div className={cc(classes.time, delayStyle(classes, delay))}>
         <span>{format(real, 'HH:mm')}</span>
         {Boolean(delay) && `(${delayString(delay)})`}
       </div>
@@ -59,24 +58,27 @@ class Route extends React.PureComponent<Props> {
 
     return (
       <Paper onClick={this.setDetail} square className={classes.main}>
-        {this.getTime(route.departure, route.departureDelay, classes.ab)}
-        {this.getTime(route.arrival, route.arrivalDelay, classes.an)}
-        <span className={classes.dauer}>{formatDuration(route.duration)}</span>
-        <span className={classes.umstiege}>{route.changes}</span>
-        <span className={classes.products}>{this.getSegmentTypes()}</span>
+        {this.getTime(route.departure, route.departureDelay)}
+        {this.getTime(route.arrival, route.arrivalDelay)}
+        <span>{formatDuration(route.duration)}</span>
+        <span>{route.changes}</span>
+        <span>{this.getSegmentTypes()}</span>
       </Paper>
     );
   }
 }
 
+export const gridStyle = {
+  gridTemplateColumns: '2fr 2fr 2fr 1fr',
+  display: 'grid',
+  marginBottom: '.2em',
+};
 const styles = {
   main: {
     height: '3em',
-    marginBottom: '.2em',
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr 1fr 1fr',
     gridTemplateRows: '1fr 1fr',
     alignItems: 'center',
+    ...gridStyle,
   },
   products: {
     fontSize: '.9em',
@@ -89,7 +91,6 @@ const styles = {
   },
   delayed,
   early,
-  ...ColumnStyles,
 };
 
 export default connect<ReduxProps, OwnProps, StateProps, DispatchProps, RoutingState, _>(
