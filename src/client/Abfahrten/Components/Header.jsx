@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 import { type ContextRouter, withRouter } from 'react-router-dom';
 import { format } from 'date-fns';
 import { getNextDeparture } from 'Abfahrten/selector/abfahrten';
-import ActionHome from '@material-ui/icons/Home';
 import AppBar from '@material-ui/core/AppBar';
 import HeaderButtons from './HeaderButtons';
 import Helmet from 'react-helmet-async';
-import IconButton from '@material-ui/core/IconButton';
+import HomeMenu from 'Common/Components/HomeMenu';
 import React from 'react';
 import StationSearch from 'Common/Components/StationSearch';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -100,9 +99,7 @@ class Header extends React.Component<Props> {
         {this.metaTags()}
         <AppBar position="fixed">
           <Toolbar disableGutters>
-            <IconButton aria-label="Home" onClick={this.toRoot} color="inherit">
-              <ActionHome color="inherit" />
-            </IconButton>
+            <HomeMenu />
             <StationSearch
               autoFocus={!currentStation}
               searchType={searchType}
