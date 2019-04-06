@@ -92,6 +92,7 @@ class Journey {
           trainId: product.prodCtx.line,
           trainNumber: product.prodCtx.num,
           trainType: product.prodCtx.catOut,
+          changeDuration: t.jny.chgDurR,
           segmentStart: parseFullStation(fullStart),
           segmentDestination: parseFullStation(fullDestination),
           ...arrival,

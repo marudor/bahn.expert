@@ -232,6 +232,7 @@ export type Route$JourneySegmentTrain = {|
   +trainId: ?string,
   +trainNumber: string,
   +trainType: string,
+  +changeDuration?: number,
   +segmentStart: Station,
   +segmentDestination: Station,
   ...Route$Arrival,
@@ -249,7 +250,7 @@ export type Route = {|
   +changes: number,
   ...Route$Arrival,
   ...Route$Departure,
-  +segments: $ReadOnlyArray<Route$JourneySegment>,
+  +segments: Route$JourneySegment[],
   +segmentTypes: $ReadOnlyArray<string>,
   raw?: any,
 |};

@@ -1,59 +1,53 @@
 // @flow
-import { format } from 'date-fns';
-import { formatDuration } from 'Routing/util';
 import React from 'react';
+import Time from 'Common/Components/Time';
+import withStyles, { type StyledProps } from 'react-jss';
 import type { Route$JourneySegment } from 'types/routing';
 
 type OwnProps = {|
   segment: Route$JourneySegment,
 |};
-type Props = OwnProps;
-const RouteSegment = ({ segment }: Props) => (
-  <div>
-    <span>{segment.train}</span>
-    <div>
-      <div>
-        <span>Departure Station</span>
-        <span>{segment.segmentStart.title}</span>
-      </div>
-      <div>
-        <span>Departure (scheduled)</span>
-        <span>{format(segment.scheduledDeparture, 'HH:mm')}</span>
-      </div>
-      <div>
-        <span>Departure</span>
-        <span>{format(segment.departure, 'HH:mm')}</span>
-      </div>
-      <div>
-        <span>Departure Platform</span>
-        <span>{segment.scheduledDeparturePlatform}</span>
-      </div>
-      <div>
-        <span>Arrival Station</span>
-        <span>{segment.segmentDestination.title}</span>
-      </div>
-      <div>
-        <span>Arrival (scheduled)</span>
-        <span>{format(segment.scheduledArrival, 'HH:mm')}</span>
-      </div>
-      <div>
-        <span>Arrival</span>
-        <span>{format(segment.arrival, 'HH:mm')}</span>
-      </div>
-      <div>
-        <span>Arrival Platform</span>
-        <span>{segment.scheduledArrivalPlatform}</span>
-      </div>
-      <div>
-        <span>Duration</span>
-        <span>{formatDuration(segment.duration)}</span>
-      </div>
-      <div>
-        <span>Train Destination</span>
+type Props = StyledProps<OwnProps, typeof styles>;
+const RouteSegment = ({ segment, classes }: Props) => (
+  <>
+    <div className={classes.main}>
+      <Time real={segment.departure} delay={segment.departureDelay} />
+      <span>{segment.segmentStart.title}</span>
+      <span className={classes.platform}>{segment.departurePlatform}</span>
+      <div className={classes.train}>
+        <span>{segment.train}</span>
         <span>{segment.finalDestination}</span>
       </div>
+      <Time real={segment.arrival} delay={segment.arrivalDelay} />
+      <span>{segment.segmentDestination.title}</span>
+      <span className={classes.platform}>{segment.arrivalPlatform}</span>
     </div>
-  </div>
+    {segment.hasOwnProperty('changeDuration') && <span>{segment.changeDuration} Minuten Umsteigezeit</span>}
+  </>
 );
 
-export default RouteSegment;
+const styles = {
+  main: {
+    paddingLeft: '1em',
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr 1fr',
+    gridTemplateRows: '1fr max-content 1fr',
+    gridTemplateAreas: '". . ." "t t t" ". . ."',
+    marginTop: '1em',
+    marginBottom: '1em',
+  },
+  train: {
+    marginTop: '.5em',
+    marginBottom: '.5em',
+    gridArea: 't',
+    paddingLeft: '.5em',
+    '& > span:first-child': {
+      marginRight: '.5em',
+    },
+  },
+  platform: {
+    textAlign: 'end',
+  },
+};
+
+export default withStyles(styles)(RouteSegment);
