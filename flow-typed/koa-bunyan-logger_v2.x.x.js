@@ -12,7 +12,7 @@
  */
 
 declare module 'koa-bunyan-logger' {
-  import type bunyan, { Serializers, Logger, LoggerOptions, BunyanLogLevels } from 'bunyan';
+  import type { Serializers, Logger, LoggerOptions, BunyanLogLevels } from 'bunyan';
 
   import type { Middleware } from 'koa';
 
@@ -26,29 +26,29 @@ declare module 'koa-bunyan-logger' {
     updateRequestLogFields?: FieldsModifier,
     updateResponseLogFields?: FieldsModifier,
     formatRequestMessage?: FieldsStringifier,
-    formatResponseMessage?: FieldsStringifier
-  }
+    formatResponseMessage?: FieldsStringifier,
+  };
 
   declare type TimeContext$Options = {
     logLevel?: BunyanLogLevels,
-    updateLogFields?: FieldsModifier
-  }
+    updateLogFields?: FieldsModifier,
+  };
 
   declare type RequestIdOptions = {
     header?: string,
     prop?: string,
     requestProp?: string,
-    field?: string
-  }
+    field?: string,
+  };
 
   declare module.exports: {
-    requestIdContext(options?: RequestIdOptions): Middleware;
-    requestLogger(options?: RequestLogger$Options): Middleware;
-    timeContext(options: TimeContext$Options): Middleware;
-    (options?: LoggerOptions & { name: string } | Logger): Middleware;
+    requestIdContext(options?: RequestIdOptions): Middleware,
+    requestLogger(options?: RequestLogger$Options): Middleware,
+    timeContext(options: TimeContext$Options): Middleware,
+    (options?: (LoggerOptions & { name: string }) | Logger): Middleware,
     bunyan: {
-      stdSerializers: Serializers;
-      createLogger(options: LoggerOptions & { name: string }): Logger;
-    };
+      stdSerializers: Serializers,
+      createLogger(options: LoggerOptions & { name: string }): Logger,
+    },
   };
 }

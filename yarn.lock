@@ -8953,6 +8953,11 @@ react-is@^16.6.0, react-is@^16.6.3, react-is@^16.7.0, react-is@^16.8.1, react-is
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.4.tgz#90f336a68c3a29a096a3d648ab80e87ec61482a2"
   integrity sha512-PVadd+WaUDOAciICm/J1waJaSvgq+4rHE/K70j0PFqKhkTBsPv/82UGQJNXAngz1fOQLLxI6z1sEDmJDQhCTAA==
 
+react-jss-hmr@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-jss-hmr/-/react-jss-hmr-1.0.0.tgz#2bad6c83d780594debeb3159be661015c06ed1bd"
+  integrity sha512-EJvvAUYxm8Py4F5NYaq6n3Eblp8mq4wYg/u0Sz1uJWuLIPKoKLqlgjVu3Pn+4x61H0E2y6ATFNU989o6GmkJZA==
+
 react-jss@^8.6.1:
   version "8.6.1"
   resolved "https://registry.yarnpkg.com/react-jss/-/react-jss-8.6.1.tgz#a06e2e1d2c4d91b4d11befda865e6c07fbd75252"

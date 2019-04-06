@@ -4,13 +4,6 @@ export type SubstituteRef = {|
   +trainType: string,
   +train: string,
 |};
-export type Station = {|
-  +title: string,
-  +id: string,
-  +favendoId?: number,
-  +DS100?: string,
-  +raw?: Object,
-|};
 
 export type Message = {|
   +text: string,

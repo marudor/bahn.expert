@@ -10,6 +10,11 @@ export default () =>
           justifyContent: 'space-between',
         },
       },
+      MuiPaper: {
+        elevation2: {
+          boxShadow: '0 1px 0 rgba(0, 0, 0, 0.24)',
+        },
+      },
     },
     type: 'dark',
     typography: {

@@ -1,6 +1,6 @@
 // @flow
-import { Actions } from 'client/actions/config';
 import { applyMiddleware, compose, createStore } from 'redux';
+import Actions from 'Abfahrten/actions/config';
 import Cookies from 'universal-cookie';
 import promiseMiddleware from 'redux-promise';
 import reducer from './reducer';
@@ -33,7 +33,7 @@ export default () => {
     // Enable Webpack hot module replacement for reducers
     // $FlowFixMe
     module.hot.accept('./reducer', () => {
-      const nextRootReducer = require('./reducer/index').default;
+      const nextRootReducer = require('./reducer').default;
 
       store.replaceReducer(nextRootReducer);
     });

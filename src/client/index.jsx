@@ -7,11 +7,11 @@ import { HelmetProvider } from 'react-helmet-async';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
 import axios from 'axios';
-import BahnhofsAbfahrten from './Components/BahnhofsAbfahrten';
 import createJssProviderProps from './createJssProviderProps';
 import createStore from './createStore';
 import createTheme from './createTheme';
 import JssProvider from 'react-jss/lib/JssProvider';
+import MainApp from './App';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -39,12 +39,12 @@ const render = App => (
 );
 
 // $FlowFixMe
-ReactDOM.hydrate(render(BahnhofsAbfahrten), container);
+ReactDOM.hydrate(render(MainApp), container);
 
 // $FlowFixMe
 if (module.hot) {
-  module.hot.accept('./Components/BahnhofsAbfahrten', () => {
-    const App = require('./Components/BahnhofsAbfahrten').default;
+  module.hot.accept('./App', () => {
+    const App = require('./App').default;
 
     // $FlowFixMe
     ReactDOM.render(render(App), container);

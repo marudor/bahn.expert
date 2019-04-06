@@ -44,7 +44,7 @@ describe('Favendo Search', () => {
   });
 
   it('Throws instead of fallback to default', async () => {
-    await expect(serverSearch('Hamburg', 'Favendo')).rejects.toBeTruthy();
+    await expect(serverSearch('Hamburg', 'favendo')).rejects.toBeTruthy();
     await expect(serverSearch('Hamburg')).rejects.toBeTruthy();
   });
 

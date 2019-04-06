@@ -3,7 +3,7 @@ import { orderBy } from 'lodash';
 import fs from 'fs';
 import Fuse from 'fuse.js';
 import path from 'path';
-import type { Station } from 'types/abfahrten';
+import type { Station } from 'types/station';
 
 const dataPath = path.resolve(__dirname, 'data/Stationsdaten.csv');
 // eslint-disable-next-line no-sync
