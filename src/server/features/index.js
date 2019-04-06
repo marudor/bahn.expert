@@ -15,7 +15,7 @@ if (url && instanceId && appName) {
   // eslint-disable-next-line no-console
   console.log('Overriding feature stuff to always true!');
   // $FlowFixMe
-  Unleash.isEnabled = () => true;
+  Unleash.isEnabled = key => Boolean(require('./default').default[key]);
 }
 
 export const featureKeys = ['google-analytics', 'routing'];

@@ -83,6 +83,18 @@ router
     const { rawId1, rawId2 } = ctx.params;
 
     ctx.body = await wingInfo(rawId1, rawId2);
+  })
+  .post('/route', async ctx => {
+    if (!isEnabled('routing')) {
+      ctx.status = 404;
+
+      return;
+    }
+    ctx.body = await routing({
+      ...ctx.request.body,
+      // $FlowFixMe - we assume user enters correct params
+      time: Number.parseInt(ctx.request.body.time, 10),
+    });
   });
 
 const AuslastungsUser = process.env.AUSLASTUNGS_USER;
@@ -96,16 +108,6 @@ if (AuslastungsUser && AuslastungsPW) {
     const { date, trainNumber } = ctx.params;
 
     ctx.body = await auslastung(trainNumber, date);
-  });
-}
-
-if (isEnabled('routing')) {
-  router.post('/route', async ctx => {
-    ctx.body = await routing({
-      ...ctx.request.body,
-      // $FlowFixMe - we assume user enters correct params
-      time: Number.parseInt(ctx.request.body.time, 10),
-    });
   });
 }
 
