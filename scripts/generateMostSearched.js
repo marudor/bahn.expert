@@ -1,41 +1,37 @@
 // @ƒlow
-const rawStations = require('db-stations/data.json');
+const config = require('../.babelrc.server');
+
+require('@babel/register')(config);
+
+global.PROD = true;
+const search = require('../src/server/Search').default;
 
 const mostUsedNames = [
   'Hannover Hbf',
-  'Wuppertal Hbf',
-  'Düsseldorf Hbf',
-  'Hamburg Hbf',
-  'Kempen (Niederrhein)',
-  'Frankfurt (Main) Hbf',
-  'Rheda-Wiedenbrück',
-  'Braunschweig Hbf',
   'Köln Hbf',
-  'Wolfsburg Hbf',
-  'Opladen',
+  'Düsseldorf Hbf',
+  'Wuppertal Hbf',
   'Mannheim Hbf',
+  'Frankfurt (Main) Hbf',
+  'Hamburg Hbf',
+  'Chmenitz Hbf',
+  'Berlin Hbf',
+  'Rheda-Wiedenbrück',
+  'Kempen (Niederrhein)',
+  'Stuttgart Hbf',
+  'Bonn Hbf',
+  'Opladen',
   'Berlin-Spandau',
-  'Duisburg Hbf',
-  'München Hbf',
 ].map(n => n.toLowerCase());
 
-const mostUsedStations = {};
-
-rawStations.forEach(s => {
-  if (mostUsedNames.includes(s.name.toLowerCase())) {
-    mostUsedStations[s.name.toLowerCase()] = s;
-  }
-});
-
-// eslint-disable-next-line no-console
-console.log(
-  JSON.stringify(
-    mostUsedNames
-      .map(n => mostUsedStations[n])
-      .filter(Boolean)
-      .map(s => ({
-        title: s.name,
+Promise.all(mostUsedNames.map(s => search(s).then(s => s[0]))).then(stations => {
+  // eslint-disable-next-line no-console
+  console.log(
+    JSON.stringify(
+      stations.map(s => ({
+        title: s.title,
         id: s.id,
       }))
-  )
-);
+    )
+  );
+});
