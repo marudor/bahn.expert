@@ -2,6 +2,7 @@
 import './features';
 import { middlewares } from './logger';
 import axios from 'axios';
+import cookiesMiddleware from 'universal-cookie-koa';
 import createAdmin from './admin';
 import errorHandler from './errorHandler';
 import http from 'http';
@@ -48,6 +49,7 @@ export async function createApp(wsServer: ?https$Server) {
   const app = new Koa();
 
   app.use(errorHandler);
+  app.use(cookiesMiddleware());
   middlewares.forEach(m => app.use(m));
   app.use(KoaBodyparser());
 

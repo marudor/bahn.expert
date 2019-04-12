@@ -15,10 +15,10 @@ function createRequest({
   transferTime = -1,
   maxChanges = -1,
   searchForDeparture = true,
-  getPasslist = true,
-  economic = true,
-  getTariff = false,
-}: Options) {
+}: // getPasslist = true,
+// economic = true,
+// getTariff = false,
+Options) {
   const data = {
     client: {
       id: 'DB',
