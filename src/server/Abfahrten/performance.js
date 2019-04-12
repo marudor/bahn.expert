@@ -46,11 +46,11 @@ async function testFn(fn) {
 }
 
 function noncd() {
-  return getAbfahrten('8000207', true, noncdAxios);
+  return getAbfahrten('8000207', true, undefined, noncdAxios);
 }
 
 function openData() {
-  return getAbfahrten('8000207', true, openDataAxios);
+  return getAbfahrten('8000207', true, undefined, openDataAxios);
 }
 
 Promise.all([noncd(), openData()])

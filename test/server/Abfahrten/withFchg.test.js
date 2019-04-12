@@ -1,6 +1,7 @@
 // @flow
 /* eslint no-sync: 0 */
 import { mockFchg, mockLageplan, mockSearch } from './mockHelper';
+import { noncdAxios } from 'server/Abfahrten';
 import fs from 'fs';
 import lolex from 'lolex';
 import path from 'path';
@@ -31,10 +32,15 @@ describe('onlyPlan', () => {
       mockLageplan();
       mockFchg(fchgXml);
       mockSearch(2, [planxml]);
-      const timetable = new Timetable('test', 'test', {
-        lookahead: 120,
-        lookbehind: 0,
-      });
+      const timetable = new Timetable(
+        'test',
+        'test',
+        {
+          lookahead: 120,
+          lookbehind: 0,
+        },
+        noncdAxios
+      );
 
       await expect(timetable.start()).resolves.toMatchSnapshot();
     });

@@ -36,12 +36,13 @@ function parseStation(stationNode): Station {
 }
 
 export async function getSingleStation(evaId: string, axios: Axios = noncdAxios) {
-  const cached = undefined; // cache.get(evaId);
+  const cached = cache.get(evaId);
 
   if (cached) {
     return cached;
   }
   const rawXml = (await axios.get(`/station/${evaId}`)).data;
+
   const xml = xmljs.parseXml(rawXml);
 
   const xmlStation = xml.get('//station');
