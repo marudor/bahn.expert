@@ -4,6 +4,7 @@ import { flatten, maxBy, minBy } from 'lodash';
 import { format } from 'date-fns';
 import { getAbfahrten } from './Abfahrten';
 import axios from 'axios';
+import type { Abfahrt } from 'types/abfahrten';
 import type { Fahrzeug, Formation, Wagenreihung } from 'types/reihung';
 import type { WagenreihungStation } from 'types/reihungStation';
 
@@ -44,14 +45,15 @@ function specificTrainType(formation: Formation, fahrzeuge: Fahrzeug[]) {
   const groupLength = formation.allFahrzeuggruppe.length;
 
   formation.allFahrzeuggruppe.forEach(g => {
-    g.startProzent = Number.parseInt(
-      minBy(g.allFahrzeug, f => Number.parseInt(f.positionamhalt.startprozent, 10)).positionamhalt.startprozent,
-      10
-    );
-    g.endeProzent = Number.parseInt(
-      maxBy(g.allFahrzeug, f => Number.parseInt(f.positionamhalt.endeprozent, 10)).positionamhalt.endeprozent,
-      10
-    );
+    const minFahrzeug = minBy(g.allFahrzeug, f => Number.parseInt(f.positionamhalt.startprozent, 10));
+    const maxFahrzeug = maxBy(g.allFahrzeug, f => Number.parseInt(f.positionamhalt.endeprozent, 10));
+
+    if (minFahrzeug) {
+      g.startProzent = Number.parseInt(minFahrzeug?.positionamhalt.startprozent, 10);
+    }
+    if (maxFahrzeug) {
+      g.endeProzent = Number.parseInt(maxFahrzeug?.positionamhalt.endeprozent, 10);
+    }
   });
 
   if (formation.zuggattung === 'IC') {
@@ -132,17 +134,28 @@ export async function wagenReihung(trainNumber: string, date: number) {
   info.data.istformation.realFahrtrichtung = fahrtrichtung(fahrzeuge);
   info.data.istformation.allFahrzeuggruppe.forEach(g => {
     g.allFahrzeug.forEach(f => {
-      const start = Number.parseInt(f.positionamhalt.startprozent, 10);
-      const end = Number.parseInt(f.positionamhalt.endeprozent, 10);
+      if (f.positionamhalt.startprozent && f.positionamhalt.endeprozent) {
+        const start = Number.parseInt(f.positionamhalt.startprozent, 10);
+        const end = Number.parseInt(f.positionamhalt.endeprozent, 10);
 
-      if (start < startPercentage) {
-        startPercentage = start;
-      }
-      if (end > endPercentage) {
-        endPercentage = end;
+        // $FlowFixMe - this works
+        if (start < startPercentage) {
+          startPercentage = start;
+        }
+        // $FlowFixMe - this works
+        if (end > endPercentage) {
+          endPercentage = end;
+        }
+      } else {
+        startPercentage = null;
+        endPercentage = null;
       }
     });
   });
+
+  if (!endPercentage || !startPercentage) {
+    return undefined;
+  }
 
   info.data.istformation.scale = 100 / (endPercentage - startPercentage);
   info.data.istformation.startPercentage = startPercentage;
@@ -163,19 +176,33 @@ export async function wagenReihungStation(trainNumbers: string[], station: numbe
   return info;
 }
 
+function wagenReihungSpecificMonitoring(id: string, departure: number) {
+  return wagenReihung(id, departure);
+}
+
 export async function wagenReihungMonitoring() {
   const abfahrten = await getAbfahrten('8002549', false);
-  const firstWithReihung = abfahrten.departures.find(d => d.reihung && d.scheduledDeparture);
+  const maybeDepartures = abfahrten.departures.filter(d => d.reihung && d.scheduledDeparture);
 
-  if (firstWithReihung && firstWithReihung.scheduledDeparture) {
-    try {
-      const result = await wagenReihung(firstWithReihung.trainId, firstWithReihung.scheduledDeparture);
+  let departure: ?Abfahrt = maybeDepartures.pop();
 
-      return result;
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.warn('Failed to get WR for Monitoring!', firstWithReihung, e);
-      throw e;
+  while (departure) {
+    const departureTime = departure.scheduledDeparture;
+
+    if (!departureTime) {
+      departure = maybeDepartures.pop();
+    } else {
+      try {
+        // eslint-disable-next-line no-await-in-loop
+        const wr = await wagenReihungSpecificMonitoring(departure.trainId, departureTime);
+
+        if (wr) return wr;
+        departure = maybeDepartures.pop();
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.warn('Failed to get WR for Monitoring!', departure, e);
+        throw e;
+      }
     }
   }
 }
