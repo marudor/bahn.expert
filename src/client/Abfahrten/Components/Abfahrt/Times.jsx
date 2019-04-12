@@ -1,23 +1,13 @@
 // @flow
 /* eslint no-nested-ternary: 0 */
 import * as React from 'react';
-import { addMinutes, format } from 'date-fns';
 import { connect } from 'react-redux';
-import { delayString, delayStyle } from 'client/util/delay';
+import { delayTime } from 'client/util/delay';
 import cc from 'classnames';
 import styles from './Times.styles';
 import withStyles, { type StyledProps } from 'react-jss';
 import type { Abfahrt } from 'types/abfahrten';
 import type { AbfahrtenState } from 'AppState';
-
-function getDelayTime(rawTime: ?number, delay: ?number, timeConfig: boolean) {
-  if (!rawTime) {
-    return null;
-  }
-  const time = timeConfig && delay ? addMinutes(rawTime, delay) : rawTime;
-
-  return format(time, 'HH:mm');
-}
 
 type StateProps = {|
   +timeConfig: boolean,
@@ -49,14 +39,9 @@ const Times = ({
   classes,
 }: Props) => (
   <div
-    className={cc([
-      classes.main,
-      {
-        [classes.cancelled]: isCancelled,
-        [delayStyle(classes, scheduledDeparture ? delayDeparture : delayArrival)]:
-          !detail && (scheduledDeparture ? delayDeparture : delayArrival),
-      },
-    ])}
+    className={cc({
+      [classes.cancelled]: isCancelled,
+    })}
   >
     {detail ? (
       <React.Fragment>
@@ -64,31 +49,27 @@ const Times = ({
           <div
             className={cc(classes.wrapper, {
               [classes.cancelled]: arrivalIsCancelled,
-              [delayStyle(classes, delayArrival)]: delayArrival,
             })}
           >
-            {Boolean(delayArrival) && delayString(delayArrival)}
-            <span>{'  An: '}</span>
-            {getDelayTime(scheduledArrival, delayArrival, timeConfig)}
+            <span>{'An: '}</span>
+            {delayTime(classes, scheduledArrival, delayArrival, timeConfig)}
           </div>
         )}
         {scheduledDeparture && (
           <div
             className={cc(classes.wrapper, {
               [classes.cancelled]: departureIsCancelled,
-              [delayStyle(classes, delayDeparture)]: delayDeparture,
             })}
           >
-            {Boolean(delayDeparture) && delayString(delayDeparture)}
-            <span>{'  Ab: '}</span>
-            {getDelayTime(scheduledDeparture, delayDeparture, timeConfig)}
+            <span>{'Ab: '}</span>
+            {delayTime(classes, scheduledDeparture, delayDeparture, timeConfig)}
           </div>
         )}
       </React.Fragment>
     ) : scheduledDeparture && (!departureIsCancelled || isCancelled) ? (
-      getDelayTime(scheduledDeparture, delayDeparture, timeConfig)
+      delayTime(classes, scheduledDeparture, delayDeparture, timeConfig)
     ) : (
-      getDelayTime(scheduledArrival, delayArrival, timeConfig)
+      delayTime(classes, scheduledArrival, delayArrival, timeConfig)
     )}
   </div>
 );

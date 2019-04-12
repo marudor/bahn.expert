@@ -1,9 +1,9 @@
 // @flow
 export default {
   main: {
+    lineHeight: 1.2,
     flexShrink: 0,
     marginBottom: '.3em',
-    marginTop: '.2em',
     overflow: 'visible',
     paddingLeft: '.5em',
     paddingRight: '.5em',
@@ -15,7 +15,6 @@ export default {
     flexDirection: 'column',
     flexShrink: 0,
     fontSize: '.6em',
-    lineHeight: 1,
     userSelect: 'none',
     '@media screen and (max-width: 1200px)': {
       fontSize: '.36em',

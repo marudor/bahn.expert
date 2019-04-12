@@ -130,7 +130,7 @@ function getNormalVia(abfahrt: Abfahrt, classes) {
     via = via.concat(getAbfahrt(v, index, abfahrten.length, abfahrt, abfahrt.isCancelled, 0, false, classes));
   });
 
-  return via;
+  return via.length ? via : null;
 }
 
 function getDetailedVia(abfahrt: Abfahrt, classes) {
@@ -170,6 +170,9 @@ type Props = StyledProps<ReduxProps, typeof styles>;
 
 const Via = ({ abfahrt, detail, showSupersededMessages, classes }: Props) => {
   const info = detail ? getDetailedInfo(abfahrt, showSupersededMessages, classes) : getInfo(abfahrt, classes);
+  const via = (detail || !info) && (detail ? getDetailedVia(abfahrt, classes) : getNormalVia(abfahrt, classes));
+
+  if (!info && !via) return null;
 
   return (
     <div
@@ -178,7 +181,7 @@ const Via = ({ abfahrt, detail, showSupersededMessages, classes }: Props) => {
       })}
     >
       {info}
-      {(detail || !info) && (detail ? getDetailedVia(abfahrt, classes) : getNormalVia(abfahrt, classes))}
+      {via}
     </div>
   );
 };

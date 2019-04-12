@@ -2,11 +2,13 @@
 import { cancelled, delayed, early } from 'style/mixins';
 
 export default {
-  main: {
-    fontSize: '2.4em',
-  },
   early,
   delayed,
+  time: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-end',
+  },
   wrapper: {
     display: 'flex',
     justifyContent: 'flex-end',
