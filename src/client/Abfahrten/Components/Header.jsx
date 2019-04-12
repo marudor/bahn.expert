@@ -23,7 +23,7 @@ type StateProps = {|
 
 type OwnProps = {||};
 type DispatchProps = {|
-  dispatch: Function,
+  dispatch: Dispatch<*>,
 |};
 
 type ReduxProps = {|

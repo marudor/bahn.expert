@@ -11,7 +11,7 @@ export const getTrainIdFromProps = (_: AbfahrtenState, props: AuslastungProps) =
 export const getCurrentStationFromProps = (_: AbfahrtenState, props: AuslastungProps) => props.abfahrt.currentStation;
 export const getStation = (state: AbfahrtenState): ?Station => state.abfahrten.currentStation;
 
-export const getAuslastungForId = createSelector<AbfahrtenState, AuslastungProps, ?(AuslastungEntry[]), Object, string>(
+export const getAuslastungForId = createSelector<AbfahrtenState, AuslastungProps, ?(AuslastungEntry[]), *, string>(
   getAuslastung,
   getTrainIdFromProps,
   (auslastung: $PropertyType<$PropertyType<AbfahrtenState, 'auslastung'>, 'auslastung'>, trainId) =>
@@ -31,7 +31,7 @@ export const getAuslastungForIdCopy = createSelector<
 export const getAuslastungForIdAndStation = createSelector<
   AbfahrtenState,
   AuslastungProps,
-  any,
+  *,
   ?(AuslastungEntry[]),
   ?Station
 >(

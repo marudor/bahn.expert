@@ -35,3 +35,6 @@ type FeatureKeys = $Keys<Features>;
 
 declare var PROD: boolean;
 declare var SERVER: boolean;
+
+type DispatchAction = *;
+type Dispatch<A: DispatchAction> = A => A;
