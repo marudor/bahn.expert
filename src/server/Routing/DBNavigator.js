@@ -4,6 +4,7 @@ import axios from 'axios';
 import createChecksum from 'server/dbNavUtil';
 import parse from './parse';
 import type { Options } from '.';
+import type { SRoute$Result } from 'types/routing';
 
 const BASE_URL = 'https://reiseauskunft.bahn.de/bin/mgate.exe';
 
@@ -14,6 +15,9 @@ function createRequest({
   transferTime = -1,
   maxChanges = -1,
   searchForDeparture = true,
+  getPasslist = true,
+  economic = true,
+  getTariff = false,
 }: Options) {
   const data = {
     client: {
@@ -35,21 +39,22 @@ function createRequest({
           //     type: 'PROD',
           //   },
           // ],
+          // Always true!
+          getPT: true,
           numF: 6,
           outDate: formatToTimeZone(time, 'YYYYMMDD', { timeZone: 'Europe/Berlin' }),
           outTime: formatToTimeZone(time, 'HHmmss', { timeZone: 'Europe/Berlin' }),
           maxChg: maxChanges,
           minChgTime: transferTime,
           // get stops in between
-          getPasslist: true,
-          economic: true,
-          getTariff: true,
-          ushrp: true,
+          getPasslist: false,
+          economic: false,
+          getTariff: false,
+          ushrp: false,
           getPolyline: false,
           // arrival / departure
           outFrwd: searchForDeparture,
-          getPT: true,
-          getIV: true,
+          getIV: false,
           arrLocL: [
             {
               lid: `A=1@L=${destination}`,
@@ -78,7 +83,7 @@ function createRequest({
     checksum: createChecksum(data),
   };
 }
-export default function routeDBNav(options: Options) {
+export default function routeDBNav(options: Options, parseFunction: SRoute$Result => any = parse) {
   const { data, checksum } = createRequest(options);
 
   return axios
@@ -88,9 +93,9 @@ export default function routeDBNav(options: Options) {
       },
     })
     .then(r => r.data)
-    .then(r => {
+    .then((r: SRoute$Result) => {
       if (r.err === 'OK') {
-        return parse(r);
+        return parseFunction(r);
       }
       throw r;
     });

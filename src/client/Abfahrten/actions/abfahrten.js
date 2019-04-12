@@ -4,7 +4,7 @@ import { getStationsFromAPI } from 'Common/service/stationSearch';
 import { setCookieOptions } from 'client/util';
 import axios from 'axios';
 import type { Abfahrt, AbfahrtAPIResult, Wings } from 'types/abfahrten';
-import type { AbfahrtenInnerThunkAction, AbfahrtenThunkAction } from 'AppState';
+import type { AbfahrtenThunkAction } from 'AppState';
 import type { Station } from 'types/station';
 
 const Actions = {
@@ -90,7 +90,7 @@ export const setDetail: AbfahrtenThunkAction<?string> = selectedDetail => (dispa
   return Promise.resolve();
 };
 
-export const refreshCurrentAbfahrten: AbfahrtenInnerThunkAction = async (dispatch, getState) => {
+export const refreshCurrentAbfahrten: AbfahrtenThunkAction<> = () => async (dispatch, getState) => {
   try {
     const state = getState();
 

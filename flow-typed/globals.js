@@ -18,6 +18,7 @@ type marudorConfig = {|
   +lookahead: string,
   +fahrzeugGruppe: boolean,
   +lineAndNumber: boolean,
+  +autoUpdate: number,
 |};
 
 type Features = {|

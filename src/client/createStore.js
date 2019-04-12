@@ -2,14 +2,13 @@
 import { applyMiddleware, compose, createStore } from 'redux';
 import Actions from 'Abfahrten/actions/config';
 import Cookies from 'universal-cookie';
-import promiseMiddleware from 'redux-promise';
 import reducer from './reducer';
 import thunkMiddleware from 'redux-thunk';
 import type { AppState } from 'AppState';
 
 // eslint-disable-next-line no-underscore-dangle
 export default (state: $Shape<AppState> = global.__DATA__) => {
-  const middlewares = [promiseMiddleware, thunkMiddleware];
+  const middlewares = [thunkMiddleware];
 
   if (process.env.NODE_ENV !== 'production') {
     const reduxUnhandledAction = require('redux-unhandled-action').default;

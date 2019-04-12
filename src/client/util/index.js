@@ -13,4 +13,5 @@ export const defaultConfig = {
   fahrzeugGruppe: false,
   lineAndNumber: false,
   checkIn: '',
+  autoUpdate: 0,
 };

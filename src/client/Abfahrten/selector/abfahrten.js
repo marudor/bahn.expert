@@ -7,19 +7,24 @@ type AbfahrtProps = {
   +abfahrt: Abfahrt,
 };
 
-export const getWings = (state: AbfahrtenState) => state.abfahrten.wings;
-export const getSelectedDetail = (state: AbfahrtenState) => state.abfahrten.selectedDetail;
-export const getArrivalWingIdsFromProps = (_: AbfahrtenState, props: AbfahrtProps) => props.abfahrt.arrivalWingIds;
-export const getDepartureWingIdsFromProps = (_: AbfahrtenState, props: AbfahrtProps) => props.abfahrt.departureWingIds;
-export const getIdFromProps = (_: AbfahrtenState, props: AbfahrtProps) => props.abfahrt.id;
-export const getNextDeparture = (state: AbfahrtenState) => {
+type AbfahrtenSubstate = {
+  +abfahrten: $ElementType<AbfahrtenState, 'abfahrten'>,
+};
+
+export const getWings = (state: AbfahrtenSubstate) => state.abfahrten.wings;
+export const getSelectedDetail = (state: AbfahrtenSubstate) => state.abfahrten.selectedDetail;
+export const getArrivalWingIdsFromProps = (_: AbfahrtenSubstate, props: AbfahrtProps) => props.abfahrt.arrivalWingIds;
+export const getDepartureWingIdsFromProps = (_: AbfahrtenSubstate, props: AbfahrtProps) =>
+  props.abfahrt.departureWingIds;
+export const getIdFromProps = (_: AbfahrtenSubstate, props: AbfahrtProps) => props.abfahrt.id;
+export const getNextDeparture = (state: AbfahrtenSubstate) => {
   if (state.abfahrten.abfahrten) {
     return state.abfahrten.abfahrten.find(a => a.scheduledDeparture);
   }
 };
 
 export const getWingsForAbfahrt = createSelector<
-  AbfahrtenState,
+  AbfahrtenSubstate,
   AbfahrtProps,
   ?ResolvedWings,
   ?Wings,
@@ -40,7 +45,7 @@ export const getWingsForAbfahrt = createSelector<
       : undefined
 );
 
-export const getDetailForAbfahrt = createSelector<AbfahrtenState, AbfahrtProps, boolean, ?string, string>(
+export const getDetailForAbfahrt = createSelector<AbfahrtenSubstate, AbfahrtProps, boolean, ?string, string>(
   getSelectedDetail,
   getIdFromProps,
   (selectedDetail, id) => selectedDetail === id

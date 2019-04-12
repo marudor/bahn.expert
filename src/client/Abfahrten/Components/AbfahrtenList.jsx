@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { type ContextRouter, withRouter } from 'react-router-dom';
 import { Redirect } from 'react-router';
 import Abfahrt from './Abfahrt';
-import Actions, { getAbfahrtenByString } from 'Abfahrten/actions/abfahrten';
+import Actions, { getAbfahrtenByString, refreshCurrentAbfahrten } from 'Abfahrten/actions/abfahrten';
 import Loading from './Loading';
 import React from 'react';
 import withStyles, { type StyledProps } from 'react-jss';
@@ -17,6 +17,7 @@ type StateProps = {|
   ...InnerAbfahrtenProps,
   +currentStation: ?$PropertyType<$PropertyType<AbfahrtenState, 'abfahrten'>, 'currentStation'>,
   +error: ?$PropertyType<$PropertyType<AbfahrtenState, 'abfahrten'>, 'error'>,
+  +autoUpdate: number,
 |};
 const InnerAbfahrten = ({ abfahrten }: InnerAbfahrtenProps) =>
   abfahrten && abfahrten.length ? (
@@ -28,6 +29,7 @@ const InnerAbfahrten = ({ abfahrten }: InnerAbfahrtenProps) =>
 type DispatchProps = {|
   +getAbfahrtenByString: typeof getAbfahrtenByString,
   +setCurrentStation: typeof Actions.setCurrentStation,
+  +refreshCurrentAbfahrten: typeof refreshCurrentAbfahrten,
 |};
 type OwnProps = {||};
 
@@ -61,10 +63,19 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
   state: State = {
     loading: !this.props.abfahrten,
   };
+  abfahrtenInterval: IntervalID;
   componentDidMount() {
-    if (!this.props.currentStation) {
+    const { currentStation, refreshCurrentAbfahrten, autoUpdate } = this.props;
+
+    if (!currentStation) {
       this.getAbfahrten();
     }
+    if (autoUpdate) {
+      this.abfahrtenInterval = setInterval(refreshCurrentAbfahrten, autoUpdate * 1000);
+    }
+  }
+  componentWillUnmount() {
+    clearInterval(this.abfahrtenInterval);
   }
   componentDidUpdate(prevProps: Props) {
     if (prevProps.match.params.station !== this.props.match.params.station) {
@@ -117,9 +128,11 @@ export default connect<ReduxProps, OwnProps, StateProps, DispatchProps, Abfahrte
     abfahrten: state.abfahrten.abfahrten,
     currentStation: state.abfahrten.currentStation,
     error: state.abfahrten.error,
+    autoUpdate: state.config.config.autoUpdate,
   }),
   {
     getAbfahrtenByString,
     setCurrentStation: Actions.setCurrentStation,
+    refreshCurrentAbfahrten,
   }
 )(withRouter(withStyles(styles)(AbfahrtenList)));
