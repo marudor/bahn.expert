@@ -9,7 +9,7 @@ import React, { useState } from 'react';
 import type { CommonState } from 'AppState';
 
 type DispatchProps = {|
-  dispatch: Function,
+  dispatch: Dispatch<*>,
 |};
 type OwnProps = {||};
 type StateProps = {|

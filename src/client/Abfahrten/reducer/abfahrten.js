@@ -1,15 +1,32 @@
 // @flow
 import { type ActionType, handleActions } from 'redux-actions';
 import Actions from 'Abfahrten/actions/abfahrten';
+import type { $AxiosError } from 'axios';
 import type { Abfahrt, Wings } from 'types/abfahrten';
 import type { Station } from 'types/station';
+
+type AbfahrtenError = AbfahrtenError$Redirect | AbfahrtenError$404 | AbfahrtenError$Default;
+type AbfahrtenError$Redirect = Error & {
+  type: 'redirect',
+  redirect: string,
+  station?: empty,
+};
+
+type AbfahrtenError$404 = Error & {
+  type: '404',
+  station?: empty,
+};
+type AbfahrtenError$Default = $AxiosError<*> & {
+  type: empty,
+  station?: string,
+};
 
 export type State = {
   selectedDetail: ?string,
   abfahrten: ?Array<Abfahrt>,
   wings: ?Wings,
   currentStation: ?Station,
-  error: ?(Error & { station?: string }),
+  error: ?AbfahrtenError,
   lageplan?: ?string,
 };
 

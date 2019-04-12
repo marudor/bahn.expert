@@ -8,7 +8,7 @@ import cc from 'classnames';
 import styles from './Times.styles';
 import withStyles, { type StyledProps } from 'react-jss';
 import type { Abfahrt } from 'types/abfahrten';
-import type { AbfahrtenState, Dispatch } from 'AppState';
+import type { AbfahrtenState } from 'AppState';
 
 function getDelayTime(rawTime: ?number, delay: ?number, timeConfig: boolean) {
   if (!rawTime) {
@@ -29,7 +29,7 @@ type OwnProps = {|
 export type ReduxProps = {|
   ...StateProps,
   ...OwnProps,
-  +dispatch: Dispatch,
+  +dispatch: Dispatch<>,
 |};
 
 type Props = StyledProps<ReduxProps, typeof styles>;

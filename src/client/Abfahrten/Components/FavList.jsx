@@ -32,7 +32,7 @@ type RouterProps = {|
 
 type Props = StyledProps<RouterProps, typeof styles>;
 
-function getErrorText(error: any, staticContext) {
+function getErrorText(error, staticContext) {
   switch (error.type) {
     case 'redirect':
       return <Redirect to={error.redirect} />;
@@ -47,7 +47,7 @@ function getErrorText(error: any, staticContext) {
       if (error.code === 'ECONNABORTED') {
         return 'Timeout - bitte erneut versuchen';
       }
-      if (error.response?.data?.error) {
+      if (error) {
         return getErrorText(error.response.data.error, staticContext);
       }
 
@@ -100,7 +100,7 @@ const styles = {
   favEntry: FavEntryStyles.main,
 };
 
-export default connect<ReduxProps, OwnProps, StateProps, DispatchProps, AbfahrtenState, Function>(
+export default connect<ReduxProps, OwnProps, StateProps, DispatchProps, AbfahrtenState, _>(
   state => ({
     favs: sortedFavValues(state),
     error: state.abfahrten.error,

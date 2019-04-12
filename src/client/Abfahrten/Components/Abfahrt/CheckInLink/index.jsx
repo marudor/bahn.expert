@@ -18,7 +18,7 @@ type OwnProps = {|
 type ReduxProps = {|
   ...StateProps,
   ...OwnProps,
-  +dispatch: Function,
+  +dispatch: Dispatch<*>,
 |};
 
 type Props = StyledProps<ReduxProps, typeof styles>;

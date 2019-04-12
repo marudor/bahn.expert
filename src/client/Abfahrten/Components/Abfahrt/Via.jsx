@@ -7,7 +7,7 @@ import cc from 'classnames';
 import React from 'react';
 import styles from './Via.styles';
 import withStyles, { type StyledProps } from 'react-jss';
-import type { AbfahrtenState, Dispatch } from 'AppState';
+import type { AbfahrtenState } from 'AppState';
 
 function getDetailedInfo(abfahrt: Abfahrt, showSupersededMessages: boolean, classes) {
   const today = new Date().getDate();
@@ -163,7 +163,7 @@ type OwnProps = {|
 export type ReduxProps = {|
   ...StateProps,
   ...OwnProps,
-  +dispatch: Dispatch,
+  +dispatch: Dispatch<*>,
 |};
 
 type Props = StyledProps<ReduxProps, typeof styles>;

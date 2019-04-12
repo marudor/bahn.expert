@@ -1,8 +1,8 @@
 // @flow
 import type { AbfahrtenRootState } from 'Abfahrten/reducer';
 import type { CommonRootState } from 'Common/reducer';
-import type { Dispatch as ReduxDispatch, Store } from 'redux';
 import type { RoutingRootState } from 'Routing/reducer';
+import type { Store } from 'redux';
 
 export type RoutingState = RoutingRootState;
 export type AbfahrtenState = AbfahrtenRootState;
@@ -13,11 +13,9 @@ export type AppState = $ReadOnly<{|
   ...CommonRootState,
 |}>;
 
-export type Action = any;
-export type Dispatch = ReduxDispatch<Action>;
-export type AppStore = Store<AppState, Action>;
+export type AppStore = Store<AppState, DispatchAction>;
 
-export type InnerThunkAction<-State> = (dispatch: Dispatch, () => State) => Promise<any>;
+export type InnerThunkAction<-State, Action = *> = (dispatch: Dispatch<Action>, () => State) => Promise<any>;
 export type AbfahrtenInnerThunkAction = InnerThunkAction<AbfahrtenState>;
 export type RoutingInnerThunkAction = InnerThunkAction<RoutingState>;
 export type ThunkAction<-State, A1 = *, A2 = *, A3 = *, A4 = *, A5 = *, A6 = *, A7 = *, A8 = *, A9 = *> = (
@@ -56,6 +54,5 @@ export type AbfahrtenThunkAction<A1 = *, A2 = *, A3 = *, A4 = *, A5 = *, A6 = *,
   A9
 >;
 
-// eslint-disable-next-line no-unused-vars
-type _ActionType<R, Fn: (...rest: R) => InnerThunkAction<any>> = (...rest: R) => Promise<any>;
-export type ActionType<Fn> = _ActionType<*, Fn>;
+// type _ActionType<R, Fn: (...rest: R) => InnerThunkAction<any>> = (...rest: R) => Promise<any>;
+// export type ActionType<Fn> = _ActionType<*, Fn>;
