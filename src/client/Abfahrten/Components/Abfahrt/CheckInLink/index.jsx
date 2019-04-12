@@ -28,6 +28,13 @@ const CheckInLink = ({ type, abfahrt, classes }: Props) => {
       return <TraewellingLink abfahrt={abfahrt} className={classes.link} />;
     case 'travelynx':
       return <TravelynxLink abfahrt={abfahrt} className={classes.link} />;
+    case 'traewelynx':
+      return (
+        <>
+          <TraewellingLink abfahrt={abfahrt} className={classes.link} />
+          <TravelynxLink abfahrt={abfahrt} className={classes.link} />
+        </>
+      );
     default:
       return null;
   }

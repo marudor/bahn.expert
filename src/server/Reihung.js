@@ -168,6 +168,14 @@ export async function wagenReihungMonitoring() {
   const firstWithReihung = abfahrten.departures.find(d => d.reihung && d.scheduledDeparture);
 
   if (firstWithReihung && firstWithReihung.scheduledDeparture) {
-    return wagenReihung(firstWithReihung.trainId, firstWithReihung.scheduledDeparture);
+    try {
+      const result = await wagenReihung(firstWithReihung.trainId, firstWithReihung.scheduledDeparture);
+
+      return result;
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.warn('Failed to get WR for Monitoring!', firstWithReihung, e);
+      throw e;
+    }
   }
 }

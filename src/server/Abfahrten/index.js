@@ -1,10 +1,18 @@
 // @flow
+import { Axios } from 'axios';
 import { compareAsc } from 'date-fns';
 import { getStation } from './station';
 import Timetable, { type Result } from './Timetable';
 
-// @flow
-export const irisBase = 'http://iris.noncd.db.de/iris-tts/timetable';
+export const noncdAxios = new Axios({
+  baseURL: 'http://iris.noncd.db.de/iris-tts/timetable',
+});
+export const openDataAxios = new Axios({
+  baseURL: 'https://api.deutschebahn.com/timetables/v1',
+  headers: {
+    Authorization: `Bearer ${process.env.TIMETABLES_OPEN_DATA_KEY || ''}`,
+  },
+});
 
 type AbfahrtenOptions = {
   lookahead?: number,
@@ -32,24 +40,30 @@ export function reduceResults(agg: Result, r: Result): Result {
 export async function getAbfahrten(
   evaId: string,
   withRelated: boolean = true,
-  options: AbfahrtenOptions = {}
+  options: AbfahrtenOptions = {},
+  axios: Axios = noncdAxios
 ): Promise<Result> {
   const lookahead = options.lookahead || defaultOptions.lookahead;
   const lookbehind = options.lookbehind || defaultOptions.lookbehind;
 
-  const { station, relatedStations } = await getStation(evaId, 1);
+  const { station, relatedStations } = await getStation(evaId, 1, axios);
   let relatedAbfahrten = Promise.resolve(baseResult);
 
   if (withRelated) {
-    relatedAbfahrten = Promise.all(relatedStations.map(s => getAbfahrten(s.eva, false, options))).then(r =>
+    relatedAbfahrten = Promise.all(relatedStations.map(s => getAbfahrten(s.eva, false, options, axios))).then(r =>
       r.reduce(reduceResults, baseResult)
     );
   }
 
-  const timetable = new Timetable(evaId, station.name, {
-    lookahead,
-    lookbehind,
-  });
+  const timetable = new Timetable(
+    evaId,
+    station.name,
+    {
+      lookahead,
+      lookbehind,
+    },
+    axios
+  );
   const result = (await Promise.all([timetable.start(), relatedAbfahrten])).reduce(reduceResults, baseResult);
 
   result.departures.sort((a, b) => {

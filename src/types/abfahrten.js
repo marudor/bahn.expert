@@ -5,11 +5,17 @@ export type SubstituteRef = {|
   +train: string,
 |};
 
+export type Message$Priority =
+  | '1' // HIGH
+  | '2' // MEDIUM
+  | '3' // LOW
+  | '4'; // DONE
 export type Message = {|
   +text: string,
   +timestamp: number,
   +superseded?: boolean,
   +superseeds?: boolean,
+  +priority?: Message$Priority,
 |};
 
 export type Train = {|
@@ -21,7 +27,9 @@ export type Train = {|
 export type Messages = {|
   +qos: Message[],
   +delay: Message[],
+  +[string]: Message[],
 |};
+
 export type Abfahrt = {|
   +arrival?: number,
   +arrivalIsCancelled: boolean,
@@ -35,6 +43,8 @@ export type Abfahrt = {|
   +departureIsCancelled: boolean,
   +departureWingIds: ?(string[]),
   +destination: string,
+  +hiddenArrival?: number,
+  +hiddenDeparture?: number,
   +id: string,
   +isCancelled: 0 | 1,
   +longDistance: boolean,

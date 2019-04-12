@@ -9,7 +9,7 @@ type StationSearchType =
   | 'favendo'
   | '';
 
-type CheckInType = 'traewelling' | 'travelynx' | '';
+type CheckInType = 'traewelling' | 'travelynx' | 'traewelynx' | '';
 
 type marudorConfig = {|
   +time: boolean,
