@@ -2,7 +2,6 @@
 import { type ReduxProps } from '.';
 export default {
   main: {
-    lineHeight: 1.3,
     fontSize: '120%',
     marginBottom: '1em',
     marginRight: '.3em',

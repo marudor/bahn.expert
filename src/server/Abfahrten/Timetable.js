@@ -404,7 +404,6 @@ export default class Timetable {
     };
   }
   addArrivalInfo(timetable: any, ar: ?ParsedAr) {
-    timetable.delayArrival = 0;
     if (!ar) return;
     timetable.arrivalIsCancelled = ar.status === 'c';
     timetable.arrivalIsAdditional = ar.status === 'a';
@@ -432,7 +431,6 @@ export default class Timetable {
     timetable.platform = ar.platform || timetable.scheduledPlatform;
   }
   addDepartureInfo(timetable: any, dp: ?ParsedDp) {
-    timetable.delayDeparture = 0;
     if (!dp) return;
     timetable.departureIsCancelled = dp.status === 'c';
     timetable.departureIsAdditional = dp.status === 'a';

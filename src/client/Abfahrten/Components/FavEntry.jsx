@@ -53,7 +53,6 @@ export const styles = {
     flexShrink: 0,
     fontSize: '2em',
     color: 'black',
-    lineHeight: 1.3,
     boxShadow: '0 1px 0 rgba(0, 0, 0, 0.24)',
     display: 'flex',
     justifyContent: 'space-between',

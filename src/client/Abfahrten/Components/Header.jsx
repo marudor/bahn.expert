@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { type ContextRouter, withRouter } from 'react-router-dom';
 import { format } from 'date-fns';
 import { getNextDeparture } from 'Abfahrten/selector/abfahrten';
+import { Helmet } from 'react-helmet-async';
 import AppBar from '@material-ui/core/AppBar';
 import HeaderButtons from './HeaderButtons';
-import Helmet from 'react-helmet-async';
 import HomeMenu from 'Common/Components/HomeMenu';
 import React from 'react';
 import StationSearch from 'Common/Components/StationSearch';
@@ -52,10 +52,13 @@ class Header extends React.Component<Props> {
       description = `Zugabfahrten für ${currentStation.title}`;
       ogDescription = description;
       if (nextAbfahrt && nextAbfahrt.scheduledDeparture) {
+        const delay = nextAbfahrt.delayDeparture;
+        const delayString = delay ? `(${delay < 0 ? '-' : '+'}${delay})` : '';
+
         ogDescription = `Nächste Abfahrt: ${nextAbfahrt.train} - ${nextAbfahrt.destination} - ${format(
           nextAbfahrt.scheduledDeparture,
           'HH:mm'
-        )} (${nextAbfahrt.delayDeparture < 0 ? '-' : '+'}${nextAbfahrt.delayDeparture})`;
+        )} ${delayString}`;
       }
       url += `/${encodeURIComponent(currentStation.title)}`;
     }
