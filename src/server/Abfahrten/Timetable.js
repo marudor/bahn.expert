@@ -9,7 +9,6 @@ import { diffArrays } from 'diff';
 import { findLast, flatten, last, uniqBy } from 'lodash';
 import { getAttr, getNumberAttr, parseTs } from './helper';
 import { getCachedLageplan, getLageplan } from '../Bahnhof/Lageplan';
-import { noncdAxios } from './index';
 import messageLookup, {
   messageTypeLookup,
   type MessageTypeLookup,
@@ -185,7 +184,7 @@ export default class Timetable {
   currentDate: Date;
   maxDate: Date;
 
-  constructor(evaId: string, currentStation: string, options: TimetableOptions, axios: Axios = noncdAxios) {
+  constructor(evaId: string, currentStation: string, options: TimetableOptions, axios: Axios) {
     this.axios = axios;
     this.evaId = evaId;
     this.currentDate = new Date();
@@ -470,6 +469,10 @@ export default class Timetable {
 
     const result = await this.axios.get(url).then(x => x.data);
 
+    if (result.includes('<soapenv:Reason')) {
+      return Promise.reject(result);
+    }
+
     return result;
   }
   async getRealtime() {
@@ -591,14 +594,13 @@ export default class Timetable {
 
         if (!rawXml) {
           rawXml = await this.axios.get(`${key}`).then(x => x.data);
-
-          timetableCache.set(key, rawXml);
         }
 
         this.timetable = {
           ...this.timetable,
           ...this.getTimetable(rawXml),
         };
+        timetableCache.set(key, rawXml);
       })
     );
   }

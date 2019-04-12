@@ -3,6 +3,7 @@ import { getAbfahrten } from './Abfahrten';
 import { getLageplan } from './Bahnhof/Lageplan';
 import { getStation } from './Abfahrten/station';
 import { isEnabled } from 'unleash-client';
+import { openDataAxios } from './Abfahrten';
 import { wagenReihung, wagenReihungMonitoring, wagenReihungStation } from './Reihung';
 import axios from 'axios';
 import createAuslastung from './Auslastung';
@@ -61,6 +62,27 @@ router
       ctx.body = await getAbfahrten(evaId, true, {
         lookahead: Number.parseInt(lookahead, 10),
       });
+    }
+  })
+  .get('/ownAbfahrtenOpen/:evaId', async ctx => {
+    const { evaId } = ctx.params;
+
+    if (evaId.length < 6) {
+      ctx.status = 400;
+      ctx.body = {
+        message: 'Please provide a evaID',
+      };
+    } else {
+      const { lookahead } = ctx.query;
+
+      ctx.body = await getAbfahrten(
+        evaId,
+        true,
+        {
+          lookahead: Number.parseInt(lookahead, 10),
+        },
+        openDataAxios
+      );
     }
   })
   .get('/wagenstation/:train/:station', async ctx => {
