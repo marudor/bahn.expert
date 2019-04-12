@@ -181,27 +181,29 @@ function wagenReihungSpecificMonitoring(id: string, departure: number) {
 }
 
 export async function wagenReihungMonitoring() {
-  const abfahrten = await getAbfahrten('8002549', false);
+  const abfahrten = await getAbfahrten('8002549', false, {
+    lookahead: 300,
+  });
   const maybeDepartures = abfahrten.departures.filter(d => d.reihung && d.scheduledDeparture);
 
-  let departure: ?Abfahrt = maybeDepartures.pop();
+  let departure: ?Abfahrt = maybeDepartures.shift();
 
   while (departure) {
     const departureTime = departure.scheduledDeparture;
 
     if (!departureTime) {
-      departure = maybeDepartures.pop();
+      departure = maybeDepartures.shift();
     } else {
       try {
         // eslint-disable-next-line no-await-in-loop
         const wr = await wagenReihungSpecificMonitoring(departure.trainId, departureTime);
 
         if (wr) return wr;
-        departure = maybeDepartures.pop();
+        departure = maybeDepartures.shift();
       } catch (e) {
         // eslint-disable-next-line no-console
-        console.warn('Failed to get WR for Monitoring!', departure, e);
-        throw e;
+        console.warn('Failed to get WR for Monitoring!', e, departure.train);
+        departure = maybeDepartures.shift();
       }
     }
   }
