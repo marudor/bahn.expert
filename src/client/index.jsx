@@ -50,10 +50,3 @@ if (module.hot) {
     ReactDOM.render(render(App), container);
   });
 }
-
-if ('serviceWorker' in navigator) {
-  // $FlowFixMe
-  navigator.serviceWorker?.ready.then(registration => {
-    registration.unregister();
-  });
-}

@@ -1,6 +1,7 @@
 // @flow
 import {
   closeSettings,
+  setAutoUpdate,
   setCheckIn,
   setFahrzeugGruppe,
   setLineAndNumber,
@@ -19,6 +20,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import React from 'react';
 import Switch from '@material-ui/core/Switch';
+import TextField from '@material-ui/core/TextField';
 import withStyles, { type StyledProps } from 'react-jss';
 import type { AbfahrtenState } from 'AppState';
 
@@ -38,6 +40,7 @@ type DispatchProps = {|
   +setLookahead: typeof setLookahead,
   +setFahrzeugGruppe: typeof setFahrzeugGruppe,
   +setLineAndNumber: typeof setLineAndNumber,
+  +setAutoUpdate: typeof setAutoUpdate,
 |};
 
 type ReduxProps = {|
@@ -51,6 +54,8 @@ type Props = StyledProps<ReduxProps, typeof styles>;
 class SettingsModal extends React.PureComponent<Props> {
   handleCheckedChange = (fn: boolean => any) => (e: SyntheticEvent<HTMLInputElement>) => fn(e.currentTarget.checked);
   handleValueChange = (fn: string => any) => (e: SyntheticEvent<HTMLInputElement>) => fn(e.currentTarget.value);
+  handleNumberValueChange = (fn: number => any) => (e: SyntheticEvent<HTMLInputElement>) =>
+    fn(Number.parseInt(e.currentTarget.value, 10));
   render() {
     const {
       checkIn,
@@ -72,22 +77,14 @@ class SettingsModal extends React.PureComponent<Props> {
       time,
       zoomReihung,
       classes,
+      autoUpdate,
+      setAutoUpdate,
     } = this.props;
 
     return (
       <Dialog maxWidth="md" fullWidth open={open} onClose={closeSettings}>
         <DialogTitle>Settings</DialogTitle>
         <DialogContent className={classes.main}>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={showSupersededMessages}
-                value="showSupersededMessagesConfig"
-                onChange={this.handleCheckedChange(setShowSupersededMessages)}
-              />
-            }
-            label="Obsolete Messages"
-          />
           <FormControlLabel
             control={
               <NativeSelect value={checkIn} name="checkIn" onChange={this.handleValueChange(setCheckIn)}>
@@ -97,6 +94,33 @@ class SettingsModal extends React.PureComponent<Props> {
               </NativeSelect>
             }
             label="Traewelling Link"
+          />
+          <FormControlLabel
+            control={
+              <TextField
+                className={classes.autoUpdate}
+                value={autoUpdate}
+                type="number"
+                inputProps={{
+                  min: 0,
+                  max: 9999,
+                  step: 30,
+                }}
+                name="autoUpdate"
+                onChange={this.handleNumberValueChange(setAutoUpdate)}
+              />
+            }
+            label="AutoUpdate in Sekunden"
+          />
+          <FormControlLabel
+            control={
+              <Switch
+                checked={showSupersededMessages}
+                value="showSupersededMessagesConfig"
+                onChange={this.handleCheckedChange(setShowSupersededMessages)}
+              />
+            }
+            label="Obsolete Messages"
           />
           <FormControlLabel
             control={<Switch checked={time} value="timeConfig" onChange={this.handleCheckedChange(setTime)} />}
@@ -172,6 +196,9 @@ export const styles = {
     display: 'flex',
     flexDirection: 'column',
   },
+  autoUpdate: {
+    width: '3em',
+  },
 };
 
 export default connect<ReduxProps, OwnProps, StateProps, DispatchProps, AbfahrtenState, _>(
@@ -189,5 +216,6 @@ export default connect<ReduxProps, OwnProps, StateProps, DispatchProps, Abfahrte
     setLookahead,
     setFahrzeugGruppe,
     setLineAndNumber,
+    setAutoUpdate,
   }
 )(withStyles(styles)(SettingsModal));

@@ -7,7 +7,10 @@ export type Options = {
   time: number,
   transferTime?: number,
   maxChanges?: number,
+  getPasslist?: boolean,
   searchForDeparture?: boolean,
+  economic?: boolean,
+  getTariff?: boolean,
 };
 
-export default (options: Options) => routeSearch(options);
+export default (options: Options, parse?: Function) => routeSearch(options, parse);

@@ -7,11 +7,12 @@ import type { RoutingRootState } from 'Routing/reducer';
 export type RoutingState = RoutingRootState;
 export type AbfahrtenState = AbfahrtenRootState;
 export type CommonState = CommonRootState;
-export type AppState = {|
+export type AppState = $ReadOnly<{|
   ...AbfahrtenRootState,
   ...RoutingRootState,
   ...CommonRootState,
-|};
+|}>;
+
 export type Action = any;
 export type Dispatch = ReduxDispatch<Action>;
 export type AppStore = Store<AppState, Action>;

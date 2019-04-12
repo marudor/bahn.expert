@@ -36,9 +36,6 @@ router
     // $FlowFixMe - assume type is StationSearchType
     ctx.body = await stationSearch(searchTerm, type);
   })
-  .get('/feature/:name', ctx => {
-    ctx.body = isEnabled(ctx.params.name);
-  })
   // https://si.favendo.de/station-info/rest/api/station/724
   .get('/station/:station', async ctx => {
     const { station } = ctx.params;
@@ -109,6 +106,23 @@ if (AuslastungsUser && AuslastungsPW) {
 
     ctx.body = await auslastung(trainNumber, date);
   });
+}
+
+if (process.env.NODE_ENV !== 'production') {
+  router
+    .post('/route/raw', async ctx => {
+      ctx.body = await routing(
+        {
+          ...ctx.request.body,
+          // $FlowFixMe - we assume user enters correct params
+          time: Number.parseInt(ctx.request.body.time, 10),
+        },
+        d => d
+      );
+    })
+    .get('/feature/:name', ctx => {
+      ctx.body = isEnabled(ctx.params.name);
+    });
 }
 
 export default router;
