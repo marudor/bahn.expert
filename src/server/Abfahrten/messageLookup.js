@@ -89,9 +89,16 @@ export default {
 
 export const messageTypeLookup = {
   d: 'delay',
-  f: 'qos',
+  f: 'freeText',
   q: 'qos',
+  h: 'HIM (Hafas Information Manager)',
+  i: 'IBIS (Generated IRIS-AP)',
+  u: 'IBIS (Generated IRIS-AP, not yet assigned to train)',
+  r: 'disruption',
+  c: 'connection',
 };
+export type MessageTypeLookup = typeof messageTypeLookup;
+export type MessageTypeValues = $Values<MessageTypeLookup>;
 
 export const supersededMessages = {
   '84': ['80', '82', '85'],

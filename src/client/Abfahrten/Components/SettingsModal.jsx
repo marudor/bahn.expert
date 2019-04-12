@@ -91,6 +91,7 @@ class SettingsModal extends React.PureComponent<Props> {
                 <option value="">Kein</option>
                 <option value="travelynx">travelynx.de</option>
                 <option value="traewelling">traewelling.de</option>
+                <option value="traewelynx">beide</option>
               </NativeSelect>
             }
             label="Traewelling Link"

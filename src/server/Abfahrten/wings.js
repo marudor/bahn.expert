@@ -1,7 +1,7 @@
 // @flow
+import { type Axios } from 'axios';
 import { getAttr, getBoolAttr, parseTs } from './helper';
-import { irisBase } from '.';
-import axios from 'axios';
+import { noncdAxios } from '.';
 import xmljs from 'libxmljs2';
 
 function parseNode(node) {
@@ -19,8 +19,8 @@ function parseNode(node) {
 
 // https://iris.noncd.db.de/iris-tts/timetable/wingdef/-6341887980654835099-1903161343-1/-1687578433996553139-1903161343-1
 // https://iris.noncd.db.de/iris-tts/timetable/wingdef/rawId1/rawId2
-export default async function wingInfo(rawId1: string, rawId2: string) {
-  const rawXml = (await axios.get(`${irisBase}/wingdef/${rawId1}/${rawId2}`)).data;
+export default async function wingInfo(rawId1: string, rawId2: string, axios: Axios = noncdAxios) {
+  const rawXml = (await axios.get(`/wingdef/${rawId1}/${rawId2}`)).data;
   const node = xmljs.parseXml(rawXml);
 
   const startNode = node.find('//wing-def/start');

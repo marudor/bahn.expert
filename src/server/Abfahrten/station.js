@@ -1,10 +1,10 @@
 // @flow
 /* eslint no-param-reassign: 0, no-await-in-loop: 0 */
 import { flatten } from 'lodash';
-import { irisBase } from './index';
-import axios from 'axios';
+import { noncdAxios } from './index';
 import NodeCache from 'node-cache';
 import xmljs from 'libxmljs2';
+import type { Axios } from 'axios';
 
 export type Station = {
   name: string,
@@ -35,13 +35,13 @@ function parseStation(stationNode): Station {
   return station;
 }
 
-export async function getSingleStation(evaId: string) {
-  const cached = cache.get(evaId);
+export async function getSingleStation(evaId: string, axios: Axios = noncdAxios) {
+  const cached = undefined; // cache.get(evaId);
 
   if (cached) {
     return cached;
   }
-  const rawXml = (await axios.get(`${irisBase}/station/${evaId}`)).data;
+  const rawXml = (await axios.get(`/station/${evaId}`)).data;
   const xml = xmljs.parseXml(rawXml);
 
   const xmlStation = xml.get('//station');
@@ -61,8 +61,8 @@ export async function getSingleStation(evaId: string) {
   return station;
 }
 
-export async function getStation(evaId: string, recursive: number = 0) {
-  const station = await getSingleStation(evaId);
+export async function getStation(evaId: string, recursive: number = 0, axios?: Axios) {
+  const station = await getSingleStation(evaId, axios);
   let queue = station.meta;
   const seen = [station.eva];
   const relatedStations = [];
@@ -77,7 +77,7 @@ export async function getStation(evaId: string, recursive: number = 0) {
             return [];
           }
           seen.push(id);
-          const station = await getSingleStation(id);
+          const station = await getSingleStation(id, axios);
 
           relatedStations.push(station);
 

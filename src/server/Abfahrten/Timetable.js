@@ -9,12 +9,17 @@ import { diffArrays } from 'diff';
 import { findLast, flatten, last, uniqBy } from 'lodash';
 import { getAttr, getNumberAttr, parseTs } from './helper';
 import { getCachedLageplan, getLageplan } from '../Bahnhof/Lageplan';
-import { irisBase } from './index';
-import axios from 'axios';
-import messageLookup, { messageTypeLookup, supersededMessages } from './messageLookup';
+import { noncdAxios } from './index';
+import messageLookup, {
+  messageTypeLookup,
+  type MessageTypeLookup,
+  type MessageTypeValues,
+  supersededMessages,
+} from './messageLookup';
 import NodeCache from 'node-cache';
 import xmljs, { type XmlNode } from 'libxmljs2';
-import type { Abfahrt, Message } from 'types/abfahrten';
+import type { Abfahrt } from 'types/abfahrten';
+import type { Axios } from 'axios';
 
 export type Result = {
   departures: Abfahrt[],
@@ -168,6 +173,7 @@ function parseRawId(rawId: string) {
 const longDistanceRegex = /(ICE?|TGV|ECE?|RJ).*/;
 
 export default class Timetable {
+  axios: Axios;
   timetable: {
     [key: string]: any,
   } = {};
@@ -179,7 +185,8 @@ export default class Timetable {
   currentDate: Date;
   maxDate: Date;
 
-  constructor(evaId: string, currentStation: string, options: TimetableOptions) {
+  constructor(evaId: string, currentStation: string, options: TimetableOptions, axios: Axios = noncdAxios) {
+    this.axios = axios;
     this.evaId = evaId;
     this.currentDate = new Date();
     this.maxDate = addMinutes(this.currentDate, options.lookahead);
@@ -316,20 +323,24 @@ export default class Timetable {
     const indexType = getAttr(mNode, 't');
 
     if (!indexType) return undefined;
-    const type: ?string = messageTypeLookup[indexType];
+    const type: ?$Keys<MessageTypeLookup> = messageTypeLookup[indexType];
 
     if (!type || !value || value <= 1) {
       return undefined;
     }
 
+    const message = {
+      superseeds: false,
+      superseded: undefined,
+      text: messageLookup[value] || `${value} (?)`,
+      timestamp: parseTs(getAttr(mNode, 'ts')),
+      priority: getAttr(mNode, 'pr'),
+    };
+
     return {
       type,
       value,
-      message: {
-        superseeds: false,
-        text: messageLookup[value] || `${value} (?)`,
-        timestamp: parseTs(getAttr(mNode, 'ts')),
-      },
+      message,
     };
   }
   parseRealtimeS(sNode: XmlNode) {
@@ -354,11 +365,8 @@ export default class Timetable {
 
     if (!mArr) return;
     const messages: {
-      delay: {
-        [key: string]: Message,
-      },
-      qos: {
-        [key: string]: Message,
+      [key: MessageTypeValues]: {
+        [key: number]: *,
       },
     } = {
       delay: {},
@@ -373,6 +381,7 @@ export default class Timetable {
       .forEach(({ type, message, value }) => {
         const supersedes = supersededMessages[value];
 
+        if (!messages[type]) messages[type] = {};
         if (supersedes) {
           message.superseeds = true;
           supersedes.forEach(v => {
@@ -384,20 +393,17 @@ export default class Timetable {
         messages[type][value] = message;
       });
 
-    const delay: Message[] = (Object.values(messages.delay): any);
-    const qos: Message[] = (Object.values(messages.qos): any);
-
-    delay.sort((a, b) => compareDesc(a.timestamp, b.timestamp));
-    qos.sort((a, b) => compareDesc(a.timestamp, b.timestamp));
-
     return {
       id,
       mediumId,
       rawId,
-      messages: {
-        delay,
-        qos,
-      },
+      messages: Object.keys(messages).reduce((agg, messageKey) => {
+        const messageValues: any = Object.values(messages[messageKey]);
+
+        agg[messageKey] = messageValues.sort((a, b) => compareDesc(a.timestamp, b.timestamp));
+
+        return agg;
+      }, {}),
       arrival: parseRealtimeAr(ar),
       departure: parseDp(dp),
       ref: ref ? this.parseRef(ref) : undefined,
@@ -460,18 +466,9 @@ export default class Timetable {
     timetable.platform = dp.platform || timetable.scheduledPlatform;
   }
   async fetchRealtime() {
-    const url = `${irisBase}/fchg/${this.evaId}`;
+    const url = `/fchg/${this.evaId}`;
 
-    if (process.env.NODE_ENV !== 'production') {
-      const cached = timetableCache.get(url);
-
-      if (cached) return cached;
-    }
-    const result = await axios.get(url).then(x => x.data);
-
-    if (process.env.NODE_ENV !== 'production') {
-      timetableCache.set(url, result);
-    }
+    const result = await this.axios.get(url).then(x => x.data);
 
     return result;
   }
@@ -555,6 +552,8 @@ export default class Timetable {
       routePost: routePost.map<Route>(routeMap),
       routePre: routePre.map<Route>(routeMap),
       // routeStart: getAttr(ar, 'pde'),
+      hiddenArrival: getAttr(ar, 'hi'),
+      hiddenDeparture: getAttr(dp, 'hi'),
       scheduledArrival,
       scheduledDeparture,
       scheduledPlatform: getAttr(dp, 'pp') || getAttr(ar, 'pp'),
@@ -591,7 +590,7 @@ export default class Timetable {
         let rawXml = timetableCache.get(key);
 
         if (!rawXml) {
-          rawXml = await axios.get(`${irisBase}${key}`).then(x => x.data);
+          rawXml = await this.axios.get(`${key}`).then(x => x.data);
 
           timetableCache.set(key, rawXml);
         }
