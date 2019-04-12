@@ -1,4 +1,5 @@
 // @flow
+import { configSanitize } from 'client/util';
 import { getFeatures } from './features';
 import { HelmetProvider } from 'react-helmet-async';
 import { isEnabled } from 'unleash-client';
@@ -9,7 +10,6 @@ import { renderStylesToString } from 'emotion-server';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import Actions, { setCookies } from 'Abfahrten/actions/config';
-import Cookies from 'universal-cookie';
 import createJssProviderProps from 'client/createJssProviderProps';
 import createStore from 'client/createStore';
 import createTheme from 'client/createTheme';
@@ -42,12 +42,24 @@ export default async (ctx: any) => {
     features: getFeatures(),
   });
 
-  store.dispatch(setCookies(new Cookies(ctx.req.headers.cookie)));
+  await store.dispatch(setCookies(ctx.request.universalCookies));
+  Object.keys(ctx.query).forEach(key => {
+    if (configSanitize.hasOwnProperty(key)) {
+      store.dispatch(
+        Actions.setConfig({
+          // $FlowFixMe - this is implicit correct due to configSanitize typing
+          key,
+          value: configSanitize[key](ctx.query[key]),
+        })
+      );
+    }
+  });
+
   // $FlowFixMe we already checked that BASE_URL exists
   store.dispatch(Actions.setBaseUrl(process.env.BASE_URL));
 
   await Promise.all(
-    matchRoutes(routes, ctx.req.url).map(({ route, match }) =>
+    matchRoutes(routes, ctx.path).map(({ route, match }) =>
       route.component.loadData ? route.component.loadData(store, match) : Promise.resolve()
     )
   );
@@ -59,7 +71,7 @@ export default async (ctx: any) => {
       <JssProvider {...jssProps}>
         <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
           <HelmetProvider context={helmetContext}>
-            <StaticRouter location={ctx.req.url} context={routeContext}>
+            <StaticRouter location={ctx.path} context={routeContext}>
               <MainApp />
             </StaticRouter>
           </HelmetProvider>

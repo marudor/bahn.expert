@@ -9,17 +9,22 @@ type StationSearchType =
   | 'favendo'
   | '';
 
+type CheckInType = 'traewelling' | 'travelynx' | '';
+
 type marudorConfig = {|
   +time: boolean,
   +searchType: StationSearchType,
-  +checkIn: 'traewelling' | 'travelynx' | '',
+  +checkIn: CheckInType,
   +zoomReihung: boolean,
   +showSupersededMessages: boolean,
   +lookahead: string,
   +fahrzeugGruppe: boolean,
   +lineAndNumber: boolean,
   +autoUpdate: number,
+  +onlyDepartures: boolean,
 |};
+
+type marudorConfigSanitize = $ObjMap<marudorConfig, <V>(V) => string => V>;
 
 type Features = {|
   +'google-analytics': boolean,

@@ -1,6 +1,7 @@
 // @flow
 import { connect } from 'react-redux';
 import { type ContextRouter, withRouter } from 'react-router-dom';
+import { getAbfahrtenForConfig } from 'Abfahrten/selector/abfahrten';
 import { Redirect } from 'react-router';
 import Abfahrt from './Abfahrt';
 import Actions, { getAbfahrtenByString, refreshCurrentAbfahrten } from 'Abfahrten/actions/abfahrten';
@@ -125,7 +126,7 @@ const styles = {
 
 export default connect<ReduxProps, OwnProps, StateProps, DispatchProps, AbfahrtenState, _>(
   state => ({
-    abfahrten: state.abfahrten.abfahrten,
+    abfahrten: getAbfahrtenForConfig(state),
     currentStation: state.abfahrten.currentStation,
     error: state.abfahrten.error,
     autoUpdate: state.config.config.autoUpdate,

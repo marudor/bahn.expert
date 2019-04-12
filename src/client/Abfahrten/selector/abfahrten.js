@@ -23,6 +23,18 @@ export const getNextDeparture = (state: AbfahrtenSubstate) => {
   }
 };
 
+export const getAbfahrtenForConfig = createSelector<AbfahrtenState, void, ?(Abfahrt[]), ?(Abfahrt[]), boolean, ?string>(
+  state => state.abfahrten.abfahrten,
+  state => state.config.config.onlyDepartures,
+  state => state.abfahrten.selectedDetail,
+  (abfahrten, onlyDepartures, selectedDetail) => {
+    if (abfahrten && onlyDepartures) {
+      return abfahrten.filter(a => a.departure || a.id === selectedDetail);
+    }
+
+    return abfahrten;
+  }
+);
 export const getWingsForAbfahrt = createSelector<
   AbfahrtenSubstate,
   AbfahrtProps,
