@@ -30,9 +30,9 @@ export function delayTime(
   const time = timeConfig && delay ? addMinutes(rawTime, delay) : rawTime;
 
   return (
-    <div className={cc(classes.time, delayStyle(classes, delay))}>
+    <div className={cc(classes.time, timeConfig && delayStyle(classes, delay))}>
       <span>{format(time, 'HH:mm')}</span>
-      {delay != null && <span>{delayString(delay)}</span>}
+      {delay != null && <span className={!timeConfig && delayStyle(classes, delay)}>{delayString(delay)}</span>}
     </div>
   );
 }

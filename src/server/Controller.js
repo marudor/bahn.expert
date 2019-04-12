@@ -75,6 +75,9 @@ router
   })
   .get('/monitoring/wagen', async ctx => {
     ctx.body = await wagenReihungMonitoring();
+    if (!ctx.body) {
+      ctx.status = 404;
+    }
   })
   .get('/wings/:rawId1/:rawId2', async ctx => {
     const { rawId1, rawId2 } = ctx.params;
