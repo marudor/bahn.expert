@@ -14,6 +14,7 @@ type OwnProps = {|
   real?: number,
   showOriginalTime?: boolean,
   showZero?: boolean,
+  oneLine?: boolean,
 |};
 type StateProps = {||};
 type ReduxProps = {|
@@ -39,6 +40,7 @@ const Time = ({
   showOriginalTime,
   showZero = true,
   alignEnd,
+  oneLine,
 }: Props) => {
   if (!real) return <div />;
   const time = showOriginalTime && delay ? subMinutes(real, delay) : real;
@@ -57,9 +59,16 @@ const Time = ({
       className={cc(className, classes.time, {
         [delayStyle]: !showOriginalTime,
         [classes.alignEnd]: alignEnd,
+        [classes.seperateLine]: !oneLine,
       })}
     >
-      <span>{format(time, 'HH:mm')}</span>
+      <span
+        className={cc({
+          [classes.spacing]: oneLine,
+        })}
+      >
+        {format(time, 'HH:mm')}
+      </span>
       <span className={cc(showOriginalTime && delayStyle)}>
         {hasDelay && delayString(delay)}
       </span>
@@ -73,7 +82,12 @@ const styles = {
   },
   time: {
     display: 'flex',
+  },
+  seperateLine: {
     flexDirection: 'column',
+  },
+  spacing: {
+    marginRight: '.2em',
   },
   delayed,
   early,

@@ -1,4 +1,5 @@
 // @flow
+import Platform from 'Common/Components/Platform';
 import React, { useMemo } from 'react';
 import StopList from './StopList';
 import Time from 'Common/Components/Time';
@@ -37,11 +38,17 @@ const RouteSegment = ({ segment, classes, detail, onTrainClick }: Props) => {
       <div className={classes.main}>
         <Time real={segment.departure} delay={segment.departureDelay} />
         <span>{segment.segmentStart.title}</span>
-        <span className={classes.platform}>{segment.departurePlatform}</span>
+        <Platform
+          real={segment.departurePlatform}
+          scheduled={segment.scheduledDeparturePlatform}
+        />
         {train}
         <Time real={segment.arrival} delay={segment.arrivalDelay} />
         <span>{segment.segmentDestination.title}</span>
-        <span className={classes.platform}>{segment.arrivalPlatform}</span>
+        <Platform
+          real={segment.arrivalPlatform}
+          scheduled={segment.scheduledArrivalPlatform}
+        />
       </div>
       {segment.hasOwnProperty('changeDuration') && (
         <span>{segment.changeDuration} Minuten Umsteigezeit</span>

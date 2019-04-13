@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import { renderStylesToString } from 'emotion-server';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
+import abfahrtenRoutes from 'Abfahrten/routes';
 import Actions, { setCookies } from 'Abfahrten/actions/config';
 import createJssProviderProps from 'client/createJssProviderProps';
 import createStore from 'client/createStore';
@@ -19,7 +20,7 @@ import JssProvider from 'react-jss/lib/JssProvider';
 import MainApp from 'client/App';
 import path from 'path';
 import React from 'react';
-import routes from 'Abfahrten/routes';
+import routingRoutes from 'Routing/routes';
 import serialize from 'serialize-javascript';
 
 const headerFilename = path.resolve(__dirname, './views/header.ejs');
@@ -29,7 +30,9 @@ const headerTemplate = ejs.compile(headerEjs, {
   filename: headerFilename,
 });
 // eslint-disable-next-line
-const footerEjs = fs.readFileSync(path.resolve(__dirname, './views/footer.ejs'), 'utf8').trim();
+const footerEjs = fs
+  .readFileSync(path.resolve(__dirname, './views/footer.ejs'), 'utf8')
+  .trim();
 const footerTemplate = ejs.compile(footerEjs);
 
 export default async (ctx: any) => {
@@ -57,6 +60,9 @@ export default async (ctx: any) => {
 
   // $FlowFixMe we already checked that BASE_URL exists
   store.dispatch(Actions.setBaseUrl(process.env.BASE_URL));
+  const routes = ctx.path.startsWith('/routing')
+    ? routingRoutes
+    : abfahrtenRoutes;
 
   await Promise.all(
     matchRoutes(routes, ctx.path).map(({ route, match }) =>
