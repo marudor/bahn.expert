@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
 const ReactJssHmrPlugin = require('react-jss-hmr/webpack');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
 
@@ -16,8 +17,8 @@ const plugins = [
     SERVER: false,
   }),
   new MiniCssExtractPlugin({
-    filename: '[name]-[contenthash].css',
-    chunkFilename: '[id]-[hash].css',
+    filename: isDev ? '[name].css' : '[name]-[contenthash].css',
+    chunkFilename: isDev ? '[id].css' : '[id]-[hash].css',
   }),
 ];
 
@@ -31,6 +32,10 @@ const rules = [
     use: [
       {
         loader: MiniCssExtractPlugin.loader,
+        options: {
+          hmr: isDev,
+          reloadAll: true,
+        },
       },
       { loader: 'css-loader' },
       { loader: 'postcss-loader' },
@@ -45,26 +50,26 @@ const rules = [
   },
 ];
 
+const optimization = {};
+
 if (isDev) {
-  rules.forEach(r => r.use && r.use.unshift({ loader: 'cache-loader' }));
+  rules[0].use.unshift('cache-loader');
 } else {
-  plugins.push(
-    new TerserPlugin({
+  optimization.minimizer = [
+    new new TerserPlugin({
       parallel: true,
       extractComments: {
         condition: 'all',
         banner: () => '',
       },
-    })
-  );
-  plugins.push(
-    new StatsWriterPlugin({
-      filename: 'stats.json', // Default
-    })
-  );
+    })(),
+    new OptimizeCSSAssetsPlugin({}),
+  ];
+  plugins.push();
 }
 
 module.exports = {
+  optimization,
   plugins,
   mode: isDev ? 'development' : 'production',
   devtool: isDev ? 'cheap-module-eval-source-map' : false,
@@ -85,7 +90,7 @@ module.exports = {
   },
   output: {
     path: path.resolve('dist/client/static'),
-    filename: '[name]-[hash].js',
+    filename: isDev ? '[name].js' : '[name]-[hash].js',
     publicPath: '/static/',
   },
   module: {

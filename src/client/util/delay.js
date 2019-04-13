@@ -32,7 +32,7 @@ export function delayTime(
   return (
     <div className={cc(classes.time, timeConfig && delayStyle(classes, delay))}>
       <span>{format(time, 'HH:mm')}</span>
-      {delay != null && <span className={!timeConfig && delayStyle(classes, delay)}>{delayString(delay)}</span>}
+      {delay != null && <span className={cc(!timeConfig && delayStyle(classes, delay))}>{delayString(delay)}</span>}
     </div>
   );
 }
