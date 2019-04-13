@@ -2,9 +2,9 @@
 /* eslint no-nested-ternary: 0 */
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { delayTime } from 'client/util/delay';
 import cc from 'classnames';
 import styles from './Times.styles';
+import Time from 'Common/Components/Time';
 import withStyles, { type StyledProps } from 'react-jss';
 import type { Abfahrt } from 'types/abfahrten';
 import type { AbfahrtenState } from 'AppState';
@@ -26,15 +26,7 @@ type Props = StyledProps<ReduxProps, typeof styles>;
 
 const Times = ({
   timeConfig,
-  abfahrt: {
-    scheduledArrival,
-    scheduledDeparture,
-    delayArrival,
-    delayDeparture,
-    isCancelled,
-    arrivalIsCancelled,
-    departureIsCancelled,
-  },
+  abfahrt: { arrival, arrivalIsCancelled, delayArrival, delayDeparture, departure, departureIsCancelled, isCancelled },
   detail,
   classes,
 }: Props) => (
@@ -45,31 +37,31 @@ const Times = ({
   >
     {detail ? (
       <React.Fragment>
-        {scheduledArrival && (
+        {arrival && (
           <div
             className={cc(classes.wrapper, {
               [classes.cancelled]: arrivalIsCancelled,
             })}
           >
             <span>{'An: '}</span>
-            {delayTime(classes, scheduledArrival, delayArrival, timeConfig)}
+            <Time alignEnd delay={delayArrival} real={arrival} showOriginalTime={!timeConfig} showZero />
           </div>
         )}
-        {scheduledDeparture && (
+        {departure && (
           <div
             className={cc(classes.wrapper, {
               [classes.cancelled]: departureIsCancelled,
             })}
           >
             <span>{'Ab: '}</span>
-            {delayTime(classes, scheduledDeparture, delayDeparture, timeConfig)}
+            <Time alignEnd delay={delayDeparture} real={departure} showOriginalTime={!timeConfig} showZero />
           </div>
         )}
       </React.Fragment>
-    ) : scheduledDeparture && (!departureIsCancelled || isCancelled) ? (
-      delayTime(classes, scheduledDeparture, delayDeparture, timeConfig)
+    ) : departure && (!departureIsCancelled || isCancelled) ? (
+      <Time alignEnd delay={delayDeparture} real={departure} showOriginalTime={!timeConfig} showZero />
     ) : (
-      delayTime(classes, scheduledArrival, delayArrival, timeConfig)
+      arrival && <Time alignEnd delay={delayArrival} real={arrival} showOriginalTime={!timeConfig} showZero />
     )}
   </div>
 );

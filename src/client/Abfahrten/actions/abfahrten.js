@@ -99,7 +99,12 @@ export const refreshCurrentAbfahrten: AbfahrtenThunkAction<> = () => async (disp
     }
     const abfahrten = await getAbfahrtenFromAPI(state.abfahrten.currentStation, state.config.config.lookahead);
 
-    return dispatch(Actions.gotAbfahrten({ station: state.abfahrten.currentStation, ...abfahrten }));
+    return dispatch(
+      Actions.gotAbfahrten({
+        station: state.abfahrten.currentStation,
+        ...abfahrten,
+      })
+    );
   } catch (e) {
     // We ignore errors here - otherwise we might display error automatically due to refresh after back online
   }

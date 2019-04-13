@@ -42,8 +42,12 @@ Options) {
           // Always true!
           getPT: true,
           numF: 6,
-          outDate: formatToTimeZone(time, 'YYYYMMDD', { timeZone: 'Europe/Berlin' }),
-          outTime: formatToTimeZone(time, 'HHmmss', { timeZone: 'Europe/Berlin' }),
+          outDate: formatToTimeZone(time, 'YYYYMMDD', {
+            timeZone: 'Europe/Berlin',
+          }),
+          outTime: formatToTimeZone(time, 'HHmmss', {
+            timeZone: 'Europe/Berlin',
+          }),
           maxChg: maxChanges,
           minChgTime: transferTime,
           // get stops in between

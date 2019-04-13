@@ -64,7 +64,7 @@ export const gridStyle = {
 const styles = {
   main: {
     minHeight: '3em',
-    gridTemplateRows: '1.5em 1.5em auto',
+    gridTemplateRows: '2.5em 1.5em auto',
     alignItems: 'center',
     ...gridStyle,
   },
