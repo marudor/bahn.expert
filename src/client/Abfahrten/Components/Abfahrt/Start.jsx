@@ -26,8 +26,12 @@ const Start = ({ abfahrt, detail, lineAndNumber, classes }: Props) => (
       </>
     )}
     {detail && <CheckInLink abfahrt={abfahrt} />}
-    {abfahrt.isCancelled && <span className={classes.cancelled}>Zugausfall</span>}
-    {abfahrt.substitute && abfahrt.ref && <Substitute substitute={abfahrt.ref} />}
+    {abfahrt.isCancelled && (
+      <span className={classes.cancelled}>Zugausfall</span>
+    )}
+    {abfahrt.substitute && abfahrt.ref && (
+      <Substitute substitute={abfahrt.ref} />
+    )}
     {detail && abfahrt.auslastung && <Auslastung abfahrt={abfahrt} />}
   </div>
 );

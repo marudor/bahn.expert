@@ -27,7 +27,10 @@ export default Actions;
 
 let cancelGetAbfahrten = () => {};
 
-function getAbfahrtenFromAPI(station: Station, lookahead: string): Promise<AbfahrtAPIResult> {
+function getAbfahrtenFromAPI(
+  station: Station,
+  lookahead: string
+): Promise<AbfahrtAPIResult> {
   cancelGetAbfahrten();
 
   return axios
@@ -44,25 +47,34 @@ function getAbfahrtenFromAPI(station: Station, lookahead: string): Promise<Abfah
 }
 
 export const getLageplan: AbfahrtenThunkAction<string> = stationName => async dispatch => {
-  const lageplan = (await axios.get(`/api/lageplan/${stationName}`)).data.lageplan;
+  const lageplan = (await axios.get(`/api/lageplan/${stationName}`)).data
+    .lageplan;
 
   dispatch(Actions.gotLageplan(lageplan));
 
   return lageplan;
 };
 
-export const getAbfahrtenByString: AbfahrtenThunkAction<?string, ?StationSearchType> = (
-  stationString,
-  searchType
-) => async (dispatch, getState) => {
+export const getAbfahrtenByString: AbfahrtenThunkAction<
+  ?string,
+  ?StationSearchType
+> = (stationString, searchType) => async (dispatch, getState) => {
   try {
     const config = getState().config.config;
-    const stations = await getStationsFromAPI(stationString, searchType || config.searchType);
+    const stations = await getStationsFromAPI(
+      stationString,
+      searchType || config.searchType
+    );
 
     if (stations.length) {
-      const abfahrten = await getAbfahrtenFromAPI(stations[0], config.lookahead);
+      const abfahrten = await getAbfahrtenFromAPI(
+        stations[0],
+        config.lookahead
+      );
 
-      return dispatch(Actions.gotAbfahrten({ station: stations[0], ...abfahrten }));
+      return dispatch(
+        Actions.gotAbfahrten({ station: stations[0], ...abfahrten })
+      );
     }
     throw {
       type: '404',
@@ -75,10 +87,14 @@ export const getAbfahrtenByString: AbfahrtenThunkAction<?string, ?StationSearchT
   }
 };
 
-export const setDetail: AbfahrtenThunkAction<?string> = selectedDetail => (dispatch, getState) => {
+export const setDetail: AbfahrtenThunkAction<?string> = selectedDetail => (
+  dispatch,
+  getState
+) => {
   const state = getState();
   const cookies = state.config.cookies;
-  const detail: ?string = state.abfahrten.selectedDetail === selectedDetail ? null : selectedDetail;
+  const detail: ?string =
+    state.abfahrten.selectedDetail === selectedDetail ? null : selectedDetail;
 
   if (detail) {
     cookies.set('selectedDetail', detail, setCookieOptions);
@@ -90,14 +106,20 @@ export const setDetail: AbfahrtenThunkAction<?string> = selectedDetail => (dispa
   return Promise.resolve();
 };
 
-export const refreshCurrentAbfahrten: AbfahrtenThunkAction<> = () => async (dispatch, getState) => {
+export const refreshCurrentAbfahrten: AbfahrtenThunkAction<> = () => async (
+  dispatch,
+  getState
+) => {
   try {
     const state = getState();
 
     if (!state.abfahrten.currentStation) {
       return;
     }
-    const abfahrten = await getAbfahrtenFromAPI(state.abfahrten.currentStation, state.config.config.lookahead);
+    const abfahrten = await getAbfahrtenFromAPI(
+      state.abfahrten.currentStation,
+      state.config.config.lookahead
+    );
 
     return dispatch(
       Actions.gotAbfahrten({

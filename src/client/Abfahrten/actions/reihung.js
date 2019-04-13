@@ -8,7 +8,9 @@ import type { AbfahrtenThunkAction } from 'AppState';
 import type { Reihung, Wagenreihung } from 'types/reihung';
 
 const Actions = {
-  gotReihung: createAction<string, { id: string, data: ?Reihung }>('GOT_REIHUNG'),
+  gotReihung: createAction<string, { id: string, data: ?Reihung }>(
+    'GOT_REIHUNG'
+  ),
 };
 
 export default Actions;
@@ -23,7 +25,9 @@ export const getReihung: AbfahrtenThunkAction<Abfahrt> = ({
       throw new Error();
     }
 
-    const reihung: Wagenreihung = (await axios.get(`/api/wagen/${trainId}/${scheduledDeparture}`)).data;
+    const reihung: Wagenreihung = (await axios.get(
+      `/api/wagen/${trainId}/${scheduledDeparture}`
+    )).data;
 
     dispatch(
       Actions.gotReihung({

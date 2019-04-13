@@ -3,7 +3,10 @@
 import axios from 'axios';
 import type { Station } from 'types/station';
 
-export async function getStationsFromAPI(stationString: ?string, type: StationSearchType = ''): Promise<Station[]> {
+export async function getStationsFromAPI(
+  stationString: ?string,
+  type: StationSearchType = ''
+): Promise<Station[]> {
   if (stationString) {
     return (await axios.get(`/api/search/${stationString}`, {
       params: {

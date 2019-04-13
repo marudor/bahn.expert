@@ -13,4 +13,5 @@ export type Options = {
   getTariff?: boolean,
 };
 
-export default (options: Options, parse?: Function) => routeSearch(options, parse);
+export default (options: Options, parse?: Function) =>
+  routeSearch(options, parse);

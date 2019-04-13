@@ -47,6 +47,13 @@ const styles = {
   },
 };
 
-export default connect<ReduxProps, OwnProps, StateProps, DispatchProps, AbfahrtenState, _>(state => ({
+export default connect<
+  ReduxProps,
+  OwnProps,
+  StateProps,
+  DispatchProps,
+  AbfahrtenState,
+  _
+>(state => ({
   currentStation: state.abfahrten.currentStation,
 }))(withStyles(styles)(Footer));

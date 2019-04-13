@@ -22,7 +22,9 @@ const TravelynxLink = ({ abfahrt, className }: Props) =>
       onClick={preventDefault}
       rel="noopener noreferrer"
       target="_blank"
-      href={`https://travelynx.de/s/${abfahrt.currentStationEva}?train=${abfahrt.thirdParty || abfahrt.trainType} ${
+      href={`https://travelynx.de/s/${
+        abfahrt.currentStationEva
+      }?train=${abfahrt.thirdParty || abfahrt.trainType} ${
         abfahrt.trainNumber
       }`}
     >

@@ -57,6 +57,13 @@ const styles = {
   },
 };
 
-export default connect<ReduxProps, OwnProps, StateProps, DispatchProps, AppState, _>(state => ({
+export default connect<
+  ReduxProps,
+  OwnProps,
+  StateProps,
+  DispatchProps,
+  AppState,
+  _
+>(state => ({
   routingFeature: state.features.routing,
 }))(withStyles(styles)(App));

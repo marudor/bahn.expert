@@ -4,7 +4,11 @@ import { getLageplan } from './Bahnhof/Lageplan';
 import { getStation } from './Abfahrten/station';
 import { isEnabled } from 'unleash-client';
 import { openDataAxios } from './Abfahrten';
-import { wagenReihung, wagenReihungMonitoring, wagenReihungStation } from './Reihung';
+import {
+  wagenReihung,
+  wagenReihungMonitoring,
+  wagenReihungStation,
+} from './Reihung';
 import axios from 'axios';
 import createAuslastung from './Auslastung';
 import KoaRouter from 'koa-router';
@@ -16,7 +20,9 @@ const router = new KoaRouter();
 
 // Favendo offline?
 async function stationInfo(station: number) {
-  const info = (await axios.get(`https://si.favendo.de/station-info/rest/api/station/${station}`)).data;
+  const info = (await axios.get(
+    `https://si.favendo.de/station-info/rest/api/station/${station}`
+  )).data;
 
   return {
     id: info.id,

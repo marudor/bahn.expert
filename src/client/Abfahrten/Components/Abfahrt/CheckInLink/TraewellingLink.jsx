@@ -26,7 +26,10 @@ const TraewellingLink = ({ abfahrt, className }: Props) => {
     return null;
   }
   // const start = abfahrt.route[0].name;
-  const destination = abfahrt.route[abfahrt.route.length - 1].name.replace(/ß/g, 'ss');
+  const destination = abfahrt.route[abfahrt.route.length - 1].name.replace(
+    /ß/g,
+    'ss'
+  );
   const time = format(departure, 'HH:mm').replace(':', '%3A');
   const date = format(departure, 'yyyy-MM-dd');
 
@@ -36,9 +39,14 @@ const TraewellingLink = ({ abfahrt, className }: Props) => {
       onClick={preventDefault}
       rel="noopener noreferrer"
       target="_blank"
-      href={`https://traewelling.de/checkin?ris=2&2_cat=${abfahrt.trainType}&2_id=${
+      href={`https://traewelling.de/checkin?ris=2&2_cat=${
+        abfahrt.trainType
+      }&2_id=${
         abfahrt.trainType === 'S' ? abfahrt.trainId : abfahrt.trainNumber
-      }&2_start=${abfahrt.currentStation.replace(/ß/g, 'ss')}&2_to=${destination}&2_tm=${time}&2_date=${date}`}
+      }&2_start=${abfahrt.currentStation.replace(
+        /ß/g,
+        'ss'
+      )}&2_to=${destination}&2_tm=${time}&2_date=${date}`}
     >
       Traewelling
     </a>

@@ -10,11 +10,13 @@ const Actions = {
   setDate: createAction<string, Date>('SET_DATE'),
 };
 
-type AllowedSetStationActions = typeof Actions.setStart | typeof Actions.setDestination;
-export const getStationById: RoutingThunkAction<string, AllowedSetStationActions> = (
-  stationId,
-  action
-) => async dispatch => {
+type AllowedSetStationActions =
+  | typeof Actions.setStart
+  | typeof Actions.setDestination;
+export const getStationById: RoutingThunkAction<
+  string,
+  AllowedSetStationActions
+> = (stationId, action) => async dispatch => {
   const stations = await getStationsFromAPI(stationId, 'dbNav');
 
   dispatch(action(stations[0]));

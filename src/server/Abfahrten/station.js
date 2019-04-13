@@ -35,7 +35,10 @@ function parseStation(stationNode): Station {
   return station;
 }
 
-export async function getSingleStation(evaId: string, axios: Axios = noncdAxios) {
+export async function getSingleStation(
+  evaId: string,
+  axios: Axios = noncdAxios
+) {
   const cached = cache.get(evaId);
 
   if (cached) {
@@ -62,7 +65,11 @@ export async function getSingleStation(evaId: string, axios: Axios = noncdAxios)
   return station;
 }
 
-export async function getStation(evaId: string, recursive: number = 0, axios?: Axios) {
+export async function getStation(
+  evaId: string,
+  recursive: number = 0,
+  axios?: Axios
+) {
   const station = await getSingleStation(evaId, axios);
   let queue = station.meta;
   const seen = [station.eva];

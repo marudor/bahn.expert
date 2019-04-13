@@ -4,9 +4,12 @@ import iconv from 'iconv-lite';
 import type { Station } from 'types/station';
 
 export default async function(searchTerm: string): Promise<Station[]> {
-  const buffer = (await axios.get(`http://reiseauskunft.bahn.de/bin/ajax-getstop.exe/dn?S=${searchTerm}*`, {
-    responseType: 'arraybuffer',
-  })).data;
+  const buffer = (await axios.get(
+    `http://reiseauskunft.bahn.de/bin/ajax-getstop.exe/dn?S=${searchTerm}*`,
+    {
+      responseType: 'arraybuffer',
+    }
+  )).data;
 
   const rawReply = iconv.decode(buffer, 'latin-1');
 

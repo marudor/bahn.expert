@@ -14,11 +14,17 @@ const defaultState: State = {
 
 export default handleActions<State, *>(
   {
-    [String(Actions.gotRoutes)]: (state: State, { payload }: ActionType<typeof Actions.gotRoutes>) => ({
+    [String(Actions.gotRoutes)]: (
+      state: State,
+      { payload }: ActionType<typeof Actions.gotRoutes>
+    ) => ({
       ...state,
       routes: payload,
     }),
-    [String(Actions.setDetail)]: (state: State, { payload }: ActionType<typeof Actions.setDetail>) => ({
+    [String(Actions.setDetail)]: (
+      state: State,
+      { payload }: ActionType<typeof Actions.setDetail>
+    ) => ({
       ...state,
       selectedDetail: payload,
     }),

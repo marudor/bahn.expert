@@ -26,7 +26,10 @@ function mapStops(stops) {
   return stops.map(mapStop);
 }
 
-export default function createAuslastungsFunction(username: string, password: string) {
+export default function createAuslastungsFunction(
+  username: string,
+  password: string
+) {
   return async function zugAuslastung(trainId: number, date: string) {
     const cached = cache.get(trainId);
 
@@ -66,9 +69,17 @@ export default function createAuslastungsFunction(username: string, password: st
       const secondColumn = $(columns[4]).children();
 
       // eslint-disable-next-line no-nested-ternary
-      const first = firstColumn.hasClass('badge-danger') ? 2 : firstColumn.hasClass('badge-warning') ? 1 : 0;
+      const first = firstColumn.hasClass('badge-danger')
+        ? 2
+        : firstColumn.hasClass('badge-warning')
+        ? 1
+        : 0;
       // eslint-disable-next-line no-nested-ternary
-      const second = secondColumn.hasClass('badge-danger') ? 2 : secondColumn.hasClass('badge-warning') ? 1 : 0;
+      const second = secondColumn.hasClass('badge-danger')
+        ? 2
+        : secondColumn.hasClass('badge-warning')
+        ? 1
+        : 0;
 
       return { time, start, stop, first, second };
     });

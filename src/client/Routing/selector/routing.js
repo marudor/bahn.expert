@@ -7,10 +7,18 @@ type RouteProps = {
   +route: RouteType,
 };
 
-export const getSelectedDetail = (state: RoutingState) => state.routing.selectedDetail;
-export const getCidFromProps = (_: RoutingState, props: RouteProps) => props.route.cid;
+export const getSelectedDetail = (state: RoutingState) =>
+  state.routing.selectedDetail;
+export const getCidFromProps = (_: RoutingState, props: RouteProps) =>
+  props.route.cid;
 
-export const getDetailForRoute = createSelector<RoutingState, RouteProps, boolean, ?string, string>(
+export const getDetailForRoute = createSelector<
+  RoutingState,
+  RouteProps,
+  boolean,
+  ?string,
+  string
+>(
   getSelectedDetail,
   getCidFromProps,
   (selectedDetail, cid) => selectedDetail === cid

@@ -37,7 +37,9 @@ export default {
     bottom: 0,
     zIndex: 10,
     transform: ({ reihung }: ReduxProps) =>
-      reihung?.realFahrtrichtung ? 'translateX(-50%)' : 'rotate(180deg) translateX(50%)',
+      reihung?.realFahrtrichtung
+        ? 'translateX(-50%)'
+        : 'rotate(180deg) translateX(50%)',
     '&::after': {
       border: 'solid black',
       borderWidth: '0 2px 2px 0',

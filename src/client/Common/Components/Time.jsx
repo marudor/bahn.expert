@@ -31,13 +31,25 @@ function delayString(delay?: number = 0) {
   return `+${delay}`;
 }
 
-const Time = ({ classes, className, delay, real, showOriginalTime, showZero, alignEnd }: Props) => {
+const Time = ({
+  classes,
+  className,
+  delay,
+  real,
+  showOriginalTime,
+  showZero,
+  alignEnd,
+}: Props) => {
   const time = showOriginalTime && delay ? subMinutes(real, delay) : real;
 
   const hasDelay = showZero ? delay != null : Boolean(delay);
 
   // $FlowFixMe - hasDelay checked that delay is defined
-  const delayStyle = !hasDelay ? '' : delay > 0 ? classes.delayed : classes.early;
+  const delayStyle = !hasDelay
+    ? ''
+    : delay > 0
+    ? classes.delayed
+    : classes.early;
 
   return (
     <div
@@ -47,7 +59,9 @@ const Time = ({ classes, className, delay, real, showOriginalTime, showZero, ali
       })}
     >
       <span>{format(time, 'HH:mm')}</span>
-      <span className={cc(showOriginalTime && delayStyle)}>{hasDelay && delayString(delay)}</span>
+      <span className={cc(showOriginalTime && delayStyle)}>
+        {hasDelay && delayString(delay)}
+      </span>
     </div>
   );
 };

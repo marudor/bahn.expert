@@ -41,7 +41,8 @@ function scrollToDetail(selectedDetail) {
     const detailDom = document.getElementById(selectedDetail);
 
     if (detailDom) {
-      const scrollIntoView = () => setTimeout(() => detailDom.scrollIntoView(false));
+      const scrollIntoView = () =>
+        setTimeout(() => detailDom.scrollIntoView(false));
 
       if (document.readyState === 'complete') {
         scrollIntoView();
@@ -62,10 +63,23 @@ class BaseAbfahrt extends React.PureComponent<Props> {
     this.props.setDetail(this.props.abfahrt.id);
   };
   render() {
-    const { abfahrt, detail, wing, wingEnd, wingStart, lineAndNumber, classes } = this.props;
+    const {
+      abfahrt,
+      detail,
+      wing,
+      wingEnd,
+      wingStart,
+      lineAndNumber,
+      classes,
+    } = this.props;
 
     return (
-      <Paper square id={abfahrt.id} onClick={this.setDetail} className={classes.main}>
+      <Paper
+        square
+        id={abfahrt.id}
+        onClick={this.setDetail}
+        className={classes.main}
+      >
         {wing && (
           <span
             className={cc(classes.wing, {
@@ -76,7 +90,11 @@ class BaseAbfahrt extends React.PureComponent<Props> {
         )}
         <div className={classes.entry}>
           <div className={classes.entryMain}>
-            <Start abfahrt={abfahrt} detail={detail} lineAndNumber={lineAndNumber} />
+            <Start
+              abfahrt={abfahrt}
+              detail={detail}
+              lineAndNumber={lineAndNumber}
+            />
             <Mid abfahrt={abfahrt} detail={detail} />
             <End abfahrt={abfahrt} detail={detail} />
           </div>
@@ -87,7 +105,14 @@ class BaseAbfahrt extends React.PureComponent<Props> {
   }
 }
 
-export default connect<ReduxProps, OwnProps, StateProps, DispatchProps, AbfahrtenState, _>(
+export default connect<
+  ReduxProps,
+  OwnProps,
+  StateProps,
+  DispatchProps,
+  AbfahrtenState,
+  _
+>(
   (state, props) => ({
     detail: getDetailForAbfahrt(state, props),
     lineAndNumber: state.config.config.lineAndNumber,

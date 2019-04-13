@@ -19,7 +19,11 @@ export default (state: $Shape<AppState> = global.__DATA__) => {
   // eslint-disable-next-line
   const composeEnhancers = global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-  const store = createStore<AppState, *, *>(reducer, state, composeEnhancers(applyMiddleware(...middlewares)));
+  const store = createStore<AppState, *, *>(
+    reducer,
+    state,
+    composeEnhancers(applyMiddleware(...middlewares))
+  );
 
   store.dispatch(Actions.setCookies(new Cookies()));
 

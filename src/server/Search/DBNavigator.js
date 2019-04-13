@@ -23,7 +23,10 @@ function createRequest(searchTerm: string, type: 'S' | 'ALL') {
   };
 }
 
-export default (searchTerm: string, type: 'S' | 'ALL' = 'S'): Promise<Station[]> => {
+export default (
+  searchTerm: string,
+  type: 'S' | 'ALL' = 'S'
+): Promise<Station[]> => {
   const { data, checksum } = createRequest(searchTerm, type);
 
   return axios

@@ -4,7 +4,10 @@ import { type ContextRouter, withRouter } from 'react-router-dom';
 import { getAbfahrtenForConfig } from 'Abfahrten/selector/abfahrten';
 import { Redirect } from 'react-router';
 import Abfahrt from './Abfahrt';
-import Actions, { getAbfahrtenByString, refreshCurrentAbfahrten } from 'Abfahrten/actions/abfahrten';
+import Actions, {
+  getAbfahrtenByString,
+  refreshCurrentAbfahrten,
+} from 'Abfahrten/actions/abfahrten';
 import Loading from './Loading';
 import React from 'react';
 import withStyles, { type StyledProps } from 'react-jss';
@@ -12,11 +15,17 @@ import type { AbfahrtenState, AppStore } from 'AppState';
 import type { Match } from 'react-router';
 
 type InnerAbfahrtenProps = {|
-  abfahrten: $PropertyType<$PropertyType<AbfahrtenState, 'abfahrten'>, 'abfahrten'>,
+  abfahrten: $PropertyType<
+    $PropertyType<AbfahrtenState, 'abfahrten'>,
+    'abfahrten'
+  >,
 |};
 type StateProps = {|
   ...InnerAbfahrtenProps,
-  +currentStation: ?$PropertyType<$PropertyType<AbfahrtenState, 'abfahrten'>, 'currentStation'>,
+  +currentStation: ?$PropertyType<
+    $PropertyType<AbfahrtenState, 'abfahrten'>,
+    'currentStation'
+  >,
   +error: ?$PropertyType<$PropertyType<AbfahrtenState, 'abfahrten'>, 'error'>,
   +autoUpdate: number,
 |};
@@ -72,7 +81,10 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
       this.getAbfahrten();
     }
     if (autoUpdate) {
-      this.abfahrtenInterval = setInterval(refreshCurrentAbfahrten, autoUpdate * 1000);
+      this.abfahrtenInterval = setInterval(
+        refreshCurrentAbfahrten,
+        autoUpdate * 1000
+      );
     }
   }
   componentWillUnmount() {
@@ -84,7 +96,12 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
     }
   }
   getAbfahrten = async () => {
-    const { getAbfahrtenByString, setCurrentStation, match, location } = this.props;
+    const {
+      getAbfahrtenByString,
+      setCurrentStation,
+      match,
+      location,
+    } = this.props;
 
     this.setState({ loading: true });
     setCurrentStation({
@@ -92,7 +109,10 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
       id: '0',
     });
     try {
-      await getAbfahrtenByString(match.params.station, location.state?.searchType);
+      await getAbfahrtenByString(
+        match.params.station,
+        location.state?.searchType
+      );
     } finally {
       this.setState({ loading: false });
     }
@@ -105,7 +125,11 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
       <Loading isLoading={loading}>
         <main className={classes.main}>
           {currentStation && <h1>Abfahrten für {currentStation.title}</h1>}
-          {error ? !loading && <Redirect to="/" /> : <InnerAbfahrten abfahrten={abfahrten} />}
+          {error ? (
+            !loading && <Redirect to="/" />
+          ) : (
+            <InnerAbfahrten abfahrten={abfahrten} />
+          )}
         </main>
       </Loading>
     );
@@ -124,7 +148,14 @@ const styles = {
   },
 };
 
-export default connect<ReduxProps, OwnProps, StateProps, DispatchProps, AbfahrtenState, _>(
+export default connect<
+  ReduxProps,
+  OwnProps,
+  StateProps,
+  DispatchProps,
+  AbfahrtenState,
+  _
+>(
   state => ({
     abfahrten: getAbfahrtenForConfig(state),
     currentStation: state.abfahrten.currentStation,

@@ -6,5 +6,7 @@ export function formatDuration(duration: number) {
   const hours = Math.floor(durInMinutes / 60);
   const minutes = Math.floor(durInMinutes % 60);
 
-  return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+  return `${hours.toString().padStart(2, '0')}:${minutes
+    .toString()
+    .padStart(2, '0')}`;
 }

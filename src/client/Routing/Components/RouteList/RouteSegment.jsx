@@ -22,7 +22,9 @@ const RouteSegment = ({ segment, classes }: Props) => (
       <span>{segment.segmentDestination.title}</span>
       <span className={classes.platform}>{segment.arrivalPlatform}</span>
     </div>
-    {segment.hasOwnProperty('changeDuration') && <span>{segment.changeDuration} Minuten Umsteigezeit</span>}
+    {segment.hasOwnProperty('changeDuration') && (
+      <span>{segment.changeDuration} Minuten Umsteigezeit</span>
+    )}
   </>
 );
 

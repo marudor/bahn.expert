@@ -8,12 +8,15 @@ const baseUrl: string = process.env.BASE_URL;
 const filterRegex = /(hbf|airport|flughafen)/i;
 const router = new KoaRouter();
 const sitemap = () => {
-  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+  let xml =
+    '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
 
   rawStations
     .filter(s => s.name.match(filterRegex))
     .forEach(s => {
-      xml += `<url><loc>https://${baseUrl}/${encodeURIComponent(s.name)}</loc><changefreq>always</changefreq></url>`;
+      xml += `<url><loc>https://${baseUrl}/${encodeURIComponent(
+        s.name
+      )}</loc><changefreq>always</changefreq></url>`;
     });
 
   xml += '</urlset>';

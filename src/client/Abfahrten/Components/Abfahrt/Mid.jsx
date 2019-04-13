@@ -26,7 +26,9 @@ const Mid = ({ abfahrt, detail, classes }: Props) => (
     <div
       className={cc(classes.destination, {
         [classes.cancelled]: abfahrt.isCancelled,
-        [classes.different]: !abfahrt.isCancelled && abfahrt.destination !== abfahrt.scheduledDestination,
+        [classes.different]:
+          !abfahrt.isCancelled &&
+          abfahrt.destination !== abfahrt.scheduledDestination,
       })}
     >
       {abfahrt.isCancelled ? abfahrt.scheduledDestination : abfahrt.destination}

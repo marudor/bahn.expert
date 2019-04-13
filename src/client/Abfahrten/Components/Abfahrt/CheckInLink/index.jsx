@@ -52,6 +52,8 @@ export function preventDefault(e: SyntheticMouseEvent<>) {
   return false;
 }
 
-export default connect<ReduxProps, OwnProps, StateProps, _, AbfahrtenState, _>(state => ({
-  type: state.config.config.checkIn,
-}))(withStyles(styles)(CheckInLink));
+export default connect<ReduxProps, OwnProps, StateProps, _, AbfahrtenState, _>(
+  state => ({
+    type: state.config.config.checkIn,
+  })
+)(withStyles(styles)(CheckInLink));

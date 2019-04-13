@@ -21,7 +21,9 @@ function parseDuration(duration: string) {
   const minutes = Number.parseInt(sanitized.slice(4, 6), 10);
   const seconds = Number.parseInt(sanitized.slice(6, 8), 10);
 
-  return (seconds + minutes * 60 + hours * 60 * 60 + days * 60 * 60 * 24) * 1000;
+  return (
+    (seconds + minutes * 60 + hours * 60 * 60 + days * 60 * 60 * 24) * 1000
+  );
 }
 
 const nameRegex = /O=([^@]+)/;
@@ -150,7 +152,9 @@ class Journey {
 }
 
 export default (r: SRoute$Result): Route[] => {
-  const result = r.svcResL.map<any>(svc => svc.res.outConL.map(j => new Journey(j, svc.res.common.prodL).journey));
+  const result = r.svcResL.map<any>(svc =>
+    svc.res.outConL.map(j => new Journey(j, svc.res.common.prodL).journey)
+  );
 
   return flatten(result);
 };

@@ -25,7 +25,10 @@ function differentZugunummer(formation: Formation) {
   return formation.allFahrzeuggruppe.length <= 1
     ? false
     : formation.allFahrzeuggruppe.every((nummer, index, array) =>
-        index > 0 ? array[index - 1].verkehrlichezugnummer !== nummer.verkehrlichezugnummer : true
+        index > 0
+          ? array[index - 1].verkehrlichezugnummer !==
+            nummer.verkehrlichezugnummer
+          : true
       );
 }
 
@@ -45,14 +48,24 @@ function specificTrainType(formation: Formation, fahrzeuge: Fahrzeug[]) {
   const groupLength = formation.allFahrzeuggruppe.length;
 
   formation.allFahrzeuggruppe.forEach(g => {
-    const minFahrzeug = minBy(g.allFahrzeug, f => Number.parseInt(f.positionamhalt.startprozent, 10));
-    const maxFahrzeug = maxBy(g.allFahrzeug, f => Number.parseInt(f.positionamhalt.endeprozent, 10));
+    const minFahrzeug = minBy(g.allFahrzeug, f =>
+      Number.parseInt(f.positionamhalt.startprozent, 10)
+    );
+    const maxFahrzeug = maxBy(g.allFahrzeug, f =>
+      Number.parseInt(f.positionamhalt.endeprozent, 10)
+    );
 
     if (minFahrzeug) {
-      g.startProzent = Number.parseInt(minFahrzeug?.positionamhalt.startprozent, 10);
+      g.startProzent = Number.parseInt(
+        minFahrzeug?.positionamhalt.startprozent,
+        10
+      );
     }
     if (maxFahrzeug) {
-      g.endeProzent = Number.parseInt(maxFahrzeug?.positionamhalt.endeprozent, 10);
+      g.endeProzent = Number.parseInt(
+        maxFahrzeug?.positionamhalt.endeprozent,
+        10
+      );
     }
   });
 
@@ -79,7 +92,9 @@ function specificTrainType(formation: Formation, fahrzeuge: Fahrzeug[]) {
       return 'ICE3V';
     }
 
-    const triebboepfe = fahrzeuge.filter(f => f.kategorie === 'LOK' || f.kategorie === 'TRIEBKOPF');
+    const triebboepfe = fahrzeuge.filter(
+      f => f.kategorie === 'LOK' || f.kategorie === 'TRIEBKOPF'
+    );
     const tkPerGroup = triebboepfe.length / groupLength;
 
     if (tkPerGroup === 1) {
@@ -112,25 +127,40 @@ function fahrtrichtung(fahrzeuge: Fahrzeug[]) {
   const last = fahrzeuge[fahrzeuge.length - 1];
 
   // "Algorithmus" so bei der DB im Code gefunden
-  return Number.parseInt(last.positionamhalt.startprozent, 10) > Number.parseInt(first.positionamhalt.startprozent, 10);
+  return (
+    Number.parseInt(last.positionamhalt.startprozent, 10) >
+    Number.parseInt(first.positionamhalt.startprozent, 10)
+  );
 }
 
 // https://www.apps-bahn.de/wr/wagenreihung/1.0/6/201802021930
 export async function wagenReihung(trainNumber: string, date: number) {
-  const parsedDate = format(convertToTimeZone(new Date(date), { timeZone: 'Europe/Berlin' }), 'yyyyMMddHHmm');
+  const parsedDate = format(
+    convertToTimeZone(new Date(date), { timeZone: 'Europe/Berlin' }),
+    'yyyyMMddHHmm'
+  );
 
   const info: Wagenreihung = (await axios.get(
     `https://www.apps-bahn.de/wr/wagenreihung/1.0/${trainNumber}/${parsedDate}`
   )).data;
 
-  const fahrzeuge = flatten(info.data.istformation.allFahrzeuggruppe.map(g => g.allFahrzeug));
+  const fahrzeuge = flatten(
+    info.data.istformation.allFahrzeuggruppe.map(g => g.allFahrzeug)
+  );
 
   let startPercentage = 100;
   let endPercentage = 0;
 
-  info.data.istformation.differentDestination = differentDestination(info.data.istformation);
-  info.data.istformation.differentZugnummer = differentZugunummer(info.data.istformation);
-  info.data.istformation.specificTrainType = specificTrainType(info.data.istformation, fahrzeuge);
+  info.data.istformation.differentDestination = differentDestination(
+    info.data.istformation
+  );
+  info.data.istformation.differentZugnummer = differentZugunummer(
+    info.data.istformation
+  );
+  info.data.istformation.specificTrainType = specificTrainType(
+    info.data.istformation,
+    fahrzeuge
+  );
   info.data.istformation.realFahrtrichtung = fahrtrichtung(fahrzeuge);
   info.data.istformation.allFahrzeuggruppe.forEach(g => {
     g.allFahrzeug.forEach(f => {
@@ -165,7 +195,10 @@ export async function wagenReihung(trainNumber: string, date: number) {
 }
 
 // https://ws.favendo.de/wagon-order/rest/v1/si/1401
-export async function wagenReihungStation(trainNumbers: string[], station: number) {
+export async function wagenReihungStation(
+  trainNumbers: string[],
+  station: number
+) {
   const info: WagenreihungStation = (await axios.post(
     `https://ws.favendo.de/wagon-order/rest/v1/si/${station}`,
     trainNumbers.map(trainNumber => ({
@@ -184,7 +217,9 @@ export async function wagenReihungMonitoring() {
   const abfahrten = await getAbfahrten('8002549', false, {
     lookahead: 300,
   });
-  const maybeDepartures = abfahrten.departures.filter(d => d.reihung && d.scheduledDeparture);
+  const maybeDepartures = abfahrten.departures.filter(
+    d => d.reihung && d.scheduledDeparture
+  );
 
   let departure: ?Abfahrt = maybeDepartures.shift();
 
@@ -196,7 +231,10 @@ export async function wagenReihungMonitoring() {
     } else {
       try {
         // eslint-disable-next-line no-await-in-loop
-        const wr = await wagenReihungSpecificMonitoring(departure.trainId, departureTime);
+        const wr = await wagenReihungSpecificMonitoring(
+          departure.trainId,
+          departureTime
+        );
 
         if (wr) return wr;
         departure = maybeDepartures.shift();

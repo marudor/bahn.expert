@@ -20,7 +20,9 @@ export default Actions;
 
 export const getAuslastung: AbfahrtenThunkAction<string> = id => async dispatch => {
   try {
-    const data = (await axios.get(`/api/auslastung/${id}/${format(new Date(), 'yyyyMMdd')}`)).data;
+    const data = (await axios.get(
+      `/api/auslastung/${id}/${format(new Date(), 'yyyyMMdd')}`
+    )).data;
 
     dispatch(
       Actions.gotAuslastung({

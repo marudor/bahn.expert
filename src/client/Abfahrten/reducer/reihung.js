@@ -13,7 +13,10 @@ const defaultState: State = {
 
 export default handleActions<State, *>(
   {
-    [String(Actions.gotReihung)]: (state: State, { payload }: ActionType<typeof Actions.gotReihung>) => ({
+    [String(Actions.gotReihung)]: (
+      state: State,
+      { payload }: ActionType<typeof Actions.gotReihung>
+    ) => ({
       ...state,
       reihung: {
         ...state.reihung,

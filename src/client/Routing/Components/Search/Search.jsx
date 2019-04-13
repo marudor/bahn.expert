@@ -1,5 +1,14 @@
 // @flow
-import { addDays, endOfDay, isSameDay, isSameYear, isWithinInterval, lightFormat, startOfDay, subDays } from 'date-fns';
+import {
+  addDays,
+  endOfDay,
+  isSameDay,
+  isSameYear,
+  isWithinInterval,
+  lightFormat,
+  startOfDay,
+  subDays,
+} from 'date-fns';
 import { connect } from 'react-redux';
 import { type ContextRouter, withRouter } from 'react-router-dom';
 import { DateTimePicker } from 'material-ui-pickers';
@@ -54,7 +63,9 @@ const formatDate = (date: Date) => {
     if (isSameDay(date, today)) relativeDayString = 'Heute';
     else if (isSameDay(date, yesterday)) relativeDayString = 'Gestern';
     else if (isSameDay(date, tomorrow)) relativeDayString = 'Morgen';
-    relativeDayString += `, ${deLocale.localize.day(date.getDay(), { width: 'short' })}`;
+    relativeDayString += `, ${deLocale.localize.day(date.getDay(), {
+      width: 'short',
+    })}`;
   } else {
     relativeDayString = deLocale.localize.day(date.getDay());
   }
@@ -83,7 +94,15 @@ class Search extends React.PureComponent<Props> {
   }
   searchRoute = (e: SyntheticEvent<>) => {
     e.preventDefault();
-    const { start, destination, getRoutes, history, date, enqueueSnackbar, closeSnackbar } = this.props;
+    const {
+      start,
+      destination,
+      getRoutes,
+      history,
+      date,
+      enqueueSnackbar,
+      closeSnackbar,
+    } = this.props;
 
     if (start && destination) {
       closeSnackbar(this.startReqId);
@@ -92,20 +111,46 @@ class Search extends React.PureComponent<Props> {
       history.push(`/routing/${start.id}/${destination.id}`);
     } else {
       if (!destination) {
-        enqueueSnackbar('Ziel ist required.', { autoHideDuration: 5000, variant: 'error', key: this.destReqId });
+        enqueueSnackbar('Ziel ist required.', {
+          autoHideDuration: 5000,
+          variant: 'error',
+          key: this.destReqId,
+        });
       }
       if (!start) {
-        enqueueSnackbar('Start ist required.', { autoHideDuration: 5000, variant: 'error', key: this.startReqId });
+        enqueueSnackbar('Start ist required.', {
+          autoHideDuration: 5000,
+          variant: 'error',
+          key: this.startReqId,
+        });
       }
     }
   };
   render() {
-    const { start, destination, setStart, setDestination, date, setDate, classes } = this.props;
+    const {
+      start,
+      destination,
+      setStart,
+      setDestination,
+      date,
+      setDate,
+      classes,
+    } = this.props;
 
     return (
       <>
-        <StationSearch searchType="dbNav" value={start} onChange={setStart} placeholder="Start" />
-        <StationSearch searchType="dbNav" value={destination} onChange={setDestination} placeholder="Destination" />
+        <StationSearch
+          searchType="dbNav"
+          value={start}
+          onChange={setStart}
+          placeholder="Start"
+        />
+        <StationSearch
+          searchType="dbNav"
+          value={destination}
+          onChange={setDestination}
+          placeholder="Destination"
+        />
         <DateTimePicker
           fullWidth
           className={classes.datePicker}
@@ -128,7 +173,14 @@ class Search extends React.PureComponent<Props> {
   }
 }
 
-export default connect<ReduxProps, OwnProps, StateProps, DispatchProps, RoutingState, _>(
+export default connect<
+  ReduxProps,
+  OwnProps,
+  StateProps,
+  DispatchProps,
+  RoutingState,
+  _
+>(
   state => ({
     start: state.search.start,
     destination: state.search.destination,

@@ -20,11 +20,17 @@ const defaultState: State = {
 
 export default handleActions<State, *>(
   {
-    [String(Actions.setBaseUrl)]: (state: State, { payload }: ActionType<typeof Actions.setBaseUrl>) => ({
+    [String(Actions.setBaseUrl)]: (
+      state: State,
+      { payload }: ActionType<typeof Actions.setBaseUrl>
+    ) => ({
       ...state,
       baseUrl: payload,
     }),
-    [String(Actions.setCookies)]: (state: State, { payload }: ActionType<typeof Actions.setCookies>) => {
+    [String(Actions.setCookies)]: (
+      state: State,
+      { payload }: ActionType<typeof Actions.setCookies>
+    ) => {
       const config = {
         ...defaultConfig,
         ...payload.get('config'),
@@ -41,11 +47,17 @@ export default handleActions<State, *>(
         cookies: payload,
       };
     },
-    [String(Actions.setMenu)]: (state: State, { payload }: ActionType<typeof Actions.setMenu>) => ({
+    [String(Actions.setMenu)]: (
+      state: State,
+      { payload }: ActionType<typeof Actions.setMenu>
+    ) => ({
       ...state,
       open: payload,
     }),
-    [String(Actions.setConfig)]: (state: State, { payload: { key, value } }: ActionType<typeof Actions.setConfig>) => {
+    [String(Actions.setConfig)]: (
+      state: State,
+      { payload: { key, value } }: ActionType<typeof Actions.setConfig>
+    ) => {
       const newState = {
         ...state,
         config: {

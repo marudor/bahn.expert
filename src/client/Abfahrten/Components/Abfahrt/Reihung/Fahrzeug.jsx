@@ -64,16 +64,28 @@ const comfort = [
 
 const comfortICRegexp = [/Avmm?z$/, /Bvmm?sz|Bimm?z$/];
 
-function comfortLogic(fahrzeug: Fahrzeug, klasse: number, type: FahrzeugType, specificType: ?SpecificType) {
+function comfortLogic(
+  fahrzeug: Fahrzeug,
+  klasse: number,
+  type: FahrzeugType,
+  specificType: ?SpecificType
+) {
   const klasseIndex = klasse - 1;
-  const comfortSeats: ?(string[]) = specificType && comfort[klasseIndex]?.[specificType];
+  const comfortSeats: ?(string[]) =
+    specificType && comfort[klasseIndex]?.[specificType];
 
   if (comfortSeats) {
     return comfortSeats.includes(fahrzeug.wagenordnungsnummer);
   } else if (type === 'IC') {
-    if (fahrzeug.wagenordnungsnummer === '12' && fahrzeug.fahrzeugtyp.match(comfortICRegexp[klasseIndex])) {
+    if (
+      fahrzeug.wagenordnungsnummer === '12' &&
+      fahrzeug.fahrzeugtyp.match(comfortICRegexp[klasseIndex])
+    ) {
       return true;
-    } else if (fahrzeug.wagenordnungsnummer === '10' && fahrzeug.fahrzeugtyp.match(comfortICRegexp[klasseIndex])) {
+    } else if (
+      fahrzeug.wagenordnungsnummer === '10' &&
+      fahrzeug.fahrzeugtyp.match(comfortICRegexp[klasseIndex])
+    ) {
       return true;
     }
   }
@@ -81,12 +93,26 @@ function comfortLogic(fahrzeug: Fahrzeug, klasse: number, type: FahrzeugType, sp
   return false;
 }
 
-function getFahrzeugInfo(fahrzeug: Fahrzeug, type: FahrzeugType, specificType: ?SpecificType): AdditionalFahrzeugInfos {
+function getFahrzeugInfo(
+  fahrzeug: Fahrzeug,
+  type: FahrzeugType,
+  specificType: ?SpecificType
+): AdditionalFahrzeugInfos {
   const data: AdditionalFahrzeugInfos = {
     klasse: 0,
-    speise: Boolean(fahrzeug.allFahrzeugausstattung.find(a => a.ausstattungsart === 'BISTRO')),
-    rollstuhl: Boolean(fahrzeug.allFahrzeugausstattung.find(a => a.ausstattungsart === 'PLAETZEROLLSTUHL')),
-    fahrrad: Boolean(fahrzeug.allFahrzeugausstattung.find(a => a.ausstattungsart === 'PLAETZEFAHRRAD')),
+    speise: Boolean(
+      fahrzeug.allFahrzeugausstattung.find(a => a.ausstattungsart === 'BISTRO')
+    ),
+    rollstuhl: Boolean(
+      fahrzeug.allFahrzeugausstattung.find(
+        a => a.ausstattungsart === 'PLAETZEROLLSTUHL'
+      )
+    ),
+    fahrrad: Boolean(
+      fahrzeug.allFahrzeugausstattung.find(
+        a => a.ausstattungsart === 'PLAETZEFAHRRAD'
+      )
+    ),
     comfort: false,
   };
 
@@ -127,7 +153,15 @@ function getFahrzeugInfo(fahrzeug: Fahrzeug, type: FahrzeugType, specificType: ?
   return data;
 }
 
-const FahrzeugComp = ({ fahrzeug, type, specificType, wrongWing, classes, scale, correctLeft }: Props) => {
+const FahrzeugComp = ({
+  fahrzeug,
+  type,
+  specificType,
+  wrongWing,
+  classes,
+  scale,
+  correctLeft,
+}: Props) => {
   const info = getFahrzeugInfo(fahrzeug, type, specificType);
 
   const { startprozent, endeprozent } = fahrzeug.positionamhalt;

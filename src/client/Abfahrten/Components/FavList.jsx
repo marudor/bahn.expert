@@ -67,7 +67,9 @@ class FavList extends React.PureComponent<Props> {
         {/* eslint-disable-next-line no-nested-ternary */}
         {error ? (
           <>
-            <div className={classes.favEntry}>{getErrorText(error, staticContext)}</div>
+            <div className={classes.favEntry}>
+              {getErrorText(error, staticContext)}
+            </div>
             {error.station && (
               <Link to={encodeURIComponent(error.station)}>
                 <div className={classes.favEntry}>{error.station}</div>
@@ -100,7 +102,14 @@ const styles = {
   favEntry: FavEntryStyles.main,
 };
 
-export default connect<ReduxProps, OwnProps, StateProps, DispatchProps, AbfahrtenState, _>(
+export default connect<
+  ReduxProps,
+  OwnProps,
+  StateProps,
+  DispatchProps,
+  AbfahrtenState,
+  _
+>(
   state => ({
     favs: sortedFavValues(state),
     error: state.abfahrten.error,

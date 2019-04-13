@@ -28,7 +28,8 @@ type Props = {|
 const HomeMenu = ({ history, routingFeature }: Props) => {
   const [anchor, setAnchor] = useState<?HTMLElement>(undefined);
 
-  const toggleMenu = (e: SyntheticEvent<HTMLElement>) => setAnchor(anchor ? undefined : e.currentTarget);
+  const toggleMenu = (e: SyntheticEvent<HTMLElement>) =>
+    setAnchor(anchor ? undefined : e.currentTarget);
   const toAbfahrten = (e: SyntheticEvent<HTMLElement>) => {
     history.push('/');
     toggleMenu(e);
@@ -40,7 +41,11 @@ const HomeMenu = ({ history, routingFeature }: Props) => {
 
   return (
     <>
-      <IconButton aria-label="Home" onClick={routingFeature ? toggleMenu : toAbfahrten} color="inherit">
+      <IconButton
+        aria-label="Home"
+        onClick={routingFeature ? toggleMenu : toAbfahrten}
+        color="inherit"
+      >
         <ActionHome color="inherit" />
       </IconButton>
       {routingFeature && (
@@ -53,6 +58,13 @@ const HomeMenu = ({ history, routingFeature }: Props) => {
   );
 };
 
-export default connect<ReduxProps, OwnProps, StateProps, DispatchProps, CommonState, _>(state => ({
+export default connect<
+  ReduxProps,
+  OwnProps,
+  StateProps,
+  DispatchProps,
+  CommonState,
+  _
+>(state => ({
   routingFeature: state.features.routing,
 }))(withRouter(HomeMenu));

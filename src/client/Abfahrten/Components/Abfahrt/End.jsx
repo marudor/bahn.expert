@@ -13,7 +13,11 @@ type Props = StyledProps<OwnProps, typeof styles>;
 const End = ({ abfahrt, detail, classes }: Props) => (
   <div className={classes.main}>
     <Times abfahrt={abfahrt} detail={detail} />
-    <Platform real={abfahrt.platform} scheduled={abfahrt.scheduledPlatform} cancelled={abfahrt.isCancelled} />
+    <Platform
+      real={abfahrt.platform}
+      scheduled={abfahrt.scheduledPlatform}
+      cancelled={abfahrt.isCancelled}
+    />
   </div>
 );
 

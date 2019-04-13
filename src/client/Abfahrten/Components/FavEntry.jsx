@@ -32,11 +32,18 @@ class FavEntry extends React.PureComponent<Props> {
     const { fav, noDelete, classes } = this.props;
 
     return (
-      <Link to={encodeURIComponent(fav.title)} title={`Zugabfahrten für ${fav.title}`}>
+      <Link
+        to={encodeURIComponent(fav.title)}
+        title={`Zugabfahrten für ${fav.title}`}
+      >
         <div className={classes.main}>
           <span>{fav.title}</span>
           {!noDelete && (
-            <IconButton aria-label={`${fav.title} entfernen`} onClick={this.deleteFav} color="inherit">
+            <IconButton
+              aria-label={`${fav.title} entfernen`}
+              onClick={this.deleteFav}
+              color="inherit"
+            >
               <ActionDelete />
             </IconButton>
           )}
@@ -66,7 +73,14 @@ export const styles = {
   },
 };
 
-export default connect<ReduxProps, OwnProps, _, DispatchProps, AbfahrtenState, _>(
+export default connect<
+  ReduxProps,
+  OwnProps,
+  _,
+  DispatchProps,
+  AbfahrtenState,
+  _
+>(
   undefined,
   {
     unfav,

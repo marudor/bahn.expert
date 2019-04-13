@@ -13,7 +13,9 @@ export default async (rawSearchTerm: string): Promise<Station[]> => {
     searchTerm = searchTerm[0];
   }
 
-  const url = `https://api.deutschebahn.com/stada/v2/stations?searchstring=*${encodeURIComponent(searchTerm)}*`;
+  const url = `https://api.deutschebahn.com/stada/v2/stations?searchstring=*${encodeURIComponent(
+    searchTerm
+  )}*`;
 
   const result = (await axios.get(url, {
     withCredentials: true,

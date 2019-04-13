@@ -58,7 +58,17 @@ Promise.all([noncd(), openData()])
     const noncdResult = await testFn(noncd);
     const opendataResult = await testFn(openData);
 
-    console.log('noncd', 'Σ', noncdResult.Σ, 'avg', noncdResult.avg, 'max', noncdResult.ma, 'min', noncdResult.mi);
+    console.log(
+      'noncd',
+      'Σ',
+      noncdResult.Σ,
+      'avg',
+      noncdResult.avg,
+      'max',
+      noncdResult.ma,
+      'min',
+      noncdResult.mi
+    );
     console.log(
       'openData',
       'Σ',
