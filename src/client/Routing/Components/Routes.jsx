@@ -10,7 +10,10 @@ import type { RoutingState } from 'AppState';
 type DispatchProps = {|
   getRoutes: typeof getRoutes,
 |};
-type StateProps = {||};
+type StateProps = {|
+  date: Date,
+  dateTouched: *,
+|};
 type OwnProps = {||};
 type ReduxProps = {|
   ...OwnProps,
@@ -23,11 +26,11 @@ type Props = {|
 |};
 class Routing extends React.PureComponent<Props> {
   componentDidMount() {
-    const { match, getRoutes } = this.props;
+    const { match, getRoutes, date, dateTouched } = this.props;
     const { start, destination } = match.params;
 
-    if (start && destination) {
-      getRoutes(start, destination);
+    if (start && destination && date && dateTouched) {
+      getRoutes(start, destination, date);
     }
   }
   render() {
@@ -42,7 +45,10 @@ class Routing extends React.PureComponent<Props> {
 }
 
 export default connect<ReduxProps, OwnProps, StateProps, DispatchProps, RoutingState, _>(
-  undefined,
+  state => ({
+    date: state.search.date,
+    dateTouched: state.search.dateTouched,
+  }),
   {
     getRoutes,
   }

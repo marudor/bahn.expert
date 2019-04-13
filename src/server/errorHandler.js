@@ -1,5 +1,5 @@
 // @ƒlow
-import serialize from 'fast-safe-stringify';
+import serialize from 'serialize-javascript';
 
 export default async (ctx, next) => {
   try {

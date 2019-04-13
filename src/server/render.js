@@ -20,7 +20,7 @@ import MainApp from 'client/App';
 import path from 'path';
 import React from 'react';
 import routes from 'Abfahrten/routes';
-import serialize from 'fast-safe-stringify';
+import serialize from 'serialize-javascript';
 
 const headerFilename = path.resolve(__dirname, './views/header.ejs');
 // eslint-disable-next-line

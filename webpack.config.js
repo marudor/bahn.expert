@@ -56,16 +56,16 @@ if (isDev) {
   rules[0].use.unshift('cache-loader');
 } else {
   optimization.minimizer = [
-    new new TerserPlugin({
+    new TerserPlugin({
       parallel: true,
       extractComments: {
         condition: 'all',
         banner: () => '',
       },
-    })(),
+    }),
     new OptimizeCSSAssetsPlugin({}),
   ];
-  plugins.push();
+  plugins.push(new StatsWriterPlugin());
 }
 
 module.exports = {

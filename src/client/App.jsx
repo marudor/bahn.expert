@@ -1,6 +1,7 @@
 // @flow
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
+import { SnackbarProvider } from 'notistack';
 import Abfahrten from './Abfahrten';
 import React from 'react';
 import Routing from './Routing';
@@ -33,10 +34,12 @@ class App extends React.Component<Props> {
     const { routingFeature } = this.props;
 
     return (
-      <Switch>
-        {routingFeature && <Route component={Routing} path="/routing" />}
-        <Route component={Abfahrten} path="/" />
-      </Switch>
+      <SnackbarProvider preventDuplicate>
+        <Switch>
+          {routingFeature && <Route component={Routing} path="/routing" />}
+          <Route component={Abfahrten} path="/" />
+        </Switch>
+      </SnackbarProvider>
     );
   }
 }

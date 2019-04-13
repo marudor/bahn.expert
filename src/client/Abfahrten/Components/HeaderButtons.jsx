@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { fav, unfav } from 'Abfahrten/actions/fav';
 import { getLageplan } from 'Abfahrten/actions/abfahrten';
 import { openSettings } from 'Abfahrten/actions/config';
-import { withSnackbar } from 'notistack';
+import { withSnackbar, type WithSnackbarProps } from 'notistack';
 import IconButton from '@material-ui/core/IconButton';
 import Layers from '@material-ui/icons/Layers';
 import LayersClear from '@material-ui/icons/LayersClear';
@@ -27,12 +27,6 @@ type DispatchProps = {|
 |};
 type OwnProps = {||};
 
-declare opaque type SnackId;
-type SnackProps = {|
-  enqueueSnackbar: (string, ?{ variant: 'default' | 'error' | 'success' | 'warning' | 'info' }) => SnackId,
-  closeSnackbar: SnackId => void,
-|};
-
 type ReduxProps = {|
   ...OwnProps,
   ...StateProps,
@@ -41,7 +35,7 @@ type ReduxProps = {|
 
 type Props = {|
   ...ReduxProps,
-  ...SnackProps,
+  ...WithSnackbarProps,
 |};
 
 class HeaderButtons extends React.PureComponent<Props> {
@@ -66,12 +60,14 @@ class HeaderButtons extends React.PureComponent<Props> {
       const snackId = enqueueSnackbar(`Lade Gleisplan für ${currentStation.title}`, { variant: 'info' });
       const fetchedLageplan = await getLageplan(currentStation.title);
 
-      if (fetchedLageplan) {
-        closeSnackbar(snackId);
-        window.open(fetchedLageplan, '_blank');
-      } else {
-        closeSnackbar(snackId);
-        enqueueSnackbar(`Kein Gleisplan vorhanden für ${currentStation.title}`, { variant: 'error' });
+      if (snackId) {
+        if (fetchedLageplan) {
+          closeSnackbar(snackId);
+          window.open(fetchedLageplan, '_blank');
+        } else {
+          closeSnackbar(snackId);
+          enqueueSnackbar(`Kein Gleisplan vorhanden für ${currentStation.title}`, { variant: 'error' });
+        }
       }
     } else {
       window.open(lageplan, '_blank');
