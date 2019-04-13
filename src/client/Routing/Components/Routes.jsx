@@ -5,7 +5,8 @@ import { getRoutes } from 'Routing/actions/routing';
 import React from 'react';
 import RouteList from './RouteList';
 import Search from './Search';
-import type { RoutingState } from 'AppState';
+import searchActions from 'Routing/actions/search';
+import type { AppStore, RoutingState } from 'AppState';
 
 type DispatchProps = {|
   getRoutes: typeof getRoutes,
@@ -25,6 +26,9 @@ type Props = {|
   ...ContextRouter,
 |};
 class Routing extends React.PureComponent<Props> {
+  static loadData = (store: AppStore) => {
+    store.dispatch(searchActions.setDate(new Date()));
+  };
   componentDidMount() {
     const { match, getRoutes, date, dateTouched } = this.props;
     const { start, destination } = match.params;
