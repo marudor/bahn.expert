@@ -16,16 +16,25 @@ const defaultState: State = {
 
 export default handleActions<State, *>(
   {
-    [String(Actions.setDate)]: (state: State, { payload }: ActionType<typeof Actions.setDate>) => ({
+    [String(Actions.setDate)]: (
+      state: State,
+      { payload }: ActionType<typeof Actions.setDate>
+    ) => ({
       ...state,
       date: payload,
       dateTouched: true,
     }),
-    [String(Actions.setDestination)]: (state: State, { payload }: ActionType<typeof Actions.setDestination>) => ({
+    [String(Actions.setDestination)]: (
+      state: State,
+      { payload }: ActionType<typeof Actions.setDestination>
+    ) => ({
       ...state,
       destination: payload,
     }),
-    [String(Actions.setStart)]: (state: State, { payload }: ActionType<typeof Actions.setStart>) => ({
+    [String(Actions.setStart)]: (
+      state: State,
+      { payload }: ActionType<typeof Actions.setStart>
+    ) => ({
       ...state,
       start: payload,
     }),

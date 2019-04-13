@@ -54,10 +54,19 @@ class HeaderButtons extends React.PureComponent<Props> {
     this.props.openSettings();
   };
   openLageplan = async () => {
-    const { lageplan, getLageplan, currentStation, enqueueSnackbar, closeSnackbar } = this.props;
+    const {
+      lageplan,
+      getLageplan,
+      currentStation,
+      enqueueSnackbar,
+      closeSnackbar,
+    } = this.props;
 
     if (lageplan === undefined && currentStation) {
-      const snackId = enqueueSnackbar(`Lade Gleisplan für ${currentStation.title}`, { variant: 'info' });
+      const snackId = enqueueSnackbar(
+        `Lade Gleisplan für ${currentStation.title}`,
+        { variant: 'info' }
+      );
       const fetchedLageplan = await getLageplan(currentStation.title);
 
       if (snackId) {
@@ -66,7 +75,10 @@ class HeaderButtons extends React.PureComponent<Props> {
           window.open(fetchedLageplan, '_blank');
         } else {
           closeSnackbar(snackId);
-          enqueueSnackbar(`Kein Gleisplan vorhanden für ${currentStation.title}`, { variant: 'error' });
+          enqueueSnackbar(
+            `Kein Gleisplan vorhanden für ${currentStation.title}`,
+            { variant: 'error' }
+          );
         }
       }
     } else {
@@ -100,15 +112,25 @@ class HeaderButtons extends React.PureComponent<Props> {
     return (
       <>
         {currentStation && Boolean(currentStation.id) && (
-          <Tooltip title={`${isFaved ? 'entferne' : 'merke'} ${currentStation.title}`}>
-            <IconButton aria-label={isFaved ? 'unfav' : 'fav'} onClick={this.toggleFav} color="inherit">
+          <Tooltip
+            title={`${isFaved ? 'entferne' : 'merke'} ${currentStation.title}`}
+          >
+            <IconButton
+              aria-label={isFaved ? 'unfav' : 'fav'}
+              onClick={this.toggleFav}
+              color="inherit"
+            >
               {isFaved ? <ToggleStar /> : <ToggleStarBorder />}
             </IconButton>
           </Tooltip>
         )}
         {Boolean(currentStation?.id) && this.getLageplan()}
         <Tooltip title="Einstellungen">
-          <IconButton aria-label="settings" onClick={this.openSettings} color="inherit">
+          <IconButton
+            aria-label="settings"
+            onClick={this.openSettings}
+            color="inherit"
+          >
             <Settings />
           </IconButton>
         </Tooltip>
@@ -117,9 +139,19 @@ class HeaderButtons extends React.PureComponent<Props> {
   }
 }
 
-export default connect<ReduxProps, OwnProps, StateProps, DispatchProps, AbfahrtenState, _>(
+export default connect<
+  ReduxProps,
+  OwnProps,
+  StateProps,
+  DispatchProps,
+  AbfahrtenState,
+  _
+>(
   state => ({
-    isFaved: Boolean(state.abfahrten.currentStation && state.fav.favs[state.abfahrten.currentStation.id]),
+    isFaved: Boolean(
+      state.abfahrten.currentStation &&
+        state.fav.favs[state.abfahrten.currentStation.id]
+    ),
     currentStation: state.abfahrten.currentStation,
     lageplan: state.abfahrten.lageplan,
   }),

@@ -52,10 +52,15 @@ type ReduxProps = {|
 type Props = StyledProps<ReduxProps, typeof styles>;
 
 class SettingsModal extends React.PureComponent<Props> {
-  handleCheckedChange = (fn: boolean => any) => (e: SyntheticEvent<HTMLInputElement>) => fn(e.currentTarget.checked);
-  handleValueChange = (fn: string => any) => (e: SyntheticEvent<HTMLInputElement>) => fn(e.currentTarget.value);
-  handleNumberValueChange = (fn: number => any) => (e: SyntheticEvent<HTMLInputElement>) =>
-    fn(Number.parseInt(e.currentTarget.value, 10));
+  handleCheckedChange = (fn: boolean => any) => (
+    e: SyntheticEvent<HTMLInputElement>
+  ) => fn(e.currentTarget.checked);
+  handleValueChange = (fn: string => any) => (
+    e: SyntheticEvent<HTMLInputElement>
+  ) => fn(e.currentTarget.value);
+  handleNumberValueChange = (fn: number => any) => (
+    e: SyntheticEvent<HTMLInputElement>
+  ) => fn(Number.parseInt(e.currentTarget.value, 10));
   render() {
     const {
       checkIn,
@@ -87,7 +92,11 @@ class SettingsModal extends React.PureComponent<Props> {
         <DialogContent className={classes.main}>
           <FormControlLabel
             control={
-              <NativeSelect value={checkIn} name="checkIn" onChange={this.handleValueChange(setCheckIn)}>
+              <NativeSelect
+                value={checkIn}
+                name="checkIn"
+                onChange={this.handleValueChange(setCheckIn)}
+              >
                 <option value="">Kein</option>
                 <option value="travelynx">travelynx.de</option>
                 <option value="traewelling">traewelling.de</option>
@@ -124,7 +133,13 @@ class SettingsModal extends React.PureComponent<Props> {
             label="Obsolete Messages"
           />
           <FormControlLabel
-            control={<Switch checked={time} value="timeConfig" onChange={this.handleCheckedChange(setTime)} />}
+            control={
+              <Switch
+                checked={time}
+                value="timeConfig"
+                onChange={this.handleCheckedChange(setTime)}
+              />
+            }
             label="Neue Ankunft bei Verspätung"
           />
           <FormControlLabel
@@ -159,7 +174,11 @@ class SettingsModal extends React.PureComponent<Props> {
           />
           <FormControlLabel
             control={
-              <NativeSelect value={lookahead} name="lookahead" onChange={this.handleValueChange(setLookahead)}>
+              <NativeSelect
+                value={lookahead}
+                name="lookahead"
+                onChange={this.handleValueChange(setLookahead)}
+              >
                 <option value="60">60</option>
                 <option value="120">120</option>
                 <option value="150">150</option>
@@ -172,7 +191,11 @@ class SettingsModal extends React.PureComponent<Props> {
           />
           <FormControlLabel
             control={
-              <NativeSelect value={searchType} name="searchType" onChange={this.handleValueChange(setSearchType)}>
+              <NativeSelect
+                value={searchType}
+                name="searchType"
+                onChange={this.handleValueChange(setSearchType)}
+              >
                 <option value="favendo">Favendo</option>
                 <option value="openDB">Open DB</option>
                 <option value="favOpenDB">Open DB + Favendo</option>
@@ -202,7 +225,14 @@ export const styles = {
   },
 };
 
-export default connect<ReduxProps, OwnProps, StateProps, DispatchProps, AbfahrtenState, _>(
+export default connect<
+  ReduxProps,
+  OwnProps,
+  StateProps,
+  DispatchProps,
+  AbfahrtenState,
+  _
+>(
   state => ({
     open: state.config.open,
     ...state.config.config,

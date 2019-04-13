@@ -28,14 +28,20 @@ export const setSearchType = (value: string) =>
     key: 'searchType',
     value,
   });
-export const setTime = (value: boolean) => Actions.setConfig({ key: 'time', value });
-export const setZoomReihung = (value: boolean) => Actions.setConfig({ key: 'zoomReihung', value });
+export const setTime = (value: boolean) =>
+  Actions.setConfig({ key: 'time', value });
+export const setZoomReihung = (value: boolean) =>
+  Actions.setConfig({ key: 'zoomReihung', value });
 export const setShowSupersededMessages = (value: boolean) =>
   Actions.setConfig({ key: 'showSupersededMessages', value }, value);
-export const setLookahead = (value: string) => Actions.setConfig({ key: 'lookahead', value });
-export const setFahrzeugGruppe = (value: boolean) => Actions.setConfig({ key: 'fahrzeugGruppe', value });
-export const setLineAndNumber = (value: boolean) => Actions.setConfig({ key: 'lineAndNumber', value });
-export const setAutoUpdate = (value: number) => Actions.setConfig({ key: 'autoUpdate', value });
+export const setLookahead = (value: string) =>
+  Actions.setConfig({ key: 'lookahead', value });
+export const setFahrzeugGruppe = (value: boolean) =>
+  Actions.setConfig({ key: 'fahrzeugGruppe', value });
+export const setLineAndNumber = (value: boolean) =>
+  Actions.setConfig({ key: 'lineAndNumber', value });
+export const setAutoUpdate = (value: number) =>
+  Actions.setConfig({ key: 'autoUpdate', value });
 
 export const openSettings = () => Actions.setMenu(true);
 export const closeSettings = () => Actions.setMenu(false);

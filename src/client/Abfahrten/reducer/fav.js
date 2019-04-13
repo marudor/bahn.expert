@@ -13,7 +13,10 @@ const defaultState = {
 
 export default handleActions<State, *>(
   {
-    [String(Actions.setFavs)]: (state: State, { payload }: ActionType<typeof Actions.setFavs>) => ({
+    [String(Actions.setFavs)]: (
+      state: State,
+      { payload }: ActionType<typeof Actions.setFavs>
+    ) => ({
       ...state,
       favs: payload,
     }),

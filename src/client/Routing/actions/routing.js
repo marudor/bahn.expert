@@ -9,7 +9,11 @@ const Actions = {
   setDetail: createAction<string, ?string>('SET_DETAIL'),
 };
 
-export const getRoutes: RoutingThunkAction<string, string, Date> = (start, destination, date) => async dispatch => {
+export const getRoutes: RoutingThunkAction<string, string, Date> = (
+  start,
+  destination,
+  date
+) => async dispatch => {
   const route = (await axios.post('/api/route', {
     start,
     destination,

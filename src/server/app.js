@@ -57,13 +57,18 @@ export async function createApp(wsServer: ?https$Server) {
   let serverRender = require('./render').default;
   let seoController = require('./seo').default;
 
-  if (process.env.NODE_ENV !== 'test' && process.env.NODE_ENV !== 'production') {
+  if (
+    process.env.NODE_ENV !== 'test' &&
+    process.env.NODE_ENV !== 'production'
+  ) {
     await require('./middleware/webpackDev')(app, wsServer);
     app.use((ctx, next) => {
       serverRender = require('./render').default;
       apiRoutes = require('./Controller').default;
       seoController = require('./seo').default;
-      ctx.stats = transformStats(ctx.state.webpackStats.toJson().assetsByChunkName);
+      ctx.stats = transformStats(
+        ctx.state.webpackStats.toJson().assetsByChunkName
+      );
 
       return next();
     });
@@ -72,9 +77,14 @@ export async function createApp(wsServer: ?https$Server) {
   app.use(hotHelper(() => apiRoutes.routes()));
 
   app.use(
-    koaStatic(path.resolve(process.env.NODE_ENV === 'production' ? 'dist/client' : 'public'), {
-      maxAge: 31536000000, // 1 year
-    })
+    koaStatic(
+      path.resolve(
+        process.env.NODE_ENV === 'production' ? 'dist/client' : 'public'
+      ),
+      {
+        maxAge: 31536000000, // 1 year
+      }
+    )
   );
 
   app.use(hotHelper(() => seoController));
@@ -100,7 +110,11 @@ export default async () => {
   let server;
   let wsServer;
 
-  if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test' && !process.env.NO_SSL) {
+  if (
+    process.env.NODE_ENV !== 'production' &&
+    process.env.NODE_ENV !== 'test' &&
+    !process.env.NO_SSL
+  ) {
     const https = require('https');
     const fs = require('fs');
     // eslint-disable-next-line no-sync

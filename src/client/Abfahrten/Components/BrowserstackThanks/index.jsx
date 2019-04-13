@@ -8,7 +8,11 @@ type Props = StyledProps<{||}, typeof styles>;
 
 const BrowserstackThanks = ({ classes }: Props) => (
   <span className={classes.main}>
-    <a href="https://browserstack.com" target="_blank" rel="noopener noreferrer">
+    <a
+      href="https://browserstack.com"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <img width="200px" src={logo} />
     </a>
     {!global.smallScreen && <Typography>Tested on Browserstack</Typography>}

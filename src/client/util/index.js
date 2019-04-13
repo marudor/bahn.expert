@@ -40,9 +40,11 @@ const numberCheck = (value: string, fallback: number): number => {
   return n;
 };
 // $FlowFixMe - flow doesn't understand includes
-const searchTypeCheck = (value: string): StationSearchType => (validSearchTypes.includes(value) ? value : '');
+const searchTypeCheck = (value: string): StationSearchType =>
+  validSearchTypes.includes(value) ? value : '';
 // $FlowFixMe - flow doesn't understand includes
-const checkInCheck = (value: string): CheckInType => (validCheckIn.includes(value) ? value : '');
+const checkInCheck = (value: string): CheckInType =>
+  validCheckIn.includes(value) ? value : '';
 
 export const configSanitize: marudorConfigSanitize = {
   autoUpdate: value => numberCheck(value, 0),

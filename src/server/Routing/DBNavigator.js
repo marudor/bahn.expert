@@ -87,7 +87,10 @@ Options) {
     checksum: createChecksum(data),
   };
 }
-export default function routeDBNav(options: Options, parseFunction: SRoute$Result => any = parse) {
+export default function routeDBNav(
+  options: Options,
+  parseFunction: SRoute$Result => any = parse
+) {
   const { data, checksum } = createRequest(options);
 
   return axios

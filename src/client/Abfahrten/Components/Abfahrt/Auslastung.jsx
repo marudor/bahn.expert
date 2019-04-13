@@ -86,13 +86,17 @@ class Auslastung extends React.PureComponent<Props> {
         <div className={classes.entry}>
           <span>1</span>
           <Tooltip title={getTooltipText(auslastung.first)}>
-            <span className={`${classes.icon} ${classes.first}`}>{getIcon(auslastung.first)}</span>
+            <span className={`${classes.icon} ${classes.first}`}>
+              {getIcon(auslastung.first)}
+            </span>
           </Tooltip>
         </div>
         <div className={classes.entry}>
           <span>2</span>
           <Tooltip title={getTooltipText(auslastung.second)}>
-            <span className={`${classes.icon} ${classes.second}`}>{getIcon(auslastung.second)}</span>
+            <span className={`${classes.icon} ${classes.second}`}>
+              {getIcon(auslastung.second)}
+            </span>
           </Tooltip>
         </div>
       </div>
@@ -141,7 +145,14 @@ export const styles = {
   second: (props: ReduxProps) => getColor(props.auslastung?.second),
 };
 
-export default connect<ReduxProps, OwnProps, StateProps, DispatchProps, AbfahrtenState, _>(
+export default connect<
+  ReduxProps,
+  OwnProps,
+  StateProps,
+  DispatchProps,
+  AbfahrtenState,
+  _
+>(
   (state, props) => ({
     auslastung: getAuslastungForIdAndStation(state, props),
   }),

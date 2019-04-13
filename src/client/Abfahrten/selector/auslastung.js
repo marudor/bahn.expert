@@ -6,16 +6,35 @@ import type { AuslastungEntry } from 'types/auslastung';
 import type { Station } from 'types/station';
 
 export type AuslastungProps = { +abfahrt: Abfahrt };
-export const getAuslastung = (state: AbfahrtenState) => state.auslastung.auslastung;
-export const getTrainIdFromProps = (_: AbfahrtenState, props: AuslastungProps) => props.abfahrt.trainId;
-export const getCurrentStationFromProps = (_: AbfahrtenState, props: AuslastungProps) => props.abfahrt.currentStation;
-export const getStation = (state: AbfahrtenState): ?Station => state.abfahrten.currentStation;
+export const getAuslastung = (state: AbfahrtenState) =>
+  state.auslastung.auslastung;
+export const getTrainIdFromProps = (
+  _: AbfahrtenState,
+  props: AuslastungProps
+) => props.abfahrt.trainId;
+export const getCurrentStationFromProps = (
+  _: AbfahrtenState,
+  props: AuslastungProps
+) => props.abfahrt.currentStation;
+export const getStation = (state: AbfahrtenState): ?Station =>
+  state.abfahrten.currentStation;
 
-export const getAuslastungForId = createSelector<AbfahrtenState, AuslastungProps, ?(AuslastungEntry[]), *, string>(
+export const getAuslastungForId = createSelector<
+  AbfahrtenState,
+  AuslastungProps,
+  ?(AuslastungEntry[]),
+  *,
+  string
+>(
   getAuslastung,
   getTrainIdFromProps,
-  (auslastung: $PropertyType<$PropertyType<AbfahrtenState, 'auslastung'>, 'auslastung'>, trainId) =>
-    auslastung[trainId] ? auslastung[trainId].data : auslastung[trainId]
+  (
+    auslastung: $PropertyType<
+      $PropertyType<AbfahrtenState, 'auslastung'>,
+      'auslastung'
+    >,
+    trainId
+  ) => (auslastung[trainId] ? auslastung[trainId].data : auslastung[trainId])
 );
 
 export const getAuslastungForIdCopy = createSelector<
@@ -44,7 +63,10 @@ export const getAuslastungForIdAndStation = createSelector<
     if (auslastung === null) {
       return null;
     }
-    while (auslastung.length && auslastung[0].start.replace(/ /g, '') !== station.title.replace(/ /g, '')) {
+    while (
+      auslastung.length &&
+      auslastung[0].start.replace(/ /g, '') !== station.title.replace(/ /g, '')
+    ) {
       auslastung.shift();
     }
     if (!auslastung.length) {

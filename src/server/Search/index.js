@@ -11,8 +11,13 @@ import OpenDBSearch from './OpenDB';
 import StationsDataSearch from './StationsData';
 import type { Station } from 'types/station';
 
-export async function favendoOpenDBCombined(searchTerm: string): Promise<Station[]> {
-  const stations = await Promise.all([FavendoSearch(searchTerm), OpenDBSearch(searchTerm)]);
+export async function favendoOpenDBCombined(
+  searchTerm: string
+): Promise<Station[]> {
+  const stations = await Promise.all([
+    FavendoSearch(searchTerm),
+    OpenDBSearch(searchTerm),
+  ]);
 
   return uniqBy(flatten(stations), 'id');
 }

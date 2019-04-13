@@ -4,7 +4,16 @@
  ** This algorithm is heavily inspired by https://github.com/derf/Travel-Status-DE-IRIS
  ** derf did awesome work reverse engineering the XML stuff!
  */
-import { addHours, addMinutes, compareAsc, compareDesc, format, isAfter, isBefore, subHours } from 'date-fns';
+import {
+  addHours,
+  addMinutes,
+  compareAsc,
+  compareDesc,
+  format,
+  isAfter,
+  isBefore,
+  subHours,
+} from 'date-fns';
 import { diffArrays } from 'diff';
 import { findLast, flatten, last, uniqBy } from 'lodash';
 import { getAttr, getNumberAttr, parseTs } from './helper';
@@ -75,7 +84,9 @@ export function parseDp(dp: ?XmlNode): ?ParsedDp {
     departureTs: getAttr(dp, 'ct'),
     scheduledDepartureTs: getAttr(dp, 'pt'),
     platform: getAttr(dp, 'cp'),
-    routePost: routePost ? routePost.split('|').map<string>(normalizeRouteName) : undefined,
+    routePost: routePost
+      ? routePost.split('|').map<string>(normalizeRouteName)
+      : undefined,
     // plannedRoutePost: getAttr(dp, 'ppth')?.split('|'),
     status: getAttr(dp, 'cs'),
   };
@@ -90,7 +101,9 @@ export function parseRealtimeAr(ar: ?XmlNode): ?ParsedAr {
     arrivalTs: getAttr(ar, 'ct'),
     scheduledArrivalTs: getAttr(ar, 'pt'),
     platform: getAttr(ar, 'cp'),
-    routePre: routePre ? routePre.split('|').map<string>(normalizeRouteName) : undefined,
+    routePre: routePre
+      ? routePre.split('|').map<string>(normalizeRouteName)
+      : undefined,
     // plannedRoutePre: getAttr(ar, 'ppth')?.split('|'),
     status: getAttr(ar, 'cs'),
     // statusSince: getAttr(ar, 'clt'),
@@ -184,7 +197,12 @@ export default class Timetable {
   currentDate: Date;
   maxDate: Date;
 
-  constructor(evaId: string, currentStation: string, options: TimetableOptions, axios: Axios) {
+  constructor(
+    evaId: string,
+    currentStation: string,
+    options: TimetableOptions,
+    axios: Axios
+  ) {
     this.axios = axios;
     this.evaId = evaId;
     this.currentDate = new Date();
@@ -200,11 +218,14 @@ export default class Timetable {
   }
   computeExtra(timetable: any) {
     timetable.isCancelled =
-      (timetable.arrivalIsCancelled && (timetable.departureIsCancelled || !timetable.scheduledDeparture)) ||
+      (timetable.arrivalIsCancelled &&
+        (timetable.departureIsCancelled || !timetable.scheduledDeparture)) ||
       (timetable.departureIsCancelled && !timetable.scheduledArrival);
 
     if (timetable.isCancelled) {
-      const anyCancelled = timetable.routePre.some(r => r.isCancelled) || timetable.routePost.some(r => r.isCancelled);
+      const anyCancelled =
+        timetable.routePre.some(r => r.isCancelled) ||
+        timetable.routePost.some(r => r.isCancelled);
 
       if (anyCancelled) {
         timetable.routePre.forEach(r => (r.isCancelled = true));
@@ -217,14 +238,22 @@ export default class Timetable {
       { name: timetable.currentStation, isCancelled: timetable.isCancelled },
       ...timetable.routePost,
     ];
-    timetable.destination = findLast(timetable.route, r => !r.isCancelled)?.name || timetable.scheduledDestination;
+    timetable.destination =
+      findLast(timetable.route, r => !r.isCancelled)?.name ||
+      timetable.scheduledDestination;
     timetable.via = this.getVia(timetable);
     // $FlowFixMe - optional chaining call
     const filteredRoutePost = timetable.routePost?.filter(r => !r.isCancelled);
 
     timetable.auslastung =
-      !timetable.isCancelled && timetable.longDistance && !timetable.substitute && Boolean(filteredRoutePost?.length);
-    timetable.reihung = !timetable.isCancelled && timetable.longDistance && Boolean(filteredRoutePost?.length);
+      !timetable.isCancelled &&
+      timetable.longDistance &&
+      !timetable.substitute &&
+      Boolean(filteredRoutePost?.length);
+    timetable.reihung =
+      !timetable.isCancelled &&
+      timetable.longDistance &&
+      Boolean(filteredRoutePost?.length);
 
     delete timetable.routePre;
     delete timetable.routePost;
@@ -254,23 +283,28 @@ export default class Timetable {
 
     const wings = {};
 
-    const filtered: any[] = uniqBy<any>(timetables, 'rawId').filter((a: any) => {
-      const isWing = this.wingIds.has(a.mediumId);
+    const filtered: any[] = uniqBy<any>(timetables, 'rawId').filter(
+      (a: any) => {
+        const isWing = this.wingIds.has(a.mediumId);
 
-      if (isWing) {
-        wings[a.mediumId] = a;
-        this.computeExtra(a);
+        if (isWing) {
+          wings[a.mediumId] = a;
+          this.computeExtra(a);
 
-        return false;
+          return false;
+        }
+
+        const time = a.departureIsCancelled
+          ? a.arrival
+          : a.departure || a.arrival;
+
+        return (
+          isAfter(time, this.currentDate) &&
+          (isBefore(time, this.maxDate) ||
+            isBefore(a.scheduledDeparture || a.scheduledArrival, this.maxDate))
+        );
       }
-
-      const time = a.departureIsCancelled ? a.arrival : a.departure || a.arrival;
-
-      return (
-        isAfter(time, this.currentDate) &&
-        (isBefore(time, this.maxDate) || isBefore(a.scheduledDeparture || a.scheduledArrival, this.maxDate))
-      );
-    });
+    );
 
     filtered.forEach(t => this.computeExtra(t));
 
@@ -281,7 +315,9 @@ export default class Timetable {
     };
   }
   getVia(timetable: any, maxParts: number = 3): string[] {
-    const via: string[] = [...timetable.routePost].filter(v => !v.isCancelled).map(r => r.name);
+    const via: string[] = [...timetable.routePost]
+      .filter(v => !v.isCancelled)
+      .map(r => r.name);
 
     via.pop();
     const important = via.filter(v => v.match(/(HB$|Hbf|Centraal|Flughafen)/));
@@ -399,7 +435,9 @@ export default class Timetable {
       messages: Object.keys(messages).reduce((agg, messageKey) => {
         const messageValues: any = Object.values(messages[messageKey]);
 
-        agg[messageKey] = messageValues.sort((a, b) => compareDesc(a.timestamp, b.timestamp));
+        agg[messageKey] = messageValues.sort((a, b) =>
+          compareDesc(a.timestamp, b.timestamp)
+        );
 
         return agg;
       }, {}),
@@ -419,7 +457,8 @@ export default class Timetable {
     if (ar.arrivalTs) {
       timetable.arrival = parseTs(ar.arrivalTs);
     }
-    timetable.delayArrival = (timetable.arrival - timetable.scheduledArrival) / 60 / 1000;
+    timetable.delayArrival =
+      (timetable.arrival - timetable.scheduledArrival) / 60 / 1000;
     if (ar.routePre) {
       const diff = diffArrays(ar.routePre, timetable.routePre.map(r => r.name));
 
@@ -446,9 +485,13 @@ export default class Timetable {
     if (dp.departureTs) {
       timetable.departure = parseTs(dp.departureTs);
     }
-    timetable.delayDeparture = (timetable.departure - timetable.scheduledDeparture) / 60 / 1000;
+    timetable.delayDeparture =
+      (timetable.departure - timetable.scheduledDeparture) / 60 / 1000;
     if (dp.routePost) {
-      const diff = diffArrays(timetable.routePost.map(r => r.name), dp.routePost);
+      const diff = diffArrays(
+        timetable.routePost.map(r => r.name),
+        dp.routePost
+      );
 
       timetable.routePost = flatten(
         diff.map(d =>
@@ -531,9 +574,13 @@ export default class Timetable {
     const { trainNumber, trainType, t, o, productClass } = parseTl(tl);
     const train = `${trainType} ${lineNumber || trainNumber}`;
     // $FlowFixMe - optional chaining call
-    const routePost: string[] = (getAttr(dp, 'ppth')?.split('|') || []).map(normalizeRouteName);
+    const routePost: string[] = (getAttr(dp, 'ppth')?.split('|') || []).map(
+      normalizeRouteName
+    );
     // $FlowFixMe - optional chaining call
-    const routePre: string[] = (getAttr(ar, 'ppth')?.split('|') || []).map(normalizeRouteName);
+    const routePre: string[] = (getAttr(ar, 'ppth')?.split('|') || []).map(
+      normalizeRouteName
+    );
 
     return {
       o,

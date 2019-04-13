@@ -45,12 +45,22 @@ class Route extends React.PureComponent<Props> {
 
     return (
       <Paper onClick={this.setDetail} square className={classes.main}>
-        <Time className={classes.time} real={route.departure} delay={route.departureDelay} />
-        <Time className={classes.time} real={route.arrival} delay={route.arrivalDelay} />
+        <Time
+          className={classes.time}
+          real={route.departure}
+          delay={route.departureDelay}
+        />
+        <Time
+          className={classes.time}
+          real={route.arrival}
+          delay={route.arrivalDelay}
+        />
         <span>{formatDuration(route.duration)}</span>
         <span>{route.changes}</span>
         <span className={classes.products}>{this.getSegmentTypes()}</span>
-        {detail && <RouteSegments className={classes.detail} segments={route.segments} />}
+        {detail && (
+          <RouteSegments className={classes.detail} segments={route.segments} />
+        )}
       </Paper>
     );
   }
@@ -82,7 +92,14 @@ const styles = {
   },
 };
 
-export default connect<ReduxProps, OwnProps, StateProps, DispatchProps, RoutingState, _>(
+export default connect<
+  ReduxProps,
+  OwnProps,
+  StateProps,
+  DispatchProps,
+  RoutingState,
+  _
+>(
   (state, props) => ({
     detail: getDetailForRoute(state, props),
   }),

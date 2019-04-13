@@ -6,12 +6,17 @@ import type { Station } from 'types/station';
 
 // eslint-disable-next-line import/prefer-default-export
 const Actions = {
-  setFavs: createAction<string, { [key: string | number]: Station }>('SET_FAVS'),
+  setFavs: createAction<string, { [key: string | number]: Station }>(
+    'SET_FAVS'
+  ),
 };
 
 export default Actions;
 
-export const fav: AbfahrtenThunkAction<Station> = station => (dispatch, getState) => {
+export const fav: AbfahrtenThunkAction<Station> = station => (
+  dispatch,
+  getState
+) => {
   const state = getState();
   const favs = {
     ...state.fav.favs,
@@ -24,7 +29,10 @@ export const fav: AbfahrtenThunkAction<Station> = station => (dispatch, getState
   return Promise.resolve();
 };
 
-export const unfav: AbfahrtenThunkAction<Station> = station => (dispatch, getState) => {
+export const unfav: AbfahrtenThunkAction<Station> = station => (
+  dispatch,
+  getState
+) => {
   const state = getState();
   const favs = { ...state.fav.favs };
 

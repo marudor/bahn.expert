@@ -24,7 +24,11 @@ const logglyConfig = {
 };
 
 // istanbul ignore next
-if (process.env.NODE_ENV === 'production' && logglyConfig.token && logglyConfig.subdomain) {
+if (
+  process.env.NODE_ENV === 'production' &&
+  logglyConfig.token &&
+  logglyConfig.subdomain
+) {
   // eslint-disable-next-line
   console.log('Using loggly to log');
   config.streams.push({

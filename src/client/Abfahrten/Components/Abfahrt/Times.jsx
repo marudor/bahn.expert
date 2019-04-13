@@ -26,7 +26,15 @@ type Props = StyledProps<ReduxProps, typeof styles>;
 
 const Times = ({
   timeConfig,
-  abfahrt: { arrival, arrivalIsCancelled, delayArrival, delayDeparture, departure, departureIsCancelled, isCancelled },
+  abfahrt: {
+    arrival,
+    arrivalIsCancelled,
+    delayArrival,
+    delayDeparture,
+    departure,
+    departureIsCancelled,
+    isCancelled,
+  },
   detail,
   classes,
 }: Props) => (
@@ -44,7 +52,13 @@ const Times = ({
             })}
           >
             <span>{'An: '}</span>
-            <Time alignEnd delay={delayArrival} real={arrival} showOriginalTime={!timeConfig} showZero />
+            <Time
+              alignEnd
+              delay={delayArrival}
+              real={arrival}
+              showOriginalTime={!timeConfig}
+              showZero
+            />
           </div>
         )}
         {departure && (
@@ -54,18 +68,40 @@ const Times = ({
             })}
           >
             <span>{'Ab: '}</span>
-            <Time alignEnd delay={delayDeparture} real={departure} showOriginalTime={!timeConfig} showZero />
+            <Time
+              alignEnd
+              delay={delayDeparture}
+              real={departure}
+              showOriginalTime={!timeConfig}
+              showZero
+            />
           </div>
         )}
       </React.Fragment>
     ) : departure && (!departureIsCancelled || isCancelled) ? (
-      <Time alignEnd delay={delayDeparture} real={departure} showOriginalTime={!timeConfig} showZero />
+      <Time
+        alignEnd
+        delay={delayDeparture}
+        real={departure}
+        showOriginalTime={!timeConfig}
+        showZero
+      />
     ) : (
-      arrival && <Time alignEnd delay={delayArrival} real={arrival} showOriginalTime={!timeConfig} showZero />
+      arrival && (
+        <Time
+          alignEnd
+          delay={delayArrival}
+          real={arrival}
+          showOriginalTime={!timeConfig}
+          showZero
+        />
+      )
     )}
   </div>
 );
 
-export default connect<ReduxProps, OwnProps, StateProps, _, AbfahrtenState, _>(state => ({
-  timeConfig: state.config.config.time,
-}))(withStyles(styles)(Times));
+export default connect<ReduxProps, OwnProps, StateProps, _, AbfahrtenState, _>(
+  state => ({
+    timeConfig: state.config.config.time,
+  })
+)(withStyles(styles)(Times));

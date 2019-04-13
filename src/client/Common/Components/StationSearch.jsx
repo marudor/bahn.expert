@@ -40,7 +40,8 @@ type Props = OwnProps;
 class StationSearch extends React.PureComponent<Props> {
   getOptionLabel = (station: Station) => station.title;
   getOptionValue = (station: Station) => station.id;
-  loadOptions = (term: string) => debouncedGetStationFromAPI(term, this.props.searchType);
+  loadOptions = (term: string) =>
+    debouncedGetStationFromAPI(term, this.props.searchType);
   render() {
     const { onChange, value, autoFocus, placeholder } = this.props;
 

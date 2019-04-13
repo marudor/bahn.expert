@@ -17,7 +17,9 @@ function encodeSearchTerm(term: string) {
 // https://si.favendo.de/station-info/rest/api/search?searchTerm=Bochum
 export default async function(searchTerm: string): Promise<Station[]> {
   const stations = (await axios.get(
-    `https://si.favendo.de/station-info/rest/api/search?searchTerm=${encodeSearchTerm(searchTerm)}`
+    `https://si.favendo.de/station-info/rest/api/search?searchTerm=${encodeSearchTerm(
+      searchTerm
+    )}`
   )).data;
 
   return stations.map(s => ({

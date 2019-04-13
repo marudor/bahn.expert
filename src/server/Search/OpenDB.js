@@ -20,7 +20,9 @@ export default async (rawSearchTerm: string): Promise<Station[]> => {
     result.LocationList.StopLocation = [result.LocationList.StopLocation];
   }
   const stations = result.LocationList.StopLocation.filter(
-    s => s.name !== s.name.toUpperCase() && s.name.substr(0, 3) !== s.name.substr(0, 3).toUpperCase()
+    s =>
+      s.name !== s.name.toUpperCase() &&
+      s.name.substr(0, 3) !== s.name.substr(0, 3).toUpperCase()
   );
 
   return stations.map(s => ({

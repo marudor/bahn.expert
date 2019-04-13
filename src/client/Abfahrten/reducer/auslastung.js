@@ -13,7 +13,10 @@ const defaultState: State = {
 
 export default handleActions<State, *>(
   {
-    [String(Actions.gotAuslastung)]: (state: State, { payload }: ActionType<typeof Actions.gotAuslastung>) => ({
+    [String(Actions.gotAuslastung)]: (
+      state: State,
+      { payload }: ActionType<typeof Actions.gotAuslastung>
+    ) => ({
       ...state,
       auslastung: {
         ...state.auslastung,

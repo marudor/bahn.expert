@@ -44,7 +44,14 @@ class Routing extends React.PureComponent<Props> {
   }
 }
 
-export default connect<ReduxProps, OwnProps, StateProps, DispatchProps, RoutingState, _>(
+export default connect<
+  ReduxProps,
+  OwnProps,
+  StateProps,
+  DispatchProps,
+  RoutingState,
+  _
+>(
   state => ({
     date: state.search.date,
     dateTouched: state.search.dateTouched,

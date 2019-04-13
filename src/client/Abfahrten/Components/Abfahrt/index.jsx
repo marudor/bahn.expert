@@ -20,7 +20,12 @@ type Props = {|
 const Abfahrt = ({ resolvedWings, abfahrt }: Props) => {
   const wings = resolvedWings?.arrivalWings || resolvedWings?.departureWings;
   const sameTrainWing = Boolean(
-    wings && wings.every(w => w.trainNumber.endsWith(abfahrt.trainNumber) && w.trainType !== abfahrt.trainType)
+    wings &&
+      wings.every(
+        w =>
+          w.trainNumber.endsWith(abfahrt.trainNumber) &&
+          w.trainType !== abfahrt.trainType
+      )
   );
 
   return (
@@ -45,6 +50,8 @@ const Abfahrt = ({ resolvedWings, abfahrt }: Props) => {
   );
 };
 
-export default connect<Props, OwnProps, StateProps, _, AbfahrtenState, _>((state, props) => ({
-  resolvedWings: getWingsForAbfahrt(state, props),
-}))(Abfahrt);
+export default connect<Props, OwnProps, StateProps, _, AbfahrtenState, _>(
+  (state, props) => ({
+    resolvedWings: getWingsForAbfahrt(state, props),
+  })
+)(Abfahrt);

@@ -30,7 +30,9 @@ export async function getLageplan(stationName: string) {
     return null;
   }
 
-  const bahnhofHtml = (await axios.get(`https://www.bahnhof.de${firstResultLink}`)).data;
+  const bahnhofHtml = (await axios.get(
+    `https://www.bahnhof.de${firstResultLink}`
+  )).data;
 
   $ = cheerio.load(bahnhofHtml);
   const rawPdfLink = $('.bahnhof > .embeddedDownload > .download-asset > a')

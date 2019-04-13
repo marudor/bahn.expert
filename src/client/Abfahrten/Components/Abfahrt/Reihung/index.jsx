@@ -60,11 +60,18 @@ class ReihungComp extends React.PureComponent<Props> {
     return (
       <div className={classes.main}>
         {Boolean(reihung.specificTrainType) && (
-          <span className={classes.specificType}>{reihung.specificTrainType}</span>
+          <span className={classes.specificType}>
+            {reihung.specificTrainType}
+          </span>
         )}
         <div className={classes.sektoren}>
           {reihung.halt.allSektor.map(s => (
-            <Sektor correctLeft={correctLeft} scale={scale} key={s.sektorbezeichnung} sektor={s} />
+            <Sektor
+              correctLeft={correctLeft}
+              scale={scale}
+              key={s.sektorbezeichnung}
+              sektor={s}
+            />
           ))}
         </div>
         <div className={classes.reihung}>
@@ -89,7 +96,14 @@ class ReihungComp extends React.PureComponent<Props> {
   }
 }
 
-export default connect<ReduxProps, OwnProps, StateProps, DispatchProps, AbfahrtenState, _>(
+export default connect<
+  ReduxProps,
+  OwnProps,
+  StateProps,
+  DispatchProps,
+  AbfahrtenState,
+  _
+>(
   (state, props) => ({
     reihung: getReihungForId(state, props),
     useZoom: state.config.config.zoomReihung,

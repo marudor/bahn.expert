@@ -5,7 +5,10 @@ import type { $AxiosError } from 'axios';
 import type { Abfahrt, Wings } from 'types/abfahrten';
 import type { Station } from 'types/station';
 
-type AbfahrtenError = AbfahrtenError$Redirect | AbfahrtenError$404 | AbfahrtenError$Default;
+type AbfahrtenError =
+  | AbfahrtenError$Redirect
+  | AbfahrtenError$404
+  | AbfahrtenError$Default;
 type AbfahrtenError$Redirect = Error & {
   type: 'redirect',
   redirect: string,
@@ -41,11 +44,17 @@ const defaultState = {
 
 export default handleActions<State, *>(
   {
-    [String(Actions.gotLageplan)]: (state: State, { payload }: ActionType<typeof Actions.gotLageplan>) => ({
+    [String(Actions.gotLageplan)]: (
+      state: State,
+      { payload }: ActionType<typeof Actions.gotLageplan>
+    ) => ({
       ...state,
       lageplan: payload,
     }),
-    [String(Actions.gotAbfahrten)]: (state: State, { payload }: ActionType<typeof Actions.gotAbfahrten>) => ({
+    [String(Actions.gotAbfahrten)]: (
+      state: State,
+      { payload }: ActionType<typeof Actions.gotAbfahrten>
+    ) => ({
       ...state,
       currentStation: payload.station,
       abfahrten: payload.departures,
@@ -53,18 +62,27 @@ export default handleActions<State, *>(
       lageplan: payload.lageplan,
       error: null,
     }),
-    [String(Actions.gotAbfahrtenError)]: (state: State, { payload }: ActionType<typeof Actions.gotAbfahrtenError>) => ({
+    [String(Actions.gotAbfahrtenError)]: (
+      state: State,
+      { payload }: ActionType<typeof Actions.gotAbfahrtenError>
+    ) => ({
       ...state,
       abfahrten: [],
       wings: {},
       lageplan: undefined,
       error: payload,
     }),
-    [String(Actions.setDetail)]: (state: State, { payload }: ActionType<typeof Actions.setDetail>) => ({
+    [String(Actions.setDetail)]: (
+      state: State,
+      { payload }: ActionType<typeof Actions.setDetail>
+    ) => ({
       ...state,
       selectedDetail: payload,
     }),
-    [String(Actions.setCurrentStation)]: (state: State, { payload }: ActionType<typeof Actions.setCurrentStation>) => ({
+    [String(Actions.setCurrentStation)]: (
+      state: State,
+      { payload }: ActionType<typeof Actions.setCurrentStation>
+    ) => ({
       ...state,
       currentStation: payload,
       abfahrten: null,

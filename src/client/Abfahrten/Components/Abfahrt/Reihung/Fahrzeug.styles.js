@@ -7,7 +7,8 @@ export default {
     boxSizing: 'border-box',
   },
   closed: {
-    background: 'repeating-linear-gradient(135deg, #999, #999, 5px, transparent 5px, transparent 10px);',
+    background:
+      'repeating-linear-gradient(135deg, #999, #999, 5px, transparent 5px, transparent 10px);',
   },
   wrongWing: {
     background: 'darkgrey',

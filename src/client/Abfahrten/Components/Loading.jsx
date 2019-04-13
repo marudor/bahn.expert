@@ -39,7 +39,13 @@ function getType(type: 0 | 1, classes) {
   }
 }
 
-const Loading = ({ isLoading, className, children, type = 0, classes }: Props) => {
+const Loading = ({
+  isLoading,
+  className,
+  children,
+  type = 0,
+  classes,
+}: Props) => {
   if (isLoading || !children) {
     return <div className={className}>{getType(type, classes)}</div>;
   }

@@ -15,7 +15,10 @@ import type { AbfahrtenState } from 'AppState';
 import type { Station } from 'types/station';
 
 type StateProps = {|
-  +currentStation: ?$PropertyType<$PropertyType<AbfahrtenState, 'abfahrten'>, 'currentStation'>,
+  +currentStation: ?$PropertyType<
+    $PropertyType<AbfahrtenState, 'abfahrten'>,
+    'currentStation'
+  >,
   +searchType?: StationSearchType,
   +baseUrl: string,
   +nextAbfahrt: ?Abfahrt,
@@ -55,10 +58,9 @@ class Header extends React.Component<Props> {
         const delay = nextAbfahrt.delayDeparture;
         const delayString = delay ? `(${delay < 0 ? '-' : '+'}${delay})` : '';
 
-        ogDescription = `Nächste Abfahrt: ${nextAbfahrt.train} - ${nextAbfahrt.destination} - ${format(
-          nextAbfahrt.scheduledDeparture,
-          'HH:mm'
-        )} ${delayString}`;
+        ogDescription = `Nächste Abfahrt: ${nextAbfahrt.train} - ${
+          nextAbfahrt.destination
+        } - ${format(nextAbfahrt.scheduledDeparture, 'HH:mm')} ${delayString}`;
       }
       url += `/${encodeURIComponent(currentStation.title)}`;
     }
@@ -118,7 +120,14 @@ class Header extends React.Component<Props> {
   }
 }
 
-export default connect<ReduxProps, OwnProps, StateProps, DispatchProps, AbfahrtenState, _>(state => ({
+export default connect<
+  ReduxProps,
+  OwnProps,
+  StateProps,
+  DispatchProps,
+  AbfahrtenState,
+  _
+>(state => ({
   currentStation: state.abfahrten.currentStation,
   searchType: state.config.config.searchType,
   baseUrl: state.config.baseUrl,

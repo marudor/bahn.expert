@@ -1,5 +1,9 @@
 // @flow
-import { type AuslastungProps, getCurrentStationFromProps, getTrainIdFromProps } from './auslastung';
+import {
+  type AuslastungProps,
+  getCurrentStationFromProps,
+  getTrainIdFromProps,
+} from './auslastung';
 import { createSelector } from 'reselect';
 import type { AbfahrtenState } from 'AppState';
 import type { Reihung } from 'types/reihung';

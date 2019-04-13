@@ -43,6 +43,8 @@ const styles = {
   },
 };
 
-export default connect<ReduxProps, OwnProps, StateProps, _, RoutingState, _>(state => ({
-  routes: state.routing.routes,
-}))(withStyles(styles)(RouteList));
+export default connect<ReduxProps, OwnProps, StateProps, _, RoutingState, _>(
+  state => ({
+    routes: state.routing.routes,
+  })
+)(withStyles(styles)(RouteList));
