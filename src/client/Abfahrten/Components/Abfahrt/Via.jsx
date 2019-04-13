@@ -21,7 +21,12 @@ function getDetailedInfo(abfahrt: Abfahrt, showSupersededMessages: boolean, clas
     const sorted = messages.sort((a, b) => compareDesc(a.timestamp, b.timestamp));
 
     return (
-      <div key="i" className={cc(classes.info, { [classes.cancelled]: abfahrt.isCancelled })}>
+      <div
+        key="i"
+        className={cc(classes.info, {
+          [classes.cancelled]: abfahrt.isCancelled,
+        })}
+      >
         {sorted.map((m, i) => {
           const ts = new Date(m.timestamp);
 
@@ -78,8 +83,8 @@ function getAbfahrt(
   index: number,
   length: number,
   abfahrt: Abfahrt,
-  isCancelled?: number,
-  isAdditional?: number,
+  isCancelled?: boolean,
+  isAdditional?: boolean,
   isDetail?: boolean = false,
   classes
 ) {
@@ -127,7 +132,7 @@ function getNormalVia(abfahrt: Abfahrt, classes) {
   const abfahrten = abfahrt.via;
 
   abfahrten.forEach((v, index) => {
-    via = via.concat(getAbfahrt(v, index, abfahrten.length, abfahrt, abfahrt.isCancelled, 0, false, classes));
+    via = via.concat(getAbfahrt(v, index, abfahrten.length, abfahrt, abfahrt.isCancelled, false, false, classes));
   });
 
   return via.length ? via : null;

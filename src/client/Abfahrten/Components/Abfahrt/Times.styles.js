@@ -1,12 +1,8 @@
 // @flow
-import { cancelled, delayed, early } from 'style/mixins';
+import { cancelled } from 'style/mixins';
 
 export default {
-  early,
-  delayed,
   time: {
-    display: 'flex',
-    flexDirection: 'column',
     alignItems: 'flex-end',
   },
   wrapper: {

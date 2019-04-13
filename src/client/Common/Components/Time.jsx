@@ -1,16 +1,19 @@
 // @flow
+/* eslint no-nested-ternary: 0 */
 import { delayed, early } from 'style/mixins';
-import { delayString, delayStyle } from 'client/util/delay';
-import { format } from 'date-fns';
+import { format, subMinutes } from 'date-fns';
 import cc from 'classnames';
 import React from 'react';
 import withStyles, { type StyledProps } from 'react-jss';
 
 type DispatchProps = {||};
 type OwnProps = {|
-  delay: number,
-  real: number,
+  alignEnd?: boolean,
   className?: string,
+  delay?: number,
+  real: number,
+  showOriginalTime?: boolean,
+  showZero?: boolean,
 |};
 type StateProps = {||};
 type ReduxProps = {|
@@ -20,16 +23,45 @@ type ReduxProps = {|
 |};
 type Props = StyledProps<ReduxProps, typeof styles>;
 
-const Time = ({ classes, className, delay, real }: Props) => (
-  <div className={cc(className, delayStyle(classes, delay))}>
-    <span>{format(real, 'HH:mm')}</span>
-    {Boolean(delay) && `(${delayString(delay)})`}
-  </div>
-);
+function delayString(delay?: number = 0) {
+  if (delay < 0) {
+    return `-${Math.abs(delay)}`;
+  }
+
+  return `+${delay}`;
+}
+
+const Time = ({ classes, className, delay, real, showOriginalTime, showZero, alignEnd }: Props) => {
+  const time = showOriginalTime && delay ? subMinutes(real, delay) : real;
+
+  const hasDelay = showZero ? delay != null : Boolean(delay);
+
+  // $FlowFixMe - hasDelay checked that delay is defined
+  const delayStyle = !hasDelay ? '' : delay > 0 ? classes.delayed : classes.early;
+
+  return (
+    <div
+      className={cc(className, classes.time, {
+        [delayStyle]: !showOriginalTime,
+        [classes.alignEnd]: alignEnd,
+      })}
+    >
+      <span>{format(time, 'HH:mm')}</span>
+      <span className={cc(showOriginalTime && delayStyle)}>{hasDelay && delayString(delay)}</span>
+    </div>
+  );
+};
 
 const styles = {
+  alignEnd: {
+    alignItems: 'flex-end',
+  },
+  time: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
   delayed,
   early,
 };
 
-export default withStyles(styles)(Time);
+export default withStyles<Props>(styles)(Time);

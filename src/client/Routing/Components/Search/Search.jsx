@@ -89,7 +89,7 @@ class Search extends React.PureComponent<Props> {
       closeSnackbar(this.startReqId);
       closeSnackbar(this.destReqId);
       getRoutes(start.id, destination.id, date);
-      history.push(`/routing/${start.id}/${destination.id}}`);
+      history.push(`/routing/${start.id}/${destination.id}`);
     } else {
       if (!destination) {
         enqueueSnackbar('Ziel ist required.', { autoHideDuration: 5000, variant: 'error', key: this.destReqId });

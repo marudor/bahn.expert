@@ -18,7 +18,12 @@ const router = new KoaRouter();
 async function stationInfo(station: number) {
   const info = (await axios.get(`https://si.favendo.de/station-info/rest/api/station/${station}`)).data;
 
-  return { id: info.id, title: info.title, evaId: info.eva_ids[0], recursive: info.eva_ids.length > 1 };
+  return {
+    id: info.id,
+    title: info.title,
+    evaId: info.eva_ids[0],
+    recursive: info.eva_ids.length > 1,
+  };
 }
 
 router

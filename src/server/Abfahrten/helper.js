@@ -25,6 +25,8 @@ export function getBoolAttr(node: ?XmlNode, name: string): boolean {
 
 export function parseTs(ts: ?string): ?Date {
   if (ts) {
-    return parseFromTimeZone(ts, 'YYMMDDHHmm', { timeZone: 'Europe/Berlin' }).getTime();
+    return parseFromTimeZone(ts, 'YYMMDDHHmm', {
+      timeZone: 'Europe/Berlin',
+    }).getTime();
   }
 }

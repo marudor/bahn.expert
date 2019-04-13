@@ -38,7 +38,7 @@ const styles = {
   main: {
     '& > div': {
       paddingLeft: '.2em',
-      paddingRight: '.2em',
+      paddingRight: '1em',
     },
   },
 };

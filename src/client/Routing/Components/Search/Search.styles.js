@@ -1,8 +1,9 @@
 // @flow
 export default {
   datePicker: {
-    '& > *': {
-      padding: '2px 8px',
+    '& input': {
+      paddingLeft: 10,
+      paddingRight: 10,
     },
   },
 };

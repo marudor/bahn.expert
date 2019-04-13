@@ -17,7 +17,7 @@
     "dev:server": "npm run start:server",
     "dev:test": "npm run dev:server:test",
     "dev": "npm run dev:server",
-    "lint": "eslint src",
+    "lint": "eslint --ext .js,.jsx src",
     "start:server:test": "TESTDATA=1 npm run start:server",
     "start:server": "node --inspect src/server/index.js",
     "flow": "flow check",

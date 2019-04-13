@@ -19,8 +19,8 @@ export type Message = {|
 |};
 
 export type Train = {|
-  +isAdditional?: 0 | 1,
-  +isCancelled?: 0 | 1,
+  +isAdditional?: boolean,
+  +isCancelled?: boolean,
   +name: string,
 |};
 
@@ -46,7 +46,7 @@ export type Abfahrt = {|
   +hiddenArrival?: number,
   +hiddenDeparture?: number,
   +id: string,
-  +isCancelled: 0 | 1,
+  +isCancelled: boolean,
   +longDistance: boolean,
   +mediumId: string,
   +messages: Messages,
