@@ -1,31 +1,19 @@
 // @flow
-import { connect } from 'react-redux';
 import { formatDuration } from 'Routing/util';
-import { getDetailForRoute } from 'Routing/selector/routing';
 import Paper from '@material-ui/core/Paper';
 import React from 'react';
 import RouteSegments from './RouteSegments';
-import RoutingActions from 'Routing/actions/routing';
 import Time from 'Common/Components/Time';
 import withStyles, { type StyledProps } from 'react-jss';
 import type { Route as RouteType } from 'types/routing';
-import type { RoutingState } from 'AppState';
 
-type DispatchProps = {|
-  setDetail: typeof RoutingActions.setDetail,
-|};
 type OwnProps = {|
   route: RouteType,
-|};
-type StateProps = {|
   detail: boolean,
+  onClick: (e: SyntheticEvent<>) => void,
 |};
-type ReduxProps = {|
-  ...DispatchProps,
-  ...OwnProps,
-  ...StateProps,
-|};
-type Props = StyledProps<ReduxProps, typeof styles>;
+
+type Props = StyledProps<OwnProps, typeof styles>;
 
 class Route extends React.PureComponent<Props> {
   getSegmentTypes() {
@@ -35,16 +23,11 @@ class Route extends React.PureComponent<Props> {
 
     return route.segments[0].train;
   }
-  setDetail = () => {
-    const { setDetail, route, detail } = this.props;
-
-    setDetail(detail ? undefined : route.cid);
-  };
   render() {
-    const { classes, route, detail } = this.props;
+    const { classes, route, detail, onClick } = this.props;
 
     return (
-      <Paper onClick={this.setDetail} square className={classes.main}>
+      <Paper onClick={onClick} square className={classes.main}>
         <Time
           className={classes.time}
           real={route.departure}
@@ -57,9 +40,10 @@ class Route extends React.PureComponent<Props> {
         />
         <span>{formatDuration(route.duration)}</span>
         <span>{route.changes}</span>
-        <span className={classes.products}>{this.getSegmentTypes()}</span>
-        {detail && (
+        {detail ? (
           <RouteSegments className={classes.detail} segments={route.segments} />
+        ) : (
+          <span className={classes.products}>{this.getSegmentTypes()}</span>
         )}
       </Paper>
     );
@@ -74,7 +58,7 @@ export const gridStyle = {
 const styles = {
   main: {
     minHeight: '3em',
-    gridTemplateRows: '2.5em 1.5em auto',
+    gridTemplateRows: '2.5em 1fr',
     alignItems: 'center',
     ...gridStyle,
   },
@@ -92,18 +76,4 @@ const styles = {
   },
 };
 
-export default connect<
-  ReduxProps,
-  OwnProps,
-  StateProps,
-  DispatchProps,
-  RoutingState,
-  _
->(
-  (state, props) => ({
-    detail: getDetailForRoute(state, props),
-  }),
-  {
-    setDetail: RoutingActions.setDetail,
-  }
-)(withStyles(styles)(Route));
+export default withStyles<Props>(styles)(Route);

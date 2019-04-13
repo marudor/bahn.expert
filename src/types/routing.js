@@ -10,7 +10,7 @@ export type SRoute$Departure = {|
   +idx: number,
   +dProdX: number,
   +dInR: boolean,
-  +dTimeS: string,
+  +dTimeS?: string,
   +dTimeR?: string,
   +dPlatfS?: string,
   +dPlatfR?: string,
@@ -23,7 +23,7 @@ export type SRoute$Arrival = {|
   +locX: number,
   +idx: number,
   +aOutR: boolean,
-  +aTimeS: string,
+  +aTimeS?: string,
   +aTimeR?: string,
   +aPlatfS?: string,
   +aPlatfR?: string,
@@ -37,6 +37,7 @@ export type SRoute$JourneySegment = {|
   +dep: SRoute$Departure,
   +arr: SRoute$Arrival,
   +jny: {|
+    +stopL?: SRoute$StopL[],
     +jid: string,
     +prodX: number,
     +dirTxt: string,
@@ -124,6 +125,32 @@ export type SRoute$Product = {|
   |},
   +addName?: string,
 |};
+
+export type SRoute$StopL = {|
+  +aOutR: ?boolean,
+  +aPlatfR?: string,
+  +aPlatfS?: string,
+  +aProdX: ?number,
+  +aTZOffset: ?number,
+  +aTimeR?: string,
+  +aTimeS?: string,
+  +dDirTxt: ?string,
+  +dInR: ?boolean,
+  +dInS: ?boolean,
+  +dPlatfR?: string,
+  +dPlatfS?: string,
+  +dProdX: ?number,
+  +dTrnCmpSX: ?{|
+    +tcocX: $ReadOnlyArray<number>,
+  |},
+  +dTZOffset: ?number,
+  +dTimeR?: string,
+  +dTimeS?: string,
+  +idx: number,
+  +locX: number,
+  +type: string,
+|};
+
 export type SRoute$InnerResult = {|
   +common: {|
     +locL: $ReadOnlyArray<{|
@@ -211,21 +238,34 @@ export type SRoute$Result = {|
 |};
 
 export type Route$Arrival = {|
-  +scheduledArrivalPlatform: ?string,
-  +arrivalPlatform: ?string,
-  +scheduledArrival: number,
-  +arrival: number,
-  +arrivalDelay: number,
+  +scheduledArrivalPlatform?: string,
+  +arrivalPlatform?: string,
+  +scheduledArrival?: number,
+  +arrival?: number,
+  +arrivalDelay?: number,
 |};
 
 export type Route$Departure = {|
-  +scheduledDeparturePlatform: ?string,
-  +departurePlatform: ?string,
-  +scheduledDeparture: number,
-  +departure: number,
-  +departureDelay: number,
+  +scheduledDeparturePlatform?: string,
+  +departurePlatform?: string,
+  +scheduledDeparture?: number,
+  +departure?: number,
+  +departureDelay?: number,
 |};
 
+export type Route$Stop = {
+  +station: Station,
+  +scheduledDeparturePlatform?: string,
+  +departurePlatform?: string,
+  // +scheduledDeparture?: number,
+  +departure?: number,
+  +departureDelay?: number,
+  +scheduledArrivalPlatform?: string,
+  +arrivalPlatform?: string,
+  // +scheduledArrival?: number,
+  +arrival?: number,
+  +arrivalDelay?: number,
+};
 export type Route$JourneySegment = Route$JourneySegmentTrain;
 export type Route$JourneySegmentTrain = {|
   +train: string,
@@ -235,6 +275,7 @@ export type Route$JourneySegmentTrain = {|
   +changeDuration?: number,
   +segmentStart: Station,
   +segmentDestination: Station,
+  +stops?: Route$Stop[],
   ...Route$Arrival,
   ...Route$Departure,
   +duration: number,

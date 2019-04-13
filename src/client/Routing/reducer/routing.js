@@ -5,12 +5,9 @@ import type { Route } from 'types/routing';
 
 export type State = {
   routes?: Array<Route>,
-  selectedDetail?: ?string,
 };
 
-const defaultState: State = {
-  selectedDetail: localStorage.getItem('RselectedDetail'),
-};
+const defaultState: State = {};
 
 export default handleActions<State, *>(
   {
@@ -20,13 +17,7 @@ export default handleActions<State, *>(
     ) => ({
       ...state,
       routes: payload,
-    }),
-    [String(Actions.setDetail)]: (
-      state: State,
-      { payload }: ActionType<typeof Actions.setDetail>
-    ) => ({
-      ...state,
-      selectedDetail: payload,
+      selectedDetail: undefined,
     }),
   },
   defaultState

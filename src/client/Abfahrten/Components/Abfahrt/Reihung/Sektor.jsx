@@ -37,4 +37,4 @@ const styles = {
   },
 };
 
-export default React.memo<OwnProps>(withStyles(styles)(SektorComp));
+export default React.memo<OwnProps>(withStyles<Props>(styles)(SektorComp));

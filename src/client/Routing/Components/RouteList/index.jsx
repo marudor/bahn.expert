@@ -1,6 +1,6 @@
 // @flow
 import { connect } from 'react-redux';
-import React from 'react';
+import React, { useState } from 'react';
 import Route from './Route';
 import RouteHeader from './RouteHeader';
 import withStyles, { type StyledProps } from 'react-jss';
@@ -24,20 +24,30 @@ type ReduxProps = {|
 
 type Props = StyledProps<ReduxProps, typeof styles>;
 
-const RouteList = ({ routes, classes }: Props) =>
-  routes ? (
+const RouteList = ({ routes, classes }: Props) => {
+  const [detail, setDetail] = useState<?string>();
+
+  if (!routes) return null;
+
+  return (
     <div className={classes.main}>
       <RouteHeader />
       {routes.map(r => (
-        <Route route={r} key={r.cid} />
+        <Route
+          detail={detail === r.cid}
+          onClick={() => setDetail(detail === r.cid ? undefined : r.cid)}
+          route={r}
+          key={r.cid}
+        />
       ))}
     </div>
-  ) : null;
+  );
+};
 
 const styles = {
   main: {
     '& > div': {
-      paddingLeft: '.2em',
+      paddingLeft: '.1em',
       paddingRight: '1em',
     },
   },
@@ -47,4 +57,4 @@ export default connect<ReduxProps, OwnProps, StateProps, _, RoutingState, _>(
   state => ({
     routes: state.routing.routes,
   })
-)(withStyles(styles)(RouteList));
+)(withStyles<Props>(styles)(RouteList));

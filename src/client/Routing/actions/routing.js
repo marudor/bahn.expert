@@ -6,7 +6,6 @@ import type { RoutingThunkAction } from 'AppState';
 
 const Actions = {
   gotRoutes: createAction<string, ?Array<Route>>('GOT_ROUTES'),
-  setDetail: createAction<string, ?string>('SET_DETAIL'),
 };
 
 export const getRoutes: RoutingThunkAction<string, string, Date> = (

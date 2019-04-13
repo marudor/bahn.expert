@@ -28,4 +28,4 @@ export const styles = {
   },
 };
 
-export default React.memo<{||}>(withStyles(styles)(BrowserstackThanks));
+export default React.memo<{||}>(withStyles<Props>(styles)(BrowserstackThanks));

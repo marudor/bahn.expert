@@ -85,4 +85,4 @@ export default connect<
   {
     unfav,
   }
-)(withStyles(styles)(FavEntry));
+)(withStyles<Props>(styles)(FavEntry));

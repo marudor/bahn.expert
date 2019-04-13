@@ -228,4 +228,4 @@ export default connect<ReduxProps, OwnProps, StateProps, _, AbfahrtenState, _>(
   state => ({
     showSupersededMessages: state.config.config.showSupersededMessages,
   })
-)(withStyles(styles)(Via));
+)(withStyles<Props>(styles)(Via));

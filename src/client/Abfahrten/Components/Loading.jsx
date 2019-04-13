@@ -126,4 +126,4 @@ export const styles = {
   },
 };
 
-export default React.memo<*>(withStyles(styles)(Loading));
+export default React.memo<*>(withStyles<Props>(styles)(Loading));

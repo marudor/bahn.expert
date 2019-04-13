@@ -12,7 +12,7 @@ import {
   setZoomReihung,
 } from 'Abfahrten/actions/config';
 import { connect } from 'react-redux';
-import BrowserstackThanks from './BrowserstackThanks';
+// import BrowserstackThanks from './BrowserstackThanks';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -208,7 +208,7 @@ class SettingsModal extends React.PureComponent<Props> {
             }
             label="API zur Stationssuche"
           />
-          <BrowserstackThanks />
+          {/* <BrowserstackThanks /> */}
         </DialogContent>
       </Dialog>
     );
@@ -249,4 +249,4 @@ export default connect<
     setLineAndNumber,
     setAutoUpdate,
   }
-)(withStyles(styles)(SettingsModal));
+)(withStyles<Props>(styles)(SettingsModal));

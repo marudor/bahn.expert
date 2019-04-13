@@ -110,4 +110,4 @@ export default connect<
     fahrzeugGruppe: state.config.config.fahrzeugGruppe,
   }),
   { getReihung }
-)(withStyles(styles)(ReihungComp));
+)(withStyles<Props>(styles)(ReihungComp));

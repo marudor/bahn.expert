@@ -7,7 +7,7 @@ import withStyles, { type StyledProps } from 'react-jss';
 type OwnProps = {|
   cancelled?: boolean,
   scheduled?: string,
-  real: string,
+  real?: string,
 |};
 type Props = StyledProps<OwnProps, typeof styles>;
 

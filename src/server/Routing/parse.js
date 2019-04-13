@@ -6,11 +6,11 @@ import type {
   Route$Arrival,
   Route$Departure,
   Route$JourneySegment,
-  SRoute$Arrival,
-  SRoute$Departure,
+  Route$Stop,
   SRoute$Journey,
   SRoute$JourneySegment,
   SRoute$Result,
+  SRoute$StopL,
 } from 'types/routing';
 import type { Station } from 'types/station';
 
@@ -43,9 +43,14 @@ class Journey {
   date: number;
   journey: Route;
   prodL: *;
-  constructor(raw: SRoute$Journey, prodL) {
+  locL: Station[];
+  constructor(raw: SRoute$Journey, prodL, locL) {
     this.raw = raw;
     this.prodL = prodL;
+    this.locL = locL.map(l => ({
+      title: l.name,
+      id: l.extId,
+    }));
     this.date = parse(raw.date, 'yyyyMMdd', new Date()).getTime();
     const segments = raw.secL.map(this.parseSegment).filter(Boolean);
 
@@ -61,6 +66,22 @@ class Journey {
       raw: PROD ? undefined : raw,
     };
   }
+  parseStops = (stops: void | SRoute$StopL[]): Route$Stop[] | void => {
+    if (!stops) return;
+
+    return stops.map(stop => {
+      // eslint-disable-next-line no-unused-vars
+      const { scheduledArrival, ...arrival } = this.parseArrival(stop);
+      // eslint-disable-next-line no-unused-vars
+      const { scheduledDeparture, ...departure } = this.parseDeparture(stop);
+
+      return {
+        station: this.locL[stop.locX],
+        ...arrival,
+        ...departure,
+      };
+    });
+  };
   parseSegment = (t: SRoute$JourneySegment): ?Route$JourneySegment => {
     switch (t.type) {
       case 'JNY': {
@@ -84,8 +105,8 @@ class Journey {
         ] = t.jny.ctxRecon.split('$');
         // const train = trainString.replace(/ +/g, ' ');
 
-        const arrival = this.parseArrival(t.arr);
-        const departure = this.parseDeparture(t.dep);
+        const { scheduledArrival, ...arrival } = this.parseArrival(t.arr);
+        const { scheduledDeparture, ...departure } = this.parseDeparture(t.dep);
 
         const product = this.prodL[t.jny.prodX];
 
@@ -97,9 +118,13 @@ class Journey {
           changeDuration: t.jny.chgDurR,
           segmentStart: parseFullStation(fullStart),
           segmentDestination: parseFullStation(fullDestination),
+          stops: this.parseStops(t.jny.stopL),
           ...arrival,
           ...departure,
-          duration: arrival.scheduledArrival - departure.scheduledDeparture,
+          duration:
+            scheduledArrival &&
+            scheduledDeparture &&
+            scheduledArrival - scheduledDeparture,
           finalDestination: t.jny.dirTxt,
           product: PROD ? undefined : product,
           raw: PROD ? undefined : t,
@@ -110,39 +135,57 @@ class Journey {
         return undefined;
     }
   };
-  parseTime(time: string): number {
+  parseTime(time: ?string): number | void {
+    if (!time) return undefined;
+
     return addMilliseconds(this.date, parseDuration(time)).getTime();
   }
-  parseArrival(a: SRoute$Arrival): Route$Arrival {
+  parseArrival(a: {
+    +aTimeS?: string,
+    +aTimeR?: string,
+    +aPlatfS?: string,
+    +aPlatfR?: string,
+  }): Route$Arrival {
     const scheduledArrival = this.parseTime(a.aTimeS);
     let arrival = scheduledArrival;
-    let arrivalDelay = 0;
+    let arrivalDelay;
 
     if (a.aTimeR) {
       arrival = this.parseTime(a.aTimeR);
-      arrivalDelay = differenceInMinutes(arrival, scheduledArrival);
+      arrivalDelay =
+        arrival &&
+        scheduledArrival &&
+        differenceInMinutes(arrival, scheduledArrival);
     }
 
     return {
-      scheduledArrivalPlatform: a.aPlatfS,
+      scheduledArrivalPlatform: a.aPlatfR && a.aPlatfS,
       arrivalPlatform: a.aPlatfR || a.aPlatfS,
       scheduledArrival,
       arrival,
       arrivalDelay,
     };
   }
-  parseDeparture(d: SRoute$Departure): Route$Departure {
+  parseDeparture(d: {
+    +dTimeS?: string,
+    +dTimeR?: string,
+    +dPlatfS?: string,
+    +dPlatfR?: string,
+  }): Route$Departure {
     const scheduledDeparture = this.parseTime(d.dTimeS);
     let departure = scheduledDeparture;
-    let departureDelay = 0;
+    let departureDelay;
 
     if (d.dTimeR) {
       departure = this.parseTime(d.dTimeR);
-      departureDelay = differenceInMinutes(departure, scheduledDeparture);
+      departureDelay =
+        departure &&
+        scheduledDeparture &&
+        differenceInMinutes(departure, scheduledDeparture);
     }
 
     return {
-      scheduledDeparturePlatform: d.dPlatfS,
+      scheduledDeparturePlatform: d.dPlatfR && d.dPlatfS,
       departurePlatform: d.dPlatfR || d.dPlatfS,
       scheduledDeparture,
       departure,
@@ -153,7 +196,9 @@ class Journey {
 
 export default (r: SRoute$Result): Route[] => {
   const result = r.svcResL.map<any>(svc =>
-    svc.res.outConL.map(j => new Journey(j, svc.res.common.prodL).journey)
+    svc.res.outConL.map(
+      j => new Journey(j, svc.res.common.prodL, svc.res.common.locL).journey
+    )
   );
 
   return flatten(result);

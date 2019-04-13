@@ -15,10 +15,10 @@ function createRequest({
   transferTime = -1,
   maxChanges = -1,
   searchForDeparture = true,
-}: // getPasslist = true,
-// economic = true,
-// getTariff = false,
-Options) {
+  getPasslist = true,
+  economic = true,
+  getTariff = false,
+}: Options) {
   const data = {
     client: {
       id: 'DB',
@@ -51,10 +51,11 @@ Options) {
           maxChg: maxChanges,
           minChgTime: transferTime,
           // get stops in between
-          getPasslist: false,
-          economic: false,
-          getTariff: false,
+          getPasslist,
+          economic,
+          getTariff,
           ushrp: false,
+          // unknown data
           getPolyline: false,
           // arrival / departure
           outFrwd: searchForDeparture,
