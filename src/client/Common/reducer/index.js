@@ -1,5 +1,6 @@
 // @flow
 import { handleActions } from 'redux-actions';
+
 export type CommonRootState = {|
   features: Features,
 |};

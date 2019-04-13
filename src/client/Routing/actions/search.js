@@ -7,8 +7,7 @@ import type { Station } from 'types/station';
 const Actions = {
   setStart: createAction<string, ?Station>('SET_START'),
   setDestination: createAction<string, ?Station>('SET_DESTINATION'),
-  setDate: createAction<string, string>('SET_DATE'),
-  setTime: createAction<string, string>('SET_TIME'),
+  setDate: createAction<string, Date>('SET_DATE'),
 };
 
 type AllowedSetStationActions = typeof Actions.setStart | typeof Actions.setDestination;
