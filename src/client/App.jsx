@@ -66,4 +66,4 @@ export default connect<
   _
 >(state => ({
   routingFeature: state.features.routing,
-}))(withStyles(styles)(App));
+}))(withStyles<Props>(styles)(App));

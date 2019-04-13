@@ -19,7 +19,7 @@ type OwnProps = {|
 export type ReduxProps = {|
   ...StateProps,
   ...OwnProps,
-  +dispatch: Dispatch<>,
+  +dispatch: Dispatch<*>,
 |};
 
 type Props = StyledProps<ReduxProps, typeof styles>;
@@ -57,7 +57,6 @@ const Times = ({
               delay={delayArrival}
               real={arrival}
               showOriginalTime={!timeConfig}
-              showZero
             />
           </div>
         )}
@@ -73,7 +72,6 @@ const Times = ({
               delay={delayDeparture}
               real={departure}
               showOriginalTime={!timeConfig}
-              showZero
             />
           </div>
         )}
@@ -84,7 +82,6 @@ const Times = ({
         delay={delayDeparture}
         real={departure}
         showOriginalTime={!timeConfig}
-        showZero
       />
     ) : (
       arrival && (
@@ -93,7 +90,6 @@ const Times = ({
           delay={delayArrival}
           real={arrival}
           showOriginalTime={!timeConfig}
-          showZero
         />
       )
     )}
@@ -104,4 +100,4 @@ export default connect<ReduxProps, OwnProps, StateProps, _, AbfahrtenState, _>(
   state => ({
     timeConfig: state.config.config.time,
   })
-)(withStyles(styles)(Times));
+)(withStyles<Props>(styles)(Times));

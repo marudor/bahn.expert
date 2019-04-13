@@ -23,4 +23,4 @@ const styles = {
   },
 };
 
-export default withStyles(styles)(RouteHeader);
+export default withStyles<Props>(styles)(RouteHeader);

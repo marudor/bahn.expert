@@ -167,4 +167,4 @@ export default connect<
     setCurrentStation: Actions.setCurrentStation,
     refreshCurrentAbfahrten,
   }
-)(withRouter(withStyles(styles)(AbfahrtenList)));
+)(withRouter(withStyles<Props>(styles)(AbfahrtenList)));

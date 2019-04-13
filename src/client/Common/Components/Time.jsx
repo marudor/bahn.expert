@@ -11,7 +11,7 @@ type OwnProps = {|
   alignEnd?: boolean,
   className?: string,
   delay?: number,
-  real: number,
+  real?: number,
   showOriginalTime?: boolean,
   showZero?: boolean,
 |};
@@ -37,17 +37,18 @@ const Time = ({
   delay,
   real,
   showOriginalTime,
-  showZero,
+  showZero = true,
   alignEnd,
 }: Props) => {
+  if (!real) return <div />;
   const time = showOriginalTime && delay ? subMinutes(real, delay) : real;
 
   const hasDelay = showZero ? delay != null : Boolean(delay);
 
-  // $FlowFixMe - hasDelay checked that delay is defined
   const delayStyle = !hasDelay
     ? ''
-    : delay > 0
+    : // $FlowFixMe - hasDelay checked that delay is defined
+    delay > 0
     ? classes.delayed
     : classes.early;
 

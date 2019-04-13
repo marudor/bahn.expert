@@ -66,4 +66,4 @@ export const styles = {
   },
 };
 
-export default React.memo<OwnProps>(withStyles(styles)(Gruppe));
+export default React.memo<OwnProps>(withStyles<Props>(styles)(Gruppe));

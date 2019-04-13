@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import SettingsModal from './Components/LazySettingsModal';
+import SettingsModal from './Components/SettingsModal';
 // import Privacy from './Privacy';
 import { renderRoutes } from 'react-router-config';
 import Footer from './Components/Footer';
@@ -27,4 +27,4 @@ const styles = {
   },
 };
 
-export default withStyles(styles)(BahnhofsAbfahrten);
+export default withStyles<Props>(styles)(BahnhofsAbfahrten);

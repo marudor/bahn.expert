@@ -21,4 +21,4 @@ const styles = {
   },
 };
 
-export default React.memo<OwnProps>(withStyles(styles)(Substitute));
+export default React.memo<OwnProps>(withStyles<Props>(styles)(Substitute));

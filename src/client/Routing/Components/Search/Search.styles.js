@@ -6,4 +6,7 @@ export default {
       paddingRight: 10,
     },
   },
+  buttons: {
+    display: 'flex',
+  },
 };

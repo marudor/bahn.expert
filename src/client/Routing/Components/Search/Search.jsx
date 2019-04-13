@@ -126,6 +126,9 @@ class Search extends React.PureComponent<Props> {
       }
     }
   };
+  goHome = () => {
+    this.props.history.push('/');
+  };
   render() {
     const {
       start,
@@ -165,9 +168,14 @@ class Search extends React.PureComponent<Props> {
           todayLabel="Jetzt"
           minutesStep={5}
         />
-        <Button fullWidth variant="contained" onClick={this.searchRoute}>
-          Search
-        </Button>
+        <div className={classes.buttons}>
+          <Button fullWidth variant="contained" onClick={this.searchRoute}>
+            Search
+          </Button>
+          <Button variant="contained" onClick={this.goHome}>
+            Home
+          </Button>
+        </div>
       </>
     );
   }
@@ -193,4 +201,4 @@ export default connect<
     getRoutes,
     setDate: searchActions.setDate,
   }
-)(withRouter(withSnackbar(withStyles(styles)(Search))));
+)(withRouter(withSnackbar(withStyles<Props>(styles)(Search))));

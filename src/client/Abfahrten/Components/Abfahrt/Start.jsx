@@ -36,4 +36,4 @@ const Start = ({ abfahrt, detail, lineAndNumber, classes }: Props) => (
   </div>
 );
 
-export default withStyles(styles)(Start);
+export default withStyles<Props>(styles)(Start);

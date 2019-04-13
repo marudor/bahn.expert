@@ -32,4 +32,4 @@ const styles = {
   },
 };
 
-export default React.memo<OwnProps>(withStyles(styles)(End));
+export default React.memo<OwnProps>(withStyles<Props>(styles)(End));

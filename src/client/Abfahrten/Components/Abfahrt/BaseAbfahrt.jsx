@@ -120,4 +120,4 @@ export default connect<
   {
     setDetail,
   }
-)(withStyles(styles)(BaseAbfahrt));
+)(withStyles<Props>(styles)(BaseAbfahrt));

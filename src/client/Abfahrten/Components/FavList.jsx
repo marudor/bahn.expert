@@ -117,4 +117,4 @@ export default connect<
   {
     setCurrentStation: Actions.setCurrentStation,
   }
-)(withRouter(withStyles(styles)(FavList)));
+)(withRouter(withStyles<Props>(styles)(FavList)));

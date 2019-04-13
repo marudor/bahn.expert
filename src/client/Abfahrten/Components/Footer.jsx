@@ -56,4 +56,4 @@ export default connect<
   _
 >(state => ({
   currentStation: state.abfahrten.currentStation,
-}))(withStyles(styles)(Footer));
+}))(withStyles<Props>(styles)(Footer));
