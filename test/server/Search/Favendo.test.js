@@ -40,7 +40,11 @@ describe('Favendo Search', () => {
 
     const result = await favendoOpenDBCombined('Hamburg');
 
-    expect(result.map(r => r.title)).toEqual(['Hamburg Hbf', 'Hamburg Dammtor', 'Hamburg Dammtor-test']);
+    expect(result.map(r => r.title)).toEqual([
+      'Hamburg Hbf',
+      'Hamburg Dammtor',
+      'Hamburg Dammtor-test',
+    ]);
   });
 
   it('Throws instead of fallback to default', async () => {

@@ -31,7 +31,10 @@ function buildResults(options: Options): any[] {
   return [Hbf, Dammtor];
 }
 
-export async function testHamburgSearch(searchFn: string => Promise<Station[]>, options?: Options = ({}: any)) {
+export async function testHamburgSearch(
+  searchFn: string => Promise<Station[]>,
+  options?: Options = ({}: any)
+) {
   const result = await searchFn('Hamburg');
 
   const expectedResult = buildResults(options);

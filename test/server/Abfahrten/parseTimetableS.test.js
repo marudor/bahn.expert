@@ -21,10 +21,15 @@ describe('parseTimetableS', () => {
         },
         noncdAxios
       );
-      const inXml = fs.readFileSync(path.resolve(__dirname, baseFixturePath, file), 'utf8');
+      const inXml = fs.readFileSync(
+        path.resolve(__dirname, baseFixturePath, file),
+        'utf8'
+      );
       const nodes = xmljs.parseXml(inXml).find('//timetable/s');
 
-      nodes.forEach(n => expect(timetable.parseTimetableS(n)).toMatchSnapshot());
+      nodes.forEach(n =>
+        expect(timetable.parseTimetableS(n)).toMatchSnapshot()
+      );
     });
   });
 });

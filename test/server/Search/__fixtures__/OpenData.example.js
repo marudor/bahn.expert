@@ -22,7 +22,8 @@ export default {
       hasTaxiRank: true,
       hasTravelNecessities: true,
       hasSteplessAccess: 'yes',
-      hasMobilityService: 'Ja, um Voranmeldung unter 01806 512 512 wird gebeten',
+      hasMobilityService:
+        'Ja, um Voranmeldung unter 01806 512 512 wird gebeten',
       hasWiFi: true,
       hasTravelCenter: true,
       hasRailwayMission: false,
@@ -106,7 +107,8 @@ export default {
       hasTaxiRank: true,
       hasTravelNecessities: true,
       hasSteplessAccess: 'yes',
-      hasMobilityService: 'Ja, um Voranmeldung unter 01806 512 512 wird gebeten',
+      hasMobilityService:
+        'Ja, um Voranmeldung unter 01806 512 512 wird gebeten',
       hasWiFi: true,
       hasTravelCenter: true,
       hasRailwayMission: true,

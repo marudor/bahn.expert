@@ -23,6 +23,7 @@ module.exports = {
       'module-resolver',
       {
         root: 'src',
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
         resolvePath: (sourcePath, currentFile, opts) => {
           const path = require('babel-plugin-module-resolver').resolvePath(
             sourcePath.replace(/^(Abfahrten|Common|Routing)\//, 'client/$1/'),
@@ -41,5 +42,26 @@ module.exports = {
         extensions: ['.scss', '.css'],
       },
     ],
+  ],
+  overrides: [
+    {
+      test: ['**/*.ts'],
+      presets: [
+        '@babel/preset-typescript',
+        [
+          '@babel/preset-env',
+          {
+            targets: {
+              node: '10',
+            },
+            loose: false,
+            useBuiltIns: 'entry',
+            modules: 'commonjs',
+            corejs: 3,
+          },
+        ],
+        'babel-preset-joblift',
+      ],
+    },
   ],
 };

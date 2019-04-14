@@ -1,5 +1,10 @@
 module.exports = {
-  extends: ['joblift/base', 'joblift/react', 'joblift/flowtype'],
+  extends: [
+    'joblift/base',
+    'joblift/react',
+    'joblift/sort-imports',
+    'joblift/flowtype',
+  ],
   parser: 'babel-eslint',
   env: {
     browser: true,
@@ -18,4 +23,18 @@ module.exports = {
   settings: {
     'import/resolver': 'webpack',
   },
+  overrides: [
+    {
+      rules: {
+        'no-unused-vars': 0,
+      },
+      files: ['**/*.ts', '**/*.tsx'],
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        sourceType: 'module',
+        project: './tsconfig.json',
+        tsconfigRootDir: './',
+      },
+    },
+  ],
 };

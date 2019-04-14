@@ -31,7 +31,9 @@ describe('Lageplan', () => {
         })
         .reply(200, readFixutre('LangenfeldeSearch.html'));
 
-      nock.get('/bahnhof-de/bahnhof/Langenfelde-1025344').reply(200, readFixutre('Langenfelde.html'));
+      nock
+        .get('/bahnhof-de/bahnhof/Langenfelde-1025344')
+        .reply(200, readFixutre('Langenfelde.html'));
       await expect(getLageplan('Langenfelde')).resolves.toBeNull();
     });
 
@@ -52,7 +54,9 @@ describe('Lageplan', () => {
         })
         .reply(200, readFixutre('HamburgHbfSearch.html'));
 
-      nock.get('/bahnhof-de/bahnhof/Hamburg_Hbf-1030112').reply(200, readFixutre('HamburgHbf.html'));
+      nock
+        .get('/bahnhof-de/bahnhof/Hamburg_Hbf-1030112')
+        .reply(200, readFixutre('HamburgHbf.html'));
       await expect(getLageplan('Hamburg Hbf')).resolves.toBe(
         'https://www.bahnhof.de/resource/blob/1029874/4869d8dea83b386b0bb773ec64ddb021/Hamburg-Hbf_locationPdf-data.pdf'
       );

@@ -22,12 +22,20 @@ describe('onlyPlan', () => {
     clock.uninstall();
   });
   const baseFixturePath = 'fixtures';
-  const fchgFixtures = fs.readdirSync(path.resolve(__dirname, baseFixturePath, 'fchg'));
+  const fchgFixtures = fs.readdirSync(
+    path.resolve(__dirname, baseFixturePath, 'fchg')
+  );
 
   fchgFixtures.forEach(file => {
     it(file, async () => {
-      const fchgXml = fs.readFileSync(path.resolve(__dirname, baseFixturePath, 'fchg', file), 'utf8');
-      const planxml = fs.readFileSync(path.resolve(__dirname, baseFixturePath, 'plan', file), 'utf8');
+      const fchgXml = fs.readFileSync(
+        path.resolve(__dirname, baseFixturePath, 'fchg', file),
+        'utf8'
+      );
+      const planxml = fs.readFileSync(
+        path.resolve(__dirname, baseFixturePath, 'plan', file),
+        'utf8'
+      );
 
       mockLageplan();
       mockFchg(fchgXml);

@@ -34,7 +34,7 @@ export type State = {
 };
 
 const defaultState = {
-  selectedDetail: localStorage.getItem('selectedDetail'),
+  selectedDetail: null,
   abfahrten: null,
   wings: null,
   currentStation: null,
