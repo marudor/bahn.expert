@@ -164,28 +164,17 @@ export async function wagenReihung(trainNumber: string, date: number) {
   info.data.istformation.realFahrtrichtung = fahrtrichtung(fahrzeuge);
   info.data.istformation.allFahrzeuggruppe.forEach(g => {
     g.allFahrzeug.forEach(f => {
-      if (f.positionamhalt.startprozent && f.positionamhalt.endeprozent) {
-        const start = Number.parseInt(f.positionamhalt.startprozent, 10);
-        const end = Number.parseInt(f.positionamhalt.endeprozent, 10);
+      const start = Number.parseInt(f.positionamhalt.startprozent, 10);
+      const end = Number.parseInt(f.positionamhalt.endeprozent, 10);
 
-        // $FlowFixMe - this works
-        if (start < startPercentage) {
-          startPercentage = start;
-        }
-        // $FlowFixMe - this works
-        if (end > endPercentage) {
-          endPercentage = end;
-        }
-      } else {
-        startPercentage = null;
-        endPercentage = null;
+      if (start < startPercentage) {
+        startPercentage = start;
+      }
+      if (end > endPercentage) {
+        endPercentage = end;
       }
     });
   });
-
-  if (!endPercentage || !startPercentage) {
-    return undefined;
-  }
 
   info.data.istformation.scale = 100 / (endPercentage - startPercentage);
   info.data.istformation.startPercentage = startPercentage;
