@@ -26,7 +26,10 @@ describe('onlyPlan', () => {
 
   fixtures.forEach(file => {
     it(file, async () => {
-      const inXml = fs.readFileSync(path.resolve(__dirname, baseFixturePath, file), 'utf8');
+      const inXml = fs.readFileSync(
+        path.resolve(__dirname, baseFixturePath, file),
+        'utf8'
+      );
 
       mockLageplan();
       mockFchg();

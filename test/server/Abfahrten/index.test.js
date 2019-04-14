@@ -9,7 +9,8 @@ describe('Abfahrten', () => {
       wings: {},
       lageplan,
     });
-    const testData = data => expect(data.reduce(reduceResults, baseResult).lageplan);
+    const testData = data =>
+      expect(data.reduce(reduceResults, baseResult).lageplan);
 
     it('all undefined', () => {
       const data = [rLageplan(undefined), rLageplan(undefined)];
@@ -30,7 +31,11 @@ describe('Abfahrten', () => {
     });
 
     it('null in middle', () => {
-      const data = [rLageplan(undefined), rLageplan(null), rLageplan(undefined)];
+      const data = [
+        rLageplan(undefined),
+        rLageplan(null),
+        rLageplan(undefined),
+      ];
 
       testData(data).toBeNull();
     });

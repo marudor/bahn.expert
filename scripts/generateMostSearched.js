@@ -24,14 +24,16 @@ const mostUsedNames = [
   'Berlin-Spandau',
 ].map(n => n.toLowerCase());
 
-Promise.all(mostUsedNames.map(s => search(s).then(s => s[0]))).then(stations => {
-  // eslint-disable-next-line no-console
-  console.log(
-    JSON.stringify(
-      stations.map(s => ({
-        title: s.title,
-        id: s.id,
-      }))
-    )
-  );
-});
+Promise.all(mostUsedNames.map(s => search(s).then(s => s[0]))).then(
+  stations => {
+    // eslint-disable-next-line no-console
+    console.log(
+      JSON.stringify(
+        stations.map(s => ({
+          title: s.title,
+          id: s.id,
+        }))
+      )
+    );
+  }
+);

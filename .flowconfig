@@ -28,6 +28,8 @@ module.system.node.resolve_dirname=./src
 module.file_ext=.js
 module.file_ext=.jsx
 module.file_ext=.json
+module.file_ext=.ts
+module.file_ext=.tsx
 module.system=haste
 
 include_warnings=true

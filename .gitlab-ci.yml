@@ -66,6 +66,16 @@ flow:
     paths:
       - node_modules/
 
+tsc:
+  image: node:10
+  stage: test
+  script: yarn tsc
+  cache:
+    policy: pull
+    key: '$CI_COMMIT_REF_SLUG'
+    paths:
+      - node_modules/
+
 build:app:
   stage: build
   variables:

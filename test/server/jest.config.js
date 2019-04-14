@@ -7,7 +7,10 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/test/server/config.js'],
   collectCoverage: true,
   collectCoverageFrom: ['<rootDir>/src/server/**/*.{js,jsx}'],
-  coveragePathIgnorePatterns: ['<rootDir>/src/server/testData/', '<rootDir>/src/server/index.js'],
+  coveragePathIgnorePatterns: [
+    '<rootDir>/src/server/testData/',
+    '<rootDir>/src/server/index.js',
+  ],
   coverageReporters: ['text-summary', 'lcov'],
   coverageDirectory: '<rootDir>/reports/server',
   rootDir: '../..',

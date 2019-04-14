@@ -1,4 +1,4 @@
-const TestConfig = require('./.babelrc.server.js');
+const { overrides, ...TestConfig } = require('./.babelrc.server.js');
 
 module.exports = {
   presets: [
@@ -31,4 +31,5 @@ module.exports = {
     },
     test: TestConfig,
   },
+  overrides,
 };

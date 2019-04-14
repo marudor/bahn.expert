@@ -79,7 +79,7 @@ module.exports = {
   resolve: {
     plugins: [new ReactJssHmrPlugin()],
     modules: ['node_modules', path.resolve(__dirname, 'src')],
-    extensions: ['.js', '.json', '.jsx'],
+    extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'],
     alias: {
       'lodash-es$': 'lodash',
       AppState$: 'client/AppState',
