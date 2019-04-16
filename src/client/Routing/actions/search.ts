@@ -2,6 +2,7 @@ import { createAction } from 'deox';
 import { getStationsFromAPI } from 'Common/service/stationSearch';
 import { RoutingThunkResult } from 'AppState';
 import { Station } from 'types/station';
+import { StationSearchType } from 'Common/config';
 
 const Actions = {
   setStart: createAction('SET_START', resolve => (s?: Station) => resolve(s)),
@@ -18,7 +19,10 @@ export const getStationById = (
   stationId: string,
   action: AllowedSetStationActions
 ): RoutingThunkResult => async dispatch => {
-  const stations = await getStationsFromAPI(stationId, 'dbNav');
+  const stations = await getStationsFromAPI(
+    stationId,
+    StationSearchType.DBNavgiator
+  );
 
   dispatch(action(stations[0]));
 };

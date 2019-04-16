@@ -1,5 +1,6 @@
 import { createReducer } from 'deox';
 import { defaultConfig, setCookieOptions } from 'client/util';
+import { MarudorConfig } from 'Common/config';
 import Actions from 'Abfahrten/actions/config';
 import Cookies from 'universal-cookie';
 

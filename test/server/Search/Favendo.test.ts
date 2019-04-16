@@ -1,3 +1,4 @@
+import { StationSearchType } from 'Common/config';
 import { testHamburgSearch } from './common';
 import exampleOpenDBRespone from './__fixtures__/OpenDB-forCombine.example';
 import exampleRespone from './__fixtures__/Favendo.example';
@@ -47,7 +48,9 @@ describe('Favendo Search', () => {
   });
 
   it('Throws instead of fallback to default', async () => {
-    await expect(serverSearch('Hamburg', 'favendo')).rejects.toBeTruthy();
+    await expect(
+      serverSearch('Hamburg', StationSearchType.Favendo)
+    ).rejects.toBeTruthy();
     await expect(serverSearch('Hamburg')).rejects.toBeTruthy();
   });
 

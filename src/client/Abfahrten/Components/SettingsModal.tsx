@@ -13,6 +13,7 @@ import {
 import { connect, ResolveThunks } from 'react-redux';
 // import BrowserstackThanks from './BrowserstackThanks';
 import { AbfahrtenState } from 'AppState';
+import { CheckInType, MarudorConfig, StationSearchType } from 'Common/config';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -48,7 +49,10 @@ class SettingsModal extends React.PureComponent<Props> {
   handleCheckedChange = (fn: (b: boolean) => any) => (
     e: ChangeEvent<HTMLInputElement>
   ) => fn(e.currentTarget.checked);
-  handleValueChange = (fn: (s: any) => any) => (
+  handleNumberSelectChange = (fn: (s: any) => any) => (
+    e: ChangeEvent<HTMLSelectElement>
+  ) => fn(Number.parseInt(e.currentTarget.value, 10));
+  handleSelectChange = (fn: (s: any) => any) => (
     e: ChangeEvent<HTMLSelectElement>
   ) => fn(e.currentTarget.value);
   handleNumberValueChange = (fn: (n: number) => any) => (
@@ -88,12 +92,12 @@ class SettingsModal extends React.PureComponent<Props> {
               <NativeSelect
                 value={checkIn}
                 name="checkIn"
-                onChange={this.handleValueChange(setCheckIn)}
+                onChange={this.handleNumberSelectChange(setCheckIn)}
               >
-                <option value="">Kein</option>
-                <option value="travelynx">travelynx.de</option>
-                <option value="traewelling">traewelling.de</option>
-                <option value="traewelynx">beide</option>
+                <option value={CheckInType.None}>Kein</option>
+                <option value={CheckInType.Travelynx}>travelynx.de</option>
+                <option value={CheckInType.Traewelling}>traewelling.de</option>
+                <option value={CheckInType.Both}>beide</option>
               </NativeSelect>
             }
             label="Traewelling Link"
@@ -170,7 +174,7 @@ class SettingsModal extends React.PureComponent<Props> {
               <NativeSelect
                 value={lookahead}
                 name="lookahead"
-                onChange={this.handleValueChange(setLookahead)}
+                onChange={this.handleSelectChange(setLookahead)}
               >
                 <option value="60">60</option>
                 <option value="120">120</option>
@@ -187,16 +191,24 @@ class SettingsModal extends React.PureComponent<Props> {
               <NativeSelect
                 value={searchType}
                 name="searchType"
-                onChange={this.handleValueChange(setSearchType)}
+                onChange={this.handleNumberSelectChange(setSearchType)}
               >
-                <option value="favendo">Favendo</option>
-                <option value="openDB">Open DB</option>
-                <option value="favOpenDB">Open DB + Favendo</option>
-                <option value="openData">Open Data</option>
-                <option value="openDataOffline">Open Data Offline</option>
-                <option value="hafas">HAFAS</option>
-                <option value="dbNav">DB Navigator</option>
-                <option value="stationsdata">Open Data Stationsdaten</option>
+                <option value={StationSearchType.Favendo}>Favendo</option>
+                <option value={StationSearchType.OpenDB}>Open DB</option>
+                <option value={StationSearchType.FavendoAndOpenDB}>
+                  Open DB + Favendo
+                </option>
+                <option value={StationSearchType.OpenData}>Open Data</option>
+                <option value={StationSearchType.OpenDataOffline}>
+                  Open Data Offline
+                </option>
+                <option value={StationSearchType.HAFAS}>HAFAS</option>
+                <option value={StationSearchType.DBNavgiator}>
+                  DB Navigator
+                </option>
+                <option value={StationSearchType.StationsData}>
+                  Open Data Stationsdaten
+                </option>
               </NativeSelect>
             }
             label="API zur Stationssuche"

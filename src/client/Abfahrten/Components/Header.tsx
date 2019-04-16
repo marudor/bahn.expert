@@ -6,6 +6,7 @@ import { getNextDeparture } from 'Abfahrten/selector/abfahrten';
 import { Helmet } from 'react-helmet-async';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { Station } from 'types/station';
+import { StationSearchType } from 'Common/config';
 import AppBar from '@material-ui/core/AppBar';
 import HeaderButtons from './HeaderButtons';
 import HomeMenu from 'Common/Components/HomeMenu';

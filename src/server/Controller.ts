@@ -3,6 +3,7 @@ import { getLageplan } from './Bahnhof/Lageplan';
 import { getStation } from './Abfahrten/station';
 import { isEnabled } from 'unleash-client';
 import { openDataAxios } from './Abfahrten';
+import { StationSearchType } from 'Common/config';
 import {
   wagenReihung,
   wagenReihungMonitoring,
@@ -44,7 +45,10 @@ router
     const { searchTerm }: { searchTerm: string } = ctx.params;
     const { type } = ctx.query;
 
-    ctx.body = await stationSearch(searchTerm, type);
+    ctx.body = await stationSearch(
+      searchTerm,
+      StationSearchType[StationSearchType[Number.parseInt(type, 10)]]
+    );
   })
   // https://si.favendo.de/station-info/rest/api/station/724
   .get('/station/:station', async ctx => {
