@@ -414,7 +414,6 @@ export default class Timetable {
     mArr
       .map(m => this.parseMessage(m))
       .filter(Boolean)
-      // $FlowFixMe - undefined as timestamp is okay here
       .sort((a, b) => compareAsc(a.message.timestamp, b.message.timestamp))
       .forEach(({ type, message, value }) => {
         const supersedes = supersededMessages[value];

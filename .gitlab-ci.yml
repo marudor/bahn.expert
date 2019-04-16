@@ -56,16 +56,6 @@ lint:
     paths:
       - node_modules/
 
-flow:
-  image: node:10
-  stage: test
-  script: yarn flow
-  cache:
-    policy: pull
-    key: '$CI_COMMIT_REF_SLUG'
-    paths:
-      - node_modules/
-
 tsc:
   image: node:10
   stage: test

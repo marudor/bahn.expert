@@ -4,12 +4,12 @@ module.exports = {
   moduleNameMapper: {
     '\\.(scss|css)$': 'identity-obj-proxy',
   },
-  setupFilesAfterEnv: ['<rootDir>/test/server/config.js'],
+  setupFilesAfterEnv: ['<rootDir>/test/server/config.ts'],
   collectCoverage: true,
-  collectCoverageFrom: ['<rootDir>/src/server/**/*.{js,jsx}'],
+  collectCoverageFrom: ['<rootDir>/src/server/**/*.{ts,tsx}'],
   coveragePathIgnorePatterns: [
     '<rootDir>/src/server/testData/',
-    '<rootDir>/src/server/index.js',
+    '<rootDir>/src/server/index.ts',
   ],
   coverageReporters: ['text-summary', 'lcov'],
   coverageDirectory: '<rootDir>/reports/server',

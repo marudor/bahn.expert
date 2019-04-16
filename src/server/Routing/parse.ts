@@ -58,7 +58,9 @@ class Journey {
       id: l.extId,
     }));
     this.date = parse(raw.date, 'yyyyMMdd', new Date()).getTime();
-    const segments = raw.secL.map(this.parseSegment).filter(Boolean);
+    const segments = raw.secL
+      .map(this.parseSegment)
+      .filter<Route$JourneySegment>(Boolean as any);
 
     this.journey = {
       cid: raw.cid,

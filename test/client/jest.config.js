@@ -4,9 +4,9 @@ module.exports = {
   moduleNameMapper: {
     '\\.(scss|css)$': 'identity-obj-proxy',
   },
-  setupFilesAfterEnv: ['<rootDir>/test/client/config.js'],
+  setupFilesAfterEnv: ['<rootDir>/test/client/config.ts'],
   collectCoverage: true,
-  collectCoverageFrom: ['<rootDir>/src/client/**/*.{js,jsx}'],
+  collectCoverageFrom: ['<rootDir>/src/client/**/*.{ts,tsx}'],
   coverageReporters: ['text-summary', 'lcov'],
   coverageDirectory: '<rootDir>/reports/client',
   rootDir: '../..',

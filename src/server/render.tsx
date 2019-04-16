@@ -51,7 +51,7 @@ export default async (ctx: Context) => {
     if (configSanitize.hasOwnProperty(key)) {
       store.dispatch(
         Actions.setConfig({
-          // $FlowFixMe - this is implicit correct due to configSanitize typing
+          // @ts-ignore we just tested that key is in configSanitize
           key,
           value: configSanitize[key](ctx.query[key]),
         })
@@ -59,7 +59,7 @@ export default async (ctx: Context) => {
     }
   });
 
-  // $FlowFixMe we already checked that BASE_URL exists
+  // @ts-ignore we already checked that BASE_URL exists
   store.dispatch(Actions.setBaseUrl(process.env.BASE_URL));
   const routes = ctx.path.startsWith('/routing')
     ? routingRoutes

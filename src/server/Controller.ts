@@ -126,7 +126,6 @@ router
     }
     ctx.body = await routing({
       ...ctx.request.body,
-      // $FlowFixMe - we assume user enters correct params
       time: Number.parseInt(ctx.request.body.time, 10),
     });
   });
@@ -154,7 +153,6 @@ if (process.env.NODE_ENV !== 'production') {
       ctx.body = await routing(
         {
           ...ctx.request.body,
-          // $FlowFixMe - we assume user enters correct params
           time: Number.parseInt(ctx.request.body.time, 10),
         },
         d => d

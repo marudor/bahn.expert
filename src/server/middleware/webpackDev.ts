@@ -20,6 +20,7 @@ module.exports = function webpackDev(koa: Koa, server: undefined | Server) {
         delete require.cache[id];
       }
       delete require.cache[path.resolve('src/server/render.js')];
+      delete require.cache[path.resolve('src/server/render.ts')];
     });
   });
   const watcher = chokidar.watch(path.resolve('./src/server/**'));

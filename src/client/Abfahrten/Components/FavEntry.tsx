@@ -1,0 +1,77 @@
+import { AbfahrtenState } from 'AppState';
+import { connect, ResolveThunks } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Station } from 'types/station';
+import { unfav } from 'Abfahrten/actions/fav';
+import ActionDelete from '@material-ui/icons/Delete';
+import IconButton from '@material-ui/core/IconButton';
+import React, { MouseEvent } from 'react';
+import withStyles, { WithStyles } from 'react-jss';
+
+type OwnProps = {
+  fav: Station;
+  noDelete?: boolean;
+};
+type DispatchProps = ResolveThunks<{
+  unfav: typeof unfav;
+}>;
+type ReduxProps = OwnProps & DispatchProps;
+
+type Props = ReduxProps & WithStyles<typeof styles>;
+class FavEntry extends React.PureComponent<Props> {
+  deleteFav = (e: MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    this.props.unfav(this.props.fav);
+  };
+  render() {
+    const { fav, noDelete, classes } = this.props;
+
+    return (
+      <Link
+        to={encodeURIComponent(fav.title)}
+        title={`Zugabfahrten für ${fav.title}`}
+      >
+        <div className={classes.main}>
+          <span>{fav.title}</span>
+          {!noDelete && (
+            <IconButton
+              aria-label={`${fav.title} entfernen`}
+              onClick={this.deleteFav}
+              color="inherit"
+            >
+              <ActionDelete />
+            </IconButton>
+          )}
+        </div>
+      </Link>
+    );
+  }
+}
+
+export const styles = {
+  main: {
+    minHeight: 48,
+    marginBottom: 1,
+    flexShrink: 0,
+    fontSize: '2em',
+    color: 'black',
+    boxShadow: '0 1px 0 rgba(0, 0, 0, 0.24)',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    '& > a': {
+      color: 'black',
+    },
+    '&:hover': {
+      backgroundColor: 'rgb(238,238,238)',
+    },
+  },
+};
+
+export default connect<void, DispatchProps, OwnProps, AbfahrtenState>(
+  undefined,
+  {
+    unfav,
+  }
+)(withStyles(styles)(FavEntry));

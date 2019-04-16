@@ -1,4 +1,3 @@
-// @flow
 import Client from 'prom-client';
 import Koa from 'koa';
 
