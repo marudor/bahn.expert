@@ -462,13 +462,6 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
 
-"@babel/plugin-syntax-flow@^7.2.0":
-  version "7.2.0"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-flow/-/plugin-syntax-flow-7.2.0.tgz#a765f061f803bc48f240c26f8747faf97c26bf7c"
-  integrity sha512-r6YMuZDWLtLlu0kqIim5o/3TNRAlWb073HwT3e2nKf9I8IIvOggPrnILYPsrrKilmn/mYEMCf/Z07w3yQJF6dg==
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.0.0"
-
 "@babel/plugin-syntax-import-meta@^7.2.0":
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-import-meta/-/plugin-syntax-import-meta-7.2.0.tgz#2333ef4b875553a3bcd1e93f8ebc09f5b9213a40"
@@ -607,14 +600,6 @@
   dependencies:
     "@babel/helper-builder-binary-assignment-operator-visitor" "^7.1.0"
     "@babel/helper-plugin-utils" "^7.0.0"
-
-"@babel/plugin-transform-flow-strip-types@^7.0.0":
-  version "7.3.4"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-flow-strip-types/-/plugin-transform-flow-strip-types-7.3.4.tgz#00156236defb7dedddc2d3c9477dcc01a4494327"
-  integrity sha512-PmQC9R7DwpBFA+7ATKMyzViz3zCaMNouzZMPZN2K5PnbBbtL3AXFYTkDk+Hey5crQq2A90UG5Uthz0mel+XZrA==
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.0.0"
-    "@babel/plugin-syntax-flow" "^7.2.0"
 
 "@babel/plugin-transform-for-of@^7.4.3":
   version "7.4.3"
@@ -885,14 +870,6 @@
     invariant "^2.2.2"
     js-levenshtein "^1.1.3"
     semver "^5.5.0"
-
-"@babel/preset-flow@^7.0.0":
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/@babel/preset-flow/-/preset-flow-7.0.0.tgz#afd764835d9535ec63d8c7d4caf1c06457263da2"
-  integrity sha512-bJOHrYOPqJZCkPVbG1Lot2r5OSsB+iUOaxiHdlOeB1yPWS6evswVHwvkDLZ54WTaTRIk89ds0iHmGZSnxlPejQ==
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.0.0"
-    "@babel/plugin-transform-flow-strip-types" "^7.0.0"
 
 "@babel/preset-react@^7.0.0":
   version "7.0.0"
@@ -1449,6 +1426,11 @@
   integrity sha512-6qK3xoLLAhQVTucQGHTySwOVA1crHRXnJeLwqK6KIFkkKa2aoMFXh+WEi8PotxDtvN6MQJLyYN9ag9P6NLV81w==
   dependencies:
     chokidar "*"
+
+"@types/classnames@^2.2.7":
+  version "2.2.7"
+  resolved "https://registry.yarnpkg.com/@types/classnames/-/classnames-2.2.7.tgz#fb68cc9be8487e6ea5b13700e759bfbab7e0fefd"
+  integrity sha512-rzOhiQ55WzAiFgXRtitP/ZUT8iVNyllEpylJ5zHzR4vArUvMB39GTk+Zon/uAM0JxEFAWnwsxC2gH8s+tZ3Myg==
 
 "@types/compression-webpack-plugin@^2.0.0":
   version "2.0.0"
@@ -4103,6 +4085,11 @@ currently-unhandled@^0.4.1:
   dependencies:
     array-find-index "^1.0.1"
 
+curriable@^1.2.4:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/curriable/-/curriable-1.2.5.tgz#fb6ff7ad8740927ea09db15d395d9d26ca9d2726"
+  integrity sha512-hQwrkCn8DNiCw5CG8OS0td2wfpCDtxo1dmrVYxCDWUBHQPkpAvN9RqBVbmC64oSQaBqPQD2SOCXcTWH1zXe2mA==
+
 cyclist@~0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-0.2.2.tgz#1b33792e11e914a2fd6d6ed6447464444e5fa640"
@@ -4304,6 +4291,15 @@ delegates@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/delegates/-/delegates-1.0.0.tgz#84c6e159b81904fdca59a0ef44cd870d31250f9a"
   integrity sha1-hMbhWbgZBP3KWaDvRM2HDTElD5o=
+
+deox@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/deox/-/deox-1.3.1.tgz#df73f89320b9c17886b29310736be2ded7e1c606"
+  integrity sha512-GPEVd7z7DHsP8YEYkvKW5Yy8Nf+5RMwLCSjoIL0/As1ONFUcLDD2AjVd/lxrASlCe9L37NGcRn6tcyDnxKumWg==
+  dependencies:
+    redux-starter-kit "0.4.3"
+    rxjs "^6.3.3"
+    tslib "^1.9.3"
 
 depd@^1.1.2, depd@~1.1.2:
   version "1.1.2"
@@ -4741,13 +4737,6 @@ eslint-plugin-babel@^5.3.0:
   dependencies:
     eslint-rule-composer "^0.3.0"
 
-eslint-plugin-flowtype@^3.6.1:
-  version "3.6.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-flowtype/-/eslint-plugin-flowtype-3.6.1.tgz#99cfa3a30e8a2c9ea40c507b25ea9a320af4ceae"
-  integrity sha512-VVuPKb5kgWFhxCkAMpL5wi44AK+4nkxa3XXZVa2PKf00n4INNbdKmZC0tT8qeNTHoDPYMXbqak4tGC9YtIOqGw==
-  dependencies:
-    lodash "^4.17.11"
-
 eslint-plugin-header@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-header/-/eslint-plugin-header-3.0.0.tgz#0e048b5f0adfdd9754142d59d551ae6bfdaf90ad"
@@ -5149,6 +5138,11 @@ fast-diff@^1.1.2:
   resolved "https://registry.yarnpkg.com/fast-diff/-/fast-diff-1.2.0.tgz#73ee11982d86caaf7959828d519cfe927fac5f03"
   integrity sha512-xJuoT5+L99XlZ8twedaRf6Ax2TgQVxvgZOYoPKqZufmJib0tL2tegPBOZb1pVNgIhlqDlA0eO0c3wBvQcmzx4w==
 
+fast-equals@^1.2.1:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/fast-equals/-/fast-equals-1.6.2.tgz#f1762bde0d571b5e9d4e1c4ae0599792f6a6df5f"
+  integrity sha512-6FiKwHkrHIqdvo9I92yzCR/zuWE6iy5ldcOszStPbmo7Zzj3OoVeng++GE//JqO4i6JQ4vH/BVAfCmUCki+C3g==
+
 fast-glob@^2.2.6:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/fast-glob/-/fast-glob-2.2.6.tgz#a5d5b697ec8deda468d85a74035290a025a95295"
@@ -5337,11 +5331,6 @@ flatted@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-2.0.0.tgz#55122b6536ea496b4b44893ee2608141d10d9916"
   integrity sha512-R+H8IZclI8AAkSBRQJLVOsxwAoHd6WC40b4QTNWIjzAa6BXOBfQcM587MXDTVPeYaopFNWHUFLx7eNmHDSxMWg==
-
-flow-bin@^0.97.0:
-  version "0.97.0"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.97.0.tgz#036ffcfc27503367a9d906ec9d843a0aa6f6bb83"
-  integrity sha512-jXjD05gkatLuC4+e28frH1hZoRwr1iASP6oJr61Q64+kR4kmzaS+AdFBhYgoYS5kpoe4UzwDebWK8ETQFNh00w==
 
 flush-write-stream@^1.0.0:
   version "1.1.1"
@@ -5991,6 +5980,13 @@ icss-utils@^4.1.0:
   dependencies:
     postcss "^7.0.14"
 
+identitate@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/identitate/-/identitate-1.0.1.tgz#4b8bed39454f1d7a476e60ff0e4f82a094841dfc"
+  integrity sha512-xnDJ0JYhiZjBDuJRKbHoVzj5yP9FhATxLyUYswQyPdnJrwzGVBqS6DOmvKJi1lk7P+4dkL+hhUhuOZIcOUtG5A==
+  dependencies:
+    pathington "^1.0.1"
+
 ieee754@^1.1.4:
   version "1.1.12"
   resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.1.12.tgz#50bf24e5b9c8bb98af4964c941cdb0918da7b60b"
@@ -6028,6 +6024,11 @@ iltorb@^2.4.2:
     npmlog "^4.1.2"
     prebuild-install "^5.2.4"
     which-pm-runs "^1.0.0"
+
+immer@^1.10.5:
+  version "1.12.1"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-1.12.1.tgz#40c6e5b292c00560836c2993bda3a24379d466f5"
+  integrity sha512-3fmKM6ovaqDt0CdC9daXpNi5x/YCYS3i4cwLdTVkhJdk5jrDXoPs7lCm3IqM3yhfSnz4tjjxbRG2CziQ7m8ztg==
 
 import-cwd@^2.0.0:
   version "2.1.0"
@@ -6163,7 +6164,7 @@ interpret@^1.0.0, interpret@^1.1.0:
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.2.0.tgz#d5061a6224be58e8083985f5014d844359576296"
   integrity sha512-mT34yGKMNceBQUoVn7iCDKDntA7SC6gycMAWzGx1z/CMCTV7b2AAtXlo3nRyHZ1FelRkQbQjprHSYGwzLtkVbw==
 
-invariant@2.2.4, invariant@^2.2.2, invariant@^2.2.4:
+invariant@2.2.4, invariant@^2.1.0, invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   integrity sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==
@@ -8855,6 +8856,11 @@ path-type@^3.0.0:
   dependencies:
     pify "^3.0.0"
 
+pathington@^1.0.1, pathington@^1.1.5:
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/pathington/-/pathington-1.1.7.tgz#caf2d2db899a31fea4e81e3657af6acde5171903"
+  integrity sha512-JxzhUzagDfNIOm4qqwQqP3rWeo7rNNOfIahy4n+3GTEdwXLqw5cJHUR0soSopQtNEv763lzxb6eA2xBllpR8zw==
+
 pathval@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/pathval/-/pathval-1.1.0.tgz#b942e6d4bde653005ef6b71361def8727d0645e0"
@@ -9972,7 +9978,32 @@ redux-actions@^2.6.5:
     reduce-reducers "^0.4.3"
     to-camel-case "^1.0.0"
 
-redux-thunk@*, redux-thunk@^2.3.0:
+redux-devtools-extension@^2.13.7:
+  version "2.13.8"
+  resolved "https://registry.yarnpkg.com/redux-devtools-extension/-/redux-devtools-extension-2.13.8.tgz#37b982688626e5e4993ff87220c9bbb7cd2d96e1"
+  integrity sha512-8qlpooP2QqPtZHQZRhx3x3OP5skEV1py/zUdMY28WNAocbafxdG2tRD1MWE7sp8obGMNYuLWanhhQ7EQvT1FBg==
+
+redux-immutable-state-invariant@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/redux-immutable-state-invariant/-/redux-immutable-state-invariant-2.1.0.tgz#308fd3cc7415a0e7f11f51ec997b6379c7055ce1"
+  integrity sha512-3czbDKs35FwiBRsx/3KabUk5zSOoTXC+cgVofGkpBNv3jQcqIe5JrHcF5AmVt7B/4hyJ8MijBIpCJ8cife6yJg==
+  dependencies:
+    invariant "^2.1.0"
+    json-stringify-safe "^5.0.1"
+
+redux-starter-kit@0.4.3:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/redux-starter-kit/-/redux-starter-kit-0.4.3.tgz#66a583cde1f1995ae59782d87cc462260ca85fa8"
+  integrity sha512-T3HXtwEGyFLCy63QlZEM95rDzTQ5BKbBhhTINNVFD1yWgHBKtgN3tXw4/sX9+Ve1Y8mAtXbAhep/E7I0YVvZPg==
+  dependencies:
+    immer "^1.10.5"
+    redux "^4.0.0"
+    redux-devtools-extension "^2.13.7"
+    redux-immutable-state-invariant "^2.1.0"
+    redux-thunk "^2.2.0"
+    selectorator "^4.0.1"
+
+redux-thunk@*, redux-thunk@^2.2.0, redux-thunk@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.3.0.tgz#51c2c19a185ed5187aaa9a2d08b666d0d6467622"
   integrity sha512-km6dclyFnmcvxhAcrQV2AkZmPQjzPDjgVlQtR0EQjxZPyJ0BnMf3in1ryuR8A2qU0HldVRfxYXbFSKlI3N7Slw==
@@ -10331,7 +10362,7 @@ run-queue@^1.0.0, run-queue@^1.0.3:
   dependencies:
     aproba "^1.1.1"
 
-rxjs@^6.4.0:
+rxjs@^6.3.3, rxjs@^6.4.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.4.0.tgz#f3bb0fe7bda7fb69deac0c16f17b50b0b8790504"
   integrity sha512-Z9Yfa11F6B9Sg/BK9MnqnQ+aQYicPLtilXBp2yUtDt2JRCE0h26d33EnfO3ZxoNxG0T92OUucP3Ct7cpfkdFfw==
@@ -10426,6 +10457,16 @@ scss-tokenizer@^0.2.3:
   dependencies:
     js-base64 "^2.1.8"
     source-map "^0.4.2"
+
+selectorator@^4.0.1:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/selectorator/-/selectorator-4.0.3.tgz#d33b11027da7e6838de277cd6eb1134125aa788b"
+  integrity sha512-A8+paRhzTab4Qm/38RAVnCgEZFbpn5xIWLyTCDqvyU3Obhmo94RS6UK1H00bVH7+U609sOhqbFJha09POsWURA==
+  dependencies:
+    fast-equals "^1.2.1"
+    identitate "^1.0.0"
+    reselect "^4.0.0"
+    unchanged "^2.0.1"
 
 "semver@2 || 3 || 4 || 5", semver@^5.3.0, semver@^5.4.1, semver@^5.5.0, semver@^5.5.1, semver@^5.6.0:
   version "5.6.0"
@@ -11574,6 +11615,14 @@ uglify-js@^3.1.4:
   dependencies:
     commander "~2.19.0"
     source-map "~0.6.1"
+
+unchanged@^2.0.1:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/unchanged/-/unchanged-2.1.0.tgz#16308dde5bec15925032d91651f5c3843b957de6"
+  integrity sha512-CYVU0Mz35N821Pjxf+iG6JMPx/Yb6wStUq8uuhR52/+AU3vMiueOTrJ6u1vBKYSke7a75FAi2/jCdQkXcHaNGQ==
+  dependencies:
+    curriable "^1.2.4"
+    pathington "^1.1.5"
 
 unherit@^1.0.4:
   version "1.1.1"

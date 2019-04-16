@@ -116,8 +116,6 @@ function specificTrainType(formation: Formation, fahrzeuge: Fahrzeug[]) {
       return 'ICE1';
     }
   }
-
-  return null;
 }
 
 function fahrtrichtung(fahrzeuge: Fahrzeug[]) {

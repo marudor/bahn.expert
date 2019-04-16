@@ -1,4 +1,3 @@
-// @flow
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -24,7 +23,7 @@ const plugins = [
 
 const rules = [
   {
-    test: /\.jsx?$/,
+    test: /\.(t|j)sx?$/,
     use: ['babel-loader'],
   },
   {
@@ -74,7 +73,7 @@ module.exports = {
   mode: isDev ? 'development' : 'production',
   devtool: isDev ? 'cheap-module-eval-source-map' : false,
   entry: {
-    main: ['./src/client/index.jsx'],
+    main: ['./src/client/index.tsx'],
   },
   resolve: {
     plugins: [new ReactJssHmrPlugin()],
@@ -82,7 +81,6 @@ module.exports = {
     extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'],
     alias: {
       'lodash-es$': 'lodash',
-      AppState$: 'client/AppState',
       Abfahrten: 'client/Abfahrten',
       Routing: 'client/Routing',
       Common: 'client/Common',

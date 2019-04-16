@@ -1,6 +1,4 @@
-// @flow
 /* eslint no-console: 0 */
-// $FlowFixMe
 const config = require('./.babelrc.server');
 
 require('@babel/register')(config);

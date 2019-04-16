@@ -1,10 +1,5 @@
 module.exports = {
-  extends: [
-    'joblift/base',
-    'joblift/react',
-    'joblift/sort-imports',
-    'joblift/flowtype',
-  ],
+  extends: ['joblift/base', 'joblift/react', 'joblift/sort-imports'],
   parser: 'babel-eslint',
   env: {
     browser: true,

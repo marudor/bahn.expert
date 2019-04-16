@@ -2,6 +2,7 @@ const { overrides, ...TestConfig } = require('./.babelrc.server.js');
 
 module.exports = {
   presets: [
+    '@babel/preset-typescript',
     [
       '@babel/preset-env',
       {
@@ -12,7 +13,6 @@ module.exports = {
       },
     ],
     '@babel/preset-react',
-    '@babel/preset-flow',
     'babel-preset-joblift',
   ],
   plugins: [
@@ -31,5 +31,4 @@ module.exports = {
     },
     test: TestConfig,
   },
-  overrides,
 };
