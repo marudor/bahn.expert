@@ -1,30 +1,23 @@
+import {
+  CheckInType,
+  MarudorConfig,
+  MarudorConfigSanitize,
+  StationSearchType,
+} from 'Common/config';
+
 export const setCookieOptions = {
   expires: new Date('2037-12-12'),
   httpOnly: false,
 };
 
-export const validSearchTypes: StationSearchType[] = [
-  'dbNav',
-  'openData',
-  'openDataOffline',
-  'openDB',
-  'hafas',
-  'favOpenDB',
-  'stationsData',
-  'favendo',
-  '',
-];
-
-export const validCheckIn: CheckInType[] = ['traewelling', 'travelynx', ''];
-
 export const defaultConfig: MarudorConfig = {
   autoUpdate: 0,
-  checkIn: '',
+  checkIn: CheckInType.None,
   fahrzeugGruppe: false,
   lineAndNumber: false,
   lookahead: '150',
   onlyDepartures: false,
-  searchType: '',
+  searchType: StationSearchType.Default,
   showSupersededMessages: false,
   time: true,
   zoomReihung: true,
@@ -39,11 +32,10 @@ const numberCheck = (value: string, fallback: number): number => {
   return n;
 };
 const searchTypeCheck = (value: string): StationSearchType =>
-  // @ts-ignore typescript doesn't understand includes
-  validSearchTypes.includes(value) ? value : '';
+  StationSearchType[StationSearchType[Number.parseInt(value, 10)]] ||
+  StationSearchType.Default;
 const checkInCheck = (value: string): CheckInType =>
-  // @ts-ignore typescript doesn't understand includes
-  validCheckIn.includes(value) ? value : '';
+  CheckInType[CheckInType[Number.parseInt(value, 10)]] || CheckInType.None;
 
 export const configSanitize: MarudorConfigSanitize = {
   autoUpdate: value => numberCheck(value, 0),

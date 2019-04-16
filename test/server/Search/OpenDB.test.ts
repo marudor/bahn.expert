@@ -1,3 +1,4 @@
+import { StationSearchType } from 'Common/config';
 import { testHamburgSearch } from './common';
 import exampleFavendoRespone from './__fixtures__/Favendo.example';
 import exampleRespone from './__fixtures__/OpenDB.example';
@@ -58,9 +59,12 @@ describe('OpenDB Search', () => {
       })
       .reply(200, exampleFavendoRespone);
 
-    await testHamburgSearch(term => serverSearch(term, 'openDB'), {
-      includeFavendoId: true,
-    });
+    await testHamburgSearch(
+      term => serverSearch(term, StationSearchType.OpenDB),
+      {
+        includeFavendoId: true,
+      }
+    );
   });
 
   it('Throws exception on error', async () => {

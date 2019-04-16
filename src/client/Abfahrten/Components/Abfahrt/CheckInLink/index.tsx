@@ -1,5 +1,6 @@
 import { Abfahrt } from 'types/abfahrten';
 import { AbfahrtenState } from 'AppState';
+import { CheckInType } from 'Common/config';
 import { connect } from 'react-redux';
 import React from 'react';
 import TraewellingLink from './TraewellingLink';
@@ -7,7 +8,7 @@ import TravelynxLink from './TravelynxLink';
 import withStyles, { WithStyles } from 'react-jss';
 
 type StateProps = {
-  type: string;
+  type: CheckInType;
 };
 
 type OwnProps = {
@@ -18,11 +19,11 @@ type Props = OwnProps & StateProps & WithStyles<typeof styles>;
 
 const CheckInLink = ({ type, abfahrt, classes }: Props) => {
   switch (type) {
-    case 'traewelling':
+    case CheckInType.Traewelling:
       return <TraewellingLink abfahrt={abfahrt} className={classes.link} />;
-    case 'travelynx':
+    case CheckInType.Travelynx:
       return <TravelynxLink abfahrt={abfahrt} className={classes.link} />;
-    case 'traewelynx':
+    case CheckInType.Both:
       return (
         <>
           <TraewellingLink abfahrt={abfahrt} className={classes.link} />

@@ -4,6 +4,7 @@ import { createAction } from 'deox';
 import { getStationsFromAPI } from 'Common/service/stationSearch';
 import { setCookieOptions } from 'client/util';
 import { Station } from 'types/station';
+import { StationSearchType } from 'Common/config';
 import axios, { AxiosError } from 'axios';
 
 export type AbfahrtenError =

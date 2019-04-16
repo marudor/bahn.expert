@@ -14,6 +14,7 @@ import { getRoutes } from 'Routing/actions/routing';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { RoutingState } from 'AppState';
 import { Station } from 'types/station';
+import { StationSearchType } from 'Common/config';
 import { withSnackbar, withSnackbarProps } from 'notistack';
 import Button from '@material-ui/core/Button';
 import deLocale from 'date-fns/locale/de';
@@ -135,13 +136,13 @@ class Search extends React.PureComponent<Props> {
     return (
       <>
         <StationSearch
-          searchType="dbNav"
+          searchType={StationSearchType.DBNavgiator}
           value={start}
           onChange={setStart}
           placeholder="Start"
         />
         <StationSearch
-          searchType="dbNav"
+          searchType={StationSearchType.DBNavgiator}
           value={destination}
           onChange={setDestination}
           placeholder="Destination"

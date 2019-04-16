@@ -1,4 +1,5 @@
 import { AbfahrtenThunkResult } from 'AppState';
+import { CheckInType, MarudorConfig, StationSearchType } from 'Common/config';
 import { createAction } from 'deox';
 import abfahrtenActions from './abfahrten';
 import Cookies from 'universal-cookie';

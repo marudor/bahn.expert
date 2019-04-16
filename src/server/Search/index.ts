@@ -1,6 +1,7 @@
 import { flatten, uniqBy } from 'lodash';
 import { logger } from 'server/logger';
 import { Station } from 'types/station';
+import { StationSearchType } from 'Common/config';
 import DBNavigatorSearch from './DBNavigator';
 import FavendoSearch from './Favendo';
 import HafasSearch from './Hafas';
@@ -23,21 +24,21 @@ export async function favendoOpenDBCombined(
 
 export function getSearchMethod(type?: StationSearchType) {
   switch (type) {
-    case 'dbNav':
+    case StationSearchType.DBNavgiator:
       return DBNavigatorSearch;
-    case 'openData':
+    case StationSearchType.OpenData:
       return OpenDataSearch;
-    case 'openDataOffline':
+    case StationSearchType.OpenDataOffline:
       return OpenDataOfflineSearch;
-    case 'openDB':
+    case StationSearchType.OpenDB:
       return OpenDBSearch;
-    case 'hafas':
+    case StationSearchType.HAFAS:
       return HafasSearch;
-    case 'favOpenDB':
+    case StationSearchType.FavendoAndOpenDB:
       return favendoOpenDBCombined;
-    case 'stationsData':
+    case StationSearchType.StationsData:
       return StationsDataSearch;
-    case 'favendo':
+    case StationSearchType.Favendo:
     default:
       return FavendoSearch;
   }
@@ -74,16 +75,18 @@ export default async (rawSearchTerm: string, type?: StationSearchType) => {
 
     let result = await getSearchMethod(type)(searchTerm);
 
-    if (type !== 'stationsData' && result.length === 0) {
+    if (type !== StationSearchType.StationsData && result.length === 0) {
       // this may be a station named from iris - lets try that first
-      result = await getSearchMethod('stationsData')(searchTerm);
+      result = await getSearchMethod(StationSearchType.StationsData)(
+        searchTerm
+      );
     }
 
     cache.set(searchTerm, result);
 
     return result;
   } catch (e) {
-    const isDefault = !type || type === 'favendo';
+    const isDefault = !type || type === StationSearchType.Favendo;
     let message = 'search failed';
 
     if (!isDefault) {
@@ -105,6 +108,6 @@ export default async (rawSearchTerm: string, type?: StationSearchType) => {
       throw e;
     }
 
-    return getSearchMethod('favendo')(searchTerm);
+    return getSearchMethod(StationSearchType.Favendo)(searchTerm);
   }
 };

@@ -1,5 +1,6 @@
 import { getStationsFromAPI } from 'Common/service/stationSearch';
 import { Station } from 'types/station';
+import { StationSearchType } from 'Common/config';
 import { StylesConfig } from 'react-select/lib/styles';
 import debounce from 'debounce-promise';
 import React from 'react';
