@@ -29,7 +29,7 @@ import xmljs from 'libxmljs2';
 export type Result = {
   departures: Abfahrt[];
   wings: Object;
-  lageplan?: string;
+  lageplan?: null | string;
 };
 
 type ArDp = {
@@ -70,7 +70,7 @@ const normalizeRouteName = (name: string) =>
     .replace(')', ') ')
     .trim();
 
-export function parseDp(dp): undefined | ParsedDp {
+export function parseDp(dp: null | xmljs.Element): undefined | ParsedDp {
   if (!dp) return undefined;
 
   const routePost = getAttr(dp, 'cpth');
@@ -87,7 +87,9 @@ export function parseDp(dp): undefined | ParsedDp {
   };
 }
 
-export function parseRealtimeAr(ar): undefined | ParsedAr {
+export function parseRealtimeAr(
+  ar: null | xmljs.Element
+): undefined | ParsedAr {
   if (!ar) return undefined;
 
   const routePre = getAttr(ar, 'cpth');
@@ -107,7 +109,7 @@ export function parseRealtimeAr(ar): undefined | ParsedAr {
 
 const trainRegex = /(\w+?)?? ?(RS|IRE|RE|RB|IC|ICE|EC|ECE|TGV|NJ|RJ|S)? ?(\d+\w*)/;
 
-function getTrainType(thirdParty, trainType) {
+function getTrainType(thirdParty?: string, trainType?: string) {
   if ((thirdParty === 'NWB' && trainType === 'RS') || thirdParty === 'BSB') {
     return 'S';
   }
@@ -124,7 +126,11 @@ function getTrainType(thirdParty, trainType) {
   return trainType;
 }
 
-function getTrainId(thirdParty, rawTrainType, trainId) {
+function getTrainId(
+  thirdParty?: string,
+  rawTrainType?: string,
+  trainId?: string
+) {
   if (thirdParty === 'NWB' && rawTrainType === 'RS') {
     return `${rawTrainType}${trainId}`;
   }
@@ -153,7 +159,7 @@ export function splitTrainType(train: string = '') {
   };
 }
 
-export function parseTl(tl) {
+export function parseTl(tl: xmljs.Element) {
   return {
     // D = Irregular, like third party
     // N = Nahverkehr
@@ -222,12 +228,12 @@ export default class Timetable {
 
     if (timetable.isCancelled) {
       const anyCancelled =
-        timetable.routePre.some(r => r.isCancelled) ||
-        timetable.routePost.some(r => r.isCancelled);
+        timetable.routePre.some((r: any) => r.isCancelled) ||
+        timetable.routePost.some((r: any) => r.isCancelled);
 
       if (anyCancelled) {
-        timetable.routePre.forEach(r => (r.isCancelled = true));
-        timetable.routePost.forEach(r => (r.isCancelled = true));
+        timetable.routePre.forEach((r: any) => (r.isCancelled = true));
+        timetable.routePost.forEach((r: any) => (r.isCancelled = true));
       }
     }
 
@@ -244,7 +250,9 @@ export default class Timetable {
     let filteredRoutePost = [];
 
     if (timetable.routePost) {
-      filteredRoutePost = timetable.routePost.filter(r => !r.isCancelled);
+      filteredRoutePost = timetable.routePost.filter(
+        (r: any) => !r.isCancelled
+      );
     }
 
     timetable.auslastung =
@@ -283,7 +291,7 @@ export default class Timetable {
         t.platform = t.scheduledPlatform;
       });
 
-    const wings = {};
+    const wings: { [key: string]: any } = {};
 
     const filtered: any[] = uniqBy<any>(timetables, 'rawId').filter(
       (a: any) => {
@@ -346,7 +354,7 @@ export default class Timetable {
 
     return viaShow.map(v => v.replace(' Hbf', ''));
   }
-  parseRef(tl) {
+  parseRef(tl: xmljs.Element) {
     const { trainType, trainNumber } = parseTl(tl);
     const train = `${trainType} ${trainNumber}`;
 
@@ -356,12 +364,13 @@ export default class Timetable {
       train,
     };
   }
-  parseMessage(mNode) {
+  parseMessage(mNode: xmljs.Element) {
     const value = getNumberAttr(mNode, 'c');
     const indexType = getAttr(mNode, 't');
 
     if (!indexType) return undefined;
-    const type: undefined | string = messageTypeLookup[indexType];
+    const type: undefined | string =
+      messageTypeLookup[indexType as keyof typeof messageTypeLookup];
 
     if (!type || !value || value <= 1) {
       return undefined;
@@ -370,6 +379,7 @@ export default class Timetable {
     const message = {
       superseeds: false,
       superseded: undefined,
+      // @ts-ignore Lookup is correct
       text: messageLookup[value] || `${value} (?)`,
       timestamp: parseTs(getAttr(mNode, 'ts')),
       priority: getAttr(mNode, 'pr'),
@@ -381,7 +391,7 @@ export default class Timetable {
       message,
     };
   }
-  parseRealtimeS(sNode) {
+  parseRealtimeS(sNode: xmljs.Element) {
     const rawId = getAttr(sNode, 'id');
 
     if (!rawId) return;
@@ -399,7 +409,8 @@ export default class Timetable {
 
     const ar = sNode.get('ar');
     const dp = sNode.get('dp');
-    const mArr = sNode.find(`${sNode.path()}//m`);
+    // @ts-ignore this is correct
+    const mArr: xmljs.Element[] = sNode.find(`${sNode.path()}//m`);
 
     if (!mArr) return;
     const messages: {
@@ -413,10 +424,13 @@ export default class Timetable {
 
     mArr
       .map(m => this.parseMessage(m))
-      .filter(Boolean)
-      .sort((a, b) => compareAsc(a.message.timestamp, b.message.timestamp))
+      .filter((Boolean as any) as ExcludesFalse)
+      .sort((a, b) =>
+        compareAsc(a.message.timestamp || 0, b.message.timestamp || 0)
+      )
       .forEach(({ type, message, value }) => {
-        const supersedes = supersededMessages[value];
+        // @ts-ignore
+        const supersedes: undefined | number[] = supersededMessages[value];
 
         if (!messages[type]) messages[type] = {};
         if (supersedes) {
@@ -434,15 +448,18 @@ export default class Timetable {
       id,
       mediumId,
       rawId,
-      messages: Object.keys(messages).reduce((agg, messageKey) => {
-        const messageValues: any = Object.values(messages[messageKey]);
+      messages: Object.keys(messages).reduce(
+        (agg, messageKey) => {
+          const messageValues = Object.values(messages[messageKey]);
 
-        agg[messageKey] = messageValues.sort((a, b) =>
-          compareDesc(a.timestamp, b.timestamp)
-        );
+          agg[messageKey] = messageValues.sort((a, b) =>
+            compareDesc(a.timestamp, b.timestamp)
+          );
 
-        return agg;
-      }, {}),
+          return agg;
+        },
+        {} as { [key: string]: any[] }
+      ),
       arrival: parseRealtimeAr(ar),
       departure: parseDp(dp),
       ref: ref ? this.parseRef(ref) : undefined,
@@ -462,7 +479,10 @@ export default class Timetable {
     timetable.delayArrival =
       (timetable.arrival - timetable.scheduledArrival) / 60 / 1000;
     if (ar.routePre) {
-      const diff = diffArrays(ar.routePre, timetable.routePre.map(r => r.name));
+      const diff = diffArrays(
+        ar.routePre,
+        timetable.routePre.map((r: any) => r.name)
+      );
 
       timetable.routePre = flatten(
         diff.map(d =>
@@ -491,7 +511,7 @@ export default class Timetable {
       (timetable.departure - timetable.scheduledDeparture) / 60 / 1000;
     if (dp.routePost) {
       const diff = diffArrays(
-        timetable.routePost.map(r => r.name),
+        timetable.routePost.map((r: any) => r.name),
         dp.routePost
       );
 
@@ -505,7 +525,7 @@ export default class Timetable {
         )
       );
     } else if (timetable.departureIsCancelled && timetable.routePost) {
-      timetable.routePost.forEach(r => (r.isCancelled = true));
+      timetable.routePost.forEach((r: any) => (r.isCancelled = true));
     }
     timetable.platform = dp.platform || timetable.scheduledPlatform;
   }
@@ -541,7 +561,7 @@ export default class Timetable {
       timetable.ref = realtime.ref;
     });
   }
-  getWings(node, displayAsWing: boolean) {
+  getWings(node: null | xmljs.Element, displayAsWing: boolean) {
     const wingAttr = getAttr(node, 'wings');
 
     if (!wingAttr) return;
@@ -555,7 +575,7 @@ export default class Timetable {
 
     return mediumWings;
   }
-  parseTimetableS(sNode) {
+  parseTimetableS(sNode: xmljs.Element) {
     const rawId = getAttr(sNode, 'id');
 
     if (!rawId) {
@@ -576,7 +596,7 @@ export default class Timetable {
     const { trainNumber, trainType, t, o, productClass } = parseTl(tl);
     const train = `${trainType} ${lineNumber || trainNumber}`;
 
-    function getNormalizedRoute(node) {
+    function getNormalizedRoute(node: null | xmljs.Element) {
       const rawRoute = getAttr(node, 'ppth');
 
       return (rawRoute ? rawRoute.split('|') : []).map(normalizeRouteName);
@@ -623,7 +643,7 @@ export default class Timetable {
 
     const sArr = timetableXml.find('/timetable/s');
 
-    const timetables = {};
+    const timetables: { [key: string]: any } = {};
 
     if (sArr) {
       sArr.forEach(s => {

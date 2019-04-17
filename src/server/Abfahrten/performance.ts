@@ -20,7 +20,7 @@ const obs = new PerformanceObserver(items => {
 
 obs.observe({ entryTypes: ['measure'] });
 
-async function testFn(fn) {
+async function testFn(fn: Function) {
   for (let i = 0; i < 10; i += 1) {
     const fnName = `${fn.name}${i}`;
     const start = `${fnName}start`;
@@ -32,7 +32,7 @@ async function testFn(fn) {
     performance.measure(fnName, start, end);
   }
 
-  const times = timeMap[fn.name];
+  const times = timeMap[fn.name as keyof typeof timeMap];
   const Σ = sum(times);
   const mi = min(times);
   const ma = max(times);

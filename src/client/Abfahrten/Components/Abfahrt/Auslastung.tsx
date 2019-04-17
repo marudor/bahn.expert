@@ -29,7 +29,7 @@ type ReduxProps = StateProps & DispatchProps & OwnProps;
 
 type Props = ReduxProps & WithStyles<typeof styles>;
 
-function getTooltipText(auslastung) {
+function getTooltipText(auslastung: AuslastungsValue) {
   switch (auslastung) {
     case 0:
       return 'Nicht ausgelastet';
@@ -42,7 +42,7 @@ function getTooltipText(auslastung) {
   }
 }
 
-function getIcon(auslastung) {
+function getIcon(auslastung: AuslastungsValue) {
   switch (auslastung) {
     case 0:
       return <Done fontSize="inherit" />;
@@ -103,7 +103,7 @@ class Auslastung extends React.PureComponent<Props> {
   }
 }
 
-function getBGColor(auslastung) {
+function getBGColor(auslastung?: null | AuslastungsValue) {
   switch (auslastung) {
     case 0:
       return 'green';
@@ -115,7 +115,7 @@ function getBGColor(auslastung) {
       return 'black';
   }
 }
-const getColor = auslastung => ({
+const getColor = (auslastung?: null | AuslastungsValue) => ({
   backgroundColor: getBGColor(auslastung),
   color: auslastung === 1 ? 'black' : 'white',
 });

@@ -1,4 +1,4 @@
-import { Station } from 'types/station';
+import { Station, HAFASStation } from 'types/station';
 import axios from 'axios';
 import iconv from 'iconv-lite';
 
@@ -14,7 +14,7 @@ export default async function(searchTerm: string): Promise<Station[]> {
 
   const stringReply = rawReply.substring(8, rawReply.length - 22);
 
-  const stations = JSON.parse(stringReply).suggestions;
+  const stations: HAFASStation[] = JSON.parse(stringReply).suggestions;
 
   return stations
     .filter(s => s.value !== s.value.toUpperCase())

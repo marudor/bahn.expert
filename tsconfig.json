@@ -15,7 +15,7 @@
     "sourceMap": true,
     "strict": true,
     // "strictPropertyInitialization": false,
-    "noImplicitAny": false,
+    // "noImplicitAny": false,
     "target": "es5",
     "emitDecoratorMetadata": true,
     "resolveJsonModule": true,

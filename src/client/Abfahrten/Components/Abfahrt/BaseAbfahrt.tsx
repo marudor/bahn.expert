@@ -31,7 +31,7 @@ export type ReduxProps = OwnProps & StateProps & DispatchProps;
 
 export type Props = ReduxProps & WithStyles<typeof styles>;
 
-function scrollToDetail(selectedDetail) {
+function scrollToDetail(selectedDetail: string) {
   if (selectedDetail) {
     const detailDom = document.getElementById(selectedDetail);
 

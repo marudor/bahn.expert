@@ -47,6 +47,7 @@ router
 
     ctx.body = await stationSearch(
       searchTerm,
+      // @ts-ignore this lookup works
       StationSearchType[StationSearchType[Number.parseInt(type, 10)]]
     );
   })

@@ -1,14 +1,15 @@
 import { reduceResults } from 'server/Abfahrten';
+import { Result } from 'server/Abfahrten/Timetable';
 
 describe('Abfahrten', () => {
   describe('Lageplan result reduce', () => {
     const baseResult = { departures: [], wings: {}, lageplan: undefined };
-    const rLageplan = lageplan => ({
+    const rLageplan = (lageplan?: null | string): Result => ({
       departures: [],
       wings: {},
       lageplan,
     });
-    const testData = data =>
+    const testData = (data: Result[]) =>
       expect(data.reduce(reduceResults, baseResult).lageplan);
 
     it('all undefined', () => {

@@ -4,6 +4,7 @@ import Koa from 'koa';
 import koaWebpack from 'koa-webpack';
 import path from 'path';
 import webpack from 'webpack';
+// @ts-ignore
 import webpackConfig from '../../../webpack.config';
 
 const compiler = webpack(webpackConfig);

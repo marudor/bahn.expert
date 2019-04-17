@@ -7,7 +7,7 @@ import path from 'path';
 describe('Lageplan', () => {
   const nock = Nock('https://www.bahnhof.de');
 
-  function readFixutre(f) {
+  function readFixutre(f: string) {
     return fs.readFileSync(path.resolve(__dirname, '__fixtures__/', f));
   }
   afterAll(() => {

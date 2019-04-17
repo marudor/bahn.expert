@@ -1,4 +1,4 @@
-import { Station } from 'types/station';
+import { Station, OpenDataStation } from 'types/station';
 import axios from 'axios';
 
 // https://developer.deutschebahn.com/store/apis/info?name=StaDa-Station_Data&version=v2&provider=DBOpenData
@@ -16,7 +16,7 @@ export default async (rawSearchTerm: string): Promise<Station[]> => {
     searchTerm
   )}*`;
 
-  const result = (await axios.get(url, {
+  const result = (await axios.get<{ result: OpenDataStation[] }>(url, {
     withCredentials: true,
     headers: {
       Authorization: authKey,

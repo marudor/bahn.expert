@@ -10,7 +10,10 @@ type OwnProps = {
 
 type Props = OwnProps & WithStyles<typeof styles>;
 
-function getType(type: 0 | 1, classes) {
+function getType<C extends Record<'cube' | 'dots', string>>(
+  type: 0 | 1,
+  classes: C
+) {
   switch (type) {
     default:
     case 0:

@@ -23,7 +23,7 @@ const container = document.getElementById('app');
 const theme = createTheme();
 const store = createStore();
 
-const render = App => (
+const render = (App: React.ComponentType) => (
   <Provider store={store}>
     <JssProvider {...createJssProviderProps()}>
       <MuiThemeProvider theme={theme}>

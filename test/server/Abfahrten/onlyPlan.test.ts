@@ -9,7 +9,7 @@ import Timetable from 'server/Abfahrten/Timetable';
 jest.mock('node-cache');
 
 describe('onlyPlan', () => {
-  let clock;
+  let clock: ReturnType<typeof lolex.install>;
 
   beforeAll(() => {
     clock = lolex.install({

@@ -179,6 +179,7 @@ const FahrzeugComp = ({
         [classes.wrongWing]: wrongWing,
       })}
     >
+      // @ts-ignore
       <span className={cc(classes.klasse, classes[`klasse${info.klasse}`])} />
       <span className={classes.nummer}>{fahrzeug.wagenordnungsnummer}</span>
       <span className={classes.icons}>

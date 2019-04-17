@@ -29,7 +29,7 @@ type Props = ReduxProps & WithStyles<typeof styles>;
 function getErrorText(
   error: AbfahrtenError,
   staticContext?: StaticRouterContext
-) {
+): React.ReactNode {
   switch (error.type) {
     case 'redirect':
       return <Redirect to={error.redirect} />;

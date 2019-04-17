@@ -41,7 +41,7 @@ export const styles = {
   },
 };
 
-export function preventDefault(e /* : SyntheticMouseEvent<> */) {
+export function preventDefault(e: React.SyntheticEvent) {
   e.stopPropagation();
 
   return false;
