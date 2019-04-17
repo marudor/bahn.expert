@@ -3,7 +3,7 @@ import { getAttr, getBoolAttr, parseTs } from './helper';
 import { noncdAxios } from '.';
 import xmljs from 'libxmljs2';
 
-function parseNode(node) {
+function parseNode(node: null | xmljs.Element) {
   if (!node) return;
 
   return {

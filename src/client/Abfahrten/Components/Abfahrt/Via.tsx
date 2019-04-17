@@ -7,11 +7,12 @@ import cc from 'classnames';
 import React, { ReactNode } from 'react';
 import styles from './Via.styles';
 import withStyles, { WithStyles } from 'react-jss';
+import { Style } from 'jss';
 
-function getDetailedInfo(
+function getDetailedInfo<C extends Record<'cancelled' | 'info', string>>(
   abfahrt: Abfahrt,
   showSupersededMessages: boolean,
-  classes
+  classes: C
 ) {
   const today = new Date().getDate();
   let messages = [...abfahrt.messages.delay, ...abfahrt.messages.qos];
@@ -54,7 +55,10 @@ function getDetailedInfo(
   return null;
 }
 
-function getInfo(abfahrt: Abfahrt, classes) {
+function getInfo<C extends Record<'info' | 'cancelled', string>>(
+  abfahrt: Abfahrt,
+  classes: C
+) {
   let info = '';
 
   if (abfahrt.messages.delay.length > 0) {
@@ -84,8 +88,10 @@ function getInfo(abfahrt: Abfahrt, classes) {
   ) : null;
 }
 
-function getAbfahrt(
-  classes,
+function getAbfahrt<
+  C extends Record<'cancelled' | 'additional' | 'hbf', string>
+>(
+  classes: C,
   name: string,
   index: number,
   length: number,
@@ -132,7 +138,9 @@ function getAbfahrt(
   return via;
 }
 
-function getNormalVia(abfahrt: Abfahrt, classes) {
+function getNormalVia<
+  C extends Record<'cancelled' | 'additional' | 'hbf', string>
+>(abfahrt: Abfahrt, classes: C) {
   let via: ReactNode[] = [];
   const abfahrten = abfahrt.via;
 
@@ -152,7 +160,9 @@ function getNormalVia(abfahrt: Abfahrt, classes) {
   return via.length ? via : null;
 }
 
-function getDetailedVia(abfahrt: Abfahrt, classes) {
+function getDetailedVia<
+  C extends Record<'cancelled' | 'additional' | 'hbf', string>
+>(abfahrt: Abfahrt, classes: C) {
   let via: ReactNode[] = [];
   const abfahrten = abfahrt.route;
 

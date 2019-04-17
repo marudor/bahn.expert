@@ -1,4 +1,4 @@
-import { Station } from 'types/station';
+import { Station, FavendoStation } from 'types/station';
 import axios from 'axios';
 
 function encodeSearchTerm(term: string) {
@@ -15,7 +15,7 @@ function encodeSearchTerm(term: string) {
 
 // https://si.favendo.de/station-info/rest/api/search?searchTerm=Bochum
 export default async function(searchTerm: string): Promise<Station[]> {
-  const stations = (await axios.get(
+  const stations = (await axios.get<FavendoStation[]>(
     `https://si.favendo.de/station-info/rest/api/search?searchTerm=${encodeSearchTerm(
       searchTerm
     )}`
@@ -23,7 +23,7 @@ export default async function(searchTerm: string): Promise<Station[]> {
 
   return stations.map(s => ({
     title: s.title,
-    id: s.eva_ids.shift(),
+    id: s.eva_ids[0],
     favendoId: s.id,
     raw: global.PROD ? undefined : s,
   }));

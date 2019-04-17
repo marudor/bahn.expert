@@ -1,6 +1,10 @@
 import { parseFromTimeZone } from 'date-fns-timezone';
+import { Element } from 'libxmljs2';
 
-export function getAttr(node: any, name: string): undefined | string {
+export function getAttr(
+  node: null | Element,
+  name: string
+): undefined | string {
   if (node) {
     const attr = node.attr(name);
 
@@ -10,7 +14,10 @@ export function getAttr(node: any, name: string): undefined | string {
   }
 }
 
-export function getNumberAttr(node: any, name: string): undefined | number {
+export function getNumberAttr(
+  node: null | Element,
+  name: string
+): undefined | number {
   const attr = getAttr(node, name);
 
   if (!attr) return undefined;
@@ -18,7 +25,7 @@ export function getNumberAttr(node: any, name: string): undefined | number {
   return Number.parseInt(attr, 10);
 }
 
-export function getBoolAttr(node: any, name: string): boolean {
+export function getBoolAttr(node: null | Element, name: string): boolean {
   const attr = getAttr(node, name);
 
   if (!attr) return false;

@@ -10,6 +10,8 @@ import {
   SRoute$JourneySegment,
   SRoute$Result,
   SRoute$StopL,
+  SRoute$Product,
+  SRoute$LocL,
 } from 'types/routing';
 import { Station } from 'types/station';
 
@@ -32,8 +34,8 @@ function parseFullStation(fullStation: string): Station {
   const titleMatch = fullStation.match(nameRegex);
   const idMatch = fullStation.match(evaRegex);
 
-  let title;
-  let id;
+  let title = '';
+  let id = '';
 
   if (titleMatch && titleMatch[1]) title = titleMatch[1];
   if (idMatch && idMatch[1]) id = idMatch[1].padStart(7, '0');
@@ -48,9 +50,13 @@ class Journey {
   raw: SRoute$Journey;
   date: number;
   journey: Route;
-  prodL;
+  prodL: SRoute$Product[];
   locL: Station[];
-  constructor(raw: SRoute$Journey, prodL, locL) {
+  constructor(
+    raw: SRoute$Journey,
+    prodL: SRoute$Product[],
+    locL: SRoute$LocL[]
+  ) {
     this.raw = raw;
     this.prodL = prodL;
     this.locL = locL.map(l => ({

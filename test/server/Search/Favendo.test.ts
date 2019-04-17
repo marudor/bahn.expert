@@ -30,7 +30,7 @@ describe('Favendo Search', () => {
 
     Nock('https://open-api.bahn.de')
       .get('/bin/rest.exe/location.name')
-      .query(q => {
+      .query((q: any) => {
         expect(q.input).toBe('Hamburg');
         expect(q.format).toBe('json');
 

@@ -7,7 +7,7 @@ import qs from 'qs';
 const stdTTL = 15 * 60;
 const cache = new NodeCache({ stdTTL });
 
-function mapStop(stop) {
+function mapStop(stop: string) {
   switch (stop) {
     case 'Berlin Hbf (tief)':
       return 'Berlin Hauptbahnhof';
@@ -16,7 +16,7 @@ function mapStop(stop) {
   }
 }
 
-function mapStops(stops) {
+function mapStops(stops: string[]) {
   return stops.map(mapStop);
 }
 

@@ -32,9 +32,11 @@ const numberCheck = (value: string, fallback: number): number => {
   return n;
 };
 const searchTypeCheck = (value: string): StationSearchType =>
+  // @ts-ignore this works
   StationSearchType[StationSearchType[Number.parseInt(value, 10)]] ||
   StationSearchType.Default;
 const checkInCheck = (value: string): CheckInType =>
+  // @ts-ignore this works
   CheckInType[CheckInType[Number.parseInt(value, 10)]] || CheckInType.None;
 
 export const configSanitize: MarudorConfigSanitize = {

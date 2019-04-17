@@ -11,7 +11,7 @@ describe('OpenDB Search', () => {
   it('Returns correct mapping', async () => {
     Nock('https://open-api.bahn.de')
       .get('/bin/rest.exe/location.name')
-      .query(q => {
+      .query((q: any) => {
         expect(q.input).toBe('Hamburg');
         expect(q.format).toBe('json');
 
@@ -25,7 +25,7 @@ describe('OpenDB Search', () => {
   it('Should use only one letter for 2 letter inputs (for some weird reason', async () => {
     Nock('https://open-api.bahn.de')
       .get('/bin/rest.exe/location.name')
-      .query(q => {
+      .query((q: any) => {
         expect(q.input).toBe('H');
 
         return true;

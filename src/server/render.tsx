@@ -23,6 +23,7 @@ import path from 'path';
 import React from 'react';
 import routingRoutes from 'Routing/routes';
 import serialize from 'serialize-javascript';
+import { MarudorConfigSanitize } from 'Common/config';
 
 const headerFilename = path.resolve(__dirname, './views/header.ejs');
 // eslint-disable-next-line
@@ -47,13 +48,14 @@ export default async (ctx: Context) => {
   });
 
   await store.dispatch(setCookies(ctx.request.universalCookies));
-  Object.keys(ctx.query).forEach(key => {
+  Object.keys(ctx.query).forEach((key: any) => {
     if (configSanitize.hasOwnProperty(key)) {
       store.dispatch(
         Actions.setConfig({
-          // @ts-ignore we just tested that key is in configSanitize
           key,
-          value: configSanitize[key](ctx.query[key]),
+          value: configSanitize[key as keyof MarudorConfigSanitize](
+            ctx.query[key]
+          ),
         })
       );
     }

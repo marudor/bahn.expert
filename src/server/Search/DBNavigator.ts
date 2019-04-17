@@ -22,27 +22,28 @@ function createRequest(searchTerm: string, type: 'S' | 'ALL') {
   };
 }
 
-export default (
+export default async (
   searchTerm: string,
   type: 'S' | 'ALL' = 'S'
 ): Promise<Station[]> => {
   const { data, checksum } = createRequest(searchTerm, type);
 
-  return axios
-    .post('https://reiseauskunft.bahn.de/bin/mgate.exe', data, {
+  const r = await axios.post(
+    'https://reiseauskunft.bahn.de/bin/mgate.exe',
+    data,
+    {
       params: {
         checksum,
       },
-    })
-    .then(r => r.data)
-    .then(d => d.svcResL[0].res.match.locL)
-    .then(stations =>
-      stations
-        .filter(s => !s.meta)
-        .map(s => ({
-          title: s.name,
-          id: s.extId.substr(2),
-          raw: global.PROD ? undefined : s,
-        }))
-    );
+    }
+  );
+  const d = r.data;
+  const stations = d.svcResL[0].res.match.locL;
+  return stations
+    .filter((s: any) => !s.meta)
+    .map((s: any) => ({
+      title: s.name,
+      id: s.extId.substr(2),
+      raw: global.PROD ? undefined : s,
+    }));
 };

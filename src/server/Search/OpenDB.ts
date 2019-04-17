@@ -1,5 +1,11 @@
-import { Station } from 'types/station';
+import { Station, OpenDBStation } from 'types/station';
 import axios from 'axios';
+
+type OpenDBResult = {
+  LocationList: {
+    StopLocation: OpenDBStation | OpenDBStation[];
+  };
+};
 
 // istanbul ignore next
 const authKey = process.env.OPENDB_AUTH_KEY || '';
@@ -11,7 +17,7 @@ export default async (rawSearchTerm: string): Promise<Station[]> => {
   if (searchTerm.length === 2) {
     searchTerm = searchTerm[0];
   }
-  const result = (await axios.get(
+  const result = (await axios.get<OpenDBResult>(
     `https://open-api.bahn.de/bin/rest.exe/location.name?format=json&input=${searchTerm}&products=1&authKey=${authKey}`
   )).data;
 

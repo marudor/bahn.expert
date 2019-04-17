@@ -150,24 +150,26 @@ export type SRoute$StopL = {
   type: string;
 };
 
+export type SRoute$LocL = {
+  lid: string;
+  type: string;
+  name: string;
+  icoX: number;
+  extId: string;
+  state: string;
+  crd: {
+    x: number;
+    y: number;
+    z: number;
+    layerX: number;
+    crdSysX: number;
+  };
+  pCls: number;
+};
+
 export type SRoute$InnerResult = {
   common: {
-    locL: Array<{
-      lid: string;
-      type: string;
-      name: string;
-      icoX: number;
-      extId: string;
-      state: string;
-      crd: {
-        x: number;
-        y: number;
-        z: number;
-        layerX: number;
-        crdSysX: number;
-      };
-      pCls: number;
-    }>;
+    locL: Array<SRoute$LocL>;
     prodL: Array<SRoute$Product>;
     polyL: Array<any /* FIXME: Type could not be determined */>;
     layerL: Array<{

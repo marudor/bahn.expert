@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['joblift/base', 'joblift/react', 'joblift/sort-imports'],
+  // extends: ['joblift/base', 'joblift/react', 'joblift/sort-imports'],
   parser: 'babel-eslint',
   env: {
     browser: true,
@@ -13,7 +13,7 @@ module.exports = {
   rules: {
     'no-use-before-define': 0,
     'no-shadow': 0,
-    'import/no-unresolved': 2,
+    // 'import/no-unresolved': 2,
   },
   settings: {
     'import/resolver': 'webpack',

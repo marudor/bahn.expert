@@ -54,14 +54,15 @@ export default Actions;
 
 let cancelGetAbfahrten = () => {};
 
-function getAbfahrtenFromAPI(
+async function getAbfahrtenFromAPI(
   station: Station,
   lookahead: string
 ): Promise<AbfahrtAPIResult> {
   cancelGetAbfahrten();
 
-  return axios
-    .get(`/api/ownAbfahrten/${station.id}`, {
+  const r = await axios.get<AbfahrtAPIResult>(
+    `/api/ownAbfahrten/${station.id}`,
+    {
       cancelToken: new axios.CancelToken(c => {
         cancelGetAbfahrten = c;
       }),
@@ -70,8 +71,10 @@ function getAbfahrtenFromAPI(
       params: {
         lookahead,
       },
-    })
-    .then(d => d.data);
+    }
+  );
+
+  return r.data;
 }
 
 export const getLageplan = (

@@ -19,7 +19,7 @@ export type Station = {
 const stdTTL = 4 * 60 * 60;
 const cache = new NodeCache({ stdTTL });
 
-function parseStation(stationNode): Station {
+function parseStation(stationNode: xmljs.Element): Station {
   const station: any = {};
 
   stationNode.attrs().forEach(a => {

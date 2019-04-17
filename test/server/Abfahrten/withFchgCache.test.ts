@@ -6,8 +6,6 @@ import lolex, { Clock, InstalledClock } from 'lolex';
 import path from 'path';
 import Timetable from 'server/Abfahrten/Timetable';
 
-jest.mock('node-cache');
-
 describe('onlyPlan', () => {
   let clock: InstalledClock<Clock>;
 

@@ -6,15 +6,15 @@ import cookiesMiddleware from 'universal-cookie-koa';
 import createAdmin from './admin';
 import errorHandler from './errorHandler';
 import http from 'http';
-import Koa, { Middleware } from 'koa';
+import Koa, { Middleware, Context } from 'koa';
 import KoaBodyparser from 'koa-bodyparser';
 import koaStatic from 'koa-static';
 import path from 'path';
 
 global.SERVER = true;
 
-function transformStats(stats) {
-  const newStats = {};
+function transformStats(stats: any) {
+  const newStats: any = {};
 
   Object.keys(stats).forEach(key => {
     if (!Array.isArray(stats[key])) {
@@ -24,7 +24,7 @@ function transformStats(stats) {
       css: [],
       js: [],
     };
-    stats[key].forEach(val => {
+    stats[key].forEach((val: string) => {
       if (val.endsWith('js')) {
         newStats[key].js.push(val);
       } else if (val.endsWith('css')) {
@@ -41,7 +41,7 @@ function hotHelper(getMiddleware: () => Middleware) {
     return getMiddleware();
   }
 
-  return (ctx, next) => getMiddleware()(ctx, next);
+  return (ctx: Context, next: () => Promise<any>) => getMiddleware()(ctx, next);
 }
 
 export async function createApp(wsServer: undefined | Server) {
