@@ -47,7 +47,7 @@ const FilterModal = ({
     if (checked) {
       newFilterList = filterList.filter(p => p !== product);
     } else {
-      newFilterList = [...filterList, ...product.split(' ')];
+      newFilterList = [...filterList, product];
     }
     setFilterList(newFilterList);
   };
