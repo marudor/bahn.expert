@@ -3,9 +3,15 @@ import { Result } from 'server/Abfahrten/Timetable';
 
 describe('Abfahrten', () => {
   describe('Lageplan result reduce', () => {
-    const baseResult = { departures: [], wings: {}, lageplan: undefined };
+    const baseResult = {
+      departures: [],
+      lookbehind: [],
+      wings: {},
+      lageplan: undefined,
+    };
     const rLageplan = (lageplan?: null | string): Result => ({
       departures: [],
+      lookbehind: [],
       wings: {},
       lageplan,
     });

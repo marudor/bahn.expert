@@ -1,8 +1,9 @@
 import { AbfahrtenState, AppStore } from 'AppState';
-import { Abfahrt as AbfahrtType } from 'types/abfahrten';
 import { connect, ResolveThunks } from 'react-redux';
+import { Departures } from 'types/abfahrten';
 import { getAbfahrtenForConfig } from 'Abfahrten/selector/abfahrten';
 import { match } from 'react-router';
+import { Paper } from '@material-ui/core';
 import { Redirect } from 'react-router';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { Station } from 'types/station';
@@ -17,16 +18,34 @@ import React from 'react';
 import withStyles, { WithStyles } from 'react-jss';
 
 type InnerAbfahrtenProps = {
-  abfahrten?: Array<AbfahrtType>;
+  abfahrten?: Departures;
+  lookaheadClass: string;
+  lookbehindClass: string;
 };
-type StateProps = InnerAbfahrtenProps & {
+type StateProps = {
+  abfahrten?: Departures;
   currentStation?: Station;
   error?: AbfahrtenError;
   autoUpdate: number;
 };
-const InnerAbfahrten = ({ abfahrten }: InnerAbfahrtenProps) =>
-  abfahrten && abfahrten.length ? (
-    <>{abfahrten.map(a => a && <Abfahrt abfahrt={a} key={a.rawId} />)}</>
+const InnerAbfahrten = ({
+  abfahrten,
+  lookaheadClass,
+  lookbehindClass,
+}: InnerAbfahrtenProps) =>
+  abfahrten && (abfahrten.lookahead.length || abfahrten.lookbehind.length) ? (
+    <>
+      <div className={lookbehindClass}>
+        {abfahrten.lookbehind.map(
+          a => a && <Abfahrt abfahrt={a} key={a.rawId} />
+        )}
+      </div>
+      <div className={lookaheadClass}>
+        {abfahrten.lookahead.map(
+          a => a && <Abfahrt abfahrt={a} key={a.rawId} />
+        )}
+      </div>
+    </>
   ) : (
     <div>Leider keine Abfahrten in nächster Zeit</div>
   );
@@ -117,7 +136,11 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
           {error ? (
             !loading && <Redirect to="/" />
           ) : (
-            <InnerAbfahrten abfahrten={abfahrten} />
+            <InnerAbfahrten
+              lookbehindClass={classes.lookbehind}
+              lookaheadClass={classes.lookahead}
+              abfahrten={abfahrten}
+            />
           )}
         </main>
       </Loading>
@@ -130,10 +153,15 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     overflowX: 'auto',
-    marginTop: 64,
+    marginTop: 56,
     '& > h1': {
       display: 'none',
     },
+  },
+  lookahead: {},
+  lookbehind: {
+    paddingTop: 10,
+    backgroundColor: 'lightgray',
   },
 };
 

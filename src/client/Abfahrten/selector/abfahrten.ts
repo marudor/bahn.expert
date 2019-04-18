@@ -8,7 +8,7 @@ type AbfahrtProps = {
 
 export const getWings = (state: AbfahrtenState) => state.abfahrten.wings;
 export const getAbfahrten = (state: AbfahrtenState) =>
-  state.abfahrten.abfahrten;
+  state.abfahrten.departures;
 export const getSelectedDetail = (state: AbfahrtenState) =>
   state.abfahrten.selectedDetail;
 export const getArrivalWingIdsFromProps = (_: any, props: AbfahrtProps) =>
@@ -17,25 +17,36 @@ export const getDepartureWingIdsFromProps = (_: any, props: AbfahrtProps) =>
   props.abfahrt.departureWingIds;
 export const getIdFromProps = (_: any, props: AbfahrtProps) => props.abfahrt.id;
 export const getNextDeparture = (state: AbfahrtenState) => {
-  if (state.abfahrten.abfahrten) {
-    return state.abfahrten.abfahrten.find(a => Boolean(a.scheduledDeparture));
+  if (state.abfahrten.departures) {
+    return state.abfahrten.departures.lookahead.find(a =>
+      Boolean(a.scheduledDeparture)
+    );
   }
 };
 
 export const getAbfahrtenForConfig = createSelector(
-  (state: AbfahrtenState) => state.abfahrten.abfahrten,
+  (state: AbfahrtenState) => state.abfahrten.departures,
   state => state.config.config.onlyDepartures,
   state => state.abfahrten.selectedDetail,
   state => state.abfahrten.filterList,
   (abfahrten, onlyDepartures, selectedDetail, filterList) => {
     if (!abfahrten) return abfahrten;
-    let filtered = abfahrten;
+    const filtered = {
+      lookahead: abfahrten.lookahead,
+      lookbehind: abfahrten.lookbehind,
+    };
 
     if (onlyDepartures) {
-      filtered = filtered.filter(a => a.departure || a.id === selectedDetail);
+      const f = (a: Abfahrt) => a.departure || a.id === selectedDetail;
+
+      filtered.lookahead = filtered.lookahead.filter(f);
+      filtered.lookbehind = filtered.lookbehind.filter(f);
     }
     if (filterList.length) {
-      filtered = filtered.filter(a => !filterList.includes(a.trainType));
+      const f = (a: Abfahrt) => !filterList.includes(a.trainType);
+
+      filtered.lookahead = filtered.lookahead.filter(f);
+      filtered.lookbehind = filtered.lookbehind.filter(f);
     }
 
     return filtered;
@@ -64,7 +75,7 @@ export const getDetailForAbfahrt = createSelector(
   (selectedDetail, id) => selectedDetail === id
 );
 
-const defaultTypes = ['ICE', 'IC', 'RE', 'RB', 'S'];
+const defaultTypes = ['ICE ECE', 'IC EC', 'RE', 'RB', 'S'];
 
 export const getAllTrainTypes = createSelector(
   getAbfahrten,
@@ -72,7 +83,10 @@ export const getAllTrainTypes = createSelector(
     const typeSet = new Set<string>(defaultTypes);
 
     if (abfahrten) {
-      abfahrten.forEach(a => {
+      abfahrten.lookahead.forEach(a => {
+        typeSet.add(a.trainType);
+      });
+      abfahrten.lookbehind.forEach(a => {
         typeSet.add(a.trainType);
       });
     }

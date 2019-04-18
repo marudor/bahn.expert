@@ -13,6 +13,7 @@ import {
   isAfter,
   isBefore,
   subHours,
+  subMinutes,
 } from 'date-fns';
 import { AxiosInstance } from 'axios';
 import { diffArrays } from 'diff';
@@ -28,6 +29,7 @@ import xmljs from 'libxmljs2';
 
 export type Result = {
   departures: Abfahrt[];
+  lookbehind: Abfahrt[];
   wings: Object;
   lageplan?: null | string;
 };
@@ -200,6 +202,7 @@ export default class Timetable {
   wingIds: Set<string> = new Set();
   currentDate: Date;
   maxDate: Date;
+  minDate: Date;
 
   constructor(
     evaId: string,
@@ -211,11 +214,12 @@ export default class Timetable {
     this.evaId = evaId;
     this.currentDate = new Date();
     this.maxDate = addMinutes(this.currentDate, options.lookahead);
+    this.minDate = subMinutes(this.currentDate, options.lookbehind);
     this.segments = [this.currentDate];
     for (let i = 1; i <= Math.ceil(options.lookahead / 60); i += 1) {
       this.segments.push(addHours(this.currentDate, i));
     }
-    for (let i = 1; i <= Math.ceil(options.lookbehind / 60); i += 1) {
+    for (let i = 1; i <= Math.ceil((options.lookbehind || 1) / 60); i += 1) {
       this.segments.push(subHours(this.currentDate, i));
     }
     this.currentStation = normalizeRouteName(currentStation);
@@ -293,33 +297,41 @@ export default class Timetable {
 
     const wings: { [key: string]: any } = {};
 
-    const filtered: any[] = uniqBy<any>(timetables, 'rawId').filter(
-      (a: any) => {
-        const isWing = this.wingIds.has(a.mediumId);
+    const departures = [] as any[];
+    const lookbehind = [] as any[];
 
-        if (isWing) {
-          wings[a.mediumId] = a;
-          this.computeExtra(a);
+    uniqBy(timetables, 'rawId').forEach((a: any) => {
+      const isWing = this.wingIds.has(a.mediumId);
 
-          return false;
-        }
+      if (isWing) {
+        wings[a.mediumId] = a;
+        this.computeExtra(a);
 
-        const time = a.departureIsCancelled
-          ? a.arrival
-          : a.departure || a.arrival;
-
-        return (
-          isAfter(time, this.currentDate) &&
-          (isBefore(time, this.maxDate) ||
-            isBefore(a.scheduledDeparture || a.scheduledArrival, this.maxDate))
-        );
+        return;
       }
-    );
 
-    filtered.forEach(t => this.computeExtra(t));
+      const time = a.departureIsCancelled
+        ? a.scheduledArrival
+        : a.scheduledDeparture || a.scheduledArrival;
+      const realTime = a.departureIsCancelled
+        ? a.arrival
+        : a.departure || a.arrival;
+
+      if (isAfter(realTime, this.minDate) && isBefore(time, this.maxDate)) {
+        if (isBefore(realTime, this.currentDate)) {
+          lookbehind.push(a);
+        } else {
+          departures.push(a);
+        }
+      }
+    });
+
+    departures.forEach((t: any) => this.computeExtra(t));
+    lookbehind.forEach((t: any) => this.computeExtra(t));
 
     return {
-      departures: filtered,
+      departures,
+      lookbehind,
       wings,
       lageplan,
     };

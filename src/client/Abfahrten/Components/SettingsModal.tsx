@@ -7,6 +7,7 @@ import {
   setFahrzeugGruppe,
   setLineAndNumber,
   setLookahead,
+  setLookbehind,
   setSearchType,
   setShowSupersededMessages,
   setTime,
@@ -38,6 +39,7 @@ type DispatchProps = ResolveThunks<{
   setFahrzeugGruppe: typeof setFahrzeugGruppe;
   setLineAndNumber: typeof setLineAndNumber;
   setAutoUpdate: typeof setAutoUpdate;
+  setLookbehind: typeof setLookbehind;
 }>;
 
 type ReduxProps = StateProps & DispatchProps;
@@ -80,6 +82,8 @@ class SettingsModal extends React.PureComponent<Props> {
       classes,
       autoUpdate,
       setAutoUpdate,
+      setLookbehind,
+      lookbehind,
     } = this.props;
 
     return (
@@ -188,6 +192,24 @@ class SettingsModal extends React.PureComponent<Props> {
           <FormControlLabel
             control={
               <NativeSelect
+                value={lookbehind}
+                name="lookbehind"
+                onChange={this.handleSelectChange(setLookbehind)}
+              >
+                <option value="0">0</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+                <option value="60">60</option>
+              </NativeSelect>
+            }
+            label="Lookbehind in Minuten"
+          />
+          <FormControlLabel
+            control={
+              <NativeSelect
                 value={searchType}
                 name="searchType"
                 onChange={this.handleNumberSelectChange(setSearchType)}
@@ -242,6 +264,7 @@ export default connect<StateProps, DispatchProps, void, AbfahrtenState>(
     setZoomReihung,
     setShowSupersededMessages,
     setLookahead,
+    setLookbehind,
     setFahrzeugGruppe,
     setLineAndNumber,
     setAutoUpdate,

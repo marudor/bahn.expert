@@ -854,6 +854,65 @@ Object {
 }
 `;
 
+exports[`parseTimetableS lookbehind.xml 1`] = `
+Object {
+  "arrival": 1552826940000,
+  "arrivalWingIds": undefined,
+  "currentStation": "test",
+  "currentStationEva": "test",
+  "departure": 1552827060000,
+  "departureWingIds": undefined,
+  "hiddenArrival": undefined,
+  "hiddenDeparture": undefined,
+  "id": "1869793107893408377",
+  "lineNumber": undefined,
+  "longDistance": true,
+  "mediumId": "1869793107893408377-1903171038",
+  "o": "84",
+  "platform": "16",
+  "productClass": "F",
+  "rawId": "1869793107893408377-1903171038-6",
+  "routePost": Array [
+    Object {
+      "name": "Köln Hbf",
+    },
+    Object {
+      "name": "Frankfurt (M)  Flughafen Fernbf",
+    },
+    Object {
+      "name": "Frankfurt (Main) Hbf",
+    },
+  ],
+  "routePre": Array [
+    Object {
+      "name": "Amsterdam Centraal",
+    },
+    Object {
+      "name": "Utrecht Centraal",
+    },
+    Object {
+      "name": "Arnhem Centraal",
+    },
+    Object {
+      "name": "Oberhausen Hbf",
+    },
+    Object {
+      "name": "Duisburg Hbf",
+    },
+  ],
+  "scheduledArrival": 1552826940000,
+  "scheduledDeparture": 1552827060000,
+  "scheduledDestination": "Frankfurt (Main) Hbf",
+  "scheduledPlatform": "16",
+  "substitute": false,
+  "thirdParty": undefined,
+  "train": "ICE 123",
+  "trainId": "123",
+  "trainNumber": "123",
+  "trainType": "ICE",
+}
+`;
+
 exports[`parseTimetableS multipleWings.xml 1`] = `
 Object {
   "arrival": undefined,

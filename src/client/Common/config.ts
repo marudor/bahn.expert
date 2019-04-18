@@ -23,6 +23,7 @@ export type MarudorConfig = {
   readonly zoomReihung: boolean;
   readonly showSupersededMessages: boolean;
   readonly lookahead: string;
+  readonly lookbehind: string;
   readonly fahrzeugGruppe: boolean;
   readonly lineAndNumber: boolean;
   readonly autoUpdate: number;

@@ -32,13 +32,13 @@ describe('onlyPlan', () => {
 
       mockLageplan();
       mockFchg();
-      mockSearch(2, [inXml]);
+      mockSearch(3, ['', inXml]);
       const timetable = new Timetable(
         'test',
         'test',
         {
           lookahead: 120,
-          lookbehind: 0,
+          lookbehind: 60,
         },
         noncdAxios
       );

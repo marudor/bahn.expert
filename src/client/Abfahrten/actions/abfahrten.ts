@@ -1,4 +1,4 @@
-import { Abfahrt, AbfahrtAPIResult, Wings } from 'types/abfahrten';
+import { AbfahrtAPIResult, Departures, Wings } from 'types/abfahrten';
 import { AbfahrtenThunkResult } from 'AppState';
 import { createAction } from 'deox';
 import { getStationsFromAPI } from 'Common/service/stationSearch';
@@ -31,7 +31,7 @@ const Actions = {
     'GOT_ABFAHRTEN',
     resolve => (p: {
       station?: Station;
-      departures: Abfahrt[];
+      departures: Departures;
       wings: Wings;
       lageplan?: null | string;
     }) => resolve(p)
@@ -62,7 +62,8 @@ let cancelGetAbfahrten = () => {};
 
 async function getAbfahrtenFromAPI(
   station: Station,
-  lookahead: string
+  lookahead: string,
+  lookbehind: string
 ): Promise<AbfahrtAPIResult> {
   cancelGetAbfahrten();
 
@@ -76,6 +77,7 @@ async function getAbfahrtenFromAPI(
       station,
       params: {
         lookahead,
+        lookbehind,
       },
     }
   );
@@ -106,12 +108,22 @@ export const getAbfahrtenByString = (
     );
 
     if (stations.length) {
-      const abfahrten = await getAbfahrtenFromAPI(
+      const { departures, lookbehind, ...rest } = await getAbfahrtenFromAPI(
         stations[0],
-        config.lookahead
+        config.lookahead,
+        config.lookbehind
       );
 
-      dispatch(Actions.gotAbfahrten({ station: stations[0], ...abfahrten }));
+      dispatch(
+        Actions.gotAbfahrten({
+          station: stations[0],
+          departures: {
+            lookahead: departures,
+            lookbehind,
+          },
+          ...rest,
+        })
+      );
 
       return;
     }
@@ -155,15 +167,21 @@ export const refreshCurrentAbfahrten = (): AbfahrtenThunkResult => async (
     if (!state.abfahrten.currentStation) {
       return;
     }
-    const abfahrten = await getAbfahrtenFromAPI(
+
+    const { departures, lookbehind, ...rest } = await getAbfahrtenFromAPI(
       state.abfahrten.currentStation,
-      state.config.config.lookahead
+      state.config.config.lookahead,
+      state.config.config.lookbehind
     );
 
     dispatch(
       Actions.gotAbfahrten({
         station: state.abfahrten.currentStation,
-        ...abfahrten,
+        departures: {
+          lookahead: departures,
+          lookbehind,
+        },
+        ...rest,
       })
     );
   } catch (e) {

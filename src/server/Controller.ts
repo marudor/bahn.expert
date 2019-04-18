@@ -1,3 +1,4 @@
+import { configSanitize } from 'client/util';
 import { getAbfahrten } from './Abfahrten';
 import { getLageplan } from './Bahnhof/Lageplan';
 import { getStation } from './Abfahrten/station';
@@ -71,10 +72,11 @@ router
         message: 'Please provide a evaID',
       };
     } else {
-      const { lookahead } = ctx.query;
+      const { lookahead, lookbehind } = ctx.query;
 
       ctx.body = await getAbfahrten(evaId, true, {
-        lookahead: Number.parseInt(lookahead, 10),
+        lookahead: Number.parseInt(configSanitize.lookahead(lookahead), 10),
+        lookbehind: Number.parseInt(configSanitize.lookbehind(lookbehind), 10),
       });
     }
   })
