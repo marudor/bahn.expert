@@ -49,11 +49,11 @@ function scrollToDetail(selectedDetail: string) {
 }
 
 class BaseAbfahrt extends React.PureComponent<Props> {
-  componentDidMount() {
-    const { detail, abfahrt } = this.props;
+  // componentDidMount() {
+  //   const { detail, abfahrt } = this.props;
 
-    if (detail) scrollToDetail(abfahrt.id);
-  }
+  //   if (detail) scrollToDetail(abfahrt.id);
+  // }
   setDetail = () => {
     this.props.setDetail(this.props.abfahrt.id);
   };
@@ -94,6 +94,9 @@ class BaseAbfahrt extends React.PureComponent<Props> {
             <End abfahrt={abfahrt} detail={detail} />
           </div>
           {detail && abfahrt.reihung && <Reihung abfahrt={abfahrt} />}
+          {detail && (
+            <div id={`${abfahrt.id}Scroll`} className={classes.scrollMarker} />
+          )}
         </div>
       </Paper>
     );

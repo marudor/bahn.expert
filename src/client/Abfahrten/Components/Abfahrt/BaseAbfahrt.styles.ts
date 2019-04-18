@@ -8,6 +8,10 @@ export default {
     paddingRight: '.5em',
     position: 'relative',
   },
+  scrollMarker: {
+    position: 'absolute',
+    top: -64,
+  },
   entry: {
     overflow: 'hidden',
     display: 'flex',
