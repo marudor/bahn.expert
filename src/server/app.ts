@@ -6,7 +6,7 @@ import cookiesMiddleware from 'universal-cookie-koa';
 import createAdmin from './admin';
 import errorHandler from './errorHandler';
 import http from 'http';
-import Koa, { Middleware, Context } from 'koa';
+import Koa, { Context, Middleware } from 'koa';
 import KoaBodyparser from 'koa-bodyparser';
 import koaStatic from 'koa-static';
 import path from 'path';

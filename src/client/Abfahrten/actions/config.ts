@@ -1,6 +1,7 @@
 import { AbfahrtenThunkResult } from 'AppState';
 import { CheckInType, MarudorConfig, StationSearchType } from 'Common/config';
 import { createAction } from 'deox';
+import { setCookieOptions } from 'client/util';
 import abfahrtenActions from './abfahrten';
 import Cookies from 'universal-cookie';
 import favActions from './fav';
@@ -61,5 +62,16 @@ export const setCookies = (
 ): AbfahrtenThunkResult => dispatch => {
   dispatch(Actions.setCookies(cookies));
   dispatch(favActions.setFavs(cookies.get('favs') || {}));
+  dispatch(abfahrtenActions.setFilterList(cookies.get('defaultFilter') || []));
   dispatch(abfahrtenActions.setDetail(cookies.get('selectedDetail')));
+};
+
+export const setDefaultFilter = (): AbfahrtenThunkResult => (
+  dispatch,
+  getState
+) => {
+  const cookies = getState().config.cookies;
+  const filterList = getState().abfahrten.filterList;
+
+  cookies.set('defaultFilter', filterList, setCookieOptions);
 };

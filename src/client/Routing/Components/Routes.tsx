@@ -22,7 +22,7 @@ type Props = DispatchProps &
   }>;
 class Routing extends React.PureComponent<Props> {
   static loadData = (store: AppStore) => {
-    store.dispatch(searchActions.setDate(new Date()));
+    store.dispatch(searchActions.setDate(new Date(), false));
   };
   componentDidMount() {
     const { match, getRoutes, date, dateTouched } = this.props;

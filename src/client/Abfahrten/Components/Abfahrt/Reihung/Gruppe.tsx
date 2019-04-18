@@ -26,9 +26,19 @@ const Gruppe = ({
     width: `${(gruppe.endeProzent - gruppe.startProzent) * rest.scale}%`,
   };
 
+  let currentBottom = 1.5;
+
+  if (showFahrzeugGruppe) currentBottom += 1;
+  const destinationPos = {
+    ...gruppenPos,
+    bottom: `${currentBottom}em`,
+  };
+
+  if (showDestination) currentBottom += 1;
+
   const nummerPos = {
     ...gruppenPos,
-    bottom: showFahrzeugGruppe ? '2.5em' : '1.5em',
+    bottom: `${currentBottom}em`,
   };
 
   return (
@@ -37,13 +47,15 @@ const Gruppe = ({
         <Fahrzeug
           {...rest}
           wrongWing={originalTrainNumber !== gruppe.verkehrlichezugnummer}
-          destination={
-            showDestination ? gruppe.zielbetriebsstellename : undefined
-          }
           key={`${f.fahrzeugnummer}${f.positioningruppe}`}
           fahrzeug={f}
         />
       ))}
+      {showDestination && (
+        <span className={classes.bezeichnung} style={destinationPos}>
+          {gruppe.zielbetriebsstellename}
+        </span>
+      )}
       {showGruppenZugnummer && gruppe.verkehrlichezugnummer && (
         <span className={classes.bezeichnung} style={nummerPos}>
           {rest.type} {gruppe.verkehrlichezugnummer}

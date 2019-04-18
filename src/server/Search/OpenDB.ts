@@ -1,4 +1,4 @@
-import { Station, OpenDBStation } from 'types/station';
+import { OpenDBStation, Station } from 'types/station';
 import axios from 'axios';
 
 type OpenDBResult = {

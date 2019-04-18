@@ -10,10 +10,14 @@ export type State = {
   currentStation?: Station;
   error?: AbfahrtenError;
   lageplan?: null | string;
+  filterMenu: boolean;
+  filterList: string[];
 };
 
 const defaultState: State = {
   lageplan: undefined,
+  filterMenu: false,
+  filterList: [],
 };
 
 export default createReducer(defaultState, handle => [
@@ -46,5 +50,13 @@ export default createReducer(defaultState, handle => [
     abfahrten: undefined,
     wings: undefined,
     lageplan: undefined,
+  })),
+  handle(Actions.setFilterMenu, (state, { payload }) => ({
+    ...state,
+    filterMenu: payload,
+  })),
+  handle(Actions.setFilterList, (state, { payload }) => ({
+    ...state,
+    filterList: payload,
   })),
 ]);

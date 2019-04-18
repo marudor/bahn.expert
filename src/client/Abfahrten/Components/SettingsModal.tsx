@@ -1,3 +1,5 @@
+import { AbfahrtenState } from 'AppState';
+import { CheckInType, MarudorConfig, StationSearchType } from 'Common/config';
 import {
   closeSettings,
   setAutoUpdate,
@@ -11,9 +13,6 @@ import {
   setZoomReihung,
 } from 'Abfahrten/actions/config';
 import { connect, ResolveThunks } from 'react-redux';
-// import BrowserstackThanks from './BrowserstackThanks';
-import { AbfahrtenState } from 'AppState';
-import { CheckInType, MarudorConfig, StationSearchType } from 'Common/config';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';

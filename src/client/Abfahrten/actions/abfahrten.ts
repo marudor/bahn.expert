@@ -48,6 +48,12 @@ const Actions = {
   gotLageplan: createAction('GOT_LAGEPLAN', resolve => (s?: string) =>
     resolve(s)
   ),
+  setFilterMenu: createAction('SET_FILTER_MENU', resolve => (open: boolean) =>
+    resolve(open)
+  ),
+  setFilterList: createAction('SET_FILTER', resolve => (filterList: string[]) =>
+    resolve(filterList)
+  ),
 };
 
 export default Actions;
@@ -164,3 +170,6 @@ export const refreshCurrentAbfahrten = (): AbfahrtenThunkResult => async (
     // We ignore errors here - otherwise we might display error automatically due to refresh after back online
   }
 };
+
+export const openFilter = () => Actions.setFilterMenu(true);
+export const closeFilter = () => Actions.setFilterMenu(false);

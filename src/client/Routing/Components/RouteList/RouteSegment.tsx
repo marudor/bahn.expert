@@ -29,7 +29,7 @@ const RouteSegment = ({ segment, classes, detail, onTrainClick }: Props) => {
         {detail && <StopList stops={segment.stops} />}
       </div>
     ),
-    [classes.train, segment, onTrainClick, detail]
+    [classes.train, classes.trainId, segment.train, segment.finalDestination, segment.stops, detail, onTrainClick]
   );
 
   return (

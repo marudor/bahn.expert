@@ -8,7 +8,7 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { Station } from 'types/station';
 import { StationSearchType } from 'Common/config';
 import AppBar from '@material-ui/core/AppBar';
-import HeaderButtons from './HeaderButtons';
+import ExtraMenu from './ExtraMenu';
 import HomeMenu from 'Common/Components/HomeMenu';
 import React from 'react';
 import StationSearch from 'Common/Components/StationSearch';
@@ -96,7 +96,7 @@ class Header extends React.Component<Props> {
               onChange={this.submit}
               placeholder="Bahnhof (z.B. Hamburg Hbf)"
             />
-            <HeaderButtons />
+            <ExtraMenu />
           </Toolbar>
         </AppBar>
       </>

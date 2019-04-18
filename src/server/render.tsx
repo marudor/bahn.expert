@@ -3,6 +3,7 @@ import { Context } from 'koa';
 import { getFeatures } from './features';
 import { HelmetProvider } from 'react-helmet-async';
 import { isEnabled } from 'unleash-client';
+import { MarudorConfigSanitize } from 'Common/config';
 import { matchRoutes } from 'react-router-config';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
@@ -23,7 +24,6 @@ import path from 'path';
 import React from 'react';
 import routingRoutes from 'Routing/routes';
 import serialize from 'serialize-javascript';
-import { MarudorConfigSanitize } from 'Common/config';
 
 const headerFilename = path.resolve(__dirname, './views/header.ejs');
 // eslint-disable-next-line
