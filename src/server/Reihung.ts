@@ -158,10 +158,12 @@ export async function wagenReihung(trainNumber: string, date: number) {
     fahrzeuge
   );
   info.data.istformation.realFahrtrichtung = fahrtrichtung(fahrzeuge);
-  info.data.istformation.allFahrzeuggruppe.every(g =>
+  const reallyHasReihung = info.data.istformation.allFahrzeuggruppe.every(g =>
     g.allFahrzeug.every(f => {
       const start = Number.parseInt(f.positionamhalt.startprozent, 10);
       const end = Number.parseInt(f.positionamhalt.endeprozent, 10);
+
+      if (!start && !end) return false;
 
       if (start < startPercentage) {
         startPercentage = start;
@@ -173,6 +175,10 @@ export async function wagenReihung(trainNumber: string, date: number) {
       return true;
     })
   );
+
+  if (!reallyHasReihung) {
+    throw { status: 404 };
+  }
 
   info.data.istformation.scale = 100 / (endPercentage - startPercentage);
   info.data.istformation.startPercentage = startPercentage;
