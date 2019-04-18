@@ -39,6 +39,7 @@ export default async (
   );
   const d = r.data;
   const stations = d.svcResL[0].res.match.locL;
+
   return stations
     .filter((s: any) => !s.meta)
     .map((s: any) => ({

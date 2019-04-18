@@ -9,7 +9,14 @@ const Actions = {
   setDestination: createAction('SET_DESTINATION', resolve => (s?: Station) =>
     resolve(s)
   ),
-  setDate: createAction('SET_DATE', resolve => (d: Date) => resolve(d)),
+  setDate: createAction(
+    'SET_DATE',
+    resolve => (date: Date, dateTouched: boolean = true) =>
+      resolve({
+        date,
+        dateTouched,
+      })
+  ),
 };
 
 type AllowedSetStationActions =

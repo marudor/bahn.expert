@@ -3,11 +3,11 @@ import { AbfahrtenState } from 'AppState';
 import { compareDesc, format } from 'date-fns';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Style } from 'jss';
 import cc from 'classnames';
 import React, { ReactNode } from 'react';
 import styles from './Via.styles';
 import withStyles, { WithStyles } from 'react-jss';
-import { Style } from 'jss';
 
 function getDetailedInfo<C extends Record<'cancelled' | 'info', string>>(
   abfahrt: Abfahrt,

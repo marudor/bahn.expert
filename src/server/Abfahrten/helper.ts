@@ -1,5 +1,5 @@
-import { parseFromTimeZone } from 'date-fns-timezone';
 import { Element } from 'libxmljs2';
+import { parseFromTimeZone } from 'date-fns-timezone';
 
 export function getAttr(
   node: null | Element,

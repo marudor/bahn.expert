@@ -171,6 +171,9 @@ const FahrzeugComp = ({
     width: `${(end - start) * scale}%`,
   };
 
+  // @ts-ignore
+  const klasseClassName: keyof typeof classes = `klasse${info.klasse}`;
+
   return (
     <div
       style={position}
@@ -179,8 +182,7 @@ const FahrzeugComp = ({
         [classes.wrongWing]: wrongWing,
       })}
     >
-      // @ts-ignore
-      <span className={cc(classes.klasse, classes[`klasse${info.klasse}`])} />
+      <span className={cc(classes.klasse, classes[klasseClassName])} />
       <span className={classes.nummer}>{fahrzeug.wagenordnungsnummer}</span>
       <span className={classes.icons}>
         {info.rollstuhl && <ActionAccessible className={classes.icon} />}
@@ -189,7 +191,6 @@ const FahrzeugComp = ({
       </span>
       {info.comfort && <span className={classes.comfort} />}
       <span className={classes.type}>{fahrzeug.fahrzeugtyp}</span>
-      {/* {destination && <span className="Fahrzeug--destination">{destination}</span>} */}
     </div>
   );
 };

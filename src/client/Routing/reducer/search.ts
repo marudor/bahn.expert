@@ -6,18 +6,18 @@ export type State = {
   start?: Station;
   destination?: Station;
   date: Date;
-  dateTouched?: true;
+  dateTouched?: boolean;
 };
 
 const defaultState: State = {
-  date: new Date(),
+  date: new Date(0),
 };
 
 export default createReducer(defaultState, handle => [
-  handle(Actions.setDate, (state, { payload }) => ({
+  handle(Actions.setDate, (state, { payload: { date, dateTouched } }) => ({
     ...state,
-    date: payload,
-    dateTouched: true,
+    date,
+    dateTouched,
   })),
   handle(Actions.setDestination, (state, { payload }) => ({
     ...state,

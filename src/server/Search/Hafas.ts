@@ -1,4 +1,4 @@
-import { Station, HAFASStation } from 'types/station';
+import { HAFASStation, Station } from 'types/station';
 import axios from 'axios';
 import iconv from 'iconv-lite';
 

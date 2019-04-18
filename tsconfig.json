@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
+    "experimentalDecorators": false,
     "jsx": "preserve",
     "lib": ["es6", "dom", "esnext"],
     "module": "esnext",
@@ -9,15 +9,15 @@
     "noEmit": true,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "preserveConstEnums": true,
+    "preserveConstEnums": false,
     "removeComments": false,
     "skipLibCheck": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "strict": true,
     // "strictPropertyInitialization": false,
     // "noImplicitAny": false,
-    "target": "es5",
-    "emitDecoratorMetadata": true,
+    "target": "esnext",
+    "emitDecoratorMetadata": false,
     "resolveJsonModule": true,
     "baseUrl": "src",
     "paths": {

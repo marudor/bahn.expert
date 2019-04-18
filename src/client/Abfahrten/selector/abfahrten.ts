@@ -7,6 +7,8 @@ type AbfahrtProps = {
 };
 
 export const getWings = (state: AbfahrtenState) => state.abfahrten.wings;
+export const getAbfahrten = (state: AbfahrtenState) =>
+  state.abfahrten.abfahrten;
 export const getSelectedDetail = (state: AbfahrtenState) =>
   state.abfahrten.selectedDetail;
 export const getArrivalWingIdsFromProps = (_: any, props: AbfahrtProps) =>
@@ -24,12 +26,19 @@ export const getAbfahrtenForConfig = createSelector(
   (state: AbfahrtenState) => state.abfahrten.abfahrten,
   state => state.config.config.onlyDepartures,
   state => state.abfahrten.selectedDetail,
-  (abfahrten, onlyDepartures, selectedDetail) => {
-    if (abfahrten && onlyDepartures) {
-      return abfahrten.filter(a => a.departure || a.id === selectedDetail);
+  state => state.abfahrten.filterList,
+  (abfahrten, onlyDepartures, selectedDetail, filterList) => {
+    if (!abfahrten) return abfahrten;
+    let filtered = abfahrten;
+
+    if (onlyDepartures) {
+      filtered = filtered.filter(a => a.departure || a.id === selectedDetail);
+    }
+    if (filterList.length) {
+      filtered = filtered.filter(a => !filterList.includes(a.trainType));
     }
 
-    return abfahrten;
+    return filtered;
   }
 );
 export const getWingsForAbfahrt = createSelector(
@@ -53,4 +62,21 @@ export const getDetailForAbfahrt = createSelector(
   getSelectedDetail,
   getIdFromProps,
   (selectedDetail, id) => selectedDetail === id
+);
+
+const defaultTypes = ['ICE', 'IC', 'RE', 'RB', 'S'];
+
+export const getAllTrainTypes = createSelector(
+  getAbfahrten,
+  abfahrten => {
+    const typeSet = new Set<string>(defaultTypes);
+
+    if (abfahrten) {
+      abfahrten.forEach(a => {
+        typeSet.add(a.trainType);
+      });
+    }
+
+    return [...typeSet].filter(Boolean);
+  }
 );

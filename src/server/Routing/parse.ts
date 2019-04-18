@@ -8,10 +8,10 @@ import {
   Route$Stop,
   SRoute$Journey,
   SRoute$JourneySegment,
+  SRoute$LocL,
+  SRoute$Product,
   SRoute$Result,
   SRoute$StopL,
-  SRoute$Product,
-  SRoute$LocL,
 } from 'types/routing';
 import { Station } from 'types/station';
 

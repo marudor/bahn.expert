@@ -9,6 +9,7 @@ export default {
       let height = 5;
 
       if (fahrzeugGruppe) height += 1;
+      if (reihung && reihung.differentDestination) height += 1;
       if (reihung && reihung.differentZugnummer) height += 1;
 
       return `${height}em`;

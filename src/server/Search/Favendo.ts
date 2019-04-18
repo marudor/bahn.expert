@@ -1,4 +1,4 @@
-import { Station, FavendoStation } from 'types/station';
+import { FavendoStation, Station } from 'types/station';
 import axios from 'axios';
 
 function encodeSearchTerm(term: string) {
