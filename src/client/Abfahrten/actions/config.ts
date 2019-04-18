@@ -64,7 +64,13 @@ export const setCookies = (
 ): AbfahrtenThunkResult => dispatch => {
   dispatch(Actions.setCookies(cookies));
   dispatch(favActions.setFavs(cookies.get('favs') || {}));
-  dispatch(abfahrtenActions.setFilterList(cookies.get('defaultFilter') || []));
+  const defaultFilter = cookies.get('defaultFilter');
+
+  dispatch(
+    abfahrtenActions.setFilterList(
+      Array.isArray(defaultFilter) ? defaultFilter : []
+    )
+  );
   dispatch(abfahrtenActions.setDetail(cookies.get('selectedDetail')));
 };
 

@@ -1,4 +1,4 @@
-import { Abfahrt, ResolvedWings } from 'types/abfahrten';
+import { Abfahrt } from 'types/abfahrten';
 import { AbfahrtenState } from 'AppState';
 import { createSelector } from 'reselect';
 
@@ -75,7 +75,7 @@ export const getDetailForAbfahrt = createSelector(
   (selectedDetail, id) => selectedDetail === id
 );
 
-const defaultTypes = ['ICE ECE', 'IC EC', 'RE', 'RB', 'S'];
+const defaultTypes = ['ICE', 'IC', 'EC', 'RE', 'RB', 'S'];
 
 export const getAllTrainTypes = createSelector(
   getAbfahrten,
