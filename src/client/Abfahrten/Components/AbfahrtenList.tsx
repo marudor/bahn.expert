@@ -19,28 +19,25 @@ import withStyles, { WithStyles } from 'react-jss';
 
 type InnerAbfahrtenProps = {
   abfahrten?: Departures;
-  lookaheadClass: string;
-  lookbehindClass: string;
+  classes: Record<'lookahead' | 'lookbehind' | 'lookaheadMarker', string>;
 };
 type StateProps = {
   abfahrten?: Departures;
   currentStation?: Station;
   error?: AbfahrtenError;
   autoUpdate: number;
+  selectedDetail?: string;
 };
-const InnerAbfahrten = ({
-  abfahrten,
-  lookaheadClass,
-  lookbehindClass,
-}: InnerAbfahrtenProps) =>
+const InnerAbfahrten = ({ abfahrten, classes }: InnerAbfahrtenProps) =>
   abfahrten && (abfahrten.lookahead.length || abfahrten.lookbehind.length) ? (
     <>
-      <div className={lookbehindClass}>
+      <div id="lookbehind" className={classes.lookbehind}>
         {abfahrten.lookbehind.map(
           a => a && <Abfahrt abfahrt={a} key={a.rawId} />
         )}
+        <div className={classes.lookaheadMarker} id="lookaheadMarker" />
       </div>
-      <div className={lookaheadClass}>
+      <div id="lookahead" className={classes.lookahead}>
         {abfahrten.lookahead.map(
           a => a && <Abfahrt abfahrt={a} key={a.rawId} />
         )}
@@ -63,6 +60,7 @@ type Props = ReduxProps &
   WithStyles<typeof styles>;
 type State = {
   loading: boolean;
+  scrolled: boolean;
 };
 
 class AbfahrtenList extends React.PureComponent<Props, State> {
@@ -78,6 +76,7 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
   };
   state: State = {
     loading: !this.props.abfahrten,
+    scrolled: false,
   };
   abfahrtenInterval?: NodeJS.Timeout;
   componentDidMount() {
@@ -92,16 +91,52 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
         autoUpdate * 1000
       );
     }
+    this.checkScroll();
   }
   componentWillUnmount() {
     if (this.abfahrtenInterval) {
       clearInterval(this.abfahrtenInterval);
     }
   }
+  checkScroll() {
+    const { abfahrten, selectedDetail } = this.props;
+    const { scrolled } = this.state;
+
+    if (scrolled) return;
+
+    if (abfahrten) {
+      let scrollDom: HTMLElement | null = null;
+
+      if (selectedDetail) {
+        scrollDom = document.getElementById(`${selectedDetail}Scroll`);
+      }
+      if (!scrollDom && abfahrten.lookbehind.length) {
+        scrollDom = document.getElementById('lookaheadMarker');
+      }
+      if (scrollDom) {
+        const scrollIntoView = () =>
+          setTimeout(() => scrollDom && scrollDom.scrollIntoView());
+
+        if (document.readyState === 'complete') {
+          scrollIntoView();
+        } else {
+          window.addEventListener('load', scrollIntoView);
+        }
+      }
+      this.setState({
+        scrolled: true,
+      });
+    }
+  }
   componentDidUpdate(prevProps: Props) {
     if (prevProps.match.params.station !== this.props.match.params.station) {
-      this.getAbfahrten();
+      this.getAbfahrten().then(() => {
+        this.setState({
+          scrolled: false,
+        });
+      });
     }
+    this.checkScroll();
   }
   getAbfahrten = async () => {
     const {
@@ -136,11 +171,7 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
           {error ? (
             !loading && <Redirect to="/" />
           ) : (
-            <InnerAbfahrten
-              lookbehindClass={classes.lookbehind}
-              lookaheadClass={classes.lookahead}
-              abfahrten={abfahrten}
-            />
+            <InnerAbfahrten classes={classes} abfahrten={abfahrten} />
           )}
         </main>
       </Loading>
@@ -158,8 +189,14 @@ const styles = {
       display: 'none',
     },
   },
+  lookaheadMarker: {
+    height: 154,
+    position: 'absolute',
+    bottom: 0,
+  },
   lookahead: {},
   lookbehind: {
+    position: 'relative',
     paddingTop: 10,
     backgroundColor: 'lightgray',
   },
@@ -171,6 +208,7 @@ export default connect<StateProps, DispatchProps, {}, AbfahrtenState>(
     currentStation: state.abfahrten.currentStation,
     error: state.abfahrten.error,
     autoUpdate: state.config.config.autoUpdate,
+    selectedDetail: state.abfahrten.selectedDetail,
   }),
   {
     getAbfahrtenByString,
