@@ -41,6 +41,8 @@ export const setShowSupersededMessages = (value: boolean) =>
   Actions.setConfig({ key: 'showSupersededMessages', value });
 export const setLookahead = (value: string) =>
   Actions.setConfig({ key: 'lookahead', value });
+export const setLookbehind = (value: string) =>
+  Actions.setConfig({ key: 'lookbehind', value });
 export const setFahrzeugGruppe = (value: boolean) =>
   Actions.setConfig({ key: 'fahrzeugGruppe', value });
 export const setLineAndNumber = (value: boolean) =>

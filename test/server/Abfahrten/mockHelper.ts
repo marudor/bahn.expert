@@ -9,9 +9,13 @@ export function mockLageplan(bahnhof: string = 'test', lageplan: string = '') {
     .reply(200, lageplan);
 }
 
-export function mockSearch(count: number, results: string[]) {
+export function mockSearch(
+  count: number,
+  results: string[],
+  startTime: number = 12
+) {
   for (let i = 0; i <= count; i += 1) {
-    const hour = 13 + i;
+    const hour = startTime + i;
 
     Nock('http://iris.noncd.db.de')
       .get(`/iris-tts/timetable/plan/test/190317/${hour}`)

@@ -5,7 +5,10 @@ import Actions, { AbfahrtenError } from 'Abfahrten/actions/abfahrten';
 
 export type State = {
   selectedDetail?: string;
-  abfahrten?: Array<Abfahrt>;
+  departures?: {
+    lookahead: Abfahrt[];
+    lookbehind: Abfahrt[];
+  };
   wings?: Wings;
   currentStation?: Station;
   error?: AbfahrtenError;
@@ -28,14 +31,14 @@ export default createReducer(defaultState, handle => [
   handle(Actions.gotAbfahrten, (state, { payload }) => ({
     ...state,
     currentStation: payload.station,
-    abfahrten: payload.departures,
+    departures: payload.departures,
     wings: payload.wings,
     lageplan: payload.lageplan,
     error: undefined,
   })),
   handle(Actions.gotAbfahrtenError, (state, { payload }) => ({
     ...state,
-    abfahrten: [],
+    departures: undefined,
     wings: {},
     lageplan: undefined,
     error: payload,
@@ -47,7 +50,7 @@ export default createReducer(defaultState, handle => [
   handle(Actions.setCurrentStation, (state, { payload }) => ({
     ...state,
     currentStation: payload,
-    abfahrten: undefined,
+    departures: undefined,
     wings: undefined,
     lageplan: undefined,
   })),

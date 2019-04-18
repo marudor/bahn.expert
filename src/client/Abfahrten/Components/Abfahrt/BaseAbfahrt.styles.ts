@@ -2,7 +2,7 @@ export default {
   main: {
     lineHeight: 1.2,
     flexShrink: 0,
-    marginBottom: '.3em',
+    marginTop: '.3em',
     overflow: 'visible',
     paddingLeft: '.5em',
     paddingRight: '.5em',

@@ -68,6 +68,11 @@ export type Abfahrt = {
   via: string[];
 };
 
+export type Departures = {
+  lookahead: Abfahrt[];
+  lookbehind: Abfahrt[];
+};
+
 export type Wings = {
   [mediumId: string]: Abfahrt;
 };
@@ -79,6 +84,7 @@ export type ResolvedWings = {
 
 export type AbfahrtAPIResult = {
   departures: Abfahrt[];
+  lookbehind: Abfahrt[];
   wings: Wings;
   lageplan?: null | string;
 };

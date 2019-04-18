@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`onlyPlan arrivalCancelled.xml 1`] = `
+exports[`withFchg arrivalCancelled.xml 1`] = `
 Object {
   "departures": Array [
     Object {
@@ -166,11 +166,12 @@ Object {
     },
   ],
   "lageplan": undefined,
+  "lookbehind": Array [],
   "wings": Object {},
 }
 `;
 
-exports[`onlyPlan arrivalWing.xml 1`] = `
+exports[`withFchg arrivalWing.xml 1`] = `
 Object {
   "departures": Array [
     Object {
@@ -346,11 +347,12 @@ Object {
     },
   ],
   "lageplan": undefined,
+  "lookbehind": Array [],
   "wings": Object {},
 }
 `;
 
-exports[`onlyPlan cancelled.xml 1`] = `
+exports[`withFchg cancelled.xml 1`] = `
 Object {
   "departures": Array [
     Object {
@@ -551,11 +553,12 @@ Object {
     },
   ],
   "lageplan": undefined,
+  "lookbehind": Array [],
   "wings": Object {},
 }
 `;
 
-exports[`onlyPlan departureCancelled.xml 1`] = `
+exports[`withFchg departureCancelled.xml 1`] = `
 Object {
   "departures": Array [
     Object {
@@ -742,11 +745,12 @@ Object {
     },
   ],
   "lageplan": undefined,
+  "lookbehind": Array [],
   "wings": Object {},
 }
 `;
 
-exports[`onlyPlan departureWing.xml 1`] = `
+exports[`withFchg departureWing.xml 1`] = `
 Object {
   "departures": Array [
     Object {
@@ -838,6 +842,7 @@ Object {
     },
   ],
   "lageplan": undefined,
+  "lookbehind": Array [],
   "wings": Object {
     "8086827825752200553-1903171315": Object {
       "arrival": 1552828440000,
@@ -919,15 +924,124 @@ Object {
 }
 `;
 
-exports[`onlyPlan filteredDueToTime.xml 1`] = `
+exports[`withFchg filteredDueToTime.xml 1`] = `
 Object {
   "departures": Array [],
   "lageplan": undefined,
+  "lookbehind": Array [],
   "wings": Object {},
 }
 `;
 
-exports[`onlyPlan multipleWings.xml 1`] = `
+exports[`withFchg lookbehind.xml 1`] = `
+Object {
+  "departures": Array [
+    Object {
+      "arrival": 1552826280000,
+      "arrivalIsCancelled": false,
+      "arrivalWingIds": undefined,
+      "auslastung": true,
+      "currentStation": "test",
+      "currentStationEva": "test",
+      "delayArrival": -11,
+      "delayDeparture": -11,
+      "departure": 1552826400000,
+      "departureIsCancelled": false,
+      "departureWingIds": undefined,
+      "destination": "Frankfurt (M)  Flughafen Fernbf",
+      "hiddenArrival": undefined,
+      "hiddenDeparture": undefined,
+      "id": "1869793107893408377",
+      "isCancelled": false,
+      "lineNumber": undefined,
+      "longDistance": true,
+      "mediumId": "1869793107893408377-1903171038",
+      "messages": Object {
+        "delay": Array [
+          Object {
+            "priority": undefined,
+            "superseded": undefined,
+            "superseeds": false,
+            "text": "Technische Störung an einem anderen Zug",
+            "timestamp": 1552824000000,
+          },
+        ],
+        "qos": Array [],
+      },
+      "o": "84",
+      "platform": "16",
+      "productClass": "F",
+      "rawId": "1869793107893408377-1903171038-6",
+      "ref": undefined,
+      "reihung": true,
+      "route": Array [
+        Object {
+          "isAdditional": undefined,
+          "isCancelled": undefined,
+          "name": "Amsterdam Centraal",
+        },
+        Object {
+          "isAdditional": undefined,
+          "isCancelled": undefined,
+          "name": "Utrecht Centraal",
+        },
+        Object {
+          "isAdditional": undefined,
+          "isCancelled": undefined,
+          "name": "Arnhem Centraal",
+        },
+        Object {
+          "isAdditional": undefined,
+          "isCancelled": undefined,
+          "name": "Oberhausen Hbf",
+        },
+        Object {
+          "isAdditional": undefined,
+          "isCancelled": undefined,
+          "name": "Duisburg Hbf",
+        },
+        Object {
+          "isCancelled": false,
+          "name": "test",
+        },
+        Object {
+          "isAdditional": undefined,
+          "isCancelled": false,
+          "name": "Köln Hbf",
+        },
+        Object {
+          "isAdditional": undefined,
+          "isCancelled": false,
+          "name": "Frankfurt (M)  Flughafen Fernbf",
+        },
+        Object {
+          "isAdditional": undefined,
+          "isCancelled": true,
+          "name": "Frankfurt (Main) Hbf",
+        },
+      ],
+      "scheduledArrival": 1552826940000,
+      "scheduledDeparture": 1552827060000,
+      "scheduledDestination": "Frankfurt (Main) Hbf",
+      "scheduledPlatform": "16",
+      "substitute": false,
+      "thirdParty": undefined,
+      "train": "ICE 123",
+      "trainId": "123",
+      "trainNumber": "123",
+      "trainType": "ICE",
+      "via": Array [
+        "Köln",
+      ],
+    },
+  ],
+  "lageplan": undefined,
+  "lookbehind": Array [],
+  "wings": Object {},
+}
+`;
+
+exports[`withFchg multipleWings.xml 1`] = `
 Object {
   "departures": Array [
     Object {
@@ -1055,6 +1169,7 @@ Object {
     },
   ],
   "lageplan": undefined,
+  "lookbehind": Array [],
   "wings": Object {
     "2583448959431566845-1903171304": Object {
       "arrival": undefined,
@@ -1265,7 +1380,7 @@ Object {
 }
 `;
 
-exports[`onlyPlan onlyArrival.xml 1`] = `
+exports[`withFchg onlyArrival.xml 1`] = `
 Object {
   "departures": Array [
     Object {
@@ -1346,11 +1461,12 @@ Object {
     },
   ],
   "lageplan": undefined,
+  "lookbehind": Array [],
   "wings": Object {},
 }
 `;
 
-exports[`onlyPlan onlyDeparture.xml 1`] = `
+exports[`withFchg onlyDeparture.xml 1`] = `
 Object {
   "departures": Array [
     Object {
@@ -1444,11 +1560,12 @@ Object {
     },
   ],
   "lageplan": undefined,
+  "lookbehind": Array [],
   "wings": Object {},
 }
 `;
 
-exports[`onlyPlan simple1.xml 1`] = `
+exports[`withFchg simple1.xml 1`] = `
 Object {
   "departures": Array [
     Object {
@@ -1611,11 +1728,12 @@ Object {
     },
   ],
   "lageplan": undefined,
+  "lookbehind": Array [],
   "wings": Object {},
 }
 `;
 
-exports[`onlyPlan simple2.xml 1`] = `
+exports[`withFchg simple2.xml 1`] = `
 Object {
   "departures": Array [
     Object {
@@ -1718,11 +1836,12 @@ Object {
     },
   ],
   "lageplan": undefined,
+  "lookbehind": Array [],
   "wings": Object {},
 }
 `;
 
-exports[`onlyPlan visibleDueToDelay.xml 1`] = `
+exports[`withFchg visibleDueToDelay.xml 1`] = `
 Object {
   "departures": Array [
     Object {
@@ -1890,11 +2009,12 @@ Object {
     },
   ],
   "lageplan": undefined,
+  "lookbehind": Array [],
   "wings": Object {},
 }
 `;
 
-exports[`onlyPlan wings.xml 1`] = `
+exports[`withFchg wings.xml 1`] = `
 Object {
   "departures": Array [
     Object {
@@ -1991,6 +2111,7 @@ Object {
     },
   ],
   "lageplan": undefined,
+  "lookbehind": Array [],
   "wings": Object {},
 }
 `;

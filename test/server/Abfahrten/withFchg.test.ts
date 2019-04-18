@@ -8,7 +8,7 @@ import Timetable from 'server/Abfahrten/Timetable';
 
 jest.mock('node-cache');
 
-describe('onlyPlan', () => {
+describe('withFchg', () => {
   let clock: InstalledClock<Clock>;
 
   beforeAll(() => {
@@ -38,13 +38,13 @@ describe('onlyPlan', () => {
 
       mockLageplan();
       mockFchg(fchgXml);
-      mockSearch(2, [planxml]);
+      mockSearch(3, ['', planxml]);
       const timetable = new Timetable(
         'test',
         'test',
         {
           lookahead: 120,
-          lookbehind: 0,
+          lookbehind: 60,
         },
         noncdAxios
       );

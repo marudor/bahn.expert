@@ -11,6 +11,7 @@ export default () =>
       },
       MuiPaper: {
         elevation2: {
+          backgroundColor: 'inherit',
           boxShadow: '0 1px 0 rgba(0, 0, 0, 0.24)',
         },
       },
