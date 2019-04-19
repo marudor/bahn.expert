@@ -11,6 +11,7 @@ namespace NodeJS {
 type Features = {
   'google-analytics': boolean;
   routing: boolean;
+  auslastungsradar: boolean;
 };
 
 type ExcludesFalse = <T>(x: T | undefined | null | false) => x is T;
