@@ -12,8 +12,10 @@ import {
 } from './Reihung';
 import axios from 'axios';
 import createAuslastung from './Auslastung';
+import JourneyDetails from './HAFAS/JourneyDetails';
 import KoaRouter from 'koa-router';
-import routing from './Routing';
+import makeRequest from './HAFAS/Request';
+import routing from './HAFAS/Routing';
 import stationSearch from './Search';
 import wingInfo from './Abfahrten/wings';
 
@@ -89,13 +91,17 @@ router
         message: 'Please provide a evaID',
       };
     } else {
-      const { lookahead } = ctx.query;
+      const { lookahead, lookbehind } = ctx.query;
 
       ctx.body = await getAbfahrten(
         evaId,
         true,
         {
-          lookahead: Number.parseInt(lookahead, 10),
+          lookahead: Number.parseInt(configSanitize.lookahead(lookahead), 10),
+          lookbehind: Number.parseInt(
+            configSanitize.lookbehind(lookbehind),
+            10
+          ),
         },
         openDataAxios
       );
@@ -124,6 +130,14 @@ router
     const { rawId1, rawId2 }: { rawId1: string; rawId2: string } = ctx.params;
 
     ctx.body = await wingInfo(rawId1, rawId2);
+  })
+  .get('/details/:jid', async ctx => {
+    const { jid }: { jid: string } = ctx.params;
+
+    ctx.body = await JourneyDetails(jid);
+  })
+  .post('/rawHafas', async ctx => {
+    ctx.body = await makeRequest(ctx.request.body);
   })
   .post('/route', async ctx => {
     if (!isEnabled('routing')) {
@@ -162,7 +176,7 @@ if (process.env.NODE_ENV !== 'production') {
           ...ctx.request.body,
           time: Number.parseInt(ctx.request.body.time, 10),
         },
-        d => d
+        true
       );
     })
     .get('/feature/:name', ctx => {
