@@ -17,12 +17,14 @@ function parseFn(d: HafasResponse<LocMatchResponse>): Station[] {
 
 export default (searchTerm: string, type: 'S' | 'ALL' = 'S') => {
   const req: LocMatchRequest = {
-    input: {
-      loc: {
-        name: `${searchTerm}?`,
-        type,
+    req: {
+      input: {
+        loc: {
+          name: `${searchTerm}?`,
+          type,
+        },
+        field: 'S',
       },
-      field: 'S',
     },
     meth: 'LocMatch',
   };

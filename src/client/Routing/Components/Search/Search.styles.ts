@@ -8,4 +8,7 @@ export default {
   buttons: {
     display: 'flex',
   },
+  destination: {
+    display: 'flex',
+  },
 };

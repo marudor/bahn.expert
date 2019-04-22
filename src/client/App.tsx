@@ -42,7 +42,7 @@ const styles = {
     },
     a: {
       textDecoration: 'none',
-      color: 'blue',
+      color: 'black',
     },
   },
 };

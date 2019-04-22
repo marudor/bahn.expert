@@ -243,7 +243,11 @@ export default class Timetable {
 
     timetable.route = [
       ...timetable.routePre,
-      { name: timetable.currentStation, isCancelled: timetable.isCancelled },
+      {
+        name: timetable.currentStation,
+        isCancelled: timetable.isCancelled,
+        isAdditional: timetable.isAdditional,
+      },
       ...timetable.routePost,
     ];
     const last = findLast(timetable.route, r => !r.isCancelled);
@@ -389,7 +393,7 @@ export default class Timetable {
     }
 
     const message = {
-      superseeds: false,
+      superseeds: undefined as (undefined | boolean),
       superseded: undefined,
       // @ts-ignore Lookup is correct
       text: messageLookup[value] || `${value} (?)`,
@@ -412,7 +416,12 @@ export default class Timetable {
     const ref = sNode.get('ref/tl');
 
     if (!this.timetable[rawId] && tl) {
-      this.timetable[rawId] = this.parseTimetableS(sNode);
+      const timetable = this.parseTimetableS(sNode);
+
+      if (timetable) {
+        timetable.isAdditional = true;
+        this.timetable[rawId] = timetable;
+      }
     }
 
     if (!this.timetable[rawId]) {
@@ -648,6 +657,7 @@ export default class Timetable {
       substitute: t === 'e',
       longDistance: longDistanceRegex.test(train),
       ...splitTrainType(train),
+      isAdditional: undefined as (undefined | boolean),
     };
   }
   getTimetable(rawXml: string) {

@@ -28,12 +28,14 @@ export type LocMatchResponse = {
 };
 
 export interface LocMatchRequest {
-  input: {
-    loc: {
-      name: string;
-      type: 'S' | 'ALL';
+  req: {
+    input: {
+      loc: {
+        name: string;
+        type: 'S' | 'ALL';
+      };
+      field: 'S';
     };
-    field: 'S';
   };
   meth: 'LocMatch';
 }
