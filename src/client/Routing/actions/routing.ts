@@ -14,6 +14,7 @@ export const getRoutes = (
   destination: string,
   date: Date
 ): RoutingThunkResult => async dispatch => {
+  dispatch(Actions.gotRoutes());
   const route = (await axios.post('/api/route', {
     start,
     destination,

@@ -45,6 +45,7 @@ export type Abfahrt = {
   hiddenArrival?: number;
   hiddenDeparture?: number;
   id: string;
+  isAdditional?: boolean;
   isCancelled: boolean;
   longDistance: boolean;
   mediumId: string;

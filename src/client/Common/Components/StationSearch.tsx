@@ -21,7 +21,7 @@ const selectStyles: StylesConfig = {
   }),
   option: (base, state) => ({
     ...base,
-    background: state.isFocused ? 'lightgrey' : 'white',
+    background: state.isFocused ? 'lightgray' : 'white',
     color: 'black',
   }),
   container: () => ({

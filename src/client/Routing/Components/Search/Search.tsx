@@ -18,10 +18,12 @@ import { StationSearchType } from 'Common/config';
 import { withSnackbar, withSnackbarProps } from 'notistack';
 import Button from '@material-ui/core/Button';
 import deLocale from 'date-fns/locale/de';
+import IconButton from '@material-ui/core/IconButton';
 import React, { SyntheticEvent } from 'react';
 import searchActions, { getStationById } from 'Routing/actions/search';
 import StationSearch from 'Common/Components/StationSearch';
 import styles from './Search.styles';
+import SwapVertical from '@material-ui/icons/SwapVert';
 import withStyles, { WithStyles } from 'react-jss';
 
 type DispatchProps = ResolveThunks<{
@@ -141,12 +143,25 @@ class Search extends React.PureComponent<Props> {
           onChange={setStart}
           placeholder="Start"
         />
-        <StationSearch
-          searchType={StationSearchType.DBNavgiator}
-          value={destination}
-          onChange={setDestination}
-          placeholder="Destination"
-        />
+        <div className={classes.destination}>
+          <StationSearch
+            searchType={StationSearchType.DBNavgiator}
+            value={destination}
+            onChange={setDestination}
+            placeholder="Destination"
+          />
+          <IconButton
+            style={{ padding: 0 }}
+            onClick={(e: SyntheticEvent) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setDestination(start);
+              setStart(destination);
+            }}
+          >
+            <SwapVertical fontSize="large" />
+          </IconButton>
+        </div>
         <DateTimePicker
           fullWidth
           className={classes.datePicker}

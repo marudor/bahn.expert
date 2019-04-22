@@ -6,9 +6,6 @@ export default {
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
-    '& a': {
-      color: 'inherit',
-    },
   },
   detail: {
     whiteSpace: 'inherit',
