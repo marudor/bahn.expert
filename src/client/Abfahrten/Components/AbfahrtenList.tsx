@@ -130,11 +130,7 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
   }
   componentDidUpdate(prevProps: Props) {
     if (prevProps.match.params.station !== this.props.match.params.station) {
-      this.getAbfahrten().then(() => {
-        this.setState({
-          scrolled: false,
-        });
-      });
+      this.getAbfahrten();
     }
     this.checkScroll();
   }
@@ -157,7 +153,7 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
         location.state && location.state.searchType
       );
     } finally {
-      this.setState({ loading: false });
+      this.setState({ loading: false, scrolled: false });
     }
   };
   render() {
