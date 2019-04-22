@@ -1,17 +1,18 @@
 import { addMilliseconds, differenceInMinutes, parse } from 'date-fns';
 import { flatten } from 'lodash';
+import { HafasResponse, LocL, ProdL } from 'types/hafas';
+import {
+  OutConL,
+  SecL,
+  StopL,
+  TripSearchResponse,
+} from 'types/hafas/TripSearch';
 import {
   Route,
   Route$Arrival,
   Route$Departure,
   Route$JourneySegment,
   Route$Stop,
-  SRoute$Journey,
-  SRoute$JourneySegment,
-  SRoute$LocL,
-  SRoute$Product,
-  SRoute$Result,
-  SRoute$StopL,
 } from 'types/routing';
 import { Station } from 'types/station';
 
@@ -47,16 +48,12 @@ function parseFullStation(fullStation: string): Station {
 }
 
 class Journey {
-  raw: SRoute$Journey;
+  raw: OutConL;
   date: number;
   journey: Route;
-  prodL: SRoute$Product[];
+  prodL: ProdL[];
   locL: Station[];
-  constructor(
-    raw: SRoute$Journey,
-    prodL: SRoute$Product[],
-    locL: SRoute$LocL[]
-  ) {
+  constructor(raw: OutConL, prodL: ProdL[], locL: LocL[]) {
     this.raw = raw;
     this.prodL = prodL;
     this.locL = locL.map(l => ({
@@ -80,7 +77,7 @@ class Journey {
       raw: global.PROD ? undefined : raw,
     };
   }
-  parseStops = (stops?: SRoute$StopL[]): Route$Stop[] | undefined => {
+  parseStops = (stops?: StopL[]): Route$Stop[] | undefined => {
     if (!stops) return;
 
     return stops.map(stop => {
@@ -96,9 +93,7 @@ class Journey {
       };
     });
   };
-  parseSegment = (
-    t: SRoute$JourneySegment
-  ): undefined | Route$JourneySegment => {
+  parseSegment = (t: SecL): undefined | Route$JourneySegment => {
     switch (t.type) {
       case 'JNY': {
         const [
@@ -210,8 +205,8 @@ class Journey {
   }
 }
 
-export default (r: SRoute$Result): Route[] => {
-  const result = r.svcResL.map<any>(svc =>
+export default (r: HafasResponse<TripSearchResponse>): Route[] => {
+  const result = r.svcResL.map(svc =>
     svc.res.outConL.map(
       j => new Journey(j, svc.res.common.prodL, svc.res.common.locL).journey
     )

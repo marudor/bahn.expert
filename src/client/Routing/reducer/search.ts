@@ -10,7 +10,7 @@ export type State = {
 };
 
 const defaultState: State = {
-  date: new Date(0),
+  date: new Date(),
 };
 
 export default createReducer(defaultState, handle => [
