@@ -3,6 +3,7 @@ import { Abfahrt } from 'types/abfahrten';
 import { AbfahrtenThunkResult } from 'AppState';
 import { createAction } from 'deox';
 import { Reihung, Wagenreihung } from 'types/reihung';
+import { subMinutes } from 'date-fns';
 import axios from 'axios';
 
 const Actions = {

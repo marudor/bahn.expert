@@ -1,4 +1,4 @@
-import { JourneyDetailsRequest } from 'types/hafas/JourneyDetails';
+import { JourneyDetailsRequest } from 'types/HAFAS/JourneyDetails';
 import makeRequest from './Request';
 
 export default (jid: string) => {

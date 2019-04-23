@@ -1,10 +1,10 @@
-import { HafasResponse, SingleHafasRequest } from 'types/hafas';
+import { HafasResponse, SingleHafasRequest } from 'types/HAFAS';
 import {
   JourneyDetailsRequest,
   JourneyDetailsResponse,
-} from 'types/hafas/JourneyDetails';
-import { LocMatchRequest, LocMatchResponse } from 'types/hafas/LocMatch';
-import { TripSearchRequest, TripSearchResponse } from 'types/hafas/TripSearch';
+} from 'types/HAFAS/JourneyDetails';
+import { LocMatchRequest, LocMatchResponse } from 'types/HAFAS/LocMatch';
+import { TripSearchRequest, TripSearchResponse } from 'types/HAFAS/TripSearch';
 import axios from 'axios';
 import Crypto from 'crypto';
 
@@ -52,8 +52,8 @@ const mgateUrl = 'https://reiseauskunft.bahn.de/bin/mgate.exe';
 
 function createRequest(req: SingleHafasRequest) {
   const data = {
-    client: { id: 'DB', v: '18120000', type: 'IPH', name: 'DB Navigator' },
-    ext: 'DB.R18.06.a',
+    client: { id: 'DB', v: '19040000', type: 'AND', name: 'DB Navigator' },
+    ext: 'DB.R19.04.a',
     lang: 'de',
     ver: '1.20',
     svcReqL: [req],

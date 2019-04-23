@@ -2,7 +2,7 @@ import { flatten, uniqBy } from 'lodash';
 import { logger } from 'server/logger';
 import { Station } from 'types/station';
 import { StationSearchType } from 'Common/config';
-import DBNavigatorSearch from 'server/HAFAS/Station';
+import DBNavigatorSearch from 'server/HAFAS/LocMatch';
 import FavendoSearch from './Favendo';
 import HafasSearch from './Hafas';
 import NodeCache from 'node-cache';

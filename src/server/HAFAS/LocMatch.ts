@@ -1,5 +1,5 @@
-import { HafasResponse } from 'types/hafas';
-import { LocMatchRequest, LocMatchResponse } from 'types/hafas/LocMatch';
+import { HafasResponse } from 'types/HAFAS';
+import { LocMatchRequest, LocMatchResponse } from 'types/HAFAS/LocMatch';
 import { Station } from 'types/station';
 import makeRequest from './Request';
 

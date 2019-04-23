@@ -1,5 +1,5 @@
 import { testHamburgSearch } from './common';
-import DBNavigatorSearch from 'server/HAFAS/Station';
+import DBNavigatorSearch from 'server/HAFAS/LocMatch';
 import exampleRespone from './__fixtures__/DBNavigator.example';
 import Nock from 'nock';
 

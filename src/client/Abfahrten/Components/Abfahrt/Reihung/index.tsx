@@ -5,7 +5,7 @@ import { getReihung } from 'Abfahrten/actions/reihung';
 import { getReihungForId } from 'Abfahrten/selector/reihung';
 import { Reihung } from 'types/reihung';
 import Gruppe from './Gruppe';
-import Loading from 'Abfahrten/Components/Loading';
+import Loading from 'Common/Components/Loading';
 import React from 'react';
 import Sektor from './Sektor';
 import styles from './index.styles';

@@ -57,7 +57,6 @@ lint:
       - node_modules/
 
 tsc:
-  image: node:10
   stage: test
   script: yarn tsc
   cache:

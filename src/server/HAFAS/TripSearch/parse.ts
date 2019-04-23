@@ -1,12 +1,13 @@
 import { addMilliseconds, differenceInMinutes, parse } from 'date-fns';
-import { flatten } from 'lodash';
-import { HafasResponse, LocL, ProdL } from 'types/hafas';
+import { Common, HafasResponse, LocL, ProdL } from 'types/HAFAS';
 import {
+  DTrnCmpSX,
   OutConL,
   SecL,
   StopL,
   TripSearchResponse,
-} from 'types/hafas/TripSearch';
+} from 'types/HAFAS/TripSearch';
+import { flatten } from 'lodash';
 import {
   Route,
   Route$Arrival,
@@ -51,12 +52,12 @@ class Journey {
   raw: OutConL;
   date: number;
   journey: Route;
-  prodL: ProdL[];
+  common: Common;
   locL: Station[];
-  constructor(raw: OutConL, prodL: ProdL[], locL: LocL[]) {
+  constructor(raw: OutConL, common: Common) {
     this.raw = raw;
-    this.prodL = prodL;
-    this.locL = locL.map(l => ({
+    this.common = common;
+    this.locL = common.locL.map(l => ({
       title: l.name,
       id: l.extId,
     }));
@@ -93,6 +94,32 @@ class Journey {
       };
     });
   };
+  parseAuslastung(dTrnCmpSX: DTrnCmpSX) {
+    const tcocL = this.common.tcocL;
+
+    if (!tcocL) return;
+    const auslastung: {
+      first?: number;
+      second?: number;
+    } = {};
+
+    dTrnCmpSX.tcocX.forEach(i => {
+      const a = tcocL[i];
+
+      switch (a.c) {
+        case 'FIRST':
+          auslastung.first = a.r;
+          break;
+        case 'SECOND':
+          auslastung.second = a.r;
+          break;
+        default:
+          break;
+      }
+    });
+
+    return auslastung;
+  }
   parseSegment = (t: SecL): undefined | Route$JourneySegment => {
     switch (t.type) {
       case 'JNY': {
@@ -119,7 +146,7 @@ class Journey {
         const { scheduledArrival, ...arrival } = this.parseArrival(t.arr);
         const { scheduledDeparture, ...departure } = this.parseDeparture(t.dep);
 
-        const product = this.prodL[t.jny.prodX];
+        const product = this.common.prodL[t.jny.prodX];
 
         return {
           train: product.addName || product.name,
@@ -137,6 +164,15 @@ class Journey {
             scheduledDeparture &&
             scheduledArrival - scheduledDeparture,
           finalDestination: t.jny.dirTxt,
+          jid: t.jny.jid,
+          // messages: t.jny.msgL.map(m => ({
+          //   ...m,
+          //   remXX: this.common.remL[m.remX],
+          // })),
+          auslastung: this.parseAuslastung(t.jny.dTrnCmpSX),
+          // reservationStatus: t.resState,
+          // reservationRecommandation: t.resRecommendation,
+          // icoX: this.common.icoL[t.icoX],
           product: global.PROD ? undefined : product,
           raw: global.PROD ? undefined : t,
         };
@@ -207,9 +243,7 @@ class Journey {
 
 export default (r: HafasResponse<TripSearchResponse>): Route[] => {
   const result = r.svcResL.map(svc =>
-    svc.res.outConL.map(
-      j => new Journey(j, svc.res.common.prodL, svc.res.common.locL).journey
-    )
+    svc.res.outConL.map(j => new Journey(j, svc.res.common).journey)
   );
 
   return flatten(result);

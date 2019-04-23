@@ -15,13 +15,17 @@ export const getRoutes = (
   date: Date
 ): RoutingThunkResult => async dispatch => {
   dispatch(Actions.gotRoutes());
-  const route = (await axios.post('/api/route', {
-    start,
-    destination,
-    time: date.getTime(),
-  })).data;
+  try {
+    const route = (await axios.post('/api/route', {
+      start,
+      destination,
+      time: date.getTime(),
+    })).data;
 
-  dispatch(Actions.gotRoutes(route));
+    dispatch(Actions.gotRoutes(route));
+  } catch (e) {
+    dispatch(Actions.gotRoutes([]));
+  }
 };
 
 export default Actions;

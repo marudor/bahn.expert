@@ -3,7 +3,6 @@ import { connect, ResolveThunks } from 'react-redux';
 import { Departures } from 'types/abfahrten';
 import { getAbfahrtenForConfig } from 'Abfahrten/selector/abfahrten';
 import { match } from 'react-router';
-import { Paper } from '@material-ui/core';
 import { Redirect } from 'react-router';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { Station } from 'types/station';
@@ -13,7 +12,7 @@ import Actions, {
   getAbfahrtenByString,
   refreshCurrentAbfahrten,
 } from 'Abfahrten/actions/abfahrten';
-import Loading from './Loading';
+import Loading from 'Common/Components/Loading';
 import React from 'react';
 import withStyles, { WithStyles } from 'react-jss';
 

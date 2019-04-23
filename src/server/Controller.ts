@@ -15,7 +15,7 @@ import createAuslastung from './Auslastung';
 import JourneyDetails from './HAFAS/JourneyDetails';
 import KoaRouter from 'koa-router';
 import makeRequest from './HAFAS/Request';
-import routing from './HAFAS/Routing';
+import routing from './HAFAS/TripSearch';
 import stationSearch from './Search';
 import wingInfo from './Abfahrten/wings';
 
