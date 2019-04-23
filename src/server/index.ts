@@ -5,6 +5,5 @@ if (!process.env.BASE_URL) {
 global.PROD = process.env.NODE_ENV === 'production';
 global.SERVER = true;
 
-require('@material-ui/styles').install();
 require('./localStorageMock');
 require('./app').default();

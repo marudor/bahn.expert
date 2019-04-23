@@ -5,7 +5,6 @@ import { getLageplan, openFilter } from 'Abfahrten/actions/abfahrten';
 import { IconButton } from '@material-ui/core';
 import { openSettings } from 'Abfahrten/actions/config';
 import { Station } from 'types/station';
-import { withSnackbar, WithSnackbarProps } from 'notistack';
 import ActionMenu from '@material-ui/icons/Menu';
 import FilterList from '@material-ui/icons/FilterList';
 import FilterModal from './FilterModal';
@@ -32,7 +31,7 @@ type DispatchProps = ResolveThunks<{
 
 type ReduxProps = StateProps & DispatchProps;
 
-type Props = ReduxProps & WithSnackbarProps;
+type Props = ReduxProps;
 type State = {
   anchor?: HTMLElement;
 };
@@ -56,33 +55,27 @@ class ExtraMenu extends React.PureComponent<Props> {
     });
   };
   openLageplan = async () => {
-    const {
-      lageplan,
-      getLageplan,
-      currentStation,
-      enqueueSnackbar,
-      closeSnackbar,
-    } = this.props;
+    const { lageplan, getLageplan, currentStation } = this.props;
 
     if (lageplan === undefined && currentStation) {
-      const snackId = enqueueSnackbar(
-        `Lade Gleisplan für ${currentStation.title}`,
-        { variant: 'info' }
-      );
+      // const snackId = enqueueSnackbar(
+      //   `Lade Gleisplan für ${currentStation.title}`,
+      //   { variant: 'info' }
+      // );
       const fetchedLageplan = await getLageplan(currentStation.title);
 
-      if (snackId) {
-        if (fetchedLageplan) {
-          closeSnackbar(snackId);
-          window.open(fetchedLageplan, '_blank');
-        } else {
-          closeSnackbar(snackId);
-          enqueueSnackbar(
-            `Kein Gleisplan vorhanden für ${currentStation.title}`,
-            { variant: 'error' }
-          );
-        }
-      }
+      // if (snackId) {
+      //   if (fetchedLageplan) {
+      //     closeSnackbar(snackId);
+      //     window.open(fetchedLageplan, '_blank');
+      //   } else {
+      //     closeSnackbar(snackId);
+      //     enqueueSnackbar(
+      //       `Kein Gleisplan vorhanden für ${currentStation.title}`,
+      //       { variant: 'error' }
+      //     );
+      //   }
+      // }
     } else if (lageplan) {
       window.open(lageplan, '_blank');
     }
@@ -156,4 +149,4 @@ export default connect<StateProps, DispatchProps, {}, AbfahrtenState>(
     getLageplan,
     openFilter,
   }
-)(withSnackbar(ExtraMenu));
+)(ExtraMenu);

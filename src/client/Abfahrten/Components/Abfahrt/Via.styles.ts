@@ -1,7 +1,5 @@
-import { cancelled, changed } from 'style/mixins';
-import { createStyles } from '@material-ui/core';
-import { red } from 'style/colors';
-export default createStyles({
+import { createStyles } from '@material-ui/styles';
+export default createStyles(theme => ({
   main: {
     fontSize: '2.1em',
     overflow: 'hidden',
@@ -12,13 +10,13 @@ export default createStyles({
     whiteSpace: 'inherit',
   },
   info: {
-    color: red,
+    color: theme.colors.red,
     overflow: 'hidden',
     textOverflow: 'ellipsis',
   },
-  additional: changed,
+  additional: theme.mixins.changed,
   hbf: {
     fontWeight: 'bold',
   },
-  cancelled,
-});
+  cancelled: theme.mixins.cancelled,
+}));

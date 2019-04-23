@@ -1,4 +1,3 @@
-import { cancelled, delayed } from 'style/mixins';
 import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import cc from 'classnames';
 import React from 'react';
@@ -28,9 +27,9 @@ const Platform = ({
   </span>
 );
 
-const styles = createStyles({
-  cancelled,
-  delayed,
-});
+const styles = createStyles(theme => ({
+  cancelled: theme.mixins.cancelled,
+  delayed: theme.mixins.delayed,
+}));
 
-export default withStyles(styles)(Platform);
+export default withStyles(styles, { withTheme: true })(Platform);

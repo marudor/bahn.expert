@@ -1,7 +1,6 @@
 import { createStyles } from '@material-ui/styles';
-import { red } from 'style/colors';
 
-export default createStyles({
+export default createStyles(theme => ({
   main: {
     flex: 1,
     fontSize: '3em',
@@ -10,7 +9,7 @@ export default createStyles({
     flexDirection: 'column',
   },
   cancelled: {
-    color: red,
+    color: theme.colors.red,
     textDecoration: 'none',
   },
-});
+}));

@@ -31,29 +31,7 @@ export type ReduxProps = OwnProps & StateProps & DispatchProps;
 
 export type Props = ReduxProps & WithStyles<typeof styles>;
 
-function scrollToDetail(selectedDetail: string) {
-  if (selectedDetail) {
-    const detailDom = document.getElementById(selectedDetail);
-
-    if (detailDom) {
-      const scrollIntoView = () =>
-        setTimeout(() => detailDom.scrollIntoView(false));
-
-      if (document.readyState === 'complete') {
-        scrollIntoView();
-      } else {
-        window.addEventListener('load', scrollIntoView);
-      }
-    }
-  }
-}
-
 class BaseAbfahrt extends React.PureComponent<Props> {
-  // componentDidMount() {
-  //   const { detail, abfahrt } = this.props;
-
-  //   if (detail) scrollToDetail(abfahrt.id);
-  // }
   setDetail = () => {
     this.props.setDetail(this.props.abfahrt.id);
   };

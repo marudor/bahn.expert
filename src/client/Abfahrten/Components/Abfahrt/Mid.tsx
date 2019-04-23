@@ -35,4 +35,4 @@ const Mid = ({ abfahrt, detail, classes }: Props) => (
   </div>
 );
 
-export default React.memo(withStyles(styles)(Mid));
+export default React.memo(withStyles(styles, { withTheme: true })(Mid));

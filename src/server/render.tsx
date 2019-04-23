@@ -5,22 +5,20 @@ import { HelmetProvider } from 'react-helmet-async';
 import { isEnabled } from 'unleash-client';
 import { MarudorConfigSanitize } from 'Common/config';
 import { matchRoutes } from 'react-router-config';
-import { MuiThemeProvider } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
 import { renderStylesToString } from 'emotion-server';
 import { renderToString } from 'react-dom/server';
-import { SheetsRegistry } from 'jss';
+import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles';
 import { StaticRouter } from 'react-router-dom';
 import { StaticRouterContext } from 'react-router';
-import { StylesProvider } from '@material-ui/styles';
 import abfahrtenRoutes from 'Abfahrten/routes';
 import Actions, { setCookies } from 'Abfahrten/actions/config';
 import createStore from 'client/createStore';
-import createStyleProviderProps from 'client/createStylesProviderProps';
-import createTheme from 'client/createTheme';
 import ejs from 'ejs';
 import fs from 'fs';
 import MainApp from 'client/App';
+import maruTheme from 'client/Themes';
+import muiTheme from 'client/Themes/mui';
 import path from 'path';
 import React from 'react';
 import routingRoutes from 'Routing/routes';
@@ -39,8 +37,6 @@ const footerEjs = fs
 const footerTemplate = ejs.compile(footerEjs);
 
 export default async (ctx: Context) => {
-  const theme = createTheme();
-  const sheetsManager = new Map();
   const routeContext: StaticRouterContext = {};
   const helmetContext: any = {};
 
@@ -84,27 +80,20 @@ export default async (ctx: Context) => {
     })
   );
 
-  const sheetsRegistry = new SheetsRegistry();
-
   const App = (
     <Provider store={store}>
-      <StylesProvider
-        sheetsRegistry={sheetsRegistry}
-        sheetsManager={sheetsManager}
-        {...createStyleProviderProps()}
-      >
-        <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
-          <HelmetProvider context={helmetContext}>
-            <StaticRouter location={ctx.path} context={routeContext}>
-              <MainApp />
-            </StaticRouter>
-          </HelmetProvider>
-        </MuiThemeProvider>
-      </StylesProvider>
+      <ThemeProvider theme={{ ...muiTheme, ...maruTheme }}>
+        <HelmetProvider context={helmetContext}>
+          <StaticRouter location={ctx.path} context={routeContext}>
+            <MainApp />
+          </StaticRouter>
+        </HelmetProvider>
+      </ThemeProvider>
     </Provider>
   );
 
-  const app = renderStylesToString(renderToString(App));
+  const sheets = new ServerStyleSheets();
+  const app = renderStylesToString(renderToString(sheets.collect(App)));
 
   if (routeContext.url) {
     ctx.redirect(routeContext.url);
@@ -126,7 +115,7 @@ export default async (ctx: Context) => {
 
     ctx.body += footerTemplate({
       jsBundles: ctx.stats.main.js,
-      jssCss: sheetsRegistry.toString(),
+      jssCss: sheets.toString(),
     });
   }
 };

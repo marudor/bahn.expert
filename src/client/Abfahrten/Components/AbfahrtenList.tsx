@@ -30,12 +30,14 @@ type StateProps = {
 const InnerAbfahrten = ({ abfahrten, classes }: InnerAbfahrtenProps) =>
   abfahrten && (abfahrten.lookahead.length || abfahrten.lookbehind.length) ? (
     <>
-      <div id="lookbehind" className={classes.lookbehind}>
-        {abfahrten.lookbehind.map(
-          a => a && <Abfahrt abfahrt={a} key={a.rawId} />
-        )}
-        <div className={classes.lookaheadMarker} id="lookaheadMarker" />
-      </div>
+      {Boolean(abfahrten.lookbehind.length) && (
+        <div id="lookbehind" className={classes.lookbehind}>
+          {abfahrten.lookbehind.map(
+            a => a && <Abfahrt abfahrt={a} key={a.rawId} />
+          )}
+          <div className={classes.lookaheadMarker} id="lookaheadMarker" />
+        </div>
+      )}
       <div id="lookahead" className={classes.lookahead}>
         {abfahrten.lookahead.map(
           a => a && <Abfahrt abfahrt={a} key={a.rawId} />
@@ -179,7 +181,7 @@ const styles = createStyles({
     display: 'flex',
     flexDirection: 'column',
     overflowX: 'auto',
-    marginTop: 56,
+    marginTop: 48,
     '& > h1': {
       display: 'none',
     },

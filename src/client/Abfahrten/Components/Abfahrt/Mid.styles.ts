@@ -1,7 +1,6 @@
 import { createStyles } from '@material-ui/styles';
-import { red } from 'style/colors';
 
-export default createStyles({
+export default createStyles(theme => ({
   detail: {
     whiteSpace: 'normal!important' as 'normal',
   },
@@ -22,6 +21,6 @@ export default createStyles({
     textOverflow: 'ellipsis',
   },
   different: {
-    color: red,
+    color: theme.colors.red,
   },
-});
+}));
