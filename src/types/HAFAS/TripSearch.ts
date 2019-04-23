@@ -131,7 +131,7 @@ export interface Jny {
   ctxRecon: string;
   dTrnCmpSXmsgL: MsgL[];
   subscr: string;
-  dTrnCmpSX: DTrnCmpSX;
+  dTrnCmpSX?: DTrnCmpSX;
   freq: Freq;
 }
 
