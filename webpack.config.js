@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
-const ReactJssHmrPlugin = require('react-jss-hmr/webpack');
+// const ReactJssHmrPlugin = require('react-jss-hmr/webpack');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
@@ -73,10 +73,10 @@ module.exports = {
   mode: isDev ? 'development' : 'production',
   devtool: isDev ? 'cheap-module-eval-source-map' : false,
   entry: {
-    main: ['./src/client/index.tsx'],
+    main: ['./src/client/entry.ts'],
   },
   resolve: {
-    plugins: [new ReactJssHmrPlugin()],
+    // plugins: [new ReactJssHmrPlugin()],
     modules: ['node_modules', path.resolve(__dirname, 'src')],
     extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'],
     alias: {

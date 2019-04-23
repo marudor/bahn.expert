@@ -1,5 +1,6 @@
 import { AbfahrtenState } from 'AppState';
 import { connect } from 'react-redux';
+import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { Link } from 'react-router-dom';
 import {
   Redirect,
@@ -13,7 +14,6 @@ import Actions, { AbfahrtenError } from 'Abfahrten/actions/abfahrten';
 import FavEntry, { styles as FavEntryStyles } from './FavEntry';
 import MostUsed from './MostUsed';
 import React from 'react';
-import withStyles, { WithStyles } from 'react-jss';
 
 type DispatchProps = {
   setCurrentStation: typeof Actions.setCurrentStation;
@@ -88,7 +88,7 @@ class FavList extends React.PureComponent<Props> {
   }
 }
 
-const styles = {
+const styles = createStyles({
   main: {
     marginTop: 64,
     display: 'flex',
@@ -96,7 +96,7 @@ const styles = {
     flex: 1,
   },
   favEntry: FavEntryStyles.main,
-};
+});
 
 export default connect<StateProps, DispatchProps, {}, AbfahrtenState>(
   state => ({

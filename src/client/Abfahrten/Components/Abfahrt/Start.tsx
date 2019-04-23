@@ -1,10 +1,10 @@
 import { Abfahrt } from 'types/abfahrten';
+import { withStyles, WithStyles } from '@material-ui/styles';
 import Auslastung from './Auslastung';
 import CheckInLink from './CheckInLink';
 import React from 'react';
 import styles from './Start.styles';
 import Substitute from './Substitute';
-import withStyles, { WithStyles } from 'react-jss';
 
 type OwnProps = {
   abfahrt: Abfahrt;

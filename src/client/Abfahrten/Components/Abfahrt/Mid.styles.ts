@@ -1,8 +1,9 @@
+import { createStyles } from '@material-ui/styles';
 import { red } from 'style/colors';
 
-export default {
+export default createStyles({
   detail: {
-    whiteSpace: 'normal !important',
+    whiteSpace: 'normal!important' as 'normal',
   },
   main: {
     display: 'flex',
@@ -23,4 +24,4 @@ export default {
   different: {
     color: red,
   },
-};
+});

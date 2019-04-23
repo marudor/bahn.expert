@@ -4,7 +4,7 @@ import { fav, unfav } from 'Abfahrten/actions/fav';
 import { getLageplan } from 'Abfahrten/actions/abfahrten';
 import { openSettings } from 'Abfahrten/actions/config';
 import { Station } from 'types/station';
-import { withSnackbar, withSnackbarProps } from 'notistack';
+import { withSnackbar, WithSnackbarProps } from 'notistack';
 import IconButton from '@material-ui/core/IconButton';
 import Layers from '@material-ui/icons/Layers';
 import LayersClear from '@material-ui/icons/LayersClear';
@@ -28,7 +28,7 @@ type DispatchProps = ResolveThunks<{
 
 type ReduxProps = StateProps & DispatchProps;
 
-type Props = ReduxProps & withSnackbarProps;
+type Props = ReduxProps & WithSnackbarProps;
 
 class HeaderButtons extends React.PureComponent<Props> {
   toggleFav = () => {

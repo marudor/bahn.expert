@@ -3,13 +3,12 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { MuiThemeProvider } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
+import { StylesProvider, ThemeProvider } from '@material-ui/styles';
 import axios from 'axios';
-import createJssProviderProps from './createJssProviderProps';
 import createStore from './createStore';
+import createStyleProviderProps from './createStylesProviderProps';
 import createTheme from './createTheme';
-import JssProvider from 'react-jss/lib/JssProvider';
 import MainApp from './App';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -25,15 +24,15 @@ const store = createStore();
 
 const render = (App: React.ComponentType) => (
   <Provider store={store}>
-    <JssProvider {...createJssProviderProps()}>
-      <MuiThemeProvider theme={theme}>
+    <StylesProvider {...createStyleProviderProps}>
+      <ThemeProvider theme={theme}>
         <HelmetProvider context={{}}>
           <BrowserRouter>
             <App />
           </BrowserRouter>
         </HelmetProvider>
-      </MuiThemeProvider>
-    </JssProvider>
+      </ThemeProvider>
+    </StylesProvider>
   </Provider>
 );
 

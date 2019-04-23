@@ -1,6 +1,7 @@
 import { cancelled } from 'style/mixins';
+import { createStyles } from '@material-ui/styles';
 
-export default {
+export default createStyles({
   time: {
     alignItems: 'flex-end',
   },
@@ -13,4 +14,4 @@ export default {
     },
   },
   cancelled,
-};
+});

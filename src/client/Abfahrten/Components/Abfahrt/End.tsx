@@ -1,8 +1,8 @@
 import { Abfahrt } from 'types/abfahrten';
+import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import Platform from 'Common/Components/Platform';
 import React from 'react';
 import Times from './Times';
-import withStyles, { WithStyles } from 'react-jss';
 
 type OwnProps = {
   abfahrt: Abfahrt;
@@ -20,7 +20,7 @@ const End = ({ abfahrt, detail, classes }: Props) => (
   </div>
 );
 
-const styles = {
+const styles = createStyles({
   main: {
     fontSize: '2.5em',
     alignItems: 'flex-end',
@@ -29,6 +29,6 @@ const styles = {
     justifyContent: 'space-between',
     marginLeft: '1em',
   },
-};
+});
 
 export default React.memo(withStyles(styles)(End));

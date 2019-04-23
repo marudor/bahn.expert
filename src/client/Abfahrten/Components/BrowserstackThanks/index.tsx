@@ -1,7 +1,7 @@
+import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import logo from './Browserstack-logo.svg';
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import withStyles, { WithStyles } from 'react-jss';
 
 type Props = WithStyles<typeof styles>;
 
@@ -18,13 +18,13 @@ const BrowserstackThanks = ({ classes }: Props) => (
   </span>
 );
 
-export const styles = {
+export const styles = createStyles({
   main: {
     marginTop: '2em',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-};
+});
 
 export default React.memo(withStyles(styles)(BrowserstackThanks));

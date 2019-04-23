@@ -8,11 +8,11 @@ import {
   Switch,
 } from '@material-ui/core';
 import { connect, ResolveThunks } from 'react-redux';
+import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { getAllTrainTypes } from 'Abfahrten/selector/abfahrten';
 import { setDefaultFilter } from 'Abfahrten/actions/config';
 import AbfahrtenActions, { closeFilter } from 'Abfahrten/actions/abfahrten';
 import React, { SyntheticEvent } from 'react';
-import withStyles, { WithStyles } from 'react-jss';
 
 type StateProps = {
   open: boolean;
@@ -83,11 +83,11 @@ const FilterModal = ({
   );
 };
 
-const styles = {
+const styles = createStyles({
   label: {
     width: 'calc(50% - 1em)',
   },
-};
+});
 
 export default connect<StateProps, DispatchProps, {}, AbfahrtenState>(
   state => ({

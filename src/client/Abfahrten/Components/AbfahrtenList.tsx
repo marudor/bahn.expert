@@ -1,5 +1,6 @@
 import { AbfahrtenState, AppStore } from 'AppState';
 import { connect, ResolveThunks } from 'react-redux';
+import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { Departures } from 'types/abfahrten';
 import { getAbfahrtenForConfig } from 'Abfahrten/selector/abfahrten';
 import { match } from 'react-router';
@@ -14,7 +15,6 @@ import Actions, {
 } from 'Abfahrten/actions/abfahrten';
 import Loading from 'Common/Components/Loading';
 import React from 'react';
-import withStyles, { WithStyles } from 'react-jss';
 
 type InnerAbfahrtenProps = {
   abfahrten?: Departures;
@@ -174,7 +174,7 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
   }
 }
 
-const styles = {
+const styles = createStyles({
   main: {
     display: 'flex',
     flexDirection: 'column',
@@ -195,7 +195,7 @@ const styles = {
     paddingTop: 10,
     backgroundColor: 'lightgray',
   },
-};
+});
 
 export default connect<StateProps, DispatchProps, {}, AbfahrtenState>(
   state => ({

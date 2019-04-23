@@ -1,10 +1,10 @@
+import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { formatDuration } from 'Routing/util';
 import { Route as RouteType } from 'types/routing';
 import Paper from '@material-ui/core/Paper';
 import React, { SyntheticEvent } from 'react';
 import RouteSegments from './RouteSegments';
 import Time from 'Common/Components/Time';
-import withStyles, { WithStyles } from 'react-jss';
 
 type OwnProps = {
   route: RouteType;
@@ -54,7 +54,7 @@ export const gridStyle = {
   display: 'grid',
   marginBottom: '.2em',
 };
-const styles = {
+const styles = createStyles({
   main: {
     minHeight: '3em',
     gridTemplateRows: '2.5em 1fr',
@@ -73,6 +73,6 @@ const styles = {
       marginRight: '.2em',
     },
   },
-};
+});
 
 export default withStyles(styles)(Route);

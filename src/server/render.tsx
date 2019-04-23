@@ -9,16 +9,17 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
 import { renderStylesToString } from 'emotion-server';
 import { renderToString } from 'react-dom/server';
+import { SheetsRegistry } from 'jss';
 import { StaticRouter } from 'react-router-dom';
 import { StaticRouterContext } from 'react-router';
+import { StylesProvider } from '@material-ui/styles';
 import abfahrtenRoutes from 'Abfahrten/routes';
 import Actions, { setCookies } from 'Abfahrten/actions/config';
-import createJssProviderProps from 'client/createJssProviderProps';
 import createStore from 'client/createStore';
+import createStyleProviderProps from 'client/createStylesProviderProps';
 import createTheme from 'client/createTheme';
 import ejs from 'ejs';
 import fs from 'fs';
-import JssProvider from 'react-jss/lib/JssProvider';
 import MainApp from 'client/App';
 import path from 'path';
 import React from 'react';
@@ -69,7 +70,11 @@ export default async (ctx: Context) => {
 
   await Promise.all(
     matchRoutes(routes, ctx.path).map(({ route, match }) => {
-      const component: any = route.component;
+      let component: any = route.component;
+
+      while (component && (component.Naked || component.WrappedComponent)) {
+        component = component.Naked || component.WrappedComponent;
+      }
 
       if (component && component.loadData) {
         return component.loadData(store, match);
@@ -79,11 +84,15 @@ export default async (ctx: Context) => {
     })
   );
 
-  const jssProps = createJssProviderProps();
+  const sheetsRegistry = new SheetsRegistry();
 
   const App = (
     <Provider store={store}>
-      <JssProvider {...jssProps}>
+      <StylesProvider
+        sheetsRegistry={sheetsRegistry}
+        sheetsManager={sheetsManager}
+        {...createStyleProviderProps()}
+      >
         <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
           <HelmetProvider context={helmetContext}>
             <StaticRouter location={ctx.path} context={routeContext}>
@@ -91,7 +100,7 @@ export default async (ctx: Context) => {
             </StaticRouter>
           </HelmetProvider>
         </MuiThemeProvider>
-      </JssProvider>
+      </StylesProvider>
     </Provider>
   );
 
@@ -114,11 +123,10 @@ export default async (ctx: Context) => {
       clientState: serialize(state),
     });
     ctx.body += app;
-    const jssCss = jssProps.registry ? jssProps.registry.toString() : undefined;
 
     ctx.body += footerTemplate({
       jsBundles: ctx.stats.main.js,
-      jssCss,
+      jssCss: sheetsRegistry.toString(),
     });
   }
 };

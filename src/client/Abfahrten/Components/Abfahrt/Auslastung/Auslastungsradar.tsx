@@ -3,6 +3,7 @@ import { Abfahrt } from 'types/abfahrten';
 import { AbfahrtenState } from 'AppState';
 import { AuslastungsValue } from 'types/auslastung';
 import { connect, ResolveThunks } from 'react-redux';
+import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { getAuslastung } from 'Abfahrten/actions/auslastung';
 import { getAuslastungForIdAndStation } from 'Abfahrten/selector/auslastung';
 import Close from '@material-ui/icons/Close';
@@ -11,7 +12,6 @@ import ErrorOutline from '@material-ui/icons/ErrorOutline';
 import Help from '@material-ui/icons/Help';
 import Loading from 'Common/Components/Loading';
 import Tooltip from '@material-ui/core/Tooltip';
-import withStyles, { WithStyles } from 'react-jss';
 
 type StateProps = {
   auslastung?: null | {
@@ -120,7 +120,7 @@ const getColor = (auslastung?: null | AuslastungsValue) => ({
   color: auslastung === 1 ? 'black' : 'white',
 });
 
-export const styles = {
+export const styles = createStyles({
   main: {
     display: 'flex',
     marginBottom: '.3em',
@@ -144,7 +144,7 @@ export const styles = {
     getColor(props.auslastung && props.auslastung.first),
   second: (props: ReduxProps) =>
     getColor(props.auslastung && props.auslastung.second),
-};
+});
 
 export default connect<StateProps, DispatchProps, OwnProps, AbfahrtenState>(
   (state, props) => ({

@@ -1,6 +1,6 @@
+import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { Sektor } from 'types/reihung';
 import React from 'react';
-import withStyles, { WithStyles } from 'react-jss';
 
 type OwnProps = {
   sektor: Sektor;
@@ -28,12 +28,12 @@ const SektorComp = ({ sektor, scale, correctLeft, classes }: Props) => {
   );
 };
 
-const styles = {
+const styles = createStyles({
   main: {
     position: 'absolute',
     fontWeight: 'bolder',
     textAlign: 'center',
   },
-};
+});
 
 export default React.memo(withStyles(styles)(SektorComp));

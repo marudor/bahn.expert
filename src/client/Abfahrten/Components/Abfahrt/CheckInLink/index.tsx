@@ -2,10 +2,10 @@ import { Abfahrt } from 'types/abfahrten';
 import { AbfahrtenState } from 'AppState';
 import { CheckInType } from 'Common/config';
 import { connect } from 'react-redux';
+import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import React from 'react';
 import TraewellingLink from './TraewellingLink';
 import TravelynxLink from './TravelynxLink';
-import withStyles, { WithStyles } from 'react-jss';
 
 type StateProps = {
   type: CheckInType;
@@ -35,12 +35,12 @@ const CheckInLink = ({ type, abfahrt, classes }: Props) => {
   }
 };
 
-export const styles = {
+export const styles = createStyles({
   link: {
     fontSize: '0.6em',
     color: 'blue',
   },
-};
+});
 
 export function preventDefault(e: React.SyntheticEvent) {
   e.stopPropagation();

@@ -1,8 +1,8 @@
+import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { Route$Stop } from 'types/routing';
 import Platform from 'Common/Components/Platform';
 import React from 'react';
 import Time from 'Common/Components/Time';
-import withStyles, { WithStyles } from 'react-jss';
 
 type OwnProps = {
   stop: Route$Stop;
@@ -29,7 +29,7 @@ const Stop = ({ stop, classes }: Props) => {
   );
 };
 
-const styles = {
+const styles = createStyles({
   main: {
     display: 'grid',
     gridTemplateColumns: '5em 1fr min-content',
@@ -44,6 +44,6 @@ const styles = {
   platform: {
     gridArea: 'p',
   },
-};
+});
 
 export default withStyles(styles)(Stop);

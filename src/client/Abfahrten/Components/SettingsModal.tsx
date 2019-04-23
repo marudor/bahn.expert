@@ -14,6 +14,7 @@ import {
   setZoomReihung,
 } from 'Abfahrten/actions/config';
 import { connect, ResolveThunks } from 'react-redux';
+import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -22,7 +23,6 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 import React, { ChangeEvent } from 'react';
 import Switch from '@material-ui/core/Switch';
 import TextField from '@material-ui/core/TextField';
-import withStyles, { WithStyles } from 'react-jss';
 
 type StateProps = {
   open: boolean;
@@ -241,7 +241,7 @@ class SettingsModal extends React.PureComponent<Props> {
   }
 }
 
-export const styles = {
+export const styles = createStyles({
   main: {
     display: 'flex',
     flexDirection: 'column',
@@ -249,7 +249,7 @@ export const styles = {
   autoUpdate: {
     width: '3em',
   },
-};
+});
 
 export default connect<StateProps, DispatchProps, void, AbfahrtenState>(
   state => ({

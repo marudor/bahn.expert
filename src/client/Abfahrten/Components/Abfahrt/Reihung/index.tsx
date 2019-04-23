@@ -4,12 +4,12 @@ import { connect, ResolveThunks } from 'react-redux';
 import { getReihung } from 'Abfahrten/actions/reihung';
 import { getReihungForId } from 'Abfahrten/selector/reihung';
 import { Reihung } from 'types/reihung';
+import { withStyles, WithStyles } from '@material-ui/styles';
 import Gruppe from './Gruppe';
 import Loading from 'Common/Components/Loading';
 import React from 'react';
 import Sektor from './Sektor';
 import styles from './index.styles';
-import withStyles, { WithStyles } from 'react-jss';
 
 type StateProps = {
   reihung: null | Reihung;

@@ -15,7 +15,8 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { RoutingState } from 'AppState';
 import { Station } from 'types/station';
 import { StationSearchType } from 'Common/config';
-import { withSnackbar, withSnackbarProps } from 'notistack';
+import { withSnackbar, WithSnackbarProps } from 'notistack';
+import { withStyles, WithStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import deLocale from 'date-fns/locale/de';
 import IconButton from '@material-ui/core/IconButton';
@@ -24,7 +25,6 @@ import searchActions, { getStationById } from 'Routing/actions/search';
 import StationSearch from 'Common/Components/StationSearch';
 import styles from './Search.styles';
 import SwapVertical from '@material-ui/icons/SwapVert';
-import withStyles, { WithStyles } from 'react-jss';
 
 type DispatchProps = ResolveThunks<{
   getStationById: typeof getStationById;
@@ -40,7 +40,7 @@ type StateProps = {
 };
 type ReduxProps = DispatchProps & StateProps;
 type Props = ReduxProps &
-  withSnackbarProps &
+  WithSnackbarProps &
   RouteComponentProps<{
     start?: string;
     destination?: string;

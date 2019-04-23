@@ -1,11 +1,11 @@
 import { Fahrzeug, FahrzeugType, SpecificType } from 'types/reihung';
+import { withStyles, WithStyles } from '@material-ui/styles';
 import ActionAccessible from '@material-ui/icons/Accessible';
 import ActionMotorcycle from '@material-ui/icons/Motorcycle';
 import cc from 'classnames';
 import MapsLocalDining from '@material-ui/icons/LocalDining';
 import React from 'react';
 import styles from './Fahrzeug.styles';
-import withStyles, { WithStyles } from 'react-jss';
 
 export type InheritedProps = {
   specificType?: SpecificType;

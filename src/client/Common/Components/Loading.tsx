@@ -1,5 +1,5 @@
 import * as React from 'react';
-import withStyles, { WithStyles } from 'react-jss';
+import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 
 type OwnProps = {
   isLoading?: boolean;
@@ -10,13 +10,18 @@ type OwnProps = {
 
 type Props = OwnProps & WithStyles<typeof styles>;
 
+export enum LoadingType {
+  grid,
+  dots,
+}
+
 function getType<C extends Record<'cube' | 'dots', string>>(
-  type: 0 | 1,
+  type: LoadingType,
   classes: C
 ) {
   switch (type) {
     default:
-    case 0:
+    case LoadingType.grid:
       return (
         <div className={classes.cube}>
           <div />
@@ -30,7 +35,7 @@ function getType<C extends Record<'cube' | 'dots', string>>(
           <div />
         </div>
       );
-    case 1:
+    case LoadingType.dots:
       return (
         <div className={classes.dots}>
           <div />
@@ -45,7 +50,7 @@ const Loading = ({
   isLoading,
   className,
   children,
-  type = 0,
+  type = LoadingType.grid,
   classes,
 }: Props) => {
   if (isLoading || !children) {
@@ -55,8 +60,8 @@ const Loading = ({
   return children;
 };
 
-export const styles = {
-  '@keyframes sk-cubeGrid': {
+export const styles = createStyles({
+  '@keyframes cube': {
     '0%,70%,100%': {
       transform: 'scale3D(1, 1, 1)',
     },
@@ -78,7 +83,7 @@ export const styles = {
       height: '33%',
       backgroundColor: '#333',
       float: 'left',
-      animation: 'sk-cubeGrid 1.3s infinite ease-in-out',
+      animation: '$cube 1.3s infinite ease-in-out',
     },
     '& > div:nth-child(1)': { animationDelay: '0.2s' },
     '& > div:nth-child(2)': { animationDelay: '0.3s' },
@@ -90,7 +95,7 @@ export const styles = {
     '& > div:nth-child(8)': { animationDelay: '0.1s' },
     '& > div:nth-child(9)': { animationDelay: '0.2s' },
   },
-  '@keyframes lds-dots': {
+  '@keyframes dots': {
     '0%': {
       top: 6,
       height: 51,
@@ -111,7 +116,7 @@ export const styles = {
       left: 6,
       width: 13,
       background: '#000',
-      animation: 'lds-dots 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite',
+      animation: '$dots 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite',
     },
     '& > div:nth-child(1)': {
       left: 6,
@@ -119,14 +124,14 @@ export const styles = {
     },
     '& > div:nth-child(2)': {
       left: 26,
-      animationDelay: '-0.12',
+      animationDelay: '-0.12s',
     },
     '& > div:nth-child(3)': {
       left: 45,
-      animationDelay: 0,
+      animationDelay: '0',
     },
   },
-};
+});
 
 const ws = withStyles(styles)(Loading);
 
