@@ -226,4 +226,4 @@ const Via = ({ abfahrt, detail, showSupersededMessages, classes }: Props) => {
 
 export default connect<StateProps, void, OwnProps, AbfahrtenState>(state => ({
   showSupersededMessages: state.config.config.showSupersededMessages,
-}))(withStyles(styles)(Via));
+}))(withStyles(styles, { withTheme: true })(Via));

@@ -90,7 +90,7 @@ class FavList extends React.PureComponent<Props> {
 
 const styles = createStyles({
   main: {
-    marginTop: 64,
+    marginTop: 48,
     display: 'flex',
     flexDirection: 'column',
     flex: 1,

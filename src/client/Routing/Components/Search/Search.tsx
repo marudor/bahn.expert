@@ -15,7 +15,6 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { RoutingState } from 'AppState';
 import { Station } from 'types/station';
 import { StationSearchType } from 'Common/config';
-import { withSnackbar, WithSnackbarProps } from 'notistack';
 import { withStyles, WithStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import deLocale from 'date-fns/locale/de';
@@ -40,7 +39,6 @@ type StateProps = {
 };
 type ReduxProps = DispatchProps & StateProps;
 type Props = ReduxProps &
-  WithSnackbarProps &
   RouteComponentProps<{
     start?: string;
     destination?: string;
@@ -74,8 +72,6 @@ const formatDate = (date: Date) => {
 };
 
 class Search extends React.PureComponent<Props> {
-  startReqId = 'startRequired';
-  destReqId = 'destRequired';
   componentDidMount() {
     const { match, getStationById } = this.props;
     const { start, destination } = match.params;
@@ -89,36 +85,11 @@ class Search extends React.PureComponent<Props> {
   }
   searchRoute = (e: SyntheticEvent) => {
     e.preventDefault();
-    const {
-      start,
-      destination,
-      getRoutes,
-      history,
-      date,
-      enqueueSnackbar,
-      closeSnackbar,
-    } = this.props;
+    const { start, destination, getRoutes, history, date } = this.props;
 
     if (start && destination) {
-      closeSnackbar(this.startReqId);
-      closeSnackbar(this.destReqId);
       getRoutes(start.id, destination.id, date);
       history.push(`/routing/${start.id}/${destination.id}`);
-    } else {
-      if (!destination) {
-        enqueueSnackbar('Ziel ist required.', {
-          autoHideDuration: 5000,
-          variant: 'error',
-          key: this.destReqId,
-        });
-      }
-      if (!start) {
-        enqueueSnackbar('Start ist required.', {
-          autoHideDuration: 5000,
-          variant: 'error',
-          key: this.startReqId,
-        });
-      }
     }
   };
   goHome = () => {
@@ -202,4 +173,4 @@ export default connect<StateProps, DispatchProps, {}, RoutingState>(
     getRoutes,
     setDate: searchActions.setDate,
   }
-)(withRouter(withSnackbar(withStyles(styles)(Search))));
+)(withRouter(withStyles(styles)(Search)));

@@ -2,7 +2,6 @@ import { AppState } from 'AppState';
 import { connect } from 'react-redux';
 import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { Route, Switch } from 'react-router-dom';
-import { SnackbarProvider } from 'notistack';
 import Abfahrten from './Abfahrten';
 import React from 'react';
 import Routing from './Routing';
@@ -24,18 +23,19 @@ class App extends React.Component<Props> {
     const { routingFeature } = this.props;
 
     return (
-      <SnackbarProvider preventDuplicate>
-        <Switch>
-          {routingFeature && <Route component={Routing} path="/routing" />}
-          <Route component={Abfahrten} path="/" />
-        </Switch>
-      </SnackbarProvider>
+      <Switch>
+        {routingFeature && <Route component={Routing} path="/routing" />}
+        <Route component={Abfahrten} path="/" />
+      </Switch>
     );
   }
 }
 
 const styles = createStyles({
   '@global': {
+    'html, body': {
+      height: '100%',
+    },
     body: {
       margin: 0,
       fontFamily: 'Roboto, sans-serif',
