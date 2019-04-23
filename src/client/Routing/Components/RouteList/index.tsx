@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { Route as RouteType } from 'types/routing';
 import { RoutingState } from 'AppState';
+import Loading from 'Common/Components/Loading';
 import React, { useState } from 'react';
 import Route from './Route';
 import RouteHeader from './RouteHeader';
@@ -15,7 +16,8 @@ type Props = StateProps & WithStyles<typeof styles>;
 const RouteList = ({ routes, classes }: Props) => {
   const [detail, setDetail] = useState<undefined | string>();
 
-  if (!routes) return null;
+  if (!routes) return <Loading />;
+  if (!routes.length) return null;
 
   return (
     <div className={classes.main}>

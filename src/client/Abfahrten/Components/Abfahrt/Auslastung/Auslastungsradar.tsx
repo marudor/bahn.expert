@@ -9,7 +9,7 @@ import Close from '@material-ui/icons/Close';
 import Done from '@material-ui/icons/Done';
 import ErrorOutline from '@material-ui/icons/ErrorOutline';
 import Help from '@material-ui/icons/Help';
-import Loading from '../../Loading';
+import Loading from 'Common/Components/Loading';
 import Tooltip from '@material-ui/core/Tooltip';
 import withStyles, { WithStyles } from 'react-jss';
 

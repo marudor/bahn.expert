@@ -25,6 +25,14 @@ export default (state: Partial<AppState> = global.__DATA__) => {
     composeEnhancers(applyMiddleware(...middlewares))
   );
 
+  if (!global.PROD && !global.SERVER) {
+    Object.defineProperty(global, 'state', {
+      get() {
+        return store.getState();
+      },
+    });
+  }
+
   store.dispatch(Actions.setCookies(new Cookies()));
 
   // @ts-ignore

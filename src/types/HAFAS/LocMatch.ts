@@ -1,4 +1,4 @@
-import { Common } from './';
+import { Common } from '.';
 
 export type LocMatchResponse = {
   common: Common;

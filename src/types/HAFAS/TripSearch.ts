@@ -129,7 +129,7 @@ export interface Jny {
   isRchbl: boolean;
   stopL: StopL[];
   ctxRecon: string;
-  msgL: MsgL[];
+  dTrnCmpSXmsgL: MsgL[];
   subscr: string;
   dTrnCmpSX: DTrnCmpSX;
   freq: Freq;
@@ -141,7 +141,7 @@ export interface SecL {
   dep: Dep;
   arr: Arr;
   jny: Jny;
-  resState: string;
+  resState: 'N' | 'B' | 'S';
   resRecommendation: string;
 }
 

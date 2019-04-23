@@ -15,6 +15,7 @@ Object {
       "hiddenArrival": undefined,
       "hiddenDeparture": undefined,
       "id": "6062058741531589910",
+      "isAdditional": undefined,
       "isCancelled": undefined,
       "lineNumber": "8",
       "longDistance": false,
@@ -66,6 +67,7 @@ Object {
           "name": "Düsseldorf Friedrichstadt",
         },
         Object {
+          "isAdditional": undefined,
           "isCancelled": undefined,
           "name": "test",
         },
@@ -185,6 +187,7 @@ Object {
       "hiddenArrival": undefined,
       "hiddenDeparture": undefined,
       "id": "4771830392602697451",
+      "isAdditional": undefined,
       "isCancelled": undefined,
       "lineNumber": undefined,
       "longDistance": true,
@@ -227,6 +230,7 @@ Object {
           "name": "Göttingen",
         },
         Object {
+          "isAdditional": undefined,
           "isCancelled": undefined,
           "name": "test",
         },
@@ -271,6 +275,7 @@ Object {
       "hiddenArrival": undefined,
       "hiddenDeparture": undefined,
       "id": "4550748245722881479",
+      "isAdditional": undefined,
       "isCancelled": undefined,
       "lineNumber": undefined,
       "longDistance": true,
@@ -313,6 +318,7 @@ Object {
           "name": "Göttingen",
         },
         Object {
+          "isAdditional": undefined,
           "isCancelled": undefined,
           "name": "test",
         },
@@ -354,6 +360,7 @@ Object {
       "hiddenArrival": undefined,
       "hiddenDeparture": undefined,
       "id": "6062058741531589910",
+      "isAdditional": undefined,
       "isCancelled": undefined,
       "lineNumber": "8",
       "longDistance": false,
@@ -405,6 +412,7 @@ Object {
           "name": "Düsseldorf Friedrichstadt",
         },
         Object {
+          "isAdditional": undefined,
           "isCancelled": undefined,
           "name": "test",
         },
@@ -522,6 +530,7 @@ Object {
       "hiddenArrival": undefined,
       "hiddenDeparture": undefined,
       "id": "6062058741531589910",
+      "isAdditional": undefined,
       "isCancelled": undefined,
       "lineNumber": "8",
       "longDistance": false,
@@ -573,6 +582,7 @@ Object {
           "name": "Düsseldorf Friedrichstadt",
         },
         Object {
+          "isAdditional": undefined,
           "isCancelled": undefined,
           "name": "test",
         },
@@ -692,6 +702,7 @@ Object {
       "hiddenArrival": undefined,
       "hiddenDeparture": undefined,
       "id": "6523045328284948841",
+      "isAdditional": undefined,
       "isCancelled": undefined,
       "lineNumber": undefined,
       "longDistance": true,
@@ -719,6 +730,7 @@ Object {
           "name": "Hamburg-Harburg",
         },
         Object {
+          "isAdditional": undefined,
           "isCancelled": undefined,
           "name": "test",
         },
@@ -776,6 +788,7 @@ Object {
       "hiddenArrival": undefined,
       "hiddenDeparture": undefined,
       "id": "8086827825752200553",
+      "isAdditional": undefined,
       "isCancelled": undefined,
       "lineNumber": undefined,
       "longDistance": true,
@@ -794,6 +807,7 @@ Object {
           "name": "Bremen Hbf",
         },
         Object {
+          "isAdditional": undefined,
           "isCancelled": undefined,
           "name": "test",
         },
@@ -863,6 +877,7 @@ Object {
       "hiddenArrival": undefined,
       "hiddenDeparture": undefined,
       "id": "1869793107893408377",
+      "isAdditional": undefined,
       "isCancelled": undefined,
       "lineNumber": undefined,
       "longDistance": true,
@@ -893,6 +908,7 @@ Object {
           "name": "Duisburg Hbf",
         },
         Object {
+          "isAdditional": undefined,
           "isCancelled": undefined,
           "name": "test",
         },
@@ -946,6 +962,7 @@ Object {
       "hiddenArrival": undefined,
       "hiddenDeparture": undefined,
       "id": "4645697665836328305",
+      "isAdditional": undefined,
       "isCancelled": undefined,
       "lineNumber": undefined,
       "longDistance": false,
@@ -961,6 +978,7 @@ Object {
       "reihung": false,
       "route": Array [
         Object {
+          "isAdditional": undefined,
           "isCancelled": undefined,
           "name": "test",
         },
@@ -1036,6 +1054,7 @@ Object {
       "hiddenArrival": undefined,
       "hiddenDeparture": undefined,
       "id": "2583448959431566845",
+      "isAdditional": undefined,
       "isCancelled": undefined,
       "lineNumber": undefined,
       "longDistance": false,
@@ -1051,6 +1070,7 @@ Object {
       "reihung": false,
       "route": Array [
         Object {
+          "isAdditional": undefined,
           "isCancelled": undefined,
           "name": "test",
         },
@@ -1110,6 +1130,7 @@ Object {
       "hiddenArrival": undefined,
       "hiddenDeparture": undefined,
       "id": "7715731422484591852",
+      "isAdditional": undefined,
       "isCancelled": undefined,
       "lineNumber": undefined,
       "longDistance": false,
@@ -1125,6 +1146,7 @@ Object {
       "reihung": false,
       "route": Array [
         Object {
+          "isAdditional": undefined,
           "isCancelled": undefined,
           "name": "test",
         },
@@ -1194,6 +1216,7 @@ Object {
       "hiddenArrival": undefined,
       "hiddenDeparture": undefined,
       "id": "425081070176277607",
+      "isAdditional": undefined,
       "isCancelled": undefined,
       "lineNumber": "RE11",
       "longDistance": false,
@@ -1239,6 +1262,7 @@ Object {
           "name": "Düsseldorf Flughafen",
         },
         Object {
+          "isAdditional": undefined,
           "isCancelled": undefined,
           "name": "test",
         },
@@ -1277,6 +1301,7 @@ Object {
       "hiddenArrival": undefined,
       "hiddenDeparture": undefined,
       "id": "1178432179369711067",
+      "isAdditional": undefined,
       "isCancelled": undefined,
       "lineNumber": "RE11",
       "longDistance": false,
@@ -1292,6 +1317,7 @@ Object {
       "reihung": false,
       "route": Array [
         Object {
+          "isAdditional": undefined,
           "isCancelled": undefined,
           "name": "test",
         },
@@ -1373,6 +1399,7 @@ Object {
       "hiddenArrival": undefined,
       "hiddenDeparture": undefined,
       "id": "6062058741531589910",
+      "isAdditional": undefined,
       "isCancelled": undefined,
       "lineNumber": "8",
       "longDistance": false,
@@ -1424,6 +1451,7 @@ Object {
           "name": "Düsseldorf Friedrichstadt",
         },
         Object {
+          "isAdditional": undefined,
           "isCancelled": undefined,
           "name": "test",
         },
@@ -1541,6 +1569,7 @@ Object {
       "hiddenArrival": undefined,
       "hiddenDeparture": undefined,
       "id": "1869793107893408377",
+      "isAdditional": undefined,
       "isCancelled": undefined,
       "lineNumber": undefined,
       "longDistance": true,
@@ -1571,6 +1600,7 @@ Object {
           "name": "Duisburg Hbf",
         },
         Object {
+          "isAdditional": undefined,
           "isCancelled": undefined,
           "name": "test",
         },
@@ -1634,6 +1664,7 @@ Object {
       "hiddenArrival": undefined,
       "hiddenDeparture": undefined,
       "id": "7616096009230090656",
+      "isAdditional": undefined,
       "isCancelled": undefined,
       "lineNumber": undefined,
       "longDistance": true,
@@ -1661,6 +1692,7 @@ Object {
           "name": "Uelzen",
         },
         Object {
+          "isAdditional": undefined,
           "isCancelled": undefined,
           "name": "test",
         },

@@ -1,6 +1,6 @@
 import { formatToTimeZone } from 'date-fns-timezone';
-import { HafasResponse } from 'types/hafas';
-import { TripSearchRequest, TripSearchResponse } from 'types/hafas/TripSearch';
+import { HafasResponse } from 'types/HAFAS';
+import { TripSearchRequest, TripSearchResponse } from 'types/HAFAS/TripSearch';
 import makeRequest from '../Request';
 import tripSearchParse from './parse';
 
@@ -32,8 +32,9 @@ function route(
     maxChanges = -1,
     searchForDeparture = true,
     getPasslist = true,
-    economic = true,
-    getTariff = false,
+    economic = false,
+    // Verspätung
+    getTariff = true,
   }: Options,
   noParse?: true
 ) {
@@ -61,12 +62,12 @@ function route(
       getPasslist,
       economic,
       getTariff,
-      ushrp: false,
+      ushrp: true,
       // unknown data
       getPolyline: false,
+      getIV: true,
       // arrival / departure
       outFrwd: searchForDeparture,
-      getIV: false,
       arrLocL: [
         {
           lid: `A=1@L=${destination}`,

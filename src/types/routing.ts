@@ -1,5 +1,5 @@
-import { ProdL } from './hafas';
-import { SecL } from './hafas/TripSearch';
+import { ProdL } from './HAFAS';
+import { SecL } from './HAFAS/TripSearch';
 import { Station } from './station';
 
 export type Route$Arrival = {
@@ -32,20 +32,26 @@ export type Route$Stop = {
   arrivalDelay?: number;
 };
 export type Route$JourneySegment = Route$JourneySegmentTrain;
+export type Route$Auslastung = {
+  first?: number;
+  second?: number;
+};
 export type Route$JourneySegmentTrain = Route$Arrival &
   Route$Departure & {
+    changeDuration?: number;
+    duration?: number;
+    finalDestination: string;
+    jid: string;
+    product?: ProdL;
+    raw?: SecL;
+    segmentDestination: Station;
+    segmentStart: Station;
+    stops?: Route$Stop[];
     train: string;
     trainId?: string;
     trainNumber: string;
     trainType: string;
-    changeDuration?: number;
-    segmentStart: Station;
-    segmentDestination: Station;
-    stops?: Route$Stop[];
-    duration?: number;
-    finalDestination: string;
-    raw?: SecL;
-    product?: ProdL;
+    auslastung?: Route$Auslastung;
   };
 
 export type Route = Route$Arrival &
