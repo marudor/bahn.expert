@@ -1,7 +1,7 @@
+import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { Fahrzeuggruppe } from 'types/reihung';
 import Fahrzeug, { InheritedProps } from './Fahrzeug';
 import React from 'react';
-import withStyles, { WithStyles } from 'react-jss';
 
 type OwnProps = InheritedProps & {
   gruppe: Fahrzeuggruppe;
@@ -70,12 +70,12 @@ const Gruppe = ({
   );
 };
 
-export const styles = {
+export const styles = createStyles({
   bezeichnung: {
     position: 'absolute',
     bottom: '1.5em',
     textAlign: 'center',
   },
-};
+});
 
 export default React.memo(withStyles(styles)(Gruppe));

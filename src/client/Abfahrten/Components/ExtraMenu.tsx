@@ -5,7 +5,7 @@ import { getLageplan, openFilter } from 'Abfahrten/actions/abfahrten';
 import { IconButton } from '@material-ui/core';
 import { openSettings } from 'Abfahrten/actions/config';
 import { Station } from 'types/station';
-import { withSnackbar, withSnackbarProps } from 'notistack';
+import { withSnackbar, WithSnackbarProps } from 'notistack';
 import ActionMenu from '@material-ui/icons/Menu';
 import FilterList from '@material-ui/icons/FilterList';
 import FilterModal from './FilterModal';
@@ -32,7 +32,7 @@ type DispatchProps = ResolveThunks<{
 
 type ReduxProps = StateProps & DispatchProps;
 
-type Props = ReduxProps & withSnackbarProps;
+type Props = ReduxProps & WithSnackbarProps;
 type State = {
   anchor?: HTMLElement;
 };

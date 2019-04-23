@@ -3,10 +3,10 @@ import * as React from 'react';
 import { Abfahrt } from 'types/abfahrten';
 import { AbfahrtenState } from 'AppState';
 import { connect } from 'react-redux';
+import { withStyles, WithStyles } from '@material-ui/styles';
 import cc from 'classnames';
 import styles from './Times.styles';
 import Time from 'Common/Components/Time';
-import withStyles, { WithStyles } from 'react-jss';
 
 type StateProps = {
   timeConfig: boolean;

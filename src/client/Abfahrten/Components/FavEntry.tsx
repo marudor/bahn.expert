@@ -1,12 +1,12 @@
 import { AbfahrtenState } from 'AppState';
 import { connect, ResolveThunks } from 'react-redux';
+import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { Link } from 'react-router-dom';
 import { Station } from 'types/station';
 import { unfav } from 'Abfahrten/actions/fav';
 import ActionDelete from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import React, { MouseEvent } from 'react';
-import withStyles, { WithStyles } from 'react-jss';
 
 type OwnProps = {
   fav: Station;
@@ -49,7 +49,7 @@ class FavEntry extends React.PureComponent<Props> {
   }
 }
 
-export const styles = {
+export const styles = createStyles({
   main: {
     minHeight: 48,
     marginBottom: 1,
@@ -67,7 +67,7 @@ export const styles = {
       backgroundColor: 'rgb(238,238,238)',
     },
   },
-};
+});
 
 export default connect<void, DispatchProps, OwnProps, AbfahrtenState>(
   undefined,

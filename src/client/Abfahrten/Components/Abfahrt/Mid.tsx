@@ -1,9 +1,9 @@
 import { Abfahrt } from 'types/abfahrten';
+import { withStyles, WithStyles } from '@material-ui/styles';
 import cc from 'classnames';
 import React from 'react';
 import styles from './Mid.styles';
 import Via from './Via';
-import withStyles, { WithStyles } from 'react-jss';
 
 export type OwnProps = {
   abfahrt: Abfahrt;

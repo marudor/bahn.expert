@@ -1,9 +1,9 @@
+import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { Route$JourneySegment } from 'types/routing';
 import Platform from 'Common/Components/Platform';
 import React, { useMemo } from 'react';
 import StopList from './StopList';
 import Time from 'Common/Components/Time';
-import withStyles, { WithStyles } from 'react-jss';
 
 type OwnProps = {
   segment: Route$JourneySegment;
@@ -29,7 +29,15 @@ const RouteSegment = ({ segment, classes, detail, onTrainClick }: Props) => {
         {detail && <StopList stops={segment.stops} />}
       </div>
     ),
-    [classes.train, classes.trainId, segment.train, segment.finalDestination, segment.stops, detail, onTrainClick]
+    [
+      classes.train,
+      classes.trainId,
+      segment.train,
+      segment.finalDestination,
+      segment.stops,
+      detail,
+      onTrainClick,
+    ]
   );
 
   return (
@@ -56,7 +64,7 @@ const RouteSegment = ({ segment, classes, detail, onTrainClick }: Props) => {
   );
 };
 
-const styles = {
+const styles = createStyles({
   main: {
     paddingLeft: '0.6em',
     display: 'grid',
@@ -79,6 +87,6 @@ const styles = {
   platform: {
     textAlign: 'end',
   },
-};
+});
 
 export default withStyles(styles)(RouteSegment);

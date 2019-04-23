@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
+import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { Route as RouteType } from 'types/routing';
 import { RoutingState } from 'AppState';
 import Loading from 'Common/Components/Loading';
 import React, { useState } from 'react';
 import Route from './Route';
 import RouteHeader from './RouteHeader';
-import withStyles, { WithStyles } from 'react-jss';
 
 type StateProps = {
   routes?: Array<RouteType>;
@@ -34,14 +34,14 @@ const RouteList = ({ routes, classes }: Props) => {
   );
 };
 
-const styles = {
+const styles = createStyles({
   main: {
     '& > div': {
       paddingLeft: '.1em',
       paddingRight: '1em',
     },
   },
-};
+});
 
 export default connect<StateProps, {}, {}, RoutingState>(state => ({
   routes: state.routing.routes,

@@ -1,6 +1,6 @@
+import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { SubstituteRef } from 'types/abfahrten';
 import React from 'react';
-import withStyles, { WithStyles } from 'react-jss';
 
 type OwnProps = {
   substitute: SubstituteRef;
@@ -14,10 +14,10 @@ const Substitute = ({ substitute, classes }: Props) => (
   </>
 );
 
-const styles = {
+const styles = createStyles({
   main: {
     fontSize: '.7em',
   },
-};
+});
 
 export default React.memo(withStyles(styles)(Substitute));

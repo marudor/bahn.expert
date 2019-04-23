@@ -1,9 +1,9 @@
 /* eslint no-nested-ternary: 0 */
+import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { delayed, early } from 'style/mixins';
 import { format, subMinutes } from 'date-fns';
 import cc from 'classnames';
 import React from 'react';
-import withStyles, { WithStyles } from 'react-jss';
 
 type OwnProps = {
   alignEnd?: boolean;
@@ -68,7 +68,7 @@ const Time = ({
   );
 };
 
-const styles = {
+const styles = createStyles({
   alignEnd: {
     alignItems: 'flex-end',
   },
@@ -83,6 +83,6 @@ const styles = {
   },
   delayed,
   early,
-};
+});
 
 export default withStyles(styles)(Time);

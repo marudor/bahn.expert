@@ -1,11 +1,11 @@
 import { AppState } from 'AppState';
 import { connect } from 'react-redux';
+import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { Route, Switch } from 'react-router-dom';
 import { SnackbarProvider } from 'notistack';
 import Abfahrten from './Abfahrten';
 import React from 'react';
 import Routing from './Routing';
-import withStyles, { WithStyles } from 'react-jss';
 
 type StateProps = {
   routingFeature: boolean;
@@ -34,7 +34,7 @@ class App extends React.Component<Props> {
   }
 }
 
-const styles = {
+const styles = createStyles({
   '@global': {
     body: {
       margin: 0,
@@ -45,7 +45,7 @@ const styles = {
       color: 'black',
     },
   },
-};
+});
 
 export default connect<StateProps, {}, {}, AppState>(state => ({
   routingFeature: state.features.routing,

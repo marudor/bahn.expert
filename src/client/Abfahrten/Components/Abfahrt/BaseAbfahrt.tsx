@@ -1,6 +1,7 @@
 import { Abfahrt } from 'types/abfahrten';
 import { AbfahrtenState } from 'AppState';
 import { connect, ResolveThunks } from 'react-redux';
+import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { getDetailForAbfahrt } from 'Abfahrten/selector/abfahrten';
 import { setDetail } from 'Abfahrten/actions/abfahrten';
 import cc from 'classnames';
@@ -11,7 +12,6 @@ import React from 'react';
 import Reihung from './Reihung';
 import Start from './Start';
 import styles from './BaseAbfahrt.styles';
-import withStyles, { WithStyles } from 'react-jss';
 
 export type OwnProps = {
   abfahrt: Abfahrt;

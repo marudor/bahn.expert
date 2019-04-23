@@ -1,4 +1,6 @@
-export default {
+import { createStyles } from '@material-ui/styles';
+
+export default createStyles({
   main: {
     position: 'absolute',
     height: '2em',
@@ -86,4 +88,4 @@ export default {
     backgroundColor: 'red',
     borderRadius: '50%',
   },
-};
+});

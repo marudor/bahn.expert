@@ -1,8 +1,8 @@
 import { AbfahrtenState } from 'AppState';
 import { connect } from 'react-redux';
+import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { Station } from 'types/station';
 import React from 'react';
-import withStyles, { WithStyles } from 'react-jss';
 
 type StateProps = {
   currentStation?: Station;
@@ -31,11 +31,11 @@ const Footer = ({ currentStation, classes }: Props) => (
   </footer>
 );
 
-const styles = {
+const styles = createStyles({
   seo: {
     display: 'none',
   },
-};
+});
 
 export default connect<StateProps, void, void, AbfahrtenState>(state => ({
   currentStation: state.abfahrten.currentStation,

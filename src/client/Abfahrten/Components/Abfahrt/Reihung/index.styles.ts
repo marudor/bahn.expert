@@ -1,19 +1,20 @@
+import { createStyles } from '@material-ui/styles';
 import { ReduxProps } from '.';
-export default {
-  main: {
-    fontSize: '160%',
-    marginBottom: '1em',
-    marginRight: '.3em',
-    position: 'relative',
-    height: ({ reihung, fahrzeugGruppe }: ReduxProps) => {
-      let height = 5;
+export default createStyles({
+  main: ({ reihung, fahrzeugGruppe }: ReduxProps) => {
+    let height = 5;
 
-      if (fahrzeugGruppe) height += 1;
-      if (reihung && reihung.differentDestination) height += 1;
-      if (reihung && reihung.differentZugnummer) height += 1;
+    if (fahrzeugGruppe) height += 1;
+    if (reihung && reihung.differentDestination) height += 1;
+    if (reihung && reihung.differentZugnummer) height += 1;
 
-      return `${height}em`;
-    },
+    return {
+      fontSize: '160%',
+      marginBottom: '1em',
+      marginRight: '.3em',
+      position: 'relative',
+      height: `${height}em`,
+    };
   },
   specificType: {
     position: 'absolute',
@@ -28,7 +29,7 @@ export default {
     marginTop: '1.3em',
     height: '100%',
   },
-  richtung: {
+  richtung: ({ reihung }: ReduxProps) => ({
     backgroundColor: 'black',
     width: '50%',
     height: 2,
@@ -36,7 +37,7 @@ export default {
     left: '50%',
     bottom: 0,
     zIndex: 10,
-    transform: ({ reihung }: ReduxProps) =>
+    transform:
       reihung && reihung.realFahrtrichtung
         ? 'translateX(-50%)'
         : 'rotate(180deg) translateX(50%)',
@@ -50,5 +51,5 @@ export default {
       position: 'absolute',
       top: -3,
     },
-  },
-};
+  }),
+});
