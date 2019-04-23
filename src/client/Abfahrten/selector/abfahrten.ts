@@ -26,22 +26,15 @@ export const getNextDeparture = (state: AbfahrtenState) => {
 
 export const getAbfahrtenForConfig = createSelector(
   (state: AbfahrtenState) => state.abfahrten.departures,
-  state => state.config.config.onlyDepartures,
   state => state.abfahrten.selectedDetail,
   state => state.abfahrten.filterList,
-  (abfahrten, onlyDepartures, selectedDetail, filterList) => {
+  (abfahrten, selectedDetail, filterList) => {
     if (!abfahrten) return abfahrten;
     const filtered = {
       lookahead: abfahrten.lookahead,
       lookbehind: abfahrten.lookbehind,
     };
 
-    if (onlyDepartures) {
-      const f = (a: Abfahrt) => a.departure || a.id === selectedDetail;
-
-      filtered.lookahead = filtered.lookahead.filter(f);
-      filtered.lookbehind = filtered.lookbehind.filter(f);
-    }
     if (filterList.length) {
       const f = (a: Abfahrt) => !filterList.includes(a.trainType);
 

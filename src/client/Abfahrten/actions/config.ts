@@ -15,6 +15,7 @@ const Actions = {
     resolve => <K extends keyof MarudorConfig>(c: {
       key: K;
       value: MarudorConfig[K];
+      temp?: boolean;
     }) => resolve(c)
   ),
   setCookies: createAction('SET_COOKIES', resolve => (c: Cookies) =>

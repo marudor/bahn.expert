@@ -40,7 +40,7 @@ export default createReducer(defaultState, handle => [
     ...state,
     open: payload,
   })),
-  handle(Actions.setConfig, (state, { payload: { key, value } }) => {
+  handle(Actions.setConfig, (state, { payload: { key, value, temp } }) => {
     const newState = {
       ...state,
       config: {
@@ -49,7 +49,9 @@ export default createReducer(defaultState, handle => [
       },
     };
 
-    state.cookies.set('config', newState.config, setCookieOptions);
+    if (!temp) {
+      state.cookies.set('config', newState.config, setCookieOptions);
+    }
 
     return newState;
   }),
