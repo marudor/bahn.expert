@@ -14,6 +14,9 @@ export type Options = {
   searchForDeparture?: boolean;
   economic?: boolean;
   getTariff?: boolean;
+  ushrp?: boolean;
+  getPolyline?: boolean;
+  getIV?: boolean;
 };
 
 // @ts-ignore ???
@@ -31,10 +34,16 @@ function route(
     transferTime = -1,
     maxChanges = -1,
     searchForDeparture = true,
+    // stops in between
     getPasslist = true,
     economic = false,
-    // Verspätung
-    getTariff = true,
+    getTariff = false,
+    // Umgebung reicht als stationen?
+    ushrp = false,
+    // unknown data
+    getPolyline = false,
+    // unknown flag
+    getIV = false,
   }: Options,
   noParse?: true
 ) {
@@ -62,11 +71,9 @@ function route(
       getPasslist,
       economic,
       getTariff,
-      // Direkter Match
-      ushrp: false,
-      // unknown data
-      getPolyline: false,
-      getIV: true,
+      ushrp,
+      getPolyline,
+      getIV,
       // arrival / departure
       outFrwd: searchForDeparture,
       arrLocL: [

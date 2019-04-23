@@ -94,10 +94,10 @@ class Journey {
       };
     });
   };
-  parseAuslastung(dTrnCmpSX: DTrnCmpSX) {
+  parseAuslastung(dTrnCmpSX?: DTrnCmpSX) {
     const tcocL = this.common.tcocL;
 
-    if (!tcocL) return;
+    if (!tcocL || !dTrnCmpSX) return;
     const auslastung: {
       first?: number;
       second?: number;
