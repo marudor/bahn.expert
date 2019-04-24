@@ -8,10 +8,16 @@ type Props = {
   className?: string;
 };
 
+// 30 Minutes in ms
+const timeConstraint = 30 * 60 * 1000;
+
 const TravelynxLink = ({ abfahrt, className }: Props) =>
   abfahrt.departure &&
   !abfahrt.departureIsCancelled &&
-  isBefore(abfahrt.arrival || abfahrt.departure, Date.now() + 600000) ? (
+  isBefore(
+    abfahrt.scheduledArrival || abfahrt.scheduledDeparture || abfahrt.departure,
+    Date.now() + timeConstraint
+  ) ? (
     <a
       className={className}
       onClick={preventDefault}
