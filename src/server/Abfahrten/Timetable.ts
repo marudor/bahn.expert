@@ -419,7 +419,7 @@ export default class Timetable {
       const timetable = this.parseTimetableS(sNode);
 
       if (timetable) {
-        timetable.isAdditional = true;
+        timetable.isAdditional = !timetable.substitute;
         this.timetable[rawId] = timetable;
       }
     }
