@@ -141,6 +141,7 @@ export interface SecL {
   dep: Dep;
   arr: Arr;
   jny: Jny;
+  parJnyL?: Jny[];
   resState: 'N' | 'B' | 'S';
   resRecommendation: string;
 }

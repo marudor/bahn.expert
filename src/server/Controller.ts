@@ -10,8 +10,9 @@ import {
   wagenReihungMonitoring,
   wagenReihungStation,
 } from './Reihung';
+import auslastungHafas from './Auslastung/Hafas';
 import axios from 'axios';
-import createAuslastung from './Auslastung';
+import createAuslastung from './Auslastung/Auslastungsradar';
 import JourneyDetails from './HAFAS/JourneyDetails';
 import KoaRouter from 'koa-router';
 import makeRequest from './HAFAS/Request';
@@ -135,6 +136,16 @@ router
     const { jid }: { jid: string } = ctx.params;
 
     ctx.body = await JourneyDetails(jid);
+  })
+  .get('/auslastungHafas/:start/:dest/:trainNumber/:time', async ctx => {
+    const { start, dest, time, trainNumber } = ctx.params;
+
+    ctx.body = await auslastungHafas(
+      start,
+      dest,
+      trainNumber,
+      Number.parseInt(time, 10)
+    );
   })
   .post('/rawHafas', async ctx => {
     ctx.body = await makeRequest(ctx.request.body);

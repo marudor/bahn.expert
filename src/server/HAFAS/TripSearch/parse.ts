@@ -2,6 +2,7 @@ import { addMilliseconds, differenceInMinutes, parse } from 'date-fns';
 import { Common, HafasResponse, LocL, ProdL } from 'types/HAFAS';
 import {
   DTrnCmpSX,
+  Jny,
   OutConL,
   SecL,
   StopL,
@@ -12,6 +13,7 @@ import {
   Route,
   Route$Arrival,
   Route$Departure,
+  Route$Journey,
   Route$JourneySegment,
   Route$Stop,
 } from 'types/routing';
@@ -120,61 +122,67 @@ class Journey {
 
     return auslastung;
   }
+  parseSegmentJourney = (jny: Jny): Route$Journey => {
+    const [
+      // eslint-disable-next-line no-unused-vars
+      T,
+      fullStart,
+      fullDestination,
+      // eslint-disable-next-line no-unused-vars
+      departureString,
+      // eslint-disable-next-line no-unused-vars
+      arrivalString,
+      // eslint-disable-next-line no-unused-vars
+      trainString,
+      // eslint-disable-next-line no-unused-vars
+      u1,
+      // eslint-disable-next-line no-unused-vars
+      u2,
+      // eslint-disable-next-line no-unused-vars
+      u3,
+    ] = jny.ctxRecon.split('$');
+    const product = this.common.prodL[jny.prodX];
+
+    return {
+      changeDuration: jny.chgDurR,
+      train: product.addName || product.name,
+      trainId: product.prodCtx.line,
+      trainNumber: product.prodCtx.num,
+      trainType: product.prodCtx.catOut,
+      segmentStart: parseFullStation(fullStart),
+      segmentDestination: parseFullStation(fullDestination),
+      stops: this.parseStops(jny.stopL),
+      finalDestination: jny.dirTxt,
+      jid: jny.jid,
+      auslastung: this.parseAuslastung(jny.dTrnCmpSX),
+      product: global.PROD ? undefined : product,
+    };
+  };
   parseSegment = (t: SecL): undefined | Route$JourneySegment => {
     switch (t.type) {
       case 'JNY': {
-        const [
-          // eslint-disable-next-line no-unused-vars
-          T,
-          fullStart,
-          fullDestination,
-          // eslint-disable-next-line no-unused-vars
-          departureString,
-          // eslint-disable-next-line no-unused-vars
-          arrivalString,
-          // eslint-disable-next-line no-unused-vars
-          trainString,
-          // eslint-disable-next-line no-unused-vars
-          u1,
-          // eslint-disable-next-line no-unused-vars
-          u2,
-          // eslint-disable-next-line no-unused-vars
-          u3,
-        ] = t.jny.ctxRecon.split('$');
-        // const train = trainString.replace(/ +/g, ' ');
-
         const { scheduledArrival, ...arrival } = this.parseArrival(t.arr);
         const { scheduledDeparture, ...departure } = this.parseDeparture(t.dep);
 
-        const product = this.common.prodL[t.jny.prodX];
-
         return {
-          train: product.addName || product.name,
-          trainId: product.prodCtx.line,
-          trainNumber: product.prodCtx.num,
-          trainType: product.prodCtx.catOut,
-          changeDuration: t.jny.chgDurR,
-          segmentStart: parseFullStation(fullStart),
-          segmentDestination: parseFullStation(fullDestination),
-          stops: this.parseStops(t.jny.stopL),
           ...arrival,
           ...departure,
           duration:
             scheduledArrival &&
             scheduledDeparture &&
             scheduledArrival - scheduledDeparture,
-          finalDestination: t.jny.dirTxt,
-          jid: t.jny.jid,
+          wings: t.parJnyL
+            ? t.parJnyL.map(this.parseSegmentJourney)
+            : undefined,
           // messages: t.jny.msgL.map(m => ({
           //   ...m,
           //   remXX: this.common.remL[m.remX],
           // })),
-          auslastung: this.parseAuslastung(t.jny.dTrnCmpSX),
           // reservationStatus: t.resState,
           // reservationRecommandation: t.resRecommendation,
           // icoX: this.common.icoL[t.icoX],
-          product: global.PROD ? undefined : product,
           raw: global.PROD ? undefined : t,
+          ...this.parseSegmentJourney(t.jny),
         };
       }
       // case 'WALK':

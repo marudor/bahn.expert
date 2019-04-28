@@ -1,23 +1,20 @@
 import * as React from 'react';
 import { Abfahrt } from 'types/abfahrten';
 import { AbfahrtenState } from 'AppState';
-import { AuslastungsValue } from 'types/auslastung';
+import { AuslastungsValue, Route$Auslastung } from 'types/routing';
 import { connect, ResolveThunks } from 'react-redux';
 import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { getAuslastung } from 'Abfahrten/actions/auslastung';
-import { getAuslastungForIdAndStation } from 'Abfahrten/selector/auslastung';
 import Close from '@material-ui/icons/Close';
 import Done from '@material-ui/icons/Done';
 import ErrorOutline from '@material-ui/icons/ErrorOutline';
 import Help from '@material-ui/icons/Help';
 import Loading from 'Common/Components/Loading';
 import Tooltip from '@material-ui/core/Tooltip';
+import Warning from '@material-ui/icons/Warning';
 
 type StateProps = {
-  auslastung?: null | {
-    first: AuslastungsValue;
-    second: AuslastungsValue;
-  };
+  auslastung?: null | Route$Auslastung;
 };
 type DispatchProps = ResolveThunks<{
   getAuslastung: typeof getAuslastung;
@@ -29,26 +26,30 @@ type ReduxProps = StateProps & DispatchProps & OwnProps;
 
 type Props = ReduxProps & WithStyles<typeof styles>;
 
-function getTooltipText(auslastung: AuslastungsValue) {
+function getTooltipText(auslastung?: AuslastungsValue) {
   switch (auslastung) {
-    case 0:
-      return 'Nicht ausgelastet';
-    case 1:
-      return 'Zug ausgelastet';
-    case 2:
-      return 'Zug stark ausgelastet';
+    case AuslastungsValue.Gering:
+      return 'Geringe Auslastung';
+    case AuslastungsValue.Hoch:
+      return 'Mittlere Auslastung';
+    case AuslastungsValue.SehrHoch:
+      return 'Hohe Auslastung';
+    case AuslastungsValue.Ausgebucht:
+      return 'Ausgebucht';
     default:
       return 'Unbekannt';
   }
 }
 
-function getIcon(auslastung: AuslastungsValue) {
+function getIcon(auslastung?: AuslastungsValue) {
   switch (auslastung) {
-    case 0:
+    case AuslastungsValue.Gering:
       return <Done fontSize="inherit" />;
-    case 1:
+    case AuslastungsValue.Hoch:
+      return <Warning fontSize="inherit" />;
+    case AuslastungsValue.SehrHoch:
       return <ErrorOutline fontSize="inherit" />;
-    case 2:
+    case AuslastungsValue.Ausgebucht:
       return <Close fontSize="inherit" />;
     default:
       return <Help fontSize="inherit" />;
@@ -59,8 +60,13 @@ class Auslastung extends React.PureComponent<Props> {
   componentDidMount() {
     const { auslastung, getAuslastung, abfahrt } = this.props;
 
-    if (!auslastung) {
-      getAuslastung(abfahrt.trainId);
+    if (!auslastung && abfahrt.scheduledDeparture) {
+      getAuslastung(
+        abfahrt.trainNumber,
+        abfahrt.currentStationEva,
+        abfahrt.destination,
+        abfahrt.scheduledDeparture
+      );
     }
   }
 
@@ -105,11 +111,13 @@ class Auslastung extends React.PureComponent<Props> {
 
 function getBGColor(auslastung?: null | AuslastungsValue) {
   switch (auslastung) {
-    case 0:
+    case AuslastungsValue.Gering:
       return 'green';
-    case 1:
+    case AuslastungsValue.Hoch:
       return 'yellow';
-    case 2:
+    case AuslastungsValue.SehrHoch:
+      return 'orange';
+    case AuslastungsValue.Ausgebucht:
       return 'red';
     default:
       return 'black';
@@ -117,7 +125,7 @@ function getBGColor(auslastung?: null | AuslastungsValue) {
 }
 const getColor = (auslastung?: null | AuslastungsValue) => ({
   backgroundColor: getBGColor(auslastung),
-  color: auslastung === 1 ? 'black' : 'white',
+  color: auslastung === 2 || auslastung === 3 ? 'black' : 'white',
 });
 
 export const styles = createStyles({
@@ -148,7 +156,12 @@ export const styles = createStyles({
 
 export default connect<StateProps, DispatchProps, OwnProps, AbfahrtenState>(
   (state, props) => ({
-    auslastung: getAuslastungForIdAndStation(state, props),
+    auslastung:
+      state.auslastung.auslastung[
+        `${props.abfahrt.currentStationEva}/${props.abfahrt.destination}/${
+          props.abfahrt.trainNumber
+        }`
+      ],
   }),
   {
     getAuslastung,
