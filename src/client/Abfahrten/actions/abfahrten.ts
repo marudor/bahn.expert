@@ -161,32 +161,28 @@ export const refreshCurrentAbfahrten = (): AbfahrtenThunkResult => async (
   dispatch,
   getState
 ) => {
-  try {
-    const state = getState();
+  const state = getState();
 
-    if (!state.abfahrten.currentStation) {
-      return;
-    }
-
-    const { departures, lookbehind, ...rest } = await getAbfahrtenFromAPI(
-      state.abfahrten.currentStation,
-      state.config.config.lookahead,
-      state.config.config.lookbehind
-    );
-
-    dispatch(
-      Actions.gotAbfahrten({
-        station: state.abfahrten.currentStation,
-        departures: {
-          lookahead: departures,
-          lookbehind,
-        },
-        ...rest,
-      })
-    );
-  } catch (e) {
-    // We ignore errors here - otherwise we might display error automatically due to refresh after back online
+  if (!state.abfahrten.currentStation) {
+    return;
   }
+
+  const { departures, lookbehind, ...rest } = await getAbfahrtenFromAPI(
+    state.abfahrten.currentStation,
+    state.config.config.lookahead,
+    state.config.config.lookbehind
+  );
+
+  dispatch(
+    Actions.gotAbfahrten({
+      station: state.abfahrten.currentStation,
+      departures: {
+        lookahead: departures,
+        lookbehind,
+      },
+      ...rest,
+    })
+  );
 };
 
 export const openFilter = () => Actions.setFilterMenu(true);
