@@ -101,9 +101,8 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
   }
   checkScroll() {
     const { abfahrten, selectedDetail } = this.props;
-    const { scrolled } = this.state;
 
-    if (scrolled) return;
+    if (this.state.scrolled) return;
 
     if (abfahrten) {
       let scrollDom: HTMLElement | null = null;
