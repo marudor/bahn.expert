@@ -1,6 +1,6 @@
 import { createReducer } from 'deox';
 import { Reihung } from 'types/reihung';
-import Actions from 'Abfahrten/actions/reihung';
+import Actions from 'Common/actions/reihung';
 
 export type State = {
   reihung: { [key: string]: null | Reihung };

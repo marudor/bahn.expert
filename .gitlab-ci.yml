@@ -19,6 +19,15 @@ install:
     paths:
       - node_modules/
 
+depCheck:
+  stage: test
+  script: yarn depCheck
+  cache:
+    policy: pull
+    key: '$CI_COMMIT_REF_SLUG'
+    paths:
+      - node_modules/
+
 test:server:
   stage: test
   script: yarn test:server

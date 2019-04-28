@@ -32,7 +32,8 @@ const Stop = ({ stop, classes }: Props) => {
 const styles = createStyles({
   main: {
     display: 'grid',
-    gridTemplateColumns: '5em 1fr min-content',
+    gridTemplateColumns: '4em 1fr min-content',
+    gridGap: '0 .3em',
     gridTemplateRows: '1fr 1fr',
     gridTemplateAreas: '". t p" ". t p" ". t p"',
     alignItems: 'center',
@@ -40,6 +41,8 @@ const styles = createStyles({
   },
   station: {
     gridArea: 't',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
   },
   platform: {
     gridArea: 'p',

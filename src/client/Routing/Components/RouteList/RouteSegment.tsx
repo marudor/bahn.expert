@@ -1,5 +1,7 @@
 import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { Route$JourneySegment } from 'types/routing';
+import AuslastungsDisplay from 'Common/Components/AuslastungsDisplay';
+import cc from 'classnames';
 import Platform from 'Common/Components/Platform';
 import React, { useMemo } from 'react';
 import StopList from './StopList';
@@ -22,22 +24,19 @@ const RouteSegment = ({ segment, classes, detail, onTrainClick }: Props) => {
         }}
         className={classes.train}
       >
-        <div>
-          <span className={classes.trainId}>{segment.train}</span>
-          <span>{segment.finalDestination}</span>
+        <div className={classes.trainInfo}>
+          <span className={classes.trainMargin}>{segment.train}</span>
+          <span className={cc(classes.trainMargin, classes.destination)}>
+            {segment.finalDestination}
+          </span>
+          {segment.auslastung && (
+            <AuslastungsDisplay auslastung={segment.auslastung} />
+          )}
         </div>
         {detail && <StopList stops={segment.stops} />}
       </div>
     ),
-    [
-      classes.train,
-      classes.trainId,
-      segment.train,
-      segment.finalDestination,
-      segment.stops,
-      detail,
-      onTrainClick,
-    ]
+    [classes, segment, detail, onTrainClick]
   );
 
   return (
@@ -66,7 +65,7 @@ const RouteSegment = ({ segment, classes, detail, onTrainClick }: Props) => {
 
 const styles = createStyles({
   main: {
-    paddingLeft: '0.6em',
+    paddingLeft: '0.3em',
     display: 'grid',
     gridTemplateColumns: '2fr 7fr 1fr',
     gridTemplateRows: '1fr auto 1fr',
@@ -79,10 +78,18 @@ const styles = createStyles({
     marginBottom: '.5em',
     gridArea: 't',
     alignSelf: 'center',
-    paddingLeft: '.5em',
+    paddingLeft: '.3em',
   },
-  trainId: {
+  trainInfo: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  trainMargin: {
     marginRight: '.5em',
+  },
+  destination: {
+    flex: 1,
+    textAlign: 'center',
   },
   platform: {
     textAlign: 'end',

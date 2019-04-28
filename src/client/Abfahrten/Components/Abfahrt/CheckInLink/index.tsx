@@ -42,12 +42,6 @@ export const styles = createStyles({
   },
 });
 
-export function preventDefault(e: React.SyntheticEvent) {
-  e.stopPropagation();
-
-  return false;
-}
-
 export default connect<StateProps, {}, OwnProps, AbfahrtenState>(state => ({
   type: state.config.config.checkIn,
 }))(withStyles(styles)(CheckInLink));

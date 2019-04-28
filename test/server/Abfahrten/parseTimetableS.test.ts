@@ -1,5 +1,5 @@
 /* eslint no-sync: 0 */
-import { noncdAxios } from 'server/Abfahrten';
+import { noncdAxios } from 'server/Abfahrten/helper';
 import fs from 'fs';
 import path from 'path';
 import Timetable from 'server/Abfahrten/Timetable';

@@ -1,20 +1,22 @@
 import { Abfahrt } from 'types/abfahrten';
-import { AbfahrtenState } from 'AppState';
+import { CommonState } from 'AppState';
 import { createSelector } from 'reselect';
 
-export const getReihung = (state: AbfahrtenState) => state.reihung.reihung;
+export const getReihung = (state: CommonState) => state.reihung.reihung;
 
 type AuslastungProps = {
-  abfahrt: Abfahrt;
+  currentStation: string;
+  trainNumber: string;
 };
 export const getCurrentStationFromProps = (_: any, props: AuslastungProps) =>
-  props.abfahrt.currentStation;
+  props.currentStation;
 export const getTrainIdFromProps = (_: any, props: AuslastungProps) =>
-  props.abfahrt.trainId;
+  props.trainNumber;
 
 export const getReihungForId = createSelector(
   getReihung,
   getTrainIdFromProps,
   getCurrentStationFromProps,
-  (reihung, trainId, currentStation) => reihung[trainId + currentStation]
+  (reihung, trainNumber, currentStation) =>
+    reihung[trainNumber + currentStation]
 );

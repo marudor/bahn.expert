@@ -1,8 +1,8 @@
 import { Abfahrt } from 'types/abfahrten';
-import { AbfahrtenState } from 'AppState';
+import { CommonState } from 'AppState';
 import { connect, ResolveThunks } from 'react-redux';
-import { getReihung } from 'Abfahrten/actions/reihung';
-import { getReihungForId } from 'Abfahrten/selector/reihung';
+import { getReihung } from 'Common/actions/reihung';
+import { getReihungForId } from 'Common/selector/reihung';
 import { Reihung } from 'types/reihung';
 import { withStyles, WithStyles } from '@material-ui/styles';
 import Gruppe from './Gruppe';
@@ -13,12 +13,14 @@ import styles from './index.styles';
 
 type StateProps = {
   reihung: null | Reihung;
-  useZoom: boolean;
-  fahrzeugGruppe: boolean;
 };
 
 type OwnProps = {
-  abfahrt: Abfahrt;
+  useZoom: boolean;
+  fahrzeugGruppe: boolean;
+  trainNumber: string;
+  currentStation: string;
+  scheduledDeparture: number;
 };
 
 type DispatchProps = ResolveThunks<{
@@ -31,15 +33,27 @@ type Props = ReduxProps & WithStyles<typeof styles>;
 
 class ReihungComp extends React.PureComponent<Props> {
   componentDidMount() {
-    const { reihung, getReihung, abfahrt } = this.props;
+    const {
+      reihung,
+      getReihung,
+      trainNumber,
+      currentStation,
+      scheduledDeparture,
+    } = this.props;
 
     if (!reihung) {
-      getReihung(abfahrt);
+      getReihung(trainNumber, currentStation, scheduledDeparture);
     }
   }
 
   render() {
-    const { reihung, useZoom, fahrzeugGruppe, abfahrt, classes } = this.props;
+    const {
+      reihung,
+      useZoom,
+      fahrzeugGruppe,
+      trainNumber,
+      classes,
+    } = this.props;
 
     if (reihung === null) {
       return null;
@@ -73,7 +87,7 @@ class ReihungComp extends React.PureComponent<Props> {
           {reihung.allFahrzeuggruppe.map(g => (
             <Gruppe
               showGruppenZugnummer={differentZugnummer}
-              originalTrainNumber={abfahrt.trainNumber}
+              originalTrainNumber={trainNumber}
               showFahrzeugGruppe={fahrzeugGruppe}
               correctLeft={correctLeft}
               scale={scale}
@@ -91,11 +105,9 @@ class ReihungComp extends React.PureComponent<Props> {
   }
 }
 
-export default connect<StateProps, DispatchProps, OwnProps, AbfahrtenState>(
+export default connect<StateProps, DispatchProps, OwnProps, CommonState>(
   (state, props) => ({
     reihung: getReihungForId(state, props),
-    useZoom: state.config.config.zoomReihung,
-    fahrzeugGruppe: state.config.config.fahrzeugGruppe,
   }),
   { getReihung }
 )(withStyles(styles)(ReihungComp));

@@ -1,6 +1,6 @@
 /* eslint no-sync: 0 */
 import { mockFchg, mockLageplan, mockSearch } from './mockHelper';
-import { noncdAxios } from 'server/Abfahrten';
+import { noncdAxios } from 'server/Abfahrten/helper';
 import fs from 'fs';
 import lolex, { Clock, InstalledClock } from 'lolex';
 import path from 'path';

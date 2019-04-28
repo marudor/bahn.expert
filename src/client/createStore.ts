@@ -9,12 +9,6 @@ import thunkMiddleware from 'redux-thunk';
 export default (state: Partial<AppState> = global.__DATA__) => {
   const middlewares = [thunkMiddleware];
 
-  if (process.env.NODE_ENV !== 'production') {
-    const reduxUnhandledAction = require('redux-unhandled-action').default;
-
-    middlewares.push(reduxUnhandledAction());
-  }
-
   const composeEnhancers =
     // eslint-disable-next-line no-underscore-dangle
     global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

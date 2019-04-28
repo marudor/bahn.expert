@@ -38,7 +38,7 @@ const styles = createStyles({
   main: {
     '& > div': {
       paddingLeft: '.1em',
-      paddingRight: '1em',
+      paddingRight: '.5em',
     },
   },
 });

@@ -1,7 +1,6 @@
 /* eslint import/prefer-default-export: 0 */
-import { AbfahrtenThunkResult } from 'AppState';
+import { CommonThunkResult } from 'AppState';
 import { createAction } from 'deox';
-import { format } from 'date-fns';
 import { Route$Auslastung } from 'types/routing';
 import axios from 'axios';
 
@@ -19,7 +18,7 @@ export const getAuslastung = (
   start: string,
   destination: string,
   time: number
-): AbfahrtenThunkResult => async dispatch => {
+): CommonThunkResult => async dispatch => {
   const key = `${start}/${destination}/${trainNumber}`;
 
   try {

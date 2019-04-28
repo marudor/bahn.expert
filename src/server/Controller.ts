@@ -3,7 +3,7 @@ import { getAbfahrten } from './Abfahrten';
 import { getLageplan } from './Bahnhof/Lageplan';
 import { getStation } from './Abfahrten/station';
 import { isEnabled } from 'unleash-client';
-import { openDataAxios } from './Abfahrten';
+import { openDataAxios } from './Abfahrten/helper';
 import { StationSearchType } from 'Common/config';
 import {
   wagenReihung,
