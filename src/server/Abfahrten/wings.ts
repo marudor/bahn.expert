@@ -1,6 +1,5 @@
 import { AxiosInstance } from 'axios';
-import { getAttr, getBoolAttr, parseTs } from './helper';
-import { noncdAxios } from '.';
+import { getAttr, getBoolAttr, noncdAxios, parseTs } from './helper';
 import xmljs from 'libxmljs2';
 
 function parseNode(node: null | xmljs.Element) {

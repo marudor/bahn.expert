@@ -38,10 +38,10 @@ export enum AuslastungsValue {
   SehrHoch,
   Ausgebucht,
 }
-export type Route$Auslastung = {
+export interface Route$Auslastung {
   first?: AuslastungsValue;
   second?: AuslastungsValue;
-};
+}
 export type Route$Journey = {
   changeDuration?: number;
   duration?: number;

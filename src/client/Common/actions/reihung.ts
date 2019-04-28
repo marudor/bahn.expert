@@ -15,27 +15,29 @@ const Actions = {
 
 export default Actions;
 
-export const getReihung = ({
-  scheduledDeparture,
-  trainId,
-  currentStation,
-}: Abfahrt): AbfahrtenThunkResult => async dispatch => {
+export const getReihung = (
+  trainNumber: string,
+  currentStation: string,
+  scheduledDeparture?: number
+): AbfahrtenThunkResult => async dispatch => {
   try {
     if (!scheduledDeparture) {
       throw new Error();
     }
 
     const reihung: Wagenreihung = (await axios.get(
-      `/api/wagen/${trainId}/${scheduledDeparture}`
+      `/api/wagen/${trainNumber}/${scheduledDeparture}`
     )).data;
 
     dispatch(
       Actions.gotReihung({
-        id: trainId + currentStation,
+        id: trainNumber + currentStation,
         data: reihung.data.istformation,
       })
     );
   } catch (e) {
-    dispatch(Actions.gotReihung({ id: trainId + currentStation, data: null }));
+    dispatch(
+      Actions.gotReihung({ id: trainNumber + currentStation, data: null })
+    );
   }
 };

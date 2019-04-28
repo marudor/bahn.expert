@@ -9,7 +9,7 @@ import { Station } from 'types/station';
 import { StationSearchType } from 'Common/config';
 import AppBar from '@material-ui/core/AppBar';
 import ExtraMenu from './ExtraMenu';
-import HomeMenu from 'Common/Components/HomeMenu';
+import HomeMenu from 'Abfahrten/Components/HomeMenu';
 import React from 'react';
 import StationSearch from 'Common/Components/StationSearch';
 import Toolbar from '@material-ui/core/Toolbar';

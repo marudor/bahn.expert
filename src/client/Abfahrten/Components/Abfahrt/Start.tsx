@@ -1,6 +1,6 @@
 import { Abfahrt } from 'types/abfahrten';
 import { withStyles, WithStyles } from '@material-ui/styles';
-import Auslastung from './Auslastung';
+import Auslastung from 'Abfahrten/Components/Abfahrt/Auslastung';
 import CheckInLink from './CheckInLink';
 import React from 'react';
 import styles from './Start.styles';
@@ -31,7 +31,14 @@ const Start = ({ abfahrt, detail, lineAndNumber, classes }: Props) => (
     {abfahrt.substitute && abfahrt.ref && (
       <Substitute substitute={abfahrt.ref} />
     )}
-    {detail && abfahrt.auslastung && <Auslastung abfahrt={abfahrt} />}
+    {detail && abfahrt.auslastung && abfahrt.scheduledDeparture && (
+      <Auslastung
+        start={abfahrt.currentStationEva}
+        destination={abfahrt.destination}
+        departure={abfahrt.scheduledDeparture}
+        trainNumber={abfahrt.trainNumber}
+      />
+    )}
   </div>
 );
 

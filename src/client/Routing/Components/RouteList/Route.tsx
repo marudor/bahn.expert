@@ -66,6 +66,7 @@ const styles = createStyles({
     gridArea: '2 / 1 / 3 / 5',
   },
   detail: {
+    overflow: 'hidden',
     gridArea: '3 / 1 / 4 / 5',
   },
   time: {

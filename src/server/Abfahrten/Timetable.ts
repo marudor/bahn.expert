@@ -191,6 +191,7 @@ function parseRawId(rawId: string) {
 const longDistanceRegex = /(ICE?|TGV|ECE?|RJ).*/;
 
 export default class Timetable {
+  errors: any[] = [];
   axios: AxiosInstance;
   timetable: {
     [key: string]: any;
@@ -685,7 +686,13 @@ export default class Timetable {
         let rawXml = timetableCache.get<any>(key);
 
         if (!rawXml) {
-          rawXml = await this.axios.get<string>(`${key}`).then(x => x.data);
+          try {
+            rawXml = await this.axios.get<string>(`${key}`).then(x => x.data);
+          } catch (e) {
+            this.errors.push(e);
+
+            return;
+          }
         }
 
         this.timetable = {

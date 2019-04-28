@@ -9,7 +9,7 @@ import End from './End';
 import Mid from './Mid';
 import Paper from '@material-ui/core/Paper';
 import React from 'react';
-import Reihung from './Reihung';
+import Reihung from 'Common/Components/Reihung';
 import Start from './Start';
 import styles from './BaseAbfahrt.styles';
 
@@ -23,6 +23,8 @@ export type OwnProps = {
 type StateProps = {
   detail: boolean;
   lineAndNumber: boolean;
+  useZoom: boolean;
+  fahrzeugGruppe: boolean;
 };
 type DispatchProps = ResolveThunks<{
   setDetail: typeof setDetail;
@@ -44,6 +46,8 @@ class BaseAbfahrt extends React.PureComponent<Props> {
       wingStart,
       lineAndNumber,
       classes,
+      useZoom,
+      fahrzeugGruppe,
     } = this.props;
 
     return (
@@ -71,7 +75,15 @@ class BaseAbfahrt extends React.PureComponent<Props> {
             <Mid abfahrt={abfahrt} detail={detail} />
             <End abfahrt={abfahrt} detail={detail} />
           </div>
-          {detail && abfahrt.reihung && <Reihung abfahrt={abfahrt} />}
+          {detail && abfahrt.reihung && abfahrt.scheduledDeparture && (
+            <Reihung
+              useZoom={useZoom}
+              fahrzeugGruppe={fahrzeugGruppe}
+              trainNumber={abfahrt.trainNumber}
+              currentStation={abfahrt.currentStation}
+              scheduledDeparture={abfahrt.scheduledDeparture}
+            />
+          )}
           {detail && (
             <div id={`${abfahrt.id}Scroll`} className={classes.scrollMarker} />
           )}
@@ -85,6 +97,8 @@ export default connect<StateProps, DispatchProps, OwnProps, AbfahrtenState>(
   (state, props) => ({
     detail: getDetailForAbfahrt(state, props),
     lineAndNumber: state.config.config.lineAndNumber,
+    useZoom: state.config.config.zoomReihung,
+    fahrzeugGruppe: state.config.config.fahrzeugGruppe,
   }),
   {
     setDetail,

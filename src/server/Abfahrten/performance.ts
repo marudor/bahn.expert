@@ -1,6 +1,7 @@
 /* eslint no-await-in-loop: 0 no-console: 0 */
-import { getAbfahrten, noncdAxios, openDataAxios } from '.';
+import { getAbfahrten } from '.';
 import { max, min, sum } from 'lodash';
+import { noncdAxios, openDataAxios } from './helper';
 // eslint-disable-next-line import/no-unresolved
 import { performance, PerformanceObserver } from 'perf_hooks';
 

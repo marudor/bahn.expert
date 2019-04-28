@@ -1,7 +1,7 @@
 /* eslint no-param-reassign: 0, no-await-in-loop: 0 */
 import { AxiosInstance } from 'axios';
 import { flatten } from 'lodash';
-import { noncdAxios } from './index';
+import { noncdAxios } from './helper';
 import NodeCache from 'node-cache';
 import xmljs from 'libxmljs2';
 

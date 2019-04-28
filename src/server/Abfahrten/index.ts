@@ -1,18 +1,9 @@
 import { Abfahrt } from 'types/abfahrten';
+import { AxiosInstance } from 'axios';
 import { compareAsc } from 'date-fns';
 import { getStation } from './station';
-import Axios, { AxiosInstance } from 'axios';
+import { noncdAxios } from './helper';
 import Timetable, { Result } from './Timetable';
-
-export const noncdAxios = Axios.create({
-  baseURL: 'http://iris.noncd.db.de/iris-tts/timetable',
-});
-export const openDataAxios = Axios.create({
-  baseURL: 'https://api.deutschebahn.com/timetables/v1',
-  headers: {
-    Authorization: `Bearer ${process.env.TIMETABLES_OPEN_DATA_KEY || ''}`,
-  },
-});
 
 type AbfahrtenOptions = {
   lookahead?: number;

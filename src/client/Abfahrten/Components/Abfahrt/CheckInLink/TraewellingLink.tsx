@@ -1,8 +1,7 @@
 /* eslint max-len: 0 */
 import { Abfahrt } from 'types/abfahrten';
 import { format } from 'date-fns';
-import { preventDefault } from '.';
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 
 type Props = {
   abfahrt: Abfahrt;
@@ -14,6 +13,7 @@ type Props = {
 // Traewelling
 // https://traewelling.de/checkin?ris=2&2_cat=${abfahrt.trainType}&2_id=${abfahrt.trainType === 'S' ? abfahrt.trainId : abfahrt.trainNumber}&2_start=${abfahrt.currentStation}&2_to=${destination}&2_tm=${time}&2_date=${date}
 
+const preventDefault = (e: SyntheticEvent) => e.preventDefault();
 const TraewellingLink = ({ abfahrt, className }: Props) => {
   const departure = abfahrt.scheduledDeparture;
 
