@@ -11,6 +11,7 @@ import {
 import { connect, ResolveThunks } from 'react-redux';
 import { DateTimePicker } from 'material-ui-pickers';
 import { getRoutes } from 'Routing/actions/routing';
+import { Route } from 'types/routing';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { RoutingState } from 'AppState';
 import { Station } from 'types/station';
@@ -36,6 +37,7 @@ type StateProps = {
   start?: Station;
   destination?: Station;
   date: Date;
+  routes: Route[];
 };
 type ReduxProps = DispatchProps & StateProps;
 type Props = ReduxProps &
@@ -73,7 +75,7 @@ const formatDate = (date: Date) => {
 
 class Search extends React.PureComponent<Props> {
   componentDidMount() {
-    const { match, getStationById } = this.props;
+    const { match, getStationById, routes, setDate } = this.props;
     const { start, destination } = match.params;
 
     if (start) {
@@ -81,6 +83,9 @@ class Search extends React.PureComponent<Props> {
     }
     if (destination) {
       getStationById(destination, searchActions.setDestination);
+    }
+    if (!routes.length) {
+      setDate(new Date(), false);
     }
   }
   searchRoute = (e: SyntheticEvent) => {
@@ -165,6 +170,7 @@ export default connect<StateProps, DispatchProps, {}, RoutingState>(
     start: state.search.start,
     destination: state.search.destination,
     date: state.search.date,
+    routes: state.routing.routes || [],
   }),
   {
     getStationById,

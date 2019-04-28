@@ -15,14 +15,11 @@ import FavEntry, { styles as FavEntryStyles } from './FavEntry';
 import MostUsed from './MostUsed';
 import React from 'react';
 
-type DispatchProps = {
-  setCurrentStation: typeof Actions.setCurrentStation;
-};
 type StateProps = {
   favs: Station[];
   error?: AbfahrtenError;
 };
-type ReduxProps = DispatchProps & StateProps & RouteComponentProps;
+type ReduxProps = StateProps & RouteComponentProps;
 
 type Props = ReduxProps & WithStyles<typeof styles>;
 
@@ -52,9 +49,6 @@ function getErrorText(
 }
 
 class FavList extends React.PureComponent<Props> {
-  componentDidMount() {
-    this.props.setCurrentStation();
-  }
   render() {
     const { favs, error, staticContext, classes } = this.props;
 
@@ -98,12 +92,7 @@ const styles = createStyles({
   favEntry: FavEntryStyles.main,
 });
 
-export default connect<StateProps, DispatchProps, {}, AbfahrtenState>(
-  state => ({
-    favs: sortedFavValues(state),
-    error: state.abfahrten.error,
-  }),
-  {
-    setCurrentStation: Actions.setCurrentStation,
-  }
-)(withRouter(withStyles(styles)(FavList)));
+export default connect<StateProps, {}, {}, AbfahrtenState>(state => ({
+  favs: sortedFavValues(state),
+  error: state.abfahrten.error,
+}))(withRouter(withStyles(styles)(FavList)));

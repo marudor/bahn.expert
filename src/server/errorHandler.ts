@@ -16,7 +16,7 @@ export default async (ctx: Context, next: Function) => {
       // eslint-disable-next-line no-console
       console.error(e);
       ctx.body = serialize(e);
-      ctx.status = 500;
+      ctx.status = e.status || 500;
     }
   }
 };

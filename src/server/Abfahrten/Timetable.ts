@@ -266,7 +266,7 @@ export default class Timetable {
     timetable.auslastung =
       !timetable.isCancelled &&
       timetable.longDistance &&
-      !timetable.substitute &&
+      // !timetable.substitute &&
       Boolean(filteredRoutePost.length);
     timetable.reihung =
       !timetable.isCancelled &&

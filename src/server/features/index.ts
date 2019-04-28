@@ -1,4 +1,5 @@
 import * as Unleash from 'unleash-client';
+import DefaultFeatures from './default';
 
 const url = process.env.FEATURE_URL;
 const instanceId = process.env.FEATURE_ID;
@@ -18,7 +19,10 @@ if (url && instanceId && appName) {
     Boolean(require('./default').default[key]);
 }
 
-export const featureKeys = ['google-analytics', 'routing'];
+export const featureKeys = Object.keys(DefaultFeatures);
+
+export type Features = typeof DefaultFeatures;
+
 export function getFeatures(): Features {
   return featureKeys.reduce<Features>((features, key) => {
     features[key as keyof Features] = Unleash.isEnabled(key);

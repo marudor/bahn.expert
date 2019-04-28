@@ -1,5 +1,6 @@
 import { formatToTimeZone } from 'date-fns-timezone';
 import { HafasResponse } from 'types/HAFAS';
+import { Station } from 'types/station';
 import { TripSearchRequest, TripSearchResponse } from 'types/HAFAS/TripSearch';
 import makeRequest from '../Request';
 import tripSearchParse from './parse';
@@ -47,6 +48,13 @@ function route(
   }: Options,
   noParse?: true
 ) {
+  const outDate = formatToTimeZone(time, 'YYYYMMDD', {
+    timeZone: 'Europe/Berlin',
+  });
+  const outTime = formatToTimeZone(time, 'HHmmss', {
+    timeZone: 'Europe/Berlin',
+  });
+
   const req: TripSearchRequest = {
     req: {
       // jnyFltrL: [
@@ -59,12 +67,8 @@ function route(
       // Always true!
       getPT: true,
       numF: 6,
-      outDate: formatToTimeZone(time, 'YYYYMMDD', {
-        timeZone: 'Europe/Berlin',
-      }),
-      outTime: formatToTimeZone(time, 'HHmmss', {
-        timeZone: 'Europe/Berlin',
-      }),
+      outDate,
+      outTime,
       maxChg: maxChanges,
       minChgTime: transferTime,
       // get stops in between
