@@ -8,6 +8,8 @@ import { Station } from 'types/station';
 import ActionMenu from '@material-ui/icons/Menu';
 import FilterList from '@material-ui/icons/FilterList';
 import FilterModal from './FilterModal';
+import Layers from '@material-ui/icons/Layers';
+import LayersClear from '@material-ui/icons/LayersClear';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import React, { SyntheticEvent } from 'react';
@@ -57,12 +59,18 @@ class ExtraMenu extends React.PureComponent<Props> {
   openLageplan = async () => {
     const { lageplan, getLageplan, currentStation } = this.props;
 
+    this.closeMenu();
+
     if (lageplan === undefined && currentStation) {
       // const snackId = enqueueSnackbar(
       //   `Lade Gleisplan für ${currentStation.title}`,
       //   { variant: 'info' }
       // );
       const fetchedLageplan = await getLageplan(currentStation.title);
+
+      if (fetchedLageplan) {
+        window.open(fetchedLageplan, '_blank');
+      }
 
       // if (snackId) {
       //   if (fetchedLageplan) {
@@ -94,7 +102,7 @@ class ExtraMenu extends React.PureComponent<Props> {
     this.closeMenu();
   };
   render() {
-    const { isFaved, currentStation } = this.props;
+    const { isFaved, currentStation, lageplan } = this.props;
     const { anchor } = this.state;
 
     return (
@@ -109,17 +117,22 @@ class ExtraMenu extends React.PureComponent<Props> {
           onClose={this.toggleMenu}
         >
           {currentStation && (
-            <MenuItem onClick={this.toggleFav}>
-              {isFaved ? (
-                <>
-                  <ToggleStar /> Unfav
-                </>
-              ) : (
-                <>
-                  <ToggleStarBorder /> Fav
-                </>
-              )}
-            </MenuItem>
+            <>
+              <MenuItem onClick={this.toggleFav}>
+                {isFaved ? (
+                  <>
+                    <ToggleStar /> Unfav
+                  </>
+                ) : (
+                  <>
+                    <ToggleStarBorder /> Fav
+                  </>
+                )}
+              </MenuItem>
+              <MenuItem onClick={this.openLageplan}>
+                {lageplan !== null ? <Layers /> : <LayersClear />} Lageplan
+              </MenuItem>
+            </>
           )}
           <MenuItem onClick={this.openFilter}>
             <FilterList /> Filter
