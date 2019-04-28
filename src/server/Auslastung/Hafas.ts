@@ -47,7 +47,7 @@ export default async (
     )
   );
 
-  if (!relevantTrip) {
+  if (!relevantTrip || !relevantTrip.segments[0].auslastung) {
     throw {
       status: 404,
       message: 'Auslastung not found',
