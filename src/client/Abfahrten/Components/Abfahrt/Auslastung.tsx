@@ -14,6 +14,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Warning from '@material-ui/icons/Warning';
 
 type StateProps = {
+  auslastungsFeature: boolean;
   auslastung?: null | Route$Auslastung;
 };
 type DispatchProps = ResolveThunks<{
@@ -58,9 +59,14 @@ function getIcon(auslastung?: AuslastungsValue) {
 
 class Auslastung extends React.PureComponent<Props> {
   componentDidMount() {
-    const { auslastung, getAuslastung, abfahrt } = this.props;
+    const {
+      auslastung,
+      getAuslastung,
+      abfahrt,
+      auslastungsFeature,
+    } = this.props;
 
-    if (!auslastung && abfahrt.scheduledDeparture) {
+    if (auslastungsFeature && !auslastung && abfahrt.scheduledDeparture) {
       getAuslastung(
         abfahrt.trainNumber,
         abfahrt.currentStationEva,
@@ -76,9 +82,9 @@ class Auslastung extends React.PureComponent<Props> {
   };
 
   render() {
-    const { auslastung, classes } = this.props;
+    const { auslastung, classes, auslastungsFeature } = this.props;
 
-    if (auslastung === null) {
+    if (auslastung === null || !auslastungsFeature) {
       return null;
     }
 
@@ -156,6 +162,7 @@ export const styles = createStyles({
 
 export default connect<StateProps, DispatchProps, OwnProps, AbfahrtenState>(
   (state, props) => ({
+    auslastungsFeature: state.features.auslastung,
     auslastung:
       state.auslastung.auslastung[
         `${props.abfahrt.currentStationEva}/${props.abfahrt.destination}/${
