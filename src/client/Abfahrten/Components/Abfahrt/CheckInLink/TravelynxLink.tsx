@@ -10,7 +10,7 @@ type Props = {
 // 30 Minutes in ms
 const timeConstraint = 30 * 60 * 1000;
 
-const preventDefault = (e: SyntheticEvent) => e.preventDefault();
+const stopPropagation = (e: SyntheticEvent) => e.stopPropagation();
 const TravelynxLink = ({ abfahrt, className }: Props) =>
   abfahrt.departure &&
   !abfahrt.departureIsCancelled &&
@@ -20,7 +20,7 @@ const TravelynxLink = ({ abfahrt, className }: Props) =>
   ) ? (
     <a
       className={className}
-      onClick={preventDefault}
+      onClick={stopPropagation}
       rel="noopener noreferrer"
       target="_blank"
       href={`https://travelynx.de/s/${
