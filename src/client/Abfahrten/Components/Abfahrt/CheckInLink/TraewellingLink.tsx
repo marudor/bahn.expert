@@ -13,7 +13,7 @@ type Props = {
 // Traewelling
 // https://traewelling.de/checkin?ris=2&2_cat=${abfahrt.trainType}&2_id=${abfahrt.trainType === 'S' ? abfahrt.trainId : abfahrt.trainNumber}&2_start=${abfahrt.currentStation}&2_to=${destination}&2_tm=${time}&2_date=${date}
 
-const preventDefault = (e: SyntheticEvent) => e.preventDefault();
+const stopPropagation = (e: SyntheticEvent) => e.stopPropagation();
 const TraewellingLink = ({ abfahrt, className }: Props) => {
   const departure = abfahrt.scheduledDeparture;
 
@@ -31,7 +31,7 @@ const TraewellingLink = ({ abfahrt, className }: Props) => {
   return (
     <a
       className={className}
-      onClick={preventDefault}
+      onClick={stopPropagation}
       rel="noopener noreferrer"
       target="_blank"
       href={`https://traewelling.de/checkin?ris=2&2_cat=${
