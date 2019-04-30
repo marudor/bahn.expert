@@ -53,6 +53,7 @@ export default async (ctx: Context) => {
           value: configSanitize[key as keyof MarudorConfigSanitize](
             ctx.query[key]
           ),
+          temp: true,
         })
       );
     }
