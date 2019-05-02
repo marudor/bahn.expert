@@ -20,16 +20,17 @@ type Props = {
 
 const RouteList = ({ routes, classes, dispatch }: Props) => {
   const [detail, setDetail] = useState<undefined | string>();
-  const [loading, setLoading] = useState<undefined | ContextType>();
+  const [loadingEarlier, setLoadingEarlier] = useState(false);
+  const [loadingLater, setLoadingLater] = useState(false);
   const searchLater = useCallback(async () => {
-    setLoading(ContextType.later);
+    setLoadingLater(true);
     await dispatch(getContextRoutes(ContextType.later));
-    setLoading(undefined);
+    setLoadingLater(false);
   }, [dispatch]);
   const searchBefore = useCallback(async () => {
-    setLoading(ContextType.earlier);
+    setLoadingEarlier(true);
     await dispatch(getContextRoutes(ContextType.earlier));
-    setLoading(undefined);
+    setLoadingEarlier(false);
   }, [dispatch]);
 
   if (!routes) return <Loading />;
@@ -37,7 +38,7 @@ const RouteList = ({ routes, classes, dispatch }: Props) => {
 
   return (
     <div className={classes.main}>
-      {loading === ContextType.earlier ? (
+      {loadingEarlier ? (
         <Loading type={1} />
       ) : (
         <Button fullWidth variant="contained" onClick={searchBefore}>
@@ -55,7 +56,7 @@ const RouteList = ({ routes, classes, dispatch }: Props) => {
           key={r.checksum}
         />
       ))}
-      {loading === ContextType.later ? (
+      {loadingLater ? (
         <Loading type={1} />
       ) : (
         <Button fullWidth variant="contained" onClick={searchLater}>
