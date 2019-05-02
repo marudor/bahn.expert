@@ -55,7 +55,7 @@ class StationSearch extends React.PureComponent<Props> {
         getOptionLabel={this.getOptionLabel}
         getOptionValue={this.getOptionValue}
         placeholder={placeholder}
-        value={value}
+        value={value || null}
         onChange={onChange as any}
       />
     );
