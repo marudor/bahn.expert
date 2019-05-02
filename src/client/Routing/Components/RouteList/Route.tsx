@@ -2,7 +2,7 @@ import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { formatDuration } from 'Routing/util';
 import { Route as RouteType } from 'types/routing';
 import Paper from '@material-ui/core/Paper';
-import React, { SyntheticEvent } from 'react';
+import React, { SyntheticEvent, useMemo } from 'react';
 import RouteSegments from './RouteSegments';
 import Time from 'Common/Components/Time';
 
@@ -14,40 +14,35 @@ type OwnProps = {
 
 type Props = OwnProps & WithStyles<typeof styles>;
 
-class Route extends React.PureComponent<Props> {
-  getSegmentTypes() {
-    const { route } = this.props;
-
+const Route = ({ route, classes, detail, onClick }: Props) => {
+  const segmentTypes = useMemo(() => {
     if (route.segmentTypes.length > 1) return route.segmentTypes.join(' - ');
 
     return route.segments[0].train;
-  }
-  render() {
-    const { classes, route, detail, onClick } = this.props;
+  }, [route]);
 
-    return (
-      <Paper onClick={onClick} square className={classes.main}>
-        <Time
-          className={classes.time}
-          real={route.departure}
-          delay={route.departureDelay}
-        />
-        <Time
-          className={classes.time}
-          real={route.arrival}
-          delay={route.arrivalDelay}
-        />
-        <span>{formatDuration(route.duration)}</span>
-        <span>{route.changes}</span>
-        {detail ? (
-          <RouteSegments className={classes.detail} segments={route.segments} />
-        ) : (
-          <span className={classes.products}>{this.getSegmentTypes()}</span>
-        )}
-      </Paper>
-    );
-  }
-}
+  return (
+    <Paper onClick={onClick} square className={classes.main}>
+      <Time
+        className={classes.time}
+        real={route.departure}
+        delay={route.departureDelay}
+      />
+      <Time
+        className={classes.time}
+        real={route.arrival}
+        delay={route.arrivalDelay}
+      />
+      <span>{formatDuration(route.duration)}</span>
+      <span>{route.changes}</span>
+      {detail ? (
+        <RouteSegments className={classes.detail} segments={route.segments} />
+      ) : (
+        <span className={classes.products}>{segmentTypes}</span>
+      )}
+    </Paper>
+  );
+};
 
 export const gridStyle = {
   gridTemplateColumns: '2fr 2fr 2fr 1fr',

@@ -6,7 +6,7 @@ import { Station } from 'types/station';
 import { unfav } from 'Abfahrten/actions/fav';
 import ActionDelete from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent, useCallback } from 'react';
 
 type OwnProps = {
   fav: Station;
@@ -18,36 +18,37 @@ type DispatchProps = ResolveThunks<{
 type ReduxProps = OwnProps & DispatchProps;
 
 type Props = ReduxProps & WithStyles<typeof styles>;
-class FavEntry extends React.PureComponent<Props> {
-  deleteFav = (e: MouseEvent) => {
-    e.stopPropagation();
-    e.preventDefault();
-    this.props.unfav(this.props.fav);
-  };
-  render() {
-    const { fav, noDelete, classes } = this.props;
 
-    return (
-      <Link
-        to={encodeURIComponent(fav.title)}
-        title={`Zugabfahrten für ${fav.title}`}
-      >
-        <div className={classes.main}>
-          <span>{fav.title}</span>
-          {!noDelete && (
-            <IconButton
-              aria-label={`${fav.title} entfernen`}
-              onClick={this.deleteFav}
-              color="inherit"
-            >
-              <ActionDelete />
-            </IconButton>
-          )}
-        </div>
-      </Link>
-    );
-  }
-}
+const FavEntry = ({ fav, noDelete, classes, unfav }: Props) => {
+  const deleteFav = useCallback(
+    (e: MouseEvent) => {
+      e.stopPropagation();
+      e.preventDefault();
+      unfav(fav);
+    },
+    [fav, unfav]
+  );
+
+  return (
+    <Link
+      to={encodeURIComponent(fav.title)}
+      title={`Zugabfahrten für ${fav.title}`}
+    >
+      <div className={classes.main}>
+        <span>{fav.title}</span>
+        {!noDelete && (
+          <IconButton
+            aria-label={`${fav.title} entfernen`}
+            onClick={deleteFav}
+            color="inherit"
+          >
+            <ActionDelete />
+          </IconButton>
+        )}
+      </div>
+    </Link>
+  );
+};
 
 export const styles = createStyles({
   main: {

@@ -20,4 +20,4 @@ const styles = createStyles({
   },
 });
 
-export default React.memo(withStyles(styles)(Substitute));
+export default withStyles(styles)(Substitute);

@@ -8,7 +8,7 @@ import cc from 'classnames';
 import End from './End';
 import Mid from './Mid';
 import Paper from '@material-ui/core/Paper';
-import React from 'react';
+import React, { useCallback } from 'react';
 import Reihung from 'Common/Components/Reihung';
 import Start from './Start';
 import styles from './BaseAbfahrt.styles';
@@ -33,65 +33,63 @@ export type ReduxProps = OwnProps & StateProps & DispatchProps;
 
 export type Props = ReduxProps & WithStyles<typeof styles>;
 
-class BaseAbfahrt extends React.PureComponent<Props> {
-  setDetail = () => {
-    this.props.setDetail(this.props.abfahrt.id);
-  };
-  render() {
-    const {
-      abfahrt,
-      detail,
-      wing,
-      wingEnd,
-      wingStart,
-      lineAndNumber,
-      classes,
-      useZoom,
-      fahrzeugGruppe,
-    } = this.props;
+const BaseAbfahrt = ({
+  abfahrt,
+  detail,
+  wing,
+  wingEnd,
+  wingStart,
+  lineAndNumber,
+  classes,
+  useZoom,
+  fahrzeugGruppe,
+  setDetail,
+}: Props) => {
+  const handleClick = useCallback(() => {
+    setDetail(abfahrt.id);
+  }, [abfahrt.id, setDetail]);
 
-    return (
-      <Paper
-        square
-        id={abfahrt.id}
-        onClick={this.setDetail}
-        className={classes.main}
-      >
-        {wing && (
-          <span
-            className={cc(classes.wing, {
-              [classes.wingStart]: wingStart,
-              [classes.wingEnd]: wingEnd,
-            })}
+  return (
+    <Paper
+      square
+      id={abfahrt.id}
+      onClick={handleClick}
+      className={classes.main}
+    >
+      {wing && (
+        <span
+          className={cc(classes.wing, {
+            [classes.wingStart]: wingStart,
+            [classes.wingEnd]: wingEnd,
+          })}
+        />
+      )}
+      <div className={classes.entry}>
+        <div className={classes.entryMain}>
+          <Start
+            abfahrt={abfahrt}
+            detail={detail}
+            lineAndNumber={lineAndNumber}
+          />
+          <Mid abfahrt={abfahrt} detail={detail} />
+          <End abfahrt={abfahrt} detail={detail} />
+        </div>
+        {detail && abfahrt.reihung && abfahrt.scheduledDeparture && (
+          <Reihung
+            useZoom={useZoom}
+            fahrzeugGruppe={fahrzeugGruppe}
+            trainNumber={abfahrt.trainNumber}
+            currentStation={abfahrt.currentStation}
+            scheduledDeparture={abfahrt.scheduledDeparture}
           />
         )}
-        <div className={classes.entry}>
-          <div className={classes.entryMain}>
-            <Start
-              abfahrt={abfahrt}
-              detail={detail}
-              lineAndNumber={lineAndNumber}
-            />
-            <Mid abfahrt={abfahrt} detail={detail} />
-            <End abfahrt={abfahrt} detail={detail} />
-          </div>
-          {detail && abfahrt.reihung && abfahrt.scheduledDeparture && (
-            <Reihung
-              useZoom={useZoom}
-              fahrzeugGruppe={fahrzeugGruppe}
-              trainNumber={abfahrt.trainNumber}
-              currentStation={abfahrt.currentStation}
-              scheduledDeparture={abfahrt.scheduledDeparture}
-            />
-          )}
-          {detail && (
-            <div id={`${abfahrt.id}Scroll`} className={classes.scrollMarker} />
-          )}
-        </div>
-      </Paper>
-    );
-  }
-}
+        {detail && (
+          <div id={`${abfahrt.id}Scroll`} className={classes.scrollMarker} />
+        )}
+      </div>
+    </Paper>
+  );
+};
 
 export default connect<StateProps, DispatchProps, OwnProps, AbfahrtenState>(
   (state, props) => ({

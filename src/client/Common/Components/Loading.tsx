@@ -133,6 +133,4 @@ export const styles = createStyles({
   },
 });
 
-const ws = withStyles(styles)(Loading);
-
-export default React.memo(ws);
+export default withStyles(styles)(Loading);

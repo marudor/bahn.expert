@@ -27,4 +27,4 @@ export const styles = createStyles({
   },
 });
 
-export default React.memo(withStyles(styles)(BrowserstackThanks));
+export default withStyles(styles)(BrowserstackThanks);
