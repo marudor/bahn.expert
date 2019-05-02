@@ -1,23 +1,30 @@
 import { Common, LocL } from '.';
 
+interface GenericTripSearchRequest {
+  arrLocL: Partial<LocL>[];
+  depLocL: Partial<LocL>[];
+  economic: boolean;
+  getIV: boolean;
+  getPT: boolean;
+  getPasslist: boolean;
+  getPolyline: boolean;
+  getTariff: boolean;
+  maxChg: number;
+  minChgTime: number;
+  numF: number;
+  outFrwd: boolean;
+  ushrp: boolean;
+  ctxScr?: string;
+}
+interface DateTimeTripSeachRequest extends GenericTripSearchRequest {
+  outDate: string;
+  outTime: string;
+}
+interface AfterBeforeTripSearchRequest extends GenericTripSearchRequest {
+  ctxScr: string;
+}
 export interface TripSearchRequest {
-  req: {
-    arrLocL: Partial<LocL>[];
-    depLocL: Partial<LocL>[];
-    economic: boolean;
-    getIV: boolean;
-    getPT: boolean;
-    getPasslist: boolean;
-    getPolyline: boolean;
-    getTariff: boolean;
-    maxChg: number;
-    minChgTime: number;
-    numF: number;
-    outDate: string;
-    outFrwd: boolean;
-    outTime: string;
-    ushrp: boolean;
-  };
+  req: DateTimeTripSeachRequest | AfterBeforeTripSearchRequest;
   meth: 'TripSearch';
   cfg: {
     rtMode: 'HYBRID';

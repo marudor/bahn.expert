@@ -18,6 +18,8 @@ export type Options = {
   ushrp?: boolean;
   getPolyline?: boolean;
   getIV?: boolean;
+  numF?: number;
+  ctxScr?: string;
 };
 
 // @ts-ignore ???
@@ -45,15 +47,30 @@ function route(
     getPolyline = false,
     // unknown flag
     getIV = false,
+    // Number of results to fetch
+    numF = 6,
+    ctxScr,
   }: Options,
   noParse?: true
 ) {
-  const outDate = formatToTimeZone(time, 'YYYYMMDD', {
-    timeZone: 'Europe/Berlin',
-  });
-  const outTime = formatToTimeZone(time, 'HHmmss', {
-    timeZone: 'Europe/Berlin',
-  });
+  let requestTypeSpecific;
+
+  if (time) {
+    requestTypeSpecific = {
+      outDate: formatToTimeZone(time, 'YYYYMMDD', {
+        timeZone: 'Europe/Berlin',
+      }),
+      outTime: formatToTimeZone(time, 'HHmmss', {
+        timeZone: 'Europe/Berlin',
+      }),
+    };
+  } else if (ctxScr) {
+    requestTypeSpecific = {
+      ctxScr,
+    };
+  } else {
+    throw new Error('Either Time or Context required');
+  }
 
   const req: TripSearchRequest = {
     req: {
@@ -66,9 +83,8 @@ function route(
       // ],
       // Always true!
       getPT: true,
-      numF: 6,
-      outDate,
-      outTime,
+      numF,
+      ...requestTypeSpecific,
       maxChg: maxChanges,
       minChgTime: transferTime,
       // get stops in between

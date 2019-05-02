@@ -37,7 +37,7 @@ export default async (
     maxChanges: 0,
   });
 
-  const relevantTrip = trips.find(t =>
+  const relevantTrip = trips.routes.find(t =>
     Boolean(
       t.segments.find(
         s =>
