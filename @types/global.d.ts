@@ -9,3 +9,4 @@ namespace NodeJS {
 }
 
 type ExcludesFalse = <T>(x: T | undefined | null | false) => x is T;
+type Omit<T, K extends keyof any> = Pick<T, SetDifference<keyof T, K>>;

@@ -1,5 +1,5 @@
+import { OutConL, SecL } from './HAFAS/TripSearch';
 import { ProdL } from './HAFAS';
-import { SecL } from './HAFAS/TripSearch';
 import { Station } from './station';
 
 export type Route$Arrival = {
@@ -66,11 +66,20 @@ export type Route$JourneySegmentTrain = Route$Arrival &
 
 export type Route = Route$Arrival &
   Route$Departure & {
+    checksum: string;
     cid: string;
     date: number;
     duration: number;
     changes: number;
     segments: Route$JourneySegment[];
     segmentTypes: Array<string>;
-    raw?: any;
+    raw?: OutConL;
   };
+
+export type RoutingResult = {
+  routes: Route[];
+  context: {
+    earlier: string;
+    later: string;
+  };
+};

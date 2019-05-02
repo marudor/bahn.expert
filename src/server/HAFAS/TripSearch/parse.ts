@@ -16,6 +16,7 @@ import {
   Route$Journey,
   Route$JourneySegment,
   Route$Stop,
+  RoutingResult,
 } from 'types/routing';
 import { Station } from 'types/station';
 
@@ -69,6 +70,7 @@ class Journey {
       .filter<Route$JourneySegment>(Boolean as any);
 
     this.journey = {
+      checksum: raw.cksum,
       cid: raw.cid,
       date: this.date,
       duration: parseDuration(raw.dur),
@@ -249,10 +251,16 @@ class Journey {
   }
 }
 
-export default (r: HafasResponse<TripSearchResponse>): Route[] => {
-  const result = r.svcResL.map(svc =>
+export default (r: HafasResponse<TripSearchResponse>): RoutingResult => {
+  const routes = r.svcResL.map(svc =>
     svc.res.outConL.map(j => new Journey(j, svc.res.common).journey)
   );
 
-  return flatten(result);
+  return {
+    context: {
+      earlier: r.svcResL[0].res.outCtxScrB,
+      later: r.svcResL[0].res.outCtxScrF,
+    },
+    routes: flatten(routes),
+  };
 };
