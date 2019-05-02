@@ -3,7 +3,7 @@ import { Station } from 'types/station';
 import { StationSearchType } from 'Common/config';
 import { StylesConfig } from 'react-select/lib/styles';
 import debounce from 'debounce-promise';
-import React from 'react';
+import React, { useCallback } from 'react';
 import Select from 'react-select/lib/Async';
 
 const debouncedGetStationFromAPI = debounce(getStationsFromAPI, 500);
@@ -38,28 +38,34 @@ type OwnProps = {
   placeholder?: string;
 };
 type Props = OwnProps;
-class StationSearch extends React.PureComponent<Props> {
-  getOptionLabel = (station: Station) => station.title;
-  getOptionValue = (station: Station) => station.id;
-  loadOptions = (term: string) =>
-    debouncedGetStationFromAPI(term, this.props.searchType);
-  render() {
-    const { onChange, value, autoFocus, placeholder } = this.props;
 
-    return (
-      <Select
-        autoFocus={autoFocus}
-        aria-label="Suche nach Bahnhof"
-        styles={selectStyles}
-        loadOptions={this.loadOptions}
-        getOptionLabel={this.getOptionLabel}
-        getOptionValue={this.getOptionValue}
-        placeholder={placeholder}
-        value={value || null}
-        onChange={onChange as any}
-      />
-    );
-  }
-}
+const StationSearch = ({
+  onChange,
+  value,
+  autoFocus,
+  placeholder,
+  searchType,
+}: Props) => {
+  const loadOptions = useCallback(
+    (term: string) => debouncedGetStationFromAPI(term, searchType),
+    [searchType]
+  );
+  const getOptionLabel = useCallback((station: Station) => station.title, []);
+  const getOptionValue = useCallback((station: Station) => station.id, []);
+
+  return (
+    <Select
+      autoFocus={autoFocus}
+      aria-label="Suche nach Bahnhof"
+      styles={selectStyles}
+      loadOptions={loadOptions}
+      getOptionLabel={getOptionLabel}
+      getOptionValue={getOptionValue}
+      placeholder={placeholder}
+      value={value || null}
+      onChange={onChange as any}
+    />
+  );
+};
 
 export default StationSearch;

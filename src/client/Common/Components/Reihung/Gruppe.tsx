@@ -78,4 +78,4 @@ export const styles = createStyles({
   },
 });
 
-export default React.memo(withStyles(styles)(Gruppe));
+export default withStyles(styles)(Gruppe);

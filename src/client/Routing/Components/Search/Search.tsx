@@ -20,7 +20,7 @@ import { withStyles, WithStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import deLocale from 'date-fns/locale/de';
 import IconButton from '@material-ui/core/IconButton';
-import React, { SyntheticEvent } from 'react';
+import React, { SyntheticEvent, useCallback, useEffect } from 'react';
 import searchActions, { getStationById } from 'Routing/actions/search';
 import StationSearch from 'Common/Components/StationSearch';
 import styles from './Search.styles';
@@ -73,9 +73,21 @@ const formatDate = (date: Date) => {
   return relativeDayString;
 };
 
-class Search extends React.PureComponent<Props> {
-  componentDidMount() {
-    const { match, getStationById, routes, setDate } = this.props;
+const Search = ({
+  start,
+  destination,
+  setStart,
+  setDestination,
+  date,
+  setDate,
+  classes,
+  match,
+  routes,
+  getStationById,
+  history,
+  getRoutes,
+}: Props) => {
+  useEffect(() => {
     const { start, destination } = match.params;
 
     if (start) {
@@ -87,83 +99,76 @@ class Search extends React.PureComponent<Props> {
     if (!routes.length) {
       setDate(new Date(), false);
     }
-  }
-  searchRoute = (e: SyntheticEvent) => {
-    e.preventDefault();
-    const { start, destination, getRoutes, history, date } = this.props;
+  }, [getStationById, match.params, routes.length, setDate]);
 
-    if (start && destination) {
-      getRoutes(start.id, destination.id, date);
-      history.push(`/routing/${start.id}/${destination.id}`);
-    }
-  };
-  goHome = () => {
-    this.props.history.push('/');
-  };
-  render() {
-    const {
-      start,
-      destination,
-      setStart,
-      setDestination,
-      date,
-      setDate,
-      classes,
-    } = this.props;
+  const searchRoute = useCallback(
+    (e: SyntheticEvent) => {
+      e.preventDefault();
 
-    return (
-      <>
+      if (start && destination) {
+        getRoutes(start.id, destination.id, date);
+        history.push(`/routing/${start.id}/${destination.id}`);
+      }
+    },
+    [date, destination, getRoutes, history, start]
+  );
+  const goHome = useCallback(() => {
+    history.push('/');
+  }, [history]);
+
+  return (
+    <>
+      <StationSearch
+        searchType={StationSearchType.DBNavgiator}
+        value={start}
+        onChange={setStart}
+        placeholder="Start"
+      />
+      <div className={classes.destination}>
         <StationSearch
           searchType={StationSearchType.DBNavgiator}
-          value={start}
-          onChange={setStart}
-          placeholder="Start"
+          value={destination}
+          onChange={setDestination}
+          placeholder="Destination"
         />
-        <div className={classes.destination}>
-          <StationSearch
-            searchType={StationSearchType.DBNavgiator}
-            value={destination}
-            onChange={setDestination}
-            placeholder="Destination"
-          />
-          <IconButton
-            style={{ padding: 0 }}
-            onClick={(e: SyntheticEvent) => {
-              e.preventDefault();
-              e.stopPropagation();
-              setDestination(start);
-              setStart(destination);
-            }}
-          >
-            <SwapVertical fontSize="large" />
-          </IconButton>
-        </div>
-        <DateTimePicker
-          fullWidth
-          className={classes.datePicker}
-          openTo="hours"
-          labelFunc={formatDate}
-          ampm={false}
-          showTodayButton
-          value={date}
-          onChange={setDate}
-          cancelLabel="Abbrechen"
-          autoOk
-          todayLabel="Jetzt"
-          minutesStep={5}
-        />
-        <div className={classes.buttons}>
-          <Button fullWidth variant="contained" onClick={this.searchRoute}>
-            Search
-          </Button>
-          <Button variant="contained" onClick={this.goHome}>
-            Home
-          </Button>
-        </div>
-      </>
-    );
-  }
-}
+        <IconButton
+          style={{ padding: 0 }}
+          onClick={(e: SyntheticEvent) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setDestination(start);
+            setStart(destination);
+          }}
+        >
+          <SwapVertical fontSize="large" />
+        </IconButton>
+      </div>
+      <DateTimePicker
+        fullWidth
+        className={classes.datePicker}
+        openTo="hours"
+        labelFunc={formatDate}
+        ampm={false}
+        showTodayButton
+        value={date}
+        onChange={setDate}
+        cancelLabel="Abbrechen"
+        autoOk
+        todayLabel="Jetzt"
+        minutesStep={5}
+      />
+      <div className={classes.buttons}>
+        <Button fullWidth variant="contained" onClick={searchRoute}>
+          Search
+        </Button>
+        <Button variant="contained" onClick={goHome}>
+          Home
+        </Button>
+      </div>
+    </>
+  );
+};
+// }
 
 export default connect<StateProps, DispatchProps, {}, RoutingState>(
   state => ({

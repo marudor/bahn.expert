@@ -12,7 +12,7 @@ import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { getAllTrainTypes } from 'Abfahrten/selector/abfahrten';
 import { setDefaultFilter } from 'Abfahrten/actions/config';
 import AbfahrtenActions, { closeFilter } from 'Abfahrten/actions/abfahrten';
-import React, { SyntheticEvent } from 'react';
+import React, { SyntheticEvent, useCallback } from 'react';
 
 type StateProps = {
   open: boolean;
@@ -38,24 +38,24 @@ const FilterModal = ({
   classes,
   setDefaultFilter,
 }: Props) => {
-  const toggleFilter = (product: string) => (
-    event: SyntheticEvent,
-    checked: boolean
-  ) => {
-    let newFilterList;
+  const toggleFilter = useCallback(
+    (product: string) => (event: SyntheticEvent, checked: boolean) => {
+      let newFilterList;
 
-    if (checked) {
-      newFilterList = filterList.filter(p => p !== product);
-    } else {
-      newFilterList = [...filterList, product];
-    }
-    setFilterList(newFilterList);
-  };
+      if (checked) {
+        newFilterList = filterList.filter(p => p !== product);
+      } else {
+        newFilterList = [...filterList, product];
+      }
+      setFilterList(newFilterList);
+    },
+    [filterList, setFilterList]
+  );
 
-  const saveAsDefault = () => {
+  const saveAsDefault = useCallback(() => {
     closeFilter();
     setDefaultFilter();
-  };
+  }, [closeFilter, setDefaultFilter]);
 
   return (
     <Dialog maxWidth="md" fullWidth open={open} onClose={closeFilter}>

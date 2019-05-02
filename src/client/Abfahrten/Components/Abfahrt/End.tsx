@@ -31,4 +31,4 @@ const styles = createStyles({
   },
 });
 
-export default React.memo(withStyles(styles)(End));
+export default withStyles(styles)(End);

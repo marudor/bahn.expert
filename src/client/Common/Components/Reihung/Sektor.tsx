@@ -36,4 +36,4 @@ const styles = createStyles({
   },
 });
 
-export default React.memo(withStyles(styles)(SektorComp));
+export default withStyles(styles)(SektorComp);

@@ -31,14 +31,7 @@ const Start = ({ abfahrt, detail, lineAndNumber, classes }: Props) => (
     {abfahrt.substitute && abfahrt.ref && (
       <Substitute substitute={abfahrt.ref} />
     )}
-    {detail && abfahrt.auslastung && abfahrt.scheduledDeparture && (
-      <Auslastung
-        start={abfahrt.currentStationEva}
-        destination={abfahrt.destination}
-        departure={abfahrt.scheduledDeparture}
-        trainNumber={abfahrt.trainNumber}
-      />
-    )}
+    {detail && abfahrt.auslastung && <Auslastung abfahrt={abfahrt} />}
   </div>
 );
 

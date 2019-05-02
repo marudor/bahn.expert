@@ -195,4 +195,4 @@ const FahrzeugComp = ({
   );
 };
 
-export default React.memo(withStyles(styles)(FahrzeugComp));
+export default withStyles(styles)(FahrzeugComp);
