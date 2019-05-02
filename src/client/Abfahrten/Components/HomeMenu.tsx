@@ -1,35 +1,39 @@
 import { CommonState } from 'AppState';
 import { connect } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import AbfahrtenActions from 'Abfahrten/actions/abfahrten';
 import ActionHome from '@material-ui/icons/Home';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import React, { SyntheticEvent, useState } from 'react';
+import React, { SyntheticEvent, useCallback, useState } from 'react';
 
 type StateProps = {
   routingFeature: boolean;
 };
-type DispatchProps = {
-  setCurrentStation: typeof AbfahrtenActions.setCurrentStation;
-};
-type Props = StateProps & RouteComponentProps & DispatchProps;
+type Props = StateProps & RouteComponentProps;
 
-const HomeMenu = ({ history, routingFeature, setCurrentStation }: Props) => {
+const HomeMenu = ({ history, routingFeature }: Props) => {
   const [anchor, setAnchor] = useState<undefined | HTMLElement>(undefined);
 
-  const toggleMenu = (e: SyntheticEvent<HTMLElement>) =>
-    setAnchor(anchor ? undefined : e.currentTarget);
-  const toAbfahrten = (e: SyntheticEvent<HTMLElement>) => {
-    setCurrentStation();
-    history.push('/');
-    toggleMenu(e);
-  };
-  const toRouting = (e: SyntheticEvent<HTMLElement>) => {
-    history.push('/routing');
-    toggleMenu(e);
-  };
+  const toggleMenu = useCallback(
+    (e: SyntheticEvent<HTMLElement>) =>
+      setAnchor(anchor ? undefined : e.currentTarget),
+    [anchor]
+  );
+  const toAbfahrten = useCallback(
+    (e: SyntheticEvent<HTMLElement>) => {
+      history.push('/');
+      toggleMenu(e);
+    },
+    [history, toggleMenu]
+  );
+  const toRouting = useCallback(
+    (e: SyntheticEvent<HTMLElement>) => {
+      history.push('/routing');
+      toggleMenu(e);
+    },
+    [history, toggleMenu]
+  );
 
   return (
     <>
@@ -50,11 +54,6 @@ const HomeMenu = ({ history, routingFeature, setCurrentStation }: Props) => {
   );
 };
 
-export default connect<StateProps, DispatchProps, {}, CommonState>(
-  state => ({
-    routingFeature: state.features.routing,
-  }),
-  {
-    setCurrentStation: AbfahrtenActions.setCurrentStation,
-  }
-)(withRouter(HomeMenu));
+export default connect<StateProps, {}, {}, CommonState>(state => ({
+  routingFeature: state.features.routing,
+}))(withRouter(HomeMenu));

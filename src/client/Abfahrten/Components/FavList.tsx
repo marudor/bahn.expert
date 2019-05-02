@@ -1,5 +1,5 @@
 import { AbfahrtenState } from 'AppState';
-import { connect } from 'react-redux';
+import { connect, ResolveThunks } from 'react-redux';
 import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { Link } from 'react-router-dom';
 import {
@@ -13,13 +13,17 @@ import { withRouter } from 'react-router-dom';
 import Actions, { AbfahrtenError } from 'Abfahrten/actions/abfahrten';
 import FavEntry, { styles as FavEntryStyles } from './FavEntry';
 import MostUsed from './MostUsed';
-import React from 'react';
+import React, { useEffect } from 'react';
+
+type DispatchProps = ResolveThunks<{
+  setCurrentStation: typeof Actions.setCurrentStation;
+}>;
 
 type StateProps = {
   favs: Station[];
   error?: AbfahrtenError;
 };
-type ReduxProps = StateProps & RouteComponentProps;
+type ReduxProps = DispatchProps & StateProps & RouteComponentProps;
 
 type Props = ReduxProps & WithStyles<typeof styles>;
 
@@ -48,39 +52,45 @@ function getErrorText(
   }
 }
 
-class FavList extends React.PureComponent<Props> {
-  render() {
-    const { favs, error, staticContext, classes } = this.props;
+const FavList = ({
+  favs,
+  error,
+  staticContext,
+  classes,
+  setCurrentStation,
+}: Props) => {
+  useEffect(() => {
+    setCurrentStation();
+  }, [setCurrentStation]);
 
-    return (
-      <main className={classes.main}>
-        {/* eslint-disable-next-line no-nested-ternary */}
-        {error ? (
-          <>
-            <div className={classes.favEntry}>
-              {getErrorText(error, staticContext)}
-            </div>
-            {error.station && (
-              <Link to={encodeURIComponent(error.station)}>
-                <div className={classes.favEntry}>{error.station}</div>
-              </Link>
-            )}
-            <div className={classes.favEntry}>Versuch einen der folgenden</div>
-            <MostUsed />
-          </>
-        ) : favs.length ? (
-          favs.map(fav => fav && <FavEntry key={fav.id} fav={fav} />)
-        ) : (
-          <>
-            <span className={classes.favEntry}>Keine Favoriten</span>
-            <span className={classes.favEntry}>Oft gesucht:</span>
-            <MostUsed />
-          </>
-        )}
-      </main>
-    );
-  }
-}
+  return (
+    <main className={classes.main}>
+      {/* eslint-disable-next-line no-nested-ternary */}
+      {error ? (
+        <>
+          <div className={classes.favEntry}>
+            {getErrorText(error, staticContext)}
+          </div>
+          {error.station && (
+            <Link to={encodeURIComponent(error.station)}>
+              <div className={classes.favEntry}>{error.station}</div>
+            </Link>
+          )}
+          <div className={classes.favEntry}>Versuch einen der folgenden</div>
+          <MostUsed />
+        </>
+      ) : favs.length ? (
+        favs.map(fav => fav && <FavEntry key={fav.id} fav={fav} />)
+      ) : (
+        <>
+          <span className={classes.favEntry}>Keine Favoriten</span>
+          <span className={classes.favEntry}>Oft gesucht:</span>
+          <MostUsed />
+        </>
+      )}
+    </main>
+  );
+};
 
 const styles = createStyles({
   main: {
@@ -92,7 +102,12 @@ const styles = createStyles({
   favEntry: FavEntryStyles.main,
 });
 
-export default connect<StateProps, {}, {}, AbfahrtenState>(state => ({
-  favs: sortedFavValues(state),
-  error: state.abfahrten.error,
-}))(withRouter(withStyles(styles)(FavList)));
+export default connect<StateProps, DispatchProps, {}, AbfahrtenState>(
+  state => ({
+    favs: sortedFavValues(state),
+    error: state.abfahrten.error,
+  }),
+  {
+    setCurrentStation: Actions.setCurrentStation,
+  }
+)(withRouter(withStyles(styles)(FavList)));
