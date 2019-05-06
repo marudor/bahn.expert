@@ -25,7 +25,9 @@
     "test": "npm run lint && npm run depCheck && npm run test:server && npm run test:client && tsc",
     "test:codecov": "codecov",
     "test:client": "jest --config test/client/jest.config.js",
-    "test:server": "TZ=Europe/Berlin jest --config test/server/jest.config.js"
+    "test:server": "TZ=Europe/Berlin jest --config test/server/jest.config.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
@@ -197,7 +199,8 @@
     "universal-cookie": "^3.1.0",
     "universal-cookie-koa": "^3.1.0",
     "unleash-client": "^3.2.3",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "snyk": "^1.161.1"
   },
   "repository": {
     "type": "git",
@@ -209,5 +212,6 @@
   },
   "keywords": [],
   "contributors": [],
-  "homepage": "http://marudor.de"
+  "homepage": "http://marudor.de",
+  "snyk": true
 }
