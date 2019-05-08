@@ -5,6 +5,7 @@ namespace NodeJS {
     smallScreen: boolean;
     __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: Function;
     __DATA__: Object;
+    __ConfigOverride__?: Object;
   }
 }
 

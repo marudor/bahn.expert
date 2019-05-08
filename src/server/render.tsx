@@ -44,15 +44,21 @@ export default async (ctx: Context) => {
     features: getFeatures(),
   });
 
+  const configOverride = {};
+
   await store.dispatch(setCookies(ctx.request.universalCookies));
   Object.keys(ctx.query).forEach((key: any) => {
     if (configSanitize.hasOwnProperty(key)) {
+      const value = configSanitize[key as keyof MarudorConfigSanitize](
+        ctx.query[key]
+      );
+
+      // @ts-ignore this works
+      configOverride[key] = value;
       store.dispatch(
         Actions.setConfig({
           key,
-          value: configSanitize[key as keyof MarudorConfigSanitize](
-            ctx.query[key]
-          ),
+          value,
           temp: true,
         })
       );
@@ -111,6 +117,7 @@ export default async (ctx: Context) => {
       header: helmetContext.helmet,
       cssBundles: ctx.stats.main.css,
       clientState: serialize(state),
+      configOverride: serialize(configOverride),
     });
     ctx.body += app;
 
