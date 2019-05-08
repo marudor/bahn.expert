@@ -27,6 +27,8 @@ export default createReducer(defaultState, handle => [
     const config: MarudorConfig = {
       ...defaultConfig,
       ...payload.get('config'),
+      // eslint-disable-next-line no-underscore-dangle
+      ...(global.__ConfigOverride__ ? global.__ConfigOverride__ : {}),
     };
 
     return {
