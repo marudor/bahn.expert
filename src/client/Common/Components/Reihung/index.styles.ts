@@ -2,24 +2,29 @@ import { createStyles } from '@material-ui/styles';
 import { ReduxProps } from '.';
 
 export default createStyles(theme => ({
+  wrap: {
+    overflowX: 'auto',
+  },
   main: ({ reihung, fahrzeugGruppe }: ReduxProps) => {
-    let height = 5;
+    let height = 6;
 
     if (fahrzeugGruppe) height += 1;
     if (reihung && reihung.differentDestination) height += 1;
     if (reihung && reihung.differentZugnummer) height += 1;
 
     return {
+      minWidth: '60em',
+      overflow: 'hidden',
+      position: 'relative',
       fontSize: '160%',
       marginBottom: '1em',
       marginRight: '.3em',
-      position: 'relative',
       height: `${height}em`,
     };
   },
   specificType: {
     position: 'absolute',
-    bottom: '-0.5em',
+    bottom: 0,
     zIndex: 10,
   },
   sektoren: {
@@ -36,7 +41,7 @@ export default createStyles(theme => ({
     height: 2,
     position: 'absolute',
     left: '50%',
-    bottom: 0,
+    bottom: '.5em',
     zIndex: 10,
     transform:
       reihung && reihung.realFahrtrichtung
