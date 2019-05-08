@@ -12,7 +12,7 @@ import {
   setShowSupersededMessages,
   setTime,
   setZoomReihung,
-} from 'Abfahrten/actions/config';
+} from 'Abfahrten/actions/abfahrtenConfig';
 import { connect, ResolveThunks } from 'react-redux';
 import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import Dialog from '@material-ui/core/Dialog';
@@ -249,13 +249,13 @@ export const styles = createStyles(theme => ({
 
   autoUpdate: {
     width: '3em',
-  }
+  },
 }));
 
 export default connect<StateProps, DispatchProps, void, AbfahrtenState>(
   state => ({
-    open: state.config.open,
-    ...state.config.config,
+    open: state.abfahrtenConfig.open,
+    ...state.abfahrtenConfig.config,
   }),
   {
     closeSettings,

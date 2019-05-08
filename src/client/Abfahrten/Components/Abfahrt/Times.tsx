@@ -92,5 +92,5 @@ const Times = ({
 );
 
 export default connect<StateProps, {}, OwnProps, AbfahrtenState>(state => ({
-  timeConfig: state.config.config.time,
+  timeConfig: state.abfahrtenConfig.config.time,
 }))(withStyles(styles, { withTheme: true })(Times));

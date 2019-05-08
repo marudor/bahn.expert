@@ -44,7 +44,7 @@ const styles = createStyles(theme => ({
     },
     a: {
       textDecoration: 'none',
-      color: 'black',
+      color: theme.palette.text.primary,
     },
   },
 }));

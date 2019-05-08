@@ -180,7 +180,7 @@ const styles = createStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     overflowX: 'auto',
-    marginTop: 48,
+    marginTop: 64,
     '& > h1': {
       display: 'none',
     },
@@ -198,7 +198,7 @@ const styles = createStyles(theme => ({
     position: 'relative',
     paddingTop: 10,
     backgroundColor: 'lightgray',
-  }
+  },
 }));
 
 export default connect<StateProps, DispatchProps, {}, AbfahrtenState>(
@@ -206,7 +206,7 @@ export default connect<StateProps, DispatchProps, {}, AbfahrtenState>(
     abfahrten: getAbfahrtenForConfig(state),
     currentStation: state.abfahrten.currentStation,
     error: state.abfahrten.error,
-    autoUpdate: state.config.config.autoUpdate,
+    autoUpdate: state.abfahrtenConfig.config.autoUpdate,
     selectedDetail: state.abfahrten.selectedDetail,
   }),
   {

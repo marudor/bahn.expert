@@ -10,7 +10,7 @@ import {
 import { connect, ResolveThunks } from 'react-redux';
 import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { getAllTrainTypes } from 'Abfahrten/selector/abfahrten';
-import { setDefaultFilter } from 'Abfahrten/actions/config';
+import { setDefaultFilter } from 'Abfahrten/actions/abfahrtenConfig';
 import AbfahrtenActions, { closeFilter } from 'Abfahrten/actions/abfahrten';
 import React, { SyntheticEvent, useCallback } from 'react';
 
@@ -86,7 +86,7 @@ const FilterModal = ({
 const styles = createStyles(theme => ({
   label: {
     width: 'calc(50% - 1em)',
-  }
+  },
 }));
 
 export default connect<StateProps, DispatchProps, {}, AbfahrtenState>(

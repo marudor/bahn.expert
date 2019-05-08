@@ -43,5 +43,5 @@ export const styles = createStyles(theme => ({
 }));
 
 export default connect<StateProps, {}, OwnProps, AbfahrtenState>(state => ({
-  type: state.config.config.checkIn,
+  type: state.abfahrtenConfig.config.checkIn,
 }))(withStyles(styles)(CheckInLink));

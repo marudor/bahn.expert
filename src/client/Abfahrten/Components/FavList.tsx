@@ -94,7 +94,7 @@ const FavList = ({
 
 const styles = createStyles(theme => ({
   main: {
-    marginTop: 48,
+    marginTop: 64,
     display: 'flex',
     flexDirection: 'column',
     flex: 1,

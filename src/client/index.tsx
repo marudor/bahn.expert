@@ -7,11 +7,10 @@ import { Provider } from 'react-redux';
 import { ThemeProvider } from '@material-ui/styles';
 import axios from 'axios';
 import createStore from './createStore';
-import MainApp from './App';
-import maruTheme from './Themes';
-import muiTheme from './Themes/mui';
+import createThemes, { ThemeType } from './Themes';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ThemeWrap from './ThemeWrap';
 
 // 10s timeout
 axios.defaults.timeout = 10000;
@@ -23,23 +22,21 @@ const store = createStore();
 
 const render = (App: React.ComponentType) => (
   <Provider store={store}>
-    <ThemeProvider theme={{ ...muiTheme, ...maruTheme }}>
-      <HelmetProvider context={{}}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </HelmetProvider>
-    </ThemeProvider>
+    <HelmetProvider context={{}}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </HelmetProvider>
   </Provider>
 );
 
-ReactDOM.hydrate(render(MainApp), container);
+ReactDOM.hydrate(render(ThemeWrap), container);
 
 // @ts-ignore
 if (module.hot) {
   // @ts-ignore
-  module.hot.accept('./App', () => {
-    const App = require('./App').default;
+  module.hot.accept('./ThemeWrap', () => {
+    const App = require('./ThemeWrap').default;
 
     ReactDOM.render(render(App), container);
   });

@@ -3,8 +3,10 @@ import { connect, ResolveThunks } from 'react-redux';
 import { fav, unfav } from 'Abfahrten/actions/fav';
 import { getLageplan, openFilter } from 'Abfahrten/actions/abfahrten';
 import { IconButton } from '@material-ui/core';
-import { openSettings } from 'Abfahrten/actions/config';
+import { openSettings } from 'Abfahrten/actions/abfahrtenConfig';
 import { Station } from 'types/station';
+import { ThemeType } from 'client/Themes';
+import { toggleTheme } from 'Common/actions/config';
 import ActionMenu from '@material-ui/icons/Menu';
 import FilterList from '@material-ui/icons/FilterList';
 import FilterModal from './FilterModal';
@@ -16,11 +18,15 @@ import React, { SyntheticEvent } from 'react';
 import Settings from '@material-ui/icons/Settings';
 import ToggleStar from '@material-ui/icons/Star';
 import ToggleStarBorder from '@material-ui/icons/StarBorder';
+import WbSunny from '@material-ui/icons/WbSunny';
+import WbSunnyOutlined from '@material-ui/icons/WbSunnyOutlined';
 
 type StateProps = {
   isFaved: boolean;
   currentStation?: Station;
   lageplan?: null | string;
+  theme: ThemeType;
+  darkModeFeature: boolean;
 };
 
 type DispatchProps = ResolveThunks<{
@@ -29,6 +35,7 @@ type DispatchProps = ResolveThunks<{
   openSettings: typeof openSettings;
   openFilter: typeof openFilter;
   getLageplan: typeof getLageplan;
+  toggleTheme: typeof toggleTheme;
 }>;
 
 type ReduxProps = StateProps & DispatchProps;
@@ -102,12 +109,27 @@ class ExtraMenu extends React.PureComponent<Props> {
     this.closeMenu();
   };
   render() {
-    const { isFaved, currentStation, lageplan } = this.props;
+    const {
+      isFaved,
+      currentStation,
+      lageplan,
+      theme,
+      darkModeFeature,
+    } = this.props;
     const { anchor } = this.state;
 
     return (
       <>
         <FilterModal />
+        {darkModeFeature && (
+          <IconButton
+            aria-label="Toggle Theme"
+            onClick={this.props.toggleTheme}
+            color="inherit"
+          >
+            {theme === ThemeType.dark ? <WbSunnyOutlined /> : <WbSunny />}
+          </IconButton>
+        )}
         <IconButton aria-label="Menu" onClick={this.toggleMenu} color="inherit">
           <ActionMenu />
         </IconButton>
@@ -116,24 +138,22 @@ class ExtraMenu extends React.PureComponent<Props> {
           anchorEl={anchor}
           onClose={this.toggleMenu}
         >
-          {currentStation && (
-            <>
-              <MenuItem onClick={this.toggleFav}>
-                {isFaved ? (
-                  <>
-                    <ToggleStar /> Unfav
-                  </>
-                ) : (
-                  <>
-                    <ToggleStarBorder /> Fav
-                  </>
-                )}
-              </MenuItem>
-              <MenuItem onClick={this.openLageplan}>
-                {lageplan !== null ? <Layers /> : <LayersClear />} Lageplan
-              </MenuItem>
-            </>
-          )}
+          {currentStation && [
+            <MenuItem key="1" onClick={this.toggleFav}>
+              {isFaved ? (
+                <>
+                  <ToggleStar /> Unfav
+                </>
+              ) : (
+                <>
+                  <ToggleStarBorder /> Fav
+                </>
+              )}
+            </MenuItem>,
+            <MenuItem key="2" onClick={this.openLageplan}>
+              {lageplan !== null ? <Layers /> : <LayersClear />} Lageplan
+            </MenuItem>,
+          ]}
           <MenuItem onClick={this.openFilter}>
             <FilterList /> Filter
           </MenuItem>
@@ -154,6 +174,8 @@ export default connect<StateProps, DispatchProps, {}, AbfahrtenState>(
     ),
     currentStation: state.abfahrten.currentStation,
     lageplan: state.abfahrten.lageplan,
+    theme: state.config.theme,
+    darkModeFeature: state.features.dark,
   }),
   {
     fav,
@@ -161,5 +183,6 @@ export default connect<StateProps, DispatchProps, {}, AbfahrtenState>(
     openSettings,
     getLageplan,
     openFilter,
+    toggleTheme,
   }
 )(ExtraMenu);
