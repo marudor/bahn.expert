@@ -38,6 +38,7 @@ type StateProps = {
   destination?: Station;
   date: Date;
   routes: Route[];
+  dateTouched?: boolean;
 };
 type ReduxProps = DispatchProps & StateProps;
 type Props = ReduxProps &
@@ -86,6 +87,7 @@ const Search = ({
   getStationById,
   history,
   getRoutes,
+  dateTouched,
 }: Props) => {
   useEffect(() => {
     const { start, destination } = match.params;
@@ -96,10 +98,10 @@ const Search = ({
     if (destination) {
       getStationById(destination, searchActions.setDestination);
     }
-    if (!routes.length) {
+    if (!routes.length && !dateTouched) {
       setDate(new Date(), false);
     }
-  }, [getStationById, match.params, routes.length, setDate]);
+  }, [dateTouched, getStationById, match.params, routes.length, setDate]);
 
   const searchRoute = useCallback(
     (e: SyntheticEvent) => {
@@ -176,6 +178,7 @@ export default connect<StateProps, DispatchProps, {}, RoutingState>(
     destination: state.search.destination,
     date: state.search.date,
     routes: state.routing.routes || [],
+    dateTouched: state.search.dateTouched,
   }),
   {
     getStationById,
