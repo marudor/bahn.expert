@@ -106,7 +106,7 @@ class Header extends React.Component<Props> {
 
 export default connect<StateProps, void, void, AbfahrtenState>(state => ({
   currentStation: state.abfahrten.currentStation,
-  searchType: state.config.config.searchType,
+  searchType: state.abfahrtenConfig.config.searchType,
   baseUrl: state.config.baseUrl,
   nextAbfahrt: getNextDeparture(state),
 }))(withRouter(Header));

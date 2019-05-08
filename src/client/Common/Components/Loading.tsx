@@ -82,7 +82,7 @@ export const styles = createStyles(theme => ({
     '& > div': {
       width: '33%',
       height: '33%',
-      backgroundColor: '#333',
+      backgroundColor: theme.palette.text.primary,
       float: 'left',
       animation: '$cube 1.3s infinite ease-in-out',
     },
@@ -118,7 +118,7 @@ export const styles = createStyles(theme => ({
       position: 'absolute',
       left: 6,
       width: 13,
-      background: '#000',
+      background: theme.palette.text.primary,
       animation: '$dots 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite',
     },
     '& > div:nth-child(1)': {
@@ -133,7 +133,7 @@ export const styles = createStyles(theme => ({
       left: 45,
       animationDelay: '0',
     },
-  }
+  },
 }));
 
 export default withStyles(styles)(Loading);

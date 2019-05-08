@@ -8,21 +8,20 @@ import { matchRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
 import { renderStylesToString } from 'emotion-server';
 import { renderToString } from 'react-dom/server';
-import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles';
+import { ServerStyleSheets } from '@material-ui/styles';
+import { setConfig, setFromCookies } from 'Abfahrten/actions/abfahrtenConfig';
 import { StaticRouter } from 'react-router-dom';
 import { StaticRouterContext } from 'react-router';
 import abfahrtenRoutes from 'Abfahrten/routes';
-import Actions, { setCookies } from 'Abfahrten/actions/config';
+import ConfigActions, { setCookies } from 'Common/actions/config';
 import createStore from 'client/createStore';
 import ejs from 'ejs';
 import fs from 'fs';
-import MainApp from 'client/App';
-import maruTheme from 'client/Themes';
-import muiTheme from 'client/Themes/mui';
 import path from 'path';
 import React from 'react';
 import routingRoutes from 'Routing/routes';
 import serialize from 'serialize-javascript';
+import ThemeWrap from 'client/ThemeWrap';
 
 const headerFilename = path.resolve(__dirname, './views/header.ejs');
 // eslint-disable-next-line
@@ -47,6 +46,7 @@ export default async (ctx: Context) => {
   const configOverride = {};
 
   await store.dispatch(setCookies(ctx.request.universalCookies));
+  await store.dispatch(setFromCookies());
   Object.keys(ctx.query).forEach((key: any) => {
     if (configSanitize.hasOwnProperty(key)) {
       const value = configSanitize[key as keyof MarudorConfigSanitize](
@@ -55,18 +55,11 @@ export default async (ctx: Context) => {
 
       // @ts-ignore this works
       configOverride[key] = value;
-      store.dispatch(
-        Actions.setConfig({
-          key,
-          value,
-          temp: true,
-        })
-      );
+      store.dispatch(setConfig(key, value, true));
     }
   });
 
-  // @ts-ignore we already checked that BASE_URL exists
-  store.dispatch(Actions.setBaseUrl(process.env.BASE_URL));
+  store.dispatch(ConfigActions.setBaseUrl(process.env.BASE_URL || ''));
   const routes = ctx.path.startsWith('/routing')
     ? routingRoutes
     : abfahrtenRoutes;
@@ -89,13 +82,11 @@ export default async (ctx: Context) => {
 
   const App = (
     <Provider store={store}>
-      <ThemeProvider theme={{ ...muiTheme, ...maruTheme }}>
-        <HelmetProvider context={helmetContext}>
-          <StaticRouter location={ctx.path} context={routeContext}>
-            <MainApp />
-          </StaticRouter>
-        </HelmetProvider>
-      </ThemeProvider>
+      <HelmetProvider context={helmetContext}>
+        <StaticRouter location={ctx.path} context={routeContext}>
+          <ThemeWrap />
+        </StaticRouter>
+      </HelmetProvider>
     </Provider>
   );
 

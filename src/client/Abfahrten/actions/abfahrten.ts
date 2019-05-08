@@ -101,7 +101,7 @@ export const getAbfahrtenByString = (
   searchType?: StationSearchType
 ): AbfahrtenThunkResult => async (dispatch, getState) => {
   try {
-    const config = getState().config.config;
+    const config = getState().abfahrtenConfig.config;
     const stations = await getStationsFromAPI(
       stationString,
       searchType || config.searchType
@@ -169,8 +169,8 @@ export const refreshCurrentAbfahrten = (): AbfahrtenThunkResult => async (
 
   const { departures, lookbehind, ...rest } = await getAbfahrtenFromAPI(
     state.abfahrten.currentStation,
-    state.config.config.lookahead,
-    state.config.config.lookbehind
+    state.abfahrtenConfig.config.lookahead,
+    state.abfahrtenConfig.config.lookbehind
   );
 
   dispatch(

@@ -8,7 +8,7 @@ export default createStyles(theme => ({
     display: 'flex',
     justifyContent: 'flex-end',
     '& > span': {
-      color: 'black',
+      color: theme.palette.text.primary,
       whiteSpace: 'pre-wrap',
     },
   },

@@ -94,9 +94,9 @@ const BaseAbfahrt = ({
 export default connect<StateProps, DispatchProps, OwnProps, AbfahrtenState>(
   (state, props) => ({
     detail: getDetailForAbfahrt(state, props),
-    lineAndNumber: state.config.config.lineAndNumber,
-    useZoom: state.config.config.zoomReihung,
-    fahrzeugGruppe: state.config.config.fahrzeugGruppe,
+    lineAndNumber: state.abfahrtenConfig.config.lineAndNumber,
+    useZoom: state.abfahrtenConfig.config.zoomReihung,
+    fahrzeugGruppe: state.abfahrtenConfig.config.fahrzeugGruppe,
   }),
   {
     setDetail,

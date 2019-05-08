@@ -31,7 +31,7 @@ export default createStyles(theme => ({
     height: '100%',
   },
   richtung: ({ reihung }) => ({
-    backgroundColor: 'black',
+    backgroundColor: theme.palette.text.primary,
     width: '50%',
     height: 2,
     position: 'absolute',
@@ -43,7 +43,7 @@ export default createStyles(theme => ({
         ? 'translateX(-50%)'
         : 'rotate(180deg) translateX(50%)',
     '&::after': {
-      border: 'solid black',
+      border: `solid ${theme.palette.text.primary}`,
       borderWidth: '0 2px 2px 0',
       display: 'inline-block',
       padding: 3,

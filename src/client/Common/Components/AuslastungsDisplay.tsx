@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { AuslastungsValue, Route$Auslastung } from 'types/routing';
-import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
+import {
+  createStyles,
+  MergedTheme,
+  withStyles,
+  WithStyles,
+} from '@material-ui/styles';
 import Close from '@material-ui/icons/Close';
 import Done from '@material-ui/icons/Done';
 import ErrorOutline from '@material-ui/icons/ErrorOutline';
@@ -65,24 +70,28 @@ const AuslastungsDisplay = ({ auslastung, classes }: Props) => (
   </div>
 );
 
-function getBGColor(auslastung?: null | AuslastungsValue) {
+function getBGColor(theme: MergedTheme, auslastung?: null | AuslastungsValue) {
   switch (auslastung) {
     case AuslastungsValue.Gering:
-      return 'green';
+      return theme.colors.green;
     case AuslastungsValue.Hoch:
-      return 'yellow';
+      return theme.colors.yellow;
     case AuslastungsValue.SehrHoch:
-      return 'orange';
+      return theme.colors.orange;
     case AuslastungsValue.Ausgebucht:
-      return 'red';
+      return theme.colors.red;
     default:
-      return 'black';
+      return theme.palette.common.black;
   }
 }
-const getColor = (auslastung?: null | AuslastungsValue) => ({
-  backgroundColor: getBGColor(auslastung),
-  color: auslastung === 2 || auslastung === 3 ? 'black' : 'white',
-});
+const getColor = (theme: MergedTheme, auslastung?: null | AuslastungsValue) => {
+  const backgroundColor = getBGColor(theme, auslastung);
+
+  return {
+    backgroundColor,
+    color: theme.palette.getContrastText(backgroundColor),
+  };
+};
 
 export const styles = createStyles(theme => ({
   main: {
@@ -108,10 +117,10 @@ export const styles = createStyles(theme => ({
   },
 
   // @ts-ignore ???
-  first: props => getColor(props.auslastung && props.auslastung.first),
+  first: props => getColor(theme, props.auslastung && props.auslastung.first),
 
   // @ts-ignore ???
-  second: props => getColor(props.auslastung && props.auslastung.second)
+  second: props => getColor(theme, props.auslastung && props.auslastung.second),
 }));
 
 export default withStyles(styles)(AuslastungsDisplay);

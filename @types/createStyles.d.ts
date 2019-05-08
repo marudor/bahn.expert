@@ -33,6 +33,7 @@ declare module '@material-ui/styles' {
     StyleRulesCallback,
   } from '@material-ui/styles/withStyles';
   import { Theme as MuiTheme } from '@material-ui/core';
+  import { Theme as MaruTheme } from 'maru';
 
   /**
    * This function doesn't really "do anything" at runtime, it's just the identity
@@ -43,7 +44,7 @@ declare module '@material-ui/styles' {
    * @returns the same styles that were passed in
    */
 
-  type MergedTheme = MuiTheme & Maru.Theme;
+  export type MergedTheme = MuiTheme & MaruTheme;
 
   export function createStyles<ClassKey extends string, Props extends object>(
     styles: StyleRulesCallback<MergedTheme, Props, ClassKey>

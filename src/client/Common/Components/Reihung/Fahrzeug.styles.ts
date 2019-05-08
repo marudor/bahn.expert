@@ -4,7 +4,7 @@ export default createStyles(theme => ({
   main: {
     position: 'absolute',
     height: '2em',
-    border: 'black 1px solid',
+    border: `${theme.palette.text.primary} 1px solid`,
     boxSizing: 'border-box',
   },
 
@@ -45,21 +45,25 @@ export default createStyles(theme => ({
   },
 
   klasse1: {
-    backgroundColor: 'yellow',
+    backgroundColor: theme.colors.yellow,
+    color: theme.palette.getContrastText(theme.colors.yellow),
     '&::after': {
       content: '"1"',
     },
   },
 
   klasse2: {
-    backgroundColor: 'red',
+    backgroundColor: theme.colors.red,
+    color: theme.palette.getContrastText(theme.colors.red),
     '&::after': {
       content: '"2"',
     },
   },
 
   klasse3: {
-    background: 'linear-gradient(to right, yellow, red)',
+    background: `linear-gradient(to right, ${theme.colors.yellow}, ${
+      theme.colors.red
+    })`,
     '&::after': {
       content: '"1/2"',
     },
@@ -98,7 +102,7 @@ export default createStyles(theme => ({
     right: '.3em',
     width: '.7em',
     height: '.7em',
-    backgroundColor: 'red',
+    backgroundColor: theme.colors.red,
     borderRadius: '50%',
-  }
+  },
 }));

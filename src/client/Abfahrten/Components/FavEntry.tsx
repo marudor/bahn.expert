@@ -56,16 +56,16 @@ export const styles = createStyles(theme => ({
     marginBottom: 1,
     flexShrink: 0,
     fontSize: '2em',
-    color: theme.colors.text,
+    color: theme.palette.text.primary,
     boxShadow: '0 1px 0 rgba(0, 0, 0, 0.24)',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
     '& > a': {
-      color: theme.colors.text,
+      color: theme.palette.text.primary,
     },
     '&:hover': {
-      backgroundColor: 'rgb(238,238,238)',
+      backgroundColor: theme.palette.action.hover,
     },
   },
 }));

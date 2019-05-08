@@ -1,18 +1,20 @@
 import abfahrten, { State as AbfahrtenState } from './abfahrten';
+import abfahrtenConfig, {
+  State as AbfahrtenConfigState,
+} from './abfahrtenConfig';
 import auslastung, { State as AuslastungState } from './auslastung';
-import config, { State as ConfigState } from './config';
 import fav, { State as FavState } from './fav';
 
 export type AbfahrtenRootState = {
   abfahrten: AbfahrtenState;
-  config: ConfigState;
+  abfahrtenConfig: AbfahrtenConfigState;
   fav: FavState;
   auslastung: AuslastungState;
 };
 
 export default {
   abfahrten,
-  config,
+  abfahrtenConfig,
   fav,
   auslastung,
 };

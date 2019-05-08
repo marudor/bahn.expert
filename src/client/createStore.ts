@@ -1,6 +1,7 @@
 import { applyMiddleware, compose, createStore } from 'redux';
 import { AppState } from 'AppState';
-import Actions from 'Abfahrten/actions/config';
+import { setCookies } from 'Common/actions/config';
+import { setFromCookies } from 'Abfahrten/actions/abfahrtenConfig';
 import Cookies from 'universal-cookie';
 import reducer from './reducer';
 import thunkMiddleware from 'redux-thunk';
@@ -27,7 +28,8 @@ export default (state: Partial<AppState> = global.__DATA__) => {
     });
   }
 
-  store.dispatch(Actions.setCookies(new Cookies()));
+  store.dispatch(setCookies(new Cookies()));
+  store.dispatch(setFromCookies());
 
   // @ts-ignore
   if (module.hot) {
