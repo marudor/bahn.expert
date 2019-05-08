@@ -1,33 +1,128 @@
+import { Async } from 'react-select';
+import { ControlProps } from 'react-select/lib/components/Control';
 import { getStationsFromAPI } from 'Common/service/stationSearch';
+import { makeStyles, MergedTheme, useTheme } from '@material-ui/styles';
+import { MenuProps, NoticeProps } from 'react-select/lib/components/Menu';
+import { OptionProps } from 'react-select/lib/components/Option';
+import { PlaceholderProps } from 'react-select/lib/components/Placeholder';
+import { SingleValueProps } from 'react-select/lib/components/SingleValue';
 import { Station } from 'types/station';
 import { StationSearchType } from 'Common/config';
 import { StylesConfig } from 'react-select/lib/styles';
+import { ValueContainerProps } from 'react-select/lib/components/containers';
 import debounce from 'debounce-promise';
-import React, { useCallback } from 'react';
-import Select from 'react-select/lib/Async';
+import MenuItem from '@material-ui/core/MenuItem';
+import Paper from '@material-ui/core/Paper';
+import React, { useCallback, useMemo } from 'react';
+import styles from './StationSearch.style';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+
+const useStyles = makeStyles(styles);
 
 const debouncedGetStationFromAPI = debounce(getStationsFromAPI, 500);
 
-const selectStyles: StylesConfig = {
-  dropdownIndicator: () => ({
-    display: 'none',
-  }),
-  indicatorSeparator: () => ({
-    display: 'none',
-  }),
-  placeholder: base => ({
-    ...base,
-    color: 'hsl(0, 0%, 45%)',
-  }),
-  option: (base, state) => ({
-    ...base,
-    background: state.isFocused ? 'lightgray' : 'white',
-    color: 'black',
-  }),
-  container: () => ({
-    flex: 1,
-    position: 'relative',
-  }),
+function NoOptionsMessage(props: NoticeProps<any>) {
+  return (
+    <Typography
+      color="textSecondary"
+      className={props.selectProps.classes.noOptionsMessage}
+      {...props.innerProps}
+    >
+      {props.children}
+    </Typography>
+  );
+}
+
+function inputComponent({ inputRef, ...props }: any) {
+  return <div ref={inputRef} {...props} />;
+}
+
+function Control(props: ControlProps<any>) {
+  return (
+    <TextField
+      fullWidth
+      InputProps={{
+        inputComponent,
+        inputProps: {
+          className: props.selectProps.classes.input,
+          inputRef: props.innerRef,
+          children: props.children,
+          ...props.innerProps,
+        },
+      }}
+      {...props.selectProps.TextFieldProps}
+    />
+  );
+}
+
+function Option(props: OptionProps<any>) {
+  return (
+    <MenuItem
+      ref={props.innerRef}
+      selected={props.isFocused}
+      component="div"
+      style={{
+        fontWeight: props.isSelected ? 500 : 400,
+      }}
+      {...props.innerProps}
+    >
+      {props.children}
+    </MenuItem>
+  );
+}
+
+function Placeholder(props: PlaceholderProps<any>) {
+  return (
+    <Typography
+      color="textSecondary"
+      className={props.selectProps.classes.placeholder}
+      {...props.innerProps}
+    >
+      {props.children}
+    </Typography>
+  );
+}
+
+function SingleValue(props: SingleValueProps<any>) {
+  return (
+    <Typography
+      className={props.selectProps.classes.singleValue}
+      {...props.innerProps}
+    >
+      {props.children}
+    </Typography>
+  );
+}
+
+function ValueContainer(props: ValueContainerProps<any>) {
+  return (
+    <div className={props.selectProps.classes.valueContainer}>
+      {props.children}
+    </div>
+  );
+}
+
+function Menu(props: MenuProps<any>) {
+  return (
+    <Paper
+      square
+      className={props.selectProps.classes.paper}
+      {...props.innerProps}
+    >
+      {props.children}
+    </Paper>
+  );
+}
+
+const components = {
+  Control,
+  Menu,
+  NoOptionsMessage,
+  Option,
+  Placeholder,
+  SingleValue,
+  ValueContainer,
 };
 
 type OwnProps = {
@@ -46,6 +141,31 @@ const StationSearch = ({
   placeholder,
   searchType,
 }: Props) => {
+  const theme = useTheme<MergedTheme>();
+  const classes = useStyles();
+
+  const selectStyles: StylesConfig = useMemo(
+    () => ({
+      dropdownIndicator: () => ({
+        display: 'none',
+      }),
+      indicatorSeparator: () => ({
+        display: 'none',
+      }),
+      container: () => ({
+        flex: 1,
+        position: 'relative',
+      }),
+      input: base => ({
+        ...base,
+        color: theme.palette.text.primary,
+        '& input': {
+          font: 'inherit',
+        },
+      }),
+    }),
+    [theme]
+  );
   const loadOptions = useCallback(
     (term: string) => debouncedGetStationFromAPI(term, searchType),
     [searchType]
@@ -54,7 +174,9 @@ const StationSearch = ({
   const getOptionValue = useCallback((station: Station) => station.id, []);
 
   return (
-    <Select
+    <Async
+      components={components}
+      classes={classes}
       autoFocus={autoFocus}
       aria-label="Suche nach Bahnhof"
       styles={selectStyles}

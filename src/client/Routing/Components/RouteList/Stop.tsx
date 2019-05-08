@@ -37,7 +37,7 @@ const styles = createStyles(theme => ({
     gridTemplateRows: '1fr 1fr',
     gridTemplateAreas: '". t p" ". t p" ". t p"',
     alignItems: 'center',
-    borderBottom: '1px solid black',
+    borderBottom: `1px solid ${theme.palette.text.primary}`,
   },
 
   station: {
@@ -48,7 +48,7 @@ const styles = createStyles(theme => ({
 
   platform: {
     gridArea: 'p',
-  }
+  },
 }));
 
 export default withStyles(styles)(Stop);

@@ -1,4 +1,11 @@
-import { green, orange, red, yellow } from '@material-ui/core/colors';
+import {
+  blue,
+  green,
+  indigo,
+  orange,
+  red,
+  yellow,
+} from '@material-ui/core/colors';
 // eslint-disable-next-line import/no-unresolved
 import { Theme as MaruTheme } from 'maru';
 import { Theme as MuiTheme } from '@material-ui/core';
@@ -17,6 +24,7 @@ function getColors(themeType: ThemeType) {
         green: green[400],
         yellow: yellow[400],
         orange: orange[400],
+        blue: blue[400],
       };
     case ThemeType.light:
       return {
@@ -24,6 +32,7 @@ function getColors(themeType: ThemeType) {
         green: green[800],
         yellow: yellow[600],
         orange: orange[400],
+        blue: indigo[800],
       };
   }
 }
