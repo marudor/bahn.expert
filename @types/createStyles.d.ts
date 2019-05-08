@@ -27,7 +27,11 @@ declare module '@material-ui/styles' {
     withThemeCreator,
   } from '@material-ui/styles/withTheme';
 
-  import { Styles, StyleRules } from '@material-ui/styles/withStyles';
+  import {
+    Styles,
+    StyleRules,
+    StyleRulesCallback,
+  } from '@material-ui/styles/withStyles';
   import { Theme as MuiTheme } from '@material-ui/core';
 
   /**
@@ -38,8 +42,10 @@ declare module '@material-ui/styles' {
    * @param styles a set of style mappings
    * @returns the same styles that were passed in
    */
-  export function createStyles<C extends string, P extends object>(
-    styles: Styles<MuiTheme & Maru.Theme, P, C>
-  ): // ): Styles<MuiTheme & Maru.Theme, P, C>;
-  StyleRules<P, C>;
+
+  type MergedTheme = MuiTheme & Maru.Theme;
+
+  export function createStyles<ClassKey extends string, Props extends object>(
+    styles: StyleRulesCallback<MergedTheme, Props, ClassKey>
+  ): StyleRulesCallback<MergedTheme, Props, ClassKey>;
 }

@@ -241,15 +241,16 @@ class SettingsModal extends React.PureComponent<Props> {
   }
 }
 
-export const styles = createStyles({
+export const styles = createStyles(theme => ({
   main: {
     display: 'flex',
     flexDirection: 'column',
   },
+
   autoUpdate: {
     width: '3em',
-  },
-});
+  }
+}));
 
 export default connect<StateProps, DispatchProps, void, AbfahrtenState>(
   state => ({

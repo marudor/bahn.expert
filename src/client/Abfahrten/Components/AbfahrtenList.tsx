@@ -175,7 +175,7 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
   }
 }
 
-const styles = createStyles({
+const styles = createStyles(theme => ({
   main: {
     display: 'flex',
     flexDirection: 'column',
@@ -185,18 +185,21 @@ const styles = createStyles({
       display: 'none',
     },
   },
+
   lookaheadMarker: {
     height: 154,
     position: 'absolute',
     bottom: 0,
   },
+
   lookahead: {},
+
   lookbehind: {
     position: 'relative',
     paddingTop: 10,
     backgroundColor: 'lightgray',
-  },
-});
+  }
+}));
 
 export default connect<StateProps, DispatchProps, {}, AbfahrtenState>(
   state => ({

@@ -31,7 +31,7 @@ class App extends React.Component<Props> {
   }
 }
 
-const styles = createStyles({
+const styles = createStyles(theme => ({
   '@global': {
     'html, body': {
       height: '100%',
@@ -39,13 +39,15 @@ const styles = createStyles({
     body: {
       margin: 0,
       fontFamily: 'Roboto, sans-serif',
+      backgroundColor: theme.palette.background.default,
+      color: theme.palette.text.primary,
     },
     a: {
       textDecoration: 'none',
       color: 'black',
     },
   },
-});
+}));
 
 export default connect<StateProps, {}, {}, AppState>(state => ({
   routingFeature: state.features.routing,

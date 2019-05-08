@@ -74,14 +74,14 @@ const RouteList = ({ routes, classes, dispatch, error }: Props) => {
   );
 };
 
-const styles = createStyles({
+const styles = createStyles(theme => ({
   main: {
     '& > div': {
       paddingLeft: '.1em',
       paddingRight: '.5em',
     },
-  },
-});
+  }
+}));
 
 export default connect<StateProps, {}, {}, RoutingState>(state => ({
   routes: state.routing.routes,

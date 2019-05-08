@@ -31,11 +31,11 @@ const Footer = ({ currentStation, classes }: Props) => (
   </footer>
 );
 
-const styles = createStyles({
+const styles = createStyles(theme => ({
   seo: {
     display: 'none',
-  },
-});
+  }
+}));
 
 export default connect<StateProps, void, void, AbfahrtenState>(state => ({
   currentStation: state.abfahrten.currentStation,

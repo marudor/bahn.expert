@@ -35,12 +35,12 @@ const CheckInLink = ({ type, abfahrt, classes }: Props) => {
   }
 };
 
-export const styles = createStyles({
+export const styles = createStyles(theme => ({
   link: {
     fontSize: '0.6em',
     color: 'blue',
   },
-});
+}));
 
 export default connect<StateProps, {}, OwnProps, AbfahrtenState>(state => ({
   type: state.config.config.checkIn,

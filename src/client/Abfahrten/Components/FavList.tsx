@@ -92,15 +92,15 @@ const FavList = ({
   );
 };
 
-const styles = createStyles({
+const styles = createStyles(theme => ({
   main: {
     marginTop: 48,
     display: 'flex',
     flexDirection: 'column',
     flex: 1,
   },
-  favEntry: FavEntryStyles.main,
-});
+  favEntry: FavEntryStyles(theme).main,
+}));
 
 export default connect<StateProps, DispatchProps, {}, AbfahrtenState>(
   state => ({

@@ -14,10 +14,10 @@ const Substitute = ({ substitute, classes }: Props) => (
   </>
 );
 
-const styles = createStyles({
+const styles = createStyles(theme => ({
   main: {
     fontSize: '.7em',
-  },
-});
+  }
+}));
 
 export default withStyles(styles)(Substitute);

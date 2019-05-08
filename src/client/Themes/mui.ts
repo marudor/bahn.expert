@@ -1,6 +1,10 @@
 import { createMuiTheme } from '@material-ui/core/styles';
+import theme from './index';
 
 export default createMuiTheme({
+  palette: {
+    type: theme.mui.type,
+  },
   overrides: {
     MuiFormControlLabel: {
       root: {

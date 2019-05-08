@@ -17,12 +17,12 @@ const BahnhofsAbfahrten = ({ classes }: Props) => (
   </div>
 );
 
-const styles = createStyles({
+const styles = createStyles(theme => ({
   main: {
     display: 'flex',
     flexDirection: 'column',
     fontFamily: 'Roboto, sans-serif',
-  },
-});
+  }
+}));
 
 export default withStyles(styles)(BahnhofsAbfahrten);

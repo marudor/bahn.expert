@@ -14,11 +14,11 @@ const RouteHeader = ({ classes }: Props) => (
   </Paper>
 );
 
-const styles = createStyles({
+const styles = createStyles(theme => ({
   main: {
     fontSize: '0.7em',
     ...gridStyle,
-  },
-});
+  }
+}));
 
 export default withStyles(styles)(RouteHeader);

@@ -18,13 +18,13 @@ const BrowserstackThanks = ({ classes }: Props) => (
   </span>
 );
 
-export const styles = createStyles({
+export const styles = createStyles(theme => ({
   main: {
     marginTop: '2em',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-  },
-});
+  }
+}));
 
 export default withStyles(styles)(BrowserstackThanks);

@@ -20,7 +20,7 @@ const End = ({ abfahrt, detail, classes }: Props) => (
   </div>
 );
 
-const styles = createStyles({
+const styles = createStyles(theme => ({
   main: {
     fontSize: '2.5em',
     alignItems: 'flex-end',
@@ -28,7 +28,7 @@ const styles = createStyles({
     flexDirection: 'column',
     justifyContent: 'space-between',
     marginLeft: '1em',
-  },
-});
+  }
+}));
 
 export default withStyles(styles)(End);

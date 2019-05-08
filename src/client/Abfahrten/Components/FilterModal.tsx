@@ -83,11 +83,11 @@ const FilterModal = ({
   );
 };
 
-const styles = createStyles({
+const styles = createStyles(theme => ({
   label: {
     width: 'calc(50% - 1em)',
-  },
-});
+  }
+}));
 
 export default connect<StateProps, DispatchProps, {}, AbfahrtenState>(
   state => ({

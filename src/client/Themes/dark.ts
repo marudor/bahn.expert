@@ -2,7 +2,9 @@ const colors = {
   red: '#ee0000',
   green: 'green',
   background: 'white',
+  // background: '#212121',
   text: 'black',
+  // text: '#ededed',
 };
 
 const mixins = {

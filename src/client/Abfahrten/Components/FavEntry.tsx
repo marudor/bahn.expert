@@ -50,25 +50,25 @@ const FavEntry = ({ fav, noDelete, classes, unfav }: Props) => {
   );
 };
 
-export const styles = createStyles({
+export const styles = createStyles(theme => ({
   main: {
     minHeight: 48,
     marginBottom: 1,
     flexShrink: 0,
     fontSize: '2em',
-    color: 'black',
+    color: theme.colors.text,
     boxShadow: '0 1px 0 rgba(0, 0, 0, 0.24)',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
     '& > a': {
-      color: 'black',
+      color: theme.colors.text,
     },
     '&:hover': {
       backgroundColor: 'rgb(238,238,238)',
     },
   },
-});
+}));
 
 export default connect<void, DispatchProps, OwnProps, AbfahrtenState>(
   undefined,
