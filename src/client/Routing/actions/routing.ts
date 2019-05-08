@@ -8,6 +8,9 @@ const Actions = {
   gotRoutes: createAction('GOT_ROUTES', resolve => (r?: Array<Route>) =>
     resolve(r)
   ),
+  routesErrored: createAction('ROUTES_ERRORED', resolve => (r?: Object) =>
+    resolve(r)
+  ),
   gotEarlierContext: createAction(
     'GOT_EARLIER_CONTEXT',
     resolve => (context?: string) => resolve(context)
@@ -22,7 +25,7 @@ export const getRoutes = (
   start: string,
   destination: string,
   date: Date
-): RoutingThunkResult => async (dispatch, getState) => {
+): RoutingThunkResult => async dispatch => {
   dispatch(Actions.gotRoutes());
   try {
     const routingResult: RoutingResult = (await axios.post('/api/route', {
@@ -37,7 +40,7 @@ export const getRoutes = (
     dispatch(Actions.gotEarlierContext(context.earlier));
     dispatch(Actions.gotLaterContext(context.later));
   } catch (e) {
-    dispatch(Actions.gotRoutes([]));
+    dispatch(Actions.routesErrored(e));
   }
 };
 

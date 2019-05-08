@@ -1,6 +1,8 @@
 import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { formatDuration } from 'Routing/util';
 import { Route as RouteType } from 'types/routing';
+import cc from 'classnames';
+import ErrorOutline from '@material-ui/icons/ErrorOutline';
 import Paper from '@material-ui/core/Paper';
 import React, { SyntheticEvent, useMemo } from 'react';
 import RouteSegments from './RouteSegments';
@@ -22,7 +24,7 @@ const Route = ({ route, classes, detail, onClick }: Props) => {
   }, [route]);
 
   return (
-    <Paper onClick={onClick} square className={classes.main}>
+    <Paper onClick={onClick} square className={cc(classes.main)}>
       <Time
         className={classes.time}
         real={route.departure}
@@ -49,7 +51,7 @@ export const gridStyle = {
   display: 'grid',
   marginBottom: '.2em',
 };
-const styles = createStyles({
+const styles = createStyles(theme => ({
   main: {
     minHeight: '3em',
     gridTemplateRows: '2.5em 1fr',
@@ -61,6 +63,7 @@ const styles = createStyles({
     gridArea: '2 / 1 / 3 / 5',
   },
   detail: {
+    textDecoration: 'initial',
     overflow: 'hidden',
     gridArea: '3 / 1 / 4 / 5',
   },
@@ -69,6 +72,6 @@ const styles = createStyles({
       marginRight: '.2em',
     },
   },
-});
+}));
 
-export default withStyles(styles)(Route);
+export default withStyles(styles, { withTheme: true })(Route);

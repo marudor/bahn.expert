@@ -12,6 +12,7 @@ type OwnProps = {
   showOriginalTime?: boolean;
   showZero?: boolean;
   oneLine?: boolean;
+  cancelled?: boolean;
 };
 
 type Props = OwnProps & WithStyles<typeof styles>;
@@ -33,6 +34,7 @@ const Time = ({
   showZero = true,
   alignEnd,
   oneLine,
+  cancelled,
 }: Props) => {
   if (!real) return <div />;
   const time = showOriginalTime && delay ? subMinutes(real, delay) : real;
@@ -51,6 +53,7 @@ const Time = ({
         [delayStyle]: !showOriginalTime,
         [classes.alignEnd]: alignEnd,
         [classes.seperateLine]: !oneLine,
+        [classes.cancelled]: cancelled,
       })}
     >
       <span
@@ -68,6 +71,7 @@ const Time = ({
 };
 
 const styles = createStyles(theme => ({
+  cancelled: theme.mixins.cancelled,
   alignEnd: {
     alignItems: 'flex-end',
   },

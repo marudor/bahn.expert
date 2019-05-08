@@ -132,6 +132,7 @@ export interface Jny {
   prodX: number;
   dirTxt: string;
   chgDurR?: number;
+  isCncl?: boolean;
   status: string;
   isRchbl: boolean;
   stopL: StopL[];
@@ -165,6 +166,7 @@ export interface SotCtxt {
 }
 
 export interface OutConL {
+  isNotRdbl?: boolean;
   cid: string;
   date: string;
   dur: string;

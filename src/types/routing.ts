@@ -43,6 +43,7 @@ export interface Route$Auslastung {
   second?: AuslastungsValue;
 }
 export type Route$Journey = {
+  isCancelled?: boolean;
   changeDuration?: number;
   duration?: number;
   finalDestination: string;
@@ -66,6 +67,7 @@ export type Route$JourneySegmentTrain = Route$Arrival &
 
 export type Route = Route$Arrival &
   Route$Departure & {
+    isRideable: boolean;
     checksum: string;
     cid: string;
     date: number;

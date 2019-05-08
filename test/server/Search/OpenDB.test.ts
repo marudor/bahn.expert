@@ -46,27 +46,6 @@ describe('OpenDB Search', () => {
     expect(result).toEqual([{ id: '8002549', title: 'Hamburg Hbf' }]);
   });
 
-  it('Fallback to Favendo if initial failed', async () => {
-    Nock('https://open-api.bahn.de')
-      .get('/bin/rest.exe/location.name')
-      .query(true)
-      .reply(500);
-
-    Nock('https://si.favendo.de')
-      .get('/station-info/rest/api/search')
-      .query({
-        searchTerm: 'Hamburg',
-      })
-      .reply(200, exampleFavendoRespone);
-
-    await testHamburgSearch(
-      term => serverSearch(term, StationSearchType.OpenDB),
-      {
-        includeFavendoId: true,
-      }
-    );
-  });
-
   it('Throws exception on error', async () => {
     await expect(OpenDBSearch('Hamburg')).rejects.toBeTruthy();
   });

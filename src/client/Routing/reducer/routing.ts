@@ -5,6 +5,7 @@ import Actions from 'Routing/actions/routing';
 export type State = {
   routes?: Array<Route>;
   context: Partial<RoutingResult['context']>;
+  error?: any;
 };
 
 const defaultState: State = {
@@ -16,6 +17,7 @@ export default createReducer(defaultState, handle => [
   handle(Actions.gotRoutes, (state, { payload }) => ({
     ...state,
     routes: payload,
+    error: undefined,
     selectedDetail: undefined,
   })),
   handle(Actions.gotEarlierContext, (state, { payload }) => ({
@@ -31,5 +33,10 @@ export default createReducer(defaultState, handle => [
       ...state.context,
       later: payload,
     },
+  })),
+  handle(Actions.routesErrored, (state, { payload }) => ({
+    ...state,
+    routes: [],
+    error: payload,
   })),
 ]);

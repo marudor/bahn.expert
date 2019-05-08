@@ -86,12 +86,8 @@ export default async (rawSearchTerm: string, type?: StationSearchType) => {
 
     return result;
   } catch (e) {
-    const isDefault = !type || type === StationSearchType.Favendo;
-    let message = 'search failed';
+    const message = 'search failed';
 
-    if (!isDefault) {
-      message += ', falling back to default';
-    }
     logger.error(message, {
       searchMethod: type,
       error: {
@@ -104,10 +100,6 @@ export default async (rawSearchTerm: string, type?: StationSearchType) => {
       },
     });
 
-    if (isDefault) {
-      throw e;
-    }
-
-    return getSearchMethod(StationSearchType.Favendo)(searchTerm);
+    throw e;
   }
 };
