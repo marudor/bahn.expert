@@ -75,6 +75,7 @@ class Journey {
       date: this.date,
       duration: parseDuration(raw.dur),
       changes: raw.chg,
+      isRideable: !raw.isNotRdbl,
       ...this.parseArrival(raw.arr),
       ...this.parseDeparture(raw.dep),
       segments,
@@ -146,6 +147,7 @@ class Journey {
     const product = this.common.prodL[jny.prodX];
 
     return {
+      isCancelled: jny.isCncl,
       changeDuration: jny.chgDurR,
       train: product.addName || product.name,
       trainId: product.prodCtx.line,

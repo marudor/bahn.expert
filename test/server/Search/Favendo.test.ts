@@ -47,13 +47,6 @@ describe('Favendo Search', () => {
     ]);
   });
 
-  it('Throws instead of fallback to default', async () => {
-    await expect(
-      serverSearch('Hamburg', StationSearchType.Favendo)
-    ).rejects.toBeTruthy();
-    await expect(serverSearch('Hamburg')).rejects.toBeTruthy();
-  });
-
   it('Throws exception on error', async () => {
     await expect(FavendoSearch('Hamburg')).rejects.toBeTruthy();
   });

@@ -41,7 +41,7 @@ const RouteSegment = ({ segment, classes, detail, onTrainClick }: Props) => {
 
   return (
     <>
-      <div className={classes.main}>
+      <div className={cc(classes.main)}>
         <Time real={segment.departure} delay={segment.departureDelay} />
         <span>{segment.segmentStart.title}</span>
         <Platform
@@ -63,7 +63,7 @@ const RouteSegment = ({ segment, classes, detail, onTrainClick }: Props) => {
   );
 };
 
-const styles = createStyles({
+const styles = createStyles(theme => ({
   main: {
     paddingLeft: '0.3em',
     display: 'grid',
@@ -94,6 +94,6 @@ const styles = createStyles({
   platform: {
     textAlign: 'end',
   },
-});
+}));
 
 export default withStyles(styles)(RouteSegment);

@@ -11,6 +11,7 @@ import RouteHeader from './RouteHeader';
 
 type StateProps = {
   routes?: Array<RouteType>;
+  error?: any;
 };
 
 type Props = {
@@ -18,7 +19,7 @@ type Props = {
 } & StateProps &
   WithStyles<typeof styles>;
 
-const RouteList = ({ routes, classes, dispatch }: Props) => {
+const RouteList = ({ routes, classes, dispatch, error }: Props) => {
   const [detail, setDetail] = useState<undefined | string>();
   const [loadingEarlier, setLoadingEarlier] = useState(false);
   const [loadingLater, setLoadingLater] = useState(false);
@@ -33,6 +34,10 @@ const RouteList = ({ routes, classes, dispatch }: Props) => {
     setLoadingEarlier(false);
   }, [dispatch]);
 
+  if (error) {
+    return <div className={classes.main}>{String(error)}</div>;
+  }
+
   if (!routes) return <Loading />;
   if (!routes.length) return null;
 
@@ -46,16 +51,18 @@ const RouteList = ({ routes, classes, dispatch }: Props) => {
         </Button>
       )}
       <RouteHeader />
-      {routes.map(r => (
-        <Route
-          detail={detail === r.checksum}
-          onClick={() =>
-            setDetail(detail === r.checksum ? undefined : r.checksum)
-          }
-          route={r}
-          key={r.checksum}
-        />
-      ))}
+      {routes
+        .filter(r => r.isRideable)
+        .map(r => (
+          <Route
+            detail={detail === r.checksum}
+            onClick={() =>
+              setDetail(detail === r.checksum ? undefined : r.checksum)
+            }
+            route={r}
+            key={r.checksum}
+          />
+        ))}
       {loadingLater ? (
         <Loading type={1} />
       ) : (
@@ -78,4 +85,5 @@ const styles = createStyles({
 
 export default connect<StateProps, {}, {}, RoutingState>(state => ({
   routes: state.routing.routes,
+  error: state.routing.error,
 }))(withStyles(styles)(RouteList));

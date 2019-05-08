@@ -7,7 +7,7 @@ import webpack from 'webpack';
 // @ts-ignore
 import webpackConfig from '../../../webpack.config';
 
-const compiler = webpack(webpackConfig);
+const compiler: any = webpack(webpackConfig);
 
 module.exports = function webpackDev(koa: Koa, server: undefined | Server) {
   // Do "hot-reloading" of react stuff on the server
