@@ -1,6 +1,7 @@
 import { createStyles } from '@material-ui/styles';
 import { ReduxProps } from '.';
-export default createStyles({
+
+export default createStyles(theme => ({
   main: ({ reihung, fahrzeugGruppe }: ReduxProps) => {
     let height = 5;
 
@@ -29,7 +30,7 @@ export default createStyles({
     marginTop: '1.3em',
     height: '100%',
   },
-  richtung: ({ reihung }: ReduxProps) => ({
+  richtung: ({ reihung }) => ({
     backgroundColor: 'black',
     width: '50%',
     height: 2,
@@ -52,4 +53,4 @@ export default createStyles({
       top: -3,
     },
   }),
-});
+}));

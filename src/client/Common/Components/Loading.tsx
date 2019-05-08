@@ -60,7 +60,7 @@ const Loading = ({
   return children;
 };
 
-export const styles = createStyles({
+export const styles = createStyles(theme => ({
   '@keyframes cube': {
     '0%,70%,100%': {
       transform: 'scale3D(1, 1, 1)',
@@ -69,6 +69,7 @@ export const styles = createStyles({
       transform: 'scale3D(0, 0, 1)',
     },
   },
+
   cube: {
     position: 'absolute',
     top: 0,
@@ -95,6 +96,7 @@ export const styles = createStyles({
     '& > div:nth-child(8)': { animationDelay: '0.1s' },
     '& > div:nth-child(9)': { animationDelay: '0.2s' },
   },
+
   '@keyframes dots': {
     '0%': {
       top: 6,
@@ -105,6 +107,7 @@ export const styles = createStyles({
       height: 26,
     },
   },
+
   dots: {
     display: 'inline-block',
     position: 'relative',
@@ -130,7 +133,7 @@ export const styles = createStyles({
       left: 45,
       animationDelay: '0',
     },
-  },
-});
+  }
+}));
 
 export default withStyles(styles)(Loading);

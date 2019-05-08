@@ -84,17 +84,19 @@ const getColor = (auslastung?: null | AuslastungsValue) => ({
   color: auslastung === 2 || auslastung === 3 ? 'black' : 'white',
 });
 
-export const styles = createStyles({
+export const styles = createStyles(theme => ({
   main: {
     display: 'flex',
     marginBottom: '.3em',
   },
+
   entry: {
     display: 'flex',
     flexDirection: 'column',
     marginRight: '.5em',
     alignItems: 'center',
   },
+
   icon: {
     fontSize: '.7em',
     display: 'inline-block',
@@ -104,10 +106,12 @@ export const styles = createStyles({
     lineHeight: 0,
     color: 'white',
   },
+
   // @ts-ignore ???
   first: props => getColor(props.auslastung && props.auslastung.first),
+
   // @ts-ignore ???
-  second: props => getColor(props.auslastung && props.auslastung.second),
-});
+  second: props => getColor(props.auslastung && props.auslastung.second)
+}));
 
 export default withStyles(styles)(AuslastungsDisplay);

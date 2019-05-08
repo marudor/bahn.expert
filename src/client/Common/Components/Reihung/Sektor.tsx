@@ -28,12 +28,12 @@ const SektorComp = ({ sektor, scale, correctLeft, classes }: Props) => {
   );
 };
 
-const styles = createStyles({
+const styles = createStyles(theme => ({
   main: {
     position: 'absolute',
     fontWeight: 'bolder',
     textAlign: 'center',
-  },
-});
+  }
+}));
 
 export default withStyles(styles)(SektorComp);

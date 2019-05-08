@@ -1,16 +1,18 @@
 import { createStyles } from '@material-ui/styles';
 
-export default createStyles({
+export default createStyles(theme => ({
   main: {
     position: 'absolute',
     height: '2em',
     border: 'black 1px solid',
     boxSizing: 'border-box',
   },
+
   closed: {
     background:
       'repeating-linear-gradient(135deg, #999, #999, 5px, transparent 5px, transparent 10px);',
   },
+
   wrongWing: {
     background: 'darkgrey',
     '&::after': {
@@ -24,38 +26,45 @@ export default createStyles({
       background: 'rgba(255, 255, 255, 0.65)',
     },
   },
+
   nummer: {
     position: 'absolute',
     zIndex: 1,
     left: '50%',
     transform: 'translateX(-50%)',
   },
+
   klasse: {
     position: 'absolute',
   },
+
   klasse0: {
     '&::after': {
       content: '"?"',
     },
   },
+
   klasse1: {
     backgroundColor: 'yellow',
     '&::after': {
       content: '"1"',
     },
   },
+
   klasse2: {
     backgroundColor: 'red',
     '&::after': {
       content: '"2"',
     },
   },
+
   klasse3: {
     background: 'linear-gradient(to right, yellow, red)',
     '&::after': {
       content: '"1/2"',
     },
   },
+
   klasse4: {
     left: '50%',
     transform: 'translateX(-50%)',
@@ -63,9 +72,11 @@ export default createStyles({
       content: '"LOK"',
     },
   },
+
   icons: {
     marginLeft: '.5em',
   },
+
   icon: {
     width: '0.5em !important',
     height: '0.5em !important',
@@ -73,12 +84,14 @@ export default createStyles({
       fontSize: '12px !important',
     },
   },
+
   type: {
     position: 'absolute',
     top: '100%',
     left: '50%',
     transform: 'translateX(-50%)',
   },
+
   comfort: {
     position: 'absolute',
     top: '.2em',
@@ -87,5 +100,5 @@ export default createStyles({
     height: '.7em',
     backgroundColor: 'red',
     borderRadius: '50%',
-  },
-});
+  }
+}));

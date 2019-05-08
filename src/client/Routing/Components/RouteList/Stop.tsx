@@ -29,7 +29,7 @@ const Stop = ({ stop, classes }: Props) => {
   );
 };
 
-const styles = createStyles({
+const styles = createStyles(theme => ({
   main: {
     display: 'grid',
     gridTemplateColumns: '4em 1fr min-content',
@@ -39,14 +39,16 @@ const styles = createStyles({
     alignItems: 'center',
     borderBottom: '1px solid black',
   },
+
   station: {
     gridArea: 't',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
   },
+
   platform: {
     gridArea: 'p',
-  },
-});
+  }
+}));
 
 export default withStyles(styles)(Stop);

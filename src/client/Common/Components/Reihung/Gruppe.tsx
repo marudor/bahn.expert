@@ -70,12 +70,12 @@ const Gruppe = ({
   );
 };
 
-export const styles = createStyles({
+export const styles = createStyles(theme => ({
   bezeichnung: {
     position: 'absolute',
     bottom: '1.5em',
     textAlign: 'center',
-  },
-});
+  }
+}));
 
 export default withStyles(styles)(Gruppe);
