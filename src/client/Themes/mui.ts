@@ -1,12 +1,13 @@
+import { blue, indigo } from '@material-ui/core/colors';
 import { createMuiTheme } from '@material-ui/core/styles';
 
 export default (themeType: 'dark' | 'light') =>
   createMuiTheme({
     palette: {
       type: themeType,
-      // background: {
-      //   default: '#202020',
-      // },
+      primary: {
+        main: themeType === 'dark' ? indigo[800] : blue[400],
+      },
     },
     overrides: {
       MuiFormControlLabel: {

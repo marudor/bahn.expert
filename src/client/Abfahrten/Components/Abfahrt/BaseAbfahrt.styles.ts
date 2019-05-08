@@ -30,7 +30,7 @@ export default createStyles(theme => ({
   },
   wing: {
     position: 'absolute',
-    borderLeft: '1px solid black',
+    borderLeft: `1px solid ${theme.palette.text.primary}`,
     content: '" "',
     left: '.3em',
     top: '-1em',
@@ -40,7 +40,7 @@ export default createStyles(theme => ({
     top: 0,
     '&::before': {
       content: '""',
-      borderLeft: '1em solid black',
+      borderLeft: `1em solid ${theme.palette.text.primary}`,
       position: 'absolute',
       height: 1,
     },
@@ -49,7 +49,7 @@ export default createStyles(theme => ({
     bottom: '.3em',
     '&::after': {
       content: '""',
-      borderLeft: '1em solid black',
+      borderLeft: `1em solid ${theme.palette.text.primary}`,
       position: 'absolute',
       height: 1,
       bottom: 0,

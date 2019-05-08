@@ -38,7 +38,7 @@ const CheckInLink = ({ type, abfahrt, classes }: Props) => {
 export const styles = createStyles(theme => ({
   link: {
     fontSize: '0.6em',
-    color: 'blue',
+    color: theme.colors.blue,
   },
 }));
 
