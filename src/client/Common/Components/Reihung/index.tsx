@@ -67,39 +67,41 @@ class ReihungComp extends React.PureComponent<Props> {
     const differentZugnummer = reihung.differentZugnummer;
 
     return (
-      <div className={classes.main}>
-        {Boolean(reihung.specificTrainType) && (
-          <span className={classes.specificType}>
-            {reihung.specificTrainType}
-          </span>
-        )}
-        <div className={classes.sektoren}>
-          {reihung.halt.allSektor.map(s => (
-            <Sektor
-              correctLeft={correctLeft}
-              scale={scale}
-              key={s.sektorbezeichnung}
-              sektor={s}
-            />
-          ))}
+      <div className={classes.wrap}>
+        <div className={classes.main}>
+          {Boolean(reihung.specificTrainType) && (
+            <span className={classes.specificType}>
+              {reihung.specificTrainType}
+            </span>
+          )}
+          <div className={classes.sektoren}>
+            {reihung.halt.allSektor.map(s => (
+              <Sektor
+                correctLeft={correctLeft}
+                scale={scale}
+                key={s.sektorbezeichnung}
+                sektor={s}
+              />
+            ))}
+          </div>
+          <div className={classes.reihung}>
+            {reihung.allFahrzeuggruppe.map(g => (
+              <Gruppe
+                showGruppenZugnummer={differentZugnummer}
+                originalTrainNumber={trainNumber}
+                showFahrzeugGruppe={fahrzeugGruppe}
+                correctLeft={correctLeft}
+                scale={scale}
+                specificType={reihung.specificTrainType}
+                type={reihung.zuggattung}
+                showDestination={reihung.differentDestination}
+                key={g.fahrzeuggruppebezeichnung}
+                gruppe={g}
+              />
+            ))}
+          </div>
+          <span className={classes.richtung} />
         </div>
-        <div className={classes.reihung}>
-          {reihung.allFahrzeuggruppe.map(g => (
-            <Gruppe
-              showGruppenZugnummer={differentZugnummer}
-              originalTrainNumber={trainNumber}
-              showFahrzeugGruppe={fahrzeugGruppe}
-              correctLeft={correctLeft}
-              scale={scale}
-              specificType={reihung.specificTrainType}
-              type={reihung.zuggattung}
-              showDestination={reihung.differentDestination}
-              key={g.fahrzeuggruppebezeichnung}
-              gruppe={g}
-            />
-          ))}
-        </div>
-        <span className={classes.richtung} />
       </div>
     );
   }
