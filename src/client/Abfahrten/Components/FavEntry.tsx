@@ -2,6 +2,7 @@ import { AbfahrtenState } from 'AppState';
 import { connect, ResolveThunks } from 'react-redux';
 import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { Link } from 'react-router-dom';
+import { Paper } from '@material-ui/core';
 import { Station } from 'types/station';
 import { unfav } from 'Abfahrten/actions/fav';
 import ActionDelete from '@material-ui/icons/Delete';
@@ -34,7 +35,7 @@ const FavEntry = ({ fav, noDelete, classes, unfav }: Props) => {
       to={encodeURIComponent(fav.title)}
       title={`Zugabfahrten für ${fav.title}`}
     >
-      <div className={classes.main}>
+      <Paper className={classes.main} square>
         <span>{fav.title}</span>
         {!noDelete && (
           <IconButton
@@ -45,7 +46,7 @@ const FavEntry = ({ fav, noDelete, classes, unfav }: Props) => {
             <ActionDelete />
           </IconButton>
         )}
-      </div>
+      </Paper>
     </Link>
   );
 };
@@ -55,9 +56,10 @@ export const styles = createStyles(theme => ({
     minHeight: 48,
     marginBottom: 1,
     flexShrink: 0,
+    paddingLeft: '.5em',
     fontSize: '2em',
+    paddingRight: '.5em',
     color: theme.palette.text.primary,
-    boxShadow: '0 1px 0 rgba(0, 0, 0, 0.24)',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
