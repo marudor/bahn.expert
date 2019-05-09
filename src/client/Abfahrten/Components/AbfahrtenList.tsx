@@ -197,7 +197,7 @@ const styles = createStyles(theme => ({
   lookbehind: {
     position: 'relative',
     paddingTop: 10,
-    backgroundColor: 'lightgray',
+    backgroundColor: theme.colors.shadedBackground,
   },
 }));
 

@@ -14,16 +14,16 @@ export default createStyles(theme => ({
   },
 
   wrongWing: {
-    background: 'darkgrey',
+    background: theme.colors.shadedBackground,
     '&::after': {
       content: '" "',
       position: 'absolute',
-      top: 0,
+      top: -1,
       left: -1,
       right: -1,
       bottom: '-3.4em',
       zIndex: 5,
-      background: 'rgba(255, 255, 255, 0.65)',
+      background: theme.colors.transparentBackground,
     },
   },
 
