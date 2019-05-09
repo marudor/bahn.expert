@@ -32,7 +32,9 @@ export const setCookies = (cookies: Cookies): CommonThunkResult => (
     ? (ThemeType[cookies.get('theme')] as undefined | ThemeType) || defaultTheme
     : ThemeType.light;
 
-  cookies.set('theme', theme, setCookieOptions);
+  if (!global.SERVER && darkModeFeature) {
+    cookies.set('theme', theme, setCookieOptions);
+  }
 
   dispatch(Actions.setTheme(theme));
   dispatch(Actions.setCookies(cookies));
