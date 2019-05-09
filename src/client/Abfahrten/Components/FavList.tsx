@@ -94,7 +94,7 @@ const FavList = ({
 
 const styles = createStyles(theme => ({
   main: {
-    marginTop: 64,
+    marginTop: theme.shape.headerSpacing,
     display: 'flex',
     flexDirection: 'column',
     flex: 1,
