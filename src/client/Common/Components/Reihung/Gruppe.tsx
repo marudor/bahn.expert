@@ -26,7 +26,7 @@ const Gruppe = ({
     width: `${(gruppe.endeProzent - gruppe.startProzent) * rest.scale}%`,
   };
 
-  let currentBottom = 1.5;
+  let currentBottom = 2.5;
 
   if (showFahrzeugGruppe) currentBottom += 1;
   const destinationPos = {
@@ -73,9 +73,9 @@ const Gruppe = ({
 export const styles = createStyles(theme => ({
   bezeichnung: {
     position: 'absolute',
-    bottom: '1.5em',
+    bottom: '2.5em',
     textAlign: 'center',
-  }
+  },
 }));
 
 export default withStyles(styles)(Gruppe);

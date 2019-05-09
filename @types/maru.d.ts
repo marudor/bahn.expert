@@ -9,6 +9,8 @@ declare module 'maru' {
       yellow: string;
       orange: string;
       blue: string;
+      shadedBackground: string;
+      transparentBackground: string;
     };
     mixins: {
       cancelled: CSSProperties;
