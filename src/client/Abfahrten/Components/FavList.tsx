@@ -2,6 +2,7 @@ import { AbfahrtenState } from 'AppState';
 import { connect, ResolveThunks } from 'react-redux';
 import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { Link } from 'react-router-dom';
+import { Paper } from '@material-ui/core';
 import {
   Redirect,
   RouteComponentProps,
@@ -68,23 +69,31 @@ const FavList = ({
       {/* eslint-disable-next-line no-nested-ternary */}
       {error ? (
         <>
-          <div className={classes.favEntry}>
+          <Paper square className={classes.favEntry}>
             {getErrorText(error, staticContext)}
-          </div>
+          </Paper>
           {error.station && (
             <Link to={encodeURIComponent(error.station)}>
-              <div className={classes.favEntry}>{error.station}</div>
+              <Paper square className={classes.favEntry}>
+                {error.station}
+              </Paper>
             </Link>
           )}
-          <div className={classes.favEntry}>Versuch einen der folgenden</div>
+          <Paper square className={classes.favEntry}>
+            Versuch einen der folgenden
+          </Paper>
           <MostUsed />
         </>
       ) : favs.length ? (
         favs.map(fav => fav && <FavEntry key={fav.id} fav={fav} />)
       ) : (
         <>
-          <span className={classes.favEntry}>Keine Favoriten</span>
-          <span className={classes.favEntry}>Oft gesucht:</span>
+          <Paper square className={classes.favEntry}>
+            Keine Favoriten
+          </Paper>
+          <Paper square className={classes.favEntry}>
+            Oft gesucht:
+          </Paper>
           <MostUsed />
         </>
       )}
