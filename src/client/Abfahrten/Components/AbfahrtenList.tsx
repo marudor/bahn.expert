@@ -180,7 +180,7 @@ const styles = createStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     overflowX: 'auto',
-    marginTop: 64,
+    marginTop: theme.shape.headerSpacing,
     '& > h1': {
       display: 'none',
     },

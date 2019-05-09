@@ -91,6 +91,7 @@ class SettingsModal extends React.PureComponent<Props> {
         <DialogTitle>Settings</DialogTitle>
         <DialogContent className={classes.main}>
           <FormControlLabel
+            className={classes.label}
             control={
               <NativeSelect
                 value={checkIn}
@@ -106,6 +107,7 @@ class SettingsModal extends React.PureComponent<Props> {
             label="Traewelling Link"
           />
           <FormControlLabel
+            className={classes.label}
             control={
               <TextField
                 className={classes.autoUpdate}
@@ -123,6 +125,7 @@ class SettingsModal extends React.PureComponent<Props> {
             label="AutoUpdate in Sekunden"
           />
           <FormControlLabel
+            className={classes.label}
             control={
               <Switch
                 checked={showSupersededMessages}
@@ -133,6 +136,7 @@ class SettingsModal extends React.PureComponent<Props> {
             label="Obsolete Messages"
           />
           <FormControlLabel
+            className={classes.label}
             control={
               <Switch
                 checked={time}
@@ -143,6 +147,7 @@ class SettingsModal extends React.PureComponent<Props> {
             label="Neue Ankunft bei Verspätung"
           />
           <FormControlLabel
+            className={classes.label}
             control={
               <Switch
                 checked={zoomReihung}
@@ -153,6 +158,7 @@ class SettingsModal extends React.PureComponent<Props> {
             label="Reihung maximal groß"
           />
           <FormControlLabel
+            className={classes.label}
             control={
               <Switch
                 checked={lineAndNumber}
@@ -163,6 +169,7 @@ class SettingsModal extends React.PureComponent<Props> {
             label="Zeige Linie und Zugnummer"
           />
           <FormControlLabel
+            className={classes.label}
             control={
               <Switch
                 checked={fahrzeugGruppe}
@@ -173,6 +180,7 @@ class SettingsModal extends React.PureComponent<Props> {
             label="Zeige Fahrzeuggruppen Name"
           />
           <FormControlLabel
+            className={classes.label}
             control={
               <NativeSelect
                 value={lookahead}
@@ -190,6 +198,7 @@ class SettingsModal extends React.PureComponent<Props> {
             label="Lookahead in Minuten"
           />
           <FormControlLabel
+            className={classes.label}
             control={
               <NativeSelect
                 value={lookbehind}
@@ -208,6 +217,7 @@ class SettingsModal extends React.PureComponent<Props> {
             label="Lookbehind in Minuten"
           />
           <FormControlLabel
+            className={classes.label}
             control={
               <NativeSelect
                 value={searchType}
@@ -246,9 +256,11 @@ export const styles = createStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
   },
-
   autoUpdate: {
     width: '3em',
+  },
+  label: {
+    justifyContent: 'space-between',
   },
 }));
 

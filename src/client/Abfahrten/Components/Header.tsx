@@ -94,7 +94,7 @@ class Header extends React.Component<Props> {
               searchType={searchType}
               value={currentStation}
               onChange={this.submit}
-              placeholder="Station (z.B. Köln Hbf)"
+              placeholder="Station (z.B. Kiel Hbf)"
             />
             <ExtraMenu />
           </Toolbar>

@@ -4,29 +4,26 @@ import { fav, unfav } from 'Abfahrten/actions/fav';
 import { getLageplan, openFilter } from 'Abfahrten/actions/abfahrten';
 import { IconButton } from '@material-ui/core';
 import { openSettings } from 'Abfahrten/actions/abfahrtenConfig';
+import { openTheme } from 'Common/actions/config';
 import { Station } from 'types/station';
-import { ThemeType } from 'client/Themes';
-import { toggleTheme } from 'Common/actions/config';
 import ActionMenu from '@material-ui/icons/Menu';
 import FilterList from '@material-ui/icons/FilterList';
 import FilterModal from './FilterModal';
+import InvertColors from '@material-ui/icons/InvertColors';
 import Layers from '@material-ui/icons/Layers';
 import LayersClear from '@material-ui/icons/LayersClear';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import React, { SyntheticEvent } from 'react';
 import Settings from '@material-ui/icons/Settings';
+import ThemeModal from 'Common/Components/ThemeModal';
 import ToggleStar from '@material-ui/icons/Star';
 import ToggleStarBorder from '@material-ui/icons/StarBorder';
-import WbSunny from '@material-ui/icons/WbSunny';
-import WbSunnyOutlined from '@material-ui/icons/WbSunnyOutlined';
 
 type StateProps = {
   isFaved: boolean;
   currentStation?: Station;
   lageplan?: null | string;
-  theme: ThemeType;
-  darkModeFeature: boolean;
 };
 
 type DispatchProps = ResolveThunks<{
@@ -35,7 +32,7 @@ type DispatchProps = ResolveThunks<{
   openSettings: typeof openSettings;
   openFilter: typeof openFilter;
   getLageplan: typeof getLageplan;
-  toggleTheme: typeof toggleTheme;
+  openTheme: typeof openTheme;
 }>;
 
 type ReduxProps = StateProps & DispatchProps;
@@ -104,32 +101,28 @@ class ExtraMenu extends React.PureComponent<Props> {
       anchor: undefined,
     });
   };
+  openTheme = () => {
+    this.props.openTheme();
+  };
   openSettings = () => {
     this.props.openSettings();
     this.closeMenu();
   };
   render() {
-    const {
-      isFaved,
-      currentStation,
-      lageplan,
-      theme,
-      darkModeFeature,
-    } = this.props;
+    const { isFaved, currentStation, lageplan } = this.props;
     const { anchor } = this.state;
 
     return (
       <>
         <FilterModal />
-        {darkModeFeature && (
-          <IconButton
-            aria-label="Toggle Theme"
-            onClick={this.props.toggleTheme}
-            color="inherit"
-          >
-            {theme === ThemeType.dark ? <WbSunnyOutlined /> : <WbSunny />}
-          </IconButton>
-        )}
+        <ThemeModal />
+        <IconButton
+          aria-label="ThemeMenu"
+          onClick={this.openTheme}
+          color="inherit"
+        >
+          <InvertColors />
+        </IconButton>
         <IconButton aria-label="Menu" onClick={this.toggleMenu} color="inherit">
           <ActionMenu />
         </IconButton>
@@ -174,8 +167,6 @@ export default connect<StateProps, DispatchProps, {}, AbfahrtenState>(
     ),
     currentStation: state.abfahrten.currentStation,
     lageplan: state.abfahrten.lageplan,
-    theme: state.config.theme,
-    darkModeFeature: state.features.dark,
   }),
   {
     fav,
@@ -183,6 +174,6 @@ export default connect<StateProps, DispatchProps, {}, AbfahrtenState>(
     openSettings,
     getLageplan,
     openFilter,
-    toggleTheme,
+    openTheme,
   }
 )(ExtraMenu);

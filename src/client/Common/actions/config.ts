@@ -12,7 +12,13 @@ const Actions = {
   setBaseUrl: createAction('SET_BASE_URL', resolve => (c: string) =>
     resolve(c)
   ),
+  setThemeMenu: createAction('SET_THEME_MENU', resolve => (c: boolean) =>
+    resolve(c)
+  ),
 };
+
+export const openTheme = () => Actions.setThemeMenu(true);
+export const closeTheme = () => Actions.setThemeMenu(false);
 
 export default Actions;
 
@@ -27,24 +33,23 @@ export const setCookies = (cookies: Cookies): CommonThunkResult => (
   dispatch,
   getState
 ) => {
-  const darkModeFeature = getState().features.dark;
-  const theme = darkModeFeature
-    ? (ThemeType[cookies.get('theme')] as undefined | ThemeType) || defaultTheme
-    : ThemeType.light;
+  const theme =
+    (ThemeType[cookies.get('theme')] as undefined | ThemeType) || defaultTheme;
 
-  if (!global.SERVER && darkModeFeature) {
+  if (!global.SERVER) {
     cookies.set('theme', theme, setCookieOptions);
   }
 
   dispatch(Actions.setTheme(theme));
   dispatch(Actions.setCookies(cookies));
 };
-export const toggleTheme = (): CommonThunkResult => (dispatch, getState) => {
-  const theme = getState().config.theme;
+export const setTheme = (theme: ThemeType): CommonThunkResult => (
+  dispatch,
+  getState
+) => {
   const cookies = getState().config.cookies;
-  const newTheme = theme === ThemeType.dark ? ThemeType.light : ThemeType.dark;
 
-  dispatch(Actions.setTheme(newTheme));
+  dispatch(Actions.setTheme(theme));
 
-  cookies.set('theme', newTheme, setCookieOptions);
+  cookies.set('theme', theme, setCookieOptions);
 };
