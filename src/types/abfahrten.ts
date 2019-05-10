@@ -13,7 +13,6 @@ export type Message = {
   text: string;
   timestamp: number;
   superseded?: boolean;
-  superseeds?: boolean;
   priority?: Message$Priority;
 };
 

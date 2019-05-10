@@ -976,7 +976,6 @@ Object {
           Object {
             "priority": undefined,
             "superseded": undefined,
-            "superseeds": undefined,
             "text": "Technische Störung an einem anderen Zug",
             "timestamp": 1552824000000,
           },
@@ -1790,7 +1789,6 @@ Object {
           Object {
             "priority": undefined,
             "superseded": undefined,
-            "superseeds": undefined,
             "text": "Technische Störung an einem anderen Zug",
             "timestamp": 1552824000000,
           },
