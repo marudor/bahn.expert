@@ -5,6 +5,11 @@ import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
 import { ThemeType } from '.';
 import deepMerge from 'deepmerge';
 
+import { MuiPickersOverrides } from '@material-ui/pickers/typings/overrides';
+declare module '@material-ui/core/styles/overrides' {
+  export interface ComponentNameToClassKey extends MuiPickersOverrides {}
+}
+
 declare module '@material-ui/core/styles/shape' {
   export interface Shape {
     headerSpacing: number;
@@ -31,6 +36,11 @@ const getMuiOptions = (themeType: ThemeType) => {
       headerSpacing,
     },
     overrides: {
+      MuiPickersModal: {
+        withAdditionalAction: {
+          color: 'red',
+        },
+      },
       MuiToolbar: {
         regular: {
           minHeight: `${headerSpacing}px!important`,
@@ -53,7 +63,7 @@ const getMuiOptions = (themeType: ThemeType) => {
             default: '#000000',
           },
           primary: {
-            main: indigo[800],
+            main: blue[800],
           },
         },
         overrides: {
@@ -68,7 +78,7 @@ const getMuiOptions = (themeType: ThemeType) => {
       return deepMerge(commonOptions, {
         palette: {
           primary: {
-            main: indigo[800],
+            main: blue[700],
           },
         },
       });
