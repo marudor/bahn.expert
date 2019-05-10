@@ -12,8 +12,9 @@ import { ServerStyleSheets } from '@material-ui/styles';
 import { setConfig, setFromCookies } from 'Abfahrten/actions/abfahrtenConfig';
 import { StaticRouter } from 'react-router-dom';
 import { StaticRouterContext } from 'react-router';
+import { ThemeType } from 'client/Themes/type';
 import abfahrtenRoutes from 'Abfahrten/routes';
-import ConfigActions, { setCookies } from 'Common/actions/config';
+import ConfigActions, { setCookies, setTheme } from 'Common/actions/config';
 import createStore from 'client/createStore';
 import ejs from 'ejs';
 import fs from 'fs';
@@ -47,6 +48,13 @@ export default async (ctx: Context) => {
 
   await store.dispatch(setCookies(ctx.request.universalCookies));
   await store.dispatch(setFromCookies());
+  if (ctx.query.theme) {
+    const queryTheme = ThemeType[ctx.query.theme] as undefined | ThemeType;
+
+    if (queryTheme) {
+      store.dispatch(setTheme(queryTheme));
+    }
+  }
   Object.keys(ctx.query).forEach((key: any) => {
     if (configSanitize.hasOwnProperty(key)) {
       const value = configSanitize[key as keyof MarudorConfigSanitize](

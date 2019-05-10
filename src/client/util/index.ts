@@ -21,6 +21,7 @@ export const defaultConfig: MarudorConfig = {
   showSupersededMessages: false,
   time: true,
   zoomReihung: true,
+  noHeader: false,
 };
 
 const booleanCheck = (value: string): boolean => value === 'true';
@@ -50,4 +51,5 @@ export const configSanitize: MarudorConfigSanitize = {
   showSupersededMessages: booleanCheck,
   time: booleanCheck,
   zoomReihung: booleanCheck,
+  noHeader: booleanCheck,
 };
