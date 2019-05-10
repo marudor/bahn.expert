@@ -1,6 +1,5 @@
 import { formatToTimeZone } from 'date-fns-timezone';
 import { HafasResponse } from 'types/HAFAS';
-import { Station } from 'types/station';
 import { TripSearchRequest, TripSearchResponse } from 'types/HAFAS/TripSearch';
 import makeRequest from '../Request';
 import tripSearchParse from './parse';

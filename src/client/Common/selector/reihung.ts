@@ -1,4 +1,3 @@
-import { Abfahrt } from 'types/abfahrten';
 import { CommonState } from 'AppState';
 import { createSelector } from 'reselect';
 

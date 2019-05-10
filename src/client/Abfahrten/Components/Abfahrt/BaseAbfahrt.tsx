@@ -1,7 +1,6 @@
 import { Abfahrt } from 'types/abfahrten';
 import { AbfahrtenState } from 'AppState';
 import { connect, ResolveThunks } from 'react-redux';
-import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { getDetailForAbfahrt } from 'Abfahrten/selector/abfahrten';
 import { setDetail } from 'Abfahrten/actions/abfahrten';
 import cc from 'classnames';
@@ -11,7 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import React, { useCallback } from 'react';
 import Reihung from 'Common/Components/Reihung';
 import Start from './Start';
-import styles from './BaseAbfahrt.styles';
+import useStyles from './BaseAbfahrt.style';
 
 export type OwnProps = {
   abfahrt: Abfahrt;
@@ -31,7 +30,7 @@ type DispatchProps = ResolveThunks<{
 }>;
 export type ReduxProps = OwnProps & StateProps & DispatchProps;
 
-export type Props = ReduxProps & WithStyles<typeof styles>;
+export type Props = ReduxProps;
 
 const BaseAbfahrt = ({
   abfahrt,
@@ -40,11 +39,11 @@ const BaseAbfahrt = ({
   wingEnd,
   wingStart,
   lineAndNumber,
-  classes,
   useZoom,
   fahrzeugGruppe,
   setDetail,
 }: Props) => {
+  const classes = useStyles();
   const handleClick = useCallback(() => {
     setDetail(abfahrt.id);
   }, [abfahrt.id, setDetail]);
@@ -101,4 +100,4 @@ export default connect<StateProps, DispatchProps, OwnProps, AbfahrtenState>(
   {
     setDetail,
   }
-)(withStyles(styles)(BaseAbfahrt));
+)(BaseAbfahrt);

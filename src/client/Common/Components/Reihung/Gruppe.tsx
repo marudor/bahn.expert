@@ -1,7 +1,7 @@
-import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { Fahrzeuggruppe } from 'types/reihung';
 import Fahrzeug, { InheritedProps } from './Fahrzeug';
 import React from 'react';
+import useStyles from './Gruppe.style';
 
 type OwnProps = InheritedProps & {
   gruppe: Fahrzeuggruppe;
@@ -10,7 +10,7 @@ type OwnProps = InheritedProps & {
   showFahrzeugGruppe: boolean;
   originalTrainNumber: string;
 };
-type Props = OwnProps & WithStyles<typeof styles>;
+type Props = OwnProps;
 
 const Gruppe = ({
   gruppe,
@@ -18,9 +18,9 @@ const Gruppe = ({
   showFahrzeugGruppe,
   showGruppenZugnummer,
   originalTrainNumber,
-  classes,
   ...rest
 }: Props) => {
+  const classes = useStyles();
   const gruppenPos = {
     left: `${(gruppe.startProzent - rest.correctLeft) * rest.scale}%`,
     width: `${(gruppe.endeProzent - gruppe.startProzent) * rest.scale}%`,
@@ -70,12 +70,4 @@ const Gruppe = ({
   );
 };
 
-export const styles = createStyles(theme => ({
-  bezeichnung: {
-    position: 'absolute',
-    bottom: '2.5em',
-    textAlign: 'center',
-  },
-}));
-
-export default withStyles(styles)(Gruppe);
+export default Gruppe;

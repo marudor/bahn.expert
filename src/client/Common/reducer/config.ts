@@ -1,5 +1,5 @@
 import { createReducer } from 'deox';
-import { ThemeType } from 'client/Themes';
+import { ThemeType } from 'client/Themes/type';
 import Actions from 'Common/actions/config';
 import Cookies from 'universal-cookie';
 

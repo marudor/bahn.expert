@@ -1,4 +1,5 @@
-export default {
+import { makeStyles, MergedTheme } from '@material-ui/styles';
+export default makeStyles<MergedTheme>({
   datePicker: {
     '& input': {
       paddingLeft: 10,
@@ -11,4 +12,4 @@ export default {
   destination: {
     display: 'flex',
   },
-};
+});

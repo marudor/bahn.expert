@@ -1,23 +1,21 @@
-import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { SubstituteRef } from 'types/abfahrten';
 import React from 'react';
+import useStyles from './Substitue.style';
 
 type OwnProps = {
   substitute: SubstituteRef;
 };
-type Props = OwnProps & WithStyles<typeof styles>;
+type Props = OwnProps;
 
-const Substitute = ({ substitute, classes }: Props) => (
-  <>
-    <span className={classes.main}>Ersatzzug für</span>
-    <span className={classes.main}>{substitute.train}</span>
-  </>
-);
+const Substitute = ({ substitute }: Props) => {
+  const classes = useStyles();
 
-const styles = createStyles(theme => ({
-  main: {
-    fontSize: '.7em',
-  }
-}));
+  return (
+    <>
+      <span className={classes.main}>Ersatzzug für</span>
+      <span className={classes.main}>{substitute.train}</span>
+    </>
+  );
+};
 
-export default withStyles(styles)(Substitute);
+export default Substitute;

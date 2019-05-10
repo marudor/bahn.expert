@@ -3,7 +3,6 @@ import { CheckInType, MarudorConfig, StationSearchType } from 'Common/config';
 import { createAction } from 'deox';
 import { defaultConfig, setCookieOptions } from 'client/util';
 import abfahrtenActions from './abfahrten';
-import Cookies from 'universal-cookie';
 import favActions from './fav';
 
 export const TIME_CONFIG_KEY = 'TIME_CONFIG';
@@ -83,10 +82,7 @@ export const setConfig = <K extends keyof MarudorConfig>(
   dispatch(Actions.setConfig(newConfig));
 };
 
-export const setDefaultFilter = (): AbfahrtenThunkResult => (
-  dispatch,
-  getState
-) => {
+export const setDefaultFilter = (): AbfahrtenThunkResult => (_, getState) => {
   const cookies = getState().config.cookies;
   const filterList = getState().abfahrten.filterList;
 

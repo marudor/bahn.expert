@@ -1,14 +1,15 @@
-import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { Route$Stop } from 'types/routing';
 import Platform from 'Common/Components/Platform';
 import React from 'react';
 import Time from 'Common/Components/Time';
+import useStyles from './Stop.style';
 
 type OwnProps = {
   stop: Route$Stop;
 };
-type Props = OwnProps & WithStyles<typeof styles>;
-const Stop = ({ stop, classes }: Props) => {
+type Props = OwnProps;
+const Stop = ({ stop }: Props) => {
+  const classes = useStyles();
   const platforms = stop.departurePlatform
     ? {
         real: stop.departurePlatform,
@@ -29,26 +30,4 @@ const Stop = ({ stop, classes }: Props) => {
   );
 };
 
-const styles = createStyles(theme => ({
-  main: {
-    display: 'grid',
-    gridTemplateColumns: '4em 1fr min-content',
-    gridGap: '0 .3em',
-    gridTemplateRows: '1fr 1fr',
-    gridTemplateAreas: '". t p" ". t p" ". t p"',
-    alignItems: 'center',
-    borderBottom: `1px solid ${theme.palette.text.primary}`,
-  },
-
-  station: {
-    gridArea: 't',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-  },
-
-  platform: {
-    gridArea: 'p',
-  },
-}));
-
-export default withStyles(styles)(Stop);
+export default Stop;

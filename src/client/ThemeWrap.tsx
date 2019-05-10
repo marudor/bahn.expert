@@ -1,8 +1,9 @@
 import { CommonState } from 'AppState';
 import { connect } from 'react-redux';
 import { ThemeProvider } from '@material-ui/styles';
+import { ThemeType } from './Themes/type';
 import App from './App';
-import createTheme, { ThemeType } from './Themes';
+import createTheme from './Themes';
 import React, { useMemo } from 'react';
 
 interface StateProps {

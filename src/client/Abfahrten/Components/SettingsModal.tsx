@@ -251,7 +251,7 @@ class SettingsModal extends React.PureComponent<Props> {
   }
 }
 
-export const styles = createStyles(theme => ({
+export const styles = createStyles(_ => ({
   main: {
     display: 'flex',
     flexDirection: 'column',

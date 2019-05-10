@@ -1,6 +1,6 @@
-import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import cc from 'classnames';
 import React from 'react';
+import useStyles from './Platform.style';
 
 type OwnProps = {
   className?: string;
@@ -8,28 +8,21 @@ type OwnProps = {
   scheduled?: string;
   real?: string;
 };
-type Props = OwnProps & WithStyles<typeof styles>;
+type Props = OwnProps;
 
-const Platform = ({
-  classes,
-  className,
-  cancelled,
-  scheduled,
-  real,
-}: Props) => (
-  <span
-    className={cc(className, {
-      [classes.cancelled]: cancelled,
-      [classes.delayed]: scheduled && scheduled !== real,
-    })}
-  >
-    {real}
-  </span>
-);
+const Platform = ({ className, cancelled, scheduled, real }: Props) => {
+  const classes = useStyles();
 
-const styles = createStyles(theme => ({
-  cancelled: theme.mixins.cancelled,
-  delayed: theme.mixins.delayed,
-}));
+  return (
+    <span
+      className={cc(className, {
+        [classes.cancelled]: cancelled,
+        [classes.delayed]: scheduled && scheduled !== real,
+      })}
+    >
+      {real}
+    </span>
+  );
+};
 
-export default withStyles(styles, { withTheme: true })(Platform);
+export default Platform;

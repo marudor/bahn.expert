@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import { ContextType, getContextRoutes } from 'Routing/actions/routing';
-import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { Route as RouteType } from 'types/routing';
 import { RoutingState } from 'AppState';
 import Button from '@material-ui/core/Button';
@@ -8,6 +7,7 @@ import Loading from 'Common/Components/Loading';
 import React, { useCallback, useState } from 'react';
 import Route from './Route';
 import RouteHeader from './RouteHeader';
+import useStyles from './index.style';
 
 type StateProps = {
   routes?: Array<RouteType>;
@@ -16,10 +16,10 @@ type StateProps = {
 
 type Props = {
   dispatch: Function;
-} & StateProps &
-  WithStyles<typeof styles>;
+} & StateProps;
 
-const RouteList = ({ routes, classes, dispatch, error }: Props) => {
+const RouteList = ({ routes, dispatch, error }: Props) => {
+  const classes = useStyles();
   const [detail, setDetail] = useState<undefined | string>();
   const [loadingEarlier, setLoadingEarlier] = useState(false);
   const [loadingLater, setLoadingLater] = useState(false);
@@ -74,16 +74,7 @@ const RouteList = ({ routes, classes, dispatch, error }: Props) => {
   );
 };
 
-const styles = createStyles(theme => ({
-  main: {
-    '& > div': {
-      paddingLeft: '.1em',
-      paddingRight: '.5em',
-    },
-  }
-}));
-
 export default connect<StateProps, {}, {}, RoutingState>(state => ({
   routes: state.routing.routes,
   error: state.routing.error,
-}))(withStyles(styles)(RouteList));
+}))(RouteList);

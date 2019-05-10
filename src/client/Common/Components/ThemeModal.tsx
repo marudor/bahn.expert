@@ -1,5 +1,5 @@
-import { AbfahrtenState, CommonState } from 'AppState';
 import { closeTheme, setTheme } from 'Common/actions/config';
+import { CommonState } from 'AppState';
 import { connect, ResolveThunks } from 'react-redux';
 import {
   Dialog,
@@ -7,11 +7,10 @@ import {
   DialogTitle,
   FormControl,
   FormControlLabel,
-  FormLabel,
   Radio,
   RadioGroup,
 } from '@material-ui/core';
-import { ThemeType } from 'client/Themes';
+import { ThemeType } from 'client/Themes/type';
 import React, { ChangeEvent, useCallback } from 'react';
 
 type StateProps = {
@@ -29,7 +28,7 @@ type Props = ReduxProps;
 
 const FilterModal = ({ open, closeTheme, setTheme, theme }: Props) => {
   const setThemeCb = useCallback(
-    (e: ChangeEvent<{}>, value: string) => {
+    (_: ChangeEvent<{}>, value: string) => {
       setTheme(value as ThemeType);
     },
     [setTheme]

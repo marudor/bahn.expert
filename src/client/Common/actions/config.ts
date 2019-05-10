@@ -1,7 +1,7 @@
 import { CommonThunkResult } from 'AppState';
 import { createAction } from 'deox';
 import { setCookieOptions } from 'client/util';
-import { ThemeType } from 'client/Themes';
+import { ThemeType } from 'client/Themes/type';
 import Cookies from 'universal-cookie';
 
 const Actions = {
@@ -29,10 +29,7 @@ const defaultTheme = global.SERVER
   ? ThemeType.dark
   : ThemeType.light;
 
-export const setCookies = (cookies: Cookies): CommonThunkResult => (
-  dispatch,
-  getState
-) => {
+export const setCookies = (cookies: Cookies): CommonThunkResult => dispatch => {
   const theme =
     (ThemeType[cookies.get('theme')] as undefined | ThemeType) || defaultTheme;
 

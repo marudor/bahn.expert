@@ -1,7 +1,7 @@
-import { createStyles } from '@material-ui/styles';
 import { emphasize } from '@material-ui/core/styles';
+import { makeStyles, MergedTheme } from '@material-ui/styles';
 
-export default createStyles(theme => ({
+export default makeStyles<MergedTheme>(theme => ({
   root: {
     flexGrow: 1,
   },

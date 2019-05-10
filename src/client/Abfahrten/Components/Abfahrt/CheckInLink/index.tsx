@@ -2,10 +2,10 @@ import { Abfahrt } from 'types/abfahrten';
 import { AbfahrtenState } from 'AppState';
 import { CheckInType } from 'Common/config';
 import { connect } from 'react-redux';
-import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import React from 'react';
 import TraewellingLink from './TraewellingLink';
 import TravelynxLink from './TravelynxLink';
+import useStyles from './index.style';
 
 type StateProps = {
   type: CheckInType;
@@ -15,9 +15,11 @@ type OwnProps = {
   abfahrt: Abfahrt;
 };
 
-type Props = OwnProps & StateProps & WithStyles<typeof styles>;
+type Props = OwnProps & StateProps;
 
-const CheckInLink = ({ type, abfahrt, classes }: Props) => {
+const CheckInLink = ({ type, abfahrt }: Props) => {
+  const classes = useStyles();
+
   switch (type) {
     case CheckInType.Traewelling:
       return <TraewellingLink abfahrt={abfahrt} className={classes.link} />;
@@ -35,13 +37,6 @@ const CheckInLink = ({ type, abfahrt, classes }: Props) => {
   }
 };
 
-export const styles = createStyles(theme => ({
-  link: {
-    fontSize: '0.6em',
-    color: theme.colors.blue,
-  },
-}));
-
 export default connect<StateProps, {}, OwnProps, AbfahrtenState>(state => ({
   type: state.abfahrtenConfig.config.checkIn,
-}))(withStyles(styles)(CheckInLink));
+}))(CheckInLink);

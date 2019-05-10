@@ -1,12 +1,11 @@
-import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { formatDuration } from 'Routing/util';
 import { Route as RouteType } from 'types/routing';
 import cc from 'classnames';
-import ErrorOutline from '@material-ui/icons/ErrorOutline';
 import Paper from '@material-ui/core/Paper';
 import React, { SyntheticEvent, useMemo } from 'react';
 import RouteSegments from './RouteSegments';
 import Time from 'Common/Components/Time';
+import useStyles from './Route.style';
 
 type OwnProps = {
   route: RouteType;
@@ -14,9 +13,10 @@ type OwnProps = {
   onClick: (e: SyntheticEvent) => void;
 };
 
-type Props = OwnProps & WithStyles<typeof styles>;
+type Props = OwnProps;
 
-const Route = ({ route, classes, detail, onClick }: Props) => {
+const Route = ({ route, detail, onClick }: Props) => {
+  const classes = useStyles();
   const segmentTypes = useMemo(() => {
     if (route.segmentTypes.length > 1) return route.segmentTypes.join(' - ');
 
@@ -46,35 +46,4 @@ const Route = ({ route, classes, detail, onClick }: Props) => {
   );
 };
 
-export const gridStyle = {
-  gridTemplateColumns: '2fr 2fr 2fr 1fr',
-  display: 'grid',
-  marginBottom: '.2em',
-};
-const styles = createStyles(theme => ({
-  main: {
-    minHeight: '3em',
-    gridTemplateRows: '2.5em 1fr',
-    alignItems: 'center',
-    ...gridStyle,
-  },
-
-  products: {
-    fontSize: '.9em',
-    gridArea: '2 / 1 / 3 / 5',
-  },
-
-  detail: {
-    textDecoration: 'initial',
-    overflow: 'hidden',
-    gridArea: '3 / 1 / 4 / 5',
-  },
-
-  time: {
-    '& > span': {
-      marginRight: '.2em',
-    },
-  }
-}));
-
-export default withStyles(styles, { withTheme: true })(Route);
+export default Route;

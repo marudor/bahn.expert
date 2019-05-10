@@ -16,15 +16,14 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { RoutingState } from 'AppState';
 import { Station } from 'types/station';
 import { StationSearchType } from 'Common/config';
-import { withStyles, WithStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import deLocale from 'date-fns/locale/de';
 import IconButton from '@material-ui/core/IconButton';
 import React, { SyntheticEvent, useCallback, useEffect } from 'react';
 import searchActions, { getStationById } from 'Routing/actions/search';
 import StationSearch from 'Common/Components/StationSearch';
-import styles from './Search.styles';
 import SwapVertical from '@material-ui/icons/SwapVert';
+import useStyles from './Search.styles';
 
 type DispatchProps = ResolveThunks<{
   getStationById: typeof getStationById;
@@ -45,8 +44,7 @@ type Props = ReduxProps &
   RouteComponentProps<{
     start?: string;
     destination?: string;
-  }> &
-  WithStyles<typeof styles>;
+  }>;
 
 const formatDate = (date: null | Date) => {
   if (!date) {
@@ -84,7 +82,6 @@ const Search = ({
   setDestination,
   date,
   setDate,
-  classes,
   match,
   routes,
   getStationById,
@@ -92,6 +89,8 @@ const Search = ({
   getRoutes,
   dateTouched,
 }: Props) => {
+  const classes = useStyles();
+
   useEffect(() => {
     const { start, destination } = match.params;
 
@@ -190,4 +189,4 @@ export default connect<StateProps, DispatchProps, {}, RoutingState>(
     getRoutes,
     setDate: searchActions.setDate,
   }
-)(withRouter(withStyles(styles)(Search)));
+)(withRouter(Search));

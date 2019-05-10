@@ -1,24 +1,18 @@
-import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
-import { gridStyle } from './Route';
 import Paper from '@material-ui/core/Paper';
 import React from 'react';
+import useStyles from './RouteHeader.style';
 
-type Props = WithStyles<typeof styles>;
+const RouteHeader = () => {
+  const classes = useStyles();
 
-const RouteHeader = ({ classes }: Props) => (
-  <Paper square className={classes.main}>
-    <span>Ab</span>
-    <span>An</span>
-    <span>Dauer</span>
-    <span>Umstiege</span>
-  </Paper>
-);
+  return (
+    <Paper square className={classes.main}>
+      <span>Ab</span>
+      <span>An</span>
+      <span>Dauer</span>
+      <span>Umstiege</span>
+    </Paper>
+  );
+};
 
-const styles = createStyles(theme => ({
-  main: {
-    fontSize: '0.7em',
-    ...gridStyle,
-  }
-}));
-
-export default withStyles(styles)(RouteHeader);
+export default RouteHeader;

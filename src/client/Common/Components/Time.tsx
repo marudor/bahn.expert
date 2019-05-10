@@ -1,8 +1,8 @@
 /* eslint no-nested-ternary: 0 */
-import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { format, subMinutes } from 'date-fns';
 import cc from 'classnames';
 import React from 'react';
+import useStyles from './Time.style';
 
 type OwnProps = {
   alignEnd?: boolean;
@@ -15,7 +15,7 @@ type OwnProps = {
   cancelled?: boolean;
 };
 
-type Props = OwnProps & WithStyles<typeof styles>;
+type Props = OwnProps;
 
 function delayString(delay: number = 0) {
   if (delay < 0) {
@@ -26,7 +26,6 @@ function delayString(delay: number = 0) {
 }
 
 const Time = ({
-  classes,
   className,
   delay,
   real,
@@ -36,6 +35,8 @@ const Time = ({
   oneLine,
   cancelled,
 }: Props) => {
+  const classes = useStyles();
+
   if (!real) return <div />;
   const time = showOriginalTime && delay ? subMinutes(real, delay) : real;
 
@@ -70,22 +71,4 @@ const Time = ({
   );
 };
 
-const styles = createStyles(theme => ({
-  cancelled: theme.mixins.cancelled,
-  alignEnd: {
-    alignItems: 'flex-end',
-  },
-  time: {
-    display: 'flex',
-  },
-  seperateLine: {
-    flexDirection: 'column',
-  },
-  spacing: {
-    marginRight: '.2em',
-  },
-  delayed: theme.mixins.delayed,
-  early: theme.mixins.early,
-}));
-
-export default withStyles(styles)(Time);
+export default Time;

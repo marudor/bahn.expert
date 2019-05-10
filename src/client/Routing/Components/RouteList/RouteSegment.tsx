@@ -1,4 +1,3 @@
-import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { Route$JourneySegment } from 'types/routing';
 import AuslastungsDisplay from 'Common/Components/AuslastungsDisplay';
 import cc from 'classnames';
@@ -6,14 +5,16 @@ import Platform from 'Common/Components/Platform';
 import React, { useMemo } from 'react';
 import StopList from './StopList';
 import Time from 'Common/Components/Time';
+import useStyles from './RouteSegment.style';
 
 type OwnProps = {
   segment: Route$JourneySegment;
   detail?: boolean;
   onTrainClick: () => void;
 };
-type Props = OwnProps & WithStyles<typeof styles>;
-const RouteSegment = ({ segment, classes, detail, onTrainClick }: Props) => {
+type Props = OwnProps;
+const RouteSegment = ({ segment, detail, onTrainClick }: Props) => {
+  const classes = useStyles();
   const train = useMemo(
     () => (
       <div
@@ -63,37 +64,4 @@ const RouteSegment = ({ segment, classes, detail, onTrainClick }: Props) => {
   );
 };
 
-const styles = createStyles(theme => ({
-  main: {
-    paddingLeft: '0.3em',
-    display: 'grid',
-    gridTemplateColumns: '2fr 7fr 1fr',
-    gridTemplateRows: '1fr auto 1fr',
-    gridTemplateAreas: '". . ." "t t t" ". . ."',
-    marginTop: '1em',
-    marginBottom: '1em',
-  },
-  train: {
-    marginTop: '.5em',
-    marginBottom: '.5em',
-    gridArea: 't',
-    alignSelf: 'center',
-    paddingLeft: '.3em',
-  },
-  trainInfo: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-  trainMargin: {
-    marginRight: '.5em',
-  },
-  destination: {
-    flex: 1,
-    textAlign: 'center',
-  },
-  platform: {
-    textAlign: 'end',
-  },
-}));
-
-export default withStyles(styles)(RouteSegment);
+export default RouteSegment;
