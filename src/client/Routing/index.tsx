@@ -1,4 +1,4 @@
-import { MuiPickersUtilsProvider } from 'material-ui-pickers';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { renderRoutes } from 'react-router-config';
 import DateFnsUtils from '@date-io/date-fns';
 import deLocale from 'date-fns/locale/de';

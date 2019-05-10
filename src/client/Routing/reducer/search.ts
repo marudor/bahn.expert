@@ -14,11 +14,15 @@ const defaultState: State = {
 };
 
 export default createReducer(defaultState, handle => [
-  handle(Actions.setDate, (state, { payload: { date, dateTouched } }) => ({
-    ...state,
-    date,
-    dateTouched,
-  })),
+  handle(Actions.setDate, (state, { payload: { date, dateTouched } }) =>
+    date
+      ? {
+          ...state,
+          date,
+          dateTouched,
+        }
+      : state
+  ),
   handle(Actions.setDestination, (state, { payload }) => ({
     ...state,
     destination: payload,

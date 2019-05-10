@@ -9,7 +9,7 @@ import {
   subDays,
 } from 'date-fns';
 import { connect, ResolveThunks } from 'react-redux';
-import { DateTimePicker } from 'material-ui-pickers';
+import { DateTimePicker } from '@material-ui/pickers';
 import { getRoutes } from 'Routing/actions/routing';
 import { Route } from 'types/routing';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
@@ -48,7 +48,10 @@ type Props = ReduxProps &
   }> &
   WithStyles<typeof styles>;
 
-const formatDate = (date: Date) => {
+const formatDate = (date: null | Date) => {
+  if (!date) {
+    return '';
+  }
   const today = startOfDay(new Date());
   const tomorrow = endOfDay(addDays(today, 1));
   const yesterday = subDays(today, 1);

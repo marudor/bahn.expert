@@ -11,7 +11,7 @@ const Actions = {
   ),
   setDate: createAction(
     'SET_DATE',
-    resolve => (date: Date, dateTouched: boolean = true) =>
+    resolve => (date: null | Date, dateTouched: boolean = true) =>
       resolve({
         date,
         dateTouched,
