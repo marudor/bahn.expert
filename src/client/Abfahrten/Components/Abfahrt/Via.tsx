@@ -17,7 +17,7 @@ function getDetailedInfo<C extends Record<'cancelled' | 'info', string>>(
   let messages = [...abfahrt.messages.delay, ...abfahrt.messages.qos];
 
   if (!showSupersededMessages) {
-    messages = messages.filter(m => !m.superseded && !m.superseeds);
+    messages = messages.filter(m => !m.superseded);
   }
 
   if (messages.length) {
@@ -64,7 +64,7 @@ function getInfo<C extends Record<'info' | 'cancelled', string>>(
     info += abfahrt.messages.delay[0].text;
   }
   abfahrt.messages.qos
-    .filter(m => !m.superseded && !m.superseeds)
+    .filter(m => !m.superseded)
     .forEach(q => {
       if (info.length > 0) {
         info += ' +++ ';

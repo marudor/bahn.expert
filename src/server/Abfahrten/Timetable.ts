@@ -394,7 +394,6 @@ export default class Timetable {
     }
 
     const message = {
-      superseeds: undefined as (undefined | boolean),
       superseded: undefined,
       // @ts-ignore Lookup is correct
       text: messageLookup[value] || `${value} (?)`,
@@ -456,7 +455,6 @@ export default class Timetable {
 
         if (!messages[type]) messages[type] = {};
         if (supersedes) {
-          message.superseeds = true;
           supersedes.forEach(v => {
             if (messages[type][v]) {
               messages[type][v].superseded = true;
