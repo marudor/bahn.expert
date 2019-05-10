@@ -27,6 +27,7 @@ export type MarudorConfig = {
   readonly fahrzeugGruppe: boolean;
   readonly lineAndNumber: boolean;
   readonly autoUpdate: number;
+  readonly noHeader: boolean;
 };
 
 export type MarudorConfigSanitize = {
