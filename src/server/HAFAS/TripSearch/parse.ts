@@ -1,5 +1,5 @@
 import { addMilliseconds, differenceInMinutes, parse } from 'date-fns';
-import { Common, HafasResponse, LocL, ProdL } from 'types/HAFAS';
+import { Common, HafasResponse } from 'types/HAFAS';
 import {
   DTrnCmpSX,
   Jny,
@@ -126,24 +126,7 @@ class Journey {
     return auslastung;
   }
   parseSegmentJourney = (jny: Jny): Route$Journey => {
-    const [
-      // eslint-disable-next-line no-unused-vars
-      T,
-      fullStart,
-      fullDestination,
-      // eslint-disable-next-line no-unused-vars
-      departureString,
-      // eslint-disable-next-line no-unused-vars
-      arrivalString,
-      // eslint-disable-next-line no-unused-vars
-      trainString,
-      // eslint-disable-next-line no-unused-vars
-      u1,
-      // eslint-disable-next-line no-unused-vars
-      u2,
-      // eslint-disable-next-line no-unused-vars
-      u3,
-    ] = jny.ctxRecon.split('$');
+    const [, fullStart, fullDestination, , , , , , ,] = jny.ctxRecon.split('$');
     const product = this.common.prodL[jny.prodX];
 
     return {

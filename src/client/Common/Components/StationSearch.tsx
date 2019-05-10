@@ -1,8 +1,8 @@
 import { Async } from 'react-select';
 import { ControlProps } from 'react-select/lib/components/Control';
 import { getStationsFromAPI } from 'Common/service/stationSearch';
-import { makeStyles, MergedTheme, useTheme } from '@material-ui/styles';
 import { MenuProps, NoticeProps } from 'react-select/lib/components/Menu';
+import { MergedTheme, useTheme } from '@material-ui/styles';
 import { OptionProps } from 'react-select/lib/components/Option';
 import { PlaceholderProps } from 'react-select/lib/components/Placeholder';
 import { SingleValueProps } from 'react-select/lib/components/SingleValue';
@@ -14,11 +14,9 @@ import debounce from 'debounce-promise';
 import MenuItem from '@material-ui/core/MenuItem';
 import Paper from '@material-ui/core/Paper';
 import React, { useCallback, useMemo } from 'react';
-import styles from './StationSearch.style';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-
-const useStyles = makeStyles(styles);
+import useStyles from './StationSearch.style';
 
 const debouncedGetStationFromAPI = debounce(getStationsFromAPI, 500);
 
@@ -141,8 +139,8 @@ const StationSearch = ({
   placeholder,
   searchType,
 }: Props) => {
-  const theme = useTheme<MergedTheme>();
   const classes = useStyles();
+  const theme = useTheme<MergedTheme>();
 
   const selectStyles: StylesConfig = useMemo(
     () => ({

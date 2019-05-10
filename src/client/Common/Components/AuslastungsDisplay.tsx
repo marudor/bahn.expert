@@ -1,23 +1,18 @@
 import * as React from 'react';
 import { AuslastungsValue, Route$Auslastung } from 'types/routing';
-import {
-  createStyles,
-  MergedTheme,
-  withStyles,
-  WithStyles,
-} from '@material-ui/styles';
 import Close from '@material-ui/icons/Close';
 import Done from '@material-ui/icons/Done';
 import ErrorOutline from '@material-ui/icons/ErrorOutline';
 import Help from '@material-ui/icons/Help';
 import Tooltip from '@material-ui/core/Tooltip';
+import useStyles from './AuslastungsDisplay.style';
 import Warning from '@material-ui/icons/Warning';
 
 interface OwnProps {
   auslastung: Route$Auslastung;
 }
 
-type Props = OwnProps & WithStyles<typeof styles>;
+export type Props = OwnProps;
 
 function getTooltipText(auslastung?: AuslastungsValue) {
   switch (auslastung) {
@@ -49,78 +44,30 @@ function getIcon(auslastung?: AuslastungsValue) {
   }
 }
 
-const AuslastungsDisplay = ({ auslastung, classes }: Props) => (
-  <div className={classes.main}>
-    <div className={classes.entry}>
-      <span>1</span>
-      <Tooltip title={getTooltipText(auslastung.first)}>
-        <span className={`${classes.icon} ${classes.first}`}>
-          {getIcon(auslastung.first)}
-        </span>
-      </Tooltip>
-    </div>
-    <div className={classes.entry}>
-      <span>2</span>
-      <Tooltip title={getTooltipText(auslastung.second)}>
-        <span className={`${classes.icon} ${classes.second}`}>
-          {getIcon(auslastung.second)}
-        </span>
-      </Tooltip>
-    </div>
-  </div>
-);
+const AuslastungsDisplay = (props: Props) => {
+  const classes = useStyles(props);
+  const { auslastung } = props;
 
-function getBGColor(theme: MergedTheme, auslastung?: null | AuslastungsValue) {
-  switch (auslastung) {
-    case AuslastungsValue.Gering:
-      return theme.colors.green;
-    case AuslastungsValue.Hoch:
-      return theme.colors.yellow;
-    case AuslastungsValue.SehrHoch:
-      return theme.colors.orange;
-    case AuslastungsValue.Ausgebucht:
-      return theme.colors.red;
-    default:
-      return theme.palette.common.black;
-  }
-}
-const getColor = (theme: MergedTheme, auslastung?: null | AuslastungsValue) => {
-  const backgroundColor = getBGColor(theme, auslastung);
-
-  return {
-    backgroundColor,
-    color: theme.palette.getContrastText(backgroundColor),
-  };
+  return (
+    <div className={classes.main}>
+      <div className={classes.entry}>
+        <span>1</span>
+        <Tooltip title={getTooltipText(auslastung.first)}>
+          <span className={`${classes.icon} ${classes.first}`}>
+            {getIcon(auslastung.first)}
+          </span>
+        </Tooltip>
+      </div>
+      <div className={classes.entry}>
+        <span>2</span>
+        <Tooltip title={getTooltipText(auslastung.second)}>
+          <span className={`${classes.icon} ${classes.second}`}>
+            {getIcon(auslastung.second)}
+          </span>
+        </Tooltip>
+      </div>
+    </div>
+  );
 };
 
-export const styles = createStyles(theme => ({
-  main: {
-    display: 'flex',
-    marginBottom: '.3em',
-  },
-
-  entry: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginRight: '.5em',
-    alignItems: 'center',
-  },
-
-  icon: {
-    fontSize: '.7em',
-    display: 'inline-block',
-    borderRadius: '50%',
-    textAlign: 'center',
-    padding: '.2em',
-    lineHeight: 0,
-    color: 'white',
-  },
-
-  // @ts-ignore ???
-  first: props => getColor(theme, props.auslastung && props.auslastung.first),
-
-  // @ts-ignore ???
-  second: props => getColor(theme, props.auslastung && props.auslastung.second),
-}));
-
-export default withStyles(styles)(AuslastungsDisplay);
+export default AuslastungsDisplay;

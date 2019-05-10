@@ -1,4 +1,3 @@
-import { Abfahrt } from 'types/abfahrten';
 import { CommonState } from 'AppState';
 import { connect, ResolveThunks } from 'react-redux';
 import { getReihung } from 'Common/actions/reihung';
@@ -9,7 +8,7 @@ import Gruppe from './Gruppe';
 import Loading from 'Common/Components/Loading';
 import React from 'react';
 import Sektor from './Sektor';
-import styles from './index.styles';
+import styles from './index.style';
 
 type StateProps = {
   reihung: null | Reihung;

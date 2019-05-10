@@ -1,6 +1,6 @@
-import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { Sektor } from 'types/reihung';
 import React from 'react';
+import useStyles from './Sektor.style';
 
 type OwnProps = {
   sektor: Sektor;
@@ -8,9 +8,10 @@ type OwnProps = {
   correctLeft: number;
 };
 
-type Props = OwnProps & WithStyles<typeof styles>;
+type Props = OwnProps;
 
-const SektorComp = ({ sektor, scale, correctLeft, classes }: Props) => {
+const SektorComp = ({ sektor, scale, correctLeft }: Props) => {
+  const classes = useStyles();
   const { startprozent, endeprozent } = sektor.positionamgleis;
 
   const start = Number.parseInt(startprozent, 10);
@@ -28,12 +29,4 @@ const SektorComp = ({ sektor, scale, correctLeft, classes }: Props) => {
   );
 };
 
-const styles = createStyles(theme => ({
-  main: {
-    position: 'absolute',
-    fontWeight: 'bolder',
-    textAlign: 'center',
-  }
-}));
-
-export default withStyles(styles)(SektorComp);
+export default SektorComp;

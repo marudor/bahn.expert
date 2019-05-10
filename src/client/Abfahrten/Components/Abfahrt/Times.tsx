@@ -3,10 +3,9 @@ import * as React from 'react';
 import { Abfahrt } from 'types/abfahrten';
 import { AbfahrtenState } from 'AppState';
 import { connect } from 'react-redux';
-import { withStyles, WithStyles } from '@material-ui/styles';
 import cc from 'classnames';
-import styles from './Times.styles';
 import Time from 'Common/Components/Time';
+import useStyles from './Times.style';
 
 type StateProps = {
   timeConfig: boolean;
@@ -17,10 +16,11 @@ type OwnProps = {
 };
 export type ReduxProps = StateProps & OwnProps;
 
-type Props = ReduxProps & WithStyles<typeof styles>;
+type Props = ReduxProps;
 
 const Times = ({
   timeConfig,
+
   abfahrt: {
     arrival,
     arrivalIsCancelled,
@@ -30,67 +30,71 @@ const Times = ({
     departureIsCancelled,
     isCancelled,
   },
+
   detail,
-  classes,
-}: Props) => (
-  <div
-    className={cc({
-      [classes.cancelled]: isCancelled,
-    })}
-  >
-    {detail ? (
-      <React.Fragment>
-        {arrival && (
-          <div
-            className={cc(classes.wrapper, {
-              [classes.cancelled]: arrivalIsCancelled,
-            })}
-          >
-            <span>{'An: '}</span>
-            <Time
-              alignEnd
-              delay={delayArrival}
-              real={arrival}
-              showOriginalTime={!timeConfig}
-            />
-          </div>
-        )}
-        {departure && (
-          <div
-            className={cc(classes.wrapper, {
-              [classes.cancelled]: departureIsCancelled,
-            })}
-          >
-            <span>{'Ab: '}</span>
-            <Time
-              alignEnd
-              delay={delayDeparture}
-              real={departure}
-              showOriginalTime={!timeConfig}
-            />
-          </div>
-        )}
-      </React.Fragment>
-    ) : departure && (!departureIsCancelled || isCancelled) ? (
-      <Time
-        alignEnd
-        delay={delayDeparture}
-        real={departure}
-        showOriginalTime={!timeConfig}
-      />
-    ) : (
-      arrival && (
+}: Props) => {
+  const classes = useStyles();
+
+  return (
+    <div
+      className={cc({
+        [classes.cancelled]: isCancelled,
+      })}
+    >
+      {detail ? (
+        <React.Fragment>
+          {arrival && (
+            <div
+              className={cc(classes.wrapper, {
+                [classes.cancelled]: arrivalIsCancelled,
+              })}
+            >
+              <span>{'An: '}</span>
+              <Time
+                alignEnd
+                delay={delayArrival}
+                real={arrival}
+                showOriginalTime={!timeConfig}
+              />
+            </div>
+          )}
+          {departure && (
+            <div
+              className={cc(classes.wrapper, {
+                [classes.cancelled]: departureIsCancelled,
+              })}
+            >
+              <span>{'Ab: '}</span>
+              <Time
+                alignEnd
+                delay={delayDeparture}
+                real={departure}
+                showOriginalTime={!timeConfig}
+              />
+            </div>
+          )}
+        </React.Fragment>
+      ) : departure && (!departureIsCancelled || isCancelled) ? (
         <Time
           alignEnd
-          delay={delayArrival}
-          real={arrival}
+          delay={delayDeparture}
+          real={departure}
           showOriginalTime={!timeConfig}
         />
-      )
-    )}
-  </div>
-);
+      ) : (
+        arrival && (
+          <Time
+            alignEnd
+            delay={delayArrival}
+            real={arrival}
+            showOriginalTime={!timeConfig}
+          />
+        )
+      )}
+    </div>
+  );
+};
 
 export default connect<StateProps, {}, OwnProps, AbfahrtenState>(state => ({
   timeConfig: state.abfahrtenConfig.config.time,
-}))(withStyles(styles, { withTheme: true })(Times));
+}))(Times);

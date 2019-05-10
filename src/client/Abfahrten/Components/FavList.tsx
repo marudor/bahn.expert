@@ -1,8 +1,6 @@
 import { AbfahrtenState } from 'AppState';
 import { connect, ResolveThunks } from 'react-redux';
-import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { Link } from 'react-router-dom';
-import { Paper } from '@material-ui/core';
 import {
   Redirect,
   RouteComponentProps,
@@ -12,9 +10,10 @@ import { sortedFavValues } from 'Abfahrten/selector/fav';
 import { Station } from 'types/station';
 import { withRouter } from 'react-router-dom';
 import Actions, { AbfahrtenError } from 'Abfahrten/actions/abfahrten';
-import FavEntry, { styles as FavEntryStyles } from './FavEntry';
+import FavEntry, { FavEntryDisplay } from './FavEntry';
 import MostUsed from './MostUsed';
 import React, { useEffect } from 'react';
+import useStyles from './FavList.style';
 
 type DispatchProps = ResolveThunks<{
   setCurrentStation: typeof Actions.setCurrentStation;
@@ -26,7 +25,7 @@ type StateProps = {
 };
 type ReduxProps = DispatchProps & StateProps & RouteComponentProps;
 
-type Props = ReduxProps & WithStyles<typeof styles>;
+type Props = ReduxProps;
 
 function getErrorText(
   error: AbfahrtenError,
@@ -53,13 +52,9 @@ function getErrorText(
   }
 }
 
-const FavList = ({
-  favs,
-  error,
-  staticContext,
-  classes,
-  setCurrentStation,
-}: Props) => {
+const FavList = ({ favs, error, staticContext, setCurrentStation }: Props) => {
+  const classes = useStyles();
+
   useEffect(() => {
     setCurrentStation();
   }, [setCurrentStation]);
@@ -69,47 +64,27 @@ const FavList = ({
       {/* eslint-disable-next-line no-nested-ternary */}
       {error ? (
         <>
-          <Paper square className={classes.favEntry}>
-            {getErrorText(error, staticContext)}
-          </Paper>
+          <FavEntryDisplay text={getErrorText(error, staticContext)} />
           {error.station && (
             <Link to={encodeURIComponent(error.station)}>
-              <Paper square className={classes.favEntry}>
-                {error.station}
-              </Paper>
+              <FavEntryDisplay text={error.station} />
             </Link>
           )}
-          <Paper square className={classes.favEntry}>
-            Versuch einen der folgenden
-          </Paper>
+          <FavEntryDisplay text="Versuch einen der folgenden" />
           <MostUsed />
         </>
       ) : favs.length ? (
         favs.map(fav => fav && <FavEntry key={fav.id} fav={fav} />)
       ) : (
         <>
-          <Paper square className={classes.favEntry}>
-            Keine Favoriten
-          </Paper>
-          <Paper square className={classes.favEntry}>
-            Oft gesucht:
-          </Paper>
+          <FavEntryDisplay text="Keine Favoriten" />
+          <FavEntryDisplay text="Oft gesucht:" />
           <MostUsed />
         </>
       )}
     </main>
   );
 };
-
-const styles = createStyles(theme => ({
-  main: {
-    marginTop: theme.shape.headerSpacing,
-    display: 'flex',
-    flexDirection: 'column',
-    flex: 1,
-  },
-  favEntry: FavEntryStyles(theme).main,
-}));
 
 export default connect<StateProps, DispatchProps, {}, AbfahrtenState>(
   state => ({
@@ -119,4 +94,4 @@ export default connect<StateProps, DispatchProps, {}, AbfahrtenState>(
   {
     setCurrentStation: Actions.setCurrentStation,
   }
-)(withRouter(withStyles(styles)(FavList)));
+)(withRouter(FavList));

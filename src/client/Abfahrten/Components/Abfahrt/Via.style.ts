@@ -1,5 +1,6 @@
-import { createStyles } from '@material-ui/styles';
-export default createStyles(theme => ({
+import { makeStyles, MergedTheme } from '@material-ui/styles';
+
+export default makeStyles<MergedTheme>(theme => ({
   main: {
     fontSize: '2.1em',
     overflow: 'hidden',

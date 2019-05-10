@@ -8,7 +8,7 @@ import {
   yellow,
 } from '@material-ui/core/colors';
 import { Theme as MuiTheme } from '@material-ui/core';
-import { ThemeType } from '.';
+import { ThemeType } from './type';
 
 export default function getColors(theme: MuiTheme, themeType: ThemeType) {
   const backgroundAugment = theme.palette.augmentColor({

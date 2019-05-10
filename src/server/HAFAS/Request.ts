@@ -85,15 +85,11 @@ async function makeRequest<R extends SingleHafasRequest, HR, P>(
   parseFn: (d: HafasResponse<HR>) => P = d => d as any
 ): Promise<P> {
   const { data, checksum } = createRequest(request);
-  const r = (await axios.post<HafasResponse<HR>>(
-    'https://reiseauskunft.bahn.de/bin/mgate.exe',
-    data,
-    {
-      params: {
-        checksum,
-      },
-    }
-  )).data;
+  const r = (await axios.post<HafasResponse<HR>>(mgateUrl, data, {
+    params: {
+      checksum,
+    },
+  })).data;
 
   if (r.err !== 'OK' || r.svcResL[0].err !== 'OK') throw r;
 

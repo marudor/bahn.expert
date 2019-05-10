@@ -8,11 +8,11 @@ import {
   Switch,
 } from '@material-ui/core';
 import { connect, ResolveThunks } from 'react-redux';
-import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import { getAllTrainTypes } from 'Abfahrten/selector/abfahrten';
 import { setDefaultFilter } from 'Abfahrten/actions/abfahrtenConfig';
 import AbfahrtenActions, { closeFilter } from 'Abfahrten/actions/abfahrten';
 import React, { SyntheticEvent, useCallback } from 'react';
+import useStyles from './FilterModal.style';
 
 type StateProps = {
   open: boolean;
@@ -27,7 +27,7 @@ type DispatchProps = ResolveThunks<{
 }>;
 
 type ReduxProps = StateProps & DispatchProps;
-type Props = ReduxProps & WithStyles<typeof styles>;
+type Props = ReduxProps;
 
 const FilterModal = ({
   open,
@@ -35,11 +35,11 @@ const FilterModal = ({
   types,
   setFilterList,
   filterList,
-  classes,
   setDefaultFilter,
 }: Props) => {
+  const classes = useStyles();
   const toggleFilter = useCallback(
-    (product: string) => (event: SyntheticEvent, checked: boolean) => {
+    (product: string) => (_: SyntheticEvent, checked: boolean) => {
       let newFilterList;
 
       if (checked) {
@@ -83,12 +83,6 @@ const FilterModal = ({
   );
 };
 
-const styles = createStyles(theme => ({
-  label: {
-    width: 'calc(50% - 1em)',
-  },
-}));
-
 export default connect<StateProps, DispatchProps, {}, AbfahrtenState>(
   state => ({
     open: state.abfahrten.filterMenu,
@@ -100,4 +94,4 @@ export default connect<StateProps, DispatchProps, {}, AbfahrtenState>(
     setFilterList: AbfahrtenActions.setFilterList,
     setDefaultFilter,
   }
-)(withStyles(styles)(FilterModal));
+)(FilterModal);

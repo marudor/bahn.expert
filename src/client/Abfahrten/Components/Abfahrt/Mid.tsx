@@ -1,8 +1,7 @@
 import { Abfahrt } from 'types/abfahrten';
-import { withStyles, WithStyles } from '@material-ui/styles';
 import cc from 'classnames';
 import React from 'react';
-import styles from './Mid.styles';
+import useStyles from './Mid.style';
 import Via from './Via';
 
 export type OwnProps = {
@@ -10,29 +9,35 @@ export type OwnProps = {
   detail: boolean;
 };
 
-type Props = OwnProps & WithStyles<typeof styles>;
+type Props = OwnProps;
 
-const Mid = ({ abfahrt, detail, classes }: Props) => (
-  <div
-    className={cc(
-      {
-        [classes.detail]: detail,
-      },
-      classes.main
-    )}
-  >
-    <Via abfahrt={abfahrt} detail={detail} />
+const Mid = ({ abfahrt, detail }: Props) => {
+  const classes = useStyles();
+
+  return (
     <div
-      className={cc(classes.destination, {
-        [classes.cancelled]: abfahrt.isCancelled,
-        [classes.different]:
-          !abfahrt.isCancelled &&
-          abfahrt.destination !== abfahrt.scheduledDestination,
-      })}
+      className={cc(
+        {
+          [classes.detail]: detail,
+        },
+        classes.main
+      )}
     >
-      {abfahrt.isCancelled ? abfahrt.scheduledDestination : abfahrt.destination}
+      <Via abfahrt={abfahrt} detail={detail} />
+      <div
+        className={cc(classes.destination, {
+          [classes.cancelled]: abfahrt.isCancelled,
+          [classes.different]:
+            !abfahrt.isCancelled &&
+            abfahrt.destination !== abfahrt.scheduledDestination,
+        })}
+      >
+        {abfahrt.isCancelled
+          ? abfahrt.scheduledDestination
+          : abfahrt.destination}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
-export default withStyles(styles)(Mid);
+export default Mid;

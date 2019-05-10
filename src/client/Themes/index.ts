@@ -1,14 +1,9 @@
 // eslint-disable-next-line import/no-unresolved
 import { Theme as MaruTheme } from 'maru';
 import { Theme as MuiTheme } from '@material-ui/core';
+import { ThemeType } from './type';
 import createMuiTheme from './mui';
 import getColors from './colors';
-
-export enum ThemeType {
-  black = 'black',
-  dark = 'dark',
-  light = 'light',
-}
 
 export default (themeType: ThemeType): MuiTheme & MaruTheme => {
   const mui = createMuiTheme(themeType);

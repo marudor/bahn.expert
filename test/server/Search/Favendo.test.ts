@@ -1,10 +1,9 @@
-import { StationSearchType } from 'Common/config';
+import { favendoOpenDBCombined } from 'server/Search';
 import { testHamburgSearch } from './common';
 import exampleOpenDBRespone from './__fixtures__/OpenDB-forCombine.example';
 import exampleRespone from './__fixtures__/Favendo.example';
 import FavendoSearch from 'server/Search/Favendo';
 import Nock from 'nock';
-import serverSearch, { favendoOpenDBCombined } from 'server/Search';
 
 describe('Favendo Search', () => {
   it('Returns correct mapping', async () => {

@@ -1,11 +1,10 @@
 import { Fahrzeug, FahrzeugType, SpecificType } from 'types/reihung';
-import { withStyles, WithStyles } from '@material-ui/styles';
 import ActionAccessible from '@material-ui/icons/Accessible';
 import ActionMotorcycle from '@material-ui/icons/Motorcycle';
 import cc from 'classnames';
 import MapsLocalDining from '@material-ui/icons/LocalDining';
 import React from 'react';
-import styles from './Fahrzeug.styles';
+import useStyles from './Fahrzeug.style';
 
 export type InheritedProps = {
   specificType?: SpecificType;
@@ -20,7 +19,7 @@ export type OwnProps = InheritedProps & {
   wrongWing: boolean;
 };
 
-type Props = OwnProps & WithStyles<typeof styles>;
+type Props = OwnProps;
 
 // Klasse: 0 = unknown
 // Klasse: 1 = Nur erste
@@ -156,10 +155,10 @@ const FahrzeugComp = ({
   type,
   specificType,
   wrongWing,
-  classes,
   scale,
   correctLeft,
 }: Props) => {
+  const classes = useStyles();
   const info = getFahrzeugInfo(fahrzeug, type, specificType);
 
   const { startprozent, endeprozent } = fahrzeug.positionamhalt;
@@ -195,4 +194,4 @@ const FahrzeugComp = ({
   );
 };
 
-export default withStyles(styles)(FahrzeugComp);
+export default FahrzeugComp;

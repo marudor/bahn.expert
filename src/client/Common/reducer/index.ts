@@ -10,7 +10,7 @@ export type CommonRootState = {
 };
 
 export default {
-  features: createReducer({}, handle => []),
+  features: createReducer({}, _ => []),
   reihung,
   config,
 };

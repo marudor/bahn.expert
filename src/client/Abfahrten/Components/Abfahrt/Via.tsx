@@ -3,10 +3,9 @@ import { AbfahrtenState } from 'AppState';
 import { compareDesc, format } from 'date-fns';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { withStyles, WithStyles } from '@material-ui/styles';
 import cc from 'classnames';
 import React, { ReactNode } from 'react';
-import styles from './Via.styles';
+import useStyles from './Via.style';
 
 function getDetailedInfo<C extends Record<'cancelled' | 'info', string>>(
   abfahrt: Abfahrt,
@@ -198,9 +197,10 @@ type OwnProps = {
 
 export type ReduxProps = StateProps & OwnProps;
 
-type Props = ReduxProps & WithStyles<typeof styles>;
+type Props = ReduxProps;
 
-const Via = ({ abfahrt, detail, showSupersededMessages, classes }: Props) => {
+const Via = ({ abfahrt, detail, showSupersededMessages }: Props) => {
+  const classes = useStyles();
   const info = detail
     ? getDetailedInfo(abfahrt, showSupersededMessages, classes)
     : getInfo(abfahrt, classes);
@@ -226,4 +226,4 @@ const Via = ({ abfahrt, detail, showSupersededMessages, classes }: Props) => {
 
 export default connect<StateProps, void, OwnProps, AbfahrtenState>(state => ({
   showSupersededMessages: state.abfahrtenConfig.config.showSupersededMessages,
-}))(withStyles(styles, { withTheme: true })(Via));
+}))(Via);

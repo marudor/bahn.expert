@@ -1,8 +1,7 @@
-import { blue, indigo } from '@material-ui/core/colors';
+import { blue } from '@material-ui/core/colors';
 import { createMuiTheme } from '@material-ui/core/styles';
-import { Shape } from '@material-ui/core/styles/shape';
 import { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
-import { ThemeType } from '.';
+import { ThemeType } from './type';
 import deepMerge from 'deepmerge';
 
 import { MuiPickersOverrides } from '@material-ui/pickers/typings/overrides';

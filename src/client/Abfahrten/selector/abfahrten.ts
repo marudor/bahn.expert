@@ -26,9 +26,8 @@ export const getNextDeparture = (state: AbfahrtenState) => {
 
 export const getAbfahrtenForConfig = createSelector(
   (state: AbfahrtenState) => state.abfahrten.departures,
-  state => state.abfahrten.selectedDetail,
   state => state.abfahrten.filterList,
-  (abfahrten, selectedDetail, filterList) => {
+  (abfahrten, filterList) => {
     if (!abfahrten) return abfahrten;
     const filtered = {
       lookahead: abfahrten.lookahead,

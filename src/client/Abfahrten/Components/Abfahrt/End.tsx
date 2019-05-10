@@ -1,34 +1,27 @@
 import { Abfahrt } from 'types/abfahrten';
-import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
 import Platform from 'Common/Components/Platform';
 import React from 'react';
 import Times from './Times';
+import useStyles from './End.style';
 
 type OwnProps = {
   abfahrt: Abfahrt;
   detail: boolean;
 };
-type Props = OwnProps & WithStyles<typeof styles>;
-const End = ({ abfahrt, detail, classes }: Props) => (
-  <div className={classes.main}>
-    <Times abfahrt={abfahrt} detail={detail} />
-    <Platform
-      real={abfahrt.platform}
-      scheduled={abfahrt.scheduledPlatform}
-      cancelled={abfahrt.isCancelled}
-    />
-  </div>
-);
+type Props = OwnProps;
+const End = ({ abfahrt, detail }: Props) => {
+  const classes = useStyles();
 
-const styles = createStyles(theme => ({
-  main: {
-    fontSize: '2.5em',
-    alignItems: 'flex-end',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    marginLeft: '1em',
-  }
-}));
+  return (
+    <div className={classes.main}>
+      <Times abfahrt={abfahrt} detail={detail} />
+      <Platform
+        real={abfahrt.platform}
+        scheduled={abfahrt.scheduledPlatform}
+        cancelled={abfahrt.isCancelled}
+      />
+    </div>
+  );
+};
 
-export default withStyles(styles)(End);
+export default End;
