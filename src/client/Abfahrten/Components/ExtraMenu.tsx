@@ -1,3 +1,4 @@
+import { __RouterContext } from 'react-router';
 import { AbfahrtenState } from 'AppState';
 import { connect, ResolveThunks } from 'react-redux';
 import { fav, unfav } from 'Abfahrten/actions/fav';
@@ -6,15 +7,17 @@ import { IconButton } from '@material-ui/core';
 import { openSettings } from 'Abfahrten/actions/abfahrtenConfig';
 import { openTheme } from 'Common/actions/config';
 import { Station } from 'types/station';
+import { useRouter } from 'useRouter';
 import ActionMenu from '@material-ui/icons/Menu';
 import FilterList from '@material-ui/icons/FilterList';
 import FilterModal from './FilterModal';
+import HelpOutline from '@material-ui/icons/HelpOutline';
 import InvertColors from '@material-ui/icons/InvertColors';
 import Layers from '@material-ui/icons/Layers';
 import LayersClear from '@material-ui/icons/LayersClear';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import React, { SyntheticEvent } from 'react';
+import React, { SyntheticEvent, useCallback, useState } from 'react';
 import Settings from '@material-ui/icons/Settings';
 import ThemeModal from 'Common/Components/ThemeModal';
 import ToggleStar from '@material-ui/icons/Star';
@@ -38,15 +41,22 @@ type DispatchProps = ResolveThunks<{
 type ReduxProps = StateProps & DispatchProps;
 
 type Props = ReduxProps;
-type State = {
-  anchor?: HTMLElement;
-};
 
-class ExtraMenu extends React.PureComponent<Props> {
-  state: State = {};
-  toggleFav = () => {
-    const { isFaved, fav, unfav, currentStation } = this.props;
-
+const ExtraMenu = ({
+  isFaved,
+  currentStation,
+  lageplan,
+  unfav,
+  fav,
+  getLageplan,
+  openSettings,
+  openFilter,
+  openTheme,
+}: Props) => {
+  const { history } = useRouter();
+  const [anchor, setAnchor] = useState<undefined | HTMLElement>();
+  const toggleFav = useCallback(() => {
+    setAnchor(undefined);
     if (currentStation) {
       if (isFaved) {
         unfav(currentStation);
@@ -54,110 +64,79 @@ class ExtraMenu extends React.PureComponent<Props> {
         fav(currentStation);
       }
     }
-  };
-  toggleMenu = (e: SyntheticEvent<HTMLElement>) => {
-    this.setState({
-      anchor: this.state.anchor ? undefined : e.currentTarget,
-    });
-  };
-  openLageplan = async () => {
-    const { lageplan, getLageplan, currentStation } = this.props;
-
-    this.closeMenu();
-
+  }, [currentStation, fav, isFaved, unfav]);
+  const toggleMenu = useCallback(
+    (e: SyntheticEvent<HTMLElement>) => {
+      setAnchor(anchor ? undefined : e.currentTarget);
+    },
+    [anchor]
+  );
+  const openLageplan = useCallback(async () => {
+    setAnchor(undefined);
     if (lageplan === undefined && currentStation) {
-      // const snackId = enqueueSnackbar(
-      //   `Lade Gleisplan für ${currentStation.title}`,
-      //   { variant: 'info' }
-      // );
       const fetchedLageplan = await getLageplan(currentStation.title);
 
       if (fetchedLageplan) {
         window.open(fetchedLageplan, '_blank');
       }
-
-      // if (snackId) {
-      //   if (fetchedLageplan) {
-      //     closeSnackbar(snackId);
-      //     window.open(fetchedLageplan, '_blank');
-      //   } else {
-      //     closeSnackbar(snackId);
-      //     enqueueSnackbar(
-      //       `Kein Gleisplan vorhanden für ${currentStation.title}`,
-      //       { variant: 'error' }
-      //     );
-      //   }
-      // }
     } else if (lageplan) {
       window.open(lageplan, '_blank');
     }
-  };
-  openFilter = () => {
-    this.props.openFilter();
-    this.closeMenu();
-  };
-  closeMenu = () => {
-    this.setState({
-      anchor: undefined,
-    });
-  };
-  openTheme = () => {
-    this.props.openTheme();
-  };
-  openSettings = () => {
-    this.props.openSettings();
-    this.closeMenu();
-  };
-  render() {
-    const { isFaved, currentStation, lageplan } = this.props;
-    const { anchor } = this.state;
+  }, [currentStation, getLageplan, lageplan]);
+  const openFilterCb = useCallback(() => {
+    openFilter();
+    setAnchor(undefined);
+  }, [openFilter]);
+  const openSettingsCb = useCallback(() => {
+    openSettings();
+    setAnchor(undefined);
+  }, [openSettings]);
+  const toAbout = useCallback(() => {
+    history.push('/about');
+    setAnchor(undefined);
+  }, [history]);
 
-    return (
-      <>
-        <FilterModal />
-        <ThemeModal />
-        <IconButton
-          aria-label="ThemeMenu"
-          onClick={this.openTheme}
-          color="inherit"
-        >
-          <InvertColors />
-        </IconButton>
-        <IconButton aria-label="Menu" onClick={this.toggleMenu} color="inherit">
-          <ActionMenu />
-        </IconButton>
-        <Menu
-          open={Boolean(anchor)}
-          anchorEl={anchor}
-          onClose={this.toggleMenu}
-        >
-          {currentStation && [
-            <MenuItem key="1" onClick={this.toggleFav}>
-              {isFaved ? (
-                <>
-                  <ToggleStar /> Unfav
-                </>
-              ) : (
-                <>
-                  <ToggleStarBorder /> Fav
-                </>
-              )}
-            </MenuItem>,
-            <MenuItem key="2" onClick={this.openLageplan}>
-              {lageplan !== null ? <Layers /> : <LayersClear />} Lageplan
-            </MenuItem>,
-          ]}
-          <MenuItem onClick={this.openFilter}>
-            <FilterList /> Filter
-          </MenuItem>
-          <MenuItem onClick={this.openSettings}>
-            <Settings /> Settings
-          </MenuItem>
-        </Menu>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <FilterModal />
+      <ThemeModal />
+      <IconButton aria-label="ThemeMenu" onClick={openTheme} color="inherit">
+        <InvertColors />
+      </IconButton>
+      <IconButton aria-label="Menu" onClick={toggleMenu} color="inherit">
+        <ActionMenu />
+      </IconButton>
+      <Menu open={Boolean(anchor)} anchorEl={anchor} onClose={toggleMenu}>
+        {currentStation && [
+          <MenuItem key="1" onClick={toggleFav}>
+            {isFaved ? (
+              <>
+                <ToggleStar /> Unfav
+              </>
+            ) : (
+              <>
+                <ToggleStarBorder /> Fav
+              </>
+            )}
+          </MenuItem>,
+          <MenuItem key="2" onClick={openLageplan}>
+            {lageplan !== null ? <Layers /> : <LayersClear />} Lageplan
+          </MenuItem>,
+        ]}
+        <MenuItem onClick={openFilterCb}>
+          <FilterList /> Filter
+        </MenuItem>
+        <MenuItem onClick={openSettingsCb}>
+          <Settings /> Settings
+        </MenuItem>
+        <MenuItem onClick={toAbout}>
+          <HelpOutline />
+          About
+        </MenuItem>
+      </Menu>
+    </>
+  );
+};
 
 export default connect<StateProps, DispatchProps, {}, AbfahrtenState>(
   state => ({

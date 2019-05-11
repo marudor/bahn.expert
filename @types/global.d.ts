@@ -2,6 +2,12 @@ namespace NodeJS {
   interface Global {
     PROD: boolean;
     SERVER: boolean;
+    VERSION: string;
+    IMPRINT: {
+      name: string;
+      street: string;
+      town: string;
+    };
     smallScreen: boolean;
     __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: Function;
     __DATA__: Object;

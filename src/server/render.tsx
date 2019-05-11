@@ -117,6 +117,7 @@ export default async (ctx: Context) => {
       cssBundles: ctx.stats.main.css,
       clientState: serialize(state),
       configOverride: serialize(configOverride),
+      imprint: serialize(global.IMPRINT),
     });
     ctx.body += app;
 
