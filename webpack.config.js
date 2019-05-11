@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
-// const ReactJssHmrPlugin = require('react-jss-hmr/webpack');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
@@ -14,6 +13,7 @@ const plugins = [
       NODE_ENV: JSON.stringify(process.env.NODE_ENV),
     },
     SERVER: false,
+    VERSION: JSON.stringify(require('./version')),
   }),
   new MiniCssExtractPlugin({
     filename: isDev ? '[name].css' : '[name]-[contenthash].css',
