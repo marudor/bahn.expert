@@ -179,6 +179,7 @@
     "koa-static": "^5.0.0",
     "libxmljs2": "^0.20.1",
     "lodash": "^4.17.11",
+    "modclean": "^3.0.0-beta.1",
     "node-cache": "^4.2.0",
     "prom-client": "^11.3.0",
     "prop-types": "^15.7.2",
