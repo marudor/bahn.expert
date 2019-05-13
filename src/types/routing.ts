@@ -1,5 +1,5 @@
 import { OutConL, SecL } from './HAFAS/TripSearch';
-import { ProdL } from './HAFAS';
+import { ParsedProduct, ProdL } from './HAFAS';
 import { Station } from './station';
 
 export type Route$Arrival = {
@@ -44,7 +44,7 @@ export interface Route$Auslastung {
   first?: AuslastungsValue;
   second?: AuslastungsValue;
 }
-export type Route$Journey = {
+export type Route$Journey = ParsedProduct & {
   isCancelled?: boolean;
   changeDuration?: number;
   duration?: number;
@@ -55,10 +55,6 @@ export type Route$Journey = {
   segmentDestination: Station;
   segmentStart: Station;
   stops?: Route$Stop[];
-  train: string;
-  trainId?: string;
-  trainNumber: string;
-  trainType: string;
   auslastung?: Route$Auslastung;
 };
 export type Route$JourneySegmentTrain = Route$Arrival &

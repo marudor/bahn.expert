@@ -1,4 +1,3 @@
-import { addMilliseconds, differenceInMinutes, parse } from 'date-fns';
 import {
   Arr,
   Dep,
@@ -9,8 +8,9 @@ import {
   TripSearchResponse,
   TrnCmpSX,
 } from 'types/HAFAS/TripSearch';
-import { Common, HafasResponse } from 'types/HAFAS';
 import { flatten } from 'lodash';
+import { HafasResponse, ParsedCommon } from 'types/HAFAS';
+import { parse } from 'date-fns';
 import {
   Route,
   Route$Arrival,
@@ -21,18 +21,10 @@ import {
   RoutingResult,
 } from 'types/routing';
 import { Station } from 'types/station';
-
-function parseDuration(duration: string) {
-  const sanitized = duration.padStart(8, '0');
-  const days = Number.parseInt(sanitized.slice(0, 2), 10);
-  const hours = Number.parseInt(sanitized.slice(2, 4), 10);
-  const minutes = Number.parseInt(sanitized.slice(4, 6), 10);
-  const seconds = Number.parseInt(sanitized.slice(6, 8), 10);
-
-  return (
-    (seconds + minutes * 60 + hours * 60 * 60 + days * 60 * 60 * 24) * 1000
-  );
-}
+import parseCommonArrival from '../helper/parseCommonArrival';
+import parseCommonDeparture from '../helper/parseCommonDeparture';
+import parseDuration from '../helper/parseDuration';
+import parseProduct from '../helper/parseProduct';
 
 const nameRegex = /O=([^@]+)/;
 const evaRegex = /L=(\d+)/;
@@ -57,15 +49,10 @@ class Journey {
   raw: OutConL;
   date: number;
   journey: Route;
-  common: Common;
-  locL: Station[];
-  constructor(raw: OutConL, common: Common) {
+  common: ParsedCommon;
+  constructor(raw: OutConL, common: ParsedCommon) {
     this.raw = raw;
     this.common = common;
-    this.locL = common.locL.map(l => ({
-      title: l.name,
-      id: l.extId,
-    }));
     this.date = parse(raw.date, 'yyyyMMdd', new Date()).getTime();
     const segments = raw.secL
       .map(this.parseSegment)
@@ -89,7 +76,7 @@ class Journey {
     if (!stops) return;
 
     return stops.map(stop => ({
-      station: this.locL[stop.locX],
+      station: this.common.locL[stop.locX],
       ...this.parseArrival(stop),
       ...this.parseDeparture(stop),
     }));
@@ -125,12 +112,9 @@ class Journey {
     const product = this.common.prodL[jny.prodX];
 
     return {
+      ...parseProduct(product),
       isCancelled: jny.isCncl,
       changeDuration: jny.chgDurR,
-      train: product.addName || product.name,
-      trainId: product.prodCtx.line,
-      trainNumber: product.prodCtx.num,
-      trainType: product.prodCtx.catOut,
       segmentStart: parseFullStation(fullStart),
       segmentDestination: parseFullStation(fullDestination),
       stops: this.parseStops(jny.stopL),
@@ -174,60 +158,26 @@ class Journey {
         return undefined;
     }
   };
-  parseTime(time?: string): number | undefined {
-    if (!time) return undefined;
-
-    return addMilliseconds(this.date, parseDuration(time)).getTime();
-  }
   parseArrival(a: Arr): Route$Arrival {
-    const scheduledArrival = this.parseTime(a.aTimeS);
-    let arrival = scheduledArrival;
-    let arrivalDelay;
-
-    if (a.aTimeR) {
-      arrival = this.parseTime(a.aTimeR);
-      arrivalDelay =
-        arrival &&
-        scheduledArrival &&
-        differenceInMinutes(arrival, scheduledArrival);
-    }
-
     return {
-      scheduledArrivalPlatform: a.aPlatfR && a.aPlatfS,
-      arrivalPlatform: a.aPlatfR || a.aPlatfS,
-      scheduledArrival,
-      arrival,
-      arrivalDelay,
+      ...parseCommonArrival(a, this.date),
       arrivalReihung: Boolean(a.aTrnCmpSX && a.aTrnCmpSX.tcM),
     };
   }
   parseDeparture(d: Dep): Route$Departure {
-    const scheduledDeparture = this.parseTime(d.dTimeS);
-    let departure = scheduledDeparture;
-    let departureDelay;
-
-    if (d.dTimeR) {
-      departure = this.parseTime(d.dTimeR);
-      departureDelay =
-        departure &&
-        scheduledDeparture &&
-        differenceInMinutes(departure, scheduledDeparture);
-    }
-
     return {
-      scheduledDeparturePlatform: d.dPlatfR && d.dPlatfS,
-      departurePlatform: d.dPlatfR || d.dPlatfS,
-      scheduledDeparture,
-      departure,
-      departureDelay,
+      ...parseCommonDeparture(d, this.date),
       departureReihung: Boolean(d.dTrnCmpSX && d.dTrnCmpSX.tcM),
     };
   }
 }
 
-export default (r: HafasResponse<TripSearchResponse>): RoutingResult => {
-  const routes = r.svcResL.map(svc =>
-    svc.res.outConL.map(j => new Journey(j, svc.res.common).journey)
+export default (
+  r: HafasResponse<TripSearchResponse>,
+  parsedCommon: ParsedCommon
+): RoutingResult => {
+  const routes = r.svcResL[0].res.outConL.map(
+    j => new Journey(j, parsedCommon).journey
   );
 
   return {

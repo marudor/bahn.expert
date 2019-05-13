@@ -1,4 +1,4 @@
-import { Common, CommonJny, LocL } from '.';
+import { Common, CommonArrival, CommonDeparture, CommonJny, LocL } from '.';
 
 interface GenericTripSearchRequest {
   arrLocL: Partial<LocL>[];
@@ -58,62 +58,18 @@ export interface MsgL {
   tagL: string[];
 }
 
-export interface Dep {
-  locX: number;
-  idx: number;
-  dProdX: number;
-  dPlatfS?: string;
-  dPlatfR?: string;
-  dInR: boolean;
-  dTimeS?: string;
-  dTimeR?: string;
-  dProgType: string;
+export interface Dep extends CommonDeparture {
   dTZOffset: number;
-  type: string;
   dTrnCmpSX?: TrnCmpSX;
   msgL: MsgL[];
 }
 
-export interface Arr {
-  locX: number;
-  idx: number;
-  aPlatfS?: string;
-  aPlatfR?: string;
-  aOutR?: boolean;
-  aTimeS?: string;
-  aTimeR?: string;
-  aProgType: string;
-  aTZOffset?: number;
-  type: string;
-  aProdX?: number;
+export interface Arr extends CommonArrival {
+  aTZOffset: number;
   aTrnCmpSX?: TrnCmpSX;
 }
 
-export interface StopL {
-  locX: number;
-  idx: number;
-  dProdX: number;
-  dPlatfS?: string;
-  dPlatfR?: string;
-  dInR: boolean;
-  dTimeS?: string;
-  dTimeR?: string;
-  dProgType: string;
-  dDirTxt: string;
-  dTZOffset: number;
-  type: string;
-  aProdX?: number;
-  aPlatfS: string;
-  aPlatfR?: string;
-  aOutR?: boolean;
-  aTimeS: string;
-  aTimeR?: string;
-  aProgType: string;
-  aTZOffset?: number;
-  dTrnCmpSX?: TrnCmpSX;
-  aTrnCmpSX?: TrnCmpSX;
-  msgL: MsgL[];
-}
+export interface StopL extends Arr, Dep {}
 
 export interface JnyL extends CommonJny {
   stopL: StopL[];

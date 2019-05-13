@@ -148,10 +148,20 @@ router
       Number.parseInt(time, 10)
     );
   })
-  .get('/hafas/stationBoard', async ctx => {
+  .get('/hafas/ArrStationBoard', async ctx => {
     const { date, station } = ctx.query;
 
     ctx.body = await stationBoard({
+      type: 'ARR',
+      station,
+      date: Number.parseInt(date, 10) || undefined,
+    });
+  })
+  .get('/hafas/DepStationBoard', async ctx => {
+    const { date, station } = ctx.query;
+
+    ctx.body = await stationBoard({
+      type: 'DEP',
       station,
       date: Number.parseInt(date, 10) || undefined,
     });
