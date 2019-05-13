@@ -3,6 +3,7 @@ import AuslastungsDisplay from 'Common/Components/AuslastungsDisplay';
 import cc from 'classnames';
 import Platform from 'Common/Components/Platform';
 import React, { useMemo } from 'react';
+import Reihung from 'Common/Components/Reihung';
 import StopList from './StopList';
 import Time from 'Common/Components/Time';
 import useStyles from './RouteSegment.style';
@@ -34,7 +35,21 @@ const RouteSegment = ({ segment, detail, onTrainClick }: Props) => {
             <AuslastungsDisplay auslastung={segment.auslastung} />
           )}
         </div>
-        {detail && <StopList stops={segment.stops} />}
+        {detail && (
+          <>
+            {segment.scheduledDeparture && segment.departureReihung && (
+              <Reihung
+                className={classes.reihung}
+                useZoom
+                fahrzeugGruppe={false}
+                trainNumber={segment.trainNumber}
+                currentStation={segment.segmentStart.title}
+                scheduledDeparture={segment.scheduledDeparture}
+              />
+            )}
+            <StopList stops={segment.stops} />
+          </>
+        )}
       </div>
     ),
     [classes, segment, detail, onTrainClick]

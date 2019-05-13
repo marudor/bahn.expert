@@ -8,6 +8,7 @@ export type Route$Arrival = {
   scheduledArrival?: number;
   arrival?: number;
   arrivalDelay?: number;
+  arrivalReihung: boolean;
 };
 
 export type Route$Departure = {
@@ -16,6 +17,7 @@ export type Route$Departure = {
   scheduledDeparture?: number;
   departure?: number;
   departureDelay?: number;
+  departureReihung: boolean;
 };
 
 export type Route$Stop = {

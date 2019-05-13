@@ -1,13 +1,15 @@
 import { addMilliseconds, differenceInMinutes, parse } from 'date-fns';
-import { Common, HafasResponse } from 'types/HAFAS';
 import {
-  DTrnCmpSX,
+  Arr,
+  Dep,
   Jny,
   OutConL,
   SecL,
   StopL,
   TripSearchResponse,
+  TrnCmpSX,
 } from 'types/HAFAS/TripSearch';
+import { Common, HafasResponse } from 'types/HAFAS';
 import { flatten } from 'lodash';
 import {
   Route,
@@ -86,23 +88,16 @@ class Journey {
   parseStops = (stops?: StopL[]): Route$Stop[] | undefined => {
     if (!stops) return;
 
-    return stops.map(stop => {
-      // eslint-disable-next-line no-unused-vars
-      const { scheduledArrival, ...arrival } = this.parseArrival(stop);
-      // eslint-disable-next-line no-unused-vars
-      const { scheduledDeparture, ...departure } = this.parseDeparture(stop);
-
-      return {
-        station: this.locL[stop.locX],
-        ...arrival,
-        ...departure,
-      };
-    });
+    return stops.map(stop => ({
+      station: this.locL[stop.locX],
+      ...this.parseArrival(stop),
+      ...this.parseDeparture(stop),
+    }));
   };
-  parseAuslastung(dTrnCmpSX?: DTrnCmpSX) {
+  parseAuslastung(dTrnCmpSX?: TrnCmpSX) {
     const tcocL = this.common.tcocL;
 
-    if (!tcocL || !dTrnCmpSX) return;
+    if (!tcocL || !dTrnCmpSX || !dTrnCmpSX.tcocX) return;
     const auslastung: {
       first?: number;
       second?: number;
@@ -154,6 +149,8 @@ class Journey {
         return {
           ...arrival,
           ...departure,
+          scheduledDeparture,
+          scheduledArrival,
           duration:
             scheduledArrival &&
             scheduledDeparture &&
@@ -182,12 +179,7 @@ class Journey {
 
     return addMilliseconds(this.date, parseDuration(time)).getTime();
   }
-  parseArrival(a: {
-    aTimeS?: string;
-    aTimeR?: string;
-    aPlatfS?: string;
-    aPlatfR?: string;
-  }): Route$Arrival {
+  parseArrival(a: Arr): Route$Arrival {
     const scheduledArrival = this.parseTime(a.aTimeS);
     let arrival = scheduledArrival;
     let arrivalDelay;
@@ -206,14 +198,10 @@ class Journey {
       scheduledArrival,
       arrival,
       arrivalDelay,
+      arrivalReihung: Boolean(a.aTrnCmpSX && a.aTrnCmpSX.tcM),
     };
   }
-  parseDeparture(d: {
-    dTimeS?: string;
-    dTimeR?: string;
-    dPlatfS?: string;
-    dPlatfR?: string;
-  }): Route$Departure {
+  parseDeparture(d: Dep): Route$Departure {
     const scheduledDeparture = this.parseTime(d.dTimeS);
     let departure = scheduledDeparture;
     let departureDelay;
@@ -232,6 +220,7 @@ class Journey {
       scheduledDeparture,
       departure,
       departureDelay,
+      departureReihung: Boolean(d.dTrnCmpSX && d.dTrnCmpSX.tcM),
     };
   }
 }

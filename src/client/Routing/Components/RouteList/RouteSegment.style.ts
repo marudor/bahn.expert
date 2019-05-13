@@ -1,6 +1,9 @@
 import { makeStyles, MergedTheme } from '@material-ui/styles';
 
 export default makeStyles<MergedTheme>({
+  reihung: {
+    fontSize: '0.5em',
+  },
   main: {
     paddingLeft: '0.3em',
     display: 'grid',

@@ -1,10 +1,10 @@
 FROM node:10-alpine
-RUN mkdir -p /app
-WORKDIR /app
-COPY package.json /app
-COPY yarn.lock /app/
+# RUN mkdir -p /app
+# WORKDIR /app
+COPY package.json yarn.lock dist /
+# COPY yarn.lock /app/
 RUN yarn --prod
-COPY dist /app/dist/
+# COPY dist /app/dist/
 ENV NODE_ENV=production
 ENV TZ=Europe/Berlin
-CMD [ "node", "dist/server/server/index.js" ]
+CMD [ "node", "/server/server/index.js" ]

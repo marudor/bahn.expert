@@ -136,3 +136,12 @@ export type Common = {
   icoL: IcoL[];
   tcocL?: TcocL[];
 };
+
+export interface CommonJny {
+  jid: string;
+  prodX: number;
+  dirTxt: string;
+  status: string;
+  isRchbl: boolean;
+  subscr: string;
+}

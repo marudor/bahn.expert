@@ -17,6 +17,7 @@ import JourneyDetails from './HAFAS/JourneyDetails';
 import KoaRouter from 'koa-router';
 import makeRequest from './HAFAS/Request';
 import routing from './HAFAS/TripSearch';
+import stationBoard from './HAFAS/StationBoard';
 import stationSearch from './Search';
 import wingInfo from './Abfahrten/wings';
 
@@ -146,6 +147,14 @@ router
       trainNumber,
       Number.parseInt(time, 10)
     );
+  })
+  .get('/hafas/stationBoard', async ctx => {
+    const { date, station } = ctx.query;
+
+    ctx.body = await stationBoard({
+      station,
+      date: Number.parseInt(date, 10) || undefined,
+    });
   })
   .post('/rawHafas', async ctx => {
     ctx.body = await makeRequest(ctx.request.body);
