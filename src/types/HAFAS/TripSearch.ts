@@ -1,4 +1,4 @@
-import { Common, LocL } from '.';
+import { Common, CommonJny, LocL } from '.';
 
 interface GenericTripSearchRequest {
   arrLocL: Partial<LocL>[];
@@ -37,8 +37,9 @@ export interface SDays {
   sDaysB: string;
 }
 
-export interface DTrnCmpSX {
-  tcocX: number[];
+export interface TrnCmpSX {
+  tcocX?: number[];
+  tcM?: number;
 }
 
 export interface TxtC {
@@ -61,42 +62,41 @@ export interface Dep {
   locX: number;
   idx: number;
   dProdX: number;
-  dPlatfS: string;
+  dPlatfS?: string;
+  dPlatfR?: string;
   dInR: boolean;
-  dTimeS: string;
-  dTimeR: string;
+  dTimeS?: string;
+  dTimeR?: string;
   dProgType: string;
   dTZOffset: number;
   type: string;
-  dTrnCmpSX: DTrnCmpSX;
+  dTrnCmpSX?: TrnCmpSX;
   msgL: MsgL[];
 }
 
 export interface Arr {
   locX: number;
   idx: number;
-  aPlatfS: string;
-  aOutR: boolean;
-  aTimeS: string;
-  aTimeR: string;
+  aPlatfS?: string;
+  aPlatfR?: string;
+  aOutR?: boolean;
+  aTimeS?: string;
+  aTimeR?: string;
   aProgType: string;
-  aTZOffset: number;
+  aTZOffset?: number;
   type: string;
   aProdX?: number;
-}
-
-export interface ATrnCmpSX {
-  tcM: number;
+  aTrnCmpSX?: TrnCmpSX;
 }
 
 export interface StopL {
   locX: number;
   idx: number;
   dProdX: number;
-  dPlatfS: string;
+  dPlatfS?: string;
   dPlatfR?: string;
   dInR: boolean;
-  dTimeS: string;
+  dTimeS?: string;
   dTimeR?: string;
   dProgType: string;
   dDirTxt: string;
@@ -110,13 +110,12 @@ export interface StopL {
   aTimeR?: string;
   aProgType: string;
   aTZOffset?: number;
-  dTrnCmpSX: DTrnCmpSX;
+  dTrnCmpSX?: TrnCmpSX;
+  aTrnCmpSX?: TrnCmpSX;
   msgL: MsgL[];
 }
 
-export interface JnyL {
-  jid: string;
-  prodX: number;
+export interface JnyL extends CommonJny {
   stopL: StopL[];
 }
 
@@ -127,19 +126,13 @@ export interface Freq {
   jnyL: JnyL[];
 }
 
-export interface Jny {
-  jid: string;
-  prodX: number;
-  dirTxt: string;
+export interface Jny extends CommonJny {
   chgDurR?: number;
   isCncl?: boolean;
-  status: string;
-  isRchbl: boolean;
   stopL: StopL[];
   ctxRecon: string;
   dTrnCmpSXmsgL: MsgL[];
-  subscr: string;
-  dTrnCmpSX?: DTrnCmpSX;
+  dTrnCmpSX?: TrnCmpSX;
   freq: Freq;
 }
 
@@ -187,7 +180,7 @@ export interface OutConL {
   cksum: string;
   cksumDti: string;
   msgL: MsgL[];
-  dTrnCmpSX: DTrnCmpSX;
+  dTrnCmpSX: TrnCmpSX;
   freq: Freq;
   isAlt?: boolean;
 }

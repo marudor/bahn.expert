@@ -4,6 +4,10 @@ import {
   JourneyDetailsResponse,
 } from 'types/HAFAS/JourneyDetails';
 import { LocMatchRequest, LocMatchResponse } from 'types/HAFAS/LocMatch';
+import {
+  StationBoardRequest,
+  StationBoardResponse,
+} from 'types/HAFAS/StationBoard';
 import { TripSearchRequest, TripSearchResponse } from 'types/HAFAS/TripSearch';
 import axios from 'axios';
 import Crypto from 'crypto';
@@ -65,6 +69,11 @@ function createRequest(req: SingleHafasRequest) {
     checksum: createChecksum(data),
   };
 }
+// @ts-ignore ???
+declare function makeRequest<
+  R extends HafasResponse<StationBoardResponse>,
+  P = R
+>(r: StationBoardRequest, parseFn?: (d: R) => P): Promise<P>;
 // @ts-ignore ???
 declare function makeRequest<R extends HafasResponse<LocMatchResponse>, P = R>(
   r: LocMatchRequest,

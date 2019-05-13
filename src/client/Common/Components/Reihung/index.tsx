@@ -4,6 +4,7 @@ import { getReihung } from 'Common/actions/reihung';
 import { getReihungForId } from 'Common/selector/reihung';
 import { Reihung } from 'types/reihung';
 import { withStyles, WithStyles } from '@material-ui/styles';
+import cc from 'classnames';
 import Gruppe from './Gruppe';
 import Loading from 'Common/Components/Loading';
 import React from 'react';
@@ -15,6 +16,7 @@ type StateProps = {
 };
 
 type OwnProps = {
+  className?: string;
   useZoom: boolean;
   fahrzeugGruppe: boolean;
   trainNumber: string;
@@ -52,6 +54,7 @@ class ReihungComp extends React.PureComponent<Props> {
       fahrzeugGruppe,
       trainNumber,
       classes,
+      className,
     } = this.props;
 
     if (reihung === null) {
@@ -66,7 +69,7 @@ class ReihungComp extends React.PureComponent<Props> {
     const differentZugnummer = reihung.differentZugnummer;
 
     return (
-      <div className={classes.wrap}>
+      <div className={cc(classes.wrap, className)}>
         <div className={classes.main}>
           {Boolean(reihung.specificTrainType) && (
             <span className={classes.specificType}>

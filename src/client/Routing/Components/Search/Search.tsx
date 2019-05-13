@@ -149,8 +149,8 @@ const Search = ({
       </div>
       <DateTimePicker
         fullWidth
-        className={classes.datePicker}
         openTo="hours"
+        className={classes.datePicker}
         labelFunc={formatDate}
         ampm={false}
         showTodayButton

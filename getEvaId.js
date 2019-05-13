@@ -1,7 +1,10 @@
 /* eslint no-console: 0 */
 const config = require('./.babelrc.server');
 
-require('@babel/register')(config);
+require('@babel/register')({
+  extensions: ['.js', '.jsx', '.ts', '.tsx'],
+  ...config,
+});
 global.PROD = false;
 
 const search = require('./src/server/Search/OpenDataOffline').default;
