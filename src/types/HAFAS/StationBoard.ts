@@ -1,8 +1,8 @@
-import { Common, LocL, CommonJny } from '.';
+import { Common, CommonArrival, CommonDeparture, CommonJny, LocL } from '.';
 
-export interface StationBoardRequest {
+export interface StationBoardRequest<t extends 'DEP' | 'ARR' = any> {
   req: {
-    type: 'DEP' | 'ARR';
+    type: t;
     date: string;
     time: string;
     stbLoc: Partial<LocL>;
@@ -11,8 +11,7 @@ export interface StationBoardRequest {
   };
   meth: 'StationBoard';
 }
-
-export interface StationBoardResponse {
+export interface CommonStationBoardResponse {
   common: Common;
   fpB: string;
   fpE: string;
@@ -20,23 +19,35 @@ export interface StationBoardResponse {
   sD: string;
   sT: string;
   locRefL: number[];
-  type: 'DEP' | 'ARR';
-  jnyL: Jny[];
 }
+export interface ArrivalStationBoardResponse
+  extends CommonStationBoardResponse {
+  type: 'ARR';
+  jnyL: ArrivalJny[];
+}
+export interface DepartureStationBoardResponse
+  extends CommonStationBoardResponse {
+  type: 'DEP';
+  jnyL: DepartureJny[];
+}
+export type StationBoardResponse<
+  t extends 'DEP' | 'ARR' = any
+> = t extends 'ARR'
+  ? ArrivalStationBoardResponse
+  : DepartureStationBoardResponse;
 
-export interface StbStop {
-  locX: number;
-  idx: number;
-  dProdX: number;
-  dInR: boolean;
-  dTimeS: string;
-  dTimeR?: string;
-  dPlatfS?: string;
-  dPlatfR?: string;
-  dProgType?: string;
-  type: string;
-}
+export type DepStbStop = CommonDeparture;
 
-export interface Jny extends CommonJny {
-  stbStop: StbStop;
+export type ArrStbStop = CommonArrival;
+
+export interface ArrivalJny extends CommonJny {
+  date: string;
+  stbStop: ArrStbStop;
 }
+export interface DepartureJny extends CommonJny {
+  date: string;
+  stbStop: DepStbStop;
+}
+export type Jny<t extends 'ARR' | 'DEP' = any> = t extends 'ARR'
+  ? ArrivalJny
+  : DepartureJny;

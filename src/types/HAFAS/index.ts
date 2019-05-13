@@ -1,5 +1,6 @@
 import { JourneyDetailsRequest } from './JourneyDetails';
 import { LocMatchRequest } from './LocMatch';
+import { Station } from 'types/station';
 import { TripSearchRequest } from './TripSearch';
 
 export type HafasRequest = Array<SingleHafasRequest>;
@@ -20,7 +21,11 @@ type SvcResL<Res> = {
   res: Res;
 };
 
-export type HafasResponse<Res> = {
+export interface GenericRes {
+  common: Common;
+}
+
+export type HafasResponse<Res extends GenericRes> = {
   ver: string;
   lang: string;
   id: string;
@@ -143,5 +148,61 @@ export interface CommonJny {
   dirTxt: string;
   status: string;
   isRchbl: boolean;
+  isCncl?: boolean;
   subscr: string;
+}
+
+export interface CommonArrival {
+  locX: number;
+  idx: number;
+  aProdX?: number;
+  aOutR: boolean;
+  aTimeS: string;
+  aTimeR?: string;
+  aPlatfS?: string;
+  aPlatfR?: string;
+  aProgType?: string;
+  type: string;
+}
+
+export interface CommonDeparture {
+  locX: number;
+  idx: number;
+  dProdX?: number;
+  dInR: boolean;
+  dTimeS: string;
+  dTimeR?: string;
+  dPlatfS?: string;
+  dPlatfR?: string;
+  dProgType?: string;
+  type: string;
+}
+
+// ParsedStuff
+interface _ParsedCommon {
+  locL: Station[];
+}
+export type ParsedCommon = _ParsedCommon & Omit<Common, 'locL'>;
+
+export interface ParsedProduct {
+  train: string;
+  trainId?: string;
+  trainNumber: string;
+  trainType: string;
+}
+
+export interface ParsedCommonArrival {
+  scheduledArrivalPlatform?: string;
+  arrivalPlatform?: string;
+  scheduledArrival: number;
+  arrival: number;
+  arrivalDelay?: number;
+}
+
+export interface ParsedCommonDeparture {
+  scheduledDeparturePlatform?: string;
+  departurePlatform?: string;
+  scheduledDeparture: number;
+  departure: number;
+  departureDelay?: number;
 }

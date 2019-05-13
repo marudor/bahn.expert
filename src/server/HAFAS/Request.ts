@@ -1,4 +1,10 @@
-import { HafasResponse, SingleHafasRequest } from 'types/HAFAS';
+import {
+  Common,
+  GenericRes,
+  HafasResponse,
+  ParsedCommon,
+  SingleHafasRequest,
+} from 'types/HAFAS';
 import {
   JourneyDetailsRequest,
   JourneyDetailsResponse,
@@ -69,29 +75,47 @@ function createRequest(req: SingleHafasRequest) {
     checksum: createChecksum(data),
   };
 }
+
+function parseCommon(common: Common): ParsedCommon {
+  return {
+    ...common,
+    locL: common.locL.map(l => ({
+      id: l.extId,
+      title: l.name,
+    })),
+  };
+}
+
 // @ts-ignore ???
 declare function makeRequest<
   R extends HafasResponse<StationBoardResponse>,
   P = R
->(r: StationBoardRequest, parseFn?: (d: R) => P): Promise<P>;
+>(r: StationBoardRequest, parseFn?: (d: R, pc: ParsedCommon) => P): Promise<P>;
 // @ts-ignore ???
 declare function makeRequest<R extends HafasResponse<LocMatchResponse>, P = R>(
   r: LocMatchRequest,
-  parseFn?: (d: R) => P
+  parseFn?: (d: R, pc: ParsedCommon) => P
 ): Promise<P>;
 // @ts-ignore ???
 declare function makeRequest<
   R extends HafasResponse<JourneyDetailsResponse>,
   P = R
->(r: JourneyDetailsRequest, parseFn?: (d: R) => P): Promise<P>;
+>(
+  r: JourneyDetailsRequest,
+  parseFn?: (d: R, pc: ParsedCommon) => P
+): Promise<P>;
 // @ts-ignore ???
 declare function makeRequest<
   R extends HafasResponse<TripSearchResponse>,
   P = R
->(r: TripSearchRequest, parseFn?: (d: R) => P): Promise<P>;
-async function makeRequest<R extends SingleHafasRequest, HR, P>(
+>(r: TripSearchRequest, parseFn?: (d: R, pc: ParsedCommon) => P): Promise<P>;
+async function makeRequest<
+  R extends SingleHafasRequest,
+  HR extends GenericRes,
+  P
+>(
   request: R,
-  parseFn: (d: HafasResponse<HR>) => P = d => d as any
+  parseFn: (d: HafasResponse<HR>, pc: ParsedCommon) => P = d => d as any
 ): Promise<P> {
   const { data, checksum } = createRequest(request);
   const r = (await axios.post<HafasResponse<HR>>(mgateUrl, data, {
@@ -102,7 +126,9 @@ async function makeRequest<R extends SingleHafasRequest, HR, P>(
 
   if (r.err !== 'OK' || r.svcResL[0].err !== 'OK') throw r;
 
-  return parseFn(r);
+  const parsedCommon = parseCommon(r.svcResL[0].res.common);
+
+  return parseFn(r, parsedCommon);
 }
 
 export default makeRequest;
