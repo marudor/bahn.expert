@@ -89,14 +89,6 @@ export default makeStyles(theme => ({
       fontSize: '12px !important',
     },
   },
-
-  type: {
-    position: 'absolute',
-    top: '100%',
-    left: '50%',
-    transform: 'translateX(-50%)',
-  },
-
   comfort: {
     position: 'absolute',
     top: '.2em',

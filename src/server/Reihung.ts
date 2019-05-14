@@ -203,13 +203,13 @@ const specificBR = (
     if (fahrzeuge.find(f => f.fahrzeugtyp === 'Apmbzf')) {
       return {
         name: 'MET',
-        noPdf: true,
+        pdf: 'MET',
         comfort: ['5', '6'],
       };
     } else if (fahrzeuge.find(f => f.fahrzeugtyp === 'DBpbzfa')) {
       return {
         name: 'IC 2',
-        noPdf: true,
+        pdf: 'IC2',
         comfort: ['4', '5'],
       };
     }

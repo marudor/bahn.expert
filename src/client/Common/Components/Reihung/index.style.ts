@@ -12,8 +12,7 @@ export default createStyles(theme => ({
     if (
       reihung &&
       (reihung.differentDestination ||
-        (reihung.zuggattung === 'ICE' &&
-          reihung.allFahrzeuggruppe.find(g => Boolean(g.br))))
+        reihung.allFahrzeuggruppe.find(g => Boolean(g.br)))
     )
       height += 1;
     if (reihung && reihung.differentZugnummer) height += 1;
