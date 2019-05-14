@@ -5,6 +5,7 @@ import cc from 'classnames';
 import MapsLocalDining from '@material-ui/icons/LocalDining';
 import React, { useMemo } from 'react';
 import useStyles from './Fahrzeug.style';
+import WagenLink from './WagenLink';
 
 export type InheritedProps = {
   scale: number;
@@ -135,7 +136,10 @@ const FahrzeugComp = ({
         {info.speise && <MapsLocalDining className={classes.icon} />}
       </span>
       {info.comfort && <span className={classes.comfort} />}
-      <span className={classes.type}>{fahrzeug.fahrzeugtyp}</span>
+      <WagenLink
+        fahrzeugnummer={fahrzeug.fahrzeugnummer}
+        fahrzeugtyp={fahrzeug.fahrzeugtyp}
+      />
     </div>
   );
 };

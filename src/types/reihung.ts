@@ -108,4 +108,5 @@ export type BRInfo = {
   serie?: string;
   redesign?: boolean;
   noPdf?: boolean;
+  pdf?: string;
 };

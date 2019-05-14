@@ -19,7 +19,7 @@ const BRInfo = ({ br, className }: Props) => {
 
   if (br.noPdf) return <span className={className}>{text}</span>;
 
-  let pdfName = br.BR;
+  let pdfName = br.pdf || br.BR;
 
   if (br.redesign) {
     pdfName += 'R';

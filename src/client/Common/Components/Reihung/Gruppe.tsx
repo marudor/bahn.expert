@@ -37,9 +37,8 @@ const Gruppe = ({
     bottom: `${currentBottom}em`,
   };
 
-  const extraInfoLine = Boolean(
-    showDestination || (type === 'ICE' && gruppe.br)
-  );
+  const extraInfoLine =
+    Boolean(showDestination || gruppe.br) && gruppe.allFahrzeug.length > 1;
 
   if (extraInfoLine) currentBottom += 1;
 
