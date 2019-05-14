@@ -1,9 +1,12 @@
-import { makeStyles, MergedTheme } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/styles';
 
-export default makeStyles<MergedTheme>({
+export default makeStyles({
   bezeichnung: {
     position: 'absolute',
     bottom: '2.5em',
     textAlign: 'center',
+  },
+  br: {
+    marginRight: '.5em',
   },
 });

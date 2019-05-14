@@ -71,11 +71,6 @@ class ReihungComp extends React.PureComponent<Props> {
     return (
       <div className={cc(classes.wrap, className)}>
         <div className={classes.main}>
-          {Boolean(reihung.specificTrainType) && (
-            <span className={classes.specificType}>
-              {reihung.specificTrainType}
-            </span>
-          )}
           <div className={classes.sektoren}>
             {reihung.halt.allSektor.map(s => (
               <Sektor
@@ -94,7 +89,6 @@ class ReihungComp extends React.PureComponent<Props> {
                 showFahrzeugGruppe={fahrzeugGruppe}
                 correctLeft={correctLeft}
                 scale={scale}
-                specificType={reihung.specificTrainType}
                 type={reihung.zuggattung}
                 showDestination={reihung.differentDestination}
                 key={g.fahrzeuggruppebezeichnung}

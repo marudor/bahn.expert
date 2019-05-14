@@ -1,6 +1,6 @@
-import { makeStyles, MergedTheme } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/styles';
 
-export default makeStyles<MergedTheme>(theme => ({
+export default makeStyles(theme => ({
   main: {
     position: 'absolute',
     height: '2em',
@@ -21,7 +21,8 @@ export default makeStyles<MergedTheme>(theme => ({
       top: -1,
       left: -1,
       right: -1,
-      bottom: '-3.4em',
+      bottom: '-3.5em',
+      pointerEvents: 'none',
       zIndex: 5,
       background: theme.colors.transparentBackground,
     },

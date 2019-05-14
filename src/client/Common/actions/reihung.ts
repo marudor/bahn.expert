@@ -1,6 +1,6 @@
 import { CommonThunkResult } from 'AppState';
 import { createAction } from 'deox';
-import { Reihung, Wagenreihung } from 'types/reihung';
+import { Reihung } from 'types/reihung';
 import axios from 'axios';
 
 const Actions = {
@@ -22,14 +22,14 @@ export const getReihung = (
       throw new Error();
     }
 
-    const reihung: Wagenreihung = (await axios.get(
+    const reihung: Reihung = (await axios.get(
       `/api/reihung/current/wagen/${trainNumber}/${scheduledDeparture}`
     )).data;
 
     dispatch(
       Actions.gotReihung({
         id: trainNumber + currentStation,
-        data: reihung.data.istformation,
+        data: reihung,
       })
     );
   } catch (e) {

@@ -1,5 +1,12 @@
+/* eslint-disable no-fallthrough */
+import {
+  BRInfo,
+  Fahrzeug,
+  FahrzeugType,
+  Formation,
+  Wagenreihung,
+} from 'types/reihung';
 import { convertToTimeZone } from 'date-fns-timezone';
-import { Fahrzeug, Formation, Wagenreihung } from 'types/reihung';
 import { flatten, maxBy, minBy } from 'lodash';
 import { format } from 'date-fns';
 import { getAbfahrten } from './Abfahrten';
@@ -30,93 +37,190 @@ function differentZugunummer(formation: Formation) {
       );
 }
 
-// Reihenfolge wichtig! Wenn nicht eines der oberen DANN sind die unteren "unique"
-const ICETspecific = ['ABpmz', 'Bpmkz'];
-const ICE4specific = ['Bpmdz', 'Bpmdzf'];
-const ICE3Velarospecific = ['ARmz'];
-const ICE3specific = ['Apmzf', 'Bpmbz', 'BRmz'];
-const METspecific = ['Apmbzf'];
-const ICE2specific = ['Apmz', 'Bpmz'];
-const ICE1specific = ['Avmz', 'Bvmbz', 'Bvmz'];
-const IC2specific = ['DBpbzfa', 'DBpza'];
-// Rausfinden was für ein ICE es genau ist
-
-function specificTrainType(formation: Formation, fahrzeuge: Fahrzeug[]) {
-  const wagenTypes = fahrzeuge.map(f => f.fahrzeugtyp);
-  const groupLength = formation.allFahrzeuggruppe.length;
-
-  formation.allFahrzeuggruppe.forEach(g => {
-    const minFahrzeug = minBy(g.allFahrzeug, f =>
-      Number.parseInt(f.positionamhalt.startprozent, 10)
-    );
-    const maxFahrzeug = maxBy(g.allFahrzeug, f =>
-      Number.parseInt(f.positionamhalt.endeprozent, 10)
-    );
-
-    if (minFahrzeug) {
-      g.startProzent = Number.parseInt(
-        minFahrzeug.positionamhalt.startprozent,
-        10
-      );
-    }
-    if (maxFahrzeug) {
-      g.endeProzent = Number.parseInt(
-        maxFahrzeug.positionamhalt.endeprozent,
-        10
-      );
-    }
-  });
-
-  if (formation.zuggattung === 'IC') {
-    if (wagenTypes.some(t => IC2specific.includes(t))) {
-      return 'IC2';
-    }
-  } else if (formation.zuggattung === 'ICE') {
-    if (wagenTypes.some(t => ICETspecific.includes(t))) {
-      if (fahrzeuge.length / groupLength === 5) {
-        return 'ICET415';
-      }
-
-      return 'ICET411';
-    }
-
-    if (groupLength === 1) {
-      if (wagenTypes.some(t => ICE4specific.includes(t))) {
-        return 'ICE4';
-      }
-    }
-
-    if (wagenTypes.some(t => ICE3Velarospecific.includes(t))) {
-      return 'ICE3V';
-    }
-
-    const triebboepfe = fahrzeuge.filter(
-      f => f.kategorie === 'LOK' || f.kategorie === 'TRIEBKOPF'
-    );
-    const tkPerGroup = triebboepfe.length / groupLength;
-
-    if (tkPerGroup === 1) {
-      return 'ICE2';
-    }
-    if (tkPerGroup === 2) {
-      return 'ICE1';
-    }
-
-    if (wagenTypes.some(t => METspecific.includes(t))) {
-      return 'MET';
-    }
-
-    if (wagenTypes.some(t => ICE3specific.includes(t))) {
-      return 'ICE3';
-    }
-    if (wagenTypes.some(t => ICE2specific.includes(t))) {
-      return 'ICE2';
-    }
-    if (wagenTypes.some(t => ICE1specific.includes(t))) {
-      return 'ICE1';
+const getComfort = (br: BRInfo): undefined | string[] => {
+  if (br.BR) {
+    switch (br.BR) {
+      // ICE 4
+      case '412':
+      // ICE 1
+      case '401':
+        return ['11', '7'];
+      // ICE 2
+      case '402':
+        return ['26', '36', '28', '38'];
+      // ICE 3
+      case '403':
+      // ICE 3
+      case '406':
+        return ['28', '38', '27', '37'];
+      // ICE 3 Velaro
+      case '407':
+        return ['26', '36', '25', '35'];
+      // ICE T
+      case '411':
+        return ['28', '38', '27', '37'];
+      // ICE T
+      case '415':
+        return ['28', '38', '23', '33'];
     }
   }
-}
+};
+
+const getATBR = (
+  code: string,
+  _serial: string,
+  _fahrzeugTypes: string[]
+): undefined | BRInfo => {
+  switch (code) {
+    case '4011':
+      return {
+        name: 'ICE T',
+        BR: '411',
+        serie: '1',
+      };
+  }
+};
+const getDEBR = (
+  code: string,
+  serial: string,
+  fahrzeugTypes: string[]
+): undefined | BRInfo => {
+  const numberSerial = Number.parseInt(serial, 10);
+
+  switch (code) {
+    case '8012':
+    case '1412':
+    case '1812':
+    case '2412':
+    case '2812':
+    case '3412':
+    case '4812':
+    case '5812':
+    case '6412':
+    case '6812':
+    case '7412':
+    case '7812':
+    case '8812':
+    case '9412':
+    case '9812':
+      return {
+        name: 'ICE 4',
+        BR: '412',
+      };
+    case '5401':
+    case '5801':
+    case '5802':
+    case '5803':
+    case '5804':
+      return {
+        name: 'ICE 1',
+        BR: '401',
+      };
+    case '5402':
+    case '5805':
+    case '5806':
+    case '5807':
+    case '5808':
+      return {
+        name: 'ICE 2',
+        BR: '402',
+      };
+    case '5403':
+      return {
+        name: 'ICE 3',
+        BR: '403',
+        serie: numberSerial <= 37 ? '1' : '2',
+        redesign: fahrzeugTypes.includes('WRmz'),
+      };
+    case '5406':
+      return {
+        name: 'ICE 3 Velaro',
+        BR: '406',
+      };
+    case '5407':
+      return {
+        name: 'ICE 3',
+        BR: '407',
+      };
+    case '5410':
+      return {
+        name: 'ICE S',
+        BR: '410.1',
+        noPdf: true,
+      };
+    case '5411':
+      return {
+        name: 'ICE T',
+        BR: '411',
+        serie: numberSerial <= 32 ? '1' : '2',
+      };
+    case '5415':
+      return {
+        name: 'ICE T',
+        BR: '415',
+      };
+    case '5475':
+      return {
+        name: 'TGV',
+        noPdf: true,
+      };
+  }
+};
+const getSpecificBR = (
+  fahrzeugnummer: string,
+  fahrzeugTypes: string[]
+): undefined | BRInfo => {
+  const country = fahrzeugnummer.substr(2, 2);
+  const code = fahrzeugnummer.substr(4, 4);
+  const serial = fahrzeugnummer.substr(8, 3);
+  let info;
+
+  switch (country) {
+    case '80':
+      info = getDEBR(code, serial, fahrzeugTypes);
+      break;
+    case '81':
+      info = getATBR(code, serial, fahrzeugTypes);
+      break;
+  }
+  if (info) {
+    info.comfort = getComfort(info);
+  }
+
+  return info;
+};
+
+const specificBR = (
+  fahrzeuge: Fahrzeug[],
+  fahrzeugTypes: string[],
+  zuggattung: FahrzeugType
+) => {
+  for (const f of fahrzeuge) {
+    const br = getSpecificBR(f.fahrzeugnummer, fahrzeugTypes);
+
+    if (br) return br;
+
+    if (fahrzeuge.find(f => f.fahrzeugtyp === 'Apmbzf')) {
+      return {
+        name: 'MET',
+        noPdf: true,
+        comfort: ['5', '6'],
+      };
+    } else if (fahrzeuge.find(f => f.fahrzeugtyp === 'DBpbzfa')) {
+      return {
+        name: 'IC 2',
+        noPdf: true,
+        comfort: ['4', '5'],
+      };
+    }
+
+    return {
+      name: zuggattung,
+      noPdf: true,
+      comfort: zuggattung === 'IC' ? ['12', '10'] : undefined,
+    };
+  }
+};
 
 function fahrtrichtung(fahrzeuge: Fahrzeug[]) {
   const first = fahrzeuge[0];
@@ -147,15 +251,41 @@ export async function wagenReihung(trainNumber: string, date: number) {
   let startPercentage = 100;
   let endPercentage = 0;
 
+  info.data.istformation.allFahrzeuggruppe.forEach(g => {
+    const minFahrzeug = minBy(g.allFahrzeug, f =>
+      Number.parseInt(f.positionamhalt.startprozent, 10)
+    );
+    const maxFahrzeug = maxBy(g.allFahrzeug, f =>
+      Number.parseInt(f.positionamhalt.endeprozent, 10)
+    );
+
+    if (minFahrzeug) {
+      g.startProzent = Number.parseInt(
+        minFahrzeug.positionamhalt.startprozent,
+        10
+      );
+    }
+    if (maxFahrzeug) {
+      g.endeProzent = Number.parseInt(
+        maxFahrzeug.positionamhalt.endeprozent,
+        10
+      );
+    }
+
+    const gruppenFahrzeugTypes = g.allFahrzeug.map(f => f.fahrzeugtyp);
+
+    g.br = specificBR(
+      g.allFahrzeug,
+      gruppenFahrzeugTypes,
+      info.data.istformation.zuggattung
+    );
+  });
+
   info.data.istformation.differentDestination = differentDestination(
     info.data.istformation
   );
   info.data.istformation.differentZugnummer = differentZugunummer(
     info.data.istformation
-  );
-  info.data.istformation.specificTrainType = specificTrainType(
-    info.data.istformation,
-    fahrzeuge
   );
   info.data.istformation.realFahrtrichtung = fahrtrichtung(fahrzeuge);
   const reallyHasReihung = info.data.istformation.allFahrzeuggruppe.every(g =>
@@ -184,7 +314,7 @@ export async function wagenReihung(trainNumber: string, date: number) {
   info.data.istformation.startPercentage = startPercentage;
   info.data.istformation.endPercentage = endPercentage;
 
-  return info;
+  return info.data.istformation;
 }
 
 // https://ws.favendo.de/wagon-order/rest/v1/si/1401

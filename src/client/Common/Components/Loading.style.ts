@@ -1,6 +1,6 @@
-import { makeStyles, MergedTheme } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/styles';
 
-export default makeStyles<MergedTheme>(theme => ({
+export default makeStyles(theme => ({
   '@keyframes cube': {
     '0%,70%,100%': {
       transform: 'scale3D(1, 1, 1)',

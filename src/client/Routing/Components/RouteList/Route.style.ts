@@ -1,4 +1,4 @@
-import { makeStyles, MergedTheme } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/styles';
 
 export const gridStyle = {
   gridTemplateColumns: '2fr 2fr 2fr 1fr',
@@ -6,7 +6,7 @@ export const gridStyle = {
   marginBottom: '.2em',
 };
 
-export default makeStyles<MergedTheme>({
+export default makeStyles({
   main: {
     minHeight: '3em',
     gridTemplateRows: '2.5em 1fr',

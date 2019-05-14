@@ -1,11 +1,14 @@
-import { makeStyles, MergedTheme } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/styles';
 
-export default makeStyles<MergedTheme>(theme => ({
+export default makeStyles(theme => ({
   main: {
     fontSize: '2.1em',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
+    '& a': {
+      color: theme.palette.text.primary,
+    },
   },
   detail: {
     whiteSpace: 'inherit',

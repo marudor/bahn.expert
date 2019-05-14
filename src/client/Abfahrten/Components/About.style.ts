@@ -1,6 +1,6 @@
-import { makeStyles, MergedTheme } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/styles';
 
-export default makeStyles<MergedTheme>(theme => ({
+export default makeStyles(theme => ({
   buttons: {
     '& svg': {
       marginRight: 5,
@@ -17,9 +17,6 @@ export default makeStyles<MergedTheme>(theme => ({
   main: {
     marginLeft: 10,
     marginRight: 10,
-    '& a': {
-      color: theme.colors.blue,
-    },
     display: 'flex',
     flexDirection: 'column',
     marginTop: theme.shape.headerSpacing + 10,

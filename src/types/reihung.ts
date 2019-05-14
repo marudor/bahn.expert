@@ -1,14 +1,4 @@
 export type FahrzeugType = 'IC' | 'EC' | 'ICE' | 'TGV';
-export type SpecificType =
-  | 'ICET411'
-  | 'ICET415'
-  | 'ICE4'
-  | 'ICE3'
-  | 'ICE3V'
-  | 'ICE2'
-  | 'ICE1'
-  | 'IC2'
-  | 'MET';
 
 export type Meta = {
   id: string;
@@ -50,6 +40,7 @@ export type Fahrzeuggruppe = {
   // custom
   startProzent: number;
   endeProzent: number;
+  br?: BRInfo;
   // custom
   allFahrzeug: Fahrzeug[];
   fahrzeuggruppebezeichnung: string;
@@ -81,7 +72,6 @@ export type Formation = {
   /* Custom */
   differentDestination: boolean;
   differentZugnummer: boolean;
-  specificTrainType?: SpecificType;
   scale: number;
   startPercentage: number;
   endPercentage: number;
@@ -97,6 +87,7 @@ export type Formation = {
   planstarttag: string;
   fahrtid: string;
   istplaninformation: boolean;
+  br?: BRInfo;
 };
 
 export type Data = {
@@ -110,4 +101,11 @@ export type Wagenreihung = {
 
 export type Reihung = Formation;
 
-export default {};
+export type BRInfo = {
+  name: string;
+  BR?: string;
+  comfort?: string[];
+  serie?: string;
+  redesign?: boolean;
+  noPdf?: boolean;
+};

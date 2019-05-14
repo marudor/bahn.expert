@@ -2,4 +2,4 @@
 const execSync = require('child_process').execSync;
 
 execSync('webpack');
-execSync('cp public/* dist/client/');
+execSync('cp -r public/* dist/client/');
