@@ -23,7 +23,7 @@ export interface Route$Auslastung {
   first?: AuslastungsValue;
   second?: AuslastungsValue;
 }
-export type Route$Journey = ParsedProduct & {
+export type Route$Journey = {
   isCancelled?: boolean;
   changeDuration?: number;
   duration?: number;
@@ -34,6 +34,7 @@ export type Route$Journey = ParsedProduct & {
   segmentDestination: Station;
   segmentStart: Station;
   stops?: Route$Stop[];
+  train: ParsedProduct;
   auslastung?: Route$Auslastung;
 };
 export type Route$JourneySegmentTrain = Route$Journey & {

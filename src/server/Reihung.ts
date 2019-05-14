@@ -226,7 +226,7 @@ export async function wagenReihungMonitoring() {
       try {
         // eslint-disable-next-line no-await-in-loop
         const wr = await wagenReihungSpecificMonitoring(
-          departure.trainId,
+          departure.train.number,
           departureTime
         );
 

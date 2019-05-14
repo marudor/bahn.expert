@@ -14,11 +14,11 @@ const RouteSegments = ({ segments, className }: OwnProps) => {
     <div className={className}>
       {segments.map(s => (
         <RouteSegment
-          detail={detail === s.train}
+          detail={detail === s.train.full}
           onTrainClick={() =>
-            setDetail(detail === s.train ? undefined : s.train)
+            setDetail(detail === s.train.full ? undefined : s.train.full)
           }
-          key={s.train}
+          key={s.train.full}
           segment={s}
         />
       ))}

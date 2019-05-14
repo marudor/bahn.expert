@@ -24,8 +24,8 @@ export default function createAuslastungsFunction(
   username: string,
   password: string
 ) {
-  return async function zugAuslastung(trainId: string, date: string) {
-    const cached = cache.get(trainId);
+  return async function zugAuslastung(trainNumber: string, date: string) {
+    const cached = cache.get(trainNumber);
 
     if (cached) {
       return cached;
@@ -36,7 +36,7 @@ export default function createAuslastungsFunction(
         // modus: 'znr_suche',
         todo: 'suchen',
         rdate: date,
-        znr: trainId,
+        znr: trainNumber,
       }),
       {
         responseType: 'text',
@@ -82,7 +82,7 @@ export default function createAuslastungsFunction(
       data,
     };
 
-    cache.set(trainId, result);
+    cache.set(trainNumber, result);
 
     return result;
   };

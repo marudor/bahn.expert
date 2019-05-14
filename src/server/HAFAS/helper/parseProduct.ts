@@ -1,8 +1,8 @@
 import { ParsedProduct, ProdL } from 'types/HAFAS';
 
 export default (product: ProdL): ParsedProduct => ({
-  train: product.addName || product.name,
-  trainId: product.prodCtx.line,
-  trainNumber: product.prodCtx.num,
-  trainType: product.prodCtx.catOut,
+  full: product.addName || product.name,
+  line: product.prodCtx.line,
+  number: product.prodCtx.num,
+  type: product.prodCtx.catOut,
 });

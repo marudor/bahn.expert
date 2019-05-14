@@ -22,8 +22,8 @@ const Abfahrt = ({ resolvedWings, abfahrt }: Props) => {
     wings &&
       wings.every(
         w =>
-          w.trainNumber.endsWith(abfahrt.trainNumber) &&
-          w.trainType !== abfahrt.trainType
+          w.train.number.endsWith(abfahrt.train.number) &&
+          w.train.type !== abfahrt.train.type
       )
   );
 

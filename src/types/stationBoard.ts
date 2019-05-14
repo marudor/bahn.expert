@@ -2,7 +2,8 @@ import { ParsedCommonArrival, ParsedCommonDeparture } from './common';
 import { ParsedProduct, ProdL } from './HAFAS';
 import { Station } from './station';
 
-interface CommonStationBoardEntry extends ParsedProduct {
+interface CommonStationBoardEntry {
+  train: ParsedProduct;
   isCancelled?: boolean;
   finalDestination: string;
   jid: string;

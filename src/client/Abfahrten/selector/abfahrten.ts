@@ -33,7 +33,7 @@ export const getAbfahrtenForConfig = createSelector(
     };
 
     if (filterList.length) {
-      const f = (a: Abfahrt) => !filterList.includes(a.trainType);
+      const f = (a: Abfahrt) => !filterList.includes(a.train.type);
 
       filtered.lookahead = filtered.lookahead.filter(f);
       filtered.lookbehind = filtered.lookbehind.filter(f);
@@ -74,10 +74,10 @@ export const getAllTrainTypes = createSelector(
 
     if (abfahrten) {
       abfahrten.lookahead.forEach(a => {
-        typeSet.add(a.trainType);
+        typeSet.add(a.train.type);
       });
       abfahrten.lookbehind.forEach(a => {
-        typeSet.add(a.trainType);
+        typeSet.add(a.train.type);
       });
     }
 
