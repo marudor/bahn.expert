@@ -74,6 +74,11 @@ export async function createApp(wsServer: undefined | Server) {
   }
 
   app.use(hotHelper(() => apiRoutes.routes()));
+  app.use((ctx, next) => {
+    if (!ctx.url.startsWith('/api')) {
+      return next();
+    }
+  });
 
   app.use(
     koaStatic(

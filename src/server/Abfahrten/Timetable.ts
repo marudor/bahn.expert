@@ -230,8 +230,8 @@ export default class Timetable {
     timetable.isCancelled =
       (timetable.arrival &&
         timetable.arrival.isCancelled &&
-        (timetable.departure.isCancelled ||
-          !timetable.departure ||
+        (!timetable.departure ||
+          timetable.departure.isCancelled ||
           !timetable.departure.scheduledTime)) ||
       (timetable.departure &&
         timetable.departure.isCancelled &&
