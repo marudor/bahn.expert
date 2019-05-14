@@ -21,11 +21,14 @@ export async function getStationsFromAPI(
     const cached = tryParse(localStorage.getItem(cacheKey));
 
     if (cached) return cached;
-    const item = (await axios.get(`/api/search/${stationString}`, {
-      params: {
-        type,
-      },
-    })).data;
+    const item = (await axios.get(
+      `/api/station/current/search/${stationString}`,
+      {
+        params: {
+          type,
+        },
+      }
+    )).data;
 
     localStorage.setItem(cacheKey, JSON.stringify(item));
 

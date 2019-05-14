@@ -68,7 +68,7 @@ async function getAbfahrtenFromAPI(
   cancelGetAbfahrten();
 
   const r = await axios.get<AbfahrtAPIResult>(
-    `/api/ownAbfahrten/${station.id}`,
+    `/api/iris/current/abfahrten/${station.id}`,
     {
       cancelToken: new axios.CancelToken(c => {
         cancelGetAbfahrten = c;
@@ -88,8 +88,9 @@ async function getAbfahrtenFromAPI(
 export const getLageplan = (
   stationName: string
 ): AbfahrtenThunkResult => async dispatch => {
-  const lageplan = (await axios.get(`/api/lageplan/${stationName}`)).data
-    .lageplan;
+  const lageplan = (await axios.get(
+    `/api/bahnhof/current/lageplan/${stationName}`
+  )).data.lageplan;
 
   dispatch(Actions.gotLageplan(lageplan));
 
