@@ -56,13 +56,13 @@ export type SpecificWagenreihung = {
 };
 
 export type WagenreihungStation = {
-  trainNubmer: string;
+  trainNumber: string;
   trainType: null | any;
   time: null | any;
   timeOffset: null | any;
   weekday: null | any;
   platform: null | any;
   waggon: null | any;
-  trainId: null | any;
+  trainLine: null | any;
   stations: SpecificWagenreihung[];
 };

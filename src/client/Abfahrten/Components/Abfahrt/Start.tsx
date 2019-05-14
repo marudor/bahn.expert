@@ -18,11 +18,11 @@ const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
 
   return (
     <div className={classes.main}>
-      <span>{abfahrt.train}</span>
-      {lineAndNumber && abfahrt.trainNumber !== abfahrt.trainId && (
+      <span>{abfahrt.train.full}</span>
+      {lineAndNumber && abfahrt.train.line && (
         <>
           <span>
-            {abfahrt.trainType} {abfahrt.trainNumber}
+            {abfahrt.train.type} {abfahrt.train.number}
           </span>
         </>
       )}

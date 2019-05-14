@@ -129,36 +129,37 @@ function getTrainType(thirdParty?: string, trainType?: string) {
   return trainType;
 }
 
-function getTrainId(
+function getTrainLine(
   thirdParty?: string,
   rawTrainType?: string,
-  trainId?: string
+  trainLine?: string
 ) {
   if (thirdParty === 'NWB' && rawTrainType === 'RS') {
-    return `${rawTrainType}${trainId}`;
+    return `${rawTrainType}${trainLine}`;
   }
 
-  return trainId || undefined;
+  return trainLine || undefined;
 }
 
-export function splitTrainType(train: string = '') {
+export function splitTrainType(train: string = '', trainNumber: string = '') {
   const parsed = trainRegex.exec(train);
 
   if (parsed) {
     const thirdParty = parsed[1] || undefined;
-    const trainType = getTrainType(thirdParty, parsed[2]);
+    const type = getTrainType(thirdParty, parsed[2]);
+    const line = getTrainLine(thirdParty, parsed[2], parsed[3]);
 
     return {
       thirdParty,
-      trainType,
-      trainId: getTrainId(thirdParty, parsed[2], parsed[3]),
+      type,
+      line: line === trainNumber ? undefined : line,
     };
   }
 
   return {
     thirdParty: undefined,
-    trainType: undefined,
-    trainId: undefined,
+    type: undefined,
+    line: undefined,
   };
 }
 
@@ -280,12 +281,12 @@ export default class Timetable {
 
     timetable.auslastung =
       !timetable.isCancelled &&
-      timetable.longDistance &&
+      timetable.train.longDistance &&
       // !timetable.substitute &&
       Boolean(filteredRoutePost.length);
     timetable.reihung =
       !timetable.isCancelled &&
-      timetable.longDistance &&
+      timetable.train.longDistance &&
       Boolean(filteredRoutePost.length);
 
     delete timetable.routePre;
@@ -646,7 +647,7 @@ export default class Timetable {
     const scheduledDeparture = parseTs(getAttr(dp, 'pt'));
     const lineNumber = getAttr(dp || ar, 'l');
     const { trainNumber, trainType, t, o, productClass } = parseTl(tl);
-    const train = `${trainType} ${lineNumber || trainNumber}`;
+    const fullTrainText = `${trainType} ${lineNumber || trainNumber}`;
 
     function getNormalizedRoute(node: null | xmljs.Element) {
       const rawRoute = getAttr(node, 'ppth');
@@ -690,12 +691,14 @@ export default class Timetable {
       routePost: routePost.map<Route>(routeMap),
       routePre: routePre.map<Route>(routeMap),
       // routeStart: getAttr(ar, 'pde'),
-      trainNumber,
       // transfer: getAttr(dp || ar, 'tra'),
-      train,
       substitute: t === 'e',
-      longDistance: longDistanceRegex.test(train),
-      ...splitTrainType(train),
+      train: {
+        longDistance: longDistanceRegex.test(fullTrainText),
+        full: fullTrainText,
+        number: trainNumber,
+        ...splitTrainType(fullTrainText, trainNumber),
+      },
       isAdditional: undefined as (undefined | boolean),
     };
   }

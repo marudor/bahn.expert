@@ -1,4 +1,4 @@
-import { CommonStopInfo } from './common';
+import { CommonProductInfo, CommonStopInfo } from './common';
 import { Station } from './station';
 
 // import { ParsedCommonArrival } from './common';
@@ -39,6 +39,11 @@ export interface StopInfo extends CommonStopInfo {
   hidden?: number;
 }
 
+export interface TrainInfo extends CommonProductInfo {
+  thirdParty?: string;
+  longDistance: boolean;
+}
+
 export type Abfahrt = {
   arrival?: StopInfo;
   auslastung: boolean;
@@ -48,7 +53,6 @@ export type Abfahrt = {
   id: string;
   isAdditional?: boolean;
   isCancelled: boolean;
-  longDistance: boolean;
   mediumId: string;
   messages: Messages;
   platform: string;
@@ -60,11 +64,7 @@ export type Abfahrt = {
   scheduledDestination: string;
   scheduledPlatform: string;
   substitute: boolean;
-  thirdParty?: string;
-  train: string;
-  trainId: string;
-  trainNumber: string;
-  trainType: string;
+  train: TrainInfo;
   via: string[];
 };
 

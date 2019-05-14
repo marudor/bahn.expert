@@ -9,3 +9,10 @@ export interface CommonStopInfo {
 export interface ParsedCommonArrival extends CommonStopInfo {}
 
 export interface ParsedCommonDeparture extends CommonStopInfo {}
+
+export interface CommonProductInfo {
+  full: string;
+  line?: string;
+  number: string;
+  type: string;
+}

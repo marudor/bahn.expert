@@ -77,7 +77,7 @@ const BaseAbfahrt = ({
           <Reihung
             useZoom={useZoom}
             fahrzeugGruppe={fahrzeugGruppe}
-            trainNumber={abfahrt.trainNumber}
+            trainNumber={abfahrt.train.number}
             currentStation={abfahrt.currentStation.id}
             scheduledDeparture={abfahrt.departure.scheduledTime}
           />

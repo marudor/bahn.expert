@@ -41,8 +41,8 @@ export default async (
     Boolean(
       t.segments.find(
         s =>
-          s.trainNumber === trainNumber ||
-          Boolean(s.wings && s.wings.find(w => w.trainNumber === trainNumber))
+          s.train.number === trainNumber ||
+          Boolean(s.wings && s.wings.find(w => w.train.number === trainNumber))
       )
     )
   );

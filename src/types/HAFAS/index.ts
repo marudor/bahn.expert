@@ -1,3 +1,4 @@
+import { CommonProductInfo } from 'types/common';
 import { JourneyDetailsRequest } from './JourneyDetails';
 import { LocMatchRequest } from './LocMatch';
 import { Station } from 'types/station';
@@ -184,9 +185,4 @@ interface _ParsedCommon {
 }
 export type ParsedCommon = _ParsedCommon & Omit<Common, 'locL'>;
 
-export interface ParsedProduct {
-  train: string;
-  trainId?: string;
-  trainNumber: string;
-  trainType: string;
-}
+export interface ParsedProduct extends CommonProductInfo {}

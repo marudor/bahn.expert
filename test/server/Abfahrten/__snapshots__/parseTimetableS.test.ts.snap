@@ -25,7 +25,6 @@ Object {
   "id": "6062058741531589910",
   "isAdditional": undefined,
   "lineNumber": "8",
-  "longDistance": false,
   "mediumId": "6062058741531589910-1903161424",
   "o": "800354",
   "productClass": "S",
@@ -147,11 +146,14 @@ Object {
   ],
   "scheduledDestination": "Hagen Hbf",
   "substitute": false,
-  "thirdParty": undefined,
-  "train": "S 8",
-  "trainId": "8",
-  "trainNumber": "30889",
-  "trainType": "S",
+  "train": Object {
+    "full": "S 8",
+    "line": "8",
+    "longDistance": false,
+    "number": "30889",
+    "thirdParty": undefined,
+    "type": "S",
+  },
 }
 `;
 
@@ -182,7 +184,6 @@ Object {
   "id": "4771830392602697451",
   "isAdditional": undefined,
   "lineNumber": undefined,
-  "longDistance": true,
   "mediumId": "4771830392602697451-1903170818",
   "o": "80",
   "productClass": "F",
@@ -232,11 +233,14 @@ Object {
   ],
   "scheduledDestination": "Hamburg-Altona",
   "substitute": false,
-  "thirdParty": undefined,
-  "train": "ICE 1680",
-  "trainId": "1680",
-  "trainNumber": "1680",
-  "trainType": "ICE",
+  "train": Object {
+    "full": "ICE 1680",
+    "line": undefined,
+    "longDistance": true,
+    "number": "1680",
+    "thirdParty": undefined,
+    "type": "ICE",
+  },
 }
 `;
 
@@ -265,7 +269,6 @@ Object {
   "id": "4550748245722881479",
   "isAdditional": undefined,
   "lineNumber": undefined,
-  "longDistance": true,
   "mediumId": "4550748245722881479-1903170818",
   "o": "80",
   "productClass": "F",
@@ -306,11 +309,14 @@ Object {
   ],
   "scheduledDestination": "Bremen Hbf",
   "substitute": false,
-  "thirdParty": undefined,
-  "train": "ICE 1580",
-  "trainId": "1580",
-  "trainNumber": "1580",
-  "trainType": "ICE",
+  "train": Object {
+    "full": "ICE 1580",
+    "line": undefined,
+    "longDistance": true,
+    "number": "1580",
+    "thirdParty": undefined,
+    "type": "ICE",
+  },
 }
 `;
 
@@ -339,7 +345,6 @@ Object {
   "id": "6062058741531589910",
   "isAdditional": undefined,
   "lineNumber": "8",
-  "longDistance": false,
   "mediumId": "6062058741531589910-1903161424",
   "o": "800354",
   "productClass": "S",
@@ -461,11 +466,14 @@ Object {
   ],
   "scheduledDestination": "Hagen Hbf",
   "substitute": false,
-  "thirdParty": undefined,
-  "train": "S 8",
-  "trainId": "8",
-  "trainNumber": "30889",
-  "trainType": "S",
+  "train": Object {
+    "full": "S 8",
+    "line": "8",
+    "longDistance": false,
+    "number": "30889",
+    "thirdParty": undefined,
+    "type": "S",
+  },
 }
 `;
 
@@ -494,7 +502,6 @@ Object {
   "id": "6062058741531589910",
   "isAdditional": undefined,
   "lineNumber": "8",
-  "longDistance": false,
   "mediumId": "6062058741531589910-1903161424",
   "o": "800354",
   "productClass": "S",
@@ -616,11 +623,14 @@ Object {
   ],
   "scheduledDestination": "Hagen Hbf",
   "substitute": false,
-  "thirdParty": undefined,
-  "train": "S 8",
-  "trainId": "8",
-  "trainNumber": "30889",
-  "trainType": "S",
+  "train": Object {
+    "full": "S 8",
+    "line": "8",
+    "longDistance": false,
+    "number": "30889",
+    "thirdParty": undefined,
+    "type": "S",
+  },
 }
 `;
 
@@ -651,7 +661,6 @@ Object {
   "id": "6523045328284948841",
   "isAdditional": undefined,
   "lineNumber": undefined,
-  "longDistance": true,
   "mediumId": "6523045328284948841-1903171246",
   "o": "80",
   "productClass": "F",
@@ -695,11 +704,14 @@ Object {
   ],
   "scheduledDestination": "München Hbf",
   "substitute": false,
-  "thirdParty": undefined,
-  "train": "ICE 1689",
-  "trainId": "1689",
-  "trainNumber": "1689",
-  "trainType": "ICE",
+  "train": Object {
+    "full": "ICE 1689",
+    "line": undefined,
+    "longDistance": true,
+    "number": "1689",
+    "thirdParty": undefined,
+    "type": "ICE",
+  },
 }
 `;
 
@@ -728,7 +740,6 @@ Object {
   "id": "8086827825752200553",
   "isAdditional": undefined,
   "lineNumber": undefined,
-  "longDistance": true,
   "mediumId": "8086827825752200553-1903171315",
   "o": "80",
   "productClass": "F",
@@ -763,11 +774,14 @@ Object {
   ],
   "scheduledDestination": "München Hbf",
   "substitute": false,
-  "thirdParty": undefined,
-  "train": "ICE 1589",
-  "trainId": "1589",
-  "trainNumber": "1589",
-  "trainType": "ICE",
+  "train": Object {
+    "full": "ICE 1589",
+    "line": undefined,
+    "longDistance": true,
+    "number": "1589",
+    "thirdParty": undefined,
+    "type": "ICE",
+  },
 }
 `;
 
@@ -796,7 +810,6 @@ Object {
   "id": "6062058741531589910",
   "isAdditional": undefined,
   "lineNumber": "8",
-  "longDistance": false,
   "mediumId": "6062058741531589910-1903161424",
   "o": "800354",
   "productClass": "S",
@@ -918,11 +931,14 @@ Object {
   ],
   "scheduledDestination": "Hagen Hbf",
   "substitute": false,
-  "thirdParty": undefined,
-  "train": "S 8",
-  "trainId": "8",
-  "trainNumber": "30889",
-  "trainType": "S",
+  "train": Object {
+    "full": "S 8",
+    "line": "8",
+    "longDistance": false,
+    "number": "30889",
+    "thirdParty": undefined,
+    "type": "S",
+  },
 }
 `;
 
@@ -951,7 +967,6 @@ Object {
   "id": "1869793107893408377",
   "isAdditional": undefined,
   "lineNumber": undefined,
-  "longDistance": true,
   "mediumId": "1869793107893408377-1903171038",
   "o": "84",
   "productClass": "F",
@@ -986,11 +1001,14 @@ Object {
   ],
   "scheduledDestination": "Frankfurt (Main) Hbf",
   "substitute": false,
-  "thirdParty": undefined,
-  "train": "ICE 123",
-  "trainId": "123",
-  "trainNumber": "123",
-  "trainType": "ICE",
+  "train": Object {
+    "full": "ICE 123",
+    "line": undefined,
+    "longDistance": true,
+    "number": "123",
+    "thirdParty": undefined,
+    "type": "ICE",
+  },
 }
 `;
 
@@ -1015,7 +1033,6 @@ Object {
   "id": "4645697665836328305",
   "isAdditional": undefined,
   "lineNumber": undefined,
-  "longDistance": false,
   "mediumId": "4645697665836328305-1903171304",
   "o": "T8",
   "productClass": "D",
@@ -1064,11 +1081,14 @@ Object {
   "routePre": Array [],
   "scheduledDestination": "Bayrischzell",
   "substitute": false,
-  "thirdParty": "BOB",
-  "train": "BOB 86871",
-  "trainId": "86871",
-  "trainNumber": "86871",
-  "trainType": "RB",
+  "train": Object {
+    "full": "BOB 86871",
+    "line": undefined,
+    "longDistance": false,
+    "number": "86871",
+    "thirdParty": "BOB",
+    "type": "RB",
+  },
 }
 `;
 
@@ -1090,7 +1110,6 @@ Object {
   "id": "2583448959431566845",
   "isAdditional": undefined,
   "lineNumber": undefined,
-  "longDistance": false,
   "mediumId": "2583448959431566845-1903171304",
   "o": "T8",
   "productClass": "D",
@@ -1127,11 +1146,14 @@ Object {
   "routePre": Array [],
   "scheduledDestination": "Tegernsee",
   "substitute": false,
-  "thirdParty": "BOB",
-  "train": "BOB 86971",
-  "trainId": "86971",
-  "trainNumber": "86971",
-  "trainType": "RB",
+  "train": Object {
+    "full": "BOB 86971",
+    "line": undefined,
+    "longDistance": false,
+    "number": "86971",
+    "thirdParty": "BOB",
+    "type": "RB",
+  },
 }
 `;
 
@@ -1153,7 +1175,6 @@ Object {
   "id": "7715731422484591852",
   "isAdditional": undefined,
   "lineNumber": undefined,
-  "longDistance": false,
   "mediumId": "7715731422484591852-1903171304",
   "o": "T8",
   "productClass": "D",
@@ -1193,11 +1214,14 @@ Object {
   "routePre": Array [],
   "scheduledDestination": "Lenggries",
   "substitute": false,
-  "thirdParty": "BOB",
-  "train": "BOB 86921",
-  "trainId": "86921",
-  "trainNumber": "86921",
-  "trainType": "RB",
+  "train": Object {
+    "full": "BOB 86921",
+    "line": undefined,
+    "longDistance": false,
+    "number": "86921",
+    "thirdParty": "BOB",
+    "type": "RB",
+  },
 }
 `;
 
@@ -1219,7 +1243,6 @@ Object {
   "id": "425081070176277607",
   "isAdditional": undefined,
   "lineNumber": "RE11",
-  "longDistance": false,
   "mediumId": "425081070176277607-1903171100",
   "o": "AR",
   "productClass": "D",
@@ -1259,11 +1282,14 @@ Object {
   ],
   "scheduledDestination": "test",
   "substitute": false,
-  "thirdParty": "ABR",
-  "train": "ABR RE11",
-  "trainId": "11",
-  "trainNumber": "26712",
-  "trainType": "RB",
+  "train": Object {
+    "full": "ABR RE11",
+    "line": "11",
+    "longDistance": false,
+    "number": "26712",
+    "thirdParty": "ABR",
+    "type": "RB",
+  },
 }
 `;
 
@@ -1285,7 +1311,6 @@ Object {
   "id": "1178432179369711067",
   "isAdditional": undefined,
   "lineNumber": "RE11",
-  "longDistance": false,
   "mediumId": "1178432179369711067-1903171236",
   "o": "AR",
   "productClass": "D",
@@ -1334,11 +1359,14 @@ Object {
   "routePre": Array [],
   "scheduledDestination": "Paderborn Hbf",
   "substitute": false,
-  "thirdParty": "ABR",
-  "train": "ABR RE11",
-  "trainId": "11",
-  "trainNumber": "26719",
-  "trainType": "RB",
+  "train": Object {
+    "full": "ABR RE11",
+    "line": "11",
+    "longDistance": false,
+    "number": "26719",
+    "thirdParty": "ABR",
+    "type": "RB",
+  },
 }
 `;
 
@@ -1367,7 +1395,6 @@ Object {
   "id": "6062058741531589910",
   "isAdditional": undefined,
   "lineNumber": "8",
-  "longDistance": false,
   "mediumId": "6062058741531589910-1903161424",
   "o": "800354",
   "productClass": "S",
@@ -1489,11 +1516,14 @@ Object {
   ],
   "scheduledDestination": "Hagen Hbf",
   "substitute": false,
-  "thirdParty": undefined,
-  "train": "S 8",
-  "trainId": "8",
-  "trainNumber": "30889",
-  "trainType": "S",
+  "train": Object {
+    "full": "S 8",
+    "line": "8",
+    "longDistance": false,
+    "number": "30889",
+    "thirdParty": undefined,
+    "type": "S",
+  },
 }
 `;
 
@@ -1522,7 +1552,6 @@ Object {
   "id": "1869793107893408377",
   "isAdditional": undefined,
   "lineNumber": undefined,
-  "longDistance": true,
   "mediumId": "1869793107893408377-1903171038",
   "o": "84",
   "productClass": "F",
@@ -1557,11 +1586,14 @@ Object {
   ],
   "scheduledDestination": "Frankfurt (Main) Hbf",
   "substitute": false,
-  "thirdParty": undefined,
-  "train": "ICE 123",
-  "trainId": "123",
-  "trainNumber": "123",
-  "trainType": "ICE",
+  "train": Object {
+    "full": "ICE 123",
+    "line": undefined,
+    "longDistance": true,
+    "number": "123",
+    "thirdParty": undefined,
+    "type": "ICE",
+  },
 }
 `;
 
@@ -1590,7 +1622,6 @@ Object {
   "id": "6062058741531589910",
   "isAdditional": undefined,
   "lineNumber": "8",
-  "longDistance": false,
   "mediumId": "6062058741531589910-1903161424",
   "o": "800354",
   "productClass": "S",
@@ -1712,11 +1743,14 @@ Object {
   ],
   "scheduledDestination": "Hagen Hbf",
   "substitute": false,
-  "thirdParty": undefined,
-  "train": "S 8",
-  "trainId": "8",
-  "trainNumber": "30889",
-  "trainType": "S",
+  "train": Object {
+    "full": "S 8",
+    "line": "8",
+    "longDistance": false,
+    "number": "30889",
+    "thirdParty": undefined,
+    "type": "S",
+  },
 }
 `;
 
@@ -1749,7 +1783,6 @@ Object {
   "id": "7616096009230090656",
   "isAdditional": undefined,
   "lineNumber": undefined,
-  "longDistance": true,
   "mediumId": "7616096009230090656-1903171328",
   "o": "80",
   "productClass": "F",
@@ -1796,10 +1829,13 @@ Object {
   ],
   "scheduledDestination": "München Hbf",
   "substitute": false,
-  "thirdParty": undefined,
-  "train": "ICE 1587",
-  "trainId": "1587",
-  "trainNumber": "1587",
-  "trainType": "ICE",
+  "train": Object {
+    "full": "ICE 1587",
+    "line": undefined,
+    "longDistance": true,
+    "number": "1587",
+    "thirdParty": undefined,
+    "type": "ICE",
+  },
 }
 `;

@@ -9,13 +9,13 @@ type Props = {
 };
 
 // Mobile Traewelling
-// https://mobile.traewelling.de/page.php?module=ris&ris=2&2_cat=${abfahrt.trainType}&2_id=${abfahrt.trainType === 'S' ? abfahrt.trainId : abfahrt.trainNumber}&2_start=${abfahrt.currentStation}&2_to=${destination}&2_tm=${time}&2_date=${date}
+// https://mobile.traewelling.de/page.php?module=ris&ris=2&2_cat=${abfahrt.trainType}&2_id=${abfahrt.trainType === 'S' ? abfahrt.trainLine : abfahrt.trainNumber}&2_start=${abfahrt.currentStation}&2_to=${destination}&2_tm=${time}&2_date=${date}
 // Traewelling
-// https://traewelling.de/checkin?ris=2&2_cat=${abfahrt.trainType}&2_id=${abfahrt.trainType === 'S' ? abfahrt.trainId : abfahrt.trainNumber}&2_start=${abfahrt.currentStation}&2_to=${destination}&2_tm=${time}&2_date=${date}
+// https://traewelling.de/checkin?ris=2&2_cat=${abfahrt.trainType}&2_id=${abfahrt.trainType === 'S' ? abfahrt.trainLine : abfahrt.trainNumber}&2_start=${abfahrt.currentStation}&2_to=${destination}&2_tm=${time}&2_date=${date}
 
 const stopPropagation = (e: SyntheticEvent) => e.stopPropagation();
 const TraewellingLink = ({ abfahrt, className }: Props) => {
-  if (!abfahrt.departure || !abfahrt.trainType) {
+  if (!abfahrt.departure || !abfahrt.train.type) {
     return null;
   }
   // const start = abfahrt.route[0].name;
@@ -36,9 +36,9 @@ const TraewellingLink = ({ abfahrt, className }: Props) => {
       rel="noopener noreferrer"
       target="_blank"
       href={`https://traewelling.de/checkin?ris=2&2_cat=${
-        abfahrt.trainType
+        abfahrt.train.type
       }&2_id=${
-        abfahrt.trainType === 'S' ? abfahrt.trainId : abfahrt.trainNumber
+        abfahrt.train.type === 'S' ? abfahrt.train.line : abfahrt.train.number
       }&2_start=${abfahrt.currentStation.title.replace(
         /ß/g,
         'ss'

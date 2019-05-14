@@ -29,7 +29,7 @@ const parseStationBoardResponse = <type extends 'ARR' | 'DEP'>(
       };
 
   return {
-    ...parseProduct(product),
+    train: parseProduct(product),
     ...times,
     currentStation: common.locL[jny.stbStop.locX],
     finalDestination: jny.dirTxt,

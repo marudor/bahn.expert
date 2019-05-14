@@ -67,7 +67,7 @@ class Journey {
       arrival: this.parseArrival(raw.arr),
       departure: this.parseDeparture(raw.dep),
       segments,
-      segmentTypes: segments.map(s => s.trainType),
+      segmentTypes: segments.map(s => s.train.type),
       raw: global.PROD ? undefined : raw,
     };
   }
@@ -111,7 +111,7 @@ class Journey {
     const product = this.common.prodL[jny.prodX];
 
     return {
-      ...parseProduct(product),
+      train: parseProduct(product),
       isCancelled: jny.isCncl,
       changeDuration: jny.chgDurR,
       segmentStart: parseFullStation(fullStart),

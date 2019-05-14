@@ -9,12 +9,12 @@ type AuslastungProps = {
 };
 export const getCurrentStationFromProps = (_: any, props: AuslastungProps) =>
   props.currentStation;
-export const getTrainIdFromProps = (_: any, props: AuslastungProps) =>
+export const getTrainNumberFromProps = (_: any, props: AuslastungProps) =>
   props.trainNumber;
 
 export const getReihungForId = createSelector(
   getReihung,
-  getTrainIdFromProps,
+  getTrainNumberFromProps,
   getCurrentStationFromProps,
   (reihung, trainNumber, currentStation) =>
     reihung[trainNumber + currentStation]
