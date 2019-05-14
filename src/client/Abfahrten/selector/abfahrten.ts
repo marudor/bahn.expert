@@ -16,11 +16,6 @@ export const getArrivalWingIdsFromProps = (_: any, props: AbfahrtProps) =>
 export const getDepartureWingIdsFromProps = (_: any, props: AbfahrtProps) =>
   props.abfahrt.departure && props.abfahrt.departure.wingIds;
 export const getIdFromProps = (_: any, props: AbfahrtProps) => props.abfahrt.id;
-export const getNextDeparture = (state: AbfahrtenState) => {
-  if (state.abfahrten.departures) {
-    return state.abfahrten.departures.lookahead.find(a => Boolean(a.departure));
-  }
-};
 
 export const getAbfahrtenForConfig = createSelector(
   (state: AbfahrtenState) => state.abfahrten.departures,
