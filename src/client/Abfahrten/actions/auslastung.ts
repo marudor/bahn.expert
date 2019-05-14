@@ -22,7 +22,9 @@ export const getAuslastung = (
   const key = `${start}/${destination}/${trainNumber}`;
 
   try {
-    const data = (await axios.get(`/api/auslastungHafas/${key}/${time}`)).data;
+    const data = (await axios.get(
+      `/api/hafas/current/auslastung/${key}/${time}`
+    )).data;
 
     dispatch(
       Actions.gotAuslastung({

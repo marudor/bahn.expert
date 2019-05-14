@@ -28,11 +28,14 @@ export const getRoutes = (
 ): RoutingThunkResult => async dispatch => {
   dispatch(Actions.gotRoutes());
   try {
-    const routingResult: RoutingResult = (await axios.post('/api/route', {
-      start,
-      destination,
-      time: date.getTime(),
-    })).data;
+    const routingResult: RoutingResult = (await axios.post(
+      '/api/hafas/current/route',
+      {
+        start,
+        destination,
+        time: date.getTime(),
+      }
+    )).data;
 
     const { routes, context } = routingResult;
 
@@ -57,11 +60,15 @@ export const getContextRoutes = (
 
   if (start && destination) {
     try {
-      const routingResult: RoutingResult = (await axios.post('/api/route', {
-        start: start.id,
-        destination: destination.id,
-        ctxScr: type === ContextType.earlier ? context.earlier : context.later,
-      })).data;
+      const routingResult: RoutingResult = (await axios.post(
+        '/api/hafas/current/route',
+        {
+          start: start.id,
+          destination: destination.id,
+          ctxScr:
+            type === ContextType.earlier ? context.earlier : context.later,
+        }
+      )).data;
 
       const { routes, context: newContext } = routingResult;
       let newRoutes;

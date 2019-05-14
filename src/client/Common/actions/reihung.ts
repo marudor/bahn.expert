@@ -23,7 +23,7 @@ export const getReihung = (
     }
 
     const reihung: Wagenreihung = (await axios.get(
-      `/api/wagen/${trainNumber}/${scheduledDeparture}`
+      `/api/reihung/current/wagen/${trainNumber}/${scheduledDeparture}`
     )).data;
 
     dispatch(
