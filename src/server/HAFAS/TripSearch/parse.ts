@@ -13,11 +13,10 @@ import { HafasResponse, ParsedCommon } from 'types/HAFAS';
 import { parse } from 'date-fns';
 import {
   Route,
-  Route$Arrival,
-  Route$Departure,
   Route$Journey,
   Route$JourneySegment,
   Route$Stop,
+  Route$StopInfo,
   RoutingResult,
 } from 'types/routing';
 import { Station } from 'types/station';
@@ -65,8 +64,8 @@ class Journey {
       duration: parseDuration(raw.dur),
       changes: raw.chg,
       isRideable: !raw.isNotRdbl,
-      ...this.parseArrival(raw.arr),
-      ...this.parseDeparture(raw.dep),
+      arrival: this.parseArrival(raw.arr),
+      departure: this.parseDeparture(raw.dep),
       segments,
       segmentTypes: segments.map(s => s.trainType),
       raw: global.PROD ? undefined : raw,
@@ -77,8 +76,8 @@ class Journey {
 
     return stops.map(stop => ({
       station: this.common.locL[stop.locX],
-      ...this.parseArrival(stop),
-      ...this.parseDeparture(stop),
+      arrival: stop.aTimeS ? this.parseArrival(stop) : undefined,
+      departure: stop.dTimeS ? this.parseDeparture(stop) : undefined,
     }));
   };
   parseAuslastung(dTrnCmpSX?: TrnCmpSX) {
@@ -127,18 +126,16 @@ class Journey {
   parseSegment = (t: SecL): undefined | Route$JourneySegment => {
     switch (t.type) {
       case 'JNY': {
-        const { scheduledArrival, ...arrival } = this.parseArrival(t.arr);
-        const { scheduledDeparture, ...departure } = this.parseDeparture(t.dep);
+        const arrival = this.parseArrival(t.arr);
+        const departure = this.parseDeparture(t.dep);
 
         return {
-          ...arrival,
-          ...departure,
-          scheduledDeparture,
-          scheduledArrival,
+          arrival,
+          departure,
           duration:
-            scheduledArrival &&
-            scheduledDeparture &&
-            scheduledArrival - scheduledDeparture,
+            arrival.scheduledTime &&
+            departure.scheduledTime &&
+            arrival.scheduledTime - departure.scheduledTime,
           wings: t.parJnyL
             ? t.parJnyL.map(this.parseSegmentJourney)
             : undefined,
@@ -158,16 +155,16 @@ class Journey {
         return undefined;
     }
   };
-  parseArrival(a: Arr): Route$Arrival {
+  parseArrival(a: Arr): Route$StopInfo {
     return {
       ...parseCommonArrival(a, this.date),
-      arrivalReihung: Boolean(a.aTrnCmpSX && a.aTrnCmpSX.tcM),
+      reihung: Boolean(a.aTrnCmpSX && a.aTrnCmpSX.tcM),
     };
   }
-  parseDeparture(d: Dep): Route$Departure {
+  parseDeparture(d: Dep): Route$StopInfo {
     return {
       ...parseCommonDeparture(d, this.date),
-      departureReihung: Boolean(d.dTrnCmpSX && d.dTrnCmpSX.tcM),
+      reihung: Boolean(d.dTrnCmpSX && d.dTrnCmpSX.tcM),
     };
   }
 }

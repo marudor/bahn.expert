@@ -12,15 +12,13 @@ export const getAbfahrten = (state: AbfahrtenState) =>
 export const getSelectedDetail = (state: AbfahrtenState) =>
   state.abfahrten.selectedDetail;
 export const getArrivalWingIdsFromProps = (_: any, props: AbfahrtProps) =>
-  props.abfahrt.arrivalWingIds;
+  props.abfahrt.arrival && props.abfahrt.arrival.wingIds;
 export const getDepartureWingIdsFromProps = (_: any, props: AbfahrtProps) =>
-  props.abfahrt.departureWingIds;
+  props.abfahrt.departure && props.abfahrt.departure.wingIds;
 export const getIdFromProps = (_: any, props: AbfahrtProps) => props.abfahrt.id;
 export const getNextDeparture = (state: AbfahrtenState) => {
   if (state.abfahrten.departures) {
-    return state.abfahrten.departures.lookahead.find(a =>
-      Boolean(a.scheduledDeparture)
-    );
+    return state.abfahrten.departures.lookahead.find(a => Boolean(a.departure));
   }
 };
 

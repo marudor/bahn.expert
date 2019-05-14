@@ -15,9 +15,7 @@ type Props = {
 
 const stopPropagation = (e: SyntheticEvent) => e.stopPropagation();
 const TraewellingLink = ({ abfahrt, className }: Props) => {
-  const departure = abfahrt.scheduledDeparture;
-
-  if (!departure || !abfahrt.trainType) {
+  if (!abfahrt.departure || !abfahrt.trainType) {
     return null;
   }
   // const start = abfahrt.route[0].name;
@@ -25,8 +23,11 @@ const TraewellingLink = ({ abfahrt, className }: Props) => {
     /ß/g,
     'ss'
   );
-  const time = format(departure, 'HH:mm').replace(':', '%3A');
-  const date = format(departure, 'yyyy-MM-dd');
+  const time = format(abfahrt.departure.scheduledTime, 'HH:mm').replace(
+    ':',
+    '%3A'
+  );
+  const date = format(abfahrt.departure.scheduledTime, 'yyyy-MM-dd');
 
   return (
     <a
@@ -38,7 +39,7 @@ const TraewellingLink = ({ abfahrt, className }: Props) => {
         abfahrt.trainType
       }&2_id=${
         abfahrt.trainType === 'S' ? abfahrt.trainId : abfahrt.trainNumber
-      }&2_start=${abfahrt.currentStation.replace(
+      }&2_start=${abfahrt.currentStation.title.replace(
         /ß/g,
         'ss'
       )}&2_to=${destination}&2_tm=${time}&2_date=${date}`}

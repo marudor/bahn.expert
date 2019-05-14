@@ -3,6 +3,7 @@ import { AxiosInstance } from 'axios';
 import { compareAsc } from 'date-fns';
 import { getStation } from './station';
 import { noncdAxios } from './helper';
+import idx from 'idx';
 import Timetable, { Result } from './Timetable';
 
 type AbfahrtenOptions = {
@@ -39,13 +40,16 @@ export function reduceResults(agg: Result, r: Result): Result {
 }
 
 const timeByScheduled = (a: Abfahrt) =>
-  a.departureIsCancelled && !a.isCancelled
-    ? a.scheduledArrival
-    : a.scheduledDeparture || a.scheduledArrival;
+  idx(a, _ => _.departure.isCancelled) && !a.isCancelled
+    ? idx(a, _ => _.arrival.scheduledTime) ||
+      idx(a, _ => _.departure.scheduledTime)
+    : idx(a, _ => _.departure.scheduledTime) ||
+      idx(a, _ => _.arrival.scheduledTime);
+
 const timeByReal = (a: Abfahrt) =>
-  a.departureIsCancelled && !a.isCancelled
-    ? a.arrival
-    : a.departure || a.arrival;
+  idx(a, _ => _.departure.isCancelled) && !a.isCancelled
+    ? idx(a, _ => _.arrival.time) || idx(a, _ => _.departure.time)
+    : idx(a, _ => _.departure.time) || idx(a, _ => _.arrival.time);
 const sortAbfahrt = (timeFn: typeof timeByReal) => (a: Abfahrt, b: Abfahrt) => {
   const timeA = timeFn(a);
   const timeB = timeFn(b);

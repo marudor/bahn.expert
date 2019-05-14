@@ -211,13 +211,14 @@ export async function wagenReihungMonitoring() {
     lookahead: 300,
   });
   const maybeDepartures = abfahrten.departures.filter(
-    d => d.reihung && d.scheduledDeparture
+    d => d.reihung && d.departure
   );
 
   let departure = maybeDepartures.shift();
 
   while (departure) {
-    const departureTime = departure.scheduledDeparture;
+    const departureTime =
+      departure.departure && departure.departure.scheduledTime;
 
     if (!departureTime) {
       departure = maybeDepartures.shift();

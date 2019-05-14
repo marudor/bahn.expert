@@ -1,9 +1,5 @@
-import {
-  ParsedCommonArrival,
-  ParsedCommonDeparture,
-  ParsedProduct,
-  ProdL,
-} from './HAFAS';
+import { ParsedCommonArrival, ParsedCommonDeparture } from './common';
+import { ParsedProduct, ProdL } from './HAFAS';
 import { Station } from './station';
 
 interface CommonStationBoardEntry extends ParsedProduct {
@@ -14,13 +10,13 @@ interface CommonStationBoardEntry extends ParsedProduct {
   currentStation: Station;
 }
 
-export interface ArrivalStationBoardEntry
-  extends ParsedCommonArrival,
-    CommonStationBoardEntry {}
+export interface ArrivalStationBoardEntry extends CommonStationBoardEntry {
+  arrival: ParsedCommonArrival;
+}
 
-export interface DepartureStationBoardEntry
-  extends ParsedCommonDeparture,
-    CommonStationBoardEntry {}
+export interface DepartureStationBoardEntry extends CommonStationBoardEntry {
+  departure: ParsedCommonDeparture;
+}
 export type StationBoardEntry<
   type extends 'ARR' | 'DEP' = any
 > = type extends 'ARR' ? ArrivalStationBoardEntry : DepartureStationBoardEntry;

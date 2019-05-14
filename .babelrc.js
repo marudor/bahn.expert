@@ -16,6 +16,7 @@ module.exports = {
     'babel-preset-joblift',
   ],
   plugins: [
+    'babel-plugin-idx',
     'lodash',
     [
       'module-resolver',

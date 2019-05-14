@@ -38,13 +38,16 @@ class Header extends React.Component<Props> {
       title = `${currentStation.title} - ${title}`;
       description = `Zugabfahrten für ${currentStation.title}`;
       ogDescription = description;
-      if (nextAbfahrt && nextAbfahrt.scheduledDeparture) {
-        const delay = nextAbfahrt.delayDeparture;
+      if (nextAbfahrt && nextAbfahrt.departure) {
+        const delay = nextAbfahrt.departure.delay;
         const delayString = delay ? `(${delay < 0 ? '-' : '+'}${delay})` : '';
 
         ogDescription = `Nächste Abfahrt: ${nextAbfahrt.train} - ${
           nextAbfahrt.destination
-        } - ${format(nextAbfahrt.scheduledDeparture, 'HH:mm')} ${delayString}`;
+        } - ${format(
+          nextAbfahrt.departure.scheduledTime,
+          'HH:mm'
+        )} ${delayString}`;
       }
       url += `/${encodeURIComponent(currentStation.title)}`;
     }

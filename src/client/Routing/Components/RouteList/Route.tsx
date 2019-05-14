@@ -27,13 +27,13 @@ const Route = ({ route, detail, onClick }: Props) => {
     <Paper onClick={onClick} square className={cc(classes.main)}>
       <Time
         className={classes.time}
-        real={route.departure}
-        delay={route.departureDelay}
+        real={route.departure.time}
+        delay={route.departure.delay}
       />
       <Time
         className={classes.time}
-        real={route.arrival}
-        delay={route.arrivalDelay}
+        real={route.arrival.time}
+        delay={route.arrival.delay}
       />
       <span>{formatDuration(route.duration)}</span>
       <span>{route.changes}</span>

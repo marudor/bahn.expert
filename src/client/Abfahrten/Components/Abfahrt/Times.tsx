@@ -21,15 +21,7 @@ type Props = ReduxProps;
 const Times = ({
   timeConfig,
 
-  abfahrt: {
-    arrival,
-    arrivalIsCancelled,
-    delayArrival,
-    delayDeparture,
-    departure,
-    departureIsCancelled,
-    isCancelled,
-  },
+  abfahrt: { arrival, departure, isCancelled },
 
   detail,
 }: Props) => {
@@ -46,14 +38,14 @@ const Times = ({
           {arrival && (
             <div
               className={cc(classes.wrapper, {
-                [classes.cancelled]: arrivalIsCancelled,
+                [classes.cancelled]: arrival.isCancelled,
               })}
             >
               <span>{'An: '}</span>
               <Time
                 alignEnd
-                delay={delayArrival}
-                real={arrival}
+                delay={arrival.delay}
+                real={arrival.time}
                 showOriginalTime={!timeConfig}
               />
             </div>
@@ -61,32 +53,32 @@ const Times = ({
           {departure && (
             <div
               className={cc(classes.wrapper, {
-                [classes.cancelled]: departureIsCancelled,
+                [classes.cancelled]: departure.isCancelled,
               })}
             >
               <span>{'Ab: '}</span>
               <Time
                 alignEnd
-                delay={delayDeparture}
-                real={departure}
+                delay={departure.delay}
+                real={departure.time}
                 showOriginalTime={!timeConfig}
               />
             </div>
           )}
         </React.Fragment>
-      ) : departure && (!departureIsCancelled || isCancelled) ? (
+      ) : departure && (!departure.isCancelled || isCancelled) ? (
         <Time
           alignEnd
-          delay={delayDeparture}
-          real={departure}
+          delay={departure.delay}
+          real={departure.time}
           showOriginalTime={!timeConfig}
         />
       ) : (
         arrival && (
           <Time
             alignEnd
-            delay={delayArrival}
-            real={arrival}
+            delay={arrival.delay}
+            real={arrival.time}
             showOriginalTime={!timeConfig}
           />
         )

@@ -1,3 +1,8 @@
+import { CommonStopInfo } from './common';
+import { Station } from './station';
+
+// import { ParsedCommonArrival } from './common';
+
 export type SubstituteRef = {
   trainNumber: string;
   trainType: string;
@@ -28,21 +33,18 @@ export type Messages = {
   [key: string]: Message[];
 };
 
+export interface StopInfo extends CommonStopInfo {
+  wingIds: null | string[];
+  isCancelled: boolean;
+  hidden?: number;
+}
+
 export type Abfahrt = {
-  arrival?: number;
-  arrivalIsCancelled: boolean;
-  arrivalWingIds: null | (string[]);
+  arrival?: StopInfo;
   auslastung: boolean;
-  currentStation: string;
-  currentStationEva: string;
-  delayArrival?: number;
-  delayDeparture?: number;
-  departure?: number;
-  departureIsCancelled: boolean;
-  departureWingIds: null | (string[]);
+  currentStation: Station;
+  departure?: StopInfo;
   destination: string;
-  hiddenArrival?: number;
-  hiddenDeparture?: number;
   id: string;
   isAdditional?: boolean;
   isCancelled: boolean;
@@ -55,8 +57,6 @@ export type Abfahrt = {
   ref?: SubstituteRef;
   reihung: boolean;
   route: Train[];
-  scheduledArrival?: number;
-  scheduledDeparture?: number;
   scheduledDestination: string;
   scheduledPlatform: string;
   substitute: boolean;

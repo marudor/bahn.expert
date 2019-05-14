@@ -73,13 +73,13 @@ const BaseAbfahrt = ({
           <Mid abfahrt={abfahrt} detail={detail} />
           <End abfahrt={abfahrt} detail={detail} />
         </div>
-        {detail && abfahrt.reihung && abfahrt.scheduledDeparture && (
+        {detail && abfahrt.reihung && abfahrt.departure && (
           <Reihung
             useZoom={useZoom}
             fahrzeugGruppe={fahrzeugGruppe}
             trainNumber={abfahrt.trainNumber}
-            currentStation={abfahrt.currentStation}
-            scheduledDeparture={abfahrt.scheduledDeparture}
+            currentStation={abfahrt.currentStation.id}
+            scheduledDeparture={abfahrt.departure.scheduledTime}
           />
         )}
         {detail && (

@@ -1,25 +1,23 @@
-import { CommonDeparture, ParsedCommonDeparture } from 'types/HAFAS';
+import { CommonDeparture } from 'types/HAFAS';
 import { differenceInMinutes } from 'date-fns';
+import { ParsedCommonDeparture } from 'types/common';
 import parseTime from './parseTime';
 
 export default (d: CommonDeparture, date: number): ParsedCommonDeparture => {
-  const scheduledDeparture = parseTime(date, d.dTimeS);
-  let departure = scheduledDeparture;
-  let departureDelay;
+  const scheduledTime = parseTime(date, d.dTimeS);
+  let time = scheduledTime;
+  let delay;
 
   if (d.dTimeR) {
-    departure = parseTime(date, d.dTimeR);
-    departureDelay =
-      departure &&
-      scheduledDeparture &&
-      differenceInMinutes(departure, scheduledDeparture);
+    time = parseTime(date, d.dTimeR);
+    delay = time && scheduledTime && differenceInMinutes(time, scheduledTime);
   }
 
   return {
-    scheduledDeparturePlatform: d.dPlatfR && d.dPlatfS,
-    departurePlatform: d.dPlatfR || d.dPlatfS,
-    scheduledDeparture,
-    departure,
-    departureDelay,
+    scheduledPlatform: d.dPlatfR && d.dPlatfS,
+    platform: d.dPlatfR || d.dPlatfS,
+    scheduledTime,
+    time,
+    delay,
   };
 };

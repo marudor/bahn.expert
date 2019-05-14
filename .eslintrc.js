@@ -16,6 +16,8 @@ module.exports = {
     'import/no-unresolved': 2,
     'import/prefer-default-export': 0,
     'default-case': 0,
+    'no-nested-ternary': 0,
+    complexity: 0,
   },
   settings: {
     'import/resolver': 'webpack',
