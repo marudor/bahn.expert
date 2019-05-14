@@ -1,8 +1,5 @@
-import { Abfahrt } from 'types/abfahrten';
 import { AbfahrtenState } from 'AppState';
 import { connect } from 'react-redux';
-import { format } from 'date-fns';
-import { getNextDeparture } from 'Abfahrten/selector/abfahrten';
 import { Helmet } from 'react-helmet-async';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { Station } from 'types/station';
@@ -18,14 +15,13 @@ type StateProps = {
   currentStation?: Station;
   searchType?: StationSearchType;
   baseUrl: string;
-  nextAbfahrt?: Abfahrt;
 };
 
 type Props = StateProps & RouteComponentProps;
 
 class Header extends React.Component<Props> {
   metaTags = () => {
-    const { currentStation, baseUrl, nextAbfahrt } = this.props;
+    const { currentStation, baseUrl } = this.props;
 
     let title = 'Bahnhofsabfahrten';
     let ogDescription =
@@ -38,17 +34,6 @@ class Header extends React.Component<Props> {
       title = `${currentStation.title} - ${title}`;
       description = `Zugabfahrten für ${currentStation.title}`;
       ogDescription = description;
-      if (nextAbfahrt && nextAbfahrt.departure) {
-        const delay = nextAbfahrt.departure.delay;
-        const delayString = delay ? `(${delay < 0 ? '-' : '+'}${delay})` : '';
-
-        ogDescription = `Nächste Abfahrt: ${nextAbfahrt.train} - ${
-          nextAbfahrt.destination
-        } - ${format(
-          nextAbfahrt.departure.scheduledTime,
-          'HH:mm'
-        )} ${delayString}`;
-      }
       url += `/${encodeURIComponent(currentStation.title)}`;
     }
 
@@ -111,5 +96,4 @@ export default connect<StateProps, void, void, AbfahrtenState>(state => ({
   currentStation: state.abfahrten.currentStation,
   searchType: state.abfahrtenConfig.config.searchType,
   baseUrl: state.config.baseUrl,
-  nextAbfahrt: getNextDeparture(state),
 }))(withRouter(Header));
