@@ -20,6 +20,7 @@ import { diffArrays } from 'diff';
 import { findLast, flatten, last, uniqBy } from 'lodash';
 import { getAttr, getNumberAttr, parseTs } from './helper';
 import { getCachedLageplan, getLageplan } from '../Bahnhof/Lageplan';
+import idx from 'idx';
 import messageLookup, {
   messageTypeLookup,
   supersededMessages,
@@ -227,9 +228,14 @@ export default class Timetable {
   }
   computeExtra(timetable: any) {
     timetable.isCancelled =
-      (timetable.arrivalIsCancelled &&
-        (timetable.departureIsCancelled || !timetable.scheduledDeparture)) ||
-      (timetable.departureIsCancelled && !timetable.scheduledArrival);
+      (timetable.arrival &&
+        timetable.arrival.isCancelled &&
+        (timetable.departure.isCancelled ||
+          !timetable.departure ||
+          !timetable.departure.scheduledTime)) ||
+      (timetable.departure &&
+        timetable.departure.isCancelled &&
+        (!timetable.arrival || !timetable.arrival.scheduledTime));
 
     if (timetable.isCancelled) {
       const anyCancelled =
@@ -245,7 +251,7 @@ export default class Timetable {
     timetable.route = [
       ...timetable.routePre,
       {
-        name: timetable.currentStation,
+        name: timetable.currentStation.title,
         isCancelled: timetable.isCancelled,
         isAdditional: timetable.isAdditional,
       },
@@ -264,6 +270,14 @@ export default class Timetable {
       );
     }
 
+    if (timetable.departure) {
+      timetable.platform = timetable.departure.platform;
+      timetable.scheduledPlatform = timetable.departure.scheduledPlatform;
+    } else if (timetable.arrival) {
+      timetable.platform = timetable.arrival.platform;
+      timetable.scheduledPlatform = timetable.arrival.scheduledPlatform;
+    }
+
     timetable.auslastung =
       !timetable.isCancelled &&
       timetable.longDistance &&
@@ -276,8 +290,12 @@ export default class Timetable {
 
     delete timetable.routePre;
     delete timetable.routePost;
-    delete timetable.arrivalIsAdditional;
-    delete timetable.departureIsAdditional;
+    if (timetable.arrival) {
+      delete timetable.arrival.isAdditional;
+    }
+    if (timetable.departure) {
+      delete timetable.departure.isAdditional;
+    }
   }
   async start(): Promise<Result> {
     const lageplan = getCachedLageplan(this.currentStation);
@@ -297,7 +315,7 @@ export default class Timetable {
           qos: [],
           delay: [],
         };
-        t.platform = t.scheduledPlatform;
+        // t.platform = t.scheduledPlatform;
       });
 
     const wings: { [key: string]: any } = {};
@@ -315,12 +333,18 @@ export default class Timetable {
         return;
       }
 
-      const time = a.departureIsCancelled
-        ? a.scheduledArrival
-        : a.scheduledDeparture || a.scheduledArrival;
-      const realTime = a.departureIsCancelled
-        ? a.arrival
-        : a.departure || a.arrival;
+      const scheduledArrvial = idx(a, _ => _.arrival.scheduledTime);
+      const arrival = idx(a, _ => _.arrival.time);
+      const scheduledDeparture = idx(a, _ => _.departure.scheduledTime);
+      const departure = idx(a, _ => _.departure.time);
+      // @ts-ignore we know that either arrival or departure exists
+      const time: number = idx(a, _ => _.departure.isCancelled)
+        ? scheduledArrvial || scheduledDeparture
+        : scheduledDeparture || scheduledArrvial;
+      // @ts-ignore we know that either arrival or departure exists
+      const realTime: number = idx(a, _ => _.departure.isCancelled)
+        ? arrival || departure
+        : departure || arrival;
 
       if (isAfter(realTime, this.minDate) && isBefore(time, this.maxDate)) {
         if (isBefore(realTime, this.currentDate)) {
@@ -487,17 +511,18 @@ export default class Timetable {
   }
   addArrivalInfo(timetable: any, ar: undefined | ParsedAr) {
     if (!ar) return;
-    timetable.arrivalIsCancelled = ar.status === 'c';
-    timetable.arrivalIsAdditional = ar.status === 'a';
+    if (!timetable.arrival) timetable.arrival = {};
+    timetable.arrival.isCancelled = ar.status === 'c';
+    timetable.arrival.isAdditional = ar.status === 'a';
     if (ar.scheduledArrivalTs) {
-      timetable.scheduledArrival = parseTs(ar.scheduledArrivalTs);
-      timetable.arrival = timetable.scheduledArrival;
+      timetable.arrival.scheduledTime = parseTs(ar.scheduledArrivalTs);
+      timetable.arrival.time = timetable.arrival.scheduledTime;
     }
     if (ar.arrivalTs) {
-      timetable.arrival = parseTs(ar.arrivalTs);
+      timetable.arrival.time = parseTs(ar.arrivalTs);
     }
-    timetable.delayArrival =
-      (timetable.arrival - timetable.scheduledArrival) / 60 / 1000;
+    timetable.arrival.delay =
+      (timetable.arrival.time - timetable.arrival.scheduledTime) / 60 / 1000;
     if (ar.routePre) {
       const diff = diffArrays(
         ar.routePre,
@@ -514,21 +539,26 @@ export default class Timetable {
         )
       );
     }
-    timetable.platform = ar.platform || timetable.scheduledPlatform;
+    timetable.arrival.platform =
+      ar.platform || timetable.arrival.scheduledPlatform;
+    // timetable.platform = ar.platform || timetable.scheduledPlatform;
   }
   addDepartureInfo(timetable: any, dp: undefined | ParsedDp) {
     if (!dp) return;
-    timetable.departureIsCancelled = dp.status === 'c';
-    timetable.departureIsAdditional = dp.status === 'a';
+    if (!timetable.departure) timetable.departure = {};
+    timetable.departure.isCancelled = dp.status === 'c';
+    timetable.departure.isAdditional = dp.status === 'a';
     if (dp.scheduledDepartureTs) {
-      timetable.scheduledDeparture = parseTs(dp.scheduledDepartureTs);
-      timetable.departure = timetable.scheduledDeparture;
+      timetable.departure.scheduledTime = parseTs(dp.scheduledDepartureTs);
+      timetable.departure.time = timetable.departure.scheduledTime;
     }
     if (dp.departureTs) {
-      timetable.departure = parseTs(dp.departureTs);
+      timetable.departure.time = parseTs(dp.departureTs);
     }
-    timetable.delayDeparture =
-      (timetable.departure - timetable.scheduledDeparture) / 60 / 1000;
+    timetable.departure.delay =
+      (timetable.departure.time - timetable.departure.scheduledTime) /
+      60 /
+      1000;
     if (dp.routePost) {
       const diff = diffArrays(
         timetable.routePost.map((r: any) => r.name),
@@ -540,14 +570,16 @@ export default class Timetable {
           d.value.map(v => ({
             name: v,
             isAdditional: d.added,
-            isCancelled: d.removed || timetable.departureIsCancelled,
+            isCancelled: d.removed || timetable.departure.isCancelled,
           }))
         )
       );
-    } else if (timetable.departureIsCancelled && timetable.routePost) {
+    } else if (timetable.departure.isCancelled && timetable.routePost) {
       timetable.routePost.forEach((r: any) => (r.isCancelled = true));
     }
-    timetable.platform = dp.platform || timetable.scheduledPlatform;
+    timetable.departure.platform =
+      dp.platform || timetable.departure.scheduledPlatform;
+    // timetable.platform = dp.platform || timetable.scheduledPlatform;
   }
   async fetchRealtime() {
     const url = `/fchg/${this.evaId}`;
@@ -627,17 +659,30 @@ export default class Timetable {
 
     return {
       o,
-      arrival: scheduledArrival,
+      arrival: scheduledArrival && {
+        scheduledTime: scheduledArrival,
+        time: scheduledArrival,
+        wingIds: this.getWings(ar, false),
+        platform: getAttr(ar, 'pp'),
+        scheduledPlatform: getAttr(ar, 'pp'),
+        hidden: getAttr(ar, 'hi'),
+      },
+      departure: scheduledDeparture && {
+        scheduledTime: scheduledDeparture,
+        time: scheduledDeparture,
+        wingIds: this.getWings(dp, true),
+        platform: getAttr(dp, 'pp'),
+        scheduledPlatform: getAttr(dp, 'pp'),
+        hidden: getAttr(dp, 'hi'),
+      },
       productClass,
-      arrivalWingIds: this.getWings(ar, false),
       // classes: getAttr(tl, 'f'),
-      currentStation: this.currentStation,
-      currentStationEva: this.evaId,
-      departureWingIds: this.getWings(dp, true),
-      departure: scheduledDeparture,
+      currentStation: {
+        title: this.currentStation,
+        id: this.evaId,
+      },
       scheduledDestination: last(routePost) || this.currentStation,
       lineNumber,
-      platform: getAttr(dp, 'pp') || getAttr(ar, 'pp'),
       id,
       rawId,
       mediumId,
@@ -645,11 +690,6 @@ export default class Timetable {
       routePost: routePost.map<Route>(routeMap),
       routePre: routePre.map<Route>(routeMap),
       // routeStart: getAttr(ar, 'pde'),
-      hiddenArrival: getAttr(ar, 'hi'),
-      hiddenDeparture: getAttr(dp, 'hi'),
-      scheduledArrival,
-      scheduledDeparture,
-      scheduledPlatform: getAttr(dp, 'pp') || getAttr(ar, 'pp'),
       trainNumber,
       // transfer: getAttr(dp || ar, 'tra'),
       train,

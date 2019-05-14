@@ -10,21 +10,31 @@ type OwnProps = {
 type Props = OwnProps;
 const Stop = ({ stop }: Props) => {
   const classes = useStyles();
-  const platforms = stop.departurePlatform
+  const platforms = stop.departure
     ? {
-        real: stop.departurePlatform,
-        scheduled: stop.scheduledDeparturePlatform,
+        real: stop.departure.platform,
+        scheduled: stop.departure.scheduledPlatform,
       }
-    : {
-        real: stop.arrivalPlatform,
-        scheduled: stop.scheduledArrivalPlatform,
-      };
+    : stop.arrival
+    ? {
+        real: stop.arrival.platform,
+        scheduled: stop.arrival.scheduledPlatform,
+      }
+    : {};
 
   return (
     <div className={classes.main}>
-      <Time oneLine real={stop.arrival} delay={stop.arrivalDelay} />
+      {stop.arrival ? (
+        <Time oneLine real={stop.arrival.time} delay={stop.arrival.delay} />
+      ) : (
+        <span />
+      )}
       <span className={classes.station}>{stop.station.title}</span>
-      <Time oneLine real={stop.departure} delay={stop.departureDelay} />
+      {stop.departure ? (
+        <Time oneLine real={stop.departure.time} delay={stop.departure.delay} />
+      ) : (
+        <span />
+      )}
       <Platform className={classes.platform} {...platforms} />
     </div>
   );

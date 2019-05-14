@@ -21,8 +21,12 @@ const parseStationBoardResponse = <type extends 'ARR' | 'DEP'>(
   const date = parse(jny.date, 'yyyyMMdd', new Date()).getTime();
   const product = common.prodL[jny.prodX];
   const times = isArrival(jny.stbStop)
-    ? parseCommonArrival(jny.stbStop, date)
-    : parseCommonDeparture(jny.stbStop, date);
+    ? {
+        arrival: parseCommonArrival(jny.stbStop, date),
+      }
+    : {
+        departure: parseCommonDeparture(jny.stbStop, date),
+      };
 
   return {
     ...parseProduct(product),

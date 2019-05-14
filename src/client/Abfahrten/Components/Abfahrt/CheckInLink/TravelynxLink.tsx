@@ -13,9 +13,11 @@ const timeConstraint = 30 * 60 * 1000;
 const stopPropagation = (e: SyntheticEvent) => e.stopPropagation();
 const TravelynxLink = ({ abfahrt, className }: Props) =>
   abfahrt.departure &&
-  !abfahrt.departureIsCancelled &&
+  !abfahrt.departure.isCancelled &&
   isBefore(
-    abfahrt.scheduledArrival || abfahrt.scheduledDeparture || abfahrt.departure,
+    abfahrt.arrival
+      ? abfahrt.arrival.scheduledTime
+      : abfahrt.departure.scheduledTime,
     Date.now() + timeConstraint
   ) ? (
     <a
@@ -24,7 +26,7 @@ const TravelynxLink = ({ abfahrt, className }: Props) =>
       rel="noopener noreferrer"
       target="_blank"
       href={`https://travelynx.de/s/${
-        abfahrt.currentStationEva
+        abfahrt.currentStation.id
       }?train=${abfahrt.thirdParty || abfahrt.trainType} ${
         abfahrt.trainNumber
       }`}

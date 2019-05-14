@@ -190,19 +190,3 @@ export interface ParsedProduct {
   trainNumber: string;
   trainType: string;
 }
-
-export interface ParsedCommonArrival {
-  scheduledArrivalPlatform?: string;
-  arrivalPlatform?: string;
-  scheduledArrival: number;
-  arrival: number;
-  arrivalDelay?: number;
-}
-
-export interface ParsedCommonDeparture {
-  scheduledDeparturePlatform?: string;
-  departurePlatform?: string;
-  scheduledDeparture: number;
-  departure: number;
-  departureDelay?: number;
-}

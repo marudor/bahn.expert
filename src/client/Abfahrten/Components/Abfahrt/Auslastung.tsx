@@ -28,12 +28,12 @@ const Auslastung = ({
   auslastungsFeature,
 }: Props) => {
   useEffect(() => {
-    if (auslastungsFeature && !auslastung && abfahrt.scheduledDeparture) {
+    if (auslastungsFeature && !auslastung && abfahrt.departure) {
       getAuslastung(
         abfahrt.trainNumber,
-        abfahrt.currentStationEva,
+        abfahrt.currentStation.id,
         abfahrt.destination,
-        abfahrt.scheduledDeparture
+        abfahrt.departure.scheduledTime
       );
     }
   }, [abfahrt, auslastung, auslastungsFeature, getAuslastung]);
@@ -54,7 +54,7 @@ export default connect<StateProps, DispatchProps, OwnProps, AbfahrtenState>(
     auslastungsFeature: state.features.auslastung,
     auslastung:
       state.auslastung.auslastung[
-        `${props.abfahrt.currentStationEva}/${props.abfahrt.destination}/${
+        `${props.abfahrt.currentStation.id}/${props.abfahrt.destination}/${
           props.abfahrt.trainNumber
         }`
       ],

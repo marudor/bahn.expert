@@ -37,14 +37,14 @@ const RouteSegment = ({ segment, detail, onTrainClick }: Props) => {
         </div>
         {detail && (
           <>
-            {segment.scheduledDeparture && segment.departureReihung && (
+            {segment.departure.reihung && (
               <Reihung
                 className={classes.reihung}
                 useZoom
                 fahrzeugGruppe={false}
                 trainNumber={segment.trainNumber}
                 currentStation={segment.segmentStart.title}
-                scheduledDeparture={segment.scheduledDeparture}
+                scheduledDeparture={segment.departure.scheduledTime}
               />
             )}
             <StopList stops={segment.stops} />
@@ -58,18 +58,18 @@ const RouteSegment = ({ segment, detail, onTrainClick }: Props) => {
   return (
     <>
       <div className={cc(classes.main)}>
-        <Time real={segment.departure} delay={segment.departureDelay} />
+        <Time real={segment.departure.time} delay={segment.departure.delay} />
         <span>{segment.segmentStart.title}</span>
         <Platform
-          real={segment.departurePlatform}
-          scheduled={segment.scheduledDeparturePlatform}
+          real={segment.departure.platform}
+          scheduled={segment.departure.scheduledPlatform}
         />
         {train}
-        <Time real={segment.arrival} delay={segment.arrivalDelay} />
+        <Time real={segment.arrival.time} delay={segment.arrival.delay} />
         <span>{segment.segmentDestination.title}</span>
         <Platform
-          real={segment.arrivalPlatform}
-          scheduled={segment.scheduledArrivalPlatform}
+          real={segment.arrival.platform}
+          scheduled={segment.arrival.scheduledPlatform}
         />
       </div>
       {segment.hasOwnProperty('changeDuration') && (
