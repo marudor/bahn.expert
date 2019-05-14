@@ -5,6 +5,7 @@ import useStyles from './WagenLink.style';
 interface Props {
   fahrzeugtyp: string;
   fahrzeugnummer: string;
+  type: string;
 }
 
 const wagenWithImage = [
@@ -24,7 +25,7 @@ const wagenWithImage = [
   'Bvmmz',
   'Bvmsz',
 ];
-const WagenLink = ({ fahrzeugtyp, fahrzeugnummer }: Props) => {
+const WagenLink = ({ fahrzeugtyp, fahrzeugnummer, type }: Props) => {
   const classes = useStyles();
   const imageName = useMemo(() => {
     const uicType = Number.parseInt(fahrzeugnummer.substr(8, 3), 10);
@@ -37,17 +38,17 @@ const WagenLink = ({ fahrzeugtyp, fahrzeugnummer }: Props) => {
     return image;
   }, [fahrzeugnummer, fahrzeugtyp]);
 
-  if (!wagenWithImage.includes(fahrzeugtyp)) {
+  if (type !== 'IC' || !wagenWithImage.includes(fahrzeugtyp)) {
     return <span className={classes.type}>{fahrzeugtyp}</span>;
   }
 
   return (
     <a
       onClick={stopPropagation}
-      href={`/WRSheets/wagen/${imageName}.jpg`}
-      target="_blank"
-      rel="noreferrer noopener"
       className={classes.type}
+      href={`/WRSheets/Wagen/${imageName}.jpg`}
+      target="_blank"
+      rel="noopener noreferrer"
     >
       {fahrzeugtyp}
     </a>

@@ -1,4 +1,4 @@
-import { Fahrzeug } from 'types/reihung';
+import { Fahrzeug, FahrzeugType } from 'types/reihung';
 import ActionAccessible from '@material-ui/icons/Accessible';
 import ActionMotorcycle from '@material-ui/icons/Motorcycle';
 import cc from 'classnames';
@@ -10,6 +10,7 @@ import WagenLink from './WagenLink';
 export type InheritedProps = {
   scale: number;
   correctLeft: number;
+  type: FahrzeugType;
 };
 
 export type OwnProps = InheritedProps & {
@@ -101,6 +102,7 @@ const FahrzeugComp = ({
   scale,
   correctLeft,
   comfort,
+  type,
 }: Props) => {
   const classes = useStyles();
   const info = useMemo(() => getFahrzeugInfo(fahrzeug, comfort), [
@@ -137,6 +139,7 @@ const FahrzeugComp = ({
       </span>
       {info.comfort && <span className={classes.comfort} />}
       <WagenLink
+        type={type}
         fahrzeugnummer={fahrzeug.fahrzeugnummer}
         fahrzeugtyp={fahrzeug.fahrzeugtyp}
       />

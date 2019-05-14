@@ -74,11 +74,6 @@ export async function createApp(wsServer: undefined | Server) {
   }
 
   app.use(hotHelper(() => apiRoutes.routes()));
-  app.use((ctx, next) => {
-    if (!ctx.url.startsWith('/api')) {
-      return next();
-    }
-  });
 
   app.use(
     koaStatic(
@@ -90,6 +85,14 @@ export async function createApp(wsServer: undefined | Server) {
       }
     )
   );
+
+  app.use((ctx, next) => {
+    if (ctx.url.startsWith('/api') || ctx.url.startsWith('/WRSheets')) {
+      return;
+    }
+
+    return next();
+  });
 
   app.use(hotHelper(() => seoController));
 
