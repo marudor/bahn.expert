@@ -1,11 +1,10 @@
-import { Fahrzeuggruppe, FahrzeugType } from 'types/reihung';
+import { Fahrzeuggruppe } from 'types/reihung';
 import BRInfo from './BRInfo';
 import Fahrzeug, { InheritedProps } from './Fahrzeug';
 import React from 'react';
 import useStyles from './Gruppe.style';
 
 type OwnProps = InheritedProps & {
-  type: FahrzeugType;
   gruppe: Fahrzeuggruppe;
   showDestination: boolean;
   showGruppenZugnummer: boolean;
@@ -20,7 +19,6 @@ const Gruppe = ({
   showFahrzeugGruppe,
   showGruppenZugnummer,
   originalTrainNumber,
-  type,
   ...rest
 }: Props) => {
   const classes = useStyles();
@@ -66,7 +64,7 @@ const Gruppe = ({
       )}
       {showGruppenZugnummer && gruppe.verkehrlichezugnummer && (
         <span className={classes.bezeichnung} style={nummerPos}>
-          {type} {gruppe.verkehrlichezugnummer}
+          {rest.type} {gruppe.verkehrlichezugnummer}
         </span>
       )}
       {showFahrzeugGruppe && (
