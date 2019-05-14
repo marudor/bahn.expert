@@ -44,7 +44,7 @@ function getErrorText(
       if (error.code === 'ECONNABORTED') {
         return 'Timeout - bitte erneut versuchen';
       }
-      if (error && error.response) {
+      if (error && error.response && error.response.data.error) {
         return getErrorText(error.response.data.error, staticContext);
       }
 
