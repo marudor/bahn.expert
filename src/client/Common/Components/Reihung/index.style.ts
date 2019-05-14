@@ -9,7 +9,13 @@ export default createStyles(theme => ({
     let height = 6;
 
     if (fahrzeugGruppe) height += 1;
-    if (reihung && reihung.differentDestination) height += 1;
+    if (
+      reihung &&
+      (reihung.differentDestination ||
+        (reihung.zuggattung === 'ICE' &&
+          reihung.allFahrzeuggruppe.find(g => Boolean(g.br))))
+    )
+      height += 1;
     if (reihung && reihung.differentZugnummer) height += 1;
 
     return {

@@ -1,5 +1,5 @@
-import { makeStyles, MergedTheme } from '@material-ui/styles';
-export default makeStyles<MergedTheme>({
+import { makeStyles } from '@material-ui/styles';
+export default makeStyles({
   datePicker: {
     '& input': {
       paddingLeft: 10,

@@ -1,6 +1,7 @@
 import { Abfahrt } from 'types/abfahrten';
 import { isBefore } from 'date-fns';
-import React, { SyntheticEvent } from 'react';
+import React from 'react';
+import stopPropagation from 'Common/stopPropagation';
 
 type Props = {
   abfahrt: Abfahrt;
@@ -10,7 +11,6 @@ type Props = {
 // 30 Minutes in ms
 const timeConstraint = 30 * 60 * 1000;
 
-const stopPropagation = (e: SyntheticEvent) => e.stopPropagation();
 const TravelynxLink = ({ abfahrt, className }: Props) =>
   abfahrt.departure &&
   !abfahrt.departure.isCancelled &&

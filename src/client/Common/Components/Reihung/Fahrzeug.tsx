@@ -1,14 +1,12 @@
-import { Fahrzeug, FahrzeugType, SpecificType } from 'types/reihung';
+import { Fahrzeug } from 'types/reihung';
 import ActionAccessible from '@material-ui/icons/Accessible';
 import ActionMotorcycle from '@material-ui/icons/Motorcycle';
 import cc from 'classnames';
 import MapsLocalDining from '@material-ui/icons/LocalDining';
-import React from 'react';
+import React, { useMemo } from 'react';
 import useStyles from './Fahrzeug.style';
 
 export type InheritedProps = {
-  specificType?: SpecificType;
-  type: FahrzeugType;
   scale: number;
   correctLeft: number;
 };
@@ -17,6 +15,7 @@ export type OwnProps = InheritedProps & {
   fahrzeug: Fahrzeug;
   destination?: string;
   wrongWing: boolean;
+  comfort?: string[];
 };
 
 type Props = OwnProps;
@@ -34,66 +33,9 @@ type AdditionalFahrzeugInfos = {
   comfort: boolean;
 };
 
-const comfort = [
-  {
-    ICE1: ['11'],
-    ICE2: ['26', '36'],
-    ICE3: ['28', '38'],
-    ICE3V: ['26', '36'],
-    ICE4: ['11'],
-    ICET411: ['28', '38'],
-    ICET415: ['28', '38'],
-    IC2: ['5'],
-    MET: ['6'],
-  },
-  {
-    ICE1: ['7'],
-    ICE2: ['23', '33'],
-    ICE3: ['27', '37'],
-    ICE3V: ['25', '35'],
-    ICE4: ['7'],
-    ICET411: ['27', '37'],
-    ICET415: ['23', '33'],
-    IC2: ['4'],
-    MET: ['5'],
-  },
-];
-
-const comfortICRegexp = [/Avmm?z$/, /Bvmm?sz|Bimm?z$/];
-
-function comfortLogic(
-  fahrzeug: Fahrzeug,
-  klasse: number,
-  type: FahrzeugType,
-  specificType?: SpecificType
-) {
-  const klasseIndex = klasse - 1;
-  const comfortSeats =
-    specificType && comfort[klasseIndex] && comfort[klasseIndex][specificType];
-
-  if (comfortSeats) {
-    return comfortSeats.includes(fahrzeug.wagenordnungsnummer);
-  } else if (type === 'IC') {
-    if (
-      fahrzeug.wagenordnungsnummer === '12' &&
-      fahrzeug.fahrzeugtyp.match(comfortICRegexp[klasseIndex])
-    ) {
-      return true;
-    } else if (
-      fahrzeug.wagenordnungsnummer === '10' &&
-      fahrzeug.fahrzeugtyp.match(comfortICRegexp[klasseIndex])
-    ) {
-      return true;
-    }
-  }
-
-  return false;
-}
-
 function getFahrzeugInfo(
   fahrzeug: Fahrzeug,
-  type: FahrzeugType,
-  specificType?: SpecificType
+  comfortData?: string[]
 ): AdditionalFahrzeugInfos {
   const data: AdditionalFahrzeugInfos = {
     klasse: 0,
@@ -145,21 +87,25 @@ function getFahrzeugInfo(
       data.klasse = 4;
   }
 
-  data.comfort = comfortLogic(fahrzeug, data.klasse, type, specificType);
+  if (comfortData) {
+    data.comfort = comfortData.includes(fahrzeug.wagenordnungsnummer);
+  }
 
   return data;
 }
 
 const FahrzeugComp = ({
   fahrzeug,
-  type,
-  specificType,
   wrongWing,
   scale,
   correctLeft,
+  comfort,
 }: Props) => {
   const classes = useStyles();
-  const info = getFahrzeugInfo(fahrzeug, type, specificType);
+  const info = useMemo(() => getFahrzeugInfo(fahrzeug, comfort), [
+    comfort,
+    fahrzeug,
+  ]);
 
   const { startprozent, endeprozent } = fahrzeug.positionamhalt;
   const start = Number.parseInt(startprozent, 10);

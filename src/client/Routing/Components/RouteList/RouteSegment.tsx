@@ -27,7 +27,7 @@ const RouteSegment = ({ segment, detail, onTrainClick }: Props) => {
         className={classes.train}
       >
         <div className={classes.trainInfo}>
-          <span className={classes.trainMargin}>{segment.train}</span>
+          <span className={classes.trainMargin}>{segment.train.full}</span>
           <span className={cc(classes.trainMargin, classes.destination)}>
             {segment.finalDestination}
           </span>

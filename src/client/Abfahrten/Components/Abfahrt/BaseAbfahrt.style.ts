@@ -1,6 +1,6 @@
-import { makeStyles, MergedTheme } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/styles';
 
-export default makeStyles<MergedTheme>(theme => ({
+export default makeStyles(theme => ({
   main: {
     lineHeight: 1.2,
     flexShrink: 0,

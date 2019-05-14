@@ -4,7 +4,6 @@ declare module '@material-ui/styles' {
   } from '@material-ui/styles/createGenerateClassName';
   export { default as getThemeProps } from '@material-ui/styles/getThemeProps';
   export { default as jssPreset } from '@material-ui/styles/jssPreset';
-  export { default as makeStyles } from '@material-ui/styles/makeStyles';
   export { default as mergeClasses } from '@material-ui/styles/mergeClasses';
   export {
     default as ServerStyleSheets,
@@ -20,6 +19,7 @@ declare module '@material-ui/styles' {
     CSSProperties,
     StyleRules,
     WithStyles,
+    WithStylesOptions,
   } from '@material-ui/styles/withStyles';
   export {
     default as withTheme,
@@ -32,6 +32,7 @@ declare module '@material-ui/styles' {
     StyleRules,
     StyleRulesCallback,
   } from '@material-ui/styles/withStyles';
+  import { StylesHook } from '@material-ui/styles/makeStyles';
   import { Theme as MuiTheme } from '@material-ui/core';
   import { Theme as MaruTheme } from 'maru';
 
@@ -49,4 +50,13 @@ declare module '@material-ui/styles' {
   export function createStyles<ClassKey extends string, Props extends object>(
     styles: StyleRulesCallback<MergedTheme, Props, ClassKey>
   ): StyleRulesCallback<MergedTheme, Props, ClassKey>;
+
+  export function makeStyles<
+    Theme = MergedTheme,
+    Props extends {} = {},
+    ClassKey extends string = string
+  >(
+    styles: Styles<Theme, Props, ClassKey>,
+    options?: WithStylesOptions<Theme>
+  ): StylesHook<Styles<Theme, Props, ClassKey>>;
 }
