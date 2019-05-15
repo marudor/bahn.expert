@@ -35,8 +35,8 @@ const Gruppe = ({
     bottom: `${currentBottom}em`,
   };
 
-  const extraInfoLine =
-    Boolean(showDestination || gruppe.br) && gruppe.allFahrzeug.length > 1;
+  const showBR = gruppe.br && (gruppe.br.BR || !gruppe.br.noPdf);
+  const extraInfoLine = Boolean(showDestination || showBR);
 
   if (extraInfoLine) currentBottom += 1;
 
@@ -58,7 +58,9 @@ const Gruppe = ({
       ))}
       {extraInfoLine && (
         <span className={classes.bezeichnung} style={destinationPos}>
-          {gruppe.br && <BRInfo className={classes.br} br={gruppe.br} />}
+          {showBR && gruppe.br && (
+            <BRInfo className={classes.br} br={gruppe.br} />
+          )}
           {showDestination && gruppe.zielbetriebsstellename}
         </span>
       )}
