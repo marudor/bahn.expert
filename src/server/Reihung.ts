@@ -88,7 +88,7 @@ const getDEBR = (
   const numberSerial = Number.parseInt(serial, 10);
 
   switch (code) {
-    case '8012':
+    case '0812':
     case '1412':
     case '1812':
     case '2412':
@@ -213,13 +213,13 @@ const specificBR = (
         comfort: ['4', '5'],
       };
     }
-
-    return {
-      name: zuggattung,
-      noPdf: true,
-      comfort: zuggattung === 'IC' ? ['12', '10'] : undefined,
-    };
   }
+
+  return {
+    name: zuggattung,
+    noPdf: true,
+    comfort: zuggattung === 'IC' ? ['12', '10'] : undefined,
+  };
 };
 
 function fahrtrichtung(fahrzeuge: Fahrzeug[]) {
