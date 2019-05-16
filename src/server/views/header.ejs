@@ -31,6 +31,9 @@
   <link rel="shortcut icon" href="/favicon.ico?v=qABYO4lXNJ">
   <meta name="msapplication-TileColor" content="#b91d47">
   <meta name="theme-color" content="#ffffff">
+  <% if (jssCss) {%>
+    <style id="jss"><%- jssCss %></style>
+  <%}%>
   <% cssBundles.forEach(function(css){
     if (css) { %>
       <link rel="stylesheet" href="/static/<%- css %>" />

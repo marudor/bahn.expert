@@ -115,12 +115,12 @@ export default async (ctx: Context) => {
       clientState: serialize(state),
       configOverride: serialize(configOverride),
       imprint: serialize(global.IMPRINT),
+      jssCss: sheets.toString(),
     });
     ctx.body += app;
 
     ctx.body += footerTemplate({
       jsBundles: ctx.stats.main.js,
-      jssCss: sheets.toString(),
     });
   }
 };

@@ -50,7 +50,7 @@ const AuslastungsDisplay = (props: Props) => {
 
   return (
     <div className={classes.main}>
-      <div className={classes.entry}>
+      <div data-testid="first" className={classes.entry}>
         <span>1</span>
         <Tooltip title={getTooltipText(auslastung.first)}>
           <span className={`${classes.icon} ${classes.first}`}>
@@ -58,7 +58,7 @@ const AuslastungsDisplay = (props: Props) => {
           </span>
         </Tooltip>
       </div>
-      <div className={classes.entry}>
+      <div data-testid="second" className={classes.entry}>
         <span>2</span>
         <Tooltip title={getTooltipText(auslastung.second)}>
           <span className={`${classes.icon} ${classes.second}`}>

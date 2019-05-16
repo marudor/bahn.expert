@@ -1,7 +1,4 @@
 </div>
-<% if (jssCss) {%>
-    <style id="jss-server-side"><%- jssCss %></style>
-  <%}%>
 <% jsBundles.forEach(function(js){ %>
   <script src="/static/<%- js %>" defer></script>
 <% }); %>

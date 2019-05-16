@@ -4,24 +4,24 @@ import { ThemeProvider } from '@material-ui/styles';
 import { ThemeType } from './Themes/type';
 import App from './App';
 import createTheme from './Themes';
-import React, { useMemo } from 'react';
+import React, { ReactNode, useMemo } from 'react';
 
 interface StateProps {
   themeType: ThemeType;
 }
 
-type Props = StateProps;
+interface OwnProps {
+  children?: ReactNode;
+}
 
-const ThemeWrap = ({ themeType }: Props) => {
+type Props = StateProps & OwnProps;
+
+const ThemeWrap = ({ themeType, children = <App /> }: Props) => {
   const theme = useMemo(() => createTheme(themeType), [themeType]);
 
-  return (
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
-  );
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 };
 
-export default connect<StateProps, {}, {}, CommonState>(state => ({
+export default connect<StateProps, OwnProps, {}, CommonState>(state => ({
   themeType: state.config.theme,
 }))(ThemeWrap);
