@@ -1,6 +1,6 @@
 import { AbfahrtenState } from 'AppState';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from 'react-helmet';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { Station } from 'types/station';
 import { StationSearchType } from 'Common/config';
