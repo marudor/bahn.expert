@@ -1,7 +1,7 @@
-import { createStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/styles';
 import { ReduxProps } from '.';
 
-export default createStyles(theme => ({
+export default makeStyles(theme => ({
   wrap: {
     overflowX: 'auto',
   },

@@ -4,7 +4,7 @@ export default makeStyles(theme => ({
   messages: {
     color: theme.colors.red,
     overflow: 'hidden',
-    // textOverflow: 'ellipsis',
+    textOverflow: 'ellipsis',
   },
   cancelled: theme.mixins.cancelled,
 }));

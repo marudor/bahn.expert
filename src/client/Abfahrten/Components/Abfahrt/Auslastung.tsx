@@ -8,7 +8,6 @@ import Loading from 'Common/Components/Loading';
 import React, { useEffect } from 'react';
 
 type StateProps = {
-  auslastungsFeature: boolean;
   auslastung?: null | Route$Auslastung;
 };
 type DispatchProps = ResolveThunks<{
@@ -21,14 +20,9 @@ type ReduxProps = StateProps & DispatchProps & OwnProps;
 
 type Props = ReduxProps;
 
-const Auslastung = ({
-  auslastung,
-  getAuslastung,
-  abfahrt,
-  auslastungsFeature,
-}: Props) => {
+const Auslastung = ({ auslastung, getAuslastung, abfahrt }: Props) => {
   useEffect(() => {
-    if (auslastungsFeature && !auslastung && abfahrt.departure) {
+    if (!auslastung && abfahrt.departure) {
       getAuslastung(
         abfahrt.train.number,
         abfahrt.currentStation.id,
@@ -36,9 +30,9 @@ const Auslastung = ({
         abfahrt.departure.scheduledTime
       );
     }
-  }, [abfahrt, auslastung, auslastungsFeature, getAuslastung]);
+  }, [abfahrt, auslastung, getAuslastung]);
 
-  if (auslastung === null || !auslastungsFeature) {
+  if (auslastung === null) {
     return null;
   }
 
@@ -51,7 +45,6 @@ const Auslastung = ({
 
 export default connect<StateProps, DispatchProps, OwnProps, AbfahrtenState>(
   (state, props) => ({
-    auslastungsFeature: state.features.auslastung,
     auslastung:
       state.auslastung.auslastung[
         `${props.abfahrt.currentStation.id}/${props.abfahrt.destination}/${
