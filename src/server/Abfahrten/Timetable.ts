@@ -3,7 +3,7 @@
  ** This algorithm is heavily inspired by https://github.com/derf/Travel-Status-DE-IRIS
  ** derf did awesome work reverse engineering the XML stuff!
  */
-import { Abfahrt } from 'types/abfahrten';
+import { Abfahrt, Train } from 'types/abfahrten';
 import {
   addHours,
   addMinutes,
@@ -262,7 +262,7 @@ export default class Timetable {
 
     timetable.destination =
       (last && last.name) || timetable.scheduledDestination;
-    timetable.via = this.getVia(timetable);
+    this.calculateVia(timetable);
     let filteredRoutePost = [];
 
     if (timetable.routePost) {
@@ -366,35 +366,31 @@ export default class Timetable {
       lageplan,
     };
   }
-  getVia(timetable: any, maxParts: number = 3): string[] {
-    const via: string[] = [...timetable.routePost]
-      .filter(v => !v.isCancelled)
-      .map(r => r.name);
+  calculateVia(timetable: any, maxParts: number = 3) {
+    const via: Train[] = [...timetable.routePost].filter(v => !v.isCancelled);
 
     via.pop();
-    const important = via.filter(v => v.match(/(HB$|Hbf|Centraal|Flughafen)/));
-    let viaShow: string[] = [];
+    const important = via.filter(v =>
+      v.name.match(/(HB$|Hbf|Centraal|Flughafen)/)
+    );
 
-    if (via.length <= maxParts) {
-      viaShow = via;
+    const showing = [];
+
+    if (important.length >= maxParts) {
+      showing.push(via[0]);
     } else {
-      if (important.length >= maxParts) {
-        viaShow.push(via[0]);
-      } else {
-        viaShow = via.splice(0, maxParts - important.length);
-      }
-
-      while (viaShow.length < maxParts && important.length) {
-        // @ts-ignore this is correct
-        const stop: string = important.shift();
-
-        if (!viaShow.includes(stop)) {
-          viaShow.push(stop);
-        }
-      }
+      showing.push(...via.splice(0, maxParts - important.length));
     }
 
-    return viaShow.map(v => v.replace(' Hbf', ''));
+    while (showing.length < maxParts && important.length) {
+      // @ts-ignore this is correct
+      const stop: Train = important.shift();
+
+      if (!showing.includes(stop)) {
+        showing.push(stop);
+      }
+    }
+    showing.forEach(v => (v.showVia = true));
   }
   parseRef(tl: xmljs.Element) {
     const { trainType, trainNumber } = parseTl(tl);

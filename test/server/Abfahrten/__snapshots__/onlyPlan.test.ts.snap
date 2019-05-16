@@ -84,6 +84,7 @@ Object {
         },
         Object {
           "name": "Düsseldorf-Flingern",
+          "showVia": true,
         },
         Object {
           "name": "Düsseldorf-Gerresheim",
@@ -114,6 +115,7 @@ Object {
         },
         Object {
           "name": "Wuppertal Hbf",
+          "showVia": true,
         },
         Object {
           "name": "Wuppertal-Unterbarmen",
@@ -141,6 +143,7 @@ Object {
         },
         Object {
           "name": "Gevelsberg Hbf",
+          "showVia": true,
         },
         Object {
           "name": "Gevelsberg-Knapp",
@@ -169,11 +172,6 @@ Object {
         "thirdParty": undefined,
         "type": "S",
       },
-      "via": Array [
-        "Düsseldorf-Flingern",
-        "Wuppertal",
-        "Gevelsberg",
-      ],
     },
   ],
   "lageplan": undefined,
@@ -259,9 +257,11 @@ Object {
         },
         Object {
           "name": "Hamburg-Harburg",
+          "showVia": true,
         },
         Object {
           "name": "Hamburg Hbf",
+          "showVia": true,
         },
         Object {
           "name": "Hamburg Dammtor",
@@ -281,11 +281,6 @@ Object {
         "thirdParty": undefined,
         "type": "ICE",
       },
-      "via": Array [
-        "Hamburg-Harburg",
-        "Hamburg",
-        "Hamburg Dammtor",
-      ],
     },
     Object {
       "arrival": Object {
@@ -372,7 +367,6 @@ Object {
         "thirdParty": undefined,
         "type": "ICE",
       },
-      "via": Array [],
     },
   ],
   "lageplan": undefined,
@@ -465,6 +459,7 @@ Object {
         },
         Object {
           "name": "Düsseldorf-Flingern",
+          "showVia": true,
         },
         Object {
           "name": "Düsseldorf-Gerresheim",
@@ -495,6 +490,7 @@ Object {
         },
         Object {
           "name": "Wuppertal Hbf",
+          "showVia": true,
         },
         Object {
           "name": "Wuppertal-Unterbarmen",
@@ -522,6 +518,7 @@ Object {
         },
         Object {
           "name": "Gevelsberg Hbf",
+          "showVia": true,
         },
         Object {
           "name": "Gevelsberg-Knapp",
@@ -550,11 +547,6 @@ Object {
         "thirdParty": undefined,
         "type": "S",
       },
-      "via": Array [
-        "Düsseldorf-Flingern",
-        "Wuppertal",
-        "Gevelsberg",
-      ],
     },
   ],
   "lageplan": undefined,
@@ -647,6 +639,7 @@ Object {
         },
         Object {
           "name": "Düsseldorf-Flingern",
+          "showVia": true,
         },
         Object {
           "name": "Düsseldorf-Gerresheim",
@@ -677,6 +670,7 @@ Object {
         },
         Object {
           "name": "Wuppertal Hbf",
+          "showVia": true,
         },
         Object {
           "name": "Wuppertal-Unterbarmen",
@@ -704,6 +698,7 @@ Object {
         },
         Object {
           "name": "Gevelsberg Hbf",
+          "showVia": true,
         },
         Object {
           "name": "Gevelsberg-Knapp",
@@ -732,11 +727,6 @@ Object {
         "thirdParty": undefined,
         "type": "S",
       },
-      "via": Array [
-        "Düsseldorf-Flingern",
-        "Wuppertal",
-        "Gevelsberg",
-      ],
     },
   ],
   "lageplan": undefined,
@@ -807,6 +797,7 @@ Object {
         },
         Object {
           "name": "Göttingen",
+          "showVia": true,
         },
         Object {
           "name": "Kassel-Wilhelmshöhe",
@@ -816,9 +807,11 @@ Object {
         },
         Object {
           "name": "Würzburg Hbf",
+          "showVia": true,
         },
         Object {
           "name": "Nürnberg Hbf",
+          "showVia": true,
         },
         Object {
           "name": "Ingolstadt Hbf",
@@ -838,11 +831,6 @@ Object {
         "thirdParty": undefined,
         "type": "ICE",
       },
-      "via": Array [
-        "Göttingen",
-        "Würzburg",
-        "Nürnberg",
-      ],
     },
   ],
   "lageplan": undefined,
@@ -896,6 +884,7 @@ Object {
         },
         Object {
           "name": "Göttingen",
+          "showVia": true,
         },
         Object {
           "name": "Kassel-Wilhelmshöhe",
@@ -905,9 +894,11 @@ Object {
         },
         Object {
           "name": "Würzburg Hbf",
+          "showVia": true,
         },
         Object {
           "name": "Nürnberg Hbf",
+          "showVia": true,
         },
         Object {
           "name": "Ingolstadt Hbf",
@@ -927,11 +918,6 @@ Object {
         "thirdParty": undefined,
         "type": "ICE",
       },
-      "via": Array [
-        "Göttingen",
-        "Würzburg",
-        "Nürnberg",
-      ],
     },
   },
 }
@@ -1009,9 +995,11 @@ Object {
         },
         Object {
           "name": "Köln Hbf",
+          "showVia": true,
         },
         Object {
           "name": "Frankfurt (M)  Flughafen Fernbf",
+          "showVia": true,
         },
         Object {
           "name": "Frankfurt (Main) Hbf",
@@ -1028,10 +1016,6 @@ Object {
         "thirdParty": undefined,
         "type": "ICE",
       },
-      "via": Array [
-        "Köln",
-        "Frankfurt (M)  Flughafen Fernbf",
-      ],
     },
   ],
   "lageplan": undefined,
@@ -1084,12 +1068,15 @@ Object {
         },
         Object {
           "name": "München Harras",
+          "showVia": true,
         },
         Object {
           "name": "München-Solln",
+          "showVia": true,
         },
         Object {
           "name": "Holzkirchen",
+          "showVia": true,
         },
         Object {
           "name": "Darching",
@@ -1133,11 +1120,6 @@ Object {
         "thirdParty": "BOB",
         "type": "RB",
       },
-      "via": Array [
-        "München Harras",
-        "München-Solln",
-        "Holzkirchen",
-      ],
     },
   ],
   "lageplan": undefined,
@@ -1181,12 +1163,15 @@ Object {
         },
         Object {
           "name": "München Harras",
+          "showVia": true,
         },
         Object {
           "name": "München-Solln",
+          "showVia": true,
         },
         Object {
           "name": "Holzkirchen",
+          "showVia": true,
         },
         Object {
           "name": "Warngau",
@@ -1218,11 +1203,6 @@ Object {
         "thirdParty": "BOB",
         "type": "RB",
       },
-      "via": Array [
-        "München Harras",
-        "München-Solln",
-        "Holzkirchen",
-      ],
     },
     "7715731422484591852-1903171304": Object {
       "arrival": undefined,
@@ -1262,12 +1242,15 @@ Object {
         },
         Object {
           "name": "München Harras",
+          "showVia": true,
         },
         Object {
           "name": "München-Solln",
+          "showVia": true,
         },
         Object {
           "name": "Holzkirchen",
+          "showVia": true,
         },
         Object {
           "name": "Warngau",
@@ -1302,11 +1285,6 @@ Object {
         "thirdParty": "BOB",
         "type": "RB",
       },
-      "via": Array [
-        "München Harras",
-        "München-Solln",
-        "Holzkirchen",
-      ],
     },
   },
 }
@@ -1393,7 +1371,6 @@ Object {
         "thirdParty": "ABR",
         "type": "RB",
       },
-      "via": Array [],
     },
   ],
   "lageplan": undefined,
@@ -1443,12 +1420,15 @@ Object {
         },
         Object {
           "name": "Düsseldorf Flughafen",
+          "showVia": true,
         },
         Object {
           "name": "Duisburg Hbf",
+          "showVia": true,
         },
         Object {
           "name": "Mülheim (Ruhr) Hbf",
+          "showVia": true,
         },
         Object {
           "name": "Essen Hbf",
@@ -1492,11 +1472,6 @@ Object {
         "thirdParty": "ABR",
         "type": "RB",
       },
-      "via": Array [
-        "Düsseldorf Flughafen",
-        "Duisburg",
-        "Mülheim (Ruhr)",
-      ],
     },
   ],
   "lageplan": undefined,
@@ -1589,6 +1564,7 @@ Object {
         },
         Object {
           "name": "Düsseldorf-Flingern",
+          "showVia": true,
         },
         Object {
           "name": "Düsseldorf-Gerresheim",
@@ -1619,6 +1595,7 @@ Object {
         },
         Object {
           "name": "Wuppertal Hbf",
+          "showVia": true,
         },
         Object {
           "name": "Wuppertal-Unterbarmen",
@@ -1646,6 +1623,7 @@ Object {
         },
         Object {
           "name": "Gevelsberg Hbf",
+          "showVia": true,
         },
         Object {
           "name": "Gevelsberg-Knapp",
@@ -1674,11 +1652,6 @@ Object {
         "thirdParty": undefined,
         "type": "S",
       },
-      "via": Array [
-        "Düsseldorf-Flingern",
-        "Wuppertal",
-        "Gevelsberg",
-      ],
     },
   ],
   "lageplan": undefined,
@@ -1750,9 +1723,11 @@ Object {
         },
         Object {
           "name": "Köln Hbf",
+          "showVia": true,
         },
         Object {
           "name": "Frankfurt (M)  Flughafen Fernbf",
+          "showVia": true,
         },
         Object {
           "name": "Frankfurt (Main) Hbf",
@@ -1769,10 +1744,6 @@ Object {
         "thirdParty": undefined,
         "type": "ICE",
       },
-      "via": Array [
-        "Köln",
-        "Frankfurt (M)  Flughafen Fernbf",
-      ],
     },
   ],
   "lageplan": undefined,
@@ -1854,6 +1825,7 @@ Object {
         },
         Object {
           "name": "Göttingen",
+          "showVia": true,
         },
         Object {
           "name": "Kassel-Wilhelmshöhe",
@@ -1863,6 +1835,7 @@ Object {
         },
         Object {
           "name": "Würzburg Hbf",
+          "showVia": true,
         },
         Object {
           "name": "Treuchtlingen",
@@ -1872,6 +1845,7 @@ Object {
         },
         Object {
           "name": "Augsburg Hbf",
+          "showVia": true,
         },
         Object {
           "name": "München Hbf",
@@ -1888,11 +1862,6 @@ Object {
         "thirdParty": undefined,
         "type": "ICE",
       },
-      "via": Array [
-        "Göttingen",
-        "Würzburg",
-        "Augsburg",
-      ],
     },
   ],
   "lageplan": undefined,

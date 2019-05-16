@@ -24,6 +24,7 @@ export type Message = {
 export type Train = {
   isAdditional?: boolean;
   isCancelled?: boolean;
+  showVia?: boolean;
   name: string;
 };
 
@@ -65,7 +66,6 @@ export type Abfahrt = {
   scheduledPlatform: string;
   substitute: boolean;
   train: TrainInfo;
-  via: string[];
 };
 
 export type Departures = {

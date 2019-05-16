@@ -1,8 +1,8 @@
 import { Abfahrt } from 'types/abfahrten';
 import cc from 'classnames';
+import Info from './Info';
 import React from 'react';
 import useStyles from './Mid.style';
-import Via from './Via';
 
 export type OwnProps = {
   abfahrt: Abfahrt;
@@ -23,7 +23,7 @@ const Mid = ({ abfahrt, detail }: Props) => {
         classes.main
       )}
     >
-      <Via abfahrt={abfahrt} detail={detail} />
+      <Info abfahrt={abfahrt} detail={detail} />
       <div
         className={cc(classes.destination, {
           [classes.cancelled]: abfahrt.isCancelled,
