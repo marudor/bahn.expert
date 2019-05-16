@@ -190,6 +190,90 @@ const getSpecificBR = (
   return info;
 };
 
+// Reihenfolge wichtig! Wenn nicht eines der oberen DANN sind die unteren "unique"
+const ICETspecific = ['ABpmz', 'Bpmkz'];
+const ICE4specific = ['Bpmdz', 'Bpmdzf'];
+const ICE3Velarospecific = ['ARmz'];
+const ICE3specific = ['Apmzf', 'Bpmbz', 'BRmz'];
+const METspecific = ['Apmbzf'];
+const ICE2specific = ['Apmz', 'Bpmz'];
+const ICE1specific = ['Avmz', 'Bvmbz', 'Bvmz'];
+// Rausfinden was für ein ICE es genau ist
+
+function brByFahrzeuge(fahrzeuge: Fahrzeug[]) {
+  const wagenTypes = fahrzeuge.map(f => f.fahrzeugtyp);
+
+  if (wagenTypes.some(t => ICETspecific.includes(t))) {
+    return {
+      name: 'ICE T',
+      BR: fahrzeuge.length === 5 ? '415' : '411',
+    };
+  }
+
+  if (fahrzeuge.length > 10 && wagenTypes.some(t => ICE4specific.includes(t))) {
+    return {
+      name: 'ICE 4',
+      BR: '412',
+    };
+  }
+
+  if (wagenTypes.some(t => ICE3Velarospecific.includes(t))) {
+    return {
+      name: 'ICE 3 Velaro',
+      BR: '406',
+    };
+  }
+
+  const triebboepfe = fahrzeuge.filter(
+    f => f.kategorie === 'LOK' || f.kategorie === 'TRIEBKOPF'
+  );
+
+  if (triebboepfe.length === 1) {
+    return {
+      name: 'ICE 2',
+      BR: '403',
+    };
+  }
+  if (triebboepfe.length === 2) {
+    return {
+      name: 'ICE 1',
+      BR: '401',
+    };
+  }
+
+  if (wagenTypes.some(t => METspecific.includes(t))) {
+    return {
+      name: 'MET',
+      pdf: 'MET',
+      comfort: ['5', '6'],
+    };
+  }
+
+  if (wagenTypes.some(t => ICE3specific.includes(t))) {
+    const BR = wagenTypes.some(t => t === 'Apmz') ? '407' : '403';
+    const redesign = wagenTypes.some(t => t === 'WRmz');
+
+    return {
+      name: 'ICE 3',
+      BR,
+      redesign,
+      noPdf: BR === '403' && !redesign,
+    };
+  }
+  if (wagenTypes.some(t => ICE2specific.includes(t))) {
+    return {
+      name: 'ICE 2',
+      BR: '403',
+    };
+  }
+  if (wagenTypes.some(t => ICE1specific.includes(t))) {
+    return {
+      name: 'ICE 1',
+      BR: '401',
+    };
+  }
+}
+
 const specificBR = (
   fahrzeuge: Fahrzeug[],
   fahrzeugTypes: string[],
@@ -212,6 +296,16 @@ const specificBR = (
         pdf: 'IC2',
         comfort: ['4', '5'],
       };
+    }
+  }
+
+  if (zuggattung === 'ICE') {
+    const br = brByFahrzeuge(fahrzeuge);
+
+    if (br) {
+      br.comfort = getComfort(br);
+
+      return br;
     }
   }
 
