@@ -2,7 +2,6 @@ import './font.css';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import { BrowserRouter } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
 import axios from 'axios';
 import createStore from './createStore';
@@ -23,11 +22,9 @@ const store = createStore();
 
 const render = (App: React.ComponentType) => (
   <Provider store={store}>
-    <HelmetProvider context={{}}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </HelmetProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>
 );
 

@@ -1,7 +1,7 @@
 import { configSanitize } from 'client/util';
 import { Context } from 'koa';
 import { getFeatures } from './features';
-import { HelmetProvider } from 'react-helmet-async';
+import { Helmet } from 'react-helmet';
 import { isEnabled } from 'unleash-client';
 import { MarudorConfigSanitize } from 'Common/config';
 import { matchRoutes } from 'react-router-config';
@@ -38,7 +38,6 @@ const footerTemplate = ejs.compile(footerEjs);
 
 export default async (ctx: Context) => {
   const routeContext: StaticRouterContext = {};
-  const helmetContext: any = {};
 
   const store = createStore({
     features: getFeatures(),
@@ -90,11 +89,9 @@ export default async (ctx: Context) => {
 
   const App = (
     <Provider store={store}>
-      <HelmetProvider context={helmetContext}>
-        <StaticRouter location={ctx.path} context={routeContext}>
-          <ThemeWrap />
-        </StaticRouter>
-      </HelmetProvider>
+      <StaticRouter location={ctx.path} context={routeContext}>
+        <ThemeWrap />
+      </StaticRouter>
     </Provider>
   );
 
@@ -113,7 +110,7 @@ export default async (ctx: Context) => {
 
     ctx.body = headerTemplate({
       googleAnalytics: isEnabled('google-analytics'),
-      header: helmetContext.helmet,
+      header: Helmet.renderStatic(),
       cssBundles: ctx.stats.main.css,
       clientState: serialize(state),
       configOverride: serialize(configOverride),
