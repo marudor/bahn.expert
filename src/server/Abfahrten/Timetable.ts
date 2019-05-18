@@ -284,10 +284,7 @@ export default class Timetable {
       timetable.train.longDistance &&
       // !timetable.substitute &&
       Boolean(filteredRoutePost.length);
-    timetable.reihung =
-      !timetable.isCancelled &&
-      timetable.train.longDistance &&
-      Boolean(filteredRoutePost.length);
+    timetable.reihung = !timetable.isCancelled && timetable.train.longDistance;
 
     delete timetable.routePre;
     delete timetable.routePost;
