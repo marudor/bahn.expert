@@ -1,8 +1,8 @@
 import { Common, CommonArrival, CommonDeparture, CommonJny, LocL } from '.';
 
-export interface StationBoardRequest<t extends 'DEP' | 'ARR' = any> {
+export interface StationBoardRequest {
   req: {
-    type: t;
+    type: 'DEP' | 'ARR';
     date: string;
     time: string;
     stbLoc: Partial<LocL>;
@@ -30,11 +30,9 @@ export interface DepartureStationBoardResponse
   type: 'DEP';
   jnyL: DepartureJny[];
 }
-export type StationBoardResponse<
-  t extends 'DEP' | 'ARR' = any
-> = t extends 'ARR'
-  ? ArrivalStationBoardResponse
-  : DepartureStationBoardResponse;
+export type StationBoardResponse =
+  | ArrivalStationBoardResponse
+  | DepartureStationBoardResponse;
 
 export type DepStbStop = CommonDeparture;
 
@@ -48,6 +46,5 @@ export interface DepartureJny extends CommonJny {
   date: string;
   stbStop: DepStbStop;
 }
-export type Jny<t extends 'ARR' | 'DEP' = any> = t extends 'ARR'
-  ? ArrivalJny
-  : DepartureJny;
+
+export type Jny = ArrivalJny | DepartureJny;

@@ -18,6 +18,6 @@ export interface ArrivalStationBoardEntry extends CommonStationBoardEntry {
 export interface DepartureStationBoardEntry extends CommonStationBoardEntry {
   departure: ParsedCommonDeparture;
 }
-export type StationBoardEntry<
-  type extends 'ARR' | 'DEP' = any
-> = type extends 'ARR' ? ArrivalStationBoardEntry : DepartureStationBoardEntry;
+export type StationBoardEntry =
+  | ArrivalStationBoardEntry
+  | DepartureStationBoardEntry;
