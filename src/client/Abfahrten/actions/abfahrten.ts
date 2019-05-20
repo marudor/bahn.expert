@@ -6,6 +6,7 @@ import { setCookieOptions } from 'client/util';
 import { Station } from 'types/station';
 import { StationSearchType } from 'Common/config';
 import axios, { AxiosError } from 'axios';
+import ReihungActions from 'Common/actions/reihung';
 
 export type AbfahrtenError =
   | AbfahrtenError$Redirect
@@ -174,6 +175,7 @@ export const refreshCurrentAbfahrten = (): AbfahrtenThunkResult => async (
     state.abfahrtenConfig.config.lookbehind
   );
 
+  dispatch(ReihungActions.clearReihung());
   dispatch(
     Actions.gotAbfahrten({
       station: state.abfahrten.currentStation,
