@@ -25,6 +25,9 @@ module.exports = {
       {
         root: 'src',
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        alias: {
+          testHelper: './test/client/testHelper',
+        },
         resolvePath: (sourcePath, currentFile, opts) => {
           const path = require('babel-plugin-module-resolver').resolvePath(
             sourcePath.replace(/^(Abfahrten|Common|Routing)\//, 'client/$1/'),

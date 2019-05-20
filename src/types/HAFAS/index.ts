@@ -1,6 +1,7 @@
 import { CommonProductInfo } from 'types/common';
 import { JourneyDetailsRequest } from './JourneyDetails';
 import { LocMatchRequest } from './LocMatch';
+import { Omit } from 'utility-types';
 import { Station } from 'types/station';
 import { TripSearchRequest } from './TripSearch';
 

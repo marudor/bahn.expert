@@ -4514,6 +4514,15 @@ eslint-import-resolver-node@^0.3.2:
     debug "^2.6.9"
     resolve "^1.5.0"
 
+eslint-import-resolver-typescript@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/eslint-import-resolver-typescript/-/eslint-import-resolver-typescript-1.1.1.tgz#e6d42172b95144ef16610fe104ef38340edea591"
+  integrity sha512-jqSfumQ+H5y3FUJ6NjRkbOQSUOlbBucGTN3ELymOtcDBbPjVdm/luvJuCfCaIXGh8sEF26ma1qVdtDgl9ndhUg==
+  dependencies:
+    debug "^4.0.1"
+    resolve "^1.4.0"
+    tsconfig-paths "^3.6.0"
+
 eslint-import-resolver-webpack@^0.11.1:
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/eslint-import-resolver-webpack/-/eslint-import-resolver-webpack-0.11.1.tgz#fcf1fd57a775f51e18f442915f85dd6ba45d2f26"
@@ -6785,6 +6794,11 @@ jss-plugin-vendor-prefixer@^10.0.0-alpha.16:
     "@babel/runtime" "^7.3.1"
     css-vendor "^2.0.1"
     jss "10.0.0-alpha.16"
+
+jss-snapshot-serializer@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/jss-snapshot-serializer/-/jss-snapshot-serializer-1.0.0.tgz#963395f83dddc355964290393b05e734c69dde7b"
+  integrity sha512-BSnjcqVhR48WUjickNUSdNP8Hk7fkeW01l1vo9GDb+MaZBPILrIO9rSvyoriIXZwQRyYmwZNI91tlKMZmGQX5w==
 
 jss@10.0.0-alpha.16, jss@^10.0.0-alpha.16:
   version "10.0.0-alpha.16"
@@ -11111,7 +11125,7 @@ tsconfig-paths-webpack-plugin@3.2.0:
     enhanced-resolve "^4.0.0"
     tsconfig-paths "^3.4.0"
 
-tsconfig-paths@^3.4.0:
+tsconfig-paths@^3.4.0, tsconfig-paths@^3.6.0:
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/tsconfig-paths/-/tsconfig-paths-3.8.0.tgz#4e34202d5b41958f269cf56b01ed95b853d59f72"
   integrity sha512-zZEYFo4sjORK8W58ENkRn9s+HmQFkkwydDG7My5s/fnfr2YYCaiyXe/HBUcIgU8epEKOXwiahOO+KZYjiXlWyQ==
@@ -11371,6 +11385,11 @@ util@^0.11.0:
   integrity sha512-HShAsny+zS2TZfaXxD9tYj4HQGlBezXZMZuM/S5PKLLoZkShZiGk9o5CzukI1LVHZvjdvZ2Sj1aW/Ndn2NB/HQ==
   dependencies:
     inherits "2.0.3"
+
+utility-types@^3.7.0:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/utility-types/-/utility-types-3.7.0.tgz#51f1c29fa35d4267488345706efcf3f68f2b1933"
+  integrity sha512-mqRJXN7dEArK/NZNJUubjr9kbFFVZcmF/JHDc9jt5O/aYXUVmopHYujDMhLmLil1Bxo2+khe6KAIVvDH9Yc4VA==
 
 utils-merge@1.0.1:
   version "1.0.1"

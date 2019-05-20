@@ -17,7 +17,7 @@ const Platform = ({ className, cancelled, scheduled, real }: Props) => {
     <span
       className={cc(className, {
         [classes.cancelled]: cancelled,
-        [classes.delayed]: scheduled && scheduled !== real,
+        [classes.changed]: scheduled && scheduled !== real,
       })}
     >
       {real}

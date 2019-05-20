@@ -84,6 +84,7 @@ module.exports = {
       Abfahrten: 'client/Abfahrten',
       Routing: 'client/Routing',
       Common: 'client/Common',
+      testHelper$: '../test/client/testHelper',
     },
   },
   output: {
