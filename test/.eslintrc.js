@@ -1,6 +1,6 @@
 module.exports = {
-  extends: ["../.eslintrc.js"],
+  extends: ['../.eslintrc.js'],
   env: {
-    jest: true
-  }
+    jest: true,
+  },
 };

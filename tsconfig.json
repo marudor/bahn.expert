@@ -23,7 +23,8 @@
     "paths": {
       "Routing/*": ["client/Routing/*"],
       "Abfahrten/*": ["client/Abfahrten/*"],
-      "Common/*": ["client/Common/*"]
+      "Common/*": ["client/Common/*"],
+      "testHelper": ["../test/client/testHelper"]
     }
   }
 }

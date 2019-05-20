@@ -1,5 +1,10 @@
 module.exports = {
-  extends: ['joblift/base', 'joblift/react', 'joblift/sort-imports'],
+  extends: [
+    'joblift/base',
+    'joblift/react',
+    'joblift/sort-imports',
+    'plugin:import/typescript',
+  ],
   parser: 'babel-eslint',
   env: {
     browser: true,
@@ -29,6 +34,11 @@ module.exports = {
       },
       files: ['**/*.ts', '**/*.tsx'],
       parser: '@typescript-eslint/parser',
+      settings: {
+        'import/resolver': {
+          typescript: {},
+        },
+      },
       parserOptions: {
         sourceType: 'module',
         project: './tsconfig.json',
