@@ -18,4 +18,8 @@ export default createReducer(defaultState, handle => [
       [payload.id]: payload.data,
     },
   })),
+  handle(Actions.clearReihung, state => ({
+    ...state,
+    reihung: {},
+  })),
 ]);

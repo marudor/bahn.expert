@@ -8,6 +8,7 @@ const Actions = {
     'GOT_REIHUNG',
     resolve => (p: { id: string; data: null | Reihung }) => resolve(p)
   ),
+  clearReihung: createAction('CLEAR_REIHUNG', resolve => () => resolve()),
 };
 
 export default Actions;
