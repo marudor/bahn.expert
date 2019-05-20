@@ -14,38 +14,41 @@ import parseProduct from '../helper/parseProduct';
 const isArrival = (a: CommonArrival | CommonDeparture): a is CommonArrival =>
   a.hasOwnProperty('aOutR');
 
-const parseStationBoardResponse = <type extends 'ARR' | 'DEP'>(
-  jny: Jny<type>,
+const parseStationBoardResponse = (
+  jny: Jny,
   common: ParsedCommon
 ): StationBoardEntry => {
   const date = parse(jny.date, 'yyyyMMdd', new Date()).getTime();
   const product = common.prodL[jny.prodX];
-  const times = isArrival(jny.stbStop)
-    ? {
-        arrival: parseCommonArrival(jny.stbStop, date),
-      }
-    : {
-        departure: parseCommonDeparture(jny.stbStop, date),
-      };
-
-  return {
+  const commonResponse = {
     train: parseProduct(product),
-    ...times,
     currentStation: common.locL[jny.stbStop.locX],
     finalDestination: jny.dirTxt,
     jid: jny.jid,
     isCancelled: jny.isCncl,
     product: global.PROD ? undefined : product,
   };
+
+  if (isArrival(jny.stbStop)) {
+    return {
+      ...commonResponse,
+      arrival: parseCommonArrival(jny.stbStop, date),
+    };
+  }
+
+  return {
+    ...commonResponse,
+    departure: parseCommonDeparture(jny.stbStop, date),
+  };
 };
 
-export default <t extends 'ARR' | 'DEP' = any>(
+export default (
   r: HafasResponse<StationBoardResponse>,
   parsedCommon: ParsedCommon
-): StationBoardEntry<t>[] => {
+): StationBoardEntry[] => {
   // @ts-ignore ???
-  const abfahrten: StationBoardEntry<t>[] = r.svcResL[0].res.jnyL.map(
-    (j: Jny) => parseStationBoardResponse(j, parsedCommon)
+  const abfahrten: StationBoardEntry[] = r.svcResL[0].res.jnyL.map((j: Jny) =>
+    parseStationBoardResponse(j, parsedCommon)
   );
 
   return abfahrten;
