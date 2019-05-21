@@ -1,4 +1,4 @@
-FROM node:10-alpine as build
+FROM node:12-alpine as build
 RUN yarn global add modclean
 RUN mkdir -p /app
 WORKDIR /app
@@ -7,7 +7,7 @@ RUN yarn --prod
 RUN modclean -r -a '*.ts|*.tsx'
 COPY dist /app/dist/
 
-FROM node:10-alpine
+FROM node:12-alpine
 COPY --from=build /app /app
 ENV NODE_ENV=production
 ENV TZ=Europe/Berlin
