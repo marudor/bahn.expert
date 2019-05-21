@@ -7076,10 +7076,10 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-libxmljs2@^0.21.0:
-  version "0.21.0"
-  resolved "https://registry.yarnpkg.com/libxmljs2/-/libxmljs2-0.21.0.tgz#b87502524348cade2c40636e487bcbdb6d474e9e"
-  integrity sha512-yG7ypFtMwAUOl00MK8cgaBhxZW4rNZv7OOwsLONhnqNcjRVBDW67M0kxY0NDuYpj17ZG5/mficPsPvtPhvo/TQ==
+libxmljs2@^0.21.1:
+  version "0.21.1"
+  resolved "https://registry.yarnpkg.com/libxmljs2/-/libxmljs2-0.21.1.tgz#35ddb676adaa4c64c80713c3ebbd823a992451a4"
+  integrity sha512-Y4PZmE9nB7X+eKV9LpumHsYT85EkJELoodrauYi5X4doIiE9k0TE3Qq3DvpdBH/3AnxivJ6nY/xL+Z6DTQZODA==
   dependencies:
     bindings "~1.5.0"
     nan "~2.14.0"
@@ -11285,10 +11285,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^3.5.0-rc:
-  version "3.5.0-rc"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.0-rc.tgz#6f1ada90c15427713f8c0f4550ef7d357ac2a5f1"
-  integrity sha512-8Os3bqTeHc6bf+bkPFL3O/pb09j8SbDa2LUBxTXWpZlcHUW9ziGuiEFiqMcArkbAjGLqEzshkl4zvxhb0gVPuQ==
+typescript@^3.4.5:
+  version "3.4.5"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.4.5.tgz#2d2618d10bb566572b8d7aad5180d84257d70a99"
+  integrity sha512-YycBxUb49UUhdNMU5aJ7z5Ej2XGmaIBL0x34vZ82fn3hGvD+bgrMrVDpatgz2f7YxUMJxMkbWxJZeAvDxVe7Vw==
 
 ua-parser-js@^0.7.18:
   version "0.7.19"
