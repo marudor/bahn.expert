@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
 
@@ -18,6 +19,17 @@ const plugins = [
   new MiniCssExtractPlugin({
     filename: isDev ? '[name].css' : '[name]-[contenthash].css',
     chunkFilename: isDev ? '[id].css' : '[id]-[hash].css',
+  }),
+  new WorkboxPlugin.GenerateSW({
+    swDest: 'sw.js',
+    runtimeCaching: [
+      {
+        urlPattern: '/',
+        handler: 'NetworkFirst',
+      },
+    ],
+    clientsClaim: true,
+    skipWaiting: true,
   }),
 ];
 
@@ -88,9 +100,9 @@ module.exports = {
     },
   },
   output: {
-    path: path.resolve('dist/client/static'),
-    filename: isDev ? '[name].js' : '[name]-[hash].js',
-    publicPath: '/static/',
+    path: path.resolve('dist/client'),
+    filename: isDev ? 'static/[name].js' : 'static/[name]-[hash].js',
+    publicPath: '/',
   },
   module: {
     rules,
