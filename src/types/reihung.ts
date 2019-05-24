@@ -101,12 +101,16 @@ export type Wagenreihung = {
 
 export type Reihung = Formation;
 
-export type BRInfo = {
+export interface DetailedBRInfo {
+  comfort?: string[];
+  quiet?: string[];
+  toddler?: string[];
+}
+export interface BRInfo extends DetailedBRInfo {
   name: string;
   BR?: string;
-  comfort?: string[];
   serie?: string;
   redesign?: boolean;
   noPdf?: boolean;
   pdf?: string;
-};
+}

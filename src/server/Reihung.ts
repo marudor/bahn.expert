@@ -1,6 +1,7 @@
 /* eslint-disable no-fallthrough */
 import {
   BRInfo,
+  DetailedBRInfo,
   Fahrzeug,
   FahrzeugType,
   Formation,
@@ -37,31 +38,74 @@ function differentZugunummer(formation: Formation) {
       );
 }
 
-const getComfort = (br: BRInfo): undefined | string[] => {
+const getDetailedInformation = (br: BRInfo): undefined | DetailedBRInfo => {
   if (br.BR) {
     switch (br.BR) {
       // ICE 4
       case '412':
+        return {
+          comfort: ['11', '7'],
+          quiet: ['14', '3', '2'],
+          toddler: ['9'],
+        };
       // ICE 1
       case '401':
-        return ['11', '7'];
+        return {
+          comfort: ['11', '7'],
+          quiet: ['12', '4', '2'],
+          toddler: ['9'],
+        };
       // ICE 2
       case '402':
-        return ['26', '36', '28', '38'];
+        return {
+          comfort: ['26', '36', '28', '38'],
+          quiet: ['27', '37', '22', '32'],
+          toddler: ['24', '34'],
+        };
       // ICE 3
       case '403':
       // ICE 3
       case '406':
-        return ['28', '38', '27', '37'];
+        return {
+          comfort: ['28', '38', '27', '37'],
+          quiet: ['28', '38', '29', '39', '21', '31'],
+          toddler: ['25', '35'],
+        };
       // ICE 3 Velaro
       case '407':
-        return ['26', '36', '25', '35'];
+        return {
+          comfort: ['26', '36', '25', '35'],
+          quiet: ['29', '39', '21', '31'],
+          toddler: ['25', '35'],
+        };
       // ICE T
       case '411':
-        return ['28', '38', '27', '37'];
+        return {
+          comfort: ['28', '38', '27', '37'],
+          quiet: ['28', '38', '22', '32', '21', '31'],
+          toddler: ['26', '36'],
+        };
       // ICE T
       case '415':
-        return ['28', '38', '23', '33'];
+        return {
+          comfort: ['28', '38', '23', '33'],
+          quiet: ['28', '38', '21', '31'],
+          toddler: ['27', '37'],
+        };
+    }
+  } else {
+    switch (br.name) {
+      case 'MET':
+        return {
+          comfort: ['5', '6'],
+          quiet: ['1', '7'],
+        };
+      case 'IC 2':
+        return {
+          comfort: ['4', '5'],
+          quiet: ['5'],
+          toddler: ['1'],
+        };
     }
   }
 };
@@ -183,9 +227,6 @@ const getSpecificBR = (
       info = getATBR(code, serial, fahrzeugTypes);
       break;
   }
-  if (info) {
-    info.comfort = getComfort(info);
-  }
 
   return info;
 };
@@ -283,28 +324,24 @@ const specificBR = (
     const br = getSpecificBR(f.fahrzeugnummer, fahrzeugTypes);
 
     if (br) return br;
+  }
 
-    if (fahrzeuge.find(f => f.fahrzeugtyp === 'Apmbzf')) {
-      return {
-        name: 'MET',
-        pdf: 'MET',
-        comfort: ['5', '6'],
-      };
-    } else if (fahrzeuge.find(f => f.fahrzeugtyp === 'DBpbzfa')) {
-      return {
-        name: 'IC 2',
-        pdf: 'IC2',
-        comfort: ['4', '5'],
-      };
-    }
+  if (fahrzeuge.find(f => f.fahrzeugtyp === 'Apmbzf')) {
+    return {
+      name: 'MET',
+      pdf: 'MET',
+    };
+  } else if (fahrzeuge.find(f => f.fahrzeugtyp === 'DBpbzfa')) {
+    return {
+      name: 'IC 2',
+      pdf: 'IC2',
+    };
   }
 
   if (zuggattung === 'ICE') {
     const br = brByFahrzeuge(fahrzeuge);
 
     if (br) {
-      br.comfort = getComfort(br);
-
       return br;
     }
   }
@@ -373,6 +410,9 @@ export async function wagenReihung(trainNumber: string, date: number) {
       gruppenFahrzeugTypes,
       info.data.istformation.zuggattung
     );
+    if (g.br) {
+      Object.assign(g.br, getDetailedInformation(g.br));
+    }
   });
 
   info.data.istformation.differentDestination = differentDestination(

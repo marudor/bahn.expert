@@ -2,7 +2,9 @@ import { Fahrzeug, FahrzeugType } from 'types/reihung';
 import ActionAccessible from '@material-ui/icons/Accessible';
 import ActionMotorcycle from '@material-ui/icons/Motorcycle';
 import cc from 'classnames';
+import ChildFriendly from '@material-ui/icons/ChildFriendly';
 import MapsLocalDining from '@material-ui/icons/LocalDining';
+import NotificationsOff from '@material-ui/icons/NotificationsOff';
 import React, { useMemo } from 'react';
 import useStyles from './Fahrzeug.style';
 import WagenLink from './WagenLink';
@@ -17,7 +19,9 @@ export type OwnProps = InheritedProps & {
   fahrzeug: Fahrzeug;
   destination?: string;
   wrongWing: boolean;
-  comfort?: string[];
+  comfort?: boolean;
+  quiet?: boolean;
+  toddler?: boolean;
 };
 
 type Props = OwnProps;
@@ -32,13 +36,9 @@ type AdditionalFahrzeugInfos = {
   speise: boolean;
   rollstuhl: boolean;
   fahrrad: boolean;
-  comfort: boolean;
 };
 
-function getFahrzeugInfo(
-  fahrzeug: Fahrzeug,
-  comfortData?: string[]
-): AdditionalFahrzeugInfos {
+function getFahrzeugInfo(fahrzeug: Fahrzeug): AdditionalFahrzeugInfos {
   const data: AdditionalFahrzeugInfos = {
     klasse: 0,
     speise: Boolean(
@@ -54,7 +54,6 @@ function getFahrzeugInfo(
         a => a.ausstattungsart === 'PLAETZEFAHRRAD'
       )
     ),
-    comfort: false,
   };
 
   switch (fahrzeug.kategorie) {
@@ -89,10 +88,6 @@ function getFahrzeugInfo(
       data.klasse = 4;
   }
 
-  if (comfortData) {
-    data.comfort = comfortData.includes(fahrzeug.wagenordnungsnummer);
-  }
-
   return data;
 }
 
@@ -102,13 +97,12 @@ const FahrzeugComp = ({
   scale,
   correctLeft,
   comfort,
+  quiet,
+  toddler,
   type,
 }: Props) => {
   const classes = useStyles();
-  const info = useMemo(() => getFahrzeugInfo(fahrzeug, comfort), [
-    comfort,
-    fahrzeug,
-  ]);
+  const info = useMemo(() => getFahrzeugInfo(fahrzeug), [fahrzeug]);
 
   const { startprozent, endeprozent } = fahrzeug.positionamhalt;
   const start = Number.parseInt(startprozent, 10);
@@ -136,8 +130,10 @@ const FahrzeugComp = ({
         {info.rollstuhl && <ActionAccessible className={classes.icon} />}
         {info.fahrrad && <ActionMotorcycle className={classes.icon} />}
         {info.speise && <MapsLocalDining className={classes.icon} />}
+        {quiet && <NotificationsOff className={classes.icon} />}
+        {toddler && <ChildFriendly className={classes.icon} />}
       </span>
-      {info.comfort && <span className={classes.comfort} />}
+      {comfort && <span className={classes.comfort} />}
       <WagenLink
         type={type}
         fahrzeugnummer={fahrzeug.fahrzeugnummer}

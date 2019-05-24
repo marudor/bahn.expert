@@ -1,7 +1,7 @@
 import { Fahrzeuggruppe } from 'types/reihung';
 import BRInfo from './BRInfo';
 import Fahrzeug, { InheritedProps } from './Fahrzeug';
-import React from 'react';
+import React, { useMemo } from 'react';
 import useStyles from './Gruppe.style';
 
 type OwnProps = InheritedProps & {
@@ -45,17 +45,42 @@ const Gruppe = ({
     bottom: `${currentBottom}em`,
   };
 
+  const fahrzeuge = useMemo(
+    () =>
+      gruppe.allFahrzeug.map(f => {
+        const extraInfo: {
+          comfort?: boolean;
+          quiet?: boolean;
+          toddler?: boolean;
+        } = {};
+
+        if (gruppe.br) {
+          extraInfo.comfort =
+            gruppe.br.comfort &&
+            gruppe.br.comfort.includes(f.wagenordnungsnummer);
+          extraInfo.quiet =
+            gruppe.br.quiet && gruppe.br.quiet.includes(f.wagenordnungsnummer);
+          extraInfo.toddler =
+            gruppe.br.toddler &&
+            gruppe.br.toddler.includes(f.wagenordnungsnummer);
+        }
+
+        return (
+          <Fahrzeug
+            {...rest}
+            {...extraInfo}
+            wrongWing={originalTrainNumber !== gruppe.verkehrlichezugnummer}
+            key={`${f.fahrzeugnummer}${f.positioningruppe}`}
+            fahrzeug={f}
+          />
+        );
+      }),
+    [gruppe, originalTrainNumber, rest]
+  );
+
   return (
     <>
-      {gruppe.allFahrzeug.map(f => (
-        <Fahrzeug
-          {...rest}
-          comfort={gruppe.br && gruppe.br.comfort}
-          wrongWing={originalTrainNumber !== gruppe.verkehrlichezugnummer}
-          key={`${f.fahrzeugnummer}${f.positioningruppe}`}
-          fahrzeug={f}
-        />
-      ))}
+      {fahrzeuge}
       {extraInfoLine && (
         <span className={classes.bezeichnung} style={destinationPos}>
           {showBR && gruppe.br && (
