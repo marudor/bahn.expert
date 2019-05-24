@@ -62,7 +62,9 @@ const Gruppe = ({
             gruppe.br.quiet && gruppe.br.quiet.includes(f.wagenordnungsnummer);
           extraInfo.toddler =
             gruppe.br.toddler &&
-            gruppe.br.toddler.includes(f.wagenordnungsnummer);
+            gruppe.br.toddler.includes(
+              rest.type === 'ICE' ? f.wagenordnungsnummer : f.fahrzeugtyp
+            );
         }
 
         return (
