@@ -27,6 +27,23 @@ const plugins = [
         urlPattern: '/',
         handler: 'NetworkFirst',
       },
+      {
+        urlPattern: /api\/station\/.*/,
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'stationSearch',
+        },
+      },
+      isDev
+        ? {
+            urlPattern: /api\/.*/,
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'development',
+              networkTimeoutSeconds: 7,
+            },
+          }
+        : undefined,
     ],
     clientsClaim: true,
     skipWaiting: true,

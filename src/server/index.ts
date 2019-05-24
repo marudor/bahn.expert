@@ -7,5 +7,4 @@ global.SERVER = true;
 global.VERSION = require('./version');
 global.IMPRINT = require('./imprint');
 
-require('./localStorageMock');
 require('./app').default();

@@ -83,10 +83,10 @@ export default makeStyles(theme => ({
   },
 
   icon: {
-    width: '0.5em !important',
-    height: '0.5em !important',
+    width: '0.6em !important',
+    height: '0.6em !important',
     '@media screen and (max-width: 1200px)': {
-      fontSize: '12px !important',
+      fontSize: '16px !important',
     },
   },
   comfort: {
