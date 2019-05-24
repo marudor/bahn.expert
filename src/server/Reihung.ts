@@ -346,11 +346,14 @@ const specificBR = (
     }
   }
 
-  return {
-    name: zuggattung,
-    noPdf: true,
-    comfort: zuggattung === 'IC' ? ['12', '10'] : undefined,
-  };
+  const fallback: BRInfo = { name: zuggattung, noPdf: true };
+
+  if (zuggattung === 'IC') {
+    fallback.comfort = ['12', '10'];
+    fallback.toddler = ['Bvmmsz', 'Bvmsz'];
+  }
+
+  return fallback;
 };
 
 function fahrtrichtung(fahrzeuge: Fahrzeug[]) {
