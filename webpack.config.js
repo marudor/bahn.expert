@@ -96,7 +96,11 @@ if (isDev) {
     }),
     new OptimizeCSSAssetsPlugin({}),
   ];
-  plugins.push(new StatsWriterPlugin());
+  plugins.push(
+    new StatsWriterPlugin({
+      filename: 'static/stats.json',
+    })
+  );
 }
 
 module.exports = {
