@@ -8,6 +8,31 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
 
+const runtimeCaching = [
+  {
+    urlPattern: '/',
+    handler: 'NetworkFirst',
+  },
+  {
+    urlPattern: /api\/station\/.*/,
+    handler: 'CacheFirst',
+    options: {
+      cacheName: 'stationSearch',
+    },
+  },
+];
+
+if (isDev) {
+  runtimeCaching.push({
+    urlPattern: /api\/.*/,
+    handler: 'NetworkFirst',
+    options: {
+      cacheName: 'development',
+      networkTimeoutSeconds: 7,
+    },
+  });
+}
+
 const plugins = [
   new webpack.DefinePlugin({
     'process.env': {
@@ -22,29 +47,7 @@ const plugins = [
   }),
   new WorkboxPlugin.GenerateSW({
     swDest: 'sw.js',
-    runtimeCaching: [
-      {
-        urlPattern: '/',
-        handler: 'NetworkFirst',
-      },
-      {
-        urlPattern: /api\/station\/.*/,
-        handler: 'CacheFirst',
-        options: {
-          cacheName: 'stationSearch',
-        },
-      },
-      isDev
-        ? {
-            urlPattern: /api\/.*/,
-            handler: 'NetworkFirst',
-            options: {
-              cacheName: 'development',
-              networkTimeoutSeconds: 7,
-            },
-          }
-        : undefined,
-    ],
+    runtimeCaching,
     clientsClaim: true,
     skipWaiting: true,
   }),
