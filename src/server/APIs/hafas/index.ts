@@ -1,4 +1,3 @@
-import { isEnabled } from 'unleash-client';
 import auslastungHafas from 'server/Auslastung/Hafas';
 import JourneyDetails from 'server/HAFAS/JourneyDetails';
 import KoaRouter from 'koa-router';
@@ -46,11 +45,6 @@ const getCurrent = () =>
       ctx.body = await makeRequest(ctx.request.body);
     })
     .post('/route', async ctx => {
-      if (!isEnabled('routing')) {
-        ctx.status = 404;
-
-        return;
-      }
       ctx.body = await routing({
         ...ctx.request.body,
         time: Number.parseInt(ctx.request.body.time, 10),
