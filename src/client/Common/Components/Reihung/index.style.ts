@@ -9,15 +9,16 @@ export default makeStyles(theme => ({
     let height = 6;
 
     if (fahrzeugGruppe) height += 1;
-    if (
-      reihung &&
-      (reihung.differentDestination ||
+    if (reihung) {
+      if (
+        reihung.differentDestination ||
         reihung.allFahrzeuggruppe.find(g =>
           Boolean(g.br && (g.br.BR || !g.br.noPdf))
-        ))
-    )
-      height += 1;
-    if (reihung && reihung.differentZugnummer) height += 1;
+        )
+      )
+        height += 1;
+      if (reihung.differentZugnummer) height += 1;
+    }
 
     return {
       minWidth: '60em',

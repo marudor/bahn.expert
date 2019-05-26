@@ -3,7 +3,6 @@ import {
   BRInfo,
   DetailedBRInfo,
   Fahrzeug,
-  FahrzeugType,
   Formation,
   Wagenreihung,
 } from 'types/reihung';
@@ -318,7 +317,7 @@ function brByFahrzeuge(fahrzeuge: Fahrzeug[]) {
 const specificBR = (
   fahrzeuge: Fahrzeug[],
   fahrzeugTypes: string[],
-  zuggattung: FahrzeugType
+  formation: Formation
 ) => {
   for (const f of fahrzeuge) {
     const br = getSpecificBR(f.fahrzeugnummer, fahrzeugTypes);
@@ -338,7 +337,7 @@ const specificBR = (
     };
   }
 
-  if (zuggattung === 'ICE') {
+  if (formation.zuggattung === 'ICE') {
     const br = brByFahrzeuge(fahrzeuge);
 
     if (br) {
@@ -346,9 +345,9 @@ const specificBR = (
     }
   }
 
-  const fallback: BRInfo = { name: zuggattung, noPdf: true };
+  const fallback: BRInfo = { name: formation.zuggattung, noPdf: true };
 
-  if (zuggattung === 'IC') {
+  if (formation.zuggattung === 'IC') {
     fallback.comfort = ['12', '10'];
     fallback.toddler = ['Bvmmsz', 'Bvmsz'];
   }
@@ -385,6 +384,18 @@ export async function wagenReihung(trainNumber: string, date: number) {
   let startPercentage = 100;
   let endPercentage = 0;
 
+  const isActuallyIC =
+    info.data.istformation.zuggattung === 'ICE' &&
+    info.data.istformation.allFahrzeuggruppe.some(
+      g => g.allFahrzeug.length === 1 && g.allFahrzeug[0].fahrzeugtyp === 'E'
+    );
+
+  if (isActuallyIC) {
+    info.data.istformation.reportedZuggattung =
+      info.data.istformation.zuggattung;
+    info.data.istformation.zuggattung = 'IC';
+  }
+
   info.data.istformation.allFahrzeuggruppe.forEach(g => {
     const minFahrzeug = minBy(g.allFahrzeug, f =>
       Number.parseInt(f.positionamhalt.startprozent, 10)
@@ -411,7 +422,7 @@ export async function wagenReihung(trainNumber: string, date: number) {
     g.br = specificBR(
       g.allFahrzeug,
       gruppenFahrzeugTypes,
-      info.data.istformation.zuggattung
+      info.data.istformation
     );
     if (g.br) {
       Object.assign(g.br, getDetailedInformation(g.br));

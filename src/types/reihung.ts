@@ -70,6 +70,8 @@ export type Halt = {
 export type Formation = {
   fahrtrichtung: 'VORWAERTS' | 'RUCKWAERTS';
   /* Custom */
+  isActuallyIC: boolean;
+  reportedZuggattung?: string;
   differentDestination: boolean;
   differentZugnummer: boolean;
   scale: number;
