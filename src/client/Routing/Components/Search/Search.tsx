@@ -46,35 +46,6 @@ type Props = ReduxProps &
     destination?: string;
   }>;
 
-const formatDate = (date: null | Date) => {
-  if (!date) {
-    return '';
-  }
-  const today = startOfDay(new Date());
-  const tomorrow = endOfDay(addDays(today, 1));
-  const yesterday = subDays(today, 1);
-
-  let relativeDayString = '';
-
-  if (isWithinInterval(date, { start: yesterday, end: tomorrow })) {
-    if (isSameDay(date, today)) relativeDayString = 'Heute';
-    else if (isSameDay(date, yesterday)) relativeDayString = 'Gestern';
-    else if (isSameDay(date, tomorrow)) relativeDayString = 'Morgen';
-    relativeDayString += `, ${deLocale.localize.day(date.getDay(), {
-      width: 'short',
-    })}`;
-  } else {
-    relativeDayString = deLocale.localize.day(date.getDay());
-  }
-  relativeDayString += ` ${lightFormat(date, 'dd.MM.')}`;
-  if (!isSameYear(date, today)) {
-    relativeDayString += lightFormat(date, 'yyyy');
-  }
-  relativeDayString += ` ${lightFormat(date, 'HH:mm')}`;
-
-  return relativeDayString;
-};
-
 const Search = ({
   start,
   destination,
@@ -90,6 +61,35 @@ const Search = ({
   dateTouched,
 }: Props) => {
   const classes = useStyles();
+
+  const formatDate = useCallback((date: null | Date) => {
+    if (!date) {
+      return '';
+    }
+    const today = startOfDay(new Date());
+    const tomorrow = endOfDay(addDays(today, 1));
+    const yesterday = subDays(today, 1);
+
+    let relativeDayString = '';
+
+    if (isWithinInterval(date, { start: yesterday, end: tomorrow })) {
+      if (isSameDay(date, today)) relativeDayString = 'Heute';
+      else if (isSameDay(date, yesterday)) relativeDayString = 'Gestern';
+      else if (isSameDay(date, tomorrow)) relativeDayString = 'Morgen';
+      relativeDayString += `, ${deLocale.localize.day(date.getDay(), {
+        width: 'short',
+      })}`;
+    } else {
+      relativeDayString = deLocale.localize.day(date.getDay());
+    }
+    relativeDayString += ` ${lightFormat(date, 'dd.MM.')}`;
+    if (!isSameYear(date, today)) {
+      relativeDayString += lightFormat(date, 'yyyy');
+    }
+    relativeDayString += ` ${lightFormat(date, 'HH:mm')}`;
+
+    return relativeDayString;
+  }, []);
 
   useEffect(() => {
     const { start, destination } = match.params;
