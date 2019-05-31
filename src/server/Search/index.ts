@@ -73,14 +73,14 @@ export default async (rawSearchTerm: string, type?: StationSearchType) => {
       return cached;
     }
 
-    let result = await getSearchMethod(type)(searchTerm);
+    const result = await getSearchMethod(type)(searchTerm);
 
-    if (type !== StationSearchType.StationsData && result.length === 0) {
-      // this may be a station named from iris - lets try that first
-      result = await getSearchMethod(StationSearchType.StationsData)(
-        searchTerm
-      );
-    }
+    // if (type !== StationSearchType.StationsData && result.length === 0) {
+    //   // this may be a station named from iris - lets try that first
+    //   result = await getSearchMethod(StationSearchType.StationsData)(
+    //     searchTerm
+    //   );
+    // }
 
     cache.set(searchTerm, result);
 

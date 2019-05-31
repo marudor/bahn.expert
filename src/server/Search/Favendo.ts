@@ -13,7 +13,8 @@ function encodeSearchTerm(term: string) {
     .replace(/%2F/g, '/');
 }
 
-// https://si.favendo.de/station-info/rest/api/search?searchTerm=Bochum
+// Can also handle lat&lng
+// https://si.favendo.de/station-info/rest/api/search?searchTerm=Bochum&lat=42.00023&lng=23.00042
 export default async function(searchTerm: string): Promise<Station[]> {
   const stations = (await axios.get<FavendoStation[]>(
     `https://si.favendo.de/station-info/rest/api/search?searchTerm=${encodeSearchTerm(
