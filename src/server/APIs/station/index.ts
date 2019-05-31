@@ -10,10 +10,12 @@ const getCurrent = () =>
       const { searchTerm }: { searchTerm: string } = ctx.params;
       const { type } = ctx.query;
 
+      const typeEnum = StationSearchType[Number.parseInt(type, 10)];
+
       ctx.body = await stationSearch(
         searchTerm,
         // @ts-ignore this lookup works
-        StationSearchType[StationSearchType[Number.parseInt(type, 10)]]
+        StationSearchType[typeEnum]
       );
     })
     .get('/iris/:evaId', async ctx => {

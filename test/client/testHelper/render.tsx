@@ -4,7 +4,7 @@ import { DeepPartial } from 'utility-types';
 import { getStore } from 'testHelper';
 import { MergedTheme } from '@material-ui/styles';
 import { Provider } from 'react-redux';
-import { render as realRender } from 'react-testing-library';
+import { render as realRender } from '@testing-library/react';
 import { ThemeType } from 'client/Themes/type';
 import createTheme from 'client/Themes';
 import React, { ComponentType } from 'react';

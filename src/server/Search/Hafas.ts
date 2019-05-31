@@ -1,5 +1,6 @@
 import { HAFASStation, Station } from 'types/station';
 import axios from 'axios';
+import he from 'he';
 import iconv from 'iconv-lite';
 
 export default async function(searchTerm: string): Promise<Station[]> {
@@ -19,7 +20,7 @@ export default async function(searchTerm: string): Promise<Station[]> {
   return stations
     .filter(s => s.value !== s.value.toUpperCase())
     .map(s => ({
-      title: s.value,
+      title: he.decode(s.value),
       id: Number.parseInt(s.extId, 10).toString(),
       raw: global.PROD ? undefined : s,
     }));
