@@ -190,7 +190,7 @@ function parseRawId(rawId: string) {
   };
 }
 
-const longDistanceRegex = /(ICE?|TGV|ECE?|RJ).*/;
+const longDistanceRegex = /(ICE?|TGV|ECE?|RJ|D).*/;
 
 export default class Timetable {
   errors: any[] = [];
