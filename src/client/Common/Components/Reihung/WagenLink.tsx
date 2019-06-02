@@ -28,11 +28,14 @@ const wagenWithImage = [
 const WagenLink = ({ fahrzeugtyp, fahrzeugnummer, type }: Props) => {
   const classes = useStyles();
   const imageName = useMemo(() => {
-    const uicType = Number.parseInt(fahrzeugnummer.substr(8, 3), 10);
     let image = fahrzeugtyp;
 
-    if (uicType >= 500 && uicType <= 506) {
-      image += '118';
+    if (fahrzeugtyp === 'Apmmz') {
+      const uicType = Number.parseInt(fahrzeugnummer.substr(8, 3), 10);
+
+      if (uicType >= 500 && uicType <= 506) {
+        image += '118';
+      }
     }
 
     return image;
