@@ -1,15 +1,23 @@
-import { Async } from 'react-select';
+// eslint-disable-next-line import/no-unresolved
 import { ControlProps } from 'react-select/lib/components/Control';
 import { getStationsFromAPI } from 'Common/service/stationSearch';
+// eslint-disable-next-line import/no-unresolved
 import { MenuProps, NoticeProps } from 'react-select/lib/components/Menu';
 import { MergedTheme, useTheme } from '@material-ui/styles';
+// eslint-disable-next-line import/no-unresolved
 import { OptionProps } from 'react-select/lib/components/Option';
+// eslint-disable-next-line import/no-unresolved
 import { PlaceholderProps } from 'react-select/lib/components/Placeholder';
+// eslint-disable-next-line import/no-unresolved
 import { SingleValueProps } from 'react-select/lib/components/SingleValue';
 import { Station } from 'types/station';
 import { StationSearchType } from 'Common/config';
+// eslint-disable-next-line import/no-unresolved
 import { StylesConfig } from 'react-select/lib/styles';
+// eslint-disable-next-line import/no-unresolved
 import { ValueContainerProps } from 'react-select/lib/components/containers';
+// @ts-ignore
+import Async from 'react-select/async';
 import debounce from 'debounce-promise';
 import MenuItem from '@material-ui/core/MenuItem';
 import Paper from '@material-ui/core/Paper';
@@ -154,7 +162,7 @@ const StationSearch = ({
         flex: 1,
         position: 'relative',
       }),
-      input: base => ({
+      input: (base: any) => ({
         ...base,
         color: theme.palette.text.primary,
         '& input': {
