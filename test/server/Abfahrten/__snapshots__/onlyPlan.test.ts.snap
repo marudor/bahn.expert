@@ -5,7 +5,7 @@ Object {
   "departures": Array [
     Object {
       "arrival": Object {
-        "hidden": undefined,
+        "hidden": false,
         "platform": "13",
         "scheduledPlatform": "13",
         "scheduledTime": 1552827480000,
@@ -18,7 +18,7 @@ Object {
         "title": "test",
       },
       "departure": Object {
-        "hidden": undefined,
+        "hidden": false,
         "platform": "13",
         "scheduledPlatform": "13",
         "scheduledTime": 1552827600000,
@@ -185,7 +185,7 @@ Object {
   "departures": Array [
     Object {
       "arrival": Object {
-        "hidden": undefined,
+        "hidden": false,
         "platform": "8",
         "scheduledPlatform": "8",
         "scheduledTime": 1552825920000,
@@ -200,7 +200,7 @@ Object {
         "title": "test",
       },
       "departure": Object {
-        "hidden": undefined,
+        "hidden": false,
         "platform": "8 D-G",
         "scheduledPlatform": "8 D-G",
         "scheduledTime": 1552826160000,
@@ -284,7 +284,7 @@ Object {
     },
     Object {
       "arrival": Object {
-        "hidden": undefined,
+        "hidden": false,
         "platform": "8",
         "scheduledPlatform": "8",
         "scheduledTime": 1552825920000,
@@ -297,7 +297,7 @@ Object {
         "title": "test",
       },
       "departure": Object {
-        "hidden": undefined,
+        "hidden": false,
         "platform": "8 A-D",
         "scheduledPlatform": "8 A-D",
         "scheduledTime": 1552826700000,
@@ -380,7 +380,7 @@ Object {
   "departures": Array [
     Object {
       "arrival": Object {
-        "hidden": undefined,
+        "hidden": false,
         "platform": "13",
         "scheduledPlatform": "13",
         "scheduledTime": 1552827480000,
@@ -393,7 +393,7 @@ Object {
         "title": "test",
       },
       "departure": Object {
-        "hidden": undefined,
+        "hidden": false,
         "platform": "13",
         "scheduledPlatform": "13",
         "scheduledTime": 1552827600000,
@@ -560,7 +560,7 @@ Object {
   "departures": Array [
     Object {
       "arrival": Object {
-        "hidden": undefined,
+        "hidden": false,
         "platform": "13",
         "scheduledPlatform": "13",
         "scheduledTime": 1552827480000,
@@ -573,7 +573,7 @@ Object {
         "title": "test",
       },
       "departure": Object {
-        "hidden": undefined,
+        "hidden": false,
         "platform": "13",
         "scheduledPlatform": "13",
         "scheduledTime": 1552827600000,
@@ -740,7 +740,7 @@ Object {
   "departures": Array [
     Object {
       "arrival": Object {
-        "hidden": undefined,
+        "hidden": false,
         "platform": "4 D-G",
         "scheduledPlatform": "4 D-G",
         "scheduledTime": 1552828920000,
@@ -753,7 +753,7 @@ Object {
         "title": "test",
       },
       "departure": Object {
-        "hidden": undefined,
+        "hidden": false,
         "platform": "4",
         "scheduledPlatform": "4",
         "scheduledTime": 1552829160000,
@@ -838,7 +838,7 @@ Object {
   "wings": Object {
     "8086827825752200553-1903171315": Object {
       "arrival": Object {
-        "hidden": undefined,
+        "hidden": false,
         "platform": "4 A-C",
         "scheduledPlatform": "4 A-C",
         "scheduledTime": 1552828440000,
@@ -851,7 +851,7 @@ Object {
         "title": "test",
       },
       "departure": Object {
-        "hidden": undefined,
+        "hidden": false,
         "platform": "4",
         "scheduledPlatform": "4",
         "scheduledTime": 1552829160000,
@@ -937,7 +937,7 @@ Object {
   "departures": Array [
     Object {
       "arrival": Object {
-        "hidden": undefined,
+        "hidden": false,
         "platform": "16",
         "scheduledPlatform": "16",
         "scheduledTime": 1552826940000,
@@ -950,7 +950,7 @@ Object {
         "title": "test",
       },
       "departure": Object {
-        "hidden": undefined,
+        "hidden": false,
         "platform": "16",
         "scheduledPlatform": "16",
         "scheduledTime": 1552827060000,
@@ -1035,7 +1035,7 @@ Object {
         "title": "test",
       },
       "departure": Object {
-        "hidden": undefined,
+        "hidden": false,
         "platform": "34",
         "scheduledPlatform": "34",
         "scheduledTime": 1552824240000,
@@ -1133,7 +1133,7 @@ Object {
         "title": "test",
       },
       "departure": Object {
-        "hidden": undefined,
+        "hidden": false,
         "platform": "34",
         "scheduledPlatform": "34",
         "scheduledTime": 1552824240000,
@@ -1212,7 +1212,7 @@ Object {
         "title": "test",
       },
       "departure": Object {
-        "hidden": undefined,
+        "hidden": false,
         "platform": "34",
         "scheduledPlatform": "34",
         "scheduledTime": 1552824240000,
@@ -1295,7 +1295,7 @@ Object {
   "departures": Array [
     Object {
       "arrival": Object {
-        "hidden": undefined,
+        "hidden": false,
         "platform": "10",
         "scheduledPlatform": "10",
         "scheduledTime": 1552825440000,
@@ -1390,7 +1390,7 @@ Object {
         "title": "test",
       },
       "departure": Object {
-        "hidden": undefined,
+        "hidden": false,
         "platform": "10",
         "scheduledPlatform": "10",
         "scheduledTime": 1552826160000,
@@ -1485,7 +1485,7 @@ Object {
   "departures": Array [
     Object {
       "arrival": Object {
-        "hidden": undefined,
+        "hidden": false,
         "platform": "13",
         "scheduledPlatform": "13",
         "scheduledTime": 1552827480000,
@@ -1498,7 +1498,7 @@ Object {
         "title": "test",
       },
       "departure": Object {
-        "hidden": undefined,
+        "hidden": false,
         "platform": "13",
         "scheduledPlatform": "13",
         "scheduledTime": 1552827600000,
@@ -1665,7 +1665,7 @@ Object {
   "departures": Array [
     Object {
       "arrival": Object {
-        "hidden": undefined,
+        "hidden": false,
         "platform": "16",
         "scheduledPlatform": "16",
         "scheduledTime": 1552826760000,
@@ -1678,7 +1678,7 @@ Object {
         "title": "test",
       },
       "departure": Object {
-        "hidden": undefined,
+        "hidden": false,
         "platform": "16",
         "scheduledPlatform": "16",
         "scheduledTime": 1552826880000,
@@ -1766,7 +1766,7 @@ Object {
   "departures": Array [
     Object {
       "arrival": Object {
-        "hidden": undefined,
+        "hidden": false,
         "platform": "4",
         "scheduledPlatform": "4",
         "scheduledTime": 1552830660000,
@@ -1781,7 +1781,7 @@ Object {
         "title": "test",
       },
       "departure": Object {
-        "hidden": undefined,
+        "hidden": false,
         "platform": "4",
         "scheduledPlatform": "4",
         "scheduledTime": 1552830840000,

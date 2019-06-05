@@ -54,3 +54,4 @@ reports/
 secrets/ssl/*.pem
 research/
 .out
+.clinic

@@ -22,6 +22,17 @@ export async function favendoOpenDBCombined(
   return uniqBy(flatten(stations), 'id');
 }
 
+export async function favendoStationsDataCombined(
+  searchTerm: string
+): Promise<Station[]> {
+  const stations = await Promise.all([
+    FavendoSearch(searchTerm),
+    StationsDataSearch(searchTerm),
+  ]);
+
+  return uniqBy(flatten(stations), 'id');
+}
+
 export function getSearchMethod(type?: StationSearchType) {
   switch (type) {
     case StationSearchType.DBNavgiator:
@@ -39,8 +50,10 @@ export function getSearchMethod(type?: StationSearchType) {
     case StationSearchType.StationsData:
       return StationsDataSearch;
     case StationSearchType.Favendo:
-    default:
       return FavendoSearch;
+    case StationSearchType.FavendoStationsData:
+    default:
+      return favendoStationsDataCombined;
   }
 }
 
@@ -73,14 +86,14 @@ export default async (rawSearchTerm: string, type?: StationSearchType) => {
       return cached;
     }
 
-    const result = await getSearchMethod(type)(searchTerm);
+    let result = await getSearchMethod(type)(searchTerm);
 
-    // if (type !== StationSearchType.StationsData && result.length === 0) {
-    //   // this may be a station named from iris - lets try that first
-    //   result = await getSearchMethod(StationSearchType.StationsData)(
-    //     searchTerm
-    //   );
-    // }
+    if (type !== StationSearchType.StationsData && result.length === 0) {
+      // this may be a station named from iris - lets try that first
+      result = await getSearchMethod(StationSearchType.StationsData)(
+        searchTerm
+      );
+    }
 
     cache.set(searchTerm, result);
 

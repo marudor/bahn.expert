@@ -38,7 +38,7 @@ const stationData: StationsData[] = entries.map(e => {
 
 const searchableStations = new Fuse(stationData, {
   includeScore: true,
-  threshold: 0.2,
+  threshold: 0.19,
   minMatchCharLength: 2,
   location: 0,
   distance: 10,
@@ -50,11 +50,13 @@ export default function(searchTerm: string): Promise<Station[]> {
   const matches = searchableStations.search(searchTerm);
 
   return Promise.resolve(
-    orderBy(matches, 'score', ['asc']).map(({ item }) => ({
-      title: item.name,
-      id: item.id,
-      DS100: item.DS100,
-      raw: global.PROD ? undefined : item,
-    }))
+    orderBy(matches, 'score', ['asc'])
+      .slice(0, 8)
+      .map(({ item, score }) => ({
+        title: item.name,
+        id: item.id,
+        DS100: item.DS100,
+        raw: global.PROD ? undefined : { ...item, score },
+      }))
   );
 }

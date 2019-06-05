@@ -263,13 +263,6 @@ export default class Timetable {
     timetable.destination =
       (last && last.name) || timetable.scheduledDestination;
     this.calculateVia(timetable);
-    let filteredRoutePost = [];
-
-    if (timetable.routePost) {
-      filteredRoutePost = timetable.routePost.filter(
-        (r: any) => !r.isCancelled
-      );
-    }
 
     if (timetable.departure) {
       timetable.platform = timetable.departure.platform;
@@ -282,8 +275,8 @@ export default class Timetable {
     timetable.auslastung =
       !timetable.isCancelled &&
       timetable.train.longDistance &&
-      // !timetable.substitute &&
-      Boolean(filteredRoutePost.length);
+      timetable.departure &&
+      !timetable.departure.hidden;
     timetable.reihung = !timetable.isCancelled && timetable.train.longDistance;
 
     delete timetable.routePre;
@@ -659,7 +652,7 @@ export default class Timetable {
         wingIds: this.getWings(ar, false),
         platform: getAttr(ar, 'pp'),
         scheduledPlatform: getAttr(ar, 'pp'),
-        hidden: getAttr(ar, 'hi'),
+        hidden: Boolean(getAttr(ar, 'hi')),
       },
       departure: scheduledDeparture && {
         scheduledTime: scheduledDeparture,
@@ -667,7 +660,7 @@ export default class Timetable {
         wingIds: this.getWings(dp, true),
         platform: getAttr(dp, 'pp'),
         scheduledPlatform: getAttr(dp, 'pp'),
-        hidden: getAttr(dp, 'hi'),
+        hidden: Boolean(getAttr(dp, 'hi')),
       },
       productClass,
       // classes: getAttr(tl, 'f'),

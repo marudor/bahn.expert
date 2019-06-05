@@ -230,6 +230,9 @@ const SettingsModal = ({
               name="searchType"
               onChange={handleNumberSelectChange(setSearchType)}
             >
+              <option value={StationSearchType.FavendoStationsData}>
+                Favendo + Stationsdaten
+              </option>
               <option value={StationSearchType.Favendo}>Favendo</option>
               <option value={StationSearchType.OpenDB}>Open DB</option>
               <option value={StationSearchType.FavendoAndOpenDB}>

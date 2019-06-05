@@ -37,7 +37,7 @@ export type Messages = {
 export interface StopInfo extends CommonStopInfo {
   wingIds: null | string[];
   isCancelled: boolean;
-  hidden?: number;
+  hidden: boolean;
 }
 
 export interface TrainInfo extends CommonProductInfo {
