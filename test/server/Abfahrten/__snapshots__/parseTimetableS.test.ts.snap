@@ -3,7 +3,7 @@
 exports[`parseTimetableS arrivalCancelled.xml 1`] = `
 Object {
   "arrival": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "13",
     "scheduledPlatform": "13",
     "scheduledTime": 1552827480000,
@@ -15,7 +15,7 @@ Object {
     "title": "test",
   },
   "departure": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "13",
     "scheduledPlatform": "13",
     "scheduledTime": 1552827600000,
@@ -160,7 +160,7 @@ Object {
 exports[`parseTimetableS arrivalWing.xml 1`] = `
 Object {
   "arrival": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "8",
     "scheduledPlatform": "8",
     "scheduledTime": 1552825920000,
@@ -174,7 +174,7 @@ Object {
     "title": "test",
   },
   "departure": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "8 D-G",
     "scheduledPlatform": "8 D-G",
     "scheduledTime": 1552826160000,
@@ -247,7 +247,7 @@ Object {
 exports[`parseTimetableS arrivalWing.xml 2`] = `
 Object {
   "arrival": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "8",
     "scheduledPlatform": "8",
     "scheduledTime": 1552825920000,
@@ -259,7 +259,7 @@ Object {
     "title": "test",
   },
   "departure": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "8 A-D",
     "scheduledPlatform": "8 A-D",
     "scheduledTime": 1552826700000,
@@ -323,7 +323,7 @@ Object {
 exports[`parseTimetableS cancelled.xml 1`] = `
 Object {
   "arrival": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "13",
     "scheduledPlatform": "13",
     "scheduledTime": 1552827480000,
@@ -335,7 +335,7 @@ Object {
     "title": "test",
   },
   "departure": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "13",
     "scheduledPlatform": "13",
     "scheduledTime": 1552827600000,
@@ -480,7 +480,7 @@ Object {
 exports[`parseTimetableS departureCancelled.xml 1`] = `
 Object {
   "arrival": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "13",
     "scheduledPlatform": "13",
     "scheduledTime": 1552827480000,
@@ -492,7 +492,7 @@ Object {
     "title": "test",
   },
   "departure": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "13",
     "scheduledPlatform": "13",
     "scheduledTime": 1552827600000,
@@ -637,7 +637,7 @@ Object {
 exports[`parseTimetableS departureWing.xml 1`] = `
 Object {
   "arrival": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "4 D-G",
     "scheduledPlatform": "4 D-G",
     "scheduledTime": 1552828920000,
@@ -649,7 +649,7 @@ Object {
     "title": "test",
   },
   "departure": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "4",
     "scheduledPlatform": "4",
     "scheduledTime": 1552829160000,
@@ -718,7 +718,7 @@ Object {
 exports[`parseTimetableS departureWing.xml 2`] = `
 Object {
   "arrival": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "4 A-C",
     "scheduledPlatform": "4 A-C",
     "scheduledTime": 1552828440000,
@@ -730,7 +730,7 @@ Object {
     "title": "test",
   },
   "departure": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "4",
     "scheduledPlatform": "4",
     "scheduledTime": 1552829160000,
@@ -788,7 +788,7 @@ Object {
 exports[`parseTimetableS filteredDueToTime.xml 1`] = `
 Object {
   "arrival": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "13",
     "scheduledPlatform": "13",
     "scheduledTime": 1552820280000,
@@ -800,7 +800,7 @@ Object {
     "title": "test",
   },
   "departure": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "13",
     "scheduledPlatform": "13",
     "scheduledTime": 1552820400000,
@@ -945,7 +945,7 @@ Object {
 exports[`parseTimetableS lookbehind.xml 1`] = `
 Object {
   "arrival": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "16",
     "scheduledPlatform": "16",
     "scheduledTime": 1552826940000,
@@ -957,7 +957,7 @@ Object {
     "title": "test",
   },
   "departure": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "16",
     "scheduledPlatform": "16",
     "scheduledTime": 1552827060000,
@@ -1020,7 +1020,7 @@ Object {
     "title": "test",
   },
   "departure": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "34",
     "scheduledPlatform": "34",
     "scheduledTime": 1552824240000,
@@ -1100,7 +1100,7 @@ Object {
     "title": "test",
   },
   "departure": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "34",
     "scheduledPlatform": "34",
     "scheduledTime": 1552824240000,
@@ -1165,7 +1165,7 @@ Object {
     "title": "test",
   },
   "departure": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "34",
     "scheduledPlatform": "34",
     "scheduledTime": 1552824240000,
@@ -1228,7 +1228,7 @@ Object {
 exports[`parseTimetableS onlyArrival.xml 1`] = `
 Object {
   "arrival": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "10",
     "scheduledPlatform": "10",
     "scheduledTime": 1552825440000,
@@ -1301,7 +1301,7 @@ Object {
     "title": "test",
   },
   "departure": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "10",
     "scheduledPlatform": "10",
     "scheduledTime": 1552826160000,
@@ -1373,7 +1373,7 @@ Object {
 exports[`parseTimetableS simple1.xml 1`] = `
 Object {
   "arrival": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "13",
     "scheduledPlatform": "13",
     "scheduledTime": 1552827480000,
@@ -1385,7 +1385,7 @@ Object {
     "title": "test",
   },
   "departure": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "13",
     "scheduledPlatform": "13",
     "scheduledTime": 1552827600000,
@@ -1530,7 +1530,7 @@ Object {
 exports[`parseTimetableS simple2.xml 1`] = `
 Object {
   "arrival": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "16",
     "scheduledPlatform": "16",
     "scheduledTime": 1552826760000,
@@ -1542,7 +1542,7 @@ Object {
     "title": "test",
   },
   "departure": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "16",
     "scheduledPlatform": "16",
     "scheduledTime": 1552826880000,
@@ -1600,7 +1600,7 @@ Object {
 exports[`parseTimetableS visibleDueToDelay.xml 1`] = `
 Object {
   "arrival": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "13",
     "scheduledPlatform": "13",
     "scheduledTime": 1552820280000,
@@ -1612,7 +1612,7 @@ Object {
     "title": "test",
   },
   "departure": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "13",
     "scheduledPlatform": "13",
     "scheduledTime": 1552820400000,
@@ -1757,7 +1757,7 @@ Object {
 exports[`parseTimetableS wings.xml 1`] = `
 Object {
   "arrival": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "4",
     "scheduledPlatform": "4",
     "scheduledTime": 1552830660000,
@@ -1771,7 +1771,7 @@ Object {
     "title": "test",
   },
   "departure": Object {
-    "hidden": undefined,
+    "hidden": false,
     "platform": "4",
     "scheduledPlatform": "4",
     "scheduledTime": 1552830840000,

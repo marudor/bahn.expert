@@ -1,5 +1,6 @@
 import { isHbf } from './index';
 import { Link } from 'react-router-dom';
+import { StationSearchType } from 'Common/config';
 import { Train } from 'types/abfahrten';
 import cc from 'classnames';
 import React, { ReactNode, useMemo } from 'react';
@@ -22,7 +23,7 @@ const DetailVia = ({ stops }: Props) => {
           onClick={stopPropagation}
           to={{
             pathname: encodeURIComponent(s.name),
-            state: { searchType: 'stationsData' },
+            state: { searchType: StationSearchType.StationsData },
           }}
           title={`Zugabfahrten für ${s.name}`}
           className={cc({

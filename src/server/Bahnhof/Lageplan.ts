@@ -6,7 +6,7 @@ import qs from 'qs';
 export const cache: NodeCache = new NodeCache();
 
 export async function getLageplan(stationName: string) {
-  const cached = cache.get(stationName);
+  const cached = getCachedLageplan(stationName);
 
   if (cached) return cached;
   // undefined = haven't tried yet

@@ -14,6 +14,7 @@ export enum StationSearchType {
   HAFAS,
   FavendoAndOpenDB,
   StationsData,
+  FavendoStationsData,
 }
 
 export type MarudorConfig = {
