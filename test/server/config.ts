@@ -1,5 +1,4 @@
 import 'core-js/stable';
-import 'regenerator-runtime/runtime';
 import Nock from 'nock';
 
 global.PROD = true;

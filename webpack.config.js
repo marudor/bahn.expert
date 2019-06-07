@@ -81,7 +81,17 @@ const rules = [
   },
 ];
 
-const optimization = {};
+const optimization = {
+  splitChunks: {
+    cacheGroups: {
+      vendor: {
+        chunks: 'all',
+        test: /[\\/]node_modules[\\/]/,
+        name: 'vendor',
+      },
+    },
+  },
+};
 
 if (isDev) {
   rules[0].use.unshift('cache-loader');
