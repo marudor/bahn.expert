@@ -1,17 +1,29 @@
 import auslastungHafas from 'server/Auslastung/Hafas';
-import JourneyDetails from 'server/HAFAS/JourneyDetails';
+import journeyDetails from 'server/HAFAS/JourneyDetails';
 import KoaRouter from 'koa-router';
 import makeRequest from 'server/HAFAS/Request';
 import routing from 'server/HAFAS/TripSearch';
 import stationBoard from 'server/HAFAS/StationBoard';
+import trainSearch from 'server/HAFAS/TrainSearch';
 
 const router = new KoaRouter();
 const getCurrent = () =>
   new KoaRouter()
-    .get('/details/:jid', async ctx => {
+    .get('/journeyDetails/:jid', async ctx => {
       const { jid }: { jid: string } = ctx.params;
 
-      ctx.body = await JourneyDetails(jid);
+      ctx.body = await journeyDetails(jid);
+    })
+    .get('/details/:trainName/:date', async ctx => {
+      const { date, trainName } = ctx.params;
+
+      const trains = await trainSearch(trainName, Number.parseInt(date, 10));
+
+      if (trains.length) {
+        ctx.body = await journeyDetails(trains[0].jid);
+      } else {
+        ctx.status = 404;
+      }
     })
     .get('/auslastung/:start/:dest/:trainNumber/:time', async ctx => {
       const { start, dest, time, trainNumber } = ctx.params;
@@ -40,6 +52,11 @@ const getCurrent = () =>
         station,
         date: Number.parseInt(date, 10) || undefined,
       });
+    })
+    .get('/trainSearch/:trainName/:date', async ctx => {
+      const { date, trainName } = ctx.params;
+
+      ctx.body = await trainSearch(trainName, Number.parseInt(date, 10));
     })
     .post('/rawHafas', async ctx => {
       ctx.body = await makeRequest(ctx.request.body);
