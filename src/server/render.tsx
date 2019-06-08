@@ -120,7 +120,7 @@ export default async (ctx: Context) => {
     ctx.body += app;
 
     ctx.body += footerTemplate({
-      jsBundles: ctx.stats.main.js,
+      jsBundles: [...ctx.stats.vendor.js, ...ctx.stats.main.js],
     });
   }
 };

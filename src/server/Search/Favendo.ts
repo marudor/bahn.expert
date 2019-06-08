@@ -22,10 +22,14 @@ export default async function(searchTerm: string): Promise<Station[]> {
     )}`
   )).data;
 
-  return stations.map(s => ({
-    title: s.title,
-    id: s.eva_ids[0],
-    favendoId: s.id,
-    raw: global.PROD ? undefined : s,
-  }));
+  return stations
+    .sort((a, b) =>
+      a.title === searchTerm ? -1 : b.title === searchTerm ? 1 : 0
+    )
+    .map(s => ({
+      title: s.title,
+      id: s.eva_ids[0],
+      favendoId: s.id,
+      raw: global.PROD ? undefined : s,
+    }));
 }
