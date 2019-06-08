@@ -22,19 +22,22 @@ type StationsData = {
 
 // Remve HeaderLine
 entries.shift();
-const stationData: StationsData[] = entries.map(e => {
-  const [id, DS100, ifopt, name, verkehr, lng, lat] = e;
+const stationData: StationsData[] = entries
+  .filter(e => e[3])
+  .map(e => {
+    const [id, DS100, ifopt, name, verkehr, lng, lat] = e;
 
-  return {
-    id,
-    DS100,
-    ifopt,
-    name,
-    verkehr: verkehr as any,
-    lng,
-    lat,
-  };
-});
+    return {
+      id,
+      DS100,
+      ifopt,
+      name,
+      titleLength: name.length,
+      verkehr: verkehr as any,
+      lng,
+      lat,
+    };
+  });
 
 const searchableStations = new Fuse(stationData, {
   includeScore: true,
@@ -50,7 +53,7 @@ export default function(searchTerm: string): Promise<Station[]> {
   const matches = searchableStations.search(searchTerm);
 
   return Promise.resolve(
-    orderBy(matches, 'score', ['asc'])
+    orderBy(matches, ['score', 'item.titleLength'], ['asc', 'asc'])
       .slice(0, 8)
       .map(({ item, score }) => ({
         title: item.name,
