@@ -28,23 +28,9 @@ depCheck:
     paths:
       - node_modules/
 
-test:server:
+jest:
   stage: test
-  script: yarn test:server
-  cache:
-    policy: pull
-    key: '$CI_COMMIT_REF_SLUG'
-    paths:
-      - node_modules/
-  artifacts:
-    reports:
-      junit: reports/junitresults.xml
-    paths:
-      - reports
-
-test:client:
-  stage: test
-  script: yarn test:client
+  script: yarn test:jest
   cache:
     policy: pull
     key: '$CI_COMMIT_REF_SLUG'
@@ -113,8 +99,7 @@ codecov:
     paths:
       - node_modules/
   dependencies:
-    - test:client
-    - test:server
+    - jest
 
 docker:server:
   services:
