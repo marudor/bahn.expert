@@ -22,10 +22,9 @@
     "start:server": "node --inspect devIndex.js",
     "tsc": "tsc",
     "depCheck": "depcruise --validate .dependency-cruiser.js src",
-    "test": "npm run lint && npm run depCheck && npm run test:server && npm run test:client && tsc",
+    "test": "npm run lint && npm run depCheck && npm run test:jest && tsc",
     "test:codecov": "codecov",
-    "test:client": "jest --config test/client/jest.config.js",
-    "test:server": "TZ=Europe/Berlin jest --config test/server/jest.config.js"
+    "test:jest": "TZ=Europe/Berlin jest"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
@@ -129,7 +128,8 @@
     "idx": "^2.5.6",
     "iltorb": "^2.4.3",
     "jest": "^24.8.0",
-    "jest-dom": "^3.4.0",
+    "jest-dom": "^3.5.0",
+    "jest-junit": "^6.4.0",
     "jss-snapshot-serializer": "^1.0.0",
     "koa-webpack": "^5.2.3",
     "lolex": "^4.1.0",
@@ -139,7 +139,7 @@
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.6.0",
-    "prettier": "^1.18.1",
+    "prettier": "^1.18.2",
     "rimraf": "^2.6.3",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
@@ -221,5 +221,8 @@
   },
   "keywords": [],
   "contributors": [],
-  "homepage": "http://marudor.de"
+  "homepage": "http://marudor.de",
+  "jest-junit": {
+    "output": "./reports/junitresults.xml"
+  }
 }
