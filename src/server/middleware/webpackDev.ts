@@ -1,3 +1,4 @@
+// istanbul ignore file
 import { Server } from 'https';
 import chokidar from 'chokidar';
 import Koa from 'koa';

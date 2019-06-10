@@ -1,6 +1,7 @@
 import * as Unleash from 'unleash-client';
 import DefaultFeatures from './default';
 
+// istanbul ignore file
 const url = process.env.FEATURE_URL;
 const instanceId = process.env.FEATURE_ID;
 const appName = process.env.FEATURE_ENV;

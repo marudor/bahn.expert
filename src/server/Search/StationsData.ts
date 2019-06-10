@@ -59,7 +59,12 @@ export default function(searchTerm: string): Promise<Station[]> {
         title: item.name,
         id: item.id,
         DS100: item.DS100,
-        raw: global.PROD ? undefined : { ...item, score },
+        raw: global.PROD
+          ? undefined
+          : {
+              score,
+              item,
+            },
       }))
   );
 }
