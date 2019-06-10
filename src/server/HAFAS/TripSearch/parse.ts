@@ -120,7 +120,6 @@ class Journey {
       finalDestination: jny.dirTxt,
       jid: jny.jid,
       auslastung: this.parseAuslastung(jny.dTrnCmpSX),
-      product: global.PROD ? undefined : product,
     };
   };
   parseSegment = (t: SecL): undefined | Route$JourneySegment => {
@@ -146,7 +145,6 @@ class Journey {
           // reservationStatus: t.resState,
           // reservationRecommandation: t.resRecommendation,
           // icoX: this.common.icoL[t.icoX],
-          raw: global.PROD ? undefined : t,
           ...this.parseSegmentJourney(t.jny),
         };
       }

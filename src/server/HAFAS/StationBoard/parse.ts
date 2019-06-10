@@ -26,7 +26,6 @@ const parseStationBoardResponse = (
     finalDestination: jny.dirTxt,
     jid: jny.jid,
     isCancelled: jny.isCncl,
-    product: global.PROD ? undefined : product,
   };
 
   if (isArrival(jny.stbStop)) {
