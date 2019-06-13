@@ -1,8 +1,7 @@
-import { CommonState } from 'AppState';
-import { connect, ResolveThunks } from 'react-redux';
 import { getReihung } from 'Common/actions/reihung';
 import { getReihungForId } from 'Common/selector/reihung';
-import { Reihung } from 'types/reihung';
+import { useCommonSelector } from 'useSelector';
+import { useDispatch } from 'react-redux';
 import cc from 'classnames';
 import Gruppe from './Gruppe';
 import Loading from 'Common/Components/Loading';
@@ -10,11 +9,7 @@ import React, { useEffect } from 'react';
 import Sektor from './Sektor';
 import useStyles from './index.style';
 
-type StateProps = {
-  reihung: null | Reihung;
-};
-
-type OwnProps = {
+type Props = {
   className?: string;
   useZoom: boolean;
   fahrzeugGruppe: boolean;
@@ -23,32 +18,27 @@ type OwnProps = {
   scheduledDeparture: number;
 };
 
-type DispatchProps = ResolveThunks<{
-  getReihung: typeof getReihung;
-}>;
-
-export type ReduxProps = StateProps & OwnProps & DispatchProps;
-
-type Props = ReduxProps;
-
 const ReihungComp = (props: Props) => {
   const {
     className,
     currentStation,
     fahrzeugGruppe,
-    getReihung,
-    reihung,
     scheduledDeparture,
     trainNumber,
     useZoom,
   } = props;
-  const classes = useStyles(props);
+  const reihung = useCommonSelector(state => getReihungForId(state, props));
+  const classes = useStyles({
+    reihung,
+    fahrzeugGruppe,
+  });
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!reihung) {
-      getReihung(trainNumber, currentStation, scheduledDeparture);
+      dispatch(getReihung(trainNumber, currentStation, scheduledDeparture));
     }
-  }, [currentStation, getReihung, reihung, scheduledDeparture, trainNumber]);
+  }, [currentStation, dispatch, reihung, scheduledDeparture, trainNumber]);
 
   if (reihung === null) {
     return null;
@@ -95,9 +85,4 @@ const ReihungComp = (props: Props) => {
   );
 };
 
-export default connect<StateProps, DispatchProps, OwnProps, CommonState>(
-  (state, props) => ({
-    reihung: getReihungForId(state, props),
-  }),
-  { getReihung }
-)(ReihungComp);
+export default ReihungComp;

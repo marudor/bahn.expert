@@ -1,11 +1,17 @@
+import { Formation } from 'types/reihung';
 import { makeStyles } from '@material-ui/styles';
-import { ReduxProps } from '.';
 
 export default makeStyles(theme => ({
   wrap: {
     overflowX: 'auto',
   },
-  main: ({ reihung, fahrzeugGruppe }: ReduxProps) => {
+  main: ({
+    reihung,
+    fahrzeugGruppe,
+  }: {
+    reihung: Formation | null;
+    fahrzeugGruppe: boolean;
+  }) => {
     let height = 6;
 
     if (fahrzeugGruppe) height += 1;

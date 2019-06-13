@@ -131,14 +131,13 @@ const components = {
   ValueContainer,
 };
 
-type OwnProps = {
+type Props = {
   searchType?: StationSearchType;
   value?: Station;
   onChange: (s: Station) => any;
   autoFocus?: boolean;
   placeholder?: string;
 };
-type Props = OwnProps;
 
 const StationSearch = ({
   onChange,
@@ -196,4 +195,4 @@ const StationSearch = ({
   );
 };
 
-export default StationSearch;
+export default React.memo(StationSearch);
