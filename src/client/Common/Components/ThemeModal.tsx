@@ -1,6 +1,4 @@
 import { closeTheme, setTheme } from 'Common/actions/config';
-import { CommonState } from 'AppState';
-import { connect, ResolveThunks } from 'react-redux';
 import {
   Dialog,
   DialogContent,
@@ -11,31 +9,23 @@ import {
   RadioGroup,
 } from '@material-ui/core';
 import { ThemeType } from 'client/Themes/type';
+import { useCommonSelector } from 'useSelector';
+import { useDispatch } from 'react-redux';
 import React, { ChangeEvent, useCallback } from 'react';
 
-type StateProps = {
-  open: boolean;
-  theme: ThemeType;
-};
-
-type DispatchProps = ResolveThunks<{
-  closeTheme: typeof closeTheme;
-  setTheme: typeof setTheme;
-}>;
-
-type ReduxProps = StateProps & DispatchProps;
-type Props = ReduxProps;
-
-const FilterModal = ({ open, closeTheme, setTheme, theme }: Props) => {
+const ThemeModal = () => {
+  const dispatch = useDispatch();
   const setThemeCb = useCallback(
     (_: ChangeEvent<{}>, value: string) => {
-      setTheme(value as ThemeType);
+      dispatch(setTheme(value as ThemeType));
     },
-    [setTheme]
+    [dispatch]
   );
+  const open = useCommonSelector(state => state.config.themeMenu);
+  const theme = useCommonSelector(state => state.config.theme);
 
   return (
-    <Dialog maxWidth="md" open={open} onClose={closeTheme}>
+    <Dialog maxWidth="md" open={open} onClose={() => dispatch(closeTheme())}>
       <DialogTitle>Themes</DialogTitle>
       <DialogContent>
         <FormControl component="fieldset">
@@ -55,13 +45,4 @@ const FilterModal = ({ open, closeTheme, setTheme, theme }: Props) => {
   );
 };
 
-export default connect<StateProps, DispatchProps, {}, CommonState>(
-  state => ({
-    open: state.config.themeMenu,
-    theme: state.config.theme,
-  }),
-  {
-    closeTheme,
-    setTheme,
-  }
-)(FilterModal);
+export default React.memo(ThemeModal);
