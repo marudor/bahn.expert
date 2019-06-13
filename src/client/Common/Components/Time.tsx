@@ -17,7 +17,7 @@ type OwnProps = {
 
 type Props = OwnProps;
 
-function delayString(delay: number = 0) {
+function delayString(delay: number) {
   if (delay < 0) {
     return `-${Math.abs(delay)}`;
   }
@@ -37,7 +37,7 @@ const Time = ({
 }: Props) => {
   const classes = useStyles();
 
-  if (!real) return <div />;
+  if (!real) return null;
   const time = showOriginalTime && delay ? subMinutes(real, delay) : real;
 
   const hasDelay = showZero ? delay != null : Boolean(delay);
@@ -58,15 +58,21 @@ const Time = ({
       })}
     >
       <span
+        data-testid="time"
         className={cc({
           [classes.spacing]: oneLine,
         })}
       >
         {format(time, 'HH:mm')}
       </span>
-      <span className={cc(showOriginalTime && delayStyle)}>
-        {hasDelay && delayString(delay)}
-      </span>
+      {hasDelay && (
+        <span
+          data-testid="delay"
+          className={cc(showOriginalTime && delayStyle)}
+        >
+          {delayString(delay as number)}
+        </span>
+      )}
     </div>
   );
 };

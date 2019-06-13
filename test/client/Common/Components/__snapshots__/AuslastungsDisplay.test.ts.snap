@@ -2,22 +2,22 @@
 
 exports[`AuslastungsDisplay Gering / Hoch 1`] = `
 <div
-  class="AuslastungsDisplay-main-0"
+  class="AuslastungsDisplay-main"
 >
   <div
-    class="AuslastungsDisplay-entry-0"
+    class="AuslastungsDisplay-entry"
     data-testid="first"
   >
     <span>
       1
     </span>
     <span
-      class="AuslastungsDisplay-icon-0 AuslastungsDisplay-first-0 AuslastungsDisplay-first-2"
+      class="AuslastungsDisplay-icon AuslastungsDisplay-first AuslastungsDisplay-first"
       title="Geringe Auslastung"
     >
       <svg
         aria-hidden="true"
-        class="MuiSvgIcon-root-0 MuiSvgIcon-fontSizeInherit-0"
+        class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit"
         focusable="false"
         role="presentation"
         viewBox="0 0 24 24"
@@ -33,19 +33,19 @@ exports[`AuslastungsDisplay Gering / Hoch 1`] = `
     </span>
   </div>
   <div
-    class="AuslastungsDisplay-entry-0"
+    class="AuslastungsDisplay-entry"
     data-testid="second"
   >
     <span>
       2
     </span>
     <span
-      class="AuslastungsDisplay-icon-0 AuslastungsDisplay-second-1 AuslastungsDisplay-second-3"
+      class="AuslastungsDisplay-icon AuslastungsDisplay-second AuslastungsDisplay-second"
       title="Mittlere Auslastung"
     >
       <svg
         aria-hidden="true"
-        class="MuiSvgIcon-root-0 MuiSvgIcon-fontSizeInherit-0"
+        class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit"
         focusable="false"
         role="presentation"
         viewBox="0 0 24 24"
@@ -65,22 +65,22 @@ exports[`AuslastungsDisplay Gering / Hoch 1`] = `
 
 exports[`AuslastungsDisplay SehrHoch / Ausgebucht 1`] = `
 <div
-  class="AuslastungsDisplay-main-0"
+  class="AuslastungsDisplay-main"
 >
   <div
-    class="AuslastungsDisplay-entry-0"
+    class="AuslastungsDisplay-entry"
     data-testid="first"
   >
     <span>
       1
     </span>
     <span
-      class="AuslastungsDisplay-icon-0 AuslastungsDisplay-first-0 AuslastungsDisplay-first-2"
+      class="AuslastungsDisplay-icon AuslastungsDisplay-first AuslastungsDisplay-first"
       title="Hohe Auslastung"
     >
       <svg
         aria-hidden="true"
-        class="MuiSvgIcon-root-0 MuiSvgIcon-fontSizeInherit-0"
+        class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit"
         focusable="false"
         role="presentation"
         viewBox="0 0 24 24"
@@ -96,19 +96,19 @@ exports[`AuslastungsDisplay SehrHoch / Ausgebucht 1`] = `
     </span>
   </div>
   <div
-    class="AuslastungsDisplay-entry-0"
+    class="AuslastungsDisplay-entry"
     data-testid="second"
   >
     <span>
       2
     </span>
     <span
-      class="AuslastungsDisplay-icon-0 AuslastungsDisplay-second-1 AuslastungsDisplay-second-3"
+      class="AuslastungsDisplay-icon AuslastungsDisplay-second AuslastungsDisplay-second"
       title="Ausgebucht"
     >
       <svg
         aria-hidden="true"
-        class="MuiSvgIcon-root-0 MuiSvgIcon-fontSizeInherit-0"
+        class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit"
         focusable="false"
         role="presentation"
         viewBox="0 0 24 24"
@@ -128,22 +128,22 @@ exports[`AuslastungsDisplay SehrHoch / Ausgebucht 1`] = `
 
 exports[`AuslastungsDisplay Unbekannt / Hoch 1`] = `
 <div
-  class="AuslastungsDisplay-main-0"
+  class="AuslastungsDisplay-main"
 >
   <div
-    class="AuslastungsDisplay-entry-0"
+    class="AuslastungsDisplay-entry"
     data-testid="first"
   >
     <span>
       1
     </span>
     <span
-      class="AuslastungsDisplay-icon-0 AuslastungsDisplay-first-0 AuslastungsDisplay-first-2"
+      class="AuslastungsDisplay-icon AuslastungsDisplay-first AuslastungsDisplay-first"
       title="Unbekannt"
     >
       <svg
         aria-hidden="true"
-        class="MuiSvgIcon-root-0 MuiSvgIcon-fontSizeInherit-0"
+        class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit"
         focusable="false"
         role="presentation"
         viewBox="0 0 24 24"
@@ -159,19 +159,19 @@ exports[`AuslastungsDisplay Unbekannt / Hoch 1`] = `
     </span>
   </div>
   <div
-    class="AuslastungsDisplay-entry-0"
+    class="AuslastungsDisplay-entry"
     data-testid="second"
   >
     <span>
       2
     </span>
     <span
-      class="AuslastungsDisplay-icon-0 AuslastungsDisplay-second-1 AuslastungsDisplay-second-3"
+      class="AuslastungsDisplay-icon AuslastungsDisplay-second AuslastungsDisplay-second"
       title="Mittlere Auslastung"
     >
       <svg
         aria-hidden="true"
-        class="MuiSvgIcon-root-0 MuiSvgIcon-fontSizeInherit-0"
+        class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit"
         focusable="false"
         role="presentation"
         viewBox="0 0 24 24"

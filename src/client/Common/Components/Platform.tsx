@@ -12,16 +12,25 @@ type Props = OwnProps;
 
 const Platform = ({ className, cancelled, scheduled, real }: Props) => {
   const classes = useStyles();
+  const changed = scheduled && scheduled !== real;
 
   return (
-    <span
+    <div
       className={cc(className, {
         [classes.cancelled]: cancelled,
-        [classes.changed]: scheduled && scheduled !== real,
+        [classes.changed]: changed,
       })}
     >
-      {real}
-    </span>
+      <span data-testid="real">{real}</span>
+      {changed && (
+        <span
+          data-testid="scheduled"
+          className={cc(classes.changedWrapper, classes.cancelled)}
+        >
+          ({scheduled})
+        </span>
+      )}
+    </div>
   );
 };
 
