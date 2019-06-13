@@ -1,39 +1,75 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Platform No platform provided 1`] = `
-<span
+<div
   class=""
-/>
+>
+  <span
+    data-testid="real"
+  />
+</div>
 `;
 
 exports[`Platform scheduled !== real & cancelled 1`] = `
-<span
-  class="Platform-cancelled-0 Platform-changed-0"
+<div
+  class="Platform-cancelled Platform-changed"
 >
-  1
-</span>
+  <span
+    data-testid="real"
+  >
+    1
+  </span>
+  <span
+    class="Platform-changedWrapper Platform-cancelled"
+    data-testid="scheduled"
+  >
+    (
+    2
+    )
+  </span>
+</div>
 `;
 
 exports[`Platform scheduled !== real 1`] = `
-<span
-  class="Platform-changed-0"
+<div
+  class="Platform-changed"
 >
-  1
-</span>
+  <span
+    data-testid="real"
+  >
+    1
+  </span>
+  <span
+    class="Platform-changedWrapper Platform-cancelled"
+    data-testid="scheduled"
+  >
+    (
+    2
+    )
+  </span>
+</div>
 `;
 
 exports[`Platform scheduled === real & cancelled 1`] = `
-<span
-  class="Platform-cancelled-0"
+<div
+  class="Platform-cancelled"
 >
-  1
-</span>
+  <span
+    data-testid="real"
+  >
+    1
+  </span>
+</div>
 `;
 
 exports[`Platform scheduled === real 1`] = `
-<span
+<div
   class=""
 >
-  1
-</span>
+  <span
+    data-testid="real"
+  >
+    1
+  </span>
+</div>
 `;

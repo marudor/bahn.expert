@@ -23,7 +23,7 @@ function getType<C extends Record<'cube' | 'dots', string>>(
     default:
     case LoadingType.grid:
       return (
-        <div className={classes.cube}>
+        <div data-testid="grid" className={classes.cube}>
           <div />
           <div />
           <div />
@@ -37,7 +37,7 @@ function getType<C extends Record<'cube' | 'dots', string>>(
       );
     case LoadingType.dots:
       return (
-        <div className={classes.dots}>
+        <div data-testid="dots" className={classes.dots}>
           <div />
           <div />
           <div />
@@ -52,7 +52,7 @@ const Loading = ({
   children,
   type = LoadingType.grid,
 }: Props) => {
-  const classes = useStyles();
+  const classes = useStyles({});
 
   if (isLoading || !children) {
     return <div className={className}>{getType(type, classes)}</div>;

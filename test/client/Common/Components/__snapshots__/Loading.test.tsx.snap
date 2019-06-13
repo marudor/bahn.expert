@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading defaults to grid 1`] = `
+<div>
+  <div
+    class="Loading-cube"
+    data-testid="grid"
+  >
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+  </div>
+</div>
+`;
+
+exports[`Loading returns children if isLoading is false 1`] = `
+<div
+  data-testid="temp"
+/>
+`;
+
+exports[`Loading shows loading if no children given (dots type) 1`] = `
+<div>
+  <div
+    class="Loading-dots"
+    data-testid="dots"
+  >
+    <div />
+    <div />
+    <div />
+  </div>
+</div>
+`;
+
+exports[`Loading shows loading if no children given 1`] = `
+<div>
+  <div
+    class="Loading-cube"
+    data-testid="grid"
+  >
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+  </div>
+</div>
+`;
+
+exports[`Loading shows loading instead of children if isLoading is given 1`] = `
+<div>
+  <div
+    class="Loading-cube"
+    data-testid="grid"
+  >
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+  </div>
+</div>
+`;
+
+exports[`Loading supports custom className 1`] = `
+<div
+  class="test"
+>
+  <div
+    class="Loading-cube"
+    data-testid="grid"
+  >
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+  </div>
+</div>
+`;
