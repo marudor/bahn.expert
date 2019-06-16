@@ -2,15 +2,26 @@ import { createReducer } from 'deox';
 import { Route, RoutingResult } from 'types/routing';
 import Actions from 'Routing/actions/routing';
 
+export interface RoutingSettings {
+  maxChanges: string;
+  transferTime: string;
+  searchForDeparture?: boolean;
+}
+
 export type State = {
   routes?: Array<Route>;
   context: Partial<RoutingResult['context']>;
   error?: any;
+  settings: RoutingSettings;
 };
 
 const defaultState: State = {
   routes: [],
   context: {},
+  settings: {
+    maxChanges: '-1',
+    transferTime: '0',
+  },
 };
 
 export default createReducer(defaultState, handle => [
@@ -38,5 +49,12 @@ export default createReducer(defaultState, handle => [
     ...state,
     routes: [],
     error: payload,
+  })),
+  handle(Actions.setSetting, (state, { payload: { key, value } }) => ({
+    ...state,
+    settings: {
+      ...state.settings,
+      [key]: value,
+    },
   })),
 ]);

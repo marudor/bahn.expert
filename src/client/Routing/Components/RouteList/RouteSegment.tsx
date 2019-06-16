@@ -1,6 +1,6 @@
 import { Route$JourneySegment } from 'types/routing';
 import AuslastungsDisplay from 'Common/Components/AuslastungsDisplay';
-import cc from 'classnames';
+import cc from 'clsx';
 import Platform from 'Common/Components/Platform';
 import React, { useMemo } from 'react';
 import Reihung from 'Common/Components/Reihung';

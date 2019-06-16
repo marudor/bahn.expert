@@ -1,5 +1,5 @@
 import { Message } from 'types/abfahrten';
-import cc from 'classnames';
+import cc from 'clsx';
 import React, { useMemo } from 'react';
 import useStyles from './index.style';
 

@@ -126,6 +126,7 @@ module.exports = {
     modules: ['node_modules', path.resolve(__dirname, 'src')],
     extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'],
     alias: {
+      classnames$: 'clsx',
       'lodash-es$': 'lodash',
       Abfahrten: 'client/Abfahrten',
       Routing: 'client/Routing',

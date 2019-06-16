@@ -1,4 +1,4 @@
-import cc from 'classnames';
+import cc from 'clsx';
 import React from 'react';
 import useStyles from './Platform.style';
 

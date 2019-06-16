@@ -1,6 +1,9 @@
 import { makeStyles } from '@material-ui/styles';
 
 export default makeStyles(theme => ({
+  absolute: {
+    position: 'absolute',
+  },
   '@keyframes cube': {
     '0%,70%,100%': {
       transform: 'scale3D(1, 1, 1)',
@@ -11,7 +14,6 @@ export default makeStyles(theme => ({
   },
 
   cube: {
-    position: 'absolute',
     top: 0,
     left: 0,
     bottom: 0,

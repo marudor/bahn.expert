@@ -3,7 +3,7 @@ import { AbfahrtenState } from 'AppState';
 import { connect, ResolveThunks } from 'react-redux';
 import { getDetailForAbfahrt } from 'Abfahrten/selector/abfahrten';
 import { setDetail } from 'Abfahrten/actions/abfahrten';
-import cc from 'classnames';
+import cc from 'clsx';
 import End from './End';
 import Mid from './Mid';
 import Paper from '@material-ui/core/Paper';

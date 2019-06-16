@@ -2,7 +2,7 @@
 
 exports[`Time does not show 0 delay number 1`] = `
 <div
-  class="Time-time  Time-seperateLine"
+  class="Time-time Time-seperateLine"
 >
   <span
     class=""

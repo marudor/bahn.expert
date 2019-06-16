@@ -21,6 +21,7 @@ import deLocale from 'date-fns/locale/de';
 import IconButton from '@material-ui/core/IconButton';
 import React, { SyntheticEvent, useCallback, useEffect } from 'react';
 import searchActions, { getStationById } from 'Routing/actions/search';
+import SettingsPanel from './SettingsPanel';
 import StationSearch from 'Common/Components/StationSearch';
 import SwapVertical from '@material-ui/icons/SwapVert';
 import useStyles from './Search.styles';
@@ -161,6 +162,7 @@ const Search = ({
         todayLabel="Jetzt"
         minutesStep={5}
       />
+      <SettingsPanel />
       <div className={classes.buttons}>
         <Button fullWidth variant="contained" onClick={searchRoute}>
           Search

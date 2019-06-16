@@ -1,7 +1,7 @@
 import { Abfahrt, Message } from 'types/abfahrten';
 import { AbfahrtenState } from 'AppState';
 import { connect } from 'react-redux';
-import cc from 'classnames';
+import cc from 'clsx';
 import DetailMessages from './Messages/Detail';
 import DetailVia from './Via/Detail';
 import NormalMessages from './Messages/Normal';
