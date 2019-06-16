@@ -2,7 +2,7 @@ import { isHbf } from './index';
 import { Link } from 'react-router-dom';
 import { StationSearchType } from 'Common/config';
 import { Train } from 'types/abfahrten';
-import cc from 'classnames';
+import cc from 'clsx';
 import React, { ReactNode, useMemo } from 'react';
 import stopPropagation from 'Common/stopPropagation';
 import useStyles from './index.style';

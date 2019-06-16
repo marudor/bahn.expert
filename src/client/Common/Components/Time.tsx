@@ -1,6 +1,6 @@
 /* eslint no-nested-ternary: 0 */
 import { format, subMinutes } from 'date-fns';
-import cc from 'classnames';
+import cc from 'clsx';
 import React from 'react';
 import useStyles from './Time.style';
 

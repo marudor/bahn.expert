@@ -1,5 +1,6 @@
 import { createAction } from 'deox';
 import { Route, RoutingResult } from 'types/routing';
+import { RoutingSettings } from 'Routing/reducer/routing';
 import { RoutingThunkResult } from 'AppState';
 import { uniqBy } from 'lodash';
 import axios from 'axios';
@@ -19,13 +20,31 @@ const Actions = {
     'GOT_LATER_CONTEXT',
     resolve => (context?: string) => resolve(context)
   ),
+  setSetting: createAction(
+    'SET_SETTING',
+    resolve => <K extends keyof RoutingSettings>(
+      key: K,
+      value: RoutingSettings[K]
+    ) =>
+      resolve({
+        key,
+        value,
+      })
+  ),
 };
+
+export const setMaxChanges = (value: string) =>
+  Actions.setSetting('maxChanges', value);
+export const setTransferTime = (value: string) =>
+  Actions.setSetting('transferTime', value);
 
 export const getRoutes = (
   start: string,
   destination: string,
   date: Date
-): RoutingThunkResult => async dispatch => {
+): RoutingThunkResult => async (dispatch, getState) => {
+  const settings = getState().routing.settings;
+
   dispatch(Actions.gotRoutes());
   try {
     const routingResult: RoutingResult = (await axios.post(
@@ -34,6 +53,7 @@ export const getRoutes = (
         start,
         destination,
         time: date.getTime(),
+        ...settings,
       }
     )).data;
 

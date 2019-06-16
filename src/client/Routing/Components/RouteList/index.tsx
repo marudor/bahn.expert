@@ -38,7 +38,7 @@ const RouteList = ({ routes, dispatch, error }: Props) => {
     return <div className={classes.main}>{String(error)}</div>;
   }
 
-  if (!routes) return <Loading />;
+  if (!routes) return <Loading relative />;
   if (!routes.length) return null;
 
   return (

@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Abfahrt } from 'types/abfahrten';
 import { AbfahrtenState } from 'AppState';
 import { connect } from 'react-redux';
-import cc from 'classnames';
+import cc from 'clsx';
 import Time from 'Common/Components/Time';
 import useStyles from './Times.style';
 

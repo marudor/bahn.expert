@@ -1,6 +1,6 @@
 import { isHbf } from './index';
 import { Train } from 'types/abfahrten';
-import cc from 'classnames';
+import cc from 'clsx';
 import React, { ReactNode, useMemo } from 'react';
 import useStyles from './index.style';
 

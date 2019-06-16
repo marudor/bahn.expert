@@ -1,7 +1,7 @@
 import { Fahrzeug, FahrzeugType } from 'types/reihung';
 import ActionAccessible from '@material-ui/icons/Accessible';
 import ActionMotorcycle from '@material-ui/icons/Motorcycle';
-import cc from 'classnames';
+import cc from 'clsx';
 import ChildFriendly from '@material-ui/icons/ChildFriendly';
 import MapsLocalDining from '@material-ui/icons/LocalDining';
 import NotificationsOff from '@material-ui/icons/NotificationsOff';

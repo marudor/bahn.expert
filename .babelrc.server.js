@@ -27,6 +27,7 @@ module.exports = {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
         alias: {
           testHelper: './test/client/testHelper',
+          classnames: 'clsx',
         },
         resolvePath: (sourcePath, currentFile, opts) => {
           const path = require('babel-plugin-module-resolver').resolvePath(

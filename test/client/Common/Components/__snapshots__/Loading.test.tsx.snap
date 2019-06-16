@@ -3,7 +3,7 @@
 exports[`Loading defaults to grid 1`] = `
 <div>
   <div
-    class="Loading-cube"
+    class="Loading-cube Loading-absolute"
     data-testid="grid"
   >
     <div />
@@ -41,7 +41,7 @@ exports[`Loading shows loading if no children given (dots type) 1`] = `
 exports[`Loading shows loading if no children given 1`] = `
 <div>
   <div
-    class="Loading-cube"
+    class="Loading-cube Loading-absolute"
     data-testid="grid"
   >
     <div />
@@ -60,7 +60,7 @@ exports[`Loading shows loading if no children given 1`] = `
 exports[`Loading shows loading instead of children if isLoading is given 1`] = `
 <div>
   <div
-    class="Loading-cube"
+    class="Loading-cube Loading-absolute"
     data-testid="grid"
   >
     <div />
@@ -81,7 +81,7 @@ exports[`Loading supports custom className 1`] = `
   class="test"
 >
   <div
-    class="Loading-cube"
+    class="Loading-cube Loading-absolute"
     data-testid="grid"
   >
     <div />

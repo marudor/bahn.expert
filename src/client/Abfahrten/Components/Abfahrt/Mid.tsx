@@ -1,5 +1,5 @@
 import { Abfahrt } from 'types/abfahrten';
-import cc from 'classnames';
+import cc from 'clsx';
 import Info from './Info';
 import React from 'react';
 import useStyles from './Mid.style';

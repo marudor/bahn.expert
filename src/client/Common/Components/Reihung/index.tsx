@@ -2,7 +2,7 @@ import { getReihung } from 'Common/actions/reihung';
 import { getReihungForId } from 'Common/selector/reihung';
 import { useCommonSelector } from 'useSelector';
 import { useDispatch } from 'react-redux';
-import cc from 'classnames';
+import cc from 'clsx';
 import Gruppe from './Gruppe';
 import Loading from 'Common/Components/Loading';
 import React, { useEffect } from 'react';

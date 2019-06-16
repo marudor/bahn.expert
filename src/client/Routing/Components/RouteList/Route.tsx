@@ -1,6 +1,6 @@
 import { formatDuration } from 'Routing/util';
 import { Route as RouteType } from 'types/routing';
-import cc from 'classnames';
+import cc from 'clsx';
 import Paper from '@material-ui/core/Paper';
 import React, { SyntheticEvent, useMemo } from 'react';
 import RouteSegments from './RouteSegments';
