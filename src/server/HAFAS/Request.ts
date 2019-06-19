@@ -9,6 +9,7 @@ import {
   JourneyDetailsRequest,
   JourneyDetailsResponse,
 } from 'types/HAFAS/JourneyDetails';
+import { LocGeoPosRequest, LocGeoPosResponse } from 'types/HAFAS/LocGeoPos';
 import { LocMatchRequest, LocMatchResponse } from 'types/HAFAS/LocMatch';
 import {
   StationBoardRequest,
@@ -91,6 +92,11 @@ declare function makeRequest<
   R extends HafasResponse<StationBoardResponse>,
   P = R
 >(r: StationBoardRequest, parseFn?: (d: R, pc: ParsedCommon) => P): Promise<P>;
+// @ts-ignore ???
+declare function makeRequest<R extends HafasResponse<LocGeoPosResponse>, P = R>(
+  r: LocGeoPosRequest,
+  parseFn?: (d: R, pc: ParsedCommon) => P
+): Promise<P>;
 // @ts-ignore ???
 declare function makeRequest<R extends HafasResponse<LocMatchResponse>, P = R>(
   r: LocMatchRequest,
