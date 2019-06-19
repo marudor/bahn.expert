@@ -1,4 +1,5 @@
 import auslastungHafas from 'server/Auslastung/Hafas';
+import geoStation from 'server/HAFAS/LocGeoPos';
 import journeyDetails from 'server/HAFAS/JourneyDetails';
 import KoaRouter from 'koa-router';
 import makeRequest from 'server/HAFAS/Request';
@@ -57,6 +58,11 @@ const getCurrent = () =>
       const { date, trainName } = ctx.params;
 
       ctx.body = await trainSearch(trainName, Number.parseInt(date, 10));
+    })
+    .get('/geoStation', async ctx => {
+      const { x, y, maxDist = 1000 } = ctx.query;
+
+      ctx.body = await geoStation(x, y, maxDist);
     })
     .post('/rawHafas', async ctx => {
       ctx.body = await makeRequest(ctx.request.body);
