@@ -18,7 +18,7 @@ const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
 
   return (
     <div className={classes.main}>
-      <span>{abfahrt.train.full}</span>
+      <span>{abfahrt.train.name}</span>
       {lineAndNumber && abfahrt.train.line && (
         <>
           <span>

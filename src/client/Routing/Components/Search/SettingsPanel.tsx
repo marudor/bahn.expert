@@ -23,7 +23,7 @@ const SettingsPanel = () => {
   );
 
   return (
-    <ExpansionPanel className={classes.expanded} defaultExpanded>
+    <ExpansionPanel className={classes.expanded}>
       <ExpansionPanelSummary
         classes={{ content: classes.summaryContent }}
         className={classes.summary}

@@ -20,7 +20,7 @@ const Route = ({ route, detail, onClick }: Props) => {
   const segmentTypes = useMemo(() => {
     if (route.segmentTypes.length > 1) return route.segmentTypes.join(' - ');
 
-    return route.segments[0].train.full;
+    return route.segments[0].train.name;
   }, [route]);
 
   return (

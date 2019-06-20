@@ -1,3 +1,5 @@
+import { Common } from '.';
+
 export interface LocGeoPosRequest {
   req: {
     ring: {
@@ -11,4 +13,6 @@ export interface LocGeoPosRequest {
   meth: 'LocGeoPos';
 }
 
-export interface LocGeoPosResponse {}
+export interface LocGeoPosResponse {
+  common: Common;
+}

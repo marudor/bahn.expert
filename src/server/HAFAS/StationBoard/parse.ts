@@ -9,7 +9,6 @@ import { parse } from 'date-fns';
 import { StationBoardEntry } from 'types/stationBoard';
 import parseCommonArrival from '../helper/parseCommonArrival';
 import parseCommonDeparture from '../helper/parseCommonDeparture';
-import parseProduct from '../helper/parseProduct';
 
 const isArrival = (a: CommonArrival | CommonDeparture): a is CommonArrival =>
   a.hasOwnProperty('aOutR');
@@ -21,7 +20,7 @@ const parseStationBoardResponse = (
   const date = parse(jny.date, 'yyyyMMdd', new Date()).getTime();
   const product = common.prodL[jny.prodX];
   const commonResponse = {
-    train: parseProduct(product),
+    train: product,
     currentStation: common.locL[jny.stbStop.locX],
     finalDestination: jny.dirTxt,
     jid: jny.jid,
