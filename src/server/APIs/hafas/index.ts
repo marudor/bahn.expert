@@ -7,6 +7,12 @@ import routing from 'server/HAFAS/TripSearch';
 import stationBoard from 'server/HAFAS/StationBoard';
 import trainSearch from 'server/HAFAS/TrainSearch';
 
+const parseLatLng = (latLng: string) => {
+  const splitted = latLng.split('.');
+
+  return splitted[0].padStart(2, '0') + splitted[1].padEnd(6, '0');
+};
+
 const router = new KoaRouter();
 const getCurrent = () =>
   new KoaRouter()
@@ -60,9 +66,12 @@ const getCurrent = () =>
       ctx.body = await trainSearch(trainName, Number.parseInt(date, 10));
     })
     .get('/geoStation', async ctx => {
-      const { x, y, maxDist = 1000 } = ctx.query;
+      const { x, y, lat, lng, maxDist = 1000 } = ctx.query;
 
-      ctx.body = await geoStation(x, y, maxDist);
+      const realY = lat ? parseLatLng(lat) : y;
+      const realX = lng ? parseLatLng(lng) : x;
+
+      ctx.body = await geoStation(realX, realY, maxDist);
     })
     .post('/rawHafas', async ctx => {
       ctx.body = await makeRequest(ctx.request.body);

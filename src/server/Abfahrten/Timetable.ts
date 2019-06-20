@@ -681,7 +681,7 @@ export default class Timetable {
       substitute: t === 'e',
       train: {
         longDistance: longDistanceRegex.test(fullTrainText),
-        full: fullTrainText,
+        name: fullTrainText,
         number: trainNumber,
         ...splitTrainType(fullTrainText, trainNumber),
       },

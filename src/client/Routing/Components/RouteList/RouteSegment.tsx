@@ -27,7 +27,7 @@ const RouteSegment = ({ segment, detail, onTrainClick }: Props) => {
         className={classes.train}
       >
         <div className={classes.trainInfo}>
-          <span className={classes.trainMargin}>{segment.train.full}</span>
+          <span className={classes.trainMargin}>{segment.train.name}</span>
           <span className={cc(classes.trainMargin, classes.destination)}>
             {segment.finalDestination}
           </span>
@@ -37,7 +37,7 @@ const RouteSegment = ({ segment, detail, onTrainClick }: Props) => {
         </div>
         {detail && (
           <>
-            {segment.departure.reihung && (
+            {segment.departure.reihung && segment.train.number && (
               <Reihung
                 className={classes.reihung}
                 useZoom

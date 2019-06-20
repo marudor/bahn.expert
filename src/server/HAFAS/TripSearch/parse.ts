@@ -124,8 +124,14 @@ class Journey {
   parseSegment = (t: SecL): undefined | Route$JourneySegment => {
     switch (t.type) {
       case 'JNY': {
-        const arrival = this.parseArrival(t.arr);
-        const departure = this.parseDeparture(t.dep);
+        const arrival = this.parseArrival(
+          t.arr,
+          this.common.prodL[t.jny.prodX].type
+        );
+        const departure = this.parseDeparture(
+          t.dep,
+          this.common.prodL[t.jny.prodX].type
+        );
 
         return {
           arrival,
@@ -152,16 +158,16 @@ class Journey {
         return undefined;
     }
   };
-  parseArrival(a: Arr): Route$StopInfo {
+  parseArrival(a: Arr, trainType?: string): Route$StopInfo {
     return {
       ...parseCommonArrival(a, this.date),
-      reihung: Boolean(a.aTrnCmpSX && a.aTrnCmpSX.tcM),
+      reihung: Boolean(a.aTrnCmpSX && a.aTrnCmpSX.tcM) || trainType === 'IC',
     };
   }
-  parseDeparture(d: Dep): Route$StopInfo {
+  parseDeparture(d: Dep, trainType?: string): Route$StopInfo {
     return {
       ...parseCommonDeparture(d, this.date),
-      reihung: Boolean(d.dTrnCmpSX && d.dTrnCmpSX.tcM),
+      reihung: Boolean(d.dTrnCmpSX && d.dTrnCmpSX.tcM) || trainType === 'IC',
     };
   }
 }

@@ -43,6 +43,9 @@ export interface StopInfo extends CommonStopInfo {
 export interface TrainInfo extends CommonProductInfo {
   thirdParty?: string;
   longDistance: boolean;
+  type: string;
+  line: string;
+  number: string;
 }
 
 export type Abfahrt = {
