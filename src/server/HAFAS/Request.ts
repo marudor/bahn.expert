@@ -18,6 +18,7 @@ import {
 import { TripSearchRequest, TripSearchResponse } from 'types/HAFAS/TripSearch';
 import axios from 'axios';
 import Crypto from 'crypto';
+import parseProduct from './helper/parseProduct';
 
 function getSecret() {
   const enc = Buffer.from(
@@ -78,12 +79,23 @@ function createRequest(req: SingleHafasRequest) {
 }
 
 function parseCommon(common: Common): ParsedCommon {
+  const prodL = common.prodL.map(p => parseProduct(p));
+  const locL = common.locL.map(l => ({
+    id: l.extId,
+    title: l.name,
+    coordinates: l.crd && {
+      x: l.crd.x,
+      y: l.crd.y,
+    },
+    products: l.pRefL && l.pRefL.map(p => prodL[p]),
+    raw: global.PROD ? undefined : l,
+  }));
+
   return {
     ...common,
-    locL: common.locL.map(l => ({
-      id: l.extId,
-      title: l.name,
-    })),
+    locL,
+    prodL,
+    raw: global.PROD ? undefined : common,
   };
 }
 

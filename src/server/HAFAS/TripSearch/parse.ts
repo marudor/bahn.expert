@@ -23,7 +23,6 @@ import { Station } from 'types/station';
 import parseCommonArrival from '../helper/parseCommonArrival';
 import parseCommonDeparture from '../helper/parseCommonDeparture';
 import parseDuration from '../helper/parseDuration';
-import parseProduct from '../helper/parseProduct';
 
 const nameRegex = /O=([^@]+)/;
 const evaRegex = /L=(\d+)/;
@@ -67,7 +66,7 @@ class Journey {
       arrival: this.parseArrival(raw.arr),
       departure: this.parseDeparture(raw.dep),
       segments,
-      segmentTypes: segments.map(s => s.train.type),
+      segmentTypes: segments.map(s => s.train.type).filter(Boolean as any),
       raw: global.PROD ? undefined : raw,
     };
   }
@@ -111,7 +110,7 @@ class Journey {
     const product = this.common.prodL[jny.prodX];
 
     return {
-      train: parseProduct(product),
+      train: product,
       isCancelled: jny.isCncl,
       changeDuration: jny.chgDurR,
       segmentStart: parseFullStation(fullStart),

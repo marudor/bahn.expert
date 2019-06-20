@@ -38,16 +38,18 @@ export type HafasResponse<Res extends GenericRes> = {
 
 export type ProdCtx = {
   name: string;
-  num: string;
-  matchId: string;
-  catOut: string;
-  catOutS: string;
-  catOutL: string;
-  catIn: string;
-  catCode: string;
-  admin: string;
-  lineId: string;
+  num?: string;
+  matchId?: string;
+  catOut?: string;
+  catOutS?: string;
+  catOutL?: string;
+  catIn?: string;
+  catCode?: string;
+  admin?: string;
+  lineId?: string;
   line?: string;
+  cls: number;
+  icoX: number;
 };
 
 export type ProdL = {
@@ -56,7 +58,7 @@ export type ProdL = {
   icoX: number;
   cls: number;
   oprX?: number;
-  prodCtx: ProdCtx;
+  prodCtx?: ProdCtx;
   addName?: string;
   nameS: string;
 };
@@ -96,6 +98,10 @@ export type LocL = {
   state: string;
   crd: Crd;
   pCls: number;
+  /**
+   * Reference to prodL
+   */
+  pRefL?: number[];
 };
 
 export type PpLocRefL = {
@@ -183,7 +189,9 @@ export interface CommonDeparture {
 // ParsedStuff
 interface _ParsedCommon {
   locL: Station[];
+  prodL: ParsedProduct[];
+  raw?: Common;
 }
-export type ParsedCommon = _ParsedCommon & Omit<Common, 'locL'>;
+export type ParsedCommon = _ParsedCommon & Omit<Common, 'locL' | 'prodL'>;
 
 export interface ParsedProduct extends CommonProductInfo {}

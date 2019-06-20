@@ -1,8 +1,14 @@
-// import { HafasResponse } from 'types/HAFAS';
-import { LocGeoPosRequest } from 'types/HAFAS/LocGeoPos';
+import { HafasResponse, ParsedCommon } from 'types/HAFAS';
+import { LocGeoPosRequest, LocGeoPosResponse } from 'types/HAFAS/LocGeoPos';
+import { Station } from 'types/station';
 import makeRequest from './Request';
 
-export default (x: number, y: number, maxDist: number) => {
+const parseLocGeoPos = (
+  _: HafasResponse<LocGeoPosResponse>,
+  common: ParsedCommon
+) => common.locL;
+
+export default (x: number, y: number, maxDist: number): Promise<Station[]> => {
   const req: LocGeoPosRequest = {
     req: {
       ring: {
@@ -16,5 +22,5 @@ export default (x: number, y: number, maxDist: number) => {
     meth: 'LocGeoPos',
   };
 
-  return makeRequest(req);
+  return makeRequest(req, parseLocGeoPos);
 };

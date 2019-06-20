@@ -11,8 +11,8 @@ export interface ParsedCommonArrival extends CommonStopInfo {}
 export interface ParsedCommonDeparture extends CommonStopInfo {}
 
 export interface CommonProductInfo {
-  full: string;
+  name: string;
   line?: string;
-  number: string;
-  type: string;
+  number?: string;
+  type?: string;
 }
