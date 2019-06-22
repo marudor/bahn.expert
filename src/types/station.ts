@@ -1,5 +1,3 @@
-import { ParsedProduct } from './HAFAS';
-
 // eslint-disable-next-line import/prefer-default-export
 export type Station = {
   title: string;
@@ -7,11 +5,6 @@ export type Station = {
   favendoId?: number;
   DS100?: string;
   raw?: Object;
-  products?: ParsedProduct[];
-  coordinates?: {
-    x: number;
-    y: number;
-  };
 };
 
 export type OpenDBStation = {
