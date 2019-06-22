@@ -234,10 +234,6 @@ const SettingsModal = ({
                 Favendo + Stationsdaten
               </option>
               <option value={StationSearchType.Favendo}>Favendo</option>
-              <option value={StationSearchType.OpenDB}>Open DB</option>
-              <option value={StationSearchType.FavendoAndOpenDB}>
-                Open DB + Favendo
-              </option>
               <option value={StationSearchType.OpenData}>Open Data</option>
               <option value={StationSearchType.OpenDataOffline}>
                 Open Data Offline
