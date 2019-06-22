@@ -10,8 +10,14 @@ export enum StationSearchType {
   DBNavgiator,
   OpenData,
   OpenDataOffline,
+  /**
+   * OpenDB Down
+   */
   OpenDB,
   HAFAS,
+  /**
+   * OpenDB Down
+   */
   FavendoAndOpenDB,
   StationsData,
   FavendoStationsData,
@@ -32,5 +38,5 @@ export type MarudorConfig = {
 };
 
 export type MarudorConfigSanitize = {
-  [K in keyof MarudorConfig]: (input: string) => MarudorConfig[K]
+  [K in keyof MarudorConfig]: (input: string) => MarudorConfig[K];
 };

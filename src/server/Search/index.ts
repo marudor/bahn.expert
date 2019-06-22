@@ -8,19 +8,7 @@ import HafasSearch from './Hafas';
 import NodeCache from 'node-cache';
 import OpenDataOfflineSearch from './OpenDataOffline';
 import OpenDataSearch from './OpenData';
-import OpenDBSearch from './OpenDB';
 import StationsDataSearch from './StationsData';
-
-export async function favendoOpenDBCombined(
-  searchTerm: string
-): Promise<Station[]> {
-  const stations = await Promise.all([
-    FavendoSearch(searchTerm),
-    OpenDBSearch(searchTerm),
-  ]);
-
-  return uniqBy(flatten(stations), 'id');
-}
 
 export async function favendoStationsDataCombined(
   searchTerm: string
@@ -41,12 +29,8 @@ export function getSearchMethod(type?: StationSearchType) {
       return OpenDataSearch;
     case StationSearchType.OpenDataOffline:
       return OpenDataOfflineSearch;
-    case StationSearchType.OpenDB:
-      return OpenDBSearch;
     case StationSearchType.HAFAS:
       return HafasSearch;
-    case StationSearchType.FavendoAndOpenDB:
-      return favendoOpenDBCombined;
     case StationSearchType.StationsData:
       return StationsDataSearch;
     case StationSearchType.Favendo:
