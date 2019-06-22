@@ -5,6 +5,14 @@ import { Omit } from 'utility-types';
 import { Station } from 'types/station';
 import { TripSearchRequest } from './TripSearch';
 
+export interface HafasStation extends Omit<Station, 'favendoId' | 'DS100'> {
+  products?: ParsedProduct[];
+  coordinates: {
+    x: number;
+    y: number;
+  };
+}
+
 export type HafasRequest = Array<SingleHafasRequest>;
 export type SingleHafasRequest =
   | LocMatchRequest
@@ -188,7 +196,7 @@ export interface CommonDeparture {
 
 // ParsedStuff
 interface _ParsedCommon {
-  locL: Station[];
+  locL: HafasStation[];
   prodL: ParsedProduct[];
   raw?: Common;
 }
