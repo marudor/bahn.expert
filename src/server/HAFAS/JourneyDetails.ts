@@ -1,5 +1,17 @@
-import { JourneyDetailsRequest } from 'types/HAFAS/JourneyDetails';
+import { HafasResponse, ParsedCommon } from 'types/HAFAS';
+import {
+  JourneyDetailsRequest,
+  JourneyDetailsResponse,
+} from 'types/HAFAS/JourneyDetails';
 import makeRequest from './Request';
+
+const parseJourneyDetails = (
+  d: HafasResponse<JourneyDetailsResponse>,
+  common: ParsedCommon
+) => ({
+  common,
+  d,
+});
 
 export default (jid: string) => {
   const req: JourneyDetailsRequest = {
@@ -7,5 +19,5 @@ export default (jid: string) => {
     meth: 'JourneyDetails',
   };
 
-  return makeRequest(req, d => d.svcResL[0].res);
+  return makeRequest(req, parseJourneyDetails);
 };

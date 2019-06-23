@@ -2,16 +2,11 @@ import auslastungHafas from 'server/Auslastung/Hafas';
 import geoStation from 'server/HAFAS/LocGeoPos';
 import journeyDetails from 'server/HAFAS/JourneyDetails';
 import KoaRouter from 'koa-router';
+import LocMatch from 'server/HAFAS/LocMatch';
 import makeRequest from 'server/HAFAS/Request';
 import routing from 'server/HAFAS/TripSearch';
 import stationBoard from 'server/HAFAS/StationBoard';
 import trainSearch from 'server/HAFAS/TrainSearch';
-
-const parseLatLng = (latLng: string) => {
-  const splitted = latLng.split('.');
-
-  return splitted[0].padStart(2, '0') + splitted[1].padEnd(6, '0');
-};
 
 const router = new KoaRouter();
 const getCurrent = () =>
@@ -68,10 +63,15 @@ const getCurrent = () =>
     .get('/geoStation', async ctx => {
       const { x, y, lat, lng, maxDist = 1000 } = ctx.query;
 
-      const realY = lat ? parseLatLng(lat) : y;
-      const realX = lng ? parseLatLng(lng) : x;
+      const realY = lat ? Number.parseFloat(lat) * 1000000 : y;
+      const realX = lng ? Number.parseFloat(lng) * 1000000 : x;
 
       ctx.body = await geoStation(realX, realY, maxDist);
+    })
+    .get('/station/:searchTerm', async ctx => {
+      const { searchTerm } = ctx.params;
+
+      ctx.body = await LocMatch(searchTerm);
     })
     .post('/rawHafas', async ctx => {
       ctx.body = await makeRequest(ctx.request.body);

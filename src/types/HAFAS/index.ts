@@ -5,12 +5,13 @@ import { Omit } from 'utility-types';
 import { Station } from 'types/station';
 import { TripSearchRequest } from './TripSearch';
 
+export interface Coordinates {
+  lat: number;
+  lng: number;
+}
 export interface HafasStation extends Omit<Station, 'favendoId' | 'DS100'> {
   products?: ParsedProduct[];
-  coordinates: {
-    x: number;
-    y: number;
-  };
+  coordinates: Coordinates;
 }
 
 export type HafasRequest = Array<SingleHafasRequest>;
