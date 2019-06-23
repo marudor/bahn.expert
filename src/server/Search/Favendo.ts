@@ -1,3 +1,4 @@
+import { Coordinates } from 'types/HAFAS';
 import { FavendoStation, Station } from 'types/station';
 import axios from 'axios';
 
@@ -15,11 +16,18 @@ function encodeSearchTerm(term: string) {
 
 // Can also handle lat&lng
 // https://si.favendo.de/station-info/rest/api/search?searchTerm=Bochum&lat=42.00023&lng=23.00042
-export default async function(searchTerm: string): Promise<Station[]> {
+export default async function(
+  searchTerm: string,
+  coordinates?: Coordinates
+): Promise<Station[]> {
   const stations = (await axios.get<FavendoStation[]>(
-    `https://si.favendo.de/station-info/rest/api/search?searchTerm=${encodeSearchTerm(
-      searchTerm
-    )}`
+    `https://si.favendo.de/station-info/rest/api/search`,
+    {
+      params: {
+        searchTerm: encodeSearchTerm(searchTerm),
+        ...coordinates,
+      },
+    }
   )).data;
 
   return stations

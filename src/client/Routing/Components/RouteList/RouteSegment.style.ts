@@ -19,6 +19,7 @@ export default makeStyles({
     gridArea: 't',
     alignSelf: 'center',
     paddingLeft: '.3em',
+    overflow: 'hidden',
   },
   trainInfo: {
     display: 'flex',
