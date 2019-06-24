@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server';
 import { ServerStyleSheets } from '@material-ui/styles';
 import { setConfig, setFromCookies } from 'Abfahrten/actions/abfahrtenConfig';
+import { setCookieOptions } from 'client/util';
 import { StaticRouter } from 'react-router-dom';
 import { StaticRouterContext } from 'react-router';
 import { ThemeType } from 'client/Themes/type';
@@ -37,6 +38,15 @@ const footerEjs = fs
 const footerTemplate = ejs.compile(footerEjs);
 
 export default async (ctx: Context) => {
+  const selectedDetail = ctx.query.selectedDetail;
+
+  if (selectedDetail) {
+    ctx.request.universalCookies.set(
+      'selectedDetail',
+      selectedDetail,
+      setCookieOptions
+    );
+  }
   const routeContext: StaticRouterContext = {};
 
   const store = createStore({

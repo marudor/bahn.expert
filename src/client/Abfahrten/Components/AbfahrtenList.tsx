@@ -104,6 +104,8 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
 
     if (this.state.scrolled) return;
 
+    console.log('checking scroll');
+
     if (abfahrten) {
       let scrollDom: HTMLElement | null = null;
 
@@ -118,9 +120,13 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
           setTimeout(() => scrollDom && scrollDom.scrollIntoView());
 
         if (document.readyState === 'complete') {
+          console.log('readyState complete, scrolling');
           scrollIntoView();
         } else {
-          window.addEventListener('load', scrollIntoView);
+          window.addEventListener('load', () => {
+            console.log('waited for load, scolling');
+            scrollIntoView();
+          });
         }
       }
       this.setState({

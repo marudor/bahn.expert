@@ -17,7 +17,7 @@ const SettingsPanel = () => {
   const dispatch = useDispatch();
   const settings = useRoutingSelector(state => state.routing.settings);
   const handleInputChange = useCallback(
-    (fn: (s: any) => any) => (e: ChangeEvent<HTMLSelectElement>) =>
+    (fn: (s: any) => any) => (e: ChangeEvent<HTMLInputElement>) =>
       dispatch(fn(e.currentTarget.value)),
     [dispatch]
   );
