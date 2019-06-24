@@ -30,6 +30,7 @@ const ThemeModal = () => {
       <DialogContent>
         <FormControl component="fieldset">
           <RadioGroup
+            data-testid="themeRadioGroup"
             aria-label="Theme"
             name="theme"
             value={theme}

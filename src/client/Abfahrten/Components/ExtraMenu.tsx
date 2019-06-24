@@ -100,7 +100,12 @@ const ExtraMenu = ({
     <>
       <FilterModal />
       <ThemeModal />
-      <IconButton aria-label="ThemeMenu" onClick={openTheme} color="inherit">
+      <IconButton
+        data-testid="themeMenu"
+        aria-label="ThemeMenu"
+        onClick={openTheme}
+        color="inherit"
+      >
         <InvertColors />
       </IconButton>
       <IconButton aria-label="Menu" onClick={toggleMenu} color="inherit">
