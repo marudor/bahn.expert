@@ -47,6 +47,7 @@ function inputComponent({ inputRef, ...props }: any) {
 function Control(props: ControlProps<any>) {
   return (
     <TextField
+      data-testid="stationSearch"
       fullWidth
       InputProps={{
         inputComponent,
@@ -65,6 +66,7 @@ function Control(props: ControlProps<any>) {
 function Option(props: OptionProps<any>) {
   return (
     <MenuItem
+      data-testid="menuItem"
       ref={props.innerRef}
       selected={props.isFocused}
       component="div"
@@ -112,6 +114,7 @@ function ValueContainer(props: ValueContainerProps<any>) {
 function Menu(props: MenuProps<any>) {
   return (
     <Paper
+      data-testid="menu"
       square
       className={props.selectProps.classes.paper}
       {...props.innerProps}

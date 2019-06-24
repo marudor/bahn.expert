@@ -8,6 +8,7 @@ import {
 export const setCookieOptions = {
   expires: new Date('2037-12-12'),
   httpOnly: false,
+  path: '/',
 };
 
 export const defaultConfig: MarudorConfig = {
