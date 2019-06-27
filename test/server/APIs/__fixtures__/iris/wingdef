@@ -1,0 +1,5 @@
+
+<wing-def>
+    <start eva="8000105" st-name="Frankfurt(Main)Hbf" pt="1906271825" fl="true"/>
+    <end eva="8003040" st-name="Idar-Oberstein" pt="1906272006" fl="false"/>
+</wing-def>

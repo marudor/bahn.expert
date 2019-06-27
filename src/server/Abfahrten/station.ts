@@ -95,6 +95,8 @@ export async function getStation(
 
   return {
     station,
-    relatedStations,
+    relatedStations: relatedStations.sort((s1, s2) =>
+      s1.name > s2.name ? 1 : -1
+    ),
   };
 }
