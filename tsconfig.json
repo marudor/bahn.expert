@@ -26,6 +26,5 @@
       "Common/*": ["client/Common/*"],
       "testHelper": ["../test/client/testHelper"]
     }
-  },
-  "include": ["./node_modules/@types/jest", "src/", "@types", "test/"]
+  }
 }
