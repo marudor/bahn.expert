@@ -60,6 +60,7 @@ export default {
   '66': 'Hochwasser',
   '70': 'Kein WLAN',
   '71': 'WLAN in einzelnen Wagen nicht verfügbar',
+  '72': 'Info-/Entertainment nicht verfügbar',
   '73': 'Mehrzweckabteil vorne',
   '74': 'Mehrzweckabteil hinten',
   '75': '1. Klasse vorne',
