@@ -90,7 +90,8 @@ export default {
 
 export const messageTypeLookup = {
   d: 'delay',
-  f: 'freeText',
+  // f: 'freeText',
+  f: 'qos',
   q: 'qos',
   h: 'HIM (Hafas Information Manager)',
   i: 'IBIS (Generated IRIS-AP)',
