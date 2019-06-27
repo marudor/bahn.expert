@@ -1,0 +1,2832 @@
+<timetable station="Frankfurt Hbf (tief)" eva="8098105">
+
+<s id="-3485382270337726137-1906271631-14" eva="8098105">
+    <m id="i664126" t="i" from="1906271621" to="1906271848" ts="1906271621"/>
+    <ar cpth="Frankfurt(Main)Süd|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" ppth="Hanau Hbf|Steinheim(Main)|Mühlheim(Main)-Dietesheim|Mühlheim(Main)|Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" pp="103" pt="1906271701" l="9">
+        <m id="r51295854" t="d" c="64" ts="1906271553"/>
+        <m id="r51295869" t="d" c="64" ts="1906271554"/>
+    </ar>
+    <dp cpth="Frankfurt-Niederrad|Frankfurt am Main - Stadion|Frankfurt(M) Flughafen Regionalbf|Kelsterbach|Raunheim|Rüsselsheim|Rüsselsheim Opelwerk|Mainz-Bischofsheim|Mainz-Kastel|Wiesbaden Ost|Wiesbaden Hbf" ppth="Frankfurt-Niederrad|Frankfurt am Main - Stadion|Frankfurt(M) Flughafen Regionalbf|Kelsterbach|Raunheim|Rüsselsheim|Rüsselsheim Opelwerk|Mainz-Bischofsheim|Mainz-Kastel|Wiesbaden Ost|Wiesbaden Hbf" pp="103" pt="1906271702" l="9">
+        <m id="r51295854" t="d" c="64" ts="1906271553"/>
+        <m id="r51295869" t="d" c="64" ts="1906271554"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35954"/>
+</s>
+
+
+<s id="1148497771444061165-1906271613-7" eva="8098105">
+    <ar ct="1906271624" l="5"/>
+    <dp ct="1906271625" l="5"/>
+</s>
+
+
+<s id="-6730200392429042912-1906271608-10" eva="8098105">
+    <ar ct="1906271632" l="4"/>
+    <dp ct="1906271633" l="4"/>
+</s>
+
+
+<s id="7677279198241542330-1906271549-15" eva="8098105">
+    <ar ct="1906271621" l="2"/>
+    <dp ct="1906271622" l="2"/>
+</s>
+
+
+<s id="-7624706494993890877-1906271611-12" eva="8098105">
+    <ar ct="1906271659" l="9"/>
+    <dp ct="1906271700" l="9"/>
+</s>
+
+
+<s id="-3737766918841584184-1906271559-9" eva="8098105">
+    <ar ct="1906271621" l="5"/>
+    <dp ct="1906271623" l="5"/>
+</s>
+
+
+<s id="-727889813097409278-1906271638-10" eva="8098105">
+    <m id="i664124" t="i" from="1906271619" to="1906271827" ts="1906271620" del="1"/>
+    <ar ppth="Kronberg(Taunus)|Kronberg Süd|Niederhöchstadt|Eschborn|Eschborn Süd|Frankfurt-Rödelheim|Frankfurt(Main)West|Frankfurt(Main)Messe|Frankfurt(M)Galluswarte" pp="101" pt="1906271701" l="4"/>
+    <dp ppth="Frankfurt(M)Taunusanlage|Frankfurt(M)Hauptwache|Frankfurt(M)Konstablerwache|Frankfurt(M)Ostendstraße|Frankfurt(M)Lokalbahnhof|Frankfurt(Main)Süd|Frankfurt(M)Stresemannallee|Frankfurt-Louisa|Neu-Isenburg|Dreieich-Buchschlag|Langen-Flugsicherung|Langen(Hess)" pp="101" pt="1906271702" l="4"/>
+    <tl f="S" t="p" o="800528" c="S" n="35455"/>
+</s>
+
+
+<s id="-6206125121047020629-1906271620-12" eva="8098105">
+    <ar ct="1906271646" l="3"/>
+    <dp ct="1906271647" l="3"/>
+</s>
+
+
+<s id="2308514648084423110-1906271616-14" eva="8098105">
+    <m id="r71579s" t="r" from="1906271520" to="1906271800" ts="1906271520"/>
+    <m id="r859175" t="h" from="1906271437" to="1906271722" cat="Störung" ts="1906271540" pr="1"/>
+    <ar ct="1906271646" l="8"/>
+    <dp ct="1906271647" l="8"/>
+</s>
+
+
+<s id="-4411770477987589173-1906271619-15" eva="8098105">
+    <m id="r71579s" t="r" from="1906271520" to="1906271800" ts="1906271520"/>
+    <m id="r859175" t="h" from="1906271437" to="1906271722" cat="Störung" ts="1906271540" pr="1"/>
+    <ar ct="1906271714" l="8"/>
+    <dp ct="1906271715" l="8"/>
+</s>
+
+
+<s id="-4775031131096061877-1906271449-15" eva="8098105">
+    <m id="r71579s" t="r" from="1906271520" to="1906271800" ts="1906271520"/>
+    <m id="r859175" t="h" from="1906271437" to="1906271722" cat="Störung" ts="1906271540" pr="1"/>
+    <ar cpth="Wiesbaden Hbf|Wiesbaden Ost|Mainz Nord|Mainz Hbf|Mainz Römisches Theater|Mainz-Gustavsburg|Mainz-Bischofsheim|Rüsselsheim Opelwerk|Rüsselsheim|Raunheim|Kelsterbach|Frankfurt(M) Flughafen Regionalbf|Frankfurt am Main - Stadion|Frankfurt-Niederrad" ppth="Wiesbaden Hbf|Wiesbaden Ost|Mainz Nord|Mainz Hbf|Mainz Römisches Theater|Mainz-Gustavsburg|Mainz-Bischofsheim|Rüsselsheim Opelwerk|Rüsselsheim|Raunheim|Kelsterbach|Frankfurt(M) Flughafen Regionalbf|Frankfurt am Main - Stadion|Frankfurt-Niederrad" pp="102" ct="1906271621" pt="1906271543" l="8">
+        <m id="r51293801" t="d" c="64" ts="1906271517"/>
+        <m id="r51295790" t="d" c="64" ts="1906271552"/>
+        <m id="r51295834" t="d" c="64" ts="1906271553"/>
+    </ar>
+    <dp cpth="Frankfurt(M)Taunusanlage|Frankfurt(M)Hauptwache|Frankfurt(M)Konstablerwache|Frankfurt(M)Ostendstraße|Frankfurt(Main)Süd" ppth="Frankfurt(M)Taunusanlage|Frankfurt(M)Hauptwache|Frankfurt(M)Konstablerwache|Frankfurt(M)Ostendstraße|Frankfurt(M)Mühlberg|Offenbach(Main) Kaiserlei|Offenbach(Main) Ledermuseum|Offenbach(Main) Marktplatz|Offenbach(Main)Ost|Mühlheim(Main)|Mühlheim(Main)-Dietesheim|Steinheim(Main)|Hanau Hbf" pp="102" ct="1906271622" pt="1906271544" l="8">
+        <m id="r51293801" t="d" c="64" ts="1906271517"/>
+        <m id="r51295790" t="d" c="64" ts="1906271552"/>
+        <m id="r51295834" t="d" c="64" ts="1906271553"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35847"/>
+</s>
+
+
+<s id="-3318832978827268621-1906271619-15" eva="8098105">
+    <ar ct="1906271651" l="2"/>
+    <dp ct="1906271652" l="2"/>
+</s>
+
+
+<s id="5440738588615993504-1906271617-15" eva="8098105">
+    <ar ct="1906271657" l="6"/>
+    <dp ct="1906271658" l="6"/>
+</s>
+
+
+<s id="-6097919941732442510-1906271541-12" eva="8098105">
+    <ar ct="1906271630" l="9">
+        <m id="r51295904" t="d" c="43" ts="1906271555"/>
+    </ar>
+    <dp ct="1906271631" l="9">
+        <m id="r51295904" t="d" c="43" ts="1906271555"/>
+    </dp>
+</s>
+
+
+<s id="5963069144898009693-1906271608-11" eva="8098105">
+    <ar ct="1906271636" l="5"/>
+    <dp ct="1906271637" l="5"/>
+</s>
+
+
+<s id="2952360909953128022-1906271604-15" eva="8098105">
+    <ar ct="1906271637" l="2"/>
+    <dp ct="1906271638" l="2"/>
+</s>
+
+
+<s id="4411178603141212019-1906271605-13" eva="8098105">
+    <ar ct="1906271650" l="1"/>
+    <dp ct="1906271651" l="1"/>
+</s>
+
+
+<s id="-6143172684318334273-1906271558-20" eva="8098105">
+    <ar ct="1906271642" l="1"/>
+    <dp ct="1906271643" l="1"/>
+</s>
+
+
+<s id="1208886223652098445-1906271605-18" eva="8098105">
+    <ar ct="1906271643" l="3"/>
+    <dp ct="1906271644" l="3"/>
+</s>
+
+
+<s id="-5010684016585479273-1906271608-7" eva="8098105">
+    <ar ct="1906271618" l="6"/>
+    <dp ct="1906271619" l="6"/>
+</s>
+
+
+<s id="-3736434129308462860-1906271548-13" eva="8098105">
+    <ar ct="1906271624" l="2">
+        <m id="r51295874" t="d" c="36" ts="1906271554"/>
+    </ar>
+    <dp ct="1906271625" l="2">
+        <m id="r51295874" t="d" c="36" ts="1906271554"/>
+    </dp>
+</s>
+
+
+<s id="7603662700370569194-1906271535-13" eva="8098105">
+    <ar ct="1906271618" l="1"/>
+    <dp ct="1906271619" l="1"/>
+</s>
+
+
+<s id="1756786472013444959-1906271549-15" eva="8098105">
+    <m id="r71579s" t="r" from="1906271520" to="1906271800" ts="1906271520"/>
+    <m id="r859175" t="h" from="1906271437" to="1906271722" cat="Störung" ts="1906271540" pr="1"/>
+    <m id="i664123" t="i" from="1906271618" to="1906272314" ts="1906271618"/>
+    <ar cpth="Wiesbaden Hbf|Wiesbaden Ost|Mainz-Kastel|Mainz-Bischofsheim|Rüsselsheim Opelwerk|Rüsselsheim|Raunheim|Kelsterbach|Frankfurt(M) Flughafen Regionalbf|Frankfurt am Main - Stadion|Frankfurt-Niederrad" ppth="Wiesbaden Hbf|Wiesbaden Ost|Mainz Nord|Mainz Hbf|Mainz Römisches Theater|Mainz-Gustavsburg|Mainz-Bischofsheim|Rüsselsheim Opelwerk|Rüsselsheim|Raunheim|Kelsterbach|Frankfurt(M) Flughafen Regionalbf|Frankfurt am Main - Stadion|Frankfurt-Niederrad" pp="102" ct="1906271644" pt="1906271643" l="8">
+        <m id="r51294021" t="d" c="64" ts="1906271523"/>
+        <m id="r51294865" t="f" c="0" ts="1906271534"/>
+    </ar>
+    <dp cpth="Frankfurt(M)Taunusanlage|Frankfurt(M)Hauptwache|Frankfurt(M)Konstablerwache|Frankfurt(M)Ostendstraße|Frankfurt(M)Mühlberg|Offenbach(Main) Kaiserlei|Offenbach(Main) Ledermuseum|Offenbach(Main) Marktplatz|Offenbach(Main)Ost|Mühlheim(Main)|Mühlheim(Main)-Dietesheim|Steinheim(Main)|Hanau Hbf" ppth="Frankfurt(M)Taunusanlage|Frankfurt(M)Hauptwache|Frankfurt(M)Konstablerwache|Frankfurt(M)Ostendstraße|Frankfurt(M)Mühlberg|Offenbach(Main) Kaiserlei|Offenbach(Main) Ledermuseum|Offenbach(Main) Marktplatz|Offenbach(Main)Ost|Mühlheim(Main)|Mühlheim(Main)-Dietesheim|Steinheim(Main)|Hanau Hbf" pp="102" ct="1906271645" pt="1906271644" l="8">
+        <m id="r51294021" t="d" c="64" ts="1906271523"/>
+        <m id="r51294865" t="f" c="0" ts="1906271534"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35851"/>
+</s>
+
+
+<s id="7394740801933424713-1906271543-20" eva="8098105">
+    <ar ct="1906271627" l="1"/>
+    <dp ct="1906271628" l="1"/>
+</s>
+
+
+<s id="5803741710128478781-1906271601-14" eva="8098105">
+    <m id="i664122" t="i" from="1906271617" to="1906272318" ts="1906271617"/>
+    <ar cpth="Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" ppth="Hanau Hbf|Steinheim(Main)|Mühlheim(Main)-Dietesheim|Mühlheim(Main)|Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" pp="103" ct="1906271631" pt="1906271631" l="9">
+        <m id="r51295282" t="d" c="99" ts="1906271543"/>
+    </ar>
+    <dp cpth="Frankfurt-Niederrad|Frankfurt am Main - Stadion|Frankfurt(M) Flughafen Regionalbf|Kelsterbach|Raunheim|Rüsselsheim|Rüsselsheim Opelwerk|Mainz-Bischofsheim|Mainz-Kastel|Wiesbaden Ost|Wiesbaden Hbf" ppth="Frankfurt-Niederrad|Frankfurt am Main - Stadion|Frankfurt(M) Flughafen Regionalbf|Kelsterbach|Raunheim|Rüsselsheim|Rüsselsheim Opelwerk|Mainz-Bischofsheim|Mainz-Kastel|Wiesbaden Ost|Wiesbaden Hbf" pp="103" ct="1906271632" pt="1906271632" l="9">
+        <m id="r51295282" t="d" c="99" ts="1906271543"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35952"/>
+</s>
+
+
+<s id="-5891566918905058995-1906271547-15" eva="8098105">
+    <ar ct="1906271629" l="6">
+        <m id="r51295900" t="d" c="43" ts="1906271555"/>
+    </ar>
+    <dp ct="1906271630" l="6">
+        <m id="r51295900" t="d" c="43" ts="1906271555"/>
+    </dp>
+</s>
+
+
+<s id="129873773387023610-1906271603-13" eva="8098105">
+    <ar ct="1906271640" l="2"/>
+    <dp ct="1906271641" l="2"/>
+</s>
+
+
+<s id="699417961526763172-1906271546-14" eva="8098105">
+    <m id="r71579s" t="r" from="1906271520" to="1906271800" ts="1906271520"/>
+    <m id="r859175" t="h" from="1906271437" to="1906271722" cat="Störung" ts="1906271540" pr="1"/>
+    <ar ct="1906271616" l="8"/>
+    <dp ct="1906271617" l="8"/>
+</s>
+
+
+<s id="-5159545240419212125-1906271613-20" eva="8098105">
+    <ar ct="1906271656" l="1"/>
+    <dp ct="1906271657" l="1"/>
+</s>
+
+
+<s id="-6022536609685091324-1906271550-12" eva="8098105">
+    <ar ct="1906271616" l="3"/>
+    <dp ct="1906271617" l="3"/>
+</s>
+
+
+<s id="-6070682685838517552-1906271519-15" eva="8098105">
+    <m id="r859175" t="h" from="1906271437" to="1906271722" cat="Störung" ts="1906271540" pr="1"/>
+    <m id="i664081" t="i" from="1906271504" to="1906271744" ts="1906271504"/>
+    <ar cpth="Wiesbaden Hbf|Wiesbaden Ost|Mainz-Kastel|Mainz-Bischofsheim|Rüsselsheim Opelwerk|Rüsselsheim|Raunheim|Kelsterbach|Frankfurt(M) Flughafen Regionalbf|Frankfurt am Main - Stadion|Frankfurt-Niederrad" ppth="Wiesbaden Hbf|Wiesbaden Ost|Mainz Nord|Mainz Hbf|Mainz Römisches Theater|Mainz-Gustavsburg|Mainz-Bischofsheim|Rüsselsheim Opelwerk|Rüsselsheim|Raunheim|Kelsterbach|Frankfurt(M) Flughafen Regionalbf|Frankfurt am Main - Stadion|Frankfurt-Niederrad" pp="102" ct="1906271614" pt="1906271613" l="8">
+        <m id="r51292900" t="d" c="64" ts="1906271501"/>
+    </ar>
+    <dp cpth="Frankfurt(M)Taunusanlage|Frankfurt(M)Hauptwache|Frankfurt(M)Konstablerwache|Frankfurt(M)Ostendstraße|Frankfurt(M)Mühlberg|Offenbach(Main) Kaiserlei|Offenbach(Main) Ledermuseum|Offenbach(Main) Marktplatz|Offenbach(Main)Ost|Mühlheim(Main)|Mühlheim(Main)-Dietesheim|Steinheim(Main)|Hanau Hbf" ppth="Frankfurt(M)Taunusanlage|Frankfurt(M)Hauptwache|Frankfurt(M)Konstablerwache|Frankfurt(M)Ostendstraße|Frankfurt(M)Mühlberg|Offenbach(Main) Kaiserlei|Offenbach(Main) Ledermuseum|Offenbach(Main) Marktplatz|Offenbach(Main)Ost|Mühlheim(Main)|Mühlheim(Main)-Dietesheim|Steinheim(Main)|Hanau Hbf" pp="102" ct="1906271615" pt="1906271614" l="8">
+        <m id="r51292900" t="d" c="64" ts="1906271501"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35849"/>
+</s>
+
+
+<s id="-8773808879026824891-1906271535-18" eva="8098105">
+    <ar ct="1906271614" l="3"/>
+    <dp ct="1906271615" l="3"/>
+</s>
+
+
+<s id="-5343645542705762685-1906271607-9" eva="8098105">
+    <ar ct="1906271633" l="1"/>
+    <dp ct="1906271634" l="1"/>
+</s>
+
+
+<s id="4303938910199653014-1906271604-13" eva="8098105">
+    <ar ct="1906271631" l="4"/>
+    <dp ct="1906271632" l="4"/>
+</s>
+
+
+<s id="-5918776493305432531-1906271528-20" eva="8098105">
+    <ar ct="1906271612" l="1">
+        <m id="r51296407" t="q" c="85" ts="1906271604"/>
+    </ar>
+    <dp ct="1906271613" l="1">
+        <m id="r51296407" t="q" c="85" ts="1906271604"/>
+    </dp>
+</s>
+
+
+<s id="-9014976420586243653-1906271540-11" eva="8098105">
+    <ar ct="1906271611" l="6"/>
+    <dp ct="1906271612" l="6"/>
+</s>
+
+
+<s id="-4788299272875416425-1906271558-7" eva="8098105">
+    <ar ct="1906271610" l="5"/>
+    <dp ct="1906271611" l="5"/>
+</s>
+
+
+<s id="3034687080554039995-1906271610-11" eva="8098105">
+    <ar ct="1906271641" l="6"/>
+    <dp ct="1906271642" l="6"/>
+</s>
+
+
+<s id="-1454333567147729443-1906271533-13" eva="8098105">
+    <ar ct="1906271609" l="2">
+        <m id="r51295889" t="d" c="32" ts="1906271554"/>
+    </ar>
+    <dp ct="1906271610" l="2">
+        <m id="r51295889" t="d" c="32" ts="1906271554"/>
+    </dp>
+</s>
+
+
+<s id="5968758308383183674-1906271534-15" eva="8098105">
+    <ar ct="1906271608" l="2"/>
+    <dp ct="1906271609" l="2"/>
+</s>
+
+
+<s id="6618246812689902388-1906271538-11" eva="8098105">
+    <ar ct="1906271606" l="5"/>
+    <dp ct="1906271607" l="5"/>
+</s>
+
+
+<s id="1906800324634990455-1906271553-7" eva="8098105">
+    <ar ct="1906271604" l="6"/>
+    <dp ct="1906271605" l="6"/>
+</s>
+
+
+<s id="6807029903881226457-1906271532-10" eva="8098105">
+    <ar ct="1906271604" l="1">
+        <m id="r51295019" t="d" c="43" ts="1906271537"/>
+    </ar>
+    <dp ct="1906271605" l="1">
+        <m id="r51295019" t="d" c="43" ts="1906271537"/>
+    </dp>
+</s>
+
+
+<s id="-1411095209037325786-1906271531-14" eva="8098105">
+    <m id="i664016" t="i" from="1906271321" to="1906272248" ts="1906271321"/>
+    <ar ppth="Hanau Hbf|Steinheim(Main)|Mühlheim(Main)-Dietesheim|Mühlheim(Main)|Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" pp="103" ct="1906271603" pt="1906271601" l="9">
+        <m id="r51260589" t="q" c="85" ts="1906270221"/>
+    </ar>
+    <dp ppth="Frankfurt-Niederrad|Frankfurt am Main - Stadion|Frankfurt(M) Flughafen Regionalbf|Kelsterbach|Raunheim|Rüsselsheim|Rüsselsheim Opelwerk|Mainz-Bischofsheim|Mainz-Kastel|Wiesbaden Ost|Wiesbaden Hbf" pp="103" ct="1906271604" pt="1906271602" l="9">
+        <m id="r51260589" t="q" c="85" ts="1906270221"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35950"/>
+</s>
+
+
+<s id="320401782695578371-1906271538-10" eva="8098105">
+    <ar ct="1906271602" l="4"/>
+    <dp ct="1906271602" l="4"/>
+</s>
+
+
+<s id="-8178477253024899790-1906271534-13" eva="8098105">
+    <ar ct="1906271558" l="4"/>
+    <dp ct="1906271559" l="4"/>
+</s>
+
+
+<s id="-2270148184991782687-1906271511-12" eva="8098105">
+    <ar ct="1906271558" l="9"/>
+    <dp ct="1906271559" l="9"/>
+</s>
+
+
+<s id="3481204367366231488-1906271517-15" eva="8098105">
+    <ar ct="1906271556" l="6"/>
+    <dp ct="1906271557" l="6"/>
+</s>
+
+
+<s id="9210987364071324276-1906271538-10" eva="8098105">
+    <ar ct="1906271556" l="1"/>
+    <dp ct="1906271557" l="1"/>
+</s>
+
+
+<s id="9077616531515953481-1906271543-7" eva="8098105">
+    <ar ct="1906271554" l="5"/>
+    <dp ct="1906271555" l="5"/>
+</s>
+
+
+<s id="-5643650459109098722-1906271533-8" eva="8098105">
+    <ar ct="1906271553" l="2"/>
+    <dp ct="1906271554" l="2"/>
+</s>
+
+
+<s id="-7046577021043116012-1906271530-9" eva="8098105">
+    <ar ct="1906271551" l="5"/>
+    <dp ct="1906271552" l="5"/>
+</s>
+
+
+<s id="5685488088160351322-1906271519-15" eva="8098105">
+    <ar ct="1906271551" l="2"/>
+    <dp ct="1906271552" l="2"/>
+</s>
+
+
+<s id="2894500034754048389-1906271538-7" eva="8098105">
+    <ar ct="1906271549" l="6"/>
+    <dp ct="1906271550" l="6"/>
+</s>
+
+
+<s id="-7363955347614299856-1906271505-13" eva="8098105">
+    <ar ct="1906271548" l="1">
+        <m id="r51293393" t="d" c="43" ts="1906271509"/>
+    </ar>
+    <dp ct="1906271550" l="1">
+        <m id="r51293393" t="d" c="43" ts="1906271509"/>
+    </dp>
+</s>
+
+
+<s id="642057633640447706-1906271528-10" eva="8098105">
+    <m id="r71579s" t="r" from="1906271520" to="1906271800" ts="1906271520"/>
+    <m id="r859175" t="h" from="1906271437" to="1906271722" cat="Störung" ts="1906271540" pr="1"/>
+    <ar cpth="Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" ct="1906271547" l="8">
+        <m id="r51294050" t="d" c="64" ts="1906271523"/>
+        <m id="r51294999" t="d" c="64" ts="1906271536"/>
+    </ar>
+    <dp cpth="Frankfurt-Niederrad|Frankfurt am Main - Stadion|Frankfurt(M) Flughafen Regionalbf|Kelsterbach|Raunheim|Rüsselsheim|Rüsselsheim Opelwerk|Mainz-Bischofsheim|Mainz-Kastel|Wiesbaden Ost|Wiesbaden Hbf" ct="1906271548" l="8">
+        <m id="r51294050" t="d" c="64" ts="1906271523"/>
+        <m id="r51294999" t="d" c="64" ts="1906271536"/>
+    </dp>
+</s>
+
+
+<s id="-6230463738932910518-1906271520-12" eva="8098105">
+    <ar ct="1906271546" l="3"/>
+    <dp ct="1906271547" l="3"/>
+</s>
+
+
+<s id="5271564512366537226-1906271505-18" eva="8098105">
+    <ar ct="1906271545" l="3"/>
+    <dp ct="1906271545" l="3"/>
+</s>
+
+
+<s id="-7589767810825149904-1906271503-13" eva="8098105">
+    <ar ct="1906271544" l="2">
+        <m id="r51293356" t="d" c="48" ts="1906271508"/>
+    </ar>
+    <dp ct="1906271545" l="2">
+        <m id="r51293356" t="d" c="48" ts="1906271508"/>
+    </dp>
+</s>
+
+
+<s id="6640690117282839967-1906271419-15" eva="8098105">
+    <ar cpth="Wiesbaden Hbf|Wiesbaden Ost|Mainz Nord|Mainz Hbf|Mainz Römisches Theater|Mainz-Gustavsburg|Mainz-Bischofsheim|Rüsselsheim Opelwerk|Rüsselsheim|Raunheim|Kelsterbach|Frankfurt(M) Flughafen Regionalbf|Frankfurt am Main - Stadion|Frankfurt-Niederrad" ct="1906271535" l="8">
+        <m id="r51290315" t="d" c="48" ts="1906271409"/>
+    </ar>
+    <dp cpth="Frankfurt(M)Taunusanlage|Frankfurt(M)Hauptwache|Frankfurt(M)Konstablerwache|Frankfurt(M)Ostendstraße|Frankfurt(M)Mühlberg|Offenbach(Main) Kaiserlei|Offenbach(Main) Ledermuseum|Offenbach(Main) Marktplatz|Offenbach(Main)Ost" ct="1906271536" l="8">
+        <m id="r51290315" t="d" c="48" ts="1906271409"/>
+    </dp>
+</s>
+
+
+<s id="4501705305770865003-1906271458-20" eva="8098105">
+    <ar ct="1906271541" l="1"/>
+    <dp ct="1906271542" l="1"/>
+</s>
+
+
+<s id="-5565270939593440728-1906271510-11" eva="8098105">
+    <ar ct="1906271541" l="6">
+        <m id="r51294834" t="d" c="43" ts="1906271534"/>
+    </ar>
+    <dp ct="1906271542" l="6">
+        <m id="r51294834" t="d" c="43" ts="1906271534"/>
+    </dp>
+</s>
+
+
+<s id="-2171624616664194531-1906271524-4" eva="8098105">
+    <ar ct="1906271538" l="1">
+        <m id="r51294836" t="d" c="43" ts="1906271534"/>
+    </ar>
+    <dp ct="1906271540" l="1">
+        <m id="r51294836" t="d" c="43" ts="1906271534"/>
+    </dp>
+</s>
+
+
+<s id="-2450481376572839846-1906271649-15" eva="8098105">
+    <m id="r71579s" t="r" from="1906271520" to="1906271800" ts="1906271520"/>
+    <m id="r859175" t="h" from="1906271437" to="1906271722" cat="Störung" ts="1906271540" pr="1"/>
+</s>
+
+
+<s id="244698461933490290-1906271428-10" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <m id="r71579s" t="r" from="1906271520" to="1906271800" ts="1906271520"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271301" pr="1"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="r859175" t="h" from="1906271437" to="1906271722" cat="Störung" ts="1906271540" pr="1"/>
+    <ar ct="1906271448" l="8"/>
+    <dp ct="1906271449" l="8"/>
+</s>
+
+
+<s id="-1418209302547608527-1906271458-10" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <m id="r71579s" t="r" from="1906271520" to="1906271800" ts="1906271520"/>
+    <m id="r859175" t="h" from="1906271437" to="1906271722" cat="Störung" ts="1906271540" pr="1"/>
+    <ar ct="1906271516" l="8"/>
+    <dp ct="1906271517" l="8"/>
+</s>
+
+
+<s id="-8018320325830980126-1906271358-10" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271301" pr="1"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="r859175" t="h" from="1906271437" to="1906271722" cat="Störung" ts="1906271540" pr="1"/>
+</s>
+
+
+<s id="-7656080976820686628-1906271528-7" eva="8098105">
+    <ar ct="1906271539" l="5"/>
+    <dp ct="1906271539" l="5"/>
+</s>
+
+
+<s id="-6330552151315423003-1906271508-11" eva="8098105">
+    <ar ct="1906271537" l="5"/>
+    <dp ct="1906271539" l="5"/>
+</s>
+
+
+<s id="8768355852770646118-1906271518-10" eva="8098105">
+    <m id="i664096" t="i" from="1906271523" to="1906271711" ts="1906271523"/>
+    <ar ppth="Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" pp="103" ct="1906271537" pt="1906271536" l="2"/>
+    <dp ppth="Frankfurt-Griesheim|Frankfurt-Nied|Frankfurt-Höchst|Frankfurt-Höchst Farbwerke|Frankfurt-Zeilsheim|Kriftel|Hofheim(Taunus)|Lorsbach|Eppstein|Eppstein-Bremthal|Niederjosbach|Niedernhausen(Taunus)" pp="103" ct="1906271538" pt="1906271537" l="2"/>
+    <tl f="S" t="p" o="800528" c="S" n="36242"/>
+</s>
+
+
+<s id="-2206162780364571948-1906271523-7" eva="8098105">
+    <ar ct="1906271534" l="6"/>
+    <dp ct="1906271535" l="6"/>
+</s>
+
+
+<s id="8554312217887507150-1906271508-10" eva="8098105">
+    <ar ct="1906271532" l="4"/>
+    <dp ct="1906271534" l="4"/>
+</s>
+
+
+<s id="5105388475482505277-1906271441-12" eva="8098105">
+    <ar ct="1906271531" l="9">
+        <m id="r51292373" t="d" c="43" ts="1906271450"/>
+    </ar>
+    <dp ct="1906271533" l="9">
+        <m id="r51292373" t="d" c="43" ts="1906271450"/>
+    </dp>
+</s>
+
+
+<s id="6400655893503408703-1906271501-14" eva="8098105">
+    <ar ct="1906271532" l="9"/>
+    <dp ct="1906271533" l="9"/>
+</s>
+
+
+<s id="-1450035717171899223-1906271504-13" eva="8098105">
+    <ar ct="1906271530" l="4"/>
+    <dp ct="1906271530" l="4"/>
+</s>
+
+
+<s id="-8320698337471000495-1906271508-10" eva="8098105">
+    <ar ct="1906271528" l="1"/>
+    <dp ct="1906271529" l="1"/>
+</s>
+
+
+<s id="-1728853340833921709-1906271447-15" eva="8098105">
+    <ar ct="1906271526" l="6"/>
+    <dp ct="1906271527" l="6"/>
+</s>
+
+
+<s id="-4584671679641392197-1906271449-15" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271526" l="2"/>
+    <dp ct="1906271527" l="2"/>
+</s>
+
+
+<s id="-8162103845652612851-1906271513-7" eva="8098105">
+    <ar ct="1906271524" l="5"/>
+    <dp ct="1906271524" l="5"/>
+</s>
+
+
+<s id="597562042097615234-1906271517-2" eva="8098105">
+    <ar ct="1906271522" l="2"/>
+    <dp ct="1906271524" l="2"/>
+</s>
+
+
+<s id="2578003267704472125-1906271459-9" eva="8098105">
+    <ar ct="1906271522" l="5"/>
+    <dp ct="1906271523" l="5"/>
+</s>
+
+
+<s id="-3732533344787832643-1906271719-15" eva="8098105">
+    <m id="r71579s" t="r" from="1906271520" to="1906271800" ts="1906271520"/>
+</s>
+
+
+<s id="7696333859817022888-1906271749-15" eva="8098105">
+    <m id="r71579s" t="r" from="1906271520" to="1906271800" ts="1906271520"/>
+</s>
+
+
+<s id="6677091934844725200-1906271646-14" eva="8098105">
+    <m id="r71579s" t="r" from="1906271520" to="1906271800" ts="1906271520"/>
+</s>
+
+
+<s id="5801276901161263670-1906271435-13" eva="8098105">
+    <ar ct="1906271519" l="1">
+        <m id="r51291987" t="d" c="43" ts="1906271443"/>
+    </ar>
+    <dp ct="1906271520" l="1">
+        <m id="r51291987" t="d" c="43" ts="1906271443"/>
+    </dp>
+</s>
+
+
+<s id="-2356893980509239431-1906271508-7" eva="8098105">
+    <ar ct="1906271518" l="6"/>
+    <dp ct="1906271519" l="6"/>
+</s>
+
+
+<s id="4092009418443293251-1906271450-12" eva="8098105">
+    <ar ct="1906271516" l="3"/>
+    <dp ct="1906271517" l="3"/>
+</s>
+
+
+<s id="-5525194407281379123-1906271435-18" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271513" l="3"/>
+    <dp ct="1906271514" l="3"/>
+</s>
+
+
+<s id="1247388627793260308-1906271433-13" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271511" l="2"/>
+    <dp ct="1906271514" l="2"/>
+</s>
+
+
+<s id="1259986309611779922-1906271428-20" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <ar ct="1906271512" l="1"/>
+    <dp ct="1906271513" l="1"/>
+</s>
+
+
+<s id="-7049756108631948999-1906271440-11" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271511" l="6"/>
+    <dp ct="1906271512" l="6"/>
+</s>
+
+
+<s id="1471035024547127282-1906271458-7" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271509" l="5"/>
+    <dp ct="1906271510" l="5"/>
+</s>
+
+
+<s id="-6288823494565802022-1906271438-11" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271507" l="5"/>
+    <dp ct="1906271509" l="5"/>
+</s>
+
+
+<s id="-635433394074313501-1906271454-4" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271506" l="1"/>
+    <dp ct="1906271507" l="1"/>
+</s>
+
+
+<s id="-1888967141155203621-1906271448-10" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271313" pr="1"/>
+    <ar ct="1906271507" l="2"/>
+    <dp ct="1906271507" l="2"/>
+</s>
+
+
+<s id="725791618662085586-1906271453-7" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271505" l="6"/>
+    <dp ct="1906271506" l="6"/>
+</s>
+
+
+<s id="4964548439570537829-1906271411-12" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271503" l="9"/>
+    <dp ct="1906271505" l="9"/>
+</s>
+
+
+<s id="-7987537601933216163-1906271431-14" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271301" pr="1"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <ar ct="1906271503" l="9"/>
+    <dp ct="1906271504" l="9"/>
+</s>
+
+
+<s id="6776951685345067056-1906271438-10" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271501" l="4"/>
+    <dp ct="1906271502" l="4"/>
+</s>
+
+
+<s id="4337412589827788229-1906271434-13" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271501" l="4"/>
+    <dp ct="1906271502" l="4"/>
+</s>
+
+
+<s id="-6286028773478327867-1906271438-10" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271313" pr="1"/>
+    <ar ct="1906271500" l="1"/>
+    <dp ct="1906271501" l="1"/>
+</s>
+
+
+<s id="-5030237883578067491-1906271419-15" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271313" pr="1"/>
+    <ar ct="1906271457" l="2"/>
+    <dp ct="1906271458" l="2"/>
+</s>
+
+
+<s id="-214091682486605617-1906271417-15" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271457" l="6"/>
+    <dp ct="1906271458" l="6"/>
+</s>
+
+
+<s id="7135437374391910891-1906271443-7" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271455" l="5"/>
+    <dp ct="1906271456" l="5"/>
+</s>
+
+
+<s id="-4931407184931839202-1906271430-9" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271454" l="5"/>
+    <dp ct="1906271454" l="5"/>
+</s>
+
+
+<s id="9012233588303985492-1906271405-13" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271451" l="1"/>
+    <dp ct="1906271452" l="1"/>
+</s>
+
+
+<s id="-6238085191737792089-1906271438-7" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271449" l="6"/>
+    <dp ct="1906271450" l="6"/>
+</s>
+
+
+<s id="-4626560744688666071-1906271335-13" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271313" pr="1"/>
+    <ar ct="1906271418" l="1">
+        <m id="r51290142" t="d" c="99" ts="1906271406"/>
+    </ar>
+    <dp ct="1906271420" l="1">
+        <m id="r51290142" t="d" c="99" ts="1906271406"/>
+    </dp>
+</s>
+
+
+<s id="-1310473459579789287-1906271319-15" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271313" pr="1"/>
+    <m id="i664026" t="i" from="1906271333" to="1906271526" ts="1906271333"/>
+    <ar cpth="Dietzenbach Bahnhof|Dietzenbach Mitte|Dietzenbach-Steinberg|Heusenstamm|Offenbach-Bieber|Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" ppth="Dietzenbach Bahnhof|Dietzenbach Mitte|Dietzenbach-Steinberg|Heusenstamm|Offenbach-Bieber|Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" cp="104" pp="103" ct="1906271358" pt="1906271351" cs="p" clt="1906271309" l="2">
+        <m id="r51287059" t="d" c="7" ts="1906271309"/>
+        <m id="r51288650" t="f" c="0" ts="1906271337"/>
+    </ar>
+    <dp cpth="Frankfurt-Griesheim|Frankfurt-Nied|Frankfurt-Höchst|Frankfurt-Höchst Farbwerke|Frankfurt-Zeilsheim|Kriftel|Hofheim(Taunus)|Lorsbach|Eppstein|Eppstein-Bremthal|Niederjosbach|Niedernhausen(Taunus)" ppth="Frankfurt-Griesheim|Frankfurt-Nied|Frankfurt-Höchst|Frankfurt-Höchst Farbwerke|Frankfurt-Zeilsheim|Kriftel|Hofheim(Taunus)|Lorsbach|Eppstein|Eppstein-Bremthal|Niederjosbach|Niedernhausen(Taunus)" cp="104" pp="103" ct="1906271400" pt="1906271352" cs="p" clt="1906271309" l="2">
+        <m id="r51287059" t="d" c="7" ts="1906271309"/>
+        <m id="r51288650" t="f" c="0" ts="1906271337"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35240"/>
+</s>
+
+
+<s id="-1769158261165485816-1906271219-15" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271301" pr="1"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <ar cpth="Wiesbaden Hbf|Wiesbaden Ost|Mainz Nord|Mainz Hbf|Mainz Römisches Theater|Mainz-Gustavsburg|Mainz-Bischofsheim|Rüsselsheim Opelwerk|Rüsselsheim|Raunheim|Kelsterbach|Frankfurt(M) Flughafen Regionalbf|Frankfurt am Main - Stadion|Frankfurt-Niederrad" cp="103" ct="1906271315" l="8">
+        <m id="r51287065" t="d" c="7" ts="1906271309"/>
+    </ar>
+    <dp cpth="" cp="103" ct="1906271314" cs="c" clt="1906271309" l="8">
+        <m id="r51287065" t="d" c="7" ts="1906271309"/>
+    </dp>
+</s>
+
+
+<s id="3169354096656000601-1906271401-14" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271301" pr="1"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <dp ct="1906271442" l="9"/>
+</s>
+
+
+<s id="834908970420819101-1906271349-15" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271301" pr="1"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <ar ct="1906271445" l="8"/>
+    <dp ct="1906271447" l="8"/>
+</s>
+
+
+<s id="1667143020920109478-1906271311-12" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271301" pr="1"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <ar ct="1906271403" l="9">
+        <m id="r51288350" t="d" c="43" ts="1906271331"/>
+    </ar>
+    <dp ct="1906271404" l="9">
+        <m id="r51288350" t="d" c="43" ts="1906271331"/>
+    </dp>
+</s>
+
+
+<s id="8207481483316897280-1906271341-12" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271301" pr="1"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <ar ct="1906271429" l="9">
+        <m id="r51260583" t="q" c="85" ts="1906270221"/>
+    </ar>
+    <dp ct="1906271431" l="9">
+        <m id="r51260583" t="q" c="85" ts="1906270221"/>
+    </dp>
+</s>
+
+
+<s id="1853227772696512852-1906271358-20" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271313" pr="1"/>
+    <ar cp="104" ct="1906271443" l="1"/>
+    <dp cp="104" ct="1906271444" l="1"/>
+</s>
+
+
+<s id="1676508851372485262-1906271324-4" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271313" pr="1"/>
+    <m id="i664014" t="i" from="1906271320" to="1906290120" ts="1906271320"/>
+    <ar cpth="" ppth="Frankfurt-Höchst|Frankfurt-Nied|Frankfurt-Griesheim" pp="102" pt="1906271333" cs="c" clt="1906271309" l="1">
+        <m id="r51287027" t="d" c="7" ts="1906271309"/>
+    </ar>
+    <dp cpth="" ppth="Frankfurt(M)Taunusanlage|Frankfurt(M)Hauptwache|Frankfurt(M)Konstablerwache|Frankfurt(M)Ostendstraße|Frankfurt(M)Mühlberg|Offenbach(Main) Kaiserlei|Offenbach(Main) Ledermuseum|Offenbach(Main) Marktplatz|Offenbach(Main)Ost" pp="102" pt="1906271334" cs="c" clt="1906271309" l="1">
+        <m id="r51287027" t="d" c="7" ts="1906271309"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="36133"/>
+</s>
+
+
+<s id="430606628147227030-1906271338-10" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271313" pr="1"/>
+    <m id="i664037" t="i" from="1906271342" to="1906272007" ts="1906271342"/>
+    <ar cpth="Frankfurt(Main)Süd|Frankfurt(M)Lokalbahnhof|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" ppth="Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" pp="103" ct="1906271400" pt="1906271356" l="1">
+        <m id="r51288575" t="d" c="7" ts="1906271335"/>
+    </ar>
+    <dp cpth="Frankfurt-Griesheim|Frankfurt-Nied|Frankfurt-Höchst" ppth="Frankfurt-Griesheim|Frankfurt-Nied|Frankfurt-Höchst" pp="103" ct="1906271402" pt="1906271357" l="1">
+        <m id="r51288575" t="d" c="7" ts="1906271335"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="36132"/>
+</s>
+
+
+<s id="-5685081774602899872-1906271305-13" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271313" pr="1"/>
+    <ar ct="1906271350" l="1"/>
+    <dp ct="1906271352" l="1"/>
+</s>
+
+
+<s id="-2372716054203289964-1906271354-4" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271313" pr="1"/>
+</s>
+
+
+<s id="1475443342654167012-1906271249-15" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271313" pr="1"/>
+    <m id="i664010" t="i" from="1906271317" to="1906271902" ts="1906271317"/>
+    <ar cpth="Dietzenbach Bahnhof|Dietzenbach Mitte|Dietzenbach-Steinberg|Heusenstamm|Offenbach-Bieber|Offenbach(Main)Ost" ppth="Dietzenbach Bahnhof|Dietzenbach Mitte|Dietzenbach-Steinberg|Heusenstamm|Offenbach-Bieber|Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" pp="103" ct="1906271330" pt="1906271321" cs="c" clt="1906271311" l="2">
+        <m id="r51287196" t="d" c="7" ts="1906271311"/>
+    </ar>
+    <dp cpth="" ppth="Frankfurt-Griesheim|Frankfurt-Nied|Frankfurt-Höchst|Frankfurt-Höchst Farbwerke|Frankfurt-Zeilsheim|Kriftel|Hofheim(Taunus)|Lorsbach|Eppstein|Eppstein-Bremthal|Niederjosbach|Niedernhausen(Taunus)" pp="103" ct="1906271331" pt="1906271322" cs="c" clt="1906271311" l="2">
+        <m id="r51287196" t="d" c="7" ts="1906271311"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35238"/>
+</s>
+
+
+<s id="-3711201485074617606-1906271328-10" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271301" pr="1"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="i664019" t="i" from="1906271323" to="1906272040" ts="1906271323"/>
+    <m id="i664018" t="i" from="1906271323" to="1906272040" ts="1906271323"/>
+    <ar cpth="Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" ppth="Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" pp="103" ct="1906271356" pt="1906271346" cs="p" clt="1906271309" l="8">
+        <m id="r51287049" t="d" c="7" ts="1906271309"/>
+        <m id="r51288159" t="d" c="7" ts="1906271328"/>
+        <m id="r51288188" t="d" c="7" ts="1906271328"/>
+    </ar>
+    <dp cpth="Frankfurt-Niederrad|Frankfurt am Main - Stadion|Frankfurt(M) Flughafen Regionalbf|Kelsterbach|Raunheim|Rüsselsheim|Rüsselsheim Opelwerk|Mainz-Bischofsheim|Mainz-Gustavsburg|Mainz Römisches Theater|Mainz Hbf|Mainz Nord|Wiesbaden Ost|Wiesbaden Hbf" ppth="Frankfurt-Niederrad|Frankfurt am Main - Stadion|Frankfurt(M) Flughafen Regionalbf|Kelsterbach|Raunheim|Rüsselsheim|Rüsselsheim Opelwerk|Mainz-Bischofsheim|Mainz-Gustavsburg|Mainz Römisches Theater|Mainz Hbf|Mainz Nord|Wiesbaden Ost|Wiesbaden Hbf" pp="103" ct="1906271358" pt="1906271347" l="8">
+        <m id="r51287049" t="d" c="7" ts="1906271309"/>
+        <m id="r51288159" t="d" c="7" ts="1906271328"/>
+        <m id="r51288188" t="d" c="7" ts="1906271328"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35840"/>
+</s>
+
+
+<s id="2047807733392335222-1906271303-13" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271313" pr="1"/>
+    <m id="i664015" t="i" from="1906271320" to="1906271437" ts="1906271320"/>
+    <ar cpth="Niedernhausen(Taunus)|Niederjosbach|Eppstein-Bremthal|Eppstein|Lorsbach|Hofheim(Taunus)|Kriftel|Frankfurt-Zeilsheim|Frankfurt-Höchst Farbwerke|Frankfurt-Höchst|Frankfurt-Nied|Frankfurt-Griesheim" ppth="Niedernhausen(Taunus)|Niederjosbach|Eppstein-Bremthal|Eppstein|Lorsbach|Hofheim(Taunus)|Kriftel|Frankfurt-Zeilsheim|Frankfurt-Höchst Farbwerke|Frankfurt-Höchst|Frankfurt-Nied|Frankfurt-Griesheim" pp="102" ct="1906271343" pt="1906271338" cs="p" clt="1906271309" l="2">
+        <m id="r51287062" t="d" c="7" ts="1906271309"/>
+        <m id="r51288696" t="f" c="0" ts="1906271338"/>
+    </ar>
+    <dp cpth="Frankfurt(M)Taunusanlage|Frankfurt(M)Hauptwache|Frankfurt(M)Konstablerwache|Frankfurt(M)Ostendstraße|Frankfurt(M)Mühlberg|Offenbach(Main) Kaiserlei|Offenbach(Main) Ledermuseum|Offenbach(Main) Marktplatz|Offenbach(Main)Ost|Offenbach-Bieber|Heusenstamm|Dietzenbach-Steinberg|Dietzenbach Mitte|Dietzenbach Bahnhof" ppth="Frankfurt(M)Taunusanlage|Frankfurt(M)Hauptwache|Frankfurt(M)Konstablerwache|Frankfurt(M)Ostendstraße|Frankfurt(M)Mühlberg|Offenbach(Main) Kaiserlei|Offenbach(Main) Ledermuseum|Offenbach(Main) Marktplatz|Offenbach(Main)Ost|Offenbach-Bieber|Heusenstamm|Dietzenbach-Steinberg|Dietzenbach Mitte|Dietzenbach Bahnhof" pp="102" ct="1906271344" pt="1906271339" cs="p" clt="1906271309" l="2">
+        <m id="r51287062" t="d" c="7" ts="1906271309"/>
+        <m id="r51288696" t="f" c="0" ts="1906271338"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35241"/>
+</s>
+
+
+<s id="-12730430947485250-1906271319-15" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271301" pr="1"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <ar ct="1906271415" l="8"/>
+    <dp ct="1906271417" l="8"/>
+</s>
+
+
+<s id="-6244516854088233745-1906271408-10" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271313" pr="1"/>
+    <ar ct="1906271427" l="1"/>
+    <dp ct="1906271428" l="1"/>
+</s>
+
+
+<s id="-8560973943289814610-1906271328-20" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271313" pr="1"/>
+    <ar ct="1906271411" l="1"/>
+    <dp ct="1906271412" l="1"/>
+</s>
+
+
+<s id="-9065254707857017733-1906271235-13" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271313" pr="1"/>
+    <m id="i664007" t="i" from="1906271316" to="1906271506" ts="1906271316"/>
+    <ar cpth="Wiesbaden Hbf|Wiesbaden Ost|Mainz-Kastel|Hochheim(Main)|Flörsheim(Main)|Eddersheim|Hattersheim(Main)|Frankfurt-Sindlingen|Frankfurt-Höchst Farbwerke|Frankfurt-Höchst|Frankfurt-Nied|Frankfurt-Griesheim" ppth="Wiesbaden Hbf|Wiesbaden Ost|Mainz-Kastel|Hochheim(Main)|Flörsheim(Main)|Eddersheim|Hattersheim(Main)|Frankfurt-Sindlingen|Frankfurt-Höchst Farbwerke|Frankfurt-Höchst|Frankfurt-Nied|Frankfurt-Griesheim" pp="102" ct="1906271319" pt="1906271318" cs="c" clt="1906271309" l="1">
+        <m id="r51287033" t="d" c="7" ts="1906271309"/>
+    </ar>
+    <dp cpth="Frankfurt(Main)Süd|Offenbach(Main)Ost|Offenbach-Bieber|Offenbach-Waldhof|Obertshausen(Kr Of)|Rodgau-Weiskirchen|Rodgau-Hainhausen|Rodgau-Jügesheim|Rodgau-Dudenhofen|Rodgau-Nieder Roden|Rodgau-Rollwald|Rödermark-Ober Roden" ppth="Frankfurt(M)Taunusanlage|Frankfurt(M)Hauptwache|Frankfurt(M)Konstablerwache|Frankfurt(M)Ostendstraße|Frankfurt(M)Mühlberg|Offenbach(Main) Kaiserlei|Offenbach(Main) Ledermuseum|Offenbach(Main) Marktplatz|Offenbach(Main)Ost|Offenbach-Bieber|Offenbach-Waldhof|Obertshausen(Kr Of)|Rodgau-Weiskirchen|Rodgau-Hainhausen|Rodgau-Jügesheim|Rodgau-Dudenhofen|Rodgau-Nieder Roden|Rodgau-Rollwald|Rödermark-Ober Roden" pp="102" ct="1906271320" pt="1906271319" cs="c" clt="1906271309" l="1">
+        <m id="r51287033" t="d" c="7" ts="1906271309"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35139"/>
+</s>
+
+
+<s id="-171524654497561379-1906271424-4" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271313" pr="1"/>
+    <ar ct="1906271434" l="1"/>
+    <dp ct="1906271436" l="1"/>
+</s>
+
+
+<s id="-4607086240260290460-1906271258-20" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271313" pr="1"/>
+    <m id="i664017" t="i" from="1906271322" to="1906272024" ts="1906271322"/>
+    <ar cpth="Rödermark-Ober Roden|Rodgau-Rollwald|Rodgau-Nieder Roden|Rodgau-Dudenhofen|Rodgau-Jügesheim|Rodgau-Hainhausen|Rodgau-Weiskirchen|Obertshausen(Kr Of)|Offenbach-Waldhof|Offenbach-Bieber|Offenbach(Main)Ost|Frankfurt(Main)Süd" ppth="Rödermark-Ober Roden|Rodgau-Rollwald|Rodgau-Nieder Roden|Rodgau-Dudenhofen|Rodgau-Jügesheim|Rodgau-Hainhausen|Rodgau-Weiskirchen|Obertshausen(Kr Of)|Offenbach-Waldhof|Offenbach-Bieber|Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" pp="103" ct="1906271341" pt="1906271341" cs="c" clt="1906271309" l="1">
+        <m id="r51287029" t="d" c="7" ts="1906271309"/>
+    </ar>
+    <dp cpth="Frankfurt-Griesheim|Frankfurt-Nied|Frankfurt-Höchst|Frankfurt-Höchst Farbwerke|Frankfurt-Sindlingen|Hattersheim(Main)|Eddersheim|Flörsheim(Main)|Hochheim(Main)|Mainz-Kastel|Wiesbaden Ost|Wiesbaden Hbf" ppth="Frankfurt-Griesheim|Frankfurt-Nied|Frankfurt-Höchst|Frankfurt-Höchst Farbwerke|Frankfurt-Sindlingen|Hattersheim(Main)|Eddersheim|Flörsheim(Main)|Hochheim(Main)|Mainz-Kastel|Wiesbaden Ost|Wiesbaden Hbf" pp="103" ct="1906271342" pt="1906271342" cs="c" clt="1906271309" l="1">
+        <m id="r51287029" t="d" c="7" ts="1906271309"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35138"/>
+</s>
+
+
+<s id="2531696362398743035-1906271258-10" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271301" pr="1"/>
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="i664006" t="i" from="1906271315" to="1906272010" ts="1906271315"/>
+    <ar cpth="" ppth="Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" pp="103" pt="1906271316" cs="c" clt="1906271309" l="8">
+        <m id="r51287070" t="d" c="7" ts="1906271309"/>
+    </ar>
+    <dp cpth="Frankfurt-Niederrad|Frankfurt am Main - Stadion|Frankfurt(M) Flughafen Regionalbf|Kelsterbach|Raunheim|Rüsselsheim|Rüsselsheim Opelwerk|Mainz-Bischofsheim|Mainz-Gustavsburg|Mainz Römisches Theater|Mainz Hbf|Mainz Nord|Wiesbaden Ost|Wiesbaden Hbf" ppth="Frankfurt-Niederrad|Frankfurt am Main - Stadion|Frankfurt(M) Flughafen Regionalbf|Kelsterbach|Raunheim|Rüsselsheim|Rüsselsheim Opelwerk|Mainz-Bischofsheim|Mainz-Gustavsburg|Mainz Römisches Theater|Mainz Hbf|Mainz Nord|Wiesbaden Ost|Wiesbaden Hbf" pp="103" ct="1906271322" pt="1906271317" l="8">
+        <m id="r51287070" t="d" c="7" ts="1906271309"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35838"/>
+</s>
+
+
+<s id="6590722923343864388-1906271333-13" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271313" pr="1"/>
+    <ar ct="1906271411" l="2"/>
+    <dp ct="1906271414" l="2"/>
+</s>
+
+
+<s id="4699933122566060522-1906271249-15" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271301" pr="1"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <ar ct="1906271347" l="8"/>
+    <dp ct="1906271349" l="8"/>
+</s>
+
+
+<s id="9157687450117734147-1906271301-14" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271301" pr="1"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="i664013" t="i" from="1906271319" to="1906271415" ts="1906271319"/>
+    <ar cpth="Hanau Hbf|Steinheim(Main)|Mühlheim(Main)-Dietesheim|Mühlheim(Main)|Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" ppth="Hanau Hbf|Steinheim(Main)|Mühlheim(Main)-Dietesheim|Mühlheim(Main)|Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" pp="103" ct="1906271345" pt="1906271331" cs="p" clt="1906271312" l="9">
+        <m id="r51287230" t="d" c="7" ts="1906271312"/>
+        <m id="r51287808" t="d" c="7" ts="1906271322"/>
+        <m id="r51287865" t="d" c="7" ts="1906271323"/>
+    </ar>
+    <dp cpth="Frankfurt-Niederrad|Frankfurt am Main - Stadion|Frankfurt(M) Flughafen Regionalbf|Kelsterbach|Raunheim|Rüsselsheim|Rüsselsheim Opelwerk|Mainz-Bischofsheim|Mainz-Kastel|Wiesbaden Ost|Wiesbaden Hbf" ppth="Frankfurt-Niederrad|Frankfurt am Main - Stadion|Frankfurt(M) Flughafen Regionalbf|Kelsterbach|Raunheim|Rüsselsheim|Rüsselsheim Opelwerk|Mainz-Bischofsheim|Mainz-Kastel|Wiesbaden Ost|Wiesbaden Hbf" pp="103" ct="1906271347" pt="1906271332" cs="p" clt="1906271312" l="9">
+        <m id="r51287230" t="d" c="7" ts="1906271312"/>
+        <m id="r51287808" t="d" c="7" ts="1906271322"/>
+        <m id="r51287865" t="d" c="7" ts="1906271323"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35940"/>
+</s>
+
+
+<s id="-5954279318547579932-1906271211-12" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271301" pr="1"/>
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271335" pr="2"/>
+    <ar cpth="Wiesbaden Hbf|Wiesbaden Ost|Mainz-Kastel|Mainz-Bischofsheim|Rüsselsheim Opelwerk|Rüsselsheim|Raunheim|Kelsterbach|Frankfurt(M) Flughafen Regionalbf|Frankfurt am Main - Stadion|Frankfurt-Niederrad" ct="1906271259" l="9">
+        <m id="r51284714" t="d" c="43" ts="1906271221"/>
+        <m id="r51287053" t="d" c="7" ts="1906271309"/>
+    </ar>
+    <dp cpth="" ct="1906271300" cs="c" clt="1906271309" l="9">
+        <m id="r51284714" t="d" c="43" ts="1906271221"/>
+        <m id="r51287053" t="d" c="7" ts="1906271309"/>
+    </dp>
+</s>
+
+
+<s id="-8905205345524176154-1906271233-13" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271313" pr="1"/>
+    <ar cpth="Niedernhausen(Taunus)|Niederjosbach|Eppstein-Bremthal|Eppstein|Lorsbach|Hofheim(Taunus)|Kriftel|Frankfurt-Zeilsheim|Frankfurt-Höchst Farbwerke|Frankfurt-Höchst|Frankfurt-Nied|Frankfurt-Griesheim" ct="1906271313" cs="c" clt="1906271309" l="2">
+        <m id="r51286172" t="d" c="43" ts="1906271251"/>
+        <m id="r51287056" t="d" c="7" ts="1906271309"/>
+    </ar>
+    <dp cpth="" ct="1906271314" cs="c" clt="1906271309" l="2">
+        <m id="r51286172" t="d" c="43" ts="1906271251"/>
+        <m id="r51287056" t="d" c="7" ts="1906271309"/>
+    </dp>
+</s>
+
+
+<s id="9042398857061496119-1906271308-10" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271313" pr="1"/>
+    <m id="i664011" t="i" from="1906271318" to="1906271437" ts="1906271318"/>
+    <ar cpth="" ppth="Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" pp="103" pt="1906271326" cs="c" clt="1906271309" l="1">
+        <m id="r51287030" t="d" c="7" ts="1906271309"/>
+    </ar>
+    <dp cpth="" ppth="Frankfurt-Griesheim|Frankfurt-Nied|Frankfurt-Höchst" pp="103" pt="1906271327" cs="c" clt="1906271309" l="1">
+        <m id="r51287030" t="d" c="7" ts="1906271309"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="36130"/>
+</s>
+
+
+<s id="-6804991559805582920-1906271349-15" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271313" pr="1"/>
+    <ar ct="1906271422" l="2"/>
+    <dp ct="1906271423" l="2"/>
+</s>
+
+
+<s id="-8805252480258981676-1906271205-13" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271313" pr="1"/>
+    <ar ct="1906271248" l="1">
+        <m id="r51282974" t="f" c="0" ts="1906271144"/>
+    </ar>
+    <dp ct="1906271249" l="1">
+        <m id="r51282974" t="f" c="0" ts="1906271144"/>
+    </dp>
+</s>
+
+
+<s id="-7098218807346546682-1906271228-20" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271313" pr="1"/>
+    <ar cpth="Rödermark-Ober Roden|Rodgau-Rollwald|Rodgau-Nieder Roden|Rodgau-Dudenhofen|Rodgau-Jügesheim|Rodgau-Hainhausen|Rodgau-Weiskirchen|Obertshausen(Kr Of)|Offenbach-Waldhof|Offenbach-Bieber|Offenbach(Main)Ost" ppth="Rödermark-Ober Roden|Rodgau-Rollwald|Rodgau-Nieder Roden|Rodgau-Dudenhofen|Rodgau-Jügesheim|Rodgau-Hainhausen|Rodgau-Weiskirchen|Obertshausen(Kr Of)|Offenbach-Waldhof|Offenbach-Bieber|Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" pp="103" ct="1906271341" pt="1906271311" cs="c" clt="1906271314" l="1">
+        <m id="r51284789" t="d" c="99" ts="1906271222"/>
+        <m id="r51286554" t="d" c="7" ts="1906271259"/>
+        <m id="r51287136" t="d" c="7" ts="1906271310"/>
+        <m id="r51287308" t="d" c="7" ts="1906271314"/>
+    </ar>
+    <dp cpth="Frankfurt-Griesheim|Frankfurt-Nied|Frankfurt-Höchst|Frankfurt-Höchst Farbwerke|Frankfurt-Sindlingen|Hattersheim(Main)|Eddersheim|Flörsheim(Main)|Hochheim(Main)|Mainz-Kastel|Wiesbaden Ost|Wiesbaden Hbf" ppth="Frankfurt-Griesheim|Frankfurt-Nied|Frankfurt-Höchst|Frankfurt-Höchst Farbwerke|Frankfurt-Sindlingen|Hattersheim(Main)|Eddersheim|Flörsheim(Main)|Hochheim(Main)|Mainz-Kastel|Wiesbaden Ost|Wiesbaden Hbf" pp="103" ct="1906271342" pt="1906271312" cs="c" clt="1906271314" l="1">
+        <m id="r51284789" t="d" c="99" ts="1906271222"/>
+        <m id="r51286554" t="d" c="7" ts="1906271259"/>
+        <m id="r51287136" t="d" c="7" ts="1906271310"/>
+        <m id="r51287308" t="d" c="7" ts="1906271314"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35136"/>
+</s>
+
+
+<s id="6000353512367993856-1906271241-12" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271301" pr="1"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="i664012" t="i" from="1906271319" to="1906271928" ts="1906271319"/>
+    <ar cpth="Wiesbaden Hbf|Wiesbaden Ost|Mainz-Kastel|Mainz-Bischofsheim|Rüsselsheim Opelwerk|Rüsselsheim|Raunheim|Kelsterbach|Frankfurt(M) Flughafen Regionalbf|Frankfurt am Main - Stadion|Frankfurt-Niederrad" ppth="Wiesbaden Hbf|Wiesbaden Ost|Mainz-Kastel|Mainz-Bischofsheim|Rüsselsheim Opelwerk|Rüsselsheim|Raunheim|Kelsterbach|Frankfurt(M) Flughafen Regionalbf|Frankfurt am Main - Stadion|Frankfurt-Niederrad" pp="102" ct="1906271331" pt="1906271328" l="9">
+        <m id="r51287067" t="d" c="7" ts="1906271309"/>
+    </ar>
+    <dp cpth="" ppth="Frankfurt(M)Taunusanlage|Frankfurt(M)Hauptwache|Frankfurt(M)Konstablerwache|Frankfurt(M)Ostendstraße|Frankfurt(M)Mühlberg|Offenbach(Main) Kaiserlei|Offenbach(Main) Ledermuseum|Offenbach(Main) Marktplatz|Offenbach(Main)Ost|Mühlheim(Main)|Mühlheim(Main)-Dietesheim|Steinheim(Main)|Hanau Hbf" pp="102" ct="1906271329" pt="1906271329" cs="c" clt="1906271309" l="9">
+        <m id="r51287067" t="d" c="7" ts="1906271309"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35939"/>
+</s>
+
+
+<s id="7143091634758662134-1906271331-14" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271301" pr="1"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <ar cp="104" ct="1906271402" l="9"/>
+    <dp cp="104" ct="1906271404" l="9"/>
+</s>
+
+
+<s id="-8510666959666644139-1906271403-13" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <m id="r71571s" t="r" from="1906271302" to="1906271449" ts="1906271449"/>
+    <m id="r859069" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271313" pr="1"/>
+    <ar ct="1906271438" l="2"/>
+    <dp ct="1906271440" l="2"/>
+</s>
+
+
+<s id="-1592692208099006397-1906271420-12" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271446" l="3"/>
+    <dp ct="1906271448" l="3"/>
+</s>
+
+
+<s id="2024589678132478398-1906271405-18" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271445" l="3"/>
+    <dp ct="1906271446" l="3"/>
+</s>
+
+
+<s id="2699888346910727273-1906271410-11" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271441" l="6"/>
+    <dp ct="1906271442" l="6"/>
+</s>
+
+
+<s id="7275398232650949655-1906271428-7" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271439" l="5"/>
+    <dp ct="1906271439" l="5"/>
+</s>
+
+
+<s id="3976401638956005472-1906271408-11" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271437" l="5"/>
+    <dp ct="1906271438" l="5"/>
+</s>
+
+
+<s id="4955969545938708321-1906271423-7" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271435" l="6"/>
+    <dp ct="1906271436" l="6"/>
+</s>
+
+
+<s id="3296970492882229083-1906271408-10" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271433" l="4"/>
+    <dp ct="1906271435" l="4"/>
+</s>
+
+
+<s id="-7743363154941871549-1906271404-13" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271429" l="4"/>
+    <dp ct="1906271430" l="4"/>
+</s>
+
+
+<s id="525766684157689862-1906271347-15" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271429" l="6"/>
+    <dp ct="1906271429" l="6"/>
+</s>
+
+
+<s id="892627828688988954-1906271413-7" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271424" l="5"/>
+    <dp ct="1906271425" l="5"/>
+</s>
+
+
+<s id="-7932090841461336339-1906271359-9" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271422" l="5"/>
+    <dp ct="1906271423" l="5"/>
+</s>
+
+
+<s id="5841414083545272559-1906271408-7" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271419" l="6"/>
+    <dp ct="1906271420" l="6"/>
+</s>
+
+
+<s id="3831966962086916248-1906271350-12" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271416" l="3"/>
+    <dp ct="1906271418" l="3"/>
+</s>
+
+
+<s id="1582011998797976761-1906271335-18" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271414" l="3"/>
+    <dp ct="1906271415" l="3"/>
+</s>
+
+
+<s id="2295230184657478735-1906271340-11" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271411" l="6"/>
+    <dp ct="1906271412" l="6"/>
+</s>
+
+
+<s id="-3455836033801338559-1906271358-7" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271409" l="5"/>
+    <dp ct="1906271411" l="5"/>
+</s>
+
+
+<s id="-96435162067290619-1906271338-11" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271408" l="5"/>
+    <dp ct="1906271409" l="5"/>
+</s>
+
+
+<s id="6121859192328982899-1906271353-7" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271406" l="6"/>
+    <dp ct="1906271408" l="6"/>
+</s>
+
+
+<s id="3945958470571964690-1906271334-13" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar cp="103" ct="1906271404" l="4"/>
+    <dp cp="103" ct="1906271406" l="4"/>
+</s>
+
+
+<s id="5864617948610885055-1906271338-10" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271401" l="4"/>
+    <dp ct="1906271402" l="4"/>
+</s>
+
+
+<s id="7231592476302036163-1906271149-15" eva="8098105">
+    <m id="r859069" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271301" pr="1"/>
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <ar ct="1906271243" l="8"/>
+    <dp ct="1906271244" l="8"/>
+</s>
+
+
+<s id="-4911343377500094273-1906271231-14" eva="8098105">
+    <m id="r859069" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271301" pr="1"/>
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271359" pr="3"/>
+    <ar ct="1906271301" l="9"/>
+    <dp ct="1906271303" l="9"/>
+</s>
+
+
+<s id="-5113266305566085803-1906271317-15" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271357" l="6"/>
+    <dp ct="1906271358" l="6"/>
+</s>
+
+
+<s id="6911951775535526893-1906271330-9" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271354" l="5"/>
+    <dp ct="1906271355" l="5"/>
+</s>
+
+
+<s id="1377803800466132894-1906271343-7" eva="8098105">
+    <m id="r71572" t="r" from="1906271306" to="1906271340" ts="1906271309"/>
+    <ar ct="1906271354" l="5"/>
+    <dp ct="1906271355" l="5"/>
+</s>
+
+
+<s id="1917179423315216996-1906271338-7" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <ar ct="1906271348" l="6"/>
+    <dp ct="1906271349" l="6"/>
+</s>
+
+
+<s id="4236925992470762839-1906271320-12" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <ar ct="1906271346" l="3"/>
+    <dp ct="1906271347" l="3"/>
+</s>
+
+
+<s id="1669942956446440684-1906271305-18" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <ar ct="1906271346" l="3"/>
+    <dp ct="1906271347" l="3"/>
+</s>
+
+
+<s id="-252874730606278798-1906271310-11" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <ar ct="1906271342" l="6"/>
+    <dp ct="1906271343" l="6"/>
+</s>
+
+
+<s id="3049178189780302242-1906271328-7" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <ar ct="1906271339" l="5"/>
+    <dp ct="1906271340" l="5"/>
+</s>
+
+
+<s id="-3677627289054308362-1906271308-11" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <ar ct="1906271338" l="5"/>
+    <dp ct="1906271340" l="5"/>
+</s>
+
+
+<s id="-899742981339104978-1906271258-7" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <ar ct="1906271308" l="5"/>
+    <dp ct="1906271310" l="5"/>
+</s>
+
+
+<s id="-4832202171736415879-1906271235-18" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <ar ct="1906271315" l="3"/>
+    <dp ct="1906271315" l="3"/>
+</s>
+
+
+<s id="-3151694044864909391-1906271259-9" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <ar ct="1906271321" l="5"/>
+    <dp ct="1906271322" l="5"/>
+</s>
+
+
+<s id="4737311971408350246-1906271240-11" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <ar ct="1906271311" l="6"/>
+    <dp ct="1906271312" l="6"/>
+</s>
+
+
+<s id="-2694404859293452811-1906271238-10" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <ar ct="1906271301" l="4"/>
+    <dp ct="1906271302" l="4"/>
+</s>
+
+
+<s id="-9106075322407608176-1906271250-12" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <ar ct="1906271317" l="3"/>
+    <dp ct="1906271318" l="3"/>
+</s>
+
+
+<s id="-6951220550286819901-1906271217-15" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <ar ct="1906271256" l="6"/>
+    <dp ct="1906271257" l="6"/>
+</s>
+
+
+<s id="-2431352790427983230-1906271238-11" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <ar ct="1906271306" l="5"/>
+    <dp ct="1906271309" l="5"/>
+</s>
+
+
+<s id="-7932591432783706344-1906271234-13" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <ar ct="1906271258" l="4"/>
+    <dp ct="1906271259" l="4"/>
+</s>
+
+
+<s id="-7675486320771345456-1906271308-7" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <ar ct="1906271319" l="6"/>
+    <dp ct="1906271320" l="6"/>
+</s>
+
+
+<s id="8284601273431194620-1906271323-7" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <ar ct="1906271334" l="6"/>
+    <dp ct="1906271335" l="6"/>
+</s>
+
+
+<s id="-5652178056885221620-1906271308-10" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <ar ct="1906271331" l="4"/>
+    <dp ct="1906271335" l="4"/>
+</s>
+
+
+<s id="7268050623917754768-1906271304-13" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <ar ct="1906271331" l="4"/>
+    <dp ct="1906271333" l="4"/>
+</s>
+
+
+<s id="-7354256477005790542-1906271253-7" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <ar ct="1906271303" l="6"/>
+    <dp ct="1906271304" l="6"/>
+</s>
+
+
+<s id="-5449467009099159503-1906271247-15" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <ar ct="1906271328" l="6">
+        <m id="r51286765" t="d" c="43" ts="1906271303"/>
+    </ar>
+    <dp ct="1906271329" l="6">
+        <m id="r51286765" t="d" c="43" ts="1906271303"/>
+    </dp>
+</s>
+
+
+<s id="-2963006576649586483-1906271313-7" eva="8098105">
+    <m id="r71572" t="r" from="1906271339" to="1906271339" ts="1906271340"/>
+    <ar ct="1906271323" l="5"/>
+    <dp ct="1906271324" l="5"/>
+</s>
+
+
+<s id="8872255351865992591-1906271203-13" eva="8098105">
+    <m id="r859069" t="h" from="1906271243" to="1906271500" cat="Information" ts="1906271335" pr="2"/>
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <m id="r859071" t="h" from="1906271243" to="1906271458" cat="Störung" ts="1906271313" pr="1"/>
+    <m id="i663971" t="i" from="1906271203" to="1906271911" ts="1906271203"/>
+    <ar cpth="Frankfurt-Höchst|Frankfurt-Nied|Frankfurt-Griesheim" ppth="Niedernhausen(Taunus)|Niederjosbach|Eppstein-Bremthal|Eppstein|Lorsbach|Hofheim(Taunus)|Kriftel|Frankfurt-Zeilsheim|Frankfurt-Höchst Farbwerke|Frankfurt-Höchst|Frankfurt-Nied|Frankfurt-Griesheim" pp="102" ct="1906271238" pt="1906271238" l="2">
+        <m id="r51283197" t="d" c="7" ts="1906271148"/>
+        <m id="r51284072" t="d" c="7" ts="1906271207"/>
+    </ar>
+    <dp cpth="Frankfurt(M)Taunusanlage|Frankfurt(M)Hauptwache|Frankfurt(M)Konstablerwache|Frankfurt(M)Ostendstraße|Frankfurt(M)Mühlberg|Offenbach(Main) Kaiserlei|Offenbach(Main) Ledermuseum|Offenbach(Main) Marktplatz|Offenbach(Main)Ost|Offenbach-Bieber|Heusenstamm|Dietzenbach-Steinberg|Dietzenbach Mitte|Dietzenbach Bahnhof" ppth="Frankfurt(M)Taunusanlage|Frankfurt(M)Hauptwache|Frankfurt(M)Konstablerwache|Frankfurt(M)Ostendstraße|Frankfurt(M)Mühlberg|Offenbach(Main) Kaiserlei|Offenbach(Main) Ledermuseum|Offenbach(Main) Marktplatz|Offenbach(Main)Ost|Offenbach-Bieber|Heusenstamm|Dietzenbach-Steinberg|Dietzenbach Mitte|Dietzenbach Bahnhof" pp="102" ct="1906271239" pt="1906271239" l="2">
+        <m id="r51283197" t="d" c="7" ts="1906271148"/>
+        <m id="r51284072" t="d" c="7" ts="1906271207"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35237"/>
+</s>
+
+
+<s id="-1767328828091419622-1906271219-15" eva="8098105">
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <ar ct="1906271256" l="2">
+        <m id="r51285037" t="d" c="43" ts="1906271227"/>
+    </ar>
+    <dp ct="1906271256" l="2">
+        <m id="r51285037" t="d" c="43" ts="1906271227"/>
+    </dp>
+</s>
+
+
+<s id="-2776754231954251748-1906271243-7" eva="8098105">
+    <ar ct="1906271254" l="5"/>
+    <dp ct="1906271255" l="5"/>
+</s>
+
+
+<s id="1789262140603645118-1906271230-9" eva="8098105">
+    <ar ct="1906271253" l="5">
+        <m id="r51285927" t="d" c="43" ts="1906271246"/>
+    </ar>
+    <dp ct="1906271254" l="5">
+        <m id="r51285927" t="d" c="43" ts="1906271246"/>
+    </dp>
+</s>
+
+
+<s id="-4275844349582589233-1906271238-7" eva="8098105">
+    <ar ct="1906271249" l="6"/>
+    <dp ct="1906271250" l="6"/>
+</s>
+
+
+<s id="-251264442653643726-1906271228-10" eva="8098105">
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <ar ct="1906271247" l="8"/>
+    <dp ct="1906271248" l="8"/>
+</s>
+
+
+<s id="-164605995580602153-1906271220-12" eva="8098105">
+    <ar ct="1906271246" l="3"/>
+    <dp ct="1906271247" l="3"/>
+</s>
+
+
+<s id="1842124427869656828-1906271205-18" eva="8098105">
+    <ar ct="1906271244" l="3"/>
+    <dp ct="1906271245" l="3"/>
+</s>
+
+
+<s id="-2611590048627043441-1906271158-20" eva="8098105">
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <ar ct="1906271242" l="1"/>
+    <dp ct="1906271242" l="1"/>
+</s>
+
+
+<s id="7372674059443079958-1906271210-11" eva="8098105">
+    <ar ct="1906271241" l="6"/>
+    <dp ct="1906271242" l="6"/>
+</s>
+
+
+<s id="2685182108318137079-1906271228-7" eva="8098105">
+    <ar ct="1906271239" l="5"/>
+    <dp ct="1906271240" l="5"/>
+</s>
+
+
+<s id="698792311793007252-1906271208-11" eva="8098105">
+    <ar ct="1906271236" l="5"/>
+    <dp ct="1906271237" l="5"/>
+</s>
+
+
+<s id="-8712460153468110918-1906271208-10" eva="8098105">
+    <ar ct="1906271232" l="4"/>
+    <dp ct="1906271234" l="4"/>
+</s>
+
+
+<s id="-7940412249452501784-1906271223-7" eva="8098105">
+    <ar ct="1906271233" l="6"/>
+    <dp ct="1906271234" l="6"/>
+</s>
+
+
+<s id="-5003042796111556163-1906271141-12" eva="8098105">
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <ar ct="1906271231" l="9">
+        <m id="r51283435" t="d" c="43" ts="1906271154"/>
+    </ar>
+    <dp ct="1906271232" l="9">
+        <m id="r51283435" t="d" c="43" ts="1906271154"/>
+    </dp>
+</s>
+
+
+<s id="-890676216631504108-1906271201-14" eva="8098105">
+    <m id="r71564s" t="r" from="1906271121" to="1906271146" ts="1906271121"/>
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <m id="i663906" t="i" from="1906270949" to="1906271418" ts="1906271202"/>
+    <ar cpth="Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" ppth="Hanau Hbf|Steinheim(Main)|Mühlheim(Main)-Dietesheim|Mühlheim(Main)|Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" pp="103" ct="1906271231" pt="1906271231" l="9">
+        <m id="r51260577" t="q" c="85" ts="1906270220"/>
+        <m id="r51283736" t="d" c="7" ts="1906271159"/>
+    </ar>
+    <dp cpth="Frankfurt-Niederrad|Frankfurt am Main - Stadion|Frankfurt(M) Flughafen Regionalbf|Kelsterbach|Raunheim|Rüsselsheim|Rüsselsheim Opelwerk|Mainz-Bischofsheim|Mainz-Kastel|Wiesbaden Ost|Wiesbaden Hbf" ppth="Frankfurt-Niederrad|Frankfurt am Main - Stadion|Frankfurt(M) Flughafen Regionalbf|Kelsterbach|Raunheim|Rüsselsheim|Rüsselsheim Opelwerk|Mainz-Bischofsheim|Mainz-Kastel|Wiesbaden Ost|Wiesbaden Hbf" pp="103" ct="1906271232" pt="1906271232" l="9">
+        <m id="r51260577" t="q" c="85" ts="1906270220"/>
+        <m id="r51283736" t="d" c="7" ts="1906271159"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35936"/>
+</s>
+
+
+<s id="-545387392687221104-1906271204-13" eva="8098105">
+    <ar ct="1906271229" l="4"/>
+    <dp ct="1906271230" l="4"/>
+</s>
+
+
+<s id="-7497777982310702086-1906271147-15" eva="8098105">
+    <ar ct="1906271226" l="6">
+        <m id="r51283433" t="d" c="43" ts="1906271154"/>
+    </ar>
+    <dp ct="1906271228" l="6">
+        <m id="r51283433" t="d" c="43" ts="1906271154"/>
+    </dp>
+</s>
+
+
+<s id="-8476511814695172829-1906271213-7" eva="8098105">
+    <ar ct="1906271226" l="5">
+        <m id="r51284716" t="d" c="43" ts="1906271221"/>
+    </ar>
+    <dp ct="1906271227" l="5">
+        <m id="r51284716" t="d" c="43" ts="1906271221"/>
+    </dp>
+</s>
+
+
+<s id="-1332471408442853718-1906271149-15" eva="8098105">
+    <m id="r71564s" t="r" from="1906271121" to="1906271146" ts="1906271121"/>
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <m id="i663961" t="i" from="1906271143" to="1906271856" ts="1906271143"/>
+    <ar cpth="Frankfurt(Main)Süd|Frankfurt(M)Lokalbahnhof|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" ppth="Dietzenbach Bahnhof|Dietzenbach Mitte|Dietzenbach-Steinberg|Heusenstamm|Offenbach-Bieber|Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" pp="103" ct="1906271225" pt="1906271221" l="2">
+        <m id="r51282868" t="d" c="7" ts="1906271141"/>
+        <m id="r51282879" t="d" c="7" ts="1906271141"/>
+    </ar>
+    <dp cpth="Frankfurt-Griesheim|Frankfurt-Nied|Frankfurt-Höchst|Frankfurt-Höchst Farbwerke|Frankfurt-Zeilsheim|Kriftel|Hofheim(Taunus)|Lorsbach|Eppstein|Eppstein-Bremthal|Niederjosbach|Niedernhausen(Taunus)" ppth="Frankfurt-Griesheim|Frankfurt-Nied|Frankfurt-Höchst|Frankfurt-Höchst Farbwerke|Frankfurt-Zeilsheim|Kriftel|Hofheim(Taunus)|Lorsbach|Eppstein|Eppstein-Bremthal|Niederjosbach|Niedernhausen(Taunus)" pp="103" ct="1906271226" pt="1906271222" l="2">
+        <m id="r51282868" t="d" c="7" ts="1906271141"/>
+        <m id="r51282879" t="d" c="7" ts="1906271141"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35234"/>
+</s>
+
+
+<s id="2735177446273866367-1906271135-13" eva="8098105">
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <ar ct="1906271223" l="1">
+        <m id="r51284702" t="d" c="43" ts="1906271220"/>
+    </ar>
+    <dp ct="1906271224" l="1">
+        <m id="r51284702" t="d" c="43" ts="1906271220"/>
+    </dp>
+</s>
+
+
+<s id="-2971537568481374402-1906271208-7" eva="8098105">
+    <ar ct="1906271223" l="6">
+        <m id="r51284573" t="d" c="43" ts="1906271218"/>
+    </ar>
+    <dp ct="1906271224" l="6">
+        <m id="r51284573" t="d" c="43" ts="1906271218"/>
+    </dp>
+</s>
+
+
+<s id="-8273014957121974837-1906271159-9" eva="8098105">
+    <ar ct="1906271222" l="5"/>
+    <dp ct="1906271223" l="5"/>
+</s>
+
+
+<s id="5760455312837249453-1906271158-10" eva="8098105">
+    <m id="r71564s" t="r" from="1906271121" to="1906271146" ts="1906271121"/>
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <ar ct="1906271221" l="8"/>
+    <dp ct="1906271222" l="8"/>
+</s>
+
+
+<s id="7893920338746086053-1906271135-18" eva="8098105">
+    <ar ct="1906271219" l="3">
+        <m id="r51284283" t="d" c="43" ts="1906271212"/>
+    </ar>
+    <dp ct="1906271220" l="3">
+        <m id="r51284283" t="d" c="43" ts="1906271212"/>
+    </dp>
+</s>
+
+
+<s id="-4721747686446843050-1906271150-12" eva="8098105">
+    <ar ct="1906271218" l="3"/>
+    <dp ct="1906271218" l="3"/>
+</s>
+
+
+<s id="-1031138589968288294-1906271128-20" eva="8098105">
+    <m id="r71564s" t="r" from="1906271121" to="1906271146" ts="1906271146"/>
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <ar ct="1906271216" l="1"/>
+    <dp ct="1906271218" l="1"/>
+</s>
+
+
+<s id="-764498120943942786-1906271140-11" eva="8098105">
+    <ar ct="1906271215" l="6">
+        <m id="r51284575" t="d" c="43" ts="1906271218"/>
+    </ar>
+    <dp ct="1906271216" l="6">
+        <m id="r51284575" t="d" c="43" ts="1906271218"/>
+    </dp>
+</s>
+
+
+<s id="3412574073945888916-1906271119-15" eva="8098105">
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <ar ct="1906271213" l="8"/>
+    <dp ct="1906271214" l="8"/>
+</s>
+
+
+<s id="2383556496147333591-1906271138-11" eva="8098105">
+    <ar ct="1906271210" l="5">
+        <m id="r51283431" t="d" c="43" ts="1906271154"/>
+    </ar>
+    <dp ct="1906271210" l="5">
+        <m id="r51283431" t="d" c="43" ts="1906271154"/>
+    </dp>
+</s>
+
+
+<s id="8762816274300935564-1906271158-7" eva="8098105">
+    <ar ct="1906271209" l="5"/>
+    <dp ct="1906271210" l="5"/>
+</s>
+
+
+<s id="4443646301681788525-1906271133-13" eva="8098105">
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <ar ct="1906271208" l="2"/>
+    <dp ct="1906271209" l="2"/>
+</s>
+
+
+<s id="-7019994803896889309-1906271131-14" eva="8098105">
+    <m id="r71564s" t="r" from="1906271121" to="1906271146" ts="1906271146"/>
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <ar ct="1906271207" l="9"/>
+    <dp ct="1906271209" l="9"/>
+</s>
+
+
+<s id="-3116826163964726522-1906271049-15" eva="8098105">
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <m id="i663970" t="i" from="1906271200" to="1906271740" ts="1906271200"/>
+    <ar cpth="Dietzenbach Bahnhof|Dietzenbach Mitte|Dietzenbach-Steinberg|Heusenstamm|Offenbach-Bieber|Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" ppth="Dietzenbach Bahnhof|Dietzenbach Mitte|Dietzenbach-Steinberg|Heusenstamm|Offenbach-Bieber|Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" pp="103" ct="1906271156" pt="1906271121" l="2">
+        <m id="r51281550" t="d" c="7" ts="1906271113"/>
+        <m id="r51283201" t="d" c="7" ts="1906271148"/>
+    </ar>
+    <dp cpth="Frankfurt-Griesheim|Frankfurt-Nied|Frankfurt-Höchst" ppth="Frankfurt-Griesheim|Frankfurt-Nied|Frankfurt-Höchst|Frankfurt-Höchst Farbwerke|Frankfurt-Zeilsheim|Kriftel|Hofheim(Taunus)|Lorsbach|Eppstein|Eppstein-Bremthal|Niederjosbach|Niedernhausen(Taunus)" pp="103" ct="1906271158" pt="1906271122" l="2">
+        <m id="r51281550" t="d" c="7" ts="1906271113"/>
+        <m id="r51283201" t="d" c="7" ts="1906271148"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35230"/>
+</s>
+
+
+<s id="-7351142073641902742-1906271153-7" eva="8098105">
+    <ar ct="1906271204" l="6"/>
+    <dp ct="1906271205" l="6"/>
+</s>
+
+
+<s id="-6465004971931098128-1906271138-10" eva="8098105">
+    <ar ct="1906271201" l="4"/>
+    <dp ct="1906271202" l="4"/>
+</s>
+
+
+<s id="-4545853730690475116-1906271111-12" eva="8098105">
+    <m id="r71564s" t="r" from="1906271121" to="1906271146" ts="1906271146"/>
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <ar ct="1906271159" l="9"/>
+    <dp ct="1906271200" l="9"/>
+</s>
+
+
+<s id="-3050248577634501829-1906271134-13" eva="8098105">
+    <ar ct="1906271159" l="4"/>
+    <dp ct="1906271159" l="4"/>
+</s>
+
+
+<s id="7497604185790985227-1906271117-15" eva="8098105">
+    <ar ct="1906271156" l="6"/>
+    <dp ct="1906271157" l="6"/>
+</s>
+
+
+<s id="-3464237495104984558-1906271143-7" eva="8098105">
+    <ar ct="1906271154" l="5"/>
+    <dp ct="1906271155" l="5"/>
+</s>
+
+
+<s id="1816131145269263812-1906271105-13" eva="8098105">
+    <m id="r71564s" t="r" from="1906271121" to="1906271146" ts="1906271146"/>
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <ar ct="1906271154" l="1"/>
+    <dp ct="1906271155" l="1"/>
+</s>
+
+
+<s id="1927195784614718208-1906271011-12" eva="8098105">
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <m id="i663874" t="i" from="1906270852" to="1906271729" ts="1906270852"/>
+    <ar cpth="Wiesbaden Hbf|Wiesbaden Ost|Mainz-Kastel|Mainz-Bischofsheim|Rüsselsheim Opelwerk|Rüsselsheim|Raunheim|Kelsterbach|Frankfurt(M) Flughafen Regionalbf|Frankfurt am Main - Stadion|Frankfurt-Niederrad" ppth="Wiesbaden Hbf|Wiesbaden Ost|Mainz-Kastel|Mainz-Bischofsheim|Rüsselsheim Opelwerk|Rüsselsheim|Raunheim|Kelsterbach|Frankfurt(M) Flughafen Regionalbf|Frankfurt am Main - Stadion|Frankfurt-Niederrad" pp="102" ct="1906271058" pt="1906271058" l="9">
+        <m id="r51260566" t="q" c="85" ts="1906270217"/>
+    </ar>
+    <dp cpth="Frankfurt(M)Taunusanlage|Frankfurt(M)Hauptwache|Frankfurt(M)Konstablerwache|Frankfurt(M)Ostendstraße|Frankfurt(M)Mühlberg|Offenbach(Main) Kaiserlei|Offenbach(Main) Ledermuseum|Offenbach(Main) Marktplatz|Offenbach(Main)Ost" ppth="Frankfurt(M)Taunusanlage|Frankfurt(M)Hauptwache|Frankfurt(M)Konstablerwache|Frankfurt(M)Ostendstraße|Frankfurt(M)Mühlberg|Offenbach(Main) Kaiserlei|Offenbach(Main) Ledermuseum|Offenbach(Main) Marktplatz|Offenbach(Main)Ost|Mühlheim(Main)|Mühlheim(Main)-Dietesheim|Steinheim(Main)|Hanau Hbf" pp="102" ct="1906271059" pt="1906271059" l="9">
+        <m id="r51260566" t="q" c="85" ts="1906270217"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35929"/>
+</s>
+
+
+<s id="6766168335237921311-1906271130-9" eva="8098105">
+    <ar ct="1906271152" l="5"/>
+    <dp ct="1906271153" l="5"/>
+</s>
+
+
+<s id="-7794605413228976093-1906271049-15" eva="8098105">
+    <m id="r71564s" t="r" from="1906271121" to="1906271146" ts="1906271146"/>
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <ar ct="1906271150" l="8">
+        <m id="r51261536" t="q" c="85" ts="1906270348"/>
+        <m id="r51262040" t="q" c="84" ts="1906270405"/>
+        <m id="r51281355" t="d" c="43" ts="1906271107"/>
+    </ar>
+    <dp ct="1906271151" l="8">
+        <m id="r51261536" t="q" c="85" ts="1906270348"/>
+        <m id="r51262040" t="q" c="84" ts="1906270405"/>
+        <m id="r51281355" t="d" c="43" ts="1906271107"/>
+    </dp>
+</s>
+
+
+<s id="-3015112897933706526-1906271138-7" eva="8098105">
+    <ar ct="1906271148" l="6"/>
+    <dp ct="1906271149" l="6"/>
+</s>
+
+
+<s id="-6316949241504128383-1906271041-12" eva="8098105">
+    <m id="r71564s" t="r" from="1906271121" to="1906271146" ts="1906271146"/>
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <m id="i663946" t="i" from="1906271126" to="1906271728" ts="1906271126"/>
+    <ar cpth="Wiesbaden Hbf|Wiesbaden Ost|Mainz-Kastel|Mainz-Bischofsheim|Rüsselsheim Opelwerk|Rüsselsheim|Raunheim|Kelsterbach|Frankfurt(M) Flughafen Regionalbf|Frankfurt am Main - Stadion|Frankfurt-Niederrad" ppth="Wiesbaden Hbf|Wiesbaden Ost|Mainz-Kastel|Mainz-Bischofsheim|Rüsselsheim Opelwerk|Rüsselsheim|Raunheim|Kelsterbach|Frankfurt(M) Flughafen Regionalbf|Frankfurt am Main - Stadion|Frankfurt-Niederrad" cp="21" pp="102" ct="1906271131" pt="1906271128" l="9">
+        <m id="r51280589" t="d" c="43" ts="1906271052"/>
+        <m id="r51282024" t="d" c="7" ts="1906271122"/>
+    </ar>
+    <dp cpth="" ppth="Frankfurt(M)Taunusanlage|Frankfurt(M)Hauptwache|Frankfurt(M)Konstablerwache|Frankfurt(M)Ostendstraße|Frankfurt(M)Mühlberg|Offenbach(Main) Kaiserlei|Offenbach(Main) Ledermuseum|Offenbach(Main) Marktplatz|Offenbach(Main)Ost|Mühlheim(Main)|Mühlheim(Main)-Dietesheim|Steinheim(Main)|Hanau Hbf" cp="21" pp="102" ct="1906271132" pt="1906271129" cs="c" clt="1906271122" l="9">
+        <m id="r51280589" t="d" c="43" ts="1906271052"/>
+        <m id="r51282024" t="d" c="7" ts="1906271122"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35931"/>
+</s>
+
+
+<s id="-6204864165033869636-1906271101-14" eva="8098105">
+    <m id="r71564s" t="r" from="1906271121" to="1906271146" ts="1906271146"/>
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <m id="i663845" t="i" from="1906270830" to="1906271818" ts="1906270830"/>
+    <ar ppth="Hanau Hbf|Steinheim(Main)|Mühlheim(Main)-Dietesheim|Mühlheim(Main)|Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" pp="103" ct="1906271137" pt="1906271131" l="9">
+        <m id="r51262192" t="q" c="85" ts="1906270414"/>
+    </ar>
+    <dp ppth="Frankfurt-Niederrad|Frankfurt am Main - Stadion|Frankfurt(M) Flughafen Regionalbf|Kelsterbach|Raunheim|Rüsselsheim|Rüsselsheim Opelwerk|Mainz-Bischofsheim|Mainz-Kastel|Wiesbaden Ost|Wiesbaden Hbf" pp="103" ct="1906271138" pt="1906271132" l="9">
+        <m id="r51262192" t="q" c="85" ts="1906270414"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35932"/>
+</s>
+
+
+<s id="6647942726859608413-1906271058-10" eva="8098105">
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <ar ct="1906271116" l="8"/>
+    <dp ct="1906271117" l="8"/>
+</s>
+
+
+<s id="1187173393930922181-1906271019-15" eva="8098105">
+    <m id="r71564s" t="r" from="1906271121" to="1906271146" ts="1906271146"/>
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <ar cpth="Wiesbaden Hbf|Wiesbaden Ost|Mainz Nord|Mainz Hbf|Mainz Römisches Theater|Mainz-Gustavsburg|Mainz-Bischofsheim|Rüsselsheim Opelwerk|Rüsselsheim|Raunheim|Kelsterbach|Frankfurt(M) Flughafen Regionalbf|Frankfurt am Main - Stadion|Frankfurt-Niederrad" ct="1906271113" l="8">
+        <m id="r51281896" t="d" c="7" ts="1906271119"/>
+        <m id="r51282421" t="d" c="7" ts="1906271130"/>
+    </ar>
+    <dp cpth="" ct="1906271124" cs="c" clt="1906271130" l="8">
+        <m id="r51281896" t="d" c="7" ts="1906271119"/>
+        <m id="r51282421" t="d" c="7" ts="1906271130"/>
+    </dp>
+</s>
+
+
+<s id="-951490866754229573-1906271128-10" eva="8098105">
+    <m id="r71564s" t="r" from="1906271121" to="1906271146" ts="1906271146"/>
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <m id="i663953" t="i" from="1906271135" to="1906271840" ts="1906271135"/>
+    <ar cpth="" ppth="Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" cp="102" pp="103" pt="1906271146" cs="c" clt="1906271132" l="8">
+        <m id="r51282499" t="d" c="7" ts="1906271132"/>
+    </ar>
+    <dp cpth="Frankfurt-Niederrad|Frankfurt am Main - Stadion|Frankfurt(M) Flughafen Regionalbf|Kelsterbach|Raunheim|Rüsselsheim|Rüsselsheim Opelwerk|Mainz-Bischofsheim|Mainz-Gustavsburg|Mainz Römisches Theater|Mainz Hbf|Mainz Nord|Wiesbaden Ost|Wiesbaden Hbf" ppth="Frankfurt-Niederrad|Frankfurt am Main - Stadion|Frankfurt(M) Flughafen Regionalbf|Kelsterbach|Raunheim|Rüsselsheim|Rüsselsheim Opelwerk|Mainz-Bischofsheim|Mainz-Gustavsburg|Mainz Römisches Theater|Mainz Hbf|Mainz Nord|Wiesbaden Ost|Wiesbaden Hbf" cp="102" pp="103" ct="1906271149" pt="1906271147" l="8">
+        <m id="r51282499" t="d" c="7" ts="1906271132"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35832"/>
+</s>
+
+
+<s id="-7401794933303111588-1906271103-13" eva="8098105">
+    <m id="r71564s" t="r" from="1906271121" to="1906271146" ts="1906271146"/>
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <m id="i663954" t="i" from="1906271135" to="1906271311" ts="1906271135"/>
+    <ar cpth="Niedernhausen(Taunus)|Niederjosbach|Eppstein-Bremthal|Eppstein|Lorsbach|Hofheim(Taunus)|Kriftel|Frankfurt-Zeilsheim|Frankfurt-Höchst Farbwerke|Frankfurt-Höchst|Frankfurt-Nied|Frankfurt-Griesheim" ppth="Niedernhausen(Taunus)|Niederjosbach|Eppstein-Bremthal|Eppstein|Lorsbach|Hofheim(Taunus)|Kriftel|Frankfurt-Zeilsheim|Frankfurt-Höchst Farbwerke|Frankfurt-Höchst|Frankfurt-Nied|Frankfurt-Griesheim" pp="102" ct="1906271139" pt="1906271138" cs="c" clt="1906271134" l="2">
+        <m id="r51282564" t="d" c="7" ts="1906271134"/>
+    </ar>
+    <dp cpth="Frankfurt(Main)Süd|Offenbach(Main)Ost|Offenbach-Bieber|Heusenstamm|Dietzenbach-Steinberg|Dietzenbach Mitte|Dietzenbach Bahnhof" ppth="Frankfurt(M)Taunusanlage|Frankfurt(M)Hauptwache|Frankfurt(M)Konstablerwache|Frankfurt(M)Ostendstraße|Frankfurt(M)Mühlberg|Offenbach(Main) Kaiserlei|Offenbach(Main) Ledermuseum|Offenbach(Main) Marktplatz|Offenbach(Main)Ost|Offenbach-Bieber|Heusenstamm|Dietzenbach-Steinberg|Dietzenbach Mitte|Dietzenbach Bahnhof" pp="102" ct="1906271140" pt="1906271139" cs="c" clt="1906271134" l="2">
+        <m id="r51282564" t="d" c="7" ts="1906271134"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35233"/>
+</s>
+
+
+<s id="3950051504800382171-1906271033-13" eva="8098105">
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <ar cpth="Niedernhausen(Taunus)|Niederjosbach|Eppstein-Bremthal|Eppstein|Lorsbach|Hofheim(Taunus)|Kriftel|Frankfurt-Zeilsheim|Frankfurt-Höchst Farbwerke|Frankfurt-Höchst|Frankfurt-Nied|Frankfurt-Griesheim" ct="1906271108" l="2"/>
+    <dp cpth="Frankfurt(M)Taunusanlage|Frankfurt(M)Hauptwache|Frankfurt(M)Konstablerwache|Frankfurt(M)Ostendstraße|Frankfurt(M)Lokalbahnhof|Frankfurt(Main)Süd" ct="1906271109" l="2"/>
+</s>
+
+
+<s id="-7129718385963307515-1906271119-15" eva="8098105">
+    <m id="r71564s" t="r" from="1906271121" to="1906271146" ts="1906271146"/>
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <m id="i663957" t="i" from="1906271137" to="1906271826" ts="1906271137"/>
+    <ar cpth="Dietzenbach Bahnhof|Dietzenbach Mitte|Dietzenbach-Steinberg|Heusenstamm|Offenbach-Bieber|Offenbach(Main)Ost|Frankfurt(Main)Süd" ppth="Dietzenbach Bahnhof|Dietzenbach Mitte|Dietzenbach-Steinberg|Heusenstamm|Offenbach-Bieber|Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" pp="103" ct="1906271154" pt="1906271151" cs="c" clt="1906271134" l="2">
+        <m id="r51282540" t="d" c="7" ts="1906271134"/>
+    </ar>
+    <dp cpth="Frankfurt-Griesheim|Frankfurt-Nied|Frankfurt-Höchst|Frankfurt-Höchst Farbwerke|Frankfurt-Zeilsheim|Kriftel|Hofheim(Taunus)|Lorsbach|Eppstein|Eppstein-Bremthal|Niederjosbach|Niedernhausen(Taunus)" ppth="Frankfurt-Griesheim|Frankfurt-Nied|Frankfurt-Höchst|Frankfurt-Höchst Farbwerke|Frankfurt-Zeilsheim|Kriftel|Hofheim(Taunus)|Lorsbach|Eppstein|Eppstein-Bremthal|Niederjosbach|Niedernhausen(Taunus)" pp="103" ct="1906271155" pt="1906271152" cs="c" clt="1906271134" l="2">
+        <m id="r51282540" t="d" c="7" ts="1906271134"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35232"/>
+</s>
+
+
+<s id="3868584952232350382-1906271035-13" eva="8098105">
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <ar cpth="Wiesbaden Hbf|Wiesbaden Ost|Mainz-Kastel|Hochheim(Main)|Flörsheim(Main)|Eddersheim|Hattersheim(Main)|Frankfurt-Sindlingen|Frankfurt-Höchst Farbwerke|Frankfurt-Höchst|Frankfurt-Nied|Frankfurt-Griesheim" ct="1906271118" cs="c" clt="1906271115" l="1">
+        <m id="r51281696" t="d" c="7" ts="1906271115"/>
+    </ar>
+    <dp cpth="Frankfurt(Main)Süd|Offenbach(Main)Ost|Offenbach-Bieber|Offenbach-Waldhof|Obertshausen(Kr Of)|Rodgau-Weiskirchen|Rodgau-Hainhausen|Rodgau-Jügesheim|Rodgau-Dudenhofen|Rodgau-Nieder Roden|Rodgau-Rollwald|Rödermark-Ober Roden" ct="1906271119" cs="c" clt="1906271115" l="1">
+        <m id="r51281696" t="d" c="7" ts="1906271115"/>
+    </dp>
+</s>
+
+
+<s id="-1629721838605279712-1906271005-13" eva="8098105">
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <ar ct="1906271048" l="1"/>
+    <dp ct="1906271050" l="1"/>
+</s>
+
+
+<s id="7619252620996759150-1906271058-20" eva="8098105">
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <m id="i663944" t="i" from="1906271120" to="1906271325" ts="1906271120"/>
+    <ar cpth="Rödermark-Ober Roden|Rodgau-Rollwald|Rodgau-Nieder Roden|Rodgau-Dudenhofen|Rodgau-Jügesheim|Rodgau-Hainhausen|Rodgau-Weiskirchen|Obertshausen(Kr Of)|Offenbach-Waldhof|Offenbach-Bieber|Offenbach(Main)Ost|Frankfurt(Main)Süd" ppth="Rödermark-Ober Roden|Rodgau-Rollwald|Rodgau-Nieder Roden|Rodgau-Dudenhofen|Rodgau-Jügesheim|Rodgau-Hainhausen|Rodgau-Weiskirchen|Obertshausen(Kr Of)|Offenbach-Waldhof|Offenbach-Bieber|Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" pp="103" ct="1906271141" pt="1906271141" cs="c" clt="1906271116" l="1">
+        <m id="r51281751" t="d" c="7" ts="1906271116"/>
+    </ar>
+    <dp cpth="Frankfurt-Griesheim|Frankfurt-Nied|Frankfurt-Höchst|Frankfurt-Höchst Farbwerke|Frankfurt-Sindlingen|Hattersheim(Main)|Eddersheim|Flörsheim(Main)|Hochheim(Main)|Mainz-Kastel|Wiesbaden Ost|Wiesbaden Hbf" ppth="Frankfurt-Griesheim|Frankfurt-Nied|Frankfurt-Höchst|Frankfurt-Höchst Farbwerke|Frankfurt-Sindlingen|Hattersheim(Main)|Eddersheim|Flörsheim(Main)|Hochheim(Main)|Mainz-Kastel|Wiesbaden Ost|Wiesbaden Hbf" pp="103" ct="1906271142" pt="1906271142" cs="c" clt="1906271116" l="1">
+        <m id="r51281751" t="d" c="7" ts="1906271116"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35130"/>
+</s>
+
+
+<s id="4583556739477997904-1906271028-20" eva="8098105">
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Information" ts="1906271149" pr="2"/>
+    <ar ct="1906271111" l="1"/>
+    <dp ct="1906271112" l="1"/>
+</s>
+
+
+<s id="10827027024855783-1906271120-12" eva="8098105">
+    <ar ct="1906271147" l="3"/>
+    <dp ct="1906271148" l="3"/>
+</s>
+
+
+<s id="-6845256602989658980-1906271105-18" eva="8098105">
+    <ar ct="1906271144" l="3">
+        <m id="r51281217" t="d" c="48" ts="1906271104"/>
+    </ar>
+    <dp ct="1906271145" l="3">
+        <m id="r51281217" t="d" c="48" ts="1906271104"/>
+    </dp>
+</s>
+
+
+<s id="9196970331534684885-1906271110-11" eva="8098105">
+    <ar ct="1906271141" l="6"/>
+    <dp ct="1906271142" l="6"/>
+</s>
+
+
+<s id="-2578829233839716478-1906271128-7" eva="8098105">
+    <ar ct="1906271139" l="5"/>
+    <dp ct="1906271140" l="5"/>
+</s>
+
+
+<s id="3360702848475519132-1906271108-11" eva="8098105">
+    <m id="r858759" t="h" from="1906270733" to="1906271129" cat="Information" ts="1906271103" pr="3"/>
+    <ar ct="1906271138" l="5"/>
+    <dp ct="1906271139" l="5"/>
+</s>
+
+
+<s id="-8101697162256060196-1906271123-7" eva="8098105">
+    <ar ct="1906271135" l="6"/>
+    <dp ct="1906271136" l="6"/>
+</s>
+
+
+<s id="7040455118809130029-1906271108-10" eva="8098105">
+    <ar ct="1906271131" l="4"/>
+    <dp ct="1906271132" l="4"/>
+</s>
+
+
+<s id="476845120081500904-1906271104-13" eva="8098105">
+    <ar ct="1906271130" l="4">
+        <m id="r51282153" t="d" c="43" ts="1906271125"/>
+    </ar>
+    <dp ct="1906271131" l="4">
+        <m id="r51282153" t="d" c="43" ts="1906271125"/>
+    </dp>
+</s>
+
+
+<s id="4520233852324746405-1906271047-15" eva="8098105">
+    <ar ct="1906271127" l="6">
+        <m id="r51280591" t="d" c="43" ts="1906271052"/>
+    </ar>
+    <dp ct="1906271128" l="6">
+        <m id="r51280591" t="d" c="43" ts="1906271052"/>
+    </dp>
+</s>
+
+
+<s id="-4759106218052251713-1906271113-7" eva="8098105">
+    <ar ct="1906271123" l="5"/>
+    <dp ct="1906271124" l="5"/>
+</s>
+
+
+<s id="-6087969046280244564-1906271059-9" eva="8098105">
+    <m id="r858759" t="h" from="1906270733" to="1906271129" cat="Information" ts="1906271103" pr="3"/>
+    <ar ct="1906271122" l="5"/>
+    <dp ct="1906271123" l="5"/>
+</s>
+
+
+<s id="-2070447701476347864-1906270949-15" eva="8098105">
+    <m id="r858953" t="h" from="1906271056" to="1906271312" cat="Störung" ts="1906271120" pr="1"/>
+    <ar ct="1906271043" l="8"/>
+    <dp ct="1906271044" l="8"/>
+</s>
+
+
+<s id="3284053914701519997-1906271108-7" eva="8098105">
+    <ar ct="1906271119" l="6"/>
+    <dp ct="1906271119" l="6"/>
+</s>
+
+
+<s id="7814456535186323026-1906271050-12" eva="8098105">
+    <ar ct="1906271116" l="3"/>
+    <dp ct="1906271117" l="3"/>
+</s>
+
+
+<s id="-6606717356189987980-1906271040-11" eva="8098105">
+    <ar ct="1906271113" l="6"/>
+    <dp ct="1906271114" l="6"/>
+</s>
+
+
+<s id="822425459096368829-1906271035-18" eva="8098105">
+    <ar ct="1906271113" l="3"/>
+    <dp ct="1906271114" l="3"/>
+</s>
+
+
+<s id="-1556223464472549356-1906271058-7" eva="8098105">
+    <m id="r858759" t="h" from="1906270733" to="1906271129" cat="Information" ts="1906271103" pr="3"/>
+    <ar ct="1906271109" l="5"/>
+    <dp ct="1906271109" l="5"/>
+</s>
+
+
+<s id="3788704341923663225-1906271038-11" eva="8098105">
+    <m id="r71556s" t="r" from="1906270753" to="1906271100" ts="1906271101"/>
+    <m id="r858759" t="h" from="1906270733" to="1906271129" cat="Information" ts="1906271103" pr="3"/>
+    <ar ct="1906271107" l="5"/>
+    <dp ct="1906271108" l="5"/>
+</s>
+
+
+<s id="-1014292710824297030-1906271053-7" eva="8098105">
+    <ar ct="1906271104" l="6"/>
+    <dp ct="1906271105" l="6"/>
+</s>
+
+
+<s id="1397085704227391815-1906271038-10" eva="8098105">
+    <ar ct="1906271101" l="4"/>
+    <dp ct="1906271103" l="4"/>
+</s>
+
+
+<s id="-9039299107454048964-1906271030-9" eva="8098105">
+    <m id="r71556s" t="r" from="1906270753" to="1906271100" ts="1906271101"/>
+    <m id="r858759" t="h" from="1906270733" to="1906271129" cat="Information" ts="1906271103" pr="3"/>
+    <ar ct="1906271052" l="5">
+        <m id="r51279836" t="d" c="41" ts="1906271034"/>
+    </ar>
+    <dp ct="1906271053" l="5">
+        <m id="r51279836" t="d" c="41" ts="1906271034"/>
+    </dp>
+</s>
+
+
+<s id="6812837341907513067-1906271028-7" eva="8098105">
+    <m id="r71556s" t="r" from="1906270753" to="1906271100" ts="1906271101"/>
+    <m id="r858759" t="h" from="1906270733" to="1906271129" cat="Information" ts="1906271103" pr="3"/>
+    <ar ct="1906271038" l="5"/>
+    <dp ct="1906271039" l="5"/>
+</s>
+
+
+<s id="-2242169433443322009-1906270958-7" eva="8098105">
+    <m id="r71556s" t="r" from="1906270753" to="1906271100" ts="1906271101"/>
+    <m id="r858759" t="h" from="1906270733" to="1906271129" cat="Information" ts="1906271103" pr="3"/>
+    <ar ct="1906271019" l="5"/>
+    <dp ct="1906271020" l="5"/>
+</s>
+
+
+<s id="5617279998512732524-1906271008-11" eva="8098105">
+    <m id="r71556s" t="r" from="1906270753" to="1906271100" ts="1906271101"/>
+    <m id="r858759" t="h" from="1906270733" to="1906271129" cat="Information" ts="1906271103" pr="3"/>
+    <ar ct="1906271038" l="5">
+        <m id="r51278729" t="d" c="41" ts="1906271018"/>
+    </ar>
+    <dp ct="1906271039" l="5">
+        <m id="r51278729" t="d" c="41" ts="1906271018"/>
+    </dp>
+</s>
+
+
+<s id="-1296229120930729016-1906271043-7" eva="8098105">
+    <m id="r858759" t="h" from="1906270733" to="1906271129" cat="Information" ts="1906271103" pr="3"/>
+    <ar ct="1906271053" l="5"/>
+    <dp ct="1906271054" l="5"/>
+</s>
+
+
+<s id="4576413713715214964-1906271013-7" eva="8098105">
+    <m id="r71556s" t="r" from="1906270753" to="1906271100" ts="1906271101"/>
+    <m id="r858759" t="h" from="1906270733" to="1906271129" cat="Information" ts="1906271103" pr="3"/>
+    <m id="i663917" t="i" from="1906271000" to="1906271650" ts="1906271000"/>
+    <ar cpth="" ppth="Frankfurt(Main)Süd|Frankfurt(M)Lokalbahnhof|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" cp="103" pp="104" pt="1906271023" cs="c" clt="1906270954" l="5">
+        <m id="r51277485" t="d" c="41" ts="1906270954"/>
+    </ar>
+    <dp cpth="Frankfurt(M)Galluswarte|Frankfurt(Main)Messe|Frankfurt(Main)West|Frankfurt-Rödelheim|OberurselWeißkirchen/Steinbach|Oberursel-Stierstadt|Oberursel(Taunus)|Bad Homburg|Seulberg|Friedrichsdorf(Taunus)" ppth="Frankfurt(M)Galluswarte|Frankfurt(Main)Messe|Frankfurt(Main)West|Frankfurt-Rödelheim|OberurselWeißkirchen/Steinbach|Oberursel-Stierstadt|Oberursel(Taunus)|Bad Homburg|Seulberg|Friedrichsdorf(Taunus)" cp="103" pp="104" ct="1906271026" pt="1906271024" l="5">
+        <m id="r51277485" t="d" c="41" ts="1906270954"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35528"/>
+</s>
+
+
+<s id="314707330999653045-1906271031-14" eva="8098105">
+    <ar ct="1906271102" l="9"/>
+    <dp ct="1906271103" l="9"/>
+</s>
+
+
+<s id="-8641688581436181850-1906270938-11" eva="8098105">
+    <m id="r71556s" t="r" from="1906270753" to="1906271100" ts="1906271101"/>
+    <m id="r858759" t="h" from="1906270733" to="1906271129" cat="Störung" ts="1906271030" pr="2"/>
+    <m id="i663911" t="i" from="1906270956" to="1906271606" ts="1906270956"/>
+    <ar cpth="Friedrichsdorf(Taunus)|Seulberg|Bad Homburg|Oberursel(Taunus)|Oberursel-Stierstadt|OberurselWeißkirchen/Steinbach|Frankfurt-Rödelheim|Frankfurt(Main)West|Frankfurt(Main)Messe|Frankfurt(M)Galluswarte" ppth="Friedrichsdorf(Taunus)|Seulberg|Bad Homburg|Oberursel(Taunus)|Oberursel-Stierstadt|OberurselWeißkirchen/Steinbach|Frankfurt-Rödelheim|Frankfurt(Main)West|Frankfurt(Main)Messe|Frankfurt(M)Galluswarte" cp="103" pp="101" ct="1906271018" pt="1906271006" l="5">
+        <m id="r51275364" t="d" c="48" ts="1906270911"/>
+        <m id="r51277434" t="d" c="41" ts="1906270952"/>
+        <m id="r51277446" t="d" c="41" ts="1906270952"/>
+    </ar>
+    <dp cpth="" ppth="Frankfurt(M)Taunusanlage|Frankfurt(M)Hauptwache|Frankfurt(M)Konstablerwache|Frankfurt(M)Ostendstraße|Frankfurt(M)Lokalbahnhof|Frankfurt(Main)Süd" cp="103" pp="101" ct="1906271013" pt="1906271007" cs="c" clt="1906270952" l="5">
+        <m id="r51275364" t="d" c="48" ts="1906270911"/>
+        <m id="r51277434" t="d" c="41" ts="1906270952"/>
+        <m id="r51277446" t="d" c="41" ts="1906270952"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35527"/>
+</s>
+
+
+<s id="-5546642054211967732-1906270930-9" eva="8098105">
+    <m id="r71556s" t="r" from="1906270753" to="1906271100" ts="1906271101"/>
+    <m id="r858759" t="h" from="1906270733" to="1906271129" cat="Störung" ts="1906271030" pr="2"/>
+    <ar ct="1906271010" l="5">
+        <m id="r51276373" t="d" c="36" ts="1906270934"/>
+    </ar>
+    <dp ct="1906271011" l="5">
+        <m id="r51276373" t="d" c="36" ts="1906270934"/>
+    </dp>
+</s>
+
+
+<s id="7102009425459995297-1906270943-7" eva="8098105">
+    <m id="r71556s" t="r" from="1906270753" to="1906271100" ts="1906271101"/>
+    <m id="r858759" t="h" from="1906270733" to="1906271129" cat="Störung" ts="1906271030" pr="2"/>
+    <ar ct="1906270957" l="5"/>
+    <dp ct="1906270957" l="5"/>
+</s>
+
+
+<s id="8154455127076127377-1906270928-7" eva="8098105">
+    <m id="r71556s" t="r" from="1906270753" to="1906271100" ts="1906271101"/>
+    <m id="r858759" t="h" from="1906270733" to="1906271129" cat="Störung" ts="1906271030" pr="2"/>
+    <ar ct="1906270938" l="5"/>
+    <dp ct="1906270939" l="5"/>
+</s>
+
+
+<s id="651275153480211804-1906270959-9" eva="8098105">
+    <m id="r71556s" t="r" from="1906270753" to="1906271100" ts="1906271101"/>
+    <m id="r858759" t="h" from="1906270733" to="1906271129" cat="Störung" ts="1906271030" pr="2"/>
+    <ar ct="1906271023" l="5">
+        <m id="r51278101" t="d" c="41" ts="1906271004"/>
+    </ar>
+    <dp ct="1906271025" l="5">
+        <m id="r51278101" t="d" c="41" ts="1906271004"/>
+    </dp>
+</s>
+
+
+<s id="2103722002650098483-1906270908-11" eva="8098105">
+    <m id="r71556s" t="r" from="1906270753" to="1906271100" ts="1906271101"/>
+    <m id="r858759" t="h" from="1906270733" to="1906271035" cat="Störung" ts="1906270936" pr="2"/>
+    <ar ct="1906270949" l="5">
+        <m id="r51274325" t="d" c="48" ts="1906270849"/>
+        <m id="r51276148" t="d" c="41" ts="1906270929"/>
+    </ar>
+    <dp ct="1906270950" l="5">
+        <m id="r51274325" t="d" c="48" ts="1906270849"/>
+        <m id="r51276148" t="d" c="41" ts="1906270929"/>
+    </dp>
+</s>
+
+
+<s id="2399023081157001586-1906270913-7" eva="8098105">
+    <m id="r71556s" t="r" from="1906270753" to="1906271100" ts="1906271101"/>
+    <m id="r858759" t="h" from="1906270733" to="1906271035" cat="Störung" ts="1906270936" pr="2"/>
+    <ar ct="1906270926" l="5"/>
+    <dp ct="1906270927" l="5"/>
+</s>
+
+
+<s id="-8112539456157687481-1906271034-13" eva="8098105">
+    <ar ct="1906271059" l="4"/>
+    <dp ct="1906271100" l="4"/>
+</s>
+
+
+<s id="-300582621533098060-1906271017-15" eva="8098105">
+    <ar ct="1906271056" l="6"/>
+    <dp ct="1906271057" l="6"/>
+</s>
+
+
+<s id="-107062668462369446-1906271019-15" eva="8098105">
+    <ar ct="1906271051" l="2"/>
+    <dp ct="1906271052" l="2"/>
+</s>
+
+
+<s id="6875911363527976413-1906271038-7" eva="8098105">
+    <ar ct="1906271048" l="6"/>
+    <dp ct="1906271049" l="6"/>
+</s>
+
+
+<s id="-2078045603529239803-1906271020-12" eva="8098105">
+    <ar ct="1906271046" l="3"/>
+    <dp ct="1906271048" l="3"/>
+</s>
+
+
+<s id="-3795753787788805355-1906271028-10" eva="8098105">
+    <m id="i663883" t="i" from="1906270909" to="1906271740" ts="1906270909"/>
+    <ar ppth="Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" pp="103" ct="1906271046" pt="1906271046" l="8">
+        <m id="r51262286" t="q" c="85" ts="1906270418"/>
+    </ar>
+    <dp ppth="Frankfurt-Niederrad|Frankfurt am Main - Stadion|Frankfurt(M) Flughafen Regionalbf|Kelsterbach|Raunheim|Rüsselsheim|Rüsselsheim Opelwerk|Mainz-Bischofsheim|Mainz-Gustavsburg|Mainz Römisches Theater|Mainz Hbf|Mainz Nord|Wiesbaden Ost|Wiesbaden Hbf" pp="103" ct="1906271047" pt="1906271047" l="8">
+        <m id="r51262286" t="q" c="85" ts="1906270418"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35828"/>
+</s>
+
+
+<s id="-95706671719951306-1906271005-18" eva="8098105">
+    <ar ct="1906271044" l="3"/>
+    <dp ct="1906271045" l="3"/>
+</s>
+
+
+<s id="-1709625033058997311-1906271010-11" eva="8098105">
+    <ar ct="1906271041" l="6"/>
+    <dp ct="1906271043" l="6"/>
+</s>
+
+
+<s id="1860028794132548503-1906270958-20" eva="8098105">
+    <ar ct="1906271041" l="1"/>
+    <dp ct="1906271042" l="1"/>
+</s>
+
+
+<s id="47590702471888272-1906271003-13" eva="8098105">
+    <ar ct="1906271040" l="2"/>
+    <dp ct="1906271041" l="2"/>
+</s>
+
+
+<s id="-476124370389897193-1906270947-15" eva="8098105">
+    <ar ct="1906271034" l="6">
+        <m id="r51277055" t="d" c="43" ts="1906270943"/>
+    </ar>
+    <dp ct="1906271035" l="6">
+        <m id="r51277055" t="d" c="43" ts="1906270943"/>
+    </dp>
+</s>
+
+
+<s id="4300356947509920253-1906271023-7" eva="8098105">
+    <ar ct="1906271033" l="6"/>
+    <dp ct="1906271034" l="6"/>
+</s>
+
+
+<s id="-8828819604310849093-1906271008-10" eva="8098105">
+    <ar ct="1906271031" l="4"/>
+    <dp ct="1906271032" l="4"/>
+</s>
+
+
+<s id="8611665654593559089-1906271001-14" eva="8098105">
+    <ar ct="1906271031" l="9"/>
+    <dp ct="1906271032" l="9"/>
+</s>
+
+
+<s id="8823795415204477078-1906271004-13" eva="8098105">
+    <ar ct="1906271028" l="4"/>
+    <dp ct="1906271029" l="4"/>
+</s>
+
+
+<s id="-8487152056277191919-1906270941-12" eva="8098105">
+    <ar ct="1906271028" l="9"/>
+    <dp ct="1906271029" l="9"/>
+</s>
+
+
+<s id="-821340069348349126-1906270949-15" eva="8098105">
+    <ar cp="104" ct="1906271024" l="2">
+        <m id="r51279204" t="d" c="43" ts="1906271023"/>
+    </ar>
+    <dp cp="104" ct="1906271024" l="2">
+        <m id="r51279204" t="d" c="43" ts="1906271023"/>
+    </dp>
+</s>
+
+
+<s id="2841028452151407289-1906271008-7" eva="8098105">
+    <ar ct="1906271021" l="6">
+        <m id="r51279216" t="d" c="43" ts="1906271024"/>
+    </ar>
+    <dp ct="1906271023" l="6">
+        <m id="r51279216" t="d" c="43" ts="1906271024"/>
+    </dp>
+</s>
+
+
+<s id="7451158501600246988-1906270950-12" eva="8098105">
+    <ar ct="1906271021" l="3"/>
+    <dp ct="1906271022" l="3"/>
+</s>
+
+
+<s id="176974344623589921-1906270935-13" eva="8098105">
+    <ar ct="1906271019" l="1">
+        <m id="r51277059" t="d" c="43" ts="1906270943"/>
+        <m id="r51277164" t="d" c="45" ts="1906270946"/>
+    </ar>
+    <dp ct="1906271020" l="1">
+        <m id="r51277059" t="d" c="43" ts="1906270943"/>
+        <m id="r51277164" t="d" c="45" ts="1906270946"/>
+    </dp>
+</s>
+
+
+<s id="8488769337670275946-1906270958-10" eva="8098105">
+    <ar cp="104" ct="1906271017" l="8"/>
+    <dp cp="104" ct="1906271018" l="8"/>
+</s>
+
+
+<s id="-6355242834621767046-1906270919-15" eva="8098105">
+    <ar ct="1906271015" l="8"/>
+    <dp ct="1906271016" l="8"/>
+</s>
+
+
+<s id="345299546058176949-1906270935-18" eva="8098105">
+    <ar ct="1906271015" l="3"/>
+    <dp ct="1906271015" l="3"/>
+</s>
+
+
+<s id="2015307328100839039-1906270940-11" eva="8098105">
+    <ar ct="1906271014" l="6">
+        <m id="r51278387" t="d" c="43" ts="1906271009"/>
+    </ar>
+    <dp ct="1906271015" l="6">
+        <m id="r51278387" t="d" c="43" ts="1906271009"/>
+    </dp>
+</s>
+
+
+<s id="-6846568482069049835-1906270928-20" eva="8098105">
+    <ar cp="104" ct="1906271012" l="1"/>
+    <dp cp="104" ct="1906271013" l="1"/>
+</s>
+
+
+<s id="1916205942278448911-1906270933-13" eva="8098105">
+    <ar ct="1906271009" l="2">
+        <m id="r51276593" t="d" c="43" ts="1906270939"/>
+    </ar>
+    <dp ct="1906271012" l="2">
+        <m id="r51276593" t="d" c="43" ts="1906270939"/>
+    </dp>
+</s>
+
+
+<s id="8133436032268572771-1906270953-7" eva="8098105">
+    <ar ct="1906271004" l="6"/>
+    <dp ct="1906271005" l="6"/>
+</s>
+
+
+<s id="-2779663349531642159-1906270938-10" eva="8098105">
+    <ar ct="1906271002" l="4"/>
+    <dp ct="1906271003" l="4"/>
+</s>
+
+
+<s id="-7802105957581103546-1906270931-14" eva="8098105">
+    <ar ct="1906271003" l="9">
+        <m id="r51276591" t="d" c="43" ts="1906270939"/>
+    </ar>
+    <dp ct="1906271004" l="9">
+        <m id="r51276591" t="d" c="43" ts="1906270939"/>
+    </dp>
+</s>
+
+
+<s id="-5414405666250118179-1906270911-12" eva="8098105">
+    <m id="i663863" t="i" from="1906270837" to="1906271129" ts="1906270837"/>
+    <ar ppth="Wiesbaden Hbf|Wiesbaden Ost|Mainz-Kastel|Mainz-Bischofsheim|Rüsselsheim Opelwerk|Rüsselsheim|Raunheim|Kelsterbach|Frankfurt(M) Flughafen Regionalbf|Frankfurt am Main - Stadion|Frankfurt-Niederrad" pp="102" ct="1906270958" pt="1906270958" l="9">
+        <m id="r51262175" t="q" c="85" ts="1906270413"/>
+        <m id="r51276567" t="d" c="43" ts="1906270938"/>
+    </ar>
+    <dp ppth="Frankfurt(M)Taunusanlage|Frankfurt(M)Hauptwache|Frankfurt(M)Konstablerwache|Frankfurt(M)Ostendstraße|Frankfurt(M)Mühlberg|Offenbach(Main) Kaiserlei|Offenbach(Main) Ledermuseum|Offenbach(Main) Marktplatz|Offenbach(Main)Ost|Mühlheim(Main)|Mühlheim(Main)-Dietesheim|Steinheim(Main)|Hanau Hbf" pp="102" ct="1906271001" pt="1906270959" l="9">
+        <m id="r51262175" t="q" c="85" ts="1906270413"/>
+        <m id="r51276567" t="d" c="43" ts="1906270938"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35925"/>
+</s>
+
+
+<s id="8501785964872033349-1906270934-13" eva="8098105">
+    <ar ct="1906270959" l="4"/>
+    <dp ct="1906271000" l="4"/>
+</s>
+
+
+<s id="7308930480701339013-1906270917-15" eva="8098105">
+    <ar ct="1906270958" l="6">
+        <m id="r51276915" t="d" c="43" ts="1906270942"/>
+    </ar>
+    <dp ct="1906270959" l="6">
+        <m id="r51276915" t="d" c="43" ts="1906270942"/>
+    </dp>
+</s>
+
+
+<s id="7370349681753652337-1906270919-15" eva="8098105">
+    <m id="i663851" t="i" from="1906270831" to="1906271626" ts="1906270831"/>
+    <ar ppth="Dietzenbach Bahnhof|Dietzenbach Mitte|Dietzenbach-Steinberg|Heusenstamm|Offenbach-Bieber|Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" pp="103" ct="1906270954" pt="1906270951" l="2">
+        <m id="r51260683" t="q" c="85" ts="1906270230"/>
+    </ar>
+    <dp ppth="Frankfurt-Griesheim|Frankfurt-Nied|Frankfurt-Höchst|Frankfurt-Höchst Farbwerke|Frankfurt-Zeilsheim|Kriftel|Hofheim(Taunus)|Lorsbach|Eppstein|Eppstein-Bremthal|Niederjosbach|Niedernhausen(Taunus)" pp="103" ct="1906270955" pt="1906270952" l="2">
+        <m id="r51260683" t="q" c="85" ts="1906270230"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35224"/>
+</s>
+
+
+<s id="-7218324476411335085-1906270938-7" eva="8098105">
+    <ar ct="1906270953" l="6">
+        <m id="r51276924" t="d" c="43" ts="1906270943"/>
+    </ar>
+    <dp ct="1906270954" l="6">
+        <m id="r51276924" t="d" c="43" ts="1906270943"/>
+    </dp>
+</s>
+
+
+<s id="154840133315223037-1906270905-13" eva="8098105">
+    <m id="i663862" t="i" from="1906270836" to="1906271133" ts="1906270836"/>
+    <ar ppth="Wiesbaden Hbf|Wiesbaden Ost|Mainz-Kastel|Hochheim(Main)|Flörsheim(Main)|Eddersheim|Hattersheim(Main)|Frankfurt-Sindlingen|Frankfurt-Höchst Farbwerke|Frankfurt-Höchst|Frankfurt-Nied|Frankfurt-Griesheim" pp="102" ct="1906270950" pt="1906270948" l="1">
+        <m id="r51260517" t="q" c="85" ts="1906270205"/>
+        <m id="r51276476" t="d" c="43" ts="1906270937"/>
+    </ar>
+    <dp ppth="Frankfurt(M)Taunusanlage|Frankfurt(M)Hauptwache|Frankfurt(M)Konstablerwache|Frankfurt(M)Ostendstraße|Frankfurt(M)Mühlberg|Offenbach(Main) Kaiserlei|Offenbach(Main) Ledermuseum|Offenbach(Main) Marktplatz|Offenbach(Main)Ost|Offenbach-Bieber|Offenbach-Waldhof|Obertshausen(Kr Of)|Rodgau-Weiskirchen|Rodgau-Hainhausen|Rodgau-Jügesheim|Rodgau-Dudenhofen|Rodgau-Nieder Roden|Rodgau-Rollwald|Rödermark-Ober Roden" pp="102" ct="1906270951" pt="1906270949" l="1">
+        <m id="r51260517" t="q" c="85" ts="1906270205"/>
+        <m id="r51276476" t="d" c="43" ts="1906270937"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35125"/>
+</s>
+
+
+<s id="4138985315486958522-1906270916-14" eva="8098105">
+    <ar ct="1906270950" l="8">
+        <m id="r51262124" t="q" c="85" ts="1906270410"/>
+        <m id="r51265303" t="q" c="84" ts="1906270600"/>
+        <m id="r51276137" t="d" c="43" ts="1906270928"/>
+    </ar>
+    <dp ct="1906270950" l="8">
+        <m id="r51262124" t="q" c="85" ts="1906270410"/>
+        <m id="r51265303" t="q" c="84" ts="1906270600"/>
+        <m id="r51276137" t="d" c="43" ts="1906270928"/>
+    </dp>
+</s>
+
+
+<s id="4928827489109868673-1906270905-18" eva="8098105">
+    <ar ct="1906270947" l="3">
+        <m id="r51274510" t="d" c="48" ts="1906270852"/>
+    </ar>
+    <dp ct="1906270948" l="3">
+        <m id="r51274510" t="d" c="48" ts="1906270852"/>
+    </dp>
+</s>
+
+
+<s id="5656102448479600952-1906270920-12" eva="8098105">
+    <m id="i663847" t="i" from="1906270830" to="1906271626" ts="1906270830"/>
+    <ar ppth="Bad Soden(Taunus)|Sulzbach(Taunus)Nord|Schwalbach(Taunus)Limes|Schwalbach(Taunus)Nord|Niederhöchstadt|Eschborn|Eschborn Süd|Frankfurt-Rödelheim|Frankfurt(Main)West|Frankfurt(Main)Messe|Frankfurt(M)Galluswarte" pp="101" ct="1906270946" pt="1906270946" l="3">
+        <m id="r51261273" t="q" c="85" ts="1906270335"/>
+        <m id="r51275304" t="d" c="48" ts="1906270910"/>
+    </ar>
+    <dp ppth="Frankfurt(M)Taunusanlage|Frankfurt(M)Hauptwache|Frankfurt(M)Konstablerwache|Frankfurt(M)Ostendstraße|Frankfurt(M)Lokalbahnhof|Frankfurt(Main)Süd|Frankfurt(M)Stresemannallee|Frankfurt-Louisa|Neu-Isenburg|Dreieich-Buchschlag|Langen-Flugsicherung|Langen(Hess)|Egelsbach|Erzhausen|Darmstadt-Wixhausen|Darmstadt-Arheilgen|Darmstadt Hbf" pp="101" ct="1906270947" pt="1906270947" l="3">
+        <m id="r51261273" t="q" c="85" ts="1906270335"/>
+        <m id="r51275304" t="d" c="48" ts="1906270910"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35325"/>
+</s>
+
+
+<s id="7680322513736635671-1906270849-15" eva="8098105">
+    <m id="i663843" t="i" from="1906270829" to="1906271602" ts="1906270829"/>
+    <ar ppth="Wiesbaden Hbf|Wiesbaden Ost|Mainz Nord|Mainz Hbf|Mainz Römisches Theater|Mainz-Gustavsburg|Mainz-Bischofsheim|Rüsselsheim Opelwerk|Rüsselsheim|Raunheim|Kelsterbach|Frankfurt(M) Flughafen Regionalbf|Frankfurt am Main - Stadion|Frankfurt-Niederrad" pp="102" ct="1906270943" pt="1906270943" l="8">
+        <m id="r51262259" t="q" c="85" ts="1906270418"/>
+        <m id="r51275318" t="d" c="43" ts="1906270910"/>
+    </ar>
+    <dp ppth="Frankfurt(M)Taunusanlage|Frankfurt(M)Hauptwache|Frankfurt(M)Konstablerwache|Frankfurt(M)Ostendstraße|Frankfurt(M)Mühlberg|Offenbach(Main) Kaiserlei|Offenbach(Main) Ledermuseum|Offenbach(Main) Marktplatz|Offenbach(Main)Ost" pp="102" ct="1906270945" pt="1906270944" l="8">
+        <m id="r51262259" t="q" c="85" ts="1906270418"/>
+        <m id="r51275318" t="d" c="43" ts="1906270910"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35823"/>
+</s>
+
+
+<s id="-8251593174395150696-1906270858-20" eva="8098105">
+    <ar ct="1906270942" l="1"/>
+    <dp ct="1906270943" l="1"/>
+</s>
+
+
+<s id="-4618484967128539329-1906270903-13" eva="8098105">
+    <ar ct="1906270940" l="2"/>
+    <dp ct="1906270940" l="2"/>
+</s>
+
+
+<s id="-8229928944264358313-1906270923-7" eva="8098105">
+    <ar ct="1906270934" l="6"/>
+    <dp ct="1906270935" l="6"/>
+</s>
+
+
+<s id="1738078477729425477-1906270901-14" eva="8098105">
+    <ar ct="1906270932" l="9"/>
+    <dp ct="1906270933" l="9"/>
+</s>
+
+
+<s id="-1555062806403409899-1906270841-12" eva="8098105">
+    <ar ct="1906270928" l="9"/>
+    <dp ct="1906270930" l="9"/>
+</s>
+
+
+<s id="1099609528345034489-1906270846-14" eva="8098105">
+    <m id="i663840" t="i" from="1906270828" to="1906271114" ts="1906270828"/>
+    <ar ppth="Hanau Hbf|Steinheim(Main)|Mühlheim(Main)-Dietesheim|Mühlheim(Main)|Offenbach(Main)Ost|Offenbach(Main) Marktplatz|Offenbach(Main) Ledermuseum|Offenbach(Main) Kaiserlei|Frankfurt(M)Mühlberg|Frankfurt(M)Ostendstraße|Frankfurt(M)Konstablerwache|Frankfurt(M)Hauptwache|Frankfurt(M)Taunusanlage" pp="103" ct="1906270921" pt="1906270916" l="8">
+        <m id="r51261480" t="q" c="85" ts="1906270347"/>
+        <m id="r51262031" t="q" c="84" ts="1906270404"/>
+        <m id="r51273262" t="d" c="48" ts="1906270827"/>
+    </ar>
+    <dp ppth="Frankfurt-Niederrad|Frankfurt am Main - Stadion|Frankfurt(M) Flughafen Regionalbf|Kelsterbach|Raunheim|Rüsselsheim|Rüsselsheim Opelwerk|Mainz-Bischofsheim|Mainz-Gustavsburg|Mainz Römisches Theater|Mainz Hbf|Mainz Nord|Wiesbaden Ost|Wiesbaden Hbf" pp="103" ct="1906270922" pt="1906270917" l="8">
+        <m id="r51261480" t="q" c="85" ts="1906270347"/>
+        <m id="r51262031" t="q" c="84" ts="1906270404"/>
+        <m id="r51273262" t="d" c="48" ts="1906270827"/>
+    </dp>
+    <tl f="S" t="p" o="800528" c="S" n="35822"/>
+</s>
+
+
+<s id="-429671697653475277-1906270835-13" eva="8098105">
+    <ar ct="1906270919" l="1"/>
+    <dp ct="1906270920" l="1"/>
+</s>
+
+
+<s id="3850114753113582519-1906272219-14" eva="8098105">
+    <ar cpth="Wiesbaden Hbf|Wiesbaden Ost|Mainz Nord|Mainz Hbf|Mainz Römisches Theater|Mainz-Gustavsburg|Mainz-Bischofsheim|Rüsselsheim Opelwerk|Rüsselsheim|Raunheim|Kelsterbach|Frankfurt(M) Flughafen Regionalbf|Frankfurt am Main - Stadion|Frankfurt-Niederrad" l="8">
+        <m id="r51200950" t="d" c="57" ts="1906252300"/>
+        <m id="r51205346" t="d" c="57" ts="1906260419"/>
+    </ar>
+    <dp cpth="Frankfurt(M)Taunusanlage|Frankfurt(M)Hauptwache|Frankfurt(M)Konstablerwache|Frankfurt(M)Ostendstraße|Frankfurt(M)Mühlberg|Offenbach(Main) Kaiserlei|Offenbach(Main) Ledermuseum|Offenbach(Main) Marktplatz|Offenbach(Main)Ost" l="8">
+        <m id="r51200950" t="d" c="57" ts="1906252300"/>
+        <m id="r51205346" t="d" c="57" ts="1906260419"/>
+    </dp>
+</s>
+
+
+<s id="6126901332954732853-1906271846-14" eva="8098105">
+    <ar l="8">
+        <m id="r51260601" t="q" c="85" ts="1906270223"/>
+    </ar>
+    <dp l="8">
+        <m id="r51260601" t="q" c="85" ts="1906270223"/>
+    </dp>
+</s>
+
+
+<s id="4472793182822644155-1906271711-12" eva="8098105">
+    <ar l="9">
+        <m id="r51260596" t="q" c="85" ts="1906270222"/>
+    </ar>
+    <dp l="9">
+        <m id="r51260596" t="q" c="85" ts="1906270222"/>
+    </dp>
+</s>
+
+</timetable>

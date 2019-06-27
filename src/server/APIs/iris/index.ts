@@ -45,3 +45,4 @@ router
   .use('/v1', getCurrent().routes());
 
 export default router;
+export const versions = ['current', 'v1'];

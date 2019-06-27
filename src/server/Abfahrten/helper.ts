@@ -3,7 +3,7 @@ import { parseFromTimeZone } from 'date-fns-timezone';
 import Axios from 'axios';
 
 export const noncdAxios = Axios.create({
-  baseURL: 'http://iris.noncd.db.de/iris-tts/timetable',
+  baseURL: 'https://iris.noncd.db.de/iris-tts/timetable',
 });
 export const openDataAxios = Axios.create({
   baseURL: 'https://api.deutschebahn.com/timetables/v1',

@@ -128,6 +128,13 @@ async function makeRequest<
   parseFn: (d: HafasResponse<HR>, pc: ParsedCommon) => P = d => d as any
 ): Promise<P> {
   const { data, checksum } = createRequest(request);
+
+  // if (process.env.NODE_ENV === 'test') {
+  //   // eslint-disable-next-line no-console
+  //   console.log(JSON.stringify(request));
+  //   // eslint-disable-next-line no-console
+  //   console.log(checksum);
+  // }
   const r = (await axios.post<HafasResponse<HR>>(mgateUrl, data, {
     params: {
       checksum,
