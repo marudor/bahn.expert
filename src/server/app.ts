@@ -44,7 +44,7 @@ function hotHelper(getMiddleware: () => Middleware) {
   return (ctx: Context, next: () => Promise<any>) => getMiddleware()(ctx, next);
 }
 
-export async function createApp(wsServer: undefined | Server) {
+export async function createApp(wsServer?: Server) {
   const app = new Koa();
 
   app.use(errorHandler);

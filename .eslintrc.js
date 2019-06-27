@@ -23,6 +23,7 @@ module.exports = {
     'default-case': 0,
     'no-nested-ternary': 0,
     complexity: 0,
+    'no-unexpected-multiline': 0,
   },
   settings: {
     'import/resolver': 'webpack',

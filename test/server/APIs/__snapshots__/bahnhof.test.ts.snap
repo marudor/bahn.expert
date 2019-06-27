@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Bahnhof API current /lageplan 1`] = `
+Object {
+  "lageplan": "https://www.bahnhof.de/resource/blob/1029874/de73c88818e679513de07f7d0dcd9f56/Hamburg-Hbf_locationPdf-data.pdf",
+}
+`;
+
+exports[`Bahnhof API v1 /lageplan 1`] = `
+Object {
+  "lageplan": "https://www.bahnhof.de/resource/blob/1029874/de73c88818e679513de07f7d0dcd9f56/Hamburg-Hbf_locationPdf-data.pdf",
+}
+`;
