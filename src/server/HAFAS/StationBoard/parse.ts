@@ -21,7 +21,6 @@ const parseStationBoardResponse = (
   const product = common.prodL[jny.prodX];
   const commonResponse = {
     train: product,
-    currentStation: common.locL[jny.stbStop.locX],
     finalDestination: jny.dirTxt,
     jid: jny.jid,
     isCancelled: jny.isCncl,
