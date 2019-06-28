@@ -35,7 +35,7 @@ const Gruppe = ({
     bottom: `${currentBottom}em`,
   };
 
-  const showBR = gruppe.br && (gruppe.br.BR || !gruppe.br.noPdf);
+  const showBR = gruppe.br && gruppe.br.showBRInfo;
   const extraInfoLine = Boolean(showDestination || showBR);
 
   if (extraInfoLine) currentBottom += 1;
