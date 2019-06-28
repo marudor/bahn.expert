@@ -39,7 +39,7 @@ describe('Hafas API', () => {
       it('/details', async () => {
         mockWithFile(
           'https://reiseauskunft.bahn.de',
-          '/bin/trainsearch.exe/dn?L=vs_json&date=27.06.2019&trainname=ICE+70',
+          '/bin/trainsearch.exe/dn?L=vs_json&date=27.06.2019&trainname=ICE+70&stationFilter=80',
           'hafas/details/trainsearch'
         );
         mockWithFile(
@@ -76,7 +76,7 @@ describe('Hafas API', () => {
       it('/trainSearch', async () => {
         mockWithFile(
           'https://reiseauskunft.bahn.de',
-          '/bin/trainsearch.exe/dn?L=vs_json&date=27.06.2019&trainname=EC+8',
+          '/bin/trainsearch.exe/dn?L=vs_json&date=27.06.2019&trainname=EC+8&stationFilter=80',
           'hafas/trainsearch'
         );
         await checkApi(`/api/hafas/${v}/trainSearch/EC 8/1561641600000`);

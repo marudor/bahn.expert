@@ -34,4 +34,4 @@ router
   });
 
 export default router;
-export const versions = ['current', 'v1'];
+export const versions = ['v1'];

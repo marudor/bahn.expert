@@ -1,34 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`IRIS API current /abfahrten 1`] = `
-Object {
-  "departures": Array [],
-  "lookbehind": Array [],
-  "wings": Object {},
-}
-`;
-
-exports[`IRIS API current /wings 1`] = `
-Object {
-  "end": Object {
-    "fl": false,
-    "pt": 1561658760000,
-    "station": Object {
-      "id": "8003040",
-      "title": "Idar-Oberstein",
-    },
-  },
-  "start": Object {
-    "fl": true,
-    "pt": 1561652700000,
-    "station": Object {
-      "id": "8000105",
-      "title": "Frankfurt(Main)Hbf",
-    },
-  },
-}
-`;
-
 exports[`IRIS API v1 /abfahrten 1`] = `
 Object {
   "departures": Array [],

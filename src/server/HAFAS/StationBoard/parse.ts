@@ -29,13 +29,13 @@ const parseStationBoardResponse = (
   if (isArrival(jny.stbStop)) {
     return {
       ...commonResponse,
-      arrival: parseCommonArrival(jny.stbStop, date),
+      arrival: parseCommonArrival(jny.stbStop, date, common),
     };
   }
 
   return {
     ...commonResponse,
-    departure: parseCommonDeparture(jny.stbStop, date),
+    departure: parseCommonDeparture(jny.stbStop, date, common),
   };
 };
 
