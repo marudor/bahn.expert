@@ -8,7 +8,7 @@ import {
   Wagenreihung,
 } from 'types/reihung';
 import { convertToTimeZone } from 'date-fns-timezone';
-import { flatten, maxBy, minBy } from 'lodash';
+import { flatten, groupBy, maxBy, minBy } from 'lodash';
 import { format } from 'date-fns';
 import { getAbfahrten } from './Abfahrten';
 import { WagenreihungStation } from 'types/reihungStation';
@@ -240,7 +240,8 @@ const countryMapping: any = {
   86: 'DK',
   87: 'FR',
 };
-const getCountry = (fahrzeuge: Fahrzeug[]) => {
+const CHICWagons = ['Apmz', 'WRmz', 'Bpmz'];
+const getCountry = (fahrzeuge: Fahrzeug[], fahrzeugTypes: string[]) => {
   const countries = fahrzeuge.map(f => {
     const countryCode = Number.parseInt(f.fahrzeugnummer.substr(2, 2), 10);
 
@@ -255,14 +256,31 @@ const getCountry = (fahrzeuge: Fahrzeug[]) => {
     return firstCountry;
   }
 
-  if (
-    fahrzeuge.every(f => {
-      const wagenOrdnungsNummer = Number.parseInt(f.wagenordnungsnummer, 10);
+  const wagenOrdnungsNummern = fahrzeuge.map(f =>
+    Number.parseInt(f.wagenordnungsnummer, 10)
+  );
+  const minOrdnungsnummer = minBy(wagenOrdnungsNummern) as number;
+  const maxOrdnungsnummer = maxBy(wagenOrdnungsNummern) as number;
+  const groupedFahrzeugTypes = groupBy(fahrzeugTypes);
 
-      return wagenOrdnungsNummer > 250 && wagenOrdnungsNummer < 270;
-    })
+  if (
+    fahrzeuge.length > 10 &&
+    minOrdnungsnummer >= 253 &&
+    maxOrdnungsnummer <= 264 &&
+    fahrzeuge.every(f => CHICWagons.includes(f.fahrzeugtyp))
   ) {
     return 'CH';
+  } else if (
+    minOrdnungsnummer >= 255 &&
+    maxOrdnungsnummer <= 263 &&
+    groupedFahrzeugTypes.Bdmpz &&
+    groupedFahrzeugTypes.Bdmpz.length === 1 &&
+    groupedFahrzeugTypes.Bhmpz &&
+    groupedFahrzeugTypes.Bhmpz.length === 1
+  ) {
+    return 'CZ';
+  } else if (minOrdnungsnummer === 81 && maxOrdnungsnummer === 82) {
+    return 'DK';
   }
 };
 
@@ -462,7 +480,7 @@ export async function wagenReihung(trainNumber: string, date: number) {
     );
     if (g.br) {
       Object.assign(g.br, getDetailedInformation(g.br));
-      g.br.country = getCountry(g.allFahrzeug);
+      g.br.country = getCountry(g.allFahrzeug, gruppenFahrzeugTypes);
       g.br.showBRInfo = Boolean(
         g.br.BR || !g.br.noPdf || (g.br.country && g.br.country !== 'DE')
       );
