@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable no-fallthrough */
 import {
   BRInfo,
@@ -230,6 +231,41 @@ const getSpecificBR = (
   return info;
 };
 
+const countryMapping: any = {
+  80: 'DE',
+  81: 'AT',
+  83: 'IT',
+  84: 'NL',
+  85: 'CH',
+  86: 'DK',
+  87: 'FR',
+};
+const getCountry = (fahrzeuge: Fahrzeug[]) => {
+  const countries = fahrzeuge.map(f => {
+    const countryCode = Number.parseInt(f.fahrzeugnummer.substr(2, 2), 10);
+
+    if (countryCode) {
+      return countryMapping[countryCode] || countryCode;
+    }
+  });
+
+  const firstCountry = countries.filter(Boolean)[0];
+
+  if (firstCountry) {
+    return firstCountry;
+  }
+
+  if (
+    fahrzeuge.every(f => {
+      const wagenOrdnungsNummer = Number.parseInt(f.wagenordnungsnummer, 10);
+
+      return wagenOrdnungsNummer > 250 && wagenOrdnungsNummer < 270;
+    })
+  ) {
+    return 'CH';
+  }
+};
+
 // Reihenfolge wichtig! Wenn nicht eines der oberen DANN sind die unteren "unique"
 const ICETspecific = ['ABpmz', 'Bpmkz'];
 const ICE4specific = ['Bpmdz', 'Bpmdzf'];
@@ -426,6 +462,10 @@ export async function wagenReihung(trainNumber: string, date: number) {
     );
     if (g.br) {
       Object.assign(g.br, getDetailedInformation(g.br));
+      g.br.country = getCountry(g.allFahrzeug);
+      g.br.showBRInfo = Boolean(
+        g.br.BR || !g.br.noPdf || (g.br.country && g.br.country !== 'DE')
+      );
     }
   });
 

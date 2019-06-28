@@ -18,9 +18,7 @@ export default makeStyles(theme => ({
     if (reihung) {
       if (
         reihung.differentDestination ||
-        reihung.allFahrzeuggruppe.find(g =>
-          Boolean(g.br && (g.br.BR || !g.br.noPdf))
-        )
+        reihung.allFahrzeuggruppe.find(g => g.br && g.br.showBRInfo)
       )
         height += 1;
       if (reihung.differentZugnummer) height += 1;
