@@ -10,11 +10,19 @@ type Props = {
 const BRInfo = ({ br, className }: Props) => {
   let text = br.name;
 
+  let bracketText = '';
+
   if (br.BR) {
     const serieText = br.serie ? ` ${br.serie}. Serie` : '';
     const redesignText = br.redesign ? ' Redesign' : '';
+    const countryText = br.country ? ` ${br.country}` : '';
 
-    text += ` (BR${br.BR}${serieText}${redesignText})`;
+    bracketText = `BR${br.BR}${serieText}${redesignText}${countryText}`;
+  } else if (br.country) {
+    bracketText = br.country;
+  }
+  if (bracketText) {
+    text += ` (${bracketText})`;
   }
 
   if (br.noPdf) return <span className={className}>{text}</span>;

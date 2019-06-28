@@ -115,4 +115,6 @@ export interface BRInfo extends DetailedBRInfo {
   redesign?: boolean;
   noPdf?: boolean;
   pdf?: string;
+  country?: 'DE' | 'AT';
+  showBRInfo?: boolean;
 }
