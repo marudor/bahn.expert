@@ -1,9 +1,15 @@
-import { CommonDeparture } from 'types/HAFAS';
+import { CommonDeparture, ParsedCommon } from 'types/HAFAS';
 import { differenceInMinutes } from 'date-fns';
 import { ParsedCommonDeparture } from 'types/common';
+import parseMessages from './parseMessages';
 import parseTime from './parseTime';
 
-export default (d: CommonDeparture, date: number): ParsedCommonDeparture => {
+export default (
+  d: CommonDeparture,
+  date: number,
+  common: ParsedCommon,
+  trainType?: string
+): ParsedCommonDeparture => {
   const scheduledTime = parseTime(date, d.dTimeS);
   let time = scheduledTime;
   let delay;
@@ -19,5 +25,11 @@ export default (d: CommonDeparture, date: number): ParsedCommonDeparture => {
     scheduledTime,
     time,
     delay,
+    reihung:
+      Boolean(d.dTrnCmpSX && d.dTrnCmpSX.tcM) ||
+      trainType === 'IC' ||
+      trainType === 'EC' ||
+      undefined,
+    messages: d.msgL ? parseMessages(d.msgL, common) : undefined,
   };
 };
