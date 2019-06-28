@@ -1,14 +1,11 @@
 import { ParsedCommonArrival, ParsedCommonDeparture } from './common';
-import { ParsedProduct, ProdL } from './HAFAS';
-import { Station } from './station';
+import { ParsedProduct } from './HAFAS';
 
 interface CommonStationBoardEntry {
   train: ParsedProduct;
   isCancelled?: boolean;
   finalDestination: string;
   jid: string;
-  product?: ProdL;
-  currentStation: Station;
 }
 
 export interface ArrivalStationBoardEntry extends CommonStationBoardEntry {
