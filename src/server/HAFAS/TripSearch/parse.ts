@@ -1,28 +1,20 @@
-import {
-  Arr,
-  Dep,
-  Jny,
-  OutConL,
-  SecL,
-  StopL,
-  TripSearchResponse,
-  TrnCmpSX,
-} from 'types/HAFAS/TripSearch';
+import { CommonStop, HafasResponse, ParsedCommon } from 'types/HAFAS';
 import { flatten } from 'lodash';
-import { HafasResponse, ParsedCommon } from 'types/HAFAS';
+import { Jny, OutConL, SecL, TripSearchResponse } from 'types/HAFAS/TripSearch';
 import { parse } from 'date-fns';
 import {
   Route,
   Route$Journey,
   Route$JourneySegment,
   Route$Stop,
-  Route$StopInfo,
   RoutingResult,
 } from 'types/routing';
 import { Station } from 'types/station';
+import parseAuslastung from '../helper/parseAuslastung';
 import parseCommonArrival from '../helper/parseCommonArrival';
 import parseCommonDeparture from '../helper/parseCommonDeparture';
 import parseDuration from '../helper/parseDuration';
+import parseStop from '../helper/parseStop';
 
 const nameRegex = /O=([^@]+)/;
 const evaRegex = /L=(\d+)/;
@@ -63,48 +55,18 @@ class Journey {
       duration: parseDuration(raw.dur),
       changes: raw.chg,
       isRideable: !raw.isNotRdbl,
-      arrival: this.parseArrival(raw.arr),
-      departure: this.parseDeparture(raw.dep),
+      arrival: parseCommonArrival(raw.arr, this.date, common),
+      departure: parseCommonDeparture(raw.dep, this.date, common),
       segments,
       segmentTypes: segments.map(s => s.train.type).filter(Boolean as any),
       raw: global.PROD ? undefined : raw,
     };
   }
-  parseStops = (stops?: StopL[]): Route$Stop[] | undefined => {
+  parseStops = (stops?: CommonStop[]): Route$Stop[] | undefined => {
     if (!stops) return;
 
-    return stops.map(stop => ({
-      station: this.common.locL[stop.locX],
-      arrival: stop.aTimeS ? this.parseArrival(stop) : undefined,
-      departure: stop.dTimeS ? this.parseDeparture(stop) : undefined,
-    }));
+    return stops.map(stop => parseStop(stop, this.common, this.date));
   };
-  parseAuslastung(dTrnCmpSX?: TrnCmpSX) {
-    const tcocL = this.common.tcocL;
-
-    if (!tcocL || !dTrnCmpSX || !dTrnCmpSX.tcocX) return;
-    const auslastung: {
-      first?: number;
-      second?: number;
-    } = {};
-
-    dTrnCmpSX.tcocX.forEach(i => {
-      const a = tcocL[i];
-
-      switch (a.c) {
-        case 'FIRST':
-          auslastung.first = a.r;
-          break;
-        case 'SECOND':
-          auslastung.second = a.r;
-          break;
-        default:
-          break;
-      }
-    });
-
-    return auslastung;
-  }
   parseSegmentJourney = (jny: Jny): Route$Journey => {
     const [, fullStart, fullDestination, , , , , , ,] = jny.ctxRecon.split('$');
     const product = this.common.prodL[jny.prodX];
@@ -118,18 +80,22 @@ class Journey {
       stops: this.parseStops(jny.stopL),
       finalDestination: jny.dirTxt,
       jid: jny.jid,
-      auslastung: this.parseAuslastung(jny.dTrnCmpSX),
+      auslastung: parseAuslastung(jny.dTrnCmpSX, this.common.tcocL),
     };
   };
   parseSegment = (t: SecL): undefined | Route$JourneySegment => {
     switch (t.type) {
       case 'JNY': {
-        const arrival = this.parseArrival(
+        const arrival = parseCommonArrival(
           t.arr,
+          this.date,
+          this.common,
           this.common.prodL[t.jny.prodX].type
         );
-        const departure = this.parseDeparture(
+        const departure = parseCommonDeparture(
           t.dep,
+          this.date,
+          this.common,
           this.common.prodL[t.jny.prodX].type
         );
 
@@ -158,18 +124,6 @@ class Journey {
         return undefined;
     }
   };
-  parseArrival(a: Arr, trainType?: string): Route$StopInfo {
-    return {
-      ...parseCommonArrival(a, this.date),
-      reihung: Boolean(a.aTrnCmpSX && a.aTrnCmpSX.tcM) || trainType === 'IC',
-    };
-  }
-  parseDeparture(d: Dep, trainType?: string): Route$StopInfo {
-    return {
-      ...parseCommonDeparture(d, this.date),
-      reihung: Boolean(d.dTrnCmpSX && d.dTrnCmpSX.tcM) || trainType === 'IC',
-    };
-  }
 }
 
 export default (

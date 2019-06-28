@@ -3,14 +3,11 @@ import { OutConL, SecL } from './HAFAS/TripSearch';
 import { ParsedProduct, ProdL } from './HAFAS';
 import { Station } from './station';
 
-export interface Route$StopInfo extends CommonStopInfo {
-  reihung: boolean;
-}
-
 export type Route$Stop = {
-  arrival?: Route$StopInfo;
-  departure?: Route$StopInfo;
+  arrival?: CommonStopInfo;
+  departure?: CommonStopInfo;
   station: Station;
+  auslastung?: Route$Auslastung;
 };
 export type Route$JourneySegment = Route$JourneySegmentTrain;
 export enum AuslastungsValue {
@@ -38,14 +35,14 @@ export type Route$Journey = {
   auslastung?: Route$Auslastung;
 };
 export type Route$JourneySegmentTrain = Route$Journey & {
-  arrival: Route$StopInfo;
-  departure: Route$StopInfo;
+  arrival: CommonStopInfo;
+  departure: CommonStopInfo;
   wings?: Route$Journey[];
 };
 
 export type Route = {
-  arrival: Route$StopInfo;
-  departure: Route$StopInfo;
+  arrival: CommonStopInfo;
+  departure: CommonStopInfo;
   isRideable: boolean;
   checksum: string;
   cid: string;

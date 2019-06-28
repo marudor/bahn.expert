@@ -1,45 +1,9 @@
-import { Common } from '.';
-
-export interface DTrnCmpSX {
-  tcocX: number[];
-}
+import { Common, CommonStop, MsgL, TrnCmpSX } from '.';
 
 export interface TxtC {
   r: number;
   g: number;
   b: number;
-}
-
-export interface MsgL {
-  type: string;
-  remX: number;
-  txtC: TxtC;
-  prio: number;
-  tagL: string[];
-}
-
-export interface StopL {
-  locX: number;
-  idx: number;
-  dProdX: number;
-  dPlatfS: string;
-  dInR: boolean;
-  dTimeS: string;
-  dProgType: string;
-  dTZOffset: number;
-  type: string;
-  aProdX?: number;
-  aPlatfS: string;
-  aOutR?: boolean;
-  aTimeS: string;
-  aTZOffset?: number;
-  aProgType: string;
-  dTrnCmpSX: DTrnCmpSX;
-  border?: boolean;
-  aTimeR: string;
-  dTimeR: string;
-  msgL: MsgL[];
-  dInS?: boolean;
 }
 
 export interface SDaysL {
@@ -56,14 +20,6 @@ export interface PolyG {
   crdSysX: number;
 }
 
-export interface MsgL2 {
-  type: string;
-  remX: number;
-  fLocX: number;
-  tLocX: number;
-  tagL: string[];
-}
-
 export interface ProdL2 {
   prodX: number;
   fLocX: number;
@@ -78,12 +34,13 @@ export interface Journey {
   prodX: number;
   status: string;
   isRchbl: boolean;
-  stopL: StopL[];
+  stopL: CommonStop[];
   sDaysL: SDaysL[];
   polyG: PolyG;
-  msgL: MsgL2[];
+  msgL: MsgL[];
   subscr: string;
   prodL: ProdL2[];
+  dTrnCmpSX?: TrnCmpSX;
 }
 
 export interface JourneyDetailsResponse {

@@ -1,4 +1,13 @@
-import { Common, CommonArrival, CommonDeparture, CommonJny, LocL } from '.';
+import {
+  Common,
+  CommonArrival,
+  CommonDeparture,
+  CommonJny,
+  CommonStop,
+  LocL,
+  MsgL,
+  TrnCmpSX,
+} from '.';
 
 interface GenericTripSearchRequest {
   arrLocL: Partial<LocL>[];
@@ -37,42 +46,8 @@ export interface SDays {
   sDaysB: string;
 }
 
-export interface TrnCmpSX {
-  tcocX?: number[];
-  tcM?: number;
-}
-
-export interface TxtC {
-  r: number;
-  g: number;
-  b: number;
-}
-
-export interface MsgL {
-  type: string;
-  remX: number;
-  txtC: TxtC;
-  prio: number;
-  fIdx: number;
-  tIdx: number;
-  tagL: string[];
-}
-
-export interface Dep extends CommonDeparture {
-  dTZOffset: number;
-  dTrnCmpSX?: TrnCmpSX;
-  msgL: MsgL[];
-}
-
-export interface Arr extends CommonArrival {
-  aTZOffset: number;
-  aTrnCmpSX?: TrnCmpSX;
-}
-
-export interface StopL extends Arr, Dep {}
-
 export interface JnyL extends CommonJny {
-  stopL: StopL[];
+  stopL: CommonStop[];
 }
 
 export interface Freq {
@@ -85,7 +60,7 @@ export interface Freq {
 export interface Jny extends CommonJny {
   chgDurR?: number;
   isCncl?: boolean;
-  stopL: StopL[];
+  stopL: CommonStop[];
   ctxRecon: string;
   dTrnCmpSXmsgL: MsgL[];
   dTrnCmpSX?: TrnCmpSX;
@@ -95,8 +70,8 @@ export interface Jny extends CommonJny {
 export interface SecL {
   type: 'JNY';
   icoX: number;
-  dep: Dep;
-  arr: Arr;
+  dep: CommonDeparture;
+  arr: CommonArrival;
   jny: Jny;
   parJnyL?: Jny[];
   resState: 'N' | 'B' | 'S';
@@ -121,8 +96,8 @@ export interface OutConL {
   dur: string;
   chg: number;
   sDays: SDays;
-  dep: Dep;
-  arr: Arr;
+  dep: CommonDeparture;
+  arr: CommonArrival;
   secL: SecL[];
   ctxRecon: string;
   conSubscr: string;

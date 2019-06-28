@@ -180,6 +180,9 @@ export interface CommonArrival {
   aPlatfR?: string;
   aProgType?: string;
   type: string;
+  aTZOffset?: number;
+  aTrnCmpSX?: TrnCmpSX;
+  msgL?: MsgL[];
 }
 
 export interface CommonDeparture {
@@ -193,6 +196,32 @@ export interface CommonDeparture {
   dPlatfR?: string;
   dProgType?: string;
   type: string;
+  dTZOffset?: number;
+  dTrnCmpSX?: TrnCmpSX;
+  msgL?: MsgL[];
+}
+
+export interface CommonStop extends CommonArrival, CommonDeparture {}
+
+export interface TxtC {
+  r: number;
+  g: number;
+  b: number;
+}
+
+export interface MsgL {
+  type: string;
+  remX: number;
+  txtC: TxtC;
+  prio: number;
+  fIdx: number;
+  tIdx: number;
+  tagL: string[];
+}
+
+export interface TrnCmpSX {
+  tcocX?: number[];
+  tcM?: number;
 }
 
 // ParsedStuff

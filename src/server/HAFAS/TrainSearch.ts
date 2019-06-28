@@ -24,9 +24,18 @@ export default async (trainName: string, date: number) => {
     'https://reiseauskunft.bahn.de/bin/trainsearch.exe/dn',
     {
       params: {
+        // requestMode: 'MZP',
         L: 'vs_json',
         date: format(date, 'dd.MM.yyyy'),
         trainname: trainName,
+        // Nur Züge die in DE halten
+        stationFilter: 80,
+        // evtl benutzen
+        // 1: ICE
+        // 2: IC/EC
+        // 8: RE/RB
+        // 16: S
+        // productClassFilter: [1, 2, 8, 16],
       },
       responseType: 'arraybuffer',
     }
