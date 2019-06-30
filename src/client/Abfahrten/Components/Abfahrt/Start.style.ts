@@ -12,4 +12,9 @@ export default makeStyles(theme => ({
     color: theme.colors.red,
     textDecoration: 'none',
   },
+  links: {
+    fontSize: '.6em',
+    display: 'flex',
+    flexDirection: 'column',
+  },
 }));

@@ -1,4 +1,5 @@
 import {
+  AllowedHafasProfile,
   Common,
   GenericRes,
   HafasResponse,
@@ -12,6 +13,10 @@ import {
 import { LocGeoPosRequest, LocGeoPosResponse } from 'types/HAFAS/LocGeoPos';
 import { LocMatchRequest, LocMatchResponse } from 'types/HAFAS/LocMatch';
 import {
+  SearchOnTripRequest,
+  SearchOnTripResponse,
+} from 'types/HAFAS/SearchOnTrip';
+import {
   StationBoardRequest,
   StationBoardResponse,
 } from 'types/HAFAS/StationBoard';
@@ -21,7 +26,7 @@ import Crypto from 'crypto';
 import parseLocL from './helper/parseLocL';
 import parseProduct from './helper/parseProduct';
 
-function getSecret() {
+function getDBSecret() {
   const enc = Buffer.from(
     'rGhXPq+xAlvJd8T8cMnojdD0IoaOY53X7DPAbcXYe5g=',
     'base64'
@@ -51,9 +56,7 @@ function getSecret() {
   return secret;
 }
 
-const secret = getSecret();
-
-function createChecksum(data: any) {
+function createChecksum(data: any, secret: string) {
   const hasher = Crypto.createHash('md5');
 
   hasher.update(JSON.stringify(data) + secret);
@@ -61,21 +64,45 @@ function createChecksum(data: any) {
   return hasher.digest('hex');
 }
 
-const mgateUrl = 'https://reiseauskunft.bahn.de/bin/mgate.exe';
+const mgateUrls = {
+  db: 'https://reiseauskunft.bahn.de/bin/mgate.exe',
+  oebb: 'https://fahrplan.oebb.at/bin/mgate.exe',
+};
+const secrets = {
+  db: getDBSecret(),
+  oebb: undefined,
+};
 
-function createRequest(req: SingleHafasRequest) {
-  const data = {
+const staticData = {
+  db: {
     client: { id: 'DB', v: '19040000', type: 'AND', name: 'DB Navigator' },
     ext: 'DB.R19.04.a',
     lang: 'de',
     ver: '1.20',
-    svcReqL: [req],
     auth: { aid: 'n91dB8Z77MLdoR0K', type: 'AID' },
-  };
+  },
+  oebb: {
+    client: {
+      os: 'iOS 12.4',
+      id: 'OEBB',
+      v: '6020300',
+      type: 'IPH',
+      name: 'oebbADHOC',
+    },
+    lang: 'de',
+    ver: '1.20',
+    auth: { aid: 'OWDL4fE4ixNiPBBm', type: 'AID' },
+  },
+};
+
+function createRequest(req: SingleHafasRequest, profile: AllowedHafasProfile) {
+  const data: any = staticData[profile];
+
+  data.svcReqL = [req];
 
   return {
     data,
-    checksum: createChecksum(data),
+    checksum: profile === 'db' ? createChecksum(data, secrets.db) : undefined,
   };
 }
 
@@ -91,43 +118,64 @@ function parseCommon(common: Common): ParsedCommon {
   };
 }
 
-// @ts-ignore ???
+// @ts-ignore 2384
 declare function makeRequest<
   R extends HafasResponse<StationBoardResponse>,
   P = R
->(r: StationBoardRequest, parseFn?: (d: R, pc: ParsedCommon) => P): Promise<P>;
-// @ts-ignore ???
+>(
+  r: StationBoardRequest,
+  parseFn?: (d: R, pc: ParsedCommon) => P,
+  profile?: AllowedHafasProfile
+): Promise<P>;
+// @ts-ignore 2384
 declare function makeRequest<R extends HafasResponse<LocGeoPosResponse>, P = R>(
   r: LocGeoPosRequest,
-  parseFn?: (d: R, pc: ParsedCommon) => P
+  parseFn?: (d: R, pc: ParsedCommon) => P,
+  profile?: AllowedHafasProfile
 ): Promise<P>;
-// @ts-ignore ???
+// @ts-ignore 2384
 declare function makeRequest<R extends HafasResponse<LocMatchResponse>, P = R>(
   r: LocMatchRequest,
-  parseFn?: (d: R, pc: ParsedCommon) => P
+  parseFn?: (d: R, pc: ParsedCommon) => P,
+  profile?: AllowedHafasProfile
 ): Promise<P>;
-// @ts-ignore ???
+// @ts-ignore 2384
 declare function makeRequest<
   R extends HafasResponse<JourneyDetailsResponse>,
   P = R
 >(
   r: JourneyDetailsRequest,
-  parseFn?: (d: R, pc: ParsedCommon) => P
+  parseFn?: (d: R, pc: ParsedCommon) => P,
+  profile?: AllowedHafasProfile
 ): Promise<P>;
-// @ts-ignore ???
+// @ts-ignore 2384
+declare function makeRequest<
+  R extends HafasResponse<SearchOnTripResponse>,
+  P = R
+>(
+  r: SearchOnTripRequest,
+  parseFn?: (d: R, pc: ParsedCommon) => P,
+  profile?: AllowedHafasProfile
+): Promise<P>;
+// @ts-ignore 2384
 declare function makeRequest<
   R extends HafasResponse<TripSearchResponse>,
   P = R
->(r: TripSearchRequest, parseFn?: (d: R, pc: ParsedCommon) => P): Promise<P>;
+>(
+  r: TripSearchRequest,
+  parseFn?: (d: R, pc: ParsedCommon) => P,
+  profile?: AllowedHafasProfile
+): Promise<P>;
 async function makeRequest<
   R extends SingleHafasRequest,
   HR extends GenericRes,
   P
 >(
   request: R,
-  parseFn: (d: HafasResponse<HR>, pc: ParsedCommon) => P = d => d as any
+  parseFn: (d: HafasResponse<HR>, pc: ParsedCommon) => P = d => d as any,
+  profile: AllowedHafasProfile = 'db'
 ): Promise<P> {
-  const { data, checksum } = createRequest(request);
+  const { data, checksum } = createRequest(request, profile);
 
   // if (process.env.NODE_ENV === 'test') {
   //   // eslint-disable-next-line no-console
@@ -135,11 +183,17 @@ async function makeRequest<
   //   // eslint-disable-next-line no-console
   //   console.log(checksum);
   // }
-  const r = (await axios.post<HafasResponse<HR>>(mgateUrl, data, {
-    params: {
-      checksum,
-    },
-  })).data;
+  const r = (await axios.post<HafasResponse<HR>>(
+    mgateUrls[profile],
+    data,
+    checksum
+      ? {
+          params: {
+            checksum,
+          },
+        }
+      : undefined
+  )).data;
 
   if (r.err !== 'OK' || r.svcResL[0].err !== 'OK') throw r;
 

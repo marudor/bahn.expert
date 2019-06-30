@@ -1,5 +1,6 @@
 import { CommonProductInfo } from 'types/common';
 import { JourneyDetailsRequest } from './JourneyDetails';
+import { LocGeoPosRequest } from './LocGeoPos';
 import { LocMatchRequest } from './LocMatch';
 import { Omit } from 'utility-types';
 import { Station } from 'types/station';
@@ -14,11 +15,13 @@ export interface HafasStation extends Omit<Station, 'favendoId' | 'DS100'> {
   coordinates: Coordinates;
 }
 
-export type HafasRequest = Array<SingleHafasRequest>;
+export type AllowedHafasProfile = 'db' | 'oebb';
+export type HafasRequest = SingleHafasRequest[];
 export type SingleHafasRequest =
   | LocMatchRequest
   | JourneyDetailsRequest
-  | TripSearchRequest;
+  | TripSearchRequest
+  | LocGeoPosRequest;
 
 type CInfo = {
   code: string;
@@ -172,6 +175,7 @@ export interface CommonJny {
 export interface CommonArrival {
   locX: number;
   idx: number;
+  aCncl?: boolean;
   aProdX?: number;
   aOutR: boolean;
   aTimeS: string;
@@ -188,6 +192,7 @@ export interface CommonArrival {
 export interface CommonDeparture {
   locX: number;
   idx: number;
+  dCncl?: boolean;
   dProdX?: number;
   dInR: boolean;
   dTimeS: string;
@@ -201,7 +206,9 @@ export interface CommonDeparture {
   msgL?: MsgL[];
 }
 
-export interface CommonStop extends CommonArrival, CommonDeparture {}
+export interface CommonStop extends CommonArrival, CommonDeparture {
+  isAdd?: boolean;
+}
 
 export interface TxtC {
   r: number;

@@ -1,6 +1,6 @@
 import { Route$Stop } from 'types/routing';
 import React from 'react';
-import Stop from './Stop';
+import Stop from 'Common/Components/Details/Stop';
 
 type OwnProps = { stops?: Route$Stop[] };
 

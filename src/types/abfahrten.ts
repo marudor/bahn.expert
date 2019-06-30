@@ -49,6 +49,7 @@ export interface TrainInfo extends CommonProductInfo {
 }
 
 export type Abfahrt = {
+  initialDeparture: number;
   arrival?: StopInfo;
   auslastung: boolean;
   currentStation: Station;

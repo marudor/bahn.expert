@@ -35,7 +35,7 @@ function parseFullStation(fullStation: string): Station {
   };
 }
 
-class Journey {
+export class Journey {
   raw: OutConL;
   date: number;
   journey: Route;
@@ -62,8 +62,8 @@ class Journey {
       raw: global.PROD ? undefined : raw,
     };
   }
-  parseStops = (stops?: CommonStop[]): Route$Stop[] | undefined => {
-    if (!stops) return;
+  parseStops = (stops?: CommonStop[]): Route$Stop[] => {
+    if (!stops) return [];
 
     return stops.map(stop => parseStop(stop, this.common, this.date));
   };

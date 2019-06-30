@@ -1,13 +1,12 @@
 import { CommonDeparture, ParsedCommon } from 'types/HAFAS';
 import { differenceInMinutes } from 'date-fns';
 import { ParsedCommonDeparture } from 'types/common';
-import parseMessages from './parseMessages';
 import parseTime from './parseTime';
 
 export default (
   d: CommonDeparture,
   date: number,
-  common: ParsedCommon,
+  _common: ParsedCommon,
   trainType?: string
 ): ParsedCommonDeparture => {
   const scheduledTime = parseTime(date, d.dTimeS);
@@ -30,6 +29,7 @@ export default (
       trainType === 'IC' ||
       trainType === 'EC' ||
       undefined,
-    messages: d.msgL ? parseMessages(d.msgL, common) : undefined,
+    cancelled: d.dCncl,
+    // messages: d.msgL ? parseMessages(d.msgL, common) : undefined,
   };
 };

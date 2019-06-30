@@ -1,6 +1,6 @@
 import { CommonStopInfo } from './common';
 import { OutConL, SecL } from './HAFAS/TripSearch';
-import { ParsedProduct, ProdL } from './HAFAS';
+import { ParsedProduct, ProdL, RemL } from './HAFAS';
 import { Station } from './station';
 
 export type Route$Stop = {
@@ -8,6 +8,9 @@ export type Route$Stop = {
   departure?: CommonStopInfo;
   station: Station;
   auslastung?: Route$Auslastung;
+  messages?: RemL[];
+  additional?: boolean;
+  cancelled?: boolean;
 };
 export type Route$JourneySegment = Route$JourneySegmentTrain;
 export enum AuslastungsValue {
@@ -30,7 +33,7 @@ export type Route$Journey = {
   raw?: SecL;
   segmentDestination: Station;
   segmentStart: Station;
-  stops?: Route$Stop[];
+  stops: Route$Stop[];
   train: ParsedProduct;
   auslastung?: Route$Auslastung;
 };
@@ -50,7 +53,7 @@ export type Route = {
   duration: number;
   changes: number;
   segments: Route$JourneySegment[];
-  segmentTypes: Array<string>;
+  segmentTypes: string[];
   raw?: OutConL;
 };
 

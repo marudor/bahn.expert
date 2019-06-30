@@ -3,13 +3,15 @@ import { makeStyles } from '@material-ui/styles';
 export default makeStyles(theme => ({
   main: {
     display: 'grid',
-    gridTemplateColumns: '4.8em 1fr min-content',
+    gridTemplateColumns: '4.8em 1fr max-content',
     gridGap: '0 .3em',
     gridTemplateRows: '1fr 1fr',
-    gridTemplateAreas: '". t p" ". t p" ". t p"',
+    gridTemplateAreas: '". t p" ". t p" ". t p" "wr wr wr" "m m m"',
     alignItems: 'center',
     borderBottom: `1px solid ${theme.palette.text.primary}`,
+    position: 'relative',
   },
+  cancelled: theme.mixins.cancelled,
 
   station: {
     gridArea: 't',
@@ -19,5 +21,17 @@ export default makeStyles(theme => ({
 
   platform: {
     gridArea: 'p',
+  },
+  wr: {
+    fontSize: '0.5em',
+    gridArea: 'wr',
+    overflow: 'hidden',
+  },
+  scrollMarker: {
+    position: 'absolute',
+    top: -64,
+  },
+  messages: {
+    gridArea: 'm',
   },
 }));

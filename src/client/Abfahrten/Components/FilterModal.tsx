@@ -16,7 +16,7 @@ import useStyles from './FilterModal.style';
 
 type StateProps = {
   open: boolean;
-  types: Array<string>;
+  types: string[];
   filterList: string[];
 };
 

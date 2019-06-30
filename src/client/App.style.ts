@@ -5,6 +5,10 @@ export default makeStyles(theme => ({
     'html, body': {
       height: '100%',
     },
+    '#app': {
+      display: 'flex',
+      flexDirection: 'column',
+    },
     body: {
       margin: 0,
       fontFamily: 'Roboto, sans-serif',

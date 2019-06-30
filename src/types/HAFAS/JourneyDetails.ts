@@ -1,4 +1,6 @@
-import { Common, CommonStop, MsgL, TrnCmpSX } from '.';
+import { Common, CommonStop, MsgL, ParsedProduct, RemL, TrnCmpSX } from '.';
+import { CommonStopInfo } from 'types/common';
+import { Route$Auslastung, Route$Stop } from 'types/routing';
 
 export interface TxtC {
   r: number;
@@ -56,4 +58,23 @@ export interface JourneyDetailsRequest {
     jid: string;
   };
   meth: 'JourneyDetails';
+}
+
+interface Route$ValidArrivalStop extends Route$Stop {
+  arrival: CommonStopInfo;
+}
+
+interface Route$ValidDepartureStop extends Route$Stop {
+  departure: CommonStopInfo;
+}
+
+export interface ParsedJourneyDetails {
+  train: ParsedProduct;
+  auslastung?: Route$Auslastung;
+  jid: string;
+  stops: Route$Stop[];
+  firstStop: Route$ValidDepartureStop;
+  lastStop: Route$ValidArrivalStop;
+  currentStop?: Route$Stop;
+  messages?: RemL[];
 }

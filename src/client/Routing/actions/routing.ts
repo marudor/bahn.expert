@@ -6,9 +6,7 @@ import { uniqBy } from 'lodash';
 import axios from 'axios';
 
 const Actions = {
-  gotRoutes: createAction('GOT_ROUTES', resolve => (r?: Array<Route>) =>
-    resolve(r)
-  ),
+  gotRoutes: createAction('GOT_ROUTES', resolve => (r?: Route[]) => resolve(r)),
   routesErrored: createAction('ROUTES_ERRORED', resolve => (r?: Object) =>
     resolve(r)
   ),
