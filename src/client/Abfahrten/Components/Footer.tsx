@@ -22,9 +22,7 @@ const Footer = ({ currentStation }: Props) => {
           <>
             <a
               title={`Bahnhofstafeln für ${currentStation.title}`}
-              href={`https://iris.noncd.db.de/wbt/js/index.html?typ=ab&bhf=${
-                currentStation.id
-              }&zeilen=12&via=1&impressum=1&style=ab&lang=de`}
+              href={`https://iris.noncd.db.de/wbt/js/index.html?typ=ab&bhf=${currentStation.id}&zeilen=12&via=1&impressum=1&style=ab&lang=de`}
             >
               Bahnhofstafeln für {currentStation.title}
             </a>

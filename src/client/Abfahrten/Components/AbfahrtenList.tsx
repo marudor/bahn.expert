@@ -16,17 +16,17 @@ import Actions, {
 import Loading from 'Common/Components/Loading';
 import React from 'react';
 
-type InnerAbfahrtenProps = {
+interface InnerAbfahrtenProps {
   abfahrten?: Departures;
   classes: Record<'lookahead' | 'lookbehind' | 'lookaheadMarker', string>;
-};
-type StateProps = {
+}
+interface StateProps {
   abfahrten?: Departures;
   currentStation?: Station;
   error?: AbfahrtenError;
   autoUpdate: number;
   selectedDetail?: string;
-};
+}
 const InnerAbfahrten = ({ abfahrten, classes }: InnerAbfahrtenProps) =>
   abfahrten && (abfahrten.lookahead.length || abfahrten.lookbehind.length) ? (
     <>
@@ -59,10 +59,10 @@ type ReduxProps = StateProps & DispatchProps;
 type Props = ReduxProps &
   RouteComponentProps<{ station: string }> &
   WithStyles<typeof styles>;
-type State = {
+interface State {
   loading: boolean;
   scrolled: boolean;
-};
+}
 
 class AbfahrtenList extends React.PureComponent<Props, State> {
   static loadData = (store: AppStore, match: match<{ station: string }>) => {

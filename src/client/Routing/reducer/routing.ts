@@ -9,7 +9,7 @@ export interface RoutingSettings {
 }
 
 export type State = {
-  routes?: Array<Route>;
+  routes?: Route[];
   context: Partial<RoutingResult['context']>;
   error?: any;
   settings: RoutingSettings;

@@ -12,6 +12,7 @@ import {
   format,
   isAfter,
   isBefore,
+  parse,
   subHours,
   subMinutes,
 } from 'date-fns';
@@ -179,14 +180,20 @@ export function parseTl(tl: xmljs.Element) {
 
 const idRegex = /-?(\w+)/;
 const mediumIdRegex = /-?(\w+-\w+)/;
+const initialDepartureRegex = /-?\w+-(\w+)/;
 
 function parseRawId(rawId: string) {
   const idMatch = rawId.match(idRegex);
   const mediumIdMatch = rawId.match(mediumIdRegex);
+  const initialDepartureMatch = rawId.match(initialDepartureRegex);
 
   return {
     id: (idMatch && idMatch[1]) || rawId,
     mediumId: (mediumIdMatch && mediumIdMatch[1]) || rawId,
+    initialDeparture:
+      (initialDepartureMatch &&
+        parse(initialDepartureMatch[1], 'yyMMddHHmm', 0).getTime()) ||
+      '',
   };
 }
 
@@ -422,7 +429,7 @@ export default class Timetable {
     const rawId = getAttr(sNode, 'id');
 
     if (!rawId) return;
-    const { id, mediumId } = parseRawId(rawId);
+    const { id, mediumId, initialDeparture } = parseRawId(rawId);
     const tl = sNode.get('tl');
     const ref = sNode.get('ref/tl');
 
@@ -479,6 +486,7 @@ export default class Timetable {
       id,
       mediumId,
       rawId,
+      initialDeparture,
       messages: Object.keys(messages).reduce(
         (agg, messageKey) => {
           const messageValues = Object.values(messages[messageKey]);
@@ -620,7 +628,7 @@ export default class Timetable {
     if (!rawId) {
       return undefined;
     }
-    const { id, mediumId } = parseRawId(rawId);
+    const { id, mediumId, initialDeparture } = parseRawId(rawId);
     const tl = sNode.get('tl');
 
     if (!tl) {
@@ -646,6 +654,7 @@ export default class Timetable {
 
     return {
       o,
+      initialDeparture,
       arrival: scheduledArrival && {
         scheduledTime: scheduledArrival,
         time: scheduledArrival,

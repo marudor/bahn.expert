@@ -8,6 +8,7 @@ export interface CommonStopInfo {
   delay?: number;
   reihung?: boolean;
   messages?: RemL[];
+  cancelled?: boolean;
 }
 
 export interface ParsedCommonArrival extends CommonStopInfo {}

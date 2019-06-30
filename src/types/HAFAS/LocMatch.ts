@@ -5,7 +5,7 @@ export type LocMatchResponse = {
   match: {
     field: string;
     state: string;
-    locL: Array<{
+    locL: {
       lid: string;
       type: string;
       name: string;
@@ -23,7 +23,7 @@ export type LocMatchResponse = {
       pCls: number;
       pRefL: number[];
       wt: number;
-    }>;
+    }[];
   };
 };
 

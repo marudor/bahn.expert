@@ -1,29 +1,43 @@
+import { AllowedHafasProfile } from 'types/HAFAS';
 import auslastungHafas from 'server/Auslastung/Hafas';
+import detail from 'server/HAFAS/Detail';
 import geoStation from 'server/HAFAS/LocGeoPos';
 import journeyDetails from 'server/HAFAS/JourneyDetails';
 import KoaRouter from 'koa-router';
 import LocMatch from 'server/HAFAS/LocMatch';
 import makeRequest from 'server/HAFAS/Request';
 import routing from 'server/HAFAS/TripSearch';
+import searchOnTrip from 'server/HAFAS/SearchOnTrip';
 import stationBoard from 'server/HAFAS/StationBoard';
 import trainSearch from 'server/HAFAS/TrainSearch';
 
 const router = new KoaRouter();
 const getCurrent = () =>
-  new KoaRouter()
+  new KoaRouter<
+    any,
+    {
+      hafasProfile?: AllowedHafasProfile;
+    }
+  >()
     .get('/journeyDetails/:jid', async ctx => {
       const { jid }: { jid: string } = ctx.params;
 
-      ctx.body = await journeyDetails(jid);
+      ctx.body = await journeyDetails(jid, ctx.hafasProfile);
     })
-    .get('/details/:trainName/:date', async ctx => {
-      const { date, trainName } = ctx.params;
+    .get('/searchOnTrip/:ctxRecon', async ctx => {
+      const { ctxRecon }: { ctxRecon: string } = ctx.params;
 
-      const trains = await trainSearch(trainName, Number.parseInt(date, 10));
+      ctx.body = await searchOnTrip(ctxRecon, ctx.hafasProfile);
+    })
+    .get('/details/:trainName/:date?', async ctx => {
+      const { date = Date.now(), trainName } = ctx.params;
 
-      if (trains.length) {
-        ctx.body = await journeyDetails(trains[0].jid);
-      } else {
+      ctx.body = await detail(
+        trainName,
+        Number.parseInt(date, 10),
+        ctx.hafasProfile
+      );
+      if (!ctx.body) {
         ctx.status = 404;
       }
     })
@@ -58,7 +72,11 @@ const getCurrent = () =>
     .get('/trainSearch/:trainName/:date', async ctx => {
       const { date, trainName } = ctx.params;
 
-      ctx.body = await trainSearch(trainName, Number.parseInt(date, 10));
+      ctx.body = await trainSearch(
+        trainName,
+        Number.parseInt(date, 10),
+        ctx.hafasProfile
+      );
     })
     .get('/geoStation', async ctx => {
       const { x, y, lat, lng, maxDist = 1000 } = ctx.query;
@@ -85,6 +103,15 @@ const getCurrent = () =>
 
 router
   .prefix('/hafas')
+  .use((ctx, next) => {
+    const hafasProfile = ctx.query.profile;
+
+    if (['db', 'oebb'].includes(hafasProfile)) {
+      ctx.hafasProfile = hafasProfile;
+    }
+
+    return next();
+  })
   .use('/current', getCurrent().routes())
   .use('/v1', getCurrent().routes());
 

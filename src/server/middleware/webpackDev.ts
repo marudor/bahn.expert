@@ -21,8 +21,8 @@ module.exports = function webpackDev(koa: Koa, server: undefined | Server) {
       if (id.match(/src\/client/)) {
         delete require.cache[id];
       }
-      delete require.cache[path.resolve('src/server/render.tsx')];
     });
+    delete require.cache[path.resolve('src/server/render.tsx')];
   });
   const watcher = chokidar.watch(path.resolve('./src/server/**'));
 

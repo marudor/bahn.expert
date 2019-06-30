@@ -62,9 +62,7 @@ export default makeStyles(theme => ({
   },
 
   klasse3: {
-    background: `linear-gradient(to right, ${theme.colors.yellow}, ${
-      theme.colors.red
-    })`,
+    background: `linear-gradient(to right, ${theme.colors.yellow}, ${theme.colors.red})`,
     '&::after': {
       content: '"1/2"',
     },

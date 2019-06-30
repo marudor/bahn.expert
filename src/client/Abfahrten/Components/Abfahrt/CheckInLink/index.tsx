@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import React from 'react';
 import TraewellingLink from './TraewellingLink';
 import TravelynxLink from './TravelynxLink';
-import useStyles from './index.style';
 
 type StateProps = {
   type: CheckInType;
@@ -18,18 +17,16 @@ type OwnProps = {
 type Props = OwnProps & StateProps;
 
 const CheckInLink = ({ type, abfahrt }: Props) => {
-  const classes = useStyles();
-
   switch (type) {
     case CheckInType.Traewelling:
-      return <TraewellingLink abfahrt={abfahrt} className={classes.link} />;
+      return <TraewellingLink abfahrt={abfahrt} />;
     case CheckInType.Travelynx:
-      return <TravelynxLink abfahrt={abfahrt} className={classes.link} />;
+      return <TravelynxLink abfahrt={abfahrt} />;
     case CheckInType.Both:
       return (
         <>
-          <TraewellingLink abfahrt={abfahrt} className={classes.link} />
-          <TravelynxLink abfahrt={abfahrt} className={classes.link} />
+          <TraewellingLink abfahrt={abfahrt} />
+          <TravelynxLink abfahrt={abfahrt} />
         </>
       );
     default:

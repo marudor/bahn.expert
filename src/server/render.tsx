@@ -79,6 +79,8 @@ export default async (ctx: Context) => {
   store.dispatch(ConfigActions.setBaseUrl(process.env.BASE_URL || ''));
   const routes = ctx.path.startsWith('/routing')
     ? routingRoutes
+    : ctx.path.startsWith('/details')
+    ? []
     : abfahrtenRoutes;
 
   await Promise.all(
