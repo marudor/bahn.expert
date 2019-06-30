@@ -10,7 +10,7 @@ import RouteHeader from './RouteHeader';
 import useStyles from './index.style';
 
 type StateProps = {
-  routes?: Array<RouteType>;
+  routes?: RouteType[];
   error?: any;
 };
 

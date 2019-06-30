@@ -47,9 +47,7 @@ export default connect<StateProps, DispatchProps, OwnProps, AbfahrtenState>(
   (state, props) => ({
     auslastung:
       state.auslastung.auslastung[
-        `${props.abfahrt.currentStation.id}/${props.abfahrt.destination}/${
-          props.abfahrt.train.number
-        }`
+        `${props.abfahrt.currentStation.id}/${props.abfahrt.destination}/${props.abfahrt.train.number}`
       ],
   }),
   {

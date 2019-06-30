@@ -1,4 +1,5 @@
 import { Abfahrt } from 'types/abfahrten';
+import { Link } from 'react-router-dom';
 import Auslastung from 'Abfahrten/Components/Abfahrt/Auslastung';
 import CheckInLink from './CheckInLink';
 import React from 'react';
@@ -26,7 +27,18 @@ const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
           </span>
         </>
       )}
-      {detail && <CheckInLink abfahrt={abfahrt} />}
+      {detail && (
+        <div className={classes.links}>
+          <CheckInLink abfahrt={abfahrt} />
+          <Link
+            to={`/details/${abfahrt.train.thirdParty || abfahrt.train.type} ${
+              abfahrt.train.number
+            }/${abfahrt.initialDeparture}`}
+          >
+            Details
+          </Link>
+        </div>
+      )}
       {abfahrt.isCancelled && (
         <span className={classes.cancelled}>Zugausfall</span>
       )}

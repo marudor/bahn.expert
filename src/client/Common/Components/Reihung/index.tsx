@@ -11,8 +11,8 @@ import useStyles from './index.style';
 
 type Props = {
   className?: string;
-  useZoom: boolean;
-  fahrzeugGruppe: boolean;
+  useZoom?: boolean;
+  fahrzeugGruppe?: boolean;
   trainNumber: string;
   currentStation: string;
   scheduledDeparture: number;
@@ -22,7 +22,7 @@ const ReihungComp = (props: Props) => {
   const {
     className,
     currentStation,
-    fahrzeugGruppe,
+    fahrzeugGruppe = false,
     scheduledDeparture,
     trainNumber,
     useZoom,

@@ -3,6 +3,7 @@ import { Route$Stop } from 'types/routing';
 import parseAuslastung from './parseAuslastung';
 import parseCommonArrival from './parseCommonArrival';
 import parseCommonDeparture from './parseCommonDeparture';
+import parseMessages from './parseMessages';
 
 export default (
   stop: CommonStop,
@@ -18,4 +19,7 @@ export default (
     ? parseCommonDeparture(stop, date, common, trainType)
     : undefined,
   auslastung: parseAuslastung(stop.dTrnCmpSX, common.tcocL),
+  additional: stop.isAdd,
+  cancelled: stop.aCncl && stop.dCncl,
+  messages: parseMessages(stop.msgL, common),
 });

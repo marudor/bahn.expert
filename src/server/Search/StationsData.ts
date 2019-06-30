@@ -8,7 +8,7 @@ const dataPath = path.resolve(__dirname, 'data/Stationsdaten.csv');
 // eslint-disable-next-line no-sync
 const csv = fs.readFileSync(dataPath, 'utf8');
 
-const entries: Array<Array<string>> = csv.split('\n').map(l => l.split(';'));
+const entries: string[][] = csv.split('\n').map(l => l.split(';'));
 
 type StationsData = {
   id: string;
