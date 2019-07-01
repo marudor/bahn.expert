@@ -28,14 +28,7 @@ const parseJourneyDetails = (
     stops,
     firstStop: stops[0],
     lastStop: stops[stops.length - 1],
-    currentStop: stops.find(
-      s =>
-        (s.arrival && s.arrival.delay != null) ||
-        (s.departure && s.departure.delay != null)
-    ),
     messages: parseMessages(journey.msgL, common),
-    raw: journey,
-    common,
   };
 
   return parsedJourney as ParsedJourneyDetails;

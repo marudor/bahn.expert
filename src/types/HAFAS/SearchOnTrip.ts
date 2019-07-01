@@ -1,5 +1,6 @@
 import { Common } from '.';
 import { OutConL, SotCtxt } from './TripSearch';
+import { Route$JourneySegmentTrain, Route$Stop } from 'types/routing';
 
 export interface SearchOnTripResponse {
   common: Common;
@@ -18,4 +19,8 @@ export interface SearchOnTripRequest {
     sotMode: 'RC';
   };
   meth: 'SearchOnTrip';
+}
+
+export interface ParsedSearchOnTripResponse extends Route$JourneySegmentTrain {
+  currentStop?: Route$Stop;
 }

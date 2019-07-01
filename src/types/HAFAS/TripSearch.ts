@@ -65,6 +65,7 @@ export interface Jny extends CommonJny {
   dTrnCmpSXmsgL: MsgL[];
   dTrnCmpSX?: TrnCmpSX;
   freq: Freq;
+  msgL?: MsgL[];
 }
 
 export interface SecL {

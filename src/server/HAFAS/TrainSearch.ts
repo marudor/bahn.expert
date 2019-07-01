@@ -44,7 +44,6 @@ export default async (
   const buffer = (await axios.get(profile.url, {
     params: {
       L: 'vs_json',
-      use_realtime_filter: 1,
       date: format(date, 'dd.MM.yyyy'),
       trainname: trainName,
       // Nur Züge die in DE halten
