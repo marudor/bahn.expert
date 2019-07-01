@@ -1,4 +1,6 @@
+import cc from 'classnames';
 import DetailsContext from './DetailsContext';
+import Error from '@material-ui/icons/Error';
 import Loading from '../Loading';
 import React, { useContext, useEffect } from 'react';
 import Stop from 'Common/Components/Details/Stop';
@@ -18,8 +20,16 @@ const StopList = () => {
     }
   }, [details]);
 
-  if (!details) {
+  if (details === undefined) {
     return <Loading />;
+  }
+
+  if (details === null) {
+    return (
+      <div className={cc(classes.wrap, classes.error)}>
+        <Error className={classes.error} /> Unbekannter Zug
+      </div>
+    );
   }
 
   return (

@@ -35,7 +35,7 @@ export default async (
     currentStop = relevantSegment.stops.find(s => {
       const stopInfo = s.departure || s.arrival;
 
-      return stopInfo && stopInfo.time > currentDate;
+      return stopInfo && !stopInfo.cancelled && stopInfo.time > currentDate;
     });
   }
 

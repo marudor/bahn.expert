@@ -7,14 +7,15 @@ import StopList from './StopList';
 
 interface Props {
   train: string;
-  initialDeparture: string;
+  initialDeparture?: string;
   currentStopId?: string;
 }
 
 const Details = ({ train, initialDeparture, currentStopId }: Props) => {
-  const [details, setDetails] = useState<Route$JourneySegment>();
+  const [details, setDetails] = useState<null | Route$JourneySegment>();
 
   useEffect(() => {
+    setDetails(undefined);
     getDetails(train, initialDeparture, currentStopId).then(details => {
       setDetails(details);
     });
