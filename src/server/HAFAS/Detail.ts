@@ -3,6 +3,28 @@ import { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
 import searchOnTrip from './SearchOnTrip';
 import trainSearch from './TrainSearch';
 
+function calculateCurrentStation(
+  segment: ParsedSearchOnTripResponse,
+  currentStopId?: string
+) {
+  const currentDate = Date.now();
+  let currentStop;
+
+  if (currentStopId) {
+    currentStop = segment.stops.find(s => s.station.id === currentStopId);
+  }
+
+  if (!currentStop) {
+    currentStop = segment.stops.find(s => {
+      const stopInfo = s.departure || s.arrival;
+
+      return stopInfo && !stopInfo.cancelled && stopInfo.time > currentDate;
+    });
+  }
+
+  return currentStop;
+}
+
 export default async (
   trainName: string,
   currentStopId?: string,
@@ -22,26 +44,18 @@ export default async (
     .filter(s => s.arrival && !s.arrival.cancelled)
     .pop();
 
-  let currentStop;
-
   if (currentStopId) {
-    currentStop = relevantSegment.stops.find(
+    relevantSegment.currentStop = relevantSegment.stops.find(
       s => s.station.id === currentStopId
     );
   }
-  if (!currentStop) {
-    const currentDate = Date.now();
-
-    currentStop = relevantSegment.stops.find(s => {
-      const stopInfo = s.departure || s.arrival;
-
-      return stopInfo && !stopInfo.cancelled && stopInfo.time > currentDate;
-    });
-  }
-
-  relevantSegment.currentStop = currentStop;
 
   if (lastStop && lastStop.arrival && lastStop.arrival.delay != null) {
+    relevantSegment.currentStop = calculateCurrentStation(
+      relevantSegment,
+      currentStopId
+    );
+
     return relevantSegment;
   }
 
@@ -58,6 +72,10 @@ export default async (
       stop.departure.time = jDetailStop.departure.time;
     }
   });
+  relevantSegment.currentStop = calculateCurrentStation(
+    relevantSegment,
+    currentStopId
+  );
 
   return relevantSegment;
 };
