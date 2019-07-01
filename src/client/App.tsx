@@ -19,7 +19,7 @@ const App = () => {
     <Switch>
       <Route
         component={DetailsRoute}
-        path="/details/:train/:initialDeparture"
+        path="/details/:train/:initialDeparture*"
       />
       <Route component={Routing} path="/routing" />
       <Route component={Abfahrten} path="/" />

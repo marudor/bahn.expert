@@ -4,7 +4,7 @@ import qs from 'qs';
 import React from 'react';
 
 interface Props
-  extends RouteComponentProps<{ train: string; initialDeparture: string }> {}
+  extends RouteComponentProps<{ train: string; initialDeparture?: string }> {}
 
 const DetailsRoute = ({
   match: {

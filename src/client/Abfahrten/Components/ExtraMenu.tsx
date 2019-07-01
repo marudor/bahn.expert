@@ -22,6 +22,7 @@ import Settings from '@material-ui/icons/Settings';
 import ThemeModal from 'Common/Components/ThemeModal';
 import ToggleStar from '@material-ui/icons/Star';
 import ToggleStarBorder from '@material-ui/icons/StarBorder';
+import Zugsuche from 'Common/Components/Zugsuche';
 
 type StateProps = {
   isFaved: boolean;
@@ -128,6 +129,7 @@ const ExtraMenu = ({
             {lageplan !== null ? <Layers /> : <LayersClear />} Lageplan
           </MenuItem>,
         ]}
+        <Zugsuche onClose={toggleMenu} />
         <MenuItem onClick={openFilterCb}>
           <FilterList /> Filter
         </MenuItem>
