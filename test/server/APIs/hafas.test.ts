@@ -8,7 +8,7 @@ describe('Hafas API', () => {
       it('/ArrStationBoard', async () => {
         mockWithFile(
           'https://reiseauskunft.bahn.de',
-          '/bin/mgate.exe?checksum=0ddac2eb61d8f60e75c5912f09c04fd0',
+          '/bin/mgate.exe?checksum=439583794adf5fb8a4d17789f2b0f319',
           'hafas/ArrStationBoard',
           'post'
         );
@@ -19,7 +19,7 @@ describe('Hafas API', () => {
       it('/DepStationBoard', async () => {
         mockWithFile(
           'https://reiseauskunft.bahn.de',
-          '/bin/mgate.exe?checksum=c9e8b08376285db725fa51ca2c51cd9e',
+          '/bin/mgate.exe?checksum=2a399d6dbf78f7996b0c2d9831256a0b',
           'hafas/DepStationBoard',
           'post'
         );
@@ -30,7 +30,7 @@ describe('Hafas API', () => {
       it('/journeyDetails', async () => {
         mockWithFile(
           'https://reiseauskunft.bahn.de',
-          '/bin/mgate.exe?checksum=2ea5723c04a49b1c43afdb773625ad07',
+          '/bin/mgate.exe?checksum=f17a867b46303461b6686988157c7178',
           'hafas/journeyDetails',
           'post'
         );
@@ -39,33 +39,39 @@ describe('Hafas API', () => {
       it('/details', async () => {
         mockWithFile(
           'https://reiseauskunft.bahn.de',
-          '/bin/trainsearch.exe/dn?L=vs_json&date=27.06.2019&trainname=ICE+70&stationFilter=80',
+          '/bin/trainsearch.exe/dn?L=vs_json&date=01.07.2019&trainname=ICE+70&stationFilter=80&productClassFilter=31',
           'hafas/details/trainsearch'
         );
         mockWithFile(
           'https://reiseauskunft.bahn.de',
-          '/bin/mgate.exe?checksum=fba8679a8298d0e89f94334f6e12d2ea',
+          '/bin/mgate.exe?checksum=129382e0d60c961460d0a40c542f8736',
           'hafas/details/journeyDetails',
           'post'
         );
-        await checkApi(`/api/hafas/${v}/details/ICE 70/1561641713652`);
+        mockWithFile(
+          'https://reiseauskunft.bahn.de',
+          '/bin/mgate.exe?checksum=ebd87fe8880e82c978e3a832b1aee23a',
+          'hafas/details/searchOnTrip',
+          'post'
+        );
+        await checkApi(`/api/hafas/${v}/details/ICE 70/1561966025283`);
       });
       it('/auslastung', async () => {
         mockWithFile(
           'https://reiseauskunft.bahn.de',
-          '/bin/mgate.exe?checksum=193e276b918a7a2ddd109b335ebab039',
+          '/bin/mgate.exe?checksum=5b4441fa88800f30948f6947006e9185',
           'hafas/auslastung/station1',
           'post'
         );
         mockWithFile(
           'https://reiseauskunft.bahn.de',
-          '/bin/mgate.exe?checksum=632ceead0d80ab2f9b27140fe5319533',
+          '/bin/mgate.exe?checksum=635fcf548770455c86aa99b8fcdaefd5',
           'hafas/auslastung/station2',
           'post'
         );
         mockWithFile(
           'https://reiseauskunft.bahn.de',
-          '/bin/mgate.exe?checksum=cf4950991319ce79a377d44ddede85dd',
+          '/bin/mgate.exe?checksum=c54a7a2b1b90fa528566abb4cc34800d',
           'hafas/auslastung/route',
           'post'
         );
@@ -76,15 +82,21 @@ describe('Hafas API', () => {
       it('/trainSearch', async () => {
         mockWithFile(
           'https://reiseauskunft.bahn.de',
-          '/bin/trainsearch.exe/dn?L=vs_json&date=27.06.2019&trainname=EC+8&stationFilter=80',
-          'hafas/trainsearch'
+          '/bin/trainsearch.exe/dn?L=vs_json&date=01.07.2019&trainname=EC+8&stationFilter=80&productClassFilter=31',
+          'hafas/trainsearch/trainsearch'
         );
-        await checkApi(`/api/hafas/${v}/trainSearch/EC 8/1561641600000`);
+        mockWithFile(
+          'https://reiseauskunft.bahn.de',
+          '/bin/mgate.exe?checksum=3a1cead346b2fae9e7fbfdd056804b82',
+          'hafas/trainsearch/journeyDetails',
+          'post'
+        );
+        await checkApi(`/api/hafas/${v}/trainSearch/EC 8/1561965660841`);
       });
       it('/geoStation', async () => {
         mockWithFile(
           'https://reiseauskunft.bahn.de',
-          '/bin/mgate.exe?checksum=f5702cf5a8f630172218012273209065',
+          '/bin/mgate.exe?checksum=c01300dbc10a396666c0a274bcbce802',
           'hafas/geoStation',
           'post'
         );
@@ -93,7 +105,7 @@ describe('Hafas API', () => {
       it('/station', async () => {
         mockWithFile(
           'https://reiseauskunft.bahn.de',
-          '/bin/mgate.exe?checksum=101c916dcf6719ef9a0497fb144bc224',
+          '/bin/mgate.exe?checksum=c847e37cf940a2ffa93c33c5069fcff7',
           'hafas/station',
           'post'
         );
@@ -102,7 +114,7 @@ describe('Hafas API', () => {
       it('/route', async () => {
         mockWithFile(
           'https://reiseauskunft.bahn.de',
-          '/bin/mgate.exe?checksum=1c0de2646692fa07626487793f881d90',
+          '/bin/mgate.exe?checksum=ad829c73eba27349153cfff992bbd474',
           'hafas/route',
           'post'
         );
@@ -114,6 +126,18 @@ describe('Hafas API', () => {
           maxChanges: '0',
           transferTime: '0',
         });
+      });
+      it('/searchOnTrip', async () => {
+        mockWithFile(
+          'https://reiseauskunft.bahn.de',
+          '/bin/mgate.exe?checksum=16a6453b341026ea45b9e87a55914317',
+          'hafas/searchOnTrip',
+          'post'
+        );
+
+        await checkApi(
+          `/api/hafas/${v}/SearchOnTrip/¶HKI¶T$A=1@L=8000191@a=128@$A=1@L=8010205@a=128@$201907010706$201907011410$IC  2063$$1$`
+        );
       });
     });
   });

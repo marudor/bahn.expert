@@ -1,4 +1,6 @@
-import { Route$JourneySegment } from 'types/routing';
+import { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
 import React from 'react';
 
-export default React.createContext<Route$JourneySegment | undefined>(undefined);
+export default React.createContext<ParsedSearchOnTripResponse | undefined>(
+  undefined
+);

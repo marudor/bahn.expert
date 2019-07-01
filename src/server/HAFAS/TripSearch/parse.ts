@@ -14,6 +14,7 @@ import parseAuslastung from '../helper/parseAuslastung';
 import parseCommonArrival from '../helper/parseCommonArrival';
 import parseCommonDeparture from '../helper/parseCommonDeparture';
 import parseDuration from '../helper/parseDuration';
+import parseMessages from '../helper/parseMessages';
 import parseStop from '../helper/parseStop';
 
 const nameRegex = /O=([^@]+)/;
@@ -62,10 +63,12 @@ export class Journey {
       raw: global.PROD ? undefined : raw,
     };
   }
-  parseStops = (stops?: CommonStop[]): Route$Stop[] => {
+  parseStops = (stops?: CommonStop[], trainType?: string): Route$Stop[] => {
     if (!stops) return [];
 
-    return stops.map(stop => parseStop(stop, this.common, this.date));
+    return stops.map(stop =>
+      parseStop(stop, this.common, this.date, trainType)
+    );
   };
   parseSegmentJourney = (jny: Jny): Route$Journey => {
     const [, fullStart, fullDestination, , , , , , ,] = jny.ctxRecon.split('$');
@@ -77,10 +80,11 @@ export class Journey {
       changeDuration: jny.chgDurR,
       segmentStart: parseFullStation(fullStart),
       segmentDestination: parseFullStation(fullDestination),
-      stops: this.parseStops(jny.stopL),
+      stops: this.parseStops(jny.stopL, product.type),
       finalDestination: jny.dirTxt,
       jid: jny.jid,
       auslastung: parseAuslastung(jny.dTrnCmpSX, this.common.tcocL),
+      messages: parseMessages(jny.msgL, this.common),
     };
   };
   parseSegment = (t: SecL): undefined | Route$JourneySegment => {
@@ -109,10 +113,6 @@ export class Journey {
           wings: t.parJnyL
             ? t.parJnyL.map(this.parseSegmentJourney)
             : undefined,
-          // messages: t.jny.msgL.map(m => ({
-          //   ...m,
-          //   remXX: this.common.remL[m.remX],
-          // })),
           // reservationStatus: t.resState,
           // reservationRecommandation: t.resRecommendation,
           // icoX: this.common.icoL[t.icoX],

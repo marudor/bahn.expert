@@ -12,7 +12,10 @@ const parseSearchOnTrip = (
 ) => {
   const journey = new Journey(d.svcResL[0].res.outConL[0], common).journey;
 
-  return journey;
+  return {
+    ...journey,
+    raw: d.svcResL[0].res,
+  };
 };
 
 export default (ctxRecon: string, profile?: AllowedHafasProfile) => {

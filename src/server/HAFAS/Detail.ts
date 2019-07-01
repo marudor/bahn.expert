@@ -1,9 +1,11 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
+import { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
 import searchOnTrip from './SearchOnTrip';
 import trainSearch from './TrainSearch';
 
 export default async (
   trainName: string,
+  currentStopId?: string,
   date: number = Date.now(),
   hafasProfile: AllowedHafasProfile = 'db'
 ) => {
@@ -14,11 +16,30 @@ export default async (
 
   const route = await searchOnTrip(train.ctxRecon, hafasProfile);
 
-  const relevantSegment = route.segments[0];
+  const relevantSegment: ParsedSearchOnTripResponse = route.segments[0];
 
   const lastStop = relevantSegment.stops
     .filter(s => s.arrival && !s.arrival.cancelled)
     .pop();
+
+  let currentStop;
+
+  if (currentStopId) {
+    currentStop = relevantSegment.stops.find(
+      s => s.station.id === currentStopId
+    );
+  }
+  if (!currentStop) {
+    const currentDate = Date.now();
+
+    currentStop = relevantSegment.stops.find(s => {
+      const stopInfo = s.departure || s.arrival;
+
+      return stopInfo && stopInfo.time > currentDate;
+    });
+  }
+
+  relevantSegment.currentStop = currentStop;
 
   if (lastStop && lastStop.arrival && lastStop.arrival.delay != null) {
     return relevantSegment;

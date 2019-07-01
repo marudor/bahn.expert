@@ -36,6 +36,7 @@ export type Route$Journey = {
   stops: Route$Stop[];
   train: ParsedProduct;
   auslastung?: Route$Auslastung;
+  messages?: RemL[];
 };
 export type Route$JourneySegmentTrain = Route$Journey & {
   arrival: CommonStopInfo;
