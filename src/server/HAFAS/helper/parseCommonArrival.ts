@@ -1,6 +1,7 @@
 import { CommonArrival, ParsedCommon } from 'types/HAFAS';
 import { differenceInMinutes } from 'date-fns';
 import { ParsedCommonArrival } from 'types/common';
+import checkReihung from './checkReihung';
 import parseTime from './parseTime';
 
 export default (
@@ -24,11 +25,7 @@ export default (
     scheduledTime,
     time,
     delay,
-    reihung:
-      Boolean(a.aTrnCmpSX && a.aTrnCmpSX.tcM) ||
-      trainType === 'IC' ||
-      trainType === 'EC' ||
-      undefined,
+    reihung: checkReihung(a.aTrnCmpSX, trainType),
     cancelled: a.aCncl,
     // messages: a.msgL ? parseMessages(a.msgL, common) : undefined,
   };

@@ -8,17 +8,17 @@ import StopList from './StopList';
 interface Props {
   train: string;
   initialDeparture: string;
-  currentStation?: string;
+  currentStopId?: string;
 }
 
-const Details = ({ train, initialDeparture }: Props) => {
+const Details = ({ train, initialDeparture, currentStopId }: Props) => {
   const [details, setDetails] = useState<Route$JourneySegment>();
 
   useEffect(() => {
-    getDetails(train, initialDeparture).then(details => {
+    getDetails(train, initialDeparture, currentStopId).then(details => {
       setDetails(details);
     });
-  }, [train, initialDeparture]);
+  }, [train, initialDeparture, currentStopId]);
 
   return (
     <DetailsContext.Provider value={details}>

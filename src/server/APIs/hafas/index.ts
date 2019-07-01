@@ -31,9 +31,11 @@ const getCurrent = () =>
     })
     .get('/details/:trainName/:date?', async ctx => {
       const { date = Date.now(), trainName } = ctx.params;
+      const { stop } = ctx.query;
 
       ctx.body = await detail(
         trainName,
+        stop,
         Number.parseInt(date, 10),
         ctx.hafasProfile
       );

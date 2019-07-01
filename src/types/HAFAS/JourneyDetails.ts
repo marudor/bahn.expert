@@ -72,9 +72,8 @@ export interface ParsedJourneyDetails {
   train: ParsedProduct;
   auslastung?: Route$Auslastung;
   jid: string;
-  stops: Route$Stop[];
   firstStop: Route$ValidDepartureStop;
   lastStop: Route$ValidArrivalStop;
-  currentStop?: Route$Stop;
+  stops: Route$Stop[];
   messages?: RemL[];
 }
