@@ -1,5 +1,5 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
-import { format, parse } from 'date-fns';
+import { format, parse, subDays } from 'date-fns';
 import { ParsedJourneyDetails } from 'types/HAFAS/JourneyDetails';
 import axios from 'axios';
 import iconv from 'iconv-lite';
@@ -37,9 +37,20 @@ const profiles = {
 
 export default async (
   trainName: string,
-  date: number,
+  initialDepartureDate?: number,
   profileType: AllowedHafasProfile = 'db'
 ) => {
+  let date = initialDepartureDate;
+
+  if (!date) {
+    const now = new Date();
+
+    if (now.getHours() < 3) {
+      date = subDays(now, 1).getTime();
+    } else {
+      date = now.getTime();
+    }
+  }
   const profile = profiles[profileType];
   const buffer = (await axios.get(profile.url, {
     params: {
@@ -51,7 +62,8 @@ export default async (
       // evtl benutzen
       // 1: ICE
       // 2: IC/EC
-      // 8: RE/RB
+      // 4: RE
+      // 8: RB
       // 16: S
       productClassFilter: 31,
     },

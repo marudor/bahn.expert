@@ -30,13 +30,13 @@ const getCurrent = () =>
       ctx.body = await searchOnTrip(ctxRecon, ctx.hafasProfile);
     })
     .get('/details/:trainName/:date?', async ctx => {
-      const { date = Date.now(), trainName } = ctx.params;
+      const { date, trainName } = ctx.params;
       const { stop } = ctx.query;
 
       ctx.body = await detail(
         trainName,
         stop,
-        Number.parseInt(date, 10),
+        date ? Number.parseInt(date, 10) : undefined,
         ctx.hafasProfile
       );
       if (!ctx.body) {
@@ -76,7 +76,7 @@ const getCurrent = () =>
 
       ctx.body = await trainSearch(
         trainName,
-        Number.parseInt(date, 10),
+        date ? Number.parseInt(date, 10) : undefined,
         ctx.hafasProfile
       );
     })
