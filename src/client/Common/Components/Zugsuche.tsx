@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 import { useRouter } from 'useRouter';
 import React, { SyntheticEvent, useCallback, useState } from 'react';
-import Train from '@material-ui/icons/train';
+import Train from '@material-ui/icons/Train';
 
 interface Props {
   noIcon?: boolean;
