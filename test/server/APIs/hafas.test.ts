@@ -54,7 +54,9 @@ describe('Hafas API', () => {
           'hafas/details/searchOnTrip',
           'post'
         );
-        await checkApi(`/api/hafas/${v}/details/ICE 70/1561966025283`);
+        await checkApi(
+          `/api/hafas/${v}/details/ICE 70/1561966025283?stop=8509000`
+        );
       });
       it('/auslastung', async () => {
         mockWithFile(
