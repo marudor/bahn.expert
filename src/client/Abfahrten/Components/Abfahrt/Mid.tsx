@@ -26,15 +26,13 @@ const Mid = ({ abfahrt, detail }: Props) => {
       <Info abfahrt={abfahrt} detail={detail} />
       <div
         className={cc(classes.destination, {
-          [classes.cancelled]: abfahrt.isCancelled,
+          [classes.cancelled]: abfahrt.cancelled,
           [classes.different]:
-            !abfahrt.isCancelled &&
+            !abfahrt.cancelled &&
             abfahrt.destination !== abfahrt.scheduledDestination,
         })}
       >
-        {abfahrt.isCancelled
-          ? abfahrt.scheduledDestination
-          : abfahrt.destination}
+        {abfahrt.cancelled ? abfahrt.scheduledDestination : abfahrt.destination}
       </div>
     </div>
   );

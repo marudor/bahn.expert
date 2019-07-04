@@ -9,7 +9,7 @@ interface Props {
 }
 const Header = ({ train }: Props) => {
   const classes = useStyles();
-  const details = useContext(DetailsContext);
+  const { details } = useContext(DetailsContext);
 
   const trainText = details ? details.train.name : train;
 
@@ -20,7 +20,7 @@ const Header = ({ train }: Props) => {
         {details && (
           <div className={classes.train}>
             <span> -&gt; </span>
-            <span>{details.finalDestination}</span>
+            <span>{details.segmentDestination.title}</span>
           </div>
         )}
         <HamburgerMenu />

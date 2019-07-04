@@ -5,9 +5,9 @@ import useStyles from './index.style';
 
 interface Props {
   messages: Message[];
-  isCancelled: boolean;
+  cancelled: boolean;
 }
-const NormalMessages = ({ messages, isCancelled }: Props) => {
+const NormalMessages = ({ messages, cancelled }: Props) => {
   const classes = useStyles();
   const messagesDisplay = useMemo(
     () => messages.map(m => m.text).join(' +++ '),
@@ -15,7 +15,7 @@ const NormalMessages = ({ messages, isCancelled }: Props) => {
   );
 
   return (
-    <div className={cc(classes.messages, { [classes.cancelled]: isCancelled })}>
+    <div className={cc(classes.messages, { [classes.cancelled]: cancelled })}>
       {messagesDisplay}
     </div>
   );

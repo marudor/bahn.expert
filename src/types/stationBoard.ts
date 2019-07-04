@@ -3,7 +3,7 @@ import { ParsedProduct } from './HAFAS';
 
 interface CommonStationBoardEntry {
   train: ParsedProduct;
-  isCancelled?: boolean;
+  cancelled?: boolean;
   finalDestination: string;
   jid: string;
 }

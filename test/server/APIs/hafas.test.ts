@@ -54,6 +54,21 @@ describe('Hafas API', () => {
           'hafas/details/searchOnTrip',
           'post'
         );
+        mockWithFile(
+          'https://iris.noncd.db.de',
+          '/iris-tts/timetable/station/8509000',
+          'hafas/details/irisStation'
+        );
+        mockWithFile(
+          'https://iris.noncd.db.de',
+          '/iris-tts/timetable/station/8575112',
+          'hafas/details/irisStation2'
+        );
+        mockWithFile(
+          'https://iris.noncd.db.de',
+          '/iris-tts/timetable/fchg/8509000',
+          'hafas/details/fchgChur'
+        );
         await checkApi(
           `/api/hafas/${v}/details/ICE 70/1561966025283?stop=8509000`
         );

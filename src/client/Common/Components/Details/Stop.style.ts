@@ -33,5 +33,6 @@ export default makeStyles(theme => ({
   },
   messages: {
     gridArea: 'm',
+    paddingLeft: '.75em',
   },
 }));

@@ -6,7 +6,7 @@ import useStyles from './index.style';
 
 interface Props {
   messages: Message[];
-  isCancelled: boolean;
+  isCancelled?: boolean;
 }
 
 const DetailMessages = ({ messages, isCancelled }: Props) => {

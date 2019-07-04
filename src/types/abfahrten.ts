@@ -22,8 +22,8 @@ export type Message = {
 };
 
 export type Train = {
-  isAdditional?: boolean;
-  isCancelled?: boolean;
+  additional?: boolean;
+  cancelled?: boolean;
   showVia?: boolean;
   name: string;
 };
@@ -36,7 +36,7 @@ export type Messages = {
 
 export interface StopInfo extends CommonStopInfo {
   wingIds: null | string[];
-  isCancelled: boolean;
+  cancelled: boolean;
   hidden: boolean;
 }
 
@@ -56,8 +56,8 @@ export type Abfahrt = {
   departure?: StopInfo;
   destination: string;
   id: string;
-  isAdditional?: boolean;
-  isCancelled: boolean;
+  additional?: boolean;
+  cancelled: boolean;
   mediumId: string;
   messages: Messages;
   platform: string;

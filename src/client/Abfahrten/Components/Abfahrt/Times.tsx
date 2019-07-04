@@ -21,7 +21,7 @@ type Props = ReduxProps;
 const Times = ({
   timeConfig,
 
-  abfahrt: { arrival, departure, isCancelled },
+  abfahrt: { arrival, departure, cancelled },
 
   detail,
 }: Props) => {
@@ -30,7 +30,7 @@ const Times = ({
   return (
     <div
       className={cc({
-        [classes.cancelled]: isCancelled,
+        [classes.cancelled]: cancelled,
       })}
     >
       {detail ? (
@@ -38,7 +38,7 @@ const Times = ({
           {arrival && (
             <div
               className={cc(classes.wrapper, {
-                [classes.cancelled]: arrival.isCancelled,
+                [classes.cancelled]: arrival.cancelled,
               })}
             >
               <span>{'An: '}</span>
@@ -53,7 +53,7 @@ const Times = ({
           {departure && (
             <div
               className={cc(classes.wrapper, {
-                [classes.cancelled]: departure.isCancelled,
+                [classes.cancelled]: departure.cancelled,
               })}
             >
               <span>{'Ab: '}</span>
@@ -66,7 +66,7 @@ const Times = ({
             </div>
           )}
         </React.Fragment>
-      ) : departure && (!departure.isCancelled || isCancelled) ? (
+      ) : departure && (!departure.cancelled || cancelled) ? (
         <Time
           alignEnd
           delay={departure.delay}
