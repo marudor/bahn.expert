@@ -134,7 +134,7 @@ export const getAbfahrtenByString = (
     };
   } catch (e) {
     if (!axios.isCancel(e)) {
-      e.station = stationString;
+      e.station = decodeURIComponent(stationString || '');
       dispatch(Actions.gotAbfahrtenError(e));
     }
   }
