@@ -1,22 +1,14 @@
-// eslint-disable-next-line import/no-unresolved
-import { ControlProps } from 'react-select/lib/components/Control';
+import { ControlProps } from 'react-select/src/components/Control';
 import { getStationsFromAPI } from 'Common/service/stationSearch';
-// eslint-disable-next-line import/no-unresolved
-import { MenuProps, NoticeProps } from 'react-select/lib/components/Menu';
+import { MenuProps, NoticeProps } from 'react-select/src/components/Menu';
 import { MergedTheme, useTheme } from '@material-ui/styles';
-// eslint-disable-next-line import/no-unresolved
-import { OptionProps } from 'react-select/lib/components/Option';
-// eslint-disable-next-line import/no-unresolved
-import { PlaceholderProps } from 'react-select/lib/components/Placeholder';
-// eslint-disable-next-line import/no-unresolved
-import { SingleValueProps } from 'react-select/lib/components/SingleValue';
+import { OptionProps } from 'react-select/src/components/Option';
+import { PlaceholderProps } from 'react-select/src/components/Placeholder';
+import { SingleValueProps } from 'react-select/src/components/SingleValue';
 import { Station } from 'types/station';
 import { StationSearchType } from 'Common/config';
-// eslint-disable-next-line import/no-unresolved
-import { StylesConfig } from 'react-select/lib/styles';
-// eslint-disable-next-line import/no-unresolved
-import { ValueContainerProps } from 'react-select/lib/components/containers';
-// @ts-ignore
+import { StylesConfig } from 'react-select/src/styles';
+import { ValueContainerProps } from 'react-select/src/components/containers';
 import Async from 'react-select/async';
 import debounce from 'debounce-promise';
 import MenuItem from '@material-ui/core/MenuItem';
