@@ -4,10 +4,11 @@ exports[`withFchg arrivalCancelled.xml 1`] = `
 Object {
   "departures": Array [
     Object {
+      "additional": undefined,
       "arrival": Object {
+        "cancelled": true,
         "delay": 0,
         "hidden": false,
-        "isCancelled": true,
         "platform": "13",
         "scheduledPlatform": "13",
         "scheduledTime": 1552827480000,
@@ -15,6 +16,7 @@ Object {
         "wingIds": undefined,
       },
       "auslastung": false,
+      "cancelled": undefined,
       "currentStation": Object {
         "id": "test",
         "title": "test",
@@ -30,8 +32,6 @@ Object {
       "destination": "Hagen Hbf",
       "id": "6062058741531589910",
       "initialDeparture": 1552746240000,
-      "isAdditional": undefined,
-      "isCancelled": undefined,
       "lineNumber": "8",
       "mediumId": "6062058741531589910-1903161424",
       "messages": Object {
@@ -82,8 +82,8 @@ Object {
           "name": "Düsseldorf Friedrichstadt",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "test",
         },
         Object {
@@ -188,10 +188,11 @@ exports[`withFchg arrivalWing.xml 1`] = `
 Object {
   "departures": Array [
     Object {
+      "additional": undefined,
       "arrival": Object {
+        "cancelled": false,
         "delay": 0,
         "hidden": false,
-        "isCancelled": false,
         "platform": "8",
         "scheduledPlatform": "8",
         "scheduledTime": 1552825920000,
@@ -201,14 +202,15 @@ Object {
         ],
       },
       "auslastung": true,
+      "cancelled": false,
       "currentStation": Object {
         "id": "test",
         "title": "test",
       },
       "departure": Object {
+        "cancelled": false,
         "delay": 0,
         "hidden": false,
-        "isCancelled": false,
         "platform": "8 D-G",
         "scheduledPlatform": "8 D-G",
         "scheduledTime": 1552826160000,
@@ -218,8 +220,6 @@ Object {
       "destination": "Hamburg-Altona",
       "id": "4771830392602697451",
       "initialDeparture": 1552810680000,
-      "isAdditional": undefined,
-      "isCancelled": false,
       "lineNumber": undefined,
       "mediumId": "4771830392602697451-1903170818",
       "messages": Object {
@@ -261,8 +261,8 @@ Object {
           "name": "Göttingen",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "test",
         },
         Object {
@@ -293,10 +293,11 @@ Object {
       },
     },
     Object {
+      "additional": undefined,
       "arrival": Object {
+        "cancelled": false,
         "delay": 0,
         "hidden": false,
-        "isCancelled": false,
         "platform": "8",
         "scheduledPlatform": "8",
         "scheduledTime": 1552825920000,
@@ -304,14 +305,15 @@ Object {
         "wingIds": undefined,
       },
       "auslastung": true,
+      "cancelled": false,
       "currentStation": Object {
         "id": "test",
         "title": "test",
       },
       "departure": Object {
+        "cancelled": false,
         "delay": 0,
         "hidden": false,
-        "isCancelled": false,
         "platform": "8 A-D",
         "scheduledPlatform": "8 A-D",
         "scheduledTime": 1552826700000,
@@ -321,8 +323,6 @@ Object {
       "destination": "Bremen Hbf",
       "id": "4550748245722881479",
       "initialDeparture": 1552810680000,
-      "isAdditional": undefined,
-      "isCancelled": false,
       "lineNumber": undefined,
       "mediumId": "4550748245722881479-1903170818",
       "messages": Object {
@@ -364,8 +364,8 @@ Object {
           "name": "Göttingen",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "test",
         },
         Object {
@@ -395,10 +395,11 @@ exports[`withFchg cancelled.xml 1`] = `
 Object {
   "departures": Array [
     Object {
+      "additional": undefined,
       "arrival": Object {
+        "cancelled": true,
         "delay": 0,
         "hidden": false,
-        "isCancelled": true,
         "platform": "13",
         "scheduledPlatform": "13",
         "scheduledTime": 1552827480000,
@@ -406,14 +407,15 @@ Object {
         "wingIds": undefined,
       },
       "auslastung": false,
+      "cancelled": true,
       "currentStation": Object {
         "id": "test",
         "title": "test",
       },
       "departure": Object {
+        "cancelled": true,
         "delay": 0,
         "hidden": false,
-        "isCancelled": true,
         "platform": "13",
         "scheduledPlatform": "13",
         "scheduledTime": 1552827600000,
@@ -423,8 +425,6 @@ Object {
       "destination": "Hagen Hbf",
       "id": "6062058741531589910",
       "initialDeparture": 1552746240000,
-      "isAdditional": undefined,
-      "isCancelled": true,
       "lineNumber": "8",
       "mediumId": "6062058741531589910-1903161424",
       "messages": Object {
@@ -439,156 +439,156 @@ Object {
       "reihung": false,
       "route": Array [
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Mönchengladbach Hbf",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Mönchengladbach-Lürrip",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Korschenbroich",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Kleinenbroich",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Büttgen",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Neuss Hbf",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Neuss Am Kaiser",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Neuss Rheinparkcenter",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Düsseldorf-Hamm",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Düsseldorf Völklinger Str.",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Düsseldorf-Bilk",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Düsseldorf Friedrichstadt",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": true,
+          "additional": undefined,
+          "cancelled": true,
           "name": "test",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Düsseldorf-Flingern",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Düsseldorf-Gerresheim",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Erkrath",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Hochdahl",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Hochdahl-Millrath",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Haan-Gruiten",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Wuppertal-Vohwinkel",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Wuppertal-Sonnborn",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Wuppertal-Zoologischer Garten",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Wuppertal-Steinbeck",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Wuppertal Hbf",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Wuppertal-Unterbarmen",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Wuppertal-Barmen",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Wuppertal-Oberbarmen",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Wuppertal-Langerfeld",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Schwelm West",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Schwelm",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Gevelsberg West",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Gevelsberg-Kipp",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Gevelsberg Hbf",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Gevelsberg-Knapp",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Hagen-Westerbauer",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Hagen-Heubing",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Hagen-Wehringhausen",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Hagen Hbf",
         },
       ],
@@ -615,6 +615,7 @@ exports[`withFchg departureCancelled.xml 1`] = `
 Object {
   "departures": Array [
     Object {
+      "additional": undefined,
       "arrival": Object {
         "hidden": false,
         "platform": "13",
@@ -624,14 +625,15 @@ Object {
         "wingIds": undefined,
       },
       "auslastung": false,
+      "cancelled": false,
       "currentStation": Object {
         "id": "test",
         "title": "test",
       },
       "departure": Object {
+        "cancelled": true,
         "delay": 0,
         "hidden": false,
-        "isCancelled": true,
         "platform": "13",
         "scheduledPlatform": "13",
         "scheduledTime": 1552827600000,
@@ -641,8 +643,6 @@ Object {
       "destination": "test",
       "id": "6062058741531589910",
       "initialDeparture": 1552746240000,
-      "isAdditional": undefined,
-      "isCancelled": false,
       "lineNumber": "8",
       "mediumId": "6062058741531589910-1903161424",
       "messages": Object {
@@ -693,108 +693,108 @@ Object {
           "name": "Düsseldorf Friedrichstadt",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "test",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Düsseldorf-Flingern",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Düsseldorf-Gerresheim",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Erkrath",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Hochdahl",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Hochdahl-Millrath",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Haan-Gruiten",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Wuppertal-Vohwinkel",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Wuppertal-Sonnborn",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Wuppertal-Zoologischer Garten",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Wuppertal-Steinbeck",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Wuppertal Hbf",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Wuppertal-Unterbarmen",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Wuppertal-Barmen",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Wuppertal-Oberbarmen",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Wuppertal-Langerfeld",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Schwelm West",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Schwelm",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Gevelsberg West",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Gevelsberg-Kipp",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Gevelsberg Hbf",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Gevelsberg-Knapp",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Hagen-Westerbauer",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Hagen-Heubing",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Hagen-Wehringhausen",
         },
         Object {
-          "isCancelled": true,
+          "cancelled": true,
           "name": "Hagen Hbf",
         },
       ],
@@ -821,10 +821,11 @@ exports[`withFchg departureWing.xml 1`] = `
 Object {
   "departures": Array [
     Object {
+      "additional": undefined,
       "arrival": Object {
+        "cancelled": false,
         "delay": -1,
         "hidden": false,
-        "isCancelled": false,
         "platform": "4 D-G",
         "scheduledPlatform": "4 D-G",
         "scheduledTime": 1552828920000,
@@ -832,14 +833,15 @@ Object {
         "wingIds": undefined,
       },
       "auslastung": true,
+      "cancelled": false,
       "currentStation": Object {
         "id": "test",
         "title": "test",
       },
       "departure": Object {
+        "cancelled": false,
         "delay": 0,
         "hidden": false,
-        "isCancelled": false,
         "platform": "4",
         "scheduledPlatform": "4",
         "scheduledTime": 1552829160000,
@@ -851,8 +853,6 @@ Object {
       "destination": "München Hbf",
       "id": "6523045328284948841",
       "initialDeparture": 1552826760000,
-      "isAdditional": undefined,
-      "isCancelled": false,
       "lineNumber": undefined,
       "mediumId": "6523045328284948841-1903171246",
       "messages": Object {
@@ -879,8 +879,8 @@ Object {
           "name": "Hamburg-Harburg",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "test",
         },
         Object {
@@ -925,10 +925,11 @@ Object {
   "lookbehind": Array [],
   "wings": Object {
     "8086827825752200553-1903171315": Object {
+      "additional": undefined,
       "arrival": Object {
+        "cancelled": false,
         "delay": 0,
         "hidden": false,
-        "isCancelled": false,
         "platform": "4 A-C",
         "scheduledPlatform": "4 A-C",
         "scheduledTime": 1552828440000,
@@ -936,14 +937,15 @@ Object {
         "wingIds": undefined,
       },
       "auslastung": true,
+      "cancelled": false,
       "currentStation": Object {
         "id": "test",
         "title": "test",
       },
       "departure": Object {
+        "cancelled": false,
         "delay": 0,
         "hidden": false,
-        "isCancelled": false,
         "platform": "4",
         "scheduledPlatform": "4",
         "scheduledTime": 1552829160000,
@@ -953,8 +955,6 @@ Object {
       "destination": "München Hbf",
       "id": "8086827825752200553",
       "initialDeparture": 1552828500000,
-      "isAdditional": undefined,
-      "isCancelled": false,
       "lineNumber": undefined,
       "mediumId": "8086827825752200553-1903171315",
       "messages": Object {
@@ -972,8 +972,8 @@ Object {
           "name": "Bremen Hbf",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "test",
         },
         Object {
@@ -1030,10 +1030,11 @@ exports[`withFchg lookbehind.xml 1`] = `
 Object {
   "departures": Array [
     Object {
+      "additional": undefined,
       "arrival": Object {
+        "cancelled": false,
         "delay": -11,
         "hidden": false,
-        "isCancelled": false,
         "platform": "16",
         "scheduledPlatform": "16",
         "scheduledTime": 1552826940000,
@@ -1041,14 +1042,15 @@ Object {
         "wingIds": undefined,
       },
       "auslastung": true,
+      "cancelled": false,
       "currentStation": Object {
         "id": "test",
         "title": "test",
       },
       "departure": Object {
+        "cancelled": false,
         "delay": -11,
         "hidden": false,
-        "isCancelled": false,
         "platform": "16",
         "scheduledPlatform": "16",
         "scheduledTime": 1552827060000,
@@ -1058,8 +1060,6 @@ Object {
       "destination": "Frankfurt (M)  Flughafen Fernbf",
       "id": "1869793107893408377",
       "initialDeparture": 1552819080000,
-      "isAdditional": undefined,
-      "isCancelled": false,
       "lineNumber": undefined,
       "mediumId": "1869793107893408377-1903171038",
       "messages": Object {
@@ -1081,49 +1081,49 @@ Object {
       "reihung": true,
       "route": Array [
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "Amsterdam Centraal",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "Utrecht Centraal",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "Arnhem Centraal",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "Oberhausen Hbf",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "Duisburg Hbf",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "test",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Köln Hbf",
           "showVia": true,
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Frankfurt (M)  Flughafen Fernbf",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": true,
+          "additional": undefined,
+          "cancelled": true,
           "name": "Frankfurt (Main) Hbf",
         },
       ],
@@ -1150,16 +1150,18 @@ exports[`withFchg multipleWings.xml 1`] = `
 Object {
   "departures": Array [
     Object {
+      "additional": undefined,
       "arrival": undefined,
       "auslastung": false,
+      "cancelled": false,
       "currentStation": Object {
         "id": "test",
         "title": "test",
       },
       "departure": Object {
+        "cancelled": false,
         "delay": 1,
         "hidden": false,
-        "isCancelled": false,
         "platform": "34",
         "scheduledPlatform": "34",
         "scheduledTime": 1552824240000,
@@ -1172,8 +1174,6 @@ Object {
       "destination": "Bayrischzell",
       "id": "4645697665836328305",
       "initialDeparture": 1552827840000,
-      "isAdditional": undefined,
-      "isCancelled": false,
       "lineNumber": undefined,
       "mediumId": "4645697665836328305-1903171304",
       "messages": Object {
@@ -1188,81 +1188,81 @@ Object {
       "reihung": false,
       "route": Array [
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "test",
         },
         Object {
-          "isAdditional": true,
-          "isCancelled": false,
+          "additional": true,
+          "cancelled": false,
           "name": "München Donnersbergerbrücke",
           "showVia": true,
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "München Harras",
           "showVia": true,
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "München-Solln",
           "showVia": true,
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Holzkirchen",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Darching",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Miesbach",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Agatharied",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Hausham",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Schliersee",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Fischhausen-Neuhaus",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Fischbachau",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Geitau",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Osterhofen (Oberbay)",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Bayrischzell",
         },
       ],
@@ -1283,16 +1283,18 @@ Object {
   "lookbehind": Array [],
   "wings": Object {
     "2583448959431566845-1903171304": Object {
+      "additional": undefined,
       "arrival": undefined,
       "auslastung": false,
+      "cancelled": false,
       "currentStation": Object {
         "id": "test",
         "title": "test",
       },
       "departure": Object {
+        "cancelled": false,
         "delay": 0,
         "hidden": false,
-        "isCancelled": false,
         "platform": "34",
         "scheduledPlatform": "34",
         "scheduledTime": 1552824240000,
@@ -1302,8 +1304,6 @@ Object {
       "destination": "Tegernsee",
       "id": "2583448959431566845",
       "initialDeparture": 1552827840000,
-      "isAdditional": undefined,
-      "isCancelled": false,
       "lineNumber": undefined,
       "mediumId": "2583448959431566845-1903171304",
       "messages": Object {
@@ -1318,61 +1318,61 @@ Object {
       "reihung": false,
       "route": Array [
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "test",
         },
         Object {
-          "isAdditional": true,
-          "isCancelled": false,
+          "additional": true,
+          "cancelled": false,
           "name": "München Donnersbergerbrücke",
           "showVia": true,
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "München Harras",
           "showVia": true,
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "München-Solln",
           "showVia": true,
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Holzkirchen",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Warngau",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Schaftlach",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Moosrain",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Finsterwald",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Gmund (Tegernsee)",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Tegernsee",
         },
       ],
@@ -1389,16 +1389,18 @@ Object {
       },
     },
     "7715731422484591852-1903171304": Object {
+      "additional": undefined,
       "arrival": undefined,
       "auslastung": false,
+      "cancelled": false,
       "currentStation": Object {
         "id": "test",
         "title": "test",
       },
       "departure": Object {
+        "cancelled": false,
         "delay": 1,
         "hidden": false,
-        "isCancelled": false,
         "platform": "34",
         "scheduledPlatform": "34",
         "scheduledTime": 1552824240000,
@@ -1408,8 +1410,6 @@ Object {
       "destination": "Lenggries",
       "id": "7715731422484591852",
       "initialDeparture": 1552827840000,
-      "isAdditional": undefined,
-      "isCancelled": false,
       "lineNumber": undefined,
       "mediumId": "7715731422484591852-1903171304",
       "messages": Object {
@@ -1424,66 +1424,66 @@ Object {
       "reihung": false,
       "route": Array [
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "test",
         },
         Object {
-          "isAdditional": true,
-          "isCancelled": false,
+          "additional": true,
+          "cancelled": false,
           "name": "München Donnersbergerbrücke",
           "showVia": true,
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "München Harras",
           "showVia": true,
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "München-Solln",
           "showVia": true,
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Holzkirchen",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Warngau",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Schaftlach",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Reichersbeuern",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Bad Tölz",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Gaißach",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Obergries",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Lenggries",
         },
       ],
@@ -1507,10 +1507,11 @@ exports[`withFchg onlyArrival.xml 1`] = `
 Object {
   "departures": Array [
     Object {
+      "additional": undefined,
       "arrival": Object {
+        "cancelled": false,
         "delay": 0,
         "hidden": false,
-        "isCancelled": false,
         "platform": "10",
         "scheduledPlatform": "10",
         "scheduledTime": 1552825440000,
@@ -1518,6 +1519,7 @@ Object {
         "wingIds": undefined,
       },
       "auslastung": false,
+      "cancelled": undefined,
       "currentStation": Object {
         "id": "test",
         "title": "test",
@@ -1526,8 +1528,6 @@ Object {
       "destination": "test",
       "id": "425081070176277607",
       "initialDeparture": 1552820400000,
-      "isAdditional": undefined,
-      "isCancelled": undefined,
       "lineNumber": "RE11",
       "mediumId": "425081070176277607-1903171100",
       "messages": Object {
@@ -1572,8 +1572,8 @@ Object {
           "name": "Düsseldorf Flughafen",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "test",
         },
       ],
@@ -1600,16 +1600,18 @@ exports[`withFchg onlyDeparture.xml 1`] = `
 Object {
   "departures": Array [
     Object {
+      "additional": undefined,
       "arrival": undefined,
       "auslastung": false,
+      "cancelled": false,
       "currentStation": Object {
         "id": "test",
         "title": "test",
       },
       "departure": Object {
+        "cancelled": false,
         "delay": 1,
         "hidden": false,
-        "isCancelled": false,
         "platform": "10",
         "scheduledPlatform": "10",
         "scheduledTime": 1552826160000,
@@ -1619,8 +1621,6 @@ Object {
       "destination": "Paderborn Hbf",
       "id": "1178432179369711067",
       "initialDeparture": 1552826160000,
-      "isAdditional": undefined,
-      "isCancelled": false,
       "lineNumber": "RE11",
       "mediumId": "1178432179369711067-1903171236",
       "messages": Object {
@@ -1635,8 +1635,8 @@ Object {
       "reihung": false,
       "route": Array [
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "test",
         },
         Object {
@@ -1705,6 +1705,7 @@ exports[`withFchg simple1.xml 1`] = `
 Object {
   "departures": Array [
     Object {
+      "additional": undefined,
       "arrival": Object {
         "hidden": false,
         "platform": "13",
@@ -1714,6 +1715,7 @@ Object {
         "wingIds": undefined,
       },
       "auslastung": false,
+      "cancelled": undefined,
       "currentStation": Object {
         "id": "test",
         "title": "test",
@@ -1729,8 +1731,6 @@ Object {
       "destination": "Hagen Hbf",
       "id": "6062058741531589910",
       "initialDeparture": 1552746240000,
-      "isAdditional": undefined,
-      "isCancelled": undefined,
       "lineNumber": "8",
       "mediumId": "6062058741531589910-1903161424",
       "messages": Object {
@@ -1780,8 +1780,8 @@ Object {
           "name": "Düsseldorf Friedrichstadt",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "test",
         },
         Object {
@@ -1886,10 +1886,11 @@ exports[`withFchg simple2.xml 1`] = `
 Object {
   "departures": Array [
     Object {
+      "additional": undefined,
       "arrival": Object {
+        "cancelled": false,
         "delay": 3,
         "hidden": false,
-        "isCancelled": false,
         "platform": "16",
         "scheduledPlatform": "16",
         "scheduledTime": 1552826760000,
@@ -1897,14 +1898,15 @@ Object {
         "wingIds": undefined,
       },
       "auslastung": true,
+      "cancelled": false,
       "currentStation": Object {
         "id": "test",
         "title": "test",
       },
       "departure": Object {
+        "cancelled": false,
         "delay": 3,
         "hidden": false,
-        "isCancelled": false,
         "platform": "16",
         "scheduledPlatform": "16",
         "scheduledTime": 1552826880000,
@@ -1914,8 +1916,6 @@ Object {
       "destination": "Frankfurt (M)  Flughafen Fernbf",
       "id": "1869793107893408377",
       "initialDeparture": 1552819080000,
-      "isAdditional": undefined,
-      "isCancelled": false,
       "lineNumber": undefined,
       "mediumId": "1869793107893408377-1903171038",
       "messages": Object {
@@ -1937,49 +1937,49 @@ Object {
       "reihung": true,
       "route": Array [
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "Amsterdam Centraal",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "Utrecht Centraal",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "Arnhem Centraal",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "Oberhausen Hbf",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "Duisburg Hbf",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "test",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Köln Hbf",
           "showVia": true,
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "Frankfurt (M)  Flughafen Fernbf",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": true,
+          "additional": undefined,
+          "cancelled": true,
           "name": "Frankfurt (Main) Hbf",
         },
       ],
@@ -2006,10 +2006,11 @@ exports[`withFchg visibleDueToDelay.xml 1`] = `
 Object {
   "departures": Array [
     Object {
+      "additional": undefined,
       "arrival": Object {
+        "cancelled": false,
         "delay": 120,
         "hidden": false,
-        "isCancelled": false,
         "platform": "13",
         "scheduledPlatform": "13",
         "scheduledTime": 1552820280000,
@@ -2017,14 +2018,15 @@ Object {
         "wingIds": undefined,
       },
       "auslastung": false,
+      "cancelled": false,
       "currentStation": Object {
         "id": "test",
         "title": "test",
       },
       "departure": Object {
+        "cancelled": false,
         "delay": 119,
         "hidden": false,
-        "isCancelled": false,
         "platform": "13",
         "scheduledPlatform": "13",
         "scheduledTime": 1552820400000,
@@ -2034,8 +2036,6 @@ Object {
       "destination": "Hagen Hbf",
       "id": "6062058741531589910",
       "initialDeparture": 1552746240000,
-      "isAdditional": undefined,
-      "isCancelled": false,
       "lineNumber": "8",
       "mediumId": "6062058741531589910-1903161424",
       "messages": Object {
@@ -2086,8 +2086,8 @@ Object {
           "name": "Düsseldorf Friedrichstadt",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "test",
         },
         Object {
@@ -2192,10 +2192,11 @@ exports[`withFchg wings.xml 1`] = `
 Object {
   "departures": Array [
     Object {
+      "additional": undefined,
       "arrival": Object {
+        "cancelled": false,
         "delay": 0,
         "hidden": false,
-        "isCancelled": false,
         "platform": "4",
         "scheduledPlatform": "4",
         "scheduledTime": 1552830660000,
@@ -2205,14 +2206,15 @@ Object {
         ],
       },
       "auslastung": true,
+      "cancelled": false,
       "currentStation": Object {
         "id": "test",
         "title": "test",
       },
       "departure": Object {
+        "cancelled": false,
         "delay": 2,
         "hidden": false,
-        "isCancelled": false,
         "platform": "4",
         "scheduledPlatform": "4",
         "scheduledTime": 1552830840000,
@@ -2224,8 +2226,6 @@ Object {
       "destination": "München Hbf",
       "id": "7616096009230090656",
       "initialDeparture": 1552829280000,
-      "isAdditional": undefined,
-      "isCancelled": false,
       "lineNumber": undefined,
       "mediumId": "7616096009230090656-1903171328",
       "messages": Object {
@@ -2252,8 +2252,8 @@ Object {
           "name": "Uelzen",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": false,
+          "additional": undefined,
+          "cancelled": false,
           "name": "test",
         },
         Object {

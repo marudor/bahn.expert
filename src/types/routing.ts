@@ -1,4 +1,5 @@
 import { CommonStopInfo } from './common';
+import { Message } from './abfahrten';
 import { OutConL, SecL } from './HAFAS/TripSearch';
 import { ParsedProduct, ProdL, RemL } from './HAFAS';
 import { Station } from './station';
@@ -11,6 +12,7 @@ export type Route$Stop = {
   messages?: RemL[];
   additional?: boolean;
   cancelled?: boolean;
+  irisMessages?: Message[];
 };
 export type Route$JourneySegment = Route$JourneySegmentTrain;
 export enum AuslastungsValue {
@@ -24,7 +26,7 @@ export interface Route$Auslastung {
   second?: AuslastungsValue;
 }
 export type Route$Journey = {
-  isCancelled?: boolean;
+  cancelled?: boolean;
   changeDuration?: number;
   duration?: number;
   finalDestination: string;

@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import cc from 'classnames';
 import DetailsContext from './DetailsContext';
 import Error from '@material-ui/icons/Error';
@@ -6,8 +7,19 @@ import React, { useContext, useEffect } from 'react';
 import Stop from 'Common/Components/Details/Stop';
 import useStyles from './StopList.style';
 
+function getErrorText(error: AxiosError) {
+  if (error.code === 'ECONNABORTED') return 'Timeout, bitte neuladen.';
+  if (error.response) {
+    if (error.response.status === 404) {
+      return 'Unbekannter Zug';
+    }
+  }
+
+  return 'Unbekannter Fehler';
+}
+
 const StopList = () => {
-  const details = useContext(DetailsContext);
+  const { details, error } = useContext(DetailsContext);
   const classes = useStyles();
 
   useEffect(() => {
@@ -20,16 +32,16 @@ const StopList = () => {
     }
   }, [details]);
 
-  if (details === undefined) {
-    return <Loading />;
-  }
-
-  if (details === null) {
+  if (error) {
     return (
       <div className={cc(classes.wrap, classes.error)}>
-        <Error className={classes.error} /> Unbekannter Zug
+        <Error className={classes.error} /> {getErrorText(error)}
       </div>
     );
+  }
+
+  if (!details) {
+    return <Loading />;
   }
 
   return (

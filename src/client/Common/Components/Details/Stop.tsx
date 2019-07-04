@@ -1,6 +1,7 @@
 import { ParsedProduct } from 'types/HAFAS';
 import { Route$Stop } from 'types/routing';
 import cc from 'classnames';
+import DetailMessages from '../Messages/Detail';
 import Messages from './Messages';
 import Platform from 'Common/Components/Platform';
 import React from 'react';
@@ -28,11 +29,7 @@ const Stop = ({ stop, showWR }: Props) => {
     : {};
 
   return (
-    <div
-      className={cc(classes.main, {
-        [classes.cancelled]: stop.cancelled,
-      })}
-    >
+    <div className={classes.main}>
       <span id={stop.station.id} className={classes.scrollMarker} />
       {stop.arrival ? (
         <Time
@@ -44,7 +41,13 @@ const Stop = ({ stop, showWR }: Props) => {
       ) : (
         <span />
       )}
-      <span className={classes.station}>{stop.station.title}</span>
+      <span
+        className={cc(classes.station, {
+          [classes.cancelled]: stop.cancelled,
+        })}
+      >
+        {stop.station.title}
+      </span>
       {stop.departure ? (
         <Time
           cancelled={stop.departure.cancelled}
@@ -71,6 +74,7 @@ const Stop = ({ stop, showWR }: Props) => {
           )}
       </div>
       <div className={classes.messages}>
+        {stop.irisMessages && <DetailMessages messages={stop.irisMessages} />}
         <Messages messages={stop.messages} />
       </div>
     </div>

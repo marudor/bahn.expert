@@ -27,8 +27,8 @@ const DetailVia = ({ stops }: Props) => {
           }}
           title={`Zugabfahrten für ${s.name}`}
           className={cc({
-            [classes.cancelled]: s.isCancelled,
-            [classes.additional]: s.isAdditional,
+            [classes.cancelled]: s.cancelled,
+            [classes.additional]: s.additional,
             [classes.hbf]: isHbf(s),
           })}
         >

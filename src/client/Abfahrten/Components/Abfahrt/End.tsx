@@ -18,7 +18,7 @@ const End = ({ abfahrt, detail }: Props) => {
       <Platform
         real={abfahrt.platform}
         scheduled={abfahrt.scheduledPlatform}
-        cancelled={abfahrt.isCancelled}
+        cancelled={abfahrt.cancelled}
       />
     </div>
   );

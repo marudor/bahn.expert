@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import { Route$JourneySegment } from 'types/routing';
 import DetailsContext from './DetailsContext';
 import getDetails from 'Common/service/details';
@@ -12,17 +13,28 @@ interface Props {
 }
 
 const Details = ({ train, initialDeparture, currentStopId }: Props) => {
-  const [details, setDetails] = useState<null | Route$JourneySegment>();
+  const [details, setDetails] = useState<Route$JourneySegment>();
+  const [error, setError] = useState<AxiosError>();
 
   useEffect(() => {
     setDetails(undefined);
-    getDetails(train, initialDeparture, currentStopId).then(details => {
-      setDetails(details);
-    });
+    getDetails(train, initialDeparture, currentStopId)
+      .then(details => {
+        setDetails(details);
+        setError(undefined);
+      })
+      .catch(e => {
+        setError(e);
+      });
   }, [train, initialDeparture, currentStopId]);
 
   return (
-    <DetailsContext.Provider value={details}>
+    <DetailsContext.Provider
+      value={{
+        details,
+        error,
+      }}
+    >
       <Header train={train} />
       <StopList />
     </DetailsContext.Provider>

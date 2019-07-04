@@ -9,6 +9,8 @@ import Timetable, { Result } from './Timetable';
 type AbfahrtenOptions = {
   lookahead?: number;
   lookbehind?: number;
+  currentDate?: Date;
+  skipLageplan?: boolean;
 };
 const defaultOptions = {
   lookahead: 150,
@@ -40,14 +42,14 @@ export function reduceResults(agg: Result, r: Result): Result {
 }
 
 const timeByScheduled = (a: Abfahrt) =>
-  idx(a, _ => _.departure.isCancelled) && !a.isCancelled
+  idx(a, _ => _.departure.cancelled) && !a.cancelled
     ? idx(a, _ => _.arrival.scheduledTime) ||
       idx(a, _ => _.departure.scheduledTime)
     : idx(a, _ => _.departure.scheduledTime) ||
       idx(a, _ => _.arrival.scheduledTime);
 
 const timeByReal = (a: Abfahrt) =>
-  idx(a, _ => _.departure.isCancelled) && !a.isCancelled
+  idx(a, _ => _.departure.cancelled) && !a.cancelled
     ? idx(a, _ => _.arrival.time) || idx(a, _ => _.departure.time)
     : idx(a, _ => _.departure.time) || idx(a, _ => _.arrival.time);
 const sortAbfahrt = (timeFn: typeof timeByReal) => (a: Abfahrt, b: Abfahrt) => {
@@ -92,11 +94,12 @@ export async function getAbfahrten(
     {
       lookahead,
       lookbehind,
+      currentDate: options.currentDate,
     },
     axios
   );
   const result = (await Promise.all([
-    timetable.start(),
+    timetable.start(options.skipLageplan),
     relatedAbfahrten,
   ])).reduce(reduceResults, baseResult);
 

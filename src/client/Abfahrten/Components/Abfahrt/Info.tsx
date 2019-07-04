@@ -2,9 +2,9 @@ import { Abfahrt, Message } from 'types/abfahrten';
 import { AbfahrtenState } from 'AppState';
 import { connect } from 'react-redux';
 import cc from 'clsx';
-import DetailMessages from './Messages/Detail';
+import DetailMessages from 'Common/Components/Messages/Detail';
 import DetailVia from './Via/Detail';
-import NormalMessages from './Messages/Normal';
+import NormalMessages from 'Common/Components/Messages/Normal';
 import NormalVia from './Via/Normal';
 import React, { useMemo } from 'react';
 import useStyles from './Info.style';
@@ -42,7 +42,7 @@ const Via = ({ abfahrt, detail, showSupersededMessages }: Props) => {
   const ViaComp = detail ? DetailVia : NormalVia;
 
   const info = Boolean(messages.length) && (
-    <MessagesComp messages={messages} isCancelled={abfahrt.isCancelled} />
+    <MessagesComp messages={messages} cancelled={abfahrt.cancelled} />
   );
   const via = (detail || !info) && <ViaComp stops={abfahrt.route} />;
 

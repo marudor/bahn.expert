@@ -18,8 +18,8 @@ const NormalVia = ({ stops }: Props) => {
         <span
           key={i}
           className={cc({
-            [classes.cancelled]: s.isCancelled,
-            [classes.additional]: s.isAdditional,
+            [classes.cancelled]: s.cancelled,
+            [classes.additional]: s.additional,
             [classes.hbf]: isHbf(s),
           })}
         >

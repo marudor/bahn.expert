@@ -58,13 +58,14 @@ const timetableCache = new NodeCache({ stdTTL });
 
 type Route = {
   name: string;
-  isCancelled?: boolean;
-  isAdditional?: boolean;
+  cancelled?: boolean;
+  additional?: boolean;
 };
 
 export type TimetableOptions = {
   lookahead: number;
   lookbehind: number;
+  currentDate?: Date;
 };
 
 const routeMap: (s: string) => Route = name => ({ name });
@@ -222,7 +223,7 @@ export default class Timetable {
   ) {
     this.axios = axios;
     this.evaId = evaId;
-    this.currentDate = new Date();
+    this.currentDate = options.currentDate || new Date();
     this.maxDate = addMinutes(this.currentDate, options.lookahead);
     this.minDate = subMinutes(this.currentDate, options.lookbehind);
     this.segments = [this.currentDate];
@@ -235,24 +236,24 @@ export default class Timetable {
     this.currentStation = normalizeRouteName(currentStation);
   }
   computeExtra(timetable: any) {
-    timetable.isCancelled =
+    timetable.cancelled =
       (timetable.arrival &&
-        timetable.arrival.isCancelled &&
+        timetable.arrival.cancelled &&
         (!timetable.departure ||
-          timetable.departure.isCancelled ||
+          timetable.departure.cancelled ||
           !timetable.departure.scheduledTime)) ||
       (timetable.departure &&
-        timetable.departure.isCancelled &&
+        timetable.departure.cancelled &&
         (!timetable.arrival || !timetable.arrival.scheduledTime));
 
-    if (timetable.isCancelled) {
+    if (timetable.cancelled) {
       const anyCancelled =
-        timetable.routePre.some((r: any) => r.isCancelled) ||
-        timetable.routePost.some((r: any) => r.isCancelled);
+        timetable.routePre.some((r: any) => r.cancelled) ||
+        timetable.routePost.some((r: any) => r.cancelled);
 
       if (anyCancelled) {
-        timetable.routePre.forEach((r: any) => (r.isCancelled = true));
-        timetable.routePost.forEach((r: any) => (r.isCancelled = true));
+        timetable.routePre.forEach((r: any) => (r.cancelled = true));
+        timetable.routePost.forEach((r: any) => (r.cancelled = true));
       }
     }
 
@@ -260,12 +261,12 @@ export default class Timetable {
       ...timetable.routePre,
       {
         name: timetable.currentStation.title,
-        isCancelled: timetable.isCancelled,
-        isAdditional: timetable.isAdditional,
+        cancelled: timetable.cancelled,
+        additional: timetable.additional,
       },
       ...timetable.routePost,
     ];
-    const last = findLast(timetable.route, r => !r.isCancelled);
+    const last = findLast(timetable.route, r => !r.cancelled);
 
     timetable.destination =
       (last && last.name) || timetable.scheduledDestination;
@@ -280,25 +281,25 @@ export default class Timetable {
     }
 
     timetable.auslastung =
-      !timetable.isCancelled &&
+      !timetable.cancelled &&
       timetable.train.longDistance &&
       timetable.departure &&
       !timetable.departure.hidden;
-    timetable.reihung = !timetable.isCancelled && timetable.train.longDistance;
+    timetable.reihung = !timetable.cancelled && timetable.train.longDistance;
 
     delete timetable.routePre;
     delete timetable.routePost;
     if (timetable.arrival) {
-      delete timetable.arrival.isAdditional;
+      delete timetable.arrival.additional;
     }
     if (timetable.departure) {
-      delete timetable.departure.isAdditional;
+      delete timetable.departure.additional;
     }
   }
-  async start(): Promise<Result> {
+  async start(skipLageplan: boolean = false): Promise<Result> {
     const lageplan = getCachedLageplan(this.currentStation);
 
-    if (lageplan === undefined) {
+    if (!skipLageplan && lageplan === undefined) {
       getLageplan(this.currentStation);
     }
     await this.getTimetables();
@@ -336,11 +337,11 @@ export default class Timetable {
       const scheduledDeparture = idx(a, _ => _.departure.scheduledTime);
       const departure = idx(a, _ => _.departure.time);
       // @ts-ignore we know that either arrival or departure exists
-      const time: number = idx(a, _ => _.departure.isCancelled)
+      const time: number = idx(a, _ => _.departure.cancelled)
         ? scheduledArrvial || scheduledDeparture
         : scheduledDeparture || scheduledArrvial;
       // @ts-ignore we know that either arrival or departure exists
-      const realTime: number = idx(a, _ => _.departure.isCancelled)
+      const realTime: number = idx(a, _ => _.departure.cancelled)
         ? arrival || departure
         : departure || arrival;
 
@@ -364,7 +365,7 @@ export default class Timetable {
     };
   }
   calculateVia(timetable: any, maxParts: number = 3) {
-    const via: Train[] = [...timetable.routePost].filter(v => !v.isCancelled);
+    const via: Train[] = [...timetable.routePost].filter(v => !v.cancelled);
 
     via.pop();
     const important = via.filter(v =>
@@ -437,7 +438,7 @@ export default class Timetable {
       const timetable = this.parseTimetableS(sNode);
 
       if (timetable) {
-        timetable.isAdditional = !timetable.substitute;
+        timetable.additional = !timetable.substitute;
         this.timetable[rawId] = timetable;
       }
     }
@@ -507,8 +508,8 @@ export default class Timetable {
   addArrivalInfo(timetable: any, ar: undefined | ParsedAr) {
     if (!ar) return;
     if (!timetable.arrival) timetable.arrival = {};
-    timetable.arrival.isCancelled = ar.status === 'c';
-    timetable.arrival.isAdditional = ar.status === 'a';
+    timetable.arrival.cancelled = ar.status === 'c';
+    timetable.arrival.additional = ar.status === 'a';
     if (ar.scheduledArrivalTs) {
       timetable.arrival.scheduledTime = parseTs(ar.scheduledArrivalTs);
       timetable.arrival.time = timetable.arrival.scheduledTime;
@@ -528,8 +529,8 @@ export default class Timetable {
         diff.map(d =>
           d.value.map(v => ({
             name: v,
-            isAdditional: d.removed,
-            isCancelled: d.added,
+            additional: d.removed,
+            cancelled: d.added,
           }))
         )
       );
@@ -541,8 +542,8 @@ export default class Timetable {
   addDepartureInfo(timetable: any, dp: undefined | ParsedDp) {
     if (!dp) return;
     if (!timetable.departure) timetable.departure = {};
-    timetable.departure.isCancelled = dp.status === 'c';
-    timetable.departure.isAdditional = dp.status === 'a';
+    timetable.departure.cancelled = dp.status === 'c';
+    timetable.departure.additional = dp.status === 'a';
     if (dp.scheduledDepartureTs) {
       timetable.departure.scheduledTime = parseTs(dp.scheduledDepartureTs);
       timetable.departure.time = timetable.departure.scheduledTime;
@@ -564,13 +565,13 @@ export default class Timetable {
         diff.map(d =>
           d.value.map(v => ({
             name: v,
-            isAdditional: d.added,
-            isCancelled: d.removed || timetable.departure.isCancelled,
+            additional: d.added,
+            cancelled: d.removed || timetable.departure.cancelled,
           }))
         )
       );
-    } else if (timetable.departure.isCancelled && timetable.routePost) {
-      timetable.routePost.forEach((r: any) => (r.isCancelled = true));
+    } else if (timetable.departure.cancelled && timetable.routePost) {
+      timetable.routePost.forEach((r: any) => (r.cancelled = true));
     }
     timetable.departure.platform =
       dp.platform || timetable.departure.scheduledPlatform;
@@ -694,7 +695,7 @@ export default class Timetable {
         number: trainNumber,
         ...splitTrainType(fullTrainText, trainNumber),
       },
-      isAdditional: undefined as (undefined | boolean),
+      additional: undefined as (undefined | boolean),
     };
   }
   getTimetable(rawXml: string) {
