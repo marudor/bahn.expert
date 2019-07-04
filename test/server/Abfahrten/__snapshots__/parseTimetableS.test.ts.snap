@@ -2,6 +2,7 @@
 
 exports[`parseTimetableS arrivalCancelled.xml 1`] = `
 Object {
+  "additional": undefined,
   "arrival": Object {
     "hidden": false,
     "platform": "13",
@@ -24,7 +25,6 @@ Object {
   },
   "id": "6062058741531589910",
   "initialDeparture": 1552746240000,
-  "isAdditional": undefined,
   "lineNumber": "8",
   "mediumId": "6062058741531589910-1903161424",
   "o": "800354",
@@ -160,6 +160,7 @@ Object {
 
 exports[`parseTimetableS arrivalWing.xml 1`] = `
 Object {
+  "additional": undefined,
   "arrival": Object {
     "hidden": false,
     "platform": "8",
@@ -184,7 +185,6 @@ Object {
   },
   "id": "4771830392602697451",
   "initialDeparture": 1552810680000,
-  "isAdditional": undefined,
   "lineNumber": undefined,
   "mediumId": "4771830392602697451-1903170818",
   "o": "80",
@@ -248,6 +248,7 @@ Object {
 
 exports[`parseTimetableS arrivalWing.xml 2`] = `
 Object {
+  "additional": undefined,
   "arrival": Object {
     "hidden": false,
     "platform": "8",
@@ -270,7 +271,6 @@ Object {
   },
   "id": "4550748245722881479",
   "initialDeparture": 1552810680000,
-  "isAdditional": undefined,
   "lineNumber": undefined,
   "mediumId": "4550748245722881479-1903170818",
   "o": "80",
@@ -325,6 +325,7 @@ Object {
 
 exports[`parseTimetableS cancelled.xml 1`] = `
 Object {
+  "additional": undefined,
   "arrival": Object {
     "hidden": false,
     "platform": "13",
@@ -347,7 +348,6 @@ Object {
   },
   "id": "6062058741531589910",
   "initialDeparture": 1552746240000,
-  "isAdditional": undefined,
   "lineNumber": "8",
   "mediumId": "6062058741531589910-1903161424",
   "o": "800354",
@@ -483,6 +483,7 @@ Object {
 
 exports[`parseTimetableS departureCancelled.xml 1`] = `
 Object {
+  "additional": undefined,
   "arrival": Object {
     "hidden": false,
     "platform": "13",
@@ -505,7 +506,6 @@ Object {
   },
   "id": "6062058741531589910",
   "initialDeparture": 1552746240000,
-  "isAdditional": undefined,
   "lineNumber": "8",
   "mediumId": "6062058741531589910-1903161424",
   "o": "800354",
@@ -641,6 +641,7 @@ Object {
 
 exports[`parseTimetableS departureWing.xml 1`] = `
 Object {
+  "additional": undefined,
   "arrival": Object {
     "hidden": false,
     "platform": "4 D-G",
@@ -665,7 +666,6 @@ Object {
   },
   "id": "6523045328284948841",
   "initialDeparture": 1552826760000,
-  "isAdditional": undefined,
   "lineNumber": undefined,
   "mediumId": "6523045328284948841-1903171246",
   "o": "80",
@@ -723,6 +723,7 @@ Object {
 
 exports[`parseTimetableS departureWing.xml 2`] = `
 Object {
+  "additional": undefined,
   "arrival": Object {
     "hidden": false,
     "platform": "4 A-C",
@@ -745,7 +746,6 @@ Object {
   },
   "id": "8086827825752200553",
   "initialDeparture": 1552828500000,
-  "isAdditional": undefined,
   "lineNumber": undefined,
   "mediumId": "8086827825752200553-1903171315",
   "o": "80",
@@ -794,6 +794,7 @@ Object {
 
 exports[`parseTimetableS filteredDueToTime.xml 1`] = `
 Object {
+  "additional": undefined,
   "arrival": Object {
     "hidden": false,
     "platform": "13",
@@ -816,7 +817,6 @@ Object {
   },
   "id": "6062058741531589910",
   "initialDeparture": 1552746240000,
-  "isAdditional": undefined,
   "lineNumber": "8",
   "mediumId": "6062058741531589910-1903161424",
   "o": "800354",
@@ -952,6 +952,7 @@ Object {
 
 exports[`parseTimetableS lookbehind.xml 1`] = `
 Object {
+  "additional": undefined,
   "arrival": Object {
     "hidden": false,
     "platform": "16",
@@ -974,7 +975,6 @@ Object {
   },
   "id": "1869793107893408377",
   "initialDeparture": 1552819080000,
-  "isAdditional": undefined,
   "lineNumber": undefined,
   "mediumId": "1869793107893408377-1903171038",
   "o": "84",
@@ -1023,6 +1023,7 @@ Object {
 
 exports[`parseTimetableS multipleWings.xml 1`] = `
 Object {
+  "additional": undefined,
   "arrival": undefined,
   "currentStation": Object {
     "id": "test",
@@ -1041,7 +1042,6 @@ Object {
   },
   "id": "4645697665836328305",
   "initialDeparture": 1552827840000,
-  "isAdditional": undefined,
   "lineNumber": undefined,
   "mediumId": "4645697665836328305-1903171304",
   "o": "T8",
@@ -1104,6 +1104,7 @@ Object {
 
 exports[`parseTimetableS multipleWings.xml 2`] = `
 Object {
+  "additional": undefined,
   "arrival": undefined,
   "currentStation": Object {
     "id": "test",
@@ -1119,7 +1120,6 @@ Object {
   },
   "id": "2583448959431566845",
   "initialDeparture": 1552827840000,
-  "isAdditional": undefined,
   "lineNumber": undefined,
   "mediumId": "2583448959431566845-1903171304",
   "o": "T8",
@@ -1170,6 +1170,7 @@ Object {
 
 exports[`parseTimetableS multipleWings.xml 3`] = `
 Object {
+  "additional": undefined,
   "arrival": undefined,
   "currentStation": Object {
     "id": "test",
@@ -1185,7 +1186,6 @@ Object {
   },
   "id": "7715731422484591852",
   "initialDeparture": 1552827840000,
-  "isAdditional": undefined,
   "lineNumber": undefined,
   "mediumId": "7715731422484591852-1903171304",
   "o": "T8",
@@ -1239,6 +1239,7 @@ Object {
 
 exports[`parseTimetableS onlyArrival.xml 1`] = `
 Object {
+  "additional": undefined,
   "arrival": Object {
     "hidden": false,
     "platform": "10",
@@ -1254,7 +1255,6 @@ Object {
   "departure": undefined,
   "id": "425081070176277607",
   "initialDeparture": 1552820400000,
-  "isAdditional": undefined,
   "lineNumber": "RE11",
   "mediumId": "425081070176277607-1903171100",
   "o": "AR",
@@ -1308,6 +1308,7 @@ Object {
 
 exports[`parseTimetableS onlyDeparture.xml 1`] = `
 Object {
+  "additional": undefined,
   "arrival": undefined,
   "currentStation": Object {
     "id": "test",
@@ -1323,7 +1324,6 @@ Object {
   },
   "id": "1178432179369711067",
   "initialDeparture": 1552826160000,
-  "isAdditional": undefined,
   "lineNumber": "RE11",
   "mediumId": "1178432179369711067-1903171236",
   "o": "AR",
@@ -1386,6 +1386,7 @@ Object {
 
 exports[`parseTimetableS simple1.xml 1`] = `
 Object {
+  "additional": undefined,
   "arrival": Object {
     "hidden": false,
     "platform": "13",
@@ -1408,7 +1409,6 @@ Object {
   },
   "id": "6062058741531589910",
   "initialDeparture": 1552746240000,
-  "isAdditional": undefined,
   "lineNumber": "8",
   "mediumId": "6062058741531589910-1903161424",
   "o": "800354",
@@ -1544,6 +1544,7 @@ Object {
 
 exports[`parseTimetableS simple2.xml 1`] = `
 Object {
+  "additional": undefined,
   "arrival": Object {
     "hidden": false,
     "platform": "16",
@@ -1566,7 +1567,6 @@ Object {
   },
   "id": "1869793107893408377",
   "initialDeparture": 1552819080000,
-  "isAdditional": undefined,
   "lineNumber": undefined,
   "mediumId": "1869793107893408377-1903171038",
   "o": "84",
@@ -1615,6 +1615,7 @@ Object {
 
 exports[`parseTimetableS visibleDueToDelay.xml 1`] = `
 Object {
+  "additional": undefined,
   "arrival": Object {
     "hidden": false,
     "platform": "13",
@@ -1637,7 +1638,6 @@ Object {
   },
   "id": "6062058741531589910",
   "initialDeparture": 1552746240000,
-  "isAdditional": undefined,
   "lineNumber": "8",
   "mediumId": "6062058741531589910-1903161424",
   "o": "800354",
@@ -1773,6 +1773,7 @@ Object {
 
 exports[`parseTimetableS wings.xml 1`] = `
 Object {
+  "additional": undefined,
   "arrival": Object {
     "hidden": false,
     "platform": "4",
@@ -1799,7 +1800,6 @@ Object {
   },
   "id": "7616096009230090656",
   "initialDeparture": 1552829280000,
-  "isAdditional": undefined,
   "lineNumber": undefined,
   "mediumId": "7616096009230090656-1903171328",
   "o": "80",

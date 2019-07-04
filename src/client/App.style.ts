@@ -8,6 +8,7 @@ export default makeStyles(theme => ({
     '#app': {
       display: 'flex',
       flexDirection: 'column',
+      height: '100%',
     },
     body: {
       margin: 0,

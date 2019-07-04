@@ -4,6 +4,7 @@ exports[`onlyPlan arrivalCancelled.xml 1`] = `
 Object {
   "departures": Array [
     Object {
+      "additional": undefined,
       "arrival": Object {
         "hidden": false,
         "platform": "13",
@@ -13,6 +14,7 @@ Object {
         "wingIds": undefined,
       },
       "auslastung": false,
+      "cancelled": undefined,
       "currentStation": Object {
         "id": "test",
         "title": "test",
@@ -28,8 +30,6 @@ Object {
       "destination": "Hagen Hbf",
       "id": "6062058741531589910",
       "initialDeparture": 1552746240000,
-      "isAdditional": undefined,
-      "isCancelled": undefined,
       "lineNumber": "8",
       "mediumId": "6062058741531589910-1903161424",
       "messages": Object {
@@ -79,8 +79,8 @@ Object {
           "name": "Düsseldorf Friedrichstadt",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "test",
         },
         Object {
@@ -185,6 +185,7 @@ exports[`onlyPlan arrivalWing.xml 1`] = `
 Object {
   "departures": Array [
     Object {
+      "additional": undefined,
       "arrival": Object {
         "hidden": false,
         "platform": "8",
@@ -196,6 +197,7 @@ Object {
         ],
       },
       "auslastung": true,
+      "cancelled": undefined,
       "currentStation": Object {
         "id": "test",
         "title": "test",
@@ -211,8 +213,6 @@ Object {
       "destination": "Hamburg-Altona",
       "id": "4771830392602697451",
       "initialDeparture": 1552810680000,
-      "isAdditional": undefined,
-      "isCancelled": undefined,
       "lineNumber": undefined,
       "mediumId": "4771830392602697451-1903170818",
       "messages": Object {
@@ -253,8 +253,8 @@ Object {
           "name": "Göttingen",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "test",
         },
         Object {
@@ -285,6 +285,7 @@ Object {
       },
     },
     Object {
+      "additional": undefined,
       "arrival": Object {
         "hidden": false,
         "platform": "8",
@@ -294,6 +295,7 @@ Object {
         "wingIds": undefined,
       },
       "auslastung": true,
+      "cancelled": undefined,
       "currentStation": Object {
         "id": "test",
         "title": "test",
@@ -309,8 +311,6 @@ Object {
       "destination": "Bremen Hbf",
       "id": "4550748245722881479",
       "initialDeparture": 1552810680000,
-      "isAdditional": undefined,
-      "isCancelled": undefined,
       "lineNumber": undefined,
       "mediumId": "4550748245722881479-1903170818",
       "messages": Object {
@@ -351,8 +351,8 @@ Object {
           "name": "Göttingen",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "test",
         },
         Object {
@@ -382,6 +382,7 @@ exports[`onlyPlan cancelled.xml 1`] = `
 Object {
   "departures": Array [
     Object {
+      "additional": undefined,
       "arrival": Object {
         "hidden": false,
         "platform": "13",
@@ -391,6 +392,7 @@ Object {
         "wingIds": undefined,
       },
       "auslastung": false,
+      "cancelled": undefined,
       "currentStation": Object {
         "id": "test",
         "title": "test",
@@ -406,8 +408,6 @@ Object {
       "destination": "Hagen Hbf",
       "id": "6062058741531589910",
       "initialDeparture": 1552746240000,
-      "isAdditional": undefined,
-      "isCancelled": undefined,
       "lineNumber": "8",
       "mediumId": "6062058741531589910-1903161424",
       "messages": Object {
@@ -457,8 +457,8 @@ Object {
           "name": "Düsseldorf Friedrichstadt",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "test",
         },
         Object {
@@ -563,6 +563,7 @@ exports[`onlyPlan departureCancelled.xml 1`] = `
 Object {
   "departures": Array [
     Object {
+      "additional": undefined,
       "arrival": Object {
         "hidden": false,
         "platform": "13",
@@ -572,6 +573,7 @@ Object {
         "wingIds": undefined,
       },
       "auslastung": false,
+      "cancelled": undefined,
       "currentStation": Object {
         "id": "test",
         "title": "test",
@@ -587,8 +589,6 @@ Object {
       "destination": "Hagen Hbf",
       "id": "6062058741531589910",
       "initialDeparture": 1552746240000,
-      "isAdditional": undefined,
-      "isCancelled": undefined,
       "lineNumber": "8",
       "mediumId": "6062058741531589910-1903161424",
       "messages": Object {
@@ -638,8 +638,8 @@ Object {
           "name": "Düsseldorf Friedrichstadt",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "test",
         },
         Object {
@@ -744,6 +744,7 @@ exports[`onlyPlan departureWing.xml 1`] = `
 Object {
   "departures": Array [
     Object {
+      "additional": undefined,
       "arrival": Object {
         "hidden": false,
         "platform": "4 D-G",
@@ -753,6 +754,7 @@ Object {
         "wingIds": undefined,
       },
       "auslastung": true,
+      "cancelled": undefined,
       "currentStation": Object {
         "id": "test",
         "title": "test",
@@ -770,8 +772,6 @@ Object {
       "destination": "München Hbf",
       "id": "6523045328284948841",
       "initialDeparture": 1552826760000,
-      "isAdditional": undefined,
-      "isCancelled": undefined,
       "lineNumber": undefined,
       "mediumId": "6523045328284948841-1903171246",
       "messages": Object {
@@ -797,8 +797,8 @@ Object {
           "name": "Hamburg-Harburg",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "test",
         },
         Object {
@@ -843,6 +843,7 @@ Object {
   "lookbehind": Array [],
   "wings": Object {
     "8086827825752200553-1903171315": Object {
+      "additional": undefined,
       "arrival": Object {
         "hidden": false,
         "platform": "4 A-C",
@@ -852,6 +853,7 @@ Object {
         "wingIds": undefined,
       },
       "auslastung": true,
+      "cancelled": undefined,
       "currentStation": Object {
         "id": "test",
         "title": "test",
@@ -867,8 +869,6 @@ Object {
       "destination": "München Hbf",
       "id": "8086827825752200553",
       "initialDeparture": 1552828500000,
-      "isAdditional": undefined,
-      "isCancelled": undefined,
       "lineNumber": undefined,
       "mediumId": "8086827825752200553-1903171315",
       "messages": Object {
@@ -885,8 +885,8 @@ Object {
           "name": "Bremen Hbf",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "test",
         },
         Object {
@@ -943,6 +943,7 @@ exports[`onlyPlan lookbehind.xml 1`] = `
 Object {
   "departures": Array [
     Object {
+      "additional": undefined,
       "arrival": Object {
         "hidden": false,
         "platform": "16",
@@ -952,6 +953,7 @@ Object {
         "wingIds": undefined,
       },
       "auslastung": true,
+      "cancelled": undefined,
       "currentStation": Object {
         "id": "test",
         "title": "test",
@@ -967,8 +969,6 @@ Object {
       "destination": "Frankfurt (Main) Hbf",
       "id": "1869793107893408377",
       "initialDeparture": 1552819080000,
-      "isAdditional": undefined,
-      "isCancelled": undefined,
       "lineNumber": undefined,
       "mediumId": "1869793107893408377-1903171038",
       "messages": Object {
@@ -997,8 +997,8 @@ Object {
           "name": "Duisburg Hbf",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "test",
         },
         Object {
@@ -1036,8 +1036,10 @@ exports[`onlyPlan multipleWings.xml 1`] = `
 Object {
   "departures": Array [
     Object {
+      "additional": undefined,
       "arrival": undefined,
       "auslastung": false,
+      "cancelled": undefined,
       "currentStation": Object {
         "id": "test",
         "title": "test",
@@ -1056,8 +1058,6 @@ Object {
       "destination": "Bayrischzell",
       "id": "4645697665836328305",
       "initialDeparture": 1552827840000,
-      "isAdditional": undefined,
-      "isCancelled": undefined,
       "lineNumber": undefined,
       "mediumId": "4645697665836328305-1903171304",
       "messages": Object {
@@ -1071,8 +1071,8 @@ Object {
       "reihung": false,
       "route": Array [
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "test",
         },
         Object {
@@ -1135,8 +1135,10 @@ Object {
   "lookbehind": Array [],
   "wings": Object {
     "2583448959431566845-1903171304": Object {
+      "additional": undefined,
       "arrival": undefined,
       "auslastung": false,
+      "cancelled": undefined,
       "currentStation": Object {
         "id": "test",
         "title": "test",
@@ -1152,8 +1154,6 @@ Object {
       "destination": "Tegernsee",
       "id": "2583448959431566845",
       "initialDeparture": 1552827840000,
-      "isAdditional": undefined,
-      "isCancelled": undefined,
       "lineNumber": undefined,
       "mediumId": "2583448959431566845-1903171304",
       "messages": Object {
@@ -1167,8 +1167,8 @@ Object {
       "reihung": false,
       "route": Array [
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "test",
         },
         Object {
@@ -1215,8 +1215,10 @@ Object {
       },
     },
     "7715731422484591852-1903171304": Object {
+      "additional": undefined,
       "arrival": undefined,
       "auslastung": false,
+      "cancelled": undefined,
       "currentStation": Object {
         "id": "test",
         "title": "test",
@@ -1232,8 +1234,6 @@ Object {
       "destination": "Lenggries",
       "id": "7715731422484591852",
       "initialDeparture": 1552827840000,
-      "isAdditional": undefined,
-      "isCancelled": undefined,
       "lineNumber": undefined,
       "mediumId": "7715731422484591852-1903171304",
       "messages": Object {
@@ -1247,8 +1247,8 @@ Object {
       "reihung": false,
       "route": Array [
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "test",
         },
         Object {
@@ -1305,6 +1305,7 @@ exports[`onlyPlan onlyArrival.xml 1`] = `
 Object {
   "departures": Array [
     Object {
+      "additional": undefined,
       "arrival": Object {
         "hidden": false,
         "platform": "10",
@@ -1314,6 +1315,7 @@ Object {
         "wingIds": undefined,
       },
       "auslastung": false,
+      "cancelled": undefined,
       "currentStation": Object {
         "id": "test",
         "title": "test",
@@ -1322,8 +1324,6 @@ Object {
       "destination": "test",
       "id": "425081070176277607",
       "initialDeparture": 1552820400000,
-      "isAdditional": undefined,
-      "isCancelled": undefined,
       "lineNumber": "RE11",
       "mediumId": "425081070176277607-1903171100",
       "messages": Object {
@@ -1367,8 +1367,8 @@ Object {
           "name": "Düsseldorf Flughafen",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "test",
         },
       ],
@@ -1395,8 +1395,10 @@ exports[`onlyPlan onlyDeparture.xml 1`] = `
 Object {
   "departures": Array [
     Object {
+      "additional": undefined,
       "arrival": undefined,
       "auslastung": false,
+      "cancelled": undefined,
       "currentStation": Object {
         "id": "test",
         "title": "test",
@@ -1412,8 +1414,6 @@ Object {
       "destination": "Paderborn Hbf",
       "id": "1178432179369711067",
       "initialDeparture": 1552826160000,
-      "isAdditional": undefined,
-      "isCancelled": undefined,
       "lineNumber": "RE11",
       "mediumId": "1178432179369711067-1903171236",
       "messages": Object {
@@ -1427,8 +1427,8 @@ Object {
       "reihung": false,
       "route": Array [
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "test",
         },
         Object {
@@ -1497,6 +1497,7 @@ exports[`onlyPlan simple1.xml 1`] = `
 Object {
   "departures": Array [
     Object {
+      "additional": undefined,
       "arrival": Object {
         "hidden": false,
         "platform": "13",
@@ -1506,6 +1507,7 @@ Object {
         "wingIds": undefined,
       },
       "auslastung": false,
+      "cancelled": undefined,
       "currentStation": Object {
         "id": "test",
         "title": "test",
@@ -1521,8 +1523,6 @@ Object {
       "destination": "Hagen Hbf",
       "id": "6062058741531589910",
       "initialDeparture": 1552746240000,
-      "isAdditional": undefined,
-      "isCancelled": undefined,
       "lineNumber": "8",
       "mediumId": "6062058741531589910-1903161424",
       "messages": Object {
@@ -1572,8 +1572,8 @@ Object {
           "name": "Düsseldorf Friedrichstadt",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "test",
         },
         Object {
@@ -1678,6 +1678,7 @@ exports[`onlyPlan simple2.xml 1`] = `
 Object {
   "departures": Array [
     Object {
+      "additional": undefined,
       "arrival": Object {
         "hidden": false,
         "platform": "16",
@@ -1687,6 +1688,7 @@ Object {
         "wingIds": undefined,
       },
       "auslastung": true,
+      "cancelled": undefined,
       "currentStation": Object {
         "id": "test",
         "title": "test",
@@ -1702,8 +1704,6 @@ Object {
       "destination": "Frankfurt (Main) Hbf",
       "id": "1869793107893408377",
       "initialDeparture": 1552819080000,
-      "isAdditional": undefined,
-      "isCancelled": undefined,
       "lineNumber": undefined,
       "mediumId": "1869793107893408377-1903171038",
       "messages": Object {
@@ -1732,8 +1732,8 @@ Object {
           "name": "Duisburg Hbf",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "test",
         },
         Object {
@@ -1780,6 +1780,7 @@ exports[`onlyPlan wings.xml 1`] = `
 Object {
   "departures": Array [
     Object {
+      "additional": undefined,
       "arrival": Object {
         "hidden": false,
         "platform": "4",
@@ -1791,6 +1792,7 @@ Object {
         ],
       },
       "auslastung": true,
+      "cancelled": undefined,
       "currentStation": Object {
         "id": "test",
         "title": "test",
@@ -1808,8 +1810,6 @@ Object {
       "destination": "München Hbf",
       "id": "7616096009230090656",
       "initialDeparture": 1552829280000,
-      "isAdditional": undefined,
-      "isCancelled": undefined,
       "lineNumber": undefined,
       "mediumId": "7616096009230090656-1903171328",
       "messages": Object {
@@ -1835,8 +1835,8 @@ Object {
           "name": "Uelzen",
         },
         Object {
-          "isAdditional": undefined,
-          "isCancelled": undefined,
+          "additional": undefined,
+          "cancelled": undefined,
           "name": "test",
         },
         Object {

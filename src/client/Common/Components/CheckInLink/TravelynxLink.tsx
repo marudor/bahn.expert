@@ -13,7 +13,7 @@ const timeConstraint = 30 * 60 * 1000;
 
 const TravelynxLink = ({ abfahrt, className }: Props) =>
   abfahrt.departure &&
-  !abfahrt.departure.isCancelled &&
+  !abfahrt.departure.cancelled &&
   isBefore(
     abfahrt.arrival
       ? abfahrt.arrival.scheduledTime

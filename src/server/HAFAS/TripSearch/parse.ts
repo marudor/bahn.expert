@@ -76,7 +76,7 @@ export class Journey {
 
     return {
       train: product,
-      isCancelled: jny.isCncl,
+      cancelled: jny.isCncl,
       changeDuration: jny.chgDurR,
       segmentStart: parseFullStation(fullStart),
       segmentDestination: parseFullStation(fullDestination),

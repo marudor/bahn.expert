@@ -1,7 +1,7 @@
 import { Abfahrt } from 'types/abfahrten';
 import { Link } from 'react-router-dom';
 import Auslastung from 'Abfahrten/Components/Abfahrt/Auslastung';
-import CheckInLink from './CheckInLink';
+import CheckInLink from 'Common/Components/CheckInLink';
 import React from 'react';
 import Substitute from './Substitute';
 import useStyles from './Start.style';
@@ -39,7 +39,7 @@ const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
           </Link>
         </div>
       )}
-      {abfahrt.isCancelled && (
+      {abfahrt.cancelled && (
         <span className={classes.cancelled}>Zugausfall</span>
       )}
       {abfahrt.substitute && abfahrt.ref && (

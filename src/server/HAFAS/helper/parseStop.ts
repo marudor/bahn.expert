@@ -10,16 +10,21 @@ export default (
   common: ParsedCommon,
   date: number,
   trainType?: string
-): Route$Stop => ({
-  station: common.locL[stop.locX],
-  arrival: stop.aTimeS
+): Route$Stop => {
+  const arrival = stop.aTimeS
     ? parseCommonArrival(stop, date, common, trainType)
-    : undefined,
-  departure: stop.dTimeS
+    : undefined;
+  const departure = stop.dTimeS
     ? parseCommonDeparture(stop, date, common, trainType)
-    : undefined,
-  auslastung: parseAuslastung(stop.dTrnCmpSX, common.tcocL),
-  additional: stop.isAdd,
-  cancelled: stop.aCncl && stop.dCncl,
-  messages: parseMessages(stop.msgL, common),
-});
+    : undefined;
+
+  return {
+    station: common.locL[stop.locX],
+    arrival,
+    departure,
+    auslastung: parseAuslastung(stop.dTrnCmpSX, common.tcocL),
+    additional: stop.isAdd,
+    cancelled: (!arrival || stop.aCncl) && (!departure || stop.dCncl),
+    messages: parseMessages(stop.msgL, common),
+  };
+};

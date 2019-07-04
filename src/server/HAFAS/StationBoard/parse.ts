@@ -23,7 +23,7 @@ const parseStationBoardResponse = (
     train: product,
     finalDestination: jny.dirTxt,
     jid: jny.jid,
-    isCancelled: jny.isCncl,
+    cancelled: jny.isCncl,
   };
 
   if (isArrival(jny.stbStop)) {

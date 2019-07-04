@@ -13,8 +13,10 @@ if (url && instanceId && appName) {
     appName,
   });
 } else {
-  // eslint-disable-next-line no-console
-  console.log('Overriding feature stuff to always true!');
+  if (process.env.NODE_ENV !== 'test') {
+    // eslint-disable-next-line no-console
+    console.log('Overriding feature stuff to always true!');
+  }
   // @ts-ignore
   Unleash.isEnabled = (key: string) =>
     Boolean(require('./default').default[key]);
