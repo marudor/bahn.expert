@@ -124,9 +124,6 @@ function getTrainType(thirdParty?: string, trainType?: string) {
   if (thirdParty) {
     return 'RB';
   }
-  if (trainType === 'ECE') {
-    return 'EC';
-  }
 
   return trainType;
 }
