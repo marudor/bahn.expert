@@ -24,7 +24,10 @@ export default (
     departure,
     auslastung: parseAuslastung(stop.dTrnCmpSX, common.tcocL),
     additional: stop.isAdd,
-    cancelled: (!arrival || stop.aCncl) && (!departure || stop.dCncl),
+    cancelled:
+      (arrival || departure) &&
+      (!arrival || stop.aCncl) &&
+      (!departure || stop.dCncl),
     messages: parseMessages(stop.msgL, common),
   };
 };

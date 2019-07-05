@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Auslastung from 'Abfahrten/Components/Abfahrt/Auslastung';
 import CheckInLink from 'Common/Components/CheckInLink';
 import React from 'react';
+import stopPropagation from 'Common/stopPropagation';
 import Substitute from './Substitute';
 import useStyles from './Start.style';
 
@@ -31,6 +32,7 @@ const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
         <div className={classes.links}>
           <CheckInLink abfahrt={abfahrt} />
           <Link
+            onClick={stopPropagation}
             to={`/details/${abfahrt.train.thirdParty || abfahrt.train.type} ${
               abfahrt.train.number
             }/${abfahrt.initialDeparture}`}
