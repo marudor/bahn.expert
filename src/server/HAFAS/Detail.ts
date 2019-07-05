@@ -33,8 +33,7 @@ export default async (
   date: number = Date.now(),
   hafasProfile: AllowedHafasProfile = 'db'
 ) => {
-  const trains = await trainSearch(trainName, date, hafasProfile);
-  const train = trains[0];
+  const train = await trainSearch(trainName, date, hafasProfile);
 
   if (!train) return undefined;
 

@@ -29,7 +29,7 @@ describe('Abfahrten', () => {
     testTrainType('M 79073', '79073', 'M', 'RB');
     testTrainType('BOB 86975', '86975', 'BOB', 'RB');
     testTrainType('BSB 88378', '88378', 'BSB', 'S');
-    testTrainType('ECE 123', '123', undefined, 'EC');
+    testTrainType('ECE 123', '123', undefined, 'ECE');
     testTrainType('IRE 87488', '', undefined, 'IRE', '87488');
     testTrainType('ABR RB40', '80542', 'ABR', 'RB', '40');
     testTrainType('NWB RB75', '80542', 'NWB', 'RB', '75');

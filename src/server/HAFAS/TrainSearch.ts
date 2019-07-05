@@ -75,25 +75,23 @@ export default async (
 
   const trains: Train[] = JSON.parse(stringReply).suggestions;
 
-  await Promise.all(
-    trains.map(async t => {
-      t.jid = `1|${t.id}|${t.cycle}|${profile.number}|${format(
-        parse(t.depDate, 'dd.MM.yyyy', 0),
-        'ddMMyyyy'
-      )}`;
-      const jDetails = await journeyDetails(t.jid, profileType);
+  if (!trains.length) return undefined;
+  const firstResult = trains[0];
 
-      t.ctxRecon = `¶HKI¶T$A=1@L=${
-        jDetails.firstStop.station.id
-      }@a=128@$A=1@L=${jDetails.lastStop.station.id}@a=128@$${format(
-        jDetails.firstStop.departure.scheduledTime,
-        'yyyyMMddHHmm'
-      )}$${format(jDetails.lastStop.arrival.scheduledTime, 'yyyyMMddHHmm')}$${
-        t.value
-      }$$1$`;
-      t.jDetails = jDetails;
-    })
-  );
+  firstResult.jid = `1|${firstResult.id}|${firstResult.cycle}|${
+    profile.number
+  }|${format(parse(firstResult.depDate, 'dd.MM.yyyy', 0), 'ddMMyyyy')}`;
+  const jDetails = await journeyDetails(firstResult.jid, profileType);
 
-  return trains;
+  firstResult.ctxRecon = `¶HKI¶T$A=1@L=${
+    jDetails.firstStop.station.id
+  }@a=128@$A=1@L=${jDetails.lastStop.station.id}@a=128@$${format(
+    jDetails.firstStop.departure.scheduledTime,
+    'yyyyMMddHHmm'
+  )}$${format(jDetails.lastStop.arrival.scheduledTime, 'yyyyMMddHHmm')}$${
+    firstResult.value
+  }$$1$`;
+  firstResult.jDetails = jDetails;
+
+  return firstResult;
 };
