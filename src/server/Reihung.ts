@@ -178,12 +178,12 @@ const getDEBR = (
       };
     case '5406':
       return {
-        name: 'ICE 3 Velaro',
+        name: 'ICE 3',
         BR: '406',
       };
     case '5407':
       return {
-        name: 'ICE 3',
+        name: 'ICE 3 Velaro',
         BR: '407',
       };
     case '5410':
