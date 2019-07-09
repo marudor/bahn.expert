@@ -7,4 +7,4 @@ Currently running at https://marudor.de
 
 ## Cross browser testing
 Big thanks to [BrowserStack](https://browserstack.com)  
-<a href="https://browserstack.com"><img width=200 src=https://cdn.jsdelivr.net/gh/marudor/bahnhofsabfahrten/src/client/Components/BrowserstackThanks/Browserstack-logo.svg></src></a>
+<a href="https://browserstack.com"><img width=200 src="https://raw.githubusercontent.com/marudor/BahnhofsAbfahrten/master/src/client/Abfahrten/Components/BrowserstackThanks/Browserstack-logo.svg?sanitize=true"></a>
