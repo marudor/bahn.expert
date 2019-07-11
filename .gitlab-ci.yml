@@ -116,7 +116,7 @@ deploy:beta:
   stage: deploy
   image: registry.gitlab.com/marudor/deploy-helper
   script:
-    - /deploy.sh "bahnhofsabfahrten-beta" "$CI_COMMIT_SHA" "marudor"
+    - /helm-upgrade.sh "bahnhofsabfahrten" "bahnhofsabfahrten-beta.yaml" "bahnhofsabfahrten-beta" "$CI_COMMIT_SHA" "marudor"
   environment:
     name: beta
   only:
@@ -127,7 +127,7 @@ deploy:prod:
   stage: deploy
   image: registry.gitlab.com/marudor/deploy-helper
   script:
-    - /deploy.sh "bahnhofsabfahrten" "$CI_COMMIT_SHA" "marudor"
+    - /helm-upgrade.sh "bahnhofsabfahrten" "bahnhofsabfahrten.yaml" "bahnhofsabfahrten" "$CI_COMMIT_SHA" "marudor"
   environment:
     name: production
   when: manual
