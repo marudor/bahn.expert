@@ -1,7 +1,6 @@
 import { AbfahrtenState } from 'AppState';
 import { connect } from 'react-redux';
 import { renderRoutes } from 'react-router-config';
-import Footer from './Components/Footer';
 import Header from './Components/Header';
 import React from 'react';
 import routes from './routes';
@@ -20,7 +19,6 @@ const BahnhofsAbfahrten = (props: Props) => {
       {!props.noHeader && <Header />}
       <SettingsModal />
       {renderRoutes(routes)}
-      <Footer />
     </div>
   );
 };
