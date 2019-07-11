@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import 'jest-dom/extend-expect';
+import '@testing-library/jest-dom/extend-expect';
 import { cleanup } from '@testing-library/react';
 
 if (process.env.TZ !== 'UTC') {

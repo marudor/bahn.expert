@@ -158,12 +158,11 @@ class AbfahrtenList extends React.PureComponent<Props, State> {
   };
   render() {
     const { loading } = this.state;
-    const { abfahrten, error, currentStation, classes } = this.props;
+    const { abfahrten, error, classes } = this.props;
 
     return (
       <Loading isLoading={loading}>
         <main className={classes.main}>
-          {currentStation && <h1>Abfahrten für {currentStation.title}</h1>}
           {error ? (
             !loading && <Redirect to="/" />
           ) : (
@@ -180,9 +179,6 @@ const styles = createStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     marginTop: theme.shape.headerSpacing,
-    '& > h1': {
-      display: 'none',
-    },
   },
 
   lookaheadMarker: {
