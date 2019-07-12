@@ -73,15 +73,18 @@ const BaseAbfahrt = ({
           <Mid abfahrt={abfahrt} detail={detail} />
           <End abfahrt={abfahrt} detail={detail} />
         </div>
-        {detail && abfahrt.reihung && abfahrt.departure && (
-          <Reihung
-            useZoom={useZoom}
-            fahrzeugGruppe={fahrzeugGruppe}
-            trainNumber={abfahrt.train.number}
-            currentStation={abfahrt.currentStation.id}
-            scheduledDeparture={abfahrt.departure.scheduledTime}
-          />
-        )}
+        {detail &&
+          abfahrt.departure &&
+          (abfahrt.reihung || abfahrt.hiddenReihung) && (
+            <Reihung
+              loadHidden={!abfahrt.reihung && abfahrt.hiddenReihung}
+              useZoom={useZoom}
+              fahrzeugGruppe={fahrzeugGruppe}
+              trainNumber={abfahrt.train.number}
+              currentStation={abfahrt.currentStation.id}
+              scheduledDeparture={abfahrt.departure.scheduledTime}
+            />
+          )}
         {detail && (
           <div id={`${abfahrt.id}Scroll`} className={classes.scrollMarker} />
         )}

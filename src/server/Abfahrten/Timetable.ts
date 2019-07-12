@@ -283,6 +283,9 @@ export default class Timetable {
       timetable.departure &&
       !timetable.departure.hidden;
     timetable.reihung = !timetable.cancelled && timetable.train.longDistance;
+    timetable.hiddenReihung = ['RB', 'RE', 'IRE'].includes(
+      timetable.train.type
+    );
 
     delete timetable.routePre;
     delete timetable.routePost;

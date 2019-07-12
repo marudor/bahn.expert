@@ -16,6 +16,7 @@ type Props = {
   trainNumber: string;
   currentStation: string;
   scheduledDeparture: number;
+  loadHidden?: boolean;
 };
 
 const ReihungComp = (props: Props) => {
@@ -26,6 +27,7 @@ const ReihungComp = (props: Props) => {
     scheduledDeparture,
     trainNumber,
     useZoom,
+    loadHidden,
   } = props;
   const reihung = useCommonSelector(state => getReihungForId(state, props));
   const classes = useStyles({
@@ -40,7 +42,7 @@ const ReihungComp = (props: Props) => {
     }
   }, [currentStation, dispatch, reihung, scheduledDeparture, trainNumber]);
 
-  if (reihung === null) {
+  if (reihung === null || (!reihung && loadHidden)) {
     return null;
   }
   if (reihung === undefined) {
