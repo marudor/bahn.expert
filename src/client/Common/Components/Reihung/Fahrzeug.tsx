@@ -70,6 +70,8 @@ function getFahrzeugInfo(fahrzeug: Fahrzeug): AdditionalFahrzeugInfos {
       break;
     default:
       break;
+    case 'DOPPELSTOCKWAGENERSTEZWEITEKLASSE':
+    case 'DOPPELSTOCKSTEUERWAGENERSTEZWEITEKLASSE':
     case 'STEUERWAGENERSTEZWEITEKLASSE':
     case 'REISEZUGWAGENERSTEZWEITEKLASSE':
       data.klasse = 3;
