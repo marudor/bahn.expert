@@ -427,9 +427,21 @@ export async function wagenReihung(trainNumber: string, date: number) {
     'yyyyMMddHHmm'
   );
 
-  const info: Wagenreihung = (await axios.get(
-    `https://www.apps-bahn.de/wr/wagenreihung/1.0/${trainNumber}/${parsedDate}`
-  )).data;
+  let info: Wagenreihung;
+
+  try {
+    info = (await axios.get(
+      `https://www.apps-bahn.de/wr/wagenreihung/1.0/${trainNumber}/${parsedDate}`
+    )).data;
+  } catch (e) {
+    throw {
+      response: {
+        status: 404,
+        statusText: 'Not Found',
+        data: 404,
+      },
+    };
+  }
 
   const fahrzeuge = flatten(
     info.data.istformation.allFahrzeuggruppe.map(g => g.allFahrzeug)

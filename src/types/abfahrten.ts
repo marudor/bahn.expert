@@ -70,6 +70,7 @@ export type Abfahrt = {
   scheduledPlatform: string;
   substitute: boolean;
   train: TrainInfo;
+  hiddenReihung: boolean;
 };
 
 export type Departures = {
