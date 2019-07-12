@@ -116,6 +116,8 @@ docker:server:
 deploy:beta:
   stage: deploy
   image: registry.gitlab.com/marudor/deploy-helper
+  variables:
+    GIT_STRATEGY: none
   script:
     - /helm-upgrade.sh "bahnhofsabfahrten" "bahnhofsabfahrten-beta.yaml" "bahnhofsabfahrten-beta" "$CI_COMMIT_SHA" "marudor"
   environment:
@@ -125,17 +127,22 @@ deploy:beta:
   dependencies: []
 
 testcafe:
+  image: node:10
   stage: e2e
-  script: yarn e2e:browserstack
+  script:
+    - yarn e2e:browserstack
   cache:
     policy: pull
     key: '$CI_COMMIT_REF_SLUG'
     paths:
       - node_modules/
+  dependencies: []
 
 deploy:prod:
   stage: deploy
   image: registry.gitlab.com/marudor/deploy-helper
+  variables:
+    GIT_STRATEGY: none
   script:
     - /helm-upgrade.sh "bahnhofsabfahrten" "bahnhofsabfahrten.yaml" "bahnhofsabfahrten" "$CI_COMMIT_SHA" "marudor"
   environment:
@@ -148,6 +155,8 @@ deploy:prod:
 cleanup:
   stage: cleanup
   image: registry.gitlab.com/marudor/deploy-helper
+  variables:
+    GIT_STRATEGY: none
   script:
     - /cleanup.sh "marudor"
   dependencies: []
