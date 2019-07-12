@@ -25,7 +25,8 @@
     "test": "npm run lint && npm run depCheck && npm run test:jest && tsc",
     "test:codecov": "codecov",
     "test:jest": "TZ=UTC jest",
-    "e2e:browserstack": "testcafe 'browserstack:edge@18.0:Windows 10,browserstack:chrome,browserstack:firefox' test/e2e"
+    "e2e:local": "testcafe 'chrome:headless' test/e2e",
+    "e2e:browserstack": "testcafe 'browserstack:edge@18.0:Windows 10,browserstack:chrome,browserstack:firefox,browserstack:Google Pixel 3@9' test/e2e"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.0",
