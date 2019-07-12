@@ -9,6 +9,7 @@ stages:
   - build
   - docker
   - deploy
+  - e2e
   - cleanup
 
 install:
@@ -122,6 +123,15 @@ deploy:beta:
   only:
     - master
   dependencies: []
+
+testcafe:
+  stage: e2e
+  script: yarn e2e:browserstack
+  cache:
+    policy: pull
+    key: '$CI_COMMIT_REF_SLUG'
+    paths:
+      - node_modules/
 
 deploy:prod:
   stage: deploy
