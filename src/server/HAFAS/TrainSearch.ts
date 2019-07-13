@@ -83,6 +83,17 @@ export default async (
   }|${format(parse(firstResult.depDate, 'dd.MM.yyyy', 0), 'ddMMyyyy')}`;
   const jDetails = await journeyDetails(firstResult.jid, profileType);
 
+  // highly unknown what this exactly does
+  // some replacement trains need a 2 here.
+  let replacementNumber = 1;
+
+  if (
+    jDetails.messages &&
+    jDetails.messages.some(m => m.txtN.includes('Ersatzfahrt'))
+  ) {
+    replacementNumber = 2;
+  }
+
   firstResult.ctxRecon = `¶HKI¶T$A=1@L=${
     jDetails.firstStop.station.id
   }@a=128@$A=1@L=${jDetails.lastStop.station.id}@a=128@$${format(
@@ -90,7 +101,7 @@ export default async (
     'yyyyMMddHHmm'
   )}$${format(jDetails.lastStop.arrival.scheduledTime, 'yyyyMMddHHmm')}$${
     firstResult.value
-  }$$1$`;
+  }$$${replacementNumber}$`;
   firstResult.jDetails = jDetails;
 
   return firstResult;
