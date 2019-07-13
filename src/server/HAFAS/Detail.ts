@@ -1,5 +1,6 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { getAbfahrten } from 'server/Abfahrten';
+import { logger } from 'server/logger';
 import { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
 import { subMinutes } from 'date-fns';
 import searchOnTrip from './SearchOnTrip';
@@ -37,9 +38,31 @@ export default async (
 
   if (!train) return undefined;
 
-  const route = await searchOnTrip(train.ctxRecon, hafasProfile);
+  let relevantSegment: ParsedSearchOnTripResponse;
 
-  const relevantSegment: ParsedSearchOnTripResponse = route.segments[0];
+  try {
+    const route = await searchOnTrip(train.ctxRecon, hafasProfile);
+
+    relevantSegment = route.segments[0];
+  } catch (e) {
+    logger.error({
+      msg: 'HAFAS Error',
+      error: e,
+    });
+
+    relevantSegment = {
+      cancelled: train.jDetails.stops.every(s => s.cancelled),
+      finalDestination: train.jDetails.lastStop.station.title,
+      jid: train.jid,
+      train: train.jDetails.train,
+      segmentDestination: train.jDetails.lastStop.station,
+      segmentStart: train.jDetails.firstStop.station,
+      stops: train.jDetails.stops,
+      messages: train.jDetails.messages,
+      arrival: train.jDetails.lastStop.arrival,
+      departure: train.jDetails.firstStop.departure,
+    };
+  }
 
   const lastStop = relevantSegment.stops
     .filter(s => s.arrival && !s.arrival.cancelled)
