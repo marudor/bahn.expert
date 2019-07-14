@@ -7,7 +7,7 @@ import AppBar from '@material-ui/core/AppBar';
 import ExtraMenu from './ExtraMenu';
 import HomeMenu from 'Abfahrten/Components/HomeMenu';
 import MetaTags from './MetaTags';
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import StationSearch from 'Common/Components/StationSearch';
 import Toolbar from '@material-ui/core/Toolbar';
 
@@ -21,8 +21,16 @@ type Props = StateProps;
 
 const Header = ({ currentStation, searchType, baseUrl }: Props) => {
   const { history } = useRouter();
+  const [currentEnteredStation, setCurrentEnteredStation] = useState(
+    currentStation
+  );
+
+  useEffect(() => {
+    setCurrentEnteredStation(currentStation);
+  }, [currentStation]);
   const submit = useCallback(
     (station: Station) => {
+      setCurrentEnteredStation(station);
       if (!station) {
         return;
       }
@@ -40,9 +48,11 @@ const Header = ({ currentStation, searchType, baseUrl }: Props) => {
           <StationSearch
             autoFocus={!currentStation}
             searchType={searchType}
-            value={currentStation}
+            value={currentEnteredStation}
             onChange={submit}
-            placeholder="Station (z.B. Kiel Hbf)"
+            placeholder={`Station (z.B. ${
+              currentStation ? currentStation.title : 'Kiel Hbf'
+            })`}
           />
           <ExtraMenu />
         </Toolbar>
