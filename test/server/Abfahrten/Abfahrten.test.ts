@@ -39,5 +39,6 @@ describe('Abfahrten', () => {
     testTrainType('ME RB61', '80542', 'ME', 'RB', '61');
     testTrainType('FLX 1807', '1807', 'FLX', 'IR');
     testTrainType('NWB RS2', '80542', 'NWB', 'S', 'RS2');
+    testTrainType('BRB 62752', '62752', 'BRB', 'RB');
   });
 });
