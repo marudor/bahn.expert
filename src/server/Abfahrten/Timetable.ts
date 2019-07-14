@@ -112,7 +112,7 @@ export function parseRealtimeAr(
   };
 }
 
-const trainRegex = /(BRB?|\w+?)?? ?(RS|IRE|RE|RB|IC|ICE|EC|ECE|TGV|NJ|RJ|S)? ?(\d+\w*)/;
+const trainRegex = /(BRB?|\w+?)?? ?(Bus|RS|IRE|RE|RB|IC|ICE|EC|ECE|TGV|NJ|RJ|S)? ?(\d+\w*|SEV)/;
 
 function getTrainType(thirdParty?: string, trainType?: string) {
   if ((thirdParty === 'NWB' && trainType === 'RS') || thirdParty === 'BSB') {
