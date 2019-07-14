@@ -81,17 +81,7 @@ const rules = [
   },
 ];
 
-const optimization = {
-  splitChunks: {
-    cacheGroups: {
-      vendor: {
-        chunks: 'all',
-        test: /[\\/]node_modules[\\/]/,
-        name: 'vendor',
-      },
-    },
-  },
-};
+const optimization = {};
 
 if (isDev) {
   rules[0].use.unshift('cache-loader');
@@ -136,7 +126,7 @@ module.exports = {
   },
   output: {
     path: path.resolve('dist/client'),
-    filename: isDev ? 'static/[name].js' : 'static/[name]-[hash].js',
+    filename: isDev ? 'static/[name].js' : 'static/[name]-[contenthash].js',
     publicPath: '/',
   },
   module: {

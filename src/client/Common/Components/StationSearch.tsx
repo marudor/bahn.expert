@@ -75,6 +75,7 @@ function Option(props: OptionProps<any>) {
 function Placeholder(props: PlaceholderProps<any>) {
   return (
     <Typography
+      data-testid="placeholder"
       color="textSecondary"
       className={props.selectProps.classes.placeholder}
       {...props.innerProps}
@@ -87,6 +88,7 @@ function Placeholder(props: PlaceholderProps<any>) {
 function SingleValue(props: SingleValueProps<any>) {
   return (
     <Typography
+      data-testid="singleValue"
       className={props.selectProps.classes.singleValue}
       {...props.innerProps}
     >
@@ -175,6 +177,7 @@ const StationSearch = ({
 
   return (
     <Async
+      isClearable
       components={components}
       classes={classes}
       autoFocus={autoFocus}
@@ -184,7 +187,7 @@ const StationSearch = ({
       getOptionLabel={getOptionLabel}
       getOptionValue={getOptionValue}
       placeholder={placeholder}
-      value={value || null}
+      value={value}
       onChange={onChange as any}
     />
   );

@@ -1,6 +1,6 @@
 import { ClientFunction, Selector } from 'testcafe';
 
-fixture`Theme Selection`.page`https://beta.marudor.de`;
+fixture`Homepage`.page(process.env.E2E_URL || '');
 
 const themeCookie = ClientFunction(() => {
   const c = document.cookie.split('; ').filter(x => x.startsWith('theme'));
