@@ -172,7 +172,7 @@ export function parseTl(tl: xmljs.Element) {
     o: getAttr(tl, 'o'),
     t: getAttr(tl, 't'),
     trainNumber: getAttr(tl, 'n') || '',
-    trainType: getAttr(tl, 'c') || '',
+    trainCategory: getAttr(tl, 'c') || '',
   };
 }
 
@@ -391,11 +391,11 @@ export default class Timetable {
     showing.forEach(v => (v.showVia = true));
   }
   parseRef(tl: xmljs.Element) {
-    const { trainType, trainNumber } = parseTl(tl);
-    const train = `${trainType} ${trainNumber}`;
+    const { trainCategory, trainNumber } = parseTl(tl);
+    const train = `${trainCategory} ${trainNumber}`;
 
     return {
-      trainType,
+      trainType: trainCategory,
       trainNumber,
       train,
     };
@@ -641,8 +641,8 @@ export default class Timetable {
     const scheduledArrival = parseTs(getAttr(ar, 'pt'));
     const scheduledDeparture = parseTs(getAttr(dp, 'pt'));
     const lineNumber = getAttr(dp || ar, 'l');
-    const { trainNumber, trainType, t, o, productClass } = parseTl(tl);
-    const fullTrainText = `${trainType} ${lineNumber || trainNumber}`;
+    const { trainNumber, trainCategory, t, o, productClass } = parseTl(tl);
+    const fullTrainText = `${trainCategory} ${lineNumber || trainNumber}`;
 
     function getNormalizedRoute(node: null | xmljs.Element) {
       const rawRoute = getAttr(node, 'ppth');
@@ -693,6 +693,7 @@ export default class Timetable {
         longDistance: longDistanceRegex.test(fullTrainText),
         name: fullTrainText,
         number: trainNumber,
+        trainCategory,
         ...splitTrainType(fullTrainText, trainNumber),
       },
       additional: undefined as (undefined | boolean),

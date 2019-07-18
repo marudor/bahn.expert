@@ -45,6 +45,7 @@ export interface TrainInfo extends CommonProductInfo {
   longDistance: boolean;
   type: string;
   line: string;
+  trainCategory: string;
   number: string;
 }
 

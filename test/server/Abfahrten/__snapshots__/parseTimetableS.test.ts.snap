@@ -153,6 +153,7 @@ Object {
     "name": "S 8",
     "number": "30889",
     "thirdParty": undefined,
+    "trainCategory": "S",
     "type": "S",
   },
 }
@@ -241,6 +242,7 @@ Object {
     "name": "ICE 1680",
     "number": "1680",
     "thirdParty": undefined,
+    "trainCategory": "ICE",
     "type": "ICE",
   },
 }
@@ -318,6 +320,7 @@ Object {
     "name": "ICE 1580",
     "number": "1580",
     "thirdParty": undefined,
+    "trainCategory": "ICE",
     "type": "ICE",
   },
 }
@@ -476,6 +479,7 @@ Object {
     "name": "S 8",
     "number": "30889",
     "thirdParty": undefined,
+    "trainCategory": "S",
     "type": "S",
   },
 }
@@ -634,6 +638,7 @@ Object {
     "name": "S 8",
     "number": "30889",
     "thirdParty": undefined,
+    "trainCategory": "S",
     "type": "S",
   },
 }
@@ -716,6 +721,7 @@ Object {
     "name": "ICE 1689",
     "number": "1689",
     "thirdParty": undefined,
+    "trainCategory": "ICE",
     "type": "ICE",
   },
 }
@@ -787,6 +793,7 @@ Object {
     "name": "ICE 1589",
     "number": "1589",
     "thirdParty": undefined,
+    "trainCategory": "ICE",
     "type": "ICE",
   },
 }
@@ -945,6 +952,7 @@ Object {
     "name": "S 8",
     "number": "30889",
     "thirdParty": undefined,
+    "trainCategory": "S",
     "type": "S",
   },
 }
@@ -1016,6 +1024,7 @@ Object {
     "name": "ICE 123",
     "number": "123",
     "thirdParty": undefined,
+    "trainCategory": "ICE",
     "type": "ICE",
   },
 }
@@ -1097,6 +1106,7 @@ Object {
     "name": "BOB 86871",
     "number": "86871",
     "thirdParty": "BOB",
+    "trainCategory": "BOB",
     "type": "RB",
   },
 }
@@ -1163,6 +1173,7 @@ Object {
     "name": "BOB 86971",
     "number": "86971",
     "thirdParty": "BOB",
+    "trainCategory": "BOB",
     "type": "RB",
   },
 }
@@ -1232,6 +1243,7 @@ Object {
     "name": "BOB 86921",
     "number": "86921",
     "thirdParty": "BOB",
+    "trainCategory": "BOB",
     "type": "RB",
   },
 }
@@ -1301,6 +1313,7 @@ Object {
     "name": "ABR RE11",
     "number": "26712",
     "thirdParty": "ABR",
+    "trainCategory": "ABR",
     "type": "RB",
   },
 }
@@ -1379,6 +1392,7 @@ Object {
     "name": "ABR RE11",
     "number": "26719",
     "thirdParty": "ABR",
+    "trainCategory": "ABR",
     "type": "RB",
   },
 }
@@ -1537,6 +1551,7 @@ Object {
     "name": "S 8",
     "number": "30889",
     "thirdParty": undefined,
+    "trainCategory": "S",
     "type": "S",
   },
 }
@@ -1608,6 +1623,7 @@ Object {
     "name": "ICE 123",
     "number": "123",
     "thirdParty": undefined,
+    "trainCategory": "ICE",
     "type": "ICE",
   },
 }
@@ -1766,6 +1782,7 @@ Object {
     "name": "S 8",
     "number": "30889",
     "thirdParty": undefined,
+    "trainCategory": "S",
     "type": "S",
   },
 }
@@ -1853,6 +1870,7 @@ Object {
     "name": "ICE 1587",
     "number": "1587",
     "thirdParty": undefined,
+    "trainCategory": "ICE",
     "type": "ICE",
   },
 }

@@ -1,10 +1,13 @@
 // @ƒlow
 const config = require('../.babelrc.server');
 
-require('@babel/register')(config);
+require('@babel/register')({
+  extensions: ['.js', '.jsx', '.ts', '.tsx'],
+  ...config,
+});
 
 global.PROD = true;
-const search = require('../dist/server/server/Search').default;
+const search = require('../src/server/Search').default;
 
 const mostUsedNames = [
   'Frankfurt (Main) Hbf',
