@@ -109,12 +109,17 @@ const ExtraMenu = ({
       >
         <InvertColors />
       </IconButton>
-      <IconButton aria-label="Menu" onClick={toggleMenu} color="inherit">
+      <IconButton
+        data-testid="menu"
+        aria-label="Menu"
+        onClick={toggleMenu}
+        color="inherit"
+      >
         <ActionMenu />
       </IconButton>
       <Menu open={Boolean(anchor)} anchorEl={anchor} onClose={toggleMenu}>
         {currentStation && [
-          <MenuItem key="1" onClick={toggleFav}>
+          <MenuItem data-testid="toggleFav" key="1" onClick={toggleFav}>
             {isFaved ? (
               <>
                 <ToggleStar /> Unfav
@@ -125,18 +130,18 @@ const ExtraMenu = ({
               </>
             )}
           </MenuItem>,
-          <MenuItem key="2" onClick={openLageplan}>
+          <MenuItem data-testid="lageplan" key="2" onClick={openLageplan}>
             {lageplan !== null ? <Layers /> : <LayersClear />} Lageplan
           </MenuItem>,
         ]}
         <Zugsuche onClose={toggleMenu} />
-        <MenuItem onClick={openFilterCb}>
+        <MenuItem data-testid="openFilter" onClick={openFilterCb}>
           <FilterList /> Filter
         </MenuItem>
-        <MenuItem onClick={openSettingsCb}>
+        <MenuItem data-testid="openSettings" onClick={openSettingsCb}>
           <Settings /> Settings
         </MenuItem>
-        <MenuItem onClick={toAbout}>
+        <MenuItem data-testid="toAbout" onClick={toAbout}>
           <HelpOutline />
           About
         </MenuItem>

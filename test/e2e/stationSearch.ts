@@ -1,23 +1,22 @@
-// import { Selector } from 'testcafe';
+import { awaitLoading, setupTest } from './helper';
+import { getByTestId, queryByTestId } from '@testing-library/testcafe';
 
-// fixture`Station Search`.page(process.env.E2E_URL || '');
+setupTest('Station Search');
 
-// test('Clearable station', async t => {
-//   const inputSelector = '[data-testid="stationSearch"] input';
-//   const singleValueSelector = '[data-testid="singleValue"]';
-//   const placeholderSelector = '[data-testid="placeholder"]';
+test('Clearable station', async t => {
+  await t.typeText(getByTestId('stationSearch').find('input'), 'Kiel Hbf');
+  const firstResult = queryByTestId('menuItem');
 
-//   await t.typeText(inputSelector, 'Kiel Hbf');
-//   const firstResult = Selector('[data-testid="menuItem"]');
+  await t.expect(firstResult.textContent).eql('Kiel Hbf');
+  await t.click(firstResult);
+  await t.expect(getByTestId('singleValue').textContent).eql('Kiel Hbf');
+  await awaitLoading(t);
+  await t.expect(queryByTestId('placeholder').exists).notOk();
+  await t
+    .click(getByTestId('stationSearch').find('input'))
+    .pressKey('backspace')
+    .expect(getByTestId('placeholder').exists)
+    .ok();
 
-//   await t.expect(firstResult.textContent).eql('Kiel Hbf');
-//   await t.click(firstResult);
-//   await t.expect(Selector(singleValueSelector).textContent).eql('Kiel Hbf');
-//   await t.expect(Selector(placeholderSelector).exists).notOk();
-//   await t
-//     .click(inputSelector)
-//     .pressKey('backspace')
-//     .expect(Selector(placeholderSelector).exists)
-//     .ok();
-//   await t.expect(Selector(singleValueSelector).exists).notOk();
-// });
+  await t.expect(queryByTestId('singleValue').exists).notOk();
+});

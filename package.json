@@ -25,7 +25,7 @@
     "test": "npm run lint && npm run depCheck && npm run test:jest && tsc",
     "test:codecov": "codecov",
     "test:jest": "TZ=UTC jest",
-    "e2e:local": "E2E_URL=https://local.marudor.de:9042 testcafe 'chrome:headless' test/e2e",
+    "e2e:local": "E2E_URL=https://local.marudor.de:9042 testcafe -L 'chrome' test/e2e",
     "e2e:browserstack": "E2E_URL=https://beta.marudor.de testcafe 'browserstack:edge@18.0:Windows 10,browserstack:chrome,browserstack:firefox,browserstack:Google Pixel 3@9' test/e2e"
   },
   "devDependencies": {
@@ -40,6 +40,7 @@
     "@babel/register": "^7.5.5",
     "@testing-library/jest-dom": "^4.0.0",
     "@testing-library/react": "^8.0.5",
+    "@testing-library/testcafe": "^2.1.1",
     "@types/babel-core": "^6.25.6",
     "@types/bunyan": "^1.8.6",
     "@types/bunyan-format": "^0.2.0",
