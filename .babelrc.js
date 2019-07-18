@@ -1,4 +1,4 @@
-const { overrides, ...TestConfig } = require('./.babelrc.server.js');
+const { env, ...TestConfig } = require('./.babelrc.server.js');
 
 module.exports = {
   presets: [
@@ -13,9 +13,9 @@ module.exports = {
       },
     ],
     '@babel/preset-react',
-    'babel-preset-joblift',
   ],
   plugins: [
+    '@babel/plugin-proposal-class-properties',
     './scripts/babelTransform/debugStyleNames.js',
     'babel-plugin-idx',
     'lodash',
