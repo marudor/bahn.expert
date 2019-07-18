@@ -6,7 +6,7 @@ module.exports = {
       '@babel/preset-env',
       {
         targets: {
-          node: '10',
+          node: 'current',
         },
         loose: false,
         useBuiltIns: 'entry',
@@ -15,11 +15,12 @@ module.exports = {
       },
     ],
     '@babel/preset-react',
-    'babel-preset-joblift',
   ],
   plugins: [
+    '@babel/plugin-proposal-class-properties',
     './scripts/babelTransform/debugStyleNames.js',
     'babel-plugin-idx',
+    'lodash',
     [
       'module-resolver',
       {
@@ -35,12 +36,11 @@ module.exports = {
             currentFile,
             opts
           );
+
           return path;
         },
       },
     ],
-    'dynamic-import-webpack',
-    'remove-webpack',
     [
       'transform-require-ignore',
       {
@@ -48,4 +48,10 @@ module.exports = {
       },
     ],
   ],
+  env: {
+    production: {
+      compact: true,
+      plugins: ['@babel/plugin-transform-react-constant-elements'],
+    },
+  },
 };

@@ -14,4 +14,5 @@ module.exports = {
   settings: {
     'import/resolver': 'webpack',
   },
+  overrides: require('eslint-config-marudor/typescript').overrides,
 };

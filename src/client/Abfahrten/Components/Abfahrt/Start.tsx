@@ -33,9 +33,9 @@ const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
           <CheckInLink abfahrt={abfahrt} />
           <Link
             onClick={stopPropagation}
-            to={`/details/${abfahrt.train.thirdParty || abfahrt.train.type} ${
-              abfahrt.train.number
-            }/${abfahrt.initialDeparture}`}
+            to={`/details/${abfahrt.train.thirdParty ||
+              abfahrt.train.type ||
+              ''} ${abfahrt.train.number}/${abfahrt.initialDeparture}`}
           >
             Details
           </Link>
