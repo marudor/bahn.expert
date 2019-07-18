@@ -4,24 +4,24 @@ const config = require('../.babelrc.server');
 require('@babel/register')(config);
 
 global.PROD = true;
-const search = require('../src/server/Search').default;
+const search = require('../dist/server/server/Search').default;
 
 const mostUsedNames = [
-  'Hannover Hbf',
-  'Köln Hbf',
-  'Düsseldorf Hbf',
-  'Wuppertal Hbf',
-  'Mannheim Hbf',
   'Frankfurt (Main) Hbf',
-  'Hamburg Hbf',
-  'Chmenitz Hbf',
-  'Berlin Hbf',
-  'Rheda-Wiedenbrück',
-  'Kempen (Niederrhein)',
+  'Hannover Hbf',
   'Stuttgart Hbf',
+  'Köln Hbf',
+  'Hamburg Hbf',
+  'Berlin Hbf',
+  'Düsseldorf Hbf',
+  'Mannheim Hbf',
+  'Villingen (Schwarzw)',
+  'Karlsruhe Hbf',
+  'Wuppertal Hbf',
+  'Nürnberg Hbf',
+  'München Hbf',
   'Bonn Hbf',
-  'Opladen',
-  'Berlin-Spandau',
+  'Leipzig Hbf',
 ].map(n => n.toLowerCase());
 
 Promise.all(mostUsedNames.map(s => search(s).then(s => s[0]))).then(
