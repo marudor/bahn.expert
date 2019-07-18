@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Loading defaults to grid 1`] = `
-<div>
+<div
+  data-testid="loading"
+>
   <div
     class="Loading-cube Loading-absolute"
     data-testid="grid"
@@ -26,7 +28,9 @@ exports[`Loading returns children if isLoading is false 1`] = `
 `;
 
 exports[`Loading shows loading if no children given (dots type) 1`] = `
-<div>
+<div
+  data-testid="loading"
+>
   <div
     class="Loading-dots"
     data-testid="dots"
@@ -39,7 +43,9 @@ exports[`Loading shows loading if no children given (dots type) 1`] = `
 `;
 
 exports[`Loading shows loading if no children given 1`] = `
-<div>
+<div
+  data-testid="loading"
+>
   <div
     class="Loading-cube Loading-absolute"
     data-testid="grid"
@@ -58,7 +64,9 @@ exports[`Loading shows loading if no children given 1`] = `
 `;
 
 exports[`Loading shows loading instead of children if isLoading is given 1`] = `
-<div>
+<div
+  data-testid="loading"
+>
   <div
     class="Loading-cube Loading-absolute"
     data-testid="grid"
@@ -79,6 +87,7 @@ exports[`Loading shows loading instead of children if isLoading is given 1`] = `
 exports[`Loading supports custom className 1`] = `
 <div
   class="test"
+  data-testid="loading"
 >
   <div
     class="Loading-cube Loading-absolute"

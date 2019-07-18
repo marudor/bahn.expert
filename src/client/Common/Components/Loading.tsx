@@ -62,7 +62,11 @@ const Loading = ({
   const classes = useStyles({});
 
   if (isLoading || !children) {
-    return <div className={className}>{getType(type, classes, !relative)}</div>;
+    return (
+      <div data-testid="loading" className={className}>
+        {getType(type, classes, !relative)}
+      </div>
+    );
   }
 
   return children;

@@ -23,15 +23,21 @@ type Props = ReduxProps;
 type FavEntryDisplayProps = {
   deleteFav?: (e: MouseEvent) => void;
   text: ReactNode;
+  'data-testid'?: string;
 };
-export const FavEntryDisplay = ({ deleteFav, text }: FavEntryDisplayProps) => {
+export const FavEntryDisplay = ({
+  deleteFav,
+  text,
+  'data-testid': testid,
+}: FavEntryDisplayProps) => {
   const classes = useStyles();
 
   return (
-    <Paper className={classes.main} square>
+    <Paper data-testid={testid} className={classes.main} square>
       <span>{text}</span>
       {deleteFav && (
         <IconButton
+          data-testid="deleteFav"
           aria-label={`${text} entfernen`}
           onClick={deleteFav}
           color="inherit"
@@ -55,6 +61,7 @@ const FavEntry = ({ fav, noDelete, unfav }: Props) => {
 
   return (
     <Link
+      data-testid="favEntry"
       to={encodeURIComponent(fav.title)}
       title={`Zugabfahrten für ${fav.title}`}
     >

@@ -77,7 +77,7 @@ const FavList = ({ favs, error, staticContext, setCurrentStation }: Props) => {
         favs.map(fav => fav && <FavEntry key={fav.id} fav={fav} />)
       ) : (
         <>
-          <FavEntryDisplay text="Keine Favoriten" />
+          <FavEntryDisplay data-testid="noFav" text="Keine Favoriten" />
           <FavEntryDisplay text="Oft gesucht:" />
           <MostUsed />
         </>
