@@ -5,6 +5,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
 
@@ -97,9 +98,26 @@ if (isDev) {
     new OptimizeCSSAssetsPlugin({}),
   ];
   plugins.push(
-    new StatsWriterPlugin({
-      filename: 'static/stats.json',
-    })
+    ...[
+      new StatsWriterPlugin({
+        filename: 'static/stats.json',
+      }),
+      new CompressionPlugin({
+        filename: '[path].br[query]',
+        test: /\.(js|css|svg)$/,
+        algorithm: 'brotliCompress',
+        compressionOptions: { level: 11 },
+        threshold: 0,
+        minRatio: 1,
+      }),
+      new CompressionPlugin({
+        filename: '[path].gz[query]',
+        test: /\.(js|css|svg)$/,
+        algorithm: 'gzip',
+        threshold: 0,
+        minRatio: 1,
+      }),
+    ]
   );
 }
 
