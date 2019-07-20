@@ -33,10 +33,10 @@ export function getSearchMethod(type?: StationSearchType) {
       return HafasSearch;
     case StationSearchType.StationsData:
       return StationsDataSearch;
+    default:
     case StationSearchType.Favendo:
       return FavendoSearch;
     case StationSearchType.FavendoStationsData:
-    default:
       return favendoStationsDataCombined;
   }
 }
