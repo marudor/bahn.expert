@@ -1,4 +1,4 @@
-import { HafasResponse } from 'types/HAFAS';
+import { AllowedHafasProfile, HafasResponse } from 'types/HAFAS';
 import { LocMatchRequest, LocMatchResponse } from 'types/HAFAS/LocMatch';
 import { Station } from 'types/station';
 import makeRequest from './Request';
@@ -7,7 +7,7 @@ function parseFn(d: HafasResponse<LocMatchResponse>): Station[] {
   const stations = d.svcResL[0].res.match.locL;
 
   return stations
-    .filter(s => !s.meta)
+    .filter(s => !s.meta && s.extId)
     .map(s => ({
       title: s.name,
       id: s.extId.substr(2),
@@ -15,7 +15,11 @@ function parseFn(d: HafasResponse<LocMatchResponse>): Station[] {
     }));
 }
 
-export default (searchTerm: string, type: 'S' | 'ALL' = 'S') => {
+export default (
+  searchTerm: string,
+  type: 'S' | 'ALL' = 'S',
+  profile?: AllowedHafasProfile
+) => {
   const req: LocMatchRequest = {
     req: {
       input: {
@@ -29,5 +33,5 @@ export default (searchTerm: string, type: 'S' | 'ALL' = 'S') => {
     meth: 'LocMatch',
   };
 
-  return makeRequest(req, parseFn);
+  return makeRequest(req, parseFn, profile);
 };
