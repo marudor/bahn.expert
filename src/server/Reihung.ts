@@ -1,8 +1,8 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable no-fallthrough */
 import {
+  AdditionalFahrzeugInfo,
   BRInfo,
-  DetailedBRInfo,
   Fahrzeug,
   Formation,
   Wagenreihung,
@@ -37,78 +37,6 @@ function differentZugunummer(formation: Formation) {
           : true
       );
 }
-
-const getDetailedInformation = (br: BRInfo): undefined | DetailedBRInfo => {
-  if (br.BR) {
-    switch (br.BR) {
-      // ICE 4
-      case '412':
-        return {
-          comfort: ['11', '7'],
-          quiet: ['14', '3', '2'],
-          toddler: ['9'],
-        };
-      // ICE 1
-      case '401':
-        return {
-          comfort: ['11', '7'],
-          quiet: ['12', '4', '2'],
-          toddler: ['9'],
-        };
-      // ICE 2
-      case '402':
-        return {
-          comfort: ['26', '36', '28', '38'],
-          quiet: ['27', '37', '22', '32'],
-          toddler: ['24', '34'],
-        };
-      // ICE 3
-      case '403':
-      // ICE 3
-      case '406':
-        return {
-          comfort: ['28', '38', '27', '37'],
-          quiet: ['28', '38', '29', '39', '21', '31'],
-          toddler: ['25', '35'],
-        };
-      // ICE 3 Velaro
-      case '407':
-        return {
-          comfort: ['26', '36', '25', '35'],
-          quiet: ['29', '39', '21', '31'],
-          toddler: ['25', '35'],
-        };
-      // ICE T
-      case '411':
-        return {
-          comfort: ['28', '38', '27', '37'],
-          quiet: ['28', '38', '22', '32', '21', '31'],
-          toddler: ['26', '36'],
-        };
-      // ICE T
-      case '415':
-        return {
-          comfort: ['28', '38', '23', '33'],
-          quiet: ['28', '38', '21', '31'],
-          toddler: ['27', '37'],
-        };
-    }
-  } else {
-    switch (br.name) {
-      case 'MET':
-        return {
-          comfort: ['5', '6'],
-          quiet: ['1', '7'],
-        };
-      case 'IC 2':
-        return {
-          comfort: ['4', '5'],
-          quiet: ['5'],
-          toddler: ['1'],
-        };
-    }
-  }
-};
 
 const getATBR = (
   code: string,
@@ -401,11 +329,6 @@ const specificBR = (
 
   const fallback: BRInfo = { name: formation.zuggattung, noPdf: true };
 
-  if (formation.zuggattung === 'IC') {
-    fallback.comfort = ['12', '10'];
-    fallback.toddler = ['Bvmmsz', 'Bvmsz'];
-  }
-
   return fallback;
 };
 
@@ -418,6 +341,80 @@ function fahrtrichtung(fahrzeuge: Fahrzeug[]) {
     Number.parseInt(last.positionamhalt.startprozent, 10) >
     Number.parseInt(first.positionamhalt.startprozent, 10)
   );
+}
+
+function enrichFahrzeug(fahrzeug: Fahrzeug) {
+  const data: AdditionalFahrzeugInfo = {
+    klasse: 0,
+  };
+
+  switch (fahrzeug.kategorie) {
+    case 'DOPPELSTOCKSTEUERWAGENZWEITEKLASSE':
+    case 'DOPPELSTOCKWAGENZWEITEKLASSE':
+    case 'REISEZUGWAGENZWEITEKLASSE':
+    case 'STEUERWAGENZWEITEKLASSE':
+      data.klasse = 2;
+      break;
+    case 'HALBSPEISEWAGENZWEITEKLASSE':
+    case 'SPEISEWAGEN':
+      data.klasse = 2;
+      data.speise = true;
+      break;
+    default:
+      break;
+    case 'DOPPELSTOCKWAGENERSTEZWEITEKLASSE':
+    case 'DOPPELSTOCKSTEUERWAGENERSTEZWEITEKLASSE':
+    case 'STEUERWAGENERSTEZWEITEKLASSE':
+    case 'REISEZUGWAGENERSTEZWEITEKLASSE':
+      data.klasse = 3;
+      break;
+    case 'HALBSPEISEWAGENERSTEKLASSE':
+      data.klasse = 1;
+      data.speise = true;
+      break;
+    case 'DOPPELSTOCKWAGENERSTEKLASSE':
+    case 'REISEZUGWAGENERSTEKLASSE':
+    case 'STEUERWAGENERSTEKLASSE':
+      data.klasse = 1;
+      break;
+    case 'TRIEBKOPF':
+    case 'LOK':
+      data.klasse = 4;
+  }
+
+  fahrzeug.allFahrzeugausstattung.forEach(ausstattung => {
+    switch (ausstattung.ausstattungsart) {
+      case 'PLAETZEROLLSTUHL':
+        data.rollstuhl = true;
+        break;
+      case 'PLAETZEFAHRRAD':
+        data.fahrrad = true;
+        break;
+      case 'BISTRO':
+        data.speise = true;
+        break;
+      case 'RUHE':
+        data.ruhe = true;
+        break;
+      case 'FAMILIE':
+        data.familie = true;
+        break;
+      case 'PLAETZEBAHNCOMFORT':
+        data.comfort = true;
+        break;
+      case 'PLAETZESCHWERBEH':
+        data.schwebe = true;
+        break;
+      case 'INFO':
+        data.info = true;
+        break;
+      case 'ABTEILKLEINKIND':
+        data.kleinkind = true;
+        break;
+    }
+  });
+
+  fahrzeug.additionalInfo = data;
 }
 
 // https://www.apps-bahn.de/wr/wagenreihung/1.0/6/201802021930
@@ -446,6 +443,8 @@ export async function wagenReihung(trainNumber: string, date: number) {
   const fahrzeuge = flatten(
     info.data.istformation.allFahrzeuggruppe.map(g => g.allFahrzeug)
   );
+
+  fahrzeuge.forEach(enrichFahrzeug);
 
   let startPercentage = 100;
   let endPercentage = 0;
@@ -491,7 +490,6 @@ export async function wagenReihung(trainNumber: string, date: number) {
       info.data.istformation
     );
     if (g.br) {
-      Object.assign(g.br, getDetailedInformation(g.br));
       g.br.country = getCountry(g.allFahrzeug, gruppenFahrzeugTypes);
       g.br.showBRInfo = Boolean(
         g.br.BR || !g.br.noPdf || (g.br.country && g.br.country !== 'DE')

@@ -9,6 +9,24 @@ export type Meta = {
   sequence: number;
 };
 
+// Klasse: 0 = unknown
+// Klasse: 1 = Nur erste
+// Klasse: 2 = Nur zweite
+// Klasse: 3 = 1 & 2
+// klasse: 4 = Nicht für Passagiere. z.B. Triebkopf
+export type AdditionalFahrzeugInfo = {
+  klasse: 0 | 1 | 2 | 3 | 4;
+  speise?: boolean;
+  rollstuhl?: boolean;
+  fahrrad?: boolean;
+  comfort?: boolean;
+  schwebe?: boolean;
+  ruhe?: boolean;
+  info?: boolean;
+  familie?: boolean;
+  kleinkind?: boolean;
+};
+
 export type Fahrzeugausstattung = {
   anzahl: string;
   ausstattungsart: string;
@@ -24,6 +42,7 @@ export type Position = {
 };
 
 export type Fahrzeug = {
+  additionalInfo: AdditionalFahrzeugInfo;
   allFahrzeugausstattung: Fahrzeugausstattung[];
   kategorie: string;
   fahrzeugnummer: string;
@@ -103,12 +122,7 @@ export type Wagenreihung = {
 
 export type Reihung = Formation;
 
-export interface DetailedBRInfo {
-  comfort?: string[];
-  quiet?: string[];
-  toddler?: string[];
-}
-export interface BRInfo extends DetailedBRInfo {
+export interface BRInfo {
   name: string;
   BR?: string;
   serie?: string;
