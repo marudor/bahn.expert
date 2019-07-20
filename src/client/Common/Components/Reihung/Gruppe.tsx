@@ -48,29 +48,9 @@ const Gruppe = ({
   const fahrzeuge = useMemo(
     () =>
       gruppe.allFahrzeug.map(f => {
-        const extraInfo: {
-          comfort?: boolean;
-          quiet?: boolean;
-          toddler?: boolean;
-        } = {};
-
-        if (gruppe.br) {
-          extraInfo.comfort =
-            gruppe.br.comfort &&
-            gruppe.br.comfort.includes(f.wagenordnungsnummer);
-          extraInfo.quiet =
-            gruppe.br.quiet && gruppe.br.quiet.includes(f.wagenordnungsnummer);
-          extraInfo.toddler =
-            gruppe.br.toddler &&
-            gruppe.br.toddler.includes(
-              rest.type === 'ICE' ? f.wagenordnungsnummer : f.fahrzeugtyp
-            );
-        }
-
         return (
           <Fahrzeug
             {...rest}
-            {...extraInfo}
             wrongWing={originalTrainNumber !== gruppe.verkehrlichezugnummer}
             key={`${f.fahrzeugnummer}${f.positioningruppe}`}
             fahrzeug={f}
