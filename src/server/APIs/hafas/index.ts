@@ -91,7 +91,7 @@ const getCurrent = () =>
     .get('/station/:searchTerm', async ctx => {
       const { searchTerm } = ctx.params;
 
-      ctx.body = await LocMatch(searchTerm);
+      ctx.body = await LocMatch(searchTerm, undefined, ctx.hafasProfile);
     })
     .post('/rawHafas', async ctx => {
       ctx.body = await makeRequest(ctx.request.body);
