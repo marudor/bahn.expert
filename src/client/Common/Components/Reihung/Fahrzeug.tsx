@@ -1,13 +1,27 @@
 import { Fahrzeug, FahrzeugType } from 'types/reihung';
+import Accessibility from '@material-ui/icons/Accessibility';
 import ActionAccessible from '@material-ui/icons/Accessible';
 import ActionMotorcycle from '@material-ui/icons/Motorcycle';
 import cc from 'clsx';
+import ChildCare from '@material-ui/icons/ChildCare';
 import ChildFriendly from '@material-ui/icons/ChildFriendly';
+import Info from '@material-ui/icons/InfoOutlined';
 import MapsLocalDining from '@material-ui/icons/LocalDining';
 import NotificationsOff from '@material-ui/icons/NotificationsOff';
 import React from 'react';
 import useStyles from './Fahrzeug.style';
 import WagenLink from './WagenLink';
+
+export const icons = {
+  rollstuhl: ActionAccessible,
+  fahrrad: ActionMotorcycle,
+  speise: MapsLocalDining,
+  ruhe: NotificationsOff,
+  kleinkind: ChildFriendly,
+  familie: ChildCare,
+  schwebe: Accessibility,
+  info: Info,
+};
 
 export type InheritedProps = {
   scale: number;
@@ -16,9 +30,17 @@ export type InheritedProps = {
 };
 
 export type OwnProps = InheritedProps & {
-  fahrzeug: Fahrzeug;
+  fahrzeug: Pick<
+    Fahrzeug,
+    | 'fahrzeugtyp'
+    | 'wagenordnungsnummer'
+    | 'positionamhalt'
+    | 'status'
+    | 'additionalInfo'
+    | 'fahrzeugnummer'
+  >;
   destination?: string;
-  wrongWing: boolean;
+  wrongWing?: boolean;
 };
 
 type Props = OwnProps;
@@ -56,19 +78,28 @@ const FahrzeugComp = ({
       <span className={classes.nummer}>{fahrzeug.wagenordnungsnummer}</span>
       <span className={classes.icons}>
         {fahrzeug.additionalInfo.rollstuhl && (
-          <ActionAccessible className={classes.icon} />
+          <icons.rollstuhl className={classes.icon} />
         )}
         {fahrzeug.additionalInfo.fahrrad && (
-          <ActionMotorcycle className={classes.icon} />
+          <icons.fahrrad className={classes.icon} />
         )}
         {fahrzeug.additionalInfo.speise && (
-          <MapsLocalDining className={classes.icon} />
+          <icons.speise className={classes.icon} />
         )}
         {fahrzeug.additionalInfo.ruhe && (
-          <NotificationsOff className={classes.icon} />
+          <icons.ruhe className={classes.icon} />
         )}
         {fahrzeug.additionalInfo.kleinkind && (
-          <ChildFriendly className={classes.icon} />
+          <icons.kleinkind className={classes.icon} />
+        )}
+        {fahrzeug.additionalInfo.familie && (
+          <icons.familie className={classes.icon} />
+        )}
+        {fahrzeug.additionalInfo.schwebe && (
+          <icons.schwebe className={classes.icon} />
+        )}
+        {fahrzeug.additionalInfo.info && (
+          <icons.info className={classes.icon} />
         )}
       </span>
       {fahrzeug.additionalInfo.comfort && <span className={classes.comfort} />}
