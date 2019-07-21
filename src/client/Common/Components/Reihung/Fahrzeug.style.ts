@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/styles';
 export default makeStyles(theme => ({
   main: {
     position: 'absolute',
-    height: '2em',
+    height: '2.5em',
     border: `${theme.palette.text.primary} 1px solid`,
     boxSizing: 'border-box',
   },
@@ -33,9 +33,11 @@ export default makeStyles(theme => ({
     zIndex: 1,
     left: '50%',
     transform: 'translateX(-50%)',
+    bottom: 0,
   },
 
   klasse: {
+    bottom: 0,
     position: 'absolute',
   },
 
@@ -76,9 +78,7 @@ export default makeStyles(theme => ({
     },
   },
 
-  icons: {
-    marginLeft: '.5em',
-  },
+  icons: {},
 
   icon: {
     width: '0.6em !important',

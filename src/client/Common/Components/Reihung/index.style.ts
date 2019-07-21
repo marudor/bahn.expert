@@ -12,7 +12,7 @@ export default makeStyles(theme => ({
     reihung: Formation | null;
     fahrzeugGruppe: boolean;
   }) => {
-    let height = 6;
+    let height = 6.5;
 
     if (fahrzeugGruppe) height += 1;
     if (reihung) {
@@ -25,10 +25,10 @@ export default makeStyles(theme => ({
     }
 
     return {
-      minWidth: '60em',
+      minWidth: '70em',
       overflow: 'hidden',
       position: 'relative',
-      fontSize: '160%',
+      fontSize: '170%',
       marginBottom: '1em',
       marginRight: '.3em',
       height: `${height}em`,
