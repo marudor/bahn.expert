@@ -154,6 +154,9 @@ const StationSearch = ({
       indicatorSeparator: () => ({
         display: 'none',
       }),
+      clearIndicator: () => ({
+        display: 'none',
+      }),
       container: () => ({
         flex: 1,
         position: 'relative',

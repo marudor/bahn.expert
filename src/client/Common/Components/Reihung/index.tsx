@@ -3,6 +3,7 @@ import { getReihungForId } from 'Common/selector/reihung';
 import { useCommonSelector } from 'useSelector';
 import { useDispatch } from 'react-redux';
 import cc from 'clsx';
+import Explain from './Explain';
 import Gruppe from './Gruppe';
 import Loading from 'Common/Components/Loading';
 import React, { useEffect } from 'react';
@@ -81,6 +82,7 @@ const ReihungComp = (props: Props) => {
             />
           ))}
         </div>
+        <Explain />
         <span className={classes.richtung} />
       </div>
     </div>

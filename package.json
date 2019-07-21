@@ -23,7 +23,7 @@
     "tsc": "tsc",
     "depCheck": "depcruise --validate .dependency-cruiser.js src",
     "test": "npm run lint && npm run depCheck && npm run test:jest && tsc",
-    "test:codecov": "codecov --disable=gco",
+    "test:codecov": "codecov --disable=gcov",
     "test:jest": "TZ=UTC jest",
     "e2e:local": "E2E_URL=https://local.marudor.de:9042 testcafe -L 'chrome' test/e2e",
     "e2e:browserstack": "E2E_URL=https://beta.marudor.de testcafe 'browserstack:edge@18.0:Windows 10,browserstack:chrome,browserstack:firefox,browserstack:Google Pixel 3@9' test/e2e"
