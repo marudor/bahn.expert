@@ -16,6 +16,7 @@ type OwnProps = {
 type Props = OwnProps;
 const Stop = ({ stop, showWR }: Props) => {
   const classes = useStyles();
+  const depOrArrival = stop.departure || stop.arrival;
   const platforms = stop.departure
     ? {
         real: stop.departure.platform,
@@ -44,6 +45,7 @@ const Stop = ({ stop, showWR }: Props) => {
       <span
         className={cc(classes.station, {
           [classes.cancelled]: stop.cancelled,
+          [classes.additional]: stop.additional,
         })}
       >
         {stop.station.title}
@@ -61,17 +63,14 @@ const Stop = ({ stop, showWR }: Props) => {
       {/* {stop.messages && <div>{stop.messages.map(m => m.txtN)}</div>} */}
       <Platform className={classes.platform} {...platforms} />
       <div className={classes.wr}>
-        {showWR &&
-          stop.departure &&
-          stop.departure.reihung &&
-          showWR.number && (
-            <Reihung
-              useZoom
-              trainNumber={showWR.number}
-              currentStation={stop.station.title}
-              scheduledDeparture={stop.departure.scheduledTime}
-            />
-          )}
+        {showWR && (depOrArrival && depOrArrival.reihung) && showWR.number && (
+          <Reihung
+            useZoom
+            trainNumber={showWR.number}
+            currentStation={stop.station.title}
+            scheduledDeparture={depOrArrival.scheduledTime}
+          />
+        )}
       </div>
       <div className={classes.messages}>
         {stop.irisMessages && <DetailMessages messages={stop.irisMessages} />}

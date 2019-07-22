@@ -16,6 +16,7 @@ declare module 'maru' {
       cancelled: CSSProperties;
       delayed: CSSProperties;
       changed: CSSProperties;
+      additional: CSSProperties;
       early: CSSProperties;
     };
   }
