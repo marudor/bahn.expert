@@ -64,6 +64,14 @@ export default async (
     };
   }
 
+  if (relevantSegment.stops.length !== train.jDetails.stops.length) {
+    train.jDetails.stops.forEach((stop, index) => {
+      if (stop.additional) {
+        relevantSegment.stops.splice(index, 0, stop);
+      }
+    });
+  }
+
   const lastStop = relevantSegment.stops
     .filter(s => s.arrival && !s.arrival.cancelled)
     .pop();

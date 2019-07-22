@@ -19,7 +19,10 @@ export default (themeType: ThemeType): MuiTheme & MaruTheme => {
       color: colors.red,
     },
     changed: {
-      color: colors.red,
+      color: `${colors.red}!important`,
+    },
+    additional: {
+      color: `${colors.green}!important`,
     },
     early: {
       color: colors.green,
