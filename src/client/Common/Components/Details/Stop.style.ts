@@ -11,8 +11,11 @@ export default makeStyles(theme => ({
     borderBottom: `1px solid ${theme.palette.text.primary}`,
     position: 'relative',
   },
-  cancelled: theme.mixins.cancelled,
-
+  cancelled: {
+    ...theme.mixins.cancelled,
+    ...theme.mixins.changed,
+  },
+  additional: theme.mixins.additional,
   station: {
     gridArea: 't',
     overflow: 'hidden',
