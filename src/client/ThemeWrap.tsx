@@ -6,6 +6,7 @@ import { ThemeType } from './Themes/type';
 import App from './App';
 import createTheme from './Themes';
 import React, { ReactNode, useMemo } from 'react';
+import ThemeHeaderTags from 'Common/Components/ThemeHeaderTags';
 
 interface StateProps {
   themeType: ThemeType;
@@ -20,7 +21,12 @@ type Props = StateProps & OwnProps;
 const ThemeWrap = ({ themeType, children = <App /> }: Props) => {
   const theme = useMemo(() => createTheme(themeType), [themeType]);
 
-  const themeProvider = <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+  const themeProvider = (
+    <ThemeProvider theme={theme}>
+      <ThemeHeaderTags />
+      {children}
+    </ThemeProvider>
+  );
 
   if (process.env.NODE_ENV === 'test') {
     const StylesProvider = require('@material-ui/styles').StylesProvider;
