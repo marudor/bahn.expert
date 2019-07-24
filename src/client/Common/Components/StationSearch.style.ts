@@ -2,6 +2,19 @@ import { emphasize } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/styles';
 
 export default makeStyles(theme => ({
+  wrapper: {
+    display: 'flex',
+    flex: 1,
+    position: 'relative',
+  },
+  geo: {
+    position: 'absolute',
+    right: 0,
+    cursor: 'pointer',
+    fontSize: '1.3em',
+    top: '50%',
+    transform: 'translateY(-50%)',
+  },
   root: {
     flexGrow: 1,
   },
