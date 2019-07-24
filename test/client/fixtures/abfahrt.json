@@ -1,0 +1,121 @@
+{
+  "o": "80",
+  "initialDeparture": 1563805560000,
+  "arrival": {
+    "scheduledTime": 1563806340000,
+    "time": 1563806940000,
+    "wingIds": [
+      "3763871362376381297-1907221626"
+    ],
+    "platform": "Fern 7",
+    "scheduledPlatform": "Fern 7",
+    "hidden": false,
+    "cancelled": false,
+    "delay": 10
+  },
+  "departure": {
+    "scheduledTime": 1563806580000,
+    "time": 1563807060000,
+    "platform": "Fern 7",
+    "scheduledPlatform": "Fern 7",
+    "hidden": false,
+    "cancelled": false,
+    "delay": 8
+  },
+  "productClass": "F",
+  "currentStation": {
+    "title": "Frankfurt (M)  Flughafen Fernbf",
+    "id": "8070003"
+  },
+  "scheduledDestination": "Amsterdam Centraal",
+  "id": "4524910290568704513",
+  "rawId": "4524910290568704513-1907221626-2",
+  "mediumId": "4524910290568704513-1907221626",
+  "substitute": false,
+  "train": {
+    "longDistance": true,
+    "name": "ICE 122",
+    "number": "122",
+    "trainCategory": "ICE",
+    "type": "ICE"
+  },
+  "messages": {
+    "delay": [
+      {
+        "text": "Zusätzlicher Halt",
+        "timestamp": 1563801900000
+      },
+      {
+        "text": "Verzögerungen im Betriebsablauf",
+        "timestamp": 1563798480000
+      },
+      {
+        "text": "Technische Störung am Zug",
+        "timestamp": 1563796740000
+      }
+    ],
+    "qos": [
+      {
+        "text": "Abweichende Wagenreihung",
+        "timestamp": 1563802680000
+      }
+    ]
+  },
+  "cancelled": false,
+  "route": [
+    {
+      "name": "Frankfurt (Main) Hbf"
+    },
+    {
+      "name": "Frankfurt (M)  Flughafen Fernbf",
+      "cancelled": false
+    },
+    {
+      "name": "Köln Messe/Deutz Gl.11-12",
+      "cancelled": true
+    },
+    {
+      "name": "Köln Hbf",
+      "additional": true,
+      "cancelled": false,
+      "showVia": true
+    },
+    {
+      "name": "Köln Messe/Deutz",
+      "additional": true,
+      "cancelled": false
+    },
+    {
+      "name": "Düsseldorf Hbf",
+      "cancelled": false,
+      "showVia": true
+    },
+    {
+      "name": "Duisburg Hbf",
+      "cancelled": false,
+      "showVia": true
+    },
+    {
+      "name": "Oberhausen Hbf",
+      "cancelled": false
+    },
+    {
+      "name": "Arnhem Centraal",
+      "cancelled": false
+    },
+    {
+      "name": "Utrecht Centraal",
+      "cancelled": false
+    },
+    {
+      "name": "Amsterdam Centraal",
+      "cancelled": false
+    }
+  ],
+  "destination": "Amsterdam Centraal",
+  "platform": "Fern 7",
+  "scheduledPlatform": "Fern 7",
+  "auslastung": true,
+  "reihung": true,
+  "hiddenReihung": false
+}

@@ -97,6 +97,16 @@ if (isDev) {
     }),
     new OptimizeCSSAssetsPlugin({}),
   ];
+  // optimization.splitChunks = {
+  //   minSize: 30000,
+  //   cacheGroups: {
+  //     vendor: {
+  //       test: /[\\/]node_modules[\\/](react|react-dom|redux|react-router|core-js|@material-ui)[\\/]/,
+  //       name: 'vendor',
+  //       chunks: 'all',
+  //     },
+  //   },
+  // };
   plugins.push(
     ...[
       new StatsWriterPlugin({

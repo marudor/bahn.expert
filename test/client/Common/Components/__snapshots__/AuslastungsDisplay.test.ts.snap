@@ -13,7 +13,6 @@ exports[`AuslastungsDisplay Gering / Hoch 1`] = `
     </span>
     <span
       class="AuslastungsDisplay-icon AuslastungsDisplay-first AuslastungsDisplay-first"
-      title="Geringe Auslastung"
     >
       <svg
         aria-hidden="true"
@@ -37,7 +36,6 @@ exports[`AuslastungsDisplay Gering / Hoch 1`] = `
     </span>
     <span
       class="AuslastungsDisplay-icon AuslastungsDisplay-second AuslastungsDisplay-second"
-      title="Mittlere Auslastung"
     >
       <svg
         aria-hidden="true"
@@ -68,7 +66,6 @@ exports[`AuslastungsDisplay SehrHoch / Ausgebucht 1`] = `
     </span>
     <span
       class="AuslastungsDisplay-icon AuslastungsDisplay-first AuslastungsDisplay-first"
-      title="Hohe Auslastung"
     >
       <svg
         aria-hidden="true"
@@ -96,7 +93,6 @@ exports[`AuslastungsDisplay SehrHoch / Ausgebucht 1`] = `
     </span>
     <span
       class="AuslastungsDisplay-icon AuslastungsDisplay-second AuslastungsDisplay-second"
-      title="Ausgebucht"
     >
       <svg
         aria-hidden="true"
@@ -127,7 +123,6 @@ exports[`AuslastungsDisplay Unbekannt / Hoch 1`] = `
     </span>
     <span
       class="AuslastungsDisplay-icon AuslastungsDisplay-first AuslastungsDisplay-first"
-      title="Unbekannt"
     >
       <svg
         aria-hidden="true"
@@ -151,7 +146,6 @@ exports[`AuslastungsDisplay Unbekannt / Hoch 1`] = `
     </span>
     <span
       class="AuslastungsDisplay-icon AuslastungsDisplay-second AuslastungsDisplay-second"
-      title="Mittlere Auslastung"
     >
       <svg
         aria-hidden="true"

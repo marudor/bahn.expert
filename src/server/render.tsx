@@ -6,7 +6,6 @@ import { isEnabled } from 'unleash-client';
 import { MarudorConfigSanitize } from 'Common/config';
 import { matchRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
-// import { renderStylesToString } from 'emotion-server';
 import { renderToString } from 'react-dom/server';
 import { ServerStyleSheets } from '@material-ui/styles';
 import { setConfig, setFromCookies } from 'Abfahrten/actions/abfahrtenConfig';
