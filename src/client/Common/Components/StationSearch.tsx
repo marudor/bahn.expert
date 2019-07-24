@@ -12,8 +12,15 @@ import { ValueContainerProps } from 'react-select/src/components/containers';
 import Async from 'react-select/async';
 import debounce from 'debounce-promise';
 import MenuItem from '@material-ui/core/MenuItem';
+import MyLocation from '@material-ui/icons/MyLocation';
 import Paper from '@material-ui/core/Paper';
-import React, { useCallback, useMemo } from 'react';
+import React, {
+  SyntheticEvent,
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './StationSearch.style';
@@ -118,7 +125,9 @@ function Menu(props: MenuProps<any>) {
   );
 }
 
+const noop = () => null;
 const components = {
+  IndicatorsContainer: noop,
   Control,
   Menu,
   NoOptionsMessage,
@@ -145,18 +154,10 @@ const StationSearch = ({
 }: Props) => {
   const classes = useStyles();
   const theme = useTheme<MergedTheme>();
+  const asyncRef = useRef<any>();
 
   const selectStyles: StylesConfig = useMemo(
     () => ({
-      dropdownIndicator: () => ({
-        display: 'none',
-      }),
-      indicatorSeparator: () => ({
-        display: 'none',
-      }),
-      clearIndicator: () => ({
-        display: 'none',
-      }),
       container: () => ({
         flex: 1,
         position: 'relative',
@@ -171,28 +172,53 @@ const StationSearch = ({
     }),
     [theme]
   );
+  const [location, setLocation] = useState<Coordinates | undefined>();
   const loadOptions = useCallback(
-    (term: string) => debouncedGetStationFromAPI(term, searchType),
-    [searchType]
+    (term: string) => debouncedGetStationFromAPI(term, searchType, location),
+    [location, searchType]
   );
   const getOptionLabel = useCallback((station: Station) => station.title, []);
   const getOptionValue = useCallback((station: Station) => station.id, []);
+  const getLocation = useCallback(
+    (e: SyntheticEvent<any>) => {
+      e.stopPropagation();
+      navigator.geolocation.getCurrentPosition(
+        p => {
+          setLocation(p.coords);
+          if (asyncRef.current) {
+            asyncRef.current.select.select.openMenu();
+            asyncRef.current.handleInputChange('__GEO_HACK__', {
+              action: 'input-change',
+            });
+          }
+        },
+        _e => {
+          // ignore for now
+        }
+      );
+    },
+    [asyncRef]
+  );
 
   return (
-    <Async
-      isClearable
-      components={components}
-      classes={classes}
-      autoFocus={autoFocus}
-      aria-label="Suche nach Bahnhof"
-      styles={selectStyles}
-      loadOptions={loadOptions}
-      getOptionLabel={getOptionLabel}
-      getOptionValue={getOptionValue}
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange as any}
-    />
+    <div className={classes.wrapper}>
+      <Async
+        ref={asyncRef}
+        isClearable
+        components={components}
+        classes={classes}
+        autoFocus={autoFocus}
+        aria-label="Suche nach Bahnhof"
+        styles={selectStyles}
+        loadOptions={loadOptions}
+        getOptionLabel={getOptionLabel}
+        getOptionValue={getOptionValue}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange as any}
+      />
+      <MyLocation onClick={getLocation} className={classes.geo} />
+    </div>
   );
 };
 

@@ -102,14 +102,6 @@ const ExtraMenu = ({
       <FilterModal />
       <ThemeModal />
       <IconButton
-        data-testid="themeMenu"
-        aria-label="ThemeMenu"
-        onClick={openTheme}
-        color="inherit"
-      >
-        <InvertColors />
-      </IconButton>
-      <IconButton
         data-testid="menu"
         aria-label="Menu"
         onClick={toggleMenu}
@@ -134,9 +126,16 @@ const ExtraMenu = ({
             {lageplan !== null ? <Layers /> : <LayersClear />} Lageplan
           </MenuItem>,
         ]}
-        <Zugsuche onClose={toggleMenu} />
         <MenuItem data-testid="openFilter" onClick={openFilterCb}>
           <FilterList /> Filter
+        </MenuItem>
+        <Zugsuche onClose={toggleMenu} />
+        <MenuItem
+          data-testid="themeMenu"
+          aria-label="ThemeMenu"
+          onClick={openTheme}
+        >
+          <InvertColors /> Theme
         </MenuItem>
         <MenuItem data-testid="openSettings" onClick={openSettingsCb}>
           <Settings /> Settings
