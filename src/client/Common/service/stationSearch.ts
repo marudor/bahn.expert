@@ -5,17 +5,25 @@ import axios from 'axios';
 
 export async function getStationsFromAPI(
   stationString?: string,
-  type: StationSearchType = StationSearchType.Default
+  type: StationSearchType = StationSearchType.Default,
+  coordinates?: Coordinates
 ): Promise<Station[]> {
   if (stationString) {
-    const item = (await axios.get(
-      `/api/station/current/search/${stationString}`,
-      {
+    let req;
+
+    if (coordinates && stationString === '__GEO_HACK__') {
+      req = axios.get('/api/station/current/geoSearch', {
         params: {
-          type,
+          lat: coordinates.latitude,
+          lng: coordinates.longitude,
         },
-      }
-    )).data;
+      });
+    } else {
+      req = axios.get(`/api/station/current/search/${stationString}`, {
+        params: { type },
+      });
+    }
+    const item = (await req).data;
 
     return item;
   }

@@ -64,6 +64,7 @@ export default async (rawSearchTerm: string, type?: StationSearchType) => {
   try {
     const searchMethod = getSearchMethod(type);
     const cache = getCache(searchMethod);
+
     const cached = cache.get<Station[]>(searchTerm);
 
     if (cached) {

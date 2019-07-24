@@ -13,6 +13,7 @@ const themeCookie = ClientFunction(() => {
 });
 
 test('Theme Selection', async t => {
+  await t.click(getByTestId('menu'));
   await t.click(getByTestId('themeMenu'));
   await t.click(getByTestId('themeRadioGroup').find('[value="black"]'));
   await t.expect(themeCookie()).eql('black');
