@@ -28,6 +28,7 @@ depCheck:
     key: '$CI_COMMIT_REF_SLUG'
     paths:
       - node_modules/
+  except: [master]
 
 jest:
   stage: test
@@ -42,6 +43,8 @@ jest:
       junit: reports/junitresults.xml
     paths:
       - reports
+  except: [master]
+
 
 lint:
   stage: test
@@ -51,6 +54,8 @@ lint:
     key: '$CI_COMMIT_REF_SLUG'
     paths:
       - node_modules/
+  except: [master]
+
 
 tsc:
   stage: test
@@ -60,6 +65,8 @@ tsc:
     key: '$CI_COMMIT_REF_SLUG'
     paths:
       - node_modules/
+  except: [master]
+
 
 build:app:
   stage: build
@@ -75,6 +82,7 @@ build:app:
     paths:
       - dist/client
   dependencies: []
+  only: [master]
 
 build:server:
   stage: build
@@ -90,6 +98,7 @@ build:server:
     paths:
       - dist/server
   dependencies: []
+  only: [master]
 
 codecov:
   stage: build
@@ -101,6 +110,8 @@ codecov:
       - node_modules/
   dependencies:
     - jest
+  except: [master]
+
 
 docker:server:
   services:
@@ -112,6 +123,7 @@ docker:server:
   dependencies:
     - build:server
     - build:app
+  only: [master]
 
 deploy:beta:
   stage: deploy
@@ -137,6 +149,7 @@ testcafe:
     paths:
       - node_modules/
   dependencies: []
+  only: [master]
 
 deploy:prod:
   stage: deploy
@@ -160,3 +173,4 @@ cleanup:
   script:
     - /cleanup.sh "marudor"
   dependencies: []
+  only: [master]
