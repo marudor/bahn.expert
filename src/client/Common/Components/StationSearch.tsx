@@ -1,141 +1,20 @@
-import { ControlProps } from 'react-select/src/components/Control';
-import { getStationsFromAPI } from 'Common/service/stationSearch';
-import { MenuProps, NoticeProps } from 'react-select/src/components/Menu';
-import { MergedTheme, useTheme } from '@material-ui/styles';
-import { OptionProps } from 'react-select/src/components/Option';
-import { PlaceholderProps } from 'react-select/src/components/Placeholder';
-import { SingleValueProps } from 'react-select/src/components/SingleValue';
+import {
+  getStationsFromAPI,
+  getStationsFromCoordinates,
+} from 'Common/service/stationSearch';
 import { Station } from 'types/station';
 import { StationSearchType } from 'Common/config';
-import { StylesConfig } from 'react-select/src/styles';
-import { ValueContainerProps } from 'react-select/src/components/containers';
-import Async from 'react-select/async';
 import debounce from 'debounce-promise';
+import Downshift, { DownshiftInterface } from 'downshift';
+import Loading, { LoadingType } from './Loading';
 import MenuItem from '@material-ui/core/MenuItem';
 import MyLocation from '@material-ui/icons/MyLocation';
 import Paper from '@material-ui/core/Paper';
-import React, {
-  SyntheticEvent,
-  useCallback,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { SyntheticEvent, useCallback, useRef, useState } from 'react';
 import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
 import useStyles from './StationSearch.style';
 
 const debouncedGetStationFromAPI = debounce(getStationsFromAPI, 500);
-
-function NoOptionsMessage(props: NoticeProps<any>) {
-  return (
-    <Typography
-      color="textSecondary"
-      className={props.selectProps.classes.noOptionsMessage}
-      {...props.innerProps}
-    >
-      {props.children}
-    </Typography>
-  );
-}
-
-function inputComponent({ inputRef, ...props }: any) {
-  return <div ref={inputRef} {...props} />;
-}
-
-function Control(props: ControlProps<any>) {
-  return (
-    <TextField
-      data-testid="stationSearch"
-      fullWidth
-      InputProps={{
-        inputComponent,
-        inputProps: {
-          className: props.selectProps.classes.input,
-          inputRef: props.innerRef,
-          children: props.children,
-          ...props.innerProps,
-        },
-      }}
-      {...props.selectProps.TextFieldProps}
-    />
-  );
-}
-
-function Option(props: OptionProps<any>) {
-  return (
-    <MenuItem
-      data-testid="menuItem"
-      ref={props.innerRef}
-      selected={props.isFocused}
-      component="div"
-      style={{
-        fontWeight: props.isSelected ? 500 : 400,
-      }}
-      {...props.innerProps}
-    >
-      {props.children}
-    </MenuItem>
-  );
-}
-
-function Placeholder(props: PlaceholderProps<any>) {
-  return (
-    <Typography
-      data-testid="placeholder"
-      color="textSecondary"
-      className={props.selectProps.classes.placeholder}
-      {...props.innerProps}
-    >
-      {props.children}
-    </Typography>
-  );
-}
-
-function SingleValue(props: SingleValueProps<any>) {
-  return (
-    <Typography
-      data-testid="singleValue"
-      className={props.selectProps.classes.singleValue}
-      {...props.innerProps}
-    >
-      {props.children}
-    </Typography>
-  );
-}
-
-function ValueContainer(props: ValueContainerProps<any>) {
-  return (
-    <div className={props.selectProps.classes.valueContainer}>
-      {props.children}
-    </div>
-  );
-}
-
-function Menu(props: MenuProps<any>) {
-  return (
-    <Paper
-      data-testid="menu"
-      square
-      className={props.selectProps.classes.paper}
-      {...props.innerProps}
-    >
-      {props.children}
-    </Paper>
-  );
-}
-
-const noop = () => null;
-const components = {
-  IndicatorsContainer: noop,
-  Control,
-  Menu,
-  NoOptionsMessage,
-  Option,
-  Placeholder,
-  SingleValue,
-  ValueContainer,
-};
 
 type Props = {
   searchType?: StationSearchType;
@@ -145,6 +24,7 @@ type Props = {
   placeholder?: string;
 };
 
+const TDownshift: DownshiftInterface<Station> = Downshift;
 const StationSearch = ({
   onChange,
   value,
@@ -153,43 +33,36 @@ const StationSearch = ({
   searchType,
 }: Props) => {
   const classes = useStyles();
-  const theme = useTheme<MergedTheme>();
-  const asyncRef = useRef<any>();
+  const [suggestions, setSuggestions] = useState<Station[]>([]);
+  const [loading, setLoading] = useState(false);
+  const selectRef = useRef();
+  const inputRef = useRef<HTMLInputElement>();
 
-  const selectStyles: StylesConfig = useMemo(
-    () => ({
-      container: () => ({
-        flex: 1,
-        position: 'relative',
-      }),
-      input: (base: any) => ({
-        ...base,
-        color: theme.palette.text.primary,
-        '& input': {
-          font: 'inherit',
-        },
-      }),
-    }),
-    [theme]
-  );
-  const [location, setLocation] = useState<Coordinates | undefined>();
   const loadOptions = useCallback(
-    (term: string) => debouncedGetStationFromAPI(term, searchType, location),
-    [location, searchType]
+    async (value: string | Coordinates) => {
+      setLoading(true);
+      let suggestions;
+
+      if (typeof value === 'string') {
+        suggestions = await debouncedGetStationFromAPI(value, searchType);
+      } else {
+        suggestions = await getStationsFromCoordinates(value);
+      }
+
+      setSuggestions(suggestions);
+      setLoading(false);
+    },
+    [searchType]
   );
-  const getOptionLabel = useCallback((station: Station) => station.title, []);
-  const getOptionValue = useCallback((station: Station) => station.id, []);
   const getLocation = useCallback(
     (e: SyntheticEvent<any>) => {
       e.stopPropagation();
       navigator.geolocation.getCurrentPosition(
         p => {
-          setLocation(p.coords);
-          if (asyncRef.current) {
-            asyncRef.current.select.select.openMenu();
-            asyncRef.current.handleInputChange('__GEO_HACK__', {
-              action: 'input-change',
-            });
+          loadOptions(p.coords);
+          if (selectRef.current) {
+            // @ts-ignore
+            selectRef.current.openMenu();
           }
         },
         _e => {
@@ -197,27 +70,121 @@ const StationSearch = ({
         }
       );
     },
-    [asyncRef]
+    [loadOptions]
   );
 
   return (
     <div className={classes.wrapper}>
-      <Async
-        ref={asyncRef}
-        isClearable
-        components={components}
-        classes={classes}
-        autoFocus={autoFocus}
-        aria-label="Suche nach Bahnhof"
-        styles={selectStyles}
-        loadOptions={loadOptions}
-        getOptionLabel={getOptionLabel}
-        getOptionValue={getOptionValue}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange as any}
-      />
-      <MyLocation onClick={getLocation} className={classes.geo} />
+      <TDownshift
+        // @ts-ignore
+        ref={selectRef}
+        selectedItem={value || null}
+        itemToString={s => (s ? s.title : '')}
+        onChange={station => {
+          if (station) {
+            if (inputRef.current) {
+              inputRef.current.blur();
+            }
+            onChange(station);
+          }
+        }}
+      >
+        {({
+          clearSelection,
+          getInputProps,
+          getItemProps,
+          getLabelProps,
+          getMenuProps,
+          highlightedIndex,
+          inputValue,
+          isOpen,
+          setState,
+          selectedItem,
+          openMenu,
+        }) => {
+          const { onBlur, onChange, onFocus, ...inputProps } = getInputProps({
+            onChange: (event: React.ChangeEvent<HTMLInputElement>) => {
+              if (event.target.value === '') {
+                clearSelection();
+              } else {
+                loadOptions(event.target.value);
+              }
+            },
+            onFocus: () => {
+              if (value && value.title === inputValue) {
+                clearSelection();
+              }
+              if (suggestions.length) {
+                openMenu();
+              }
+            },
+            onBlur: () => {
+              setSuggestions([]);
+              if (value) {
+                setState({ inputValue: value.title, selectedItem: value });
+              }
+            },
+            placeholder,
+            autoFocus,
+            ref: inputRef,
+          });
+
+          return (
+            <div>
+              <TextField
+                fullWidth
+                InputLabelProps={getLabelProps({ shrink: true } as any)}
+                InputProps={{
+                  onBlur,
+                  onChange,
+                  onFocus,
+                }}
+                inputProps={inputProps}
+              />
+
+              <div {...getMenuProps()}>
+                {isOpen && (
+                  <Paper className={classes.paper} square>
+                    {suggestions.length ? (
+                      suggestions.map((suggestion, index) => {
+                        const itemProps = getItemProps({
+                          item: suggestion,
+                        });
+                        const selected =
+                          selectedItem &&
+                          selectedItem.title === suggestion.title;
+                        const highlighted = highlightedIndex === index;
+
+                        return (
+                          <MenuItem
+                            {...itemProps}
+                            key={suggestion.id}
+                            selected={highlighted}
+                            component="div"
+                            style={{
+                              fontWeight: selected ? 500 : 400,
+                            }}
+                          >
+                            {suggestion.title}
+                          </MenuItem>
+                        );
+                      })
+                    ) : (
+                      <MenuItem>
+                        {loading ? 'Loading...' : 'No options'}
+                      </MenuItem>
+                    )}
+                  </Paper>
+                )}
+              </div>
+            </div>
+          );
+        }}
+      </TDownshift>
+      <MyLocation className={classes.geo} onClick={getLocation} />
+      {loading && (
+        <Loading className={classes.loading} type={LoadingType.dots} />
+      )}
     </div>
   );
 };
