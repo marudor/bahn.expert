@@ -4,7 +4,6 @@ import Close from '@material-ui/icons/Close';
 import Done from '@material-ui/icons/Done';
 import ErrorOutline from '@material-ui/icons/ErrorOutline';
 import Help from '@material-ui/icons/Help';
-import Tooltip from '@material-ui/core/Tooltip';
 import useStyles from './AuslastungsDisplay.style';
 import Warning from '@material-ui/icons/Warning';
 
@@ -13,21 +12,6 @@ interface OwnProps {
 }
 
 export type Props = OwnProps;
-
-function getTooltipText(auslastung?: AuslastungsValue) {
-  switch (auslastung) {
-    case AuslastungsValue.Gering:
-      return 'Geringe Auslastung';
-    case AuslastungsValue.Hoch:
-      return 'Mittlere Auslastung';
-    case AuslastungsValue.SehrHoch:
-      return 'Hohe Auslastung';
-    case AuslastungsValue.Ausgebucht:
-      return 'Ausgebucht';
-    default:
-      return 'Unbekannt';
-  }
-}
 
 function getIcon(auslastung?: AuslastungsValue) {
   switch (auslastung) {
@@ -52,19 +36,15 @@ const AuslastungsDisplay = (props: Props) => {
     <div className={classes.main}>
       <div data-testid="first" className={classes.entry}>
         <span>1</span>
-        <Tooltip title={getTooltipText(auslastung.first)}>
-          <span className={`${classes.icon} ${classes.first}`}>
-            {getIcon(auslastung.first)}
-          </span>
-        </Tooltip>
+        <span className={`${classes.icon} ${classes.first}`}>
+          {getIcon(auslastung.first)}
+        </span>
       </div>
       <div data-testid="second" className={classes.entry}>
         <span>2</span>
-        <Tooltip title={getTooltipText(auslastung.second)}>
-          <span className={`${classes.icon} ${classes.second}`}>
-            {getIcon(auslastung.second)}
-          </span>
-        </Tooltip>
+        <span className={`${classes.icon} ${classes.second}`}>
+          {getIcon(auslastung.second)}
+        </span>
       </div>
     </div>
   );
