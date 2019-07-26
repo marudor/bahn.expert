@@ -87,6 +87,9 @@ export async function createApp(wsServer?: Server) {
   );
 
   app.use((ctx, next) => {
+    if (ctx.path.endsWith('.js') || ctx.path.endsWith('.css')) {
+      return;
+    }
     if (ctx.url.startsWith('/api') || ctx.url.startsWith('/WRSheets')) {
       return;
     }
