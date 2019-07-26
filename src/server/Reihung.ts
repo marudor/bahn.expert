@@ -482,18 +482,22 @@ export async function wagenReihung(trainNumber: string, date: number) {
       );
     }
 
-    const gruppenFahrzeugTypes = g.allFahrzeug.map(f => f.fahrzeugtyp);
+    if (
+      ['IC', 'EC', 'ICE', 'ECE'].includes(info.data.istformation.zuggattung)
+    ) {
+      const gruppenFahrzeugTypes = g.allFahrzeug.map(f => f.fahrzeugtyp);
 
-    g.br = specificBR(
-      g.allFahrzeug,
-      gruppenFahrzeugTypes,
-      info.data.istformation
-    );
-    if (g.br) {
-      g.br.country = getCountry(g.allFahrzeug, gruppenFahrzeugTypes);
-      g.br.showBRInfo = Boolean(
-        g.br.BR || !g.br.noPdf || (g.br.country && g.br.country !== 'DE')
+      g.br = specificBR(
+        g.allFahrzeug,
+        gruppenFahrzeugTypes,
+        info.data.istformation
       );
+      if (g.br) {
+        g.br.country = getCountry(g.allFahrzeug, gruppenFahrzeugTypes);
+        g.br.showBRInfo = Boolean(
+          g.br.BR || !g.br.noPdf || (g.br.country && g.br.country !== 'DE')
+        );
+      }
     }
   });
 

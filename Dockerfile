@@ -6,6 +6,8 @@ COPY package.json yarn.lock /app/
 RUN yarn --prod
 RUN modclean -r -a '*.ts|*.tsx'
 COPY dist /app/dist/
+COPY scripts /app/scripts/
+RUN node scripts/checkAssetFiles.js
 
 FROM node:10-alpine
 COPY --from=build /app /app
