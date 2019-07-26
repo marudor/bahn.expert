@@ -4,7 +4,7 @@ import DefaultFeatures from './default';
 // istanbul ignore file
 const url = process.env.FEATURE_URL;
 const instanceId = process.env.FEATURE_ID;
-const appName = process.env.FEATURE_ENV;
+const appName = process.env.ENVIRONMENT;
 
 if (url && instanceId && appName) {
   Unleash.initialize({
