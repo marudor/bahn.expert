@@ -118,6 +118,24 @@ function parseCommon(common: Common): ParsedCommon {
   };
 }
 
+class HafasError extends Error {
+  customError = true;
+  request: SingleHafasRequest;
+  response: HafasResponse<any>;
+  profile: AllowedHafasProfile;
+  constructor(
+    request: SingleHafasRequest,
+    response: HafasResponse<any>,
+    profile: AllowedHafasProfile
+  ) {
+    super(`${request.meth} HAFAS Error`);
+    Error.captureStackTrace(this, HafasError);
+    this.request = request;
+    this.response = response;
+    this.profile = profile;
+  }
+}
+
 // @ts-ignore 2384
 declare function makeRequest<
   R extends HafasResponse<StationBoardResponse>,
@@ -195,7 +213,9 @@ async function makeRequest<
       : undefined
   )).data;
 
-  if (r.err !== 'OK' || r.svcResL[0].err !== 'OK') throw r;
+  if (r.err !== 'OK' || r.svcResL[0].err !== 'OK') {
+    throw new HafasError(request, r, profile);
+  }
 
   const parsedCommon = parseCommon(r.svcResL[0].res.common);
 

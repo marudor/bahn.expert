@@ -1,4 +1,5 @@
 import './features';
+import * as Sentry from '@sentry/node';
 import { middlewares } from './logger';
 import { Server } from 'https';
 import axios from 'axios';
@@ -46,6 +47,12 @@ function hotHelper(getMiddleware: () => Middleware) {
 
 export async function createApp(wsServer?: Server) {
   const app = new Koa();
+
+  const sentryDSN = process.env.SENTRY_DSN;
+
+  if (sentryDSN) {
+    Sentry.init({ dsn: sentryDSN, environment: process.env.ENVIRONMENT });
+  }
 
   app.use(errorHandler);
   app.use(cookiesMiddleware());
