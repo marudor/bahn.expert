@@ -26,7 +26,7 @@
     "test:codecov": "codecov --disable=gcov",
     "test:jest": "TZ=UTC jest",
     "e2e:local": "E2E_URL=https://local.marudor.de:9042 testcafe -L 'chrome:headless' test/e2e",
-    "e2e:browserstack": "E2E_URL=https://beta.marudor.de testcafe 'browserstack:edge@18.0:Windows 10,browserstack:chrome,browserstack:firefox,browserstack:Google Pixel 3@9' test/e2e"
+    "e2e:browserstack": "E2E_URL=https://beta.marudor.de testcafe 'browserstack:chrome,browserstack:firefox,browserstack:Google Pixel 3@9' test/e2e"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
@@ -154,6 +154,7 @@
     "@material-ui/icons": "^4.2.1",
     "@material-ui/pickers": "^3.2.0",
     "@material-ui/styles": "4.2.1",
+    "@sentry/node": "^5.5.0",
     "axios": "^0.19.0",
     "bunyan": "^1.8.12",
     "bunyan-format": "^0.2.1",
