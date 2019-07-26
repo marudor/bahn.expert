@@ -14,12 +14,14 @@ export default async (ctx: Context, next: Function) => {
       };
       ctx.status = e.response.status || 500;
     } else {
-      Sentry.withScope(scope => {
-        scope.addEventProcessor(event =>
-          Sentry.Handlers.parseRequest(event, ctx.request)
-        );
-        Sentry.captureException(e);
-      });
+      if (e instanceof Error) {
+        Sentry.withScope(scope => {
+          scope.addEventProcessor(event =>
+            Sentry.Handlers.parseRequest(event, ctx.request)
+          );
+          Sentry.captureException(e);
+        });
+      }
       ctx.body = serialize(e);
       ctx.status = e.status || 500;
     }
