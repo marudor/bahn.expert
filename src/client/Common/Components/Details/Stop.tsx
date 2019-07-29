@@ -1,6 +1,6 @@
 import { ParsedProduct } from 'types/HAFAS';
 import { Route$Stop } from 'types/routing';
-import cc from 'classnames';
+import cc from 'clsx';
 import DetailMessages from '../Messages/Detail';
 import Messages from './Messages';
 import Platform from 'Common/Components/Platform';
