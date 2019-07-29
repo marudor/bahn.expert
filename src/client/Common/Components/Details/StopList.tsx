@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import cc from 'classnames';
+import cc from 'clsx';
 import DetailsContext from './DetailsContext';
 import Error from '@material-ui/icons/Error';
 import Loading from '../Loading';
