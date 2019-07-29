@@ -49,6 +49,7 @@ const StopList = () => {
       {/* <Messages messages={details.messages} /> */}
       {details.stops.map(s => (
         <Stop
+          irisId={details.irisId}
           stop={s}
           key={s.station.id}
           showWR={

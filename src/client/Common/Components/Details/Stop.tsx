@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { ParsedProduct } from 'types/HAFAS';
 import { Route$Stop } from 'types/routing';
 import cc from 'clsx';
@@ -12,9 +13,10 @@ import useStyles from './Stop.style';
 type OwnProps = {
   stop: Route$Stop;
   showWR?: ParsedProduct;
+  irisId?: string;
 };
 type Props = OwnProps;
-const Stop = ({ stop, showWR }: Props) => {
+const Stop = ({ stop, showWR, irisId }: Props) => {
   const classes = useStyles();
   const depOrArrival = stop.departure || stop.arrival;
   const platforms = stop.departure
@@ -48,7 +50,13 @@ const Stop = ({ stop, showWR }: Props) => {
           [classes.additional]: stop.additional,
         })}
       >
-        {stop.station.title}
+        {irisId ? (
+          <Link to={`/${stop.station.title}?selectedDetail=${irisId}`}>
+            {stop.station.title}
+          </Link>
+        ) : (
+          stop.station.title
+        )}
       </span>
       {stop.departure ? (
         <Time
