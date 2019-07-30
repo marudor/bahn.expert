@@ -1,86 +1,109 @@
-import { AppStore } from 'AppState';
+import { AbfahrtenState, AppStore } from 'AppState';
+import { connect, ResolveThunks } from 'react-redux';
+import { createStyles, withStyles, WithStyles } from '@material-ui/styles';
+import { Departures } from 'types/abfahrten';
 import { getAbfahrtenForConfig } from 'Abfahrten/selector/abfahrten';
 import { match } from 'react-router';
 import { Redirect } from 'react-router';
-import { useAbfahrtenSelector } from 'useSelector';
-import { useDispatch } from 'react-redux';
-import { useRouter } from 'useRouter';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { Station } from 'types/station';
 import Abfahrt from './Abfahrt';
 import Actions, {
+  AbfahrtenError,
   getAbfahrtenByString,
   refreshCurrentAbfahrten,
 } from 'Abfahrten/actions/abfahrten';
 import Loading from 'Common/Components/Loading';
-import React, { useEffect, useState } from 'react';
-import useStyles from './AbfahrtenList.style';
+import React from 'react';
 
-const AbfahrtenList = () => {
-  const classes = useStyles();
-  const [scrolled, setScrolled] = useState(false);
-  const selectedDetail = useAbfahrtenSelector(
-    state => state.abfahrten.selectedDetail
-  );
-  const abfahrten = useAbfahrtenSelector(getAbfahrtenForConfig);
-  const [loading, setLoading] = useState(!abfahrten);
-  const error = useAbfahrtenSelector(state => state.abfahrten.error);
-  const { match, location } = useRouter<{ station: string }>();
-  const currentStation = useAbfahrtenSelector(
-    state => state.abfahrten.currentStation
-  );
-  const dispatch = useDispatch<any>();
-  const autoUpdate = useAbfahrtenSelector(
-    state => state.abfahrtenConfig.config.autoUpdate
+interface InnerAbfahrtenProps {
+  abfahrten?: Departures;
+  classes: Record<'lookahead' | 'lookbehind' | 'lookaheadMarker', string>;
+}
+interface StateProps {
+  abfahrten?: Departures;
+  currentStation?: Station;
+  error?: AbfahrtenError;
+  autoUpdate: number;
+  selectedDetail?: string;
+}
+const InnerAbfahrten = ({ abfahrten, classes }: InnerAbfahrtenProps) =>
+  abfahrten && (abfahrten.lookahead.length || abfahrten.lookbehind.length) ? (
+    <>
+      {Boolean(abfahrten.lookbehind.length) && (
+        <div id="lookbehind" className={classes.lookbehind}>
+          {abfahrten.lookbehind.map(
+            a => a && <Abfahrt abfahrt={a} key={a.rawId} />
+          )}
+          <div className={classes.lookaheadMarker} id="lookaheadMarker" />
+        </div>
+      )}
+      <div id="lookahead" className={classes.lookahead}>
+        {abfahrten.lookahead.map(
+          a => a && <Abfahrt abfahrt={a} key={a.rawId} />
+        )}
+      </div>
+    </>
+  ) : (
+    <div>Leider keine Abfahrten in nächster Zeit</div>
   );
 
-  useEffect(() => {
-    if (abfahrten) {
-      setScrolled(false);
+type DispatchProps = ResolveThunks<{
+  getAbfahrtenByString: typeof getAbfahrtenByString;
+  setCurrentStation: typeof Actions.setCurrentStation;
+  refreshCurrentAbfahrten: typeof refreshCurrentAbfahrten;
+}>;
+
+type ReduxProps = StateProps & DispatchProps;
+
+type Props = ReduxProps &
+  RouteComponentProps<{ station: string }> &
+  WithStyles<typeof styles>;
+interface State {
+  loading: boolean;
+  scrolled: boolean;
+}
+
+class AbfahrtenList extends React.PureComponent<Props, State> {
+  static loadData = (store: AppStore, match: match<{ station: string }>) => {
+    store.dispatch(
+      Actions.setCurrentStation({
+        title: decodeURIComponent(match.params.station || ''),
+        id: '0',
+      })
+    );
+
+    return store.dispatch(getAbfahrtenByString(match.params.station));
+  };
+  state: State = {
+    loading: !this.props.abfahrten,
+    scrolled: false,
+  };
+  abfahrtenInterval?: NodeJS.Timeout;
+  componentDidMount() {
+    const { currentStation, refreshCurrentAbfahrten, autoUpdate } = this.props;
+
+    if (!currentStation) {
+      this.getAbfahrten();
     }
-  }, [abfahrten]);
-
-  useEffect(() => {
-    let intervalId: NodeJS.Timeout;
-    const cleanup = () => {
-      clearInterval(intervalId);
-    };
-
     if (autoUpdate) {
-      intervalId = setInterval(
-        () => dispatch(refreshCurrentAbfahrten()),
+      this.abfahrtenInterval = setInterval(
+        refreshCurrentAbfahrten,
         autoUpdate * 1000
       );
-    } else {
-      cleanup();
     }
-
-    return cleanup();
-  }, [autoUpdate, dispatch]);
-
-  useEffect(() => {
-    if (!currentStation || currentStation.title !== match.params.station) {
-      setLoading(true);
-      dispatch(
-        Actions.setCurrentStation({
-          title: decodeURIComponent(match.params.station || ''),
-          id: '0',
-        })
-      );
-      dispatch(
-        getAbfahrtenByString(
-          match.params.station,
-          location.state && location.state.searchType
-        )
-      ).finally(() => {
-        setLoading(false);
-        setScrolled(false);
-      });
+    this.checkScroll();
+  }
+  componentWillUnmount() {
+    if (this.abfahrtenInterval) {
+      clearInterval(this.abfahrtenInterval);
     }
-  }, [currentStation, dispatch, location.state, match.params.station]);
+  }
+  checkScroll() {
+    const { abfahrten, selectedDetail } = this.props;
 
-  useEffect(() => {
-    if (scrolled) {
-      return;
-    }
+    if (this.state.scrolled) return;
+
     if (abfahrten) {
       let scrollDom: HTMLElement | null = null;
 
@@ -100,53 +123,90 @@ const AbfahrtenList = () => {
           window.addEventListener('load', scrollIntoView);
         }
       }
-      setScrolled(true);
+      this.setState({
+        scrolled: true,
+      });
     }
-  }, [abfahrten, scrolled, selectedDetail]);
+  }
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.match.params.station !== this.props.match.params.station) {
+      this.getAbfahrten();
+    }
+    this.checkScroll();
+  }
+  getAbfahrten = async () => {
+    const {
+      getAbfahrtenByString,
+      setCurrentStation,
+      match,
+      location,
+    } = this.props;
 
-  return (
-    <Loading isLoading={loading}>
-      <main className={classes.main}>
-        {error && !loading ? (
-          <Redirect to="/" />
-        ) : abfahrten &&
-          (abfahrten.lookahead.length || abfahrten.lookbehind.length) ? (
-          <>
-            {Boolean(abfahrten.lookbehind.length) && (
-              <div id="lookbehind" className={classes.lookbehind}>
-                {abfahrten.lookbehind.map(
-                  a => a && <Abfahrt abfahrt={a} key={a.rawId} />
-                )}
-                <div className={classes.lookaheadMarker} id="lookaheadMarker" />
-              </div>
-            )}
-            <div id="lookahead" className={classes.lookahead}>
-              {abfahrten.lookahead.map(
-                a => a && <Abfahrt abfahrt={a} key={a.rawId} />
-              )}
-            </div>
-          </>
-        ) : (
-          <div>Leider keine Abfahrten in nächster Zeit</div>
-        )}
-      </main>
-    </Loading>
-  );
-};
-
-// @ts-ignore
-AbfahrtenList.loadData = (
-  store: AppStore,
-  match: match<{ station: string }>
-) => {
-  store.dispatch(
-    Actions.setCurrentStation({
+    this.setState({ loading: true });
+    setCurrentStation({
       title: decodeURIComponent(match.params.station || ''),
       id: '0',
-    })
-  );
+    });
+    try {
+      await getAbfahrtenByString(
+        match.params.station,
+        location.state && location.state.searchType
+      );
+    } finally {
+      this.setState({ loading: false, scrolled: false });
+    }
+  };
+  render() {
+    const { loading } = this.state;
+    const { abfahrten, error, classes } = this.props;
 
-  return store.dispatch(getAbfahrtenByString(match.params.station));
-};
+    return (
+      <Loading isLoading={loading}>
+        <main className={classes.main}>
+          {error ? (
+            !loading && <Redirect to="/" />
+          ) : (
+            <InnerAbfahrten classes={classes} abfahrten={abfahrten} />
+          )}
+        </main>
+      </Loading>
+    );
+  }
+}
 
-export default AbfahrtenList;
+const styles = createStyles(theme => ({
+  main: {
+    display: 'flex',
+    flexDirection: 'column',
+    marginTop: theme.shape.headerSpacing,
+  },
+
+  lookaheadMarker: {
+    height: 154,
+    position: 'absolute',
+    bottom: 0,
+  },
+
+  lookahead: {},
+
+  lookbehind: {
+    position: 'relative',
+    paddingTop: 10,
+    backgroundColor: theme.colors.shadedBackground,
+  },
+}));
+
+export default connect<StateProps, DispatchProps, {}, AbfahrtenState>(
+  state => ({
+    abfahrten: getAbfahrtenForConfig(state),
+    currentStation: state.abfahrten.currentStation,
+    error: state.abfahrten.error,
+    autoUpdate: state.abfahrtenConfig.config.autoUpdate,
+    selectedDetail: state.abfahrten.selectedDetail,
+  }),
+  {
+    getAbfahrtenByString,
+    setCurrentStation: Actions.setCurrentStation,
+    refreshCurrentAbfahrten,
+  }
+)(withRouter(withStyles(styles)(AbfahrtenList)));
