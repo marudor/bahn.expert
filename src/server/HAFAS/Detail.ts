@@ -28,10 +28,6 @@ function calculateCurrentStation(
   return currentStop;
 }
 
-export interface DetailResponse extends ParsedSearchOnTripResponse {
-  irisId?: string;
-}
-
 export default async (
   trainName: string,
   currentStopId?: string,
@@ -42,7 +38,7 @@ export default async (
 
   if (!train) return undefined;
 
-  let relevantSegment: DetailResponse;
+  let relevantSegment: ParsedSearchOnTripResponse;
 
   try {
     const route = await searchOnTrip(train.ctxRecon, hafasProfile);
@@ -127,7 +123,6 @@ export default async (
       );
 
       if (irisDeparture) {
-        relevantSegment.irisId = irisDeparture.id;
         if (irisDeparture.arrival && irisStop.arrival) {
           irisDeparture.arrival.reihung = irisStop.arrival.reihung;
           irisStop.arrival = irisDeparture.arrival;
