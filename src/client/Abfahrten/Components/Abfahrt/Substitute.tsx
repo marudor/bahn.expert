@@ -2,10 +2,9 @@ import { SubstituteRef } from 'types/abfahrten';
 import React from 'react';
 import useStyles from './Substitue.style';
 
-type OwnProps = {
+type Props = {
   substitute: SubstituteRef;
 };
-type Props = OwnProps;
 
 const Substitute = ({ substitute }: Props) => {
   const classes = useStyles();

@@ -1,11 +1,12 @@
-import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { useRouter } from 'useRouter';
 import ActionHome from '@material-ui/icons/Home';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import React, { SyntheticEvent, useCallback, useState } from 'react';
 
-const HomeMenu = ({ history }: RouteComponentProps) => {
+const HomeMenu = () => {
+  const { history } = useRouter();
   const [anchor, setAnchor] = useState<undefined | HTMLElement>(undefined);
 
   const toggleMenu = useCallback(
@@ -41,4 +42,4 @@ const HomeMenu = ({ history }: RouteComponentProps) => {
   );
 };
 
-export default withRouter(HomeMenu);
+export default HomeMenu;

@@ -7,13 +7,11 @@ import stopPropagation from 'Common/stopPropagation';
 import Substitute from './Substitute';
 import useStyles from './Start.style';
 
-type OwnProps = {
+type Props = {
   abfahrt: Abfahrt;
   detail: boolean;
   lineAndNumber: boolean;
 };
-
-type Props = OwnProps;
 
 const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
   const classes = useStyles();

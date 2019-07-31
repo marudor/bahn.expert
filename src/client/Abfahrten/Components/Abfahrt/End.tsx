@@ -4,11 +4,10 @@ import React from 'react';
 import Times from './Times';
 import useStyles from './End.style';
 
-type OwnProps = {
+type Props = {
   abfahrt: Abfahrt;
   detail: boolean;
 };
-type Props = OwnProps;
 const End = ({ abfahrt, detail }: Props) => {
   const classes = useStyles();
 
