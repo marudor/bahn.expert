@@ -1,36 +1,36 @@
 import { Abfahrt } from 'types/abfahrten';
-import { AbfahrtenState } from 'AppState';
-import { connect, ResolveThunks } from 'react-redux';
 import { getAuslastung } from 'Abfahrten/actions/auslastung';
-import { Route$Auslastung } from 'types/routing';
+import { useAbfahrtenSelector } from 'useSelector';
+import { useDispatch } from 'react-redux';
 import AuslastungsDisplay from 'Common/Components/AuslastungsDisplay';
 import Loading from 'Common/Components/Loading';
 import React, { useEffect } from 'react';
 
-type StateProps = {
-  auslastung?: null | Route$Auslastung;
-};
-type DispatchProps = ResolveThunks<{
-  getAuslastung: typeof getAuslastung;
-}>;
-type OwnProps = {
+interface Props {
   abfahrt: Abfahrt;
-};
-type ReduxProps = StateProps & DispatchProps & OwnProps;
+}
 
-type Props = ReduxProps;
+const Auslastung = ({ abfahrt }: Props) => {
+  const auslastung = useAbfahrtenSelector(
+    state =>
+      state.auslastung.auslastung[
+        `${abfahrt.currentStation.id}/${abfahrt.destination}/${abfahrt.train.number}`
+      ]
+  );
+  const dispatch = useDispatch();
 
-const Auslastung = ({ auslastung, getAuslastung, abfahrt }: Props) => {
   useEffect(() => {
     if (!auslastung && abfahrt.departure) {
-      getAuslastung(
-        abfahrt.train.number,
-        abfahrt.currentStation.id,
-        abfahrt.destination,
-        abfahrt.departure.scheduledTime
+      dispatch(
+        getAuslastung(
+          abfahrt.train.number,
+          abfahrt.currentStation.id,
+          abfahrt.destination,
+          abfahrt.departure.scheduledTime
+        )
       );
     }
-  }, [abfahrt, auslastung, getAuslastung]);
+  }, [abfahrt, auslastung, dispatch]);
 
   if (auslastung === null) {
     return null;
@@ -43,14 +43,4 @@ const Auslastung = ({ auslastung, getAuslastung, abfahrt }: Props) => {
   return <AuslastungsDisplay auslastung={auslastung} />;
 };
 
-export default connect<StateProps, DispatchProps, OwnProps, AbfahrtenState>(
-  (state, props) => ({
-    auslastung:
-      state.auslastung.auslastung[
-        `${props.abfahrt.currentStation.id}/${props.abfahrt.destination}/${props.abfahrt.train.number}`
-      ],
-  }),
-  {
-    getAuslastung,
-  }
-)(Auslastung);
+export default Auslastung;

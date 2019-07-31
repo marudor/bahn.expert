@@ -1,7 +1,6 @@
 import { makeStyles, MergedTheme } from '@material-ui/styles';
-import { Props } from '.';
 
-export default makeStyles<MergedTheme, Props>(theme => ({
+export default makeStyles<MergedTheme, { noHeader: boolean }>(theme => ({
   main: ({ noHeader }) => ({
     marginTop: noHeader ? -theme.shape.headerSpacing : undefined,
     display: 'flex',

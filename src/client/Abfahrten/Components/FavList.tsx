@@ -1,31 +1,13 @@
-import { AbfahrtenState } from 'AppState';
-import { connect, ResolveThunks } from 'react-redux';
 import { Link } from 'react-router-dom';
-import {
-  Redirect,
-  RouteComponentProps,
-  StaticRouterContext,
-} from 'react-router';
-import { sortedFavValues } from 'Abfahrten/selector/fav';
-import { Station } from 'types/station';
-import { withRouter } from 'react-router-dom';
+import { Redirect, StaticRouterContext } from 'react-router';
+import { useAbfahrtenSelector } from 'useSelector';
+import { useDispatch } from 'react-redux';
+import { useRouter } from 'useRouter';
 import Actions, { AbfahrtenError } from 'Abfahrten/actions/abfahrten';
 import FavEntry, { FavEntryDisplay } from './FavEntry';
 import MostUsed from './MostUsed';
 import React, { useEffect } from 'react';
 import useStyles from './FavList.style';
-
-type DispatchProps = ResolveThunks<{
-  setCurrentStation: typeof Actions.setCurrentStation;
-}>;
-
-type StateProps = {
-  favs: Station[];
-  error?: AbfahrtenError;
-};
-type ReduxProps = DispatchProps & StateProps & RouteComponentProps;
-
-type Props = ReduxProps;
 
 function getErrorText(
   error: AbfahrtenError,
@@ -52,12 +34,22 @@ function getErrorText(
   }
 }
 
-const FavList = ({ favs, error, staticContext, setCurrentStation }: Props) => {
+const FavList = () => {
+  const error = useAbfahrtenSelector(state => state.abfahrten.error);
+  const favs = useAbfahrtenSelector(state => {
+    const favs = Object.values(state.fav.favs);
+
+    return favs.sort((a, b) =>
+      a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1
+    );
+  });
+  const { staticContext } = useRouter();
+  const dispatch = useDispatch();
   const classes = useStyles();
 
   useEffect(() => {
-    setCurrentStation();
-  }, [setCurrentStation]);
+    dispatch(Actions.setCurrentStation());
+  }, [dispatch]);
 
   return (
     <main className={classes.main}>
@@ -86,12 +78,4 @@ const FavList = ({ favs, error, staticContext, setCurrentStation }: Props) => {
   );
 };
 
-export default connect<StateProps, DispatchProps, {}, AbfahrtenState>(
-  state => ({
-    favs: sortedFavValues(state),
-    error: state.abfahrten.error,
-  }),
-  {
-    setCurrentStation: Actions.setCurrentStation,
-  }
-)(withRouter(FavList));
+export default FavList;

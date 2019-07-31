@@ -1,30 +1,41 @@
-import { AbfahrtenState } from 'AppState';
-import { Abfahrt as AbfahrtType, ResolvedWings } from 'types/abfahrten';
-import { connect } from 'react-redux';
-import { getWingsForAbfahrt } from 'Abfahrten/selector/abfahrten';
+import { Abfahrt as AbfahrtType } from 'types/abfahrten';
+import { useAbfahrtenSelector } from 'useSelector';
 import BaseAbfahrt from './BaseAbfahrt';
-import React from 'react';
+import React, { useMemo } from 'react';
 
-export type OwnProps = {
+type Props = {
   abfahrt: AbfahrtType;
 };
-type StateProps = {
-  resolvedWings?: ResolvedWings;
-};
-type Props = OwnProps & StateProps;
 
-const Abfahrt = ({ resolvedWings, abfahrt }: Props) => {
-  const wings = resolvedWings
-    ? resolvedWings.arrivalWings || resolvedWings.departureWings
-    : undefined;
+const Abfahrt = ({ abfahrt }: Props) => {
+  const wings = useAbfahrtenSelector(state => {
+    const wings = state.abfahrten.wings;
 
-  const sameTrainWing = Boolean(
-    wings &&
-      wings.every(
-        w =>
-          w.train.number.endsWith(abfahrt.train.number) &&
-          w.train.type !== abfahrt.train.type
-      )
+    if (wings) {
+      const arrivalWings = abfahrt.arrival && abfahrt.arrival.wingIds;
+
+      if (arrivalWings) {
+        return arrivalWings.map(w => wings[w]).filter(Boolean);
+      }
+      const departureWings = abfahrt.departure && abfahrt.departure.wingIds;
+
+      if (departureWings) {
+        return departureWings.map(w => wings[w]).filter(Boolean);
+      }
+    }
+  });
+
+  const sameTrainWing = useMemo(
+    () =>
+      Boolean(
+        wings &&
+          wings.every(
+            w =>
+              w.train.number.endsWith(abfahrt.train.number) &&
+              w.train.type !== abfahrt.train.type
+          )
+      ),
+    [abfahrt.train.number, abfahrt.train.type, wings]
   );
 
   return (
@@ -49,8 +60,4 @@ const Abfahrt = ({ resolvedWings, abfahrt }: Props) => {
   );
 };
 
-export default connect<StateProps, void, OwnProps, AbfahrtenState>(
-  (state, props) => ({
-    resolvedWings: getWingsForAbfahrt(state, props),
-  })
-)(Abfahrt);
+export default Abfahrt;

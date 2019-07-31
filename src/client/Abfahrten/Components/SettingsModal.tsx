@@ -1,5 +1,4 @@
-import { AbfahrtenState } from 'AppState';
-import { CheckInType, MarudorConfig, StationSearchType } from 'Common/config';
+import { CheckInType, StationSearchType } from 'Common/config';
 import {
   closeSettings,
   setAutoUpdate,
@@ -13,7 +12,8 @@ import {
   setTime,
   setZoomReihung,
 } from 'Abfahrten/actions/abfahrtenConfig';
-import { connect, ResolveThunks } from 'react-redux';
+import { shallowEqual, useDispatch } from 'react-redux';
+import { useAbfahrtenSelector } from 'useSelector';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -24,76 +24,56 @@ import Switch from '@material-ui/core/Switch';
 import TextField from '@material-ui/core/TextField';
 import useStyles from './SettingsModal.style';
 
-type StateProps = {
-  open: boolean;
-} & MarudorConfig;
-
-type DispatchProps = ResolveThunks<{
-  closeSettings: typeof closeSettings;
-  setSearchType: typeof setSearchType;
-  setShowSupersededMessages: typeof setShowSupersededMessages;
-  setTime: typeof setTime;
-  setCheckIn: typeof setCheckIn;
-  setZoomReihung: typeof setZoomReihung;
-  setLookahead: typeof setLookahead;
-  setFahrzeugGruppe: typeof setFahrzeugGruppe;
-  setLineAndNumber: typeof setLineAndNumber;
-  setAutoUpdate: typeof setAutoUpdate;
-  setLookbehind: typeof setLookbehind;
-}>;
-
-type ReduxProps = StateProps & DispatchProps;
-
-type Props = ReduxProps;
-
-const SettingsModal = ({
-  checkIn,
-  closeSettings,
-  fahrzeugGruppe,
-  lineAndNumber,
-  lookahead,
-  open,
-  searchType,
-  setCheckIn,
-  setFahrzeugGruppe,
-  setLineAndNumber,
-  setLookahead,
-  setSearchType,
-  setShowSupersededMessages,
-  setTime,
-  setZoomReihung,
-  showSupersededMessages,
-  time,
-  zoomReihung,
-  autoUpdate,
-  setAutoUpdate,
-  setLookbehind,
-  lookbehind,
-}: Props) => {
+const SettingsModal = () => {
+  const {
+    checkIn,
+    fahrzeugGruppe,
+    lineAndNumber,
+    lookahead,
+    open,
+    searchType,
+    showSupersededMessages,
+    time,
+    zoomReihung,
+    autoUpdate,
+    lookbehind,
+  } = useAbfahrtenSelector(
+    state => ({
+      open: state.abfahrtenConfig.open,
+      ...state.abfahrtenConfig.config,
+    }),
+    shallowEqual
+  );
+  const dispatch = useDispatch();
   const classes = useStyles();
   const handleCheckedChange = useCallback(
     (fn: (b: boolean) => any) => (e: ChangeEvent<HTMLInputElement>) =>
-      fn(e.currentTarget.checked),
-    []
+      dispatch(fn(e.currentTarget.checked)),
+    [dispatch]
   );
   const handleNumberSelectChange = useCallback(
     (fn: (s: any) => any) => (e: ChangeEvent<HTMLSelectElement>) =>
-      fn(Number.parseInt(e.currentTarget.value, 10)),
-    []
+      dispatch(fn(Number.parseInt(e.currentTarget.value, 10))),
+    [dispatch]
   );
   const handleSelectChange = useCallback(
     (fn: (s: any) => any) => (e: ChangeEvent<HTMLSelectElement>) =>
-      fn(e.currentTarget.value),
-    []
+      dispatch(fn(e.currentTarget.value)),
+    [dispatch]
   );
   const handleNumberValueChange = useCallback(
     (fn: (n: number) => any) => (e: ChangeEvent<HTMLInputElement>) =>
-      fn(Number.parseInt(e.currentTarget.value, 10)),
-    []
+      dispatch(fn(Number.parseInt(e.currentTarget.value, 10))),
+    [dispatch]
   );
 
   return (
-    <Dialog maxWidth="md" fullWidth open={open} onClose={closeSettings}>
+    <Dialog
+      maxWidth="md"
+      fullWidth
+      open={open}
+      onClose={() => dispatch(closeSettings())}
+    >
       <DialogTitle>Settings</DialogTitle>
       <DialogContent className={classes.main}>
         <FormControlLabel
@@ -255,22 +235,4 @@ const SettingsModal = ({
   );
 };
 
-export default connect<StateProps, DispatchProps, void, AbfahrtenState>(
-  state => ({
-    open: state.abfahrtenConfig.open,
-    ...state.abfahrtenConfig.config,
-  }),
-  {
-    closeSettings,
-    setTime,
-    setSearchType,
-    setCheckIn,
-    setZoomReihung,
-    setShowSupersededMessages,
-    setLookahead,
-    setLookbehind,
-    setFahrzeugGruppe,
-    setLineAndNumber,
-    setAutoUpdate,
-  }
-)(SettingsModal);
+export default SettingsModal;

@@ -1,7 +1,6 @@
-import { AbfahrtenState } from 'AppState';
-import { connect } from 'react-redux';
+import { shallowEqual } from 'react-redux';
 import { Station } from 'types/station';
-import { StationSearchType } from 'Common/config';
+import { useAbfahrtenSelector } from 'useSelector';
 import { useRouter } from 'useRouter';
 import AppBar from '@material-ui/core/AppBar';
 import ExtraMenu from './ExtraMenu';
@@ -11,15 +10,15 @@ import React, { useCallback, useEffect, useState } from 'react';
 import StationSearch from 'Common/Components/StationSearch';
 import Toolbar from '@material-ui/core/Toolbar';
 
-type StateProps = {
-  currentStation?: Station;
-  searchType?: StationSearchType;
-  baseUrl: string;
-};
-
-type Props = StateProps;
-
-const Header = ({ currentStation, searchType, baseUrl }: Props) => {
+const Header = () => {
+  const { currentStation, searchType, baseUrl } = useAbfahrtenSelector(
+    state => ({
+      currentStation: state.abfahrten.currentStation,
+      searchType: state.abfahrtenConfig.config.searchType,
+      baseUrl: state.config.baseUrl,
+    }),
+    shallowEqual
+  );
   const { history } = useRouter();
   const [currentEnteredStation, setCurrentEnteredStation] = useState(
     currentStation
@@ -61,8 +60,4 @@ const Header = ({ currentStation, searchType, baseUrl }: Props) => {
   );
 };
 
-export default connect<StateProps, void, void, AbfahrtenState>(state => ({
-  currentStation: state.abfahrten.currentStation,
-  searchType: state.abfahrtenConfig.config.searchType,
-  baseUrl: state.config.baseUrl,
-}))(Header);
+export default Header;

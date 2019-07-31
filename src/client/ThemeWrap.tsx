@@ -1,24 +1,17 @@
-import { CommonState } from 'AppState';
-import { connect } from 'react-redux';
 import { Rule, StyleSheet } from 'jss';
 import { ThemeProvider } from '@material-ui/styles';
-import { ThemeType } from './Themes/type';
+import { useCommonSelector } from 'useSelector';
 import App from './App';
 import createTheme from './Themes';
 import React, { ReactNode, useMemo } from 'react';
 import ThemeHeaderTags from 'Common/Components/ThemeHeaderTags';
 
-interface StateProps {
-  themeType: ThemeType;
-}
-
-interface OwnProps {
+interface Props {
   children?: ReactNode;
 }
 
-type Props = StateProps & OwnProps;
-
-const ThemeWrap = ({ themeType, children = <App /> }: Props) => {
+const ThemeWrap = ({ children = <App /> }: Props) => {
+  const themeType = useCommonSelector(state => state.config.theme);
   const theme = useMemo(() => createTheme(themeType), [themeType]);
 
   const themeProvider = (
@@ -47,6 +40,4 @@ const ThemeWrap = ({ themeType, children = <App /> }: Props) => {
   return themeProvider;
 };
 
-export default connect<StateProps, OwnProps, {}, CommonState>(state => ({
-  themeType: state.config.theme,
-}))(ThemeWrap);
+export default ThemeWrap;
