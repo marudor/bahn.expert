@@ -1,30 +1,23 @@
 /* eslint no-nested-ternary: 0 */
 import * as React from 'react';
 import { Abfahrt } from 'types/abfahrten';
-import { AbfahrtenState } from 'AppState';
-import { connect } from 'react-redux';
+import { useAbfahrtenSelector } from 'useSelector';
 import cc from 'clsx';
 import Time from 'Common/Components/Time';
 import useStyles from './Times.style';
 
-type StateProps = {
-  timeConfig: boolean;
-};
-type OwnProps = {
+type Props = {
   abfahrt: Abfahrt;
   detail: boolean;
 };
-export type ReduxProps = StateProps & OwnProps;
-
-type Props = ReduxProps;
 
 const Times = ({
-  timeConfig,
-
   abfahrt: { arrival, departure, cancelled },
-
   detail,
 }: Props) => {
+  const timeConfig = useAbfahrtenSelector(
+    state => state.abfahrtenConfig.config.time
+  );
   const classes = useStyles();
 
   return (
@@ -87,6 +80,4 @@ const Times = ({
   );
 };
 
-export default connect<StateProps, {}, OwnProps, AbfahrtenState>(state => ({
-  timeConfig: state.abfahrtenConfig.config.time,
-}))(Times);
+export default Times;

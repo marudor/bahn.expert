@@ -8,14 +8,12 @@ import {
   startOfDay,
   subDays,
 } from 'date-fns';
-import { connect, ResolveThunks } from 'react-redux';
 import { DateTimePicker } from '@material-ui/pickers';
 import { getRoutes } from 'Routing/actions/routing';
-import { Route } from 'types/routing';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { RoutingState } from 'AppState';
-import { Station } from 'types/station';
+import { shallowEqual, useDispatch } from 'react-redux';
 import { StationSearchType } from 'Common/config';
+import { useRouter } from 'useRouter';
+import { useRoutingSelector } from 'useSelector';
 import Button from '@material-ui/core/Button';
 import deLocale from 'date-fns/locale/de';
 import IconButton from '@material-ui/core/IconButton';
@@ -26,42 +24,26 @@ import StationSearch from 'Common/Components/StationSearch';
 import SwapVertical from '@material-ui/icons/SwapVert';
 import useStyles from './Search.styles';
 
-type DispatchProps = ResolveThunks<{
-  getStationById: typeof getStationById;
-  setStart: typeof searchActions.setStart;
-  setDestination: typeof searchActions.setDestination;
-  getRoutes: typeof getRoutes;
-  setDate: typeof searchActions.setDate;
-}>;
-type StateProps = {
-  start?: Station;
-  destination?: Station;
-  date: Date;
-  routes: Route[];
-  dateTouched?: boolean;
-};
-type ReduxProps = DispatchProps & StateProps;
-type Props = ReduxProps &
-  RouteComponentProps<{
+const Search = () => {
+  const classes = useStyles();
+
+  const dispatch = useDispatch();
+
+  const { start, destination, date, routes, dateTouched } = useRoutingSelector(
+    state => ({
+      start: state.search.start,
+      destination: state.search.destination,
+      date: state.search.date,
+      routes: state.routing.routes || [],
+      dateTouched: state.search.dateTouched,
+    }),
+    shallowEqual
+  );
+
+  const { match, history } = useRouter<{
     start?: string;
     destination?: string;
-  }>;
-
-const Search = ({
-  start,
-  destination,
-  setStart,
-  setDestination,
-  date,
-  setDate,
-  match,
-  routes,
-  getStationById,
-  history,
-  getRoutes,
-  dateTouched,
-}: Props) => {
-  const classes = useStyles();
+  }>();
 
   const formatDate = useCallback((date: null | Date) => {
     if (!date) {
@@ -96,26 +78,26 @@ const Search = ({
     const { start, destination } = match.params;
 
     if (start) {
-      getStationById(start, searchActions.setStart);
+      dispatch(getStationById(start, searchActions.setStart));
     }
     if (destination) {
-      getStationById(destination, searchActions.setDestination);
+      dispatch(getStationById(destination, searchActions.setDestination));
     }
     if (!routes.length && !dateTouched) {
-      setDate(new Date(), false);
+      dispatch(searchActions.setDate(new Date(), false));
     }
-  }, [dateTouched, getStationById, match.params, routes.length, setDate]);
+  }, [dateTouched, dispatch, match.params, routes.length]);
 
   const searchRoute = useCallback(
     (e: SyntheticEvent) => {
       e.preventDefault();
 
       if (start && destination) {
-        getRoutes(start.id, destination.id, date);
+        dispatch(getRoutes(start.id, destination.id, date));
         history.push(`/routing/${start.id}/${destination.id}`);
       }
     },
-    [date, destination, getRoutes, history, start]
+    [date, destination, dispatch, history, start]
   );
   const goHome = useCallback(() => {
     history.push('/');
@@ -126,14 +108,14 @@ const Search = ({
       <StationSearch
         searchType={StationSearchType.DBNavgiator}
         value={start}
-        onChange={setStart}
+        onChange={s => dispatch(searchActions.setStart(s))}
         placeholder="Start"
       />
       <div className={classes.destination}>
         <StationSearch
           searchType={StationSearchType.DBNavgiator}
           value={destination}
-          onChange={setDestination}
+          onChange={s => dispatch(searchActions.setDestination(s))}
           placeholder="Destination"
         />
         <IconButton
@@ -141,8 +123,8 @@ const Search = ({
           onClick={(e: SyntheticEvent) => {
             e.preventDefault();
             e.stopPropagation();
-            setDestination(start);
-            setStart(destination);
+            dispatch(searchActions.setDestination(start));
+            dispatch(searchActions.setStart(destination));
           }}
         >
           <SwapVertical fontSize="large" />
@@ -156,7 +138,7 @@ const Search = ({
         ampm={false}
         showTodayButton
         value={date}
-        onChange={setDate}
+        onChange={date => dispatch(searchActions.setDate(date))}
         cancelLabel="Abbrechen"
         autoOk
         todayLabel="Jetzt"
@@ -176,19 +158,4 @@ const Search = ({
 };
 // }
 
-export default connect<StateProps, DispatchProps, {}, RoutingState>(
-  state => ({
-    start: state.search.start,
-    destination: state.search.destination,
-    date: state.search.date,
-    routes: state.routing.routes || [],
-    dateTouched: state.search.dateTouched,
-  }),
-  {
-    getStationById,
-    setStart: searchActions.setStart,
-    setDestination: searchActions.setDestination,
-    getRoutes,
-    setDate: searchActions.setDate,
-  }
-)(withRouter(Search));
+export default Search;

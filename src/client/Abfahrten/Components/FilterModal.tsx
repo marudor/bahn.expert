@@ -1,4 +1,3 @@
-import { AbfahrtenState } from 'AppState';
 import {
   Button,
   Dialog,
@@ -7,36 +6,24 @@ import {
   FormControlLabel,
   Switch,
 } from '@material-ui/core';
-import { connect, ResolveThunks } from 'react-redux';
 import { getAllTrainTypes } from 'Abfahrten/selector/abfahrten';
 import { setDefaultFilter } from 'Abfahrten/actions/abfahrtenConfig';
+import { shallowEqual, useDispatch } from 'react-redux';
+import { useAbfahrtenSelector } from 'useSelector';
 import AbfahrtenActions, { closeFilter } from 'Abfahrten/actions/abfahrten';
 import React, { SyntheticEvent, useCallback } from 'react';
 import useStyles from './FilterModal.style';
 
-type StateProps = {
-  open: boolean;
-  types: string[];
-  filterList: string[];
-};
-
-type DispatchProps = ResolveThunks<{
-  closeFilter: typeof closeFilter;
-  setFilterList: typeof AbfahrtenActions.setFilterList;
-  setDefaultFilter: typeof setDefaultFilter;
-}>;
-
-type ReduxProps = StateProps & DispatchProps;
-type Props = ReduxProps;
-
-const FilterModal = ({
-  open,
-  closeFilter,
-  types,
-  setFilterList,
-  filterList,
-  setDefaultFilter,
-}: Props) => {
+const FilterModal = () => {
+  const dispatch = useDispatch();
+  const { open, types, filterList } = useAbfahrtenSelector(
+    state => ({
+      open: state.abfahrten.filterMenu,
+      types: getAllTrainTypes(state),
+      filterList: state.abfahrten.filterList,
+    }),
+    shallowEqual
+  );
   const classes = useStyles();
   const toggleFilter = useCallback(
     (product: string) => (_: SyntheticEvent, checked: boolean) => {
@@ -47,18 +34,22 @@ const FilterModal = ({
       } else {
         newFilterList = [...filterList, product];
       }
-      setFilterList(newFilterList);
+      dispatch(AbfahrtenActions.setFilterList(newFilterList));
     },
-    [filterList, setFilterList]
+    [dispatch, filterList]
   );
 
+  const closeFilterM = useCallback(() => {
+    dispatch(closeFilter());
+  }, [dispatch]);
+
   const saveAsDefault = useCallback(() => {
-    closeFilter();
-    setDefaultFilter();
-  }, [closeFilter, setDefaultFilter]);
+    dispatch(closeFilter());
+    dispatch(setDefaultFilter());
+  }, [dispatch]);
 
   return (
-    <Dialog maxWidth="md" fullWidth open={open} onClose={closeFilter}>
+    <Dialog maxWidth="md" fullWidth open={open} onClose={closeFilterM}>
       <DialogTitle>Train Type</DialogTitle>
       <DialogContent>
         {types.map(t => (
@@ -83,15 +74,4 @@ const FilterModal = ({
   );
 };
 
-export default connect<StateProps, DispatchProps, {}, AbfahrtenState>(
-  state => ({
-    open: state.abfahrten.filterMenu,
-    types: getAllTrainTypes(state),
-    filterList: state.abfahrten.filterList,
-  }),
-  {
-    closeFilter,
-    setFilterList: AbfahrtenActions.setFilterList,
-    setDefaultFilter,
-  }
-)(FilterModal);
+export default FilterModal;

@@ -1,24 +1,17 @@
-import { AbfahrtenState } from 'AppState';
-import { connect, ResolveThunks } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Paper } from '@material-ui/core';
 import { Station } from 'types/station';
 import { unfav } from 'Abfahrten/actions/fav';
+import { useDispatch } from 'react-redux';
 import ActionDelete from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import React, { MouseEvent, ReactNode, useCallback } from 'react';
 import useStyles from './FavEntry.style';
 
-type OwnProps = {
+type Props = {
   fav: Station;
   noDelete?: boolean;
 };
-type DispatchProps = ResolveThunks<{
-  unfav: typeof unfav;
-}>;
-type ReduxProps = OwnProps & DispatchProps;
-
-type Props = ReduxProps;
 
 type FavEntryDisplayProps = {
   deleteFav?: (e: MouseEvent) => void;
@@ -49,14 +42,15 @@ export const FavEntryDisplay = ({
   );
 };
 
-const FavEntry = ({ fav, noDelete, unfav }: Props) => {
+const FavEntry = ({ fav, noDelete }: Props) => {
+  const dispatch = useDispatch();
   const deleteFav = useCallback(
     (e: MouseEvent) => {
       e.stopPropagation();
       e.preventDefault();
-      unfav(fav);
+      dispatch(unfav(fav));
     },
-    [fav, unfav]
+    [dispatch, fav]
   );
 
   return (
@@ -73,9 +67,4 @@ const FavEntry = ({ fav, noDelete, unfav }: Props) => {
   );
 };
 
-export default connect<void, DispatchProps, OwnProps, AbfahrtenState>(
-  undefined,
-  {
-    unfav,
-  }
-)(FavEntry);
+export default FavEntry;

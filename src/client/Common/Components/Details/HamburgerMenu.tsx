@@ -6,7 +6,6 @@ import ActionMenu from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import React, { SyntheticEvent, useCallback, useState } from 'react';
-import ThemeModal from 'Common/Components/ThemeModal';
 import Zugsuche from '../Zugsuche';
 
 const HamurgerMenu = () => {
@@ -32,7 +31,6 @@ const HamurgerMenu = () => {
       <IconButton aria-label="Menu" onClick={toggleMenu} color="inherit">
         <ActionMenu />
       </IconButton>
-      <ThemeModal />
       <Menu open={Boolean(anchor)} anchorEl={anchor} onClose={toggleMenu}>
         <MenuItem onClick={() => toPage('/')}>Home</MenuItem>
         <MenuItem onClick={() => toPage('/routing')}>Routing</MenuItem>

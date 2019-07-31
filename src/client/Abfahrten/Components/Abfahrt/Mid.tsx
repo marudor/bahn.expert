@@ -4,12 +4,10 @@ import Info from './Info';
 import React from 'react';
 import useStyles from './Mid.style';
 
-export type OwnProps = {
+type Props = {
   abfahrt: Abfahrt;
   detail: boolean;
 };
-
-type Props = OwnProps;
 
 const Mid = ({ abfahrt, detail }: Props) => {
   const classes = useStyles();

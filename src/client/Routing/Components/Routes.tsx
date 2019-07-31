@@ -1,22 +1,17 @@
-import { AppStore, RoutingState } from 'AppState';
-import { connect, ResolveThunks } from 'react-redux';
+import { AppStore } from 'AppState';
 import { getRoutes } from 'Routing/actions/routing';
+import { useDispatch } from 'react-redux';
 import { useRouter } from 'useRouter';
+import { useRoutingSelector } from 'useSelector';
 import React, { useEffect } from 'react';
 import RouteList from './RouteList';
 import Search from './Search';
 import searchActions from 'Routing/actions/search';
 
-type DispatchProps = ResolveThunks<{
-  getRoutes: typeof getRoutes;
-}>;
-type StateProps = {
-  date: Date;
-  dateTouched?: boolean;
-};
-type Props = DispatchProps & StateProps;
-
-const Routing = ({ getRoutes, date, dateTouched }: Props) => {
+const Routing = () => {
+  const dispatch = useDispatch();
+  const date = useRoutingSelector(state => state.search.date);
+  const dateTouched = useRoutingSelector(state => state.search.dateTouched);
   const { match } = useRouter<{
     start?: string;
     destination?: string;
@@ -26,9 +21,9 @@ const Routing = ({ getRoutes, date, dateTouched }: Props) => {
     const { start, destination } = match.params;
 
     if (start && destination && date && dateTouched) {
-      getRoutes(start, destination, date);
+      dispatch(getRoutes(start, destination, date));
     }
-  }, [date, dateTouched, getRoutes, match.params]);
+  }, [date, dateTouched, dispatch, match.params]);
 
   return (
     <div>
@@ -43,12 +38,4 @@ Routing.loadData = (store: AppStore) => {
   store.dispatch(searchActions.setDate(new Date(), false));
 };
 
-export default connect<StateProps, DispatchProps, {}, RoutingState>(
-  state => ({
-    date: state.search.date,
-    dateTouched: state.search.dateTouched,
-  }),
-  {
-    getRoutes,
-  }
-)(Routing);
+export default Routing;

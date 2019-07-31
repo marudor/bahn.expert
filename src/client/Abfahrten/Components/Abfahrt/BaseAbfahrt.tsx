@@ -1,8 +1,7 @@
 import { Abfahrt } from 'types/abfahrten';
-import { AbfahrtenState } from 'AppState';
-import { connect, ResolveThunks } from 'react-redux';
-import { getDetailForAbfahrt } from 'Abfahrten/selector/abfahrten';
 import { setDetail } from 'Abfahrten/actions/abfahrten';
+import { shallowEqual, useDispatch } from 'react-redux';
+import { useAbfahrtenSelector } from 'useSelector';
 import cc from 'clsx';
 import End from './End';
 import Mid from './Mid';
@@ -12,41 +11,34 @@ import Reihung from 'Common/Components/Reihung';
 import Start from './Start';
 import useStyles from './BaseAbfahrt.style';
 
-export type OwnProps = {
+export interface Props {
   abfahrt: Abfahrt;
   sameTrainWing: boolean;
   wing: boolean;
   wingEnd?: boolean;
   wingStart?: boolean;
-};
-type StateProps = {
-  detail: boolean;
-  lineAndNumber: boolean;
-  useZoom: boolean;
-  fahrzeugGruppe: boolean;
-};
-type DispatchProps = ResolveThunks<{
-  setDetail: typeof setDetail;
-}>;
-export type ReduxProps = OwnProps & StateProps & DispatchProps;
+}
 
-export type Props = ReduxProps;
-
-const BaseAbfahrt = ({
-  abfahrt,
-  detail,
-  wing,
-  wingEnd,
-  wingStart,
-  lineAndNumber,
-  useZoom,
-  fahrzeugGruppe,
-  setDetail,
-}: Props) => {
+const BaseAbfahrt = ({ abfahrt, wing, wingEnd, wingStart }: Props) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const handleClick = useCallback(() => {
-    setDetail(abfahrt.id);
-  }, [abfahrt.id, setDetail]);
+    dispatch(setDetail(abfahrt.id));
+  }, [abfahrt.id, dispatch]);
+  const {
+    lineAndNumber,
+    useZoom,
+    fahrzeugGruppe,
+    detail,
+  } = useAbfahrtenSelector(
+    state => ({
+      lineAndNumber: state.abfahrtenConfig.config.lineAndNumber,
+      useZoom: state.abfahrtenConfig.config.zoomReihung,
+      fahrzeugGruppe: state.abfahrtenConfig.config.fahrzeugGruppe,
+      detail: state.abfahrten.selectedDetail === abfahrt.id,
+    }),
+    shallowEqual
+  );
 
   return (
     <Paper
@@ -93,14 +85,4 @@ const BaseAbfahrt = ({
   );
 };
 
-export default connect<StateProps, DispatchProps, OwnProps, AbfahrtenState>(
-  (state, props) => ({
-    detail: getDetailForAbfahrt(state, props),
-    lineAndNumber: state.abfahrtenConfig.config.lineAndNumber,
-    useZoom: state.abfahrtenConfig.config.zoomReihung,
-    fahrzeugGruppe: state.abfahrtenConfig.config.fahrzeugGruppe,
-  }),
-  {
-    setDetail,
-  }
-)(BaseAbfahrt);
+export default BaseAbfahrt;

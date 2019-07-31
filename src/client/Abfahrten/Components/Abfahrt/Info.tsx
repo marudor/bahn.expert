@@ -1,6 +1,5 @@
 import { Abfahrt, Message } from 'types/abfahrten';
-import { AbfahrtenState } from 'AppState';
-import { connect } from 'react-redux';
+import { useAbfahrtenSelector } from 'useSelector';
 import cc from 'clsx';
 import DetailMessages from 'Common/Components/Messages/Detail';
 import DetailVia from './Via/Detail';
@@ -9,19 +8,14 @@ import NormalVia from './Via/Normal';
 import React, { useMemo } from 'react';
 import useStyles from './Info.style';
 
-type StateProps = {
-  showSupersededMessages: boolean;
-};
-
-type OwnProps = {
+type Props = {
   abfahrt: Abfahrt;
   detail: boolean;
 };
-
-export type ReduxProps = StateProps & OwnProps;
-
-type Props = ReduxProps;
-const Via = ({ abfahrt, detail, showSupersededMessages }: Props) => {
+const Info = ({ abfahrt, detail }: Props) => {
+  const showSupersededMessages = useAbfahrtenSelector(
+    state => state.abfahrtenConfig.config.showSupersededMessages
+  );
   const classes = useStyles();
   const messages = useMemo(() => {
     const messages = new Set<Message>();
@@ -60,6 +54,4 @@ const Via = ({ abfahrt, detail, showSupersededMessages }: Props) => {
   );
 };
 
-export default connect<StateProps, void, OwnProps, AbfahrtenState>(state => ({
-  showSupersededMessages: state.abfahrtenConfig.config.showSupersededMessages,
-}))(Via);
+export default Info;
