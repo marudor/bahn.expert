@@ -1,5 +1,6 @@
 import { Abfahrt } from 'types/abfahrten';
 import { Link } from 'react-router-dom';
+import { useAbfahrtenSelector } from 'useSelector';
 import Auslastung from 'Abfahrten/Components/Abfahrt/Auslastung';
 import CheckInLink from 'Common/Components/CheckInLink';
 import React from 'react';
@@ -15,6 +16,9 @@ type Props = {
 
 const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
   const classes = useStyles();
+  const checkInType = useAbfahrtenSelector(
+    state => state.abfahrtenConfig.config.checkIn
+  );
 
   return (
     <div className={classes.main}>
@@ -28,7 +32,7 @@ const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
       )}
       {detail && (
         <div className={classes.links}>
-          <CheckInLink abfahrt={abfahrt} />
+          <CheckInLink abfahrt={abfahrt} type={checkInType} />
           <Link
             onClick={stopPropagation}
             to={`/details/${abfahrt.train.thirdParty ||

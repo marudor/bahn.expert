@@ -1,19 +1,15 @@
 import { Abfahrt } from 'types/abfahrten';
 import { CheckInType } from 'Common/config';
-import { useAbfahrtenSelector } from 'useSelector';
 import React from 'react';
 import TraewellingLink from './TraewellingLink';
 import TravelynxLink from './TravelynxLink';
 
 type Props = {
   abfahrt: Abfahrt;
+  type: CheckInType;
 };
 
-const CheckInLink = ({ abfahrt }: Props) => {
-  const type = useAbfahrtenSelector(
-    state => state.abfahrtenConfig.config.checkIn
-  );
-
+const CheckInLink = ({ abfahrt, type }: Props) => {
   switch (type) {
     case CheckInType.Traewelling:
       return <TraewellingLink abfahrt={abfahrt} />;
