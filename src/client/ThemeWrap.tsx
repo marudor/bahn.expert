@@ -21,7 +21,7 @@ const ThemeWrap = ({ children = <App /> }: Props) => {
     </ThemeProvider>
   );
 
-  if (process.env.NODE_ENV === 'test') {
+  if (global.TEST) {
     const StylesProvider = require('@material-ui/styles').StylesProvider;
     const generateClassName = (rule: Rule, sheet?: StyleSheet<string>) => {
       // @ts-ignore
