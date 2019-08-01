@@ -7,7 +7,6 @@ module.exports = {
     es6: true,
   },
   globals: {
-    PROD: false,
     SERVER: false,
   },
   rules: {},

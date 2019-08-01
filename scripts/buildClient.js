@@ -1,7 +1,17 @@
 /* eslint no-sync: 0, no-console: 0, no-process-exit: 0 */
-const execSync = require('child_process').execSync;
+const childProcess = require('child_process');
 
-execSync('webpack');
-execSync('cp -r public/* dist/client/');
+const webpackProcess = childProcess.spawn('webpack', [], {
+  env: process.env,
+});
 
-require('./checkAssetFiles');
+webpackProcess.stdout.pipe(process.stdout);
+webpackProcess.stderr.pipe(process.stderr);
+
+webpackProcess.on('close', code => {
+  if (code !== 0) {
+    process.exit(code);
+  }
+  childProcess.spawnSync('cp', ['-r', 'public/*', 'dist/client/']);
+  require('./checkAssetFiles');
+});

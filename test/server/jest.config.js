@@ -1,5 +1,8 @@
 module.exports = {
-  globals: {},
+  globals: {
+    PROD: true,
+    TEST: true,
+  },
   testEnvironment: 'node',
   moduleNameMapper: {
     '\\.(scss|css)$': 'identity-obj-proxy',

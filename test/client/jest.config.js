@@ -1,5 +1,8 @@
 module.exports = {
-  globals: {},
+  globals: {
+    PROD: true,
+    TEST: true,
+  },
   testEnvironment: 'jsdom',
   moduleNameMapper: {
     '\\.(scss|css)$': 'identity-obj-proxy',
