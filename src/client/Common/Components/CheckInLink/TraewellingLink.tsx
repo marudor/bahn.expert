@@ -5,7 +5,7 @@ import React from 'react';
 import stopPropagation from 'Common/stopPropagation';
 
 type Props = {
-  abfahrt: Abfahrt;
+  abfahrt: Pick<Abfahrt, 'departure' | 'train' | 'route' | 'currentStation'>;
   className?: string;
 };
 
@@ -31,6 +31,7 @@ const TraewellingLink = ({ abfahrt, className }: Props) => {
 
   return (
     <a
+      data-testid="traewellingLink"
       className={className}
       onClick={stopPropagation}
       rel="noopener noreferrer"

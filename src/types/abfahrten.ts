@@ -35,7 +35,7 @@ export type Messages = {
 };
 
 export interface StopInfo extends CommonStopInfo {
-  wingIds: null | string[];
+  wingIds?: null | string[];
   cancelled: boolean;
   hidden: boolean;
 }
@@ -44,7 +44,6 @@ export interface TrainInfo extends CommonProductInfo {
   thirdParty?: string;
   longDistance: boolean;
   type: string;
-  line: string;
   trainCategory: string;
   number: string;
 }
@@ -62,7 +61,7 @@ export type Abfahrt = {
   mediumId: string;
   messages: Messages;
   platform: string;
-  productClass: 'D' | 'N' | 'S' | 'F';
+  productClass: string; // 'D' | 'N' | 'S' | 'F';
   rawId: string;
   ref?: SubstituteRef;
   reihung: boolean;

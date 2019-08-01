@@ -4,7 +4,7 @@ import React from 'react';
 import stopPropagation from 'Common/stopPropagation';
 
 type Props = {
-  abfahrt: Abfahrt;
+  abfahrt: Pick<Abfahrt, 'departure' | 'arrival' | 'currentStation' | 'train'>;
   className?: string;
 };
 
@@ -21,6 +21,7 @@ const TravelynxLink = ({ abfahrt, className }: Props) =>
     Date.now() + timeConstraint
   ) ? (
     <a
+      data-testid="travellynxlink"
       className={className}
       onClick={stopPropagation}
       rel="noopener noreferrer"
