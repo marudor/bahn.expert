@@ -19,6 +19,7 @@ const DetailVia = ({ stops }: Props) => {
     stops.forEach((s, i) => {
       stopsToRender.push(
         <Link
+          data-testid={`via-${s.name}`}
           key={i}
           onClick={stopPropagation}
           to={{

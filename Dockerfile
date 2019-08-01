@@ -1,4 +1,4 @@
-FROM node:10-alpine as build
+FROM node:12-alpine as build
 RUN yarn global add modclean
 RUN mkdir -p /app
 WORKDIR /app
@@ -9,7 +9,7 @@ COPY dist /app/dist/
 COPY scripts /app/scripts/
 RUN node scripts/checkAssetFiles.js
 
-FROM node:10-alpine
+FROM node:12-alpine
 COPY --from=build /app /app
 ENV NODE_ENV=production
 ENV TZ=Europe/Berlin

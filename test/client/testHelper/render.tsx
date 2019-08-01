@@ -2,6 +2,7 @@
 import { AppState } from 'AppState';
 import { DeepPartial } from 'utility-types';
 import { getStore } from 'testHelper';
+import { MemoryRouter } from 'react-router';
 import { MergedTheme } from '@material-ui/styles';
 import { Provider } from 'react-redux';
 import { render as realRender } from '@testing-library/react';
@@ -16,7 +17,7 @@ let theme: MergedTheme;
 export function render<P>(
   Comp: ComponentType<P>,
   // @ts-ignore
-  props: P = {},
+  props: P,
   partialState?: DeepPartial<AppState>
 ) {
   const store = getStore();
@@ -32,11 +33,13 @@ export function render<P>(
   }
 
   const rendered = realRender(
-    <Provider store={store}>
-      <ThemeWrap>
-        <Comp {...props} />
-      </ThemeWrap>
-    </Provider>
+    <MemoryRouter>
+      <Provider store={store}>
+        <ThemeWrap>
+          <Comp {...props} />
+        </ThemeWrap>
+      </Provider>
+    </MemoryRouter>
   );
 
   return {

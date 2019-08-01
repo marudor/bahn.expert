@@ -1,5 +1,5 @@
 /* eslint no-sync: 0 */
-import { cache, getCachedLageplan, getLageplan } from 'server/Bahnhof/Lageplan';
+import { getCachedLageplan, getLageplan } from 'server/Bahnhof/Lageplan';
 import fs from 'fs';
 import Nock from 'nock';
 import path from 'path';
@@ -10,18 +10,11 @@ describe('Lageplan', () => {
   function readFixutre(f: string) {
     return fs.readFileSync(path.resolve(__dirname, '__fixtures__/', f));
   }
-  afterAll(() => {
-    cache.flushAll();
-  });
-
   it('first time cached is undefined', () => {
     expect(getCachedLageplan('Hamburg Hbf')).toBeUndefined();
   });
 
   describe('Example without Lageplan', () => {
-    afterAll(() => {
-      cache.flushAll();
-    });
     it('is null if non existant', async () => {
       nock
         .get('/service/search/bahnhof-de/520608')
@@ -42,9 +35,6 @@ describe('Lageplan', () => {
   });
 
   describe('Example with Lageplan', () => {
-    afterAll(() => {
-      cache.flushAll();
-    });
     it('is null if non existant', async () => {
       nock
         .get('/service/search/bahnhof-de/520608')
