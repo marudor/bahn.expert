@@ -19,10 +19,11 @@ const Zugsuche = ({ noIcon, onClose }: Props) => {
   const { history } = useRouter();
   const [open, setOpen] = useState(false);
   const [zug, setZug] = useState('');
+  const toggleModal = useCallback(() => setOpen(!open), [open]);
   const onDialogClose = useCallback(() => {
-    setOpen(false);
+    toggleModal();
     if (onClose) onClose();
-  }, [onClose]);
+  }, [onClose, toggleModal]);
   const handleZugChange = useCallback(
     (
       e: SyntheticEvent<
@@ -60,9 +61,7 @@ const Zugsuche = ({ noIcon, onClose }: Props) => {
           </form>
         </DialogContent>
       </Dialog>
-      <MenuItem onClick={() => setOpen(true)}>
-        {!noIcon && <Train />} Zugsuche
-      </MenuItem>
+      <MenuItem onClick={toggleModal}>{!noIcon && <Train />} Zugsuche</MenuItem>
     </>
   );
 };
