@@ -6,6 +6,12 @@ import request from 'supertest';
 
 let server: Server;
 
+afterAll(() => {
+  if (server) {
+    server.close();
+  }
+});
+
 export const checkApi = async (
   path: string,
   status: number = 200,

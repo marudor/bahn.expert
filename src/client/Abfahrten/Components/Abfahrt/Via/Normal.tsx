@@ -16,6 +16,7 @@ const NormalVia = ({ stops }: Props) => {
     filteredStops.forEach((s, i) => {
       stopsToRender.push(
         <span
+          data-testid={`via-${s.name}`}
           key={i}
           className={cc({
             [classes.cancelled]: s.cancelled,
