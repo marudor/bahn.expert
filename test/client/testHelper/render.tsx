@@ -16,10 +16,11 @@ let theme: MergedTheme;
 
 export function render<P>(
   Comp: ComponentType<P>,
-  // @ts-ignore
-  props: P,
+  props?: P,
   partialState?: DeepPartial<AppState>
 ) {
+  // @ts-ignore
+  const p: P = props || {};
   const store = getStore();
   const themeType = store.getState().config.theme;
 
@@ -36,7 +37,7 @@ export function render<P>(
     <MemoryRouter>
       <Provider store={store}>
         <ThemeWrap>
-          <Comp {...props} />
+          <Comp {...p} />
         </ThemeWrap>
       </Provider>
     </MemoryRouter>
