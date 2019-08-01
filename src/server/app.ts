@@ -50,7 +50,7 @@ export async function createApp(wsServer?: Server) {
 
   const sentryDSN = process.env.SENTRY_DSN;
 
-  if (sentryDSN) {
+  if (sentryDSN && process.env.NODE_ENV !== 'test') {
     Sentry.init({ dsn: sentryDSN, environment: process.env.ENVIRONMENT });
   }
 
