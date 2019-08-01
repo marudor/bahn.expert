@@ -13,7 +13,7 @@ const reducers: any = {
 let reducer = combineReducers<AppState, any>(reducers);
 
 // istanbul ignore next
-if (process.env.NODE_ENV === 'test') {
+if (global.TEST) {
   // eslint-disable-next-line no-inner-declarations
   function combineReducersWithRoot(rootReducer: any, reducers: any) {
     return (state: AppState, action: any) => {

@@ -39,8 +39,12 @@ const plugins = [
     'process.env': {
       NODE_ENV: JSON.stringify(process.env.NODE_ENV),
     },
-    SERVER: false,
-    VERSION: JSON.stringify(require('./version')),
+    global: {
+      PROD: JSON.stringify(!isDev),
+      TEST: JSON.stringify(process.env.NODE_ENV === 'tests'),
+      SERVER: JSON.stringify(false),
+      VERSION: JSON.stringify(require('./version')),
+    },
   }),
   new MiniCssExtractPlugin({
     filename: isDev ? '[name].css' : '[name]-[contenthash].css',

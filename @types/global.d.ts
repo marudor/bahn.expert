@@ -1,5 +1,6 @@
 namespace NodeJS {
   interface Global {
+    TEST: boolean;
     PROD: boolean;
     SERVER: boolean;
     VERSION: string;

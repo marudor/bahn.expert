@@ -11,9 +11,6 @@ import ThemeWrap from './ThemeWrap';
 axios.defaults.timeout = 10000;
 
 global.smallScreen = window.matchMedia('(max-width: 480px)').matches;
-// @ts-ignore
-// eslint-disable-next-line no-undef
-global.VERSION = VERSION;
 
 const container = document.getElementById('app');
 const store = createStore();
