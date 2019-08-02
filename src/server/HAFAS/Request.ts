@@ -68,6 +68,7 @@ const mgateUrls = {
   db: 'https://reiseauskunft.bahn.de/bin/mgate.exe',
   oebb: 'https://fahrplan.oebb.at/bin/mgate.exe',
   sncb: 'https://belgianrail.be/jp/sncb-nmbs-routeplanner/mgate.exe',
+  avv: 'https://auskunft.avv.de/bin/mgate.exe',
 };
 const secrets = {
   db: getDBSecret(),
@@ -105,6 +106,17 @@ const staticData = {
     lang: 'de',
     ver: '1.20',
     auth: { aid: 'sncb-mobi' },
+  },
+  avv: {
+    client: {
+      id: 'HAFAS',
+      type: 'WEB',
+      name: 'Test-Client',
+      v: '100',
+    },
+    lang: 'deu',
+    ver: '1.20',
+    auth: { type: 'AID', aid: '4vV1AcH3N511icH' },
   },
 };
 

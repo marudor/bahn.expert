@@ -40,6 +40,9 @@ export default async (
   initialDepartureDate?: number,
   profileType: AllowedHafasProfile = 'db'
 ) => {
+  if (profileType !== 'db' && profileType !== 'oebb') {
+    throw new Error(`${profileType} not supported by trainsearch`);
+  }
   let date = initialDepartureDate;
 
   if (!date) {

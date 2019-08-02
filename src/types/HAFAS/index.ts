@@ -15,7 +15,7 @@ export interface HafasStation extends Omit<Station, 'favendoId' | 'DS100'> {
   coordinates: Coordinates;
 }
 
-export type AllowedHafasProfile = 'db' | 'oebb' | 'sncb';
+export type AllowedHafasProfile = 'db' | 'oebb' | 'sncb' | 'avv';
 export type HafasRequest = SingleHafasRequest[];
 export type SingleHafasRequest =
   | LocMatchRequest
