@@ -1,3 +1,4 @@
+import { AllowedHafasProfile } from 'types/HAFAS';
 import { formatToTimeZone } from 'date-fns-timezone';
 import { StationBoardRequest } from 'types/HAFAS/StationBoard';
 import makeRequest from '../Request';
@@ -8,7 +9,10 @@ interface Options {
   station: string;
   type: 'ARR' | 'DEP';
 }
-function stationBoard({ station, date = Date.now(), type }: Options) {
+function stationBoard(
+  { station, date = Date.now(), type }: Options,
+  profile?: AllowedHafasProfile
+) {
   const req: StationBoardRequest = {
     req: {
       type,
@@ -25,6 +29,6 @@ function stationBoard({ station, date = Date.now(), type }: Options) {
     meth: 'StationBoard',
   };
 
-  return makeRequest(req, parse);
+  return makeRequest(req, parse, profile);
 }
 export default stationBoard;

@@ -56,20 +56,26 @@ const getCurrent = () =>
     .get('/ArrStationBoard', async ctx => {
       const { date, station } = ctx.query;
 
-      ctx.body = await stationBoard({
-        type: 'ARR',
-        station,
-        date: Number.parseInt(date, 10) || undefined,
-      });
+      ctx.body = await stationBoard(
+        {
+          type: 'ARR',
+          station,
+          date: Number.parseInt(date, 10) || undefined,
+        },
+        ctx.hafasProfile
+      );
     })
     .get('/DepStationBoard', async ctx => {
       const { date, station } = ctx.query;
 
-      ctx.body = await stationBoard({
-        type: 'DEP',
-        station,
-        date: Number.parseInt(date, 10) || undefined,
-      });
+      ctx.body = await stationBoard(
+        {
+          type: 'DEP',
+          station,
+          date: Number.parseInt(date, 10) || undefined,
+        },
+        ctx.hafasProfile
+      );
     })
     .get('/trainSearch/:trainName/:date', async ctx => {
       const { date, trainName } = ctx.params;
