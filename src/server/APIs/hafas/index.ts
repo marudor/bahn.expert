@@ -114,8 +114,12 @@ router
   .use((ctx, next) => {
     const hafasProfile = ctx.query.profile;
 
-    if (['db', 'oebb'].includes(hafasProfile)) {
-      ctx.hafasProfile = hafasProfile;
+    if (hafasProfile) {
+      if (['db', 'oebb', 'avv', 'sncb'].includes(hafasProfile)) {
+        ctx.hafasProfile = hafasProfile;
+      } else {
+        throw `${hafasProfile} is not a valid profile`;
+      }
     }
 
     return next();
