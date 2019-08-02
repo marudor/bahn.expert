@@ -67,6 +67,7 @@ function createChecksum(data: any, secret: string) {
 const mgateUrls = {
   db: 'https://reiseauskunft.bahn.de/bin/mgate.exe',
   oebb: 'https://fahrplan.oebb.at/bin/mgate.exe',
+  sncb: 'https://belgianrail.be/jp/sncb-nmbs-routeplanner/mgate.exe',
 };
 const secrets = {
   db: getDBSecret(),
@@ -92,6 +93,18 @@ const staticData = {
     lang: 'de',
     ver: '1.20',
     auth: { aid: 'OWDL4fE4ixNiPBBm', type: 'AID' },
+  },
+  sncb: {
+    client: {
+      os: 'iOS 12.4',
+      id: 'SNCB',
+      v: '4030200',
+      type: 'IPH',
+      name: 'sncb',
+    },
+    lang: 'de',
+    ver: '1.20',
+    auth: { aid: 'sncb-mobi' },
   },
 };
 
