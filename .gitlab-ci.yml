@@ -1,15 +1,16 @@
-image: node:12-alpine
+image: node:12
 
 variables:
   DOCKER_DRIVER: overlay2
+  CYPRESS_CACHE_FOLDER: '$CI_PROJECT_DIR/cypressCache'
 
 stages:
   - install
   - test
   - build
+  - e2e
   - docker
   - deploy
-  - e2e
   - cleanup
 
 install:
@@ -18,6 +19,7 @@ install:
   cache:
     key: '$CI_COMMIT_REF_SLUG'
     paths:
+      - cypressCache/
       - node_modules/
 
 depCheck:
@@ -43,7 +45,6 @@ jest:
     paths:
       - reports
 
-
 lint:
   stage: test
   script: yarn lint
@@ -53,7 +54,6 @@ lint:
     paths:
       - node_modules/
 
-
 tsc:
   stage: test
   script: yarn tsc
@@ -62,7 +62,6 @@ tsc:
     key: '$CI_COMMIT_REF_SLUG'
     paths:
       - node_modules/
-
 
 build:app:
   stage: build
@@ -105,6 +104,25 @@ codecov:
   dependencies:
     - jest
 
+cypress:
+  image: cypress/browsers:node12.6.0-chrome75
+  stage: e2e
+  variables:
+    BASE_URL: http://localhost:9042
+    NODE_ENV: production
+  script:
+    - node dist/server/server/index.js & npx wait-on http://localhost:9042
+    - yarn e2e:ci
+    - pkill -9 node
+  cache:
+    policy: pull
+    key: '$CI_COMMIT_REF_SLUG'
+    paths:
+      - cypressCache
+      - node_modules/
+  dependencies:
+    - build:app
+    - build:server
 
 docker:server:
   services:
@@ -130,19 +148,6 @@ deploy:beta:
   only:
     - master
   dependencies: []
-
-testcafe:
-  image: node:10
-  stage: e2e
-  script:
-    - yarn e2e:browserstack
-  cache:
-    policy: pull
-    key: '$CI_COMMIT_REF_SLUG'
-    paths:
-      - node_modules/
-  dependencies: []
-  only: [master]
 
 deploy:prod:
   stage: deploy
