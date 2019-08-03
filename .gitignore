@@ -55,3 +55,6 @@ secrets/ssl/*.pem
 research/
 .out
 .clinic
+
+
+cypress/videos/

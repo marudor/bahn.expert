@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "strict": true,
+    "baseUrl": "../node_modules",
+    "target": "es5",
+    "lib": ["es5", "dom"],
+    "types": [
+      "cypress",
+      "@testing-library/cypress/typings",
+      "../cypress/support/index"
+    ]
+  },
+  "include": ["**/*.ts", "support/index.ts"]
+}
