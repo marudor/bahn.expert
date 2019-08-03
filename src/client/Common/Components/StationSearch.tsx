@@ -139,7 +139,10 @@ const StationSearch = ({
                   onChange,
                   onFocus,
                 }}
-                inputProps={inputProps}
+                inputProps={{
+                  ...inputProps,
+                  'data-testid': 'stationSearchInput',
+                }}
               />
 
               <div {...getMenuProps()}>
@@ -157,6 +160,7 @@ const StationSearch = ({
 
                         return (
                           <MenuItem
+                            data-testid="stationSearchMenuItem"
                             {...itemProps}
                             key={suggestion.id}
                             selected={highlighted}

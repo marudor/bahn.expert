@@ -1,4 +1,5 @@
 {
+  "exclude": ["cypress"],
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": false,
