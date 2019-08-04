@@ -3,15 +3,11 @@ import { fav, unfav } from 'Abfahrten/actions/fav';
 import { getLageplan, openFilter } from 'Abfahrten/actions/abfahrten';
 import { IconButton } from '@material-ui/core';
 import { openSettings } from 'Abfahrten/actions/abfahrtenConfig';
-import { openTheme } from 'Common/actions/config';
 import { shallowEqual, useDispatch } from 'react-redux';
 import { useAbfahrtenSelector } from 'useSelector';
-import { useRouter } from 'useRouter';
 import ActionMenu from '@material-ui/icons/Menu';
 import FilterList from '@material-ui/icons/FilterList';
 import FilterModal from './FilterModal';
-import HelpOutline from '@material-ui/icons/HelpOutline';
-import InvertColors from '@material-ui/icons/InvertColors';
 import Layers from '@material-ui/icons/Layers';
 import LayersClear from '@material-ui/icons/LayersClear';
 import Menu from '@material-ui/core/Menu';
@@ -20,7 +16,6 @@ import React, { SyntheticEvent, useCallback, useState } from 'react';
 import Settings from '@material-ui/icons/Settings';
 import ToggleStar from '@material-ui/icons/Star';
 import ToggleStarBorder from '@material-ui/icons/StarBorder';
-import Zugsuche from 'Common/Components/Zugsuche';
 
 const ExtraMenu = () => {
   const { isFaved, currentStation, lageplan } = useAbfahrtenSelector(
@@ -35,7 +30,6 @@ const ExtraMenu = () => {
     shallowEqual
   );
   const dispatch = useDispatch();
-  const { history } = useRouter();
   const [anchor, setAnchor] = useState<undefined | HTMLElement>();
   const toggleFav = useCallback(() => {
     setAnchor(undefined);
@@ -75,10 +69,6 @@ const ExtraMenu = () => {
     dispatch(openSettings());
     setAnchor(undefined);
   }, [dispatch]);
-  const toAbout = useCallback(() => {
-    history.push('/about');
-    setAnchor(undefined);
-  }, [history]);
 
   return (
     <>
@@ -111,20 +101,8 @@ const ExtraMenu = () => {
         <MenuItem data-testid="openFilter" onClick={openFilterCb}>
           <FilterList /> Filter
         </MenuItem>
-        <Zugsuche onClose={toggleMenu} />
-        <MenuItem
-          data-testid="themeMenu"
-          aria-label="ThemeMenu"
-          onClick={() => dispatch(openTheme())}
-        >
-          <InvertColors /> Theme
-        </MenuItem>
         <MenuItem data-testid="openSettings" onClick={openSettingsCb}>
           <Settings /> Settings
-        </MenuItem>
-        <MenuItem data-testid="toAbout" onClick={toAbout}>
-          <HelpOutline />
-          About
         </MenuItem>
       </Menu>
     </>

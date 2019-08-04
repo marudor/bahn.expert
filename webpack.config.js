@@ -36,15 +36,11 @@ if (isDev) {
 
 const plugins = [
   new webpack.DefinePlugin({
-    'process.env': {
-      NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-    },
-    global: {
-      PROD: JSON.stringify(!isDev),
-      TEST: JSON.stringify(process.env.NODE_ENV === 'tests'),
-      SERVER: JSON.stringify(false),
-      VERSION: JSON.stringify(require('./version')),
-    },
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+    'global.PROD': JSON.stringify(!isDev),
+    'global.TEST': JSON.stringify(process.env.NODE_ENV === 'test'),
+    'global.SERVER': JSON.stringify(false),
+    'global.VERSION': JSON.stringify(require('./version')),
   }),
   new MiniCssExtractPlugin({
     filename: isDev ? '[name].css' : '[name]-[contenthash].css',

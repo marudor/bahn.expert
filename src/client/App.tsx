@@ -1,9 +1,9 @@
 import { Route, Switch } from 'react-router-dom';
 import Abfahrten from './Abfahrten';
 import DetailsRoute from 'Common/Components/Details/DetailsRoute';
+import Navigation from 'Common/Components/Navigation';
 import React, { useEffect } from 'react';
 import Routing from './Routing';
-import ThemeModal from 'Common/Components/ThemeModal';
 import useStyles from './App.style';
 
 const App = () => {
@@ -17,7 +17,7 @@ const App = () => {
   }, []);
 
   return (
-    <>
+    <Navigation>
       <Switch>
         <Route
           component={DetailsRoute}
@@ -26,8 +26,7 @@ const App = () => {
         <Route component={Routing} path="/routing" />
         <Route component={Abfahrten} path="/" />
       </Switch>
-      <ThemeModal />
-    </>
+    </Navigation>
   );
 };
 

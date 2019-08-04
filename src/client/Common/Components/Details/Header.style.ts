@@ -2,7 +2,6 @@ import { makeStyles } from '@material-ui/styles';
 
 export default makeStyles({
   toolbar: {
-    justifyContent: 'space-between',
     paddingLeft: '.3em',
     '& > *': {
       flexShrink: 0,
