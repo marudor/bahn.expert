@@ -145,9 +145,11 @@ function parseCommon(common: Common): ParsedCommon {
 
 class HafasError extends Error {
   customError = true;
-  request: SingleHafasRequest;
-  response: HafasResponse<any>;
-  profile: AllowedHafasProfile;
+  data: {
+    request: SingleHafasRequest;
+    response: HafasResponse<any>;
+    profile: AllowedHafasProfile;
+  };
   constructor(
     request: SingleHafasRequest,
     response: HafasResponse<any>,
@@ -155,9 +157,11 @@ class HafasError extends Error {
   ) {
     super(`${request.meth} HAFAS Error`);
     Error.captureStackTrace(this, HafasError);
-    this.request = request;
-    this.response = response;
-    this.profile = profile;
+    this.data = {
+      request,
+      response,
+      profile,
+    };
   }
 }
 
