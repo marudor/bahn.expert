@@ -2,9 +2,7 @@
 import '@testing-library/jest-dom/extend-expect';
 import { cleanup } from '@testing-library/react';
 
-if (process.env.TZ !== 'UTC') {
-  throw new Error('Please start tests with TZ=UTC to ensure stable times');
-}
+expect(new Date().getTimezoneOffset()).toBe(0);
 
 afterEach(() => {
   cleanup();

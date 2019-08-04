@@ -7,18 +7,22 @@ import {
   TextField,
 } from '@material-ui/core';
 import { useRouter } from 'useRouter';
+import NavigationContext from './Navigation/NavigationContext';
 import React, {
   ReactElement,
   SyntheticEvent,
   useCallback,
+  useContext,
   useState,
 } from 'react';
+import stopPropagation from 'Common/stopPropagation';
 
 interface Props {
   children: (toggle: (e: SyntheticEvent) => void) => ReactElement;
 }
 const Zugsuche = ({ children }: Props) => {
   const { history } = useRouter();
+  const { toggleDrawer } = useContext(NavigationContext);
   const [open, setOpen] = useState(false);
   const [zug, setZug] = useState('');
   const toggleModal = useCallback(
@@ -45,25 +49,37 @@ const Zugsuche = ({ children }: Props) => {
       if (zug) {
         history.push(`/details/${zug}`);
         toggleModal(e);
+        toggleDrawer();
       }
     },
-    [history, zug, toggleModal]
+    [zug, history, toggleModal, toggleDrawer]
   );
 
   return (
     <>
-      <Dialog maxWidth="md" open={open} onClose={toggleModal}>
+      <Dialog
+        onClick={stopPropagation}
+        maxWidth="md"
+        open={open}
+        onClose={toggleModal}
+        data-testid="Zugsuche"
+      >
         <DialogTitle>Zugsuche</DialogTitle>
         <DialogContent>
           <form onSubmit={onSubmit}>
             <FormControl component="fieldset">
               <TextField
+                inputProps={{
+                  'data-testid': 'ZugsucheInput',
+                }}
                 autoFocus
                 placeholder="z.B. ICE 71"
                 value={zug}
                 onChange={handleZugChange}
               />
-              <Button type="submit">Suche</Button>
+              <Button data-testid="ZugsucheSubmit" type="submit">
+                Suche
+              </Button>
             </FormControl>
           </form>
         </DialogContent>
