@@ -5,8 +5,12 @@ import Message from '@material-ui/icons/Message';
 import React from 'react';
 import useStyles from './About.style';
 
-const Privacy = () => (
-  <div style={{ marginTop: '5em' }}>
+type PrivacyProps = {
+  className?: string;
+};
+
+const Privacy = ({ className }: PrivacyProps) => (
+  <div className={className}>
     <h2>Datenschutzerklärung</h2>
     <p>
       Personenbezogene Daten (nachfolgend zumeist nur „Daten“ genannt) werden
@@ -292,7 +296,7 @@ const About = () => {
           </Button>
         </a>
       </div>
-      <Privacy />
+      <Privacy className={classes.privacy} />
     </div>
   );
 };

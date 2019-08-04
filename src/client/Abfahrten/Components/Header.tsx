@@ -2,15 +2,18 @@ import { shallowEqual } from 'react-redux';
 import { Station } from 'types/station';
 import { useAbfahrtenSelector } from 'useSelector';
 import { useRouter } from 'useRouter';
+import ActionHome from '@material-ui/icons/Home';
 import AppBar from '@material-ui/core/AppBar';
 import ExtraMenu from './ExtraMenu';
-import HomeMenu from 'Abfahrten/Components/HomeMenu';
+import IconButton from '@material-ui/core/IconButton';
 import MetaTags from './MetaTags';
-import React, { useCallback, useEffect, useState } from 'react';
+import NavigationContext from 'Common/Components/Navigation/NavigationContext';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import StationSearch from 'Common/Components/StationSearch';
 import Toolbar from '@material-ui/core/Toolbar';
 
 const Header = () => {
+  const { toggleDrawer } = useContext(NavigationContext);
   const { currentStation, searchType, baseUrl } = useAbfahrtenSelector(
     state => ({
       currentStation: state.abfahrten.currentStation,
@@ -43,7 +46,14 @@ const Header = () => {
       <MetaTags currentStation={currentStation} baseUrl={baseUrl} />
       <AppBar position="fixed">
         <Toolbar disableGutters>
-          <HomeMenu />
+          <IconButton
+            data-testid="home"
+            aria-label="Home"
+            onClick={toggleDrawer}
+            color="inherit"
+          >
+            <ActionHome color="inherit" />
+          </IconButton>
           <StationSearch
             autoFocus={!currentStation}
             searchType={searchType}

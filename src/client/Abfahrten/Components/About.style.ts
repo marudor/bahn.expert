@@ -21,4 +21,7 @@ export default makeStyles(theme => ({
     flexDirection: 'column',
     marginTop: theme.shape.headerSpacing + 10,
   },
+  privacy: {
+    marginTop: '5em',
+  },
 }));

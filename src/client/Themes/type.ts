@@ -3,3 +3,5 @@ export enum ThemeType {
   dark = 'dark',
   light = 'light',
 }
+
+export const availableThemes = Object.keys(ThemeType);
