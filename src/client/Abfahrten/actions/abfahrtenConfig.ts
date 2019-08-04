@@ -49,8 +49,6 @@ export const setFromCookies = (): AbfahrtenThunkResult => (
   const config: MarudorConfig = {
     ...defaultConfig,
     ...cookies.get('config'),
-    // eslint-disable-next-line no-underscore-dangle
-    ...(global.__ConfigOverride__ ? global.__ConfigOverride__ : {}),
   };
 
   dispatch(Actions.setConfig(config));
