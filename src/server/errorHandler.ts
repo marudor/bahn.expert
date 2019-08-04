@@ -7,6 +7,7 @@ export default async (ctx: Context, next: Function) => {
     // eslint-disable-next-line callback-return
     await next();
   } catch (e) {
+    ctx.set('Content-Type', 'application/json');
     if (e.response && !e.customError) {
       ctx.body = {
         statusText: e.response.statusText,
@@ -16,6 +17,9 @@ export default async (ctx: Context, next: Function) => {
     } else {
       if (e instanceof Error) {
         Sentry.withScope(scope => {
+          if (e.data) {
+            scope.setExtra('data', e.data);
+          }
           scope.addEventProcessor(event =>
             Sentry.Handlers.parseRequest(event, ctx.request)
           );
