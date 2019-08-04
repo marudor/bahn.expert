@@ -52,8 +52,6 @@ export default async (ctx: Context) => {
     features: getFeatures(),
   });
 
-  const configOverride = {};
-
   await store.dispatch(setCookies(ctx.request.universalCookies));
   await store.dispatch(setFromCookies());
   if (ctx.query.theme) {
@@ -69,8 +67,6 @@ export default async (ctx: Context) => {
         ctx.query[key]
       );
 
-      // @ts-ignore this works
-      configOverride[key] = value;
       store.dispatch(setConfig(key, value, true));
     }
   });
@@ -115,6 +111,7 @@ export default async (ctx: Context) => {
     if (routeContext.status) {
       ctx.status = routeContext.status;
     }
+    // await store.dispatch(setFromCookies());
     const state = store.getState();
 
     delete state.config.cookies;
@@ -124,7 +121,6 @@ export default async (ctx: Context) => {
       header: Helmet.renderStatic(),
       cssBundles: ctx.stats.main.css,
       clientState: serialize(state),
-      configOverride: serialize(configOverride),
       imprint: serialize(global.IMPRINT),
       jssCss: sheets.toString(),
     });

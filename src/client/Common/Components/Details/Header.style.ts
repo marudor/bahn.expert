@@ -6,10 +6,6 @@ export default makeStyles({
     '& > *': {
       flexShrink: 0,
     },
-    '@media screen and (min-width: 700px)': {
-      width: '40em',
-      margin: 'auto',
-    },
   },
   train: {
     flex: 1,
