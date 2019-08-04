@@ -100,7 +100,11 @@ const getCurrent = () =>
       ctx.body = await LocMatch(searchTerm, undefined, ctx.hafasProfile);
     })
     .post('/rawHafas', async ctx => {
-      ctx.body = await makeRequest(ctx.request.body);
+      ctx.body = await makeRequest(
+        ctx.request.body,
+        undefined,
+        ctx.hafasProfile
+      );
     })
     .post('/route', async ctx => {
       ctx.body = await routing({

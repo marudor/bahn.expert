@@ -4,26 +4,30 @@ import {
   DialogContent,
   DialogTitle,
   FormControl,
-  MenuItem,
   TextField,
 } from '@material-ui/core';
 import { useRouter } from 'useRouter';
-import React, { SyntheticEvent, useCallback, useState } from 'react';
-import Train from '@material-ui/icons/Train';
+import React, {
+  ReactElement,
+  SyntheticEvent,
+  useCallback,
+  useState,
+} from 'react';
 
 interface Props {
-  noIcon?: boolean;
-  onClose?: Function;
+  children: (toggle: (e: SyntheticEvent) => void) => ReactElement;
 }
-const Zugsuche = ({ noIcon, onClose }: Props) => {
+const Zugsuche = ({ children }: Props) => {
   const { history } = useRouter();
   const [open, setOpen] = useState(false);
   const [zug, setZug] = useState('');
-  const toggleModal = useCallback(() => setOpen(!open), [open]);
-  const onDialogClose = useCallback(() => {
-    toggleModal();
-    if (onClose) onClose();
-  }, [onClose, toggleModal]);
+  const toggleModal = useCallback(
+    e => {
+      e.stopPropagation();
+      setOpen(!open);
+    },
+    [open]
+  );
   const handleZugChange = useCallback(
     (
       e: SyntheticEvent<
@@ -37,15 +41,18 @@ const Zugsuche = ({ noIcon, onClose }: Props) => {
   const onSubmit = useCallback(
     (e: SyntheticEvent) => {
       e.preventDefault();
-      history.push(`/details/${zug}`);
-      onDialogClose();
+      e.stopPropagation();
+      if (zug) {
+        history.push(`/details/${zug}`);
+        toggleModal(e);
+      }
     },
-    [history, zug, onDialogClose]
+    [history, zug, toggleModal]
   );
 
   return (
     <>
-      <Dialog maxWidth="md" open={open} onClose={onDialogClose}>
+      <Dialog maxWidth="md" open={open} onClose={toggleModal}>
         <DialogTitle>Zugsuche</DialogTitle>
         <DialogContent>
           <form onSubmit={onSubmit}>
@@ -61,7 +68,7 @@ const Zugsuche = ({ noIcon, onClose }: Props) => {
           </form>
         </DialogContent>
       </Dialog>
-      <MenuItem onClick={toggleModal}>{!noIcon && <Train />} Zugsuche</MenuItem>
+      {children(toggleModal)}
     </>
   );
 };

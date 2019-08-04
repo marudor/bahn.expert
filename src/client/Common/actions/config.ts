@@ -12,13 +12,7 @@ const Actions = {
   setBaseUrl: createAction('SET_BASE_URL', resolve => (c: string) =>
     resolve(c)
   ),
-  setThemeMenu: createAction('SET_THEME_MENU', resolve => (c: boolean) =>
-    resolve(c)
-  ),
 };
-
-export const openTheme = () => Actions.setThemeMenu(true);
-export const closeTheme = () => Actions.setThemeMenu(false);
 
 export default Actions;
 
