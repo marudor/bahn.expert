@@ -5,7 +5,6 @@ import { Server } from 'https';
 import axios from 'axios';
 import cookiesMiddleware from 'universal-cookie-koa';
 import createAdmin from './admin';
-import errorHandler from './errorHandler';
 import http from 'http';
 import Koa, { Context, Middleware } from 'koa';
 import KoaBodyparser from 'koa-bodyparser';
@@ -54,14 +53,10 @@ export async function createApp(wsServer?: Server) {
     Sentry.init({ dsn: sentryDSN, environment: process.env.ENVIRONMENT });
   }
 
-  app.use(errorHandler);
-  app.use(cookiesMiddleware());
-  middlewares.forEach(m => app.use(m));
-  app.use(KoaBodyparser());
-
   let apiRoutes = require('./Controller').default;
   let serverRender = require('./render').default;
   let seoController = require('./seo').default;
+  let errorHandler = require('./errorHandler').default;
 
   if (
     process.env.NODE_ENV !== 'test' &&
@@ -69,6 +64,7 @@ export async function createApp(wsServer?: Server) {
   ) {
     await require('./middleware/webpackDev')(app, wsServer);
     app.use((ctx, next) => {
+      errorHandler = require('./errorHandler').default;
       serverRender = require('./render').default;
       apiRoutes = require('./Controller').default;
       seoController = require('./seo').default;
@@ -79,6 +75,11 @@ export async function createApp(wsServer?: Server) {
       return next();
     });
   }
+
+  app.use(hotHelper(() => errorHandler));
+  app.use(cookiesMiddleware());
+  middlewares.forEach(m => app.use(m));
+  app.use(KoaBodyparser());
 
   app.use(hotHelper(() => apiRoutes.routes()));
 
