@@ -1,9 +1,7 @@
 import 'core-js/stable';
 import Nock from 'nock';
 
-if (process.env.TZ !== 'UTC') {
-  throw new Error('Please start tests with TZ=UTC to ensure stable times');
-}
+expect(new Date().getTimezoneOffset()).toBe(0);
 
 beforeAll(() => {
   Nock.disableNetConnect();
