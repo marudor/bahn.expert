@@ -50,16 +50,21 @@ const Explain = () => {
 
   return (
     <>
-      <div onClick={toggle} className={classes.link}>
+      <div
+        onClick={toggle}
+        className={classes.link}
+        data-testid="reihungLegendOpener"
+      >
         Legende
       </div>
       <Dialog
+        data-testid="reihungLegend"
         classes={{
           paperFullWidth: classes.dialog,
         }}
         fullWidth
         open={open}
-        onClose={() => setOpen(false)}
+        onClose={toggle}
       >
         <DialogTitle>Legende Wagenreihung</DialogTitle>
         <DialogContent>
