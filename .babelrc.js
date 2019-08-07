@@ -27,9 +27,16 @@ module.exports = {
     ],
   ],
   env: {
-    production: {
+    testProduction: {
       compact: true,
       plugins: ['@babel/plugin-transform-react-constant-elements'],
+    },
+    production: {
+      compact: true,
+      plugins: [
+        '@babel/plugin-transform-react-constant-elements',
+        'babel-plugin-jsx-remove-data-test-id',
+      ],
     },
     test: TestConfig,
   },

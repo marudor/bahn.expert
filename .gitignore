@@ -38,6 +38,7 @@ jspm_packages
 
 .vscode
 dist/
+testDist/
 .cache/
 .cache-loader/
 webpack-stats.json
