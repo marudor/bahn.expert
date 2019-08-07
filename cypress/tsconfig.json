@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
     "noEmit": true,
     "strict": true,
     "baseUrl": "../node_modules",
