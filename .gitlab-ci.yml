@@ -76,6 +76,7 @@ build:app:
   artifacts:
     paths:
       - dist/client
+      - testDist/client
   dependencies: []
 
 build:server:
@@ -91,6 +92,7 @@ build:server:
   artifacts:
     paths:
       - dist/server
+      - testDist/server
   dependencies: []
 
 codecov:
@@ -110,9 +112,10 @@ codecov:
   variables:
     BASE_URL: http://localhost:9042
     NODE_ENV: production
+    TEST_RUN: 1
   script:
-    - node dist/server/server/index.js & npx wait-on http://localhost:9042
-    - yarn e2e:ci || pkill -9 node
+    - node testDist/server/server/index.js & npx wait-on http://localhost:9042
+    - yarn e2e:ci||pkill -9 node
     - pkill -9 node
   cache:
     policy: pull

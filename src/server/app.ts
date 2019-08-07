@@ -83,10 +83,14 @@ export async function createApp(wsServer?: Server) {
 
   app.use(hotHelper(() => apiRoutes.routes()));
 
+  const distFolder = process.env.TEST_RUN ? 'testDist' : 'dist';
+
   app.use(
     koaStatic(
       path.resolve(
-        process.env.NODE_ENV === 'production' ? 'dist/client' : 'public'
+        process.env.NODE_ENV === 'production'
+          ? `${distFolder}/client`
+          : 'public'
       ),
       {
         maxAge: 31536000000, // 1 year
@@ -108,7 +112,9 @@ export async function createApp(wsServer?: Server) {
   app.use(hotHelper(() => seoController));
 
   if (process.env.NODE_ENV === 'production') {
-    const stats = require(path.resolve('dist/client/static/stats.json'));
+    const stats = require(path.resolve(
+      `${distFolder}/client/static/stats.json`
+    ));
 
     app.use((ctx, next) => {
       ctx.stats = transformStats(stats.assetsByChunkName);
