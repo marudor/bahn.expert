@@ -29,7 +29,9 @@ export default (state: Partial<AppState> = global.__DATA__) => {
   }
 
   store.dispatch(setCookies(new Cookies()));
-  store.dispatch(setFromCookies());
+  if (global.SERVER) {
+    store.dispatch(setFromCookies());
+  }
 
   // @ts-ignore
   if (module.hot) {
