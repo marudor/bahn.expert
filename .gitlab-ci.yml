@@ -104,7 +104,7 @@ codecov:
   dependencies:
     - jest
 
-cypress:
+.cypress_template: &cypress
   image: cypress/browsers:node12.6.0-chrome75
   stage: e2e
   variables:
@@ -112,7 +112,7 @@ cypress:
     NODE_ENV: production
   script:
     - node dist/server/server/index.js & npx wait-on http://localhost:9042
-    - yarn e2e:ci
+    - yarn e2e:ci || pkill -9 node
     - pkill -9 node
   cache:
     policy: pull
@@ -123,6 +123,15 @@ cypress:
   dependencies:
     - build:app
     - build:server
+
+cypress1:
+  <<: *cypress
+
+cypress2:
+  <<: *cypress
+
+cypress3:
+  <<: *cypress
 
 docker:server:
   services:
