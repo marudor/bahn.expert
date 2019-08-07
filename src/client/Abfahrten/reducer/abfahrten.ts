@@ -3,6 +3,9 @@ import { createReducer } from 'deox';
 import { Station } from 'types/station';
 import Actions, { AbfahrtenError } from 'Abfahrten/actions/abfahrten';
 
+export type FilterOptions = {
+  onlyDepartures?: boolean;
+};
 export type State = {
   selectedDetail?: string;
   departures?: {
@@ -15,12 +18,14 @@ export type State = {
   lageplan?: null | string;
   filterMenu: boolean;
   filterList: string[];
+  filter: FilterOptions;
 };
 
 const defaultState: State = {
   lageplan: undefined,
   filterMenu: false,
   filterList: [],
+  filter: {},
 };
 
 export default createReducer(defaultState, handle => [
@@ -61,5 +66,9 @@ export default createReducer(defaultState, handle => [
   handle(Actions.setFilterList, (state, { payload }) => ({
     ...state,
     filterList: payload,
+  })),
+  handle(Actions.setFilter, (state, { payload }) => ({
+    ...state,
+    filter: payload,
   })),
 ]);

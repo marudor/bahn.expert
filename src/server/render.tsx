@@ -13,6 +13,7 @@ import { setCookieOptions } from 'client/util';
 import { StaticRouter } from 'react-router-dom';
 import { StaticRouterContext } from 'react-router';
 import { ThemeType } from 'client/Themes/type';
+import abfahrtenActions from 'Abfahrten/actions/abfahrten';
 import abfahrtenRoutes from 'Abfahrten/routes';
 import ConfigActions, { setCookies, setTheme } from 'Common/actions/config';
 import createStore from 'client/createStore';
@@ -54,20 +55,30 @@ export default async (ctx: Context) => {
 
   await store.dispatch(setCookies(ctx.request.universalCookies));
   await store.dispatch(setFromCookies());
-  if (ctx.query.theme) {
-    const queryTheme = ThemeType[ctx.query.theme] as undefined | ThemeType;
 
-    if (queryTheme) {
-      store.dispatch(setTheme(queryTheme));
-    }
-  }
   Object.keys(ctx.query).forEach((key: any) => {
-    if (configSanitize.hasOwnProperty(key)) {
-      const value = configSanitize[key as keyof MarudorConfigSanitize](
-        ctx.query[key]
-      );
+    switch (key) {
+      case 'theme': {
+        const queryTheme = ThemeType[ctx.query.theme] as undefined | ThemeType;
 
-      store.dispatch(setConfig(key, value, true));
+        if (queryTheme) {
+          store.dispatch(setTheme(queryTheme));
+        }
+
+        break;
+      }
+      case 'onlyDepartures':
+        store.dispatch(abfahrtenActions.setFilter({ onlyDepartures: true }));
+        break;
+      default:
+        if (configSanitize.hasOwnProperty(key)) {
+          const value = configSanitize[key as keyof MarudorConfigSanitize](
+            ctx.query[key]
+          );
+
+          store.dispatch(setConfig(key, value, true));
+        }
+        break;
     }
   });
 
