@@ -53,7 +53,7 @@ const AbfahrtenList = () => {
       cleanup();
     }
 
-    return cleanup();
+    return cleanup;
   }, [autoUpdate, dispatch]);
 
   const [oldMatch, setOldMatch] = useState(match.params.station);
