@@ -78,13 +78,6 @@ export default async (rawSearchTerm: string, type?: StationSearchType) => {
       result = await getSearchMethod(StationSearchType.StationsData)(
         searchTerm
       );
-
-      if (type !== StationSearchType.DBNavgiator && result.length === 0) {
-        // this may be a station named from iris - lets try that first
-        result = await getSearchMethod(StationSearchType.DBNavgiator)(
-          searchTerm
-        );
-      }
     }
 
     cache.set(searchTerm, result);
