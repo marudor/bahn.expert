@@ -6,5 +6,6 @@ declare namespace Cypress {
      */
     navigateToStation(value: string, addRoute?: boolean): void;
     closeModal(): void;
+    mockFrankfurt(): void;
   }
 }

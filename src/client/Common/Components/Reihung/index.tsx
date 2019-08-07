@@ -55,7 +55,7 @@ const ReihungComp = (props: Props) => {
   const differentZugnummer = reihung.differentZugnummer;
 
   return (
-    <div className={cc(classes.wrap, className)}>
+    <div className={cc(classes.wrap, className)} data-testid="reihung">
       <div className={classes.main}>
         <div className={classes.sektoren}>
           {reihung.halt.allSektor.map(s => (

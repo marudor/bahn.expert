@@ -55,7 +55,10 @@ const BaseAbfahrt = ({ abfahrt, wing, wingEnd, wingStart }: Props) => {
           })}
         />
       )}
-      <div className={classes.entry}>
+      <div
+        data-testid={`abfahrt${abfahrt.train.trainCategory}${abfahrt.train.number}`}
+        className={classes.entry}
+      >
         <div className={classes.entryMain}>
           <Start
             abfahrt={abfahrt}

@@ -77,7 +77,11 @@ const Gruppe = ({
         </span>
       )}
       {showFahrzeugGruppe && (
-        <span className={classes.bezeichnung} style={gruppenPos}>
+        <span
+          data-testid="reihungFahrzeugGruppe"
+          className={classes.bezeichnung}
+          style={gruppenPos}
+        >
           {gruppe.fahrzeuggruppebezeichnung}
         </span>
       )}

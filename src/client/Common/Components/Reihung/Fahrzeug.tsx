@@ -68,6 +68,7 @@ const FahrzeugComp = ({
 
   return (
     <div
+      data-testid="reihungFahrzeug"
       style={position}
       className={cc(classes.main, {
         [classes.closed]: fahrzeug.status === 'GESCHLOSSEN',

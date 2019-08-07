@@ -147,6 +147,7 @@ const SettingsModal = () => {
           className={classes.label}
           control={
             <Switch
+              data-testid="lineAndNumberConfig"
               checked={lineAndNumber}
               value="lineAndNumberConfig"
               onChange={handleCheckedChange(setLineAndNumber)}
@@ -158,6 +159,7 @@ const SettingsModal = () => {
           className={classes.label}
           control={
             <Switch
+              data-testid="fahrzeugGruppeConfig"
               checked={fahrzeugGruppe}
               value="fahrzeugGruppeConfig"
               onChange={handleCheckedChange(setFahrzeugGruppe)}

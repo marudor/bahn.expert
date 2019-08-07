@@ -122,14 +122,22 @@ const AbfahrtenList = () => {
           (abfahrten.lookahead.length || abfahrten.lookbehind.length) ? (
           <>
             {Boolean(abfahrten.lookbehind.length) && (
-              <div id="lookbehind" className={classes.lookbehind}>
+              <div
+                id="lookbehind"
+                className={classes.lookbehind}
+                data-testid="lookbehind"
+              >
                 {abfahrten.lookbehind.map(
                   a => a && <Abfahrt abfahrt={a} key={a.rawId} />
                 )}
                 <div className={classes.lookaheadMarker} id="lookaheadMarker" />
               </div>
             )}
-            <div id="lookahead" className={classes.lookahead}>
+            <div
+              id="lookahead"
+              className={classes.lookahead}
+              data-testid="lookahead"
+            >
               {abfahrten.lookahead.map(
                 a => a && <Abfahrt abfahrt={a} key={a.rawId} />
               )}
