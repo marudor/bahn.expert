@@ -21,7 +21,7 @@ const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
   );
 
   return (
-    <div className={classes.main}>
+    <div className={classes.main} data-testid="abfahrtStart">
       <span>{abfahrt.train.name}</span>
       {lineAndNumber && abfahrt.train.line && (
         <>

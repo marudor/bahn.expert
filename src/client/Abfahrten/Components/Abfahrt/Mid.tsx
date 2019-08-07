@@ -14,6 +14,7 @@ const Mid = ({ abfahrt, detail }: Props) => {
 
   return (
     <div
+      data-testid="abfahrtMid"
       className={cc(
         {
           [classes.detail]: detail,

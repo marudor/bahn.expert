@@ -1,8 +1,8 @@
 import {
   Button,
   Dialog,
+  DialogActions,
   DialogContent,
-  DialogTitle,
   FormControlLabel,
   Switch,
 } from '@material-ui/core';
@@ -50,11 +50,12 @@ const FilterModal = () => {
 
   return (
     <Dialog maxWidth="md" fullWidth open={open} onClose={closeFilterM}>
-      <DialogTitle>Train Type</DialogTitle>
       <DialogContent>
+        <h4>Train Types</h4>
         {types.map(t => (
           <FormControlLabel
             className={classes.label}
+            data-testid={`filter${t}`}
             key={t}
             control={
               <Switch
@@ -66,10 +67,12 @@ const FilterModal = () => {
             label={t}
           />
         ))}
-        <Button fullWidth variant="contained" onClick={saveAsDefault}>
+      </DialogContent>
+      <DialogActions>
+        <Button data-testid="filterSubmit" fullWidth onClick={saveAsDefault}>
           Save as default
         </Button>
-      </DialogContent>
+      </DialogActions>
     </Dialog>
   );
 };

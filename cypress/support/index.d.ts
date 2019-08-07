@@ -4,6 +4,7 @@ declare namespace Cypress {
      * Custom command to select DOM element by data-cy attribute.
      * @example cy.dataCy('greeting')
      */
-    navigateToStation(value: string): void;
+    navigateToStation(value: string, addRoute?: boolean): void;
+    closeModal(): void;
   }
 }

@@ -12,7 +12,7 @@ const End = ({ abfahrt, detail }: Props) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.main}>
+    <div className={classes.main} data-testid="abfahrtEnd">
       <Times abfahrt={abfahrt} detail={detail} />
       <Platform
         real={abfahrt.platform}
