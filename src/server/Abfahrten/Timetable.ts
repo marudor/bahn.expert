@@ -725,7 +725,7 @@ export default class Timetable {
 
         if (!rawXml) {
           try {
-            rawXml = await this.axios.get<string>(`${key}`).then(x => x.data);
+            rawXml = await this.axios.get<string>(key).then(x => x.data);
           } catch (e) {
             this.errors.push(e);
 

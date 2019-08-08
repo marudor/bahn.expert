@@ -1467,53 +1467,88 @@ Object {
 exports[`Hafas API v1 /details 1`] = `
 Object {
   "arrival": Object {
+    "delay": 0,
     "platform": "6",
     "reihung": true,
-    "scheduledTime": 1562019060000,
-    "time": 1562019060000,
+    "scheduledTime": 1565286060000,
+    "time": 1565286060000,
   },
   "auslastung": Object {
-    "first": 1,
-    "second": 2,
+    "first": 2,
+    "second": 3,
   },
   "currentStop": Object {
-    "departure": Object {
-      "platform": "8",
+    "arrival": Object {
+      "delay": 0,
+      "platform": "9",
       "reihung": true,
-      "scheduledTime": 1561984740000,
-      "time": 1561984740000,
+      "scheduledTime": 1565270760000,
+      "time": 1565270760000,
+    },
+    "auslastung": Object {
+      "first": 2,
+      "second": 3,
+    },
+    "departure": Object {
+      "delay": 0,
+      "platform": "9",
+      "reihung": true,
+      "scheduledTime": 1565270880000,
+      "time": 1565270880000,
     },
     "station": Object {
       "coordinates": Object {
-        "lat": 46.853081,
-        "lng": 9.528925,
+        "lat": 50.959012,
+        "lng": 11.009152,
       },
-      "id": "8509000",
-      "title": "Chur",
+      "id": "8010101",
+      "title": "Erfurt Hbf",
     },
   },
   "departure": Object {
-    "platform": "8",
+    "delay": 1,
+    "platform": "14",
     "reihung": true,
-    "scheduledTime": 1561984740000,
-    "time": 1561984740000,
+    "scheduledTime": 1565259180000,
+    "time": 1565259240000,
   },
-  "duration": 34320000,
+  "duration": 26880000,
   "finalDestination": "Hamburg-Altona",
-  "jid": "1|421110|0|80|1072019",
+  "jid": "1|178611|0|80|8082019",
   "messages": Array [
     Object {
       "code": "CK",
-      "icoX": 4,
+      "icoX": 3,
       "prio": 200,
-      "txtN": "Komfort Check-in möglich  http://bahn.de/komfortcheckin (Basel SBB - Hamburg-Altona)",
+      "txtN": "Komfort Check-in möglich  http://bahn.de/komfortcheckin",
+      "type": "A",
+    },
+    Object {
+      "code": "FR",
+      "icoX": 4,
+      "prio": 260,
+      "txtN": "Fahrradmitnahme reservierungspflichtig",
+      "type": "A",
+    },
+    Object {
+      "code": "FB",
+      "icoX": 5,
+      "prio": 260,
+      "txtN": "Fahrradmitnahme begrenzt möglich",
       "type": "A",
     },
     Object {
       "code": "BR",
-      "icoX": 5,
+      "icoX": 6,
       "prio": 450,
       "txtN": "Bordrestaurant",
+      "type": "A",
+    },
+    Object {
+      "code": "EH",
+      "icoX": 3,
+      "prio": 560,
+      "txtN": "Fahrzeuggebundene Einstiegshilfe vorhanden",
       "type": "A",
     },
   ],
@@ -1522,369 +1557,364 @@ Object {
     "title": "Hamburg-Altona",
   },
   "segmentStart": Object {
-    "id": "8509000",
-    "title": "Chur",
+    "id": "8000261",
+    "title": "München Hbf",
   },
   "stops": Array [
     Object {
       "departure": Object {
-        "platform": "8",
-        "reihung": true,
-        "scheduledTime": 1561984740000,
-        "time": 1561984740000,
-      },
-      "station": Object {
-        "coordinates": Object {
-          "lat": 46.853081,
-          "lng": 9.528925,
-        },
-        "id": "8509000",
-        "title": "Chur",
-      },
-    },
-    Object {
-      "arrival": Object {
-        "platform": "3",
-        "reihung": true,
-        "scheduledTime": 1561985220000,
-        "time": 1561985220000,
-      },
-      "departure": Object {
-        "platform": "3",
-        "reihung": true,
-        "scheduledTime": 1561985340000,
-        "time": 1561985340000,
-      },
-      "station": Object {
-        "coordinates": Object {
-          "lat": 46.967442,
-          "lng": 9.554032,
-        },
-        "id": "8509002",
-        "title": "Landquart",
-      },
-    },
-    Object {
-      "arrival": Object {
-        "platform": "2",
-        "reihung": true,
-        "scheduledTime": 1561985820000,
-        "time": 1561985820000,
-      },
-      "departure": Object {
-        "platform": "2",
-        "reihung": true,
-        "scheduledTime": 1561985880000,
-        "time": 1561985880000,
-      },
-      "station": Object {
-        "coordinates": Object {
-          "lat": 47.045361,
-          "lng": 9.445398,
-        },
-        "id": "8509411",
-        "title": "Sargans",
-      },
-    },
-    Object {
-      "arrival": Object {
-        "platform": "11",
-        "reihung": true,
-        "scheduledTime": 1561989180000,
-        "time": 1561989180000,
-      },
-      "departure": Object {
-        "platform": "11",
-        "reihung": true,
-        "scheduledTime": 1561989600000,
-        "time": 1561989600000,
-      },
-      "station": Object {
-        "coordinates": Object {
-          "lat": 47.378168,
-          "lng": 8.540193,
-        },
-        "id": "8503000",
-        "title": "Zürich HB",
-      },
-    },
-    Object {
-      "arrival": Object {
-        "platform": "9",
-        "reihung": true,
-        "scheduledTime": 1561992780000,
-        "time": 1561992780000,
-      },
-      "departure": Object {
-        "reihung": true,
-        "scheduledTime": 1561993560000,
-        "time": 1561993560000,
-      },
-      "station": Object {
-        "coordinates": Object {
-          "lat": 47.547408,
-          "lng": 7.589548,
-        },
-        "id": "8500010",
-        "title": "Basel SBB",
-      },
-    },
-    Object {
-      "arrival": Object {
-        "platform": "4",
-        "reihung": true,
-        "scheduledTime": 1561993920000,
-        "time": 1561993920000,
-      },
-      "auslastung": Object {
-        "first": 1,
-        "second": 1,
-      },
-      "departure": Object {
-        "platform": "4",
-        "reihung": true,
-        "scheduledTime": 1561994100000,
-        "time": 1561994100000,
-      },
-      "station": Object {
-        "coordinates": Object {
-          "lat": 47.567679,
-          "lng": 7.607886,
-        },
-        "id": "8000026",
-        "title": "Basel Bad Bf",
-      },
-    },
-    Object {
-      "arrival": Object {
-        "platform": "1",
-        "reihung": true,
-        "scheduledTime": 1561996020000,
-        "time": 1561996020000,
-      },
-      "auslastung": Object {
-        "first": 1,
-        "second": 1,
-      },
-      "departure": Object {
-        "platform": "1",
-        "reihung": true,
-        "scheduledTime": 1561996140000,
-        "time": 1561996140000,
-      },
-      "station": Object {
-        "coordinates": Object {
-          "lat": 47.997974,
-          "lng": 7.841344,
-        },
-        "id": "8000107",
-        "title": "Freiburg(Breisgau) Hbf",
-      },
-    },
-    Object {
-      "arrival": Object {
-        "platform": "4",
-        "reihung": true,
-        "scheduledTime": 1561998720000,
-        "time": 1561998720000,
-      },
-      "auslastung": Object {
-        "first": 1,
-        "second": 1,
-      },
-      "departure": Object {
-        "platform": "4",
-        "reihung": true,
-        "scheduledTime": 1561998840000,
-        "time": 1561998840000,
-      },
-      "station": Object {
-        "coordinates": Object {
-          "lat": 48.790392,
-          "lng": 8.190773,
-        },
-        "id": "8000774",
-        "title": "Baden-Baden",
-      },
-    },
-    Object {
-      "arrival": Object {
-        "platform": "3",
-        "reihung": true,
-        "scheduledTime": 1561999740000,
-        "time": 1561999740000,
-      },
-      "auslastung": Object {
-        "first": 1,
-        "second": 2,
-      },
-      "departure": Object {
-        "platform": "3",
-        "reihung": true,
-        "scheduledTime": 1561999860000,
-        "time": 1561999860000,
-      },
-      "station": Object {
-        "coordinates": Object {
-          "lat": 48.99353,
-          "lng": 8.401939,
-        },
-        "id": "8000191",
-        "title": "Karlsruhe Hbf",
-      },
-    },
-    Object {
-      "arrival": Object {
-        "platform": "3",
-        "reihung": true,
-        "scheduledTime": 1562001240000,
-        "time": 1562001240000,
-      },
-      "auslastung": Object {
-        "first": 1,
-        "second": 2,
-      },
-      "departure": Object {
-        "platform": "3",
-        "reihung": true,
-        "scheduledTime": 1562001360000,
-        "time": 1562001360000,
-      },
-      "station": Object {
-        "coordinates": Object {
-          "lat": 49.479181,
-          "lng": 8.469268,
-        },
-        "id": "8000244",
-        "title": "Mannheim Hbf",
-      },
-    },
-    Object {
-      "arrival": Object {
-        "platform": "8",
-        "reihung": true,
-        "scheduledTime": 1562003520000,
-        "time": 1562003520000,
-      },
-      "auslastung": Object {
-        "first": 1,
-        "second": 2,
-      },
-      "departure": Object {
-        "platform": "8",
-        "reihung": true,
-        "scheduledTime": 1562003880000,
-        "time": 1562003880000,
-      },
-      "station": Object {
-        "coordinates": Object {
-          "lat": 50.106817,
-          "lng": 8.663003,
-        },
-        "id": "8000105",
-        "title": "Frankfurt(Main)Hbf",
-      },
-    },
-    Object {
-      "arrival": Object {
-        "platform": "3",
-        "reihung": true,
-        "scheduledTime": 1562008740000,
-        "time": 1562008740000,
-      },
-      "auslastung": Object {
-        "first": 1,
-        "second": 2,
-      },
-      "departure": Object {
-        "platform": "3",
-        "reihung": true,
-        "scheduledTime": 1562008860000,
-        "time": 1562008860000,
-      },
-      "station": Object {
-        "coordinates": Object {
-          "lat": 51.312998,
-          "lng": 9.446845,
-        },
-        "id": "8003200",
-        "title": "Kassel-Wilhelmshöhe",
-      },
-    },
-    Object {
-      "arrival": Object {
-        "platform": "9",
-        "reihung": true,
-        "scheduledTime": 1562009940000,
-        "time": 1562009940000,
-      },
-      "auslastung": Object {
-        "first": 1,
-        "second": 2,
-      },
-      "departure": Object {
-        "platform": "9",
-        "reihung": true,
-        "scheduledTime": 1562010060000,
-        "time": 1562010060000,
-      },
-      "station": Object {
-        "coordinates": Object {
-          "lat": 51.536758,
-          "lng": 9.926257,
-        },
-        "id": "8000128",
-        "title": "Göttingen",
-      },
-    },
-    Object {
-      "arrival": Object {
-        "platform": "8",
-        "reihung": true,
-        "scheduledTime": 1562013240000,
-        "time": 1562013240000,
-      },
-      "auslastung": Object {
-        "first": 1,
-        "second": 1,
-      },
-      "departure": Object {
-        "platform": "8",
-        "reihung": true,
-        "scheduledTime": 1562013420000,
-        "time": 1562013420000,
-      },
-      "station": Object {
-        "coordinates": Object {
-          "lat": 52.377079,
-          "lng": 9.741763,
-        },
-        "id": "8000152",
-        "title": "Hannover Hbf",
-      },
-    },
-    Object {
-      "arrival": Object {
-        "platform": "1",
-        "reihung": true,
-        "scheduledTime": 1562017320000,
-        "time": 1562017320000,
-      },
-      "station": Object {
-        "coordinates": Object {
-          "lat": 53.456198,
-          "lng": 9.991591,
-        },
-        "id": "8000147",
-        "title": "Hamburg-Harburg",
-      },
-    },
-    Object {
-      "arrival": Object {
+        "delay": 1,
         "platform": "14",
         "reihung": true,
-        "scheduledTime": 1562018040000,
-        "time": 1562018040000,
+        "scheduledTime": 1565259180000,
+        "time": 1565259240000,
+      },
+      "station": Object {
+        "coordinates": Object {
+          "lat": 48.140364,
+          "lng": 11.558744,
+        },
+        "id": "8000261",
+        "title": "München Hbf",
+      },
+    },
+    Object {
+      "auslastung": Object {
+        "first": 1,
+        "second": 1,
+      },
+      "departure": Object {
+        "delay": 0,
+        "platform": "10",
+        "reihung": true,
+        "scheduledTime": 1565259720000,
+        "time": 1565259720000,
+      },
+      "station": Object {
+        "coordinates": Object {
+          "lat": 48.150036,
+          "lng": 11.461633,
+        },
+        "id": "8004158",
+        "title": "München-Pasing",
+      },
+    },
+    Object {
+      "arrival": Object {
+        "delay": 0,
+        "platform": "1",
+        "reihung": true,
+        "scheduledTime": 1565261100000,
+        "time": 1565261100000,
+      },
+      "auslastung": Object {
+        "first": 1,
+        "second": 1,
+      },
+      "departure": Object {
+        "delay": 0,
+        "platform": "1",
+        "reihung": true,
+        "scheduledTime": 1565261220000,
+        "time": 1565261220000,
+      },
+      "station": Object {
+        "coordinates": Object {
+          "lat": 48.365247,
+          "lng": 10.885595,
+        },
+        "id": "8000013",
+        "title": "Augsburg Hbf",
+      },
+    },
+    Object {
+      "arrival": Object {
+        "delay": 0,
+        "platform": "3",
+        "reihung": true,
+        "scheduledTime": 1565262360000,
+        "time": 1565262360000,
+      },
+      "auslastung": Object {
+        "first": 1,
+        "second": 1,
+      },
+      "departure": Object {
+        "delay": 0,
+        "platform": "3",
+        "reihung": true,
+        "scheduledTime": 1565262480000,
+        "time": 1565262480000,
+      },
+      "station": Object {
+        "coordinates": Object {
+          "lat": 48.714028,
+          "lng": 10.771522,
+        },
+        "id": "8000078",
+        "title": "Donauwörth",
+      },
+    },
+    Object {
+      "arrival": Object {
+        "delay": 0,
+        "platform": "7",
+        "reihung": true,
+        "scheduledTime": 1565265480000,
+        "time": 1565265480000,
+      },
+      "auslastung": Object {
+        "first": 1,
+        "second": 3,
+      },
+      "departure": Object {
+        "delay": 3,
+        "platform": "7",
+        "reihung": true,
+        "scheduledTime": 1565265840000,
+        "time": 1565266020000,
+      },
+      "station": Object {
+        "coordinates": Object {
+          "lat": 49.445435,
+          "lng": 11.08227,
+        },
+        "id": "8000284",
+        "title": "Nürnberg Hbf",
+      },
+    },
+    Object {
+      "arrival": Object {
+        "delay": 2,
+        "platform": "1",
+        "reihung": true,
+        "scheduledTime": 1565266620000,
+        "time": 1565266740000,
+      },
+      "auslastung": Object {
+        "first": 1,
+        "second": 3,
+      },
+      "departure": Object {
+        "delay": 3,
+        "platform": "1",
+        "reihung": true,
+        "scheduledTime": 1565266740000,
+        "time": 1565266920000,
+      },
+      "station": Object {
+        "coordinates": Object {
+          "lat": 49.595969,
+          "lng": 11.001664,
+        },
+        "id": "8001844",
+        "title": "Erlangen",
+      },
+    },
+    Object {
+      "arrival": Object {
+        "delay": 0,
+        "platform": "6",
+        "reihung": true,
+        "scheduledTime": 1565268000000,
+        "time": 1565268000000,
+      },
+      "auslastung": Object {
+        "first": 1,
+        "second": 3,
+      },
+      "departure": Object {
+        "delay": 0,
+        "platform": "6",
+        "reihung": true,
+        "scheduledTime": 1565268120000,
+        "time": 1565268120000,
+      },
+      "station": Object {
+        "coordinates": Object {
+          "lat": 49.900793,
+          "lng": 10.899493,
+        },
+        "id": "8000025",
+        "title": "Bamberg",
+      },
+    },
+    Object {
+      "arrival": Object {
+        "delay": 0,
+        "platform": "9",
+        "reihung": true,
+        "scheduledTime": 1565270760000,
+        "time": 1565270760000,
+      },
+      "auslastung": Object {
+        "first": 2,
+        "second": 3,
+      },
+      "departure": Object {
+        "delay": 0,
+        "platform": "9",
+        "reihung": true,
+        "scheduledTime": 1565270880000,
+        "time": 1565270880000,
+      },
+      "station": Object {
+        "coordinates": Object {
+          "lat": 50.959012,
+          "lng": 11.009152,
+        },
+        "id": "8010101",
+        "title": "Erfurt Hbf",
+      },
+    },
+    Object {
+      "arrival": Object {
+        "delay": 0,
+        "platform": "11",
+        "reihung": true,
+        "scheduledTime": 1565273400000,
+        "time": 1565273400000,
+      },
+      "auslastung": Object {
+        "first": 1,
+        "second": 2,
+      },
+      "departure": Object {
+        "delay": 0,
+        "platform": "11",
+        "reihung": true,
+        "scheduledTime": 1565273760000,
+        "time": 1565273760000,
+      },
+      "messages": Array [
+        Object {
+          "code": "",
+          "icoX": 2,
+          "sIdx": 0,
+          "txtN": "Warten auf Fahrgäste aus einem anderen Zug",
+          "type": "D",
+        },
+      ],
+      "station": Object {
+        "coordinates": Object {
+          "lat": 51.345081,
+          "lng": 12.381167,
+        },
+        "id": "8010205",
+        "title": "Leipzig Hbf",
+      },
+    },
+    Object {
+      "arrival": Object {
+        "delay": 0,
+        "platform": "3",
+        "reihung": true,
+        "scheduledTime": 1565275560000,
+        "time": 1565275560000,
+      },
+      "auslastung": Object {
+        "first": 1,
+        "second": 2,
+      },
+      "departure": Object {
+        "delay": 0,
+        "platform": "3",
+        "reihung": true,
+        "scheduledTime": 1565275680000,
+        "time": 1565275680000,
+      },
+      "station": Object {
+        "coordinates": Object {
+          "lat": 51.867579,
+          "lng": 12.661999,
+        },
+        "id": "8010222",
+        "title": "Lutherstadt Wittenberg Hbf",
+      },
+    },
+    Object {
+      "arrival": Object {
+        "delay": 0,
+        "platform": "8",
+        "reihung": true,
+        "scheduledTime": 1565277720000,
+        "time": 1565277720000,
+      },
+      "departure": Object {
+        "delay": 0,
+        "platform": "8",
+        "reihung": true,
+        "scheduledTime": 1565277840000,
+        "time": 1565277840000,
+      },
+      "station": Object {
+        "coordinates": Object {
+          "lat": 52.47623,
+          "lng": 13.365863,
+        },
+        "id": "8011113",
+        "title": "Berlin Südkreuz",
+      },
+    },
+    Object {
+      "arrival": Object {
+        "delay": 0,
+        "platform": "8",
+        "reihung": true,
+        "scheduledTime": 1565278140000,
+        "time": 1565278140000,
+      },
+      "departure": Object {
+        "delay": 0,
+        "platform": "8",
+        "reihung": true,
+        "scheduledTime": 1565278800000,
+        "time": 1565278800000,
+      },
+      "station": Object {
+        "coordinates": Object {
+          "lat": 52.52585,
+          "lng": 13.368892,
+        },
+        "id": "8098160",
+        "title": "Berlin Hbf (tief)",
+      },
+    },
+    Object {
+      "arrival": Object {
+        "delay": 0,
+        "platform": "3",
+        "reihung": true,
+        "scheduledTime": 1565279280000,
+        "time": 1565279280000,
+      },
+      "auslastung": Object {
+        "first": 1,
+        "second": 2,
+      },
+      "departure": Object {
+        "delay": 0,
+        "platform": "3",
+        "reihung": true,
+        "scheduledTime": 1565279400000,
+        "time": 1565279400000,
+      },
+      "station": Object {
+        "coordinates": Object {
+          "lat": 52.533787,
+          "lng": 13.200947,
+        },
+        "id": "8010404",
+        "title": "Berlin-Spandau",
+      },
+    },
+    Object {
+      "arrival": Object {
+        "delay": 0,
+        "platform": "5",
+        "reihung": true,
+        "scheduledTime": 1565285040000,
+        "time": 1565285040000,
       },
       "station": Object {
         "coordinates": Object {
@@ -1897,10 +1927,11 @@ Object {
     },
     Object {
       "arrival": Object {
+        "delay": 0,
         "platform": "3",
         "reihung": true,
-        "scheduledTime": 1562018460000,
-        "time": 1562018460000,
+        "scheduledTime": 1565285460000,
+        "time": 1565285460000,
       },
       "station": Object {
         "coordinates": Object {
@@ -1913,10 +1944,11 @@ Object {
     },
     Object {
       "arrival": Object {
+        "delay": 0,
         "platform": "6",
         "reihung": true,
-        "scheduledTime": 1562019060000,
-        "time": 1562019060000,
+        "scheduledTime": 1565286060000,
+        "time": 1565286060000,
       },
       "station": Object {
         "coordinates": Object {
@@ -1929,8 +1961,8 @@ Object {
     },
   ],
   "train": Object {
-    "name": "ICE 70",
-    "number": "70",
+    "name": "ICE 508",
+    "number": "508",
     "type": "ICE",
   },
 }
