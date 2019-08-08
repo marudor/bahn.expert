@@ -3,6 +3,7 @@ import auslastungHafas from 'server/Auslastung/Hafas';
 import detail from 'server/HAFAS/Detail';
 import geoStation from 'server/HAFAS/LocGeoPos';
 import journeyDetails from 'server/HAFAS/JourneyDetails';
+import journeyMatch from 'server/HAFAS/JourneyMatch';
 import KoaRouter from 'koa-router';
 import LocMatch from 'server/HAFAS/LocMatch';
 import makeRequest from 'server/HAFAS/Request';
@@ -77,10 +78,19 @@ const getCurrent = () =>
         ctx.hafasProfile
       );
     })
-    .get('/trainSearch/:trainName/:date', async ctx => {
+    .get('/trainSearch/:trainName/:date?', async ctx => {
       const { date, trainName } = ctx.params;
 
       ctx.body = await trainSearch(
+        trainName,
+        date ? Number.parseInt(date, 10) : undefined,
+        ctx.hafasProfile
+      );
+    })
+    .get('/journeyMatch/:trainName/:date?', async ctx => {
+      const { date, trainName } = ctx.params;
+
+      ctx.body = await journeyMatch(
         trainName,
         date ? Number.parseInt(date, 10) : undefined,
         ctx.hafasProfile

@@ -39,38 +39,54 @@ describe('Hafas API', () => {
       it('/details', async () => {
         mockWithFile(
           'https://reiseauskunft.bahn.de',
-          '/bin/trainsearch.exe/dn?L=vs_json&date=01.07.2019&trainname=ICE+70&stationFilter=80&productClassFilter=31',
-          'hafas/details/trainsearch'
+          '/bin/mgate.exe?checksum=1ee9aa97b0b20f502efa35004149c825',
+          'hafas/details/journeyMatch',
+          'post'
         );
         mockWithFile(
           'https://reiseauskunft.bahn.de',
-          '/bin/mgate.exe?checksum=129382e0d60c961460d0a40c542f8736',
+          '/bin/mgate.exe?checksum=0f6113def1f01582e55e1e3eb2f18de7',
           'hafas/details/journeyDetails',
           'post'
         );
         mockWithFile(
           'https://reiseauskunft.bahn.de',
-          '/bin/mgate.exe?checksum=ebd87fe8880e82c978e3a832b1aee23a',
+          '/bin/mgate.exe?checksum=4f1040948f18e2b310842948574d154c',
           'hafas/details/searchOnTrip',
           'post'
         );
         mockWithFile(
           'https://iris.noncd.db.de',
-          '/iris-tts/timetable/station/8509000',
+          '/iris-tts/timetable/station/8010101',
           'hafas/details/irisStation'
         );
         mockWithFile(
           'https://iris.noncd.db.de',
-          '/iris-tts/timetable/station/8575112',
+          '/iris-tts/timetable/station/8071357',
           'hafas/details/irisStation2'
         );
         mockWithFile(
           'https://iris.noncd.db.de',
-          '/iris-tts/timetable/fchg/8509000',
-          'hafas/details/fchgChur'
+          '/iris-tts/timetable/plan/8010101/190808/13',
+          'hafas/details/plan1'
+        );
+        mockWithFile(
+          'https://iris.noncd.db.de',
+          '/iris-tts/timetable/plan/8010101/190808/12',
+          'hafas/details/plan2'
+        );
+        mockWithFile(
+          'https://iris.noncd.db.de',
+          '/iris-tts/timetable/plan/8010101/190808/14',
+          'hafas/details/plan3'
+        );
+        mockWithFile(
+          'https://iris.noncd.db.de',
+          '/iris-tts/timetable/fchg/8010101',
+          'hafas/details/fchg'
         );
         await checkApi(
-          `/api/hafas/${v}/details/ICE 70/1561966025283?stop=8509000`
+          `/api/hafas/${v}/details/ICE 508/1565270291675?stop=8010101`
         );
       });
       it('/auslastung', async () => {

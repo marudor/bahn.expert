@@ -10,6 +10,10 @@ import {
   JourneyDetailsRequest,
   JourneyDetailsResponse,
 } from 'types/HAFAS/JourneyDetails';
+import {
+  JourneyMatchRequest,
+  JourneyMatchResponse,
+} from 'types/HAFAS/JourneyMatch';
 import { LocGeoPosRequest, LocGeoPosResponse } from 'types/HAFAS/LocGeoPos';
 import { LocMatchRequest, LocMatchResponse } from 'types/HAFAS/LocMatch';
 import {
@@ -171,6 +175,15 @@ declare function makeRequest<
   P = R
 >(
   r: StationBoardRequest,
+  parseFn?: (d: R, pc: ParsedCommon) => P,
+  profile?: AllowedHafasProfile
+): Promise<P>;
+// @ts-ignore 2384
+declare function makeRequest<
+  R extends HafasResponse<JourneyMatchResponse>,
+  P = R
+>(
+  r: JourneyMatchRequest,
   parseFn?: (d: R, pc: ParsedCommon) => P,
   profile?: AllowedHafasProfile
 ): Promise<P>;

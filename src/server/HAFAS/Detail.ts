@@ -1,10 +1,11 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
+import { format, subMinutes } from 'date-fns';
 import { getAbfahrten } from 'server/Abfahrten';
 import { logger } from 'server/logger';
 import { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
-import { subMinutes } from 'date-fns';
+import journeyDetails from './JourneyDetails';
+import journeyMatch from './JourneyMatch';
 import searchOnTrip from './SearchOnTrip';
-import trainSearch from './TrainSearch';
 
 function calculateCurrentStation(
   segment: ParsedSearchOnTripResponse,
@@ -34,14 +35,34 @@ export default async (
   date: number = Date.now(),
   hafasProfile: AllowedHafasProfile = 'db'
 ) => {
-  const train = await trainSearch(trainName, date, hafasProfile);
+  const train = (await journeyMatch(trainName, date, hafasProfile))[0];
 
   if (!train) return undefined;
+
+  const jDetails = await journeyDetails(train.jid, hafasProfile);
+
+  let replacementNumber = 1;
+
+  if (
+    jDetails.messages &&
+    jDetails.messages.some(m => m.txtN.includes('Ersatzfahrt'))
+  ) {
+    replacementNumber = 2;
+  }
+
+  const ctxRecon = `¶HKI¶T$A=1@L=${
+    jDetails.firstStop.station.id
+  }@a=128@$A=1@L=${jDetails.lastStop.station.id}@a=128@$${format(
+    jDetails.firstStop.departure.scheduledTime,
+    'yyyyMMddHHmm'
+  )}$${format(jDetails.lastStop.arrival.scheduledTime, 'yyyyMMddHHmm')}$${
+    jDetails.train.name
+  }$$${replacementNumber}$`;
 
   let relevantSegment: ParsedSearchOnTripResponse;
 
   try {
-    const route = await searchOnTrip(train.ctxRecon, hafasProfile);
+    const route = await searchOnTrip(ctxRecon, hafasProfile);
 
     relevantSegment = route.segments[0];
   } catch (e) {
@@ -51,21 +72,21 @@ export default async (
     });
 
     relevantSegment = {
-      cancelled: train.jDetails.stops.every(s => s.cancelled),
-      finalDestination: train.jDetails.lastStop.station.title,
+      cancelled: jDetails.stops.every(s => s.cancelled),
+      finalDestination: jDetails.lastStop.station.title,
       jid: train.jid,
-      train: train.jDetails.train,
-      segmentDestination: train.jDetails.lastStop.station,
-      segmentStart: train.jDetails.firstStop.station,
-      stops: train.jDetails.stops,
-      messages: train.jDetails.messages,
-      arrival: train.jDetails.lastStop.arrival,
-      departure: train.jDetails.firstStop.departure,
+      train: jDetails.train,
+      segmentDestination: jDetails.lastStop.station,
+      segmentStart: jDetails.firstStop.station,
+      stops: jDetails.stops,
+      messages: jDetails.messages,
+      arrival: jDetails.lastStop.arrival,
+      departure: jDetails.firstStop.departure,
     };
   }
 
-  if (relevantSegment.stops.length !== train.jDetails.stops.length) {
-    train.jDetails.stops.forEach((stop, index) => {
+  if (relevantSegment.stops.length !== jDetails.stops.length) {
+    jDetails.stops.forEach((stop, index) => {
       if (stop.additional) {
         relevantSegment.stops.splice(index, 0, stop);
       }
@@ -84,7 +105,7 @@ export default async (
 
   if (!lastStop || !lastStop.arrival || lastStop.arrival.delay == null) {
     relevantSegment.stops.forEach((stop, index) => {
-      const jDetailStop = train.jDetails.stops[index];
+      const jDetailStop = jDetails.stops[index];
 
       if (jDetailStop.station.id !== stop.station.id) return;
       if (jDetailStop.arrival && stop.arrival) {
