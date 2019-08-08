@@ -12,7 +12,7 @@ webpackProductionProcess.on('close', code => {
   if (code !== 0) {
     process.exit(code);
   }
-  childProcess.spawnSync('cp', ['-r', 'public/*', 'dist/client/']);
+  childProcess.spawnSync('cp', ['-r', 'public/', 'dist/client/']);
   require('./checkAssetFiles');
 });
 
@@ -27,5 +27,5 @@ webpackTestProductionProcess.on('close', code => {
   if (code !== 0) {
     process.exit(code);
   }
-  childProcess.spawnSync('cp', ['-r', 'public/*', 'testDist/client/']);
+  childProcess.spawnSync('cp', ['-r', 'public/', 'testDist/client/']);
 });
