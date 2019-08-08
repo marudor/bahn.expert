@@ -1,5 +1,1 @@
-<stations>
-
-<station meta="8509000" name="Chur, Postautostation" eva="8575112" ds100="XSC P" db="true" creationts="19-06-09 02:12:49.296"/>
-
-</stations>
+<stations><station meta="8010101" name="Erfurt Hbf (Intercity-Hotel)" eva="8071357" ds100="UE  I" db="true" creationts="19-06-23 02:16:50.048" /></stations>

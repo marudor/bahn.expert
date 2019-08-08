@@ -6,6 +6,13 @@ import { Omit } from 'utility-types';
 import { Station } from 'types/station';
 import { TripSearchRequest } from './TripSearch';
 
+export interface SDaysL {
+  sDaysR: string;
+  sDaysI: string;
+  sDaysB: string;
+  fLocX: number;
+  tLocX: number;
+}
 export interface Coordinates {
   lat: number;
   lng: number;
@@ -100,6 +107,27 @@ export type Crd = {
   layerX: number;
   crdSysX: number;
 };
+
+export interface PolyG {
+  polyXL: number[];
+  layerX: number;
+  crdSysX: number;
+}
+
+export interface Journey {
+  jid: string;
+  date: string;
+  prodX: number;
+  status?: string;
+  isRchbl?: boolean;
+  stopL: CommonStop[];
+  sDaysL: SDaysL[];
+  polyG?: PolyG;
+  msgL?: MsgL[];
+  subscr?: string;
+  prodL?: ProdL[];
+  dTrnCmpSX?: TrnCmpSX;
+}
 
 export type LocL = {
   lid: string;
