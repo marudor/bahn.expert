@@ -129,7 +129,7 @@ router
     const hafasProfile = ctx.query.profile;
 
     if (hafasProfile) {
-      if (['db', 'oebb', 'avv', 'sncb'].includes(hafasProfile)) {
+      if (['db', 'oebb', 'avv', 'sncb', 'nahsh'].includes(hafasProfile)) {
         ctx.hafasProfile = hafasProfile;
       } else {
         throw `${hafasProfile} is not a valid profile`;
