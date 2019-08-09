@@ -71,12 +71,12 @@ function createChecksum(data: any, secret: string) {
 const mgateUrls = {
   db: 'https://reiseauskunft.bahn.de/bin/mgate.exe',
   oebb: 'https://fahrplan.oebb.at/bin/mgate.exe',
-  sncb: 'https://belgianrail.be/jp/sncb-nmbs-routeplanner/mgate.exe',
+  sncb: 'http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/mgate.exe',
   avv: 'https://auskunft.avv.de/bin/mgate.exe',
+  nahsh: 'https://nah.sh.hafas.de/bin/mgate.exe',
 };
 const secrets = {
   db: getDBSecret(),
-  oebb: undefined,
 };
 
 const staticData = {
@@ -109,7 +109,7 @@ const staticData = {
     },
     lang: 'de',
     ver: '1.20',
-    auth: { aid: 'sncb-mobi' },
+    auth: { aid: 'sncb-mobi', type: 'AID' },
   },
   avv: {
     client: {
@@ -121,6 +121,18 @@ const staticData = {
     lang: 'deu',
     ver: '1.20',
     auth: { type: 'AID', aid: '4vV1AcH3N511icH' },
+  },
+  nahsh: {
+    client: {
+      os: 'iOS 12.4',
+      id: 'NAHSH',
+      v: '4000000',
+      type: 'IPH',
+      name: 'NAHSHAPPSTORE',
+    },
+    lang: 'de',
+    ver: '1.20',
+    auth: { aid: 'r0Ot9FLFNAFxijLW', type: 'AID' },
   },
 };
 
