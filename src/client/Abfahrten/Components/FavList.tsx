@@ -4,9 +4,10 @@ import { useAbfahrtenSelector } from 'useSelector';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'useRouter';
 import Actions, { AbfahrtenError } from 'Abfahrten/actions/abfahrten';
+import favContainer from 'Abfahrten/container/FavContainer';
 import FavEntry, { FavEntryDisplay } from './FavEntry';
 import MostUsed from './MostUsed';
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import useStyles from './FavList.style';
 
 function getErrorText(
@@ -35,14 +36,15 @@ function getErrorText(
 }
 
 const FavList = () => {
-  const error = useAbfahrtenSelector(state => state.abfahrten.error);
-  const favs = useAbfahrtenSelector(state => {
-    const favs = Object.values(state.fav.favs);
+  const { favs } = favContainer.useContainer();
+  const sortedFavs = useMemo(() => {
+    const values = Object.values(favs);
 
-    return favs.sort((a, b) =>
-      a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1
-    );
-  });
+    return values
+      .sort((a, b) => (a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1))
+      .map(fav => fav && <FavEntry key={fav.id} fav={fav} />);
+  }, [favs]);
+  const error = useAbfahrtenSelector(state => state.abfahrten.error);
   const { staticContext } = useRouter();
   const dispatch = useDispatch();
   const classes = useStyles();
@@ -65,8 +67,8 @@ const FavList = () => {
           <FavEntryDisplay text="Versuch einen der folgenden" />
           <MostUsed />
         </>
-      ) : favs.length ? (
-        favs.map(fav => fav && <FavEntry key={fav.id} fav={fav} />)
+      ) : sortedFavs.length ? (
+        sortedFavs
       ) : (
         <>
           <FavEntryDisplay data-testid="noFav" text="Keine Favoriten" />

@@ -1,6 +1,6 @@
 import { configSanitize } from 'client/util';
 import { Context } from 'koa';
-import { getFeatures } from './features';
+import { CookieContext } from 'Common/useCookies';
 import { Helmet } from 'react-helmet';
 import { isEnabled } from 'unleash-client';
 import { MarudorConfigSanitize } from 'Common/config';
@@ -12,10 +12,9 @@ import { setConfig, setFromCookies } from 'Abfahrten/actions/abfahrtenConfig';
 import { setCookieOptions } from 'client/util';
 import { StaticRouter } from 'react-router-dom';
 import { StaticRouterContext } from 'react-router';
-import { ThemeType } from 'client/Themes/type';
+import { ThemeProvider } from 'Common/container/ThemeContainer';
 import abfahrtenActions from 'Abfahrten/actions/abfahrten';
 import abfahrtenRoutes from 'Abfahrten/routes';
-import ConfigActions, { setCookies, setTheme } from 'Common/actions/config';
 import createStore from 'client/createStore';
 import ejs from 'ejs';
 import fs from 'fs';
@@ -25,6 +24,7 @@ import routingRoutes from 'Routing/routes';
 import serialize from 'serialize-javascript';
 import ThemeWrap from 'client/ThemeWrap';
 
+global.baseUrl = process.env.BASE_URL || '';
 const headerFilename = path.resolve(__dirname, './views/header.ejs');
 // eslint-disable-next-line
 const headerEjs = fs.readFileSync(headerFilename, 'utf8').trim();
@@ -49,25 +49,21 @@ export default async (ctx: Context) => {
   }
   const routeContext: StaticRouterContext = {};
 
-  const store = createStore({
-    features: getFeatures(),
-  });
+  const store = createStore(undefined, ctx.request.universalCookies);
 
-  await store.dispatch(setCookies(ctx.request.universalCookies));
-  await store.dispatch(setFromCookies());
+  await store.dispatch(setFromCookies(ctx.request.universalCookies));
 
   Object.keys(ctx.query).forEach((key: any) => {
     switch (key) {
-      case 'theme': {
-        // @ts-ignore 7053
-        const queryTheme = ThemeType[ctx.query.theme] as undefined | ThemeType;
+      // case 'theme': {
+      //   const queryTheme = ThemeType[ctx.query.theme] as undefined | ThemeType;
 
-        if (queryTheme) {
-          store.dispatch(setTheme(queryTheme));
-        }
+      //   if (queryTheme) {
+      //     global.CONFIG.theme = queryTheme;
+      //   }
 
-        break;
-      }
+      //   break;
+      // }
       case 'onlyDepartures':
         store.dispatch(abfahrtenActions.setFilter({ onlyDepartures: true }));
         break;
@@ -77,13 +73,14 @@ export default async (ctx: Context) => {
             ctx.query[key]
           );
 
-          store.dispatch(setConfig(key, value, true));
+          store.dispatch(
+            setConfig(key, value, true, ctx.request.universalCookies)
+          );
         }
         break;
     }
   });
 
-  store.dispatch(ConfigActions.setBaseUrl(process.env.BASE_URL || ''));
   const routes = ctx.path.startsWith('/routing')
     ? routingRoutes
     : ctx.path.startsWith('/details')
@@ -108,8 +105,12 @@ export default async (ctx: Context) => {
 
   const App = (
     <Provider store={store}>
-      <StaticRouter location={ctx.path} context={routeContext}>
-        <ThemeWrap />
+      <StaticRouter location={ctx.url} context={routeContext}>
+        <CookieContext.Provider value={ctx.request.universalCookies}>
+          <ThemeProvider>
+            <ThemeWrap />
+          </ThemeProvider>
+        </CookieContext.Provider>
       </StaticRouter>
     </Provider>
   );
@@ -123,10 +124,7 @@ export default async (ctx: Context) => {
     if (routeContext.status) {
       ctx.status = routeContext.status;
     }
-    // await store.dispatch(setFromCookies());
     const state = store.getState();
-
-    delete state.config.cookies;
 
     ctx.body = headerTemplate({
       googleAnalytics: isEnabled('google-analytics'),
@@ -135,6 +133,7 @@ export default async (ctx: Context) => {
       clientState: serialize(state),
       imprint: serialize(global.IMPRINT),
       jssCss: sheets.toString(),
+      baseUrl: global.baseUrl,
     });
     ctx.body += app;
 

@@ -3,6 +3,7 @@ import Abfahrten from './Abfahrten';
 import DetailsRoute from 'Common/Components/Details/DetailsRoute';
 import Navigation from 'Common/Components/Navigation';
 import React, { useEffect } from 'react';
+import ReihungenContainer from 'Common/container/ReihungContainer';
 import Routing from './Routing';
 import useStyles from './App.style';
 
@@ -18,14 +19,16 @@ const App = () => {
 
   return (
     <Navigation>
-      <Switch>
-        <Route
-          component={DetailsRoute}
-          path="/details/:train/:initialDeparture*"
-        />
-        <Route component={Routing} path="/routing" />
-        <Route component={Abfahrten} path="/" />
-      </Switch>
+      <ReihungenContainer.Provider>
+        <Switch>
+          <Route
+            component={DetailsRoute}
+            path="/details/:train/:initialDeparture*"
+          />
+          <Route component={Routing} path="/routing" />
+          <Route component={Abfahrten} path="/" />
+        </Switch>
+      </ReihungenContainer.Provider>
     </Navigation>
   );
 };

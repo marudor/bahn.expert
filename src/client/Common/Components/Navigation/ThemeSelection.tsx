@@ -1,28 +1,27 @@
 import { availableThemes, ThemeType } from 'client/Themes/type';
 import { capitalize } from 'lodash';
 import { Collapse, List, ListItem, ListItemText } from '@material-ui/core';
-import { setTheme } from 'Common/actions/config';
-import { useCommonSelector } from 'useSelector';
-import { useDispatch } from 'react-redux';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import React, { SyntheticEvent, useCallback, useState } from 'react';
+import ThemeContainer from 'Common/container/ThemeContainer';
 import useStyles from './ThemeSelection.style';
 
 const ThemeSelection = () => {
-  const theme = useCommonSelector(state => state.config.theme);
-  const dispatch = useDispatch();
+  const { themeType, setTheme } = ThemeContainer.useContainer();
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const selectTheme = useCallback(
     (e: SyntheticEvent<HTMLElement>) => {
-      const newTheme = e.currentTarget.dataset.value as undefined | ThemeType;
+      const newThemeType = e.currentTarget.dataset.value as
+        | undefined
+        | ThemeType;
 
-      if (newTheme) {
-        dispatch(setTheme(newTheme));
+      if (newThemeType) {
+        setTheme(newThemeType);
       }
     },
-    [dispatch]
+    [setTheme]
   );
   const toggle = useCallback(
     (e: SyntheticEvent) => {
@@ -43,7 +42,7 @@ const ThemeSelection = () => {
           {availableThemes.map(themeOption => {
             let name = capitalize(themeOption);
 
-            if (themeOption === theme) {
+            if (themeOption === themeType) {
               name = `* ${name}`;
             }
 

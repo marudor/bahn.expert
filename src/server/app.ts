@@ -1,4 +1,3 @@
-import './features';
 import * as Sentry from '@sentry/node';
 import { middlewares } from './logger';
 import { Server } from 'https';

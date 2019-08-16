@@ -18,7 +18,7 @@ const Header = () => {
     state => ({
       currentStation: state.abfahrten.currentStation,
       searchType: state.abfahrtenConfig.config.searchType,
-      baseUrl: state.config.baseUrl,
+      baseUrl: global.baseUrl,
     }),
     shallowEqual
   );

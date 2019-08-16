@@ -13,6 +13,7 @@ namespace NodeJS {
     __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: Function;
     __DATA__: Object;
     testUrl: string;
+    baseUrl: string;
   }
 }
 

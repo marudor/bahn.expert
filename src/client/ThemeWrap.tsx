@@ -1,9 +1,8 @@
 import { Rule, StyleSheet } from 'jss';
 import { ThemeProvider } from '@material-ui/styles';
-import { useCommonSelector } from 'useSelector';
 import App from './App';
-import createTheme from './Themes';
-import React, { ReactNode, useMemo } from 'react';
+import React, { ReactNode } from 'react';
+import ThemeContainer from 'Common/container/ThemeContainer';
 import ThemeHeaderTags from 'Common/Components/ThemeHeaderTags';
 
 interface Props {
@@ -11,8 +10,7 @@ interface Props {
 }
 
 const ThemeWrap = ({ children = <App /> }: Props) => {
-  const themeType = useCommonSelector(state => state.config.theme);
-  const theme = useMemo(() => createTheme(themeType), [themeType]);
+  const { theme } = ThemeContainer.useContainer();
 
   const themeProvider = (
     <ThemeProvider theme={theme}>

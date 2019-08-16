@@ -20,11 +20,11 @@ export default function handleTestActions(state: AppState, action: any) {
     case '@@TEST/RESTORE': {
       const s = deepMerge({}, initialState, { clone: false });
 
-      const cookies = s.config.cookies;
+      // const cookies = s.config.cookies;
 
-      Object.keys(cookies.getAll()).forEach(cookieKey => {
-        cookies.remove(cookieKey);
-      });
+      // Object.keys(cookies.getAll()).forEach(cookieKey => {
+      //   cookies.remove(cookieKey);
+      // });
 
       return s;
     }
