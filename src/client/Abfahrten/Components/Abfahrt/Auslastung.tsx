@@ -1,7 +1,5 @@
 import { Abfahrt } from 'types/abfahrten';
-import { getAuslastung } from 'Abfahrten/actions/auslastung';
-import { useAbfahrtenSelector } from 'useSelector';
-import { useDispatch } from 'react-redux';
+import AuslastungContainer from 'Abfahrten/container/AuslastungContainer';
 import AuslastungsDisplay from 'Common/Components/AuslastungsDisplay';
 import Loading from 'Common/Components/Loading';
 import React, { useEffect } from 'react';
@@ -11,26 +9,22 @@ interface Props {
 }
 
 const Auslastung = ({ abfahrt }: Props) => {
-  const auslastung = useAbfahrtenSelector(
-    state =>
-      state.auslastung.auslastung[
-        `${abfahrt.currentStation.title}/${abfahrt.destination}/${abfahrt.train.number}`
-      ]
-  );
-  const dispatch = useDispatch();
+  const { auslastungen, getAuslastung } = AuslastungContainer.useContainer();
+  const auslastung =
+    auslastungen[
+      `${abfahrt.currentStation.id}/${abfahrt.destination}/${abfahrt.train.number}`
+    ];
 
   useEffect(() => {
-    if (!auslastung && abfahrt.departure) {
-      dispatch(
-        getAuslastung(
-          abfahrt.train.number,
-          abfahrt.currentStation.title,
-          abfahrt.destination,
-          abfahrt.departure.scheduledTime
-        )
+    if (auslastung === undefined && abfahrt.departure) {
+      getAuslastung(
+        abfahrt.train.number,
+        abfahrt.currentStation.id,
+        abfahrt.destination,
+        abfahrt.departure.scheduledTime
       );
     }
-  }, [abfahrt, auslastung, dispatch]);
+  }, [abfahrt, auslastung, getAuslastung]);
 
   if (auslastung === null) {
     return null;

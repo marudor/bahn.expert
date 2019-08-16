@@ -1,10 +1,13 @@
 /* eslint-disable no-underscore-dangle */
+import { CookieContext } from 'Common/useCookies';
 import { getStore } from 'testHelper';
 import { MemoryRouter } from 'react-router';
 import { MergedTheme } from '@material-ui/styles';
 import { Provider } from 'react-redux';
 import { render as realRender } from '@testing-library/react';
+import { ThemeProvider } from 'Common/container/ThemeContainer';
 import { ThemeType } from 'client/Themes/type';
+import Cookies from 'universal-cookie';
 import createTheme from 'client/Themes';
 import Navigation from 'Common/Components/Navigation';
 import React, { ComponentType } from 'react';
@@ -32,7 +35,7 @@ export function render<P>(
   }
 
   const store = getStore();
-  const themeType = store.getState().config.theme;
+  const themeType = ThemeType.light;
 
   if (currentThemeType !== themeType) {
     currentThemeType = themeType;
@@ -42,7 +45,11 @@ export function render<P>(
   comp = (
     <MemoryRouter>
       <Provider store={store}>
-        <ThemeWrap>{comp}</ThemeWrap>
+        <CookieContext.Provider value={new Cookies()}>
+          <ThemeProvider>
+            <ThemeWrap>{comp}</ThemeWrap>
+          </ThemeProvider>
+        </CookieContext.Provider>
       </Provider>
     </MemoryRouter>
   );

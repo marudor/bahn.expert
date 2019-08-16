@@ -12,10 +12,12 @@ import Actions, {
 } from 'Abfahrten/actions/abfahrten';
 import Loading from 'Common/Components/Loading';
 import React, { useEffect, useState } from 'react';
+import ReihungContainer from 'Common/container/ReihungContainer';
 import useStyles from './AbfahrtenList.style';
 
 const AbfahrtenList = () => {
   const classes = useStyles();
+  const { clearReihungen } = ReihungContainer.useContainer();
   const [scrolled, setScrolled] = useState(false);
   const selectedDetail = useAbfahrtenSelector(
     state => state.abfahrten.selectedDetail
@@ -45,16 +47,16 @@ const AbfahrtenList = () => {
     };
 
     if (autoUpdate) {
-      intervalId = setInterval(
-        () => dispatch(refreshCurrentAbfahrten()),
-        autoUpdate * 1000
-      );
+      intervalId = setInterval(() => {
+        dispatch(refreshCurrentAbfahrten());
+        clearReihungen();
+      }, autoUpdate * 1000);
     } else {
       cleanup();
     }
 
     return cleanup;
-  }, [autoUpdate, dispatch]);
+  }, [autoUpdate, clearReihungen, dispatch]);
 
   const [oldMatch, setOldMatch] = useState(match.params.station);
 

@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Paper } from '@material-ui/core';
 import { Station } from 'types/station';
-import { unfav } from 'Abfahrten/actions/fav';
-import { useDispatch } from 'react-redux';
+import { useUnfav } from 'Abfahrten/container/FavContainer';
 import ActionDelete from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import React, { MouseEvent, ReactNode, useCallback } from 'react';
@@ -43,14 +42,14 @@ export const FavEntryDisplay = ({
 };
 
 const FavEntry = ({ fav, noDelete }: Props) => {
-  const dispatch = useDispatch();
+  const unfav = useUnfav();
   const deleteFav = useCallback(
     (e: MouseEvent) => {
       e.stopPropagation();
       e.preventDefault();
-      dispatch(unfav(fav));
+      unfav(fav);
     },
-    [dispatch, fav]
+    [fav, unfav]
   );
 
   return (

@@ -7,7 +7,7 @@ import { setCookieOptions } from 'client/util';
 import { Station } from 'types/station';
 import { StationSearchType } from 'Common/config';
 import axios, { AxiosError } from 'axios';
-import ReihungActions from 'Common/actions/reihung';
+import Cookies from 'universal-cookie';
 
 export type AbfahrtenError =
   | AbfahrtenError$Redirect
@@ -145,12 +145,11 @@ export const getAbfahrtenByString = (
   }
 };
 
-export const setDetail = (selectedDetail?: string): AbfahrtenThunkResult => (
-  dispatch,
-  getState
-) => {
+export const setDetail = (
+  cookies: Cookies,
+  selectedDetail?: string
+): AbfahrtenThunkResult => (dispatch, getState) => {
   const state = getState();
-  const cookies = state.config.cookies;
   const detail =
     state.abfahrten.selectedDetail === selectedDetail
       ? undefined
@@ -180,7 +179,6 @@ export const refreshCurrentAbfahrten = (): AbfahrtenThunkResult => async (
     state.abfahrtenConfig.config.lookbehind
   );
 
-  dispatch(ReihungActions.clearReihung());
   dispatch(
     Actions.gotAbfahrten({
       station: state.abfahrten.currentStation,

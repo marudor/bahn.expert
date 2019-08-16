@@ -1,7 +1,10 @@
 import 'core-js/stable';
 import { BrowserRouter } from 'react-router-dom';
+import { CookieContext } from 'Common/useCookies';
 import { Provider } from 'react-redux';
+import { ThemeProvider } from 'Common/container/ThemeContainer';
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 import createStore from './createStore';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -13,12 +16,17 @@ axios.defaults.timeout = 10000;
 global.smallScreen = window.matchMedia('(max-width: 480px)').matches;
 
 const container = document.getElementById('app');
-const store = createStore();
+const cookies = new Cookies();
+const store = createStore(undefined, cookies);
 
 const render = (App: React.ComponentType) => (
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <CookieContext.Provider value={cookies}>
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
+      </CookieContext.Provider>
     </BrowserRouter>
   </Provider>
 );

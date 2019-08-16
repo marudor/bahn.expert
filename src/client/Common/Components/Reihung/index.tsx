@@ -1,12 +1,9 @@
-import { getReihung } from 'Common/actions/reihung';
-import { getReihungForId } from 'Common/selector/reihung';
-import { useCommonSelector } from 'useSelector';
-import { useDispatch } from 'react-redux';
 import cc from 'clsx';
 import Explain from './Explain';
 import Gruppe from './Gruppe';
 import Loading from 'Common/Components/Loading';
 import React, { useEffect } from 'react';
+import ReihungContainer from 'Common/container/ReihungContainer';
 import Sektor from './Sektor';
 import useStyles from './index.style';
 
@@ -30,18 +27,18 @@ const ReihungComp = (props: Props) => {
     useZoom,
     loadHidden,
   } = props;
-  const reihung = useCommonSelector(state => getReihungForId(state, props));
+  const { reihungen, getReihung } = ReihungContainer.useContainer();
+  const reihung = reihungen[trainNumber + currentStation];
   const classes = useStyles({
     reihung,
     fahrzeugGruppe,
   });
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!reihung) {
-      dispatch(getReihung(trainNumber, currentStation, scheduledDeparture));
+    if (reihung === undefined) {
+      getReihung(trainNumber, currentStation, scheduledDeparture);
     }
-  }, [currentStation, dispatch, reihung, scheduledDeparture, trainNumber]);
+  }, [currentStation, getReihung, reihung, scheduledDeparture, trainNumber]);
 
   if (reihung === null || (!reihung && loadHidden)) {
     return null;

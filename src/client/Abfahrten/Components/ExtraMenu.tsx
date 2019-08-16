@@ -1,11 +1,14 @@
 import { __RouterContext } from 'react-router';
-import { fav, unfav } from 'Abfahrten/actions/fav';
 import { getLageplan, openFilter } from 'Abfahrten/actions/abfahrten';
 import { IconButton } from '@material-ui/core';
 import { openSettings } from 'Abfahrten/actions/abfahrtenConfig';
 import { shallowEqual, useDispatch } from 'react-redux';
 import { useAbfahrtenSelector } from 'useSelector';
 import ActionMenu from '@material-ui/icons/Menu';
+import FavContainer, {
+  useFav,
+  useUnfav,
+} from 'Abfahrten/container/FavContainer';
 import FilterList from '@material-ui/icons/FilterList';
 import FilterModal from './FilterModal';
 import Layers from '@material-ui/icons/Layers';
@@ -18,29 +21,29 @@ import ToggleStar from '@material-ui/icons/Star';
 import ToggleStarBorder from '@material-ui/icons/StarBorder';
 
 const ExtraMenu = () => {
-  const { isFaved, currentStation, lageplan } = useAbfahrtenSelector(
+  const { currentStation, lageplan } = useAbfahrtenSelector(
     state => ({
-      isFaved: Boolean(
-        state.abfahrten.currentStation &&
-          state.fav.favs[state.abfahrten.currentStation.id]
-      ),
       currentStation: state.abfahrten.currentStation,
       lageplan: state.abfahrten.lageplan,
     }),
     shallowEqual
   );
+  const { favs } = FavContainer.useContainer();
+  const fav = useFav();
+  const unfav = useUnfav();
+  const isFaved = Boolean(currentStation && favs[currentStation.id]);
   const dispatch = useDispatch();
   const [anchor, setAnchor] = useState<undefined | HTMLElement>();
   const toggleFav = useCallback(() => {
     setAnchor(undefined);
     if (currentStation) {
       if (isFaved) {
-        dispatch(unfav(currentStation));
+        unfav(currentStation);
       } else {
-        dispatch(fav(currentStation));
+        fav(currentStation);
       }
     }
-  }, [currentStation, dispatch, isFaved]);
+  }, [currentStation, fav, isFaved, unfav]);
   const toggleMenu = useCallback(
     (e: SyntheticEvent<HTMLElement>) => {
       setAnchor(anchor ? undefined : e.currentTarget);

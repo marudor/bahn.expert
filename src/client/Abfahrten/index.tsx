@@ -1,5 +1,7 @@
+import { FavProvider } from './container/FavContainer';
 import { renderRoutes } from 'react-router-config';
 import { useAbfahrtenSelector } from 'useSelector';
+import AuslastungContainer from './container/AuslastungContainer';
 import Header from './Components/Header';
 import React from 'react';
 import routes from './routes';
@@ -13,11 +15,15 @@ const BahnhofsAbfahrten = () => {
   const classes = useStyles({ noHeader });
 
   return (
-    <div className={classes.main}>
-      {!noHeader && <Header />}
-      <SettingsModal />
-      {renderRoutes(routes)}
-    </div>
+    <AuslastungContainer.Provider>
+      <FavProvider>
+        <div className={classes.main}>
+          {!noHeader && <Header />}
+          <SettingsModal />
+          {renderRoutes(routes)}
+        </div>
+      </FavProvider>
+    </AuslastungContainer.Provider>
   );
 };
 

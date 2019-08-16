@@ -12,6 +12,7 @@ import { shallowEqual, useDispatch } from 'react-redux';
 import { useAbfahrtenSelector } from 'useSelector';
 import AbfahrtenActions, { closeFilter } from 'Abfahrten/actions/abfahrten';
 import React, { SyntheticEvent, useCallback } from 'react';
+import useCookies from 'Common/useCookies';
 import useStyles from './FilterModal.style';
 
 const FilterModal = () => {
@@ -25,6 +26,7 @@ const FilterModal = () => {
     shallowEqual
   );
   const classes = useStyles();
+  const cookies = useCookies();
   const toggleFilter = useCallback(
     (product: string) => (_: SyntheticEvent, checked: boolean) => {
       let newFilterList;
@@ -45,8 +47,8 @@ const FilterModal = () => {
 
   const saveAsDefault = useCallback(() => {
     dispatch(closeFilter());
-    dispatch(setDefaultFilter());
-  }, [dispatch]);
+    dispatch(setDefaultFilter(cookies));
+  }, [cookies, dispatch]);
 
   return (
     <Dialog maxWidth="md" fullWidth open={open} onClose={closeFilterM}>
