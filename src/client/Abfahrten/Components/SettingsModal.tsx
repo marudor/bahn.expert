@@ -14,6 +14,7 @@ import {
 } from 'Abfahrten/actions/abfahrtenConfig';
 import { shallowEqual, useDispatch } from 'react-redux';
 import { useAbfahrtenSelector } from 'useSelector';
+import Cookies from 'universal-cookie';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -22,6 +23,7 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 import React, { ChangeEvent, useCallback } from 'react';
 import Switch from '@material-ui/core/Switch';
 import TextField from '@material-ui/core/TextField';
+import useCookies from 'Common/useCookies';
 import useStyles from './SettingsModal.style';
 
 const SettingsModal = () => {
@@ -44,27 +46,32 @@ const SettingsModal = () => {
     }),
     shallowEqual
   );
+  const cookies = useCookies();
   const dispatch = useDispatch();
   const classes = useStyles();
   const handleCheckedChange = useCallback(
-    (fn: (b: boolean) => any) => (e: ChangeEvent<HTMLInputElement>) =>
-      dispatch(fn(e.currentTarget.checked)),
-    [dispatch]
+    (fn: (b: boolean, cookies: Cookies) => any) => (
+      e: ChangeEvent<HTMLInputElement>
+    ) => dispatch(fn(e.currentTarget.checked, cookies)),
+    [cookies, dispatch]
   );
   const handleNumberSelectChange = useCallback(
-    (fn: (s: any) => any) => (e: ChangeEvent<HTMLSelectElement>) =>
-      dispatch(fn(Number.parseInt(e.currentTarget.value, 10))),
-    [dispatch]
+    (fn: (s: any, cookies: Cookies) => any) => (
+      e: ChangeEvent<HTMLSelectElement>
+    ) => dispatch(fn(Number.parseInt(e.currentTarget.value, 10), cookies)),
+    [cookies, dispatch]
   );
   const handleSelectChange = useCallback(
-    (fn: (s: any) => any) => (e: ChangeEvent<HTMLSelectElement>) =>
-      dispatch(fn(e.currentTarget.value)),
-    [dispatch]
+    (fn: (s: any, cookies: Cookies) => any) => (
+      e: ChangeEvent<HTMLSelectElement>
+    ) => dispatch(fn(e.currentTarget.value, cookies)),
+    [cookies, dispatch]
   );
   const handleNumberValueChange = useCallback(
-    (fn: (n: number) => any) => (e: ChangeEvent<HTMLInputElement>) =>
-      dispatch(fn(Number.parseInt(e.currentTarget.value, 10))),
-    [dispatch]
+    (fn: (n: number, cookies: Cookies) => any) => (
+      e: ChangeEvent<HTMLInputElement>
+    ) => dispatch(fn(Number.parseInt(e.currentTarget.value, 10), cookies)),
+    [cookies, dispatch]
   );
 
   return (

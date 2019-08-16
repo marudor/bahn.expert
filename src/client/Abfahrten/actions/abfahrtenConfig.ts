@@ -3,7 +3,7 @@ import { CheckInType, MarudorConfig, StationSearchType } from 'Common/config';
 import { createAction } from 'deox';
 import { defaultConfig, setCookieOptions } from 'client/util';
 import abfahrtenActions from './abfahrten';
-import favActions from './fav';
+import Cookies from 'universal-cookie';
 
 export const TIME_CONFIG_KEY = 'TIME_CONFIG';
 export const SEARCHTYPE_CONFIG_KEY = 'SEARCH_TYPE';
@@ -17,33 +17,34 @@ const Actions = {
 
 export default Actions;
 
-export const setSearchType = (value: StationSearchType) =>
-  setConfig('searchType', value);
-export const setTime = (value: boolean) => setConfig('time', value);
-export const setZoomReihung = (value: boolean) =>
-  setConfig('zoomReihung', value);
-export const setShowSupersededMessages = (value: boolean) =>
-  setConfig('showSupersededMessages', value);
-export const setLookahead = (value: string) => setConfig('lookahead', value);
-export const setLookbehind = (value: string) => setConfig('lookbehind', value);
-export const setFahrzeugGruppe = (value: boolean) =>
-  setConfig('fahrzeugGruppe', value);
-export const setLineAndNumber = (value: boolean) =>
-  setConfig('lineAndNumber', value);
-export const setAutoUpdate = (value: number) => setConfig('autoUpdate', value);
+export const setSearchType = (value: StationSearchType, cookies: Cookies) =>
+  setConfig('searchType', value, undefined, cookies);
+export const setTime = (value: boolean, cookies: Cookies) =>
+  setConfig('time', value, undefined, cookies);
+export const setZoomReihung = (value: boolean, cookies: Cookies) =>
+  setConfig('zoomReihung', value, undefined, cookies);
+export const setShowSupersededMessages = (value: boolean, cookies: Cookies) =>
+  setConfig('showSupersededMessages', value, undefined, cookies);
+export const setLookahead = (value: string, cookies: Cookies) =>
+  setConfig('lookahead', value, undefined, cookies);
+export const setLookbehind = (value: string, cookies: Cookies) =>
+  setConfig('lookbehind', value, undefined, cookies);
+export const setFahrzeugGruppe = (value: boolean, cookies: Cookies) =>
+  setConfig('fahrzeugGruppe', value, undefined, cookies);
+export const setLineAndNumber = (value: boolean, cookies: Cookies) =>
+  setConfig('lineAndNumber', value, undefined, cookies);
+export const setAutoUpdate = (value: number, cookies: Cookies) =>
+  setConfig('autoUpdate', value, undefined, cookies);
 
 export const openSettings = () => Actions.setMenu(true);
 export const closeSettings = () => Actions.setMenu(false);
 
-export const setCheckIn = (value: CheckInType) => setConfig('checkIn', value);
+export const setCheckIn = (value: CheckInType, cookies: Cookies) =>
+  setConfig('checkIn', value, undefined, cookies);
 
-export const setFromCookies = (): AbfahrtenThunkResult => (
-  dispatch,
-  getState
-) => {
-  const cookies = getState().config.cookies;
-
-  dispatch(favActions.setFavs(cookies.get('favs') || {}));
+export const setFromCookies = (
+  cookies: Cookies
+): AbfahrtenThunkResult => dispatch => {
   const defaultFilter = cookies.get('defaultFilter');
 
   const config: MarudorConfig = {
@@ -64,10 +65,10 @@ export const setFromCookies = (): AbfahrtenThunkResult => (
 export const setConfig = <K extends keyof MarudorConfig>(
   key: K,
   value: MarudorConfig[K],
-  temp: boolean = false
+  temp: boolean = false,
+  cookies: Cookies
 ): AbfahrtenThunkResult => (dispatch, getState) => {
   const oldConfig = getState().abfahrtenConfig.config;
-  const cookies = getState().config.cookies;
   const newConfig = {
     ...oldConfig,
     [key]: value,
@@ -80,8 +81,10 @@ export const setConfig = <K extends keyof MarudorConfig>(
   dispatch(Actions.setConfig(newConfig));
 };
 
-export const setDefaultFilter = (): AbfahrtenThunkResult => (_, getState) => {
-  const cookies = getState().config.cookies;
+export const setDefaultFilter = (cookies: Cookies): AbfahrtenThunkResult => (
+  _,
+  getState
+) => {
   const filterList = getState().abfahrten.filterList;
 
   cookies.set('defaultFilter', filterList, setCookieOptions);

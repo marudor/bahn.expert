@@ -196,6 +196,7 @@
     "universal-cookie": "^4.0.2",
     "universal-cookie-koa": "^4.0.1",
     "unleash-client": "^3.2.7",
+    "unstated-next": "^1.1.0",
     "uuid": "^3.3.2"
   },
   "repository": {

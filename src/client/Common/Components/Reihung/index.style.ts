@@ -9,7 +9,7 @@ export default makeStyles(theme => ({
     reihung,
     fahrzeugGruppe,
   }: {
-    reihung: Formation | null;
+    reihung: Formation | null | undefined;
     fahrzeugGruppe: boolean;
   }) => {
     let height = 6.5;

@@ -8,7 +8,6 @@ describe('Query Parameter', () => {
   it('theme Parameter', () => {
     cy.visit('/?theme=black');
 
-    cy.getCookie('theme').should('have.property', 'value', 'black');
     cy.get('body').should('have.css', 'background-color', 'rgb(0, 0, 0)');
   });
 });

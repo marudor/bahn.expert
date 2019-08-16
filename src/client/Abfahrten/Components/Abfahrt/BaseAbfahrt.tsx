@@ -9,6 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import React, { useCallback } from 'react';
 import Reihung from 'Common/Components/Reihung';
 import Start from './Start';
+import useCookies from 'Common/useCookies';
 import useStyles from './BaseAbfahrt.style';
 
 export interface Props {
@@ -20,11 +21,12 @@ export interface Props {
 }
 
 const BaseAbfahrt = ({ abfahrt, wing, wingEnd, wingStart }: Props) => {
+  const cookies = useCookies();
   const classes = useStyles();
   const dispatch = useDispatch();
   const handleClick = useCallback(() => {
-    dispatch(setDetail(abfahrt.id));
-  }, [abfahrt.id, dispatch]);
+    dispatch(setDetail(cookies, abfahrt.id));
+  }, [abfahrt.id, cookies, dispatch]);
   const {
     lineAndNumber,
     useZoom,
