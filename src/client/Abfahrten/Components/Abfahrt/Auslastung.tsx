@@ -14,7 +14,7 @@ const Auslastung = ({ abfahrt }: Props) => {
   const auslastung = useAbfahrtenSelector(
     state =>
       state.auslastung.auslastung[
-        `${abfahrt.currentStation.id}/${abfahrt.destination}/${abfahrt.train.number}`
+        `${abfahrt.currentStation.title}/${abfahrt.destination}/${abfahrt.train.number}`
       ]
   );
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const Auslastung = ({ abfahrt }: Props) => {
       dispatch(
         getAuslastung(
           abfahrt.train.number,
-          abfahrt.currentStation.id,
+          abfahrt.currentStation.title,
           abfahrt.destination,
           abfahrt.departure.scheduledTime
         )
