@@ -1,0 +1,102 @@
+<timetable station="Chur" eva="8509000">
+
+<s id="1201399052222813598-1907041639-1" eva="8509000">
+    <dp ct="1907041639"/>
+</s>
+
+
+<s id="-4853549543155830626-1907041239-1" eva="8509000">
+    <m id="r864124" t="h" from="1907040000" to="1907042359" cat="Information" ts="1907040715" pr="3"/>
+    <dp cpth="Basel SBB|Basel Bad Bf|Freiburg(Breisgau) Hbf|Baden-Baden|Karlsruhe Hbf|Mannheim Hbf|Frankfurt(Main)Hbf|Kassel-Wilhelmshöhe|Göttingen|Hannover Hbf|Hamburg-Harburg|Hamburg Hbf|Hamburg Dammtor|Hamburg-Altona" cs="c" clt="1907040906">
+        <m id="r51588221" t="f" c="0" ts="1907040639"/>
+        <m id="r51594522" t="f" c="0" ts="1907040906"/>
+        <m id="r51606326" t="d" c="55" ts="1907041329"/>
+    </dp>
+</s>
+
+
+<s id="1917585192317811165-1907040546-17" eva="8509000">
+    <ar cpth="Hamburg Hbf|Hannover Hbf|Göttingen|Kassel-Wilhelmshöhe|Frankfurt(Main)Hbf|Mannheim Hbf|Karlsruhe Hbf|Baden-Baden|Freiburg(Breisgau) Hbf|Basel Bad Bf|Basel SBB" ct="1907041529" cs="c" clt="1907041257">
+        <m id="r51578552" t="d" c="99" ts="1907032123"/>
+        <m id="r51578667" t="d" c="99" ts="1907032128"/>
+        <m id="r51590862" t="d" c="31" ts="1907040741"/>
+        <m id="r51603708" t="f" c="0" ts="1907041231"/>
+        <m id="r51604809" t="f" c="0" ts="1907041257"/>
+    </ar>
+</s>
+
+
+<s id="5615808968783634980-1907041307-5" eva="8509000">
+    <ar ppth="Basel SBB|Zürich HB|Sargans|Landquart" pp="8" pt="1907041522">
+        <m id="r51604810" t="f" c="0" ts="1907041257"/>
+    </ar>
+    <tl f="F" t="e" o="80" c="IC" n="70071"/>
+    <ref>
+        <tl f="F" t="p" o="80" c="ICE" n="71"/>
+    </ref>
+</s>
+
+
+<s id="-1279242321187232732-1907040946-18" eva="8509000">
+    <m id="r864092" t="h" from="1907040000" to="1907042359" cat="Information" ts="1907040654" pr="1"/>
+    <m id="r864352" t="h" from="1907041153" to="1907041423" cat="Störung" ts="1907041227" pr="1"/>
+    <ar cpth="Hamburg Hbf|Hamburg-Harburg|Hannover Hbf|Göttingen|Kassel-Wilhelmshöhe|Frankfurt(Main)Hbf|Mannheim Hbf|Karlsruhe Hbf|Baden-Baden|Freiburg(Breisgau) Hbf|Basel Bad Bf|Basel SBB|Zürich HB|Sargans|Landquart" ct="1907041922">
+        <m id="r51590993" t="f" c="0" ts="1907040744"/>
+        <m id="r51591042" t="d" c="48" ts="1907040746"/>
+        <m id="r51591399" t="d" c="36" ts="1907040754"/>
+        <m id="r51591947" t="f" c="0" ts="1907040806"/>
+        <m id="r51592120" t="d" c="55" ts="1907040810"/>
+        <m id="r51596294" t="f" c="0" ts="1907040942"/>
+        <m id="r51596674" t="f" c="0" ts="1907040949"/>
+        <m id="r51597563" t="d" c="36" ts="1907041006"/>
+    </ar>
+</s>
+
+
+<s id="-7747979526984668009-1907041039-1" eva="8509000">
+    <dp ct="1907041040"/>
+</s>
+
+
+<s id="-2232743289005607170-1907041239-1" eva="8509000">
+    <dp ppth="Landquart|Sargans|Zürich HB|Basel SBB" pp="8" ct="1907041239" pt="1907041239">
+        <m id="r51594523" t="f" c="0" ts="1907040906"/>
+    </dp>
+    <tl f="F" t="e" o="85" c="IC" n="70070"/>
+    <ref>
+        <tl f="F" t="p" o="85" c="ICE" n="70"/>
+    </ref>
+</s>
+
+
+<s id="4081552720387302901-1907040550-12" eva="8509000">
+    <m id="r864122" t="h" from="1907040000" to="1907042359" cat="Information" ts="1907040714" pr="3"/>
+    <ar cpth="Frankfurt(Main)Hbf|Mannheim Hbf|Karlsruhe Hbf|Baden-Baden|Offenburg|Freiburg(Breisgau) Hbf|Basel Bad Bf|Basel SBB" ppth="Frankfurt(Main)Hbf|Mannheim Hbf|Karlsruhe Hbf|Baden-Baden|Offenburg|Freiburg(Breisgau) Hbf|Basel Bad Bf|Basel SBB|Zürich HB|Sargans|Landquart" pp="8" ct="1907041207" pt="1907041122" cs="c" clt="1907040804">
+        <m id="r51586407" t="d" c="61" ts="1907040550"/>
+        <m id="r51586742" t="d" c="61" ts="1907040600"/>
+        <m id="r51587124" t="f" c="0" ts="1907040610"/>
+        <m id="r51589827" t="d" c="34" ts="1907040717"/>
+        <m id="r51590504" t="f" c="0" ts="1907040733"/>
+        <m id="r51591524" t="q" c="90" ts="1907040756"/>
+        <m id="r51592095" t="f" c="0" ts="1907040810"/>
+    </ar>
+    <tl f="F" t="p" o="80" c="ICE" n="271"/>
+</s>
+
+
+<s id="8357029059443830528-1907040907-5" eva="8509000">
+    <ar ppth="Basel SBB|Zürich HB|Sargans|Landquart" pp="8" pt="1907041122">
+        <m id="r51592096" t="f" c="0" ts="1907040810"/>
+    </ar>
+    <tl f="F" t="e" o="80" c="IC" n="70271"/>
+    <ref>
+        <tl f="F" t="p" o="80" c="ICE" n="271"/>
+    </ref>
+</s>
+
+
+<s id="5747055382685404491-1907040733-5" eva="8509000">
+    <ar ct="1907040952"/>
+</s>
+
+</timetable>

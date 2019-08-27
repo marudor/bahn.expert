@@ -1,1 +1,5 @@
-<stations><station meta="8071357" name="Erfurt Hbf" eva="8010101" ds100="UE  P" db="true" creationts="19-06-23 02:16:49.306" /></stations>
+<stations>
+
+<station meta="8575112" name="Chur" eva="8509000" ds100="XSC" db="true" creationts="19-06-09 02:12:49.638"/>
+
+</stations>
