@@ -9,6 +9,7 @@ export default makeStyles(theme => ({
     justifyContent: 'space-around',
     marginTop: '1em',
     '@media screen and (max-width: 1200px)': {
+      display: 'grid',
       flexDirection: 'column',
       alignItems: 'center',
       height: '10em',
@@ -21,7 +22,7 @@ export default makeStyles(theme => ({
     flexDirection: 'column',
     marginTop: theme.shape.headerSpacing + 10,
   },
-  privacy: {
-    marginTop: '5em',
+  donation: {
+    marginTop: '1em',
   },
 }));
