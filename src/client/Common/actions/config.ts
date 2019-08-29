@@ -25,6 +25,7 @@ const defaultTheme = global.SERVER
 
 export const setCookies = (cookies: Cookies): CommonThunkResult => dispatch => {
   const theme =
+    // @ts-ignore 7053
     (ThemeType[cookies.get('theme')] as undefined | ThemeType) || defaultTheme;
 
   if (!global.SERVER) {
