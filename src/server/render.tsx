@@ -59,6 +59,7 @@ export default async (ctx: Context) => {
   Object.keys(ctx.query).forEach((key: any) => {
     switch (key) {
       case 'theme': {
+        // @ts-ignore 7053
         const queryTheme = ThemeType[ctx.query.theme] as undefined | ThemeType;
 
         if (queryTheme) {
