@@ -13,11 +13,18 @@ export interface SearchOnTripResponse {
   outConL: OutConL[];
 }
 
+type SearchOnTripJIDRequest = {
+  jid: string;
+  sotMode: 'JI';
+};
+
+type SearchOnTripCTXRequest = {
+  ctxRecon: string;
+  sotMode: 'RC';
+};
+
 export interface SearchOnTripRequest {
-  req: {
-    ctxRecon: string;
-    sotMode: 'RC';
-  };
+  req: SearchOnTripJIDRequest | SearchOnTripCTXRequest;
   meth: 'SearchOnTrip';
 }
 

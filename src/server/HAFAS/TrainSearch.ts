@@ -38,9 +38,12 @@ const profiles = {
 export default async (
   trainName: string,
   initialDepartureDate?: number,
-  profileType: AllowedHafasProfile = 'db'
+  profileType: AllowedHafasProfile = AllowedHafasProfile.db
 ) => {
-  if (profileType !== 'db' && profileType !== 'oebb') {
+  if (
+    profileType !== AllowedHafasProfile.db &&
+    profileType !== AllowedHafasProfile.oebb
+  ) {
     throw new Error(`${profileType} not supported by trainsearch`);
   }
   let date = initialDepartureDate;
