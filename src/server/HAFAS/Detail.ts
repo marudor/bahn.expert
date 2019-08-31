@@ -32,7 +32,7 @@ export default async (
   trainName: string,
   currentStopId?: string,
   date: number = Date.now(),
-  hafasProfile: AllowedHafasProfile = 'db'
+  hafasProfile: AllowedHafasProfile = AllowedHafasProfile.db
 ) => {
   const train = await trainSearch(trainName, date, hafasProfile);
 
@@ -41,7 +41,13 @@ export default async (
   let relevantSegment: ParsedSearchOnTripResponse;
 
   try {
-    const route = await searchOnTrip(train.ctxRecon, hafasProfile);
+    const route = await searchOnTrip(
+      {
+        jid: train.jid,
+        sotMode: 'JI',
+      },
+      hafasProfile
+    );
 
     relevantSegment = route.segments[0];
   } catch (e) {
