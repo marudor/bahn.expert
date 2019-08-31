@@ -33,7 +33,7 @@ const parseJourneyMatch = (
 export default (
   trainName: string,
   initialDepartureDate?: number,
-  profile: AllowedHafasProfile = 'db'
+  profile: AllowedHafasProfile = AllowedHafasProfile.db
 ) => {
   let date = initialDepartureDate;
 

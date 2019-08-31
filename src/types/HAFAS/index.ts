@@ -22,7 +22,16 @@ export interface HafasStation extends Omit<Station, 'favendoId' | 'DS100'> {
   coordinates: Coordinates;
 }
 
-export type AllowedHafasProfile = 'db' | 'oebb' | 'sncb' | 'avv' | 'nahsh';
+export enum AllowedHafasProfile {
+  db = 'db',
+  oebb = 'oebb',
+  sncb = 'sncb',
+  avv = 'avv',
+  nahsh = 'nahsh',
+  hvv = 'hvv',
+  bvg = 'bvg',
+  // all = 'all',
+}
 export type HafasRequest = SingleHafasRequest[];
 export type SingleHafasRequest =
   | LocMatchRequest

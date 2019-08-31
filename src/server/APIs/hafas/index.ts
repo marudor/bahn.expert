@@ -1,4 +1,5 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
+import { SearchOnTripRequest } from 'types/HAFAS/SearchOnTrip';
 import auslastungHafas from 'server/Auslastung/Hafas';
 import detail from 'server/HAFAS/Detail';
 import geoStation from 'server/HAFAS/LocGeoPos';
@@ -25,10 +26,30 @@ const getCurrent = () =>
 
       ctx.body = await journeyDetails(jid, ctx.hafasProfile);
     })
-    .get('/searchOnTrip/:ctxRecon', async ctx => {
-      const { ctxRecon }: { ctxRecon: string } = ctx.params;
+    .post('/SearchOnTrip', async ctx => {
+      const {
+        sotMode,
+        id,
+      }: {
+        sotMode: SearchOnTripRequest['req']['sotMode'];
+        id: string;
+      } = ctx.request.body;
 
-      ctx.body = await searchOnTrip(ctxRecon, ctx.hafasProfile);
+      let req;
+
+      if (sotMode === 'RC') {
+        req = {
+          sotMode,
+          ctxRecon: id,
+        };
+      } else {
+        req = {
+          sotMode,
+          jid: id,
+        };
+      }
+
+      ctx.body = await searchOnTrip(req, ctx.hafasProfile);
     })
     .get('/details/:trainName/:date?', async ctx => {
       const { date, trainName } = ctx.params;
@@ -69,6 +90,37 @@ const getCurrent = () =>
     .get('/DepStationBoard', async ctx => {
       const { date, station } = ctx.query;
 
+      // if (ctx.hafasProfile === 'all') {
+      //   const prod = global.PROD;
+
+      //   global.PROD = true;
+      //   const promises: any[] = [];
+
+      //   Object.keys(AllowedHafasProfile).forEach(p => {
+      //     // @ts-ignore
+      //     promises.push(
+      //       stationBoard(
+      //         {
+      //           type: 'DEP',
+      //           station,
+      //           date: Number.parseInt(date, 10) || undefined,
+      //         },
+      //         p
+      //       ).then(r => [p, r])
+      //     );
+      //   });
+      //   const results = await Promise.all(promises);
+
+      //   global.PROD = prod;
+
+      //   ctx.body = results.reduce((agg, [p, r]) => {
+      //     agg[p] = r;
+
+      //     return agg;
+      //   }, {});
+
+      //   return;
+      // }
       ctx.body = await stationBoard(
         {
           type: 'DEP',
@@ -128,12 +180,15 @@ router
   .use((ctx, next) => {
     const hafasProfile = ctx.query.profile;
 
-    if (hafasProfile) {
-      if (['db', 'oebb', 'avv', 'sncb', 'nahsh'].includes(hafasProfile)) {
-        ctx.hafasProfile = hafasProfile;
-      } else {
-        throw `${hafasProfile} is not a valid profile`;
-      }
+    if (
+      !hafasProfile ||
+      // hafasProfile === 'all' ||
+      // @ts-ignore 7053
+      AllowedHafasProfile[hafasProfile]
+    ) {
+      ctx.hafasProfile = hafasProfile;
+    } else {
+      throw `${hafasProfile} is not a valid profile`;
     }
 
     return next();

@@ -7692,99 +7692,1493 @@ Object {
 exports[`Hafas API v1 /station 1`] = `
 Array [
   Object {
-    "id": "8000085",
+    "coordinates": Object {
+      "lat": 51.219708,
+      "lng": 6.794011,
+    },
+    "id": "008000085",
+    "products": Array [
+      Object {
+        "name": "ICE",
+      },
+      Object {
+        "name": "THA",
+      },
+      Object {
+        "name": "BUS",
+      },
+      Object {
+        "name": "EC",
+      },
+      Object {
+        "name": "IC",
+      },
+      Object {
+        "name": "NJ",
+      },
+      Object {
+        "name": "FLX",
+      },
+      Object {
+        "name": "UEX",
+      },
+      Object {
+        "name": "ABR",
+      },
+      Object {
+        "line": "28",
+        "name": "Bus 28",
+      },
+      Object {
+        "line": "S1",
+        "name": "Bus S1",
+      },
+      Object {
+        "line": "SEV",
+        "name": "Bus SEV",
+      },
+      Object {
+        "name": "ERB",
+      },
+      Object {
+        "name": "NWB",
+      },
+      Object {
+        "name": "RE",
+      },
+      Object {
+        "name": "RE",
+      },
+      Object {
+        "name": "VIA",
+      },
+      Object {
+        "line": "S7",
+        "name": "ABR S7",
+      },
+      Object {
+        "line": "1",
+        "name": "S 1",
+      },
+      Object {
+        "line": "6",
+        "name": "S 6",
+      },
+      Object {
+        "line": "8",
+        "name": "S 8",
+      },
+      Object {
+        "line": "11",
+        "name": "S 11",
+      },
+      Object {
+        "line": "28",
+        "name": "S 28",
+      },
+      Object {
+        "line": "68",
+        "name": "S 68",
+      },
+      Object {
+        "line": "721",
+        "name": "Bus 721",
+      },
+      Object {
+        "line": "722",
+        "name": "Bus 722",
+      },
+      Object {
+        "line": "732",
+        "name": "Bus 732",
+      },
+      Object {
+        "line": "737",
+        "name": "Bus 737",
+      },
+      Object {
+        "line": "738",
+        "name": "Bus 738",
+      },
+      Object {
+        "line": "752",
+        "name": "Bus 752",
+      },
+      Object {
+        "line": "754",
+        "name": "Bus 754",
+      },
+      Object {
+        "line": "780",
+        "name": "Bus 780",
+      },
+      Object {
+        "line": "782",
+        "name": "Bus 782",
+      },
+      Object {
+        "line": "785",
+        "name": "Bus 785",
+      },
+      Object {
+        "line": "805",
+        "name": "Bus 805",
+      },
+      Object {
+        "line": "807",
+        "name": "Bus 807",
+      },
+      Object {
+        "line": "812",
+        "name": "Bus 812",
+      },
+      Object {
+        "line": "817",
+        "name": "Bus 817",
+      },
+      Object {
+        "line": "834",
+        "name": "Bus 834",
+      },
+      Object {
+        "line": "NE1",
+        "name": "Bus NE1",
+      },
+      Object {
+        "line": "NE2",
+        "name": "Bus NE2",
+      },
+      Object {
+        "line": "NE3",
+        "name": "Bus NE3",
+      },
+      Object {
+        "line": "NE4",
+        "name": "Bus NE4",
+      },
+      Object {
+        "line": "NE5",
+        "name": "Bus NE5",
+      },
+      Object {
+        "line": "NE6",
+        "name": "Bus NE6",
+      },
+      Object {
+        "line": "NE7",
+        "name": "Bus NE7",
+      },
+      Object {
+        "line": "NE8",
+        "name": "Bus NE8",
+      },
+      Object {
+        "line": "SB50",
+        "name": "Bus SB50",
+      },
+      Object {
+        "line": "SB55",
+        "name": "Bus SB55",
+      },
+      Object {
+        "line": "SB85",
+        "name": "Bus SB85",
+      },
+      Object {
+        "line": "SEV",
+        "name": "LT SEV",
+      },
+      Object {
+        "line": "E",
+        "name": "U E",
+      },
+      Object {
+        "line": "70",
+        "name": "U 70",
+      },
+      Object {
+        "line": "74",
+        "name": "U 74",
+      },
+      Object {
+        "line": "75",
+        "name": "U 75",
+      },
+      Object {
+        "line": "76",
+        "name": "U 76",
+      },
+      Object {
+        "line": "77",
+        "name": "U 77",
+      },
+      Object {
+        "line": "78",
+        "name": "U 78",
+      },
+      Object {
+        "line": "79",
+        "name": "U 79",
+      },
+      Object {
+        "line": "704",
+        "name": "STR 704",
+      },
+      Object {
+        "line": "705",
+        "name": "STR 705",
+      },
+      Object {
+        "line": "707",
+        "name": "STR 707",
+      },
+      Object {
+        "line": "708",
+        "name": "STR 708",
+      },
+      Object {
+        "line": "709",
+        "name": "STR 709",
+      },
+    ],
     "title": "Düsseldorf Hbf",
   },
   Object {
-    "id": "8000082",
+    "coordinates": Object {
+      "lat": 51.291568,
+      "lng": 6.786973,
+    },
+    "id": "008000082",
+    "products": Array [
+      Object {
+        "name": "ICE",
+      },
+      Object {
+        "name": "THA",
+      },
+      Object {
+        "name": "IC",
+      },
+      Object {
+        "name": "ABR",
+      },
+      Object {
+        "line": "S1",
+        "name": "Bus S1",
+      },
+      Object {
+        "line": "SEV",
+        "name": "Bus SEV",
+      },
+      Object {
+        "name": "ERB",
+      },
+      Object {
+        "name": "RE",
+      },
+      Object {
+        "name": "RE",
+      },
+      Object {
+        "line": "1",
+        "name": "S 1",
+      },
+      Object {
+        "line": "729",
+        "name": "Bus 729",
+      },
+      Object {
+        "line": "759",
+        "name": "Bus 759",
+      },
+      Object {
+        "line": "776",
+        "name": "Bus 776",
+      },
+      Object {
+        "line": "SB51",
+        "name": "Bus SB51",
+      },
+      Object {
+        "line": "SkyT",
+        "name": "Schw-B",
+      },
+    ],
     "title": "Düsseldorf Flughafen",
   },
   Object {
-    "id": "8001584",
+    "coordinates": Object {
+      "lat": 51.162339,
+      "lng": 6.878905,
+    },
+    "id": "008001584",
+    "products": Array [
+      Object {
+        "name": "ABR",
+      },
+      Object {
+        "line": "SEV",
+        "name": "Bus SEV",
+      },
+      Object {
+        "name": "RE",
+      },
+      Object {
+        "name": "RE",
+      },
+      Object {
+        "line": "6",
+        "name": "S 6",
+      },
+      Object {
+        "line": "68",
+        "name": "S 68",
+      },
+      Object {
+        "line": "M1",
+        "name": "Bus M1",
+      },
+      Object {
+        "line": "730",
+        "name": "Bus 730",
+      },
+      Object {
+        "line": "778",
+        "name": "Bus 778",
+      },
+      Object {
+        "line": "779",
+        "name": "Bus 779",
+      },
+      Object {
+        "line": "784",
+        "name": "Bus 784",
+      },
+      Object {
+        "line": "788",
+        "name": "Bus 788",
+      },
+      Object {
+        "line": "789",
+        "name": "Bus 789",
+      },
+      Object {
+        "line": "815",
+        "name": "Bus 815",
+      },
+      Object {
+        "line": "817",
+        "name": "Bus 817",
+      },
+      Object {
+        "line": "NE7",
+        "name": "Bus NE7",
+      },
+      Object {
+        "line": "SB59",
+        "name": "Bus SB59",
+      },
+      Object {
+        "line": "SEV",
+        "name": "LT SEV",
+      },
+      Object {
+        "line": "E",
+        "name": "U E",
+      },
+      Object {
+        "line": "71",
+        "name": "U 71",
+      },
+      Object {
+        "line": "74",
+        "name": "U 74",
+      },
+      Object {
+        "line": "83",
+        "name": "U 83",
+      },
+      Object {
+        "line": "730",
+        "name": "RUF 730",
+      },
+    ],
     "title": "Düsseldorf-Benrath",
   },
   Object {
-    "id": "8001585",
+    "coordinates": Object {
+      "lat": 51.207816,
+      "lng": 6.775475,
+    },
+    "id": "008001585",
+    "products": Array [
+      Object {
+        "line": "28",
+        "name": "Bus 28",
+      },
+      Object {
+        "line": "SEV",
+        "name": "Bus SEV",
+      },
+      Object {
+        "name": "RE",
+      },
+      Object {
+        "line": "8",
+        "name": "S 8",
+      },
+      Object {
+        "line": "11",
+        "name": "S 11",
+      },
+      Object {
+        "line": "28",
+        "name": "S 28",
+      },
+      Object {
+        "line": "M3",
+        "name": "Bus M3",
+      },
+      Object {
+        "line": "732",
+        "name": "Bus 732",
+      },
+      Object {
+        "line": "736",
+        "name": "Bus 736",
+      },
+      Object {
+        "line": "835",
+        "name": "Bus 835",
+      },
+      Object {
+        "line": "836",
+        "name": "Bus 836",
+      },
+      Object {
+        "line": "NE7",
+        "name": "Bus NE7",
+      },
+      Object {
+        "line": "71",
+        "name": "U 71",
+      },
+      Object {
+        "line": "72",
+        "name": "U 72",
+      },
+      Object {
+        "line": "73",
+        "name": "U 73",
+      },
+      Object {
+        "line": "83",
+        "name": "U 83",
+      },
+    ],
     "title": "Düsseldorf-Bilk",
   },
   Object {
-    "id": "8001603",
+    "coordinates": Object {
+      "lat": 51.21018,
+      "lng": 6.760095,
+    },
+    "id": "008001603",
+    "products": Array [
+      Object {
+        "line": "28",
+        "name": "Bus 28",
+      },
+      Object {
+        "line": "SEV",
+        "name": "Bus SEV",
+      },
+      Object {
+        "line": "8",
+        "name": "S 8",
+      },
+      Object {
+        "line": "11",
+        "name": "S 11",
+      },
+      Object {
+        "line": "28",
+        "name": "S 28",
+      },
+      Object {
+        "line": "723",
+        "name": "Bus 723",
+      },
+      Object {
+        "line": "726",
+        "name": "Bus 726",
+      },
+      Object {
+        "line": "NE8",
+        "name": "Bus NE8",
+      },
+      Object {
+        "line": "709",
+        "name": "STR 709",
+      },
+    ],
     "title": "Düsseldorf Völklinger Str.",
   },
   Object {
-    "id": "8001579",
+    "coordinates": Object {
+      "lat": 51.212193,
+      "lng": 6.789292,
+    },
+    "id": "008001579",
+    "products": Array [
+      Object {
+        "line": "28",
+        "name": "Bus 28",
+      },
+      Object {
+        "line": "SEV",
+        "name": "Bus SEV",
+      },
+      Object {
+        "line": "8",
+        "name": "S 8",
+      },
+      Object {
+        "line": "11",
+        "name": "S 11",
+      },
+      Object {
+        "line": "28",
+        "name": "S 28",
+      },
+      Object {
+        "line": "736",
+        "name": "Bus 736",
+      },
+    ],
     "title": "Düsseldorf Friedrichstadt",
   },
   Object {
-    "id": "8001582",
+    "coordinates": Object {
+      "lat": 51.228491,
+      "lng": 6.7982,
+    },
+    "id": "008001582",
+    "products": Array [
+      Object {
+        "line": "S1",
+        "name": "Bus S1",
+      },
+      Object {
+        "line": "SEV",
+        "name": "Bus SEV",
+      },
+      Object {
+        "line": "1",
+        "name": "S 1",
+      },
+      Object {
+        "line": "6",
+        "name": "S 6",
+      },
+      Object {
+        "line": "8",
+        "name": "S 8",
+      },
+      Object {
+        "line": "11",
+        "name": "S 11",
+      },
+      Object {
+        "line": "737",
+        "name": "Bus 737",
+      },
+      Object {
+        "line": "812",
+        "name": "Bus 812",
+      },
+      Object {
+        "line": "NE3",
+        "name": "Bus NE3",
+      },
+      Object {
+        "line": "NE4",
+        "name": "Bus NE4",
+      },
+      Object {
+        "line": "NE5",
+        "name": "Bus NE5",
+      },
+      Object {
+        "line": "SEV",
+        "name": "LT SEV",
+      },
+      Object {
+        "line": "71",
+        "name": "U 71",
+      },
+      Object {
+        "line": "72",
+        "name": "U 72",
+      },
+      Object {
+        "line": "73",
+        "name": "U 73",
+      },
+      Object {
+        "line": "83",
+        "name": "U 83",
+      },
+    ],
     "title": "Düsseldorf Wehrhahn",
   },
   Object {
-    "id": "8001595",
+    "coordinates": Object {
+      "lat": 51.276844,
+      "lng": 6.788761,
+    },
+    "id": "008001595",
+    "products": Array [
+      Object {
+        "line": "S1",
+        "name": "Bus S1",
+      },
+      Object {
+        "line": "SEV",
+        "name": "Bus SEV",
+      },
+      Object {
+        "line": "1",
+        "name": "S 1",
+      },
+      Object {
+        "line": "8",
+        "name": "S 8",
+      },
+      Object {
+        "line": "11",
+        "name": "S 11",
+      },
+      Object {
+        "line": "M1",
+        "name": "Bus M1",
+      },
+      Object {
+        "line": "729",
+        "name": "Bus 729",
+      },
+      Object {
+        "line": "730",
+        "name": "Bus 730",
+      },
+      Object {
+        "line": "757",
+        "name": "Bus 757",
+      },
+      Object {
+        "line": "760",
+        "name": "Bus 760",
+      },
+      Object {
+        "line": "810",
+        "name": "Bus 810",
+      },
+      Object {
+        "line": "NE1",
+        "name": "Bus NE1",
+      },
+      Object {
+        "line": "NE2",
+        "name": "Bus NE2",
+      },
+      Object {
+        "line": "SEV",
+        "name": "LT SEV",
+      },
+      Object {
+        "line": "705",
+        "name": "STR 705",
+      },
+      Object {
+        "line": "707",
+        "name": "STR 707",
+      },
+      Object {
+        "line": "730",
+        "name": "RUF 730",
+      },
+    ],
     "title": "Düsseldorf-Unterrath",
   },
   Object {
-    "id": "8001591",
+    "coordinates": Object {
+      "lat": 51.208067,
+      "lng": 6.808969,
+    },
+    "id": "008001591",
+    "products": Array [
+      Object {
+        "line": "SEV",
+        "name": "Bus SEV",
+      },
+      Object {
+        "line": "1",
+        "name": "S 1",
+      },
+      Object {
+        "line": "6",
+        "name": "S 6",
+      },
+      Object {
+        "line": "68",
+        "name": "S 68",
+      },
+      Object {
+        "line": "817",
+        "name": "Bus 817",
+      },
+      Object {
+        "line": "SEV",
+        "name": "LT SEV",
+      },
+      Object {
+        "line": "E",
+        "name": "U E",
+      },
+      Object {
+        "line": "74",
+        "name": "U 74",
+      },
+      Object {
+        "line": "77",
+        "name": "U 77",
+      },
+      Object {
+        "line": "79",
+        "name": "U 79",
+      },
+      Object {
+        "line": "705",
+        "name": "STR 705",
+      },
+    ],
     "title": "Düsseldorf-Oberbilk",
   },
   Object {
-    "id": "8001586",
+    "coordinates": Object {
+      "lat": 51.246874,
+      "lng": 6.794398,
+    },
+    "id": "008001586",
+    "products": Array [
+      Object {
+        "line": "S1",
+        "name": "Bus S1",
+      },
+      Object {
+        "line": "SEV",
+        "name": "Bus SEV",
+      },
+      Object {
+        "line": "1",
+        "name": "S 1",
+      },
+      Object {
+        "line": "6",
+        "name": "S 6",
+      },
+      Object {
+        "line": "8",
+        "name": "S 8",
+      },
+      Object {
+        "line": "11",
+        "name": "S 11",
+      },
+      Object {
+        "line": "733",
+        "name": "Bus 733",
+      },
+      Object {
+        "line": "752",
+        "name": "Bus 752",
+      },
+      Object {
+        "line": "754",
+        "name": "Bus 754",
+      },
+      Object {
+        "line": "756",
+        "name": "Bus 756",
+      },
+      Object {
+        "line": "758",
+        "name": "Bus 758",
+      },
+      Object {
+        "line": "807",
+        "name": "Bus 807",
+      },
+      Object {
+        "line": "834",
+        "name": "Bus 834",
+      },
+      Object {
+        "line": "SB55",
+        "name": "Bus SB55",
+      },
+      Object {
+        "line": "SEV",
+        "name": "LT SEV",
+      },
+      Object {
+        "line": "701",
+        "name": "STR 701",
+      },
+      Object {
+        "line": "E701",
+        "name": "STR E701",
+      },
+    ],
     "title": "Düsseldorf-Derendorf",
   },
   Object {
-    "id": "8001597",
+    "coordinates": Object {
+      "lat": 51.210737,
+      "lng": 6.740507,
+    },
+    "id": "008001597",
+    "products": Array [
+      Object {
+        "line": "SEV",
+        "name": "Bus SEV",
+      },
+      Object {
+        "line": "8",
+        "name": "S 8",
+      },
+      Object {
+        "line": "11",
+        "name": "S 11",
+      },
+      Object {
+        "line": "28",
+        "name": "S 28",
+      },
+      Object {
+        "line": "732",
+        "name": "Bus 732",
+      },
+      Object {
+        "line": "706",
+        "name": "STR 706",
+      },
+    ],
     "title": "Düsseldorf-Hamm",
   },
   Object {
-    "id": "8001583",
+    "coordinates": Object {
+      "lat": 51.23748,
+      "lng": 6.797005,
+    },
+    "id": "008001583",
+    "products": Array [
+      Object {
+        "line": "S1",
+        "name": "Bus S1",
+      },
+      Object {
+        "line": "SEV",
+        "name": "Bus SEV",
+      },
+      Object {
+        "line": "1",
+        "name": "S 1",
+      },
+      Object {
+        "line": "6",
+        "name": "S 6",
+      },
+      Object {
+        "line": "8",
+        "name": "S 8",
+      },
+      Object {
+        "line": "11",
+        "name": "S 11",
+      },
+      Object {
+        "line": "725",
+        "name": "Bus 725",
+      },
+      Object {
+        "line": "SEV",
+        "name": "LT SEV",
+      },
+      Object {
+        "line": "706",
+        "name": "STR 706",
+      },
+    ],
     "title": "Düsseldorf-Zoo",
   },
   Object {
-    "id": "8001590",
+    "coordinates": Object {
+      "lat": 51.220329,
+      "lng": 6.8649,
+    },
+    "id": "008001590",
+    "products": Array [
+      Object {
+        "line": "SEV",
+        "name": "Bus SEV",
+      },
+      Object {
+        "line": "8",
+        "name": "S 8",
+      },
+      Object {
+        "line": "28",
+        "name": "S 28",
+      },
+      Object {
+        "line": "68",
+        "name": "S 68",
+      },
+      Object {
+        "line": "M1",
+        "name": "Bus M1",
+      },
+      Object {
+        "line": "730",
+        "name": "Bus 730",
+      },
+      Object {
+        "line": "736",
+        "name": "Bus 736",
+      },
+      Object {
+        "line": "737",
+        "name": "Bus 737",
+      },
+      Object {
+        "line": "781",
+        "name": "Bus 781",
+      },
+      Object {
+        "line": "SEV",
+        "name": "LT SEV",
+      },
+      Object {
+        "line": "73",
+        "name": "U 73",
+      },
+      Object {
+        "line": "730",
+        "name": "RUF 730",
+      },
+    ],
     "title": "Düsseldorf-Gerresheim",
   },
   Object {
-    "id": "8001594",
+    "coordinates": Object {
+      "lat": 51.181279,
+      "lng": 6.860495,
+    },
+    "id": "008001594",
+    "products": Array [
+      Object {
+        "line": "SEV",
+        "name": "Bus SEV",
+      },
+      Object {
+        "line": "6",
+        "name": "S 6",
+      },
+      Object {
+        "line": "68",
+        "name": "S 68",
+      },
+      Object {
+        "line": "M1",
+        "name": "Bus M1",
+      },
+      Object {
+        "line": "M3",
+        "name": "Bus M3",
+      },
+      Object {
+        "line": "727",
+        "name": "Bus 727",
+      },
+      Object {
+        "line": "730",
+        "name": "Bus 730",
+      },
+      Object {
+        "line": "785",
+        "name": "Bus 785",
+      },
+      Object {
+        "line": "815",
+        "name": "Bus 815",
+      },
+      Object {
+        "line": "835",
+        "name": "Bus 835",
+      },
+      Object {
+        "line": "NE7",
+        "name": "Bus NE7",
+      },
+      Object {
+        "line": "730",
+        "name": "RUF 730",
+      },
+    ],
     "title": "Düsseldorf-Reisholz",
   },
   Object {
-    "id": "8001588",
+    "coordinates": Object {
+      "lat": 51.197981,
+      "lng": 6.836296,
+    },
+    "id": "008001588",
+    "products": Array [
+      Object {
+        "line": "SEV",
+        "name": "Bus SEV",
+      },
+      Object {
+        "line": "6",
+        "name": "S 6",
+      },
+      Object {
+        "line": "68",
+        "name": "S 68",
+      },
+      Object {
+        "line": "724",
+        "name": "Bus 724",
+      },
+      Object {
+        "line": "731",
+        "name": "Bus 731",
+      },
+      Object {
+        "line": "732",
+        "name": "Bus 732",
+      },
+      Object {
+        "line": "735",
+        "name": "Bus 735",
+      },
+      Object {
+        "line": "NE6",
+        "name": "Bus NE6",
+      },
+    ],
     "title": "Düsseldorf-Eller Süd",
   },
   Object {
-    "id": "8001589",
+    "coordinates": Object {
+      "lat": 51.143147,
+      "lng": 6.898205,
+    },
+    "id": "008001589",
+    "products": Array [
+      Object {
+        "line": "SEV",
+        "name": "Bus SEV",
+      },
+      Object {
+        "line": "6",
+        "name": "S 6",
+      },
+      Object {
+        "line": "68",
+        "name": "S 68",
+      },
+      Object {
+        "line": "778",
+        "name": "Bus 778",
+      },
+      Object {
+        "line": "779",
+        "name": "Bus 779",
+      },
+      Object {
+        "line": "789",
+        "name": "Bus 789",
+      },
+      Object {
+        "line": "SB57",
+        "name": "Bus SB57",
+      },
+      Object {
+        "line": "SEV",
+        "name": "LT SEV",
+      },
+    ],
     "title": "Düsseldorf-Garath",
   },
   Object {
-    "id": "8004920",
+    "coordinates": Object {
+      "lat": 51.133223,
+      "lng": 6.908075,
+    },
+    "id": "008004920",
+    "products": Array [
+      Object {
+        "line": "SEV",
+        "name": "Bus SEV",
+      },
+      Object {
+        "line": "6",
+        "name": "S 6",
+      },
+      Object {
+        "line": "68",
+        "name": "S 68",
+      },
+      Object {
+        "line": "789",
+        "name": "Bus 789",
+      },
+      Object {
+        "line": "NE14",
+        "name": "Bus NE14",
+      },
+      Object {
+        "line": "SB57",
+        "name": "Bus SB57",
+      },
+    ],
     "title": "Düsseldorf-Hellerhof",
   },
   Object {
-    "id": "8001598",
+    "coordinates": Object {
+      "lat": 51.226217,
+      "lng": 6.810012,
+    },
+    "id": "008001598",
+    "products": Array [
+      Object {
+        "line": "SEV",
+        "name": "Bus SEV",
+      },
+      Object {
+        "line": "8",
+        "name": "S 8",
+      },
+      Object {
+        "line": "28",
+        "name": "S 28",
+      },
+      Object {
+        "line": "68",
+        "name": "S 68",
+      },
+      Object {
+        "line": "810",
+        "name": "Bus 810",
+      },
+      Object {
+        "line": "SEV",
+        "name": "LT SEV",
+      },
+      Object {
+        "line": "706",
+        "name": "STR 706",
+      },
+      Object {
+        "line": "709",
+        "name": "STR 709",
+      },
+    ],
     "title": "Düsseldorf-Flingern",
   },
   Object {
-    "id": "8001581",
+    "coordinates": Object {
+      "lat": 51.210117,
+      "lng": 6.791935,
+    },
+    "id": "008001581",
+    "products": Array [
+      Object {
+        "line": "SEV",
+        "name": "Bus SEV",
+      },
+      Object {
+        "line": "1",
+        "name": "S 1",
+      },
+      Object {
+        "line": "6",
+        "name": "S 6",
+      },
+      Object {
+        "line": "68",
+        "name": "S 68",
+      },
+      Object {
+        "line": "780",
+        "name": "Bus 780",
+      },
+      Object {
+        "line": "782",
+        "name": "Bus 782",
+      },
+      Object {
+        "line": "785",
+        "name": "Bus 785",
+      },
+      Object {
+        "line": "SB50",
+        "name": "Bus SB50",
+      },
+      Object {
+        "line": "SEV",
+        "name": "LT SEV",
+      },
+      Object {
+        "line": "705",
+        "name": "STR 705",
+      },
+      Object {
+        "line": "706",
+        "name": "STR 706",
+      },
+    ],
     "title": "Düsseldorf Volksgarten",
   },
   Object {
-    "id": "8001308",
+    "coordinates": Object {
+      "lat": 51.202072,
+      "lng": 6.83858,
+    },
+    "id": "008001308",
+    "products": Array [
+      Object {
+        "line": "SEV",
+        "name": "Bus SEV",
+      },
+      Object {
+        "line": "S7",
+        "name": "ABR S7",
+      },
+      Object {
+        "line": "1",
+        "name": "S 1",
+      },
+      Object {
+        "line": "723",
+        "name": "Bus 723",
+      },
+      Object {
+        "line": "724",
+        "name": "Bus 724",
+      },
+      Object {
+        "line": "815",
+        "name": "Bus 815",
+      },
+      Object {
+        "line": "SEV",
+        "name": "LT SEV",
+      },
+      Object {
+        "line": "75",
+        "name": "U 75",
+      },
+      Object {
+        "line": "705",
+        "name": "STR 705",
+      },
+    ],
     "title": "Düsseldorf-Eller Mitte",
   },
   Object {
-    "id": "8001580",
+    "coordinates": Object {
+      "lat": 51.277662,
+      "lng": 6.76601,
+    },
+    "id": "008001580",
+    "products": Array [
+      Object {
+        "name": "RE",
+      },
+      Object {
+        "line": "1",
+        "name": "S 1",
+      },
+      Object {
+        "line": "11",
+        "name": "S 11",
+      },
+      Object {
+        "line": "721",
+        "name": "Bus 721",
+      },
+      Object {
+        "line": "760",
+        "name": "Bus 760",
+      },
+      Object {
+        "line": "896",
+        "name": "Bus 896",
+      },
+      Object {
+        "line": "SB51",
+        "name": "Bus SB51",
+      },
+      Object {
+        "line": "SkyT",
+        "name": "Schw-B",
+      },
+    ],
     "title": "Düsseldorf Flughafen Terminal",
   },
   Object {
-    "id": "8001593",
+    "coordinates": Object {
+      "lat": 51.261167,
+      "lng": 6.808214,
+    },
+    "id": "008001593",
+    "products": Array [
+      Object {
+        "line": "SEV",
+        "name": "Bus SEV",
+      },
+      Object {
+        "line": "6",
+        "name": "S 6",
+      },
+      Object {
+        "line": "M1",
+        "name": "Bus M1",
+      },
+      Object {
+        "line": "730",
+        "name": "Bus 730",
+      },
+      Object {
+        "line": "776",
+        "name": "Bus 776",
+      },
+      Object {
+        "line": "810",
+        "name": "Bus 810",
+      },
+      Object {
+        "line": "812",
+        "name": "Bus 812",
+      },
+      Object {
+        "line": "NE2",
+        "name": "Bus NE2",
+      },
+      Object {
+        "line": "NE3",
+        "name": "Bus NE3",
+      },
+      Object {
+        "line": "71",
+        "name": "U 71",
+      },
+      Object {
+        "line": "701",
+        "name": "STR 701",
+      },
+      Object {
+        "line": "E701",
+        "name": "STR E701",
+      },
+      Object {
+        "line": "730",
+        "name": "RUF 730",
+      },
+    ],
     "title": "Düsseldorf-Rath Mitte",
   },
   Object {
-    "id": "8001587",
+    "coordinates": Object {
+      "lat": 51.202728,
+      "lng": 6.852055,
+    },
+    "id": "008001587",
+    "products": Array [
+      Object {
+        "line": "SEV",
+        "name": "Bus SEV",
+      },
+      Object {
+        "line": "1",
+        "name": "S 1",
+      },
+      Object {
+        "line": "M1",
+        "name": "Bus M1",
+      },
+      Object {
+        "line": "722",
+        "name": "Bus 722",
+      },
+      Object {
+        "line": "730",
+        "name": "Bus 730",
+      },
+      Object {
+        "line": "735",
+        "name": "Bus 735",
+      },
+      Object {
+        "line": "736",
+        "name": "Bus 736",
+      },
+      Object {
+        "line": "891",
+        "name": "Bus 891",
+      },
+      Object {
+        "line": "NE6",
+        "name": "Bus NE6",
+      },
+      Object {
+        "line": "730",
+        "name": "RUF 730",
+      },
+    ],
     "title": "Düsseldorf-Eller",
   },
   Object {
-    "id": "8001592",
+    "coordinates": Object {
+      "lat": 51.264187,
+      "lng": 6.821213,
+    },
+    "id": "008001592",
+    "products": Array [
+      Object {
+        "line": "SEV",
+        "name": "Bus SEV",
+      },
+      Object {
+        "line": "6",
+        "name": "S 6",
+      },
+      Object {
+        "line": "71",
+        "name": "U 71",
+      },
+      Object {
+        "line": "701",
+        "name": "STR 701",
+      },
+      Object {
+        "line": "E701",
+        "name": "STR E701",
+      },
+    ],
     "title": "Düsseldorf-Rath",
   },
 ]

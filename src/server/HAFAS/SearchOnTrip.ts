@@ -18,11 +18,14 @@ const parseSearchOnTrip = (
   };
 };
 
-export default (ctxRecon: string, profile?: AllowedHafasProfile) => {
-  const req: SearchOnTripRequest = {
-    req: { ctxRecon, sotMode: 'RC' },
+export default (
+  req: SearchOnTripRequest['req'],
+  profile?: AllowedHafasProfile
+) => {
+  const request: SearchOnTripRequest = {
+    req,
     meth: 'SearchOnTrip',
   };
 
-  return makeRequest(req, parseSearchOnTrip, profile);
+  return makeRequest(request, parseSearchOnTrip, profile);
 };

@@ -9,7 +9,9 @@ module.exports = {
   globals: {
     SERVER: false,
   },
-  rules: {},
+  rules: {
+    'require-atomic-updates': 0,
+  },
   settings: {
     'import/resolver': 'webpack',
   },
