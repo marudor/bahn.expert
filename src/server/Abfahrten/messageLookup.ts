@@ -35,6 +35,7 @@ export default {
   '34': 'Signalstörung',
   '35': 'Streckensperrung',
   '36': 'Technische Störung am Zug',
+  '37': 'Technische Störung am Wagen',
   '38': 'Technische Störung an der Strecke',
   '39': 'Anhängen von zusätzlichen Wagen',
   '40': 'Stellwerksstörung/-ausfall',
