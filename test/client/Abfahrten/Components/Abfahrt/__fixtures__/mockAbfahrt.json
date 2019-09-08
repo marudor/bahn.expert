@@ -1,0 +1,105 @@
+{
+  "o": "80",
+  "initialDeparture": 1567945680000,
+  "arrival": {
+    "scheduledTime": 1567947300000,
+    "time": 1567947840000,
+    "platform": "18",
+    "scheduledPlatform": "18",
+    "hidden": false,
+    "cancelled": false,
+    "delay": 9
+  },
+  "departure": {
+    "scheduledTime": 1567947480000,
+    "time": 1567947900000,
+    "platform": "18",
+    "scheduledPlatform": "18",
+    "hidden": false,
+    "cancelled": false,
+    "delay": 7
+  },
+  "productClass": "F",
+  "currentStation": {
+    "title": "Düsseldorf Hbf",
+    "id": "8000085"
+  },
+  "scheduledDestination": "Rostock Hbf",
+  "id": "4264666229068276457",
+  "rawId": "-4264666229068276457-1909081428-2",
+  "mediumId": "4264666229068276457-1909081428",
+  "substitute": false,
+  "train": {
+    "longDistance": true,
+    "name": "IC 2326",
+    "number": "2326",
+    "trainCategory": "IC",
+    "type": "IC"
+  },
+  "messages": {
+    "delay": [
+      {
+        "text": "Verzögerungen im Betriebsablauf",
+        "timestamp": 1567946340000
+      }
+    ],
+    "qos": [
+      {
+        "text": "Abweichende Wagenreihung",
+        "timestamp": 1567943400000
+      }
+    ]
+  },
+  "cancelled": false,
+  "route": [
+    {
+      "name": "Köln Hbf"
+    },
+    {
+      "name": "Düsseldorf Hbf",
+      "cancelled": false
+    },
+    {
+      "name": "Duisburg Hbf",
+      "showVia": true
+    },
+    {
+      "name": "Recklinghausen Hbf",
+      "showVia": true
+    },
+    {
+      "name": "Münster (Westf) Hbf",
+      "showVia": true
+    },
+    {
+      "name": "Hannover Hbf"
+    },
+    {
+      "name": "Wolfsburg Hbf"
+    },
+    {
+      "name": "Berlin-Spandau"
+    },
+    {
+      "name": "Berlin Hbf  (tief)"
+    },
+    {
+      "name": "Berlin Gesundbrunnen"
+    },
+    {
+      "name": "Neustrelitz Hbf"
+    },
+    {
+      "name": "Waren (Müritz)"
+    },
+    {
+      "name": "Rostock Hbf"
+    }
+  ],
+  "destination": "Rostock Hbf",
+  "platform": "18",
+  "scheduledPlatform": "18",
+  "auslastung": true,
+  "reihung": true,
+  "hiddenReihung": false
+}
