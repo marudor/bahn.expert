@@ -4,14 +4,19 @@
     "resolveJsonModule": true,
     "noEmit": true,
     "strict": true,
-    "baseUrl": "../node_modules",
+    // "baseUrl": "../node_modules",
     "target": "es5",
-    "lib": ["es5", "dom"],
+    "lib": ["es5", "dom", "es2015"],
     "types": [
       "cypress",
       "@testing-library/cypress/typings",
       "../cypress/support/index"
     ]
   },
-  "include": ["**/*.ts", "support/index.ts"]
+  "include": ["**/*.ts", "support/index.ts"],
+  "parserOptions": {
+    "sourceType": "module",
+    "project": "./tsconfig.json",
+    "tsconfigRootDir": "__dirname"
+  }
 }

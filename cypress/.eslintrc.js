@@ -4,4 +4,9 @@ module.exports = {
     'cypress/globals': true,
   },
   plugins: ['cypress'],
+  parserOptions: {
+    sourceType: 'module',
+    project: './tsconfig.json',
+    tsconfigRootDir: __dirname,
+  },
 };

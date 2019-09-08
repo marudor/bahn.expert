@@ -33,7 +33,7 @@ const AuslastungsDisplay = (props: Props) => {
   const { auslastung } = props;
 
   return (
-    <div className={classes.main}>
+    <div data-testid="auslastungDisplay" className={classes.main}>
       <div data-testid="first" className={classes.entry}>
         <span>1</span>
         <span className={`${classes.icon} ${classes.first}`}>

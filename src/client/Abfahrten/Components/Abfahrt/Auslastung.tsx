@@ -12,14 +12,14 @@ const Auslastung = ({ abfahrt }: Props) => {
   const { auslastungen, getAuslastung } = AuslastungContainer.useContainer();
   const auslastung =
     auslastungen[
-      `${abfahrt.currentStation.id}/${abfahrt.destination}/${abfahrt.train.number}`
+      `${abfahrt.currentStation.title}/${abfahrt.destination}/${abfahrt.train.number}`
     ];
 
   useEffect(() => {
     if (auslastung === undefined && abfahrt.departure) {
       getAuslastung(
         abfahrt.train.number,
-        abfahrt.currentStation.id,
+        abfahrt.currentStation.title,
         abfahrt.destination,
         abfahrt.departure.scheduledTime
       );
