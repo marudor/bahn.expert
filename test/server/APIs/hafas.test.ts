@@ -50,7 +50,7 @@ describe('Hafas API', () => {
         );
         mockWithFile(
           'https://reiseauskunft.bahn.de',
-          '/bin/mgate.exe?checksum=5c7bada9ba0df52a26de1749ded9ccbb',
+          '/bin/mgate.exe?checksum=595063c9f9d5ade80ee2cfae70b1056b',
           'hafas/details/searchOnTrip',
           'post'
         );

@@ -43,8 +43,8 @@ export default async (
   try {
     const route = await searchOnTrip(
       {
-        jid: train.jid,
-        sotMode: 'JI',
+        ctxRecon: train.ctxRecon,
+        sotMode: 'RC',
       },
       hafasProfile
     );
