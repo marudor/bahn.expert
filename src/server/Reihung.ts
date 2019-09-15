@@ -11,6 +11,7 @@ import { convertToTimeZone } from 'date-fns-timezone';
 import { flatten, groupBy, maxBy, minBy } from 'lodash';
 import { format } from 'date-fns';
 import { getAbfahrten } from './Abfahrten';
+import { getAP } from 'server/Wifi';
 import { WagenreihungStation } from 'types/reihungStation';
 import axios from 'axios';
 
@@ -413,6 +414,16 @@ function enrichFahrzeug(fahrzeug: Fahrzeug) {
         break;
     }
   });
+
+  const ap = getAP(fahrzeug.fahrzeugnummer);
+
+  if (ap) {
+    if (ap.online) {
+      data.wifi = true;
+    } else {
+      data.wifiOff = true;
+    }
+  }
 
   fahrzeug.additionalInfo = data;
 }

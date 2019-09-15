@@ -34,8 +34,8 @@ module.exports = {
       },
       parserOptions: {
         sourceType: 'module',
-        project: './tsconfig.json',
-        tsconfigRootDir: __dirname,
+        project: require('path').resolve(__dirname, './tsconfig.json'),
+        tsconfigRootDir: require('path').resolve(__dirname),
       },
     },
   ],

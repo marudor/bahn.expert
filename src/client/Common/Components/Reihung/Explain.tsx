@@ -12,6 +12,8 @@ const iconExplanation: { [K in keyof typeof icons]: string } = {
   familie: 'Familienbereich',
   schwebe: 'Schwerbehindertenplätze',
   info: 'Dienstabteil',
+  wifi: 'Wlan online',
+  wifiOff: 'Wlan offline',
 };
 
 // const explainFahrzeugProps: OwnProps = {
@@ -69,24 +71,20 @@ const Explain = () => {
         <DialogTitle>Legende Wagenreihung</DialogTitle>
         <DialogContent>
           {/* <FahrzeugComp {...explainFahrzeugProps} /> */}
-          <div>
+          <div className={classes.wrap}>
             {Object.keys(iconExplanation).map(
               // @ts-ignore this is correct, it's exact!
               (iconName: keyof typeof icons) => {
                 const Icon = icons[iconName];
 
                 return (
-                  <div key={iconName} className={classes.line}>
+                  <div key={iconName} className={classes.icon}>
                     <Icon />
                     {iconExplanation[iconName]}
                   </div>
                 );
               }
             )}
-            <div className={classes.line}>
-              <svg className={classes.comfort} />
-              Bahn.Comfort Sitzplätze
-            </div>
           </div>
         </DialogContent>
       </Dialog>

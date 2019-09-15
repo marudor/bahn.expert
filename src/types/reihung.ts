@@ -25,6 +25,8 @@ export type AdditionalFahrzeugInfo = {
   info?: boolean;
   familie?: boolean;
   kleinkind?: boolean;
+  wifi?: boolean;
+  wifiOff?: boolean;
 };
 
 export type Fahrzeugausstattung = {
@@ -43,6 +45,7 @@ export type Position = {
 
 export type Fahrzeug = {
   additionalInfo: AdditionalFahrzeugInfo;
+  // ap?: AP;
   allFahrzeugausstattung: Fahrzeugausstattung[];
   kategorie: string;
   fahrzeugnummer: string;

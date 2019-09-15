@@ -11,6 +11,8 @@ import NotificationsOff from '@material-ui/icons/NotificationsOff';
 import React from 'react';
 import useStyles from './Fahrzeug.style';
 import WagenLink from './WagenLink';
+import Wifi from '@material-ui/icons/Wifi';
+import WifiOff from '@material-ui/icons/WifiOff';
 
 export const icons = {
   rollstuhl: ActionAccessible,
@@ -21,6 +23,8 @@ export const icons = {
   familie: ChildCare,
   schwebe: Accessibility,
   info: Info,
+  wifi: Wifi,
+  wifiOff: WifiOff,
 };
 
 export type InheritedProps = {
@@ -101,6 +105,10 @@ const FahrzeugComp = ({
         )}
         {fahrzeug.additionalInfo.info && (
           <icons.info className={classes.icon} />
+        )}
+        {fahrzeug.additionalInfo.wifi && <Wifi className={classes.icon} />}
+        {fahrzeug.additionalInfo.wifiOff && (
+          <WifiOff className={classes.icon} />
         )}
       </span>
       {fahrzeug.additionalInfo.comfort && <span className={classes.comfort} />}
