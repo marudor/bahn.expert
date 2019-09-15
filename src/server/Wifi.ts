@@ -6,8 +6,10 @@ type TransformedWifiData = Record<string, AP>;
 const url = process.env.WIFI_URL;
 const username = process.env.WIFI_USER;
 const password = process.env.WIFI_PASS;
+const refreshTime =
+  Number.parseInt(process.env.WIFI_REFRESH || '5', 10) * 60 * 1000;
 
-setInterval(fetchWifiData, 20 * 60 * 1000);
+setInterval(fetchWifiData, refreshTime);
 
 let wifiData: TransformedWifiData;
 
