@@ -9,7 +9,10 @@ const password = process.env.WIFI_PASS;
 const refreshTime =
   Number.parseInt(process.env.WIFI_REFRESH || '5', 10) * 60 * 1000;
 
-setInterval(fetchWifiData, refreshTime);
+if (process.env.NODE_ENV !== 'test') {
+  setInterval(fetchWifiData, refreshTime);
+  fetchWifiData();
+}
 
 let wifiData: TransformedWifiData;
 
@@ -30,7 +33,6 @@ async function fetchWifiData() {
   // eslint-disable-next-line no-console
   console.log('Fetched WifiData');
 }
-fetchWifiData();
 
 function transformWifiData(data: WifiData) {
   const result: TransformedWifiData = {};
