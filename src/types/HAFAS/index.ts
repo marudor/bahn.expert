@@ -30,6 +30,7 @@ export enum AllowedHafasProfile {
   nahsh = 'nahsh',
   hvv = 'hvv',
   bvg = 'bvg',
+  insa = 'insa',
   // all = 'all',
 }
 export type HafasRequest = SingleHafasRequest[];
