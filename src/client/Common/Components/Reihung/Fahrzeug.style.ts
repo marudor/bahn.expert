@@ -38,6 +38,7 @@ export default makeStyles(theme => ({
 
   klasse: {
     bottom: 0,
+    right: 0,
     position: 'absolute',
   },
 
