@@ -60,7 +60,7 @@ const rules = [
     use: ['babel-loader'],
   },
   {
-    test: /\.s?css$/,
+    test: /\.css$/,
     use: [
       {
         loader: MiniCssExtractPlugin.loader,
@@ -71,9 +71,6 @@ const rules = [
       },
       { loader: 'css-loader' },
       { loader: 'postcss-loader' },
-      {
-        loader: 'sass-loader',
-      },
     ],
   },
   {
