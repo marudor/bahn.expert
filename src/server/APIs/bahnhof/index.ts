@@ -1,14 +1,16 @@
 import { getLageplan } from 'server/Bahnhof/Lageplan';
+import { LageplanResponse } from 'types/api/bahnhof';
 import KoaRouter from 'koa-router';
 
 const router = new KoaRouter();
 const getCurrent = () =>
   new KoaRouter().get('/lageplan/:stationName', async ctx => {
     const { stationName }: { stationName: string } = ctx.params;
-
-    ctx.body = {
+    const body: LageplanResponse = {
       lageplan: await getLageplan(stationName),
     };
+
+    ctx.body = body;
   });
 
 router

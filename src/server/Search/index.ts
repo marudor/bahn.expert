@@ -1,3 +1,4 @@
+import { AllowedStationAPIs } from 'types/api/station';
 import { flatten, uniqBy } from 'lodash';
 import { logger } from 'server/logger';
 import { Station } from 'types/station';
@@ -58,7 +59,7 @@ function getCache(key: Function) {
   return cache;
 }
 
-export default async (rawSearchTerm: string, type?: StationSearchType) => {
+export default async (rawSearchTerm: string, type?: AllowedStationAPIs) => {
   const searchTerm = rawSearchTerm.replace(/ {2}/g, ' ');
 
   try {

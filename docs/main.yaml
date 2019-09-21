@@ -1,0 +1,7 @@
+openapi: '3.0.2'
+info:
+  title: marudor.de api
+  version: 'dev'
+servers:
+  - url: https://marudor.de/api
+paths: {}
