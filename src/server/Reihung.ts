@@ -481,13 +481,13 @@ export async function wagenReihung(trainNumber: string, date: number) {
     );
 
     if (minFahrzeug) {
-      g.startProzent = Number.parseInt(
+      g.startPercentage = Number.parseInt(
         minFahrzeug.positionamhalt.startprozent,
         10
       );
     }
     if (maxFahrzeug) {
-      g.endeProzent = Number.parseInt(
+      g.endPercentage = Number.parseInt(
         maxFahrzeug.positionamhalt.endeprozent,
         10
       );

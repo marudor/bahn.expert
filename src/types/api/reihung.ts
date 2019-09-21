@@ -49,8 +49,8 @@ export interface Fahrzeugausstattung {
   status: string;
 }
 export interface Fahrzeuggruppe {
-  startProzent: number;
-  endeProzent: number;
+  startPercentage: number;
+  endPercentage: number;
   br?: BRInfo;
   allFahrzeug: Fahrzeug[];
   fahrzeuggruppebezeichnung: string;

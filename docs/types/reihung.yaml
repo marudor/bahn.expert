@@ -130,9 +130,9 @@ components:
     Fahrzeuggruppe:
       type: object
       properties:
-        startProzent:
+        startPercentage:
           type: number
-        endeProzent:
+        endPercentage:
           type: number
         br:
           $ref: '#/components/schemas/BRInfo'
@@ -149,8 +149,8 @@ components:
         verkehrlichezugnummer:
           type: string
       required:
-        - startProzent
-        - endeProzent
+        - startPercentage
+        - endPercentage
         - allFahrzeug
         - fahrzeuggruppebezeichnung
         - zielbetriebsstellename
