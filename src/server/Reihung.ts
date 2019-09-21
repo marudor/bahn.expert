@@ -5,13 +5,13 @@ import {
   BRInfo,
   Fahrzeug,
   Formation,
-  Wagenreihung,
-} from 'types/reihung';
+} from 'types/api/reihung';
 import { convertToTimeZone } from 'date-fns-timezone';
 import { flatten, groupBy, maxBy, minBy } from 'lodash';
 import { format } from 'date-fns';
 import { getAbfahrten } from './Abfahrten';
 import { getAP } from 'server/Wifi';
+import { Wagenreihung } from 'types/reihung';
 import { WagenreihungStation } from 'types/reihungStation';
 import axios from 'axios';
 
