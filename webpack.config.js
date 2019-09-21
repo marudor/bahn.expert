@@ -1,9 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { StatsWriterPlugin } = require('webpack-stats-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 
@@ -42,10 +40,6 @@ const plugins = [
     'global.SERVER': JSON.stringify(false),
     'global.VERSION': JSON.stringify(require('./version')),
   }),
-  new MiniCssExtractPlugin({
-    filename: isDev ? '[name].css' : '[name]-[contenthash].css',
-    chunkFilename: isDev ? '[id].css' : '[id]-[hash].css',
-  }),
   new WorkboxPlugin.GenerateSW({
     swDest: 'sw.js',
     runtimeCaching,
@@ -58,20 +52,6 @@ const rules = [
   {
     test: /\.(t|j)sx?$/,
     use: ['babel-loader'],
-  },
-  {
-    test: /\.css$/,
-    use: [
-      {
-        loader: MiniCssExtractPlugin.loader,
-        options: {
-          hmr: isDev,
-          reloadAll: true,
-        },
-      },
-      { loader: 'css-loader' },
-      { loader: 'postcss-loader' },
-    ],
   },
   {
     test: /\.(jpg|jpeg|png|woff|woff2|eot|ttf|svg)$/,
@@ -92,7 +72,6 @@ if (isDev) {
         banner: () => '',
       },
     }),
-    new OptimizeCSSAssetsPlugin({}),
   ];
   // optimization.splitChunks = {
   //   minSize: 30000,
