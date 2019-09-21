@@ -14,9 +14,13 @@ paths:
       tags:
         - Station V1
       parameters:
-        - name: stationName
+        - name: searchTerm
           in: path
           required: true
+          schema:
+            type: string
+        - name: type
+          in: query
           schema:
             $ref: 'types/station.yaml#/components/schemas/AllowedStationAPIs'
       responses:
