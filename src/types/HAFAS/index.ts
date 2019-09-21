@@ -1,4 +1,5 @@
 import { CommonProductInfo } from 'types/common';
+import { Coordinates } from 'types/api/station';
 import { JourneyDetailsRequest } from './JourneyDetails';
 import { LocGeoPosRequest } from './LocGeoPos';
 import { LocMatchRequest } from './LocMatch';
@@ -13,10 +14,7 @@ export interface SDaysL {
   fLocX: number;
   tLocX: number;
 }
-export interface Coordinates {
-  lat: number;
-  lng: number;
-}
+
 export interface HafasStation extends Omit<Station, 'favendoId' | 'DS100'> {
   products?: ParsedProduct[];
   coordinates: Coordinates;

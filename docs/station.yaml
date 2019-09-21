@@ -1,0 +1,63 @@
+openapi: '3.0.2'
+info:
+  title: Station Part
+  version: '1.0'
+servers:
+  - url: https://marudor.de/api/station/v1
+tags:
+  - name: Station v1
+paths:
+  /search/{searchTerm}:
+    get:
+      summary: 'Search Station'
+      description: 'Sucht station mit der gewählten API'
+      tags:
+        - Station V1
+      parameters:
+        - name: stationName
+          in: path
+          required: true
+          schema:
+            $ref: 'types/station.yaml#/components/schemas/AllowedStationAPIs'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: 'types/station.yaml#/components/schemas/Stations'
+  /geoSearch:
+    get:
+      summary: 'Station Geosuche'
+      description: 'Sucht Station mit der Favendo API anhand angegebener Koordinaten'
+      tags:
+        - Station V1
+      parameters:
+        - $ref: 'types/station.yaml#/components/parameters/lat'
+        - $ref: 'types/station.yaml#/components/parameters/lng'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: 'types/station.yaml#/components/schemas/Stations'
+  /iris/{evaId}:
+    get:
+      summary: 'Stationsabfrage IRIS'
+      description: 'Einzelne Station aus dem IRIS anfragen'
+      tags:
+        - Station V1
+      parameters:
+        - name: evaId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: 'types/station.yaml#/components/schemas/IrisStationWithRelated'

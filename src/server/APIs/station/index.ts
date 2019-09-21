@@ -11,13 +11,12 @@ const getCurrent = () =>
       const { searchTerm = '' }: { searchTerm: string } = ctx.params;
       const { type } = ctx.query;
 
-      const typeEnum = StationSearchType[Number.parseInt(type, 10)];
+      const typeEnum = StationSearchType[Number.parseInt(type, 10)] as any;
+      const searchType = (StationSearchType[
+        typeEnum
+      ] as any) as StationSearchType;
 
-      ctx.body = await stationSearch(
-        searchTerm,
-        // @ts-ignore this lookup works
-        StationSearchType[typeEnum]
-      );
+      ctx.body = await stationSearch(searchTerm, searchType);
     })
     .get('/geoSearch', async ctx => {
       ctx.body = await favendoSearch('', ctx.query);
