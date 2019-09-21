@@ -10,7 +10,7 @@ const path = require('path');
 const yaml = require('js-yaml');
 const fs = require('fs');
 const prettier = require('prettier');
-const dtsGenerator = require('dtsGenerator');
+const dtsGenerator = require('dtsgenerator');
 
 const prettierOptions = JSON.parse(
   fs.readFileSync(path.resolve('.prettierrc'))

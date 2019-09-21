@@ -1,6 +1,6 @@
 openapi: '3.0.2'
 info:
-  title: marudor.de api
+  title: marudor.de api documentation
   version: 'dev'
 servers:
   - url: https://marudor.de/api

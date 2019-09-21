@@ -141,7 +141,6 @@
     "rimraf": "^3.0.0",
     "style-loader": "^1.0.0",
     "supertest": "^4.0.2",
-    "sw2dts": "^2.6.2",
     "terser-webpack-plugin": "^2.1.0",
     "typescript": "^3.6.3",
     "url-loader": "^2.0.1",
