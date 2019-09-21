@@ -1,0 +1,34 @@
+openapi: '3.0.2'
+info:
+  title: Reihung Part
+  version: '1.0'
+servers:
+  - url: https://marudor.de/api/reihung/v1
+tags:
+  - name: Reihung v1
+paths:
+  /wagen/{trainNumber}/{date}:
+    get:
+      summary: 'Wagenreihung'
+      description: 'Wagenreihung für einen Zug an einem Bahnhof'
+      tags:
+        - Reihung V1
+      parameters:
+        - name: trainNumber
+          in: path
+          required: true
+          schema:
+            type: number
+        - name: date
+          in: path
+          required: true
+          schema:
+            type: number
+            format: unix time in ms
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: 'types/reihung.yaml#/components/schemas/Formation'
