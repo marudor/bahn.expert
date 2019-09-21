@@ -1,11 +1,11 @@
 import { AbfahrtAPIResult, Departures, Wings } from 'types/abfahrten';
 import { AbfahrtenThunkResult } from 'AppState';
+import { AllowedStationAPIs } from 'types/api/station';
 import { createAction } from 'deox';
 import { FilterOptions } from 'Abfahrten/reducer/abfahrten';
 import { getStationsFromAPI } from 'Common/service/stationSearch';
 import { setCookieOptions } from 'client/util';
 import { Station } from 'types/station';
-import { StationSearchType } from 'Common/config';
 import axios, { AxiosError } from 'axios';
 import Cookies from 'universal-cookie';
 
@@ -105,7 +105,7 @@ export const getLageplan = (
 
 export const getAbfahrtenByString = (
   stationString?: string,
-  searchType?: StationSearchType
+  searchType?: AllowedStationAPIs
 ): AbfahrtenThunkResult => async (dispatch, getState) => {
   try {
     const config = getState().abfahrtenConfig.config;

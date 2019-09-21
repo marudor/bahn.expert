@@ -1,11 +1,12 @@
 /* eslint import/prefer-default-export: 0 */
+import { AllowedStationAPIs } from 'types/api/station';
 import { Station } from 'types/station';
 import { StationSearchType } from 'Common/config';
 import axios from 'axios';
 
 export async function getStationsFromAPI(
   stationString?: string,
-  type: StationSearchType = StationSearchType.Default
+  type: AllowedStationAPIs = StationSearchType.Default
 ): Promise<Station[]> {
   if (stationString) {
     return (await axios.get(`/api/station/current/search/${stationString}`, {

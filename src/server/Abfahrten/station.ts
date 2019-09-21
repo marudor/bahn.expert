@@ -1,6 +1,7 @@
 /* eslint no-param-reassign: 0, no-await-in-loop: 0 */
 import { AxiosInstance } from 'axios';
 import { flatten } from 'lodash';
+import { IrisStationWithRelated } from 'types/api/station';
 import { noncdAxios } from './helper';
 import NodeCache from 'node-cache';
 import xmljs from 'libxmljs2';
@@ -68,7 +69,7 @@ export async function getStation(
   evaId: string,
   recursive: number = 0,
   axios?: AxiosInstance
-) {
+): Promise<IrisStationWithRelated> {
   const station = await getSingleStation(evaId, axios);
   let queue = station.meta;
   const seen = [station.eva];

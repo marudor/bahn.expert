@@ -1,5 +1,6 @@
 import { AbfahrtenThunkResult } from 'AppState';
-import { CheckInType, MarudorConfig, StationSearchType } from 'Common/config';
+import { AllowedStationAPIs } from 'types/api/station';
+import { CheckInType, MarudorConfig } from 'Common/config';
 import { createAction } from 'deox';
 import { defaultConfig, setCookieOptions } from 'client/util';
 import abfahrtenActions from './abfahrten';
@@ -17,7 +18,7 @@ const Actions = {
 
 export default Actions;
 
-export const setSearchType = (value: StationSearchType, cookies: Cookies) =>
+export const setSearchType = (value: AllowedStationAPIs, cookies: Cookies) =>
   setConfig('searchType', value, undefined, cookies);
 export const setTime = (value: boolean, cookies: Cookies) =>
   setConfig('time', value, undefined, cookies);

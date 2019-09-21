@@ -2,7 +2,7 @@
   "exclude": ["cypress"],
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": false,
+    "experimentalDecorators": true,
     "jsx": "preserve",
     "lib": ["es6", "dom", "esnext"],
     "module": "esnext",
@@ -26,7 +26,8 @@
       "Abfahrten/*": ["client/Abfahrten/*"],
       "Common/*": ["client/Common/*"],
       "Test/*": ["../test/*"],
-      "testHelper": ["../test/client/testHelper"]
+      "testHelper": ["../test/client/testHelper"],
+      "types/*": ["types/*"]
     }
   }
 }

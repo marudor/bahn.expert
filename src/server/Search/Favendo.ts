@@ -1,4 +1,4 @@
-import { Coordinates } from 'types/HAFAS';
+import { Coordinates } from 'types/api/station';
 import { FavendoStation, Station } from 'types/station';
 import axios from 'axios';
 

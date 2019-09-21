@@ -4,6 +4,7 @@ export enum CheckInType {
   Travelynx,
   Both,
 }
+
 export enum StationSearchType {
   Default,
   Favendo,
