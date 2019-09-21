@@ -1,4 +1,4 @@
-import { Fahrzeug, FahrzeugType } from 'types/reihung';
+import { Fahrzeug, FahrzeugType } from 'types/api/reihung';
 import Accessibility from '@material-ui/icons/Accessibility';
 import ActionAccessible from '@material-ui/icons/Accessible';
 import ActionMotorcycle from '@material-ui/icons/Motorcycle';
