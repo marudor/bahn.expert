@@ -23,8 +23,8 @@ const Gruppe = ({
 }: Props) => {
   const classes = useStyles();
   const gruppenPos = {
-    left: `${(gruppe.startProzent - rest.correctLeft) * rest.scale}%`,
-    width: `${(gruppe.endeProzent - gruppe.startProzent) * rest.scale}%`,
+    left: `${(gruppe.startPercentage - rest.correctLeft) * rest.scale}%`,
+    width: `${(gruppe.endPercentage - gruppe.startPercentage) * rest.scale}%`,
   };
 
   let currentBottom = 2.5;
