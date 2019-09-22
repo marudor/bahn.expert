@@ -1,4 +1,3 @@
-import { getWifiData } from 'server/Wifi';
 import {
   wagenReihung,
   wagenReihungMonitoring,
@@ -21,9 +20,6 @@ const getCurrent = () =>
       }: { date: string; trainNumber: string } = ctx.params;
 
       ctx.body = await wagenReihung(trainNumber, Number.parseInt(date, 10));
-    })
-    .get('/wifi', async ctx => {
-      ctx.body = await getWifiData();
     });
 
 router
