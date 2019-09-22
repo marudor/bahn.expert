@@ -1,7 +1,11 @@
 import { AP, WifiData } from 'types/Wifi';
 import axios from 'axios';
 
-type TransformedWifiData = Record<string, AP>;
+interface APWithTrain extends AP {
+  trainTimestamp: number;
+}
+
+type TransformedWifiData = Record<string, APWithTrain>;
 
 const url = process.env.WIFI_URL;
 const username = process.env.WIFI_USER;
@@ -39,21 +43,16 @@ function transformWifiData(data: WifiData) {
 
   data.traindata.forEach(td => {
     td.ap_list.forEach(ap => {
-      result[ap.uic.replace('-', '')] = ap;
+      result[ap.uic.replace('-', '')] = {
+        ...ap,
+        trainTimestamp: td.timestamp * 1000,
+      };
     });
   });
 
   return result;
 }
 
-export function getAP(uic: string): AP | undefined {
+export function getAP(uic: string) {
   return wifiData ? wifiData[uic] : undefined;
-}
-
-export async function getWifiData() {
-  if (!wifiData) {
-    await fetchWifiData();
-  }
-
-  return wifiData;
 }
