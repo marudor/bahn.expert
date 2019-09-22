@@ -10,6 +10,7 @@ type OwnProps = InheritedProps & {
   showGruppenZugnummer: boolean;
   showFahrzeugGruppe: boolean;
   originalTrainNumber: string;
+  showUIC: boolean;
 };
 type Props = OwnProps;
 
@@ -39,6 +40,7 @@ const Gruppe = ({
   const extraInfoLine = Boolean(showDestination || showBR);
 
   if (extraInfoLine) currentBottom += 1;
+  if (rest.showUIC) currentBottom += 1;
 
   const nummerPos = {
     ...gruppenPos,

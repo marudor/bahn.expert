@@ -36,6 +36,7 @@ export type MarudorConfig = {
   readonly lineAndNumber: boolean;
   readonly autoUpdate: number;
   readonly noHeader: boolean;
+  readonly showUIC: boolean;
 };
 
 export type MarudorConfigSanitize = {
