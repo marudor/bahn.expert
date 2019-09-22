@@ -23,6 +23,12 @@ paths:
           in: query
           schema:
             $ref: 'types/station.yaml#/components/schemas/AllowedStationAPIs'
+        - name: max
+          in: query
+          schema:
+            type: number
+            default: 6
+            description: Maximalanzahl an Stationen
       responses:
         '200':
           description: OK
