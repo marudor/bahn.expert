@@ -6931,10 +6931,10 @@ jss@10.0.0-alpha.24:
     is-in-browser "^1.1.3"
     tiny-warning "^1.0.2"
 
-jss@^10.0.0-alpha.16:
-  version "10.0.0-alpha.25"
-  resolved "https://registry.yarnpkg.com/jss/-/jss-10.0.0-alpha.25.tgz#20a506d8159e3f6bd91e133d54ffd3df0ffd3010"
-  integrity sha512-zqKnXv181B9vue2yYhmVhc+6ggbbxHF/33rjXfXEjaa22nOvknTI21QDfq3oZ8uCC50kcFp3Z8KU1ghUXdFvIA==
+jss@^10.0.0-alpha.26:
+  version "10.0.0-alpha.26"
+  resolved "https://registry.yarnpkg.com/jss/-/jss-10.0.0-alpha.26.tgz#6e51f5df359dd434938f0fe49e7d2a58c835ac0c"
+  integrity sha512-Fd9s5fbN1ciQFsudOgUDuoyqwliykVdYsuWQGm1t3LmB5DOFVfmCCHonllUlZjAsztkb0Wus0GluS7uWQIWfWg==
   dependencies:
     "@babel/runtime" "^7.3.1"
     csstype "^2.6.5"
@@ -7846,10 +7846,10 @@ nice-try@^1.0.4:
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
 
-nock@11.3.4:
-  version "11.3.4"
-  resolved "https://registry.yarnpkg.com/nock/-/nock-11.3.4.tgz#b3d8fde986da8f8484f4b8958e270fbb91250430"
-  integrity sha512-Mqjk3DeOkuji8eYaveUku+vMswxzVyhrKAz1J9jE86IsEHQg4136Z/PHz81lcjyz9F3yrJXu56Gb/S+LFUOZVg==
+nock@11.3.5:
+  version "11.3.5"
+  resolved "https://registry.yarnpkg.com/nock/-/nock-11.3.5.tgz#f2c7b4b672a04c35342593b6bfd821497881199c"
+  integrity sha512-6WGeZcWc3RExkBcMSYSrUm/5YukDo52m/jhwniQyrnuiCnKRljBwwje9vTwJyEi4J6m2bq0Aj6C1vzuM6iuaeg==
   dependencies:
     chai "^4.1.2"
     debug "^4.1.0"
@@ -8952,10 +8952,15 @@ qs@6.7.0:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
   integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
 
-qs@^6.5.1, qs@^6.5.2, qs@^6.7.0:
+qs@^6.5.1, qs@^6.5.2:
   version "6.8.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.8.0.tgz#87b763f0d37ca54200334cd57bb2ef8f68a1d081"
   integrity sha512-tPSkj8y92PfZVbinY1n84i1Qdx75lZjMQYx9WZhnkofyxzw2r7Ho39G3/aEvSUdebxpnnM4LZJCtvE/Aq3+s9w==
+
+qs@^6.9.0:
+  version "6.9.0"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.9.0.tgz#d1297e2a049c53119cb49cca366adbbacc80b409"
+  integrity sha512-27RP4UotQORTpmNQDX8BHPukOnBP3p1uUJY5UnDhaJB+rMt9iMsok724XL+UHU23bEFOHRMQ2ZhI99qOWUMGFA==
 
 qs@~6.5.2:
   version "6.5.2"
