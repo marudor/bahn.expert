@@ -23,6 +23,7 @@ export const defaultConfig: MarudorConfig = {
   time: true,
   zoomReihung: true,
   noHeader: false,
+  showUIC: false,
 };
 
 const booleanCheck = (value: string): boolean => value === 'true';
@@ -53,4 +54,5 @@ export const configSanitize: MarudorConfigSanitize = {
   time: booleanCheck,
   zoomReihung: booleanCheck,
   noHeader: booleanCheck,
+  showUIC: booleanCheck,
 };

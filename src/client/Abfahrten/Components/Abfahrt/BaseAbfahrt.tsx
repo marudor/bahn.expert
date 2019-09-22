@@ -32,12 +32,14 @@ const BaseAbfahrt = ({ abfahrt, wing, wingEnd, wingStart }: Props) => {
     useZoom,
     fahrzeugGruppe,
     detail,
+    showUIC,
   } = useAbfahrtenSelector(
     state => ({
       lineAndNumber: state.abfahrtenConfig.config.lineAndNumber,
       useZoom: state.abfahrtenConfig.config.zoomReihung,
       fahrzeugGruppe: state.abfahrtenConfig.config.fahrzeugGruppe,
       detail: state.abfahrten.selectedDetail === abfahrt.id,
+      showUIC: state.abfahrtenConfig.config.showUIC,
     }),
     shallowEqual
   );
@@ -76,6 +78,7 @@ const BaseAbfahrt = ({ abfahrt, wing, wingEnd, wingStart }: Props) => {
             <Reihung
               loadHidden={!abfahrt.reihung && abfahrt.hiddenReihung}
               useZoom={useZoom}
+              showUIC={showUIC}
               fahrzeugGruppe={fahrzeugGruppe}
               trainNumber={abfahrt.train.number}
               currentStation={abfahrt.currentStation.id}

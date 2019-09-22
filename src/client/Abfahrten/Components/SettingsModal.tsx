@@ -9,6 +9,7 @@ import {
   setLookbehind,
   setSearchType,
   setShowSupersededMessages,
+  setShowUIC,
   setTime,
   setZoomReihung,
 } from 'Abfahrten/actions/abfahrtenConfig';
@@ -39,6 +40,7 @@ const SettingsModal = () => {
     zoomReihung,
     autoUpdate,
     lookbehind,
+    showUIC,
   } = useAbfahrtenSelector(
     state => ({
       open: state.abfahrtenConfig.open,
@@ -161,6 +163,18 @@ const SettingsModal = () => {
             />
           }
           label="Zeige Linie und Zugnummer"
+        />
+        <FormControlLabel
+          className={classes.label}
+          control={
+            <Switch
+              data-testid="showUIC"
+              checked={showUIC}
+              value="showUIC"
+              onChange={handleCheckedChange(setShowUIC)}
+            />
+          }
+          label="Zeige UIC Nummer"
         />
         <FormControlLabel
           className={classes.label}

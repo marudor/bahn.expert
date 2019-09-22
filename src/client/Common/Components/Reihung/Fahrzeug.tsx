@@ -45,6 +45,7 @@ export type OwnProps = InheritedProps & {
   >;
   destination?: string;
   wrongWing?: boolean;
+  showUIC: boolean;
 };
 
 type Props = OwnProps;
@@ -55,6 +56,7 @@ const FahrzeugComp = ({
   scale,
   correctLeft,
   type,
+  showUIC,
 }: Props) => {
   const classes = useStyles();
 
@@ -117,6 +119,9 @@ const FahrzeugComp = ({
         fahrzeugnummer={fahrzeug.fahrzeugnummer}
         fahrzeugtyp={fahrzeug.fahrzeugtyp}
       />
+      {showUIC && (
+        <span className={classes.uic}>{fahrzeug.fahrzeugnummer}</span>
+      )}
     </div>
   );
 };
