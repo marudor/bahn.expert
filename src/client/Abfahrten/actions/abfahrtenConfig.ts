@@ -36,6 +36,8 @@ export const setLineAndNumber = (value: boolean, cookies: Cookies) =>
   setConfig('lineAndNumber', value, undefined, cookies);
 export const setAutoUpdate = (value: number, cookies: Cookies) =>
   setConfig('autoUpdate', value, undefined, cookies);
+export const setShowUIC = (value: boolean, cookies: Cookies) =>
+  setConfig('showUIC', value, undefined, cookies);
 
 export const openSettings = () => Actions.setMenu(true);
 export const closeSettings = () => Actions.setMenu(false);
