@@ -55,11 +55,9 @@ const getATBR = (
 };
 const getDEBR = (
   code: string,
-  serial: string,
+  uicOrdnungsnummer: string,
   fahrzeugTypes: string[]
 ): undefined | BRInfo => {
-  const numberSerial = Number.parseInt(serial, 10);
-
   switch (code) {
     case '0812':
     case '1412':
@@ -102,7 +100,8 @@ const getDEBR = (
       return {
         name: 'ICE 3',
         BR: '403',
-        serie: numberSerial <= 37 ? '1' : '2',
+        serie:
+          Number.parseInt(uicOrdnungsnummer.substr(1), 10) <= 37 ? '1' : '2',
         redesign: fahrzeugTypes.includes('WRmz'),
       };
     case '5406':
@@ -125,7 +124,7 @@ const getDEBR = (
       return {
         name: 'ICE T',
         BR: '411',
-        serie: numberSerial <= 32 ? '1' : '2',
+        serie: Number.parseInt(uicOrdnungsnummer, 10) <= 32 ? '1' : '2',
       };
     case '5415':
       return {
@@ -146,6 +145,7 @@ const getSpecificBR = (
   const country = fahrzeugnummer.substr(2, 2);
   const code = fahrzeugnummer.substr(4, 4);
   const serial = fahrzeugnummer.substr(8, 3);
+
   let info;
 
   switch (country) {
