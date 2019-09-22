@@ -19,7 +19,6 @@ module.exports = {
   plugins: [
     '@babel/plugin-proposal-class-properties',
     './scripts/babelTransform/debugStyleNames.js',
-    'babel-plugin-idx',
     'lodash',
     [
       'module-resolver',
