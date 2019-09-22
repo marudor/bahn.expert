@@ -9,14 +9,20 @@ const getCurrent = () =>
   new KoaRouter()
     .get('/search/:searchTerm?', async ctx => {
       const { searchTerm = '' }: { searchTerm: string } = ctx.params;
-      const { type } = ctx.query;
+      const { type, max } = ctx.query;
+
+      let maxStations: number | undefined = Number.parseInt(max, 10);
+
+      if (Number.isNaN(maxStations)) {
+        maxStations = undefined;
+      }
 
       const typeEnum = StationSearchType[Number.parseInt(type, 10)] as any;
       const searchType = (StationSearchType[
         typeEnum
       ] as any) as StationSearchType;
 
-      ctx.body = await stationSearch(searchTerm, searchType);
+      ctx.body = await stationSearch(searchTerm, searchType, maxStations);
     })
     .get('/geoSearch', async ctx => {
       ctx.body = await favendoSearch('', ctx.query);
