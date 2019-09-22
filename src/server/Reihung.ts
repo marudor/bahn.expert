@@ -8,7 +8,7 @@ import {
 } from 'types/api/reihung';
 import { convertToTimeZone } from 'date-fns-timezone';
 import { flatten, groupBy, maxBy, minBy } from 'lodash';
-import { format } from 'date-fns';
+import { format, isAfter, subDays } from 'date-fns';
 import { getAbfahrten } from './Abfahrten';
 import { getAP } from 'server/Wifi';
 import { Wagenreihung } from 'types/reihung';
@@ -418,7 +418,7 @@ function enrichFahrzeug(fahrzeug: Fahrzeug) {
   const ap = getAP(fahrzeug.fahrzeugnummer);
 
   if (ap) {
-    if (ap.online) {
+    if (ap.online && isAfter(ap.trainTimestamp, subDays(new Date(), 1))) {
       data.wifi = true;
     } else {
       data.wifiOff = true;
