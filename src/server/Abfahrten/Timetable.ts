@@ -21,7 +21,6 @@ import { diffArrays } from 'diff';
 import { findLast, flatten, last, uniqBy } from 'lodash';
 import { getAttr, getNumberAttr, parseTs } from './helper';
 import { getCachedLageplan, getLageplan } from '../Bahnhof/Lageplan';
-import idx from 'idx';
 import messageLookup, {
   messageTypeLookup,
   supersededMessages,
@@ -332,18 +331,19 @@ export default class Timetable {
         return;
       }
 
-      const scheduledArrvial = idx(a, _ => _.arrival.scheduledTime);
-      const arrival = idx(a, _ => _.arrival.time);
-      const scheduledDeparture = idx(a, _ => _.departure.scheduledTime);
-      const departure = idx(a, _ => _.departure.time);
-      // @ts-ignore we know that either arrival or departure exists
-      const time: number = idx(a, _ => _.departure.cancelled)
-        ? scheduledArrvial || scheduledDeparture
-        : scheduledDeparture || scheduledArrvial;
-      // @ts-ignore we know that either arrival or departure exists
-      const realTime: number = idx(a, _ => _.departure.cancelled)
-        ? arrival || departure
-        : departure || arrival;
+      const scheduledArrvial = a.arrival && a.arrival.scheduledTime;
+      const arrival = a.arrival && a.arrival.time;
+      const scheduledDeparture = a.departure && a.departure.scheduledTime;
+      const departure = a.departure && a.departure.time;
+      const time: number =
+        a.departure && a.departure.cancelled
+          ? scheduledArrvial || scheduledDeparture
+          : scheduledDeparture || scheduledArrvial;
+
+      const realTime =
+        a.departure && a.departure.cancelled
+          ? arrival || departure
+          : departure || arrival;
 
       if (isAfter(realTime, this.minDate) && isBefore(time, this.maxDate)) {
         if (isBefore(realTime, this.currentDate)) {

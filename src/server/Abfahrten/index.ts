@@ -3,7 +3,6 @@ import { AxiosInstance } from 'axios';
 import { compareAsc } from 'date-fns';
 import { getStation } from './station';
 import { noncdAxios } from './helper';
-import idx from 'idx';
 import Timetable, { Result } from './Timetable';
 
 type AbfahrtenOptions = {
@@ -41,17 +40,28 @@ export function reduceResults(agg: Result, r: Result): Result {
   };
 }
 
-const timeByScheduled = (a: Abfahrt) =>
-  idx(a, _ => _.departure.cancelled) && !a.cancelled
-    ? idx(a, _ => _.arrival.scheduledTime) ||
-      idx(a, _ => _.departure.scheduledTime)
-    : idx(a, _ => _.departure.scheduledTime) ||
-      idx(a, _ => _.arrival.scheduledTime);
+const timeByScheduled = (a: Abfahrt) => {
+  const onlyDepartureCancelled =
+    !a.cancelled && a.departure && a.departure.cancelled;
+  const arrivalScheduledTime = a.arrival && a.arrival.scheduledTime;
+  const departureScheduledTime = a.departure && a.departure.scheduledTime;
 
-const timeByReal = (a: Abfahrt) =>
-  idx(a, _ => _.departure.cancelled) && !a.cancelled
-    ? idx(a, _ => _.arrival.time) || idx(a, _ => _.departure.time)
-    : idx(a, _ => _.departure.time) || idx(a, _ => _.arrival.time);
+  return onlyDepartureCancelled
+    ? arrivalScheduledTime || departureScheduledTime
+    : departureScheduledTime || arrivalScheduledTime;
+};
+
+const timeByReal = (a: Abfahrt) => {
+  const onlyDepartureCancelled =
+    !a.cancelled && a.departure && a.departure.cancelled;
+  const arrivalTime = a.arrival && a.arrival.time;
+  const departureTime = a.departure && a.departure.time;
+
+  return onlyDepartureCancelled
+    ? arrivalTime || departureTime
+    : departureTime || arrivalTime;
+};
+
 const sortAbfahrt = (timeFn: typeof timeByReal) => (a: Abfahrt, b: Abfahrt) => {
   const timeA = timeFn(a);
   const timeB = timeFn(b);
