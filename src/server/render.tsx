@@ -2,7 +2,6 @@ import { configSanitize } from 'client/util';
 import { Context } from 'koa';
 import { CookieContext } from 'Common/useCookies';
 import { Helmet } from 'react-helmet';
-import { isEnabled } from 'unleash-client';
 import { MarudorConfigSanitize } from 'Common/config';
 import { matchRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
@@ -127,7 +126,7 @@ export default async (ctx: Context) => {
     const state = store.getState();
 
     ctx.body = headerTemplate({
-      googleAnalytics: isEnabled('google-analytics'),
+      tagmanager: process.env.TAGMANAGER_ID,
       header: Helmet.renderStatic(),
       cssBundles: ctx.stats.main.css,
       clientState: serialize(state),
