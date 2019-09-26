@@ -1,5 +1,5 @@
+import { Helmet } from 'react-helmet';
 import { MergedTheme, useTheme } from '@material-ui/styles';
-import Helmet from 'react-helmet';
 import React from 'react';
 
 const ThemeHeaderTags = () => {
