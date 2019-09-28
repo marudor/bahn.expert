@@ -62,7 +62,6 @@ export const setFromCookies = (
       Array.isArray(defaultFilter) ? defaultFilter : []
     )
   );
-  dispatch(abfahrtenActions.setDetail(cookies.get('selectedDetail')));
 };
 
 export const setConfig = <K extends keyof MarudorConfig>(
