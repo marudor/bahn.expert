@@ -4,10 +4,8 @@ import { AllowedStationAPIs } from 'types/api/station';
 import { createAction } from 'deox';
 import { FilterOptions } from 'Abfahrten/reducer/abfahrten';
 import { getStationsFromAPI } from 'Common/service/stationSearch';
-import { setCookieOptions } from 'client/util';
 import { Station } from 'types/station';
 import axios, { AxiosError } from 'axios';
-import Cookies from 'universal-cookie';
 
 export type AbfahrtenError =
   | AbfahrtenError$Redirect
@@ -42,7 +40,6 @@ const Actions = {
     'GOT_ABFAHRTEN_ERROR',
     resolve => (e: AbfahrtenError) => resolve(e)
   ),
-  setDetail: createAction('SET_DETAIL', resolve => (s?: string) => resolve(s)),
   setCurrentStation: createAction(
     'SET_CURRENT_STATION',
     resolve => (s?: Station) => resolve(s)
@@ -143,24 +140,6 @@ export const getAbfahrtenByString = (
       dispatch(Actions.gotAbfahrtenError(e));
     }
   }
-};
-
-export const setDetail = (
-  cookies: Cookies,
-  selectedDetail?: string
-): AbfahrtenThunkResult => (dispatch, getState) => {
-  const state = getState();
-  const detail =
-    state.abfahrten.selectedDetail === selectedDetail
-      ? undefined
-      : selectedDetail;
-
-  if (detail) {
-    cookies.set('selectedDetail', detail, setCookieOptions);
-  } else {
-    cookies.remove('selectedDetail');
-  }
-  dispatch(Actions.setDetail(detail));
 };
 
 export const refreshCurrentAbfahrten = (): AbfahrtenThunkResult => async (

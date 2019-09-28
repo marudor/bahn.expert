@@ -13,15 +13,14 @@ import Actions, {
 import Loading from 'Common/Components/Loading';
 import React, { useEffect, useState } from 'react';
 import ReihungContainer from 'Common/container/ReihungContainer';
+import useSelectedDetail from 'Abfahrten/hooks/useSelectedDetail';
 import useStyles from './AbfahrtenList.style';
 
 const AbfahrtenList = () => {
   const classes = useStyles();
   const { clearReihungen } = ReihungContainer.useContainer();
   const [scrolled, setScrolled] = useState(false);
-  const selectedDetail = useAbfahrtenSelector(
-    state => state.abfahrten.selectedDetail
-  );
+  const selectedDetail = useSelectedDetail().selectedDetail;
   const abfahrten = useAbfahrtenSelector(getAbfahrtenForConfig);
   const [loading, setLoading] = useState(!abfahrten);
   const error = useAbfahrtenSelector(state => state.abfahrten.error);
