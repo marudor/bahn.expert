@@ -1,5 +1,5 @@
 import { Abfahrt } from 'types/abfahrten';
-import { shallowEqual, useDispatch } from 'react-redux';
+import { shallowEqual } from 'react-redux';
 import { useAbfahrtenSelector } from 'useSelector';
 import cc from 'clsx';
 import End from './End';
@@ -21,11 +21,10 @@ export interface Props {
 
 const BaseAbfahrt = ({ abfahrt, wing, wingEnd, wingStart }: Props) => {
   const classes = useStyles();
-  const dispatch = useDispatch();
   const { setSelectedDetail, selectedDetail } = useSelectedDetail();
   const handleClick = useCallback(() => {
-    dispatch(setSelectedDetail(abfahrt.id));
-  }, [abfahrt.id, dispatch, setSelectedDetail]);
+    setSelectedDetail(abfahrt.id);
+  }, [abfahrt.id, setSelectedDetail]);
   const detail = selectedDetail === abfahrt.id;
   const {
     lineAndNumber,
