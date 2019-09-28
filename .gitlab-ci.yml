@@ -115,7 +115,7 @@ codecov:
     TEST_RUN: 1
   script:
     - node testDist/server/server/index.js & npx wait-on http://localhost:9042
-    - yarn e2e:ci||pkill -9 node
+    - yarn e2e:ci||(pkill -9 node && exit 1)
     - pkill -9 node
   cache:
     policy: pull
