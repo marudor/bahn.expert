@@ -3,7 +3,8 @@ import { icons } from './Fahrzeug';
 import React, { SyntheticEvent, useState } from 'react';
 import useStyles from './Explain.style';
 
-const iconExplanation: { [K in keyof typeof icons]: string } = {
+// Exported for tests
+export const iconExplanation: { [K in keyof typeof icons]: string } = {
   rollstuhl: 'Rollstuhl Plätze',
   fahrrad: 'Fahrrad Stellplätze',
   speise: 'Bordbistro/Restaurant',
@@ -78,14 +79,18 @@ const Explain = () => {
                 const Icon = icons[iconName];
 
                 return (
-                  <div key={iconName} className={classes.icon}>
+                  <div
+                    data-testid={iconName}
+                    key={iconName}
+                    className={classes.icon}
+                  >
                     <Icon />
                     {iconExplanation[iconName]}
                   </div>
                 );
               }
             )}
-            <div className={classes.icon}>
+            <div data-testid="bahnComfort" className={classes.icon}>
               <svg className={classes.comfort} />
               Bahn.Comfort Sitzplätze
             </div>
