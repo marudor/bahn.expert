@@ -1,4 +1,5 @@
 import { AppBar, Toolbar } from '@material-ui/core';
+import { format } from 'date-fns';
 import ActionHome from '@material-ui/icons/Home';
 import DetailsContext from './DetailsContext';
 import IconButton from '@material-ui/core/IconButton';
@@ -22,9 +23,13 @@ const Header = ({ train }: Props) => {
         <IconButton aria-label="Home" onClick={toggleDrawer} color="inherit">
           <ActionHome color="inherit" />
         </IconButton>
-        <span>{trainText}</span>
+        <div className={classes.train}>
+          <span>{trainText}</span>
+          {details && <span>{format(details.departure.time, 'dd.MM')}</span>}
+        </div>
+
         {details && (
-          <div className={classes.train}>
+          <div className={classes.destination}>
             <span> -&gt; </span>
             <span>{details.segmentDestination.title}</span>
           </div>

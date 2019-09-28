@@ -6,6 +6,8 @@ import {
   FormControl,
   TextField,
 } from '@material-ui/core';
+import { DatePicker } from '@material-ui/pickers';
+import { subHours } from 'date-fns';
 import { useRouter } from 'useRouter';
 import NavigationContext from './Navigation/NavigationContext';
 import React, {
@@ -25,6 +27,7 @@ const Zugsuche = ({ children }: Props) => {
   const { toggleDrawer } = useContext(NavigationContext);
   const [open, setOpen] = useState(false);
   const [zug, setZug] = useState('');
+  const [date, setDate] = useState<Date | null>(subHours(new Date(), 1));
   const toggleModal = useCallback(
     e => {
       e.stopPropagation();
@@ -47,12 +50,17 @@ const Zugsuche = ({ children }: Props) => {
       e.preventDefault();
       e.stopPropagation();
       if (zug) {
-        history.push(`/details/${zug}`);
+        const link = ['', 'details', zug];
+
+        if (date) {
+          link.push((+date).toString());
+        }
+        history.push(link.join('/'));
         toggleModal(e);
         toggleDrawer();
       }
     },
-    [zug, history, toggleModal, toggleDrawer]
+    [zug, date, history, toggleModal, toggleDrawer]
   );
 
   return (
@@ -76,6 +84,12 @@ const Zugsuche = ({ children }: Props) => {
                 placeholder="z.B. ICE 71"
                 value={zug}
                 onChange={handleZugChange}
+              />
+              <DatePicker
+                autoOk
+                label="Datum"
+                value={date}
+                onChange={setDate}
               />
               <Button data-testid="ZugsucheSubmit" type="submit">
                 Suche
