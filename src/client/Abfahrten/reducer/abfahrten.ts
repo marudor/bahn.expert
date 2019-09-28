@@ -7,7 +7,6 @@ export type FilterOptions = {
   onlyDepartures?: boolean;
 };
 export type State = {
-  selectedDetail?: string;
   departures?: {
     lookahead: Abfahrt[];
     lookbehind: Abfahrt[];
@@ -47,10 +46,6 @@ export default createReducer(defaultState, handle => [
     wings: {},
     lageplan: undefined,
     error: payload,
-  })),
-  handle(Actions.setDetail, (state, { payload }) => ({
-    ...state,
-    selectedDetail: payload,
   })),
   handle(Actions.setCurrentStation, (state, { payload }) => ({
     ...state,
