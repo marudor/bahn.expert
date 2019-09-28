@@ -1,6 +1,9 @@
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { Rule, StyleSheet } from 'jss';
 import { ThemeProvider } from '@material-ui/styles';
 import App from './App';
+import DateFnsUtils from '@date-io/date-fns';
+import deLocale from 'date-fns/locale/de';
 import React, { ReactNode } from 'react';
 import ThemeContainer from 'Common/container/ThemeContainer';
 import ThemeHeaderTags from 'Common/Components/ThemeHeaderTags';
@@ -13,10 +16,12 @@ const ThemeWrap = ({ children = <App /> }: Props) => {
   const { theme } = ThemeContainer.useContainer();
 
   const themeProvider = (
-    <ThemeProvider theme={theme}>
-      <ThemeHeaderTags />
-      {children}
-    </ThemeProvider>
+    <MuiPickersUtilsProvider utils={DateFnsUtils} locale={deLocale}>
+      <ThemeProvider theme={theme}>
+        <ThemeHeaderTags />
+        {children}
+      </ThemeProvider>
+    </MuiPickersUtilsProvider>
   );
 
   if (global.TEST) {
