@@ -25,7 +25,7 @@ export default (
     scheduledTime,
     time,
     delay,
-    reihung: checkReihung(a.aTrnCmpSX, trainType),
+    reihung: checkReihung(scheduledTime, a.aTrnCmpSX, trainType),
     cancelled: a.aCncl,
     // messages: a.msgL ? parseMessages(a.msgL, common) : undefined,
   };

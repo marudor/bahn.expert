@@ -24,7 +24,7 @@ function useReihung() {
 
     setReihungen({
       ...reihungen,
-      [trainNumber + currentStation]: reihung,
+      [trainNumber + currentStation + scheduledDeparture]: reihung,
     });
   };
   const clearReihungen = () => setReihungen({});

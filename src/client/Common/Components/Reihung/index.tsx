@@ -30,7 +30,7 @@ const ReihungComp = (props: Props) => {
     loadHidden,
   } = props;
   const { reihungen, getReihung } = ReihungContainer.useContainer();
-  const reihung = reihungen[trainNumber + currentStation];
+  const reihung = reihungen[trainNumber + currentStation + scheduledDeparture];
   const classes = useStyles({
     reihung,
     fahrzeugGruppe,
