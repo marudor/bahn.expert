@@ -85,6 +85,10 @@ const Explain = () => {
                 );
               }
             )}
+            <div className={classes.icon}>
+              <svg className={classes.comfort} />
+              Bahn.Comfort Sitzplätze
+            </div>
           </div>
         </DialogContent>
       </Dialog>
