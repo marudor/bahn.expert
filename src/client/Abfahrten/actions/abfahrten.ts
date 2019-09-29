@@ -2,7 +2,6 @@ import { AbfahrtAPIResult, Departures, Wings } from 'types/abfahrten';
 import { AbfahrtenThunkResult } from 'AppState';
 import { AllowedStationAPIs } from 'types/api/station';
 import { createAction } from 'deox';
-import { FilterOptions } from 'Abfahrten/reducer/abfahrten';
 import { getStationsFromAPI } from 'Common/service/stationSearch';
 import { Station } from 'types/station';
 import axios, { AxiosError } from 'axios';
@@ -49,13 +48,6 @@ const Actions = {
   ),
   setFilterMenu: createAction('SET_FILTER_MENU', resolve => (open: boolean) =>
     resolve(open)
-  ),
-  setFilterList: createAction(
-    'SET_FILTER_LIST',
-    resolve => (filterList: string[]) => resolve(filterList)
-  ),
-  setFilter: createAction('SET_FILTER', resolve => (options: FilterOptions) =>
-    resolve(options)
   ),
 };
 

@@ -3,7 +3,6 @@ import { AllowedStationAPIs } from 'types/api/station';
 import { CheckInType, MarudorConfig } from 'Common/config';
 import { createAction } from 'deox';
 import { defaultConfig, setCookieOptions } from 'client/util';
-import abfahrtenActions from './abfahrten';
 import Cookies from 'universal-cookie';
 
 export const TIME_CONFIG_KEY = 'TIME_CONFIG';
@@ -48,20 +47,12 @@ export const setCheckIn = (value: CheckInType, cookies: Cookies) =>
 export const setFromCookies = (
   cookies: Cookies
 ): AbfahrtenThunkResult => dispatch => {
-  const defaultFilter = cookies.get('defaultFilter');
-
   const config: MarudorConfig = {
     ...defaultConfig,
     ...cookies.get('config'),
   };
 
   dispatch(Actions.setConfig(config));
-
-  dispatch(
-    abfahrtenActions.setFilterList(
-      Array.isArray(defaultFilter) ? defaultFilter : []
-    )
-  );
 };
 
 export const setConfig = <K extends keyof MarudorConfig>(
@@ -81,13 +72,4 @@ export const setConfig = <K extends keyof MarudorConfig>(
   }
 
   dispatch(Actions.setConfig(newConfig));
-};
-
-export const setDefaultFilter = (cookies: Cookies): AbfahrtenThunkResult => (
-  _,
-  getState
-) => {
-  const filterList = getState().abfahrten.filterList;
-
-  cookies.set('defaultFilter', filterList, setCookieOptions);
 };
