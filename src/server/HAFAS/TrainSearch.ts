@@ -81,7 +81,7 @@ export default async (
 
   const trains: Train[] = JSON.parse(stringReply).suggestions;
 
-  if (!trains.length) return undefined;
+  if (!trains || !trains.length) return undefined;
   const firstResult = trains[0];
 
   firstResult.jid = `1|${firstResult.id}|${firstResult.cycle}|${
