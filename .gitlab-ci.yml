@@ -127,13 +127,13 @@ codecov:
     - build:app
     - build:server
 
-cypress1:
+.cypress1:
   <<: *cypress
 
-cypress2:
+.cypress2:
   <<: *cypress
 
-cypress3:
+.cypress3:
   <<: *cypress
 
 docker:server:

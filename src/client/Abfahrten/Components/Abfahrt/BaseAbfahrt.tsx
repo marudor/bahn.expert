@@ -1,14 +1,14 @@
 import { Abfahrt } from 'types/abfahrten';
+import { SelectedDetailContext } from 'Abfahrten/hooks/useSelectedDetail';
 import { shallowEqual } from 'react-redux';
 import { useAbfahrtenSelector } from 'useSelector';
 import cc from 'clsx';
 import End from './End';
 import Mid from './Mid';
 import Paper from '@material-ui/core/Paper';
-import React, { useCallback } from 'react';
+import React, { useCallback, useContext } from 'react';
 import Reihung from 'Common/Components/Reihung';
 import Start from './Start';
-import useSelectedDetail from 'Abfahrten/hooks/useSelectedDetail';
 import useStyles from './BaseAbfahrt.style';
 
 export interface Props {
@@ -21,7 +21,9 @@ export interface Props {
 
 const BaseAbfahrt = ({ abfahrt, wing, wingEnd, wingStart }: Props) => {
   const classes = useStyles();
-  const { setSelectedDetail, selectedDetail } = useSelectedDetail();
+  const { setSelectedDetail, selectedDetail } = useContext(
+    SelectedDetailContext
+  );
   const handleClick = useCallback(() => {
     setSelectedDetail(abfahrt.id);
   }, [abfahrt.id, setSelectedDetail]);
@@ -83,7 +85,11 @@ const BaseAbfahrt = ({ abfahrt, wing, wingEnd, wingStart }: Props) => {
             />
           )}
         {detail && (
-          <div id={`${abfahrt.id}Scroll`} className={classes.scrollMarker} />
+          <div
+            data-testid="scrollMarker"
+            id={`${abfahrt.id}Scroll`}
+            className={classes.scrollMarker}
+          />
         )}
       </div>
     </Paper>

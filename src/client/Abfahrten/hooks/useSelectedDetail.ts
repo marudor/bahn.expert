@@ -1,5 +1,5 @@
+import { createContext, useCallback, useState } from 'react';
 import { setCookieOptions } from 'client/util';
-import { useCallback, useState } from 'react';
 import useCookies from 'Common/useCookies';
 
 const useSelectedDetail = () => {
@@ -32,5 +32,10 @@ const useSelectedDetail = () => {
     setSelectedDetail,
   };
 };
+
+// @ts-ignore
+export const SelectedDetailContext = createContext<
+  ReturnType<typeof useSelectedDetail>
+>();
 
 export default useSelectedDetail;
