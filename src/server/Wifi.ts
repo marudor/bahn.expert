@@ -33,9 +33,12 @@ async function fetchWifiData() {
     },
   })).data;
 
-  wifiData = transformWifiData(data);
-  // eslint-disable-next-line no-console
-  console.log('Fetched WifiData');
+  // error handling if transmission failed
+  if (data && data.traindata) {
+    wifiData = transformWifiData(data);
+    // eslint-disable-next-line no-console
+    console.log('Fetched WifiData');
+  }
 }
 
 function transformWifiData(data: WifiData) {
