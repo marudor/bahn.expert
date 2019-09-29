@@ -79,7 +79,14 @@ export default async (
 
   const stringReply = rawReply.substring(11, rawReply.length - 1);
 
-  const trains: Train[] = JSON.parse(stringReply).suggestions;
+  let parsed;
+
+  try {
+    parsed = JSON.parse(stringReply);
+  } catch (e) {
+    parsed = {};
+  }
+  const trains: Train[] = parsed.suggestions;
 
   if (!trains || !trains.length) return undefined;
   const firstResult = trains[0];
