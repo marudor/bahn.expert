@@ -12,7 +12,6 @@ import { setCookieOptions } from 'client/util';
 import { StaticRouter } from 'react-router-dom';
 import { StaticRouterContext } from 'react-router';
 import { ThemeProvider } from 'Common/container/ThemeContainer';
-import abfahrtenActions from 'Abfahrten/actions/abfahrten';
 import abfahrtenRoutes from 'Abfahrten/routes';
 import createStore from 'client/createStore';
 import ejs from 'ejs';
@@ -63,9 +62,9 @@ export default async (ctx: Context) => {
 
       //   break;
       // }
-      case 'onlyDepartures':
-        store.dispatch(abfahrtenActions.setFilter({ onlyDepartures: true }));
-        break;
+      // case 'onlyDepartures':
+      //   store.dispatch(abfahrtenActions.setFilter({ onlyDepartures: true }));
+      //   break;
       default:
         if (configSanitize.hasOwnProperty(key)) {
           const value = configSanitize[key as keyof MarudorConfigSanitize](

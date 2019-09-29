@@ -6,39 +6,34 @@ import {
   FormControlLabel,
   Switch,
 } from '@material-ui/core';
+import { closeFilter } from 'Abfahrten/actions/abfahrten';
 import { getAllTrainTypes } from 'Abfahrten/selector/abfahrten';
-import { setDefaultFilter } from 'Abfahrten/actions/abfahrtenConfig';
 import { shallowEqual, useDispatch } from 'react-redux';
 import { useAbfahrtenSelector } from 'useSelector';
-import AbfahrtenActions, { closeFilter } from 'Abfahrten/actions/abfahrten';
-import React, { SyntheticEvent, useCallback } from 'react';
-import useCookies from 'Common/useCookies';
+import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
+import React, { useCallback } from 'react';
 import useStyles from './FilterModal.style';
 
 const FilterModal = () => {
   const dispatch = useDispatch();
-  const { open, types, filterList } = useAbfahrtenSelector(
+  const {
+    productFilter,
+    toggleProduct,
+    saveProductFilter,
+  } = AbfahrtenConfigContainer.useContainer();
+  const { open, types } = useAbfahrtenSelector(
     state => ({
       open: state.abfahrten.filterMenu,
       types: getAllTrainTypes(state),
-      filterList: state.abfahrten.filterList,
     }),
     shallowEqual
   );
   const classes = useStyles();
-  const cookies = useCookies();
   const toggleFilter = useCallback(
-    (product: string) => (_: SyntheticEvent, checked: boolean) => {
-      let newFilterList;
-
-      if (checked) {
-        newFilterList = filterList.filter(p => p !== product);
-      } else {
-        newFilterList = [...filterList, product];
-      }
-      dispatch(AbfahrtenActions.setFilterList(newFilterList));
+    (product: string) => () => {
+      toggleProduct(product);
     },
-    [dispatch, filterList]
+    [toggleProduct]
   );
 
   const closeFilterM = useCallback(() => {
@@ -47,8 +42,8 @@ const FilterModal = () => {
 
   const saveAsDefault = useCallback(() => {
     dispatch(closeFilter());
-    dispatch(setDefaultFilter(cookies));
-  }, [cookies, dispatch]);
+    saveProductFilter();
+  }, [dispatch, saveProductFilter]);
 
   return (
     <Dialog maxWidth="md" fullWidth open={open} onClose={closeFilterM}>
@@ -61,7 +56,9 @@ const FilterModal = () => {
             key={t}
             control={
               <Switch
-                checked={filterList.length ? !filterList.includes(t) : true}
+                checked={
+                  productFilter.length ? !productFilter.includes(t) : true
+                }
                 onChange={toggleFilter(t)}
                 value={t}
               />

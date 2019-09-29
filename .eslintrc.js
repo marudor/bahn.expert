@@ -36,6 +36,7 @@ module.exports = {
         sourceType: 'module',
         project: require('path').resolve(__dirname, './tsconfig.json'),
         tsconfigRootDir: require('path').resolve(__dirname),
+        createDefaultProgram: true,
       },
     },
   ],
