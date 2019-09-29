@@ -1,40 +1,8 @@
-import { Abfahrt } from 'types/abfahrten';
 import { AbfahrtenState } from 'AppState';
 import { createSelector } from 'reselect';
 
 export const getAbfahrten = (state: AbfahrtenState) =>
   state.abfahrten.departures;
-
-export const getAbfahrtenForConfig = createSelector(
-  (state: AbfahrtenState) => state.abfahrten.departures,
-  state => state.abfahrten.filterList,
-  state => state.abfahrten.filter,
-  (abfahrten, filterList, filter) => {
-    if (!abfahrten) return abfahrten;
-    const filtered = {
-      lookahead: abfahrten.lookahead,
-      lookbehind: abfahrten.lookbehind,
-    };
-
-    const filterFunctions: ((a: Abfahrt) => boolean)[] = [];
-
-    if (filterList.length) {
-      filterFunctions.push((a: Abfahrt) => !filterList.includes(a.train.type));
-    }
-    if (filter.onlyDepartures) {
-      filterFunctions.push((a: Abfahrt) => Boolean(a.departure));
-    }
-
-    if (filterFunctions.length) {
-      const f = (a: Abfahrt) => filterFunctions.every(fn => fn(a));
-
-      filtered.lookahead = filtered.lookahead.filter(f);
-      filtered.lookbehind = filtered.lookbehind.filter(f);
-    }
-
-    return filtered;
-  }
-);
 
 const defaultTypes = ['ICE', 'IC', 'EC', 'RE', 'RB', 'S'];
 
