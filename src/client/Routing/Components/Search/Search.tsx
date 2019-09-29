@@ -92,7 +92,7 @@ const Search = () => {
     (e: SyntheticEvent) => {
       e.preventDefault();
 
-      if (start && destination) {
+      if (start && destination && start.id !== destination.id) {
         dispatch(getRoutes(start.id, destination.id, date));
         history.push(`/routing/${start.id}/${destination.id}`);
       }
