@@ -5,23 +5,23 @@ describe('Homepage', () => {
 
   it('Theme Selection', () => {
     function openThemeSelection() {
-      cy.getByTestId('home').click();
-      cy.getByTestId('themes').click();
+      cy.findByTestId('home').click();
+      cy.findByTestId('themes').click();
     }
     openThemeSelection();
-    cy.getByTestId('themeList')
+    cy.findByTestId('themeList')
       .find('[data-value="black"]')
       .click();
     cy.getCookie('theme').should('have.property', 'value', 'black');
     cy.get('body').should('have.css', 'background-color', 'rgb(0, 0, 0)');
     openThemeSelection();
-    cy.getByTestId('themeList')
+    cy.findByTestId('themeList')
       .find('[data-value="light"]')
       .click();
     cy.getCookie('theme').should('have.property', 'value', 'light');
     cy.get('body').should('have.css', 'background-color', 'rgb(250, 250, 250)');
     openThemeSelection();
-    cy.getByTestId('themeList')
+    cy.findByTestId('themeList')
       .find('[data-value="dark"]')
       .click();
     cy.getCookie('theme').should('have.property', 'value', 'dark');
@@ -29,13 +29,13 @@ describe('Homepage', () => {
   });
 
   it('Favorite', () => {
-    cy.getByTestId('noFav').should('be.visible');
+    cy.findByTestId('noFav').should('be.visible');
     cy.navigateToStation('Kiel Hbf');
-    cy.getByTestId('menu').click();
-    cy.getByTestId('toggleFav').click();
-    cy.getByTestId('menu').click();
-    cy.getByTestId('toggleFav').should('include.text', 'Unfav');
+    cy.findByTestId('menu').click();
+    cy.findByTestId('toggleFav').click();
+    cy.findByTestId('menu').click();
+    cy.findByTestId('toggleFav').should('include.text', 'Unfav');
     cy.visit('/');
-    cy.getByTestId('favEntry').should('have.text', 'Kiel Hbf');
+    cy.findByTestId('favEntry').should('have.text', 'Kiel Hbf');
   });
 });

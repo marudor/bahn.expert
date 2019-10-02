@@ -6,15 +6,15 @@ describe('Abfahrten Settings', () => {
   });
 
   it('Show Zugnummer & Linie', () => {
-    cy.getByTestId('abfahrtS35744').within(() => {
-      cy.getByTestId('abfahrtStart').should('have.text', 'S 7');
+    cy.findByTestId('abfahrtS35744').within(() => {
+      cy.findByTestId('abfahrtStart').should('have.text', 'S 7');
     });
-    cy.getByTestId('menu').click();
-    cy.getByTestId('openSettings').click();
-    cy.getByTestId('lineAndNumberConfig').click();
+    cy.findByTestId('menu').click();
+    cy.findByTestId('openSettings').click();
+    cy.findByTestId('lineAndNumberConfig').click();
     cy.closeModal();
-    cy.getByTestId('abfahrtS35744').within(() => {
-      cy.getByTestId('abfahrtStart').should('have.text', 'S 7S 35744');
+    cy.findByTestId('abfahrtS35744').within(() => {
+      cy.findByTestId('abfahrtStart').should('have.text', 'S 7S 35744');
     });
   });
 
@@ -27,11 +27,11 @@ describe('Abfahrten Settings', () => {
       '/api/reihung/current/wagen/371/1565182200000',
       'fixture:reihungICE1.json'
     );
-    cy.getByTestId('abfahrtICE371').click();
-    cy.getByTestId('menu').click();
-    cy.getByTestId('openSettings').click();
-    cy.getByTestId('fahrzeugGruppeConfig').click();
+    cy.findByTestId('abfahrtICE371').click();
+    cy.findByTestId('menu').click();
+    cy.findByTestId('openSettings').click();
+    cy.findByTestId('fahrzeugGruppeConfig').click();
     cy.closeModal();
-    cy.getByTestId('reihungFahrzeugGruppe').should('exist');
+    cy.findByTestId('reihungFahrzeugGruppe').should('exist');
   });
 });

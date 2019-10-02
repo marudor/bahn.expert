@@ -5,24 +5,24 @@ describe('Abfahrten', () => {
   it('open details', () => {
     cy.visit('/');
     cy.navigateToStation('Frankfurt (Main) Hbf', false);
-    cy.getByTestId('abfahrtS35744').click();
-    cy.getByTestId('abfahrtS35744').within(() => {
-      cy.getByTestId('scrollMarker').should('exist');
+    cy.findByTestId('abfahrtS35744').click();
+    cy.findByTestId('abfahrtS35744').within(() => {
+      cy.findByTestId('scrollMarker').should('exist');
     });
   });
   it('details should be closed if you open another', () => {
     cy.visit('/');
     cy.navigateToStation('Frankfurt (Main) Hbf', false);
-    cy.getByTestId('abfahrtS35744').click();
-    cy.getByTestId('abfahrtS35744').within(() => {
-      cy.getByTestId('scrollMarker').should('exist');
+    cy.findByTestId('abfahrtS35744').click();
+    cy.findByTestId('abfahrtS35744').within(() => {
+      cy.findByTestId('scrollMarker').should('exist');
     });
 
-    cy.getByTestId('abfahrtRE4568').click();
-    cy.getByTestId('abfahrtRE4568').within(() => {
-      cy.getByTestId('scrollMarker').should('exist');
+    cy.findByTestId('abfahrtRE4568').click();
+    cy.findByTestId('abfahrtRE4568').within(() => {
+      cy.findByTestId('scrollMarker').should('exist');
     });
-    cy.getByTestId('abfahrtS35744').within(() => {
+    cy.findByTestId('abfahrtS35744').within(() => {
       cy.queryByTestId('scrollMarker').should('not.exist');
     });
   });

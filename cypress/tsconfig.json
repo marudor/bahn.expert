@@ -6,17 +6,12 @@
     "strict": true,
     // "baseUrl": "../node_modules",
     "target": "es5",
-    "lib": ["es5", "dom", "es2015"],
+    "lib": ["es6", "dom", "esnext"],
     "types": [
       "cypress",
-      "@testing-library/cypress/typings",
+      "@types/testing-library__cypress",
       "../cypress/support/index"
     ]
   },
-  "include": ["**/*.ts", "support/index.ts"],
-  "parserOptions": {
-    "sourceType": "module",
-    "project": "./tsconfig.json",
-    "tsconfigRootDir": "__dirname"
-  }
+  "include": ["**/*.ts", "support/index.ts"]
 }
