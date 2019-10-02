@@ -11,17 +11,17 @@ describe('Reihung', () => {
       '/api/reihung/current/wagen/371/1565182200000',
       'fixture:reihungICE1.json'
     );
-    cy.getByTestId('abfahrtICE371').click();
+    cy.findByTestId('abfahrtICE371').click();
   });
 
   it('loads Reihung', () => {
-    cy.getByTestId('reihung').should('exist');
+    cy.findByTestId('reihung').should('exist');
   });
 
   it('Legend useable', () => {
-    cy.getByTestId('reihungLegendOpener').click();
-    cy.getByTestId('reihungLegend').should('exist');
+    cy.findByTestId('reihungLegendOpener').click();
+    cy.findByTestId('reihungLegend').should('exist');
     cy.closeModal();
-    cy.getByTestId('reihung').should('exist');
+    cy.findByTestId('reihung').should('exist');
   });
 });
