@@ -11,7 +11,7 @@ function parseFn(
   const stations = d.svcResL[0].res.match.locL;
 
   return stations
-    .filter(s => !s.meta && s.extId)
+    .filter(s => s.extId)
     .map(s => parseLocL(s, parsedCommon.prodL));
 }
 
