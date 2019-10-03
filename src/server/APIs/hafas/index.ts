@@ -169,10 +169,13 @@ const getCurrent = () =>
       );
     })
     .post('/route', async ctx => {
-      ctx.body = await routing({
-        ...ctx.request.body,
-        time: Number.parseInt(ctx.request.body.time, 10),
-      });
+      ctx.body = await routing(
+        {
+          ...ctx.request.body,
+          time: Number.parseInt(ctx.request.body.time, 10),
+        },
+        ctx.query.profile
+      );
     });
 
 router

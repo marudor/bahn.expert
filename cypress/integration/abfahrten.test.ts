@@ -17,7 +17,8 @@ describe('Abfahrten', () => {
     cy.findByTestId('abfahrtS35744').within(() => {
       cy.findByTestId('scrollMarker').should('exist');
     });
-    cy.reload();
+    cy.visit('/');
+    cy.navigateToStation('Frankfurt (Main) Hbf', false);
     cy.findByTestId('abfahrtS35744').within(() => {
       cy.findByTestId('scrollMarker').should('exist');
     });

@@ -1,6 +1,6 @@
+import { AllowedHafasProfile } from 'types/HAFAS';
 import { formatToTimeZone } from 'date-fns-timezone';
-import { HafasResponse } from 'types/HAFAS';
-import { TripSearchRequest, TripSearchResponse } from 'types/HAFAS/TripSearch';
+import { TripSearchRequest } from 'types/HAFAS/TripSearch';
 import makeRequest from '../Request';
 import tripSearchParse from './parse';
 
@@ -21,13 +21,6 @@ export type Options = {
   ctxScr?: string;
 };
 
-// @ts-ignore ???
-declare function route(o: Options): Promise<ReturnType<typeof tripSearchParse>>;
-// @ts-ignore ???
-declare function route(
-  o: Options,
-  noParse: true
-): Promise<HafasResponse<TripSearchResponse>>;
 function route(
   {
     start,
@@ -50,7 +43,7 @@ function route(
     numF = 6,
     ctxScr,
   }: Options,
-  noParse?: true
+  profile?: AllowedHafasProfile
 ) {
   let requestTypeSpecific;
 
@@ -107,12 +100,9 @@ function route(
       ],
     },
     meth: 'TripSearch',
-    cfg: {
-      rtMode: 'HYBRID',
-    },
   };
 
-  return makeRequest(req, noParse ? undefined : tripSearchParse);
+  return makeRequest(req, tripSearchParse, profile);
 }
 
 export default route;

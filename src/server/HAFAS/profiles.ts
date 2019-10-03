@@ -131,9 +131,9 @@ export const nahsh = {
     client: {
       os: 'iOS 12.4',
       id: 'NAHSH',
-      v: '4000000',
+      v: '5000100',
       type: 'IPH',
-      name: 'NAHSHAPPSTORE',
+      name: 'NAHSHPROD-APPSTORE',
     },
     lang: 'de',
     ver: '1.18',
