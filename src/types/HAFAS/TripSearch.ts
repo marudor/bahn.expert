@@ -35,9 +35,6 @@ interface AfterBeforeTripSearchRequest extends GenericTripSearchRequest {
 export interface TripSearchRequest {
   req: DateTimeTripSeachRequest | AfterBeforeTripSearchRequest;
   meth: 'TripSearch';
-  cfg: {
-    rtMode: 'HYBRID';
-  };
 }
 
 export interface SDays {
