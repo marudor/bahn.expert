@@ -12,18 +12,17 @@ import Actions, {
 import Loading from 'Common/Components/Loading';
 import React, { useEffect, useState } from 'react';
 import ReihungContainer from 'Common/container/ReihungContainer';
+import SelectedDetailContainer, {
+  SelectedDetailProvider,
+} from 'Abfahrten/container/SelectedDetailContainer';
 import useAbfahrten from 'Abfahrten/hooks/useAbfahrten';
-import useSelectedDetail, {
-  SelectedDetailContext,
-} from 'Abfahrten/hooks/useSelectedDetail';
 import useStyles from './AbfahrtenList.style';
 
 const AbfahrtenList = () => {
   const classes = useStyles();
+  const { selectedDetail } = SelectedDetailContainer.useContainer();
   const { clearReihungen } = ReihungContainer.useContainer();
   const [scrolled, setScrolled] = useState(false);
-  const detailState = useSelectedDetail();
-  const selectedDetail = detailState.selectedDetail;
   const { filteredAbfahrten, unfilteredAbfahrten } = useAbfahrten();
   const [loading, setLoading] = useState(!unfilteredAbfahrten);
   const error = useAbfahrtenSelector(state => state.abfahrten.error);
@@ -119,50 +118,51 @@ const AbfahrtenList = () => {
 
   return (
     <Loading isLoading={loading}>
-      <SelectedDetailContext.Provider value={detailState}>
-        <main className={classes.main}>
-          {error && !loading ? (
-            <Redirect to="/" />
-          ) : filteredAbfahrten &&
-            (filteredAbfahrten.lookahead.length ||
-              filteredAbfahrten.lookbehind.length) ? (
-            <>
-              {Boolean(filteredAbfahrten.lookbehind.length) && (
-                <div
-                  id="lookbehind"
-                  className={classes.lookbehind}
-                  data-testid="lookbehind"
-                >
-                  {filteredAbfahrten.lookbehind.map(
-                    a => a && <Abfahrt abfahrt={a} key={a.rawId} />
-                  )}
-                  <div
-                    className={classes.lookaheadMarker}
-                    id="lookaheadMarker"
-                  />
-                </div>
-              )}
+      <main className={classes.main}>
+        {error && !loading ? (
+          <Redirect to="/" />
+        ) : filteredAbfahrten &&
+          (filteredAbfahrten.lookahead.length ||
+            filteredAbfahrten.lookbehind.length) ? (
+          <>
+            {Boolean(filteredAbfahrten.lookbehind.length) && (
               <div
-                id="lookahead"
-                className={classes.lookahead}
-                data-testid="lookahead"
+                id="lookbehind"
+                className={classes.lookbehind}
+                data-testid="lookbehind"
               >
-                {filteredAbfahrten.lookahead.map(
+                {filteredAbfahrten.lookbehind.map(
                   a => a && <Abfahrt abfahrt={a} key={a.rawId} />
                 )}
+                <div className={classes.lookaheadMarker} id="lookaheadMarker" />
               </div>
-            </>
-          ) : (
-            <div>Leider keine Abfahrten in nächster Zeit</div>
-          )}
-        </main>
-      </SelectedDetailContext.Provider>
+            )}
+            <div
+              id="lookahead"
+              className={classes.lookahead}
+              data-testid="lookahead"
+            >
+              {filteredAbfahrten.lookahead.map(
+                a => a && <Abfahrt abfahrt={a} key={a.rawId} />
+              )}
+            </div>
+          </>
+        ) : (
+          <div>Leider keine Abfahrten in nächster Zeit</div>
+        )}
+      </main>
     </Loading>
   );
 };
 
+const AbfahrtenListWrap = () => (
+  <SelectedDetailProvider>
+    <AbfahrtenList />
+  </SelectedDetailProvider>
+);
+
 // @ts-ignore
-AbfahrtenList.loadData = (
+AbfahrtenListWrap.loadData = (
   store: AppStore,
   match: match<{ station: string }>
 ) => {
@@ -176,4 +176,4 @@ AbfahrtenList.loadData = (
   return store.dispatch(getAbfahrtenByString(match.params.station));
 };
 
-export default AbfahrtenList;
+export default AbfahrtenListWrap;
