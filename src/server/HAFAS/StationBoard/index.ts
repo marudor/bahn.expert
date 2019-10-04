@@ -6,11 +6,12 @@ import parse from './parse';
 
 interface Options {
   date?: number;
+  direction?: string;
   station: string;
   type: 'ARR' | 'DEP';
 }
 function stationBoard(
-  { station, date = Date.now(), type }: Options,
+  { station, date = Date.now(), type, direction }: Options,
   profile?: AllowedHafasProfile
 ) {
   const req: StationBoardRequest = {
@@ -25,6 +26,11 @@ function stationBoard(
       stbLoc: {
         lid: `A=1@L=${station}`,
       },
+      dirLoc: direction
+        ? {
+            lid: `A=1@L=${direction}`,
+          }
+        : undefined,
     },
     meth: 'StationBoard',
   };
