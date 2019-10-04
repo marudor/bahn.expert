@@ -1,4 +1,4 @@
-import { Abfahrt } from 'types/abfahrten';
+import { Abfahrt } from 'types/api/iris';
 import { useAbfahrtenSelector } from 'useSelector';
 import { useMemo } from 'react';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';

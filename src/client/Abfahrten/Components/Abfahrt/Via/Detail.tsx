@@ -1,7 +1,7 @@
 import { isHbf } from './index';
 import { Link } from 'react-router-dom';
 import { StationSearchType } from 'Common/config';
-import { Train } from 'types/abfahrten';
+import { Train } from 'types/api/iris';
 import cc from 'clsx';
 import React, { ReactNode, useMemo } from 'react';
 import stopPropagation from 'Common/stopPropagation';

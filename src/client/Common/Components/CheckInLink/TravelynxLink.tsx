@@ -1,4 +1,4 @@
-import { Abfahrt } from 'types/abfahrten';
+import { Abfahrt } from 'types/api/iris';
 import { isBefore } from 'date-fns';
 import React from 'react';
 import stopPropagation from 'Common/stopPropagation';

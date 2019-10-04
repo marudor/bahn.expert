@@ -1,4 +1,4 @@
-import { Train } from 'types/abfahrten';
+import { Train } from 'types/api/iris';
 
 export function isHbf(stop: Train) {
   const lowered = stop.name.toLowerCase();

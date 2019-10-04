@@ -1,5 +1,5 @@
 /* eslint max-len: 0 */
-import { Abfahrt } from 'types/abfahrten';
+import { Abfahrt } from 'types/api/iris';
 import { format } from 'date-fns';
 import React from 'react';
 import stopPropagation from 'Common/stopPropagation';
