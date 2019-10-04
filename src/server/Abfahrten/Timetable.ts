@@ -3,7 +3,7 @@
  ** This algorithm is heavily inspired by https://github.com/derf/Travel-Status-DE-IRIS
  ** derf did awesome work reverse engineering the XML stuff!
  */
-import { Abfahrt, Train } from 'types/abfahrten';
+import { Abfahrt } from 'types/abfahrten';
 import {
   addHours,
   addMinutes,
@@ -21,6 +21,7 @@ import { diffArrays } from 'diff';
 import { findLast, flatten, last, uniqBy } from 'lodash';
 import { getAttr, getNumberAttr, parseTs } from './helper';
 import { getCachedLageplan, getLageplan } from '../Bahnhof/Lageplan';
+import { Train } from 'types/api/iris';
 import messageLookup, {
   messageTypeLookup,
   supersededMessages,

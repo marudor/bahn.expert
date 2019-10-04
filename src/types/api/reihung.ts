@@ -41,6 +41,7 @@ export interface Fahrzeug {
 /**
  * ICE, IC usw.
  */
+
 export type FahrzeugType = string;
 export interface Fahrzeugausstattung {
   anzahl: string;
@@ -70,6 +71,7 @@ export interface Formation {
   /**
    * true = Vorwärts
    */
+
   realFahrtrichtung: boolean;
   allFahrzeuggruppe: Fahrzeuggruppe[];
   halt: Halt;
@@ -84,7 +86,9 @@ export interface Formation {
 }
 export interface Halt {
   abfahrtszeit?: string; // date-time
+
   ankunftszeit?: string; // date-time
+
   bahnhofsname: string;
   evanummer: string;
   gleisbezeichnung?: string;

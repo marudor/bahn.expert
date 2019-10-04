@@ -1,4 +1,4 @@
-import { RemL } from 'types/HAFAS';
+import { RemL } from 'types/api/hafas';
 import React from 'react';
 
 interface Props {

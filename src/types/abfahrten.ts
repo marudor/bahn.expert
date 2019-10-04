@@ -1,51 +1,11 @@
-import { CommonProductInfo, CommonStopInfo } from './common';
+import { CommonStopInfo } from './api/common';
+import { Messages, SubstituteRef, Train, TrainInfo } from 'types/api/iris';
 import { Station } from './station';
-
-// import { ParsedCommonArrival } from './common';
-
-export type SubstituteRef = {
-  trainNumber: string;
-  trainType: string;
-  train: string;
-};
-
-export type Message$Priority =
-  | '1' // HIGH
-  | '2' // MEDIUM
-  | '3' // LOW
-  | '4'; // DONE
-export type Message = {
-  text: string;
-  timestamp: number;
-  superseded?: boolean;
-  priority?: Message$Priority;
-};
-
-export type Train = {
-  additional?: boolean;
-  cancelled?: boolean;
-  showVia?: boolean;
-  name: string;
-};
-
-export type Messages = {
-  qos: Message[];
-  delay: Message[];
-  [key: string]: Message[];
-};
 
 export interface StopInfo extends CommonStopInfo {
   wingIds?: null | string[];
   cancelled: boolean;
   hidden: boolean;
-}
-
-export interface TrainInfo extends CommonProductInfo {
-  thirdParty?: string;
-  longDistance: boolean;
-  type: string;
-  trainCategory: string;
-  number: string;
 }
 
 export type Abfahrt = {
