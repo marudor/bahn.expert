@@ -1,4 +1,4 @@
-import { Abfahrt } from 'types/abfahrten';
+import { Abfahrt } from 'types/api/iris';
 import { shallowEqual } from 'react-redux';
 import { useAbfahrtenSelector } from 'useSelector';
 import cc from 'clsx';

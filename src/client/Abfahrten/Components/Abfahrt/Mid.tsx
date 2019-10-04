@@ -1,4 +1,4 @@
-import { Abfahrt } from 'types/abfahrten';
+import { Abfahrt } from 'types/api/iris';
 import cc from 'clsx';
 import Info from './Info';
 import React from 'react';

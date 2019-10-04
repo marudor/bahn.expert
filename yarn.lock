@@ -4541,10 +4541,10 @@ escodegen@^1.9.1:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-config-marudor@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-marudor/-/eslint-config-marudor-7.0.0.tgz#56ec7e1547cca9b445d15f7d9e3694f3d1f2c5fd"
-  integrity sha512-aAZVwwoa/2g9hcdCQowEWZf1UNjjbA26QHQJ5ZjJOe4d4q/8o9VMdpZ1Os6HixBoO4PepKw1IZReIxMg+/4eVw==
+eslint-config-marudor@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-config-marudor/-/eslint-config-marudor-7.0.1.tgz#a2bee1242a3fee509b78c8e28000a141be1a32fb"
+  integrity sha512-tknF2fsU/0pheSXHUpYRHisKjRsdEt9ge1cyEowzF9+tUe8CBv2hJpYVv2I+PkKVLGsRENKKgTr9i5EZ4H8uxQ==
 
 eslint-config-prettier@^6.3.0:
   version "6.3.0"

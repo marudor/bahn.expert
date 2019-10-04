@@ -1,4 +1,4 @@
-import { Abfahrt } from 'types/abfahrten';
+import { Abfahrt } from 'types/api/iris';
 import { CheckInType } from 'Common/config';
 import React from 'react';
 import TraewellingLink from './TraewellingLink';
