@@ -3,7 +3,7 @@
  ** This algorithm is heavily inspired by https://github.com/derf/Travel-Status-DE-IRIS
  ** derf did awesome work reverse engineering the XML stuff!
  */
-import { Abfahrt, Train } from 'types/abfahrten';
+import { Abfahrt, Train } from 'types/api/iris';
 import {
   addHours,
   addMinutes,

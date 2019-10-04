@@ -1,9 +1,10 @@
-import { CommonProductInfo } from 'types/common';
+import { CommonProductInfo } from 'types/api/common';
 import { Coordinates } from 'types/api/station';
 import { JourneyDetailsRequest } from './JourneyDetails';
 import { LocGeoPosRequest } from './LocGeoPos';
 import { LocMatchRequest } from './LocMatch';
 import { Omit } from 'utility-types';
+import { RemL } from 'types/api/hafas';
 import { Station } from 'types/station';
 import { TripSearchRequest } from './TripSearch';
 
@@ -169,16 +170,6 @@ export type PolyL = {
 export type OpL = {
   name: string;
   icoX: number;
-};
-
-export type RemL = {
-  type: string;
-  code: string;
-  icoX: number;
-  txtN: string;
-  txtS?: string;
-  prio?: number;
-  sIdx?: number;
 };
 
 export type TcocL = {

@@ -103,7 +103,7 @@
     "dependency-cruiser": "^5.1.3",
     "dtsgenerator": "^2.3.1",
     "eslint": "^6.5.1",
-    "eslint-config-marudor": "^7.0.0",
+    "eslint-config-marudor": "^7.0.1",
     "eslint-config-prettier": "^6.3.0",
     "eslint-import-resolver-typescript": "^1.1.1",
     "eslint-import-resolver-webpack": "^0.11.1",

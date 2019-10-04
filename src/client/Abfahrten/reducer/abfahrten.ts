@@ -1,4 +1,4 @@
-import { Abfahrt, Wings } from 'types/abfahrten';
+import { Abfahrt, Wings } from 'types/api/iris';
 import { createReducer } from 'deox';
 import { Station } from 'types/station';
 import Actions, { AbfahrtenError } from 'Abfahrten/actions/abfahrten';

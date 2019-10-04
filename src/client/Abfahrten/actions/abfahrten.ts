@@ -1,4 +1,4 @@
-import { AbfahrtAPIResult, Departures, Wings } from 'types/abfahrten';
+import { Abfahrt, AbfahrtenResponse, Wings } from 'types/api/iris';
 import { AbfahrtenThunkResult } from 'AppState';
 import { AllowedStationAPIs } from 'types/api/station';
 import { createAction } from 'deox';
@@ -23,6 +23,11 @@ type AbfahrtenError$404 = Error & {
 type AbfahrtenError$Default = AxiosError & {
   type: void;
   station?: string;
+};
+
+type Departures = {
+  lookahead: Abfahrt[];
+  lookbehind: Abfahrt[];
 };
 
 const Actions = {
@@ -59,10 +64,10 @@ async function getAbfahrtenFromAPI(
   station: Station,
   lookahead: string,
   lookbehind: string
-): Promise<AbfahrtAPIResult> {
+): Promise<AbfahrtenResponse> {
   cancelGetAbfahrten();
 
-  const r = await axios.get<AbfahrtAPIResult>(
+  const r = await axios.get<AbfahrtenResponse>(
     `/api/iris/current/abfahrten/${station.id}`,
     {
       cancelToken: new axios.CancelToken(c => {

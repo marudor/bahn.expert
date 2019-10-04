@@ -1,4 +1,4 @@
-import { Message } from 'types/abfahrten';
+import { Message } from 'types/api/iris';
 import cc from 'clsx';
 import React, { useMemo } from 'react';
 import useStyles from './index.style';

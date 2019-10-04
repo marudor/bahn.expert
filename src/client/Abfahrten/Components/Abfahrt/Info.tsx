@@ -1,4 +1,4 @@
-import { Abfahrt, Message } from 'types/abfahrten';
+import { Abfahrt, Message } from 'types/api/iris';
 import { useAbfahrtenSelector } from 'useSelector';
 import cc from 'clsx';
 import DetailMessages from 'Common/Components/Messages/Detail';

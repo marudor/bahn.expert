@@ -1,4 +1,4 @@
-import { Abfahrt } from 'types/abfahrten';
+import { Abfahrt } from 'types/api/iris';
 import AuslastungContainer from 'Abfahrten/container/AuslastungContainer';
 import AuslastungsDisplay from 'Common/Components/AuslastungsDisplay';
 import Loading from 'Common/Components/Loading';

@@ -1,4 +1,4 @@
-import { Abfahrt } from 'types/abfahrten';
+import { Abfahrt } from 'types/api/iris';
 import { Link } from 'react-router-dom';
 import { useAbfahrtenSelector } from 'useSelector';
 import Auslastung from 'Abfahrten/Components/Abfahrt/Auslastung';

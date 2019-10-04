@@ -1,4 +1,4 @@
-import { Abfahrt } from 'types/abfahrten';
+import { Abfahrt } from 'types/api/iris';
 import Platform from 'Common/Components/Platform';
 import React from 'react';
 import Times from './Times';

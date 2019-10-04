@@ -1,4 +1,4 @@
-import { Abfahrt } from 'types/abfahrten';
+import { Abfahrt } from 'types/api/iris';
 import { AxiosInstance } from 'axios';
 import { compareAsc } from 'date-fns';
 import { getStation } from './station';

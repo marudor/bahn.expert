@@ -1,0 +1,233 @@
+openapi: "3.0.2"
+components:
+  schemas:
+    TrainInfo:
+      allOf:
+        - $ref: "common.yaml#/components/schemas/CommonProductInfo"
+        - type: object
+          properties:
+            thirdParty:
+              type: string
+            longDistance:
+              type: boolean
+            type:
+              type: string
+            trainCategory:
+              type: string
+            number:
+              type: string
+          required:
+            - longDistance
+            - type
+            - trainCategory
+            - number
+    Train:
+      type: object
+      properties:
+        additional:
+          type: boolean
+        cancelled:
+          type: boolean
+        showVia:
+          type: boolean
+        name:
+          type: string
+      required:
+        - name
+    SubstituteRef:
+      type: object
+      properties:
+        trainNumber:
+          type: string
+        trainType:
+          type: string
+        train:
+          type: string
+      required:
+        - trainNumber
+        - trainType
+        - train
+    MessagePrio:
+      type: string
+      description: "1: High; 2: Medium; 3: Low; 4: Done"
+      enum: ["1", "2", "3", "4"]
+    Message:
+      type: object
+      properties:
+        text:
+          type: string
+        timestamp:
+          type: number
+        superseded:
+          type: boolean
+        priority:
+          $ref: "#/components/schemas/MessagePrio"
+      required:
+        - text
+        - timestamp
+    MessageArray:
+      type: array
+      items:
+        $ref: "#/components/schemas/Message"
+    Messages:
+      type: object
+      properties:
+        qos:
+          $ref: "#/components/schemas/MessageArray"
+        delay:
+          $ref: "#/components/schemas/MessageArray"
+      additionalProperties:
+        $ref: "#/components/schemas/MessageArray"
+      required:
+        - qos
+        - delay
+    Wings:
+      type: object
+      description: Key = mediumId of Abfahrt
+      additionalProperties:
+        $ref: "#/components/schemas/Abfahrt"
+    WingInfo:
+      type: object
+      properties:
+        station:
+          type: object
+          properties:
+            id:
+              type: string
+            title:
+              type: string
+          required:
+            - id
+            - title
+        pt:
+          type: number
+        fl:
+          type: boolean
+      required:
+        - station
+        - pt
+        - fl
+    WingSuccessResponse:
+      type: object
+      properties:
+        start:
+          $ref: "#/components/schemas/WingInfo"
+        end:
+          $ref: "#/components/schemas/WingInfo"
+      required:
+        - start
+        - end
+    WingResponse:
+      oneOf:
+        - $ref: "#/components/schemas/WingSuccessResponse"
+        - type: object
+          properties: {}
+    StopInfo:
+      allOf:
+        - $ref: "common.yaml#/components/schemas/CommonStopInfo"
+        - type: object
+          properties:
+            wingIds:
+              type: array
+              nullable: true
+              items:
+                type: string
+            cancelled:
+              type: boolean
+            hidden:
+              type: boolean
+          required:
+            - cancelled
+            - hidden
+    Abfahrt:
+      type: object
+      properties:
+        initialDeparture:
+          type: number
+        arrival:
+          $ref: "#/components/schemas/StopInfo"
+        auslastung:
+          type: boolean
+        currentStation:
+          $ref: "station.yaml#/components/schemas/Station"
+        departure:
+          $ref: "#/components/schemas/StopInfo"
+        destination:
+          type: string
+        id:
+          type: string
+        additional:
+          type: boolean
+        cancelled:
+          type: boolean
+        mediumId:
+          type: string
+        messages:
+          $ref: "#/components/schemas/Messages"
+        platform:
+          type: string
+        productClass:
+          type: string
+          description: Most likely D | N | S | F
+        rawId:
+          type: string
+        ref:
+          $ref: "#/components/schemas/SubstituteRef"
+        reihung:
+          type: boolean
+        route:
+          type: array
+          items:
+            $ref: "#/components/schemas/Train"
+        scheduledDestination:
+          type: string
+        scheduledPlatform:
+          type: string
+        substitute:
+          type: boolean
+        train:
+          $ref: "#/components/schemas/TrainInfo"
+        hiddenReihung:
+          type: boolean
+      required:
+        - initialDeparture
+        - auslastung
+        - currentStation
+        - destination
+        - id
+        - cancelled
+        - mediumId
+        - messages
+        - platform
+        - productClass
+        - rawId
+        - reihung
+        - route
+        - scheduledDestination
+        - scheduledPlatform
+        - substitue
+        - train
+        - hiddenReihung
+
+    AbfahrtenResponse:
+      type: object
+      properties:
+        lageplan:
+          type: string
+          nullable: true
+        wings:
+          $ref: "#/components/schemas/Wings"
+        departures:
+          type: array
+          description: Liste an Abfahrten (Zukunft)
+          items:
+            $ref: "#/components/schemas/Abfahrt"
+        lookbehind:
+          type: array
+          description: Liste an Abfahrten (Vergangenheit)
+          items:
+            $ref: "#/components/schemas/Abfahrt"
+      required:
+        - departures
+        - lookbehind
+        - wings
