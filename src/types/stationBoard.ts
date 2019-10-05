@@ -1,4 +1,4 @@
-import { ParsedCommonArrival, ParsedCommonDeparture } from './common';
+import { CommonStopInfo } from './api/common';
 import { ParsedProduct } from './HAFAS';
 
 interface CommonStationBoardEntry {
@@ -9,11 +9,11 @@ interface CommonStationBoardEntry {
 }
 
 export interface ArrivalStationBoardEntry extends CommonStationBoardEntry {
-  arrival: ParsedCommonArrival;
+  arrival: CommonStopInfo;
 }
 
 export interface DepartureStationBoardEntry extends CommonStationBoardEntry {
-  departure: ParsedCommonDeparture;
+  departure: CommonStopInfo;
 }
 export type StationBoardEntry =
   | ArrivalStationBoardEntry

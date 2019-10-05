@@ -1,11 +1,11 @@
 import { createContainer } from 'unstated-next';
-import { Reihung } from 'types/reihung';
+import { Formation } from 'types/api/reihung';
 import { useState } from 'react';
 import axios from 'axios';
 
 function useReihung() {
   const [reihungen, setReihungen] = useState<{
-    [key: string]: undefined | null | Reihung;
+    [key: string]: undefined | null | Formation;
   }>({});
   const getReihung = async (
     trainNumber: string,
