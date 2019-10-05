@@ -15,6 +15,10 @@ export interface AdditionalFahrzeugInfo {
   wifi?: boolean;
   wifiOff?: boolean;
 }
+export interface AdditionalId {
+  evaNr: string;
+  shortName: string;
+}
 export interface BRInfo {
   name: string;
   BR?: string;
@@ -24,6 +28,13 @@ export interface BRInfo {
   pdf?: string;
   country?: 'DE' | 'AT';
   showBRInfo?: boolean;
+}
+export interface Data {
+  istformation: Formation;
+}
+export interface Destination {
+  destinationName: string;
+  destinationVia: string[];
 }
 export interface Fahrzeug {
   additionalInfo: AdditionalFahrzeugInfo;
@@ -96,6 +107,14 @@ export interface Halt {
   rl100: string;
   allSektor: Sektor[];
 }
+export interface Meta {
+  id: string;
+  owner: string;
+  format: 'JSON';
+  version: string;
+  created: string;
+  sequence: number;
+}
 export interface Position {
   endemeter: string;
   endeprozent: string;
@@ -105,4 +124,48 @@ export interface Position {
 export interface Sektor {
   positionamgleis: Position;
   sektorbezeichnung: string;
+}
+export interface SpecificWagenreihung {
+  name: string;
+  additionalId: AdditionalId;
+  trackRecords: TrackRecord[];
+}
+export interface Subtrain {
+  destination: Destination;
+  sections: string[];
+}
+export interface TrackRecord {
+  time: string;
+  additionalText: string;
+  name: string;
+  trainNumbers: string[];
+  days: any[];
+  subtrains: Subtrain[];
+  waggons: Waggon[];
+  trainTpes?: string;
+}
+export interface Wagenreihung {
+  meta: Meta;
+  data: Data;
+}
+export interface WagenreihungStation {
+  trainNumber: string;
+  trainType?: any;
+  time?: any;
+  timeOffset?: any;
+  weekday?: any;
+  platform?: any;
+  waggon?: any;
+  trainLine?: any;
+  stations: SpecificWagenreihung[];
+}
+export interface Waggon {
+  position: number;
+  waggon: boolean;
+  sections: string[];
+  number: string;
+  type: '2' | '1' | 's' | 'e';
+  symbols: string;
+  differentDestination: string;
+  length: number;
 }

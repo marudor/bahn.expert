@@ -11,8 +11,7 @@ import { flatten, groupBy, maxBy, minBy } from 'lodash';
 import { format, isAfter, subDays } from 'date-fns';
 import { getAbfahrten } from './Abfahrten';
 import { getAP } from 'server/Wifi';
-import { Wagenreihung } from 'types/reihung';
-import { WagenreihungStation } from 'types/reihungStation';
+import { Wagenreihung, WagenreihungStation } from 'types/api/reihung';
 import axios from 'axios';
 
 // Rausfinden ob alle Teile zum gleichen Ort fahren
