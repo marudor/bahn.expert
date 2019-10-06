@@ -19,6 +19,10 @@ export default makeStyles(theme => ({
     '&>svg': {
       marginRight: '1em',
     },
+    '&>span': {
+      fontSize: '1em',
+      marginRight: '1em',
+    },
   },
   wrap: {
     display: 'flex',
