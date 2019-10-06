@@ -408,7 +408,8 @@ export default class Timetable {
     const type: undefined | string =
       messageTypeLookup[indexType as keyof typeof messageTypeLookup];
 
-    if (!type || !value || value <= 1) {
+    // 1000 ist freitext => wird nicht angezeigt
+    if (!type || !value || value <= 1 || value === 1000) {
       return undefined;
     }
 
