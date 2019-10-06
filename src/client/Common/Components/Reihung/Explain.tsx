@@ -1,6 +1,7 @@
-import { Dialog, DialogContent, DialogTitle } from '@material-ui/core';
+import { Dialog, DialogContent } from '@material-ui/core';
 import { icons } from './Fahrzeug';
 import React, { SyntheticEvent, useState } from 'react';
+import SingleAuslastungsDisplay from 'Common/Components/SingleAuslastungsDisplay';
 import useStyles from './Explain.style';
 
 // Exported for tests
@@ -69,8 +70,8 @@ const Explain = () => {
         open={open}
         onClose={toggle}
       >
-        <DialogTitle>Legende Wagenreihung</DialogTitle>
         <DialogContent>
+          <h3>Legende Wagenreihung</h3>
           {/* <FahrzeugComp {...explainFahrzeugProps} /> */}
           <div className={classes.wrap}>
             {Object.keys(iconExplanation).map(
@@ -93,6 +94,29 @@ const Explain = () => {
             <div data-testid="bahnComfort" className={classes.icon}>
               <svg className={classes.comfort} />
               Bahn.Comfort Sitzplätze
+            </div>
+          </div>
+          <h3>Auslastung</h3>
+          <div className={classes.wrap}>
+            <div className={classes.icon}>
+              <SingleAuslastungsDisplay />
+              Unbkeannte Auslastung
+            </div>
+            <div className={classes.icon}>
+              <SingleAuslastungsDisplay auslastung={1} />
+              Geringe Auslastung
+            </div>
+            <div className={classes.icon}>
+              <SingleAuslastungsDisplay auslastung={2} />
+              Hohe Auslastung
+            </div>
+            <div className={classes.icon}>
+              <SingleAuslastungsDisplay auslastung={3} />
+              Sehr hohe Auslastung
+            </div>
+            <div className={classes.icon}>
+              <SingleAuslastungsDisplay auslastung={4} />
+              Zug ist ausgebucht
             </div>
           </div>
         </DialogContent>
