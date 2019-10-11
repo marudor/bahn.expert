@@ -100,7 +100,7 @@ const Explain = () => {
           <div className={classes.wrap}>
             <div className={classes.icon}>
               <SingleAuslastungsDisplay />
-              Unbkeannte Auslastung
+              Unbekannte Auslastung
             </div>
             <div className={classes.icon}>
               <SingleAuslastungsDisplay auslastung={1} />
