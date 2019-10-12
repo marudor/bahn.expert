@@ -28,7 +28,6 @@ jobs:
     - name: jest
       run: |
         yarn test:jest
-        yarn test:codecov --token=${{ secrets.CODECOV_TOKEN }}
     - name: lint
       run: |
         yarn lint

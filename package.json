@@ -22,7 +22,7 @@
     "test:codecov": "codecov --disable=gcov",
     "test:jest": "jest",
     "e2e:local": "CYPRESS_baseUrl=https://local.marudor.de:9042 cypress open",
-    "e2e:ci": "cypress run --record",
+    "e2e:ci": "cypress run",
     "doc:watch:bundle": "nodemon --watch docs -e yaml scripts/bundleDocs.js",
     "doc:watch:redoc": "redoc-cli serve -w docs/bundle.json",
     "doc:watch:gen": "nodemon --watch docs -e yaml scripts/generateTypesFromDoc.js",
