@@ -124,7 +124,7 @@ codecov:
   script:
     - yarn cypress cache path
     - node testDist/server/server/index.js & npx wait-on http://localhost:9042
-    - yarn e2e:ci --parallel||(pkill -9 node && exit 1)
+    - yarn e2e:ci --record --parallel||(pkill -9 node && exit 1)
     - pkill -9 node
   cache:
     policy: pull
