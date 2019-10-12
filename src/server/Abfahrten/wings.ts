@@ -1,16 +1,23 @@
 import { AxiosInstance } from 'axios';
 import { getAttr, getBoolAttr, noncdAxios, parseTs } from './helper';
+import { WingInfo } from 'types/api/iris';
 import xmljs from 'libxmljs2';
 
-function parseNode(node: null | xmljs.Element) {
+function parseNode(node: null | xmljs.Element): WingInfo | undefined {
   if (!node) return;
+
+  const id = getAttr(node, 'eva');
+  const title = getAttr(node, 'st-name');
+  const pt = parseTs(getAttr(node, 'pt'));
+
+  if (!id || !title || !pt) return;
 
   return {
     station: {
-      id: getAttr(node, 'eva'),
-      title: getAttr(node, 'st-name'),
+      id,
+      title,
     },
-    pt: parseTs(getAttr(node, 'pt')),
+    pt,
     fl: getBoolAttr(node, 'fl'),
   };
 }

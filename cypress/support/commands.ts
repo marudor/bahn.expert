@@ -7,8 +7,8 @@ Cypress.Commands.add(
     if (addRoute) {
       cy.route(/\/api\/iris\/current\/abfahrten.*/).as('irisAbfahrten');
     }
-    cy.getByTestId('stationSearchInput').type(value);
-    cy.getAllByTestId('stationSearchMenuItem')
+    cy.findByTestId('stationSearchInput').type(value);
+    cy.findAllByTestId('stationSearchMenuItem')
       .first()
       .click();
     if (addRoute) {

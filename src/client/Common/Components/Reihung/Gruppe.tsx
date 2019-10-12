@@ -1,4 +1,4 @@
-import { Fahrzeuggruppe } from 'types/reihung';
+import { Fahrzeuggruppe } from 'types/api/reihung';
 import BRInfo from './BRInfo';
 import Fahrzeug, { InheritedProps } from './Fahrzeug';
 import React, { useMemo } from 'react';
@@ -10,6 +10,7 @@ type OwnProps = InheritedProps & {
   showGruppenZugnummer: boolean;
   showFahrzeugGruppe: boolean;
   originalTrainNumber: string;
+  showUIC: boolean;
 };
 type Props = OwnProps;
 
@@ -23,8 +24,8 @@ const Gruppe = ({
 }: Props) => {
   const classes = useStyles();
   const gruppenPos = {
-    left: `${(gruppe.startProzent - rest.correctLeft) * rest.scale}%`,
-    width: `${(gruppe.endeProzent - gruppe.startProzent) * rest.scale}%`,
+    left: `${(gruppe.startPercentage - rest.correctLeft) * rest.scale}%`,
+    width: `${(gruppe.endPercentage - gruppe.startPercentage) * rest.scale}%`,
   };
 
   let currentBottom = 2.5;
@@ -39,6 +40,7 @@ const Gruppe = ({
   const extraInfoLine = Boolean(showDestination || showBR);
 
   if (extraInfoLine) currentBottom += 1;
+  if (rest.showUIC) currentBottom += 1;
 
   const nummerPos = {
     ...gruppenPos,

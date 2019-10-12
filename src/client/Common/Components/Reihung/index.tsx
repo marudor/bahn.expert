@@ -15,6 +15,7 @@ type Props = {
   currentStation: string;
   scheduledDeparture: number;
   loadHidden?: boolean;
+  showUIC?: boolean;
 };
 
 const ReihungComp = (props: Props) => {
@@ -22,16 +23,18 @@ const ReihungComp = (props: Props) => {
     className,
     currentStation,
     fahrzeugGruppe = false,
+    showUIC = false,
     scheduledDeparture,
     trainNumber,
     useZoom,
     loadHidden,
   } = props;
   const { reihungen, getReihung } = ReihungContainer.useContainer();
-  const reihung = reihungen[trainNumber + currentStation];
+  const reihung = reihungen[trainNumber + currentStation + scheduledDeparture];
   const classes = useStyles({
     reihung,
     fahrzeugGruppe,
+    showUIC,
   });
 
   useEffect(() => {
@@ -68,6 +71,7 @@ const ReihungComp = (props: Props) => {
           {reihung.allFahrzeuggruppe.map(g => (
             <Gruppe
               showGruppenZugnummer={differentZugnummer}
+              showUIC={showUIC}
               originalTrainNumber={trainNumber}
               showFahrzeugGruppe={fahrzeugGruppe}
               correctLeft={correctLeft}

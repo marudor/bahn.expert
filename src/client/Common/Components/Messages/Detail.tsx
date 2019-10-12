@@ -1,5 +1,5 @@
 import { compareDesc, format } from 'date-fns';
-import { Message } from 'types/abfahrten';
+import { Message } from 'types/api/iris';
 import cc from 'clsx';
 import React from 'react';
 import useStyles from './index.style';

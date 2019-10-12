@@ -1,3 +1,4 @@
+import { AllowedStationAPIs } from 'types/api/station';
 import { flatten, uniqBy } from 'lodash';
 import { logger } from 'server/logger';
 import { Station } from 'types/station';
@@ -58,7 +59,11 @@ function getCache(key: Function) {
   return cache;
 }
 
-export default async (rawSearchTerm: string, type?: StationSearchType) => {
+export default async (
+  rawSearchTerm: string,
+  type?: AllowedStationAPIs,
+  maxStations: number = 6
+) => {
   const searchTerm = rawSearchTerm.replace(/ {2}/g, ' ');
 
   try {
@@ -68,7 +73,7 @@ export default async (rawSearchTerm: string, type?: StationSearchType) => {
     const cached = cache.get<Station[]>(searchTerm);
 
     if (cached) {
-      return cached;
+      return cached.slice(0, maxStations);
     }
 
     let result = await getSearchMethod(type)(searchTerm);
@@ -82,7 +87,7 @@ export default async (rawSearchTerm: string, type?: StationSearchType) => {
 
     cache.set(searchTerm, result);
 
-    return result;
+    return result.slice(0, maxStations);
   } catch (e) {
     const message = 'search failed';
 

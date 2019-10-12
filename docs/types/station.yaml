@@ -1,0 +1,87 @@
+openapi: '3.0.2'
+components:
+  parameters:
+    lat:
+      name: lat
+      in: query
+      required: true
+      schema:
+        type: number
+    lng:
+      name: lng
+      in: query
+      required: true
+      schema:
+        type: number
+  schemas:
+    Coordinates:
+      type: object
+      properties:
+        lat:
+          type: number
+        lng:
+          type: number
+      required:
+        - lat
+        - lng
+    Station:
+      type: object
+      properties:
+        title:
+          type: string
+        id:
+          type: string
+        favendoId:
+          type: number
+        DS100:
+          type: string
+      required:
+        - title
+        - id
+    Stations:
+      type: array
+      items:
+        $ref: '#/components/schemas/Station'
+    IrisStation:
+      type: object
+      properties:
+        name:
+          type: string
+        meta:
+          type: array
+          items:
+            type: string
+        eva:
+          type: string
+        ds100:
+          type: string
+        db:
+          type: string
+        creationts:
+          type: string
+        p:
+          type: string
+      required:
+        - name
+        - meta
+        - eva
+        - ds100
+        - db
+        - creationts
+        - p
+    IrisStationWithRelated:
+      type: object
+      properties:
+        station:
+          $ref: '#/components/schemas/IrisStation'
+        relatedStations:
+          type: array
+          items:
+            $ref: '#/components/schemas/IrisStation'
+      required:
+        - station
+        - relatedStations
+    AllowedStationAPIs:
+      type: number
+      description: '0: Default; 1: Favendo; 2: DBNavigator; 3: OpenData; 4: OpenDataOffline; 5: Broken; 6: HAFAS; 7: Broken; 8: StationsData; 9: Broken'
+      enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]

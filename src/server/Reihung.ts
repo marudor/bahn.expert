@@ -5,13 +5,13 @@ import {
   BRInfo,
   Fahrzeug,
   Formation,
-  Wagenreihung,
-} from 'types/reihung';
+} from 'types/api/reihung';
 import { convertToTimeZone } from 'date-fns-timezone';
 import { flatten, groupBy, maxBy, minBy } from 'lodash';
-import { format } from 'date-fns';
+import { format, isAfter, subDays } from 'date-fns';
 import { getAbfahrten } from './Abfahrten';
-import { WagenreihungStation } from 'types/reihungStation';
+import { getAP } from 'server/Wifi';
+import { Wagenreihung, WagenreihungStation } from 'types/api/reihung';
 import axios from 'axios';
 
 // Rausfinden ob alle Teile zum gleichen Ort fahren
@@ -54,11 +54,9 @@ const getATBR = (
 };
 const getDEBR = (
   code: string,
-  serial: string,
+  uicOrdnungsnummer: string,
   fahrzeugTypes: string[]
 ): undefined | BRInfo => {
-  const numberSerial = Number.parseInt(serial, 10);
-
   switch (code) {
     case '0812':
     case '1412':
@@ -101,7 +99,8 @@ const getDEBR = (
       return {
         name: 'ICE 3',
         BR: '403',
-        serie: numberSerial <= 37 ? '1' : '2',
+        serie:
+          Number.parseInt(uicOrdnungsnummer.substr(1), 10) <= 37 ? '1' : '2',
         redesign: fahrzeugTypes.includes('WRmz'),
       };
     case '5406':
@@ -124,7 +123,7 @@ const getDEBR = (
       return {
         name: 'ICE T',
         BR: '411',
-        serie: numberSerial <= 32 ? '1' : '2',
+        serie: Number.parseInt(uicOrdnungsnummer, 10) <= 32 ? '1' : '2',
       };
     case '5415':
       return {
@@ -145,6 +144,7 @@ const getSpecificBR = (
   const country = fahrzeugnummer.substr(2, 2);
   const code = fahrzeugnummer.substr(4, 4);
   const serial = fahrzeugnummer.substr(8, 3);
+
   let info;
 
   switch (country) {
@@ -414,6 +414,16 @@ function enrichFahrzeug(fahrzeug: Fahrzeug) {
     }
   });
 
+  const ap = getAP(fahrzeug.fahrzeugnummer);
+
+  if (ap) {
+    if (ap.online && isAfter(ap.trainTimestamp, subDays(new Date(), 1))) {
+      data.wifi = true;
+    } else {
+      data.wifiOff = true;
+    }
+  }
+
   fahrzeug.additionalInfo = data;
 }
 
@@ -470,13 +480,13 @@ export async function wagenReihung(trainNumber: string, date: number) {
     );
 
     if (minFahrzeug) {
-      g.startProzent = Number.parseInt(
+      g.startPercentage = Number.parseInt(
         minFahrzeug.positionamhalt.startprozent,
         10
       );
     }
     if (maxFahrzeug) {
-      g.endeProzent = Number.parseInt(
+      g.endPercentage = Number.parseInt(
         maxFahrzeug.positionamhalt.endeprozent,
         10
       );

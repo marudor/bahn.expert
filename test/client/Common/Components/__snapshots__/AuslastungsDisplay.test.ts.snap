@@ -13,7 +13,7 @@ exports[`AuslastungsDisplay Gering / Hoch 1`] = `
       1
     </span>
     <span
-      class="AuslastungsDisplay-icon AuslastungsDisplay-first AuslastungsDisplay-first"
+      class="SingleAuslastungsDisplay-icon SingleAuslastungsDisplay-color SingleAuslastungsDisplay-color"
     >
       <svg
         aria-hidden="true"
@@ -36,7 +36,7 @@ exports[`AuslastungsDisplay Gering / Hoch 1`] = `
       2
     </span>
     <span
-      class="AuslastungsDisplay-icon AuslastungsDisplay-second AuslastungsDisplay-second"
+      class="SingleAuslastungsDisplay-icon SingleAuslastungsDisplay-color SingleAuslastungsDisplay-color"
     >
       <svg
         aria-hidden="true"
@@ -67,7 +67,7 @@ exports[`AuslastungsDisplay SehrHoch / Ausgebucht 1`] = `
       1
     </span>
     <span
-      class="AuslastungsDisplay-icon AuslastungsDisplay-first AuslastungsDisplay-first"
+      class="SingleAuslastungsDisplay-icon SingleAuslastungsDisplay-color SingleAuslastungsDisplay-color"
     >
       <svg
         aria-hidden="true"
@@ -90,7 +90,7 @@ exports[`AuslastungsDisplay SehrHoch / Ausgebucht 1`] = `
       2
     </span>
     <span
-      class="AuslastungsDisplay-icon AuslastungsDisplay-second AuslastungsDisplay-second"
+      class="SingleAuslastungsDisplay-icon SingleAuslastungsDisplay-color SingleAuslastungsDisplay-color"
     >
       <svg
         aria-hidden="true"
@@ -121,7 +121,7 @@ exports[`AuslastungsDisplay Unbekannt / Hoch 1`] = `
       1
     </span>
     <span
-      class="AuslastungsDisplay-icon AuslastungsDisplay-first AuslastungsDisplay-first"
+      class="SingleAuslastungsDisplay-icon SingleAuslastungsDisplay-color SingleAuslastungsDisplay-color"
     >
       <svg
         aria-hidden="true"
@@ -144,7 +144,7 @@ exports[`AuslastungsDisplay Unbekannt / Hoch 1`] = `
       2
     </span>
     <span
-      class="AuslastungsDisplay-icon AuslastungsDisplay-second AuslastungsDisplay-second"
+      class="SingleAuslastungsDisplay-icon SingleAuslastungsDisplay-color SingleAuslastungsDisplay-color"
     >
       <svg
         aria-hidden="true"

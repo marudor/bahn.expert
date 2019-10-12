@@ -1,6 +1,6 @@
 import { CommonDeparture, ParsedCommon } from 'types/HAFAS';
+import { CommonStopInfo } from 'types/api/common';
 import { differenceInMinutes } from 'date-fns';
-import { ParsedCommonDeparture } from 'types/common';
 import checkReihung from './checkReihung';
 import parseTime from './parseTime';
 
@@ -9,7 +9,7 @@ export default (
   date: number,
   _common: ParsedCommon,
   trainType?: string
-): ParsedCommonDeparture => {
+): CommonStopInfo => {
   const scheduledTime = parseTime(date, d.dTimeS);
   let time = scheduledTime;
   let delay;
@@ -25,7 +25,7 @@ export default (
     scheduledTime,
     time,
     delay,
-    reihung: checkReihung(d.dTrnCmpSX, trainType),
+    reihung: checkReihung(scheduledTime, d.dTrnCmpSX, trainType),
     cancelled: d.dCncl,
     // messages: d.msgL ? parseMessages(d.msgL, common) : undefined,
   };

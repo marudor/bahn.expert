@@ -1,8 +1,10 @@
-import { CommonProductInfo } from 'types/common';
+import { CommonProductInfo } from 'types/api/common';
+import { Coordinates } from 'types/api/station';
 import { JourneyDetailsRequest } from './JourneyDetails';
 import { LocGeoPosRequest } from './LocGeoPos';
 import { LocMatchRequest } from './LocMatch';
 import { Omit } from 'utility-types';
+import { RemL } from 'types/api/hafas';
 import { Station } from 'types/station';
 import { TripSearchRequest } from './TripSearch';
 
@@ -13,10 +15,7 @@ export interface SDaysL {
   fLocX: number;
   tLocX: number;
 }
-export interface Coordinates {
-  lat: number;
-  lng: number;
-}
+
 export interface HafasStation extends Omit<Station, 'favendoId' | 'DS100'> {
   products?: ParsedProduct[];
   coordinates: Coordinates;
@@ -30,6 +29,7 @@ export enum AllowedHafasProfile {
   nahsh = 'nahsh',
   hvv = 'hvv',
   bvg = 'bvg',
+  insa = 'insa',
   // all = 'all',
 }
 export type HafasRequest = SingleHafasRequest[];
@@ -170,16 +170,6 @@ export type PolyL = {
 export type OpL = {
   name: string;
   icoX: number;
-};
-
-export type RemL = {
-  type: string;
-  code: string;
-  icoX: number;
-  txtN: string;
-  txtS?: string;
-  prio?: number;
-  sIdx?: number;
 };
 
 export type TcocL = {

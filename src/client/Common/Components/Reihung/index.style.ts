@@ -1,4 +1,4 @@
-import { Formation } from 'types/reihung';
+import { Formation } from 'types/api/reihung';
 import { makeStyles } from '@material-ui/styles';
 
 export default makeStyles(theme => ({
@@ -8,13 +8,16 @@ export default makeStyles(theme => ({
   main: ({
     reihung,
     fahrzeugGruppe,
+    showUIC,
   }: {
     reihung: Formation | null | undefined;
     fahrzeugGruppe: boolean;
+    showUIC: boolean;
   }) => {
     let height = 6.5;
 
     if (fahrzeugGruppe) height += 1;
+    if (showUIC) height += 1;
     if (reihung) {
       if (
         reihung.differentDestination ||

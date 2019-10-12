@@ -1,9 +1,11 @@
-import { Dialog, DialogContent, DialogTitle } from '@material-ui/core';
+import { Dialog, DialogContent } from '@material-ui/core';
 import { icons } from './Fahrzeug';
 import React, { SyntheticEvent, useState } from 'react';
+import SingleAuslastungsDisplay from 'Common/Components/SingleAuslastungsDisplay';
 import useStyles from './Explain.style';
 
-const iconExplanation: { [K in keyof typeof icons]: string } = {
+// Exported for tests
+export const iconExplanation: { [K in keyof typeof icons]: string } = {
   rollstuhl: 'Rollstuhl Plätze',
   fahrrad: 'Fahrrad Stellplätze',
   speise: 'Bordbistro/Restaurant',
@@ -12,6 +14,8 @@ const iconExplanation: { [K in keyof typeof icons]: string } = {
   familie: 'Familienbereich',
   schwebe: 'Schwerbehindertenplätze',
   info: 'Dienstabteil',
+  wifi: 'Wlan online',
+  wifiOff: 'Wlan offline',
 };
 
 // const explainFahrzeugProps: OwnProps = {
@@ -66,26 +70,53 @@ const Explain = () => {
         open={open}
         onClose={toggle}
       >
-        <DialogTitle>Legende Wagenreihung</DialogTitle>
         <DialogContent>
+          <h3>Legende Wagenreihung</h3>
           {/* <FahrzeugComp {...explainFahrzeugProps} /> */}
-          <div>
+          <div className={classes.wrap}>
             {Object.keys(iconExplanation).map(
               // @ts-ignore this is correct, it's exact!
               (iconName: keyof typeof icons) => {
                 const Icon = icons[iconName];
 
                 return (
-                  <div key={iconName} className={classes.line}>
+                  <div
+                    data-testid={iconName}
+                    key={iconName}
+                    className={classes.icon}
+                  >
                     <Icon />
                     {iconExplanation[iconName]}
                   </div>
                 );
               }
             )}
-            <div className={classes.line}>
+            <div data-testid="bahnComfort" className={classes.icon}>
               <svg className={classes.comfort} />
               Bahn.Comfort Sitzplätze
+            </div>
+          </div>
+          <h3>Auslastung</h3>
+          <div className={classes.wrap}>
+            <div className={classes.icon}>
+              <SingleAuslastungsDisplay />
+              Unbekannte Auslastung
+            </div>
+            <div className={classes.icon}>
+              <SingleAuslastungsDisplay auslastung={1} />
+              Geringe Auslastung
+            </div>
+            <div className={classes.icon}>
+              <SingleAuslastungsDisplay auslastung={2} />
+              Hohe Auslastung
+            </div>
+            <div className={classes.icon}>
+              <SingleAuslastungsDisplay auslastung={3} />
+              Sehr hohe Auslastung
+            </div>
+            <div className={classes.icon}>
+              <SingleAuslastungsDisplay auslastung={4} />
+              Zug ist ausgebucht
             </div>
           </div>
         </DialogContent>

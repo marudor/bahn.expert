@@ -7,10 +7,14 @@ export default makeStyles({
       flexShrink: 0,
     },
   },
-  train: {
+  destination: {
     flex: 1,
     display: 'flex',
     marginLeft: '1em',
     justifyContent: 'space-evenly',
+  },
+  train: {
+    display: 'flex',
+    flexDirection: 'column',
   },
 });

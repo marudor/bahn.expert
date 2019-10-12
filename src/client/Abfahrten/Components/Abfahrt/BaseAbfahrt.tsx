@@ -1,6 +1,5 @@
-import { Abfahrt } from 'types/abfahrten';
-import { setDetail } from 'Abfahrten/actions/abfahrten';
-import { shallowEqual, useDispatch } from 'react-redux';
+import { Abfahrt } from 'types/api/iris';
+import { shallowEqual } from 'react-redux';
 import { useAbfahrtenSelector } from 'useSelector';
 import cc from 'clsx';
 import End from './End';
@@ -8,8 +7,8 @@ import Mid from './Mid';
 import Paper from '@material-ui/core/Paper';
 import React, { useCallback } from 'react';
 import Reihung from 'Common/Components/Reihung';
+import SelectedDetailContainer from 'Abfahrten/container/SelectedDetailContainer';
 import Start from './Start';
-import useCookies from 'Common/useCookies';
 import useStyles from './BaseAbfahrt.style';
 
 export interface Props {
@@ -21,23 +20,26 @@ export interface Props {
 }
 
 const BaseAbfahrt = ({ abfahrt, wing, wingEnd, wingStart }: Props) => {
-  const cookies = useCookies();
   const classes = useStyles();
-  const dispatch = useDispatch();
+  const {
+    setSelectedDetail,
+    selectedDetail,
+  } = SelectedDetailContainer.useContainer();
   const handleClick = useCallback(() => {
-    dispatch(setDetail(cookies, abfahrt.id));
-  }, [abfahrt.id, cookies, dispatch]);
+    setSelectedDetail(abfahrt.id);
+  }, [abfahrt.id, setSelectedDetail]);
+  const detail = selectedDetail === abfahrt.id;
   const {
     lineAndNumber,
     useZoom,
     fahrzeugGruppe,
-    detail,
+    showUIC,
   } = useAbfahrtenSelector(
     state => ({
       lineAndNumber: state.abfahrtenConfig.config.lineAndNumber,
       useZoom: state.abfahrtenConfig.config.zoomReihung,
       fahrzeugGruppe: state.abfahrtenConfig.config.fahrzeugGruppe,
-      detail: state.abfahrten.selectedDetail === abfahrt.id,
+      showUIC: state.abfahrtenConfig.config.showUIC,
     }),
     shallowEqual
   );
@@ -76,6 +78,7 @@ const BaseAbfahrt = ({ abfahrt, wing, wingEnd, wingStart }: Props) => {
             <Reihung
               loadHidden={!abfahrt.reihung && abfahrt.hiddenReihung}
               useZoom={useZoom}
+              showUIC={showUIC}
               fahrzeugGruppe={fahrzeugGruppe}
               trainNumber={abfahrt.train.number}
               currentStation={abfahrt.currentStation.id}
@@ -83,7 +86,11 @@ const BaseAbfahrt = ({ abfahrt, wing, wingEnd, wingStart }: Props) => {
             />
           )}
         {detail && (
-          <div id={`${abfahrt.id}Scroll`} className={classes.scrollMarker} />
+          <div
+            data-testid="scrollMarker"
+            id={`${abfahrt.id}Scroll`}
+            className={classes.scrollMarker}
+          />
         )}
       </div>
     </Paper>

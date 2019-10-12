@@ -34,8 +34,8 @@ module.exports = {
       },
       parserOptions: {
         sourceType: 'module',
-        project: './tsconfig.json',
-        tsconfigRootDir: __dirname,
+        // project: './tsconfig.json',
+        createDefaultProgram: true,
       },
     },
   ],

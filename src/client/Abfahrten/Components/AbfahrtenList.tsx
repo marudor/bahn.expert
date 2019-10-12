@@ -1,5 +1,4 @@
 import { AppStore } from 'AppState';
-import { getAbfahrtenForConfig } from 'Abfahrten/selector/abfahrten';
 import { match } from 'react-router';
 import { Redirect } from 'react-router';
 import { useAbfahrtenSelector } from 'useSelector';
@@ -13,17 +12,19 @@ import Actions, {
 import Loading from 'Common/Components/Loading';
 import React, { useEffect, useState } from 'react';
 import ReihungContainer from 'Common/container/ReihungContainer';
+import SelectedDetailContainer, {
+  SelectedDetailProvider,
+} from 'Abfahrten/container/SelectedDetailContainer';
+import useAbfahrten from 'Abfahrten/hooks/useAbfahrten';
 import useStyles from './AbfahrtenList.style';
 
 const AbfahrtenList = () => {
   const classes = useStyles();
+  const { selectedDetail } = SelectedDetailContainer.useContainer();
   const { clearReihungen } = ReihungContainer.useContainer();
   const [scrolled, setScrolled] = useState(false);
-  const selectedDetail = useAbfahrtenSelector(
-    state => state.abfahrten.selectedDetail
-  );
-  const abfahrten = useAbfahrtenSelector(getAbfahrtenForConfig);
-  const [loading, setLoading] = useState(!abfahrten);
+  const { filteredAbfahrten, unfilteredAbfahrten } = useAbfahrten();
+  const [loading, setLoading] = useState(!unfilteredAbfahrten);
   const error = useAbfahrtenSelector(state => state.abfahrten.error);
   const { match, location } = useRouter<{ station: string }>();
   const currentStation = useAbfahrtenSelector(
@@ -35,10 +36,10 @@ const AbfahrtenList = () => {
   );
 
   useEffect(() => {
-    if (abfahrten) {
+    if (unfilteredAbfahrten) {
       setScrolled(false);
     }
-  }, [abfahrten]);
+  }, [unfilteredAbfahrten]);
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout;
@@ -92,13 +93,13 @@ const AbfahrtenList = () => {
     if (scrolled) {
       return;
     }
-    if (abfahrten) {
+    if (unfilteredAbfahrten) {
       let scrollDom: HTMLElement | null = null;
 
       if (selectedDetail) {
         scrollDom = document.getElementById(`${selectedDetail}Scroll`);
       }
-      if (!scrollDom && abfahrten.lookbehind.length) {
+      if (!scrollDom && unfilteredAbfahrten.lookbehind.length) {
         scrollDom = document.getElementById('lookaheadMarker');
       }
       if (scrollDom) {
@@ -113,23 +114,24 @@ const AbfahrtenList = () => {
       }
       setScrolled(true);
     }
-  }, [abfahrten, scrolled, selectedDetail]);
+  }, [unfilteredAbfahrten, scrolled, selectedDetail]);
 
   return (
     <Loading isLoading={loading}>
       <main className={classes.main}>
         {error && !loading ? (
           <Redirect to="/" />
-        ) : abfahrten &&
-          (abfahrten.lookahead.length || abfahrten.lookbehind.length) ? (
+        ) : filteredAbfahrten &&
+          (filteredAbfahrten.lookahead.length ||
+            filteredAbfahrten.lookbehind.length) ? (
           <>
-            {Boolean(abfahrten.lookbehind.length) && (
+            {Boolean(filteredAbfahrten.lookbehind.length) && (
               <div
                 id="lookbehind"
                 className={classes.lookbehind}
                 data-testid="lookbehind"
               >
-                {abfahrten.lookbehind.map(
+                {filteredAbfahrten.lookbehind.map(
                   a => a && <Abfahrt abfahrt={a} key={a.rawId} />
                 )}
                 <div className={classes.lookaheadMarker} id="lookaheadMarker" />
@@ -140,7 +142,7 @@ const AbfahrtenList = () => {
               className={classes.lookahead}
               data-testid="lookahead"
             >
-              {abfahrten.lookahead.map(
+              {filteredAbfahrten.lookahead.map(
                 a => a && <Abfahrt abfahrt={a} key={a.rawId} />
               )}
             </div>
@@ -153,8 +155,14 @@ const AbfahrtenList = () => {
   );
 };
 
+const AbfahrtenListWrap = () => (
+  <SelectedDetailProvider>
+    <AbfahrtenList />
+  </SelectedDetailProvider>
+);
+
 // @ts-ignore
-AbfahrtenList.loadData = (
+AbfahrtenListWrap.loadData = (
   store: AppStore,
   match: match<{ station: string }>
 ) => {
@@ -168,4 +176,4 @@ AbfahrtenList.loadData = (
   return store.dispatch(getAbfahrtenByString(match.params.station));
 };
 
-export default AbfahrtenList;
+export default AbfahrtenListWrap;

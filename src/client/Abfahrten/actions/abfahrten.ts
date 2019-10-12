@@ -1,13 +1,10 @@
-import { AbfahrtAPIResult, Departures, Wings } from 'types/abfahrten';
+import { Abfahrt, AbfahrtenResponse, Wings } from 'types/api/iris';
 import { AbfahrtenThunkResult } from 'AppState';
+import { AllowedStationAPIs } from 'types/api/station';
 import { createAction } from 'deox';
-import { FilterOptions } from 'Abfahrten/reducer/abfahrten';
 import { getStationsFromAPI } from 'Common/service/stationSearch';
-import { setCookieOptions } from 'client/util';
 import { Station } from 'types/station';
-import { StationSearchType } from 'Common/config';
 import axios, { AxiosError } from 'axios';
-import Cookies from 'universal-cookie';
 
 export type AbfahrtenError =
   | AbfahrtenError$Redirect
@@ -28,6 +25,11 @@ type AbfahrtenError$Default = AxiosError & {
   station?: string;
 };
 
+type Departures = {
+  lookahead: Abfahrt[];
+  lookbehind: Abfahrt[];
+};
+
 const Actions = {
   gotAbfahrten: createAction(
     'GOT_ABFAHRTEN',
@@ -42,7 +44,6 @@ const Actions = {
     'GOT_ABFAHRTEN_ERROR',
     resolve => (e: AbfahrtenError) => resolve(e)
   ),
-  setDetail: createAction('SET_DETAIL', resolve => (s?: string) => resolve(s)),
   setCurrentStation: createAction(
     'SET_CURRENT_STATION',
     resolve => (s?: Station) => resolve(s)
@@ -52,13 +53,6 @@ const Actions = {
   ),
   setFilterMenu: createAction('SET_FILTER_MENU', resolve => (open: boolean) =>
     resolve(open)
-  ),
-  setFilterList: createAction(
-    'SET_FILTER_LIST',
-    resolve => (filterList: string[]) => resolve(filterList)
-  ),
-  setFilter: createAction('SET_FILTER', resolve => (options: FilterOptions) =>
-    resolve(options)
   ),
 };
 
@@ -70,10 +64,10 @@ async function getAbfahrtenFromAPI(
   station: Station,
   lookahead: string,
   lookbehind: string
-): Promise<AbfahrtAPIResult> {
+): Promise<AbfahrtenResponse> {
   cancelGetAbfahrten();
 
-  const r = await axios.get<AbfahrtAPIResult>(
+  const r = await axios.get<AbfahrtenResponse>(
     `/api/iris/current/abfahrten/${station.id}`,
     {
       cancelToken: new axios.CancelToken(c => {
@@ -105,7 +99,7 @@ export const getLageplan = (
 
 export const getAbfahrtenByString = (
   stationString?: string,
-  searchType?: StationSearchType
+  searchType?: AllowedStationAPIs
 ): AbfahrtenThunkResult => async (dispatch, getState) => {
   try {
     const config = getState().abfahrtenConfig.config;
@@ -143,24 +137,6 @@ export const getAbfahrtenByString = (
       dispatch(Actions.gotAbfahrtenError(e));
     }
   }
-};
-
-export const setDetail = (
-  cookies: Cookies,
-  selectedDetail?: string
-): AbfahrtenThunkResult => (dispatch, getState) => {
-  const state = getState();
-  const detail =
-    state.abfahrten.selectedDetail === selectedDetail
-      ? undefined
-      : selectedDetail;
-
-  if (detail) {
-    cookies.set('selectedDetail', detail, setCookieOptions);
-  } else {
-    cookies.remove('selectedDetail');
-  }
-  dispatch(Actions.setDetail(detail));
 };
 
 export const refreshCurrentAbfahrten = (): AbfahrtenThunkResult => async (

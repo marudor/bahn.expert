@@ -60,3 +60,5 @@ research/
 
 cypress/videos/
 junit.xml
+
+docs/bundle.json

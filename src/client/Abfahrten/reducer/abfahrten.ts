@@ -1,13 +1,9 @@
-import { Abfahrt, Wings } from 'types/abfahrten';
+import { Abfahrt, Wings } from 'types/api/iris';
 import { createReducer } from 'deox';
 import { Station } from 'types/station';
 import Actions, { AbfahrtenError } from 'Abfahrten/actions/abfahrten';
 
-export type FilterOptions = {
-  onlyDepartures?: boolean;
-};
 export type State = {
-  selectedDetail?: string;
   departures?: {
     lookahead: Abfahrt[];
     lookbehind: Abfahrt[];
@@ -17,15 +13,11 @@ export type State = {
   error?: AbfahrtenError;
   lageplan?: null | string;
   filterMenu: boolean;
-  filterList: string[];
-  filter: FilterOptions;
 };
 
 const defaultState: State = {
   lageplan: undefined,
   filterMenu: false,
-  filterList: [],
-  filter: {},
 };
 
 export default createReducer(defaultState, handle => [
@@ -48,10 +40,6 @@ export default createReducer(defaultState, handle => [
     lageplan: undefined,
     error: payload,
   })),
-  handle(Actions.setDetail, (state, { payload }) => ({
-    ...state,
-    selectedDetail: payload,
-  })),
   handle(Actions.setCurrentStation, (state, { payload }) => ({
     ...state,
     currentStation: payload,
@@ -62,13 +50,5 @@ export default createReducer(defaultState, handle => [
   handle(Actions.setFilterMenu, (state, { payload }) => ({
     ...state,
     filterMenu: payload,
-  })),
-  handle(Actions.setFilterList, (state, { payload }) => ({
-    ...state,
-    filterList: payload,
-  })),
-  handle(Actions.setFilter, (state, { payload }) => ({
-    ...state,
-    filter: payload,
   })),
 ]);

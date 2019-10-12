@@ -1,7 +1,8 @@
-import { CommonStopInfo } from './common';
-import { Message } from './abfahrten';
+import { CommonStopInfo } from './api/common';
+import { Message } from './api/iris';
 import { OutConL, SecL } from './HAFAS/TripSearch';
-import { ParsedProduct, ProdL, RemL } from './HAFAS';
+import { ParsedProduct, ProdL } from './HAFAS';
+import { RemL } from 'types/api/hafas';
 import { Station } from './station';
 
 export type Route$Stop = {

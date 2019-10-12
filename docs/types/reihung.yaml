@@ -1,0 +1,440 @@
+openapi: "3.0.2"
+components:
+  schemas:
+    # Planwagenreihungstypes
+    Waggon:
+      type: object
+      properties:
+        position:
+          type: number
+        waggon:
+          type: boolean
+        sections:
+          type: array
+          items:
+            type: string
+        number:
+          type: string
+        type:
+          type: string
+          enum: ["2", "1", "s", "e"]
+        symbols:
+          type: string
+        differentDestination:
+          type: string
+        length:
+          type: number
+      required:
+        - position
+        - waggon
+        - sections
+        - number
+        - type
+        - symbols
+        - differentDestination
+        - length
+    Destination:
+      type: object
+      properties:
+        destinationName:
+          type: string
+        destinationVia:
+          type: array
+          items:
+            type: string
+      required:
+        - destinationName
+        - destinationVia
+    Subtrain:
+      type: object
+      properties:
+        destination:
+          $ref: "#/components/schemas/Destination"
+        sections:
+          type: array
+          items:
+            type: string
+      required:
+        - destination
+        - sections
+    TrackRecord:
+      type: object
+      properties:
+        time:
+          type: string
+        additionalText:
+          type: string
+        name:
+          type: string
+        trainNumbers:
+          type: array
+          items:
+            type: string
+        days:
+          type: array
+        subtrains:
+          type: array
+          items:
+            $ref: "#/components/schemas/Subtrain"
+        waggons:
+          type: array
+          items:
+            $ref: "#/components/schemas/Waggon"
+        trainTpes:
+          type: string
+      required:
+        - time
+        - additionalText
+        - name
+        - trainNumbers
+        - days
+        - subtrains
+        - waggons
+        - traintypes
+    AdditionalId:
+      type: object
+      properties:
+        evaNr:
+          type: string
+        shortName:
+          type: string
+      required:
+        - evaNr
+        - shortName
+    SpecificWagenreihung:
+      type: object
+      properties:
+        name:
+          type: string
+        additionalId:
+          $ref: "#/components/schemas/AdditionalId"
+        trackRecords:
+          type: array
+          items:
+            $ref: "#/components/schemas/TrackRecord"
+      required:
+        - name
+        - additionalId
+        - trackRecords
+    WagenreihungStation:
+      type: object
+      properties:
+        trainNumber:
+          type: string
+        trainType: {}
+        time: {}
+        timeOffset: {}
+        weekday: {}
+        platform: {}
+        waggon: {}
+        trainLine: {}
+        stations:
+          type: array
+          items:
+            $ref: "#/components/schemas/SpecificWagenreihung"
+      required:
+        - trainNumber
+        - stations
+    # Echtzeit Wagenreihungstypes
+    Meta:
+      type: object
+      properties:
+        id:
+          type: string
+        owner:
+          type: string
+        format:
+          type: string
+          enum: ["JSON"]
+        version:
+          type: string
+        created:
+          type: string
+        sequence:
+          type: number
+      required:
+        - id
+        - owner
+        - format
+        - version
+        - created
+        - sequence
+    Data:
+      type: object
+      properties:
+        istformation:
+          $ref: "#/components/schemas/Formation"
+      required:
+        - istformation
+    Wagenreihung:
+      type: object
+      properties:
+        meta:
+          $ref: "#/components/schemas/Meta"
+        data:
+          $ref: "#/components/schemas/Data"
+      required:
+        - meta
+        - data
+    BRInfo:
+      type: object
+      properties:
+        name:
+          type: string
+        BR:
+          type: string
+        serie:
+          type: string
+        redesign:
+          type: boolean
+        noPdf:
+          type: boolean
+        pdf:
+          type: string
+        country:
+          type: string
+          enum:
+            - DE
+            - AT
+        showBRInfo:
+          type: boolean
+      required:
+        - name
+    AdditionalFahrzeugInfo:
+      type: object
+      properties:
+        klasse:
+          type: number
+          enum: [0, 1, 2, 3, 4]
+          description: "0: Unknown; 1: erste; 2: zweite; 3: 1&2; 4: Nicht für Passagiere"
+        speise:
+          type: boolean
+        rollstuhl:
+          type: boolean
+        fahrrad:
+          type: boolean
+        comfort:
+          type: boolean
+        schwebe:
+          type: boolean
+        ruhe:
+          type: boolean
+        info:
+          type: boolean
+        familie:
+          type: boolean
+        kleinkind:
+          type: boolean
+        wifi:
+          type: boolean
+        wifiOff:
+          type: boolean
+      required:
+        - klasse
+    Fahrzeugausstattung:
+      type: object
+      properties:
+        anzahl:
+          type: string
+        ausstattungsart:
+          type: string
+        bezeichnung:
+          type: string
+        status:
+          type: string
+      required:
+        - anzahl
+        - ausstattungsart
+        - bezeichnung
+        - status
+    Position:
+      type: object
+      properties:
+        endemeter:
+          type: string
+        endeprozent:
+          type: string
+        startmeter:
+          type: string
+        startprozent:
+          type: string
+      required:
+        - endemeter
+        - endeprozent
+        - startmeter
+        - startprozent
+    Fahrzeug:
+      type: object
+      properties:
+        additionalInfo:
+          $ref: "#/components/schemas/AdditionalFahrzeugInfo"
+        allFahrzeugausstattung:
+          type: array
+          items:
+            $ref: "#/components/schemas/Fahrzeugausstattung"
+        kategorie:
+          type: string
+        fahrzeugnummer:
+          type: string
+        orientierung:
+          type: string
+        positioningruppe:
+          type: string
+        fahrzeugsektor:
+          type: string
+        fahrzeugtyp:
+          type: string
+        wagenordnungsnummer:
+          type: string
+        positionamhalt:
+          $ref: "#/components/schemas/Position"
+        status:
+          type: string
+      required:
+        - additionalInfo
+        - allFahrzeugausstattung
+        - kategorie
+        - fahrzeugnummer
+        - orientierung
+        - positioningruppe
+        - fahrzeugsektor
+        - fahrzeugtyp
+        - wagenordnungsnummer
+        - positionamhalt
+        - status
+    Fahrzeuggruppe:
+      type: object
+      properties:
+        startPercentage:
+          type: number
+        endPercentage:
+          type: number
+        br:
+          $ref: "#/components/schemas/BRInfo"
+        allFahrzeug:
+          type: array
+          items:
+            $ref: "#/components/schemas/Fahrzeug"
+        fahrzeuggruppebezeichnung:
+          type: string
+        zielbetriebsstellename:
+          type: string
+        startbetriebsstellename:
+          type: string
+        verkehrlichezugnummer:
+          type: string
+      required:
+        - startPercentage
+        - endPercentage
+        - allFahrzeug
+        - fahrzeuggruppebezeichnung
+        - zielbetriebsstellename
+        - startbetriebsstellename
+        - verkehrlichezugnummer
+    FahrzeugType:
+      type: string
+      description: ICE, IC usw.
+    Sektor:
+      type: object
+      properties:
+        positionamgleis:
+          $ref: "#/components/schemas/Position"
+        sektorbezeichnung:
+          type: string
+      required:
+        - positionamgleis
+        - sektorbezeichnung
+    Halt:
+      type: object
+      properties:
+        abfahrtszeit:
+          type: string
+          format: date-time
+        ankunftszeit:
+          type: string
+          format: date-time
+        bahnhofsname:
+          type: string
+        evanummer:
+          type: string
+        gleisbezeichnung:
+          type: string
+        haltid:
+          type: string
+        rl100:
+          type: string
+        allSektor:
+          type: array
+          items:
+            $ref: "#/components/schemas/Sektor"
+      required:
+        - bahnhofsname
+        - evanummer
+        - allSektor
+        - haltid
+        - rl100
+    Formation:
+      type: object
+      properties:
+        fahrtrichtung:
+          type: string
+          enum:
+            - "VORWAERTS"
+            - "RUCKWAERTS"
+        isActuallyIC:
+          type: boolean
+        reportedZuggattung:
+          type: string
+        differentDestination:
+          type: boolean
+        differentZugnummer:
+          type: boolean
+        scale:
+          type: number
+        startPercentage:
+          type: number
+        endPercentage:
+          type: number
+        realFahrtrichtung:
+          type: boolean
+          description: "true = Vorwärts"
+        allFahrzeuggruppe:
+          type: array
+          items:
+            $ref: "#/components/schemas/Fahrzeuggruppe"
+        halt:
+          $ref: "#/components/schemas/Halt"
+        liniebezeichung:
+          type: string
+        zuggattung:
+          $ref: "#/components/schemas/FahrzeugType"
+        zugnummer:
+          type: string
+        serviceid:
+          type: string
+        planstarttag:
+          type: string
+        fahrtid:
+          type: string
+        istplaninformation:
+          type: boolean
+        br:
+          $ref: "#/components/schemas/BRInfo"
+      required:
+        - fahrtrichtung
+        - isActuallyIC
+        - differentDestination
+        - differentZugnummer
+        - scale
+        - startPercentage
+        - endPercentage
+        - realFahrtrichtung
+        - allFahrzeuggruppe
+        - halt
+        - liniebezeichung
+        - zuggattung
+        - zugnummer
+        - serviceid
+        - planstarttag
+        - fahrtid
+        - istplaninformation

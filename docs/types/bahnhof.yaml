@@ -1,0 +1,11 @@
+openapi: '3.0.2'
+components:
+  schemas:
+    LageplanResponse:
+      type: object
+      properties:
+        lageplan:
+          type: string
+          nullable: true
+      required:
+        - lageplan

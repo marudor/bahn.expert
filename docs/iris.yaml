@@ -1,0 +1,73 @@
+openapi: '3.0.2'
+info:
+  title: IRIS part
+  version: '1.0'
+servers:
+  - url: https://marudor/api/iris/v1
+tags:
+  - name: IRIS V1
+paths:
+  /wings/{id1}/{id2}:
+    get:
+      summary: Wings
+      description: Wing Info für zwei Abfahrten
+      tags:
+        - IRIS v1
+      parameters:
+        - name: id1
+          in: path
+          required: true
+          schema:
+            type: number
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: 'types/iris.yaml#/components/schemas/WingSuccessResponse'
+  /abfahrten/{evaId}:
+    get:
+      summary: Abfarten
+      description: Abfahrten für eine Station
+      tags:
+        - IRIS v1
+      parameters:
+        - name: evaId
+          in: path
+          required: true
+          schema:
+            type: number
+        - name: type
+          description: OpenAPI oder properitär
+          in: query
+          schema:
+            type: string
+            enum:
+              - open
+              - default
+        - name: lookahead
+          in: query
+          description: Wieviele Minuten sollen Abfahrten angezeigt werden? (Zukunft)
+          schema:
+            type: number
+            default: 120
+        - name: lookbehind
+          in: query
+          description: Wieviele Minuten sollen Abfahrten angezeigt werden? (Vergangenheit)
+          schema:
+            type: number
+            default: 0
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: 'types/iris.yaml#/components/schemas/AbfahrtenResponse'

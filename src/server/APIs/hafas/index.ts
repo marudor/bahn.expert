@@ -88,7 +88,7 @@ const getCurrent = () =>
       );
     })
     .get('/DepStationBoard', async ctx => {
-      const { date, station } = ctx.query;
+      const { date, station, direction } = ctx.query;
 
       // if (ctx.hafasProfile === 'all') {
       //   const prod = global.PROD;
@@ -125,6 +125,7 @@ const getCurrent = () =>
         {
           type: 'DEP',
           station,
+          direction,
           date: Number.parseInt(date, 10) || undefined,
         },
         ctx.hafasProfile
@@ -169,10 +170,13 @@ const getCurrent = () =>
       );
     })
     .post('/route', async ctx => {
-      ctx.body = await routing({
-        ...ctx.request.body,
-        time: Number.parseInt(ctx.request.body.time, 10),
-      });
+      ctx.body = await routing(
+        {
+          ...ctx.request.body,
+          time: Number.parseInt(ctx.request.body.time, 10),
+        },
+        ctx.query.profile
+      );
     });
 
 router

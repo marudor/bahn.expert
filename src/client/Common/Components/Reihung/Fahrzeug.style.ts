@@ -28,6 +28,13 @@ export default makeStyles(theme => ({
     },
   },
 
+  uic: {
+    position: 'absolute',
+    top: '150%',
+    left: '50%',
+    transform: 'translateX(-50%)',
+  },
+
   nummer: {
     position: 'absolute',
     zIndex: 1,
@@ -38,6 +45,7 @@ export default makeStyles(theme => ({
 
   klasse: {
     bottom: 0,
+    right: 0,
     position: 'absolute',
   },
 

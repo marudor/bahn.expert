@@ -88,6 +88,8 @@ export default {
   '98': 'Sonstige Qualitätsmängel',
   '99': 'Verzögerungen im Betriebsablauf',
   '900': 'Anschlussbus wartet(?)',
+  // Generic Message - real message is freitext
+  '1000': 'Kundentext',
 };
 
 export const messageTypeLookup = {

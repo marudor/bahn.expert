@@ -9,7 +9,7 @@ const getCurrent = () =>
   new KoaRouter()
     .get('/abfahrten/:evaId', async ctx => {
       const { evaId }: { evaId: string } = ctx.params;
-      const { type } = ctx.query;
+      const { type, lookahead, lookbehind } = ctx.query;
 
       if (evaId.length < 6) {
         ctx.status = 400;
@@ -17,8 +17,6 @@ const getCurrent = () =>
           message: 'Please provide a evaID',
         };
       } else {
-        const { lookahead, lookbehind } = ctx.query;
-
         ctx.body = await getAbfahrten(
           evaId,
           true,

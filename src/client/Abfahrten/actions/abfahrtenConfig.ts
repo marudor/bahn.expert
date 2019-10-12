@@ -1,8 +1,8 @@
 import { AbfahrtenThunkResult } from 'AppState';
-import { CheckInType, MarudorConfig, StationSearchType } from 'Common/config';
+import { AllowedStationAPIs } from 'types/api/station';
+import { CheckInType, MarudorConfig } from 'Common/config';
 import { createAction } from 'deox';
 import { defaultConfig, setCookieOptions } from 'client/util';
-import abfahrtenActions from './abfahrten';
 import Cookies from 'universal-cookie';
 
 export const TIME_CONFIG_KEY = 'TIME_CONFIG';
@@ -17,7 +17,7 @@ const Actions = {
 
 export default Actions;
 
-export const setSearchType = (value: StationSearchType, cookies: Cookies) =>
+export const setSearchType = (value: AllowedStationAPIs, cookies: Cookies) =>
   setConfig('searchType', value, undefined, cookies);
 export const setTime = (value: boolean, cookies: Cookies) =>
   setConfig('time', value, undefined, cookies);
@@ -35,6 +35,8 @@ export const setLineAndNumber = (value: boolean, cookies: Cookies) =>
   setConfig('lineAndNumber', value, undefined, cookies);
 export const setAutoUpdate = (value: number, cookies: Cookies) =>
   setConfig('autoUpdate', value, undefined, cookies);
+export const setShowUIC = (value: boolean, cookies: Cookies) =>
+  setConfig('showUIC', value, undefined, cookies);
 
 export const openSettings = () => Actions.setMenu(true);
 export const closeSettings = () => Actions.setMenu(false);
@@ -45,21 +47,12 @@ export const setCheckIn = (value: CheckInType, cookies: Cookies) =>
 export const setFromCookies = (
   cookies: Cookies
 ): AbfahrtenThunkResult => dispatch => {
-  const defaultFilter = cookies.get('defaultFilter');
-
   const config: MarudorConfig = {
     ...defaultConfig,
     ...cookies.get('config'),
   };
 
   dispatch(Actions.setConfig(config));
-
-  dispatch(
-    abfahrtenActions.setFilterList(
-      Array.isArray(defaultFilter) ? defaultFilter : []
-    )
-  );
-  dispatch(abfahrtenActions.setDetail(cookies.get('selectedDetail')));
 };
 
 export const setConfig = <K extends keyof MarudorConfig>(
@@ -79,13 +72,4 @@ export const setConfig = <K extends keyof MarudorConfig>(
   }
 
   dispatch(Actions.setConfig(newConfig));
-};
-
-export const setDefaultFilter = (cookies: Cookies): AbfahrtenThunkResult => (
-  _,
-  getState
-) => {
-  const filterList = getState().abfahrten.filterList;
-
-  cookies.set('defaultFilter', filterList, setCookieOptions);
 };

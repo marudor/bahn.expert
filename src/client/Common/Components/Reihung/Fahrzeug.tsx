@@ -1,4 +1,4 @@
-import { Fahrzeug, FahrzeugType } from 'types/reihung';
+import { Fahrzeug, FahrzeugType } from 'types/api/reihung';
 import Accessibility from '@material-ui/icons/Accessibility';
 import ActionAccessible from '@material-ui/icons/Accessible';
 import ActionMotorcycle from '@material-ui/icons/Motorcycle';
@@ -11,6 +11,8 @@ import NotificationsOff from '@material-ui/icons/NotificationsOff';
 import React from 'react';
 import useStyles from './Fahrzeug.style';
 import WagenLink from './WagenLink';
+import Wifi from '@material-ui/icons/Wifi';
+import WifiOff from '@material-ui/icons/WifiOff';
 
 export const icons = {
   rollstuhl: ActionAccessible,
@@ -21,6 +23,8 @@ export const icons = {
   familie: ChildCare,
   schwebe: Accessibility,
   info: Info,
+  wifi: Wifi,
+  wifiOff: WifiOff,
 };
 
 export type InheritedProps = {
@@ -41,6 +45,7 @@ export type OwnProps = InheritedProps & {
   >;
   destination?: string;
   wrongWing?: boolean;
+  showUIC: boolean;
 };
 
 type Props = OwnProps;
@@ -51,6 +56,7 @@ const FahrzeugComp = ({
   scale,
   correctLeft,
   type,
+  showUIC,
 }: Props) => {
   const classes = useStyles();
 
@@ -102,6 +108,10 @@ const FahrzeugComp = ({
         {fahrzeug.additionalInfo.info && (
           <icons.info className={classes.icon} />
         )}
+        {fahrzeug.additionalInfo.wifi && <Wifi className={classes.icon} />}
+        {fahrzeug.additionalInfo.wifiOff && (
+          <WifiOff className={classes.icon} />
+        )}
       </span>
       {fahrzeug.additionalInfo.comfort && <span className={classes.comfort} />}
       <WagenLink
@@ -109,6 +119,9 @@ const FahrzeugComp = ({
         fahrzeugnummer={fahrzeug.fahrzeugnummer}
         fahrzeugtyp={fahrzeug.fahrzeugtyp}
       />
+      {showUIC && (
+        <span className={classes.uic}>{fahrzeug.fahrzeugnummer}</span>
+      )}
     </div>
   );
 };

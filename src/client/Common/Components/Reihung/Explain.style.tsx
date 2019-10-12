@@ -12,12 +12,21 @@ export default makeStyles(theme => ({
     width: '95%',
     margin: 0,
   },
-  line: {
+  icon: {
     display: 'flex',
     alignItems: 'center',
+    minWidth: '16em',
     '&>svg': {
       marginRight: '1em',
     },
+    '&>span': {
+      fontSize: '1em',
+      marginRight: '1em',
+    },
+  },
+  wrap: {
+    display: 'flex',
+    flexWrap: 'wrap',
   },
   comfort: {
     width: '1em',
