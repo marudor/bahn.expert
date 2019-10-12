@@ -34,7 +34,7 @@ jobs:
       run: |
           COMMIT_INFO_BRANCH=${GITHUB_REF}
           node testDist/server/server/index.js & npx wait-on http://localhost:9042
-          yarn e2e:ci --key ${{ secrets.CYPRESS_DASHBOARD_KEY }}||(pkill -9 node && exit 1)
+          yarn e2e:ci||(pkill -9 node && exit 1)
           pkill -9 node
       env:
         COMMIT_INFO_BRANCH: ${GITHUB_REF}
