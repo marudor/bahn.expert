@@ -1,0 +1,43 @@
+name: e2e tests
+
+on: [push]
+
+env:
+  CI: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: install
+      run: |
+        yarn --frozen-lockfile
+    - name: build client
+      run: |
+        yarn build:client --test-only
+      env:
+        NODE_ENV: production
+    - name: build server
+      run: |
+        yarn build:server --test-only
+      env:
+        NODE_ENV: production
+    - name: Run Cypress
+      run: |
+          COMMIT_INFO_BRANCH=${GITHUB_REF}
+          node testDist/server/server/index.js & npx wait-on http://localhost:9042
+          yarn e2e:ci --key ${{ secrets.CYPRESS_DASHBOARD_KEY }}||(pkill -9 node && exit 1)
+          pkill -9 node
+      env:
+        COMMIT_INFO_BRANCH: ${GITHUB_REF}
+        BASE_URL: http://localhost:9042
+        NODE_ENV: production
+        TEST_RUN: 1

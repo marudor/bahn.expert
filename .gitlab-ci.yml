@@ -2,7 +2,7 @@ image: node:12
 
 variables:
   DOCKER_DRIVER: overlay2
-  CYPRESS_CACHE_FOLDER: '$CI_PROJECT_DIR/cypressCache'
+  CYPRESS_CACHE_FOLDER: '$CI_PROJECT_DIR/.cypressCache'
 
 stages:
   - install
@@ -19,8 +19,9 @@ install:
   cache:
     key: '$CI_COMMIT_REF_SLUG'
     paths:
-      - cypressCache/
+      - .cypressCache/
       - node_modules/
+  only: [master]
 
 depCheck:
   stage: test
@@ -30,6 +31,7 @@ depCheck:
     key: '$CI_COMMIT_REF_SLUG'
     paths:
       - node_modules/
+  only: [master]
 
 jest:
   stage: test
@@ -44,6 +46,7 @@ jest:
       junit: reports/junitresults.xml
     paths:
       - reports
+  only: [master]
 
 lint:
   stage: test
@@ -53,6 +56,7 @@ lint:
     key: '$CI_COMMIT_REF_SLUG'
     paths:
       - node_modules/
+  only: [master]
 
 tsc:
   stage: test
@@ -62,6 +66,7 @@ tsc:
     key: '$CI_COMMIT_REF_SLUG'
     paths:
       - node_modules/
+  only: [master]
 
 build:app:
   stage: build
@@ -78,6 +83,7 @@ build:app:
       - dist/client
       - testDist/client
   dependencies: []
+  only: [master]
 
 build:server:
   stage: build
@@ -94,6 +100,7 @@ build:server:
       - dist/server
       - testDist/server
   dependencies: []
+  only: [master]
 
 codecov:
   stage: build
@@ -105,6 +112,7 @@ codecov:
       - node_modules/
   dependencies:
     - jest
+  only: [master]
 
 .cypress_template: &cypress
   image: cypress/browsers:node12.6.0-chrome75
@@ -114,18 +122,20 @@ codecov:
     NODE_ENV: production
     TEST_RUN: 1
   script:
+    - yarn cypress cache path
     - node testDist/server/server/index.js & npx wait-on http://localhost:9042
-    - yarn e2e:ci||(pkill -9 node && exit 1)
+    - yarn e2e:ci --parallel||(pkill -9 node && exit 1)
     - pkill -9 node
   cache:
     policy: pull
     key: '$CI_COMMIT_REF_SLUG'
     paths:
-      - cypressCache
+      - .cypressCache/
       - node_modules/
   dependencies:
     - build:app
     - build:server
+  only: [master]
 
 cypress1:
   <<: *cypress
