@@ -1,0 +1,36 @@
+name: node tests
+
+on: [push]
+
+env:
+  CI: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: install
+      run: |
+        yarn --frozen-lockfile
+      env:
+        CYPRESS_INSTALL_BINARY: 0
+    - name: depCheck
+      run: |
+        yarn depCheck
+    - name: jest
+      run: |
+        yarn test:jest
+    - name: lint
+      run: |
+        yarn lint
+    - name: types
+      run: |
+        yarn tsc
