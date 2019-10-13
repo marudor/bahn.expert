@@ -1,7 +1,7 @@
 import { createContainer } from 'unstated-next';
 import { setCookieOptions } from 'client/util';
 import { ThemeType } from 'client/Themes/type';
-import { useRouter } from 'useRouter';
+import { useLocation } from 'react-router';
 import Cookies from 'universal-cookie';
 import createTheme from 'client/Themes';
 import qs from 'qs';
@@ -39,7 +39,7 @@ type Props = {
   children: ReactNode;
 };
 export const ThemeProvider = ({ children }: Props) => {
-  const { location } = useRouter();
+  const location = useLocation();
   const cookies = useCookies();
   let initialTheme;
   const query = qs.parse(location.search, { ignoreQueryPrefix: true });
