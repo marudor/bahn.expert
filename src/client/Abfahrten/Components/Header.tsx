@@ -1,7 +1,7 @@
 import { shallowEqual } from 'react-redux';
 import { Station } from 'types/station';
 import { useAbfahrtenSelector } from 'useSelector';
-import { useRouter } from 'useRouter';
+import { useHistory } from 'react-router';
 import ActionHome from '@material-ui/icons/Home';
 import AppBar from '@material-ui/core/AppBar';
 import ExtraMenu from './ExtraMenu';
@@ -22,7 +22,7 @@ const Header = () => {
     }),
     shallowEqual
   );
-  const { history } = useRouter();
+  const history = useHistory();
   const [currentEnteredStation, setCurrentEnteredStation] = useState(
     currentStation
   );

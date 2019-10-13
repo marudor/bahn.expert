@@ -1,9 +1,8 @@
 import { AppStore } from 'AppState';
-import { match } from 'react-router';
+import { match, useLocation, useRouteMatch } from 'react-router';
 import { Redirect } from 'react-router';
 import { useAbfahrtenSelector } from 'useSelector';
 import { useDispatch } from 'react-redux';
-import { useRouter } from 'useRouter';
 import Abfahrt from './Abfahrt';
 import Actions, {
   getAbfahrtenByString,
@@ -26,7 +25,9 @@ const AbfahrtenList = () => {
   const { filteredAbfahrten, unfilteredAbfahrten } = useAbfahrten();
   const [loading, setLoading] = useState(!unfilteredAbfahrten);
   const error = useAbfahrtenSelector(state => state.abfahrten.error);
-  const { match, location } = useRouter<{ station: string }>();
+  const match = useRouteMatch<{ station: string }>();
+  const paramStation = match ? match.params.station : undefined;
+  const location = useLocation();
   const currentStation = useAbfahrtenSelector(
     state => state.abfahrten.currentStation
   );
@@ -59,21 +60,21 @@ const AbfahrtenList = () => {
     return cleanup;
   }, [autoUpdate, clearReihungen, dispatch]);
 
-  const [oldMatch, setOldMatch] = useState(match.params.station);
+  const [oldMatch, setOldMatch] = useState(paramStation);
 
   useEffect(() => {
-    if (!currentStation || oldMatch !== match.params.station) {
-      setOldMatch(match.params.station);
+    if (!currentStation || oldMatch !== paramStation) {
+      setOldMatch(paramStation);
       setLoading(true);
       dispatch(
         Actions.setCurrentStation({
-          title: decodeURIComponent(match.params.station || ''),
+          title: decodeURIComponent(paramStation || ''),
           id: '0',
         })
       );
       dispatch(
         getAbfahrtenByString(
-          match.params.station,
+          paramStation,
           location.state && location.state.searchType
         )
       ).finally(() => {
@@ -81,13 +82,7 @@ const AbfahrtenList = () => {
         setScrolled(false);
       });
     }
-  }, [
-    currentStation,
-    dispatch,
-    location.state,
-    match.params.station,
-    oldMatch,
-  ]);
+  }, [currentStation, dispatch, location.state, oldMatch, paramStation]);
 
   useEffect(() => {
     if (scrolled) {
