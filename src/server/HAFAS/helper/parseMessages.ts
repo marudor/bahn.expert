@@ -15,7 +15,7 @@ export default (
 
         return rem;
       })
-      .filter(msg => msg.txtN !== 'Gleiswechsel'),
+      .filter(msg => msg && msg.txtN !== 'Gleiswechsel'),
     'txtN'
   );
 
