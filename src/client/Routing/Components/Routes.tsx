@@ -1,7 +1,7 @@
 import { AppStore } from 'AppState';
 import { getRoutes } from 'Routing/actions/routing';
 import { useDispatch } from 'react-redux';
-import { useRouter } from 'useRouter';
+import { useRouteMatch } from 'react-router';
 import { useRoutingSelector } from 'useSelector';
 import React, { useEffect } from 'react';
 import RouteList from './RouteList';
@@ -12,18 +12,20 @@ const Routing = () => {
   const dispatch = useDispatch();
   const date = useRoutingSelector(state => state.search.date);
   const dateTouched = useRoutingSelector(state => state.search.dateTouched);
-  const { match } = useRouter<{
+  const match = useRouteMatch<{
     start?: string;
     destination?: string;
   }>();
 
   useEffect(() => {
-    const { start, destination } = match.params;
+    if (match) {
+      const { start, destination } = match.params;
 
-    if (start && destination && date && dateTouched) {
-      dispatch(getRoutes(start, destination, date));
+      if (start && destination && date && dateTouched) {
+        dispatch(getRoutes(start, destination, date));
+      }
     }
-  }, [date, dateTouched, dispatch, match.params]);
+  }, [date, dateTouched, dispatch, match]);
 
   return (
     <div>

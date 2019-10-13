@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 import { Route$JourneySegment } from 'types/routing';
-import { useRouter } from 'useRouter';
+import { useLocation } from 'react-router';
 import DetailsContext from './DetailsContext';
 import getDetails from 'Common/service/details';
 import Header from './Header';
@@ -15,7 +15,7 @@ interface Props {
 }
 
 const Details = ({ train, initialDeparture, currentStopId }: Props) => {
-  const { location } = useRouter();
+  const location = useLocation();
   const query = qs.parse(location.search, { ignoreQueryPrefix: true });
   const [details, setDetails] = useState<Route$JourneySegment>();
   const [error, setError] = useState<AxiosError>();

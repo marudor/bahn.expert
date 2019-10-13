@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { Redirect, StaticRouterContext } from 'react-router';
 import { useAbfahrtenSelector } from 'useSelector';
 import { useDispatch } from 'react-redux';
-import { useRouter } from 'useRouter';
 import Actions, { AbfahrtenError } from 'Abfahrten/actions/abfahrten';
 import favContainer from 'Abfahrten/container/FavContainer';
 import FavEntry, { FavEntryDisplay } from './FavEntry';
@@ -35,7 +34,11 @@ function getErrorText(
   }
 }
 
-const FavList = () => {
+type Props = {
+  staticContext?: StaticRouterContext;
+};
+
+const FavList = ({ staticContext }: Props) => {
   const { favs } = favContainer.useContainer();
   const sortedFavs = useMemo(() => {
     const values = Object.values(favs);
@@ -45,7 +48,6 @@ const FavList = () => {
       .map(fav => fav && <FavEntry key={fav.id} fav={fav} />);
   }, [favs]);
   const error = useAbfahrtenSelector(state => state.abfahrten.error);
-  const { staticContext } = useRouter();
   const dispatch = useDispatch();
   const classes = useStyles();
 
