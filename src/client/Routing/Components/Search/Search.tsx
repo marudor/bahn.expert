@@ -12,7 +12,7 @@ import { DateTimePicker } from '@material-ui/pickers';
 import { getRoutes } from 'Routing/actions/routing';
 import { shallowEqual, useDispatch } from 'react-redux';
 import { StationSearchType } from 'Common/config';
-import { useRouter } from 'useRouter';
+import { useHistory, useRouteMatch } from 'react-router';
 import { useRoutingSelector } from 'useSelector';
 import Button from '@material-ui/core/Button';
 import deLocale from 'date-fns/locale/de';
@@ -40,10 +40,11 @@ const Search = () => {
     shallowEqual
   );
 
-  const { match, history } = useRouter<{
+  const match = useRouteMatch<{
     start?: string;
     destination?: string;
   }>();
+  const history = useHistory();
 
   const formatDate = useCallback((date: null | Date) => {
     if (!date) {
@@ -75,18 +76,20 @@ const Search = () => {
   }, []);
 
   useEffect(() => {
-    const { start, destination } = match.params;
+    if (match) {
+      const { start, destination } = match.params;
 
-    if (start) {
-      dispatch(getStationById(start, searchActions.setStart));
+      if (start) {
+        dispatch(getStationById(start, searchActions.setStart));
+      }
+      if (destination) {
+        dispatch(getStationById(destination, searchActions.setDestination));
+      }
+      if (!routes.length && !dateTouched) {
+        dispatch(searchActions.setDate(new Date(), false));
+      }
     }
-    if (destination) {
-      dispatch(getStationById(destination, searchActions.setDestination));
-    }
-    if (!routes.length && !dateTouched) {
-      dispatch(searchActions.setDate(new Date(), false));
-    }
-  }, [dateTouched, dispatch, match.params, routes.length]);
+  }, [dateTouched, dispatch, match, routes.length]);
 
   const searchRoute = useCallback(
     (e: SyntheticEvent) => {

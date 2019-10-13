@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import { DatePicker } from '@material-ui/pickers';
 import { subHours } from 'date-fns';
-import { useRouter } from 'useRouter';
+import { useHistory } from 'react-router';
 import NavigationContext from './Navigation/NavigationContext';
 import React, {
   ReactElement,
@@ -23,7 +23,7 @@ interface Props {
   children: (toggle: (e: SyntheticEvent) => void) => ReactElement;
 }
 const Zugsuche = ({ children }: Props) => {
-  const { history } = useRouter();
+  const history = useHistory();
   const { toggleDrawer } = useContext(NavigationContext);
   const [open, setOpen] = useState(false);
   const [zug, setZug] = useState('');

@@ -1,6 +1,6 @@
 import { createContainer } from 'unstated-next';
 import { setCookieOptions } from 'client/util';
-import { useRouter } from 'useRouter';
+import { useLocation } from 'react-router';
 import qs from 'qs';
 import React, { ReactNode, useCallback, useState } from 'react';
 import useCookies from 'Common/useCookies';
@@ -60,7 +60,7 @@ type Props = {
 };
 export const AbfahrtenConfigProvider = ({ children }: Props) => {
   const cookies = useCookies();
-  const { location } = useRouter();
+  const location = useLocation();
   const query = qs.parse(location.search, { ignoreQueryPrefix: true });
 
   const savedFilter = cookies.get('defaultFilter');
