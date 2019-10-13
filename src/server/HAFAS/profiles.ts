@@ -201,3 +201,21 @@ export const insa = {
     },
   },
 };
+
+export const anachb = {
+  url: 'https://anachb.vor.at/bin/mgate.exe',
+  config: {
+    client: {
+      id: 'VAO',
+      type: 'WEB',
+      name: 'webapp',
+    },
+    ver: '1.20',
+    lang: 'deu',
+    ext: 'VAO.10',
+    auth: {
+      type: 'AID',
+      aid: 'wf7mcf9bv3nv8g5f',
+    },
+  },
+};
