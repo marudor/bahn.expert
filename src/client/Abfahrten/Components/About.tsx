@@ -261,9 +261,10 @@ const About = () => {
         </a>
       </span>
       <div className={classes.donation}>
-        Falls euch der Service gefällt könnt ihr mir mit folgendem Button per
-        PayPal Geld spenden. Falls ihr anderweitig spenden wollt schreibt mir ne
-        mail an <a href="mailto:spende@marudor.de">spende@marudor.de</a>
+        Falls euch der Service gefällt, könnt ihr mir mit folgendem Button per
+        PayPal Geld spenden. Falls ihr anderweitig spenden wollt, schreibt mir
+        &apos;ne Mail an
+        <a href="mailto:spende@marudor.de">spende@marudor.de</a>
       </div>
       <div className={classes.buttons}>
         <a
