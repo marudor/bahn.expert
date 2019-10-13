@@ -64,7 +64,7 @@ export default async (
       date: format(date, 'dd.MM.yyyy'),
       trainname: trainName,
       // Nur Züge die in DE halten
-      stationFilter: 80,
+      stationFilter: profile.number,
       // evtl benutzen
       // 1: ICE
       // 2: IC/EC
