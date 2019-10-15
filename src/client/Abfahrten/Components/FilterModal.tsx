@@ -7,11 +7,11 @@ import {
   Switch,
 } from '@material-ui/core';
 import { closeFilter } from 'Abfahrten/actions/abfahrten';
-import { getAllTrainTypes } from 'Abfahrten/selector/abfahrten';
-import { shallowEqual, useDispatch } from 'react-redux';
 import { useAbfahrtenSelector } from 'useSelector';
+import { useDispatch } from 'react-redux';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import React, { useCallback } from 'react';
+import useAllTrainTypes from 'Abfahrten/hooks/useAllTrainTypes';
 import useStyles from './FilterModal.style';
 
 const FilterModal = () => {
@@ -21,13 +21,8 @@ const FilterModal = () => {
     toggleProduct,
     saveProductFilter,
   } = AbfahrtenConfigContainer.useContainer();
-  const { open, types } = useAbfahrtenSelector(
-    state => ({
-      open: state.abfahrten.filterMenu,
-      types: getAllTrainTypes(state),
-    }),
-    shallowEqual
-  );
+  const open = useAbfahrtenSelector(state => state.abfahrten.filterMenu);
+  const types = useAllTrainTypes();
   const classes = useStyles();
   const toggleFilter = useCallback(
     (product: string) => () => {
