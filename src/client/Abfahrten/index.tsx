@@ -1,18 +1,16 @@
 import { AbfahrtenConfigProvider } from 'Abfahrten/container/AbfahrtenConfigContainer';
 import { FavProvider } from './container/FavContainer';
 import { renderRoutes } from 'react-router-config';
-import { useAbfahrtenSelector } from 'useSelector';
 import AuslastungContainer from './container/AuslastungContainer';
 import Header from './Components/Header';
 import React from 'react';
 import routes from './routes';
 import SettingsModal from './Components/SettingsModal';
+import useQuery from 'Common/hooks/useQuery';
 import useStyles from './index.style';
 
 const BahnhofsAbfahrten = () => {
-  const noHeader = useAbfahrtenSelector(
-    state => state.abfahrtenConfig.config.noHeader
-  );
+  const noHeader = useQuery().noHeader;
   const classes = useStyles({ noHeader });
 
   return (

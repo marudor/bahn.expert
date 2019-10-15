@@ -3,22 +3,18 @@ import { Context } from 'koa';
 import { CookieContext } from 'Common/useCookies';
 import { Helmet } from 'react-helmet';
 import { MarudorConfigSanitize } from 'Common/config';
-import { matchRoutes } from 'react-router-config';
 import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server';
 import { ServerStyleSheets } from '@material-ui/styles';
-import { setConfig, setFromCookies } from 'Abfahrten/actions/abfahrtenConfig';
 import { setCookieOptions } from 'client/util';
 import { StaticRouter } from 'react-router-dom';
 import { StaticRouterContext } from 'react-router';
 import { ThemeProvider } from 'Common/container/ThemeContainer';
-import abfahrtenRoutes from 'Abfahrten/routes';
 import createStore from 'client/createStore';
 import ejs from 'ejs';
 import fs from 'fs';
 import path from 'path';
 import React from 'react';
-import routingRoutes from 'Routing/routes';
 import serialize from 'serialize-javascript';
 import ThemeWrap from 'client/ThemeWrap';
 
@@ -35,7 +31,7 @@ const footerEjs = fs
   .trim();
 const footerTemplate = ejs.compile(footerEjs);
 
-export default async (ctx: Context) => {
+export default (ctx: Context) => {
   const selectedDetail = ctx.query.selectedDetail;
 
   if (selectedDetail) {
@@ -47,59 +43,23 @@ export default async (ctx: Context) => {
   }
   const routeContext: StaticRouterContext = {};
 
-  const store = createStore(undefined, ctx.request.universalCookies);
+  const store = createStore();
 
-  await store.dispatch(setFromCookies(ctx.request.universalCookies));
+  global.configOverride = {};
 
   Object.keys(ctx.query).forEach((key: any) => {
     switch (key) {
-      // case 'theme': {
-      //   const queryTheme = ThemeType[ctx.query.theme] as undefined | ThemeType;
-
-      //   if (queryTheme) {
-      //     global.CONFIG.theme = queryTheme;
-      //   }
-
-      //   break;
-      // }
-      // case 'onlyDepartures':
-      //   store.dispatch(abfahrtenActions.setFilter({ onlyDepartures: true }));
-      //   break;
       default:
         if (configSanitize.hasOwnProperty(key)) {
           const value = configSanitize[key as keyof MarudorConfigSanitize](
             ctx.query[key]
           );
 
-          store.dispatch(
-            setConfig(key, value, true, ctx.request.universalCookies)
-          );
+          global.configOverride[key] = value;
         }
         break;
     }
   });
-
-  const routes = ctx.path.startsWith('/routing')
-    ? routingRoutes
-    : ctx.path.startsWith('/details')
-    ? []
-    : abfahrtenRoutes;
-
-  await Promise.all(
-    matchRoutes(routes, ctx.path).map(({ route, match }) => {
-      let component: any = route.component;
-
-      while (component && (component.Naked || component.WrappedComponent)) {
-        component = component.Naked || component.WrappedComponent;
-      }
-
-      if (component && component.loadData) {
-        return component.loadData(store, match);
-      }
-
-      return Promise.resolve();
-    })
-  );
 
   const App = (
     <Provider store={store}>
@@ -129,6 +89,7 @@ export default async (ctx: Context) => {
       header: Helmet.renderStatic(),
       cssBundles: ctx.stats.main.css,
       clientState: serialize(state),
+      configOverride: serialize(global.configOverride),
       imprint: serialize(global.IMPRINT),
       jssCss: sheets.toString(),
       baseUrl: global.baseUrl,

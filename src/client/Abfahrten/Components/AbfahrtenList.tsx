@@ -1,9 +1,9 @@
-import { AppStore } from 'AppState';
-import { match, useLocation, useRouteMatch } from 'react-router';
 import { Redirect } from 'react-router';
 import { useAbfahrtenSelector } from 'useSelector';
 import { useDispatch } from 'react-redux';
+import { useLocation, useRouteMatch } from 'react-router';
 import Abfahrt from './Abfahrt';
+import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import Actions, {
   getAbfahrtenByString,
   refreshCurrentAbfahrten,
@@ -32,9 +32,7 @@ const AbfahrtenList = () => {
     state => state.abfahrten.currentStation
   );
   const dispatch = useDispatch<any>();
-  const autoUpdate = useAbfahrtenSelector(
-    state => state.abfahrtenConfig.config.autoUpdate
-  );
+  const config = AbfahrtenConfigContainer.useContainer().config;
 
   useEffect(() => {
     if (unfilteredAbfahrten) {
@@ -48,17 +46,17 @@ const AbfahrtenList = () => {
       clearInterval(intervalId);
     };
 
-    if (autoUpdate) {
+    if (config.autoUpdate) {
       intervalId = setInterval(() => {
-        dispatch(refreshCurrentAbfahrten());
+        dispatch(refreshCurrentAbfahrten(config));
         clearReihungen();
-      }, autoUpdate * 1000);
+      }, config.autoUpdate * 1000);
     } else {
       cleanup();
     }
 
     return cleanup;
-  }, [autoUpdate, clearReihungen, dispatch]);
+  }, [clearReihungen, config, dispatch]);
 
   const [oldMatch, setOldMatch] = useState(paramStation);
 
@@ -74,6 +72,7 @@ const AbfahrtenList = () => {
       );
       dispatch(
         getAbfahrtenByString(
+          config,
           paramStation,
           location.state && location.state.searchType
         )
@@ -82,7 +81,14 @@ const AbfahrtenList = () => {
         setScrolled(false);
       });
     }
-  }, [currentStation, dispatch, location.state, oldMatch, paramStation]);
+  }, [
+    config,
+    currentStation,
+    dispatch,
+    location.state,
+    oldMatch,
+    paramStation,
+  ]);
 
   useEffect(() => {
     if (scrolled) {
@@ -155,20 +161,5 @@ const AbfahrtenListWrap = () => (
     <AbfahrtenList />
   </SelectedDetailProvider>
 );
-
-// @ts-ignore
-AbfahrtenListWrap.loadData = (
-  store: AppStore,
-  match: match<{ station: string }>
-) => {
-  store.dispatch(
-    Actions.setCurrentStation({
-      title: decodeURIComponent(match.params.station || ''),
-      id: '0',
-    })
-  );
-
-  return store.dispatch(getAbfahrtenByString(match.params.station));
-};
 
 export default AbfahrtenListWrap;

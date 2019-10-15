@@ -1,7 +1,7 @@
-import { shallowEqual } from 'react-redux';
 import { Station } from 'types/station';
 import { useAbfahrtenSelector } from 'useSelector';
 import { useHistory } from 'react-router';
+import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import ActionHome from '@material-ui/icons/Home';
 import AppBar from '@material-ui/core/AppBar';
 import ExtraMenu from './ExtraMenu';
@@ -14,14 +14,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 
 const Header = () => {
   const { toggleDrawer } = useContext(NavigationContext);
-  const { currentStation, searchType, baseUrl } = useAbfahrtenSelector(
-    state => ({
-      currentStation: state.abfahrten.currentStation,
-      searchType: state.abfahrtenConfig.config.searchType,
-      baseUrl: global.baseUrl,
-    }),
-    shallowEqual
+  const currentStation = useAbfahrtenSelector(
+    state => state.abfahrten.currentStation
   );
+  const searchType = AbfahrtenConfigContainer.useContainer().config.searchType;
   const history = useHistory();
   const [currentEnteredStation, setCurrentEnteredStation] = useState(
     currentStation
@@ -43,7 +39,7 @@ const Header = () => {
 
   return (
     <>
-      <MetaTags currentStation={currentStation} baseUrl={baseUrl} />
+      <MetaTags currentStation={currentStation} baseUrl={global.baseUrl} />
       <AppBar data-testid="abfahrtenHeader" position="fixed">
         <Toolbar disableGutters>
           <IconButton

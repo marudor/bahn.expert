@@ -1,3 +1,4 @@
+import { MarudorConfig } from 'Common/config';
 import nock from 'nock';
 
 declare global {
@@ -18,7 +19,7 @@ declare global {
       __DATA__: Object;
       testUrl: string;
       baseUrl: string;
-
+      configOverride: any;
       // test only
       nock: nock.Scope;
     }

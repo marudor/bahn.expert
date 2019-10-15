@@ -3,6 +3,7 @@ import { AbfahrtenThunkResult } from 'AppState';
 import { AllowedStationAPIs } from 'types/api/station';
 import { createAction } from 'deox';
 import { getStationsFromAPI } from 'Common/service/stationSearch';
+import { MarudorConfig } from 'Common/config';
 import { Station } from 'types/station';
 import axios, { AxiosError } from 'axios';
 
@@ -51,9 +52,6 @@ const Actions = {
   gotLageplan: createAction('GOT_LAGEPLAN', resolve => (s?: string) =>
     resolve(s)
   ),
-  setFilterMenu: createAction('SET_FILTER_MENU', resolve => (open: boolean) =>
-    resolve(open)
-  ),
 };
 
 export default Actions;
@@ -98,11 +96,11 @@ export const getLageplan = (
 };
 
 export const getAbfahrtenByString = (
+  config: MarudorConfig,
   stationString?: string,
   searchType?: AllowedStationAPIs
-): AbfahrtenThunkResult => async (dispatch, getState) => {
+): AbfahrtenThunkResult => async dispatch => {
   try {
-    const config = getState().abfahrtenConfig.config;
     const stations = await getStationsFromAPI(
       stationString,
       searchType || config.searchType
@@ -139,10 +137,9 @@ export const getAbfahrtenByString = (
   }
 };
 
-export const refreshCurrentAbfahrten = (): AbfahrtenThunkResult => async (
-  dispatch,
-  getState
-) => {
+export const refreshCurrentAbfahrten = (
+  config: MarudorConfig
+): AbfahrtenThunkResult => async (dispatch, getState) => {
   const state = getState();
 
   if (!state.abfahrten.currentStation) {
@@ -151,8 +148,8 @@ export const refreshCurrentAbfahrten = (): AbfahrtenThunkResult => async (
 
   const { departures, lookbehind, ...rest } = await getAbfahrtenFromAPI(
     state.abfahrten.currentStation,
-    state.abfahrtenConfig.config.lookahead,
-    state.abfahrtenConfig.config.lookbehind
+    config.lookahead,
+    config.lookbehind
   );
 
   dispatch(
@@ -166,6 +163,3 @@ export const refreshCurrentAbfahrten = (): AbfahrtenThunkResult => async (
     })
   );
 };
-
-export const openFilter = () => Actions.setFilterMenu(true);
-export const closeFilter = () => Actions.setFilterMenu(false);

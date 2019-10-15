@@ -17,7 +17,7 @@ global.smallScreen = window.matchMedia('(max-width: 480px)').matches;
 
 const container = document.getElementById('app');
 const cookies = new Cookies();
-const store = createStore(undefined, cookies);
+const store = createStore();
 
 const render = (App: React.ComponentType) => (
   <Provider store={store}>

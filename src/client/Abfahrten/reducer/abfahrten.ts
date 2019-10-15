@@ -12,12 +12,10 @@ export type State = {
   currentStation?: Station;
   error?: AbfahrtenError;
   lageplan?: null | string;
-  filterMenu: boolean;
 };
 
 const defaultState: State = {
   lageplan: undefined,
-  filterMenu: false,
 };
 
 export default createReducer(defaultState, handle => [
@@ -46,9 +44,5 @@ export default createReducer(defaultState, handle => [
     departures: undefined,
     wings: undefined,
     lageplan: undefined,
-  })),
-  handle(Actions.setFilterMenu, (state, { payload }) => ({
-    ...state,
-    filterMenu: payload,
   })),
 ]);

@@ -1,9 +1,9 @@
 import { __RouterContext } from 'react-router';
-import { getLageplan, openFilter } from 'Abfahrten/actions/abfahrten';
+import { getLageplan } from 'Abfahrten/actions/abfahrten';
 import { IconButton } from '@material-ui/core';
-import { openSettings } from 'Abfahrten/actions/abfahrtenConfig';
 import { shallowEqual, useDispatch } from 'react-redux';
 import { useAbfahrtenSelector } from 'useSelector';
+import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import ActionMenu from '@material-ui/icons/Menu';
 import FavContainer, {
   useFav,
@@ -21,6 +21,10 @@ import ToggleStar from '@material-ui/icons/Star';
 import ToggleStarBorder from '@material-ui/icons/StarBorder';
 
 const ExtraMenu = () => {
+  const {
+    setConfigOpen,
+    setFilterOpen,
+  } = AbfahrtenConfigContainer.useContainer();
   const { currentStation, lageplan } = useAbfahrtenSelector(
     state => ({
       currentStation: state.abfahrten.currentStation,
@@ -65,13 +69,13 @@ const ExtraMenu = () => {
     }
   }, [currentStation, dispatch, lageplan]);
   const openFilterCb = useCallback(() => {
-    dispatch(openFilter());
+    setFilterOpen(true);
     setAnchor(undefined);
-  }, [dispatch]);
+  }, [setFilterOpen]);
   const openSettingsCb = useCallback(() => {
-    dispatch(openSettings());
+    setConfigOpen(true);
     setAnchor(undefined);
-  }, [dispatch]);
+  }, [setConfigOpen]);
 
   return (
     <>

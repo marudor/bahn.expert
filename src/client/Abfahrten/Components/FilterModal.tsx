@@ -6,22 +6,19 @@ import {
   FormControlLabel,
   Switch,
 } from '@material-ui/core';
-import { closeFilter } from 'Abfahrten/actions/abfahrten';
-import { useAbfahrtenSelector } from 'useSelector';
-import { useDispatch } from 'react-redux';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import React, { useCallback } from 'react';
 import useAllTrainTypes from 'Abfahrten/hooks/useAllTrainTypes';
 import useStyles from './FilterModal.style';
 
 const FilterModal = () => {
-  const dispatch = useDispatch();
   const {
     productFilter,
     toggleProduct,
     saveProductFilter,
+    filterOpen,
+    setFilterOpen,
   } = AbfahrtenConfigContainer.useContainer();
-  const open = useAbfahrtenSelector(state => state.abfahrten.filterMenu);
   const types = useAllTrainTypes();
   const classes = useStyles();
   const toggleFilter = useCallback(
@@ -32,16 +29,16 @@ const FilterModal = () => {
   );
 
   const closeFilterM = useCallback(() => {
-    dispatch(closeFilter());
-  }, [dispatch]);
+    setFilterOpen(false);
+  }, [setFilterOpen]);
 
   const saveAsDefault = useCallback(() => {
-    dispatch(closeFilter());
+    setFilterOpen(false);
     saveProductFilter();
-  }, [dispatch, saveProductFilter]);
+  }, [saveProductFilter, setFilterOpen]);
 
   return (
-    <Dialog maxWidth="md" fullWidth open={open} onClose={closeFilterM}>
+    <Dialog maxWidth="md" fullWidth open={filterOpen} onClose={closeFilterM}>
       <DialogContent>
         <h4>Train Types</h4>
         {types.map(t => (

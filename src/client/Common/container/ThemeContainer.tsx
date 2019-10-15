@@ -1,12 +1,11 @@
 import { createContainer } from 'unstated-next';
 import { setCookieOptions } from 'client/util';
 import { ThemeType } from 'client/Themes/type';
-import { useLocation } from 'react-router';
 import Cookies from 'universal-cookie';
 import createTheme from 'client/Themes';
-import qs from 'qs';
 import React, { ReactNode, useMemo, useState } from 'react';
 import useCookies from 'Common/useCookies';
+import useQuery from 'Common/hooks/useQuery';
 
 function setTheme(
   setFn: ((themeType: ThemeType) => void) | undefined,
@@ -39,10 +38,9 @@ type Props = {
   children: ReactNode;
 };
 export const ThemeProvider = ({ children }: Props) => {
-  const location = useLocation();
   const cookies = useCookies();
   let initialTheme;
-  const query = qs.parse(location.search, { ignoreQueryPrefix: true });
+  const query = useQuery();
 
   initialTheme = query.theme;
 
