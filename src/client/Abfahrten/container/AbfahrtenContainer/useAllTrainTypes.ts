@@ -1,10 +1,10 @@
-import { useAbfahrtenSelector } from 'useSelector';
 import { useMemo } from 'react';
+import AbfahrtenContainer from 'Abfahrten/container/AbfahrtenContainer';
 
 const defaultTypes = ['ICE', 'IC', 'EC', 'RE', 'RB', 'S'];
 
 export default () => {
-  const departures = useAbfahrtenSelector(state => state.abfahrten.departures);
+  const departures = AbfahrtenContainer.useContainer().departures;
 
   return useMemo(() => {
     const typeSet = new Set<string>(defaultTypes);

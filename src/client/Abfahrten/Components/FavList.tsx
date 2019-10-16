@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import { Redirect, StaticRouterContext } from 'react-router';
-import { useAbfahrtenSelector } from 'useSelector';
-import { useDispatch } from 'react-redux';
-import Actions, { AbfahrtenError } from 'Abfahrten/actions/abfahrten';
+import AbfahrtenContainer, {
+  AbfahrtenError,
+} from 'Abfahrten/container/AbfahrtenContainer';
 import favContainer from 'Abfahrten/container/FavContainer';
 import FavEntry, { FavEntryDisplay } from './FavEntry';
 import MostUsed from './MostUsed';
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import useStyles from './FavList.style';
 
 function getErrorText(
@@ -47,23 +47,28 @@ const FavList = ({ staticContext }: Props) => {
       .sort((a, b) => (a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1))
       .map(fav => fav && <FavEntry key={fav.id} fav={fav} />);
   }, [favs]);
-  const error = useAbfahrtenSelector(state => state.abfahrten.error);
-  const dispatch = useDispatch();
+  const {
+    error,
+    setCurrentStation,
+    setError,
+  } = AbfahrtenContainer.useContainer();
+  const [savedError] = useState(error);
   const classes = useStyles();
 
   useEffect(() => {
-    dispatch(Actions.setCurrentStation());
-  }, [dispatch]);
+    setCurrentStation(undefined);
+    setError(undefined);
+  }, [setCurrentStation, setError]);
 
   return (
     <main className={classes.main}>
       {/* eslint-disable-next-line no-nested-ternary */}
-      {error ? (
+      {savedError ? (
         <>
-          <FavEntryDisplay text={getErrorText(error, staticContext)} />
-          {error.station && (
-            <Link to={encodeURIComponent(error.station)}>
-              <FavEntryDisplay text={error.station} />
+          <FavEntryDisplay text={getErrorText(savedError, staticContext)} />
+          {savedError.station && (
+            <Link to={encodeURIComponent(savedError.station)}>
+              <FavEntryDisplay text={savedError.station} />
             </Link>
           )}
           <FavEntryDisplay text="Versuch einen der folgenden" />

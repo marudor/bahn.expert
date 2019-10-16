@@ -1,10 +1,9 @@
 /* eslint-disable no-underscore-dangle */
 import { Container } from 'unstated-next';
 import { CookieContext } from 'Common/useCookies';
-import { getStore } from 'testHelper';
+import { HelmetProvider } from 'react-helmet-async';
 import { MemoryRouter } from 'react-router';
 import { MergedTheme } from '@material-ui/styles';
-import { Provider } from 'react-redux';
 import { render as realRender } from '@testing-library/react';
 import { ThemeProvider } from 'Common/container/ThemeContainer';
 import { ThemeType } from 'client/Themes/type';
@@ -27,7 +26,6 @@ export function render<P>(
   props?: P,
   { withNavigation, container }: Options = {}
 ) {
-  const store = getStore();
   const themeType = ThemeType.light;
 
   if (currentThemeType !== themeType) {
@@ -49,15 +47,15 @@ export function render<P>(
     }
 
     return (
-      <MemoryRouter>
-        <Provider store={store}>
+      <HelmetProvider>
+        <MemoryRouter>
           <CookieContext.Provider value={new Cookies()}>
             <ThemeProvider>
               <ThemeWrap>{result}</ThemeWrap>
             </ThemeProvider>
           </CookieContext.Provider>
-        </Provider>
-      </MemoryRouter>
+        </MemoryRouter>
+      </HelmetProvider>
     );
   };
 

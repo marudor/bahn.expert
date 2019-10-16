@@ -1,11 +1,10 @@
 import 'core-js/stable';
 import { BrowserRouter } from 'react-router-dom';
 import { CookieContext } from 'Common/useCookies';
-import { Provider } from 'react-redux';
+import { HelmetProvider } from 'react-helmet-async';
 import { ThemeProvider } from 'Common/container/ThemeContainer';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
-import createStore from './createStore';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ThemeWrap from './ThemeWrap';
@@ -17,10 +16,9 @@ global.smallScreen = window.matchMedia('(max-width: 480px)').matches;
 
 const container = document.getElementById('app');
 const cookies = new Cookies();
-const store = createStore(undefined, cookies);
 
 const render = (App: React.ComponentType) => (
-  <Provider store={store}>
+  <HelmetProvider>
     <BrowserRouter>
       <CookieContext.Provider value={cookies}>
         <ThemeProvider>
@@ -28,7 +26,7 @@ const render = (App: React.ComponentType) => (
         </ThemeProvider>
       </CookieContext.Provider>
     </BrowserRouter>
-  </Provider>
+  </HelmetProvider>
 );
 
 ReactDOM.hydrate(render(ThemeWrap), container);

@@ -1,9 +1,9 @@
 import { createContainer } from 'unstated-next';
-import { setCookieOptions } from 'client/util';
-import { useLocation } from 'react-router';
-import qs from 'qs';
+import { defaultConfig, setCookieOptions } from 'client/util';
+import { MarudorConfig } from 'Common/config';
 import React, { ReactNode, useCallback, useState } from 'react';
 import useCookies from 'Common/useCookies';
+import useQuery from 'Common/hooks/useQuery';
 
 export type Filter = {
   onlyDepartures?: boolean;
@@ -15,6 +15,7 @@ const defaultFilter: Filter = {
 
 const useFilter = (initialFilter: Filter) => {
   const cookies = useCookies();
+  const [filterOpen, setFilterOpen] = useState(false);
   const [onlyDepartures] = useState(initialFilter.onlyDepartures);
   const [productFilter, setProductFilter] = useState(initialFilter.products);
   const toggleProduct = useCallback((product: string) => {
@@ -36,19 +37,56 @@ const useFilter = (initialFilter: Filter) => {
     productFilter,
     toggleProduct,
     saveProductFilter,
+    filterOpen,
+    setFilterOpen,
+  };
+};
+
+const useConfig = (initialConfig: MarudorConfig) => {
+  const [config, setConfig] = useState(initialConfig);
+  const [configOpen, setConfigOpen] = useState(false);
+  const cookies = useCookies();
+
+  const setConfigKey = useCallback(
+    <K extends keyof MarudorConfig>(key: K, value: MarudorConfig[K]) => {
+      const newConfig = {
+        ...config,
+        [key]: value,
+      };
+
+      cookies.set('config', newConfig, setCookieOptions);
+      setConfig(newConfig);
+    },
+    [config, cookies]
+  );
+
+  return {
+    config,
+    setConfigKey,
+    configOpen,
+    setConfigOpen,
   };
 };
 
 export type AbfahrtenConfig = {
   filter: Filter;
+  config: MarudorConfig;
 };
-const defaultConfig: AbfahrtenConfig = {
-  filter: defaultFilter,
-};
-const useAbfahrtenConfig = (initialConfig: AbfahrtenConfig = defaultConfig) => {
-  const filterConfig = useFilter(initialConfig.filter);
 
-  return filterConfig;
+const defaultAbfahrtenConfig: AbfahrtenConfig = {
+  filter: defaultFilter,
+  config: defaultConfig,
+};
+const useAbfahrtenConfig = (
+  initialConfig: AbfahrtenConfig = defaultAbfahrtenConfig
+) => {
+  const filterConfig = useFilter(initialConfig.filter);
+  const config = useConfig(initialConfig.config);
+
+  return {
+    ...filterConfig,
+    ...config,
+  };
 };
 
 const AbfahrtenConfigContainer = createContainer(useAbfahrtenConfig);
@@ -60,15 +98,18 @@ type Props = {
 };
 export const AbfahrtenConfigProvider = ({ children }: Props) => {
   const cookies = useCookies();
-  const location = useLocation();
-  const query = qs.parse(location.search, { ignoreQueryPrefix: true });
-
+  const query = useQuery();
   const savedFilter = cookies.get('defaultFilter');
 
   const savedConfig = {
     filter: {
       onlyDepartures: Boolean(query.onlyDepartures),
       products: Array.isArray(savedFilter) ? savedFilter : [],
+    },
+    config: {
+      ...defaultConfig,
+      ...cookies.get('config'),
+      ...global.configOverride,
     },
   };
 

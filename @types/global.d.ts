@@ -1,3 +1,4 @@
+import { MarudorConfig } from 'Common/config';
 import nock from 'nock';
 
 declare global {
@@ -14,11 +15,8 @@ declare global {
         town: string;
       };
       smallScreen: boolean;
-      __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: Function;
-      __DATA__: Object;
-      testUrl: string;
       baseUrl: string;
-
+      configOverride: any;
       // test only
       nock: nock.Scope;
     }

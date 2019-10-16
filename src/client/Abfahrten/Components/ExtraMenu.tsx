@@ -1,9 +1,7 @@
 import { __RouterContext } from 'react-router';
-import { getLageplan, openFilter } from 'Abfahrten/actions/abfahrten';
 import { IconButton } from '@material-ui/core';
-import { openSettings } from 'Abfahrten/actions/abfahrtenConfig';
-import { shallowEqual, useDispatch } from 'react-redux';
-import { useAbfahrtenSelector } from 'useSelector';
+import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
+import AbfahrtenContainer from 'Abfahrten/container/AbfahrtenContainer';
 import ActionMenu from '@material-ui/icons/Menu';
 import FavContainer, {
   useFav,
@@ -19,20 +17,19 @@ import React, { SyntheticEvent, useCallback, useState } from 'react';
 import Settings from '@material-ui/icons/Settings';
 import ToggleStar from '@material-ui/icons/Star';
 import ToggleStarBorder from '@material-ui/icons/StarBorder';
+import useLageplan from 'Abfahrten/hooks/useLageplan';
 
 const ExtraMenu = () => {
-  const { currentStation, lageplan } = useAbfahrtenSelector(
-    state => ({
-      currentStation: state.abfahrten.currentStation,
-      lageplan: state.abfahrten.lageplan,
-    }),
-    shallowEqual
-  );
+  const {
+    setConfigOpen,
+    setFilterOpen,
+  } = AbfahrtenConfigContainer.useContainer();
+  const { currentStation } = AbfahrtenContainer.useContainer();
+  const lageplan = useLageplan(currentStation && currentStation.title);
   const { favs } = FavContainer.useContainer();
   const fav = useFav();
   const unfav = useUnfav();
   const isFaved = Boolean(currentStation && favs[currentStation.id]);
-  const dispatch = useDispatch();
   const [anchor, setAnchor] = useState<undefined | HTMLElement>();
   const toggleFav = useCallback(() => {
     setAnchor(undefined);
@@ -50,28 +47,20 @@ const ExtraMenu = () => {
     },
     [anchor]
   );
-  const openLageplan = useCallback(async () => {
+  const openLageplan = useCallback(() => {
     setAnchor(undefined);
-    if (lageplan === undefined && currentStation) {
-      const fetchedLageplan: any = await dispatch(
-        getLageplan(currentStation.title)
-      );
-
-      if (fetchedLageplan) {
-        window.open(fetchedLageplan, '_blank');
-      }
-    } else if (lageplan) {
+    if (lageplan) {
       window.open(lageplan, '_blank');
     }
-  }, [currentStation, dispatch, lageplan]);
+  }, [lageplan]);
   const openFilterCb = useCallback(() => {
-    dispatch(openFilter());
+    setFilterOpen(true);
     setAnchor(undefined);
-  }, [dispatch]);
+  }, [setFilterOpen]);
   const openSettingsCb = useCallback(() => {
-    dispatch(openSettings());
+    setConfigOpen(true);
     setAnchor(undefined);
-  }, [dispatch]);
+  }, [setConfigOpen]);
 
   return (
     <>
@@ -98,7 +87,7 @@ const ExtraMenu = () => {
             )}
           </MenuItem>,
           <MenuItem data-testid="lageplan" key="2" onClick={openLageplan}>
-            {lageplan !== null ? <Layers /> : <LayersClear />} Lageplan
+            {lageplan ? <Layers /> : <LayersClear />} Lageplan
           </MenuItem>,
         ]}
         <MenuItem data-testid="openFilter" onClick={openFilterCb}>

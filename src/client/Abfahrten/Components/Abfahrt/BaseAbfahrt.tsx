@@ -1,6 +1,5 @@
 import { Abfahrt } from 'types/api/iris';
-import { shallowEqual } from 'react-redux';
-import { useAbfahrtenSelector } from 'useSelector';
+import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import cc from 'clsx';
 import End from './End';
 import Mid from './Mid';
@@ -30,19 +29,8 @@ const BaseAbfahrt = ({ abfahrt, wing, wingEnd, wingStart }: Props) => {
   }, [abfahrt.id, setSelectedDetail]);
   const detail = selectedDetail === abfahrt.id;
   const {
-    lineAndNumber,
-    useZoom,
-    fahrzeugGruppe,
-    showUIC,
-  } = useAbfahrtenSelector(
-    state => ({
-      lineAndNumber: state.abfahrtenConfig.config.lineAndNumber,
-      useZoom: state.abfahrtenConfig.config.zoomReihung,
-      fahrzeugGruppe: state.abfahrtenConfig.config.fahrzeugGruppe,
-      showUIC: state.abfahrtenConfig.config.showUIC,
-    }),
-    shallowEqual
-  );
+    config: { lineAndNumber, zoomReihung, fahrzeugGruppe, showUIC },
+  } = AbfahrtenConfigContainer.useContainer();
 
   return useMemo(
     () => (
@@ -78,7 +66,7 @@ const BaseAbfahrt = ({ abfahrt, wing, wingEnd, wingStart }: Props) => {
             (abfahrt.reihung || abfahrt.hiddenReihung) && (
               <Reihung
                 loadHidden={!abfahrt.reihung && abfahrt.hiddenReihung}
-                useZoom={useZoom}
+                useZoom={zoomReihung}
                 showUIC={showUIC}
                 fahrzeugGruppe={fahrzeugGruppe}
                 trainNumber={abfahrt.train.number}
@@ -104,10 +92,10 @@ const BaseAbfahrt = ({ abfahrt, wing, wingEnd, wingStart }: Props) => {
       handleClick,
       lineAndNumber,
       showUIC,
-      useZoom,
       wing,
       wingEnd,
       wingStart,
+      zoomReihung,
     ]
   );
 };

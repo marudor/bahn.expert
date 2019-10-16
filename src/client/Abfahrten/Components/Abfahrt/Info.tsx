@@ -1,5 +1,5 @@
 import { Abfahrt, Message } from 'types/api/iris';
-import { useAbfahrtenSelector } from 'useSelector';
+import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import cc from 'clsx';
 import DetailMessages from 'Common/Components/Messages/Detail';
 import DetailVia from './Via/Detail';
@@ -13,9 +13,8 @@ type Props = {
   detail: boolean;
 };
 const Info = ({ abfahrt, detail }: Props) => {
-  const showSupersededMessages = useAbfahrtenSelector(
-    state => state.abfahrtenConfig.config.showSupersededMessages
-  );
+  const showSupersededMessages = AbfahrtenConfigContainer.useContainer().config
+    .showSupersededMessages;
   const classes = useStyles();
   const messages = useMemo(() => {
     const messages = new Set<Message>();
