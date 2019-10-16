@@ -9,36 +9,46 @@ import {
   subDays,
 } from 'date-fns';
 import { DateTimePicker } from '@material-ui/pickers';
-import { getRoutes } from 'Routing/actions/routing';
-import { shallowEqual, useDispatch } from 'react-redux';
+import { getStationsFromAPI } from 'Common/service/stationSearch';
+import { Station } from 'types/api/station';
 import { StationSearchType } from 'Common/config';
 import { useHistory, useRouteMatch } from 'react-router';
-import { useRoutingSelector } from 'useSelector';
 import Button from '@material-ui/core/Button';
 import deLocale from 'date-fns/locale/de';
 import IconButton from '@material-ui/core/IconButton';
 import React, { SyntheticEvent, useCallback, useEffect } from 'react';
-import searchActions, { getStationById } from 'Routing/actions/search';
+import RoutingConfigContainer from 'Routing/container/RoutingConfigContainer';
 import SettingsPanel from './SettingsPanel';
 import StationSearch from 'Common/Components/StationSearch';
 import SwapVertical from '@material-ui/icons/SwapVert';
+import useFetchRouting from 'Routing/container/RoutingContainer/useFetchRouting';
 import useStyles from './Search.styles';
+
+const setStationById = async (
+  stationId: string,
+  setAction: (station: Station) => void
+) => {
+  const stations = await getStationsFromAPI(
+    stationId,
+    StationSearchType.DBNavgiator
+  );
+
+  if (stations.length) {
+    setAction(stations[0]);
+  }
+};
 
 const Search = () => {
   const classes = useStyles();
-
-  const dispatch = useDispatch();
-
-  const { start, destination, date, routes, dateTouched } = useRoutingSelector(
-    state => ({
-      start: state.search.start,
-      destination: state.search.destination,
-      date: state.search.date,
-      routes: state.routing.routes || [],
-      dateTouched: state.search.dateTouched,
-    }),
-    shallowEqual
-  );
+  const {
+    start,
+    setStart,
+    destination,
+    setDestination,
+    date,
+    setDate,
+  } = RoutingConfigContainer.useContainer();
+  const { fetchRoutes } = useFetchRouting();
 
   const match = useRouteMatch<{
     start?: string;
@@ -48,7 +58,7 @@ const Search = () => {
 
   const formatDate = useCallback((date: null | Date) => {
     if (!date) {
-      return '';
+      return `Jetzt (Heute ${lightFormat(new Date(), 'HH:mm')})`;
     }
     const today = startOfDay(new Date());
     const tomorrow = endOfDay(addDays(today, 1));
@@ -80,27 +90,24 @@ const Search = () => {
       const { start, destination } = match.params;
 
       if (start) {
-        dispatch(getStationById(start, searchActions.setStart));
+        setStationById(start, setStart);
       }
       if (destination) {
-        dispatch(getStationById(destination, searchActions.setDestination));
-      }
-      if (!routes.length && !dateTouched) {
-        dispatch(searchActions.setDate(new Date(), false));
+        setStationById(destination, setDestination);
       }
     }
-  }, [dateTouched, dispatch, match, routes.length]);
+  }, [match, setDestination, setStart]);
 
   const searchRoute = useCallback(
     (e: SyntheticEvent) => {
       e.preventDefault();
 
       if (start && destination && start.id !== destination.id) {
-        dispatch(getRoutes(start.id, destination.id, date));
+        fetchRoutes();
         history.push(`/routing/${start.id}/${destination.id}`);
       }
     },
-    [date, destination, dispatch, history, start]
+    [destination, fetchRoutes, history, start]
   );
   const goHome = useCallback(() => {
     history.push('/');
@@ -111,14 +118,14 @@ const Search = () => {
       <StationSearch
         searchType={StationSearchType.DBNavgiator}
         value={start}
-        onChange={s => dispatch(searchActions.setStart(s))}
+        onChange={setStart}
         placeholder="Start"
       />
       <div className={classes.destination}>
         <StationSearch
           searchType={StationSearchType.DBNavgiator}
           value={destination}
-          onChange={s => dispatch(searchActions.setDestination(s))}
+          onChange={setDestination}
           placeholder="Destination"
         />
         <IconButton
@@ -126,8 +133,8 @@ const Search = () => {
           onClick={(e: SyntheticEvent) => {
             e.preventDefault();
             e.stopPropagation();
-            dispatch(searchActions.setDestination(start));
-            dispatch(searchActions.setStart(destination));
+            setDestination(start);
+            setStart(destination);
           }}
         >
           <SwapVertical fontSize="large" />
@@ -139,12 +146,12 @@ const Search = () => {
         className={classes.datePicker}
         labelFunc={formatDate}
         ampm={false}
-        showTodayButton
         value={date}
-        onChange={date => dispatch(searchActions.setDate(date))}
+        onChange={setDate}
         cancelLabel="Abbrechen"
         autoOk
-        todayLabel="Jetzt"
+        clearable
+        clearLabel="Jetzt"
         minutesStep={5}
       />
       <SettingsPanel />
@@ -159,6 +166,5 @@ const Search = () => {
     </>
   );
 };
-// }
 
-export default Search;
+export default React.memo(Search);

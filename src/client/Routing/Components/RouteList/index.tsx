@@ -1,31 +1,29 @@
-import { ContextType, getContextRoutes } from 'Routing/actions/routing';
-import { useDispatch } from 'react-redux';
-import { useRoutingSelector } from 'useSelector';
 import Button from '@material-ui/core/Button';
 import Loading from 'Common/Components/Loading';
 import React, { useCallback, useState } from 'react';
 import Route from './Route';
 import RouteHeader from './RouteHeader';
+import RoutingContainer from 'Routing/container/RoutingContainer';
+import useFetchRouting from 'Routing/container/RoutingContainer/useFetchRouting';
 import useStyles from './index.style';
 
 const RouteList = () => {
   const classes = useStyles();
-  const dispatch = useDispatch();
-  const routes = useRoutingSelector(state => state.routing.routes);
-  const error = useRoutingSelector(state => state.routing.error);
+  const { routes, error } = RoutingContainer.useContainer();
+  const { fetchContext } = useFetchRouting();
   const [detail, setDetail] = useState<undefined | string>();
   const [loadingEarlier, setLoadingEarlier] = useState(false);
   const [loadingLater, setLoadingLater] = useState(false);
   const searchLater = useCallback(async () => {
     setLoadingLater(true);
-    await dispatch(getContextRoutes(ContextType.later));
+    await fetchContext('later');
     setLoadingLater(false);
-  }, [dispatch]);
+  }, [fetchContext]);
   const searchBefore = useCallback(async () => {
     setLoadingEarlier(true);
-    await dispatch(getContextRoutes(ContextType.earlier));
+    await fetchContext('earlier');
     setLoadingEarlier(false);
-  }, [dispatch]);
+  }, [fetchContext]);
 
   if (error) {
     return <div className={classes.main}>{String(error)}</div>;

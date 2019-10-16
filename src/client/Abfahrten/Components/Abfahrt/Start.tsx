@@ -1,6 +1,6 @@
 import { Abfahrt } from 'types/api/iris';
 import { Link } from 'react-router-dom';
-import { useAbfahrtenSelector } from 'useSelector';
+import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import Auslastung from 'Abfahrten/Components/Abfahrt/Auslastung';
 import CheckInLink from 'Common/Components/CheckInLink';
 import React from 'react';
@@ -16,9 +16,7 @@ type Props = {
 
 const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
   const classes = useStyles();
-  const checkInType = useAbfahrtenSelector(
-    state => state.abfahrtenConfig.config.checkIn
-  );
+  const checkInType = AbfahrtenConfigContainer.useContainer().config.checkIn;
 
   return (
     <div className={classes.main} data-testid="abfahrtStart">

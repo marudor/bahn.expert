@@ -5,21 +5,20 @@ import {
   FormControlLabel,
   TextField,
 } from '@material-ui/core';
-import { setMaxChanges, setTransferTime } from 'Routing/actions/routing';
-import { useDispatch } from 'react-redux';
-import { useRoutingSelector } from 'useSelector';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import React, { ChangeEvent, useCallback } from 'react';
+import RoutingConfigContainer, {
+  RoutingSettings,
+} from 'Routing/container/RoutingConfigContainer';
 import useStyles from './SettingsPanel.style';
 
 const SettingsPanel = () => {
   const classes = useStyles();
-  const dispatch = useDispatch();
-  const settings = useRoutingSelector(state => state.routing.settings);
+  const { settings, updateSetting } = RoutingConfigContainer.useContainer();
   const handleInputChange = useCallback(
-    (fn: (s: any) => any) => (e: ChangeEvent<HTMLInputElement>) =>
-      dispatch(fn(e.currentTarget.value)),
-    [dispatch]
+    (key: keyof RoutingSettings) => (e: ChangeEvent<HTMLInputElement>) =>
+      updateSetting(key, e.currentTarget.value),
+    [updateSetting]
   );
 
   return (
@@ -37,7 +36,7 @@ const SettingsPanel = () => {
           labelPlacement="start"
           control={
             <TextField
-              onChange={handleInputChange(setMaxChanges)}
+              onChange={handleInputChange('maxChanges')}
               className={classes.input}
               value={settings.maxChanges}
               type="number"
@@ -52,7 +51,7 @@ const SettingsPanel = () => {
           control={
             <TextField
               inputProps={{ step: 5 }}
-              onChange={handleInputChange(setTransferTime)}
+              onChange={handleInputChange('transferTime')}
               className={classes.input}
               value={settings.transferTime}
               type="number"

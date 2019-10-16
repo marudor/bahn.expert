@@ -1,10 +1,10 @@
 import { Abfahrt } from 'types/api/iris';
-import { useAbfahrtenSelector } from 'useSelector';
 import { useMemo } from 'react';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
+import AbfahrtenContainer from 'Abfahrten/container/AbfahrtenContainer';
 
 export default () => {
-  const abfahrten = useAbfahrtenSelector(state => state.abfahrten.departures);
+  const { departures } = AbfahrtenContainer.useContainer();
   const {
     onlyDepartures,
     productFilter,
@@ -12,10 +12,10 @@ export default () => {
 
   return {
     filteredAbfahrten: useMemo(() => {
-      if (!abfahrten) return abfahrten;
+      if (!departures) return departures;
       const filtered = {
-        lookahead: abfahrten.lookahead,
-        lookbehind: abfahrten.lookbehind,
+        lookahead: departures.lookahead,
+        lookbehind: departures.lookbehind,
       };
 
       const filterFunctions: ((a: Abfahrt) => boolean)[] = [];
@@ -37,7 +37,7 @@ export default () => {
       }
 
       return filtered;
-    }, [abfahrten, onlyDepartures, productFilter]),
-    unfilteredAbfahrten: abfahrten,
+    }, [departures, onlyDepartures, productFilter]),
+    unfilteredAbfahrten: departures,
   };
 };

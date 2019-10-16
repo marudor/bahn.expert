@@ -22,7 +22,6 @@ export const defaultConfig: MarudorConfig = {
   showSupersededMessages: false,
   time: true,
   zoomReihung: true,
-  noHeader: false,
   showUIC: false,
 };
 
@@ -53,6 +52,5 @@ export const configSanitize: MarudorConfigSanitize = {
   showSupersededMessages: booleanCheck,
   time: booleanCheck,
   zoomReihung: booleanCheck,
-  noHeader: booleanCheck,
   showUIC: booleanCheck,
 };

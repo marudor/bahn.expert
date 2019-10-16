@@ -77,7 +77,7 @@ if (isDev) {
   //   minSize: 30000,
   //   cacheGroups: {
   //     vendor: {
-  //       test: /[\\/]node_modules[\\/](react|react-dom|redux|react-router|core-js|@material-ui)[\\/]/,
+  //       test: /[\\/]node_modules[\\/](react|react-dom|react-router|core-js|@material-ui)[\\/]/,
   //       name: 'vendor',
   //       chunks: 'all',
   //     },
