@@ -1,7 +1,7 @@
 /* eslint no-sync: 0, no-console: 0, no-process-exit: 0 */
 const path = require('path');
 const fs = require('fs');
-const stats = require(path.resolve('dist/client/static/stats.json'));
+const stats = require(path.resolve('dist/client/loadable-stats.json'));
 
 Object.keys(stats.assetsByChunkName).forEach(chunk => {
   const assetPath = path.resolve('dist/client', stats.assetsByChunkName[chunk]);

@@ -1,9 +1,8 @@
-import { NoSsr } from '@material-ui/core';
 import AbfahrtenList from './Components/AbfahrtenList';
 import FavList from './Components/FavList';
-import React from 'react';
+import loadable from '@loadable/component';
 
-const About = React.lazy(() => import('./Components/About'));
+const About = loadable(() => import('./Components/About'));
 
 export default [
   {
@@ -12,14 +11,7 @@ export default [
     path: '/',
   },
   {
-    // eslint-disable-next-line react/display-name
-    component: () => (
-      <NoSsr>
-        <React.Suspense fallback="loading">
-          <About />
-        </React.Suspense>
-      </NoSsr>
-    ),
+    component: About,
     exact: true,
     path: '/about',
   },

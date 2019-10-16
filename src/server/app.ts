@@ -12,29 +12,6 @@ import path from 'path';
 
 global.SERVER = true;
 
-function transformStats(stats: any) {
-  const newStats: any = {};
-
-  Object.keys(stats).forEach(key => {
-    if (!Array.isArray(stats[key])) {
-      stats[key] = [stats[key]];
-    }
-    newStats[key] = {
-      css: [],
-      js: [],
-    };
-    stats[key].forEach((val: string) => {
-      if (val.endsWith('js')) {
-        newStats[key].js.push(val);
-      } else if (val.endsWith('css')) {
-        newStats[key].css.push(val);
-      }
-    });
-  });
-
-  return newStats;
-}
-
 function hotHelper(getMiddleware: () => Middleware) {
   if (process.env.NODE_ENV === 'production') {
     return getMiddleware();
@@ -67,8 +44,11 @@ export async function createApp(wsServer?: Server) {
       serverRender = require('./render').default;
       apiRoutes = require('./Controller').default;
       seoController = require('./seo').default;
-      ctx.stats = transformStats(
-        ctx.state.webpackStats.toJson().assetsByChunkName
+      ctx.loadableStats = JSON.parse(
+        // eslint-disable-next-line no-sync
+        ctx.state.fs.readFileSync(
+          path.resolve('dist/client/loadable-stats.json')
+        )
       );
 
       return next();
@@ -111,12 +91,12 @@ export async function createApp(wsServer?: Server) {
   app.use(hotHelper(() => seoController));
 
   if (process.env.NODE_ENV === 'production') {
-    const stats = require(path.resolve(
-      `${distFolder}/client/static/stats.json`
+    const loadableStats = require(path.resolve(
+      `${distFolder}/client/loadable-stats.json`
     ));
 
     app.use((ctx, next) => {
-      ctx.stats = transformStats(stats.assetsByChunkName);
+      ctx.loadableStats = loadableStats;
 
       return next();
     });
