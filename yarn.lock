@@ -1177,6 +1177,35 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
+"@loadable/babel-plugin@^5.10.3":
+  version "5.10.3"
+  resolved "https://registry.yarnpkg.com/@loadable/babel-plugin/-/babel-plugin-5.10.3.tgz#faadbe38036b29e449640c3974acececbaeb5739"
+  integrity sha512-Izo4QX526f/Czvdot1izg0DtA5DfJEW5RUN28/9wt+62It4xKhVv9l0NNcTEL39xJXj7lsE4k5Z6eCBSETpHmw==
+  dependencies:
+    "@babel/plugin-syntax-dynamic-import" "^7.2.0"
+
+"@loadable/component@^5.10.3":
+  version "5.10.3"
+  resolved "https://registry.yarnpkg.com/@loadable/component/-/component-5.10.3.tgz#e1ad811ac4834a6ed187605d8464351d0c52896f"
+  integrity sha512-/aSO+tXw4vFMwZ6fgLaNQgLuEa7bgTpoBE4PxNzf08/ewAjymrCS3J7v3SbGE7IjGmmKL6vVwkpb7S3cYrk+ag==
+  dependencies:
+    "@babel/runtime" "^7.6.0"
+    hoist-non-react-statics "^3.3.0"
+
+"@loadable/server@^5.10.3":
+  version "5.10.3"
+  resolved "https://registry.yarnpkg.com/@loadable/server/-/server-5.10.3.tgz#421e1af549d58d67a0a459cd4f2ae7bf20ab4bc6"
+  integrity sha512-rVwJdGhvzEPZSbMbU65C4TFao/CyF5wS4JeHd4dACjZKEQxlUD3m1IarwUKpdDdrum11J3Ug3PUJMFSlJ6pMSA==
+  dependencies:
+    lodash "^4.17.15"
+
+"@loadable/webpack-plugin@^5.7.1":
+  version "5.7.1"
+  resolved "https://registry.yarnpkg.com/@loadable/webpack-plugin/-/webpack-plugin-5.7.1.tgz#9fe4b19c347eaa72f8ff366ae9a9d2b724f86124"
+  integrity sha512-tURNYwPUahbM4Miz/mwMD+PZGnMpknRukwt4RViVX6tYOt06a5U92xJTv7t54C4tHdtCIEOmDrqCo97sfIu4mg==
+  dependencies:
+    mkdirp "^0.5.1"
+
 "@material-ui/core@^4.5.1":
   version "4.5.1"
   resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-4.5.1.tgz#6f1bbb298cc2893b29169ab9398a00ca5a6ac971"
@@ -1680,6 +1709,20 @@
     "@types/keygrip" "*"
     "@types/koa-compose" "*"
     "@types/node" "*"
+
+"@types/loadable__component@^5.10.0":
+  version "5.10.0"
+  resolved "https://registry.yarnpkg.com/@types/loadable__component/-/loadable__component-5.10.0.tgz#178fdc401983f4f93647fac778226da7b8c1e080"
+  integrity sha512-AaDP1VxV3p7CdPOtOTl3ALgQ6ES4AxJKO9UGj9vJonq/w2yERxwdzFiWNQFh9fEDXEzjxujBlM2RmSJtHV1/pA==
+  dependencies:
+    "@types/react" "*"
+
+"@types/loadable__server@^5.9.1":
+  version "5.9.1"
+  resolved "https://registry.yarnpkg.com/@types/loadable__server/-/loadable__server-5.9.1.tgz#f642704664ae1ff107817d6a8a6fd4ea91e3e3ac"
+  integrity sha512-wxHA1EkDo/vm4EHzXIOLh9nbGeYGHWoESIvCwPBjrD2YGBn2eEdYrBwqgIP905OAhTjUTImZ7DZKI5xpq0Q+vQ==
+  dependencies:
+    "@types/react" "*"
 
 "@types/lodash@^4.14.144":
   version "4.14.144"
@@ -11632,11 +11675,6 @@ webpack-sources@^1.0.1, webpack-sources@^1.4.0, webpack-sources@^1.4.1, webpack-
   dependencies:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
-
-webpack-stats-plugin@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/webpack-stats-plugin/-/webpack-stats-plugin-0.3.0.tgz#6952f63feb9a5393a328d774fb3eccac78d2f51b"
-  integrity sha512-4a6mEl9HLtMukVjEPY8QPCSmtX2EDFJNhDTX5ZE2CLch2adKAZf53nUrpG6m7NattwigS0AodNcwNxlu9kMSDQ==
 
 webpack@^4.41.1:
   version "4.41.1"

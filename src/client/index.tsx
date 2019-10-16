@@ -2,19 +2,18 @@ import 'core-js/stable';
 import { BrowserRouter } from 'react-router-dom';
 import { CookieContext } from 'Common/useCookies';
 import { HelmetProvider } from 'react-helmet-async';
+import { loadableReady } from '@loadable/component';
 import { ThemeProvider } from 'Common/container/ThemeContainer';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ThemeWrap from './ThemeWrap';
-
 // 10s timeout
 axios.defaults.timeout = 10000;
 
 global.smallScreen = window.matchMedia('(max-width: 480px)').matches;
 
-const container = document.getElementById('app');
 const cookies = new Cookies();
 
 const render = (App: React.ComponentType) => (
@@ -29,7 +28,11 @@ const render = (App: React.ComponentType) => (
   </HelmetProvider>
 );
 
-ReactDOM.hydrate(render(ThemeWrap), container);
+const container = document.getElementById('app');
+
+loadableReady(() => {
+  ReactDOM.hydrate(render(ThemeWrap), container);
+});
 
 // @ts-ignore
 if (module.hot) {
