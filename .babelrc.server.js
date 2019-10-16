@@ -17,6 +17,7 @@ module.exports = {
     '@babel/preset-react',
   ],
   plugins: [
+    '@loadable/babel-plugin',
     '@babel/plugin-proposal-class-properties',
     './scripts/babelTransform/debugStyleNames.js',
     'lodash',

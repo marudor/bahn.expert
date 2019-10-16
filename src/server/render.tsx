@@ -1,3 +1,4 @@
+import { ChunkExtractor } from '@loadable/server';
 import { configSanitize } from 'client/util';
 import { Context } from 'koa';
 import { CookieContext } from 'Common/useCookies';
@@ -30,6 +31,7 @@ const footerEjs = fs
 const footerTemplate = ejs.compile(footerEjs);
 
 export default (ctx: Context) => {
+  const extractor = new ChunkExtractor({ stats: ctx.loadableStats });
   const selectedDetail = ctx.query.selectedDetail;
 
   if (selectedDetail) {
@@ -58,7 +60,7 @@ export default (ctx: Context) => {
   });
 
   const context: any = {};
-  const App = (
+  const App = extractor.collectChunks(
     <HelmetProvider context={context}>
       <StaticRouter location={ctx.url} context={routeContext}>
         <CookieContext.Provider value={ctx.request.universalCookies}>
@@ -83,7 +85,8 @@ export default (ctx: Context) => {
     ctx.body = headerTemplate({
       tagmanager: process.env.TAGMANAGER_ID,
       header: context.helmet,
-      cssBundles: ctx.stats.main.css,
+      cssTags: extractor.getStyleTags(),
+      linkTags: extractor.getLinkTags(),
       configOverride: serialize(global.configOverride),
       imprint: serialize(global.IMPRINT),
       jssCss: sheets.toString(),
@@ -92,7 +95,7 @@ export default (ctx: Context) => {
     ctx.body += app;
 
     ctx.body += footerTemplate({
-      jsBundles: ctx.stats.main.js,
+      scriptTags: extractor.getScriptTags(),
     });
   }
 };

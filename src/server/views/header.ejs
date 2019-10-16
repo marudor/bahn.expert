@@ -29,14 +29,15 @@
   <link rel="manifest" href="/site.webmanifest?v=qABYO4lXNJ">
   <link rel="mask-icon" href="/safari-pinned-tab.svg?v=qABYO4lXNJ" color="#000000">
   <link rel="shortcut icon" href="/favicon.ico?v=qABYO4lXNJ">
+  <% if (linkTags) {%>
+    <%- linkTags %>
+  <%}%>
   <% if (jssCss) {%>
     <style id="jss"><%- jssCss %></style>
   <%}%>
-  <% cssBundles.forEach(function(css){
-    if (css) { %>
-      <link rel="stylesheet" href="/<%- css %>" />
-    <% }
-  }); %>
+  <% if (cssTags) {%>
+    <%- cssTags %>
+  <%}%>
 </head>
 <body>
 <script>

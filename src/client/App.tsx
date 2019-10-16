@@ -1,11 +1,15 @@
 import { Route, Switch } from 'react-router-dom';
-import Abfahrten from './Abfahrten';
-import DetailsRoute from 'Common/Components/Details/DetailsRoute';
+import loadable from '@loadable/component';
 import Navigation from 'Common/Components/Navigation';
 import React, { useEffect } from 'react';
 import ReihungenContainer from 'Common/container/ReihungContainer';
-import Routing from './Routing';
 import useStyles from './App.style';
+
+const LazyRouting = loadable(() => import('./Routing'));
+const LazyDetails = loadable(() =>
+  import('Common/Components/Details/DetailsRoute')
+);
+const LazyAbfahrten = loadable(() => import('./Abfahrten'));
 
 const App = () => {
   useStyles();
@@ -22,11 +26,11 @@ const App = () => {
       <ReihungenContainer.Provider>
         <Switch>
           <Route
-            component={DetailsRoute}
+            component={LazyDetails}
             path="/details/:train/:initialDeparture*"
           />
-          <Route component={Routing} path="/routing" />
-          <Route component={Abfahrten} path="/" />
+          <Route component={LazyRouting} path="/routing" />
+          <Route component={LazyAbfahrten} path="/" />
         </Switch>
       </ReihungenContainer.Provider>
     </Navigation>
