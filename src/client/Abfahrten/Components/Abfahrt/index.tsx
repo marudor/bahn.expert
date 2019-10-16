@@ -1,29 +1,14 @@
 import { Abfahrt as AbfahrtType } from 'types/api/iris';
-import { useAbfahrtenSelector } from 'useSelector';
 import BaseAbfahrt from './BaseAbfahrt';
 import React, { useMemo } from 'react';
+import useWings from 'Abfahrten/container/AbfahrtenContainer/useWings';
 
 type Props = {
   abfahrt: AbfahrtType;
 };
 
 const Abfahrt = ({ abfahrt }: Props) => {
-  const wings = useAbfahrtenSelector(state => {
-    const wings = state.abfahrten.wings;
-
-    if (wings) {
-      const arrivalWings = abfahrt.arrival && abfahrt.arrival.wingIds;
-
-      if (arrivalWings) {
-        return arrivalWings.map(w => wings[w]).filter(Boolean);
-      }
-      const departureWings = abfahrt.departure && abfahrt.departure.wingIds;
-
-      if (departureWings) {
-        return departureWings.map(w => wings[w]).filter(Boolean);
-      }
-    }
-  });
+  const wings = useWings(abfahrt);
 
   const sameTrainWing = useMemo(
     () =>

@@ -1,7 +1,7 @@
 import { Station } from 'types/station';
-import { useAbfahrtenSelector } from 'useSelector';
 import { useHistory } from 'react-router';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
+import AbfahrtenContainer from 'Abfahrten/container/AbfahrtenContainer';
 import ActionHome from '@material-ui/icons/Home';
 import AppBar from '@material-ui/core/AppBar';
 import ExtraMenu from './ExtraMenu';
@@ -14,9 +14,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 
 const Header = () => {
   const { toggleDrawer } = useContext(NavigationContext);
-  const currentStation = useAbfahrtenSelector(
-    state => state.abfahrten.currentStation
-  );
+  const { currentStation } = AbfahrtenContainer.useContainer();
   const searchType = AbfahrtenConfigContainer.useContainer().config.searchType;
   const history = useHistory();
   const [currentEnteredStation, setCurrentEnteredStation] = useState(

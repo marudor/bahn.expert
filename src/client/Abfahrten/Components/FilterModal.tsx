@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import React, { useCallback } from 'react';
-import useAllTrainTypes from 'Abfahrten/hooks/useAllTrainTypes';
+import useAllTrainTypes from 'Abfahrten/container/AbfahrtenContainer/useAllTrainTypes';
 import useStyles from './FilterModal.style';
 
 const FilterModal = () => {

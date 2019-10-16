@@ -1,10 +1,8 @@
 import { AppState } from 'AppState';
 import { combineReducers } from 'redux';
-import abfahrtenReducer from 'Abfahrten/reducer';
 import routingReducer from 'Routing/reducer';
 
 const reducers: any = {
-  ...abfahrtenReducer,
   ...routingReducer,
 };
 // eslint-disable-next-line import/no-mutable-exports

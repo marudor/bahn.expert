@@ -1,4 +1,4 @@
-import { AbfahrtenConfigProvider } from 'Abfahrten/container/AbfahrtenConfigContainer';
+import { AbfahrtenProvider } from 'Abfahrten/container/AbfahrtenContainer';
 import { FavProvider } from './container/FavContainer';
 import { renderRoutes } from 'react-router-config';
 import AuslastungContainer from './container/AuslastungContainer';
@@ -15,7 +15,7 @@ const BahnhofsAbfahrten = () => {
 
   return (
     <AuslastungContainer.Provider>
-      <AbfahrtenConfigProvider>
+      <AbfahrtenProvider>
         <FavProvider>
           <div className={classes.main}>
             {!noHeader && <Header />}
@@ -23,7 +23,7 @@ const BahnhofsAbfahrten = () => {
             {renderRoutes(routes)}
           </div>
         </FavProvider>
-      </AbfahrtenConfigProvider>
+      </AbfahrtenProvider>
     </AuslastungContainer.Provider>
   );
 };
