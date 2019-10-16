@@ -1,12 +1,11 @@
 import { AxiosError } from 'axios';
 import { Route$JourneySegment } from 'types/routing';
-import { useLocation } from 'react-router';
 import DetailsContext from './DetailsContext';
 import getDetails from 'Common/service/details';
 import Header from './Header';
-import qs from 'qs';
 import React, { useEffect, useState } from 'react';
 import StopList from './StopList';
+import useQuery from 'Common/hooks/useQuery';
 
 interface Props {
   train: string;
@@ -15,8 +14,7 @@ interface Props {
 }
 
 const Details = ({ train, initialDeparture, currentStopId }: Props) => {
-  const location = useLocation();
-  const query = qs.parse(location.search, { ignoreQueryPrefix: true });
+  const query = useQuery();
   const [details, setDetails] = useState<Route$JourneySegment>();
   const [error, setError] = useState<AxiosError>();
 

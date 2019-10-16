@@ -1,21 +1,5 @@
-import { CheckInType, StationSearchType } from 'Common/config';
-import {
-  closeSettings,
-  setAutoUpdate,
-  setCheckIn,
-  setFahrzeugGruppe,
-  setLineAndNumber,
-  setLookahead,
-  setLookbehind,
-  setSearchType,
-  setShowSupersededMessages,
-  setShowUIC,
-  setTime,
-  setZoomReihung,
-} from 'Abfahrten/actions/abfahrtenConfig';
-import { shallowEqual, useDispatch } from 'react-redux';
-import { useAbfahrtenSelector } from 'useSelector';
-import Cookies from 'universal-cookie';
+import { CheckInType, MarudorConfig, StationSearchType } from 'Common/config';
+import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -24,64 +8,55 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 import React, { ChangeEvent, useCallback } from 'react';
 import Switch from '@material-ui/core/Switch';
 import TextField from '@material-ui/core/TextField';
-import useCookies from 'Common/useCookies';
 import useStyles from './SettingsModal.style';
 
 const SettingsModal = () => {
   const {
-    checkIn,
-    fahrzeugGruppe,
-    lineAndNumber,
-    lookahead,
-    open,
-    searchType,
-    showSupersededMessages,
-    time,
-    zoomReihung,
-    autoUpdate,
-    lookbehind,
-    showUIC,
-  } = useAbfahrtenSelector(
-    state => ({
-      open: state.abfahrtenConfig.open,
-      ...state.abfahrtenConfig.config,
-    }),
-    shallowEqual
-  );
-  const cookies = useCookies();
-  const dispatch = useDispatch();
+    config: {
+      checkIn,
+      fahrzeugGruppe,
+      lineAndNumber,
+      lookahead,
+      searchType,
+      showSupersededMessages,
+      time,
+      zoomReihung,
+      autoUpdate,
+      lookbehind,
+      showUIC,
+    },
+    setConfigKey,
+    setConfigOpen,
+    configOpen,
+  } = AbfahrtenConfigContainer.useContainer();
   const classes = useStyles();
   const handleCheckedChange = useCallback(
-    (fn: (b: boolean, cookies: Cookies) => any) => (
-      e: ChangeEvent<HTMLInputElement>
-    ) => dispatch(fn(e.currentTarget.checked, cookies)),
-    [cookies, dispatch]
+    (key: keyof MarudorConfig) => (e: ChangeEvent<HTMLInputElement>) =>
+      setConfigKey(key, e.currentTarget.checked),
+    [setConfigKey]
   );
   const handleNumberSelectChange = useCallback(
-    (fn: (s: any, cookies: Cookies) => any) => (
-      e: ChangeEvent<HTMLSelectElement>
-    ) => dispatch(fn(Number.parseInt(e.currentTarget.value, 10), cookies)),
-    [cookies, dispatch]
+    (key: keyof MarudorConfig) => (e: ChangeEvent<HTMLSelectElement>) =>
+      setConfigKey(key, Number.parseInt(e.currentTarget.value, 10)),
+    [setConfigKey]
   );
   const handleSelectChange = useCallback(
-    (fn: (s: any, cookies: Cookies) => any) => (
-      e: ChangeEvent<HTMLSelectElement>
-    ) => dispatch(fn(e.currentTarget.value, cookies)),
-    [cookies, dispatch]
+    (key: keyof MarudorConfig) => (e: ChangeEvent<HTMLSelectElement>) =>
+      setConfigKey(key, e.currentTarget.value),
+    [setConfigKey]
   );
   const handleNumberValueChange = useCallback(
-    (fn: (n: number, cookies: Cookies) => any) => (
-      e: ChangeEvent<HTMLInputElement>
-    ) => dispatch(fn(Number.parseInt(e.currentTarget.value, 10), cookies)),
-    [cookies, dispatch]
+    (key: keyof MarudorConfig) => (e: ChangeEvent<HTMLInputElement>) =>
+      setConfigKey(key, Number.parseInt(e.currentTarget.value, 10)),
+    [setConfigKey]
   );
 
   return (
     <Dialog
       maxWidth="md"
       fullWidth
-      open={open}
-      onClose={() => dispatch(closeSettings())}
+      open={configOpen}
+      onClose={() => setConfigOpen(false)}
     >
       <DialogTitle>Settings</DialogTitle>
       <DialogContent className={classes.main}>
@@ -91,7 +66,7 @@ const SettingsModal = () => {
             <NativeSelect
               value={checkIn}
               name="checkIn"
-              onChange={handleNumberSelectChange(setCheckIn)}
+              onChange={handleNumberSelectChange('checkIn')}
             >
               <option value={CheckInType.None}>Kein</option>
               <option value={CheckInType.Travelynx}>travelynx.de</option>
@@ -114,7 +89,7 @@ const SettingsModal = () => {
                 step: 30,
               }}
               name="autoUpdate"
-              onChange={handleNumberValueChange(setAutoUpdate)}
+              onChange={handleNumberValueChange('autoUpdate')}
             />
           }
           label="AutoUpdate in Sekunden"
@@ -125,7 +100,7 @@ const SettingsModal = () => {
             <Switch
               checked={showSupersededMessages}
               value="showSupersededMessagesConfig"
-              onChange={handleCheckedChange(setShowSupersededMessages)}
+              onChange={handleCheckedChange('showSupersededMessages')}
             />
           }
           label="Obsolete Messages"
@@ -136,7 +111,7 @@ const SettingsModal = () => {
             <Switch
               checked={time}
               value="timeConfig"
-              onChange={handleCheckedChange(setTime)}
+              onChange={handleCheckedChange('time')}
             />
           }
           label="Neue Ankunft bei Verspätung"
@@ -147,7 +122,7 @@ const SettingsModal = () => {
             <Switch
               checked={zoomReihung}
               value="zoomReihungConfig"
-              onChange={handleCheckedChange(setZoomReihung)}
+              onChange={handleCheckedChange('zoomReihung')}
             />
           }
           label="Reihung maximal groß"
@@ -159,7 +134,7 @@ const SettingsModal = () => {
               data-testid="lineAndNumberConfig"
               checked={lineAndNumber}
               value="lineAndNumberConfig"
-              onChange={handleCheckedChange(setLineAndNumber)}
+              onChange={handleCheckedChange('lineAndNumber')}
             />
           }
           label="Zeige Linie und Zugnummer"
@@ -171,7 +146,7 @@ const SettingsModal = () => {
               data-testid="showUIC"
               checked={showUIC}
               value="showUIC"
-              onChange={handleCheckedChange(setShowUIC)}
+              onChange={handleCheckedChange('showUIC')}
             />
           }
           label="Zeige UIC Nummer"
@@ -183,7 +158,7 @@ const SettingsModal = () => {
               data-testid="fahrzeugGruppeConfig"
               checked={fahrzeugGruppe}
               value="fahrzeugGruppeConfig"
-              onChange={handleCheckedChange(setFahrzeugGruppe)}
+              onChange={handleCheckedChange('fahrzeugGruppe')}
             />
           }
           label="Zeige Fahrzeuggruppen Name"
@@ -194,7 +169,7 @@ const SettingsModal = () => {
             <NativeSelect
               value={lookahead}
               name="lookahead"
-              onChange={handleSelectChange(setLookahead)}
+              onChange={handleSelectChange('lookahead')}
             >
               <option value="60">60</option>
               <option value="120">120</option>
@@ -212,7 +187,7 @@ const SettingsModal = () => {
             <NativeSelect
               value={lookbehind}
               name="lookbehind"
-              onChange={handleSelectChange(setLookbehind)}
+              onChange={handleSelectChange('lookbehind')}
             >
               <option value="0">0</option>
               <option value="10">10</option>
@@ -231,7 +206,7 @@ const SettingsModal = () => {
             <NativeSelect
               value={searchType}
               name="searchType"
-              onChange={handleNumberSelectChange(setSearchType)}
+              onChange={handleNumberSelectChange('searchType')}
             >
               <option value={StationSearchType.Favendo}>Favendo</option>
               <option value={StationSearchType.FavendoStationsData}>
