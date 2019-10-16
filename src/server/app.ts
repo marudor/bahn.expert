@@ -70,6 +70,12 @@ export async function createApp(wsServer?: Server) {
       ctx.stats = transformStats(
         ctx.state.webpackStats.toJson().assetsByChunkName
       );
+      ctx.loadableStats = JSON.parse(
+        // eslint-disable-next-line no-sync
+        ctx.state.fs.readFileSync(
+          path.resolve('dist/client/loadable-stats.json')
+        )
+      );
 
       return next();
     });
@@ -114,9 +120,13 @@ export async function createApp(wsServer?: Server) {
     const stats = require(path.resolve(
       `${distFolder}/client/static/stats.json`
     ));
+    const loadableStats = require(path.resolve(
+      `${distFolder}/client/loadable-stats.json`
+    ));
 
     app.use((ctx, next) => {
       ctx.stats = transformStats(stats.assetsByChunkName);
+      ctx.loadableStats = loadableStats;
 
       return next();
     });

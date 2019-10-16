@@ -1,9 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
-const { StatsWriterPlugin } = require('webpack-stats-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const LoadablePlugin = require('@loadable/webpack-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
 
@@ -33,6 +33,7 @@ if (isDev) {
 }
 
 const plugins = [
+  new LoadablePlugin(),
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     'global.PROD': JSON.stringify(!isDev),
@@ -85,9 +86,6 @@ if (isDev) {
   // };
   plugins.push(
     ...[
-      new StatsWriterPlugin({
-        filename: 'static/stats.json',
-      }),
       new CompressionPlugin({
         filename: '[path].br[query]',
         test: /\.(js|css|svg)$/,
@@ -134,7 +132,7 @@ module.exports = {
         ? 'testDist/client'
         : 'dist/client'
     ),
-    filename: isDev ? 'static/[name].js' : 'static/[name]-[contenthash].js',
+    filename: isDev ? 'static/[name].js' : 'static/[contenthash].js',
     publicPath: '/',
   },
   module: {
