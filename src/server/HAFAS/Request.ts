@@ -66,13 +66,14 @@ function parseCommon(common: Common): ParsedCommon {
   };
 }
 
-class HafasError extends Error {
+export class HafasError extends Error {
   customError = true;
   data: {
     request: SingleHafasRequest;
     response: HafasResponse<any>;
     profile: AllowedHafasProfile;
   };
+  errorCode: string | undefined;
   constructor(
     request: SingleHafasRequest,
     response: HafasResponse<any>,
@@ -80,6 +81,9 @@ class HafasError extends Error {
   ) {
     super(`${request.meth} HAFAS Error`);
     Error.captureStackTrace(this, HafasError);
+    if (response && response.svcResL && response.svcResL.length) {
+      this.errorCode = response.svcResL[0].err;
+    }
     this.data = {
       request,
       response,
