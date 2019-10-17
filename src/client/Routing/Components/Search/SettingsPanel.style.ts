@@ -15,7 +15,7 @@ export default makeStyles({
   },
   label: {
     marginLeft: 0,
-    '& span': {
+    '& * + span': {
       flex: 1,
     },
   },
