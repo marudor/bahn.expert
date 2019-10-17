@@ -1,4 +1,5 @@
 import { AP, WifiData } from 'types/Wifi';
+import { registerCleanup } from 'server/cleanup';
 import axios from 'axios';
 
 interface APWithTrain extends AP {
@@ -14,8 +15,13 @@ const refreshTime =
   Number.parseInt(process.env.WIFI_REFRESH || '5', 10) * 60 * 1000;
 
 if (process.env.NODE_ENV !== 'test') {
-  setInterval(fetchWifiData, refreshTime);
+  const wifiInterval = setInterval(fetchWifiData, refreshTime);
+
   fetchWifiData();
+
+  registerCleanup(() => {
+    clearInterval(wifiInterval);
+  });
 }
 
 let wifiData: TransformedWifiData;
