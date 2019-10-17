@@ -9,9 +9,12 @@ export async function getStationsFromAPI(
   type: AllowedStationAPIs = StationSearchType.Default
 ): Promise<Station[]> {
   if (stationString) {
-    return (await axios.get(`/api/station/current/search/${stationString}`, {
-      params: { type },
-    })).data;
+    return (await axios.get(
+      `/api/station/current/search/${encodeURIComponent(stationString)}`,
+      {
+        params: { type },
+      }
+    )).data;
   }
 
   return Promise.resolve([]);
