@@ -1,10 +1,8 @@
 import { isHbf } from './index';
-import { Link } from 'react-router-dom';
-import { StationSearchType } from 'Common/config';
 import { Train } from 'types/api/iris';
 import cc from 'clsx';
 import React, { ReactNode, useMemo } from 'react';
-import stopPropagation from 'Common/stopPropagation';
+import StationLink from 'Common/Components/StationLink';
 import useStyles from './index.style';
 
 interface Props {
@@ -18,23 +16,16 @@ const DetailVia = ({ stops }: Props) => {
 
     stops.forEach((s, i) => {
       stopsToRender.push(
-        <Link
+        <StationLink
           data-testid={`via-${s.name}`}
           key={i}
-          onClick={stopPropagation}
-          to={{
-            pathname: encodeURIComponent(s.name),
-            state: { searchType: StationSearchType.StationsData },
-          }}
-          title={`Zugabfahrten für ${s.name}`}
+          stationName={s.name}
           className={cc({
             [classes.cancelled]: s.cancelled,
             [classes.additional]: s.additional,
             [classes.hbf]: isHbf(s),
           })}
-        >
-          {s.name}
-        </Link>
+        />
       );
       if (i + 1 !== stops.length) {
         stopsToRender.push(' - ');
