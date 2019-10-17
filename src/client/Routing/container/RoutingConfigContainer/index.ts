@@ -1,26 +1,37 @@
 import { createContainer } from 'unstated-next';
+import { setCookieOptions } from 'client/util';
 import { Station } from 'types/api/station';
 import { useCallback, useState } from 'react';
+import useCookies from 'Common/useCookies';
 
 export interface RoutingSettings {
   maxChanges: string;
   transferTime: string;
 }
 
-const useRoutingSettings = () => {
-  const [settings, setSettings] = useState<RoutingSettings>({
-    maxChanges: '-1',
-    transferTime: '0',
-  });
+export const defaultRoutingSettings: RoutingSettings = {
+  maxChanges: '-1',
+  transferTime: '0',
+};
+
+const useRoutingSettings = (initialSettings: RoutingSettings) => {
+  const [settings, setSettings] = useState<RoutingSettings>(initialSettings);
+  const cookies = useCookies();
 
   const updateSetting = useCallback(
     <K extends keyof RoutingSettings>(key: K, value: RoutingSettings[K]) => {
-      setSettings(oldSettings => ({
-        ...oldSettings,
-        [key]: value,
-      }));
+      setSettings(oldSettings => {
+        const newSettings = {
+          ...oldSettings,
+          [key]: value,
+        };
+
+        cookies.set('rconfig', newSettings, setCookieOptions);
+
+        return newSettings;
+      });
     },
-    []
+    [cookies]
   );
 
   return {
@@ -29,7 +40,9 @@ const useRoutingSettings = () => {
   };
 };
 
-const useRoutingConfig = () => {
+const useRoutingConfig = (
+  initialState: RoutingSettings = defaultRoutingSettings
+) => {
   const [start, setStart] = useState<Station>();
   const [destination, setDestination] = useState<Station>();
   const [date, setDate] = useState<Date | null>(null);
@@ -41,7 +54,7 @@ const useRoutingConfig = () => {
     setDestination,
     date,
     setDate,
-    ...useRoutingSettings(),
+    ...useRoutingSettings(initialState),
   };
 };
 
