@@ -1,5 +1,7 @@
 import * as Sentry from '@sentry/node';
 import { middlewares } from './logger';
+import { Server as NetServer } from 'net';
+import { registerCleanup } from 'server/cleanup';
 import { Server } from 'https';
 import axios from 'axios';
 import cookiesMiddleware from 'universal-cookie-koa';
@@ -110,8 +112,9 @@ export async function createApp(wsServer?: Server) {
 export default async () => {
   const port = process.env.WEB_PORT || 9042;
 
-  let server;
+  let server: NetServer;
   let wsServer: undefined | Server;
+  let adminServer: NetServer | undefined;
 
   if (
     process.env.NODE_ENV !== 'production' &&
@@ -146,6 +149,11 @@ export default async () => {
     // eslint-disable-next-line no-console
     console.log('running in DEV mode!');
   } else {
-    createAdmin();
+    adminServer = createAdmin();
   }
+  registerCleanup(() => {
+    server.close();
+    if (wsServer) wsServer.close();
+    if (adminServer) adminServer.close();
+  });
 };
