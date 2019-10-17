@@ -1,7 +1,10 @@
 import { createContainer } from 'unstated-next';
 import { Route } from 'types/routing';
 import React, { ReactNode, useState } from 'react';
-import RoutingConfingContainer from 'Routing/container/RoutingConfigContainer';
+import RoutingConfingContainer, {
+  defaultRoutingSettings,
+} from 'Routing/container/RoutingConfigContainer';
+import useCookies from 'Common/useCookies';
 
 const useRouting = () => {
   const [routes, setRoutes] = useState<Route[] | undefined>([]);
@@ -28,8 +31,17 @@ export default RoutingContainer;
 type Props = {
   children: ReactNode;
 };
-export const RoutingProvider = ({ children }: Props) => (
-  <RoutingConfingContainer.Provider>
-    <RoutingContainer.Provider>{children}</RoutingContainer.Provider>
-  </RoutingConfingContainer.Provider>
-);
+export const RoutingProvider = ({ children }: Props) => {
+  const cookies = useCookies();
+
+  const savedRoutingSettings = {
+    ...defaultRoutingSettings,
+    ...cookies.get('rconfig'),
+  };
+
+  return (
+    <RoutingConfingContainer.Provider initialState={savedRoutingSettings}>
+      <RoutingContainer.Provider>{children}</RoutingContainer.Provider>
+    </RoutingConfingContainer.Provider>
+  );
+};
