@@ -24,6 +24,7 @@ const SettingsPanel = () => {
   return (
     <ExpansionPanel className={classes.expanded}>
       <ExpansionPanelSummary
+        data-testid="routingSettingsPanel"
         classes={{ content: classes.summaryContent }}
         className={classes.summary}
         expandIcon={<ExpandMoreIcon />}
@@ -36,6 +37,9 @@ const SettingsPanel = () => {
           labelPlacement="start"
           control={
             <TextField
+              inputProps={{
+                'data-testid': 'routingMaxChanges',
+              }}
               onChange={handleInputChange('maxChanges')}
               className={classes.input}
               value={settings.maxChanges}
@@ -50,7 +54,7 @@ const SettingsPanel = () => {
           labelPlacement="start"
           control={
             <TextField
-              inputProps={{ step: 5 }}
+              inputProps={{ step: 5, 'data-testid': 'routingTransferTime' }}
               onChange={handleInputChange('transferTime')}
               className={classes.input}
               value={settings.transferTime}
