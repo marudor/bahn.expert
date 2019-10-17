@@ -7,6 +7,19 @@ import RoutingContainer from 'Routing/container/RoutingContainer';
 import useFetchRouting from 'Routing/container/RoutingContainer/useFetchRouting';
 import useStyles from './index.style';
 
+const translateError = (e: any) => {
+  if (e && e.response && e.response.data) {
+    switch (e.response.data.errorCode) {
+      case 'H9380':
+        return 'Du bist schon da. Hör auf zu suchen!';
+      default:
+        return `${e} (Hafas Code: ${e.response.data.errorCode})`;
+    }
+  }
+
+  return String(e);
+};
+
 const RouteList = () => {
   const classes = useStyles();
   const { routes, error } = RoutingContainer.useContainer();
@@ -26,7 +39,7 @@ const RouteList = () => {
   }, [fetchContext]);
 
   if (error) {
-    return <div className={classes.main}>{String(error)}</div>;
+    return <div className={classes.main}>{translateError(error)}</div>;
   }
 
   if (!routes) return <Loading relative />;
