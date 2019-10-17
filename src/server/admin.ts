@@ -20,5 +20,5 @@ export default (adminPort: number = 9000) => {
     }
   });
 
-  koa.listen(adminPort);
+  return koa.listen(adminPort);
 };
