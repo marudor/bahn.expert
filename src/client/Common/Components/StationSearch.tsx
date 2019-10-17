@@ -17,6 +17,7 @@ import useStyles from './StationSearch.style';
 const debouncedGetStationFromAPI = debounce(getStationsFromAPI, 500);
 
 type Props = {
+  id: string;
   searchType?: StationSearchType;
   value?: Station;
   onChange: (s: Station) => any;
@@ -26,6 +27,7 @@ type Props = {
 
 const TDownshift: DownshiftInterface<Station> = Downshift;
 const StationSearch = ({
+  id,
   onChange,
   value,
   autoFocus,
@@ -76,6 +78,7 @@ const StationSearch = ({
   return (
     <div className={classes.wrapper}>
       <TDownshift
+        id={id}
         // @ts-ignore
         ref={selectRef}
         selectedItem={value || null}
