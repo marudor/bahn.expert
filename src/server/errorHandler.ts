@@ -2,6 +2,8 @@ import * as Sentry from '@sentry/node';
 import { Context } from 'koa';
 import serialize from 'serialize-javascript';
 
+const handledHafasError = ['H9380'];
+
 export default async (ctx: Context, next: Function) => {
   try {
     // eslint-disable-next-line callback-return
@@ -15,7 +17,8 @@ export default async (ctx: Context, next: Function) => {
       };
       ctx.status = e.response.status || 500;
     } else {
-      if (e instanceof Error) {
+      // @ts-ignore
+      if (e instanceof Error && !handledHafasError.includes(e.errorCode)) {
         Sentry.withScope(scope => {
           if (e.data) {
             scope.setExtra('data', e.data);
