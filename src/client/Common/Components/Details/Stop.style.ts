@@ -16,6 +16,9 @@ export default makeStyles(theme => ({
     ...theme.mixins.changed,
   },
   additional: theme.mixins.additional,
+  stationName: {
+    color: 'inherit',
+  },
   station: {
     gridArea: 't',
     overflow: 'hidden',
