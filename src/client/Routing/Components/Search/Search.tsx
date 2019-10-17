@@ -116,6 +116,7 @@ const Search = () => {
   return (
     <>
       <StationSearch
+        id="routingStartSearch"
         searchType={StationSearchType.DBNavgiator}
         value={start}
         onChange={setStart}
@@ -123,6 +124,7 @@ const Search = () => {
       />
       <div className={classes.destination}>
         <StationSearch
+          id="routingDestinationSearch"
           searchType={StationSearchType.DBNavgiator}
           value={destination}
           onChange={setDestination}

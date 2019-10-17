@@ -49,6 +49,7 @@ const Header = () => {
             <ActionHome color="inherit" />
           </IconButton>
           <StationSearch
+            id="abfahrtenHeaderSearch"
             autoFocus={!currentStation}
             searchType={searchType}
             value={currentEnteredStation}
