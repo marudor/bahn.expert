@@ -6,7 +6,9 @@ const useLageplan = (stationName?: string) => {
 
   useEffect(() => {
     if (!stationName) return;
-    Axios.get(`/api/bahnhof/current/lageplan/${stationName}`).then(r => {
+    Axios.get(
+      `/api/bahnhof/current/lageplan/${encodeURIComponent(stationName)}`
+    ).then(r => {
       setLageplan(r.data.lageplan);
     });
   }, [setLageplan, stationName]);
