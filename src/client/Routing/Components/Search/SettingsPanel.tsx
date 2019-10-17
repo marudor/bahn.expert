@@ -3,6 +3,7 @@ import {
   ExpansionPanelDetails,
   ExpansionPanelSummary,
   FormControlLabel,
+  Switch,
   TextField,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -20,6 +21,12 @@ const SettingsPanel = () => {
       updateSetting(key, e.currentTarget.value),
     [updateSetting]
   );
+  const handleSwitchChange = useCallback(
+    (key: keyof RoutingSettings) => (_: any, checked: boolean) => {
+      updateSetting(key, checked);
+    },
+    [updateSetting]
+  );
 
   return (
     <ExpansionPanel className={classes.expanded}>
@@ -30,6 +37,7 @@ const SettingsPanel = () => {
         expandIcon={<ExpandMoreIcon />}
       >
         {settings.maxChanges} Umstiege / {settings.transferTime}m Umstiegszeit
+        {settings.onlyRegional && ' / Nur Nahverkehr'}
       </ExpansionPanelSummary>
       <ExpansionPanelDetails className={classes.details}>
         <FormControlLabel
@@ -63,6 +71,19 @@ const SettingsPanel = () => {
             />
           }
           label="Min Umstiegszeit"
+        />
+        <FormControlLabel
+          className={classes.label}
+          labelPlacement="start"
+          control={
+            <Switch
+              onChange={handleSwitchChange('onlyRegional')}
+              className={classes.input}
+              checked={settings.onlyRegional}
+              name="onlyRegional"
+            />
+          }
+          label="Nur Regionalzüge"
         />
       </ExpansionPanelDetails>
     </ExpansionPanel>

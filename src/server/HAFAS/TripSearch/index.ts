@@ -19,6 +19,7 @@ export type Options = {
   getIV?: boolean;
   numF?: number;
   ctxScr?: string;
+  onlyRegional?: boolean;
 };
 
 function route(
@@ -42,6 +43,7 @@ function route(
     // Number of results to fetch
     numF = 6,
     ctxScr,
+    onlyRegional,
   }: Options,
   profile?: AllowedHafasProfile
 ) {
@@ -66,13 +68,15 @@ function route(
 
   const req: TripSearchRequest = {
     req: {
-      // jnyFltrL: [
-      //   {
-      //     // value: '1023',
-      //     // mode: 'INC',
-      //     type: 'PROD',
-      //   },
-      // ],
+      jnyFltrL: onlyRegional
+        ? [
+            {
+              value: '1016',
+              mode: 'INC',
+              type: 'PROD',
+            },
+          ]
+        : undefined,
       // Always true!
       getPT: true,
       numF,

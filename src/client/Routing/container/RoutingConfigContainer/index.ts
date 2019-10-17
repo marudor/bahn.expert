@@ -7,6 +7,7 @@ import useCookies from 'Common/useCookies';
 export interface RoutingSettings {
   maxChanges: string;
   transferTime: string;
+  onlyRegional?: boolean;
 }
 
 export const defaultRoutingSettings: RoutingSettings = {
