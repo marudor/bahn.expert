@@ -6,6 +6,7 @@ import Messages from './Messages';
 import Platform from 'Common/Components/Platform';
 import React from 'react';
 import Reihung from '../Reihung';
+import StationLink from 'Common/Components/StationLink';
 import Time from 'Common/Components/Time';
 import useStyles from './Stop.style';
 
@@ -48,7 +49,10 @@ const Stop = ({ stop, showWR }: Props) => {
           [classes.additional]: stop.additional,
         })}
       >
-        {stop.station.title}
+        <StationLink
+          className={classes.stationName}
+          stationName={stop.station.title}
+        />
       </span>
       {stop.departure ? (
         <Time
