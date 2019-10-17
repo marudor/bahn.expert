@@ -89,6 +89,10 @@ const useAbfahrten = () => {
         }
       } catch (e) {
         e.station = stationName;
+
+        if (e.response && e.response.status === 404) {
+          e.type = '404';
+        }
         setError(e);
       }
     },
