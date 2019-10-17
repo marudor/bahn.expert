@@ -1,7 +1,7 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { formatToTimeZone } from 'date-fns-timezone';
 import { TripSearchRequest } from 'types/HAFAS/TripSearch';
-import makeRequest, { HafasError } from '../Request';
+import makeRequest from '../Request';
 import tripSearchParse from './parse';
 
 export type Options = {
