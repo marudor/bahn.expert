@@ -9,6 +9,12 @@ import {
   TrnCmpSX,
 } from '.';
 
+interface JnyFltr {
+  value: string;
+  mode: string;
+  type: string;
+}
+
 interface GenericTripSearchRequest {
   arrLocL: Partial<LocL>[];
   depLocL: Partial<LocL>[];
@@ -24,6 +30,7 @@ interface GenericTripSearchRequest {
   outFrwd: boolean;
   ushrp: boolean;
   ctxScr?: string;
+  jnyFltrL?: JnyFltr[];
 }
 interface DateTimeTripSeachRequest extends GenericTripSearchRequest {
   outDate: string;
