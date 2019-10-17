@@ -17,6 +17,7 @@ const StationLink = ({
 }: Props) => {
   return (
     <Link
+      data-testid="stationLink"
       {...rest}
       className={className}
       onClick={stopPropagation}
