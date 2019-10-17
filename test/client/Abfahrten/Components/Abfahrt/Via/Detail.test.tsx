@@ -29,17 +29,17 @@ describe('DetailVia', () => {
 
     const additional = getByTestId('via-additional');
 
-    expect(additional).toHaveAttribute('href', 'additional');
+    expect(additional).toHaveAttribute('href', '/additional');
     expect(additional).toHaveStyle(`color: ${theme.colors.green}`);
 
     const cancelled = getByTestId('via-cancelled');
 
-    expect(cancelled).toHaveAttribute('href', 'cancelled');
+    expect(cancelled).toHaveAttribute('href', '/cancelled');
     expect(cancelled).toHaveStyle(`color: ${theme.colors.red}`);
 
     const hbf = getByTestId('via-hbf');
 
-    expect(hbf).toHaveAttribute('href', 'hbf');
+    expect(hbf).toHaveAttribute('href', '/hbf');
     expect(hbf).toHaveStyle('font-weight: bold');
   });
 });
