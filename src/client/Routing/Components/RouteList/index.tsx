@@ -12,6 +12,8 @@ const translateError = (e: any) => {
     switch (e.response.data.errorCode) {
       case 'H9380':
         return 'Du bist schon da. Hör auf zu suchen!';
+      default:
+        return `${e} (Hafas Code: ${e.response.data.errorCode})`;
     }
   }
 
