@@ -20,21 +20,15 @@ jobs:
     - name: install
       run: |
         yarn --frozen-lockfile
-    - name: build client
+    - name: build
       run: |
-        yarn build:client --test-only
-      env:
-        NODE_ENV: production
-    - name: build server
-      run: |
-        yarn build:server --test-only
+        yarn build:testOnly
       env:
         NODE_ENV: production
     - name: Run Cypress
       run: |
-          COMMIT_INFO_BRANCH=${GITHUB_REF}
           node testDist/server/server/index.js & npx wait-on http://localhost:9042
-          yarn e2e:ci --record --key 45e63cd6-2904-4660-81b7-9344a52a1c3f||(pkill -9 node && exit 1)
+          yarn e2e:ci --record --ci-build-id ${{ github.ref }}/${{ github.sha }} --key 45e63cd6-2904-4660-81b7-9344a52a1c3f||(pkill -9 node && exit 1)
           pkill -9 node
       env:
         COMMIT_INFO_BRANCH: ${GITHUB_REF}
