@@ -35,7 +35,6 @@ jobs:
       run: |
         yarn tsc
     - name: codecov
-      run: |
-        yarn test:codecov --disable=detect --commit=$GITHUB_SHA --branch=${GITHUB_REF#refs/heads/}
-      env:
-        CODECOV_TOKEN: 0ffea696-ec61-45a5-b163-d59e71c0d36b
+      uses: codecov/codecov-action@v1.0.3
+      with:
+        token: 0ffea696-ec61-45a5-b163-d59e71c0d36b
