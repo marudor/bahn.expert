@@ -3,23 +3,27 @@ const spawn = require('child_process').spawn;
 const path = require('path');
 const fs = require('fs');
 
-const p1 = new Promise(resolve =>
-  spawn(
-    'babel',
-    [
-      'src',
-      '-x',
-      '.ts,.tsx,.js,.jsx',
-      '--no-babelrc',
-      '--config-file',
-      './.babelrc.server.js',
-      '--out-dir',
-      'dist/server',
-      '--copy-files',
-    ],
-    { stdio: 'pipe' }
-  ).on('close', resolve)
-);
+const testOnly = Boolean(process.env.TEST_ONLY);
+
+const p1 = testOnly
+  ? Promise.resolve(0)
+  : new Promise(resolve =>
+      spawn(
+        'babel',
+        [
+          'src',
+          '-x',
+          '.ts,.tsx,.js,.jsx',
+          '--no-babelrc',
+          '--config-file',
+          './.babelrc.server.js',
+          '--out-dir',
+          'dist/server',
+          '--copy-files',
+        ],
+        { stdio: 'pipe' }
+      ).on('close', resolve)
+    );
 const p2 = new Promise(resolve =>
   spawn(
     'babel',
@@ -51,11 +55,13 @@ Promise.all([p1, p2]).then(([c1, c2]) => {
   }
   const version = require('../version');
 
-  // eslint-disable-next-line no-sync
-  fs.writeFileSync(
-    path.resolve('dist/server/server/version.js'),
-    `module.exports="${version}"`
-  );
+  if (!testOnly) {
+    // eslint-disable-next-line no-sync
+    fs.writeFileSync(
+      path.resolve('dist/server/server/version.js'),
+      `module.exports="${version}"`
+    );
+  }
   // eslint-disable-next-line no-sync
   fs.writeFileSync(
     path.resolve('testDist/server/server/version.js'),
