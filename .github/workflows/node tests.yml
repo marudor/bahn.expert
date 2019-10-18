@@ -34,3 +34,6 @@ jobs:
     - name: types
       run: |
         yarn tsc
+    - name: codecov
+      run: |
+        yarn test:codecov -t 0ffea696-ec61-45a5-b163-d59e71c0d36b --disable=detect --commit=$GITHUB_SHA --branch=${GITHUB_REF#refs/heads/}"]

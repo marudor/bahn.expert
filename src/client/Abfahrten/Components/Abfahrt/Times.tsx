@@ -19,18 +19,15 @@ const Times = ({
   const classes = useStyles();
 
   return (
-    <div
-      className={cc({
-        [classes.cancelled]: cancelled,
-      })}
-    >
+    <div className={cc(cancelled && classes.cancelled)}>
       {detail ? (
         <React.Fragment>
           {arrival && (
             <div
-              className={cc(classes.wrapper, {
-                [classes.cancelled]: arrival.cancelled,
-              })}
+              className={cc(
+                classes.wrapper,
+                arrival.cancelled && classes.cancelled
+              )}
             >
               <span>{'An: '}</span>
               <Time
@@ -43,9 +40,10 @@ const Times = ({
           )}
           {departure && (
             <div
-              className={cc(classes.wrapper, {
-                [classes.cancelled]: departure.cancelled,
-              })}
+              className={cc(
+                classes.wrapper,
+                departure.cancelled && classes.cancelled
+              )}
             >
               <span>{'Ab: '}</span>
               <Time
