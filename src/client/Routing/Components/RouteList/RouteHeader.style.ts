@@ -6,4 +6,9 @@ export default makeStyles({
     fontSize: '0.7em',
     ...gridStyle,
   },
+  date: {
+    gridArea: '1 / 1 / 2 / 5',
+    fontSize: '1.5em',
+    textAlign: 'center',
+  },
 });
