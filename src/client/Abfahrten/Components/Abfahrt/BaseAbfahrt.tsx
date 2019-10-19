@@ -2,13 +2,15 @@ import { Abfahrt } from 'types/api/iris';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import cc from 'clsx';
 import End from './End';
+import loadable from '@loadable/component';
 import Mid from './Mid';
 import Paper from '@material-ui/core/Paper';
 import React, { useCallback, useMemo } from 'react';
-import Reihung from 'Common/Components/Reihung';
 import SelectedDetailContainer from 'Abfahrten/container/SelectedDetailContainer';
 import Start from './Start';
 import useStyles from './BaseAbfahrt.style';
+
+const LazyReihung = loadable(() => import('Common/Components/Reihung'));
 
 export interface Props {
   abfahrt: Abfahrt;
@@ -64,7 +66,7 @@ const BaseAbfahrt = ({ abfahrt, wing, wingEnd, wingStart }: Props) => {
           {detail &&
             abfahrt.departure &&
             (abfahrt.reihung || abfahrt.hiddenReihung) && (
-              <Reihung
+              <LazyReihung
                 loadHidden={!abfahrt.reihung && abfahrt.hiddenReihung}
                 useZoom={zoomReihung}
                 showUIC={showUIC}

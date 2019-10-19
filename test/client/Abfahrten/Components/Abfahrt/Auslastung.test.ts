@@ -1,5 +1,5 @@
 import { render } from 'testHelper';
-import { wait, waitForElementToBeRemoved } from '@testing-library/dom';
+import { wait, waitForElementToBeRemoved } from '@testing-library/react';
 import Auslastung from 'Abfahrten/Components/Abfahrt/Auslastung';
 import AuslastungContainer from 'Abfahrten/container/AuslastungContainer';
 import mockAbfahrt from './__fixtures__/mockAbfahrt.json';

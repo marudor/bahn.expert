@@ -1,4 +1,4 @@
-import { Abfahrt, Message } from 'types/api/iris';
+import { Abfahrt } from 'types/api/iris';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import cc from 'clsx';
 import DetailMessages from 'Common/Components/Messages/Detail';
@@ -17,20 +17,14 @@ const Info = ({ abfahrt, detail }: Props) => {
     .showSupersededMessages;
   const classes = useStyles();
   const messages = useMemo(() => {
-    const messages = new Set<Message>();
-
-    if (!detail && abfahrt.messages.delay.length) {
-      messages.add(abfahrt.messages.delay[0]);
-    }
-    abfahrt.messages.delay.forEach(messages.add.bind(messages));
-    abfahrt.messages.qos.forEach(messages.add.bind(messages));
+    const messages = abfahrt.messages.delay.concat(abfahrt.messages.qos);
 
     if (!detail || !showSupersededMessages) {
-      return [...messages].filter(m => !m.superseded);
+      return messages.filter(m => !m.superseded);
     }
 
-    return [...messages];
-  }, [abfahrt, detail, showSupersededMessages]);
+    return messages;
+  }, [abfahrt.messages, detail, showSupersededMessages]);
   const MessagesComp = detail ? DetailMessages : NormalMessages;
   const ViaComp = detail ? DetailVia : NormalVia;
 
@@ -39,18 +33,16 @@ const Info = ({ abfahrt, detail }: Props) => {
   );
   const via = (detail || !info) && <ViaComp stops={abfahrt.route} />;
 
-  if (!info && !via) return null;
+  return useMemo(() => {
+    if (!info && !via) return null;
 
-  return (
-    <div
-      className={cc(classes.main, {
-        [classes.detail]: detail,
-      })}
-    >
-      {info}
-      {via}
-    </div>
-  );
+    return (
+      <div className={cc(classes.main, detail && classes.detail)}>
+        {info}
+        {via}
+      </div>
+    );
+  }, [classes, detail, info, via]);
 };
 
 export default Info;

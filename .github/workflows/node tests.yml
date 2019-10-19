@@ -22,12 +22,16 @@ jobs:
         yarn --frozen-lockfile
       env:
         CYPRESS_INSTALL_BINARY: 0
-    - name: depCheck
-      run: |
-        yarn depCheck
     - name: jest
       run: |
         yarn test:jest
+    - name: codecov
+      uses: codecov/codecov-action@v1.0.3
+      with:
+        token: 0ffea696-ec61-45a5-b163-d59e71c0d36b
+    - name: depCheck
+      run: |
+        yarn depCheck
     - name: lint
       run: |
         yarn lint

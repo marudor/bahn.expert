@@ -6,79 +6,6 @@ import lolex, { InstalledClock } from 'lolex';
 import MockAbfahrt from 'Test/client/__fixtures__/abfahrt.json';
 
 describe('CheckInLink', () => {
-  describe('TraewellingLink', () => {
-    it('Renders TraewellingLink', () => {
-      const { getByTestId } = render(CheckInLink, {
-        type: CheckInType.Traewelling,
-        abfahrt: MockAbfahrt,
-      });
-
-      getByTestId('traewellingLink');
-    });
-
-    it('Renders null if no departure', () => {
-      const { queryByTestId } = render(CheckInLink, {
-        type: CheckInType.Traewelling,
-        abfahrt: {
-          ...MockAbfahrt,
-          departure: undefined,
-        },
-      });
-
-      expect(queryByTestId('traewellingLink')).toBeNull();
-    });
-
-    it('Renders null if no train type', () => {
-      const { queryByTestId } = render(CheckInLink, {
-        type: CheckInType.Traewelling,
-        abfahrt: {
-          ...MockAbfahrt,
-          train: {
-            ...MockAbfahrt.train,
-            type: '',
-          },
-        },
-      });
-
-      expect(queryByTestId('traewellingLink')).toBeNull();
-    });
-
-    it('Uses trainNumber by default', () => {
-      const { getByTestId } = render(CheckInLink, {
-        type: CheckInType.Traewelling,
-        abfahrt: {
-          ...MockAbfahrt,
-          train: {
-            ...MockAbfahrt.train,
-            number: 'TestNumber',
-          },
-        },
-      });
-
-      const link = <HTMLAnchorElement>getByTestId('traewellingLink');
-
-      expect(link.href).toContain('TestNumber');
-    });
-
-    it('Uses trainLine for type S', () => {
-      const { getByTestId } = render(CheckInLink, {
-        type: CheckInType.Traewelling,
-        abfahrt: {
-          ...MockAbfahrt,
-          train: {
-            ...MockAbfahrt.train,
-            type: 'S',
-            line: 'testLine',
-          },
-        },
-      });
-
-      const link = <HTMLAnchorElement>getByTestId('traewellingLink');
-
-      expect(link.href).toContain('testLine');
-    });
-  });
-
   describe('Travellynx', () => {
     let clock: InstalledClock;
 
@@ -141,16 +68,6 @@ describe('CheckInLink', () => {
     });
   });
 
-  it('Renders both', () => {
-    const { getByTestId } = render(CheckInLink, {
-      type: CheckInType.Both,
-      abfahrt: MockAbfahrt,
-    });
-
-    getByTestId('travellynxlink');
-    getByTestId('traewellingLink');
-  });
-
   it('Renders none', () => {
     const { queryByTestId } = render(CheckInLink, {
       type: CheckInType.None,
@@ -158,6 +75,5 @@ describe('CheckInLink', () => {
     });
 
     expect(queryByTestId('travellynxlink')).toBeNull();
-    expect(queryByTestId('traewellingLink')).toBeNull();
   });
 });
