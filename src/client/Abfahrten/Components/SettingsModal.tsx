@@ -59,7 +59,7 @@ const SettingsModal = () => {
       onClose={() => setConfigOpen(false)}
     >
       <DialogTitle>Settings</DialogTitle>
-      <DialogContent className={classes.main}>
+      <DialogContent className={classes.main} data-testid="settingsContent">
         <FormControlLabel
           className={classes.label}
           control={

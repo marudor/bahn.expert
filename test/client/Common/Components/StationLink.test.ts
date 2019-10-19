@@ -14,11 +14,11 @@ describe('StationLink', () => {
   });
 
   it('passes extra props', () => {
-    const { getByTestId } = render(StationLink, {
+    const { queryByTestId } = render(StationLink, {
       stationName: 'test',
       extra: 1,
     });
 
-    expect(getByTestId('stationLink')).toHaveAttribute('extra', '1');
+    expect(queryByTestId('stationLink')).toHaveAttribute('extra', '1');
   });
 });
