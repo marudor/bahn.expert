@@ -102,18 +102,6 @@ build:server:
   dependencies: []
   only: [master]
 
-codecov:
-  stage: build
-  script: yarn test:codecov
-  cache:
-    policy: pull
-    key: '$CI_COMMIT_REF_SLUG'
-    paths:
-      - node_modules/
-  dependencies:
-    - jest
-  only: [master]
-
 .cypress_template: &cypress
   image: cypress/browsers:node12.6.0-chrome75
   stage: e2e
