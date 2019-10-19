@@ -54,19 +54,24 @@ const RouteList = () => {
           Früher
         </Button>
       )}
-      <RouteHeader />
       {routes
         .filter(r => r.isRideable)
-        .map(r => (
-          <Route
-            detail={detail === r.checksum}
-            onClick={() =>
-              setDetail(detail === r.checksum ? undefined : r.checksum)
-            }
-            route={r}
-            key={r.checksum}
-          />
-        ))}
+        .map((r, i) => {
+          return (
+            <React.Fragment key={r.checksum}>
+              {(i === 0 || routes[i - 1].date !== r.date) && (
+                <RouteHeader date={r.date} />
+              )}
+              <Route
+                detail={detail === r.checksum}
+                onClick={() =>
+                  setDetail(detail === r.checksum ? undefined : r.checksum)
+                }
+                route={r}
+              />
+            </React.Fragment>
+          );
+        })}
       {loadingLater ? (
         <Loading type={1} />
       ) : (
