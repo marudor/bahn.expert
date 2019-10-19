@@ -1,6 +1,12 @@
 name: node tests
 
-on: [pull_request]
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    branches:
+    - master
 
 env:
   CI: true
