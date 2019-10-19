@@ -20,16 +20,12 @@ jobs:
     - name: install
       run: |
         yarn --frozen-lockfile
-    - name: build client
+    - name: build
       run: |
-        yarn build:client --test-only
+        yarn build
       env:
         NODE_ENV: production
-    - name: build server
-      run: |
-        yarn build:server --test-only
-      env:
-        NODE_ENV: production
+        TEST_ONLY: 1
     - name: Run Cypress
       run: |
           COMMIT_INFO_BRANCH=${GITHUB_REF}

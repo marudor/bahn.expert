@@ -18,7 +18,7 @@ let theme: MergedTheme;
 
 type Options = {
   withNavigation?: boolean;
-  container?: Container<any>[];
+  container?: Container<any, any>[];
 };
 
 export function render<P>(

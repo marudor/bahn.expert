@@ -59,7 +59,7 @@ const SettingsModal = () => {
       onClose={() => setConfigOpen(false)}
     >
       <DialogTitle>Settings</DialogTitle>
-      <DialogContent className={classes.main}>
+      <DialogContent className={classes.main} data-testid="settingsContent">
         <FormControlLabel
           className={classes.label}
           control={
@@ -70,8 +70,6 @@ const SettingsModal = () => {
             >
               <option value={CheckInType.None}>Kein</option>
               <option value={CheckInType.Travelynx}>travelynx.de</option>
-              <option value={CheckInType.Traewelling}>traewelling.de</option>
-              <option value={CheckInType.Both}>beide</option>
             </NativeSelect>
           }
           label="Traewelling Link"
