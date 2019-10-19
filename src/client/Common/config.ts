@@ -1,8 +1,6 @@
 export enum CheckInType {
   None,
-  Traewelling,
   Travelynx,
-  Both,
 }
 
 export enum StationSearchType {

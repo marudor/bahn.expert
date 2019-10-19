@@ -2,20 +2,24 @@
 const childProcess = require('child_process');
 const ncp = require('ncp');
 
-const webpackProductionProcess = childProcess.spawn('webpack', [], {
-  env: process.env,
-});
+const testOnly = Boolean(process.env.TEST_ONLY);
 
-webpackProductionProcess.stdout.pipe(process.stdout);
-webpackProductionProcess.stderr.pipe(process.stderr);
+if (!testOnly) {
+  const webpackProductionProcess = childProcess.spawn('webpack', [], {
+    env: process.env,
+  });
 
-webpackProductionProcess.on('close', code => {
-  if (code !== 0) {
-    process.exit(code);
-  }
-  ncp('public/', 'dist/client/');
-  require('./checkAssetFiles');
-});
+  webpackProductionProcess.stdout.pipe(process.stdout);
+  webpackProductionProcess.stderr.pipe(process.stderr);
+
+  webpackProductionProcess.on('close', code => {
+    if (code !== 0) {
+      process.exit(code);
+    }
+    ncp('public/', 'dist/client/');
+    require('./checkAssetFiles');
+  });
+}
 
 const webpackTestProductionProcess = childProcess.spawn('webpack', [], {
   env: {
@@ -28,5 +32,5 @@ webpackTestProductionProcess.on('close', code => {
   if (code !== 0) {
     process.exit(code);
   }
-  ncp('public/', 'dist/client/');
+  ncp('public/', 'testDist/client/');
 });

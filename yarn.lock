@@ -2045,10 +2045,10 @@
     "@types/webpack-sources" "*"
     source-map "^0.6.0"
 
-"@types/webpack@^4.39.3":
-  version "4.39.3"
-  resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.39.3.tgz#1d55f8fce117a325368bf7612950552ee4ed4467"
-  integrity sha512-afGNNuTfKk1YfHrQ+IwF0QhDkSSMIMMt8BRRErTKaGVvWTMABDjT22/4kJ4bRoSzir9LVgxuuceyZ4Z5I82Cyg==
+"@types/webpack@^4.39.4":
+  version "4.39.4"
+  resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.39.4.tgz#680139788f63f5279ca6d1ffb08666a7ddeca5cf"
+  integrity sha512-VubX3/qXtpWmHhd422GdtAHwAMLHSsgXx0dtspd2DZ7pMnCRKjduJN8Zp5Ex4e1fH4FKFBBgWTvsry0WL8wHsQ==
   dependencies:
     "@types/anymatch" "*"
     "@types/node" "*"
@@ -4109,10 +4109,10 @@ date-fns@^1.27.2, date-fns@^1.29.0:
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.30.1.tgz#2e71bf0b119153dbb4cc4e88d9ea5acfb50dc05c"
   integrity sha512-hBSVCvSmWC+QypYObzwGOd9wqdDpOt+0wl0KbU+R+uuZBS1jN8VsD1ss3irQDknRj5NvxiTF6oj/nDRnN/UQNw==
 
-date-fns@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.5.0.tgz#b939f17c2902ce81cffe449702ba22c0781b38ec"
-  integrity sha512-I6Tkis01//nRcmvMQw/MRE1HAtcuA5Ie6jGPb8bJZJub7494LGOObqkV3ParnsSVviAjk5C8mNKDqYVBzCopWg==
+date-fns@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.5.1.tgz#6bd76f01d3a438e9c481d4c18512ddac37585b4c"
+  integrity sha512-ZBrQmuaqH9YqIejbgu8f09ki7wdD2JxWsRTZ/+HnnLNmkI56ty0evnWzKY+ihLT0xX5VdUX0vDNZCxJJGKX2+Q==
 
 date-now@^0.1.4:
   version "0.1.4"
@@ -4709,10 +4709,10 @@ escodegen@^1.9.1:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-config-marudor@^7.0.1:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/eslint-config-marudor/-/eslint-config-marudor-7.0.1.tgz#a2bee1242a3fee509b78c8e28000a141be1a32fb"
-  integrity sha512-tknF2fsU/0pheSXHUpYRHisKjRsdEt9ge1cyEowzF9+tUe8CBv2hJpYVv2I+PkKVLGsRENKKgTr9i5EZ4H8uxQ==
+eslint-config-marudor@^7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-marudor/-/eslint-config-marudor-7.1.0.tgz#2d3bc67f3febaa1c89d8daa781fa030db8c0a816"
+  integrity sha512-c65ng/BBk3fn957I2KKyRD4udqlF1sPVOFIowSyEez8O6jwhV3EXXZYg9tFmnr+nIpOLv3fYEjIrYkK7mW6Egg==
 
 eslint-config-prettier@^6.4.0:
   version "6.4.0"
@@ -4835,6 +4835,11 @@ eslint-plugin-sort-imports-es6-autofix@^0.5.0:
   integrity sha512-KEX2Uz6bAs67jDYiH/OT1xz1E7AzIJJOIRg1F7OnFAfUVlpws3ldSZj5oZySRHfoVkWqDX9GGExYxckdLrWhwg==
   dependencies:
     eslint "^6.2.2"
+
+eslint-plugin-testing-library@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-testing-library/-/eslint-plugin-testing-library-1.2.0.tgz#022b6960495efcd2d57ad60ec00dbb27b7d0f1c5"
+  integrity sha512-6RRTE7hJy7ByfodlpkX+JxKs6XeuBTVhBUsJmd+r2F0+eiCHLeJaeeQRzl2eAnWZ9dv7ty+VhePm4GLiwf05Ow==
 
 eslint-rule-composer@^0.3.0:
   version "0.3.0"

@@ -26,15 +26,15 @@ describe('Zugsuche', () => {
   it('can be opened', () => {
     const { getByTestId } = renderZugsuche();
 
-    getByTestId('dummytoggle').click();
+    fireEvent.click(getByTestId('dummytoggle'));
     getByTestId('Zugsuche');
   });
 
   it('entering nothing & submit keeps it open', async () => {
     const { getByTestId } = renderZugsuche();
 
-    getByTestId('dummytoggle').click();
-    getByTestId('ZugsucheSubmit').click();
+    fireEvent.click(getByTestId('dummytoggle'));
+    fireEvent.click(getByTestId('ZugsucheSubmit'));
     await new Promise(resolve => setTimeout(resolve, 200));
     getByTestId('Zugsuche');
   });
@@ -42,11 +42,11 @@ describe('Zugsuche', () => {
   it('Navigates to details', async () => {
     const { getByTestId, queryByTestId } = renderZugsuche();
 
-    getByTestId('dummytoggle').click();
+    fireEvent.click(getByTestId('dummytoggle'));
     fireEvent.change(getByTestId('ZugsucheInput'), {
       target: { value: 'EC 6 ' },
     });
-    getByTestId('ZugsucheSubmit').click();
+    fireEvent.click(getByTestId('ZugsucheSubmit'));
     await waitForElementToBeRemoved(() => getByTestId('Zugsuche'));
     expect(queryByTestId('Zugsuche')).toBeNull();
   });
