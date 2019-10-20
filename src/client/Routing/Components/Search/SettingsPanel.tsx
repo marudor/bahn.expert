@@ -1,8 +1,10 @@
+import { AllowedHafasProfile } from 'types/HAFAS';
 import {
   ExpansionPanel,
   ExpansionPanelDetails,
   ExpansionPanelSummary,
   FormControlLabel,
+  NativeSelect,
   Switch,
   TextField,
 } from '@material-ui/core';
@@ -17,7 +19,7 @@ const SettingsPanel = () => {
   const classes = useStyles();
   const { settings, updateSetting } = RoutingConfigContainer.useContainer();
   const handleInputChange = useCallback(
-    (key: keyof RoutingSettings) => (e: ChangeEvent<HTMLInputElement>) =>
+    (key: keyof RoutingSettings) => (e: ChangeEvent<any>) =>
       updateSetting(key, e.currentTarget.value),
     [updateSetting]
   );
@@ -71,6 +73,22 @@ const SettingsPanel = () => {
             />
           }
           label="Min Umstiegszeit"
+        />
+        <FormControlLabel
+          className={classes.label}
+          labelPlacement="start"
+          control={
+            <NativeSelect
+              value={settings.hafasProfile}
+              name="checkIn"
+              onChange={handleInputChange('hafasProfile')}
+            >
+              <option value={AllowedHafasProfile.db}>DB</option>
+              <option value={AllowedHafasProfile.oebb}>OEBB</option>
+              <option value={AllowedHafasProfile.anachb}>VOR.at</option>
+            </NativeSelect>
+          }
+          label="HAFAS Provider"
         />
         <FormControlLabel
           className={classes.label}

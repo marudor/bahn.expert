@@ -1,4 +1,7 @@
+import { AllowedHafasProfile } from 'types/HAFAS';
 import {
+  getHafasStationFromAPI,
+  getHafasStationFromCoordinates,
   getStationsFromAPI,
   getStationsFromCoordinates,
 } from 'Common/service/stationSearch';
@@ -15,6 +18,7 @@ import TextField from '@material-ui/core/TextField';
 import useStyles from './StationSearch.style';
 
 const debouncedGetStationFromAPI = debounce(getStationsFromAPI, 500);
+const debouncedHafasStationFromAPI = debounce(getHafasStationFromAPI, 500);
 
 type Props = {
   id: string;
@@ -23,6 +27,7 @@ type Props = {
   onChange: (s: Station) => any;
   autoFocus?: boolean;
   placeholder?: string;
+  profile?: AllowedHafasProfile;
 };
 
 const TDownshift: DownshiftInterface<Station> = Downshift;
@@ -33,6 +38,7 @@ const StationSearch = ({
   autoFocus,
   placeholder,
   searchType,
+  profile,
 }: Props) => {
   const classes = useStyles();
   const [suggestions, setSuggestions] = useState<Station[]>([]);
@@ -45,16 +51,24 @@ const StationSearch = ({
       setLoading(true);
       let suggestions;
 
+      const stationFn = profile
+        ? debouncedHafasStationFromAPI.bind(undefined, profile)
+        : debouncedGetStationFromAPI.bind(undefined, searchType);
+
+      const geoFn = profile
+        ? getHafasStationFromCoordinates.bind(undefined, profile)
+        : getStationsFromCoordinates;
+
       if (typeof value === 'string') {
-        suggestions = await debouncedGetStationFromAPI(value, searchType);
+        suggestions = await stationFn(value);
       } else {
-        suggestions = await getStationsFromCoordinates(value);
+        suggestions = await geoFn(value);
       }
 
       setSuggestions(suggestions);
       setLoading(false);
     },
-    [searchType]
+    [profile, searchType]
   );
   const getLocation = useCallback(
     (e: SyntheticEvent<any>) => {

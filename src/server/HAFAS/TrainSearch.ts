@@ -40,10 +40,10 @@ export default async (
   initialDepartureDate?: number,
   profileType: AllowedHafasProfile = AllowedHafasProfile.db
 ) => {
-  if (
-    profileType !== AllowedHafasProfile.db &&
-    profileType !== AllowedHafasProfile.oebb
-  ) {
+  // @ts-ignore this is corerct TS.
+  const profile: undefined | typeof profiles['db'] = profiles[profileType];
+
+  if (!profile) {
     throw new Error(`${profileType} not supported by trainsearch`);
   }
   let date = initialDepartureDate;
@@ -57,7 +57,6 @@ export default async (
       date = now.getTime();
     }
   }
-  const profile = profiles[profileType];
   const buffer = (await axios.get(profile.url, {
     params: {
       L: 'vs_json',
