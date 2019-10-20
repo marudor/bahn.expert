@@ -40,7 +40,7 @@ describe('Zugsuche', () => {
   });
 
   it('Navigates to details', async () => {
-    const { getByTestId, queryByTestId } = renderZugsuche();
+    const { getByTestId, queryByTestId, getLocation } = renderZugsuche();
 
     fireEvent.click(getByTestId('dummytoggle'));
     fireEvent.change(getByTestId('ZugsucheInput'), {
@@ -49,5 +49,21 @@ describe('Zugsuche', () => {
     fireEvent.click(getByTestId('ZugsucheSubmit'));
     await waitForElementToBeRemoved(() => getByTestId('Zugsuche'));
     expect(queryByTestId('Zugsuche')).toBeNull();
+    expect(getLocation().pathname.startsWith('/details/EC 6')).toBeTruthy();
+  });
+
+  it('Navigates to OEBB if cookie set', () => {
+    const { getByTestId, getLocation, cookies } = renderZugsuche();
+
+    fireEvent.click(getByTestId('dummytoggle'));
+    fireEvent.change(getByTestId('ZugsucheInput'), {
+      target: { value: 'EC 6 ' },
+    });
+    cookies.set('rconfig', {
+      hafasProfile: 'oebb',
+    });
+
+    fireEvent.click(getByTestId('ZugsucheSubmit'));
+    expect(getLocation().search).toBe('?profile=oebb');
   });
 });
