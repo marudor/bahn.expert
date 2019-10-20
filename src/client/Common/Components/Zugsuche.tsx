@@ -54,6 +54,7 @@ const Zugsuche = ({ children }: Props) => {
       if (zug) {
         const link = ['', 'details', zug];
 
+        // istanbul ignore else
         if (date) {
           link.push((+date).toString());
         }
