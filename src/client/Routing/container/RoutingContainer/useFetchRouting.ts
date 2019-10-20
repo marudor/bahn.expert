@@ -33,6 +33,11 @@ export default () => {
           destination: destination.id,
           time: (date || new Date()).getTime(),
           ...settings,
+        },
+        {
+          params: {
+            profile: settings.hafasProfile,
+          },
         }
       )).data;
 

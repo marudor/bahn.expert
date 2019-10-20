@@ -1,4 +1,9 @@
-import { HafasResponse, HafasStation, ParsedCommon } from 'types/HAFAS';
+import {
+  AllowedHafasProfile,
+  HafasResponse,
+  HafasStation,
+  ParsedCommon,
+} from 'types/HAFAS';
 import { LocGeoPosRequest, LocGeoPosResponse } from 'types/HAFAS/LocGeoPos';
 import makeRequest from './Request';
 
@@ -10,7 +15,8 @@ const parseLocGeoPos = (
 export default (
   x: number,
   y: number,
-  maxDist: number
+  maxDist: number,
+  profile?: AllowedHafasProfile
 ): Promise<HafasStation[]> => {
   const req: LocGeoPosRequest = {
     req: {
@@ -25,5 +31,5 @@ export default (
     meth: 'LocGeoPos',
   };
 
-  return makeRequest(req, parseLocGeoPos);
+  return makeRequest(req, parseLocGeoPos, profile);
 };
