@@ -86,7 +86,7 @@ export const oebb = {
       name: 'oebbADHOC',
     },
     lang: 'de',
-    ver: '1.18',
+    ver: '1.20',
     auth: { aid: 'OWDL4fE4ixNiPBBm', type: 'AID' },
   },
 };

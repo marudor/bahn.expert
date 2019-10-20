@@ -1,3 +1,4 @@
+import { AllowedHafasProfile } from 'types/HAFAS';
 import { createContainer } from 'unstated-next';
 import { setCookieOptions } from 'client/util';
 import { Station } from 'types/api/station';
@@ -8,11 +9,13 @@ export interface RoutingSettings {
   maxChanges: string;
   transferTime: string;
   onlyRegional?: boolean;
+  hafasProfile: AllowedHafasProfile;
 }
 
 export const defaultRoutingSettings: RoutingSettings = {
   maxChanges: '-1',
   transferTime: '0',
+  hafasProfile: AllowedHafasProfile.db,
 };
 
 const useRoutingSettings = (initialSettings: RoutingSettings) => {

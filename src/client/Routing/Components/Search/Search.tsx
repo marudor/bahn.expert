@@ -8,10 +8,10 @@ import {
   startOfDay,
   subDays,
 } from 'date-fns';
+import { AllowedHafasProfile } from 'types/HAFAS';
 import { DateTimePicker } from '@material-ui/pickers';
-import { getStationsFromAPI } from 'Common/service/stationSearch';
+import { getHafasStationFromAPI } from 'Common/service/stationSearch';
 import { Station } from 'types/api/station';
-import { StationSearchType } from 'Common/config';
 import { useHistory, useRouteMatch } from 'react-router';
 import Button from '@material-ui/core/Button';
 import deLocale from 'date-fns/locale/de';
@@ -26,12 +26,10 @@ import useStyles from './Search.styles';
 
 const setStationById = async (
   stationId: string,
-  setAction: (station: Station) => void
+  setAction: (station: Station) => void,
+  hafasProfile: AllowedHafasProfile
 ) => {
-  const stations = await getStationsFromAPI(
-    stationId,
-    StationSearchType.DBNavgiator
-  );
+  const stations = await getHafasStationFromAPI(hafasProfile, stationId);
 
   if (stations.length) {
     setAction(stations[0]);
@@ -47,6 +45,7 @@ const Search = () => {
     setDestination,
     date,
     setDate,
+    settings,
   } = RoutingConfigContainer.useContainer();
   const { fetchRoutes } = useFetchRouting();
 
@@ -90,13 +89,13 @@ const Search = () => {
       const { start, destination } = match.params;
 
       if (start) {
-        setStationById(start, setStart);
+        setStationById(start, setStart, settings.hafasProfile);
       }
       if (destination) {
-        setStationById(destination, setDestination);
+        setStationById(destination, setDestination, settings.hafasProfile);
       }
     }
-  }, [match, setDestination, setStart]);
+  }, [match, setDestination, setStart, settings.hafasProfile]);
 
   const searchRoute = useCallback(
     (e: SyntheticEvent) => {
@@ -117,18 +116,18 @@ const Search = () => {
     <>
       <StationSearch
         id="routingStartSearch"
-        searchType={StationSearchType.DBNavgiator}
         value={start}
         onChange={setStart}
         placeholder="Start"
+        profile={settings.hafasProfile}
       />
       <div className={classes.destination}>
         <StationSearch
           id="routingDestinationSearch"
-          searchType={StationSearchType.DBNavgiator}
           value={destination}
           onChange={setDestination}
           placeholder="Destination"
+          profile={settings.hafasProfile}
         />
         <IconButton
           style={{ padding: 0 }}
