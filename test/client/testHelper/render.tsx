@@ -2,7 +2,8 @@
 import { Container } from 'unstated-next';
 import { CookieContext } from 'Common/useCookies';
 import { HelmetProvider } from 'react-helmet-async';
-import { MemoryRouter } from 'react-router';
+import { Location } from 'history';
+import { MemoryRouter, useLocation } from 'react-router';
 import { MergedTheme } from '@material-ui/styles';
 import { render as realRender } from '@testing-library/react';
 import { ThemeProvider } from 'Common/container/ThemeContainer';
@@ -21,6 +22,14 @@ type Options = {
   container?: Container<any, any>[];
 };
 
+let location: Location<any>;
+
+const LocationHelper = ({ children }: any) => {
+  location = useLocation();
+
+  return children;
+};
+
 export function render<P>(
   Comp: ComponentType<P>,
   props?: P,
@@ -33,6 +42,7 @@ export function render<P>(
     theme = createTheme(currentThemeType);
   }
 
+  const cookies = new Cookies();
   const wrapper = ({ children }: any) => {
     let result = children;
 
@@ -49,11 +59,13 @@ export function render<P>(
     return (
       <HelmetProvider>
         <MemoryRouter>
-          <CookieContext.Provider value={new Cookies()}>
-            <ThemeProvider>
-              <ThemeWrap>{result}</ThemeWrap>
-            </ThemeProvider>
-          </CookieContext.Provider>
+          <LocationHelper>
+            <CookieContext.Provider value={cookies}>
+              <ThemeProvider>
+                <ThemeWrap>{result}</ThemeWrap>
+              </ThemeProvider>
+            </CookieContext.Provider>
+          </LocationHelper>
         </MemoryRouter>
       </HelmetProvider>
     );
@@ -67,5 +79,7 @@ export function render<P>(
     ...rendered,
     container: rendered.container.firstChild,
     theme,
+    cookies,
+    getLocation: () => location,
   };
 }
