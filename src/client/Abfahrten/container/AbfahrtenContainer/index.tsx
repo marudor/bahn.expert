@@ -78,7 +78,7 @@ const useAbfahrten = () => {
             id: '',
           };
         });
-        const stations = await getStationsFromAPI(stationName, searchType);
+        const stations = await getStationsFromAPI(searchType, stationName);
 
         if (stations.length) {
           setCurrentStation(stations[0]);
