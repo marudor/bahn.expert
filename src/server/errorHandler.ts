@@ -1,6 +1,5 @@
 import * as Sentry from '@sentry/node';
 import { Context } from 'koa';
-import serialize from 'serialize-javascript';
 
 const handledHafasError = ['H9380'];
 

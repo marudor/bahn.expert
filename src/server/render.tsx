@@ -14,7 +14,6 @@ import ejs from 'ejs';
 import fs from 'fs';
 import path from 'path';
 import React from 'react';
-import serialize from 'serialize-javascript';
 import ThemeWrap from 'client/ThemeWrap';
 
 global.baseUrl = process.env.BASE_URL || '';
@@ -87,8 +86,8 @@ export default (ctx: Context) => {
       header: context.helmet,
       cssTags: extractor.getStyleTags(),
       linkTags: extractor.getLinkTags(),
-      configOverride: serialize(global.configOverride),
-      imprint: serialize(global.IMPRINT),
+      configOverride: JSON.stringify(global.configOverride),
+      imprint: JSON.stringify(global.IMPRINT),
       jssCss: sheets.toString(),
       baseUrl: global.baseUrl,
     });

@@ -35,7 +35,7 @@ function route(
     economic = false,
     getTariff = false,
     // Umgebung reicht als stationen?
-    ushrp = false,
+    ushrp = true,
     // unknown data
     getPolyline = false,
     // unknown flag
