@@ -41,13 +41,20 @@ export default async (
     Boolean(
       t.segments.find(
         s =>
-          s.train.number === trainNumber ||
-          Boolean(s.wings && s.wings.find(w => w.train.number === trainNumber))
+          s.type === 'JNY' &&
+          (s.train.number === trainNumber ||
+            Boolean(
+              s.wings && s.wings.find(w => w.train.number === trainNumber)
+            ))
       )
     )
   );
 
-  if (!relevantTrip || !relevantTrip.segments[0].auslastung) {
+  if (
+    !relevantTrip ||
+    relevantTrip.segments[0].type !== 'JNY' ||
+    !relevantTrip.segments[0].auslastung
+  ) {
     throw {
       status: 404,
       message: 'Auslastung not found',

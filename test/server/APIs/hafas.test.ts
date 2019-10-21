@@ -1,5 +1,6 @@
 import { checkApi, mockWithFile } from './helper';
 import { versions } from 'server/APIs/hafas';
+import lolex, { InstalledClock } from 'lolex';
 jest.mock('node-cache');
 
 describe('Hafas API', () => {
@@ -73,28 +74,41 @@ describe('Hafas API', () => {
           `/api/hafas/${v}/details/ICE 70/1561966025283?stop=8509000`
         );
       });
-      it('/auslastung', async () => {
-        mockWithFile(
-          'https://reiseauskunft.bahn.de',
-          '/bin/mgate.exe?checksum=7e80aaeb60b2c758b94eb48e3c55443f',
-          'hafas/auslastung/station1',
-          'post'
-        );
-        mockWithFile(
-          'https://reiseauskunft.bahn.de',
-          '/bin/mgate.exe?checksum=1dfefef85395f73dc69107adbd1c20ad',
-          'hafas/auslastung/station2',
-          'post'
-        );
-        mockWithFile(
-          'https://reiseauskunft.bahn.de',
-          '/bin/mgate.exe?checksum=3978819179289f2f50715c32d200e6ce',
-          'hafas/auslastung/route',
-          'post'
-        );
-        await checkApi(
-          `/api/hafas/${v}/auslastung/8000105/Dresden%20Hbf/1653/1561641600000`
-        );
+      describe('Auslastung fake clock', () => {
+        let clock: InstalledClock;
+
+        beforeAll(() => {
+          clock = lolex.install({
+            now: 1561650175000,
+          });
+        });
+        afterAll(() => {
+          clock.uninstall();
+        });
+
+        it('/auslastung', async () => {
+          mockWithFile(
+            'https://reiseauskunft.bahn.de',
+            '/bin/mgate.exe?checksum=39f8eaae591107a348a0cd05e3ddef19',
+            'hafas/auslastung/station1',
+            'post'
+          );
+          mockWithFile(
+            'https://reiseauskunft.bahn.de',
+            '/bin/mgate.exe?checksum=c9b0f9063914df70062adc247ad3bf1d',
+            'hafas/auslastung/station2',
+            'post'
+          );
+          mockWithFile(
+            'https://reiseauskunft.bahn.de',
+            '/bin/mgate.exe?checksum=bcdfdd8f99163318cc9811ba9c62c5f0',
+            'hafas/auslastung/route',
+            'post'
+          );
+          await checkApi(
+            `/api/hafas/${v}/auslastung/8000105/Dresden%20Hbf/1653/1561641600000`
+          );
+        });
       });
       it('/trainSearch', async () => {
         mockWithFile(
@@ -122,26 +136,39 @@ describe('Hafas API', () => {
       it('/station', async () => {
         mockWithFile(
           'https://reiseauskunft.bahn.de',
-          '/bin/mgate.exe?checksum=44508eb0953b3fb50df7b66751abda2f',
+          '/bin/mgate.exe?checksum=a089e2350502ebf47dec4f574c046d98',
           'hafas/station',
           'post'
         );
         await checkApi(`/api/hafas/${v}/station/Düsseldorf`);
       });
-      it('/route', async () => {
-        mockWithFile(
-          'https://reiseauskunft.bahn.de',
-          '/bin/mgate.exe?checksum=655550e5d81180d6ac44671f8ef6e890',
-          'hafas/route',
-          'post'
-        );
+      describe('fake clock', () => {
+        let clock: InstalledClock;
 
-        await checkApi(`/api/hafas/${v}/route`, 200, {
-          start: '8000105',
-          destination: '8002549',
-          time: 1561911240000,
-          maxChanges: '0',
-          transferTime: '0',
+        beforeAll(() => {
+          clock = lolex.install({
+            now: 1561921000000,
+          });
+        });
+        afterAll(() => {
+          clock.uninstall();
+        });
+
+        it('/route', async () => {
+          mockWithFile(
+            'https://reiseauskunft.bahn.de',
+            '/bin/mgate.exe?checksum=b9ccdcffed4d9fba3770212c64792e0d',
+            'hafas/route',
+            'post'
+          );
+
+          await checkApi(`/api/hafas/${v}/route`, 200, {
+            start: '8000105',
+            destination: '8002549',
+            time: 1561911240000,
+            maxChanges: '0',
+            transferTime: '0',
+          });
         });
       });
       it('/searchOnTrip', async () => {

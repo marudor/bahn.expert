@@ -1,9 +1,9 @@
-import { Route$JourneySegmentTrain } from 'types/routing';
-import React, { useState } from 'react';
+import { Route$JourneySegment } from 'types/routing';
+import React, { MouseEvent, useState } from 'react';
 import RouteSegment from './RouteSegment';
 
 type OwnProps = {
-  segments: Route$JourneySegmentTrain[];
+  segments: Route$JourneySegment[];
   className?: string;
 };
 
@@ -12,13 +12,19 @@ const RouteSegments = ({ segments, className }: OwnProps) => {
 
   return (
     <div className={className}>
-      {segments.map(s => (
+      {segments.map((s, i) => (
         <RouteSegment
           detail={detail === s.train.name}
-          onTrainClick={() =>
-            setDetail(detail === s.train.name ? undefined : s.train.name)
+          onTrainClick={
+            s.type === 'JNY'
+              ? (e: MouseEvent) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  setDetail(detail === s.train.name ? undefined : s.train.name);
+                }
+              : undefined
           }
-          key={s.train.name}
+          key={i}
           segment={s}
         />
       ))}
