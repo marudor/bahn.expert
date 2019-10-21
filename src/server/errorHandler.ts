@@ -1,6 +1,5 @@
 import * as Sentry from '@sentry/node';
 import { Context } from 'koa';
-import serialize from 'serialize-javascript';
 
 const handledHafasError = ['H9380'];
 
@@ -13,7 +12,7 @@ export default async (ctx: Context, next: Function) => {
     if (e.response && !e.customError) {
       ctx.body = {
         statusText: e.response.statusText,
-        data: serialize(e.response.data),
+        data: JSON.stringify(e.response.data),
       };
       ctx.status = e.response.status || 500;
     } else {
@@ -29,7 +28,7 @@ export default async (ctx: Context, next: Function) => {
           Sentry.captureException(e);
         });
       }
-      ctx.body = serialize(e);
+      ctx.body = JSON.stringify(e);
       ctx.status = e.status || 500;
     }
   }

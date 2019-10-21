@@ -28,6 +28,7 @@ type Props = {
   autoFocus?: boolean;
   placeholder?: string;
   profile?: AllowedHafasProfile;
+  maxSuggestions?: number;
 };
 
 const TDownshift: DownshiftInterface<Station> = Downshift;
@@ -39,6 +40,7 @@ const StationSearch = ({
   placeholder,
   searchType,
   profile,
+  maxSuggestions = 7,
 }: Props) => {
   const classes = useStyles();
   const [suggestions, setSuggestions] = useState<Station[]>([]);
@@ -49,7 +51,7 @@ const StationSearch = ({
   const loadOptions = useCallback(
     async (value: string | Coordinates) => {
       setLoading(true);
-      let suggestions;
+      let suggestions: Station[];
 
       const stationFn = profile
         ? debouncedHafasStationFromAPI.bind(undefined, profile)
@@ -65,10 +67,14 @@ const StationSearch = ({
         suggestions = await geoFn(value);
       }
 
+      if (maxSuggestions) {
+        suggestions = suggestions.slice(0, maxSuggestions);
+      }
+
       setSuggestions(suggestions);
       setLoading(false);
     },
-    [profile, searchType]
+    [maxSuggestions, profile, searchType]
   );
   const getLocation = useCallback(
     (e: SyntheticEvent<any>) => {

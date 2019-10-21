@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import { Route$JourneySegment } from 'types/routing';
+import { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
 import DetailsContext from './DetailsContext';
 import getDetails from 'Common/service/details';
 import Header from './Header';
@@ -15,7 +15,7 @@ interface Props {
 
 const Details = ({ train, initialDeparture, currentStopId }: Props) => {
   const query = useQuery();
-  const [details, setDetails] = useState<Route$JourneySegment>();
+  const [details, setDetails] = useState<ParsedSearchOnTripResponse>();
   const [error, setError] = useState<AxiosError>();
 
   useEffect(() => {
