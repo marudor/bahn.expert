@@ -22,6 +22,14 @@ export type Options = {
   onlyRegional?: boolean;
 };
 
+const profileConfig = {
+  db: {
+    cfg: {
+      rtMode: 'HYBRID',
+    },
+  },
+};
+
 function route(
   {
     start,
@@ -30,16 +38,17 @@ function route(
     transferTime = -1,
     maxChanges = -1,
     searchForDeparture = true,
-    // stops in between
+    // get stops in between
     getPasslist = true,
-    economic = false,
+    // true = not only fastest
+    economic = true,
     getTariff = false,
     // Umgebung reicht als stationen?
     ushrp = true,
     // unknown data
     getPolyline = false,
     // unknown flag
-    getIV = false,
+    getIV = true,
     // Number of results to fetch
     numF = 6,
     ctxScr,
@@ -83,7 +92,6 @@ function route(
       ...requestTypeSpecific,
       maxChg: maxChanges,
       minChgTime: transferTime,
-      // get stops in between
       getPasslist,
       economic,
       getTariff,
@@ -104,6 +112,8 @@ function route(
       ],
     },
     meth: 'TripSearch',
+    // @ts-ignore
+    ...profileConfig[profile],
   };
 
   return makeRequest(req, tripSearchParse, profile);
