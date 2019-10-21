@@ -72,7 +72,7 @@ export interface Jny extends CommonJny {
   msgL?: MsgL[];
 }
 
-export interface SecL {
+export interface SecLJNY {
   type: 'JNY';
   icoX: number;
   dep: CommonDeparture;
@@ -82,6 +82,25 @@ export interface SecL {
   resState: 'N' | 'B' | 'S';
   resRecommendation: string;
 }
+
+export interface Gis {
+  dist: number;
+  durS: string;
+  dirGeo: number;
+  ctx: string;
+  gisPrvr: string;
+  getDescr: boolean;
+  getPoly: boolean;
+}
+export interface SecLWALK {
+  type: 'WALK' | 'TRSF';
+  icoX: number;
+  dep: CommonDeparture;
+  arr: CommonArrival;
+  gis: Gis;
+}
+
+export type SecL = SecLJNY | SecLWALK;
 
 export interface SotCtxt {
   cnLocX: number;

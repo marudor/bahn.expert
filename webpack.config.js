@@ -4,6 +4,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const LoadablePlugin = require('@loadable/webpack-plugin');
+const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
 
@@ -64,6 +65,7 @@ const optimization = {};
 
 if (isDev) {
   rules[0].use.unshift('cache-loader');
+  plugins.push(new ErrorOverlayPlugin());
 } else {
   optimization.minimizer = [
     new TerserPlugin({
@@ -109,10 +111,8 @@ module.exports = {
   optimization,
   plugins,
   mode: isDev ? 'development' : 'production',
-  devtool: isDev ? 'cheap-module-eval-source-map' : false,
-  entry: {
-    main: ['./src/client/entry.ts'],
-  },
+  devtool: isDev ? 'cheap-module-source-map' : false,
+  entry: ['./src/client/entry.ts'],
   resolve: {
     // plugins: [new ReactJssHmrPlugin()],
     modules: ['node_modules', path.resolve(__dirname, 'src')],

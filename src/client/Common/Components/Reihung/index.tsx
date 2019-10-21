@@ -18,7 +18,7 @@ type Props = {
   showUIC?: boolean;
 };
 
-const ReihungComp = (props: Props) => {
+const Reihung = (props: Props) => {
   const {
     className,
     currentStation,
@@ -90,4 +90,4 @@ const ReihungComp = (props: Props) => {
   );
 };
 
-export default ReihungComp;
+export default Reihung;

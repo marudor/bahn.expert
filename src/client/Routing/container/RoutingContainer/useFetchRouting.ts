@@ -68,6 +68,11 @@ export default () => {
           start: start.id,
           destination: destination.id,
           ctxScr: type === 'earlier' ? earlierContext : laterContext,
+        },
+        {
+          params: {
+            profile: settings.hafasProfile,
+          },
         }
       )).data;
 
@@ -96,6 +101,7 @@ export default () => {
       setEarlierContext,
       setLaterContext,
       setRoutes,
+      settings.hafasProfile,
       start,
     ]
   );

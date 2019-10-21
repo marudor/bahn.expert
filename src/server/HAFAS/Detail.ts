@@ -2,6 +2,7 @@ import { AllowedHafasProfile } from 'types/HAFAS';
 import { getAbfahrten } from 'server/Abfahrten';
 import { logger } from 'server/logger';
 import { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
+import { Route$JourneySegmentTrain } from 'types/routing';
 import { subMinutes } from 'date-fns';
 import searchOnTrip from './SearchOnTrip';
 import trainSearch from './TrainSearch';
@@ -49,7 +50,9 @@ export default async (
       hafasProfile
     );
 
-    relevantSegment = route.segments[0];
+    relevantSegment = route.segments.find(
+      s => s.type === 'JNY'
+    ) as Route$JourneySegmentTrain;
   } catch (e) {
     logger.error({
       msg: 'HAFAS Error',
@@ -57,6 +60,7 @@ export default async (
     });
 
     relevantSegment = {
+      type: 'JNY',
       cancelled: train.jDetails.stops.every(s => s.cancelled),
       finalDestination: train.jDetails.lastStop.station.title,
       jid: train.jid,

@@ -86,16 +86,25 @@ const Search = () => {
 
   useEffect(() => {
     if (match) {
-      const { start, destination } = match.params;
-
-      if (start) {
-        setStationById(start, setStart, settings.hafasProfile);
+      if (!start && match.params.start) {
+        setStationById(match.params.start, setStart, settings.hafasProfile);
       }
-      if (destination) {
-        setStationById(destination, setDestination, settings.hafasProfile);
+      if (!destination && match.params.destination) {
+        setStationById(
+          match.params.destination,
+          setDestination,
+          settings.hafasProfile
+        );
       }
     }
-  }, [match, setDestination, setStart, settings.hafasProfile]);
+  }, [
+    destination,
+    match,
+    setDestination,
+    setStart,
+    settings.hafasProfile,
+    start,
+  ]);
 
   const searchRoute = useCallback(
     (e: SyntheticEvent) => {

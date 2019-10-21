@@ -1,4 +1,5 @@
 import { CommonStop, HafasResponse, ParsedCommon } from 'types/HAFAS';
+import { CommonStopInfo } from 'types/api/common';
 import { flatten } from 'lodash';
 import { Jny, OutConL, SecL, TripSearchResponse } from 'types/HAFAS/TripSearch';
 import { parse } from 'date-fns';
@@ -10,6 +11,7 @@ import {
   RoutingResult,
 } from 'types/routing';
 import { Station } from 'types/station';
+import mergeSegments from 'server/HAFAS/TripSearch/mergeSegments';
 import parseAuslastung from '../helper/parseAuslastung';
 import parseCommonArrival from '../helper/parseCommonArrival';
 import parseCommonDeparture from '../helper/parseCommonDeparture';
@@ -36,6 +38,34 @@ function parseFullStation(fullStation: string): Station {
   };
 }
 
+function adjustToFirstTrain(
+  departure: CommonStopInfo,
+  segments: Route$JourneySegment[]
+) {
+  if (segments.length && segments[0].type !== 'JNY') {
+    const firstTrainSegment = segments.find(s => s.type === 'JNY');
+
+    if (firstTrainSegment) {
+      departure.delay = firstTrainSegment.arrival.delay;
+    }
+  }
+}
+
+function adjustToLastTrain(
+  arrival: CommonStopInfo,
+  segments: Route$JourneySegment[]
+) {
+  if (segments.length && segments[segments.length - 1].type !== 'JNY') {
+    const allTrainSegments = segments.filter(s => s.type === 'JNY');
+
+    if (allTrainSegments.length) {
+      const lastTrainSegment = allTrainSegments[allTrainSegments.length - 1];
+
+      arrival.delay = lastTrainSegment.arrival.delay;
+    }
+  }
+}
+
 export class Journey {
   raw: OutConL;
   date: number;
@@ -45,9 +75,17 @@ export class Journey {
     this.raw = raw;
     this.common = common;
     this.date = parse(raw.date, 'yyyyMMdd', new Date()).getTime();
-    const segments = raw.secL
+    const allSegments = raw.secL
       .map(this.parseSegment)
       .filter<Route$JourneySegment>(Boolean as any);
+
+    const segments = mergeSegments(allSegments);
+
+    const arrival = parseCommonArrival(raw.arr, this.date, common);
+    const departure = parseCommonDeparture(raw.dep, this.date, common);
+
+    adjustToFirstTrain(departure, segments);
+    adjustToLastTrain(arrival, segments);
 
     this.journey = {
       checksum: raw.cksum,
@@ -56,10 +94,12 @@ export class Journey {
       duration: parseDuration(raw.dur),
       changes: raw.chg,
       isRideable: !raw.isNotRdbl,
-      arrival: parseCommonArrival(raw.arr, this.date, common),
-      departure: parseCommonDeparture(raw.dep, this.date, common),
+      arrival,
+      departure,
       segments,
-      segmentTypes: segments.map(s => s.train.type).filter(Boolean as any),
+      segmentTypes: segments
+        .map(s => (s.type === 'JNY' ? s.train.type : s.train.name))
+        .filter(Boolean as any),
       raw: global.PROD ? undefined : raw,
     };
   }
@@ -117,9 +157,23 @@ export class Journey {
           // reservationRecommandation: t.resRecommendation,
           // icoX: this.common.icoL[t.icoX],
           ...this.parseSegmentJourney(t.jny),
+          type: 'JNY',
         };
       }
-      // case 'WALK':
+      case 'TRSF':
+      case 'WALK':
+        return {
+          type: 'WALK',
+          train: {
+            name: 'Fußweg',
+            type: 'Fußweg',
+          },
+          arrival: parseCommonArrival(t.arr, this.date, this.common),
+          departure: parseCommonDeparture(t.dep, this.date, this.common),
+          duration: parseDuration(t.gis.durS),
+          segmentStart: this.common.locL[t.dep.locX],
+          segmentDestination: this.common.locL[t.arr.locX],
+        };
       default:
         return undefined;
     }

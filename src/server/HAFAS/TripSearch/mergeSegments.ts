@@ -1,0 +1,27 @@
+import { Route$JourneySegment } from 'types/routing';
+
+export default (segments: Route$JourneySegment[]) => {
+  const mergedSegments: Route$JourneySegment[] = [];
+  let currentSegment = segments.shift();
+
+  while (currentSegment) {
+    const nextSegment = segments.shift();
+
+    if (currentSegment.type !== 'WALK' || !nextSegment) {
+      mergedSegments.push(currentSegment);
+      currentSegment = segments.shift();
+    } else if (nextSegment.type !== 'WALK') {
+      mergedSegments.push(currentSegment);
+      mergedSegments.push(nextSegment);
+      currentSegment = segments.shift();
+    } else {
+      currentSegment.arrival = nextSegment.arrival;
+      currentSegment.duration += nextSegment.duration;
+      currentSegment.segmentDestination = nextSegment.segmentDestination;
+      mergedSegments.push(currentSegment);
+      currentSegment = segments.shift();
+    }
+  }
+
+  return mergedSegments;
+};
