@@ -9,7 +9,7 @@ export default (segments: Route$JourneySegment[]) => {
 
     if (currentSegment.type !== 'WALK' || !nextSegment) {
       mergedSegments.push(currentSegment);
-      currentSegment = segments.shift();
+      currentSegment = nextSegment;
     } else if (nextSegment.type !== 'WALK') {
       mergedSegments.push(currentSegment);
       mergedSegments.push(nextSegment);

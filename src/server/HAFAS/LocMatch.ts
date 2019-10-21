@@ -10,21 +10,23 @@ function parseFn(
 ): Station[] {
   const stations = d.svcResL[0].res.match.locL;
 
-  return stations
-    .filter(s => s.extId)
-    .map(s => parseLocL(s, parsedCommon.prodL));
+  return (
+    stations
+      // .filter(s => s.extId)
+      .map(s => parseLocL(s, parsedCommon.prodL))
+  );
 }
 
 export default (
   searchTerm: string,
-  type: 'S' | 'ALL' = 'S',
+  type: 'S' | 'ALL' = 'ALL',
   profile?: AllowedHafasProfile
 ) => {
   const req: LocMatchRequest = {
     req: {
       input: {
         loc: {
-          name: `${searchTerm}?`,
+          name: `${searchTerm}`,
           type,
         },
         field: 'S',
