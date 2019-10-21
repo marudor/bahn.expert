@@ -4,6 +4,7 @@ import Platform from 'Common/Components/Platform';
 import React, { MouseEvent } from 'react';
 import Time from 'Common/Components/Time';
 import useStyles from './RouteSegment.style';
+import WalkSegmentTrain from './SegmentTrainComponent/WalkSegmentTrain';
 
 type Props = {
   segment: Route$JourneySegment;
@@ -48,13 +49,15 @@ const RouteSegment = ({ segment, detail, onTrainClick }: Props) => {
             />
           </>
         )}
-        {segment.type === 'JNY' && (
+        {segment.type === 'JNY' ? (
           <JnySegmentTrain
             className={classes.train}
             detail={detail}
             segment={segment}
             onTrainClick={onTrainClick}
           />
+        ) : (
+          <WalkSegmentTrain className={classes.train} segment={segment} />
         )}
       </div>
       {'changeDuration' in segment && (
