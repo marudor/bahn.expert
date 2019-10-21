@@ -1457,13 +1457,6 @@ Array [
 ]
 `;
 
-exports[`Hafas API v1 /auslastung 1`] = `
-Object {
-  "first": 2,
-  "second": 3,
-}
-`;
-
 exports[`Hafas API v1 /details 1`] = `
 Object {
   "arrival": Object {
