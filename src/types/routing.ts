@@ -1,7 +1,7 @@
 import { CommonStopInfo } from './api/common';
+import { HafasStation, ParsedProduct, ProdL } from './HAFAS';
 import { Message } from './api/iris';
 import { OutConL, SecL } from './HAFAS/TripSearch';
-import { ParsedProduct, ProdL } from './HAFAS';
 import { RemL } from 'types/api/hafas';
 import { Station } from './station';
 
@@ -15,7 +15,9 @@ export type Route$Stop = {
   cancelled?: boolean;
   irisMessages?: Message[];
 };
-export type Route$JourneySegment = Route$JourneySegmentTrain;
+export type Route$JourneySegment =
+  | Route$JourneySegmentTrain
+  | Route$JourneySegmentWalk;
 export enum AuslastungsValue {
   Gering = 1,
   Hoch,
@@ -42,9 +44,22 @@ export type Route$Journey = {
   messages?: RemL[];
 };
 export type Route$JourneySegmentTrain = Route$Journey & {
+  type: 'JNY';
   arrival: CommonStopInfo;
   departure: CommonStopInfo;
   wings?: Route$Journey[];
+};
+
+export type WalkStopInfo = Pick<CommonStopInfo, 'time' | 'delay'>;
+
+export type Route$JourneySegmentWalk = {
+  type: 'WALK';
+  train: ParsedProduct;
+  arrival: WalkStopInfo;
+  departure: WalkStopInfo;
+  duration: number;
+  segmentStart: HafasStation;
+  segmentDestination: HafasStation;
 };
 
 export type Route = {

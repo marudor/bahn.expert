@@ -1457,13 +1457,6 @@ Array [
 ]
 `;
 
-exports[`Hafas API v1 /auslastung 1`] = `
-Object {
-  "first": 2,
-  "second": 3,
-}
-`;
-
 exports[`Hafas API v1 /details 1`] = `
 Object {
   "arrival": Object {
@@ -1933,6 +1926,7 @@ Object {
     "number": "70",
     "type": "ICE",
   },
+  "type": "JNY",
 }
 `;
 
@@ -3153,1548 +3147,6 @@ Object {
     "number": "32189",
     "type": "S",
   },
-}
-`;
-
-exports[`Hafas API v1 /route 1`] = `
-Object {
-  "context": Object {
-    "earlier": "1|OB|MT#11#296338#296338#296574#296574#0#0#485#296290#1#-2147482598#0#1#2|PDH#7bc18bfbe6940f4d59e34a8a25774bec|RD#30062019|RT#181000",
-    "later": "1|OF|MT#11#296946#296946#297212#297212#0#0#5#296689#6#-2147482598#0#1#2|PDH#7bc18bfbe6940f4d59e34a8a25774bec|RD#30062019|RT#181000",
-  },
-  "routes": Array [
-    Object {
-      "arrival": Object {
-        "platform": "14",
-        "scheduledTime": 1561935240000,
-        "time": 1561935240000,
-      },
-      "changes": 0,
-      "checksum": "04a1ea3e_3",
-      "cid": "C-0",
-      "date": 1561852800000,
-      "departure": Object {
-        "platform": "8",
-        "scheduledTime": 1561921080000,
-        "time": 1561921080000,
-      },
-      "duration": 14160000,
-      "isRideable": true,
-      "segmentTypes": Array [
-        "ICE",
-      ],
-      "segments": Array [
-        Object {
-          "arrival": Object {
-            "platform": "14",
-            "reihung": true,
-            "scheduledTime": 1561935240000,
-            "time": 1561935240000,
-          },
-          "auslastung": Object {
-            "first": 2,
-            "second": 3,
-          },
-          "departure": Object {
-            "platform": "8",
-            "reihung": true,
-            "scheduledTime": 1561921080000,
-            "time": 1561921080000,
-          },
-          "duration": 14160000,
-          "finalDestination": "Hamburg-Altona",
-          "jid": "1|309032|0|80|30062019",
-          "messages": Array [
-            Object {
-              "code": "CK",
-              "icoX": 3,
-              "prio": 200,
-              "txtN": "Komfort Check-in möglich  http://bahn.de/komfortcheckin",
-              "type": "A",
-            },
-          ],
-          "segmentDestination": Object {
-            "id": "8002549",
-            "title": "Hamburg Hbf",
-          },
-          "segmentStart": Object {
-            "id": "8000105",
-            "title": "Frankfurt(Main)Hbf",
-          },
-          "stops": Array [
-            Object {
-              "auslastung": Object {
-                "first": 2,
-                "second": 3,
-              },
-              "departure": Object {
-                "platform": "8",
-                "reihung": true,
-                "scheduledTime": 1561921080000,
-                "time": 1561921080000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 50.106817,
-                  "lng": 8.663003,
-                },
-                "id": "8000105",
-                "title": "Frankfurt(Main)Hbf",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "3",
-                "reihung": true,
-                "scheduledTime": 1561925940000,
-                "time": 1561925940000,
-              },
-              "auslastung": Object {
-                "first": 2,
-                "second": 2,
-              },
-              "departure": Object {
-                "platform": "3",
-                "reihung": true,
-                "scheduledTime": 1561926060000,
-                "time": 1561926060000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 51.312998,
-                  "lng": 9.446845,
-                },
-                "id": "8003200",
-                "title": "Kassel-Wilhelmshöhe",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "4",
-                "reihung": true,
-                "scheduledTime": 1561927140000,
-                "time": 1561927140000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 2,
-              },
-              "departure": Object {
-                "platform": "4",
-                "reihung": true,
-                "scheduledTime": 1561927260000,
-                "time": 1561927260000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 51.536758,
-                  "lng": 9.926257,
-                },
-                "id": "8000128",
-                "title": "Göttingen",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "8",
-                "reihung": true,
-                "scheduledTime": 1561930440000,
-                "time": 1561930440000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 2,
-              },
-              "departure": Object {
-                "platform": "8",
-                "reihung": true,
-                "scheduledTime": 1561930620000,
-                "time": 1561930620000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 52.377079,
-                  "lng": 9.741763,
-                },
-                "id": "8000152",
-                "title": "Hannover Hbf",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "1",
-                "reihung": true,
-                "scheduledTime": 1561934460000,
-                "time": 1561934460000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 53.456198,
-                  "lng": 9.991591,
-                },
-                "id": "8000147",
-                "title": "Hamburg-Harburg",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "14",
-                "reihung": true,
-                "scheduledTime": 1561935240000,
-                "time": 1561935240000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 53.553533,
-                  "lng": 10.00636,
-                },
-                "id": "8002549",
-                "title": "Hamburg Hbf",
-              },
-            },
-          ],
-          "train": Object {
-            "name": "ICE 572",
-            "number": "572",
-            "type": "ICE",
-          },
-        },
-      ],
-    },
-    Object {
-      "arrival": Object {
-        "platform": "11",
-        "scheduledTime": 1561939860000,
-        "time": 1561939860000,
-      },
-      "changes": 0,
-      "checksum": "2e6238bb_3",
-      "cid": "C-1",
-      "date": 1561852800000,
-      "departure": Object {
-        "platform": "8",
-        "scheduledTime": 1561924680000,
-        "time": 1561924680000,
-      },
-      "duration": 15180000,
-      "isRideable": true,
-      "segmentTypes": Array [
-        "ICE",
-      ],
-      "segments": Array [
-        Object {
-          "arrival": Object {
-            "platform": "11",
-            "reihung": true,
-            "scheduledTime": 1561939860000,
-            "time": 1561939860000,
-          },
-          "auslastung": Object {
-            "first": 1,
-            "second": 2,
-          },
-          "departure": Object {
-            "platform": "8",
-            "reihung": true,
-            "scheduledTime": 1561924680000,
-            "time": 1561924680000,
-          },
-          "duration": 15180000,
-          "finalDestination": "Hamburg-Altona",
-          "jid": "1|416066|0|80|30062019",
-          "messages": Array [
-            Object {
-              "code": "CK",
-              "icoX": 3,
-              "prio": 200,
-              "txtN": "Komfort Check-in möglich  http://bahn.de/komfortcheckin",
-              "type": "A",
-            },
-          ],
-          "segmentDestination": Object {
-            "id": "8002549",
-            "title": "Hamburg Hbf",
-          },
-          "segmentStart": Object {
-            "id": "8000105",
-            "title": "Frankfurt(Main)Hbf",
-          },
-          "stops": Array [
-            Object {
-              "auslastung": Object {
-                "first": 1,
-                "second": 1,
-              },
-              "departure": Object {
-                "platform": "8",
-                "reihung": true,
-                "scheduledTime": 1561924680000,
-                "time": 1561924680000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 50.106817,
-                  "lng": 8.663003,
-                },
-                "id": "8000105",
-                "title": "Frankfurt(Main)Hbf",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "3",
-                "reihung": true,
-                "scheduledTime": 1561929540000,
-                "time": 1561929540000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 2,
-              },
-              "departure": Object {
-                "platform": "3",
-                "reihung": true,
-                "scheduledTime": 1561929660000,
-                "time": 1561929660000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 51.312998,
-                  "lng": 9.446845,
-                },
-                "id": "8003200",
-                "title": "Kassel-Wilhelmshöhe",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "4",
-                "reihung": true,
-                "scheduledTime": 1561930740000,
-                "time": 1561930740000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 2,
-              },
-              "departure": Object {
-                "platform": "4",
-                "reihung": true,
-                "scheduledTime": 1561930860000,
-                "time": 1561930860000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 51.536758,
-                  "lng": 9.926257,
-                },
-                "id": "8000128",
-                "title": "Göttingen",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "8",
-                "reihung": true,
-                "scheduledTime": 1561934040000,
-                "time": 1561934040000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 1,
-              },
-              "departure": Object {
-                "platform": "8",
-                "reihung": true,
-                "scheduledTime": 1561934220000,
-                "time": 1561934220000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 52.377079,
-                  "lng": 9.741763,
-                },
-                "id": "8000152",
-                "title": "Hannover Hbf",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "5",
-                "reihung": true,
-                "scheduledTime": 1561935300000,
-                "time": 1561935300000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 1,
-              },
-              "departure": Object {
-                "platform": "5",
-                "reihung": true,
-                "scheduledTime": 1561935420000,
-                "time": 1561935420000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 52.621019,
-                  "lng": 10.062651,
-                },
-                "id": "8000064",
-                "title": "Celle",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "reihung": true,
-                "scheduledTime": 1561936680000,
-                "time": 1561936680000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 1,
-              },
-              "departure": Object {
-                "reihung": true,
-                "scheduledTime": 1561936800000,
-                "time": 1561936800000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 52.96998,
-                  "lng": 10.553246,
-                },
-                "id": "8000168",
-                "title": "Uelzen",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "2",
-                "reihung": true,
-                "scheduledTime": 1561937760000,
-                "time": 1561937760000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 1,
-              },
-              "departure": Object {
-                "platform": "2",
-                "reihung": true,
-                "scheduledTime": 1561937880000,
-                "time": 1561937880000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 53.249742,
-                  "lng": 10.419873,
-                },
-                "id": "8000238",
-                "title": "Lüneburg",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "1",
-                "reihung": true,
-                "scheduledTime": 1561939020000,
-                "time": 1561939020000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 53.456198,
-                  "lng": 9.991591,
-                },
-                "id": "8000147",
-                "title": "Hamburg-Harburg",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "11",
-                "reihung": true,
-                "scheduledTime": 1561939860000,
-                "time": 1561939860000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 53.553533,
-                  "lng": 10.00636,
-                },
-                "id": "8002549",
-                "title": "Hamburg Hbf",
-              },
-            },
-          ],
-          "train": Object {
-            "name": "ICE 376",
-            "number": "376",
-            "type": "ICE",
-          },
-        },
-      ],
-    },
-    Object {
-      "arrival": Object {
-        "platform": "11",
-        "scheduledTime": 1561942740000,
-        "time": 1561942740000,
-      },
-      "changes": 0,
-      "checksum": "b6e2f381_3",
-      "cid": "C-2",
-      "date": 1561852800000,
-      "departure": Object {
-        "platform": "8",
-        "scheduledTime": 1561928280000,
-        "time": 1561928280000,
-      },
-      "duration": 14460000,
-      "isRideable": true,
-      "segmentTypes": Array [
-        "ICE",
-      ],
-      "segments": Array [
-        Object {
-          "arrival": Object {
-            "platform": "11",
-            "reihung": true,
-            "scheduledTime": 1561942740000,
-            "time": 1561942740000,
-          },
-          "auslastung": Object {
-            "first": 1,
-            "second": 2,
-          },
-          "departure": Object {
-            "platform": "8",
-            "reihung": true,
-            "scheduledTime": 1561928280000,
-            "time": 1561928280000,
-          },
-          "duration": 14460000,
-          "finalDestination": "Hamburg-Altona",
-          "jid": "1|309021|0|80|30062019",
-          "messages": Array [
-            Object {
-              "code": "CK",
-              "icoX": 3,
-              "prio": 200,
-              "txtN": "Komfort Check-in möglich  http://bahn.de/komfortcheckin",
-              "type": "A",
-            },
-          ],
-          "segmentDestination": Object {
-            "id": "8002549",
-            "title": "Hamburg Hbf",
-          },
-          "segmentStart": Object {
-            "id": "8000105",
-            "title": "Frankfurt(Main)Hbf",
-          },
-          "stops": Array [
-            Object {
-              "auslastung": Object {
-                "first": 1,
-                "second": 2,
-              },
-              "departure": Object {
-                "platform": "8",
-                "reihung": true,
-                "scheduledTime": 1561928280000,
-                "time": 1561928280000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 50.106817,
-                  "lng": 8.663003,
-                },
-                "id": "8000105",
-                "title": "Frankfurt(Main)Hbf",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "3",
-                "reihung": true,
-                "scheduledTime": 1561933140000,
-                "time": 1561933140000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 1,
-              },
-              "departure": Object {
-                "platform": "3",
-                "reihung": true,
-                "scheduledTime": 1561933260000,
-                "time": 1561933260000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 51.312998,
-                  "lng": 9.446845,
-                },
-                "id": "8003200",
-                "title": "Kassel-Wilhelmshöhe",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "4",
-                "reihung": true,
-                "scheduledTime": 1561934340000,
-                "time": 1561934340000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 1,
-              },
-              "departure": Object {
-                "platform": "4",
-                "reihung": true,
-                "scheduledTime": 1561934460000,
-                "time": 1561934460000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 51.536758,
-                  "lng": 9.926257,
-                },
-                "id": "8000128",
-                "title": "Göttingen",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "7",
-                "reihung": true,
-                "scheduledTime": 1561937640000,
-                "time": 1561937640000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 1,
-              },
-              "departure": Object {
-                "platform": "7",
-                "reihung": true,
-                "scheduledTime": 1561937820000,
-                "time": 1561937820000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 52.377079,
-                  "lng": 9.741763,
-                },
-                "id": "8000152",
-                "title": "Hannover Hbf",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "2",
-                "reihung": true,
-                "scheduledTime": 1561940820000,
-                "time": 1561940820000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 1,
-              },
-              "departure": Object {
-                "platform": "2",
-                "reihung": true,
-                "scheduledTime": 1561940940000,
-                "time": 1561940940000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 53.249742,
-                  "lng": 10.419873,
-                },
-                "id": "8000238",
-                "title": "Lüneburg",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "1",
-                "reihung": true,
-                "scheduledTime": 1561941960000,
-                "time": 1561941960000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 53.456198,
-                  "lng": 9.991591,
-                },
-                "id": "8000147",
-                "title": "Hamburg-Harburg",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "11",
-                "reihung": true,
-                "scheduledTime": 1561942740000,
-                "time": 1561942740000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 53.553533,
-                  "lng": 10.00636,
-                },
-                "id": "8002549",
-                "title": "Hamburg Hbf",
-              },
-            },
-          ],
-          "train": Object {
-            "name": "ICE 570",
-            "number": "570",
-            "type": "ICE",
-          },
-        },
-      ],
-    },
-    Object {
-      "arrival": Object {
-        "platform": "11",
-        "scheduledTime": 1561950540000,
-        "time": 1561950540000,
-      },
-      "changes": 0,
-      "checksum": "1384d5a0_3",
-      "cid": "C-3",
-      "date": 1561852800000,
-      "departure": Object {
-        "platform": "9",
-        "scheduledTime": 1561933020000,
-        "time": 1561933020000,
-      },
-      "duration": 17520000,
-      "isRideable": true,
-      "segmentTypes": Array [
-        "ICE",
-      ],
-      "segments": Array [
-        Object {
-          "arrival": Object {
-            "platform": "11",
-            "reihung": true,
-            "scheduledTime": 1561950540000,
-            "time": 1561950540000,
-          },
-          "auslastung": Object {
-            "first": 1,
-            "second": 1,
-          },
-          "departure": Object {
-            "platform": "9",
-            "reihung": true,
-            "scheduledTime": 1561933020000,
-            "time": 1561933020000,
-          },
-          "duration": 17520000,
-          "finalDestination": "Hamburg Hbf",
-          "jid": "1|309270|0|80|30062019",
-          "messages": Array [
-            Object {
-              "code": "CK",
-              "icoX": 3,
-              "prio": 200,
-              "txtN": "Komfort Check-in möglich  http://bahn.de/komfortcheckin",
-              "type": "A",
-            },
-          ],
-          "segmentDestination": Object {
-            "id": "8002549",
-            "title": "Hamburg Hbf",
-          },
-          "segmentStart": Object {
-            "id": "8000105",
-            "title": "Frankfurt(Main)Hbf",
-          },
-          "stops": Array [
-            Object {
-              "auslastung": Object {
-                "first": 1,
-                "second": 1,
-              },
-              "departure": Object {
-                "platform": "9",
-                "reihung": true,
-                "scheduledTime": 1561933020000,
-                "time": 1561933020000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 50.106817,
-                  "lng": 8.663003,
-                },
-                "id": "8000105",
-                "title": "Frankfurt(Main)Hbf",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "7",
-                "reihung": true,
-                "scheduledTime": 1561933920000,
-                "time": 1561933920000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 1,
-              },
-              "departure": Object {
-                "platform": "7",
-                "reihung": true,
-                "scheduledTime": 1561934040000,
-                "time": 1561934040000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 50.120903,
-                  "lng": 8.92921,
-                },
-                "id": "8000150",
-                "title": "Hanau Hbf",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "6",
-                "reihung": true,
-                "scheduledTime": 1561936620000,
-                "time": 1561936620000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 1,
-              },
-              "departure": Object {
-                "platform": "6",
-                "reihung": true,
-                "scheduledTime": 1561936740000,
-                "time": 1561936740000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 50.554794,
-                  "lng": 9.684178,
-                },
-                "id": "8000115",
-                "title": "Fulda",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "3",
-                "reihung": true,
-                "scheduledTime": 1561938600000,
-                "time": 1561938600000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 1,
-              },
-              "departure": Object {
-                "platform": "3",
-                "reihung": true,
-                "scheduledTime": 1561938780000,
-                "time": 1561938780000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 51.312998,
-                  "lng": 9.446845,
-                },
-                "id": "8003200",
-                "title": "Kassel-Wilhelmshöhe",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "4",
-                "reihung": true,
-                "scheduledTime": 1561941900000,
-                "time": 1561941900000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 1,
-              },
-              "departure": Object {
-                "platform": "4",
-                "reihung": true,
-                "scheduledTime": 1561942020000,
-                "time": 1561942020000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 51.536758,
-                  "lng": 9.926257,
-                },
-                "id": "8000128",
-                "title": "Göttingen",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "8",
-                "reihung": true,
-                "scheduledTime": 1561945560000,
-                "time": 1561945560000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 1,
-              },
-              "departure": Object {
-                "platform": "8",
-                "reihung": true,
-                "scheduledTime": 1561945740000,
-                "time": 1561945740000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 52.377079,
-                  "lng": 9.741763,
-                },
-                "id": "8000152",
-                "title": "Hannover Hbf",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "1",
-                "reihung": true,
-                "scheduledTime": 1561949820000,
-                "time": 1561949820000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 53.456198,
-                  "lng": 9.991591,
-                },
-                "id": "8000147",
-                "title": "Hamburg-Harburg",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "11",
-                "reihung": true,
-                "scheduledTime": 1561950540000,
-                "time": 1561950540000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 53.553533,
-                  "lng": 10.00636,
-                },
-                "id": "8002549",
-                "title": "Hamburg Hbf",
-              },
-            },
-          ],
-          "train": Object {
-            "name": "ICE 590",
-            "number": "590",
-            "type": "ICE",
-          },
-        },
-      ],
-    },
-    Object {
-      "arrival": Object {
-        "platform": "8",
-        "scheduledTime": 1561961700000,
-        "time": 1561961700000,
-      },
-      "changes": 0,
-      "checksum": "3b1f6b91_3",
-      "cid": "C-4",
-      "date": 1561939200000,
-      "departure": Object {
-        "platform": "9",
-        "scheduledTime": 1561942080000,
-        "time": 1561942080000,
-      },
-      "duration": 19620000,
-      "isRideable": true,
-      "segmentTypes": Array [
-        "ICE",
-      ],
-      "segments": Array [
-        Object {
-          "arrival": Object {
-            "platform": "8",
-            "reihung": true,
-            "scheduledTime": 1561961700000,
-            "time": 1561961700000,
-          },
-          "auslastung": Object {
-            "first": 1,
-            "second": 1,
-          },
-          "departure": Object {
-            "platform": "9",
-            "reihung": true,
-            "scheduledTime": 1561942080000,
-            "time": 1561942080000,
-          },
-          "duration": 19620000,
-          "finalDestination": "Hamburg-Altona",
-          "jid": "1|312401|0|80|30062019",
-          "messages": Array [
-            Object {
-              "code": "CK",
-              "icoX": 3,
-              "prio": 200,
-              "txtN": "Komfort Check-in möglich  http://bahn.de/komfortcheckin",
-              "type": "A",
-            },
-          ],
-          "segmentDestination": Object {
-            "id": "8002549",
-            "title": "Hamburg Hbf",
-          },
-          "segmentStart": Object {
-            "id": "8000105",
-            "title": "Frankfurt(Main)Hbf",
-          },
-          "stops": Array [
-            Object {
-              "auslastung": Object {
-                "first": 1,
-                "second": 1,
-              },
-              "departure": Object {
-                "platform": "9",
-                "reihung": true,
-                "scheduledTime": 1561942080000,
-                "time": 1561942080000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 50.106817,
-                  "lng": 8.663003,
-                },
-                "id": "8000105",
-                "title": "Frankfurt(Main)Hbf",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "103",
-                "reihung": true,
-                "scheduledTime": 1561942980000,
-                "time": 1561942980000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 1,
-              },
-              "departure": Object {
-                "platform": "103",
-                "reihung": true,
-                "scheduledTime": 1561943160000,
-                "time": 1561943160000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 50.120903,
-                  "lng": 8.92921,
-                },
-                "id": "8000150",
-                "title": "Hanau Hbf",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "3",
-                "reihung": true,
-                "scheduledTime": 1561949640000,
-                "time": 1561949640000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 1,
-              },
-              "departure": Object {
-                "platform": "3",
-                "reihung": true,
-                "scheduledTime": 1561949760000,
-                "time": 1561949760000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 51.312998,
-                  "lng": 9.446845,
-                },
-                "id": "8003200",
-                "title": "Kassel-Wilhelmshöhe",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "4",
-                "reihung": true,
-                "scheduledTime": 1561952760000,
-                "time": 1561952760000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 1,
-              },
-              "departure": Object {
-                "platform": "4",
-                "reihung": true,
-                "scheduledTime": 1561952880000,
-                "time": 1561952880000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 51.536758,
-                  "lng": 9.926257,
-                },
-                "id": "8000128",
-                "title": "Göttingen",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "7",
-                "reihung": true,
-                "scheduledTime": 1561956360000,
-                "time": 1561956360000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 1,
-              },
-              "departure": Object {
-                "platform": "9",
-                "reihung": true,
-                "scheduledTime": 1561956540000,
-                "time": 1561956540000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 52.377079,
-                  "lng": 9.741763,
-                },
-                "id": "8000152",
-                "title": "Hannover Hbf",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "2",
-                "reihung": true,
-                "scheduledTime": 1561959540000,
-                "time": 1561959540000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 1,
-              },
-              "departure": Object {
-                "platform": "2",
-                "reihung": true,
-                "scheduledTime": 1561959660000,
-                "time": 1561959660000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 53.249742,
-                  "lng": 10.419873,
-                },
-                "id": "8000238",
-                "title": "Lüneburg",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "1",
-                "reihung": true,
-                "scheduledTime": 1561960800000,
-                "time": 1561960800000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 53.456198,
-                  "lng": 9.991591,
-                },
-                "id": "8000147",
-                "title": "Hamburg-Harburg",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "8",
-                "reihung": true,
-                "scheduledTime": 1561961700000,
-                "time": 1561961700000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 53.553533,
-                  "lng": 10.00636,
-                },
-                "id": "8002549",
-                "title": "Hamburg Hbf",
-              },
-            },
-          ],
-          "train": Object {
-            "name": "ICE 990",
-            "number": "990",
-            "type": "ICE",
-          },
-        },
-      ],
-    },
-    Object {
-      "arrival": Object {
-        "platform": "11",
-        "scheduledTime": 1561973520000,
-        "time": 1561973520000,
-      },
-      "changes": 0,
-      "checksum": "ca9ad537_3",
-      "cid": "C-5",
-      "date": 1561939200000,
-      "departure": Object {
-        "platform": "7",
-        "scheduledTime": 1561957560000,
-        "time": 1561957560000,
-      },
-      "duration": 15960000,
-      "isRideable": true,
-      "segmentTypes": Array [
-        "ICE",
-      ],
-      "segments": Array [
-        Object {
-          "arrival": Object {
-            "platform": "11",
-            "reihung": true,
-            "scheduledTime": 1561973520000,
-            "time": 1561973520000,
-          },
-          "auslastung": Object {
-            "first": 1,
-            "second": 3,
-          },
-          "departure": Object {
-            "platform": "7",
-            "reihung": true,
-            "scheduledTime": 1561957560000,
-            "time": 1561957560000,
-          },
-          "duration": 15960000,
-          "finalDestination": "Hamburg-Altona",
-          "jid": "1|312383|0|80|1072019",
-          "messages": Array [
-            Object {
-              "code": "CK",
-              "icoX": 3,
-              "prio": 200,
-              "txtN": "Komfort Check-in möglich  http://bahn.de/komfortcheckin",
-              "type": "A",
-            },
-            Object {
-              "code": "BR",
-              "icoX": 4,
-              "prio": 450,
-              "txtN": "Bordrestaurant",
-              "type": "A",
-            },
-          ],
-          "segmentDestination": Object {
-            "id": "8002549",
-            "title": "Hamburg Hbf",
-          },
-          "segmentStart": Object {
-            "id": "8000105",
-            "title": "Frankfurt(Main)Hbf",
-          },
-          "stops": Array [
-            Object {
-              "auslastung": Object {
-                "first": 1,
-                "second": 1,
-              },
-              "departure": Object {
-                "platform": "7",
-                "reihung": true,
-                "scheduledTime": 1561957560000,
-                "time": 1561957560000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 50.106817,
-                  "lng": 8.663003,
-                },
-                "id": "8000105",
-                "title": "Frankfurt(Main)Hbf",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "7",
-                "reihung": true,
-                "scheduledTime": 1561958400000,
-                "time": 1561958400000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 1,
-              },
-              "departure": Object {
-                "platform": "7",
-                "reihung": true,
-                "scheduledTime": 1561958460000,
-                "time": 1561958460000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 50.120903,
-                  "lng": 8.92921,
-                },
-                "id": "8000150",
-                "title": "Hanau Hbf",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "6",
-                "reihung": true,
-                "scheduledTime": 1561960920000,
-                "time": 1561960920000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 1,
-              },
-              "departure": Object {
-                "platform": "6",
-                "reihung": true,
-                "scheduledTime": 1561961040000,
-                "time": 1561961040000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 50.554794,
-                  "lng": 9.684178,
-                },
-                "id": "8000115",
-                "title": "Fulda",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "3",
-                "reihung": true,
-                "scheduledTime": 1561962840000,
-                "time": 1561962840000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 2,
-              },
-              "departure": Object {
-                "platform": "3",
-                "reihung": true,
-                "scheduledTime": 1561962960000,
-                "time": 1561962960000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 51.312998,
-                  "lng": 9.446845,
-                },
-                "id": "8003200",
-                "title": "Kassel-Wilhelmshöhe",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "4",
-                "reihung": true,
-                "scheduledTime": 1561964100000,
-                "time": 1561964100000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 3,
-              },
-              "departure": Object {
-                "platform": "4",
-                "reihung": true,
-                "scheduledTime": 1561964160000,
-                "time": 1561964160000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 51.536758,
-                  "lng": 9.926257,
-                },
-                "id": "8000128",
-                "title": "Göttingen",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "7",
-                "reihung": true,
-                "scheduledTime": 1561967640000,
-                "time": 1561967640000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 2,
-              },
-              "departure": Object {
-                "platform": "7",
-                "reihung": true,
-                "scheduledTime": 1561967940000,
-                "time": 1561967940000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 52.377079,
-                  "lng": 9.741763,
-                },
-                "id": "8000152",
-                "title": "Hannover Hbf",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "5",
-                "reihung": true,
-                "scheduledTime": 1561969080000,
-                "time": 1561969080000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 1,
-              },
-              "departure": Object {
-                "platform": "5",
-                "reihung": true,
-                "scheduledTime": 1561969200000,
-                "time": 1561969200000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 52.621019,
-                  "lng": 10.062651,
-                },
-                "id": "8000064",
-                "title": "Celle",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "102",
-                "reihung": true,
-                "scheduledTime": 1561970400000,
-                "time": 1561970400000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 1,
-              },
-              "departure": Object {
-                "platform": "102",
-                "reihung": true,
-                "scheduledTime": 1561970520000,
-                "time": 1561970520000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 52.96998,
-                  "lng": 10.553246,
-                },
-                "id": "8000168",
-                "title": "Uelzen",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "2",
-                "reihung": true,
-                "scheduledTime": 1561971600000,
-                "time": 1561971600000,
-              },
-              "auslastung": Object {
-                "first": 1,
-                "second": 1,
-              },
-              "departure": Object {
-                "platform": "2",
-                "reihung": true,
-                "scheduledTime": 1561971720000,
-                "time": 1561971720000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 53.249742,
-                  "lng": 10.419873,
-                },
-                "id": "8000238",
-                "title": "Lüneburg",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "1",
-                "reihung": true,
-                "scheduledTime": 1561972800000,
-                "time": 1561972800000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 53.456198,
-                  "lng": 9.991591,
-                },
-                "id": "8000147",
-                "title": "Hamburg-Harburg",
-              },
-            },
-            Object {
-              "arrival": Object {
-                "platform": "11",
-                "reihung": true,
-                "scheduledTime": 1561973520000,
-                "time": 1561973520000,
-              },
-              "station": Object {
-                "coordinates": Object {
-                  "lat": 53.553533,
-                  "lng": 10.00636,
-                },
-                "id": "8002549",
-                "title": "Hamburg Hbf",
-              },
-            },
-          ],
-          "train": Object {
-            "name": "ICE 988",
-            "number": "988",
-            "type": "ICE",
-          },
-        },
-      ],
-    },
-  ],
 }
 `;
 
@@ -7684,6 +6136,7 @@ Object {
         "number": "2063",
         "type": "IC",
       },
+      "type": "JNY",
     },
   ],
 }
@@ -9872,5 +8325,1560 @@ Object {
   "trainLink": "380379/548489/988260/367337/80",
   "value": "EC     8",
   "vt": "1-5",
+}
+`;
+
+exports[`Hafas API v1 Auslastung fake clock /auslastung 1`] = `
+Object {
+  "first": 2,
+  "second": 3,
+}
+`;
+
+exports[`Hafas API v1 fake clock /route 1`] = `
+Object {
+  "context": Object {
+    "earlier": "1|OB|MT#11#296338#296338#296574#296574#0#0#485#296290#1#-2147482598#0#1#2|PDH#7bc18bfbe6940f4d59e34a8a25774bec|RD#30062019|RT#181000",
+    "later": "1|OF|MT#11#296946#296946#297212#297212#0#0#5#296689#6#-2147482598#0#1#2|PDH#7bc18bfbe6940f4d59e34a8a25774bec|RD#30062019|RT#181000",
+  },
+  "routes": Array [
+    Object {
+      "arrival": Object {
+        "platform": "14",
+        "scheduledTime": 1561935240000,
+        "time": 1561935240000,
+      },
+      "changes": 0,
+      "checksum": "04a1ea3e_3",
+      "cid": "C-0",
+      "date": 1561852800000,
+      "departure": Object {
+        "platform": "8",
+        "scheduledTime": 1561921080000,
+        "time": 1561921080000,
+      },
+      "duration": 14160000,
+      "isRideable": true,
+      "segmentTypes": Array [
+        "ICE",
+      ],
+      "segments": Array [
+        Object {
+          "arrival": Object {
+            "platform": "14",
+            "reihung": true,
+            "scheduledTime": 1561935240000,
+            "time": 1561935240000,
+          },
+          "auslastung": Object {
+            "first": 2,
+            "second": 3,
+          },
+          "departure": Object {
+            "platform": "8",
+            "reihung": true,
+            "scheduledTime": 1561921080000,
+            "time": 1561921080000,
+          },
+          "duration": 14160000,
+          "finalDestination": "Hamburg-Altona",
+          "jid": "1|309032|0|80|30062019",
+          "messages": Array [
+            Object {
+              "code": "CK",
+              "icoX": 3,
+              "prio": 200,
+              "txtN": "Komfort Check-in möglich  http://bahn.de/komfortcheckin",
+              "type": "A",
+            },
+          ],
+          "segmentDestination": Object {
+            "id": "8002549",
+            "title": "Hamburg Hbf",
+          },
+          "segmentStart": Object {
+            "id": "8000105",
+            "title": "Frankfurt(Main)Hbf",
+          },
+          "stops": Array [
+            Object {
+              "auslastung": Object {
+                "first": 2,
+                "second": 3,
+              },
+              "departure": Object {
+                "platform": "8",
+                "reihung": true,
+                "scheduledTime": 1561921080000,
+                "time": 1561921080000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 50.106817,
+                  "lng": 8.663003,
+                },
+                "id": "8000105",
+                "title": "Frankfurt(Main)Hbf",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "3",
+                "reihung": true,
+                "scheduledTime": 1561925940000,
+                "time": 1561925940000,
+              },
+              "auslastung": Object {
+                "first": 2,
+                "second": 2,
+              },
+              "departure": Object {
+                "platform": "3",
+                "reihung": true,
+                "scheduledTime": 1561926060000,
+                "time": 1561926060000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 51.312998,
+                  "lng": 9.446845,
+                },
+                "id": "8003200",
+                "title": "Kassel-Wilhelmshöhe",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "4",
+                "reihung": true,
+                "scheduledTime": 1561927140000,
+                "time": 1561927140000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 2,
+              },
+              "departure": Object {
+                "platform": "4",
+                "reihung": true,
+                "scheduledTime": 1561927260000,
+                "time": 1561927260000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 51.536758,
+                  "lng": 9.926257,
+                },
+                "id": "8000128",
+                "title": "Göttingen",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "8",
+                "reihung": true,
+                "scheduledTime": 1561930440000,
+                "time": 1561930440000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 2,
+              },
+              "departure": Object {
+                "platform": "8",
+                "reihung": true,
+                "scheduledTime": 1561930620000,
+                "time": 1561930620000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 52.377079,
+                  "lng": 9.741763,
+                },
+                "id": "8000152",
+                "title": "Hannover Hbf",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "1",
+                "reihung": true,
+                "scheduledTime": 1561934460000,
+                "time": 1561934460000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 53.456198,
+                  "lng": 9.991591,
+                },
+                "id": "8000147",
+                "title": "Hamburg-Harburg",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "14",
+                "reihung": true,
+                "scheduledTime": 1561935240000,
+                "time": 1561935240000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 53.553533,
+                  "lng": 10.00636,
+                },
+                "id": "8002549",
+                "title": "Hamburg Hbf",
+              },
+            },
+          ],
+          "train": Object {
+            "name": "ICE 572",
+            "number": "572",
+            "type": "ICE",
+          },
+          "type": "JNY",
+        },
+      ],
+    },
+    Object {
+      "arrival": Object {
+        "platform": "11",
+        "scheduledTime": 1561939860000,
+        "time": 1561939860000,
+      },
+      "changes": 0,
+      "checksum": "2e6238bb_3",
+      "cid": "C-1",
+      "date": 1561852800000,
+      "departure": Object {
+        "platform": "8",
+        "scheduledTime": 1561924680000,
+        "time": 1561924680000,
+      },
+      "duration": 15180000,
+      "isRideable": true,
+      "segmentTypes": Array [
+        "ICE",
+      ],
+      "segments": Array [
+        Object {
+          "arrival": Object {
+            "platform": "11",
+            "reihung": true,
+            "scheduledTime": 1561939860000,
+            "time": 1561939860000,
+          },
+          "auslastung": Object {
+            "first": 1,
+            "second": 2,
+          },
+          "departure": Object {
+            "platform": "8",
+            "reihung": true,
+            "scheduledTime": 1561924680000,
+            "time": 1561924680000,
+          },
+          "duration": 15180000,
+          "finalDestination": "Hamburg-Altona",
+          "jid": "1|416066|0|80|30062019",
+          "messages": Array [
+            Object {
+              "code": "CK",
+              "icoX": 3,
+              "prio": 200,
+              "txtN": "Komfort Check-in möglich  http://bahn.de/komfortcheckin",
+              "type": "A",
+            },
+          ],
+          "segmentDestination": Object {
+            "id": "8002549",
+            "title": "Hamburg Hbf",
+          },
+          "segmentStart": Object {
+            "id": "8000105",
+            "title": "Frankfurt(Main)Hbf",
+          },
+          "stops": Array [
+            Object {
+              "auslastung": Object {
+                "first": 1,
+                "second": 1,
+              },
+              "departure": Object {
+                "platform": "8",
+                "reihung": true,
+                "scheduledTime": 1561924680000,
+                "time": 1561924680000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 50.106817,
+                  "lng": 8.663003,
+                },
+                "id": "8000105",
+                "title": "Frankfurt(Main)Hbf",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "3",
+                "reihung": true,
+                "scheduledTime": 1561929540000,
+                "time": 1561929540000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 2,
+              },
+              "departure": Object {
+                "platform": "3",
+                "reihung": true,
+                "scheduledTime": 1561929660000,
+                "time": 1561929660000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 51.312998,
+                  "lng": 9.446845,
+                },
+                "id": "8003200",
+                "title": "Kassel-Wilhelmshöhe",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "4",
+                "reihung": true,
+                "scheduledTime": 1561930740000,
+                "time": 1561930740000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 2,
+              },
+              "departure": Object {
+                "platform": "4",
+                "reihung": true,
+                "scheduledTime": 1561930860000,
+                "time": 1561930860000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 51.536758,
+                  "lng": 9.926257,
+                },
+                "id": "8000128",
+                "title": "Göttingen",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "8",
+                "reihung": true,
+                "scheduledTime": 1561934040000,
+                "time": 1561934040000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 1,
+              },
+              "departure": Object {
+                "platform": "8",
+                "reihung": true,
+                "scheduledTime": 1561934220000,
+                "time": 1561934220000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 52.377079,
+                  "lng": 9.741763,
+                },
+                "id": "8000152",
+                "title": "Hannover Hbf",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "5",
+                "reihung": true,
+                "scheduledTime": 1561935300000,
+                "time": 1561935300000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 1,
+              },
+              "departure": Object {
+                "platform": "5",
+                "reihung": true,
+                "scheduledTime": 1561935420000,
+                "time": 1561935420000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 52.621019,
+                  "lng": 10.062651,
+                },
+                "id": "8000064",
+                "title": "Celle",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "reihung": true,
+                "scheduledTime": 1561936680000,
+                "time": 1561936680000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 1,
+              },
+              "departure": Object {
+                "reihung": true,
+                "scheduledTime": 1561936800000,
+                "time": 1561936800000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 52.96998,
+                  "lng": 10.553246,
+                },
+                "id": "8000168",
+                "title": "Uelzen",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "2",
+                "reihung": true,
+                "scheduledTime": 1561937760000,
+                "time": 1561937760000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 1,
+              },
+              "departure": Object {
+                "platform": "2",
+                "reihung": true,
+                "scheduledTime": 1561937880000,
+                "time": 1561937880000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 53.249742,
+                  "lng": 10.419873,
+                },
+                "id": "8000238",
+                "title": "Lüneburg",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "1",
+                "reihung": true,
+                "scheduledTime": 1561939020000,
+                "time": 1561939020000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 53.456198,
+                  "lng": 9.991591,
+                },
+                "id": "8000147",
+                "title": "Hamburg-Harburg",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "11",
+                "reihung": true,
+                "scheduledTime": 1561939860000,
+                "time": 1561939860000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 53.553533,
+                  "lng": 10.00636,
+                },
+                "id": "8002549",
+                "title": "Hamburg Hbf",
+              },
+            },
+          ],
+          "train": Object {
+            "name": "ICE 376",
+            "number": "376",
+            "type": "ICE",
+          },
+          "type": "JNY",
+        },
+      ],
+    },
+    Object {
+      "arrival": Object {
+        "platform": "11",
+        "scheduledTime": 1561942740000,
+        "time": 1561942740000,
+      },
+      "changes": 0,
+      "checksum": "b6e2f381_3",
+      "cid": "C-2",
+      "date": 1561852800000,
+      "departure": Object {
+        "platform": "8",
+        "scheduledTime": 1561928280000,
+        "time": 1561928280000,
+      },
+      "duration": 14460000,
+      "isRideable": true,
+      "segmentTypes": Array [
+        "ICE",
+      ],
+      "segments": Array [
+        Object {
+          "arrival": Object {
+            "platform": "11",
+            "reihung": true,
+            "scheduledTime": 1561942740000,
+            "time": 1561942740000,
+          },
+          "auslastung": Object {
+            "first": 1,
+            "second": 2,
+          },
+          "departure": Object {
+            "platform": "8",
+            "reihung": true,
+            "scheduledTime": 1561928280000,
+            "time": 1561928280000,
+          },
+          "duration": 14460000,
+          "finalDestination": "Hamburg-Altona",
+          "jid": "1|309021|0|80|30062019",
+          "messages": Array [
+            Object {
+              "code": "CK",
+              "icoX": 3,
+              "prio": 200,
+              "txtN": "Komfort Check-in möglich  http://bahn.de/komfortcheckin",
+              "type": "A",
+            },
+          ],
+          "segmentDestination": Object {
+            "id": "8002549",
+            "title": "Hamburg Hbf",
+          },
+          "segmentStart": Object {
+            "id": "8000105",
+            "title": "Frankfurt(Main)Hbf",
+          },
+          "stops": Array [
+            Object {
+              "auslastung": Object {
+                "first": 1,
+                "second": 2,
+              },
+              "departure": Object {
+                "platform": "8",
+                "reihung": true,
+                "scheduledTime": 1561928280000,
+                "time": 1561928280000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 50.106817,
+                  "lng": 8.663003,
+                },
+                "id": "8000105",
+                "title": "Frankfurt(Main)Hbf",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "3",
+                "reihung": true,
+                "scheduledTime": 1561933140000,
+                "time": 1561933140000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 1,
+              },
+              "departure": Object {
+                "platform": "3",
+                "reihung": true,
+                "scheduledTime": 1561933260000,
+                "time": 1561933260000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 51.312998,
+                  "lng": 9.446845,
+                },
+                "id": "8003200",
+                "title": "Kassel-Wilhelmshöhe",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "4",
+                "reihung": true,
+                "scheduledTime": 1561934340000,
+                "time": 1561934340000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 1,
+              },
+              "departure": Object {
+                "platform": "4",
+                "reihung": true,
+                "scheduledTime": 1561934460000,
+                "time": 1561934460000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 51.536758,
+                  "lng": 9.926257,
+                },
+                "id": "8000128",
+                "title": "Göttingen",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "7",
+                "reihung": true,
+                "scheduledTime": 1561937640000,
+                "time": 1561937640000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 1,
+              },
+              "departure": Object {
+                "platform": "7",
+                "reihung": true,
+                "scheduledTime": 1561937820000,
+                "time": 1561937820000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 52.377079,
+                  "lng": 9.741763,
+                },
+                "id": "8000152",
+                "title": "Hannover Hbf",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "2",
+                "reihung": true,
+                "scheduledTime": 1561940820000,
+                "time": 1561940820000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 1,
+              },
+              "departure": Object {
+                "platform": "2",
+                "reihung": true,
+                "scheduledTime": 1561940940000,
+                "time": 1561940940000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 53.249742,
+                  "lng": 10.419873,
+                },
+                "id": "8000238",
+                "title": "Lüneburg",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "1",
+                "reihung": true,
+                "scheduledTime": 1561941960000,
+                "time": 1561941960000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 53.456198,
+                  "lng": 9.991591,
+                },
+                "id": "8000147",
+                "title": "Hamburg-Harburg",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "11",
+                "reihung": true,
+                "scheduledTime": 1561942740000,
+                "time": 1561942740000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 53.553533,
+                  "lng": 10.00636,
+                },
+                "id": "8002549",
+                "title": "Hamburg Hbf",
+              },
+            },
+          ],
+          "train": Object {
+            "name": "ICE 570",
+            "number": "570",
+            "type": "ICE",
+          },
+          "type": "JNY",
+        },
+      ],
+    },
+    Object {
+      "arrival": Object {
+        "platform": "11",
+        "scheduledTime": 1561950540000,
+        "time": 1561950540000,
+      },
+      "changes": 0,
+      "checksum": "1384d5a0_3",
+      "cid": "C-3",
+      "date": 1561852800000,
+      "departure": Object {
+        "platform": "9",
+        "scheduledTime": 1561933020000,
+        "time": 1561933020000,
+      },
+      "duration": 17520000,
+      "isRideable": true,
+      "segmentTypes": Array [
+        "ICE",
+      ],
+      "segments": Array [
+        Object {
+          "arrival": Object {
+            "platform": "11",
+            "reihung": true,
+            "scheduledTime": 1561950540000,
+            "time": 1561950540000,
+          },
+          "auslastung": Object {
+            "first": 1,
+            "second": 1,
+          },
+          "departure": Object {
+            "platform": "9",
+            "reihung": true,
+            "scheduledTime": 1561933020000,
+            "time": 1561933020000,
+          },
+          "duration": 17520000,
+          "finalDestination": "Hamburg Hbf",
+          "jid": "1|309270|0|80|30062019",
+          "messages": Array [
+            Object {
+              "code": "CK",
+              "icoX": 3,
+              "prio": 200,
+              "txtN": "Komfort Check-in möglich  http://bahn.de/komfortcheckin",
+              "type": "A",
+            },
+          ],
+          "segmentDestination": Object {
+            "id": "8002549",
+            "title": "Hamburg Hbf",
+          },
+          "segmentStart": Object {
+            "id": "8000105",
+            "title": "Frankfurt(Main)Hbf",
+          },
+          "stops": Array [
+            Object {
+              "auslastung": Object {
+                "first": 1,
+                "second": 1,
+              },
+              "departure": Object {
+                "platform": "9",
+                "reihung": true,
+                "scheduledTime": 1561933020000,
+                "time": 1561933020000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 50.106817,
+                  "lng": 8.663003,
+                },
+                "id": "8000105",
+                "title": "Frankfurt(Main)Hbf",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "7",
+                "reihung": true,
+                "scheduledTime": 1561933920000,
+                "time": 1561933920000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 1,
+              },
+              "departure": Object {
+                "platform": "7",
+                "reihung": true,
+                "scheduledTime": 1561934040000,
+                "time": 1561934040000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 50.120903,
+                  "lng": 8.92921,
+                },
+                "id": "8000150",
+                "title": "Hanau Hbf",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "6",
+                "reihung": true,
+                "scheduledTime": 1561936620000,
+                "time": 1561936620000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 1,
+              },
+              "departure": Object {
+                "platform": "6",
+                "reihung": true,
+                "scheduledTime": 1561936740000,
+                "time": 1561936740000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 50.554794,
+                  "lng": 9.684178,
+                },
+                "id": "8000115",
+                "title": "Fulda",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "3",
+                "reihung": true,
+                "scheduledTime": 1561938600000,
+                "time": 1561938600000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 1,
+              },
+              "departure": Object {
+                "platform": "3",
+                "reihung": true,
+                "scheduledTime": 1561938780000,
+                "time": 1561938780000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 51.312998,
+                  "lng": 9.446845,
+                },
+                "id": "8003200",
+                "title": "Kassel-Wilhelmshöhe",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "4",
+                "reihung": true,
+                "scheduledTime": 1561941900000,
+                "time": 1561941900000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 1,
+              },
+              "departure": Object {
+                "platform": "4",
+                "reihung": true,
+                "scheduledTime": 1561942020000,
+                "time": 1561942020000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 51.536758,
+                  "lng": 9.926257,
+                },
+                "id": "8000128",
+                "title": "Göttingen",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "8",
+                "reihung": true,
+                "scheduledTime": 1561945560000,
+                "time": 1561945560000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 1,
+              },
+              "departure": Object {
+                "platform": "8",
+                "reihung": true,
+                "scheduledTime": 1561945740000,
+                "time": 1561945740000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 52.377079,
+                  "lng": 9.741763,
+                },
+                "id": "8000152",
+                "title": "Hannover Hbf",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "1",
+                "reihung": true,
+                "scheduledTime": 1561949820000,
+                "time": 1561949820000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 53.456198,
+                  "lng": 9.991591,
+                },
+                "id": "8000147",
+                "title": "Hamburg-Harburg",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "11",
+                "reihung": true,
+                "scheduledTime": 1561950540000,
+                "time": 1561950540000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 53.553533,
+                  "lng": 10.00636,
+                },
+                "id": "8002549",
+                "title": "Hamburg Hbf",
+              },
+            },
+          ],
+          "train": Object {
+            "name": "ICE 590",
+            "number": "590",
+            "type": "ICE",
+          },
+          "type": "JNY",
+        },
+      ],
+    },
+    Object {
+      "arrival": Object {
+        "platform": "8",
+        "scheduledTime": 1561961700000,
+        "time": 1561961700000,
+      },
+      "changes": 0,
+      "checksum": "3b1f6b91_3",
+      "cid": "C-4",
+      "date": 1561939200000,
+      "departure": Object {
+        "platform": "9",
+        "scheduledTime": 1561942080000,
+        "time": 1561942080000,
+      },
+      "duration": 19620000,
+      "isRideable": true,
+      "segmentTypes": Array [
+        "ICE",
+      ],
+      "segments": Array [
+        Object {
+          "arrival": Object {
+            "platform": "8",
+            "reihung": true,
+            "scheduledTime": 1561961700000,
+            "time": 1561961700000,
+          },
+          "auslastung": Object {
+            "first": 1,
+            "second": 1,
+          },
+          "departure": Object {
+            "platform": "9",
+            "reihung": true,
+            "scheduledTime": 1561942080000,
+            "time": 1561942080000,
+          },
+          "duration": 19620000,
+          "finalDestination": "Hamburg-Altona",
+          "jid": "1|312401|0|80|30062019",
+          "messages": Array [
+            Object {
+              "code": "CK",
+              "icoX": 3,
+              "prio": 200,
+              "txtN": "Komfort Check-in möglich  http://bahn.de/komfortcheckin",
+              "type": "A",
+            },
+          ],
+          "segmentDestination": Object {
+            "id": "8002549",
+            "title": "Hamburg Hbf",
+          },
+          "segmentStart": Object {
+            "id": "8000105",
+            "title": "Frankfurt(Main)Hbf",
+          },
+          "stops": Array [
+            Object {
+              "auslastung": Object {
+                "first": 1,
+                "second": 1,
+              },
+              "departure": Object {
+                "platform": "9",
+                "reihung": true,
+                "scheduledTime": 1561942080000,
+                "time": 1561942080000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 50.106817,
+                  "lng": 8.663003,
+                },
+                "id": "8000105",
+                "title": "Frankfurt(Main)Hbf",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "103",
+                "reihung": true,
+                "scheduledTime": 1561942980000,
+                "time": 1561942980000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 1,
+              },
+              "departure": Object {
+                "platform": "103",
+                "reihung": true,
+                "scheduledTime": 1561943160000,
+                "time": 1561943160000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 50.120903,
+                  "lng": 8.92921,
+                },
+                "id": "8000150",
+                "title": "Hanau Hbf",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "3",
+                "reihung": true,
+                "scheduledTime": 1561949640000,
+                "time": 1561949640000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 1,
+              },
+              "departure": Object {
+                "platform": "3",
+                "reihung": true,
+                "scheduledTime": 1561949760000,
+                "time": 1561949760000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 51.312998,
+                  "lng": 9.446845,
+                },
+                "id": "8003200",
+                "title": "Kassel-Wilhelmshöhe",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "4",
+                "reihung": true,
+                "scheduledTime": 1561952760000,
+                "time": 1561952760000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 1,
+              },
+              "departure": Object {
+                "platform": "4",
+                "reihung": true,
+                "scheduledTime": 1561952880000,
+                "time": 1561952880000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 51.536758,
+                  "lng": 9.926257,
+                },
+                "id": "8000128",
+                "title": "Göttingen",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "7",
+                "reihung": true,
+                "scheduledTime": 1561956360000,
+                "time": 1561956360000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 1,
+              },
+              "departure": Object {
+                "platform": "9",
+                "reihung": true,
+                "scheduledTime": 1561956540000,
+                "time": 1561956540000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 52.377079,
+                  "lng": 9.741763,
+                },
+                "id": "8000152",
+                "title": "Hannover Hbf",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "2",
+                "reihung": true,
+                "scheduledTime": 1561959540000,
+                "time": 1561959540000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 1,
+              },
+              "departure": Object {
+                "platform": "2",
+                "reihung": true,
+                "scheduledTime": 1561959660000,
+                "time": 1561959660000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 53.249742,
+                  "lng": 10.419873,
+                },
+                "id": "8000238",
+                "title": "Lüneburg",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "1",
+                "reihung": true,
+                "scheduledTime": 1561960800000,
+                "time": 1561960800000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 53.456198,
+                  "lng": 9.991591,
+                },
+                "id": "8000147",
+                "title": "Hamburg-Harburg",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "8",
+                "reihung": true,
+                "scheduledTime": 1561961700000,
+                "time": 1561961700000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 53.553533,
+                  "lng": 10.00636,
+                },
+                "id": "8002549",
+                "title": "Hamburg Hbf",
+              },
+            },
+          ],
+          "train": Object {
+            "name": "ICE 990",
+            "number": "990",
+            "type": "ICE",
+          },
+          "type": "JNY",
+        },
+      ],
+    },
+    Object {
+      "arrival": Object {
+        "platform": "11",
+        "scheduledTime": 1561973520000,
+        "time": 1561973520000,
+      },
+      "changes": 0,
+      "checksum": "ca9ad537_3",
+      "cid": "C-5",
+      "date": 1561939200000,
+      "departure": Object {
+        "platform": "7",
+        "scheduledTime": 1561957560000,
+        "time": 1561957560000,
+      },
+      "duration": 15960000,
+      "isRideable": true,
+      "segmentTypes": Array [
+        "ICE",
+      ],
+      "segments": Array [
+        Object {
+          "arrival": Object {
+            "platform": "11",
+            "reihung": true,
+            "scheduledTime": 1561973520000,
+            "time": 1561973520000,
+          },
+          "auslastung": Object {
+            "first": 1,
+            "second": 3,
+          },
+          "departure": Object {
+            "platform": "7",
+            "reihung": true,
+            "scheduledTime": 1561957560000,
+            "time": 1561957560000,
+          },
+          "duration": 15960000,
+          "finalDestination": "Hamburg-Altona",
+          "jid": "1|312383|0|80|1072019",
+          "messages": Array [
+            Object {
+              "code": "CK",
+              "icoX": 3,
+              "prio": 200,
+              "txtN": "Komfort Check-in möglich  http://bahn.de/komfortcheckin",
+              "type": "A",
+            },
+            Object {
+              "code": "BR",
+              "icoX": 4,
+              "prio": 450,
+              "txtN": "Bordrestaurant",
+              "type": "A",
+            },
+          ],
+          "segmentDestination": Object {
+            "id": "8002549",
+            "title": "Hamburg Hbf",
+          },
+          "segmentStart": Object {
+            "id": "8000105",
+            "title": "Frankfurt(Main)Hbf",
+          },
+          "stops": Array [
+            Object {
+              "auslastung": Object {
+                "first": 1,
+                "second": 1,
+              },
+              "departure": Object {
+                "platform": "7",
+                "reihung": true,
+                "scheduledTime": 1561957560000,
+                "time": 1561957560000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 50.106817,
+                  "lng": 8.663003,
+                },
+                "id": "8000105",
+                "title": "Frankfurt(Main)Hbf",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "7",
+                "reihung": true,
+                "scheduledTime": 1561958400000,
+                "time": 1561958400000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 1,
+              },
+              "departure": Object {
+                "platform": "7",
+                "reihung": true,
+                "scheduledTime": 1561958460000,
+                "time": 1561958460000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 50.120903,
+                  "lng": 8.92921,
+                },
+                "id": "8000150",
+                "title": "Hanau Hbf",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "6",
+                "reihung": true,
+                "scheduledTime": 1561960920000,
+                "time": 1561960920000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 1,
+              },
+              "departure": Object {
+                "platform": "6",
+                "reihung": true,
+                "scheduledTime": 1561961040000,
+                "time": 1561961040000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 50.554794,
+                  "lng": 9.684178,
+                },
+                "id": "8000115",
+                "title": "Fulda",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "3",
+                "reihung": true,
+                "scheduledTime": 1561962840000,
+                "time": 1561962840000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 2,
+              },
+              "departure": Object {
+                "platform": "3",
+                "reihung": true,
+                "scheduledTime": 1561962960000,
+                "time": 1561962960000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 51.312998,
+                  "lng": 9.446845,
+                },
+                "id": "8003200",
+                "title": "Kassel-Wilhelmshöhe",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "4",
+                "reihung": true,
+                "scheduledTime": 1561964100000,
+                "time": 1561964100000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 3,
+              },
+              "departure": Object {
+                "platform": "4",
+                "reihung": true,
+                "scheduledTime": 1561964160000,
+                "time": 1561964160000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 51.536758,
+                  "lng": 9.926257,
+                },
+                "id": "8000128",
+                "title": "Göttingen",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "7",
+                "reihung": true,
+                "scheduledTime": 1561967640000,
+                "time": 1561967640000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 2,
+              },
+              "departure": Object {
+                "platform": "7",
+                "reihung": true,
+                "scheduledTime": 1561967940000,
+                "time": 1561967940000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 52.377079,
+                  "lng": 9.741763,
+                },
+                "id": "8000152",
+                "title": "Hannover Hbf",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "5",
+                "reihung": true,
+                "scheduledTime": 1561969080000,
+                "time": 1561969080000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 1,
+              },
+              "departure": Object {
+                "platform": "5",
+                "reihung": true,
+                "scheduledTime": 1561969200000,
+                "time": 1561969200000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 52.621019,
+                  "lng": 10.062651,
+                },
+                "id": "8000064",
+                "title": "Celle",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "102",
+                "reihung": true,
+                "scheduledTime": 1561970400000,
+                "time": 1561970400000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 1,
+              },
+              "departure": Object {
+                "platform": "102",
+                "reihung": true,
+                "scheduledTime": 1561970520000,
+                "time": 1561970520000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 52.96998,
+                  "lng": 10.553246,
+                },
+                "id": "8000168",
+                "title": "Uelzen",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "2",
+                "reihung": true,
+                "scheduledTime": 1561971600000,
+                "time": 1561971600000,
+              },
+              "auslastung": Object {
+                "first": 1,
+                "second": 1,
+              },
+              "departure": Object {
+                "platform": "2",
+                "reihung": true,
+                "scheduledTime": 1561971720000,
+                "time": 1561971720000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 53.249742,
+                  "lng": 10.419873,
+                },
+                "id": "8000238",
+                "title": "Lüneburg",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "1",
+                "reihung": true,
+                "scheduledTime": 1561972800000,
+                "time": 1561972800000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 53.456198,
+                  "lng": 9.991591,
+                },
+                "id": "8000147",
+                "title": "Hamburg-Harburg",
+              },
+            },
+            Object {
+              "arrival": Object {
+                "platform": "11",
+                "reihung": true,
+                "scheduledTime": 1561973520000,
+                "time": 1561973520000,
+              },
+              "station": Object {
+                "coordinates": Object {
+                  "lat": 53.553533,
+                  "lng": 10.00636,
+                },
+                "id": "8002549",
+                "title": "Hamburg Hbf",
+              },
+            },
+          ],
+          "train": Object {
+            "name": "ICE 988",
+            "number": "988",
+            "type": "ICE",
+          },
+          "type": "JNY",
+        },
+      ],
+    },
+  ],
 }
 `;

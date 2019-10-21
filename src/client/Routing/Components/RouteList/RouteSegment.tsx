@@ -1,78 +1,66 @@
 import { Route$JourneySegment } from 'types/routing';
-import AuslastungsDisplay from 'Common/Components/AuslastungsDisplay';
-import cc from 'clsx';
+import JnySegmentTrain from './SegmentTrainComponent/JnySegmentTrain';
 import Platform from 'Common/Components/Platform';
-import React, { useMemo } from 'react';
-import Reihung from 'Common/Components/Reihung';
-import StopList from './StopList';
+import React, { MouseEvent } from 'react';
 import Time from 'Common/Components/Time';
 import useStyles from './RouteSegment.style';
+import WalkSegmentTrain from './SegmentTrainComponent/WalkSegmentTrain';
 
-type OwnProps = {
+type Props = {
   segment: Route$JourneySegment;
   detail?: boolean;
-  onTrainClick: () => void;
+  onTrainClick?: (e: MouseEvent) => void;
 };
-type Props = OwnProps;
+
 const RouteSegment = ({ segment, detail, onTrainClick }: Props) => {
   const classes = useStyles();
-  const train = useMemo(
-    () => (
-      <div
-        onClick={e => {
-          e.preventDefault();
-          e.stopPropagation();
-          onTrainClick();
-        }}
-        className={classes.train}
-      >
-        <div className={classes.trainInfo}>
-          <span className={classes.trainMargin}>{segment.train.name}</span>
-          <span className={cc(classes.trainMargin, classes.destination)}>
-            {segment.finalDestination}
-          </span>
-          {segment.auslastung && (
-            <AuslastungsDisplay auslastung={segment.auslastung} />
-          )}
-        </div>
-        {detail && (
-          <>
-            {segment.departure.reihung && segment.train.number && (
-              <Reihung
-                className={classes.reihung}
-                useZoom
-                fahrzeugGruppe={false}
-                trainNumber={segment.train.number}
-                currentStation={segment.segmentStart.title}
-                scheduledDeparture={segment.departure.scheduledTime}
-              />
-            )}
-            <StopList stops={segment.stops} />
-          </>
-        )}
-      </div>
-    ),
-    [classes, segment, detail, onTrainClick]
-  );
 
   return (
     <>
-      <div className={cc(classes.main)}>
-        <Time real={segment.departure.time} delay={segment.departure.delay} />
-        <span>{segment.segmentStart.title}</span>
-        <Platform
-          real={segment.departure.platform}
-          scheduled={segment.departure.scheduledPlatform}
+      <div className={classes.main}>
+        <Time
+          className={classes.departureTime}
+          real={segment.departure.time}
+          delay={segment.departure.delay}
         />
-        {train}
-        <Time real={segment.arrival.time} delay={segment.arrival.delay} />
-        <span>{segment.segmentDestination.title}</span>
-        <Platform
-          real={segment.arrival.platform}
-          scheduled={segment.arrival.scheduledPlatform}
+        <span className={classes.departureName}>
+          {segment.segmentStart.title}
+        </span>
+
+        <Time
+          className={classes.arrivalTime}
+          real={segment.arrival.time}
+          delay={segment.arrival.delay}
         />
+        <span className={classes.arrivalName}>
+          {segment.segmentDestination.title}
+        </span>
+        {segment.type === 'JNY' && (
+          <>
+            <Platform
+              className={classes.departurePlatform}
+              real={segment.departure.platform}
+              scheduled={segment.departure.scheduledPlatform}
+            />
+            <Platform
+              className={classes.arrivalPlatform}
+              real={segment.arrival.platform}
+              scheduled={segment.arrival.scheduledPlatform}
+            />
+          </>
+        )}
+        {segment.type === 'JNY' ? (
+          <JnySegmentTrain
+            className={classes.train}
+            detail={detail}
+            segment={segment}
+            onTrainClick={onTrainClick}
+          />
+        ) : (
+          <WalkSegmentTrain className={classes.train} segment={segment} />
+        )}
       </div>
-      {segment.hasOwnProperty('changeDuration') && (
+      {'changeDuration' in segment && (
         <span>{segment.changeDuration} Minuten Umsteigezeit</span>
       )}
     </>
