@@ -1933,6 +1933,7 @@ Object {
     "number": "70",
     "type": "ICE",
   },
+  "type": "JNY",
 }
 `;
 
@@ -3358,6 +3359,7 @@ Object {
             "number": "572",
             "type": "ICE",
           },
+          "type": "JNY",
         },
       ],
     },
@@ -3632,6 +3634,7 @@ Object {
             "number": "376",
             "type": "ICE",
           },
+          "type": "JNY",
         },
       ],
     },
@@ -3856,6 +3859,7 @@ Object {
             "number": "570",
             "type": "ICE",
           },
+          "type": "JNY",
         },
       ],
     },
@@ -4106,6 +4110,7 @@ Object {
             "number": "590",
             "type": "ICE",
           },
+          "type": "JNY",
         },
       ],
     },
@@ -4356,6 +4361,7 @@ Object {
             "number": "990",
             "type": "ICE",
           },
+          "type": "JNY",
         },
       ],
     },
@@ -4691,6 +4697,7 @@ Object {
             "number": "988",
             "type": "ICE",
           },
+          "type": "JNY",
         },
       ],
     },
@@ -7684,6 +7691,7 @@ Object {
         "number": "2063",
         "type": "IC",
       },
+      "type": "JNY",
     },
   ],
 }

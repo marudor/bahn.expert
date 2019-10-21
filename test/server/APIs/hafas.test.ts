@@ -76,13 +76,13 @@ describe('Hafas API', () => {
       it('/auslastung', async () => {
         mockWithFile(
           'https://reiseauskunft.bahn.de',
-          '/bin/mgate.exe?checksum=7e80aaeb60b2c758b94eb48e3c55443f',
+          '/bin/mgate.exe?checksum=39f8eaae591107a348a0cd05e3ddef19',
           'hafas/auslastung/station1',
           'post'
         );
         mockWithFile(
           'https://reiseauskunft.bahn.de',
-          '/bin/mgate.exe?checksum=1dfefef85395f73dc69107adbd1c20ad',
+          '/bin/mgate.exe?checksum=c9b0f9063914df70062adc247ad3bf1d',
           'hafas/auslastung/station2',
           'post'
         );
@@ -122,7 +122,7 @@ describe('Hafas API', () => {
       it('/station', async () => {
         mockWithFile(
           'https://reiseauskunft.bahn.de',
-          '/bin/mgate.exe?checksum=44508eb0953b3fb50df7b66751abda2f',
+          '/bin/mgate.exe?checksum=a089e2350502ebf47dec4f574c046d98',
           'hafas/station',
           'post'
         );
