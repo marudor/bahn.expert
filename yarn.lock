@@ -4293,10 +4293,10 @@ depd@~2.0.0:
   resolved "https://registry.yarnpkg.com/depd/-/depd-2.0.0.tgz#b696163cc757560d09cf22cc8fad1571b79e76df"
   integrity sha512-g7nH6P6dyDioJogAAGprGpCtVImJhpPk/roCzdb3fIh61/s/nPsfR6onyMwkCAR/OlC3yBC0lESvUoQEAssIrw==
 
-dependency-cruiser@^5.2.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/dependency-cruiser/-/dependency-cruiser-5.2.0.tgz#e65ed270bd71de054488834f5eb54b2638331c1c"
-  integrity sha512-4tL943z7JdaEYA+T88S3mI1cyZb/IDXBknxkjFZh2bqNCJosaQy8yQ59etVPUVYAlFkadbJWwmL2vgITYrxKaA==
+dependency-cruiser@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/dependency-cruiser/-/dependency-cruiser-5.2.1.tgz#4f14e6942ba0ea9c92e97475e90818f2737f00e8"
+  integrity sha512-CW0Xkjngn4DWYifk8t/+E7Dz1upbulFsbTIVXF/Ne18YL1vzWI5gC8oKYkNXBZv7KRhqFTepQOaAoySEVOP4mw==
   dependencies:
     acorn "7.1.0"
     acorn-loose "7.0.0"
@@ -4304,11 +4304,11 @@ dependency-cruiser@^5.2.0:
     ajv "6.10.2"
     chalk "2.4.2"
     commander "3.0.2"
-    enhanced-resolve "4.1.0"
+    enhanced-resolve "4.1.1"
     figures "3.0.0"
     get-stream "5.1.0"
     glob "7.1.4"
-    handlebars "4.4.2"
+    handlebars "4.4.3"
     indent-string "4.0.0"
     inquirer "7.0.0"
     lodash "4.17.15"
@@ -4618,6 +4618,15 @@ enhanced-resolve@4.1.0, enhanced-resolve@^4.0.0, enhanced-resolve@^4.1.0:
   dependencies:
     graceful-fs "^4.1.2"
     memory-fs "^0.4.0"
+    tapable "^1.0.0"
+
+enhanced-resolve@4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-4.1.1.tgz#2937e2b8066cd0fe7ce0990a98f0d71a35189f66"
+  integrity sha512-98p2zE+rL7/g/DzMHMTF4zZlCgeVdJ7yr6xzEpJRYwFYrGi9ANdn5DnJURg6RpBkyk60XYDnWIv51VfIhfNGuA==
+  dependencies:
+    graceful-fs "^4.1.2"
+    memory-fs "^0.5.0"
     tapable "^1.0.0"
 
 enhanced-resolve@~0.9.0:
@@ -5936,10 +5945,10 @@ gzip-size@5.1.1, gzip-size@^5.0.0:
     duplexer "^0.1.1"
     pify "^4.0.1"
 
-handlebars@4.4.2:
-  version "4.4.2"
-  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.4.2.tgz#8810a9821a9d6d52cb2f57d326d6ce7c3dfe741d"
-  integrity sha512-cIv17+GhL8pHHnRJzGu2wwcthL5sb8uDKBHvZ2Dtu5s1YNt0ljbzKbamnc+gr69y7bzwQiBdr5+hOpRd5pnOdg==
+handlebars@4.4.3:
+  version "4.4.3"
+  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.4.3.tgz#180bae52c1d0e9ec0c15d7e82a4362d662762f6e"
+  integrity sha512-B0W4A2U1ww3q7VVthTKfh+epHx+q4mCt6iK+zEAzbMBpWQAwxCeKxEGpj/1oQTpzPXDNSOG7hmG14TsISH50yw==
   dependencies:
     neo-async "^2.6.0"
     optimist "^0.6.1"
@@ -7968,6 +7977,14 @@ memory-fs@^0.4.0, memory-fs@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/memory-fs/-/memory-fs-0.4.1.tgz#3a9a20b8462523e447cfbc7e8bb80ed667bfc552"
   integrity sha1-OpoguEYlI+RHz7x+i7gO1me/xVI=
+  dependencies:
+    errno "^0.1.3"
+    readable-stream "^2.0.1"
+
+memory-fs@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/memory-fs/-/memory-fs-0.5.0.tgz#324c01288b88652966d161db77838720845a8e3c"
+  integrity sha512-jA0rdU5KoQMC0e6ppoNRtpp6vjFq6+NY7r8hywnC7V+1Xj/MtHwGIbB1QaK/dunyjWteJzmkpd7ooeWg10T7GA==
   dependencies:
     errno "^0.1.3"
     readable-stream "^2.0.1"
