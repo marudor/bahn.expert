@@ -184,10 +184,9 @@ export default (
   r: HafasResponse<TripSearchResponse>,
   parsedCommon: ParsedCommon
 ): RoutingResult => {
-  const now = Date.now();
-  const routes = r.svcResL[0].res.outConL
-    .map(j => new Journey(j, parsedCommon).journey)
-    .filter(r => r.departure.time > now);
+  const routes = r.svcResL[0].res.outConL.map(
+    j => new Journey(j, parsedCommon).journey
+  );
 
   return {
     context: {
