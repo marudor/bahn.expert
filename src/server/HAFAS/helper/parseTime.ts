@@ -1,13 +1,21 @@
-import { addMilliseconds } from 'date-fns';
+import { addMilliseconds, addMinutes } from 'date-fns';
 import parseDuration from './parseDuration';
 
 // @ts-ignore ???
-declare function parseTime(date: number, time: string): number;
+declare function parseTime(date: Date, time: string): number;
 // @ts-ignore ???
-declare function parseTime(date: number, time: undefined): undefined;
-function parseTime(date: number, time?: string) {
+declare function parseTime(date: Date, time: undefined): undefined;
+function parseTime(date: Date, time?: string) {
   if (time) {
-    return addMilliseconds(date, parseDuration(time)).getTime();
+    let parsedDate = addMilliseconds(date, parseDuration(time));
+    const TzDifference =
+      parsedDate.getTimezoneOffset() - date.getTimezoneOffset();
+
+    if (TzDifference !== 0) {
+      parsedDate = addMinutes(parsedDate, TzDifference);
+    }
+
+    return parsedDate.getTime();
   }
 }
 

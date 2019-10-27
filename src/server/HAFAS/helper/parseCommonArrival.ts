@@ -6,7 +6,7 @@ import parseTime from './parseTime';
 
 export default (
   a: CommonArrival,
-  date: number,
+  date: Date,
   _common: ParsedCommon,
   trainType?: string
 ): CommonStopInfo => {
