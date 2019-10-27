@@ -6,11 +6,12 @@ import parseTime from './parseTime';
 
 export default (
   d: CommonDeparture,
-  date: number,
+  date: Date,
   _common: ParsedCommon,
   trainType?: string
 ): CommonStopInfo => {
   const scheduledTime = parseTime(date, d.dTimeS);
+
   let time = scheduledTime;
   let delay;
 

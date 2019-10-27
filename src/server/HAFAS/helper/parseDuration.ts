@@ -1,6 +1,7 @@
 export default (duration: string | undefined | null) => {
   if (!duration) return 0;
   const sanitized = duration.padStart(8, '0');
+
   const days = Number.parseInt(sanitized.slice(0, 2), 10);
   const hours = Number.parseInt(sanitized.slice(2, 4), 10);
   const minutes = Number.parseInt(sanitized.slice(4, 6), 10);

@@ -8,7 +8,7 @@ import parseMessages from './parseMessages';
 export default (
   stop: CommonStop,
   common: ParsedCommon,
-  date: number,
+  date: Date,
   trainType?: string
 ): Route$Stop => {
   const arrival = stop.aTimeS
