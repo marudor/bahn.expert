@@ -106,14 +106,16 @@ export default async (
     replacementNumber = 2;
   }
 
-  firstResult.ctxRecon = `¶HKI¶T$A=1@L=${
-    jDetails.firstStop.station.id
-  }@a=128@$A=1@L=${jDetails.lastStop.station.id}@a=128@$${format(
-    jDetails.firstStop.departure.scheduledTime,
-    'yyyyMMddHHmm'
-  )}$${format(jDetails.lastStop.arrival.scheduledTime, 'yyyyMMddHHmm')}$${
-    firstResult.value
-  }$$${replacementNumber}$`;
+  if (jDetails.firstStop) {
+    firstResult.ctxRecon = `¶HKI¶T$A=1@L=${
+      jDetails.firstStop.station.id
+    }@a=128@$A=1@L=${jDetails.lastStop.station.id}@a=128@$${format(
+      jDetails.firstStop.departure.scheduledTime,
+      'yyyyMMddHHmm'
+    )}$${format(jDetails.lastStop.arrival.scheduledTime, 'yyyyMMddHHmm')}$${
+      firstResult.value
+    }$$${replacementNumber}$`;
+  }
   firstResult.jDetails = jDetails;
 
   return firstResult;

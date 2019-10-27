@@ -68,13 +68,13 @@ function adjustToLastTrain(
 
 export class Journey {
   raw: OutConL;
-  date: number;
+  date: Date;
   journey: Route;
   common: ParsedCommon;
   constructor(raw: OutConL, common: ParsedCommon) {
     this.raw = raw;
     this.common = common;
-    this.date = parse(raw.date, 'yyyyMMdd', new Date()).getTime();
+    this.date = parse(raw.date, 'yyyyMMdd', new Date());
     const allSegments = raw.secL
       .map(this.parseSegment)
       .filter<Route$JourneySegment>(Boolean as any);
@@ -90,7 +90,7 @@ export class Journey {
     this.journey = {
       checksum: raw.cksum,
       cid: raw.cid,
-      date: this.date,
+      date: this.date.getTime(),
       duration: parseDuration(raw.dur),
       changes: raw.chg,
       isRideable: !raw.isNotRdbl,
