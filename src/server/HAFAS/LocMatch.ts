@@ -26,7 +26,7 @@ export default (
     req: {
       input: {
         loc: {
-          name: `${searchTerm}`,
+          name: searchTerm,
           type,
         },
         field: 'S',
