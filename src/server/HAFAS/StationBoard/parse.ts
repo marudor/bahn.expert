@@ -17,7 +17,7 @@ const parseStationBoardResponse = (
   jny: Jny,
   common: ParsedCommon
 ): StationBoardEntry => {
-  const date = parse(jny.date, 'yyyyMMdd', new Date()).getTime();
+  const date = parse(jny.date, 'yyyyMMdd', new Date());
   const product = common.prodL[jny.prodX];
   const commonResponse = {
     train: product,

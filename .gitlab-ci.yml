@@ -15,7 +15,7 @@ stages:
 
 install:
   stage: install
-  script: yarn --frozen-lockfile
+  script: yarn --frozen-lockfile --prefer-offline
   cache:
     key: '$CI_COMMIT_REF_SLUG'
     paths:
@@ -135,12 +135,13 @@ cypress3:
   <<: *cypress
 
 docker:server:
-  services:
-    - docker:dind
-  image: registry.gitlab.com/marudor/deploy-helper/docker
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
   stage: docker
   script:
-    - /build.sh "Dockerfile"
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --destination $CI_REGISTRY_IMAGE
   dependencies:
     - build:server
     - build:app
@@ -155,8 +156,7 @@ deploy:beta:
     - /helm-upgrade.sh "bahnhofsabfahrten" "bahnhofsabfahrten-beta.yaml" "bahnhofsabfahrten-beta" "$CI_COMMIT_SHA" "marudor"
   environment:
     name: beta
-  only:
-    - master
+  only: [master]
   dependencies: []
 
 deploy:prod:
@@ -172,13 +172,3 @@ deploy:prod:
   only:
     - master
   dependencies: []
-
-cleanup:
-  stage: cleanup
-  image: registry.gitlab.com/marudor/deploy-helper
-  variables:
-    GIT_STRATEGY: none
-  script:
-    - /cleanup.sh "marudor"
-  dependencies: []
-  only: [master]
