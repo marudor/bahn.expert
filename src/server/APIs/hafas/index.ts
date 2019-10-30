@@ -26,6 +26,11 @@ const getCurrent = () =>
 
       ctx.body = await journeyDetails(jid, ctx.hafasProfile);
     })
+    .post('/journeyDetails', async ctx => {
+      const { jid }: { jid: string } = ctx.request.body;
+
+      ctx.body = await journeyDetails(jid, ctx.hafasProfile);
+    })
     .post('/SearchOnTrip', async ctx => {
       const {
         sotMode,

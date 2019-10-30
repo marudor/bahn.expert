@@ -6,11 +6,11 @@ export default makeStyles({
     alignItems: 'center',
   },
   trainMargin: {
+    flex: 0.6,
     marginRight: '.5em',
   },
   destination: {
     flex: 1,
-    textAlign: 'center',
   },
   reihung: {
     fontSize: '0.5em',

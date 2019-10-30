@@ -87,7 +87,10 @@ export const oebb = {
     },
     lang: 'de',
     ver: '1.20',
-    auth: { aid: 'OWDL4fE4ixNiPBBm', type: 'AID' },
+    auth: {
+      aid: 'OWDL4fE4ixNiPBBm',
+      type: 'AID',
+    },
   },
 };
 
@@ -216,6 +219,25 @@ export const anachb = {
     auth: {
       type: 'AID',
       aid: 'wf7mcf9bv3nv8g5f',
+    },
+  },
+};
+
+export const vao = {
+  url: 'http://app.verkehrsauskunft.at/bin/mgate.exe',
+  config: {
+    client: {
+      id: 'VAO',
+      type: 'IPH',
+    },
+    ver: '1.20',
+    lang: 'deu',
+    ext: 'VAO.10',
+    auth: {
+      type: 'USER',
+      user: 'mobile',
+      pw: '87a6f8ZbnBih32',
+      aid: 'hf7mcf9bv3nv8g5f',
     },
   },
 };
