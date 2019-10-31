@@ -1,4 +1,4 @@
-import { Fahrzeuggruppe } from 'types/api/reihung';
+import { Fahrzeuggruppe } from 'types/reihung';
 import BRInfo from './BRInfo';
 import Fahrzeug, { InheritedProps } from './Fahrzeug';
 import React, { useMemo } from 'react';

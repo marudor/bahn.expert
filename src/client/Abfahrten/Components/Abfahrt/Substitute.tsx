@@ -1,4 +1,4 @@
-import { SubstituteRef } from 'types/api/iris';
+import { SubstituteRef } from 'types/iris';
 import React from 'react';
 import useStyles from './Substitue.style';
 

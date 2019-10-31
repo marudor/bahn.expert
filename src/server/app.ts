@@ -30,7 +30,7 @@ export async function createApp(wsServer?: Server) {
     Sentry.init({ dsn: sentryDSN, environment: process.env.ENVIRONMENT });
   }
 
-  let apiRoutes = require('./Controller').default;
+  let apiRoutes = require('./API').default;
   let serverRender = require('./render').default;
   let seoController = require('./seo').default;
   let errorHandler = require('./errorHandler').default;
@@ -43,7 +43,7 @@ export async function createApp(wsServer?: Server) {
     app.use((ctx, next) => {
       errorHandler = require('./errorHandler').default;
       serverRender = require('./render').default;
-      apiRoutes = require('./Controller').default;
+      apiRoutes = require('./API').default;
       seoController = require('./seo').default;
       ctx.loadableStats = JSON.parse(
         // eslint-disable-next-line no-sync

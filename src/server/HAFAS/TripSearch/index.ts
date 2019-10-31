@@ -1,26 +1,8 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { formatToTimeZone } from 'date-fns-timezone';
-import { TripSearchRequest } from 'types/HAFAS/TripSearch';
+import { TripSearchOptions, TripSearchRequest } from 'types/HAFAS/TripSearch';
 import makeRequest from '../Request';
 import tripSearchParse from './parse';
-
-export type Options = {
-  start: string;
-  destination: string;
-  time: number;
-  transferTime?: number;
-  maxChanges?: number;
-  getPasslist?: boolean;
-  searchForDeparture?: boolean;
-  economic?: boolean;
-  getTariff?: boolean;
-  ushrp?: boolean;
-  getPolyline?: boolean;
-  getIV?: boolean;
-  numF?: number;
-  ctxScr?: string;
-  onlyRegional?: boolean;
-};
 
 const profileConfig = {
   db: {
@@ -53,7 +35,7 @@ function route(
     numF = 6,
     ctxScr,
     onlyRegional,
-  }: Options,
+  }: TripSearchOptions,
   profile?: AllowedHafasProfile
 ) {
   let requestTypeSpecific;

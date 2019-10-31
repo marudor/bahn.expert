@@ -1,5 +1,4 @@
-import { Coordinates } from 'types/api/station';
-import { FavendoStation, Station } from 'types/station';
+import { Coordinates, FavendoStation, Station } from 'types/station';
 import axios from 'axios';
 
 function encodeSearchTerm(term: string) {

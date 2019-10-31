@@ -1,12 +1,36 @@
-import { CommonProductInfo } from 'types/api/common';
-import { Coordinates } from 'types/api/station';
+import { CommonStation, Coordinates } from 'types/station';
 import { JourneyDetailsRequest } from './JourneyDetails';
 import { LocGeoPosRequest } from './LocGeoPos';
 import { LocMatchRequest } from './LocMatch';
 import { Omit } from 'utility-types';
-import { RemL } from 'types/api/hafas';
-import { Station } from 'types/station';
 import { TripSearchRequest } from './TripSearch';
+
+export interface CommonProductInfo {
+  name: string;
+  line?: string;
+  number?: string;
+  type?: string;
+}
+export interface CommonStopInfo {
+  scheduledPlatform?: string;
+  platform?: string;
+  scheduledTime: number;
+  time: number;
+  delay?: number;
+  reihung?: boolean;
+  messages?: RemL[];
+  cancelled?: boolean;
+}
+
+export interface RemL {
+  type: string;
+  code: string;
+  icoX: number;
+  txtN: string;
+  txtS?: string;
+  prio?: number;
+  sIdx?: number;
+}
 
 export interface SDaysL {
   sDaysR: string;
@@ -16,7 +40,7 @@ export interface SDaysL {
   tLocX: number;
 }
 
-export interface HafasStation extends Omit<Station, 'favendoId' | 'DS100'> {
+export interface HafasStation extends CommonStation {
   products?: ParsedProduct[];
   coordinates: Coordinates;
 }

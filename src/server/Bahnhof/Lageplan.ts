@@ -11,7 +11,7 @@ export async function getLageplan(stationName: string) {
   if (cached) return cached;
   // undefined = haven't tried yet
   // null = already tried to fetch, but nothing found
-  if (cached === null) return null;
+  if (cached === null) return undefined;
   const searchHtml: string = (await axios.get(
     `https://www.bahnhof.de/service/search/bahnhof-de/520608?${qs.stringify({
       query: stationName,
@@ -26,7 +26,7 @@ export async function getLageplan(stationName: string) {
   if (!firstResultLink) {
     cache.set(stationName, null);
 
-    return null;
+    return undefined;
   }
 
   const bahnhofHtml = (await axios.get(
@@ -41,7 +41,7 @@ export async function getLageplan(stationName: string) {
   if (!rawPdfLink) {
     cache.set(stationName, null);
 
-    return null;
+    return undefined;
   }
   const pdfLink = `https://www.bahnhof.de${rawPdfLink}`;
 

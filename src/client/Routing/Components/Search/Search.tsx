@@ -11,7 +11,7 @@ import {
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { DateTimePicker } from '@material-ui/pickers';
 import { getHafasStationFromAPI } from 'Common/service/stationSearch';
-import { Station } from 'types/api/station';
+import { Station } from 'types/station';
 import { useHistory, useRouteMatch } from 'react-router';
 import Button from '@material-ui/core/Button';
 import deLocale from 'date-fns/locale/de';

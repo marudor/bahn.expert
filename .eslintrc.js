@@ -12,6 +12,8 @@ module.exports = {
   rules: {
     'require-atomic-updates': 0,
     'babel/object-curly-spacing': 0,
+    'max-depth': 0,
+    'jest/expect-expect': 0,
   },
   settings: {
     'import/resolver': 'webpack',

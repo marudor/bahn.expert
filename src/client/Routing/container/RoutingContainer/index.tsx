@@ -1,5 +1,5 @@
 import { createContainer } from 'unstated-next';
-import { Route } from 'types/routing';
+import { SingleRoute } from 'types/routing';
 import React, { ReactNode, useState } from 'react';
 import RoutingConfingContainer, {
   defaultRoutingSettings,
@@ -7,7 +7,7 @@ import RoutingConfingContainer, {
 import useCookies from 'Common/useCookies';
 
 const useRouting = () => {
-  const [routes, setRoutes] = useState<Route[] | undefined>([]);
+  const [routes, setRoutes] = useState<SingleRoute[] | undefined>([]);
   const [earlierContext, setEarlierContext] = useState<string>();
   const [laterContext, setLaterContext] = useState<string>();
   const [error, setError] = useState();

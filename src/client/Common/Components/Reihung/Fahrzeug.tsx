@@ -1,4 +1,4 @@
-import { Fahrzeug, FahrzeugType } from 'types/api/reihung';
+import { Fahrzeug } from 'types/reihung';
 import Accessibility from '@material-ui/icons/Accessibility';
 import ActionAccessible from '@material-ui/icons/Accessible';
 import ActionMotorcycle from '@material-ui/icons/Motorcycle';
@@ -30,7 +30,7 @@ export const icons = {
 export type InheritedProps = {
   scale: number;
   correctLeft: number;
-  type: FahrzeugType;
+  type: string;
 };
 
 export type OwnProps = InheritedProps & {

@@ -1,6 +1,4 @@
-import { Common, Journey, ParsedProduct } from '.';
-import { CommonStopInfo } from 'types/api/common';
-import { RemL } from 'types/api/hafas';
+import { Common, CommonStopInfo, Journey, ParsedProduct, RemL } from '.';
 import { Route$Auslastung, Route$Stop } from 'types/routing';
 
 export interface JourneyDetailsResponse {

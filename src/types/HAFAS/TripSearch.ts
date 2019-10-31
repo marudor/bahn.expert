@@ -9,6 +9,24 @@ import {
   TrnCmpSX,
 } from '.';
 
+export interface TripSearchOptions {
+  start: string;
+  destination: string;
+  time?: number;
+  transferTime?: number;
+  maxChanges?: number;
+  getPasslist?: boolean;
+  searchForDeparture?: boolean;
+  economic?: boolean;
+  getTariff?: boolean;
+  ushrp?: boolean;
+  getPolyline?: boolean;
+  getIV?: boolean;
+  numF?: number;
+  ctxScr?: string;
+  onlyRegional?: boolean;
+}
+
 interface JnyFltr {
   value: string;
   mode: string;

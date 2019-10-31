@@ -1,4 +1,4 @@
-import { Abfahrt } from 'types/api/iris';
+import { Abfahrt } from 'types/iris';
 import { CheckInType } from 'Common/config';
 import React from 'react';
 import TravelynxLink from './TravelynxLink';
