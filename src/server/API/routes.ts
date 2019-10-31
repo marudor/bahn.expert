@@ -223,6 +223,30 @@ const models: TsoaRoute.Models = {
     "additionalProperties": false,
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "ArrivalStationBoardEntry": {
+    "dataType": "refObject",
+    "properties": {
+      "train": { "ref": "ParsedProduct", "required": true },
+      "cancelled": { "dataType": "boolean" },
+      "finalDestination": { "dataType": "string", "required": true },
+      "jid": { "dataType": "string", "required": true },
+      "arrival": { "ref": "CommonStopInfo", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "DepartureStationBoardEntry": {
+    "dataType": "refObject",
+    "properties": {
+      "train": { "ref": "ParsedProduct", "required": true },
+      "cancelled": { "dataType": "boolean" },
+      "finalDestination": { "dataType": "string", "required": true },
+      "jid": { "dataType": "string", "required": true },
+      "departure": { "ref": "CommonStopInfo", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "TrainSearchResult": {
     "dataType": "refObject",
     "properties": {
