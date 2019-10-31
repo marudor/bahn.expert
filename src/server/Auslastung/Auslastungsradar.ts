@@ -5,7 +5,7 @@ import qs from 'qs';
 
 // 15 Minutes in seconds
 const stdTTL = 15 * 60;
-const cache = new NodeCache({ stdTTL });
+const cache = new NodeCache({ stdTTL, useClones: false });
 
 function mapStop(stop: string) {
   switch (stop) {

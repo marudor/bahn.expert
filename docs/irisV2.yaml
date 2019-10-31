@@ -1,0 +1,51 @@
+openapi: '3.0.2'
+info:
+  title: IRIS part
+  version: '1.0'
+servers:
+  - url: https://marudor/api/iris/v2
+tags:
+  - name: IRIS v2
+paths:
+  /wings/{id1}/{id2}:
+    get:
+      summary: Wings
+      description: Wing Info für zwei Abfahrten
+      tags:
+        - IRIS v2
+      parameters:
+        - name: id1
+          in: path
+          required: true
+          schema:
+            type: number
+        - name: id2
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: 'types/iris.yaml#/components/schemas/WingSuccessResponse'
+  /abfahrten/{evaId}:
+    get:
+      summary: Abfarten
+      description: Abfahrten für eine Station
+      tags:
+        - IRIS v2
+      parameters:
+        - $ref: 'types/iris.yaml#/components/parameters/EvaId'
+        - $ref: 'types/iris.yaml#/components/parameters/Type'
+        - $ref: 'types/iris.yaml#/components/parameters/Lookahead'
+        - $ref: 'types/iris.yaml#/components/parameters/Lookbehind'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: 'types/iris.yaml#/components/schemas/AbfahrtenResponse'

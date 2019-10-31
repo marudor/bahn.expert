@@ -180,12 +180,12 @@ async function makeRequest<
   // }
   const { data, extraParam } = createRequest(request, profile);
 
-  if (process.env.NODE_ENV === 'test') {
-    // eslint-disable-next-line no-console
-    console.log(JSON.stringify(request));
-    // eslint-disable-next-line no-console
-    console.log(extraParam);
-  }
+  // if (process.env.NODE_ENV === 'test') {
+  //   // eslint-disable-next-line no-console
+  //   console.log(JSON.stringify(request));
+  //   // eslint-disable-next-line no-console
+  //   console.log(extraParam);
+  // }x
   const r = (await axios.post<HafasResponse<HR>>(
     HafasProfiles[profile].url,
     data,

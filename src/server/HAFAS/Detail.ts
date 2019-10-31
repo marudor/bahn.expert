@@ -125,7 +125,6 @@ export default async (
         lookahead: 10,
         lookbehind: 0,
         currentDate: subMinutes(stopInfo.scheduledTime, 5),
-        skipLageplan: true,
       });
 
       const irisDeparture = irisData.departures.find(

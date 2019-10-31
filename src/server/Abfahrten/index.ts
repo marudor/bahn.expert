@@ -9,7 +9,6 @@ type AbfahrtenOptions = {
   lookahead?: number;
   lookbehind?: number;
   currentDate?: Date;
-  skipLageplan?: boolean;
 };
 const defaultOptions = {
   lookahead: 150,
@@ -20,7 +19,6 @@ const baseResult: Result = {
   departures: [],
   lookbehind: [],
   wings: {},
-  lageplan: undefined,
 };
 
 export function reduceResults(agg: Result, r: Result): Result {
@@ -31,12 +29,6 @@ export function reduceResults(agg: Result, r: Result): Result {
       ...agg.wings,
       ...r.wings,
     },
-    // eslint-disable-next-line no-nested-ternary
-    lageplan: r.lageplan
-      ? r.lageplan
-      : agg.lageplan !== undefined
-      ? agg.lageplan
-      : r.lageplan,
   };
 }
 
@@ -109,7 +101,7 @@ export async function getAbfahrten(
     axios
   );
   const result = (await Promise.all([
-    timetable.start(options.skipLageplan),
+    timetable.start(),
     relatedAbfahrten,
   ])).reduce(reduceResults, baseResult);
 

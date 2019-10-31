@@ -20,7 +20,6 @@ import { AxiosInstance } from 'axios';
 import { diffArrays } from 'diff';
 import { findLast, flatten, last, uniqBy } from 'lodash';
 import { getAttr, getNumberAttr, parseTs } from './helper';
-import { getCachedLageplan, getLageplan } from '../Bahnhof/Lageplan';
 import messageLookup, {
   messageTypeLookup,
   supersededMessages,
@@ -32,7 +31,6 @@ export type Result = {
   departures: Abfahrt[];
   lookbehind: Abfahrt[];
   wings: Object;
-  lageplan?: null | string;
 };
 
 type ArDp = {
@@ -53,7 +51,7 @@ type ParsedAr = ArDp & {
 
 // 6 Hours in seconds
 const stdTTL = 6 * 60 * 60;
-const timetableCache = new NodeCache({ stdTTL });
+const timetableCache = new NodeCache({ stdTTL, useClones: false });
 
 type Route = {
   name: string;
@@ -295,12 +293,7 @@ export default class Timetable {
       delete timetable.departure.additional;
     }
   }
-  async start(skipLageplan: boolean = false): Promise<Result> {
-    const lageplan = getCachedLageplan(this.currentStation);
-
-    if (!skipLageplan && lageplan === undefined) {
-      getLageplan(this.currentStation);
-    }
+  async start(): Promise<Result> {
     await this.getTimetables();
     await this.getRealtime();
 
@@ -361,7 +354,6 @@ export default class Timetable {
       departures,
       lookbehind,
       wings,
-      lageplan,
     };
   }
   calculateVia(timetable: any, maxParts: number = 3) {

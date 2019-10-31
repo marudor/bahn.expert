@@ -3,7 +3,9 @@ import cheerio from 'cheerio';
 import NodeCache from 'node-cache';
 import qs from 'qs';
 
-export const cache: NodeCache = new NodeCache();
+export const cache: NodeCache = new NodeCache({
+  useClones: false,
+});
 
 export async function getLageplan(stationName: string) {
   const cached = getCachedLageplan(stationName);
@@ -12,6 +14,7 @@ export async function getLageplan(stationName: string) {
   // undefined = haven't tried yet
   // null = already tried to fetch, but nothing found
   if (cached === null) return null;
+
   const searchHtml: string = (await axios.get(
     `https://www.bahnhof.de/service/search/bahnhof-de/520608?${qs.stringify({
       query: stationName,

@@ -30,7 +30,6 @@ export interface Abfahrt {
   hiddenReihung: boolean;
 }
 export interface AbfahrtenResponse {
-  lageplan?: string | null;
   wings: Wings;
   /**
    * Liste an Abfahrten (Zukunft)
@@ -46,6 +45,21 @@ export interface AbfahrtenResponse {
 /**
  */
 
+export type AbfahrtenResponseWithLageplan = AbfahrtenResponse & {
+  lageplan?: string | null;
+};
+/**
+ */
+
+export declare namespace EvaId {
+  export type EvaId = number;
+}
+export declare namespace Lookahead {
+  export type Lookahead = number;
+}
+export declare namespace Lookbehind {
+  export type Lookbehind = number;
+}
 export interface Message {
   text: string;
   timestamp: number;
@@ -95,6 +109,9 @@ export type TrainInfo = CommonProductInfo & {
   trainCategory: string;
   number: string;
 };
+export declare namespace Type {
+  export type Type = 'open' | 'default';
+}
 export interface WingInfo {
   station: {
     id: string;

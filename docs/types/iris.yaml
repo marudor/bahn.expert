@@ -1,5 +1,35 @@
 openapi: "3.0.2"
 components:
+  parameters:
+    EvaId:
+      name: evaId
+      in: path
+      required: true
+      schema:
+        type: number
+    Type:
+      name: type
+      description: OpenAPI oder properitär
+      in: query
+      schema:
+        type: string
+        enum:
+          - open
+          - default
+    Lookahead:
+      name: lookahead
+      in: query
+      description: Wieviele Minuten sollen Abfahrten angezeigt werden? (Zukunft)
+      schema:
+        type: number
+        default: 120
+    Lookbehind:
+      name: lookbehind
+      in: query
+      description: Wieviele Minuten sollen Abfahrten angezeigt werden? (Vergangenheit)
+      schema:
+        type: number
+        default: 0
   schemas:
     TrainInfo:
       allOf:
@@ -212,9 +242,6 @@ components:
     AbfahrtenResponse:
       type: object
       properties:
-        lageplan:
-          type: string
-          nullable: true
         wings:
           $ref: "#/components/schemas/Wings"
         departures:
@@ -231,3 +258,11 @@ components:
         - departures
         - lookbehind
         - wings
+    AbfahrtenResponseWithLageplan:
+      allOf:
+        - $ref: '#/components/schemas/AbfahrtenResponse'
+        - type: object
+          properties:
+            lageplan:
+              type: string
+              nullable: true

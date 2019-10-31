@@ -18,7 +18,7 @@ export type Station = {
 
 // 4 Hours in seconds
 const stdTTL = 4 * 60 * 60;
-const cache = new NodeCache({ stdTTL });
+const cache = new NodeCache({ stdTTL, useClones: false });
 
 function parseStation(stationNode: xmljs.Element): Station {
   const station: any = {};

@@ -1,3 +1,4 @@
+/* eslint-disable jest/expect-expect */
 import { checkApi, mockWithFile } from './helper';
 import { versions } from 'server/APIs/iris';
 jest.mock('node-cache');
@@ -11,7 +12,7 @@ describe('IRIS API', () => {
           '/iris-tts/timetable/station/8098105',
           'iris/station/8098105',
           'get',
-          3
+          4
         );
         mockWithFile(
           'https://iris.noncd.db.de',
@@ -44,18 +45,8 @@ describe('IRIS API', () => {
         );
         mockWithFile(
           'https://www.bahnhof.de',
-          '/service/search/bahnhof-de/520608?query=Frankfurt%20Hbf%20%20%28tief%29',
+          '/service/search/bahnhof-de/520608?query=Frankfurt%20Hbf%20%28tief%29',
           'iris/bahnhof/frankfurt hbf tief'
-        );
-        mockWithFile(
-          'https://www.bahnhof.de',
-          '/service/search/bahnhof-de/520608?query=Frankfurt%20%28Main%29%20Hbf',
-          'iris/bahnhof/frankfurt main hbf'
-        );
-        mockWithFile(
-          'https://www.bahnhof.de',
-          '/service/search/bahnhof-de/520608?query=Frankfurt%20%28M%29%20Hbf%20Stuttgarter%20Str.',
-          'iris/bahnhof/frankfurt hbf stuttgarter str'
         );
         mockWithFile(
           'https://www.bahnhof.de',

@@ -38,36 +38,14 @@ paths:
       tags:
         - IRIS v1
       parameters:
-        - name: evaId
-          in: path
-          required: true
-          schema:
-            type: number
-        - name: type
-          description: OpenAPI oder properitär
-          in: query
-          schema:
-            type: string
-            enum:
-              - open
-              - default
-        - name: lookahead
-          in: query
-          description: Wieviele Minuten sollen Abfahrten angezeigt werden? (Zukunft)
-          schema:
-            type: number
-            default: 120
-        - name: lookbehind
-          in: query
-          description: Wieviele Minuten sollen Abfahrten angezeigt werden? (Vergangenheit)
-          schema:
-            type: number
-            default: 0
-
+        - $ref: 'types/iris.yaml#/components/parameters/EvaId'
+        - $ref: 'types/iris.yaml#/components/parameters/Type'
+        - $ref: 'types/iris.yaml#/components/parameters/Lookahead'
+        - $ref: 'types/iris.yaml#/components/parameters/Lookbehind'
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: 'types/iris.yaml#/components/schemas/AbfahrtenResponse'
+                $ref: 'types/iris.yaml#/components/schemas/AbfahrtenResponseWithLageplan'

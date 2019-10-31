@@ -52,7 +52,7 @@ function getCache(key: Function) {
   if (cached) {
     return cached;
   }
-  const cache: NodeCache = new NodeCache({ stdTTL });
+  const cache: NodeCache = new NodeCache({ stdTTL, useClones: false });
 
   searchCaches.set(key, cache);
 
