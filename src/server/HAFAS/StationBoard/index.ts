@@ -1,4 +1,8 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
+import {
+  ArrivalStationBoardEntry,
+  DepartureStationBoardEntry,
+} from 'types/stationBoard';
 import { formatToTimeZone } from 'date-fns-timezone';
 import { StationBoardRequest } from 'types/HAFAS/StationBoard';
 import makeRequest from '../Request';
@@ -10,6 +14,16 @@ interface Options {
   station: string;
   type: 'ARR' | 'DEP';
 }
+// @ts-ignore 2384
+declare function stationBoard(
+  options: Omit<Options, 'type'> & { type: 'ARR' },
+  profile?: AllowedHafasProfile
+): Promise<ArrivalStationBoardEntry[]>;
+// @ts-ignore 2384
+declare function stationBoard(
+  options: Omit<Options, 'type'> & { type: 'DEP' },
+  profile?: AllowedHafasProfile
+): Promise<DepartureStationBoardEntry[]>;
 function stationBoard(
   { station, date = Date.now(), type, direction }: Options,
   profile?: AllowedHafasProfile
