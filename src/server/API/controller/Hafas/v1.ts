@@ -4,6 +4,10 @@ import {
   ParsedSearchOnTripResponse,
 } from 'types/HAFAS/SearchOnTrip';
 import {
+  ArrivalStationBoardEntry,
+  DepartureStationBoardEntry,
+} from 'types/stationBoard';
+import {
   Body,
   Controller,
   Get,
@@ -18,7 +22,6 @@ import { ParsedJourneyDetails } from 'types/HAFAS/JourneyDetails';
 import { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 import { Route$Auslastung, RoutingResult } from 'types/routing';
 import { Station } from 'types/station';
-import { StationBoardEntry } from 'types/stationBoard';
 import { TrainSearchResult } from 'types/HAFAS/Details';
 import { TripSearchOptions, TripSearchRequest } from 'types/HAFAS/TripSearch';
 import AuslastungHafas from 'server/Auslastung/Hafas';
@@ -110,7 +113,7 @@ export class HafasController extends Controller {
     @Query() date: number,
     @Query() station: string,
     @Query() profile?: AllowedHafasProfile
-  ): Promise<StationBoardEntry[]> {
+  ): Promise<ArrivalStationBoardEntry[]> {
     return StationBoard(
       {
         station,
@@ -128,7 +131,7 @@ export class HafasController extends Controller {
     @Query() station: string,
     @Query() direction?: string,
     @Query() profile?: AllowedHafasProfile
-  ): Promise<StationBoardEntry[]> {
+  ): Promise<DepartureStationBoardEntry[]> {
     return StationBoard(
       {
         station,
