@@ -4,7 +4,7 @@ RUN mkdir -p /app
 WORKDIR /app
 COPY package.json yarn.lock /app/
 RUN yarn --prod
-RUN modclean -r -a '*.ts|*.tsx'
+RUN modclean -r -a '*.ts|*.tsx' -I 'example*'
 COPY dist /app/dist/
 COPY scripts /app/scripts/
 RUN node scripts/checkAssetFiles.js
