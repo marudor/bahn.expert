@@ -1,4 +1,3 @@
-/* eslint-disable jest/expect-expect */
 import { checkApi, mockWithFile } from './helper';
 import { versions } from 'server/APIs/iris';
 jest.mock('node-cache');

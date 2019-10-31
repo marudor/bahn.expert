@@ -6,4 +6,7 @@ module.exports = {
   env: {
     jest: true,
   },
+  rules: {
+    'jest/expect-expect': 0,
+  },
 };
