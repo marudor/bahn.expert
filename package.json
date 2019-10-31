@@ -23,7 +23,9 @@
     "e2e:ci": "cypress run",
     "doc:watch:serve": "redoc-cli serve -w docs/swagger.json",
     "doc:serve": "redoc-cli serve docs/swagger.json",
-    "doc:build": "tsoa swagger-and-routes"
+    "doc:gen": "tsoa swagger-and-routes",
+    "doc:redoc": "redoc-cli bundle docs/swagger.json -o docs/index.html --title 'marudor.de API documentation'",
+    "doc:build": "run-s doc:gen doc:redoc"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.4",
