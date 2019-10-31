@@ -1,5 +1,5 @@
 import { createContainer } from 'unstated-next';
-import { Formation } from 'types/api/reihung';
+import { Formation } from 'types/reihung';
 import { useState } from 'react';
 import axios from 'axios';
 
@@ -16,7 +16,7 @@ function useReihung() {
 
     try {
       reihung = (await axios.get(
-        `/api/reihung/current/wagen/${trainNumber}/${scheduledDeparture}`
+        `/api/reihung/v1/wagen/${trainNumber}/${scheduledDeparture}`
       )).data;
     } catch (e) {
       reihung = null;

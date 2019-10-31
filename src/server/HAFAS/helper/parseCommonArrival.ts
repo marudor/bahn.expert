@@ -1,5 +1,4 @@
-import { CommonArrival, ParsedCommon } from 'types/HAFAS';
-import { CommonStopInfo } from 'types/api/common';
+import { CommonArrival, CommonStopInfo, ParsedCommon } from 'types/HAFAS';
 import { differenceInMinutes } from 'date-fns';
 import checkReihung from './checkReihung';
 import parseTime from './parseTime';

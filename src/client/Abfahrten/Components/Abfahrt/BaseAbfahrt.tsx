@@ -1,4 +1,4 @@
-import { Abfahrt } from 'types/api/iris';
+import { Abfahrt } from 'types/iris';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import cc from 'clsx';
 import End from './End';

@@ -3,6 +3,7 @@ import { format, parse, subDays } from 'date-fns';
 import {
   JourneyMatchRequest,
   JourneyMatchResponse,
+  ParsedJourneyMatchResponse,
 } from 'types/HAFAS/JourneyMatch';
 import makeRequest from './Request';
 import parseMessages from './helper/parseMessages';
@@ -11,7 +12,7 @@ import parseStop from './helper/parseStop';
 const parseJourneyMatch = (
   d: HafasResponse<JourneyMatchResponse>,
   common: ParsedCommon
-) => {
+): ParsedJourneyMatchResponse[] => {
   return d.svcResL[0].res.jnyL.map(j => {
     const date = parse(j.date, 'yyyyMMdd', new Date());
     const train = common.prodL[j.prodX];
@@ -34,7 +35,7 @@ export default (
   trainName: string,
   initialDepartureDate?: number,
   profile: AllowedHafasProfile = AllowedHafasProfile.db
-) => {
+): Promise<ParsedJourneyMatchResponse[]> => {
   let date = initialDepartureDate;
 
   if (!date) {

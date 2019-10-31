@@ -1,11 +1,15 @@
-import { CommonStopInfo } from './api/common';
-import { HafasStation, ParsedProduct, ProdL } from './HAFAS';
-import { Message } from './api/iris';
+import {
+  CommonStopInfo,
+  HafasStation,
+  ParsedProduct,
+  ProdL,
+  RemL,
+} from './HAFAS';
+import { Message } from './iris';
 import { OutConL, SecL } from './HAFAS/TripSearch';
-import { RemL } from 'types/api/hafas';
 import { Station } from './station';
 
-export type Route$Stop = {
+export interface Route$Stop {
   arrival?: CommonStopInfo;
   departure?: CommonStopInfo;
   station: Station;
@@ -14,7 +18,7 @@ export type Route$Stop = {
   additional?: boolean;
   cancelled?: boolean;
   irisMessages?: Message[];
-};
+}
 export type Route$JourneySegment =
   | Route$JourneySegmentTrain
   | Route$JourneySegmentWalk;
@@ -28,7 +32,7 @@ export interface Route$Auslastung {
   first?: AuslastungsValue;
   second?: AuslastungsValue;
 }
-export type Route$Journey = {
+export interface Route$Journey {
   cancelled?: boolean;
   changeDuration?: number;
   duration?: number;
@@ -42,17 +46,17 @@ export type Route$Journey = {
   train: ParsedProduct;
   auslastung?: Route$Auslastung;
   messages?: RemL[];
-};
-export type Route$JourneySegmentTrain = Route$Journey & {
+}
+export interface Route$JourneySegmentTrain extends Route$Journey {
   type: 'JNY';
   arrival: CommonStopInfo;
   departure: CommonStopInfo;
   wings?: Route$Journey[];
-};
+}
 
 export type WalkStopInfo = Pick<CommonStopInfo, 'time' | 'delay'>;
 
-export type Route$JourneySegmentWalk = {
+export interface Route$JourneySegmentWalk {
   type: 'WALK';
   train: ParsedProduct;
   arrival: WalkStopInfo;
@@ -60,9 +64,9 @@ export type Route$JourneySegmentWalk = {
   duration: number;
   segmentStart: HafasStation;
   segmentDestination: HafasStation;
-};
+}
 
-export type Route = {
+export interface SingleRoute {
   arrival: CommonStopInfo;
   departure: CommonStopInfo;
   isRideable: boolean;
@@ -74,12 +78,12 @@ export type Route = {
   segments: Route$JourneySegment[];
   segmentTypes: string[];
   raw?: OutConL;
-};
+}
 
-export type RoutingResult = {
-  routes: Route[];
+export interface RoutingResult {
+  routes: SingleRoute[];
   context: {
     earlier: string;
     later: string;
   };
-};
+}

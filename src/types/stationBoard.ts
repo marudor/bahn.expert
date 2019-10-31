@@ -1,5 +1,4 @@
-import { CommonStopInfo } from './api/common';
-import { ParsedProduct } from './HAFAS';
+import { CommonStopInfo, ParsedProduct } from './HAFAS';
 
 interface CommonStationBoardEntry {
   train: ParsedProduct;

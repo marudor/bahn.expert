@@ -20,11 +20,11 @@ describe('Abfahrten Settings', () => {
 
   it('Show fahrzeuggruppe', () => {
     cy.route(
-      '/api/hafas/current/auslastung/8000105/Interlaken Ost/371/1565182200000',
+      '/api/hafas/v1/auslastung/8000105/Interlaken Ost/371/1565182200000',
       { first: 1, second: 1 }
     );
     cy.route(
-      '/api/reihung/current/wagen/371/1565182200000',
+      '/api/reihung/v1/wagen/371/1565182200000',
       'fixture:reihungICE1.json'
     );
     cy.findByTestId('abfahrtICE371').click();

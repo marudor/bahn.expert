@@ -1,4 +1,4 @@
-import { Formation } from 'types/api/reihung';
+import { Formation } from 'types/reihung';
 import { makeStyles } from '@material-ui/styles';
 
 export default makeStyles(theme => ({

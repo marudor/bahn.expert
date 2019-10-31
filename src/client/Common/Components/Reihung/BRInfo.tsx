@@ -1,4 +1,4 @@
-import { BRInfo as BRInfoType } from 'types/api/reihung';
+import { BRInfo as BRInfoType } from 'types/reihung';
 import React from 'react';
 import stopPropagation from 'Common/stopPropagation';
 

@@ -27,7 +27,7 @@ export default () => {
     setRoutes(undefined);
     try {
       const routingResult: RoutingResult = (await Axios.post(
-        '/api/hafas/current/route',
+        '/api/hafas/v1/route',
         {
           start: start.id,
           destination: destination.id,
@@ -63,7 +63,7 @@ export default () => {
       if (!start || !destination) return;
 
       const routingResult: RoutingResult = (await Axios.post(
-        '/api/hafas/current/route',
+        '/api/hafas/v1/route',
         {
           start: start.id,
           destination: destination.id,
