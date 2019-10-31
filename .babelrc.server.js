@@ -18,7 +18,9 @@ module.exports = {
   ],
   plugins: [
     '@loadable/babel-plugin',
-    '@babel/plugin-proposal-class-properties',
+    ['@babel/plugin-proposal-decorators', { legacy: true }],
+    ['@babel/plugin-proposal-class-properties', { loose: true }],
+    'babel-plugin-parameter-decorator',
     './scripts/babelTransform/debugStyleNames.js',
     'lodash',
     [

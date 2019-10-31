@@ -177,7 +177,6 @@ Object {
       },
     },
   ],
-  "lageplan": undefined,
   "lookbehind": Array [],
   "wings": Object {},
 }
@@ -378,7 +377,6 @@ Object {
       },
     },
   ],
-  "lageplan": undefined,
   "lookbehind": Array [],
   "wings": Object {},
 }
@@ -561,7 +559,6 @@ Object {
       },
     },
   ],
-  "lageplan": undefined,
   "lookbehind": Array [],
   "wings": Object {},
 }
@@ -744,7 +741,6 @@ Object {
       },
     },
   ],
-  "lageplan": undefined,
   "lookbehind": Array [],
   "wings": Object {},
 }
@@ -851,7 +847,6 @@ Object {
       },
     },
   ],
-  "lageplan": undefined,
   "lookbehind": Array [],
   "wings": Object {
     "8086827825752200553-1903171315": Object {
@@ -947,7 +942,6 @@ Object {
 exports[`onlyPlan filteredDueToTime.xml 1`] = `
 Object {
   "departures": Array [],
-  "lageplan": undefined,
   "lookbehind": Array [],
   "wings": Object {},
 }
@@ -1042,7 +1036,6 @@ Object {
       },
     },
   ],
-  "lageplan": undefined,
   "lookbehind": Array [],
   "wings": Object {},
 }
@@ -1149,7 +1142,6 @@ Object {
       },
     },
   ],
-  "lageplan": undefined,
   "lookbehind": Array [],
   "wings": Object {
     "2583448959431566845-1903171304": Object {
@@ -1409,7 +1401,6 @@ Object {
       },
     },
   ],
-  "lageplan": undefined,
   "lookbehind": Array [],
   "wings": Object {},
 }
@@ -1513,7 +1504,6 @@ Object {
       },
     },
   ],
-  "lageplan": undefined,
   "lookbehind": Array [],
   "wings": Object {},
 }
@@ -1696,7 +1686,6 @@ Object {
       },
     },
   ],
-  "lageplan": undefined,
   "lookbehind": Array [],
   "wings": Object {},
 }
@@ -1791,7 +1780,6 @@ Object {
       },
     },
   ],
-  "lageplan": undefined,
   "lookbehind": Array [],
   "wings": Object {},
 }
@@ -1800,7 +1788,6 @@ Object {
 exports[`onlyPlan visibleDueToDelay.xml 1`] = `
 Object {
   "departures": Array [],
-  "lageplan": undefined,
   "lookbehind": Array [],
   "wings": Object {},
 }
@@ -1912,7 +1899,6 @@ Object {
       },
     },
   ],
-  "lageplan": undefined,
   "lookbehind": Array [],
   "wings": Object {},
 }

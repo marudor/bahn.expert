@@ -1,5 +1,5 @@
 import { formatDuration } from 'Routing/util';
-import { Route as RouteType } from 'types/routing';
+import { SingleRoute } from 'types/routing';
 import cc from 'clsx';
 import Paper from '@material-ui/core/Paper';
 import React, { SyntheticEvent, useMemo } from 'react';
@@ -8,7 +8,7 @@ import Time from 'Common/Components/Time';
 import useStyles from './Route.style';
 
 type OwnProps = {
-  route: RouteType;
+  route: SingleRoute;
   detail: boolean;
   onClick: (e: SyntheticEvent) => void;
 };

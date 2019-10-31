@@ -113,6 +113,10 @@ export const AbfahrtenConfigProvider = ({ children }: Props) => {
     },
   };
 
+  if (Number.isInteger(savedConfig.config.searchType)) {
+    delete savedConfig.config.searchType;
+  }
+
   return (
     <AbfahrtenConfigContainer.Provider initialState={savedConfig}>
       {children}

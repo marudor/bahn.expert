@@ -1,11 +1,8 @@
-import { AllowedStationAPIs } from 'types/api/station';
 import { flatten, uniqBy } from 'lodash';
 import { logger } from 'server/logger';
-import { Station } from 'types/station';
-import { StationSearchType } from 'Common/config';
+import { Station, StationSearchType } from 'types/station';
 import DBNavigatorSearch from 'server/HAFAS/LocMatch';
 import FavendoSearch from './Favendo';
-import HafasSearch from './Hafas';
 import NodeCache from 'node-cache';
 import OpenDataOfflineSearch from './OpenDataOffline';
 import OpenDataSearch from './OpenData';
@@ -24,14 +21,12 @@ export async function favendoStationsDataCombined(
 
 export function getSearchMethod(type?: StationSearchType) {
   switch (type) {
-    case StationSearchType.DBNavgiator:
+    case StationSearchType.Hafas:
       return DBNavigatorSearch;
     case StationSearchType.OpenData:
       return OpenDataSearch;
     case StationSearchType.OpenDataOffline:
       return OpenDataOfflineSearch;
-    case StationSearchType.HAFAS:
-      return HafasSearch;
     case StationSearchType.StationsData:
       return StationsDataSearch;
     default:
@@ -61,7 +56,7 @@ function getCache(key: Function) {
 
 export default async (
   rawSearchTerm: string,
-  type?: AllowedStationAPIs,
+  type?: StationSearchType,
   maxStations: number = 6
 ) => {
   const searchTerm = rawSearchTerm.replace(/ {2}/g, ' ');

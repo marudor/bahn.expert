@@ -1,17 +1,15 @@
 /* eslint import/prefer-default-export: 0 */
 import { AllowedHafasProfile } from 'types/HAFAS';
-import { AllowedStationAPIs } from 'types/api/station';
-import { Station } from 'types/station';
-import { StationSearchType } from 'Common/config';
+import { Station, StationSearchType } from 'types/station';
 import axios from 'axios';
 
 export async function getStationsFromAPI(
-  type: AllowedStationAPIs = StationSearchType.Default,
+  type: StationSearchType = StationSearchType.Default,
   stationString?: string
 ): Promise<Station[]> {
   if (stationString) {
     return (await axios.get(
-      `/api/station/current/search/${encodeURIComponent(stationString)}`,
+      `/api/station/v1/search/${encodeURIComponent(stationString)}`,
       {
         params: { type },
       }
@@ -25,7 +23,7 @@ export async function getHafasStationFromAPI(
   profile?: AllowedHafasProfile,
   stationString?: string
 ): Promise<Station[]> {
-  return (await axios.get(`/api/hafas/current/station/${stationString}`, {
+  return (await axios.get(`/api/hafas/v1/station/${stationString}`, {
     params: {
       profile,
     },
@@ -36,7 +34,7 @@ export async function getHafasStationFromCoordinates(
   profile: AllowedHafasProfile = AllowedHafasProfile.db,
   coordinates: Coordinates
 ) {
-  return (await axios.get('/api/hafas/current/geoStation', {
+  return (await axios.get('/api/hafas/v1/geoStation', {
     params: {
       lat: coordinates.latitude,
       lng: coordinates.longitude,
@@ -46,7 +44,7 @@ export async function getHafasStationFromCoordinates(
 }
 
 export async function getStationsFromCoordinates(coordinates: Coordinates) {
-  return (await axios.get('/api/station/current/geoSearch', {
+  return (await axios.get('/api/station/v1/geoSearch', {
     params: {
       lat: coordinates.latitude,
       lng: coordinates.longitude,

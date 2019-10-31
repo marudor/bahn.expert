@@ -15,7 +15,7 @@ describe('Lageplan', () => {
   });
 
   describe('Example without Lageplan', () => {
-    it('is null if non existant', async () => {
+    it('is undefined if non existant', async () => {
       nock
         .get('/service/search/bahnhof-de/520608')
         .query({
@@ -26,11 +26,11 @@ describe('Lageplan', () => {
       nock
         .get('/bahnhof-de/bahnhof/Langenfelde-1025344')
         .reply(200, readFixutre('Langenfelde.html'));
-      await expect(getLageplan('Langenfelde')).resolves.toBeNull();
+      await expect(getLageplan('Langenfelde')).resolves.toBeUndefined();
     });
 
     it('cache resolves', async () => {
-      await expect(getLageplan('Langenfelde')).resolves.toBeNull();
+      await expect(getLageplan('Langenfelde')).resolves.toBeUndefined();
     });
   });
 

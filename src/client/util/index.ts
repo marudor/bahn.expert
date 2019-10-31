@@ -2,8 +2,8 @@ import {
   CheckInType,
   MarudorConfig,
   MarudorConfigSanitize,
-  StationSearchType,
 } from 'Common/config';
+import { StationSearchType } from 'types/station';
 
 export const setCookieOptions = {
   expires: new Date('2037-12-12'),

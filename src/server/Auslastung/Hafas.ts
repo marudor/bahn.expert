@@ -1,4 +1,4 @@
-import { StationSearchType } from 'Common/config';
+import { StationSearchType } from 'types/station';
 import stationSearch from '../Search';
 import tripSearch from '../HAFAS/TripSearch';
 
@@ -9,8 +9,8 @@ export default async (
   time: number
 ) => {
   const [startStations, destStations] = await Promise.all([
-    stationSearch(start, StationSearchType.DBNavgiator),
-    stationSearch(destination, StationSearchType.DBNavgiator),
+    stationSearch(start, StationSearchType.Hafas),
+    stationSearch(destination, StationSearchType.Hafas),
   ]);
 
   const startStation = startStations[0];

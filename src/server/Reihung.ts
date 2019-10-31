@@ -5,13 +5,14 @@ import {
   BRInfo,
   Fahrzeug,
   Formation,
-} from 'types/api/reihung';
+  Wagenreihung,
+  WagenreihungStation,
+} from 'types/reihung';
 import { convertToTimeZone } from 'date-fns-timezone';
 import { flatten, groupBy, maxBy, minBy } from 'lodash';
 import { format, isAfter, subDays } from 'date-fns';
 import { getAbfahrten } from './Abfahrten';
 import { getAP } from 'server/Wifi';
-import { Wagenreihung, WagenreihungStation } from 'types/api/reihung';
 import axios from 'axios';
 
 // Rausfinden ob alle Teile zum gleichen Ort fahren
@@ -428,7 +429,7 @@ function enrichFahrzeug(fahrzeug: Fahrzeug) {
 }
 
 // https://www.apps-bahn.de/wr/wagenreihung/1.0/6/201802021930
-export async function wagenReihung(trainNumber: string, date: number) {
+export async function wagenreihung(trainNumber: string, date: number) {
   const parsedDate = format(
     convertToTimeZone(new Date(date), { timeZone: 'Europe/Berlin' }),
     'yyyyMMddHHmm'
@@ -548,7 +549,7 @@ export async function wagenReihung(trainNumber: string, date: number) {
 }
 
 // https://ws.favendo.de/wagon-order/rest/v1/si/1401
-export async function wagenReihungStation(
+export async function wagenreihungStation(
   trainNumbers: string[],
   station: string
 ) {
@@ -563,7 +564,7 @@ export async function wagenReihungStation(
 }
 
 function wagenReihungSpecificMonitoring(id: string, departure: number) {
-  return wagenReihung(id, departure);
+  return wagenreihung(id, departure);
 }
 
 export async function wagenReihungMonitoring() {

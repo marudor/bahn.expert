@@ -1,4 +1,4 @@
-import { Abfahrt, AbfahrtenResponse, Wings } from 'types/api/iris';
+import { Abfahrt, AbfahrtenResult, Wings } from 'types/iris';
 import { createContainer } from 'unstated-next';
 import { getStationsFromAPI } from 'Common/service/stationSearch';
 import { Station } from 'types/station';
@@ -14,10 +14,10 @@ export const fetchAbfahrten = async (
   stationId: string,
   lookahead: string,
   lookbehind: string
-): Promise<AbfahrtenResponse> => {
+): Promise<AbfahrtenResult> => {
   cancelGetAbfahrten();
-  const r = await Axios.get<AbfahrtenResponse>(
-    `/api/iris/current/abfahrten/${stationId}`,
+  const r = await Axios.get<AbfahrtenResult>(
+    `/api/iris/v1/abfahrten/${stationId}`,
     {
       cancelToken: new Axios.CancelToken(c => {
         cancelGetAbfahrten = c;

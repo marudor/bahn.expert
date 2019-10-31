@@ -3,7 +3,7 @@
  ** This algorithm is heavily inspired by https://github.com/derf/Travel-Status-DE-IRIS
  ** derf did awesome work reverse engineering the XML stuff!
  */
-import { Abfahrt, Train } from 'types/api/iris';
+import { AbfahrtenResult, Train } from 'types/iris';
 import {
   addHours,
   addMinutes,
@@ -20,20 +20,12 @@ import { AxiosInstance } from 'axios';
 import { diffArrays } from 'diff';
 import { findLast, flatten, last, uniqBy } from 'lodash';
 import { getAttr, getNumberAttr, parseTs } from './helper';
-import { getCachedLageplan, getLageplan } from '../Bahnhof/Lageplan';
 import messageLookup, {
   messageTypeLookup,
   supersededMessages,
 } from './messageLookup';
 import NodeCache from 'node-cache';
 import xmljs from 'libxmljs2';
-
-export type Result = {
-  departures: Abfahrt[];
-  lookbehind: Abfahrt[];
-  wings: Object;
-  lageplan?: null | string;
-};
 
 type ArDp = {
   platform?: string;
@@ -295,12 +287,7 @@ export default class Timetable {
       delete timetable.departure.additional;
     }
   }
-  async start(skipLageplan: boolean = false): Promise<Result> {
-    const lageplan = getCachedLageplan(this.currentStation);
-
-    if (!skipLageplan && lageplan === undefined) {
-      getLageplan(this.currentStation);
-    }
+  async start(): Promise<AbfahrtenResult> {
     await this.getTimetables();
     await this.getRealtime();
 
@@ -361,7 +348,6 @@ export default class Timetable {
       departures,
       lookbehind,
       wings,
-      lageplan,
     };
   }
   calculateVia(timetable: any, maxParts: number = 3) {

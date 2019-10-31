@@ -1,5 +1,6 @@
 // istanbul ignore file
 import { Server } from 'https';
+import childProcess from 'child_process';
 import chokidar from 'chokidar';
 import Koa from 'koa';
 import koaWebpack from 'koa-webpack';
@@ -39,6 +40,13 @@ module.exports = function webpackDev(koa: Koa, server: undefined | Server) {
     });
     // Magic to make webpack full reload the page
     // whm.publish({ action: 'sync', errors: [], warnings: [], hash: Math.random() });
+  });
+
+  const routesWatcher = chokidar.watch(path.resolve('./src/server/API/**'));
+
+  routesWatcher.on('change', file => {
+    if (file.endsWith('routes.ts')) return;
+    childProcess.exec('yarn tsoa swagger-and-routes');
   });
 
   return koaWebpack({
