@@ -1,28 +1,9 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { format, parse, subDays } from 'date-fns';
-import { ParsedJourneyDetails } from 'types/HAFAS/JourneyDetails';
+import { TrainSearchResult } from 'types/HAFAS/Details';
 import axios from 'axios';
 import iconv from 'iconv-lite';
 import journeyDetails from './JourneyDetails';
-
-interface Train {
-  value: string;
-  cycle: number;
-  pool: number;
-  id: number;
-  dep: string;
-  trainLink: string;
-  journParam: string;
-  pubTime: string;
-  depDate: string;
-  depTime: string;
-  arr: string;
-  arrTime: string;
-  vt: string;
-  jid: string;
-  ctxRecon: string;
-  jDetails: ParsedJourneyDetails;
-}
 
 const profiles = {
   db: {
@@ -85,7 +66,7 @@ export default async (
   } catch (e) {
     parsed = {};
   }
-  const trains: Train[] = parsed.suggestions;
+  const trains: TrainSearchResult[] = parsed.suggestions;
 
   if (!trains || !trains.length) return undefined;
   const firstResult = trains[0];

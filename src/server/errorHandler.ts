@@ -18,6 +18,20 @@ export default async (ctx: Context, next: Function) => {
     } else {
       // @ts-ignore
       if (e instanceof Error && !handledHafasError.includes(e.errorCode)) {
+        // @ts-ignore
+        if (e.status === 400) {
+          try {
+            const parsed = JSON.parse(e.message);
+
+            ctx.body = parsed;
+            // @ts-ignore
+            ctx.status = e.status || 500;
+
+            return;
+          } catch (e) {
+            // ignored
+          }
+        }
         Sentry.withScope(scope => {
           if (e.data) {
             scope.setExtra('data', e.data);

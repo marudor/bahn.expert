@@ -1,14 +1,18 @@
-import { CommonStop, HafasResponse, ParsedCommon } from 'types/HAFAS';
-import { CommonStopInfo } from 'types/api/common';
+import {
+  CommonStop,
+  CommonStopInfo,
+  HafasResponse,
+  ParsedCommon,
+} from 'types/HAFAS';
 import { flatten } from 'lodash';
 import { Jny, OutConL, SecL, TripSearchResponse } from 'types/HAFAS/TripSearch';
 import { parse } from 'date-fns';
 import {
-  Route,
   Route$Journey,
   Route$JourneySegment,
   Route$Stop,
   RoutingResult,
+  SingleRoute,
 } from 'types/routing';
 import { Station } from 'types/station';
 import mergeSegments from 'server/HAFAS/TripSearch/mergeSegments';
@@ -69,7 +73,7 @@ function adjustToLastTrain(
 export class Journey {
   raw: OutConL;
   date: Date;
-  journey: Route;
+  journey: SingleRoute;
   common: ParsedCommon;
   constructor(raw: OutConL, common: ParsedCommon) {
     this.raw = raw;

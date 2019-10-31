@@ -5,8 +5,7 @@ import {
   getStationsFromAPI,
   getStationsFromCoordinates,
 } from 'Common/service/stationSearch';
-import { Station } from 'types/station';
-import { StationSearchType } from 'Common/config';
+import { Station, StationSearchType } from 'types/station';
 import debounce from 'debounce-promise';
 import Downshift, { DownshiftInterface } from 'downshift';
 import Loading, { LoadingType } from './Loading';

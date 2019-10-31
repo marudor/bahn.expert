@@ -8,7 +8,7 @@ export default async function getDetails(
   stop?: string,
   profile?: AllowedHafasProfile
 ): Promise<ParsedSearchOnTripResponse> {
-  let url = `/api/hafas/current/details/${train}`;
+  let url = `/api/hafas/v1/details/${train}`;
 
   if (initialDeparture) {
     url += `/${initialDeparture}`;

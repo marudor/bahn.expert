@@ -1,6 +1,6 @@
 /* eslint no-nested-ternary: 0 */
 import * as React from 'react';
-import { Abfahrt } from 'types/api/iris';
+import { Abfahrt } from 'types/iris';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import cc from 'clsx';
 import Time from 'Common/Components/Time';

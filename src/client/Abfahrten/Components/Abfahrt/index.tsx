@@ -1,4 +1,4 @@
-import { Abfahrt as AbfahrtType } from 'types/api/iris';
+import { Abfahrt as AbfahrtType } from 'types/iris';
 import BaseAbfahrt from './BaseAbfahrt';
 import React, { useMemo } from 'react';
 import useWings from 'Abfahrten/container/AbfahrtenContainer/useWings';

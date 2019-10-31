@@ -1,4 +1,5 @@
-import { CheckInType, MarudorConfig, StationSearchType } from 'Common/config';
+import { CheckInType, MarudorConfig } from 'Common/config';
+import { StationSearchType } from 'types/station';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -214,10 +215,7 @@ const SettingsModal = () => {
               <option value={StationSearchType.OpenDataOffline}>
                 Open Data Offline
               </option>
-              <option value={StationSearchType.HAFAS}>HAFAS</option>
-              <option value={StationSearchType.DBNavgiator}>
-                DB Navigator
-              </option>
+              <option value={StationSearchType.Hafas}>Hafas</option>
               <option value={StationSearchType.StationsData}>
                 Open Data Stationsdaten
               </option>

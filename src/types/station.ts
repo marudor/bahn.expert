@@ -1,39 +1,62 @@
 // eslint-disable-next-line import/prefer-default-export
-import { Station as APIStation } from 'types/api/station';
-export type Station = APIStation & {
-  raw?: Object;
-};
 
-export type OpenDBStation = {
+export enum StationSearchType {
+  Default = 'default',
+  Favendo = 'favendo',
+  Hafas = 'hafas',
+  OpenData = 'openData',
+  OpenDataOffline = 'offlineOpenData',
+  StationsData = 'stationsData',
+  FavendoStationsData = 'favendoStationsData',
+}
+
+export interface Coordinates {
+  lat: number;
+  lng: number;
+}
+
+export interface CommonStation {
+  title: string;
+  id: string;
+}
+
+export interface Station extends CommonStation {
+  favendoId?: number;
+  DS100?: string;
+}
+
+export interface IrisStationWithRelated {
+  station: IrisStation;
+  relatedStations: IrisStation[];
+}
+
+export interface IrisStation {
+  name: string;
+  meta: string[];
+  eva: string;
+  ds100: string;
+  db: string;
+  creationts: string;
+  p: string;
+}
+
+export interface OpenDBStation {
   name: string;
   lon: string;
   lat: string;
   id: string;
-};
+}
 
-export type FavendoStation = {
+export interface FavendoStation {
   type: 'station_search';
   id: number;
   title: string;
   eva_ids: string[];
   distanceInKm: number;
   location: [number, number];
-};
+}
 
-export type HAFASStation = {
-  value: string;
-  id: string;
-  extId: string;
-  type: string;
-  typeStr: string;
-  xcoord: string;
-  ycoord: string;
-  state: string;
-  prodClass: string;
-  weight: string;
-};
-
-export type OpenDataStation = {
+export interface OpenDataStation {
   number: number;
   name: string;
   mailingAddress: {
@@ -174,4 +197,4 @@ export type OpenDataStation = {
       };
     }
   ];
-};
+}

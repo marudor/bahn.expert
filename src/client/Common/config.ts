@@ -1,25 +1,8 @@
+import { StationSearchType } from 'types/station';
+
 export enum CheckInType {
   None,
   Travelynx,
-}
-
-export enum StationSearchType {
-  Default,
-  Favendo,
-  DBNavgiator,
-  OpenData,
-  OpenDataOffline,
-  /**
-   * OpenDB Down
-   */
-  OpenDB,
-  HAFAS,
-  /**
-   * OpenDB Down
-   */
-  FavendoAndOpenDB,
-  StationsData,
-  FavendoStationsData,
 }
 
 export type MarudorConfig = {

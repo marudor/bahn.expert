@@ -1,5 +1,5 @@
 import { isHbf } from './index';
-import { Train } from 'types/api/iris';
+import { Train } from 'types/iris';
 import cc from 'clsx';
 import React, { ReactNode, useMemo } from 'react';
 import StationLink from 'Common/Components/StationLink';

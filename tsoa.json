@@ -1,0 +1,24 @@
+{
+  "swagger": {
+    "specVersion": 3,
+    "entryFile": "./src/server/API/index.ts",
+    "outputDirectory": "./docs",
+    "host": "https://marudor.de",
+    "basePath": "api/",
+    "controllerPathGlobs": [
+      "./src/server/API/controller/**",
+      "./src/types/**"
+    ],
+    "noImplicitAdditionalProperties": "silently-remove-extras"
+  },
+  "routes": {
+    "middleware": "koa",
+    "entryFile": "./src/server/API/index.ts",
+    "routesDir": "./src/server/API",
+    "basePath": "api/",
+    "controllerPathGlobs": [
+      "./src/server/API/controller/**",
+      "./src/types/**"
+    ]
+  }
+}

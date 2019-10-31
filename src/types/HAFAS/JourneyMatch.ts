@@ -1,4 +1,5 @@
-import { Common, Journey } from '.';
+import { Common, Journey, ParsedProduct, RemL } from '.';
+import { Route$Stop } from 'types/routing';
 
 export interface JourneyMatchRequest {
   req: {
@@ -19,4 +20,13 @@ export interface JourneyMatchResponse {
   fpB: string;
   fpE: string;
   planrtTS: string;
+}
+
+export interface ParsedJourneyMatchResponse {
+  train: ParsedProduct;
+  stops: Route$Stop[];
+  jid: string;
+  firstStop: Route$Stop;
+  lastStop: Route$Stop;
+  messages?: RemL[];
 }

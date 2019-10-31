@@ -17,9 +17,8 @@ function useAuslastung() {
     let auslastung;
 
     try {
-      auslastung = (await axios.get(
-        `/api/hafas/current/auslastung/${key}/${time}`
-      )).data;
+      auslastung = (await axios.get(`/api/hafas/v1/auslastung/${key}/${time}`))
+        .data;
     } catch (e) {
       auslastung = null;
     }

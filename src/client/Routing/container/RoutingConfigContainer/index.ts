@@ -1,7 +1,7 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { createContainer } from 'unstated-next';
 import { setCookieOptions } from 'client/util';
-import { Station } from 'types/api/station';
+import { Station } from 'types/station';
 import { useCallback, useState } from 'react';
 import useCookies from 'Common/useCookies';
 
