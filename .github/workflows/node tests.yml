@@ -31,11 +31,9 @@ jobs:
     - name: jest
       run: |
         yarn test:jest
-    - name: codecov
-      run: bash <(curl -s https://codecov.io/bash) -t $TOKEN -B $REF
-      env:
-        TOKEN: "0ffea696-ec61-45a5-b163-d59e71c0d36b"
-        REF: "${{ github.ref }}"
+    - uses: codecov/codecov-action@v1.0.3
+      with:
+        token: "0ffea696-ec61-45a5-b163-d59e71c0d36b"
     - name: depCheck
       run: |
         yarn depCheck
