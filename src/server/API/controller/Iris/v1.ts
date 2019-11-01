@@ -1,7 +1,7 @@
+import { AbfahrtenResult, WingDefinition } from 'types/iris';
 import { Controller, Get, Query, Route, Tags } from 'tsoa';
 import { getAbfahrten } from 'server/Abfahrten';
 import { noncdAxios, openDataAxios } from 'server/Abfahrten/helper';
-import { WingDefinition } from 'types/iris';
 import wingInfo from 'server/Abfahrten/wings';
 
 @Route('/iris/v1')
@@ -18,8 +18,8 @@ export class IrisController extends Controller {
     evaId: string,
     @Query() lookahead?: number,
     @Query() lookbehind?: number,
-    @Query() type?: 'open'
-  ) {
+    @Query() type?: 'open' | 'default'
+  ): Promise<AbfahrtenResult> {
     if (evaId.length < 6) {
       throw {
         status: 400,
