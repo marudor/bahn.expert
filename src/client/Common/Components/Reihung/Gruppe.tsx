@@ -11,6 +11,7 @@ type OwnProps = InheritedProps & {
   showFahrzeugGruppe: boolean;
   originalTrainNumber: string;
   showUIC: boolean;
+  auslastung: any;
 };
 type Props = OwnProps;
 

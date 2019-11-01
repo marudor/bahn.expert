@@ -29,10 +29,17 @@ const Reihung = (props: Props) => {
     useZoom,
     loadHidden,
   } = props;
-  const { reihungen, getReihung } = ReihungContainer.useContainer();
+  const {
+    reihungen,
+    getReihung,
+    auslastungen,
+  } = ReihungContainer.useContainer();
   const reihung = reihungen[trainNumber + currentStation + scheduledDeparture];
+  const auslastung =
+    auslastungen[trainNumber + currentStation + scheduledDeparture];
   const classes = useStyles({
     reihung,
+    auslastung,
     fahrzeugGruppe,
     showUIC,
   });
@@ -70,6 +77,7 @@ const Reihung = (props: Props) => {
         <div className={classes.reihung}>
           {reihung.allFahrzeuggruppe.map(g => (
             <Gruppe
+              auslastung={auslastung}
               showGruppenZugnummer={differentZugnummer}
               showUIC={showUIC}
               originalTrainNumber={trainNumber}
