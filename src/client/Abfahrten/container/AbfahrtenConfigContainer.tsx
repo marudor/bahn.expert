@@ -13,6 +13,9 @@ const defaultFilter: Filter = {
   products: [],
 };
 
+const configCookieName = 'config';
+const filterCookieName = 'defaultFilter';
+
 const useFilter = (initialFilter: Filter) => {
   const cookies = useCookies();
   const [filterOpen, setFilterOpen] = useState(false);
@@ -29,7 +32,7 @@ const useFilter = (initialFilter: Filter) => {
   }, []);
 
   const saveProductFilter = useCallback(() => {
-    cookies.set('defaultFilter', productFilter, setCookieOptions);
+    cookies.set(filterCookieName, productFilter, setCookieOptions);
   }, [cookies, productFilter]);
 
   return {
@@ -54,7 +57,7 @@ const useConfig = (initialConfig: MarudorConfig) => {
         [key]: value,
       };
 
-      cookies.set('config', newConfig, setCookieOptions);
+      cookies.set(configCookieName, newConfig, setCookieOptions);
       setConfig(newConfig);
     },
     [config, cookies]
@@ -99,7 +102,7 @@ type Props = {
 export const AbfahrtenConfigProvider = ({ children }: Props) => {
   const cookies = useCookies();
   const query = useQuery();
-  const savedFilter = cookies.get('defaultFilter');
+  const savedFilter = cookies.get(filterCookieName);
 
   const savedConfig = {
     filter: {
@@ -108,14 +111,10 @@ export const AbfahrtenConfigProvider = ({ children }: Props) => {
     },
     config: {
       ...defaultConfig,
-      ...cookies.get('config'),
+      ...cookies.get(configCookieName),
       ...global.configOverride,
     },
   };
-
-  if (Number.isInteger(savedConfig.config.searchType)) {
-    delete savedConfig.config.searchType;
-  }
 
   return (
     <AbfahrtenConfigContainer.Provider initialState={savedConfig}>

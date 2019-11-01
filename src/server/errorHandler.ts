@@ -18,6 +18,15 @@ export default async (ctx: Context, next: Function) => {
     } else {
       // @ts-ignore
       if (e instanceof Error && !handledHafasError.includes(e.errorCode)) {
+        Sentry.withScope(scope => {
+          if (e.data) {
+            scope.setExtra('data', e.data);
+          }
+          scope.addEventProcessor(event =>
+            Sentry.Handlers.parseRequest(event, ctx.request)
+          );
+          Sentry.captureException(e);
+        });
         // @ts-ignore
         if (e.status === 400) {
           try {
@@ -32,15 +41,6 @@ export default async (ctx: Context, next: Function) => {
             // ignored
           }
         }
-        Sentry.withScope(scope => {
-          if (e.data) {
-            scope.setExtra('data', e.data);
-          }
-          scope.addEventProcessor(event =>
-            Sentry.Handlers.parseRequest(event, ctx.request)
-          );
-          Sentry.captureException(e);
-        });
       }
       ctx.body = JSON.stringify(e);
       ctx.status = e.status || 500;
