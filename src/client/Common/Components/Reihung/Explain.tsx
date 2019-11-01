@@ -119,6 +119,7 @@ const Explain = () => {
               Zug ist ausgebucht
             </div>
           </div>
+          <div>Prozent unter Wagen: Anzahl der reservierten Sitzplätze</div>
         </DialogContent>
       </Dialog>
     </>

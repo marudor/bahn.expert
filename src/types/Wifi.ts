@@ -21,7 +21,7 @@ export interface AP {
   wlan1_mac: string;
 }
 
-export interface Train {
+export interface WifiTrain {
   br: string;
   ciscoVersion: string;
   eltecVersion: string;
@@ -39,7 +39,7 @@ export interface TrainData {
   ap_unconf: number;
   ngc_release: string;
   timestamp: number;
-  train: Train;
+  train: WifiTrain;
 }
 
 export interface WifiData {

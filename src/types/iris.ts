@@ -70,7 +70,7 @@ export interface Messages {
 }
 
 export interface StopInfo extends CommonStopInfo {
-  wingIds?: string[] | null;
+  wingIds?: string[];
   cancelled: boolean;
   hidden: boolean;
 }
