@@ -1,7 +1,7 @@
-import { Controller, Get, Route, Tags } from 'tsoa';
+import { Controller, Get, Hidden, Route, Tags } from 'tsoa';
 import { Formation, WagenreihungStation } from 'types/reihung';
+import { getAuslastung } from 'server/INNO/auslastung';
 import { wagenreihung, wagenreihungStation } from 'server/Reihung';
-
 @Route('/reihung/v1')
 export class ReihungControllerV1 extends Controller {
   @Get('/wagenstation/{train}/{station}')
@@ -17,5 +17,11 @@ export class ReihungControllerV1 extends Controller {
   @Tags('Reihung V1')
   wagenreihung(trainNumber: string, date: number): Promise<Formation> {
     return wagenreihung(trainNumber, date);
+  }
+
+  @Hidden()
+  @Get('/auslastung/{trainNumber}/{station}/{start}/{end}')
+  auslastung(trainNumber: string, station: string, start: string, end: string) {
+    return getAuslastung(trainNumber, station, start, end);
   }
 }
