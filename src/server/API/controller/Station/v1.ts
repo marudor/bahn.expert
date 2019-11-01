@@ -8,6 +8,21 @@ import {
 import favendoSearch from 'server/Search/Favendo';
 import stationSearch from 'server/Search';
 
+export const validationOverwrite = [
+  {
+    url: '/station/v1/search/:searchTerm',
+    type: 'get',
+    middleware: (ctx: any, next: any) => {
+      // @ts-ignore
+      if (!StationSearchType[ctx.query.type]) {
+        ctx.query.type = StationSearchType.Default;
+      }
+
+      return next();
+    },
+  },
+];
+
 @Route('/station/v1')
 export class StationController extends Controller {
   @Get('/search/{searchTerm}')

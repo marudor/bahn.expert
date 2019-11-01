@@ -31,6 +31,7 @@ export async function createApp(wsServer?: Server) {
   }
 
   let apiRoutes = require('./API').default;
+  let validationOverwrites = require('./API/validationOverwrites').default;
   let serverRender = require('./render').default;
   let seoController = require('./seo').default;
   let errorHandler = require('./errorHandler').default;
@@ -44,6 +45,7 @@ export async function createApp(wsServer?: Server) {
       errorHandler = require('./errorHandler').default;
       serverRender = require('./render').default;
       apiRoutes = require('./API').default;
+      validationOverwrites = require('./API/validationOverwrites').default;
       seoController = require('./seo').default;
       ctx.loadableStats = JSON.parse(
         // eslint-disable-next-line no-sync
@@ -61,6 +63,7 @@ export async function createApp(wsServer?: Server) {
   middlewares.forEach(m => app.use(m));
   app.use(KoaBodyparser());
 
+  app.use(hotHelper(() => validationOverwrites.routes()));
   app.use(hotHelper(() => apiRoutes.routes()));
 
   const distFolder = process.env.TEST_RUN ? 'testDist' : 'dist';
