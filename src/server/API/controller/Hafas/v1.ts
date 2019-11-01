@@ -43,10 +43,10 @@ interface SearchOnTripBody {
 
 @Route('/hafas/v1')
 export class HafasController extends Controller {
-  @Post('/journeyDetails')
+  @Get('/journeyDetails')
   @Tags('HAFAS V1')
   journeyDetails(
-    @Body() jid: string,
+    @Query() jid: string,
     @Query() profile?: AllowedHafasProfile
   ): Promise<ParsedJourneyDetails> {
     return JourneyDetails(jid, profile);
