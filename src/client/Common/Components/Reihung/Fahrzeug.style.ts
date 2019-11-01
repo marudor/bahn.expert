@@ -28,11 +28,18 @@ export default makeStyles(theme => ({
     },
   },
 
-  uic: {
+  extraInfo: {
     position: 'absolute',
     top: '150%',
-    left: '50%',
-    transform: 'translateX(-50%)',
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+    textAlign: 'center',
+  },
+
+  auslastung: {
+    display: 'flex',
+    flexDirection: 'column',
   },
 
   nummer: {
