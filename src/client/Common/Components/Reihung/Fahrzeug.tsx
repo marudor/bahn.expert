@@ -1,4 +1,5 @@
 import { Fahrzeug } from 'types/reihung';
+import { Tooltip } from '@material-ui/core';
 import Accessibility from '@material-ui/icons/Accessibility';
 import ActionAccessible from '@material-ui/icons/Accessible';
 import ActionMotorcycle from '@material-ui/icons/Motorcycle';
@@ -46,6 +47,7 @@ export type OwnProps = InheritedProps & {
   destination?: string;
   wrongWing?: boolean;
   showUIC: boolean;
+  auslastung: any;
 };
 
 type Props = OwnProps;
@@ -57,8 +59,10 @@ const FahrzeugComp = ({
   correctLeft,
   type,
   showUIC,
+  auslastung,
 }: Props) => {
   const classes = useStyles();
+  const wagenAuslastung = auslastung && auslastung[fahrzeug.fahrzeugnummer];
 
   const { startprozent, endeprozent } = fahrzeug.positionamhalt;
   const start = Number.parseInt(startprozent, 10);
@@ -119,8 +123,36 @@ const FahrzeugComp = ({
         fahrzeugnummer={fahrzeug.fahrzeugnummer}
         fahrzeugtyp={fahrzeug.fahrzeugtyp}
       />
-      {showUIC && (
-        <span className={classes.uic}>{fahrzeug.fahrzeugnummer}</span>
+      {(showUIC || wagenAuslastung) && (
+        <span className={classes.extraInfo}>
+          {showUIC && fahrzeug.fahrzeugnummer}
+          {wagenAuslastung && (
+            <span className={classes.auslastung}>
+              {wagenAuslastung.estimatedUtilizationFirst != null && (
+                <Tooltip title="% Reserviert 1. Klasse">
+                  <span>
+                    1:{' '}
+                    {Math.round(
+                      wagenAuslastung.estimatedUtilizationFirst * 100 * 100
+                    ) / 100}
+                    %
+                  </span>
+                </Tooltip>
+              )}
+              {wagenAuslastung.estimatedUtilizationSecond != null && (
+                <Tooltip title="% Reserviert 2. Klasse">
+                  <span>
+                    2:{' '}
+                    {Math.round(
+                      wagenAuslastung.estimatedUtilizationSecond * 100 * 100
+                    ) / 100}
+                    %
+                  </span>
+                </Tooltip>
+              )}
+            </span>
+          )}
+        </span>
       )}
     </div>
   );

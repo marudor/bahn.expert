@@ -9,8 +9,10 @@ export default makeStyles(theme => ({
     reihung,
     fahrzeugGruppe,
     showUIC,
+    auslastung,
   }: {
     reihung: Formation | null | undefined;
+    auslastung: any;
     fahrzeugGruppe: boolean;
     showUIC: boolean;
   }) => {
@@ -18,6 +20,7 @@ export default makeStyles(theme => ({
 
     if (fahrzeugGruppe) height += 1;
     if (showUIC) height += 1;
+    if (auslastung) height += 2;
     if (reihung) {
       if (
         reihung.differentDestination ||
