@@ -32,7 +32,7 @@ function useReihung() {
     }));
 
     try {
-      if (reihung) {
+      if (reihung && reihung.zuggattung === 'ICE') {
         const stationId = reihung.halt.evanummer;
         const trainId = reihung.zuggattung + reihung.zugnummer;
         const timeStart =
