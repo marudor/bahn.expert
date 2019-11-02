@@ -95,7 +95,7 @@ const Reihung = (props: Props) => {
           ))}
         </div>
         <Explain />
-        {position && (
+        {position && position.trainPosition && position.trainPosition.position && (
           <>
             <a
               onClick={stopPropagation}
