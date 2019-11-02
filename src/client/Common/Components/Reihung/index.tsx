@@ -5,6 +5,7 @@ import Loading from 'Common/Components/Loading';
 import React, { useEffect } from 'react';
 import ReihungContainer from 'Common/container/ReihungContainer';
 import Sektor from './Sektor';
+import stopPropagation from 'Common/stopPropagation';
 import useStyles from './index.style';
 
 type Props = {
@@ -35,8 +36,10 @@ const Reihung = (props: Props) => {
     auslastungen,
   } = ReihungContainer.useContainer();
   const reihung = reihungen[trainNumber + currentStation + scheduledDeparture];
-  const auslastung =
+  const combinedAuslastung =
     auslastungen[trainNumber + currentStation + scheduledDeparture];
+  const auslastung = combinedAuslastung && combinedAuslastung.auslastung;
+  const position = combinedAuslastung && combinedAuslastung.position;
   const classes = useStyles({
     reihung,
     auslastung,
@@ -92,6 +95,22 @@ const Reihung = (props: Props) => {
           ))}
         </div>
         <Explain />
+        {position && (
+          <>
+            <a
+              onClick={stopPropagation}
+              className={classes.position}
+              href={`https://www.google.com/maps/search/?api=1&query=${position.trainPosition.position.latitude},${position.trainPosition.position.longitude}&zoom=10`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Position
+            </a>
+            <span className={classes.speed}>
+              {position.trainPosition.speed}km/h
+            </span>
+          </>
+        )}
         <span className={classes.richtung} />
       </div>
     </div>

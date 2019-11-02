@@ -77,11 +77,11 @@ export class HafasController extends Controller {
   }
 
   @Response(404, 'Train not found')
-  @Get('/details/{trainName}/{date}')
+  @Get('/details/{trainName}')
   @Tags('HAFAS V1')
   async details(
     trainName: string,
-    date?: number,
+    @Query() date?: number,
     @Query() stop?: string,
     @Query() profile?: AllowedHafasProfile
   ): Promise<ParsedSearchOnTripResponse> {
@@ -144,11 +144,11 @@ export class HafasController extends Controller {
   }
 
   @Response(404, 'Train not found')
-  @Get('/trainSearch/{trainName}/{date}')
+  @Get('/trainSearch/{trainName}')
   @Tags('HAFAS V1')
   async trainSearch(
     trainName: string,
-    date?: number,
+    @Query() date?: number,
     @Query() profile?: AllowedHafasProfile
   ): Promise<TrainSearchResult> {
     const foundTrain = await TrainSearch(trainName, date, profile);

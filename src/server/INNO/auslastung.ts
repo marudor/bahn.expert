@@ -8,7 +8,36 @@ const axios = Axios.create({
   },
 });
 
-export async function getAuslastung(
+async function getPosition(relevantStop: any) {
+  const position = (await axios.get('/train/position/byid', {
+    params: {
+      provider: 'INNO',
+      journeyID: relevantStop.journeyID,
+      trainID: relevantStop.train.trainID,
+    },
+  })).data;
+
+  return position;
+}
+
+async function getAuslastung(relevantStop: any) {
+  const auslastung = (await axios.get('/train/utilization/byid', {
+    params: {
+      provider: 'INNO',
+      journeyID: relevantStop.journeyID,
+      stopID: relevantStop.stopID,
+      trainID: relevantStop.train.trainID,
+    },
+  })).data;
+
+  return auslastung.trainUtilization.wagons.reduce((byUic: any, wagon: any) => {
+    byUic[wagon.wagonID] = wagon;
+
+    return byUic;
+  }, {});
+}
+
+export async function getCombinedAuslastung(
   trainId: string,
   stationID: string,
   timeStart: string,
@@ -27,18 +56,26 @@ export async function getAuslastung(
     (s: any) => s.train.trainID === trainId
   );
 
-  const auslastung = (await axios.get('/train/utilization/byid', {
-    params: {
-      provider: 'INNO',
-      journeyID: relevantStop.journeyID,
-      stopID: relevantStop.stopID,
-      trainID: relevantStop.train.trainID,
-    },
-  })).data;
+  let auslastung: any;
+  let position: any;
 
-  return auslastung.trainUtilization.wagons.reduce((byUic: any, wagon: any) => {
-    byUic[wagon.wagonID] = wagon;
+  const auslastungPromise = getAuslastung(relevantStop);
+  const positionPromise = getPosition(relevantStop);
 
-    return byUic;
-  }, {});
+  try {
+    auslastung = await auslastungPromise;
+  } catch (e) {
+    // ignore
+  }
+
+  try {
+    position = await positionPromise;
+  } catch (e) {
+    // ignore
+  }
+
+  return {
+    auslastung,
+    position,
+  };
 }

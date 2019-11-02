@@ -1046,11 +1046,11 @@ export function RegisterRoutes(router: KoaRouter) {
       return promiseHandler(controller, promise, context, next);
     });
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  router.get('/api/hafas/v1/details/:trainName/:date',
+  router.get('/api/hafas/v1/details/:trainName',
     async (context: any, next: any) => {
       const args = {
         trainName: { "in": "path", "name": "trainName", "required": true, "dataType": "string" },
-        date: { "in": "path", "name": "date", "required": true, "dataType": "double" },
+        date: { "in": "query", "name": "date", "dataType": "double" },
         stop: { "in": "query", "name": "stop", "dataType": "string" },
         profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao"] },
       };
@@ -1137,11 +1137,11 @@ export function RegisterRoutes(router: KoaRouter) {
       return promiseHandler(controller, promise, context, next);
     });
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  router.get('/api/hafas/v1/trainSearch/:trainName/:date',
+  router.get('/api/hafas/v1/trainSearch/:trainName',
     async (context: any, next: any) => {
       const args = {
         trainName: { "in": "path", "name": "trainName", "required": true, "dataType": "string" },
-        date: { "in": "path", "name": "date", "required": true, "dataType": "double" },
+        date: { "in": "query", "name": "date", "dataType": "double" },
         profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao"] },
       };
 
