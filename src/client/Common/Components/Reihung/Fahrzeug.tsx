@@ -128,28 +128,32 @@ const FahrzeugComp = ({
           {showUIC && fahrzeug.fahrzeugnummer}
           {wagenAuslastung && (
             <span className={classes.auslastung}>
-              {wagenAuslastung.estimatedUtilizationFirst != null && (
-                <Tooltip title="% Reserviert 1. Klasse">
-                  <span>
-                    1:{' '}
-                    {Math.round(
-                      wagenAuslastung.estimatedUtilizationFirst * 100 * 100
-                    ) / 100}
-                    %
-                  </span>
-                </Tooltip>
-              )}
-              {wagenAuslastung.estimatedUtilizationSecond != null && (
-                <Tooltip title="% Reserviert 2. Klasse">
-                  <span>
-                    2:{' '}
-                    {Math.round(
-                      wagenAuslastung.estimatedUtilizationSecond * 100 * 100
-                    ) / 100}
-                    %
-                  </span>
-                </Tooltip>
-              )}
+              {(fahrzeug.additionalInfo.klasse === 1 ||
+                fahrzeug.additionalInfo.klasse === 3) &&
+                wagenAuslastung.estimatedUtilizationFirst != null && (
+                  <Tooltip title="% Reserviert 1. Klasse">
+                    <span>
+                      1:{' '}
+                      {Math.round(
+                        wagenAuslastung.estimatedUtilizationFirst * 100 * 100
+                      ) / 100}
+                      %
+                    </span>
+                  </Tooltip>
+                )}
+              {(fahrzeug.additionalInfo.klasse === 2 ||
+                fahrzeug.additionalInfo.klasse === 3) &&
+                wagenAuslastung.estimatedUtilizationSecond != null && (
+                  <Tooltip title="% Reserviert 2. Klasse">
+                    <span>
+                      2:{' '}
+                      {Math.round(
+                        wagenAuslastung.estimatedUtilizationSecond * 100 * 100
+                      ) / 100}
+                      %
+                    </span>
+                  </Tooltip>
+                )}
             </span>
           )}
         </span>
