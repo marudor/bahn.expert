@@ -5,6 +5,16 @@ export default makeStyles(theme => ({
   wrap: {
     overflowX: 'auto',
   },
+  position: {
+    position: 'absolute',
+    bottom: '.5em',
+    left: '4em',
+  },
+  speed: {
+    position: 'absolute',
+    bottom: '.5em',
+    left: '8em',
+  },
   main: ({
     reihung,
     fahrzeugGruppe,
