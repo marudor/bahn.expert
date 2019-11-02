@@ -40,7 +40,13 @@ jobs:
     - name: types
       run: |
         yarn tsc
+    - name: coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.github_token }}
+        path-to-lcov: ./reports/lcov.info
     - name: codecov
-      run: bash <(curl -s https://codecov.io/bash) -C $GITHUB_SHA -B ${GITHUB_REF#refs/heads/} -Z
-      env:
-        CODECOV_TOKEN: "0ffea696-ec61-45a5-b163-d59e71c0d36b"
+      uses: codecov/codecov-action@v1.0.3
+      with:
+        token: "0ffea696-ec61-45a5-b163-d59e71c0d36b"
+        file: ./reports/lcov.info
