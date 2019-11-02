@@ -1,4 +1,4 @@
-import { addMinutes, subMinutes } from 'date-fns';
+import { addHours, subMinutes } from 'date-fns';
 import { createContainer } from 'unstated-next';
 import { Formation } from 'types/reihung';
 import { useState } from 'react';
@@ -40,7 +40,7 @@ function useReihung() {
           subMinutes(scheduledDeparture, 5).toISOString();
         const timeEnd =
           reihung.halt.abfahrtszeit &&
-          addMinutes(scheduledDeparture, 30).toISOString();
+          addHours(scheduledDeparture, 6).toISOString();
 
         if (timeStart && timeEnd) {
           const auslastung = (await axios.get(
