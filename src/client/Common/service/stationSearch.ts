@@ -4,7 +4,7 @@ import { Station, StationSearchType } from 'types/station';
 import axios from 'axios';
 
 export async function getStationsFromAPI(
-  type: StationSearchType = StationSearchType.Default,
+  type: StationSearchType = StationSearchType.default,
   stationString?: string
 ): Promise<Station[]> {
   if (stationString) {

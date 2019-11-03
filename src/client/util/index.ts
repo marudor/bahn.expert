@@ -18,7 +18,7 @@ export const defaultConfig: MarudorConfig = {
   lineAndNumber: false,
   lookahead: '150',
   lookbehind: '0',
-  searchType: StationSearchType.Default,
+  searchType: StationSearchType.default,
   showSupersededMessages: false,
   time: true,
   zoomReihung: true,
@@ -36,7 +36,7 @@ const numberCheck = (value: string, fallback: number): number => {
 const searchTypeCheck = (value: string): StationSearchType =>
   // @ts-ignore this works
   StationSearchType[StationSearchType[Number.parseInt(value, 10)]] ||
-  StationSearchType.Default;
+  StationSearchType.default;
 const checkInCheck = (value: string): CheckInType =>
   // @ts-ignore this works
   CheckInType[CheckInType[Number.parseInt(value, 10)]] || CheckInType.None;

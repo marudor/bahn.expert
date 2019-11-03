@@ -16,7 +16,13 @@ export class IrisController extends Controller {
   @Tags('IRIS V1')
   abfahrten(
     evaId: string,
+    /**
+     * in Minutes
+     */
     @Query() lookahead?: number,
+    /**
+     * in Minutes
+     */
     @Query() lookbehind?: number,
     @Query() type?: 'open' | 'default'
   ): Promise<AbfahrtenResult> {

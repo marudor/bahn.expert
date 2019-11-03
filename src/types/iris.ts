@@ -22,6 +22,9 @@ export interface AbfahrtenResult {
 }
 
 export interface Abfahrt {
+  /**
+   * Unix Time (ms)
+   */
   initialDeparture: number;
   arrival?: StopInfo;
   auslastung: boolean;
@@ -37,16 +40,21 @@ export interface Abfahrt {
   /**
    * Most likely D | N | S | F
    */
-
   productClass: string;
   rawId: string;
   ref?: SubstituteRef;
+  /**
+   * Most likely has coach sequence
+   */
   reihung: boolean;
   route: Train[];
   scheduledDestination: string;
   scheduledPlatform: string;
   substitute?: boolean;
   train: TrainInfo;
+  /**
+   * Most likely does not have coach sequence
+   */
   hiddenReihung: boolean;
 }
 

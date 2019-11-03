@@ -26,7 +26,7 @@
       "Abfahrten/*": ["client/Abfahrten/*"],
       "Common/*": ["client/Common/*"],
       "Test/*": ["../test/*"],
-      "testHelper": ["../test/client/testHelper"],
+      "testHelper": ["../test/testHelper"],
       "types/*": ["types/*"]
     }
   }
