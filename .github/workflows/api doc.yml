@@ -22,10 +22,9 @@ jobs:
         yarn --frozen-lockfile
       env:
         CYPRESS_INSTALL_BINARY: 0
-    - name: build docs
-      run: |
-        yarn doc:build
-    - name: deploy docs
-      uses: "maxheld83/ghpages@master"
+    - name: deploy Docs
+      uses: maxheld83/ghpages@v0.2.1
       env:
-        BUILD_DIR: "docs/"
+        BUILD_DIR: docs/
+        CNAME: docs.marudor.de
+        CYPRESS_INSTALL_BINARY: 0
