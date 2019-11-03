@@ -162,147 +162,6 @@ const models: TsoaRoute.Models = {
     "additionalProperties": false,
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "SearchOnTripBody": {
-    "dataType": "refObject",
-    "properties": {
-      "sotMode": { "dataType": "enum", "enums": ["JI", "RC"], "required": true },
-      "id": { "dataType": "string", "required": true },
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "ProdL": {
-    "dataType": "refObject",
-    "properties": {
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "Route$Journey": {
-    "dataType": "refObject",
-    "properties": {
-      "cancelled": { "dataType": "boolean" },
-      "changeDuration": { "dataType": "double" },
-      "duration": { "dataType": "double" },
-      "finalDestination": { "dataType": "string", "required": true },
-      "jid": { "dataType": "string", "required": true },
-      "product": { "ref": "ProdL" },
-      "raw": { "dataType": "any" },
-      "segmentDestination": { "ref": "Station", "required": true },
-      "segmentStart": { "ref": "Station", "required": true },
-      "stops": { "dataType": "array", "array": { "ref": "Route$Stop" }, "required": true },
-      "train": { "ref": "ParsedProduct", "required": true },
-      "auslastung": { "ref": "Route$Auslastung" },
-      "messages": { "dataType": "array", "array": { "ref": "RemL" } },
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "ParsedSearchOnTripResponse": {
-    "dataType": "refObject",
-    "properties": {
-      "cancelled": { "dataType": "boolean" },
-      "changeDuration": { "dataType": "double" },
-      "duration": { "dataType": "double" },
-      "finalDestination": { "dataType": "string", "required": true },
-      "jid": { "dataType": "string", "required": true },
-      "product": { "ref": "ProdL" },
-      "raw": { "dataType": "any" },
-      "segmentDestination": { "ref": "Station", "required": true },
-      "segmentStart": { "ref": "Station", "required": true },
-      "stops": { "dataType": "array", "array": { "ref": "Route$Stop" }, "required": true },
-      "train": { "ref": "ParsedProduct", "required": true },
-      "auslastung": { "ref": "Route$Auslastung" },
-      "messages": { "dataType": "array", "array": { "ref": "RemL" } },
-      "type": { "dataType": "enum", "enums": ["JNY"], "required": true },
-      "arrival": { "ref": "CommonStopInfo", "required": true },
-      "departure": { "ref": "CommonStopInfo", "required": true },
-      "wings": { "dataType": "array", "array": { "ref": "Route$Journey" } },
-      "currentStop": { "ref": "Route$Stop" },
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "ArrivalStationBoardEntry": {
-    "dataType": "refObject",
-    "properties": {
-      "train": { "ref": "ParsedProduct", "required": true },
-      "cancelled": { "dataType": "boolean" },
-      "finalDestination": { "dataType": "string", "required": true },
-      "jid": { "dataType": "string", "required": true },
-      "arrival": { "ref": "CommonStopInfo", "required": true },
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "DepartureStationBoardEntry": {
-    "dataType": "refObject",
-    "properties": {
-      "train": { "ref": "ParsedProduct", "required": true },
-      "cancelled": { "dataType": "boolean" },
-      "finalDestination": { "dataType": "string", "required": true },
-      "jid": { "dataType": "string", "required": true },
-      "departure": { "ref": "CommonStopInfo", "required": true },
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "TrainSearchResult": {
-    "dataType": "refObject",
-    "properties": {
-      "value": { "dataType": "string", "required": true },
-      "cycle": { "dataType": "double", "required": true },
-      "pool": { "dataType": "double", "required": true },
-      "id": { "dataType": "double", "required": true },
-      "dep": { "dataType": "string", "required": true },
-      "trainLink": { "dataType": "string", "required": true },
-      "journParam": { "dataType": "string", "required": true },
-      "pubTime": { "dataType": "string", "required": true },
-      "depDate": { "dataType": "string", "required": true },
-      "depTime": { "dataType": "string", "required": true },
-      "arr": { "dataType": "string", "required": true },
-      "arrTime": { "dataType": "string", "required": true },
-      "vt": { "dataType": "string", "required": true },
-      "jid": { "dataType": "string", "required": true },
-      "ctxRecon": { "dataType": "string", "required": true },
-      "jDetails": { "ref": "ParsedJourneyDetails", "required": true },
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "ParsedJourneyMatchResponse": {
-    "dataType": "refObject",
-    "properties": {
-      "train": { "ref": "ParsedProduct", "required": true },
-      "stops": { "dataType": "array", "array": { "ref": "Route$Stop" }, "required": true },
-      "jid": { "dataType": "string", "required": true },
-      "firstStop": { "ref": "Route$Stop", "required": true },
-      "lastStop": { "ref": "Route$Stop", "required": true },
-      "messages": { "dataType": "array", "array": { "ref": "RemL" } },
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "Coordinates": {
-    "dataType": "refObject",
-    "properties": {
-      "lat": { "dataType": "double", "required": true },
-      "lng": { "dataType": "double", "required": true },
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "HafasStation": {
-    "dataType": "refObject",
-    "properties": {
-      "title": { "dataType": "string", "required": true },
-      "id": { "dataType": "string", "required": true },
-      "products": { "dataType": "array", "array": { "ref": "ParsedProduct" } },
-      "coordinates": { "ref": "Coordinates", "required": true },
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "SDays": {
     "dataType": "refObject",
     "properties": {
@@ -506,6 +365,147 @@ const models: TsoaRoute.Models = {
       "segments": { "dataType": "array", "array": { "dataType": "any" }, "required": true },
       "segmentTypes": { "dataType": "array", "array": { "dataType": "string" }, "required": true },
       "raw": { "ref": "OutConL" },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "SearchOnTripBody": {
+    "dataType": "refObject",
+    "properties": {
+      "sotMode": { "dataType": "enum", "enums": ["JI", "RC"], "required": true },
+      "id": { "dataType": "string", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "ProdL": {
+    "dataType": "refObject",
+    "properties": {
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "Route$Journey": {
+    "dataType": "refObject",
+    "properties": {
+      "cancelled": { "dataType": "boolean" },
+      "changeDuration": { "dataType": "double" },
+      "duration": { "dataType": "double" },
+      "finalDestination": { "dataType": "string", "required": true },
+      "jid": { "dataType": "string", "required": true },
+      "product": { "ref": "ProdL" },
+      "raw": { "dataType": "any" },
+      "segmentDestination": { "ref": "Station", "required": true },
+      "segmentStart": { "ref": "Station", "required": true },
+      "stops": { "dataType": "array", "array": { "ref": "Route$Stop" }, "required": true },
+      "train": { "ref": "ParsedProduct", "required": true },
+      "auslastung": { "ref": "Route$Auslastung" },
+      "messages": { "dataType": "array", "array": { "ref": "RemL" } },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "ParsedSearchOnTripResponse": {
+    "dataType": "refObject",
+    "properties": {
+      "cancelled": { "dataType": "boolean" },
+      "changeDuration": { "dataType": "double" },
+      "duration": { "dataType": "double" },
+      "finalDestination": { "dataType": "string", "required": true },
+      "jid": { "dataType": "string", "required": true },
+      "product": { "ref": "ProdL" },
+      "raw": { "dataType": "any" },
+      "segmentDestination": { "ref": "Station", "required": true },
+      "segmentStart": { "ref": "Station", "required": true },
+      "stops": { "dataType": "array", "array": { "ref": "Route$Stop" }, "required": true },
+      "train": { "ref": "ParsedProduct", "required": true },
+      "auslastung": { "ref": "Route$Auslastung" },
+      "messages": { "dataType": "array", "array": { "ref": "RemL" } },
+      "type": { "dataType": "enum", "enums": ["JNY"], "required": true },
+      "arrival": { "ref": "CommonStopInfo", "required": true },
+      "departure": { "ref": "CommonStopInfo", "required": true },
+      "wings": { "dataType": "array", "array": { "ref": "Route$Journey" } },
+      "currentStop": { "ref": "Route$Stop" },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "ArrivalStationBoardEntry": {
+    "dataType": "refObject",
+    "properties": {
+      "train": { "ref": "ParsedProduct", "required": true },
+      "cancelled": { "dataType": "boolean" },
+      "finalDestination": { "dataType": "string", "required": true },
+      "jid": { "dataType": "string", "required": true },
+      "arrival": { "ref": "CommonStopInfo", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "DepartureStationBoardEntry": {
+    "dataType": "refObject",
+    "properties": {
+      "train": { "ref": "ParsedProduct", "required": true },
+      "cancelled": { "dataType": "boolean" },
+      "finalDestination": { "dataType": "string", "required": true },
+      "jid": { "dataType": "string", "required": true },
+      "departure": { "ref": "CommonStopInfo", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "TrainSearchResult": {
+    "dataType": "refObject",
+    "properties": {
+      "value": { "dataType": "string", "required": true },
+      "cycle": { "dataType": "double", "required": true },
+      "pool": { "dataType": "double", "required": true },
+      "id": { "dataType": "double", "required": true },
+      "dep": { "dataType": "string", "required": true },
+      "trainLink": { "dataType": "string", "required": true },
+      "journParam": { "dataType": "string", "required": true },
+      "pubTime": { "dataType": "string", "required": true },
+      "depDate": { "dataType": "string", "required": true },
+      "depTime": { "dataType": "string", "required": true },
+      "arr": { "dataType": "string", "required": true },
+      "arrTime": { "dataType": "string", "required": true },
+      "vt": { "dataType": "string", "required": true },
+      "jid": { "dataType": "string", "required": true },
+      "ctxRecon": { "dataType": "string", "required": true },
+      "jDetails": { "ref": "ParsedJourneyDetails", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "ParsedJourneyMatchResponse": {
+    "dataType": "refObject",
+    "properties": {
+      "train": { "ref": "ParsedProduct", "required": true },
+      "stops": { "dataType": "array", "array": { "ref": "Route$Stop" }, "required": true },
+      "jid": { "dataType": "string", "required": true },
+      "firstStop": { "ref": "Route$Stop", "required": true },
+      "lastStop": { "ref": "Route$Stop", "required": true },
+      "messages": { "dataType": "array", "array": { "ref": "RemL" } },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "Coordinates": {
+    "dataType": "refObject",
+    "properties": {
+      "lat": { "dataType": "double", "required": true },
+      "lng": { "dataType": "double", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "HafasStation": {
+    "dataType": "refObject",
+    "properties": {
+      "title": { "dataType": "string", "required": true },
+      "id": { "dataType": "string", "required": true },
+      "products": { "dataType": "array", "array": { "ref": "ParsedProduct" } },
+      "coordinates": { "ref": "Coordinates", "required": true },
     },
     "additionalProperties": false,
   },
@@ -1399,7 +1399,7 @@ export function RegisterRoutes(router: KoaRouter) {
     async (context: any, next: any) => {
       const args = {
         searchTerm: { "in": "path", "name": "searchTerm", "required": true, "dataType": "string" },
-        type: { "in": "query", "name": "type", "dataType": "enum", "enums": ["default", "favendo", "hafas", "openData", "offlineOpenData", "stationsData", "favendoStationsData"] },
+        type: { "in": "query", "name": "type", "dataType": "enum", "enums": ["default", "favendo", "hafas", "openData", "openDataOffline", "stationsData", "favendoStationsData"] },
         max: { "in": "query", "name": "max", "dataType": "double" },
       };
 
@@ -1422,6 +1422,7 @@ export function RegisterRoutes(router: KoaRouter) {
       const args = {
         lat: { "in": "query", "name": "lat", "required": true, "dataType": "double" },
         lng: { "in": "query", "name": "lng", "required": true, "dataType": "double" },
+        searchText: { "default": "", "in": "query", "name": "searchText", "dataType": "string" },
       };
 
       let validatedArgs: any[] = [];

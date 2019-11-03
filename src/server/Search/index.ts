@@ -21,18 +21,18 @@ export async function favendoStationsDataCombined(
 
 export function getSearchMethod(type?: StationSearchType) {
   switch (type) {
-    case StationSearchType.Hafas:
+    case StationSearchType.hafas:
       return DBNavigatorSearch;
-    case StationSearchType.OpenData:
+    case StationSearchType.openData:
       return OpenDataSearch;
-    case StationSearchType.OpenDataOffline:
+    case StationSearchType.openDataOffline:
       return OpenDataOfflineSearch;
-    case StationSearchType.StationsData:
+    case StationSearchType.stationsData:
       return StationsDataSearch;
     default:
-    case StationSearchType.Favendo:
+    case StationSearchType.favendo:
       return FavendoSearch;
-    case StationSearchType.FavendoStationsData:
+    case StationSearchType.favendoStationsData:
       return favendoStationsDataCombined;
   }
 }
@@ -73,9 +73,9 @@ export default async (
 
     let result = await getSearchMethod(type)(searchTerm);
 
-    if (type !== StationSearchType.StationsData && result.length === 0) {
+    if (type !== StationSearchType.stationsData && result.length === 0) {
       // this may be a station named from iris - lets try that first
-      result = await getSearchMethod(StationSearchType.StationsData)(
+      result = await getSearchMethod(StationSearchType.stationsData)(
         searchTerm
       );
     }

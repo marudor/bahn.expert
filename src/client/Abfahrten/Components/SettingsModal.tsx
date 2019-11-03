@@ -184,6 +184,7 @@ const SettingsModal = () => {
           className={classes.label}
           control={
             <NativeSelect
+              data-testid="lookbehind"
               value={lookbehind}
               name="lookbehind"
               onChange={handleSelectChange('lookbehind')}
@@ -203,20 +204,21 @@ const SettingsModal = () => {
           className={classes.label}
           control={
             <NativeSelect
+              data-testid="searchType"
               value={searchType}
               name="searchType"
-              onChange={handleNumberSelectChange('searchType')}
+              onChange={handleSelectChange('searchType')}
             >
-              <option value={StationSearchType.Favendo}>Favendo</option>
-              <option value={StationSearchType.FavendoStationsData}>
+              <option value={StationSearchType.favendo}>Favendo</option>
+              <option value={StationSearchType.favendoStationsData}>
                 Favendo + Stationsdaten
               </option>
-              <option value={StationSearchType.OpenData}>Open Data</option>
-              <option value={StationSearchType.OpenDataOffline}>
+              <option value={StationSearchType.openData}>Open Data</option>
+              <option value={StationSearchType.openDataOffline}>
                 Open Data Offline
               </option>
-              <option value={StationSearchType.Hafas}>Hafas</option>
-              <option value={StationSearchType.StationsData}>
+              <option value={StationSearchType.hafas}>Hafas</option>
+              <option value={StationSearchType.stationsData}>
                 Open Data Stationsdaten
               </option>
             </NativeSelect>

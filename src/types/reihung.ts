@@ -54,10 +54,25 @@ export interface Waggon {
 }
 
 export interface Formation {
+  /**
+   * Should always be VORWAERTS
+   */
   fahrtrichtung: 'VORWAERTS' | 'RUCKWAERTS';
+  /**
+   * Train is reported as ICE but has IC coach sequence
+   */
   isActuallyIC: boolean;
+  /**
+   * Train Category that was reported
+   */
   reportedZuggattung?: string;
+  /**
+   * do groups have a different destination
+   */
   differentDestination: boolean;
+  /**
+   * Do we have several trains in one? (Flügelung)
+   */
   differentZugnummer: boolean;
   scale: number;
   startPercentage: number;
@@ -65,15 +80,20 @@ export interface Formation {
   /**
    * true = Vorwärts
    */
-
   realFahrtrichtung: boolean;
   allFahrzeuggruppe: Fahrzeuggruppe[];
   halt: Halt;
   liniebezeichung: string;
   zuggattung: string;
   zugnummer: string;
+  /**
+   * ???
+   */
   serviceid: string;
   planstarttag: string;
+  /**
+   * ???
+   */
   fahrtid: string;
   istplaninformation: boolean;
   br?: BRInfo;
@@ -141,7 +161,7 @@ export interface Sektor {
 
 export interface AdditionalFahrzeugInfo {
   /**
-   * 0: Unknown; 1: erste; 2: zweite; 3: 1&2; 4: Nicht für Passagiere
+   * 0: Unknown; 1: erste; 2: zweite; 3: 1&2; 4: Not for passengers
    */
   klasse: 0 | 1 | 2 | 3 | 4;
   speise?: boolean;

@@ -9,7 +9,7 @@ function parseCoordinates(crd: Crd) {
 
 export default (locL: LocL, products: ParsedProduct[]) => ({
   id: locL.extId,
-  title: `${locL.name}`,
+  title: locL.name,
   coordinates: locL.crd && parseCoordinates(locL.crd),
   products: locL.pRefL && locL.pRefL.map(p => products[p]),
   raw: global.PROD ? undefined : locL,

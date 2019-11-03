@@ -52,6 +52,7 @@ export async function getSingleStation(
 
   if (!xmlStation) {
     throw {
+      status: 404,
       error: {
         type: '404',
         description: 'Unbekannte Station',
