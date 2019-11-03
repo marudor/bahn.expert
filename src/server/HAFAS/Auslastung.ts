@@ -9,8 +9,8 @@ export default async (
   time: number
 ) => {
   const [startStations, destStations] = await Promise.all([
-    stationSearch(start, StationSearchType.Hafas),
-    stationSearch(destination, StationSearchType.Hafas),
+    stationSearch(start, StationSearchType.hafas),
+    stationSearch(destination, StationSearchType.hafas),
   ]);
 
   const startStation = startStations[0];

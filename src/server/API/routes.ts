@@ -1399,7 +1399,7 @@ export function RegisterRoutes(router: KoaRouter) {
     async (context: any, next: any) => {
       const args = {
         searchTerm: { "in": "path", "name": "searchTerm", "required": true, "dataType": "string" },
-        type: { "in": "query", "name": "type", "dataType": "enum", "enums": ["default", "favendo", "hafas", "openData", "offlineOpenData", "stationsData", "favendoStationsData"] },
+        type: { "in": "query", "name": "type", "dataType": "enum", "enums": ["default", "favendo", "hafas", "openData", "openDataOffline", "stationsData", "favendoStationsData"] },
         max: { "in": "query", "name": "max", "dataType": "double" },
       };
 
@@ -1422,6 +1422,7 @@ export function RegisterRoutes(router: KoaRouter) {
       const args = {
         lat: { "in": "query", "name": "lat", "required": true, "dataType": "double" },
         lng: { "in": "query", "name": "lng", "required": true, "dataType": "double" },
+        searchText: { "default": "", "in": "query", "name": "searchText", "dataType": "string" },
       };
 
       let validatedArgs: any[] = [];

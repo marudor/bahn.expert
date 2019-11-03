@@ -152,4 +152,6 @@ export default async () => {
   } else {
     createAdmin();
   }
+
+  return server;
 };

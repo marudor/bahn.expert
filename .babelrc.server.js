@@ -29,7 +29,7 @@ module.exports = {
         root: 'src',
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
         alias: {
-          testHelper: './test/client/testHelper',
+          testHelper: './test/testHelper',
           classnames: 'clsx',
         },
         resolvePath: (sourcePath, currentFile, opts) => {

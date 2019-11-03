@@ -20,7 +20,7 @@ export default async function(
   coordinates?: Coordinates
 ): Promise<Station[]> {
   const stations = (await axios.get<FavendoStation[]>(
-    `https://si.favendo.de/station-info/rest/api/search`,
+    'https://si.favendo.de/station-info/rest/api/search',
     {
       params: {
         searchTerm: encodeSearchTerm(searchTerm),

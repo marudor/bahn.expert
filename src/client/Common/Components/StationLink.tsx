@@ -11,7 +11,7 @@ interface Props {
 
 const StationLink = ({
   stationName,
-  searchType = StationSearchType.StationsData,
+  searchType = StationSearchType.stationsData,
   className,
   ...rest
 }: Props) => {

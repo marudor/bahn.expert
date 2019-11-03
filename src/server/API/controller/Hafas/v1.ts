@@ -24,7 +24,7 @@ import { Route$Auslastung, RoutingResult } from 'types/routing';
 import { Station } from 'types/station';
 import { TrainSearchResult } from 'types/HAFAS/Details';
 import { TripSearchOptions, TripSearchRequest } from 'types/HAFAS/TripSearch';
-import AuslastungHafas from 'server/Auslastung/Hafas';
+import Auslastung from 'server/HAFAS/Auslastung';
 import Detail from 'server/HAFAS/Detail';
 import JourneyDetails from 'server/HAFAS/JourneyDetails';
 import JourneyMatch from 'server/HAFAS/JourneyMatch';
@@ -104,7 +104,7 @@ export class HafasController extends Controller {
     trainNumber: string,
     time: number
   ): Promise<Route$Auslastung> {
-    return AuslastungHafas(start, destination, trainNumber, time);
+    return Auslastung(start, destination, trainNumber, time);
   }
 
   @Get('/arrivalStationBoard')

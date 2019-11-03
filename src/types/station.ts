@@ -1,13 +1,13 @@
 // eslint-disable-next-line import/prefer-default-export
 
 export enum StationSearchType {
-  Default = 'default',
-  Favendo = 'favendo',
-  Hafas = 'hafas',
-  OpenData = 'openData',
-  OpenDataOffline = 'offlineOpenData',
-  StationsData = 'stationsData',
-  FavendoStationsData = 'favendoStationsData',
+  default = 'default',
+  favendo = 'favendo',
+  hafas = 'hafas',
+  openData = 'openData',
+  openDataOffline = 'openDataOffline',
+  stationsData = 'stationsData',
+  favendoStationsData = 'favendoStationsData',
 }
 
 export interface Coordinates {
