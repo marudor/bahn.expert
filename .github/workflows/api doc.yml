@@ -13,14 +13,19 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@master
-
-    - name: Build Docs
-      uses: JamesIves/github-pages-deploy-action@master
+    - name: Use Node.js 12
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12
+    - name: install
+      run: |
+        yarn --frozen-lockfile
       env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BASE_BRANCH: master # The branch the action should deploy from.
-        BRANCH: gh-pages # The branch the action should deploy to.
-        FOLDER: docs # The folder the action should deploy.
-        BUILD_SCRIPT: npm install && npm run-script doc:build # The build script the action should run prior to deploying.
-        CNAME: docs.marudor.de
         CYPRESS_INSTALL_BINARY: 0
+    - name: build docs
+      run: |
+        yarn doc:build
+    - name: deploy docs
+      uses: "maxheld83/ghpages@master"
+      env:
+        BUILD_DIR: "docs/"
