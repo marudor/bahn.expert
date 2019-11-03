@@ -15,7 +15,7 @@ export const validationOverwrite = [
     middleware: (ctx: any, next: any) => {
       // @ts-ignore
       if (!StationSearchType[ctx.query.type]) {
-        ctx.query.type = StationSearchType.Default;
+        ctx.query.type = StationSearchType.default;
       }
 
       return next();
@@ -37,8 +37,12 @@ export class StationController extends Controller {
 
   @Get('/geoSearch')
   @Tags('Station V1')
-  geoSearch(@Query() lat: number, @Query() lng: number): Promise<Station[]> {
-    return favendoSearch('', {
+  geoSearch(
+    @Query() lat: number,
+    @Query() lng: number,
+    @Query() searchText: string = ''
+  ): Promise<Station[]> {
+    return favendoSearch(searchText, {
       lat,
       lng,
     });

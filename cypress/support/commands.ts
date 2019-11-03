@@ -31,3 +31,15 @@ Cypress.Commands.add('mockFrankfurt', () => {
     'fixture:abfahrtenFrankfurtHbf.json'
   );
 });
+
+Cypress.Commands.add('getAbfahrtenConfig', () => {
+  return cy
+    .getCookie('config')
+    .should('exist')
+    .then(c => {
+      if (!c) throw new Error("can' happen");
+      const config = JSON.parse(decodeURIComponent(c.value));
+
+      return cy.wrap(config);
+    });
+});

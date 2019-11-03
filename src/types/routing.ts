@@ -22,8 +22,15 @@ export interface Route$Stop {
 export type Route$JourneySegment =
   | Route$JourneySegmentTrain
   | Route$JourneySegmentWalk;
+/**
+ * 1: Gering
+ * 2: Hoch
+ * 3: Sehr Hoch
+ * 4: Ausgebucht
+ */
 export enum AuslastungsValue {
   Gering = 1,
+  // Hoch
   Hoch,
   SehrHoch,
   Ausgebucht,

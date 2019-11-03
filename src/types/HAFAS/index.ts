@@ -14,8 +14,17 @@ export interface CommonProductInfo {
 export interface CommonStopInfo {
   scheduledPlatform?: string;
   platform?: string;
+  /**
+   * Unix Time (ms)
+   */
   scheduledTime: number;
+  /**
+   * Unix Time (ms)
+   */
   time: number;
+  /**
+   * Minutes
+   */
   delay?: number;
   reihung?: boolean;
   messages?: RemL[];

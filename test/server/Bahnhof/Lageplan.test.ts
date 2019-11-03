@@ -32,6 +32,17 @@ describe('Lageplan', () => {
     it('cache resolves', async () => {
       await expect(getLageplan('Langenfelde')).resolves.toBeUndefined();
     });
+
+    it('is undefined if html has no result', async () => {
+      nock
+        .get('/service/search/bahnhof-de/520608')
+        .query({
+          query: 'Langenfeld',
+        })
+        .reply(200, readFixutre('LangenfeldeSearchMissing.html'));
+
+      await expect(getLageplan('Langenfeld')).resolves.toBeUndefined();
+    });
   });
 
   describe('Example with Lageplan', () => {
