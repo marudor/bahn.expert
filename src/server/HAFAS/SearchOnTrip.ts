@@ -10,12 +10,7 @@ const parseSearchOnTrip = (
   d: HafasResponse<SearchOnTripResponse>,
   common: ParsedCommon
 ) => {
-  const journey = new Journey(d.svcResL[0].res.outConL[0], common).journey;
-
-  return {
-    ...journey,
-    raw: d.svcResL[0].res,
-  };
+  return new Journey(d.svcResL[0].res.outConL[0], common).journey;
 };
 
 export default (

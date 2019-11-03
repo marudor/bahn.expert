@@ -1,16 +1,11 @@
 import { createTestServer } from 'testHelper';
-import { Server } from 'http';
 import Nock from 'nock';
 import request from 'supertest';
 
 jest.mock('node-cache');
 describe('Bahnhof V1', () => {
   const nock = Nock('https://www.bahnhof.de');
-  let server: Server;
-
-  beforeAll(async () => {
-    server = await createTestServer();
-  });
+  const server = createTestServer();
 
   it('Gets Lageplan by stationName', () => {
     nock

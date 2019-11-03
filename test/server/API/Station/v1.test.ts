@@ -1,15 +1,10 @@
 import { createTestServer } from 'testHelper';
-import { Server } from 'http';
 import Nock from 'nock';
 import request from 'supertest';
 
 jest.mock('node-cache');
 describe('Station V1', () => {
-  let server: Server;
-
-  beforeAll(async () => {
-    server = await createTestServer();
-  });
+  const server = createTestServer();
 
   describe('/search', () => {
     it('no Type goes to default', () => {

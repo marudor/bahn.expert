@@ -15,7 +15,13 @@ export class ReihungControllerV1 extends Controller {
 
   @Get('/wagen/{trainNumber}/{date}')
   @Tags('Reihung V1')
-  wagenreihung(trainNumber: string, date: number): Promise<Formation> {
+  wagenreihung(
+    trainNumber: string,
+    /**
+     * Unix Time (ms)
+     */
+    date: number
+  ): Promise<Formation> {
     return wagenreihung(trainNumber, date);
   }
 

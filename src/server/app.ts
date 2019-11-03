@@ -21,7 +21,7 @@ function hotHelper(getMiddleware: () => Middleware) {
   return (ctx: Context, next: () => Promise<any>) => getMiddleware()(ctx, next);
 }
 
-export async function createApp(wsServer?: Server) {
+export function createApp(wsServer?: Server) {
   const app = new Koa();
 
   const sentryDSN = process.env.SENTRY_DSN;
@@ -40,7 +40,7 @@ export async function createApp(wsServer?: Server) {
     process.env.NODE_ENV !== 'test' &&
     process.env.NODE_ENV !== 'production'
   ) {
-    await require('./middleware/webpackDev')(app, wsServer);
+    require('./middleware/webpackDev')(app, wsServer);
     app.use((ctx, next) => {
       errorHandler = require('./errorHandler').default;
       serverRender = require('./render').default;
@@ -111,7 +111,7 @@ export async function createApp(wsServer?: Server) {
   return app;
 }
 
-export default async () => {
+export default () => {
   const port = process.env.WEB_PORT || 9042;
 
   let server: NetServer;
@@ -142,7 +142,7 @@ export default async () => {
     axios.defaults.baseURL = `http://localhost:${port}`;
     server = http.createServer();
   }
-  const app = await createApp(wsServer);
+  const app = createApp(wsServer);
 
   server.addListener('request', app.callback());
   server.listen(port);

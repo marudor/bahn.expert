@@ -1,7 +1,7 @@
 import { createApp } from 'server/app';
 
-export async function createTestServer() {
-  const app = await createApp();
+export function createTestServer() {
+  const app = createApp();
   const server = app.listen();
 
   afterAll(() => {
