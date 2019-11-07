@@ -136,6 +136,7 @@ export interface BRInfo {
 
 export interface Fahrzeug {
   additionalInfo: AdditionalFahrzeugInfo;
+  goesToFrance: boolean;
   allFahrzeugausstattung: Fahrzeugausstattung[];
   kategorie: string;
   fahrzeugnummer: string;
