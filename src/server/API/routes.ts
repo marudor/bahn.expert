@@ -872,6 +872,7 @@ const models: TsoaRoute.Models = {
     "dataType": "refObject",
     "properties": {
       "additionalInfo": { "ref": "AdditionalFahrzeugInfo", "required": true },
+      "goesToFrance": { "dataType": "boolean", "required": true },
       "allFahrzeugausstattung": { "dataType": "array", "array": { "ref": "Fahrzeugausstattung" }, "required": true },
       "kategorie": { "dataType": "string", "required": true },
       "fahrzeugnummer": { "dataType": "string", "required": true },
