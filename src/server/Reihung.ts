@@ -344,7 +344,7 @@ function fahrtrichtung(fahrzeuge: Fahrzeug[]) {
   );
 }
 
-function enrichFahrzeug(fahrzeug: Fahrzeug) {
+function enrichFahrzeug(fahrzeug: Fahrzeug, trainNumber: string) {
   const data: AdditionalFahrzeugInfo = {
     klasse: 0,
   };
@@ -415,6 +415,18 @@ function enrichFahrzeug(fahrzeug: Fahrzeug) {
     }
   });
 
+  // https://inside.bahn.de/entstehung-zugnummern/?dbkanal_006=L01_S01_D088_KTL0006_INSIDE-BAHN-2019_Zugnummern_LZ01
+  const trainNumberAsNumber = Number.parseInt(trainNumber, 10);
+
+  fahrzeug.goesToFrance =
+    trainNumberAsNumber >= 9550 && trainNumberAsNumber <= 9599;
+
+  if (fahrzeug.goesToFrance) {
+    data.comfort = false;
+    data.schwebe = false;
+    data.familie = false;
+  }
+
   const ap = getAP(fahrzeug.fahrzeugnummer);
 
   if (ap) {
@@ -455,7 +467,7 @@ export async function wagenreihung(trainNumber: string, date: number) {
     info.data.istformation.allFahrzeuggruppe.map(g => g.allFahrzeug)
   );
 
-  fahrzeuge.forEach(enrichFahrzeug);
+  fahrzeuge.forEach(fahrzeug => enrichFahrzeug(fahrzeug, trainNumber));
 
   let startPercentage = 100;
   let endPercentage = 0;
