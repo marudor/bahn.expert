@@ -36,77 +36,83 @@ export function createApp(wsServer?: Server) {
   let seoController = require('./seo').default;
   let errorHandler = require('./errorHandler').default;
 
+  let devPromise = Promise.resolve();
+
   if (
     process.env.NODE_ENV !== 'test' &&
     process.env.NODE_ENV !== 'production'
   ) {
-    require('./middleware/webpackDev')(app, wsServer);
-    app.use((ctx, next) => {
-      errorHandler = require('./errorHandler').default;
-      serverRender = require('./render').default;
-      apiRoutes = require('./API').default;
-      validationOverwrites = require('./API/validationOverwrites').default;
-      seoController = require('./seo').default;
-      ctx.loadableStats = JSON.parse(
-        // eslint-disable-next-line no-sync
-        ctx.state.fs.readFileSync(
-          path.resolve('dist/client/loadable-stats.json')
-        )
-      );
+    devPromise = require('./middleware/webpackDev')(app, wsServer).then(() => {
+      app.use((ctx, next) => {
+        errorHandler = require('./errorHandler').default;
+        serverRender = require('./render').default;
+        apiRoutes = require('./API').default;
+        validationOverwrites = require('./API/validationOverwrites').default;
+        seoController = require('./seo').default;
+        Object.keys(ctx.state);
+        ctx.loadableStats = JSON.parse(
+          // eslint-disable-next-line no-sync
+          ctx.state.fs.readFileSync(
+            path.resolve('dist/client/loadable-stats.json')
+          )
+        );
 
-      return next();
+        return next();
+      });
     });
   }
 
-  app.use(hotHelper(() => errorHandler));
-  app.use(cookiesMiddleware());
-  middlewares.forEach(m => app.use(m));
-  app.use(KoaBodyparser());
+  devPromise.then(() => {
+    app.use(hotHelper(() => errorHandler));
+    app.use(cookiesMiddleware());
+    middlewares.forEach(m => app.use(m));
+    app.use(KoaBodyparser());
 
-  app.use(hotHelper(() => validationOverwrites.routes()));
-  app.use(hotHelper(() => apiRoutes.routes()));
+    app.use(hotHelper(() => validationOverwrites.routes()));
+    app.use(hotHelper(() => apiRoutes.routes()));
 
-  const distFolder = process.env.TEST_RUN ? 'testDist' : 'dist';
+    const distFolder = process.env.TEST_RUN ? 'testDist' : 'dist';
 
-  app.use(
-    koaStatic(
-      path.resolve(
-        process.env.NODE_ENV === 'production'
-          ? `${distFolder}/client`
-          : 'public'
-      ),
-      {
-        maxAge: 31536000000, // 1 year
+    app.use(
+      koaStatic(
+        path.resolve(
+          process.env.NODE_ENV === 'production'
+            ? `${distFolder}/client`
+            : 'public'
+        ),
+        {
+          maxAge: 31536000000, // 1 year
+        }
+      )
+    );
+
+    app.use((ctx, next) => {
+      if (ctx.path.endsWith('.js') || ctx.path.endsWith('.css')) {
+        return;
       }
-    )
-  );
-
-  app.use((ctx, next) => {
-    if (ctx.path.endsWith('.js') || ctx.path.endsWith('.css')) {
-      return;
-    }
-    if (ctx.url.startsWith('/api') || ctx.url.startsWith('/WRSheets')) {
-      return;
-    }
-
-    return next();
-  });
-
-  app.use(hotHelper(() => seoController));
-
-  if (process.env.NODE_ENV === 'production') {
-    const loadableStats = require(path.resolve(
-      `${distFolder}/client/loadable-stats.json`
-    ));
-
-    app.use((ctx, next) => {
-      ctx.loadableStats = loadableStats;
+      if (ctx.url.startsWith('/api') || ctx.url.startsWith('/WRSheets')) {
+        return;
+      }
 
       return next();
     });
-  }
 
-  app.use(hotHelper(() => serverRender));
+    app.use(hotHelper(() => seoController));
+
+    if (process.env.NODE_ENV === 'production') {
+      const loadableStats = require(path.resolve(
+        `${distFolder}/client/loadable-stats.json`
+      ));
+
+      app.use((ctx, next) => {
+        ctx.loadableStats = loadableStats;
+
+        return next();
+      });
+    }
+
+    app.use(hotHelper(() => serverRender));
+  });
 
   return app;
 }
