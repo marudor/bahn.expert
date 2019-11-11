@@ -1373,29 +1373,6 @@ export function RegisterRoutes(router: KoaRouter) {
       return promiseHandler(controller, promise, context, next);
     });
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  router.get('/api/reihung/v1/auslastung/:trainNumber/:station/:start/:end',
-    async (context: any, next: any) => {
-      const args = {
-        trainNumber: { "in": "path", "name": "trainNumber", "required": true, "dataType": "string" },
-        station: { "in": "path", "name": "station", "required": true, "dataType": "string" },
-        start: { "in": "path", "name": "start", "required": true, "dataType": "string" },
-        end: { "in": "path", "name": "end", "required": true, "dataType": "string" },
-      };
-
-      let validatedArgs: any[] = [];
-      try {
-        validatedArgs = getValidatedArgs(args, context);
-      } catch (error) {
-        context.status = error.status;
-        context.throw(error.status, JSON.stringify({ fields: error.fields }));
-      }
-
-      const controller = new ReihungControllerV1();
-
-      const promise = controller.auslastung.apply(controller, validatedArgs as any);
-      return promiseHandler(controller, promise, context, next);
-    });
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   router.get('/api/station/v1/search/:searchTerm',
     async (context: any, next: any) => {
       const args = {
