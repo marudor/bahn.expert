@@ -15,9 +15,11 @@ function useReihung() {
     let reihung: Formation | undefined | null;
 
     try {
-      reihung = (await axios.get(
-        `/api/reihung/v1/wagen/${trainNumber}/${scheduledDeparture}`
-      )).data;
+      reihung = (
+        await axios.get(
+          `/api/reihung/v1/wagen/${trainNumber}/${scheduledDeparture}`
+        )
+      ).data;
     } catch (e) {
       reihung = null;
     }

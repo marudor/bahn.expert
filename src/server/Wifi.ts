@@ -27,12 +27,14 @@ async function fetchWifiData() {
   }
   // eslint-disable-next-line no-console
   console.log('Fetching WifiData');
-  const data: WifiData = (await axios.get(url, {
-    auth: {
-      username,
-      password,
-    },
-  })).data;
+  const data: WifiData = (
+    await axios.get(url, {
+      auth: {
+        username,
+        password,
+      },
+    })
+  ).data;
 
   // error handling if transmission failed
   if (data && data.traindata) {

@@ -3,6 +3,7 @@ import '@testing-library/jest-dom/extend-expect';
 import { cleanup } from '@testing-library/react';
 import Nock from 'nock';
 
+// eslint-disable-next-line jest/no-standalone-expect
 expect(new Date().getTimezoneOffset()).toBe(0);
 
 afterEach(() => {

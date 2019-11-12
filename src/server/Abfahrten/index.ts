@@ -103,10 +103,9 @@ export async function getAbfahrten(
     },
     axios
   );
-  const result = (await Promise.all([
-    timetable.start(),
-    relatedAbfahrten,
-  ])).reduce(reduceResults, baseResult);
+  const result = (
+    await Promise.all([timetable.start(), relatedAbfahrten])
+  ).reduce(reduceResults, baseResult);
 
   result.departures.sort(sortAbfahrt(timeByScheduled));
   result.lookbehind.sort(sortAbfahrt(timeByReal));

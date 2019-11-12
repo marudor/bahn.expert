@@ -475,18 +475,15 @@ export default class Timetable {
       mediumId,
       rawId,
       initialDeparture,
-      messages: Object.keys(messages).reduce(
-        (agg, messageKey) => {
-          const messageValues = Object.values(messages[messageKey]);
+      messages: Object.keys(messages).reduce((agg, messageKey) => {
+        const messageValues = Object.values(messages[messageKey]);
 
-          agg[messageKey] = messageValues.sort((a, b) =>
-            compareDesc(a.timestamp, b.timestamp)
-          );
+        agg[messageKey] = messageValues.sort((a, b) =>
+          compareDesc(a.timestamp, b.timestamp)
+        );
 
-          return agg;
-        },
-        {} as { [key: string]: any[] }
-      ),
+        return agg;
+      }, {} as { [key: string]: any[] }),
       arrival: parseRealtimeAr(ar),
       departure: parseDp(dp),
       ref: ref ? this.parseRef(ref) : undefined,
@@ -683,7 +680,7 @@ export default class Timetable {
         trainCategory,
         ...splitTrainType(fullTrainText, trainNumber),
       },
-      additional: undefined as (undefined | boolean),
+      additional: undefined as undefined | boolean,
     };
   }
   getTimetable(rawXml: string) {
