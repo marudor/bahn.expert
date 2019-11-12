@@ -16,12 +16,14 @@ export default async (rawSearchTerm: string): Promise<Station[]> => {
     searchTerm.replace(/ /g, '*')
   )}*`;
 
-  const result = (await axios.get<{ result: OpenDataStation[] }>(url, {
-    withCredentials: true,
-    headers: {
-      Authorization: authKey,
-    },
-  })).data;
+  const result = (
+    await axios.get<{ result: OpenDataStation[] }>(url, {
+      withCredentials: true,
+      headers: {
+        Authorization: authKey,
+      },
+    })
+  ).data;
 
   return result.result.map(s => ({
     title: s.name,

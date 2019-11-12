@@ -26,20 +26,22 @@ export default () => {
     setError(undefined);
     setRoutes(undefined);
     try {
-      const routingResult: RoutingResult = (await Axios.post(
-        '/api/hafas/v1/route',
-        {
-          start: start.id,
-          destination: destination.id,
-          time: (date || new Date()).getTime(),
-          ...settings,
-        },
-        {
-          params: {
-            profile: settings.hafasProfile,
+      const routingResult: RoutingResult = (
+        await Axios.post(
+          '/api/hafas/v1/route',
+          {
+            start: start.id,
+            destination: destination.id,
+            time: (date || new Date()).getTime(),
+            ...settings,
           },
-        }
-      )).data;
+          {
+            params: {
+              profile: settings.hafasProfile,
+            },
+          }
+        )
+      ).data;
 
       setRoutes(routingResult.routes);
       setEarlierContext(routingResult.context.earlier);
@@ -62,19 +64,21 @@ export default () => {
     async (type: 'earlier' | 'later') => {
       if (!start || !destination) return;
 
-      const routingResult: RoutingResult = (await Axios.post(
-        '/api/hafas/v1/route',
-        {
-          start: start.id,
-          destination: destination.id,
-          ctxScr: type === 'earlier' ? earlierContext : laterContext,
-        },
-        {
-          params: {
-            profile: settings.hafasProfile,
+      const routingResult: RoutingResult = (
+        await Axios.post(
+          '/api/hafas/v1/route',
+          {
+            start: start.id,
+            destination: destination.id,
+            ctxScr: type === 'earlier' ? earlierContext : laterContext,
           },
-        }
-      )).data;
+          {
+            params: {
+              profile: settings.hafasProfile,
+            },
+          }
+        )
+      ).data;
 
       setRoutes((oldRoutes = []) => {
         let newRoutes;

@@ -12,11 +12,13 @@ export async function getLageplan(stationName: string) {
   // undefined = haven't tried yet
   // null = already tried to fetch, but nothing found
   if (cached === null) return undefined;
-  const searchHtml: string = (await axios.get(
-    `https://www.bahnhof.de/service/search/bahnhof-de/520608?${qs.stringify({
-      query: stationName,
-    })}`
-  )).data;
+  const searchHtml: string = (
+    await axios.get(
+      `https://www.bahnhof.de/service/search/bahnhof-de/520608?${qs.stringify({
+        query: stationName,
+      })}`
+    )
+  ).data;
 
   let $ = cheerio.load(searchHtml);
   const firstResultLink = $('#result .title > a')
@@ -29,9 +31,9 @@ export async function getLageplan(stationName: string) {
     return undefined;
   }
 
-  const bahnhofHtml = (await axios.get(
-    `https://www.bahnhof.de${firstResultLink}`
-  )).data;
+  const bahnhofHtml = (
+    await axios.get(`https://www.bahnhof.de${firstResultLink}`)
+  ).data;
 
   $ = cheerio.load(bahnhofHtml);
   const rawPdfLink = $('.bahnhof > .embeddedDownload > .download-asset > a')

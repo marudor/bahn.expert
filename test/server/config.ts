@@ -1,6 +1,7 @@
 import 'core-js/stable';
 import Nock from 'nock';
 
+// eslint-disable-next-line jest/no-standalone-expect
 expect(new Date().getTimezoneOffset()).toBe(0);
 
 beforeAll(() => {

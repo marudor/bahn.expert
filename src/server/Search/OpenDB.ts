@@ -17,9 +17,11 @@ export default async (rawSearchTerm: string): Promise<Station[]> => {
   if (searchTerm.length === 2) {
     searchTerm = searchTerm[0];
   }
-  const result = (await axios.get<OpenDBResult>(
-    `https://open-api.bahn.de/bin/rest.exe/location.name?format=json&input=${searchTerm}&products=1&authKey=${authKey}`
-  )).data;
+  const result = (
+    await axios.get<OpenDBResult>(
+      `https://open-api.bahn.de/bin/rest.exe/location.name?format=json&input=${searchTerm}&products=1&authKey=${authKey}`
+    )
+  ).data;
 
   if (!Array.isArray(result.LocationList.StopLocation)) {
     result.LocationList.StopLocation = [result.LocationList.StopLocation];
