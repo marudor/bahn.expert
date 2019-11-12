@@ -38,23 +38,25 @@ export default async (
       date = now.getTime();
     }
   }
-  const buffer = (await axios.get(profile.url, {
-    params: {
-      L: 'vs_json',
-      date: format(date, 'dd.MM.yyyy'),
-      trainname: trainName,
-      // Nur Züge die in DE halten
-      stationFilter: profile.number,
-      // evtl benutzen
-      // 1: ICE
-      // 2: IC/EC
-      // 4: RE
-      // 8: RB
-      // 16: S
-      productClassFilter: 31,
-    },
-    responseType: 'arraybuffer',
-  })).data;
+  const buffer = (
+    await axios.get(profile.url, {
+      params: {
+        L: 'vs_json',
+        date: format(date, 'dd.MM.yyyy'),
+        trainname: trainName,
+        // Nur Züge die in DE halten
+        stationFilter: profile.number,
+        // evtl benutzen
+        // 1: ICE
+        // 2: IC/EC
+        // 4: RE
+        // 8: RB
+        // 16: S
+        productClassFilter: 31,
+      },
+      responseType: 'arraybuffer',
+    })
+  ).data;
   const rawReply = iconv.decode(buffer, 'latin-1').trim();
 
   const stringReply = rawReply.substring(11, rawReply.length - 1);

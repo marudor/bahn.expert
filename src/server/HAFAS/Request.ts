@@ -186,13 +186,11 @@ async function makeRequest<
     // eslint-disable-next-line no-console
     console.log(extraParam);
   }
-  const r = (await axios.post<HafasResponse<HR>>(
-    HafasProfiles[profile].url,
-    data,
-    {
+  const r = (
+    await axios.post<HafasResponse<HR>>(HafasProfiles[profile].url, data, {
       params: extraParam,
-    }
-  )).data;
+    })
+  ).data;
 
   if (r.err !== 'OK' || r.svcResL[0].err !== 'OK') {
     throw new HafasError(request, r, profile);

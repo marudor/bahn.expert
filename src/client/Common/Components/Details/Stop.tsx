@@ -67,7 +67,7 @@ const Stop = ({ stop, showWR }: Props) => {
       {/* {stop.messages && <div>{stop.messages.map(m => m.txtN)}</div>} */}
       <Platform className={classes.platform} {...platforms} />
       <div className={classes.wr}>
-        {showWR && (depOrArrival && depOrArrival.reihung) && showWR.number && (
+        {showWR && depOrArrival && depOrArrival.reihung && showWR.number && (
           <Reihung
             useZoom
             trainNumber={showWR.number}

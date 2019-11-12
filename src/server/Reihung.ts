@@ -450,9 +450,11 @@ export async function wagenreihung(trainNumber: string, date: number) {
   let info: Wagenreihung;
 
   try {
-    info = (await axios.get(
-      `https://www.apps-bahn.de/wr/wagenreihung/1.0/${trainNumber}/${parsedDate}`
-    )).data;
+    info = (
+      await axios.get(
+        `https://www.apps-bahn.de/wr/wagenreihung/1.0/${trainNumber}/${parsedDate}`
+      )
+    ).data;
   } catch (e) {
     throw {
       response: {
@@ -565,12 +567,14 @@ export async function wagenreihungStation(
   trainNumbers: string[],
   station: string
 ) {
-  const info: WagenreihungStation = (await axios.post(
-    `https://ws.favendo.de/wagon-order/rest/v1/si/${station}`,
-    trainNumbers.map(trainNumber => ({
-      trainNumber,
-    }))
-  )).data;
+  const info: WagenreihungStation = (
+    await axios.post(
+      `https://ws.favendo.de/wagon-order/rest/v1/si/${station}`,
+      trainNumbers.map(trainNumber => ({
+        trainNumber,
+      }))
+    )
+  ).data;
 
   return info;
 }
