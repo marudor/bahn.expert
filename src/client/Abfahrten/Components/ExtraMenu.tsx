@@ -2,7 +2,7 @@ import { __RouterContext } from 'react-router';
 import { IconButton } from '@material-ui/core';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import AbfahrtenContainer from 'Abfahrten/container/AbfahrtenContainer';
-import ActionMenu from '@material-ui/icons/Menu';
+import ActionTune from '@material-ui/icons/Tune';
 import FavContainer, {
   useFav,
   useUnfav,
@@ -67,11 +67,11 @@ const ExtraMenu = () => {
       <FilterModal />
       <IconButton
         data-testid="menu"
-        aria-label="Menu"
+        aria-label="Tune"
         onClick={toggleMenu}
         color="inherit"
       >
-        <ActionMenu />
+        <ActionTune />
       </IconButton>
       <Menu open={Boolean(anchor)} anchorEl={anchor} onClose={toggleMenu}>
         {currentStation && [
