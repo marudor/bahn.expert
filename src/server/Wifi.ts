@@ -3,6 +3,7 @@ import axios from 'axios';
 
 interface APWithTrain extends AP {
   trainTimestamp: number;
+  trainBR: string;
 }
 
 type TransformedWifiData = Record<string, APWithTrain>;
@@ -21,7 +22,7 @@ if (process.env.NODE_ENV !== 'test') {
 
 let wifiData: TransformedWifiData;
 
-async function fetchWifiData() {
+export async function fetchWifiData() {
   if (!url || !username || !password) {
     return;
   }
@@ -52,6 +53,7 @@ function transformWifiData(data: WifiData) {
       result[ap.uic.replace('-', '')] = {
         ...ap,
         trainTimestamp: td.timestamp * 1000,
+        trainBR: td.train.br,
       };
     });
   });
