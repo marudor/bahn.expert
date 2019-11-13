@@ -4,15 +4,16 @@ import {
   AdditionalFahrzeugInfo,
   BRInfo,
   Fahrzeug,
+  Fahrzeuggruppe,
   Formation,
   Wagenreihung,
   WagenreihungStation,
 } from 'types/reihung';
 import { convertToTimeZone } from 'date-fns-timezone';
-import { flatten, groupBy, maxBy, minBy } from 'lodash';
 import { format, isAfter, subDays } from 'date-fns';
 import { getAbfahrten } from './Abfahrten';
 import { getAP } from 'server/Wifi';
+import { groupBy, maxBy, minBy } from 'lodash';
 import axios from 'axios';
 
 // Rausfinden ob alle Teile zum gleichen Ort fahren
@@ -344,7 +345,11 @@ function fahrtrichtung(fahrzeuge: Fahrzeug[]) {
   );
 }
 
-function enrichFahrzeug(fahrzeug: Fahrzeug, trainNumber: string) {
+function enrichFahrzeug(
+  fahrzeug: Fahrzeug,
+  trainNumber: string,
+  gruppe: Fahrzeuggruppe
+) {
   const data: AdditionalFahrzeugInfo = {
     klasse: 0,
   };
@@ -435,6 +440,10 @@ function enrichFahrzeug(fahrzeug: Fahrzeug, trainNumber: string) {
     } else {
       data.wifiOff = true;
     }
+
+    if (gruppe.br && ap.trainBR === 'BR403RD') {
+      gruppe.br.redesign = true;
+    }
   }
 
   fahrzeug.additionalInfo = data;
@@ -465,12 +474,6 @@ export async function wagenreihung(trainNumber: string, date: number) {
     };
   }
 
-  const fahrzeuge = flatten(
-    info.data.istformation.allFahrzeuggruppe.map(g => g.allFahrzeug)
-  );
-
-  fahrzeuge.forEach(fahrzeug => enrichFahrzeug(fahrzeug, trainNumber));
-
   let startPercentage = 100;
   let endPercentage = 0;
 
@@ -486,7 +489,32 @@ export async function wagenreihung(trainNumber: string, date: number) {
     info.data.istformation.zuggattung = 'IC';
   }
 
+  const fahrzeuge: Fahrzeug[] = [];
+
   info.data.istformation.allFahrzeuggruppe.forEach(g => {
+    if (
+      ['IC', 'EC', 'ICE', 'ECE'].includes(info.data.istformation.zuggattung)
+    ) {
+      const gruppenFahrzeugTypes = g.allFahrzeug.map(f => f.fahrzeugtyp);
+
+      g.br = specificBR(
+        g.allFahrzeug,
+        gruppenFahrzeugTypes,
+        info.data.istformation
+      );
+      if (g.br) {
+        g.br.country = getCountry(g.allFahrzeug, gruppenFahrzeugTypes);
+        g.br.showBRInfo = Boolean(
+          g.br.BR || !g.br.noPdf || (g.br.country && g.br.country !== 'DE')
+        );
+      }
+    }
+
+    g.allFahrzeug.forEach(fahrzeug => {
+      enrichFahrzeug(fahrzeug, trainNumber, g);
+      fahrzeuge.push(fahrzeug);
+    });
+
     const minFahrzeug = minBy(g.allFahrzeug, f =>
       Number.parseInt(f.positionamhalt.startprozent, 10)
     );
@@ -505,24 +533,6 @@ export async function wagenreihung(trainNumber: string, date: number) {
         maxFahrzeug.positionamhalt.endeprozent,
         10
       );
-    }
-
-    if (
-      ['IC', 'EC', 'ICE', 'ECE'].includes(info.data.istformation.zuggattung)
-    ) {
-      const gruppenFahrzeugTypes = g.allFahrzeug.map(f => f.fahrzeugtyp);
-
-      g.br = specificBR(
-        g.allFahrzeug,
-        gruppenFahrzeugTypes,
-        info.data.istformation
-      );
-      if (g.br) {
-        g.br.country = getCountry(g.allFahrzeug, gruppenFahrzeugTypes);
-        g.br.showBRInfo = Boolean(
-          g.br.BR || !g.br.noPdf || (g.br.country && g.br.country !== 'DE')
-        );
-      }
     }
   });
 
