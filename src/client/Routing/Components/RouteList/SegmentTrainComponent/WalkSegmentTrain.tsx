@@ -12,7 +12,7 @@ interface Props {
 const WalkSegmentTrain = ({ segment, className }: Props) => {
   const classes = useStyles();
 
-  const mapsLink = `https://www.google.com/maps/dir/?api=1&origin=${segment.segmentStart.coordinates.lat},${segment.segmentStart.coordinates.lng}&destination=${segment.segmentDestination.coordinates.lat},${segment.segmentDestination.coordinates.lng}&travelmode=walking`;
+  const mapsLink = `https://www.openstreetmap.org/directions?engine=graphhopper_foot&route=${segment.segmentStart.coordinates.lat}%2C${segment.segmentStart.coordinates.lng}%3B${segment.segmentDestination.coordinates.lat}%2C${segment.segmentDestination.coordinates.lng}`;
 
   return (
     <div className={className}>
