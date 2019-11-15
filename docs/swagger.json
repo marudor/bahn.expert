@@ -2371,50 +2371,6 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"BRInfo": {
-				"properties": {
-					"name": {
-						"type": "string"
-					},
-					"BR": {
-						"type": "string",
-						"nullable": true
-					},
-					"serie": {
-						"type": "string",
-						"nullable": true
-					},
-					"redesign": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"noPdf": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"pdf": {
-						"type": "string",
-						"nullable": true
-					},
-					"country": {
-						"type": "string",
-						"enum": [
-							"DE",
-							"AT"
-						],
-						"nullable": true
-					},
-					"showBRInfo": {
-						"type": "boolean",
-						"nullable": true
-					}
-				},
-				"required": [
-					"name"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
 			"AdditionalFahrzeugInfo": {
 				"properties": {
 					"klasse": {
@@ -2505,12 +2461,106 @@
 			},
 			"Fahrzeug": {
 				"properties": {
+					"allFahrzeugausstattung": {
+						"items": {
+							"$ref": "#/components/schemas/Fahrzeugausstattung"
+						},
+						"type": "array"
+					},
+					"kategorie": {
+						"type": "string"
+					},
+					"fahrzeugnummer": {
+						"type": "string"
+					},
+					"orientierung": {
+						"type": "string"
+					},
+					"positioningruppe": {
+						"type": "string"
+					},
+					"fahrzeugsektor": {
+						"type": "string"
+					},
+					"fahrzeugtyp": {
+						"type": "string"
+					},
+					"wagenordnungsnummer": {
+						"type": "string"
+					},
+					"positionamhalt": {
+						"additionalProperties": true,
+						"type": "object"
+					},
+					"status": {
+						"type": "string"
+					},
 					"additionalInfo": {
 						"$ref": "#/components/schemas/AdditionalFahrzeugInfo"
+					}
+				},
+				"required": [
+					"allFahrzeugausstattung",
+					"kategorie",
+					"fahrzeugnummer",
+					"orientierung",
+					"positioningruppe",
+					"fahrzeugsektor",
+					"fahrzeugtyp",
+					"wagenordnungsnummer",
+					"positionamhalt",
+					"status",
+					"additionalInfo"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"BRInfo": {
+				"properties": {
+					"name": {
+						"type": "string"
 					},
-					"goesToFrance": {
-						"type": "boolean"
+					"BR": {
+						"type": "string",
+						"nullable": true
 					},
+					"serie": {
+						"type": "string",
+						"nullable": true
+					},
+					"redesign": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"noPdf": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"pdf": {
+						"type": "string",
+						"nullable": true
+					},
+					"country": {
+						"type": "string",
+						"enum": [
+							"DE",
+							"AT"
+						],
+						"nullable": true
+					},
+					"showBRInfo": {
+						"type": "boolean",
+						"nullable": true
+					}
+				},
+				"required": [
+					"name"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"BaseFahrzeug": {
+				"properties": {
 					"allFahrzeugausstattung": {
 						"items": {
 							"$ref": "#/components/schemas/Fahrzeugausstattung"
@@ -2547,8 +2597,6 @@
 					}
 				},
 				"required": [
-					"additionalInfo",
-					"goesToFrance",
 					"allFahrzeugausstattung",
 					"kategorie",
 					"fahrzeugnummer",
@@ -2565,18 +2613,6 @@
 			},
 			"Fahrzeuggruppe": {
 				"properties": {
-					"startPercentage": {
-						"type": "number",
-						"format": "double"
-					},
-					"endPercentage": {
-						"type": "number",
-						"format": "double"
-					},
-					"br": {
-						"$ref": "#/components/schemas/BRInfo",
-						"nullable": true
-					},
 					"allFahrzeug": {
 						"items": {
 							"$ref": "#/components/schemas/Fahrzeug"
@@ -2594,11 +2630,58 @@
 					},
 					"verkehrlichezugnummer": {
 						"type": "string"
+					},
+					"goesToFrance": {
+						"type": "boolean"
+					},
+					"startPercentage": {
+						"type": "number",
+						"format": "double"
+					},
+					"endPercentage": {
+						"type": "number",
+						"format": "double"
+					},
+					"br": {
+						"$ref": "#/components/schemas/BRInfo",
+						"nullable": true
 					}
 				},
 				"required": [
+					"allFahrzeug",
+					"fahrzeuggruppebezeichnung",
+					"zielbetriebsstellename",
+					"startbetriebsstellename",
+					"verkehrlichezugnummer",
+					"goesToFrance",
 					"startPercentage",
-					"endPercentage",
+					"endPercentage"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"BaseFahrzeuggruppe": {
+				"properties": {
+					"allFahrzeug": {
+						"items": {
+							"$ref": "#/components/schemas/BaseFahrzeug"
+						},
+						"type": "array"
+					},
+					"fahrzeuggruppebezeichnung": {
+						"type": "string"
+					},
+					"zielbetriebsstellename": {
+						"type": "string"
+					},
+					"startbetriebsstellename": {
+						"type": "string"
+					},
+					"verkehrlichezugnummer": {
+						"type": "string"
+					}
+				},
+				"required": [
 					"allFahrzeug",
 					"fahrzeuggruppebezeichnung",
 					"zielbetriebsstellename",
@@ -2678,39 +2761,6 @@
 						],
 						"description": "Should always be VORWAERTS"
 					},
-					"isActuallyIC": {
-						"type": "boolean",
-						"description": "Train is reported as ICE but has IC coach sequence"
-					},
-					"reportedZuggattung": {
-						"type": "string",
-						"description": "Train Category that was reported",
-						"nullable": true
-					},
-					"differentDestination": {
-						"type": "boolean",
-						"description": "do groups have a different destination"
-					},
-					"differentZugnummer": {
-						"type": "boolean",
-						"description": "Do we have several trains in one? (Flügelung)"
-					},
-					"scale": {
-						"type": "number",
-						"format": "double"
-					},
-					"startPercentage": {
-						"type": "number",
-						"format": "double"
-					},
-					"endPercentage": {
-						"type": "number",
-						"format": "double"
-					},
-					"realFahrtrichtung": {
-						"type": "boolean",
-						"description": "true = Vorwärts"
-					},
 					"allFahrzeuggruppe": {
 						"items": {
 							"$ref": "#/components/schemas/Fahrzeuggruppe"
@@ -2743,20 +2793,43 @@
 					"istplaninformation": {
 						"type": "boolean"
 					},
-					"br": {
-						"$ref": "#/components/schemas/BRInfo",
+					"isActuallyIC": {
+						"type": "boolean",
+						"description": "Train is reported as ICE but has IC coach sequence"
+					},
+					"reportedZuggattung": {
+						"type": "string",
+						"description": "Train Category that was reported"
+					},
+					"differentDestination": {
+						"type": "boolean",
+						"description": "do groups have a different destination",
 						"nullable": true
+					},
+					"differentZugnummer": {
+						"type": "boolean",
+						"description": "Do we have several trains in one? (Flügelung)",
+						"nullable": true
+					},
+					"scale": {
+						"type": "number",
+						"format": "double"
+					},
+					"startPercentage": {
+						"type": "number",
+						"format": "double"
+					},
+					"endPercentage": {
+						"type": "number",
+						"format": "double"
+					},
+					"realFahrtrichtung": {
+						"type": "boolean",
+						"description": "true = Vorwärts"
 					}
 				},
 				"required": [
 					"fahrtrichtung",
-					"isActuallyIC",
-					"differentDestination",
-					"differentZugnummer",
-					"scale",
-					"startPercentage",
-					"endPercentage",
-					"realFahrtrichtung",
 					"allFahrzeuggruppe",
 					"halt",
 					"liniebezeichung",
@@ -2765,7 +2838,13 @@
 					"serviceid",
 					"planstarttag",
 					"fahrtid",
-					"istplaninformation"
+					"istplaninformation",
+					"isActuallyIC",
+					"reportedZuggattung",
+					"scale",
+					"startPercentage",
+					"endPercentage",
+					"realFahrtrichtung"
 				],
 				"type": "object",
 				"additionalProperties": false
