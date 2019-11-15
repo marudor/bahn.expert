@@ -2,18 +2,13 @@ import { Station } from 'types/station';
 import { useHistory } from 'react-router';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import AbfahrtenContainer from 'Abfahrten/container/AbfahrtenContainer';
-import ActionMenu from '@material-ui/icons/Menu';
-import AppBar from '@material-ui/core/AppBar';
+import BaseHeader from 'Common/Components/BaseHeader';
 import ExtraMenu from './ExtraMenu';
-import IconButton from '@material-ui/core/IconButton';
 import MetaTags from './MetaTags';
-import NavigationContext from 'Common/Components/Navigation/NavigationContext';
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import StationSearch from 'Common/Components/StationSearch';
-import Toolbar from '@material-ui/core/Toolbar';
 
 const Header = () => {
-  const { toggleDrawer } = useContext(NavigationContext);
   const { currentStation } = AbfahrtenContainer.useContainer();
   const searchType = AbfahrtenConfigContainer.useContainer().config.searchType;
   const history = useHistory();
@@ -38,29 +33,19 @@ const Header = () => {
   return (
     <>
       <MetaTags currentStation={currentStation} baseUrl={global.baseUrl} />
-      <AppBar data-testid="abfahrtenHeader" position="fixed">
-        <Toolbar disableGutters>
-          <IconButton
-            data-testid="home"
-            aria-label="Home"
-            onClick={toggleDrawer}
-            color="inherit"
-          >
-            <ActionMenu color="inherit" />
-          </IconButton>
-          <StationSearch
-            id="abfahrtenHeaderSearch"
-            autoFocus={!currentStation}
-            searchType={searchType}
-            value={currentEnteredStation}
-            onChange={submit}
-            placeholder={`Station (z.B. ${
-              currentStation ? currentStation.title : 'Kiel Hbf'
-            })`}
-          />
-          <ExtraMenu />
-        </Toolbar>
-      </AppBar>
+      <BaseHeader>
+        <StationSearch
+          id="abfahrtenHeaderSearch"
+          autoFocus={!currentStation}
+          searchType={searchType}
+          value={currentEnteredStation}
+          onChange={submit}
+          placeholder={`Station (z.B. ${
+            currentStation ? currentStation.title : 'Kiel Hbf'
+          })`}
+        />
+        <ExtraMenu />
+      </BaseHeader>
     </>
   );
 };

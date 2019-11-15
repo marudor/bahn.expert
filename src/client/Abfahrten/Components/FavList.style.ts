@@ -1,10 +1,9 @@
 import { makeStyles } from '@material-ui/styles';
 
-export default makeStyles(theme => ({
+export default makeStyles({
   main: {
-    marginTop: theme.shape.headerSpacing,
     display: 'flex',
     flexDirection: 'column',
     flex: 1,
   },
-}));
+});
