@@ -61,3 +61,4 @@ research/
 cypress/videos/
 cypress/screenshots/
 junit.xml
+config.local.js

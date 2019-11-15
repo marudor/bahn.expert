@@ -3,6 +3,7 @@ import { middlewares } from './logger';
 import { Server as NetServer } from 'net';
 import { Server } from 'https';
 import axios from 'axios';
+import config from './config';
 import cookiesMiddleware from 'universal-cookie-koa';
 import createAdmin from './admin';
 import http from 'http';
@@ -24,10 +25,8 @@ function hotHelper(getMiddleware: () => Middleware) {
 export function createApp(wsServer?: Server) {
   const app = new Koa();
 
-  const sentryDSN = process.env.SENTRY_DSN;
-
-  if (sentryDSN && process.env.NODE_ENV !== 'test') {
-    Sentry.init({ dsn: sentryDSN, environment: process.env.ENVIRONMENT });
+  if (config.sentryDSN && process.env.NODE_ENV !== 'test') {
+    Sentry.init({ dsn: config.sentryDSN, environment: config.environment });
   }
 
   let apiRoutes = require('./API').default;
@@ -118,8 +117,6 @@ export function createApp(wsServer?: Server) {
 }
 
 export default () => {
-  const port = process.env.WEB_PORT || 9042;
-
   let server: NetServer;
   let wsServer: undefined | Server;
 
@@ -143,15 +140,15 @@ export default () => {
       key,
       cert,
     });
-    axios.defaults.baseURL = `https://local.marudor.de:${port}`;
+    axios.defaults.baseURL = `https://local.marudor.de:${config.port}`;
   } else {
-    axios.defaults.baseURL = `http://localhost:${port}`;
+    axios.defaults.baseURL = `http://localhost:${config.port}`;
     server = http.createServer();
   }
   const app = createApp(wsServer);
 
   server.addListener('request', app.callback());
-  server.listen(port);
+  server.listen(config.port);
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line no-console
     console.log('running in DEV mode!');

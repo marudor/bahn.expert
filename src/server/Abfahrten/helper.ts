@@ -1,16 +1,24 @@
 import { Element } from 'libxmljs2';
+import { logger } from 'server/logger';
 import { parseFromTimeZone } from 'date-fns-timezone';
 import Axios from 'axios';
+import config from 'server/config';
 
 export const noncdAxios = Axios.create({
   baseURL: 'https://iris.noncd.db.de/iris-tts/timetable',
 });
-export const openDataAxios = Axios.create({
-  baseURL: 'https://api.deutschebahn.com/timetables/v1',
-  headers: {
-    Authorization: `Bearer ${process.env.TIMETABLES_OPEN_DATA_KEY || ''}`,
-  },
-});
+export const openDataAxios = config.timetableOpenDataAuthKey
+  ? Axios.create({
+      baseURL: 'https://api.deutschebahn.com/timetables/v1',
+      headers: {
+        Authorization: `Bearer ${config.timetableOpenDataAuthKey}`,
+      },
+    })
+  : noncdAxios;
+
+if (!config.timetableOpenDataAuthKey) {
+  logger.warn('Timetable Open Data key missing, only noncd available');
+}
 
 export function getAttr(
   node: null | Element,

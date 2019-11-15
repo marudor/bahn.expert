@@ -10,13 +10,16 @@ import { setCookieOptions } from 'client/util';
 import { StaticRouter } from 'react-router-dom';
 import { StaticRouterContext } from 'react-router';
 import { ThemeProvider } from 'Common/container/ThemeContainer';
+import config from './config';
 import ejs from 'ejs';
 import fs from 'fs';
 import path from 'path';
 import React from 'react';
 import ThemeWrap from 'client/ThemeWrap';
 
-global.baseUrl = process.env.BASE_URL || '';
+global.baseUrl = config.baseUrl;
+global.IMPRINT = config.imprint;
+
 const headerFilename = path.resolve(__dirname, './views/header.ejs');
 // eslint-disable-next-line
 const headerEjs = fs.readFileSync(headerFilename, 'utf8').trim();
@@ -82,7 +85,7 @@ export default (ctx: Context) => {
     }
 
     ctx.body = headerTemplate({
-      tagmanager: process.env.TAGMANAGER_ID,
+      tagmanager: config.tagmanagerId,
       header: context.helmet,
       cssTags: extractor.getStyleTags(),
       linkTags: extractor.getLinkTags(),

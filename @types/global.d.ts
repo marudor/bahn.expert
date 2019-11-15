@@ -10,9 +10,9 @@ declare global {
       SERVER: boolean;
       VERSION: string;
       IMPRINT: {
-        name: string;
-        street: string;
-        town: string;
+        name?: string;
+        street?: string;
+        town?: string;
       };
       smallScreen: boolean;
       baseUrl: string;

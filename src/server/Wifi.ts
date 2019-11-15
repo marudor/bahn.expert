@@ -1,5 +1,6 @@
 import { AP, WifiData } from 'types/Wifi';
 import axios from 'axios';
+import config from 'server/config';
 
 interface APWithTrain extends AP {
   trainTimestamp: number;
@@ -8,9 +9,6 @@ interface APWithTrain extends AP {
 
 type TransformedWifiData = Record<string, APWithTrain>;
 
-const url = process.env.WIFI_URL;
-const username = process.env.WIFI_USER;
-const password = process.env.WIFI_PASS;
 const refreshTime =
   Number.parseInt(process.env.WIFI_REFRESH || '5', 10) * 60 * 1000;
 
@@ -23,16 +21,16 @@ if (process.env.NODE_ENV !== 'test') {
 let wifiData: TransformedWifiData;
 
 export async function fetchWifiData() {
-  if (!url || !username || !password) {
+  if (!config.wifi) {
     return;
   }
   // eslint-disable-next-line no-console
   console.log('Fetching WifiData');
   const data: WifiData = (
-    await axios.get(url, {
+    await axios.get(config.wifi.url, {
       auth: {
-        username,
-        password,
+        username: config.wifi.user,
+        password: config.wifi.pass,
       },
     })
   ).data;

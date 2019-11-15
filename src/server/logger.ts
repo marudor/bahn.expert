@@ -2,8 +2,9 @@ import bunyan, { INFO } from 'bunyan';
 import bunyanFormat from 'bunyan-format';
 import bunyanLoggly from 'bunyan-loggly';
 import bunyanMiddleware from 'koa-bunyan-logger';
+import config from 'server/config';
 
-const config = {
+const logglyConfig = {
   level: INFO,
   name: 'application',
   origin: 'BahnhofsAbfahrten',
@@ -17,24 +18,18 @@ const config = {
   serializers: bunyan.stdSerializers,
 };
 
-const token = process.env.LOGGLY_TOKEN;
-const subdomain = process.env.LOGGLY_SUBDOMAIN;
-
 // istanbul ignore next
-if (process.env.NODE_ENV === 'production' && token && subdomain) {
+if (process.env.NODE_ENV === 'production' && config.loggly) {
   // eslint-disable-next-line
   console.log('Using loggly to log');
-  config.streams.push({
+  logglyConfig.streams.push({
     // @ts-ignore
-    stream: new bunyanLoggly({
-      token,
-      subdomain,
-    }),
+    stream: new bunyanLoggly(config.loggly),
     type: 'raw',
   });
 }
 
-export const logger = bunyan.createLogger(config);
+export const logger = bunyan.createLogger(logglyConfig);
 export const middlewares = [bunyanMiddleware(logger)];
 if (process.env.NODE_ENV !== 'test') {
   middlewares.push(bunyanMiddleware.requestLogger());
