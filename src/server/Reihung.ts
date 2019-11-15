@@ -16,30 +16,6 @@ import { getAP } from 'server/Wifi';
 import { groupBy, maxBy, minBy } from 'lodash';
 import axios from 'axios';
 
-// Rausfinden ob alle Teile zum gleichen Ort fahren
-function differentDestination(formation: Formation) {
-  const groups = formation.allFahrzeuggruppe;
-
-  if (groups.length > 1) {
-    const firstDestination = groups[0].zielbetriebsstellename;
-
-    return groups.some(g => g.zielbetriebsstellename !== firstDestination);
-  }
-
-  return false;
-}
-
-function differentZugunummer(formation: Formation) {
-  return formation.allFahrzeuggruppe.length <= 1
-    ? false
-    : formation.allFahrzeuggruppe.every((nummer, index, array) =>
-        index > 0
-          ? array[index - 1].verkehrlichezugnummer !==
-            nummer.verkehrlichezugnummer
-          : true
-      );
-}
-
 const getATBR = (
   code: string,
   _serial: string,
@@ -345,11 +321,7 @@ function fahrtrichtung(fahrzeuge: Fahrzeug[]) {
   );
 }
 
-function enrichFahrzeug(
-  fahrzeug: Fahrzeug,
-  trainNumber: string,
-  gruppe: Fahrzeuggruppe
-) {
+function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
   const data: AdditionalFahrzeugInfo = {
     klasse: 0,
   };
@@ -420,13 +392,7 @@ function enrichFahrzeug(
     }
   });
 
-  // https://inside.bahn.de/entstehung-zugnummern/?dbkanal_006=L01_S01_D088_KTL0006_INSIDE-BAHN-2019_Zugnummern_LZ01
-  const trainNumberAsNumber = Number.parseInt(trainNumber, 10);
-
-  fahrzeug.goesToFrance =
-    trainNumberAsNumber >= 9550 && trainNumberAsNumber <= 9599;
-
-  if (fahrzeug.goesToFrance) {
+  if (gruppe.goesToFrance) {
     data.comfort = false;
     data.schwebe = false;
     data.familie = false;
@@ -474,34 +440,64 @@ export async function wagenreihung(trainNumber: string, date: number) {
     };
   }
 
+  // @ts-ignore - We're enriching information now.
+  const enrichedFormation: Formation = info.data.istformation;
+
   let startPercentage = 100;
   let endPercentage = 0;
 
+  const reallyHasReihung = enrichedFormation.allFahrzeuggruppe.every(g =>
+    g.allFahrzeug.every(f => {
+      const start = Number.parseInt(f.positionamhalt.startprozent, 10);
+      const end = Number.parseInt(f.positionamhalt.endeprozent, 10);
+
+      if (!start && !end) return false;
+
+      if (start < startPercentage) {
+        startPercentage = start;
+      }
+      if (end > endPercentage) {
+        endPercentage = end;
+      }
+
+      return true;
+    })
+  );
+
+  if (!reallyHasReihung) {
+    throw { status: 404 };
+  }
+
   const isActuallyIC =
-    info.data.istformation.zuggattung === 'ICE' &&
-    info.data.istformation.allFahrzeuggruppe.some(
+    enrichedFormation.zuggattung === 'ICE' &&
+    enrichedFormation.allFahrzeuggruppe.some(
       g => g.allFahrzeug.length === 1 && g.allFahrzeug[0].fahrzeugtyp === 'E'
     );
 
   if (isActuallyIC) {
-    info.data.istformation.reportedZuggattung =
-      info.data.istformation.zuggattung;
-    info.data.istformation.zuggattung = 'IC';
+    enrichedFormation.reportedZuggattung = enrichedFormation.zuggattung;
+    enrichedFormation.zuggattung = 'IC';
   }
 
   const fahrzeuge: Fahrzeug[] = [];
 
-  info.data.istformation.allFahrzeuggruppe.forEach(g => {
-    if (
-      ['IC', 'EC', 'ICE', 'ECE'].includes(info.data.istformation.zuggattung)
-    ) {
+  enrichedFormation.differentDestination = false;
+  enrichedFormation.differentZugnummer = false;
+  enrichedFormation.allFahrzeuggruppe.forEach((g, index, gruppen) => {
+    if (index > 0) {
+      const previousGruppe = gruppen[index - 1];
+
+      if (previousGruppe.verkehrlichezugnummer !== g.verkehrlichezugnummer) {
+        enrichedFormation.differentZugnummer = true;
+      }
+      if (previousGruppe.zielbetriebsstellename !== g.zielbetriebsstellename) {
+        enrichedFormation.differentDestination = true;
+      }
+    }
+    if (['IC', 'EC', 'ICE', 'ECE'].includes(enrichedFormation.zuggattung)) {
       const gruppenFahrzeugTypes = g.allFahrzeug.map(f => f.fahrzeugtyp);
 
-      g.br = specificBR(
-        g.allFahrzeug,
-        gruppenFahrzeugTypes,
-        info.data.istformation
-      );
+      g.br = specificBR(g.allFahrzeug, gruppenFahrzeugTypes, enrichedFormation);
       if (g.br) {
         g.br.country = getCountry(g.allFahrzeug, gruppenFahrzeugTypes);
         g.br.showBRInfo = Boolean(
@@ -510,8 +506,12 @@ export async function wagenreihung(trainNumber: string, date: number) {
       }
     }
 
+    // https://inside.bahn.de/entstehung-zugnummern/?dbkanal_006=L01_S01_D088_KTL0006_INSIDE-BAHN-2019_Zugnummern_LZ01
+    const trainNumberAsNumber = Number.parseInt(g.verkehrlichezugnummer, 10);
+
+    g.goesToFrance = trainNumberAsNumber >= 9550 && trainNumberAsNumber <= 9599;
     g.allFahrzeug.forEach(fahrzeug => {
-      enrichFahrzeug(fahrzeug, trainNumber, g);
+      enrichFahrzeug(fahrzeug, g);
       fahrzeuge.push(fahrzeug);
     });
 
@@ -536,40 +536,13 @@ export async function wagenreihung(trainNumber: string, date: number) {
     }
   });
 
-  info.data.istformation.differentDestination = differentDestination(
-    info.data.istformation
-  );
-  info.data.istformation.differentZugnummer = differentZugunummer(
-    info.data.istformation
-  );
-  info.data.istformation.realFahrtrichtung = fahrtrichtung(fahrzeuge);
-  const reallyHasReihung = info.data.istformation.allFahrzeuggruppe.every(g =>
-    g.allFahrzeug.every(f => {
-      const start = Number.parseInt(f.positionamhalt.startprozent, 10);
-      const end = Number.parseInt(f.positionamhalt.endeprozent, 10);
+  enrichedFormation.realFahrtrichtung = fahrtrichtung(fahrzeuge);
 
-      if (!start && !end) return false;
+  enrichedFormation.scale = 100 / (endPercentage - startPercentage);
+  enrichedFormation.startPercentage = startPercentage;
+  enrichedFormation.endPercentage = endPercentage;
 
-      if (start < startPercentage) {
-        startPercentage = start;
-      }
-      if (end > endPercentage) {
-        endPercentage = end;
-      }
-
-      return true;
-    })
-  );
-
-  if (!reallyHasReihung) {
-    throw { status: 404 };
-  }
-
-  info.data.istformation.scale = 100 / (endPercentage - startPercentage);
-  info.data.istformation.startPercentage = startPercentage;
-  info.data.istformation.endPercentage = endPercentage;
-
-  return info.data.istformation;
+  return enrichedFormation;
 }
 
 // https://ws.favendo.de/wagon-order/rest/v1/si/1401
