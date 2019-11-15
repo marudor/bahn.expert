@@ -1,6 +1,6 @@
 import { AppBar, Toolbar } from '@material-ui/core';
 import { format } from 'date-fns';
-import ActionHome from '@material-ui/icons/Home';
+import ActionMenu from '@material-ui/icons/Menu';
 import DetailsContext from './DetailsContext';
 import IconButton from '@material-ui/core/IconButton';
 import NavigationContext from 'Common/Components/Navigation/NavigationContext';
@@ -20,8 +20,8 @@ const Header = ({ train }: Props) => {
   return (
     <AppBar position="fixed">
       <Toolbar disableGutters className={classes.toolbar}>
-        <IconButton aria-label="Home" onClick={toggleDrawer} color="inherit">
-          <ActionHome color="inherit" />
+        <IconButton aria-label="Menu" onClick={toggleDrawer} color="inherit">
+          <ActionMenu color="inherit" />
         </IconButton>
         <div className={classes.train}>
           <span>{trainText}</span>
