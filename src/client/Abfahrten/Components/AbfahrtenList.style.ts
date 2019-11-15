@@ -4,7 +4,6 @@ export default makeStyles(theme => ({
   main: {
     display: 'flex',
     flexDirection: 'column',
-    marginTop: theme.shape.headerSpacing,
   },
 
   lookaheadMarker: {

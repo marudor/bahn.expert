@@ -117,9 +117,6 @@ const Search = () => {
     },
     [destination, fetchRoutes, history, start]
   );
-  const goHome = useCallback(() => {
-    history.push('/');
-  }, [history]);
 
   return (
     <>
@@ -168,9 +165,6 @@ const Search = () => {
       <div className={classes.buttons}>
         <Button fullWidth variant="contained" onClick={searchRoute}>
           Search
-        </Button>
-        <Button variant="contained" onClick={goHome}>
-          Home
         </Button>
       </div>
     </>

@@ -10,6 +10,7 @@ const LazyDetails = loadable(() =>
   import('Common/Components/Details/DetailsRoute')
 );
 const LazyAbfahrten = loadable(() => import('./Abfahrten'));
+const About = loadable(() => import('Common/Components/About'));
 
 const App = () => {
   useStyles();
@@ -25,6 +26,7 @@ const App = () => {
     <Navigation>
       <ReihungenContainer.Provider>
         <Switch>
+          <Route path="/about" component={About} exact />
           <Route
             component={LazyDetails}
             path="/details/:train/:initialDeparture*"

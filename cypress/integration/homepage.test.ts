@@ -5,7 +5,7 @@ describe('Homepage', () => {
 
   it('Theme Selection', () => {
     function openThemeSelection() {
-      cy.findByTestId('home').click();
+      cy.findByTestId('navToggle').click();
       cy.findByTestId('themes').click();
     }
     openThemeSelection();

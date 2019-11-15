@@ -8,7 +8,6 @@ import routes from './routes';
 import SettingsModal from './Components/SettingsModal';
 import useQuery from 'Common/hooks/useQuery';
 import useStyles from './index.style';
-
 const BahnhofsAbfahrten = () => {
   const noHeader = useQuery().noHeader;
   const classes = useStyles({ noHeader });
