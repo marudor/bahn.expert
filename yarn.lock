@@ -3074,10 +3074,10 @@ babel-plugin-jest-hoist@^24.9.0:
   dependencies:
     "@types/babel__traverse" "^7.0.6"
 
-babel-plugin-jsx-remove-data-test-id@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-jsx-remove-data-test-id/-/babel-plugin-jsx-remove-data-test-id-2.1.0.tgz#509d7542c5bb10a32447c965dadfe024495ab83b"
-  integrity sha512-o/j52OifonpFGc0/7wXoLd5znBAktNn1ozGn7mkFoJnfvtifLM/KGDMAIuCgAxnkc6oY1cgcBQd3pPcdaB+QPg==
+babel-plugin-jsx-remove-data-test-id@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-jsx-remove-data-test-id/-/babel-plugin-jsx-remove-data-test-id-2.0.1.tgz#3d7362bb085cea29aaeb1162522e0c109b85f008"
+  integrity sha512-xtw/6QNjU+yvG1RWCXh0Pzsm2Mra2FzRPwOkc4qS/S6JEB8Zo974PO/oC9i1mGQKYvGc81xxgMPG5I895KIUmg==
 
 babel-plugin-lodash@^3.3.4:
   version "3.3.4"
