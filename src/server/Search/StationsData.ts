@@ -10,7 +10,7 @@ const csv = fs.readFileSync(dataPath, 'utf8');
 
 const entries: string[][] = csv.split('\n').map(l => l.split(';'));
 
-type StationsData = {
+interface StationsData {
   id: string;
   DS100: string;
   ifopt: string;
@@ -18,7 +18,7 @@ type StationsData = {
   verkehr: 'FV' | 'NV' | 'DPN';
   lng: string;
   lat: string;
-};
+}
 
 // Remve HeaderLine
 entries.shift();

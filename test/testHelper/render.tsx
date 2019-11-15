@@ -17,10 +17,10 @@ import ThemeWrap from 'client/ThemeWrap';
 let currentThemeType: ThemeType;
 let theme: MergedTheme;
 
-type Options = {
+interface Options {
   withNavigation?: boolean;
   container?: Container<any, any>[];
-};
+}
 
 let location: Location<any>;
 

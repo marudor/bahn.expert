@@ -34,9 +34,9 @@ const ThemeContainer = createContainer(useTheme);
 
 export default ThemeContainer;
 
-type Props = {
+interface Props {
   children: ReactNode;
-};
+}
 export const ThemeProvider = ({ children }: Props) => {
   const cookies = useCookies();
   let initialTheme;

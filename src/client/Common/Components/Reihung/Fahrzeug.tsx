@@ -27,13 +27,13 @@ export const icons = {
   wifiOff: WifiOff,
 };
 
-export type InheritedProps = {
+export interface InheritedProps {
   scale: number;
   correctLeft: number;
   type: string;
-};
+}
 
-export type OwnProps = InheritedProps & {
+export interface Props extends InheritedProps {
   fahrzeug: Pick<
     Fahrzeug,
     | 'fahrzeugtyp'
@@ -46,9 +46,7 @@ export type OwnProps = InheritedProps & {
   destination?: string;
   wrongWing?: boolean;
   showUIC: boolean;
-};
-
-type Props = OwnProps;
+}
 
 const FahrzeugComp = ({
   fahrzeug,

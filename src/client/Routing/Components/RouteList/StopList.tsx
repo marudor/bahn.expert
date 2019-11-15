@@ -2,9 +2,11 @@ import { Route$Stop } from 'types/routing';
 import React from 'react';
 import Stop from 'Common/Components/Details/Stop';
 
-type OwnProps = { stops?: Route$Stop[] };
+interface Props {
+  stops?: Route$Stop[];
+}
 
-const StopList = ({ stops }: OwnProps) =>
+const StopList = ({ stops }: Props) =>
   stops ? (
     <div style={{ paddingLeft: '0.2em' }}>
       {stops.map(s => (

@@ -378,9 +378,37 @@ const models: TsoaRoute.Models = {
     "additionalProperties": false,
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "ProdCtx": {
+    "dataType": "refObject",
+    "properties": {
+      "name": { "dataType": "string", "required": true },
+      "num": { "dataType": "string" },
+      "matchId": { "dataType": "string" },
+      "catOut": { "dataType": "string" },
+      "catOutS": { "dataType": "string" },
+      "catOutL": { "dataType": "string" },
+      "catIn": { "dataType": "string" },
+      "catCode": { "dataType": "string" },
+      "admin": { "dataType": "string" },
+      "lineId": { "dataType": "string" },
+      "line": { "dataType": "string" },
+      "cls": { "dataType": "double", "required": true },
+      "icoX": { "dataType": "double", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "ProdL": {
     "dataType": "refObject",
     "properties": {
+      "name": { "dataType": "string", "required": true },
+      "number": { "dataType": "string" },
+      "icoX": { "dataType": "double", "required": true },
+      "cls": { "dataType": "double", "required": true },
+      "oprX": { "dataType": "double" },
+      "prodCtx": { "ref": "ProdCtx" },
+      "addName": { "dataType": "string" },
+      "nameS": { "dataType": "string", "required": true },
     },
     "additionalProperties": false,
   },

@@ -1,6 +1,6 @@
 import { Common } from '.';
 
-export type LocMatchResponse = {
+export interface LocMatchResponse {
   common: Common;
   match: {
     field: string;
@@ -25,7 +25,7 @@ export type LocMatchResponse = {
       wt: number;
     }[];
   };
-};
+}
 
 export interface LocMatchRequest {
   req: {

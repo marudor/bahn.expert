@@ -2,12 +2,12 @@ import { Route$JourneySegment } from 'types/routing';
 import React, { MouseEvent, useState } from 'react';
 import RouteSegment from './RouteSegment';
 
-type OwnProps = {
+interface Props {
   segments: Route$JourneySegment[];
   className?: string;
-};
+}
 
-const RouteSegments = ({ segments, className }: OwnProps) => {
+const RouteSegments = ({ segments, className }: Props) => {
   const [detail, setDetail] = useState<undefined | string>();
 
   return (

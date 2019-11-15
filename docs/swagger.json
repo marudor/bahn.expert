@@ -1064,8 +1064,108 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"ProdCtx": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"num": {
+						"type": "string",
+						"nullable": true
+					},
+					"matchId": {
+						"type": "string",
+						"nullable": true
+					},
+					"catOut": {
+						"type": "string",
+						"nullable": true
+					},
+					"catOutS": {
+						"type": "string",
+						"nullable": true
+					},
+					"catOutL": {
+						"type": "string",
+						"nullable": true
+					},
+					"catIn": {
+						"type": "string",
+						"nullable": true
+					},
+					"catCode": {
+						"type": "string",
+						"nullable": true
+					},
+					"admin": {
+						"type": "string",
+						"nullable": true
+					},
+					"lineId": {
+						"type": "string",
+						"nullable": true
+					},
+					"line": {
+						"type": "string",
+						"nullable": true
+					},
+					"cls": {
+						"type": "number",
+						"format": "double"
+					},
+					"icoX": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"name",
+					"cls",
+					"icoX"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"ProdL": {
-				"properties": {},
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"number": {
+						"type": "string",
+						"nullable": true
+					},
+					"icoX": {
+						"type": "number",
+						"format": "double"
+					},
+					"cls": {
+						"type": "number",
+						"format": "double"
+					},
+					"oprX": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"prodCtx": {
+						"$ref": "#/components/schemas/ProdCtx",
+						"nullable": true
+					},
+					"addName": {
+						"type": "string",
+						"nullable": true
+					},
+					"nameS": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"name",
+					"icoX",
+					"cls",
+					"nameS"
+				],
 				"type": "object",
 				"additionalProperties": false
 			},

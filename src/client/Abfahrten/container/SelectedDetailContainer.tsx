@@ -39,9 +39,9 @@ const SelectedDetailContainer = createContainer(useSelectedDetail);
 
 export default SelectedDetailContainer;
 
-type Props = {
+interface Props {
   children: ReactNode;
-};
+}
 export const SelectedDetailProvider = ({ children }: Props) => {
   const cookies = useCookies();
   const savedSelectedDetail = cookies.get(selectedDetailCookieName);

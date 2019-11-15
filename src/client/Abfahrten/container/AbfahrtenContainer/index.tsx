@@ -32,11 +32,11 @@ export const fetchAbfahrten = async (
   return r.data;
 };
 
-type Departures = {
+interface Departures {
   lookahead: Abfahrt[];
   lookbehind: Abfahrt[];
   wings?: Wings;
-};
+}
 
 export type AbfahrtenError =
   | AbfahrtenError$Redirect
@@ -129,9 +129,9 @@ const useAbfahrten = () => {
 
 const AbfahrtenContainer = createContainer(useAbfahrten);
 
-type Props = {
+interface Props {
   children: ReactNode;
-};
+}
 export const AbfahrtenProvider = ({ children }: Props) => (
   <AbfahrtenConfigProvider>
     <AbfahrtenContainer.Provider>{children}</AbfahrtenContainer.Provider>

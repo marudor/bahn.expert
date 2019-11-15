@@ -1,13 +1,13 @@
 /* eslint import/prefer-default-export: 0 */
 import { Station } from 'types/station';
 
-type BuiltOptions = {
+interface BuiltOptions {
   includeFavendoId?: boolean;
   includeDS100?: boolean;
-};
-type CustomOptions = {
+}
+interface CustomOptions {
   customResponse: Station[];
-};
+}
 type Options = BuiltOptions | CustomOptions;
 
 function buildResults(options: Options): any[] {

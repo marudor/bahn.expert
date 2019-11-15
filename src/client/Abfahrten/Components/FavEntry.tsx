@@ -7,16 +7,16 @@ import IconButton from '@material-ui/core/IconButton';
 import React, { MouseEvent, ReactNode, useCallback } from 'react';
 import useStyles from './FavEntry.style';
 
-type Props = {
+interface Props {
   fav: Station;
   noDelete?: boolean;
-};
+}
 
-type FavEntryDisplayProps = {
+interface FavEntryDisplayProps {
   deleteFav?: (e: MouseEvent) => void;
   text: ReactNode;
   'data-testid'?: string;
-};
+}
 export const FavEntryDisplay = ({
   deleteFav,
   text,
