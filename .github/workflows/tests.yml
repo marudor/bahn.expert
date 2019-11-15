@@ -10,6 +10,7 @@ on:
 
 env:
   CI: true
+  CYPRESS_INSTALL_BINARY: 0
 
 jobs:
   node:
@@ -23,11 +24,18 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Cache node modules
+      uses: actions/cache@v1
+      with:
+        path: node_modules
+        key: ${{ runner.OS }}-build-${{ hashFiles('yarn.lock') }}
+        restore-keys: |
+          ${{ runner.OS }}-build-${{ env.cache-name }}-
+          ${{ runner.OS }}-build-
+          ${{ runner.OS }}-
     - name: install
       run: |
         yarn --frozen-lockfile
-      env:
-        CYPRESS_INSTALL_BINARY: 0
     - name: jest
       run: |
         yarn test:jest
@@ -40,16 +48,11 @@ jobs:
     - name: types
       run: |
         yarn tsc
-    # - name: coveralls
-    #   uses: coverallsapp/github-action@master
-    #   with:
-    #     github-token: ${{ secrets.github_token }}
-    #     path-to-lcov: ./reports/lcov.info
-    # - name: codecov
-    #   uses: codecov/codecov-action@v1.0.3
-    #   with:
-    #     token: "0ffea696-ec61-45a5-b163-d59e71c0d36b"
-    #     file: ./reports/lcov.info
+    - name: Upload jest coverage
+      uses: actions/upload-artifact@v1
+      with:
+        name: jest-coverage
+        path: jest-coverage/coverage-final.json
   e2e:
     runs-on: ubuntu-latest
     strategy:
@@ -61,9 +64,19 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Cache node modules
+      uses: actions/cache@v1
+      with:
+        path: node_modules
+        key: ${{ runner.OS }}-build-${{ hashFiles('yarn.lock') }}
+        restore-keys: |
+          ${{ runner.OS }}-build-${{ env.cache-name }}-
+          ${{ runner.OS }}-build-
+          ${{ runner.OS }}-
     - name: install
       run: |
         yarn --frozen-lockfile
+        CYPRESS_INSTALL_BINARY= yarn cypress install
     - name: build
       run: |
         yarn build
@@ -82,6 +95,11 @@ jobs:
         BASE_URL: http://localhost:9042
         NODE_ENV: production
         TEST_RUN: 1
+    - name: Upload cypress coverage
+      uses: actions/upload-artifact@v1
+      with:
+        name: cypress-coverage
+        path: cypress-coverage/coverage-final.json
   coverage:
     needs: [node, e2e]
     runs-on: ubuntu-latest
@@ -94,6 +112,36 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: test
+    - name: Cache node modules
+      uses: actions/cache@v1
+      with:
+        path: node_modules
+        key: ${{ runner.OS }}-build-${{ hashFiles('yarn.lock') }}
+        restore-keys: |
+          ${{ runner.OS }}-build-${{ env.cache-name }}-
+          ${{ runner.OS }}-build-
+          ${{ runner.OS }}-
+    - name: install
       run: |
-        echo "test"
+        yarn --frozen-lockfile
+    - name: Download jest coverage
+      uses: actions/download-artifact@v1
+      with:
+        name: jest-coverage
+    - name: Download cypress coverage
+      uses: actions/download-artifact@v1
+      with:
+        name: cypress-coverage
+    - name: merge coverage
+      run: |
+        yarn coverage:merge
+    - name: coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.github_token }}
+        path-to-lcov: ./reports/lcov.info
+    - name: codecov
+      uses: codecov/codecov-action@v1.0.3
+      with:
+        token: "0ffea696-ec61-45a5-b163-d59e71c0d36b"
+        file: ./reports/lcov.info
