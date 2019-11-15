@@ -61,3 +61,5 @@ research/
 cypress/videos/
 cypress/screenshots/
 junit.xml
+cypress-coverage/
+jest-coverage/
