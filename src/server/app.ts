@@ -38,6 +38,8 @@ export function createApp(wsServer?: Server) {
 
   let devPromise = Promise.resolve();
 
+  const distFolder = process.env.TEST_RUN ? 'testDist' : 'dist';
+
   if (
     process.env.NODE_ENV !== 'test' &&
     process.env.NODE_ENV !== 'production'
@@ -49,11 +51,10 @@ export function createApp(wsServer?: Server) {
         apiRoutes = require('./API').default;
         validationOverwrites = require('./API/validationOverwrites').default;
         seoController = require('./seo').default;
-        Object.keys(ctx.state);
         ctx.loadableStats = JSON.parse(
           // eslint-disable-next-line no-sync
           ctx.state.fs.readFileSync(
-            path.resolve('dist/client/loadable-stats.json')
+            path.resolve(`${distFolder}/client/loadable-stats.json`)
           )
         );
 
@@ -70,8 +71,6 @@ export function createApp(wsServer?: Server) {
 
     app.use(hotHelper(() => validationOverwrites.routes()));
     app.use(hotHelper(() => apiRoutes.routes()));
-
-    const distFolder = process.env.TEST_RUN ? 'testDist' : 'dist';
 
     app.use(
       koaStatic(

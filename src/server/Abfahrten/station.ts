@@ -6,7 +6,7 @@ import { noncdAxios } from './helper';
 import NodeCache from 'node-cache';
 import xmljs from 'libxmljs2';
 
-export type Station = {
+export interface Station {
   name: string;
   meta: string[];
   eva: string;
@@ -14,7 +14,7 @@ export type Station = {
   db: string;
   creationts: string;
   p: string;
-};
+}
 
 // 4 Hours in seconds
 const stdTTL = 4 * 60 * 60;

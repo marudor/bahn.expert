@@ -1,5 +1,5 @@
 declare module 'db-stations/data.json' {
-  export type OpenDataStation = {
+  export interface OpenDataStation {
     type: 'station';
     id: string;
     ds100: string;
@@ -21,7 +21,7 @@ declare module 'db-stations/data.json' {
       zipcode: string;
       street: string;
     };
-  };
+  }
 
   declare const stations: OpenDataStation[];
   export default stations;

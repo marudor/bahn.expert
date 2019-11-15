@@ -2,15 +2,13 @@ import * as React from 'react';
 import cc from 'clsx';
 import useStyles from './Loading.style';
 
-type OwnProps = {
+interface Props {
   isLoading?: boolean;
   className?: string;
   children?: React.ReactElement;
   type?: LoadingType;
   relative?: boolean;
-};
-
-type Props = OwnProps;
+}
 
 export enum LoadingType {
   grid,

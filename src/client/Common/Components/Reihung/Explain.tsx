@@ -18,32 +18,6 @@ export const iconExplanation: { [K in keyof typeof icons]: string } = {
   wifiOff: 'Wlan offline',
 };
 
-// const explainFahrzeugProps: OwnProps = {
-//   scale: 1,
-//   correctLeft: 0,
-//   type: 'ICE',
-//   fahrzeug: {
-//     fahrzeugnummer: '938058031296',
-//     fahrzeugtyp: 'Apmbsz',
-//     wagenordnungsnummer: '9',
-//     positionamhalt: {
-//       endemeter: '278.16',
-//       endeprozent: '70',
-//       startmeter: '251.76',
-//       startprozent: '30',
-//     },
-//     status: 'OFFEN',
-//     additionalInfo: {
-//       klasse: 1,
-//       info: true,
-//       kleinkind: true,
-//       rollstuhl: true,
-//       schwebe: true,
-//       comfort: true,
-//     },
-//   },
-// };
-
 const Explain = () => {
   const [open, setOpen] = useState(false);
   const classes = useStyles();

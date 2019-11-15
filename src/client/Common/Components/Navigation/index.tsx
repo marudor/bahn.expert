@@ -11,9 +11,9 @@ import ThemeSelection from './ThemeSelection';
 import useStyles from './index.style';
 import Zugsuche from 'Common/Components/Zugsuche';
 
-type Props = {
+interface Props {
   children: ReactNode;
-};
+}
 
 const Navigation = ({ children }: Props) => {
   const [open, setOpen] = useState(false);

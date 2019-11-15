@@ -8,10 +8,10 @@ import NormalVia from './Via/Normal';
 import React, { useMemo } from 'react';
 import useStyles from './Info.style';
 
-type Props = {
+interface Props {
   abfahrt: Abfahrt;
   detail: boolean;
-};
+}
 const Info = ({ abfahrt, detail }: Props) => {
   const showSupersededMessages = AbfahrtenConfigContainer.useContainer().config
     .showSupersededMessages;

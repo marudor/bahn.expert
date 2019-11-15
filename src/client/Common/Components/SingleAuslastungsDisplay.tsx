@@ -22,9 +22,9 @@ function getIcon(auslastung?: AuslastungsValue) {
   }
 }
 
-export type Props = {
+export interface Props {
   auslastung?: AuslastungsValue;
-};
+}
 const SingleAuslastungsDisplay = (props: Props) => {
   const classes = useStyles(props);
 

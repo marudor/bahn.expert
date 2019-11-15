@@ -7,7 +7,7 @@ import ReihungContainer from 'Common/container/ReihungContainer';
 import Sektor from './Sektor';
 import useStyles from './index.style';
 
-type Props = {
+interface Props {
   className?: string;
   useZoom?: boolean;
   fahrzeugGruppe?: boolean;
@@ -16,7 +16,7 @@ type Props = {
   scheduledDeparture: number;
   loadHidden?: boolean;
   showUIC?: boolean;
-};
+}
 
 const Reihung = (props: Props) => {
   const {

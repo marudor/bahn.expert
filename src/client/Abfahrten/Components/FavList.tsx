@@ -34,9 +34,9 @@ function getErrorText(
   }
 }
 
-type Props = {
+interface Props {
   staticContext?: StaticRouterContext;
-};
+}
 
 const FavList = ({ staticContext }: Props) => {
   const { favs } = favContainer.useContainer();

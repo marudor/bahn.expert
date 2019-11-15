@@ -4,7 +4,9 @@ import { Station } from 'types/station';
 import React, { ReactNode, useCallback, useState } from 'react';
 import useCookies from 'Common/useCookies';
 
-type Favs = { [key: string]: Station };
+interface Favs {
+  [key: string]: Station;
+}
 
 function useFavStorage(initialFavs: Favs = {}) {
   const [favs, setFavs] = useState<Favs>(initialFavs);
@@ -55,9 +57,9 @@ export function useUnfav() {
 
 export default FavContainer;
 
-type Props = {
+interface Props {
   children: ReactNode;
-};
+}
 
 export const FavProvider = ({ children }: Props) => {
   const cookies = useCookies();

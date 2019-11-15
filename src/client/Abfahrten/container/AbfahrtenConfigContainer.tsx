@@ -5,10 +5,10 @@ import React, { ReactNode, useCallback, useState } from 'react';
 import useCookies from 'Common/useCookies';
 import useQuery from 'Common/hooks/useQuery';
 
-export type Filter = {
+export interface Filter {
   onlyDepartures?: boolean;
   products: string[];
-};
+}
 const defaultFilter: Filter = {
   products: [],
 };
@@ -71,10 +71,10 @@ const useConfig = (initialConfig: MarudorConfig) => {
   };
 };
 
-export type AbfahrtenConfig = {
+export interface AbfahrtenConfig {
   filter: Filter;
   config: MarudorConfig;
-};
+}
 
 const defaultAbfahrtenConfig: AbfahrtenConfig = {
   filter: defaultFilter,
@@ -96,9 +96,9 @@ const AbfahrtenConfigContainer = createContainer(useAbfahrtenConfig);
 
 export default AbfahrtenConfigContainer;
 
-type Props = {
+interface Props {
   children: ReactNode;
-};
+}
 export const AbfahrtenConfigProvider = ({ children }: Props) => {
   const cookies = useCookies();
   const query = useQuery();
