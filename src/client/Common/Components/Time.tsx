@@ -4,7 +4,7 @@ import cc from 'clsx';
 import React from 'react';
 import useStyles from './Time.style';
 
-type OwnProps = {
+interface Props {
   alignEnd?: boolean;
   className?: string;
   delay?: number;
@@ -13,9 +13,7 @@ type OwnProps = {
   showZero?: boolean;
   oneLine?: boolean;
   cancelled?: boolean;
-};
-
-type Props = OwnProps;
+}
 
 function delayString(delay: number) {
   if (delay < 0) {

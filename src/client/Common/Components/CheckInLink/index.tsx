@@ -3,10 +3,10 @@ import { CheckInType } from 'Common/config';
 import React from 'react';
 import TravelynxLink from './TravelynxLink';
 
-type Props = {
+interface Props {
   abfahrt: Abfahrt;
   type: CheckInType;
-};
+}
 
 const CheckInLink = ({ abfahrt, type }: Props) => {
   switch (type) {

@@ -7,13 +7,11 @@ import RouteSegments from './RouteSegments';
 import Time from 'Common/Components/Time';
 import useStyles from './Route.style';
 
-type OwnProps = {
+interface Props {
   route: SingleRoute;
   detail: boolean;
   onClick: (e: SyntheticEvent) => void;
-};
-
-type Props = OwnProps;
+}
 
 const Route = ({ route, detail, onClick }: Props) => {
   const classes = useStyles();

@@ -3,11 +3,9 @@ import { Route$Auslastung } from 'types/routing';
 import SingleAuslastungsDisplay from 'Common/Components/SingleAuslastungsDisplay';
 import useStyles from './AuslastungsDisplay.style';
 
-interface OwnProps {
+export interface Props {
   auslastung: Route$Auslastung;
 }
-
-export type Props = OwnProps;
 
 const AuslastungsDisplay = (props: Props) => {
   const classes = useStyles(props);

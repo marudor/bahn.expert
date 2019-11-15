@@ -4,10 +4,10 @@ import React from 'react';
 import Times from './Times';
 import useStyles from './End.style';
 
-type Props = {
+interface Props {
   abfahrt: Abfahrt;
   detail: boolean;
-};
+}
 const End = ({ abfahrt, detail }: Props) => {
   const classes = useStyles();
 

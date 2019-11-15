@@ -6,11 +6,11 @@ import Time from 'Common/Components/Time';
 import useStyles from './RouteSegment.style';
 import WalkSegmentTrain from './SegmentTrainComponent/WalkSegmentTrain';
 
-type Props = {
+interface Props {
   segment: Route$JourneySegment;
   detail?: boolean;
   onTrainClick?: (e: MouseEvent) => void;
-};
+}
 
 const RouteSegment = ({ segment, detail, onTrainClick }: Props) => {
   const classes = useStyles();

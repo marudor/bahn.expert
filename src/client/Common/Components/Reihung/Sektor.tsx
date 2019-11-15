@@ -2,13 +2,11 @@ import { Sektor } from 'types/reihung';
 import React from 'react';
 import useStyles from './Sektor.style';
 
-type OwnProps = {
+interface Props {
   sektor: Sektor;
   scale: number;
   correctLeft: number;
-};
-
-type Props = OwnProps;
+}
 
 const SektorComp = ({ sektor, scale, correctLeft }: Props) => {
   const classes = useStyles();

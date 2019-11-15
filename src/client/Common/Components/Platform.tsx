@@ -2,13 +2,12 @@ import cc from 'clsx';
 import React from 'react';
 import useStyles from './Platform.style';
 
-type OwnProps = {
+interface Props {
   className?: string;
   cancelled?: boolean;
   scheduled?: string;
   real?: string;
-};
-type Props = OwnProps;
+}
 
 const Platform = ({ className, cancelled, scheduled, real }: Props) => {
   const classes = useStyles();

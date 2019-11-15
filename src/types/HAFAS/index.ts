@@ -74,32 +74,32 @@ export type SingleHafasRequest =
   | TripSearchRequest
   | LocGeoPosRequest;
 
-type CInfo = {
+interface CInfo {
   code: string;
   url: string;
   msg: string;
-};
+}
 
-type SvcResL<Res> = {
+interface SvcResL<Res> {
   meth: string;
   err: string;
   res: Res;
-};
+}
 
 export interface GenericRes {
   common: Common;
 }
 
-export type HafasResponse<Res extends GenericRes> = {
+export interface HafasResponse<Res extends GenericRes> {
   ver: string;
   lang: string;
   id: string;
   err: string;
   cInfo: CInfo;
   svcResL: SvcResL<Res>[];
-};
+}
 
-export type ProdCtx = {
+export interface ProdCtx {
   name: string;
   num?: string;
   matchId?: string;
@@ -113,9 +113,9 @@ export type ProdCtx = {
   line?: string;
   cls: number;
   icoX: number;
-};
+}
 
-export type ProdL = {
+export interface ProdL {
   name: string;
   number?: string;
   icoX: number;
@@ -124,33 +124,33 @@ export type ProdL = {
   prodCtx?: ProdCtx;
   addName?: string;
   nameS: string;
-};
+}
 
-export type LayerL = {
+export interface LayerL {
   id: string;
   name: string;
   index: number;
   annoCnt: number;
-};
+}
 
-export type CrdSysL = {
+export interface CrdSysL {
   id: string;
   index: number;
   type: string;
-};
+}
 
-export type IcoL = {
+export interface IcoL {
   res: string;
   txt?: string;
-};
+}
 
-export type Crd = {
+export interface Crd {
   x: number;
   y: number;
   z?: number;
   layerX: number;
   crdSysX: number;
-};
+}
 
 export interface PolyG {
   polyXL: number[];
@@ -173,7 +173,7 @@ export interface Journey {
   dTrnCmpSX?: TrnCmpSX;
 }
 
-export type LocL = {
+export interface LocL {
   lid: string;
   type: string;
   name: string;
@@ -186,33 +186,33 @@ export type LocL = {
    * Reference to prodL
    */
   pRefL?: number[];
-};
+}
 
-export type PpLocRefL = {
+export interface PpLocRefL {
   ppIdx: number;
   locX: number;
-};
+}
 
-export type PolyL = {
+export interface PolyL {
   delta: boolean;
   dim: number;
   crdEncYX: string;
   crdEncS: string;
   crdEncF: string;
   ppLocRefL: PpLocRefL[];
-};
+}
 
-export type OpL = {
+export interface OpL {
   name: string;
   icoX: number;
-};
+}
 
-export type TcocL = {
+export interface TcocL {
   c: string;
   r?: number;
-};
+}
 
-export type Common = {
+export interface Common {
   locL: LocL[];
   prodL: ProdL[];
   polyL: PolyL[];
@@ -222,7 +222,7 @@ export type Common = {
   remL: RemL[];
   icoL: IcoL[];
   tcocL?: TcocL[];
-};
+}
 
 export interface CommonJny {
   jid: string;

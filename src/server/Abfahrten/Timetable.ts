@@ -27,10 +27,10 @@ import messageLookup, {
 import NodeCache from 'node-cache';
 import xmljs from 'libxmljs2';
 
-type ArDp = {
+interface ArDp {
   platform?: string;
   status?: string;
-};
+}
 type ParsedDp = ArDp & {
   departureTs?: string;
   scheduledDepartureTs?: string;
@@ -47,17 +47,17 @@ type ParsedAr = ArDp & {
 const stdTTL = 6 * 60 * 60;
 const timetableCache = new NodeCache({ stdTTL });
 
-type Route = {
+interface Route {
   name: string;
   cancelled?: boolean;
   additional?: boolean;
-};
+}
 
-export type TimetableOptions = {
+export interface TimetableOptions {
   lookahead: number;
   lookbehind: number;
   currentDate?: Date;
-};
+}
 
 const routeMap: (s: string) => Route = name => ({ name });
 const normalizeRouteName = (name: string) =>

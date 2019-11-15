@@ -5,11 +5,11 @@ import { getStation } from './station';
 import { noncdAxios } from './helper';
 import Timetable from './Timetable';
 
-type AbfahrtenOptions = {
+interface AbfahrtenOptions {
   lookahead?: number;
   lookbehind?: number;
   currentDate?: Date;
-};
+}
 const defaultOptions = {
   lookahead: 150,
   lookbehind: 0,

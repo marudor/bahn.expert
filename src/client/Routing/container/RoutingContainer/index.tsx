@@ -28,9 +28,9 @@ const RoutingContainer = createContainer(useRouting);
 
 export default RoutingContainer;
 
-type Props = {
+interface Props {
   children: ReactNode;
-};
+}
 export const RoutingProvider = ({ children }: Props) => {
   const cookies = useCookies();
 
