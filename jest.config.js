@@ -1,9 +1,12 @@
 module.exports = {
   projects: ['test/client/jest.config.js', 'test/server/jest.config.js'],
   collectCoverage: Boolean(process.env.CI || process.env.COVERAGE),
-  collectCoverageFrom: ['<rootDir>/src/**/*.{ts,tsx}'],
-  coverageReporters: ['text-summary', 'lcov'],
-  coverageDirectory: '<rootDir>/reports',
+  collectCoverageFrom: [
+    '<rootDir>/src/**/*.{ts,tsx}',
+    '!<rootDir>/src/server/API/routes.ts',
+    '!<rootDir>/src/types/**',
+  ],
+  coverageDirectory: '<rootDir>/jest-coverage',
   reporters: ['default', 'jest-junit'],
   watchPlugins: [
     'jest-watch-typeahead/filename',
