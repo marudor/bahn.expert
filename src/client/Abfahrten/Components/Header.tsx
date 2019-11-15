@@ -2,7 +2,7 @@ import { Station } from 'types/station';
 import { useHistory } from 'react-router';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import AbfahrtenContainer from 'Abfahrten/container/AbfahrtenContainer';
-import ActionHome from '@material-ui/icons/Home';
+import ActionMenu from '@material-ui/icons/Menu';
 import AppBar from '@material-ui/core/AppBar';
 import ExtraMenu from './ExtraMenu';
 import IconButton from '@material-ui/core/IconButton';
@@ -46,7 +46,7 @@ const Header = () => {
             onClick={toggleDrawer}
             color="inherit"
           >
-            <ActionHome color="inherit" />
+            <ActionMenu color="inherit" />
           </IconButton>
           <StationSearch
             id="abfahrtenHeaderSearch"
