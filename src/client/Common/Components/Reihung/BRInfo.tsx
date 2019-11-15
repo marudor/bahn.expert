@@ -2,10 +2,10 @@ import { BRInfo as BRInfoType } from 'types/reihung';
 import React from 'react';
 import stopPropagation from 'Common/stopPropagation';
 
-type Props = {
+interface Props {
   br: BRInfoType;
   className?: string;
-};
+}
 
 const BRInfo = ({ br, className }: Props) => {
   let text = br.name;

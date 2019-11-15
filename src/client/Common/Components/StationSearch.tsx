@@ -19,7 +19,7 @@ import useStyles from './StationSearch.style';
 const debouncedGetStationFromAPI = debounce(getStationsFromAPI, 500);
 const debouncedHafasStationFromAPI = debounce(getHafasStationFromAPI, 500);
 
-type Props = {
+interface Props {
   id: string;
   searchType?: StationSearchType;
   value?: Station;
@@ -28,7 +28,7 @@ type Props = {
   placeholder?: string;
   profile?: AllowedHafasProfile;
   maxSuggestions?: number;
-};
+}
 
 const TDownshift: DownshiftInterface<Station> = Downshift;
 const StationSearch = ({

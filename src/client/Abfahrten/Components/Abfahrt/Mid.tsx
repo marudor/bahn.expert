@@ -4,10 +4,10 @@ import Info from './Info';
 import React from 'react';
 import useStyles from './Mid.style';
 
-type Props = {
+interface Props {
   abfahrt: Abfahrt;
   detail: boolean;
-};
+}
 
 const Mid = ({ abfahrt, detail }: Props) => {
   const classes = useStyles();

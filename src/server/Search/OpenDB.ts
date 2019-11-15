@@ -1,11 +1,11 @@
 import { OpenDBStation, Station } from 'types/station';
 import axios from 'axios';
 
-type OpenDBResult = {
+interface OpenDBResult {
   LocationList: {
     StopLocation: OpenDBStation | OpenDBStation[];
   };
-};
+}
 
 // istanbul ignore next
 const authKey = process.env.OPENDB_AUTH_KEY || '';

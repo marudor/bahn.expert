@@ -3,10 +3,10 @@ import { isBefore } from 'date-fns';
 import React from 'react';
 import stopPropagation from 'Common/stopPropagation';
 
-type Props = {
+interface Props {
   abfahrt: Pick<Abfahrt, 'departure' | 'arrival' | 'currentStation' | 'train'>;
   className?: string;
-};
+}
 
 // 30 Minutes in ms
 const timeConstraint = 30 * 60 * 1000;

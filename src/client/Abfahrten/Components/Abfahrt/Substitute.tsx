@@ -2,9 +2,9 @@ import { SubstituteRef } from 'types/iris';
 import React from 'react';
 import useStyles from './Substitue.style';
 
-type Props = {
+interface Props {
   substitute: SubstituteRef;
-};
+}
 
 const Substitute = ({ substitute }: Props) => {
   const classes = useStyles();

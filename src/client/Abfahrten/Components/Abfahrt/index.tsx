@@ -3,9 +3,9 @@ import BaseAbfahrt from './BaseAbfahrt';
 import React, { useMemo } from 'react';
 import useWings from 'Abfahrten/container/AbfahrtenContainer/useWings';
 
-type Props = {
+interface Props {
   abfahrt: AbfahrtType;
-};
+}
 
 const Abfahrt = ({ abfahrt }: Props) => {
   const wings = useWings(abfahrt);

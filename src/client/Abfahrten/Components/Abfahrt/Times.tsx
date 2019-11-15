@@ -6,10 +6,10 @@ import cc from 'clsx';
 import Time from 'Common/Components/Time';
 import useStyles from './Times.style';
 
-type Props = {
+interface Props {
   abfahrt: Abfahrt;
   detail: boolean;
-};
+}
 
 const Times = ({
   abfahrt: { arrival, departure, cancelled },

@@ -5,7 +5,7 @@ export enum CheckInType {
   Travelynx,
 }
 
-export type MarudorConfig = {
+export interface MarudorConfig {
   readonly time: boolean;
   readonly searchType: StationSearchType;
   readonly checkIn: CheckInType;
@@ -17,7 +17,7 @@ export type MarudorConfig = {
   readonly lineAndNumber: boolean;
   readonly autoUpdate: number;
   readonly showUIC: boolean;
-};
+}
 
 export type MarudorConfigSanitize = {
   [K in keyof MarudorConfig]: (input: string) => MarudorConfig[K];

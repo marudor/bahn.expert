@@ -10,11 +10,10 @@ import StationLink from 'Common/Components/StationLink';
 import Time from 'Common/Components/Time';
 import useStyles from './Stop.style';
 
-type OwnProps = {
+interface Props {
   stop: Route$Stop;
   showWR?: ParsedProduct;
-};
-type Props = OwnProps;
+}
 const Stop = ({ stop, showWR }: Props) => {
   const classes = useStyles();
   const depOrArrival = stop.departure || stop.arrival;

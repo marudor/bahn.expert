@@ -225,7 +225,6 @@ const SettingsModal = () => {
           }
           label="API zur Stationssuche"
         />
-        {/* <BrowserstackThanks /> */}
       </DialogContent>
     </Dialog>
   );

@@ -8,11 +8,11 @@ import stopPropagation from 'Common/stopPropagation';
 import Substitute from './Substitute';
 import useStyles from './Start.style';
 
-type Props = {
+interface Props {
   abfahrt: Abfahrt;
   detail: boolean;
   lineAndNumber: boolean;
-};
+}
 
 const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
   const classes = useStyles();

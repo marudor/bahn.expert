@@ -4,15 +4,14 @@ import Fahrzeug, { InheritedProps } from './Fahrzeug';
 import React, { useMemo } from 'react';
 import useStyles from './Gruppe.style';
 
-type OwnProps = InheritedProps & {
+interface Props extends InheritedProps {
   gruppe: Fahrzeuggruppe;
   showDestination?: boolean;
   showGruppenZugnummer?: boolean;
   showFahrzeugGruppe: boolean;
   originalTrainNumber: string;
   showUIC: boolean;
-};
-type Props = OwnProps;
+}
 
 const Gruppe = ({
   gruppe,

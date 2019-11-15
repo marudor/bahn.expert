@@ -2168,10 +2168,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/lodash@^4.14.147":
-  version "4.14.147"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.147.tgz#8ca5cfa9c67753dcb73e507d1bbf1c4f8ba6f029"
-  integrity sha512-+0zY1Axql6ru5T85Rh6aR6Zr0xT7c0USLqsHv01b3ID//dOrV3OvpXJGjm69+4QpxoZ0oMNEfmW1ltwXe2WVzQ==
+"@types/lodash@^4.14.148":
+  version "4.14.148"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.148.tgz#ffa2786721707b335c6aa1465e6d3d74016fbd3e"
+  integrity sha512-05+sIGPev6pwpHF7NZKfP3jcXhXsIVFnYyVRT4WOB0me62E8OlWfTN+sKyt2/rqN+ETxuHAtgTSK1v71F0yncg==
 
 "@types/lolex@^3.1.1":
   version "3.1.1"
@@ -2476,10 +2476,10 @@
     "@types/webpack-sources" "*"
     source-map "^0.6.0"
 
-"@types/webpack@^4.39.8":
-  version "4.39.8"
-  resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.39.8.tgz#8083a4eb850ea02961ef6161465434c9b478851f"
-  integrity sha512-lkJvwNJQUPW2SbVwAZW9s9whJp02nzLf2yTNwMULa4LloED9MYS1aNnGeoBCifpAI1pEBkTpLhuyRmBnLEOZAA==
+"@types/webpack@^4.39.9":
+  version "4.39.9"
+  resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.39.9.tgz#a8c7d0ba14631023e75ae1b5bd0bfad3cf2cba4c"
+  integrity sha512-p6GjQ+x86XyQd32IS3rYlisEpkuP8/DCW87mxpzAUs4McmKus7mD+cCEDaMIJIFfLW6cyYHfD+xEo/xREpT9lA==
   dependencies:
     "@types/anymatch" "*"
     "@types/node" "*"
@@ -5576,10 +5576,10 @@ escodegen@^1.9.1:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-config-marudor@^7.1.0:
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-marudor/-/eslint-config-marudor-7.1.0.tgz#2d3bc67f3febaa1c89d8daa781fa030db8c0a816"
-  integrity sha512-c65ng/BBk3fn957I2KKyRD4udqlF1sPVOFIowSyEez8O6jwhV3EXXZYg9tFmnr+nIpOLv3fYEjIrYkK7mW6Egg==
+eslint-config-marudor@^7.2.0:
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-marudor/-/eslint-config-marudor-7.2.0.tgz#ef39c9d7cafce0d1889b269e08a2fd38cb80d241"
+  integrity sha512-UHEwT98TI6janzmhjGBRPtCpGq4rhtfE6hlnAhqlyP+t28mcPjuE2I3InOQN7Leswwra1mwTp4BofcChO+SiWQ==
 
 eslint-config-prettier@^6.5.0:
   version "6.5.0"
