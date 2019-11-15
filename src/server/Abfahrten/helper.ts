@@ -5,12 +5,14 @@ import Axios from 'axios';
 export const noncdAxios = Axios.create({
   baseURL: 'https://iris.noncd.db.de/iris-tts/timetable',
 });
-export const openDataAxios = Axios.create({
-  baseURL: 'https://api.deutschebahn.com/timetables/v1',
-  headers: {
-    Authorization: `Bearer ${process.env.TIMETABLES_OPEN_DATA_KEY || ''}`,
-  },
-});
+export const openDataAxios = process.env.TIMETABLES_OPEN_DATA_KEY
+  ? Axios.create({
+      baseURL: 'https://api.deutschebahn.com/timetables/v1',
+      headers: {
+        Authorization: `Bearer ${process.env.TIMETABLES_OPEN_DATA_KEY}`,
+      },
+    })
+  : noncdAxios;
 
 export function getAttr(
   node: null | Element,

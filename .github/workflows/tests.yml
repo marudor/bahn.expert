@@ -1,0 +1,99 @@
+name: node tests
+
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    branches:
+    - master
+
+env:
+  CI: true
+
+jobs:
+  node:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: install
+      run: |
+        yarn --frozen-lockfile
+      env:
+        CYPRESS_INSTALL_BINARY: 0
+    - name: jest
+      run: |
+        yarn test:jest
+    - name: depCheck
+      run: |
+        yarn depCheck
+    - name: lint
+      run: |
+        yarn lint
+    - name: types
+      run: |
+        yarn tsc
+    # - name: coveralls
+    #   uses: coverallsapp/github-action@master
+    #   with:
+    #     github-token: ${{ secrets.github_token }}
+    #     path-to-lcov: ./reports/lcov.info
+    # - name: codecov
+    #   uses: codecov/codecov-action@v1.0.3
+    #   with:
+    #     token: "0ffea696-ec61-45a5-b163-d59e71c0d36b"
+    #     file: ./reports/lcov.info
+  e2e:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: install
+      run: |
+        yarn --frozen-lockfile
+    - name: build
+      run: |
+        yarn build
+      env:
+        NODE_ENV: production
+        TEST_ONLY: 1
+    - name: Run Cypress
+      run: |
+          node testDist/server/server/index.js & npx wait-on http://localhost:9042
+          yarn e2e:ci --record||(pkill -9 node && exit 1)
+          pkill -9 node
+      env:
+        CYPRESS_RECORD_KEY: 0af1d817-e8ac-4c69-ac15-c0da1e69182d
+        COMMIT_INFO_BRANCH: ${{ github.head_ref }}
+        COMMIT_INFO_REMOTE: https://github.com/${{ github.repository }}.git
+        BASE_URL: http://localhost:9042
+        NODE_ENV: production
+        TEST_RUN: 1
+  coverage:
+    needs: [node, e2e]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: test
+      run: |
+        echo "test"
