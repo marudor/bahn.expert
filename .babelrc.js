@@ -30,7 +30,7 @@ module.exports = {
   ],
   env: {
     testProduction: {
-      compact: true,
+      // compact: true,
       plugins: ['@babel/plugin-transform-react-constant-elements', 'istanbul'],
     },
     production: {

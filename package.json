@@ -14,12 +14,15 @@
     "build": "npm run cleanup && run-p build:client build:server",
     "cleanup": "rimraf dist && rimraf testDist && mkdir dist && mkdir testDist",
     "dev": "npm run start",
+    "dev:coverage": "TEST_RUN=1 BABEL_ENV=testProduction npm run dev",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src test scripts",
     "start": "node devIndex.js",
     "depCheck": "depcruise --validate .dependency-cruiser.js src",
     "test": "npm run lint && npm run depCheck && npm run test:jest && tsc",
     "test:jest": "jest",
+    "test:jest:coverage": "jest --coverage",
     "e2e:local": "CYPRESS_baseUrl=https://local.marudor.de:9042 cypress open",
+    "e2e:local:coverage": "wait-on https://local.marudor.de:9042 && (CYPRESS_baseUrl=https://local.marudor.de:9042 cypress run --config video=false ||(pkill -9 && exit 1)) && pkill -9 node",
     "e2e:ci": "cypress run",
     "doc:watch:serve": "redoc-cli serve -w docs/swagger.json",
     "doc:serve": "redoc-cli serve docs/swagger.json",
@@ -29,7 +32,8 @@
     "coverage:merge:prepare": "rimraf reports && mkdir reports",
     "coverage:merge:copy": "cp cypress-coverage/coverage-final.json reports/from-cypress.json && cp jest-coverage/coverage-final.json reports/from-jest.json",
     "coverage:nyc:combine": "nyc merge reports .nyc_output/out.json && nyc report --reporter lcov --report-dir reports",
-    "coverage:merge": "run-s coverage:merge:prepare coverage:merge:copy coverage:nyc:combine"
+    "coverage:merge": "run-s coverage:merge:prepare coverage:merge:copy coverage:nyc:combine",
+    "coverage:full": "run-p dev:coverage e2e:local:coverage test:jest:coverage && npm run coverage:merge"
   },
   "husky": {
     "hooks": {

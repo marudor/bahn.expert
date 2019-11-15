@@ -626,7 +626,10 @@ export default class Timetable {
     const scheduledDeparture = parseTs(getAttr(dp, 'pt'));
     const lineNumber = getAttr(dp || ar, 'l');
     const { trainNumber, trainCategory, t, o, productClass } = parseTl(tl);
-    const fullTrainText = `${trainCategory} ${lineNumber || trainNumber}`;
+    const longDistance = longDistanceRegex.test(trainCategory);
+    const fullTrainText = `${trainCategory} ${
+      longDistance ? trainNumber : lineNumber || trainNumber
+    }`;
 
     function getNormalizedRoute(node: null | xmljs.Element) {
       const rawRoute = getAttr(node, 'ppth');
