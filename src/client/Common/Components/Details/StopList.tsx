@@ -45,7 +45,7 @@ const StopList = () => {
   }
 
   return (
-    <div className={classes.wrap}>
+    <main className={classes.wrap}>
       {/* <Messages messages={details.messages} /> */}
       {details.stops.map(s => (
         <Stop
@@ -59,7 +59,7 @@ const StopList = () => {
           }
         />
       ))}
-    </div>
+    </main>
   );
 };
 

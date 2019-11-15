@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/styles';
 
-export default makeStyles(theme => ({
+export default makeStyles({
   buttons: {
     '& svg': {
       marginRight: 5,
@@ -20,9 +20,9 @@ export default makeStyles(theme => ({
     marginRight: 10,
     display: 'flex',
     flexDirection: 'column',
-    marginTop: theme.shape.headerSpacing + 10,
+    marginTop: 10,
   },
   donation: {
     marginTop: '1em',
   },
-}));
+});

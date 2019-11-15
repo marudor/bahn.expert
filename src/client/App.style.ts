@@ -1,6 +1,6 @@
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles, MergedTheme } from '@material-ui/styles';
 
-export default makeStyles(theme => ({
+export default makeStyles<MergedTheme>(theme => ({
   '@global': {
     'html, body': {
       height: '100%',
@@ -19,6 +19,9 @@ export default makeStyles(theme => ({
     a: {
       textDecoration: 'none',
       color: theme.colors.blue,
+    },
+    main: {
+      marginTop: theme.shape.headerSpacing,
     },
   },
 }));
