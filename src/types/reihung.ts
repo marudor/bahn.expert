@@ -53,35 +53,12 @@ export interface Waggon {
   length: number;
 }
 
-export interface Formation {
+export interface BaseFormation {
   /**
    * Should always be VORWAERTS
    */
   fahrtrichtung: 'VORWAERTS' | 'RUCKWAERTS';
-  /**
-   * Train is reported as ICE but has IC coach sequence
-   */
-  isActuallyIC: boolean;
-  /**
-   * Train Category that was reported
-   */
-  reportedZuggattung?: string;
-  /**
-   * do groups have a different destination
-   */
-  differentDestination: boolean;
-  /**
-   * Do we have several trains in one? (Flügelung)
-   */
-  differentZugnummer: boolean;
-  scale: number;
-  startPercentage: number;
-  endPercentage: number;
-  /**
-   * true = Vorwärts
-   */
-  realFahrtrichtung: boolean;
-  allFahrzeuggruppe: Fahrzeuggruppe[];
+  allFahrzeuggruppe: BaseFahrzeuggruppe[];
   halt: Halt;
   liniebezeichung: string;
   zuggattung: string;
@@ -96,18 +73,49 @@ export interface Formation {
    */
   fahrtid: string;
   istplaninformation: boolean;
-  br?: BRInfo;
 }
 
-export interface Fahrzeuggruppe {
+export interface Formation extends BaseFormation {
+  allFahrzeuggruppe: Fahrzeuggruppe[];
+  /**
+   * Train is reported as ICE but has IC coach sequence
+   */
+  isActuallyIC: boolean;
+  /**
+   * Train Category that was reported
+   */
+  reportedZuggattung: string;
+  /**
+   * do groups have a different destination
+   */
+  differentDestination?: boolean;
+  /**
+   * Do we have several trains in one? (Flügelung)
+   */
+  differentZugnummer?: boolean;
+  scale: number;
   startPercentage: number;
   endPercentage: number;
-  br?: BRInfo;
-  allFahrzeug: Fahrzeug[];
+  /**
+   * true = Vorwärts
+   */
+  realFahrtrichtung: boolean;
+}
+
+export interface BaseFahrzeuggruppe {
+  allFahrzeug: BaseFahrzeug[];
   fahrzeuggruppebezeichnung: string;
   zielbetriebsstellename: string;
   startbetriebsstellename: string;
   verkehrlichezugnummer: string;
+}
+
+export interface Fahrzeuggruppe extends BaseFahrzeuggruppe {
+  goesToFrance: boolean;
+  allFahrzeug: Fahrzeug[];
+  startPercentage: number;
+  endPercentage: number;
+  br?: BRInfo;
 }
 
 export interface Halt {
@@ -134,9 +142,7 @@ export interface BRInfo {
   showBRInfo?: boolean;
 }
 
-export interface Fahrzeug {
-  additionalInfo: AdditionalFahrzeugInfo;
-  goesToFrance: boolean;
+export interface BaseFahrzeug {
   allFahrzeugausstattung: Fahrzeugausstattung[];
   kategorie: string;
   fahrzeugnummer: string;
@@ -147,6 +153,10 @@ export interface Fahrzeug {
   wagenordnungsnummer: string;
   positionamhalt: Position;
   status: string;
+}
+
+export interface Fahrzeug extends BaseFahrzeug {
+  additionalInfo: AdditionalFahrzeugInfo;
 }
 export interface Position {
   endemeter: string;
@@ -200,5 +210,5 @@ export interface Meta {
 }
 
 export interface Data {
-  istformation: Formation;
+  istformation: BaseFormation;
 }

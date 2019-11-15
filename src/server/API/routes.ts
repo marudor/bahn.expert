@@ -823,21 +823,6 @@ const models: TsoaRoute.Models = {
     "additionalProperties": false,
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "BRInfo": {
-    "dataType": "refObject",
-    "properties": {
-      "name": { "dataType": "string", "required": true },
-      "BR": { "dataType": "string" },
-      "serie": { "dataType": "string" },
-      "redesign": { "dataType": "boolean" },
-      "noPdf": { "dataType": "boolean" },
-      "pdf": { "dataType": "string" },
-      "country": { "dataType": "enum", "enums": ["DE", "AT"] },
-      "showBRInfo": { "dataType": "boolean" },
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "AdditionalFahrzeugInfo": {
     "dataType": "refObject",
     "properties": {
@@ -871,8 +856,39 @@ const models: TsoaRoute.Models = {
   "Fahrzeug": {
     "dataType": "refObject",
     "properties": {
+      "allFahrzeugausstattung": { "dataType": "array", "array": { "ref": "Fahrzeugausstattung" }, "required": true },
+      "kategorie": { "dataType": "string", "required": true },
+      "fahrzeugnummer": { "dataType": "string", "required": true },
+      "orientierung": { "dataType": "string", "required": true },
+      "positioningruppe": { "dataType": "string", "required": true },
+      "fahrzeugsektor": { "dataType": "string", "required": true },
+      "fahrzeugtyp": { "dataType": "string", "required": true },
+      "wagenordnungsnummer": { "dataType": "string", "required": true },
+      "positionamhalt": { "dataType": "any", "required": true },
+      "status": { "dataType": "string", "required": true },
       "additionalInfo": { "ref": "AdditionalFahrzeugInfo", "required": true },
-      "goesToFrance": { "dataType": "boolean", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "BRInfo": {
+    "dataType": "refObject",
+    "properties": {
+      "name": { "dataType": "string", "required": true },
+      "BR": { "dataType": "string" },
+      "serie": { "dataType": "string" },
+      "redesign": { "dataType": "boolean" },
+      "noPdf": { "dataType": "boolean" },
+      "pdf": { "dataType": "string" },
+      "country": { "dataType": "enum", "enums": ["DE", "AT"] },
+      "showBRInfo": { "dataType": "boolean" },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "BaseFahrzeug": {
+    "dataType": "refObject",
+    "properties": {
       "allFahrzeugausstattung": { "dataType": "array", "array": { "ref": "Fahrzeugausstattung" }, "required": true },
       "kategorie": { "dataType": "string", "required": true },
       "fahrzeugnummer": { "dataType": "string", "required": true },
@@ -890,10 +906,23 @@ const models: TsoaRoute.Models = {
   "Fahrzeuggruppe": {
     "dataType": "refObject",
     "properties": {
+      "allFahrzeug": { "dataType": "array", "array": { "ref": "Fahrzeug" }, "required": true },
+      "fahrzeuggruppebezeichnung": { "dataType": "string", "required": true },
+      "zielbetriebsstellename": { "dataType": "string", "required": true },
+      "startbetriebsstellename": { "dataType": "string", "required": true },
+      "verkehrlichezugnummer": { "dataType": "string", "required": true },
+      "goesToFrance": { "dataType": "boolean", "required": true },
       "startPercentage": { "dataType": "double", "required": true },
       "endPercentage": { "dataType": "double", "required": true },
       "br": { "ref": "BRInfo" },
-      "allFahrzeug": { "dataType": "array", "array": { "ref": "Fahrzeug" }, "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "BaseFahrzeuggruppe": {
+    "dataType": "refObject",
+    "properties": {
+      "allFahrzeug": { "dataType": "array", "array": { "ref": "BaseFahrzeug" }, "required": true },
       "fahrzeuggruppebezeichnung": { "dataType": "string", "required": true },
       "zielbetriebsstellename": { "dataType": "string", "required": true },
       "startbetriebsstellename": { "dataType": "string", "required": true },
@@ -930,14 +959,6 @@ const models: TsoaRoute.Models = {
     "dataType": "refObject",
     "properties": {
       "fahrtrichtung": { "dataType": "enum", "enums": ["VORWAERTS", "RUCKWAERTS"], "required": true },
-      "isActuallyIC": { "dataType": "boolean", "required": true },
-      "reportedZuggattung": { "dataType": "string" },
-      "differentDestination": { "dataType": "boolean", "required": true },
-      "differentZugnummer": { "dataType": "boolean", "required": true },
-      "scale": { "dataType": "double", "required": true },
-      "startPercentage": { "dataType": "double", "required": true },
-      "endPercentage": { "dataType": "double", "required": true },
-      "realFahrtrichtung": { "dataType": "boolean", "required": true },
       "allFahrzeuggruppe": { "dataType": "array", "array": { "ref": "Fahrzeuggruppe" }, "required": true },
       "halt": { "ref": "Halt", "required": true },
       "liniebezeichung": { "dataType": "string", "required": true },
@@ -947,7 +968,14 @@ const models: TsoaRoute.Models = {
       "planstarttag": { "dataType": "string", "required": true },
       "fahrtid": { "dataType": "string", "required": true },
       "istplaninformation": { "dataType": "boolean", "required": true },
-      "br": { "ref": "BRInfo" },
+      "isActuallyIC": { "dataType": "boolean", "required": true },
+      "reportedZuggattung": { "dataType": "string", "required": true },
+      "differentDestination": { "dataType": "boolean" },
+      "differentZugnummer": { "dataType": "boolean" },
+      "scale": { "dataType": "double", "required": true },
+      "startPercentage": { "dataType": "double", "required": true },
+      "endPercentage": { "dataType": "double", "required": true },
+      "realFahrtrichtung": { "dataType": "boolean", "required": true },
     },
     "additionalProperties": false,
   },

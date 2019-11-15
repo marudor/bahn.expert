@@ -6,8 +6,8 @@ import useStyles from './Gruppe.style';
 
 type OwnProps = InheritedProps & {
   gruppe: Fahrzeuggruppe;
-  showDestination: boolean;
-  showGruppenZugnummer: boolean;
+  showDestination?: boolean;
+  showGruppenZugnummer?: boolean;
   showFahrzeugGruppe: boolean;
   originalTrainNumber: string;
   showUIC: boolean;
