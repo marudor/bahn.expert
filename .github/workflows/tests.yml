@@ -145,41 +145,57 @@ jobs:
     #   with:
     #     token: "0ffea696-ec61-45a5-b163-d59e71c0d36b"
     #     file: ./reports/lcov.info
-  docker:
-    # if: github.event_name == 'push'
+  # docker:
+  #   # if: github.event_name == 'push'
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       node-version: [12.x]
+  #   steps:
+  #   - uses: actions/checkout@v1
+  #   - name: Use Node.js ${{ matrix.node-version }}
+  #     uses: actions/setup-node@v1
+  #     with:
+  #       node-version: ${{ matrix.node-version }}
+  #   - name: Cache node modules
+  #     uses: actions/cache@v1
+  #     with:
+  #       path: node_modules
+  #       key: ${{ runner.OS }}-build-${{ hashFiles('yarn.lock') }}
+  #       restore-keys: |
+  #         ${{ runner.OS }}-build-${{ env.cache-name }}-
+  #         ${{ runner.OS }}-build-
+  #         ${{ runner.OS }}-
+  #   - name: install
+  #     run: |
+  #       yarn --frozen-lockfile
+  #   - name: build
+  #     run: |
+  #       yarn build
+  #     env:
+  #       NODE_ENV: production
+  #       PROD_ONLY: 1
+  #   - name: docker
+  #     uses: elgohr/Publish-Docker-Github-Action@master
+  #     with:
+  #       name: marudor/bahnhofsabfahrten/standalone
+  #       username: ${{ secrets.DOCKER_USERNAME }}
+  #       password: ${{ secrets.GITHUB_TOKEN }}
+  #       registry: docker.pkg.github.com
+  #       snapshot: "true"
+  deploy-test:
+    # needs: [docker]
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
     steps:
     - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+    - name: 'Deploy'
+      uses: 'deliverybot/helm@v1'
       with:
-        node-version: ${{ matrix.node-version }}
-    - name: Cache node modules
-      uses: actions/cache@v1
-      with:
-        path: node_modules
-        key: ${{ runner.OS }}-build-${{ hashFiles('yarn.lock') }}
-        restore-keys: |
-          ${{ runner.OS }}-build-${{ env.cache-name }}-
-          ${{ runner.OS }}-build-
-          ${{ runner.OS }}-
-    - name: install
-      run: |
-        yarn --frozen-lockfile
-    - name: build
-      run: |
-        yarn build
+        release: 'bahnhofsabfahrten-test'
+        namespace: 'marudor'
+        chart: 'app'
+        token: '${{ github.token }}'
+        values: |
+          name: foobar
       env:
-        NODE_ENV: production
-        PROD_ONLY: 1
-    - name: docker
-      uses: elgohr/Publish-Docker-Github-Action@master
-      with:
-        name: marudor/bahnhofsabfahrten/standalone
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-        registry: docker.pkg.github.com
-        snapshot: "true"
+        KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'

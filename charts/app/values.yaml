@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  registryHost: registry.gitlab.com
+  registryHost: docker.pkg.github.com
   repository: docker.pkg.github.com/marudor/bahnhofsabfahrten/standalone
   tag: latest
   pullPolicy: IfNotPresent
