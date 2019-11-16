@@ -15,15 +15,12 @@ env:
 jobs:
   # node:
   #   runs-on: ubuntu-latest
-  #   strategy:
-  #     matrix:
-  #       node-version: [12.x]
   #   steps:
   #   - uses: actions/checkout@v1
-  #   - name: Use Node.js ${{ matrix.node-version }}
+  #   - name: Use Node.js 12
   #     uses: actions/setup-node@v1
   #     with:
-  #       node-version: ${{ matrix.node-version }}
+  #       node-version: 12
   #   - name: Cache node modules
   #     uses: actions/cache@v1
   #     with:
@@ -55,15 +52,12 @@ jobs:
   #       path: jest-coverage/coverage-final.json
   # e2e:
   #   runs-on: ubuntu-latest
-  #   strategy:
-  #     matrix:
-  #       node-version: [12.x]
   #   steps:
   #   - uses: actions/checkout@v1
-  #   - name: Use Node.js ${{ matrix.node-version }}
+  #   - name: Use Node.js 12
   #     uses: actions/setup-node@v1
   #     with:
-  #       node-version: ${{ matrix.node-version }}
+  #       node-version: 12
   #   - name: Cache node modules
   #     uses: actions/cache@v1
   #     with:
@@ -103,15 +97,12 @@ jobs:
   # coverage:
     # needs: [node, e2e]
     # runs-on: ubuntu-latest
-    # strategy:
-    #   matrix:
-    #     node-version: [12.x]
     # steps:
     # - uses: actions/checkout@v1
-    # - name: Use Node.js ${{ matrix.node-version }}
+    # - name: Use Node.js 12
     #   uses: actions/setup-node@v1
     #   with:
-    #     node-version: ${{ matrix.node-version }}
+    #     node-version: 12
     # - name: Cache node modules
     #   uses: actions/cache@v1
     #   with:
@@ -145,18 +136,15 @@ jobs:
     #   with:
     #     token: "0ffea696-ec61-45a5-b163-d59e71c0d36b"
     #     file: ./reports/lcov.info
-  # docker:
+  docker:
   #   # if: github.event_name == 'push'
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #     matrix:
-  #       node-version: [12.x]
-  #   steps:
-  #   - uses: actions/checkout@v1
-  #   - name: Use Node.js ${{ matrix.node-version }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+  #   - name: Use Node.js 12
   #     uses: actions/setup-node@v1
   #     with:
-  #       node-version: ${{ matrix.node-version }}
+  #       node-version: 12
   #   - name: Cache node modules
   #     uses: actions/cache@v1
   #     with:
@@ -183,19 +171,3 @@ jobs:
   #       password: ${{ secrets.GITHUB_TOKEN }}
   #       registry: docker.pkg.github.com
   #       snapshot: "true"
-  deploy-test:
-    # needs: [docker]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1
-    - name: 'Deploy'
-      uses: 'deliverybot/helm@v1'
-      with:
-        release: 'bahnhofsabfahrten-test'
-        namespace: 'marudor'
-        chart: 'app'
-        token: '${{ github.token }}'
-        values: |
-          name: foobar
-      env:
-        KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'

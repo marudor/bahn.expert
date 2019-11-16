@@ -1,0 +1,22 @@
+name: PRCleanup
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  deployment:
+    runs-on: 'ubuntu-latest'
+    steps:
+    - name: 'Deploy'
+      uses: 'deliverybot/helm@v1'
+      with:
+        # Task remove means to remove the helm release.
+        task: 'remove'
+        release: 'review-bahnhofs-abfahrten-${{ github.event.pull_request.number }}'
+        version: '${{ github.sha }}'
+        track: 'stable'
+        chart: 'app'
+        namespace: 'marudor'
+        token: '${{ github.token }}'
+      env:
+        KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'

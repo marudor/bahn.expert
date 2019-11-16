@@ -1,0 +1,21 @@
+name: 'Deploy'
+on: ['deployment']
+
+jobs:
+  deployment:
+    runs-on: 'ubuntu-latest'
+    steps:
+    - name: 'Checkout'
+      uses: 'actions/checkout@v1'
+
+    - name: 'Deploy'
+      # Parameters are pulled directly from the GitHub deployment event so the
+      # configuration for the job here is very minimal.
+      uses: 'deliverybot/helm@master'
+      with:
+        token: '${{ github.token }}'
+        secrets: '${{ toJSON(secrets) }}'
+        version: '${{ github.sha }}'
+        chart: 'app'
+      env:
+        KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
