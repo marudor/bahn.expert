@@ -3,6 +3,7 @@ const childProcess = require('child_process');
 const ncp = require('ncp');
 
 const testOnly = Boolean(process.env.TEST_ONLY);
+const productionOnly = Boolean(process.env.PROD_ONLY);
 
 if (!testOnly) {
   const webpackProductionProcess = childProcess.spawn('webpack', [], {
@@ -21,16 +22,18 @@ if (!testOnly) {
   });
 }
 
-const webpackTestProductionProcess = childProcess.spawn('webpack', [], {
-  env: {
-    ...process.env,
-    BABEL_ENV: 'testProduction',
-  },
-});
+if (!productionOnly) {
+  const webpackTestProductionProcess = childProcess.spawn('webpack', [], {
+    env: {
+      ...process.env,
+      BABEL_ENV: 'testProduction',
+    },
+  });
 
-webpackTestProductionProcess.on('close', code => {
-  if (code !== 0) {
-    process.exit(code);
-  }
-  ncp('public/', 'testDist/client/');
-});
+  webpackTestProductionProcess.on('close', code => {
+    if (code !== 0) {
+      process.exit(code);
+    }
+    ncp('public/', 'testDist/client/');
+  });
+}

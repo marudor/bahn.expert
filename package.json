@@ -37,7 +37,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run doc:build && git add docs && git add src/server/API/routes.ts && npx tsc && npm run depCheck"
+      "pre-commit": "npm run doc:build && git add docs && git add src/server/API/routes.ts"
     }
   },
   "devDependencies": {
