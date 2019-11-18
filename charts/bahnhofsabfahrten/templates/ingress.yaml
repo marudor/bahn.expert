@@ -1,6 +1,5 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "bahnhofsAbfahrten.fullname" . -}}
-{{- $ingressPath := .Values.ingress.path -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -15,22 +14,22 @@ metadata:
 {{ toYaml . | indent 4 }}
 {{- end }}
 spec:
-{{- if .Values.ingress.tls }}
   tls:
-  {{- range .Values.ingress.tls }}
     - hosts:
-      {{- range .hosts }}
-        - {{ . | quote }}
-      {{- end }}
+      {{ if .Values.hostName }}
+        - {{ .Values.hostName }}
+      {{ else }}
+        - {{ .Release.Name }}.marudor.de
+      {{ end }}
       secretName: {{ $fullName }}
-  {{- end }}
-{{- end }}
   rules:
-  {{- range .Values.ingress.hosts }}
-    - host: {{ . | quote }}
+    {{ if .Values.hostName }}
+    - host: {{ .Values.hostName }}
+    {{ else }}
+    - host: {{ .Release.Name }}.marudor.de
       http:
         paths:
-          - path: {{ $ingressPath }}
+          - path: /
             backend:
               serviceName: {{ $fullName }}
               servicePort: http

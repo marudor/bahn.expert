@@ -13,9 +13,10 @@ jobs:
       # configuration for the job here is very minimal.
       uses: 'deliverybot/helm@master'
       with:
+        helm: 'helm3'
         token: '${{ github.token }}'
         secrets: '${{ toJSON(secrets) }}'
         version: '${{ github.sha }}'
-        chart: 'app'
+        chart: './charts/bahnhofsabfahrten'
       env:
         KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'

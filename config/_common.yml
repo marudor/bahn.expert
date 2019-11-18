@@ -1,30 +1,18 @@
 certificate:
   enabled: true
-  commonName: 'review-ba-${{ pr }}.marudor.de'
-  dnsNames:
-    - 'review-ba-${{ pr }}.marudor.de'
-  domains:
-    - 'review-ba-${{ pr }}.marudor.de'
+  # commonName: '${{ .Release.API_KEY }}.marudor.de'
+  # dnsNames:
+  #   - '{{ .Release.Name }}.marudor.de'
+  # domains:
+  #   - '{{ .Release.Name }}.marudor.de'
   issuerName: marudor-issuer
   issuerKind: ClusterIssuer
 
-env:
-  - name: BASE_URL
-    value: 'review-ba-${{ pr }}.marudor.de'
 
 ingress:
   enabled: true
   annotations:
     {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  path: /
-  hosts:
-    - 'review-ba-${{ pr }}.marudor.de'
-  tls:
-    - secretName:
-      hosts:
-        - 'review-ba-${{ pr }}.marudor.de'
 
 resources:
   requests:

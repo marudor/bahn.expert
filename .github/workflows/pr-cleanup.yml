@@ -15,7 +15,7 @@ jobs:
         release: 'review-bahnhofs-abfahrten-${{ github.event.pull_request.number }}'
         version: '${{ github.sha }}'
         track: 'stable'
-        chart: 'app'
+        chart: 'bahnhofsAbfahrten'
         namespace: 'marudor'
         token: '${{ github.token }}'
       env:

@@ -30,7 +30,15 @@ spec:
             initialDelaySeconds: 3
             periodSeconds: 3
           env:
+            - name: BASE_URL
+            {{ if .Values.hostName }}
+              value: {{ .Values.hostName }}
+            {{ else }}
+              value: {{ .Release.Name }}.marudor.de
+            {{ end }}
+{{ if .Values.env }}
 {{ toYaml .Values.env | indent 12 }}
+{{ end }}
           resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- with .Values.nodeSelector }}

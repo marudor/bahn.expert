@@ -1,6 +1,6 @@
 {{- if .Values.certificate.enabled -}}
 {{- $fullName := include "bahnhofsAbfahrten.fullname" . -}}
-apiVersion: certmanager.k8s.io/v1alpha1
+apiVersion: cert-manager.io/v1alpha2
 kind: Certificate
 metadata:
   name: {{ $fullName }}
@@ -14,11 +14,24 @@ spec:
   issuerRef:
     name: {{ .Values.certificate.issuerName }}
     kind: {{ .Values.certificate.issuerKind }}
+  {{ if .Values.hostName }}
   commonName: {{ .Values.certificate.commonName }}
-  dnsNames: {{ .Values.certificate.dnsNames }}
+  dnsNames:
+    - {{ .Values.certificate.dnsNames }}
+  commonName: {{ .Release.Name }}.marudor.de
+  {{ else }}
+  dnsNames:
+    - {{ .Release.Name }}.marudor.de
+  {{ end }}
   acme:
     config:
     - dns01:
         provider: cf-dns
-      domains: {{ .Values.certificate.domains }}
+  {{ if .Values.hostName }}
+      domains:
+        - {{ .Values.hostName }}
+  {{ else }}
+      domains:
+        - {{ .Release.Name }}.marudor.de
+  {{ end }}
 {{- end }}
