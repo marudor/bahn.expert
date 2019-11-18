@@ -21,10 +21,6 @@ spec:
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          {{ if .Values.image.pullSecret }}
-          imagePullSecrets:
-          - name: {{ .Values.image.pullSecret }}
-          {{ end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           readinessProbe:
@@ -45,6 +41,10 @@ spec:
 {{ end }}
           resources:
 {{ toYaml .Values.resources | indent 12 }}
+      {{ if .Values.image.pullSecret }}
+        imagePullSecrets:
+        - name: {{ .Values.image.pullSecret }}
+      {{ end }}
     {{- with .Values.nodeSelector }}
       nodeSelector:
 {{ toYaml . | indent 8 }}
