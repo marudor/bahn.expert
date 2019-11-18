@@ -18,5 +18,10 @@ jobs:
         secrets: '${{ toJSON(secrets) }}'
         version: '${{ github.sha }}'
         chart: './charts/bahnhofsabfahrten'
+        values: |
+          image:
+            registryHost: docker.pkg.github.com
+            repository: docker.pkg.github.com/marudor/bahnhofsabfahrten/standalone
+            tag: '${{ github.sha }}'
       env:
         KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'

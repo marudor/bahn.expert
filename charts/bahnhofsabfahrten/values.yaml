@@ -18,28 +18,6 @@ service:
   port: 9042
 
 env:
-  - name: FEATURE_ENV
-    value: beta
-  - name: TIMETABLES_OPEN_DATA_KEY
-    value: 06b6569bcde2a517a796e506e2cc1640
-  - name: IMPRINT_NAME
-    value: 'Thies Clasen'
-  - name: IMPRINT_STREET
-    value: 'Schultzweg 2'
-  - name: IMPRINT_TOWN
-    value: '20097 Hamburg'
-  - name: WIFI_URL
-    value: 'http://ngc-monitor.lysatiq.de/advanced/traindata'
-  - name: WIFI_USER
-    value: monitor
-  - name: WIFI_PASS
-    value: wifionice
-  - name: INNO_URL
-    value: 'https://innoapi-k8s01-dev-fcd.reisenden.info/2.7/'
-  - name: INNO_USER
-    value: 'hackathon_hh'
-  - name: INNO_PW
-    value: '%Bambule27!#'
 
 certificate:
   enabled: false

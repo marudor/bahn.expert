@@ -1,2 +1,5 @@
 env:
-  ENVIRONMENT: production
+  - name: ENVIRONMENT
+    value: production
+
+replicaCount: 2

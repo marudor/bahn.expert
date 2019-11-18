@@ -11,8 +11,6 @@ production:
     release: bahnhofs-abfahrten-production
     namespace: marudor
     track: stable
-    values:
-      replicaCount: 2
 
 # Automatic deployment to a staging environment on every push to master.
 beta:
@@ -25,8 +23,6 @@ beta:
     release: bahnhofs-abfahrten-beta
     namespace: marudor
     track: stable
-    values:
-      replicaCount: 1
 
 # Review environments can be triggered with /deploy review inside a pull
 # request.
@@ -41,5 +37,3 @@ review:
     release: review-bahnhofs-abfahrten-${{ pr }}
     namespace: marudor
     track: stable
-    values:
-      replicaCount: 1

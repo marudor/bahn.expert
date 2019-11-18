@@ -1,2 +1,3 @@
 env:
-  ENVIRONMENT: beta
+  - name: ENVIRONMENT
+    value: beta
