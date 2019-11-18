@@ -167,7 +167,7 @@ jobs:
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
         name: marudor/bahnhofsabfahrten/standalone
-        username: ${{ secrets.DOCKER_USERNAME }}
+        username: marudor
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: docker.pkg.github.com
         snapshot: "true"

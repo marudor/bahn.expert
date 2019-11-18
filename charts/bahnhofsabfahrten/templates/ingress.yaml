@@ -27,11 +27,11 @@ spec:
     - host: {{ .Values.hostName }}
     {{ else }}
     - host: {{ .Release.Name }}.marudor.de
+    {{ end }}
       http:
         paths:
           - path: /
             backend:
               serviceName: {{ $fullName }}
               servicePort: http
-  {{- end }}
 {{- end }}

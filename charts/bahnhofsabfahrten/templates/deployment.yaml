@@ -21,6 +21,10 @@ spec:
     spec:
       containers:
         - name: {{ .Chart.Name }}
+          {{ if .Values.image.pullSecret }}
+          imagePullSecrets:
+          - name: {{ .Values.image.pullSecret }}
+          {{ end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           readinessProbe:

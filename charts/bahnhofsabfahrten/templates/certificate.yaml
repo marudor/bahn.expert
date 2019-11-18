@@ -15,11 +15,11 @@ spec:
     name: {{ .Values.certificate.issuerName }}
     kind: {{ .Values.certificate.issuerKind }}
   {{ if .Values.hostName }}
-  commonName: {{ .Values.certificate.commonName }}
+  commonName: {{ .Values.hostName }}
   dnsNames:
-    - {{ .Values.certificate.dnsNames }}
-  commonName: {{ .Release.Name }}.marudor.de
+    - {{ .Values.hostName }}
   {{ else }}
+  commonName: {{ .Release.Name }}.marudor.de
   dnsNames:
     - {{ .Release.Name }}.marudor.de
   {{ end }}
