@@ -36,6 +36,9 @@ spec:
             {{ else }}
               value: {{ .Release.Name }}.marudor.de
             {{ end }}
+{{ if .Values.baseEnv }}
+{{ toYaml .Values.baseEnv | indent 12 }}
+{{ end }}
 {{ if .Values.env }}
 {{ toYaml .Values.env | indent 12 }}
 {{ end }}

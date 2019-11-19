@@ -34,7 +34,7 @@ tolerations: []
 
 affinity: {}
 
-env:
+baseEnv:
   - name: WIFI_URL
     valueFrom:
       secretKeyRef:
