@@ -3,6 +3,8 @@ on: ['deployment']
 
 jobs:
   deployment:
+    needs: [docker]
+
     runs-on: 'ubuntu-latest'
     steps:
     - name: 'Checkout'
@@ -22,6 +24,6 @@ jobs:
           image:
             registryHost: docker.pkg.github.com
             repository: docker.pkg.github.com/marudor/bahnhofsabfahrten/standalone
-            tag: '${{ github.sha }}'
+            tag: '${{ steps.docker.outputs.snapshot-tag }}'
       env:
         KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
