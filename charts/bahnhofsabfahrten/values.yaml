@@ -19,6 +19,8 @@ service:
   port: 9042
 
 env:
+  - name: test
+    value: test
 
 certificate:
   enabled: false

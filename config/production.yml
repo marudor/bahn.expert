@@ -1,5 +1,0 @@
-env:
-  - name: ENVIRONMENT
-    value: production
-
-replicaCount: 2
