@@ -33,3 +33,20 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+env:
+  - name: WIFI_URL
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: wifi_url
+  - name: WIFI_USER
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: wifi_user
+  - name: WIFI_PASS
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: wifi_pass
