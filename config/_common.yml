@@ -1,0 +1,82 @@
+certificate:
+  enabled: true
+  # commonName: '${{ .Release.API_KEY }}.marudor.de'
+  # dnsNames:
+  #   - '{{ .Release.Name }}.marudor.de'
+  # domains:
+  #   - '{{ .Release.Name }}.marudor.de'
+  issuerName: marudor-issuer
+  issuerKind: ClusterIssuer
+
+ingress:
+  enabled: true
+  annotations:
+    {}
+
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "200m"
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+baseEnv:
+  - name: WIFI_URL
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: wifi_url
+  - name: WIFI_USER
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: wifi_user
+  - name: WIFI_PASS
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: wifi_pass
+  - name: SENTRY_DSN
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: sentry_dsn
+  - name: TIMETABLES_OPEN_DATA_KEY
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: timetables_open_data_key
+  - name: IMPRINT_NAME
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: imprint_name
+  - name: IMPRINT_STREET
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: imprint_street
+  - name: IMPRINT_TOWN
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: imprint_town
+  - name: OPENDATA_AUTH_KEY
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: opendata_auth_key

@@ -1,0 +1,37 @@
+{{- if .Values.ingress.enabled -}}
+{{- $fullName := include "bahnhofsAbfahrten.fullname" . -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ $fullName }}
+  labels:
+    app.kubernetes.io/name: {{ include "bahnhofsAbfahrten.name" . }}
+    helm.sh/chart: {{ include "bahnhofsAbfahrten.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- with .Values.ingress.annotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  tls:
+    - hosts:
+      {{ if .Values.hostName }}
+        - {{ .Values.hostName }}
+      {{ else }}
+        - {{ .Release.Name }}.marudor.de
+      {{ end }}
+      secretName: {{ $fullName }}
+  rules:
+    {{ if .Values.hostName }}
+    - host: {{ .Values.hostName }}
+    {{ else }}
+    - host: {{ .Release.Name }}.marudor.de
+    {{ end }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: {{ $fullName }}
+              servicePort: http
+{{- end }}

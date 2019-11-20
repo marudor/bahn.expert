@@ -1,0 +1,39 @@
+# Deployment to a production environment is kicked off manually. This actually
+# runs two deployment, one is to remove the canary pods if it exists and the
+# other deploys to production.
+production:
+  production_environment: true
+  required_contexts: ["docker", "node", "e2e"]
+  environment: production
+  description: 'Production'
+  payload:
+    value_files: ["./config/production.yml", "./config/_common.yml"]
+    release: bahnhofs-abfahrten-production
+    namespace: marudor
+    track: stable
+
+# Automatic deployment to a staging environment on every push to master.
+beta:
+  auto_deploy_on: refs/heads/master
+  required_contexts: ["docker", "node", "e2e"]
+  environment: beta
+  description: 'Beta'
+  payload:
+    value_files: ["./config/beta.yml", "./config/_common.yml"]
+    release: bahnhofs-abfahrten-beta
+    namespace: marudor
+    track: stable
+
+# Review environments can be triggered with /deploy pr inside a pull
+# request.
+pr:
+  transient_environment: true
+  production_environment: false
+  required_contexts: ["docker"]
+  environment: pr${{ pr }}
+  description: 'PR'
+  payload:
+    value_files: ["./config/pr.yml", "./config/_common.yml"]
+    release: pr-${{ pr }}
+    namespace: marudor
+    track: stable
