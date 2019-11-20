@@ -1,0 +1,5 @@
+env:
+  - name: ENVIRONMENT
+    value: beta
+
+hostName: beta.marudor.de
