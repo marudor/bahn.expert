@@ -3,7 +3,7 @@
 # other deploys to production.
 production:
   production_environment: true
-  required_contexts: ["docker"]
+  required_contexts: ["docker", "node", "e2e"]
   environment: production
   description: 'Production'
   payload:
@@ -15,7 +15,7 @@ production:
 # Automatic deployment to a staging environment on every push to master.
 beta:
   auto_deploy_on: refs/heads/master
-  required_contexts: ["docker"]
+  required_contexts: ["docker", "node", "e2e"]
   environment: beta
   description: 'Beta'
   payload:
