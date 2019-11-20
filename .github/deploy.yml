@@ -24,16 +24,16 @@ beta:
     namespace: marudor
     track: stable
 
-# Review environments can be triggered with /deploy review inside a pull
+# Review environments can be triggered with /deploy pr inside a pull
 # request.
-review:
+pr:
   transient_environment: true
   production_environment: false
   required_contexts: ["docker"]
   environment: pr${{ pr }}
-  description: 'Review'
+  description: 'PR'
   payload:
     value_files: ["./config/pr.yml", "./config/_common.yml"]
-    release: review-bahnhofs-abfahrten-${{ pr }}
+    release: pr-${{ pr }}
     namespace: marudor
     track: stable
