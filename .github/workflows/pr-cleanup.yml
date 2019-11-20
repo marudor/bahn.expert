@@ -12,11 +12,12 @@ jobs:
       with:
         # Task remove means to remove the helm release.
         task: 'remove'
+        helm: 'helm3'
+        token: '${{ github.token }}'
         release: 'pr-${{ github.event.pull_request.number }}'
         version: '${{ github.sha }}'
-        track: 'stable'
-        chart: 'bahnhofsAbfahrten'
         namespace: 'marudor'
-        token: '${{ github.token }}'
+        track: 'stable'
+        chart: './charts/bahnhofsabfahrten'
       env:
         KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
