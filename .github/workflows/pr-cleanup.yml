@@ -11,6 +11,7 @@ jobs:
       uses: 'deliverybot/helm@v1'
       with:
         # Task remove means to remove the helm release.
+        helm: 'helm3'
         task: 'remove'
         release: 'pr-${{ github.event.pull_request.number }}'
         version: '${{ github.sha }}'
