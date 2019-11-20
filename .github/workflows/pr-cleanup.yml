@@ -12,7 +12,7 @@ jobs:
       with:
         # Task remove means to remove the helm release.
         task: 'remove'
-        release: 'review-bahnhofs-abfahrten-${{ github.event.pull_request.number }}'
+        release: 'pr-${{ github.event.pull_request.number }}'
         version: '${{ github.sha }}'
         track: 'stable'
         chart: 'bahnhofsAbfahrten'

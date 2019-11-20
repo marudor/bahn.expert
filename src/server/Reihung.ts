@@ -407,7 +407,7 @@ function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
       data.wifiOff = true;
     }
 
-    if (gruppe.br && ap.trainBR === 'BR403RD') {
+    if (gruppe.br && ap.trainBR.endsWith('RD')) {
       gruppe.br.redesign = true;
     }
   }
