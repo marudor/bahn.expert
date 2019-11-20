@@ -1,0 +1,22 @@
+env:
+  - name: ENVIRONMENT
+    value: production
+  - name: TAGMANAGER_ID
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: tagmanager_id
+  - name: LOGGLY_SUBDOMAIN
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: loggly_subdomain
+  - name: LOGGLY_TOKEN
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: loggly_token
+
+hostName: marudor.de
+
+replicaCount: 2
