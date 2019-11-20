@@ -21,3 +21,4 @@ jobs:
         chart: './charts/bahnhofsabfahrten'
       env:
         KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
+        INPUT_RELEASE: 'pr-${{ github.event.pull_request.number }}'

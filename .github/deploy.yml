@@ -30,7 +30,7 @@ pr:
   transient_environment: true
   production_environment: false
   required_contexts: ["docker"]
-  environment: pr${{ pr }}
+  environment: pr-${{ pr }}
   description: 'PR'
   payload:
     value_files: ["./config/pr.yml", "./config/_common.yml"]
