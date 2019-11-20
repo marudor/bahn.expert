@@ -3,7 +3,7 @@ on: ['deployment']
 
 jobs:
   deployment:
-    if: github.actor != 'github-pages'
+    if: github.actor != 'github-pages[bot]'
     runs-on: 'ubuntu-latest'
     steps:
     - name: 'Checkout'
