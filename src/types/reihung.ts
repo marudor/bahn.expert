@@ -131,9 +131,19 @@ export interface Halt {
   allSektor: Sektor[];
 }
 
+export type AvailableBR =
+  | '401'
+  | '402'
+  | '403'
+  | '406'
+  | '407'
+  | '410.1'
+  | '411'
+  | '412'
+  | '415';
 export interface BRInfo {
   name: string;
-  BR?: string;
+  BR?: AvailableBR;
   serie?: string;
   redesign?: boolean;
   noPdf?: boolean;
@@ -170,6 +180,12 @@ export interface Sektor {
   sektorbezeichnung: string;
 }
 
+export interface SpecialSeats {
+  comfort?: number[];
+  express?: number[];
+  disabled?: number[];
+}
+
 export interface AdditionalFahrzeugInfo {
   /**
    * 0: Unknown; 1: erste; 2: zweite; 3: 1&2; 4: Not for passengers
@@ -188,11 +204,8 @@ export interface AdditionalFahrzeugInfo {
     wifiOff?: boolean;
   };
   comfort?: boolean;
-  specialSeats?: {
-    comfort?: number[];
-    express?: number[];
-    disabled?: number[];
-  };
+  comfortSeats?: string;
+  disabledSeats?: string;
 }
 
 export interface Fahrzeugausstattung {

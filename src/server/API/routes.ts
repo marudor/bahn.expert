@@ -857,7 +857,8 @@ const models: TsoaRoute.Models = {
       "klasse": { "dataType": "enum", "enums": ["0", "1", "2", "3", "4"], "required": true },
       "icons": { "dataType": "nestedObjectLiteral", "nestedProperties": { "wifiOff": { "dataType": "boolean" }, "wifi": { "dataType": "boolean" }, "toddler": { "dataType": "boolean" }, "family": { "dataType": "boolean" }, "info": { "dataType": "boolean" }, "quiet": { "dataType": "boolean" }, "disabled": { "dataType": "boolean" }, "bike": { "dataType": "boolean" }, "wheelchair": { "dataType": "boolean" }, "dining": { "dataType": "boolean" } }, "required": true },
       "comfort": { "dataType": "boolean" },
-      "specialSeats": { "dataType": "nestedObjectLiteral", "nestedProperties": { "disabled": { "dataType": "array", "array": { "dataType": "double" } }, "express": { "dataType": "array", "array": { "dataType": "double" } }, "comfort": { "dataType": "array", "array": { "dataType": "double" } } } },
+      "comfortSeats": { "dataType": "string" },
+      "disabledSeats": { "dataType": "string" },
     },
     "additionalProperties": false,
   },
@@ -895,7 +896,7 @@ const models: TsoaRoute.Models = {
     "dataType": "refObject",
     "properties": {
       "name": { "dataType": "string", "required": true },
-      "BR": { "dataType": "string" },
+      "BR": { "dataType": "enum", "enums": ["401", "402", "403", "406", "407", "410.1", "411", "412", "415"] },
       "serie": { "dataType": "string" },
       "redesign": { "dataType": "boolean" },
       "noPdf": { "dataType": "boolean" },

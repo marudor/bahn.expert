@@ -43,6 +43,7 @@ const Explain = () => {
         fullWidth
         open={open}
         onClose={toggle}
+        onClick={toggle}
       >
         <DialogContent>
           <h3>Legende Wagenreihung</h3>

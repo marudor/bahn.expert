@@ -200,7 +200,7 @@ const ICE2specific = ['Apmz', 'Bpmz'];
 const ICE1specific = ['Avmz', 'Bvmbz', 'Bvmz'];
 // Rausfinden was für ein ICE es genau ist
 
-function brByFahrzeuge(fahrzeuge: Fahrzeug[]) {
+function brByFahrzeuge(fahrzeuge: Fahrzeug[]): undefined | BRInfo {
   const wagenTypes = fahrzeuge.map(f => f.fahrzeugtyp);
 
   if (wagenTypes.some(t => ICETspecific.includes(t))) {
@@ -245,7 +245,6 @@ function brByFahrzeuge(fahrzeuge: Fahrzeug[]) {
     return {
       name: 'MET',
       pdf: 'MET',
-      comfort: ['5', '6'],
     };
   }
 
@@ -278,7 +277,7 @@ const specificBR = (
   fahrzeuge: Fahrzeug[],
   fahrzeugTypes: string[],
   formation: Formation
-) => {
+): BRInfo => {
   for (const f of fahrzeuge) {
     const br = getSpecificBR(f.fahrzeugnummer, fahrzeugTypes);
 
@@ -320,6 +319,67 @@ function fahrtrichtung(fahrzeuge: Fahrzeug[]) {
     Number.parseInt(first.positionamhalt.startprozent, 10)
   );
 }
+
+const getComfortSeats = (br: BRInfo, klasse: 1 | 2) => {
+  switch (br.BR) {
+    case '401':
+      return klasse === 1 ? '11-36' : '11-57';
+    case '402':
+      return klasse === 1 ? '11-16, 21, 22' : '81-108';
+    case '403':
+    case '406':
+      if (klasse === 1) return '12-26';
+
+      return br.redesign ? '11-37' : '11-38';
+    case '407':
+      return klasse === 1 ? '21-26, 31, 33, 35' : '31-55, 57';
+    case '411':
+      return klasse === 1 ? '41, 46, 52, 54-56' : '92, 94, 96, 98, 101-118';
+    case '412':
+      return klasse === 1 ? '11-46' : '11-68';
+    case '415':
+      return klasse === 1 ? '52, 54, 56' : '81-88, 91-98';
+  }
+
+  switch (br.name) {
+    case 'MET':
+      return klasse === 1 ? '61-66' : '91-106';
+    case 'IC 2':
+      return klasse === 1 ? '73, 75, 83-86' : '31-38, 41-45, 47';
+  }
+};
+
+const getDisabledSeats = (
+  br: BRInfo,
+  klasse: 1 | 2,
+  wagenordnungsnummer: string
+) => {
+  switch (br.BR) {
+    case '401':
+      return klasse === 1 ? '51, 52, 53, 55' : '111-116';
+    case '402':
+      return klasse === 1 ? '12, 21' : '81, 85-88';
+    case '403':
+    case '406':
+      if (klasse === 1) return '64, 66';
+      if (wagenordnungsnummer === '25' || wagenordnungsnummer === '35') {
+        return br.redesign ? '61, 63, 65-67' : '61, 63, 65, 67';
+      }
+
+      return '106, 108';
+    case '407':
+      return klasse === 1 ? '13, 15' : '11, 13, 15, 17';
+    case '411':
+      return klasse === 1 ? '21, 22' : '15-18';
+    case '412':
+      if (klasse === 1)
+        return wagenordnungsnummer === '10' ? '12, 13' : '11, 14, 21';
+
+      return wagenordnungsnummer === '1' ? '11-24' : '41, 45, 46';
+    case '415':
+      return klasse === 1 ? '21' : '15, 17';
+  }
+};
 
 function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
   const data: AdditionalFahrzeugInfo = {
@@ -410,6 +470,19 @@ function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
 
     if (gruppe.br && ap.trainBR.endsWith('RD')) {
       gruppe.br.redesign = true;
+    }
+  }
+
+  if (gruppe.br) {
+    if (data.comfort) {
+      data.comfortSeats = getComfortSeats(gruppe.br, data.klasse === 1 ? 1 : 2);
+    }
+    if (data.icons.disabled) {
+      data.disabledSeats = getDisabledSeats(
+        gruppe.br,
+        data.klasse === 1 ? 1 : 2,
+        fahrzeug.wagenordnungsnummer
+      );
     }
   }
 

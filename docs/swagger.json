@@ -2523,31 +2523,12 @@
 						"type": "boolean",
 						"nullable": true
 					},
-					"specialSeats": {
-						"properties": {
-							"comfort": {
-								"items": {
-									"type": "number",
-									"format": "double"
-								},
-								"type": "array"
-							},
-							"express": {
-								"items": {
-									"type": "number",
-									"format": "double"
-								},
-								"type": "array"
-							},
-							"disabled": {
-								"items": {
-									"type": "number",
-									"format": "double"
-								},
-								"type": "array"
-							}
-						},
-						"type": "object",
+					"comfortSeats": {
+						"type": "string",
+						"nullable": true
+					},
+					"disabledSeats": {
+						"type": "string",
 						"nullable": true
 					}
 				},
@@ -2645,6 +2626,17 @@
 					},
 					"BR": {
 						"type": "string",
+						"enum": [
+							"401",
+							"402",
+							"403",
+							"406",
+							"407",
+							"410.1",
+							"411",
+							"412",
+							"415"
+						],
 						"nullable": true
 					},
 					"serie": {

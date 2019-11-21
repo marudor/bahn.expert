@@ -9,6 +9,7 @@ import Info from '@material-ui/icons/InfoOutlined';
 import MapsLocalDining from '@material-ui/icons/LocalDining';
 import NotificationsOff from '@material-ui/icons/NotificationsOff';
 import React, { ComponentType } from 'react';
+import SitzplatzInfo from './SitzplatzInfo';
 import useStyles from './Fahrzeug.style';
 import WagenLink from './WagenLink';
 import Wifi from '@material-ui/icons/Wifi';
@@ -101,11 +102,15 @@ const FahrzeugComp = ({
         fahrzeugnummer={fahrzeug.fahrzeugnummer}
         fahrzeugtyp={fahrzeug.fahrzeugtyp}
       />
-      {showUIC && (
+      {
         <span className={classes.extraInfo}>
+          <SitzplatzInfo
+            wagenordnungsnummer={fahrzeug.wagenordnungsnummer}
+            additionalInfo={fahrzeug.additionalInfo}
+          />
           {showUIC && fahrzeug.fahrzeugnummer}
         </span>
-      )}
+      }
     </div>
   );
 };

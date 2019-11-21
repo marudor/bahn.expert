@@ -1,0 +1,50 @@
+import { AdditionalFahrzeugInfo } from 'types/reihung';
+import { Dialog, DialogContent } from '@material-ui/core';
+import React, { SyntheticEvent, useCallback, useState } from 'react';
+import useStyles from './SitzplatzInfo.style';
+
+interface Props {
+  additionalInfo: AdditionalFahrzeugInfo;
+  wagenordnungsnummer: string;
+}
+
+const SitzplatzInfo = ({ additionalInfo, wagenordnungsnummer }: Props) => {
+  const classes = useStyles();
+  const [open, setOpen] = useState(false);
+  const toggle = useCallback((e: SyntheticEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setOpen(oldOpen => !oldOpen);
+  }, []);
+
+  if (!additionalInfo.comfortSeats && !additionalInfo.disabledSeats) {
+    return null;
+  }
+
+  return (
+    <>
+      <span className={classes.link} onClick={toggle}>
+        Sitzplatz Info
+      </span>
+      <Dialog fullWidth open={open} onClose={toggle} onClick={toggle}>
+        <DialogContent>
+          <h3>Sitzplätze Wagen {wagenordnungsnummer}</h3>
+          {additionalInfo.comfortSeats && (
+            <div className={classes.textLine}>
+              <span>Comfort:</span>
+              <span>{additionalInfo.comfortSeats}</span>
+            </div>
+          )}
+          {additionalInfo.disabledSeats && (
+            <div className={classes.textLine}>
+              <span>Schwerbehindert:</span>
+              <span>{additionalInfo.disabledSeats}</span>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+};
+
+export default SitzplatzInfo;
