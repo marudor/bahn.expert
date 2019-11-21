@@ -324,6 +324,7 @@ function fahrtrichtung(fahrzeuge: Fahrzeug[]) {
 function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
   const data: AdditionalFahrzeugInfo = {
     klasse: 0,
+    icons: {},
   };
 
   switch (fahrzeug.kategorie) {
@@ -336,7 +337,7 @@ function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
     case 'HALBSPEISEWAGENZWEITEKLASSE':
     case 'SPEISEWAGEN':
       data.klasse = 2;
-      data.speise = true;
+      data.icons.dining = true;
       break;
     default:
       break;
@@ -348,7 +349,7 @@ function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
       break;
     case 'HALBSPEISEWAGENERSTEKLASSE':
       data.klasse = 1;
-      data.speise = true;
+      data.icons.dining = true;
       break;
     case 'DOPPELSTOCKWAGENERSTEKLASSE':
     case 'REISEZUGWAGENERSTEKLASSE':
@@ -363,48 +364,48 @@ function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
   fahrzeug.allFahrzeugausstattung.forEach(ausstattung => {
     switch (ausstattung.ausstattungsart) {
       case 'PLAETZEROLLSTUHL':
-        data.rollstuhl = true;
+        data.icons.wheelchair = true;
         break;
       case 'PLAETZEFAHRRAD':
-        data.fahrrad = true;
+        data.icons.bike = true;
         break;
       case 'BISTRO':
-        data.speise = true;
+        data.icons.dining = true;
         break;
       case 'RUHE':
-        data.ruhe = true;
+        data.icons.quiet = true;
         break;
       case 'FAMILIE':
-        data.familie = true;
+        data.icons.family = true;
         break;
       case 'PLAETZEBAHNCOMFORT':
         data.comfort = true;
         break;
       case 'PLAETZESCHWERBEH':
-        data.schwebe = true;
+        data.icons.disabled = true;
         break;
       case 'INFO':
-        data.info = true;
+        data.icons.info = true;
         break;
       case 'ABTEILKLEINKIND':
-        data.kleinkind = true;
+        data.icons.toddler = true;
         break;
     }
   });
 
   if (gruppe.goesToFrance) {
     data.comfort = false;
-    data.schwebe = false;
-    data.familie = false;
+    data.icons.disabled = false;
+    data.icons.family = false;
   }
 
   const ap = getAP(fahrzeug.fahrzeugnummer);
 
   if (ap) {
     if (ap.online && isAfter(ap.trainTimestamp, subDays(new Date(), 1))) {
-      data.wifi = true;
+      data.icons.wifi = true;
     } else {
-      data.wifiOff = true;
+      data.icons.wifiOff = true;
     }
 
     if (gruppe.br && ap.trainBR.endsWith('RD')) {

@@ -6,13 +6,13 @@ import useStyles from './Explain.style';
 
 // Exported for tests
 export const iconExplanation: { [K in keyof typeof icons]: string } = {
-  rollstuhl: 'Rollstuhl Plätze',
-  fahrrad: 'Fahrrad Stellplätze',
-  speise: 'Bordbistro/Restaurant',
-  ruhe: 'Ruheabteil',
-  kleinkind: 'Kleinkindabteil',
-  familie: 'Familienbereich',
-  schwebe: 'Schwerbehindertenplätze',
+  wheelchair: 'Rollstuhl Plätze',
+  bike: 'Fahrrad Stellplätze',
+  dining: 'Bordbistro/Restaurant',
+  quiet: 'Ruheabteil',
+  toddler: 'Kleinkindabteil',
+  family: 'Familienbereich',
+  disabled: 'Schwerbehindertenplätze',
   info: 'Dienstabteil',
   wifi: 'Wlan online',
   wifiOff: 'Wlan offline',

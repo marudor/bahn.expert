@@ -2484,53 +2484,76 @@
 						],
 						"description": "0: Unknown; 1: erste; 2: zweite; 3: 1&2; 4: Not for passengers"
 					},
-					"speise": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"rollstuhl": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"fahrrad": {
-						"type": "boolean",
-						"nullable": true
+					"icons": {
+						"properties": {
+							"dining": {
+								"type": "boolean"
+							},
+							"wheelchair": {
+								"type": "boolean"
+							},
+							"bike": {
+								"type": "boolean"
+							},
+							"disabled": {
+								"type": "boolean"
+							},
+							"quiet": {
+								"type": "boolean"
+							},
+							"info": {
+								"type": "boolean"
+							},
+							"family": {
+								"type": "boolean"
+							},
+							"toddler": {
+								"type": "boolean"
+							},
+							"wifi": {
+								"type": "boolean"
+							},
+							"wifiOff": {
+								"type": "boolean"
+							}
+						},
+						"type": "object"
 					},
 					"comfort": {
 						"type": "boolean",
 						"nullable": true
 					},
-					"schwebe": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"ruhe": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"info": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"familie": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"kleinkind": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"wifi": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"wifiOff": {
-						"type": "boolean",
+					"specialSeats": {
+						"properties": {
+							"comfort": {
+								"items": {
+									"type": "number",
+									"format": "double"
+								},
+								"type": "array"
+							},
+							"express": {
+								"items": {
+									"type": "number",
+									"format": "double"
+								},
+								"type": "array"
+							},
+							"disabled": {
+								"items": {
+									"type": "number",
+									"format": "double"
+								},
+								"type": "array"
+							}
+						},
+						"type": "object",
 						"nullable": true
 					}
 				},
 				"required": [
-					"klasse"
+					"klasse",
+					"icons"
 				],
 				"type": "object",
 				"additionalProperties": false
