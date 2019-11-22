@@ -2484,53 +2484,57 @@
 						],
 						"description": "0: Unknown; 1: erste; 2: zweite; 3: 1&2; 4: Not for passengers"
 					},
-					"speise": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"rollstuhl": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"fahrrad": {
-						"type": "boolean",
-						"nullable": true
+					"icons": {
+						"properties": {
+							"dining": {
+								"type": "boolean"
+							},
+							"wheelchair": {
+								"type": "boolean"
+							},
+							"bike": {
+								"type": "boolean"
+							},
+							"disabled": {
+								"type": "boolean"
+							},
+							"quiet": {
+								"type": "boolean"
+							},
+							"info": {
+								"type": "boolean"
+							},
+							"family": {
+								"type": "boolean"
+							},
+							"toddler": {
+								"type": "boolean"
+							},
+							"wifi": {
+								"type": "boolean"
+							},
+							"wifiOff": {
+								"type": "boolean"
+							}
+						},
+						"type": "object"
 					},
 					"comfort": {
 						"type": "boolean",
 						"nullable": true
 					},
-					"schwebe": {
-						"type": "boolean",
+					"comfortSeats": {
+						"type": "string",
 						"nullable": true
 					},
-					"ruhe": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"info": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"familie": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"kleinkind": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"wifi": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"wifiOff": {
-						"type": "boolean",
+					"disabledSeats": {
+						"type": "string",
 						"nullable": true
 					}
 				},
 				"required": [
-					"klasse"
+					"klasse",
+					"icons"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -2622,6 +2626,17 @@
 					},
 					"BR": {
 						"type": "string",
+						"enum": [
+							"401",
+							"402",
+							"403",
+							"406",
+							"407",
+							"410.1",
+							"411",
+							"412",
+							"415"
+						],
 						"nullable": true
 					},
 					"serie": {
