@@ -23,20 +23,30 @@ const SitzplatzInfo = ({ additionalInfo, wagenordnungsnummer }: Props) => {
 
   return (
     <>
-      <span className={classes.link} onClick={toggle}>
+      <span
+        data-testid="sitzplatzinfoToggle"
+        className={classes.link}
+        onClick={toggle}
+      >
         Sitzplatz Info
       </span>
       <Dialog fullWidth open={open} onClose={toggle} onClick={toggle}>
         <DialogContent>
           <h3>Sitzplätze Wagen {wagenordnungsnummer}</h3>
           {additionalInfo.comfortSeats && (
-            <div className={classes.textLine}>
+            <div
+              data-testid="sitzplatzinfoComfort"
+              className={classes.textLine}
+            >
               <span>Comfort:</span>
               <span>{additionalInfo.comfortSeats}</span>
             </div>
           )}
           {additionalInfo.disabledSeats && (
-            <div className={classes.textLine}>
+            <div
+              data-testid="sitzplatzinfoDisabled"
+              className={classes.textLine}
+            >
               <span>Schwerbehindert:</span>
               <span>{additionalInfo.disabledSeats}</span>
             </div>
