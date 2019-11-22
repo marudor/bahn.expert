@@ -6,13 +6,13 @@ import useStyles from './Explain.style';
 
 // Exported for tests
 export const iconExplanation: { [K in keyof typeof icons]: string } = {
-  rollstuhl: 'Rollstuhl Plätze',
-  fahrrad: 'Fahrrad Stellplätze',
-  speise: 'Bordbistro/Restaurant',
-  ruhe: 'Ruheabteil',
-  kleinkind: 'Kleinkindabteil',
-  familie: 'Familienbereich',
-  schwebe: 'Schwerbehindertenplätze',
+  wheelchair: 'Rollstuhl Plätze',
+  bike: 'Fahrrad Stellplätze',
+  dining: 'Bordbistro/Restaurant',
+  quiet: 'Ruheabteil',
+  toddler: 'Kleinkindabteil',
+  family: 'Familienbereich',
+  disabled: 'Schwerbehindertenplätze',
   info: 'Dienstabteil',
   wifi: 'Wlan online',
   wifiOff: 'Wlan offline',
@@ -43,6 +43,7 @@ const Explain = () => {
         fullWidth
         open={open}
         onClose={toggle}
+        onClick={toggle}
       >
         <DialogContent>
           <h3>Legende Wagenreihung</h3>
@@ -93,7 +94,6 @@ const Explain = () => {
               Zug ist ausgebucht
             </div>
           </div>
-          <div>Prozent unter Wagen: Anzahl der reservierten Sitzplätze</div>
         </DialogContent>
       </Dialog>
     </>
