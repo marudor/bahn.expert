@@ -1,4 +1,4 @@
-import { Fahrzeug } from 'types/reihung';
+import { AdditionalFahrzeugInfo, Fahrzeug } from 'types/reihung';
 import Accessibility from '@material-ui/icons/Accessibility';
 import ActionAccessible from '@material-ui/icons/Accessible';
 import ActionMotorcycle from '@material-ui/icons/Motorcycle';
@@ -8,20 +8,23 @@ import ChildFriendly from '@material-ui/icons/ChildFriendly';
 import Info from '@material-ui/icons/InfoOutlined';
 import MapsLocalDining from '@material-ui/icons/LocalDining';
 import NotificationsOff from '@material-ui/icons/NotificationsOff';
-import React from 'react';
+import React, { ComponentType } from 'react';
+import SitzplatzInfo from './SitzplatzInfo';
 import useStyles from './Fahrzeug.style';
 import WagenLink from './WagenLink';
 import Wifi from '@material-ui/icons/Wifi';
 import WifiOff from '@material-ui/icons/WifiOff';
 
-export const icons = {
-  rollstuhl: ActionAccessible,
-  fahrrad: ActionMotorcycle,
-  speise: MapsLocalDining,
-  ruhe: NotificationsOff,
-  kleinkind: ChildFriendly,
-  familie: ChildCare,
-  schwebe: Accessibility,
+export const icons: {
+  [key in keyof Required<AdditionalFahrzeugInfo['icons']>]: ComponentType;
+} = {
+  wheelchair: ActionAccessible,
+  bike: ActionMotorcycle,
+  dining: MapsLocalDining,
+  quiet: NotificationsOff,
+  toddler: ChildFriendly,
+  family: ChildCare,
+  disabled: Accessibility,
   info: Info,
   wifi: Wifi,
   wifiOff: WifiOff,
@@ -72,7 +75,7 @@ const FahrzeugComp = ({
 
   return (
     <div
-      data-testid="reihungFahrzeug"
+      data-testid={`reihungFahrzeug${fahrzeug.wagenordnungsnummer}`}
       style={position}
       className={cc(classes.main, {
         [classes.closed]: fahrzeug.status === 'GESCHLOSSEN',
@@ -82,34 +85,16 @@ const FahrzeugComp = ({
       <span className={cc(classes.klasse, classes[klasseClassName])} />
       <span className={classes.nummer}>{fahrzeug.wagenordnungsnummer}</span>
       <span className={classes.icons}>
-        {fahrzeug.additionalInfo.rollstuhl && (
-          <icons.rollstuhl className={classes.icon} />
-        )}
-        {fahrzeug.additionalInfo.fahrrad && (
-          <icons.fahrrad className={classes.icon} />
-        )}
-        {fahrzeug.additionalInfo.speise && (
-          <icons.speise className={classes.icon} />
-        )}
-        {fahrzeug.additionalInfo.ruhe && (
-          <icons.ruhe className={classes.icon} />
-        )}
-        {fahrzeug.additionalInfo.kleinkind && (
-          <icons.kleinkind className={classes.icon} />
-        )}
-        {fahrzeug.additionalInfo.familie && (
-          <icons.familie className={classes.icon} />
-        )}
-        {fahrzeug.additionalInfo.schwebe && (
-          <icons.schwebe className={classes.icon} />
-        )}
-        {fahrzeug.additionalInfo.info && (
-          <icons.info className={classes.icon} />
-        )}
-        {fahrzeug.additionalInfo.wifi && <Wifi className={classes.icon} />}
-        {fahrzeug.additionalInfo.wifiOff && (
-          <WifiOff className={classes.icon} />
-        )}
+        {Object.entries(fahrzeug.additionalInfo.icons).map(([key, enabled]) => {
+          if (enabled) {
+            // @ts-ignore this is correct, it's exact!
+            const SpecificIcon = icons[key];
+
+            return <SpecificIcon className={classes.icon} />;
+          }
+
+          return null;
+        })}
       </span>
       {fahrzeug.additionalInfo.comfort && <span className={classes.comfort} />}
       <WagenLink
@@ -117,11 +102,15 @@ const FahrzeugComp = ({
         fahrzeugnummer={fahrzeug.fahrzeugnummer}
         fahrzeugtyp={fahrzeug.fahrzeugtyp}
       />
-      {showUIC && (
+      {
         <span className={classes.extraInfo}>
+          <SitzplatzInfo
+            wagenordnungsnummer={fahrzeug.wagenordnungsnummer}
+            additionalInfo={fahrzeug.additionalInfo}
+          />
           {showUIC && fahrzeug.fahrzeugnummer}
         </span>
-      )}
+      }
     </div>
   );
 };

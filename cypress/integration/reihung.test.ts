@@ -24,4 +24,17 @@ describe('Reihung', () => {
     cy.closeModal();
     cy.findByTestId('reihung').should('exist');
   });
+
+  it('Sitzplatzinfo', () => {
+    cy.findByTestId('reihungFahrzeug11').within(() => {
+      cy.findByTestId('sitzplatzinfoToggle').click();
+    });
+    cy.findByTestId('sitzplatzinfoComfort').should('exist');
+    cy.closeModal();
+    cy.findByTestId('reihungFahrzeug7').within(() => {
+      cy.findByTestId('sitzplatzinfoToggle').click();
+    });
+    cy.findByTestId('sitzplatzinfoComfort').should('exist');
+    cy.findByTestId('sitzplatzinfoDisabled').should('exist');
+  });
 });
