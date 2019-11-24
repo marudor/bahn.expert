@@ -28,7 +28,7 @@ const SitzplatzInfo = ({ additionalInfo, wagenordnungsnummer }: Props) => {
         className={classes.link}
         onClick={toggle}
       >
-        Sitzplatz Info
+        Plätze
       </span>
       <Dialog fullWidth open={open} onClose={toggle} onClick={toggle}>
         <DialogContent>
