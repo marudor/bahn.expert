@@ -22,7 +22,7 @@
     "test:jest": "jest",
     "test:jest:coverage": "jest --coverage",
     "e2e:local": "CYPRESS_baseUrl=https://local.marudor.de:9042 cypress open",
-    "e2e:local:coverage": "wait-on https://local.marudor.de:9042 && (CYPRESS_baseUrl=https://local.marudor.de:9042 cypress run --config video=false ||(pkill -9 && exit 1)) && pkill -9 node",
+    "e2e:local:coverage": "wait-on https://local.marudor.de:9042 && (CYPRESS_baseUrl=https://local.marudor.de:9042 cypress run --config video=false ||(pkill -9 node && exit 1)) && pkill -9 node",
     "e2e:ci": "cypress run",
     "doc:watch:serve": "redoc-cli serve -w docs/swagger.json",
     "doc:serve": "redoc-cli serve docs/swagger.json",

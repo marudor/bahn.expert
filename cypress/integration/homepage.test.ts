@@ -30,12 +30,13 @@ describe('Homepage', () => {
 
   it('Favorite', () => {
     cy.findByTestId('noFav').should('be.visible');
-    cy.navigateToStation('Kiel Hbf');
+    cy.mockFrankfurt();
+    cy.navigateToStation('Frankfurt (Main) Hbf');
     cy.findByTestId('menu').click();
     cy.findByTestId('toggleFav').click();
     cy.findByTestId('menu').click();
     cy.findByTestId('toggleFav').should('include.text', 'Unfav');
     cy.visit('/');
-    cy.findByTestId('favEntry').should('have.text', 'Kiel Hbf');
+    cy.findByTestId('favEntry').should('have.text', 'Frankfurt (Main) Hbf');
   });
 });
