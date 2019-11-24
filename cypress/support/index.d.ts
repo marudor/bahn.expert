@@ -8,10 +8,14 @@ declare global {
        * Custom command to select DOM element by data-cy attribute.
        * @example cy.dataCy('greeting')
        */
-      navigateToStation(value: string, addRoute?: boolean): void;
+      navigateToStation(value: string, isStubbed?: boolean): void;
       closeModal(): void;
-      mockFrankfurt(): void;
+      mockFrankfurt(options?: {
+        lookahead?: number;
+        lookbehind?: number;
+      }): void;
       getAbfahrtenConfig(): Cypress.Chainable<MarudorConfig>;
+      openSettings(): void;
     }
   }
 }
