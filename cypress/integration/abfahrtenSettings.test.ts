@@ -3,15 +3,14 @@ describe('Abfahrten Settings', () => {
     beforeEach(() => {
       cy.visit('/');
       cy.mockFrankfurt();
-      cy.navigateToStation('Frankfurt (Main) Hbf', false);
+      cy.navigateToStation('Frankfurt (Main) Hbf');
     });
 
     it('Show Zugnummer & Linie', () => {
       cy.findByTestId('abfahrtS35744').within(() => {
         cy.findByTestId('abfahrtStart').should('have.text', 'S 7');
       });
-      cy.findByTestId('menu').click();
-      cy.findByTestId('openSettings').click();
+      cy.openSettings();
       cy.findByTestId('lineAndNumberConfig').click();
       cy.closeModal();
       cy.findByTestId('abfahrtS35744').within(() => {
@@ -29,8 +28,7 @@ describe('Abfahrten Settings', () => {
         'fixture:reihungICE1.json'
       );
       cy.findByTestId('abfahrtICE371').click();
-      cy.findByTestId('menu').click();
-      cy.findByTestId('openSettings').click();
+      cy.openSettings();
       cy.findByTestId('fahrzeugGruppeConfig').click();
       cy.closeModal();
       cy.findByTestId('reihungFahrzeugGruppe').should('exist');
@@ -39,8 +37,7 @@ describe('Abfahrten Settings', () => {
 
   it('Set searchType', () => {
     cy.visit('/');
-    cy.findByTestId('menu').click();
-    cy.findByTestId('openSettings').click();
+    cy.openSettings();
     cy.findByTestId('searchType').within(() => {
       cy.get('select').select('hafas');
     });
