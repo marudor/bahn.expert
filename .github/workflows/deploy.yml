@@ -2,6 +2,13 @@ name: 'Deploy'
 on: ['deployment']
 
 jobs:
+  dummy:
+    if: github.actor == 'github-pages[bot]'
+    runs-on: 'ubuntu-latest'
+    steps:
+    - name: dummy
+      run: |
+        echo 'dummy'
   deployment:
     if: github.actor != 'github-pages[bot]'
     runs-on: 'ubuntu-latest'
