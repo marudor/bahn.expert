@@ -18,7 +18,7 @@ import {
 } from 'date-fns';
 import { AxiosInstance } from 'axios';
 import { diffArrays } from 'diff';
-import { findLast, flatten, last, uniqBy } from 'lodash';
+import { findLast, last, uniqBy } from 'lodash';
 import { getAttr, getNumberAttr, parseTs } from './helper';
 import messageLookup, {
   messageTypeLookup,
@@ -509,14 +509,12 @@ export default class Timetable {
         timetable.routePre.map((r: any) => r.name)
       );
 
-      timetable.routePre = flatten(
-        diff.map(d =>
-          d.value.map(v => ({
-            name: v,
-            additional: d.removed,
-            cancelled: d.added,
-          }))
-        )
+      timetable.routePre = diff.flatMap(d =>
+        d.value.map(v => ({
+          name: v,
+          additional: d.removed,
+          cancelled: d.added,
+        }))
       );
     }
     timetable.arrival.platform =
@@ -545,14 +543,12 @@ export default class Timetable {
         dp.routePost
       );
 
-      timetable.routePost = flatten(
-        diff.map(d =>
-          d.value.map(v => ({
-            name: v,
-            additional: d.added,
-            cancelled: d.removed || timetable.departure.cancelled,
-          }))
-        )
+      timetable.routePost = diff.flatMap(d =>
+        d.value.map(v => ({
+          name: v,
+          additional: d.added,
+          cancelled: d.removed || timetable.departure.cancelled,
+        }))
       );
     } else if (timetable.departure.cancelled && timetable.routePost) {
       timetable.routePost.forEach((r: any) => (r.cancelled = true));

@@ -4,7 +4,6 @@ import {
   HafasResponse,
   ParsedCommon,
 } from 'types/HAFAS';
-import { flatten } from 'lodash';
 import { Jny, OutConL, SecL, TripSearchResponse } from 'types/HAFAS/TripSearch';
 import { parse } from 'date-fns';
 import {
@@ -188,7 +187,7 @@ export default (
   r: HafasResponse<TripSearchResponse>,
   parsedCommon: ParsedCommon
 ): RoutingResult => {
-  const routes = r.svcResL[0].res.outConL.map(
+  const routes = r.svcResL[0].res.outConL.flatMap(
     j => new Journey(j, parsedCommon).journey
   );
 
@@ -197,6 +196,6 @@ export default (
       earlier: r.svcResL[0].res.outCtxScrB,
       later: r.svcResL[0].res.outCtxScrF,
     },
-    routes: flatten(routes),
+    routes,
   };
 };

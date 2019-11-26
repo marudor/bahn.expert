@@ -1,6 +1,6 @@
-import { flatten, uniqBy } from 'lodash';
 import { logger } from 'server/logger';
 import { Station, StationSearchType } from 'types/station';
+import { uniqBy } from 'lodash';
 import DBNavigatorSearch from 'server/HAFAS/LocMatch';
 import FavendoSearch from './Favendo';
 import NodeCache from 'node-cache';
@@ -16,7 +16,7 @@ export async function favendoStationsDataCombined(
     StationsDataSearch(searchTerm),
   ]);
 
-  return uniqBy(flatten(stations), 'id');
+  return uniqBy(stations.flat(), 'id');
 }
 
 export function getSearchMethod(type?: StationSearchType) {
