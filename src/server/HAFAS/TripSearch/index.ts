@@ -1,5 +1,5 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
-import { formatToTimeZone } from 'date-fns-timezone';
+import { format } from 'date-fns-tz';
 import { TripSearchOptions, TripSearchRequest } from 'types/HAFAS/TripSearch';
 import makeRequest from '../Request';
 import tripSearchParse from './parse';
@@ -42,10 +42,10 @@ function route(
 
   if (time) {
     requestTypeSpecific = {
-      outDate: formatToTimeZone(time, 'YYYYMMDD', {
+      outDate: format(time, 'yyyyMMdd', {
         timeZone: 'Europe/Berlin',
       }),
-      outTime: formatToTimeZone(time, 'HHmmss', {
+      outTime: format(time, 'HHmmss', {
         timeZone: 'Europe/Berlin',
       }),
     };
