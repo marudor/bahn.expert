@@ -3,7 +3,7 @@ import {
   ArrivalStationBoardEntry,
   DepartureStationBoardEntry,
 } from 'types/stationBoard';
-import { formatToTimeZone } from 'date-fns-timezone';
+import { format } from 'date-fns-tz';
 import { StationBoardRequest } from 'types/HAFAS/StationBoard';
 import makeRequest from '../Request';
 import parse from './parse';
@@ -31,10 +31,10 @@ function stationBoard(
   const req: StationBoardRequest = {
     req: {
       type,
-      date: formatToTimeZone(date, 'YYYYMMDD', {
+      date: format(date, 'yyyyMMdd', {
         timeZone: 'Europe/Berlin',
       }),
-      time: formatToTimeZone(date, 'HHmmss', {
+      time: format(date, 'HHmmss', {
         timeZone: 'Europe/Berlin',
       }),
       stbLoc: {
