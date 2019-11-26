@@ -1,6 +1,5 @@
 /* eslint no-param-reassign: 0, no-await-in-loop: 0 */
 import { AxiosInstance } from 'axios';
-import { flatten } from 'lodash';
 import { IrisStationWithRelated } from 'types/station';
 import { noncdAxios } from './helper';
 import NodeCache from 'node-cache';
@@ -78,7 +77,7 @@ export async function getStation(
 
   while (recursive > 0 && queue.length) {
     recursive -= 1;
-    queue = flatten(
+    queue = (
       await Promise.all(
         queue.map(async id => {
           if (seen.includes(id)) {
@@ -92,7 +91,7 @@ export async function getStation(
           return station.meta;
         })
       )
-    );
+    ).flat();
   }
 
   return {

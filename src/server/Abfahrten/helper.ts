@@ -1,5 +1,6 @@
 import { Element } from 'libxmljs2';
-import { parseFromTimeZone } from 'date-fns-timezone';
+import { parse } from 'date-fns';
+import { zonedTimeToUtc } from 'date-fns-tz';
 import Axios from 'axios';
 
 export const noncdAxios = Axios.create({
@@ -48,8 +49,9 @@ export function getBoolAttr(node: null | Element, name: string): boolean {
 
 export function parseTs(ts?: string): undefined | number {
   if (ts) {
-    return parseFromTimeZone(ts, 'YYMMDDHHmm', {
-      timeZone: 'Europe/Berlin',
-    }).getTime();
+    return zonedTimeToUtc(
+      parse(ts, 'yyMMddHHmm', 0),
+      'Europe/Berlin'
+    ).getTime();
   }
 }

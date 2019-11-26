@@ -9,11 +9,11 @@ import {
   Wagenreihung,
   WagenreihungStation,
 } from 'types/reihung';
-import { convertToTimeZone } from 'date-fns-timezone';
 import { format, isAfter, subDays } from 'date-fns';
 import { getAbfahrten } from './Abfahrten';
 import { getAP } from 'server/Wifi';
 import { groupBy, maxBy, minBy } from 'lodash';
+import { utcToZonedTime } from 'date-fns-tz';
 import axios from 'axios';
 
 const getATBR = (
@@ -401,7 +401,7 @@ function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
 // https://www.apps-bahn.de/wr/wagenreihung/1.0/6/201802021930
 export async function wagenreihung(trainNumber: string, date: number) {
   const parsedDate = format(
-    convertToTimeZone(new Date(date), { timeZone: 'Europe/Berlin' }),
+    utcToZonedTime(date, 'Europe/Berlin'),
     'yyyyMMddHHmm'
   );
 
