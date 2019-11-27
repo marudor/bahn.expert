@@ -158,5 +158,9 @@ export default () => {
     createAdmin();
   }
 
+  if (process.env.NODE_ENV !== 'TEST') {
+    require('./docsServer');
+  }
+
   return server;
 };

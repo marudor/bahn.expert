@@ -14,6 +14,12 @@ spec:
       targetPort: 9042
       protocol: TCP
       name: http
+    {{ if .Values.docs }}
+    - port: 9023
+      targetPort: 9023
+      protocol: TCP
+      name: docs
+    {{ end }}
   selector:
     app.kubernetes.io/name: {{ include "bahnhofsAbfahrten.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}

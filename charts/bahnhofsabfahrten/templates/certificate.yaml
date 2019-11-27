@@ -18,10 +18,16 @@ spec:
   commonName: {{ .Values.hostName }}
   dnsNames:
     - {{ .Values.hostName }}
+    {{ if .Values.docs }}
+    - docs.{{ .Values.hostName }}
+    {{ end }}
   {{ else }}
   commonName: {{ .Release.Name }}.marudor.de
   dnsNames:
     - {{ .Release.Name }}.marudor.de
+    {{ if .Values.docs }}
+    - docs.{{ .Release.Name }}.marudor.de
+    {{ end }}
   {{ end }}
   acme:
     config:
@@ -30,8 +36,14 @@ spec:
   {{ if .Values.hostName }}
       domains:
         - {{ .Values.hostName }}
+        {{ if .Values.docs }}
+        - docs.{{ .Values.hostName }}
+        {{ end }}
   {{ else }}
       domains:
         - {{ .Release.Name }}.marudor.de
+        {{ if .Values.docs }}
+        - docs.{{ .Release.Name }}.marudor.de
+        {{ end }}
   {{ end }}
 {{- end }}

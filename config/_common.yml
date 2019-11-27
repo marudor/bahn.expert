@@ -8,6 +8,8 @@ certificate:
   issuerName: marudor-issuer
   issuerKind: ClusterIssuer
 
+docs: true
+
 ingress:
   enabled: true
   annotations:

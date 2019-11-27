@@ -18,8 +18,14 @@ spec:
     - hosts:
       {{ if .Values.hostName }}
         - {{ .Values.hostName }}
+        {{ if .Values.docs }}
+        - docs.{{ .Values.hostName }}
+        {{ end }}
       {{ else }}
         - {{ .Release.Name }}.marudor.de
+        {{ if .Values.docs }}
+        - docs.{{ .Values.hostName }}
+        {{ end }}
       {{ end }}
       secretName: {{ $fullName }}
   rules:
@@ -34,4 +40,17 @@ spec:
             backend:
               serviceName: {{ $fullName }}
               servicePort: http
+    {{ if .Values.docs }}
+    {{ if .Values.hostName }}
+    - host: docs.{{ .Values.hostName }}
+    {{ else }}
+    - host: docs.{{ .Release.Name }}.marudor.de
+    {{ end }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: {{ $fullName }}
+              servicePort: docs
+    {{ end }}
 {{- end }}
