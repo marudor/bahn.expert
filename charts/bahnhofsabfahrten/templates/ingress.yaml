@@ -24,7 +24,7 @@ spec:
       {{ else }}
         - {{ .Release.Name }}.marudor.de
         {{ if .Values.docs }}
-        - docs.{{ .Values.hostName }}
+        - docs.{{ .Release.Name }}.marudor.de
         {{ end }}
       {{ end }}
       secretName: {{ $fullName }}
