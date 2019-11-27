@@ -22,6 +22,8 @@ env:
   - name: test
     value: test
 
+docs: false
+
 certificate:
   enabled: false
   # commonName: example.foo
