@@ -7,6 +7,7 @@ RUN yarn --prod
 RUN modclean -r -a '*.ts|*.tsx' -I 'example*'
 COPY dist /app/dist/
 COPY scripts /app/scripts/
+COPY docs /app/docs/
 RUN node scripts/checkAssetFiles.js
 
 FROM node:12-alpine
