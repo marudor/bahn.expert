@@ -5,6 +5,7 @@ import { Server } from 'https';
 import axios from 'axios';
 import cookiesMiddleware from 'universal-cookie-koa';
 import createAdmin from './admin';
+import createDocsServer from './docsServer';
 import http from 'http';
 import Koa, { Context, Middleware } from 'koa';
 import KoaBodyparser from 'koa-bodyparser';
@@ -151,6 +152,7 @@ export default () => {
 
   server.addListener('request', app.callback());
   server.listen(port);
+  // istanbul ignore next
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line no-console
     console.log('running in DEV mode!');
@@ -158,8 +160,9 @@ export default () => {
     createAdmin();
   }
 
+  // istanbul ignore next
   if (process.env.NODE_ENV !== 'TEST') {
-    require('./docsServer');
+    createDocsServer(Number.parseInt(process.env.DOCS_PORT || '9023', 10));
   }
 
   return server;
