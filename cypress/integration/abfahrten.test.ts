@@ -39,4 +39,16 @@ describe('Abfahrten', () => {
       cy.queryByTestId('scrollMarker').should('not.exist');
     });
   });
+  it('going back & showing different station should reload', () => {
+    cy.visit('/');
+    cy.mockFrankfurt();
+    cy.navigateToStation('Frankfurt (Main) Hbf');
+    cy.findByTestId('loading').should('exist');
+    cy.findByTestId('lookahead').should('exist');
+    cy.go('back');
+    cy.mockHamburg();
+    cy.navigateToStation('Hamburg Hbf');
+    cy.findByTestId('loading').should('exist');
+    cy.findByTestId('lookahead').should('exist');
+  });
 });

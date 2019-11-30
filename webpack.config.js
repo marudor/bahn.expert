@@ -64,8 +64,10 @@ const rules = [
 const optimization = {};
 
 if (isDev) {
-  rules[0].use.unshift('cache-loader');
-  plugins.push(new ErrorOverlayPlugin());
+  if (process.env.BABEL_ENV !== 'testProduction') {
+    rules[0].use.unshift('cache-loader');
+    plugins.push(new ErrorOverlayPlugin());
+  }
 } else {
   optimization.minimizer = [
     new TerserPlugin({
