@@ -6,7 +6,7 @@ import AbfahrtenContainer, {
 import favContainer from 'Abfahrten/container/FavContainer';
 import FavEntry, { FavEntryDisplay } from './FavEntry';
 import MostUsed from './MostUsed';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import useStyles from './FavList.style';
 
 function getErrorText(
@@ -45,20 +45,11 @@ const FavList = ({ staticContext }: Props) => {
 
     return values
       .sort((a, b) => (a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1))
-      .map(fav => fav && <FavEntry key={fav.id} fav={fav} />);
+      .map(fav => <FavEntry key={fav.id} fav={fav} />);
   }, [favs]);
-  const {
-    error,
-    setCurrentStation,
-    setError,
-  } = AbfahrtenContainer.useContainer();
+  const { error } = AbfahrtenContainer.useContainer();
   const [savedError] = useState(error);
   const classes = useStyles();
-
-  useEffect(() => {
-    setCurrentStation(undefined);
-    setError(undefined);
-  }, [setCurrentStation, setError]);
 
   return (
     <main className={classes.main}>

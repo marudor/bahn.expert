@@ -23,14 +23,30 @@ Cypress.Commands.add('closeModal', () => {
 
 Cypress.Commands.add(
   'mockFrankfurt',
-  ({ lookbehind = 0, lookahead = 150 } = {}) => {
+  ({ lookbehind = 0, lookahead = 150, delay = 0 } = {}) => {
     cy.server();
-    cy.route(
-      `/api/iris/v1/abfahrten/8098105?lookahead=${lookahead}&lookbehind=${lookbehind}`,
-      'fixture:abfahrtenFrankfurtHbf.json'
-    ).route(
+    cy.route({
+      url: `/api/iris/v1/abfahrten/8098105?lookahead=${lookahead}&lookbehind=${lookbehind}`,
+      delay,
+      response: 'fixture:abfahrtenFrankfurtHbf.json',
+    }).route(
       '/api/station/v1/search/Frankfurt (Main) Hbf?type=default',
       'fixture:stationSearchFrankfurtHbf.json'
+    );
+  }
+);
+
+Cypress.Commands.add(
+  'mockHamburg',
+  ({ lookbehind = 0, lookahead = 150, delay = 0 } = {}) => {
+    cy.server();
+    cy.route({
+      url: `/api/iris/v1/abfahrten/8002549?lookahead=${lookahead}&lookbehind=${lookbehind}`,
+      delay,
+      response: 'fixture:abfahrtenHamburgHbf.json',
+    }).route(
+      '/api/station/v1/search/Hamburg%20Hbf?type=default',
+      'fixture:stationSearchHamburgHbf.json'
     );
   }
 );

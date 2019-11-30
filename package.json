@@ -20,7 +20,6 @@
     "depCheck": "depcruise --validate .dependency-cruiser.js src",
     "test": "npm run lint && npm run depCheck && npm run test:jest && tsc",
     "test:jest": "jest",
-    "test:jest:coverage": "jest --coverage",
     "e2e:local": "CYPRESS_baseUrl=https://local.marudor.de:9042 cypress open",
     "e2e:local:coverage": "wait-on https://local.marudor.de:9042 && (CYPRESS_baseUrl=https://local.marudor.de:9042 cypress run --config video=false ||(pkill -9 node && exit 1)) && pkill -9 node",
     "e2e:ci": "cypress run",
@@ -33,7 +32,11 @@
     "coverage:merge:copy": "cp cypress-coverage/coverage-final.json reports/from-cypress.json && cp jest-coverage/coverage-final.json reports/from-jest.json",
     "coverage:nyc:combine": "nyc merge reports .nyc_output/out.json && nyc report --reporter lcov --report-dir reports",
     "coverage:merge": "run-s coverage:merge:prepare coverage:merge:copy coverage:nyc:combine",
-    "coverage:full": "run-p dev:coverage e2e:local:coverage test:jest:coverage && npm run coverage:merge"
+    "coverage:clean": "rimraf jest-coverage cypress-coverage reports .nyc_output",
+    "coverage:e2e": "run-p dev:coverage e2e:local:coverage",
+    "coverage:jest": "jest --coverage",
+    "coverage:all": "run-p coverage:e2e coverage:jest",
+    "coverage:full": "run-s coverage:clean coverage:all coverage:merge"
   },
   "husky": {
     "hooks": {
