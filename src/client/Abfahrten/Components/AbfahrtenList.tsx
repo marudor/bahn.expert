@@ -19,6 +19,8 @@ const AbfahrtenList = () => {
     updateCurrentStationByString,
     currentStation,
     error,
+    setCurrentStation,
+    setError,
   } = AbfahrtenContainer.useContainer();
   const { selectedDetail } = SelectedDetailContainer.useContainer();
   const { clearReihungen } = ReihungContainer.useContainer();
@@ -29,6 +31,13 @@ const AbfahrtenList = () => {
   const paramStation = match ? match.params.station : undefined;
   const config = AbfahrtenConfigContainer.useContainer().config;
   const refreshCurrentAbfahrten = useRefreshCurrent();
+
+  useEffect(() => {
+    return () => {
+      setCurrentStation(undefined);
+      setError(undefined);
+    };
+  }, [setCurrentStation, setError]);
 
   useEffect(() => {
     if (unfilteredAbfahrten) {
@@ -105,9 +114,9 @@ const AbfahrtenList = () => {
                 className={classes.lookbehind}
                 data-testid="lookbehind"
               >
-                {filteredAbfahrten.lookbehind.map(
-                  a => a && <Abfahrt abfahrt={a} key={a.rawId} />
-                )}
+                {filteredAbfahrten.lookbehind.map(a => (
+                  <Abfahrt abfahrt={a} key={a.rawId} />
+                ))}
                 <div className={classes.lookaheadMarker} id="lookaheadMarker" />
               </div>
             )}
@@ -116,9 +125,9 @@ const AbfahrtenList = () => {
               className={classes.lookahead}
               data-testid="lookahead"
             >
-              {filteredAbfahrten.lookahead.map(
-                a => a && <Abfahrt abfahrt={a} key={a.rawId} />
-              )}
+              {filteredAbfahrten.lookahead.map(a => (
+                <Abfahrt abfahrt={a} key={a.rawId} />
+              ))}
             </div>
           </>
         ) : (

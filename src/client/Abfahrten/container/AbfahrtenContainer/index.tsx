@@ -100,7 +100,11 @@ const useAbfahrten = () => {
   );
 
   useEffect(() => {
-    if (!currentStation || !currentStation.id) return;
+    if (!currentStation || !currentStation.id) {
+      setDepartures(undefined);
+
+      return;
+    }
     fetchAbfahrten(currentStation.id, lookahead, lookbehind).then(
       r => {
         setDepartures({
