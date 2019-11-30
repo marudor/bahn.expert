@@ -3,7 +3,7 @@
     "specVersion": 3,
     "entryFile": "./src/server/API/index.ts",
     "outputDirectory": "./docs",
-    "host": "https://marudor.de",
+    "host": "marudor.de",
     "basePath": "api/",
     "controllerPathGlobs": [
       "./src/server/API/controller/**",
