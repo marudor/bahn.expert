@@ -29,21 +29,4 @@ spec:
     - docs.{{ .Release.Name }}.marudor.de
     {{ end }}
   {{ end }}
-  acme:
-    config:
-    - dns01:
-        provider: cf-dns
-  {{ if .Values.hostName }}
-      domains:
-        - {{ .Values.hostName }}
-        {{ if .Values.docs }}
-        - docs.{{ .Values.hostName }}
-        {{ end }}
-  {{ else }}
-      domains:
-        - {{ .Release.Name }}.marudor.de
-        {{ if .Values.docs }}
-        - docs.{{ .Release.Name }}.marudor.de
-        {{ end }}
-  {{ end }}
 {{- end }}
