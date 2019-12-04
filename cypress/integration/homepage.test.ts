@@ -39,4 +39,22 @@ describe('Homepage', () => {
     cy.visit('/');
     cy.findByTestId('favEntry').should('have.text', 'Frankfurt (Main) Hbf');
   });
+
+  it('Shows error on mainPage', () => {
+    cy.server();
+    cy.route({
+      url: '/api/iris/v1/abfahrten/8098105?lookahead=150&lookbehind=0',
+      status: 500,
+      delay: 10,
+      response: {},
+    }).route(
+      '/api/station/v1/search/Frankfurt (Main) Hbf?type=default',
+      'fixture:stationSearchFrankfurtHbf.json'
+    );
+    cy.visit('/');
+    cy.navigateToStation('Frankfurt (Main) Hbf');
+    cy.findByTestId('loading').should('exist');
+    cy.findByTestId('error').should('exist');
+    cy.findByTestId('triedStation').should('have.text', 'Frankfurt (Main) Hbf');
+  });
 });
