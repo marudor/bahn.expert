@@ -2885,7 +2885,7 @@
 					"halt": {
 						"$ref": "#/components/schemas/Halt"
 					},
-					"liniebezeichung": {
+					"liniebezeichnung": {
 						"type": "string"
 					},
 					"zuggattung": {
@@ -2947,7 +2947,7 @@
 					"fahrtrichtung",
 					"allFahrzeuggruppe",
 					"halt",
-					"liniebezeichung",
+					"liniebezeichnung",
 					"zuggattung",
 					"zugnummer",
 					"serviceid",

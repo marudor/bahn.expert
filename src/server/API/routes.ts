@@ -982,7 +982,7 @@ const models: TsoaRoute.Models = {
       "fahrtrichtung": { "dataType": "enum", "enums": ["VORWAERTS", "RUCKWAERTS"], "required": true },
       "allFahrzeuggruppe": { "dataType": "array", "array": { "ref": "Fahrzeuggruppe" }, "required": true },
       "halt": { "ref": "Halt", "required": true },
-      "liniebezeichung": { "dataType": "string", "required": true },
+      "liniebezeichnung": { "dataType": "string", "required": true },
       "zuggattung": { "dataType": "string", "required": true },
       "zugnummer": { "dataType": "string", "required": true },
       "serviceid": { "dataType": "string", "required": true },
