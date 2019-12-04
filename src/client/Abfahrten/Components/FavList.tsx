@@ -56,9 +56,15 @@ const FavList = ({ staticContext }: Props) => {
       {/* eslint-disable-next-line no-nested-ternary */}
       {savedError ? (
         <>
-          <FavEntryDisplay text={getErrorText(savedError, staticContext)} />
+          <FavEntryDisplay
+            data-testid="error"
+            text={getErrorText(savedError, staticContext)}
+          />
           {savedError.station && (
-            <Link to={encodeURIComponent(savedError.station)}>
+            <Link
+              data-testid="triedStation"
+              to={encodeURIComponent(savedError.station)}
+            >
               <FavEntryDisplay text={savedError.station} />
             </Link>
           )}
