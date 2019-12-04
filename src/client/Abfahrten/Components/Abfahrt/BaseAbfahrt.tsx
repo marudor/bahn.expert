@@ -42,6 +42,8 @@ const BaseAbfahrt = ({ abfahrt, wing, wingEnd, wingStart }: Props) => {
         onClick={handleClick}
         className={classes.main}
       >
+        {!global.PROD && abfahrt.rawId}
+
         {wing && (
           <span
             className={cc(classes.wing, {
