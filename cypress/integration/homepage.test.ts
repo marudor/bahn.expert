@@ -45,7 +45,7 @@ describe('Homepage', () => {
     cy.route({
       url: '/api/iris/v1/abfahrten/8098105?lookahead=150&lookbehind=0',
       status: 500,
-      delay: 10,
+      delay: 200,
       response: {},
     }).route(
       '/api/station/v1/search/Frankfurt (Main) Hbf?type=default',
