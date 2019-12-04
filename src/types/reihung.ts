@@ -60,7 +60,7 @@ export interface BaseFormation {
   fahrtrichtung: 'VORWAERTS' | 'RUCKWAERTS';
   allFahrzeuggruppe: BaseFahrzeuggruppe[];
   halt: Halt;
-  liniebezeichung: string;
+  liniebezeichnung: string;
   zuggattung: string;
   zugnummer: string;
   /**
