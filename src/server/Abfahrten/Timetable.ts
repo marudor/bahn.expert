@@ -35,12 +35,14 @@ type ParsedDp = ArDp & {
   departureTs?: string;
   scheduledDepartureTs?: string;
   routePost?: string[];
+  plannedRoutePost?: string[];
 };
 
 type ParsedAr = ArDp & {
   arrivalTs?: string;
   scheduledArrivalTs?: string;
   routePre?: string[];
+  plannedRoutePre?: string[];
 };
 
 // 6 Hours in seconds
@@ -59,6 +61,11 @@ export interface TimetableOptions {
   currentDate?: Date;
 }
 
+const processRawRouteString = (rawRouteString?: string) =>
+  rawRouteString
+    ?.split('|')
+    .filter(Boolean)
+    .map(normalizeRouteName);
 const routeMap: (s: string) => Route = name => ({ name });
 const normalizeRouteName = (name: string) =>
   name
@@ -66,19 +73,17 @@ const normalizeRouteName = (name: string) =>
     .replace(')', ') ')
     .trim();
 
-export function parseDp(dp: null | xmljs.Element): undefined | ParsedDp {
+export function parseRealtimeDp(
+  dp: null | xmljs.Element
+): undefined | ParsedDp {
   if (!dp) return undefined;
-
-  const routePost = getAttr(dp, 'cpth');
 
   return {
     departureTs: getAttr(dp, 'ct'),
     scheduledDepartureTs: getAttr(dp, 'pt'),
     platform: getAttr(dp, 'cp'),
-    routePost: routePost
-      ? routePost.split('|').map<string>(normalizeRouteName)
-      : undefined,
-    // plannedRoutePost: getAttr(dp, 'ppth')?.split('|'),
+    routePost: processRawRouteString(getAttr(dp, 'cpth')),
+    plannedRoutePost: processRawRouteString(getAttr(dp, 'ppth')),
     status: getAttr(dp, 'cs'),
   };
 }
@@ -88,16 +93,12 @@ export function parseRealtimeAr(
 ): undefined | ParsedAr {
   if (!ar) return undefined;
 
-  const routePre = getAttr(ar, 'cpth');
-
   return {
     arrivalTs: getAttr(ar, 'ct'),
     scheduledArrivalTs: getAttr(ar, 'pt'),
     platform: getAttr(ar, 'cp'),
-    routePre: routePre
-      ? routePre.split('|').map<string>(normalizeRouteName)
-      : undefined,
-    // plannedRoutePre: getAttr(ar, 'ppth')?.split('|'),
+    routePre: processRawRouteString(getAttr(ar, 'cpth')),
+    plannedRoutePre: processRawRouteString(getAttr(ar, 'ppth')),
     status: getAttr(ar, 'cs'),
     // statusSince: getAttr(ar, 'clt'),
   };
@@ -234,24 +235,26 @@ export default class Timetable {
         timetable.departure.cancelled &&
         (!timetable.arrival || !timetable.arrival.scheduledTime));
 
-    if (timetable.cancelled) {
-      const anyCancelled =
-        timetable.routePre.some((r: any) => r.cancelled) ||
-        timetable.routePost.some((r: any) => r.cancelled);
+    // if (timetable.cancelled) {
+    //   const anyCancelled =
+    //     timetable.routePre.some((r: any) => r.cancelled) ||
+    //     timetable.routePost.some((r: any) => r.cancelled);
 
-      if (anyCancelled) {
-        timetable.routePre.forEach((r: any) => (r.cancelled = true));
-        timetable.routePost.forEach((r: any) => (r.cancelled = true));
-      }
-    }
+    //   if (anyCancelled) {
+    //     timetable.routePre.forEach((r: any) => (r.cancelled = true));
+    //     timetable.routePost.forEach((r: any) => (r.cancelled = true));
+    //   }
+    // }
+
+    const currentRoutePart = {
+      name: timetable.currentStation.title,
+      cancelled: timetable.cancelled,
+      additional: timetable.additional,
+    };
 
     timetable.route = [
       ...timetable.routePre,
-      {
-        name: timetable.currentStation.title,
-        cancelled: timetable.cancelled,
-        additional: timetable.additional,
-      },
+      currentRoutePart,
       ...timetable.routePost,
     ];
     const last = findLast(timetable.route, r => !r.cancelled);
@@ -485,7 +488,7 @@ export default class Timetable {
         return agg;
       }, {} as { [key: string]: any[] }),
       arrival: parseRealtimeAr(ar),
-      departure: parseDp(dp),
+      departure: parseRealtimeDp(dp),
       ref: ref ? this.parseRef(ref) : undefined,
     };
   }
@@ -506,7 +509,7 @@ export default class Timetable {
     if (ar.routePre) {
       const diff = diffArrays(
         ar.routePre,
-        timetable.routePre.map((r: any) => r.name)
+        ar.plannedRoutePre || timetable.routePre.map((r: any) => r.name)
       );
 
       timetable.routePre = diff.flatMap(d =>
@@ -519,7 +522,6 @@ export default class Timetable {
     }
     timetable.arrival.platform =
       ar.platform || timetable.arrival.scheduledPlatform;
-    // timetable.platform = ar.platform || timetable.scheduledPlatform;
   }
   addDepartureInfo(timetable: any, dp: undefined | ParsedDp) {
     if (!dp) return;
@@ -539,7 +541,7 @@ export default class Timetable {
       1000;
     if (dp.routePost) {
       const diff = diffArrays(
-        timetable.routePost.map((r: any) => r.name),
+        dp.plannedRoutePost || timetable.routePost.map((r: any) => r.name),
         dp.routePost
       );
 
@@ -547,7 +549,7 @@ export default class Timetable {
         d.value.map(v => ({
           name: v,
           additional: d.added,
-          cancelled: d.removed || timetable.departure.cancelled,
+          cancelled: d.removed,
         }))
       );
     } else if (timetable.departure.cancelled && timetable.routePost) {
@@ -555,7 +557,6 @@ export default class Timetable {
     }
     timetable.departure.platform =
       dp.platform || timetable.departure.scheduledPlatform;
-    // timetable.platform = dp.platform || timetable.scheduledPlatform;
   }
   async fetchRealtime() {
     const url = `/fchg/${this.evaId}`;
