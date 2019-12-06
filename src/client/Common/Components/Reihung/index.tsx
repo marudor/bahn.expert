@@ -16,6 +16,7 @@ interface Props {
   scheduledDeparture: number;
   loadHidden?: boolean;
   showUIC?: boolean;
+  withLegend?: boolean;
 }
 
 const Reihung = (props: Props) => {
