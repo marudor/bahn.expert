@@ -90,7 +90,7 @@ const FahrzeugComp = ({
             // @ts-ignore this is correct, it's exact!
             const SpecificIcon = icons[key];
 
-            return <SpecificIcon className={classes.icon} />;
+            return <SpecificIcon key={key} className={classes.icon} />;
           }
 
           return null;
