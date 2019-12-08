@@ -268,8 +268,10 @@ const getDisabledSeats = (
       return klasse === 1 ? '51, 52, 53, 55' : '111-116';
     case '402':
       return klasse === 1 ? '12, 21' : '81, 85-88';
+
     case '403':
-    case '406':
+      // 406 has no seat 64/66 Looks like no disabled seats either. At least for trains going to Amsterdam/NL
+      // case '406':
       if (klasse === 1) return '64, 66';
       if (wagenordnungsnummer === '25' || wagenordnungsnummer === '35') {
         return br.redesign ? '61, 63, 65-67' : '61, 63, 65, 67';
