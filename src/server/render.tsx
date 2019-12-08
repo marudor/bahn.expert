@@ -5,8 +5,8 @@ import { CookieContext } from 'Common/useCookies';
 import { HelmetProvider } from 'react-helmet-async';
 import { MarudorConfigSanitize } from 'Common/config';
 import { renderToString } from 'react-dom/server';
-import { ServerStyleSheets } from '@material-ui/styles';
 import { setCookieOptions } from 'client/util';
+import { SheetsRegistry } from 'jss';
 import { StaticRouter } from 'react-router-dom';
 import { StaticRouterContext } from 'react-router';
 import { ThemeProvider } from 'Common/container/ThemeContainer';
@@ -59,20 +59,20 @@ export default (ctx: Context) => {
   });
 
   const context: any = {};
+  const sheets = new SheetsRegistry();
   const App = extractor.collectChunks(
     <HelmetProvider context={context}>
       <StaticRouter location={ctx.url} context={routeContext}>
         <CookieContext.Provider value={ctx.request.universalCookies}>
           <ThemeProvider>
-            <ThemeWrap />
+            <ThemeWrap sheetsRegistry={sheets} />
           </ThemeProvider>
         </CookieContext.Provider>
       </StaticRouter>
     </HelmetProvider>
   );
 
-  const sheets = new ServerStyleSheets();
-  const app = renderToString(sheets.collect(App));
+  const app = renderToString(App);
 
   if (routeContext.url) {
     ctx.redirect(routeContext.url);

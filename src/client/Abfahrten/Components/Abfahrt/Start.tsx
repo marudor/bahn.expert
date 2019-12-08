@@ -22,20 +22,16 @@ const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
     <div className={classes.main} data-testid="abfahrtStart">
       <span>{abfahrt.train.name}</span>
       {lineAndNumber && abfahrt.train.line && (
-        <>
-          <span>
-            {abfahrt.train.type} {abfahrt.train.number}
-          </span>
-        </>
+        <span>
+          {abfahrt.train.type} {abfahrt.train.number}
+        </span>
       )}
       {detail && (
         <div className={classes.links}>
           <CheckInLink abfahrt={abfahrt} type={checkInType} />
           <Link
             onClick={stopPropagation}
-            to={`/details/${abfahrt.train.thirdParty ||
-              abfahrt.train.type ||
-              ''} ${abfahrt.train.number}/${abfahrt.initialDeparture}`}
+            to={`/details/${abfahrt.train.trainCategory} ${abfahrt.train.number}/${abfahrt.initialDeparture}`}
           >
             Details
           </Link>

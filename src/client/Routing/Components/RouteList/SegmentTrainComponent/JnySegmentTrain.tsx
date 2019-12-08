@@ -1,9 +1,11 @@
+import { Link } from 'react-router-dom';
 import { Route$JourneySegmentTrain } from 'types/routing';
 import AuslastungsDisplay from 'Common/Components/AuslastungsDisplay';
 import cc from 'clsx';
 import React, { MouseEvent } from 'react';
 import Reihung from 'Common/Components/Reihung';
 import StopList from 'Routing/Components/RouteList/StopList';
+import stopPropagation from 'Common/stopPropagation';
 import useStyles from './style';
 
 interface Props {
@@ -23,7 +25,15 @@ const JnySegmentTrain = ({
   return (
     <div onClick={onTrainClick} className={className}>
       <div className={classes.trainInfo}>
-        <span className={classes.trainMargin}>{segment.train.name}</span>
+        <span className={cc(classes.trainMargin, classes.trainName)}>
+          {segment.train.name}
+          <Link
+            onClick={stopPropagation}
+            to={`/details/${segment.train.type} ${segment.train.number}/${segment.departure.scheduledTime}`}
+          >
+            Details
+          </Link>
+        </span>
         <span className={cc(classes.trainMargin, classes.destination)}>
           {segment.finalDestination}
         </span>
