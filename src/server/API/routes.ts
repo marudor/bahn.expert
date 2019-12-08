@@ -1145,8 +1145,8 @@ export function RegisterRoutes(router: KoaRouter) {
   router.get('/api/hafas/v1/arrivalStationBoard',
     async (context: any, next: any) => {
       const args = {
-        date: { "in": "query", "name": "date", "required": true, "dataType": "double" },
         station: { "in": "query", "name": "station", "required": true, "dataType": "string" },
+        date: { "in": "query", "name": "date", "dataType": "double" },
         profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao"] },
       };
 
@@ -1167,9 +1167,9 @@ export function RegisterRoutes(router: KoaRouter) {
   router.get('/api/hafas/v1/departureStationBoard',
     async (context: any, next: any) => {
       const args = {
-        date: { "in": "query", "name": "date", "required": true, "dataType": "double" },
         station: { "in": "query", "name": "station", "required": true, "dataType": "string" },
         direction: { "in": "query", "name": "direction", "dataType": "string" },
+        date: { "in": "query", "name": "date", "dataType": "double" },
         profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao"] },
       };
 

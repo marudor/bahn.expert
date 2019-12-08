@@ -3324,22 +3324,22 @@
 				"security": [],
 				"parameters": [
 					{
-						"description": "Unix Time (ms)",
-						"in": "query",
-						"name": "date",
-						"required": true,
-						"schema": {
-							"format": "double",
-							"type": "number"
-						}
-					},
-					{
 						"description": "EvaId",
 						"in": "query",
 						"name": "station",
 						"required": true,
 						"schema": {
 							"type": "string"
+						}
+					},
+					{
+						"description": "Unix Time (ms)",
+						"in": "query",
+						"name": "date",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
 						}
 					},
 					{
@@ -3389,16 +3389,6 @@
 				"security": [],
 				"parameters": [
 					{
-						"description": "Unix Time (ms)",
-						"in": "query",
-						"name": "date",
-						"required": true,
-						"schema": {
-							"format": "double",
-							"type": "number"
-						}
-					},
-					{
 						"description": "EvaId",
 						"in": "query",
 						"name": "station",
@@ -3414,6 +3404,16 @@
 						"required": false,
 						"schema": {
 							"type": "string"
+						}
+					},
+					{
+						"description": "Unix Time (ms)",
+						"in": "query",
+						"name": "date",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
 						}
 					},
 					{
