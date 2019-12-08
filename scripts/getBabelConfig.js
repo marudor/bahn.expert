@@ -63,8 +63,8 @@ const getBabelConfig = type => {
         '@babel/preset-env',
         {
           ...presetEnvTargets,
-          loose: false,
-          useBuiltIns: 'entry',
+          loose: true,
+          useBuiltIns: 'usage',
           modules: isServer ? 'commonjs' : undefined,
           corejs: 3,
         },
