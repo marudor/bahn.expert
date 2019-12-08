@@ -8,7 +8,7 @@ export default (adminPort: number = 9000) => {
   koa.use(ctx => {
     switch (ctx.request.url) {
       case '/metrics':
-        // eslint-disable-next-line
+        // eslint-disable-next-line no-console
         console.log('SERVED METRICS');
         ctx.body = Client.register.metrics();
         break;
