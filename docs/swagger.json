@@ -1403,8 +1403,7 @@
 						"format": "double"
 					},
 					"id": {
-						"type": "number",
-						"format": "double"
+						"type": "string"
 					},
 					"dep": {
 						"type": "string"
@@ -3506,7 +3505,7 @@
 				]
 			}
 		},
-		"/hafas/v1/journeyMatch/{trainName}/{date}": {
+		"/hafas/v1/journeyMatch/{trainName}": {
 			"get": {
 				"operationId": "JourneyMatch",
 				"responses": {
@@ -3539,9 +3538,9 @@
 					},
 					{
 						"description": "Unix Time (ms)",
-						"in": "path",
+						"in": "query",
 						"name": "date",
-						"required": true,
+						"required": false,
 						"schema": {
 							"format": "double",
 							"type": "number"

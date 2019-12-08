@@ -186,14 +186,14 @@ export class HafasController extends Controller {
     return foundTrain;
   }
 
-  @Get('/journeyMatch/{trainName}/{date}')
+  @Get('/journeyMatch/{trainName}')
   @Tags('HAFAS V1')
   journeyMatch(
     trainName: string,
     /**
      * Unix Time (ms)
      */
-    date?: number,
+    @Query() date?: number,
     @Query() profile?: AllowedHafasProfile
   ): Promise<ParsedJourneyMatchResponse[]> {
     return JourneyMatch(trainName, date, profile);

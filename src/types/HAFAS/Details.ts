@@ -4,7 +4,7 @@ export interface TrainSearchResult {
   value: string;
   cycle: number;
   pool: number;
-  id: number;
+  id: string;
   dep: string;
   trainLink: string;
   journParam: string;

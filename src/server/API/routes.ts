@@ -488,7 +488,7 @@ const models: TsoaRoute.Models = {
       "value": { "dataType": "string", "required": true },
       "cycle": { "dataType": "double", "required": true },
       "pool": { "dataType": "double", "required": true },
-      "id": { "dataType": "double", "required": true },
+      "id": { "dataType": "string", "required": true },
       "dep": { "dataType": "string", "required": true },
       "trainLink": { "dataType": "string", "required": true },
       "journParam": { "dataType": "string", "required": true },
@@ -1209,11 +1209,11 @@ export function RegisterRoutes(router: KoaRouter) {
       return promiseHandler(controller, promise, context, next);
     });
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  router.get('/api/hafas/v1/journeyMatch/:trainName/:date',
+  router.get('/api/hafas/v1/journeyMatch/:trainName',
     async (context: any, next: any) => {
       const args = {
         trainName: { "in": "path", "name": "trainName", "required": true, "dataType": "string" },
-        date: { "in": "path", "name": "date", "required": true, "dataType": "double" },
+        date: { "in": "query", "name": "date", "dataType": "double" },
         profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao"] },
       };
 
