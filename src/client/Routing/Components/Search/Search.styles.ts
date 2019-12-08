@@ -8,6 +8,7 @@ export default makeStyles({
   },
   buttons: {
     display: 'flex',
+    marginBottom: '1em',
   },
   destination: {
     display: 'flex',
