@@ -11,20 +11,18 @@ const search = require('../src/server/Search').default;
 
 const mostUsedNames = [
   'Frankfurt (Main) Hbf',
-  'Hannover Hbf',
-  'Stuttgart Hbf',
-  'Köln Hbf',
-  'Hamburg Hbf',
-  'Berlin Hbf',
-  'Düsseldorf Hbf',
-  'Mannheim Hbf',
-  'Villingen (Schwarzw)',
   'Karlsruhe Hbf',
+  'Hannover Hbf',
+  'Hamburg Hbf',
+  'Mannheim Hbf',
+  'Berlin Hbf',
+  'Stuttgart Hbf',
+  'Düsseldorf Hbf',
+  'Köln Hbf',
+  'Leipzig Hbf',
+  'München Hbf',
   'Wuppertal Hbf',
   'Nürnberg Hbf',
-  'München Hbf',
-  'Bonn Hbf',
-  'Leipzig Hbf',
 ].map(n => n.toLowerCase());
 
 Promise.all(mostUsedNames.map(s => search(s).then(s => s[0]))).then(
