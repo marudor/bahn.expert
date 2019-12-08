@@ -15,4 +15,8 @@ export default makeStyles({
   reihung: {
     fontSize: '0.5em',
   },
+  trainName: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
 });

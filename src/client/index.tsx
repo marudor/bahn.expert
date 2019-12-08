@@ -1,4 +1,3 @@
-import 'core-js/stable';
 import { BrowserRouter } from 'react-router-dom';
 import { CookieContext } from 'Common/useCookies';
 import { HelmetProvider } from 'react-helmet-async';

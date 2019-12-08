@@ -4,9 +4,8 @@ import Search from './Search';
 
 const Routing = () => {
   return (
-    <main>
+    <main style={{ marginLeft: '.5em', marginRight: '.5em' }}>
       <Search />
-      <div style={{ marginBottom: '1em' }} />
       <RouteList />
     </main>
   );

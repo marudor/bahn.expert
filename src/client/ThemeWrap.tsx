@@ -1,46 +1,49 @@
+import {
+  createGenerateClassName,
+  StylesProvider,
+  ThemeProvider,
+} from '@material-ui/styles';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import { Rule, StyleSheet } from 'jss';
-import { ThemeProvider } from '@material-ui/styles';
+import { Rule, SheetsRegistry, StyleSheet } from 'jss';
 import App from './App';
 import DateFnsUtils from '@date-io/date-fns';
 import deLocale from 'date-fns/locale/de';
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useMemo } from 'react';
 import ThemeContainer from 'Common/container/ThemeContainer';
 import ThemeHeaderTags from 'Common/Components/ThemeHeaderTags';
 
 interface Props {
   children?: ReactNode;
+  sheetsRegistry?: SheetsRegistry;
 }
 
-const ThemeWrap = ({ children = <App /> }: Props) => {
+const ThemeWrap = ({ children = <App />, sheetsRegistry }: Props) => {
   const { theme } = ThemeContainer.useContainer();
 
-  const themeProvider = (
-    <MuiPickersUtilsProvider utils={DateFnsUtils} locale={deLocale}>
-      <ThemeProvider theme={theme}>
-        <ThemeHeaderTags />
-        {children}
-      </ThemeProvider>
-    </MuiPickersUtilsProvider>
-  );
+  let generateClassName = useMemo(() => createGenerateClassName(), []);
 
   if (global.TEST) {
-    const StylesProvider = require('@material-ui/styles').StylesProvider;
-    const generateClassName = (rule: Rule, sheet?: StyleSheet<string>) => {
+    generateClassName = (rule: Rule, sheet?: StyleSheet<string>) => {
       // @ts-ignore
       const name = `${sheet.options.name}-${rule.key}`;
 
       return name;
     };
-
-    return (
-      <StylesProvider generateClassName={generateClassName}>
-        {themeProvider}
-      </StylesProvider>
-    );
   }
 
-  return themeProvider;
+  return (
+    <StylesProvider
+      sheetsRegistry={sheetsRegistry}
+      generateClassName={generateClassName}
+    >
+      <MuiPickersUtilsProvider utils={DateFnsUtils} locale={deLocale}>
+        <ThemeProvider theme={theme}>
+          <ThemeHeaderTags />
+          {children}
+        </ThemeProvider>
+      </MuiPickersUtilsProvider>
+    </StylesProvider>
+  );
 };
 
 export default ThemeWrap;
