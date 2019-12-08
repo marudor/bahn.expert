@@ -18,12 +18,12 @@ import ThemeWrap from 'client/ThemeWrap';
 
 global.baseUrl = process.env.BASE_URL || '';
 const headerFilename = path.resolve(__dirname, './views/header.ejs');
-// eslint-disable-next-line
+// eslint-disable-next-line no-sync
 const headerEjs = fs.readFileSync(headerFilename, 'utf8').trim();
 const headerTemplate = ejs.compile(headerEjs, {
   filename: headerFilename,
 });
-// eslint-disable-next-line
+// eslint-disable-next-line no-sync
 const footerEjs = fs
   .readFileSync(path.resolve(__dirname, './views/footer.ejs'), 'utf8')
   .trim();
