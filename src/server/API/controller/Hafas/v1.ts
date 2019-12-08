@@ -117,13 +117,13 @@ export class HafasController extends Controller {
   @Tags('HAFAS V1')
   arrivalStationBoard(
     /**
-     * Unix Time (ms)
-     */
-    @Query() date: number,
-    /**
      * EvaId
      */
     @Query() station: string,
+    /**
+     * Unix Time (ms)
+     */
+    @Query() date?: number,
     @Query() profile?: AllowedHafasProfile
   ): Promise<ArrivalStationBoardEntry[]> {
     return StationBoard(
@@ -140,10 +140,6 @@ export class HafasController extends Controller {
   @Tags('HAFAS V1')
   departureStationBoard(
     /**
-     * Unix Time (ms)
-     */
-    @Query() date: number,
-    /**
      * EvaId
      */
     @Query() station: string,
@@ -151,6 +147,10 @@ export class HafasController extends Controller {
      * EvaId
      */
     @Query() direction?: string,
+    /**
+     * Unix Time (ms)
+     */
+    @Query() date?: number,
     @Query() profile?: AllowedHafasProfile
   ): Promise<DepartureStationBoardEntry[]> {
     return StationBoard(
@@ -186,14 +186,14 @@ export class HafasController extends Controller {
     return foundTrain;
   }
 
-  @Get('/journeyMatch/{trainName}/{date}')
+  @Get('/journeyMatch/{trainName}')
   @Tags('HAFAS V1')
   journeyMatch(
     trainName: string,
     /**
      * Unix Time (ms)
      */
-    date?: number,
+    @Query() date?: number,
     @Query() profile?: AllowedHafasProfile
   ): Promise<ParsedJourneyMatchResponse[]> {
     return JourneyMatch(trainName, date, profile);

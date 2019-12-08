@@ -22,7 +22,7 @@ const subdomain = process.env.LOGGLY_SUBDOMAIN;
 
 // istanbul ignore next
 if (process.env.NODE_ENV === 'production' && token && subdomain) {
-  // eslint-disable-next-line
+  // eslint-disable-next-line no-console
   console.log('Using loggly to log');
   config.streams.push({
     // @ts-ignore
