@@ -152,8 +152,6 @@ Object {
     "longDistance": false,
     "name": "S 8",
     "number": "30889",
-    "thirdParty": undefined,
-    "trainCategory": "S",
     "type": "S",
   },
 }
@@ -241,8 +239,6 @@ Object {
     "longDistance": true,
     "name": "ICE 1680",
     "number": "1680",
-    "thirdParty": undefined,
-    "trainCategory": "ICE",
     "type": "ICE",
   },
 }
@@ -319,8 +315,6 @@ Object {
     "longDistance": true,
     "name": "ICE 1580",
     "number": "1580",
-    "thirdParty": undefined,
-    "trainCategory": "ICE",
     "type": "ICE",
   },
 }
@@ -478,8 +472,6 @@ Object {
     "longDistance": false,
     "name": "S 8",
     "number": "30889",
-    "thirdParty": undefined,
-    "trainCategory": "S",
     "type": "S",
   },
 }
@@ -637,8 +629,6 @@ Object {
     "longDistance": false,
     "name": "S 8",
     "number": "30889",
-    "thirdParty": undefined,
-    "trainCategory": "S",
     "type": "S",
   },
 }
@@ -720,8 +710,6 @@ Object {
     "longDistance": true,
     "name": "ICE 1689",
     "number": "1689",
-    "thirdParty": undefined,
-    "trainCategory": "ICE",
     "type": "ICE",
   },
 }
@@ -792,8 +780,6 @@ Object {
     "longDistance": true,
     "name": "ICE 1589",
     "number": "1589",
-    "thirdParty": undefined,
-    "trainCategory": "ICE",
     "type": "ICE",
   },
 }
@@ -951,8 +937,6 @@ Object {
     "longDistance": false,
     "name": "S 8",
     "number": "30889",
-    "thirdParty": undefined,
-    "trainCategory": "S",
     "type": "S",
   },
 }
@@ -1023,8 +1007,6 @@ Object {
     "longDistance": true,
     "name": "ICE 123",
     "number": "123",
-    "thirdParty": undefined,
-    "trainCategory": "ICE",
     "type": "ICE",
   },
 }
@@ -1105,9 +1087,7 @@ Object {
     "longDistance": false,
     "name": "BOB 86871",
     "number": "86871",
-    "thirdParty": "BOB",
-    "trainCategory": "BOB",
-    "type": "RB",
+    "type": "BOB",
   },
 }
 `;
@@ -1172,9 +1152,7 @@ Object {
     "longDistance": false,
     "name": "BOB 86971",
     "number": "86971",
-    "thirdParty": "BOB",
-    "trainCategory": "BOB",
-    "type": "RB",
+    "type": "BOB",
   },
 }
 `;
@@ -1242,9 +1220,7 @@ Object {
     "longDistance": false,
     "name": "BOB 86921",
     "number": "86921",
-    "thirdParty": "BOB",
-    "trainCategory": "BOB",
-    "type": "RB",
+    "type": "BOB",
   },
 }
 `;
@@ -1308,13 +1284,11 @@ Object {
   "scheduledDestination": "test",
   "substitute": false,
   "train": Object {
-    "line": "11",
+    "line": "RE11",
     "longDistance": false,
     "name": "ABR RE11",
     "number": "26712",
-    "thirdParty": "ABR",
-    "trainCategory": "ABR",
-    "type": "RB",
+    "type": "ABR",
   },
 }
 `;
@@ -1387,13 +1361,11 @@ Object {
   "scheduledDestination": "Paderborn Hbf",
   "substitute": false,
   "train": Object {
-    "line": "11",
+    "line": "RE11",
     "longDistance": false,
     "name": "ABR RE11",
     "number": "26719",
-    "thirdParty": "ABR",
-    "trainCategory": "ABR",
-    "type": "RB",
+    "type": "ABR",
   },
 }
 `;
@@ -1550,8 +1522,6 @@ Object {
     "longDistance": false,
     "name": "S 8",
     "number": "30889",
-    "thirdParty": undefined,
-    "trainCategory": "S",
     "type": "S",
   },
 }
@@ -1622,8 +1592,6 @@ Object {
     "longDistance": true,
     "name": "ICE 123",
     "number": "123",
-    "thirdParty": undefined,
-    "trainCategory": "ICE",
     "type": "ICE",
   },
 }
@@ -1781,8 +1749,6 @@ Object {
     "longDistance": false,
     "name": "S 8",
     "number": "30889",
-    "thirdParty": undefined,
-    "trainCategory": "S",
     "type": "S",
   },
 }
@@ -1869,8 +1835,6 @@ Object {
     "longDistance": true,
     "name": "ICE 1587",
     "number": "1587",
-    "thirdParty": undefined,
-    "trainCategory": "ICE",
     "type": "ICE",
   },
 }

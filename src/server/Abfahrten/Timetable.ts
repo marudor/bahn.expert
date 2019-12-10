@@ -104,56 +104,6 @@ export function parseRealtimeAr(
   };
 }
 
-const trainRegex = /(BRB?|\w+?)?? ?(Bus|RS|IRE|RE|RB|IC|ICE|EC|ECE|TGV|NJ|RJ|S)? ?(\d+\w*|SEV)/;
-
-function getTrainType(thirdParty?: string, trainType?: string) {
-  if ((thirdParty === 'NWB' && trainType === 'RS') || thirdParty === 'BSB') {
-    return 'S';
-  }
-  if (thirdParty === 'FLX') {
-    return 'IR';
-  }
-  if (thirdParty) {
-    return 'RB';
-  }
-
-  return trainType;
-}
-
-function getTrainLine(
-  thirdParty?: string,
-  rawTrainType?: string,
-  trainLine?: string
-) {
-  if (thirdParty === 'NWB' && rawTrainType === 'RS') {
-    return `${rawTrainType}${trainLine}`;
-  }
-
-  return trainLine || undefined;
-}
-
-export function splitTrainType(train: string = '', trainNumber: string = '') {
-  const parsed = trainRegex.exec(train);
-
-  if (parsed) {
-    const thirdParty = parsed[1] || undefined;
-    const type = getTrainType(thirdParty, parsed[2]);
-    const line = getTrainLine(thirdParty, parsed[2], parsed[3]);
-
-    return {
-      thirdParty,
-      type,
-      line: line === trainNumber ? undefined : line,
-    };
-  }
-
-  return {
-    thirdParty: undefined,
-    type: undefined,
-    line: undefined,
-  };
-}
-
 export function parseTl(tl: xmljs.Element) {
   return {
     // D = Irregular, like third party
@@ -677,8 +627,8 @@ export default class Timetable {
         longDistance: longDistanceRegex.test(fullTrainText),
         name: fullTrainText,
         number: trainNumber,
-        trainCategory,
-        ...splitTrainType(fullTrainText, trainNumber),
+        line: lineNumber,
+        type: trainCategory,
       },
       additional: undefined as undefined | boolean,
     };

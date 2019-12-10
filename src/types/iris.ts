@@ -97,10 +97,8 @@ export interface Train {
 }
 
 export interface TrainInfo extends CommonProductInfo {
-  thirdParty?: string;
   longDistance: boolean;
   type: string;
-  trainCategory: string;
   number: string;
 }
 

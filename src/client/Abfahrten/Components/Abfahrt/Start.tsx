@@ -1,10 +1,9 @@
 import { Abfahrt } from 'types/iris';
-import { Link } from 'react-router-dom';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import Auslastung from 'Abfahrten/Components/Abfahrt/Auslastung';
 import CheckInLink from 'Common/Components/CheckInLink';
+import DetailsLink from 'Common/Components/Details/DetailsLink';
 import React from 'react';
-import stopPropagation from 'Common/stopPropagation';
 import Substitute from './Substitute';
 import useStyles from './Start.style';
 
@@ -29,12 +28,10 @@ const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
       {detail && (
         <div className={classes.links}>
           <CheckInLink abfahrt={abfahrt} type={checkInType} />
-          <Link
-            onClick={stopPropagation}
-            to={`/details/${abfahrt.train.trainCategory} ${abfahrt.train.number}/${abfahrt.initialDeparture}`}
-          >
-            Details
-          </Link>
+          <DetailsLink
+            train={abfahrt.train}
+            initialDeparture={abfahrt.initialDeparture}
+          />
         </div>
       )}
       {abfahrt.cancelled && (

@@ -9,18 +9,19 @@ import useQuery from 'Common/hooks/useQuery';
 
 interface Props {
   train: string;
+  line?: string;
   initialDeparture?: string;
   currentStopId?: string;
 }
 
-const Details = ({ train, initialDeparture, currentStopId }: Props) => {
+const Details = ({ train, initialDeparture, line, currentStopId }: Props) => {
   const query = useQuery();
   const [details, setDetails] = useState<ParsedSearchOnTripResponse>();
   const [error, setError] = useState<AxiosError>();
 
   useEffect(() => {
     setDetails(undefined);
-    getDetails(train, initialDeparture, currentStopId, query.profile)
+    getDetails(train, initialDeparture, currentStopId, line, query.profile)
       .then(details => {
         setDetails(details);
         setError(undefined);
@@ -28,7 +29,7 @@ const Details = ({ train, initialDeparture, currentStopId }: Props) => {
       .catch(e => {
         setError(e);
       });
-  }, [train, initialDeparture, currentStopId, query.profile]);
+  }, [train, initialDeparture, currentStopId, query.profile, line]);
 
   return (
     <DetailsContext.Provider
