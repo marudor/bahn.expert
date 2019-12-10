@@ -4,7 +4,11 @@ import React from 'react';
 import useQuery from 'Common/hooks/useQuery';
 
 interface Props
-  extends RouteComponentProps<{ train: string; initialDeparture?: string }> {}
+  extends RouteComponentProps<{
+    train: string;
+    initialDeparture?: string;
+    line?: string;
+  }> {}
 
 const DetailsRoute = ({
   match: {
@@ -16,6 +20,7 @@ const DetailsRoute = ({
   return (
     <Details
       train={train}
+      line={query.line}
       initialDeparture={initialDeparture}
       currentStopId={query.stop}
     />
