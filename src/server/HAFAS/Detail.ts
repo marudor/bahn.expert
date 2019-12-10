@@ -1,11 +1,14 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { getAbfahrten } from 'server/Abfahrten';
 import { logger } from 'server/logger';
+import { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 import { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
 import { Route$JourneySegmentTrain } from 'types/routing';
 import { subMinutes } from 'date-fns';
+import createCtxRecon from 'server/HAFAS/helper/createCtxRecon';
+import JourneyDetails from 'server/HAFAS/JourneyDetails';
+import JourneyMatch from 'server/HAFAS/JourneyMatch';
 import searchOnTrip from './SearchOnTrip';
-import trainSearch from './TrainSearch';
 
 function calculateCurrentStation(
   segment: ParsedSearchOnTripResponse,
@@ -32,19 +35,37 @@ function calculateCurrentStation(
 export default async (
   trainName: string,
   currentStopId?: string,
+  line?: string,
   date: number = Date.now(),
   hafasProfile: AllowedHafasProfile = AllowedHafasProfile.db
-) => {
-  const train = await trainSearch(trainName, date, hafasProfile);
+): Promise<ParsedSearchOnTripResponse | undefined> => {
+  const possibleTrains = await JourneyMatch(trainName, date, hafasProfile);
+  let train: ParsedJourneyMatchResponse | undefined;
+
+  if (line) {
+    train = possibleTrains.find(t => t.train.line === line);
+  }
+  if (!train) {
+    train = possibleTrains[0];
+  }
 
   if (!train) return undefined;
+
+  const journeyDetails = await JourneyDetails(train.jid, hafasProfile);
+
+  if (!journeyDetails) return undefined;
 
   let relevantSegment: ParsedSearchOnTripResponse;
 
   try {
     const route = await searchOnTrip(
       {
-        ctxRecon: train.ctxRecon,
+        ctxRecon: createCtxRecon({
+          firstStop: journeyDetails.firstStop,
+          lastStop: journeyDetails.lastStop,
+          trainName: journeyDetails.train.name,
+          messages: journeyDetails.messages,
+        }),
         sotMode: 'RC',
       },
       hafasProfile
@@ -61,21 +82,21 @@ export default async (
 
     relevantSegment = {
       type: 'JNY',
-      cancelled: train.jDetails.stops.every(s => s.cancelled),
-      finalDestination: train.jDetails.lastStop.station.title,
+      cancelled: journeyDetails.stops.every(s => s.cancelled),
+      finalDestination: journeyDetails.lastStop.station.title,
       jid: train.jid,
-      train: train.jDetails.train,
-      segmentDestination: train.jDetails.lastStop.station,
-      segmentStart: train.jDetails.firstStop.station,
-      stops: train.jDetails.stops,
-      messages: train.jDetails.messages,
-      arrival: train.jDetails.lastStop.arrival,
-      departure: train.jDetails.firstStop.departure,
+      train: journeyDetails.train,
+      segmentDestination: journeyDetails.lastStop.station,
+      segmentStart: journeyDetails.firstStop.station,
+      stops: journeyDetails.stops,
+      messages: journeyDetails.messages,
+      arrival: journeyDetails.lastStop.arrival,
+      departure: journeyDetails.firstStop.departure,
     };
   }
 
-  if (relevantSegment.stops.length !== train.jDetails.stops.length) {
-    train.jDetails.stops.forEach((stop, index) => {
+  if (relevantSegment.stops.length !== journeyDetails.stops.length) {
+    journeyDetails.stops.forEach((stop, index) => {
       if (stop.additional) {
         relevantSegment.stops.splice(index, 0, stop);
       }
@@ -94,7 +115,7 @@ export default async (
 
   if (!lastStop || !lastStop.arrival || lastStop.arrival.delay == null) {
     relevantSegment.stops.forEach((stop, index) => {
-      const jDetailStop = train.jDetails.stops[index];
+      const jDetailStop = journeyDetails.stops[index];
 
       if (jDetailStop.station.id !== stop.station.id) return;
       if (jDetailStop.arrival && stop.arrival) {
@@ -132,14 +153,12 @@ export default async (
       );
 
       if (irisDeparture) {
-        if (irisDeparture.arrival && irisStop.arrival) {
-          irisDeparture.arrival.reihung = irisStop.arrival.reihung;
-          irisStop.arrival = irisDeparture.arrival;
-        }
-        if (irisDeparture.departure && irisStop.departure) {
-          irisDeparture.departure.reihung = irisStop.departure.reihung;
-          irisStop.departure = irisDeparture.departure;
-        }
+        // if (irisDeparture.arrival && irisStop.arrival) {
+        //   irisDeparture.arrival.reihung = irisStop.arrival.reihung;
+        // }
+        // if (irisDeparture.departure && irisStop.departure) {
+        //   irisDeparture.departure.reihung = irisStop.departure.reihung;
+        // }
 
         irisStop.irisMessages = irisDeparture.messages.delay.concat(
           irisDeparture.messages.qos

@@ -16,11 +16,11 @@ export interface JourneyDetailsRequest {
   meth: 'JourneyDetails';
 }
 
-interface Route$ValidArrivalStop extends Route$Stop {
+export interface Route$ValidArrivalStop extends Route$Stop {
   arrival: CommonStopInfo;
 }
 
-interface Route$ValidDepartureStop extends Route$Stop {
+export interface Route$ValidDepartureStop extends Route$Stop {
   departure: CommonStopInfo;
 }
 
