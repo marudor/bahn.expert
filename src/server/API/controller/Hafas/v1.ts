@@ -23,7 +23,7 @@ import { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 import { Route$Auslastung, RoutingResult, SingleRoute } from 'types/routing';
 import { Station } from 'types/station';
 import { TrainSearchResult } from 'types/HAFAS/Details';
-import { TripSearchOptions, TripSearchRequest } from 'types/HAFAS/TripSearch';
+import { TripSearchOptions } from 'types/HAFAS/TripSearch';
 import Auslastung from 'server/HAFAS/Auslastung';
 import Detail from 'server/HAFAS/Detail';
 import JourneyDetails from 'server/HAFAS/JourneyDetails';
@@ -231,10 +231,7 @@ export class HafasController extends Controller {
 
   @Hidden()
   @Post('/rawHafas')
-  rawHafas(
-    @Body() body: TripSearchRequest,
-    @Query() profile?: AllowedHafasProfile
-  ) {
+  rawHafas(@Body() body: any, @Query() profile?: AllowedHafasProfile) {
     return makeRequest(body, undefined, profile);
   }
 }

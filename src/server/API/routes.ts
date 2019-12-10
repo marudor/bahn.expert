@@ -569,79 +569,6 @@ const models: TsoaRoute.Models = {
     "additionalProperties": false,
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "PartialLocL": {
-    "dataType": "refObject",
-    "properties": {
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "JnyFltr": {
-    "dataType": "refObject",
-    "properties": {
-      "value": { "dataType": "string", "required": true },
-      "mode": { "dataType": "string", "required": true },
-      "type": { "dataType": "string", "required": true },
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "DateTimeTripSeachRequest": {
-    "dataType": "refObject",
-    "properties": {
-      "arrLocL": { "dataType": "array", "array": { "ref": "PartialLocL" }, "required": true },
-      "depLocL": { "dataType": "array", "array": { "ref": "PartialLocL" }, "required": true },
-      "economic": { "dataType": "boolean", "required": true },
-      "getIV": { "dataType": "boolean", "required": true },
-      "getPT": { "dataType": "boolean", "required": true },
-      "getPasslist": { "dataType": "boolean", "required": true },
-      "getPolyline": { "dataType": "boolean", "required": true },
-      "getTariff": { "dataType": "boolean", "required": true },
-      "maxChg": { "dataType": "double", "required": true },
-      "minChgTime": { "dataType": "double", "required": true },
-      "numF": { "dataType": "double", "required": true },
-      "outFrwd": { "dataType": "boolean", "required": true },
-      "ushrp": { "dataType": "boolean", "required": true },
-      "ctxScr": { "dataType": "string" },
-      "jnyFltrL": { "dataType": "array", "array": { "ref": "JnyFltr" } },
-      "outDate": { "dataType": "string", "required": true },
-      "outTime": { "dataType": "string", "required": true },
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "AfterBeforeTripSearchRequest": {
-    "dataType": "refObject",
-    "properties": {
-      "arrLocL": { "dataType": "array", "array": { "ref": "PartialLocL" }, "required": true },
-      "depLocL": { "dataType": "array", "array": { "ref": "PartialLocL" }, "required": true },
-      "economic": { "dataType": "boolean", "required": true },
-      "getIV": { "dataType": "boolean", "required": true },
-      "getPT": { "dataType": "boolean", "required": true },
-      "getPasslist": { "dataType": "boolean", "required": true },
-      "getPolyline": { "dataType": "boolean", "required": true },
-      "getTariff": { "dataType": "boolean", "required": true },
-      "maxChg": { "dataType": "double", "required": true },
-      "minChgTime": { "dataType": "double", "required": true },
-      "numF": { "dataType": "double", "required": true },
-      "outFrwd": { "dataType": "boolean", "required": true },
-      "ushrp": { "dataType": "boolean", "required": true },
-      "ctxScr": { "dataType": "string", "required": true },
-      "jnyFltrL": { "dataType": "array", "array": { "ref": "JnyFltr" } },
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "TripSearchRequest": {
-    "dataType": "refObject",
-    "properties": {
-      "req": { "dataType": "union", "subSchemas": [{ "ref": "DateTimeTripSeachRequest" }, { "ref": "AfterBeforeTripSearchRequest" }], "required": true },
-      "meth": { "dataType": "enum", "enums": ["TripSearch"], "required": true },
-      "cfg": { "dataType": "nestedObjectLiteral", "nestedProperties": { "rtMode": { "dataType": "enum", "enums": ["HYBRID"], "required": true } } },
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "WingInfo": {
     "dataType": "refObject",
     "properties": {
@@ -1298,7 +1225,7 @@ export function RegisterRoutes(router: KoaRouter) {
   router.post('/api/hafas/v1/rawHafas',
     async (context: any, next: any) => {
       const args = {
-        body: { "in": "body", "name": "body", "required": true, "ref": "TripSearchRequest" },
+        body: { "in": "body", "name": "body", "required": true, "dataType": "any" },
         profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao"] },
       };
 
