@@ -1118,29 +1118,6 @@ export function RegisterRoutes(router: KoaRouter) {
       return promiseHandler(controller, promise, context, next);
     });
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  router.get('/api/hafas/v1/trainsearchDetails/:trainName',
-    async (context: any, next: any) => {
-      const args = {
-        trainName: { "in": "path", "name": "trainName", "required": true, "dataType": "string" },
-        stop: { "in": "query", "name": "stop", "dataType": "string" },
-        date: { "in": "query", "name": "date", "dataType": "double" },
-        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao"] },
-      };
-
-      let validatedArgs: any[] = [];
-      try {
-        validatedArgs = getValidatedArgs(args, context);
-      } catch (error) {
-        context.status = error.status;
-        context.throw(error.status, JSON.stringify({ fields: error.fields }));
-      }
-
-      const controller = new HafasController();
-
-      const promise = controller.trainSearchDetails.apply(controller, validatedArgs as any);
-      return promiseHandler(controller, promise, context, next);
-    });
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   router.get('/api/hafas/v1/auslastung/:start/:destination/:trainNumber/:time',
     async (context: any, next: any) => {
       const args = {
