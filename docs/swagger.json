@@ -2077,22 +2077,14 @@
 					"type": {
 						"type": "string"
 					},
-					"thirdParty": {
-						"type": "string",
-						"nullable": true
-					},
 					"longDistance": {
 						"type": "boolean"
-					},
-					"trainCategory": {
-						"type": "string"
 					}
 				},
 				"required": [
 					"name",
 					"longDistance",
 					"type",
-					"trainCategory",
 					"number"
 				],
 				"type": "object",
@@ -3204,6 +3196,22 @@
 					{
 						"description": "Unix Time (ms)",
 						"in": "query",
+						"name": "stop",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "line",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
 						"name": "date",
 						"required": false,
 						"schema": {
@@ -3213,10 +3221,77 @@
 					},
 					{
 						"in": "query",
+						"name": "profile",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"enum": [
+								"db",
+								"oebb",
+								"sncb",
+								"avv",
+								"nahsh",
+								"hvv",
+								"bvg",
+								"insa",
+								"anachb",
+								"vao"
+							]
+						}
+					}
+				]
+			}
+		},
+		"/hafas/v1/trainsearchDetails/{trainName}": {
+			"get": {
+				"operationId": "TrainSearchDetails",
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ParsedSearchOnTripResponse"
+								}
+							}
+						},
+						"description": "Ok"
+					},
+					"404": {
+						"content": {
+							"application/json": {}
+						},
+						"description": "Train not found"
+					}
+				},
+				"tags": [
+					"HAFAS V1"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "trainName",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"description": "Unix Time (ms)",
+						"in": "query",
 						"name": "stop",
 						"required": false,
 						"schema": {
 							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "date",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
 						}
 					},
 					{

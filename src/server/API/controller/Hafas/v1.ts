@@ -25,7 +25,7 @@ import { Station } from 'types/station';
 import { TrainSearchResult } from 'types/HAFAS/Details';
 import { TripSearchOptions, TripSearchRequest } from 'types/HAFAS/TripSearch';
 import Auslastung from 'server/HAFAS/Auslastung';
-import Detail from 'server/HAFAS/Detail';
+import Detail, { trainsearchDetails } from 'server/HAFAS/Detail';
 import JourneyDetails from 'server/HAFAS/JourneyDetails';
 import JourneyMatch from 'server/HAFAS/JourneyMatch';
 import LocGeoPos from 'server/HAFAS/LocGeoPos';
@@ -84,11 +84,35 @@ export class HafasController extends Controller {
     /**
      * Unix Time (ms)
      */
-    @Query() date?: number,
     @Query() stop?: string,
+    @Query() line?: string,
+    @Query() date?: number,
     @Query() profile?: AllowedHafasProfile
   ): Promise<ParsedSearchOnTripResponse> {
-    const details = await Detail(trainName, stop, date, profile);
+    const details = await Detail(trainName, stop, line, date, profile);
+
+    if (!details) {
+      throw {
+        status: 404,
+      };
+    }
+
+    return details;
+  }
+
+  @Response(404, 'Train not found')
+  @Get('/trainsearchDetails/{trainName}')
+  @Tags('HAFAS V1')
+  async trainSearchDetails(
+    trainName: string,
+    /**
+     * Unix Time (ms)
+     */
+    @Query() stop?: string,
+    @Query() date?: number,
+    @Query() profile?: AllowedHafasProfile
+  ): Promise<ParsedSearchOnTripResponse> {
+    const details = await trainsearchDetails(trainName, stop, date, profile);
 
     if (!details) {
       throw {
