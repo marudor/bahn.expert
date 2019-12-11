@@ -2515,7 +2515,7 @@
 					},
 					"tzn": {
 						"type": "string",
-						"description": "TZ0169 for instance",
+						"description": "0169 for instance, either from WIFI or Gruppenbezeichnung",
 						"nullable": true
 					},
 					"name": {
@@ -3701,6 +3701,38 @@
 						"schema": {
 							"format": "double",
 							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/reihung/v1/trainName/{tz}": {
+			"get": {
+				"operationId": "TrainName",
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						},
+						"description": "Train name. May be undefined"
+					}
+				},
+				"tags": [
+					"Reihung V1"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "TZ Number (e.g. 0169)",
+						"in": "path",
+						"name": "tz",
+						"required": true,
+						"schema": {
+							"type": "string"
 						}
 					}
 				]

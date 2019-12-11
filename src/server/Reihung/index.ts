@@ -139,6 +139,7 @@ const getComfortSeats = (br: BRInfo, klasse: 1 | 2) => {
   }
 };
 
+const tznRegex = /(\d+)/;
 const getDisabledSeats = (
   br: BRInfo,
   klasse: 1 | 2,
@@ -253,6 +254,8 @@ function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
 
   const ap = getAP(fahrzeug.fahrzeugnummer);
 
+  let tzn;
+
   if (ap) {
     if (ap.online && isAfter(ap.trainTimestamp, subDays(new Date(), 1))) {
       data.icons.wifi = true;
@@ -263,11 +266,16 @@ function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
     if (gruppe.br && ap.trainBR.endsWith('RD')) {
       gruppe.br.redesign = true;
     }
-    gruppe.tzn = ap.tzn;
-    if (gruppe.tzn) {
-      gruppe.name = ICENaming(gruppe.tzn);
-    }
+    tzn = ap.tzn;
   }
+
+  if (!tzn && gruppe.fahrzeuggruppebezeichnung.startsWith('ICE')) {
+    tzn = gruppe.fahrzeuggruppebezeichnung;
+  }
+
+  gruppe.tzn = tzn?.match(tznRegex)?.[0];
+
+  gruppe.name = ICENaming(gruppe.tzn);
 
   if (gruppe.br) {
     if (data.comfort) {

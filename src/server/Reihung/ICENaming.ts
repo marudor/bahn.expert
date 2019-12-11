@@ -228,13 +228,7 @@ const naming = {
   4610: 'Frankfurt am Main',
 };
 
-const tznRegex = /(\d+)/;
-
-export default (tzn: string): string | undefined => {
-  const tzNumberPart = tzn.match(tznRegex)?.[0];
-
-  if (tzNumberPart) {
-    // @ts-ignore
-    return naming[Number.parseInt(tzNumberPart, 10)];
-  }
+export default (tzn?: string): string | undefined => {
+  // @ts-ignore
+  if (tzn) return naming[Number.parseInt(tzn, 10)];
 };
