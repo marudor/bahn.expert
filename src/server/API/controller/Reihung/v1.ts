@@ -1,6 +1,8 @@
-import { Controller, Get, Route, Tags } from 'tsoa';
+import { Controller, Get, Route, SuccessResponse, Tags } from 'tsoa';
 import { Formation, WagenreihungStation } from 'types/reihung';
 import { wagenreihung, wagenreihungStation } from 'server/Reihung';
+import ICENaming from 'server/Reihung/ICENaming';
+
 @Route('/reihung/v1')
 export class ReihungControllerV1 extends Controller {
   @Get('/wagenstation/{train}/{station}')
@@ -22,5 +24,18 @@ export class ReihungControllerV1 extends Controller {
     date: number
   ): Promise<Formation> {
     return wagenreihung(trainNumber, date);
+  }
+
+  @SuccessResponse(200, 'Train name. May be undefined')
+  @Get('/trainName/{tz}')
+  @Tags('Reihung V1')
+  trainName(
+    /**
+     * TZ Number (e.g. 0169)
+     */
+    tz?: string
+  ): Promise<string> {
+    // @ts-ignore
+    return Promise.resolve(ICENaming(tz));
   }
 }
