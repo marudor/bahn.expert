@@ -860,6 +860,8 @@ const models: TsoaRoute.Models = {
       "goesToFrance": { "dataType": "boolean", "required": true },
       "startPercentage": { "dataType": "double", "required": true },
       "endPercentage": { "dataType": "double", "required": true },
+      "tzn": { "dataType": "string" },
+      "name": { "dataType": "string" },
       "br": { "ref": "BRInfo" },
     },
     "additionalProperties": false,

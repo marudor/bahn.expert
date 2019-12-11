@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { Fahrzeuggruppe } from 'types/reihung';
 import BRInfo from './BRInfo';
 import Fahrzeug, { InheritedProps } from './Fahrzeug';
@@ -69,7 +70,10 @@ const Gruppe = ({
           {showBR && gruppe.br && (
             <BRInfo className={classes.br} br={gruppe.br} />
           )}
-          {showDestination && gruppe.zielbetriebsstellename}
+          {showDestination && (
+            <span>Ziel: {gruppe.zielbetriebsstellename}</span>
+          )}
+          {gruppe.name && <span>Zugname: "{gruppe.name}"</span>}
         </span>
       )}
       {showGruppenZugnummer && gruppe.verkehrlichezugnummer && (
