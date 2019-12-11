@@ -2513,6 +2513,16 @@
 						"type": "number",
 						"format": "double"
 					},
+					"tzn": {
+						"type": "string",
+						"description": "TZ0169 for instance",
+						"nullable": true
+					},
+					"name": {
+						"type": "string",
+						"description": "Worms for instance",
+						"nullable": true
+					},
 					"br": {
 						"$ref": "#/components/schemas/BRInfo",
 						"nullable": true

@@ -24,17 +24,18 @@ export default makeStyles(theme => ({
     fahrzeugGruppe: boolean;
     showUIC: boolean;
   }) => {
-    let height = 7.5;
+    let height = 8;
 
     if (fahrzeugGruppe) height += 1;
     if (showUIC) height += 1;
     if (reihung) {
-      if (
-        reihung.differentDestination ||
-        reihung.allFahrzeuggruppe.find(g => g.br && g.br.showBRInfo)
-      )
+      if (reihung.differentDestination || reihung.differentZugnummer)
         height += 1;
-      if (reihung.differentZugnummer) height += 1;
+      if (reihung.allFahrzeuggruppe.find(g => g.br && g.br.showBRInfo))
+        height += 1;
+      if (reihung.allFahrzeuggruppe.some(g => g.name)) {
+        height += 1;
+      }
     }
 
     return {

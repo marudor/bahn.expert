@@ -16,9 +16,9 @@ const refreshTime =
 
 if (process.env.NODE_ENV !== 'test') {
   setInterval(fetchWifiData, refreshTime);
-
-  fetchWifiData();
 }
+
+fetchWifiData();
 
 let wifiData: TransformedWifiData;
 
