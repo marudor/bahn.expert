@@ -1,4 +1,5 @@
 import cc from 'clsx';
+import CommonConfigContainer from 'Common/container/CommonConfigContainer';
 import Explain from './Explain';
 import Gruppe from './Gruppe';
 import Loading from 'Common/Components/Loading';
@@ -9,13 +10,10 @@ import useStyles from './index.style';
 
 interface Props {
   className?: string;
-  useZoom?: boolean;
-  fahrzeugGruppe?: boolean;
   trainNumber: string;
   currentStation: string;
   scheduledDeparture: number;
   loadHidden?: boolean;
-  showUIC?: boolean;
   withLegend?: boolean;
 }
 
@@ -23,14 +21,16 @@ const Reihung = (props: Props) => {
   const {
     className,
     currentStation,
-    fahrzeugGruppe = false,
-    showUIC = false,
     scheduledDeparture,
     trainNumber,
-    useZoom,
     loadHidden,
   } = props;
   const { reihungen, getReihung } = ReihungContainer.useContainer();
+  const {
+    fahrzeugGruppe,
+    showUIC,
+    zoomReihung,
+  } = CommonConfigContainer.useContainer().config;
   const reihung = reihungen[trainNumber + currentStation + scheduledDeparture];
   const classes = useStyles({
     reihung,
@@ -51,8 +51,8 @@ const Reihung = (props: Props) => {
     return <Loading type={1} />;
   }
 
-  const correctLeft = useZoom ? reihung.startPercentage : 0;
-  const scale = useZoom ? reihung.scale : 1;
+  const correctLeft = zoomReihung ? reihung.startPercentage : 0;
+  const scale = zoomReihung ? reihung.scale : 1;
   const differentZugnummer = reihung.differentZugnummer;
 
   return (

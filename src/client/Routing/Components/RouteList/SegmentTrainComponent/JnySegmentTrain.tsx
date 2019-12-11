@@ -43,8 +43,6 @@ const JnySegmentTrain = ({
           {segment.departure.reihung && segment.train.number && (
             <Reihung
               className={classes.reihung}
-              useZoom
-              fahrzeugGruppe={false}
               trainNumber={segment.train.number}
               currentStation={segment.segmentStart.title}
               scheduledDeparture={segment.departure.scheduledTime}

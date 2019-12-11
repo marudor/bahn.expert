@@ -1,7 +1,6 @@
 import { Abfahrt } from 'types/iris';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import cc from 'clsx';
-import CommonConfigContainer from 'Common/container/CommonConfigContainer';
 import End from './End';
 import loadable from '@loadable/component';
 import Mid from './Mid';
@@ -34,9 +33,6 @@ const BaseAbfahrt = ({ abfahrt, wing, wingEnd, wingStart }: Props) => {
   const {
     config: { lineAndNumber },
   } = AbfahrtenConfigContainer.useContainer();
-  const {
-    config: { zoomReihung, showUIC, fahrzeugGruppe },
-  } = CommonConfigContainer.useContainer();
 
   return useMemo(
     () => (
@@ -72,9 +68,6 @@ const BaseAbfahrt = ({ abfahrt, wing, wingEnd, wingStart }: Props) => {
             (abfahrt.reihung || abfahrt.hiddenReihung) && (
               <LazyReihung
                 loadHidden={!abfahrt.reihung && abfahrt.hiddenReihung}
-                useZoom={zoomReihung}
-                showUIC={showUIC}
-                fahrzeugGruppe={fahrzeugGruppe}
                 trainNumber={abfahrt.train.number}
                 currentStation={abfahrt.currentStation.id}
                 scheduledDeparture={abfahrt.departure.scheduledTime}
@@ -94,14 +87,11 @@ const BaseAbfahrt = ({ abfahrt, wing, wingEnd, wingStart }: Props) => {
       abfahrt,
       classes,
       detail,
-      fahrzeugGruppe,
       handleClick,
       lineAndNumber,
-      showUIC,
       wing,
       wingEnd,
       wingStart,
-      zoomReihung,
     ]
   );
 };
