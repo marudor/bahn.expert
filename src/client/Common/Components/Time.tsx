@@ -1,6 +1,7 @@
 /* eslint no-nested-ternary: 0 */
 import { format, subMinutes } from 'date-fns';
 import cc from 'clsx';
+import CommonConfigContainer from 'Common/container/CommonConfigContainer';
 import React from 'react';
 import useStyles from './Time.style';
 
@@ -9,7 +10,6 @@ interface Props {
   className?: string;
   delay?: number;
   real?: number;
-  showOriginalTime?: boolean;
   showZero?: boolean;
   oneLine?: boolean;
   cancelled?: boolean;
@@ -27,13 +27,13 @@ const Time = ({
   className,
   delay,
   real,
-  showOriginalTime,
   showZero = true,
   alignEnd,
   oneLine,
   cancelled,
 }: Props) => {
   const classes = useStyles();
+  const showOriginalTime = !CommonConfigContainer.useContainer().config.time;
 
   if (!real) return null;
   const time = showOriginalTime && delay ? subMinutes(real, delay) : real;
