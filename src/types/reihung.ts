@@ -116,7 +116,7 @@ export interface Fahrzeuggruppe extends BaseFahrzeuggruppe {
   startPercentage: number;
   endPercentage: number;
   /**
-   * TZ0169 for instance
+   * 0169 for instance, either from WIFI or Gruppenbezeichnung
    */
   tzn?: string;
   /**
