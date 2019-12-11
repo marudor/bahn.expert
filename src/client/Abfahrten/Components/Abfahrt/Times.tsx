@@ -1,7 +1,6 @@
 /* eslint no-nested-ternary: 0 */
 import * as React from 'react';
 import { Abfahrt } from 'types/iris';
-import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import cc from 'clsx';
 import Time from 'Common/Components/Time';
 import useStyles from './Times.style';
@@ -15,7 +14,6 @@ const Times = ({
   abfahrt: { arrival, departure, cancelled },
   detail,
 }: Props) => {
-  const timeConfig = AbfahrtenConfigContainer.useContainer().config.time;
   const classes = useStyles();
 
   return (
@@ -30,12 +28,7 @@ const Times = ({
               )}
             >
               <span>{'An: '}</span>
-              <Time
-                alignEnd
-                delay={arrival.delay}
-                real={arrival.time}
-                showOriginalTime={!timeConfig}
-              />
+              <Time alignEnd delay={arrival.delay} real={arrival.time} />
             </div>
           )}
           {departure && (
@@ -46,31 +39,14 @@ const Times = ({
               )}
             >
               <span>{'Ab: '}</span>
-              <Time
-                alignEnd
-                delay={departure.delay}
-                real={departure.time}
-                showOriginalTime={!timeConfig}
-              />
+              <Time alignEnd delay={departure.delay} real={departure.time} />
             </div>
           )}
         </React.Fragment>
       ) : departure && (!departure.cancelled || cancelled) ? (
-        <Time
-          alignEnd
-          delay={departure.delay}
-          real={departure.time}
-          showOriginalTime={!timeConfig}
-        />
+        <Time alignEnd delay={departure.delay} real={departure.time} />
       ) : (
-        arrival && (
-          <Time
-            alignEnd
-            delay={arrival.delay}
-            real={arrival.time}
-            showOriginalTime={!timeConfig}
-          />
-        )
+        arrival && <Time alignEnd delay={arrival.delay} real={arrival.time} />
       )}
     </div>
   );

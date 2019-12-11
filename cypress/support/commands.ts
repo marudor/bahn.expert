@@ -45,7 +45,7 @@ Cypress.Commands.add(
       delay,
       response: 'fixture:abfahrtenHamburgHbf.json',
     }).route(
-      '/api/station/v1/search/Hamburg%20Hbf?type=default',
+      '/api/station/v1/search/Hamburg Hbf?type=default',
       'fixture:stationSearchHamburgHbf.json'
     );
   }

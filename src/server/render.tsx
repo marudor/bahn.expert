@@ -1,9 +1,9 @@
+import { AbfahrtenConfigSanitize, CommonConfigSanitize } from 'Common/config';
+import { abfahrtenConfigSanitize, commonConfigSanitize } from 'client/util';
 import { ChunkExtractor } from '@loadable/server';
-import { configSanitize } from 'client/util';
 import { Context } from 'koa';
 import { CookieContext } from 'Common/useCookies';
 import { HelmetProvider } from 'react-helmet-async';
-import { MarudorConfigSanitize } from 'Common/config';
 import { renderToString } from 'react-dom/server';
 import { setCookieOptions } from 'client/util';
 import { SheetsRegistry } from 'jss';
@@ -42,19 +42,25 @@ export default (ctx: Context) => {
   }
   const routeContext: StaticRouterContext = {};
 
-  global.configOverride = {};
+  global.configOverride = {
+    common: {},
+    abfahrten: {},
+  };
 
   Object.keys(ctx.query).forEach((key: any) => {
-    switch (key) {
-      default:
-        if (configSanitize.hasOwnProperty(key)) {
-          const value = configSanitize[key as keyof MarudorConfigSanitize](
-            ctx.query[key]
-          );
+    if (commonConfigSanitize.hasOwnProperty(key)) {
+      const value = commonConfigSanitize[key as keyof CommonConfigSanitize](
+        ctx.query[key]
+      );
 
-          global.configOverride[key] = value;
-        }
-        break;
+      global.configOverride.common[key] = value;
+    }
+    if (abfahrtenConfigSanitize.hasOwnProperty(key)) {
+      const value = abfahrtenConfigSanitize[
+        key as keyof AbfahrtenConfigSanitize
+      ](ctx.query[key]);
+
+      global.configOverride.abfahrten[key] = value;
     }
   });
 

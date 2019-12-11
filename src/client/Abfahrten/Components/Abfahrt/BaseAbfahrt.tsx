@@ -31,7 +31,7 @@ const BaseAbfahrt = ({ abfahrt, wing, wingEnd, wingStart }: Props) => {
   }, [abfahrt.id, setSelectedDetail]);
   const detail = selectedDetail === abfahrt.id;
   const {
-    config: { lineAndNumber, zoomReihung, fahrzeugGruppe, showUIC },
+    config: { lineAndNumber },
   } = AbfahrtenConfigContainer.useContainer();
 
   return useMemo(
@@ -68,9 +68,6 @@ const BaseAbfahrt = ({ abfahrt, wing, wingEnd, wingStart }: Props) => {
             (abfahrt.reihung || abfahrt.hiddenReihung) && (
               <LazyReihung
                 loadHidden={!abfahrt.reihung && abfahrt.hiddenReihung}
-                useZoom={zoomReihung}
-                showUIC={showUIC}
-                fahrzeugGruppe={fahrzeugGruppe}
                 trainNumber={abfahrt.train.number}
                 currentStation={abfahrt.currentStation.id}
                 scheduledDeparture={abfahrt.departure.scheduledTime}
@@ -90,14 +87,11 @@ const BaseAbfahrt = ({ abfahrt, wing, wingEnd, wingStart }: Props) => {
       abfahrt,
       classes,
       detail,
-      fahrzeugGruppe,
       handleClick,
       lineAndNumber,
-      showUIC,
       wing,
       wingEnd,
       wingStart,
-      zoomReihung,
     ]
   );
 };

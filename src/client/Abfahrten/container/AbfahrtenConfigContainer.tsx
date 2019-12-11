@@ -1,6 +1,6 @@
+import { AbfahrtenConfig } from 'Common/config';
 import { createContainer } from 'unstated-next';
-import { defaultConfig, setCookieOptions } from 'client/util';
-import { MarudorConfig } from 'Common/config';
+import { defaultAbfahrtenConfig, setCookieOptions } from 'client/util';
 import React, { ReactNode, useCallback, useState } from 'react';
 import useCookies from 'Common/useCookies';
 import useQuery from 'Common/hooks/useQuery';
@@ -45,13 +45,13 @@ const useFilter = (initialFilter: Filter) => {
   };
 };
 
-const useConfig = (initialConfig: MarudorConfig) => {
+const useConfig = (initialConfig: AbfahrtenConfig) => {
   const [config, setConfig] = useState(initialConfig);
   const [configOpen, setConfigOpen] = useState(false);
   const cookies = useCookies();
 
   const setConfigKey = useCallback(
-    <K extends keyof MarudorConfig>(key: K, value: MarudorConfig[K]) => {
+    <K extends keyof AbfahrtenConfig>(key: K, value: AbfahrtenConfig[K]) => {
       const newConfig = {
         ...config,
         [key]: value,
@@ -71,17 +71,17 @@ const useConfig = (initialConfig: MarudorConfig) => {
   };
 };
 
-export interface AbfahrtenConfig {
+export interface AbfahrtenContainerValue {
   filter: Filter;
-  config: MarudorConfig;
+  config: AbfahrtenConfig;
 }
 
-const defaultAbfahrtenConfig: AbfahrtenConfig = {
+const defaultContainerValue: AbfahrtenContainerValue = {
   filter: defaultFilter,
-  config: defaultConfig,
+  config: defaultAbfahrtenConfig,
 };
 const useAbfahrtenConfig = (
-  initialConfig: AbfahrtenConfig = defaultAbfahrtenConfig
+  initialConfig: AbfahrtenContainerValue = defaultContainerValue
 ) => {
   const filterConfig = useFilter(initialConfig.filter);
   const config = useConfig(initialConfig.config);
@@ -110,9 +110,9 @@ export const AbfahrtenConfigProvider = ({ children }: Props) => {
       products: Array.isArray(savedFilter) ? savedFilter : [],
     },
     config: {
-      ...defaultConfig,
+      ...defaultAbfahrtenConfig,
       ...cookies.get(configCookieName),
-      ...global.configOverride,
+      ...global.configOverride.abfahrten,
     },
   };
 

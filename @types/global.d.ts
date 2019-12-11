@@ -1,4 +1,4 @@
-import { MarudorConfig } from 'Common/config';
+import { AbfahrtenConfig } from 'Common/config';
 import nock from 'nock';
 
 declare global {
@@ -16,7 +16,10 @@ declare global {
       };
       smallScreen: boolean;
       baseUrl: string;
-      configOverride: any;
+      configOverride: {
+        abfahrten: any;
+        common: any;
+      };
       // test only
       nock: nock.Scope;
     }

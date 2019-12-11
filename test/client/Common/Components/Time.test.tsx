@@ -25,7 +25,6 @@ describe('Time', () => {
       const { queryByTestId, container, theme } = render(Time, {
         real: sampleTime,
         delay: 10,
-        showOriginalTime: false,
       });
 
       expect(queryByTestId('time')).toHaveTextContent('13:55');
@@ -38,7 +37,6 @@ describe('Time', () => {
       const { queryByTestId, container, theme } = render(Time, {
         real: sampleTime,
         delay: -5,
-        showOriginalTime: false,
       });
 
       expect(queryByTestId('time')).toHaveTextContent('13:55');
@@ -50,11 +48,18 @@ describe('Time', () => {
 
   describe('showOriginalTime = true', () => {
     it('10 Minutes delay', () => {
-      const { queryByTestId, container, theme } = render(Time, {
-        real: sampleTime,
-        delay: 10,
-        showOriginalTime: true,
-      });
+      const { queryByTestId, container, theme } = render(
+        Time,
+        {
+          real: sampleTime,
+          delay: 10,
+        },
+        {
+          commonConfig: {
+            time: false,
+          },
+        }
+      );
 
       expect(queryByTestId('time')).toHaveTextContent('13:45');
       expect(queryByTestId('delay')).toHaveTextContent('+10');
@@ -63,11 +68,18 @@ describe('Time', () => {
     });
 
     it('5 Minutes early', () => {
-      const { queryByTestId, container, theme } = render(Time, {
-        real: sampleTime,
-        delay: -5,
-        showOriginalTime: true,
-      });
+      const { queryByTestId, container, theme } = render(
+        Time,
+        {
+          real: sampleTime,
+          delay: -5,
+        },
+        {
+          commonConfig: {
+            time: false,
+          },
+        }
+      );
 
       expect(queryByTestId('time')).toHaveTextContent('14:00');
       expect(queryByTestId('delay')).toHaveTextContent('-5');

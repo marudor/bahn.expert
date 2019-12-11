@@ -68,7 +68,6 @@ const Stop = ({ stop, showWR }: Props) => {
       <div className={classes.wr}>
         {showWR && depOrArrival && depOrArrival.reihung && showWR.number && (
           <Reihung
-            useZoom
             trainNumber={showWR.number}
             currentStation={stop.station.title}
             scheduledDeparture={depOrArrival.scheduledTime}
