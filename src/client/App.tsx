@@ -1,3 +1,4 @@
+import { CommonConfigProvider } from 'Common/container/CommonConfigContainer';
 import { Route, Switch } from 'react-router-dom';
 import loadable from '@loadable/component';
 import Navigation from 'Common/Components/Navigation';
@@ -23,19 +24,21 @@ const App = () => {
   }, []);
 
   return (
-    <Navigation>
-      <ReihungenContainer.Provider>
-        <Switch>
-          <Route path="/about" component={About} exact />
-          <Route
-            component={LazyDetails}
-            path="/details/:train/:initialDeparture*"
-          />
-          <Route component={LazyRouting} path="/routing" />
-          <Route component={LazyAbfahrten} path="/" />
-        </Switch>
-      </ReihungenContainer.Provider>
-    </Navigation>
+    <CommonConfigProvider>
+      <Navigation>
+        <ReihungenContainer.Provider>
+          <Switch>
+            <Route path="/about" component={About} exact />
+            <Route
+              component={LazyDetails}
+              path="/details/:train/:initialDeparture*"
+            />
+            <Route component={LazyRouting} path="/routing" />
+            <Route component={LazyAbfahrten} path="/" />
+          </Switch>
+        </ReihungenContainer.Provider>
+      </Navigation>
+    </CommonConfigProvider>
   );
 };
 

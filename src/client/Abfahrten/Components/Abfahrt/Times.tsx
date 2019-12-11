@@ -1,8 +1,8 @@
 /* eslint no-nested-ternary: 0 */
 import * as React from 'react';
 import { Abfahrt } from 'types/iris';
-import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import cc from 'clsx';
+import CommonConfigContainer from 'Common/container/CommonConfigContainer';
 import Time from 'Common/Components/Time';
 import useStyles from './Times.style';
 
@@ -15,7 +15,7 @@ const Times = ({
   abfahrt: { arrival, departure, cancelled },
   detail,
 }: Props) => {
-  const timeConfig = AbfahrtenConfigContainer.useContainer().config.time;
+  const timeConfig = CommonConfigContainer.useContainer().config.time;
   const classes = useStyles();
 
   return (

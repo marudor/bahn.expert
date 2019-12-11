@@ -1,6 +1,7 @@
 import { Abfahrt } from 'types/iris';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import cc from 'clsx';
+import CommonConfigContainer from 'Common/container/CommonConfigContainer';
 import End from './End';
 import loadable from '@loadable/component';
 import Mid from './Mid';
@@ -31,8 +32,11 @@ const BaseAbfahrt = ({ abfahrt, wing, wingEnd, wingStart }: Props) => {
   }, [abfahrt.id, setSelectedDetail]);
   const detail = selectedDetail === abfahrt.id;
   const {
-    config: { lineAndNumber, zoomReihung, fahrzeugGruppe, showUIC },
+    config: { lineAndNumber },
   } = AbfahrtenConfigContainer.useContainer();
+  const {
+    config: { zoomReihung, showUIC, fahrzeugGruppe },
+  } = CommonConfigContainer.useContainer();
 
   return useMemo(
     () => (
