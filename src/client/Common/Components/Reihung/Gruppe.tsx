@@ -67,7 +67,10 @@ const Gruppe = ({
       {extraInfoLine && (
         <span className={classes.bezeichnung} style={destinationPos}>
           {showBR && gruppe.br && (
-            <BRInfo className={classes.br} br={gruppe.br} />
+            <div className={classes.name}>
+              <BRInfo className={classes.br} br={gruppe.br} />
+              {gruppe.name && `Zugname: "${gruppe.name}"`}
+            </div>
           )}
           {showDestination && gruppe.zielbetriebsstellename}
         </span>

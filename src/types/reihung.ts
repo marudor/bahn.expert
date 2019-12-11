@@ -115,6 +115,14 @@ export interface Fahrzeuggruppe extends BaseFahrzeuggruppe {
   allFahrzeug: Fahrzeug[];
   startPercentage: number;
   endPercentage: number;
+  /**
+   * TZ0169 for instance
+   */
+  tzn?: string;
+  /**
+   * Worms for instance
+   */
+  name?: string;
   br?: BRInfo;
 }
 

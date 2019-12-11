@@ -35,6 +35,9 @@ export default makeStyles(theme => ({
       )
         height += 1;
       if (reihung.differentZugnummer) height += 1;
+      if (reihung.allFahrzeuggruppe.some(g => g.name)) {
+        height += 1;
+      }
     }
 
     return {

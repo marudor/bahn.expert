@@ -9,4 +9,8 @@ export default makeStyles({
   br: {
     marginRight: '.5em',
   },
+  name: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
 });
