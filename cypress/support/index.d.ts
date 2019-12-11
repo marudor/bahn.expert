@@ -1,5 +1,5 @@
 /* eslint-disable no-redeclare */
-import { MarudorConfig } from '../../src/client/Common/config';
+import { AbfahrtenConfig } from '../../src/client/Common/config';
 
 interface MockOptions {
   lookahead?: number;
@@ -17,7 +17,7 @@ declare global {
       closeModal(): void;
       mockFrankfurt(options?: MockOptions): void;
       mockHamburg(options?: MockOptions): void;
-      getAbfahrtenConfig(): Cypress.Chainable<MarudorConfig>;
+      getAbfahrtenConfig(): Cypress.Chainable<AbfahrtenConfig>;
       openSettings(): void;
     }
   }

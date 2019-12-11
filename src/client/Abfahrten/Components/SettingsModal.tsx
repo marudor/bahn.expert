@@ -1,6 +1,12 @@
-import { CheckInType, MarudorConfig } from 'Common/config';
+import {
+  AbfahrtenConfig,
+  CheckInType,
+  handleConfigCheckedChange,
+  handleConfigNumberSelectChange,
+} from 'Common/config';
 import { StationSearchType } from 'types/station';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
+import CommonConfigContainer from 'Common/container/CommonConfigContainer';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -14,40 +20,29 @@ import useStyles from './SettingsModal.style';
 const SettingsModal = () => {
   const {
     config: {
-      checkIn,
-      fahrzeugGruppe,
       lineAndNumber,
       lookahead,
       searchType,
       showSupersededMessages,
-      time,
-      zoomReihung,
       autoUpdate,
       lookbehind,
-      showUIC,
     },
     setConfigKey,
     setConfigOpen,
     configOpen,
   } = AbfahrtenConfigContainer.useContainer();
+  const {
+    config: { fahrzeugGruppe, showUIC, zoomReihung, checkIn, time },
+    setCommonConfigKey,
+  } = CommonConfigContainer.useContainer();
   const classes = useStyles();
-  const handleCheckedChange = useCallback(
-    (key: keyof MarudorConfig) => (e: ChangeEvent<HTMLInputElement>) =>
-      setConfigKey(key, e.currentTarget.checked),
-    [setConfigKey]
-  );
-  const handleNumberSelectChange = useCallback(
-    (key: keyof MarudorConfig) => (e: ChangeEvent<HTMLSelectElement>) =>
-      setConfigKey(key, Number.parseInt(e.currentTarget.value, 10)),
-    [setConfigKey]
-  );
   const handleSelectChange = useCallback(
-    (key: keyof MarudorConfig) => (e: ChangeEvent<HTMLSelectElement>) =>
+    (key: keyof AbfahrtenConfig) => (e: ChangeEvent<HTMLSelectElement>) =>
       setConfigKey(key, e.currentTarget.value),
     [setConfigKey]
   );
   const handleNumberValueChange = useCallback(
-    (key: keyof MarudorConfig) => (e: ChangeEvent<HTMLInputElement>) =>
+    (key: keyof AbfahrtenConfig) => (e: ChangeEvent<HTMLInputElement>) =>
       setConfigKey(key, Number.parseInt(e.currentTarget.value, 10)),
     [setConfigKey]
   );
@@ -67,7 +62,10 @@ const SettingsModal = () => {
             <NativeSelect
               value={checkIn}
               name="checkIn"
-              onChange={handleNumberSelectChange('checkIn')}
+              onChange={handleConfigNumberSelectChange(
+                'checkIn',
+                setCommonConfigKey
+              )}
             >
               <option value={CheckInType.None}>Kein</option>
               <option value={CheckInType.Travelynx}>travelynx.de</option>
@@ -99,7 +97,10 @@ const SettingsModal = () => {
             <Switch
               checked={showSupersededMessages}
               value="showSupersededMessagesConfig"
-              onChange={handleCheckedChange('showSupersededMessages')}
+              onChange={handleConfigCheckedChange(
+                'showSupersededMessages',
+                setConfigKey
+              )}
             />
           }
           label="Obsolete Messages"
@@ -110,7 +111,7 @@ const SettingsModal = () => {
             <Switch
               checked={time}
               value="timeConfig"
-              onChange={handleCheckedChange('time')}
+              onChange={handleConfigCheckedChange('time', setCommonConfigKey)}
             />
           }
           label="Neue Ankunft bei Verspätung"
@@ -121,7 +122,10 @@ const SettingsModal = () => {
             <Switch
               checked={zoomReihung}
               value="zoomReihungConfig"
-              onChange={handleCheckedChange('zoomReihung')}
+              onChange={handleConfigCheckedChange(
+                'zoomReihung',
+                setCommonConfigKey
+              )}
             />
           }
           label="Reihung maximal groß"
@@ -133,7 +137,10 @@ const SettingsModal = () => {
               data-testid="lineAndNumberConfig"
               checked={lineAndNumber}
               value="lineAndNumberConfig"
-              onChange={handleCheckedChange('lineAndNumber')}
+              onChange={handleConfigCheckedChange(
+                'lineAndNumber',
+                setConfigKey
+              )}
             />
           }
           label="Zeige Linie und Zugnummer"
@@ -145,7 +152,10 @@ const SettingsModal = () => {
               data-testid="showUIC"
               checked={showUIC}
               value="showUIC"
-              onChange={handleCheckedChange('showUIC')}
+              onChange={handleConfigCheckedChange(
+                'showUIC',
+                setCommonConfigKey
+              )}
             />
           }
           label="Zeige UIC Nummer"
@@ -157,7 +167,10 @@ const SettingsModal = () => {
               data-testid="fahrzeugGruppeConfig"
               checked={fahrzeugGruppe}
               value="fahrzeugGruppeConfig"
-              onChange={handleCheckedChange('fahrzeugGruppe')}
+              onChange={handleConfigCheckedChange(
+                'fahrzeugGruppe',
+                setCommonConfigKey
+              )}
             />
           }
           label="Zeige Fahrzeuggruppen Name"

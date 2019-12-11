@@ -15,8 +15,6 @@
     "skipLibCheck": true,
     "sourceMap": false,
     "strict": true,
-    // "strictPropertyInitialization": false,
-    // "noImplicitAny": false,
     "target": "esnext",
     "emitDecoratorMetadata": false,
     "resolveJsonModule": true,
