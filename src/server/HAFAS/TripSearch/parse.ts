@@ -3,6 +3,7 @@ import {
   CommonStopInfo,
   HafasResponse,
   ParsedCommon,
+  ParsedProduct,
 } from 'types/HAFAS';
 import { Jny, OutConL, SecL, TripSearchResponse } from 'types/HAFAS/TripSearch';
 import { parse } from 'date-fns';
@@ -106,12 +107,8 @@ export class Journey {
       raw: global.PROD ? undefined : raw,
     };
   }
-  parseStops = (stops?: CommonStop[], trainType?: string): Route$Stop[] => {
-    if (!stops) return [];
-
-    return stops.map(stop =>
-      parseStop(stop, this.common, this.date, trainType)
-    );
+  parseStops = (stops: CommonStop[], train: ParsedProduct): Route$Stop[] => {
+    return stops.map(stop => parseStop(stop, this.common, this.date, train));
   };
   parseSegmentJourney = (jny: Jny): Route$Journey => {
     const [, fullStart, fullDestination, , , , , , ,] = jny.ctxRecon.split('$');
@@ -123,7 +120,7 @@ export class Journey {
       changeDuration: jny.chgDurR,
       segmentStart: parseFullStation(fullStart),
       segmentDestination: parseFullStation(fullDestination),
-      stops: this.parseStops(jny.stopL, product.type),
+      stops: this.parseStops(jny.stopL, product),
       finalDestination: jny.dirTxt,
       jid: jny.jid,
       auslastung: parseAuslastung(jny.dTrnCmpSX, this.common.tcocL),
@@ -137,13 +134,13 @@ export class Journey {
           t.arr,
           this.date,
           this.common,
-          this.common.prodL[t.jny.prodX].type
+          this.common.prodL[t.jny.prodX]
         );
         const departure = parseCommonDeparture(
           t.dep,
           this.date,
           this.common,
-          this.common.prodL[t.jny.prodX].type
+          this.common.prodL[t.jny.prodX]
         );
 
         return {
