@@ -9,11 +9,11 @@ import {
   Wagenreihung,
   WagenreihungStation,
 } from 'types/reihung';
-import { format, isAfter, subDays } from 'date-fns';
 import { getAbfahrten } from '../Abfahrten';
 import { getAP } from 'server/Wifi';
+import { getWRLink } from 'server/Reihung/hasWR';
 import { groupBy, maxBy, minBy } from 'lodash';
-import { utcToZonedTime } from 'date-fns-tz';
+import { isAfter, subDays } from 'date-fns';
 import axios from 'axios';
 import getBR from 'server/Reihung/getBR';
 import ICENaming from 'server/Reihung/ICENaming';
@@ -295,19 +295,10 @@ function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
 
 // https://www.apps-bahn.de/wr/wagenreihung/1.0/6/201802021930
 export async function wagenreihung(trainNumber: string, date: number) {
-  const parsedDate = format(
-    utcToZonedTime(date, 'Europe/Berlin'),
-    'yyyyMMddHHmm'
-  );
-
   let info: Wagenreihung;
 
   try {
-    info = (
-      await axios.get(
-        `https://www.apps-bahn.de/wr/wagenreihung/1.0/${trainNumber}/${parsedDate}`
-      )
-    ).data;
+    info = (await axios.get(getWRLink(trainNumber, date))).data;
   } catch (e) {
     throw {
       response: {

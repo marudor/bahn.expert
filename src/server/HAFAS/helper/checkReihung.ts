@@ -1,15 +1,17 @@
 import { addDays, isBefore } from 'date-fns';
-import { TrnCmpSX } from 'types/HAFAS';
+import { hasWR } from 'server/Reihung/hasWR';
+import { ParsedProduct, TrnCmpSX } from 'types/HAFAS';
 
 const allowdTypes = ['ICE', 'IC', 'TGV', 'EC', 'ECE', 'RJ', 'D'];
 
 export default (
   scheduledTime: number,
   trnCmpSX?: TrnCmpSX,
-  trainType?: string
+  train?: ParsedProduct
 ) => {
   if (isBefore(addDays(new Date(), 1), scheduledTime)) return false;
-  if (trainType && allowdTypes.includes(trainType)) return true;
+  if (hasWR(train?.number)) return true;
+  if (train?.type && allowdTypes.includes(train.type)) return true;
 
   if (trnCmpSX && trnCmpSX.tcM) return true;
 };
