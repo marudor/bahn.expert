@@ -41,6 +41,7 @@ function buildProd() {
         '-x',
         '.ts,.tsx,.js,.jsx',
         '--no-babelrc',
+        '--source-maps',
         '--config-file',
         './.babelrc.server.js',
         '--out-dir',
