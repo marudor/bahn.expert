@@ -20,6 +20,7 @@ import { AxiosInstance } from 'axios';
 import { diffArrays } from 'diff';
 import { findLast, last, uniqBy } from 'lodash';
 import { getAttr, getNumberAttr, parseTs } from './helper';
+import { hasWR } from 'server/Reihung/hasWR';
 import messageLookup, {
   messageTypeLookup,
   supersededMessages,
@@ -226,7 +227,9 @@ export default class Timetable {
       timetable.train.longDistance &&
       timetable.departure &&
       !timetable.departure.hidden;
-    timetable.reihung = !timetable.cancelled && timetable.train.longDistance;
+    timetable.reihung =
+      !timetable.cancelled &&
+      (hasWR(timetable.train.number) || timetable.train.longDistance);
     timetable.hiddenReihung = ['RB', 'RE', 'IRE'].includes(
       timetable.train.type
     );
