@@ -226,6 +226,10 @@ const naming = {
   218: 'Braunschweig',
   1112: 'Freie und Hansestadt Hamburg',
   4610: 'Frankfurt am Main',
+  9006: 'Martin Luther',
+  9018: 'Freistaat Bayern',
+  9025: 'Nordrhein-Westfalen',
+  9026: 'Zürichsee',
 };
 
 export default (tzn?: string): string | undefined => {
