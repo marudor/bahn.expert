@@ -241,3 +241,22 @@ export const vao = {
     },
   },
 };
+
+export const sbb = {
+  url: 'http://fahrplan.sbb.ch/bin/mgate.exe',
+  config: {
+    auth: {
+      aid: 'hf7mcf9bv3nv8g5f',
+      type: 'AID',
+    },
+    client: {
+      id: 'DBZUGRADARNETZ',
+      type: 'AND',
+      v: '',
+    },
+    ext: 'DBNETZZUGRADAR.2',
+    formatted: false,
+    lang: 'deu',
+    ver: '1.20',
+  },
+};
