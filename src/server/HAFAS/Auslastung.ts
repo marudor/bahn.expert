@@ -8,10 +8,11 @@ export default async (
   trainNumber: string,
   time: number
 ) => {
-  const [startStations, destStations] = await Promise.all([
-    stationSearch(start, StationSearchType.hafas),
-    stationSearch(destination, StationSearchType.hafas),
-  ]);
+  const startStations = await stationSearch(start, StationSearchType.hafas);
+  const destStations = await stationSearch(
+    destination,
+    StationSearchType.hafas
+  );
 
   const startStation = startStations[0];
   const destStation = destStations[0];

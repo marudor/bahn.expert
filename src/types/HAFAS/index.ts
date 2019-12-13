@@ -65,6 +65,7 @@ export enum AllowedHafasProfile {
   insa = 'insa',
   anachb = 'anachb',
   vao = 'vao',
+  sbb = 'sbb',
   // all = 'all',
 }
 export type HafasRequest = SingleHafasRequest[];
