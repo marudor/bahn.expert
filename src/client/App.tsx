@@ -1,5 +1,6 @@
 import { CommonConfigProvider } from 'Common/container/CommonConfigContainer';
 import { Route, Switch } from 'react-router-dom';
+import { RoutingProvider } from 'Routing/container/RoutingContainer';
 import loadable from '@loadable/component';
 import Navigation from 'Common/Components/Navigation';
 import React, { useEffect } from 'react';
@@ -27,15 +28,17 @@ const App = () => {
     <CommonConfigProvider>
       <Navigation>
         <ReihungenContainer.Provider>
-          <Switch>
-            <Route path="/about" component={About} exact />
-            <Route
-              component={LazyDetails}
-              path="/details/:train/:initialDeparture*"
-            />
-            <Route component={LazyRouting} path="/routing" />
-            <Route component={LazyAbfahrten} path="/" />
-          </Switch>
+          <RoutingProvider>
+            <Switch>
+              <Route path="/about" component={About} exact />
+              <Route
+                component={LazyDetails}
+                path="/details/:train/:initialDeparture*"
+              />
+              <Route component={LazyRouting} path="/routing" />
+              <Route component={LazyAbfahrten} path="/" />
+            </Switch>
+          </RoutingProvider>
         </ReihungenContainer.Provider>
       </Navigation>
     </CommonConfigProvider>
