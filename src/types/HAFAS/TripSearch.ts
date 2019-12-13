@@ -85,7 +85,7 @@ export interface Freq {
 export interface Jny extends CommonJny {
   chgDurR?: number;
   isCncl?: boolean;
-  stopL: CommonStop[];
+  stopL?: CommonStop[];
   ctxRecon: string;
   dTrnCmpSXmsgL: MsgL[];
   dTrnCmpSX?: TrnCmpSX;
