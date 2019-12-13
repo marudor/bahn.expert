@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/node';
 import { Context } from 'koa';
 
-const handledHafasError = ['H9380'];
+const handledHafasError = ['H9380', 'NO_MATCH'];
 
 export default async (ctx: Context, next: Function) => {
   try {

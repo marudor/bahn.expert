@@ -107,7 +107,12 @@ export class Journey {
       raw: global.PROD ? undefined : raw,
     };
   }
-  parseStops = (stops: CommonStop[], train: ParsedProduct): Route$Stop[] => {
+  parseStops = (
+    stops: CommonStop[] | undefined,
+    train: ParsedProduct
+  ): Route$Stop[] => {
+    if (!stops) return [];
+
     return stops.map(stop => parseStop(stop, this.common, this.date, train));
   };
   parseSegmentJourney = (jny: Jny): Route$Journey => {

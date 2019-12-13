@@ -54,5 +54,10 @@ export default (
     meth: 'JourneyMatch',
   };
 
-  return makeRequest(req, parseJourneyMatch, profile);
+  return makeRequest(req, parseJourneyMatch, profile).catch(e => {
+    if (e.errorCode === 'NO_MATCH') {
+      e.status = 404;
+    }
+    throw e;
+  });
 };
