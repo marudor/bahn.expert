@@ -139,7 +139,6 @@ const getComfortSeats = (br: BRInfo, klasse: 1 | 2) => {
   }
 };
 
-const tznRegex = /(\d+)/;
 const getDisabledSeats = (
   br: BRInfo,
   klasse: 1 | 2,
@@ -173,6 +172,8 @@ const getDisabledSeats = (
       return klasse === 1 ? '21' : '15, 17';
   }
 };
+
+const tznRegex = /(\d+)/;
 
 function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
   const data: AdditionalFahrzeugInfo = {
