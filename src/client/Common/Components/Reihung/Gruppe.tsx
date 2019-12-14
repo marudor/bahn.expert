@@ -41,11 +41,7 @@ const Gruppe = ({
 
   if (extraInfoLine) currentBottom += 1;
   if (rest.showUIC) currentBottom += 1;
-
-  const nummerPos = {
-    ...gruppenPos,
-    bottom: `${currentBottom}em`,
-  };
+  if (showGruppenZugnummer && gruppe.verkehrlichezugnummer) currentBottom += 1;
 
   const fahrzeuge = useMemo(
     () =>
@@ -70,17 +66,18 @@ const Gruppe = ({
           {showBR && gruppe.br && (
             <BRInfo className={classes.br} br={gruppe.br} />
           )}
+          {showGruppenZugnummer && gruppe.verkehrlichezugnummer && (
+            <span>
+              {rest.type} {gruppe.verkehrlichezugnummer}
+            </span>
+          )}
           {showDestination && (
             <span>Ziel: {gruppe.zielbetriebsstellename}</span>
           )}
           {gruppe.name && <span>Zugname: "{gruppe.name}"</span>}
         </span>
       )}
-      {showGruppenZugnummer && gruppe.verkehrlichezugnummer && (
-        <span className={classes.bezeichnung} style={nummerPos}>
-          {rest.type} {gruppe.verkehrlichezugnummer}
-        </span>
-      )}
+
       {showFahrzeugGruppe && (
         <span
           data-testid="reihungFahrzeugGruppe"
