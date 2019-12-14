@@ -29,8 +29,8 @@ export default makeStyles(theme => ({
     if (fahrzeugGruppe) height += 1;
     if (showUIC) height += 1;
     if (reihung) {
-      if (reihung.differentDestination || reihung.differentZugnummer)
-        height += 1;
+      if (reihung.differentZugnummer) height += 1;
+      if (reihung.differentDestination) height += 1;
       if (reihung.allFahrzeuggruppe.find(g => g.br && g.br.showBRInfo))
         height += 1;
       if (reihung.allFahrzeuggruppe.some(g => g.name)) {

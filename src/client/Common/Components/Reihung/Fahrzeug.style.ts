@@ -21,7 +21,7 @@ export default makeStyles(theme => ({
       top: -1,
       left: -1,
       right: -1,
-      bottom: '-3.5em',
+      bottom: '-3.7em',
       pointerEvents: 'none',
       zIndex: 5,
       background: theme.colors.transparentBackground,
