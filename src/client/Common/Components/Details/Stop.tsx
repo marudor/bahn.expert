@@ -13,7 +13,7 @@ import useStyles from './Stop.style';
 
 interface Props {
   stop: Route$Stop;
-  train: ParsedProduct;
+  train?: ParsedProduct;
   showWR?: ParsedProduct;
 }
 const Stop = ({ stop, showWR, train }: Props) => {
@@ -34,15 +34,14 @@ const Stop = ({ stop, showWR, train }: Props) => {
   return (
     <div className={classes.main}>
       <span id={stop.station.id} className={classes.scrollMarker} />
-      {stop.arrival ? (
+      {stop.arrival && (
         <Time
+          className={classes.arrival}
           cancelled={stop.arrival.cancelled}
           oneLine
           real={stop.arrival.time}
           delay={stop.arrival.delay}
         />
-      ) : (
-        <span />
       )}
       <span
         className={cc(classes.station, {
@@ -55,22 +54,23 @@ const Stop = ({ stop, showWR, train }: Props) => {
           stationName={stop.station.title}
         />
       </span>
-      <CheckInLink
-        className={classes.checkIn}
-        station={stop.station}
-        train={train}
-        departure={stop.departure}
-        arrival={stop.arrival}
-      />
-      {stop.departure ? (
+      {train && (
+        <CheckInLink
+          className={classes.checkIn}
+          station={stop.station}
+          train={train}
+          departure={stop.departure}
+          arrival={stop.arrival}
+        />
+      )}
+      {stop.departure && (
         <Time
+          className={classes.departure}
           cancelled={stop.departure.cancelled}
           oneLine
           real={stop.departure.time}
           delay={stop.departure.delay}
         />
-      ) : (
-        <span />
       )}
       {/* {stop.messages && <div>{stop.messages.map(m => m.txtN)}</div>} */}
       <Platform className={classes.platform} {...platforms} />
