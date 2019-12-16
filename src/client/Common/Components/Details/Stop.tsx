@@ -1,6 +1,7 @@
 import { ParsedProduct } from 'types/HAFAS';
 import { Route$Stop } from 'types/routing';
 import cc from 'clsx';
+import CheckInLink from 'Common/Components/CheckInLink';
 import DetailMessages from '../Messages/Detail';
 import Messages from './Messages';
 import Platform from 'Common/Components/Platform';
@@ -12,9 +13,10 @@ import useStyles from './Stop.style';
 
 interface Props {
   stop: Route$Stop;
+  train: ParsedProduct;
   showWR?: ParsedProduct;
 }
-const Stop = ({ stop, showWR }: Props) => {
+const Stop = ({ stop, showWR, train }: Props) => {
   const classes = useStyles();
   const depOrArrival = stop.departure || stop.arrival;
   const platforms = stop.departure
@@ -53,6 +55,13 @@ const Stop = ({ stop, showWR }: Props) => {
           stationName={stop.station.title}
         />
       </span>
+      <CheckInLink
+        className={classes.checkIn}
+        station={stop.station}
+        train={train}
+        departure={stop.departure}
+        arrival={stop.arrival}
+      />
       {stop.departure ? (
         <Time
           cancelled={stop.departure.cancelled}

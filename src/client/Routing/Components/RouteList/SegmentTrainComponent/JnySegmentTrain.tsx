@@ -48,7 +48,7 @@ const JnySegmentTrain = ({
               scheduledDeparture={segment.departure.scheduledTime}
             />
           )}
-          <StopList stops={segment.stops} />
+          <StopList stops={segment.stops} train={segment.train} />
         </>
       )}
     </div>

@@ -1,8 +1,10 @@
 import { CommonProductInfo, CommonStopInfo } from 'types/HAFAS';
 import { isBefore } from 'date-fns';
 import { Station } from 'types/station';
+import { Tooltip } from '@material-ui/core';
 import React from 'react';
 import stopPropagation from 'Common/stopPropagation';
+import TrainIcon from '@material-ui/icons/Train';
 
 interface Props {
   departure?: CommonStopInfo;
@@ -28,16 +30,18 @@ const TravelynxLink = ({
     arrival ? arrival.scheduledTime : departure.scheduledTime,
     Date.now() + timeConstraint
   ) ? (
-    <a
-      data-testid="travellynxlink"
-      className={className}
-      onClick={stopPropagation}
-      rel="noopener noreferrer"
-      target="_blank"
-      href={`https://travelynx.de/s/${station.id}?train=${train.type} ${train.number}`}
-    >
-      travelynx
-    </a>
+    <Tooltip title="travelynx">
+      <a
+        data-testid="travellynxlink"
+        className={className}
+        onClick={stopPropagation}
+        rel="noopener noreferrer"
+        target="_blank"
+        href={`https://travelynx.de/s/${station.id}?train=${train.type} ${train.number}`}
+      >
+        <TrainIcon />
+      </a>
+    </Tooltip>
   ) : null;
 
 export default TravelynxLink;

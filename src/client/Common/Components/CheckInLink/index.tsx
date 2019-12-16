@@ -10,6 +10,7 @@ interface Props {
   arrival?: CommonStopInfo;
   station: Station;
   train: CommonProductInfo;
+  className?: string;
 }
 
 const CheckInLink = (props: Props) => {
