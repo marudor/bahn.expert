@@ -341,7 +341,9 @@ export async function wagenreihung(trainNumber: string, date: number) {
   const isActuallyIC =
     enrichedFormation.zuggattung === 'ICE' &&
     enrichedFormation.allFahrzeuggruppe.some(
-      g => g.allFahrzeug.length === 1 && g.allFahrzeug[0].fahrzeugtyp === 'E'
+      g =>
+        g.allFahrzeug.length === 1 &&
+        g.allFahrzeug[0].fahrzeugtyp.startsWith('E')
     );
 
   if (isActuallyIC) {
