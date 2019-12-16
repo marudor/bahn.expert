@@ -1374,7 +1374,7 @@ export function RegisterRoutes(router: KoaRouter) {
     async (context: any, next: any) => {
       const args = {
         searchTerm: { "in": "path", "name": "searchTerm", "required": true, "dataType": "string" },
-        type: { "in": "query", "name": "type", "dataType": "enum", "enums": ["default", "favendo", "hafas", "openData", "openDataOffline", "stationsData", "favendoStationsData"] },
+        type: { "in": "query", "name": "type", "dataType": "enum", "enums": ["default", "favendo", "hafas", "openData", "openDataOffline", "stationsData", "favendoStationsData", "businessHub"] },
         max: { "in": "query", "name": "max", "dataType": "double" },
       };
 

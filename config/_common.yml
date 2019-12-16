@@ -82,3 +82,8 @@ baseEnv:
       secretKeyRef:
         name: bahnhofs-abfahrten-config
         key: opendata_auth_key
+  - name: BUSINESS_HUB_STOP_PLACES_KEY
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: business_hub_stop_places_key

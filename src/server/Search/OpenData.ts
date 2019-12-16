@@ -16,22 +16,29 @@ export default async (rawSearchTerm: string): Promise<Station[]> => {
     searchTerm.replace(/ /g, '*')
   )}*`;
 
-  const result = (
-    await axios.get<{ result: OpenDataStation[] }>(url, {
-      withCredentials: true,
-      headers: {
-        Authorization: authKey,
-      },
-    })
-  ).data;
+  try {
+    const result = (
+      await axios.get<{ result: OpenDataStation[] }>(url, {
+        withCredentials: true,
+        headers: {
+          Authorization: authKey,
+        },
+      })
+    ).data;
 
-  return result.result.map(s => ({
-    title: s.name,
-    favendoId: s.number,
-    id: String(s.evaNumbers[0] ? s.evaNumbers[0].number : undefined),
-    DS100: s.ril100Identifiers[0]
-      ? s.ril100Identifiers[0].rilIdentifier
-      : undefined,
-    raw: global.PROD ? undefined : s,
-  }));
+    return result.result.map(s => ({
+      title: s.name,
+      favendoId: s.number,
+      id: String(s.evaNumbers[0] ? s.evaNumbers[0].number : undefined),
+      DS100: s.ril100Identifiers[0]
+        ? s.ril100Identifiers[0].rilIdentifier
+        : undefined,
+      raw: global.PROD ? undefined : s,
+    }));
+  } catch (e) {
+    if (e.response?.status === 404) {
+      return [];
+    }
+    throw e;
+  }
 };
