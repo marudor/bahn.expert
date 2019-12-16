@@ -1,10 +1,13 @@
 import { Controller, Get, Query, Route, Tags } from 'tsoa';
+import { DetailBusinessHubStation } from 'types/BusinessHub/StopPlaces';
 import { getStation } from 'server/Abfahrten/station';
 import {
   IrisStationWithRelated,
   Station,
   StationSearchType,
 } from 'types/station';
+import { searchAll } from 'server/Search/searchAll';
+import { stationDetails } from 'server/Search/BusinessHub';
 import favendoSearch from 'server/Search/Favendo';
 import stationSearch from 'server/Search';
 
@@ -52,5 +55,17 @@ export class StationController extends Controller {
   @Tags('Station V1')
   irisSearch(evaId: string): Promise<IrisStationWithRelated> {
     return getStation(evaId, 1);
+  }
+
+  @Get('/station/{evaId}')
+  @Tags('Station V1')
+  stationDetails(evaId: string): Promise<DetailBusinessHubStation> {
+    return stationDetails(evaId);
+  }
+
+  @Get('/searchAll/{searchTerm}')
+  @Tags('Station V1')
+  searchAll(searchTerm: string) {
+    return searchAll(searchTerm);
   }
 }

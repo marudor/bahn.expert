@@ -1,6 +1,5 @@
 import { logger } from 'server/logger';
 import { Station, StationSearchType } from 'types/station';
-import { uniqBy } from 'lodash';
 import BusinessHubSearch, {
   canUseBusinessHub,
 } from 'server/Search/BusinessHub';
@@ -10,17 +9,6 @@ import NodeCache from 'node-cache';
 import OpenDataOfflineSearch from './OpenDataOffline';
 import OpenDataSearch from './OpenData';
 import StationsDataSearch from './StationsData';
-
-export async function favendoStationsDataCombined(
-  searchTerm: string
-): Promise<Station[]> {
-  const stations = await Promise.all([
-    FavendoSearch(searchTerm),
-    StationsDataSearch(searchTerm),
-  ]);
-
-  return uniqBy(stations.flat(), 'id');
-}
 
 const defaultSearch = canUseBusinessHub ? BusinessHubSearch : FavendoSearch;
 
@@ -36,8 +24,6 @@ export function getSearchMethod(type?: StationSearchType) {
       return StationsDataSearch;
     case StationSearchType.favendo:
       return FavendoSearch;
-    case StationSearchType.favendoStationsData:
-      return favendoStationsDataCombined;
     case StationSearchType.businessHub:
       return BusinessHubSearch;
     default:

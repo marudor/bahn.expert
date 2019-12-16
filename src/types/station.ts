@@ -5,8 +5,17 @@ export enum StationSearchType {
   openData = 'openData',
   openDataOffline = 'openDataOffline',
   stationsData = 'stationsData',
-  favendoStationsData = 'favendoStationsData',
   businessHub = 'businessHub',
+}
+
+export interface SearchAllResult {
+  default: Station[];
+  favendo: Station[];
+  hafas: Station[];
+  openData: Station[];
+  openDataOffline: Station[];
+  stationsData: Station[];
+  businessHub: Station[];
 }
 
 export interface Coordinates {

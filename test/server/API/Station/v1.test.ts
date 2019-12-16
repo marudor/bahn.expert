@@ -8,9 +8,13 @@ describe('Station V1', () => {
 
   describe('/search', () => {
     it('no Type goes to default', () => {
-      Nock('https://si.favendo.de')
-        .get('/station-info/rest/api/search?searchTerm=Hamburg')
-        .reply(200, []);
+      Nock('https://api.businesshub.deutschebahn.com')
+        .get('/public-transport-stations/v1/stop-places?name=Hamburg')
+        .reply(200, {
+          _embedded: {
+            stopPlaceList: [],
+          },
+        });
 
       return request(server)
         .get('/api/station/v1/search/Hamburg')
@@ -18,9 +22,13 @@ describe('Station V1', () => {
     });
 
     it('invalid Type goes to default', () => {
-      Nock('https://si.favendo.de')
-        .get('/station-info/rest/api/search?searchTerm=Hamburg')
-        .reply(200, []);
+      Nock('https://api.businesshub.deutschebahn.com')
+        .get('/public-transport-stations/v1/stop-places?name=Hamburg')
+        .reply(200, {
+          _embedded: {
+            stopPlaceList: [],
+          },
+        });
 
       return request(server)
         .get('/api/station/v1/search/Hamburg?type=invalid')
@@ -115,16 +123,6 @@ describe('Station V1', () => {
     it('stationsdata Type', () => {
       return request(server)
         .get('/api/station/v1/search/Hamburg?type=stationsData')
-        .expect(200);
-    });
-
-    it('favendoStationsData Type', () => {
-      Nock('https://si.favendo.de')
-        .get('/station-info/rest/api/search?searchTerm=Hamburg')
-        .reply(200, []);
-
-      return request(server)
-        .get('/api/station/v1/search/Hamburg?type=favendoStationsData')
         .expect(200);
     });
   });

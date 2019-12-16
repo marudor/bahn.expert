@@ -2787,6 +2787,366 @@
 				],
 				"type": "object",
 				"additionalProperties": false
+			},
+			"Address": {
+				"properties": {
+					"city": {
+						"type": "string"
+					},
+					"postalCode": {
+						"type": "string"
+					},
+					"street": {
+						"type": "string"
+					},
+					"state": {
+						"type": "string",
+						"nullable": true
+					}
+				},
+				"required": [
+					"city",
+					"postalCode",
+					"street"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TripleSCenter": {
+				"properties": {
+					"identifier": {
+						"type": "number",
+						"format": "double"
+					},
+					"name": {
+						"type": "string"
+					},
+					"publicPhoneNumber": {
+						"type": "string"
+					},
+					"publicFaxNumber": {
+						"type": "string"
+					},
+					"internalPhoneNumber": {
+						"type": "string"
+					},
+					"internalFaxNumber": {
+						"type": "string"
+					},
+					"address": {
+						"$ref": "#/components/schemas/Address"
+					}
+				},
+				"required": [
+					"identifier",
+					"name",
+					"publicPhoneNumber",
+					"publicFaxNumber",
+					"internalPhoneNumber",
+					"internalFaxNumber",
+					"address"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"BusinessHubCoordinates": {
+				"properties": {
+					"latitude": {
+						"type": "number",
+						"format": "double"
+					},
+					"longitude": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"latitude",
+					"longitude"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"StationManagement": {
+				"properties": {
+					"identifier": {
+						"type": "number",
+						"format": "double"
+					},
+					"name": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"identifier",
+					"name"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"LocalTransportAuthority": {
+				"properties": {
+					"shortName": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"shortName",
+					"name"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"RegionalUnit": {
+				"properties": {
+					"identifier": {
+						"type": "string"
+					},
+					"shortName": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"identifier",
+					"shortName",
+					"name"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TimetableOffice": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"name",
+					"email"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Availability": {
+				"properties": {
+					"day": {
+						"type": "string",
+						"enum": [
+							"monday",
+							"tuesday",
+							"wednesday",
+							"thursday",
+							"friday",
+							"saturday",
+							"sunday"
+						]
+					},
+					"openTime": {
+						"type": "string"
+					},
+					"closeTime": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"day",
+					"openTime",
+					"closeTime"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"DBInformation": {
+				"properties": {
+					"availability": {
+						"items": {
+							"$ref": "#/components/schemas/Availability"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"availability"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"LocalServiceStaff": {
+				"properties": {
+					"availability": {
+						"items": {
+							"$ref": "#/components/schemas/Availability"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"availability"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Details": {
+				"properties": {
+					"ratingCategory": {
+						"type": "number",
+						"format": "double"
+					},
+					"priceCategory": {
+						"type": "number",
+						"format": "double"
+					},
+					"hasParking": {
+						"type": "boolean"
+					},
+					"hasBicycleParking": {
+						"type": "boolean"
+					},
+					"hasLocalPublicTransport": {
+						"type": "boolean"
+					},
+					"hasPublicFacilities": {
+						"type": "boolean"
+					},
+					"hasLockerSystem": {
+						"type": "boolean"
+					},
+					"hasTravelNecessities": {
+						"type": "boolean"
+					},
+					"hasSteplessAccess": {
+						"type": "string"
+					},
+					"mobilityService": {
+						"type": "string"
+					},
+					"hasWifi": {
+						"type": "boolean"
+					},
+					"hasTravelCenter": {
+						"type": "boolean"
+					},
+					"hasRailwayMission": {
+						"type": "boolean"
+					},
+					"hasDbLounge": {
+						"type": "boolean"
+					},
+					"hasLostAndFound": {
+						"type": "boolean"
+					},
+					"hasCardRental": {
+						"type": "boolean"
+					},
+					"stationManagement": {
+						"$ref": "#/components/schemas/StationManagement"
+					},
+					"localTransportAuthority": {
+						"$ref": "#/components/schemas/LocalTransportAuthority"
+					},
+					"regionalUnit": {
+						"$ref": "#/components/schemas/RegionalUnit"
+					},
+					"timetableOffice": {
+						"$ref": "#/components/schemas/TimetableOffice"
+					},
+					"dbInformation": {
+						"$ref": "#/components/schemas/DBInformation"
+					},
+					"localServiceStaff": {
+						"$ref": "#/components/schemas/LocalServiceStaff"
+					}
+				},
+				"required": [
+					"ratingCategory",
+					"priceCategory",
+					"hasParking",
+					"hasBicycleParking",
+					"hasLocalPublicTransport",
+					"hasPublicFacilities",
+					"hasLockerSystem",
+					"hasTravelNecessities",
+					"hasSteplessAccess",
+					"mobilityService",
+					"hasWifi",
+					"hasTravelCenter",
+					"hasRailwayMission",
+					"hasDbLounge",
+					"hasLostAndFound",
+					"hasCardRental",
+					"stationManagement",
+					"localTransportAuthority",
+					"regionalUnit",
+					"timetableOffice",
+					"dbInformation",
+					"localServiceStaff"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"DetailBusinessHubStation": {
+				"properties": {
+					"title": {
+						"type": "string"
+					},
+					"id": {
+						"type": "string"
+					},
+					"ds100": {
+						"type": "string",
+						"nullable": true
+					},
+					"stada": {
+						"type": "string",
+						"nullable": true
+					},
+					"location": {
+						"$ref": "#/components/schemas/BusinessHubCoordinates"
+					},
+					"alternativeNames": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"identifiers": {
+						"items": {
+							"additionalProperties": true,
+							"type": "object"
+						},
+						"type": "array"
+					},
+					"address": {
+						"$ref": "#/components/schemas/Address"
+					},
+					"details": {
+						"$ref": "#/components/schemas/Details"
+					},
+					"tripleSCenter": {
+						"$ref": "#/components/schemas/TripleSCenter"
+					}
+				},
+				"required": [
+					"title",
+					"id",
+					"location",
+					"alternativeNames",
+					"identifiers",
+					"address",
+					"details",
+					"tripleSCenter"
+				],
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {}
@@ -3792,7 +4152,6 @@
 								"openData",
 								"openDataOffline",
 								"stationsData",
-								"favendoStationsData",
 								"businessHub"
 							]
 						}
@@ -3885,6 +4244,69 @@
 					{
 						"in": "path",
 						"name": "evaId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/station/v1/station/{evaId}": {
+			"get": {
+				"operationId": "StationDetails",
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/DetailBusinessHubStation"
+								}
+							}
+						},
+						"description": "Ok"
+					}
+				},
+				"tags": [
+					"Station V1"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "evaId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/station/v1/searchAll/{searchTerm}": {
+			"get": {
+				"operationId": "SearchAll",
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"additionalProperties": true,
+									"type": "object"
+								}
+							}
+						},
+						"description": "Ok"
+					}
+				},
+				"tags": [
+					"Station V1"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "searchTerm",
 						"required": true,
 						"schema": {
 							"type": "string"
