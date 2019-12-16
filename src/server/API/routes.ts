@@ -951,6 +951,149 @@ const models: TsoaRoute.Models = {
     "additionalProperties": false,
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "Address": {
+    "dataType": "refObject",
+    "properties": {
+      "city": { "dataType": "string", "required": true },
+      "postalCode": { "dataType": "string", "required": true },
+      "street": { "dataType": "string", "required": true },
+      "state": { "dataType": "string" },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "TripleSCenter": {
+    "dataType": "refObject",
+    "properties": {
+      "identifier": { "dataType": "double", "required": true },
+      "name": { "dataType": "string", "required": true },
+      "publicPhoneNumber": { "dataType": "string", "required": true },
+      "publicFaxNumber": { "dataType": "string", "required": true },
+      "internalPhoneNumber": { "dataType": "string", "required": true },
+      "internalFaxNumber": { "dataType": "string", "required": true },
+      "address": { "ref": "Address", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "BusinessHubCoordinates": {
+    "dataType": "refObject",
+    "properties": {
+      "latitude": { "dataType": "double", "required": true },
+      "longitude": { "dataType": "double", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "StationManagement": {
+    "dataType": "refObject",
+    "properties": {
+      "identifier": { "dataType": "double", "required": true },
+      "name": { "dataType": "string", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "LocalTransportAuthority": {
+    "dataType": "refObject",
+    "properties": {
+      "shortName": { "dataType": "string", "required": true },
+      "name": { "dataType": "string", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "RegionalUnit": {
+    "dataType": "refObject",
+    "properties": {
+      "identifier": { "dataType": "string", "required": true },
+      "shortName": { "dataType": "string", "required": true },
+      "name": { "dataType": "string", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "TimetableOffice": {
+    "dataType": "refObject",
+    "properties": {
+      "name": { "dataType": "string", "required": true },
+      "email": { "dataType": "string", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "Availability": {
+    "dataType": "refObject",
+    "properties": {
+      "day": { "dataType": "enum", "enums": ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"], "required": true },
+      "openTime": { "dataType": "string", "required": true },
+      "closeTime": { "dataType": "string", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "DBInformation": {
+    "dataType": "refObject",
+    "properties": {
+      "availability": { "dataType": "array", "array": { "ref": "Availability" }, "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "LocalServiceStaff": {
+    "dataType": "refObject",
+    "properties": {
+      "availability": { "dataType": "array", "array": { "ref": "Availability" }, "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "Details": {
+    "dataType": "refObject",
+    "properties": {
+      "ratingCategory": { "dataType": "double", "required": true },
+      "priceCategory": { "dataType": "double", "required": true },
+      "hasParking": { "dataType": "boolean", "required": true },
+      "hasBicycleParking": { "dataType": "boolean", "required": true },
+      "hasLocalPublicTransport": { "dataType": "boolean", "required": true },
+      "hasPublicFacilities": { "dataType": "boolean", "required": true },
+      "hasLockerSystem": { "dataType": "boolean", "required": true },
+      "hasTravelNecessities": { "dataType": "boolean", "required": true },
+      "hasSteplessAccess": { "dataType": "string", "required": true },
+      "mobilityService": { "dataType": "string", "required": true },
+      "hasWifi": { "dataType": "boolean", "required": true },
+      "hasTravelCenter": { "dataType": "boolean", "required": true },
+      "hasRailwayMission": { "dataType": "boolean", "required": true },
+      "hasDbLounge": { "dataType": "boolean", "required": true },
+      "hasLostAndFound": { "dataType": "boolean", "required": true },
+      "hasCardRental": { "dataType": "boolean", "required": true },
+      "stationManagement": { "ref": "StationManagement", "required": true },
+      "localTransportAuthority": { "ref": "LocalTransportAuthority", "required": true },
+      "regionalUnit": { "ref": "RegionalUnit", "required": true },
+      "timetableOffice": { "ref": "TimetableOffice", "required": true },
+      "dbInformation": { "ref": "DBInformation", "required": true },
+      "localServiceStaff": { "ref": "LocalServiceStaff", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "DetailBusinessHubStation": {
+    "dataType": "refObject",
+    "properties": {
+      "title": { "dataType": "string", "required": true },
+      "id": { "dataType": "string", "required": true },
+      "ds100": { "dataType": "string" },
+      "stada": { "dataType": "string" },
+      "location": { "ref": "BusinessHubCoordinates", "required": true },
+      "alternativeNames": { "dataType": "array", "array": { "dataType": "string" }, "required": true },
+      "identifiers": { "dataType": "array", "array": { "dataType": "any" }, "required": true },
+      "address": { "ref": "Address", "required": true },
+      "details": { "ref": "Details", "required": true },
+      "tripleSCenter": { "ref": "TripleSCenter", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 };
 const validationService = new ValidationService(models);
 
@@ -1374,7 +1517,7 @@ export function RegisterRoutes(router: KoaRouter) {
     async (context: any, next: any) => {
       const args = {
         searchTerm: { "in": "path", "name": "searchTerm", "required": true, "dataType": "string" },
-        type: { "in": "query", "name": "type", "dataType": "enum", "enums": ["default", "favendo", "hafas", "openData", "openDataOffline", "stationsData", "favendoStationsData", "businessHub"] },
+        type: { "in": "query", "name": "type", "dataType": "enum", "enums": ["default", "favendo", "hafas", "openData", "openDataOffline", "stationsData", "businessHub"] },
         max: { "in": "query", "name": "max", "dataType": "double" },
       };
 
@@ -1431,6 +1574,46 @@ export function RegisterRoutes(router: KoaRouter) {
       const controller = new StationController();
 
       const promise = controller.irisSearch.apply(controller, validatedArgs as any);
+      return promiseHandler(controller, promise, context, next);
+    });
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  router.get('/api/station/v1/station/:evaId',
+    async (context: any, next: any) => {
+      const args = {
+        evaId: { "in": "path", "name": "evaId", "required": true, "dataType": "string" },
+      };
+
+      let validatedArgs: any[] = [];
+      try {
+        validatedArgs = getValidatedArgs(args, context);
+      } catch (error) {
+        context.status = error.status;
+        context.throw(error.status, JSON.stringify({ fields: error.fields }));
+      }
+
+      const controller = new StationController();
+
+      const promise = controller.stationDetails.apply(controller, validatedArgs as any);
+      return promiseHandler(controller, promise, context, next);
+    });
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  router.get('/api/station/v1/searchAll/:searchTerm',
+    async (context: any, next: any) => {
+      const args = {
+        searchTerm: { "in": "path", "name": "searchTerm", "required": true, "dataType": "string" },
+      };
+
+      let validatedArgs: any[] = [];
+      try {
+        validatedArgs = getValidatedArgs(args, context);
+      } catch (error) {
+        context.status = error.status;
+        context.throw(error.status, JSON.stringify({ fields: error.fields }));
+      }
+
+      const controller = new StationController();
+
+      const promise = controller.searchAll.apply(controller, validatedArgs as any);
       return promiseHandler(controller, promise, context, next);
     });
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
