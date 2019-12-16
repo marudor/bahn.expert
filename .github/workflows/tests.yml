@@ -35,7 +35,6 @@ jobs:
         yarn --frozen-lockfile
     - name: jest
       run: |
-        yarn jest --clearCache
         yarn test:jest
     - name: depCheck
       run: |
