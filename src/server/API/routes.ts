@@ -1089,7 +1089,7 @@ const models: TsoaRoute.Models = {
       "identifiers": { "dataType": "array", "array": { "dataType": "any" }, "required": true },
       "address": { "ref": "Address", "required": true },
       "details": { "ref": "Details", "required": true },
-      "tripleSCenter": { "ref": "TripleSCenter", "required": true },
+      "tripleSCenter": { "ref": "TripleSCenter" },
     },
     "additionalProperties": false,
   },
