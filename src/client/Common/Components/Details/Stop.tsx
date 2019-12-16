@@ -1,6 +1,7 @@
 import { ParsedProduct } from 'types/HAFAS';
 import { Route$Stop } from 'types/routing';
 import cc from 'clsx';
+import CheckInLink from 'Common/Components/CheckInLink';
 import DetailMessages from '../Messages/Detail';
 import Messages from './Messages';
 import Platform from 'Common/Components/Platform';
@@ -12,9 +13,10 @@ import useStyles from './Stop.style';
 
 interface Props {
   stop: Route$Stop;
+  train?: ParsedProduct;
   showWR?: ParsedProduct;
 }
-const Stop = ({ stop, showWR }: Props) => {
+const Stop = ({ stop, showWR, train }: Props) => {
   const classes = useStyles();
   const depOrArrival = stop.departure || stop.arrival;
   const platforms = stop.departure
@@ -32,15 +34,14 @@ const Stop = ({ stop, showWR }: Props) => {
   return (
     <div className={classes.main}>
       <span id={stop.station.id} className={classes.scrollMarker} />
-      {stop.arrival ? (
+      {stop.arrival && (
         <Time
+          className={classes.arrival}
           cancelled={stop.arrival.cancelled}
           oneLine
           real={stop.arrival.time}
           delay={stop.arrival.delay}
         />
-      ) : (
-        <span />
       )}
       <span
         className={cc(classes.station, {
@@ -53,15 +54,23 @@ const Stop = ({ stop, showWR }: Props) => {
           stationName={stop.station.title}
         />
       </span>
-      {stop.departure ? (
+      {train && (
+        <CheckInLink
+          className={classes.checkIn}
+          station={stop.station}
+          train={train}
+          departure={stop.departure}
+          arrival={stop.arrival}
+        />
+      )}
+      {stop.departure && (
         <Time
+          className={classes.departure}
           cancelled={stop.departure.cancelled}
           oneLine
           real={stop.departure.time}
           delay={stop.departure.delay}
         />
-      ) : (
-        <span />
       )}
       {/* {stop.messages && <div>{stop.messages.map(m => m.txtN)}</div>} */}
       <Platform className={classes.platform} {...platforms} />
