@@ -1,7 +1,6 @@
 import { Abfahrt } from 'types/iris';
 import Auslastung from 'Abfahrten/Components/Abfahrt/Auslastung';
 import CheckInLink from 'Common/Components/CheckInLink';
-import CommonConfigContainer from 'Common/container/CommonConfigContainer';
 import DetailsLink from 'Common/Components/Details/DetailsLink';
 import React from 'react';
 import Substitute from './Substitute';
@@ -15,7 +14,6 @@ interface Props {
 
 const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
   const classes = useStyles();
-  const checkInType = CommonConfigContainer.useContainer().config.checkIn;
 
   return (
     <div className={classes.main} data-testid="abfahrtStart">
@@ -27,7 +25,12 @@ const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
       )}
       {detail && (
         <div className={classes.links}>
-          <CheckInLink abfahrt={abfahrt} type={checkInType} />
+          <CheckInLink
+            arrival={abfahrt.arrival}
+            departure={abfahrt.departure}
+            train={abfahrt.train}
+            station={abfahrt.currentStation}
+          />
           <DetailsLink
             train={abfahrt.train}
             initialDeparture={abfahrt.initialDeparture}

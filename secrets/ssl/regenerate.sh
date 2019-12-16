@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-secret=$(kubectl get secret marudor-de --namespace marudor -o json)
+secret=$(kubectl get secret star-marudor-de --namespace marudor -o json)
 rawkey=$(echo $secret | jq -r ".data[\"tls.key\"]")
 rawcert=$(echo $secret | jq -r ".data[\"tls.crt\"]")
 echo $rawkey | base64 --decode > privkey.pem
