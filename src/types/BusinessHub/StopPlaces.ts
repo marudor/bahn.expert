@@ -10,7 +10,7 @@ interface Embedded {
   stopPlaceList: StopPlace[];
 }
 
-interface StopPlace {
+export interface StopPlace {
   name: string;
   identifiers: KnownIdentifier[];
   location: BusinessHubCoordinates;
@@ -54,4 +54,115 @@ export interface BusinessHubStation extends CommonStation {
   ds100?: string;
   stada?: string;
   location: BusinessHubCoordinates;
+}
+
+interface Address {
+  city: string;
+  postalCode: string;
+  street: string;
+  state?: string;
+}
+
+interface StationManagement {
+  identifier: number;
+  name: string;
+}
+
+interface LocalTransportAuthority {
+  shortName: string;
+  name: string;
+}
+
+interface RegionalUnit {
+  identifier: string;
+  shortName: string;
+  name: string;
+}
+
+interface TimetableOffice {
+  name: string;
+  email: string;
+}
+
+interface Availability {
+  day:
+    | 'monday'
+    | 'tuesday'
+    | 'wednesday'
+    | 'thursday'
+    | 'friday'
+    | 'saturday'
+    | 'sunday';
+  openTime: string;
+  closeTime: string;
+}
+
+interface DBInformation {
+  availability: Availability[];
+}
+interface LocalServiceStaff {
+  availability: Availability[];
+}
+
+interface Details {
+  ratingCategory: number;
+  priceCategory: number;
+  hasParking: boolean;
+  hasBicycleParking: boolean;
+  hasLocalPublicTransport: boolean;
+  hasPublicFacilities: boolean;
+  hasLockerSystem: boolean;
+  hasTravelNecessities: boolean;
+  hasSteplessAccess: string;
+  mobilityService: string;
+  hasWifi: boolean;
+  hasTravelCenter: boolean;
+  hasRailwayMission: boolean;
+  hasDbLounge: boolean;
+  hasLostAndFound: boolean;
+  hasCardRental: boolean;
+  stationManagement: StationManagement;
+  localTransportAuthority: LocalTransportAuthority;
+  regionalUnit: RegionalUnit;
+  timetableOffice: TimetableOffice;
+  dbInformation: DBInformation;
+  localServiceStaff: LocalServiceStaff;
+}
+
+interface TripleSCenter {
+  identifier: number;
+  name: string;
+  publicPhoneNumber: string;
+  publicFaxNumber: string;
+  internalPhoneNumber: string;
+  internalFaxNumber: string;
+  address: Address;
+}
+
+interface CommonDetailsApiResult {
+  alternativeNames: string[];
+  identifiers: KnownIdentifier[];
+  location: BusinessHubCoordinates;
+  address: Address;
+  details: Details;
+}
+
+export interface DetailsApiResult extends CommonDetailsApiResult {
+  name: string;
+  _links: Links;
+  _embedded: {
+    neighbours: {
+      name: string;
+      _links: {
+        self: Href;
+      };
+    }[];
+    tripleSCenter: TripleSCenter;
+  };
+}
+
+export interface DetailBusinessHubStation
+  extends BusinessHubStation,
+    CommonDetailsApiResult {
+  tripleSCenter: TripleSCenter;
 }

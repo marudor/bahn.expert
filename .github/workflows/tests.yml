@@ -16,9 +16,9 @@ jobs:
   node:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@master
     - name: Use Node.js 12
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@master
       with:
         node-version: 12
     - name: Cache node modules
@@ -46,16 +46,16 @@ jobs:
       run: |
         yarn tsc
     - name: Upload jest coverage
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@master
       with:
         name: jest-coverage
         path: jest-coverage/coverage-final.json
   e2e:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@master
     - name: Use Node.js 12
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@master
       with:
         node-version: 12
     - name: Cache node modules
@@ -90,7 +90,7 @@ jobs:
         NODE_ENV: production
         TEST_RUN: 1
     - name: Upload cypress coverage
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@master
       with:
         name: cypress-coverage
         path: cypress-coverage/coverage-final.json
@@ -98,9 +98,9 @@ jobs:
     needs: [node, e2e]
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@master
     - name: Use Node.js 12
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@master
       with:
         node-version: 12
     - name: Cache node modules
@@ -116,11 +116,11 @@ jobs:
       run: |
         yarn --frozen-lockfile
     - name: Download jest coverage
-      uses: actions/download-artifact@v1
+      uses: actions/download-artifact@master
       with:
         name: jest-coverage
     - name: Download cypress coverage
-      uses: actions/download-artifact@v1
+      uses: actions/download-artifact@master
       with:
         name: cypress-coverage
     - name: merge coverage
