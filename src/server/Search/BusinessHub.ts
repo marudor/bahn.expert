@@ -65,6 +65,6 @@ export const stationDetails = async (
   return {
     ...businessHubStation,
     ...relevantDetails,
-    tripleSCenter: _embedded.tripleSCenter,
+    tripleSCenter: _embedded?.tripleSCenter,
   };
 };

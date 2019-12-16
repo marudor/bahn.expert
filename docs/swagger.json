@@ -3132,7 +3132,8 @@
 						"$ref": "#/components/schemas/Details"
 					},
 					"tripleSCenter": {
-						"$ref": "#/components/schemas/TripleSCenter"
+						"$ref": "#/components/schemas/TripleSCenter",
+						"nullable": true
 					}
 				},
 				"required": [
@@ -3142,8 +3143,7 @@
 					"alternativeNames",
 					"identifiers",
 					"address",
-					"details",
-					"tripleSCenter"
+					"details"
 				],
 				"type": "object",
 				"additionalProperties": false
