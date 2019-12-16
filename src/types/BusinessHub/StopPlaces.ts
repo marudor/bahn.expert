@@ -150,7 +150,7 @@ interface CommonDetailsApiResult {
 export interface DetailsApiResult extends CommonDetailsApiResult {
   name: string;
   _links: Links;
-  _embedded: {
+  _embedded?: {
     neighbours: {
       name: string;
       _links: {
@@ -164,5 +164,5 @@ export interface DetailsApiResult extends CommonDetailsApiResult {
 export interface DetailBusinessHubStation
   extends BusinessHubStation,
     CommonDetailsApiResult {
-  tripleSCenter: TripleSCenter;
+  tripleSCenter?: TripleSCenter;
 }
