@@ -10,10 +10,9 @@ import {
   WagenreihungStation,
 } from 'types/reihung';
 import { getAbfahrten } from '../Abfahrten';
-import { getAP } from 'server/Wifi';
 import { getWRLink } from 'server/Reihung/hasWR';
 import { groupBy, maxBy, minBy } from 'lodash';
-import { isAfter, subDays } from 'date-fns';
+import { isRedesignByTZ, isRedesignByUIC } from 'server/Reihung/tzInfo';
 import axios from 'axios';
 import getBR from 'server/Reihung/getBR';
 import ICENaming from 'server/Reihung/ICENaming';
@@ -253,30 +252,29 @@ function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
     data.icons.family = false;
   }
 
-  const ap = getAP(fahrzeug.fahrzeugnummer);
-
-  let tzn;
-
-  if (ap) {
-    if (ap.online && isAfter(ap.trainTimestamp, subDays(new Date(), 1))) {
-      data.icons.wifi = true;
-    } else {
-      data.icons.wifiOff = true;
-    }
-
-    if (gruppe.br && ap.trainBR.endsWith('RD')) {
-      gruppe.br.redesign = true;
-    }
-    tzn = ap.tzn;
+  if (
+    gruppe.tzn &&
+    gruppe.br &&
+    !gruppe.br.redesign &&
+    isRedesignByUIC(gruppe.tzn)
+  ) {
+    gruppe.br.redesign = true;
   }
 
-  if (!tzn && gruppe.fahrzeuggruppebezeichnung.startsWith('ICE')) {
-    tzn = gruppe.fahrzeuggruppebezeichnung;
-  }
+  // const ap = getAP(fahrzeug.fahrzeugnummer);
 
-  gruppe.tzn = tzn?.match(tznRegex)?.[0];
+  // if (ap) {
+  //   if (ap.online && isAfter(ap.trainTimestamp, subDays(new Date(), 1))) {
+  //     data.icons.wifi = true;
+  //   } else {
+  //     data.icons.wifiOff = true;
+  //   }
 
-  gruppe.name = ICENaming(gruppe.tzn);
+  //   if (gruppe.br && ap.trainBR.endsWith('RD')) {
+  //     gruppe.br.redesign = true;
+  //   }
+  //   tzn = ap.tzn;
+  // }
 
   if (gruppe.br) {
     if (data.comfort) {
@@ -382,6 +380,17 @@ export async function wagenreihung(trainNumber: string, date: number) {
     const trainNumberAsNumber = Number.parseInt(g.verkehrlichezugnummer, 10);
 
     g.goesToFrance = trainNumberAsNumber >= 9550 && trainNumberAsNumber <= 9599;
+    if (g.fahrzeuggruppebezeichnung.startsWith('ICE')) {
+      const tzn = g.fahrzeuggruppebezeichnung;
+
+      g.tzn = tzn?.match(tznRegex)?.[0];
+      g.name = ICENaming(g.tzn);
+
+      if (g.br && isRedesignByTZ(tzn)) {
+        g.br.redesign = true;
+      }
+    }
+
     g.allFahrzeug.forEach(fahrzeug => {
       enrichFahrzeug(fahrzeug, g);
       fahrzeuge.push(fahrzeug);
