@@ -10,7 +10,8 @@ import axios from 'axios';
 const baseUrl = 'https://api.businesshub.deutschebahn.com/';
 const apiKey = process.env.BUSINESS_HUB_STOP_PLACES_KEY || '';
 
-export const canUseBusinessHub = Boolean(apiKey);
+export const canUseBusinessHub =
+  Boolean(apiKey) || process.env.NODE_ENV === 'test';
 
 const transformBusinessHubStation = (
   businessHubStation: Pick<StopPlace, 'name' | 'identifiers' | 'location'>
