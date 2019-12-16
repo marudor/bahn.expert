@@ -6,7 +6,8 @@ export default makeStyles(theme => ({
     gridTemplateColumns: '4.8em 1fr max-content',
     gridGap: '0 .3em',
     gridTemplateRows: '1fr 1fr',
-    gridTemplateAreas: '". t p" ". t p" ". t p" "wr wr wr" "m m m"',
+    gridTemplateAreas:
+      '"ar t p c" "dp t p c" "dp t p c" "wr wr wr wr" "m m m m"',
     alignItems: 'center',
     borderBottom: `1px solid ${theme.palette.text.primary}`,
     position: 'relative',
@@ -24,9 +25,17 @@ export default makeStyles(theme => ({
     overflow: 'hidden',
     textOverflow: 'ellipsis',
   },
-
+  checkIn: {
+    gridArea: 'c',
+  },
   platform: {
     gridArea: 'p',
+  },
+  arrival: {
+    gridArea: 'ar',
+  },
+  departure: {
+    gridArea: 'dp',
   },
   wr: {
     fontSize: '0.5em',

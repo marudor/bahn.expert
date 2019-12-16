@@ -1,35 +1,47 @@
-import { Abfahrt } from 'types/iris';
+import { CommonProductInfo, CommonStopInfo } from 'types/HAFAS';
 import { isBefore } from 'date-fns';
+import { Station } from 'types/station';
+import { Tooltip } from '@material-ui/core';
 import React from 'react';
 import stopPropagation from 'Common/stopPropagation';
+import TrainIcon from '@material-ui/icons/Train';
 
 interface Props {
-  abfahrt: Pick<Abfahrt, 'departure' | 'arrival' | 'currentStation' | 'train'>;
+  departure?: CommonStopInfo;
+  arrival?: CommonStopInfo;
+  station: Station;
+  train: CommonProductInfo;
   className?: string;
 }
 
 // 30 Minutes in ms
 const timeConstraint = 30 * 60 * 1000;
 
-const TravelynxLink = ({ abfahrt, className }: Props) =>
-  abfahrt.departure &&
-  !abfahrt.departure.cancelled &&
+const TravelynxLink = ({
+  departure,
+  arrival,
+  station,
+  train,
+  className,
+}: Props) =>
+  departure &&
+  !departure.cancelled &&
   isBefore(
-    abfahrt.arrival
-      ? abfahrt.arrival.scheduledTime
-      : abfahrt.departure.scheduledTime,
+    arrival ? arrival.scheduledTime : departure.scheduledTime,
     Date.now() + timeConstraint
   ) ? (
-    <a
-      data-testid="travellynxlink"
-      className={className}
-      onClick={stopPropagation}
-      rel="noopener noreferrer"
-      target="_blank"
-      href={`https://travelynx.de/s/${abfahrt.currentStation.id}?train=${abfahrt.train.type} ${abfahrt.train.number}`}
-    >
-      travelynx
-    </a>
+    <Tooltip title="travelynx">
+      <a
+        data-testid="travellynxlink"
+        className={className}
+        onClick={stopPropagation}
+        rel="noopener noreferrer"
+        target="_blank"
+        href={`https://travelynx.de/s/${station.id}?train=${train.type} ${train.number}`}
+      >
+        <TrainIcon />
+      </a>
+    </Tooltip>
   ) : null;
 
 export default TravelynxLink;
