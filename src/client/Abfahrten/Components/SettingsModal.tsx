@@ -222,6 +222,7 @@ const SettingsModal = () => {
               name="searchType"
               onChange={handleSelectChange('searchType')}
             >
+              <option value={StationSearchType.default}>Business Hub</option>
               <option value={StationSearchType.favendo}>Favendo</option>
               <option value={StationSearchType.favendoStationsData}>
                 Favendo + Stationsdaten

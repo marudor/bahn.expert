@@ -1,6 +1,9 @@
 import { logger } from 'server/logger';
 import { Station, StationSearchType } from 'types/station';
 import { uniqBy } from 'lodash';
+import BusinessHubSearch, {
+  canUseBusinessHub,
+} from 'server/Search/BusinessHub';
 import DBNavigatorSearch from 'server/HAFAS/LocMatch';
 import FavendoSearch from './Favendo';
 import NodeCache from 'node-cache';
@@ -19,6 +22,8 @@ export async function favendoStationsDataCombined(
   return uniqBy(stations.flat(), 'id');
 }
 
+const defaultSearch = canUseBusinessHub ? BusinessHubSearch : FavendoSearch;
+
 export function getSearchMethod(type?: StationSearchType) {
   switch (type) {
     case StationSearchType.hafas:
@@ -29,11 +34,14 @@ export function getSearchMethod(type?: StationSearchType) {
       return OpenDataOfflineSearch;
     case StationSearchType.stationsData:
       return StationsDataSearch;
-    default:
     case StationSearchType.favendo:
       return FavendoSearch;
     case StationSearchType.favendoStationsData:
       return favendoStationsDataCombined;
+    case StationSearchType.businessHub:
+      return BusinessHubSearch;
+    default:
+      return defaultSearch;
   }
 }
 
