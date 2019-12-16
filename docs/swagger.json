@@ -3792,7 +3792,8 @@
 								"openData",
 								"openDataOffline",
 								"stationsData",
-								"favendoStationsData"
+								"favendoStationsData",
+								"businessHub"
 							]
 						}
 					},
