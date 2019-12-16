@@ -19,7 +19,7 @@
     "start": "node devIndex.js",
     "depCheck": "depcruise --validate .dependency-cruiser.js src",
     "test": "npm run lint && npm run depCheck && npm run test:jest && tsc",
-    "test:jest": "jest",
+    "test:jest": "jest --no-cache",
     "e2e:local": "CYPRESS_baseUrl=https://local.marudor.de:9042 cypress open",
     "e2e:local:coverage": "wait-on https://local.marudor.de:9042 && (CYPRESS_baseUrl=https://local.marudor.de:9042 cypress run --config video=false ||(pkill -9 node && exit 1)) && pkill -9 node",
     "e2e:ci": "cypress run",
