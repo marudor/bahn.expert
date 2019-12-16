@@ -25,7 +25,12 @@ const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
       )}
       {detail && (
         <div className={classes.links}>
-          <CheckInLink abfahrt={abfahrt} />
+          <CheckInLink
+            arrival={abfahrt.arrival}
+            departure={abfahrt.departure}
+            train={abfahrt.train}
+            station={abfahrt.currentStation}
+          />
           <DetailsLink
             train={abfahrt.train}
             initialDeparture={abfahrt.initialDeparture}

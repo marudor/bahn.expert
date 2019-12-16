@@ -24,7 +24,10 @@ describe('CheckInLink', () => {
       const { getByTestId } = render(
         CheckInLink,
         {
-          abfahrt: MockAbfahrt,
+          arrival: MockAbfahrt.arrival,
+          departure: MockAbfahrt.departure,
+          station: MockAbfahrt.currentStation,
+          train: MockAbfahrt.train,
         },
         {
           commonConfig: {
@@ -41,10 +44,9 @@ describe('CheckInLink', () => {
       const { getByTestId } = render(
         CheckInLink,
         {
-          abfahrt: {
-            ...MockAbfahrt,
-            arrival: undefined,
-          },
+          departure: MockAbfahrt.departure,
+          station: MockAbfahrt.currentStation,
+          train: MockAbfahrt.train,
         },
         {
           commonConfig: {
@@ -61,7 +63,10 @@ describe('CheckInLink', () => {
       const { queryByTestId } = render(
         CheckInLink,
         {
-          abfahrt: MockAbfahrt,
+          arrival: MockAbfahrt.arrival,
+          departure: MockAbfahrt.departure,
+          station: MockAbfahrt.currentStation,
+          train: MockAbfahrt.train,
         },
         {
           commonConfig: {
@@ -77,12 +82,12 @@ describe('CheckInLink', () => {
       const { getByTestId } = render(
         CheckInLink,
         {
-          abfahrt: {
-            ...MockAbfahrt,
-            arrival: {
-              ...MockAbfahrt.arrival,
-              time: parse('22.07.2019 17:52', 'dd.MM.yyyy HH:mm', 0).getTime(),
-            },
+          departure: MockAbfahrt.departure,
+          station: MockAbfahrt.currentStation,
+          train: MockAbfahrt.train,
+          arrival: {
+            ...MockAbfahrt.arrival,
+            time: parse('22.07.2019 17:52', 'dd.MM.yyyy HH:mm', 0).getTime(),
           },
         },
         {
@@ -100,7 +105,10 @@ describe('CheckInLink', () => {
     const { queryByTestId } = render(
       CheckInLink,
       {
-        abfahrt: MockAbfahrt,
+        arrival: MockAbfahrt.arrival,
+        departure: MockAbfahrt.departure,
+        station: MockAbfahrt.currentStation,
+        train: MockAbfahrt.train,
       },
       {
         commonConfig: {
