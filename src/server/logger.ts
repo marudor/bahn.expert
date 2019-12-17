@@ -1,3 +1,6 @@
+import { Context } from 'koa';
+import { Timber } from '@timberio/node';
+import { TimberStream } from '@timberio/bunyan';
 import bunyan, { INFO } from 'bunyan';
 import bunyanFormat from 'bunyan-format';
 import bunyanLoggly from 'bunyan-loggly';
@@ -34,8 +37,41 @@ if (process.env.NODE_ENV === 'production' && token && subdomain) {
   });
 }
 
+const timberSource = process.env.TIMBER_SOURCE;
+const timberToken = process.env.TIMBER_TOKEN;
+
+if (process.env.NODE_ENV === 'production' && timberSource && timberToken) {
+  // eslint-disable-next-line no-console
+  console.log('Using Timber to log');
+  config.streams.push({
+    // @ts-ignore
+    stream: new TimberStream(new Timber(timberToken, timberSource)),
+  });
+}
+
 export const logger = bunyan.createLogger(config);
 export const middlewares = [bunyanMiddleware(logger)];
+
+// istanbul ignore next
 if (process.env.NODE_ENV !== 'test') {
-  middlewares.push(bunyanMiddleware.requestLogger());
+  middlewares.push(bunyanMiddleware.requestIdContext());
+  middlewares.push(
+    bunyanMiddleware.requestLogger({
+      updateLogFields(this: Context, data) {
+        data.req.headers = {};
+        // @ts-ignore
+        if (data.res) {
+          // @ts-ignore
+          // eslint-disable-next-line no-underscore-dangle
+          data.res._header = data.res._header
+            ?.replace(/Content-(Type|Length): .*\r?\n/g, '')
+            .replace(/Connection: .*\r?\n/g, '')
+            .replace(/Date: .*\r?\n/g, '')
+            .trim();
+        }
+
+        return data;
+      },
+    })
+  );
 }
