@@ -67,6 +67,8 @@ if (process.env.NODE_ENV !== 'test') {
             ?.replace(/Content-(Type|Length): .*\r?\n/g, '')
             .replace(/Connection: .*\r?\n/g, '')
             .replace(/Date: .*\r?\n/g, '')
+            .replace(/Last-Modified: .*\r?\n/g, '')
+            .replace(/Cache-Control: .*\r?\n/g, '')
             .trim();
         }
 
