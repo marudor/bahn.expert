@@ -171,6 +171,8 @@
     "@material-ui/pickers": "^3.2.8",
     "@material-ui/styles": "^4.7.1",
     "@sentry/node": "^5.10.2",
+    "@timberio/bunyan": "^0.35.0",
+    "@timberio/node": "^0.35.0",
     "axios": "^0.19.0",
     "bunyan": "^1.8.12",
     "bunyan-format": "^0.2.1",
