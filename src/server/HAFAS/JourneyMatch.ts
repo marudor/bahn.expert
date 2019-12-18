@@ -50,6 +50,13 @@ export default (
     req: {
       date: format(date, 'yyyyMMdd'),
       input: trainName,
+      jnyFltrL: [
+        {
+          type: 'LID',
+          value: 'A=1@L=80',
+          mode: 'INC',
+        },
+      ],
     },
     meth: 'JourneyMatch',
   };

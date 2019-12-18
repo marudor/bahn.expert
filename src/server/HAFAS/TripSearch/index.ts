@@ -20,18 +20,11 @@ function route(
     transferTime = -1,
     maxChanges = -1,
     searchForDeparture = true,
-    // get stops in between
     getPasslist = true,
-    // true = not only fastest
     economic = true,
-    getTariff = false,
-    // Umgebung reicht als stationen?
     ushrp = true,
-    // unknown data
     getPolyline = false,
-    // unknown flag
     getIV = true,
-    // Number of results to fetch
     numF = 6,
     ctxScr,
     onlyRegional,
@@ -76,7 +69,6 @@ function route(
       minChgTime: transferTime,
       getPasslist,
       economic,
-      getTariff,
       ushrp,
       getPolyline,
       getIV,
