@@ -39,7 +39,14 @@ export default async (
   date: number = Date.now(),
   hafasProfile: AllowedHafasProfile = AllowedHafasProfile.db
 ): Promise<ParsedSearchOnTripResponse | undefined> => {
-  const possibleTrains = await JourneyMatch(trainName, date, hafasProfile);
+  const possibleTrains = (
+    await JourneyMatch(trainName, date, hafasProfile)
+  ).sort(t1 =>
+    t1.firstStop.station.id.startsWith('80') ||
+    t1.lastStop.station.id.startsWith('80')
+      ? -1
+      : 1
+  );
   let train: ParsedJourneyMatchResponse | undefined;
 
   if (line) {

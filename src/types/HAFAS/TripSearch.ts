@@ -4,51 +4,55 @@ import {
   CommonDeparture,
   CommonJny,
   CommonStop,
+  JourneyFilter,
   LocL,
   MsgL,
   TrnCmpSX,
 } from '.';
 
-export interface TripSearchOptions {
+export interface TripSearchOptions extends SharedTripSearchOptions {
   start: string;
   destination: string;
   time?: number;
   transferTime?: number;
   maxChanges?: number;
-  getPasslist?: boolean;
   searchForDeparture?: boolean;
-  economic?: boolean;
-  getTariff?: boolean;
-  ushrp?: boolean;
-  getPolyline?: boolean;
-  getIV?: boolean;
-  numF?: number;
-  ctxScr?: string;
   onlyRegional?: boolean;
 }
 
-interface JnyFltr {
-  value: string;
-  mode: string;
-  type: string;
+interface SharedTripSearchOptions {
+  /**
+   * true = not only fastest route
+   */
+  economic?: boolean;
+  /**
+   * Unknown flag
+   */
+  getIV?: boolean;
+  /**
+   * Get Stop inbetween
+   */
+  getPasslist?: boolean;
+  /**
+   * Polylines - unknown format
+   */
+  getPolyline?: boolean;
+  numF?: number;
+  ctxScr?: string;
+  /**
+   * Is a station nearby enough for routing?
+   */
+  ushrp?: boolean;
 }
 
-interface GenericTripSearchRequest {
+interface GenericTripSearchRequest extends SharedTripSearchOptions {
   arrLocL: Partial<LocL>[];
   depLocL: Partial<LocL>[];
-  economic: boolean;
-  getIV: boolean;
   getPT: boolean;
-  getPasslist: boolean;
-  getPolyline: boolean;
-  getTariff: boolean;
   maxChg: number;
   minChgTime: number;
-  numF: number;
   outFrwd: boolean;
-  ushrp: boolean;
-  ctxScr?: string;
-  jnyFltrL?: JnyFltr[];
+  jnyFltrL?: JourneyFilter[];
 }
 interface DateTimeTripSeachRequest extends GenericTripSearchRequest {
   outDate: string;
