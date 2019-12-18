@@ -1579,6 +1579,40 @@
 			},
 			"TripSearchOptions": {
 				"properties": {
+					"economic": {
+						"type": "boolean",
+						"description": "true = not only fastest route",
+						"nullable": true
+					},
+					"getIV": {
+						"type": "boolean",
+						"description": "Unknown flag",
+						"nullable": true
+					},
+					"getPasslist": {
+						"type": "boolean",
+						"description": "Get Stop inbetween",
+						"nullable": true
+					},
+					"getPolyline": {
+						"type": "boolean",
+						"description": "Polylines - unknown format",
+						"nullable": true
+					},
+					"numF": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"ctxScr": {
+						"type": "string",
+						"nullable": true
+					},
+					"ushrp": {
+						"type": "boolean",
+						"description": "Is a station nearby enough for routing?",
+						"nullable": true
+					},
 					"start": {
 						"type": "string"
 					},
@@ -1600,41 +1634,8 @@
 						"format": "double",
 						"nullable": true
 					},
-					"getPasslist": {
-						"type": "boolean",
-						"nullable": true
-					},
 					"searchForDeparture": {
 						"type": "boolean",
-						"nullable": true
-					},
-					"economic": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"getTariff": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"ushrp": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"getPolyline": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"getIV": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"numF": {
-						"type": "number",
-						"format": "double",
-						"nullable": true
-					},
-					"ctxScr": {
-						"type": "string",
 						"nullable": true
 					},
 					"onlyRegional": {

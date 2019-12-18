@@ -1,13 +1,9 @@
-import { Common, Journey, ParsedProduct, RemL } from '.';
+import { Common, Journey, JourneyFilter, ParsedProduct, RemL } from '.';
 import { Route$Stop } from 'types/routing';
 
 export interface JourneyMatchRequest {
   req: {
-    jnyFltrL?: {
-      value: string;
-      type?: string;
-      mode?: string;
-    }[];
+    jnyFltrL?: JourneyFilter[];
     date: string;
     input: string;
   };

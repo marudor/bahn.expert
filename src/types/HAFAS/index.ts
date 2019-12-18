@@ -5,6 +5,38 @@ import { LocMatchRequest } from './LocMatch';
 import { Omit } from 'utility-types';
 import { TripSearchRequest } from './TripSearch';
 
+export type JourneyFilterMode = 'BIT' | 'EXC' | 'INC' | 'UNDEF';
+export type JourneyFilterType =
+  | 'ADM'
+  | 'ATTRF'
+  | 'ATTRJ'
+  | 'ATTRL'
+  | 'BC'
+  | 'CAT'
+  | 'COUCH'
+  | 'CTX_RECON'
+  | 'GROUP'
+  | 'INFOTEXTS'
+  | 'JID'
+  | 'LID'
+  | 'LINE'
+  | 'LINEID'
+  | 'META'
+  | 'NAME'
+  | 'NUM'
+  | 'OP'
+  | 'PID'
+  | 'PROD'
+  | 'ROUTE'
+  | 'SLEEP'
+  | 'STATIONS'
+  | 'UIC';
+export interface JourneyFilter {
+  mode: JourneyFilterMode;
+  type: JourneyFilterType;
+  value: string;
+}
+
 export interface CommonProductInfo {
   name: string;
   line?: string;
