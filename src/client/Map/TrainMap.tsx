@@ -80,6 +80,9 @@ const Positions = () => {
   return null;
 };
 
+const attribution =
+  '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>, Style: <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA 2.0</a> <a href="http://www.openrailwaymap.org/">OpenRailwayMap</a> and OpenStreetMap';
+
 const TrainMap = () => {
   return (
     <>
@@ -90,7 +93,10 @@ const TrainMap = () => {
           zoom: 7,
         }}
       >
-        <TileLayer url="https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png" />
+        <TileLayer
+          attribution={attribution}
+          url="https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png"
+        />
         <TileLayer url="https://{s}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png" />
         <Positions />
       </Map>
