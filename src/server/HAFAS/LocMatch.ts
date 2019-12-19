@@ -20,7 +20,8 @@ function parseFn(
 export default (
   searchTerm: string,
   type: 'S' | 'ALL' = 'ALL',
-  profile?: AllowedHafasProfile
+  profile?: AllowedHafasProfile,
+  raw?: boolean
 ) => {
   const req: LocMatchRequest = {
     req: {
@@ -35,5 +36,5 @@ export default (
     meth: 'LocMatch',
   };
 
-  return makeRequest(req, parseFn, profile);
+  return makeRequest(req, raw ? undefined : parseFn, profile);
 };

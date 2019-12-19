@@ -16,7 +16,8 @@ export default (
   x: number,
   y: number,
   maxDist: number,
-  profile?: AllowedHafasProfile
+  profile?: AllowedHafasProfile,
+  raw?: boolean
 ): Promise<HafasStation[]> => {
   const req: LocGeoPosRequest = {
     req: {
@@ -31,5 +32,5 @@ export default (
     meth: 'LocGeoPos',
   };
 
-  return makeRequest(req, parseLocGeoPos, profile);
+  return makeRequest(req, raw ? undefined : parseLocGeoPos, profile);
 };

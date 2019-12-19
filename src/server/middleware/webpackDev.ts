@@ -32,7 +32,6 @@ module.exports = function webpackDev(koa: Koa, server: undefined | Server) {
   const watcher = chokidar.watch(path.resolve('./src/server/**'));
 
   watcher.on('change', () => {
-    // eslint-disable-next-line no-console
     Object.keys(require.cache).forEach(id => {
       if (id.match(/src\/server/)) {
         delete require.cache[id];
@@ -46,7 +45,7 @@ module.exports = function webpackDev(koa: Koa, server: undefined | Server) {
 
   routesWatcher.on('change', file => {
     if (file.endsWith('routes.ts')) return;
-    childProcess.exec('yarn tsoa swagger-and-routes');
+    childProcess.exec('yarn doc:build');
   });
 
   return koaWebpack({
