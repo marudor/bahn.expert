@@ -12,6 +12,10 @@ import {
   JourneyDetailsResponse,
 } from 'types/HAFAS/JourneyDetails';
 import {
+  JourneyGeoPosRequest,
+  JourneyGeoPosResponse,
+} from 'types/HAFAS/JourneyGeoPos';
+import {
   JourneyMatchRequest,
   JourneyMatchResponse,
 } from 'types/HAFAS/JourneyMatch';
@@ -92,60 +96,43 @@ export class HafasError extends Error {
   }
 }
 
-// @ts-ignore 2384
-declare function makeRequest<
-  R extends HafasResponse<StationBoardResponse>,
-  P = R
->(
+function makeRequest<R extends HafasResponse<StationBoardResponse>, P = R>(
   r: StationBoardRequest,
   parseFn?: (d: R, pc: ParsedCommon) => P,
   profile?: AllowedHafasProfile
 ): Promise<P>;
-// @ts-ignore 2384
-declare function makeRequest<
-  R extends HafasResponse<JourneyMatchResponse>,
-  P = R
->(
+function makeRequest<R extends HafasResponse<JourneyMatchResponse>, P = R>(
   r: JourneyMatchRequest,
   parseFn?: (d: R, pc: ParsedCommon) => P,
   profile?: AllowedHafasProfile
 ): Promise<P>;
-// @ts-ignore 2384
-declare function makeRequest<R extends HafasResponse<LocGeoPosResponse>, P = R>(
+function makeRequest<R extends HafasResponse<LocGeoPosResponse>, P = R>(
   r: LocGeoPosRequest,
   parseFn?: (d: R, pc: ParsedCommon) => P,
   profile?: AllowedHafasProfile
 ): Promise<P>;
-// @ts-ignore 2384
-declare function makeRequest<R extends HafasResponse<LocMatchResponse>, P = R>(
+function makeRequest<R extends HafasResponse<LocMatchResponse>, P = R>(
   r: LocMatchRequest,
   parseFn?: (d: R, pc: ParsedCommon) => P,
   profile?: AllowedHafasProfile
 ): Promise<P>;
-// @ts-ignore 2384
-declare function makeRequest<
-  R extends HafasResponse<JourneyDetailsResponse>,
-  P = R
->(
+function makeRequest<R extends HafasResponse<JourneyDetailsResponse>, P = R>(
   r: JourneyDetailsRequest,
   parseFn?: (d: R, pc: ParsedCommon) => P,
   profile?: AllowedHafasProfile
 ): Promise<P>;
-// @ts-ignore 2384
-declare function makeRequest<
-  R extends HafasResponse<SearchOnTripResponse>,
-  P = R
->(
+function makeRequest<R extends HafasResponse<SearchOnTripResponse>, P = R>(
   r: SearchOnTripRequest,
   parseFn?: (d: R, pc: ParsedCommon) => P,
   profile?: AllowedHafasProfile
 ): Promise<P>;
-// @ts-ignore 2384
-declare function makeRequest<
-  R extends HafasResponse<TripSearchResponse>,
-  P = R
->(
+function makeRequest<R extends HafasResponse<TripSearchResponse>, P = R>(
   r: TripSearchRequest,
+  parseFn?: (d: R, pc: ParsedCommon) => P,
+  profile?: AllowedHafasProfile
+): Promise<P>;
+function makeRequest<R extends HafasResponse<JourneyGeoPosResponse>, P = R>(
+  r: JourneyGeoPosRequest,
   parseFn?: (d: R, pc: ParsedCommon) => P,
   profile?: AllowedHafasProfile
 ): Promise<P>;
@@ -196,7 +183,12 @@ async function makeRequest<
     throw new HafasError(request, r, profile);
   }
 
-  const parsedCommon = parseCommon(r.svcResL[0].res.common);
+  const rawCommon = r.svcResL[0].res.common;
+
+  if (!rawCommon) {
+    throw new HafasError(request, r, profile);
+  }
+  const parsedCommon = parseCommon(rawCommon);
 
   return parseFn(r, parsedCommon);
 }

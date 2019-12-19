@@ -32,11 +32,11 @@ const parseJourneyDetails = (
   return parsedJourney as ParsedJourneyDetails;
 };
 
-export default (jid: string, profile?: AllowedHafasProfile) => {
+export default (jid: string, profile?: AllowedHafasProfile, raw?: boolean) => {
   const req: JourneyDetailsRequest = {
     req: { jid },
     meth: 'JourneyDetails',
   };
 
-  return makeRequest(req, parseJourneyDetails, profile);
+  return makeRequest(req, raw ? undefined : parseJourneyDetails, profile);
 };

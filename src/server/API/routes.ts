@@ -209,16 +209,17 @@ const models: TsoaRoute.Models = {
     "dataType": "refObject",
     "properties": {
       "locX": { "dataType": "double", "required": true },
-      "idx": { "dataType": "double", "required": true },
+      "idx": { "dataType": "double" },
       "dCncl": { "dataType": "boolean" },
       "dProdX": { "dataType": "double" },
+      "dInS": { "dataType": "boolean", "required": true },
       "dInR": { "dataType": "boolean", "required": true },
       "dTimeS": { "dataType": "string", "required": true },
       "dTimeR": { "dataType": "string" },
       "dPlatfS": { "dataType": "string" },
       "dPlatfR": { "dataType": "string" },
       "dProgType": { "dataType": "string" },
-      "type": { "dataType": "string", "required": true },
+      "type": { "dataType": "string" },
       "dTZOffset": { "dataType": "double" },
       "dTrnCmpSX": { "ref": "TrnCmpSX" },
       "msgL": { "dataType": "array", "array": { "ref": "MsgL" } },
@@ -230,7 +231,7 @@ const models: TsoaRoute.Models = {
     "dataType": "refObject",
     "properties": {
       "locX": { "dataType": "double", "required": true },
-      "idx": { "dataType": "double", "required": true },
+      "idx": { "dataType": "double" },
       "aCncl": { "dataType": "boolean" },
       "aProdX": { "dataType": "double" },
       "aOutR": { "dataType": "boolean", "required": true },
@@ -239,7 +240,7 @@ const models: TsoaRoute.Models = {
       "aPlatfS": { "dataType": "string" },
       "aPlatfR": { "dataType": "string" },
       "aProgType": { "dataType": "string" },
-      "type": { "dataType": "string", "required": true },
+      "type": { "dataType": "string" },
       "aTZOffset": { "dataType": "double" },
       "aTrnCmpSX": { "ref": "TrnCmpSX" },
       "msgL": { "dataType": "array", "array": { "ref": "MsgL" } },
@@ -266,7 +267,7 @@ const models: TsoaRoute.Models = {
     "dataType": "refObject",
     "properties": {
       "locX": { "dataType": "double", "required": true },
-      "idx": { "dataType": "double", "required": true },
+      "idx": { "dataType": "double" },
       "aCncl": { "dataType": "boolean" },
       "aProdX": { "dataType": "double" },
       "aOutR": { "dataType": "boolean", "required": true },
@@ -275,12 +276,13 @@ const models: TsoaRoute.Models = {
       "aPlatfS": { "dataType": "string" },
       "aPlatfR": { "dataType": "string" },
       "aProgType": { "dataType": "string" },
-      "type": { "dataType": "string", "required": true },
+      "type": { "dataType": "string" },
       "aTZOffset": { "dataType": "double" },
       "aTrnCmpSX": { "ref": "TrnCmpSX" },
       "msgL": { "dataType": "array", "array": { "ref": "MsgL" } },
       "dCncl": { "dataType": "boolean" },
       "dProdX": { "dataType": "double" },
+      "dInS": { "dataType": "boolean", "required": true },
       "dInR": { "dataType": "boolean", "required": true },
       "dTimeS": { "dataType": "string", "required": true },
       "dTimeR": { "dataType": "string" },
@@ -564,6 +566,94 @@ const models: TsoaRoute.Models = {
       "maxChanges": { "dataType": "double" },
       "searchForDeparture": { "dataType": "boolean" },
       "onlyRegional": { "dataType": "boolean" },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "ParsedJourneyGeoPosResponse": {
+    "dataType": "refObject",
+    "properties": {
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "JourneyFilter": {
+    "dataType": "refObject",
+    "properties": {
+      "mode": { "dataType": "enum", "enums": ["BIT", "EXC", "INC", "UNDEF"], "required": true },
+      "type": { "dataType": "enum", "enums": ["ADM", "ATTRF", "ATTRJ", "ATTRL", "BC", "CAT", "COUCH", "CTX_RECON", "GROUP", "INFOTEXTS", "JID", "LID", "LINE", "LINEID", "META", "NAME", "NUM", "OP", "PID", "PROD", "ROUTE", "SLEEP", "STATIONS", "UIC"], "required": true },
+      "value": { "dataType": "string", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "Crd": {
+    "dataType": "refObject",
+    "properties": {
+      "x": { "dataType": "double", "required": true },
+      "y": { "dataType": "double", "required": true },
+      "z": { "dataType": "double" },
+      "layerX": { "dataType": "double" },
+      "crdSysX": { "dataType": "double" },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "OptionalLocL": {
+    "dataType": "refObject",
+    "properties": {
+      "lid": { "dataType": "string" },
+      "type": { "dataType": "string" },
+      "name": { "dataType": "string" },
+      "icoX": { "dataType": "double" },
+      "extId": { "dataType": "string" },
+      "state": { "dataType": "string" },
+      "crd": { "ref": "Crd" },
+      "pCls": { "dataType": "double" },
+      "pRefL": { "dataType": "array", "array": { "dataType": "double" } },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "GeoRect": {
+    "dataType": "refObject",
+    "properties": {
+      "llCrd": { "ref": "Crd", "required": true },
+      "urCrd": { "ref": "Crd", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "GeoRing": {
+    "dataType": "refObject",
+    "properties": {
+      "cCrd": { "ref": "Crd", "required": true },
+      "maxDist": { "dataType": "double", "required": true },
+      "minDist": { "dataType": "double" },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "JourneyGeoPosOptions": {
+    "dataType": "refObject",
+    "properties": {
+      "ageOfReport": { "dataType": "boolean" },
+      "date": { "dataType": "string" },
+      "time": { "dataType": "string" },
+      "getSimpleTrainComposition": { "dataType": "boolean" },
+      "getUnmatched": { "dataType": "boolean" },
+      "inOut": { "dataType": "enum", "enums": ["B", "I", "N", "O"] },
+      "jnyFltrL": { "dataType": "array", "array": { "ref": "JourneyFilter" } },
+      "locL": { "dataType": "array", "array": { "ref": "OptionalLocL" } },
+      "maxJny": { "dataType": "boolean" },
+      "onlyRT": { "dataType": "boolean" },
+      "perSize": { "dataType": "double" },
+      "perStep": { "dataType": "double" },
+      "rect": { "ref": "GeoRect" },
+      "ring": { "ref": "GeoRing" },
+      "rtMsgStatus": { "dataType": "boolean" },
+      "trainPosMode": { "dataType": "enum", "enums": ["CALC", "CALC_FOR_REPORT", "CALC_ONLY", "CALC_REPORT", "REPORT_ONLY", "REPORT_ONLY_WITH_STOPS"] },
+      "zoom": { "dataType": "double" },
     },
     "additionalProperties": false,
   },
@@ -1127,6 +1217,7 @@ export function RegisterRoutes(router: KoaRouter) {
     async (context: any, next: any) => {
       const args = {
         jid: { "in": "query", "name": "jid", "required": true, "dataType": "string" },
+        ctx: { "in": "request", "name": "ctx", "required": true, "dataType": "object" },
         profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb"] },
       };
 
@@ -1148,6 +1239,7 @@ export function RegisterRoutes(router: KoaRouter) {
     async (context: any, next: any) => {
       const args = {
         body: { "in": "body", "name": "body", "required": true, "ref": "SearchOnTripBody" },
+        ctx: { "in": "request", "name": "ctx", "required": true, "dataType": "object" },
         profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb"] },
       };
 
@@ -1215,6 +1307,7 @@ export function RegisterRoutes(router: KoaRouter) {
   router.get('/api/hafas/v1/arrivalStationBoard',
     async (context: any, next: any) => {
       const args = {
+        ctx: { "in": "request", "name": "ctx", "required": true, "dataType": "object" },
         station: { "in": "query", "name": "station", "required": true, "dataType": "string" },
         date: { "in": "query", "name": "date", "dataType": "double" },
         profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb"] },
@@ -1237,6 +1330,7 @@ export function RegisterRoutes(router: KoaRouter) {
   router.get('/api/hafas/v1/departureStationBoard',
     async (context: any, next: any) => {
       const args = {
+        ctx: { "in": "request", "name": "ctx", "required": true, "dataType": "object" },
         station: { "in": "query", "name": "station", "required": true, "dataType": "string" },
         direction: { "in": "query", "name": "direction", "dataType": "string" },
         date: { "in": "query", "name": "date", "dataType": "double" },
@@ -1282,6 +1376,7 @@ export function RegisterRoutes(router: KoaRouter) {
   router.get('/api/hafas/v1/journeyMatch/:trainName',
     async (context: any, next: any) => {
       const args = {
+        ctx: { "in": "request", "name": "ctx", "required": true, "dataType": "object" },
         trainName: { "in": "path", "name": "trainName", "required": true, "dataType": "string" },
         date: { "in": "query", "name": "date", "dataType": "double" },
         profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb"] },
@@ -1304,6 +1399,7 @@ export function RegisterRoutes(router: KoaRouter) {
   router.get('/api/hafas/v1/geoStation',
     async (context: any, next: any) => {
       const args = {
+        ctx: { "in": "request", "name": "ctx", "required": true, "dataType": "object" },
         lat: { "in": "query", "name": "lat", "required": true, "dataType": "double" },
         lng: { "in": "query", "name": "lng", "required": true, "dataType": "double" },
         maxDist: { "default": 1000, "in": "query", "name": "maxDist", "dataType": "double" },
@@ -1327,6 +1423,7 @@ export function RegisterRoutes(router: KoaRouter) {
   router.get('/api/hafas/v1/station/:searchTerm',
     async (context: any, next: any) => {
       const args = {
+        ctx: { "in": "request", "name": "ctx", "required": true, "dataType": "object" },
         searchTerm: { "in": "path", "name": "searchTerm", "required": true, "dataType": "string" },
         profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb"] },
       };
@@ -1348,6 +1445,7 @@ export function RegisterRoutes(router: KoaRouter) {
   router.post('/api/hafas/v1/route',
     async (context: any, next: any) => {
       const args = {
+        ctx: { "in": "request", "name": "ctx", "required": true, "dataType": "object" },
         body: { "in": "body", "name": "body", "required": true, "ref": "TripSearchOptions" },
         profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb"] },
       };
@@ -1363,6 +1461,49 @@ export function RegisterRoutes(router: KoaRouter) {
       const controller = new HafasController();
 
       const promise = controller.route.apply(controller, validatedArgs as any);
+      return promiseHandler(controller, promise, context, next);
+    });
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  router.post('/api/hafas/v1/journeyGeoPos',
+    async (context: any, next: any) => {
+      const args = {
+        ctx: { "in": "request", "name": "ctx", "required": true, "dataType": "object" },
+        body: { "in": "body", "name": "body", "required": true, "ref": "JourneyGeoPosOptions" },
+        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb"] },
+      };
+
+      let validatedArgs: any[] = [];
+      try {
+        validatedArgs = getValidatedArgs(args, context);
+      } catch (error) {
+        context.status = error.status;
+        context.throw(error.status, JSON.stringify({ fields: error.fields }));
+      }
+
+      const controller = new HafasController();
+
+      const promise = controller.journeyGeoPos.apply(controller, validatedArgs as any);
+      return promiseHandler(controller, promise, context, next);
+    });
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  router.get('/api/hafas/v1/positionForTrain/:trainName',
+    async (context: any, next: any) => {
+      const args = {
+        trainName: { "in": "path", "name": "trainName", "required": true, "dataType": "string" },
+        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb"] },
+      };
+
+      let validatedArgs: any[] = [];
+      try {
+        validatedArgs = getValidatedArgs(args, context);
+      } catch (error) {
+        context.status = error.status;
+        context.throw(error.status, JSON.stringify({ fields: error.fields }));
+      }
+
+      const controller = new HafasController();
+
+      const promise = controller.positionForTrain.apply(controller, validatedArgs as any);
       return promiseHandler(controller, promise, context, next);
     });
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

@@ -32,7 +32,8 @@ const parseJourneyMatch = (
 export default (
   trainName: string,
   initialDepartureDate?: number,
-  profile: AllowedHafasProfile = AllowedHafasProfile.db
+  profile: AllowedHafasProfile = AllowedHafasProfile.db,
+  raw?: boolean
 ): Promise<ParsedJourneyMatchResponse[]> => {
   let date = initialDepartureDate;
 
@@ -61,10 +62,12 @@ export default (
     meth: 'JourneyMatch',
   };
 
-  return makeRequest(req, parseJourneyMatch, profile).catch(e => {
-    if (e.errorCode === 'NO_MATCH') {
-      e.status = 404;
+  return makeRequest(req, raw ? undefined : parseJourneyMatch, profile).catch(
+    e => {
+      if (e.errorCode === 'NO_MATCH') {
+        e.status = 404;
+      }
+      throw e;
     }
-    throw e;
-  });
+  );
 };

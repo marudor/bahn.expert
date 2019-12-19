@@ -181,8 +181,8 @@ export interface Crd {
   x: number;
   y: number;
   z?: number;
-  layerX: number;
-  crdSysX: number;
+  layerX?: number;
+  crdSysX?: number;
 }
 
 export interface PolyG {
@@ -205,21 +205,22 @@ export interface Journey {
   prodL?: ProdL[];
   dTrnCmpSX?: TrnCmpSX;
 }
-
-export interface LocL {
-  lid: string;
-  type: string;
-  name: string;
-  icoX: number;
-  extId: string;
-  state: string;
-  crd: Crd;
-  pCls: number;
+export interface OptionalLocL {
+  lid?: string;
+  type?: string;
+  name?: string;
+  icoX?: number;
+  extId?: string;
+  state?: string;
+  crd?: Crd;
+  pCls?: number;
   /**
    * Reference to prodL
    */
   pRefL?: number[];
 }
+
+export type LocL = Required<OptionalLocL>;
 
 export interface PpLocRefL {
   ppIdx: number;
@@ -269,7 +270,7 @@ export interface CommonJny {
 
 export interface CommonArrival {
   locX: number;
-  idx: number;
+  idx?: number;
   aCncl?: boolean;
   aProdX?: number;
   aOutR: boolean;
@@ -278,7 +279,7 @@ export interface CommonArrival {
   aPlatfS?: string;
   aPlatfR?: string;
   aProgType?: string;
-  type: string;
+  type?: string;
   aTZOffset?: number;
   aTrnCmpSX?: TrnCmpSX;
   msgL?: MsgL[];
@@ -286,16 +287,17 @@ export interface CommonArrival {
 
 export interface CommonDeparture {
   locX: number;
-  idx: number;
+  idx?: number;
   dCncl?: boolean;
   dProdX?: number;
+  dInS: boolean;
   dInR: boolean;
   dTimeS: string;
   dTimeR?: string;
   dPlatfS?: string;
   dPlatfR?: string;
   dProgType?: string;
-  type: string;
+  type?: string;
   dTZOffset?: number;
   dTrnCmpSX?: TrnCmpSX;
   msgL?: MsgL[];
@@ -335,3 +337,16 @@ interface _ParsedCommon {
 export type ParsedCommon = _ParsedCommon & Omit<Common, 'locL' | 'prodL'>;
 
 export interface ParsedProduct extends CommonProductInfo {}
+
+export type InOutMode = 'B' | 'I' | 'N' | 'O';
+
+export interface GeoRect {
+  llCrd: Crd;
+  urCrd: Crd;
+}
+
+export interface GeoRing {
+  cCrd: Crd;
+  maxDist: number;
+  minDist?: number;
+}

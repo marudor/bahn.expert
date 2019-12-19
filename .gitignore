@@ -43,6 +43,7 @@ testDist/
 .cache-loader/
 webpack-stats.json
 BundleReport.html
+research/
 .node-version
 bahntests/
 .env
@@ -53,7 +54,6 @@ bahntests/
 reports/
 .DS_STORE
 secrets/ssl/*.pem
-research/
 .out
 .clinic
 

@@ -501,7 +501,8 @@
 					},
 					"idx": {
 						"type": "number",
-						"format": "double"
+						"format": "double",
+						"nullable": true
 					},
 					"dCncl": {
 						"type": "boolean",
@@ -511,6 +512,9 @@
 						"type": "number",
 						"format": "double",
 						"nullable": true
+					},
+					"dInS": {
+						"type": "boolean"
 					},
 					"dInR": {
 						"type": "boolean"
@@ -535,7 +539,8 @@
 						"nullable": true
 					},
 					"type": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
 					},
 					"dTZOffset": {
 						"type": "number",
@@ -556,10 +561,9 @@
 				},
 				"required": [
 					"locX",
-					"idx",
+					"dInS",
 					"dInR",
-					"dTimeS",
-					"type"
+					"dTimeS"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -572,7 +576,8 @@
 					},
 					"idx": {
 						"type": "number",
-						"format": "double"
+						"format": "double",
+						"nullable": true
 					},
 					"aCncl": {
 						"type": "boolean",
@@ -606,7 +611,8 @@
 						"nullable": true
 					},
 					"type": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
 					},
 					"aTZOffset": {
 						"type": "number",
@@ -627,10 +633,8 @@
 				},
 				"required": [
 					"locX",
-					"idx",
 					"aOutR",
-					"aTimeS",
-					"type"
+					"aTimeS"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -686,7 +690,8 @@
 					},
 					"idx": {
 						"type": "number",
-						"format": "double"
+						"format": "double",
+						"nullable": true
 					},
 					"aCncl": {
 						"type": "boolean",
@@ -720,7 +725,8 @@
 						"nullable": true
 					},
 					"type": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
 					},
 					"aTZOffset": {
 						"type": "number",
@@ -746,6 +752,9 @@
 						"type": "number",
 						"format": "double",
 						"nullable": true
+					},
+					"dInS": {
+						"type": "boolean"
 					},
 					"dInR": {
 						"type": "boolean"
@@ -785,10 +794,9 @@
 				},
 				"required": [
 					"locX",
-					"idx",
 					"aOutR",
 					"aTimeS",
-					"type",
+					"dInS",
 					"dInR",
 					"dTimeS"
 				],
@@ -1647,6 +1655,280 @@
 					"start",
 					"destination"
 				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ParsedJourneyGeoPosResponse": {
+				"properties": {},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"JourneyFilter": {
+				"properties": {
+					"mode": {
+						"type": "string",
+						"enum": [
+							"BIT",
+							"EXC",
+							"INC",
+							"UNDEF"
+						]
+					},
+					"type": {
+						"type": "string",
+						"enum": [
+							"ADM",
+							"ATTRF",
+							"ATTRJ",
+							"ATTRL",
+							"BC",
+							"CAT",
+							"COUCH",
+							"CTX_RECON",
+							"GROUP",
+							"INFOTEXTS",
+							"JID",
+							"LID",
+							"LINE",
+							"LINEID",
+							"META",
+							"NAME",
+							"NUM",
+							"OP",
+							"PID",
+							"PROD",
+							"ROUTE",
+							"SLEEP",
+							"STATIONS",
+							"UIC"
+						]
+					},
+					"value": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"mode",
+					"type",
+					"value"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Crd": {
+				"properties": {
+					"x": {
+						"type": "number",
+						"format": "double"
+					},
+					"y": {
+						"type": "number",
+						"format": "double"
+					},
+					"z": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"layerX": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"crdSysX": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					}
+				},
+				"required": [
+					"x",
+					"y"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"OptionalLocL": {
+				"properties": {
+					"lid": {
+						"type": "string",
+						"nullable": true
+					},
+					"type": {
+						"type": "string",
+						"nullable": true
+					},
+					"name": {
+						"type": "string",
+						"nullable": true
+					},
+					"icoX": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"extId": {
+						"type": "string",
+						"nullable": true
+					},
+					"state": {
+						"type": "string",
+						"nullable": true
+					},
+					"crd": {
+						"$ref": "#/components/schemas/Crd",
+						"nullable": true
+					},
+					"pCls": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"pRefL": {
+						"items": {
+							"type": "number",
+							"format": "double"
+						},
+						"type": "array",
+						"description": "Reference to prodL",
+						"nullable": true
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"GeoRect": {
+				"properties": {
+					"llCrd": {
+						"$ref": "#/components/schemas/Crd"
+					},
+					"urCrd": {
+						"$ref": "#/components/schemas/Crd"
+					}
+				},
+				"required": [
+					"llCrd",
+					"urCrd"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"GeoRing": {
+				"properties": {
+					"cCrd": {
+						"$ref": "#/components/schemas/Crd"
+					},
+					"maxDist": {
+						"type": "number",
+						"format": "double"
+					},
+					"minDist": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					}
+				},
+				"required": [
+					"cCrd",
+					"maxDist"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"JourneyGeoPosOptions": {
+				"properties": {
+					"ageOfReport": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"date": {
+						"type": "string",
+						"nullable": true
+					},
+					"time": {
+						"type": "string",
+						"nullable": true
+					},
+					"getSimpleTrainComposition": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"getUnmatched": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"inOut": {
+						"type": "string",
+						"enum": [
+							"B",
+							"I",
+							"N",
+							"O"
+						],
+						"nullable": true
+					},
+					"jnyFltrL": {
+						"items": {
+							"$ref": "#/components/schemas/JourneyFilter"
+						},
+						"type": "array",
+						"nullable": true
+					},
+					"locL": {
+						"items": {
+							"$ref": "#/components/schemas/OptionalLocL"
+						},
+						"type": "array",
+						"nullable": true
+					},
+					"maxJny": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"onlyRT": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"perSize": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"perStep": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"rect": {
+						"$ref": "#/components/schemas/GeoRect",
+						"nullable": true
+					},
+					"ring": {
+						"$ref": "#/components/schemas/GeoRing",
+						"nullable": true
+					},
+					"rtMsgStatus": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"trainPosMode": {
+						"type": "string",
+						"enum": [
+							"CALC",
+							"CALC_FOR_REPORT",
+							"CALC_ONLY",
+							"CALC_REPORT",
+							"REPORT_ONLY",
+							"REPORT_ONLY_WITH_STOPS"
+						],
+						"nullable": true
+					},
+					"zoom": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					}
+				},
 				"type": "object",
 				"additionalProperties": false
 			},
@@ -3893,6 +4175,112 @@
 						}
 					}
 				}
+			}
+		},
+		"/hafas/v1/journeyGeoPos": {
+			"post": {
+				"operationId": "JourneyGeoPos",
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ParsedJourneyGeoPosResponse"
+								}
+							}
+						},
+						"description": "Ok"
+					}
+				},
+				"tags": [
+					"HAFAS V1"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "profile",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"enum": [
+								"db",
+								"oebb",
+								"sncb",
+								"avv",
+								"nahsh",
+								"hvv",
+								"bvg",
+								"insa",
+								"anachb",
+								"vao",
+								"sbb"
+							]
+						}
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/JourneyGeoPosOptions"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/hafas/v1/positionForTrain/{trainName}": {
+			"get": {
+				"operationId": "PositionForTrain",
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"additionalProperties": true,
+									"type": "object"
+								}
+							}
+						},
+						"description": "Ok"
+					}
+				},
+				"tags": [
+					"HAFAS V1"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "trainName",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "profile",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"enum": [
+								"db",
+								"oebb",
+								"sncb",
+								"avv",
+								"nahsh",
+								"hvv",
+								"bvg",
+								"insa",
+								"anachb",
+								"vao",
+								"sbb"
+							]
+						}
+					}
+				]
 			}
 		},
 		"/iris/v1/wings/{rawId1}/{rawId2}": {

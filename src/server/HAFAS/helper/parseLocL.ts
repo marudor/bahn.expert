@@ -1,6 +1,6 @@
 import { Crd, LocL, ParsedProduct } from 'types/HAFAS';
 
-function parseCoordinates(crd: Crd) {
+export function parseCoordinates(crd: Crd) {
   return {
     lng: crd.x / 1000000,
     lat: crd.y / 1000000,

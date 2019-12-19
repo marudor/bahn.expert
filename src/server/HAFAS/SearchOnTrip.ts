@@ -15,12 +15,13 @@ const parseSearchOnTrip = (
 
 export default (
   req: SearchOnTripRequest['req'],
-  profile?: AllowedHafasProfile
+  profile?: AllowedHafasProfile,
+  raw?: boolean
 ) => {
   const request: SearchOnTripRequest = {
     req,
     meth: 'SearchOnTrip',
   };
 
-  return makeRequest(request, parseSearchOnTrip, profile);
+  return makeRequest(request, raw ? undefined : parseSearchOnTrip, profile);
 };
