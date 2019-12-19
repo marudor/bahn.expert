@@ -14,10 +14,16 @@ import {
   Hidden,
   Post,
   Query,
+  Request,
   Response,
   Route,
   Tags,
 } from 'tsoa';
+import { Context } from 'koa';
+import {
+  JourneyGeoPosOptions,
+  ParsedJourneyGeoPosResponse,
+} from 'types/HAFAS/JourneyGeoPos';
 import { ParsedJourneyDetails } from 'types/HAFAS/JourneyDetails';
 import { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 import { Route$Auslastung, RoutingResult, SingleRoute } from 'types/routing';
@@ -27,10 +33,12 @@ import { TripSearchOptions } from 'types/HAFAS/TripSearch';
 import Auslastung from 'server/HAFAS/Auslastung';
 import Detail from 'server/HAFAS/Detail';
 import JourneyDetails from 'server/HAFAS/JourneyDetails';
+import JourneyGeoPos from 'server/HAFAS/JourneyGeoPos';
 import JourneyMatch from 'server/HAFAS/JourneyMatch';
 import LocGeoPos from 'server/HAFAS/LocGeoPos';
 import LocMatch from 'server/HAFAS/LocMatch';
 import makeRequest from 'server/HAFAS/Request';
+import PositionForTrain from 'server/HAFAS/PositionForTrain';
 import SearchOnTrip from 'server/HAFAS/SearchOnTrip';
 import StationBoard from 'server/HAFAS/StationBoard';
 import TrainSearch from 'server/HAFAS/TrainSearch';
@@ -47,15 +55,17 @@ export class HafasController extends Controller {
   @Tags('HAFAS V1')
   journeyDetails(
     @Query() jid: string,
+    @Request() ctx: Context,
     @Query() profile?: AllowedHafasProfile
   ): Promise<ParsedJourneyDetails> {
-    return JourneyDetails(jid, profile);
+    return JourneyDetails(jid, profile, ctx.query.raw);
   }
 
   @Post('/searchOnTrip')
   @Tags('HAFAS V1')
   searchOnTrip(
     @Body() body: SearchOnTripBody,
+    @Request() ctx: Context,
     @Query() profile?: AllowedHafasProfile
   ): Promise<SingleRoute> {
     const { sotMode, id } = body;
@@ -73,7 +83,7 @@ export class HafasController extends Controller {
       };
     }
 
-    return SearchOnTrip(req, profile);
+    return SearchOnTrip(req, profile, ctx.query.raw);
   }
 
   @Response(404, 'Train not found')
@@ -117,6 +127,7 @@ export class HafasController extends Controller {
   @Get('/arrivalStationBoard')
   @Tags('HAFAS V1')
   arrivalStationBoard(
+    @Request() ctx: Context,
     /**
      * EvaId
      */
@@ -133,13 +144,15 @@ export class HafasController extends Controller {
         date,
         type: 'ARR',
       },
-      profile
+      profile,
+      ctx.query.raw
     );
   }
 
   @Get('/departureStationBoard')
   @Tags('HAFAS V1')
   departureStationBoard(
+    @Request() ctx: Context,
     /**
      * EvaId
      */
@@ -161,7 +174,8 @@ export class HafasController extends Controller {
         direction,
         type: 'DEP',
       },
-      profile
+      profile,
+      ctx.query.raw
     );
   }
 
@@ -190,6 +204,7 @@ export class HafasController extends Controller {
   @Get('/journeyMatch/{trainName}')
   @Tags('HAFAS V1')
   journeyMatch(
+    @Request() ctx: Context,
     trainName: string,
     /**
      * Unix Time (ms)
@@ -197,36 +212,72 @@ export class HafasController extends Controller {
     @Query() date?: number,
     @Query() profile?: AllowedHafasProfile
   ): Promise<ParsedJourneyMatchResponse[]> {
-    return JourneyMatch(trainName, date, profile);
+    return JourneyMatch(trainName, date, profile, ctx.query.raw);
   }
 
   @Get('/geoStation')
   @Tags('HAFAS V1')
   geoStation(
+    @Request() ctx: Context,
     @Query() lat: number,
     @Query() lng: number,
     @Query() maxDist: number = 1000,
     @Query() profile?: AllowedHafasProfile
   ): Promise<HafasStation[]> {
-    return LocGeoPos(lng * 1000000, lat * 1000000, maxDist, profile);
+    return LocGeoPos(
+      lng * 1000000,
+      lat * 1000000,
+      maxDist,
+      profile,
+      ctx.query.raw
+    );
   }
 
   @Get('/station/{searchTerm}')
   @Tags('HAFAS V1')
   station(
+    @Request() ctx: Context,
     searchTerm: string,
     @Query() profile?: AllowedHafasProfile
   ): Promise<Station[]> {
-    return LocMatch(searchTerm, undefined, profile);
+    return LocMatch(searchTerm, undefined, profile, ctx.query.raw);
   }
 
   @Post('/route')
   @Tags('HAFAS V1')
   route(
+    @Request() ctx: Context,
     @Body() body: TripSearchOptions,
     @Query() profile?: AllowedHafasProfile
   ): Promise<RoutingResult> {
-    return TripSearch(body, profile);
+    return TripSearch(body, profile, ctx.query.raw);
+  }
+
+  @Post('/journeyGeoPos')
+  @Tags('HAFAS V1')
+  journeyGeoPos(
+    @Request() ctx: Context,
+    @Body() body: JourneyGeoPosOptions,
+    @Query() profile?: AllowedHafasProfile
+  ): Promise<ParsedJourneyGeoPosResponse> {
+    return JourneyGeoPos(body, profile, ctx.query.raw);
+  }
+
+  @Get('/positionForTrain/{trainName}')
+  @Tags('HAFAS V1')
+  async positionForTrain(
+    trainName: string,
+    @Query() profile?: AllowedHafasProfile
+  ) {
+    const result = await PositionForTrain(trainName, profile);
+
+    if (!result) {
+      throw {
+        status: 404,
+      };
+    }
+
+    return result;
   }
 
   @Hidden()

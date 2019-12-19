@@ -14,19 +14,20 @@ interface Options {
   station: string;
   type: 'ARR' | 'DEP';
 }
-// @ts-ignore 2384
-declare function stationBoard(
+function stationBoard(
   options: Omit<Options, 'type'> & { type: 'ARR' },
-  profile?: AllowedHafasProfile
+  profile?: AllowedHafasProfile,
+  raw?: boolean
 ): Promise<ArrivalStationBoardEntry[]>;
-// @ts-ignore 2384
-declare function stationBoard(
+function stationBoard(
   options: Omit<Options, 'type'> & { type: 'DEP' },
-  profile?: AllowedHafasProfile
+  profile?: AllowedHafasProfile,
+  raw?: boolean
 ): Promise<DepartureStationBoardEntry[]>;
 function stationBoard(
   { station, date = Date.now(), type, direction }: Options,
-  profile?: AllowedHafasProfile
+  profile?: AllowedHafasProfile,
+  raw?: boolean
 ) {
   const req: StationBoardRequest = {
     req: {
@@ -49,6 +50,6 @@ function stationBoard(
     meth: 'StationBoard',
   };
 
-  return makeRequest(req, parse, profile);
+  return makeRequest(req, raw ? undefined : parse, profile);
 }
 export default stationBoard;

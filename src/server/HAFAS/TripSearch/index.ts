@@ -29,7 +29,8 @@ function route(
     ctxScr,
     onlyRegional,
   }: TripSearchOptions,
-  profile?: AllowedHafasProfile
+  profile?: AllowedHafasProfile,
+  raw?: boolean
 ) {
   let requestTypeSpecific;
 
@@ -90,7 +91,7 @@ function route(
     ...profileConfig[profile],
   };
 
-  return makeRequest(req, tripSearchParse, profile);
+  return makeRequest(req, raw ? undefined : tripSearchParse, profile);
 }
 
 export default route;
