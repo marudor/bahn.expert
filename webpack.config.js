@@ -52,12 +52,19 @@ const plugins = [
 
 const rules = [
   {
+    test: /\.css$/,
+    use: ['style-loader', 'css-loader'],
+  },
+  {
     test: /\.(t|j)sx?$/,
     use: ['babel-loader'],
   },
   {
     test: /\.(jpg|jpeg|png|woff|woff2|eot|ttf|svg)$/,
-    loader: 'url-loader?limit=8192',
+    loader: 'url-loader',
+    options: {
+      limit: 8192,
+    },
   },
 ];
 
