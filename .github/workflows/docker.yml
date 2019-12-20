@@ -1,40 +1,18 @@
 name: docker
 
-on: ['push']
+on: ["push"]
+  # push:
+  #   branches:
+  #     - master
 
 env:
   CI: "true"
-  CYPRESS_INSTALL_BINARY: 0
 
 jobs:
   docker:
-  #   # if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js 12
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12
-    - name: Cache node modules
-      uses: actions/cache@v1
-      with:
-        path: node_modules
-        key: ${{ runner.OS }}-build-${{ hashFiles('yarn.lock')}}
-        restore-keys: |
-          ${{ runner.OS }}-build-${{ env.cache-name }}-
-          ${{ runner.OS }}-build-
-          ${{ runner.OS }}-
-    - name: install
-      run: |
-        yarn --frozen-lockfile
-    - name: build
-      run: |
-        env
-        yarn build
-      env:
-        NODE_ENV: production
-        PROD_ONLY: 1
+    - uses: actions/checkout@v1<
     - name: docker
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
