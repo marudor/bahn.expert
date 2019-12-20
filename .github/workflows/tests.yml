@@ -17,10 +17,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Use Node.js 12
+    - name: Use Node.js 13
       uses: actions/setup-node@master
       with:
-        node-version: 12
+        node-version: 13
     - name: Cache node modules
       uses: actions/cache@v1
       with:
@@ -54,10 +54,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Use Node.js 12
+    - name: Use Node.js 13
       uses: actions/setup-node@master
       with:
-        node-version: 12
+        node-version: 13
     - name: Cache node modules
       uses: actions/cache@v1
       with:
@@ -99,10 +99,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Use Node.js 12
+    - name: Use Node.js 13
       uses: actions/setup-node@master
       with:
-        node-version: 12
+        node-version: 13
     - name: Cache node modules
       uses: actions/cache@v1
       with:
