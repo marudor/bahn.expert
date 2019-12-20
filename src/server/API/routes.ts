@@ -1218,7 +1218,7 @@ export function RegisterRoutes(router: KoaRouter) {
       const args = {
         jid: { "in": "query", "name": "jid", "required": true, "dataType": "string" },
         ctx: { "in": "request", "name": "ctx", "required": true, "dataType": "object" },
-        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb"] },
+        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb", "dbnetz"] },
       };
 
       let validatedArgs: any[] = [];
@@ -1240,7 +1240,7 @@ export function RegisterRoutes(router: KoaRouter) {
       const args = {
         body: { "in": "body", "name": "body", "required": true, "ref": "SearchOnTripBody" },
         ctx: { "in": "request", "name": "ctx", "required": true, "dataType": "object" },
-        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb"] },
+        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb", "dbnetz"] },
       };
 
       let validatedArgs: any[] = [];
@@ -1264,7 +1264,7 @@ export function RegisterRoutes(router: KoaRouter) {
         stop: { "in": "query", "name": "stop", "dataType": "string" },
         line: { "in": "query", "name": "line", "dataType": "string" },
         date: { "in": "query", "name": "date", "dataType": "double" },
-        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb"] },
+        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb", "dbnetz"] },
       };
 
       let validatedArgs: any[] = [];
@@ -1310,7 +1310,7 @@ export function RegisterRoutes(router: KoaRouter) {
         ctx: { "in": "request", "name": "ctx", "required": true, "dataType": "object" },
         station: { "in": "query", "name": "station", "required": true, "dataType": "string" },
         date: { "in": "query", "name": "date", "dataType": "double" },
-        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb"] },
+        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb", "dbnetz"] },
       };
 
       let validatedArgs: any[] = [];
@@ -1334,7 +1334,7 @@ export function RegisterRoutes(router: KoaRouter) {
         station: { "in": "query", "name": "station", "required": true, "dataType": "string" },
         direction: { "in": "query", "name": "direction", "dataType": "string" },
         date: { "in": "query", "name": "date", "dataType": "double" },
-        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb"] },
+        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb", "dbnetz"] },
       };
 
       let validatedArgs: any[] = [];
@@ -1356,7 +1356,7 @@ export function RegisterRoutes(router: KoaRouter) {
       const args = {
         trainName: { "in": "path", "name": "trainName", "required": true, "dataType": "string" },
         date: { "in": "query", "name": "date", "dataType": "double" },
-        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb"] },
+        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb", "dbnetz"] },
       };
 
       let validatedArgs: any[] = [];
@@ -1379,7 +1379,7 @@ export function RegisterRoutes(router: KoaRouter) {
         ctx: { "in": "request", "name": "ctx", "required": true, "dataType": "object" },
         trainName: { "in": "path", "name": "trainName", "required": true, "dataType": "string" },
         date: { "in": "query", "name": "date", "dataType": "double" },
-        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb"] },
+        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb", "dbnetz"] },
       };
 
       let validatedArgs: any[] = [];
@@ -1403,7 +1403,7 @@ export function RegisterRoutes(router: KoaRouter) {
         lat: { "in": "query", "name": "lat", "required": true, "dataType": "double" },
         lng: { "in": "query", "name": "lng", "required": true, "dataType": "double" },
         maxDist: { "default": 1000, "in": "query", "name": "maxDist", "dataType": "double" },
-        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb"] },
+        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb", "dbnetz"] },
       };
 
       let validatedArgs: any[] = [];
@@ -1425,7 +1425,7 @@ export function RegisterRoutes(router: KoaRouter) {
       const args = {
         ctx: { "in": "request", "name": "ctx", "required": true, "dataType": "object" },
         searchTerm: { "in": "path", "name": "searchTerm", "required": true, "dataType": "string" },
-        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb"] },
+        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb", "dbnetz"] },
       };
 
       let validatedArgs: any[] = [];
@@ -1447,7 +1447,7 @@ export function RegisterRoutes(router: KoaRouter) {
       const args = {
         ctx: { "in": "request", "name": "ctx", "required": true, "dataType": "object" },
         body: { "in": "body", "name": "body", "required": true, "ref": "TripSearchOptions" },
-        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb"] },
+        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb", "dbnetz"] },
       };
 
       let validatedArgs: any[] = [];
@@ -1469,7 +1469,7 @@ export function RegisterRoutes(router: KoaRouter) {
       const args = {
         ctx: { "in": "request", "name": "ctx", "required": true, "dataType": "object" },
         body: { "in": "body", "name": "body", "required": true, "ref": "JourneyGeoPosOptions" },
-        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb"] },
+        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb", "dbnetz"] },
       };
 
       let validatedArgs: any[] = [];
@@ -1490,7 +1490,7 @@ export function RegisterRoutes(router: KoaRouter) {
     async (context: any, next: any) => {
       const args = {
         trainName: { "in": "path", "name": "trainName", "required": true, "dataType": "string" },
-        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb"] },
+        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb", "dbnetz"] },
       };
 
       let validatedArgs: any[] = [];
@@ -1511,7 +1511,7 @@ export function RegisterRoutes(router: KoaRouter) {
     async (context: any, next: any) => {
       const args = {
         body: { "in": "body", "name": "body", "required": true, "dataType": "any" },
-        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb"] },
+        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb", "dbnetz"] },
       };
 
       let validatedArgs: any[] = [];

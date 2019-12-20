@@ -260,3 +260,22 @@ export const sbb = {
     ver: '1.20',
   },
 };
+
+export const dbnetz = {
+  url: 'https://db-livemaps.hafas.de/bin/mgate.exe',
+  config: {
+    client: {
+      id: 'DBZUGRADARNETZ',
+      v: '0.1.0',
+      type: 'WEB',
+      name: 'webapp',
+    },
+    ext: 'DBNETZZUGRADAR.2',
+    ver: '1.20',
+    auth: {
+      type: 'AID',
+      aid: 'hf7mcf9bv3nv8g5f',
+    },
+    lang: 'deu',
+  },
+};
