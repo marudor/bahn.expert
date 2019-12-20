@@ -1,6 +1,7 @@
 import { AllowedHafasProfile, HafasResponse, ParsedCommon } from 'types/HAFAS';
 import { format, parse, subDays } from 'date-fns';
 import {
+  JourneyMatchOptions,
   JourneyMatchRequest,
   JourneyMatchResponse,
   ParsedJourneyMatchResponse,
@@ -30,8 +31,7 @@ const parseJourneyMatch = (
 };
 
 export default (
-  trainName: string,
-  initialDepartureDate?: number,
+  { trainName, initialDepartureDate, jnyFltrL }: JourneyMatchOptions,
   profile: AllowedHafasProfile = AllowedHafasProfile.db,
   raw?: boolean
 ): Promise<ParsedJourneyMatchResponse[]> => {
@@ -51,13 +51,7 @@ export default (
     req: {
       date: format(date, 'yyyyMMdd'),
       input: trainName,
-      jnyFltrL: [
-        {
-          type: 'LID',
-          value: 'A=1@L=80',
-          mode: 'INC',
-        },
-      ],
+      jnyFltrL,
     },
     meth: 'JourneyMatch',
   };

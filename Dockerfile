@@ -1,4 +1,4 @@
-FROM node:12-alpine as build
+FROM node:13-alpine as build
 RUN mkdir -p /app
 WORKDIR /app
 ENV CYPRESS_INSTALL_BINARY=0
@@ -14,7 +14,7 @@ RUN yarn build
 RUN node scripts/checkAssetFiles.js
 
 
-FROM node:12-alpine as app
+FROM node:13-alpine as app
 RUN yarn global add modclean
 RUN mkdir -p /app
 WORKDIR /app
@@ -24,7 +24,7 @@ RUN modclean -r -a '*.ts|*.tsx' -I 'example*'
 COPY docs /app/docs/
 COPY --from=build /app/dist/ /app/dist/
 
-FROM node:12-alpine
+FROM node:13-alpine
 ENV NODE_ENV=production
 ENV TZ=Europe/Berlin
 USER node

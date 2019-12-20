@@ -6,14 +6,14 @@ export default async function getDetails(
   train: string,
   initialDeparture?: string,
   stop?: string,
-  line?: string,
+  stationId?: string,
   profile?: AllowedHafasProfile
 ): Promise<ParsedSearchOnTripResponse> {
   const details = (
     await axios.get(`/api/hafas/v1/details/${train}`, {
       params: {
         stop,
-        line,
+        station: stationId,
         profile,
         date: initialDeparture,
       },

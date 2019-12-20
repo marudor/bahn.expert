@@ -28,6 +28,7 @@ const JnySegmentTrain = ({
           {segment.train.name}
           <DetailsLink
             train={segment.train}
+            stationId={segment.segmentStart.id}
             initialDeparture={segment.departure.scheduledTime}
           />
         </span>

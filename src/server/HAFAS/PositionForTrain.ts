@@ -3,7 +3,12 @@ import JourneyGeoPos from 'server/HAFAS/JourneyGeoPos';
 import JourneyMatch from 'server/HAFAS/JourneyMatch';
 
 export default async (trainName: string, profile?: AllowedHafasProfile) => {
-  const matchedTrains = await JourneyMatch(trainName, undefined, profile);
+  const matchedTrains = await JourneyMatch(
+    {
+      trainName,
+    },
+    profile
+  );
   const train = matchedTrains[0];
 
   if (!train) {

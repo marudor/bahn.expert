@@ -67,7 +67,7 @@ export const db = {
     },
     ext: 'DB.R19.04.a',
     lang: 'de',
-    ver: '1.18',
+    ver: '1.20',
     auth: {
       aid: 'n91dB8Z77MLdoR0K',
       type: 'AID',

@@ -1165,14 +1165,18 @@
 						"nullable": true
 					},
 					"nameS": {
-						"type": "string"
+						"type": "string",
+						"nullable": true
+					},
+					"matchId": {
+						"type": "string",
+						"nullable": true
 					}
 				},
 				"required": [
 					"name",
 					"icoX",
-					"cls",
-					"nameS"
+					"cls"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -1509,6 +1513,82 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"JourneyFilter": {
+				"properties": {
+					"mode": {
+						"type": "string",
+						"enum": [
+							"BIT",
+							"EXC",
+							"INC",
+							"UNDEF"
+						]
+					},
+					"type": {
+						"type": "string",
+						"enum": [
+							"ADM",
+							"ATTRF",
+							"ATTRJ",
+							"ATTRL",
+							"BC",
+							"CAT",
+							"COUCH",
+							"CTX_RECON",
+							"GROUP",
+							"INFOTEXTS",
+							"JID",
+							"LID",
+							"LINE",
+							"LINEID",
+							"META",
+							"NAME",
+							"NUM",
+							"OP",
+							"PID",
+							"PROD",
+							"ROUTE",
+							"SLEEP",
+							"STATIONS",
+							"UIC"
+						]
+					},
+					"value": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"mode",
+					"type",
+					"value"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"JourneyMatchOptions": {
+				"properties": {
+					"trainName": {
+						"type": "string"
+					},
+					"initialDepartureDate": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"jnyFltrL": {
+						"items": {
+							"$ref": "#/components/schemas/JourneyFilter"
+						},
+						"type": "array",
+						"nullable": true
+					}
+				},
+				"required": [
+					"trainName"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"Coordinates": {
 				"properties": {
 					"lat": {
@@ -1660,58 +1740,6 @@
 			},
 			"ParsedJourneyGeoPosResponse": {
 				"properties": {},
-				"type": "object",
-				"additionalProperties": false
-			},
-			"JourneyFilter": {
-				"properties": {
-					"mode": {
-						"type": "string",
-						"enum": [
-							"BIT",
-							"EXC",
-							"INC",
-							"UNDEF"
-						]
-					},
-					"type": {
-						"type": "string",
-						"enum": [
-							"ADM",
-							"ATTRF",
-							"ATTRJ",
-							"ATTRL",
-							"BC",
-							"CAT",
-							"COUCH",
-							"CTX_RECON",
-							"GROUP",
-							"INFOTEXTS",
-							"JID",
-							"LID",
-							"LINE",
-							"LINEID",
-							"META",
-							"NAME",
-							"NUM",
-							"OP",
-							"PID",
-							"PROD",
-							"ROUTE",
-							"SLEEP",
-							"STATIONS",
-							"UIC"
-						]
-					},
-					"value": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"mode",
-					"type",
-					"value"
-				],
 				"type": "object",
 				"additionalProperties": false
 			},
@@ -3625,14 +3653,16 @@
 						}
 					},
 					{
+						"description": "EVA Id of a stop of your train",
 						"in": "query",
-						"name": "line",
+						"name": "station",
 						"required": false,
 						"schema": {
 							"type": "string"
 						}
 					},
 					{
+						"description": "Initial Departure Date (Unix Timestap)",
 						"in": "query",
 						"name": "date",
 						"required": false,
@@ -3999,6 +4029,63 @@
 						}
 					}
 				]
+			}
+		},
+		"/hafas/v1/journeyMatch": {
+			"post": {
+				"operationId": "JourneyMatch",
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/ParsedJourneyMatchResponse"
+									},
+									"type": "array"
+								}
+							}
+						},
+						"description": "Ok"
+					}
+				},
+				"tags": [
+					"HAFAS V1"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "profile",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"enum": [
+								"db",
+								"oebb",
+								"sncb",
+								"avv",
+								"nahsh",
+								"hvv",
+								"bvg",
+								"insa",
+								"anachb",
+								"vao",
+								"sbb",
+								"dbnetz"
+							]
+						}
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/JourneyMatchOptions"
+							}
+						}
+					}
+				}
 			}
 		},
 		"/hafas/v1/geoStation": {
