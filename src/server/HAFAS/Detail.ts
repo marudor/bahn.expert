@@ -35,26 +35,47 @@ function calculateCurrentStation(
 export default async (
   trainName: string,
   currentStopId?: string,
-  line?: string,
+  station?: string,
   date: number = Date.now(),
   hafasProfile: AllowedHafasProfile = AllowedHafasProfile.db
 ): Promise<ParsedSearchOnTripResponse | undefined> => {
-  const possibleTrains = (
-    await JourneyMatch(trainName, date, hafasProfile)
-  ).sort(t1 =>
-    t1.firstStop.station.id.startsWith('80') ||
-    t1.lastStop.station.id.startsWith('80')
-      ? -1
-      : 1
-  );
-  let train: ParsedJourneyMatchResponse | undefined;
+  let possibleTrains: undefined | ParsedJourneyMatchResponse[];
 
-  if (line) {
-    train = possibleTrains.find(t => t.train.line === line);
+  if (station) {
+    try {
+      possibleTrains = await JourneyMatch({
+        trainName,
+        initialDepartureDate: date,
+        jnyFltrL: [
+          {
+            type: 'STATIONS',
+            mode: 'INC',
+            value: station,
+          },
+        ],
+      });
+    } catch {
+      // ignore
+    }
   }
-  if (!train) {
-    train = possibleTrains[0];
+
+  if (!possibleTrains) {
+    possibleTrains = await JourneyMatch(
+      {
+        trainName,
+        initialDepartureDate: date,
+      },
+      hafasProfile
+    );
   }
+
+  // possibleTrains.sort(t1 =>
+  //   t1.firstStop.station.id.startsWith('80') ||
+  //   t1.lastStop.station.id.startsWith('80')
+  //     ? -1
+  //     : 1
+  // );
+  const train: ParsedJourneyMatchResponse | undefined = possibleTrains[0];
 
   if (!train) return undefined;
 

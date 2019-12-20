@@ -33,6 +33,7 @@ const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
           />
           <DetailsLink
             train={abfahrt.train}
+            stationId={abfahrt.currentStation.id}
             initialDeparture={abfahrt.initialDeparture}
           />
         </div>
