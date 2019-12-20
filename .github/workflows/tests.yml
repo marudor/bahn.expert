@@ -17,19 +17,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Use Node.js 12
+    - name: Use Node.js 13
       uses: actions/setup-node@master
       with:
-        node-version: 12
+        node-version: 13
     - name: Cache node modules
       uses: actions/cache@v1
       with:
         path: node_modules
-        key: ${{ runner.OS }}-build-${{ hashFiles('yarn.lock')}}
-        restore-keys: |
-          ${{ runner.OS }}-build-${{ env.cache-name }}-
-          ${{ runner.OS }}-build-
-          ${{ runner.OS }}-
+        key: ${{ runner.OS }}-build-${{ hashFiles('yarn.lock')}}${{ hashFiles('package.json')}}
     - name: install
       run: |
         yarn --frozen-lockfile
@@ -54,19 +50,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Use Node.js 12
+    - name: Use Node.js 13
       uses: actions/setup-node@master
       with:
-        node-version: 12
+        node-version: 13
     - name: Cache node modules
       uses: actions/cache@v1
       with:
         path: node_modules
-        key: ${{ runner.OS }}-build-${{ hashFiles('yarn.lock')}}
-        restore-keys: |
-          ${{ runner.OS }}-build-${{ env.cache-name }}-
-          ${{ runner.OS }}-build-
-          ${{ runner.OS }}-
+        key: ${{ runner.OS }}-build-${{ hashFiles('yarn.lock')}}${{ hashFiles('package.json')}}
     - name: install
       run: |
         yarn --frozen-lockfile
@@ -99,19 +91,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Use Node.js 12
+    - name: Use Node.js 13
       uses: actions/setup-node@master
       with:
-        node-version: 12
+        node-version: 13
     - name: Cache node modules
       uses: actions/cache@v1
       with:
         path: node_modules
-        key: ${{ runner.OS }}-build-${{ hashFiles('yarn.lock')}}
-        restore-keys: |
-          ${{ runner.OS }}-build-${{ env.cache-name }}-
-          ${{ runner.OS }}-build-
-          ${{ runner.OS }}-
+        key: ${{ runner.OS }}-build-${{ hashFiles('yarn.lock')}}${{ hashFiles('package.json')}}
     - name: install
       run: |
         yarn --frozen-lockfile

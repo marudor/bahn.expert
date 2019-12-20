@@ -7,7 +7,6 @@ interface Props
   extends RouteComponentProps<{
     train: string;
     initialDeparture?: string;
-    line?: string;
   }> {}
 
 const DetailsRoute = ({
@@ -20,7 +19,7 @@ const DetailsRoute = ({
   return (
     <Details
       train={train}
-      line={query.line}
+      stationId={query.station}
       initialDeparture={initialDeparture}
       currentStopId={query.stop}
     />

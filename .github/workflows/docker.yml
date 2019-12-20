@@ -1,9 +1,9 @@
 name: docker
 
-on: ["push"]
-  # push:
-  #   branches:
-  #     - master
+on:
+  push:
+    branches:
+      - master
 
 env:
   CI: "true"

@@ -6,16 +6,17 @@ import stopPropagation from 'Common/stopPropagation';
 
 interface Props {
   train: CommonProductInfo;
+  stationId?: string;
   initialDeparture: number;
 }
-const DetailsLink = ({ train, initialDeparture }: Props) => (
+const DetailsLink = ({ train, stationId, initialDeparture }: Props) => (
   <Link
     onClick={stopPropagation}
     to={`/details/${train.type} ${
       train.number
     }/${initialDeparture}${qs.stringify(
       {
-        line: train.line,
+        station: stationId,
       },
       {
         addQueryPrefix: true,

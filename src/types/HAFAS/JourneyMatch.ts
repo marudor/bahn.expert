@@ -26,3 +26,8 @@ export interface ParsedJourneyMatchResponse {
   lastStop: Route$Stop;
   messages?: RemL[];
 }
+export interface JourneyMatchOptions {
+  trainName: string;
+  initialDepartureDate?: number;
+  jnyFltrL?: JourneyFilter[];
+}

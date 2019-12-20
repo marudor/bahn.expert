@@ -12,6 +12,7 @@ import {
   Controller,
   Get,
   Hidden,
+  OperationId,
   Post,
   Query,
   Request,
@@ -24,8 +25,11 @@ import {
   JourneyGeoPosOptions,
   ParsedJourneyGeoPosResponse,
 } from 'types/HAFAS/JourneyGeoPos';
+import {
+  JourneyMatchOptions,
+  ParsedJourneyMatchResponse,
+} from 'types/HAFAS/JourneyMatch';
 import { ParsedJourneyDetails } from 'types/HAFAS/JourneyDetails';
-import { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 import { Route$Auslastung, RoutingResult, SingleRoute } from 'types/routing';
 import { Station } from 'types/station';
 import { TrainSearchResult } from 'types/HAFAS/Details';
@@ -95,11 +99,17 @@ export class HafasController extends Controller {
      * Unix Time (ms)
      */
     @Query() stop?: string,
-    @Query() line?: string,
+    /**
+     * EVA Id of a stop of your train
+     */
+    @Query() station?: string,
+    /**
+     * Initial Departure Date (Unix Timestap)
+     */
     @Query() date?: number,
     @Query() profile?: AllowedHafasProfile
   ): Promise<ParsedSearchOnTripResponse> {
-    const details = await Detail(trainName, stop, line, date, profile);
+    const details = await Detail(trainName, stop, station, date, profile);
 
     if (!details) {
       throw {
@@ -212,7 +222,25 @@ export class HafasController extends Controller {
     @Query() date?: number,
     @Query() profile?: AllowedHafasProfile
   ): Promise<ParsedJourneyMatchResponse[]> {
-    return JourneyMatch(trainName, date, profile, ctx.query.raw);
+    return JourneyMatch(
+      {
+        trainName,
+        initialDepartureDate: date,
+      },
+      profile,
+      ctx.query.raw
+    );
+  }
+
+  @Post('/journeyMatch')
+  @Tags('HAFAS V1')
+  @OperationId('JourneyMatch')
+  postJourneyMatch(
+    @Request() ctx: Context,
+    @Body() options: JourneyMatchOptions,
+    @Query() profile?: AllowedHafasProfile
+  ): Promise<ParsedJourneyMatchResponse[]> {
+    return JourneyMatch(options, profile, ctx.query.raw);
   }
 
   @Get('/geoStation')
