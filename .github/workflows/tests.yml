@@ -26,10 +26,6 @@ jobs:
       with:
         path: node_modules
         key: ${{ runner.OS }}-build-${{ hashFiles('yarn.lock')}}${{ hashFiles('package.json')}}
-        restore-keys: |
-          ${{ runner.OS }}-build-${{ env.cache-name }}-
-          ${{ runner.OS }}-build-
-          ${{ runner.OS }}-
     - name: install
       run: |
         yarn --frozen-lockfile
@@ -63,10 +59,6 @@ jobs:
       with:
         path: node_modules
         key: ${{ runner.OS }}-build-${{ hashFiles('yarn.lock')}}${{ hashFiles('package.json')}}
-        restore-keys: |
-          ${{ runner.OS }}-build-${{ env.cache-name }}-
-          ${{ runner.OS }}-build-
-          ${{ runner.OS }}-
     - name: install
       run: |
         yarn --frozen-lockfile
@@ -108,10 +100,6 @@ jobs:
       with:
         path: node_modules
         key: ${{ runner.OS }}-build-${{ hashFiles('yarn.lock')}}${{ hashFiles('package.json')}}
-        restore-keys: |
-          ${{ runner.OS }}-build-${{ env.cache-name }}-
-          ${{ runner.OS }}-build-
-          ${{ runner.OS }}-
     - name: install
       run: |
         yarn --frozen-lockfile
