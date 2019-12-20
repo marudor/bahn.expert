@@ -73,6 +73,9 @@ const FahrzeugComp = ({
   // @ts-ignore
   const klasseClassName: keyof typeof classes = `klasse${fahrzeug.additionalInfo.klasse}`;
 
+  const anzeigenummer_br = fahrzeug.fahrzeugnummer.substr(4, 4)
+  const anzeigenummer_laufende = fahrzeug.fahrzeugnummer.substr(8, 3)
+
   return (
     <div
       data-testid={`reihungFahrzeug${fahrzeug.wagenordnungsnummer}`}
@@ -108,7 +111,7 @@ const FahrzeugComp = ({
             wagenordnungsnummer={fahrzeug.wagenordnungsnummer}
             additionalInfo={fahrzeug.additionalInfo}
           />
-          {showUIC && fahrzeug.fahrzeugnummer}
+          {showUIC && anzeigenummer_br} {showUIC && anzeigenummer_laufende}
         </span>
       }
     </div>
