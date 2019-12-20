@@ -19,5 +19,6 @@ jobs:
         chart: './charts/bahnhofsabfahrten'
         values: |
           imageTag: '${{ github.sha }}'
+          imageRepository: ctr.run/github.com/${{ owner }}/${{ repo }}
       env:
         KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
