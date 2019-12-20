@@ -4,12 +4,10 @@
 
 replicaCount: 1
 
-image:
-  registryHost: docker.pkg.github.com/
-  repository:  docker.pkg.github.com/marudor/bahnhofsabfahrten/standalone
-  tag: latest
-  pullPolicy: IfNotPresent
-  pullSecret: github
+imageRepository: docker.pkg.github.com/marudor/bahnhofsabfahrten/standalone
+imageTag: latest
+imagePullPolicy: IfNotPresent
+imagePullSecret: github
 
 nameOverride: ''
 fullnameOverride: ''
