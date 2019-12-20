@@ -21,8 +21,8 @@ spec:
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: "{{ .Values.imageRepository }}:{{ .Values.imageTag }}"
+          imagePullPolicy: {{ .Values.imagePullPolicy }}
           readinessProbe:
             httpGet:
               path: /ping
@@ -44,9 +44,9 @@ spec:
 {{ end }}
           resources:
 {{ toYaml .Values.resources | indent 12 }}
-      {{ if .Values.image.pullSecret }}
+      {{ if .Values.imagePullSecret }}
       imagePullSecrets:
-      - name: {{ .Values.image.pullSecret }}
+      - name: {{ .Values.imagePullSecret }}
       {{ end }}
     {{- with .Values.nodeSelector }}
       nodeSelector:

@@ -2,6 +2,5 @@ env:
   - name: ENVIRONMENT
     value: pr
 
-image:
-  registryHost: ctr.run
-  repository: ctr.run/github.com/marudor/bahnhofsabfahrten
+imageRepository: ctr.run/github.com/marudor/bahnhofsabfahrten
+imagePullSecret: ctr-run
