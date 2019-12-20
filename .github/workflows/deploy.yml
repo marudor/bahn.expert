@@ -15,10 +15,10 @@ jobs:
         helm: 'helm3'
         token: '${{ github.token }}'
         secrets: '${{ toJSON(secrets) }}'
-        version: '${{ github.sha }}'
+        version: '${{ pull_request.head.sha }}'
         chart: './charts/bahnhofsabfahrten'
         values: |
-          imageTag: '${{ github.sha }}'
-          imageRepository: ctr.run/github.com/${{ owner }}/${{ repo }}
+          imageTag: '${{ pull_request.head.head.sha }}'
+          imageRepository: ctr.run/github.com/${{ pull_request.head.repo.full_name }}
       env:
         KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
