@@ -230,6 +230,8 @@ const naming = {
   9018: 'Freistaat Bayern',
   9025: 'Nordrhein-Westfalen',
   9026: 'Zürichsee',
+  152: 'Hanau',
+  166: 'Gelnhausen',
 };
 
 export default (tzn?: string): string | undefined => {
