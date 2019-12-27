@@ -9277,6 +9277,11 @@ object.values@^1.1.0:
     function-bind "^1.1.1"
     has "^1.0.3"
 
+ol-layerswitcher@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/ol-layerswitcher/-/ol-layerswitcher-3.4.0.tgz#41144354acb46f74f25a2db3a6536ffc4f62b9ba"
+  integrity sha512-WhCf+UKyJuOIp9DehjhInATaiVK4ic89ZqxMlZ9vfEW1BsQ7Y7hDxoAlqgXtW9FQz2Ch558XIVMBRWfsB7CJ2w==
+
 ol@^6.1.1:
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/ol/-/ol-6.1.1.tgz#7f8ada284344a5872d552205de558ed4a904cd27"
