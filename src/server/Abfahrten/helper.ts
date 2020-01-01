@@ -50,7 +50,7 @@ export function getBoolAttr(node: null | Element, name: string): boolean {
 export function parseTs(ts?: string): undefined | number {
   if (ts) {
     return zonedTimeToUtc(
-      parse(ts, 'yyMMddHHmm', 0),
+      parse(ts, 'yyMMddHHmm', Date.now()),
       'Europe/Berlin'
     ).getTime();
   }

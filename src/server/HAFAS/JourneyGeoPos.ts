@@ -16,7 +16,7 @@ const parseJourneyGeoPos = (
 ): ParsedJourneyGeoPosResponse => {
   return r.svcResL[0].res.jnyL.map(j => {
     const train = common.prodL[j.prodX];
-    const date = parse(j.date, 'yyMMdd', 0);
+    const date = parse(j.date, 'yyMMdd', Date.now());
 
     return {
       jid: j.jid,
