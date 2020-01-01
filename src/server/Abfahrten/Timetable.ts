@@ -133,7 +133,7 @@ function parseRawId(rawId: string) {
     mediumId: (mediumIdMatch && mediumIdMatch[1]) || rawId,
     initialDeparture:
       (initialDepartureMatch &&
-        parse(initialDepartureMatch[1], 'yyMMddHHmm', 0).getTime()) ||
+        parse(initialDepartureMatch[1], 'yyMMddHHmm', Date.now()).getTime()) ||
       '',
   };
 }
