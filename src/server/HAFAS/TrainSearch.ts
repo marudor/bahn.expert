@@ -76,7 +76,10 @@ export default async (
 
   firstResult.jid = `1|${firstResult.id}|${firstResult.cycle}|${
     profile.number
-  }|${format(parse(firstResult.depDate, 'dd.MM.yyyy', 0), 'ddMMyyyy')}`;
+  }|${format(
+    parse(firstResult.depDate, 'dd.MM.yyyy', Date.now()),
+    'ddMMyyyy'
+  )}`;
   const jDetails = await journeyDetails(firstResult.jid, profileType);
 
   if (jDetails.firstStop) {
