@@ -10,6 +10,7 @@ import MapsLocalDining from '@material-ui/icons/LocalDining';
 import NotificationsOff from '@material-ui/icons/NotificationsOff';
 import React, { ComponentType } from 'react';
 import SitzplatzInfo from './SitzplatzInfo';
+import UIC from './UIC';
 import useStyles from './Fahrzeug.style';
 import WagenLink from './WagenLink';
 import Wifi from '@material-ui/icons/Wifi';
@@ -108,7 +109,7 @@ const FahrzeugComp = ({
             wagenordnungsnummer={fahrzeug.wagenordnungsnummer}
             additionalInfo={fahrzeug.additionalInfo}
           />
-          {showUIC && fahrzeug.fahrzeugnummer}
+          {showUIC && <UIC uic={fahrzeug.fahrzeugnummer} />}
         </span>
       }
     </div>
