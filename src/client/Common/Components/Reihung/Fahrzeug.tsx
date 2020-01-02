@@ -10,6 +10,7 @@ import MapsLocalDining from '@material-ui/icons/LocalDining';
 import NotificationsOff from '@material-ui/icons/NotificationsOff';
 import React, { ComponentType } from 'react';
 import SitzplatzInfo from './SitzplatzInfo';
+import UIC from './UIC';
 import useStyles from './Fahrzeug.style';
 import WagenLink from './WagenLink';
 import Wifi from '@material-ui/icons/Wifi';
@@ -73,9 +74,6 @@ const FahrzeugComp = ({
   // @ts-ignore
   const klasseClassName: keyof typeof classes = `klasse${fahrzeug.additionalInfo.klasse}`;
 
-  const anzeigenummer_br = fahrzeug.fahrzeugnummer.substr(4, 4);
-  const anzeigenummer_laufende = fahrzeug.fahrzeugnummer.substr(8, 3);
-
   return (
     <div
       data-testid={`reihungFahrzeug${fahrzeug.wagenordnungsnummer}`}
@@ -111,7 +109,7 @@ const FahrzeugComp = ({
             wagenordnungsnummer={fahrzeug.wagenordnungsnummer}
             additionalInfo={fahrzeug.additionalInfo}
           />
-          {showUIC && anzeigenummer_br} {showUIC && anzeigenummer_laufende}
+          {showUIC && <UIC uic={fahrzeug.fahrzeugnummer} />}
         </span>
       }
     </div>
