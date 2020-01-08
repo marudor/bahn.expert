@@ -252,6 +252,18 @@ function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
     data.icons.family = false;
   }
 
+  if (gruppe.br?.name === 'MET') {
+    if (
+      fahrzeug.wagenordnungsnummer === '5' ||
+      fahrzeug.wagenordnungsnummer === '6'
+    ) {
+      data.comfort = true;
+    }
+    if (fahrzeug.fahrzeugtyp === 'Bpmz') {
+      fahrzeug.fahrzeugtyp = 'Apmz';
+    }
+  }
+
   if (
     gruppe.tzn &&
     gruppe.br &&
