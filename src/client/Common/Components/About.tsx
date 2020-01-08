@@ -244,16 +244,6 @@ const About = () => {
       <BaseHeader>About</BaseHeader>
       <div className={classes.main}>
         <span>
-          <a
-            href="https://github.com/marudor/bahnhofsAbfahrten/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Bahnhofs Abfahrten
-          </a>{' '}
-          v{global.VERSION}
-        </span>
-        <span>
           Entwickelt von{' '}
           <a
             href="https://twitter.com/marudor"

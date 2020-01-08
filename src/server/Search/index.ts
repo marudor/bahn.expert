@@ -4,6 +4,7 @@ import BusinessHubSearch, {
   canUseBusinessHub,
 } from 'server/Search/BusinessHub';
 import DBNavigatorSearch from 'server/HAFAS/LocMatch';
+import DS100 from 'server/Search/DS100';
 import FavendoSearch from './Favendo';
 import NodeCache from 'node-cache';
 import OpenDataOfflineSearch from './OpenDataOffline';
@@ -55,6 +56,8 @@ export default async (
 ) => {
   const searchTerm = rawSearchTerm.replace(/ {2}/g, ' ');
 
+  const ds100Search = DS100(searchTerm);
+
   try {
     const searchMethod = getSearchMethod(type);
     const cache = getCache(searchMethod);
@@ -74,6 +77,11 @@ export default async (
       );
     }
 
+    const ds100Station = await ds100Search;
+
+    if (ds100Station) {
+      result = [ds100Station, ...result];
+    }
     cache.set(searchTerm, result);
 
     return result.slice(0, maxStations);
