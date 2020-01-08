@@ -9,7 +9,7 @@ ENV PROD_ONLY=true
 COPY src  /app/src/
 COPY public /app/public/
 COPY scripts /app/scripts/
-COPY webpack.config.js version.js .babelrc.js .babelrc.server.js /app/
+COPY webpack.config.js .babelrc.js .babelrc.server.js /app/
 RUN yarn build
 RUN node scripts/checkAssetFiles.js
 
