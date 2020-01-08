@@ -15,6 +15,7 @@ import { groupBy, maxBy, minBy } from 'lodash';
 import { isRedesignByTZ, isRedesignByUIC } from 'server/Reihung/tzInfo';
 import axios from 'axios';
 import getBR from 'server/Reihung/getBR';
+import Gruppe from 'Common/Components/Reihung/Gruppe';
 import ICENaming from 'server/Reihung/ICENaming';
 
 const countryMapping: any = {
@@ -250,6 +251,18 @@ function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
     data.comfort = false;
     data.icons.disabled = false;
     data.icons.family = false;
+  }
+
+  if (gruppe.br?.name === 'MET') {
+    if (
+      fahrzeug.wagenordnungsnummer === '5' ||
+      fahrzeug.wagenordnungsnummer === '6'
+    ) {
+      data.comfort = true;
+    }
+    if (fahrzeug.fahrzeugtyp === 'Bpmz') {
+      fahrzeug.fahrzeugtyp = 'Apmz';
+    }
   }
 
   if (
