@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Route, Tags } from 'tsoa';
+import { Controller, Get, Query, Response, Route, Tags } from 'tsoa';
 import { DetailBusinessHubStation } from 'types/BusinessHub/StopPlaces';
 import { getStation } from 'server/Abfahrten/station';
 import {
@@ -8,6 +8,7 @@ import {
 } from 'types/station';
 import { searchAll } from 'server/Search/searchAll';
 import { stationDetails } from 'server/Search/BusinessHub';
+import DS100 from 'server/Search/DS100';
 import favendoSearch from 'server/Search/Favendo';
 import stationSearch from 'server/Search';
 
@@ -67,5 +68,20 @@ export class StationController extends Controller {
   @Tags('Station V1')
   searchAll(searchTerm: string) {
     return searchAll(searchTerm);
+  }
+
+  @Response(400, 'No station found')
+  @Get('/ds100/{ds100}')
+  @Tags('Station V1')
+  async ds100(ds100: string): Promise<Station> {
+    const station = await DS100(ds100);
+
+    if (station) {
+      return station;
+    }
+
+    throw {
+      status: 404,
+    };
   }
 }

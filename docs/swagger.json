@@ -4802,6 +4802,43 @@
 					}
 				]
 			}
+		},
+		"/station/v1/ds100/{ds100}": {
+			"get": {
+				"operationId": "Ds100",
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Station"
+								}
+							}
+						},
+						"description": "Ok"
+					},
+					"400": {
+						"content": {
+							"application/json": {}
+						},
+						"description": "No station found"
+					}
+				},
+				"tags": [
+					"Station V1"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "ds100",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
 		}
 	},
 	"servers": [

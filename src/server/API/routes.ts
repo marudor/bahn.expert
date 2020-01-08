@@ -1810,6 +1810,26 @@ export function RegisterRoutes(router: KoaRouter) {
       return promiseHandler(controller, promise, context, next);
     });
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  router.get('/api/station/v1/ds100/:ds100',
+    async (context: any, next: any) => {
+      const args = {
+        ds100: { "in": "path", "name": "ds100", "required": true, "dataType": "string" },
+      };
+
+      let validatedArgs: any[] = [];
+      try {
+        validatedArgs = getValidatedArgs(args, context);
+      } catch (error) {
+        context.status = error.status;
+        context.throw(error.status, JSON.stringify({ fields: error.fields }));
+      }
+
+      const controller = new StationController();
+
+      const promise = controller.ds100.apply(controller, validatedArgs as any);
+      return promiseHandler(controller, promise, context, next);
+    });
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
 
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
