@@ -28,9 +28,7 @@ const Info = ({ abfahrt, detail }: Props) => {
   const MessagesComp = detail ? DetailMessages : NormalMessages;
   const ViaComp = detail ? DetailVia : NormalVia;
 
-  const info = Boolean(messages.length) && (
-    <MessagesComp messages={messages} cancelled={abfahrt.cancelled} />
-  );
+  const info = Boolean(messages.length) && <MessagesComp messages={messages} />;
   const via = (detail || !info) && <ViaComp stops={abfahrt.route} />;
 
   return useMemo(() => {
