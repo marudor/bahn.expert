@@ -6,20 +6,15 @@ import useStyles from './index.style';
 
 interface Props {
   messages: Message[];
-  isCancelled?: boolean;
 }
 
-const DetailMessages = ({ messages, isCancelled }: Props) => {
+const DetailMessages = ({ messages }: Props) => {
   const today = new Date().getDate();
   const classes = useStyles();
   const sorted = messages.sort((a, b) => compareDesc(a.timestamp, b.timestamp));
 
   return (
-    <div
-      className={cc(classes.messages, {
-        [classes.cancelled]: isCancelled,
-      })}
-    >
+    <div className={classes.messages}>
       {sorted.map((m, i) => {
         const ts = new Date(m.timestamp);
 
