@@ -40,7 +40,6 @@ const plugins = [
     'global.PROD': JSON.stringify(!isDev),
     'global.TEST': JSON.stringify(process.env.NODE_ENV === 'test'),
     'global.SERVER': JSON.stringify(false),
-    'global.VERSION': JSON.stringify(require('./version')),
   }),
   new WorkboxPlugin.GenerateSW({
     swDest: 'sw.js',

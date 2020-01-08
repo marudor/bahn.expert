@@ -7,6 +7,11 @@ describe('Station V1', () => {
   const server = createTestServer();
 
   describe('/search', () => {
+    beforeEach(() => {
+      Nock('https://iris.noncd.db.de')
+        .get('/iris-tts/timetable/station/Hamburg')
+        .reply(200, '<stations></stations>');
+    });
     it('no Type goes to default', () => {
       Nock('https://api.businesshub.deutschebahn.com')
         .get('/public-transport-stations/v1/stop-places?name=Hamburg')
