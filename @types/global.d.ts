@@ -8,7 +8,6 @@ declare global {
       TEST: boolean;
       PROD: boolean;
       SERVER: boolean;
-      VERSION: string;
       IMPRINT: {
         name: string;
         street: string;
