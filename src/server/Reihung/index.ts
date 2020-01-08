@@ -398,9 +398,11 @@ export async function wagenreihung(trainNumber: string, date: number) {
       g.tzn = tzn?.match(tznRegex)?.[0];
       g.name = ICENaming(g.tzn);
 
-      if (g.br && isRedesignByTZ(tzn)) {
+      console.log(g.tzn, isRedesignByTZ(g.tzn));
+      if (g.br && isRedesignByTZ(g.tzn)) {
         g.br.redesign = true;
       }
+      console.log(g.br);
     }
 
     g.allFahrzeug.forEach(fahrzeug => {

@@ -6,15 +6,22 @@ export interface TzInfo {
   uicList: string[];
 }
 
-export function infoByTZ(tz: string): TzInfo | undefined {
+export function infoByTZ(rawTz?: string): TzInfo | undefined {
+  if (!rawTz) return;
+  let tz = rawTz;
+
+  if (!tz.startsWith('TZ')) {
+    tz = `TZ${rawTz}`;
+  }
+
   return tzInfo[tz as keyof typeof tzInfo];
 }
 
-export function BRByTZ(tz: string): string | undefined {
+export function BRByTZ(tz?: string): string | undefined {
   return infoByTZ(tz)?.br;
 }
 
-export function isRedesignByTZ(tz: string): boolean | undefined {
+export function isRedesignByTZ(tz?: string): boolean | undefined {
   return BRByTZ(tz)?.includes('RD');
 }
 
