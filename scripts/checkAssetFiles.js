@@ -3,13 +3,21 @@ const path = require('path');
 const fs = require('fs');
 const stats = require(path.resolve('dist/client/loadable-stats.json'));
 
-Object.keys(stats.assetsByChunkName).forEach(chunk => {
-  const assetPath = path.resolve('dist/client', stats.assetsByChunkName[chunk]);
+function checkFile(filePath) {
+  const assetPath = path.resolve('dist/client', filePath);
 
   if (!fs.existsSync(assetPath)) {
     console.error(`${assetPath} does not exist. Build failed`);
     process.exit(1);
   }
-});
+}
 
-console.log(stats.assetsByChunkName);
+Object.keys(stats.assetsByChunkName).forEach(chunk => {
+  const chunkPath = stats.assetsByChunkName[chunk];
+
+  if (Array.isArray(chunkPath)) {
+    chunkPath.forEach(checkFile);
+  } else {
+    checkFile(chunkPath);
+  }
+});
