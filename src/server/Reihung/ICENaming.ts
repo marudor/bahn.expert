@@ -230,6 +230,7 @@ const naming = {
   9018: 'Freistaat Bayern',
   9025: 'Nordrhein-Westfalen',
   9026: 'Zürichsee',
+  9041: 'Baden-Württemberg',
   152: 'Hanau',
   166: 'Gelnhausen',
 };
