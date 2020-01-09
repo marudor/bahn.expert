@@ -13,6 +13,13 @@ describe('Auslastung', () => {
     );
 
   it('shows loading first, nothing on error', async () => {
+    nock
+      .get(
+        encodeURI(
+          `/api/hafas/v1/auslastung/${mockAbfahrt.currentStation.title}/${mockAbfahrt.destination}/${mockAbfahrt.train.number}/${mockAbfahrt.departure.scheduledTime}`
+        )
+      )
+      .reply(500);
     const { queryByTestId } = renderAuslastung();
 
     await waitForElementToBeRemoved(() => queryByTestId('loading'));
@@ -22,7 +29,9 @@ describe('Auslastung', () => {
   it('shows auslastung after loading', async () => {
     nock
       .get(
-        `/api/hafas/v1/auslastung/${mockAbfahrt.currentStation.title}/${mockAbfahrt.destination}/${mockAbfahrt.train.number}/${mockAbfahrt.departure.scheduledTime}`
+        encodeURI(
+          `/api/hafas/v1/auslastung/${mockAbfahrt.currentStation.title}/${mockAbfahrt.destination}/${mockAbfahrt.train.number}/${mockAbfahrt.departure.scheduledTime}`
+        )
       )
       .reply(200, {
         first: 1,
