@@ -7,6 +7,7 @@ module.exports = {
   collectCoverage: Boolean(process.env.CI || process.env.COVERAGE),
   collectCoverageFrom: [
     '<rootDir>/src/**/*.{ts,tsx}',
+    '!<rootDir>/src/app/**',
     '!<rootDir>/src/server/API/routes.ts',
     '!<rootDir>/src/types/**',
   ],

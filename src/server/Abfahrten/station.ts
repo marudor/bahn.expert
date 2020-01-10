@@ -3,7 +3,7 @@ import { AxiosInstance } from 'axios';
 import { IrisStationWithRelated } from 'types/station';
 import { noncdAxios } from './helper';
 import NodeCache from 'node-cache';
-import xmljs from 'libxmljs2';
+import xmljs, { Element } from 'libxmljs2';
 
 export interface Station {
   name: string;
@@ -47,7 +47,7 @@ export async function getSingleStation(
 
   const xml = xmljs.parseXml(rawXml);
 
-  const xmlStation = xml.get('//station');
+  const xmlStation = xml.get<Element>('//station');
 
   if (!xmlStation) {
     throw {

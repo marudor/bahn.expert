@@ -3,7 +3,7 @@ import { noncdAxios } from 'server/Abfahrten/helper';
 import fs from 'fs';
 import path from 'path';
 import Timetable from 'server/Abfahrten/Timetable';
-import xmljs from 'libxmljs2';
+import xmljs, { Element } from 'libxmljs2';
 
 describe('parseTimetableS', () => {
   const baseFixturePath = 'fixtures/plan';
@@ -24,7 +24,7 @@ describe('parseTimetableS', () => {
         path.resolve(__dirname, baseFixturePath, file),
         'utf8'
       );
-      const nodes = xmljs.parseXml(inXml).find('//timetable/s');
+      const nodes = xmljs.parseXml(inXml).find<Element>('//timetable/s');
 
       nodes.forEach(n =>
         expect(timetable.parseTimetableS(n)).toMatchSnapshot()

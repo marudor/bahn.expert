@@ -7,7 +7,7 @@ import {
 } from 'Common/service/stationSearch';
 import { Station, StationSearchType } from 'types/station';
 import debounce from 'debounce-promise';
-import Downshift, { DownshiftInterface } from 'downshift';
+import Downshift from 'downshift';
 import Loading, { LoadingType } from './Loading';
 import MenuItem from '@material-ui/core/MenuItem';
 import MyLocation from '@material-ui/icons/MyLocation';
@@ -37,7 +37,6 @@ interface Props {
   additionalIcons?: ReactNode;
 }
 
-const TDownshift: DownshiftInterface<Station> = Downshift;
 const StationSearch = ({
   id,
   onChange,
@@ -104,7 +103,7 @@ const StationSearch = ({
 
   return (
     <div className={classes.wrapper}>
-      <TDownshift
+      <Downshift
         id={id}
         // @ts-ignore
         ref={selectRef}
@@ -214,7 +213,7 @@ const StationSearch = ({
             </div>
           );
         }}
-      </TDownshift>
+      </Downshift>
       <div className={classes.icons}>
         <MyLocation onClick={getLocation} />
         {additionalIcons}
