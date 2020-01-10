@@ -7,7 +7,7 @@ interface Props {
   baseUrl: string;
 }
 const MetaTags = ({ currentStation, baseUrl }: Props) => {
-  let title = 'Bahnhofsabfahrten';
+  let title = 'Bahnhofs Abfahrten';
   let ogDescription =
     'Zugabfahrten für Stationen der Deutsche Bahn. Nutzt verschiedene Quellen um möglichst genaue Informationen bereitzustellen. Nutzt teilweise offizielle, teilweise inoffizielle Quellen.';
   let description = ogDescription;

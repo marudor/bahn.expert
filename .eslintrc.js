@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   extends: ['marudor'],
   parser: 'babel-eslint',
   env: {

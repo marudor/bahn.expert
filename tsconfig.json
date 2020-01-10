@@ -1,5 +1,5 @@
 {
-  "exclude": ["cypress"],
+  "exclude": ["cypress", "src/app"],
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
