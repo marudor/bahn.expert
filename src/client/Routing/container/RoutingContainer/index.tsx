@@ -4,7 +4,7 @@ import React, { ReactNode, useState } from 'react';
 import RoutingConfingContainer, {
   defaultRoutingSettings,
 } from 'Routing/container/RoutingConfigContainer';
-import useCookies from 'Common/useCookies';
+import useStorage from 'shared/hooks/useStorage';
 
 const useRouting = () => {
   const [routes, setRoutes] = useState<SingleRoute[] | undefined>([]);
@@ -32,11 +32,11 @@ interface Props {
   children: ReactNode;
 }
 export const RoutingProvider = ({ children }: Props) => {
-  const cookies = useCookies();
+  const storage = useStorage();
 
   const savedRoutingSettings = {
     ...defaultRoutingSettings,
-    ...cookies.get('rconfig'),
+    ...storage.get('rconfig'),
   };
 
   return (

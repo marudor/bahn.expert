@@ -1,14 +1,13 @@
-import { AbfahrtenConfigSanitize, CommonConfigSanitize } from 'Common/config';
 import { abfahrtenConfigSanitize, commonConfigSanitize } from 'client/util';
+import { AbfahrtenConfigSanitize, CommonConfigSanitize } from 'Common/config';
 import { ChunkExtractor } from '@loadable/server';
 import { Context } from 'koa';
-import { CookieContext } from 'Common/useCookies';
 import { HelmetProvider } from 'react-helmet-async';
 import { renderToString } from 'react-dom/server';
-import { setCookieOptions } from 'client/util';
 import { SheetsRegistry } from 'jss';
 import { StaticRouter } from 'react-router-dom';
 import { StaticRouterContext } from 'react-router';
+import { StorageContext } from 'shared/hooks/useStorage';
 import { ThemeProvider } from 'Common/container/ThemeContainer';
 import ejs from 'ejs';
 import fs from 'fs';
@@ -34,11 +33,7 @@ export default (ctx: Context) => {
   const selectedDetail = ctx.query.selectedDetail;
 
   if (selectedDetail) {
-    ctx.request.universalCookies.set(
-      'selectedDetail',
-      selectedDetail,
-      setCookieOptions
-    );
+    ctx.request.storage.set('selectedDetail', selectedDetail);
   }
   const routeContext: StaticRouterContext = {};
 
@@ -69,11 +64,11 @@ export default (ctx: Context) => {
   const App = extractor.collectChunks(
     <HelmetProvider context={context}>
       <StaticRouter location={ctx.url} context={routeContext}>
-        <CookieContext.Provider value={ctx.request.universalCookies}>
+        <StorageContext.Provider value={ctx.request.storage}>
           <ThemeProvider>
             <ThemeWrap sheetsRegistry={sheets} />
           </ThemeProvider>
-        </CookieContext.Provider>
+        </StorageContext.Provider>
       </StaticRouter>
     </HelmetProvider>
   );

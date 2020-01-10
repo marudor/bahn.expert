@@ -3,7 +3,6 @@ import { middlewares } from './logger';
 import { Server as NetServer } from 'net';
 import { Server } from 'https';
 import axios from 'axios';
-import cookiesMiddleware from 'universal-cookie-koa';
 import createAdmin from './admin';
 import createDocsServer from './docsServer';
 import http from 'http';
@@ -11,6 +10,7 @@ import Koa, { Context, Middleware } from 'koa';
 import KoaBodyparser from 'koa-bodyparser';
 import koaStatic from 'koa-static';
 import path from 'path';
+import storageMiddleware from './middleware/storageMiddleware';
 
 global.SERVER = true;
 
@@ -66,7 +66,7 @@ export function createApp(wsServer?: Server) {
 
   devPromise.then(() => {
     app.use(hotHelper(() => errorHandler));
-    app.use(cookiesMiddleware());
+    app.use(storageMiddleware());
     middlewares.forEach(m => app.use(m));
     app.use(KoaBodyparser());
 

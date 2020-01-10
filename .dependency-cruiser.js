@@ -71,15 +71,6 @@ module.exports = {
       },
     },
     {
-      name: 'no-non-package-json',
-      severity: 'error',
-      comment: "Don't allow dependencies to packages not in package.json",
-      from: {},
-      to: {
-        dependencyTypes: ['npm-no-pkg', 'npm-unknown'],
-      },
-    },
-    {
       name: 'not-to-unresolvable',
       comment:
         "Don't allow dependencies on modules dependency-cruiser can't resolve to files on disk (which probably means they don't exist)",
@@ -177,7 +168,7 @@ module.exports = {
     },
 
     /* pattern specifying which files to exclude (regular expression) */
-    // , exclude : ''
+    exclude: 'src/app',
 
     /* pattern specifying which files to include (regular expression)
            dependency-cruiser will skip everything not matching this pattern

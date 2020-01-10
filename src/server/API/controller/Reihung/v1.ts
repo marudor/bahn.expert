@@ -1,7 +1,7 @@
 import { Controller, Get, Hidden, Route, SuccessResponse, Tags } from 'tsoa';
 import { Formation, WagenreihungStation } from 'types/reihung';
 import { wagenreihung, wagenreihungStation } from 'server/Reihung';
-import { WRForTZ } from 'server/Reihung/hasWR';
+import { WRForTZ } from 'server/Reihung';
 import ICENaming from 'server/Reihung/ICENaming';
 
 @Route('/reihung/v1')

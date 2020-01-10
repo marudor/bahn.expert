@@ -1,12 +1,11 @@
 import { createContainer } from 'unstated-next';
-import { setCookieOptions } from 'client/util';
 import React, { ReactNode, useCallback, useState } from 'react';
-import useCookies from 'Common/useCookies';
+import useStorage from 'shared/hooks/useStorage';
 
 const selectedDetailCookieName = 'selectedDetail';
 
 const useSelectedDetail = (initialSelected: string | undefined) => {
-  const cookies = useCookies();
+  const storage = useStorage();
   const [selectedDetail, realSetSelectedDetail] = useState<string | undefined>(
     initialSelected
   );
@@ -18,15 +17,15 @@ const useSelectedDetail = (initialSelected: string | undefined) => {
           newSelected === oldSelectedDetail ? undefined : newSelected;
 
         if (detailToSave) {
-          cookies.set(selectedDetailCookieName, detailToSave, setCookieOptions);
+          storage.set(selectedDetailCookieName, detailToSave);
         } else {
-          cookies.remove(selectedDetailCookieName);
+          storage.remove(selectedDetailCookieName);
         }
 
         return detailToSave;
       });
     },
-    [cookies]
+    [storage]
   );
 
   return {
@@ -43,8 +42,8 @@ interface Props {
   children: ReactNode;
 }
 export const SelectedDetailProvider = ({ children }: Props) => {
-  const cookies = useCookies();
-  const savedSelectedDetail = cookies.get(selectedDetailCookieName);
+  const storage = useStorage();
+  const savedSelectedDetail = storage.get(selectedDetailCookieName);
 
   return (
     <SelectedDetailContainer.Provider initialState={savedSelectedDetail}>

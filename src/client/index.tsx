@@ -1,28 +1,28 @@
 import { BrowserRouter } from 'react-router-dom';
-import { CookieContext } from 'Common/useCookies';
 import { HelmetProvider } from 'react-helmet-async';
 import { loadableReady } from '@loadable/component';
+import { StorageContext } from 'shared/hooks/useStorage';
 import { ThemeProvider } from 'Common/container/ThemeContainer';
 import axios from 'axios';
-import Cookies from 'universal-cookie';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Storage from 'Common/Storage';
 import ThemeWrap from './ThemeWrap';
 // 10s timeout
 axios.defaults.timeout = 10000;
 
 global.smallScreen = window.matchMedia('(max-width: 480px)').matches;
 
-const cookies = new Cookies();
+const storage = new Storage();
 
 const render = (App: React.ComponentType) => (
   <HelmetProvider>
     <BrowserRouter>
-      <CookieContext.Provider value={cookies}>
+      <StorageContext.Provider value={storage}>
         <ThemeProvider>
           <App />
         </ThemeProvider>
-      </CookieContext.Provider>
+      </StorageContext.Provider>
     </BrowserRouter>
   </HelmetProvider>
 );
