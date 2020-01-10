@@ -125,7 +125,11 @@ export interface SecLWALK {
   gis: Gis;
 }
 
-export type SecL = SecLJNY | SecLWALK;
+export interface SecLKISS {
+  type: 'KISS';
+}
+
+export type SecL = SecLJNY | SecLWALK | SecLKISS;
 
 export interface SotCtxt {
   cnLocX: number;

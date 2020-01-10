@@ -70,6 +70,8 @@ function adjustToLastTrain(
   }
 }
 
+const AllowedLegTypes = ['JNY', 'WALK', 'TRSF'];
+
 export class Journey {
   raw: OutConL;
   date: Date;
@@ -80,6 +82,7 @@ export class Journey {
     this.common = common;
     this.date = parse(raw.date, 'yyyyMMdd', new Date());
     const allSegments = raw.secL
+      .filter(leg => AllowedLegTypes.includes(leg.type))
       .map(this.parseSegment)
       .filter<Route$JourneySegment>(Boolean as any);
 
@@ -189,9 +192,9 @@ export default (
   r: HafasResponse<TripSearchResponse>,
   parsedCommon: ParsedCommon
 ): RoutingResult => {
-  const routes = r.svcResL[0].res.outConL.flatMap(
-    j => new Journey(j, parsedCommon).journey
-  );
+  const routes = r.svcResL[0].res.outConL
+    .flatMap(j => new Journey(j, parsedCommon).journey)
+    .filter(j => j.segments.length);
 
   return {
     context: {
