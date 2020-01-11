@@ -15,6 +15,10 @@ export default makeStyles(theme => ({
     bottom: '.5em',
     left: '8em',
   },
+  plan: {
+    position: 'absolute',
+    bottom: '1.5em',
+  },
   main: ({
     reihung,
     fahrzeugGruppe,

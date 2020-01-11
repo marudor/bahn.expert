@@ -78,13 +78,16 @@ const Reihung = (props: Props) => {
               correctLeft={correctLeft}
               scale={scale}
               type={reihung.zuggattung}
-              showDestination={reihung.differentDestination}
+              showDestination={
+                reihung.differentDestination && g.allFahrzeug.length > 1
+              }
               key={g.fahrzeuggruppebezeichnung}
               gruppe={g}
             />
           ))}
         </div>
         <Explain />
+        {!reihung.isRealtime && <span className={classes.plan}>Plandaten</span>}
         <span className={classes.richtung} />
       </div>
     </div>
