@@ -2639,7 +2639,25 @@
 						"type": "array"
 					},
 					"kategorie": {
-						"type": "string"
+						"type": "string",
+						"enum": [
+							"DOPPELSTOCKSTEUERWAGENERSTEZWEITEKLASSE",
+							"DOPPELSTOCKSTEUERWAGENZWEITEKLASSE",
+							"DOPPELSTOCKWAGENERSTEKLASSE",
+							"DOPPELSTOCKWAGENERSTEZWEITEKLASSE",
+							"DOPPELSTOCKWAGENZWEITEKLASSE",
+							"HALBSPEISEWAGENERSTEKLASSE",
+							"HALBSPEISEWAGENZWEITEKLASSE",
+							"LOK",
+							"REISEZUGWAGENERSTEKLASSE",
+							"REISEZUGWAGENERSTEZWEITEKLASSE",
+							"REISEZUGWAGENZWEITEKLASSE",
+							"SPEISEWAGEN",
+							"STEUERWAGENERSTEKLASSE",
+							"STEUERWAGENERSTEZWEITEKLASSE",
+							"STEUERWAGENZWEITEKLASSE",
+							"TRIEBKOPF"
+						]
 					},
 					"fahrzeugnummer": {
 						"type": "string"
@@ -2750,7 +2768,25 @@
 						"type": "array"
 					},
 					"kategorie": {
-						"type": "string"
+						"type": "string",
+						"enum": [
+							"DOPPELSTOCKSTEUERWAGENERSTEZWEITEKLASSE",
+							"DOPPELSTOCKSTEUERWAGENZWEITEKLASSE",
+							"DOPPELSTOCKWAGENERSTEKLASSE",
+							"DOPPELSTOCKWAGENERSTEZWEITEKLASSE",
+							"DOPPELSTOCKWAGENZWEITEKLASSE",
+							"HALBSPEISEWAGENERSTEKLASSE",
+							"HALBSPEISEWAGENZWEITEKLASSE",
+							"LOK",
+							"REISEZUGWAGENERSTEKLASSE",
+							"REISEZUGWAGENERSTEZWEITEKLASSE",
+							"REISEZUGWAGENZWEITEKLASSE",
+							"SPEISEWAGEN",
+							"STEUERWAGENERSTEKLASSE",
+							"STEUERWAGENERSTEZWEITEKLASSE",
+							"STEUERWAGENZWEITEKLASSE",
+							"TRIEBKOPF"
+						]
 					},
 					"fahrzeugnummer": {
 						"type": "string"
@@ -3018,6 +3054,9 @@
 					"realFahrtrichtung": {
 						"type": "boolean",
 						"description": "true = Vorwärts"
+					},
+					"isRealtime": {
+						"type": "boolean"
 					}
 				},
 				"required": [
@@ -3036,7 +3075,8 @@
 					"scale",
 					"startPercentage",
 					"endPercentage",
-					"realFahrtrichtung"
+					"realFahrtrichtung",
+					"isRealtime"
 				],
 				"type": "object",
 				"additionalProperties": false

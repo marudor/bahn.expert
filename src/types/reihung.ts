@@ -100,6 +100,7 @@ export interface Formation extends BaseFormation {
    * true = Vorwärts
    */
   realFahrtrichtung: boolean;
+  isRealtime: boolean;
 }
 
 export interface BaseFahrzeuggruppe {
@@ -160,9 +161,27 @@ export interface BRInfo {
   showBRInfo?: boolean;
 }
 
+export type FahrzeugKategorie =
+  | 'DOPPELSTOCKSTEUERWAGENERSTEZWEITEKLASSE'
+  | 'DOPPELSTOCKSTEUERWAGENZWEITEKLASSE'
+  | 'DOPPELSTOCKWAGENERSTEKLASSE'
+  | 'DOPPELSTOCKWAGENERSTEZWEITEKLASSE'
+  | 'DOPPELSTOCKWAGENZWEITEKLASSE'
+  | 'HALBSPEISEWAGENERSTEKLASSE'
+  | 'HALBSPEISEWAGENZWEITEKLASSE'
+  | 'LOK'
+  | 'REISEZUGWAGENERSTEKLASSE'
+  | 'REISEZUGWAGENERSTEZWEITEKLASSE'
+  | 'REISEZUGWAGENZWEITEKLASSE'
+  | 'SPEISEWAGEN'
+  | 'STEUERWAGENERSTEKLASSE'
+  | 'STEUERWAGENERSTEZWEITEKLASSE'
+  | 'STEUERWAGENZWEITEKLASSE'
+  | 'TRIEBKOPF';
+
 export interface BaseFahrzeug {
   allFahrzeugausstattung: Fahrzeugausstattung[];
-  kategorie: string;
+  kategorie: FahrzeugKategorie;
   fahrzeugnummer: string;
   orientierung: string;
   positioningruppe: string;

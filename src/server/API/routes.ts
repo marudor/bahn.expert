@@ -903,7 +903,7 @@ const models: TsoaRoute.Models = {
     "dataType": "refObject",
     "properties": {
       "allFahrzeugausstattung": { "dataType": "array", "array": { "ref": "Fahrzeugausstattung" }, "required": true },
-      "kategorie": { "dataType": "string", "required": true },
+      "kategorie": { "dataType": "enum", "enums": ["DOPPELSTOCKSTEUERWAGENERSTEZWEITEKLASSE", "DOPPELSTOCKSTEUERWAGENZWEITEKLASSE", "DOPPELSTOCKWAGENERSTEKLASSE", "DOPPELSTOCKWAGENERSTEZWEITEKLASSE", "DOPPELSTOCKWAGENZWEITEKLASSE", "HALBSPEISEWAGENERSTEKLASSE", "HALBSPEISEWAGENZWEITEKLASSE", "LOK", "REISEZUGWAGENERSTEKLASSE", "REISEZUGWAGENERSTEZWEITEKLASSE", "REISEZUGWAGENZWEITEKLASSE", "SPEISEWAGEN", "STEUERWAGENERSTEKLASSE", "STEUERWAGENERSTEZWEITEKLASSE", "STEUERWAGENZWEITEKLASSE", "TRIEBKOPF"], "required": true },
       "fahrzeugnummer": { "dataType": "string", "required": true },
       "orientierung": { "dataType": "string", "required": true },
       "positioningruppe": { "dataType": "string", "required": true },
@@ -936,7 +936,7 @@ const models: TsoaRoute.Models = {
     "dataType": "refObject",
     "properties": {
       "allFahrzeugausstattung": { "dataType": "array", "array": { "ref": "Fahrzeugausstattung" }, "required": true },
-      "kategorie": { "dataType": "string", "required": true },
+      "kategorie": { "dataType": "enum", "enums": ["DOPPELSTOCKSTEUERWAGENERSTEZWEITEKLASSE", "DOPPELSTOCKSTEUERWAGENZWEITEKLASSE", "DOPPELSTOCKWAGENERSTEKLASSE", "DOPPELSTOCKWAGENERSTEZWEITEKLASSE", "DOPPELSTOCKWAGENZWEITEKLASSE", "HALBSPEISEWAGENERSTEKLASSE", "HALBSPEISEWAGENZWEITEKLASSE", "LOK", "REISEZUGWAGENERSTEKLASSE", "REISEZUGWAGENERSTEZWEITEKLASSE", "REISEZUGWAGENZWEITEKLASSE", "SPEISEWAGEN", "STEUERWAGENERSTEKLASSE", "STEUERWAGENERSTEZWEITEKLASSE", "STEUERWAGENZWEITEKLASSE", "TRIEBKOPF"], "required": true },
       "fahrzeugnummer": { "dataType": "string", "required": true },
       "orientierung": { "dataType": "string", "required": true },
       "positioningruppe": { "dataType": "string", "required": true },
@@ -1024,6 +1024,7 @@ const models: TsoaRoute.Models = {
       "startPercentage": { "dataType": "double", "required": true },
       "endPercentage": { "dataType": "double", "required": true },
       "realFahrtrichtung": { "dataType": "boolean", "required": true },
+      "isRealtime": { "dataType": "boolean", "required": true },
     },
     "additionalProperties": false,
   },
