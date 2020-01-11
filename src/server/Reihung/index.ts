@@ -434,6 +434,9 @@ export async function wagenreihung(trainNumber: string, date: number) {
   enrichedFormation.scale = 100 / (endPercentage - startPercentage);
   enrichedFormation.startPercentage = startPercentage;
   enrichedFormation.endPercentage = endPercentage;
+  enrichedFormation.isRealtime = fahrzeuge.every(
+    f => f.kategorie === 'LOK' || f.fahrzeugnummer
+  );
 
   return enrichedFormation;
 }
