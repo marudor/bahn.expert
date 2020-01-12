@@ -27,7 +27,7 @@ export default makeStyles(theme => ({
   loading: {
     position: 'absolute',
     top: '-1em',
-    right: '.5em',
+    right: '2em',
     transform: 'scale(.5)',
   },
 }));
