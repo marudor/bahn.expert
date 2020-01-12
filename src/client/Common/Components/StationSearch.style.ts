@@ -5,11 +5,14 @@ export default makeStyles(theme => ({
     flex: 1,
     position: 'relative',
   },
-  geo: {
+  icons: {
+    '& > svg': {
+      fontSize: '1.3em',
+      verticalAlign: 'middle',
+    },
     position: 'absolute',
     right: 0,
     cursor: 'pointer',
-    fontSize: '1.3em',
     top: '50%',
     transform: 'translateY(-50%)',
   },

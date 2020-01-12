@@ -16,6 +16,7 @@ function route(
   {
     start,
     destination,
+    via,
     time,
     transferTime = -1,
     maxChanges = -1,
@@ -85,6 +86,13 @@ function route(
           lid: `A=1@L=${start}`,
         },
       ],
+      viaLocL: via?.length
+        ? via.map(evaId => ({
+            loc: {
+              lid: `A=1@L=${evaId}`,
+            },
+          }))
+        : undefined,
     },
     meth: 'TripSearch',
     // @ts-ignore

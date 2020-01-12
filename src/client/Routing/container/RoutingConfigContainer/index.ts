@@ -49,7 +49,23 @@ const useRoutingConfig = (
 ) => {
   const [start, setStart] = useState<Station>();
   const [destination, setDestination] = useState<Station>();
+  const [via, setVia] = useState<Station[]>([]);
   const [date, setDate] = useState<Date | null>(null);
+
+  const updateVia = useCallback((index: number, station?: Station) => {
+    setVia(oldVia => {
+      if (!station) {
+        return oldVia.filter((_, i) => i !== index);
+      }
+      if (index < 0) {
+        oldVia.push(station);
+      } else {
+        oldVia[index] = station;
+      }
+
+      return [...oldVia];
+    });
+  }, []);
 
   return {
     start,
@@ -58,6 +74,8 @@ const useRoutingConfig = (
     setDestination,
     date,
     setDate,
+    via,
+    updateVia,
     ...useRoutingSettings(initialState),
   };
 };

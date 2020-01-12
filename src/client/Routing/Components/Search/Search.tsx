@@ -14,9 +14,10 @@ import { getHafasStationFromAPI } from 'Common/service/stationSearch';
 import { Station } from 'types/station';
 import { useHistory, useRouteMatch } from 'react-router';
 import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
 import deLocale from 'date-fns/locale/de';
 import IconButton from '@material-ui/core/IconButton';
-import React, { SyntheticEvent, useCallback, useEffect } from 'react';
+import React, { SyntheticEvent, useCallback, useEffect, useMemo } from 'react';
 import RoutingConfigContainer from 'Routing/container/RoutingConfigContainer';
 import SettingsPanel from './SettingsPanel';
 import StationSearch from 'Common/Components/StationSearch';
@@ -46,6 +47,8 @@ const Search = () => {
     date,
     setDate,
     settings,
+    via,
+    updateVia,
   } = RoutingConfigContainer.useContainer();
   const { fetchRoutes } = useFetchRouting();
 
@@ -118,6 +121,20 @@ const Search = () => {
     [destination, fetchRoutes, history, start]
   );
 
+  const mappedViaList = useMemo(
+    () =>
+      via.map((v, index) => (
+        <StationSearch
+          id={`via${index}`}
+          onChange={s => updateVia(index, s)}
+          value={v}
+          key={index}
+          additionalIcons={<DeleteIcon onClick={() => updateVia(index)} />}
+        />
+      )),
+    [updateVia, via]
+  );
+
   return (
     <>
       <StationSearch
@@ -127,6 +144,16 @@ const Search = () => {
         placeholder="Start"
         profile={settings.hafasProfile}
       />
+      <div>
+        {mappedViaList}
+        {mappedViaList.length < 2 && (
+          <StationSearch
+            placeholder="Via Station"
+            id="addVia"
+            onChange={s => updateVia(-1, s)}
+          />
+        )}
+      </div>
       <div className={classes.destination}>
         <StationSearch
           id="routingDestinationSearch"
