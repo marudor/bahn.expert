@@ -3,6 +3,7 @@ import { useRouteMatch } from 'react-router';
 import Abfahrt from './Abfahrt';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import AbfahrtenContainer from 'Abfahrten/container/AbfahrtenContainer';
+import HeaderTagContainer from 'Common/container/HeaderTagContainer';
 import Loading from 'Common/Components/Loading';
 import React, { useEffect, useState } from 'react';
 import ReihungContainer from 'Common/container/ReihungContainer';
@@ -31,6 +32,25 @@ const AbfahrtenList = () => {
   const paramStation = match ? match.params.station : undefined;
   const config = AbfahrtenConfigContainer.useContainer().config;
   const refreshCurrentAbfahrten = useRefreshCurrent();
+  const {
+    updateTitle,
+    updateDescription,
+    resetTitleAndDescription,
+  } = HeaderTagContainer.useContainer();
+
+  useEffect(() => {
+    if (!currentStation) {
+      resetTitleAndDescription();
+    } else {
+      updateTitle(currentStation.title);
+      updateDescription(`Zugabfahrten für ${currentStation.title}`);
+    }
+  }, [
+    currentStation,
+    resetTitleAndDescription,
+    updateDescription,
+    updateTitle,
+  ]);
 
   useEffect(() => {
     return () => {
