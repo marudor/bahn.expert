@@ -13,6 +13,10 @@ import {
 export interface TripSearchOptions extends SharedTripSearchOptions {
   start: string;
   destination: string;
+  /**
+   * Max 2 via possible
+   */
+  via?: string[];
   time?: number;
   transferTime?: number;
   maxChanges?: number;
@@ -48,6 +52,9 @@ interface SharedTripSearchOptions {
 interface GenericTripSearchRequest extends SharedTripSearchOptions {
   arrLocL: Partial<LocL>[];
   depLocL: Partial<LocL>[];
+  viaLocL: {
+    loc: Partial<LocL>;
+  }[];
   getPT: boolean;
   maxChg: number;
   minChgTime: number;

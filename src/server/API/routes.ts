@@ -582,6 +582,7 @@ const models: TsoaRoute.Models = {
       "ushrp": { "dataType": "boolean" },
       "start": { "dataType": "string", "required": true },
       "destination": { "dataType": "string", "required": true },
+      "via": { "dataType": "array", "array": { "dataType": "string" } },
       "time": { "dataType": "double" },
       "transferTime": { "dataType": "double" },
       "maxChanges": { "dataType": "double" },

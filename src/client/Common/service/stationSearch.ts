@@ -25,28 +25,36 @@ export async function getHafasStationFromAPI(
   profile?: AllowedHafasProfile,
   stationString?: string
 ): Promise<Station[]> {
-  return (
-    await axios.get(`/api/hafas/v1/station/${stationString}`, {
-      params: {
-        profile,
-      },
-    })
-  ).data;
+  try {
+    return (
+      await axios.get(`/api/hafas/v1/station/${stationString}`, {
+        params: {
+          profile,
+        },
+      })
+    ).data;
+  } catch {
+    return [];
+  }
 }
 
 export async function getHafasStationFromCoordinates(
   profile: AllowedHafasProfile = AllowedHafasProfile.db,
   coordinates: Coordinates
 ) {
-  return (
-    await axios.get('/api/hafas/v1/geoStation', {
-      params: {
-        lat: coordinates.latitude,
-        lng: coordinates.longitude,
-        profile,
-      },
-    })
-  ).data;
+  try {
+    return (
+      await axios.get('/api/hafas/v1/geoStation', {
+        params: {
+          lat: coordinates.latitude,
+          lng: coordinates.longitude,
+          profile,
+        },
+      })
+    ).data;
+  } catch {
+    return [];
+  }
 }
 
 export async function getStationsFromCoordinates(coordinates: Coordinates) {

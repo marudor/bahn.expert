@@ -19,6 +19,7 @@ export default () => {
     start,
     destination,
     date,
+    via,
   } = RoutingConfigContainer.useContainer();
 
   const fetchRoutes = useCallback(async () => {
@@ -33,6 +34,7 @@ export default () => {
             start: start.id,
             destination: destination.id,
             time: (date || new Date()).getTime(),
+            via: via.map(v => v.id),
             ...settings,
           },
           {
@@ -58,6 +60,7 @@ export default () => {
     setRoutes,
     settings,
     start,
+    via,
   ]);
 
   const fetchContext = useCallback(

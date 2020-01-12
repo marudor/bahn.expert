@@ -1707,6 +1707,14 @@
 					"destination": {
 						"type": "string"
 					},
+					"via": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array",
+						"description": "Max 2 via possible",
+						"nullable": true
+					},
 					"time": {
 						"type": "number",
 						"format": "double",

@@ -4,10 +4,6 @@ import childProcess from 'child_process';
 import chokidar from 'chokidar';
 import Koa from 'koa';
 import koaWebpack from 'koa-webpack';
-// @ts-ignore
-import launchEditor from 'react-dev-utils/launchEditor';
-// @ts-ignore
-import launchEditorEndpoint from 'react-dev-utils/launchEditorEndpoint';
 import path from 'path';
 import webpack from 'webpack';
 // @ts-ignore
@@ -59,19 +55,5 @@ module.exports = function webpackDev(koa: Koa, server: undefined | Server) {
       : { https: true, host: 'local.marudor.de', server },
   }).then(middleware => {
     koa.use(middleware);
-    koa.use((ctx, next) => {
-      if (ctx.url.startsWith(launchEditorEndpoint) && ctx.query.fileName) {
-        const lineNumber = parseInt(ctx.query.lineNumber, 10) || 1;
-        const colNumber = parseInt(ctx.query.colNumber, 10) || 1;
-        const fileName = ctx.query.fileName.startsWith('webpack:///')
-          ? ctx.query.fileName.substr(11)
-          : ctx.query.fileName;
-
-        launchEditor(path.resolve(fileName), lineNumber, colNumber);
-        ctx.status = 200;
-      } else {
-        return next();
-      }
-    });
   });
 };

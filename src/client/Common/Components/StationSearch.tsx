@@ -12,7 +12,13 @@ import Loading, { LoadingType } from './Loading';
 import MenuItem from '@material-ui/core/MenuItem';
 import MyLocation from '@material-ui/icons/MyLocation';
 import Paper from '@material-ui/core/Paper';
-import React, { SyntheticEvent, useCallback, useRef, useState } from 'react';
+import React, {
+  ReactNode,
+  SyntheticEvent,
+  useCallback,
+  useRef,
+  useState,
+} from 'react';
 import TextField from '@material-ui/core/TextField';
 import useStyles from './StationSearch.style';
 
@@ -28,6 +34,7 @@ interface Props {
   placeholder?: string;
   profile?: AllowedHafasProfile;
   maxSuggestions?: number;
+  additionalIcons?: ReactNode;
 }
 
 const TDownshift: DownshiftInterface<Station> = Downshift;
@@ -40,6 +47,7 @@ const StationSearch = ({
   searchType,
   profile,
   maxSuggestions = 7,
+  additionalIcons,
 }: Props) => {
   const classes = useStyles();
   const [suggestions, setSuggestions] = useState<Station[]>([]);
@@ -207,7 +215,10 @@ const StationSearch = ({
           );
         }}
       </TDownshift>
-      <MyLocation className={classes.geo} onClick={getLocation} />
+      <div className={classes.icons}>
+        <MyLocation onClick={getLocation} />
+        {additionalIcons}
+      </div>
       {loading && (
         <Loading className={classes.loading} type={LoadingType.dots} />
       )}
