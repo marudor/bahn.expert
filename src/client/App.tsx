@@ -1,6 +1,7 @@
 import { CommonConfigProvider } from 'Common/container/CommonConfigContainer';
 import { Route, Switch } from 'react-router-dom';
 import { RoutingProvider } from 'Routing/container/RoutingContainer';
+import HeaderTagContainer from 'Common/container/HeaderTagContainer';
 import loadable from '@loadable/component';
 import Navigation from 'Common/Components/Navigation';
 import React, { useEffect } from 'react';
@@ -26,24 +27,26 @@ const App = () => {
   }, []);
 
   return (
-    <CommonConfigProvider>
-      <Navigation>
-        <ReihungenContainer.Provider>
-          <RoutingProvider>
-            <Switch>
-              <Route path="/about" component={About} exact />
-              <Route path="/map" component={LazyMap} exact />
-              <Route
-                component={LazyDetails}
-                path="/details/:train/:initialDeparture*"
-              />
-              <Route component={LazyRouting} path="/routing" />
-              <Route component={LazyAbfahrten} path="/" />
-            </Switch>
-          </RoutingProvider>
-        </ReihungenContainer.Provider>
-      </Navigation>
-    </CommonConfigProvider>
+    <HeaderTagContainer.Provider>
+      <CommonConfigProvider>
+        <Navigation>
+          <ReihungenContainer.Provider>
+            <RoutingProvider>
+              <Switch>
+                <Route path="/about" component={About} exact />
+                <Route path="/map" component={LazyMap} exact />
+                <Route
+                  component={LazyDetails}
+                  path="/details/:train/:initialDeparture*"
+                />
+                <Route component={LazyRouting} path="/routing" />
+                <Route component={LazyAbfahrten} path="/" />
+              </Switch>
+            </RoutingProvider>
+          </ReihungenContainer.Provider>
+        </Navigation>
+      </CommonConfigProvider>
+    </HeaderTagContainer.Provider>
   );
 };
 

@@ -4,7 +4,6 @@ import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContain
 import AbfahrtenContainer from 'Abfahrten/container/AbfahrtenContainer';
 import BaseHeader from 'Common/Components/BaseHeader';
 import ExtraMenu from './ExtraMenu';
-import MetaTags from './MetaTags';
 import React, { useCallback, useEffect, useState } from 'react';
 import StationSearch from 'Common/Components/StationSearch';
 
@@ -32,7 +31,6 @@ const Header = () => {
 
   return (
     <>
-      <MetaTags currentStation={currentStation} baseUrl={global.baseUrl} />
       <BaseHeader>
         <StationSearch
           id="abfahrtenHeaderSearch"

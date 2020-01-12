@@ -1,5 +1,6 @@
 import { AppBar, IconButton, Toolbar } from '@material-ui/core';
 import ActionMenu from '@material-ui/icons/Menu';
+import HeaderTags from './HeaderTags';
 import NavigationContext from 'Common/Components/Navigation/NavigationContext';
 import React, { ReactNode, useContext } from 'react';
 
@@ -12,6 +13,7 @@ const BaseHeader = ({ children }: Props) => {
 
   return (
     <AppBar position="fixed">
+      <HeaderTags />
       <Toolbar disableGutters>
         <IconButton
           data-testid="navToggle"

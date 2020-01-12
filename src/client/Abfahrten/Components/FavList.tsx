@@ -5,8 +5,9 @@ import AbfahrtenContainer, {
 } from 'Abfahrten/container/AbfahrtenContainer';
 import favContainer from 'Abfahrten/container/FavContainer';
 import FavEntry, { FavEntryDisplay } from './FavEntry';
+import HeaderTagContainer from 'Common/container/HeaderTagContainer';
 import MostUsed from './MostUsed';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import useStyles from './FavList.style';
 
 function getErrorText(
@@ -50,6 +51,9 @@ const FavList = ({ staticContext }: Props) => {
   const { error } = AbfahrtenContainer.useContainer();
   const [savedError] = useState(error);
   const classes = useStyles();
+  const { resetTitleAndDescription } = HeaderTagContainer.useContainer();
+
+  useEffect(resetTitleAndDescription, []);
 
   return (
     <main className={classes.main}>
