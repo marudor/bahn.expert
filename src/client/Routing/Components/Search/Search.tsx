@@ -130,9 +130,10 @@ const Search = () => {
           value={v}
           key={index}
           additionalIcons={<DeleteIcon onClick={() => updateVia(index)} />}
+          profile={settings.hafasProfile}
         />
       )),
-    [updateVia, via]
+    [settings.hafasProfile, updateVia, via]
   );
 
   return (
@@ -151,6 +152,7 @@ const Search = () => {
             placeholder="Via Station"
             id="addVia"
             onChange={s => updateVia(-1, s)}
+            profile={settings.hafasProfile}
           />
         )}
       </div>

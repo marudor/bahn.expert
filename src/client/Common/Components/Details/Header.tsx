@@ -17,7 +17,7 @@ const Header = ({ train }: Props) => {
     <BaseHeader>
       <div className={classes.train}>
         <span>{trainText}</span>
-        {details && <span>{format(details.departure.time, 'dd.MM')}</span>}
+        {details && <span>{format(details.departure.time, 'dd.MM.yyyy')}</span>}
       </div>
 
       {details && (
