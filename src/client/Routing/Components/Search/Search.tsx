@@ -25,6 +25,12 @@ import SwapVertical from '@material-ui/icons/SwapVert';
 import useFetchRouting from 'Routing/container/RoutingContainer/useFetchRouting';
 import useStyles from './Search.styles';
 
+const maxViaForProvider = (profile?: AllowedHafasProfile) => {
+  if (profile === AllowedHafasProfile.sbb) return 99;
+
+  return 2;
+};
+
 const setStationById = async (
   stationId: string,
   setAction: (station: Station) => void,
@@ -55,6 +61,8 @@ const Search = () => {
   const match = useRouteMatch<{
     start?: string;
     destination?: string;
+    date?: string;
+    via?: string;
   }>();
   const history = useHistory();
 
@@ -88,26 +96,39 @@ const Search = () => {
   }, []);
 
   useEffect(() => {
-    if (match) {
-      if (!start && match.params.start) {
-        setStationById(match.params.start, setStart, settings.hafasProfile);
-      }
-      if (!destination && match.params.destination) {
+    if (match.params.start) {
+      setStationById(match.params.start, setStart, settings.hafasProfile);
+    }
+  }, [match.params.start, setStart, settings.hafasProfile]);
+  useEffect(() => {
+    if (match.params.destination) {
+      setStationById(
+        match.params.destination,
+        setDestination,
+        settings.hafasProfile
+      );
+    }
+  }, [match.params.destination, setDestination, settings.hafasProfile]);
+  useEffect(() => {
+    if (match.params.date && match.params.date !== '0') {
+      setDate(new Date(Number.parseInt(match.params.date, 10)));
+    }
+  }, [match.params.date, setDate]);
+  useEffect(() => {
+    if (match.params.via) {
+      const viaStations = match.params.via.split('|').filter(Boolean);
+
+      viaStations.forEach((viaId, index) => {
         setStationById(
-          match.params.destination,
-          setDestination,
+          viaId,
+          station => {
+            updateVia(index, station);
+          },
           settings.hafasProfile
         );
-      }
+      });
     }
-  }, [
-    destination,
-    match,
-    setDestination,
-    setStart,
-    settings.hafasProfile,
-    start,
-  ]);
+  }, [match.params.via, settings.hafasProfile, updateVia]);
 
   const searchRoute = useCallback(
     (e: SyntheticEvent) => {
@@ -115,10 +136,13 @@ const Search = () => {
 
       if (start && destination && start.id !== destination.id) {
         fetchRoutes();
-        history.push(`/routing/${start.id}/${destination.id}`);
+        history.push(
+          `/routing/${start.id}/${destination.id}/${date?.getTime() ||
+            0}/${via.map(v => `${v.id}|`).join('')}`
+        );
       }
     },
-    [destination, fetchRoutes, history, start]
+    [date, destination, fetchRoutes, history, start, via]
   );
 
   const mappedViaList = useMemo(
@@ -147,7 +171,7 @@ const Search = () => {
       />
       <div>
         {mappedViaList}
-        {mappedViaList.length < 2 && (
+        {mappedViaList.length < maxViaForProvider(settings.hafasProfile) && (
           <StationSearch
             placeholder="Via Station"
             id="addVia"

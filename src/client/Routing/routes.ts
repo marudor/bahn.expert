@@ -3,6 +3,6 @@ import Routes from './Components/Routes';
 export default [
   {
     component: Routes,
-    path: '/routing/:start?/:destination?',
+    path: '/routing/:start?/:destination?/:date?/:via?',
   },
 ];
