@@ -150,7 +150,7 @@ export default class Timetable {
   evaId: string;
   segments: Date[];
   currentStation: string;
-  wingIds: Set<string> = new Set();
+  wingIds: Map<string, string> = new Map();
   currentDate: Date;
   maxDate: Date;
   minDate: Date;
@@ -265,13 +265,22 @@ export default class Timetable {
     const lookbehind = [] as any[];
 
     uniqBy(timetables, 'rawId').forEach((a: any) => {
-      const isWing = this.wingIds.has(a.mediumId);
+      const referenceWingId = this.wingIds.get(a.mediumId);
 
-      if (isWing) {
-        wings[a.mediumId] = a;
-        this.computeExtra(a);
+      if (referenceWingId) {
+        const referenceTrain = this.timetable[referenceWingId];
 
-        return;
+        if (
+          referenceTrain &&
+          (referenceTrain.arrival?.scheduledTime === a.arrival?.scheduledTime ||
+            referenceTrain.departure?.scheduledTime ===
+              a.departure?.scheduledTime)
+        ) {
+          wings[a.mediumId] = a;
+          this.computeExtra(a);
+
+          return;
+        }
       }
 
       const scheduledArrvial = a.arrival && a.arrival.scheduledTime;
@@ -543,7 +552,11 @@ export default class Timetable {
       timetable.ref = realtime.ref;
     });
   }
-  getWings(node: null | xmljs.Element, displayAsWing: boolean) {
+  getWings(
+    node: null | xmljs.Element,
+    displayAsWing: boolean,
+    referenceTrainRawId: string
+  ) {
     const wingAttr = getAttr(node, 'wings');
 
     if (!wingAttr) return;
@@ -552,7 +565,7 @@ export default class Timetable {
     const mediumWings = rawWings.map<string>(w => parseRawId(w).mediumId);
 
     if (displayAsWing) {
-      mediumWings.forEach(i => this.wingIds.add(i));
+      mediumWings.forEach(i => this.wingIds.set(i, referenceTrainRawId));
     }
 
     return mediumWings;
@@ -596,7 +609,7 @@ export default class Timetable {
       arrival: scheduledArrival && {
         scheduledTime: scheduledArrival,
         time: scheduledArrival,
-        wingIds: this.getWings(ar, false),
+        wingIds: this.getWings(ar, false, rawId),
         platform: getAttr(ar, 'pp'),
         scheduledPlatform: getAttr(ar, 'pp'),
         hidden: Boolean(getAttr(ar, 'hi')),
@@ -604,7 +617,7 @@ export default class Timetable {
       departure: scheduledDeparture && {
         scheduledTime: scheduledDeparture,
         time: scheduledDeparture,
-        wingIds: this.getWings(dp, true),
+        wingIds: this.getWings(dp, true, rawId),
         platform: getAttr(dp, 'pp'),
         scheduledPlatform: getAttr(dp, 'pp'),
         hidden: Boolean(getAttr(dp, 'hi')),
