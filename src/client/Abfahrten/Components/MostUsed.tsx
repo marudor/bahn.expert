@@ -7,7 +7,7 @@ const mostUsed = [
   { title: 'Hannover Hbf', id: '8000152' },
   { title: 'Hamburg Hbf', id: '8002549' },
   { title: 'Mannheim Hbf', id: '8000244' },
-  { title: 'Berlin Hauptbahnhof', id: '8011160' },
+  { title: 'Berlin Hbf', id: '8011160' },
   { title: 'Stuttgart Hbf', id: '8000096' },
   { title: 'Düsseldorf Hbf', id: '8000085' },
   { title: 'Köln Hbf', id: '8000207' },
