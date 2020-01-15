@@ -29,6 +29,7 @@ function route(
     numF = 6,
     ctxScr,
     onlyRegional,
+    tarif,
   }: TripSearchOptions,
   profile?: AllowedHafasProfile,
   raw?: boolean
@@ -92,6 +93,16 @@ function route(
               lid: `A=1@L=${evaId}`,
             },
           }))
+        : undefined,
+      trfReq: tarif
+        ? {
+            jnyCl: tarif.class,
+            cType: 'PK',
+            tvlrProf: tarif.traveler.map(t => ({
+              type: t.type,
+              redtnCard: t.loyalityCard,
+            })),
+          }
         : undefined,
     },
     meth: 'TripSearch',

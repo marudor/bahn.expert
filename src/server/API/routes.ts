@@ -172,6 +172,26 @@ const models: TsoaRoute.Models = {
     "additionalProperties": false,
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "Route$TarifFare": {
+    "dataType": "refObject",
+    "properties": {
+      "price": { "dataType": "double", "required": true },
+      "moreExpensiveAvailable": { "dataType": "boolean", "required": true },
+      "bookable": { "dataType": "boolean", "required": true },
+      "upsell": { "dataType": "boolean", "required": true },
+      "targetContext": { "dataType": "string", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "Route$TarifFareSet": {
+    "dataType": "refObject",
+    "properties": {
+      "fares": { "dataType": "array", "array": { "ref": "Route$TarifFare" }, "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "SDays": {
     "dataType": "refObject",
     "properties": {
@@ -254,6 +274,36 @@ const models: TsoaRoute.Models = {
       "aTZOffset": { "dataType": "double" },
       "aTrnCmpSX": { "ref": "TrnCmpSX" },
       "msgL": { "dataType": "array", "array": { "ref": "MsgL" } },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "TarifFare": {
+    "dataType": "refObject",
+    "properties": {
+      "prc": { "dataType": "double", "required": true },
+      "isFromPrice": { "dataType": "boolean", "required": true },
+      "isBookable": { "dataType": "boolean", "required": true },
+      "isUpsell": { "dataType": "boolean", "required": true },
+      "targetCtx": { "dataType": "string", "required": true },
+      "buttonText": { "dataType": "string", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "TarifFareSet": {
+    "dataType": "refObject",
+    "properties": {
+      "fareL": { "dataType": "array", "array": { "ref": "TarifFare" }, "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "HafasTarifResponse": {
+    "dataType": "refObject",
+    "properties": {
+      "statusCode": { "dataType": "union", "subSchemas": [{ "dataType": "enum", "enums": ["OK"] }, { "dataType": "string" }], "required": true },
+      "fareSetL": { "dataType": "array", "array": { "ref": "TarifFareSet" }, "required": true },
     },
     "additionalProperties": false,
   },
@@ -345,6 +395,7 @@ const models: TsoaRoute.Models = {
       "arr": { "ref": "CommonArrival", "required": true },
       "secL": { "dataType": "array", "array": { "dataType": "any" }, "required": true },
       "ctxRecon": { "dataType": "string", "required": true },
+      "trfRes": { "ref": "HafasTarifResponse" },
       "conSubscr": { "dataType": "string", "required": true },
       "resState": { "dataType": "string", "required": true },
       "resRecommendation": { "dataType": "string", "required": true },
@@ -376,6 +427,7 @@ const models: TsoaRoute.Models = {
       "changes": { "dataType": "double", "required": true },
       "segments": { "dataType": "array", "array": { "dataType": "any" }, "required": true },
       "segmentTypes": { "dataType": "array", "array": { "dataType": "string" }, "required": true },
+      "tarifSet": { "ref": "Route$TarifFareSet" },
       "raw": { "ref": "OutConL" },
     },
     "additionalProperties": false,
@@ -580,6 +632,39 @@ const models: TsoaRoute.Models = {
     "additionalProperties": false,
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "JnyCl": {
+    "dataType": "refEnum",
+    "enums": [1, 2],
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "TravelerType": {
+    "dataType": "refEnum",
+    "enums": ["E", "K", "B"],
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "DBLoyalityCard": {
+    "dataType": "refEnum",
+    "enums": [1, 2, 3, 4, 14, 9, 15, 10, 11, 12, 13, 16, 17],
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "TripSearchTraveler": {
+    "dataType": "refObject",
+    "properties": {
+      "type": { "ref": "TravelerType", "required": true },
+      "loyalityCard": { "ref": "DBLoyalityCard" },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "TripSearchTarifRequest": {
+    "dataType": "refObject",
+    "properties": {
+      "class": { "ref": "JnyCl", "required": true },
+      "traveler": { "dataType": "array", "array": { "ref": "TripSearchTraveler" }, "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "TripSearchOptions": {
     "dataType": "refObject",
     "properties": {
@@ -598,6 +683,7 @@ const models: TsoaRoute.Models = {
       "maxChanges": { "dataType": "double" },
       "searchForDeparture": { "dataType": "boolean" },
       "onlyRegional": { "dataType": "boolean" },
+      "tarif": { "ref": "TripSearchTarifRequest" },
     },
     "additionalProperties": false,
   },

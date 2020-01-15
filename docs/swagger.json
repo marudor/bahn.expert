@@ -409,6 +409,53 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"Route$TarifFare": {
+				"properties": {
+					"price": {
+						"type": "number",
+						"format": "double",
+						"description": "in Cent"
+					},
+					"moreExpensiveAvailable": {
+						"type": "boolean"
+					},
+					"bookable": {
+						"type": "boolean"
+					},
+					"upsell": {
+						"type": "boolean",
+						"description": "???"
+					},
+					"targetContext": {
+						"type": "string",
+						"description": "???"
+					}
+				},
+				"required": [
+					"price",
+					"moreExpensiveAvailable",
+					"bookable",
+					"upsell",
+					"targetContext"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Route$TarifFareSet": {
+				"properties": {
+					"fares": {
+						"items": {
+							"$ref": "#/components/schemas/Route$TarifFare"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"fares"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"SDays": {
 				"properties": {
 					"sDaysR": {
@@ -656,6 +703,88 @@
 					"locX",
 					"aOutR",
 					"aTimeS"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TarifFare": {
+				"properties": {
+					"prc": {
+						"type": "number",
+						"format": "double",
+						"description": "In Cent"
+					},
+					"isFromPrice": {
+						"type": "boolean",
+						"description": "Does a more expensive Tarif exist?"
+					},
+					"isBookable": {
+						"type": "boolean",
+						"description": "Can you you still buy this?"
+					},
+					"isUpsell": {
+						"type": "boolean",
+						"description": "???"
+					},
+					"targetCtx": {
+						"type": "string",
+						"description": "???"
+					},
+					"buttonText": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"prc",
+					"isFromPrice",
+					"isBookable",
+					"isUpsell",
+					"targetCtx",
+					"buttonText"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TarifFareSet": {
+				"properties": {
+					"fareL": {
+						"items": {
+							"$ref": "#/components/schemas/TarifFare"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"fareL"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"HafasTarifResponse": {
+				"properties": {
+					"statusCode": {
+						"oneOf": [
+							{
+								"type": "string",
+								"enum": [
+									"OK"
+								]
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"fareSetL": {
+						"items": {
+							"$ref": "#/components/schemas/TarifFareSet"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"statusCode",
+					"fareSetL"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -936,6 +1065,10 @@
 					"ctxRecon": {
 						"type": "string"
 					},
+					"trfRes": {
+						"$ref": "#/components/schemas/HafasTarifResponse",
+						"nullable": true
+					},
 					"conSubscr": {
 						"type": "string"
 					},
@@ -1052,6 +1185,10 @@
 							"type": "string"
 						},
 						"type": "array"
+					},
+					"tarifSet": {
+						"$ref": "#/components/schemas/Route$TarifFareSet",
+						"nullable": true
 					},
 					"raw": {
 						"$ref": "#/components/schemas/OutConL",
@@ -1686,6 +1823,74 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"JnyCl": {
+				"enum": [
+					1,
+					2
+				],
+				"type": "integer"
+			},
+			"TravelerType": {
+				"enum": [
+					"E",
+					"K",
+					"B"
+				],
+				"type": "string"
+			},
+			"DBLoyalityCard": {
+				"enum": [
+					1,
+					2,
+					3,
+					4,
+					14,
+					9,
+					15,
+					10,
+					11,
+					12,
+					13,
+					16,
+					17
+				],
+				"type": "integer"
+			},
+			"TripSearchTraveler": {
+				"properties": {
+					"type": {
+						"$ref": "#/components/schemas/TravelerType"
+					},
+					"loyalityCard": {
+						"$ref": "#/components/schemas/DBLoyalityCard",
+						"nullable": true
+					}
+				},
+				"required": [
+					"type"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TripSearchTarifRequest": {
+				"properties": {
+					"class": {
+						"$ref": "#/components/schemas/JnyCl"
+					},
+					"traveler": {
+						"items": {
+							"$ref": "#/components/schemas/TripSearchTraveler"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"class",
+					"traveler"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"TripSearchOptions": {
 				"properties": {
 					"economic": {
@@ -1757,6 +1962,10 @@
 					},
 					"onlyRegional": {
 						"type": "boolean",
+						"nullable": true
+					},
+					"tarif": {
+						"$ref": "#/components/schemas/TripSearchTarifRequest",
 						"nullable": true
 					}
 				},
