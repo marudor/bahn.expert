@@ -251,6 +251,14 @@ const About = () => {
             rel="noopener noreferrer"
           >
             @marudor
+          </a>{' '}
+          /{' '}
+          <a
+            href="https://chaos.social/@marudor"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            @marudor@chaos.social
           </a>
         </span>
         <div className={classes.donation}>
