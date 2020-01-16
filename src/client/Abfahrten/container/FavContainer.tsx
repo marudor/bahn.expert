@@ -1,8 +1,7 @@
 import { createContainer } from 'unstated-next';
-import { setCookieOptions } from 'client/util';
 import { Station } from 'types/station';
 import React, { ReactNode, useCallback, useState } from 'react';
-import useCookies from 'Common/useCookies';
+import useStorage from 'shared/hooks/useStorage';
 
 interface Favs {
   [key: string]: Station;
@@ -10,13 +9,14 @@ interface Favs {
 
 function useFavStorage(initialFavs: Favs = {}) {
   const [favs, setFavs] = useState<Favs>(initialFavs);
-  const cookies = useCookies();
+
+  const storage = useStorage();
   const updateFavs = useCallback(
     (newFavs: Favs) => {
-      cookies.set('favs', newFavs, setCookieOptions);
+      storage.set('favs', newFavs);
       setFavs(newFavs);
     },
-    [cookies]
+    [storage]
   );
 
   return { favs, updateFavs, count: Object.keys(favs).length };
@@ -62,8 +62,8 @@ interface Props {
 }
 
 export const FavProvider = ({ children }: Props) => {
-  const cookies = useCookies();
-  const savedFavs = cookies.get('favs');
+  const storage = useStorage();
+  const savedFavs = storage.get('favs');
 
   return (
     <FavContainer.Provider initialState={savedFavs}>

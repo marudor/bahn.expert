@@ -18,14 +18,14 @@ import React, {
   useState,
 } from 'react';
 import stopPropagation from 'Common/stopPropagation';
-import useCookies from 'Common/useCookies';
+import useStorage from 'shared/hooks/useStorage';
 
 interface Props {
   children: (toggle: (e: SyntheticEvent) => void) => ReactElement;
 }
 const Zugsuche = ({ children }: Props) => {
   const history = useHistory();
-  const cookies = useCookies();
+  const storage = useStorage();
   const { toggleDrawer } = useContext(NavigationContext);
   const [open, setOpen] = useState(false);
   const [zug, setZug] = useState('');
@@ -58,7 +58,7 @@ const Zugsuche = ({ children }: Props) => {
         if (date) {
           link.push((+date).toString());
         }
-        const routeSettings = cookies.get('rconfig');
+        const routeSettings = storage.get('rconfig');
 
         if (
           routeSettings &&
@@ -74,7 +74,7 @@ const Zugsuche = ({ children }: Props) => {
         toggleDrawer();
       }
     },
-    [zug, date, cookies, history, toggleModal, toggleDrawer]
+    [zug, date, storage, history, toggleModal, toggleDrawer]
   );
 
   return (

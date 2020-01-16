@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-sync
 const spawn = require('child_process').spawn;
+const rimraf = require('rimraf');
 
 const testOnly = Boolean(process.env.TEST_ONLY);
 const productionOnly = Boolean(process.env.PROD_ONLY);
@@ -26,7 +27,10 @@ function buildTest() {
           BABEL_ENV: 'testProduction',
         },
       }
-    ).on('close', resolve)
+    ).on('close', code => {
+      rimraf.sync('testDist/server/app');
+      resolve(code);
+    })
   );
 }
 
@@ -47,7 +51,10 @@ function buildProd() {
         '--copy-files',
       ],
       { stdio: 'pipe' }
-    ).on('close', resolve)
+    ).on('close', code => {
+      rimraf.sync('dist/server/app');
+      resolve(code);
+    })
   );
 }
 

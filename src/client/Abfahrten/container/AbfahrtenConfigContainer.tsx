@@ -1,9 +1,9 @@
 import { AbfahrtenConfig } from 'Common/config';
 import { createContainer } from 'unstated-next';
-import { defaultAbfahrtenConfig, setCookieOptions } from 'client/util';
+import { defaultAbfahrtenConfig } from 'client/util';
 import React, { ReactNode, useCallback, useState } from 'react';
-import useCookies from 'Common/useCookies';
 import useQuery from 'Common/hooks/useQuery';
+import useStorage from 'shared/hooks/useStorage';
 
 export interface Filter {
   onlyDepartures?: boolean;
@@ -17,7 +17,7 @@ const configCookieName = 'config';
 const filterCookieName = 'defaultFilter';
 
 const useFilter = (initialFilter: Filter) => {
-  const cookies = useCookies();
+  const storage = useStorage();
   const [filterOpen, setFilterOpen] = useState(false);
   const [onlyDepartures] = useState(initialFilter.onlyDepartures);
   const [productFilter, setProductFilter] = useState(initialFilter.products);
@@ -32,8 +32,8 @@ const useFilter = (initialFilter: Filter) => {
   }, []);
 
   const saveProductFilter = useCallback(() => {
-    cookies.set(filterCookieName, productFilter, setCookieOptions);
-  }, [cookies, productFilter]);
+    storage.set(filterCookieName, productFilter);
+  }, [productFilter, storage]);
 
   return {
     onlyDepartures,
@@ -48,7 +48,7 @@ const useFilter = (initialFilter: Filter) => {
 const useConfig = (initialConfig: AbfahrtenConfig) => {
   const [config, setConfig] = useState(initialConfig);
   const [configOpen, setConfigOpen] = useState(false);
-  const cookies = useCookies();
+  const storage = useStorage();
 
   const setConfigKey = useCallback(
     <K extends keyof AbfahrtenConfig>(key: K, value: AbfahrtenConfig[K]) => {
@@ -57,10 +57,10 @@ const useConfig = (initialConfig: AbfahrtenConfig) => {
         [key]: value,
       };
 
-      cookies.set(configCookieName, newConfig, setCookieOptions);
+      storage.set(configCookieName, newConfig);
       setConfig(newConfig);
     },
-    [config, cookies]
+    [config, storage]
   );
 
   return {
@@ -100,9 +100,9 @@ interface Props {
   children: ReactNode;
 }
 export const AbfahrtenConfigProvider = ({ children }: Props) => {
-  const cookies = useCookies();
+  const storage = useStorage();
   const query = useQuery();
-  const savedFilter = cookies.get(filterCookieName);
+  const savedFilter = storage.get(filterCookieName);
 
   const savedConfig = {
     filter: {
@@ -111,7 +111,7 @@ export const AbfahrtenConfigProvider = ({ children }: Props) => {
     },
     config: {
       ...defaultAbfahrtenConfig,
-      ...cookies.get(configCookieName),
+      ...storage.get(configCookieName),
       ...global.configOverride.abfahrten,
     },
   };

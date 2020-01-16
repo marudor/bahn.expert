@@ -1,3 +1,6 @@
+const fs = require('fs');
+const path = require('path');
+
 const getBabelConfig = type => {
   const isServer = type === 'server';
 
@@ -11,19 +14,27 @@ const getBabelConfig = type => {
 
   const serverModuleResolver = isServer
     ? {
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        extensions: ['.js', '.jsx', '.web.ts', '.ts', '.tsx'],
         alias: {
           testHelper: './test/testHelper',
           classnames: 'clsx',
         },
         resolvePath: (sourcePath, currentFile, opts) => {
-          const path = require('babel-plugin-module-resolver').resolvePath(
+          let filePath = require('babel-plugin-module-resolver').resolvePath(
             sourcePath.replace(/^(Abfahrten|Common|Routing)\//, 'client/$1/'),
             currentFile,
             opts
           );
+          const specialCase = `${filePath}/index.web.ts`;
 
-          return path;
+          if (
+            // eslint-disable-next-line no-sync
+            fs.existsSync(path.resolve(path.dirname(currentFile), specialCase))
+          ) {
+            filePath = specialCase;
+          }
+
+          return filePath;
         },
       }
     : undefined;

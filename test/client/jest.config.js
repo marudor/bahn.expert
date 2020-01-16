@@ -10,6 +10,7 @@ module.exports = {
   },
   globalSetup: '<rootDir>/test/setTZ.ts',
   setupFilesAfterEnv: ['<rootDir>/test/client/config.ts'],
+  testPathIgnorePatterns: ['/src/app/'],
   rootDir: '../..',
   roots: ['<rootDir>/src', '<rootDir>/test/client'],
 };
