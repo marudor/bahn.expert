@@ -13,6 +13,11 @@ describe('Auslastung', () => {
     );
 
   it('shows loading first, nothing on error', async () => {
+    nock
+      .get(
+        `/api/hafas/v1/auslastung/${mockAbfahrt.currentStation.title}/${mockAbfahrt.destination}/${mockAbfahrt.train.number}/${mockAbfahrt.departure.scheduledTime}`
+      )
+      .reply(500);
     const { queryByTestId } = renderAuslastung();
 
     await waitForElementToBeRemoved(() => queryByTestId('loading'));

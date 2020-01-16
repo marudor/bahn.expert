@@ -80,10 +80,12 @@ const Search = () => {
       if (isSameDay(date, today)) relativeDayString = 'Heute';
       else if (isSameDay(date, yesterday)) relativeDayString = 'Gestern';
       else if (isSameDay(date, tomorrow)) relativeDayString = 'Morgen';
+      // @ts-ignore
       relativeDayString += `, ${deLocale.localize.day(date.getDay(), {
         width: 'short',
       })}`;
     } else {
+      // @ts-ignore
       relativeDayString = deLocale.localize.day(date.getDay());
     }
     relativeDayString += ` ${lightFormat(date, 'dd.MM.')}`;
