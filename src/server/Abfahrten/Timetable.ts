@@ -26,7 +26,7 @@ import messageLookup, {
   supersededMessages,
 } from './messageLookup';
 import NodeCache from 'node-cache';
-import xmljs from 'libxmljs2';
+import xmljs, { Element } from 'libxmljs2';
 
 interface ArDp {
   platform?: string;
@@ -384,7 +384,7 @@ export default class Timetable {
     if (!rawId) return;
     const { id, mediumId, initialDeparture } = parseRawId(rawId);
     const tl = sNode.get('tl');
-    const ref = sNode.get('ref/tl');
+    const ref = sNode.get<Element>('ref/tl');
 
     if (!this.timetable[rawId] && tl) {
       const timetable = this.parseTimetableS(sNode);
@@ -399,8 +399,8 @@ export default class Timetable {
       return;
     }
 
-    const ar = sNode.get('ar');
-    const dp = sNode.get('dp');
+    const ar = sNode.get<Element>('ar');
+    const dp = sNode.get<Element>('dp');
     // @ts-ignore this is correct
     const mArr: xmljs.Element[] = sNode.find(`${sNode.path()}//m`);
 
@@ -534,7 +534,7 @@ export default class Timetable {
   async getRealtime() {
     const rawXml = await this.fetchRealtime();
     const realtimeXml = xmljs.parseXml(rawXml);
-    const sArr = realtimeXml.find('/timetable/s');
+    const sArr = realtimeXml.find<Element>('/timetable/s');
 
     if (!sArr) return;
 
@@ -577,13 +577,13 @@ export default class Timetable {
       return undefined;
     }
     const { id, mediumId, initialDeparture } = parseRawId(rawId);
-    const tl = sNode.get('tl');
+    const tl = sNode.get<Element>('tl');
 
     if (!tl) {
       return undefined;
     }
-    const ar = sNode.get('ar');
-    const dp = sNode.get('dp');
+    const ar = sNode.get<Element>('ar');
+    const dp = sNode.get<Element>('dp');
 
     const scheduledArrival = parseTs(getAttr(ar, 'pt'));
     const scheduledDeparture = parseTs(getAttr(dp, 'pt'));
@@ -652,7 +652,7 @@ export default class Timetable {
   getTimetable(rawXml: string) {
     const timetableXml = xmljs.parseXml(rawXml);
 
-    const sArr = timetableXml.find('/timetable/s');
+    const sArr = timetableXml.find<Element>('/timetable/s');
 
     const timetables: { [key: string]: any } = {};
 
