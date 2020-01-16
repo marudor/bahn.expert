@@ -1,13 +1,13 @@
 /* eslint-disable no-underscore-dangle */
 import { CommonConfig } from 'Common/config';
 import { Container } from 'unstated-next';
-import { CookieContext } from 'Common/useCookies';
 import { defaultCommonConfig } from 'client/util';
 import { HelmetProvider } from 'react-helmet-async';
 import { Location } from 'history';
 import { MemoryRouter, useLocation } from 'react-router';
 import { MergedTheme } from '@material-ui/styles';
 import { render as realRender } from '@testing-library/react';
+import { StorageContext } from 'shared/hooks/useStorage';
 import { ThemeProvider } from 'Common/container/ThemeContainer';
 import { ThemeType } from 'client/Themes/type';
 import CommonConfigContainer from 'Common/container/CommonConfigContainer';
@@ -75,11 +75,11 @@ export function render<CP extends ComponentType<any>>(
         <HelmetProvider>
           <MemoryRouter>
             <LocationHelper>
-              <CookieContext.Provider value={cookies}>
+              <StorageContext.Provider value={cookies}>
                 <ThemeProvider>
                   <ThemeWrap>{result}</ThemeWrap>
                 </ThemeProvider>
-              </CookieContext.Provider>
+              </StorageContext.Provider>
             </LocationHelper>
           </MemoryRouter>
         </HelmetProvider>

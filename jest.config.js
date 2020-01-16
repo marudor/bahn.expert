@@ -1,5 +1,9 @@
 module.exports = {
-  projects: ['test/client/jest.config.js', 'test/server/jest.config.js'],
+  projects: [
+    'test/client/jest.config.js',
+    'test/server/jest.config.js',
+    'src/app/test/jest.config.js',
+  ],
   collectCoverage: Boolean(process.env.CI || process.env.COVERAGE),
   collectCoverageFrom: [
     '<rootDir>/src/**/*.{ts,tsx}',

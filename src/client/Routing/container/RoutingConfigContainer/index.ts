@@ -1,9 +1,8 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { createContainer } from 'unstated-next';
-import { setCookieOptions } from 'client/util';
 import { Station } from 'types/station';
 import { useCallback, useState } from 'react';
-import useCookies from 'Common/useCookies';
+import useStorage from 'shared/hooks/useStorage';
 
 export interface RoutingSettings {
   maxChanges: string;
@@ -20,7 +19,7 @@ export const defaultRoutingSettings: RoutingSettings = {
 
 const useRoutingSettings = (initialSettings: RoutingSettings) => {
   const [settings, setSettings] = useState<RoutingSettings>(initialSettings);
-  const cookies = useCookies();
+  const storage = useStorage();
 
   const updateSetting = useCallback(
     <K extends keyof RoutingSettings>(key: K, value: RoutingSettings[K]) => {
@@ -30,12 +29,12 @@ const useRoutingSettings = (initialSettings: RoutingSettings) => {
           [key]: value,
         };
 
-        cookies.set('rconfig', newSettings, setCookieOptions);
+        storage.set('rconfig', newSettings);
 
         return newSettings;
       });
     },
-    [cookies]
+    [storage]
   );
 
   return {

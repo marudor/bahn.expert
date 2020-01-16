@@ -10,9 +10,10 @@ import {
   WagenreihungStation,
 } from 'types/reihung';
 import { getAbfahrten } from '../Abfahrten';
-import { getWRLink } from 'server/Reihung/hasWR';
+import { getWRLink, WRMapEntries } from 'server/Reihung/hasWR';
 import { groupBy, maxBy, minBy } from 'lodash';
 import { isRedesignByTZ, isRedesignByUIC } from 'server/Reihung/tzInfo';
+import { parse } from 'date-fns';
 import axios from 'axios';
 import getBR from 'server/Reihung/getBR';
 import ICENaming from 'server/Reihung/ICENaming';
@@ -500,3 +501,30 @@ export async function wagenReihungMonitoring() {
     }
   }
 }
+
+/**
+ *
+ * @param TZNumber only the number
+ */
+export const WRForTZ = async (TZNumber: string) => {
+  for (const [number, times] of WRMapEntries()) {
+    // eslint-disable-next-line no-continue
+    if (number.length > 4) continue;
+    try {
+      // eslint-disable-next-line no-await-in-loop
+      const WR = await wagenreihung(
+        number,
+        parse(times[0], 'yyyyMMddHHmm', Date.now()).getTime()
+      );
+
+      if (
+        WR.allFahrzeuggruppe.some(g =>
+          g.fahrzeuggruppebezeichnung.endsWith(TZNumber)
+        )
+      ) {
+        return WR;
+      }
+      // eslint-disable-next-line no-empty
+    } catch {}
+  }
+};

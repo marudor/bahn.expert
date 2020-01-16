@@ -56,7 +56,14 @@ const rules = [
   },
   {
     test: /\.(t|j)sx?$/,
-    use: ['babel-loader'],
+    use: [
+      {
+        loader: 'babel-loader',
+        options: {
+          configFile: false,
+        },
+      },
+    ],
   },
   {
     test: /\.(jpg|jpeg|png|woff|woff2|eot|ttf|svg)$/,
@@ -124,7 +131,7 @@ module.exports = {
   resolve: {
     // plugins: [new ReactJssHmrPlugin()],
     modules: ['node_modules', path.resolve(__dirname, 'src')],
-    extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'],
+    extensions: ['.js', '.json', '.web.ts', '.jsx', '.ts', '.tsx'],
     alias: {
       classnames$: 'clsx',
       'lodash-es$': 'lodash',

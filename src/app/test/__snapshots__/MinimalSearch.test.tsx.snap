@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Simple Proof of Concept Test MinimalSearch renders 1`] = `
+<View
+  pointerEvents="box-none"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    collapsable={true}
+    pointerEvents="box-none"
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <ScrollView>
+      <TextInput
+        allowFontScaling={true}
+        rejectResponderTermination={true}
+        underlineColorAndroid="transparent"
+        value=""
+      />
+      <Button
+        title="Search"
+      />
+    </ScrollView>
+  </View>
+</View>
+`;

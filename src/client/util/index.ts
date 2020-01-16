@@ -7,12 +7,6 @@ import {
 } from 'Common/config';
 import { StationSearchType } from 'types/station';
 
-export const setCookieOptions = {
-  expires: new Date('2037-12-12'),
-  httpOnly: false,
-  path: '/',
-};
-
 export const defaultAbfahrtenConfig: AbfahrtenConfig = {
   autoUpdate: 0,
   lineAndNumber: false,
