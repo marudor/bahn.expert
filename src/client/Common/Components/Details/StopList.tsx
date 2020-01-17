@@ -34,9 +34,10 @@ const StopList = () => {
 
   if (error) {
     return (
-      <div className={cc(classes.wrap, classes.error)}>
-        <Error className={classes.error} /> {getErrorText(error)}
-      </div>
+      <main className={cc(classes.wrap, classes.error)}>
+        <Error data-testid="error" className={classes.error} />{' '}
+        {getErrorText(error)}
+      </main>
     );
   }
 
