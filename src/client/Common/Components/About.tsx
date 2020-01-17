@@ -7,7 +7,7 @@ import React from 'react';
 import useStyles from './About.style';
 
 const Privacy = () => (
-  <div>
+  <div data-testid="Privacy">
     <h2>Datenschutzerklärung</h2>
     <p>
       Personenbezogene Daten (nachfolgend zumeist nur „Daten“ genannt) werden

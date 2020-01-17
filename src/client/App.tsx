@@ -10,11 +10,11 @@ import useStyles from './App.style';
 
 const LazyRouting = loadable(() => import('./Routing'));
 const LazyDetails = loadable(() =>
-  import('Common/Components/Details/DetailsRoute')
+  import('./Common/Components/Details/DetailsRoute')
 );
 const LazyAbfahrten = loadable(() => import('./Abfahrten'));
 const LazyMap = loadable(() => import('./Map'));
-const About = loadable(() => import('Common/Components/About'));
+const About = loadable(() => import('./Common/Components/About'));
 
 const App = () => {
   useStyles();
