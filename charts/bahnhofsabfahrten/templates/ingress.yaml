@@ -18,12 +18,14 @@ spec:
     - hosts:
       {{ if .Values.hostName }}
         - {{ .Values.hostName }}
+        - www.{{ .Values.hostName }}
         {{ if .Values.docs }}
         - docs.{{ .Values.hostName }}
         - www.docs.{{ .Values.hostName }}
         {{ end }}
       {{ else }}
         - {{ .Release.Name }}.marudor.de
+        - www.{{ .Release.Name }}.marudor.de
         {{ if .Values.docs }}
         - docs.{{ .Release.Name }}.marudor.de
         - www.docs.{{ .Release.Name }}.marudor.de
