@@ -42,6 +42,7 @@ export interface CommonProductInfo {
   line?: string;
   number?: string;
   type?: string;
+  operator?: OpL;
 }
 export interface CommonStopInfo {
   scheduledPlatform?: string;
