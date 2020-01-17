@@ -326,10 +326,13 @@ export class HafasController extends Controller {
     evaId: string,
     @Query() profile?: AllowedHafasProfile
   ): Promise<AbfahrtenResult> {
-    const hafasDeparture = await StationBoard({
-      type: 'DEP',
-      station: evaId,
-    });
+    const hafasDeparture = await StationBoard(
+      {
+        type: 'DEP',
+        station: evaId,
+      },
+      profile
+    );
 
     return {
       lookbehind: [],

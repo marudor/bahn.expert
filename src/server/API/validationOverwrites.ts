@@ -10,8 +10,10 @@ router.prefix('/api').all('*', (ctx, next) => {
   if (ctx.url.startsWith('/api/hafas')) {
     const hafasProfile = ctx.query.profile;
 
-    // @ts-ignore
-    if (hafasProfile && !AllowedHafasProfile[hafasProfile]) {
+    if (
+      hafasProfile &&
+      !Object.values(AllowedHafasProfile).includes(hafasProfile)
+    ) {
       delete ctx.query.profile;
     }
   }

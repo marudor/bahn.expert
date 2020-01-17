@@ -10,7 +10,6 @@ on:
 
 env:
   CI: "true"
-  CYPRESS_INSTALL_BINARY: 0
 
 jobs:
   node:
@@ -29,6 +28,8 @@ jobs:
     - name: install
       run: |
         yarn --frozen-lockfile
+      env:
+        CYPRESS_INSTALL_BINARY: 0
     - name: jest
       run: |
         yarn test:jest
@@ -47,40 +48,31 @@ jobs:
         name: jest-coverage
         path: jest-coverage/coverage-final.json
   e2e:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-16.04
     steps:
     - uses: actions/checkout@master
     - name: Use Node.js 13
       uses: actions/setup-node@master
       with:
         node-version: 13
-    - name: Cache node modules
-      uses: actions/cache@v1
+    - name: Install Cypress
+      uses: cypress-io/github-action@v1.16.1
       with:
-        path: node_modules
-        key: ${{ runner.OS }}-build-${{ hashFiles('yarn.lock')}}${{ hashFiles('package.json')}}
-    - name: install
-      run: |
-        yarn --frozen-lockfile
-        CYPRESS_INSTALL_BINARY= yarn cypress install
-    - name: build
-      run: |
-        yarn build
-      env:
-        NODE_ENV: production
-        TEST_ONLY: 1
+        runTests: false
     - name: Run Cypress
-      run: |
-          node testDist/server/server/index.js & npx wait-on http://localhost:9042
-          yarn e2e:ci --record||(pkill -9 node && exit 1)
-          pkill -9 node
+      uses: cypress-io/github-action@v1.16.1
+      with:
+        install: false
+        record: true
+        build: yarn build
+        start: node testDist/server/server/index.js
+        wait-on: http://localhost:9042
       env:
         CYPRESS_RECORD_KEY: 0af1d817-e8ac-4c69-ac15-c0da1e69182d
-        COMMIT_INFO_BRANCH: ${{ github.head_ref }}
-        COMMIT_INFO_REMOTE: https://github.com/${{ github.repository }}.git
         BASE_URL: http://localhost:9042
         NODE_ENV: production
         TEST_RUN: 1
+        TEST_ONLY: 1
     - name: Upload cypress coverage
       uses: actions/upload-artifact@master
       with:
@@ -103,6 +95,8 @@ jobs:
     - name: install
       run: |
         yarn --frozen-lockfile
+      env:
+        CYPRESS_INSTALL_BINARY: 0
     - name: Download jest coverage
       uses: actions/download-artifact@master
       with:

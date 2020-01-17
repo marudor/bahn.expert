@@ -33,12 +33,14 @@ const numberCheck = (value: string, fallback: number): number => {
   return n;
 };
 const searchTypeCheck = (value: string): StationSearchType =>
-  // @ts-ignore this works
-  StationSearchType[StationSearchType[Number.parseInt(value, 10)]] ||
-  StationSearchType.default;
-const checkInCheck = (value: string): CheckInType =>
-  // @ts-ignore this works
-  CheckInType[CheckInType[Number.parseInt(value, 10)]] || CheckInType.None;
+  Object.values(StationSearchType).includes(value as StationSearchType)
+    ? (value as StationSearchType)
+    : StationSearchType.default;
+const checkInCheck = (
+  value: string,
+  numberVal = Number.parseInt(value, 10)
+): CheckInType =>
+  Object.values(CheckInType).includes(numberVal) ? numberVal : CheckInType.None;
 
 export const abfahrtenConfigSanitize: AbfahrtenConfigSanitize = {
   autoUpdate: value => numberCheck(value, 0),
