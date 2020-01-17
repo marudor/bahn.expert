@@ -1,6 +1,6 @@
-import { ParsedProduct, ProdL } from 'types/HAFAS';
+import { Common, ParsedProduct, ProdL } from 'types/HAFAS';
 
-export default (product: ProdL): ParsedProduct => ({
+export default (product: ProdL, common: Common): ParsedProduct => ({
   name: product.addName || product.name,
   line:
     product.nameS ||
@@ -8,6 +8,7 @@ export default (product: ProdL): ParsedProduct => ({
     (product.prodCtx && (product.prodCtx.line || product.prodCtx.lineId)),
   number: product.prodCtx?.num ?? product.number,
   type: product.prodCtx && (product.prodCtx.catOut || product.prodCtx.catOutL),
+  operator: product.oprX !== undefined ? common.opL[product.oprX] : undefined,
   // @ts-ignore
   raw: global.PROD ? undefined : product,
 });

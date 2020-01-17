@@ -18,15 +18,19 @@ spec:
   commonName: {{ .Values.hostName }}
   dnsNames:
     - {{ .Values.hostName }}
+    - www.{{ .Values.hostName }}
     {{ if .Values.docs }}
     - docs.{{ .Values.hostName }}
+    - www.docs.{{ .Values.hostName }}
     {{ end }}
   {{ else }}
   commonName: {{ .Release.Name }}.marudor.de
   dnsNames:
     - {{ .Release.Name }}.marudor.de
+    - www.{{ .Release.Name }}.marudor.de
     {{ if .Values.docs }}
     - docs.{{ .Release.Name }}.marudor.de
+    - www.docs.{{ .Release.Name }}.marudor.de
     {{ end }}
   {{ end }}
 {{- end }}

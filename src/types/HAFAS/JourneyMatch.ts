@@ -5,7 +5,19 @@ export interface JourneyMatchRequest {
   req: {
     jnyFltrL?: JourneyFilter[];
     date: string;
+    dateB?: string;
+    dateE?: string;
+    extId?: string;
     input: string;
+
+    onlyCR?: boolean;
+    onlyRT?: boolean;
+    onlyTN?: boolean;
+    time?: string;
+    timeE?: string;
+    timeB?: string;
+    tripId?: string;
+    useAeqi?: boolean;
   };
   meth: 'JourneyMatch';
 }
