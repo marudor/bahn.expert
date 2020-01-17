@@ -1,4 +1,11 @@
-import { Common, CommonStopInfo, Journey, ParsedProduct, RemL } from '.';
+import {
+  Common,
+  CommonStopInfo,
+  Journey,
+  OptionalLocL,
+  ParsedProduct,
+  RemL,
+} from '.';
 import { Route$Auslastung, Route$Stop } from 'types/routing';
 
 export interface JourneyDetailsResponse {
@@ -12,6 +19,24 @@ export interface JourneyDetailsResponse {
 export interface JourneyDetailsRequest {
   req: {
     jid: string;
+    getAltCoordinates?: boolean;
+    getAnnotations?: boolean;
+    getPasslist?: boolean;
+    getPolyline?: boolean;
+    getSimpleTrainComposition?: boolean;
+    getTrainComposition?: boolean;
+
+    aDate?: string;
+    aIdx?: number;
+    aLoc?: OptionalLocL;
+    aTime?: string;
+    dDate?: string;
+    dIdx?: number;
+    dLoc?: OptionalLocL;
+    dTime?: string;
+    date?: string;
+    name?: string;
+    polySplitting?: boolean;
   };
   meth: 'JourneyDetails';
 }

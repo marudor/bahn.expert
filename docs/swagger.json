@@ -1503,6 +1503,51 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"Coordinates": {
+				"properties": {
+					"lat": {
+						"type": "number",
+						"format": "double"
+					},
+					"lng": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"lat",
+					"lng"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"HafasStation": {
+				"properties": {
+					"title": {
+						"type": "string"
+					},
+					"id": {
+						"type": "string"
+					},
+					"products": {
+						"items": {
+							"$ref": "#/components/schemas/ParsedProduct"
+						},
+						"type": "array",
+						"nullable": true
+					},
+					"coordinates": {
+						"$ref": "#/components/schemas/Coordinates"
+					}
+				},
+				"required": [
+					"title",
+					"id",
+					"coordinates"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"ArrivalStationBoardEntry": {
 				"properties": {
 					"train": {
@@ -1518,6 +1563,16 @@
 					"jid": {
 						"type": "string"
 					},
+					"stops": {
+						"items": {
+							"$ref": "#/components/schemas/Route$Stop"
+						},
+						"type": "array",
+						"nullable": true
+					},
+					"currentStation": {
+						"$ref": "#/components/schemas/HafasStation"
+					},
 					"arrival": {
 						"$ref": "#/components/schemas/CommonStopInfo"
 					}
@@ -1526,6 +1581,7 @@
 					"train",
 					"finalDestination",
 					"jid",
+					"currentStation",
 					"arrival"
 				],
 				"type": "object",
@@ -1546,6 +1602,16 @@
 					"jid": {
 						"type": "string"
 					},
+					"stops": {
+						"items": {
+							"$ref": "#/components/schemas/Route$Stop"
+						},
+						"type": "array",
+						"nullable": true
+					},
+					"currentStation": {
+						"$ref": "#/components/schemas/HafasStation"
+					},
 					"departure": {
 						"$ref": "#/components/schemas/CommonStopInfo"
 					}
@@ -1554,6 +1620,7 @@
 					"train",
 					"finalDestination",
 					"jid",
+					"currentStation",
 					"departure"
 				],
 				"type": "object",
@@ -1743,51 +1810,6 @@
 				},
 				"required": [
 					"trainName"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"Coordinates": {
-				"properties": {
-					"lat": {
-						"type": "number",
-						"format": "double"
-					},
-					"lng": {
-						"type": "number",
-						"format": "double"
-					}
-				},
-				"required": [
-					"lat",
-					"lng"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"HafasStation": {
-				"properties": {
-					"title": {
-						"type": "string"
-					},
-					"id": {
-						"type": "string"
-					},
-					"products": {
-						"items": {
-							"$ref": "#/components/schemas/ParsedProduct"
-						},
-						"type": "array",
-						"nullable": true
-					},
-					"coordinates": {
-						"$ref": "#/components/schemas/Coordinates"
-					}
-				},
-				"required": [
-					"title",
-					"id",
-					"coordinates"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -2198,53 +2220,6 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"WingInfo": {
-				"properties": {
-					"station": {
-						"properties": {
-							"id": {
-								"type": "string"
-							},
-							"title": {
-								"type": "string"
-							}
-						},
-						"required": [
-							"title",
-							"id"
-						],
-						"type": "object"
-					},
-					"pt": {
-						"type": "number",
-						"format": "double"
-					},
-					"fl": {
-						"type": "boolean"
-					}
-				},
-				"required": [
-					"station",
-					"pt",
-					"fl"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"WingDefinition": {
-				"properties": {
-					"start": {
-						"$ref": "#/components/schemas/WingInfo",
-						"nullable": true
-					},
-					"end": {
-						"$ref": "#/components/schemas/WingInfo",
-						"nullable": true
-					}
-				},
-				"type": "object",
-				"additionalProperties": false
-			},
 			"StopInfo": {
 				"properties": {
 					"scheduledPlatform": {
@@ -2283,7 +2258,8 @@
 						"nullable": true
 					},
 					"cancelled": {
-						"type": "boolean"
+						"type": "boolean",
+						"nullable": true
 					},
 					"wingIds": {
 						"items": {
@@ -2293,14 +2269,13 @@
 						"nullable": true
 					},
 					"hidden": {
-						"type": "boolean"
+						"type": "boolean",
+						"nullable": true
 					}
 				},
 				"required": [
 					"scheduledTime",
-					"time",
-					"cancelled",
-					"hidden"
+					"time"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -2396,12 +2371,12 @@
 						"nullable": true
 					},
 					"longDistance": {
-						"type": "boolean"
+						"type": "boolean",
+						"nullable": true
 					}
 				},
 				"required": [
 					"name",
-					"longDistance",
 					"type",
 					"number"
 				],
@@ -2440,7 +2415,8 @@
 						"nullable": true
 					},
 					"cancelled": {
-						"type": "boolean"
+						"type": "boolean",
+						"nullable": true
 					},
 					"mediumId": {
 						"type": "string"
@@ -2487,7 +2463,8 @@
 					},
 					"hiddenReihung": {
 						"type": "boolean",
-						"description": "Most likely does not have coach sequence"
+						"description": "Most likely does not have coach sequence",
+						"nullable": true
 					}
 				},
 				"required": [
@@ -2496,7 +2473,6 @@
 					"currentStation",
 					"destination",
 					"id",
-					"cancelled",
 					"mediumId",
 					"messages",
 					"platform",
@@ -2506,8 +2482,7 @@
 					"route",
 					"scheduledDestination",
 					"scheduledPlatform",
-					"train",
-					"hiddenReihung"
+					"train"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -2542,6 +2517,53 @@
 					"lookbehind",
 					"wings"
 				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"WingInfo": {
+				"properties": {
+					"station": {
+						"properties": {
+							"id": {
+								"type": "string"
+							},
+							"title": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"title",
+							"id"
+						],
+						"type": "object"
+					},
+					"pt": {
+						"type": "number",
+						"format": "double"
+					},
+					"fl": {
+						"type": "boolean"
+					}
+				},
+				"required": [
+					"station",
+					"pt",
+					"fl"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"WingDefinition": {
+				"properties": {
+					"start": {
+						"$ref": "#/components/schemas/WingInfo",
+						"nullable": true
+					},
+					"end": {
+						"$ref": "#/components/schemas/WingInfo",
+						"nullable": true
+					}
+				},
 				"type": "object",
 				"additionalProperties": false
 			},

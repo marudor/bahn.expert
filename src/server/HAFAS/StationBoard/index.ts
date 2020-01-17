@@ -34,6 +34,8 @@ function stationBoard(
       getPasslist: true,
       getSimpleTrainComposition: true,
       type,
+      getPasslist: true,
+      maxJny: 300,
       date: format(date, 'yyyyMMdd', {
         timeZone: 'Europe/Berlin',
       }),

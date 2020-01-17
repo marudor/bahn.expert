@@ -309,6 +309,7 @@ export interface CommonJny {
   isRchbl: boolean;
   isCncl?: boolean;
   subscr: string;
+  stopL?: CommonStop[];
 }
 
 export interface CommonArrival {

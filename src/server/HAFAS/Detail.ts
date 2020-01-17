@@ -85,6 +85,14 @@ export default async (
 
   let relevantSegment: ParsedSearchOnTripResponse;
 
+  console.log(
+    createCtxRecon({
+      firstStop: journeyDetails.firstStop,
+      lastStop: journeyDetails.lastStop,
+      trainName: journeyDetails.train.name,
+      messages: journeyDetails.messages,
+    })
+  );
   try {
     const route = await searchOnTrip(
       {
