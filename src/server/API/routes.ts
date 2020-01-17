@@ -27,6 +27,15 @@ const models: TsoaRoute.Models = {
     "additionalProperties": false,
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "OpL": {
+    "dataType": "refObject",
+    "properties": {
+      "name": { "dataType": "string", "required": true },
+      "icoX": { "dataType": "double", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "ParsedProduct": {
     "dataType": "refObject",
     "properties": {
@@ -34,6 +43,7 @@ const models: TsoaRoute.Models = {
       "line": { "dataType": "string" },
       "number": { "dataType": "string" },
       "type": { "dataType": "string" },
+      "operator": { "ref": "OpL" },
     },
     "additionalProperties": false,
   },
@@ -743,6 +753,7 @@ const models: TsoaRoute.Models = {
       "line": { "dataType": "string" },
       "number": { "dataType": "string", "required": true },
       "type": { "dataType": "string", "required": true },
+      "operator": { "ref": "OpL" },
       "longDistance": { "dataType": "boolean", "required": true },
     },
     "additionalProperties": false,

@@ -285,6 +285,10 @@ Object {
     "line": "5",
     "name": "S 5",
     "number": "7567",
+    "operator": Object {
+      "icoX": 1,
+      "name": "DB Regio AG S-Bahn Stuttgart",
+    },
     "type": "S",
   },
 }

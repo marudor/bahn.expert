@@ -59,7 +59,7 @@ function createRequest(
 }
 
 function parseCommon(common: Common): ParsedCommon {
-  const prodL = common.prodL.map(p => parseProduct(p));
+  const prodL = common.prodL.map(p => parseProduct(p, common));
   const locL = common.locL.map(l => parseLocL(l, prodL));
 
   return {

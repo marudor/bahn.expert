@@ -16,6 +16,23 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"OpL": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"icoX": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"name",
+					"icoX"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"ParsedProduct": {
 				"properties": {
 					"name": {
@@ -31,6 +48,10 @@
 					},
 					"type": {
 						"type": "string",
+						"nullable": true
+					},
+					"operator": {
+						"$ref": "#/components/schemas/OpL",
 						"nullable": true
 					}
 				},
@@ -2160,6 +2181,10 @@
 					},
 					"type": {
 						"type": "string"
+					},
+					"operator": {
+						"$ref": "#/components/schemas/OpL",
+						"nullable": true
 					},
 					"longDistance": {
 						"type": "boolean"
