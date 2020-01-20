@@ -31,6 +31,8 @@ function stationBoard(
 ) {
   const req: StationBoardRequest = {
     req: {
+      getPasslist: true,
+      getSimpleTrainComposition: true,
       type,
       date: format(date, 'yyyyMMdd', {
         timeZone: 'Europe/Berlin',

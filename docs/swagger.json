@@ -4502,6 +4502,60 @@
 				]
 			}
 		},
+		"/hafas/v1/tripSearch": {
+			"post": {
+				"operationId": "TripSearch",
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/RoutingResult"
+								}
+							}
+						},
+						"description": "Ok"
+					}
+				},
+				"tags": [
+					"HAFAS V1"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "profile",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"enum": [
+								"db",
+								"oebb",
+								"sncb",
+								"avv",
+								"nahsh",
+								"hvv",
+								"bvg",
+								"insa",
+								"anachb",
+								"vao",
+								"sbb",
+								"dbnetz"
+							]
+						}
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/TripSearchOptions"
+							}
+						}
+					}
+				}
+			}
+		},
 		"/hafas/v1/route": {
 			"post": {
 				"operationId": "Route",

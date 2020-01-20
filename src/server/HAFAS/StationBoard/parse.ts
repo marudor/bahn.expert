@@ -9,6 +9,7 @@ import { parse } from 'date-fns';
 import { StationBoardEntry } from 'types/stationBoard';
 import parseCommonArrival from '../helper/parseCommonArrival';
 import parseCommonDeparture from '../helper/parseCommonDeparture';
+import parseMessages from 'server/HAFAS/helper/parseMessages';
 
 const isArrival = (a: CommonArrival | CommonDeparture): a is CommonArrival =>
   a.hasOwnProperty('aOutR');
@@ -24,6 +25,7 @@ const parseStationBoardResponse = (
     finalDestination: jny.dirTxt,
     jid: jny.jid,
     cancelled: jny.isCncl,
+    raw: global.PROD ? undefined : jny,
   };
 
   if (isArrival(jny.stbStop)) {

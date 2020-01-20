@@ -271,6 +271,16 @@ export class HafasController extends Controller {
     return LocMatch(searchTerm, undefined, profile, ctx.query.raw);
   }
 
+  @Post('/tripSearch')
+  @Tags('HAFAS V1')
+  tripSearch(
+    @Request() ctx: Context,
+    @Body() body: TripSearchOptions,
+    @Query() profile?: AllowedHafasProfile
+  ): Promise<RoutingResult> {
+    return TripSearch(body, profile, ctx.query.raw);
+  }
+
   @Post('/route')
   @Tags('HAFAS V1')
   route(

@@ -69,7 +69,7 @@ export interface TravelerProfile {
 export interface TarifRequest {
   jnyCl: JnyCl;
   cType: 'PK';
-  tvlrProf: TravelerProfile;
+  tvlrProf: TravelerProfile[];
 }
 
 interface GenericTripSearchRequest extends SharedTripSearchOptions {
@@ -78,12 +78,35 @@ interface GenericTripSearchRequest extends SharedTripSearchOptions {
   viaLocL: {
     loc: Partial<LocL>;
   }[];
+  antiViaLocL?: {
+    loc: Partial<LocL>;
+  }[];
   getPT: boolean;
   maxChg: number;
   minChgTime: number;
   outFrwd: boolean;
   jnyFltrL?: JourneyFilter[];
   trfReq?: TarifRequest;
+
+  baim?: boolean;
+  ctxScr?: string;
+  getConGroups?: boolean;
+  numB?: number;
+  outReconL?: any[];
+  retDate?: string;
+  retReconL?: any[];
+  retTime?: string;
+  extChgTime?: number;
+  getAltCoordinates?: boolean;
+  getAnnotations?: boolean;
+  getEco?: boolean;
+  getEcoCmp?: boolean;
+  getIST?: boolean;
+  liveSearch?: boolean;
+  prefLocL?: {
+    loc: Partial<LocL>;
+  }[];
+  pt?: string;
 }
 interface DateTimeTripSeachRequest extends GenericTripSearchRequest {
   outDate: string;

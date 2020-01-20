@@ -92,6 +92,7 @@ function route(
             loc: {
               lid: `A=1@L=${evaId}`,
             },
+            min: 10080,
           }))
         : undefined,
       trfReq: tarif
