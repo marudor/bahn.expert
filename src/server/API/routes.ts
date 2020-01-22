@@ -772,6 +772,54 @@ const models: TsoaRoute.Models = {
     "additionalProperties": false,
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "PubChL": {
+    "dataType": "refObject",
+    "properties": {
+      "name": { "dataType": "string", "required": true },
+      "fDate": { "dataType": "string", "required": true },
+      "fTime": { "dataType": "string", "required": true },
+      "tDate": { "dataType": "string", "required": true },
+      "tTime": { "dataType": "string", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "HimMessage": {
+    "dataType": "refObject",
+    "properties": {
+      "hid": { "dataType": "string", "required": true },
+      "act": { "dataType": "boolean", "required": true },
+      "head": { "dataType": "string", "required": true },
+      "lead": { "dataType": "string", "required": true },
+      "text": { "dataType": "string", "required": true },
+      "icoX": { "dataType": "double", "required": true },
+      "prio": { "dataType": "double", "required": true },
+      "fLocX": { "dataType": "double", "required": true },
+      "tLocX": { "dataType": "double", "required": true },
+      "prod": { "dataType": "double", "required": true },
+      "affProdRefL": { "dataType": "array", "array": { "dataType": "double" }, "required": true },
+      "IModDate": { "dataType": "string", "required": true },
+      "IModTime": { "dataType": "string", "required": true },
+      "sDate": { "dataType": "string", "required": true },
+      "sTime": { "dataType": "string", "required": true },
+      "eDate": { "dataType": "string", "required": true },
+      "eTime": { "dataType": "string", "required": true },
+      "comp": { "dataType": "string", "required": true },
+      "cat": { "dataType": "double", "required": true },
+      "pubChL": { "dataType": "array", "array": { "ref": "PubChL" }, "required": true },
+      "edgeRefL": { "dataType": "array", "array": { "dataType": "double" }, "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "ParsedHimSearchResponse": {
+    "dataType": "refObject",
+    "properties": {
+      "messages": { "dataType": "array", "array": { "ref": "HimMessage" }, "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "StopInfo": {
     "dataType": "refObject",
     "properties": {
@@ -1664,6 +1712,27 @@ export function RegisterRoutes(router: KoaRouter) {
       const controller = new HafasController();
 
       const promise = controller.positionForTrain.apply(controller, validatedArgs as any);
+      return promiseHandler(controller, promise, context, next);
+    });
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  router.get('/api/hafas/v1/himMessages',
+    async (context: any, next: any) => {
+      const args = {
+        himIds: { "in": "query", "name": "himIds", "required": true, "dataType": "array", "array": { "dataType": "string" } },
+        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb", "dbnetz"] },
+      };
+
+      let validatedArgs: any[] = [];
+      try {
+        validatedArgs = getValidatedArgs(args, context);
+      } catch (error) {
+        context.status = error.status;
+        context.throw(error.status, JSON.stringify({ fields: error.fields }));
+      }
+
+      const controller = new HafasController();
+
+      const promise = controller.himMessages.apply(controller, validatedArgs as any);
       return promiseHandler(controller, promise, context, next);
     });
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

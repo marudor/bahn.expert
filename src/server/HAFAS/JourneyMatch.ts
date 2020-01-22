@@ -51,7 +51,6 @@ export default (
     req: {
       date: format(date, 'yyyyMMdd'),
       input: trainName,
-      onlyRT: true,
       jnyFltrL,
     },
     meth: 'JourneyMatch',

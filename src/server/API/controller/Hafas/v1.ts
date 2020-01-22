@@ -11,6 +11,7 @@ import {
 import {
   Body,
   Controller,
+  Deprecated,
   Get,
   Hidden,
   OperationId,
@@ -30,6 +31,7 @@ import {
   JourneyMatchOptions,
   ParsedJourneyMatchResponse,
 } from 'types/HAFAS/JourneyMatch';
+import { ParsedHimSearchResponse } from 'types/HAFAS/HimSearch';
 import { ParsedJourneyDetails } from 'types/HAFAS/JourneyDetails';
 import { Route$Auslastung, RoutingResult, SingleRoute } from 'types/routing';
 import { Station } from 'types/station';
@@ -37,6 +39,7 @@ import { TrainSearchResult } from 'types/HAFAS/Details';
 import { TripSearchOptions } from 'types/HAFAS/TripSearch';
 import Auslastung from 'server/HAFAS/Auslastung';
 import Detail from 'server/HAFAS/Detail';
+import HimSearch from 'server/HAFAS/HimSearch';
 import JourneyDetails from 'server/HAFAS/JourneyDetails';
 import JourneyGeoPos from 'server/HAFAS/JourneyGeoPos';
 import JourneyMatch from 'server/HAFAS/JourneyMatch';
@@ -214,6 +217,7 @@ export class HafasController extends Controller {
   }
 
   @Get('/journeyMatch/{trainName}')
+  @Deprecated()
   @Tags('HAFAS V1')
   journeyMatch(
     @Request() ctx: Context,
@@ -320,8 +324,26 @@ export class HafasController extends Controller {
     return result;
   }
 
+  @Get('/himMessages')
+  @Tags('HAFAS Experimental')
+  himMessages(
+    @Query() himIds: string[],
+    @Query() profile?: AllowedHafasProfile
+  ): Promise<ParsedHimSearchResponse> {
+    return HimSearch(
+      {
+        himFltrL: himIds.map(value => ({
+          type: 'HIMID',
+          mode: 'INC',
+          value,
+        })),
+      },
+      profile
+    );
+  }
+
   @Get('/irisCompatibleAbfahrten/{evaId}')
-  @Hidden()
+  @Tags('HAFAS Experimental')
   async irisCompatibleAbfahrten(
     evaId: string,
     @Query() profile?: AllowedHafasProfile
