@@ -9,11 +9,14 @@ import {
   MsgL,
   TrnCmpSX,
 } from '.';
-import { DBLoyalityCard, JnyCl, TravelerType } from 'types/HAFAS/Tarif';
+import { JnyCl, LoyalityCard, TravelerType } from 'types/HAFAS/Tarif';
 
 export interface TripSearchTraveler {
   type: TravelerType;
-  loyalityCard?: DBLoyalityCard;
+  /**
+   * Testing Comment
+   */
+  loyalityCard?: LoyalityCard;
 }
 
 export interface TripSearchTarifRequest {
@@ -63,7 +66,7 @@ interface SharedTripSearchOptions {
 
 export interface TravelerProfile {
   type: TravelerType;
-  redtnCard?: DBLoyalityCard;
+  redtnCard?: number;
 }
 
 export interface TarifRequest {
