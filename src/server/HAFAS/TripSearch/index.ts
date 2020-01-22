@@ -2,6 +2,7 @@ import { AllowedHafasProfile } from 'types/HAFAS';
 import { format } from 'date-fns-tz';
 import { TripSearchOptions, TripSearchRequest } from 'types/HAFAS/TripSearch';
 import makeRequest from '../Request';
+import mapLoyalityCard from 'server/HAFAS/TripSearch/mapLoyalityCard';
 import tripSearchParse from './parse';
 
 const profileConfig = {
@@ -101,7 +102,7 @@ function route(
             cType: 'PK',
             tvlrProf: tarif.traveler.map(t => ({
               type: t.type,
-              redtnCard: t.loyalityCard,
+              redtnCard: mapLoyalityCard(t.loyalityCard, profile),
             })),
           }
         : undefined,

@@ -3,20 +3,20 @@ export const enum JnyCl {
   second,
 }
 
-export const enum DBLoyalityCard {
-  first25 = 1,
-  second25 = 2,
-  first50 = 3,
-  second50 = 4,
-  SHCard = 14,
-  ATVorteilscard = 9,
-  CHGeneral = 15,
-  CHHalfWithRailplus = 10,
-  CHHalfWithoutRailplus = 11,
-  NLWithRailplus = 12,
-  NLWithoutRailplus = 13,
-  first100 = 16,
-  second100 = 17,
+export const enum LoyalityCard {
+  BC25First = 'BC25First',
+  BC25Second = 'BC25Second',
+  BC50First = 'BC50First',
+  BC50Second = 'BC50Second',
+  SHCard = 'SHCard',
+  ATVorteilscard = 'ATVorteilscard',
+  CHGeneral = 'CHGeneral',
+  CHHalfWithRailplus = 'CHHalfWithRailplus',
+  CHHalfWithoutRailplus = 'CHHalfWithoutRailplus',
+  NLWithRailplus = 'NLWithRailplus',
+  NLWithoutRailplus = 'NLWithoutRailplus',
+  first100 = 'BC100First',
+  second100 = 'BC100Second',
 }
 
 export const enum TravelerType {

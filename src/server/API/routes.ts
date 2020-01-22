@@ -648,16 +648,16 @@ const models: TsoaRoute.Models = {
     "enums": ["E", "K", "B"],
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "DBLoyalityCard": {
+  "LoyalityCard": {
     "dataType": "refEnum",
-    "enums": [1, 2, 3, 4, 14, 9, 15, 10, 11, 12, 13, 16, 17],
+    "enums": ["BC25First", "BC25Second", "BC50First", "BC50Second", "SHCard", "ATVorteilscard", "CHGeneral", "CHHalfWithRailplus", "CHHalfWithoutRailplus", "NLWithRailplus", "NLWithoutRailplus", "BC100First", "BC100Second"],
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "TripSearchTraveler": {
     "dataType": "refObject",
     "properties": {
       "type": { "ref": "TravelerType", "required": true },
-      "loyalityCard": { "ref": "DBLoyalityCard" },
+      "loyalityCard": { "ref": "LoyalityCard" },
     },
     "additionalProperties": false,
   },
