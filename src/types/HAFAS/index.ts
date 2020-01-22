@@ -289,6 +289,13 @@ export interface TcocL {
   r?: number;
 }
 
+export interface HimMsgEdgeL {
+  icoCrd: {
+    x: string;
+    y: string;
+  };
+}
+
 export interface Common {
   locL: LocL[];
   prodL: ProdL[];
@@ -299,6 +306,7 @@ export interface Common {
   remL: RemL[];
   icoL: IcoL[];
   tcocL?: TcocL[];
+  himMsgEdgeL?: HimMsgEdgeL[];
 }
 
 export interface CommonJny {

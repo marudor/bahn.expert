@@ -2238,6 +2238,158 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"PubChL": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"fDate": {
+						"type": "string"
+					},
+					"fTime": {
+						"type": "string"
+					},
+					"tDate": {
+						"type": "string"
+					},
+					"tTime": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"name",
+					"fDate",
+					"fTime",
+					"tDate",
+					"tTime"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"HimMessage": {
+				"properties": {
+					"hid": {
+						"type": "string"
+					},
+					"act": {
+						"type": "boolean"
+					},
+					"head": {
+						"type": "string"
+					},
+					"lead": {
+						"type": "string"
+					},
+					"text": {
+						"type": "string"
+					},
+					"icoX": {
+						"type": "number",
+						"format": "double"
+					},
+					"prio": {
+						"type": "number",
+						"format": "double"
+					},
+					"fLocX": {
+						"type": "number",
+						"format": "double"
+					},
+					"tLocX": {
+						"type": "number",
+						"format": "double"
+					},
+					"prod": {
+						"type": "number",
+						"format": "double"
+					},
+					"affProdRefL": {
+						"items": {
+							"type": "number",
+							"format": "double"
+						},
+						"type": "array"
+					},
+					"IModDate": {
+						"type": "string"
+					},
+					"IModTime": {
+						"type": "string"
+					},
+					"sDate": {
+						"type": "string"
+					},
+					"sTime": {
+						"type": "string"
+					},
+					"eDate": {
+						"type": "string"
+					},
+					"eTime": {
+						"type": "string"
+					},
+					"comp": {
+						"type": "string"
+					},
+					"cat": {
+						"type": "number",
+						"format": "double"
+					},
+					"pubChL": {
+						"items": {
+							"$ref": "#/components/schemas/PubChL"
+						},
+						"type": "array"
+					},
+					"edgeRefL": {
+						"items": {
+							"type": "number",
+							"format": "double"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"hid",
+					"act",
+					"head",
+					"lead",
+					"text",
+					"icoX",
+					"prio",
+					"fLocX",
+					"tLocX",
+					"prod",
+					"affProdRefL",
+					"IModDate",
+					"IModTime",
+					"sDate",
+					"sTime",
+					"eDate",
+					"eTime",
+					"comp",
+					"cat",
+					"pubChL",
+					"edgeRefL"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ParsedHimSearchResponse": {
+				"properties": {
+					"messages": {
+						"items": {
+							"$ref": "#/components/schemas/HimMessage"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"messages"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"StopInfo": {
 				"properties": {
 					"scheduledPlatform": {
@@ -4308,6 +4460,7 @@
 				"tags": [
 					"HAFAS V1"
 				],
+				"deprecated": true,
 				"security": [],
 				"parameters": [
 					{
@@ -4728,6 +4881,116 @@
 					{
 						"in": "path",
 						"name": "trainName",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "profile",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"enum": [
+								"db",
+								"oebb",
+								"sncb",
+								"avv",
+								"nahsh",
+								"hvv",
+								"bvg",
+								"insa",
+								"anachb",
+								"vao",
+								"sbb",
+								"dbnetz"
+							]
+						}
+					}
+				]
+			}
+		},
+		"/hafas/v1/himMessages": {
+			"get": {
+				"operationId": "HimMessages",
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ParsedHimSearchResponse"
+								}
+							}
+						},
+						"description": "Ok"
+					}
+				},
+				"tags": [
+					"HAFAS Experimental"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "himIds",
+						"required": true,
+						"schema": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						},
+						"collectionFormat": "multi"
+					},
+					{
+						"in": "query",
+						"name": "profile",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"enum": [
+								"db",
+								"oebb",
+								"sncb",
+								"avv",
+								"nahsh",
+								"hvv",
+								"bvg",
+								"insa",
+								"anachb",
+								"vao",
+								"sbb",
+								"dbnetz"
+							]
+						}
+					}
+				]
+			}
+		},
+		"/hafas/v1/irisCompatibleAbfahrten/{evaId}": {
+			"get": {
+				"operationId": "IrisCompatibleAbfahrten",
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/AbfahrtenResult"
+								}
+							}
+						},
+						"description": "Ok"
+					}
+				},
+				"tags": [
+					"HAFAS Experimental"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "evaId",
 						"required": true,
 						"schema": {
 							"type": "string"

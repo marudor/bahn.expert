@@ -7,6 +7,7 @@ import {
   ParsedCommon,
   SingleHafasRequest,
 } from 'types/HAFAS';
+import { HimSearchRequest, HimSearchResponse } from 'types/HAFAS/HimSearch';
 import {
   JourneyDetailsRequest,
   JourneyDetailsResponse,
@@ -98,6 +99,11 @@ export class HafasError extends Error {
 
 function makeRequest<R extends HafasResponse<StationBoardResponse>, P = R>(
   r: StationBoardRequest,
+  parseFn?: (d: R, pc: ParsedCommon) => P,
+  profile?: AllowedHafasProfile
+): Promise<P>;
+function makeRequest<R extends HafasResponse<HimSearchResponse>, P = R>(
+  r: HimSearchRequest,
   parseFn?: (d: R, pc: ParsedCommon) => P,
   profile?: AllowedHafasProfile
 ): Promise<P>;
