@@ -16,11 +16,12 @@ interface Props {
 const CheckInLink = (props: Props) => {
   const checkInType = CommonConfigContainer.useContainer().config.checkIn;
 
-  if (checkInType === CheckInType.Travelynx) {
-    return <TravelynxLink {...props} />;
+  switch (checkInType) {
+    case CheckInType.Travelynx:
+      return <TravelynxLink {...props} />;
+    default:
+      return null;
   }
-
-  return null;
 };
 
 export default CheckInLink;

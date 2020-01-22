@@ -1,4 +1,4 @@
-import { AllowedHafasProfile } from 'types/HAFAS';
+import { AllowedHafasProfile, JourneyFilter } from 'types/HAFAS';
 import {
   ArrivalStationBoardEntry,
   DepartureStationBoardEntry,
@@ -13,6 +13,7 @@ interface Options {
   direction?: string;
   station: string;
   type: 'ARR' | 'DEP';
+  filter?: JourneyFilter[];
 }
 function stationBoard(
   options: Omit<Options, 'type'> & { type: 'ARR' },
@@ -25,13 +26,16 @@ function stationBoard(
   raw?: boolean
 ): Promise<DepartureStationBoardEntry[]>;
 function stationBoard(
-  { station, date = Date.now(), type, direction }: Options,
+  { station, date = Date.now(), type, direction, filter }: Options,
   profile?: AllowedHafasProfile,
   raw?: boolean
 ) {
   const req: StationBoardRequest = {
     req: {
       type,
+      getPasslist: true,
+      maxJny: 300,
+      jnyFltrL: filter,
       date: format(date, 'yyyyMMdd', {
         timeZone: 'Europe/Berlin',
       }),

@@ -73,6 +73,21 @@ export interface Route$JourneySegmentWalk {
   segmentDestination: HafasStation;
 }
 
+export interface Route$TarifFare {
+  /** in Cent */
+  price: number;
+  moreExpensiveAvailable: boolean;
+  bookable: boolean;
+  /** ??? */
+  upsell: boolean;
+  /** ??? */
+  targetContext: string;
+}
+
+export interface Route$TarifFareSet {
+  fares: Route$TarifFare[];
+}
+
 export interface SingleRoute {
   arrival: CommonStopInfo;
   departure: CommonStopInfo;
@@ -84,6 +99,7 @@ export interface SingleRoute {
   changes: number;
   segments: Route$JourneySegment[];
   segmentTypes: string[];
+  tarifSet?: Route$TarifFareSet;
   raw?: OutConL;
 }
 

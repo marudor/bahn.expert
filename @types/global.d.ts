@@ -24,5 +24,5 @@ declare global {
     }
   }
 
-  type ExcludesFalse = <T>(x: T | undefined | null | false) => x is T;
+  type ExcludesFalse = <T>(x: T | undefined | void | null | false) => x is T;
 }

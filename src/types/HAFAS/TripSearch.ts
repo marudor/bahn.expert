@@ -9,6 +9,17 @@ import {
   MsgL,
   TrnCmpSX,
 } from '.';
+import { DBLoyalityCard, JnyCl, TravelerType } from 'types/HAFAS/Tarif';
+
+export interface TripSearchTraveler {
+  type: TravelerType;
+  loyalityCard?: DBLoyalityCard;
+}
+
+export interface TripSearchTarifRequest {
+  class: JnyCl;
+  traveler: TripSearchTraveler[];
+}
 
 export interface TripSearchOptions extends SharedTripSearchOptions {
   start: string;
@@ -22,6 +33,7 @@ export interface TripSearchOptions extends SharedTripSearchOptions {
   maxChanges?: number;
   searchForDeparture?: boolean;
   onlyRegional?: boolean;
+  tarif?: TripSearchTarifRequest;
 }
 
 interface SharedTripSearchOptions {
@@ -49,10 +61,24 @@ interface SharedTripSearchOptions {
   ushrp?: boolean;
 }
 
+export interface TravelerProfile {
+  type: TravelerType;
+  redtnCard?: DBLoyalityCard;
+}
+
+export interface TarifRequest {
+  jnyCl: JnyCl;
+  cType: 'PK';
+  tvlrProf: TravelerProfile[];
+}
+
 interface GenericTripSearchRequest extends SharedTripSearchOptions {
   arrLocL: Partial<LocL>[];
   depLocL: Partial<LocL>[];
   viaLocL: {
+    loc: Partial<LocL>;
+  }[];
+  antiViaLocL?: {
     loc: Partial<LocL>;
   }[];
   getPT: boolean;
@@ -60,6 +86,27 @@ interface GenericTripSearchRequest extends SharedTripSearchOptions {
   minChgTime: number;
   outFrwd: boolean;
   jnyFltrL?: JourneyFilter[];
+  trfReq?: TarifRequest;
+
+  baim?: boolean;
+  ctxScr?: string;
+  getConGroups?: boolean;
+  numB?: number;
+  outReconL?: any[];
+  retDate?: string;
+  retReconL?: any[];
+  retTime?: string;
+  extChgTime?: number;
+  getAltCoordinates?: boolean;
+  getAnnotations?: boolean;
+  getEco?: boolean;
+  getEcoCmp?: boolean;
+  getIST?: boolean;
+  liveSearch?: boolean;
+  prefLocL?: {
+    loc: Partial<LocL>;
+  }[];
+  pt?: string;
 }
 interface DateTimeTripSeachRequest extends GenericTripSearchRequest {
   outDate: string;
@@ -149,6 +196,37 @@ export interface SotCtxt {
   calcTime: string;
 }
 
+export interface TarifFare {
+  /**
+   * In Cent
+   */
+  prc: number;
+  /**
+   * Does a more expensive Tarif exist?
+   */
+  isFromPrice: boolean;
+  /**
+   * Can you you still buy this?
+   */
+  isBookable: boolean;
+  /**
+   * ???
+   */
+  isUpsell: boolean;
+  /**
+   * ???
+   */
+  targetCtx: string;
+  buttonText: string;
+}
+export interface TarifFareSet {
+  fareL: TarifFare[];
+}
+export interface HafasTarifResponse {
+  statusCode: 'OK' | string;
+  fareSetL: TarifFareSet[];
+}
+
 export interface OutConL {
   isNotRdbl?: boolean;
   cid: string;
@@ -160,6 +238,7 @@ export interface OutConL {
   arr: CommonArrival;
   secL: SecL[];
   ctxRecon: string;
+  trfRes?: HafasTarifResponse;
   conSubscr: string;
   resState: string;
   resRecommendation: string;

@@ -33,7 +33,7 @@ export interface Abfahrt {
   destination: string;
   id: string;
   additional?: boolean;
-  cancelled: boolean;
+  cancelled?: boolean;
   mediumId: string;
   messages: Messages;
   platform: string;
@@ -55,7 +55,7 @@ export interface Abfahrt {
   /**
    * Most likely does not have coach sequence
    */
-  hiddenReihung: boolean;
+  hiddenReihung?: boolean;
 }
 
 export interface Message {
@@ -79,8 +79,8 @@ export interface Messages {
 
 export interface StopInfo extends CommonStopInfo {
   wingIds?: string[];
-  cancelled: boolean;
-  hidden: boolean;
+  cancelled?: boolean;
+  hidden?: boolean;
 }
 
 export interface SubstituteRef {
@@ -97,7 +97,7 @@ export interface Train {
 }
 
 export interface TrainInfo extends CommonProductInfo {
-  longDistance: boolean;
+  longDistance?: boolean;
   type: string;
   number: string;
 }

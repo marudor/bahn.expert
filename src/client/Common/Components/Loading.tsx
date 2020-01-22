@@ -10,7 +10,7 @@ interface Props {
   relative?: boolean;
 }
 
-export enum LoadingType {
+export const enum LoadingType {
   grid,
   dots,
 }
