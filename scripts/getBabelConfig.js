@@ -40,6 +40,12 @@ const getBabelConfig = type => {
     : undefined;
 
   const plugins = [
+    [
+      'babel-plugin-const-enum',
+      {
+        transform: 'constObject',
+      },
+    ],
     '@loadable/babel-plugin',
     '@babel/plugin-proposal-optional-chaining',
     '@babel/plugin-proposal-nullish-coalescing-operator',

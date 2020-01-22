@@ -1,3 +1,4 @@
+import { AbfahrtenResult } from 'types/iris';
 import { AllowedHafasProfile, HafasStation } from 'types/HAFAS';
 import {
   AllowedSotMode,
@@ -45,6 +46,7 @@ import makeRequest from 'server/HAFAS/Request';
 import PositionForTrain from 'server/HAFAS/PositionForTrain';
 import SearchOnTrip from 'server/HAFAS/SearchOnTrip';
 import StationBoard from 'server/HAFAS/StationBoard';
+import StationBoardToTimetables from 'server/HAFAS/StationBoard/StationBoardToTimetables';
 import TrainSearch from 'server/HAFAS/TrainSearch';
 import TripSearch from 'server/HAFAS/TripSearch';
 
@@ -271,6 +273,16 @@ export class HafasController extends Controller {
     return LocMatch(searchTerm, undefined, profile, ctx.query.raw);
   }
 
+  @Post('/tripSearch')
+  @Tags('HAFAS V1')
+  tripSearch(
+    @Request() ctx: Context,
+    @Body() body: TripSearchOptions,
+    @Query() profile?: AllowedHafasProfile
+  ): Promise<RoutingResult> {
+    return TripSearch(body, profile, ctx.query.raw);
+  }
+
   @Post('/route')
   @Tags('HAFAS V1')
   route(
@@ -306,6 +318,29 @@ export class HafasController extends Controller {
     }
 
     return result;
+  }
+
+  @Get('/irisCompatibleAbfahrten/{evaId}')
+  @Hidden()
+  async irisCompatibleAbfahrten(
+    evaId: string,
+    @Query() profile?: AllowedHafasProfile
+  ): Promise<AbfahrtenResult> {
+    const hafasDeparture = await StationBoard(
+      {
+        type: 'DEP',
+        station: evaId,
+      },
+      profile
+    );
+
+    return {
+      lookbehind: [],
+      departures: hafasDeparture
+        .map(StationBoardToTimetables)
+        .filter((Boolean as any) as ExcludesFalse),
+      wings: {},
+    };
   }
 
   @Hidden()

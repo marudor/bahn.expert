@@ -31,6 +31,46 @@ export type JourneyFilterType =
   | 'SLEEP'
   | 'STATIONS'
   | 'UIC';
+
+export type AllowedHafasMethods =
+  | 'BookingAssortment'
+  | 'BookingData'
+  | 'BookingValidation'
+  | 'FeederBoard'
+  | 'FetcherBoard'
+  | 'GisRoute'
+  | 'HimMatch'
+  | 'HimSearch'
+  | 'JourneyDetails'
+  | 'JourneyGeoPos'
+  | 'JourneyGraph'
+  | 'JourneyMatch'
+  | 'JourneyTree'
+  | 'LocDetails'
+  | 'LocGeoPos'
+  | 'LocGeoReach'
+  | 'LocGraph'
+  | 'LocMatch'
+  | 'MatchMe'
+  | 'OneFieldSearch'
+  | 'PartialSearch'
+  | 'Reconstruction'
+  | 'SearchOnTrip'
+  | 'ServerInfo'
+  | 'StationBoard'
+  | 'StationDetails'
+  | 'SubscriptionCreate'
+  | 'SubscriptionDelete'
+  | 'SubscriptionDetails'
+  | 'SubscriptionNotification'
+  | 'SubscriptionSearch'
+  | 'SubscriptionStatus'
+  | 'SubscriptionUpdate'
+  | 'SubscriptionUserCreate'
+  | 'SubscriptionUserDelete'
+  | 'SubscriptionUserUpdate'
+  | 'SubscriptionValidate'
+  | 'TripSearch';
 export interface JourneyFilter {
   mode: JourneyFilterMode;
   type: JourneyFilterType;
@@ -269,6 +309,7 @@ export interface CommonJny {
   isRchbl: boolean;
   isCncl?: boolean;
   subscr: string;
+  stopL?: CommonStop[];
 }
 
 export interface CommonArrival {

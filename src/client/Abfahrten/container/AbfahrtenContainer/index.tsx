@@ -18,6 +18,7 @@ export const fetchAbfahrten = async (
   cancelGetAbfahrten();
   const r = await Axios.get<AbfahrtenResult>(
     `/api/iris/v1/abfahrten/${stationId}`,
+    // `/api/hafas/v1/irisCompatibleAbfahrten/${stationId}`,
     {
       cancelToken: new Axios.CancelToken(c => {
         cancelGetAbfahrten = c;

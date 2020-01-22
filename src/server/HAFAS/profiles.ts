@@ -67,7 +67,7 @@ export const db = {
     },
     ext: 'DB.R19.04.a',
     lang: 'de',
-    ver: '1.20',
+    ver: '1.18',
     auth: {
       aid: 'n91dB8Z77MLdoR0K',
       type: 'AID',
@@ -86,7 +86,7 @@ export const oebb = {
       name: 'oebbADHOC',
     },
     lang: 'de',
-    ver: '1.20',
+    ver: '1.18',
     auth: {
       aid: 'OWDL4fE4ixNiPBBm',
       type: 'AID',
@@ -213,7 +213,7 @@ export const anachb = {
       type: 'WEB',
       name: 'webapp',
     },
-    ver: '1.20',
+    ver: '1.18',
     lang: 'deu',
     ext: 'VAO.10',
     auth: {
@@ -230,7 +230,7 @@ export const vao = {
       id: 'VAO',
       type: 'IPH',
     },
-    ver: '1.20',
+    ver: '1.18',
     lang: 'deu',
     ext: 'VAO.10',
     auth: {
@@ -257,7 +257,7 @@ export const sbb = {
     ext: 'DBNETZZUGRADAR.2',
     formatted: false,
     lang: 'deu',
-    ver: '1.20',
+    ver: '1.18',
   },
 };
 
@@ -271,7 +271,7 @@ export const dbnetz = {
       name: 'webapp',
     },
     ext: 'DBNETZZUGRADAR.2',
-    ver: '1.20',
+    ver: '1.18',
     auth: {
       type: 'AID',
       aid: 'hf7mcf9bv3nv8g5f',

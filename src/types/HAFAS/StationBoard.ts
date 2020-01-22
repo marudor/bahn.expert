@@ -1,13 +1,39 @@
-import { Common, CommonArrival, CommonDeparture, CommonJny, LocL } from '.';
+import {
+  Common,
+  CommonArrival,
+  CommonDeparture,
+  CommonJny,
+  JourneyFilter,
+  LocL,
+} from '.';
+
+export const enum StationBoardSortType {
+  EVAID = 'EVAID',
+  PT = 'PT',
+  RT = 'RT',
+}
 
 export interface StationBoardRequest {
   req: {
     type: 'DEP' | 'ARR';
     date: string;
+    dateB?: string;
+    dateE?: string;
+    dur?: number;
+    getPasslist?: boolean;
+    getSimpleTrainComposition?: boolean;
+    getTrainComposition?: boolean;
     time: string;
     stbLoc: Partial<LocL>;
     dirLoc?: Partial<LocL>;
-    jnyFltrL?: any[];
+    jnyFltrL?: JourneyFilter[];
+    locFltrL?: any[];
+    maxJny?: number;
+    minDur?: number;
+    per?: boolean;
+    qrCode?: string;
+    sort?: StationBoardSortType;
+    stbFltrEquiv?: boolean;
   };
   meth: 'StationBoard';
 }

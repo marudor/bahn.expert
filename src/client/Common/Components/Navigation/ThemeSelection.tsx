@@ -1,6 +1,6 @@
-import { availableThemes, ThemeType } from 'client/Themes/type';
 import { capitalize } from 'lodash';
 import { Collapse, List, ListItem, ListItemText } from '@material-ui/core';
+import { ThemeType } from 'client/Themes/type';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import React, { SyntheticEvent, useCallback, useState } from 'react';
@@ -39,7 +39,7 @@ const ThemeSelection = () => {
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List disablePadding className={classes.nested} data-testid="themeList">
-          {availableThemes.map(themeOption => {
+          {Object.values(ThemeType).map(themeOption => {
             let name = capitalize(themeOption);
 
             if (themeOption === themeType) {
