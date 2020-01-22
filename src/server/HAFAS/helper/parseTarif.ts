@@ -22,9 +22,9 @@ const parseFareSet = (fareSet: TarifFareSet): Route$TarifFareSet => {
 };
 
 export default (
-  tarifResponse: HafasTarifResponse
-): Route$TarifFareSet[] | void => {
-  if (tarifResponse.statusCode !== 'OK') return;
+  tarifResponse?: HafasTarifResponse
+): Route$TarifFareSet[] | undefined => {
+  if (tarifResponse?.statusCode !== 'OK') return;
 
   return tarifResponse.fareSetL.map(parseFareSet);
 };

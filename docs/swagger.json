@@ -1187,7 +1187,10 @@
 						"type": "array"
 					},
 					"tarifSet": {
-						"$ref": "#/components/schemas/Route$TarifFareSet",
+						"items": {
+							"$ref": "#/components/schemas/Route$TarifFareSet"
+						},
+						"type": "array",
 						"nullable": true
 					},
 					"raw": {
@@ -1395,6 +1398,13 @@
 						},
 						"type": "array",
 						"nullable": true
+					},
+					"tarifSet": {
+						"items": {
+							"$ref": "#/components/schemas/Route$TarifFareSet"
+						},
+						"type": "array",
+						"nullable": true
 					}
 				},
 				"required": [
@@ -1461,6 +1471,13 @@
 					"messages": {
 						"items": {
 							"$ref": "#/components/schemas/RemL"
+						},
+						"type": "array",
+						"nullable": true
+					},
+					"tarifSet": {
+						"items": {
+							"$ref": "#/components/schemas/Route$TarifFareSet"
 						},
 						"type": "array",
 						"nullable": true
