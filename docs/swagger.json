@@ -1877,23 +1877,23 @@
 				],
 				"type": "string"
 			},
-			"DBLoyalityCard": {
+			"LoyalityCard": {
 				"enum": [
-					1,
-					2,
-					3,
-					4,
-					14,
-					9,
-					15,
-					10,
-					11,
-					12,
-					13,
-					16,
-					17
+					"BC25First",
+					"BC25Second",
+					"BC50First",
+					"BC50Second",
+					"SHCard",
+					"ATVorteilscard",
+					"CHGeneral",
+					"CHHalfWithRailplus",
+					"CHHalfWithoutRailplus",
+					"NLWithRailplus",
+					"NLWithoutRailplus",
+					"BC100First",
+					"BC100Second"
 				],
-				"type": "integer"
+				"type": "string"
 			},
 			"TripSearchTraveler": {
 				"properties": {
@@ -1901,7 +1901,8 @@
 						"$ref": "#/components/schemas/TravelerType"
 					},
 					"loyalityCard": {
-						"$ref": "#/components/schemas/DBLoyalityCard",
+						"$ref": "#/components/schemas/LoyalityCard",
+						"description": "Testing Comment",
 						"nullable": true
 					}
 				},
