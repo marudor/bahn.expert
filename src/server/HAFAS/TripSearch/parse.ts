@@ -22,6 +22,7 @@ import parseCommonDeparture from '../helper/parseCommonDeparture';
 import parseDuration from '../helper/parseDuration';
 import parseMessages from '../helper/parseMessages';
 import parseStop from '../helper/parseStop';
+import parseTarif from 'server/HAFAS/helper/parseTarif';
 
 const nameRegex = /O=([^@]+)/;
 const evaRegex = /L=(\d+)/;
@@ -107,6 +108,7 @@ export class Journey {
       segmentTypes: segments
         .map(s => (s.type === 'JNY' ? s.train.type : s.train.name))
         .filter(Boolean as any),
+      tarifSet: parseTarif(raw.trfRes),
       raw: global.PROD ? undefined : raw,
     };
   }
