@@ -53,6 +53,7 @@ export interface Route$Journey {
   train: ParsedProduct;
   auslastung?: Route$Auslastung;
   messages?: RemL[];
+  tarifSet?: Route$TarifFareSet[];
 }
 export interface Route$JourneySegmentTrain extends Route$Journey {
   type: 'JNY';
@@ -99,7 +100,7 @@ export interface SingleRoute {
   changes: number;
   segments: Route$JourneySegment[];
   segmentTypes: string[];
-  tarifSet?: Route$TarifFareSet;
+  tarifSet?: Route$TarifFareSet[];
   raw?: OutConL;
 }
 
