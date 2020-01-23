@@ -6,6 +6,7 @@ import {
   JourneyMatchResponse,
   ParsedJourneyMatchResponse,
 } from 'types/HAFAS/JourneyMatch';
+import JourneyDetails from 'server/HAFAS/JourneyDetails';
 import makeRequest from './Request';
 import parseMessages from './helper/parseMessages';
 import parseStop from './helper/parseStop';
@@ -30,7 +31,7 @@ const parseJourneyMatch = (
   });
 };
 
-export default (
+const JourneyMatch = (
   { trainName, initialDepartureDate, jnyFltrL }: JourneyMatchOptions,
   profile: AllowedHafasProfile = AllowedHafasProfile.db,
   raw?: boolean
@@ -65,3 +66,36 @@ export default (
     }
   );
 };
+
+export default JourneyMatch;
+
+const fallbackTypeRegex = /(.+?)( |\d|\b).*\d+/;
+
+export async function enrichedJourneyMatch(
+  options: JourneyMatchOptions,
+  profile?: AllowedHafasProfile
+) {
+  const journeyMatches = await JourneyMatch(options, profile);
+  const limitedJourneyMatches = journeyMatches.slice(0, 5);
+
+  const enriched = await Promise.all(
+    limitedJourneyMatches.map(async j => {
+      try {
+        const details = await JourneyDetails(j.jid, profile);
+
+        j.firstStop = details.firstStop;
+        j.lastStop = details.lastStop;
+        j.stops = details.stops;
+        j.train = details.train;
+      } catch {
+        if (!j.train.type) {
+          j.train.type = j.train.name.match(fallbackTypeRegex)?.[1];
+        }
+      }
+
+      return j;
+    })
+  );
+
+  return enriched;
+}

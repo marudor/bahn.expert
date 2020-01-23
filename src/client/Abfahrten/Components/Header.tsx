@@ -19,7 +19,7 @@ const Header = () => {
     setCurrentEnteredStation(currentStation);
   }, [currentStation]);
   const submit = useCallback(
-    (station: Station) => {
+    (station: Station | undefined) => {
       setCurrentEnteredStation(station);
       if (!station) {
         return;

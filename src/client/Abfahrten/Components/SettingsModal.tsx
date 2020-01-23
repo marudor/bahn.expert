@@ -178,38 +178,34 @@ const SettingsModal = () => {
         <FormControlLabel
           className={classes.label}
           control={
-            <NativeSelect
+            <TextField
               value={lookahead}
+              type="number"
+              inputProps={{
+                min: 30,
+                max: 900,
+                step: 30,
+              }}
               name="lookahead"
-              onChange={handleSelectChange('lookahead')}
-            >
-              <option value="60">60</option>
-              <option value="120">120</option>
-              <option value="150">150</option>
-              <option value="180">180</option>
-              <option value="240">240</option>
-              <option value="300">300</option>
-            </NativeSelect>
+              onChange={handleNumberValueChange('lookahead')}
+            />
           }
           label="Lookahead in Minuten"
         />
         <FormControlLabel
           className={classes.label}
           control={
-            <NativeSelect
-              data-testid="lookbehind"
+            <TextField
               value={lookbehind}
+              type="number"
+              inputProps={{
+                min: 0,
+                max: 900,
+                step: 30,
+              }}
               name="lookbehind"
-              onChange={handleSelectChange('lookbehind')}
-            >
-              <option value="0">0</option>
-              <option value="10">10</option>
-              <option value="20">20</option>
-              <option value="30">30</option>
-              <option value="40">40</option>
-              <option value="50">50</option>
-              <option value="60">60</option>
-            </NativeSelect>
+              onChange={handleNumberValueChange('lookbehind')}
+            />
           }
           label="Lookbehind in Minuten"
         />

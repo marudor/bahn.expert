@@ -1,4 +1,5 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
+import { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 import { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
 import axios from 'axios';
 
@@ -21,4 +22,27 @@ export default async function getDetails(
   ).data;
 
   return details;
+}
+
+export async function journeyMatch(
+  trainName: string,
+  initialDepartureDate?: number,
+  profile?: AllowedHafasProfile
+): Promise<ParsedJourneyMatchResponse[]> {
+  const matches = (
+    await axios.post(
+      '/api/hafas/v1/enrichedJourneyMatch',
+      {
+        trainName,
+        initialDepartureDate,
+      },
+      {
+        params: {
+          profile,
+        },
+      }
+    )
+  ).data;
+
+  return matches;
 }

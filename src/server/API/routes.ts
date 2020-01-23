@@ -1582,6 +1582,27 @@ export function RegisterRoutes(router: KoaRouter) {
       return promiseHandler(controller, promise, context, next);
     });
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  router.post('/api/hafas/v1/enrichedJourneyMatch',
+    async (context: any, next: any) => {
+      const args = {
+        options: { "in": "body", "name": "options", "required": true, "ref": "JourneyMatchOptions" },
+        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb", "dbnetz"] },
+      };
+
+      let validatedArgs: any[] = [];
+      try {
+        validatedArgs = getValidatedArgs(args, context);
+      } catch (error) {
+        context.status = error.status;
+        context.throw(error.status, JSON.stringify({ fields: error.fields }));
+      }
+
+      const controller = new HafasController();
+
+      const promise = controller.enrichedJourneyMatch.apply(controller, validatedArgs as any);
+      return promiseHandler(controller, promise, context, next);
+    });
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   router.get('/api/hafas/v1/geoStation',
     async (context: any, next: any) => {
       const args = {

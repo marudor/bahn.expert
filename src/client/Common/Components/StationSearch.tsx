@@ -29,7 +29,7 @@ interface Props {
   id: string;
   searchType?: StationSearchType;
   value?: Station;
-  onChange: (s: Station) => any;
+  onChange: (s?: Station) => any;
   autoFocus?: boolean;
   placeholder?: string;
   profile?: AllowedHafasProfile;
@@ -101,6 +101,16 @@ const StationSearch = ({
     [loadOptions]
   );
 
+  const downshiftOnChange = useCallback(
+    (station: Station | null) => {
+      if (inputRef.current) {
+        inputRef.current.blur();
+      }
+      onChange(station || undefined);
+    },
+    [onChange]
+  );
+
   return (
     <div className={classes.wrapper}>
       <Downshift
@@ -108,16 +118,9 @@ const StationSearch = ({
         defaultHighlightedIndex={0}
         // @ts-ignore
         ref={selectRef}
-        selectedItem={value || null}
+        selectedItem={value}
         itemToString={s => (s ? s.title : '')}
-        onChange={station => {
-          if (station) {
-            if (inputRef.current) {
-              inputRef.current.blur();
-            }
-            onChange(station);
-          }
-        }}
+        onChange={downshiftOnChange}
       >
         {({
           clearSelection,
