@@ -170,27 +170,31 @@ export default async (
     const stopInfo = irisStop.departure || irisStop.arrival;
 
     if (stopInfo) {
-      const irisData = await getAbfahrten(irisStop.station.id, false, {
-        lookahead: 10,
-        lookbehind: 0,
-        currentDate: subMinutes(stopInfo.scheduledTime, 5),
-      });
+      try {
+        const irisData = await getAbfahrten(irisStop.station.id, false, {
+          lookahead: 10,
+          lookbehind: 0,
+          currentDate: subMinutes(stopInfo.scheduledTime, 5),
+        });
 
-      const irisDeparture = irisData.departures.find(
-        a => a.train.name === relevantSegment.train.name
-      );
-
-      if (irisDeparture) {
-        // if (irisDeparture.arrival && irisStop.arrival) {
-        //   irisDeparture.arrival.reihung = irisStop.arrival.reihung;
-        // }
-        // if (irisDeparture.departure && irisStop.departure) {
-        //   irisDeparture.departure.reihung = irisStop.departure.reihung;
-        // }
-
-        irisStop.irisMessages = irisDeparture.messages.delay.concat(
-          irisDeparture.messages.qos
+        const irisDeparture = irisData.departures.find(
+          a => a.train.name === relevantSegment.train.name
         );
+
+        if (irisDeparture) {
+          // if (irisDeparture.arrival && irisStop.arrival) {
+          //   irisDeparture.arrival.reihung = irisStop.arrival.reihung;
+          // }
+          // if (irisDeparture.departure && irisStop.departure) {
+          //   irisDeparture.departure.reihung = irisStop.departure.reihung;
+          // }
+
+          irisStop.irisMessages = irisDeparture.messages.delay.concat(
+            irisDeparture.messages.qos
+          );
+        }
+      } catch {
+        // ignore
       }
     }
   }

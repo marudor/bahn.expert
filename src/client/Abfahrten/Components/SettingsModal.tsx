@@ -189,6 +189,9 @@ const SettingsModal = () => {
               <option value="180">180</option>
               <option value="240">240</option>
               <option value="300">300</option>
+              <option value="360">360</option>
+              <option value="420">420</option>
+              <option value="480">480</option>
             </NativeSelect>
           }
           label="Lookahead in Minuten"
@@ -209,6 +212,9 @@ const SettingsModal = () => {
               <option value="40">40</option>
               <option value="50">50</option>
               <option value="60">60</option>
+              <option value="60">120</option>
+              <option value="60">240</option>
+              <option value="60">480</option>
             </NativeSelect>
           }
           label="Lookbehind in Minuten"

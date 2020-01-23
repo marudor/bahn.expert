@@ -42,7 +42,7 @@ import Detail from 'server/HAFAS/Detail';
 import HimSearch from 'server/HAFAS/HimSearch';
 import JourneyDetails from 'server/HAFAS/JourneyDetails';
 import JourneyGeoPos from 'server/HAFAS/JourneyGeoPos';
-import JourneyMatch from 'server/HAFAS/JourneyMatch';
+import JourneyMatch, { enrichedJourneyMatch } from 'server/HAFAS/JourneyMatch';
 import LocGeoPos from 'server/HAFAS/LocGeoPos';
 import LocMatch from 'server/HAFAS/LocMatch';
 import makeRequest from 'server/HAFAS/Request';
@@ -247,6 +247,15 @@ export class HafasController extends Controller {
     @Query() profile?: AllowedHafasProfile
   ): Promise<ParsedJourneyMatchResponse[]> {
     return JourneyMatch(options, profile, ctx.query.raw);
+  }
+
+  @Post('/enrichedJourneyMatch')
+  @Hidden()
+  enrichedJourneyMatch(
+    @Body() options: JourneyMatchOptions,
+    @Query() profile?: AllowedHafasProfile
+  ): Promise<ParsedJourneyMatchResponse[]> {
+    return enrichedJourneyMatch(options, profile);
   }
 
   @Get('/geoStation')
