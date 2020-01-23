@@ -179,6 +179,7 @@ const SettingsModal = () => {
           className={classes.label}
           control={
             <TextField
+              data-testid="lookahead"
               value={lookahead}
               type="number"
               inputProps={{
@@ -196,6 +197,7 @@ const SettingsModal = () => {
           className={classes.label}
           control={
             <TextField
+              data-testid="lookbehind"
               value={lookbehind}
               type="number"
               inputProps={{
