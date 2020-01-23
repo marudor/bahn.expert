@@ -4,14 +4,17 @@
     "resolveJsonModule": true,
     "noEmit": true,
     "strict": true,
-    // "baseUrl": "../node_modules",
     "target": "es5",
     "lib": ["es6", "dom", "esnext"],
     "types": [
       "cypress",
       "@types/testing-library__cypress",
       "../cypress/support/index"
-    ]
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "types/*": ["../src/types/*"]
+    }
   },
   "include": ["**/*.ts", "support/index.ts"]
 }
