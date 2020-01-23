@@ -4,12 +4,13 @@ import {
   DialogContent,
   DialogTitle,
   FormControl,
-  TextField,
 } from '@material-ui/core';
 import { DatePicker } from '@material-ui/pickers';
+import { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 import { subHours } from 'date-fns';
 import { useHistory } from 'react-router';
 import NavigationContext from './Navigation/NavigationContext';
+import qs from 'qs';
 import React, {
   ReactElement,
   SyntheticEvent,
@@ -19,16 +20,19 @@ import React, {
 } from 'react';
 import stopPropagation from 'Common/stopPropagation';
 import useStorage from 'shared/hooks/useStorage';
+import useStyles from './Zugsuche.style';
+import ZugsucheAutocomplete from 'Common/Components/ZugsucheAutocomplete';
 
 interface Props {
   children: (toggle: (e: SyntheticEvent) => void) => ReactElement;
 }
 const Zugsuche = ({ children }: Props) => {
+  const classes = useStyles();
   const history = useHistory();
   const storage = useStorage();
   const { toggleDrawer } = useContext(NavigationContext);
   const [open, setOpen] = useState(false);
-  const [zug, setZug] = useState('');
+  const [match, setMatch] = useState<ParsedJourneyMatchResponse | null>();
   const [date, setDate] = useState<Date | null>(subHours(new Date(), 1));
   const toggleModal = useCallback(
     e => {
@@ -37,22 +41,16 @@ const Zugsuche = ({ children }: Props) => {
     },
     [open]
   );
-  const handleZugChange = useCallback(
-    (
-      e: SyntheticEvent<
-        HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-      >
-    ) => {
-      setZug(e.currentTarget.value);
-    },
-    []
-  );
   const onSubmit = useCallback(
     (e: SyntheticEvent) => {
       e.preventDefault();
       e.stopPropagation();
-      if (zug) {
-        const link = ['', 'details', zug];
+      if (match) {
+        const link = [
+          '',
+          'details',
+          `${match.train.type} ${match.train.number}`,
+        ];
 
         // istanbul ignore else
         if (date) {
@@ -60,50 +58,48 @@ const Zugsuche = ({ children }: Props) => {
         }
         const routeSettings = storage.get('rconfig');
 
-        if (
-          routeSettings &&
-          routeSettings.hafasProfile &&
-          (routeSettings.hafasProfile === 'db' ||
-            routeSettings.hafasProfile === 'oebb')
-        ) {
-          link.push(`?profile=${routeSettings.hafasProfile}`);
-        }
+        link.push(
+          qs.stringify(
+            {
+              profile: routeSettings?.hafasProfile,
+              station: match.firstStop.station.id,
+            },
+            { addQueryPrefix: true }
+          )
+        );
 
         history.push(link.join('/'));
         toggleModal(e);
         toggleDrawer();
       }
     },
-    [zug, date, storage, history, toggleModal, toggleDrawer]
+    [match, date, storage, history, toggleModal, toggleDrawer]
   );
 
   return (
     <>
       <Dialog
         onClick={stopPropagation}
-        maxWidth="md"
+        fullWidth
+        maxWidth="xs"
         open={open}
         onClose={toggleModal}
         data-testid="Zugsuche"
       >
         <DialogTitle>Zugsuche</DialogTitle>
-        <DialogContent>
+        <DialogContent className={classes.main}>
           <form onSubmit={onSubmit}>
-            <FormControl component="fieldset">
-              <TextField
-                inputProps={{
-                  'data-testid': 'ZugsucheInput',
-                }}
-                autoFocus
-                placeholder="z.B. ICE 71"
-                value={zug}
-                onChange={handleZugChange}
-              />
+            <FormControl fullWidth component="fieldset">
               <DatePicker
+                showTodayButton
                 autoOk
                 label="Datum"
                 value={date}
                 onChange={setDate}
+              />
+              <ZugsucheAutocomplete
+                onChange={setMatch}
+                initialDeparture={date?.getTime()}
               />
               <Button data-testid="ZugsucheSubmit" type="submit">
                 Suche

@@ -9,6 +9,7 @@ import HeaderTagContainer from 'Common/container/HeaderTagContainer';
 import MostUsed from './MostUsed';
 import React, { useEffect, useMemo, useState } from 'react';
 import useStyles from './FavList.style';
+import Zugsuche from 'Common/Components/Zugsuche';
 
 function getErrorText(
   error: AbfahrtenError,
@@ -57,6 +58,7 @@ const FavList = ({ staticContext }: Props) => {
 
   return (
     <main className={classes.main}>
+      <Zugsuche>{() => <div />}</Zugsuche>
       {/* eslint-disable-next-line no-nested-ternary */}
       {savedError ? (
         <>

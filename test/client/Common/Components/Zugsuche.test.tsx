@@ -1,4 +1,8 @@
-import { fireEvent, waitForElementToBeRemoved } from '@testing-library/react';
+import {
+  fireEvent,
+  waitForElement,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
 import { render } from 'testHelper';
 import React from 'react';
 import Zugsuche from 'Common/Components/Zugsuche';
@@ -39,31 +43,65 @@ describe('Zugsuche', () => {
     getByTestId('Zugsuche');
   });
 
-  it('Navigates to details', async () => {
-    const { getByTestId, queryByTestId, getLocation } = renderZugsuche();
-
-    fireEvent.click(getByTestId('dummytoggle'));
-    fireEvent.change(getByTestId('ZugsucheInput'), {
-      target: { value: 'EC 6 ' },
+  describe('Uses Search', () => {
+    beforeEach(() => {
+      nock
+        .post(
+          '/api/hafas/v1/enrichedJourneyMatch',
+          body => body.trainName === 'EC 6'
+        )
+        .reply(200, [
+          {
+            jid: 'test',
+            train: {
+              type: 'EC',
+              number: 6,
+              name: 'EC 6',
+            },
+            lastStop: {
+              station: {
+                title: 'Dortmund Hbf',
+              },
+            },
+            firstStop: {
+              station: {
+                id: 6000,
+              },
+            },
+          },
+        ]);
     });
-    fireEvent.click(getByTestId('ZugsucheSubmit'));
-    await waitForElementToBeRemoved(() => getByTestId('Zugsuche'));
-    expect(queryByTestId('Zugsuche')).toBeNull();
-    expect(getLocation().pathname.startsWith('/details/EC 6')).toBeTruthy();
-  });
+    it('Navigates to details', async () => {
+      const { getByTestId, queryByTestId, getLocation } = renderZugsuche();
 
-  it('Navigates to OEBB if cookie set', () => {
-    const { getByTestId, getLocation, cookies } = renderZugsuche();
-
-    fireEvent.click(getByTestId('dummytoggle'));
-    fireEvent.change(getByTestId('ZugsucheInput'), {
-      target: { value: 'EC 6 ' },
+      fireEvent.click(getByTestId('dummytoggle'));
+      fireEvent.change(getByTestId('zugsucheAutocompleteInput'), {
+        target: { value: 'EC 6' },
+      });
+      await waitForElement(() => getByTestId('zugsucheAutocompleteItem'));
+      fireEvent.click(getByTestId('zugsucheAutocompleteItem'));
+      fireEvent.click(getByTestId('ZugsucheSubmit'));
+      await waitForElementToBeRemoved(() => getByTestId('Zugsuche'));
+      expect(queryByTestId('Zugsuche')).toBeNull();
+      expect(getLocation().pathname.startsWith('/details/EC 6')).toBeTruthy();
+      expect(getLocation().search.includes('station=6000')).toBeTruthy();
     });
-    cookies.set('rconfig', {
-      hafasProfile: 'oebb',
-    });
 
-    fireEvent.click(getByTestId('ZugsucheSubmit'));
-    expect(getLocation().search).toBe('?profile=oebb');
+    it('Navigates to OEBB if cookie set', async () => {
+      const { getByTestId, getLocation, cookies } = renderZugsuche();
+
+      fireEvent.click(getByTestId('dummytoggle'));
+      fireEvent.change(getByTestId('zugsucheAutocompleteInput'), {
+        target: { value: 'EC 6' },
+      });
+      await waitForElement(() => getByTestId('zugsucheAutocompleteItem'));
+      fireEvent.click(getByTestId('zugsucheAutocompleteItem'));
+      cookies.set('rconfig', {
+        hafasProfile: 'oebb',
+      });
+
+      fireEvent.click(getByTestId('ZugsucheSubmit'));
+      expect(getLocation().search).toBe('?profile=oebb&station=6000');
+    });
   });
 });
