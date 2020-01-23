@@ -105,6 +105,7 @@ const StationSearch = ({
     <div className={classes.wrapper}>
       <Downshift
         id={id}
+        defaultHighlightedIndex={0}
         // @ts-ignore
         ref={selectRef}
         selectedItem={value || null}
@@ -181,6 +182,7 @@ const StationSearch = ({
                       suggestions.map((suggestion, index) => {
                         const itemProps = getItemProps({
                           item: suggestion,
+                          index,
                         });
                         const selected =
                           selectedItem &&

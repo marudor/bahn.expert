@@ -4940,8 +4940,7 @@
 							"items": {
 								"type": "string"
 							}
-						},
-						"collectionFormat": "multi"
+						}
 					},
 					{
 						"in": "query",

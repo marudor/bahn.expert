@@ -41,7 +41,7 @@ jobs:
         yarn lint
     - name: types
       run: |
-        yarn tsc
+        yarn test:ts
     - name: Upload jest coverage
       uses: actions/upload-artifact@master
       with:
