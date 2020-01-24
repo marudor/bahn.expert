@@ -10,7 +10,7 @@ import {
   WagenreihungStation,
 } from 'types/reihung';
 import { getAbfahrten } from '../Abfahrten';
-import { getWRLink, WRMapEntries } from 'server/Reihung/hasWR';
+import { getWRLink, hasWR, WRMapEntries } from 'server/Reihung/hasWR';
 import { groupBy, maxBy, minBy } from 'lodash';
 import { isRedesignByTZ, isRedesignByUIC } from 'server/Reihung/tzInfo';
 import { parse } from 'date-fns';
@@ -307,6 +307,15 @@ function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
 
 // https://www.apps-bahn.de/wr/wagenreihung/1.0/6/201802021930
 export async function wagenreihung(trainNumber: string, date: number) {
+  if (!hasWR(trainNumber, date)) {
+    throw {
+      response: {
+        status: 404,
+        statusText: 'Not Found',
+        data: 404,
+      },
+    };
+  }
   let info: Wagenreihung;
 
   try {

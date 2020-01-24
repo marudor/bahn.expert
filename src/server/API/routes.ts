@@ -478,6 +478,24 @@ const models: TsoaRoute.Models = {
     "additionalProperties": false,
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "Wagons": {
+    "dataType": "refObject",
+    "properties": {
+    },
+    "additionalProperties": { "dataType": "boolean" },
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "PlannedSequence": {
+    "dataType": "refObject",
+    "properties": {
+      "raw": { "dataType": "string", "required": true },
+      "short": { "dataType": "enum", "enums": ["3R", "3", "4", "2", "1", "T", "3V"] },
+      "type": { "dataType": "string", "required": true },
+      "wagons": { "ref": "Wagons", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "Route$Journey": {
     "dataType": "refObject",
     "properties": {
@@ -495,6 +513,7 @@ const models: TsoaRoute.Models = {
       "auslastung": { "ref": "Route$Auslastung" },
       "messages": { "dataType": "array", "array": { "ref": "RemL" } },
       "tarifSet": { "dataType": "array", "array": { "ref": "Route$TarifFareSet" } },
+      "plannedSequence": { "ref": "PlannedSequence" },
     },
     "additionalProperties": false,
   },
@@ -516,6 +535,7 @@ const models: TsoaRoute.Models = {
       "auslastung": { "ref": "Route$Auslastung" },
       "messages": { "dataType": "array", "array": { "ref": "RemL" } },
       "tarifSet": { "dataType": "array", "array": { "ref": "Route$TarifFareSet" } },
+      "plannedSequence": { "ref": "PlannedSequence" },
       "type": { "dataType": "enum", "enums": ["JNY"], "required": true },
       "arrival": { "ref": "CommonStopInfo", "required": true },
       "departure": { "ref": "CommonStopInfo", "required": true },

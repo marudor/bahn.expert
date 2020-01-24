@@ -118,7 +118,7 @@ const StationSearch = ({
         defaultHighlightedIndex={0}
         // @ts-ignore
         ref={selectRef}
-        selectedItem={value}
+        selectedItem={value || null}
         itemToString={s => (s ? s.title : '')}
         onChange={downshiftOnChange}
       >
