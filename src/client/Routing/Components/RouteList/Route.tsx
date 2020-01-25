@@ -2,6 +2,7 @@ import { formatDuration } from 'Routing/util';
 import { SingleRoute } from 'types/routing';
 import cc from 'clsx';
 import Paper from '@material-ui/core/Paper';
+import PlannedType from 'Common/Components/PlannedType';
 import React, { SyntheticEvent, useMemo } from 'react';
 import RouteSegments from './RouteSegments';
 import Time from 'Common/Components/Time';
@@ -18,7 +19,18 @@ const Route = ({ route, detail, onClick }: Props) => {
   const segmentTypes = useMemo(() => {
     if (route.segmentTypes.length > 1) return route.segmentTypes.join(' - ');
 
-    return route.segments[0]?.train.name;
+    const firstSegment = route.segments[0];
+
+    if (!firstSegment) return null;
+
+    return (
+      <span>
+        {firstSegment.train.name}
+        {'plannedSequence' in firstSegment && (
+          <PlannedType plannedSequence={firstSegment.plannedSequence} />
+        )}
+      </span>
+    );
   }, [route]);
 
   return (

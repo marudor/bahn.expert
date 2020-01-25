@@ -7,6 +7,7 @@ import {
 } from './HAFAS';
 import { Message } from './iris';
 import { OutConL, SecL } from './HAFAS/TripSearch';
+import { PlannedSequence } from 'types/planReihung';
 import { Station } from './station';
 
 export interface Route$Stop {
@@ -54,6 +55,7 @@ export interface Route$Journey {
   auslastung?: Route$Auslastung;
   messages?: RemL[];
   tarifSet?: Route$TarifFareSet[];
+  plannedSequence?: PlannedSequence;
 }
 export interface Route$JourneySegmentTrain extends Route$Journey {
   type: 'JNY';

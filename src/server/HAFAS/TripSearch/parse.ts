@@ -5,6 +5,7 @@ import {
   ParsedCommon,
   ParsedProduct,
 } from 'types/HAFAS';
+import { getPlannedSequence } from 'server/Reihung/plan';
 import { Jny, OutConL, SecL, TripSearchResponse } from 'types/HAFAS/TripSearch';
 import { parse } from 'date-fns';
 import {
@@ -125,6 +126,7 @@ export class Journey {
     const product = this.common.prodL[jny.prodX];
 
     return {
+      plannedSequence: getPlannedSequence(product.number),
       train: product,
       cancelled: jny.isCncl,
       changeDuration: jny.chgDurR,

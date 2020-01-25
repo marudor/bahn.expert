@@ -1,20 +1,26 @@
 import { makeStyles } from '@material-ui/styles';
 
 export default makeStyles({
-  toolbar: {
-    paddingLeft: '.3em',
-    '& > *': {
-      flexShrink: 0,
-    },
+  product: {
+    gridArea: 'p',
+  },
+  date: {
+    gridArea: 'd',
+  },
+  arrow: {
+    gridArea: 'a',
+    minWidth: '1.5em',
   },
   destination: {
-    flex: 1,
-    display: 'flex',
-    marginLeft: '1em',
-    justifyContent: 'space-evenly',
+    gridArea: 'g',
   },
-  train: {
-    display: 'flex',
-    flexDirection: 'column',
+  wrap: {
+    width: '100%',
+    display: 'grid',
+    gridTemplateColumns: '1fr min-content 1fr',
+    gridTemplateRows: '1fr 1fr',
+    gridTemplateAreas: '"p a g" "d a g"',
+    alignItems: 'center',
+    justifyItems: 'center',
   },
 });
