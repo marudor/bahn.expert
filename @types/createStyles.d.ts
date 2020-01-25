@@ -51,12 +51,19 @@ declare module '@material-ui/styles' {
     styles: StyleRulesCallback<MergedTheme, Props, ClassKey>
   ): StyleRulesCallback<MergedTheme, Props, ClassKey>;
 
+  export function makeStyles<Theme = MergedTheme, ClassKey extends string = string>(
+    style: Styles<Theme, {}, ClassKey>,
+    options?: Omit<WithStylesOptions<Theme>, 'withTheme'>,
+  ): (props?: any) => ClassNameMap<ClassKey>;
+  /**
+   * `makeStyles` where the passed `styles` do depend on props
+   */
   export function makeStyles<
     Theme = MergedTheme,
     Props extends {} = {},
     ClassKey extends string = string
   >(
     styles: Styles<Theme, Props, ClassKey>,
-    options?: WithStylesOptions<Theme>
-  ): StylesHook<Styles<Theme, Props, ClassKey>>;
+    options?: Omit<WithStylesOptions<Theme>, 'withTheme'>,
+  ): (props: Props) => ClassNameMap<ClassKey>;
 }

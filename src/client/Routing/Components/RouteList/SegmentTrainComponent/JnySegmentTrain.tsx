@@ -2,6 +2,7 @@ import { Route$JourneySegmentTrain } from 'types/routing';
 import AuslastungsDisplay from 'Common/Components/AuslastungsDisplay';
 import cc from 'clsx';
 import DetailsLink from 'Common/Components/Details/DetailsLink';
+import PlannedType from 'Common/Components/PlannedType';
 import React, { MouseEvent } from 'react';
 import Reihung from 'Common/Components/Reihung';
 import StopList from 'Routing/Components/RouteList/StopList';
@@ -24,16 +25,19 @@ const JnySegmentTrain = ({
   return (
     <div onClick={onTrainClick} className={className}>
       <div className={classes.trainInfo}>
-        <span className={cc(classes.trainMargin, classes.trainName)}>
-          {segment.train.name}
+        <span className={classes.trainMargin}>
+          {segment.train.name}{' '}
+          {segment.plannedSequence && (
+            <PlannedType plannedSequence={segment.plannedSequence} />
+          )}
+        </span>
+        <span className={cc(classes.trainMargin, classes.destination)}>
+          {segment.finalDestination}
           <DetailsLink
             train={segment.train}
             stationId={segment.segmentStart.id}
             initialDeparture={segment.departure.scheduledTime}
           />
-        </span>
-        <span className={cc(classes.trainMargin, classes.destination)}>
-          {segment.finalDestination}
         </span>
         {segment.auslastung && (
           <AuslastungsDisplay auslastung={segment.auslastung} />
