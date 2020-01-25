@@ -37,6 +37,7 @@ interface Props {
   additionalIcons?: ReactNode;
 }
 
+const itemToString = (s: Station | null) => (s ? s.title : '');
 const StationSearch = ({
   id,
   onChange,
@@ -118,8 +119,8 @@ const StationSearch = ({
         defaultHighlightedIndex={0}
         // @ts-ignore
         ref={selectRef}
-        selectedItem={value}
-        itemToString={s => (s ? s.title : '')}
+        selectedItem={value || null}
+        itemToString={itemToString}
         onChange={downshiftOnChange}
       >
         {({
@@ -145,7 +146,7 @@ const StationSearch = ({
             },
             onFocus: () => {
               if (value && value.title === inputValue) {
-                clearSelection();
+                setState({ inputValue: '' });
               }
               if (suggestions.length) {
                 openMenu();
@@ -154,7 +155,7 @@ const StationSearch = ({
             onBlur: () => {
               setSuggestions([]);
               if (value) {
-                setState({ inputValue: value.title, selectedItem: value });
+                setState({ inputValue: value.title });
               }
             },
             placeholder,

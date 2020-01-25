@@ -1,5 +1,6 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { getAbfahrten } from 'server/Abfahrten';
+import { getPlannedSequence } from 'server/Reihung/plan';
 import { logger } from 'server/logger';
 import { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 import { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
@@ -120,6 +121,7 @@ export default async (
       messages: journeyDetails.messages,
       arrival: journeyDetails.lastStop.arrival,
       departure: journeyDetails.firstStop.departure,
+      plannedSequence: getPlannedSequence(train.train.number),
     };
   }
 

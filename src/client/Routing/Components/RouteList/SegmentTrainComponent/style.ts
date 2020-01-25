@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core';
 
 export default makeStyles({
   trainInfo: {
@@ -6,17 +6,15 @@ export default makeStyles({
     alignItems: 'center',
   },
   trainMargin: {
-    flex: 0.6,
+    flex: 0.7,
     marginRight: '.5em',
   },
   destination: {
     flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
   },
   reihung: {
     fontSize: '0.5em',
-  },
-  trainName: {
-    display: 'flex',
-    flexDirection: 'column',
   },
 });

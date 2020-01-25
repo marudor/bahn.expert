@@ -1342,6 +1342,46 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"Wagons": {
+				"properties": {},
+				"type": "object",
+				"additionalProperties": {
+					"type": "boolean"
+				}
+			},
+			"PlannedSequence": {
+				"properties": {
+					"raw": {
+						"type": "string"
+					},
+					"short": {
+						"type": "string",
+						"enum": [
+							"3R",
+							"3",
+							"4",
+							"2",
+							"1",
+							"T",
+							"3V"
+						],
+						"nullable": true
+					},
+					"type": {
+						"type": "string"
+					},
+					"wagons": {
+						"$ref": "#/components/schemas/Wagons"
+					}
+				},
+				"required": [
+					"raw",
+					"type",
+					"wagons"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"Route$Journey": {
 				"properties": {
 					"cancelled": {
@@ -1404,6 +1444,10 @@
 							"$ref": "#/components/schemas/Route$TarifFareSet"
 						},
 						"type": "array",
+						"nullable": true
+					},
+					"plannedSequence": {
+						"$ref": "#/components/schemas/PlannedSequence",
 						"nullable": true
 					}
 				},
@@ -1480,6 +1524,10 @@
 							"$ref": "#/components/schemas/Route$TarifFareSet"
 						},
 						"type": "array",
+						"nullable": true
+					},
+					"plannedSequence": {
+						"$ref": "#/components/schemas/PlannedSequence",
 						"nullable": true
 					},
 					"type": {

@@ -1,6 +1,7 @@
 import { format } from 'date-fns';
 import BaseHeader from '../BaseHeader';
 import DetailsContext from './DetailsContext';
+import PlannedType from 'Common/Components/PlannedType';
 import React, { useContext } from 'react';
 import useStyles from './Header.style';
 
@@ -15,17 +16,25 @@ const Header = ({ train }: Props) => {
 
   return (
     <BaseHeader>
-      <div className={classes.train}>
-        <span>{trainText}</span>
-        {details && <span>{format(details.departure.time, 'dd.MM.yyyy')}</span>}
+      <div className={classes.wrap}>
+        <span className={classes.product}>
+          {trainText}
+          {details?.plannedSequence && (
+            <PlannedType plannedSequence={details.plannedSequence} />
+          )}
+        </span>
+        {details && (
+          <>
+            <span className={classes.date}>
+              {format(details.departure.time, 'dd.MM.yyyy')}
+            </span>
+            <span className={classes.arrow}> -&gt; </span>
+            <span className={classes.destination}>
+              {details.segmentDestination.title}
+            </span>
+          </>
+        )}
       </div>
-
-      {details && (
-        <div className={classes.destination}>
-          <span> -&gt; </span>
-          <span>{details.segmentDestination.title}</span>
-        </div>
-      )}
     </BaseHeader>
   );
 };
