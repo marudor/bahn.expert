@@ -3,11 +3,11 @@ import { Tooltip } from '@material-ui/core';
 import React from 'react';
 
 interface Props {
-  plannedSequence: PlannedSequence;
+  plannedSequence?: PlannedSequence;
 }
 
 const PlannedType = ({ plannedSequence }: Props) => {
-  if (!plannedSequence.short) return null;
+  if (!plannedSequence?.short) return null;
 
   return (
     <Tooltip

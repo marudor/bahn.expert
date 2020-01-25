@@ -307,7 +307,7 @@ function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
 
 // https://www.apps-bahn.de/wr/wagenreihung/1.0/6/201802021930
 export async function wagenreihung(trainNumber: string, date: number) {
-  if (!hasWR(trainNumber, date)) {
+  if (hasWR(trainNumber, date) === false) {
     throw {
       response: {
         status: 404,

@@ -44,6 +44,7 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 export const hasWR = (trainNumber?: string, date?: number) => {
+  if (WRMap.size <= 0) return undefined;
   if (!trainNumber) return false;
   const WRDates = WRMap.get(trainNumber);
 
