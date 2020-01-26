@@ -40,19 +40,6 @@
   <%}%>
 </head>
 <body>
-<script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.getRegistrations().then(function(regs) {
-    regs.forEach(function(r) {
-      r.unregister();
-    });
-  });
-  // Use the window load event to keep the page load performant
-  // window.addEventListener('load', () => {
-  //   navigator.serviceWorker.register('/sw.js');
-  // });
-}
-</script>
 <style>
 @font-face {
   font-family: 'Roboto';
@@ -60,7 +47,7 @@ if ('serviceWorker' in navigator) {
   font-display: swap;
   font-weight: 400;
   src: local('Roboto'), local('Roboto-Regular'),
-    url(https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxKKTU1Kg.woff2) format('woff2');
+    url(/roboto.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC,
     U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
@@ -71,7 +58,7 @@ if ('serviceWorker' in navigator) {
   font-display: swap;
   font-weight: 700;
   src: local('Roboto Bold'), local('Roboto-Bold'),
-    url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmWUlfBBc4AMP6lQ.woff2) format('woff2');
+    url(/roboto-bold.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC,
     U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
