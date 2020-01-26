@@ -22,7 +22,12 @@ const translateError = (e: any) => {
 
 const RouteList = () => {
   const classes = useStyles();
-  const { routes, error } = RoutingContainer.useContainer();
+  const {
+    routes,
+    error,
+    earlierContext,
+    laterContext,
+  } = RoutingContainer.useContainer();
   const { fetchContext } = useFetchRouting();
   const [detail, setDetail] = useState<undefined | string>();
   const [loadingEarlier, setLoadingEarlier] = useState(false);
@@ -47,13 +52,14 @@ const RouteList = () => {
 
   return (
     <div className={classes.main}>
-      {loadingEarlier ? (
-        <Loading type={1} />
-      ) : (
-        <Button fullWidth variant="contained" onClick={searchBefore}>
-          Früher
-        </Button>
-      )}
+      {earlierContext &&
+        (loadingEarlier ? (
+          <Loading type={1} />
+        ) : (
+          <Button fullWidth variant="contained" onClick={searchBefore}>
+            Früher
+          </Button>
+        ))}
       {routes
         .filter(r => r.isRideable)
         .map((r, i) => {
@@ -72,13 +78,14 @@ const RouteList = () => {
             </React.Fragment>
           );
         })}
-      {loadingLater ? (
-        <Loading type={1} />
-      ) : (
-        <Button fullWidth variant="contained" onClick={searchLater}>
-          Später
-        </Button>
-      )}
+      {laterContext &&
+        (loadingLater ? (
+          <Loading type={1} />
+        ) : (
+          <Button fullWidth variant="contained" onClick={searchLater}>
+            Später
+          </Button>
+        ))}
     </div>
   );
 };

@@ -3,18 +3,23 @@ import { Route, Switch } from 'react-router-dom';
 import { RoutingProvider } from 'Routing/container/RoutingContainer';
 import HeaderTagContainer from 'Common/container/HeaderTagContainer';
 import loadable from '@loadable/component';
+import Loading from 'Common/Components/Loading';
 import Navigation from 'Common/Components/Navigation';
 import React, { useEffect } from 'react';
 import ReihungenContainer from 'Common/container/ReihungContainer';
 import useStyles from './App.style';
 
-const LazyRouting = loadable(() => import('./Routing'));
-const LazyDetails = loadable(() =>
-  import('./Common/Components/Details/DetailsRoute')
+const lazyOptions = {
+  fallback: <Loading />,
+};
+const LazyRouting = loadable(() => import('./Routing'), lazyOptions);
+const LazyDetails = loadable(
+  () => import('./Common/Components/Details/DetailsRoute'),
+  lazyOptions
 );
-const LazyAbfahrten = loadable(() => import('./Abfahrten'));
-const LazyMap = loadable(() => import('./Map'));
-const About = loadable(() => import('./Common/Components/About'));
+const LazyAbfahrten = loadable(() => import('./Abfahrten'), lazyOptions);
+const LazyMap = loadable(() => import('./Map'), lazyOptions);
+const About = loadable(() => import('./Common/Components/About'), lazyOptions);
 
 const App = () => {
   useStyles();
