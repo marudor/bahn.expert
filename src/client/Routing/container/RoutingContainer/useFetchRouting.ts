@@ -1,6 +1,6 @@
 import { RoutingResult } from 'types/routing';
 import { uniqBy } from 'lodash';
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import Axios from 'axios';
 import RoutingConfigContainer from 'Routing/container/RoutingConfigContainer';
 import RoutingContainer from 'Routing/container/RoutingContainer';
@@ -22,8 +22,21 @@ export default () => {
     via,
   } = RoutingConfigContainer.useContainer();
 
+  const commonRouteSettings = useMemo(
+    () =>
+      start && destination && start.id !== destination.id
+        ? {
+            start: start?.id,
+            destination: destination?.id,
+            via: via.map(v => v.id),
+            ...settings,
+          }
+        : undefined,
+    [destination, settings, start, via]
+  );
+
   const fetchRoutes = useCallback(async () => {
-    if (!start || !destination || start.id === destination.id) return;
+    if (!commonRouteSettings) return;
     setError(undefined);
     setRoutes(undefined);
     try {
@@ -31,11 +44,8 @@ export default () => {
         await Axios.post(
           '/api/hafas/v1/route',
           {
-            start: start.id,
-            destination: destination.id,
             time: (date || new Date()).getTime(),
-            via: via.map(v => v.id),
-            ...settings,
+            ...commonRouteSettings,
           },
           {
             params: {
@@ -52,64 +62,64 @@ export default () => {
       setError(e);
     }
   }, [
+    commonRouteSettings,
     date,
-    destination,
     setEarlierContext,
     setError,
     setLaterContext,
     setRoutes,
-    settings,
-    start,
-    via,
+    settings.hafasProfile,
   ]);
 
   const fetchContext = useCallback(
     async (type: 'earlier' | 'later') => {
-      if (!start || !destination) return;
+      if (!commonRouteSettings) return;
 
-      const routingResult: RoutingResult = (
-        await Axios.post(
-          '/api/hafas/v1/route',
-          {
-            start: start.id,
-            destination: destination.id,
-            ctxScr: type === 'earlier' ? earlierContext : laterContext,
-          },
-          {
-            params: {
-              profile: settings.hafasProfile,
+      try {
+        const routingResult: RoutingResult = (
+          await Axios.post(
+            '/api/hafas/v1/route',
+            {
+              ctxScr: type === 'earlier' ? earlierContext : laterContext,
+              ...commonRouteSettings,
             },
-          }
-        )
-      ).data;
+            {
+              params: {
+                profile: settings.hafasProfile,
+              },
+            }
+          )
+        ).data;
 
-      setRoutes((oldRoutes = []) => {
-        let newRoutes;
+        setRoutes((oldRoutes = []) => {
+          let newRoutes;
+
+          if (type === 'earlier') {
+            newRoutes = [...routingResult.routes, ...oldRoutes];
+          } else {
+            newRoutes = [...oldRoutes, ...routingResult.routes];
+          }
+
+          return uniqBy(newRoutes, 'checksum');
+        });
 
         if (type === 'earlier') {
-          newRoutes = [...routingResult.routes, ...oldRoutes];
+          setEarlierContext(routingResult.context.earlier);
         } else {
-          newRoutes = [...oldRoutes, ...routingResult.routes];
+          setLaterContext(routingResult.context.later);
         }
-
-        return uniqBy(newRoutes, 'checksum');
-      });
-
-      if (type === 'earlier') {
-        setEarlierContext(routingResult.context.earlier);
-      } else {
-        setLaterContext(routingResult.context.later);
+      } catch {
+        // we ignore this request and let the user retry for now
       }
     },
     [
-      destination,
+      commonRouteSettings,
       earlierContext,
       laterContext,
       setEarlierContext,
       setLaterContext,
       setRoutes,
       settings.hafasProfile,
-      start,
     ]
   );
 
