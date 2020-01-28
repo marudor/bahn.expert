@@ -1,3 +1,4 @@
+import { ParsedProduct } from 'types/HAFAS';
 import { PlannedSequence } from 'types/planReihung';
 import Axios from 'axios';
 
@@ -20,10 +21,13 @@ if (process.env.NODE_ENV !== 'test') {
   setInterval(fetchPlanWR, 8 * 60 * 1000 * 60);
 }
 
-export const getPlannedSequence = (
-  trainNumber?: string
-): PlannedSequence | undefined => {
-  if (!trainNumber) return;
+const allowedPlannedProductTypes = ['IC', 'ICE', 'EC', 'ECE'];
 
-  return planWRMap[trainNumber];
+export const getPlannedSequence = (
+  product: ParsedProduct
+): PlannedSequence | undefined => {
+  if (!product.number || !allowedPlannedProductTypes.includes(product.type!))
+    return;
+
+  return planWRMap[product.number];
 };
