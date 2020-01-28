@@ -121,7 +121,7 @@ export default async (
       messages: journeyDetails.messages,
       arrival: journeyDetails.lastStop.arrival,
       departure: journeyDetails.firstStop.departure,
-      plannedSequence: getPlannedSequence(train.train.number),
+      plannedSequence: getPlannedSequence(train.train),
     };
   }
 

@@ -126,7 +126,7 @@ export class Journey {
     const product = this.common.prodL[jny.prodX];
 
     return {
-      plannedSequence: getPlannedSequence(product.number),
+      plannedSequence: getPlannedSequence(product),
       train: product,
       cancelled: jny.isCncl,
       changeDuration: jny.chgDurR,
