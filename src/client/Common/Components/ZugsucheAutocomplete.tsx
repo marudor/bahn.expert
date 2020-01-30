@@ -87,7 +87,6 @@ const ZugsucheAutocomplete = ({
           return (
             <div>
               <TextField
-                autoFocus
                 fullWidth
                 placeholder="Zug (z.B. ICE 71)"
                 InputLabelProps={getLabelProps({ shrink: true } as any)}
