@@ -147,7 +147,7 @@ module.exports = {
         ? 'testDist/client'
         : 'dist/client'
     ),
-    filename: isDev ? 'static/[name].js' : 'static/[contenthash].js',
+    filename: isDev ? 'static/[name].[hash].js' : 'static/[contenthash].js',
     publicPath: '/',
   },
   module: {
