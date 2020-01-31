@@ -41,6 +41,7 @@ export type AllowedHafasMethods =
   | 'GisRoute'
   | 'HimMatch'
   | 'HimSearch'
+  | 'JourneyCourse'
   | 'JourneyDetails'
   | 'JourneyGeoPos'
   | 'JourneyGraph'
@@ -71,6 +72,29 @@ export type AllowedHafasMethods =
   | 'SubscriptionUserUpdate'
   | 'SubscriptionValidate'
   | 'TripSearch';
+
+export type HafasDirection = 'B' | 'F' | 'FB';
+export type HimFilterMode = 'BIT' | 'EXC' | 'INC' | 'UNDEF';
+export type HimFilterType =
+  | 'ADMIN'
+  | 'CAT'
+  | 'CH'
+  | 'COMP'
+  | 'DEPT'
+  | 'EID'
+  | 'HIMCAT'
+  | 'HIMID'
+  | 'LINE'
+  | 'OPR'
+  | 'PID'
+  | 'PROD'
+  | 'REG'
+  | 'TRAIN';
+export interface HimFilter {
+  mode: HimFilterMode;
+  type: HimFilterType;
+  value: string;
+}
 export interface JourneyFilter {
   mode: JourneyFilterMode;
   type: JourneyFilterType;
