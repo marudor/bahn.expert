@@ -16,72 +16,155 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"OpL": {
+			"PubChL": {
 				"properties": {
 					"name": {
+						"type": "string"
+					},
+					"fDate": {
+						"type": "string"
+					},
+					"fTime": {
+						"type": "string"
+					},
+					"tDate": {
+						"type": "string"
+					},
+					"tTime": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"name",
+					"fDate",
+					"fTime",
+					"tDate",
+					"tTime"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"HimMessage": {
+				"properties": {
+					"hid": {
+						"type": "string"
+					},
+					"act": {
+						"type": "boolean"
+					},
+					"head": {
+						"type": "string"
+					},
+					"lead": {
+						"type": "string"
+					},
+					"text": {
 						"type": "string"
 					},
 					"icoX": {
 						"type": "number",
 						"format": "double"
-					}
-				},
-				"required": [
-					"name",
-					"icoX"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"ParsedProduct": {
-				"properties": {
-					"name": {
+					},
+					"prio": {
+						"type": "number",
+						"format": "double"
+					},
+					"fLocX": {
+						"type": "number",
+						"format": "double"
+					},
+					"tLocX": {
+						"type": "number",
+						"format": "double"
+					},
+					"prod": {
+						"type": "number",
+						"format": "double"
+					},
+					"affProdRefL": {
+						"items": {
+							"type": "number",
+							"format": "double"
+						},
+						"type": "array"
+					},
+					"IModDate": {
 						"type": "string"
 					},
-					"line": {
-						"type": "string",
-						"nullable": true
+					"IModTime": {
+						"type": "string"
 					},
-					"number": {
-						"type": "string",
-						"nullable": true
+					"sDate": {
+						"type": "string"
 					},
-					"type": {
-						"type": "string",
-						"nullable": true
+					"sTime": {
+						"type": "string"
 					},
-					"operator": {
-						"$ref": "#/components/schemas/OpL",
-						"nullable": true
+					"eDate": {
+						"type": "string"
+					},
+					"eTime": {
+						"type": "string"
+					},
+					"comp": {
+						"type": "string"
+					},
+					"cat": {
+						"type": "number",
+						"format": "double"
+					},
+					"pubChL": {
+						"items": {
+							"$ref": "#/components/schemas/PubChL"
+						},
+						"type": "array"
+					},
+					"edgeRefL": {
+						"items": {
+							"type": "number",
+							"format": "double"
+						},
+						"type": "array"
 					}
 				},
 				"required": [
-					"name"
+					"hid",
+					"act",
+					"head",
+					"lead",
+					"text",
+					"icoX",
+					"prio",
+					"fLocX",
+					"tLocX",
+					"prod",
+					"affProdRefL",
+					"IModDate",
+					"IModTime",
+					"sDate",
+					"sTime",
+					"eDate",
+					"eTime",
+					"comp",
+					"cat",
+					"pubChL",
+					"edgeRefL"
 				],
 				"type": "object",
 				"additionalProperties": false
 			},
-			"AuslastungsValue": {
-				"description": "1: Gering\n2: Hoch\n3: Sehr Hoch\n4: Ausgebucht",
-				"enum": [
-					1,
-					2,
-					3,
-					4
-				],
-				"type": "integer"
-			},
-			"Route$Auslastung": {
+			"ParsedHimSearchResponse": {
 				"properties": {
-					"first": {
-						"$ref": "#/components/schemas/AuslastungsValue",
-						"nullable": true
-					},
-					"second": {
-						"$ref": "#/components/schemas/AuslastungsValue",
-						"nullable": true
+					"messages": {
+						"items": {
+							"$ref": "#/components/schemas/HimMessage"
+						},
+						"type": "array"
 					}
 				},
+				"required": [
+					"messages"
+				],
 				"type": "object",
 				"additionalProperties": false
 			},
@@ -124,7 +207,7 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"CommonStopInfo": {
+			"StopInfo": {
 				"properties": {
 					"scheduledPlatform": {
 						"type": "string",
@@ -162,6 +245,17 @@
 						"nullable": true
 					},
 					"cancelled": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"wingIds": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array",
+						"nullable": true
+					},
+					"hidden": {
 						"type": "boolean",
 						"nullable": true
 					}
@@ -225,6 +319,737 @@
 				"required": [
 					"text",
 					"timestamp"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Messages": {
+				"properties": {
+					"qos": {
+						"items": {
+							"$ref": "#/components/schemas/Message"
+						},
+						"type": "array"
+					},
+					"delay": {
+						"items": {
+							"$ref": "#/components/schemas/Message"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"qos",
+					"delay"
+				],
+				"type": "object",
+				"additionalProperties": {
+					"items": {
+						"$ref": "#/components/schemas/Message"
+					},
+					"type": "array"
+				}
+			},
+			"SubstituteRef": {
+				"properties": {
+					"trainNumber": {
+						"type": "string"
+					},
+					"trainType": {
+						"type": "string"
+					},
+					"train": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"trainNumber",
+					"trainType",
+					"train"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Train": {
+				"properties": {
+					"additional": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"cancelled": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"showVia": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"name": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"name"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"OpL": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"icoX": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"name",
+					"icoX"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TrainInfo": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"line": {
+						"type": "string",
+						"nullable": true
+					},
+					"number": {
+						"type": "string"
+					},
+					"type": {
+						"type": "string"
+					},
+					"operator": {
+						"$ref": "#/components/schemas/OpL",
+						"nullable": true
+					},
+					"longDistance": {
+						"type": "boolean",
+						"nullable": true
+					}
+				},
+				"required": [
+					"name",
+					"type",
+					"number"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Abfahrt": {
+				"properties": {
+					"initialDeparture": {
+						"type": "number",
+						"format": "double",
+						"description": "Unix Time (ms)"
+					},
+					"arrival": {
+						"$ref": "#/components/schemas/StopInfo",
+						"nullable": true
+					},
+					"auslastung": {
+						"type": "boolean"
+					},
+					"currentStation": {
+						"$ref": "#/components/schemas/Station"
+					},
+					"departure": {
+						"$ref": "#/components/schemas/StopInfo",
+						"nullable": true
+					},
+					"destination": {
+						"type": "string"
+					},
+					"id": {
+						"type": "string"
+					},
+					"additional": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"cancelled": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"mediumId": {
+						"type": "string"
+					},
+					"messages": {
+						"$ref": "#/components/schemas/Messages"
+					},
+					"platform": {
+						"type": "string"
+					},
+					"productClass": {
+						"type": "string",
+						"description": "Most likely D | N | S | F"
+					},
+					"rawId": {
+						"type": "string"
+					},
+					"ref": {
+						"$ref": "#/components/schemas/SubstituteRef",
+						"nullable": true
+					},
+					"reihung": {
+						"type": "boolean",
+						"description": "Most likely has coach sequence"
+					},
+					"route": {
+						"items": {
+							"$ref": "#/components/schemas/Train"
+						},
+						"type": "array"
+					},
+					"scheduledDestination": {
+						"type": "string"
+					},
+					"scheduledPlatform": {
+						"type": "string"
+					},
+					"substitute": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"train": {
+						"$ref": "#/components/schemas/TrainInfo"
+					},
+					"hiddenReihung": {
+						"type": "boolean",
+						"description": "Most likely does not have coach sequence",
+						"nullable": true
+					}
+				},
+				"required": [
+					"initialDeparture",
+					"auslastung",
+					"currentStation",
+					"destination",
+					"id",
+					"mediumId",
+					"messages",
+					"platform",
+					"productClass",
+					"rawId",
+					"reihung",
+					"route",
+					"scheduledDestination",
+					"scheduledPlatform",
+					"train"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Wings": {
+				"properties": {},
+				"type": "object",
+				"additionalProperties": {
+					"$ref": "#/components/schemas/Abfahrt"
+				}
+			},
+			"AbfahrtenResult": {
+				"properties": {
+					"departures": {
+						"items": {
+							"$ref": "#/components/schemas/Abfahrt"
+						},
+						"type": "array"
+					},
+					"lookbehind": {
+						"items": {
+							"$ref": "#/components/schemas/Abfahrt"
+						},
+						"type": "array"
+					},
+					"wings": {
+						"$ref": "#/components/schemas/Wings"
+					}
+				},
+				"required": [
+					"departures",
+					"lookbehind",
+					"wings"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"HimFilter": {
+				"properties": {
+					"mode": {
+						"type": "string",
+						"enum": [
+							"BIT",
+							"EXC",
+							"INC",
+							"UNDEF"
+						]
+					},
+					"type": {
+						"type": "string",
+						"enum": [
+							"ADMIN",
+							"CAT",
+							"CH",
+							"COMP",
+							"DEPT",
+							"EID",
+							"HIMCAT",
+							"HIMID",
+							"LINE",
+							"OPR",
+							"PID",
+							"PROD",
+							"REG",
+							"TRAIN"
+						]
+					},
+					"value": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"mode",
+					"type",
+					"value"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"JourneyFilter": {
+				"properties": {
+					"mode": {
+						"type": "string",
+						"enum": [
+							"BIT",
+							"EXC",
+							"INC",
+							"UNDEF"
+						]
+					},
+					"type": {
+						"type": "string",
+						"enum": [
+							"ADM",
+							"ATTRF",
+							"ATTRJ",
+							"ATTRL",
+							"BC",
+							"CAT",
+							"COUCH",
+							"CTX_RECON",
+							"GROUP",
+							"INFOTEXTS",
+							"JID",
+							"LID",
+							"LINE",
+							"LINEID",
+							"META",
+							"NAME",
+							"NUM",
+							"OP",
+							"PID",
+							"PROD",
+							"ROUTE",
+							"SLEEP",
+							"STATIONS",
+							"UIC"
+						]
+					},
+					"value": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"mode",
+					"type",
+					"value"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Crd": {
+				"properties": {
+					"x": {
+						"type": "number",
+						"format": "double"
+					},
+					"y": {
+						"type": "number",
+						"format": "double"
+					},
+					"z": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"layerX": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"crdSysX": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					}
+				},
+				"required": [
+					"x",
+					"y"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"GeoRect": {
+				"properties": {
+					"llCrd": {
+						"$ref": "#/components/schemas/Crd"
+					},
+					"urCrd": {
+						"$ref": "#/components/schemas/Crd"
+					}
+				},
+				"required": [
+					"llCrd",
+					"urCrd"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"GeoRing": {
+				"properties": {
+					"cCrd": {
+						"$ref": "#/components/schemas/Crd"
+					},
+					"maxDist": {
+						"type": "number",
+						"format": "double"
+					},
+					"minDist": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					}
+				},
+				"required": [
+					"cCrd",
+					"maxDist"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"JourneyTreeRequestOptions": {
+				"properties": {
+					"getChilds": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"getHIM": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"getParent": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"getStatus": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"himFltrL": {
+						"items": {
+							"$ref": "#/components/schemas/HimFilter"
+						},
+						"type": "array",
+						"nullable": true
+					},
+					"jnyFltrL": {
+						"items": {
+							"$ref": "#/components/schemas/JourneyFilter"
+						},
+						"type": "array",
+						"nullable": true
+					},
+					"pid": {
+						"type": "string",
+						"nullable": true
+					},
+					"rect": {
+						"$ref": "#/components/schemas/GeoRect",
+						"nullable": true
+					},
+					"ring": {
+						"$ref": "#/components/schemas/GeoRing",
+						"nullable": true
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"JourneyGraphRequestOptions": {
+				"properties": {
+					"date": {
+						"type": "string",
+						"description": "yyyyMMdd",
+						"nullable": true
+					},
+					"getPasslist": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"getProductStartEndInfo": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"jnyFltrL": {
+						"items": {
+							"$ref": "#/components/schemas/JourneyFilter"
+						},
+						"type": "array",
+						"nullable": true
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"OptionalLocL": {
+				"properties": {
+					"lid": {
+						"type": "string",
+						"nullable": true
+					},
+					"type": {
+						"type": "string",
+						"nullable": true
+					},
+					"name": {
+						"type": "string",
+						"nullable": true
+					},
+					"icoX": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"extId": {
+						"type": "string",
+						"nullable": true
+					},
+					"state": {
+						"type": "string",
+						"nullable": true
+					},
+					"crd": {
+						"$ref": "#/components/schemas/Crd",
+						"nullable": true
+					},
+					"pCls": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"pRefL": {
+						"items": {
+							"type": "number",
+							"format": "double"
+						},
+						"type": "array",
+						"description": "Reference to prodL",
+						"nullable": true
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"JourneyCourseRequestOptions": {
+				"properties": {
+					"arrLoc": {
+						"$ref": "#/components/schemas/OptionalLocL",
+						"nullable": true
+					},
+					"date": {
+						"type": "string",
+						"description": "yyyyMMdd"
+					},
+					"depLoc": {
+						"$ref": "#/components/schemas/OptionalLocL",
+						"nullable": true
+					},
+					"dir": {
+						"type": "string",
+						"enum": [
+							"B",
+							"F",
+							"FB"
+						],
+						"nullable": true
+					},
+					"getEdgeAni": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"getEdgeCourse": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"getIST": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"getMainAni": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"getMainCourse": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"getPassLoc": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"getPolyline": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"jid": {
+						"type": "string"
+					},
+					"jnyFltrL": {
+						"items": {
+							"$ref": "#/components/schemas/JourneyFilter"
+						},
+						"type": "array",
+						"nullable": true
+					},
+					"perSize": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"perStep": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"time": {
+						"type": "string",
+						"description": "HHmm",
+						"nullable": true
+					}
+				},
+				"required": [
+					"date",
+					"jid"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ParsedProduct": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"line": {
+						"type": "string",
+						"nullable": true
+					},
+					"number": {
+						"type": "string",
+						"nullable": true
+					},
+					"type": {
+						"type": "string",
+						"nullable": true
+					},
+					"operator": {
+						"$ref": "#/components/schemas/OpL",
+						"nullable": true
+					}
+				},
+				"required": [
+					"name"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"AuslastungsValue": {
+				"description": "1: Gering\n2: Hoch\n3: Sehr Hoch\n4: Ausgebucht",
+				"enum": [
+					1,
+					2,
+					3,
+					4
+				],
+				"type": "integer"
+			},
+			"Route$Auslastung": {
+				"properties": {
+					"first": {
+						"$ref": "#/components/schemas/AuslastungsValue",
+						"nullable": true
+					},
+					"second": {
+						"$ref": "#/components/schemas/AuslastungsValue",
+						"nullable": true
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CommonStopInfo": {
+				"properties": {
+					"scheduledPlatform": {
+						"type": "string",
+						"nullable": true
+					},
+					"platform": {
+						"type": "string",
+						"nullable": true
+					},
+					"scheduledTime": {
+						"type": "number",
+						"format": "double",
+						"description": "Unix Time (ms)"
+					},
+					"time": {
+						"type": "number",
+						"format": "double",
+						"description": "Unix Time (ms)"
+					},
+					"delay": {
+						"type": "number",
+						"format": "double",
+						"description": "Minutes",
+						"nullable": true
+					},
+					"reihung": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"messages": {
+						"items": {
+							"$ref": "#/components/schemas/RemL"
+						},
+						"type": "array",
+						"nullable": true
+					},
+					"cancelled": {
+						"type": "boolean",
+						"nullable": true
+					}
+				},
+				"required": [
+					"scheduledTime",
+					"time"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -1803,58 +2628,6 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"JourneyFilter": {
-				"properties": {
-					"mode": {
-						"type": "string",
-						"enum": [
-							"BIT",
-							"EXC",
-							"INC",
-							"UNDEF"
-						]
-					},
-					"type": {
-						"type": "string",
-						"enum": [
-							"ADM",
-							"ATTRF",
-							"ATTRJ",
-							"ATTRL",
-							"BC",
-							"CAT",
-							"COUCH",
-							"CTX_RECON",
-							"GROUP",
-							"INFOTEXTS",
-							"JID",
-							"LID",
-							"LINE",
-							"LINEID",
-							"META",
-							"NAME",
-							"NUM",
-							"OP",
-							"PID",
-							"PROD",
-							"ROUTE",
-							"SLEEP",
-							"STATIONS",
-							"UIC"
-						]
-					},
-					"value": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"mode",
-					"type",
-					"value"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
 			"JourneyMatchOptions": {
 				"properties": {
 					"trainName": {
@@ -2069,126 +2842,6 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"Crd": {
-				"properties": {
-					"x": {
-						"type": "number",
-						"format": "double"
-					},
-					"y": {
-						"type": "number",
-						"format": "double"
-					},
-					"z": {
-						"type": "number",
-						"format": "double",
-						"nullable": true
-					},
-					"layerX": {
-						"type": "number",
-						"format": "double",
-						"nullable": true
-					},
-					"crdSysX": {
-						"type": "number",
-						"format": "double",
-						"nullable": true
-					}
-				},
-				"required": [
-					"x",
-					"y"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"OptionalLocL": {
-				"properties": {
-					"lid": {
-						"type": "string",
-						"nullable": true
-					},
-					"type": {
-						"type": "string",
-						"nullable": true
-					},
-					"name": {
-						"type": "string",
-						"nullable": true
-					},
-					"icoX": {
-						"type": "number",
-						"format": "double",
-						"nullable": true
-					},
-					"extId": {
-						"type": "string",
-						"nullable": true
-					},
-					"state": {
-						"type": "string",
-						"nullable": true
-					},
-					"crd": {
-						"$ref": "#/components/schemas/Crd",
-						"nullable": true
-					},
-					"pCls": {
-						"type": "number",
-						"format": "double",
-						"nullable": true
-					},
-					"pRefL": {
-						"items": {
-							"type": "number",
-							"format": "double"
-						},
-						"type": "array",
-						"description": "Reference to prodL",
-						"nullable": true
-					}
-				},
-				"type": "object",
-				"additionalProperties": false
-			},
-			"GeoRect": {
-				"properties": {
-					"llCrd": {
-						"$ref": "#/components/schemas/Crd"
-					},
-					"urCrd": {
-						"$ref": "#/components/schemas/Crd"
-					}
-				},
-				"required": [
-					"llCrd",
-					"urCrd"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"GeoRing": {
-				"properties": {
-					"cCrd": {
-						"$ref": "#/components/schemas/Crd"
-					},
-					"maxDist": {
-						"type": "number",
-						"format": "double"
-					},
-					"minDist": {
-						"type": "number",
-						"format": "double",
-						"nullable": true
-					}
-				},
-				"required": [
-					"cCrd",
-					"maxDist"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
 			"JourneyGeoPosOptions": {
 				"properties": {
 					"ageOfReport": {
@@ -2283,458 +2936,6 @@
 						"nullable": true
 					}
 				},
-				"type": "object",
-				"additionalProperties": false
-			},
-			"PubChL": {
-				"properties": {
-					"name": {
-						"type": "string"
-					},
-					"fDate": {
-						"type": "string"
-					},
-					"fTime": {
-						"type": "string"
-					},
-					"tDate": {
-						"type": "string"
-					},
-					"tTime": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"name",
-					"fDate",
-					"fTime",
-					"tDate",
-					"tTime"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"HimMessage": {
-				"properties": {
-					"hid": {
-						"type": "string"
-					},
-					"act": {
-						"type": "boolean"
-					},
-					"head": {
-						"type": "string"
-					},
-					"lead": {
-						"type": "string"
-					},
-					"text": {
-						"type": "string"
-					},
-					"icoX": {
-						"type": "number",
-						"format": "double"
-					},
-					"prio": {
-						"type": "number",
-						"format": "double"
-					},
-					"fLocX": {
-						"type": "number",
-						"format": "double"
-					},
-					"tLocX": {
-						"type": "number",
-						"format": "double"
-					},
-					"prod": {
-						"type": "number",
-						"format": "double"
-					},
-					"affProdRefL": {
-						"items": {
-							"type": "number",
-							"format": "double"
-						},
-						"type": "array"
-					},
-					"IModDate": {
-						"type": "string"
-					},
-					"IModTime": {
-						"type": "string"
-					},
-					"sDate": {
-						"type": "string"
-					},
-					"sTime": {
-						"type": "string"
-					},
-					"eDate": {
-						"type": "string"
-					},
-					"eTime": {
-						"type": "string"
-					},
-					"comp": {
-						"type": "string"
-					},
-					"cat": {
-						"type": "number",
-						"format": "double"
-					},
-					"pubChL": {
-						"items": {
-							"$ref": "#/components/schemas/PubChL"
-						},
-						"type": "array"
-					},
-					"edgeRefL": {
-						"items": {
-							"type": "number",
-							"format": "double"
-						},
-						"type": "array"
-					}
-				},
-				"required": [
-					"hid",
-					"act",
-					"head",
-					"lead",
-					"text",
-					"icoX",
-					"prio",
-					"fLocX",
-					"tLocX",
-					"prod",
-					"affProdRefL",
-					"IModDate",
-					"IModTime",
-					"sDate",
-					"sTime",
-					"eDate",
-					"eTime",
-					"comp",
-					"cat",
-					"pubChL",
-					"edgeRefL"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"ParsedHimSearchResponse": {
-				"properties": {
-					"messages": {
-						"items": {
-							"$ref": "#/components/schemas/HimMessage"
-						},
-						"type": "array"
-					}
-				},
-				"required": [
-					"messages"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"StopInfo": {
-				"properties": {
-					"scheduledPlatform": {
-						"type": "string",
-						"nullable": true
-					},
-					"platform": {
-						"type": "string",
-						"nullable": true
-					},
-					"scheduledTime": {
-						"type": "number",
-						"format": "double",
-						"description": "Unix Time (ms)"
-					},
-					"time": {
-						"type": "number",
-						"format": "double",
-						"description": "Unix Time (ms)"
-					},
-					"delay": {
-						"type": "number",
-						"format": "double",
-						"description": "Minutes",
-						"nullable": true
-					},
-					"reihung": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"messages": {
-						"items": {
-							"$ref": "#/components/schemas/RemL"
-						},
-						"type": "array",
-						"nullable": true
-					},
-					"cancelled": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"wingIds": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array",
-						"nullable": true
-					},
-					"hidden": {
-						"type": "boolean",
-						"nullable": true
-					}
-				},
-				"required": [
-					"scheduledTime",
-					"time"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"Messages": {
-				"properties": {
-					"qos": {
-						"items": {
-							"$ref": "#/components/schemas/Message"
-						},
-						"type": "array"
-					},
-					"delay": {
-						"items": {
-							"$ref": "#/components/schemas/Message"
-						},
-						"type": "array"
-					}
-				},
-				"required": [
-					"qos",
-					"delay"
-				],
-				"type": "object",
-				"additionalProperties": {
-					"items": {
-						"$ref": "#/components/schemas/Message"
-					},
-					"type": "array"
-				}
-			},
-			"SubstituteRef": {
-				"properties": {
-					"trainNumber": {
-						"type": "string"
-					},
-					"trainType": {
-						"type": "string"
-					},
-					"train": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"trainNumber",
-					"trainType",
-					"train"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"Train": {
-				"properties": {
-					"additional": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"cancelled": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"showVia": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"name": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"name"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"TrainInfo": {
-				"properties": {
-					"name": {
-						"type": "string"
-					},
-					"line": {
-						"type": "string",
-						"nullable": true
-					},
-					"number": {
-						"type": "string"
-					},
-					"type": {
-						"type": "string"
-					},
-					"operator": {
-						"$ref": "#/components/schemas/OpL",
-						"nullable": true
-					},
-					"longDistance": {
-						"type": "boolean",
-						"nullable": true
-					}
-				},
-				"required": [
-					"name",
-					"type",
-					"number"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"Abfahrt": {
-				"properties": {
-					"initialDeparture": {
-						"type": "number",
-						"format": "double",
-						"description": "Unix Time (ms)"
-					},
-					"arrival": {
-						"$ref": "#/components/schemas/StopInfo",
-						"nullable": true
-					},
-					"auslastung": {
-						"type": "boolean"
-					},
-					"currentStation": {
-						"$ref": "#/components/schemas/Station"
-					},
-					"departure": {
-						"$ref": "#/components/schemas/StopInfo",
-						"nullable": true
-					},
-					"destination": {
-						"type": "string"
-					},
-					"id": {
-						"type": "string"
-					},
-					"additional": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"cancelled": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"mediumId": {
-						"type": "string"
-					},
-					"messages": {
-						"$ref": "#/components/schemas/Messages"
-					},
-					"platform": {
-						"type": "string"
-					},
-					"productClass": {
-						"type": "string",
-						"description": "Most likely D | N | S | F"
-					},
-					"rawId": {
-						"type": "string"
-					},
-					"ref": {
-						"$ref": "#/components/schemas/SubstituteRef",
-						"nullable": true
-					},
-					"reihung": {
-						"type": "boolean",
-						"description": "Most likely has coach sequence"
-					},
-					"route": {
-						"items": {
-							"$ref": "#/components/schemas/Train"
-						},
-						"type": "array"
-					},
-					"scheduledDestination": {
-						"type": "string"
-					},
-					"scheduledPlatform": {
-						"type": "string"
-					},
-					"substitute": {
-						"type": "boolean",
-						"nullable": true
-					},
-					"train": {
-						"$ref": "#/components/schemas/TrainInfo"
-					},
-					"hiddenReihung": {
-						"type": "boolean",
-						"description": "Most likely does not have coach sequence",
-						"nullable": true
-					}
-				},
-				"required": [
-					"initialDeparture",
-					"auslastung",
-					"currentStation",
-					"destination",
-					"id",
-					"mediumId",
-					"messages",
-					"platform",
-					"productClass",
-					"rawId",
-					"reihung",
-					"route",
-					"scheduledDestination",
-					"scheduledPlatform",
-					"train"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"Wings": {
-				"properties": {},
-				"type": "object",
-				"additionalProperties": {
-					"$ref": "#/components/schemas/Abfahrt"
-				}
-			},
-			"AbfahrtenResult": {
-				"properties": {
-					"departures": {
-						"items": {
-							"$ref": "#/components/schemas/Abfahrt"
-						},
-						"type": "array"
-					},
-					"lookbehind": {
-						"items": {
-							"$ref": "#/components/schemas/Abfahrt"
-						},
-						"type": "array"
-					},
-					"wings": {
-						"$ref": "#/components/schemas/Wings"
-					}
-				},
-				"required": [
-					"departures",
-					"lookbehind",
-					"wings"
-				],
 				"type": "object",
 				"additionalProperties": false
 			},
@@ -4024,6 +4225,280 @@
 				]
 			}
 		},
+		"/hafas/experimental/himMessages": {
+			"get": {
+				"operationId": "HimMessages",
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ParsedHimSearchResponse"
+								}
+							}
+						},
+						"description": "Ok"
+					}
+				},
+				"tags": [
+					"HAFAS Experimental"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "himIds",
+						"required": true,
+						"schema": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						}
+					},
+					{
+						"in": "query",
+						"name": "profile",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"enum": [
+								"db",
+								"oebb",
+								"sncb",
+								"avv",
+								"nahsh",
+								"hvv",
+								"bvg",
+								"insa",
+								"anachb",
+								"vao",
+								"sbb",
+								"dbnetz"
+							]
+						}
+					}
+				]
+			}
+		},
+		"/hafas/experimental/irisCompatibleAbfahrten/{evaId}": {
+			"get": {
+				"operationId": "IrisCompatibleAbfahrten",
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/AbfahrtenResult"
+								}
+							}
+						},
+						"description": "Ok"
+					}
+				},
+				"tags": [
+					"HAFAS Experimental"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "evaId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "profile",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"enum": [
+								"db",
+								"oebb",
+								"sncb",
+								"avv",
+								"nahsh",
+								"hvv",
+								"bvg",
+								"insa",
+								"anachb",
+								"vao",
+								"sbb",
+								"dbnetz"
+							]
+						}
+					}
+				]
+			}
+		},
+		"/hafas/experimental/JourneyTree": {
+			"post": {
+				"operationId": "JourneyTree",
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"additionalProperties": true,
+									"type": "object"
+								}
+							}
+						},
+						"description": "Ok"
+					}
+				},
+				"tags": [
+					"HAFAS Experimental"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "profile",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"enum": [
+								"db",
+								"oebb",
+								"sncb",
+								"avv",
+								"nahsh",
+								"hvv",
+								"bvg",
+								"insa",
+								"anachb",
+								"vao",
+								"sbb",
+								"dbnetz"
+							]
+						}
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/JourneyTreeRequestOptions"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/hafas/experimental/JourneyGraph": {
+			"post": {
+				"operationId": "JourneyGraph",
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"additionalProperties": true,
+									"type": "object"
+								}
+							}
+						},
+						"description": "Ok"
+					}
+				},
+				"tags": [
+					"HAFAS Experimental"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "profile",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"enum": [
+								"db",
+								"oebb",
+								"sncb",
+								"avv",
+								"nahsh",
+								"hvv",
+								"bvg",
+								"insa",
+								"anachb",
+								"vao",
+								"sbb",
+								"dbnetz"
+							]
+						}
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/JourneyGraphRequestOptions"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/hafas/experimental/JourneyCourse": {
+			"post": {
+				"operationId": "JourneyCourse",
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"additionalProperties": true,
+									"type": "object"
+								}
+							}
+						},
+						"description": "Ok"
+					}
+				},
+				"tags": [
+					"HAFAS Experimental"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "profile",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"enum": [
+								"db",
+								"oebb",
+								"sncb",
+								"avv",
+								"nahsh",
+								"hvv",
+								"bvg",
+								"insa",
+								"anachb",
+								"vao",
+								"sbb",
+								"dbnetz"
+							]
+						}
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/JourneyCourseRequestOptions"
+							}
+						}
+					}
+				}
+			}
+		},
 		"/hafas/v1/journeyDetails": {
 			"get": {
 				"operationId": "JourneyDetails",
@@ -4929,115 +5404,6 @@
 					{
 						"in": "path",
 						"name": "trainName",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "query",
-						"name": "profile",
-						"required": false,
-						"schema": {
-							"type": "string",
-							"enum": [
-								"db",
-								"oebb",
-								"sncb",
-								"avv",
-								"nahsh",
-								"hvv",
-								"bvg",
-								"insa",
-								"anachb",
-								"vao",
-								"sbb",
-								"dbnetz"
-							]
-						}
-					}
-				]
-			}
-		},
-		"/hafas/v1/himMessages": {
-			"get": {
-				"operationId": "HimMessages",
-				"responses": {
-					"200": {
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/ParsedHimSearchResponse"
-								}
-							}
-						},
-						"description": "Ok"
-					}
-				},
-				"tags": [
-					"HAFAS Experimental"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "himIds",
-						"required": true,
-						"schema": {
-							"type": "array",
-							"items": {
-								"type": "string"
-							}
-						}
-					},
-					{
-						"in": "query",
-						"name": "profile",
-						"required": false,
-						"schema": {
-							"type": "string",
-							"enum": [
-								"db",
-								"oebb",
-								"sncb",
-								"avv",
-								"nahsh",
-								"hvv",
-								"bvg",
-								"insa",
-								"anachb",
-								"vao",
-								"sbb",
-								"dbnetz"
-							]
-						}
-					}
-				]
-			}
-		},
-		"/hafas/v1/irisCompatibleAbfahrten/{evaId}": {
-			"get": {
-				"operationId": "IrisCompatibleAbfahrten",
-				"responses": {
-					"200": {
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/AbfahrtenResult"
-								}
-							}
-						},
-						"description": "Ok"
-					}
-				},
-				"tags": [
-					"HAFAS Experimental"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "evaId",
 						"required": true,
 						"schema": {
 							"type": "string"

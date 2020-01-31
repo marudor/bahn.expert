@@ -1,4 +1,3 @@
-import { AbfahrtenResult } from 'types/iris';
 import { AllowedHafasProfile, HafasStation } from 'types/HAFAS';
 import {
   AllowedSotMode,
@@ -31,7 +30,6 @@ import {
   JourneyMatchOptions,
   ParsedJourneyMatchResponse,
 } from 'types/HAFAS/JourneyMatch';
-import { ParsedHimSearchResponse } from 'types/HAFAS/HimSearch';
 import { ParsedJourneyDetails } from 'types/HAFAS/JourneyDetails';
 import { Route$Auslastung, RoutingResult, SingleRoute } from 'types/routing';
 import { Station } from 'types/station';
@@ -39,7 +37,6 @@ import { TrainSearchResult } from 'types/HAFAS/Details';
 import { TripSearchOptions } from 'types/HAFAS/TripSearch';
 import Auslastung from 'server/HAFAS/Auslastung';
 import Detail from 'server/HAFAS/Detail';
-import HimSearch from 'server/HAFAS/HimSearch';
 import JourneyDetails from 'server/HAFAS/JourneyDetails';
 import JourneyGeoPos from 'server/HAFAS/JourneyGeoPos';
 import JourneyMatch, { enrichedJourneyMatch } from 'server/HAFAS/JourneyMatch';
@@ -49,7 +46,6 @@ import makeRequest from 'server/HAFAS/Request';
 import PositionForTrain from 'server/HAFAS/PositionForTrain';
 import SearchOnTrip from 'server/HAFAS/SearchOnTrip';
 import StationBoard from 'server/HAFAS/StationBoard';
-import StationBoardToTimetables from 'server/HAFAS/StationBoard/StationBoardToTimetables';
 import TrainSearch from 'server/HAFAS/TrainSearch';
 import TripSearch from 'server/HAFAS/TripSearch';
 
@@ -331,47 +327,6 @@ export class HafasController extends Controller {
     }
 
     return result;
-  }
-
-  @Get('/himMessages')
-  @Tags('HAFAS Experimental')
-  himMessages(
-    @Query() himIds: string[],
-    @Query() profile?: AllowedHafasProfile
-  ): Promise<ParsedHimSearchResponse> {
-    return HimSearch(
-      {
-        himFltrL: himIds.map(value => ({
-          type: 'HIMID',
-          mode: 'INC',
-          value,
-        })),
-      },
-      profile
-    );
-  }
-
-  @Get('/irisCompatibleAbfahrten/{evaId}')
-  @Tags('HAFAS Experimental')
-  async irisCompatibleAbfahrten(
-    evaId: string,
-    @Query() profile?: AllowedHafasProfile
-  ): Promise<AbfahrtenResult> {
-    const hafasDeparture = await StationBoard(
-      {
-        type: 'DEP',
-        station: evaId,
-      },
-      profile
-    );
-
-    return {
-      lookbehind: [],
-      departures: hafasDeparture
-        .map(StationBoardToTimetables)
-        .filter((Boolean as any) as ExcludesFalse),
-      wings: {},
-    };
   }
 
   @Hidden()

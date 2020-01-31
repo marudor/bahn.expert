@@ -1,26 +1,4 @@
-import { Common, OptionalLocL } from 'types/HAFAS';
-
-export type HimFilterMode = 'BIT' | 'EXC' | 'INC' | 'UNDEF';
-export type HimFilterType =
-  | 'ADMIN'
-  | 'CAT'
-  | 'CH'
-  | 'COMP'
-  | 'DEPT'
-  | 'EID'
-  | 'HIMCAT'
-  | 'HIMID'
-  | 'LINE'
-  | 'OPR'
-  | 'PID'
-  | 'PROD'
-  | 'REG'
-  | 'TRAIN';
-export interface HimFilter {
-  mode: HimFilterMode;
-  type: HimFilterType;
-  value: string;
-}
+import { Common, HimFilter, OptionalLocL } from 'types/HAFAS';
 
 export interface HimSearchRequest {
   req: {
