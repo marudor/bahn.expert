@@ -9,6 +9,10 @@ import {
 } from 'types/HAFAS';
 import { HimSearchRequest, HimSearchResponse } from 'types/HAFAS/HimSearch';
 import {
+  JourneyCourseRequest,
+  JourneyCourseResponse,
+} from 'types/HAFAS/JourneyCourse';
+import {
   JourneyDetailsRequest,
   JourneyDetailsResponse,
 } from 'types/HAFAS/JourneyDetails';
@@ -17,9 +21,17 @@ import {
   JourneyGeoPosResponse,
 } from 'types/HAFAS/JourneyGeoPos';
 import {
+  JourneyGraphRequest,
+  JourneyGraphResponse,
+} from 'types/HAFAS/JourneyGraph';
+import {
   JourneyMatchRequest,
   JourneyMatchResponse,
 } from 'types/HAFAS/JourneyMatch';
+import {
+  JourneyTreeRequest,
+  JourneyTreeResponse,
+} from 'types/HAFAS/JourneyTree';
 import { LocGeoPosRequest, LocGeoPosResponse } from 'types/HAFAS/LocGeoPos';
 import { LocMatchRequest, LocMatchResponse } from 'types/HAFAS/LocMatch';
 import {
@@ -96,7 +108,21 @@ export class HafasError extends Error {
     };
   }
 }
-
+function makeRequest<R extends HafasResponse<JourneyCourseResponse>, P = R>(
+  r: JourneyCourseRequest,
+  parseFn?: (d: R, pc: ParsedCommon) => P,
+  profile?: AllowedHafasProfile
+): Promise<P>;
+function makeRequest<R extends HafasResponse<JourneyGraphResponse>, P = R>(
+  r: JourneyGraphRequest,
+  parseFn?: (d: R, pc: ParsedCommon) => P,
+  profile?: AllowedHafasProfile
+): Promise<P>;
+function makeRequest<R extends HafasResponse<JourneyTreeResponse>, P = R>(
+  r: JourneyTreeRequest,
+  parseFn?: (d: R, pc: ParsedCommon) => P,
+  profile?: AllowedHafasProfile
+): Promise<P>;
 function makeRequest<R extends HafasResponse<StationBoardResponse>, P = R>(
   r: StationBoardRequest,
   parseFn?: (d: R, pc: ParsedCommon) => P,
