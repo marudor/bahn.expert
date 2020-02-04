@@ -8,7 +8,7 @@ interface Props {
 const NormalMessages = ({ messages }: Props) => {
   const classes = useStyles();
   const messagesDisplay = useMemo(
-    () => messages.map(m => m.text).join(' +++ '),
+    () => messages.map(m => ('head' in m ? m.head : m.text)).join(' +++ '),
     [messages]
   );
 

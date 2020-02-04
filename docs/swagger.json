@@ -16,6 +16,51 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"OpL": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"icoX": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"name",
+					"icoX"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ParsedProduct": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"line": {
+						"type": "string",
+						"nullable": true
+					},
+					"number": {
+						"type": "string",
+						"nullable": true
+					},
+					"type": {
+						"type": "string",
+						"nullable": true
+					},
+					"operator": {
+						"$ref": "#/components/schemas/OpL",
+						"nullable": true
+					}
+				},
+				"required": [
+					"name"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"PubChL": {
 				"properties": {
 					"name": {
@@ -44,7 +89,7 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"HimMessage": {
+			"ParsedHimMessage": {
 				"properties": {
 					"hid": {
 						"type": "string"
@@ -125,6 +170,20 @@
 							"format": "double"
 						},
 						"type": "array"
+					},
+					"affectedProducts": {
+						"items": {
+							"$ref": "#/components/schemas/ParsedProduct"
+						},
+						"type": "array"
+					},
+					"startTime": {
+						"type": "number",
+						"format": "double"
+					},
+					"endTime": {
+						"type": "number",
+						"format": "double"
 					}
 				},
 				"required": [
@@ -148,7 +207,10 @@
 					"comp",
 					"cat",
 					"pubChL",
-					"edgeRefL"
+					"edgeRefL",
+					"affectedProducts",
+					"startTime",
+					"endTime"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -157,7 +219,7 @@
 				"properties": {
 					"messages": {
 						"items": {
-							"$ref": "#/components/schemas/HimMessage"
+							"$ref": "#/components/schemas/ParsedHimMessage"
 						},
 						"type": "array"
 					}
@@ -165,6 +227,196 @@
 				"required": [
 					"messages"
 				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Crd": {
+				"properties": {
+					"x": {
+						"type": "number",
+						"format": "double"
+					},
+					"y": {
+						"type": "number",
+						"format": "double"
+					},
+					"z": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"layerX": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"crdSysX": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					}
+				},
+				"required": [
+					"x",
+					"y"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"OptionalLocL": {
+				"properties": {
+					"lid": {
+						"type": "string",
+						"nullable": true
+					},
+					"type": {
+						"type": "string",
+						"nullable": true
+					},
+					"name": {
+						"type": "string",
+						"nullable": true
+					},
+					"icoX": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"extId": {
+						"type": "string",
+						"nullable": true
+					},
+					"state": {
+						"type": "string",
+						"nullable": true
+					},
+					"crd": {
+						"$ref": "#/components/schemas/Crd",
+						"nullable": true
+					},
+					"pCls": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"pRefL": {
+						"items": {
+							"type": "number",
+							"format": "double"
+						},
+						"type": "array",
+						"description": "Reference to prodL",
+						"nullable": true
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"HimFilter": {
+				"properties": {
+					"mode": {
+						"type": "string",
+						"enum": [
+							"BIT",
+							"EXC",
+							"INC",
+							"UNDEF"
+						]
+					},
+					"type": {
+						"type": "string",
+						"enum": [
+							"ADMIN",
+							"CAT",
+							"CH",
+							"COMP",
+							"DEPT",
+							"EID",
+							"HIMCAT",
+							"HIMID",
+							"LINE",
+							"OPR",
+							"PID",
+							"PROD",
+							"REG",
+							"TRAIN"
+						]
+					},
+					"value": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"mode",
+					"type",
+					"value"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"HimSearchRequestOptions": {
+				"properties": {
+					"comp": {
+						"type": "string",
+						"nullable": true
+					},
+					"dailyB": {
+						"type": "string",
+						"nullable": true
+					},
+					"dailyE": {
+						"type": "string",
+						"nullable": true
+					},
+					"dateB": {
+						"type": "string",
+						"nullable": true
+					},
+					"dateE": {
+						"type": "string",
+						"nullable": true
+					},
+					"dept": {
+						"type": "string",
+						"nullable": true
+					},
+					"dirLoc": {
+						"$ref": "#/components/schemas/OptionalLocL",
+						"nullable": true
+					},
+					"himFltrL": {
+						"items": {
+							"$ref": "#/components/schemas/HimFilter"
+						},
+						"type": "array",
+						"nullable": true
+					},
+					"maxNum": {
+						"type": "number",
+						"format": "double",
+						"nullable": true
+					},
+					"onlyHimId": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"onlyToday": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"stLoc": {
+						"$ref": "#/components/schemas/OptionalLocL",
+						"nullable": true
+					},
+					"timeB": {
+						"type": "string",
+						"nullable": true
+					},
+					"timeE": {
+						"type": "string",
+						"nullable": true
+					}
+				},
 				"type": "object",
 				"additionalProperties": false
 			},
@@ -292,7 +544,7 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"Message": {
+			"IrisMessage": {
 				"properties": {
 					"text": {
 						"type": "string"
@@ -323,29 +575,72 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"HimIrisMessage": {
+				"properties": {
+					"text": {
+						"type": "string"
+					},
+					"timestamp": {
+						"type": "number",
+						"format": "double"
+					},
+					"superseded": {
+						"type": "boolean",
+						"nullable": true
+					},
+					"priority": {
+						"type": "string",
+						"enum": [
+							"1",
+							"2",
+							"3",
+							"4"
+						],
+						"nullable": true
+					},
+					"head": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"text",
+					"timestamp",
+					"head"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"Messages": {
 				"properties": {
 					"qos": {
 						"items": {
-							"$ref": "#/components/schemas/Message"
+							"$ref": "#/components/schemas/IrisMessage"
 						},
 						"type": "array"
 					},
 					"delay": {
 						"items": {
-							"$ref": "#/components/schemas/Message"
+							"$ref": "#/components/schemas/IrisMessage"
+						},
+						"type": "array"
+					},
+					"him": {
+						"items": {
+							"$ref": "#/components/schemas/HimIrisMessage"
 						},
 						"type": "array"
 					}
 				},
 				"required": [
 					"qos",
-					"delay"
+					"delay",
+					"him"
 				],
 				"type": "object",
 				"additionalProperties": {
 					"items": {
-						"$ref": "#/components/schemas/Message"
+						"additionalProperties": true,
+						"type": "object"
 					},
 					"type": "array"
 				}
@@ -390,23 +685,6 @@
 				},
 				"required": [
 					"name"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"OpL": {
-				"properties": {
-					"name": {
-						"type": "string"
-					},
-					"icoX": {
-						"type": "number",
-						"format": "double"
-					}
-				},
-				"required": [
-					"name",
-					"icoX"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -580,48 +858,6 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"HimFilter": {
-				"properties": {
-					"mode": {
-						"type": "string",
-						"enum": [
-							"BIT",
-							"EXC",
-							"INC",
-							"UNDEF"
-						]
-					},
-					"type": {
-						"type": "string",
-						"enum": [
-							"ADMIN",
-							"CAT",
-							"CH",
-							"COMP",
-							"DEPT",
-							"EID",
-							"HIMCAT",
-							"HIMID",
-							"LINE",
-							"OPR",
-							"PID",
-							"PROD",
-							"REG",
-							"TRAIN"
-						]
-					},
-					"value": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"mode",
-					"type",
-					"value"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
 			"JourneyFilter": {
 				"properties": {
 					"mode": {
@@ -670,39 +906,6 @@
 					"mode",
 					"type",
 					"value"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"Crd": {
-				"properties": {
-					"x": {
-						"type": "number",
-						"format": "double"
-					},
-					"y": {
-						"type": "number",
-						"format": "double"
-					},
-					"z": {
-						"type": "number",
-						"format": "double",
-						"nullable": true
-					},
-					"layerX": {
-						"type": "number",
-						"format": "double",
-						"nullable": true
-					},
-					"crdSysX": {
-						"type": "number",
-						"format": "double",
-						"nullable": true
-					}
-				},
-				"required": [
-					"x",
-					"y"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -820,55 +1023,6 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"OptionalLocL": {
-				"properties": {
-					"lid": {
-						"type": "string",
-						"nullable": true
-					},
-					"type": {
-						"type": "string",
-						"nullable": true
-					},
-					"name": {
-						"type": "string",
-						"nullable": true
-					},
-					"icoX": {
-						"type": "number",
-						"format": "double",
-						"nullable": true
-					},
-					"extId": {
-						"type": "string",
-						"nullable": true
-					},
-					"state": {
-						"type": "string",
-						"nullable": true
-					},
-					"crd": {
-						"$ref": "#/components/schemas/Crd",
-						"nullable": true
-					},
-					"pCls": {
-						"type": "number",
-						"format": "double",
-						"nullable": true
-					},
-					"pRefL": {
-						"items": {
-							"type": "number",
-							"format": "double"
-						},
-						"type": "array",
-						"description": "Reference to prodL",
-						"nullable": true
-					}
-				},
-				"type": "object",
-				"additionalProperties": false
-			},
 			"JourneyCourseRequestOptions": {
 				"properties": {
 					"arrLoc": {
@@ -949,34 +1103,6 @@
 				"required": [
 					"date",
 					"jid"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"ParsedProduct": {
-				"properties": {
-					"name": {
-						"type": "string"
-					},
-					"line": {
-						"type": "string",
-						"nullable": true
-					},
-					"number": {
-						"type": "string",
-						"nullable": true
-					},
-					"type": {
-						"type": "string",
-						"nullable": true
-					},
-					"operator": {
-						"$ref": "#/components/schemas/OpL",
-						"nullable": true
-					}
-				},
-				"required": [
-					"name"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -1087,7 +1213,8 @@
 					},
 					"irisMessages": {
 						"items": {
-							"$ref": "#/components/schemas/Message"
+							"additionalProperties": true,
+							"type": "object"
 						},
 						"type": "array",
 						"nullable": true
@@ -1133,7 +1260,8 @@
 					},
 					"irisMessages": {
 						"items": {
-							"$ref": "#/components/schemas/Message"
+							"additionalProperties": true,
+							"type": "object"
 						},
 						"type": "array",
 						"nullable": true
@@ -1180,7 +1308,8 @@
 					},
 					"irisMessages": {
 						"items": {
-							"$ref": "#/components/schemas/Message"
+							"additionalProperties": true,
+							"type": "object"
 						},
 						"type": "array",
 						"nullable": true
@@ -4279,6 +4408,61 @@
 						}
 					}
 				]
+			}
+		},
+		"/hafas/experimental/HimSearch": {
+			"post": {
+				"operationId": "HimSearch",
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"additionalProperties": true,
+									"type": "object"
+								}
+							}
+						},
+						"description": "Ok"
+					}
+				},
+				"tags": [
+					"HAFAS Experimental"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "profile",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"enum": [
+								"db",
+								"oebb",
+								"sncb",
+								"avv",
+								"nahsh",
+								"hvv",
+								"bvg",
+								"insa",
+								"anachb",
+								"vao",
+								"sbb",
+								"dbnetz"
+							]
+						}
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/HimSearchRequestOptions"
+							}
+						}
+					}
+				}
 			}
 		},
 		"/hafas/experimental/irisCompatibleAbfahrten/{evaId}": {
