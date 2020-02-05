@@ -7,4 +7,8 @@ export default makeStyles(theme => ({
     textOverflow: 'ellipsis',
   },
   cancelled: theme.mixins.cancelled,
+  him: {
+    textDecoration: 'underline',
+    cursor: 'pointer',
+  },
 }));

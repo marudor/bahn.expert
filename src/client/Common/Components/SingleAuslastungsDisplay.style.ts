@@ -1,8 +1,8 @@
 import { AuslastungsValue } from 'types/routing';
-import { makeStyles, MergedTheme } from '@material-ui/styles';
+import { DefaultTheme, makeStyles } from '@material-ui/styles';
 import { Props } from './SingleAuslastungsDisplay';
 
-function getBGColor(theme: MergedTheme, auslastung?: AuslastungsValue) {
+function getBGColor(theme: DefaultTheme, auslastung?: AuslastungsValue) {
   switch (auslastung) {
     case AuslastungsValue.Gering:
       return theme.colors.green;
@@ -17,7 +17,7 @@ function getBGColor(theme: MergedTheme, auslastung?: AuslastungsValue) {
   }
 }
 
-const getColor = (theme: MergedTheme, auslastung?: AuslastungsValue) => {
+const getColor = (theme: DefaultTheme, auslastung?: AuslastungsValue) => {
   const backgroundColor = getBGColor(theme, auslastung);
 
   return {
@@ -26,7 +26,7 @@ const getColor = (theme: MergedTheme, auslastung?: AuslastungsValue) => {
   };
 };
 
-export default makeStyles<MergedTheme, Props>(theme => ({
+export default makeStyles<DefaultTheme, Props>(theme => ({
   icon: {
     fontSize: '.7em',
     display: 'inline-block',

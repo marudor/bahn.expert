@@ -2,10 +2,10 @@
 import { CommonConfig } from 'Common/config';
 import { Container } from 'unstated-next';
 import { defaultCommonConfig } from 'client/util';
+import { DefaultTheme } from '@material-ui/styles';
 import { HelmetProvider } from 'react-helmet-async';
 import { Location } from 'history';
 import { MemoryRouter, useLocation } from 'react-router';
-import { MergedTheme } from '@material-ui/styles';
 import { render as realRender } from '@testing-library/react';
 import { StorageContext } from 'shared/hooks/useStorage';
 import { ThemeProvider } from 'Common/container/ThemeContainer';
@@ -18,7 +18,7 @@ import React, { ComponentProps, ComponentType } from 'react';
 import ThemeWrap from 'client/ThemeWrap';
 
 let currentThemeType: ThemeType;
-let theme: MergedTheme;
+let theme: DefaultTheme;
 
 interface ContainerWithOptions extends Container<any, any> {
   initialState?: any;

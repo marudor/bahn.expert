@@ -191,9 +191,9 @@ export default async (
           //   irisDeparture.departure.reihung = irisStop.departure.reihung;
           // }
 
-          irisStop.irisMessages = irisDeparture.messages.delay.concat(
-            irisDeparture.messages.qos
-          );
+          irisStop.irisMessages = irisDeparture.messages.delay
+            .concat(irisDeparture.messages.qos)
+            .concat(irisDeparture.messages.him);
         }
       } catch {
         // ignore
