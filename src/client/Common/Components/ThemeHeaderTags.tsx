@@ -1,9 +1,9 @@
 import { Helmet } from 'react-helmet-async';
-import { MergedTheme, useTheme } from '@material-ui/styles';
+import { useTheme } from '@material-ui/styles';
 import React from 'react';
 
 const ThemeHeaderTags = () => {
-  const theme = useTheme<MergedTheme>();
+  const theme = useTheme();
 
   return (
     <Helmet>
