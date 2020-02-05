@@ -17,7 +17,9 @@ const Info = ({ abfahrt, detail }: Props) => {
     .showSupersededMessages;
   const classes = useStyles();
   const messages = useMemo(() => {
-    const messages = abfahrt.messages.delay.concat(abfahrt.messages.qos);
+    const messages = abfahrt.messages.delay
+      .concat(abfahrt.messages.qos)
+      .concat(abfahrt.messages.him);
 
     if (!detail || !showSupersededMessages) {
       return messages.filter(m => !m.superseded);

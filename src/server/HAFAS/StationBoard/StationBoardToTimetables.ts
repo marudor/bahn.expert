@@ -23,6 +23,7 @@ export default (j: StationBoardEntry): Abfahrt | void => {
     messages: {
       qos: [],
       delay: [],
+      him: [],
     },
     platform: (departure || arrival)?.platform ?? '',
     scheduledPlatform: (departure || arrival)?.scheduledPlatform ?? '',

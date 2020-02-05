@@ -29,6 +29,27 @@ const models: TsoaRoute.Models = {
     "additionalProperties": false,
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "OpL": {
+    "dataType": "refObject",
+    "properties": {
+      "name": { "dataType": "string", "required": true },
+      "icoX": { "dataType": "double", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "ParsedProduct": {
+    "dataType": "refObject",
+    "properties": {
+      "name": { "dataType": "string", "required": true },
+      "line": { "dataType": "string" },
+      "number": { "dataType": "string" },
+      "type": { "dataType": "string" },
+      "operator": { "ref": "OpL" },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "PubChL": {
     "dataType": "refObject",
     "properties": {
@@ -41,7 +62,7 @@ const models: TsoaRoute.Models = {
     "additionalProperties": false,
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "HimMessage": {
+  "ParsedHimMessage": {
     "dataType": "refObject",
     "properties": {
       "hid": { "dataType": "string", "required": true },
@@ -65,6 +86,9 @@ const models: TsoaRoute.Models = {
       "cat": { "dataType": "double", "required": true },
       "pubChL": { "dataType": "array", "array": { "ref": "PubChL" }, "required": true },
       "edgeRefL": { "dataType": "array", "array": { "dataType": "double" }, "required": true },
+      "affectedProducts": { "dataType": "array", "array": { "ref": "ParsedProduct" }, "required": true },
+      "startTime": { "dataType": "double", "required": true },
+      "endTime": { "dataType": "double", "required": true },
     },
     "additionalProperties": false,
   },
@@ -72,7 +96,66 @@ const models: TsoaRoute.Models = {
   "ParsedHimSearchResponse": {
     "dataType": "refObject",
     "properties": {
-      "messages": { "dataType": "array", "array": { "ref": "HimMessage" }, "required": true },
+      "messages": { "dataType": "array", "array": { "ref": "ParsedHimMessage" }, "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "Crd": {
+    "dataType": "refObject",
+    "properties": {
+      "x": { "dataType": "double", "required": true },
+      "y": { "dataType": "double", "required": true },
+      "z": { "dataType": "double" },
+      "layerX": { "dataType": "double" },
+      "crdSysX": { "dataType": "double" },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "OptionalLocL": {
+    "dataType": "refObject",
+    "properties": {
+      "lid": { "dataType": "string" },
+      "type": { "dataType": "string" },
+      "name": { "dataType": "string" },
+      "icoX": { "dataType": "double" },
+      "extId": { "dataType": "string" },
+      "state": { "dataType": "string" },
+      "crd": { "ref": "Crd" },
+      "pCls": { "dataType": "double" },
+      "pRefL": { "dataType": "array", "array": { "dataType": "double" } },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "HimFilter": {
+    "dataType": "refObject",
+    "properties": {
+      "mode": { "dataType": "enum", "enums": ["BIT", "EXC", "INC", "UNDEF"], "required": true },
+      "type": { "dataType": "enum", "enums": ["ADMIN", "CAT", "CH", "COMP", "DEPT", "EID", "HIMCAT", "HIMID", "LINE", "OPR", "PID", "PROD", "REG", "TRAIN"], "required": true },
+      "value": { "dataType": "string", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "HimSearchRequestOptions": {
+    "dataType": "refObject",
+    "properties": {
+      "comp": { "dataType": "string" },
+      "dailyB": { "dataType": "string" },
+      "dailyE": { "dataType": "string" },
+      "dateB": { "dataType": "string" },
+      "dateE": { "dataType": "string" },
+      "dept": { "dataType": "string" },
+      "dirLoc": { "ref": "OptionalLocL" },
+      "himFltrL": { "dataType": "array", "array": { "ref": "HimFilter" } },
+      "maxNum": { "dataType": "double" },
+      "onlyHimId": { "dataType": "boolean" },
+      "onlyToday": { "dataType": "boolean" },
+      "stLoc": { "ref": "OptionalLocL" },
+      "timeB": { "dataType": "string" },
+      "timeE": { "dataType": "string" },
     },
     "additionalProperties": false,
   },
@@ -119,7 +202,7 @@ const models: TsoaRoute.Models = {
     "additionalProperties": false,
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "Message": {
+  "IrisMessage": {
     "dataType": "refObject",
     "properties": {
       "text": { "dataType": "string", "required": true },
@@ -130,13 +213,26 @@ const models: TsoaRoute.Models = {
     "additionalProperties": false,
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "HimIrisMessage": {
+    "dataType": "refObject",
+    "properties": {
+      "text": { "dataType": "string", "required": true },
+      "timestamp": { "dataType": "double", "required": true },
+      "superseded": { "dataType": "boolean" },
+      "priority": { "dataType": "enum", "enums": ["1", "2", "3", "4"] },
+      "head": { "dataType": "string", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "Messages": {
     "dataType": "refObject",
     "properties": {
-      "qos": { "dataType": "array", "array": { "ref": "Message" }, "required": true },
-      "delay": { "dataType": "array", "array": { "ref": "Message" }, "required": true },
+      "qos": { "dataType": "array", "array": { "ref": "IrisMessage" }, "required": true },
+      "delay": { "dataType": "array", "array": { "ref": "IrisMessage" }, "required": true },
+      "him": { "dataType": "array", "array": { "ref": "HimIrisMessage" }, "required": true },
     },
-    "additionalProperties": { "dataType": "array", "array": { "ref": "Message" } },
+    "additionalProperties": { "dataType": "array", "array": { "dataType": "any" } },
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "SubstituteRef": {
@@ -156,15 +252,6 @@ const models: TsoaRoute.Models = {
       "cancelled": { "dataType": "boolean" },
       "showVia": { "dataType": "boolean" },
       "name": { "dataType": "string", "required": true },
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "OpL": {
-    "dataType": "refObject",
-    "properties": {
-      "name": { "dataType": "string", "required": true },
-      "icoX": { "dataType": "double", "required": true },
     },
     "additionalProperties": false,
   },
@@ -228,34 +315,12 @@ const models: TsoaRoute.Models = {
     "additionalProperties": false,
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "HimFilter": {
-    "dataType": "refObject",
-    "properties": {
-      "mode": { "dataType": "enum", "enums": ["BIT", "EXC", "INC", "UNDEF"], "required": true },
-      "type": { "dataType": "enum", "enums": ["ADMIN", "CAT", "CH", "COMP", "DEPT", "EID", "HIMCAT", "HIMID", "LINE", "OPR", "PID", "PROD", "REG", "TRAIN"], "required": true },
-      "value": { "dataType": "string", "required": true },
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "JourneyFilter": {
     "dataType": "refObject",
     "properties": {
       "mode": { "dataType": "enum", "enums": ["BIT", "EXC", "INC", "UNDEF"], "required": true },
       "type": { "dataType": "enum", "enums": ["ADM", "ATTRF", "ATTRJ", "ATTRL", "BC", "CAT", "COUCH", "CTX_RECON", "GROUP", "INFOTEXTS", "JID", "LID", "LINE", "LINEID", "META", "NAME", "NUM", "OP", "PID", "PROD", "ROUTE", "SLEEP", "STATIONS", "UIC"], "required": true },
       "value": { "dataType": "string", "required": true },
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "Crd": {
-    "dataType": "refObject",
-    "properties": {
-      "x": { "dataType": "double", "required": true },
-      "y": { "dataType": "double", "required": true },
-      "z": { "dataType": "double" },
-      "layerX": { "dataType": "double" },
-      "crdSysX": { "dataType": "double" },
     },
     "additionalProperties": false,
   },
@@ -306,22 +371,6 @@ const models: TsoaRoute.Models = {
     "additionalProperties": false,
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "OptionalLocL": {
-    "dataType": "refObject",
-    "properties": {
-      "lid": { "dataType": "string" },
-      "type": { "dataType": "string" },
-      "name": { "dataType": "string" },
-      "icoX": { "dataType": "double" },
-      "extId": { "dataType": "string" },
-      "state": { "dataType": "string" },
-      "crd": { "ref": "Crd" },
-      "pCls": { "dataType": "double" },
-      "pRefL": { "dataType": "array", "array": { "dataType": "double" } },
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "JourneyCourseRequestOptions": {
     "dataType": "refObject",
     "properties": {
@@ -341,18 +390,6 @@ const models: TsoaRoute.Models = {
       "perSize": { "dataType": "double" },
       "perStep": { "dataType": "double" },
       "time": { "dataType": "string" },
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "ParsedProduct": {
-    "dataType": "refObject",
-    "properties": {
-      "name": { "dataType": "string", "required": true },
-      "line": { "dataType": "string" },
-      "number": { "dataType": "string" },
-      "type": { "dataType": "string" },
-      "operator": { "ref": "OpL" },
     },
     "additionalProperties": false,
   },
@@ -396,7 +433,7 @@ const models: TsoaRoute.Models = {
       "messages": { "dataType": "array", "array": { "ref": "RemL" } },
       "additional": { "dataType": "boolean" },
       "cancelled": { "dataType": "boolean" },
-      "irisMessages": { "dataType": "array", "array": { "ref": "Message" } },
+      "irisMessages": { "dataType": "array", "array": { "dataType": "any" } },
     },
     "additionalProperties": false,
   },
@@ -411,7 +448,7 @@ const models: TsoaRoute.Models = {
       "messages": { "dataType": "array", "array": { "ref": "RemL" } },
       "additional": { "dataType": "boolean" },
       "cancelled": { "dataType": "boolean" },
-      "irisMessages": { "dataType": "array", "array": { "ref": "Message" } },
+      "irisMessages": { "dataType": "array", "array": { "dataType": "any" } },
     },
     "additionalProperties": false,
   },
@@ -426,7 +463,7 @@ const models: TsoaRoute.Models = {
       "messages": { "dataType": "array", "array": { "ref": "RemL" } },
       "additional": { "dataType": "boolean" },
       "cancelled": { "dataType": "boolean" },
-      "irisMessages": { "dataType": "array", "array": { "ref": "Message" } },
+      "irisMessages": { "dataType": "array", "array": { "dataType": "any" } },
     },
     "additionalProperties": false,
   },
@@ -1462,6 +1499,7 @@ export function RegisterRoutes(router: KoaRouter) {
   router.get('/api/hafas/experimental/himMessages',
     async (context: any, next: any) => {
       const args = {
+        ctx: { "in": "request", "name": "ctx", "required": true, "dataType": "object" },
         himIds: { "in": "query", "name": "himIds", "required": true, "dataType": "array", "array": { "dataType": "string" } },
         profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb", "dbnetz"] },
       };
@@ -1477,6 +1515,28 @@ export function RegisterRoutes(router: KoaRouter) {
       const controller = new HafasExperimentalController();
 
       const promise = controller.himMessages.apply(controller, validatedArgs as any);
+      return promiseHandler(controller, promise, context, next);
+    });
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  router.post('/api/hafas/experimental/HimSearch',
+    async (context: any, next: any) => {
+      const args = {
+        ctx: { "in": "request", "name": "ctx", "required": true, "dataType": "object" },
+        options: { "in": "body", "name": "options", "required": true, "ref": "HimSearchRequestOptions" },
+        profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb", "dbnetz"] },
+      };
+
+      let validatedArgs: any[] = [];
+      try {
+        validatedArgs = getValidatedArgs(args, context);
+      } catch (error) {
+        context.status = error.status;
+        context.throw(error.status, JSON.stringify({ fields: error.fields }));
+      }
+
+      const controller = new HafasExperimentalController();
+
+      const promise = controller.himSearch.apply(controller, validatedArgs as any);
       return promiseHandler(controller, promise, context, next);
     });
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

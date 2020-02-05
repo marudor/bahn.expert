@@ -1,10 +1,14 @@
 import { AbfahrtenResult } from 'types/iris';
 import { AllowedHafasProfile } from 'types/HAFAS';
-import { Body, Controller, Get, Post, Query, Route, Tags } from 'tsoa';
+import { Body, Controller, Get, Post, Query, Request, Route, Tags } from 'tsoa';
+import { Context } from 'koa';
+import {
+  HimSearchRequestOptions,
+  ParsedHimSearchResponse,
+} from 'types/HAFAS/HimSearch';
 import { JourneyCourseRequestOptions } from 'types/HAFAS/JourneyCourse';
 import { JourneyGraphRequestOptions } from 'types/HAFAS/JourneyGraph';
 import { JourneyTreeRequestOptions } from 'types/HAFAS/JourneyTree';
-import { ParsedHimSearchResponse } from 'types/HAFAS/HimSearch';
 import HimSearch from 'server/HAFAS/HimSearch';
 import JourneyCourse from 'server/HAFAS/JourneyCourse';
 import JourneyGraph from 'server/HAFAS/JourneyGraph';
@@ -17,6 +21,7 @@ export class HafasExperimentalController extends Controller {
   @Get('/himMessages')
   @Tags('HAFAS Experimental')
   himMessages(
+    @Request() ctx: Context,
     @Query() himIds: string[],
     @Query() profile?: AllowedHafasProfile
   ): Promise<ParsedHimSearchResponse> {
@@ -28,8 +33,19 @@ export class HafasExperimentalController extends Controller {
           value,
         })),
       },
-      profile
+      profile,
+      ctx.query.raw
     );
+  }
+
+  @Post('/HimSearch')
+  @Tags('HAFAS Experimental')
+  himSearch(
+    @Request() ctx: Context,
+    @Body() options: HimSearchRequestOptions,
+    @Query() profile?: AllowedHafasProfile
+  ) {
+    return HimSearch(options, profile, ctx.query.raw);
   }
 
   @Get('/irisCompatibleAbfahrten/{evaId}')
