@@ -5,6 +5,10 @@ import { ThemeType } from './type';
 import createMuiTheme from './mui';
 import getColors from './colors';
 
+declare module '@material-ui/styles/defaultTheme' {
+  interface DefaultTheme extends MaruTheme, MuiTheme {}
+}
+
 export default (themeType: ThemeType): MuiTheme & MaruTheme => {
   const mui = createMuiTheme(themeType);
 
