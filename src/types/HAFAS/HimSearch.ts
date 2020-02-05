@@ -1,22 +1,23 @@
-import { Common, HimFilter, OptionalLocL } from 'types/HAFAS';
+import { Common, HimFilter, OptionalLocL, ParsedProduct } from 'types/HAFAS';
 
+export interface HimSearchRequestOptions {
+  comp?: string;
+  dailyB?: string;
+  dailyE?: string;
+  dateB?: string;
+  dateE?: string;
+  dept?: string;
+  dirLoc?: OptionalLocL;
+  himFltrL?: HimFilter[];
+  maxNum?: number;
+  onlyHimId?: boolean;
+  onlyToday?: boolean;
+  stLoc?: OptionalLocL;
+  timeB?: string;
+  timeE?: string;
+}
 export interface HimSearchRequest {
-  req: {
-    comp?: string;
-    dailyB?: string;
-    dailyE?: string;
-    dateB?: string;
-    dateE?: string;
-    dept?: string;
-    dirLoc?: OptionalLocL;
-    himFltrL?: HimFilter[];
-    maxNum?: number;
-    onlyHimId?: boolean;
-    onlyToday?: boolean;
-    stLoc?: OptionalLocL;
-    timeB?: string;
-    timeE?: string;
-  };
+  req: HimSearchRequestOptions;
   meth: 'HimSearch';
 }
 
@@ -51,11 +52,17 @@ export interface HimMessage {
   edgeRefL: number[];
 }
 
+export interface ParsedHimMessage extends HimMessage {
+  affectedProducts: ParsedProduct[];
+  startTime: number;
+  endTime: number;
+}
+
 export interface HimSearchResponse {
   common: Common;
   msgL: HimMessage[];
 }
 
 export interface ParsedHimSearchResponse {
-  messages: HimMessage[];
+  messages: ParsedHimMessage[];
 }

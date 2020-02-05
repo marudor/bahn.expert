@@ -20,6 +20,7 @@ import { AxiosInstance } from 'axios';
 import { diffArrays } from 'diff';
 import { findLast, last, uniqBy } from 'lodash';
 import { getAttr, getNumberAttr, parseTs } from './helper';
+import { getSingleHimMessageOfToday } from 'server/HAFAS/HimSearch';
 import { hasWR } from 'server/Reihung/hasWR';
 import messageLookup, {
   messageTypeLookup,
@@ -197,6 +198,8 @@ export default class Timetable {
     //   }
     // }
 
+    timetable.messages.him = timetable.messages.him.filter((m: any) => m.text);
+
     const currentRoutePart = {
       name: timetable.currentStation.title,
       cancelled: timetable.cancelled,
@@ -255,6 +258,7 @@ export default class Timetable {
         t.messages = {
           qos: [],
           delay: [],
+          him: [],
         };
         // t.platform = t.scheduledPlatform;
       });
@@ -351,11 +355,42 @@ export default class Timetable {
       train,
     };
   }
-  parseMessage(mNode: xmljs.Element) {
+  parseHafasMessage(mNode: xmljs.Element, trainNumber: string) {
+    const id = getAttr(mNode, 'id');
+
+    if (!id) return undefined;
+
+    const himMessage = getSingleHimMessageOfToday(id.substr(1));
+
+    if (!himMessage) return undefined;
+    if (!himMessage.affectedProducts.some(p => p.name.endsWith(trainNumber)))
+      return undefined;
+    const now = Date.now();
+
+    if (now < himMessage.startTime || now > himMessage.endTime) {
+      return undefined;
+    }
+
+    const message = {
+      timestamp: parseTs(getAttr(mNode, 'ts')),
+      priority: getAttr(mNode, 'pr'),
+      head: himMessage.head,
+      text: himMessage.text,
+      raw: process.env.NODE_ENV !== 'production' ? himMessage : undefined,
+    };
+
+    return {
+      type: 'him',
+      value: id,
+      message,
+    };
+  }
+  parseMessage(mNode: xmljs.Element, trainNumber: string) {
     const value = getNumberAttr(mNode, 'c');
     const indexType = getAttr(mNode, 't');
 
     if (!indexType) return undefined;
+    if (indexType === 'h') return this.parseHafasMessage(mNode, trainNumber);
     const type: undefined | string =
       messageTypeLookup[indexType as keyof typeof messageTypeLookup];
 
@@ -407,15 +442,16 @@ export default class Timetable {
     if (!mArr) return;
     const messages: {
       [key: string]: {
-        [key: number]: any;
+        [key: string]: any;
       };
     } = {
       delay: {},
       qos: {},
+      him: {},
     };
 
     mArr
-      .map(m => this.parseMessage(m))
+      .map(m => this.parseMessage(m, this.timetable[rawId].train.number))
       .filter((Boolean as any) as ExcludesFalse)
       .sort((a, b) =>
         compareAsc(a.message.timestamp || 0, b.message.timestamp || 0)

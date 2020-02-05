@@ -58,23 +58,29 @@ export interface Abfahrt {
   hiddenReihung?: boolean;
 }
 
-export interface Message {
+export interface IrisMessage {
   text: string;
   timestamp: number;
   superseded?: boolean;
   priority?: MessagePrio;
 }
 
+export interface HimIrisMessage extends IrisMessage {
+  head: string;
+}
+
+export type Message = IrisMessage | HimIrisMessage;
+
 /**
  * 1: High; 2: Medium; 3: Low; 4: Done
  */
 
 export type MessagePrio = '1' | '2' | '3' | '4';
-
 export interface Messages {
   [name: string]: Message[];
-  qos: Message[];
-  delay: Message[];
+  qos: IrisMessage[];
+  delay: IrisMessage[];
+  him: HimIrisMessage[];
 }
 
 export interface StopInfo extends CommonStopInfo {

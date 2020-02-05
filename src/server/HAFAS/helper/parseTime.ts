@@ -1,10 +1,8 @@
 import { addMilliseconds, addMinutes } from 'date-fns';
 import parseDuration from './parseDuration';
 
-// @ts-ignore ???
-declare function parseTime(date: Date, time: string): number;
-// @ts-ignore ???
-declare function parseTime(date: Date, time: undefined): undefined;
+function parseTime(date: Date, time: string): number;
+function parseTime(date: Date, time: undefined): undefined;
 function parseTime(date: Date, time?: string) {
   if (time) {
     let parsedDate = addMilliseconds(date, parseDuration(time));

@@ -97,7 +97,7 @@ export const messageTypeLookup = {
   // f: 'freeText',
   f: 'qos',
   q: 'qos',
-  h: 'HIM (Hafas Information Manager)',
+  h: 'him', // 'HIM (Hafas Information Manager)',
   i: 'IBIS (Generated IRIS-AP)',
   u: 'IBIS (Generated IRIS-AP, not yet assigned to train)',
   r: 'disruption',
