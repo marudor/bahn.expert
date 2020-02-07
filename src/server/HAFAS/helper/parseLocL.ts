@@ -1,4 +1,4 @@
-import { Crd, LocL, ParsedProduct } from 'types/HAFAS';
+import { Crd, HafasStation, LocL, ParsedProduct } from 'types/HAFAS';
 
 export function parseCoordinates(crd: Crd) {
   return {
@@ -7,7 +7,10 @@ export function parseCoordinates(crd: Crd) {
   };
 }
 
-export default (locL: LocL, products: ParsedProduct[]) => ({
+export default (
+  locL: LocL,
+  products: ParsedProduct[]
+): HafasStation & { raw?: any } => ({
   id: locL.extId,
   title: locL.name,
   coordinates: locL.crd && parseCoordinates(locL.crd),

@@ -1,14 +1,12 @@
 import { makeStyles } from '@material-ui/core';
 
 export default makeStyles({
-  map: {
-    flex: 1,
-  },
-  settings: {
+  icon: {
     position: 'absolute',
     top: '1em',
     right: '1em',
     color: 'black',
-    zIndex: 1000,
+    zIndex: 10000,
+    cursor: 'pointer',
   },
 });

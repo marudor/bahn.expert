@@ -1606,6 +1606,7 @@ export function RegisterRoutes(router: KoaRouter) {
   router.post('/api/hafas/experimental/JourneyCourse',
     async (context: any, next: any) => {
       const args = {
+        ctx: { "in": "request", "name": "ctx", "required": true, "dataType": "object" },
         options: { "in": "body", "name": "options", "required": true, "ref": "JourneyCourseRequestOptions" },
         profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "sncb", "avv", "nahsh", "hvv", "bvg", "insa", "anachb", "vao", "sbb", "dbnetz"] },
       };
