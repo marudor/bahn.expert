@@ -16,11 +16,12 @@ const parseJourneyGeoPos = (
 ): ParsedJourneyGeoPosResponse => {
   return r.svcResL[0].res.jnyL.map(j => {
     const train = common.prodL[j.prodX];
-    const date = parse(j.date, 'yyMMdd', Date.now());
+    const date = parse(j.date, 'yyyyMMdd', Date.now());
+    const stops = j.stopL.map(s => parseStop(s, common, date, train));
 
     return {
       jid: j.jid,
-      date,
+      date: date.getTime(),
       train,
       dirTxt: j.dirTxt,
       dirGeo: j.dirGeo,
@@ -28,7 +29,8 @@ const parseJourneyGeoPos = (
       proc: j.proc,
       isBase: j.isBase,
       position: parseCoordinates(j.pos),
-      stops: j.stopL.map(s => parseStop(s, common, date, train)),
+      stops,
+      raw: process.env.NODE_ENV !== 'production' ? j : undefined,
     };
   });
 };

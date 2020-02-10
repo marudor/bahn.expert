@@ -92,9 +92,10 @@ export class HafasExperimentalController extends Controller {
   @Post('/JourneyCourse')
   @Tags('HAFAS Experimental')
   JourneyCourse(
+    @Request() ctx: Context,
     @Body() options: JourneyCourseRequestOptions,
     @Query() profile?: AllowedHafasProfile
   ) {
-    return JourneyCourse(options, profile);
+    return JourneyCourse(options, profile, ctx.query.raw);
   }
 }

@@ -49,7 +49,7 @@ export interface JourneyGeoPos {
   jid: string;
   date: string;
   prodX: number;
-  dirTxt: string;
+  dirTxt?: string;
   dirGeo: number;
   stopL: CommonStop[];
   proc: number;
@@ -70,13 +70,8 @@ export interface JourneyGeoPosResponse {
 
 export interface SingleParsedJourneyGeoPos {
   jid: string;
-  date: Date;
+  date: number;
   train: ParsedProduct;
-  dirTxt: string;
-  dirGeo: number;
-  dist: number;
-  proc: number;
-  isBase: boolean;
   position: Coordinates;
   stops: Route$Stop[];
 }

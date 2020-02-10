@@ -1,4 +1,11 @@
-import { HafasDirection, JourneyFilter, OptionalLocL } from 'types/HAFAS';
+import {
+  Common,
+  GeoRect,
+  HafasDirection,
+  JourneyFilter,
+  OptionalLocL,
+  ParsedPolyline,
+} from 'types/HAFAS';
 
 export interface JourneyCourseRequestOptions {
   arrLoc?: OptionalLocL;
@@ -30,4 +37,18 @@ export interface JourneyCourseRequest {
   meth: 'JourneyCourse';
 }
 
-export type JourneyCourseResponse = any;
+export interface JourneyCourseResponse {
+  common: Common;
+  date: string;
+  time: string;
+  mainPoly: {
+    polyXL: number[];
+  };
+  rect: GeoRect;
+  layerX: number;
+  crdSysX: number;
+}
+
+export interface ParsedJourneyCourseResponse {
+  polylines: ParsedPolyline[];
+}

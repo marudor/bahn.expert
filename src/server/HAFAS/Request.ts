@@ -45,6 +45,7 @@ import {
 import { TripSearchRequest, TripSearchResponse } from 'types/HAFAS/TripSearch';
 import axios from 'axios';
 import parseLocL from './helper/parseLocL';
+import parsePolyline from 'server/HAFAS/helper/parsePolyline';
 import parseProduct from './helper/parseProduct';
 
 function createRequest(
@@ -74,11 +75,13 @@ function createRequest(
 function parseCommon(common: Common): ParsedCommon {
   const prodL = common.prodL.map(p => parseProduct(p, common));
   const locL = common.locL.map(l => parseLocL(l, prodL));
+  const polyL = common.polyL?.map(p => parsePolyline(p, locL));
 
   return {
     ...common,
     locL,
     prodL,
+    polyL,
     raw: global.PROD ? undefined : common,
   };
 }
