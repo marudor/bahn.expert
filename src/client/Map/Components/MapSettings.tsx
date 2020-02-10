@@ -17,9 +17,16 @@ interface FormSwitchLabelProps {
   checked: boolean;
   toggle: () => void;
   label: string;
+  [key: string]: any;
 }
-const FormSwitchLabel = ({ checked, toggle, label }: FormSwitchLabelProps) => (
+const FormSwitchLabel = ({
+  checked,
+  toggle,
+  label,
+  ...extra
+}: FormSwitchLabelProps) => (
   <FormControlLabel
+    {...extra}
     control={<Switch checked={checked} onChange={toggle} />}
     label={label}
   />
@@ -58,26 +65,34 @@ const MapSettings = () => {
 
   return (
     <>
-      <SettingsIcon className={classes.icon} onClick={onIconClick} />
+      <SettingsIcon
+        data-testid="trainSettingsIcon"
+        className={classes.icon}
+        onClick={onIconClick}
+      />
       <Dialog open={open} onClose={toggleOpen}>
         <DialogTitle>Settings</DialogTitle>
         <DialogContent>
           <FormSwitchLabel
+            data-testid="includeFVSwitch"
             checked={includeFV}
             toggle={toggleIncludeFV}
             label="Fernverkehr"
           />
           <FormSwitchLabel
+            data-testid="includeNVSwitch"
             checked={includeNV}
             toggle={toggleIncludeNV}
             label="Nahverkehr"
           />
           <FormSwitchLabel
+            data-testid="onlyRTSwitch"
             checked={onlyRT}
             toggle={toggleOnlyRT}
             label="Nur Echtzeitdaten"
           />
           <FormSwitchLabel
+            data-testid="permanentSwitch"
             checked={permanent}
             toggle={togglePermanent}
             label="Permanent Label"

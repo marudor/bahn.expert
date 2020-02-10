@@ -19,6 +19,7 @@ const Position = ({ journey }: Props) => {
 
   return (
     <Marker
+      alt={journey.train.name}
       onClick={setCurrentJourneyActive}
       position={[journey.position.lat, journey.position.lng]}
     >

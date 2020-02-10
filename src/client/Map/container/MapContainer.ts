@@ -8,17 +8,54 @@ import {
 } from 'types/HAFAS/JourneyGeoPos';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import Axios from 'axios';
+import useQuery from 'Common/hooks/useQuery';
 import useToggleState from 'Common/hooks/useToggleState';
 
-function useMap() {
-  const [includeFV, toggleIncludeFV] = useToggleState(true);
-  const [includeNV, toggleIncludeNV] = useToggleState(false);
-  const [onlyRT, toggleOnlyRT] = useToggleState(true);
-  const [permanent, togglePermanent] = useToggleState(false);
-  const [map, setMap] = useState();
-  const [profile, setProfile] = useState<AllowedHafasProfile>(
-    AllowedHafasProfile.oebb
+function useMapDefaults() {
+  const query = useQuery();
+  let includeFV = true;
+  let includeNV = false;
+  let onlyRT = true;
+  let permanent = false;
+  let profile = AllowedHafasProfile.oebb;
+
+  if ('includeFV' in query) {
+    includeFV = Boolean(query.includeFV);
+  }
+  if ('includeNV' in query) {
+    includeNV = Boolean(query.includeNV);
+  }
+  if ('onlyRT' in query) {
+    onlyRT = Boolean(query.onlyRT);
+  }
+  if ('permanent' in query) {
+    permanent = Boolean(query.permanent);
+  }
+  if ('profile' in query && (AllowedHafasProfile as any)[query.profile]) {
+    profile = query.profile;
+  }
+
+  return useMemo(
+    () => ({
+      includeFV,
+      includeNV,
+      onlyRT,
+      permanent,
+      profile,
+    }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
   );
+}
+
+function useMap() {
+  const defaults = useMapDefaults();
+  const [includeFV, toggleIncludeFV] = useToggleState(defaults.includeFV);
+  const [includeNV, toggleIncludeNV] = useToggleState(defaults.includeNV);
+  const [onlyRT, toggleOnlyRT] = useToggleState(defaults.onlyRT);
+  const [permanent, togglePermanent] = useToggleState(defaults.permanent);
+  const [map, setMap] = useState();
+  const [profile, setProfile] = useState<AllowedHafasProfile>(defaults.profile);
   const [positions, setPositions] = useState<
     ParsedJourneyGeoPosResponse | undefined
   >();
