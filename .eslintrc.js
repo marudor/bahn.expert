@@ -15,6 +15,7 @@ module.exports = {
     'babel/object-curly-spacing': 0,
     'max-depth': 0,
     'jest/expect-expect': 0,
+    'react/no-unescaped-entities': 0,
   },
   settings: {
     'import/resolver': 'webpack',

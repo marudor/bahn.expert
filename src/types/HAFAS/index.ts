@@ -408,11 +408,19 @@ export interface TrnCmpSX {
 interface _ParsedCommon {
   locL: HafasStation[];
   prodL: ParsedProduct[];
+  polyL?: ParsedPolyline[];
   raw?: Common;
 }
-export type ParsedCommon = _ParsedCommon & Omit<Common, 'locL' | 'prodL'>;
+export type ParsedCommon = _ParsedCommon &
+  Omit<Common, 'locL' | 'prodL' | 'polyL'>;
 
 export interface ParsedProduct extends CommonProductInfo {}
+
+export interface ParsedPolyline {
+  points: [number, number][];
+  delta: boolean;
+  locations: HafasStation[];
+}
 
 export type InOutMode = 'B' | 'I' | 'N' | 'O';
 
