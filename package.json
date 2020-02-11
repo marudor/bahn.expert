@@ -48,6 +48,7 @@
   },
   "husky": {
     "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-commit": "npm run doc:build && git add docs && git add src/server/API/routes.ts"
     }
   },
@@ -65,6 +66,8 @@
     "@babel/preset-typescript": "^7.8.3",
     "@babel/register": "^7.8.3",
     "@babel/runtime": "^7.8.4",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
     "@cypress/code-coverage": "^1.11.1",
     "@cypress/webpack-preprocessor": "^4.1.1",
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
