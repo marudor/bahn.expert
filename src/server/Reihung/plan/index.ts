@@ -26,7 +26,11 @@ const allowedPlannedProductTypes = ['IC', 'ICE', 'EC', 'ECE'];
 export const getPlannedSequence = (
   product: ParsedProduct
 ): PlannedSequence | undefined => {
-  if (!product.number || !allowedPlannedProductTypes.includes(product.type!))
+  if (
+    !product.number ||
+    !allowedPlannedProductTypes.includes(product.type!) ||
+    !product.admin?.startsWith('80')
+  )
     return;
 
   return planWRMap[product.number];
