@@ -53,6 +53,10 @@
 					"operator": {
 						"$ref": "#/components/schemas/OpL",
 						"nullable": true
+					},
+					"admin": {
+						"type": "string",
+						"nullable": true
 					}
 				},
 				"required": [
@@ -706,6 +710,10 @@
 					},
 					"operator": {
 						"$ref": "#/components/schemas/OpL",
+						"nullable": true
+					},
+					"admin": {
+						"type": "string",
 						"nullable": true
 					},
 					"longDistance": {

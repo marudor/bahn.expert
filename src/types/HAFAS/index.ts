@@ -107,6 +107,7 @@ export interface CommonProductInfo {
   number?: string;
   type?: string;
   operator?: OpL;
+  admin?: string;
 }
 export interface CommonStopInfo {
   scheduledPlatform?: string;
