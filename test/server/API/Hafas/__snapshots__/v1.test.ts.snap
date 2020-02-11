@@ -282,6 +282,7 @@ Object {
     },
   ],
   "train": Object {
+    "admin": "800643",
     "line": "5",
     "name": "S 5",
     "number": "7567",
