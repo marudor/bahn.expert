@@ -75,6 +75,25 @@ export const db = {
   },
 };
 
+export const rmv = {
+  url: 'https://www.rmv.de/auskunft/bin/jp/mgate.exe',
+  config: {
+    client: {
+      id: 'RMV',
+      l: 'vs_webapp',
+      type: 'WEB',
+      name: 'webapp',
+    },
+    ext: 'RMV.1',
+    lang: 'de',
+    ver: '1.18',
+    auth: {
+      aid: 'x0k4ZR33ICN9CWmj',
+      type: 'AID',
+    },
+  },
+};
+
 export const oebb = {
   url: 'https://fahrplan.oebb.at/bin/mgate.exe',
   config: {
