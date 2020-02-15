@@ -93,6 +93,7 @@ const SettingsPanel = () => {
               <option value={AllowedHafasProfile.insa}>Insa</option>
               <option value={AllowedHafasProfile.anachb}>VOR.at</option>
               <option value={AllowedHafasProfile.vao}>VAO</option>
+              <option value={AllowedHafasProfile.pkp}>PKP</option>
             </NativeSelect>
           }
           label="HAFAS Provider"

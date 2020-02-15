@@ -75,6 +75,24 @@ export const db = {
   },
 };
 
+export const pkp = {
+  url: 'https://mobil.rozklad-pkp.pl:8019/bin/mgate.exe',
+  config: {
+    client: {
+      id: 'HAFAS',
+      // v: '4010200',
+      type: 'AND',
+      // name: 'bilkomAPPSTORE',
+    },
+    lang: 'en',
+    ver: '1.18',
+    auth: {
+      aid: 'DrxJYtYZQpEBCtcb',
+      type: 'AID',
+    },
+  },
+};
+
 export const rmv = {
   url: 'https://www.rmv.de/auskunft/bin/jp/mgate.exe',
   config: {

@@ -214,7 +214,7 @@ async function makeRequest<
     })
   ).data;
 
-  if (r.err !== 'OK' || r.svcResL[0].err !== 'OK') {
+  if (('err' in r && r.err !== 'OK') || r.svcResL[0].err !== 'OK') {
     throw new HafasError(request, r, profile);
   }
 

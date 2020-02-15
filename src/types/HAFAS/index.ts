@@ -166,6 +166,7 @@ export enum AllowedHafasProfile {
   sbb = 'sbb',
   dbnetz = 'dbnetz',
   rmv = 'rmv',
+  pkp = 'pkp',
   // all = 'all',
 }
 export type HafasRequest = SingleHafasRequest[];
