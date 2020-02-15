@@ -1,6 +1,8 @@
+import { RoutingFav } from 'Routing/container/RoutingFavContainer';
 import { RoutingResult } from 'types/routing';
 import { uniqBy } from 'lodash';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
+import { useHistory } from 'react-router';
 import Axios from 'axios';
 import RoutingConfigContainer from 'Routing/container/RoutingConfigContainer';
 import RoutingContainer from 'Routing/container/RoutingContainer';
@@ -12,6 +14,8 @@ export default () => {
     setLaterContext,
     earlierContext,
     laterContext,
+    setCurrentProfile,
+    currentProfile,
     setError,
   } = RoutingContainer.useContainer();
   const {
@@ -35,41 +39,45 @@ export default () => {
     [destination, settings, start, via]
   );
 
-  const fetchRoutes = useCallback(async () => {
-    if (!commonRouteSettings) return;
-    setError(undefined);
-    setRoutes(undefined);
-    try {
-      const routingResult: RoutingResult = (
-        await Axios.post(
-          '/api/hafas/v1/route',
-          {
-            time: (date || new Date()).getTime(),
-            ...commonRouteSettings,
-          },
-          {
-            params: {
-              profile: settings.hafasProfile,
+  const fetchRoutes = useCallback(
+    async (routeSettings: typeof commonRouteSettings = commonRouteSettings) => {
+      if (!routeSettings) return;
+      setError(undefined);
+      setRoutes(undefined);
+      try {
+        const routingResult: RoutingResult = (
+          await Axios.post(
+            '/api/hafas/v1/route',
+            {
+              time: (date || new Date()).getTime(),
+              ...routeSettings,
             },
-          }
-        )
-      ).data;
+            {
+              params: {
+                profile: routeSettings.hafasProfile,
+              },
+            }
+          )
+        ).data;
 
-      setRoutes(routingResult.routes);
-      setEarlierContext(routingResult.context.earlier);
-      setLaterContext(routingResult.context.later);
-    } catch (e) {
-      setError(e);
-    }
-  }, [
-    commonRouteSettings,
-    date,
-    setEarlierContext,
-    setError,
-    setLaterContext,
-    setRoutes,
-    settings.hafasProfile,
-  ]);
+        setRoutes(routingResult.routes);
+        setEarlierContext(routingResult.context.earlier);
+        setLaterContext(routingResult.context.later);
+        setCurrentProfile(routeSettings.hafasProfile);
+      } catch (e) {
+        setError(e);
+      }
+    },
+    [
+      commonRouteSettings,
+      date,
+      setCurrentProfile,
+      setEarlierContext,
+      setError,
+      setLaterContext,
+      setRoutes,
+    ]
+  );
 
   const fetchContext = useCallback(
     async (type: 'earlier' | 'later') => {
@@ -85,7 +93,7 @@ export default () => {
             },
             {
               params: {
-                profile: settings.hafasProfile,
+                profile: currentProfile,
               },
             }
           )
@@ -114,17 +122,47 @@ export default () => {
     },
     [
       commonRouteSettings,
+      currentProfile,
       earlierContext,
       laterContext,
       setEarlierContext,
       setLaterContext,
       setRoutes,
-      settings.hafasProfile,
     ]
   );
+
+  const clearRoutes = useCallback(() => {
+    setRoutes([]);
+    setEarlierContext(undefined);
+    setLaterContext(undefined);
+  }, [setEarlierContext, setLaterContext, setRoutes]);
+
+  const history = useHistory<
+    | undefined
+    | {
+        fav: RoutingFav;
+      }
+  >();
+
+  useEffect(() => {
+    const fav = history.location.state?.fav;
+
+    if (fav) {
+      history.replace(history.location.pathname);
+      fetchRoutes({
+        start: fav.start.id,
+        destination: fav.destination.id,
+        via: fav.via.map(v => v.id),
+        ...settings,
+        hafasProfile: fav.profile,
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [history.location.state]);
 
   return {
     fetchRoutes,
     fetchContext,
+    clearRoutes,
   };
 };

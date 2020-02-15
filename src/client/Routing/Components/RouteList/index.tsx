@@ -2,6 +2,7 @@ import Button from '@material-ui/core/Button';
 import Loading from 'Common/Components/Loading';
 import React, { useCallback, useState } from 'react';
 import Route from './Route';
+import RouteFavList from 'Routing/Components/RouteFavList';
 import RouteHeader from './RouteHeader';
 import RoutingContainer from 'Routing/container/RoutingContainer';
 import useFetchRouting from 'Routing/container/RoutingContainer/useFetchRouting';
@@ -48,7 +49,7 @@ const RouteList = () => {
   }
 
   if (!routes) return <Loading relative />;
-  if (!routes.length) return null;
+  if (!routes.length) return <RouteFavList />;
 
   return (
     <div className={classes.main}>

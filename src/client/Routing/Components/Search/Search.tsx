@@ -11,6 +11,8 @@ import {
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { DateTimePicker } from '@material-ui/pickers';
 import { getHafasStationFromAPI } from 'Common/service/stationSearch';
+import { getRouteLink } from 'Routing/util';
+import { RoutingFav } from 'Routing/container/RoutingFavContainer';
 import { Station } from 'types/station';
 import { useHistory, useRouteMatch } from 'react-router';
 import Button from '@material-ui/core/Button';
@@ -26,7 +28,7 @@ import useFetchRouting from 'Routing/container/RoutingContainer/useFetchRouting'
 import useStyles from './Search.styles';
 
 const maxViaForProvider = (profile?: AllowedHafasProfile) => {
-  if (profile === AllowedHafasProfile.sbb) return 99;
+  if (profile === AllowedHafasProfile.SBB) return 99;
 
   return 2;
 };
@@ -56,7 +58,7 @@ const Search = () => {
     via,
     updateVia,
   } = RoutingConfigContainer.useContainer();
-  const { fetchRoutes } = useFetchRouting();
+  const { fetchRoutes, clearRoutes } = useFetchRouting();
 
   const match = useRouteMatch<{
     start?: string;
@@ -64,7 +66,6 @@ const Search = () => {
     date?: string;
     via?: string;
   }>();
-  const history = useHistory();
 
   const formatDate = useCallback((date: null | Date) => {
     if (!date) {
@@ -97,19 +98,36 @@ const Search = () => {
     return relativeDayString;
   }, []);
 
+  const history = useHistory<
+    | undefined
+    | {
+        fav: RoutingFav;
+      }
+  >();
+
+  const favProfile = useMemo(() => {
+    return history.location.state?.fav?.profile;
+  }, [history.location.state]);
+
   useEffect(() => {
     if (match.params.start) {
-      setStationById(match.params.start, setStart, settings.hafasProfile);
+      setStationById(
+        match.params.start,
+        setStart,
+        favProfile || settings.hafasProfile
+      );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [match.params.start, setStart, settings.hafasProfile]);
   useEffect(() => {
     if (match.params.destination) {
       setStationById(
         match.params.destination,
         setDestination,
-        settings.hafasProfile
+        favProfile || settings.hafasProfile
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [match.params.destination, setDestination, settings.hafasProfile]);
   useEffect(() => {
     if (match.params.date && match.params.date !== '0') {
@@ -138,10 +156,7 @@ const Search = () => {
 
       if (start && destination && start.id !== destination.id) {
         fetchRoutes();
-        history.push(
-          `/routing/${start.id}/${destination.id}/${date?.getTime() ||
-            0}/${via.map(v => `${v.id}|`).join('')}`
-        );
+        history.push(getRouteLink(start, destination, via, date));
       }
     },
     [date, destination, fetchRoutes, history, start, via]
@@ -220,6 +235,9 @@ const Search = () => {
       <div className={classes.buttons}>
         <Button fullWidth variant="contained" onClick={searchRoute}>
           Search
+        </Button>
+        <Button fullWidth variant="contained" onClick={clearRoutes}>
+          Favorites
         </Button>
       </div>
     </>

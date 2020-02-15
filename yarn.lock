@@ -741,7 +741,7 @@
     "@babel/helper-plugin-utils" "^7.8.3"
     babel-plugin-dynamic-import-node "^2.3.0"
 
-"@babel/plugin-transform-modules-commonjs@7.8.3", "@babel/plugin-transform-modules-commonjs@^7.0.0", "@babel/plugin-transform-modules-commonjs@^7.4.4", "@babel/plugin-transform-modules-commonjs@^7.8.3":
+"@babel/plugin-transform-modules-commonjs@^7.0.0", "@babel/plugin-transform-modules-commonjs@^7.4.4", "@babel/plugin-transform-modules-commonjs@^7.8.3":
   version "7.8.3"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-modules-commonjs/-/plugin-transform-modules-commonjs-7.8.3.tgz#df251706ec331bd058a34bdd72613915f82928a5"
   integrity sha512-JpdMEfA15HZ/1gNuB9XEDlZM1h/gF/YOH7zaZzQu2xCFRfwc01NXBMHHSTT6hRjlXJJs5x/bfODM3LiCk94Sxg==
@@ -1391,19 +1391,19 @@
   dependencies:
     find-up "^4.0.0"
 
-"@cypress/browserify-preprocessor@2.1.3":
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/@cypress/browserify-preprocessor/-/browserify-preprocessor-2.1.3.tgz#abbb8ba52ff33d70745c056e8fc675db2276a539"
-  integrity sha512-vZskc/EKejnmdm4fMGB1Fm39WelsF4HJHeI5q8I0LvGnrdvxSiCbn27TbhCM5Enq6Fkinf3f7oiHS/m2OUgzdA==
+"@cypress/browserify-preprocessor@2.1.4":
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/@cypress/browserify-preprocessor/-/browserify-preprocessor-2.1.4.tgz#31f3e35969b591da0298eb801d6905c64c7151cf"
+  integrity sha512-149D1E2UzY7kCjnXDofx61MeJ6HQczj5XCAPjRUPpYr/A7T/O4C0IlTLZYV2xxnDD68d71NfT/cT8s0sfi27RQ==
   dependencies:
     "@babel/core" "7.4.5"
     "@babel/plugin-proposal-class-properties" "7.3.0"
     "@babel/plugin-proposal-object-rest-spread" "7.3.2"
-    "@babel/plugin-transform-modules-commonjs" "7.8.3"
     "@babel/plugin-transform-runtime" "7.2.0"
     "@babel/preset-env" "7.4.5"
     "@babel/preset-react" "7.0.0"
     "@babel/runtime" "7.3.1"
+    babel-plugin-add-module-exports "1.0.2"
     babelify "10.0.0"
     bluebird "3.5.3"
     browserify "16.2.3"
@@ -1414,12 +1414,12 @@
     lodash.clonedeep "4.5.0"
     watchify "3.11.1"
 
-"@cypress/code-coverage@^1.12.0":
-  version "1.12.0"
-  resolved "https://registry.yarnpkg.com/@cypress/code-coverage/-/code-coverage-1.12.0.tgz#181e72e38fd58d680950a4e5c20952d7949d01bd"
-  integrity sha512-Fs0y8oXTGiLBPPRGhifz5BqvcOwqCL/tdJDeKdeULlsXaTjseCZ4931jJ/dFQm/R+uERI5rwjmlcyyiO7SZHVw==
+"@cypress/code-coverage@^1.12.2":
+  version "1.12.2"
+  resolved "https://registry.yarnpkg.com/@cypress/code-coverage/-/code-coverage-1.12.2.tgz#5ba8c9b5a632a7501ce33d0aff1760dd43f86df9"
+  integrity sha512-feHDX3Py7GBtk69Qjs3HC/bQwQxyEOhVfqZZ1s1vDYppCls6u7jdsK0uE8RvaJ7sEKYsHbPJB0C8Wa6k5/eH3A==
   dependencies:
-    "@cypress/browserify-preprocessor" "2.1.3"
+    "@cypress/browserify-preprocessor" "2.1.4"
     debug "4.1.1"
     execa "4.0.0"
 
@@ -2531,10 +2531,22 @@
     "@types/webpack-dev-middleware" "*"
     "@types/webpack-hot-client" "*"
 
-"@types/koa@*", "@types/koa@^2.11.0":
+"@types/koa@*":
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/@types/koa/-/koa-2.11.0.tgz#394a3e9ec94f796003a6c8374b4dbc2778746f20"
   integrity sha512-Hgx/1/rVlJvqYBrdeCsS7PDiR2qbxlMt1RnmNWD4Uxi5FF9nwkYqIldo7urjc+dfNpk+2NRGcnAYd4L5xEhCcQ==
+  dependencies:
+    "@types/accepts" "*"
+    "@types/cookies" "*"
+    "@types/http-assert" "*"
+    "@types/keygrip" "*"
+    "@types/koa-compose" "*"
+    "@types/node" "*"
+
+"@types/koa@^2.11.1":
+  version "2.11.1"
+  resolved "https://registry.yarnpkg.com/@types/koa/-/koa-2.11.1.tgz#b116c860d61ef1e3b6a9ab0e5bb9703a69d951ff"
+  integrity sha512-/kqQs+8Qd9GL0cdl39HEhK91k7xq6+Zci76RUdqtTLj1Mg1aVG7zwJm3snkeyFUeAvY8noY27eMXgqg1wHZgwA==
   dependencies:
     "@types/accepts" "*"
     "@types/cookies" "*"
@@ -2648,10 +2660,10 @@
     "@types/leaflet" "*"
     "@types/react" "*"
 
-"@types/react-native@^0.61.12":
-  version "0.61.12"
-  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.61.12.tgz#058c80f5aadb99b6cac1cf648e996b7795ca0fab"
-  integrity sha512-9Do0pTN9H3hnon0LUCTqIC5fCmFpKU5V8rJEH2iAAsCRm8+2Q7zPUMKuCaSRbO5zhXMW5oC8IE0nCfg1kqyXvw==
+"@types/react-native@^0.61.15":
+  version "0.61.15"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.61.15.tgz#3b2032a9abd5e37c8a8cb0fc6a724d57811d4dbc"
+  integrity sha512-+lOUYk3yOfpyMy2HcVbR5bZnbExiVahMr3AqWNPh/01N0quH7nBzlou+/rpbvmDXSGwCh3QjWWfEkLNRfvbiiA==
   dependencies:
     "@types/react" "*"
 
@@ -3774,6 +3786,13 @@ babel-loader@^8.0.2, babel-loader@^8.0.6:
     loader-utils "^1.0.2"
     mkdirp "^0.5.1"
     pify "^4.0.1"
+
+babel-plugin-add-module-exports@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/babel-plugin-add-module-exports/-/babel-plugin-add-module-exports-1.0.2.tgz#96cd610d089af664f016467fc4567c099cce2d9c"
+  integrity sha512-4paN7RivvU3Rzju1vGSHWPjO8Y0rI6droWvSFKI6dvEQ4mvoV0zGojnlzVRfI6N8zISo6VERXt3coIuVmzuvNg==
+  optionalDependencies:
+    chokidar "^2.0.4"
 
 babel-plugin-const-enum@^0.0.5:
   version "0.0.5"
@@ -5493,10 +5512,49 @@ cyclist@^1.0.1:
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-1.0.1.tgz#596e9698fd0c80e12038c2b82d6eb1b35b6224d9"
   integrity sha1-WW6WmP0MgOEgOMK4LW6xs1tiJNk=
 
-cypress@*, cypress@^4.0.1:
+cypress@*:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/cypress/-/cypress-4.0.1.tgz#815da77c8e2528501b9af2e8d12cfcaec8c9dde7"
   integrity sha512-P+cSwc5yE+1hIkWwJzpsiSQthKmzkFeFz2ySejSrJJ6FiXoL8pp0vr1cyWp+75KT4nqL9IYt1GMrHp+mVmvocA==
+  dependencies:
+    "@cypress/listr-verbose-renderer" "0.4.1"
+    "@cypress/xvfb" "1.2.4"
+    "@types/sizzle" "2.3.2"
+    arch "2.1.1"
+    bluebird "3.7.2"
+    cachedir "2.3.0"
+    chalk "3.0.0"
+    check-more-types "2.24.0"
+    commander "4.1.0"
+    common-tags "1.8.0"
+    debug "4.1.1"
+    eventemitter2 "4.1.2"
+    execa "3.3.0"
+    executable "4.1.1"
+    extract-zip "1.6.7"
+    fs-extra "8.1.0"
+    getos "3.1.4"
+    is-ci "2.0.0"
+    is-installed-globally "0.1.0"
+    lazy-ass "1.6.0"
+    listr "0.14.3"
+    lodash "4.17.15"
+    log-symbols "3.0.0"
+    minimist "1.2.0"
+    moment "2.24.0"
+    ramda "0.26.1"
+    request "2.88.0"
+    request-progress "3.0.0"
+    supports-color "7.1.0"
+    tmp "0.1.0"
+    untildify "4.0.0"
+    url "0.11.0"
+    yauzl "2.10.0"
+
+cypress@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/cypress/-/cypress-4.0.2.tgz#ede194d7bc73fb449f8de553c9e1db4ca15309ef"
+  integrity sha512-WRzxOoSd+TxyXKa7Zi9orz3ii5VW7yhhVYstCU+EpOKfPan9x5Ww2Clucmy4H/W0GHUYAo7GYFZRD33ZCSNBQA==
   dependencies:
     "@cypress/listr-verbose-renderer" "0.4.1"
     "@cypress/xvfb" "1.2.4"
@@ -6352,10 +6410,10 @@ eslint-plugin-babel@^5.3.0:
   dependencies:
     eslint-rule-composer "^0.3.0"
 
-eslint-plugin-cypress@^2.9.0:
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-cypress/-/eslint-plugin-cypress-2.9.0.tgz#7fa5c5247db8a691aa54661e29a67e5bae4b4a15"
-  integrity sha512-3x6EQYDB30VHyqFV6leBRf9Zo51FsPWXG+aLtpUSlRtcLGcrbmnfno02E318YYSmGbCJH6K5i+MLCFHBpcyreg==
+eslint-plugin-cypress@^2.10.1:
+  version "2.10.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-cypress/-/eslint-plugin-cypress-2.10.1.tgz#76b15abd5b35975e21b465214ac2173036fbe271"
+  integrity sha512-Oo52+uEE7caVRIIeNCg743e3QKNY9Fkfd4KCzBq2BqG3EhhndekEu2YTwW6kSgca2jXSPmbGm0HiZktSakl4Og==
   dependencies:
     globals "^11.12.0"
 
@@ -6474,10 +6532,10 @@ eslint-plugin-sort-imports-es6-autofix@^0.5.0:
   dependencies:
     eslint "^6.2.2"
 
-eslint-plugin-testing-library@^2.2.2:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-testing-library/-/eslint-plugin-testing-library-2.2.2.tgz#78559d551510263416c4e77696143a38e2d44bef"
-  integrity sha512-bgA/gU1C/7ZwD2+NCcCOe8fdH+araHvzYfgOdvBf7jifWMNd4Twn6IXdP26ad/6+y0QnZzit6pCphNUWGDwpsQ==
+eslint-plugin-testing-library@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-testing-library/-/eslint-plugin-testing-library-2.2.3.tgz#de42d0c07e10578a2edb880c973758e948e7b47d"
+  integrity sha512-pqMTWjBxYv+TnuU3ZzbdUJ0s5p5jSInlk6ly+YnTBNCDy2aLYpnNqeEinYzj1nH8Cthij62ajqzgODg6J25QNA==
 
 eslint-rule-composer@^0.3.0:
   version "0.3.0"
@@ -7934,10 +7992,10 @@ human-signals@^1.1.1:
   resolved "https://registry.yarnpkg.com/human-signals/-/human-signals-1.1.1.tgz#c5b1cd14f50aeae09ab6c59fe63ba3395fe4dfa3"
   integrity sha512-SEQu7vl8KjNL2eoGBLF3+wAjpsNfA9XMlXAYj/3EdaNfAlxKthD1xjEQfGOUhllCGGJVNY34bRr6lPINhNjyZw==
 
-husky@^4.2.1:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/husky/-/husky-4.2.1.tgz#b09f1bd9129e6c323cc515dc17081d0615e2d7c1"
-  integrity sha512-Qa0lRreeIf4Tl92sSs42ER6qc3hzoyQPPorzOrFWfPEVbdi6LuvJEqWKPk905fOWIR76iBpp7ECZNIwk+a8xuQ==
+husky@^4.2.3:
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/husky/-/husky-4.2.3.tgz#3b18d2ee5febe99e27f2983500202daffbc3151e"
+  integrity sha512-VxTsSTRwYveKXN4SaH1/FefRJYCtx+wx04sSVcOpD7N2zjoHxa+cEJ07Qg5NmV3HAK+IRKOyNVpi2YBIVccIfQ==
   dependencies:
     chalk "^3.0.0"
     ci-info "^2.0.0"
@@ -9533,10 +9591,10 @@ koa-convert@^1.2.0:
     co "^4.6.0"
     koa-compose "^3.0.0"
 
-koa-router@^8.0.7:
-  version "8.0.7"
-  resolved "https://registry.yarnpkg.com/koa-router/-/koa-router-8.0.7.tgz#40a6a7ca95f17e3809181d93f5d6d8f2ec39f206"
-  integrity sha512-g1nwr0nAQ/WgtY68IAx0bh2Z8eOX8dKypG55StMAYc0vs+1m87/fUrFKi0quJNAATzMhsQ5GFEC1XaAFvGB37g==
+koa-router@^8.0.8:
+  version "8.0.8"
+  resolved "https://registry.yarnpkg.com/koa-router/-/koa-router-8.0.8.tgz#f0b70f90dae275db8c71a41e1efb625581fb3b5a"
+  integrity sha512-2rNF2cgu/EWi/NV8GlBE5+H/QBoaof83X6Z0dULmalkbt7W610/lyP2EOLVqVrUUFfjsVWL/Ju5TVBcGJDY9XQ==
   dependencies:
     debug "^4.1.1"
     http-errors "^1.7.3"
@@ -14169,10 +14227,10 @@ terser-webpack-plugin@^1.4.3:
     webpack-sources "^1.4.0"
     worker-farm "^1.7.0"
 
-terser-webpack-plugin@^2.3.4:
-  version "2.3.4"
-  resolved "https://registry.yarnpkg.com/terser-webpack-plugin/-/terser-webpack-plugin-2.3.4.tgz#ac045703bd8da0936ce910d8fb6350d0e1dee5fe"
-  integrity sha512-Nv96Nws2R2nrFOpbzF6IxRDpIkkIfmhvOws+IqMvYdFLO7o6wAILWFKONFgaYy8+T4LVz77DQW0f7wOeDEAjrg==
+terser-webpack-plugin@^2.3.5:
+  version "2.3.5"
+  resolved "https://registry.yarnpkg.com/terser-webpack-plugin/-/terser-webpack-plugin-2.3.5.tgz#5ad971acce5c517440ba873ea4f09687de2f4a81"
+  integrity sha512-WlWksUoq+E4+JlJ+h+U+QUzXpcsMSSNXkDy9lBVkSqDn1w23Gg29L/ary9GeJVYCGiNJJX7LnVc4bwL1N3/g1w==
   dependencies:
     cacache "^13.0.1"
     find-cache-dir "^3.2.0"
@@ -15003,10 +15061,10 @@ webpack-bundle-analyzer@^3.6.0:
     opener "^1.5.1"
     ws "^6.0.0"
 
-webpack-cli@^3.3.10:
-  version "3.3.10"
-  resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-3.3.10.tgz#17b279267e9b4fb549023fae170da8e6e766da13"
-  integrity sha512-u1dgND9+MXaEt74sJR4PR7qkPxXUSQ0RXYq8x1L6Jg1MYVEmGPrH6Ah6C4arD4r0J1P5HKjRqpab36k0eIzPqg==
+webpack-cli@^3.3.11:
+  version "3.3.11"
+  resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-3.3.11.tgz#3bf21889bf597b5d82c38f215135a411edfdc631"
+  integrity sha512-dXlfuml7xvAFwYUPsrtQAA9e4DOe58gnzSxhgrO/ZM/gyXTBowrsYeubyN4mqGhYdpXMFNyQ6emjJS9M7OBd4g==
   dependencies:
     chalk "2.4.2"
     cross-spawn "6.0.5"
@@ -15071,10 +15129,10 @@ webpack-sources@^1.0.1, webpack-sources@^1.3.0, webpack-sources@^1.4.0, webpack-
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack@^4.41.5:
-  version "4.41.5"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.41.5.tgz#3210f1886bce5310e62bb97204d18c263341b77c"
-  integrity sha512-wp0Co4vpyumnp3KlkmpM5LWuzvZYayDwM2n17EHFr4qxBBbRokC7DJawPJC7TfSFZ9HZ6GsdH40EBj4UV0nmpw==
+webpack@^4.41.6:
+  version "4.41.6"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.41.6.tgz#12f2f804bf6542ef166755050d4afbc8f66ba7e1"
+  integrity sha512-yxXfV0Zv9WMGRD+QexkZzmGIh54bsvEs+9aRWxnN8erLWEOehAKUTeNBoUbA6HPEZPlRo7KDi2ZcNveoZgK9MA==
   dependencies:
     "@webassemblyjs/ast" "1.8.5"
     "@webassemblyjs/helper-module-context" "1.8.5"

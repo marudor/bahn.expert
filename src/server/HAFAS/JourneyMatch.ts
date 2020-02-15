@@ -33,7 +33,7 @@ const parseJourneyMatch = (
 
 const JourneyMatch = (
   { trainName, initialDepartureDate, jnyFltrL }: JourneyMatchOptions,
-  profile: AllowedHafasProfile = AllowedHafasProfile.db,
+  profile: AllowedHafasProfile = AllowedHafasProfile.DB,
   raw?: boolean
 ): Promise<ParsedJourneyMatchResponse[]> => {
   let date = initialDepartureDate;

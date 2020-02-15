@@ -8,8 +8,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Storage from 'Common/Storage';
 import ThemeWrap from './ThemeWrap';
-// 10s timeout
-axios.defaults.timeout = 10000;
+// 15s timeout
+axios.defaults.timeout = 15000;
 
 global.smallScreen = window.matchMedia('(max-width: 480px)').matches;
 

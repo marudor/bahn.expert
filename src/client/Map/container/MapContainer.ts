@@ -17,7 +17,7 @@ function useMapDefaults() {
   let includeNV = false;
   let onlyRT = true;
   let permanent = false;
-  let profile = AllowedHafasProfile.oebb;
+  let profile = AllowedHafasProfile.OEBB;
 
   if ('includeFV' in query) {
     includeFV = Boolean(query.includeFV);
