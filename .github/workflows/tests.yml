@@ -1,12 +1,6 @@
 name: node tests
 
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
+on: push
 
 env:
   CI: 'true'
@@ -57,7 +51,11 @@ jobs:
           name: jest-coverage
           path: jest-coverage/coverage-final.json
   e2e:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # run 3 copies of the current job in parallel
+        containers: [1, 2, 3]
     steps:
       - uses: actions/checkout@master
       - name: Use Node.js 13
@@ -73,6 +71,8 @@ jobs:
         with:
           install: false
           record: true
+          parallel: true
+          ci-build-id: '${{ github.sha }}-${{ github.workflow }}-${{ github.event_name }}'
           build: yarn build
           start: node testDist/server/server/index.js
           wait-on: http://localhost:9042
