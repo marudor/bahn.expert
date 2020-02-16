@@ -15,6 +15,7 @@ const webpack = require('@cypress/webpack-preprocessor');
 
 // eslint-disable-next-line no-unused-vars
 module.exports = (on, config) => {
+  on('task', require('@cypress/code-coverage/task'));
   on(
     'file:preprocessor',
     webpack({
@@ -38,5 +39,4 @@ module.exports = (on, config) => {
       },
     })
   );
-  on('task', require('@cypress/code-coverage/task'));
 };

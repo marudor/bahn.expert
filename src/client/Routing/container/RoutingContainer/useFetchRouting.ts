@@ -47,7 +47,7 @@ export default () => {
       try {
         const routingResult: RoutingResult = (
           await Axios.post(
-            '/api/hafas/v1/route',
+            '/api/hafas/v1/tripSearch',
             {
               time: (date || new Date()).getTime(),
               ...routeSettings,
@@ -86,7 +86,7 @@ export default () => {
       try {
         const routingResult: RoutingResult = (
           await Axios.post(
-            '/api/hafas/v1/route',
+            '/api/hafas/v1/tripSearch',
             {
               ctxScr: type === 'earlier' ? earlierContext : laterContext,
               ...commonRouteSettings,

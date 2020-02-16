@@ -2,7 +2,10 @@ import { AllowedHafasProfile } from 'types/HAFAS';
 import { getRouteLink } from 'Routing/util';
 import { Link } from 'react-router-dom';
 import { Paper } from '@material-ui/core';
-import { RoutingFav } from 'Routing/container/RoutingFavContainer';
+import {
+  RoutingFav,
+  routingFavKey,
+} from 'Routing/container/RoutingFavContainer';
 import React from 'react';
 import useStyles from './RouteFavEntry.style';
 
@@ -15,6 +18,7 @@ const RouteFavEntry = ({ fav }: Props) => {
 
   return (
     <Link
+      date-testid="RouteFavEntry"
       to={{
         pathname: getRouteLink(fav.start, fav.destination, fav.via),
         state: {
@@ -22,7 +26,10 @@ const RouteFavEntry = ({ fav }: Props) => {
         },
       }}
     >
-      <Paper className={classes.wrap}>
+      <Paper
+        data-testid={`RouteFavEntry-${routingFavKey(fav)}`}
+        className={classes.wrap}
+      >
         <span className={classes.start}>{fav.start.title}</span>
         <span className={classes.destination}>{fav.destination.title}</span>
         <span className={classes.arrow}>-></span>

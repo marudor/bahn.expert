@@ -105,6 +105,7 @@ const Search = () => {
       }
   >();
 
+  // This is not a dependency for the initialStationSearch. We do not want to retrigger them when this changes! (Unless one of the other 3 also changed)
   const favProfile = useMemo(() => {
     return history.location.state?.fav?.profile;
   }, [history.location.state]);
@@ -206,6 +207,7 @@ const Search = () => {
           profile={settings.hafasProfile}
         />
         <IconButton
+          data-testid="swapStations"
           style={{ padding: 0 }}
           onClick={(e: SyntheticEvent) => {
             e.preventDefault();
@@ -233,10 +235,15 @@ const Search = () => {
       />
       <SettingsPanel />
       <div className={classes.buttons}>
-        <Button fullWidth variant="contained" onClick={searchRoute}>
+        <Button
+          data-testid="search"
+          fullWidth
+          variant="contained"
+          onClick={searchRoute}
+        >
           Search
         </Button>
-        <Button fullWidth variant="contained" onClick={clearRoutes}>
+        <Button data-testid="toFav" variant="contained" onClick={clearRoutes}>
           Favorites
         </Button>
       </div>

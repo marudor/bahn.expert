@@ -1,0 +1,3580 @@
+{
+  "context": {
+    "earlier": "1|OB|MT#11#94498#94498#94715#94715#0#0#485#94487#1#-2147482597#0#1#2|PDH#0f9af0f62c50fbfa236d710b49b0c244|RD#16022020|RT#144702",
+    "later": "1|OF|MT#11#94640#94640#94889#94893#0#0#485#94619#7#-2147483645#0#1#2|PDH#0f9af0f62c50fbfa236d710b49b0c244|RD#16022020|RT#144702"
+  },
+  "routes": [
+    {
+      "checksum": "426db007_3",
+      "cid": "C-0",
+      "date": 1581807600000,
+      "duration": 12900000,
+      "changes": 0,
+      "isRideable": true,
+      "arrival": {
+        "platform": "12",
+        "scheduledTime": 1581874500000,
+        "time": 1581874620000,
+        "delay": 2
+      },
+      "departure": {
+        "platform": "8",
+        "scheduledTime": 1581861480000,
+        "time": 1581861720000,
+        "delay": 4
+      },
+      "segments": [
+        {
+          "arrival": {
+            "platform": "12",
+            "scheduledTime": 1581874500000,
+            "time": 1581874620000,
+            "delay": 2,
+            "reihung": true
+          },
+          "departure": {
+            "platform": "8",
+            "scheduledTime": 1581861480000,
+            "time": 1581861720000,
+            "delay": 4,
+            "reihung": true
+          },
+          "duration": 13020000,
+          "plannedSequence": {
+            "raw": "ICE-A",
+            "short": "1",
+            "type": "ICE 1",
+            "wagons": {
+              "Apmbsz": true,
+              "Avmz": true,
+              "Bpmz": true,
+              "Bvmz": true,
+              "WRmz": true
+            }
+          },
+          "train": {
+            "name": "ICE 576",
+            "admin": "80____",
+            "number": "576",
+            "type": "ICE",
+            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+          },
+          "segmentStart": { "title": "Frankfurt(Main)Hbf", "id": "8000105" },
+          "segmentDestination": { "title": "Hamburg Hbf", "id": "8002549" },
+          "stops": [
+            {
+              "station": {
+                "id": "8000105",
+                "title": "Frankfurt(Main)Hbf",
+                "coordinates": { "lng": 8.663003, "lat": 50.106817 }
+              },
+              "departure": {
+                "platform": "8",
+                "scheduledTime": 1581861480000,
+                "time": 1581861720000,
+                "delay": 4,
+                "reihung": true
+              },
+              "auslastung": { "first": 2, "second": 2 },
+              "messages": [
+                {
+                  "type": "D",
+                  "code": "",
+                  "icoX": 3,
+                  "txtN": "Verspätete Bereitstellung des Zuges",
+                  "sIdx": 0
+                }
+              ]
+            },
+            {
+              "station": {
+                "id": "8003200",
+                "title": "Kassel-Wilhelmshöhe",
+                "coordinates": { "lng": 9.446845, "lat": 51.312998 }
+              },
+              "arrival": {
+                "platform": "3",
+                "scheduledTime": 1581866340000,
+                "time": 1581866580000,
+                "delay": 4,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "3",
+                "scheduledTime": 1581866460000,
+                "time": 1581866700000,
+                "delay": 4,
+                "reihung": true
+              },
+              "auslastung": { "first": 1, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000128",
+                "title": "Göttingen",
+                "coordinates": { "lng": 9.926257, "lat": 51.536758 }
+              },
+              "arrival": {
+                "platform": "9",
+                "scheduledTime": 1581867480000,
+                "time": 1581867780000,
+                "delay": 5,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "9",
+                "scheduledTime": 1581867600000,
+                "time": 1581867900000,
+                "delay": 5,
+                "reihung": true
+              },
+              "auslastung": { "first": 2, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000152",
+                "title": "Hannover Hbf",
+                "coordinates": { "lng": 9.741763, "lat": 52.377079 }
+              },
+              "arrival": {
+                "platform": "7",
+                "scheduledTime": 1581869820000,
+                "time": 1581869820000,
+                "delay": 0,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "7",
+                "scheduledTime": 1581870000000,
+                "time": 1581870120000,
+                "delay": 2,
+                "reihung": true
+              },
+              "auslastung": { "first": 1, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8002549",
+                "title": "Hamburg Hbf",
+                "coordinates": { "lng": 10.00636, "lat": 53.553533 }
+              },
+              "arrival": {
+                "platform": "12",
+                "scheduledTime": 1581874500000,
+                "time": 1581874620000,
+                "delay": 2,
+                "reihung": true
+              }
+            }
+          ],
+          "finalDestination": "Hamburg-Altona",
+          "jid": "1|223533|0|80|16022020",
+          "auslastung": { "first": 2, "second": 2 },
+          "messages": [
+            {
+              "type": "A",
+              "code": "CK",
+              "prio": 200,
+              "icoX": 4,
+              "txtN": "Komfort Check-in möglich (Infos unter bahn.de/kci)"
+            },
+            {
+              "type": "A",
+              "code": "BR",
+              "prio": 450,
+              "icoX": 5,
+              "txtN": "Bordrestaurant"
+            }
+          ],
+          "type": "JNY"
+        }
+      ],
+      "segmentTypes": ["ICE"]
+    },
+    {
+      "checksum": "3519f3db_3",
+      "cid": "C-1",
+      "date": 1581807600000,
+      "duration": 13380000,
+      "changes": 0,
+      "isRideable": true,
+      "arrival": {
+        "platform": "12",
+        "scheduledTime": 1581870900000,
+        "time": 1581875640000,
+        "delay": 79
+      },
+      "departure": {
+        "scheduledPlatform": "8",
+        "platform": "9",
+        "scheduledTime": 1581857880000,
+        "time": 1581862260000,
+        "delay": 73
+      },
+      "segments": [
+        {
+          "arrival": {
+            "platform": "12",
+            "scheduledTime": 1581870900000,
+            "time": 1581875640000,
+            "delay": 79,
+            "reihung": true
+          },
+          "departure": {
+            "scheduledPlatform": "8",
+            "platform": "9",
+            "scheduledTime": 1581857880000,
+            "time": 1581862260000,
+            "delay": 73,
+            "reihung": true
+          },
+          "duration": 13020000,
+          "plannedSequence": {
+            "raw": "ICE-A",
+            "short": "4",
+            "type": "ICE 4",
+            "wagons": {
+              "ARmz": true,
+              "Apmz": true,
+              "Apmzf": true,
+              "Bpmbsz": true,
+              "Bpmdzf": true,
+              "Bpmz": true
+            }
+          },
+          "train": {
+            "name": "ICE 74",
+            "admin": "80____",
+            "number": "74",
+            "type": "ICE",
+            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+          },
+          "segmentStart": { "title": "Frankfurt(Main)Hbf", "id": "8000105" },
+          "segmentDestination": { "title": "Hamburg Hbf", "id": "8002549" },
+          "stops": [
+            {
+              "station": {
+                "id": "8000105",
+                "title": "Frankfurt(Main)Hbf",
+                "coordinates": { "lng": 8.663003, "lat": 50.106817 }
+              },
+              "departure": {
+                "scheduledPlatform": "8",
+                "platform": "9",
+                "scheduledTime": 1581857880000,
+                "time": 1581862260000,
+                "delay": 73,
+                "reihung": true
+              },
+              "auslastung": { "first": 2, "second": 3 },
+              "messages": [
+                {
+                  "type": "D",
+                  "code": "",
+                  "icoX": 3,
+                  "txtN": "Stellwerksstörung /-ausfall",
+                  "sIdx": 0
+                }
+              ]
+            },
+            {
+              "station": {
+                "id": "8003200",
+                "title": "Kassel-Wilhelmshöhe",
+                "coordinates": { "lng": 9.446845, "lat": 51.312998 }
+              },
+              "arrival": {
+                "platform": "3",
+                "scheduledTime": 1581862740000,
+                "time": 1581867180000,
+                "delay": 74,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "3",
+                "scheduledTime": 1581862860000,
+                "time": 1581867360000,
+                "delay": 75,
+                "reihung": true
+              },
+              "auslastung": { "first": 2, "second": 3 }
+            },
+            {
+              "station": {
+                "id": "8000128",
+                "title": "Göttingen",
+                "coordinates": { "lng": 9.926257, "lat": 51.536758 }
+              },
+              "arrival": {
+                "platform": "9",
+                "scheduledTime": 1581863880000,
+                "time": 1581868440000,
+                "delay": 76,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "9",
+                "scheduledTime": 1581864000000,
+                "time": 1581868620000,
+                "delay": 77,
+                "reihung": true
+              },
+              "auslastung": { "first": 2, "second": 3 }
+            },
+            {
+              "station": {
+                "id": "8000152",
+                "title": "Hannover Hbf",
+                "coordinates": { "lng": 9.741763, "lat": 52.377079 }
+              },
+              "arrival": {
+                "platform": "7",
+                "scheduledTime": 1581866220000,
+                "time": 1581870660000,
+                "delay": 74,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "7",
+                "scheduledTime": 1581866400000,
+                "time": 1581870900000,
+                "delay": 75,
+                "reihung": true
+              },
+              "auslastung": { "first": 2, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8002549",
+                "title": "Hamburg Hbf",
+                "coordinates": { "lng": 10.00636, "lat": 53.553533 }
+              },
+              "arrival": {
+                "platform": "12",
+                "scheduledTime": 1581870900000,
+                "time": 1581875640000,
+                "delay": 79,
+                "reihung": true
+              }
+            }
+          ],
+          "finalDestination": "Kiel Hbf",
+          "jid": "1|278958|0|80|16022020",
+          "auslastung": { "first": 2, "second": 3 },
+          "messages": [
+            {
+              "type": "A",
+              "code": "CK",
+              "prio": 200,
+              "icoX": 4,
+              "txtN": "Komfort Check-in möglich (Infos unter bahn.de/kci)"
+            },
+            {
+              "type": "A",
+              "code": "FR",
+              "prio": 260,
+              "icoX": 6,
+              "txtN": "Fahrradmitnahme reservierungspflichtig"
+            },
+            {
+              "type": "A",
+              "code": "FB",
+              "prio": 260,
+              "icoX": 7,
+              "txtN": "Fahrradmitnahme begrenzt möglich"
+            },
+            {
+              "type": "A",
+              "code": "BR",
+              "prio": 450,
+              "icoX": 5,
+              "txtN": "Bordrestaurant"
+            },
+            {
+              "type": "A",
+              "code": "EH",
+              "prio": 560,
+              "icoX": 4,
+              "txtN": "Fahrzeuggebundene Einstiegshilfe vorhanden"
+            },
+            {
+              "type": "A",
+              "code": "KR",
+              "prio": 610,
+              "icoX": 4,
+              "txtN": "DB Kinderbetreuer an Bord"
+            },
+            {
+              "type": "M",
+              "code": "",
+              "icoX": 8,
+              "txtS": "ICE   74: Frankfurt(Main)Hbf->Hamburg Hbf: Information.",
+              "txtN": "Kein behindertengerechtes WC im Zug. Mobilitätseingeschränkte Reisende wenden sich bzgl. eventuell erforderlicher Umbuchungen an unsere Mobilitätsservice-Zentrale unter 01806-512512 (20 ct/Anruf aus dem dt. Festnetz, Tarif bei Mobilfunk max. 60 ct/Anruf).",
+              "sIdx": 0
+            }
+          ],
+          "type": "JNY"
+        }
+      ],
+      "segmentTypes": ["ICE"]
+    },
+    {
+      "checksum": "ff223bad_3",
+      "cid": "C-2",
+      "date": 1581807600000,
+      "duration": 13800000,
+      "changes": 1,
+      "isRideable": false,
+      "arrival": {
+        "platform": "12",
+        "scheduledTime": 1581876600000,
+        "time": 1581876720000,
+        "delay": 2
+      },
+      "departure": {
+        "platform": "9",
+        "scheduledTime": 1581862800000,
+        "time": 1581862920000,
+        "delay": 2
+      },
+      "segments": [
+        {
+          "arrival": {
+            "platform": "7",
+            "scheduledTime": 1581865920000,
+            "time": 1581866100000,
+            "delay": 3,
+            "reihung": true
+          },
+          "departure": {
+            "platform": "9",
+            "scheduledTime": 1581862800000,
+            "time": 1581862920000,
+            "delay": 2,
+            "reihung": true
+          },
+          "duration": 3120000,
+          "plannedSequence": {
+            "raw": "ICE-T",
+            "short": "T",
+            "type": "ICE T",
+            "wagons": {
+              "ABpmz": true,
+              "Apmzf": true,
+              "Bpmbz": true,
+              "Bpmdz": true,
+              "Bpmkz": true,
+              "Bpmz": true,
+              "Bpmzf": true,
+              "WRmz": true,
+              "Wiesbaden": true
+            }
+          },
+          "train": {
+            "name": "ICE 1653",
+            "admin": "80____",
+            "number": "1653",
+            "type": "ICE",
+            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+          },
+          "changeDuration": 5,
+          "segmentStart": { "title": "Frankfurt(Main)Hbf", "id": "8000105" },
+          "segmentDestination": { "title": "Fulda", "id": "8000115" },
+          "stops": [
+            {
+              "station": {
+                "id": "8000105",
+                "title": "Frankfurt(Main)Hbf",
+                "coordinates": { "lng": 8.663003, "lat": 50.106817 }
+              },
+              "departure": {
+                "platform": "9",
+                "scheduledTime": 1581862800000,
+                "time": 1581862920000,
+                "delay": 2,
+                "reihung": true
+              },
+              "auslastung": { "first": 1, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000115",
+                "title": "Fulda",
+                "coordinates": { "lng": 9.684178, "lat": 50.554794 }
+              },
+              "arrival": {
+                "platform": "7",
+                "scheduledTime": 1581865920000,
+                "time": 1581866100000,
+                "delay": 3,
+                "reihung": true
+              }
+            }
+          ],
+          "finalDestination": "Dresden Hbf",
+          "jid": "1|220016|0|80|16022020",
+          "auslastung": { "first": 1, "second": 2 },
+          "messages": [
+            {
+              "type": "A",
+              "code": "CK",
+              "prio": 200,
+              "icoX": 4,
+              "txtN": "Komfort Check-in möglich (Infos unter bahn.de/kci)"
+            },
+            {
+              "type": "A",
+              "code": "FR",
+              "prio": 260,
+              "icoX": 6,
+              "txtN": "Fahrradmitnahme reservierungspflichtig"
+            },
+            {
+              "type": "A",
+              "code": "FB",
+              "prio": 260,
+              "icoX": 7,
+              "txtN": "Fahrradmitnahme begrenzt möglich"
+            },
+            {
+              "type": "A",
+              "code": "BR",
+              "prio": 450,
+              "icoX": 5,
+              "txtN": "Bordrestaurant"
+            }
+          ],
+          "type": "JNY"
+        },
+        {
+          "arrival": {
+            "platform": "12",
+            "scheduledTime": 1581876600000,
+            "time": 1581876720000,
+            "delay": 2,
+            "reihung": true
+          },
+          "departure": {
+            "platform": "6",
+            "scheduledTime": 1581866400000,
+            "time": 1581866400000,
+            "delay": 0,
+            "reihung": true
+          },
+          "duration": 10200000,
+          "plannedSequence": {
+            "raw": "ICE-A",
+            "short": "2",
+            "type": "ICE 2",
+            "wagons": {
+              "Apmz": true,
+              "Bpmbz": true,
+              "Bpmz": true,
+              "Bpmzf": true,
+              "WRmbsz": true
+            }
+          },
+          "train": {
+            "name": "ICE 586",
+            "admin": "80____",
+            "number": "586",
+            "type": "ICE",
+            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+          },
+          "segmentStart": { "title": "Fulda", "id": "8000115" },
+          "segmentDestination": { "title": "Hamburg Hbf", "id": "8002549" },
+          "stops": [
+            {
+              "station": {
+                "id": "8000115",
+                "title": "Fulda",
+                "coordinates": { "lng": 9.684178, "lat": 50.554794 }
+              },
+              "departure": {
+                "platform": "6",
+                "scheduledTime": 1581866400000,
+                "time": 1581866400000,
+                "delay": 0,
+                "reihung": true
+              }
+            },
+            {
+              "station": {
+                "id": "8003200",
+                "title": "Kassel-Wilhelmshöhe",
+                "coordinates": { "lng": 9.446845, "lat": 51.312998 }
+              },
+              "arrival": {
+                "platform": "3",
+                "scheduledTime": 1581868080000,
+                "time": 1581868080000,
+                "delay": 0,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "3",
+                "scheduledTime": 1581868200000,
+                "time": 1581868200000,
+                "delay": 0,
+                "reihung": true
+              }
+            },
+            {
+              "station": {
+                "id": "8000128",
+                "title": "Göttingen",
+                "coordinates": { "lng": 9.926257, "lat": 51.536758 }
+              },
+              "arrival": {
+                "platform": "9",
+                "scheduledTime": 1581869400000,
+                "time": 1581869400000,
+                "delay": 0,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "9",
+                "scheduledTime": 1581869460000,
+                "time": 1581869460000,
+                "delay": 0,
+                "reihung": true
+              }
+            },
+            {
+              "station": {
+                "id": "8000152",
+                "title": "Hannover Hbf",
+                "coordinates": { "lng": 9.741763, "lat": 52.377079 }
+              },
+              "arrival": {
+                "scheduledPlatform": "8",
+                "platform": "4",
+                "scheduledTime": 1581871500000,
+                "time": 1581871500000,
+                "delay": 0,
+                "reihung": true
+              },
+              "departure": {
+                "scheduledPlatform": "8 D-G",
+                "platform": "4",
+                "scheduledTime": 1581871740000,
+                "time": 1581871740000,
+                "delay": 0,
+                "reihung": true
+              },
+              "auslastung": { "first": 2, "second": 3 },
+              "messages": []
+            },
+            {
+              "station": {
+                "id": "8000147",
+                "title": "Hamburg-Harburg",
+                "coordinates": { "lng": 9.991591, "lat": 53.456198 }
+              },
+              "arrival": {
+                "platform": "1",
+                "scheduledTime": 1581875880000,
+                "time": 1581875880000,
+                "delay": 0,
+                "reihung": true
+              }
+            },
+            {
+              "station": {
+                "id": "8002549",
+                "title": "Hamburg Hbf",
+                "coordinates": { "lng": 10.00636, "lat": 53.553533 }
+              },
+              "arrival": {
+                "platform": "12",
+                "scheduledTime": 1581876600000,
+                "time": 1581876720000,
+                "delay": 2,
+                "reihung": true
+              }
+            }
+          ],
+          "finalDestination": "Hamburg-Altona",
+          "jid": "1|223632|0|80|16022020",
+          "auslastung": { "first": 2, "second": 3 },
+          "messages": [
+            {
+              "type": "A",
+              "code": "CK",
+              "prio": 200,
+              "icoX": 4,
+              "txtN": "Komfort Check-in möglich (Infos unter bahn.de/kci)"
+            },
+            {
+              "type": "A",
+              "code": "BR",
+              "prio": 450,
+              "icoX": 5,
+              "txtN": "Bordrestaurant"
+            }
+          ],
+          "type": "JNY"
+        }
+      ],
+      "segmentTypes": ["ICE", "ICE"]
+    },
+    {
+      "checksum": "b0ea0d7d_3",
+      "cid": "C-3",
+      "date": 1581807600000,
+      "duration": 12840000,
+      "changes": 0,
+      "isRideable": true,
+      "arrival": {
+        "platform": "14",
+        "scheduledTime": 1581878100000,
+        "time": 1581878280000,
+        "delay": 3
+      },
+      "departure": {
+        "platform": "8",
+        "scheduledTime": 1581865080000,
+        "time": 1581865440000,
+        "delay": 6
+      },
+      "segments": [
+        {
+          "arrival": {
+            "platform": "14",
+            "scheduledTime": 1581878100000,
+            "time": 1581878280000,
+            "delay": 3,
+            "reihung": true
+          },
+          "departure": {
+            "platform": "8",
+            "scheduledTime": 1581865080000,
+            "time": 1581865440000,
+            "delay": 6,
+            "reihung": true
+          },
+          "duration": 13020000,
+          "plannedSequence": {
+            "raw": "ICE-A",
+            "short": "4",
+            "type": "ICE 4",
+            "wagons": {
+              "ARmz": true,
+              "Apmz": true,
+              "Apmzf": true,
+              "Bpmbsz": true,
+              "Bpmdzf": true,
+              "Bpmz": true
+            }
+          },
+          "train": {
+            "name": "ICE 72",
+            "admin": "80____",
+            "number": "72",
+            "type": "ICE",
+            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+          },
+          "segmentStart": { "title": "Frankfurt(Main)Hbf", "id": "8000105" },
+          "segmentDestination": { "title": "Hamburg Hbf", "id": "8002549" },
+          "stops": [
+            {
+              "station": {
+                "id": "8000105",
+                "title": "Frankfurt(Main)Hbf",
+                "coordinates": { "lng": 8.663003, "lat": 50.106817 }
+              },
+              "departure": {
+                "platform": "8",
+                "scheduledTime": 1581865080000,
+                "time": 1581865440000,
+                "delay": 6,
+                "reihung": true
+              },
+              "auslastung": { "first": 2, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8003200",
+                "title": "Kassel-Wilhelmshöhe",
+                "coordinates": { "lng": 9.446845, "lat": 51.312998 }
+              },
+              "arrival": {
+                "platform": "3",
+                "scheduledTime": 1581869940000,
+                "time": 1581870300000,
+                "delay": 6,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "3",
+                "scheduledTime": 1581870060000,
+                "time": 1581870420000,
+                "delay": 6,
+                "reihung": true
+              },
+              "auslastung": { "first": 2, "second": 3 }
+            },
+            {
+              "station": {
+                "id": "8000128",
+                "title": "Göttingen",
+                "coordinates": { "lng": 9.926257, "lat": 51.536758 }
+              },
+              "arrival": {
+                "platform": "9",
+                "scheduledTime": 1581871080000,
+                "time": 1581871440000,
+                "delay": 6,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "9",
+                "scheduledTime": 1581871200000,
+                "time": 1581871620000,
+                "delay": 7,
+                "reihung": true
+              },
+              "auslastung": { "first": 2, "second": 3 }
+            },
+            {
+              "station": {
+                "id": "8000152",
+                "title": "Hannover Hbf",
+                "coordinates": { "lng": 9.741763, "lat": 52.377079 }
+              },
+              "arrival": {
+                "platform": "7",
+                "scheduledTime": 1581873420000,
+                "time": 1581873540000,
+                "delay": 2,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "7",
+                "scheduledTime": 1581873600000,
+                "time": 1581873780000,
+                "delay": 3,
+                "reihung": true
+              },
+              "auslastung": { "first": 1, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8002549",
+                "title": "Hamburg Hbf",
+                "coordinates": { "lng": 10.00636, "lat": 53.553533 }
+              },
+              "arrival": {
+                "platform": "14",
+                "scheduledTime": 1581878100000,
+                "time": 1581878280000,
+                "delay": 3,
+                "reihung": true
+              }
+            }
+          ],
+          "finalDestination": "Hamburg-Altona",
+          "jid": "1|278925|0|80|16022020",
+          "auslastung": { "first": 2, "second": 3 },
+          "messages": [
+            {
+              "type": "A",
+              "code": "CK",
+              "prio": 200,
+              "icoX": 4,
+              "txtN": "Komfort Check-in möglich (Infos unter bahn.de/kci)"
+            },
+            {
+              "type": "A",
+              "code": "FR",
+              "prio": 260,
+              "icoX": 6,
+              "txtN": "Fahrradmitnahme reservierungspflichtig"
+            },
+            {
+              "type": "A",
+              "code": "FB",
+              "prio": 260,
+              "icoX": 7,
+              "txtN": "Fahrradmitnahme begrenzt möglich"
+            },
+            {
+              "type": "A",
+              "code": "BR",
+              "prio": 450,
+              "icoX": 5,
+              "txtN": "Bordrestaurant"
+            },
+            {
+              "type": "A",
+              "code": "EH",
+              "prio": 560,
+              "icoX": 4,
+              "txtN": "Fahrzeuggebundene Einstiegshilfe vorhanden"
+            },
+            {
+              "type": "M",
+              "code": "",
+              "icoX": 8,
+              "txtS": "ICE   72: Frankfurt(Main)Hbf->Hamburg Hbf: Information.",
+              "txtN": "Keine rollstuhlgerechte Einstiegstür in Wagen 9. Mobilitätseingeschränkte Reisende wenden sich bzgl. eventuell erforderlicher Umbuchungen an unsere Mobilitätsservice-Zentrale unter 01806-512512 (20 ct/Anruf aus dem dt. Festnetz, Tarif bei Mobilfunk max. 60 ct/Anruf).",
+              "sIdx": 0
+            }
+          ],
+          "type": "JNY"
+        }
+      ],
+      "segmentTypes": ["ICE"]
+    },
+    {
+      "checksum": "0d8414f0_3",
+      "cid": "C-4",
+      "date": 1581807600000,
+      "duration": 12660000,
+      "changes": 0,
+      "isRideable": true,
+      "arrival": {
+        "platform": "11",
+        "scheduledTime": 1581881340000,
+        "time": 1581881340000
+      },
+      "departure": {
+        "platform": "8",
+        "scheduledTime": 1581868680000,
+        "time": 1581868680000
+      },
+      "segments": [
+        {
+          "arrival": {
+            "platform": "11",
+            "scheduledTime": 1581881340000,
+            "time": 1581881340000,
+            "reihung": true
+          },
+          "departure": {
+            "platform": "8",
+            "scheduledTime": 1581868680000,
+            "time": 1581868680000,
+            "reihung": true
+          },
+          "duration": 12660000,
+          "plannedSequence": {
+            "raw": "ICE-A",
+            "short": "1",
+            "type": "ICE 1",
+            "wagons": {
+              "Apmbsz": true,
+              "Avmz": true,
+              "Bpmz": true,
+              "Bvmz": true,
+              "WRmz": true
+            }
+          },
+          "train": {
+            "name": "ICE 1094",
+            "admin": "80____",
+            "number": "1094",
+            "type": "ICE",
+            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+          },
+          "segmentStart": { "title": "Frankfurt(Main)Hbf", "id": "8000105" },
+          "segmentDestination": { "title": "Hamburg Hbf", "id": "8002549" },
+          "stops": [
+            {
+              "station": {
+                "id": "8000105",
+                "title": "Frankfurt(Main)Hbf",
+                "coordinates": { "lng": 8.663003, "lat": 50.106817 }
+              },
+              "departure": {
+                "platform": "8",
+                "scheduledTime": 1581868680000,
+                "time": 1581868680000,
+                "reihung": true
+              },
+              "auslastung": { "first": 2, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000152",
+                "title": "Hannover Hbf",
+                "coordinates": { "lng": 9.741763, "lat": 52.377079 }
+              },
+              "arrival": {
+                "platform": "8",
+                "scheduledTime": 1581876360000,
+                "time": 1581876360000,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "8",
+                "scheduledTime": 1581876540000,
+                "time": 1581876540000,
+                "reihung": true
+              },
+              "auslastung": { "first": 1, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000147",
+                "title": "Hamburg-Harburg",
+                "coordinates": { "lng": 9.991591, "lat": 53.456198 }
+              },
+              "arrival": {
+                "platform": "1",
+                "scheduledTime": 1581880500000,
+                "time": 1581880500000,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "1",
+                "scheduledTime": 1581880620000,
+                "time": 1581880620000,
+                "reihung": true
+              }
+            },
+            {
+              "station": {
+                "id": "8002549",
+                "title": "Hamburg Hbf",
+                "coordinates": { "lng": 10.00636, "lat": 53.553533 }
+              },
+              "arrival": {
+                "platform": "11",
+                "scheduledTime": 1581881340000,
+                "time": 1581881340000,
+                "reihung": true
+              }
+            }
+          ],
+          "finalDestination": "Kiel Hbf",
+          "jid": "1|219159|0|80|16022020",
+          "auslastung": { "first": 2, "second": 2 },
+          "messages": [
+            {
+              "type": "A",
+              "code": "CK",
+              "prio": 200,
+              "icoX": 4,
+              "txtN": "Komfort Check-in möglich (Infos unter bahn.de/kci)"
+            },
+            {
+              "type": "A",
+              "code": "BR",
+              "prio": 450,
+              "icoX": 5,
+              "txtN": "Bordrestaurant"
+            },
+            {
+              "type": "A",
+              "code": "IT",
+              "prio": 100,
+              "icoX": 9,
+              "txtN": "ICE Sprinter"
+            }
+          ],
+          "type": "JNY"
+        }
+      ],
+      "segmentTypes": ["ICE"]
+    },
+    {
+      "checksum": "6a28aeff_3",
+      "cid": "C-5",
+      "date": 1581807600000,
+      "duration": 15180000,
+      "changes": 1,
+      "isRideable": false,
+      "arrival": {
+        "platform": "12",
+        "scheduledTime": 1581884940000,
+        "time": 1581884940000
+      },
+      "departure": {
+        "scheduledTime": 1581869760000,
+        "time": 1581869760000,
+        "cancelled": true
+      },
+      "segments": [
+        {
+          "arrival": {
+            "scheduledTime": 1581878820000,
+            "time": 1581878820000,
+            "reihung": true,
+            "cancelled": true
+          },
+          "departure": {
+            "scheduledTime": 1581869760000,
+            "time": 1581869760000,
+            "reihung": true,
+            "cancelled": true
+          },
+          "duration": 9060000,
+          "plannedSequence": {
+            "raw": "ICE-A",
+            "short": "1",
+            "type": "ICE 1",
+            "wagons": {
+              "Apmbsz": true,
+              "Avmz": true,
+              "Bpmz": true,
+              "Bvmz": true,
+              "WRmz": true
+            }
+          },
+          "train": {
+            "name": "ICE 776",
+            "admin": "80____",
+            "number": "776",
+            "type": "ICE",
+            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+          },
+          "cancelled": true,
+          "changeDuration": 12,
+          "segmentStart": { "title": "Frankfurt(Main)Hbf", "id": "8000105" },
+          "segmentDestination": { "title": "Hannover Hbf", "id": "8000152" },
+          "stops": [
+            {
+              "station": {
+                "id": "8000105",
+                "title": "Frankfurt(Main)Hbf",
+                "coordinates": { "lng": 8.663003, "lat": 50.106817 }
+              },
+              "departure": {
+                "scheduledTime": 1581869760000,
+                "time": 1581869760000,
+                "reihung": true,
+                "cancelled": true
+              },
+              "cancelled": true
+            },
+            {
+              "station": {
+                "id": "8000115",
+                "title": "Fulda",
+                "coordinates": { "lng": 9.684178, "lat": 50.554794 }
+              },
+              "arrival": {
+                "scheduledTime": 1581873420000,
+                "time": 1581873420000,
+                "reihung": true,
+                "cancelled": true
+              },
+              "departure": {
+                "scheduledTime": 1581873540000,
+                "time": 1581873540000,
+                "reihung": true,
+                "cancelled": true
+              },
+              "cancelled": true
+            },
+            {
+              "station": {
+                "id": "8003200",
+                "title": "Kassel-Wilhelmshöhe",
+                "coordinates": { "lng": 9.446845, "lat": 51.312998 }
+              },
+              "arrival": {
+                "scheduledTime": 1581875400000,
+                "time": 1581875400000,
+                "reihung": true,
+                "cancelled": true
+              },
+              "departure": {
+                "scheduledTime": 1581875520000,
+                "time": 1581875520000,
+                "reihung": true,
+                "cancelled": true
+              },
+              "cancelled": true
+            },
+            {
+              "station": {
+                "id": "8000128",
+                "title": "Göttingen",
+                "coordinates": { "lng": 9.926257, "lat": 51.536758 }
+              },
+              "arrival": {
+                "scheduledTime": 1581876600000,
+                "time": 1581876600000,
+                "reihung": true,
+                "cancelled": true
+              },
+              "departure": {
+                "scheduledTime": 1581876720000,
+                "time": 1581876720000,
+                "reihung": true,
+                "cancelled": true
+              },
+              "cancelled": true
+            },
+            {
+              "station": {
+                "id": "8000152",
+                "title": "Hannover Hbf",
+                "coordinates": { "lng": 9.741763, "lat": 52.377079 }
+              },
+              "arrival": {
+                "scheduledTime": 1581878820000,
+                "time": 1581878820000,
+                "reihung": true,
+                "cancelled": true
+              },
+              "cancelled": true
+            }
+          ],
+          "finalDestination": "Oldenburg(Oldb)",
+          "jid": "1|224969|0|80|16022020",
+          "auslastung": { "first": 1, "second": 2 },
+          "messages": [
+            {
+              "type": "A",
+              "code": "CK",
+              "prio": 200,
+              "icoX": 4,
+              "txtN": "Komfort Check-in möglich (Infos unter bahn.de/kci)"
+            },
+            {
+              "type": "A",
+              "code": "BR",
+              "prio": 450,
+              "icoX": 5,
+              "txtN": "Bordrestaurant"
+            },
+            {
+              "type": "P",
+              "code": "",
+              "icoX": 11,
+              "txtN": "Fahrt fällt aus",
+              "sIdx": 0
+            },
+            {
+              "type": "L",
+              "code": "",
+              "icoX": 12,
+              "txtN": "Für ICE  776 verkehrt Ersatzfahrt IC  2914 zwischen Frankfurt(Main)Hbf und Hannover Hbf",
+              "jid": "1|1323596|0|80|16022020",
+              "sIdx": 0
+            }
+          ],
+          "type": "JNY"
+        },
+        {
+          "arrival": {
+            "platform": "12",
+            "scheduledTime": 1581884940000,
+            "time": 1581884940000,
+            "reihung": true
+          },
+          "departure": {
+            "platform": "7",
+            "scheduledTime": 1581879540000,
+            "time": 1581879540000,
+            "reihung": true
+          },
+          "duration": 5400000,
+          "plannedSequence": {
+            "raw": "ICE-T",
+            "short": "T",
+            "type": "ICE T",
+            "wagons": {
+              "ABpmz": true,
+              "Apmzf": true,
+              "Bpmbz": true,
+              "Bpmdz": true,
+              "Bpmz": true,
+              "Bpmzf": true,
+              "WRmz": true
+            }
+          },
+          "train": {
+            "name": "ICE 1574",
+            "admin": "80____",
+            "number": "1574",
+            "type": "ICE",
+            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+          },
+          "segmentStart": { "title": "Hannover Hbf", "id": "8000152" },
+          "segmentDestination": { "title": "Hamburg Hbf", "id": "8002549" },
+          "stops": [
+            {
+              "station": {
+                "id": "8000152",
+                "title": "Hannover Hbf",
+                "coordinates": { "lng": 9.741763, "lat": 52.377079 }
+              },
+              "departure": {
+                "platform": "7",
+                "scheduledTime": 1581879540000,
+                "time": 1581879540000,
+                "reihung": true
+              },
+              "auslastung": { "first": 2, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000064",
+                "title": "Celle",
+                "coordinates": { "lng": 10.062651, "lat": 52.621019 }
+              },
+              "arrival": {
+                "platform": "5",
+                "scheduledTime": 1581880740000,
+                "time": 1581880740000,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "5",
+                "scheduledTime": 1581880800000,
+                "time": 1581880800000,
+                "reihung": true
+              },
+              "auslastung": { "first": 1, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000168",
+                "title": "Uelzen",
+                "coordinates": { "lng": 10.553246, "lat": 52.96998 }
+              },
+              "arrival": {
+                "platform": "102",
+                "scheduledTime": 1581882000000,
+                "time": 1581882000000,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "102",
+                "scheduledTime": 1581882120000,
+                "time": 1581882120000,
+                "reihung": true
+              },
+              "auslastung": { "first": 1, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000238",
+                "title": "Lüneburg",
+                "coordinates": { "lng": 10.419873, "lat": 53.249742 }
+              },
+              "arrival": {
+                "platform": "2",
+                "scheduledTime": 1581882960000,
+                "time": 1581882960000,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "2",
+                "scheduledTime": 1581883080000,
+                "time": 1581883080000,
+                "reihung": true
+              },
+              "auslastung": { "first": 1, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000147",
+                "title": "Hamburg-Harburg",
+                "coordinates": { "lng": 9.991591, "lat": 53.456198 }
+              },
+              "arrival": {
+                "platform": "1",
+                "scheduledTime": 1581884160000,
+                "time": 1581884160000,
+                "reihung": true
+              }
+            },
+            {
+              "station": {
+                "id": "8002549",
+                "title": "Hamburg Hbf",
+                "coordinates": { "lng": 10.00636, "lat": 53.553533 }
+              },
+              "arrival": {
+                "platform": "12",
+                "scheduledTime": 1581884940000,
+                "time": 1581884940000,
+                "reihung": true
+              }
+            }
+          ],
+          "finalDestination": "Hamburg-Altona",
+          "jid": "1|219640|0|80|16022020",
+          "auslastung": { "first": 2, "second": 2 },
+          "messages": [
+            {
+              "type": "A",
+              "code": "CK",
+              "prio": 200,
+              "icoX": 4,
+              "txtN": "Komfort Check-in möglich (Infos unter bahn.de/kci)"
+            },
+            {
+              "type": "A",
+              "code": "FR",
+              "prio": 260,
+              "icoX": 6,
+              "txtN": "Fahrradmitnahme reservierungspflichtig"
+            },
+            {
+              "type": "A",
+              "code": "FB",
+              "prio": 260,
+              "icoX": 7,
+              "txtN": "Fahrradmitnahme begrenzt möglich"
+            },
+            {
+              "type": "A",
+              "code": "BR",
+              "prio": 450,
+              "icoX": 5,
+              "txtN": "Bordrestaurant"
+            }
+          ],
+          "type": "JNY"
+        }
+      ],
+      "segmentTypes": ["ICE", "ICE"]
+    },
+    {
+      "checksum": "a1d2a7b0_3",
+      "cid": "C-6",
+      "date": 1581807600000,
+      "duration": 18600000,
+      "changes": 1,
+      "isRideable": true,
+      "arrival": {
+        "platform": "11",
+        "scheduledTime": 1581888360000,
+        "time": 1581888360000
+      },
+      "departure": {
+        "platform": "1",
+        "scheduledTime": 1581869760000,
+        "time": 1581869760000
+      },
+      "segments": [
+        {
+          "arrival": {
+            "platform": "3",
+            "scheduledTime": 1581882420000,
+            "time": 1581882420000,
+            "reihung": true
+          },
+          "departure": {
+            "platform": "1",
+            "scheduledTime": 1581869760000,
+            "time": 1581869760000,
+            "reihung": true
+          },
+          "duration": 12660000,
+          "train": {
+            "name": "IC 2914",
+            "admin": "80____",
+            "number": "2914",
+            "type": "IC",
+            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+          },
+          "changeDuration": 11,
+          "segmentStart": { "title": "Frankfurt(Main)Hbf", "id": "8000105" },
+          "segmentDestination": { "title": "Bremen Hbf", "id": "8000050" },
+          "stops": [
+            {
+              "station": {
+                "id": "8000105",
+                "title": "Frankfurt(Main)Hbf",
+                "coordinates": { "lng": 8.663003, "lat": 50.106817 }
+              },
+              "departure": {
+                "platform": "1",
+                "scheduledTime": 1581869760000,
+                "time": 1581869760000,
+                "reihung": true
+              },
+              "auslastung": { "first": 4, "second": 4 }
+            },
+            {
+              "station": {
+                "id": "8000115",
+                "title": "Fulda",
+                "coordinates": { "lng": 9.684178, "lat": 50.554794 }
+              },
+              "arrival": {
+                "platform": "6",
+                "scheduledTime": 1581873420000,
+                "time": 1581873420000,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "6",
+                "scheduledTime": 1581873540000,
+                "time": 1581873540000,
+                "reihung": true
+              },
+              "auslastung": { "first": 4, "second": 4 }
+            },
+            {
+              "station": {
+                "id": "8003200",
+                "title": "Kassel-Wilhelmshöhe",
+                "coordinates": { "lng": 9.446845, "lat": 51.312998 }
+              },
+              "arrival": {
+                "platform": "3",
+                "scheduledTime": 1581875400000,
+                "time": 1581875400000,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "3",
+                "scheduledTime": 1581875520000,
+                "time": 1581875520000,
+                "reihung": true
+              },
+              "auslastung": { "first": 4, "second": 4 }
+            },
+            {
+              "station": {
+                "id": "8000128",
+                "title": "Göttingen",
+                "coordinates": { "lng": 9.926257, "lat": 51.536758 }
+              },
+              "arrival": {
+                "platform": "9",
+                "scheduledTime": 1581876600000,
+                "time": 1581876600000,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "9",
+                "scheduledTime": 1581876720000,
+                "time": 1581876720000,
+                "reihung": true
+              },
+              "auslastung": { "first": 4, "second": 4 }
+            },
+            {
+              "station": {
+                "id": "8000152",
+                "title": "Hannover Hbf",
+                "coordinates": { "lng": 9.741763, "lat": 52.377079 }
+              },
+              "arrival": {
+                "platform": "7",
+                "scheduledTime": 1581878820000,
+                "time": 1581878820000,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "7",
+                "scheduledTime": 1581879000000,
+                "time": 1581879000000,
+                "reihung": true
+              }
+            },
+            {
+              "station": {
+                "id": "8000050",
+                "title": "Bremen Hbf",
+                "coordinates": { "lng": 8.813681, "lat": 53.08328 }
+              },
+              "arrival": {
+                "platform": "3",
+                "scheduledTime": 1581882420000,
+                "time": 1581882420000,
+                "reihung": true
+              }
+            }
+          ],
+          "finalDestination": "Oldenburg(Oldb)",
+          "jid": "1|1323596|0|80|16022020",
+          "auslastung": { "first": 4, "second": 4 },
+          "messages": [
+            {
+              "type": "M",
+              "code": "",
+              "icoX": 12,
+              "txtS": "IC  2914: Frankfurt(Main)Hbf->Hannover Hbf: Information.",
+              "txtN": "Es fährt ein Ersatzzug zwischen Frankfurt(Main)Hbf und Hannover Hbf. Es können heute keine Reservierungen angezeigt werden. Zug fährt mit verringerter Anzahl an Sitzplätzen. Kein Bordrestaurant/Bordbistro. Keine rollstuhlgerechte Einrichtung, kein behindertengerechtes WC im Zug. Mobilitätseingeschränkte Reisende wenden sich bzgl. eventuell erforderlicher Umbuchungen an unsere Mobilitätsservice-Zentrale unter 01806-512512 (20 ct/Anruf aus dem dt. Festnetz, Tarif bei Mobilfunk max. 60 ct/Anruf).",
+              "sIdx": 0
+            },
+            {
+              "type": "M",
+              "code": "",
+              "icoX": 12,
+              "txtS": "IC  2914: Hannover Hbf->Bremen Hbf: Information.",
+              "txtN": "Es fährt ein Ersatzzug zwischen Hannover Hbf und Bremen Hbf. Es können heute keine Reservierungen angezeigt werden. Kein Bordrestaurant/Bordbistro.",
+              "sIdx": 0
+            },
+            {
+              "type": "M",
+              "code": "",
+              "icoX": 8,
+              "txtS": "IC  2914: Hannover Hbf: Information.",
+              "txtN": "In Hannover Hbf ist ein außerplanmäßiger Umstieg Richtung Oldenburg(Oldb) erforderlich.",
+              "sIdx": 0
+            }
+          ],
+          "type": "JNY"
+        },
+        {
+          "arrival": {
+            "platform": "11",
+            "scheduledTime": 1581888360000,
+            "time": 1581888360000
+          },
+          "departure": {
+            "platform": "10",
+            "scheduledTime": 1581883080000,
+            "time": 1581883080000
+          },
+          "duration": 5280000,
+          "train": {
+            "name": "ME RB41",
+            "line": "DPN",
+            "admin": "R1____",
+            "number": "81938",
+            "type": "ME",
+            "operator": { "name": "metronom", "icoX": 15 }
+          },
+          "segmentStart": { "title": "Bremen Hbf", "id": "8000050" },
+          "segmentDestination": { "title": "Hamburg Hbf", "id": "8002549" },
+          "stops": [
+            {
+              "station": {
+                "id": "8000050",
+                "title": "Bremen Hbf",
+                "coordinates": { "lng": 8.813681, "lat": 53.08328 }
+              },
+              "departure": {
+                "platform": "10",
+                "scheduledTime": 1581883080000,
+                "time": 1581883080000
+              }
+            },
+            {
+              "station": {
+                "id": "8001161",
+                "title": "Bremen-Oberneuland",
+                "coordinates": { "lng": 8.938001, "lat": 53.087154 }
+              },
+              "arrival": {
+                "platform": "3",
+                "scheduledTime": 1581883560000,
+                "time": 1581883560000
+              },
+              "departure": {
+                "platform": "3",
+                "scheduledTime": 1581883560000,
+                "time": 1581883560000
+              }
+            },
+            {
+              "station": {
+                "id": "8005256",
+                "title": "Sagehorn",
+                "coordinates": { "lng": 9.02232, "lat": 53.08408 }
+              },
+              "arrival": {
+                "platform": "2",
+                "scheduledTime": 1581883860000,
+                "time": 1581883860000
+              },
+              "departure": {
+                "platform": "2",
+                "scheduledTime": 1581883860000,
+                "time": 1581883860000
+              }
+            },
+            {
+              "station": {
+                "id": "8004728",
+                "title": "Ottersberg(Han)",
+                "coordinates": { "lng": 9.133157, "lat": 53.09689 }
+              },
+              "arrival": {
+                "platform": "2",
+                "scheduledTime": 1581884160000,
+                "time": 1581884160000
+              },
+              "departure": {
+                "platform": "2",
+                "scheduledTime": 1581884160000,
+                "time": 1581884160000
+              }
+            },
+            {
+              "station": {
+                "id": "8005613",
+                "title": "Sottrum",
+                "coordinates": { "lng": 9.250071, "lat": 53.101294 }
+              },
+              "arrival": {
+                "platform": "2",
+                "scheduledTime": 1581884460000,
+                "time": 1581884460000
+              },
+              "departure": {
+                "platform": "2",
+                "scheduledTime": 1581884520000,
+                "time": 1581884520000
+              }
+            },
+            {
+              "station": {
+                "id": "8000321",
+                "title": "Rotenburg(Wümme)",
+                "coordinates": { "lng": 9.389925, "lat": 53.112432 }
+              },
+              "arrival": {
+                "platform": "5",
+                "scheduledTime": 1581884880000,
+                "time": 1581884880000
+              },
+              "departure": {
+                "platform": "5",
+                "scheduledTime": 1581884940000,
+                "time": 1581884940000
+              }
+            },
+            {
+              "station": {
+                "id": "8005330",
+                "title": "Scheeßel",
+                "coordinates": { "lng": 9.497823, "lat": 53.166457 }
+              },
+              "arrival": {
+                "platform": "3",
+                "scheduledTime": 1581885300000,
+                "time": 1581885300000
+              },
+              "departure": {
+                "platform": "3",
+                "scheduledTime": 1581885300000,
+                "time": 1581885300000
+              }
+            },
+            {
+              "station": {
+                "id": "8003576",
+                "title": "Lauenbrück",
+                "coordinates": { "lng": 9.563174, "lat": 53.196841 }
+              },
+              "arrival": {
+                "platform": "3",
+                "scheduledTime": 1581885540000,
+                "time": 1581885540000
+              },
+              "departure": {
+                "platform": "3",
+                "scheduledTime": 1581885600000,
+                "time": 1581885600000
+              }
+            },
+            {
+              "station": {
+                "id": "8005888",
+                "title": "Tostedt",
+                "coordinates": { "lng": 9.732055, "lat": 53.272018 }
+              },
+              "arrival": {
+                "platform": "3",
+                "scheduledTime": 1581886020000,
+                "time": 1581886020000
+              },
+              "departure": {
+                "platform": "3",
+                "scheduledTime": 1581886080000,
+                "time": 1581886080000
+              }
+            },
+            {
+              "station": {
+                "id": "8005640",
+                "title": "Sprötze",
+                "coordinates": { "lng": 9.812562, "lat": 53.309583 }
+              },
+              "arrival": {
+                "platform": "2",
+                "scheduledTime": 1581886320000,
+                "time": 1581886320000
+              },
+              "departure": {
+                "platform": "2",
+                "scheduledTime": 1581886380000,
+                "time": 1581886380000
+              }
+            },
+            {
+              "station": {
+                "id": "8000056",
+                "title": "Buchholz(Nordheide)",
+                "coordinates": { "lng": 9.876206, "lat": 53.324649 }
+              },
+              "arrival": {
+                "platform": "1",
+                "scheduledTime": 1581886620000,
+                "time": 1581886620000
+              },
+              "departure": {
+                "platform": "1",
+                "scheduledTime": 1581886740000,
+                "time": 1581886740000
+              }
+            },
+            {
+              "station": {
+                "id": "8003309",
+                "title": "Klecken",
+                "coordinates": { "lng": 9.928864, "lat": 53.366 }
+              },
+              "arrival": {
+                "platform": "2",
+                "scheduledTime": 1581886980000,
+                "time": 1581886980000
+              },
+              "departure": {
+                "platform": "2",
+                "scheduledTime": 1581887040000,
+                "time": 1581887040000
+              }
+            },
+            {
+              "station": {
+                "id": "8002864",
+                "title": "Hittfeld",
+                "coordinates": { "lng": 9.974476, "lat": 53.40353 }
+              },
+              "arrival": {
+                "platform": "1",
+                "scheduledTime": 1581887280000,
+                "time": 1581887280000
+              },
+              "departure": {
+                "platform": "1",
+                "scheduledTime": 1581887280000,
+                "time": 1581887280000
+              }
+            },
+            {
+              "station": {
+                "id": "8000147",
+                "title": "Hamburg-Harburg",
+                "coordinates": { "lng": 9.991591, "lat": 53.456198 }
+              },
+              "arrival": {
+                "platform": "2",
+                "scheduledTime": 1581887580000,
+                "time": 1581887580000
+              },
+              "departure": {
+                "platform": "2",
+                "scheduledTime": 1581887640000,
+                "time": 1581887640000
+              }
+            },
+            {
+              "station": {
+                "id": "8002549",
+                "title": "Hamburg Hbf",
+                "coordinates": { "lng": 10.00636, "lat": 53.553533 }
+              },
+              "arrival": {
+                "platform": "11",
+                "scheduledTime": 1581888360000,
+                "time": 1581888360000
+              }
+            }
+          ],
+          "finalDestination": "Hamburg Hbf",
+          "jid": "1|257583|0|80|16022020",
+          "messages": [
+            {
+              "type": "A",
+              "code": "FB",
+              "prio": 260,
+              "icoX": 7,
+              "txtN": "Fahrradmitnahme begrenzt möglich"
+            },
+            {
+              "type": "A",
+              "code": "RO",
+              "prio": 560,
+              "icoX": 19,
+              "txtN": "Rollstuhlstellplatz"
+            }
+          ],
+          "type": "JNY"
+        }
+      ],
+      "segmentTypes": ["IC", "ME"]
+    },
+    {
+      "checksum": "aa84e9ab_3",
+      "cid": "C-7",
+      "date": 1581807600000,
+      "duration": 15060000,
+      "changes": 1,
+      "isRideable": true,
+      "arrival": {
+        "platform": "12",
+        "scheduledTime": 1581884940000,
+        "time": 1581884940000
+      },
+      "departure": {
+        "platform": "8",
+        "scheduledTime": 1581869640000,
+        "time": 1581869880000,
+        "delay": 4
+      },
+      "segments": [
+        {
+          "arrival": {
+            "platform": "3",
+            "scheduledTime": 1581874980000,
+            "time": 1581875100000,
+            "delay": 2,
+            "reihung": true
+          },
+          "departure": {
+            "platform": "8",
+            "scheduledTime": 1581869640000,
+            "time": 1581869880000,
+            "delay": 4,
+            "reihung": true
+          },
+          "duration": 5340000,
+          "plannedSequence": {
+            "raw": "ICE-A",
+            "short": "1",
+            "type": "ICE 1",
+            "wagons": {
+              "Apmbsz": true,
+              "Avmz": true,
+              "Bpmz": true,
+              "Bvmz": true,
+              "WRmz": true
+            }
+          },
+          "train": {
+            "name": "ICE 276",
+            "admin": "80____",
+            "number": "276",
+            "type": "ICE",
+            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+          },
+          "changeDuration": 12,
+          "segmentStart": { "title": "Frankfurt(Main)Hbf", "id": "8000105" },
+          "segmentDestination": {
+            "title": "Kassel-Wilhelmshöhe",
+            "id": "8003200"
+          },
+          "stops": [
+            {
+              "station": {
+                "id": "8000105",
+                "title": "Frankfurt(Main)Hbf",
+                "coordinates": { "lng": 8.663003, "lat": 50.106817 }
+              },
+              "departure": {
+                "platform": "8",
+                "scheduledTime": 1581869640000,
+                "time": 1581869880000,
+                "delay": 4,
+                "reihung": true
+              },
+              "auslastung": { "first": 1, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000150",
+                "title": "Hanau Hbf",
+                "coordinates": { "lng": 8.92921, "lat": 50.120903 }
+              },
+              "arrival": {
+                "platform": "7",
+                "scheduledTime": 1581870480000,
+                "time": 1581870720000,
+                "delay": 4,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "7",
+                "scheduledTime": 1581870600000,
+                "time": 1581870840000,
+                "delay": 4,
+                "reihung": true
+              },
+              "auslastung": { "first": 1, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000115",
+                "title": "Fulda",
+                "coordinates": { "lng": 9.684178, "lat": 50.554794 }
+              },
+              "arrival": {
+                "platform": "6",
+                "scheduledTime": 1581873000000,
+                "time": 1581873180000,
+                "delay": 3,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "6",
+                "scheduledTime": 1581873120000,
+                "time": 1581873360000,
+                "delay": 4,
+                "reihung": true
+              },
+              "auslastung": { "first": 1, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8003200",
+                "title": "Kassel-Wilhelmshöhe",
+                "coordinates": { "lng": 9.446845, "lat": 51.312998 }
+              },
+              "arrival": {
+                "platform": "3",
+                "scheduledTime": 1581874980000,
+                "time": 1581875100000,
+                "delay": 2,
+                "reihung": true
+              }
+            }
+          ],
+          "finalDestination": "Berlin Ostbahnhof",
+          "jid": "1|222766|0|80|16022020",
+          "auslastung": { "first": 1, "second": 2 },
+          "messages": [
+            {
+              "type": "A",
+              "code": "CK",
+              "prio": 200,
+              "icoX": 4,
+              "txtN": "Komfort Check-in möglich (Infos unter bahn.de/kci)"
+            },
+            {
+              "type": "A",
+              "code": "BR",
+              "prio": 450,
+              "icoX": 5,
+              "txtN": "Bordrestaurant"
+            }
+          ],
+          "type": "JNY"
+        },
+        {
+          "arrival": {
+            "platform": "12",
+            "scheduledTime": 1581884940000,
+            "time": 1581884940000,
+            "reihung": true
+          },
+          "departure": {
+            "platform": "4",
+            "scheduledTime": 1581875820000,
+            "time": 1581875820000,
+            "reihung": true
+          },
+          "duration": 9120000,
+          "plannedSequence": {
+            "raw": "ICE-T",
+            "short": "T",
+            "type": "ICE T",
+            "wagons": {
+              "ABpmz": true,
+              "Apmzf": true,
+              "Bpmbz": true,
+              "Bpmdz": true,
+              "Bpmz": true,
+              "Bpmzf": true,
+              "WRmz": true
+            }
+          },
+          "train": {
+            "name": "ICE 1574",
+            "admin": "80____",
+            "number": "1574",
+            "type": "ICE",
+            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+          },
+          "segmentStart": { "title": "Kassel-Wilhelmshöhe", "id": "8003200" },
+          "segmentDestination": { "title": "Hamburg Hbf", "id": "8002549" },
+          "stops": [
+            {
+              "station": {
+                "id": "8003200",
+                "title": "Kassel-Wilhelmshöhe",
+                "coordinates": { "lng": 9.446845, "lat": 51.312998 }
+              },
+              "departure": {
+                "platform": "4",
+                "scheduledTime": 1581875820000,
+                "time": 1581875820000,
+                "reihung": true
+              },
+              "auslastung": { "first": 2, "second": 3 }
+            },
+            {
+              "station": {
+                "id": "8000128",
+                "title": "Göttingen",
+                "coordinates": { "lng": 9.926257, "lat": 51.536758 }
+              },
+              "arrival": {
+                "platform": "9",
+                "scheduledTime": 1581876960000,
+                "time": 1581876960000,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "9",
+                "scheduledTime": 1581877080000,
+                "time": 1581877080000,
+                "reihung": true
+              },
+              "auslastung": { "first": 3, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000152",
+                "title": "Hannover Hbf",
+                "coordinates": { "lng": 9.741763, "lat": 52.377079 }
+              },
+              "arrival": {
+                "platform": "7",
+                "scheduledTime": 1581879360000,
+                "time": 1581879360000,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "7",
+                "scheduledTime": 1581879540000,
+                "time": 1581879540000,
+                "reihung": true
+              },
+              "auslastung": { "first": 2, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000064",
+                "title": "Celle",
+                "coordinates": { "lng": 10.062651, "lat": 52.621019 }
+              },
+              "arrival": {
+                "platform": "5",
+                "scheduledTime": 1581880740000,
+                "time": 1581880740000,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "5",
+                "scheduledTime": 1581880800000,
+                "time": 1581880800000,
+                "reihung": true
+              },
+              "auslastung": { "first": 1, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000168",
+                "title": "Uelzen",
+                "coordinates": { "lng": 10.553246, "lat": 52.96998 }
+              },
+              "arrival": {
+                "platform": "102",
+                "scheduledTime": 1581882000000,
+                "time": 1581882000000,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "102",
+                "scheduledTime": 1581882120000,
+                "time": 1581882120000,
+                "reihung": true
+              },
+              "auslastung": { "first": 1, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000238",
+                "title": "Lüneburg",
+                "coordinates": { "lng": 10.419873, "lat": 53.249742 }
+              },
+              "arrival": {
+                "platform": "2",
+                "scheduledTime": 1581882960000,
+                "time": 1581882960000,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "2",
+                "scheduledTime": 1581883080000,
+                "time": 1581883080000,
+                "reihung": true
+              },
+              "auslastung": { "first": 1, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000147",
+                "title": "Hamburg-Harburg",
+                "coordinates": { "lng": 9.991591, "lat": 53.456198 }
+              },
+              "arrival": {
+                "platform": "1",
+                "scheduledTime": 1581884160000,
+                "time": 1581884160000,
+                "reihung": true
+              }
+            },
+            {
+              "station": {
+                "id": "8002549",
+                "title": "Hamburg Hbf",
+                "coordinates": { "lng": 10.00636, "lat": 53.553533 }
+              },
+              "arrival": {
+                "platform": "12",
+                "scheduledTime": 1581884940000,
+                "time": 1581884940000,
+                "reihung": true
+              }
+            }
+          ],
+          "finalDestination": "Hamburg-Altona",
+          "jid": "1|219640|0|80|16022020",
+          "auslastung": { "first": 3, "second": 3 },
+          "messages": [
+            {
+              "type": "A",
+              "code": "CK",
+              "prio": 200,
+              "icoX": 4,
+              "txtN": "Komfort Check-in möglich (Infos unter bahn.de/kci)"
+            },
+            {
+              "type": "A",
+              "code": "FR",
+              "prio": 260,
+              "icoX": 6,
+              "txtN": "Fahrradmitnahme reservierungspflichtig"
+            },
+            {
+              "type": "A",
+              "code": "FB",
+              "prio": 260,
+              "icoX": 7,
+              "txtN": "Fahrradmitnahme begrenzt möglich"
+            },
+            {
+              "type": "A",
+              "code": "BR",
+              "prio": 450,
+              "icoX": 5,
+              "txtN": "Bordrestaurant"
+            }
+          ],
+          "type": "JNY"
+        }
+      ],
+      "segmentTypes": ["ICE", "ICE"]
+    },
+    {
+      "checksum": "eea82c99_3",
+      "cid": "C-8",
+      "date": 1581807600000,
+      "duration": 14940000,
+      "changes": 2,
+      "isRideable": false,
+      "arrival": {
+        "platform": "12",
+        "scheduledTime": 1581884940000,
+        "time": 1581884940000
+      },
+      "departure": {
+        "platform": "9",
+        "scheduledTime": 1581870000000,
+        "time": 1581870000000
+      },
+      "segments": [
+        {
+          "arrival": {
+            "platform": "7",
+            "scheduledTime": 1581873120000,
+            "time": 1581873120000,
+            "reihung": true
+          },
+          "departure": {
+            "platform": "9",
+            "scheduledTime": 1581870000000,
+            "time": 1581870000000,
+            "reihung": true
+          },
+          "duration": 3120000,
+          "plannedSequence": {
+            "raw": "ICE-T",
+            "short": "T",
+            "type": "ICE T",
+            "wagons": {
+              "ABpmz": true,
+              "Apmzf": true,
+              "Bpmbz": true,
+              "Bpmdz": true,
+              "Bpmkz": true,
+              "Bpmz": true,
+              "Bpmzf": true,
+              "WRmz": true,
+              "Wiesbaden": true
+            }
+          },
+          "train": {
+            "name": "ICE 1655",
+            "admin": "80____",
+            "number": "1655",
+            "type": "ICE",
+            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+          },
+          "changeDuration": 7,
+          "segmentStart": { "title": "Frankfurt(Main)Hbf", "id": "8000105" },
+          "segmentDestination": { "title": "Fulda", "id": "8000115" },
+          "stops": [
+            {
+              "station": {
+                "id": "8000105",
+                "title": "Frankfurt(Main)Hbf",
+                "coordinates": { "lng": 8.663003, "lat": 50.106817 }
+              },
+              "departure": {
+                "platform": "9",
+                "scheduledTime": 1581870000000,
+                "time": 1581870000000,
+                "reihung": true
+              },
+              "auslastung": { "first": 1, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000115",
+                "title": "Fulda",
+                "coordinates": { "lng": 9.684178, "lat": 50.554794 }
+              },
+              "arrival": {
+                "platform": "7",
+                "scheduledTime": 1581873120000,
+                "time": 1581873120000,
+                "reihung": true
+              }
+            }
+          ],
+          "finalDestination": "Dresden Hbf",
+          "jid": "1|220034|0|80|16022020",
+          "auslastung": { "first": 1, "second": 2 },
+          "messages": [
+            {
+              "type": "A",
+              "code": "CK",
+              "prio": 200,
+              "icoX": 4,
+              "txtN": "Komfort Check-in möglich (Infos unter bahn.de/kci)"
+            },
+            {
+              "type": "A",
+              "code": "FR",
+              "prio": 260,
+              "icoX": 6,
+              "txtN": "Fahrradmitnahme reservierungspflichtig"
+            },
+            {
+              "type": "A",
+              "code": "FB",
+              "prio": 260,
+              "icoX": 7,
+              "txtN": "Fahrradmitnahme begrenzt möglich"
+            },
+            {
+              "type": "A",
+              "code": "BR",
+              "prio": 450,
+              "icoX": 5,
+              "txtN": "Bordrestaurant"
+            }
+          ],
+          "type": "JNY"
+        },
+        {
+          "arrival": {
+            "scheduledTime": 1581878820000,
+            "time": 1581878820000,
+            "reihung": true,
+            "cancelled": true
+          },
+          "departure": {
+            "scheduledTime": 1581873540000,
+            "time": 1581873540000,
+            "reihung": true,
+            "cancelled": true
+          },
+          "duration": 5280000,
+          "plannedSequence": {
+            "raw": "ICE-A",
+            "short": "1",
+            "type": "ICE 1",
+            "wagons": {
+              "Apmbsz": true,
+              "Avmz": true,
+              "Bpmz": true,
+              "Bvmz": true,
+              "WRmz": true
+            }
+          },
+          "train": {
+            "name": "ICE 776",
+            "admin": "80____",
+            "number": "776",
+            "type": "ICE",
+            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+          },
+          "cancelled": true,
+          "changeDuration": 12,
+          "segmentStart": { "title": "Fulda", "id": "8000115" },
+          "segmentDestination": { "title": "Hannover Hbf", "id": "8000152" },
+          "stops": [
+            {
+              "station": {
+                "id": "8000115",
+                "title": "Fulda",
+                "coordinates": { "lng": 9.684178, "lat": 50.554794 }
+              },
+              "departure": {
+                "scheduledTime": 1581873540000,
+                "time": 1581873540000,
+                "reihung": true,
+                "cancelled": true
+              },
+              "cancelled": true
+            },
+            {
+              "station": {
+                "id": "8003200",
+                "title": "Kassel-Wilhelmshöhe",
+                "coordinates": { "lng": 9.446845, "lat": 51.312998 }
+              },
+              "arrival": {
+                "scheduledTime": 1581875400000,
+                "time": 1581875400000,
+                "reihung": true,
+                "cancelled": true
+              },
+              "departure": {
+                "scheduledTime": 1581875520000,
+                "time": 1581875520000,
+                "reihung": true,
+                "cancelled": true
+              },
+              "cancelled": true
+            },
+            {
+              "station": {
+                "id": "8000128",
+                "title": "Göttingen",
+                "coordinates": { "lng": 9.926257, "lat": 51.536758 }
+              },
+              "arrival": {
+                "scheduledTime": 1581876600000,
+                "time": 1581876600000,
+                "reihung": true,
+                "cancelled": true
+              },
+              "departure": {
+                "scheduledTime": 1581876720000,
+                "time": 1581876720000,
+                "reihung": true,
+                "cancelled": true
+              },
+              "cancelled": true
+            },
+            {
+              "station": {
+                "id": "8000152",
+                "title": "Hannover Hbf",
+                "coordinates": { "lng": 9.741763, "lat": 52.377079 }
+              },
+              "arrival": {
+                "scheduledTime": 1581878820000,
+                "time": 1581878820000,
+                "reihung": true,
+                "cancelled": true
+              },
+              "cancelled": true
+            }
+          ],
+          "finalDestination": "Oldenburg(Oldb)",
+          "jid": "1|224969|0|80|16022020",
+          "auslastung": { "first": 1, "second": 2 },
+          "messages": [
+            {
+              "type": "A",
+              "code": "CK",
+              "prio": 200,
+              "icoX": 4,
+              "txtN": "Komfort Check-in möglich (Infos unter bahn.de/kci)"
+            },
+            {
+              "type": "A",
+              "code": "BR",
+              "prio": 450,
+              "icoX": 5,
+              "txtN": "Bordrestaurant"
+            },
+            {
+              "type": "P",
+              "code": "",
+              "icoX": 11,
+              "txtN": "Fahrt fällt aus",
+              "sIdx": 1
+            },
+            {
+              "type": "L",
+              "code": "",
+              "icoX": 12,
+              "txtN": "Für ICE  776 verkehrt Ersatzfahrt IC  2914 zwischen Fulda und Hannover Hbf",
+              "jid": "1|1323596|0|80|16022020",
+              "sIdx": 1
+            }
+          ],
+          "type": "JNY"
+        },
+        {
+          "arrival": {
+            "platform": "12",
+            "scheduledTime": 1581884940000,
+            "time": 1581884940000,
+            "reihung": true
+          },
+          "departure": {
+            "platform": "7",
+            "scheduledTime": 1581879540000,
+            "time": 1581879540000,
+            "reihung": true
+          },
+          "duration": 5400000,
+          "plannedSequence": {
+            "raw": "ICE-T",
+            "short": "T",
+            "type": "ICE T",
+            "wagons": {
+              "ABpmz": true,
+              "Apmzf": true,
+              "Bpmbz": true,
+              "Bpmdz": true,
+              "Bpmz": true,
+              "Bpmzf": true,
+              "WRmz": true
+            }
+          },
+          "train": {
+            "name": "ICE 1574",
+            "admin": "80____",
+            "number": "1574",
+            "type": "ICE",
+            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+          },
+          "segmentStart": { "title": "Hannover Hbf", "id": "8000152" },
+          "segmentDestination": { "title": "Hamburg Hbf", "id": "8002549" },
+          "stops": [
+            {
+              "station": {
+                "id": "8000152",
+                "title": "Hannover Hbf",
+                "coordinates": { "lng": 9.741763, "lat": 52.377079 }
+              },
+              "departure": {
+                "platform": "7",
+                "scheduledTime": 1581879540000,
+                "time": 1581879540000,
+                "reihung": true
+              },
+              "auslastung": { "first": 2, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000064",
+                "title": "Celle",
+                "coordinates": { "lng": 10.062651, "lat": 52.621019 }
+              },
+              "arrival": {
+                "platform": "5",
+                "scheduledTime": 1581880740000,
+                "time": 1581880740000,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "5",
+                "scheduledTime": 1581880800000,
+                "time": 1581880800000,
+                "reihung": true
+              },
+              "auslastung": { "first": 1, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000168",
+                "title": "Uelzen",
+                "coordinates": { "lng": 10.553246, "lat": 52.96998 }
+              },
+              "arrival": {
+                "platform": "102",
+                "scheduledTime": 1581882000000,
+                "time": 1581882000000,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "102",
+                "scheduledTime": 1581882120000,
+                "time": 1581882120000,
+                "reihung": true
+              },
+              "auslastung": { "first": 1, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000238",
+                "title": "Lüneburg",
+                "coordinates": { "lng": 10.419873, "lat": 53.249742 }
+              },
+              "arrival": {
+                "platform": "2",
+                "scheduledTime": 1581882960000,
+                "time": 1581882960000,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "2",
+                "scheduledTime": 1581883080000,
+                "time": 1581883080000,
+                "reihung": true
+              },
+              "auslastung": { "first": 1, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000147",
+                "title": "Hamburg-Harburg",
+                "coordinates": { "lng": 9.991591, "lat": 53.456198 }
+              },
+              "arrival": {
+                "platform": "1",
+                "scheduledTime": 1581884160000,
+                "time": 1581884160000,
+                "reihung": true
+              }
+            },
+            {
+              "station": {
+                "id": "8002549",
+                "title": "Hamburg Hbf",
+                "coordinates": { "lng": 10.00636, "lat": 53.553533 }
+              },
+              "arrival": {
+                "platform": "12",
+                "scheduledTime": 1581884940000,
+                "time": 1581884940000,
+                "reihung": true
+              }
+            }
+          ],
+          "finalDestination": "Hamburg-Altona",
+          "jid": "1|219640|0|80|16022020",
+          "auslastung": { "first": 2, "second": 2 },
+          "messages": [
+            {
+              "type": "A",
+              "code": "CK",
+              "prio": 200,
+              "icoX": 4,
+              "txtN": "Komfort Check-in möglich (Infos unter bahn.de/kci)"
+            },
+            {
+              "type": "A",
+              "code": "FR",
+              "prio": 260,
+              "icoX": 6,
+              "txtN": "Fahrradmitnahme reservierungspflichtig"
+            },
+            {
+              "type": "A",
+              "code": "FB",
+              "prio": 260,
+              "icoX": 7,
+              "txtN": "Fahrradmitnahme begrenzt möglich"
+            },
+            {
+              "type": "A",
+              "code": "BR",
+              "prio": 450,
+              "icoX": 5,
+              "txtN": "Bordrestaurant"
+            }
+          ],
+          "type": "JNY"
+        }
+      ],
+      "segmentTypes": ["ICE", "ICE", "ICE"]
+    },
+    {
+      "checksum": "b9192403_3",
+      "cid": "C-9",
+      "date": 1581807600000,
+      "duration": 14940000,
+      "changes": 2,
+      "isRideable": true,
+      "arrival": {
+        "platform": "12",
+        "scheduledTime": 1581884940000,
+        "time": 1581884940000
+      },
+      "departure": {
+        "platform": "9",
+        "scheduledTime": 1581870000000,
+        "time": 1581870000000
+      },
+      "segments": [
+        {
+          "arrival": {
+            "platform": "7",
+            "scheduledTime": 1581873120000,
+            "time": 1581873120000,
+            "reihung": true
+          },
+          "departure": {
+            "platform": "9",
+            "scheduledTime": 1581870000000,
+            "time": 1581870000000,
+            "reihung": true
+          },
+          "duration": 3120000,
+          "plannedSequence": {
+            "raw": "ICE-T",
+            "short": "T",
+            "type": "ICE T",
+            "wagons": {
+              "ABpmz": true,
+              "Apmzf": true,
+              "Bpmbz": true,
+              "Bpmdz": true,
+              "Bpmkz": true,
+              "Bpmz": true,
+              "Bpmzf": true,
+              "WRmz": true,
+              "Wiesbaden": true
+            }
+          },
+          "train": {
+            "name": "ICE 1655",
+            "admin": "80____",
+            "number": "1655",
+            "type": "ICE",
+            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+          },
+          "changeDuration": 7,
+          "segmentStart": { "title": "Frankfurt(Main)Hbf", "id": "8000105" },
+          "segmentDestination": { "title": "Fulda", "id": "8000115" },
+          "stops": [
+            {
+              "station": {
+                "id": "8000105",
+                "title": "Frankfurt(Main)Hbf",
+                "coordinates": { "lng": 8.663003, "lat": 50.106817 }
+              },
+              "departure": {
+                "platform": "9",
+                "scheduledTime": 1581870000000,
+                "time": 1581870000000,
+                "reihung": true
+              },
+              "auslastung": { "first": 1, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000115",
+                "title": "Fulda",
+                "coordinates": { "lng": 9.684178, "lat": 50.554794 }
+              },
+              "arrival": {
+                "platform": "7",
+                "scheduledTime": 1581873120000,
+                "time": 1581873120000,
+                "reihung": true
+              }
+            }
+          ],
+          "finalDestination": "Dresden Hbf",
+          "jid": "1|220034|0|80|16022020",
+          "auslastung": { "first": 1, "second": 2 },
+          "messages": [
+            {
+              "type": "A",
+              "code": "CK",
+              "prio": 200,
+              "icoX": 4,
+              "txtN": "Komfort Check-in möglich (Infos unter bahn.de/kci)"
+            },
+            {
+              "type": "A",
+              "code": "FR",
+              "prio": 260,
+              "icoX": 6,
+              "txtN": "Fahrradmitnahme reservierungspflichtig"
+            },
+            {
+              "type": "A",
+              "code": "FB",
+              "prio": 260,
+              "icoX": 7,
+              "txtN": "Fahrradmitnahme begrenzt möglich"
+            },
+            {
+              "type": "A",
+              "code": "BR",
+              "prio": 450,
+              "icoX": 5,
+              "txtN": "Bordrestaurant"
+            }
+          ],
+          "type": "JNY"
+        },
+        {
+          "arrival": {
+            "platform": "9",
+            "scheduledTime": 1581876600000,
+            "time": 1581876600000,
+            "reihung": true
+          },
+          "departure": {
+            "platform": "6",
+            "scheduledTime": 1581873540000,
+            "time": 1581873540000,
+            "reihung": true
+          },
+          "duration": 3060000,
+          "train": {
+            "name": "IC 2914",
+            "admin": "80____",
+            "number": "2914",
+            "type": "IC",
+            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+          },
+          "changeDuration": 8,
+          "segmentStart": { "title": "Fulda", "id": "8000115" },
+          "segmentDestination": { "title": "Göttingen", "id": "8000128" },
+          "stops": [
+            {
+              "station": {
+                "id": "8000115",
+                "title": "Fulda",
+                "coordinates": { "lng": 9.684178, "lat": 50.554794 }
+              },
+              "departure": {
+                "platform": "6",
+                "scheduledTime": 1581873540000,
+                "time": 1581873540000,
+                "reihung": true
+              },
+              "auslastung": { "first": 4, "second": 4 }
+            },
+            {
+              "station": {
+                "id": "8003200",
+                "title": "Kassel-Wilhelmshöhe",
+                "coordinates": { "lng": 9.446845, "lat": 51.312998 }
+              },
+              "arrival": {
+                "platform": "3",
+                "scheduledTime": 1581875400000,
+                "time": 1581875400000,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "3",
+                "scheduledTime": 1581875520000,
+                "time": 1581875520000,
+                "reihung": true
+              },
+              "auslastung": { "first": 4, "second": 4 }
+            },
+            {
+              "station": {
+                "id": "8000128",
+                "title": "Göttingen",
+                "coordinates": { "lng": 9.926257, "lat": 51.536758 }
+              },
+              "arrival": {
+                "platform": "9",
+                "scheduledTime": 1581876600000,
+                "time": 1581876600000,
+                "reihung": true
+              }
+            }
+          ],
+          "finalDestination": "Oldenburg(Oldb)",
+          "jid": "1|1323596|0|80|16022020",
+          "auslastung": { "first": 4, "second": 4 },
+          "messages": [
+            {
+              "type": "M",
+              "code": "",
+              "icoX": 12,
+              "txtS": "IC  2914: Fulda->Göttingen: Information.",
+              "txtN": "Es fährt ein Ersatzzug zwischen Frankfurt(Main)Hbf und Hannover Hbf. Es können heute keine Reservierungen angezeigt werden. Zug fährt mit verringerter Anzahl an Sitzplätzen. Kein Bordrestaurant/Bordbistro. Keine rollstuhlgerechte Einrichtung, kein behindertengerechtes WC im Zug. Mobilitätseingeschränkte Reisende wenden sich bzgl. eventuell erforderlicher Umbuchungen an unsere Mobilitätsservice-Zentrale unter 01806-512512 (20 ct/Anruf aus dem dt. Festnetz, Tarif bei Mobilfunk max. 60 ct/Anruf).",
+              "sIdx": 1
+            }
+          ],
+          "type": "JNY"
+        },
+        {
+          "arrival": {
+            "platform": "12",
+            "scheduledTime": 1581884940000,
+            "time": 1581884940000,
+            "reihung": true
+          },
+          "departure": {
+            "platform": "9",
+            "scheduledTime": 1581877080000,
+            "time": 1581877080000,
+            "reihung": true
+          },
+          "duration": 7860000,
+          "plannedSequence": {
+            "raw": "ICE-T",
+            "short": "T",
+            "type": "ICE T",
+            "wagons": {
+              "ABpmz": true,
+              "Apmzf": true,
+              "Bpmbz": true,
+              "Bpmdz": true,
+              "Bpmz": true,
+              "Bpmzf": true,
+              "WRmz": true
+            }
+          },
+          "train": {
+            "name": "ICE 1574",
+            "admin": "80____",
+            "number": "1574",
+            "type": "ICE",
+            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+          },
+          "segmentStart": { "title": "Göttingen", "id": "8000128" },
+          "segmentDestination": { "title": "Hamburg Hbf", "id": "8002549" },
+          "stops": [
+            {
+              "station": {
+                "id": "8000128",
+                "title": "Göttingen",
+                "coordinates": { "lng": 9.926257, "lat": 51.536758 }
+              },
+              "departure": {
+                "platform": "9",
+                "scheduledTime": 1581877080000,
+                "time": 1581877080000,
+                "reihung": true
+              },
+              "auslastung": { "first": 3, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000152",
+                "title": "Hannover Hbf",
+                "coordinates": { "lng": 9.741763, "lat": 52.377079 }
+              },
+              "arrival": {
+                "platform": "7",
+                "scheduledTime": 1581879360000,
+                "time": 1581879360000,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "7",
+                "scheduledTime": 1581879540000,
+                "time": 1581879540000,
+                "reihung": true
+              },
+              "auslastung": { "first": 2, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000064",
+                "title": "Celle",
+                "coordinates": { "lng": 10.062651, "lat": 52.621019 }
+              },
+              "arrival": {
+                "platform": "5",
+                "scheduledTime": 1581880740000,
+                "time": 1581880740000,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "5",
+                "scheduledTime": 1581880800000,
+                "time": 1581880800000,
+                "reihung": true
+              },
+              "auslastung": { "first": 1, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000168",
+                "title": "Uelzen",
+                "coordinates": { "lng": 10.553246, "lat": 52.96998 }
+              },
+              "arrival": {
+                "platform": "102",
+                "scheduledTime": 1581882000000,
+                "time": 1581882000000,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "102",
+                "scheduledTime": 1581882120000,
+                "time": 1581882120000,
+                "reihung": true
+              },
+              "auslastung": { "first": 1, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000238",
+                "title": "Lüneburg",
+                "coordinates": { "lng": 10.419873, "lat": 53.249742 }
+              },
+              "arrival": {
+                "platform": "2",
+                "scheduledTime": 1581882960000,
+                "time": 1581882960000,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "2",
+                "scheduledTime": 1581883080000,
+                "time": 1581883080000,
+                "reihung": true
+              },
+              "auslastung": { "first": 1, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000147",
+                "title": "Hamburg-Harburg",
+                "coordinates": { "lng": 9.991591, "lat": 53.456198 }
+              },
+              "arrival": {
+                "platform": "1",
+                "scheduledTime": 1581884160000,
+                "time": 1581884160000,
+                "reihung": true
+              }
+            },
+            {
+              "station": {
+                "id": "8002549",
+                "title": "Hamburg Hbf",
+                "coordinates": { "lng": 10.00636, "lat": 53.553533 }
+              },
+              "arrival": {
+                "platform": "12",
+                "scheduledTime": 1581884940000,
+                "time": 1581884940000,
+                "reihung": true
+              }
+            }
+          ],
+          "finalDestination": "Hamburg-Altona",
+          "jid": "1|219640|0|80|16022020",
+          "auslastung": { "first": 3, "second": 2 },
+          "messages": [
+            {
+              "type": "A",
+              "code": "CK",
+              "prio": 200,
+              "icoX": 4,
+              "txtN": "Komfort Check-in möglich (Infos unter bahn.de/kci)"
+            },
+            {
+              "type": "A",
+              "code": "FR",
+              "prio": 260,
+              "icoX": 6,
+              "txtN": "Fahrradmitnahme reservierungspflichtig"
+            },
+            {
+              "type": "A",
+              "code": "FB",
+              "prio": 260,
+              "icoX": 7,
+              "txtN": "Fahrradmitnahme begrenzt möglich"
+            },
+            {
+              "type": "A",
+              "code": "BR",
+              "prio": 450,
+              "icoX": 5,
+              "txtN": "Bordrestaurant"
+            }
+          ],
+          "type": "JNY"
+        }
+      ],
+      "segmentTypes": ["ICE", "IC", "ICE"]
+    },
+    {
+      "checksum": "418cabcb_3",
+      "cid": "C-10",
+      "date": 1581807600000,
+      "duration": 15180000,
+      "changes": 1,
+      "isRideable": true,
+      "arrival": {
+        "platform": "8",
+        "scheduledTime": 1581885180000,
+        "time": 1581885180000
+      },
+      "departure": {
+        "platform": "9",
+        "scheduledTime": 1581870000000,
+        "time": 1581870000000
+      },
+      "segments": [
+        {
+          "arrival": {
+            "platform": "7",
+            "scheduledTime": 1581873120000,
+            "time": 1581873120000,
+            "reihung": true
+          },
+          "departure": {
+            "platform": "9",
+            "scheduledTime": 1581870000000,
+            "time": 1581870000000,
+            "reihung": true
+          },
+          "duration": 3120000,
+          "plannedSequence": {
+            "raw": "ICE-T",
+            "short": "T",
+            "type": "ICE T",
+            "wagons": {
+              "ABpmz": true,
+              "Apmzf": true,
+              "Bpmbz": true,
+              "Bpmdz": true,
+              "Bpmkz": true,
+              "Bpmz": true,
+              "Bpmzf": true,
+              "WRmz": true,
+              "Wiesbaden": true
+            }
+          },
+          "train": {
+            "name": "ICE 1655",
+            "admin": "80____",
+            "number": "1655",
+            "type": "ICE",
+            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+          },
+          "changeDuration": 15,
+          "segmentStart": { "title": "Frankfurt(Main)Hbf", "id": "8000105" },
+          "segmentDestination": { "title": "Fulda", "id": "8000115" },
+          "stops": [
+            {
+              "station": {
+                "id": "8000105",
+                "title": "Frankfurt(Main)Hbf",
+                "coordinates": { "lng": 8.663003, "lat": 50.106817 }
+              },
+              "departure": {
+                "platform": "9",
+                "scheduledTime": 1581870000000,
+                "time": 1581870000000,
+                "reihung": true
+              },
+              "auslastung": { "first": 1, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000115",
+                "title": "Fulda",
+                "coordinates": { "lng": 9.684178, "lat": 50.554794 }
+              },
+              "arrival": {
+                "platform": "7",
+                "scheduledTime": 1581873120000,
+                "time": 1581873120000,
+                "reihung": true
+              }
+            }
+          ],
+          "finalDestination": "Dresden Hbf",
+          "jid": "1|220034|0|80|16022020",
+          "auslastung": { "first": 1, "second": 2 },
+          "messages": [
+            {
+              "type": "A",
+              "code": "CK",
+              "prio": 200,
+              "icoX": 4,
+              "txtN": "Komfort Check-in möglich (Infos unter bahn.de/kci)"
+            },
+            {
+              "type": "A",
+              "code": "FR",
+              "prio": 260,
+              "icoX": 6,
+              "txtN": "Fahrradmitnahme reservierungspflichtig"
+            },
+            {
+              "type": "A",
+              "code": "FB",
+              "prio": 260,
+              "icoX": 7,
+              "txtN": "Fahrradmitnahme begrenzt möglich"
+            },
+            {
+              "type": "A",
+              "code": "BR",
+              "prio": 450,
+              "icoX": 5,
+              "txtN": "Bordrestaurant"
+            }
+          ],
+          "type": "JNY"
+        },
+        {
+          "arrival": {
+            "platform": "8",
+            "scheduledTime": 1581885180000,
+            "time": 1581885180000,
+            "reihung": true
+          },
+          "departure": {
+            "platform": "6",
+            "scheduledTime": 1581874020000,
+            "time": 1581874020000,
+            "reihung": true
+          },
+          "duration": 11160000,
+          "wings": [
+            {
+              "plannedSequence": {
+                "raw": "ICE-A",
+                "short": "2",
+                "type": "ICE 2",
+                "wagons": {
+                  "Apmz": true,
+                  "Bpmbz": true,
+                  "Bpmz": true,
+                  "Bpmzf": true,
+                  "WRmbsz": true
+                }
+              },
+              "train": {
+                "name": "ICE 984",
+                "admin": "80____",
+                "number": "984",
+                "type": "ICE",
+                "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+              },
+              "segmentStart": { "title": "Fulda", "id": "8000115" },
+              "segmentDestination": { "title": "Hamburg Hbf", "id": "8002549" },
+              "stops": [
+                {
+                  "station": {
+                    "id": "8000115",
+                    "title": "Fulda",
+                    "coordinates": { "lng": 9.684178, "lat": 50.554794 }
+                  },
+                  "departure": {
+                    "platform": "6",
+                    "scheduledTime": 1581874020000,
+                    "time": 1581874020000,
+                    "reihung": true
+                  }
+                },
+                {
+                  "station": {
+                    "id": "8003200",
+                    "title": "Kassel-Wilhelmshöhe",
+                    "coordinates": { "lng": 9.446845, "lat": 51.312998 }
+                  },
+                  "arrival": {
+                    "platform": "3",
+                    "scheduledTime": 1581875880000,
+                    "time": 1581875880000,
+                    "reihung": true
+                  }
+                },
+                {
+                  "station": {
+                    "id": "8000128",
+                    "title": "Göttingen",
+                    "coordinates": { "lng": 9.926257, "lat": 51.536758 }
+                  },
+                  "arrival": {
+                    "platform": "9",
+                    "scheduledTime": 1581877320000,
+                    "time": 1581877320000,
+                    "reihung": true
+                  }
+                },
+                {
+                  "station": {
+                    "id": "8000152",
+                    "title": "Hannover Hbf",
+                    "coordinates": { "lng": 9.741763, "lat": 52.377079 }
+                  },
+                  "arrival": {
+                    "platform": "8",
+                    "scheduledTime": 1581879540000,
+                    "time": 1581879540000,
+                    "reihung": true
+                  }
+                },
+                {
+                  "station": {
+                    "id": "8000238",
+                    "title": "Lüneburg",
+                    "coordinates": { "lng": 10.419873, "lat": 53.249742 }
+                  },
+                  "arrival": {
+                    "platform": "2",
+                    "scheduledTime": 1581883200000,
+                    "time": 1581883200000,
+                    "reihung": true
+                  }
+                },
+                {
+                  "station": {
+                    "id": "8000147",
+                    "title": "Hamburg-Harburg",
+                    "coordinates": { "lng": 9.991591, "lat": 53.456198 }
+                  },
+                  "arrival": {
+                    "platform": "1",
+                    "scheduledTime": 1581884460000,
+                    "time": 1581884460000,
+                    "reihung": true
+                  }
+                },
+                {
+                  "station": {
+                    "id": "8002549",
+                    "title": "Hamburg Hbf",
+                    "coordinates": { "lng": 10.00636, "lat": 53.553533 }
+                  },
+                  "arrival": {
+                    "platform": "8",
+                    "scheduledTime": 1581885180000,
+                    "time": 1581885180000,
+                    "reihung": true
+                  }
+                }
+              ],
+              "finalDestination": "Hamburg-Altona",
+              "jid": "1|226160|0|80|16022020",
+              "messages": [
+                {
+                  "type": "A",
+                  "code": "CK",
+                  "prio": 200,
+                  "icoX": 4,
+                  "txtN": "Komfort Check-in möglich (Infos unter bahn.de/kci)"
+                },
+                {
+                  "type": "A",
+                  "code": "BR",
+                  "prio": 450,
+                  "icoX": 5,
+                  "txtN": "Bordrestaurant"
+                }
+              ]
+            }
+          ],
+          "plannedSequence": {
+            "raw": "ICE-A",
+            "short": "2",
+            "type": "ICE 2",
+            "wagons": {
+              "Apmz": true,
+              "Bpmbz": true,
+              "Bpmz": true,
+              "Bpmzf": true,
+              "WRmbsz": true
+            }
+          },
+          "train": {
+            "name": "ICE 584",
+            "admin": "80____",
+            "number": "584",
+            "type": "ICE",
+            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+          },
+          "segmentStart": { "title": "Fulda", "id": "8000115" },
+          "segmentDestination": { "title": "Hamburg Hbf", "id": "8002549" },
+          "stops": [
+            {
+              "station": {
+                "id": "8000115",
+                "title": "Fulda",
+                "coordinates": { "lng": 9.684178, "lat": 50.554794 }
+              },
+              "departure": {
+                "platform": "6",
+                "scheduledTime": 1581874020000,
+                "time": 1581874020000,
+                "reihung": true
+              },
+              "auslastung": { "first": 1, "second": 3 }
+            },
+            {
+              "station": {
+                "id": "8003200",
+                "title": "Kassel-Wilhelmshöhe",
+                "coordinates": { "lng": 9.446845, "lat": 51.312998 }
+              },
+              "arrival": {
+                "platform": "3",
+                "scheduledTime": 1581875880000,
+                "time": 1581875880000,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "3",
+                "scheduledTime": 1581876000000,
+                "time": 1581876000000,
+                "reihung": true
+              },
+              "auslastung": { "first": 1, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000128",
+                "title": "Göttingen",
+                "coordinates": { "lng": 9.926257, "lat": 51.536758 }
+              },
+              "arrival": {
+                "platform": "9",
+                "scheduledTime": 1581877320000,
+                "time": 1581877320000,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "9",
+                "scheduledTime": 1581877380000,
+                "time": 1581877380000,
+                "reihung": true
+              },
+              "auslastung": { "first": 1, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000152",
+                "title": "Hannover Hbf",
+                "coordinates": { "lng": 9.741763, "lat": 52.377079 }
+              },
+              "arrival": {
+                "platform": "8",
+                "scheduledTime": 1581879540000,
+                "time": 1581879540000,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "8",
+                "scheduledTime": 1581879780000,
+                "time": 1581879780000,
+                "reihung": true
+              },
+              "auslastung": { "first": 1, "second": 2 }
+            },
+            {
+              "station": {
+                "id": "8000238",
+                "title": "Lüneburg",
+                "coordinates": { "lng": 10.419873, "lat": 53.249742 }
+              },
+              "arrival": {
+                "platform": "2",
+                "scheduledTime": 1581883200000,
+                "time": 1581883200000,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "2",
+                "scheduledTime": 1581883320000,
+                "time": 1581883320000,
+                "reihung": true
+              },
+              "auslastung": { "first": 1, "second": 1 }
+            },
+            {
+              "station": {
+                "id": "8000147",
+                "title": "Hamburg-Harburg",
+                "coordinates": { "lng": 9.991591, "lat": 53.456198 }
+              },
+              "arrival": {
+                "platform": "1",
+                "scheduledTime": 1581884460000,
+                "time": 1581884460000,
+                "reihung": true
+              },
+              "departure": {
+                "platform": "1",
+                "scheduledTime": 1581884580000,
+                "time": 1581884580000,
+                "reihung": true
+              }
+            },
+            {
+              "station": {
+                "id": "8002549",
+                "title": "Hamburg Hbf",
+                "coordinates": { "lng": 10.00636, "lat": 53.553533 }
+              },
+              "arrival": {
+                "platform": "8",
+                "scheduledTime": 1581885180000,
+                "time": 1581885180000,
+                "reihung": true
+              }
+            }
+          ],
+          "finalDestination": "Lübeck Hbf",
+          "jid": "1|223613|0|80|16022020",
+          "auslastung": { "first": 1, "second": 3 },
+          "messages": [
+            {
+              "type": "A",
+              "code": "CK",
+              "prio": 200,
+              "icoX": 4,
+              "txtN": "Komfort Check-in möglich (Infos unter bahn.de/kci)"
+            },
+            {
+              "type": "A",
+              "code": "BR",
+              "prio": 450,
+              "icoX": 5,
+              "txtN": "Bordrestaurant"
+            }
+          ],
+          "type": "JNY"
+        }
+      ],
+      "segmentTypes": ["ICE", "ICE"]
+    }
+  ]
+}

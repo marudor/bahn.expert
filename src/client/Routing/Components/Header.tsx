@@ -65,7 +65,11 @@ const InnerHeader = () => {
       <span className={classes.arrow}>-></span>
       <span className={classes.destination}>{destination?.title ?? '?'}</span>
       {currentFav && (
-        <IconButton className={classes.fav} onClick={toggleFav}>
+        <IconButton
+          data-testid="routingFavButton"
+          className={classes.fav}
+          onClick={toggleFav}
+        >
           {isFaved ? <ToggleStar /> : <ToggleStarBorder />}
         </IconButton>
       )}

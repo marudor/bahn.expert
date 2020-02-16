@@ -55,9 +55,14 @@ const RouteList = () => {
     <div className={classes.main}>
       {earlierContext &&
         (loadingEarlier ? (
-          <Loading type={1} />
+          <Loading data-testid="fetchCtxEarlyLoading" type={1} />
         ) : (
-          <Button fullWidth variant="contained" onClick={searchBefore}>
+          <Button
+            data-testid="fetchCtxEarly"
+            fullWidth
+            variant="contained"
+            onClick={searchBefore}
+          >
             Früher
           </Button>
         ))}
@@ -81,9 +86,14 @@ const RouteList = () => {
         })}
       {laterContext &&
         (loadingLater ? (
-          <Loading type={1} />
+          <Loading data-testid="fetchCtxLateLoading" type={1} />
         ) : (
-          <Button fullWidth variant="contained" onClick={searchLater}>
+          <Button
+            data-testid="fetchCtxLate"
+            fullWidth
+            variant="contained"
+            onClick={searchLater}
+          >
             Später
           </Button>
         ))}

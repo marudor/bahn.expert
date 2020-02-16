@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core';
 export default makeStyles({
   wrap: {
     display: 'grid',
-    gridTemplateColumns: 'min-content 1fr min-content',
+    gridTemplateColumns: 'max-content 1fr max-content',
     gridTemplateRows: '1fr 1fr',
     gridTemplateAreas: '". s f" "a d f"',
     alignItems: 'center',

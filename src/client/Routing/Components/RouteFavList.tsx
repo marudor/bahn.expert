@@ -6,7 +6,7 @@ const RouteFavList = () => {
   const { favs } = RoutingFavContainer.useContainer();
 
   return (
-    <div>
+    <div data-testid="RouteFavList">
       {Object.keys(favs).map(favKey => {
         const fav = favs[favKey];
 

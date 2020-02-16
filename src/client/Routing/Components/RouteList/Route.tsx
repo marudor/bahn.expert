@@ -34,7 +34,12 @@ const Route = ({ route, detail, onClick }: Props) => {
   }, [route]);
 
   return (
-    <Paper onClick={onClick} square className={cc(classes.main)}>
+    <Paper
+      data-testid={`Route-${route.cid}`}
+      onClick={onClick}
+      square
+      className={cc(classes.main)}
+    >
       <Time
         className={classes.time}
         real={route.departure.time}

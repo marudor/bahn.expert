@@ -1,11 +1,12 @@
 describe('Map', () => {
   it('opens oebb by default', () => {
-    cy.server().route({
+    cy.route({
       url: '/api/hafas/v1/journeyGeoPos?profile=oebb',
       method: 'POST',
       response: 'fixture:journeyGeoPosOebbSingle.json',
-    });
+    }).as('geoPos');
     cy.visit('/map');
+    cy.wait('@geoPos');
     cy.findByAltText('test train').should('exist');
   });
 
@@ -19,14 +20,13 @@ describe('Map', () => {
     };
 
     it('profile', () => {
-      cy.server({
-        force404: true,
-      }).route({
+      cy.route({
         url: '/api/hafas/v1/journeyGeoPos?profile=db',
         method: 'POST',
         response: 'fixture:journeyGeoPosOebbSingle.json',
-      });
+      }).as('geoPos');
       cy.visit('/map?profile=db');
+      cy.wait('@geoPos');
       cy.findByAltText('test train').should('exist');
     });
 
