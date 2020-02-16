@@ -31,7 +31,10 @@ function useMapDefaults() {
   if ('permanent' in query) {
     permanent = Boolean(query.permanent);
   }
-  if ('profile' in query && (AllowedHafasProfile as any)[query.profile]) {
+  if (
+    'profile' in query &&
+    Object.values(AllowedHafasProfile).includes(query.profile)
+  ) {
     profile = query.profile;
   }
 

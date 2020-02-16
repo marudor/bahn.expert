@@ -5,14 +5,14 @@ describe('Map', () => {
       method: 'POST',
       response: 'fixture:journeyGeoPosOebbSingle.json',
     }).as('geoPos');
-    cy.visit('/map');
+    cy.visit('/map?noTiles=1');
     cy.wait('@geoPos');
     cy.findByAltText('test train').should('exist');
   });
 
   describe('query parameter', () => {
     const checkSetting = (setting: string, value: boolean) => {
-      cy.visit(`/map?${setting}=${value === false ? '' : value}`);
+      cy.visit(`/map?${setting}=${value === false ? '' : value}&noTiles=1`);
       cy.findByTestId('trainSettingsIcon').click();
       cy.findByTestId(`${setting}Switch`)
         .find('input')
@@ -25,7 +25,7 @@ describe('Map', () => {
         method: 'POST',
         response: 'fixture:journeyGeoPosOebbSingle.json',
       }).as('geoPos');
-      cy.visit('/map?profile=db');
+      cy.visit('/map?profile=db&noTiles=1');
       cy.wait('@geoPos');
       cy.findByAltText('test train').should('exist');
     });
