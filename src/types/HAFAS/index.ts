@@ -2,7 +2,6 @@ import { CommonStation, Coordinates } from 'types/station';
 import { JourneyDetailsRequest } from './JourneyDetails';
 import { LocGeoPosRequest } from './LocGeoPos';
 import { LocMatchRequest } from './LocMatch';
-import { Omit } from 'utility-types';
 import { TripSearchRequest } from './TripSearch';
 
 export type JourneyFilterMode = 'BIT' | 'EXC' | 'INC' | 'UNDEF';
