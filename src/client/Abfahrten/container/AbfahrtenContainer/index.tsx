@@ -1,6 +1,6 @@
 import { Abfahrt, AbfahrtenResult, Wings } from 'types/iris';
 import { createContainer } from 'unstated-next';
-import { getStationsFromAPI } from 'Common/service/stationSearch';
+import { getStationsFromAPI } from 'shared/service/stationSearch';
 import { Station } from 'types/station';
 import AbfahrtenConfigContainer, {
   AbfahrtenConfigProvider,

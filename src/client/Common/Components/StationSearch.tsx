@@ -1,29 +1,14 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
-import {
-  getHafasStationFromAPI,
-  getHafasStationFromCoordinates,
-  getStationsFromAPI,
-  getStationsFromCoordinates,
-} from 'Common/service/stationSearch';
 import { Station, StationSearchType } from 'types/station';
-import debounce from 'debounce-promise';
 import Downshift from 'downshift';
 import Loading, { LoadingType } from './Loading';
 import MenuItem from '@material-ui/core/MenuItem';
 import MyLocation from '@material-ui/icons/MyLocation';
 import Paper from '@material-ui/core/Paper';
-import React, {
-  ReactNode,
-  SyntheticEvent,
-  useCallback,
-  useRef,
-  useState,
-} from 'react';
+import React, { ReactNode, SyntheticEvent, useCallback, useRef } from 'react';
 import TextField from '@material-ui/core/TextField';
+import useStationSearch from 'shared/hooks/useStationSearch';
 import useStyles from './StationSearch.style';
-
-const debouncedGetStationFromAPI = debounce(getStationsFromAPI, 500);
-const debouncedHafasStationFromAPI = debounce(getHafasStationFromAPI, 500);
 
 interface Props {
   id: string;
@@ -37,7 +22,6 @@ interface Props {
   additionalIcons?: ReactNode;
 }
 
-const itemToString = (s: Station | null) => (s ? s.title : '');
 const StationSearch = ({
   id,
   onChange,
@@ -50,39 +34,21 @@ const StationSearch = ({
   additionalIcons,
 }: Props) => {
   const classes = useStyles();
-  const [suggestions, setSuggestions] = useState<Station[]>([]);
-  const [loading, setLoading] = useState(false);
-  const selectRef = useRef();
   const inputRef = useRef<HTMLInputElement>();
 
-  const loadOptions = useCallback(
-    async (value: string | Coordinates) => {
-      setLoading(true);
-      let suggestions: Station[];
+  const {
+    suggestions,
+    setSuggestions,
+    loading,
+    loadOptions,
+    itemToString,
+    selectRef,
+  } = useStationSearch({
+    profile,
+    searchType,
+    maxSuggestions,
+  });
 
-      const stationFn = profile
-        ? debouncedHafasStationFromAPI.bind(undefined, profile)
-        : debouncedGetStationFromAPI.bind(undefined, searchType);
-
-      const geoFn = profile
-        ? getHafasStationFromCoordinates.bind(undefined, profile)
-        : getStationsFromCoordinates;
-
-      if (typeof value === 'string') {
-        suggestions = await stationFn(value);
-      } else {
-        suggestions = await geoFn(value);
-      }
-
-      if (maxSuggestions) {
-        suggestions = suggestions.slice(0, maxSuggestions);
-      }
-
-      setSuggestions(suggestions);
-      setLoading(false);
-    },
-    [maxSuggestions, profile, searchType]
-  );
   const getLocation = useCallback(
     (e: SyntheticEvent<any>) => {
       e.stopPropagation();
@@ -94,12 +60,12 @@ const StationSearch = ({
             selectRef.current.openMenu();
           }
         },
-        _e => {
+        (_e: any) => {
           // ignore for now
         }
       );
     },
-    [loadOptions]
+    [loadOptions, selectRef]
   );
 
   const downshiftOnChange = useCallback(

@@ -1,37 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const LoadablePlugin = require('@loadable/webpack-plugin');
 const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
-
-const runtimeCaching = [
-  {
-    urlPattern: '/',
-    handler: 'NetworkFirst',
-  },
-  {
-    urlPattern: /api\/station\/.*/,
-    handler: 'CacheFirst',
-    options: {
-      cacheName: 'stationSearch',
-    },
-  },
-];
-
-if (isDev) {
-  runtimeCaching.push({
-    urlPattern: /api\/.*/,
-    handler: 'NetworkFirst',
-    options: {
-      cacheName: 'development',
-      networkTimeoutSeconds: 7,
-    },
-  });
-}
 
 const plugins = [
   new LoadablePlugin(),
@@ -40,12 +14,6 @@ const plugins = [
     'global.PROD': JSON.stringify(!isDev),
     'global.TEST': JSON.stringify(process.env.NODE_ENV === 'test'),
     'global.SERVER': JSON.stringify(false),
-  }),
-  new WorkboxPlugin.GenerateSW({
-    swDest: 'sw.js',
-    runtimeCaching,
-    clientsClaim: true,
-    skipWaiting: true,
   }),
 ];
 
