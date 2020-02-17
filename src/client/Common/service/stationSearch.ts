@@ -39,7 +39,7 @@ export async function getHafasStationFromAPI(
 }
 
 export async function getHafasStationFromCoordinates(
-  profile: AllowedHafasProfile = AllowedHafasProfile.db,
+  profile: AllowedHafasProfile = AllowedHafasProfile.DB,
   coordinates: Coordinates
 ) {
   try {

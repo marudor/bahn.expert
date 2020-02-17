@@ -14,7 +14,7 @@ export interface RoutingSettings {
 export const defaultRoutingSettings: RoutingSettings = {
   maxChanges: '-1',
   transferTime: '0',
-  hafasProfile: AllowedHafasProfile.db,
+  hafasProfile: AllowedHafasProfile.DB,
 };
 
 const useRoutingSettings = (initialSettings: RoutingSettings) => {

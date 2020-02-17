@@ -1,4 +1,5 @@
 import { renderRoutes } from 'react-router-config';
+import { RoutingFavProvider } from 'Routing/container/RoutingFavContainer';
 import Header from './Components/Header';
 import React from 'react';
 import routes from './routes';
@@ -8,10 +9,12 @@ const Routing = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.main}>
-      <Header />
-      {renderRoutes(routes)}
-    </div>
+    <RoutingFavProvider>
+      <div className={classes.main}>
+        <Header />
+        {renderRoutes(routes)}
+      </div>
+    </RoutingFavProvider>
   );
 };
 

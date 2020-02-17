@@ -1,15 +1,9 @@
 name: node tests
 
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
+on: push
 
 env:
-  CI: 'true'
+  CI: "true"
 
 jobs:
   commitlint:
@@ -29,14 +23,14 @@ jobs:
         uses: actions/setup-node@master
         with:
           node-version: 13
-      - name: Cache node modules
+      - name: Cache yarn cache
         uses: actions/cache@v1
         with:
-          path: node_modules
-          key: ${{ runner.OS }}-build-${{ hashFiles('yarn.lock')}}${{ hashFiles('package.json')}}
+          path: ~/.cache/yarn
+          key: yarn-${{ runner.OS }}-build-${{ hashFiles('yarn.lock')}}
       - name: install
         run: |
-          yarn --frozen-lockfile
+          yarn --frozen-lockfile  --prefer-offline
         env:
           CYPRESS_INSTALL_BINARY: 0
       - name: jest
@@ -57,7 +51,7 @@ jobs:
           name: jest-coverage
           path: jest-coverage/coverage-final.json
   e2e:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
       - name: Use Node.js 13
@@ -73,6 +67,8 @@ jobs:
         with:
           install: false
           record: true
+          parallel: true
+          ci-build-id: "${{ github.sha }}-${{ github.workflow }}-${{ github.event_name }}"
           build: yarn build
           start: node testDist/server/server/index.js
           wait-on: http://localhost:9042
@@ -96,14 +92,14 @@ jobs:
         uses: actions/setup-node@master
         with:
           node-version: 13
-      - name: Cache node modules
+      - name: Cache yarn cache
         uses: actions/cache@v1
         with:
-          path: node_modules
-          key: ${{ runner.OS }}-build-${{ hashFiles('yarn.lock')}}${{ hashFiles('package.json')}}
+          path: ~/.cache/yarn
+          key: yarn-${{ runner.OS }}-build-${{ hashFiles('yarn.lock')}}
       - name: install
         run: |
-          yarn --frozen-lockfile
+          yarn --frozen-lockfile --prefer-offline
         env:
           CYPRESS_INSTALL_BINARY: 0
       - name: Download jest coverage

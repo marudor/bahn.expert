@@ -10,6 +10,7 @@ import MapContainer from 'client/Map/container/MapContainer';
 import MapSettings from 'client/Map/Components/MapSettings';
 import Positions from 'client/Map/Components/Positions';
 import React from 'react';
+import useQuery from 'Common/hooks/useQuery';
 import useStyles from './TrainMap.style';
 
 const DefaultIcon = L.icon({
@@ -30,6 +31,7 @@ const attribution =
 
 const TrainMap = () => {
   const classes = useStyles();
+  const query = useQuery();
   const { setActiveJourney } = MapContainer.useContainer();
 
   return (
@@ -39,11 +41,15 @@ const TrainMap = () => {
       viewport={defaultViewport}
       preferCanvas
     >
-      <TileLayer
-        attribution={attribution}
-        url="https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png"
-      />
-      <TileLayer url="https://{s}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png" />
+      {!query.noTiles && (
+        <>
+          <TileLayer
+            attribution={attribution}
+            url="https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png"
+          />
+          <TileLayer url="https://{s}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png" />
+        </>
+      )}
       <Positions />
       <MapSettings />
       <ActivePolyline />

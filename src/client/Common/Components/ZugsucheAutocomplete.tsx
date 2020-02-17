@@ -2,6 +2,7 @@ import { journeyMatch } from 'Common/service/details';
 import { MenuItem, Paper, TextField } from '@material-ui/core';
 import { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 import { useCallback, useState } from 'react';
+import Axios from 'axios';
 import debounce from 'debounce-promise';
 import Downshift from 'downshift';
 import Loading, { LoadingType } from 'Common/Components/Loading';
@@ -26,24 +27,27 @@ const ZugsucheAutocomplete = ({
   );
   const classes = useStyles();
   const storage = useStorage();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(0);
   const loadOptions = useCallback(
     async (value: string) => {
-      setLoading(true);
+      setLoading(old => old + 1);
       const routeSettings = storage.get('rconfig');
 
       try {
         const suggestions = await debouncedJourneyMatch(
           value,
           initialDeparture,
-          routeSettings?.hafasProfile
+          routeSettings?.hafasProfile,
+          'zugsuche'
         );
 
         setSuggestions(suggestions.slice(0, 5));
-      } catch {
-        setSuggestions([]);
+      } catch (e) {
+        if (!Axios.isCancel(e)) {
+          setSuggestions([]);
+        }
       }
-      setLoading(false);
+      setLoading(old => old - 1);
     },
     [initialDeparture, storage]
   );
@@ -141,7 +145,7 @@ const ZugsucheAutocomplete = ({
           );
         }}
       </Downshift>
-      {loading && (
+      {Boolean(loading) && (
         <Loading className={classes.loading} type={LoadingType.dots} />
       )}
     </div>

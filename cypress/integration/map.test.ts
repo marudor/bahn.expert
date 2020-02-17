@@ -1,17 +1,18 @@
 describe('Map', () => {
   it('opens oebb by default', () => {
-    cy.server().route({
+    cy.route({
       url: '/api/hafas/v1/journeyGeoPos?profile=oebb',
       method: 'POST',
       response: 'fixture:journeyGeoPosOebbSingle.json',
-    });
-    cy.visit('/map');
+    }).as('geoPos');
+    cy.visit('/map?noTiles=1');
+    cy.wait('@geoPos');
     cy.findByAltText('test train').should('exist');
   });
 
   describe('query parameter', () => {
     const checkSetting = (setting: string, value: boolean) => {
-      cy.visit(`/map?${setting}=${value === false ? '' : value}`);
+      cy.visit(`/map?${setting}=${value === false ? '' : value}&noTiles=1`);
       cy.findByTestId('trainSettingsIcon').click();
       cy.findByTestId(`${setting}Switch`)
         .find('input')
@@ -19,14 +20,13 @@ describe('Map', () => {
     };
 
     it('profile', () => {
-      cy.server({
-        force404: true,
-      }).route({
+      cy.route({
         url: '/api/hafas/v1/journeyGeoPos?profile=db',
         method: 'POST',
         response: 'fixture:journeyGeoPosOebbSingle.json',
-      });
-      cy.visit('/map?profile=db');
+      }).as('geoPos');
+      cy.visit('/map?profile=db&noTiles=1');
+      cy.wait('@geoPos');
       cy.findByAltText('test train').should('exist');
     });
 

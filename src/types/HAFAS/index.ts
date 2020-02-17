@@ -153,22 +153,23 @@ export interface HafasStation extends CommonStation {
 }
 
 export enum AllowedHafasProfile {
-  db = 'db',
-  oebb = 'oebb',
-  sncb = 'sncb',
-  avv = 'avv',
-  nahsh = 'nahsh',
-  hvv = 'hvv',
-  bvg = 'bvg',
-  insa = 'insa',
-  anachb = 'anachb',
-  vao = 'vao',
-  sbb = 'sbb',
-  dbnetz = 'dbnetz',
-  rmv = 'rmv',
-  pkp = 'pkp',
+  DB = 'db',
+  OEBB = 'oebb',
+  BVG = 'bvg',
+  HVV = 'hvv',
+  RMV = 'rmv',
+  SNCB = 'sncb',
+  AVV = 'avv',
+  'NAH.SH' = 'nahsh',
+  INSA = 'insa',
+  aNachB = 'anachb',
+  VAO = 'vao',
+  SBB = 'sbb',
+  DBNetz = 'dbnetz',
+  PKP = 'pkp',
   // all = 'all',
 }
+
 export type HafasRequest = SingleHafasRequest[];
 export type SingleHafasRequest =
   | LocMatchRequest

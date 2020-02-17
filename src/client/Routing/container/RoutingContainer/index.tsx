@@ -1,3 +1,4 @@
+import { AllowedHafasProfile } from 'types/HAFAS';
 import { createContainer } from 'unstated-next';
 import { SingleRoute } from 'types/routing';
 import React, { ReactNode, useState } from 'react';
@@ -11,6 +12,7 @@ const useRouting = () => {
   const [earlierContext, setEarlierContext] = useState<string>();
   const [laterContext, setLaterContext] = useState<string>();
   const [error, setError] = useState();
+  const [currentProfile, setCurrentProfile] = useState<AllowedHafasProfile>();
 
   return {
     routes,
@@ -21,6 +23,8 @@ const useRouting = () => {
     earlierContext,
     laterContext,
     setError,
+    currentProfile,
+    setCurrentProfile,
   };
 };
 

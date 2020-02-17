@@ -178,7 +178,7 @@ async function makeRequest<
 >(
   request: R,
   parseFn: (d: HafasResponse<HR>, pc: ParsedCommon) => P = d => d as any,
-  profile: AllowedHafasProfile = AllowedHafasProfile.db
+  profile: AllowedHafasProfile = AllowedHafasProfile.DB
 ): Promise<P> {
   // if (profile === 'all') {
   //   const prod = global.PROD;

@@ -13,7 +13,7 @@ export default makeStyles(theme => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     '& > a': {
-      color: theme.palette.text.primary,
+      colors: theme.palette.text.primary,
     },
     '&:hover': {
       backgroundColor: theme.palette.action.hover,
