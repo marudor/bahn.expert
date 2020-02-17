@@ -2,7 +2,12 @@ import { AllowedHafasProfile, HafasResponse, ParsedCommon } from 'types/HAFAS';
 import { LocMatchRequest, LocMatchResponse } from 'types/HAFAS/LocMatch';
 import { Station } from 'types/station';
 import makeRequest from './Request';
+import NodeCache from 'node-cache';
 import parseLocL from './helper/parseLocL';
+
+// 8 Hours in seconds
+const stdTTL = 8 * 60 * 60;
+const cache = new NodeCache({ stdTTL });
 
 function parseFn(
   d: HafasResponse<LocMatchResponse>,
@@ -17,7 +22,7 @@ function parseFn(
   );
 }
 
-export default (
+export default async (
   searchTerm: string,
   type: 'S' | 'ALL' = 'ALL',
   profile?: AllowedHafasProfile,
@@ -36,5 +41,24 @@ export default (
     meth: 'LocMatch',
   };
 
-  return makeRequest(req, raw ? undefined : parseFn, profile);
+  if (raw) {
+    return makeRequest<HafasResponse<LocMatchResponse>, Station[]>(
+      req,
+      undefined,
+      profile
+    );
+  }
+
+  const cacheKey = `${profile}|${type}|${searchTerm}`;
+  const cached = cache.get<Station[]>(cacheKey);
+
+  if (cached) {
+    return cached;
+  }
+
+  const result = await makeRequest(req, raw ? undefined : parseFn, profile);
+
+  cache.set(cacheKey, result);
+
+  return result;
 };

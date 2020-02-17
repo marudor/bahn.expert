@@ -79,21 +79,20 @@ const SettingsPanel = () => {
           labelPlacement="start"
           control={
             <NativeSelect
+              inputProps={{ 'data-testid': 'routingHafasProfile' }}
               value={settings.hafasProfile}
               name="checkIn"
               onChange={handleInputChange('hafasProfile')}
             >
-              <option value={AllowedHafasProfile.db}>DB</option>
-              <option value={AllowedHafasProfile.oebb}>OEBB</option>
-              <option value={AllowedHafasProfile.sbb}>SBB</option>
-              <option value={AllowedHafasProfile.avv}>AVV</option>
-              <option value={AllowedHafasProfile.hvv}>HVV</option>
-              <option value={AllowedHafasProfile.bvg}>BVG</option>
-              <option value={AllowedHafasProfile.nahsh}>NAH.SH</option>
-              <option value={AllowedHafasProfile.insa}>Insa</option>
-              <option value={AllowedHafasProfile.anachb}>VOR.at</option>
-              <option value={AllowedHafasProfile.vao}>VAO</option>
-              <option value={AllowedHafasProfile.pkp}>PKP</option>
+              {Object.keys(AllowedHafasProfile).map(allowedProfile => (
+                <option
+                  key={allowedProfile}
+                  // @ts-ignore
+                  value={AllowedHafasProfile[allowedProfile]}
+                >
+                  {allowedProfile}
+                </option>
+              ))}
             </NativeSelect>
           }
           label="HAFAS Provider"

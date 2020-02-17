@@ -17,7 +17,7 @@ function useMapDefaults() {
   let includeNV = false;
   let onlyRT = true;
   let permanent = false;
-  let profile = AllowedHafasProfile.oebb;
+  let profile = AllowedHafasProfile.OEBB;
 
   if ('includeFV' in query) {
     includeFV = Boolean(query.includeFV);
@@ -31,7 +31,10 @@ function useMapDefaults() {
   if ('permanent' in query) {
     permanent = Boolean(query.permanent);
   }
-  if ('profile' in query && (AllowedHafasProfile as any)[query.profile]) {
+  if (
+    'profile' in query &&
+    Object.values(AllowedHafasProfile).includes(query.profile)
+  ) {
     profile = query.profile;
   }
 

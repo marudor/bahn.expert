@@ -4402,17 +4402,17 @@
 							"enum": [
 								"db",
 								"oebb",
+								"bvg",
+								"hvv",
+								"rmv",
 								"sncb",
 								"avv",
 								"nahsh",
-								"hvv",
-								"bvg",
 								"insa",
 								"anachb",
 								"vao",
 								"sbb",
 								"dbnetz",
-								"rmv",
 								"pkp"
 							]
 						}
@@ -4450,17 +4450,17 @@
 							"enum": [
 								"db",
 								"oebb",
+								"bvg",
+								"hvv",
+								"rmv",
 								"sncb",
 								"avv",
 								"nahsh",
-								"hvv",
-								"bvg",
 								"insa",
 								"anachb",
 								"vao",
 								"sbb",
 								"dbnetz",
-								"rmv",
 								"pkp"
 							]
 						}
@@ -4514,17 +4514,17 @@
 							"enum": [
 								"db",
 								"oebb",
+								"bvg",
+								"hvv",
+								"rmv",
 								"sncb",
 								"avv",
 								"nahsh",
-								"hvv",
-								"bvg",
 								"insa",
 								"anachb",
 								"vao",
 								"sbb",
 								"dbnetz",
-								"rmv",
 								"pkp"
 							]
 						}
@@ -4562,17 +4562,17 @@
 							"enum": [
 								"db",
 								"oebb",
+								"bvg",
+								"hvv",
+								"rmv",
 								"sncb",
 								"avv",
 								"nahsh",
-								"hvv",
-								"bvg",
 								"insa",
 								"anachb",
 								"vao",
 								"sbb",
 								"dbnetz",
-								"rmv",
 								"pkp"
 							]
 						}
@@ -4619,17 +4619,17 @@
 							"enum": [
 								"db",
 								"oebb",
+								"bvg",
+								"hvv",
+								"rmv",
 								"sncb",
 								"avv",
 								"nahsh",
-								"hvv",
-								"bvg",
 								"insa",
 								"anachb",
 								"vao",
 								"sbb",
 								"dbnetz",
-								"rmv",
 								"pkp"
 							]
 						}
@@ -4676,17 +4676,17 @@
 							"enum": [
 								"db",
 								"oebb",
+								"bvg",
+								"hvv",
+								"rmv",
 								"sncb",
 								"avv",
 								"nahsh",
-								"hvv",
-								"bvg",
 								"insa",
 								"anachb",
 								"vao",
 								"sbb",
 								"dbnetz",
-								"rmv",
 								"pkp"
 							]
 						}
@@ -4740,17 +4740,17 @@
 							"enum": [
 								"db",
 								"oebb",
+								"bvg",
+								"hvv",
+								"rmv",
 								"sncb",
 								"avv",
 								"nahsh",
-								"hvv",
-								"bvg",
 								"insa",
 								"anachb",
 								"vao",
 								"sbb",
 								"dbnetz",
-								"rmv",
 								"pkp"
 							]
 						}
@@ -4787,17 +4787,17 @@
 							"enum": [
 								"db",
 								"oebb",
+								"bvg",
+								"hvv",
+								"rmv",
 								"sncb",
 								"avv",
 								"nahsh",
-								"hvv",
-								"bvg",
 								"insa",
 								"anachb",
 								"vao",
 								"sbb",
 								"dbnetz",
-								"rmv",
 								"pkp"
 							]
 						}
@@ -4885,17 +4885,17 @@
 							"enum": [
 								"db",
 								"oebb",
+								"bvg",
+								"hvv",
+								"rmv",
 								"sncb",
 								"avv",
 								"nahsh",
-								"hvv",
-								"bvg",
 								"insa",
 								"anachb",
 								"vao",
 								"sbb",
 								"dbnetz",
-								"rmv",
 								"pkp"
 							]
 						}
@@ -5011,17 +5011,17 @@
 							"enum": [
 								"db",
 								"oebb",
+								"bvg",
+								"hvv",
+								"rmv",
 								"sncb",
 								"avv",
 								"nahsh",
-								"hvv",
-								"bvg",
 								"insa",
 								"anachb",
 								"vao",
 								"sbb",
 								"dbnetz",
-								"rmv",
 								"pkp"
 							]
 						}
@@ -5089,17 +5089,17 @@
 							"enum": [
 								"db",
 								"oebb",
+								"bvg",
+								"hvv",
+								"rmv",
 								"sncb",
 								"avv",
 								"nahsh",
-								"hvv",
-								"bvg",
 								"insa",
 								"anachb",
 								"vao",
 								"sbb",
 								"dbnetz",
-								"rmv",
 								"pkp"
 							]
 						}
@@ -5160,17 +5160,17 @@
 							"enum": [
 								"db",
 								"oebb",
+								"bvg",
+								"hvv",
+								"rmv",
 								"sncb",
 								"avv",
 								"nahsh",
-								"hvv",
-								"bvg",
 								"insa",
 								"anachb",
 								"vao",
 								"sbb",
 								"dbnetz",
-								"rmv",
 								"pkp"
 							]
 						}
@@ -5229,17 +5229,17 @@
 							"enum": [
 								"db",
 								"oebb",
+								"bvg",
+								"hvv",
+								"rmv",
 								"sncb",
 								"avv",
 								"nahsh",
-								"hvv",
-								"bvg",
 								"insa",
 								"anachb",
 								"vao",
 								"sbb",
 								"dbnetz",
-								"rmv",
 								"pkp"
 							]
 						}
@@ -5279,17 +5279,17 @@
 							"enum": [
 								"db",
 								"oebb",
+								"bvg",
+								"hvv",
+								"rmv",
 								"sncb",
 								"avv",
 								"nahsh",
-								"hvv",
-								"bvg",
 								"insa",
 								"anachb",
 								"vao",
 								"sbb",
 								"dbnetz",
-								"rmv",
 								"pkp"
 							]
 						}
@@ -5366,17 +5366,17 @@
 							"enum": [
 								"db",
 								"oebb",
+								"bvg",
+								"hvv",
+								"rmv",
 								"sncb",
 								"avv",
 								"nahsh",
-								"hvv",
-								"bvg",
 								"insa",
 								"anachb",
 								"vao",
 								"sbb",
 								"dbnetz",
-								"rmv",
 								"pkp"
 							]
 						}
@@ -5424,17 +5424,17 @@
 							"enum": [
 								"db",
 								"oebb",
+								"bvg",
+								"hvv",
+								"rmv",
 								"sncb",
 								"avv",
 								"nahsh",
-								"hvv",
-								"bvg",
 								"insa",
 								"anachb",
 								"vao",
 								"sbb",
 								"dbnetz",
-								"rmv",
 								"pkp"
 							]
 						}
@@ -5471,17 +5471,17 @@
 							"enum": [
 								"db",
 								"oebb",
+								"bvg",
+								"hvv",
+								"rmv",
 								"sncb",
 								"avv",
 								"nahsh",
-								"hvv",
-								"bvg",
 								"insa",
 								"anachb",
 								"vao",
 								"sbb",
 								"dbnetz",
-								"rmv",
 								"pkp"
 							]
 						}
@@ -5527,17 +5527,17 @@
 							"enum": [
 								"db",
 								"oebb",
+								"bvg",
+								"hvv",
+								"rmv",
 								"sncb",
 								"avv",
 								"nahsh",
-								"hvv",
-								"bvg",
 								"insa",
 								"anachb",
 								"vao",
 								"sbb",
 								"dbnetz",
-								"rmv",
 								"pkp"
 							]
 						}
@@ -5583,17 +5583,17 @@
 							"enum": [
 								"db",
 								"oebb",
+								"bvg",
+								"hvv",
+								"rmv",
 								"sncb",
 								"avv",
 								"nahsh",
-								"hvv",
-								"bvg",
 								"insa",
 								"anachb",
 								"vao",
 								"sbb",
 								"dbnetz",
-								"rmv",
 								"pkp"
 							]
 						}
@@ -5648,17 +5648,17 @@
 							"enum": [
 								"db",
 								"oebb",
+								"bvg",
+								"hvv",
+								"rmv",
 								"sncb",
 								"avv",
 								"nahsh",
-								"hvv",
-								"bvg",
 								"insa",
 								"anachb",
 								"vao",
 								"sbb",
 								"dbnetz",
-								"rmv",
 								"pkp"
 							]
 						}

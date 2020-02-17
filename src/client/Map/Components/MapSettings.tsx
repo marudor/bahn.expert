@@ -105,7 +105,11 @@ const MapSettings = () => {
                 onChange={handleProfileChange}
               >
                 {Object.keys(AllowedHafasProfile).map(allowedProfile => (
-                  <option key={allowedProfile} value={allowedProfile}>
+                  <option
+                    key={allowedProfile}
+                    // @ts-ignore
+                    value={AllowedHafasProfile[allowedProfile]}
+                  >
                     {allowedProfile}
                   </option>
                 ))}

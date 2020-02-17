@@ -2,12 +2,22 @@ import '@testing-library/cypress/add-commands';
 
 Cypress.Commands.add(
   'navigateToStation',
-  (value: string, isStubbed: boolean = true) => {
-    cy.server();
+  (
+    value: string,
+    {
+      isStubbed = true,
+      findPrefix,
+    }: {
+      isStubbed?: boolean;
+      findPrefix?: string;
+    } = {}
+  ) => {
     if (!isStubbed) {
       cy.route(/\/api\/iris\/v1\/abfahrten.*/).as('irisAbfahrten');
     }
-    cy.findByTestId('stationSearchInput').type(value);
+    const baseFind = findPrefix ? cy.findByTestId(findPrefix) : cy;
+
+    baseFind.findByTestId('stationSearchInput').type(value);
     cy.findAllByTestId('stationSearchMenuItem')
       .first()
       .click();
@@ -24,7 +34,6 @@ Cypress.Commands.add('closeModal', () => {
 Cypress.Commands.add(
   'mockFrankfurt',
   ({ lookbehind = 0, lookahead = 150, delay = 0 } = {}) => {
-    cy.server();
     cy.route({
       url: `/api/iris/v1/abfahrten/8098105?lookahead=${lookahead}&lookbehind=${lookbehind}`,
       delay,
@@ -39,7 +48,6 @@ Cypress.Commands.add(
 Cypress.Commands.add(
   'mockHamburg',
   ({ lookbehind = 0, lookahead = 150, delay = 0 } = {}) => {
-    cy.server();
     cy.route({
       url: `/api/iris/v1/abfahrten/8002549?lookahead=${lookahead}&lookbehind=${lookbehind}`,
       delay,
