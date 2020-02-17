@@ -292,6 +292,7 @@ export class HafasController extends Controller {
     return TripSearch(body, profile, ctx.query.raw);
   }
 
+  @Deprecated()
   @Post('/route')
   @Tags('HAFAS V1')
   route(

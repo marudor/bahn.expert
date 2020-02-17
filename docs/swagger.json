@@ -5516,6 +5516,7 @@
 				"tags": [
 					"HAFAS V1"
 				],
+				"deprecated": true,
 				"security": [],
 				"parameters": [
 					{
