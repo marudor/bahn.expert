@@ -10,7 +10,7 @@ import {
 } from 'date-fns';
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { DateTimePicker } from '@material-ui/pickers';
-import { getHafasStationFromAPI } from 'Common/service/stationSearch';
+import { getHafasStationFromAPI } from 'shared/service/stationSearch';
 import { getRouteLink } from 'Routing/util';
 import { RoutingFav } from 'Routing/container/RoutingFavContainer';
 import { Station } from 'types/station';
