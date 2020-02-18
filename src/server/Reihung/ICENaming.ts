@@ -3,6 +3,7 @@
 const naming = {
   4712: 'Dillingen a.d. Donau',
   4601: 'Europa/Europe',
+  4602: 'Euregio Maas-Rhein',
   1183: 'Oberursel (Taunus)',
   363: 'Weilheim i. OB',
   187: 'Mühldorf a. Inn',
