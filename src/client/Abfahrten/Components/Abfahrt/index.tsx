@@ -13,18 +13,20 @@ const Abfahrt = ({ abfahrt }: Props) => {
   const sameTrainWing = useMemo(
     () =>
       Boolean(
-        wings &&
-          wings.every(
-            w =>
-              w.train.number.endsWith(abfahrt.train.number) &&
-              w.train.type !== abfahrt.train.type
-          )
+        wings?.every(
+          w =>
+            w.train.number.endsWith(abfahrt.train.number) &&
+            w.train.type !== abfahrt.train.type
+        )
       ),
     [abfahrt.train.number, abfahrt.train.type, wings]
   );
 
   const wingNumbers = useMemo(
-    () => wings?.map(w => w.train.number).concat([abfahrt.train.number]),
+    () =>
+      wings?.length
+        ? wings.map(w => w.train.number).concat([abfahrt.train.number])
+        : undefined,
     [abfahrt.train.number, wings]
   );
 
@@ -34,7 +36,7 @@ const Abfahrt = ({ abfahrt }: Props) => {
         abfahrt={abfahrt}
         sameTrainWing={sameTrainWing}
         wingNumbers={wingNumbers}
-        wingStart={Boolean(wings)}
+        wingStart={Boolean(wingNumbers)}
       />
       {wings &&
         wings.map((w, index) => (
