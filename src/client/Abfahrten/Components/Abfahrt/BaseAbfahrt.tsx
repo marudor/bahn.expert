@@ -15,12 +15,15 @@ const LazyReihung = loadable(() => import('Common/Components/Reihung'));
 export interface Props {
   abfahrt: Abfahrt;
   sameTrainWing: boolean;
-  wing: boolean;
+  wingNumbers?: string[];
   wingEnd?: boolean;
   wingStart?: boolean;
 }
 
-const BaseAbfahrt = ({ abfahrt, wing, wingEnd, wingStart }: Props) => {
+const BaseAbfahrt = ({ abfahrt, wingNumbers, wingEnd, wingStart }: Props) => {
+  const wingNumbersWithoutSelf = wingNumbers?.filter(
+    wn => wn !== abfahrt.train.number
+  );
   const classes = useStyles();
   const {
     setSelectedDetail,
@@ -42,7 +45,7 @@ const BaseAbfahrt = ({ abfahrt, wing, wingEnd, wingStart }: Props) => {
         onClick={handleClick}
         className={classes.main}
       >
-        {wing && (
+        {wingNumbers && (
           <span
             className={cc(classes.wing, {
               [classes.wingStart]: wingStart,
@@ -71,6 +74,7 @@ const BaseAbfahrt = ({ abfahrt, wing, wingEnd, wingStart }: Props) => {
                 trainNumber={abfahrt.train.number}
                 currentStation={abfahrt.currentStation.id}
                 scheduledDeparture={abfahrt.departure.scheduledTime}
+                fallbackTrainNumbers={wingNumbersWithoutSelf}
               />
             )}
           {detail && (
@@ -85,12 +89,19 @@ const BaseAbfahrt = ({ abfahrt, wing, wingEnd, wingStart }: Props) => {
     ),
     [
       abfahrt,
-      classes,
+      classes.entry,
+      classes.entryMain,
+      classes.main,
+      classes.scrollMarker,
+      classes.wing,
+      classes.wingEnd,
+      classes.wingStart,
       detail,
       handleClick,
       lineAndNumber,
-      wing,
       wingEnd,
+      wingNumbers,
+      wingNumbersWithoutSelf,
       wingStart,
     ]
   );

@@ -25,7 +25,7 @@ describe('Abfahrten Settings', () => {
       );
       cy.route(
         '/api/reihung/v1/wagen/371/1565182200000',
-        'fixture:reihungICE1.json'
+        'fixture:sequence/genericICE1.json'
       );
       cy.findByTestId('abfahrtICE371').click();
       cy.openSettings();
