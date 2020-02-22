@@ -31,31 +31,70 @@ Cypress.Commands.add('closeModal', () => {
   cy.get('.MuiBackdrop-root').click({ force: true });
 });
 
+function mockStation({
+  lookbehind,
+  lookahead,
+  delay,
+  name,
+  fixture,
+  id,
+}: {
+  lookbehind: number;
+  lookahead: number;
+  delay: number;
+  name: string;
+  fixture: string;
+  id: string;
+}) {
+  cy.route({
+    url: `/api/iris/v1/abfahrten/${id}?lookahead=${lookahead}&lookbehind=${lookbehind}`,
+    delay,
+    response: `fixture:abfahrten${fixture}.json`,
+  }).route(
+    `/api/station/v1/search/${name}?type=default`,
+    `fixture:stationSearch${fixture}.json`
+  );
+}
+
 Cypress.Commands.add(
   'mockFrankfurt',
   ({ lookbehind = 0, lookahead = 150, delay = 0 } = {}) => {
-    cy.route({
-      url: `/api/iris/v1/abfahrten/8098105?lookahead=${lookahead}&lookbehind=${lookbehind}`,
+    mockStation({
+      lookahead,
+      lookbehind,
       delay,
-      response: 'fixture:abfahrtenFrankfurtHbf.json',
-    }).route(
-      '/api/station/v1/search/Frankfurt (Main) Hbf?type=default',
-      'fixture:stationSearchFrankfurtHbf.json'
-    );
+      name: 'Frankfurt (Main) Hbf',
+      id: '8098105',
+      fixture: 'FrankfurtHbf',
+    });
   }
 );
 
 Cypress.Commands.add(
   'mockHamburg',
   ({ lookbehind = 0, lookahead = 150, delay = 0 } = {}) => {
-    cy.route({
-      url: `/api/iris/v1/abfahrten/8002549?lookahead=${lookahead}&lookbehind=${lookbehind}`,
+    mockStation({
+      lookahead,
+      lookbehind,
       delay,
-      response: 'fixture:abfahrtenHamburgHbf.json',
-    }).route(
-      '/api/station/v1/search/Hamburg Hbf?type=default',
-      'fixture:stationSearchHamburgHbf.json'
-    );
+      name: 'Hamburg Hbf',
+      fixture: 'HamburgHbf',
+      id: '8002549',
+    });
+  }
+);
+
+Cypress.Commands.add(
+  'mockHannover',
+  ({ lookbehind = 0, lookahead = 150, delay = 0 } = {}) => {
+    mockStation({
+      lookahead,
+      lookbehind,
+      delay,
+      name: 'Hannover Hbf',
+      fixture: 'HannoverHbf',
+      id: '8000152',
+    });
   }
 );
 

@@ -23,6 +23,7 @@ declare global {
       closeModal(): void;
       mockFrankfurt(options?: MockOptions): void;
       mockHamburg(options?: MockOptions): void;
+      mockHannover(options?: MockOptions): void;
       getAbfahrtenConfig(): Cypress.Chainable<AbfahrtenConfig>;
       openSettings(): void;
     }

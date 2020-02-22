@@ -11,6 +11,7 @@ import useStyles from './index.style';
 interface Props {
   className?: string;
   trainNumber: string;
+  fallbackTrainNumbers?: string[];
   currentStation: string;
   scheduledDeparture: number;
   loadHidden?: boolean;
@@ -24,6 +25,7 @@ const Reihung = (props: Props) => {
     scheduledDeparture,
     trainNumber,
     loadHidden,
+    fallbackTrainNumbers,
   } = props;
   const { reihungen, getReihung } = ReihungContainer.useContainer();
   const {
@@ -40,9 +42,21 @@ const Reihung = (props: Props) => {
 
   useEffect(() => {
     if (reihung === undefined) {
-      getReihung(trainNumber, currentStation, scheduledDeparture);
+      getReihung(
+        trainNumber,
+        currentStation,
+        scheduledDeparture,
+        fallbackTrainNumbers
+      );
     }
-  }, [currentStation, getReihung, reihung, scheduledDeparture, trainNumber]);
+  }, [
+    currentStation,
+    fallbackTrainNumbers,
+    getReihung,
+    reihung,
+    scheduledDeparture,
+    trainNumber,
+  ]);
 
   if (reihung === null || (!reihung && loadHidden)) {
     return null;

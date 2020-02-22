@@ -1,9 +1,15 @@
 name: node tests
 
-on: push
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 
 env:
-  CI: "true"
+  CI: 'true'
 
 jobs:
   commitlint:
@@ -68,7 +74,7 @@ jobs:
           install: false
           record: true
           parallel: true
-          ci-build-id: "${{ github.sha }}-${{ github.workflow }}-${{ github.event_name }}"
+          ci-build-id: '${{ github.sha }}-${{ github.workflow }}-${{ github.event_name }}'
           build: yarn build
           start: node testDist/server/server/index.js
           wait-on: http://localhost:9042
@@ -116,5 +122,5 @@ jobs:
       - name: coveralls
         uses: coverallsapp/github-action@master
         with:
-          github-token: ${{ secrets.github_token }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: ./reports/lcov.info
