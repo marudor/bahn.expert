@@ -23,12 +23,17 @@ const Abfahrt = ({ abfahrt }: Props) => {
     [abfahrt.train.number, abfahrt.train.type, wings]
   );
 
+  const wingNumbers = useMemo(
+    () => wings?.map(w => w.train.number).concat([abfahrt.train.number]),
+    [abfahrt.train.number, wings]
+  );
+
   return (
     <>
       <BaseAbfahrt
         abfahrt={abfahrt}
         sameTrainWing={sameTrainWing}
-        wing={Boolean(wings && wings.length)}
+        wingNumbers={wingNumbers}
         wingStart={Boolean(wings)}
       />
       {wings &&
@@ -37,7 +42,7 @@ const Abfahrt = ({ abfahrt }: Props) => {
             sameTrainWing={sameTrainWing}
             abfahrt={w}
             key={w.rawId}
-            wing
+            wingNumbers={wingNumbers}
             wingEnd={wings.length === index + 1}
           />
         ))}

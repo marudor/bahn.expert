@@ -3,6 +3,16 @@ import { Formation } from 'types/reihung';
 import { useState } from 'react';
 import axios from 'axios';
 
+function fetchSequence(
+  trainNumber: string,
+  scheduledDeparture: number
+): Promise<Formation | undefined> {
+  return axios
+    .get(`/api/reihung/v1/wagen/${trainNumber}/${scheduledDeparture}`)
+    .then(r => r.data)
+    .catch(() => undefined);
+}
+
 function useReihung() {
   const [reihungen, setReihungen] = useState<{
     [key: string]: undefined | null | Formation;
@@ -10,20 +20,23 @@ function useReihung() {
   const getReihung = async (
     trainNumber: string,
     currentStation: string,
-    scheduledDeparture: number
+    scheduledDeparture: number,
+    fallbackTrainNumbers: string[] = []
   ) => {
     let reihung: Formation | undefined | null;
 
-    try {
-      reihung = (
-        await axios.get(
-          `/api/reihung/v1/wagen/${trainNumber}/${scheduledDeparture}`
-        )
-      ).data;
-    } catch (e) {
-      reihung = null;
+    reihung = await fetchSequence(trainNumber, scheduledDeparture);
+    if (!reihung) {
+      for (const fallbackTrainNumber of fallbackTrainNumbers) {
+        // eslint-disable-next-line no-await-in-loop
+        reihung = await fetchSequence(fallbackTrainNumber, scheduledDeparture);
+        if (reihung) break;
+      }
     }
 
+    if (!reihung) {
+      reihung = null;
+    }
     const key = trainNumber + currentStation + scheduledDeparture;
 
     setReihungen(oldReihungen => ({
