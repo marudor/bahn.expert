@@ -36,7 +36,11 @@ const HimIrisMessage = ({ message, today = new Date().getDate() }: Props) => {
         <DialogTitle>
           {formattedDate}: {message.head}
         </DialogTitle>
-        <DialogContent>{message.text}</DialogContent>
+        <DialogContent
+          dangerouslySetInnerHTML={{
+            __html: message.text,
+          }}
+        />
       </Dialog>
     </div>
   );
