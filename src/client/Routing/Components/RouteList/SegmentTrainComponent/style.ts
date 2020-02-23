@@ -8,11 +8,11 @@ export default makeStyles({
   trainMargin: {
     flex: 0.7,
     marginRight: '.5em',
+    display: 'flex',
+    flexDirection: 'column',
   },
   destination: {
     flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
   },
   reihung: {
     fontSize: '0.5em',

@@ -26,10 +26,12 @@ const JnySegmentTrain = ({
     <div onClick={onTrainClick} className={className}>
       <div className={classes.trainInfo}>
         <span className={classes.trainMargin}>
-          {segment.train.name}{' '}
-          {segment.plannedSequence && (
-            <PlannedType plannedSequence={segment.plannedSequence} />
-          )}
+          <span>
+            {segment.train.name}{' '}
+            {segment.plannedSequence && (
+              <PlannedType plannedSequence={segment.plannedSequence} />
+            )}
+          </span>
         </span>
         <span className={cc(classes.trainMargin, classes.destination)}>
           {segment.finalDestination}
