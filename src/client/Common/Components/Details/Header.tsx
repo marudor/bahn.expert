@@ -1,4 +1,5 @@
 import { format } from 'date-fns';
+import { Tooltip } from '@material-ui/core';
 import BaseHeader from '../BaseHeader';
 import DetailsContext from './DetailsContext';
 import PlannedType from 'Common/Components/PlannedType';
@@ -25,6 +26,13 @@ const Header = ({ train }: Props) => {
         </span>
         {details && (
           <>
+            {details.train.operator && (
+              <Tooltip title={details.train.operator.name}>
+                <span className={classes.operator}>
+                  {details.train.operator.name}
+                </span>
+              </Tooltip>
+            )}
             <span className={classes.date}>
               {format(details.departure.time, 'dd.MM.yyyy')}
             </span>
