@@ -10,10 +10,9 @@ import {
   WagenreihungStation,
 } from 'types/reihung';
 import { getAbfahrten } from '../Abfahrten';
-import { getWRLink, hasWR, WRMapEntries } from 'server/Reihung/hasWR';
+import { getWRLink, hasWR } from 'server/Reihung/hasWR';
 import { groupBy, maxBy, minBy } from 'lodash';
 import { isRedesignByTZ, isRedesignByUIC } from 'server/Reihung/tzInfo';
-import { parse } from 'date-fns';
 import axios from 'axios';
 import getBR from 'server/Reihung/getBR';
 import ICENaming from 'server/Reihung/ICENaming';
@@ -71,13 +70,9 @@ const getCountry = (fahrzeuge: Fahrzeug[], fahrzeugTypes: string[]) => {
   }
 };
 
-const specificBR = (
-  fahrzeuge: Fahrzeug[],
-  fahrzeugTypes: string[],
-  formation: Formation
-): BRInfo => {
+const specificBR = (fahrzeuge: Fahrzeug[], formation: Formation): BRInfo => {
   for (const f of fahrzeuge) {
-    const br = getBR(f.fahrzeugnummer, fahrzeugTypes);
+    const br = getBR(f.fahrzeugnummer);
 
     if (br) return br;
   }
@@ -389,7 +384,7 @@ export async function wagenreihung(trainNumber: string, date: number) {
     if (['IC', 'EC', 'ICE', 'ECE'].includes(enrichedFormation.zuggattung)) {
       const gruppenFahrzeugTypes = g.allFahrzeug.map(f => f.fahrzeugtyp);
 
-      g.br = specificBR(g.allFahrzeug, gruppenFahrzeugTypes, enrichedFormation);
+      g.br = specificBR(g.allFahrzeug, enrichedFormation);
       if (g.br) {
         g.br.country = getCountry(g.allFahrzeug, gruppenFahrzeugTypes);
         g.br.showBRInfo = Boolean(
@@ -510,30 +505,3 @@ export async function wagenReihungMonitoring() {
     }
   }
 }
-
-/**
- *
- * @param TZNumber only the number
- */
-export const WRForTZ = async (TZNumber: string) => {
-  for (const [number, times] of WRMapEntries()) {
-    // eslint-disable-next-line no-continue
-    if (number.length > 4) continue;
-    try {
-      // eslint-disable-next-line no-await-in-loop
-      const WR = await wagenreihung(
-        number,
-        parse(times[0], 'yyyyMMddHHmm', Date.now()).getTime()
-      );
-
-      if (
-        WR.allFahrzeuggruppe.some(g =>
-          g.fahrzeuggruppebezeichnung.endsWith(TZNumber)
-        )
-      ) {
-        return WR;
-      }
-      // eslint-disable-next-line no-empty
-    } catch {}
-  }
-};
