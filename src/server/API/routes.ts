@@ -2152,6 +2152,26 @@ export function RegisterRoutes(router: KoaRouter) {
       return promiseHandler(controller, promise, context, next);
     });
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  router.get('/api/reihung/v1/forNumber/:number',
+    async (context: any, next: any) => {
+      const args = {
+        number: { "in": "path", "name": "number", "required": true, "dataType": "string" },
+      };
+
+      let validatedArgs: any[] = [];
+      try {
+        validatedArgs = getValidatedArgs(args, context);
+      } catch (error) {
+        context.status = error.status;
+        context.throw(error.status, JSON.stringify({ fields: error.fields }));
+      }
+
+      const controller = new ReihungControllerV1();
+
+      const promise = controller.forNumber.apply(controller, validatedArgs as any);
+      return promiseHandler(controller, promise, context, next);
+    });
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   router.get('/api/station/v1/search/:searchTerm',
     async (context: any, next: any) => {
       const args = {
