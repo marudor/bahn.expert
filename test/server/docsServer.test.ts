@@ -1,3 +1,4 @@
+/* eslint-disable jest/expect-expect */
 import createDocsServer from 'server/docsServer';
 import request from 'supertest';
 

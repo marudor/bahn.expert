@@ -2,7 +2,7 @@ import { CheckInType } from 'Common/config';
 import { parse } from 'date-fns';
 import { render } from 'testHelper';
 import CheckInLink from 'Common/Components/CheckInLink';
-import lolex, { InstalledClock } from 'lolex';
+import fakeTimers, { InstalledClock } from '@sinonjs/fake-timers';
 import MockAbfahrt from 'Test/client/__fixtures__/abfahrt.json';
 
 describe('CheckInLink', () => {
@@ -10,7 +10,7 @@ describe('CheckInLink', () => {
     let clock: InstalledClock;
 
     beforeAll(() => {
-      clock = lolex.install();
+      clock = fakeTimers.install();
     });
     afterEach(() => {
       clock.reset();
@@ -36,7 +36,7 @@ describe('CheckInLink', () => {
         }
       );
 
-      getByTestId('travellynxlink');
+      expect(getByTestId('travellynxlink')).toBeInTheDocument();
     });
     it('Renders Travellynx if departure in 20 Minutes and arrival not existant', () => {
       clock.setSystemTime(parse('22.07.2019 14:19', 'dd.MM.yyyy HH:mm', 0));
@@ -55,7 +55,7 @@ describe('CheckInLink', () => {
         }
       );
 
-      getByTestId('travellynxlink');
+      expect(getByTestId('travellynxlink')).toBeInTheDocument();
     });
     it('Renders no link if arrival >30 Minutes away', () => {
       clock.setSystemTime(parse('22.07.2019 14:08', 'dd.MM.yyyy HH:mm', 0));
@@ -97,7 +97,7 @@ describe('CheckInLink', () => {
         }
       );
 
-      getByTestId('travellynxlink');
+      expect(getByTestId('travellynxlink')).toBeInTheDocument();
     });
   });
 

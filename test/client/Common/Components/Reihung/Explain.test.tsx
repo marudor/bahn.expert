@@ -13,14 +13,14 @@ describe('Explain', () => {
   it('ensures BahnComfort exists', () => {
     const { getByTestId } = openLegende();
 
-    getByTestId('bahnComfort');
+    expect(getByTestId('bahnComfort')).toBeInTheDocument();
   });
 
   Object.keys(iconExplanation).forEach(icon => {
     it(`ensures ${icon} exists`, () => {
       const { getByTestId } = openLegende();
 
-      getByTestId(icon);
+      expect(getByTestId(icon)).toBeInTheDocument();
     });
   });
 });
