@@ -1,7 +1,7 @@
 import { Controller, Get, Hidden, Route, SuccessResponse, Tags } from 'tsoa';
 import { Formation, WagenreihungStation } from 'types/reihung';
 import { wagenreihung, wagenreihungStation } from 'server/Reihung';
-import { WRForTZ } from 'server/Reihung';
+import { WRForNumber, WRForTZ } from 'server/Reihung/hasWR';
 import ICENaming from 'server/Reihung/ICENaming';
 
 @Route('/reihung/v1')
@@ -44,5 +44,11 @@ export class ReihungControllerV1 extends Controller {
   @Get('/forTZ/{tz}')
   forTZ(tz: string) {
     return WRForTZ(tz);
+  }
+
+  @Hidden()
+  @Get('/forNumber/{number}')
+  forNumber(number: string) {
+    return WRForNumber(number);
   }
 }

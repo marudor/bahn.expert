@@ -1,5 +1,6 @@
-import { format } from 'date-fns';
+import { format, parse } from 'date-fns';
 import { utcToZonedTime } from 'date-fns-tz';
+import { wagenreihung } from 'server/Reihung';
 import axios from 'axios';
 
 let WRMap: Map<string, string[]> = new Map();
@@ -51,4 +52,47 @@ export const hasWR = (trainNumber?: string, date?: number) => {
   return date ? WRDates?.includes(formatDate(date)) : Boolean(WRDates);
 };
 
-export const WRMapEntries = () => WRMap.entries();
+/**
+ *
+ * @param TZNumber only the number
+ */
+export const WRForTZ = async (TZNumber: string) => {
+  for (const [number, times] of WRMap.entries()) {
+    // eslint-disable-next-line no-continue
+    if (number.length > 4) continue;
+    const parsedNumber = Number.parseInt(number, 10);
+
+    // eslint-disable-next-line no-continue
+    if (parsedNumber > 3000 && parsedNumber < 9000) continue;
+    try {
+      // eslint-disable-next-line no-console
+      console.log(`Check if ${TZNumber} is today ${number}`);
+      // eslint-disable-next-line no-await-in-loop
+      const WR = await wagenreihung(
+        number,
+        parse(times[0], 'yyyyMMddHHmm', Date.now()).getTime()
+      );
+
+      if (WR.allFahrzeuggruppe.some(g => g.tzn === TZNumber)) {
+        // eslint-disable-next-line no-console
+        console.log(`TZ ${TZNumber} today as ${number}`);
+
+        return WR;
+      }
+      // eslint-disable-next-line no-empty
+    } catch {}
+  }
+};
+
+export const WRForNumber = async (trainNumber: string) => {
+  const WRDates = WRMap.get(trainNumber);
+
+  if (!WRDates) return;
+
+  const wr = await wagenreihung(
+    trainNumber,
+    parse(WRDates[0], 'yyyyMMddHHmm', Date.now()).getTime()
+  );
+
+  return wr;
+};
