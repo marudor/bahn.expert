@@ -1,6 +1,7 @@
 {
   "exclude": ["cypress", "src/app"],
   "compilerOptions": {
+    "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "jsx": "preserve",
