@@ -26,9 +26,9 @@ describe('AuslastungsDisplay', () => {
   });
 
   it('Unbekannt / Hoch', () => {
-    // @ts-ignore
     const { container } = render(AuslastungsDisplay, {
       auslastung: {
+        // @ts-ignore
         first: 'something',
         second: AuslastungsValue.Hoch,
       },

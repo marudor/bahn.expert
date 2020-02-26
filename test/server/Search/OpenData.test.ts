@@ -12,10 +12,12 @@ describe('DBNavigator Search', () => {
       })
       .reply(200, exampleRespone);
 
-    await testHamburgSearch(OpenDataSearch, {
-      includeDS100: true,
-      includeFavendoId: true,
-    });
+    await expect(
+      testHamburgSearch(OpenDataSearch, {
+        includeDS100: true,
+        includeFavendoId: true,
+      })
+    ).toResolve();
   });
 
   it('Should use only one letter for 2 letter inputs (for some weird reason', async () => {
@@ -26,10 +28,10 @@ describe('DBNavigator Search', () => {
       })
       .reply(200, exampleRespone);
 
-    await OpenDataSearch('Ha');
+    await expect(OpenDataSearch('Ha')).toResolve();
   });
 
   it('Throws exception on error', async () => {
-    await expect(OpenDataSearch('Hamburg')).rejects.toBeTruthy();
+    await expect(OpenDataSearch('Hamburg')).toReject();
   });
 });

@@ -1,3 +1,4 @@
+/* eslint-disable jest/expect-expect */
 import { createTestServer } from 'testHelper';
 import Nock from 'nock';
 import request from 'supertest';

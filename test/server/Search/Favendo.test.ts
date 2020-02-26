@@ -1,3 +1,4 @@
+/* eslint-disable jest/expect-expect */
 import { testHamburgSearch } from './common';
 import exampleRespone from './__fixtures__/Favendo.example';
 import FavendoSearch from 'server/Search/Favendo';
@@ -18,6 +19,6 @@ describe('Favendo Search', () => {
   });
 
   it('Throws exception on error', async () => {
-    await expect(FavendoSearch('Hamburg')).rejects.toBeTruthy();
+    await expect(FavendoSearch('Hamburg')).toReject();
   });
 });
