@@ -1,18 +1,18 @@
 /* eslint no-sync: 0 */
 import { mockFchg, mockLageplan, mockSearch } from './mockHelper';
 import { noncdAxios } from 'server/Abfahrten/helper';
+import fakeTimers from '@sinonjs/fake-timers';
 import fs from 'fs';
-import lolex from 'lolex';
 import path from 'path';
 import Timetable from 'server/Abfahrten/Timetable';
 
 jest.mock('node-cache');
 
 describe('onlyPlan', () => {
-  let clock: ReturnType<typeof lolex.install>;
+  let clock: ReturnType<typeof fakeTimers.install>;
 
   beforeAll(() => {
-    clock = lolex.install({
+    clock = fakeTimers.install({
       shouldAdvanceTime: true,
       now: 1552824000000,
     });

@@ -40,7 +40,7 @@ describe('Auslastung', () => {
 
     const { getByTestId } = renderAuslastung();
 
-    getByTestId('loading');
+    expect(getByTestId('loading')).toBeInTheDocument();
     await wait(() => getByTestId('auslastungDisplay'));
   });
 });

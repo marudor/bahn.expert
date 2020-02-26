@@ -18,7 +18,7 @@ describe('Zugsuche', () => {
   it('renders children', () => {
     const { getByTestId } = renderZugsuche();
 
-    getByTestId('dummytoggle');
+    expect(getByTestId('dummytoggle')).toBeInTheDocument();
   });
 
   it('closed by default', () => {
@@ -31,7 +31,7 @@ describe('Zugsuche', () => {
     const { getByTestId } = renderZugsuche();
 
     fireEvent.click(getByTestId('dummytoggle'));
-    getByTestId('Zugsuche');
+    expect(getByTestId('Zugsuche')).toBeInTheDocument();
   });
 
   it('entering nothing & submit keeps it open', async () => {
@@ -40,7 +40,7 @@ describe('Zugsuche', () => {
     fireEvent.click(getByTestId('dummytoggle'));
     fireEvent.click(getByTestId('ZugsucheSubmit'));
     await new Promise(resolve => setTimeout(resolve, 200));
-    getByTestId('Zugsuche');
+    expect(getByTestId('Zugsuche')).toBeInTheDocument();
   });
 
   describe('Uses Search', () => {

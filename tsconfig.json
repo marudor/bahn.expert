@@ -28,6 +28,6 @@
       "testHelper": ["../test/testHelper"],
       "types/*": ["types/*"]
     },
-    "types": ["jest", "@testing-library/jest-dom"]
+    "types": ["jest", "@testing-library/jest-dom", "jest-extended"]
   }
 }

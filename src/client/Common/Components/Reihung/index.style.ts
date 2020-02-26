@@ -65,7 +65,7 @@ export default makeStyles(theme => ({
     marginTop: '1.3em',
     height: '100%',
   },
-  richtung: ({ reihung }) => ({
+  richtung: ({ reihung }: { reihung: Formation | null | undefined }) => ({
     backgroundColor: theme.palette.text.primary,
     width: '50%',
     height: 2,

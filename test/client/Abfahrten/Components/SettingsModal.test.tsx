@@ -27,6 +27,6 @@ describe('SettingsModal', () => {
     const { getByTestId } = renderSetup();
 
     fireEvent.click(getByTestId('open'));
-    getByTestId('settingsContent');
+    expect(getByTestId('settingsContent')).toBeInTheDocument();
   });
 });
