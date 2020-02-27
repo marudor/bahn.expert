@@ -55,10 +55,7 @@ const StationSearch = ({
       navigator.geolocation.getCurrentPosition(
         p => {
           loadOptions(p.coords);
-          if (selectRef.current) {
-            // @ts-ignore
-            selectRef.current.openMenu();
-          }
+          selectRef.current?.openMenu();
         },
         (_e: any) => {
           // ignore for now
@@ -70,9 +67,7 @@ const StationSearch = ({
 
   const downshiftOnChange = useCallback(
     (station: Station | null) => {
-      if (inputRef.current) {
-        inputRef.current.blur();
-      }
+      inputRef.current?.blur();
       onChange(station || undefined);
     },
     [onChange]

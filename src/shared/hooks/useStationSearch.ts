@@ -1,4 +1,5 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
+import { ControllerStateAndHelpers } from 'downshift';
 import {
   getHafasStationFromAPI,
   getHafasStationFromCoordinates,
@@ -49,7 +50,7 @@ export default ({
     },
     [maxSuggestions, profile, searchType]
   );
-  const selectRef = useRef();
+  const selectRef = useRef<ControllerStateAndHelpers<Station>>();
 
   return {
     loadOptions,
