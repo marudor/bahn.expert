@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches:
+      - master
 
 env:
   CI: "true"
@@ -12,12 +15,12 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: docker
-      uses: elgohr/Publish-Docker-Github-Action@master
-      with:
-        name: marudor/bahnhofsabfahrten/standalone:${{ github.sha }}
-        username: marudor
-        password: ${{ secrets.GITHUB_TOKEN }}
-        registry: docker.pkg.github.com
-        snapshot: "true"
+      - uses: actions/checkout@v1
+      - name: docker
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: marudor/bahnhofsabfahrten/standalone:${{ github.sha }}
+          username: marudor
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          snapshot: "true"

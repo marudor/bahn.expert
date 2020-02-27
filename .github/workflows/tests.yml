@@ -4,12 +4,12 @@ on:
   push:
     branches:
       - master
-  pull_request:
-    branches:
-      - master
+  # pull_request:
+  #   branches:
+  #     - master
 
 env:
-  CI: 'true'
+  CI: "true"
 
 jobs:
   commitlint:
@@ -74,7 +74,7 @@ jobs:
           install: false
           record: true
           parallel: true
-          ci-build-id: '${{ github.sha }}-${{ github.workflow }}-${{ github.event_name }}'
+          ci-build-id: "${{ github.sha }}-${{ github.workflow }}-${{ github.event_name }}"
           build: yarn build
           start: node testDist/server/server/index.js
           wait-on: http://localhost:9042
