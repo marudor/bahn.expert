@@ -57,8 +57,7 @@ const MapSettings = () => {
 
   const handleProfileChange = useCallback(
     (e: ChangeEvent<HTMLSelectElement>) => {
-      // @ts-ignore
-      setProfile(e.currentTarget.value);
+      setProfile(e.currentTarget.value as AllowedHafasProfile);
     },
     [setProfile]
   );

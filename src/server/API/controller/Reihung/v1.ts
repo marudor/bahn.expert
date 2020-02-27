@@ -36,8 +36,7 @@ export class ReihungControllerV1 extends Controller {
      */
     tz?: string
   ): Promise<string> {
-    // @ts-ignore
-    return Promise.resolve(ICENaming(tz));
+    return Promise.resolve(ICENaming(tz)!);
   }
 
   @Hidden()

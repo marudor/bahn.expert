@@ -336,8 +336,7 @@ export default class Timetable {
     }
 
     while (showing.length < maxParts && important.length) {
-      // @ts-ignore this is correct
-      const stop: Train = important.shift();
+      const stop = important.shift()!;
 
       if (!showing.includes(stop)) {
         showing.push(stop);
@@ -436,7 +435,6 @@ export default class Timetable {
 
     const ar = sNode.get<Element>('ar');
     const dp = sNode.get<Element>('dp');
-    // @ts-ignore this is correct
     const mArr: xmljs.Element[] = sNode.find(`${sNode.path()}//m`);
 
     if (!mArr) return;
