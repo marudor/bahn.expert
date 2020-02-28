@@ -17,7 +17,7 @@ const Header = ({ train }: Props) => {
 
   return (
     <BaseHeader>
-      <div className={classes.wrap}>
+      <div className={classes.wrap} data-testid="detailsHeader">
         <span className={classes.product}>
           {trainText}
           {details?.plannedSequence && (

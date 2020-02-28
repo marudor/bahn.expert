@@ -94,9 +94,6 @@ const getBabelConfig = type => {
   const configWithEnv = {
     ...config,
     env: {
-      testProduction: {
-        plugins: ['istanbul'],
-      },
       production: {
         compact: true,
         plugins: ['babel-plugin-jsx-remove-data-test-id'],

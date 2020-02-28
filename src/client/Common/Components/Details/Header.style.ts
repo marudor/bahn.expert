@@ -1,21 +1,14 @@
-import { CSSProperties } from '@material-ui/core/styles/withStyles';
 import { makeStyles } from '@material-ui/styles';
-
-const singleLine: CSSProperties = {
-  overflow: 'hidden',
-  maxWidth: '100%',
-  textOverflow: 'ellipsis',
-  whiteSpace: 'nowrap',
-};
+import { singleLineText } from 'client/util/cssUtils';
 
 export default makeStyles({
   product: {
     gridArea: 'p',
-    ...singleLine,
+    ...singleLineText,
   },
   date: {
     gridArea: 'd',
-    ...singleLine,
+    ...singleLineText,
   },
   arrow: {
     gridArea: 'a',
@@ -23,12 +16,13 @@ export default makeStyles({
   },
   operator: {
     gridArea: 'o',
-    ...singleLine,
+    ...singleLineText,
   },
   destination: {
     gridArea: 'g',
   },
   wrap: {
+    fontSize: '95%',
     width: '100%',
     display: 'grid',
     gridTemplateColumns: '1fr min-content 1fr',

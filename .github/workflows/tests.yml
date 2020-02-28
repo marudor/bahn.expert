@@ -33,7 +33,7 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ~/.cache/yarn
-          key: yarn-${{ runner.OS }}-build-${{ hashFiles('yarn.lock')}}
+          key: yarn-${{ runner.OS }}-cache-${{ hashFiles('yarn.lock')}}
       - name: install
         run: |
           yarn --frozen-lockfile  --prefer-offline
@@ -51,76 +51,32 @@ jobs:
       - name: types
         run: |
           yarn test:ts
-      - name: Upload jest coverage
-        uses: actions/upload-artifact@master
-        with:
-          name: jest-coverage
-          path: jest-coverage/coverage-final.json
   e2e:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        container: [1, 2, 3]
+        browser: [firefox, chrome]
     steps:
       - uses: actions/checkout@master
       - name: Use Node.js 13
         uses: actions/setup-node@master
         with:
           node-version: 13
-      - name: Install Cypress
-        uses: cypress-io/github-action@v1.16.1
-        with:
-          runTests: false
       - name: Run Cypress
         uses: cypress-io/github-action@v1.16.1
         with:
-          install: false
           record: true
           parallel: true
-          ci-build-id: '${{ github.sha }}-${{ github.workflow }}-${{ github.event_name }}'
           build: yarn build
+          group: ${{ matrix.browser }}
+          ci-build-id: '${{ github.sha }}-${{ github.workflow }}-${{ github.event_name }}'
           start: node testDist/server/server/index.js
           wait-on: http://localhost:9042
+          browser: ${{ matrix.browser}}
         env:
           CYPRESS_RECORD_KEY: 0af1d817-e8ac-4c69-ac15-c0da1e69182d
           BASE_URL: http://localhost:9042
           NODE_ENV: production
           TEST_RUN: 1
           TEST_ONLY: 1
-      - name: Upload cypress coverage
-        uses: actions/upload-artifact@master
-        with:
-          name: cypress-coverage
-          path: cypress-coverage/coverage-final.json
-  coverage:
-    needs: [node, e2e]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: Use Node.js 13
-        uses: actions/setup-node@master
-        with:
-          node-version: 13
-      - name: Cache yarn cache
-        uses: actions/cache@v1
-        with:
-          path: ~/.cache/yarn
-          key: yarn-${{ runner.OS }}-build-${{ hashFiles('yarn.lock')}}
-      - name: install
-        run: |
-          yarn --frozen-lockfile --prefer-offline
-        env:
-          CYPRESS_INSTALL_BINARY: 0
-      - name: Download jest coverage
-        uses: actions/download-artifact@master
-        with:
-          name: jest-coverage
-      - name: Download cypress coverage
-        uses: actions/download-artifact@master
-        with:
-          name: cypress-coverage
-      - name: merge coverage
-        run: |
-          yarn coverage:merge
-      - name: coveralls
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: ./reports/lcov.info

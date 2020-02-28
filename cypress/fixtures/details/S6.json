@@ -1,0 +1,696 @@
+{
+  "arrival": {
+    "platform": "12",
+    "scheduledTime": 1582890720000,
+    "time": 1582890720000
+  },
+  "departure": {
+    "scheduledTime": 1582884720000,
+    "time": 1582884720000,
+    "cancelled": true
+  },
+  "duration": 6000000,
+  "train": {
+    "name": "S 6",
+    "line": "6",
+    "admin": "800337",
+    "number": "30665",
+    "type": "S",
+    "operator": { "name": "DB Regio AG NRW", "icoX": 2 }
+  },
+  "segmentStart": { "title": "Köln-Nippes", "id": "8003372" },
+  "segmentDestination": { "title": "Essen Hbf", "id": "8000098" },
+  "stops": [
+    {
+      "station": {
+        "id": "8003372",
+        "title": "Köln-Nippes",
+        "coordinates": { "lng": 6.921829, "lat": 50.98447 }
+      },
+      "departure": {
+        "scheduledTime": 1582884720000,
+        "time": 1582884720000,
+        "cancelled": true
+      },
+      "cancelled": true,
+      "messages": [
+        { "type": "O", "code": "", "icoX": 3, "txtN": "Halt entfällt" },
+        {
+          "type": "D",
+          "code": "",
+          "icoX": 4,
+          "txtN": "Technische Störung an einem anderen Zug",
+          "sIdx": 0
+        }
+      ]
+    },
+    {
+      "station": {
+        "id": "8003392",
+        "title": "Köln Hansaring",
+        "coordinates": { "lng": 6.952698, "lat": 50.949124 }
+      },
+      "arrival": {
+        "scheduledTime": 1582884840000,
+        "time": 1582884840000,
+        "cancelled": true
+      },
+      "departure": {
+        "platform": "2",
+        "scheduledTime": 1582884900000,
+        "time": 1582884900000
+      }
+    },
+    {
+      "station": {
+        "id": "8000207",
+        "title": "Köln Hbf",
+        "coordinates": { "lng": 6.959197, "lat": 50.942823 }
+      },
+      "arrival": {
+        "platform": "10 A-B",
+        "scheduledTime": 1582884960000,
+        "time": 1582884960000
+      },
+      "departure": {
+        "platform": "10 A-B",
+        "scheduledTime": 1582885020000,
+        "time": 1582885020000
+      }
+    },
+    {
+      "station": {
+        "id": "8083368",
+        "title": "Köln Messe/Deutz Gl. 9-10",
+        "coordinates": { "lng": 6.974658, "lat": 50.941285 }
+      },
+      "arrival": {
+        "platform": "9",
+        "scheduledTime": 1582885140000,
+        "time": 1582885140000
+      },
+      "departure": {
+        "platform": "9",
+        "scheduledTime": 1582885200000,
+        "time": 1582885200000
+      }
+    },
+    {
+      "station": {
+        "id": "8003364",
+        "title": "Köln-Buchforst",
+        "coordinates": { "lng": 7.004359, "lat": 50.953484 }
+      },
+      "arrival": {
+        "platform": "1",
+        "scheduledTime": 1582885380000,
+        "time": 1582885380000
+      },
+      "departure": {
+        "platform": "1",
+        "scheduledTime": 1582885380000,
+        "time": 1582885380000
+      }
+    },
+    {
+      "station": {
+        "id": "8000209",
+        "title": "Köln-Mülheim",
+        "coordinates": { "lng": 7.013069, "lat": 50.957637 }
+      },
+      "arrival": {
+        "platform": "7",
+        "scheduledTime": 1582885560000,
+        "time": 1582885560000
+      },
+      "departure": {
+        "platform": "7",
+        "scheduledTime": 1582885620000,
+        "time": 1582885620000
+      }
+    },
+    {
+      "station": {
+        "id": "8003310",
+        "title": "Köln-Stammheim",
+        "coordinates": { "lng": 7.001986, "lat": 50.990025 }
+      },
+      "arrival": {
+        "platform": "1",
+        "scheduledTime": 1582885800000,
+        "time": 1582885800000
+      },
+      "departure": {
+        "platform": "1",
+        "scheduledTime": 1582885860000,
+        "time": 1582885860000
+      }
+    },
+    {
+      "station": {
+        "id": "8000832",
+        "title": "Leverkusen Chempark",
+        "coordinates": { "lng": 6.996655, "lat": 51.011401 }
+      },
+      "arrival": {
+        "platform": "1",
+        "scheduledTime": 1582885980000,
+        "time": 1582885980000
+      },
+      "departure": {
+        "platform": "1",
+        "scheduledTime": 1582886040000,
+        "time": 1582886040000
+      }
+    },
+    {
+      "station": {
+        "id": "8006713",
+        "title": "Leverkusen Mitte",
+        "coordinates": { "lng": 6.991504, "lat": 51.031456 }
+      },
+      "arrival": {
+        "platform": "1",
+        "scheduledTime": 1582886160000,
+        "time": 1582886160000
+      },
+      "departure": {
+        "platform": "1",
+        "scheduledTime": 1582886220000,
+        "time": 1582886220000
+      }
+    },
+    {
+      "station": {
+        "id": "8003668",
+        "title": "Leverkusen-Küppersteg",
+        "coordinates": { "lng": 6.988412, "lat": 51.045021 }
+      },
+      "arrival": {
+        "platform": "1",
+        "scheduledTime": 1582886340000,
+        "time": 1582886340000
+      },
+      "departure": {
+        "platform": "1",
+        "scheduledTime": 1582886340000,
+        "time": 1582886340000
+      }
+    },
+    {
+      "station": {
+        "id": "8003672",
+        "title": "Leverkusen-Rheindorf",
+        "coordinates": { "lng": 6.96353, "lat": 51.064258 }
+      },
+      "arrival": {
+        "platform": "1",
+        "scheduledTime": 1582886520000,
+        "time": 1582886520000
+      },
+      "departure": {
+        "platform": "1",
+        "scheduledTime": 1582886520000,
+        "time": 1582886520000
+      }
+    },
+    {
+      "station": {
+        "id": "8003540",
+        "title": "Langenfeld(Rhld)",
+        "coordinates": { "lng": 6.940922, "lat": 51.098633 }
+      },
+      "arrival": {
+        "platform": "3",
+        "scheduledTime": 1582886700000,
+        "time": 1582886700000
+      },
+      "departure": {
+        "platform": "3",
+        "scheduledTime": 1582886760000,
+        "time": 1582886760000
+      }
+    },
+    {
+      "station": {
+        "id": "8003539",
+        "title": "Langenfeld(Rhld)-Berghausen",
+        "coordinates": { "lng": 6.923752, "lat": 51.117537 }
+      },
+      "arrival": {
+        "platform": "3",
+        "scheduledTime": 1582886880000,
+        "time": 1582886880000
+      },
+      "departure": {
+        "platform": "3",
+        "scheduledTime": 1582886940000,
+        "time": 1582886940000
+      }
+    },
+    {
+      "station": {
+        "id": "8004920",
+        "title": "Düsseldorf-Hellerhof",
+        "coordinates": { "lng": 6.908075, "lat": 51.133223 }
+      },
+      "arrival": {
+        "platform": "3",
+        "scheduledTime": 1582887060000,
+        "time": 1582887060000
+      },
+      "departure": {
+        "platform": "3",
+        "scheduledTime": 1582887060000,
+        "time": 1582887060000
+      }
+    },
+    {
+      "station": {
+        "id": "8001589",
+        "title": "Düsseldorf-Garath",
+        "coordinates": { "lng": 6.898205, "lat": 51.143147 }
+      },
+      "arrival": {
+        "platform": "3",
+        "scheduledTime": 1582887180000,
+        "time": 1582887180000
+      },
+      "departure": {
+        "platform": "3",
+        "scheduledTime": 1582887180000,
+        "time": 1582887180000
+      }
+    },
+    {
+      "station": {
+        "id": "8001584",
+        "title": "Düsseldorf-Benrath",
+        "coordinates": { "lng": 6.878905, "lat": 51.162339 }
+      },
+      "arrival": {
+        "platform": "3",
+        "scheduledTime": 1582887360000,
+        "time": 1582887360000
+      },
+      "departure": {
+        "platform": "3",
+        "scheduledTime": 1582887360000,
+        "time": 1582887360000
+      }
+    },
+    {
+      "station": {
+        "id": "8001594",
+        "title": "Düsseldorf-Reisholz",
+        "coordinates": { "lng": 6.860495, "lat": 51.181279 }
+      },
+      "arrival": {
+        "platform": "3",
+        "scheduledTime": 1582887480000,
+        "time": 1582887480000
+      },
+      "departure": {
+        "platform": "3",
+        "scheduledTime": 1582887540000,
+        "time": 1582887540000
+      }
+    },
+    {
+      "station": {
+        "id": "8001588",
+        "title": "Düsseldorf-Eller Süd",
+        "coordinates": { "lng": 6.836296, "lat": 51.197981 }
+      },
+      "arrival": {
+        "platform": "3",
+        "scheduledTime": 1582887660000,
+        "time": 1582887660000
+      },
+      "departure": {
+        "platform": "3",
+        "scheduledTime": 1582887720000,
+        "time": 1582887720000
+      }
+    },
+    {
+      "station": {
+        "id": "8001591",
+        "title": "Düsseldorf-Oberbilk",
+        "coordinates": { "lng": 6.808969, "lat": 51.208067 }
+      },
+      "arrival": {
+        "platform": "2",
+        "scheduledTime": 1582887840000,
+        "time": 1582887840000
+      },
+      "departure": {
+        "platform": "2",
+        "scheduledTime": 1582887840000,
+        "time": 1582887840000
+      }
+    },
+    {
+      "station": {
+        "id": "8001581",
+        "title": "Düsseldorf Volksgarten",
+        "coordinates": { "lng": 6.791935, "lat": 51.210117 }
+      },
+      "arrival": {
+        "platform": "2",
+        "scheduledTime": 1582887960000,
+        "time": 1582887960000
+      },
+      "departure": {
+        "platform": "2",
+        "scheduledTime": 1582888020000,
+        "time": 1582888020000
+      }
+    },
+    {
+      "station": {
+        "id": "8000085",
+        "title": "Düsseldorf Hbf",
+        "coordinates": { "lng": 6.794011, "lat": 51.219708 }
+      },
+      "arrival": {
+        "platform": "14",
+        "scheduledTime": 1582888080000,
+        "time": 1582888080000
+      },
+      "departure": {
+        "platform": "14",
+        "scheduledTime": 1582888200000,
+        "time": 1582888200000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "8001582",
+        "title": "Düsseldorf Wehrhahn",
+        "coordinates": { "lng": 6.7982, "lat": 51.228491 }
+      },
+      "arrival": {
+        "platform": "2",
+        "scheduledTime": 1582888320000,
+        "time": 1582888320000,
+        "delay": 0
+      },
+      "departure": {
+        "platform": "2",
+        "scheduledTime": 1582888320000,
+        "time": 1582888320000,
+        "delay": 0
+      },
+      "irisMessages": []
+    },
+    {
+      "station": {
+        "id": "8001583",
+        "title": "Düsseldorf-Zoo",
+        "coordinates": { "lng": 6.797005, "lat": 51.23748 }
+      },
+      "arrival": {
+        "platform": "2",
+        "scheduledTime": 1582888440000,
+        "time": 1582888440000,
+        "delay": 0
+      },
+      "departure": {
+        "platform": "2",
+        "scheduledTime": 1582888440000,
+        "time": 1582888440000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "8001586",
+        "title": "Düsseldorf-Derendorf",
+        "coordinates": { "lng": 6.794398, "lat": 51.246874 }
+      },
+      "arrival": {
+        "platform": "2",
+        "scheduledTime": 1582888560000,
+        "time": 1582888560000,
+        "delay": 0
+      },
+      "departure": {
+        "platform": "2",
+        "scheduledTime": 1582888560000,
+        "time": 1582888560000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "8001593",
+        "title": "Düsseldorf-Rath Mitte",
+        "coordinates": { "lng": 6.808214, "lat": 51.261167 }
+      },
+      "arrival": {
+        "platform": "2",
+        "scheduledTime": 1582888740000,
+        "time": 1582888740000,
+        "delay": 0
+      },
+      "departure": {
+        "platform": "2",
+        "scheduledTime": 1582888740000,
+        "time": 1582888740000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "8001592",
+        "title": "Düsseldorf-Rath",
+        "coordinates": { "lng": 6.821213, "lat": 51.264187 }
+      },
+      "arrival": {
+        "platform": "2",
+        "scheduledTime": 1582888860000,
+        "time": 1582888860000,
+        "delay": 0
+      },
+      "departure": {
+        "platform": "2",
+        "scheduledTime": 1582888860000,
+        "time": 1582888860000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "8004948",
+        "title": "Ratingen Ost",
+        "coordinates": { "lng": 6.863794, "lat": 51.295469 }
+      },
+      "arrival": {
+        "platform": "2",
+        "scheduledTime": 1582889100000,
+        "time": 1582889100000,
+        "delay": 0
+      },
+      "departure": {
+        "platform": "2",
+        "scheduledTime": 1582889160000,
+        "time": 1582889160000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "8002919",
+        "title": "Hösel",
+        "coordinates": { "lng": 6.893252, "lat": 51.34153 }
+      },
+      "arrival": {
+        "platform": "1",
+        "scheduledTime": 1582889400000,
+        "time": 1582889400000,
+        "delay": 0
+      },
+      "departure": {
+        "platform": "1",
+        "scheduledTime": 1582889400000,
+        "time": 1582889400000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "8003245",
+        "title": "Kettwig Stausee",
+        "coordinates": { "lng": 6.938836, "lat": 51.356506 }
+      },
+      "arrival": {
+        "platform": "2",
+        "scheduledTime": 1582889640000,
+        "time": 1582889640000,
+        "delay": 0
+      },
+      "departure": {
+        "platform": "2",
+        "scheduledTime": 1582889640000,
+        "time": 1582889640000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "8000198",
+        "title": "Kettwig",
+        "coordinates": { "lng": 6.953633, "lat": 51.363284 }
+      },
+      "arrival": {
+        "platform": "2",
+        "scheduledTime": 1582889760000,
+        "time": 1582889760000,
+        "delay": 0
+      },
+      "departure": {
+        "platform": "2",
+        "scheduledTime": 1582889760000,
+        "time": 1582889760000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "8001915",
+        "title": "Essen-Werden",
+        "coordinates": { "lng": 6.997851, "lat": 51.386917 }
+      },
+      "arrival": {
+        "platform": "1",
+        "scheduledTime": 1582890000000,
+        "time": 1582890000000,
+        "delay": 0
+      },
+      "departure": {
+        "platform": "1",
+        "scheduledTime": 1582890000000,
+        "time": 1582890000000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "8001908",
+        "title": "Essen-Hügel",
+        "coordinates": { "lng": 7.008512, "lat": 51.404473 }
+      },
+      "arrival": {
+        "platform": "1",
+        "scheduledTime": 1582890180000,
+        "time": 1582890180000,
+        "delay": 0
+      },
+      "departure": {
+        "platform": "1",
+        "scheduledTime": 1582890180000,
+        "time": 1582890180000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "8001896",
+        "title": "Essen Stadtwald",
+        "coordinates": { "lng": 7.023308, "lat": 51.422388 }
+      },
+      "arrival": {
+        "platform": "1",
+        "scheduledTime": 1582890360000,
+        "time": 1582890360000,
+        "delay": 0
+      },
+      "departure": {
+        "platform": "1",
+        "scheduledTime": 1582890360000,
+        "time": 1582890360000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "8001897",
+        "title": "Essen Süd",
+        "coordinates": { "lng": 7.023092, "lat": 51.440169 }
+      },
+      "arrival": {
+        "platform": "2",
+        "scheduledTime": 1582890480000,
+        "time": 1582890480000,
+        "delay": 0
+      },
+      "departure": {
+        "platform": "2",
+        "scheduledTime": 1582890540000,
+        "time": 1582890540000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "8000098",
+        "title": "Essen Hbf",
+        "coordinates": { "lng": 7.01386, "lat": 51.451378 }
+      },
+      "arrival": {
+        "platform": "12",
+        "scheduledTime": 1582890720000,
+        "time": 1582890720000,
+        "delay": 0
+      }
+    }
+  ],
+  "finalDestination": "Essen Hbf",
+  "jid": "1|254617|1|80|28022020",
+  "messages": [
+    {
+      "type": "A",
+      "code": "FB",
+      "prio": 260,
+      "icoX": 8,
+      "txtN": "Fahrradmitnahme begrenzt möglich"
+    },
+    {
+      "type": "A",
+      "code": "EH",
+      "prio": 560,
+      "icoX": 9,
+      "txtN": "Fahrzeuggebundene Einstiegshilfe vorhanden"
+    },
+    {
+      "type": "N",
+      "code": "",
+      "icoX": 10,
+      "txtN": "Technische Störung an einem anderen Zug: Auf der Strecke Köln Hbf - Köln-Nippes zwischen Köln Hbf und Bft K-Nippes WEA.\nEs kommt zu Verspätungen und Ausfällen in beide Richtungen im S-Bahnverkehr der Deutschen Bahn.",
+      "sIdx": 0
+    }
+  ],
+  "type": "JNY",
+  "currentStop": {
+    "station": {
+      "id": "8001582",
+      "title": "Düsseldorf Wehrhahn",
+      "coordinates": { "lng": 6.7982, "lat": 51.228491 }
+    },
+    "arrival": {
+      "platform": "2",
+      "scheduledTime": 1582888320000,
+      "time": 1582888320000,
+      "delay": 0
+    },
+    "departure": {
+      "platform": "2",
+      "scheduledTime": 1582888320000,
+      "time": 1582888320000,
+      "delay": 0
+    },
+    "irisMessages": []
+  }
+}
