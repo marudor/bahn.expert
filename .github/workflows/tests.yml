@@ -21,6 +21,17 @@ jobs:
         with:
           fetch-depth: 0
       - uses: wagoid/commitlint-github-action@v1
+  cacheTest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: use Node.js 13
+        uses: actions/setup-node@master
+        with:
+          node-version: 13
+      - name: check
+        run: |
+          yarn install --check-cache
   node:
     runs-on: ubuntu-latest
     steps:
@@ -29,11 +40,6 @@ jobs:
         uses: actions/setup-node@master
         with:
           node-version: 13
-      - name: Cache yarn cache
-        uses: actions/cache@v1
-        with:
-          path: ~/.cache/yarn
-          key: yarn-${{ runner.OS }}-cache-${{ hashFiles('yarn.lock')}}
       - name: install
         run: |
           yarn --immutable
@@ -53,19 +59,37 @@ jobs:
           yarn test:ts
   e2e:
     runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:node13.6.0-chrome80-ff72
+      options: --user 1001
     strategy:
       matrix:
         container: [1, 2, 3]
         browser: [firefox, chrome]
+      fail-fast: false
     steps:
       - uses: actions/checkout@master
       - name: Use Node.js 13
         uses: actions/setup-node@master
         with:
           node-version: 13
+      - name: test
+        run: |
+          firefox --version
+          google-chrome --version
+      - name: Cache Cypress
+        id: cache-cypress
+        uses: actions/cache@master
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-${{ hashFiles('package.json') }}
+      - name: Install Deps
+        run: |
+          yarn --immutable
       - name: Run Cypress
         uses: cypress-io/github-action@v1.16.1
         with:
+          install: false
           record: true
           parallel: true
           build: yarn build
