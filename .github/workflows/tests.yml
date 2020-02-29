@@ -36,7 +36,7 @@ jobs:
           key: yarn-${{ runner.OS }}-cache-${{ hashFiles('yarn.lock')}}
       - name: install
         run: |
-          yarn --frozen-lockfile  --prefer-offline
+          yarn --immutable
         env:
           CYPRESS_INSTALL_BINARY: 0
       - name: jest

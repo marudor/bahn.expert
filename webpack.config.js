@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const LoadablePlugin = require('@loadable/webpack-plugin');
-const ErrorOverlayPlugin = require('error-overlay-webpack-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
 
@@ -47,7 +46,6 @@ const optimization = {};
 if (isDev) {
   if (process.env.BABEL_ENV !== 'testProduction') {
     rules[0].use.unshift('cache-loader');
-    plugins.push(new ErrorOverlayPlugin());
   }
 } else {
   optimization.minimizer = [
