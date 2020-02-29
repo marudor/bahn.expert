@@ -22,7 +22,7 @@ export default makeStyles({
     gridArea: 'g',
   },
   wrap: {
-    fontSize: '95%',
+    fontSize: '90%',
     width: '100%',
     display: 'grid',
     gridTemplateColumns: '1fr min-content 1fr',
