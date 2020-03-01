@@ -19,6 +19,6 @@ describe('Favendo Search', () => {
   });
 
   it('Throws exception on error', async () => {
-    await expect(FavendoSearch('Hamburg')).toReject();
+    await expect(FavendoSearch('Hamburg')).rejects.toBeTruthy();
   });
 });

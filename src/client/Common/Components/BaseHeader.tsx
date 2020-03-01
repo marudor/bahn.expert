@@ -12,7 +12,7 @@ const BaseHeader = ({ children }: Props) => {
   const { toggleDrawer } = useContext(NavigationContext);
 
   return (
-    <AppBar position="fixed">
+    <AppBar position="fixed" data-testid="header">
       <HeaderTags />
       <Toolbar disableGutters>
         <IconButton
