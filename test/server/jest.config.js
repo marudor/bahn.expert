@@ -8,7 +8,7 @@ module.exports = {
     '\\.(scss|css)$': 'identity-obj-proxy',
   },
   globalSetup: '<rootDir>/test/setTZ.ts',
-  setupFilesAfterEnv: ['<rootDir>/test/server/config.ts', 'jest-extended'],
+  setupFilesAfterEnv: ['<rootDir>/test/server/config.ts'],
   testPathIgnorePatterns: ['/src/app/'],
   rootDir: '../..',
   roots: ['<rootDir>/src', '<rootDir>/test/server'],

@@ -4,9 +4,9 @@ export default makeStyles(theme => ({
   wrap: {
     padding: '.2em',
     display: 'grid',
-    gridTemplateColumns: 'max-content 1fr max-content',
+    gridTemplateColumns: 'max-content 1fr max-content max-content',
     gridTemplateRows: '1fr 1fr',
-    gridTemplateAreas: '". s f" "a d f"',
+    gridTemplateAreas: '". s f r" "a d f r"',
     alignItems: 'center',
     flex: 1,
     cursor: 'pointer',
@@ -27,5 +27,8 @@ export default makeStyles(theme => ({
   },
   profile: {
     gridArea: 'f',
+  },
+  delete: {
+    gridArea: 'r',
   },
 }));
