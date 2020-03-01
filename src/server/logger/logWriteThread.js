@@ -49,7 +49,10 @@ if (process.env.NODE_ENV === 'production' && timberSource && timberToken) {
   };
 
   streams.push(msg => {
-    timber.log(msg.msg, timberLevelMap[msg.level] || msg.level, msg);
+    // 30 is info, we log warn and above to timber
+    if (msg.level > 30) {
+      timber.log(msg.msg, timberLevelMap[msg.level] || msg.level, msg);
+    }
   });
 }
 

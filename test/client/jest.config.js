@@ -11,7 +11,6 @@ module.exports = {
   globalSetup: '<rootDir>/test/setTZ.ts',
   setupFilesAfterEnv: [
     '<rootDir>/test/client/config.ts',
-    'jest-extended',
     '@testing-library/jest-dom/extend-expect',
   ],
   testPathIgnorePatterns: ['/src/app/'],

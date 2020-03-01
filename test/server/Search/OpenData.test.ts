@@ -17,7 +17,7 @@ describe('DBNavigator Search', () => {
         includeDS100: true,
         includeFavendoId: true,
       })
-    ).toResolve();
+    ).resolves.toBeUndefined();
   });
 
   it('Should use only one letter for 2 letter inputs (for some weird reason', async () => {
@@ -28,10 +28,10 @@ describe('DBNavigator Search', () => {
       })
       .reply(200, exampleRespone);
 
-    await expect(OpenDataSearch('Ha')).toResolve();
+    await expect(OpenDataSearch('Ha')).resolves.toBeTruthy();
   });
 
   it('Throws exception on error', async () => {
-    await expect(OpenDataSearch('Hamburg')).toReject();
+    await expect(OpenDataSearch('Hamburg')).rejects.toBeTruthy();
   });
 });

@@ -5,8 +5,10 @@ import { Paper } from '@material-ui/core';
 import {
   RoutingFav,
   routingFavKey,
+  useRoutingFavAction,
 } from 'Routing/container/RoutingFavContainer';
-import React from 'react';
+import ActionDelete from '@material-ui/icons/Delete';
+import React, { SyntheticEvent, useCallback } from 'react';
 import useStyles from './RouteFavEntry.style';
 
 interface Props {
@@ -15,6 +17,15 @@ interface Props {
 
 const RouteFavEntry = ({ fav }: Props) => {
   const classes = useStyles();
+  const { unfav } = useRoutingFavAction();
+  const removeFav = useCallback(
+    (e: SyntheticEvent) => {
+      e.stopPropagation();
+      e.preventDefault();
+      unfav(fav);
+    },
+    [fav, unfav]
+  );
 
   return (
     <Link
@@ -39,6 +50,7 @@ const RouteFavEntry = ({ fav }: Props) => {
             key => AllowedHafasProfile[key] === fav.profile
           )}
         </span>
+        <ActionDelete className={classes.delete} onClick={removeFav} />
       </Paper>
     </Link>
   );
