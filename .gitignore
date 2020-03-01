@@ -63,3 +63,6 @@ cypress/screenshots/
 junit.xml
 cypress-coverage/
 jest-coverage/
+
+.yarn/build-state.yml
+.yarn/unplugged
