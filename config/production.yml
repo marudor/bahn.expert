@@ -6,16 +6,12 @@ env:
       secretKeyRef:
         name: bahnhofs-abfahrten-config
         key: tagmanager_id
-  - name: LOGGLY_SUBDOMAIN
-    valueFrom:
-      secretKeyRef:
-        name: bahnhofs-abfahrten-config
-        key: loggly_subdomain
   - name: LOGGLY_TOKEN
     valueFrom:
       secretKeyRef:
         name: bahnhofs-abfahrten-config
         key: loggly_token
+        optional: true
   - name: TIMBER_SOURCE
     valueFrom:
       secretKeyRef:
