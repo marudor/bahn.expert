@@ -21,17 +21,6 @@ jobs:
         with:
           fetch-depth: 0
       - uses: wagoid/commitlint-github-action@v1
-  cacheTest:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: use Node.js 13
-        uses: actions/setup-node@master
-        with:
-          node-version: 13
-      - name: check
-        run: |
-          yarn install --check-cache
   node:
     runs-on: ubuntu-latest
     steps:
