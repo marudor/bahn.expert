@@ -7,7 +7,6 @@ describe('Map', () => {
     }).as('geoPos');
     cy.visit('/map?noTiles=1');
     cy.wait('@geoPos');
-    cy.findByAltText('test train').should('exist');
   });
 
   describe('query parameter', () => {
@@ -27,7 +26,6 @@ describe('Map', () => {
       }).as('geoPos');
       cy.visit('/map?profile=db&noTiles=1');
       cy.wait('@geoPos');
-      cy.findByAltText('test train').should('exist');
     });
 
     it('onlyRT', () => {

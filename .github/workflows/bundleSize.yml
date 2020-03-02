@@ -1,0 +1,27 @@
+name: bundleSize
+
+on: push
+
+jobs:
+  bundleSize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Use Node.js 13
+        uses: actions/setup-node@master
+        with:
+          node-version: 13
+      - name: install
+        run: |
+          yarn --immutable
+        env:
+          CYPRESS_INSTALL_BINARY: 0
+      - name: bundleSize
+        run: yarn build:client:ci
+        env:
+          NODE_ENV: production
+          PT_PROJECT_TOKEN: 1ce5b3fa-b36c-4f3c-9d93-5207b79264c7
+          PROD_ONLY: 1
+          PT_BRANCH: ${{github.head_ref || github.ref}}

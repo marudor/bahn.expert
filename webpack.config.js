@@ -3,10 +3,15 @@ const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const LoadablePlugin = require('@loadable/webpack-plugin');
+const PacktrackerPlugin = require('@packtracker/webpack-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
 
 const plugins = [
+  new PacktrackerPlugin({
+    fail_build: true,
+    upload: process.env.sendStats === 'true',
+  }),
   new LoadablePlugin(),
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
