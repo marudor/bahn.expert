@@ -39,7 +39,6 @@ const TrainMap = () => {
       onClick={() => setActiveJourney(undefined)}
       className={classes.map}
       viewport={defaultViewport}
-      preferCanvas
     >
       {!query.noTiles && (
         <>
