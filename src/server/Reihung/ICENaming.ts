@@ -54,7 +54,7 @@ const naming = {
   187: 'Mühldorf a. Inn',
   188: 'Hildesheim',
   190: 'Ludwigshafen am Rhein',
-  
+  //
   // ICE 2 - BR 402
   201: 'Rheinsberg',
   202: 'Wuppertal',
@@ -99,7 +99,7 @@ const naming = {
   242: 'Quedlinburg',
   243: 'Bautzen/Budyšin',
   244: 'Koblenz',
-  
+  //
   // ICE 3 - BR 403
   301: 'Freiburg im Breisgau',
   302: 'Hansestadt Lübeck',
@@ -148,7 +148,7 @@ const naming = {
   361: 'Celle',
   362: 'Schwerte (Ruhr)',
   363: 'Weilheim i. OB',
-  
+  //
   // ICE T - BR 411
   1101: 'Neustadt an der Weinstraße',
   1102: 'Neubrandenburg',
@@ -209,7 +209,7 @@ const naming = {
   1190: 'Wien',
   1191: 'Salzburg',
   1192: 'Linz',
-  
+  //
   // ICE T - BR 415
   1501: 'Eisenach',
   1502: 'Karlsruhe',
@@ -222,7 +222,7 @@ const naming = {
   1522: 'Torgau',
   1523: 'Hansestadt Greifswald',
   1524: 'Hansestadt Rostock',
-  
+  //
   // ICE 3 - BR 406
   4601: 'Europa/Europe',
   4602: 'Euregio Maas-Rhein',
@@ -238,11 +238,11 @@ const naming = {
   4683: 'Limburg an der Lahn',
   4684: 'Forbach-Lorraine',
   4685: 'Schwäbisch Hall',
-  
+  //
   // ICE 3 - BR 407
   4712: 'Dillingen a.d. Donau',
   4717: 'Paris',
-  
+  //
   // ICE 4 - BR 412
   9006: 'Martin Luther',
   9018: 'Freistaat Bayern',
