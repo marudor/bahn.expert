@@ -1,7 +1,7 @@
 // List from https://de.wikipedia.org/wiki/Liste_nach_Gemeinden_und_Regionen_benannter_IC/ICE-Fahrzeuge#Namensgebung_ICE-Triebz%C3%BCge_nach_Gemeinden
 
 const naming = {
-  # ICE 1 - BR 401
+  // ICE 1 - BR 401
   101: 'Gießen',
   102: 'Jever',
   103: 'Neu-Isenburg',
@@ -55,7 +55,7 @@ const naming = {
   188: 'Hildesheim',
   190: 'Ludwigshafen am Rhein',
   
-  # ICE 2 - BR 402
+  // ICE 2 - BR 402
   201: 'Rheinsberg',
   202: 'Wuppertal',
   203: 'Cottbus/Chóśebuz',
@@ -100,7 +100,7 @@ const naming = {
   243: 'Bautzen/Budyšin',
   244: 'Koblenz',
   
-  # ICE 3 - BR 403
+  // ICE 3 - BR 403
   301: 'Freiburg im Breisgau',
   302: 'Hansestadt Lübeck',
   303: 'Dortmund',
@@ -149,7 +149,7 @@ const naming = {
   362: 'Schwerte (Ruhr)',
   363: 'Weilheim i. OB',
   
-  # ICE T - BR 411
+  // ICE T - BR 411
   1101: 'Neustadt an der Weinstraße',
   1102: 'Neubrandenburg',
   1103: 'Paderborn',
@@ -210,7 +210,7 @@ const naming = {
   1191: 'Salzburg',
   1192: 'Linz',
   
-  # ICE T - BR 415
+  // ICE T - BR 415
   1501: 'Eisenach',
   1502: 'Karlsruhe',
   1503: 'Altenbeken',
@@ -223,7 +223,7 @@ const naming = {
   1523: 'Hansestadt Greifswald',
   1524: 'Hansestadt Rostock',
   
-  # ICE 3 - BR 406
+  // ICE 3 - BR 406
   4601: 'Europa/Europe',
   4602: 'Euregio Maas-Rhein',
   4603: 'Mannheim',
@@ -239,11 +239,11 @@ const naming = {
   4684: 'Forbach-Lorraine',
   4685: 'Schwäbisch Hall',
   
-  # ICE 3 - BR 407
+  // ICE 3 - BR 407
   4712: 'Dillingen a.d. Donau',
   4717: 'Paris',
   
-  # ICE 4 - BR 412
+  // ICE 4 - BR 412
   9006: 'Martin Luther',
   9018: 'Freistaat Bayern',
   9025: 'Nordrhein-Westfalen',
