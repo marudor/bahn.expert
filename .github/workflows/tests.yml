@@ -9,7 +9,7 @@ on:
       - master
 
 env:
-  CI: 'true'
+  CI: "true"
 
 jobs:
   commitlint:
@@ -62,10 +62,6 @@ jobs:
         uses: actions/setup-node@master
         with:
           node-version: 13
-      - name: test
-        run: |
-          firefox --version
-          google-chrome --version
       - name: Cache Cypress
         id: cache-cypress
         uses: actions/cache@master
@@ -83,10 +79,53 @@ jobs:
           parallel: true
           build: yarn build
           group: ${{ matrix.browser }}
-          ci-build-id: '${{ github.sha }}-${{ github.workflow }}-${{ github.event_name }}'
+          ci-build-id: "${{ github.sha }}-${{ github.workflow }}-${{ github.event_name }}"
           start: node testDist/server/server/index.js
           wait-on: http://localhost:9042
           browser: ${{ matrix.browser}}
+        env:
+          CYPRESS_RECORD_KEY: 0af1d817-e8ac-4c69-ac15-c0da1e69182d
+          BASE_URL: http://localhost:9042
+          NODE_ENV: production
+          TEST_RUN: 1
+          TEST_ONLY: 1
+  e2eWindows:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        container: [1, 2, 3]
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@master
+      - name: Use Node.js 13
+        uses: actions/setup-node@master
+        with:
+          node-version: 13
+      - name: Cache Cypress
+        id: cache-cypress
+        uses: actions/cache@master
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-${{ hashFiles('package.json') }}
+      - name: Install Deps
+        run: |
+          yarn --immutable
+      - name: Build
+        run: yarn build
+        env:
+          TEST_ONLY: 1
+          NODE_ENV: production
+      - name: Run Cypress
+        uses: cypress-io/github-action@v1.16.1
+        with:
+          install: false
+          record: true
+          parallel: true
+          group: edge
+          ci-build-id: "${{ github.sha }}-${{ github.workflow }}-${{ github.event_name }}"
+          start: node testDist/server/server/index.js
+          wait-on: http://localhost:9042
+          browser: edge
         env:
           CYPRESS_RECORD_KEY: 0af1d817-e8ac-4c69-ac15-c0da1e69182d
           BASE_URL: http://localhost:9042
