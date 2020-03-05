@@ -218,5 +218,15 @@
   "resolutions": {
     "lodash": ">=4.17.15",
     "ajv": "^6.12.0"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "footer-leading-blank": [
+        0
+      ]
+    }
   }
 }
