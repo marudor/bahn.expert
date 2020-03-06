@@ -20,7 +20,6 @@ const naming = {
   118: 'Gelnhausen',
   119: 'Osnabrück',
   120: 'Lüneburg',
-  124: 'Hanau',
   152: 'Hanau',
   153: 'Neumünster',
   154: 'Flensburg',
