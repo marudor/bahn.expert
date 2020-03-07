@@ -126,7 +126,7 @@ export default () => {
   if (
     process.env.NODE_ENV !== 'production' &&
     process.env.NODE_ENV !== 'test' &&
-    !process.env.NO_SSL
+    process.env.USE_SSL
   ) {
     const https = require('https');
     const fs = require('fs');
