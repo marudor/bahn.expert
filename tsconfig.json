@@ -1,5 +1,5 @@
 {
-  "exclude": ["cypress", "src/app"],
+  "exclude": ["cypress", "docs", "dist", "testDist"],
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
