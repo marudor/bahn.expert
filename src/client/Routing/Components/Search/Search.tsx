@@ -17,6 +17,8 @@ import { Station } from 'types/station';
 import { useHistory, useRouteMatch } from 'react-router';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { Search as SearchIcon } from '@material-ui/icons';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import deLocale from 'date-fns/locale/de';
 import IconButton from '@material-ui/core/IconButton';
 import React, { SyntheticEvent, useCallback, useEffect, useMemo } from 'react';
@@ -240,9 +242,11 @@ const Search = () => {
           onClick={searchRoute}
         >
           Search
+          <SearchIcon />
         </Button>
         <Button data-testid="toFav" variant="contained" onClick={clearRoutes}>
-          Favorites
+          Favs
+          <FavoriteBorder />
         </Button>
       </div>
     </>
