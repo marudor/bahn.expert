@@ -6,4 +6,9 @@ export default makeStyles({
     flexDirection: 'column',
     flex: 1,
   },
+  nonClickable: {
+    color: '#67b246',
+    border: 'none',
+    fontSize: '2rem',
+  },
 });
