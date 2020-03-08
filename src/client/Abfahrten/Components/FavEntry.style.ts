@@ -11,6 +11,7 @@ export default makeStyles(theme => ({
     color: theme.palette.text.primary,
     display: 'flex',
     justifyContent: 'space-between',
+    height: '60px',
     alignItems: 'center',
     '& > a': {
       colors: theme.palette.text.primary,
@@ -21,6 +22,8 @@ export default makeStyles(theme => ({
     '&.nonClickable': {
       fontWeight: '600',
       justifyContent: 'center',
+      alignItems: 'center',
+      height: '60px',
     },
     '&.nonClickable:hover': {
       backgroundColor: 'transparent',
