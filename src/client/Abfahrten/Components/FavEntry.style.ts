@@ -18,5 +18,12 @@ export default makeStyles(theme => ({
     '&:hover': {
       backgroundColor: theme.palette.action.hover,
     },
+    '&.nonClickable': {
+      fontWeight: '600',
+      justifyContent: 'center',
+    },
+    '&.nonClickable:hover': {
+      backgroundColor: 'transparent',
+    },
   },
 }));
