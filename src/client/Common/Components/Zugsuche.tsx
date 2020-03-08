@@ -86,7 +86,7 @@ const Zugsuche = ({ children }: Props) => {
         onClose={toggleModal}
         data-testid="Zugsuche"
       >
-        <DialogTitle>Zugsuche</DialogTitle>
+        <DialogTitle className={classes.header}>Zugsuche</DialogTitle>
         <DialogContent className={classes.main}>
           <form onSubmit={onSubmit}>
             <FormControl fullWidth component="fieldset">
@@ -96,12 +96,17 @@ const Zugsuche = ({ children }: Props) => {
                 label="Datum"
                 value={date}
                 onChange={setDate}
+                className={classes.searchInput}
               />
               <ZugsucheAutocomplete
                 onChange={setMatch}
                 initialDeparture={date?.getTime()}
               />
-              <Button data-testid="ZugsucheSubmit" type="submit">
+              <Button
+                data-testid="ZugsucheSubmit"
+                type="submit"
+                className={classes.searchButton}
+              >
                 Suche
               </Button>
             </FormControl>
