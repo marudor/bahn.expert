@@ -31,6 +31,7 @@ const Navigation = ({ children }: Props) => {
   return (
     <NavigationContext.Provider value={navigationContext}>
       <SwipeableDrawer open={open} onClose={toggleDrawer} onOpen={toggleDrawer}>
+        <h3 className={classes.header}>BahnhofsAbfahrten</h3>
         <List className={classes.drawer} onClick={toggleDrawer}>
           <Link to="/">
             <ListItem button>
