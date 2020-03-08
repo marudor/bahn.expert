@@ -21,12 +21,17 @@ interface FavEntryDisplayProps {
 export const FavEntryDisplay = ({
   deleteFav,
   text,
+  className,
   'data-testid': testid,
 }: FavEntryDisplayProps) => {
   const classes = useStyles();
 
   return (
-    <Paper data-testid={testid} className={classes.main} square>
+    <Paper
+      data-testid={testid}
+      className={classes.main.concat(' ', className || '')}
+      square
+    >
       <span>{text}</span>
       {deleteFav && (
         <IconButton

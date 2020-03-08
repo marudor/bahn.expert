@@ -86,7 +86,7 @@ const FavList = ({ staticContext }: Props) => {
             data-testid="noFav"
             text="Keine Favoriten"
           />
-          <FavEntryDisplay className="nonClickable" text="Oft gesucht:" />
+          <FavEntryDisplay className="nonClickable" text="Oft Gesucht" />
           <MostUsed />
         </>
       )}
