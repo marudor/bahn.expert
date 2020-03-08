@@ -37,7 +37,7 @@ describe('Homepage', () => {
     cy.findByTestId('menu').click();
     cy.findByTestId('toggleFav').should('include.text', 'Unfav');
     cy.visit('/');
-    cy.findByTestId('favEntry').should('have.text', 'Frankfurt (Main) Hbf');
+    cy.findByTestId('realFavEntry').should('have.text', 'Frankfurt (Main) Hbf');
   });
 
   it('Shows error on mainPage', () => {
