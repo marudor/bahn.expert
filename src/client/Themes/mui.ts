@@ -25,7 +25,7 @@ const getPaletteType = (themeType: ThemeType) => {
   }
 };
 
-const headerSpacing = 98;
+const headerSpacing = 76;
 const getMuiOptions = (themeType: ThemeType) => {
   const commonOptions: ThemeOptions = {
     palette: {
