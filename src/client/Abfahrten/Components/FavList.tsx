@@ -79,11 +79,7 @@ const FavList = ({ staticContext }: Props) => {
         </>
       ) : sortedFavs.length ? (
         <>
-          <FavEntryDisplay
-            className="nonClickable"
-            data-testid="noFav"
-            text="Favoriten"
-          />
+          <FavEntryDisplay className="nonClickable" text="Favoriten" />
           {sortedFavs}
           <FavEntryDisplay className="nonClickable" text="Oft Gesucht" />
           <MostUsed />
