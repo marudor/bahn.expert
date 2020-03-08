@@ -4,6 +4,17 @@ export default makeStyles(theme => ({
   wrapper: {
     flex: 1,
     position: 'relative',
+    minHeight: '50px',
+    display: 'flex',
+    alignItems: 'flex-end',
+    justifyContent: 'flex-start',
+    padding: '10px',
+    '& > div:nth-child(1)': {
+      width: '100%',
+    },
+    '& input': {
+      height: '2.5875em',
+    },
   },
   icons: {
     '& > svg': {
@@ -15,6 +26,7 @@ export default makeStyles(theme => ({
     cursor: 'pointer',
     top: '50%',
     transform: 'translateY(-50%)',
+    margin: '0 10px',
   },
   paper: {
     background: theme.palette.background.default,
@@ -26,7 +38,7 @@ export default makeStyles(theme => ({
   },
   loading: {
     position: 'absolute',
-    top: '-1em',
+    top: '0.4em',
     right: '2em',
     transform: 'scale(.5)',
   },
