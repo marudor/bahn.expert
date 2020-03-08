@@ -16,6 +16,7 @@ interface FavEntryDisplayProps {
   deleteFav?: (e: MouseEvent) => void;
   text: ReactNode;
   'data-testid'?: string;
+  className?: string;
 }
 export const FavEntryDisplay = ({
   deleteFav,
