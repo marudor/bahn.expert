@@ -25,7 +25,7 @@ const getPaletteType = (themeType: ThemeType) => {
   }
 };
 
-const headerSpacing = 54;
+const headerSpacing = 98;
 const getMuiOptions = (themeType: ThemeType) => {
   const commonOptions: ThemeOptions = {
     palette: {
@@ -38,11 +38,6 @@ const getMuiOptions = (themeType: ThemeType) => {
       MuiPickersModal: {
         withAdditionalAction: {
           color: 'red',
-        },
-      },
-      MuiToolbar: {
-        regular: {
-          minHeight: `${headerSpacing}px!important`,
         },
       },
       MuiPaper: {
