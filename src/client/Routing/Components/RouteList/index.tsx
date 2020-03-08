@@ -62,6 +62,7 @@ const RouteList = () => {
             fullWidth
             variant="contained"
             onClick={searchBefore}
+            className={classes.button}
           >
             Früher
           </Button>
@@ -93,6 +94,7 @@ const RouteList = () => {
             fullWidth
             variant="contained"
             onClick={searchLater}
+            className={classes.button}
           >
             Später
           </Button>

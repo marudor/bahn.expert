@@ -6,6 +6,7 @@ import PlannedType from 'Common/Components/PlannedType';
 import React, { SyntheticEvent, useMemo } from 'react';
 import RouteSegments from './RouteSegments';
 import Time from 'Common/Components/Time';
+import AddBox from '@material-ui/icons/AddBox';
 import useStyles from './Route.style';
 
 interface Props {
@@ -51,7 +52,9 @@ const Route = ({ route, detail, onClick }: Props) => {
         delay={route.arrival.delay}
       />
       <span>{formatDuration(route.duration)}</span>
-      <span>{route.changes}</span>
+      <span className={classes.expand}>
+        {route.changes} <AddBox />
+      </span>
       {detail ? (
         <RouteSegments className={classes.detail} segments={route.segments} />
       ) : (
