@@ -8,8 +8,10 @@ export default makeStyles({
   },
   date: {
     gridArea: '1 / 1 / 2 / 5',
-    fontSize: '1.7em',
     textAlign: 'center',
     marginBottom: '10px',
+  },
+  chip: {
+    fontSize: '1.4rem',
   },
 });

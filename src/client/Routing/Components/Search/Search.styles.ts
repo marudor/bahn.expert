@@ -2,8 +2,10 @@ import { makeStyles } from '@material-ui/styles';
 export default makeStyles(theme => ({
   datePicker: {
     '& input': {
-      paddingLeft: 10,
       paddingRight: 10,
+    },
+    '& > div': {
+      minHeight: '50px',
     },
   },
   buttons: {
@@ -19,17 +21,31 @@ export default makeStyles(theme => ({
     '& > button': {
       margin: '0 10px',
       height: '50px',
-      fontSize: '1.2rem',
+      fontSize: '1rem',
       display: 'flex',
       justifyContent: 'space-between',
       padding: '5px 20px',
       color: theme.palette.text.primary,
-      border: `2px solid ${theme.palette.text.primary}`,
-      borderRadius: '5px',
-      backgroundColor: 'transparent',
     },
   },
   destination: {
     display: 'flex',
+  },
+  dateWrapper: {
+    position: 'relative',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'baseline',
+    padding: '10px',
+    '& input': {
+      fontSize: '1.4rem',
+    },
+  },
+  todayIcon: {
+    top: '50%',
+    right: '0px',
+    margin: '0 10px',
+    position: 'absolute',
+    transform: 'translateY(-50%)',
   },
 }));
