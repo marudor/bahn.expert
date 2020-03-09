@@ -47,9 +47,7 @@ const FavList = ({ staticContext }: Props) => {
 
     return values
       .sort((a, b) => (a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1))
-      .map(fav => (
-        <FavEntry data-testid="realFavEntry" key={fav.id} fav={fav} />
-      ));
+      .map(fav => <FavEntry favEntry key={fav.id} fav={fav} />);
   }, [favs]);
   const { error } = AbfahrtenContainer.useContainer();
   const [savedError] = useState(error);

@@ -10,6 +10,7 @@ import useStyles from './FavEntry.style';
 interface Props {
   fav: Station;
   noDelete?: boolean;
+  favEntry?: boolean;
 }
 
 interface FavEntryDisplayProps {
@@ -41,7 +42,7 @@ export const FavEntryDisplay = ({
   );
 };
 
-const FavEntry = ({ fav, noDelete }: Props) => {
+const FavEntry = ({ fav, favEntry, noDelete }: Props) => {
   const unfav = useUnfav();
   const deleteFav = useCallback(
     (e: MouseEvent) => {
@@ -54,7 +55,7 @@ const FavEntry = ({ fav, noDelete }: Props) => {
 
   return (
     <Link
-      data-testid="favEntry"
+      data-testid={favEntry ? 'realFavEntry' : 'favEntry'}
       to={encodeURIComponent(fav.title)}
       title={`Zugabfahrten für ${fav.title}`}
     >
