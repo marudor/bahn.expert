@@ -10,12 +10,9 @@ export default makeStyles(theme => ({
     },
   },
   button: {
-    color: theme.palette.text.primary,
-    border: `2px solid ${theme.palette.text.primary}`,
-    borderRadius: '5px',
     height: '45px',
-    backgroundColor: 'transparent',
     margin: '10px',
+    color: theme.palette.text.primary,
     flex: 1,
   },
 }));

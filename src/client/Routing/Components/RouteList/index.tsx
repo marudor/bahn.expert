@@ -59,8 +59,9 @@ const RouteList = () => {
         ) : (
           <Button
             data-testid="fetchCtxEarly"
-            variant="contained"
+            variant="outlined"
             onClick={searchBefore}
+            color="secondary"
             className={classes.button}
           >
             Früher
@@ -90,8 +91,9 @@ const RouteList = () => {
         ) : (
           <Button
             data-testid="fetchCtxLate"
-            variant="contained"
+            variant="outlined"
             onClick={searchLater}
+            color="secondary"
             className={classes.button}
           >
             Später
