@@ -13,7 +13,7 @@ export default makeStyles(theme => ({
       width: '100%',
     },
     '& input': {
-      height: '2rem',
+      height: '2.3rem',
       fontSize: '1.4rem',
       '&::placeholder': {
         fontSize: '1.1rem',
