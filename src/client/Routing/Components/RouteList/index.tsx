@@ -61,7 +61,6 @@ const RouteList = () => {
             data-testid="fetchCtxEarly"
             variant="outlined"
             onClick={searchBefore}
-            color="secondary"
             className={classes.button}
           >
             Früher
@@ -93,7 +92,6 @@ const RouteList = () => {
             data-testid="fetchCtxLate"
             variant="outlined"
             onClick={searchLater}
-            color="secondary"
             className={classes.button}
           >
             Später

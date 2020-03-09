@@ -1,4 +1,8 @@
+import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
 import { AllowedHafasProfile } from 'types/HAFAS';
+import Badge from '@material-ui/core/Badge';
+import CachedIcon from '@material-ui/icons/Cached';
+import Chip from '@material-ui/core/Chip';
 import {
   ExpansionPanel,
   ExpansionPanelDetails,
@@ -13,6 +17,8 @@ import React, { ChangeEvent, useCallback } from 'react';
 import RoutingConfigContainer, {
   RoutingSettings,
 } from 'Routing/container/RoutingConfigContainer';
+import TimelapseIcon from '@material-ui/icons/Timelapse';
+import TrainIcon from '@material-ui/icons/Train';
 import useStyles from './SettingsPanel.style';
 
 const SettingsPanel = () => {
@@ -38,8 +44,35 @@ const SettingsPanel = () => {
         className={classes.summary}
         expandIcon={<ExpandMoreIcon />}
       >
-        {settings.maxChanges} Umstiege / {settings.transferTime}m Umstiegszeit
-        {settings.onlyRegional && ' / Nur Nahverkehr'}
+        <Badge
+          badgeContent={
+            settings.maxChanges === '-1' ? (
+              <AllInclusiveIcon fontSize="small" />
+            ) : (
+              settings.maxChanges
+            )
+          }
+          className={classes.badge}
+          color="secondary"
+        >
+          {' '}
+          <CachedIcon />{' '}
+        </Badge>
+        <Badge
+          badgeContent={`${settings.transferTime}m`}
+          className={classes.badge}
+          color="secondary"
+        >
+          {' '}
+          <TimelapseIcon />{' '}
+        </Badge>
+        <Chip
+          size="small"
+          color="primary"
+          className={classes.chip}
+          label={settings.onlyRegional ? 'Nahverkehr' : 'Alle Zuege'}
+          icon={<TrainIcon />}
+        />
       </ExpansionPanelSummary>
       <ExpansionPanelDetails className={classes.details}>
         <FormControlLabel

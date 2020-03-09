@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/styles';
 
-export default makeStyles(theme => ({
+export default makeStyles({
   main: {
     display: 'flex',
     flexDirection: 'column',
@@ -12,7 +12,6 @@ export default makeStyles(theme => ({
   button: {
     height: '45px',
     margin: '10px',
-    color: theme.palette.text.primary,
     flex: 1,
   },
-}));
+});

@@ -10,6 +10,7 @@ import {
 } from 'date-fns';
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { DateTimePicker } from '@material-ui/pickers';
+import Divider from '@material-ui/core/Divider';
 import { getHafasStationFromAPI } from 'shared/service/stationSearch';
 import { getRouteLink } from 'Routing/util';
 import { RoutingFav } from 'Routing/container/RoutingFavContainer';
@@ -26,6 +27,7 @@ import RoutingConfigContainer from 'Routing/container/RoutingConfigContainer';
 import SettingsPanel from './SettingsPanel';
 import StationSearch from 'Common/Components/StationSearch';
 import SwapVertical from '@material-ui/icons/SwapVert';
+import TodayIcon from '@material-ui/icons/Today';
 import useFetchRouting from 'Routing/container/RoutingContainer/useFetchRouting';
 import useStyles from './Search.styles';
 
@@ -219,20 +221,23 @@ const Search = () => {
           <SwapVertical fontSize="large" />
         </IconButton>
       </div>
-      <DateTimePicker
-        fullWidth
-        openTo="hours"
-        className={classes.datePicker}
-        labelFunc={formatDate}
-        ampm={false}
-        value={date}
-        onChange={setDate}
-        cancelLabel="Abbrechen"
-        autoOk
-        clearable
-        clearLabel="Jetzt"
-        minutesStep={5}
-      />
+      <div className={classes.dateWrapper}>
+        <DateTimePicker
+          fullWidth
+          openTo="hours"
+          className={classes.datePicker}
+          labelFunc={formatDate}
+          ampm={false}
+          value={date}
+          onChange={setDate}
+          cancelLabel="Abbrechen"
+          autoOk
+          clearable
+          clearLabel="Jetzt"
+          minutesStep={5}
+        />
+        <TodayIcon className={classes.todayIcon} />
+      </div>
       <SettingsPanel />
       <div className={classes.buttons}>
         <Button
@@ -240,15 +245,22 @@ const Search = () => {
           fullWidth
           variant="contained"
           onClick={searchRoute}
+          color="primary"
         >
           Search
           <SearchIcon />
         </Button>
-        <Button data-testid="toFav" variant="contained" onClick={clearRoutes}>
+        <Button
+          color="secondary"
+          variant="contained"
+          data-testid="toFav"
+          onClick={clearRoutes}
+        >
           Favs
           <FavoriteBorder />
         </Button>
       </div>
+      <Divider variant="middle" />
     </>
   );
 };
