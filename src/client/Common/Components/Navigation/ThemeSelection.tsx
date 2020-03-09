@@ -4,12 +4,14 @@ import {
   Collapse,
   List,
   ListItem,
+  ListItemIcon,
   ListItemText,
   Typography,
 } from '@material-ui/core';
 import { ThemeType } from 'client/Themes/type';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import PaletteIcon from '@material-ui/icons/Palette';
 import React, { SyntheticEvent, useCallback, useState } from 'react';
 import ThemeContainer from 'Common/container/ThemeContainer';
 import useStyles from './ThemeSelection.style';
@@ -41,6 +43,9 @@ const ThemeSelection = () => {
   return (
     <>
       <ListItem data-testid="themes" button onClick={toggle}>
+        <ListItemIcon>
+          <PaletteIcon />
+        </ListItemIcon>
         <ListItemText primary="Themes" />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
