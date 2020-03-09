@@ -8,5 +8,6 @@ export default makeStyles({
     flexDirection: 'column',
     justifyContent: 'space-between',
     marginLeft: '1em',
+    height: '51px',
   },
 });

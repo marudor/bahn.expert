@@ -9,6 +9,7 @@ export default makeStyles(theme => ({
     paddingLeft: '.5em',
     paddingRight: '.5em',
     position: 'relative',
+    minHeight: '50px',
   },
   scrollMarker: {
     position: 'absolute',
