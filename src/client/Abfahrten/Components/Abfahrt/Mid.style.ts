@@ -8,7 +8,7 @@ export default makeStyles(theme => ({
     display: 'flex',
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'space-around',
+    justifyContent: 'flex-start',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
   },

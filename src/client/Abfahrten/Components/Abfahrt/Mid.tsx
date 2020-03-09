@@ -22,7 +22,7 @@ const Mid = ({ abfahrt, detail }: Props) => {
         classes.main
       )}
     >
-      <Info abfahrt={abfahrt} detail={detail} />
+      {abfahrt && <Info abfahrt={abfahrt} detail={detail} />}
       <div
         className={cc(classes.destination, {
           [classes.cancelled]: abfahrt.cancelled,
