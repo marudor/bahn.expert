@@ -13,20 +13,14 @@ export default makeStyles(theme => ({
     justifyContent: 'space-between',
     height: '60px',
     alignItems: 'center',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1.6rem',
+    },
     '& > a': {
       colors: theme.palette.text.primary,
     },
     '&:hover': {
       backgroundColor: theme.palette.action.hover,
-    },
-    '&.nonClickable': {
-      fontWeight: '600',
-      justifyContent: 'center',
-      alignItems: 'center',
-      height: '60px',
-    },
-    '&.nonClickable:hover': {
-      backgroundColor: 'transparent',
     },
   },
 }));
