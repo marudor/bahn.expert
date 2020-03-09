@@ -61,9 +61,8 @@ const InnerHeader = () => {
 
   return (
     <div className={classes.wrap}>
-      <span className={classes.start}>{start?.title ?? '?'}</span>
-      <span className={classes.arrow}>-></span>
-      <span className={classes.destination}>{destination?.title ?? '?'}</span>
+      <span className={classes.start}>{start?.title}</span>
+      <span className={classes.destination}>{destination?.title}</span>
       {currentFav && (
         <IconButton
           data-testid="routingFavButton"
