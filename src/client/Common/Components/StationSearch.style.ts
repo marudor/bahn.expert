@@ -4,6 +4,24 @@ export default makeStyles(theme => ({
   wrapper: {
     flex: 1,
     position: 'relative',
+    minHeight: '50px',
+    display: 'flex',
+    alignItems: 'flex-end',
+    justifyContent: 'flex-start',
+    padding: '10px',
+    '& > div:nth-child(1)': {
+      width: '100%',
+    },
+    '& input': {
+      height: '2rem',
+      fontSize: '1.4rem',
+      '&::placeholder': {
+        fontSize: '1.1rem',
+      },
+      [theme.breakpoints.up('sm')]: {
+        fontSize: '2rem',
+      },
+    },
   },
   icons: {
     '& > svg': {
