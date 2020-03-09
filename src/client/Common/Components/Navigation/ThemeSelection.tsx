@@ -1,5 +1,12 @@
 import { capitalize } from 'lodash';
-import { Collapse, List, ListItem, ListItemText } from '@material-ui/core';
+import {
+  Badge,
+  Collapse,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+} from '@material-ui/core';
 import { ThemeType } from 'client/Themes/type';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
@@ -42,10 +49,6 @@ const ThemeSelection = () => {
           {Object.values(ThemeType).map(themeOption => {
             let name = capitalize(themeOption);
 
-            if (themeOption === themeType) {
-              name = `* ${name}`;
-            }
-
             return (
               <ListItem
                 key={themeOption}
@@ -53,7 +56,13 @@ const ThemeSelection = () => {
                 onClick={selectTheme}
                 data-value={themeOption}
               >
-                <ListItemText primary={name} />
+                {themeOption === themeType ? (
+                  <Badge color="secondary" variant="dot">
+                    <Typography>{name}</Typography>
+                  </Badge>
+                ) : (
+                  <ListItemText primary={name} />
+                )}
               </ListItem>
             );
           })}
