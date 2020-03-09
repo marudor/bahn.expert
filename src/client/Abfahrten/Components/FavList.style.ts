@@ -7,11 +7,12 @@ export default makeStyles({
     flex: 1,
   },
   nonClickable: {
-    color: '#67b246',
-    border: 'none',
-    fontSize: '2rem',
-  },
-  '& > div': {
-    color: '#67b246 !important',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '60px',
+    fontWeight: 600,
+    '&:hover': {
+      backgroundColor: 'transparent',
+    },
   },
 });
