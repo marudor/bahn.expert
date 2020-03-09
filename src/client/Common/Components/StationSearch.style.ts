@@ -13,7 +13,14 @@ export default makeStyles(theme => ({
       width: '100%',
     },
     '& input': {
-      height: '2.5875em',
+      height: '2.3rem',
+      fontSize: '1.4rem',
+      '&::placeholder': {
+        fontSize: '1.1rem',
+      },
+      [theme.breakpoints.up('sm')]: {
+        fontSize: '2rem',
+      },
     },
   },
   icons: {
