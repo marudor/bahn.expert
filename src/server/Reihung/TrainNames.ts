@@ -222,6 +222,10 @@ const naming = {
   1523: 'Hansestadt Greifswald',
   1524: 'Hansestadt Rostock',
   //
+  // Intercity2 KISS - BR 4110
+  4114: 'Dresden Elbland',
+  4117: 'Mecklenburgische Ostseeküste',
+  //
   // ICE 3 - BR 406
   4601: 'Europa/Europe',
   4602: 'Euregio Maas-Rhein',
