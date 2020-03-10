@@ -83,7 +83,6 @@ const Zugsuche = ({ children }: Props) => {
     <>
       <Dialog
         onClick={stopPropagation}
-        fullWidth
         maxWidth="xs"
         open={open}
         onClose={toggleModal}

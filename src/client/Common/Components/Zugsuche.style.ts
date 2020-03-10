@@ -20,11 +20,15 @@ export default makeStyles({
     position: 'relative',
     display: 'flex',
     justifyContent: 'space-between',
+    maxWidth: '240px',
+    margin: '0 auto',
   },
   zugInputWrapper: {
     position: 'relative',
     display: 'flex',
     justifyContent: 'space-between',
+    maxWidth: '240px',
+    margin: '0 auto',
   },
   inputIcon: {
     position: 'absolute',
