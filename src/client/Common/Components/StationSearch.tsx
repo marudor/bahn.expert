@@ -127,6 +127,7 @@ const StationSearch = ({
           return (
             <div data-testid={id}>
               <TextField
+                className={classes.searchInput}
                 fullWidth
                 InputLabelProps={getLabelProps({ shrink: true } as any)}
                 InputProps={{

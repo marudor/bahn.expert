@@ -49,4 +49,12 @@ export default makeStyles(theme => ({
     right: '2em',
     transform: 'scale(.5)',
   },
+  searchInput: {
+    '& input': {
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
+      maxWidth: '92%',
+    },
+  },
 }));
