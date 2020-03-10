@@ -2,7 +2,7 @@ import { Controller, Get, Hidden, Route, SuccessResponse, Tags } from 'tsoa';
 import { Formation, WagenreihungStation } from 'types/reihung';
 import { wagenreihung, wagenreihungStation } from 'server/Reihung';
 import { WRForNumber, WRForTZ } from 'server/Reihung/hasWR';
-import ICENaming from 'server/Reihung/ICENaming';
+import TrainNames from 'server/Reihung/TrainNames';
 
 @Route('/reihung/v1')
 export class ReihungControllerV1 extends Controller {
@@ -36,7 +36,7 @@ export class ReihungControllerV1 extends Controller {
      */
     tz?: string
   ): Promise<string> {
-    return Promise.resolve(ICENaming(tz)!);
+    return Promise.resolve(TrainNames(tz)!);
   }
 
   @Hidden()
