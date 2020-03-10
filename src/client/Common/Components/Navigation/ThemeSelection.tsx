@@ -1,4 +1,3 @@
-import { capitalize } from 'lodash';
 import {
   Badge,
   Collapse,
@@ -8,6 +7,7 @@ import {
   ListItemText,
   Typography,
 } from '@material-ui/core';
+import { capitalize } from 'lodash';
 import { ThemeType } from 'client/Themes/type';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
@@ -52,7 +52,7 @@ const ThemeSelection = () => {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List disablePadding className={classes.nested} data-testid="themeList">
           {Object.values(ThemeType).map(themeOption => {
-            let name = capitalize(themeOption);
+            const name = capitalize(themeOption);
 
             return (
               <ListItem

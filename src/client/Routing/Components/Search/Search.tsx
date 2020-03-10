@@ -10,7 +10,6 @@ import {
 } from 'date-fns';
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { DateTimePicker } from '@material-ui/pickers';
-import Divider from '@material-ui/core/Divider';
 import { getHafasStationFromAPI } from 'shared/service/stationSearch';
 import { getRouteLink } from 'Routing/util';
 import { RoutingFav } from 'Routing/container/RoutingFavContainer';
@@ -20,6 +19,7 @@ import { useHistory, useRouteMatch } from 'react-router';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import deLocale from 'date-fns/locale/de';
+import Divider from '@material-ui/core/Divider';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import IconButton from '@material-ui/core/IconButton';
 import React, { SyntheticEvent, useCallback, useEffect, useMemo } from 'react';

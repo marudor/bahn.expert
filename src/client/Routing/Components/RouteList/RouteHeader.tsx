@@ -1,5 +1,5 @@
-import Chip from '@material-ui/core/Chip';
 import { format } from 'date-fns';
+import Chip from '@material-ui/core/Chip';
 import Paper from '@material-ui/core/Paper';
 import React from 'react';
 import useStyles from './RouteHeader.style';
