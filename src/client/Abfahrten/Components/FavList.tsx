@@ -64,6 +64,7 @@ const FavList = ({ staticContext }: Props) => {
         <>
           <FavEntryDisplay
             data-testid="error"
+            className={classes.nonClickable}
             text={getErrorText(savedError, staticContext)}
           />
           {savedError.station && (
@@ -74,7 +75,10 @@ const FavList = ({ staticContext }: Props) => {
               <FavEntryDisplay text={savedError.station} />
             </Link>
           )}
-          <FavEntryDisplay text="Versuch einen der folgenden" />
+          <FavEntryDisplay
+            className={classes.nonClickable}
+            text="Versuch einen der folgenden"
+          />
           <MostUsed />
         </>
       ) : sortedFavs.length ? (

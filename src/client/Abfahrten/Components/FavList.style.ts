@@ -9,6 +9,7 @@ export default makeStyles({
   nonClickable: {
     justifyContent: 'center',
     alignItems: 'center',
+    textAlign: 'center',
     height: '60px',
     fontWeight: 600,
     '&:hover': {
