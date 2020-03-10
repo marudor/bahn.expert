@@ -54,6 +54,7 @@ const SettingsPanel = () => {
           }
           className={classes.badge}
           color="secondary"
+          data-testid="routingSettingsPanel-maxChange"
         >
           {' '}
           <CachedIcon />{' '}
@@ -62,6 +63,7 @@ const SettingsPanel = () => {
           badgeContent={`${settings.transferTime}m`}
           className={classes.badge}
           color="secondary"
+          data-testid="routingSettingsPanel-transferTime"
         >
           {' '}
           <TimelapseIcon />{' '}
