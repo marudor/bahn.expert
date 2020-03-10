@@ -11,6 +11,12 @@ export default makeStyles(theme => ({
     justifyContent: 'flex-start',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
+    height: '100%',
+    maxHeight: '50px',
+    transition: 'max-height 350ms ease-in-out',
+    '&.expanded': {
+      maxHeight: '100em',
+    },
   },
   cancelled: {
     textDecoration: 'line-through',
