@@ -38,8 +38,37 @@ const SettingsPanel = () => {
         className={classes.summary}
         expandIcon={<ExpandMoreIcon />}
       >
-        {settings.maxChanges} Umstiege / {settings.transferTime}m Umstiegszeit
-        {settings.onlyRegional && ' / Nur Nahverkehr'}
+        <Badge
+          badgeContent={
+            settings.maxChanges === '-1' ? (
+              <AllInclusiveIcon fontSize="small" />
+            ) : (
+              settings.maxChanges
+            )
+          }
+          className={classes.badge}
+          color="secondary"
+          data-testid="routingSettingsPanel-maxChange"
+        >
+          {' '}
+          <CachedIcon />{' '}
+        </Badge>
+        <Badge
+          badgeContent={`${settings.transferTime}m`}
+          className={classes.badge}
+          color="secondary"
+          data-testid="routingSettingsPanel-transferTime"
+        >
+          {' '}
+          <TimelapseIcon />{' '}
+        </Badge>
+        <Chip
+          size="small"
+          color="primary"
+          className={classes.chip}
+          label={settings.onlyRegional ? 'Nahverkehr' : 'Alle Zuege'}
+          icon={<TrainIcon />}
+        />
       </ExpansionPanelSummary>
       <ExpansionPanelDetails className={classes.details}>
         <FormControlLabel
