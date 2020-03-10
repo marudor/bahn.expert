@@ -20,6 +20,9 @@ import React, {
 } from 'react';
 import stopPropagation from 'Common/stopPropagation';
 import useStorage from 'shared/hooks/useStorage';
+import TodayIcon from '@material-ui/icons/Today';
+import TrainIcon from '@material-ui/icons/Train';
+import SearchIcon from '@material-ui/icons/Search';
 import useStyles from './Zugsuche.style';
 import ZugsucheAutocomplete from 'Common/Components/ZugsucheAutocomplete';
 
@@ -90,22 +93,31 @@ const Zugsuche = ({ children }: Props) => {
         <DialogContent className={classes.main}>
           <form onSubmit={onSubmit}>
             <FormControl fullWidth component="fieldset">
-              <DatePicker
-                showTodayButton
-                autoOk
-                label="Datum"
-                value={date}
-                onChange={setDate}
-                className={classes.searchInput}
-              />
-              <ZugsucheAutocomplete
-                onChange={setMatch}
-                initialDeparture={date?.getTime()}
-              />
+              <div className={classes.dateInputWrapper}>
+                <DatePicker
+                  showTodayButton
+                  autoOk
+                  label="Datum"
+                  value={date}
+                  onChange={setDate}
+                  className={classes.searchInput}
+                />
+                <TodayIcon className={classes.inputIcon} />
+              </div>
+              <div className={classes.zugInputWrapper}>
+                <ZugsucheAutocomplete
+                  onChange={setMatch}
+                  initialDeparture={date?.getTime()}
+                />
+                <TrainIcon className={classes.inputIcon} />
+              </div>
               <Button
                 data-testid="ZugsucheSubmit"
                 type="submit"
+                variant="contained"
+                color="primary"
                 className={classes.searchButton}
+                startIcon={<SearchIcon />}
               >
                 Suche
               </Button>

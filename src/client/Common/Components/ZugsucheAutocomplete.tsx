@@ -92,7 +92,8 @@ const ZugsucheAutocomplete = ({
             <div>
               <TextField
                 fullWidth
-                placeholder="Zug (z.B. ICE 71)"
+                label="Zug"
+                placeholder="z.B. ICE 71"
                 InputLabelProps={getLabelProps({ shrink: true } as any)}
                 InputProps={{
                   onBlur,
