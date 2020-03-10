@@ -13,7 +13,6 @@ const RouteHeader = ({ date }: Props) => {
   return (
     <Paper square className={classes.main}>
       <span data-testid="headerDate" className={classes.date}>
-        {/* {format(date, 'dd.MM.yyyy')} */}
         <Chip
           size="medium"
           variant="outlined"
