@@ -18,11 +18,11 @@ import React, {
   useContext,
   useState,
 } from 'react';
+import SearchIcon from '@material-ui/icons/Search';
 import stopPropagation from 'Common/stopPropagation';
-import useStorage from 'shared/hooks/useStorage';
 import TodayIcon from '@material-ui/icons/Today';
 import TrainIcon from '@material-ui/icons/Train';
-import SearchIcon from '@material-ui/icons/Search';
+import useStorage from 'shared/hooks/useStorage';
 import useStyles from './Zugsuche.style';
 import ZugsucheAutocomplete from 'Common/Components/ZugsucheAutocomplete';
 
