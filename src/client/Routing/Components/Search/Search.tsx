@@ -19,6 +19,7 @@ import { useHistory, useRouteMatch } from 'react-router';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import deLocale from 'date-fns/locale/de';
+import Divider from '@material-ui/core/Divider';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import IconButton from '@material-ui/core/IconButton';
 import React, { SyntheticEvent, useCallback, useEffect, useMemo } from 'react';
