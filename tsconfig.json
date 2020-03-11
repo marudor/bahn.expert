@@ -1,5 +1,4 @@
 {
-  "exclude": ["cypress", "docs", "dist", "testDist"],
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
@@ -30,5 +29,6 @@
       "types/*": ["types/*"]
     },
     "types": ["jest", "@testing-library/jest-dom"]
-  }
+  },
+  "include": ["src", "test", "@types"]
 }
