@@ -6,9 +6,9 @@ import { ThemeProvider } from 'Common/container/ThemeContainer';
 import axios from 'axios';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import registerServiceWorker from './registerServiceWorker';
 import Storage from 'Common/Storage';
 import ThemeWrap from './ThemeWrap';
-import registerServiceWorker from './registerServiceWorker';
 
 // 15s timeout
 axios.defaults.timeout = 15000;

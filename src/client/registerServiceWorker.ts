@@ -14,11 +14,13 @@ export default function register() {
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       const swUrl = 'worker.js';
+
       navigator.serviceWorker
         .register(swUrl)
         .then(registration => {
           registration.onupdatefound = () => {
             const installingWorker = registration.installing;
+
             installingWorker.onstatechange = () => {
               if (installingWorker.state === 'installed') {
                 if (navigator.serviceWorker.controller) {
@@ -28,21 +30,19 @@ export default function register() {
                   // available; please refresh." message in your web app.
                   if (window.confirm('New version available! OK to refresh?')) {
                     registration.waiting.postMessage('skipWaiting');
+                    location.reload();
                   }
-                  console.log('New content is available; please refresh.');
+                  // console.log('New content is available; please refresh.');
                 } else {
                   // At this point, everything has been precached.
                   // It's the perfect time to display a
                   // "Content is cached for offline use." message.
-                  console.log('Content is cached for offline use.');
                 }
               }
             };
           };
         })
-        .catch(error => {
-          console.error('Error during service worker registration:', error);
-        });
+        .catch(() => {});
     });
   }
 }

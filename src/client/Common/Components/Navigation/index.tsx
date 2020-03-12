@@ -3,6 +3,7 @@ import {
   List,
   ListItem,
   ListItemText,
+  Snackbar,
   SwipeableDrawer,
 } from '@material-ui/core';
 import NavigationContext from './NavigationContext';
@@ -20,6 +21,8 @@ const Navigation = ({ children }: Props) => {
   const [installAvailable, setInstallAvailable] = useState(false);
   const [prompt, setPrompt] = useState({});
   const classes = useStyles();
+  const [openSnackbar, setOpenSnackbar] = React.useState(false);
+
   const toggleDrawer = useCallback(() => {
     setOpen(!open);
   }, [open]);
@@ -30,20 +33,19 @@ const Navigation = ({ children }: Props) => {
     [toggleDrawer]
   );
 
-  typeof window !== 'undefined' &&
+  if (typeof window !== 'undefined') {
     window.addEventListener('beforeinstallprompt', e => {
       e.preventDefault();
       setPrompt(e);
       setInstallAvailable(true);
     });
+  }
 
   const installApp = () => {
     prompt.prompt();
     prompt.userChoice.then(choiceResult => {
       if (choiceResult.outcome === 'accepted') {
-        console.log('User accepted the install prompt');
-      } else {
-        console.log('User dismissed the install prompt');
+        setOpenSnackbar(true);
       }
     });
   };
@@ -83,6 +85,16 @@ const Navigation = ({ children }: Props) => {
         </List>
       </SwipeableDrawer>
       {children}
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        open={openSnackbar}
+        autoHideDuration={3000}
+        onClose={() => setOpenSnackbar(false)}
+        message="App Installed"
+      />
     </NavigationContext.Provider>
   );
 };
