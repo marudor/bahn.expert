@@ -17,6 +17,8 @@ interface Props {
 
 const Navigation = ({ children }: Props) => {
   const [open, setOpen] = useState(false);
+  const [installAvailable, setInstallAvailable] = useState(false);
+  const [prompt, setPrompt] = useState({});
   const classes = useStyles();
   const toggleDrawer = useCallback(() => {
     setOpen(!open);
@@ -27,6 +29,24 @@ const Navigation = ({ children }: Props) => {
     }),
     [toggleDrawer]
   );
+
+  typeof window !== 'undefined' &&
+    window.addEventListener('beforeinstallprompt', e => {
+      e.preventDefault();
+      setPrompt(e);
+      setInstallAvailable(true);
+    });
+
+  const installApp = () => {
+    prompt.prompt();
+    prompt.userChoice.then(choiceResult => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('User accepted the install prompt');
+      } else {
+        console.log('User dismissed the install prompt');
+      }
+    });
+  };
 
   return (
     <NavigationContext.Provider value={navigationContext}>
@@ -55,6 +75,11 @@ const Navigation = ({ children }: Props) => {
               <ListItemText primary="About" />
             </ListItem>
           </Link>
+          {installAvailable && (
+            <ListItem button>
+              <ListItemText primary="Install" onClick={installApp} />
+            </ListItem>
+          )}
         </List>
       </SwipeableDrawer>
       {children}

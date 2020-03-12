@@ -8,6 +8,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Storage from 'Common/Storage';
 import ThemeWrap from './ThemeWrap';
+import registerServiceWorker from './registerServiceWorker';
+
 // 15s timeout
 axios.defaults.timeout = 15000;
 
@@ -15,23 +17,27 @@ global.smallScreen = window.matchMedia('(max-width: 480px)').matches;
 
 const storage = new Storage();
 
-const render = (App: React.ComponentType) => (
-  <HelmetProvider>
-    <BrowserRouter>
-      <StorageContext.Provider value={storage}>
-        <ThemeProvider>
-          <App />
-        </ThemeProvider>
-      </StorageContext.Provider>
-    </BrowserRouter>
-  </HelmetProvider>
-);
+const render = (App: React.ComponentType) => {
+  return (
+    <HelmetProvider>
+      <BrowserRouter>
+        <StorageContext.Provider value={storage}>
+          <ThemeProvider>
+            <App />
+          </ThemeProvider>
+        </StorageContext.Provider>
+      </BrowserRouter>
+    </HelmetProvider>
+  );
+};
 
 const container = document.getElementById('app');
 
 loadableReady(() => {
   ReactDOM.hydrate(render(ThemeWrap), container);
 });
+
+registerServiceWorker();
 
 // @ts-ignore
 if (module.hot) {
