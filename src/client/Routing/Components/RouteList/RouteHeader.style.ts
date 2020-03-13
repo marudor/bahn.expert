@@ -10,5 +10,6 @@ export default makeStyles({
     gridArea: '1 / 1 / 2 / 5',
     fontSize: '1.5em',
     textAlign: 'center',
+    marginBottom: '10px',
   },
 });
