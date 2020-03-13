@@ -1,0 +1,13 @@
+on:
+  - push
+  - pull_request
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo $SHA
+          env
+        env:
+          SHA: ${{github.event.pull_request.head.sha || github.sha}}
