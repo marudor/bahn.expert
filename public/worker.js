@@ -8,6 +8,10 @@ self.addEventListener('install', event => {
       return cache.addAll(urlsToCache);
     })
   );
+  event.registerForeignFetch({
+    scopes: ['/'],
+    origins: ['*'],
+  });
 });
 
 self.addEventListener('activate', event => {
@@ -43,5 +47,17 @@ addEventListener('fetch', event => {
       }
       return (await caches.match(event.request)) || fetch(event.request);
     })()
+  );
+});
+
+self.addEventListener('foreignfetch', event => {
+  event.respondWith(
+    fetch(event.request).then(response => {
+      return {
+        response: response,
+        origin: event.origin,
+        headers: ['Content-Type'],
+      };
+    })
   );
 });
