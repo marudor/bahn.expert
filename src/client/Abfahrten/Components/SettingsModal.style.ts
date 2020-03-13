@@ -5,7 +5,6 @@ export default makeStyles({
     display: 'flex',
     flexDirection: 'column',
     width: '80%',
-    maxWidth: '450px',
     margin: '0 auto',
   },
   autoUpdate: {
