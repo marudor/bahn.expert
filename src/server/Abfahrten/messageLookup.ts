@@ -59,6 +59,7 @@ export default {
   '64': 'Weichenstörung',
   '65': 'Erdrutsch',
   '66': 'Hochwasser',
+  '67': 'Behördliche Anordnung',
   '70': 'Kein WLAN',
   '71': 'WLAN in einzelnen Wagen nicht verfügbar',
   '72': 'Info-/Entertainment nicht verfügbar',
