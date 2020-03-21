@@ -9,6 +9,7 @@ export default makeStyles({
   date: {
     gridArea: '1 / 1 / 2 / 5',
     textAlign: 'center',
+    marginBottom: '10px',
   },
   chip: {
     fontSize: '1.4rem',
