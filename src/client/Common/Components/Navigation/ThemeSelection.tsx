@@ -1,8 +1,17 @@
+import {
+  Badge,
+  Collapse,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Typography,
+} from '@material-ui/core';
 import { capitalize } from 'lodash';
-import { Collapse, List, ListItem, ListItemText } from '@material-ui/core';
 import { ThemeType } from 'client/Themes/type';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import PaletteIcon from '@material-ui/icons/Palette';
 import React, { SyntheticEvent, useCallback, useState } from 'react';
 import ThemeContainer from 'Common/container/ThemeContainer';
 import useStyles from './ThemeSelection.style';
@@ -34,17 +43,16 @@ const ThemeSelection = () => {
   return (
     <>
       <ListItem data-testid="themes" button onClick={toggle}>
+        <ListItemIcon>
+          <PaletteIcon />
+        </ListItemIcon>
         <ListItemText primary="Themes" />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List disablePadding className={classes.nested} data-testid="themeList">
           {Object.values(ThemeType).map(themeOption => {
-            let name = capitalize(themeOption);
-
-            if (themeOption === themeType) {
-              name = `* ${name}`;
-            }
+            const name = capitalize(themeOption);
 
             return (
               <ListItem
@@ -53,7 +61,13 @@ const ThemeSelection = () => {
                 onClick={selectTheme}
                 data-value={themeOption}
               >
-                <ListItemText primary={name} />
+                {themeOption === themeType ? (
+                  <Badge color="primary" variant="dot">
+                    <Typography>{name}</Typography>
+                  </Badge>
+                ) : (
+                  <ListItemText primary={name} />
+                )}
               </ListItem>
             );
           })}
