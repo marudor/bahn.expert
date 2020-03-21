@@ -49,12 +49,12 @@ const SettingsModal = () => {
 
   return (
     <Dialog
-      maxWidth="md"
+      maxWidth="sm"
       fullWidth
       open={configOpen}
       onClose={() => setConfigOpen(false)}
     >
-      <DialogTitle>Settings</DialogTitle>
+      <DialogTitle className={classes.header}>Settings</DialogTitle>
       <DialogContent className={classes.main} data-testid="settingsContent">
         <FormControlLabel
           className={classes.label}
