@@ -5,32 +5,32 @@ describe('Routing Settings', () => {
     });
     it('can change settings', () => {
       cy.findByTestId('routingSettingsPanel')
-        .should('include.text', '-1 Umstiege')
+        .should('include.text', '0mAlle Zuege')
         .click();
       cy.findByTestId('routingMaxChanges')
         .clear()
         .type('5');
-      cy.findByTestId('routingSettingsPanel').should(
+      cy.findByTestId('routingSettingsPanel-maxChange').should(
         'include.text',
-        '5 Umstiege'
+        '5'
       );
     });
 
     it('changed settings saved', () => {
       cy.findByTestId('routingSettingsPanel')
-        .should('include.text', '0m Umstiegszeit')
+        .should('include.text', '0mAlle Zuege')
         .click();
       cy.findByTestId('routingTransferTime')
         .clear()
         .type('5');
-      cy.findByTestId('routingSettingsPanel').should(
+      cy.findByTestId('routingSettingsPanel-transferTime').should(
         'include.text',
-        '5m Umstiegszeit'
+        '5m'
       );
       cy.visit('/routing');
-      cy.findByTestId('routingSettingsPanel').should(
+      cy.findByTestId('routingSettingsPanel-transferTime').should(
         'include.text',
-        '5m Umstiegszeit'
+        '5m'
       );
     });
   });
