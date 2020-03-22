@@ -1,7 +1,7 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { createContainer } from 'unstated-next';
 import { Station } from 'types/station';
-import { useCallback, useState } from 'react';
+import { SyntheticEvent, useCallback, useMemo, useState } from 'react';
 import useStorage from 'shared/hooks/useStorage';
 
 export interface RoutingSettings {
@@ -66,6 +66,16 @@ const useRoutingConfig = (
     });
   }, []);
 
+  const swapStartDestination = useMemo(
+    () => (e: SyntheticEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setDestination(start);
+      setStart(destination);
+    },
+    [destination, start]
+  );
+
   return {
     start,
     setStart,
@@ -75,6 +85,7 @@ const useRoutingConfig = (
     setDate,
     via,
     updateVia,
+    swapStartDestination,
     ...useRoutingSettings(initialState),
   };
 };

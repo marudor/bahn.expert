@@ -15,7 +15,7 @@ import { groupBy, maxBy, minBy } from 'lodash';
 import { isRedesignByTZ, isRedesignByUIC } from 'server/Reihung/tzInfo';
 import axios from 'axios';
 import getBR from 'server/Reihung/getBR';
-import ICENaming from 'server/Reihung/ICENaming';
+import TrainNames from 'server/Reihung/TrainNames';
 
 const countryMapping: any = {
   80: 'DE',
@@ -397,11 +397,11 @@ export async function wagenreihung(trainNumber: string, date: number) {
     const trainNumberAsNumber = Number.parseInt(g.verkehrlichezugnummer, 10);
 
     g.goesToFrance = trainNumberAsNumber >= 9550 && trainNumberAsNumber <= 9599;
-    if (g.fahrzeuggruppebezeichnung.startsWith('ICE')) {
+    if (g.fahrzeuggruppebezeichnung.startsWith('IC')) {
       const tzn = g.fahrzeuggruppebezeichnung;
 
       g.tzn = tzn?.match(tznRegex)?.[0];
-      g.name = ICENaming(g.tzn);
+      g.name = TrainNames(g.tzn);
 
       if (g.br && isRedesignByTZ(g.tzn)) {
         g.br.redesign = true;

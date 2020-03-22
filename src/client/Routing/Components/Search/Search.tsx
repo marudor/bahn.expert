@@ -13,17 +13,20 @@ import { DateTimePicker } from '@material-ui/pickers';
 import { getHafasStationFromAPI } from 'shared/service/stationSearch';
 import { getRouteLink } from 'Routing/util';
 import { RoutingFav } from 'Routing/container/RoutingFavContainer';
+import { Search as SearchIcon } from '@material-ui/icons';
 import { Station } from 'types/station';
 import { useHistory, useRouteMatch } from 'react-router';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import deLocale from 'date-fns/locale/de';
-import IconButton from '@material-ui/core/IconButton';
+import Divider from '@material-ui/core/Divider';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import React, { SyntheticEvent, useCallback, useEffect, useMemo } from 'react';
 import RoutingConfigContainer from 'Routing/container/RoutingConfigContainer';
 import SettingsPanel from './SettingsPanel';
 import StationSearch from 'Common/Components/StationSearch';
 import SwapVertical from '@material-ui/icons/SwapVert';
+import TodayIcon from '@material-ui/icons/Today';
 import useFetchRouting from 'Routing/container/RoutingContainer/useFetchRouting';
 import useStyles from './Search.styles';
 
@@ -52,6 +55,7 @@ const Search = () => {
     setStart,
     destination,
     setDestination,
+    swapStartDestination,
     date,
     setDate,
     settings,
@@ -169,7 +173,7 @@ const Search = () => {
           onChange={s => updateVia(index, s)}
           value={v}
           key={index}
-          additionalIcons={<DeleteIcon onClick={() => updateVia(index)} />}
+          additionalIcon={<DeleteIcon onClick={() => updateVia(index)} />}
           profile={settings.hafasProfile}
         />
       )),
@@ -203,34 +207,32 @@ const Search = () => {
           onChange={setDestination}
           placeholder="Destination"
           profile={settings.hafasProfile}
+          additionalIcon={
+            <SwapVertical
+              data-testid="swapStations"
+              onClick={swapStartDestination}
+              fontSize="large"
+            />
+          }
         />
-        <IconButton
-          data-testid="swapStations"
-          style={{ padding: 0 }}
-          onClick={(e: SyntheticEvent) => {
-            e.preventDefault();
-            e.stopPropagation();
-            setDestination(start);
-            setStart(destination);
-          }}
-        >
-          <SwapVertical fontSize="large" />
-        </IconButton>
       </div>
-      <DateTimePicker
-        fullWidth
-        openTo="hours"
-        className={classes.datePicker}
-        labelFunc={formatDate}
-        ampm={false}
-        value={date}
-        onChange={setDate}
-        cancelLabel="Abbrechen"
-        autoOk
-        clearable
-        clearLabel="Jetzt"
-        minutesStep={5}
-      />
+      <div className={classes.datePickerWrap}>
+        <DateTimePicker
+          fullWidth
+          openTo="hours"
+          className={classes.datePicker}
+          labelFunc={formatDate}
+          ampm={false}
+          value={date}
+          onChange={setDate}
+          cancelLabel="Abbrechen"
+          autoOk
+          clearable
+          clearLabel="Jetzt"
+          minutesStep={5}
+        />
+        <TodayIcon className={classes.todayIcon} />
+      </div>
       <SettingsPanel />
       <div className={classes.buttons}>
         <Button
@@ -238,13 +240,22 @@ const Search = () => {
           fullWidth
           variant="contained"
           onClick={searchRoute}
+          color="primary"
         >
           Search
+          <SearchIcon />
         </Button>
-        <Button data-testid="toFav" variant="contained" onClick={clearRoutes}>
-          Favorites
+        <Button
+          color="secondary"
+          variant="contained"
+          data-testid="toFav"
+          onClick={clearRoutes}
+        >
+          Favs
+          <FavoriteBorder />
         </Button>
       </div>
+      <Divider variant="middle" />
     </>
   );
 };

@@ -2,8 +2,10 @@ import { makeStyles } from '@material-ui/styles';
 
 export const gridStyle = {
   gridTemplateColumns: '2fr 2fr 2fr 1fr',
+  gridTemplateRows: '60px 20px',
   display: 'grid',
   marginBottom: '.2em',
+  alignItems: 'center',
 };
 
 export default makeStyles({

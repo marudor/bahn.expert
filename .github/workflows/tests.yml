@@ -9,7 +9,7 @@ on:
       - master
 
 env:
-  CI: 'true'
+  CI: "true"
 
 jobs:
   commitlint:
@@ -83,13 +83,37 @@ jobs:
           parallel: true
           build: yarn build
           group: ${{ matrix.browser }}
-          ci-build-id: '${{ github.sha }}-${{ github.workflow }}-${{ github.event_name }}'
+          ci-build-id: "${{github.sha}}-${{ github.workflow }}-${{ github.event_name }}"
           start: node testDist/server/server/index.js
           wait-on: http://localhost:9042
           browser: ${{ matrix.browser}}
         env:
           CYPRESS_RECORD_KEY: 0af1d817-e8ac-4c69-ac15-c0da1e69182d
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BASE_URL: http://localhost:9042
           NODE_ENV: production
           TEST_RUN: 1
           TEST_ONLY: 1
+  bundleSize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Use Node.js 13
+        uses: actions/setup-node@master
+        with:
+          node-version: 13
+      - name: install
+        run: |
+          yarn --immutable
+        env:
+          CYPRESS_INSTALL_BINARY: 0
+      - name: bundleSize
+        run: yarn build:client:ci
+        env:
+          NODE_ENV: production
+          PT_PROJECT_TOKEN: 1ce5b3fa-b36c-4f3c-9d93-5207b79264c7
+          PROD_ONLY: 1
+          PT_BRANCH: ${{github.head_ref || github.ref}}
+          PT_COMMIT: ${{github.event.pull_request.head.sha || github.sha}}
