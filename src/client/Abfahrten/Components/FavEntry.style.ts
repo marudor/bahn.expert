@@ -10,8 +10,6 @@ export default makeStyles(theme => ({
     paddingRight: '.5em',
     color: theme.palette.text.primary,
     display: 'flex',
-    justifyContent: 'space-between',
-    height: '60px',
     alignItems: 'center',
     [theme.breakpoints.up('sm')]: {
       fontSize: '2rem',
@@ -19,8 +17,16 @@ export default makeStyles(theme => ({
     '& > a': {
       colors: theme.palette.text.primary,
     },
+  },
+  clickable: {
     '&:hover': {
       backgroundColor: theme.palette.action.hover,
     },
+    justifyContent: 'space-between',
+  },
+  nonClickable: {
+    textAlign: 'center',
+    fontWeight: 600,
+    justifyContent: 'center',
   },
 }));

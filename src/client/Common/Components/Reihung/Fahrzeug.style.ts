@@ -98,7 +98,7 @@ export default makeStyles(theme => ({
   icon: {
     width: '0.6em !important',
     height: '0.6em !important',
-    '@media screen and (max-width: 1200px)': {
+    [theme.breakpoints.down('md')]: {
       fontSize: '16px !important',
     },
   },

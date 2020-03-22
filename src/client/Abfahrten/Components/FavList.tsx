@@ -47,7 +47,7 @@ const FavList = ({ staticContext }: Props) => {
 
     return values
       .sort((a, b) => (a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1))
-      .map(fav => <FavEntry favEntry key={fav.id} fav={fav} />);
+      .map(fav => <FavEntry key={fav.id} fav={fav} />);
   }, [favs]);
   const { error } = AbfahrtenContainer.useContainer();
   const [savedError] = useState(error);
@@ -64,7 +64,7 @@ const FavList = ({ staticContext }: Props) => {
         <>
           <FavEntryDisplay
             data-testid="error"
-            className={classes.nonClickable}
+            clickable={false}
             text={getErrorText(savedError, staticContext)}
           />
           {savedError.station && (
@@ -76,32 +76,26 @@ const FavList = ({ staticContext }: Props) => {
             </Link>
           )}
           <FavEntryDisplay
-            className={classes.nonClickable}
+            clickable={false}
             text="Versuch einen der folgenden"
           />
           <MostUsed />
         </>
       ) : sortedFavs.length ? (
         <>
-          <FavEntryDisplay className={classes.nonClickable} text="Favoriten" />
+          <FavEntryDisplay clickable={false} text="Favoriten" />
           {sortedFavs}
-          <FavEntryDisplay
-            className={classes.nonClickable}
-            text="Oft Gesucht"
-          />
+          <FavEntryDisplay clickable={false} text="Oft Gesucht" />
           <MostUsed />
         </>
       ) : (
         <>
           <FavEntryDisplay
-            className={classes.nonClickable}
+            clickable={false}
             data-testid="noFav"
             text="Keine Favoriten"
           />
-          <FavEntryDisplay
-            className={classes.nonClickable}
-            text="Oft Gesucht"
-          />
+          <FavEntryDisplay clickable={false} text="Oft Gesucht" />
           <MostUsed />
         </>
       )}

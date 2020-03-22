@@ -6,14 +6,4 @@ export default makeStyles({
     flexDirection: 'column',
     flex: 1,
   },
-  nonClickable: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
-    height: '60px',
-    fontWeight: 600,
-    '&:hover': {
-      backgroundColor: 'transparent',
-    },
-  },
 });

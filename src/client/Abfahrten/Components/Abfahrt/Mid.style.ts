@@ -8,15 +8,9 @@ export default makeStyles(theme => ({
     display: 'flex',
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-around',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
-    height: '100%',
-    maxHeight: '50px',
-    transition: 'max-height 350ms ease-in-out',
-    '&.expanded': {
-      maxHeight: '100em',
-    },
   },
   cancelled: {
     textDecoration: 'line-through',

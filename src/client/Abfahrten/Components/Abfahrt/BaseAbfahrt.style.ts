@@ -9,7 +9,6 @@ export default makeStyles(theme => ({
     paddingLeft: '.5em',
     paddingRight: '.5em',
     position: 'relative',
-    minHeight: '50px',
   },
   scrollMarker: {
     position: 'absolute',
@@ -22,7 +21,7 @@ export default makeStyles(theme => ({
     flexShrink: 0,
     fontSize: '.6em',
     userSelect: 'none',
-    '@media screen and (max-width: 1200px)': {
+    [theme.breakpoints.down('md')]: {
       fontSize: '.36em',
     },
   },

@@ -15,14 +15,14 @@ const Mid = ({ abfahrt, detail }: Props) => {
   return (
     <div
       data-testid="abfahrtMid"
-      className={`${cc(
+      className={cc(
         {
           [classes.detail]: detail,
         },
         classes.main
-      )} ${detail ? 'expanded' : ''}`}
+      )}
     >
-      {abfahrt && <Info abfahrt={abfahrt} detail={detail} />}
+      <Info abfahrt={abfahrt} detail={detail} />
       <div
         className={cc(classes.destination, {
           [classes.cancelled]: abfahrt.cancelled,
