@@ -3,6 +3,7 @@ import { Paper } from '@material-ui/core';
 import { Station } from 'types/station';
 import { useUnfav } from 'Abfahrten/container/FavContainer';
 import ActionDelete from '@material-ui/icons/Delete';
+import cc from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
 import React, { MouseEvent, ReactNode, useCallback } from 'react';
 import useStyles from './FavEntry.style';
@@ -10,22 +11,32 @@ import useStyles from './FavEntry.style';
 interface Props {
   fav: Station;
   noDelete?: boolean;
+  'data-testid'?: string;
 }
 
 interface FavEntryDisplayProps {
   deleteFav?: (e: MouseEvent) => void;
   text: ReactNode;
   'data-testid'?: string;
+  clickable?: boolean;
 }
 export const FavEntryDisplay = ({
   deleteFav,
   text,
+  clickable = true,
   'data-testid': testid,
 }: FavEntryDisplayProps) => {
   const classes = useStyles();
 
   return (
-    <Paper data-testid={testid} className={classes.main} square>
+    <Paper
+      data-testid={testid}
+      className={cc(
+        classes.main,
+        clickable ? classes.clickable : classes.nonClickable
+      )}
+      square
+    >
       <span>{text}</span>
       {deleteFav && (
         <IconButton
@@ -41,7 +52,11 @@ export const FavEntryDisplay = ({
   );
 };
 
-const FavEntry = ({ fav, noDelete }: Props) => {
+const FavEntry = ({
+  fav,
+  noDelete,
+  'data-testid': testid = 'favEntry',
+}: Props) => {
   const unfav = useUnfav();
   const deleteFav = useCallback(
     (e: MouseEvent) => {
@@ -54,7 +69,7 @@ const FavEntry = ({ fav, noDelete }: Props) => {
 
   return (
     <Link
-      data-testid="favEntry"
+      data-testid={testid}
       to={encodeURIComponent(fav.title)}
       title={`Zugabfahrten für ${fav.title}`}
     >

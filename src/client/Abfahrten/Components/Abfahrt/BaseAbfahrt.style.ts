@@ -21,7 +21,7 @@ export default makeStyles(theme => ({
     flexShrink: 0,
     fontSize: '.6em',
     userSelect: 'none',
-    '@media screen and (max-width: 1200px)': {
+    [theme.breakpoints.down('md')]: {
       fontSize: '.36em',
     },
   },
