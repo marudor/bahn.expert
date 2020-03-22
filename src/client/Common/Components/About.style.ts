@@ -8,7 +8,7 @@ export default makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'space-around',
     marginTop: '1em',
-    '@media screen and (max-width: 1200px)': {
+    [theme.breakpoints.down('md')]: {
       display: 'grid',
       flexDirection: 'column',
       alignItems: 'center',
