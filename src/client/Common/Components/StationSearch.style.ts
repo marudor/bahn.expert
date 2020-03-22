@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/styles';
+import { Props } from './StationSearch';
 
 export default makeStyles(theme => ({
   wrapper: {
@@ -19,15 +20,15 @@ export default makeStyles(theme => ({
   paper: {
     background: theme.palette.background.default,
     position: 'absolute',
-    zIndex: 1,
+    zIndex: 2,
     marginTop: theme.spacing(1),
     left: 0,
     right: 0,
   },
-  loading: {
+  loading: ({ additionalIcon }: Pick<Props, 'additionalIcon'>) => ({
     position: 'absolute',
     top: '-1em',
-    right: '2em',
+    right: additionalIcon ? '1.7em' : '.5em',
     transform: 'scale(.5)',
-  },
+  }),
 }));
