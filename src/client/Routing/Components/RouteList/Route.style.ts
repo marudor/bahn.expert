@@ -32,13 +32,4 @@ export default makeStyles({
       marginRight: '.2em',
     },
   },
-
-  expand: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    '& svg': {
-      marginTop: '15px',
-    },
-  },
 });

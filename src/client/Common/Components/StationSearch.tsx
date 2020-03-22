@@ -10,7 +10,7 @@ import TextField from '@material-ui/core/TextField';
 import useStationSearch from 'shared/hooks/useStationSearch';
 import useStyles from './StationSearch.style';
 
-interface Props {
+export interface Props {
   id: string;
   searchType?: StationSearchType;
   value?: Station;
@@ -19,7 +19,7 @@ interface Props {
   placeholder?: string;
   profile?: AllowedHafasProfile;
   maxSuggestions?: number;
-  additionalIcons?: ReactNode;
+  additionalIcon?: ReactNode;
 }
 
 const StationSearch = ({
@@ -31,9 +31,9 @@ const StationSearch = ({
   searchType,
   profile,
   maxSuggestions = 7,
-  additionalIcons,
+  additionalIcon,
 }: Props) => {
-  const classes = useStyles();
+  const classes = useStyles({ additionalIcon });
   const inputRef = useRef<HTMLInputElement>();
 
   const {
@@ -183,7 +183,7 @@ const StationSearch = ({
       </Downshift>
       <div className={classes.icons}>
         <MyLocation onClick={getLocation} />
-        {additionalIcons}
+        {additionalIcon}
       </div>
       {loading && (
         <Loading className={classes.loading} type={LoadingType.dots} />

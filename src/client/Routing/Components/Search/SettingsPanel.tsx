@@ -13,7 +13,7 @@ import Badge from '@material-ui/core/Badge';
 import CachedIcon from '@material-ui/icons/Cached';
 import Chip from '@material-ui/core/Chip';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import React, { ChangeEvent, useCallback } from 'react';
+import React, { ChangeEvent, useCallback, useMemo } from 'react';
 import RoutingConfigContainer, {
   RoutingSettings,
 } from 'Routing/container/RoutingConfigContainer';
@@ -36,6 +36,16 @@ const SettingsPanel = () => {
     [updateSetting]
   );
 
+  const maxChangesBadeContent = useMemo(
+    () =>
+      Number.parseInt(settings.maxChanges, 10) < 0 ? (
+        <AllInclusiveIcon fontSize="small" />
+      ) : (
+        settings.maxChanges
+      ),
+    [settings.maxChanges]
+  );
+
   return (
     <ExpansionPanel className={classes.expanded}>
       <ExpansionPanelSummary
@@ -45,19 +55,12 @@ const SettingsPanel = () => {
         expandIcon={<ExpandMoreIcon />}
       >
         <Badge
-          badgeContent={
-            settings.maxChanges === '-1' ? (
-              <AllInclusiveIcon fontSize="small" />
-            ) : (
-              settings.maxChanges
-            )
-          }
+          badgeContent={maxChangesBadeContent}
           className={classes.badge}
           color="secondary"
           data-testid="routingSettingsPanel-maxChange"
         >
-          {' '}
-          <CachedIcon />{' '}
+          <CachedIcon />
         </Badge>
         <Badge
           badgeContent={`${settings.transferTime}m`}
@@ -65,8 +68,7 @@ const SettingsPanel = () => {
           color="secondary"
           data-testid="routingSettingsPanel-transferTime"
         >
-          {' '}
-          <TimelapseIcon />{' '}
+          <TimelapseIcon />
         </Badge>
         <Chip
           size="small"

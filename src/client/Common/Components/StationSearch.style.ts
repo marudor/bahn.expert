@@ -1,27 +1,10 @@
 import { makeStyles } from '@material-ui/styles';
+import { Props } from './StationSearch';
 
 export default makeStyles(theme => ({
   wrapper: {
     flex: 1,
     position: 'relative',
-    minHeight: '50px',
-    display: 'flex',
-    alignItems: 'flex-end',
-    justifyContent: 'flex-start',
-    padding: '10px',
-    '& > div:nth-child(1)': {
-      width: '100%',
-    },
-    '& input': {
-      height: '2rem',
-      fontSize: '1.4rem',
-      '&::placeholder': {
-        fontSize: '1.1rem',
-      },
-      [theme.breakpoints.up('sm')]: {
-        fontSize: '2rem',
-      },
-    },
   },
   icons: {
     '& > svg': {
@@ -42,10 +25,10 @@ export default makeStyles(theme => ({
     left: 0,
     right: 0,
   },
-  loading: {
+  loading: ({ additionalIcon }: Pick<Props, 'additionalIcon'>) => ({
     position: 'absolute',
     top: '-1em',
-    right: '2em',
+    right: additionalIcon ? '1.7em' : '.5em',
     transform: 'scale(.5)',
-  },
+  }),
 }));

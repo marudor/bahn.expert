@@ -1,11 +1,11 @@
 import { makeStyles } from '@material-ui/styles';
 export default makeStyles(theme => ({
+  datePickerWrap: {
+    position: 'relative',
+  },
   datePicker: {
     '& input': {
       paddingRight: 10,
-    },
-    '& > div': {
-      minHeight: '50px',
     },
   },
   buttons: {
@@ -31,20 +31,9 @@ export default makeStyles(theme => ({
   destination: {
     display: 'flex',
   },
-  dateWrapper: {
-    position: 'relative',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'baseline',
-    padding: '10px',
-    '& input': {
-      fontSize: '1.4rem',
-    },
-  },
   todayIcon: {
     top: '50%',
     right: '0px',
-    margin: '0 10px',
     position: 'absolute',
     transform: 'translateY(-50%)',
   },

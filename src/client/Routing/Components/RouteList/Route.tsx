@@ -1,6 +1,5 @@
 import { formatDuration } from 'Routing/util';
 import { SingleRoute } from 'types/routing';
-import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
 import cc from 'clsx';
 import Paper from '@material-ui/core/Paper';
 import PlannedType from 'Common/Components/PlannedType';
@@ -52,9 +51,7 @@ const Route = ({ route, detail, onClick }: Props) => {
         delay={route.arrival.delay}
       />
       <span>{formatDuration(route.duration)}</span>
-      <span className={classes.expand}>
-        {route.changes} <AddBoxOutlinedIcon />
-      </span>
+      <span>{route.changes}</span>
       {detail ? (
         <RouteSegments className={classes.detail} segments={route.segments} />
       ) : (

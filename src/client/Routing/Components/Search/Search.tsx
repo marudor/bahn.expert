@@ -21,7 +21,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import deLocale from 'date-fns/locale/de';
 import Divider from '@material-ui/core/Divider';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
-import IconButton from '@material-ui/core/IconButton';
 import React, { SyntheticEvent, useCallback, useEffect, useMemo } from 'react';
 import RoutingConfigContainer from 'Routing/container/RoutingConfigContainer';
 import SettingsPanel from './SettingsPanel';
@@ -56,6 +55,7 @@ const Search = () => {
     setStart,
     destination,
     setDestination,
+    swapStartDestination,
     date,
     setDate,
     settings,
@@ -173,7 +173,7 @@ const Search = () => {
           onChange={s => updateVia(index, s)}
           value={v}
           key={index}
-          additionalIcons={<DeleteIcon onClick={() => updateVia(index)} />}
+          additionalIcon={<DeleteIcon onClick={() => updateVia(index)} />}
           profile={settings.hafasProfile}
         />
       )),
@@ -207,21 +207,16 @@ const Search = () => {
           onChange={setDestination}
           placeholder="Destination"
           profile={settings.hafasProfile}
+          additionalIcon={
+            <SwapVertical
+              data-testid="swapStations"
+              onClick={swapStartDestination}
+              fontSize="large"
+            />
+          }
         />
-        <IconButton
-          data-testid="swapStations"
-          style={{ padding: 0 }}
-          onClick={(e: SyntheticEvent) => {
-            e.preventDefault();
-            e.stopPropagation();
-            setDestination(start);
-            setStart(destination);
-          }}
-        >
-          <SwapVertical fontSize="large" />
-        </IconButton>
       </div>
-      <div className={classes.dateWrapper}>
+      <div className={classes.datePickerWrap}>
         <DateTimePicker
           fullWidth
           openTo="hours"
