@@ -20,7 +20,7 @@ const mostUsed = [
 const MostUsed = () => (
   <>
     {mostUsed.map(m => (
-      <FavEntry noDelete key={m.id} fav={m} />
+      <FavEntry data-testid="mostUsedEntry" noDelete key={m.id} fav={m} />
     ))}
   </>
 );

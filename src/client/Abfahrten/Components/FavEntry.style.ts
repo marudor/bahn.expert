@@ -6,17 +6,27 @@ export default makeStyles(theme => ({
     marginBottom: 1,
     flexShrink: 0,
     paddingLeft: '.5em',
-    fontSize: '2em',
+    fontSize: '1.6em',
     paddingRight: '.5em',
     color: theme.palette.text.primary,
     display: 'flex',
-    justifyContent: 'space-between',
     alignItems: 'center',
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '2rem',
+    },
     '& > a': {
       colors: theme.palette.text.primary,
     },
+  },
+  clickable: {
     '&:hover': {
       backgroundColor: theme.palette.action.hover,
     },
+    justifyContent: 'space-between',
+  },
+  nonClickable: {
+    textAlign: 'center',
+    fontWeight: 600,
+    justifyContent: 'center',
   },
 }));
