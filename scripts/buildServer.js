@@ -6,7 +6,7 @@ const testOnly = Boolean(process.env.TEST_ONLY);
 const productionOnly = Boolean(process.env.PROD_ONLY);
 
 function buildTest() {
-  return new Promise(resolve =>
+  return new Promise((resolve) =>
     spawn(
       'babel',
       [
@@ -27,7 +27,7 @@ function buildTest() {
           BABEL_ENV: 'testProduction',
         },
       }
-    ).on('close', code => {
+    ).on('close', (code) => {
       rimraf.sync('testDist/server/app');
       resolve(code);
     })
@@ -35,7 +35,7 @@ function buildTest() {
 }
 
 function buildProd() {
-  return new Promise(resolve =>
+  return new Promise((resolve) =>
     spawn(
       'babel',
       [
@@ -51,7 +51,7 @@ function buildProd() {
         '--copy-files',
       ],
       { stdio: 'pipe' }
-    ).on('close', code => {
+    ).on('close', (code) => {
       rimraf.sync('dist/server/app');
       resolve(code);
     })

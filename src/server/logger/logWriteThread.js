@@ -8,7 +8,7 @@ const prettyLog = pinoPretty({
   translateTime: true,
 });
 const streams = [
-  msg => {
+  (msg) => {
     process.stdout.write(prettyLog(JSON.stringify(msg)));
   },
 ];
@@ -18,7 +18,7 @@ const logglyToken = process.env.LOGGLY_TOKEN;
 if (process.env.NODE_ENV === 'production' && logglyToken) {
   // eslint-disable-next-line no-console
   console.log('Using loggly to log');
-  streams.push(msg => {
+  streams.push((msg) => {
     // 30 is info, we log warn and above to loggly
     if (msg.level > 30) {
       axios.post(
@@ -48,7 +48,7 @@ if (process.env.NODE_ENV === 'production' && timberSource && timberToken) {
     50: 'error',
   };
 
-  streams.push(msg => {
+  streams.push((msg) => {
     // 30 is info, we log warn and above to timber
     if (msg.level > 30) {
       timber.log(msg.msg, timberLevelMap[msg.level] || msg.level, msg);
@@ -56,8 +56,8 @@ if (process.env.NODE_ENV === 'production' && timberSource && timberToken) {
   });
 }
 
-parentPort.on('message', msg => {
+parentPort.on('message', (msg) => {
   const parsedMsg = JSON.parse(msg);
 
-  streams.forEach(s => s(parsedMsg));
+  streams.forEach((s) => s(parsedMsg));
 });

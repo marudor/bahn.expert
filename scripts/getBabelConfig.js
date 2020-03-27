@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const getBabelConfig = type => {
+const getBabelConfig = (type) => {
   const isServer = type === 'server';
 
   const presetEnvTargets = isServer

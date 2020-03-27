@@ -17,10 +17,10 @@ const transformBusinessHubStation = (
   businessHubStation: Pick<StopPlace, 'name' | 'identifiers' | 'location'>
 ): BusinessHubStation => ({
   title: businessHubStation.name,
-  id: businessHubStation.identifiers.find(i => i.type === 'EVA')?.value || '',
+  id: businessHubStation.identifiers.find((i) => i.type === 'EVA')?.value || '',
   location: businessHubStation.location,
-  ds100: businessHubStation.identifiers.find(i => i.type === 'RIL100')?.value,
-  stada: businessHubStation.identifiers.find(i => i.type === 'STADA')?.value,
+  ds100: businessHubStation.identifiers.find((i) => i.type === 'RIL100')?.value,
+  stada: businessHubStation.identifiers.find((i) => i.type === 'STADA')?.value,
 });
 
 export default async (
@@ -41,7 +41,7 @@ export default async (
   // eslint-disable-next-line no-underscore-dangle
   return result._embedded.stopPlaceList
     .map(transformBusinessHubStation)
-    .filter(s => s.id && (!needsDS100 || s.ds100));
+    .filter((s) => s.id && (!needsDS100 || s.ds100));
 };
 
 export const stationDetails = async (

@@ -48,8 +48,8 @@ export async function fetchWifiData() {
 function transformWifiData(data: WifiData) {
   const result: TransformedWifiData = {};
 
-  data.traindata.forEach(td => {
-    td.ap_list.forEach(ap => {
+  data.traindata.forEach((td) => {
+    td.ap_list.forEach((ap) => {
       result[ap.uic.replace('-', '')] = {
         ...ap,
         trainTimestamp: td.timestamp * 1000,

@@ -1,7 +1,7 @@
 import { Formation } from 'types/reihung';
 import { makeStyles } from '@material-ui/styles';
 
-export default makeStyles(theme => ({
+export default makeStyles((theme) => ({
   wrap: {
     overflowX: 'auto',
   },
@@ -35,9 +35,9 @@ export default makeStyles(theme => ({
     if (reihung) {
       if (reihung.differentZugnummer) height += 1;
       if (reihung.differentDestination) height += 1;
-      if (reihung.allFahrzeuggruppe.find(g => g.br && g.br.showBRInfo))
+      if (reihung.allFahrzeuggruppe.find((g) => g.br && g.br.showBRInfo))
         height += 1;
-      if (reihung.allFahrzeuggruppe.some(g => g.name)) {
+      if (reihung.allFahrzeuggruppe.some((g) => g.name)) {
         height += 1;
       }
     }

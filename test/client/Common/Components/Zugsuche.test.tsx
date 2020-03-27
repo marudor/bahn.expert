@@ -39,7 +39,7 @@ describe('Zugsuche', () => {
 
     fireEvent.click(getByTestId('dummytoggle'));
     fireEvent.click(getByTestId('ZugsucheSubmit'));
-    await new Promise(resolve => setTimeout(resolve, 200));
+    await new Promise((resolve) => setTimeout(resolve, 200));
     expect(getByTestId('Zugsuche')).toBeInTheDocument();
   });
 
@@ -48,7 +48,7 @@ describe('Zugsuche', () => {
       nock
         .post(
           '/api/hafas/v1/enrichedJourneyMatch',
-          body => body.trainName === 'EC 6'
+          (body) => body.trainName === 'EC 6'
         )
         .reply(200, [
           {

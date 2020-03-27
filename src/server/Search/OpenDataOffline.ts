@@ -15,10 +15,10 @@ const searchableStations = new Fuse(rawStations, {
   keys: ['name', 'ds100'],
 });
 
-export default function(searchTerm: string): Promise<Station[]> {
+export default function (searchTerm: string): Promise<Station[]> {
   const matches = searchableStations.search(searchTerm);
 
-  const weightedMatches = matches.map(m => ({
+  const weightedMatches = matches.map((m) => ({
     item: m.item,
     score: (1 - (m.score || 0) * 2) * m.item.weight,
   }));

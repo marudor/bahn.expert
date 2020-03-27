@@ -26,9 +26,9 @@ beforeAll(() => {
   Nock.disableNetConnect();
 
   global.nock = Nock('http://localhost');
-  global.nock.intercept = (oldFn => {
+  global.nock.intercept = ((oldFn) => {
     // eslint-disable-next-line func-names
-    return function(this: any, ...args: any) {
+    return function (this: any, ...args: any) {
       args[0] = args[0].replace(/ /g, '%20');
 
       return oldFn.apply(this, args);

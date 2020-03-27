@@ -25,7 +25,7 @@ describe('withFchg', () => {
     path.resolve(__dirname, baseFixturePath, 'fchg')
   );
 
-  fchgFixtures.forEach(file => {
+  fchgFixtures.forEach((file) => {
     it(file, async () => {
       const fchgXml = fs.readFileSync(
         path.resolve(__dirname, baseFixturePath, 'fchg', file),

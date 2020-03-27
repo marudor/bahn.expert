@@ -15,7 +15,7 @@ function encodeSearchTerm(term: string) {
 
 // Can also handle lat&lng
 // https://si.favendo.de/station-info/rest/api/search?searchTerm=Bochum&lat=42.00023&lng=23.00042
-export default async function(
+export default async function (
   searchTerm: string,
   coordinates?: Coordinates
 ): Promise<Station[]> {
@@ -35,7 +35,7 @@ export default async function(
     .sort((a, b) =>
       a.title === searchTerm ? -1 : b.title === searchTerm ? 1 : 0
     )
-    .map(s => ({
+    .map((s) => ({
       title: s.title,
       id: s.eva_ids[0],
       favendoId: s.id,

@@ -30,7 +30,7 @@ const ZugsucheAutocomplete = ({
   const [loading, setLoading] = useState(0);
   const loadOptions = useCallback(
     async (value: string) => {
-      setLoading(old => old + 1);
+      setLoading((old) => old + 1);
       const routeSettings = storage.get('rconfig');
 
       try {
@@ -47,7 +47,7 @@ const ZugsucheAutocomplete = ({
           setSuggestions([]);
         }
       }
-      setLoading(old => old - 1);
+      setLoading((old) => old - 1);
     },
     [initialDeparture, storage]
   );

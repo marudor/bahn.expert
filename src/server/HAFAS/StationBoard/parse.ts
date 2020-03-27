@@ -26,7 +26,7 @@ const parseStationBoardResponse = (
     jid: jny.jid,
     cancelled: jny.isCncl,
     currentStation: common.locL[jny.stbStop.locX],
-    stops: jny.stopL?.map(s => parseStop(s, common, date, product)),
+    stops: jny.stopL?.map((s) => parseStop(s, common, date, product)),
     raw: global.PROD ? undefined : jny,
   };
 

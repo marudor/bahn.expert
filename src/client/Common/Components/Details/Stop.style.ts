@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/styles';
 
-export default makeStyles(theme => ({
+export default makeStyles((theme) => ({
   main: {
     display: 'grid',
     gridTemplateColumns: '4.8em 1fr max-content',

@@ -30,7 +30,7 @@ export default () => {
       }
 
       if (filterFunctions.length) {
-        const f = (a: Abfahrt) => filterFunctions.every(fn => fn(a));
+        const f = (a: Abfahrt) => filterFunctions.every((fn) => fn(a));
 
         filtered.lookahead = filtered.lookahead.filter(f);
         filtered.lookbehind = filtered.lookbehind.filter(f);

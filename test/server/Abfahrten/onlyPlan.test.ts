@@ -23,7 +23,7 @@ describe('onlyPlan', () => {
   const baseFixturePath = 'fixtures/plan';
   const fixtures = fs.readdirSync(path.resolve(__dirname, baseFixturePath));
 
-  fixtures.forEach(file => {
+  fixtures.forEach((file) => {
     it(file, async () => {
       const inXml = fs.readFileSync(
         path.resolve(__dirname, baseFixturePath, file),

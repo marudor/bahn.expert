@@ -43,10 +43,10 @@ const checkInCheck = (
   Object.values(CheckInType).includes(numberVal) ? numberVal : CheckInType.None;
 
 export const abfahrtenConfigSanitize: AbfahrtenConfigSanitize = {
-  autoUpdate: value => numberCheck(value, 0),
+  autoUpdate: (value) => numberCheck(value, 0),
   lineAndNumber: booleanCheck,
-  lookahead: value => numberCheck(value, 150).toString(),
-  lookbehind: value => numberCheck(value, 0).toString(),
+  lookahead: (value) => numberCheck(value, 150).toString(),
+  lookbehind: (value) => numberCheck(value, 0).toString(),
   searchType: searchTypeCheck,
   showSupersededMessages: booleanCheck,
 };

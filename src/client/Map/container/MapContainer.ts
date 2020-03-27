@@ -93,8 +93,8 @@ function useMap() {
           },
         }
       )
-        .then(r => {
-          setPolylines(old => ({
+        .then((r) => {
+          setPolylines((old) => ({
             ...old,
             [activeJourney.jid]: r.data.polylines[0],
           }));
@@ -131,7 +131,7 @@ function useMap() {
         },
       }
     )
-      .then(r => setPositions(r.data))
+      .then((r) => setPositions(r.data))
       .catch(() => {});
   }, [includeFV, includeNV, onlyRT, profile]);
 
@@ -144,7 +144,7 @@ function useMap() {
   }, [fetchPositions, setPositions]);
 
   useEffect(() => {
-    setPositions(old => {
+    setPositions((old) => {
       setTimeout(() => setPositions(old));
 
       return [];

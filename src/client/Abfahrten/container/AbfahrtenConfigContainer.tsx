@@ -22,9 +22,9 @@ const useFilter = (initialFilter: Filter) => {
   const [onlyDepartures] = useState(initialFilter.onlyDepartures);
   const [productFilter, setProductFilter] = useState(initialFilter.products);
   const toggleProduct = useCallback((product: string) => {
-    setProductFilter(oldProducts => {
+    setProductFilter((oldProducts) => {
       if (oldProducts.includes(product)) {
-        return oldProducts.filter(p => p !== product);
+        return oldProducts.filter((p) => p !== product);
       }
 
       return [...oldProducts, product];

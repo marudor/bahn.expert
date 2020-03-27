@@ -45,7 +45,7 @@ const Gruppe = ({
 
   const fahrzeuge = useMemo(
     () =>
-      gruppe.allFahrzeug.map(f => {
+      gruppe.allFahrzeug.map((f) => {
         return (
           <Fahrzeug
             {...rest}

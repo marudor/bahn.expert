@@ -17,7 +17,7 @@ if (!testOnly) {
   webpackProductionProcess.stdout.pipe(process.stdout);
   webpackProductionProcess.stderr.pipe(process.stderr);
 
-  webpackProductionProcess.on('close', code => {
+  webpackProductionProcess.on('close', (code) => {
     if (code !== 0) {
       process.exit(code);
     }
@@ -34,7 +34,7 @@ if (!productionOnly) {
     },
   });
 
-  webpackTestProductionProcess.on('close', code => {
+  webpackTestProductionProcess.on('close', (code) => {
     if (code !== 0) {
       process.exit(code);
     }

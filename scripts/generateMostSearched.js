@@ -23,14 +23,14 @@ const mostUsedNames = [
   'München Hbf',
   'Wuppertal Hbf',
   'Nürnberg Hbf',
-].map(n => n.toLowerCase());
+].map((n) => n.toLowerCase());
 
-Promise.all(mostUsedNames.map(s => search(s).then(s => s[0]))).then(
-  stations => {
+Promise.all(mostUsedNames.map((s) => search(s).then((s) => s[0]))).then(
+  (stations) => {
     // eslint-disable-next-line no-console
     console.log(
       JSON.stringify(
-        stations.map(s => ({
+        stations.map((s) => ({
           title: s.title,
           id: s.id,
         }))

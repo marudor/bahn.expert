@@ -73,7 +73,7 @@ const Reihung = (props: Props) => {
     <div className={cc(classes.wrap, className)} data-testid="reihung">
       <div className={classes.main}>
         <div className={classes.sektoren}>
-          {reihung.halt.allSektor.map(s => (
+          {reihung.halt.allSektor.map((s) => (
             <Sektor
               correctLeft={correctLeft}
               scale={scale}
@@ -83,7 +83,7 @@ const Reihung = (props: Props) => {
           ))}
         </div>
         <div className={classes.reihung}>
-          {reihung.allFahrzeuggruppe.map(g => (
+          {reihung.allFahrzeuggruppe.map((g) => (
             <Gruppe
               showGruppenZugnummer={differentZugnummer}
               showUIC={showUIC}

@@ -36,7 +36,7 @@ describe('Abfahrten', () => {
       cy.findByTestId('scrollMarker').should('exist');
     });
     cy.findByTestId('abfahrtS35744').within(() => {
-      cy.queryByTestId('scrollMarker').should('not.exist');
+      cy.findByTestId('scrollMarker').should('not.exist');
     });
   });
   it('going back & showing different station should reload', () => {

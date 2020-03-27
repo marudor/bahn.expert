@@ -55,7 +55,7 @@ const Navigation = ({ children }: Props) => {
             </ListItem>
           </Link>
           <Zugsuche>
-            {toggle => (
+            {(toggle) => (
               <ListItem button onClick={toggle}>
                 <ListItemIcon>
                   <SearchIcon />

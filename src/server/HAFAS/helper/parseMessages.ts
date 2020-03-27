@@ -9,12 +9,12 @@ export default (
 
   const messages = uniqBy(
     msgL
-      .map(msg => {
+      .map((msg) => {
         const rem = common.remL[msg.remX];
 
         return rem;
       })
-      .filter(msg => msg && msg.txtN !== 'Gleiswechsel'),
+      .filter((msg) => msg && msg.txtN !== 'Gleiswechsel'),
     'txtN'
   );
 

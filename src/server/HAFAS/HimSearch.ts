@@ -14,7 +14,7 @@ const parseHimMessage = (himMessage: HimMessage, common: ParsedCommon) => {
   return {
     ...himMessage,
     affectedProducts:
-      himMessage.affProdRefL?.map(prodRef => common.prodL[prodRef]) ?? [],
+      himMessage.affProdRefL?.map((prodRef) => common.prodL[prodRef]) ?? [],
     startTime: parseTime(
       parse(himMessage.sDate, 'yyyyMMdd', Date.now()),
       himMessage.sTime
@@ -30,7 +30,7 @@ const parseHimSearch = (
   common: ParsedCommon
 ): ParsedHimSearchResponse => {
   return {
-    messages: d.svcResL[0].res.msgL.map(m => parseHimMessage(m, common)),
+    messages: d.svcResL[0].res.msgL.map((m) => parseHimMessage(m, common)),
   };
 };
 

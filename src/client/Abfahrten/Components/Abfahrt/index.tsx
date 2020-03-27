@@ -14,7 +14,7 @@ const Abfahrt = ({ abfahrt }: Props) => {
     () =>
       Boolean(
         wings?.every(
-          w =>
+          (w) =>
             w.train.number.endsWith(abfahrt.train.number) &&
             w.train.type !== abfahrt.train.type
         )
@@ -25,7 +25,7 @@ const Abfahrt = ({ abfahrt }: Props) => {
   const wingNumbers = useMemo(
     () =>
       wings?.length
-        ? wings.map(w => w.train.number).concat([abfahrt.train.number])
+        ? wings.map((w) => w.train.number).concat([abfahrt.train.number])
         : undefined,
     [abfahrt.train.number, wings]
   );
