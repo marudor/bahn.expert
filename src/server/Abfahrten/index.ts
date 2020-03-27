@@ -89,8 +89,8 @@ export async function getAbfahrten(
 
   if (withRelated) {
     relatedAbfahrten = Promise.all(
-      relatedStations.map(s => getAbfahrten(s.eva, false, options, axios))
-    ).then(r => r.reduce(reduceResults, baseResult));
+      relatedStations.map((s) => getAbfahrten(s.eva, false, options, axios))
+    ).then((r) => r.reduce(reduceResults, baseResult));
   }
 
   const timetable = new Timetable(

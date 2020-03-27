@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/styles';
 import { Props } from './StationSearch';
 
-export default makeStyles(theme => ({
+export default makeStyles((theme) => ({
   wrapper: {
     flex: 1,
     position: 'relative',

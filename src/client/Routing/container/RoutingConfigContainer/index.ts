@@ -23,7 +23,7 @@ const useRoutingSettings = (initialSettings: RoutingSettings) => {
 
   const updateSetting = useCallback(
     <K extends keyof RoutingSettings>(key: K, value: RoutingSettings[K]) => {
-      setSettings(oldSettings => {
+      setSettings((oldSettings) => {
         const newSettings = {
           ...oldSettings,
           [key]: value,
@@ -52,7 +52,7 @@ const useRoutingConfig = (
   const [date, setDate] = useState<Date | null>(null);
 
   const updateVia = useCallback((index: number, station?: Station) => {
-    setVia(oldVia => {
+    setVia((oldVia) => {
       if (!station) {
         return oldVia.filter((_, i) => i !== index);
       }

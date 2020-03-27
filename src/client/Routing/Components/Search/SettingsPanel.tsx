@@ -121,7 +121,7 @@ const SettingsPanel = () => {
               name="checkIn"
               onChange={handleInputChange('hafasProfile')}
             >
-              {Object.keys(AllowedHafasProfile).map(allowedProfile => (
+              {Object.keys(AllowedHafasProfile).map((allowedProfile) => (
                 <option
                   key={allowedProfile}
                   // @ts-ignore

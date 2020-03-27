@@ -18,6 +18,7 @@ export function getRouteLink(
   via: Station[],
   date?: Date | null
 ) {
-  return `/routing/${start.id}/${destination.id}/${date?.getTime() ||
-    0}/${via.map(v => `${v.id}|`).join('')}`;
+  return `/routing/${start.id}/${destination.id}/${
+    date?.getTime() || 0
+  }/${via.map((v) => `${v.id}|`).join('')}`;
 }

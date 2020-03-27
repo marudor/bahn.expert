@@ -17,7 +17,7 @@ function parseJourneyCourse(
 
   return {
     polylines: r.svcResL[0].res.mainPoly.polyXL.map(
-      polyIndex => polyL[polyIndex]
+      (polyIndex) => polyL[polyIndex]
     ),
   };
 }

@@ -15,10 +15,10 @@ const parseJourneyMatch = (
   d: HafasResponse<JourneyMatchResponse>,
   common: ParsedCommon
 ): ParsedJourneyMatchResponse[] => {
-  return d.svcResL[0].res.jnyL.map(j => {
+  return d.svcResL[0].res.jnyL.map((j) => {
     const date = parse(j.date, 'yyyyMMdd', new Date());
     const train = common.prodL[j.prodX];
-    const stops = j.stopL.map(stop => parseStop(stop, common, date, train));
+    const stops = j.stopL.map((stop) => parseStop(stop, common, date, train));
 
     return {
       train,
@@ -58,7 +58,7 @@ const JourneyMatch = (
   };
 
   return makeRequest(req, raw ? undefined : parseJourneyMatch, profile).catch(
-    e => {
+    (e) => {
       if (e.errorCode === 'NO_MATCH') {
         e.status = 404;
       }
@@ -79,7 +79,7 @@ export async function enrichedJourneyMatch(
   const limitedJourneyMatches = journeyMatches.slice(0, 5);
 
   const enriched = await Promise.all(
-    limitedJourneyMatches.map(async j => {
+    limitedJourneyMatches.map(async (j) => {
       try {
         const details = await JourneyDetails(j.jid, profile);
 

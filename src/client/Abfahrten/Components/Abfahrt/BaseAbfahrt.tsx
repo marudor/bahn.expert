@@ -22,7 +22,7 @@ export interface Props {
 
 const BaseAbfahrt = ({ abfahrt, wingNumbers, wingEnd, wingStart }: Props) => {
   const wingNumbersWithoutSelf = wingNumbers?.filter(
-    wn => wn !== abfahrt.train.number
+    (wn) => wn !== abfahrt.train.number
   );
   const classes = useStyles();
   const {

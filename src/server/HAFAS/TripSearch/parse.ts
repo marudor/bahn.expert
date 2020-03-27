@@ -49,7 +49,7 @@ function adjustToFirstTrain(
   segments: Route$JourneySegment[]
 ) {
   if (segments.length && segments[0].type !== 'JNY') {
-    const firstTrainSegment = segments.find(s => s.type === 'JNY');
+    const firstTrainSegment = segments.find((s) => s.type === 'JNY');
 
     if (firstTrainSegment) {
       departure.delay = firstTrainSegment.arrival.delay;
@@ -62,7 +62,7 @@ function adjustToLastTrain(
   segments: Route$JourneySegment[]
 ) {
   if (segments.length && segments[segments.length - 1].type !== 'JNY') {
-    const allTrainSegments = segments.filter(s => s.type === 'JNY');
+    const allTrainSegments = segments.filter((s) => s.type === 'JNY');
 
     if (allTrainSegments.length) {
       const lastTrainSegment = allTrainSegments[allTrainSegments.length - 1];
@@ -84,7 +84,7 @@ export class Journey {
     this.common = common;
     this.date = parse(raw.date, 'yyyyMMdd', new Date());
     const allSegments = raw.secL
-      .filter(leg => AllowedLegTypes.includes(leg.type))
+      .filter((leg) => AllowedLegTypes.includes(leg.type))
       .map(this.parseSegment)
       .filter<Route$JourneySegment>(Boolean as any);
 
@@ -107,7 +107,7 @@ export class Journey {
       departure,
       segments,
       segmentTypes: segments
-        .map(s => (s.type === 'JNY' ? s.train.type : s.train.name))
+        .map((s) => (s.type === 'JNY' ? s.train.type : s.train.name))
         .filter(Boolean as any),
       tarifSet: parseTarif(raw.trfRes),
       raw: global.PROD ? undefined : raw,
@@ -119,7 +119,7 @@ export class Journey {
   ): Route$Stop[] => {
     if (!stops) return [];
 
-    return stops.map(stop => parseStop(stop, this.common, this.date, train));
+    return stops.map((stop) => parseStop(stop, this.common, this.date, train));
   };
   parseSegmentJourney = (jny: Jny): Route$Journey => {
     const [, fullStart, fullDestination, , , , , , ,] = jny.ctxRecon.split('$');
@@ -197,8 +197,8 @@ export default (
   parsedCommon: ParsedCommon
 ): RoutingResult => {
   const routes = r.svcResL[0].res.outConL
-    .flatMap(j => new Journey(j, parsedCommon).journey)
-    .filter(j => j.segments.length);
+    .flatMap((j) => new Journey(j, parsedCommon).journey)
+    .filter((j) => j.segments.length);
 
   return {
     context: {

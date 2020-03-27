@@ -21,9 +21,7 @@ export async function getLageplan(stationName: string) {
   ).data;
 
   let $ = cheerio.load(searchHtml);
-  const firstResultLink = $('#result .title > a')
-    .first()
-    .attr('href');
+  const firstResultLink = $('#result .title > a').first().attr('href');
 
   if (!firstResultLink) {
     cache.set(stationName, null);

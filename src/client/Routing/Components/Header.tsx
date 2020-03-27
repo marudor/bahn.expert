@@ -36,7 +36,7 @@ const InnerHeader = () => {
       destination && {
         start: stripStationToRoutingFavStation(start),
         destination: stripStationToRoutingFavStation(destination),
-        via: via.map(v => stripStationToRoutingFavStation(v)),
+        via: via.map((v) => stripStationToRoutingFavStation(v)),
         profile: settings.hafasProfile,
       },
     [destination, settings.hafasProfile, start, via]

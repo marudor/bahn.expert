@@ -12,7 +12,7 @@ const useSelectedDetail = (initialSelected: string | undefined) => {
 
   const setSelectedDetail = useCallback(
     (newSelected?: string) => {
-      realSetSelectedDetail(oldSelectedDetail => {
+      realSetSelectedDetail((oldSelectedDetail) => {
         const detailToSave =
           newSelected === oldSelectedDetail ? undefined : newSelected;
 

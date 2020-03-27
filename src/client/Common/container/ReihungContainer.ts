@@ -9,7 +9,7 @@ function fetchSequence(
 ): Promise<Formation | undefined> {
   return axios
     .get(`/api/reihung/v1/wagen/${trainNumber}/${scheduledDeparture}`)
-    .then(r => r.data)
+    .then((r) => r.data)
     .catch(() => undefined);
 }
 
@@ -39,7 +39,7 @@ function useReihung() {
     }
     const key = trainNumber + currentStation + scheduledDeparture;
 
-    setReihungen(oldReihungen => ({
+    setReihungen((oldReihungen) => ({
       ...oldReihungen,
       [key]: reihung,
     }));

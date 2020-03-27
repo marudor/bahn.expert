@@ -18,11 +18,11 @@ export default async (ctx: Context, next: Function) => {
     } else {
       // @ts-ignore
       if (e instanceof Error && !handledHafasError.includes(e.errorCode)) {
-        Sentry.withScope(scope => {
+        Sentry.withScope((scope) => {
           if (e.data) {
             scope.setExtra('data', e.data);
           }
-          scope.addEventProcessor(event =>
+          scope.addEventProcessor((event) =>
             Sentry.Handlers.parseRequest(event, ctx.request)
           );
           Sentry.captureException(e);

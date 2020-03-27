@@ -53,7 +53,7 @@ const StationSearch = ({
     (e: SyntheticEvent<any>) => {
       e.stopPropagation();
       navigator.geolocation.getCurrentPosition(
-        p => {
+        (p) => {
           loadOptions(p.coords);
           selectRef.current?.openMenu();
         },

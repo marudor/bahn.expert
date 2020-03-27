@@ -8,7 +8,7 @@ export default (dTrnCmpSX?: TrnCmpSX, tcocL?: TcocL[]) => {
     second?: number;
   } = {};
 
-  dTrnCmpSX.tcocX.forEach(i => {
+  dTrnCmpSX.tcocX.forEach((i) => {
     const a = tcocL[i];
 
     switch (a.c) {

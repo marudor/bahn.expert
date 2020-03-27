@@ -19,7 +19,7 @@ module.exports = function webpackDev(koa: Koa, server: undefined | Server) {
   compiler.hooks.done.tap('CacheBusting', () => {
     // eslint-disable-next-line no-console
     console.log('Clearing webpack module cache from server');
-    Object.keys(require.cache).forEach(id => {
+    Object.keys(require.cache).forEach((id) => {
       if (id.match(/src\/client/)) {
         delete require.cache[id];
       }
@@ -29,7 +29,7 @@ module.exports = function webpackDev(koa: Koa, server: undefined | Server) {
   const watcher = chokidar.watch(path.resolve('./src/server/**'));
 
   watcher.on('change', () => {
-    Object.keys(require.cache).forEach(id => {
+    Object.keys(require.cache).forEach((id) => {
       if (id.match(/src\/server/)) {
         delete require.cache[id];
       }
@@ -40,7 +40,7 @@ module.exports = function webpackDev(koa: Koa, server: undefined | Server) {
 
   const routesWatcher = chokidar.watch(path.resolve('./src/server/API/**'));
 
-  routesWatcher.on('change', file => {
+  routesWatcher.on('change', (file) => {
     if (file.endsWith('routes.ts')) return;
     childProcess.exec('yarn doc:build');
   });
@@ -54,7 +54,7 @@ module.exports = function webpackDev(koa: Koa, server: undefined | Server) {
     hotClient: process.env.CYPRESS
       ? false
       : { https: true, host: 'local.marudor.de', server },
-  }).then(middleware => {
+  }).then((middleware) => {
     koa.use(middleware);
   });
 };

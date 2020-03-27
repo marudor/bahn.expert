@@ -18,9 +18,7 @@ Cypress.Commands.add(
     const baseFind = findPrefix ? cy.findByTestId(findPrefix) : cy;
 
     baseFind.findByTestId('stationSearchInput').type(value);
-    cy.findAllByTestId('stationSearchMenuItem')
-      .first()
-      .click();
+    cy.findAllByTestId('stationSearchMenuItem').first().click();
     if (!isStubbed) {
       cy.wait('@irisAbfahrten');
     }
@@ -102,7 +100,7 @@ Cypress.Commands.add('getAbfahrtenConfig', () => {
   return cy
     .getCookie('config')
     .should('exist')
-    .then(c => {
+    .then((c) => {
       if (!c) throw new Error("can' happen");
       const config = JSON.parse(decodeURIComponent(c.value));
 

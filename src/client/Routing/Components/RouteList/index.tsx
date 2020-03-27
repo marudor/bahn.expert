@@ -67,7 +67,7 @@ const RouteList = () => {
           </Button>
         ))}
       {routes
-        .filter(r => r.isRideable)
+        .filter((r) => r.isRideable)
         .map((r, i) => {
           return (
             <React.Fragment key={r.checksum}>

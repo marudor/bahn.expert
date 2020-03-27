@@ -19,11 +19,11 @@ function calculateCurrentStation(
   let currentStop;
 
   if (currentStopId) {
-    currentStop = segment.stops.find(s => s.station.id === currentStopId);
+    currentStop = segment.stops.find((s) => s.station.id === currentStopId);
   }
 
   if (!currentStop) {
-    currentStop = segment.stops.find(s => {
+    currentStop = segment.stops.find((s) => {
       const stopInfo = s.departure || s.arrival;
 
       return stopInfo && !stopInfo.cancelled && stopInfo.time > currentDate;
@@ -101,7 +101,7 @@ export default async (
     );
 
     relevantSegment = route.segments.find(
-      s => s.type === 'JNY'
+      (s) => s.type === 'JNY'
     ) as Route$JourneySegmentTrain;
   } catch (e) {
     logger.error({
@@ -111,7 +111,7 @@ export default async (
 
     relevantSegment = {
       type: 'JNY',
-      cancelled: journeyDetails.stops.every(s => s.cancelled),
+      cancelled: journeyDetails.stops.every((s) => s.cancelled),
       finalDestination: journeyDetails.lastStop.station.title,
       jid: train.jid,
       train: journeyDetails.train,
@@ -134,12 +134,12 @@ export default async (
   }
 
   const lastStop = relevantSegment.stops
-    .filter(s => s.arrival && !s.arrival.cancelled)
+    .filter((s) => s.arrival && !s.arrival.cancelled)
     .pop();
 
   if (currentStopId) {
     relevantSegment.currentStop = relevantSegment.stops.find(
-      s => s.station.id === currentStopId
+      (s) => s.station.id === currentStopId
     );
   }
 
@@ -180,7 +180,7 @@ export default async (
         });
 
         const irisDeparture = irisData.departures.find(
-          a => a.train.name === relevantSegment.train.name
+          (a) => a.train.name === relevantSegment.train.name
         );
 
         if (irisDeparture) {

@@ -17,7 +17,7 @@ const HimIrisMessage = ({ message, today = new Date().getDate() }: Props) => {
   const toggleOpen = useCallback((e: SyntheticEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setOpen(old => !old);
+    setOpen((old) => !old);
   }, []);
   const formattedDate = format(
     ts,

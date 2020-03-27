@@ -10,7 +10,7 @@ const Messages = ({ messages }: Props) => {
 
   return (
     <>
-      {messages.map(m => (
+      {messages.map((m) => (
         <div key={m.code}>{m.txtN}</div>
       ))}
     </>

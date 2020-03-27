@@ -23,7 +23,7 @@ async function fetchList() {
     const newWRMap: Map<string, string[]> = new Map();
 
     if (tryThese && Array.isArray(tryThese)) {
-      tryThese.forEach(line => {
+      tryThese.forEach((line) => {
         const [, number, time] = line.split('/');
         let entriesForNumber = newWRMap.get(number);
 
@@ -73,7 +73,7 @@ export const WRForTZ = async (TZNumber: string) => {
         parse(times[0], 'yyyyMMddHHmm', Date.now()).getTime()
       );
 
-      if (WR.allFahrzeuggruppe.some(g => g.tzn === TZNumber)) {
+      if (WR.allFahrzeuggruppe.some((g) => g.tzn === TZNumber)) {
         // eslint-disable-next-line no-console
         console.log(`TZ ${TZNumber} today as ${number}`);
 

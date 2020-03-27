@@ -89,7 +89,7 @@ function route(
         },
       ],
       viaLocL: via?.length
-        ? via.map(evaId => ({
+        ? via.map((evaId) => ({
             loc: {
               lid: `A=1@L=${evaId}`,
             },
@@ -99,7 +99,7 @@ function route(
         ? {
             jnyCl: tarif.class,
             cType: 'PK',
-            tvlrProf: tarif.traveler.map(t => ({
+            tvlrProf: tarif.traveler.map((t) => ({
               type: t.type,
               redtnCard: mapLoyalityCard(t.loyalityCard, profile),
             })),
