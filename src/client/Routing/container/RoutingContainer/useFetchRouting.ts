@@ -32,7 +32,7 @@ export default () => {
         ? {
             start: start?.id,
             destination: destination?.id,
-            via: via.map(v => v.id),
+            via: via.map((v) => v.id),
             ...settings,
           }
         : undefined,
@@ -152,7 +152,7 @@ export default () => {
       fetchRoutes({
         start: fav.start.id,
         destination: fav.destination.id,
-        via: fav.via.map(v => v.id),
+        via: fav.via.map((v) => v.id),
         ...settings,
         hafasProfile: fav.profile,
       });

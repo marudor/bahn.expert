@@ -16,7 +16,7 @@ describe('Explain', () => {
     expect(getByTestId('bahnComfort')).toBeInTheDocument();
   });
 
-  Object.keys(iconExplanation).forEach(icon => {
+  Object.keys(iconExplanation).forEach((icon) => {
     it(`ensures ${icon} exists`, () => {
       const { getByTestId } = openLegende();
 

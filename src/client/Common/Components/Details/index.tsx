@@ -52,11 +52,11 @@ const Details = ({
   useEffect(() => {
     setDetails(undefined);
     getDetails(train, initialDeparture, currentStopId, stationId, query.profile)
-      .then(details => {
+      .then((details) => {
         setDetails(details);
         setError(undefined);
       })
-      .catch(e => {
+      .catch((e) => {
         setError(e);
       });
   }, [train, initialDeparture, currentStopId, query.profile, stationId]);

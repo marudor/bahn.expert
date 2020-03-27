@@ -48,7 +48,7 @@ const StopList = () => {
   return (
     <main className={classes.wrap}>
       {/* <Messages messages={details.messages} /> */}
-      {details.stops.map(s => (
+      {details.stops.map((s) => (
         <Stop
           train={details.train}
           stop={s}

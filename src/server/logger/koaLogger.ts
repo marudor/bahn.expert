@@ -82,7 +82,7 @@ export default (logger: Logger) => (ctx: Context, next: Next) => {
   };
 
   return next()
-    .catch(e => {
+    .catch((e) => {
       err = e;
     })
     .then(() => {

@@ -7,7 +7,7 @@ const RouteFavList = () => {
 
   return (
     <div data-testid="RouteFavList">
-      {Object.keys(favs).map(favKey => {
+      {Object.keys(favs).map((favKey) => {
         const fav = favs[favKey];
 
         return <RouteFavEntry key={favKey} fav={fav} />;

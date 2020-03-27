@@ -11,12 +11,12 @@ export default (abfahrt: Abfahrt) => {
       const arrivalWings = abfahrt.arrival && abfahrt.arrival.wingIds;
 
       if (arrivalWings) {
-        return arrivalWings.map(w => wings[w]).filter(Boolean);
+        return arrivalWings.map((w) => wings[w]).filter(Boolean);
       }
       const departureWings = abfahrt.departure && abfahrt.departure.wingIds;
 
       if (departureWings) {
-        return departureWings.map(w => wings[w]).filter(Boolean);
+        return departureWings.map((w) => wings[w]).filter(Boolean);
       }
     }
   }, [abfahrt.arrival, abfahrt.departure, wings]);

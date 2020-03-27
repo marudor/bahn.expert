@@ -11,7 +11,7 @@ const NormalVia = ({ stops }: Props) => {
   const classes = useStyles();
   const stopsToRender = useMemo(() => {
     const stopsToRender: ReactNode[] = [];
-    const filteredStops = stops.filter(s => s.showVia);
+    const filteredStops = stops.filter((s) => s.showVia);
 
     filteredStops.forEach((s, i) => {
       stopsToRender.push(

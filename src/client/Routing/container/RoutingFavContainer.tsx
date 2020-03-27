@@ -36,7 +36,7 @@ const RoutingFavContainer = createContainer(useRoutingFavStorage);
 
 export default RoutingFavContainer;
 export function routingFavKey(fav: RoutingFav) {
-  return `${fav.start.id}${fav.via.map(s => s.id)}${fav.destination.id}${
+  return `${fav.start.id}${fav.via.map((s) => s.id)}${fav.destination.id}${
     fav.profile
   }`;
 }

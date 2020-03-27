@@ -10,12 +10,12 @@ export default () => {
     const typeSet = new Set<string>(defaultTypes);
 
     if (departures) {
-      departures.lookahead.forEach(a => {
+      departures.lookahead.forEach((a) => {
         if (a.train.type) {
           typeSet.add(a.train.type);
         }
       });
-      departures.lookbehind.forEach(a => {
+      departures.lookbehind.forEach((a) => {
         if (a.train.type) {
           typeSet.add(a.train.type);
         }

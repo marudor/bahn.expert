@@ -6,7 +6,7 @@ export async function searchAll(searchTerm: string): Promise<SearchAllResult> {
   const result: SearchAllResult = {};
 
   await Promise.all(
-    Object.values(StationSearchType).map(async type => {
+    Object.values(StationSearchType).map(async (type) => {
       result[type] = await stationSearch(searchTerm, type);
     })
   );

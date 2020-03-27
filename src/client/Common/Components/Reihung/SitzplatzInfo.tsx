@@ -14,7 +14,7 @@ const SitzplatzInfo = ({ additionalInfo, wagenordnungsnummer }: Props) => {
   const toggle = useCallback((e: SyntheticEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setOpen(oldOpen => !oldOpen);
+    setOpen((oldOpen) => !oldOpen);
   }, []);
 
   if (!additionalInfo.comfortSeats && !additionalInfo.disabledSeats) {

@@ -3,7 +3,7 @@ function transformer(file, api) {
 
   return j(file.source)
     .find(j.CallExpression)
-    .forEach(path => {
+    .forEach((path) => {
       if (path.value.callee.name === 'createStyles') {
         const styles = path.value.arguments[0];
 

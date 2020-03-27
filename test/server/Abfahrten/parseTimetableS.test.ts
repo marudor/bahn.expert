@@ -9,7 +9,7 @@ describe('parseTimetableS', () => {
   const baseFixturePath = 'fixtures/plan';
   const fixtures = fs.readdirSync(path.resolve(__dirname, baseFixturePath));
 
-  fixtures.forEach(file => {
+  fixtures.forEach((file) => {
     it(file, () => {
       const timetable = new Timetable(
         'test',
@@ -26,7 +26,7 @@ describe('parseTimetableS', () => {
       );
       const nodes = xmljs.parseXml(inXml).find<Element>('//timetable/s');
 
-      nodes.forEach(n =>
+      nodes.forEach((n) =>
         expect(timetable.parseTimetableS(n)).toMatchSnapshot()
       );
     });

@@ -58,7 +58,7 @@ export function render<CP extends ComponentType<any>>(
     }
 
     if (container) {
-      container.forEach(c => {
+      container.forEach((c) => {
         result = (
           <c.Provider initialState={c.initialState}>{result}</c.Provider>
         );

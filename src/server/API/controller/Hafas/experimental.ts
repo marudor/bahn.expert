@@ -27,7 +27,7 @@ export class HafasExperimentalController extends Controller {
   ): Promise<ParsedHimSearchResponse> {
     return HimSearch(
       {
-        himFltrL: himIds.map(value => ({
+        himFltrL: himIds.map((value) => ({
           type: 'HIMID',
           mode: 'INC',
           value,

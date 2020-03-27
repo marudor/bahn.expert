@@ -1,4 +1,4 @@
-module.exports = babel => {
+module.exports = (babel) => {
   const { types: t } = babel;
 
   return {
@@ -17,7 +17,7 @@ module.exports = babel => {
         if (path.node.callee.name === 'makeStyles') {
           const options = path.node.arguments[1] || t.objectExpression([]);
 
-          if (options.properties.find(p => p.key.name === 'name')) {
+          if (options.properties.find((p) => p.key.name === 'name')) {
             return;
           }
           options.properties.push(

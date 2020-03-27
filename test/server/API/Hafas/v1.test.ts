@@ -25,7 +25,7 @@ describe('Hafas V1', () => {
 
       return request(server)
         .get('/api/hafas/v1/journeyDetails?jid=1|295600|0|80|10122019')
-        .expect(res => {
+        .expect((res) => {
           expect(res.body).toMatchSnapshot();
         })
         .expect(200);
@@ -35,7 +35,7 @@ describe('Hafas V1', () => {
       return request(server)
         .get('/api/hafas/v1/journeyDetails')
         .expect(400)
-        .expect(res => {
+        .expect((res) => {
           expect(res.body).toMatchObject({
             fields: {
               jid: {

@@ -36,7 +36,7 @@ export async function journeyMatch(
 
   if (cancelIdent) {
     journeyMatchCanelTokens[cancelIdent]?.();
-    cancelToken = new Axios.CancelToken(c => {
+    cancelToken = new Axios.CancelToken((c) => {
       journeyMatchCanelTokens[cancelIdent] = c;
     });
   }

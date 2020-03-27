@@ -25,9 +25,9 @@ describe('Reihung V1', () => {
         const fahrzeuge = body.allFahrzeuggruppe[0].allFahrzeug;
 
         expect(fahrzeuge).toHaveLength(14);
-        const W11 = fahrzeuge.find(f => f.wagenordnungsnummer === '11');
-        const W9 = fahrzeuge.find(f => f.wagenordnungsnummer === '9');
-        const W7 = fahrzeuge.find(f => f.wagenordnungsnummer === '7');
+        const W11 = fahrzeuge.find((f) => f.wagenordnungsnummer === '11');
+        const W9 = fahrzeuge.find((f) => f.wagenordnungsnummer === '9');
+        const W7 = fahrzeuge.find((f) => f.wagenordnungsnummer === '7');
 
         if (!W11 || !W9 || !W7) throw new Error('Missing Waggon');
 

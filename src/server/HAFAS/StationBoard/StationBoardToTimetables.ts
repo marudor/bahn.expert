@@ -28,7 +28,7 @@ export default (j: StationBoardEntry): Abfahrt | void => {
     platform: (departure || arrival)?.platform ?? '',
     scheduledPlatform: (departure || arrival)?.scheduledPlatform ?? '',
     reihung: false,
-    route: j.stops.map(s => ({
+    route: j.stops.map((s) => ({
       name: s.station.title,
       cancelled: s.cancelled,
       additional: s.additional,

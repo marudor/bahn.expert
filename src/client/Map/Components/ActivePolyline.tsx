@@ -28,7 +28,7 @@ const ActivePolyline = () => {
   return (
     <>
       <Polyline color="green" positions={activePolyline.points} />
-      {activePolyline.locations.map(l => (
+      {activePolyline.locations.map((l) => (
         <Marker
           icon={trainIcon}
           key={l.id}

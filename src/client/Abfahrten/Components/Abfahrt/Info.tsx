@@ -22,7 +22,7 @@ const Info = ({ abfahrt, detail }: Props) => {
       .concat(abfahrt.messages.him);
 
     if (!detail || !showSupersededMessages) {
-      return messages.filter(m => !m.superseded);
+      return messages.filter((m) => !m.superseded);
     }
 
     return messages;

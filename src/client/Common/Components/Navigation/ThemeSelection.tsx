@@ -51,7 +51,7 @@ const ThemeSelection = () => {
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List disablePadding className={classes.nested} data-testid="themeList">
-          {Object.values(ThemeType).map(themeOption => {
+          {Object.values(ThemeType).map((themeOption) => {
             const name = capitalize(themeOption);
 
             return (
