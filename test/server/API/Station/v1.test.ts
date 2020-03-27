@@ -22,9 +22,7 @@ describe('Station V1', () => {
           },
         });
 
-      return request(server)
-        .get('/api/station/v1/search/Hamburg')
-        .expect(200);
+      return request(server).get('/api/station/v1/search/Hamburg').expect(200);
     });
 
     it('invalid Type goes to default', () => {
@@ -137,7 +135,7 @@ describe('Station V1', () => {
     it('lat is required', () =>
       request(server)
         .get('/api/station/v1/geoSearch')
-        .expect(res => {
+        .expect((res) => {
           expect(res.status).toBe(400);
           expect(res.body.fields.lat).toBeDefined();
         }));
@@ -145,7 +143,7 @@ describe('Station V1', () => {
     it('lng is required', () =>
       request(server)
         .get('/api/station/v1/geoSearch')
-        .expect(res => {
+        .expect((res) => {
           expect(res.status).toBe(400);
           expect(res.body.fields.lng).toBeDefined();
         }));
@@ -153,7 +151,7 @@ describe('Station V1', () => {
     it('searchText is not required', () =>
       request(server)
         .get('/api/station/v1/geoSearch')
-        .expect(res => {
+        .expect((res) => {
           expect(res.status).toBe(400);
           expect(res.body.fields.searchText).not.toBeDefined();
         }));
@@ -204,9 +202,7 @@ describe('Station V1', () => {
         .get('/iris-tts/timetable/station/42')
         .reply(200, '<stations></stations>');
 
-      return request(server)
-        .get('/api/station/v1/iris/42')
-        .expect(404);
+      return request(server).get('/api/station/v1/iris/42').expect(404);
     });
 
     it('200 with result', () => {

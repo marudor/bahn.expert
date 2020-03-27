@@ -14,6 +14,6 @@ export default (
   id: locL.extId,
   title: locL.name,
   coordinates: locL.crd && parseCoordinates(locL.crd),
-  products: locL.pRefL && locL.pRefL.map(p => products[p]),
+  products: locL.pRefL && locL.pRefL.map((p) => products[p]),
   raw: global.PROD ? undefined : locL,
 });

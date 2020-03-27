@@ -8,7 +8,7 @@ const Positions = () => {
   if (positions) {
     return (
       <>
-        {positions.map(p => (
+        {positions.map((p) => (
           <Position key={p.jid} journey={p} />
         ))}
       </>

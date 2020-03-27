@@ -64,16 +64,10 @@ export interface TimetableOptions {
 }
 
 const processRawRouteString = (rawRouteString?: string) =>
-  rawRouteString
-    ?.split('|')
-    .filter(Boolean)
-    .map(normalizeRouteName);
-const routeMap: (s: string) => Route = name => ({ name });
+  rawRouteString?.split('|').filter(Boolean).map(normalizeRouteName);
+const routeMap: (s: string) => Route = (name) => ({ name });
 const normalizeRouteName = (name: string) =>
-  name
-    .replace('(', ' (')
-    .replace(')', ') ')
-    .trim();
+  name.replace('(', ' (').replace(')', ') ').trim();
 
 export function parseRealtimeDp(
   dp: null | xmljs.Element
@@ -211,7 +205,7 @@ export default class Timetable {
       currentRoutePart,
       ...timetable.routePost,
     ];
-    const last = findLast(timetable.route, r => !r.cancelled);
+    const last = findLast(timetable.route, (r) => !r.cancelled);
 
     timetable.destination =
       (last && last.name) || timetable.scheduledDestination;
@@ -253,8 +247,8 @@ export default class Timetable {
     const timetables: any[] = Object.values(this.timetable);
 
     timetables
-      .filter(t => !this.realtimeIds.includes(t.rawId))
-      .forEach(t => {
+      .filter((t) => !this.realtimeIds.includes(t.rawId))
+      .forEach((t) => {
         t.messages = {
           qos: [],
           delay: [],
@@ -320,10 +314,10 @@ export default class Timetable {
     };
   }
   calculateVia(timetable: any, maxParts: number = 3) {
-    const via: Train[] = [...timetable.routePost].filter(v => !v.cancelled);
+    const via: Train[] = [...timetable.routePost].filter((v) => !v.cancelled);
 
     via.pop();
-    const important = via.filter(v =>
+    const important = via.filter((v) =>
       v.name.match(/(HB$|Hbf|Centraal|Flughafen)/)
     );
 
@@ -342,7 +336,7 @@ export default class Timetable {
         showing.push(stop);
       }
     }
-    showing.forEach(v => (v.showVia = true));
+    showing.forEach((v) => (v.showVia = true));
   }
   parseRef(tl: xmljs.Element) {
     const { trainCategory, trainNumber } = parseTl(tl);
@@ -362,7 +356,7 @@ export default class Timetable {
     const himMessage = getSingleHimMessageOfToday(id.substr(1));
 
     if (!himMessage) return undefined;
-    if (!himMessage.affectedProducts.some(p => p.name.endsWith(trainNumber)))
+    if (!himMessage.affectedProducts.some((p) => p.name.endsWith(trainNumber)))
       return undefined;
     const now = Date.now();
 
@@ -449,7 +443,7 @@ export default class Timetable {
     };
 
     mArr
-      .map(m => this.parseMessage(m, this.timetable[rawId].train.number))
+      .map((m) => this.parseMessage(m, this.timetable[rawId].train.number))
       .filter((Boolean as any) as ExcludesFalse)
       .sort((a, b) =>
         compareAsc(a.message.timestamp || 0, b.message.timestamp || 0)
@@ -460,7 +454,7 @@ export default class Timetable {
 
         if (!messages[type]) messages[type] = {};
         if (supersedes) {
-          supersedes.forEach(v => {
+          supersedes.forEach((v) => {
             if (messages[type][v]) {
               messages[type][v].superseded = true;
             }
@@ -508,8 +502,8 @@ export default class Timetable {
         ar.plannedRoutePre || timetable.routePre.map((r: any) => r.name)
       );
 
-      timetable.routePre = diff.flatMap(d =>
-        d.value.map(v => ({
+      timetable.routePre = diff.flatMap((d) =>
+        d.value.map((v) => ({
           name: v,
           additional: d.removed,
           cancelled: d.added,
@@ -541,8 +535,8 @@ export default class Timetable {
         dp.routePost
       );
 
-      timetable.routePost = diff.flatMap(d =>
-        d.value.map(v => ({
+      timetable.routePost = diff.flatMap((d) =>
+        d.value.map((v) => ({
           name: v,
           additional: d.added,
           cancelled: d.removed,
@@ -557,7 +551,7 @@ export default class Timetable {
   async fetchRealtime() {
     const url = `/fchg/${this.evaId}`;
 
-    const result = await this.axios.get(url).then(x => x.data);
+    const result = await this.axios.get(url).then((x) => x.data);
 
     if (result.includes('<soapenv:Reason')) {
       return Promise.reject(result);
@@ -572,7 +566,7 @@ export default class Timetable {
 
     if (!sArr) return;
 
-    sArr.forEach(s => {
+    sArr.forEach((s) => {
       const realtime = this.parseRealtimeS(s);
 
       if (!realtime) return;
@@ -596,10 +590,10 @@ export default class Timetable {
     if (!wingAttr) return;
     const rawWings = wingAttr.split('|');
 
-    const mediumWings = rawWings.map<string>(w => parseRawId(w).mediumId);
+    const mediumWings = rawWings.map<string>((w) => parseRawId(w).mediumId);
 
     if (displayAsWing) {
-      mediumWings.forEach(i => this.wingIds.set(i, referenceTrainRawId));
+      mediumWings.forEach((i) => this.wingIds.set(i, referenceTrainRawId));
     }
 
     return mediumWings;
@@ -691,7 +685,7 @@ export default class Timetable {
     const timetables: { [key: string]: any } = {};
 
     if (sArr) {
-      sArr.forEach(s => {
+      sArr.forEach((s) => {
         const departure = this.parseTimetableS(s);
 
         if (!departure) return;
@@ -703,14 +697,14 @@ export default class Timetable {
   }
   getTimetables() {
     return Promise.all(
-      this.segments.map(async date => {
+      this.segments.map(async (date) => {
         const key = `/plan/${this.evaId}/${format(date, 'yyMMdd/HH')}`;
 
         let rawXml = timetableCache.get<any>(key);
 
         if (!rawXml) {
           try {
-            rawXml = await this.axios.get<string>(key).then(x => x.data);
+            rawXml = await this.axios.get<string>(key).then((x) => x.data);
           } catch (e) {
             this.errors.push(e);
 

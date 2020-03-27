@@ -12,7 +12,7 @@ function checkFile(filePath) {
   }
 }
 
-Object.keys(stats.assetsByChunkName).forEach(chunk => {
+Object.keys(stats.assetsByChunkName).forEach((chunk) => {
   const chunkPath = stats.assetsByChunkName[chunk];
 
   if (Array.isArray(chunkPath)) {

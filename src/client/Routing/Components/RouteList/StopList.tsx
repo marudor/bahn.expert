@@ -9,7 +9,7 @@ interface Props {
 const StopList = ({ stops }: Props) =>
   stops ? (
     <div style={{ paddingLeft: '0.2em' }}>
-      {stops.map(s => (
+      {stops.map((s) => (
         <Stop key={s.station.id} stop={s} />
       ))}
     </div>

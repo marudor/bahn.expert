@@ -26,7 +26,7 @@ const getColor = (theme: DefaultTheme, auslastung?: AuslastungsValue) => {
   };
 };
 
-export default makeStyles<DefaultTheme, Props>(theme => ({
+export default makeStyles<DefaultTheme, Props>((theme) => ({
   icon: {
     fontSize: '.7em',
     display: 'inline-block',
@@ -37,5 +37,5 @@ export default makeStyles<DefaultTheme, Props>(theme => ({
     color: 'white',
   },
 
-  color: props => getColor(theme, props.auslastung),
+  color: (props) => getColor(theme, props.auslastung),
 }));

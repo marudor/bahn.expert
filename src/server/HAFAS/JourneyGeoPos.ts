@@ -14,10 +14,10 @@ const parseJourneyGeoPos = (
   r: HafasResponse<JourneyGeoPosResponse>,
   common: ParsedCommon
 ): ParsedJourneyGeoPosResponse => {
-  return r.svcResL[0].res.jnyL.map(j => {
+  return r.svcResL[0].res.jnyL.map((j) => {
     const train = common.prodL[j.prodX];
     const date = parse(j.date, 'yyyyMMdd', Date.now());
-    const stops = j.stopL.map(s => parseStop(s, common, date, train));
+    const stops = j.stopL.map((s) => parseStop(s, common, date, train));
 
     return {
       jid: j.jid,

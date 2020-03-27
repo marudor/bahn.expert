@@ -22,7 +22,7 @@ const cache = new NodeCache({ stdTTL });
 function parseStation(stationNode: xmljs.Element): Station {
   const station: any = {};
 
-  stationNode.attrs().forEach(a => {
+  stationNode.attrs().forEach((a) => {
     station[a.name()] = a.value();
   });
   if (station.meta) {
@@ -79,7 +79,7 @@ export async function getStation(
     recursive -= 1;
     queue = (
       await Promise.all(
-        queue.map(async id => {
+        queue.map(async (id) => {
           if (seen.includes(id)) {
             return [];
           }

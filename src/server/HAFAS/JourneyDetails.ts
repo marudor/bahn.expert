@@ -18,7 +18,9 @@ const parseJourneyDetails = (
 
   const date = parse(journey.date, 'yyyyMMdd', new Date());
   const train = common.prodL[journey.prodX];
-  const stops = journey.stopL.map(stop => parseStop(stop, common, date, train));
+  const stops = journey.stopL.map((stop) =>
+    parseStop(stop, common, date, train)
+  );
   const parsedJourney = {
     train,
     auslastung: parseAuslastung(journey.dTrnCmpSX, common.tcocL),

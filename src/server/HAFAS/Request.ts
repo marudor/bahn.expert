@@ -73,9 +73,9 @@ function createRequest(
 }
 
 function parseCommon(common: Common): ParsedCommon {
-  const prodL = common.prodL.map(p => parseProduct(p, common));
-  const locL = common.locL.map(l => parseLocL(l, prodL));
-  const polyL = common.polyL?.map(p => parsePolyline(p, locL));
+  const prodL = common.prodL.map((p) => parseProduct(p, common));
+  const locL = common.locL.map((l) => parseLocL(l, prodL));
+  const polyL = common.polyL?.map((p) => parsePolyline(p, locL));
 
   return {
     ...common,
@@ -177,7 +177,7 @@ async function makeRequest<
   P
 >(
   request: R,
-  parseFn: (d: HafasResponse<HR>, pc: ParsedCommon) => P = d => d as any,
+  parseFn: (d: HafasResponse<HR>, pc: ParsedCommon) => P = (d) => d as any,
   profile: AllowedHafasProfile = AllowedHafasProfile.DB
 ): Promise<P> {
   // if (profile === 'all') {

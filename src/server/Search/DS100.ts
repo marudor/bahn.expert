@@ -1,7 +1,7 @@
 import { getSingleStation } from 'server/Abfahrten/station';
 import { Station } from 'types/station';
 
-export default async function(ds100: string): Promise<Station | undefined> {
+export default async function (ds100: string): Promise<Station | undefined> {
   try {
     const timetablesStation = await getSingleStation(ds100);
 

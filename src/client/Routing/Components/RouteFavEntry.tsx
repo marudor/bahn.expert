@@ -47,7 +47,7 @@ const RouteFavEntry = ({ fav }: Props) => {
         <span className={classes.profile}>
           {Object.keys(AllowedHafasProfile).find(
             // @ts-ignore
-            key => AllowedHafasProfile[key] === fav.profile
+            (key) => AllowedHafasProfile[key] === fav.profile
           )}
         </span>
         <ActionDelete className={classes.delete} onClick={removeFav} />

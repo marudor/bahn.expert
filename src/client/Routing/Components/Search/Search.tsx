@@ -144,7 +144,7 @@ const Search = () => {
       viaStations.forEach((viaId, index) => {
         setStationById(
           viaId,
-          station => {
+          (station) => {
             updateVia(index, station);
           },
           settings.hafasProfile
@@ -170,7 +170,7 @@ const Search = () => {
       via.map((v, index) => (
         <StationSearch
           id={`via${index}`}
-          onChange={s => updateVia(index, s)}
+          onChange={(s) => updateVia(index, s)}
           value={v}
           key={index}
           additionalIcon={<DeleteIcon onClick={() => updateVia(index)} />}
@@ -195,7 +195,7 @@ const Search = () => {
           <StationSearch
             placeholder="Via Station"
             id="addVia"
-            onChange={s => updateVia(-1, s)}
+            onChange={(s) => updateVia(-1, s)}
             profile={settings.hafasProfile}
           />
         )}

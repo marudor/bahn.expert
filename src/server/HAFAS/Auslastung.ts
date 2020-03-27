@@ -38,14 +38,14 @@ export default async (
     maxChanges: 0,
   });
 
-  const relevantTrip = trips.routes.find(t =>
+  const relevantTrip = trips.routes.find((t) =>
     Boolean(
       t.segments.find(
-        s =>
+        (s) =>
           s.type === 'JNY' &&
           (s.train.number === trainNumber ||
             Boolean(
-              s.wings && s.wings.find(w => w.train.number === trainNumber)
+              s.wings && s.wings.find((w) => w.train.number === trainNumber)
             ))
       )
     )

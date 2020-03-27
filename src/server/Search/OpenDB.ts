@@ -27,12 +27,12 @@ export default async (rawSearchTerm: string): Promise<Station[]> => {
     result.LocationList.StopLocation = [result.LocationList.StopLocation];
   }
   const stations = result.LocationList.StopLocation.filter(
-    s =>
+    (s) =>
       s.name !== s.name.toUpperCase() &&
       s.name.substr(0, 3) !== s.name.substr(0, 3).toUpperCase()
   );
 
-  return stations.map(s => ({
+  return stations.map((s) => ({
     title: s.name,
     id: Number.parseInt(s.id, 10).toString(),
     raw: global.PROD ? undefined : s,

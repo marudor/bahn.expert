@@ -41,7 +41,7 @@ const FilterModal = () => {
     <Dialog maxWidth="md" fullWidth open={filterOpen} onClose={closeFilterM}>
       <DialogContent>
         <h4>Train Types</h4>
-        {types.map(t => (
+        {types.map((t) => (
           <FormControlLabel
             className={classes.label}
             data-testid={`filter${t}`}

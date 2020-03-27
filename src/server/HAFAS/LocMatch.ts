@@ -18,7 +18,7 @@ function parseFn(
   return (
     stations
       // .filter(s => s.extId)
-      .map(s => parseLocL(s, parsedCommon.prodL))
+      .map((s) => parseLocL(s, parsedCommon.prodL))
   );
 }
 

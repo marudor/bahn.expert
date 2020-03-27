@@ -26,7 +26,7 @@ export default async (rawSearchTerm: string): Promise<Station[]> => {
       })
     ).data;
 
-    return result.result.map(s => ({
+    return result.result.map((s) => ({
       title: s.name,
       favendoId: s.number,
       id: String(s.evaNumbers[0] ? s.evaNumbers[0].number : undefined),

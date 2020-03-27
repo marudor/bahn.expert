@@ -5,13 +5,6 @@ import path from 'path';
 import pino from 'pino';
 import serializers from 'pino-std-serializers';
 
-declare module 'worker_threads' {
-  export const SHARE_ENV: Symbol;
-  interface WorkerOptions {
-    env: Object | Symbol;
-  }
-}
-
 const writeWorker = new Worker(path.resolve(__dirname, 'logWriteThread.js'), {
   env: SHARE_ENV,
 });
@@ -40,7 +33,7 @@ export const logger = pino(
     },
     name: 'BahnhofsAbfahrten',
     serializers: {
-      req: serializers.wrapRequestSerializer(req => {
+      req: serializers.wrapRequestSerializer((req) => {
         try {
           const cookies = cookie.parse(req.headers.cookie);
 

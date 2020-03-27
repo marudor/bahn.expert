@@ -134,7 +134,7 @@ const AbfahrtenList = () => {
                 className={classes.lookbehind}
                 data-testid="lookbehind"
               >
-                {filteredAbfahrten.lookbehind.map(a => (
+                {filteredAbfahrten.lookbehind.map((a) => (
                   <Abfahrt abfahrt={a} key={a.rawId} />
                 ))}
                 <div className={classes.lookaheadMarker} id="lookaheadMarker" />
@@ -145,7 +145,7 @@ const AbfahrtenList = () => {
               className={classes.lookahead}
               data-testid="lookahead"
             >
-              {filteredAbfahrten.lookahead.map(a => (
+              {filteredAbfahrten.lookahead.map((a) => (
                 <Abfahrt abfahrt={a} key={a.rawId} />
               ))}
             </div>

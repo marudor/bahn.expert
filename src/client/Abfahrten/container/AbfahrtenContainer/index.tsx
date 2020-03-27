@@ -20,7 +20,7 @@ export const fetchAbfahrten = async (
     `/api/iris/v1/abfahrten/${stationId}`,
     // `/api/hafas/experimental/irisCompatibleAbfahrten/${stationId}`,
     {
-      cancelToken: new Axios.CancelToken(c => {
+      cancelToken: new Axios.CancelToken((c) => {
         cancelGetAbfahrten = c;
       }),
       params: {
@@ -69,7 +69,7 @@ const useAbfahrten = () => {
   const updateCurrentStationByString = useCallback(
     async (stationName: string) => {
       try {
-        setCurrentStation(oldStation => {
+        setCurrentStation((oldStation) => {
           if (oldStation && oldStation.title !== stationName) {
             setDepartures(undefined);
           }
@@ -107,14 +107,14 @@ const useAbfahrten = () => {
       return;
     }
     fetchAbfahrten(currentStation.id, lookahead, lookbehind).then(
-      r => {
+      (r) => {
         setDepartures({
           lookahead: r.departures,
           lookbehind: r.lookbehind,
           wings: r.wings,
         });
       },
-      e => {
+      (e) => {
         e.station = currentStation.title;
         setError(e);
       }

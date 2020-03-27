@@ -8,7 +8,7 @@ const dataPath = path.resolve(__dirname, 'data/Stationsdaten.csv');
 // eslint-disable-next-line no-sync
 const csv = fs.readFileSync(dataPath, 'utf8');
 
-const entries: string[][] = csv.split('\n').map(l => l.split(';'));
+const entries: string[][] = csv.split('\n').map((l) => l.split(';'));
 
 interface StationsData {
   id: string;
@@ -23,8 +23,8 @@ interface StationsData {
 // Remve HeaderLine
 entries.shift();
 const stationData: StationsData[] = entries
-  .filter(e => e[3])
-  .map(e => {
+  .filter((e) => e[3])
+  .map((e) => {
     const [id, DS100, ifopt, name, verkehr, lng, lat] = e;
 
     return {
@@ -49,7 +49,7 @@ const searchableStations = new Fuse(stationData, {
   keys: ['name'],
 });
 
-export default function(searchTerm: string): Promise<Station[]> {
+export default function (searchTerm: string): Promise<Station[]> {
   const matches = searchableStations.search(searchTerm);
 
   return Promise.resolve(

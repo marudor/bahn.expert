@@ -67,7 +67,7 @@ export function createApp(wsServer?: Server) {
   devPromise.then(() => {
     app.use(hotHelper(() => errorHandler));
     app.use(storageMiddleware());
-    middlewares.forEach(m => app.use(m));
+    middlewares.forEach((m) => app.use(m));
     app.use(KoaBodyparser());
 
     app.use(hotHelper(() => validationOverwrites.routes()));

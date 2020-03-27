@@ -21,7 +21,7 @@ export default ({
   // some replacement trains need a 2 here.
   let replacementNumber = 1;
 
-  if (messages?.some(m => m.txtN.includes('Ersatzfahrt'))) {
+  if (messages?.some((m) => m.txtN.includes('Ersatzfahrt'))) {
     replacementNumber = 2;
   }
 

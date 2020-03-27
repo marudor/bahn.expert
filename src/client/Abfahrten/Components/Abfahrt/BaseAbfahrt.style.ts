@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/styles';
 
-export default makeStyles(theme => ({
+export default makeStyles((theme) => ({
   main: {
     lineHeight: 1.2,
     flexShrink: 0,

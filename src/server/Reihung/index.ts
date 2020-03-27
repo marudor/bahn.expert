@@ -28,7 +28,7 @@ const countryMapping: any = {
 };
 const CHICWagons = ['Apmz', 'WRmz', 'Bpmz'];
 const getCountry = (fahrzeuge: Fahrzeug[], fahrzeugTypes: string[]) => {
-  const countries = fahrzeuge.map(f => {
+  const countries = fahrzeuge.map((f) => {
     const countryCode = Number.parseInt(f.fahrzeugnummer.substr(2, 2), 10);
 
     if (countryCode) {
@@ -42,7 +42,7 @@ const getCountry = (fahrzeuge: Fahrzeug[], fahrzeugTypes: string[]) => {
     return firstCountry;
   }
 
-  const wagenOrdnungsNummern = fahrzeuge.map(f =>
+  const wagenOrdnungsNummern = fahrzeuge.map((f) =>
     Number.parseInt(f.wagenordnungsnummer, 10)
   );
   const minOrdnungsnummer = minBy(wagenOrdnungsNummern) as number;
@@ -53,7 +53,7 @@ const getCountry = (fahrzeuge: Fahrzeug[], fahrzeugTypes: string[]) => {
     fahrzeuge.length > 10 &&
     minOrdnungsnummer >= 253 &&
     maxOrdnungsnummer <= 264 &&
-    fahrzeuge.every(f => CHICWagons.includes(f.fahrzeugtyp))
+    fahrzeuge.every((f) => CHICWagons.includes(f.fahrzeugtyp))
   ) {
     return 'CH';
   } else if (
@@ -77,12 +77,12 @@ const specificBR = (fahrzeuge: Fahrzeug[], formation: Formation): BRInfo => {
     if (br) return br;
   }
 
-  if (fahrzeuge.find(f => f.fahrzeugtyp === 'Apmbzf')) {
+  if (fahrzeuge.find((f) => f.fahrzeugtyp === 'Apmbzf')) {
     return {
       name: 'MET',
       pdf: 'MET',
     };
-  } else if (fahrzeuge.find(f => f.fahrzeugtyp === 'DBpbzfa')) {
+  } else if (fahrzeuge.find((f) => f.fahrzeugtyp === 'DBpbzfa')) {
     return {
       name: 'IC 2',
       pdf: 'IC2',
@@ -210,7 +210,7 @@ function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
       data.klasse = 4;
   }
 
-  fahrzeug.allFahrzeugausstattung.forEach(ausstattung => {
+  fahrzeug.allFahrzeugausstattung.forEach((ausstattung) => {
     switch (ausstattung.ausstattungsart) {
       case 'PLAETZEROLLSTUHL':
         data.icons.wheelchair = true;
@@ -331,8 +331,8 @@ export async function wagenreihung(trainNumber: string, date: number) {
   let startPercentage = 100;
   let endPercentage = 0;
 
-  const reallyHasReihung = enrichedFormation.allFahrzeuggruppe.every(g =>
-    g.allFahrzeug.every(f => {
+  const reallyHasReihung = enrichedFormation.allFahrzeuggruppe.every((g) =>
+    g.allFahrzeug.every((f) => {
       const start = Number.parseInt(f.positionamhalt.startprozent, 10);
       const end = Number.parseInt(f.positionamhalt.endeprozent, 10);
 
@@ -356,7 +356,7 @@ export async function wagenreihung(trainNumber: string, date: number) {
   const isActuallyIC =
     enrichedFormation.zuggattung === 'ICE' &&
     enrichedFormation.allFahrzeuggruppe.some(
-      g =>
+      (g) =>
         g.allFahrzeug.length === 1 &&
         g.allFahrzeug[0].fahrzeugtyp.startsWith('E')
     );
@@ -382,7 +382,7 @@ export async function wagenreihung(trainNumber: string, date: number) {
       }
     }
     if (['IC', 'EC', 'ICE', 'ECE'].includes(enrichedFormation.zuggattung)) {
-      const gruppenFahrzeugTypes = g.allFahrzeug.map(f => f.fahrzeugtyp);
+      const gruppenFahrzeugTypes = g.allFahrzeug.map((f) => f.fahrzeugtyp);
 
       g.br = specificBR(g.allFahrzeug, enrichedFormation);
       if (g.br) {
@@ -408,15 +408,15 @@ export async function wagenreihung(trainNumber: string, date: number) {
       }
     }
 
-    g.allFahrzeug.forEach(fahrzeug => {
+    g.allFahrzeug.forEach((fahrzeug) => {
       enrichFahrzeug(fahrzeug, g);
       fahrzeuge.push(fahrzeug);
     });
 
-    const minFahrzeug = minBy(g.allFahrzeug, f =>
+    const minFahrzeug = minBy(g.allFahrzeug, (f) =>
       Number.parseInt(f.positionamhalt.startprozent, 10)
     );
-    const maxFahrzeug = maxBy(g.allFahrzeug, f =>
+    const maxFahrzeug = maxBy(g.allFahrzeug, (f) =>
       Number.parseInt(f.positionamhalt.endeprozent, 10)
     );
 
@@ -440,7 +440,7 @@ export async function wagenreihung(trainNumber: string, date: number) {
   enrichedFormation.startPercentage = startPercentage;
   enrichedFormation.endPercentage = endPercentage;
   enrichedFormation.isRealtime = fahrzeuge.every(
-    f => f.kategorie === 'LOK' || f.fahrzeugnummer
+    (f) => f.kategorie === 'LOK' || f.fahrzeugnummer
   );
 
   return enrichedFormation;
@@ -454,7 +454,7 @@ export async function wagenreihungStation(
   const info: WagenreihungStation = (
     await axios.post(
       `https://ws.favendo.de/wagon-order/rest/v1/si/${station}`,
-      trainNumbers.map(trainNumber => ({
+      trainNumbers.map((trainNumber) => ({
         trainNumber,
       }))
     )
@@ -472,7 +472,7 @@ export async function wagenReihungMonitoring() {
     lookahead: 300,
   });
   const maybeDepartures = abfahrten.departures.filter(
-    d => d.reihung && d.departure
+    (d) => d.reihung && d.departure
   );
 
   let departure = maybeDepartures.shift();
