@@ -5,9 +5,9 @@ export default makeStyles({
   wrap: {
     width: '100%',
     display: 'grid',
-    gridTemplateColumns: 'max-content 1fr max-content',
+    gridTemplateColumns: '1fr max-content',
     gridTemplateRows: '1fr 1fr',
-    gridTemplateAreas: '". s f" "a d f"',
+    gridTemplateAreas: '"s f" "d f"',
     alignItems: 'center',
   },
   start: {
@@ -17,11 +17,6 @@ export default makeStyles({
   destination: {
     gridArea: 'd',
     ...singleLineText,
-  },
-  arrow: {
-    gridArea: 'a',
-    justifySelf: 'center',
-    marginRight: '1em',
   },
   fav: {
     gridArea: 'f',
