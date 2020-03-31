@@ -92,7 +92,6 @@
     "@types/supertest": "^2.0.8",
     "@types/terser-webpack-plugin": "^2.2.0",
     "@types/universal-cookie": "^2.2.0",
-    "@types/uuid": "^7.0.2",
     "@types/webpack": "^4.41.8",
     "@types/webpack-bundle-analyzer": "^2.13.3",
     "@typescript-eslint/eslint-plugin": "^2.25.0",
@@ -182,6 +181,7 @@
     "leaflet": "^1.6.0",
     "libxmljs2": "^0.25.0",
     "lodash": "^4.17.15",
+    "nanoid": "^3.0.2",
     "node-cache": "^5.1.0",
     "on-finished": "^2.3.0",
     "pino": "^6.0.0",
@@ -198,8 +198,7 @@
     "react-router-dom": "^5.1.2",
     "tsoa": "^2.5.13",
     "universal-cookie": "^4.0.3",
-    "unstated-next": "^1.1.0",
-    "uuid": "^7.0.2"
+    "unstated-next": "^1.1.0"
   },
   "repository": {
     "type": "git",

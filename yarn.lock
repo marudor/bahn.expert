@@ -3032,13 +3032,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/uuid@npm:^7.0.2":
-  version: 7.0.2
-  resolution: "@types/uuid@npm:7.0.2"
-  checksum: 2/2358ec47266a648bf6a2beeb800b9848cb03fa583a5e2e1a5a3c2b3d932551982f6a19bb6360fe91971f2520f0078c8de9621481fcddee727949a237b1085da6
-  languageName: node
-  linkType: hard
-
 "@types/webpack-bundle-analyzer@npm:^2.13.3":
   version: 2.13.3
   resolution: "@types/webpack-bundle-analyzer@npm:2.13.3"
@@ -4213,7 +4206,6 @@ __metadata:
     "@types/supertest": ^2.0.8
     "@types/terser-webpack-plugin": ^2.2.0
     "@types/universal-cookie": ^2.2.0
-    "@types/uuid": ^7.0.2
     "@types/webpack": ^4.41.8
     "@types/webpack-bundle-analyzer": ^2.13.3
     "@typescript-eslint/eslint-plugin": ^2.25.0
@@ -4277,6 +4269,7 @@ __metadata:
     leaflet: ^1.6.0
     libxmljs2: ^0.25.0
     lodash: ^4.17.15
+    nanoid: ^3.0.2
     ncp: ^2.0.0
     nock: 12.0.3
     node-cache: ^5.1.0
@@ -4307,7 +4300,6 @@ __metadata:
     universal-cookie: ^4.0.3
     unstated-next: ^1.1.0
     url-loader: ^4.0.0
-    uuid: ^7.0.2
     webpack: ^4.42.1
     webpack-cli: ^3.3.11
   languageName: unknown
@@ -11183,6 +11175,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"nanoid@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "nanoid@npm:3.0.2"
+  checksum: 2/11ee983f1f8c643706054643e630a5abf45e08ff3b7cbbe7ebb4a1d3711ae979e90a2f966f574bb245d276c31ca10eaf150d8325a2b7625bd695272cf1f89d11
+  languageName: node
+  linkType: hard
+
 "nanomatch@npm:^1.2.9":
   version: 1.2.13
   resolution: "nanomatch@npm:1.2.13"
@@ -15681,15 +15680,6 @@ __metadata:
   bin:
     uuid: ./bin/uuid
   checksum: 2/1ce3f37e214d6d0dc94a6a9663a0365013ace66bc3fd5b203e6f5d2eeb978aaee1192367222386345d30b4c6a447928c501121aa84c637724bf105ef57284949
-  languageName: node
-  linkType: hard
-
-"uuid@npm:^7.0.2":
-  version: 7.0.2
-  resolution: "uuid@npm:7.0.2"
-  bin:
-    uuid: dist/bin/uuid
-  checksum: 2/25137594ba74b0ca8bcf582f8c7c2e7556efe621d5cf2459d0c713755cb67c8546768b2d05c62d65a890a44e213551010f169cfa7c6ace4adcdd1bdfab22a627
   languageName: node
   linkType: hard
 

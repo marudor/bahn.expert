@@ -1,6 +1,6 @@
-import * as uuid from 'uuid';
 import { Context, Next } from 'koa';
 import { Logger } from 'pino';
+import { nanoid } from 'nanoid';
 import onFinished from 'on-finished';
 import util from 'util';
 
@@ -42,7 +42,7 @@ const formatResponseMessage = (ctx: Context, data: any) =>
 export default (logger: Logger) => (ctx: Context, next: Next) => {
   ctx.log = logger;
 
-  const reqId = ctx.request.get(headerName) || uuid.v4();
+  const reqId = ctx.request.get(headerName) || nanoid();
 
   ctx[ctxProp] = reqId;
   ctx.request[ctxProp] = reqId;
