@@ -4,10 +4,15 @@ const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const LoadablePlugin = require('@loadable/webpack-plugin');
 const PacktrackerPlugin = require('@packtracker/webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const isDev = process.env.NODE_ENV !== 'production';
 
 const plugins = [
+  new BundleAnalyzerPlugin({
+    analyzerMode: 'static',
+    openAnalyzer: false,
+  }),
   new PacktrackerPlugin({
     fail_build: true,
     upload: process.env.sendStats === 'true',

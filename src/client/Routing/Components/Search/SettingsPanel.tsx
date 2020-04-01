@@ -116,6 +116,7 @@ const SettingsPanel = () => {
           labelPlacement="start"
           control={
             <NativeSelect
+              // @ts-ignore
               inputProps={{ 'data-testid': 'routingHafasProfile' }}
               value={settings.hafasProfile}
               name="checkIn"
