@@ -32,7 +32,6 @@ import {
 } from 'types/HAFAS/JourneyMatch';
 import { ParsedJourneyDetails } from 'types/HAFAS/JourneyDetails';
 import { Route$Auslastung, RoutingResult, SingleRoute } from 'types/routing';
-import { Station } from 'types/station';
 import { TrainSearchResult } from 'types/HAFAS/Details';
 import { TripSearchOptions } from 'types/HAFAS/TripSearch';
 import Auslastung from 'server/HAFAS/Auslastung';
@@ -278,7 +277,7 @@ export class HafasController extends Controller {
     @Request() ctx: Context,
     searchTerm: string,
     @Query() profile?: AllowedHafasProfile
-  ): Promise<Station[]> {
+  ): Promise<HafasStation[]> {
     return LocMatch(searchTerm, undefined, profile, ctx.query.raw);
   }
 
