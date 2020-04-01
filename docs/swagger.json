@@ -5393,7 +5393,7 @@
 							"application/json": {
 								"schema": {
 									"items": {
-										"$ref": "#/components/schemas/Station"
+										"$ref": "#/components/schemas/HafasStation"
 									},
 									"type": "array"
 								}

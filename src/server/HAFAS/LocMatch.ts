@@ -1,6 +1,10 @@
-import { AllowedHafasProfile, HafasResponse, ParsedCommon } from 'types/HAFAS';
+import {
+  AllowedHafasProfile,
+  HafasResponse,
+  HafasStation,
+  ParsedCommon,
+} from 'types/HAFAS';
 import { LocMatchRequest, LocMatchResponse } from 'types/HAFAS/LocMatch';
-import { Station } from 'types/station';
 import makeRequest from './Request';
 import NodeCache from 'node-cache';
 import parseLocL from './helper/parseLocL';
@@ -12,7 +16,7 @@ const cache = new NodeCache({ stdTTL });
 function parseFn(
   d: HafasResponse<LocMatchResponse>,
   parsedCommon: ParsedCommon
-): Station[] {
+): HafasStation[] {
   const stations = d.svcResL[0].res.match.locL;
 
   return (
@@ -42,7 +46,7 @@ export default async (
   };
 
   if (raw) {
-    return makeRequest<HafasResponse<LocMatchResponse>, Station[]>(
+    return makeRequest<HafasResponse<LocMatchResponse>, HafasStation[]>(
       req,
       undefined,
       profile
@@ -50,7 +54,7 @@ export default async (
   }
 
   const cacheKey = `${profile}|${type}|${searchTerm}`;
-  const cached = cache.get<Station[]>(cacheKey);
+  const cached = cache.get<HafasStation[]>(cacheKey);
 
   if (cached) {
     return cached;
