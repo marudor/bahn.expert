@@ -19,7 +19,6 @@ exports[`AuslastungsDisplay Gering / Hoch 1`] = `
         aria-hidden="true"
         class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit"
         focusable="false"
-        role="presentation"
         viewBox="0 0 24 24"
       >
         <path
@@ -42,7 +41,6 @@ exports[`AuslastungsDisplay Gering / Hoch 1`] = `
         aria-hidden="true"
         class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit"
         focusable="false"
-        role="presentation"
         viewBox="0 0 24 24"
       >
         <path
@@ -73,7 +71,6 @@ exports[`AuslastungsDisplay SehrHoch / Ausgebucht 1`] = `
         aria-hidden="true"
         class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit"
         focusable="false"
-        role="presentation"
         viewBox="0 0 24 24"
       >
         <path
@@ -96,7 +93,6 @@ exports[`AuslastungsDisplay SehrHoch / Ausgebucht 1`] = `
         aria-hidden="true"
         class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit"
         focusable="false"
-        role="presentation"
         viewBox="0 0 24 24"
       >
         <path
@@ -127,7 +123,6 @@ exports[`AuslastungsDisplay Unbekannt / Hoch 1`] = `
         aria-hidden="true"
         class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit"
         focusable="false"
-        role="presentation"
         viewBox="0 0 24 24"
       >
         <path
@@ -150,7 +145,6 @@ exports[`AuslastungsDisplay Unbekannt / Hoch 1`] = `
         aria-hidden="true"
         class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit"
         focusable="false"
-        role="presentation"
         viewBox="0 0 24 24"
       >
         <path
