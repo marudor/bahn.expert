@@ -19,7 +19,15 @@ const OpenDummy = () => {
 
 const renderSetup = () =>
   render(OpenDummy, undefined, {
-    container: [AbfahrtenConfigContainer],
+    container: [
+      {
+        ...AbfahrtenConfigContainer,
+        initialState: {
+          filter: {},
+          config: {},
+        },
+      },
+    ],
   });
 
 describe('SettingsModal', () => {
