@@ -65,6 +65,7 @@ export class HafasExperimentalController extends Controller {
     return {
       lookbehind: [],
       departures: hafasDeparture
+        .slice(0, 60)
         .map(StationBoardToTimetables)
         .filter((Boolean as any) as ExcludesFalse),
       wings: {},

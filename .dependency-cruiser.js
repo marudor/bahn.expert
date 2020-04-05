@@ -2,17 +2,17 @@ module.exports = {
   forbidden: [
     {
       name: 'not-from-common',
-      severity: 'warn',
+      severity: 'error',
       from: {
         path: 'src/client/Common',
       },
       to: {
-        path: 'src/client/(Abfahrten|Routing)',
+        path: 'src/client/(Abfahrten|Routing|Regional)',
       },
     },
     {
-      name: 'Routing-to-Abfahrten',
-      severity: 'warn',
+      name: 'to-Abfahrten',
+      severity: 'error',
       from: {
         path: 'src/client/Routing',
       },
@@ -21,25 +21,25 @@ module.exports = {
       },
     },
     {
-      name: 'Abfahrten-to-Routing',
-      severity: 'warn',
+      name: 'to-Routing',
+      severity: 'error',
       from: {
-        path: 'src/client/Abfahrten',
+        path: 'src/client/(Abfahrten|Regional)',
       },
       to: {
         path: 'src/client/Routing',
       },
     },
     /* rules from the 'recommended' preset: */
-    {
-      name: 'no-circular',
-      severity: 'warn',
-      comment: "Warn in case there's circular dependencies",
-      from: {},
-      to: {
-        circular: true,
-      },
-    },
+    // {
+    //   name: 'no-circular',
+    //   severity: 'warn',
+    //   comment: "Warn in case there's circular dependencies",
+    //   from: {},
+    //   to: {
+    //     circular: true,
+    //   },
+    // },
     {
       name: 'no-orphans',
       severity: 'info',

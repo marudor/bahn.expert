@@ -7,6 +7,15 @@ export default (j: StationBoardEntry): Abfahrt | void => {
   const arrival = 'arrival' in j ? j.arrival : undefined;
   const departure = 'departure' in j ? j.departure : undefined;
 
+  const splittedName = j.stops[0].station.title.split(',');
+  const townSuffix = `,${splittedName[splittedName.length - 1]}`;
+
+  if (j.stops.every((s) => s.station.title.endsWith(townSuffix))) {
+    j.stops.forEach(
+      (s) => (s.station.title = s.station.title.replace(townSuffix, ''))
+    );
+  }
+
   return {
     initialDeparture: j.stops[0].departure!.scheduledTime,
     arrival,
