@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Redirect, StaticRouterContext } from 'react-router';
+import { Station } from 'types/station';
 import AbfahrtenContainer, {
   AbfahrtenError,
 } from 'Abfahrten/container/AbfahrtenContainer';
@@ -43,7 +44,7 @@ interface Props {
 const FavList = ({ staticContext }: Props) => {
   const { favs } = favContainer.useContainer();
   const sortedFavs = useMemo(() => {
-    const values = Object.values(favs);
+    const values: Station[] = Object.values(favs);
 
     return values
       .sort((a, b) => (a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1))

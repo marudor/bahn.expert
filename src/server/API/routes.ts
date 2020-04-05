@@ -1882,6 +1882,7 @@ export function RegisterRoutes(router: KoaRouter) {
       const args = {
         ctx: { "in": "request", "name": "ctx", "required": true, "dataType": "object" },
         searchTerm: { "in": "path", "name": "searchTerm", "required": true, "dataType": "string" },
+        type: { "in": "query", "name": "type", "dataType": "enum", "enums": ["S", "ALL"] },
         profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "bvg", "hvv", "rmv", "sncb", "avv", "nahsh", "insa", "anachb", "vao", "sbb", "dbnetz", "pkp"] },
       };
 

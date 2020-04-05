@@ -5417,6 +5417,18 @@
 					},
 					{
 						"in": "query",
+						"name": "type",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"enum": [
+								"S",
+								"ALL"
+							]
+						}
+					},
+					{
+						"in": "query",
 						"name": "profile",
 						"required": false,
 						"schema": {
