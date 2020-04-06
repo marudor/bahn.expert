@@ -3,6 +3,7 @@ import { FavProvider } from './container/FavContainer';
 import { renderRoutes } from 'react-router-config';
 import AuslastungContainer from './container/AuslastungContainer';
 import Header from './Components/Header';
+import MostUsed from 'Abfahrten/Components/MostUsed';
 import React from 'react';
 import routes from './routes';
 import SettingsModal from './Components/SettingsModal';
@@ -16,7 +17,7 @@ const BahnhofsAbfahrten = () => {
   return (
     <AuslastungContainer.Provider>
       <AbfahrtenProvider urlPrefix="/" fetchApiUrl="/api/iris/v1/abfahrten">
-        <FavProvider storageKey="favs">
+        <FavProvider storageKey="favs" MostUsedComponent={MostUsed}>
           <div className={classes.main}>
             {!noHeader && <Header />}
             <SettingsModal />

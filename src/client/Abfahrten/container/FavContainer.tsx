@@ -1,6 +1,6 @@
 import { createContainer } from 'unstated-next';
 import { Station } from 'types/station';
-import React, { ReactNode, useCallback, useState } from 'react';
+import React, { ComponentType, ReactNode, useCallback, useState } from 'react';
 import useStorage from 'shared/hooks/useStorage';
 
 interface Favs {
@@ -10,6 +10,7 @@ interface Favs {
 interface FavStorageSetup {
   favs: Favs;
   storageKey: string;
+  MostUsedComponent?: ComponentType;
 }
 
 function useFavStorage(setup: FavStorageSetup) {
@@ -24,7 +25,12 @@ function useFavStorage(setup: FavStorageSetup) {
     [setup.storageKey, storage]
   );
 
-  return { favs, updateFavs, count: Object.keys(favs).length };
+  return {
+    favs,
+    updateFavs,
+    count: Object.keys(favs).length,
+    MostUsedComponent: setup.MostUsedComponent,
+  };
 }
 
 // @ts-ignore - this works, complains about missing default
@@ -69,9 +75,14 @@ export default FavContainer;
 interface Props {
   children: ReactNode;
   storageKey: string;
+  MostUsedComponent?: ComponentType;
 }
 
-export const FavProvider = ({ children, storageKey }: Props) => {
+export const FavProvider = ({
+  children,
+  storageKey,
+  MostUsedComponent,
+}: Props) => {
   const storage = useStorage();
   const savedFavs = storage.get(storageKey);
 
@@ -80,6 +91,7 @@ export const FavProvider = ({ children, storageKey }: Props) => {
       initialState={{
         favs: savedFavs || {},
         storageKey,
+        MostUsedComponent,
       }}
     >
       {children}

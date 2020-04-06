@@ -1,9 +1,9 @@
 import AbfahrtenList from 'Abfahrten/Components/AbfahrtenList';
-import FavList from 'Regional/Components/FavList';
+import MainPage from 'Regional/Components/MainPage';
 
 export default [
   {
-    component: FavList,
+    component: MainPage,
     exact: true,
     path: '/regional',
   },
