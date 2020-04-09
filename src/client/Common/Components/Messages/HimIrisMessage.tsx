@@ -1,5 +1,5 @@
 import { Dialog, DialogContent, DialogTitle } from '@material-ui/core';
-import { format } from 'date-fns';
+import { format, getDate } from 'date-fns';
 import { HimIrisMessage as HimIrisMessageType } from 'types/iris';
 import cc from 'clsx';
 import React, { SyntheticEvent, useCallback, useState } from 'react';
@@ -12,17 +12,22 @@ interface Props {
 
 const HimIrisMessage = ({ message, today = new Date().getDate() }: Props) => {
   const classes = useStyles();
-  const ts = new Date(message.timestamp);
   const [open, setOpen] = useState(false);
   const toggleOpen = useCallback((e: SyntheticEvent) => {
     e.preventDefault();
     e.stopPropagation();
     setOpen((old) => !old);
   }, []);
-  const formattedDate = format(
-    ts,
-    ts.getDate() === today ? 'HH:mm' : 'dd.MM HH:mm'
-  );
+  const formattedDate =
+    message.timestamp &&
+    format(
+      message.timestamp,
+      getDate(message.timestamp) === today ? 'HH:mm' : 'dd.MM HH:mm'
+    );
+
+  const dateWithText = formattedDate
+    ? `${formattedDate}: ${message.head}`
+    : message.head;
 
   return (
     <div
@@ -31,11 +36,9 @@ const HimIrisMessage = ({ message, today = new Date().getDate() }: Props) => {
       })}
       onClick={toggleOpen}
     >
-      {formattedDate}: {message.head}
+      {dateWithText}
       <Dialog open={open} onClose={toggleOpen}>
-        <DialogTitle>
-          {formattedDate}: {message.head}
-        </DialogTitle>
+        <DialogTitle>{dateWithText}</DialogTitle>
         <DialogContent
           dangerouslySetInnerHTML={{
             __html: message.text,

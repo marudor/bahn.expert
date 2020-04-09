@@ -1,4 +1,4 @@
-import { CommonStopInfo, HafasStation, ParsedProduct } from './HAFAS';
+import { CommonStopInfo, HafasStation, ParsedProduct, RemL } from './HAFAS';
 import { Route$Stop } from 'types/routing';
 
 interface CommonStationBoardEntry {
@@ -8,6 +8,7 @@ interface CommonStationBoardEntry {
   jid: string;
   stops?: Route$Stop[];
   currentStation: HafasStation;
+  messages?: RemL[];
 }
 
 export interface ArrivalStationBoardEntry extends CommonStationBoardEntry {

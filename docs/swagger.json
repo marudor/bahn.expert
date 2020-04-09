@@ -1945,6 +1945,13 @@
 							"$ref": "#/components/schemas/CommonStop"
 						},
 						"type": "array"
+					},
+					"msgL": {
+						"items": {
+							"$ref": "#/components/schemas/MsgL"
+						},
+						"type": "array",
+						"nullable": true
 					}
 				},
 				"required": [
@@ -2600,6 +2607,13 @@
 					"currentStation": {
 						"$ref": "#/components/schemas/HafasStation"
 					},
+					"messages": {
+						"items": {
+							"$ref": "#/components/schemas/RemL"
+						},
+						"type": "array",
+						"nullable": true
+					},
 					"arrival": {
 						"$ref": "#/components/schemas/CommonStopInfo"
 					}
@@ -2638,6 +2652,13 @@
 					},
 					"currentStation": {
 						"$ref": "#/components/schemas/HafasStation"
+					},
+					"messages": {
+						"items": {
+							"$ref": "#/components/schemas/RemL"
+						},
+						"type": "array",
+						"nullable": true
 					},
 					"departure": {
 						"$ref": "#/components/schemas/CommonStopInfo"

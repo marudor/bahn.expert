@@ -345,6 +345,7 @@ export interface CommonJny {
   isCncl?: boolean;
   subscr: string;
   stopL?: CommonStop[];
+  msgL?: MsgL[];
 }
 
 export interface CommonArrival {

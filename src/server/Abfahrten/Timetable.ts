@@ -699,7 +699,6 @@ export default class Timetable {
     return Promise.all(
       this.segments.map(async (date) => {
         const key = `/plan/${this.evaId}/${format(date, 'yyMMdd/HH')}`;
-
         let rawXml = timetableCache.get<any>(key);
 
         if (!rawXml) {

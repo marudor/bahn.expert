@@ -1,12 +1,31 @@
 import { Abfahrt } from 'types/iris';
-import { StationBoardEntry } from 'types/stationBoard';
+import {
+  ArrivalStationBoardEntry,
+  DepartureStationBoardEntry,
+} from 'types/stationBoard';
+import { Route$Stop } from 'types/routing';
 
-export default (j: StationBoardEntry): Abfahrt | void => {
+export interface MappedHafasArrivals {
+  [key: string]: ArrivalStationBoardEntry | undefined;
+}
+
+const stationMap = (s: Route$Stop) => ({
+  name: s.station.title,
+  cancelled: s.cancelled,
+  additional: s.additional,
+});
+
+export default (
+  j: DepartureStationBoardEntry,
+  hafasArrivals: MappedHafasArrivals
+): Abfahrt | void => {
   if (!j.stops) return;
 
-  const arrival = 'arrival' in j ? j.arrival : undefined;
-  const departure = 'departure' in j ? j.departure : undefined;
+  const id = `${j.jid}${j.train.number}`;
+  const matchingArrival = hafasArrivals[id];
+  const arrivalRoute = matchingArrival?.stops?.map(stationMap) || [];
 
+  arrivalRoute.pop();
   const splittedName = j.stops[0].station.title.split(',');
   const townSuffix = `,${splittedName[splittedName.length - 1]}`;
 
@@ -18,30 +37,39 @@ export default (j: StationBoardEntry): Abfahrt | void => {
 
   return {
     initialDeparture: j.stops[0].departure!.scheduledTime,
-    arrival,
-    departure,
+    arrival: matchingArrival?.arrival,
+    departure: j.departure,
     auslastung: false,
     currentStation: j.currentStation,
     destination: j.finalDestination,
     scheduledDestination: j.finalDestination,
-    id: j.jid,
+    id,
     cancelled: j.cancelled,
-    rawId: j.jid,
-    mediumId: j.jid,
+    rawId: id,
+    mediumId: id,
     productClass: '',
     messages: {
       qos: [],
       delay: [],
-      him: [],
+      him:
+        j.messages?.map((m) => ({
+          text: m.txtN,
+          head: !m.txtS
+            ? 'Information'
+            : m.txtS.includes('Information')
+            ? 'Information'
+            : m.txtS.includes('Großstörung')
+            ? 'Großstörung'
+            : m.txtS.includes('Störung')
+            ? 'Störung'
+            : m.txtS,
+          timestamp: 0,
+        })) || [],
     },
-    platform: (departure || arrival)?.platform ?? '',
-    scheduledPlatform: (departure || arrival)?.scheduledPlatform ?? '',
+    platform: j.departure.platform ?? '',
+    scheduledPlatform: j.departure.scheduledPlatform ?? '',
     reihung: false,
-    route: j.stops.map((s) => ({
-      name: s.station.title,
-      cancelled: s.cancelled,
-      additional: s.additional,
-    })),
+    route: [...arrivalRoute, ...j.stops.map(stationMap)],
     train: {
       type: '',
       number: '',

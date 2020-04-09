@@ -63,7 +63,7 @@ const FavList = ({ staticContext, children }: Props) => {
       {children}
       <Zugsuche />
       {/* eslint-disable-next-line no-nested-ternary */}
-      {savedError ? (
+      {savedError && (
         <>
           <FavEntryDisplay
             data-testid="error"
@@ -78,13 +78,9 @@ const FavList = ({ staticContext, children }: Props) => {
               <FavEntryDisplay text={savedError.station} />
             </Link>
           )}
-          <FavEntryDisplay
-            clickable={false}
-            text="Versuch einen der folgenden"
-          />
-          <MostUsed />
         </>
-      ) : sortedFavs.length ? (
+      )}
+      {sortedFavs.length ? (
         <>
           <FavEntryDisplay clickable={false} text="Favoriten" />
           {sortedFavs}

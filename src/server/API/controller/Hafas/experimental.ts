@@ -1,5 +1,6 @@
 import { AbfahrtenResult } from 'types/iris';
 import { AllowedHafasProfile } from 'types/HAFAS';
+import { ArrivalStationBoardEntry } from 'types/stationBoard';
 import { Body, Controller, Get, Post, Query, Request, Route, Tags } from 'tsoa';
 import { Context } from 'koa';
 import {
@@ -61,12 +62,36 @@ export class HafasExperimentalController extends Controller {
       },
       profile
     );
+    const hafasArrivals = await StationBoard(
+      {
+        type: 'ARR',
+        station: evaId,
+      },
+      profile
+    ).catch(() => undefined);
+
+    const mappedHafasArrivals =
+      hafasArrivals?.reduce(
+        (
+          map: {
+            [key: string]: ArrivalStationBoardEntry;
+          },
+          arrival
+        ) => {
+          map[`${arrival.jid}${arrival.train.number}`] = arrival;
+
+          return map;
+        },
+        {}
+      ) || {};
 
     return {
       lookbehind: [],
       departures: hafasDeparture
         .slice(0, 60)
-        .map(StationBoardToTimetables)
+        .map((departure) =>
+          StationBoardToTimetables(departure, mappedHafasArrivals)
+        )
         .filter((Boolean as any) as ExcludesFalse),
       wings: {},
     };
