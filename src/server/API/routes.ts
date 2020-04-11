@@ -677,6 +677,7 @@ const models: TsoaRoute.Models = {
       "status": { "dataType": "string", "required": true },
       "isRchbl": { "dataType": "boolean", "required": true },
       "isCncl": { "dataType": "boolean" },
+      "isPartCncl": { "dataType": "boolean" },
       "subscr": { "dataType": "string", "required": true },
       "stopL": { "dataType": "array", "array": { "ref": "CommonStop" }, "required": true },
       "msgL": { "dataType": "array", "array": { "ref": "MsgL" } },

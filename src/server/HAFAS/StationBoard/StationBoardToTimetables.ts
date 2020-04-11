@@ -3,6 +3,7 @@ import {
   ArrivalStationBoardEntry,
   DepartureStationBoardEntry,
 } from 'types/stationBoard';
+import { calculateVia } from 'server/Abfahrten/helper';
 import { Route$Stop } from 'types/routing';
 
 export interface MappedHafasArrivals {
@@ -14,6 +15,14 @@ const stationMap = (s: Route$Stop) => ({
   cancelled: s.cancelled,
   additional: s.additional,
 });
+
+const mapDepartureRoute = (departureRoute: Route$Stop[]) => {
+  const mapped = departureRoute.map(stationMap);
+
+  calculateVia(mapped.slice(1));
+
+  return mapped;
+};
 
 export default (
   j: DepartureStationBoardEntry,
@@ -58,22 +67,14 @@ export default (
       him:
         j.messages?.map((m) => ({
           text: m.txtN,
-          head: !m.txtS
-            ? 'Information'
-            : m.txtS.includes('Information')
-            ? 'Information'
-            : m.txtS.includes('Großstörung')
-            ? 'Großstörung'
-            : m.txtS.includes('Störung')
-            ? 'Störung'
-            : m.txtS,
+          head: !m.txtS ? 'Information' : m.txtS,
           timestamp: 0,
         })) || [],
     },
     platform: j.departure.platform ?? '',
     scheduledPlatform: j.departure.scheduledPlatform ?? '',
     reihung: false,
-    route: [...arrivalRoute, ...j.stops.map(stationMap)],
+    route: [...arrivalRoute, ...mapDepartureRoute(j.stops)],
     train: {
       type: '',
       number: '',

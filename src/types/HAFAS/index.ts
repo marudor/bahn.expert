@@ -343,6 +343,7 @@ export interface CommonJny {
   status: string;
   isRchbl: boolean;
   isCncl?: boolean;
+  isPartCncl?: boolean;
   subscr: string;
   stopL?: CommonStop[];
   msgL?: MsgL[];

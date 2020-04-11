@@ -1937,6 +1937,10 @@
 						"type": "boolean",
 						"nullable": true
 					},
+					"isPartCncl": {
+						"type": "boolean",
+						"nullable": true
+					},
 					"subscr": {
 						"type": "string"
 					},
