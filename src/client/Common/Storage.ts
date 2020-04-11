@@ -6,7 +6,6 @@ const setCookieOptions = {
   expires: new Date('2037-12-12'),
   httpOnly: false,
   path: '/',
-  secure: process.env.NODE_ENV !== 'test',
   sameSite: 'strict' as 'strict',
 };
 
