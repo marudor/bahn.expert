@@ -34,7 +34,7 @@ function stationBoard(
     req: {
       type,
       getPasslist: true,
-      maxJny: 200,
+      maxJny: 250,
       jnyFltrL: filter,
       date: format(date, 'yyyyMMdd', {
         timeZone: 'Europe/Berlin',

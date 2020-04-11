@@ -5,6 +5,8 @@ const setCookieOptions = {
   expires: new Date('2037-12-12'),
   httpOnly: false,
   path: '/',
+  secure: true,
+  sameSite: 'strict' as 'strict',
 };
 
 export default class Storage extends Cookies implements StorageInterface {

@@ -17,11 +17,15 @@ const stationMap = (s: Route$Stop) => ({
 
 export default (
   j: DepartureStationBoardEntry,
-  hafasArrivals: MappedHafasArrivals
+  hafasArrivals: MappedHafasArrivals,
+  idSet: Set<string>
 ): Abfahrt | void => {
   if (!j.stops) return;
 
   const id = `${j.jid}${j.train.number}`;
+
+  if (idSet.has(id)) return;
+  idSet.add(id);
   const matchingArrival = hafasArrivals[id];
   const arrivalRoute = matchingArrival?.stops?.map(stationMap) || [];
 

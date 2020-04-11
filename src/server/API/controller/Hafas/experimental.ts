@@ -85,14 +85,16 @@ export class HafasExperimentalController extends Controller {
         {}
       ) || {};
 
+    const idSet = new Set<string>();
+
     return {
       lookbehind: [],
       departures: hafasDeparture
-        .slice(0, 60)
         .map((departure) =>
-          StationBoardToTimetables(departure, mappedHafasArrivals)
+          StationBoardToTimetables(departure, mappedHafasArrivals, idSet)
         )
-        .filter((Boolean as any) as ExcludesFalse),
+        .filter((Boolean as any) as ExcludesFalse)
+        .slice(0, 75),
       wings: {},
     };
   }
