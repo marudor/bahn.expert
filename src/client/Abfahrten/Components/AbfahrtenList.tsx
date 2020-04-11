@@ -30,7 +30,7 @@ const AbfahrtenList = () => {
   const loading = !unfilteredAbfahrten && !error;
   const match = useRouteMatch<{ station: string }>();
   const paramStation = match ? match.params.station : undefined;
-  const config = AbfahrtenConfigContainer.useContainer().config;
+  const { config, urlPrefix } = AbfahrtenConfigContainer.useContainer();
   const refreshCurrentAbfahrten = useRefreshCurrent();
   const {
     updateTitle,
@@ -123,7 +123,7 @@ const AbfahrtenList = () => {
     <Loading isLoading={loading}>
       <main className={classes.main}>
         {error ? (
-          <Redirect to="/" />
+          <Redirect to={urlPrefix} />
         ) : filteredAbfahrten &&
           (filteredAbfahrten.lookahead.length ||
             filteredAbfahrten.lookbehind.length) ? (

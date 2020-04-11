@@ -1,4 +1,5 @@
 import { render } from 'testHelper';
+import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import DetailVia from 'Abfahrten/Components/Abfahrt/Via/Detail';
 
 describe('DetailVia', () => {
@@ -23,9 +24,23 @@ describe('DetailVia', () => {
   ];
 
   it('Renders Via as links', () => {
-    const { getByTestId, theme } = render(DetailVia, {
-      stops: mockStops,
-    });
+    const { getByTestId, theme } = render(
+      DetailVia,
+      {
+        stops: mockStops,
+      },
+      {
+        container: [
+          {
+            ...AbfahrtenConfigContainer,
+            initialState: {
+              filter: {},
+              config: {},
+            },
+          },
+        ],
+      }
+    );
 
     const additional = getByTestId('via-additional');
 

@@ -27,7 +27,7 @@ import useStyles from './Zugsuche.style';
 import ZugsucheAutocomplete from 'Common/Components/ZugsucheAutocomplete';
 
 interface Props {
-  children: (toggle: (e: SyntheticEvent) => void) => ReactElement;
+  children?: (toggle: (e: SyntheticEvent) => void) => ReactElement;
 }
 const Zugsuche = ({ children }: Props) => {
   const classes = useStyles();
@@ -124,7 +124,7 @@ const Zugsuche = ({ children }: Props) => {
           </form>
         </DialogContent>
       </Dialog>
-      {children(toggleModal)}
+      {children?.(toggleModal)}
     </>
   );
 };

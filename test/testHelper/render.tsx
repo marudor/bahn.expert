@@ -20,8 +20,8 @@ import ThemeWrap from 'client/ThemeWrap';
 let currentThemeType: ThemeType;
 let theme: DefaultTheme;
 
-interface ContainerWithOptions extends Container<any, any> {
-  initialState?: any;
+interface ContainerWithOptions<V = any> extends Container<V, any> {
+  initialState?: V;
 }
 interface Options {
   withNavigation?: boolean;

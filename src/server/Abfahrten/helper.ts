@@ -1,5 +1,6 @@
 import { Element } from 'libxmljs2';
 import { parse } from 'date-fns';
+import { Train } from 'types/iris';
 import { zonedTimeToUtc } from 'date-fns-tz';
 import Axios from 'axios';
 
@@ -54,4 +55,30 @@ export function parseTs(ts?: string): undefined | number {
       'Europe/Berlin'
     ).getTime();
   }
+}
+
+export function calculateVia(route: any, maxParts: number = 3) {
+  const via: Train[] = [...route].filter((v) => !v.cancelled);
+
+  via.pop();
+  const important = via.filter((v) =>
+    v.name.match(/(HB$|Hbf|Centraal|Flughafen)/)
+  );
+
+  const showing = [];
+
+  if (important.length >= maxParts) {
+    showing.push(via[0]);
+  } else {
+    showing.push(...via.splice(0, maxParts - important.length));
+  }
+
+  while (showing.length < maxParts && important.length) {
+    const stop = important.shift()!;
+
+    if (!showing.includes(stop)) {
+      showing.push(stop);
+    }
+  }
+  showing.forEach((v) => (v.showVia = true));
 }

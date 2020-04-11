@@ -9,9 +9,6 @@ export interface Filter {
   onlyDepartures?: boolean;
   products: string[];
 }
-const defaultFilter: Filter = {
-  products: [],
-};
 
 const configCookieName = 'config';
 const filterCookieName = 'defaultFilter';
@@ -74,32 +71,37 @@ const useConfig = (initialConfig: AbfahrtenConfig) => {
 export interface AbfahrtenContainerValue {
   filter: Filter;
   config: AbfahrtenConfig;
+  fetchApiUrl: string;
+  urlPrefix: string;
 }
 
-const defaultContainerValue: AbfahrtenContainerValue = {
-  filter: defaultFilter,
-  config: defaultAbfahrtenConfig,
-};
-const useAbfahrtenConfig = (
-  initialConfig: AbfahrtenContainerValue = defaultContainerValue
-) => {
+const useAbfahrtenConfig = (initialConfig: AbfahrtenContainerValue) => {
   const filterConfig = useFilter(initialConfig.filter);
   const config = useConfig(initialConfig.config);
 
   return {
     ...filterConfig,
     ...config,
+    fetchApiUrl: initialConfig.fetchApiUrl,
+    urlPrefix: initialConfig.urlPrefix,
   };
 };
 
+// @ts-ignore works, complains about missing default
 const AbfahrtenConfigContainer = createContainer(useAbfahrtenConfig);
 
 export default AbfahrtenConfigContainer;
 
 interface Props {
   children: ReactNode;
+  fetchApiUrl: string;
+  urlPrefix: string;
 }
-export const AbfahrtenConfigProvider = ({ children }: Props) => {
+export const AbfahrtenConfigProvider = ({
+  children,
+  fetchApiUrl,
+  urlPrefix,
+}: Props) => {
   const storage = useStorage();
   const query = useQuery();
   const savedFilter = storage.get(filterCookieName);
@@ -114,6 +116,8 @@ export const AbfahrtenConfigProvider = ({ children }: Props) => {
       ...storage.get(configCookieName),
       ...global.configOverride.abfahrten,
     },
+    fetchApiUrl,
+    urlPrefix,
   };
 
   return (

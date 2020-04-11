@@ -21,7 +21,10 @@ const getBabelConfig = (type) => {
         },
         resolvePath: (sourcePath, currentFile, opts) => {
           let filePath = require('babel-plugin-module-resolver').resolvePath(
-            sourcePath.replace(/^(Abfahrten|Common|Routing)\//, 'client/$1/'),
+            sourcePath.replace(
+              /^(Abfahrten|Common|Routing|Regional)\//,
+              'client/$1/'
+            ),
             currentFile,
             opts
           );
