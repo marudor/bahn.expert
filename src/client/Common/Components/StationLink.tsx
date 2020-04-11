@@ -7,12 +7,14 @@ interface Props {
   stationName: string;
   searchType?: StationSearchType;
   className?: string;
+  urlPrefix?: string;
 }
 
 const StationLink = ({
   stationName,
   searchType = StationSearchType.stationsData,
   className,
+  urlPrefix = '/',
   ...rest
 }: Props) => {
   return (
@@ -22,7 +24,7 @@ const StationLink = ({
       className={className}
       onClick={stopPropagation}
       to={{
-        pathname: `/${encodeURIComponent(stationName)}`,
+        pathname: `${urlPrefix}${encodeURIComponent(stationName)}`,
         state: { searchType },
       }}
       title={`Zugabfahrten für ${stationName}`}

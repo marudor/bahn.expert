@@ -1,5 +1,6 @@
 import { isHbf } from './index';
 import { Train } from 'types/iris';
+import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import cc from 'clsx';
 import React, { ReactNode, useMemo } from 'react';
 import StationLink from 'Common/Components/StationLink';
@@ -9,6 +10,7 @@ interface Props {
   stops: Train[];
 }
 const DetailVia = ({ stops }: Props) => {
+  const urlPrefix = AbfahrtenConfigContainer.useContainer().urlPrefix;
   const classes = useStyles();
 
   const stopsToRender = useMemo(() => {
@@ -17,6 +19,7 @@ const DetailVia = ({ stops }: Props) => {
     stops.forEach((s, i) => {
       stopsToRender.push(
         <StationLink
+          urlPrefix={urlPrefix}
           data-testid={`via-${s.name}`}
           key={i}
           stationName={s.name}
@@ -33,7 +36,7 @@ const DetailVia = ({ stops }: Props) => {
     });
 
     return stopsToRender;
-  }, [classes, stops]);
+  }, [classes, stops, urlPrefix]);
 
   return <>{stopsToRender}</>;
 };

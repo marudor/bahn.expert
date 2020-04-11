@@ -1,3 +1,4 @@
+import { AllowedHafasProfile } from 'types/HAFAS';
 import { Station } from 'types/station';
 import { useHistory } from 'react-router';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
@@ -7,9 +8,19 @@ import ExtraMenu from './ExtraMenu';
 import React, { useCallback, useEffect, useState } from 'react';
 import StationSearch from 'Common/Components/StationSearch';
 
-const Header = () => {
+interface Props {
+  /**
+   * If set will use HAFAS Search
+   */
+  profile?: AllowedHafasProfile;
+}
+
+const Header = ({ profile }: Props) => {
   const { currentStation } = AbfahrtenContainer.useContainer();
-  const searchType = AbfahrtenConfigContainer.useContainer().config.searchType;
+  const {
+    config: { searchType },
+    urlPrefix,
+  } = AbfahrtenConfigContainer.useContainer();
   const history = useHistory();
   const [currentEnteredStation, setCurrentEnteredStation] = useState(
     currentStation
@@ -24,9 +35,9 @@ const Header = () => {
       if (!station) {
         return;
       }
-      history.push(`/${encodeURIComponent(station.title)}`);
+      history.push(`${urlPrefix}${encodeURIComponent(station.title)}`);
     },
-    [history]
+    [history, urlPrefix]
   );
 
   return (
@@ -34,6 +45,7 @@ const Header = () => {
       <BaseHeader>
         <StationSearch
           id="abfahrtenHeaderSearch"
+          profile={profile}
           autoFocus={!currentStation}
           searchType={searchType}
           value={currentEnteredStation}

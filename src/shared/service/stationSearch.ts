@@ -30,6 +30,7 @@ export async function getHafasStationFromAPI(
       await axios.get(`/api/hafas/v1/station/${stationString}`, {
         params: {
           profile,
+          type: 'S',
         },
       })
     ).data;

@@ -1,11 +1,11 @@
 describe('Routing', () => {
   beforeEach(() => {
     cy.route(
-      '/api/hafas/v1/station/Frankfurt Hbf?profile=db',
+      '/api/hafas/v1/station/Frankfurt Hbf?profile=db&type=S',
       'fixture:stationSearchFrankfurtHbf.json'
     );
     cy.route(
-      '/api/hafas/v1/station/Hamburg Hbf?profile=db',
+      '/api/hafas/v1/station/Hamburg Hbf?profile=db&type=S',
       'fixture:stationSearchHamburgHbf.json'
     );
   });
@@ -17,11 +17,11 @@ describe('Routing', () => {
 
     it('Can save fav, is saved on reload', () => {
       cy.route(
-        '/api/hafas/v1/station/Frankfurt Hbf?profile=db',
+        '/api/hafas/v1/station/Frankfurt Hbf?profile=db&type=S',
         'fixture:stationSearchFrankfurtHbf.json'
       );
       cy.route(
-        '/api/hafas/v1/station/Hamburg Hbf?profile=db',
+        '/api/hafas/v1/station/Hamburg Hbf?profile=db&type=S',
         'fixture:stationSearchHamburgHbf.json'
       );
       cy.visit('/routing');
@@ -39,11 +39,11 @@ describe('Routing', () => {
 
     it('Changes profile only for Fav', () => {
       cy.route(
-        '/api/hafas/v1/station/8098105?profile=db',
+        '/api/hafas/v1/station/8098105?profile=db&type=S',
         'fixture:stationSearchFrankfurtHbf.json'
       );
       cy.route(
-        '/api/hafas/v1/station/8002549?profile=db',
+        '/api/hafas/v1/station/8002549?profile=db&type=S',
         'fixture:stationSearchHamburgHbf.json'
       );
       cy.route({

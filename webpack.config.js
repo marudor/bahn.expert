@@ -114,6 +114,7 @@ module.exports = {
       Abfahrten: 'client/Abfahrten',
       Routing: 'client/Routing',
       Common: 'client/Common',
+      Regional: 'client/Regional',
       testHelper$: '../test/client/testHelper',
     },
   },

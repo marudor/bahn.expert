@@ -19,6 +19,7 @@ const LazyDetails = loadable(
 );
 const LazyAbfahrten = loadable(() => import('./Abfahrten'), lazyOptions);
 const LazyMap = loadable(() => import('./Map'), lazyOptions);
+const LazyRegional = loadable(() => import('./Regional'), lazyOptions);
 const About = loadable(() => import('./Common/Components/About'), lazyOptions);
 
 const App = () => {
@@ -45,6 +46,7 @@ const App = () => {
                   path="/details/:train/:initialDeparture*"
                 />
                 <Route component={LazyRouting} path="/routing" />
+                <Route component={LazyRegional} path="/regional" />
                 <Route component={LazyAbfahrten} path="/" />
               </Switch>
             </RoutingProvider>
