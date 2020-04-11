@@ -9,6 +9,7 @@ import { parse } from 'date-fns';
 import { StationBoardEntry } from 'types/stationBoard';
 import parseCommonArrival from '../helper/parseCommonArrival';
 import parseCommonDeparture from '../helper/parseCommonDeparture';
+import parseMessages from '../helper/parseMessages';
 import parseStop from '../helper/parseStop';
 
 const isArrival = (a: CommonArrival | CommonDeparture): a is CommonArrival =>
@@ -27,6 +28,7 @@ const parseStationBoardResponse = (
     cancelled: jny.isCncl,
     currentStation: common.locL[jny.stbStop.locX],
     stops: jny.stopL?.map((s) => parseStop(s, common, date, product)),
+    messages: parseMessages(jny.msgL, common),
     raw: global.PROD ? undefined : jny,
   };
 

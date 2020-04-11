@@ -3,7 +3,7 @@
  ** This algorithm is heavily inspired by https://github.com/derf/Travel-Status-DE-IRIS
  ** derf did awesome work reverse engineering the XML stuff!
  */
-import { AbfahrtenResult, Train } from 'types/iris';
+import { AbfahrtenResult } from 'types/iris';
 import {
   addHours,
   addMinutes,
@@ -17,9 +17,9 @@ import {
   subMinutes,
 } from 'date-fns';
 import { AxiosInstance } from 'axios';
+import { calculateVia, getAttr, getNumberAttr, parseTs } from './helper';
 import { diffArrays } from 'diff';
 import { findLast, last, uniqBy } from 'lodash';
-import { getAttr, getNumberAttr, parseTs } from './helper';
 import { getSingleHimMessageOfToday } from 'server/HAFAS/HimSearch';
 import { hasWR } from 'server/Reihung/hasWR';
 import messageLookup, {
@@ -209,7 +209,7 @@ export default class Timetable {
 
     timetable.destination =
       (last && last.name) || timetable.scheduledDestination;
-    this.calculateVia(timetable);
+    calculateVia(timetable.routePost);
 
     if (timetable.departure) {
       timetable.platform = timetable.departure.platform;
@@ -312,31 +312,6 @@ export default class Timetable {
       lookbehind,
       wings,
     };
-  }
-  calculateVia(timetable: any, maxParts: number = 3) {
-    const via: Train[] = [...timetable.routePost].filter((v) => !v.cancelled);
-
-    via.pop();
-    const important = via.filter((v) =>
-      v.name.match(/(HB$|Hbf|Centraal|Flughafen)/)
-    );
-
-    const showing = [];
-
-    if (important.length >= maxParts) {
-      showing.push(via[0]);
-    } else {
-      showing.push(...via.splice(0, maxParts - important.length));
-    }
-
-    while (showing.length < maxParts && important.length) {
-      const stop = important.shift()!;
-
-      if (!showing.includes(stop)) {
-        showing.push(stop);
-      }
-    }
-    showing.forEach((v) => (v.showVia = true));
   }
   parseRef(tl: xmljs.Element) {
     const { trainCategory, trainNumber } = parseTl(tl);
@@ -699,7 +674,6 @@ export default class Timetable {
     return Promise.all(
       this.segments.map(async (date) => {
         const key = `/plan/${this.evaId}/${format(date, 'yyMMdd/HH')}`;
-
         let rawXml = timetableCache.get<any>(key);
 
         if (!rawXml) {

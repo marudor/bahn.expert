@@ -1937,6 +1937,10 @@
 						"type": "boolean",
 						"nullable": true
 					},
+					"isPartCncl": {
+						"type": "boolean",
+						"nullable": true
+					},
 					"subscr": {
 						"type": "string"
 					},
@@ -1945,6 +1949,13 @@
 							"$ref": "#/components/schemas/CommonStop"
 						},
 						"type": "array"
+					},
+					"msgL": {
+						"items": {
+							"$ref": "#/components/schemas/MsgL"
+						},
+						"type": "array",
+						"nullable": true
 					}
 				},
 				"required": [
@@ -2600,6 +2611,13 @@
 					"currentStation": {
 						"$ref": "#/components/schemas/HafasStation"
 					},
+					"messages": {
+						"items": {
+							"$ref": "#/components/schemas/RemL"
+						},
+						"type": "array",
+						"nullable": true
+					},
 					"arrival": {
 						"$ref": "#/components/schemas/CommonStopInfo"
 					}
@@ -2638,6 +2656,13 @@
 					},
 					"currentStation": {
 						"$ref": "#/components/schemas/HafasStation"
+					},
+					"messages": {
+						"items": {
+							"$ref": "#/components/schemas/RemL"
+						},
+						"type": "array",
+						"nullable": true
 					},
 					"departure": {
 						"$ref": "#/components/schemas/CommonStopInfo"
@@ -5413,6 +5438,18 @@
 						"required": true,
 						"schema": {
 							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "type",
+						"required": false,
+						"schema": {
+							"type": "string",
+							"enum": [
+								"S",
+								"ALL"
+							]
 						}
 					},
 					{

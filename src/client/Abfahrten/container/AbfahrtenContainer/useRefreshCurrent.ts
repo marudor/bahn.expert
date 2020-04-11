@@ -8,11 +8,16 @@ export default () => {
   const { currentStation, setDepartures } = AbfahrtenContainer.useContainer();
   const {
     config: { lookahead, lookbehind },
+    fetchApiUrl,
   } = AbfahrtenConfigContainer.useContainer();
 
   return useCallback(async () => {
     if (currentStation && currentStation.id) {
-      const r = await fetchAbfahrten(currentStation.id, lookahead, lookbehind);
+      const r = await fetchAbfahrten(
+        `${fetchApiUrl}/${currentStation.id}`,
+        lookahead,
+        lookbehind
+      );
 
       setDepartures({
         lookahead: r.departures,
@@ -20,5 +25,5 @@ export default () => {
         wings: r.wings,
       });
     }
-  }, [currentStation, lookahead, lookbehind, setDepartures]);
+  }, [currentStation, fetchApiUrl, lookahead, lookbehind, setDepartures]);
 };

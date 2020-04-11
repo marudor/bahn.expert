@@ -276,9 +276,10 @@ export class HafasController extends Controller {
   station(
     @Request() ctx: Context,
     searchTerm: string,
+    @Query() type?: 'S' | 'ALL',
     @Query() profile?: AllowedHafasProfile
   ): Promise<HafasStation[]> {
-    return LocMatch(searchTerm, undefined, profile, ctx.query.raw);
+    return LocMatch(searchTerm, type, profile, ctx.query.raw);
   }
 
   @Post('/tripSearch')

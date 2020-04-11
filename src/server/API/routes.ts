@@ -677,8 +677,10 @@ const models: TsoaRoute.Models = {
       "status": { "dataType": "string", "required": true },
       "isRchbl": { "dataType": "boolean", "required": true },
       "isCncl": { "dataType": "boolean" },
+      "isPartCncl": { "dataType": "boolean" },
       "subscr": { "dataType": "string", "required": true },
       "stopL": { "dataType": "array", "array": { "ref": "CommonStop" }, "required": true },
+      "msgL": { "dataType": "array", "array": { "ref": "MsgL" } },
     },
     "additionalProperties": false,
   },
@@ -886,6 +888,7 @@ const models: TsoaRoute.Models = {
       "jid": { "dataType": "string", "required": true },
       "stops": { "dataType": "array", "array": { "ref": "Route$Stop" } },
       "currentStation": { "ref": "HafasStation", "required": true },
+      "messages": { "dataType": "array", "array": { "ref": "RemL" } },
       "arrival": { "ref": "CommonStopInfo", "required": true },
     },
     "additionalProperties": false,
@@ -900,6 +903,7 @@ const models: TsoaRoute.Models = {
       "jid": { "dataType": "string", "required": true },
       "stops": { "dataType": "array", "array": { "ref": "Route$Stop" } },
       "currentStation": { "ref": "HafasStation", "required": true },
+      "messages": { "dataType": "array", "array": { "ref": "RemL" } },
       "departure": { "ref": "CommonStopInfo", "required": true },
     },
     "additionalProperties": false,
@@ -1882,6 +1886,7 @@ export function RegisterRoutes(router: KoaRouter) {
       const args = {
         ctx: { "in": "request", "name": "ctx", "required": true, "dataType": "object" },
         searchTerm: { "in": "path", "name": "searchTerm", "required": true, "dataType": "string" },
+        type: { "in": "query", "name": "type", "dataType": "enum", "enums": ["S", "ALL"] },
         profile: { "in": "query", "name": "profile", "dataType": "enum", "enums": ["db", "oebb", "bvg", "hvv", "rmv", "sncb", "avv", "nahsh", "insa", "anachb", "vao", "sbb", "dbnetz", "pkp"] },
       };
 

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Redirect, StaticRouterContext } from 'react-router';
+import { Station } from 'types/station';
 import AbfahrtenContainer, {
   AbfahrtenError,
 } from 'Abfahrten/container/AbfahrtenContainer';
@@ -7,7 +8,7 @@ import favContainer from 'Abfahrten/container/FavContainer';
 import FavEntry, { FavEntryDisplay } from './FavEntry';
 import HeaderTagContainer from 'Common/container/HeaderTagContainer';
 import MostUsed from './MostUsed';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { ReactNode, useEffect, useMemo, useState } from 'react';
 import useStyles from './FavList.style';
 import Zugsuche from 'Common/Components/Zugsuche';
 
@@ -38,12 +39,13 @@ function getErrorText(
 
 interface Props {
   staticContext?: StaticRouterContext;
+  children?: ReactNode;
 }
 
-const FavList = ({ staticContext }: Props) => {
-  const { favs } = favContainer.useContainer();
+const FavList = ({ staticContext, children }: Props) => {
+  const { favs, MostUsedComponent } = favContainer.useContainer();
   const sortedFavs = useMemo(() => {
-    const values = Object.values(favs);
+    const values: Station[] = Object.values(favs);
 
     return values
       .sort((a, b) => (a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1))
@@ -58,9 +60,10 @@ const FavList = ({ staticContext }: Props) => {
 
   return (
     <main className={classes.main}>
-      <Zugsuche>{() => <div />}</Zugsuche>
+      {children}
+      <Zugsuche />
       {/* eslint-disable-next-line no-nested-ternary */}
-      {savedError ? (
+      {savedError && (
         <>
           <FavEntryDisplay
             data-testid="error"
@@ -75,18 +78,12 @@ const FavList = ({ staticContext }: Props) => {
               <FavEntryDisplay text={savedError.station} />
             </Link>
           )}
-          <FavEntryDisplay
-            clickable={false}
-            text="Versuch einen der folgenden"
-          />
-          <MostUsed />
         </>
-      ) : sortedFavs.length ? (
+      )}
+      {sortedFavs.length ? (
         <>
           <FavEntryDisplay clickable={false} text="Favoriten" />
           {sortedFavs}
-          <FavEntryDisplay clickable={false} text="Oft Gesucht" />
-          <MostUsed />
         </>
       ) : (
         <>
@@ -95,6 +92,10 @@ const FavList = ({ staticContext }: Props) => {
             data-testid="noFav"
             text="Keine Favoriten"
           />
+        </>
+      )}
+      {MostUsedComponent && (
+        <>
           <FavEntryDisplay clickable={false} text="Oft Gesucht" />
           <MostUsed />
         </>

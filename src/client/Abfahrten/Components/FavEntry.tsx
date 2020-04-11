@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Paper } from '@material-ui/core';
 import { Station } from 'types/station';
 import { useUnfav } from 'Abfahrten/container/FavContainer';
+import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import ActionDelete from '@material-ui/icons/Delete';
 import cc from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
@@ -57,6 +58,7 @@ const FavEntry = ({
   noDelete,
   'data-testid': testid = 'favEntry',
 }: Props) => {
+  const { urlPrefix } = AbfahrtenConfigContainer.useContainer();
   const unfav = useUnfav();
   const deleteFav = useCallback(
     (e: MouseEvent) => {
@@ -70,7 +72,7 @@ const FavEntry = ({
   return (
     <Link
       data-testid={testid}
-      to={encodeURIComponent(fav.title)}
+      to={`${urlPrefix}${encodeURIComponent(fav.title)}`}
       title={`Zugabfahrten für ${fav.title}`}
     >
       <FavEntryDisplay

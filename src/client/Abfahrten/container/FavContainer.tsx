@@ -1,27 +1,39 @@
 import { createContainer } from 'unstated-next';
 import { Station } from 'types/station';
-import React, { ReactNode, useCallback, useState } from 'react';
+import React, { ComponentType, ReactNode, useCallback, useState } from 'react';
 import useStorage from 'shared/hooks/useStorage';
 
 interface Favs {
   [key: string]: Station;
 }
 
-function useFavStorage(initialFavs: Favs = {}) {
-  const [favs, setFavs] = useState<Favs>(initialFavs);
+interface FavStorageSetup {
+  favs: Favs;
+  storageKey: string;
+  MostUsedComponent?: ComponentType;
+}
+
+function useFavStorage(setup: FavStorageSetup) {
+  const [favs, setFavs] = useState<Favs>(setup.favs);
 
   const storage = useStorage();
   const updateFavs = useCallback(
     (newFavs: Favs) => {
-      storage.set('favs', newFavs);
+      storage.set(setup.storageKey, newFavs);
       setFavs(newFavs);
     },
-    [storage]
+    [setup.storageKey, storage]
   );
 
-  return { favs, updateFavs, count: Object.keys(favs).length };
+  return {
+    favs,
+    updateFavs,
+    count: Object.keys(favs).length,
+    MostUsedComponent: setup.MostUsedComponent,
+  };
 }
 
+// @ts-ignore - this works, complains about missing default
 const FavContainer = createContainer(useFavStorage);
 
 export function useFav() {
@@ -30,7 +42,10 @@ export function useFav() {
     (station: Station) => {
       const newFavs = {
         ...favs,
-        [station.id]: station,
+        [station.id]: {
+          title: station.title,
+          id: station.id,
+        },
       };
 
       updateFavs(newFavs);
@@ -59,14 +74,26 @@ export default FavContainer;
 
 interface Props {
   children: ReactNode;
+  storageKey: string;
+  MostUsedComponent?: ComponentType;
 }
 
-export const FavProvider = ({ children }: Props) => {
+export const FavProvider = ({
+  children,
+  storageKey,
+  MostUsedComponent,
+}: Props) => {
   const storage = useStorage();
-  const savedFavs = storage.get('favs');
+  const savedFavs = storage.get(storageKey);
 
   return (
-    <FavContainer.Provider initialState={savedFavs}>
+    <FavContainer.Provider
+      initialState={{
+        favs: savedFavs || {},
+        storageKey,
+        MostUsedComponent,
+      }}
+    >
       {children}
     </FavContainer.Provider>
   );

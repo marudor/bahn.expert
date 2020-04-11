@@ -1,7 +1,7 @@
 import { Abfahrt, AbfahrtenResult, Wings } from 'types/iris';
 import { createContainer } from 'unstated-next';
 import { getStationsFromAPI } from 'shared/service/stationSearch';
-import { Station } from 'types/station';
+import { Station, StationSearchType } from 'types/station';
 import AbfahrtenConfigContainer, {
   AbfahrtenConfigProvider,
 } from 'Abfahrten/container/AbfahrtenConfigContainer';
@@ -11,24 +11,20 @@ import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 let cancelGetAbfahrten = () => {};
 
 export const fetchAbfahrten = async (
-  stationId: string,
+  urlWithStationId: string,
   lookahead: string,
   lookbehind: string
 ): Promise<AbfahrtenResult> => {
   cancelGetAbfahrten();
-  const r = await Axios.get<AbfahrtenResult>(
-    `/api/iris/v1/abfahrten/${stationId}`,
-    // `/api/hafas/experimental/irisCompatibleAbfahrten/${stationId}`,
-    {
-      cancelToken: new Axios.CancelToken((c) => {
-        cancelGetAbfahrten = c;
-      }),
-      params: {
-        lookahead,
-        lookbehind,
-      },
-    }
-  );
+  const r = await Axios.get<AbfahrtenResult>(urlWithStationId, {
+    cancelToken: new Axios.CancelToken((c) => {
+      cancelGetAbfahrten = c;
+    }),
+    params: {
+      lookahead,
+      lookbehind,
+    },
+  });
 
   return r.data;
 };
@@ -58,12 +54,18 @@ type AbfahrtenError$Default = AxiosError & {
   station?: string;
 };
 
-const useAbfahrten = () => {
+const useAbfahrten = (
+  stationApiFunction: (
+    searchType: StationSearchType,
+    stationName: string
+  ) => Promise<Station[]> = getStationsFromAPI
+) => {
   const [currentStation, setCurrentStation] = useState<Station>();
   const [departures, setDepartures] = useState<Departures>();
   const [error, setError] = useState<AbfahrtenError>();
   const {
     config: { lookahead, lookbehind, searchType },
+    fetchApiUrl,
   } = AbfahrtenConfigContainer.useContainer();
 
   const updateCurrentStationByString = useCallback(
@@ -79,7 +81,7 @@ const useAbfahrten = () => {
             id: '',
           };
         });
-        const stations = await getStationsFromAPI(searchType, stationName);
+        const stations = await stationApiFunction(searchType, stationName);
 
         if (stations.length) {
           setCurrentStation(stations[0]);
@@ -97,7 +99,7 @@ const useAbfahrten = () => {
         setError(e);
       }
     },
-    [searchType]
+    [searchType, stationApiFunction]
   );
 
   useEffect(() => {
@@ -106,7 +108,11 @@ const useAbfahrten = () => {
 
       return;
     }
-    fetchAbfahrten(currentStation.id, lookahead, lookbehind).then(
+    fetchAbfahrten(
+      `${fetchApiUrl}/${currentStation.id}`,
+      lookahead,
+      lookbehind
+    ).then(
       (r) => {
         setDepartures({
           lookahead: r.departures,
@@ -119,7 +125,7 @@ const useAbfahrten = () => {
         setError(e);
       }
     );
-  }, [currentStation, lookahead, lookbehind]);
+  }, [currentStation, fetchApiUrl, lookahead, lookbehind]);
 
   return {
     updateCurrentStationByString,
@@ -136,10 +142,20 @@ const AbfahrtenContainer = createContainer(useAbfahrten);
 
 interface Props {
   children: ReactNode;
+  fetchApiUrl: string;
+  stationApiFunction?: typeof getStationsFromAPI;
+  urlPrefix: string;
 }
-export const AbfahrtenProvider = ({ children }: Props) => (
-  <AbfahrtenConfigProvider>
-    <AbfahrtenContainer.Provider>{children}</AbfahrtenContainer.Provider>
+export const AbfahrtenProvider = ({
+  children,
+  fetchApiUrl,
+  stationApiFunction,
+  urlPrefix,
+}: Props) => (
+  <AbfahrtenConfigProvider urlPrefix={urlPrefix} fetchApiUrl={fetchApiUrl}>
+    <AbfahrtenContainer.Provider initialState={stationApiFunction}>
+      {children}
+    </AbfahrtenContainer.Provider>
   </AbfahrtenConfigProvider>
 );
 

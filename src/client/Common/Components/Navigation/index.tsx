@@ -46,6 +46,14 @@ const Navigation = ({ children }: Props) => {
               <ListItemText primary="Abfahrten" />
             </ListItem>
           </Link>
+          <Link to="/regional">
+            <ListItem button>
+              <ListItemIcon>
+                <AlarmOnOutlinedIcon />
+              </ListItemIcon>
+              <ListItemText primary="Nahverkehr Abfahrten" />
+            </ListItem>
+          </Link>
           <Link to="/routing">
             <ListItem button>
               <ListItemIcon>
