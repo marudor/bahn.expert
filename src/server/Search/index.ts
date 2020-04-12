@@ -1,12 +1,11 @@
 import { logger } from 'server/logger';
-import { Station, StationSearchType } from 'types/station';
+import { StationSearchType } from 'types/station';
 import BusinessHubSearch, {
   canUseBusinessHub,
 } from 'server/Search/BusinessHub';
 import DBNavigatorSearch from 'server/HAFAS/LocMatch';
 import DS100 from 'server/Search/DS100';
 import FavendoSearch from './Favendo';
-import NodeCache from 'node-cache';
 import OpenDataOfflineSearch from './OpenDataOffline';
 import OpenDataSearch from './OpenData';
 import StationsDataSearch from './StationsData';
@@ -32,23 +31,6 @@ export function getSearchMethod(type?: StationSearchType) {
   }
 }
 
-const searchCaches: Map<Function, NodeCache> = new Map();
-// 6 Hours in seconds
-const stdTTL = 6 * 60 * 60;
-
-function getCache(key: Function) {
-  const cached = searchCaches.get(key);
-
-  if (cached) {
-    return cached;
-  }
-  const cache: NodeCache = new NodeCache({ stdTTL });
-
-  searchCaches.set(key, cache);
-
-  return cache;
-}
-
 export default async (
   rawSearchTerm: string,
   type?: StationSearchType,
@@ -59,15 +41,6 @@ export default async (
   const ds100Search = DS100(searchTerm);
 
   try {
-    const searchMethod = getSearchMethod(type);
-    const cache = getCache(searchMethod);
-
-    const cached = cache.get<Station[]>(searchTerm);
-
-    if (cached) {
-      return cached.slice(0, maxStations);
-    }
-
     let result = await getSearchMethod(type)(searchTerm);
 
     if (type !== StationSearchType.stationsData && result.length === 0) {
@@ -82,7 +55,6 @@ export default async (
     if (ds100Station) {
       result = [ds100Station, ...result];
     }
-    cache.set(searchTerm, result);
 
     return result.slice(0, maxStations);
   } catch (e) {

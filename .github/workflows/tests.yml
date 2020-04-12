@@ -9,7 +9,7 @@ on:
       - master
 
 env:
-  CI: "true"
+  CI: 'true'
 
 jobs:
   commitlint:
@@ -23,6 +23,11 @@ jobs:
       - uses: wagoid/commitlint-github-action@v1
   node:
     runs-on: ubuntu-latest
+    services:
+      redis:
+        image: redis:alpine
+        ports:
+          - 6379/tcp
     steps:
       - uses: actions/checkout@master
       - name: Use Node.js 13
@@ -37,6 +42,8 @@ jobs:
       - name: jest
         run: |
           yarn test:jest
+        env:
+          REDIS_HOST: localhost
       - name: depCheck
         run: |
           yarn depCheck
@@ -83,7 +90,7 @@ jobs:
           parallel: true
           build: yarn build
           group: ${{ matrix.browser }}
-          ci-build-id: "${{github.sha}}-${{ github.workflow }}-${{ github.event_name }}"
+          ci-build-id: '${{github.sha}}-${{ github.workflow }}-${{ github.event_name }}'
           start: node testDist/server/server/index.js
           wait-on: http://localhost:9042
           browser: ${{ matrix.browser}}

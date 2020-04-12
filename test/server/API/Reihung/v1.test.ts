@@ -5,7 +5,6 @@ import Nock from 'nock';
 import path from 'path';
 import request from 'supertest';
 
-jest.mock('node-cache');
 describe('Reihung V1', () => {
   const nock = Nock('https://www.apps-bahn.de');
   const loadFixture = (fileName: string) =>
