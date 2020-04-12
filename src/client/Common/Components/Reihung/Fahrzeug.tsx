@@ -71,7 +71,7 @@ const FahrzeugComp = ({
     width: `${(end - start) * scale}%`,
   };
 
-  // @ts-ignore
+  // @ts-expect-error
   const klasseClassName: keyof typeof classes = `klasse${fahrzeug.additionalInfo.klasse}`;
 
   return (
@@ -88,7 +88,7 @@ const FahrzeugComp = ({
       <span className={classes.icons}>
         {Object.entries(fahrzeug.additionalInfo.icons).map(([key, enabled]) => {
           if (enabled) {
-            // @ts-ignore this is correct, it's exact!
+            // @ts-expect-error this is correct, it's exact!
             const SpecificIcon = icons[key];
 
             return <SpecificIcon key={key} className={classes.icon} />;

@@ -43,10 +43,10 @@ const RouteFavEntry = ({ fav }: Props) => {
       >
         <span className={classes.start}>{fav.start.title}</span>
         <span className={classes.destination}>{fav.destination.title}</span>
-        <span className={classes.arrow}>-></span>
+        <span className={classes.arrow}>{'->'}</span>
         <span className={classes.profile}>
           {Object.keys(AllowedHafasProfile).find(
-            // @ts-ignore
+            // @ts-expect-error
             (key) => AllowedHafasProfile[key] === fav.profile
           )}
         </span>

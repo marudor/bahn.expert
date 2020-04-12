@@ -17,7 +17,7 @@ export const validationOverwrite = [
     url: '/station/v1/search/:searchTerm',
     type: 'get',
     middleware: (ctx: any, next: any) => {
-      // @ts-ignore
+      // @ts-expect-error
       if (!StationSearchType[ctx.query.type]) {
         ctx.query.type = StationSearchType.default;
       }

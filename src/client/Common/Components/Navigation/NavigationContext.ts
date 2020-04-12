@@ -4,5 +4,5 @@ interface NavigationContext {
   toggleDrawer: () => void;
 }
 
-// @ts-ignore
+// @ts-expect-error
 export default React.createContext<NavigationContext>();

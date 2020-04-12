@@ -87,7 +87,7 @@ const useAbfahrtenConfig = (initialConfig: AbfahrtenContainerValue) => {
   };
 };
 
-// @ts-ignore works, complains about missing default
+// @ts-expect-error works, complains about missing default
 const AbfahrtenConfigContainer = createContainer(useAbfahrtenConfig);
 
 export default AbfahrtenConfigContainer;

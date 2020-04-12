@@ -16,7 +16,7 @@ export default async (ctx: Context, next: Function) => {
       };
       ctx.status = e.response.status || 500;
     } else {
-      // @ts-ignore
+      // @ts-expect-error
       if (e instanceof Error && !handledHafasError.includes(e.errorCode)) {
         Sentry.withScope((scope) => {
           if (e.data) {
@@ -27,13 +27,13 @@ export default async (ctx: Context, next: Function) => {
           );
           Sentry.captureException(e);
         });
-        // @ts-ignore
+        // @ts-expect-error
         if (e.status === 400) {
           try {
             const parsed = JSON.parse(e.message);
 
             ctx.body = parsed;
-            // @ts-ignore
+            // @ts-expect-error
             ctx.status = e.status || 500;
 
             return;
