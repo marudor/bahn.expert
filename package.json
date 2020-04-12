@@ -59,6 +59,7 @@
     "@testing-library/cypress": "6.0.0",
     "@testing-library/jest-dom": "^5.5.0",
     "@testing-library/react": "^10.0.2",
+    "@types/cache-manager": "^2.10.2",
     "@types/cheerio": "^0.22.17",
     "@types/compression-webpack-plugin": "^2.0.1",
     "@types/debounce-promise": "^3.1.1",
@@ -158,6 +159,8 @@
     "@sentry/node": "^5.15.4",
     "@timberio/node": "^0.35.0",
     "axios": "0.19.2",
+    "cache-manager": "^3.2.1",
+    "cache-manager-ioredis": "^2.0.0",
     "cheerio": "^1.0.0-rc.3",
     "clsx": "^1.1.0",
     "cookie": "^0.4.0",
@@ -182,7 +185,6 @@
     "libxmljs2": "^0.25.1",
     "lodash": "^4.17.15",
     "nanoid": "^3.1.3",
-    "node-cache": "^5.1.0",
     "on-finished": "^2.3.0",
     "pino": "^6.2.0",
     "pino-pretty": "^4.0.0",
@@ -215,6 +217,7 @@
     "output": "./reports/junitresults.xml"
   },
   "resolutions": {
+    "typescript": "beta",
     "lodash": ">=4.17.15",
     "mkdirp": "^0.5.1"
   },

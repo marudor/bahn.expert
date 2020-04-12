@@ -9,13 +9,17 @@ const writeWorker = new Worker(path.resolve(__dirname, 'logWriteThread.js'), {
   env: SHARE_ENV,
 });
 
+const IS_TEST = process.env.NODE_ENV === 'test';
+
 const writeOptions = {
-  write(msg: string) {
-    writeWorker.postMessage(msg);
-  },
+  write: IS_TEST
+    ? () => {}
+    : (msg: string) => {
+        writeWorker.postMessage(msg);
+      },
 };
 
-if (process.env.NODE_ENV === 'test') {
+if (IS_TEST) {
   writeWorker.unref();
 }
 

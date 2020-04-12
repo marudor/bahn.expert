@@ -6,7 +6,7 @@ import fs from 'fs';
 import path from 'path';
 import Timetable from 'server/Abfahrten/Timetable';
 
-jest.mock('node-cache');
+jest.mock('server/cache');
 
 describe('withFchg', () => {
   let clock: InstalledClock;

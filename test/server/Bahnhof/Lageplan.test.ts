@@ -10,8 +10,8 @@ describe('Lageplan', () => {
   function readFixutre(f: string) {
     return fs.readFileSync(path.resolve(__dirname, '__fixtures__/', f));
   }
-  it('first time cached is undefined', () => {
-    expect(getCachedLageplan('Hamburg Hbf')).toBeUndefined();
+  it('first time cached is undefined', async () => {
+    expect(await getCachedLageplan('Hamburg Hbf')).toBeUndefined();
   });
 
   describe('Example without Lageplan', () => {
