@@ -17,6 +17,7 @@ import {
   subMinutes,
 } from 'date-fns';
 import { AxiosInstance } from 'axios';
+import { CacheDatabases, createNewCache } from 'server/cache';
 import { calculateVia, getAttr, getNumberAttr, parseTs } from './helper';
 import { diffArrays } from 'diff';
 import { findLast, last, uniqBy } from 'lodash';
@@ -26,7 +27,6 @@ import messageLookup, {
   messageTypeLookup,
   supersededMessages,
 } from './messageLookup';
-import NodeCache from 'node-cache';
 import xmljs, { Element } from 'libxmljs2';
 
 interface ArDp {
@@ -48,8 +48,10 @@ type ParsedAr = ArDp & {
 };
 
 // 6 Hours in seconds
-const stdTTL = 6 * 60 * 60;
-const timetableCache = new NodeCache({ stdTTL });
+const timetableCache = createNewCache<string, string>(
+  6 * 60 * 60,
+  CacheDatabases.Timetable
+);
 
 interface Route {
   name: string;
@@ -369,7 +371,7 @@ export default class Timetable {
 
     const message = {
       superseded: undefined,
-      // @ts-expect-error Lookup is correct
+      // @ts-expect-error
       text: messageLookup[value] || `${value} (?)`,
       timestamp: parseTs(getAttr(mNode, 'ts')),
       priority: getAttr(mNode, 'pr'),
@@ -674,11 +676,11 @@ export default class Timetable {
     return Promise.all(
       this.segments.map(async (date) => {
         const key = `/plan/${this.evaId}/${format(date, 'yyMMdd/HH')}`;
-        let rawXml = timetableCache.get<any>(key);
+        let rawXml = await timetableCache.get(key);
 
         if (!rawXml) {
           try {
-            rawXml = await this.axios.get<string>(key).then((x) => x.data);
+            rawXml = await this.axios.get<string>(key).then((x) => x.data)!;
           } catch (e) {
             this.errors.push(e);
 
@@ -690,7 +692,7 @@ export default class Timetable {
           ...this.timetable,
           ...this.getTimetable(rawXml),
         };
-        timetableCache.set<string>(key, rawXml);
+        timetableCache.set(key, rawXml);
       })
     );
   }

@@ -29,7 +29,8 @@
       "types/*": ["types/*"],
       "Regional/*": ["client/Regional/*"]
     },
-    "types": ["jest", "@testing-library/jest-dom"]
+    "types": ["jest", "@testing-library/jest-dom"],
+    "keyofStringsOnly": true
   },
   "include": ["src", "test", "@types"]
 }

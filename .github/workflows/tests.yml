@@ -9,7 +9,7 @@ on:
       - master
 
 env:
-  CI: "true"
+  CI: 'true'
 
 jobs:
   commitlint:
@@ -83,7 +83,7 @@ jobs:
           parallel: true
           build: yarn build
           group: ${{ matrix.browser }}
-          ci-build-id: "${{github.sha}}-${{ github.workflow }}-${{ github.event_name }}"
+          ci-build-id: '${{github.sha}}-${{ github.workflow }}-${{ github.event_name }}'
           start: node testDist/server/server/index.js
           wait-on: http://localhost:9042
           browser: ${{ matrix.browser}}

@@ -9,11 +9,13 @@ certificate:
   issuerKind: ClusterIssuer
 
 docs: true
+redis:
+  host: redis
+  port: 6379
 
 ingress:
   enabled: true
-  annotations:
-    {}
+  annotations: {}
 
 resources:
   requests:

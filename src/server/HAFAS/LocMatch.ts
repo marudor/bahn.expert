@@ -4,14 +4,16 @@ import {
   HafasStation,
   ParsedCommon,
 } from 'types/HAFAS';
+import { CacheDatabases, createNewCache } from 'server/cache';
 import { LocMatchRequest, LocMatchResponse } from 'types/HAFAS/LocMatch';
 import makeRequest from './Request';
-import NodeCache from 'node-cache';
 import parseLocL from './helper/parseLocL';
 
 // 8 Hours in seconds
-const stdTTL = 8 * 60 * 60;
-const cache = new NodeCache({ stdTTL });
+const cache = createNewCache<string, HafasStation[]>(
+  8 * 60 * 60,
+  CacheDatabases.LocMatch
+);
 
 function parseFn(
   d: HafasResponse<LocMatchResponse>,
@@ -54,7 +56,7 @@ export default async (
   }
 
   const cacheKey = `${profile}|${type}|${searchTerm}`;
-  const cached = cache.get<HafasStation[]>(cacheKey);
+  const cached = await cache.get(cacheKey);
 
   if (cached) {
     return cached;

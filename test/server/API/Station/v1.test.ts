@@ -3,7 +3,6 @@ import { createTestServer } from 'testHelper';
 import Nock from 'nock';
 import request from 'supertest';
 
-jest.mock('node-cache');
 describe('Station V1', () => {
   const server = createTestServer();
 

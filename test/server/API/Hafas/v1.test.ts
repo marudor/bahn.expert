@@ -3,7 +3,6 @@ import Nock from 'nock';
 import path from 'path';
 import request from 'supertest';
 
-jest.mock('node-cache');
 describe('Hafas V1', () => {
   const nock = Nock('https://reiseauskunft.bahn.de');
   const server = createTestServer();
