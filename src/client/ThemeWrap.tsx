@@ -24,7 +24,7 @@ const ThemeWrap = ({ children = <App />, sheetsRegistry }: Props) => {
 
   if (global.TEST) {
     generateClassName = (rule: Rule, sheet?: StyleSheet<string>) => {
-      // @ts-ignore
+      // @ts-expect-error
       const name = `${sheet.options.name}-${rule.key}`;
 
       return name;

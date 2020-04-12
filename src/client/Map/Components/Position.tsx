@@ -24,7 +24,8 @@ const Position = ({ journey }: Props) => {
       position={[journey.position.lat, journey.position.lng]}
     >
       <Tooltip permanent={permanent || activeJourney?.jid === journey.jid}>
-        {journey.train.name} ->{' '}
+        {journey.train.name}
+        {' -> '}
         {journey.stops[journey.stops.length - 1].station.title}
       </Tooltip>
     </Marker>

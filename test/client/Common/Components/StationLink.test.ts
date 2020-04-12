@@ -16,7 +16,7 @@ describe('StationLink', () => {
   it('passes extra props', () => {
     const { queryByTestId } = render(StationLink, {
       stationName: 'test',
-      // @ts-ignore just for test
+      // @ts-expect-error just for test
       extra: 1,
     });
 

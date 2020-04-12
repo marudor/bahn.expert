@@ -106,7 +106,7 @@ const MapSettings = () => {
                 {Object.keys(AllowedHafasProfile).map((allowedProfile) => (
                   <option
                     key={allowedProfile}
-                    // @ts-ignore
+                    // @ts-expect-error
                     value={AllowedHafasProfile[allowedProfile]}
                   >
                     {allowedProfile}

@@ -11,8 +11,6 @@ export const gridStyle = {
 export default makeStyles({
   main: {
     minHeight: '3em',
-    gridTemplateRows: '2.5em 1fr',
-    alignItems: 'center',
     ...gridStyle,
   },
 

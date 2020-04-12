@@ -49,7 +49,7 @@ export default (
   r: HafasResponse<StationBoardResponse>,
   parsedCommon: ParsedCommon
 ): StationBoardEntry[] => {
-  // @ts-ignore ???
+  // @ts-expect-error ???
   const abfahrten: StationBoardEntry[] = r.svcResL[0].res.jnyL.map((j: Jny) =>
     parseStationBoardResponse(j, parsedCommon)
   );

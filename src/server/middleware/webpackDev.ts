@@ -6,10 +6,9 @@ import Koa from 'koa';
 import koaWebpack from 'koa-webpack';
 import path from 'path';
 import webpack from 'webpack';
-// @ts-ignore
 import webpackConfig from '../../../webpack.config';
 
-// @ts-ignore
+// @ts-expect-error
 const compiler: any = webpack(webpackConfig);
 
 module.exports = function webpackDev(koa: Koa, server: undefined | Server) {
