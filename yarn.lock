@@ -4393,7 +4393,7 @@ __metadata:
     supertest: ^4.0.2
     terser-webpack-plugin: ^2.3.5
     tsoa: ^2.5.13
-    typescript: ^3.8.3
+    typescript: beta
     universal-cookie: ^4.0.3
     unstated-next: ^1.1.0
     url-loader: ^4.1.0
@@ -15434,13 +15434,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^3.5.3, typescript@npm:^3.8.3":
+"typescript@npm:^3.5.3":
   version: 3.8.3
   resolution: "typescript@npm:3.8.3"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 2/519b11576247fe3570d89a2aa757d8f666aafc0cb9465a6cdd4df09c1dc6bf7285f0c6008d2ac7a55ea26457e767aaab819f58439d80af2cce1d9805b2be1034
+  languageName: node
+  linkType: hard
+
+"typescript@npm:beta":
+  version: 3.9.0-beta
+  resolution: "typescript@npm:3.9.0-beta"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 2/719086773a3350dd89afaadd51cb470de8072ad59f1e8e789701e9b215bd4fbffb8b856c3c5ac890f0da89ab3973b609cb5a794428fceb064a49e0dc6ed68793
   languageName: node
   linkType: hard
 

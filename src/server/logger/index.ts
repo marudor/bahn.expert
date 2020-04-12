@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === 'test') {
 
 export const logger = pino(
   {
-    // @ts-ignore
+    // @ts-expect-error
     redact: {
       paths: [
         'req.remoteAddress',
@@ -38,7 +38,7 @@ export const logger = pino(
           const cookies = cookie.parse(req.headers.cookie);
 
           req.headers = {
-            // @ts-ignore
+            // @ts-expect-error
             cookie: cookies,
             'user-agent': req.headers['user-agent'],
             referer: req.headers.referer,

@@ -50,7 +50,7 @@ const Explain = () => {
           {/* <FahrzeugComp {...explainFahrzeugProps} /> */}
           <div className={classes.wrap}>
             {Object.keys(iconExplanation).map(
-              // @ts-ignore this is correct, it's exact!
+              // @ts-expect-error this is correct, it's exact!
               (iconName: keyof typeof icons) => {
                 const Icon = icons[iconName];
 

@@ -2,7 +2,7 @@ import { SearchAllResult, StationSearchType } from 'types/station';
 import stationSearch from 'server/Search';
 
 export async function searchAll(searchTerm: string): Promise<SearchAllResult> {
-  // @ts-ignore
+  // @ts-expect-error
   const result: SearchAllResult = {};
 
   await Promise.all(

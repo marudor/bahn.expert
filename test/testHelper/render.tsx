@@ -87,9 +87,8 @@ export function render<CP extends ComponentType<any>>(
     );
   };
 
-  // @ts-ignore
+  // @ts-expect-error
   const p: P = props || {};
-  // @ts-ignore
   const rendered = realRender(<Comp {...p} />, { wrapper });
 
   return {

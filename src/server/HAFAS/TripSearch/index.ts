@@ -107,7 +107,7 @@ function route(
         : undefined,
     },
     meth: 'TripSearch',
-    // @ts-ignore
+    // @ts-expect-error
     ...profileConfig[profile],
   };
 

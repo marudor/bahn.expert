@@ -60,7 +60,7 @@ const timeByReal = (a: Abfahrt) => {
 const sortAbfahrt = (timeFn: typeof timeByReal) => (a: Abfahrt, b: Abfahrt) => {
   const timeA = timeFn(a);
   const timeB = timeFn(b);
-  // @ts-ignore - either arrival or departure always exists
+  // @ts-expect-error - either arrival or departure always exists
   const sort = compareAsc(timeA, timeB);
 
   if (!sort) {
