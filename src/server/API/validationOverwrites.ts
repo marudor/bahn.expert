@@ -22,7 +22,7 @@ router.prefix('/api').all('*', (ctx, next) => {
 });
 
 allOverwrites.forEach(({ url, type, middleware }) => {
-  // @ts-ignore
+  // @ts-expect-error
   router[type](url, middleware);
 });
 

@@ -26,7 +26,9 @@ export function isRedesignByTZ(tz?: string): boolean | undefined {
 }
 
 export function infoByUIC(uic: string): TzInfo | undefined {
-  return Object.values(tzInfo).find((info) => info.uicList.includes(uic));
+  return Object.values(tzInfo).find((info: TzInfo) =>
+    info.uicList.includes(uic)
+  );
 }
 
 export function BRByUIC(uic: string) {

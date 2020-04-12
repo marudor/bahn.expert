@@ -2,9 +2,9 @@ import { Marker, Polyline, Tooltip } from 'react-leaflet';
 import MapContainer from 'client/Map/container/MapContainer';
 import React, { useMemo } from 'react';
 import useStyles from './ActivePolyline.style';
-// @ts-ignore
+// @ts-expect-error
 import icon from 'leaflet/dist/images/marker-icon.png';
-// @ts-ignore
+// @ts-expect-error
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import L from 'leaflet';
 

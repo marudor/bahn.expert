@@ -50,7 +50,6 @@ describe('Loading', () => {
   });
 
   it('defaults to grid', () => {
-    // @ts-ignore - Invalid type, exactly what I want to test
     const { queryByTestId, container } = render(Loading, {
       type: 5,
     });

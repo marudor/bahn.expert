@@ -256,6 +256,6 @@ const naming = {
 };
 
 export default (tzn?: string): string | undefined => {
-  // @ts-ignore
+  // @ts-expect-error
   if (tzn) return naming[Number.parseInt(tzn, 10)];
 };
