@@ -23,11 +23,6 @@ jobs:
       - uses: wagoid/commitlint-github-action@v1
   node:
     runs-on: ubuntu-latest
-    services:
-      redis:
-        image: redis:alpine
-        ports:
-          - 6379/tcp
     steps:
       - uses: actions/checkout@master
       - name: Use Node.js 13
@@ -42,8 +37,6 @@ jobs:
       - name: jest
         run: |
           yarn test:jest
-        env:
-          REDIS_HOST: localhost
       - name: depCheck
         run: |
           yarn depCheck

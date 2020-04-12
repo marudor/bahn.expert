@@ -19,8 +19,6 @@ describe('Cache', () => {
       await cache.set('null', null);
       expect(await cache.get('null')).toBeNull();
     });
-
-    return cache;
   };
 
   describe('memory', () => {
@@ -29,15 +27,7 @@ describe('Cache', () => {
 
   if (process.env.REDIS_HOST) {
     describe('redis', () => {
-      const cache = defineCacheTests(() => createNewCache(100, 1, true));
-
-      afterAll(async () => {
-        await cache.del('');
-        await cache.del('null');
-        await cache.del('undef');
-        // @ts-expect-error
-        cache.store.getClient().disconnect();
-      });
+      defineCacheTests(() => createNewCache(100, 1, true));
     });
   }
 });

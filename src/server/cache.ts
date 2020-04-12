@@ -17,6 +17,8 @@ export enum CacheDatabases {
   Lageplan,
   LocMatch,
 }
+const activeCaches = new Set();
+
 export function createNewCache<K extends string, V>(
   ttl: number,
   db: CacheDatabases,
@@ -34,6 +36,8 @@ export function createNewCache<K extends string, V>(
     });
     // @ts-expect-error
     const client = baseCache.store.getClient();
+
+    activeCaches.add(client);
 
     existsFn = client.exists.bind(client);
   } else {
@@ -66,4 +70,9 @@ export function createNewCache<K extends string, V>(
     },
     store: baseCache.store,
   };
+}
+
+export function cleanupCaches() {
+  activeCaches.forEach((c: any) => c.disconnect());
+  activeCaches.clear();
 }
