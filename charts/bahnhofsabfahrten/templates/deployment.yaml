@@ -20,7 +20,7 @@ spec:
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       containers:
-        - name: {{ .Chart.Name }}
+        - name: "{{ .Chart.Name }}"
           image: "{{ .Values.imageRepository }}:{{ .Values.imageTag }}"
           imagePullPolicy: {{ .Values.imagePullPolicy }}
           readinessProbe:
@@ -30,6 +30,12 @@ spec:
             initialDelaySeconds: 3
             periodSeconds: 3
           env:
+            {{ if .Values.redis.host }}
+            - name: REDIS_HOST
+              value: {{ .Values.redis.host }}
+            - name: REDIS_PORT
+              value: "{{ .Values.redis.port }}"
+            {{ end }}
             - name: BASE_URL
             {{ if .Values.hostName }}
               value: {{ .Values.hostName }}

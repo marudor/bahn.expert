@@ -1,8 +1,8 @@
 /* eslint no-param-reassign: 0, no-await-in-loop: 0 */
 import { AxiosInstance } from 'axios';
+import { CacheDatabases, createNewCache } from 'server/cache';
 import { IrisStationWithRelated } from 'types/station';
 import { noncdAxios } from './helper';
-import NodeCache from 'node-cache';
 import xmljs, { Element } from 'libxmljs2';
 
 export interface Station {
@@ -16,8 +16,10 @@ export interface Station {
 }
 
 // 4 Hours in seconds
-const stdTTL = 4 * 60 * 60;
-const cache = new NodeCache({ stdTTL });
+const cache = createNewCache<string, Station>(
+  4 * 60 * 60,
+  CacheDatabases.Station
+);
 
 function parseStation(stationNode: xmljs.Element): Station {
   const station: any = {};
@@ -38,7 +40,7 @@ export async function getSingleStation(
   evaId: string,
   axios: AxiosInstance = noncdAxios
 ): Promise<Station> {
-  const cached = cache.get<Station>(evaId);
+  const cached = await cache.get(evaId);
 
   if (cached) {
     return cached;

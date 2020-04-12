@@ -1,12 +1,16 @@
+import { CacheDatabases, createNewCache } from 'server/cache';
 import axios from 'axios';
 import cheerio from 'cheerio';
-import NodeCache from 'node-cache';
 import qs from 'qs';
 
-export const cache: NodeCache = new NodeCache();
+// 12 hours in seconds
+export const cache = createNewCache<string, string | null>(
+  12 * 60 * 60,
+  CacheDatabases.Lageplan
+);
 
 export async function getLageplan(stationName: string) {
-  const cached = getCachedLageplan(stationName);
+  const cached = await getCachedLageplan(stationName);
 
   if (cached) return cached;
   // undefined = haven't tried yet
@@ -50,5 +54,5 @@ export async function getLageplan(stationName: string) {
   return pdfLink;
 }
 export function getCachedLageplan(stationName: string) {
-  return cache.get<string>(stationName);
+  return cache.get(stationName);
 }
