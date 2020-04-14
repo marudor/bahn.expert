@@ -1,3 +1,4 @@
+import { logger } from 'server/logger';
 import cacheManager, { Cache } from 'cache-manager';
 import redisStore from 'cache-manager-ioredis';
 
@@ -16,6 +17,7 @@ export enum CacheDatabases {
   Timetable,
   Lageplan,
   LocMatch,
+  StationSearch,
 }
 const activeCaches = new Set();
 
@@ -40,6 +42,7 @@ export function createNewCache<K extends string, V>(
     activeCaches.add(client);
 
     existsFn = client.exists.bind(client);
+    logger.info(`Creating redis cache! (${db})`);
   } else {
     baseCache = cacheManager.caching({
       store: 'memory',
