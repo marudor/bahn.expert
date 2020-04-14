@@ -10,6 +10,6 @@ export default (product: ProdL, common: Common): ParsedProduct => ({
   number: product.prodCtx?.num ?? product.number,
   type: product.prodCtx && (product.prodCtx.catOut || product.prodCtx.catOutL),
   operator: product.oprX !== undefined ? common.opL[product.oprX] : undefined,
-  // @ts-expect-error
+  // @ts-ignore
   raw: global.PROD ? undefined : product,
 });

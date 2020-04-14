@@ -325,7 +325,7 @@ export async function wagenreihung(trainNumber: string, date: number) {
     };
   }
 
-  // @ts-expect-error - We're enriching information now.
+  // @ts-ignore - We're enriching information now.
   const enrichedFormation: Formation = info.data.istformation;
 
   let startPercentage = 100;

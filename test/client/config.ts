@@ -8,7 +8,7 @@ expect(new Date().getTimezoneOffset()).toBe(0);
 afterEach(() => {
   cleanup();
   try {
-    // @ts-expect-error
+    // @ts-ignore
     const store = window.__getTestStore__();
 
     store.restore();
@@ -17,7 +17,7 @@ afterEach(() => {
   }
 });
 
-// @ts-expect-error just mocked
+// @ts-ignore just mocked
 window.matchMedia = () => ({
   matches: false,
 });
@@ -38,6 +38,6 @@ beforeAll(() => {
 
 afterAll(() => {
   Nock.restore();
-  // @ts-expect-error
+  // @ts-ignore
   global.nock = undefined;
 });

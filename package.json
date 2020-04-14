@@ -143,7 +143,7 @@
     "style-loader": "^1.1.3",
     "supertest": "^4.0.2",
     "terser-webpack-plugin": "^2.3.5",
-    "typescript": "beta",
+    "typescript": "^3.8.3",
     "url-loader": "^4.1.0",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"
@@ -217,7 +217,6 @@
     "output": "./reports/junitresults.xml"
   },
   "resolutions": {
-    "typescript": "beta",
     "lodash": ">=4.17.15",
     "mkdirp": "^0.5.1"
   },

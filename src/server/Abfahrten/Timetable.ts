@@ -371,7 +371,7 @@ export default class Timetable {
 
     const message = {
       superseded: undefined,
-      // @ts-expect-error
+      // @ts-ignore
       text: messageLookup[value] || `${value} (?)`,
       timestamp: parseTs(getAttr(mNode, 'ts')),
       priority: getAttr(mNode, 'pr'),
@@ -426,7 +426,7 @@ export default class Timetable {
         compareAsc(a.message.timestamp || 0, b.message.timestamp || 0)
       )
       .forEach(({ type, message, value }) => {
-        // @ts-expect-error
+        // @ts-ignore
         const supersedes: undefined | number[] = supersededMessages[value];
 
         if (!messages[type]) messages[type] = {};
