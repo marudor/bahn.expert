@@ -77,7 +77,7 @@ export default (logger: Logger) => (ctx: Context, next: Next) => {
 
     ctx.log[level](responseData, formatResponseMessage(ctx, responseData));
 
-    // @ts-expect-error
+    // @ts-ignore
     ctx.log = null;
   };
 

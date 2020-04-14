@@ -46,7 +46,7 @@ const RouteFavEntry = ({ fav }: Props) => {
         <span className={classes.arrow}>{'->'}</span>
         <span className={classes.profile}>
           {Object.keys(AllowedHafasProfile).find(
-            // @ts-expect-error
+            // @ts-ignore
             (key) => AllowedHafasProfile[key] === fav.profile
           )}
         </span>

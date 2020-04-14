@@ -63,7 +63,7 @@ function createRequest(
 
   data.auth = auth;
 
-  // @ts-expect-error 7053
+  // @ts-ignore 7053
   const extraParam = profile.secret ? profile.secret(data) : undefined;
 
   return {
@@ -187,7 +187,7 @@ async function makeRequest<
   //   const promises: any[] = [];
 
   //   Object.keys(AllowedHafasProfile).forEach(p => {
-  //     // @ts-expect-error
+  //     // @ts-ignore
   //     promises.push(makeRequest(request, parseFn, p).then(r => [p, r]));
   //   });
   //   const results = await Promise.all(promises);

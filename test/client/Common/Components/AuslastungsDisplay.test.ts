@@ -28,7 +28,7 @@ describe('AuslastungsDisplay', () => {
   it('Unbekannt / Hoch', () => {
     const { container } = render(AuslastungsDisplay, {
       auslastung: {
-        // @ts-expect-error
+        // @ts-ignore
         first: 'something',
         second: AuslastungsValue.Hoch,
       },
