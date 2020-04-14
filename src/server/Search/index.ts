@@ -1,5 +1,6 @@
+import { CacheDatabases, createNewCache } from 'server/cache';
 import { logger } from 'server/logger';
-import { StationSearchType } from 'types/station';
+import { Station, StationSearchType } from 'types/station';
 import BusinessHubSearch, {
   canUseBusinessHub,
 } from 'server/Search/BusinessHub';
@@ -11,6 +12,11 @@ import OpenDataSearch from './OpenData';
 import StationsDataSearch from './StationsData';
 
 const defaultSearch = canUseBusinessHub ? BusinessHubSearch : FavendoSearch;
+
+const stationSearchCache = createNewCache<string, Station[]>(
+  6 * 60 * 60,
+  CacheDatabases.StationSearch
+);
 
 export function getSearchMethod(type?: StationSearchType) {
   switch (type) {
@@ -37,11 +43,17 @@ export default async (
   maxStations: number = 6
 ) => {
   const searchTerm = rawSearchTerm.replace(/ {2}/g, ' ');
+  const cacheKey = `${type}${searchTerm}`;
+  const cached = await stationSearchCache.get(cacheKey);
+
+  if (cached) return cached.slice(0, maxStations);
 
   const ds100Search = DS100(searchTerm);
 
+  const searchMethod = getSearchMethod(type);
+
   try {
-    let result = await getSearchMethod(type)(searchTerm);
+    let result = await searchMethod(searchTerm);
 
     if (type !== StationSearchType.stationsData && result.length === 0) {
       // this may be a station named from iris - lets try that first
@@ -55,6 +67,8 @@ export default async (
     if (ds100Station) {
       result = [ds100Station, ...result];
     }
+
+    stationSearchCache.set(cacheKey, result);
 
     return result.slice(0, maxStations);
   } catch (e) {
