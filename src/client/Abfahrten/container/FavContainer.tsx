@@ -33,7 +33,7 @@ function useFavStorage(setup: FavStorageSetup) {
   };
 }
 
-// @ts-expect-error - this works, complains about missing default
+// @ts-ignore - this works, complains about missing default
 const FavContainer = createContainer(useFavStorage);
 
 export function useFav() {

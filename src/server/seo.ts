@@ -1,7 +1,7 @@
 import KoaRouter from 'koa-router';
 import rawStations from 'db-stations/data.json';
 
-// @ts-expect-error
+// @ts-ignore
 const baseUrl: string = process.env.BASE_URL;
 
 const filterRegex = /(hbf|airport|flughafen)/i;

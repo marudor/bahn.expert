@@ -1,9 +1,9 @@
 import 'leaflet/dist/leaflet.css';
 import { Map, TileLayer, Viewport } from 'react-leaflet';
 import ActivePolyline from 'client/Map/Components/ActivePolyline';
-// @ts-expect-error
+// @ts-ignore
 import icon from 'leaflet/dist/images/marker-icon.png';
-// @ts-expect-error
+// @ts-ignore
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import L from 'leaflet';
 import MapContainer from 'client/Map/container/MapContainer';

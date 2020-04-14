@@ -78,7 +78,7 @@ const StationSearch = ({
       <Downshift
         id={id}
         defaultHighlightedIndex={0}
-        // @ts-expect-error
+        // @ts-ignore
         ref={selectRef}
         selectedItem={value || null}
         itemToString={itemToString}

@@ -1,5 +1,4 @@
 import 'core-js/stable';
-import { cleanupCaches, createNewCache } from 'server/cache';
 import Nock from 'nock';
 import path from 'path';
 
@@ -18,17 +17,25 @@ beforeAll(() => {
     );
 });
 
-beforeAll(async () => {
-  const cache = createNewCache(0, 0);
+let cache: any;
 
-  // @ts-expect-error
+beforeAll(() => {
+  const createNewCache = require('server/cache').createNewCache;
+
+  cache = createNewCache(0, 0);
+});
+
+beforeEach(async () => {
+  // @ts-ignore
   if (cache.store.getClient) {
-    // @ts-expect-error
+    // @ts-ignore
     await cache.store.getClient().flushall();
   }
 });
 
 afterAll(() => {
+  const cleanupCaches = require('server/cache').cleanupCaches;
+
   Nock.restore();
   cleanupCaches();
 });

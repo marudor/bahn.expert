@@ -8,7 +8,7 @@ import path from 'path';
 import webpack from 'webpack';
 import webpackConfig from '../../../webpack.config';
 
-// @ts-expect-error
+// @ts-ignore
 const compiler: any = webpack(webpackConfig);
 
 module.exports = function webpackDev(koa: Koa, server: undefined | Server) {

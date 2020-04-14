@@ -116,7 +116,7 @@ const SettingsPanel = () => {
           labelPlacement="start"
           control={
             <NativeSelect
-              // @ts-expect-error
+              // @ts-ignore
               inputProps={{ 'data-testid': 'routingHafasProfile' }}
               value={settings.hafasProfile}
               name="checkIn"
@@ -125,7 +125,7 @@ const SettingsPanel = () => {
               {Object.keys(AllowedHafasProfile).map((allowedProfile) => (
                 <option
                   key={allowedProfile}
-                  // @ts-expect-error
+                  // @ts-ignore
                   value={AllowedHafasProfile[allowedProfile]}
                 >
                   {allowedProfile}

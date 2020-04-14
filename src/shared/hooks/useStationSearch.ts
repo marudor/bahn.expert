@@ -42,7 +42,7 @@ export default ({
         : getStationsFromCoordinates;
 
       const searchFn = typeof value === 'string' ? stationFn : geoFn;
-      // @ts-expect-error this works
+      // @ts-ignore this works
       const currentSuggestions = await searchFn(value);
 
       setSuggestions(currentSuggestions.slice(0, maxSuggestions));

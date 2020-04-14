@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/node';
 import { logger } from 'server/logger';
 import cacheManager, { Cache } from 'cache-manager';
 import redisStore from 'cache-manager-ioredis';
@@ -36,7 +37,7 @@ export function createNewCache<K extends string, V>(
       ttl,
       db,
     });
-    // @ts-expect-error
+    // @ts-ignore
     const client = baseCache.store.getClient();
 
     activeCaches.add(client);
@@ -53,25 +54,42 @@ export function createNewCache<K extends string, V>(
 
   return {
     async get(key: K): Promise<V | undefined> {
-      const exists = await existsFn(key);
+      try {
+        const exists = await existsFn(key);
 
-      if (!exists) return undefined;
+        if (!exists) return undefined;
 
-      return baseCache.get(key).then((raw) => {
-        return JSON.parse(raw);
-      });
-    },
-    set(key: K, value: V) {
-      if (value === undefined) {
-        return baseCache.del(key);
+        const result = await baseCache.get(key).then((raw) => {
+          return JSON.parse(raw);
+        });
+
+        return result;
+      } catch (e) {
+        Sentry.captureException(e);
+
+        return undefined;
       }
-
-      return baseCache.set(key, JSON.stringify(value), ttl);
     },
-    del(key: K) {
-      return baseCache.del(key);
+    async set(key: K, value: V) {
+      try {
+        if (value === undefined) {
+          return await baseCache.del(key);
+        }
+
+        return await baseCache.set(key, JSON.stringify(value), ttl);
+      } catch (e) {
+        Sentry.captureException(e);
+      }
+    },
+    async del(key: K) {
+      try {
+        return await baseCache.del(key);
+      } catch (e) {
+        Sentry.captureException(e);
+      }
     },
     store: baseCache.store,
+    baseCache,
   };
 }
 
