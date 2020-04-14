@@ -44,7 +44,7 @@ export const ThemeProvider = ({ children }: Props) => {
   initialTheme = query.theme;
 
   if (!initialTheme) {
-    // @ts-expect-error
+    // @ts-ignore
     initialTheme = ThemeType[storage.get('theme')];
     if (!initialTheme && !global.SERVER) {
       initialTheme = window.matchMedia('(prefers-color-scheme: dark)').matches

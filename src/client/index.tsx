@@ -33,9 +33,9 @@ loadableReady(() => {
   ReactDOM.hydrate(render(ThemeWrap), container);
 });
 
-// @ts-expect-error
+// @ts-ignore
 if (module.hot) {
-  // @ts-expect-error
+  // @ts-ignore
   module.hot.accept('./ThemeWrap', () => {
     const App = require('./ThemeWrap').default;
 

@@ -13,7 +13,7 @@ export default function storageMiddleware() {
     ctx.request.storage = new Storage(ctx.request.headers.cookie || '');
     ctx.request.storage.addChangeListener((change: CookieChangeOptions) => {
       if (change.value === undefined) {
-        // @ts-expect-error
+        // @ts-ignore
         ctx.cookies.set(change.name, null);
       } else {
         ctx.cookies.set(change.name, change.value, change.options);
