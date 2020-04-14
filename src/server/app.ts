@@ -156,13 +156,12 @@ export default () => {
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line no-console
     console.log('running in DEV mode!');
-  } else {
-    createAdmin();
   }
 
   // istanbul ignore next
   if (process.env.NODE_ENV !== 'TEST') {
     createDocsServer(Number.parseInt(process.env.DOCS_PORT || '9023', 10));
+    createAdmin();
   }
 
   return server;
