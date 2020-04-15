@@ -5,6 +5,7 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const LoadablePlugin = require('@loadable/webpack-plugin');
 const PacktrackerPlugin = require('@packtracker/webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
 
@@ -23,6 +24,10 @@ const plugins = [
     'global.PROD': JSON.stringify(!isDev),
     'global.TEST': JSON.stringify(process.env.NODE_ENV === 'test'),
     'global.SERVER': JSON.stringify(false),
+  }),
+  new WorkboxPlugin.GenerateSW({
+    clientsClaim: true,
+    skipWaiting: true,
   }),
 ];
 
