@@ -8,7 +8,6 @@ import { Rule, SheetsRegistry, StyleSheet } from 'jss';
 import App from './App';
 import DateFnsUtils from '@date-io/date-fns';
 import deLocale from 'date-fns/locale/de';
-import PullToRefresh from 'rmc-pull-to-refresh';
 import React, { ReactNode, useMemo } from 'react';
 import ThemeContainer from 'Common/container/ThemeContainer';
 import ThemeHeaderTags from 'Common/Components/ThemeHeaderTags';
@@ -33,19 +32,17 @@ const ThemeWrap = ({ children = <App />, sheetsRegistry }: Props) => {
   }
 
   return (
-    <PullToRefresh direction="down" onRefresh={() => window.location.reload()}>
-      <StylesProvider
-        sheetsRegistry={sheetsRegistry}
-        generateClassName={generateClassName}
-      >
-        <MuiPickersUtilsProvider utils={DateFnsUtils} locale={deLocale}>
-          <ThemeProvider theme={theme}>
-            <ThemeHeaderTags />
-            {children}
-          </ThemeProvider>
-        </MuiPickersUtilsProvider>
-      </StylesProvider>
-    </PullToRefresh>
+    <StylesProvider
+      sheetsRegistry={sheetsRegistry}
+      generateClassName={generateClassName}
+    >
+      <MuiPickersUtilsProvider utils={DateFnsUtils} locale={deLocale}>
+        <ThemeProvider theme={theme}>
+          <ThemeHeaderTags />
+          {children}
+        </ThemeProvider>
+      </MuiPickersUtilsProvider>
+    </StylesProvider>
   );
 };
 
