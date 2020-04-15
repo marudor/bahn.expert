@@ -25,10 +25,6 @@ const plugins = [
     'global.TEST': JSON.stringify(process.env.NODE_ENV === 'test'),
     'global.SERVER': JSON.stringify(false),
   }),
-  new WorkboxPlugin.GenerateSW({
-    clientsClaim: true,
-    skipWaiting: true,
-  }),
 ];
 
 const rules = [
@@ -63,6 +59,12 @@ if (isDev) {
     rules[0].use.unshift('cache-loader');
   }
 } else {
+  plugins.push(
+    new WorkboxPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true,
+    })
+  );
   optimization.minimizer = [
     new TerserPlugin({
       parallel: true,

@@ -1,5 +1,6 @@
+/* eslint-disable no-process-env */
 /* eslint-disable no-console */
-if ('serviceWorker' in navigator) {
+if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker
       .register('/service-worker.js')
