@@ -43,4 +43,13 @@ describe('Abfahrten Settings', () => {
     });
     cy.getAbfahrtenConfig().should('have.property', 'searchType', 'hafas');
   });
+
+  it('set lookbehind', () => {
+    cy.visit('/');
+    cy.openSettings();
+    cy.findByTestId('lookbehind').within(() => {
+      cy.get('select').select('240');
+    });
+    cy.getAbfahrtenConfig().should('have.property', 'lookbehind', '240');
+  });
 });
