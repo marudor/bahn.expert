@@ -212,9 +212,9 @@ const SettingsModal = () => {
               <option value="40">40</option>
               <option value="50">50</option>
               <option value="60">60</option>
-              <option value="60">120</option>
-              <option value="60">240</option>
-              <option value="60">480</option>
+              <option value="120">120</option>
+              <option value="240">240</option>
+              <option value="480">480</option>
             </NativeSelect>
           }
           label="Lookbehind in Minuten"
