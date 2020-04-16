@@ -9,7 +9,6 @@ module.exports = {
   },
   globalSetup: '<rootDir>/test/setTZ.ts',
   setupFilesAfterEnv: ['<rootDir>/test/server/config.ts'],
-  testPathIgnorePatterns: ['/src/app/'],
+  testPathIgnorePatterns: ['/src/app/', '/test/client/', '/cypress/'],
   rootDir: '../..',
-  roots: ['<rootDir>/src', '<rootDir>/test/server'],
 };
