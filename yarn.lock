@@ -4348,7 +4348,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-runtime@npm:6.x, babel-runtime@npm:^6.23.0, babel-runtime@npm:^6.26.0":
+"babel-runtime@npm:^6.23.0, babel-runtime@npm:^6.26.0":
   version: 6.26.0
   resolution: "babel-runtime@npm:6.26.0"
   dependencies:
@@ -4522,7 +4522,6 @@ __metadata:
     react-test-renderer: ^16.13.1
     redoc-cli: ^0.9.7
     rimraf: ^3.0.2
-    rmc-pull-to-refresh: ^1.0.12
     source-map-support: ^0.5.16
     style-loader: ^1.1.3
     supertest: ^4.0.2
@@ -5298,7 +5297,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"classnames@npm:^2.2.0, classnames@npm:^2.2.3, classnames@npm:^2.2.5, classnames@npm:^2.2.6":
+"classnames@npm:^2.2.0, classnames@npm:^2.2.3, classnames@npm:^2.2.6":
   version: 2.2.6
   resolution: "classnames@npm:2.2.6"
   checksum: 2/490eaeca5931846737ffd33e472a701d268d5b8bc5717dd4cf108a127b06e86e05350e06799abbbe763a0e4c945b4217f6700b7ae00ddc703505682c370e5cf2
@@ -13978,16 +13977,6 @@ __metadata:
     hash-base: ^3.0.0
     inherits: ^2.0.1
   checksum: 2/e0370fbe779b1f15d74c3e7dffc0ce40b57b845fc7e431fab8a571958d5fd9c91eb0038a252604600e20786d117badea0cc4cf8816b8a6be6b9166b565ad6797
-  languageName: node
-  linkType: hard
-
-"rmc-pull-to-refresh@npm:^1.0.12":
-  version: 1.0.12
-  resolution: "rmc-pull-to-refresh@npm:1.0.12"
-  dependencies:
-    babel-runtime: 6.x
-    classnames: ^2.2.5
-  checksum: 2/11b3c2fe0931d400d9fce533ace6eefdbd46953f22ad6a1874a57f1cfb4f8f3bd88223079e202bc4bdfadf525850b6cca7db521ccec52cf064532694a2f110a5
   languageName: node
   linkType: hard
 
