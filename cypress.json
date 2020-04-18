@@ -1,5 +1,7 @@
 {
   "projectId": "ucnqdt",
   "baseUrl": "http://localhost:9042",
-  "supportFile": "cypress/support/index.ts"
+  "supportFile": "cypress/support/index.ts",
+  "numTestsKeptInMemory": 0,
+  "video": false
 }

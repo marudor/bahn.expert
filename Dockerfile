@@ -1,10 +1,14 @@
 FROM node:13-alpine as build
+ARG SENTRY_AUTH_TOKEN
+ARG SENTRY_ORG
+ARG SENTRY_PROJECT
+
 RUN mkdir -p /app
 WORKDIR /app
 ENV CYPRESS_INSTALL_BINARY=0
-COPY package.json yarn.lock .yarnrc.yml /app/
+COPY .git package.json yarn.lock .yarnrc.yml /app/
 COPY .yarn /app/.yarn
-RUN yarn --immutable
+RUN yarn --immutable --immutable-cache
 ENV NODE_ENV=production
 ENV PROD_ONLY=true
 COPY src  /app/src/
@@ -21,7 +25,7 @@ RUN mkdir -p /app
 WORKDIR /app
 COPY package.json yarn.lock .yarnrc.yml /app/
 COPY .yarn /app/.yarn
-RUN NODE_ENV=production yarn --immutable
+RUN NODE_ENV=production yarn --immutable --immutable-cache
 RUN modclean -r -a '*.ts|*.tsx' -I 'example*'
 RUN rm -rf .yarn .yarnrc.yml
 COPY docs /app/docs/
