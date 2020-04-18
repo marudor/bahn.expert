@@ -1,5 +1,5 @@
-import { abfahrtenConfigSanitize, commonConfigSanitize } from 'client/util';
 import { AbfahrtenConfigSanitize, CommonConfigSanitize } from 'Common/config';
+import { abfahrtenConfigSanitize, commonConfigSanitize } from 'client/util';
 import { ChunkExtractor } from '@loadable/server';
 import { Context } from 'koa';
 import { HelmetProvider } from 'react-helmet-async';
@@ -15,7 +15,6 @@ import path from 'path';
 import React from 'react';
 import ThemeWrap from 'client/ThemeWrap';
 
-global.baseUrl = process.env.BASE_URL || '';
 const headerFilename = path.resolve(__dirname, './views/header.ejs');
 // eslint-disable-next-line no-sync
 const headerEjs = fs.readFileSync(headerFilename, 'utf8').trim();
@@ -91,6 +90,7 @@ export default (ctx: Context) => {
       imprint: JSON.stringify(global.IMPRINT),
       jssCss: sheets.toString(),
       baseUrl: global.baseUrl,
+      version: global.VERSION,
     });
     ctx.body += app;
 

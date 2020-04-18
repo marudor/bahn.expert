@@ -12,8 +12,6 @@ import koaStatic from 'koa-static';
 import path from 'path';
 import storageMiddleware from './middleware/storageMiddleware';
 
-global.SERVER = true;
-
 function hotHelper(getMiddleware: () => Middleware) {
   if (process.env.NODE_ENV === 'production') {
     return getMiddleware();
@@ -28,7 +26,11 @@ export function createApp(wsServer?: Server) {
   const sentryDSN = process.env.SENTRY_DSN;
 
   if (sentryDSN && process.env.NODE_ENV !== 'test') {
-    Sentry.init({ dsn: sentryDSN, environment: process.env.ENVIRONMENT });
+    Sentry.init({
+      dsn: sentryDSN,
+      environment: process.env.ENVIRONMENT,
+      release: global.VERSION,
+    });
   }
 
   let apiRoutes = require('./API').default;

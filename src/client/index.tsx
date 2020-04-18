@@ -11,8 +11,6 @@ import ThemeWrap from './ThemeWrap';
 // 15s timeout
 axios.defaults.timeout = 15000;
 
-global.smallScreen = window.matchMedia('(max-width: 480px)').matches;
-
 const storage = new Storage();
 
 const render = (App: React.ComponentType) => (

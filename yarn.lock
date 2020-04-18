@@ -2148,6 +2148,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sentry/cli@npm:^1.49.0":
+  version: 1.52.1
+  resolution: "@sentry/cli@npm:1.52.1"
+  dependencies:
+    fs-copy-file-sync: ^1.1.1
+    https-proxy-agent: ^4.0.0
+    mkdirp: ^0.5.4
+    node-fetch: ^2.1.2
+    progress: 2.0.0
+    proxy-from-env: ^1.0.0
+  bin:
+    sentry-cli: bin/sentry-cli
+  checksum: 2/99a8dee6d62a1138f22cc3e4b61ee366cc10b466a167dca59d2872dbc6a0bd29f9b88031e7ceea440abd6688b6828ca158fca29872862e2b9aeb5626ec37a6fe
+  languageName: node
+  linkType: hard
+
 "@sentry/core@npm:5.15.4":
   version: 5.15.4
   resolution: "@sentry/core@npm:5.15.4"
@@ -2214,6 +2230,15 @@ __metadata:
     "@sentry/types": 5.15.4
     tslib: ^1.9.3
   checksum: 2/193315f165723d7aa65e89a53413058daa352177bb75b8b39cb2112f21f2e7de486346fdfacf40d0e1731e02ae388eece978e9e62081fce47bace8687de3a9d5
+  languageName: node
+  linkType: hard
+
+"@sentry/webpack-plugin@npm:^1.10.0":
+  version: 1.10.0
+  resolution: "@sentry/webpack-plugin@npm:1.10.0"
+  dependencies:
+    "@sentry/cli": ^1.49.0
+  checksum: 2/b352b9bd55456d0b3a03328263c6054ce1580ef422ef2c233a1acd7b94b8cf38177ec40bbdffbfbe6aa88d4904ee7683e20d488a4ca438b8a51fa2d89d2eebe2
   languageName: node
   linkType: hard
 
@@ -4397,6 +4422,7 @@ __metadata:
     "@material-ui/pickers": ^3.2.10
     "@packtracker/webpack-plugin": ^2.2.0
     "@sentry/node": ^5.15.4
+    "@sentry/webpack-plugin": ^1.10.0
     "@sinonjs/fake-timers": ^6.0.1
     "@testing-library/cypress": 6.0.0
     "@testing-library/jest-dom": ^5.5.0
@@ -7985,6 +8011,13 @@ __metadata:
     inherits: ^2.0.1
     readable-stream: ^2.0.0
   checksum: 2/5f1a9bbff02d30cf5b4f12cfef20b47455876f8318b92d275ca39e3c5adf0636d3a0d8f4821a1c245339c47e79a551dce9ce5c7d9236c16347b934dc13d1d408
+  languageName: node
+  linkType: hard
+
+"fs-copy-file-sync@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "fs-copy-file-sync@npm:1.1.1"
+  checksum: 2/85f04b3a6af7167f94da1aeca5b2646117b1f262503a7bf295d93dc90d45f27dd1aa0aa6d665b4a8ac0666c3529ecc9a411ab0ad8650ae4dac185ab59b23cd8b
   languageName: node
   linkType: hard
 
@@ -11601,7 +11634,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:2.6.0":
+"node-fetch@npm:2.6.0, node-fetch@npm:^2.1.2":
   version: 2.6.0
   resolution: "node-fetch@npm:2.6.0"
   checksum: 2/dd9f586a9f7ddb7dd94d2aba9cb693d32f5001e9850098512fbc8a4cbdd56838afa08ed0a6725b9fce9b01ec12b713e622cbfc16d92762d8b937b238330a632a
@@ -12900,6 +12933,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"progress@npm:2.0.0":
+  version: 2.0.0
+  resolution: "progress@npm:2.0.0"
+  checksum: 2/27decc3f44dd9ed5911fb02caa056bc6a46b9dc89f63c63868260d0fb97e3de0084f0af717e1755ac1cb6e441e99674dbf5b2d5d9d876571b68675ba02f4cd0d
+  languageName: node
+  linkType: hard
+
 "progress@npm:^2.0.0":
   version: 2.0.3
   resolution: "progress@npm:2.0.3"
@@ -12958,6 +12998,13 @@ __metadata:
     forwarded: ~0.1.2
     ipaddr.js: 1.9.1
   checksum: 2/a7dcfd70258cdc3b73c5dc4a35c73db9857f3bf4cf5e6404380e8ea558f8c5569147e721a01195d00b450e36b4dde727fc9d22fdea14310ba38faa595530cd58
+  languageName: node
+  linkType: hard
+
+"proxy-from-env@npm:^1.0.0":
+  version: 1.1.0
+  resolution: "proxy-from-env@npm:1.1.0"
+  checksum: 2/6459372a57f3e8ef5211f7847ca2fffabcdd6490005892fcc0dcd62fe2b3551900c8a07fad7df9de3897547b1ab4ac7a7197964cd6fa7e76303caa4936bfaf32
   languageName: node
   linkType: hard
 
