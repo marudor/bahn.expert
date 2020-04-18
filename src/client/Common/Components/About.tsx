@@ -241,7 +241,7 @@ const About = () => {
 
   return (
     <>
-      <BaseHeader>About</BaseHeader>
+      <BaseHeader>About (Version {global.VERSION})</BaseHeader>
       <div className={classes.main}>
         <span>
           Entwickelt von{' '}

@@ -6,18 +6,23 @@ on:
       - master
 
 env:
-  CI: "true"
+  CI: 'true'
 
 jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: docker
-      uses: elgohr/Publish-Docker-Github-Action@master
-      with:
-        name: marudor/bahnhofsabfahrten/standalone:${{ github.sha }}
-        username: marudor
-        password: ${{ secrets.GITHUB_TOKEN }}
-        registry: docker.pkg.github.com
-        snapshot: "true"
+      - uses: actions/checkout@v1
+      - name: docker
+        uses: elgohr/Publish-Docker-Github-Action@master
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: marudor
+          SENTRY_PROJECT: bahnhofsabfahrten
+        with:
+          name: marudor/bahnhofsabfahrten/standalone:${{ github.sha }}
+          username: marudor
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          snapshot: 'true'
+          buildargs: SENTRY_AUTH_TOKEN,SENTRY_ORG,SENTRY_PROJECT
