@@ -6,6 +6,7 @@ const LoadablePlugin = require('@loadable/webpack-plugin');
 const PacktrackerPlugin = require('@packtracker/webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const WorkboxPlugin = require('workbox-webpack-plugin');
+const SentryCliPlugin = require('@sentry/webpack-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
 
@@ -59,6 +60,13 @@ if (isDev) {
     rules[0].use.unshift('cache-loader');
   }
 } else {
+  if (process.env.SENTRY_AUTH_TOKEN) {
+    plugins.push(
+      new SentryCliPlugin({
+        include: path.resolve('dist'),
+      })
+    );
+  }
   plugins.push(
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,
@@ -109,7 +117,7 @@ module.exports = {
   optimization,
   plugins,
   mode: isDev ? 'development' : 'production',
-  devtool: isDev ? 'cheap-module-source-map' : false,
+  devtool: isDev ? 'cheap-module-source-map' : 'source-map',
   entry: ['./src/client/entry.ts'],
   resolve: {
     // plugins: [new ReactJssHmrPlugin()],
