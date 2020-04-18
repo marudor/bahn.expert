@@ -2,13 +2,6 @@ import { makeStyles } from '@material-ui/styles';
 
 export default makeStyles((theme) => ({
   '@global': {
-    '.rmc-pull-to-refresh-indicator': {
-      position: 'absolute',
-      top: '-1.5em',
-      textAlign: 'center',
-      left: 0,
-      right: 0,
-    },
     'html, body': {
       height: '100%',
     },

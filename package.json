@@ -199,7 +199,6 @@
     "react-router": "^5.1.2",
     "react-router-config": "^5.1.1",
     "react-router-dom": "^5.1.2",
-    "rmc-pull-to-refresh": "^1.0.12",
     "tsoa": "^2.5.14",
     "universal-cookie": "^4.0.3",
     "unstated-next": "^1.1.0"
