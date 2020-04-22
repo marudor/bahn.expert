@@ -1,4 +1,5 @@
-import { Controller, Get, Query, Response, Route, Tags } from 'tsoa';
+import { Context } from 'koa';
+import { Controller, Get, Query, Request, Response, Route, Tags } from 'tsoa';
 import { DetailBusinessHubStation } from 'types/BusinessHub/StopPlaces';
 import { getStation } from 'server/Abfahrten/station';
 import {
@@ -7,7 +8,10 @@ import {
   StationSearchType,
 } from 'types/station';
 import { searchAll } from 'server/Search/searchAll';
-import { stationDetails } from 'server/Search/BusinessHub';
+import businessHubSearch, {
+  canUseBusinessHub,
+  stationDetails,
+} from 'server/Search/BusinessHub';
 import DS100 from 'server/Search/DS100';
 import favendoSearch from 'server/Search/Favendo';
 import stationSearch from 'server/Search';
@@ -31,12 +35,17 @@ export const validationOverwrite = [
 export class StationController extends Controller {
   @Get('/search/{searchTerm}')
   @Tags('Station V1')
-  searchStation(
+  async searchStation(
+    @Request() ctx: Context,
     searchTerm: string,
     @Query() type?: StationSearchType,
     @Query() max?: number
   ): Promise<Station[]> {
-    return stationSearch(searchTerm, type, max);
+    const result = await stationSearch(searchTerm, type, max);
+
+    ctx.res.setHeader('searchType', type!);
+
+    return result;
   }
 
   @Get('/geoSearch')
@@ -46,10 +55,15 @@ export class StationController extends Controller {
     @Query() lng: number,
     @Query() searchText: string = ''
   ): Promise<Station[]> {
-    return favendoSearch(searchText, {
-      lat,
-      lng,
-    });
+    return canUseBusinessHub
+      ? businessHubSearch(searchText, undefined, {
+          latitude: lat,
+          longitude: lng,
+        })
+      : favendoSearch(searchText, {
+          lat,
+          lng,
+        });
   }
 
   @Get('/iris/{evaId}')

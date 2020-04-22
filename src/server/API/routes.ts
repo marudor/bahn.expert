@@ -2180,6 +2180,7 @@ export function RegisterRoutes(router: KoaRouter) {
   router.get('/api/station/v1/search/:searchTerm',
     async (context: any, next: any) => {
       const args = {
+        ctx: { "in": "request", "name": "ctx", "required": true, "dataType": "object" },
         searchTerm: { "in": "path", "name": "searchTerm", "required": true, "dataType": "string" },
         type: { "in": "query", "name": "type", "dataType": "enum", "enums": ["default", "favendo", "hafas", "openData", "openDataOffline", "stationsData", "businessHub"] },
         max: { "in": "query", "name": "max", "dataType": "double" },

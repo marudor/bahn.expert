@@ -1,10 +1,12 @@
 import {
   APIResult,
+  BusinessHubCoordinates,
   BusinessHubStation,
   DetailBusinessHubStation,
   DetailsApiResult,
   StopPlace,
 } from 'types/BusinessHub/StopPlaces';
+
 import axios from 'axios';
 
 const baseUrl = 'https://api.businesshub.deutschebahn.com/';
@@ -24,24 +26,31 @@ const transformBusinessHubStation = (
 });
 
 export default async (
-  searchTerm: string,
-  needsDS100: boolean = true
+  searchTerm?: string,
+  needsDS100: boolean = true,
+  coordinates?: BusinessHubCoordinates
 ): Promise<BusinessHubStation[]> => {
   const result: APIResult = (
     await axios.get(`${baseUrl}public-transport-stations/v1/stop-places`, {
       headers: {
         key: apiKey,
       },
-      params: {
-        name: searchTerm,
-      },
+      params: coordinates
+        ? {
+            ...coordinates,
+            radius: 3000,
+          }
+        : {
+            name: searchTerm,
+          },
     })
   ).data;
 
-  // eslint-disable-next-line no-underscore-dangle
-  return result._embedded.stopPlaceList
-    .map(transformBusinessHubStation)
-    .filter((s) => s.id && (!needsDS100 || s.ds100));
+  return (
+    result?._embedded?.stopPlaceList
+      ?.map(transformBusinessHubStation)
+      .filter((s) => s.id && (!needsDS100 || s.ds100)) ?? []
+  );
 };
 
 export const stationDetails = async (
