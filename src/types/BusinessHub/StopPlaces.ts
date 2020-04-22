@@ -29,7 +29,7 @@ interface Identifier<type extends string> {
   value: string;
 }
 
-interface BusinessHubCoordinates {
+export interface BusinessHubCoordinates {
   latitude: number;
   longitude: number;
 }

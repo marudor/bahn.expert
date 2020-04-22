@@ -156,12 +156,12 @@ describe('Station V1', () => {
         }));
 
     it('sends Request', () => {
-      Nock('https://si.favendo.de')
-        .get('/station-info/rest/api/search')
+      Nock('https://api.businesshub.deutschebahn.com')
+        .get('/public-transport-stations/v1/stop-places')
         .query({
-          lat: 23.4,
-          lng: 42.3,
-          searchTerm: '',
+          latitude: 23.4,
+          longitude: 42.3,
+          radius: 3000,
         })
         .reply(200, []);
 
@@ -170,26 +170,6 @@ describe('Station V1', () => {
         .query({
           lat: 23.4,
           lng: 42.3,
-        })
-        .expect(200, []);
-    });
-
-    it('sends Request with searchTerm', () => {
-      Nock('https://si.favendo.de')
-        .get('/station-info/rest/api/search')
-        .query({
-          lat: 23.4,
-          lng: 42.3,
-          searchTerm: 'Hamburg',
-        })
-        .reply(200, []);
-
-      return request(server)
-        .get('/api/station/v1/geoSearch')
-        .query({
-          lat: 23.4,
-          lng: 42.3,
-          searchText: 'Hamburg',
         })
         .expect(200, []);
     });
