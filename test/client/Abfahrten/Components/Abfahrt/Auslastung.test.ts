@@ -1,5 +1,5 @@
 import { render } from 'testHelper';
-import { wait, waitForElementToBeRemoved } from '@testing-library/react';
+import { waitForElementToBeRemoved } from '@testing-library/react';
 import Auslastung from 'Abfahrten/Components/Abfahrt/Auslastung';
 import AuslastungContainer from 'Abfahrten/container/AuslastungContainer';
 import mockAbfahrt from './__fixtures__/mockAbfahrt.json';
@@ -38,9 +38,9 @@ describe('Auslastung', () => {
         second: 2,
       });
 
-    const { getByTestId } = renderAuslastung();
+    const { getByTestId, findByTestId } = renderAuslastung();
 
     expect(getByTestId('loading')).toBeInTheDocument();
-    await wait(() => getByTestId('auslastungDisplay'));
+    await findByTestId('auslastungDisplay');
   });
 });

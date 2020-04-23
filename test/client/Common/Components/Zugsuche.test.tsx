@@ -1,8 +1,4 @@
-import {
-  fireEvent,
-  waitForElement,
-  waitForElementToBeRemoved,
-} from '@testing-library/react';
+import { fireEvent, waitForElementToBeRemoved } from '@testing-library/react';
 import { render } from 'testHelper';
 import React from 'react';
 import Zugsuche from 'Common/Components/Zugsuche';
@@ -72,13 +68,18 @@ describe('Zugsuche', () => {
         ]);
     });
     it('Navigates to details', async () => {
-      const { getByTestId, queryByTestId, getLocation } = renderZugsuche();
+      const {
+        getByTestId,
+        queryByTestId,
+        getLocation,
+        findByTestId,
+      } = renderZugsuche();
 
       fireEvent.click(getByTestId('dummytoggle'));
       fireEvent.change(getByTestId('zugsucheAutocompleteInput'), {
         target: { value: 'EC 6' },
       });
-      await waitForElement(() => getByTestId('zugsucheAutocompleteItem'));
+      await findByTestId('zugsucheAutocompleteItem');
       fireEvent.click(getByTestId('zugsucheAutocompleteItem'));
       fireEvent.click(getByTestId('ZugsucheSubmit'));
       await waitForElementToBeRemoved(() => getByTestId('Zugsuche'));
@@ -88,13 +89,18 @@ describe('Zugsuche', () => {
     });
 
     it('Navigates to OEBB if cookie set', async () => {
-      const { getByTestId, getLocation, cookies } = renderZugsuche();
+      const {
+        getByTestId,
+        getLocation,
+        cookies,
+        findByTestId,
+      } = renderZugsuche();
 
       fireEvent.click(getByTestId('dummytoggle'));
       fireEvent.change(getByTestId('zugsucheAutocompleteInput'), {
         target: { value: 'EC 6' },
       });
-      await waitForElement(() => getByTestId('zugsucheAutocompleteItem'));
+      await findByTestId('zugsucheAutocompleteItem');
       fireEvent.click(getByTestId('zugsucheAutocompleteItem'));
       cookies.set('rconfig', {
         hafasProfile: 'oebb',
