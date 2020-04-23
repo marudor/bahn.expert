@@ -38,6 +38,7 @@ export function createApp(wsServer?: Server) {
   let serverRender = require('./render').default;
   let seoController = require('./seo').default;
   let errorHandler = require('./errorHandler').default;
+  let normalizePathMiddleware = require('./middleware/normalizePath').default;
 
   let devPromise = Promise.resolve();
 
@@ -49,6 +50,7 @@ export function createApp(wsServer?: Server) {
   ) {
     devPromise = require('./middleware/webpackDev')(app, wsServer).then(() => {
       app.use((ctx, next) => {
+        normalizePathMiddleware = require('./middleware/normalizePath').default;
         errorHandler = require('./errorHandler').default;
         serverRender = require('./render').default;
         apiRoutes = require('./API').default;
@@ -68,6 +70,7 @@ export function createApp(wsServer?: Server) {
 
   devPromise.then(() => {
     app.use(hotHelper(() => errorHandler));
+    app.use(hotHelper(() => normalizePathMiddleware()));
     app.use(storageMiddleware());
     middlewares.forEach((m) => app.use(m));
     app.use(KoaBodyparser());
