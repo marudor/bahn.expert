@@ -5153,9 +5153,11 @@
 						"description": "Train not found"
 					}
 				},
+				"description": "Use JourneyMatch instead",
 				"tags": [
 					"HAFAS V1"
 				],
+				"deprecated": true,
 				"security": [],
 				"parameters": [
 					{
@@ -5221,6 +5223,7 @@
 						"description": "Ok"
 					}
 				},
+				"description": "Use POST Method",
 				"tags": [
 					"HAFAS V1"
 				],
@@ -5550,6 +5553,7 @@
 						"description": "Ok"
 					}
 				},
+				"description": "Use /TripSearch",
 				"tags": [
 					"HAFAS V1"
 				],
