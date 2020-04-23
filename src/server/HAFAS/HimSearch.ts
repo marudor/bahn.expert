@@ -30,7 +30,8 @@ const parseHimSearch = (
   common: ParsedCommon
 ): ParsedHimSearchResponse => {
   return {
-    messages: d.svcResL[0].res.msgL.map((m) => parseHimMessage(m, common)),
+    messages:
+      d.svcResL[0].res?.msgL?.map((m) => parseHimMessage(m, common)) ?? [],
   };
 };
 
