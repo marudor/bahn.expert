@@ -22,7 +22,7 @@ const parseStationBoardResponse = (
   const date = parse(jny.date, 'yyyyMMdd', new Date());
   const product = common.prodL[jny.prodX];
   const commonResponse = {
-    train: product,
+    train: product || {},
     finalDestination: jny.dirTxt,
     jid: jny.jid,
     cancelled: jny.isCncl,
