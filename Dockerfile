@@ -1,4 +1,4 @@
-FROM node:13-alpine as build
+FROM node:14-alpine as build
 ARG SENTRY_AUTH_TOKEN
 ARG SENTRY_ORG
 ARG SENTRY_PROJECT
@@ -19,7 +19,7 @@ RUN yarn build
 RUN node scripts/checkAssetFiles.js
 
 
-FROM node:13-alpine as app
+FROM node:14-alpine as app
 RUN yarn global add modclean
 RUN mkdir -p /app
 WORKDIR /app
@@ -31,7 +31,7 @@ RUN rm -rf .yarn .yarnrc.yml
 COPY docs /app/docs/
 COPY --from=build /app/dist/ /app/dist/
 
-FROM node:13-alpine
+FROM node:14-alpine
 ENV NODE_ENV=production
 ENV TZ=Europe/Berlin
 USER node
