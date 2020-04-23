@@ -189,6 +189,10 @@ export class HafasController extends Controller {
     );
   }
 
+  /**
+   * Use JourneyMatch instead
+   */
+  @Deprecated()
   @Response(404, 'Train not found')
   @Get('/trainSearch/{trainName}')
   @Tags('HAFAS V1')
@@ -211,8 +215,11 @@ export class HafasController extends Controller {
     return foundTrain;
   }
 
-  @Get('/journeyMatch/{trainName}')
+  /**
+   * Use POST Method
+   */
   @Deprecated()
+  @Get('/journeyMatch/{trainName}')
   @Tags('HAFAS V1')
   journeyMatch(
     @Request() ctx: Context,
@@ -292,6 +299,9 @@ export class HafasController extends Controller {
     return TripSearch(body, profile, ctx.query.raw);
   }
 
+  /**
+   * Use /TripSearch
+   */
   @Deprecated()
   @Post('/route')
   @Tags('HAFAS V1')
