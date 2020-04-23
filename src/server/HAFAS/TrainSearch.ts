@@ -7,11 +7,11 @@ import iconv from 'iconv-lite';
 import journeyDetails from './JourneyDetails';
 
 const profiles = {
-  DB: {
+  [AllowedHafasProfile.DB]: {
     url: 'https://reiseauskunft.bahn.de/bin/trainsearch.exe/dn',
     number: 80,
   },
-  OEBB: {
+  [AllowedHafasProfile.OEBB]: {
     url: 'https://fahrplan.oebb.at/bin/trainsearch.exe/dn',
     number: 81,
   },
@@ -22,12 +22,14 @@ export default async (
   initialDepartureDate?: number,
   profileType: AllowedHafasProfile = AllowedHafasProfile.DB
 ) => {
-  const profile: undefined | typeof profiles['DB'] = (profiles as any)[
-    profileType
-  ];
+  const profile:
+    | undefined
+    | typeof profiles[AllowedHafasProfile.DB] = (profiles as any)[profileType];
 
   if (!profile) {
-    throw new Error(`${profileType} not supported by trainsearch`);
+    const e = new Error(`${profileType} profile not supported by trainsearch`);
+
+    throw e;
   }
   let date = initialDepartureDate;
 

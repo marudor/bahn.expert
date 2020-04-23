@@ -42,7 +42,12 @@ export default async (ctx: Context, next: Function) => {
           }
         }
       }
-      ctx.body = JSON.stringify(e);
+      if (e.message) {
+        ctx.res.setHeader('Content-Type', 'text');
+        ctx.body = e.message;
+      } else {
+        ctx.body = e;
+      }
       ctx.status = e.status || 500;
     }
   }
