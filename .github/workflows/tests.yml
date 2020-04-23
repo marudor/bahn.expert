@@ -94,26 +94,26 @@ jobs:
           NODE_ENV: production
           TEST_RUN: 1
           TEST_ONLY: 1
-  bundleSize:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Use Node.js 14
-        uses: actions/setup-node@master
-        with:
-          node-version: 14
-      - name: install
-        run: |
-          yarn --immutable
-        env:
-          CYPRESS_INSTALL_BINARY: 0
-      - name: bundleSize
-        run: yarn build:client:ci
-        env:
-          NODE_ENV: production
-          PT_PROJECT_TOKEN: 1ce5b3fa-b36c-4f3c-9d93-5207b79264c7
-          PROD_ONLY: 1
-          PT_BRANCH: ${{github.head_ref || github.ref}}
-          PT_COMMIT: ${{github.event.pull_request.head.sha || github.sha}}
+  # bundleSize:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #       with:
+  #         fetch-depth: 0
+  #     - name: Use Node.js 14
+  #       uses: actions/setup-node@master
+  #       with:
+  #         node-version: 14
+  #     - name: install
+  #       run: |
+  #         yarn --immutable
+  #       env:
+  #         CYPRESS_INSTALL_BINARY: 0
+  #     - name: bundleSize
+  #       run: yarn build:client:ci
+  #       env:
+  #         NODE_ENV: production
+  #         PT_PROJECT_TOKEN: 1ce5b3fa-b36c-4f3c-9d93-5207b79264c7
+  #         PROD_ONLY: 1
+  #         PT_BRANCH: ${{github.head_ref || github.ref}}
+  #         PT_COMMIT: ${{github.event.pull_request.head.sha || github.sha}}
