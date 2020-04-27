@@ -1,4 +1,3 @@
-import React from 'react';
 import RouteFavEntry from 'Routing/Components/RouteFavEntry';
 import RoutingFavContainer from 'Routing/container/RoutingFavContainer';
 

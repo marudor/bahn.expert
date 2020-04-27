@@ -1,8 +1,8 @@
-import React from 'react';
+import { createContext } from 'react';
 
 interface NavigationContext {
   toggleDrawer: () => void;
 }
 
 // @ts-ignore
-export default React.createContext<NavigationContext>();
+export default createContext<NavigationContext>();

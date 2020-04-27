@@ -1,6 +1,6 @@
+import { useCallback, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import Loading from 'Common/Components/Loading';
-import React, { useCallback, useState } from 'react';
 import Route from './Route';
 import RouteFavList from 'Routing/Components/RouteFavList';
 import RouteHeader from './RouteHeader';
@@ -70,7 +70,7 @@ const RouteList = () => {
         .filter((r) => r.isRideable)
         .map((r, i) => {
           return (
-            <React.Fragment key={r.checksum}>
+            <>
               {(i === 0 || routes[i - 1].date !== r.date) && (
                 <RouteHeader date={r.date} />
               )}
@@ -81,7 +81,7 @@ const RouteList = () => {
                 }
                 route={r}
               />
-            </React.Fragment>
+            </>
           );
         })}
       {laterContext &&

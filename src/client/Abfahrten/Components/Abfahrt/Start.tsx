@@ -2,7 +2,6 @@ import { Abfahrt } from 'types/iris';
 import Auslastung from 'Abfahrten/Components/Abfahrt/Auslastung';
 import CheckInLink from 'Common/Components/CheckInLink';
 import DetailsLink from 'Common/Components/Details/DetailsLink';
-import React from 'react';
 import Substitute from './Substitute';
 import useStyles from './Start.style';
 

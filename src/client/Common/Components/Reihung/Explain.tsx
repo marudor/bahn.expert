@@ -1,6 +1,6 @@
 import { Dialog, DialogContent } from '@material-ui/core';
 import { icons } from './Fahrzeug';
-import React, { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
 import SingleAuslastungsDisplay from 'Common/Components/SingleAuslastungsDisplay';
 import useStyles from './Explain.style';
 

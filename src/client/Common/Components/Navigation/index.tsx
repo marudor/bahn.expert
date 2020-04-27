@@ -6,11 +6,11 @@ import {
   ListItemText,
   SwipeableDrawer,
 } from '@material-ui/core';
+import { ReactNode, useCallback, useMemo, useState } from 'react';
 import AlarmOnOutlinedIcon from '@material-ui/icons/AlarmOnOutlined';
 import ExploreIcon from '@material-ui/icons/Explore';
 import InfoIcon from '@material-ui/icons/Info';
 import NavigationContext from './NavigationContext';
-import React, { ReactNode, useCallback, useMemo, useState } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import ThemeSelection from './ThemeSelection';
 import useStyles from './index.style';

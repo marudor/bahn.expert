@@ -5,7 +5,6 @@ import { getHafasStationFromAPI } from 'shared/service/stationSearch';
 import { renderRoutes } from 'react-router-config';
 import AuslastungContainer from 'Abfahrten/container/AuslastungContainer';
 import Header from 'Abfahrten/Components/Header';
-import React from 'react';
 import routes from './routes';
 import SettingsModal from 'Abfahrten/Components/SettingsModal';
 import useQuery from 'Common/hooks/useQuery';

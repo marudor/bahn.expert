@@ -1,11 +1,11 @@
 import { AxiosError } from 'axios';
 import { format } from 'date-fns';
 import { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
+import { useEffect, useState } from 'react';
 import DetailsContext from './DetailsContext';
 import getDetails from 'Common/service/details';
 import Header from './Header';
 import HeaderTagContainer from 'Common/container/HeaderTagContainer';
-import React, { useEffect, useState } from 'react';
 import StopList from './StopList';
 import useQuery from 'Common/hooks/useQuery';
 

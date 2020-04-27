@@ -1,6 +1,7 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { getRouteLink } from 'Routing/util';
 import { Link } from 'react-router-dom';
+import { memo, SyntheticEvent, useCallback } from 'react';
 import { Paper } from '@material-ui/core';
 import {
   RoutingFav,
@@ -8,7 +9,6 @@ import {
   useRoutingFavAction,
 } from 'Routing/container/RoutingFavContainer';
 import ActionDelete from '@material-ui/icons/Delete';
-import React, { SyntheticEvent, useCallback } from 'react';
 import useStyles from './RouteFavEntry.style';
 
 interface Props {
@@ -56,4 +56,4 @@ const RouteFavEntry = ({ fav }: Props) => {
   );
 };
 
-export default React.memo(RouteFavEntry);
+export default memo(RouteFavEntry);

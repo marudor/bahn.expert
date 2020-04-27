@@ -7,17 +7,17 @@ import {
 } from '@material-ui/core';
 import { DatePicker } from '@material-ui/pickers';
 import { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
-import { subHours } from 'date-fns';
-import { useHistory } from 'react-router';
-import NavigationContext from './Navigation/NavigationContext';
-import qs from 'qs';
-import React, {
+import {
   ReactElement,
   SyntheticEvent,
   useCallback,
   useContext,
   useState,
 } from 'react';
+import { subHours } from 'date-fns';
+import { useHistory } from 'react-router';
+import NavigationContext from './Navigation/NavigationContext';
+import qs from 'qs';
 import SearchIcon from '@material-ui/icons/Search';
 import stopPropagation from 'Common/stopPropagation';
 import TodayIcon from '@material-ui/icons/Today';

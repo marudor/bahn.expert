@@ -1,8 +1,8 @@
 /* eslint no-nested-ternary: 0 */
 import { format, subMinutes } from 'date-fns';
+import { memo } from 'react';
 import cc from 'clsx';
 import CommonConfigContainer from 'Common/container/CommonConfigContainer';
-import React from 'react';
 import useStyles from './Time.style';
 
 interface Props {
@@ -75,4 +75,4 @@ const Time = ({
   );
 };
 
-export default React.memo(Time);
+export default memo(Time);

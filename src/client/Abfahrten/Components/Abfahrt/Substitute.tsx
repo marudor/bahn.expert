@@ -1,5 +1,4 @@
 import { SubstituteRef } from 'types/iris';
-import React from 'react';
 import useStyles from './Substitue.style';
 
 interface Props {

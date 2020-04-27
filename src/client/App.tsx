@@ -1,11 +1,11 @@
 import { CommonConfigProvider } from 'Common/container/CommonConfigContainer';
 import { Route, Switch } from 'react-router-dom';
 import { RoutingProvider } from 'Routing/container/RoutingContainer';
+import { useEffect } from 'react';
 import HeaderTagContainer from 'Common/container/HeaderTagContainer';
 import loadable from '@loadable/component';
 import Loading from 'Common/Components/Loading';
 import Navigation from 'Common/Components/Navigation';
-import React, { useEffect } from 'react';
 import ReihungenContainer from 'Common/container/ReihungContainer';
 import useStyles from './App.style';
 

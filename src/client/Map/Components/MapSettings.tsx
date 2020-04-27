@@ -1,4 +1,5 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
+import { ChangeEvent, SyntheticEvent, useCallback } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -8,7 +9,6 @@ import {
   Switch,
 } from '@material-ui/core';
 import MapContainer from 'client/Map/container/MapContainer';
-import React, { ChangeEvent, SyntheticEvent, useCallback } from 'react';
 import SettingsIcon from '@material-ui/icons/Settings';
 import useStyles from './MappSettings.style';
 import useToggleState from 'Common/hooks/useToggleState';

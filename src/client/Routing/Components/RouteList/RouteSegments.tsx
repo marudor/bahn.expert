@@ -1,5 +1,5 @@
+import { MouseEvent, useState } from 'react';
 import { Route$JourneySegment } from 'types/routing';
-import React, { MouseEvent, useState } from 'react';
 import RouteSegment from './RouteSegment';
 
 interface Props {

@@ -1,5 +1,4 @@
 import { Sektor } from 'types/reihung';
-import React from 'react';
 import useStyles from './Sektor.style';
 
 interface Props {

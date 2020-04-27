@@ -1,10 +1,10 @@
 import { BrowserRouter } from 'react-router-dom';
+import { ComponentType } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { loadableReady } from '@loadable/component';
 import { StorageContext } from 'shared/hooks/useStorage';
 import { ThemeProvider } from 'Common/container/ThemeContainer';
 import axios from 'axios';
-import React from 'react';
 import ReactDOM from 'react-dom';
 import Storage from 'Common/Storage';
 import ThemeWrap from './ThemeWrap';
@@ -13,7 +13,7 @@ axios.defaults.timeout = 15000;
 
 const storage = new Storage();
 
-const render = (App: React.ComponentType) => (
+const render = (App: ComponentType) => (
   <HelmetProvider>
     <BrowserRouter>
       <StorageContext.Provider value={storage}>
