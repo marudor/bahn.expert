@@ -1,7 +1,12 @@
 import { makeStyles } from '@material-ui/styles';
 
 export default makeStyles((theme) => ({
+  past: {
+    backgroundColor: theme.colors.shadedBackground,
+  },
   main: {
+    paddingLeft: '.5em',
+    paddingRight: '.5em',
     display: 'grid',
     gridTemplateColumns: '4.8em 1fr max-content',
     gridGap: '0 .3em',

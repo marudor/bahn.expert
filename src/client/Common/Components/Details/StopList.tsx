@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useMemo } from 'react';
 import cc from 'clsx';
 import DetailsContext from './DetailsContext';
 import Error from '@material-ui/icons/Error';
@@ -32,6 +32,31 @@ const StopList = () => {
     }
   }, [details]);
 
+  const detailsStops = useMemo(() => {
+    if (!details) return null;
+    let hadCurrent = false;
+
+    return details.stops.map((s) => {
+      if (details.currentStop?.station.id === s.station.id) {
+        hadCurrent = true;
+      }
+
+      return (
+        <Stop
+          isPast={!hadCurrent}
+          train={details.train}
+          stop={s}
+          key={s.station.id}
+          showWR={
+            details.currentStop?.station.id === s.station.id
+              ? details.train
+              : undefined
+          }
+        />
+      );
+    });
+  }, [details]);
+
   if (error) {
     return (
       <main className={cc(classes.wrap, classes.error)}>
@@ -48,7 +73,8 @@ const StopList = () => {
   return (
     <main className={classes.wrap}>
       {/* <Messages messages={details.messages} /> */}
-      {details.stops.map((s) => (
+      {detailsStops}
+      {/* {details.stops.map((s) => (
         <Stop
           train={details.train}
           stop={s}
@@ -60,7 +86,7 @@ const StopList = () => {
               : undefined
           }
         />
-      ))}
+      ))} */}
     </main>
   );
 };
