@@ -53,6 +53,28 @@ function createMicMacFn(secret: string) {
   };
 }
 
+export const dbregio = {
+  url: 'https://bnav.hafas.de/bin/mgate.exe',
+  secret: createMicMacFn(
+    getSecret('scuNsYWPma+dzYl3K5cpjb+EsHxQJ/2VGnFwjInCQX4=')
+  ),
+  config: {
+    client: {
+      id: 'DB-REGIO-BNAV',
+      v: '3000500',
+      type: 'IPH',
+      name: 'StreckenagentPROD-APPSTORE',
+    },
+    lang: 'de',
+    ext: 'DB.R19.12.a',
+    ver: '1.18',
+    auth: {
+      aid: 'Xd91BNAVkuI6rr6z',
+      type: 'AID',
+    },
+  },
+};
+
 export const db = {
   url: 'https://reiseauskunft.bahn.de/bin/mgate.exe',
   secret: createChecksumFn(
@@ -65,7 +87,7 @@ export const db = {
       type: 'AND',
       name: 'DB Navigator',
     },
-    ext: 'DB.R19.04.a',
+    ext: 'DB.R19.12.a',
     lang: 'de',
     ver: '1.18',
     auth: {
