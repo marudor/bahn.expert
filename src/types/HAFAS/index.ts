@@ -167,6 +167,7 @@ export enum AllowedHafasProfile {
   DBNetz = 'dbnetz',
   PKP = 'pkp',
   DBRegio = 'dbregio',
+  DBSmartRBL = 'smartrbl',
   // all = 'all',
 }
 
