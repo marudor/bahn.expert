@@ -60,7 +60,7 @@ describe('Station V1', () => {
 
     it('hafas Type', () => {
       Nock('https://reiseauskunft.bahn.de')
-        .post('/bin/mgate.exe?checksum=0adadd3ba832b46f9c451c1f5e8e5d36')
+        .post('/bin/mgate.exe?checksum=c42826f4e28ccc2f28080522d41dd13f')
         .reply(200, {
           err: 'OK',
           svcResL: [

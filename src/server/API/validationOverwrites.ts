@@ -16,6 +16,10 @@ router.prefix('/api').all('*', (ctx, next) => {
     ) {
       delete ctx.query.profile;
     }
+    ctx.response.set(
+      'hafasProfile',
+      ctx.query.profile || AllowedHafasProfile.DB
+    );
   }
 
   return next();

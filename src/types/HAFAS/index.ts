@@ -166,6 +166,7 @@ export enum AllowedHafasProfile {
   SBB = 'sbb',
   DBNetz = 'dbnetz',
   PKP = 'pkp',
+  DBRegio = 'dbregio',
   // all = 'all',
 }
 
