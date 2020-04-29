@@ -53,6 +53,28 @@ function createMicMacFn(secret: string) {
   };
 }
 
+export const vbn = {
+  url: 'https://fahrplaner.vbn.de/bin/mgate.exe',
+  secret: createMicMacFn(
+    getSecret('HLMpSMJpWe8wBXKtp2g1ey+XzkGxhYE3NsONGEmd8GE=')
+  ),
+  config: {
+    client: {
+      os: 'iOS 13.4.1',
+      id: 'VBN',
+      name: 'vbn',
+      type: 'IPH',
+      v: '6000000',
+    },
+    ver: '1.18',
+    lang: 'de',
+    auth: {
+      aid: 'kaoxIXLn03zCr2KR',
+      type: 'AID',
+    },
+  },
+};
+
 export const smartrbl = {
   url: 'https://db-smartrbl.hafas.de/mct/mgate',
   config: {
