@@ -1,7 +1,6 @@
 import { format } from 'date-fns';
 import { IrisMessage as IrisMessageType } from 'types/iris';
 import cc from 'clsx';
-import React from 'react';
 import useStyles from './index.style';
 
 interface Props {

@@ -1,9 +1,9 @@
 import { AxiosError } from 'axios';
+import { useContext, useEffect } from 'react';
 import cc from 'clsx';
 import DetailsContext from './DetailsContext';
 import Error from '@material-ui/icons/Error';
 import Loading from '../Loading';
-import React, { useContext, useEffect } from 'react';
 import Stop from 'Common/Components/Details/Stop';
 import useStyles from './StopList.style';
 

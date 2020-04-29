@@ -1,7 +1,7 @@
 import { isHbf } from './index';
+import { ReactNode, useMemo } from 'react';
 import { Train } from 'types/iris';
 import cc from 'clsx';
-import React, { ReactNode, useMemo } from 'react';
 import useStyles from './index.style';
 
 interface Props {

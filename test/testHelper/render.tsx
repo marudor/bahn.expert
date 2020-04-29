@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import { CommonConfig } from 'Common/config';
+import { ComponentProps, ComponentType } from 'react';
 import { Container } from 'unstated-next';
 import { defaultCommonConfig } from 'client/util';
 import { DefaultTheme } from '@material-ui/styles';
@@ -14,7 +15,6 @@ import CommonConfigContainer from 'Common/container/CommonConfigContainer';
 import Cookies from 'universal-cookie';
 import createTheme from 'client/Themes';
 import Navigation from 'Common/Components/Navigation';
-import React, { ComponentProps, ComponentType } from 'react';
 import ThemeWrap from 'client/ThemeWrap';
 
 let currentThemeType: ThemeType;

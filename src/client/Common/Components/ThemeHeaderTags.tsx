@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet-async';
 import { useTheme } from '@material-ui/styles';
-import React from 'react';
 
 const ThemeHeaderTags = () => {
   const theme = useTheme();

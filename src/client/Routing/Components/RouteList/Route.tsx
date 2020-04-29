@@ -1,9 +1,9 @@
 import { formatDuration } from 'Routing/util';
 import { SingleRoute } from 'types/routing';
+import { SyntheticEvent, useMemo } from 'react';
 import cc from 'clsx';
 import Paper from '@material-ui/core/Paper';
 import PlannedType from 'Common/Components/PlannedType';
-import React, { SyntheticEvent, useMemo } from 'react';
 import RouteSegments from './RouteSegments';
 import Time from 'Common/Components/Time';
 import useStyles from './Route.style';

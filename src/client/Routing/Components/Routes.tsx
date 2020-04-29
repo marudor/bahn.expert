@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
+import { useEffect } from 'react';
 import HeaderTagContainer from 'Common/container/HeaderTagContainer';
-import React, { useEffect } from 'react';
 import RouteList from './RouteList';
 import RoutingConfigContainer from 'Routing/container/RoutingConfigContainer';
 import Search from './Search';

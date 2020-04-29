@@ -1,6 +1,5 @@
 import { Route$JourneySegmentWalk } from 'types/routing';
 import cc from 'clsx';
-import React from 'react';
 import stopPropagation from 'Common/stopPropagation';
 import useStyles from './style';
 

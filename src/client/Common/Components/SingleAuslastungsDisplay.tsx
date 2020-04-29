@@ -3,7 +3,6 @@ import Close from '@material-ui/icons/Close';
 import Done from '@material-ui/icons/Done';
 import ErrorOutline from '@material-ui/icons/ErrorOutline';
 import Help from '@material-ui/icons/Help';
-import React from 'react';
 import useStyles from './SingleAuslastungsDisplay.style';
 import Warning from '@material-ui/icons/Warning';
 

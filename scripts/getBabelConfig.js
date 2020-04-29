@@ -89,7 +89,13 @@ const getBabelConfig = (type) => {
           corejs: 3,
         },
       ],
-      '@babel/preset-react',
+      [
+        '@babel/preset-react',
+        {
+          pragma: 'M',
+          pragmaFrag: 'MF',
+        },
+      ],
     ],
     plugins,
   };

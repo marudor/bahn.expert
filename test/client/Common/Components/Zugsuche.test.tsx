@@ -1,6 +1,5 @@
 import { fireEvent, waitForElementToBeRemoved } from '@testing-library/react';
 import { render } from 'testHelper';
-import React from 'react';
 import Zugsuche from 'Common/Components/Zugsuche';
 
 describe('Zugsuche', () => {

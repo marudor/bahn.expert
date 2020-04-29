@@ -6,8 +6,8 @@ import {
   FormControlLabel,
   Switch,
 } from '@material-ui/core';
+import { useCallback } from 'react';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
-import React, { useCallback } from 'react';
 import useAllTrainTypes from 'Abfahrten/container/AbfahrtenContainer/useAllTrainTypes';
 import useStyles from './FilterModal.style';
 

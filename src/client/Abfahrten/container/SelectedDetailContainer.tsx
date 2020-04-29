@@ -1,5 +1,5 @@
 import { createContainer } from 'unstated-next';
-import React, { ReactNode, useCallback, useState } from 'react';
+import { ReactNode, useCallback, useState } from 'react';
 import useStorage from 'shared/hooks/useStorage';
 
 const selectedDetailCookieName = 'selectedDetail';

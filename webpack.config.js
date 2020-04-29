@@ -82,16 +82,16 @@ if (isDev) {
       },
     }),
   ];
-  // optimization.splitChunks = {
-  //   minSize: 30000,
-  //   cacheGroups: {
-  //     vendor: {
-  //       test: /[\\/]node_modules[\\/](react|react-dom|react-router|core-js|@material-ui)[\\/]/,
-  //       name: 'vendor',
-  //       chunks: 'all',
-  //     },
-  //   },
-  // };
+  optimization.splitChunks = {
+    minSize: 30000,
+    cacheGroups: {
+      vendor: {
+        test: /[\\/]node_modules[\\/](react|react-dom|react-router|core-js|@material-ui)[\\/]/,
+        name: 'vendor',
+        chunks: 'all',
+      },
+    },
+  };
   plugins.push(
     ...[
       new CompressionPlugin({

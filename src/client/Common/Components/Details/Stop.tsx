@@ -5,7 +5,6 @@ import CheckInLink from 'Common/Components/CheckInLink';
 import DetailMessages from '../Messages/Detail';
 import Messages from './Messages';
 import Platform from 'Common/Components/Platform';
-import React from 'react';
 import Reihung from '../Reihung';
 import StationLink from 'Common/Components/StationLink';
 import Time from 'Common/Components/Time';

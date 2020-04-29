@@ -1,6 +1,5 @@
 import { Abfahrt } from 'types/iris';
 import Platform from 'Common/Components/Platform';
-import React from 'react';
 import Times from './Times';
 import useStyles from './End.style';
 

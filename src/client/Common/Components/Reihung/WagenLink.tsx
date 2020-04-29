@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import stopPropagation from 'Common/stopPropagation';
 import useStyles from './WagenLink.style';
 

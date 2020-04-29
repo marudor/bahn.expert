@@ -6,7 +6,6 @@ import Axios from 'axios';
 import debounce from 'debounce-promise';
 import Downshift from 'downshift';
 import Loading, { LoadingType } from 'Common/Components/Loading';
-import React from 'react';
 import useStorage from 'shared/hooks/useStorage';
 import useStyles from './ZugsucheAutocomplete.style';
 

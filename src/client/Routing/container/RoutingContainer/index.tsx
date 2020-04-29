@@ -1,7 +1,7 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { createContainer } from 'unstated-next';
+import { ReactNode, useState } from 'react';
 import { SingleRoute } from 'types/routing';
-import React, { ReactNode, useState } from 'react';
 import RoutingConfingContainer, {
   defaultRoutingSettings,
 } from 'Routing/container/RoutingConfigContainer';

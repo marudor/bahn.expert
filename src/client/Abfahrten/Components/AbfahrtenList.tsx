@@ -1,11 +1,11 @@
 import { Redirect } from 'react-router';
+import { useEffect, useState } from 'react';
 import { useRouteMatch } from 'react-router';
 import Abfahrt from './Abfahrt';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import AbfahrtenContainer from 'Abfahrten/container/AbfahrtenContainer';
 import HeaderTagContainer from 'Common/container/HeaderTagContainer';
 import Loading from 'Common/Components/Loading';
-import React, { useEffect, useState } from 'react';
 import ReihungContainer from 'Common/container/ReihungContainer';
 import SelectedDetailContainer, {
   SelectedDetailProvider,

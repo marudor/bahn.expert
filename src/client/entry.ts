@@ -13,4 +13,7 @@ if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
   });
 }
 
+global.M = require('react').createElement;
+global.MF = require('react').Fragment;
+
 require('./index');

@@ -1,7 +1,7 @@
 import { AbfahrtenConfig } from 'Common/config';
 import { createContainer } from 'unstated-next';
 import { defaultAbfahrtenConfig } from 'client/util';
-import React, { ReactNode, useCallback, useState } from 'react';
+import { ReactNode, useCallback, useState } from 'react';
 import useQuery from 'Common/hooks/useQuery';
 import useStorage from 'shared/hooks/useStorage';
 

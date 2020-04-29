@@ -1,7 +1,6 @@
 import { CommonProductInfo } from 'types/HAFAS';
 import { Link } from 'react-router-dom';
 import qs from 'qs';
-import React from 'react';
 import stopPropagation from 'Common/stopPropagation';
 
 interface Props {

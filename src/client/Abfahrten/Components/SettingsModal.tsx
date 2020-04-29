@@ -4,6 +4,7 @@ import {
   handleConfigCheckedChange,
   handleConfigNumberSelectChange,
 } from 'Common/config';
+import { ChangeEvent, useCallback } from 'react';
 import { StationSearchType } from 'types/station';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import CommonConfigContainer from 'Common/container/CommonConfigContainer';
@@ -12,7 +13,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import NativeSelect from '@material-ui/core/NativeSelect';
-import React, { ChangeEvent, useCallback } from 'react';
 import Switch from '@material-ui/core/Switch';
 import TextField from '@material-ui/core/TextField';
 import useStyles from './SettingsModal.style';
