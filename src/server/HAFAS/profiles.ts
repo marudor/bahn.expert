@@ -53,6 +53,24 @@ function createMicMacFn(secret: string) {
   };
 }
 
+export const smartrbl = {
+  url: 'https://db-smartrbl.hafas.de/mct/mgate',
+  config: {
+    client: {
+      id: 'HAFAS',
+      name: 'Test-Client',
+      type: 'WEB',
+      v: '1.0.0',
+    },
+    lang: 'deu',
+    ver: '1.18',
+    auth: {
+      aid: 'izfpmpj8tnh6acye',
+      type: 'AID',
+    },
+  },
+};
+
 export const dbregio = {
   url: 'https://bnav.hafas.de/bin/mgate.exe',
   secret: createMicMacFn(
