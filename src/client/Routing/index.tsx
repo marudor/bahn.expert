@@ -1,7 +1,6 @@
 import { renderRoutes } from 'react-router-config';
 import { RoutingFavProvider } from 'Routing/container/RoutingFavContainer';
 import Header from './Components/Header';
-import React from 'react';
 import routes from './routes';
 import useStyles from './index.style';
 

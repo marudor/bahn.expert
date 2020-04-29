@@ -1,5 +1,5 @@
+import { memo } from 'react';
 import FavEntry from './FavEntry';
-import React from 'react';
 
 const mostUsed = [
   { title: 'Frankfurt (Main) Hbf', id: '8098105' },
@@ -25,4 +25,4 @@ const MostUsed = () => (
   </>
 );
 
-export default React.memo(MostUsed);
+export default memo(MostUsed);

@@ -1,5 +1,4 @@
 import { Route$Stop } from 'types/routing';
-import React from 'react';
 import Stop from 'Common/Components/Details/Stop';
 
 interface Props {

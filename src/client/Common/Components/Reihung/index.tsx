@@ -1,9 +1,9 @@
+import { useEffect } from 'react';
 import cc from 'clsx';
 import CommonConfigContainer from 'Common/container/CommonConfigContainer';
 import Explain from './Explain';
 import Gruppe from './Gruppe';
 import Loading from 'Common/Components/Loading';
-import React, { useEffect } from 'react';
 import ReihungContainer from 'Common/container/ReihungContainer';
 import Sektor from './Sektor';
 import useStyles from './index.style';

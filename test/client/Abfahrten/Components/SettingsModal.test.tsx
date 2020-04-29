@@ -1,7 +1,6 @@
 import { fireEvent } from '@testing-library/react';
 import { render } from 'testHelper';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
-import React from 'react';
 import SettingsModal from 'Abfahrten/Components/SettingsModal';
 
 const OpenDummy = () => {

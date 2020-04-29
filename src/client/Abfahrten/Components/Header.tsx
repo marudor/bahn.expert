@@ -1,11 +1,11 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { Station } from 'types/station';
+import { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import AbfahrtenContainer from 'Abfahrten/container/AbfahrtenContainer';
 import BaseHeader from 'Common/Components/BaseHeader';
 import ExtraMenu from './ExtraMenu';
-import React, { useCallback, useEffect, useState } from 'react';
 import StationSearch from 'Common/Components/StationSearch';
 
 interface Props {

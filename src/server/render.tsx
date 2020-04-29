@@ -12,7 +12,6 @@ import { ThemeProvider } from 'Common/container/ThemeContainer';
 import ejs from 'ejs';
 import fs from 'fs';
 import path from 'path';
-import React from 'react';
 import ThemeWrap from 'client/ThemeWrap';
 
 const headerFilename = path.resolve(__dirname, './views/header.ejs');

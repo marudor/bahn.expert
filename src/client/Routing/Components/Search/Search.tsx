@@ -12,6 +12,7 @@ import { AllowedHafasProfile } from 'types/HAFAS';
 import { DateTimePicker } from '@material-ui/pickers';
 import { getHafasStationFromAPI } from 'shared/service/stationSearch';
 import { getRouteLink } from 'Routing/util';
+import { memo, SyntheticEvent, useCallback, useEffect, useMemo } from 'react';
 import { RoutingFav } from 'Routing/container/RoutingFavContainer';
 import { Search as SearchIcon } from '@material-ui/icons';
 import { Station } from 'types/station';
@@ -21,7 +22,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import deLocale from 'date-fns/locale/de';
 import Divider from '@material-ui/core/Divider';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
-import React, { SyntheticEvent, useCallback, useEffect, useMemo } from 'react';
 import RoutingConfigContainer from 'Routing/container/RoutingConfigContainer';
 import SettingsPanel from './SettingsPanel';
 import StationSearch from 'Common/Components/StationSearch';
@@ -260,4 +260,4 @@ const Search = () => {
   );
 };
 
-export default React.memo(Search);
+export default memo(Search);

@@ -1,4 +1,5 @@
 import { AdditionalFahrzeugInfo, Fahrzeug } from 'types/reihung';
+import { ComponentType } from 'react';
 import Accessibility from '@material-ui/icons/Accessibility';
 import ActionAccessible from '@material-ui/icons/Accessible';
 import ActionMotorcycle from '@material-ui/icons/Motorcycle';
@@ -8,7 +9,6 @@ import ChildFriendly from '@material-ui/icons/ChildFriendly';
 import Info from '@material-ui/icons/InfoOutlined';
 import MapsLocalDining from '@material-ui/icons/LocalDining';
 import NotificationsOff from '@material-ui/icons/NotificationsOff';
-import React, { ComponentType } from 'react';
 import SitzplatzInfo from './SitzplatzInfo';
 import UIC from './UIC';
 import useStyles from './Fahrzeug.style';

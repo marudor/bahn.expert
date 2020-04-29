@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router';
 import HeaderTagContainer from 'Common/container/HeaderTagContainer';
-import React from 'react';
 
 const HeaderTags = () => {
   const { title, description } = HeaderTagContainer.useContainer();

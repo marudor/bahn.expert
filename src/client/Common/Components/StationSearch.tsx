@@ -1,11 +1,11 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
+import { memo, ReactNode, SyntheticEvent, useCallback, useRef } from 'react';
 import { Station, StationSearchType } from 'types/station';
 import Downshift from 'downshift';
 import Loading, { LoadingType } from './Loading';
 import MenuItem from '@material-ui/core/MenuItem';
 import MyLocation from '@material-ui/icons/MyLocation';
 import Paper from '@material-ui/core/Paper';
-import React, { ReactNode, SyntheticEvent, useCallback, useRef } from 'react';
 import TextField from '@material-ui/core/TextField';
 import useStationSearch from 'shared/hooks/useStationSearch';
 import useStyles from './StationSearch.style';
@@ -192,4 +192,4 @@ const StationSearch = ({
   );
 };
 
-export default React.memo(StationSearch);
+export default memo(StationSearch);

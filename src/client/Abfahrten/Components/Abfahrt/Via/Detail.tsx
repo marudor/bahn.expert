@@ -1,10 +1,10 @@
 import { isHbf } from './index';
-import { Train } from 'types/iris';
+import { ReactNode, useMemo } from 'react';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import cc from 'clsx';
-import React, { ReactNode, useMemo } from 'react';
 import StationLink from 'Common/Components/StationLink';
 import useStyles from './index.style';
+import type { Train } from 'types/iris';
 
 interface Props {
   stops: Train[];

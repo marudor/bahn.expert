@@ -19,4 +19,4 @@ jobs:
           node-version: 14
       - name: check
         run: |
-          yarn install --check-cache
+          yarn install --immutable --immutable-cache --check-cache

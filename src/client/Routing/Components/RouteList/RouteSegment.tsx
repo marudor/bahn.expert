@@ -1,7 +1,7 @@
+import { MouseEvent } from 'react';
 import { Route$JourneySegment } from 'types/routing';
 import JnySegmentTrain from './SegmentTrainComponent/JnySegmentTrain';
 import Platform from 'Common/Components/Platform';
-import React, { MouseEvent } from 'react';
 import Time from 'Common/Components/Time';
 import useStyles from './RouteSegment.style';
 import WalkSegmentTrain from './SegmentTrainComponent/WalkSegmentTrain';

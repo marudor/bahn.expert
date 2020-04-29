@@ -9,7 +9,6 @@ import L from 'leaflet';
 import MapContainer from 'client/Map/container/MapContainer';
 import MapSettings from 'client/Map/Components/MapSettings';
 import Positions from 'client/Map/Components/Positions';
-import React from 'react';
 import useQuery from 'Common/hooks/useQuery';
 import useStyles from './TrainMap.style';
 

@@ -8,11 +8,11 @@ import {
   Typography,
 } from '@material-ui/core';
 import { capitalize } from 'lodash';
+import { SyntheticEvent, useCallback, useState } from 'react';
 import { ThemeType } from 'client/Themes/type';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import PaletteIcon from '@material-ui/icons/Palette';
-import React, { SyntheticEvent, useCallback, useState } from 'react';
 import ThemeContainer from 'Common/container/ThemeContainer';
 import useStyles from './ThemeSelection.style';
 
