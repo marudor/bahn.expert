@@ -5,6 +5,8 @@ declare global {
   declare const nock: nock.Scope;
   declare namespace NodeJS {
     declare interface Global {
+      M: any;
+      MF: any;
       TEST: boolean;
       PROD: boolean;
       SERVER: boolean;

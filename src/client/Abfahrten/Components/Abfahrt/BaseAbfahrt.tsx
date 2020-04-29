@@ -1,11 +1,11 @@
 import { Abfahrt } from 'types/iris';
+import { useCallback, useMemo } from 'react';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import cc from 'clsx';
 import End from './End';
 import loadable from '@loadable/component';
 import Mid from './Mid';
 import Paper from '@material-ui/core/Paper';
-import React, { useCallback, useMemo } from 'react';
 import SelectedDetailContainer from 'Abfahrten/container/SelectedDetailContainer';
 import Start from './Start';
 import useStyles from './BaseAbfahrt.style';

@@ -2,7 +2,6 @@ import { compareDesc } from 'date-fns';
 import { Message } from 'types/iris';
 import HimIrisMessage from 'Common/Components/Messages/HimIrisMessage';
 import IrisMessage from 'Common/Components/Messages/IrisMessage';
-import React from 'react';
 import useStyles from './index.style';
 
 interface Props {

@@ -1,11 +1,11 @@
 import { Abfahrt } from 'types/iris';
+import { useMemo } from 'react';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import cc from 'clsx';
 import DetailMessages from 'Common/Components/Messages/Detail';
 import DetailVia from './Via/Detail';
 import NormalMessages from 'Common/Components/Messages/Normal';
 import NormalVia from './Via/Normal';
-import React, { useMemo } from 'react';
 import useStyles from './Info.style';
 
 interface Props {

@@ -4,7 +4,6 @@ import { renderRoutes } from 'react-router-config';
 import AuslastungContainer from './container/AuslastungContainer';
 import Header from './Components/Header';
 import MostUsed from 'Abfahrten/Components/MostUsed';
-import React from 'react';
 import routes from './routes';
 import SettingsModal from './Components/SettingsModal';
 import useQuery from 'Common/hooks/useQuery';

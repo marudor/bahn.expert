@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { MouseEvent, ReactNode, useCallback } from 'react';
 import { Paper } from '@material-ui/core';
 import { Station } from 'types/station';
 import { useUnfav } from 'Abfahrten/container/FavContainer';
@@ -6,7 +7,6 @@ import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContain
 import ActionDelete from '@material-ui/icons/Delete';
 import cc from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
-import React, { MouseEvent, ReactNode, useCallback } from 'react';
 import useStyles from './FavEntry.style';
 
 interface Props {

@@ -1,5 +1,4 @@
 import { RemL } from 'types/HAFAS';
-import React from 'react';
 
 interface Props {
   messages?: RemL[];

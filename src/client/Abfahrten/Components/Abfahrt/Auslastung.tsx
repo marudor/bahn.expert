@@ -1,8 +1,8 @@
 import { Abfahrt } from 'types/iris';
+import { useEffect } from 'react';
 import AuslastungContainer from 'Abfahrten/container/AuslastungContainer';
 import AuslastungsDisplay from 'Common/Components/AuslastungsDisplay';
 import Loading from 'Common/Components/Loading';
-import React, { useEffect } from 'react';
 
 interface Props {
   abfahrt: Abfahrt;

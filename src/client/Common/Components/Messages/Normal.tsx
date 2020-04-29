@@ -1,5 +1,5 @@
 import { Message } from 'types/iris';
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import useStyles from './index.style';
 
 interface Props {

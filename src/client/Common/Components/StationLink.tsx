@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { StationSearchType } from 'types/station';
-import React from 'react';
 import stopPropagation from 'Common/stopPropagation';
 
 interface Props {

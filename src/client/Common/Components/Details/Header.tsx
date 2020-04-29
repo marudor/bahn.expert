@@ -1,9 +1,9 @@
 import { format } from 'date-fns';
 import { Tooltip } from '@material-ui/core';
+import { useContext } from 'react';
 import BaseHeader from '../BaseHeader';
 import DetailsContext from './DetailsContext';
 import PlannedType from 'Common/Components/PlannedType';
-import React, { useContext } from 'react';
 import useStyles from './Header.style';
 
 interface Props {

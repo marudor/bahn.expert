@@ -3,7 +3,6 @@ import BaseHeader from 'Common/Components/BaseHeader';
 import BugReport from '@material-ui/icons/BugReport';
 import Extension from '@material-ui/icons/Extension';
 import Message from '@material-ui/icons/Message';
-import React from 'react';
 import useStyles from './About.style';
 
 const Privacy = () => (

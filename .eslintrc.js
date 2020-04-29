@@ -8,9 +8,14 @@ module.exports = {
   },
   globals: {
     SERVER: false,
+    M: false,
+    MF: false,
   },
   settings: {
     'import/resolver': 'webpack',
+  },
+  rules: {
+    'react/react-in-jsx-scope': 0,
   },
   overrides: [
     {

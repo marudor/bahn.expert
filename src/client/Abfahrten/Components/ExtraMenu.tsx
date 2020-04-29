@@ -1,5 +1,6 @@
 import { __RouterContext } from 'react-router';
 import { IconButton } from '@material-ui/core';
+import { SyntheticEvent, useCallback, useState } from 'react';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import AbfahrtenContainer from 'Abfahrten/container/AbfahrtenContainer';
 import ActionTune from '@material-ui/icons/Tune';
@@ -13,7 +14,6 @@ import Layers from '@material-ui/icons/Layers';
 import LayersClear from '@material-ui/icons/LayersClear';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import React, { SyntheticEvent, useCallback, useState } from 'react';
 import Settings from '@material-ui/icons/Settings';
 import ToggleStar from '@material-ui/icons/Star';
 import ToggleStarBorder from '@material-ui/icons/StarBorder';

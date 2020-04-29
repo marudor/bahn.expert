@@ -1,6 +1,5 @@
 import { render } from 'testHelper';
 import Loading, { LoadingType } from 'Common/Components/Loading';
-import React from 'react';
 
 describe('Loading', () => {
   it('returns children if isLoading is false', () => {

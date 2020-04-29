@@ -1,4 +1,5 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
+import { ChangeEvent, useCallback, useMemo } from 'react';
 import {
   ExpansionPanel,
   ExpansionPanelDetails,
@@ -13,7 +14,6 @@ import Badge from '@material-ui/core/Badge';
 import CachedIcon from '@material-ui/icons/Cached';
 import Chip from '@material-ui/core/Chip';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import React, { ChangeEvent, useCallback, useMemo } from 'react';
 import RoutingConfigContainer, {
   RoutingSettings,
 } from 'Routing/container/RoutingConfigContainer';
