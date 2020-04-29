@@ -14,8 +14,9 @@ interface Props {
   stop: Route$Stop;
   train?: ParsedProduct;
   showWR?: ParsedProduct;
+  isPast?: boolean;
 }
-const Stop = ({ stop, showWR, train }: Props) => {
+const Stop = ({ stop, showWR, train, isPast }: Props) => {
   const classes = useStyles();
   const depOrArrival = stop.departure || stop.arrival;
   const platforms = stop.departure
@@ -31,7 +32,7 @@ const Stop = ({ stop, showWR, train }: Props) => {
     : {};
 
   return (
-    <div className={classes.main}>
+    <div className={cc(classes.main, isPast && classes.past)}>
       <span id={stop.station.id} className={classes.scrollMarker} />
       {stop.arrival && (
         <Time
