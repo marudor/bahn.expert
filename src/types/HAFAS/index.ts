@@ -168,6 +168,7 @@ export enum AllowedHafasProfile {
   PKP = 'pkp',
   DBRegio = 'dbregio',
   DBSmartRBL = 'smartrbl',
+  VBN = 'vbn',
   // all = 'all',
 }
 
