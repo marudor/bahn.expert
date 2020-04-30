@@ -6,6 +6,7 @@ import {
   ParsedHimMessage,
   ParsedHimSearchResponse,
 } from 'types/HAFAS/HimSearch';
+import { logger } from 'server/logger';
 import { parse } from 'date-fns';
 import makeRequest from 'server/HAFAS/Request';
 import parseTime from 'server/HAFAS/helper/parseTime';
@@ -54,19 +55,28 @@ let todaysHimMessages: {
   [hid: string]: ParsedHimMessage;
 } = {};
 
+const maxNum =
+  Number.parseInt(process.env.HIM_MAX_FETCH || '50000', 10) || 50000;
+
 async function fetchTodaysHimMessages() {
-  const messages = await HimSearch({
-    onlyToday: true,
-    maxNum: 500000000,
-  });
+  try {
+    logger.debug('Fetching HimMessages');
+    const messages = await HimSearch({
+      onlyToday: true,
+      maxNum,
+    });
 
-  if (!messages.messages) return;
+    if (!messages.messages) return;
 
-  todaysHimMessages = messages.messages.reduce((agg, message) => {
-    agg[message.hid] = message;
+    todaysHimMessages = messages.messages.reduce((agg, message) => {
+      agg[message.hid] = message;
 
-    return agg;
-  }, {} as typeof todaysHimMessages);
+      return agg;
+    }, {} as typeof todaysHimMessages);
+    logger.debug('Fetched HimMessages');
+  } catch (e) {
+    logger.error(e, 'HimMessages fetch failed');
+  }
 }
 
 if (process.env.NODE_ENV !== 'test') {

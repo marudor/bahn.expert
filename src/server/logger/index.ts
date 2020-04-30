@@ -36,6 +36,7 @@ export const logger = pino(
       remove: true,
     },
     name: 'BahnhofsAbfahrten',
+    level: process.env.NODE_ENV === 'production' ? 'info' : 'trace',
     serializers: {
       req: serializers.wrapRequestSerializer((req) => {
         try {

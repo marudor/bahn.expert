@@ -1,4 +1,5 @@
 import { AP, WifiData } from 'types/Wifi';
+import { logger } from 'server/logger';
 import axios from 'axios';
 
 interface APWithTrain extends AP {
@@ -26,22 +27,24 @@ export async function fetchWifiData() {
   if (!url || !username || !password) {
     return;
   }
-  // eslint-disable-next-line no-console
-  console.log('Fetching WifiData');
-  const data: WifiData = (
-    await axios.get(url, {
-      auth: {
-        username,
-        password,
-      },
-    })
-  ).data;
+  try {
+    logger.debug('Fetching WifiData');
+    const data: WifiData = (
+      await axios.get(url, {
+        auth: {
+          username,
+          password,
+        },
+      })
+    ).data;
 
-  // error handling if transmission failed
-  if (data && data.traindata) {
-    wifiData = transformWifiData(data);
-    // eslint-disable-next-line no-console
-    console.log('Fetched WifiData');
+    // error handling if transmission failed
+    if (data && data.traindata) {
+      wifiData = transformWifiData(data);
+      logger.debug('Fetched WifiData');
+    }
+  } catch (e) {
+    logger.error(e, 'WifiData fetch failed');
   }
 }
 
