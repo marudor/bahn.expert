@@ -4,7 +4,7 @@
   "description": "",
   "license": "MIT",
   "engines": {
-    "node": "^13.0.0"
+    "node": "^14.0.0"
   },
   "engineStrict": true,
   "scripts": {
