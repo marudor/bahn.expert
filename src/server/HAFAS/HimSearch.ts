@@ -1,4 +1,5 @@
 import { AllowedHafasProfile, HafasResponse, ParsedCommon } from 'types/HAFAS';
+import { CacheDatabases, createNewCache } from 'server/cache';
 import {
   HimMessage,
   HimSearchRequest,
@@ -6,6 +7,7 @@ import {
   ParsedHimMessage,
   ParsedHimSearchResponse,
 } from 'types/HAFAS/HimSearch';
+import { logger } from 'server/logger';
 import { parse } from 'date-fns';
 import makeRequest from 'server/HAFAS/Request';
 import parseTime from 'server/HAFAS/helper/parseTime';
@@ -50,23 +52,32 @@ const HimSearch = (
 
 export default HimSearch;
 
-let todaysHimMessages: {
-  [hid: string]: ParsedHimMessage;
-} = {};
+// 24 hours in seconds
+const himMessageCache = createNewCache<string, ParsedHimMessage>(
+  24 * 60 * 60,
+  CacheDatabases.HIMMessage
+);
+
+const maxNum =
+  Number.parseInt(process.env.HIM_MAX_FETCH || '50000', 10) || 50000;
 
 async function fetchTodaysHimMessages() {
-  const messages = await HimSearch({
-    onlyToday: true,
-    maxNum: 500000000,
-  });
+  try {
+    logger.debug('Fetching HimMessages');
+    const messages = await HimSearch({
+      onlyToday: true,
+      maxNum,
+    });
 
-  if (!messages.messages) return;
+    if (!messages.messages) return;
 
-  todaysHimMessages = messages.messages.reduce((agg, message) => {
-    agg[message.hid] = message;
-
-    return agg;
-  }, {} as typeof todaysHimMessages);
+    messages.messages.forEach((message) => {
+      himMessageCache.set(message.hid, message);
+    });
+    logger.debug('Fetched HimMessages');
+  } catch (e) {
+    logger.error(e, 'HimMessages fetch failed');
+  }
 }
 
 if (process.env.NODE_ENV !== 'test') {
@@ -76,4 +87,4 @@ if (process.env.NODE_ENV !== 'test') {
 
 export const getSingleHimMessageOfToday = (
   hid: string
-): undefined | ParsedHimMessage => todaysHimMessages[hid];
+): Promise<undefined | ParsedHimMessage> => himMessageCache.get(hid);

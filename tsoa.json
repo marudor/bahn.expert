@@ -1,24 +1,16 @@
 {
-  "swagger": {
+  "entryFile": "./src/server/API/index.ts",
+  "controllerPathGlobs": ["./src/server/API/controller/**", "./src/types/**"],
+  "noImplicitAdditionalProperties": "silently-remove-extras",
+  "spec": {
     "specVersion": 3,
-    "entryFile": "./src/server/API/index.ts",
     "outputDirectory": "./docs",
     "host": "marudor.de",
-    "basePath": "api/",
-    "controllerPathGlobs": [
-      "./src/server/API/controller/**",
-      "./src/types/**"
-    ],
-    "noImplicitAdditionalProperties": "silently-remove-extras"
+    "basePath": "api/"
   },
   "routes": {
     "middleware": "koa",
-    "entryFile": "./src/server/API/index.ts",
     "routesDir": "./src/server/API",
-    "basePath": "api/",
-    "controllerPathGlobs": [
-      "./src/server/API/controller/**",
-      "./src/types/**"
-    ]
+    "basePath": "api/"
   }
 }

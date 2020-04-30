@@ -4,9 +4,12 @@ import {
   HafasResponse,
   ParsedCommon,
 } from 'types/HAFAS';
-import { Jny, StationBoardResponse } from 'types/HAFAS/StationBoard';
 import { parse } from 'date-fns';
 import { StationBoardEntry } from 'types/stationBoard';
+import {
+  StationBoardJny,
+  StationBoardResponse,
+} from 'types/HAFAS/StationBoard';
 import parseCommonArrival from '../helper/parseCommonArrival';
 import parseCommonDeparture from '../helper/parseCommonDeparture';
 import parseMessages from '../helper/parseMessages';
@@ -16,7 +19,7 @@ const isArrival = (a: CommonArrival | CommonDeparture): a is CommonArrival =>
   a.hasOwnProperty('aOutR');
 
 const parseStationBoardResponse = (
-  jny: Jny,
+  jny: StationBoardJny,
   common: ParsedCommon
 ): StationBoardEntry => {
   const date = parse(jny.date, 'yyyyMMdd', new Date());
