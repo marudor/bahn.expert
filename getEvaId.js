@@ -10,7 +10,7 @@ global.PROD = false;
 const search = require('./src/server/Search/OpenDataOffline').default;
 const searchTerm = process.argv[2];
 
-search(searchTerm).then(stations => {
+search(searchTerm).then((stations) => {
   if (!stations.length) {
     console.error(`${searchTerm} is not a valid station`);
   } else {

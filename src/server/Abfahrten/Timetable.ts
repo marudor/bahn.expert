@@ -325,12 +325,12 @@ export default class Timetable {
       train,
     };
   }
-  parseHafasMessage(mNode: xmljs.Element, trainNumber: string) {
+  async parseHafasMessage(mNode: xmljs.Element, trainNumber: string) {
     const id = getAttr(mNode, 'id');
 
     if (!id) return undefined;
 
-    const himMessage = getSingleHimMessageOfToday(id.substr(1));
+    const himMessage = await getSingleHimMessageOfToday(id.substr(1));
 
     if (!himMessage) return undefined;
     if (!himMessage.affectedProducts.some((p) => p.name.endsWith(trainNumber)))
@@ -355,7 +355,7 @@ export default class Timetable {
       message,
     };
   }
-  parseMessage(mNode: xmljs.Element, trainNumber: string) {
+  async parseMessage(mNode: xmljs.Element, trainNumber: string) {
     const value = getNumberAttr(mNode, 'c');
     const indexType = getAttr(mNode, 't');
 
@@ -383,7 +383,7 @@ export default class Timetable {
       message,
     };
   }
-  parseRealtimeS(sNode: xmljs.Element) {
+  async parseRealtimeS(sNode: xmljs.Element) {
     const rawId = getAttr(sNode, 'id');
 
     if (!rawId) return;
@@ -419,8 +419,11 @@ export default class Timetable {
       him: {},
     };
 
-    mArr
-      .map((m) => this.parseMessage(m, this.timetable[rawId].train.number))
+    const parsedMessages = await Promise.all(
+      mArr.map((m) => this.parseMessage(m, this.timetable[rawId].train.number))
+    );
+
+    parsedMessages
       .filter((Boolean as any) as ExcludesFalse)
       .sort((a, b) =>
         compareAsc(a.message.timestamp || 0, b.message.timestamp || 0)
@@ -543,19 +546,21 @@ export default class Timetable {
 
     if (!sArr) return;
 
-    sArr.forEach((s) => {
-      const realtime = this.parseRealtimeS(s);
+    await Promise.allSettled(
+      sArr.map(async (s) => {
+        const realtime = await this.parseRealtimeS(s);
 
-      if (!realtime) return;
-      const timetable = this.timetable[realtime.rawId];
+        if (!realtime) return;
+        const timetable = this.timetable[realtime.rawId];
 
-      if (!timetable) return;
-      this.realtimeIds.push(realtime.rawId);
-      this.addArrivalInfo(timetable, realtime.arrival);
-      this.addDepartureInfo(timetable, realtime.departure);
-      timetable.messages = realtime.messages;
-      timetable.ref = realtime.ref;
-    });
+        if (!timetable) return;
+        this.realtimeIds.push(realtime.rawId);
+        this.addArrivalInfo(timetable, realtime.arrival);
+        this.addDepartureInfo(timetable, realtime.departure);
+        timetable.messages = realtime.messages;
+        timetable.ref = realtime.ref;
+      })
+    );
   }
   getWings(
     node: null | xmljs.Element,
