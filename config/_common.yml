@@ -19,8 +19,8 @@ ingress:
 
 resources:
   requests:
-    memory: "256Mi"
-    cpu: "200m"
+    memory: '256Mi'
+    cpu: '200m'
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -44,11 +44,13 @@ baseEnv:
       secretKeyRef:
         name: bahnhofs-abfahrten-config
         key: wifi_url
+        optional: true
   - name: WIFI_USER
     valueFrom:
       secretKeyRef:
         name: bahnhofs-abfahrten-config
         key: wifi_user
+        optional: true
   - name: WIFI_PASS
     valueFrom:
       secretKeyRef:
@@ -89,3 +91,9 @@ baseEnv:
       secretKeyRef:
         name: bahnhofs-abfahrten-config
         key: business_hub_stop_places_key
+  - name: HIM_MAX_FETCH
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: him_max_fetch
+        optional: true
