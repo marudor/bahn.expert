@@ -19,6 +19,7 @@ export enum CacheDatabases {
   Lageplan,
   LocMatch,
   StationSearch,
+  HIMMessage,
 }
 const activeCaches = new Set();
 

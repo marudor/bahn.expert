@@ -1,4 +1,4 @@
-import KoaRouter from 'koa-router';
+import KoaRouter from '@koa/router';
 import rawStations from 'db-stations/data.json';
 
 // @ts-ignore

@@ -24,6 +24,9 @@ type KnownIdentifier =
   | Identifier<'RIL100'>
   | Identifier<'STADA'>;
 
+/**
+ * @tsoaModel
+ */
 interface Identifier<type extends string> {
   type: type;
   value: string;

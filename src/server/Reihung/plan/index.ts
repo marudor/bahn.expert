@@ -1,3 +1,4 @@
+import { logger } from 'server/logger';
 import { ParsedProduct } from 'types/HAFAS';
 import { PlannedSequence } from 'types/planReihung';
 import Axios from 'axios';
@@ -10,9 +11,11 @@ let planWRMap: {
 
 async function fetchPlanWR() {
   try {
+    logger.debug('Fetching planWR');
     planWRMap = (await Axios.get(planWRUrl)).data;
-  } catch {
-    // ignore
+    logger.debug('Fetched planWR');
+  } catch (e) {
+    logger.error(e, 'Fetching planWR failed');
   }
 }
 

@@ -1,5 +1,5 @@
 import { RegisterRoutes } from './routes';
-import KoaRouter from 'koa-router';
+import KoaRouter from '@koa/router';
 
 const router = new KoaRouter();
 

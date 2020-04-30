@@ -73,4 +73,4 @@ export interface DepartureJny extends CommonJny {
   stbStop: DepStbStop;
 }
 
-export type Jny = ArrivalJny | DepartureJny;
+export type StationBoardJny = ArrivalJny | DepartureJny;
