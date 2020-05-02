@@ -13,6 +13,7 @@ module.exports = {
     '<rootDir>/test/client/config.ts',
     '@testing-library/jest-dom/extend-expect',
   ],
+  modulePathIgnorePatterns: ['<rootDir>/dist', '<rootDir>/testDist'],
   testPathIgnorePatterns: ['/src/app/', '/test/server/', '/cypress/'],
   rootDir: '../..',
 };
