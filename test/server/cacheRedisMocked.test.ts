@@ -13,9 +13,13 @@ jest.mock('cache-manager', () => {
             simpleCache = {};
           }),
           exists: jest.fn((key) => Promise.resolve(key in simpleCache)),
+          mget: jest.fn((keys) =>
+            Promise.resolve(keys.map((k: string) => simpleCache[k]))
+          ),
         };
       },
     },
+    keys: jest.fn(() => Promise.resolve(Object.keys(simpleCache))),
     get: jest.fn((key) => Promise.resolve(simpleCache[key])),
     set: jest.fn((key, value) => {
       simpleCache[key] = value;
