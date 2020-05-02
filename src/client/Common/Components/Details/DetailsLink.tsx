@@ -7,11 +7,18 @@ interface Props {
   train: CommonProductInfo;
   stationId?: string;
   initialDeparture: number;
+  urlPrefix?: string;
 }
-const DetailsLink = ({ train, stationId, initialDeparture }: Props) => (
+const DetailsLink = ({
+  train,
+  stationId,
+  initialDeparture,
+  urlPrefix = '/',
+}: Props) => (
   <Link
+    data-testid="detailsLink"
     onClick={stopPropagation}
-    to={`/details/${train.type} ${
+    to={`${urlPrefix}details/${train.type} ${
       train.number
     }/${initialDeparture}${qs.stringify(
       {

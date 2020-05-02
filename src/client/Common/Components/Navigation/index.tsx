@@ -47,7 +47,7 @@ const Navigation = ({ children }: Props) => {
             </ListItem>
           </Link>
           <Link to="/regional">
-            <ListItem button>
+            <ListItem button data-testid="regional">
               <ListItemIcon>
                 <AlarmOnOutlinedIcon />
               </ListItemIcon>
