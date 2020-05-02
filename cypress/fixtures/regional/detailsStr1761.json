@@ -1,0 +1,736 @@
+{
+  "arrival": {
+    "scheduledTime": 1588443540000,
+    "time": 1588443540000,
+    "delay": 0
+  },
+  "departure": {
+    "scheduledTime": 1588440660000,
+    "time": 1588440660000,
+    "delay": 0
+  },
+  "duration": 2880000,
+  "train": {
+    "name": "STR 2",
+    "line": "2",
+    "admin": "kvvSTR",
+    "number": "1761",
+    "type": "STR"
+  },
+  "segmentStart": {
+    "title": "Knielingen Lassallestraße, Karlsruhe",
+    "id": "0361526"
+  },
+  "segmentDestination": {
+    "title": "Wolfartsweier Nord, Karlsruhe",
+    "id": "0720595"
+  },
+  "stops": [
+    {
+      "station": {
+        "id": "361526",
+        "title": "Knielingen Lassallestraße, Karlsruhe",
+        "coordinates": { "lng": 8.347024, "lat": 49.029424 }
+      },
+      "departure": {
+        "scheduledTime": 1588440660000,
+        "time": 1588440660000,
+        "delay": 0
+      },
+      "messages": [
+        {
+          "type": "A",
+          "code": "text.journeystop.product.or.direction.changes.stop.message",
+          "icoX": 5,
+          "txtN": "Verkehrt ab hier als STR 2 in Richtung 2 Wolfartsweier (Umleit.)"
+        }
+      ]
+    },
+    {
+      "station": {
+        "id": "372525",
+        "title": "Knielingen Siemensallee, Karlsruhe",
+        "coordinates": { "lng": 8.349981, "lat": 49.027725 }
+      },
+      "arrival": {
+        "scheduledTime": 1588440720000,
+        "time": 1588440720000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588440720000,
+        "time": 1588440720000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "372524",
+        "title": "Neureuter Straße, Karlsruhe",
+        "coordinates": { "lng": 8.357361, "lat": 49.023743 }
+      },
+      "arrival": {
+        "scheduledTime": 1588440780000,
+        "time": 1588440780000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588440780000,
+        "time": 1588440780000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "360523",
+        "title": "Feierabendweg, Karlsruhe",
+        "coordinates": { "lng": 8.360301, "lat": 49.022097 }
+      },
+      "arrival": {
+        "scheduledTime": 1588440840000,
+        "time": 1588440840000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588440840000,
+        "time": 1588440840000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "720543",
+        "title": "Hertzstraße, Karlsruhe",
+        "coordinates": { "lng": 8.365155, "lat": 49.020255 }
+      },
+      "arrival": {
+        "scheduledTime": 1588440900000,
+        "time": 1588440900000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588440900000,
+        "time": 1588440900000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "367521",
+        "title": "Kußmaulstraße, Karlsruhe",
+        "coordinates": { "lng": 8.369218, "lat": 49.016893 }
+      },
+      "arrival": {
+        "scheduledTime": 1588440960000,
+        "time": 1588440960000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588440960000,
+        "time": 1588440960000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "367101",
+        "title": "Städt. Klinikum/Moltkestraße, Karlsruhe",
+        "coordinates": { "lng": 8.374692, "lat": 49.015158 }
+      },
+      "arrival": {
+        "scheduledTime": 1588441020000,
+        "time": 1588441020000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588441020000,
+        "time": 1588441020000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "372041",
+        "title": "Yorckstraße, Karlsruhe",
+        "coordinates": { "lng": 8.375456, "lat": 49.010906 }
+      },
+      "arrival": {
+        "scheduledTime": 1588441140000,
+        "time": 1588441140000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588441140000,
+        "time": 1588441140000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "721433",
+        "title": "Schillerstraße, Karlsruhe",
+        "coordinates": { "lng": 8.379618, "lat": 49.009755 }
+      },
+      "arrival": {
+        "scheduledTime": 1588441200000,
+        "time": 1588441200000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588441200000,
+        "time": 1588441200000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "721441",
+        "title": "Sophienstraße, Karlsruhe",
+        "coordinates": { "lng": 8.379025, "lat": 49.007517 }
+      },
+      "arrival": {
+        "scheduledTime": 1588441260000,
+        "time": 1588441260000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588441260000,
+        "time": 1588441260000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "721672",
+        "title": "Weinbrennerplatz, Karlsruhe",
+        "coordinates": { "lng": 8.378666, "lat": 49.005387 }
+      },
+      "arrival": {
+        "scheduledTime": 1588441380000,
+        "time": 1588441380000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588441380000,
+        "time": 1588441380000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "364507",
+        "title": "Lessingstraße, Karlsruhe",
+        "coordinates": { "lng": 8.384643, "lat": 49.004317 }
+      },
+      "arrival": {
+        "scheduledTime": 1588441440000,
+        "time": 1588441440000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588441440000,
+        "time": 1588441440000,
+        "delay": 0
+      },
+      "messages": [
+        {
+          "type": "A",
+          "code": "text.journeystop.product.or.direction.changes.stop.message",
+          "icoX": 5,
+          "txtN": "Verkehrt ab hier als STR 2 in Richtung 2 Wolfartsweier ü. Z K M"
+        }
+      ]
+    },
+    {
+      "station": {
+        "id": "723254",
+        "title": "Arbeitsagentur, Karlsruhe",
+        "coordinates": { "lng": 8.386531, "lat": 49.003921 }
+      },
+      "arrival": {
+        "scheduledTime": 1588441500000,
+        "time": 1588441500000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588441500000,
+        "time": 1588441500000,
+        "delay": 0
+      },
+      "messages": [
+        {
+          "type": "A",
+          "code": "text.journeystop.product.or.direction.changes.stop.message",
+          "icoX": 5,
+          "txtN": "Verkehrt ab hier als STR 2 in Richtung 2 Wolfartsweier über Hbf"
+        }
+      ]
+    },
+    {
+      "station": {
+        "id": "723255",
+        "title": "ZKM, Karlsruhe",
+        "coordinates": { "lng": 8.386109, "lat": 48.999795 }
+      },
+      "arrival": {
+        "scheduledTime": 1588441560000,
+        "time": 1588441560000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588441560000,
+        "time": 1588441560000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "723960",
+        "title": "Welfenstraße, Karlsruhe",
+        "coordinates": { "lng": 8.384922, "lat": 48.995292 }
+      },
+      "arrival": {
+        "scheduledTime": 1588441680000,
+        "time": 1588441680000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588441680000,
+        "time": 1588441680000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "723862",
+        "title": "Barbarossaplatz, Karlsruhe",
+        "coordinates": { "lng": 8.389354, "lat": 48.994941 }
+      },
+      "arrival": {
+        "scheduledTime": 1588441740000,
+        "time": 1588441740000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588441740000,
+        "time": 1588441740000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "721347",
+        "title": "Ebertstraße, Karlsruhe",
+        "coordinates": { "lng": 8.395278, "lat": 48.994519 }
+      },
+      "arrival": {
+        "scheduledTime": 1588441800000,
+        "time": 1588441800000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588441800000,
+        "time": 1588441800000,
+        "delay": 0
+      },
+      "messages": [
+        {
+          "type": "A",
+          "code": "text.journeystop.product.or.direction.changes.stop.message",
+          "icoX": 5,
+          "txtN": "Verkehrt ab hier als STR 2 in Richtung 2 Wolfartsweier"
+        }
+      ]
+    },
+    {
+      "station": {
+        "id": "8079041",
+        "title": "Karlsruhe Bahnhofsvorplatz",
+        "coordinates": { "lng": 8.399583, "lat": 48.994348 }
+      },
+      "arrival": {
+        "scheduledTime": 1588441980000,
+        "time": 1588441980000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588441980000,
+        "time": 1588441980000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "723870",
+        "title": "Poststraße, Karlsruhe",
+        "coordinates": { "lng": 8.403979, "lat": 48.99522 }
+      },
+      "arrival": {
+        "scheduledTime": 1588442040000,
+        "time": 1588442040000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588442040000,
+        "time": 1588442040000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "379084",
+        "title": "Tivoli, Karlsruhe",
+        "coordinates": { "lng": 8.410424, "lat": 48.996595 }
+      },
+      "arrival": {
+        "scheduledTime": 1588442160000,
+        "time": 1588442160000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588442160000,
+        "time": 1588442160000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "361483",
+        "title": "Werderstraße, Karlsruhe",
+        "coordinates": { "lng": 8.410613, "lat": 49.000451 }
+      },
+      "arrival": {
+        "scheduledTime": 1588442220000,
+        "time": 1588442220000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588442220000,
+        "time": 1588442220000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "721759",
+        "title": "Rüppurrer Tor, Karlsruhe",
+        "coordinates": { "lng": 8.410424, "lat": 49.005036 }
+      },
+      "arrival": {
+        "scheduledTime": 1588442340000,
+        "time": 1588442340000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588442340000,
+        "time": 1588442340000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "364080",
+        "title": "Kronenplatz (Fritz-Erler-Str.), Karlsruhe",
+        "coordinates": { "lng": 8.410083, "lat": 49.008272 }
+      },
+      "arrival": {
+        "scheduledTime": 1588442460000,
+        "time": 1588442460000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588442460000,
+        "time": 1588442460000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "377803",
+        "title": "Durlacher Tor/KIT-Campus Süd, Karlsruhe",
+        "coordinates": { "lng": 8.418083, "lat": 49.008784 }
+      },
+      "arrival": {
+        "scheduledTime": 1588442580000,
+        "time": 1588442580000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588442580000,
+        "time": 1588442580000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "723616",
+        "title": "Gottesauer Platz/BGV, Karlsruhe",
+        "coordinates": { "lng": 8.424636, "lat": 49.00758 }
+      },
+      "arrival": {
+        "scheduledTime": 1588442640000,
+        "time": 1588442640000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588442640000,
+        "time": 1588442640000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "721736",
+        "title": "Tullastraße/Verkehrsbetriebe, Karlsruhe",
+        "coordinates": { "lng": 8.432493, "lat": 49.00607 }
+      },
+      "arrival": {
+        "scheduledTime": 1588442760000,
+        "time": 1588442760000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588442760000,
+        "time": 1588442760000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "366909",
+        "title": "Weinweg, Karlsruhe",
+        "coordinates": { "lng": 8.441563, "lat": 49.004371 }
+      },
+      "arrival": {
+        "scheduledTime": 1588442820000,
+        "time": 1588442820000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588442820000,
+        "time": 1588442820000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "364010",
+        "title": "Durlach Untermühlstraße, Karlsruhe",
+        "coordinates": { "lng": 8.455874, "lat": 49.001881 }
+      },
+      "arrival": {
+        "scheduledTime": 1588442940000,
+        "time": 1588442940000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588442940000,
+        "time": 1588442940000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "377561",
+        "title": "Durlach Auer Straße/Dr.Willmar Schwabe, Karlsruhe",
+        "coordinates": { "lng": 8.463677, "lat": 49.000371 }
+      },
+      "arrival": {
+        "scheduledTime": 1588443000000,
+        "time": 1588443000000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588443000000,
+        "time": 1588443000000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "364499",
+        "title": "Durlach Gritznerstraße, Karlsruhe",
+        "coordinates": { "lng": 8.463955, "lat": 48.999328 }
+      },
+      "arrival": {
+        "scheduledTime": 1588443060000,
+        "time": 1588443060000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588443060000,
+        "time": 1588443060000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "364497",
+        "title": "Durlach Killisfeldstraße, Karlsruhe",
+        "coordinates": { "lng": 8.462382, "lat": 48.997746 }
+      },
+      "arrival": {
+        "scheduledTime": 1588443120000,
+        "time": 1588443120000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588443120000,
+        "time": 1588443120000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "364495",
+        "title": "Durlach Ellmendinger Straße, Karlsruhe",
+        "coordinates": { "lng": 8.458391, "lat": 48.994105 }
+      },
+      "arrival": {
+        "scheduledTime": 1588443180000,
+        "time": 1588443180000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588443180000,
+        "time": 1588443180000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "364494",
+        "title": "Durlach Ostmarkstraße, Karlsruhe",
+        "coordinates": { "lng": 8.452449, "lat": 48.991166 }
+      },
+      "arrival": {
+        "scheduledTime": 1588443240000,
+        "time": 1588443240000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588443240000,
+        "time": 1588443240000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "364493",
+        "title": "Durlach Schlesier Straße West, Karlsruhe",
+        "coordinates": { "lng": 8.452161, "lat": 48.988604 }
+      },
+      "arrival": {
+        "scheduledTime": 1588443300000,
+        "time": 1588443300000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588443300000,
+        "time": 1588443300000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "364496",
+        "title": "Durlach Steiermärker Straße, Karlsruhe",
+        "coordinates": { "lng": 8.45582, "lat": 48.985862 }
+      },
+      "arrival": {
+        "scheduledTime": 1588443360000,
+        "time": 1588443360000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588443360000,
+        "time": 1588443360000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "720609",
+        "title": "Durlach Zündhütle, Karlsruhe",
+        "coordinates": { "lng": 8.460638, "lat": 48.982608 }
+      },
+      "arrival": {
+        "scheduledTime": 1588443480000,
+        "time": 1588443480000,
+        "delay": 0
+      },
+      "departure": {
+        "scheduledTime": 1588443480000,
+        "time": 1588443480000,
+        "delay": 0
+      }
+    },
+    {
+      "station": {
+        "id": "720595",
+        "title": "Wolfartsweier Nord, Karlsruhe",
+        "coordinates": { "lng": 8.458858, "lat": 48.979156 }
+      },
+      "arrival": {
+        "scheduledTime": 1588443540000,
+        "time": 1588443540000,
+        "delay": 0
+      }
+    }
+  ],
+  "finalDestination": "2 Wolfartsweier (Umleit.)",
+  "jid": "1|452099|0|80|2052020",
+  "messages": [
+    {
+      "type": "A",
+      "code": "Fl",
+      "prio": 560,
+      "icoX": 5,
+      "txtN": "Niederflurfahrzeug soweit verfügbar - keine Gewähr"
+    },
+    {
+      "type": "A",
+      "code": "text.journeystop.product.or.direction.changes.journey.message",
+      "icoX": 5,
+      "txtN": "Verkehrt ab Lessingstraße, Karlsruhe als STR 2 in Richtung 2 Wolfartsweier ü. Z K M"
+    },
+    {
+      "type": "A",
+      "code": "text.journeystop.product.or.direction.changes.journey.message",
+      "icoX": 5,
+      "txtN": "Verkehrt ab Arbeitsagentur, Karlsruhe als STR 2 in Richtung 2 Wolfartsweier über Hbf"
+    },
+    {
+      "type": "A",
+      "code": "text.journeystop.product.or.direction.changes.journey.message",
+      "icoX": 5,
+      "txtN": "Verkehrt ab Ebertstraße, Karlsruhe als STR 2 in Richtung 2 Wolfartsweier"
+    }
+  ],
+  "type": "JNY",
+  "currentStop": {
+    "station": {
+      "id": "721347",
+      "title": "Ebertstraße, Karlsruhe",
+      "coordinates": { "lng": 8.395278, "lat": 48.994519 }
+    },
+    "arrival": {
+      "scheduledTime": 1588441800000,
+      "time": 1588441800000,
+      "delay": 0
+    },
+    "departure": {
+      "scheduledTime": 1588441800000,
+      "time": 1588441800000,
+      "delay": 0
+    },
+    "messages": [
+      {
+        "type": "A",
+        "code": "text.journeystop.product.or.direction.changes.stop.message",
+        "icoX": 5,
+        "txtN": "Verkehrt ab hier als STR 2 in Richtung 2 Wolfartsweier"
+      }
+    ]
+  }
+}

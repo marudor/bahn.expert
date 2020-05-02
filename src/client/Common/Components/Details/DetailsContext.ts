@@ -5,4 +5,5 @@ import { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
 export default createContext<{
   details?: ParsedSearchOnTripResponse;
   error?: AxiosError;
+  urlPrefix?: string;
 }>({});
