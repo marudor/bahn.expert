@@ -1,4 +1,3 @@
-// @ƒlow
 const config = require('../.babelrc.server');
 
 require('@babel/register')({
@@ -13,6 +12,7 @@ const mostUsedNames = [
   'Frankfurt (Main) Hbf',
   'Karlsruhe Hbf',
   'Hannover Hbf',
+  'Braunschweig Hbf',
   'Hamburg Hbf',
   'Mannheim Hbf',
   'Berlin Hbf',
@@ -36,5 +36,7 @@ Promise.all(mostUsedNames.map((s) => search(s).then((s) => s[0]))).then(
         }))
       )
     );
+    // eslint-disable-next-line no-process-exit
+    process.exit(0);
   }
 );
