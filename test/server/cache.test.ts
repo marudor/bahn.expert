@@ -19,6 +19,24 @@ describe('Cache', () => {
       await cache.set('null', null);
       expect(await cache.get('null')).toBeNull();
     });
+
+    it('mget and get work the same', async () => {
+      await cache.set('m1', 1);
+      await cache.set('m2', {});
+      await cache.set('m3', null);
+      await cache.set('m4', undefined);
+
+      await expect(cache.get('m1')).resolves.toBe(1);
+      await expect(cache.get('m2')).resolves.toEqual({});
+      await expect(cache.get('m3')).resolves.toBeNull();
+      await expect(cache.get('m4')).resolves.toBeUndefined();
+      await expect(cache.mget(['m1', 'm2', 'm3', 'm4'])).resolves.toEqual([
+        1,
+        {},
+        null,
+        undefined,
+      ]);
+    });
   };
 
   describe('memory', () => {
