@@ -1,8 +1,10 @@
 import { ParsedProduct } from 'types/HAFAS';
 import { Route$Stop } from 'types/routing';
+import { useContext } from 'react';
 import cc from 'clsx';
 import CheckInLink from 'Common/Components/CheckInLink';
 import DetailMessages from '../Messages/Detail';
+import DetailsContext from './DetailsContext';
 import Messages from './Messages';
 import Platform from 'Common/Components/Platform';
 import Reihung from '../Reihung';
@@ -17,6 +19,7 @@ interface Props {
   isPast?: boolean;
 }
 const Stop = ({ stop, showWR, train, isPast }: Props) => {
+  const { urlPrefix } = useContext(DetailsContext);
   const classes = useStyles();
   const depOrArrival = stop.departure || stop.arrival;
   const platforms = stop.departure
@@ -32,7 +35,10 @@ const Stop = ({ stop, showWR, train, isPast }: Props) => {
     : {};
 
   return (
-    <div className={cc(classes.main, isPast && classes.past)}>
+    <div
+      data-testid={stop.station.id}
+      className={cc(classes.main, isPast && classes.past)}
+    >
       <span id={stop.station.id} className={classes.scrollMarker} />
       {stop.arrival && (
         <Time
@@ -52,6 +58,7 @@ const Stop = ({ stop, showWR, train, isPast }: Props) => {
         <StationLink
           className={classes.stationName}
           stationName={stop.station.title}
+          urlPrefix={urlPrefix}
         />
       </span>
       {train && (

@@ -14,6 +14,7 @@ interface Props {
   stationId?: string;
   initialDeparture?: string;
   currentStopId?: string;
+  urlPrefix?: string;
 }
 
 const Details = ({
@@ -21,6 +22,7 @@ const Details = ({
   initialDeparture,
   stationId,
   currentStopId,
+  urlPrefix,
 }: Props) => {
   const query = useQuery();
   const [details, setDetails] = useState<ParsedSearchOnTripResponse>();
@@ -66,6 +68,7 @@ const Details = ({
       value={{
         details,
         error,
+        urlPrefix,
       }}
     >
       <Header train={train} />

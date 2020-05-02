@@ -6,12 +6,15 @@ interface Props
   extends RouteComponentProps<{
     train: string;
     initialDeparture?: string;
-  }> {}
+  }> {
+  urlPrefix?: string;
+}
 
 const DetailsRoute = ({
   match: {
     params: { train, initialDeparture },
   },
+  urlPrefix,
 }: Props) => {
   const query = useQuery();
 
@@ -21,6 +24,7 @@ const DetailsRoute = ({
       stationId={query.station}
       initialDeparture={initialDeparture}
       currentStopId={query.stop}
+      urlPrefix={urlPrefix}
     />
   );
 };
