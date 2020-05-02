@@ -10,6 +10,7 @@ const redisSettings = process.env.REDIS_HOST
         ? Number.parseInt(process.env.REDIS_PORT, 10)
         : 6379,
       password: process.env.REDIS_PASSWORD,
+      dropBufferSupport: true,
     }
   : undefined;
 
@@ -20,8 +21,22 @@ export enum CacheDatabases {
   LocMatch,
   StationSearch,
   HIMMessage,
+  CouchSequence,
 }
 const activeCaches = new Set();
+
+function deserialize(raw: string | null) {
+  if (raw === null) return undefined;
+  if (raw === '__UNDEF__INED__') return undefined;
+
+  return JSON.parse(raw);
+}
+
+function serialize(raw: any) {
+  if (raw === undefined) return '__UNDEF__INED__';
+
+  return JSON.stringify(raw);
+}
 
 export function createNewCache<K extends string, V>(
   ttl: number,
@@ -30,6 +45,8 @@ export function createNewCache<K extends string, V>(
 ) {
   let baseCache: Cache;
   let existsFn: (key: string) => Promise<boolean>;
+  let keysFn: () => Promise<string[]>;
+  let mgetFn: (keys: K[]) => Promise<(string | null)[]>;
 
   if (useRedis) {
     baseCache = cacheManager.caching({
@@ -44,6 +61,13 @@ export function createNewCache<K extends string, V>(
     activeCaches.add(client);
 
     existsFn = client.exists.bind(client);
+    // @ts-ignore
+    keysFn = baseCache.keys.bind(client, '*');
+    mgetFn = async (keys) => {
+      const rawResult = await client.mget(keys);
+
+      return rawResult.map(JSON.parse);
+    };
     logger.info(`Creating redis cache! (${db})`);
   } else {
     baseCache = cacheManager.caching({
@@ -51,18 +75,33 @@ export function createNewCache<K extends string, V>(
       ttl,
     });
     existsFn = baseCache.get;
+    // @ts-ignore
+    keysFn = baseCache.keys;
+    mgetFn = (keys) => baseCache.store.mget!(...keys);
   }
 
   return {
+    exists(key: K): Promise<boolean> {
+      return existsFn(key);
+    },
+    async mget(keys: K[]): Promise<(V | undefined)[]> {
+      try {
+        const rawResult = await mgetFn(keys);
+
+        return rawResult.map(deserialize);
+      } catch (e) {
+        Sentry.captureException(e);
+
+        return [];
+      }
+    },
     async get(key: K): Promise<V | undefined> {
       try {
         const exists = await existsFn(key);
 
         if (!exists) return undefined;
 
-        const result = await baseCache.get(key).then((raw) => {
-          return JSON.parse(raw);
-        });
+        const result = await baseCache.get(key).then(deserialize);
 
         return result;
       } catch (e) {
@@ -73,11 +112,7 @@ export function createNewCache<K extends string, V>(
     },
     async set(key: K, value: V) {
       try {
-        if (value === undefined) {
-          return await baseCache.del(key);
-        }
-
-        return await baseCache.set(key, JSON.stringify(value), ttl);
+        return await baseCache.set(key, serialize(value), ttl);
       } catch (e) {
         Sentry.captureException(e);
       }
@@ -88,6 +123,13 @@ export function createNewCache<K extends string, V>(
       } catch (e) {
         Sentry.captureException(e);
       }
+    },
+    keys() {
+      return keysFn();
+    },
+    reset(): Promise<void> {
+      // @ts-ignore
+      return baseCache.reset();
     },
     store: baseCache.store,
     baseCache,

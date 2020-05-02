@@ -1,9 +1,14 @@
+import { CacheDatabases, createNewCache } from 'server/cache';
 import { format, parse } from 'date-fns';
+import { logger } from 'server/logger';
 import { utcToZonedTime } from 'date-fns-tz';
 import { wagenreihung } from 'server/Reihung';
 import axios from 'axios';
 
-let WRMap: Map<string, string[]> = new Map();
+export const WRCache = createNewCache<string, string[] | null>(
+  3 * 60 * 60,
+  CacheDatabases.CouchSequence
+);
 
 const formatDate = (date: number) =>
   format(utcToZonedTime(date, 'Europe/Berlin'), 'yyyyMMddHHmm');
@@ -15,26 +20,33 @@ export const getWRLink = (trainNumber: string, date: number) => {
 };
 
 async function fetchList() {
+  logger.debug('Fetching Couch Sequence');
   try {
     await axios.get(getWRLink('1', Date.now()));
   } catch (e) {
     const tryThese = e.response?.data?.tryThese;
 
-    const newWRMap: Map<string, string[]> = new Map();
-
     if (tryThese && Array.isArray(tryThese)) {
-      tryThese.forEach((line) => {
+      const WRMap = new Map<string, string[]>();
+
+      tryThese.forEach(async (line) => {
         const [, number, time] = line.split('/');
-        let entriesForNumber = newWRMap.get(number);
+        let entriesForNumber = WRMap.get(number);
 
         if (!entriesForNumber) {
           entriesForNumber = [];
         }
         entriesForNumber.push(time);
-        newWRMap.set(number, entriesForNumber);
+        entriesForNumber.sort();
+        WRMap.set(number, entriesForNumber);
       });
-      WRMap = newWRMap;
+      await WRCache.reset();
+
+      for (const [number, entries] of WRMap.entries()) {
+        WRCache.set(number, entries);
+      }
     }
+    logger.debug('Fetched Couch Sequence');
   }
 }
 
@@ -44,10 +56,9 @@ if (process.env.NODE_ENV !== 'test') {
   setInterval(fetchList, 2 * 60 * 1000 * 60);
 }
 
-export const hasWR = (trainNumber?: string, date?: number) => {
-  if (WRMap.size <= 0) return undefined;
+export const hasWR = async (trainNumber?: string, date?: number) => {
   if (!trainNumber) return false;
-  const WRDates = WRMap.get(trainNumber);
+  const WRDates = await WRCache.get(trainNumber);
 
   return date ? WRDates?.includes(formatDate(date)) : Boolean(WRDates);
 };
@@ -57,9 +68,15 @@ export const hasWR = (trainNumber?: string, date?: number) => {
  * @param TZNumber only the number
  */
 export const WRForTZ = async (TZNumber: string) => {
-  for (const [number, times] of WRMap.entries()) {
+  const keys = await WRCache.keys();
+  const timesArray = await WRCache.mget(keys);
+
+  for (let i = 0; i < keys.length; i += 1) {
+    const number = keys[i];
+    const times = timesArray[i];
+
     // eslint-disable-next-line no-continue
-    if (number.length > 4) continue;
+    if (number.length > 4 || !times) continue;
     const parsedNumber = Number.parseInt(number, 10);
 
     // eslint-disable-next-line no-continue
@@ -85,7 +102,7 @@ export const WRForTZ = async (TZNumber: string) => {
 };
 
 export const WRForNumber = async (trainNumber: string) => {
-  const WRDates = WRMap.get(trainNumber);
+  const WRDates = await WRCache.get(trainNumber);
 
   if (!WRDates) return;
 

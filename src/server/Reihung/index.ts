@@ -10,7 +10,7 @@ import {
   WagenreihungStation,
 } from 'types/reihung';
 import { getAbfahrten } from '../Abfahrten';
-import { getWRLink, hasWR } from 'server/Reihung/hasWR';
+import { getWRLink, hasWR, WRCache } from 'server/Reihung/hasWR';
 import { groupBy, maxBy, minBy } from 'lodash';
 import { isRedesignByTZ, isRedesignByUIC } from 'server/Reihung/tzInfo';
 import axios from 'axios';
@@ -302,7 +302,7 @@ function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
 
 // https://www.apps-bahn.de/wr/wagenreihung/1.0/6/201802021930
 export async function wagenreihung(trainNumber: string, date: number) {
-  if (hasWR(trainNumber, date) === false) {
+  if ((await hasWR(trainNumber, date)) === false) {
     throw {
       response: {
         status: 404,
@@ -316,6 +316,11 @@ export async function wagenreihung(trainNumber: string, date: number) {
   try {
     info = (await axios.get(getWRLink(trainNumber, date))).data;
   } catch (e) {
+    if (e.response?.data?.tryThese) {
+      if (!(await WRCache.exists(trainNumber))) {
+        await WRCache.set(trainNumber, null);
+      }
+    }
     throw {
       response: {
         status: 404,
