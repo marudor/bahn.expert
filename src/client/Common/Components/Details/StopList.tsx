@@ -74,19 +74,6 @@ const StopList = () => {
     <main className={classes.wrap}>
       {/* <Messages messages={details.messages} /> */}
       {detailsStops}
-      {/* {details.stops.map((s) => (
-        <Stop
-          train={details.train}
-          stop={s}
-          key={s.station.id}
-          showWR={
-            details.currentStop &&
-            s.station.id === details.currentStop.station.id
-              ? details.train
-              : undefined
-          }
-        />
-      ))} */}
     </main>
   );
 };

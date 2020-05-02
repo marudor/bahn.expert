@@ -1,4 +1,5 @@
 import { Abfahrt } from 'types/iris';
+import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import Auslastung from 'Abfahrten/Components/Abfahrt/Auslastung';
 import CheckInLink from 'Common/Components/CheckInLink';
 import DetailsLink from 'Common/Components/Details/DetailsLink';
@@ -12,6 +13,7 @@ interface Props {
 }
 
 const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
+  const urlPrefix = AbfahrtenConfigContainer.useContainer().urlPrefix;
   const classes = useStyles();
 
   return (
@@ -31,6 +33,7 @@ const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
             station={abfahrt.currentStation}
           />
           <DetailsLink
+            urlPrefix={urlPrefix}
             train={abfahrt.train}
             stationId={abfahrt.currentStation.id}
             initialDeparture={abfahrt.initialDeparture}
