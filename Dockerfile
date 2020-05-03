@@ -39,7 +39,7 @@ ENV TZ=Europe/Berlin
 USER node
 WORKDIR /app
 COPY docs /app/docs
-COPY public /app/public/
 COPY --from=cleanedDeps /app/node_modules/ /app/node_modules/
 COPY --from=build /app/dist/ /app/dist/
+COPY public/ /app/dist/client/
 CMD [ "node", "dist/server/server/index.js" ]
