@@ -37,9 +37,6 @@ jobs:
       - name: jest
         run: |
           yarn test:jest
-      - name: depCheck
-        run: |
-          yarn depCheck
       - name: lint
         run: |
           yarn lint
