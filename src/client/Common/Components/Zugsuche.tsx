@@ -6,7 +6,6 @@ import {
   FormControl,
 } from '@material-ui/core';
 import { DatePicker } from '@material-ui/pickers';
-import { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 import {
   ReactElement,
   SyntheticEvent,
@@ -25,6 +24,7 @@ import TrainIcon from '@material-ui/icons/Train';
 import useStorage from 'shared/hooks/useStorage';
 import useStyles from './Zugsuche.style';
 import ZugsucheAutocomplete from 'Common/Components/ZugsucheAutocomplete';
+import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 
 interface Props {
   children?: (toggle: (e: SyntheticEvent) => void) => ReactElement;

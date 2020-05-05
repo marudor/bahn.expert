@@ -1,6 +1,6 @@
-import { AP, WifiData } from 'types/Wifi';
 import { logger } from 'server/logger';
 import axios from 'axios';
+import type { AP, WifiData } from 'types/Wifi';
 
 interface APWithTrain extends AP {
   trainTimestamp: number;

@@ -1,9 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Fahrzeuggruppe } from 'types/reihung';
 import { useMemo } from 'react';
 import BRInfo from './BRInfo';
 import Fahrzeug, { InheritedProps } from './Fahrzeug';
 import useStyles from './Gruppe.style';
+import type { Fahrzeuggruppe } from 'types/reihung';
 
 interface Props extends InheritedProps {
   gruppe: Fahrzeuggruppe;

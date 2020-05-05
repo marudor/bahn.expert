@@ -1,5 +1,4 @@
 import { BrowserRouter } from 'react-router-dom';
-import { ComponentType } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { hydrate, render } from 'react-dom';
 import { loadableReady } from '@loadable/component';
@@ -8,6 +7,7 @@ import { ThemeProvider } from 'Common/container/ThemeContainer';
 import axios from 'axios';
 import Storage from 'Common/Storage';
 import ThemeWrap from './ThemeWrap';
+import type { ComponentType } from 'react';
 // 15s timeout
 axios.defaults.timeout = 15000;
 

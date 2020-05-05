@@ -1,6 +1,6 @@
-import { Context } from 'koa';
-import { CookieChangeOptions } from 'universal-cookie';
 import Storage from 'Common/Storage';
+import type { Context } from 'koa';
+import type { CookieChangeOptions } from 'universal-cookie';
 
 declare module 'koa' {
   interface Request {

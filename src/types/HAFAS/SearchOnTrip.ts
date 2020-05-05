@@ -1,6 +1,6 @@
-import { Common } from '.';
-import { OutConL, SotCtxt } from './TripSearch';
-import { Route$JourneySegmentTrain, Route$Stop } from 'types/routing';
+import type { Common } from '.';
+import type { OutConL, SotCtxt } from './TripSearch';
+import type { Route$JourneySegmentTrain, Route$Stop } from 'types/routing';
 
 export interface SearchOnTripResponse {
   common: Common;

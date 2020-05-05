@@ -1,4 +1,3 @@
-import { Abfahrt } from 'types/iris';
 import { useCallback, useMemo } from 'react';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import cc from 'clsx';
@@ -9,6 +8,7 @@ import Paper from '@material-ui/core/Paper';
 import SelectedDetailContainer from 'Abfahrten/container/SelectedDetailContainer';
 import Start from './Start';
 import useStyles from './BaseAbfahrt.style';
+import type { Abfahrt } from 'types/iris';
 
 const LazyReihung = loadable(() => import('Common/Components/Reihung'));
 

@@ -1,8 +1,8 @@
 import { isHbf } from './index';
 import { ReactNode, useMemo } from 'react';
-import { Train } from 'types/iris';
 import cc from 'clsx';
 import useStyles from './index.style';
+import type { Train } from 'types/iris';
 
 interface Props {
   stops: Train[];

@@ -3,7 +3,6 @@
  ** This algorithm is heavily inspired by https://github.com/derf/Travel-Status-DE-IRIS
  ** derf did awesome work reverse engineering the XML stuff!
  */
-import { AbfahrtenResult } from 'types/iris';
 import {
   addHours,
   addMinutes,
@@ -16,7 +15,6 @@ import {
   subHours,
   subMinutes,
 } from 'date-fns';
-import { AxiosInstance } from 'axios';
 import { CacheDatabases, createNewCache } from 'server/cache';
 import { calculateVia, getAttr, getNumberAttr, parseTs } from './helper';
 import { diffArrays } from 'diff';
@@ -27,6 +25,8 @@ import messageLookup, {
   supersededMessages,
 } from './messageLookup';
 import xmljs, { Element } from 'libxmljs2';
+import type { AbfahrtenResult } from 'types/iris';
+import type { AxiosInstance } from 'axios';
 
 interface ArDp {
   platform?: string;

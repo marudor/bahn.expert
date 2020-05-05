@@ -1,9 +1,9 @@
 /* eslint no-nested-ternary: 0 */
 import * as React from 'react';
-import { Abfahrt } from 'types/iris';
 import cc from 'clsx';
 import Time from 'Common/Components/Time';
 import useStyles from './Times.style';
+import type { Abfahrt } from 'types/iris';
 
 interface Props {
   abfahrt: Abfahrt;

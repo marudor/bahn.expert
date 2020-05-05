@@ -1,7 +1,7 @@
 import { ComponentType, ReactNode, useCallback, useState } from 'react';
 import { createContainer } from 'unstated-next';
-import { Station } from 'types/station';
 import useStorage from 'shared/hooks/useStorage';
+import type { Station } from 'types/station';
 
 interface Favs {
   [key: string]: Station;

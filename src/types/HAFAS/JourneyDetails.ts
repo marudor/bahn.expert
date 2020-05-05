@@ -1,4 +1,4 @@
-import {
+import type {
   Common,
   CommonStopInfo,
   Journey,
@@ -6,7 +6,7 @@ import {
   ParsedProduct,
   RemL,
 } from '.';
-import { Route$Auslastung, Route$Stop } from 'types/routing';
+import type { Route$Auslastung, Route$Stop } from 'types/routing';
 
 export interface JourneyDetailsResponse {
   common: Common;

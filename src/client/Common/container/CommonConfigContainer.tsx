@@ -1,8 +1,8 @@
-import { CommonConfig } from 'Common/config';
 import { createContainer } from 'unstated-next';
 import { defaultCommonConfig } from 'client/util';
 import { ReactNode, useCallback, useState } from 'react';
 import useStorage from 'shared/hooks/useStorage';
+import type { CommonConfig } from 'Common/config';
 
 const configCookieName = 'commonConfig';
 

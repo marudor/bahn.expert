@@ -1,8 +1,8 @@
 import { compareDesc } from 'date-fns';
-import { Message } from 'types/iris';
 import HimIrisMessage from 'Common/Components/Messages/HimIrisMessage';
 import IrisMessage from 'Common/Components/Messages/IrisMessage';
 import useStyles from './index.style';
+import type { Message } from 'types/iris';
 
 interface Props {
   messages: Message[];

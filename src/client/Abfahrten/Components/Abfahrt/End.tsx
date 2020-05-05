@@ -1,7 +1,7 @@
-import { Abfahrt } from 'types/iris';
 import Platform from 'Common/Components/Platform';
 import Times from './Times';
 import useStyles from './End.style';
+import type { Abfahrt } from 'types/iris';
 
 interface Props {
   abfahrt: Abfahrt;

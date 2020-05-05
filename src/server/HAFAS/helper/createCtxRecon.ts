@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
-import { RemL } from 'types/HAFAS';
-import {
+import type { RemL } from 'types/HAFAS';
+import type {
   Route$ValidArrivalStop,
   Route$ValidDepartureStop,
 } from 'types/HAFAS/JourneyDetails';

@@ -1,7 +1,7 @@
-import { Abfahrt } from 'types/iris';
 import cc from 'clsx';
 import Info from './Info';
 import useStyles from './Mid.style';
+import type { Abfahrt } from 'types/iris';
 
 interface Props {
   abfahrt: Abfahrt;

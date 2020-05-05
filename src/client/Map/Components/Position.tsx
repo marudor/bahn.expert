@@ -1,7 +1,7 @@
 import { Marker, Tooltip } from 'react-leaflet';
-import { SingleParsedJourneyGeoPos } from 'types/HAFAS/JourneyGeoPos';
 import { useCallback } from 'react';
 import MapContainer from 'client/Map/container/MapContainer';
+import type { SingleParsedJourneyGeoPos } from 'types/HAFAS/JourneyGeoPos';
 
 interface Props {
   journey: SingleParsedJourneyGeoPos;

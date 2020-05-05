@@ -1,11 +1,14 @@
-import {
+import makeRequest from './Request';
+import type {
   AllowedHafasProfile,
   HafasResponse,
   HafasStation,
   ParsedCommon,
 } from 'types/HAFAS';
-import { LocGeoPosRequest, LocGeoPosResponse } from 'types/HAFAS/LocGeoPos';
-import makeRequest from './Request';
+import type {
+  LocGeoPosRequest,
+  LocGeoPosResponse,
+} from 'types/HAFAS/LocGeoPos';
 
 const parseLocGeoPos = (
   _: HafasResponse<LocGeoPosResponse>,

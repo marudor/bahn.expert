@@ -1,5 +1,10 @@
-import { CommonStopInfo, HafasStation, ParsedProduct, RemL } from './HAFAS';
-import { Route$Stop } from 'types/routing';
+import type {
+  CommonStopInfo,
+  HafasStation,
+  ParsedProduct,
+  RemL,
+} from './HAFAS';
+import type { Route$Stop } from 'types/routing';
 
 interface CommonStationBoardEntry {
   train: ParsedProduct;

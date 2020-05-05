@@ -1,4 +1,4 @@
-import { JourneyFilter } from 'types/HAFAS';
+import type { JourneyFilter } from 'types/HAFAS';
 
 export interface JourneyGraphRequestOptions {
   /**

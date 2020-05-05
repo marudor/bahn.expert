@@ -1,4 +1,4 @@
-import { Common } from '.';
+import type { Common } from '.';
 
 export interface LocGeoPosRequest {
   req: {

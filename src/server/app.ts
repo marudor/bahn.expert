@@ -1,7 +1,5 @@
 import * as Sentry from '@sentry/node';
 import { middlewares } from './logger';
-import { Server as NetServer } from 'net';
-import { Server } from 'https';
 import axios from 'axios';
 import createAdmin from './admin';
 import createDocsServer from './docsServer';
@@ -11,6 +9,8 @@ import KoaBodyparser from 'koa-bodyparser';
 import koaStatic from 'koa-static';
 import path from 'path';
 import storageMiddleware from './middleware/storageMiddleware';
+import type { Server as NetServer } from 'net';
+import type { Server } from 'https';
 
 function hotHelper(getMiddleware: () => Middleware) {
   if (process.env.NODE_ENV === 'production') {

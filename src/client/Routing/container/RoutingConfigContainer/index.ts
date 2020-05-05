@@ -1,8 +1,9 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { createContainer } from 'unstated-next';
-import { Station } from 'types/station';
-import { SyntheticEvent, useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import useStorage from 'shared/hooks/useStorage';
+import type { Station } from 'types/station';
+import type { SyntheticEvent } from 'react';
 
 export interface RoutingSettings {
   maxChanges: string;

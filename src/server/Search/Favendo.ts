@@ -1,5 +1,5 @@
-import { Coordinates, FavendoStation, Station } from 'types/station';
 import axios from 'axios';
+import type { Coordinates, FavendoStation, Station } from 'types/station';
 
 function encodeSearchTerm(term: string) {
   return term

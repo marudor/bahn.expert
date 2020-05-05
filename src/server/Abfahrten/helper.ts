@@ -1,8 +1,8 @@
-import { Element } from 'libxmljs2';
 import { parse } from 'date-fns';
-import { Train } from 'types/iris';
 import { zonedTimeToUtc } from 'date-fns-tz';
 import Axios from 'axios';
+import type { Element } from 'libxmljs2';
+import type { Train } from 'types/iris';
 
 export const noncdAxios = Axios.create({
   baseURL: 'https://iris.noncd.db.de/iris-tts/timetable',

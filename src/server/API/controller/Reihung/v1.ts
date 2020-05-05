@@ -1,8 +1,8 @@
 import { Controller, Get, Hidden, Route, SuccessResponse, Tags } from 'tsoa';
-import { Formation, WagenreihungStation } from 'types/reihung';
 import { wagenreihung, wagenreihungStation } from 'server/Reihung';
 import { WRForNumber, WRForTZ } from 'server/Reihung/hasWR';
 import TrainNames from 'server/Reihung/TrainNames';
+import type { Formation, WagenreihungStation } from 'types/reihung';
 
 @Route('/reihung/v1')
 export class ReihungControllerV1 extends Controller {

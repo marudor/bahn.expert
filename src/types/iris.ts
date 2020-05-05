@@ -1,5 +1,5 @@
-import { CommonProductInfo, CommonStopInfo } from 'types/HAFAS';
-import { Station } from 'types/station';
+import type { CommonProductInfo, CommonStopInfo } from 'types/HAFAS';
+import type { Station } from 'types/station';
 
 export interface WingInfo {
   station: {

@@ -1,5 +1,5 @@
-import { MsgL, ParsedCommon, RemL } from 'types/HAFAS';
 import { uniqBy } from 'lodash';
+import type { MsgL, ParsedCommon, RemL } from 'types/HAFAS';
 
 export default (
   msgL: undefined | MsgL[],

@@ -1,4 +1,4 @@
-import { TcocL, TrnCmpSX } from 'types/HAFAS';
+import type { TcocL, TrnCmpSX } from 'types/HAFAS';
 
 export default (dTrnCmpSX?: TrnCmpSX, tcocL?: TcocL[]) => {
   if (!tcocL || !dTrnCmpSX || !dTrnCmpSX.tcocX) return;

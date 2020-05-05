@@ -1,5 +1,3 @@
-import { ParsedProduct } from 'types/HAFAS';
-import { Route$Stop } from 'types/routing';
 import { useContext } from 'react';
 import cc from 'clsx';
 import CheckInLink from 'Common/Components/CheckInLink';
@@ -11,6 +9,8 @@ import Reihung from '../Reihung';
 import StationLink from 'Common/Components/StationLink';
 import Time from 'Common/Components/Time';
 import useStyles from './Stop.style';
+import type { ParsedProduct } from 'types/HAFAS';
+import type { Route$Stop } from 'types/routing';
 
 interface Props {
   stop: Route$Stop;

@@ -1,8 +1,8 @@
-import { AbfahrtenResult, WingDefinition } from 'types/iris';
 import { Controller, Get, Query, Route, Tags } from 'tsoa';
 import { getAbfahrten } from 'server/Abfahrten';
 import { noncdAxios, openDataAxios } from 'server/Abfahrten/helper';
 import wingInfo from 'server/Abfahrten/wings';
+import type { AbfahrtenResult, WingDefinition } from 'types/iris';
 
 @Route('/iris/v1')
 export class IrisController extends Controller {

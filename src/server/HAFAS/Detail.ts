@@ -2,14 +2,14 @@ import { AllowedHafasProfile } from 'types/HAFAS';
 import { getAbfahrten } from 'server/Abfahrten';
 import { getPlannedSequence } from 'server/Reihung/plan';
 import { logger } from 'server/logger';
-import { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
-import { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
-import { Route$JourneySegmentTrain } from 'types/routing';
 import { subMinutes } from 'date-fns';
 import createCtxRecon from 'server/HAFAS/helper/createCtxRecon';
 import JourneyDetails from 'server/HAFAS/JourneyDetails';
 import JourneyMatch from 'server/HAFAS/JourneyMatch';
 import searchOnTrip from './SearchOnTrip';
+import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
+import type { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
+import type { Route$JourneySegmentTrain } from 'types/routing';
 
 function calculateCurrentStation(
   segment: ParsedSearchOnTripResponse,
