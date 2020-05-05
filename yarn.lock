@@ -3131,7 +3131,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/rimraf@npm:^3.0.0":
+"@types/rimraf@npm:3.0.0, @types/rimraf@npm:^3.0.0":
   version: 3.0.0
   resolution: "@types/rimraf@npm:3.0.0"
   dependencies:
@@ -4649,6 +4649,7 @@ __metadata:
     supertest: ^4.0.2
     terser-webpack-plugin: ^3.0.0
     tsoa: ^3.0.8
+    types: "workspace:*"
     typescript: ^3.8.3
     universal-cookie: ^4.0.3
     unstated-next: ^1.1.0
@@ -16200,6 +16201,17 @@ fsevents@^1.2.7:
   checksum: 2/c9ef0176aaf32593514c31e5c6edc1db970847aff6e1f0a0570a6ac0cc996335792f394c2fcec59cc76691d22a01888ea073a2f3c6930cfcf7c519addf4e2ad7
   languageName: node
   linkType: hard
+
+"types@workspace:*, types@workspace:packages/types":
+  version: 0.0.0-use.local
+  resolution: "types@workspace:packages/types"
+  dependencies:
+    "@babel/cli": ^7.8.4
+    "@types/rimraf": 3.0.0
+    npm-run-all: ^4.1.5
+    rimraf: ^3.0.2
+  languageName: unknown
+  linkType: soft
 
 "typescript-formatter@npm:^7.2.2":
   version: 7.2.2

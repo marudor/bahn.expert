@@ -26,7 +26,6 @@
       "Common/*": ["client/Common/*"],
       "Test/*": ["../test/*"],
       "testHelper": ["../test/testHelper"],
-      "types/*": ["types/*"],
       "Regional/*": ["client/Regional/*"]
     },
     "types": ["jest", "@testing-library/jest-dom"],

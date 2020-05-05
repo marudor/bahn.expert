@@ -6,13 +6,19 @@
   "engines": {
     "node": "^14.0.0"
   },
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "engineStrict": true,
   "scripts": {
+    "all:clean": "yarn workspaces foreach -pt run build:clean",
+    "all:build": "yarn workspaces foreach -pt run build",
+    "build:clean": "rimraf dist && rimraf testDist && mkdir dist && mkdir testDist",
     "build:client": "node scripts/buildClient",
     "build:client:ci": "node scripts/buildClient sendStats",
     "build:server": "node scripts/buildServer",
-    "build": "npm run cleanup && run-p build:client build:server",
-    "cleanup": "rimraf dist && rimraf testDist && mkdir dist && mkdir testDist",
+    "build": "run-p build:client build:server",
     "dev": "npm run start",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src test scripts cypress",
     "start": "node devIndex.js",
@@ -195,6 +201,7 @@
     "react-router-config": "^5.1.1",
     "react-router-dom": "^5.1.2",
     "tsoa": "^3.0.8",
+    "types": "workspace:*",
     "universal-cookie": "^4.0.3",
     "unstated-next": "^1.1.0"
   },

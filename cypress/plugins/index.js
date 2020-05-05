@@ -30,6 +30,9 @@ module.exports = (on, config) => {
               use: [
                 {
                   loader: 'babel-loader',
+                  options: {
+                    rootMode: 'upward',
+                  },
                 },
               ],
             },
