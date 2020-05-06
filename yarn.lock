@@ -2655,6 +2655,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/eslint@npm:6.8.0":
+  version: 6.8.0
+  resolution: "@types/eslint@npm:6.8.0"
+  dependencies:
+    "@types/estree": "*"
+    "@types/json-schema": "*"
+  checksum: 2/c3a3db5e5427380bf066230e8138b28bf6999aea23c2967732aca46a63d3d8f2b2ecb36938ee823951cf72bb91225074ec6620c8fef9c92bce20eb9d2059ecb9
+  languageName: node
+  linkType: hard
+
 "@types/estree@npm:*":
   version: 0.0.44
   resolution: "@types/estree@npm:0.0.44"
@@ -2784,7 +2794,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/json-schema@npm:^7.0.3":
+"@types/json-schema@npm:*, @types/json-schema@npm:^7.0.3":
   version: 7.0.4
   resolution: "@types/json-schema@npm:7.0.4"
   checksum: 2/5094037431e4b29d5cc9d6938ea596d1145cc46d305d8d302a477a54d0a7a83ba4629abbf52fcabc3ffdb31cf94647bc366a7bcc544770cbb80212d903018e2b
@@ -15783,6 +15793,15 @@ fsevents@^1.2.7:
   checksum: 2/68294d10066726cbced152aeb8a39cf9fd199199c62afb39290b824f613090f2535fc6acbad7d78f1f34cf00f4f00d42fa14f02d6262b910a7c9e2db2ecfa388
   languageName: node
   linkType: hard
+
+"test-helper@workspace:packages/test-helper":
+  version: 0.0.0-use.local
+  resolution: "test-helper@workspace:packages/test-helper"
+  dependencies:
+    "@types/eslint": 6.8.0
+    eslint: ^6.8.0
+  languageName: unknown
+  linkType: soft
 
 "text-extensions@npm:^1.0.0":
   version: 1.9.0

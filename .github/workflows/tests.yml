@@ -39,7 +39,7 @@ jobs:
           yarn test:jest
       - name: lint
         run: |
-          yarn lint
+          yarn all:lint
       - name: types
         run: |
           yarn test:ts

@@ -1,0 +1,14 @@
+{
+  "name": "test-helper",
+  "version": "1.0.0",
+  "author": {
+    "name": "marudor"
+  },
+  "scripts": {
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx ."
+  },
+  "devDependencies": {
+    "@types/eslint": "6.8.0",
+    "eslint": "^6.8.0"
+  }
+}
