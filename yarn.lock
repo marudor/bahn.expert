@@ -14688,6 +14688,18 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"shared@workspace:packages/shared":
+  version: 0.0.0-use.local
+  resolution: "shared@workspace:packages/shared"
+  dependencies:
+    "@babel/cli": ^7.8.4
+    "@types/rimraf": 3.0.0
+    npm-run-all: ^4.1.5
+    rimraf: ^3.0.2
+    types: "workspace:*"
+  languageName: unknown
+  linkType: soft
+
 "shebang-command@npm:^1.2.0":
   version: 1.2.0
   resolution: "shebang-command@npm:1.2.0"
