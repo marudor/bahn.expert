@@ -16,7 +16,6 @@ const getBabelConfig = (type) => {
     ? {
         extensions: ['.js', '.jsx', '.web.ts', '.ts', '.tsx'],
         alias: {
-          testHelper: './test/testHelper',
           classnames: 'clsx',
         },
         resolvePath: (sourcePath, currentFile, opts) => {

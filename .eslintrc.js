@@ -23,5 +23,14 @@ module.exports = {
       files: ['**/*.ts', '**/*.tsx'],
       extends: ['marudor/typescript'],
     },
+    {
+      files: ['**/__tests__/**'],
+      globals: {
+        nock: true,
+      },
+      env: {
+        jest: true,
+      },
+    },
   ],
 };
