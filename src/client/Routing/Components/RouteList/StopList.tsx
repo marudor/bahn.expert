@@ -1,5 +1,5 @@
-import { Route$Stop } from 'types/routing';
 import Stop from 'Common/Components/Details/Stop';
+import type { Route$Stop } from 'types/routing';
 
 interface Props {
   stops?: Route$Stop[];

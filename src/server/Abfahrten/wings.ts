@@ -1,7 +1,7 @@
-import { AxiosInstance } from 'axios';
 import { getAttr, getBoolAttr, noncdAxios, parseTs } from './helper';
-import { WingDefinition, WingInfo } from 'types/iris';
 import xmljs, { Element } from 'libxmljs2';
+import type { AxiosInstance } from 'axios';
+import type { WingDefinition, WingInfo } from 'types/iris';
 
 function parseNode(node: null | xmljs.Element): WingInfo | undefined {
   if (!node) return;

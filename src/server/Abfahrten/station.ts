@@ -1,9 +1,9 @@
 /* eslint no-param-reassign: 0, no-await-in-loop: 0 */
-import { AxiosInstance } from 'axios';
 import { CacheDatabases, createNewCache } from 'server/cache';
-import { IrisStationWithRelated } from 'types/station';
 import { noncdAxios } from './helper';
 import xmljs, { Element } from 'libxmljs2';
+import type { AxiosInstance } from 'axios';
+import type { IrisStationWithRelated } from 'types/station';
 
 export interface Station {
   name: string;

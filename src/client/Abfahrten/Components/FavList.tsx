@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ReactNode, useEffect, useMemo, useState } from 'react';
 import { Redirect, StaticRouterContext } from 'react-router';
-import { Station } from 'types/station';
 import AbfahrtenContainer, {
   AbfahrtenError,
 } from 'Abfahrten/container/AbfahrtenContainer';
@@ -11,6 +10,7 @@ import HeaderTagContainer from 'Common/container/HeaderTagContainer';
 import MostUsed from './MostUsed';
 import useStyles from './FavList.style';
 import Zugsuche from 'Common/Components/Zugsuche';
+import type { Station } from 'types/station';
 
 function getErrorText(
   error: AbfahrtenError,
@@ -56,7 +56,7 @@ const FavList = ({ staticContext, children }: Props) => {
   const classes = useStyles();
   const { resetTitleAndDescription } = HeaderTagContainer.useContainer();
 
-  useEffect(resetTitleAndDescription, []);
+  useEffect(resetTitleAndDescription, [resetTitleAndDescription]);
 
   return (
     <main className={classes.main}>

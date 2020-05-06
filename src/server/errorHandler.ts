@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/node';
-import { Context } from 'koa';
+import type { Context } from 'koa';
 
 const handledHafasError = ['H9380', 'NO_MATCH'];
 

@@ -1,5 +1,5 @@
 import { addDays, isBefore } from 'date-fns';
-import { ParsedProduct, TrnCmpSX } from 'types/HAFAS';
+import type { ParsedProduct, TrnCmpSX } from 'types/HAFAS';
 
 const allowdTypes = ['ICE', 'IC', 'TGV', 'EC', 'ECE', 'RJ', 'D'];
 

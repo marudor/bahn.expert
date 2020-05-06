@@ -1,14 +1,18 @@
-import { AllowedHafasProfile, HafasResponse, ParsedCommon } from 'types/HAFAS';
-import {
-  JourneyDetailsRequest,
-  JourneyDetailsResponse,
-  ParsedJourneyDetails,
-} from 'types/HAFAS/JourneyDetails';
 import { parse } from 'date-fns';
 import makeRequest from './Request';
 import parseAuslastung from './helper/parseAuslastung';
 import parseMessages from './helper/parseMessages';
 import parseStop from './helper/parseStop';
+import type {
+  AllowedHafasProfile,
+  HafasResponse,
+  ParsedCommon,
+} from 'types/HAFAS';
+import type {
+  JourneyDetailsRequest,
+  JourneyDetailsResponse,
+  ParsedJourneyDetails,
+} from 'types/HAFAS/JourneyDetails';
 
 const parseJourneyDetails = (
   d: HafasResponse<JourneyDetailsResponse>,

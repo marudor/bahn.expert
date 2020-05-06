@@ -1,5 +1,3 @@
-import { AdditionalFahrzeugInfo, Fahrzeug } from 'types/reihung';
-import { ComponentType } from 'react';
 import Accessibility from '@material-ui/icons/Accessibility';
 import ActionAccessible from '@material-ui/icons/Accessible';
 import ActionMotorcycle from '@material-ui/icons/Motorcycle';
@@ -15,6 +13,8 @@ import useStyles from './Fahrzeug.style';
 import WagenLink from './WagenLink';
 import Wifi from '@material-ui/icons/Wifi';
 import WifiOff from '@material-ui/icons/WifiOff';
+import type { AdditionalFahrzeugInfo, Fahrzeug } from 'types/reihung';
+import type { ComponentType } from 'react';
 
 export const icons: {
   [key in keyof Required<AdditionalFahrzeugInfo['icons']>]: ComponentType;

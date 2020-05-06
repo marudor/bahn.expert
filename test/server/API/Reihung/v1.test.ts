@@ -1,9 +1,9 @@
 import { createTestServer } from 'testHelper';
-import { Formation } from 'types/reihung';
 import { promises as fs } from 'fs';
 import Nock from 'nock';
 import path from 'path';
 import request from 'supertest';
+import type { Formation } from 'types/reihung';
 
 describe('Reihung V1', () => {
   const nock = Nock('https://www.apps-bahn.de');

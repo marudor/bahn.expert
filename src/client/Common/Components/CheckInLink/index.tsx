@@ -1,8 +1,8 @@
 import { CheckInType } from 'Common/config';
-import { CommonProductInfo, CommonStopInfo } from 'types/HAFAS';
-import { Station } from 'types/station';
 import CommonConfigContainer from 'Common/container/CommonConfigContainer';
 import TravelynxLink from './TravelynxLink';
+import type { CommonProductInfo, CommonStopInfo } from 'types/HAFAS';
+import type { Station } from 'types/station';
 
 interface Props {
   departure?: CommonStopInfo;

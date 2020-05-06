@@ -1,11 +1,15 @@
-import { AllowedHafasProfile, HafasResponse, ParsedCommon } from 'types/HAFAS';
-import {
+import makeRequest from 'server/HAFAS/Request';
+import type {
+  AllowedHafasProfile,
+  HafasResponse,
+  ParsedCommon,
+} from 'types/HAFAS';
+import type {
   JourneyCourseRequest,
   JourneyCourseRequestOptions,
   JourneyCourseResponse,
   ParsedJourneyCourseResponse,
 } from 'types/HAFAS/JourneyCourse';
-import makeRequest from 'server/HAFAS/Request';
 
 function parseJourneyCourse(
   r: HafasResponse<JourneyCourseResponse>,

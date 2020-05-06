@@ -1,5 +1,5 @@
-import { BRInfo as BRInfoType } from 'types/reihung';
 import stopPropagation from 'Common/stopPropagation';
+import type { BRInfo as BRInfoType } from 'types/reihung';
 
 interface Props {
   br: BRInfoType;

@@ -13,9 +13,7 @@ import { DateTimePicker } from '@material-ui/pickers';
 import { getHafasStationFromAPI } from 'shared/service/stationSearch';
 import { getRouteLink } from 'Routing/util';
 import { memo, SyntheticEvent, useCallback, useEffect, useMemo } from 'react';
-import { RoutingFav } from 'Routing/container/RoutingFavContainer';
 import { Search as SearchIcon } from '@material-ui/icons';
-import { Station } from 'types/station';
 import { useHistory, useRouteMatch } from 'react-router';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -29,6 +27,8 @@ import SwapVertical from '@material-ui/icons/SwapVert';
 import TodayIcon from '@material-ui/icons/Today';
 import useFetchRouting from 'Routing/container/RoutingContainer/useFetchRouting';
 import useStyles from './Search.styles';
+import type { RoutingFav } from 'Routing/container/RoutingFavContainer';
+import type { Station } from 'types/station';
 
 const maxViaForProvider = (profile?: AllowedHafasProfile) => {
   if (profile === AllowedHafasProfile.SBB) return 99;

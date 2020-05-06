@@ -1,6 +1,13 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable no-fallthrough */
-import {
+import { getAbfahrten } from '../Abfahrten';
+import { getWRLink, hasWR, WRCache } from 'server/Reihung/hasWR';
+import { groupBy, maxBy, minBy } from 'lodash';
+import { isRedesignByTZ, isRedesignByUIC } from 'server/Reihung/tzInfo';
+import axios from 'axios';
+import getBR from 'server/Reihung/getBR';
+import TrainNames from 'server/Reihung/TrainNames';
+import type {
   AdditionalFahrzeugInfo,
   BRInfo,
   Fahrzeug,
@@ -9,13 +16,6 @@ import {
   Wagenreihung,
   WagenreihungStation,
 } from 'types/reihung';
-import { getAbfahrten } from '../Abfahrten';
-import { getWRLink, hasWR, WRCache } from 'server/Reihung/hasWR';
-import { groupBy, maxBy, minBy } from 'lodash';
-import { isRedesignByTZ, isRedesignByUIC } from 'server/Reihung/tzInfo';
-import axios from 'axios';
-import getBR from 'server/Reihung/getBR';
-import TrainNames from 'server/Reihung/TrainNames';
 
 const countryMapping: any = {
   80: 'DE',

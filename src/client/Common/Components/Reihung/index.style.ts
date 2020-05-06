@@ -1,5 +1,5 @@
-import { Formation } from 'types/reihung';
 import { makeStyles } from '@material-ui/styles';
+import type { Formation } from 'types/reihung';
 
 export default makeStyles((theme) => ({
   wrap: {

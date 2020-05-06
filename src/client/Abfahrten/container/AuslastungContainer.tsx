@@ -1,7 +1,7 @@
 import { createContainer } from 'unstated-next';
-import { Route$Auslastung } from 'types/routing';
 import { useState } from 'react';
 import axios from 'axios';
+import type { Route$Auslastung } from 'types/routing';
 
 function useAuslastung() {
   const [auslastungen, setAuslastungen] = useState<{

@@ -1,11 +1,11 @@
-import { RoutingFav } from 'Routing/container/RoutingFavContainer';
-import { RoutingResult } from 'types/routing';
 import { uniqBy } from 'lodash';
 import { useCallback, useEffect, useMemo } from 'react';
 import { useHistory } from 'react-router';
 import Axios from 'axios';
 import RoutingConfigContainer from 'Routing/container/RoutingConfigContainer';
 import RoutingContainer from 'Routing/container/RoutingContainer';
+import type { RoutingFav } from 'Routing/container/RoutingFavContainer';
+import type { RoutingResult } from 'types/routing';
 
 export default () => {
   const {

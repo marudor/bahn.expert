@@ -1,14 +1,18 @@
-import { AllowedHafasProfile, HafasResponse, ParsedCommon } from 'types/HAFAS';
-import {
+import { parse } from 'date-fns';
+import { parseCoordinates } from 'server/HAFAS/helper/parseLocL';
+import makeRequest from 'server/HAFAS/Request';
+import parseStop from 'server/HAFAS/helper/parseStop';
+import type {
+  AllowedHafasProfile,
+  HafasResponse,
+  ParsedCommon,
+} from 'types/HAFAS';
+import type {
   JourneyGeoPosOptions,
   JourneyGeoPosRequest,
   JourneyGeoPosResponse,
   ParsedJourneyGeoPosResponse,
 } from 'types/HAFAS/JourneyGeoPos';
-import { parse } from 'date-fns';
-import { parseCoordinates } from 'server/HAFAS/helper/parseLocL';
-import makeRequest from 'server/HAFAS/Request';
-import parseStop from 'server/HAFAS/helper/parseStop';
 
 const parseJourneyGeoPos = (
   r: HafasResponse<JourneyGeoPosResponse>,

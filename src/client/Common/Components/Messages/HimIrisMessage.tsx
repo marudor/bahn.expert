@@ -1,9 +1,9 @@
 import { Dialog, DialogContent, DialogTitle } from '@material-ui/core';
 import { format, getDate } from 'date-fns';
-import { HimIrisMessage as HimIrisMessageType } from 'types/iris';
 import { SyntheticEvent, useCallback, useState } from 'react';
 import cc from 'clsx';
 import useStyles from './index.style';
+import type { HimIrisMessage as HimIrisMessageType } from 'types/iris';
 
 interface Props {
   message: HimIrisMessageType;

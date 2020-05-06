@@ -1,7 +1,7 @@
 import { createContainer } from 'unstated-next';
-import { Formation } from 'types/reihung';
 import { useState } from 'react';
 import axios from 'axios';
+import type { Formation } from 'types/reihung';
 
 function fetchSequence(
   trainNumber: string,

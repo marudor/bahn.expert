@@ -1,10 +1,14 @@
-import { AllowedHafasProfile, HafasResponse, ParsedCommon } from 'types/HAFAS';
 import { Journey } from './TripSearch/parse';
-import {
+import makeRequest from './Request';
+import type {
+  AllowedHafasProfile,
+  HafasResponse,
+  ParsedCommon,
+} from 'types/HAFAS';
+import type {
   SearchOnTripRequest,
   SearchOnTripResponse,
 } from 'types/HAFAS/SearchOnTrip';
-import makeRequest from './Request';
 
 const parseSearchOnTrip = (
   d: HafasResponse<SearchOnTripResponse>,

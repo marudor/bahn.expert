@@ -1,6 +1,6 @@
-import { RouteComponentProps } from 'react-router';
 import Details from 'Common/Components/Details';
 import useQuery from 'Common/hooks/useQuery';
+import type { RouteComponentProps } from 'react-router';
 
 interface Props
   extends RouteComponentProps<{

@@ -1,10 +1,10 @@
-import { MouseEvent } from 'react';
-import { Route$JourneySegment } from 'types/routing';
 import JnySegmentTrain from './SegmentTrainComponent/JnySegmentTrain';
 import Platform from 'Common/Components/Platform';
 import Time from 'Common/Components/Time';
 import useStyles from './RouteSegment.style';
 import WalkSegmentTrain from './SegmentTrainComponent/WalkSegmentTrain';
+import type { MouseEvent } from 'react';
+import type { Route$JourneySegment } from 'types/routing';
 
 interface Props {
   segment: Route$JourneySegment;
