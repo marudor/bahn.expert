@@ -1,5 +1,5 @@
-import { OpenDataStation, Station } from 'types/station';
 import axios from 'axios';
+import type { OpenDataStation, Station } from 'types/station';
 
 // https://developer.deutschebahn.com/store/apis/info?name=StaDa-Station_Data&version=v2&provider=DBOpenData
 // istanbul ignore next

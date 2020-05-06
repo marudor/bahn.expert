@@ -1,4 +1,3 @@
-import { AxiosError } from 'axios';
 import { useContext, useEffect, useMemo } from 'react';
 import cc from 'clsx';
 import DetailsContext from './DetailsContext';
@@ -6,6 +5,7 @@ import Error from '@material-ui/icons/Error';
 import Loading from '../Loading';
 import Stop from 'Common/Components/Details/Stop';
 import useStyles from './StopList.style';
+import type { AxiosError } from 'axios';
 
 function getErrorText(error: AxiosError) {
   if (error.code === 'ECONNABORTED') return 'Timeout, bitte neuladen.';

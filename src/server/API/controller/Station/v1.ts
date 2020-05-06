@@ -1,6 +1,4 @@
-import { Context } from 'koa';
 import { Controller, Get, Query, Request, Response, Route, Tags } from 'tsoa';
-import { DetailBusinessHubStation } from 'types/BusinessHub/StopPlaces';
 import { getStation } from 'server/Abfahrten/station';
 import {
   IrisStationWithRelated,
@@ -15,6 +13,8 @@ import businessHubSearch, {
 import DS100 from 'server/Search/DS100';
 import favendoSearch from 'server/Search/Favendo';
 import stationSearch from 'server/Search';
+import type { Context } from 'koa';
+import type { DetailBusinessHubStation } from 'types/BusinessHub/StopPlaces';
 
 export const validationOverwrite = [
   {

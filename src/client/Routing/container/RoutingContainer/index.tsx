@@ -1,11 +1,11 @@
-import { AllowedHafasProfile } from 'types/HAFAS';
 import { createContainer } from 'unstated-next';
 import { ReactNode, useState } from 'react';
-import { SingleRoute } from 'types/routing';
 import RoutingConfingContainer, {
   defaultRoutingSettings,
 } from 'Routing/container/RoutingConfigContainer';
 import useStorage from 'shared/hooks/useStorage';
+import type { AllowedHafasProfile } from 'types/HAFAS';
+import type { SingleRoute } from 'types/routing';
 
 const useRouting = () => {
   const [routes, setRoutes] = useState<SingleRoute[] | undefined>([]);

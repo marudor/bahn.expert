@@ -39,7 +39,7 @@ const rules = [
       {
         loader: 'babel-loader',
         options: {
-          configFile: false,
+          rootMode: 'upward',
         },
       },
     ],
@@ -119,6 +119,7 @@ module.exports = {
   mode: isDev ? 'development' : 'production',
   devtool: isDev ? 'cheap-module-source-map' : 'source-map',
   entry: ['./src/client/entry.ts'],
+  // entry: ['./src/client/Common/Storage.ts'],
   resolve: {
     // plugins: [new ReactJssHmrPlugin()],
     modules: ['node_modules', path.resolve(__dirname, 'src')],

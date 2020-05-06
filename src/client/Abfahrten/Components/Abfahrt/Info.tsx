@@ -1,4 +1,3 @@
-import { Abfahrt } from 'types/iris';
 import { useMemo } from 'react';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import cc from 'clsx';
@@ -7,6 +6,7 @@ import DetailVia from './Via/Detail';
 import NormalMessages from 'Common/Components/Messages/Normal';
 import NormalVia from './Via/Normal';
 import useStyles from './Info.style';
+import type { Abfahrt } from 'types/iris';
 
 interface Props {
   abfahrt: Abfahrt;

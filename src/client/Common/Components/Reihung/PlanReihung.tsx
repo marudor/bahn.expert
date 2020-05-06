@@ -1,6 +1,6 @@
-import { PlannedSequence } from 'types/planReihung';
 import { useEffect, useState } from 'react';
 import Axios from 'axios';
+import type { PlannedSequence } from 'types/planReihung';
 
 interface Props {
   trainNumber: string;

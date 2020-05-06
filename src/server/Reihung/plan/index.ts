@@ -1,7 +1,7 @@
 import { logger } from 'server/logger';
-import { ParsedProduct } from 'types/HAFAS';
-import { PlannedSequence } from 'types/planReihung';
 import Axios from 'axios';
+import type { ParsedProduct } from 'types/HAFAS';
+import type { PlannedSequence } from 'types/planReihung';
 
 const planWRUrl = 'https://lib.finalrewind.org/dbdb/ice_type.json';
 

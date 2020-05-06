@@ -1,9 +1,9 @@
-import { Abfahrt, AbfahrtenResult } from 'types/iris';
-import { AxiosInstance } from 'axios';
 import { compareAsc } from 'date-fns';
 import { getStation } from './station';
 import { noncdAxios } from './helper';
 import Timetable from './Timetable';
+import type { Abfahrt, AbfahrtenResult } from 'types/iris';
+import type { AxiosInstance } from 'axios';
 
 interface AbfahrtenOptions {
   lookahead?: number;

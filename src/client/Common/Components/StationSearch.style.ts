@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/styles';
-import { Props } from './StationSearch';
+import type { Props } from './StationSearch';
 
 export default makeStyles((theme) => ({
   wrapper: {

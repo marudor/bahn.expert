@@ -1,7 +1,7 @@
 import { orderBy } from 'lodash';
-import { Station } from 'types/station';
 import Fuse from 'fuse.js';
 import rawStations from 'db-stations/data.json';
+import type { Station } from 'types/station';
 
 const searchableStations = new Fuse(rawStations, {
   includeScore: true,

@@ -1,5 +1,5 @@
-import { ChangeEvent } from 'react';
-import { StationSearchType } from 'types/station';
+import type { ChangeEvent } from 'react';
+import type { StationSearchType } from 'types/station';
 
 export enum CheckInType {
   None,

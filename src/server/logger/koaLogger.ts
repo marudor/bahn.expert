@@ -1,8 +1,8 @@
-import { Context, Next } from 'koa';
-import { Logger } from 'pino';
 import { nanoid } from 'nanoid';
 import onFinished from 'on-finished';
 import util from 'util';
+import type { Context, Next } from 'koa';
+import type { Logger } from 'pino';
 
 declare module 'koa' {
   interface BaseContext {

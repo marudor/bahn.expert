@@ -1,6 +1,6 @@
-import { Message } from 'types/iris';
 import { useMemo } from 'react';
 import useStyles from './index.style';
+import type { Message } from 'types/iris';
 
 interface Props {
   messages: Message[];

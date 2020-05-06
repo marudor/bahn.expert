@@ -5,12 +5,12 @@ import {
 } from '@material-ui/styles';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { ReactNode, useMemo } from 'react';
-import { Rule, SheetsRegistry, StyleSheet } from 'jss';
 import App from './App';
 import DateFnsUtils from '@date-io/date-fns';
 import deLocale from 'date-fns/locale/de';
 import ThemeContainer from 'Common/container/ThemeContainer';
 import ThemeHeaderTags from 'Common/Components/ThemeHeaderTags';
+import type { Rule, SheetsRegistry, StyleSheet } from 'jss';
 
 interface Props {
   children?: ReactNode;

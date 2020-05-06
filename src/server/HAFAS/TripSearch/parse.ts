@@ -1,21 +1,5 @@
-import {
-  CommonStop,
-  CommonStopInfo,
-  HafasResponse,
-  ParsedCommon,
-  ParsedProduct,
-} from 'types/HAFAS';
 import { getPlannedSequence } from 'server/Reihung/plan';
-import { Jny, OutConL, SecL, TripSearchResponse } from 'types/HAFAS/TripSearch';
 import { parse } from 'date-fns';
-import {
-  Route$Journey,
-  Route$JourneySegment,
-  Route$Stop,
-  RoutingResult,
-  SingleRoute,
-} from 'types/routing';
-import { Station } from 'types/station';
 import mergeSegments from 'server/HAFAS/TripSearch/mergeSegments';
 import parseAuslastung from '../helper/parseAuslastung';
 import parseCommonArrival from '../helper/parseCommonArrival';
@@ -24,6 +8,27 @@ import parseDuration from '../helper/parseDuration';
 import parseMessages from '../helper/parseMessages';
 import parseStop from '../helper/parseStop';
 import parseTarif from 'server/HAFAS/helper/parseTarif';
+import type {
+  CommonStop,
+  CommonStopInfo,
+  HafasResponse,
+  ParsedCommon,
+  ParsedProduct,
+} from 'types/HAFAS';
+import type {
+  Jny,
+  OutConL,
+  SecL,
+  TripSearchResponse,
+} from 'types/HAFAS/TripSearch';
+import type {
+  Route$Journey,
+  Route$JourneySegment,
+  Route$Stop,
+  RoutingResult,
+  SingleRoute,
+} from 'types/routing';
+import type { Station } from 'types/station';
 
 const nameRegex = /O=([^@]+)/;
 const evaRegex = /L=(\d+)/;

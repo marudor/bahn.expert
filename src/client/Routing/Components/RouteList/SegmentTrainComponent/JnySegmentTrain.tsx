@@ -1,5 +1,3 @@
-import { MouseEvent } from 'react';
-import { Route$JourneySegmentTrain } from 'types/routing';
 import AuslastungsDisplay from 'Common/Components/AuslastungsDisplay';
 import cc from 'clsx';
 import DetailsLink from 'Common/Components/Details/DetailsLink';
@@ -7,6 +5,8 @@ import PlannedType from 'Common/Components/PlannedType';
 import Reihung from 'Common/Components/Reihung';
 import StopList from 'Routing/Components/RouteList/StopList';
 import useStyles from './style';
+import type { MouseEvent } from 'react';
+import type { Route$JourneySegmentTrain } from 'types/routing';
 
 interface Props {
   segment: Route$JourneySegmentTrain;

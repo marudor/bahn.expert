@@ -1,16 +1,20 @@
-import { AllowedHafasProfile, HafasResponse, ParsedCommon } from 'types/HAFAS';
 import { CacheDatabases, createNewCache } from 'server/cache';
-import {
+import { logger } from 'server/logger';
+import { parse } from 'date-fns';
+import makeRequest from 'server/HAFAS/Request';
+import parseTime from 'server/HAFAS/helper/parseTime';
+import type {
+  AllowedHafasProfile,
+  HafasResponse,
+  ParsedCommon,
+} from 'types/HAFAS';
+import type {
   HimMessage,
   HimSearchRequest,
   HimSearchResponse,
   ParsedHimMessage,
   ParsedHimSearchResponse,
 } from 'types/HAFAS/HimSearch';
-import { logger } from 'server/logger';
-import { parse } from 'date-fns';
-import makeRequest from 'server/HAFAS/Request';
-import parseTime from 'server/HAFAS/helper/parseTime';
 
 const parseHimMessage = (himMessage: HimMessage, common: ParsedCommon) => {
   return {

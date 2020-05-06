@@ -14,13 +14,12 @@ function buildTest() {
       'babel',
       [
         'src',
-        '-x',
-        '.ts,.tsx,.js,.jsx',
-        '--no-babelrc',
-        '--config-file',
-        './.babelrc.server.js',
         '--out-dir',
         'testDist/server',
+        '-x',
+        '.ts,.tsx,.js,.jsx',
+        '--root-mode',
+        'upward',
         '--copy-files',
       ],
       {
@@ -28,6 +27,7 @@ function buildTest() {
         env: {
           ...process.env,
           BABEL_ENV: 'testProduction',
+          SERVER: 1,
         },
       }
     ).on('close', (code) => {
@@ -43,19 +43,23 @@ function buildProd() {
       'babel',
       [
         'src',
-        '-x',
-        '.ts,.tsx,.js,.jsx',
-        '--no-babelrc',
-        '--source-maps',
-        '--config-file',
-        './.babelrc.server.js',
         '--out-dir',
         'dist/server',
+        '-x',
+        '.ts,.tsx,.js,.jsx',
+        '--source-maps',
+        '--root-mode',
+        'upward',
         '--copy-files',
       ],
-      { stdio: 'pipe' }
+      {
+        stdio: 'pipe',
+        env: {
+          ...process.env,
+          SERVER: 1,
+        },
+      }
     ).on('close', (code) => {
-      rimraf.sync('dist/server/app');
       if (code !== 0) {
         resolve(code);
       } else {

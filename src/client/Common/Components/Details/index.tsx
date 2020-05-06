@@ -1,6 +1,4 @@
-import { AxiosError } from 'axios';
 import { format } from 'date-fns';
-import { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
 import { useEffect, useState } from 'react';
 import DetailsContext from './DetailsContext';
 import getDetails from 'Common/service/details';
@@ -8,6 +6,8 @@ import Header from './Header';
 import HeaderTagContainer from 'Common/container/HeaderTagContainer';
 import StopList from './StopList';
 import useQuery from 'Common/hooks/useQuery';
+import type { AxiosError } from 'axios';
+import type { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
 
 interface Props {
   train: string;

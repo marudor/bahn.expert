@@ -1,4 +1,4 @@
-import { BRInfo } from 'types/reihung';
+import type { BRInfo } from 'types/reihung';
 
 const getATBR = (code: string, _serial: string): undefined | BRInfo => {
   switch (code) {

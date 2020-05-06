@@ -1,5 +1,5 @@
-import { Sektor } from 'types/reihung';
 import useStyles from './Sektor.style';
+import type { Sektor } from 'types/reihung';
 
 interface Props {
   sektor: Sektor;

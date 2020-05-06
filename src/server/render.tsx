@@ -1,18 +1,21 @@
-import { AbfahrtenConfigSanitize, CommonConfigSanitize } from 'Common/config';
 import { abfahrtenConfigSanitize, commonConfigSanitize } from 'client/util';
 import { ChunkExtractor } from '@loadable/server';
-import { Context } from 'koa';
 import { HelmetProvider } from 'react-helmet-async';
 import { renderToString } from 'react-dom/server';
 import { SheetsRegistry } from 'jss';
 import { StaticRouter } from 'react-router-dom';
-import { StaticRouterContext } from 'react-router';
 import { StorageContext } from 'shared/hooks/useStorage';
 import { ThemeProvider } from 'Common/container/ThemeContainer';
 import ejs from 'ejs';
 import fs from 'fs';
 import path from 'path';
 import ThemeWrap from 'client/ThemeWrap';
+import type {
+  AbfahrtenConfigSanitize,
+  CommonConfigSanitize,
+} from 'Common/config';
+import type { Context } from 'koa';
+import type { StaticRouterContext } from 'react-router';
 
 const headerFilename = path.resolve(__dirname, './views/header.ejs');
 // eslint-disable-next-line no-sync

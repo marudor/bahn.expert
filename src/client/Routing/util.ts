@@ -1,6 +1,5 @@
-import { Station } from 'types/station';
-
 /* eslint import/prefer-default-export: 0 */
+import type { Station } from 'types/station';
 
 export function formatDuration(duration: number) {
   const durInMinutes = duration / 1000 / 60;

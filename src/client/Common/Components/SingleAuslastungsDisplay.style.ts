@@ -1,6 +1,6 @@
 import { AuslastungsValue } from 'types/routing';
 import { DefaultTheme, makeStyles } from '@material-ui/styles';
-import { Props } from './SingleAuslastungsDisplay';
+import type { Props } from './SingleAuslastungsDisplay';
 
 function getBGColor(theme: DefaultTheme, auslastung?: AuslastungsValue) {
   switch (auslastung) {

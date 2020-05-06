@@ -31,15 +31,12 @@ jobs:
           node-version: 14
       - name: install
         run: |
-          yarn --immutable
+          yarn --immutable --immutable-cache
         env:
           CYPRESS_INSTALL_BINARY: 0
       - name: jest
         run: |
           yarn test:jest
-      - name: depCheck
-        run: |
-          yarn depCheck
       - name: lint
         run: |
           yarn lint
@@ -74,14 +71,14 @@ jobs:
           key: cypress-${{ runner.os }}-${{ hashFiles('package.json') }}
       - name: Install Deps
         run: |
-          yarn --immutable
+          yarn --immutable --immutable-cache
       - name: Run Cypress
         uses: cypress-io/github-action@v1.16.1
         with:
           install: false
           record: true
           parallel: true
-          build: yarn build
+          build: yarn all:build
           group: ${{ matrix.browser }}
           ci-build-id: '${{github.sha}}-${{ github.workflow }}-${{ github.event_name }}'
           start: node testDist/server/server/index.js
@@ -106,7 +103,7 @@ jobs:
           node-version: 14
       - name: install
         run: |
-          yarn --immutable
+          yarn --immutable --immutable-cache
         env:
           CYPRESS_INSTALL_BINARY: 0
       - name: bundleSize

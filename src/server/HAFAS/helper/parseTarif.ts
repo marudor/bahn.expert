@@ -1,9 +1,9 @@
-import {
+import type {
   HafasTarifResponse,
   TarifFare,
   TarifFareSet,
 } from 'types/HAFAS/TripSearch';
-import { Route$TarifFare, Route$TarifFareSet } from 'types/routing';
+import type { Route$TarifFare, Route$TarifFareSet } from 'types/routing';
 
 const parseFare = (fare: TarifFare): Route$TarifFare => {
   return {

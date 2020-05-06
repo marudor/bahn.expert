@@ -1,10 +1,10 @@
-import { Abfahrt } from 'types/iris';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import Auslastung from 'Abfahrten/Components/Abfahrt/Auslastung';
 import CheckInLink from 'Common/Components/CheckInLink';
 import DetailsLink from 'Common/Components/Details/DetailsLink';
 import Substitute from './Substitute';
 import useStyles from './Start.style';
+import type { Abfahrt } from 'types/iris';
 
 interface Props {
   abfahrt: Abfahrt;

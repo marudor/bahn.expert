@@ -1,15 +1,15 @@
 import { AllowedHafasProfile, HafasResponse, ParsedCommon } from 'types/HAFAS';
 import { format, parse, subDays } from 'date-fns';
-import {
+import JourneyDetails from 'server/HAFAS/JourneyDetails';
+import makeRequest from './Request';
+import parseMessages from './helper/parseMessages';
+import parseStop from './helper/parseStop';
+import type {
   JourneyMatchOptions,
   JourneyMatchRequest,
   JourneyMatchResponse,
   ParsedJourneyMatchResponse,
 } from 'types/HAFAS/JourneyMatch';
-import JourneyDetails from 'server/HAFAS/JourneyDetails';
-import makeRequest from './Request';
-import parseMessages from './helper/parseMessages';
-import parseStop from './helper/parseStop';
 
 const parseJourneyMatch = (
   d: HafasResponse<JourneyMatchResponse>,
