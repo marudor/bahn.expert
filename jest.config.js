@@ -1,17 +1,8 @@
 module.exports = {
-  projects: ['test/client/jest.config.js', 'test/server/jest.config.js'],
-  collectCoverage: Boolean(process.env.COVERAGE),
-  collectCoverageFrom: [
-    '<rootDir>/src/**/*.{ts,tsx}',
-    '!<rootDir>/src/app/**',
-    '!<rootDir>/src/server/API/routes.ts',
-    '!<rootDir>/src/types/**',
-  ],
-  coverageDirectory: '<rootDir>/jest-coverage',
+  projects: ['src/client/jest.config.js', 'src/server/jest.config.js'],
   reporters: ['default', 'jest-junit'],
   watchPlugins: [
     'jest-watch-typeahead/filename',
     'jest-watch-typeahead/testname',
   ],
-  modulePathIgnorePatterns: ['<rootDir>/dist', '<rootDir>/testDist'],
 };

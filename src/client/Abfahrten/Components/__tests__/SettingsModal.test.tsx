@@ -1,0 +1,39 @@
+import { fireEvent } from '@testing-library/react';
+import { render } from 'test-helper';
+import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
+import SettingsModal from 'Abfahrten/Components/SettingsModal';
+
+const OpenDummy = () => {
+  const { setConfigOpen } = AbfahrtenConfigContainer.useContainer();
+
+  return (
+    <>
+      <span onClick={() => setConfigOpen(true)} data-testid="open">
+        open
+      </span>
+      <SettingsModal />
+    </>
+  );
+};
+
+const renderSetup = () =>
+  render(OpenDummy, undefined, {
+    container: [
+      {
+        ...AbfahrtenConfigContainer,
+        initialState: {
+          filter: {},
+          config: {},
+        },
+      },
+    ],
+  });
+
+describe('SettingsModal', () => {
+  it('Opens if container set', () => {
+    const { getByTestId } = renderSetup();
+
+    fireEvent.click(getByTestId('open'));
+    expect(getByTestId('settingsContent')).toBeInTheDocument();
+  });
+});
