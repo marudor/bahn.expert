@@ -34,8 +34,10 @@ COPY package.json yarn.lock /app/
 COPY --from=deps /app/node_modules/ /app/node_modules/
 # Ugly hack...
 RUN mv node_modules/types .
+RUN mv node_modules/shared .
 RUN npm prune --prod
 RUN mv types node_modules/
+RUN mv shared node_modules/
 RUN modclean -r -a '*.ts|*.tsx' -I 'example*'
 
 FROM node:14-alpine
