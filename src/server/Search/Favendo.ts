@@ -1,4 +1,5 @@
 import axios from 'axios';
+import https from 'https';
 import type { Coordinates, FavendoStation, Station } from 'types/station';
 
 function encodeSearchTerm(term: string) {
@@ -27,6 +28,9 @@ export default async function (
           searchTerm: encodeSearchTerm(searchTerm),
           ...coordinates,
         },
+        httpsAgent: new https.Agent({
+          rejectUnauthorized: false,
+        }),
       }
     )
   ).data;
