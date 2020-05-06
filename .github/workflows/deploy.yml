@@ -17,6 +17,7 @@ jobs:
           secrets: '${{ toJSON(secrets) }}'
           version: '${{ github.sha }}'
           chart: './charts/bahnhofsabfahrten'
+          timeout: '9m'
           values: |
             imageTag: '${{ github.sha }}'
         env:

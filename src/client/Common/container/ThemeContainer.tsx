@@ -2,9 +2,9 @@ import { createContainer } from 'unstated-next';
 import { ReactNode, useMemo, useState } from 'react';
 import { ThemeType } from 'client/Themes/type';
 import createTheme from 'client/Themes';
-import StorageInterface from 'shared/hooks/useStorage/StorageInterface';
 import useQuery from 'Common/hooks/useQuery';
 import useStorage from 'shared/hooks/useStorage';
+import type StorageInterface from 'shared/hooks/useStorage/StorageInterface';
 
 function setTheme(
   setFn: ((themeType: ThemeType) => void) | undefined,

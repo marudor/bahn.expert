@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
-import { MouseEvent, ReactNode, useCallback } from 'react';
 import { Paper } from '@material-ui/core';
-import { Station } from 'types/station';
+import { useCallback } from 'react';
 import { useUnfav } from 'Abfahrten/container/FavContainer';
 import AbfahrtenConfigContainer from 'Abfahrten/container/AbfahrtenConfigContainer';
 import ActionDelete from '@material-ui/icons/Delete';
 import cc from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
 import useStyles from './FavEntry.style';
+import type { MouseEvent, ReactNode } from 'react';
+import type { Station } from 'types/station';
 
 interface Props {
   fav: Station;

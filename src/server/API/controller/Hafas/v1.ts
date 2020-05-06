@@ -1,12 +1,3 @@
-import { AllowedHafasProfile, HafasStation } from 'types/HAFAS';
-import {
-  AllowedSotMode,
-  ParsedSearchOnTripResponse,
-} from 'types/HAFAS/SearchOnTrip';
-import {
-  ArrivalStationBoardEntry,
-  DepartureStationBoardEntry,
-} from 'types/stationBoard';
 import {
   Body,
   Controller,
@@ -21,19 +12,6 @@ import {
   Route,
   Tags,
 } from 'tsoa';
-import { Context } from 'koa';
-import {
-  JourneyGeoPosOptions,
-  ParsedJourneyGeoPosResponse,
-} from 'types/HAFAS/JourneyGeoPos';
-import {
-  JourneyMatchOptions,
-  ParsedJourneyMatchResponse,
-} from 'types/HAFAS/JourneyMatch';
-import { ParsedJourneyDetails } from 'types/HAFAS/JourneyDetails';
-import { Route$Auslastung, RoutingResult, SingleRoute } from 'types/routing';
-import { TrainSearchResult } from 'types/HAFAS/Details';
-import { TripSearchOptions } from 'types/HAFAS/TripSearch';
 import Auslastung from 'server/HAFAS/Auslastung';
 import Detail from 'server/HAFAS/Detail';
 import JourneyDetails from 'server/HAFAS/JourneyDetails';
@@ -47,6 +25,32 @@ import SearchOnTrip from 'server/HAFAS/SearchOnTrip';
 import StationBoard from 'server/HAFAS/StationBoard';
 import TrainSearch from 'server/HAFAS/TrainSearch';
 import TripSearch from 'server/HAFAS/TripSearch';
+import type { AllowedHafasProfile, HafasStation } from 'types/HAFAS';
+import type {
+  AllowedSotMode,
+  ParsedSearchOnTripResponse,
+} from 'types/HAFAS/SearchOnTrip';
+import type {
+  ArrivalStationBoardEntry,
+  DepartureStationBoardEntry,
+} from 'types/stationBoard';
+import type { Context } from 'koa';
+import type {
+  JourneyGeoPosOptions,
+  ParsedJourneyGeoPosResponse,
+} from 'types/HAFAS/JourneyGeoPos';
+import type {
+  JourneyMatchOptions,
+  ParsedJourneyMatchResponse,
+} from 'types/HAFAS/JourneyMatch';
+import type { ParsedJourneyDetails } from 'types/HAFAS/JourneyDetails';
+import type {
+  Route$Auslastung,
+  RoutingResult,
+  SingleRoute,
+} from 'types/routing';
+import type { TrainSearchResult } from 'types/HAFAS/Details';
+import type { TripSearchOptions } from 'types/HAFAS/TripSearch';
 
 interface SearchOnTripBody {
   sotMode: AllowedSotMode;

@@ -1,10 +1,10 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { format, parse, subDays } from 'date-fns';
-import { TrainSearchResult } from 'types/HAFAS/Details';
 import axios from 'axios';
 import createCtxRecon from 'server/HAFAS/helper/createCtxRecon';
 import iconv from 'iconv-lite';
 import journeyDetails from './JourneyDetails';
+import type { TrainSearchResult } from 'types/HAFAS/Details';
 
 const profiles = {
   [AllowedHafasProfile.DB]: {

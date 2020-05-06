@@ -1,5 +1,5 @@
-import { Common, Journey, JourneyFilter, ParsedProduct, RemL } from '.';
-import { Route$Stop } from 'types/routing';
+import type { Common, Journey, JourneyFilter, ParsedProduct, RemL } from '.';
+import type { Route$Stop } from 'types/routing';
 
 export interface JourneyMatchRequest {
   req: {

@@ -20,13 +20,11 @@
     "resolveJsonModule": true,
     "baseUrl": "src",
     "paths": {
-      "shared/*": ["shared/*.web.ts", "shared/*/index.web.ts", "shared/*"],
       "Routing/*": ["client/Routing/*"],
       "Abfahrten/*": ["client/Abfahrten/*"],
       "Common/*": ["client/Common/*"],
       "Test/*": ["../test/*"],
       "testHelper": ["../test/testHelper"],
-      "types/*": ["types/*"],
       "Regional/*": ["client/Regional/*"]
     },
     "types": ["jest", "@testing-library/jest-dom"],

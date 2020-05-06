@@ -1,9 +1,9 @@
-import { CommonStop, ParsedCommon, ParsedProduct } from 'types/HAFAS';
-import { Route$Stop } from 'types/routing';
 import parseAuslastung from './parseAuslastung';
 import parseCommonArrival from './parseCommonArrival';
 import parseCommonDeparture from './parseCommonDeparture';
 import parseMessages from './parseMessages';
+import type { CommonStop, ParsedCommon, ParsedProduct } from 'types/HAFAS';
+import type { Route$Stop } from 'types/routing';
 
 export default (
   stop: CommonStop,

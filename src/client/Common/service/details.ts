@@ -1,7 +1,7 @@
-import { AllowedHafasProfile } from 'types/HAFAS';
-import { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
-import { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
 import Axios, { Canceler } from 'axios';
+import type { AllowedHafasProfile } from 'types/HAFAS';
+import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
+import type { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
 
 export default async function getDetails(
   train: string,

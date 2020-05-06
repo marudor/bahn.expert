@@ -1,6 +1,5 @@
 import { journeyMatch } from 'Common/service/details';
 import { MenuItem, Paper, TextField } from '@material-ui/core';
-import { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 import { useCallback, useState } from 'react';
 import Axios from 'axios';
 import debounce from 'debounce-promise';
@@ -8,6 +7,7 @@ import Downshift from 'downshift';
 import Loading, { LoadingType } from 'Common/Components/Loading';
 import useStorage from 'shared/hooks/useStorage';
 import useStyles from './ZugsucheAutocomplete.style';
+import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 
 const debouncedJourneyMatch = debounce(journeyMatch, 300);
 

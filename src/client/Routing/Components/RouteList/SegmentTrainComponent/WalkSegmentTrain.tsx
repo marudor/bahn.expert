@@ -1,7 +1,7 @@
-import { Route$JourneySegmentWalk } from 'types/routing';
 import cc from 'clsx';
 import stopPropagation from 'Common/stopPropagation';
 import useStyles from './style';
+import type { Route$JourneySegmentWalk } from 'types/routing';
 
 interface Props {
   segment: Route$JourneySegmentWalk;

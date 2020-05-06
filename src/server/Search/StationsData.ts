@@ -1,8 +1,8 @@
 import { orderBy } from 'lodash';
-import { Station } from 'types/station';
 import fs from 'fs';
 import Fuse from 'fuse.js';
 import path from 'path';
+import type { Station } from 'types/station';
 
 const dataPath = path.resolve(__dirname, 'data/Stationsdaten.csv');
 // eslint-disable-next-line no-sync

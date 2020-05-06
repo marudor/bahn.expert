@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
-import { IrisMessage as IrisMessageType } from 'types/iris';
 import cc from 'clsx';
 import useStyles from './index.style';
+import type { IrisMessage as IrisMessageType } from 'types/iris';
 
 interface Props {
   message: IrisMessageType;

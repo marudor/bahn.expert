@@ -1,4 +1,4 @@
-import { ParsedJourneyDetails } from './JourneyDetails';
+import type { ParsedJourneyDetails } from './JourneyDetails';
 
 export interface TrainSearchResult {
   value: string;

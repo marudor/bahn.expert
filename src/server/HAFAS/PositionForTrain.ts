@@ -1,6 +1,6 @@
-import { AllowedHafasProfile } from 'types/HAFAS';
 import JourneyGeoPos from 'server/HAFAS/JourneyGeoPos';
 import JourneyMatch from 'server/HAFAS/JourneyMatch';
+import type { AllowedHafasProfile } from 'types/HAFAS';
 
 export default async (trainName: string, profile?: AllowedHafasProfile) => {
   const matchedTrains = await JourneyMatch(

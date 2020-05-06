@@ -1,21 +1,21 @@
-import { AbfahrtenResult } from 'types/iris';
-import { AllowedHafasProfile } from 'types/HAFAS';
-import { ArrivalStationBoardEntry } from 'types/stationBoard';
 import { Body, Controller, Get, Post, Query, Request, Route, Tags } from 'tsoa';
-import { Context } from 'koa';
-import {
-  HimSearchRequestOptions,
-  ParsedHimSearchResponse,
-} from 'types/HAFAS/HimSearch';
-import { JourneyCourseRequestOptions } from 'types/HAFAS/JourneyCourse';
-import { JourneyGraphRequestOptions } from 'types/HAFAS/JourneyGraph';
-import { JourneyTreeRequestOptions } from 'types/HAFAS/JourneyTree';
 import HimSearch from 'server/HAFAS/HimSearch';
 import JourneyCourse from 'server/HAFAS/JourneyCourse';
 import JourneyGraph from 'server/HAFAS/JourneyGraph';
 import JourneyTree from 'server/HAFAS/JourneyTree';
 import StationBoard from 'server/HAFAS/StationBoard';
 import StationBoardToTimetables from 'server/HAFAS/StationBoard/StationBoardToTimetables';
+import type { AbfahrtenResult } from 'types/iris';
+import type { AllowedHafasProfile } from 'types/HAFAS';
+import type { ArrivalStationBoardEntry } from 'types/stationBoard';
+import type { Context } from 'koa';
+import type {
+  HimSearchRequestOptions,
+  ParsedHimSearchResponse,
+} from 'types/HAFAS/HimSearch';
+import type { JourneyCourseRequestOptions } from 'types/HAFAS/JourneyCourse';
+import type { JourneyGraphRequestOptions } from 'types/HAFAS/JourneyGraph';
+import type { JourneyTreeRequestOptions } from 'types/HAFAS/JourneyTree';
 
 @Route('/hafas/experimental')
 export class HafasExperimentalController extends Controller {

@@ -1,5 +1,5 @@
-import { SubstituteRef } from 'types/iris';
 import useStyles from './Substitue.style';
+import type { SubstituteRef } from 'types/iris';
 
 interface Props {
   substitute: SubstituteRef;

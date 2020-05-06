@@ -1,4 +1,4 @@
-import { CSSProperties } from '@material-ui/core/styles/withStyles';
+import type { CSSProperties } from '@material-ui/core/styles/withStyles';
 
 export const singleLineText: CSSProperties = {
   overflow: 'hidden',

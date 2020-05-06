@@ -1,8 +1,8 @@
-import { CommonStation, Coordinates } from 'types/station';
-import { JourneyDetailsRequest } from './JourneyDetails';
-import { LocGeoPosRequest } from './LocGeoPos';
-import { LocMatchRequest } from './LocMatch';
-import { TripSearchRequest } from './TripSearch';
+import type { CommonStation, Coordinates } from 'types/station';
+import type { JourneyDetailsRequest } from './JourneyDetails';
+import type { LocGeoPosRequest } from './LocGeoPos';
+import type { LocMatchRequest } from './LocMatch';
+import type { TripSearchRequest } from './TripSearch';
 
 export type JourneyFilterMode = 'BIT' | 'EXC' | 'INC' | 'UNDEF';
 export type JourneyFilterType =

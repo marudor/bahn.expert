@@ -1,12 +1,12 @@
-import { AllowedHafasProfile, JourneyFilter } from 'types/HAFAS';
-import {
+import { format } from 'date-fns-tz';
+import makeRequest from '../Request';
+import parse from './parse';
+import type { AllowedHafasProfile, JourneyFilter } from 'types/HAFAS';
+import type {
   ArrivalStationBoardEntry,
   DepartureStationBoardEntry,
 } from 'types/stationBoard';
-import { format } from 'date-fns-tz';
-import { StationBoardRequest } from 'types/HAFAS/StationBoard';
-import makeRequest from '../Request';
-import parse from './parse';
+import type { StationBoardRequest } from 'types/HAFAS/StationBoard';
 
 interface Options {
   date?: number;

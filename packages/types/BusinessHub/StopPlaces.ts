@@ -1,4 +1,4 @@
-import { CommonStation } from 'types/station';
+import type { CommonStation } from 'types/station';
 
 export interface APIResult {
   _embedded: Embedded;

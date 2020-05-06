@@ -1,5 +1,5 @@
-import { PlannedSequence } from 'types/planReihung';
 import { Tooltip } from '@material-ui/core';
+import type { PlannedSequence } from 'types/planReihung';
 
 interface Props {
   plannedSequence?: PlannedSequence;

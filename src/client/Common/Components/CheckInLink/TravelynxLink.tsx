@@ -1,9 +1,9 @@
-import { CommonProductInfo, CommonStopInfo } from 'types/HAFAS';
 import { isBefore } from 'date-fns';
-import { Station } from 'types/station';
 import { Tooltip } from '@material-ui/core';
 import stopPropagation from 'Common/stopPropagation';
 import TrainIcon from '@material-ui/icons/Train';
+import type { CommonProductInfo, CommonStopInfo } from 'types/HAFAS';
+import type { Station } from 'types/station';
 
 interface Props {
   departure?: CommonStopInfo;

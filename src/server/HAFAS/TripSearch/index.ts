@@ -1,9 +1,12 @@
-import { AllowedHafasProfile } from 'types/HAFAS';
 import { format } from 'date-fns-tz';
-import { TripSearchOptions, TripSearchRequest } from 'types/HAFAS/TripSearch';
 import makeRequest from '../Request';
 import mapLoyalityCard from 'server/HAFAS/TripSearch/mapLoyalityCard';
 import tripSearchParse from './parse';
+import type { AllowedHafasProfile } from 'types/HAFAS';
+import type {
+  TripSearchOptions,
+  TripSearchRequest,
+} from 'types/HAFAS/TripSearch';
 
 const profileConfig = {
   db: {

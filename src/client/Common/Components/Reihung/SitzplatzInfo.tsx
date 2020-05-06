@@ -1,7 +1,7 @@
-import { AdditionalFahrzeugInfo } from 'types/reihung';
 import { Dialog, DialogContent } from '@material-ui/core';
 import { SyntheticEvent, useCallback, useState } from 'react';
 import useStyles from './SitzplatzInfo.style';
+import type { AdditionalFahrzeugInfo } from 'types/reihung';
 
 interface Props {
   additionalInfo: AdditionalFahrzeugInfo;

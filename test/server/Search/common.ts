@@ -1,5 +1,5 @@
 /* eslint import/prefer-default-export: 0 */
-import { Station } from 'types/station';
+import type { Station } from 'types/station';
 
 interface BuiltOptions {
   includeFavendoId?: boolean;

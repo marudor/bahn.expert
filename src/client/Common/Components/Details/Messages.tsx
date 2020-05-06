@@ -1,4 +1,4 @@
-import { RemL } from 'types/HAFAS';
+import type { RemL } from 'types/HAFAS';
 
 interface Props {
   messages?: RemL[];

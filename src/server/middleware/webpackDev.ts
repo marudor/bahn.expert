@@ -1,12 +1,12 @@
 // istanbul ignore file
-import { Server } from 'https';
 import childProcess from 'child_process';
 import chokidar from 'chokidar';
-import Koa from 'koa';
 import koaWebpack from 'koa-webpack';
 import path from 'path';
 import webpack from 'webpack';
 import webpackConfig from '../../../webpack.config';
+import type { Server } from 'https';
+import type Koa from 'koa';
 
 // @ts-ignore
 const compiler: any = webpack(webpackConfig);

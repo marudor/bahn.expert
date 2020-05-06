@@ -1,5 +1,5 @@
-import { OpenDBStation, Station } from 'types/station';
 import axios from 'axios';
+import type { OpenDBStation, Station } from 'types/station';
 
 interface OpenDBResult {
   LocationList: {

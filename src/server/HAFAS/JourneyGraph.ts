@@ -1,9 +1,9 @@
-import { AllowedHafasProfile } from 'types/HAFAS';
-import {
+import makeRequest from 'server/HAFAS/Request';
+import type { AllowedHafasProfile } from 'types/HAFAS';
+import type {
   JourneyGraphRequest,
   JourneyGraphRequestOptions,
 } from 'types/HAFAS/JourneyGraph';
-import makeRequest from 'server/HAFAS/Request';
 
 export default (
   options: JourneyGraphRequestOptions,

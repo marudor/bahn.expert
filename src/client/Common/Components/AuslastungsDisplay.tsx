@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Route$Auslastung } from 'types/routing';
 import SingleAuslastungsDisplay from 'Common/Components/SingleAuslastungsDisplay';
 import useStyles from './AuslastungsDisplay.style';
+import type { Route$Auslastung } from 'types/routing';
 
 export interface Props {
   auslastung: Route$Auslastung;

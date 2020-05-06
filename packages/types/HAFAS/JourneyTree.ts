@@ -1,4 +1,4 @@
-import { GeoRect, GeoRing, HimFilter, JourneyFilter } from 'types/HAFAS';
+import type { GeoRect, GeoRing, HimFilter, JourneyFilter } from 'types/HAFAS';
 
 export interface JourneyTreeRequestOptions {
   getChilds?: number;

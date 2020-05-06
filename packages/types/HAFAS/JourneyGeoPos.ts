@@ -1,4 +1,4 @@
-import {
+import type {
   Common,
   CommonStop,
   Crd,
@@ -9,8 +9,8 @@ import {
   OptionalLocL,
   ParsedProduct,
 } from 'types/HAFAS';
-import { Coordinates } from 'types/station';
-import { Route$Stop } from 'types/routing';
+import type { Coordinates } from 'types/station';
+import type { Route$Stop } from 'types/routing';
 
 export interface JourneyGeoPosOptions extends JourneyGeoPosRequestOptions {}
 

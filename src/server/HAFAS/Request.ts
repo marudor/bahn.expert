@@ -7,46 +7,55 @@ import {
   ParsedCommon,
   SingleHafasRequest,
 } from 'types/HAFAS';
-import { HimSearchRequest, HimSearchResponse } from 'types/HAFAS/HimSearch';
-import {
-  JourneyCourseRequest,
-  JourneyCourseResponse,
-} from 'types/HAFAS/JourneyCourse';
-import {
-  JourneyDetailsRequest,
-  JourneyDetailsResponse,
-} from 'types/HAFAS/JourneyDetails';
-import {
-  JourneyGeoPosRequest,
-  JourneyGeoPosResponse,
-} from 'types/HAFAS/JourneyGeoPos';
-import {
-  JourneyGraphRequest,
-  JourneyGraphResponse,
-} from 'types/HAFAS/JourneyGraph';
-import {
-  JourneyMatchRequest,
-  JourneyMatchResponse,
-} from 'types/HAFAS/JourneyMatch';
-import {
-  JourneyTreeRequest,
-  JourneyTreeResponse,
-} from 'types/HAFAS/JourneyTree';
-import { LocGeoPosRequest, LocGeoPosResponse } from 'types/HAFAS/LocGeoPos';
-import { LocMatchRequest, LocMatchResponse } from 'types/HAFAS/LocMatch';
-import {
-  SearchOnTripRequest,
-  SearchOnTripResponse,
-} from 'types/HAFAS/SearchOnTrip';
-import {
-  StationBoardRequest,
-  StationBoardResponse,
-} from 'types/HAFAS/StationBoard';
-import { TripSearchRequest, TripSearchResponse } from 'types/HAFAS/TripSearch';
 import axios from 'axios';
 import parseLocL from './helper/parseLocL';
 import parsePolyline from 'server/HAFAS/helper/parsePolyline';
 import parseProduct from './helper/parseProduct';
+import type {
+  HimSearchRequest,
+  HimSearchResponse,
+} from 'types/HAFAS/HimSearch';
+import type {
+  JourneyCourseRequest,
+  JourneyCourseResponse,
+} from 'types/HAFAS/JourneyCourse';
+import type {
+  JourneyDetailsRequest,
+  JourneyDetailsResponse,
+} from 'types/HAFAS/JourneyDetails';
+import type {
+  JourneyGeoPosRequest,
+  JourneyGeoPosResponse,
+} from 'types/HAFAS/JourneyGeoPos';
+import type {
+  JourneyGraphRequest,
+  JourneyGraphResponse,
+} from 'types/HAFAS/JourneyGraph';
+import type {
+  JourneyMatchRequest,
+  JourneyMatchResponse,
+} from 'types/HAFAS/JourneyMatch';
+import type {
+  JourneyTreeRequest,
+  JourneyTreeResponse,
+} from 'types/HAFAS/JourneyTree';
+import type {
+  LocGeoPosRequest,
+  LocGeoPosResponse,
+} from 'types/HAFAS/LocGeoPos';
+import type { LocMatchRequest, LocMatchResponse } from 'types/HAFAS/LocMatch';
+import type {
+  SearchOnTripRequest,
+  SearchOnTripResponse,
+} from 'types/HAFAS/SearchOnTrip';
+import type {
+  StationBoardRequest,
+  StationBoardResponse,
+} from 'types/HAFAS/StationBoard';
+import type {
+  TripSearchRequest,
+  TripSearchResponse,
+} from 'types/HAFAS/TripSearch';
 
 function createRequest(
   req: SingleHafasRequest,

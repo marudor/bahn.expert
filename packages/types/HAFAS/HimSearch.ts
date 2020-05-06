@@ -1,4 +1,9 @@
-import { Common, HimFilter, OptionalLocL, ParsedProduct } from 'types/HAFAS';
+import type {
+  Common,
+  HimFilter,
+  OptionalLocL,
+  ParsedProduct,
+} from 'types/HAFAS';
 
 export interface HimSearchRequestOptions {
   comp?: string;

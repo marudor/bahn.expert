@@ -1,8 +1,8 @@
-import { AllowedHafasProfile } from 'types/HAFAS';
 import { createContainer } from 'unstated-next';
 import { ReactNode, useCallback, useState } from 'react';
-import { Station } from 'types/station';
 import useStorage from 'shared/hooks/useStorage';
+import type { AllowedHafasProfile } from 'types/HAFAS';
+import type { Station } from 'types/station';
 
 export type RoutingFavStation = Pick<Station, 'title' | 'id'>;
 export interface RoutingFav {

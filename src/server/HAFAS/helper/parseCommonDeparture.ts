@@ -1,12 +1,12 @@
-import {
+import { differenceInMinutes } from 'date-fns';
+import checkReihung from './checkReihung';
+import parseTime from './parseTime';
+import type {
   CommonDeparture,
   CommonStopInfo,
   ParsedCommon,
   ParsedProduct,
 } from 'types/HAFAS';
-import { differenceInMinutes } from 'date-fns';
-import checkReihung from './checkReihung';
-import parseTime from './parseTime';
 
 export default (
   d: CommonDeparture,

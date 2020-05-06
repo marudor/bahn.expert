@@ -1,6 +1,6 @@
-import { AxiosError } from 'axios';
 import { createContext } from 'react';
-import { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
+import type { AxiosError } from 'axios';
+import type { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
 
 export default createContext<{
   details?: ParsedSearchOnTripResponse;

@@ -1,4 +1,4 @@
-import { Common, ParsedProduct, ProdL } from 'types/HAFAS';
+import type { Common, ParsedProduct, ProdL } from 'types/HAFAS';
 
 export default (product: ProdL, common: Common): ParsedProduct => ({
   name: product.addName || product.name,

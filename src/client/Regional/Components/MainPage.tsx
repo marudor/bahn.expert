@@ -1,6 +1,6 @@
 import { FavEntryDisplay } from 'Abfahrten/Components/FavEntry';
-import { StaticRouterContext } from 'react-router';
 import FavList from 'Abfahrten/Components/FavList';
+import type { StaticRouterContext } from 'react-router';
 
 interface Props {
   staticContext?: StaticRouterContext;

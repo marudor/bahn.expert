@@ -1,4 +1,4 @@
-import {
+import type {
   Common,
   CommonArrival,
   CommonDeparture,
@@ -9,7 +9,7 @@ import {
   MsgL,
   TrnCmpSX,
 } from '.';
-import { JnyCl, LoyalityCard, TravelerType } from 'types/HAFAS/Tarif';
+import type { JnyCl, LoyalityCard, TravelerType } from 'types/HAFAS/Tarif';
 
 export interface TripSearchTraveler {
   type: TravelerType;

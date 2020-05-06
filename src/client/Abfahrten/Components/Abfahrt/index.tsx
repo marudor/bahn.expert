@@ -1,7 +1,7 @@
-import { Abfahrt as AbfahrtType } from 'types/iris';
 import { useMemo } from 'react';
 import BaseAbfahrt from './BaseAbfahrt';
 import useWings from 'Abfahrten/container/AbfahrtenContainer/useWings';
+import type { Abfahrt as AbfahrtType } from 'types/iris';
 
 interface Props {
   abfahrt: AbfahrtType;

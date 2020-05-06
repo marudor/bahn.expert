@@ -1,7 +1,7 @@
-import { CommonProductInfo } from 'types/HAFAS';
 import { Link } from 'react-router-dom';
 import qs from 'qs';
 import stopPropagation from 'Common/stopPropagation';
+import type { CommonProductInfo } from 'types/HAFAS';
 
 interface Props {
   train: CommonProductInfo;

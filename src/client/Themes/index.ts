@@ -1,9 +1,9 @@
 // eslint-disable-next-line import/no-unresolved
-import { Theme as MaruTheme } from 'maru';
-import { Theme as MuiTheme } from '@material-ui/core';
-import { ThemeType } from './type';
 import createMuiTheme from './mui';
 import getColors from './colors';
+import type { Theme as MaruTheme } from 'maru';
+import type { Theme as MuiTheme } from '@material-ui/core';
+import type { ThemeType } from './type';
 
 declare module '@material-ui/styles/defaultTheme' {
   interface DefaultTheme extends MaruTheme, MuiTheme {}

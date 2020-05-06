@@ -1,14 +1,14 @@
-import {
+import type {
   CommonStopInfo,
   HafasStation,
   ParsedProduct,
   ProdL,
   RemL,
 } from './HAFAS';
-import { Message } from './iris';
-import { OutConL, SecL } from './HAFAS/TripSearch';
-import { PlannedSequence } from 'types/planReihung';
-import { Station } from './station';
+import type { Message } from './iris';
+import type { OutConL, SecL } from './HAFAS/TripSearch';
+import type { PlannedSequence } from 'types/planReihung';
+import type { Station } from './station';
 
 export interface Route$Stop {
   arrival?: CommonStopInfo;
