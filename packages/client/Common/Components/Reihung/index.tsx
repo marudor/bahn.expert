@@ -1,0 +1,111 @@
+import { useEffect } from 'react';
+import cc from 'clsx';
+import CommonConfigContainer from 'client/Common/container/CommonConfigContainer';
+import Explain from './Explain';
+import Gruppe from './Gruppe';
+import Loading from 'client/Common/Components/Loading';
+import ReihungContainer from 'client/Common/container/ReihungContainer';
+import Sektor from './Sektor';
+import useStyles from './index.style';
+
+interface Props {
+  className?: string;
+  trainNumber: string;
+  fallbackTrainNumbers?: string[];
+  currentStation: string;
+  scheduledDeparture: number;
+  loadHidden?: boolean;
+  withLegend?: boolean;
+}
+
+const Reihung = (props: Props) => {
+  const {
+    className,
+    currentStation,
+    scheduledDeparture,
+    trainNumber,
+    loadHidden,
+    fallbackTrainNumbers,
+  } = props;
+  const { reihungen, getReihung } = ReihungContainer.useContainer();
+  const {
+    fahrzeugGruppe,
+    showUIC,
+    zoomReihung,
+  } = CommonConfigContainer.useContainer().config;
+  const reihung = reihungen[trainNumber + currentStation + scheduledDeparture];
+  const classes = useStyles({
+    reihung,
+    fahrzeugGruppe,
+    showUIC,
+  });
+
+  useEffect(() => {
+    if (reihung === undefined) {
+      getReihung(
+        trainNumber,
+        currentStation,
+        scheduledDeparture,
+        fallbackTrainNumbers
+      );
+    }
+  }, [
+    currentStation,
+    fallbackTrainNumbers,
+    getReihung,
+    reihung,
+    scheduledDeparture,
+    trainNumber,
+  ]);
+
+  if (reihung === null || (!reihung && loadHidden)) {
+    return null;
+  }
+  if (reihung === undefined) {
+    return <Loading type={1} />;
+  }
+
+  const correctLeft = zoomReihung ? reihung.startPercentage : 0;
+  const scale = zoomReihung ? reihung.scale : 1;
+  const differentZugnummer = reihung.differentZugnummer;
+
+  return (
+    <div className={cc(classes.wrap, className)} data-testid="reihung">
+      <div className={classes.main}>
+        <div className={classes.sektoren}>
+          {reihung.halt.allSektor.map((s) => (
+            <Sektor
+              correctLeft={correctLeft}
+              scale={scale}
+              key={s.sektorbezeichnung}
+              sektor={s}
+            />
+          ))}
+        </div>
+        <div className={classes.reihung}>
+          {reihung.allFahrzeuggruppe.map((g) => (
+            <Gruppe
+              showGruppenZugnummer={differentZugnummer}
+              showUIC={showUIC}
+              originalTrainNumber={trainNumber}
+              showFahrzeugGruppe={fahrzeugGruppe}
+              correctLeft={correctLeft}
+              scale={scale}
+              type={reihung.zuggattung}
+              showDestination={
+                reihung.differentDestination && g.allFahrzeug.length > 1
+              }
+              key={g.fahrzeuggruppebezeichnung}
+              gruppe={g}
+            />
+          ))}
+        </div>
+        <Explain />
+        {!reihung.isRealtime && <span className={classes.plan}>Plandaten</span>}
+        <span className={classes.richtung} />
+      </div>
+    </div>
+  );
+};
+
+export default Reihung;

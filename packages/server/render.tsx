@@ -9,7 +9,7 @@ import ServerBaseComponent from 'client/ServerBaseComponent';
 import type {
   AbfahrtenConfigSanitize,
   CommonConfigSanitize,
-} from 'Common/config';
+} from 'client/Common/config';
 import type { Context } from 'koa';
 import type { StaticRouterContext } from 'react-router';
 

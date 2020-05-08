@@ -1,5 +1,9 @@
 /* eslint no-sync: 0 */
-import { mockFchg, mockLageplan, mockSearch } from 'test-helper/mockHelper';
+import {
+  mockFchg,
+  mockLageplan,
+  mockSearch,
+} from 'server/__tests__/mockHelper';
 import { noncdAxios } from 'server/Abfahrten/helper';
 import fakeTimers, { InstalledClock } from '@sinonjs/fake-timers';
 import fs from 'fs';

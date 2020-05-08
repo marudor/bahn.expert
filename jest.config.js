@@ -1,5 +1,8 @@
 module.exports = {
-  projects: ['src/client/jest.config.js', 'src/server/jest.config.js'],
+  projects: [
+    'packages/client/jest.config.json',
+    'packages/server/jest.config.json',
+  ],
   reporters: ['default', 'jest-junit'],
   watchPlugins: [
     'jest-watch-typeahead/filename',

@@ -346,7 +346,10 @@ export class HafasController extends Controller {
 
   @Hidden()
   @Post('/rawHafas')
-  rawHafas(@Body() body: any, @Query() profile?: AllowedHafasProfile) {
+  rawHafas(
+    @Body() body: any,
+    @Query() profile?: AllowedHafasProfile
+  ): Promise<any> {
     return makeRequest(body, undefined, profile);
   }
 }

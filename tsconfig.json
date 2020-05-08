@@ -18,15 +18,8 @@
     "target": "esnext",
     "emitDecoratorMetadata": false,
     "resolveJsonModule": true,
-    "baseUrl": "src",
-    "paths": {
-      "Routing/*": ["client/Routing/*"],
-      "Abfahrten/*": ["client/Abfahrten/*"],
-      "Common/*": ["client/Common/*"],
-      "Regional/*": ["client/Regional/*"]
-    },
     "types": ["jest", "@testing-library/jest-dom"],
     "keyofStringsOnly": true
   },
-  "include": ["src", "@types", "packages"]
+  "include": ["@types", "packages"]
 }

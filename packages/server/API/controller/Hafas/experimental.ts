@@ -45,7 +45,7 @@ export class HafasExperimentalController extends Controller {
     @Request() ctx: Context,
     @Body() options: HimSearchRequestOptions,
     @Query() profile?: AllowedHafasProfile
-  ) {
+  ): Promise<ParsedHimSearchResponse> {
     return HimSearch(options, profile, ctx.query.raw);
   }
 
@@ -104,7 +104,7 @@ export class HafasExperimentalController extends Controller {
   JourneyTree(
     @Body() options: JourneyTreeRequestOptions,
     @Query() profile?: AllowedHafasProfile
-  ) {
+  ): Promise<any> {
     return JourneyTree(options, profile);
   }
 
@@ -113,7 +113,7 @@ export class HafasExperimentalController extends Controller {
   JourneyGraph(
     @Body() options: JourneyGraphRequestOptions,
     @Query() profile?: AllowedHafasProfile
-  ) {
+  ): Promise<any> {
     return JourneyGraph(options, profile);
   }
 
@@ -123,7 +123,7 @@ export class HafasExperimentalController extends Controller {
     @Request() ctx: Context,
     @Body() options: JourneyCourseRequestOptions,
     @Query() profile?: AllowedHafasProfile
-  ) {
+  ): Promise<any> {
     return JourneyCourse(options, profile, ctx.query.raw);
   }
 }

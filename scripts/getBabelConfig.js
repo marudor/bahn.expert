@@ -19,26 +19,26 @@ const getBabelConfig = (type) => {
         alias: {
           classnames: 'clsx',
         },
-        resolvePath: (sourcePath, currentFile, opts) => {
-          let filePath = require('babel-plugin-module-resolver').resolvePath(
-            sourcePath.replace(
-              /^(Abfahrten|Common|Routing|Regional)\//,
-              'client/$1/'
-            ),
-            currentFile,
-            opts
-          );
-          const specialCase = `${filePath}/index.web.ts`;
+        // resolvePath: (sourcePath, currentFile, opts) => {
+        //   let filePath = require('babel-plugin-module-resolver').resolvePath(
+        //     sourcePath.replace(
+        //       /^(Abfahrten|Common|Routing|Regional)\//,
+        //       'client/$1/'
+        //     ),
+        //     currentFile,
+        //     opts
+        //   );
+        //   const specialCase = `${filePath}/index.web.ts`;
 
-          if (
-            // eslint-disable-next-line no-sync
-            fs.existsSync(path.resolve(path.dirname(currentFile), specialCase))
-          ) {
-            filePath = specialCase;
-          }
+        //   if (
+        //     // eslint-disable-next-line no-sync
+        //     fs.existsSync(path.resolve(path.dirname(currentFile), specialCase))
+        //   ) {
+        //     filePath = specialCase;
+        //   }
 
-          return filePath;
-        },
+        //   return filePath;
+        // },
       }
     : undefined;
 
@@ -60,7 +60,7 @@ const getBabelConfig = (type) => {
     [
       'module-resolver',
       {
-        root: 'src',
+        // root: 'src',
         ...serverModuleResolver,
       },
     ],

@@ -1,4 +1,4 @@
-import Storage from 'Common/Storage';
+import Storage from 'client/Common/Storage';
 import type { Context } from 'koa';
 import type { CookieChangeOptions } from 'universal-cookie';
 

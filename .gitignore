@@ -70,4 +70,4 @@ jest-coverage/
 !.yarn/plugins
 
 packages/**/*.js
-!packages/**/jest.config.js
+!packages/server/logger/logWriteThread.js

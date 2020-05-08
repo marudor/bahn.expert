@@ -5,7 +5,7 @@ import path from 'path';
 import pino from 'pino';
 import serializers from 'pino-std-serializers';
 
-const writeWorker = new Worker(path.resolve(__dirname, 'logWriteThread.js'), {
+const writeWorker = new Worker(path.resolve(__dirname, 'logWriteThread.cjs'), {
   env: SHARE_ENV,
 });
 

@@ -13,11 +13,9 @@ ARG SENTRY_AUTH_TOKEN
 ARG SENTRY_ORG
 ARG SENTRY_PROJECT
 
-COPY .git webpack.config.js babel.config.js ./
-COPY src/ ./src/
-RUN rm -rf packages/test-helper
+COPY webpack.config.js babel.config.js ./
+COPY .git ./.git
 ENV NODE_ENV=production
-ENV PROD_ONLY=true
 RUN yarn all:build
 RUN node scripts/checkAssetFiles.js
 
@@ -34,4 +32,4 @@ COPY --from=cleanedDeps /app/node_modules/ ./node_modules/
 COPY --from=build /app/dist/ ./dist/
 COPY --from=build /app/packages/ ./packages/
 USER node
-CMD [ "node", "dist/server/server/index.js" ]
+CMD [ "node", "packages/server/index.js" ]
