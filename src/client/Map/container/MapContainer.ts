@@ -33,9 +33,9 @@ function useMapDefaults() {
   }
   if (
     'profile' in query &&
-    Object.values(AllowedHafasProfile).includes(query.profile)
+    Object.values(AllowedHafasProfile).includes(query.profile as any)
   ) {
-    profile = query.profile;
+    profile = query.profile as any;
   }
 
   return useMemo(

@@ -1,6 +1,5 @@
 // eslint-disable-next-line no-sync
 const spawn = require('child_process').spawn;
-const rimraf = require('rimraf');
 const fs = require('fs');
 const SentryCli = require('@sentry/cli');
 const sentryCli = new SentryCli();
@@ -8,14 +7,14 @@ const sentryCli = new SentryCli();
 const testOnly = Boolean(process.env.TEST_ONLY);
 const productionOnly = Boolean(process.env.PROD_ONLY);
 
-function buildTest() {
+function buildTest(src, outDir) {
   return new Promise((resolve) =>
     spawn(
       'babel',
       [
-        'src',
+        src,
         '--out-dir',
-        'testDist/server',
+        outDir,
         '-x',
         '.ts,.tsx,.js,.jsx',
         '--root-mode',
@@ -31,20 +30,19 @@ function buildTest() {
         },
       }
     ).on('close', (code) => {
-      rimraf.sync('testDist/server/app');
       resolve(code);
     })
   );
 }
 
-function buildProd() {
+function buildProd(src, outDir) {
   return new Promise((resolve) =>
     spawn(
       'babel',
       [
-        'src',
+        src,
         '--out-dir',
-        'dist/server',
+        outDir,
         '-x',
         '.ts,.tsx,.js,.jsx',
         '--source-maps',
@@ -67,10 +65,13 @@ function buildProd() {
           .proposeVersion()
           .then((version) => {
             // eslint-disable-next-line no-sync
-            fs.writeFileSync(
-              'dist/server/server/version.js',
-              `exports.__esModule=true;exports.default='${version.trim()}'`
-            );
+            if (fs.existsSync('dist/server/server/version.js')) {
+              // eslint-disable-next-line no-sync
+              fs.writeFileSync(
+                'dist/server/server/version.js',
+                `exports.__esModule=true;exports.default='${version.trim()}'`
+              );
+            }
             resolve(code);
           })
           .catch(() => {
@@ -81,8 +82,18 @@ function buildProd() {
   );
 }
 
-const prodPromise = testOnly ? Promise.resolve(0) : buildProd();
-const testPromise = productionOnly ? Promise.resolve(0) : buildTest();
+const prodPromise = testOnly
+  ? Promise.resolve(0)
+  : Promise.all([
+      buildProd('packages/server', 'dist/server/server'),
+      buildProd('src/client', 'dist/server/client'),
+    ]);
+const testPromise = productionOnly
+  ? Promise.resolve(0)
+  : Promise.all([
+      buildTest('packages/server', 'testDist/server/server'),
+      buildTest('src/client', 'testDist/server/client'),
+    ]);
 
 Promise.all([prodPromise, testPromise]).then(([c1, c2]) => {
   if (c1 !== 0 || c2 !== 0) {

@@ -53,7 +53,13 @@ const Details = ({
 
   useEffect(() => {
     setDetails(undefined);
-    getDetails(train, initialDeparture, currentStopId, stationId, query.profile)
+    getDetails(
+      train,
+      initialDeparture,
+      currentStopId,
+      stationId,
+      query.profile as any
+    )
       .then((details) => {
         setDetails(details);
         setError(undefined);

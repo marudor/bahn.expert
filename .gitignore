@@ -68,3 +68,6 @@ jest-coverage/
 !.yarn/cache
 !.yarn/releases
 !.yarn/plugins
+
+packages/**/*.js
+!packages/**/jest.config.js

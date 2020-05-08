@@ -9,7 +9,9 @@ module.exports = {
   },
   globalSetup: 'test-helper/setupGlobal.ts',
   setupFilesAfterEnv: [
-    'test-helper/setupClient.ts',
+    'test-helper/setupCommon.ts',
+    './__tests__/setup.ts',
     '@testing-library/jest-dom/extend-expect',
   ],
+  testMatch: ['**/__tests__/**/?(*.)+(spec|test).[jt]s?(x)'],
 };

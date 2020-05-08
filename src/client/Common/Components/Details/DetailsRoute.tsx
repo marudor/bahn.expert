@@ -21,9 +21,9 @@ const DetailsRoute = ({
   return (
     <Details
       train={train}
-      stationId={query.station}
+      stationId={query.station as string}
       initialDeparture={initialDeparture}
-      currentStopId={query.stop}
+      currentStopId={query.stop as string}
       urlPrefix={urlPrefix}
     />
   );

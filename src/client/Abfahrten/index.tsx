@@ -11,7 +11,7 @@ import useStyles from './index.style';
 
 const BahnhofsAbfahrten = () => {
   const noHeader = useQuery().noHeader;
-  const classes = useStyles({ noHeader });
+  const classes = useStyles({ noHeader: Boolean(noHeader) });
 
   return (
     <AuslastungContainer.Provider>
