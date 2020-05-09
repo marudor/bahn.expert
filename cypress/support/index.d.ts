@@ -1,5 +1,5 @@
 /* eslint-disable no-redeclare */
-import { AbfahrtenConfig } from '../../src/client/Common/config';
+import type { AbfahrtenConfig } from 'client/Common/config';
 
 interface MockOptions {
   lookahead?: number;

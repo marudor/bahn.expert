@@ -21,7 +21,7 @@
     "build:server": "node scripts/buildServer",
     "build": "yarn build:client",
     "dev": "npm run start",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx src scripts cypress",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx scripts cypress",
     "start": "node devIndex.js",
     "test": "run-p lint test:jest test:ts",
     "test:jest": "jest",
