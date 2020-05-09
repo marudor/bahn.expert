@@ -10,11 +10,7 @@
       "cypress",
       "@types/testing-library__cypress",
       "../cypress/support/index"
-    ],
-    "baseUrl": ".",
-    "paths": {
-      "types/*": ["../src/types/*"]
-    }
+    ]
   },
   "include": ["**/*.ts", "support/index.ts"]
 }
