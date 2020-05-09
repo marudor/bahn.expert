@@ -127,6 +127,9 @@
     "core-js": "^3.6.5",
     "server": "workspace:*"
   },
+  "resolutions": {
+    "iconv-lite": "^0.5.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/marudor/BahnhofsAbfahrten.git"
