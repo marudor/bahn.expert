@@ -1,3 +1,4 @@
+import { AllowedHafasProfile } from 'types/HAFAS';
 import {
   getHafasStationFromAPI,
   getHafasStationFromCoordinates,
@@ -6,7 +7,6 @@ import {
 } from 'shared/service/stationSearch';
 import { useCallback, useRef, useState } from 'react';
 import debounce from 'debounce-promise';
-import type { AllowedHafasProfile } from 'types/HAFAS';
 import type { ControllerStateAndHelpers } from 'downshift';
 import type { Station, StationSearchType } from 'types/station';
 

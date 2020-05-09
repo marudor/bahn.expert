@@ -3,7 +3,7 @@ const getBabelConfig = require('./scripts/getBabelConfig');
 module.exports = {
   overrides: [
     {
-      test: ['./src/*', './packages/*', './test/*', './cypress/*'],
+      test: ['./packages/*', './cypress/*'],
       ...getBabelConfig(process.env.SERVER ? 'server' : 'client'),
     },
   ],

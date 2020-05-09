@@ -3,41 +3,21 @@ const childProcess = require('child_process');
 const ncp = require('ncp');
 
 const sendStats = Boolean(process.argv[2] === 'sendStats');
-const testOnly = Boolean(process.env.TEST_ONLY);
-const productionOnly = Boolean(process.env.PROD_ONLY);
 
-if (!testOnly) {
-  const webpackProductionProcess = childProcess.spawn('webpack', [], {
-    env: {
-      ...process.env,
-      sendStats,
-    },
-  });
+const webpackProductionProcess = childProcess.spawn('webpack', [], {
+  env: {
+    ...process.env,
+    sendStats,
+  },
+});
 
-  webpackProductionProcess.stdout.pipe(process.stdout);
-  webpackProductionProcess.stderr.pipe(process.stderr);
+webpackProductionProcess.stdout.pipe(process.stdout);
+webpackProductionProcess.stderr.pipe(process.stderr);
 
-  webpackProductionProcess.on('close', (code) => {
-    if (code !== 0) {
-      process.exit(code);
-    }
-    ncp('public/', 'dist/client/');
-    require('./checkAssetFiles');
-  });
-}
-
-if (!productionOnly) {
-  const webpackTestProductionProcess = childProcess.spawn('webpack', [], {
-    env: {
-      ...process.env,
-      BABEL_ENV: 'testProduction',
-    },
-  });
-
-  webpackTestProductionProcess.on('close', (code) => {
-    if (code !== 0) {
-      process.exit(code);
-    }
-    ncp('public/', 'testDist/client/');
-  });
-}
+webpackProductionProcess.on('close', (code) => {
+  if (code !== 0) {
+    process.exit(code);
+  }
+  ncp('public/', 'dist/client/');
+  require('./checkAssetFiles');
+});
