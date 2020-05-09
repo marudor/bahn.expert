@@ -85,7 +85,6 @@ jobs:
           wait-on: http://localhost:9042
           browser: ${{ matrix.browser}}
         env:
-
           CYPRESS_RECORD_KEY: 0af1d817-e8ac-4c69-ac15-c0da1e69182d
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BASE_URL: http://localhost:9042
