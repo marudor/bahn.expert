@@ -3819,248 +3819,6 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"AdditionalId": {
-				"properties": {
-					"evaNr": {
-						"type": "string"
-					},
-					"shortName": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"evaNr",
-					"shortName"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"Destination": {
-				"properties": {
-					"destinationName": {
-						"type": "string"
-					},
-					"destinationVia": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
-					}
-				},
-				"required": [
-					"destinationName",
-					"destinationVia"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"Subtrain": {
-				"properties": {
-					"destination": {
-						"$ref": "#/components/schemas/Destination"
-					},
-					"sections": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
-					}
-				},
-				"required": [
-					"destination",
-					"sections"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"Waggon": {
-				"properties": {
-					"position": {
-						"type": "number",
-						"format": "double"
-					},
-					"waggon": {
-						"type": "boolean"
-					},
-					"sections": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
-					},
-					"number": {
-						"type": "string"
-					},
-					"type": {
-						"anyOf": [
-							{
-								"type": "string",
-								"enum": [
-									"2"
-								],
-								"nullable": false
-							},
-							{
-								"type": "string",
-								"enum": [
-									"1"
-								],
-								"nullable": false
-							},
-							{
-								"type": "string",
-								"enum": [
-									"s"
-								],
-								"nullable": false
-							},
-							{
-								"type": "string",
-								"enum": [
-									"e"
-								],
-								"nullable": false
-							}
-						]
-					},
-					"symbols": {
-						"type": "string"
-					},
-					"differentDestination": {
-						"type": "string"
-					},
-					"length": {
-						"type": "number",
-						"format": "double"
-					}
-				},
-				"required": [
-					"position",
-					"waggon",
-					"sections",
-					"number",
-					"type",
-					"symbols",
-					"differentDestination",
-					"length"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"TrackRecord": {
-				"properties": {
-					"time": {
-						"type": "string"
-					},
-					"additionalText": {
-						"type": "string"
-					},
-					"name": {
-						"type": "string"
-					},
-					"trainNumbers": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
-					},
-					"days": {
-						"items": {
-							"additionalProperties": true
-						},
-						"type": "array"
-					},
-					"subtrains": {
-						"items": {
-							"$ref": "#/components/schemas/Subtrain"
-						},
-						"type": "array"
-					},
-					"waggons": {
-						"items": {
-							"$ref": "#/components/schemas/Waggon"
-						},
-						"type": "array"
-					},
-					"trainTpes": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"time",
-					"additionalText",
-					"name",
-					"trainNumbers",
-					"days",
-					"subtrains",
-					"waggons"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"SpecificWagenreihung": {
-				"properties": {
-					"name": {
-						"type": "string"
-					},
-					"additionalId": {
-						"$ref": "#/components/schemas/AdditionalId"
-					},
-					"trackRecords": {
-						"items": {
-							"$ref": "#/components/schemas/TrackRecord"
-						},
-						"type": "array"
-					}
-				},
-				"required": [
-					"name",
-					"additionalId",
-					"trackRecords"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"WagenreihungStation": {
-				"properties": {
-					"trainNumber": {
-						"type": "string"
-					},
-					"trainType": {
-						"additionalProperties": true
-					},
-					"time": {
-						"additionalProperties": true
-					},
-					"timeOffset": {
-						"additionalProperties": true
-					},
-					"weekday": {
-						"additionalProperties": true
-					},
-					"platform": {
-						"additionalProperties": true
-					},
-					"waggon": {
-						"additionalProperties": true
-					},
-					"trainLine": {
-						"additionalProperties": true
-					},
-					"stations": {
-						"items": {
-							"$ref": "#/components/schemas/SpecificWagenreihung"
-						},
-						"type": "array"
-					}
-				},
-				"required": [
-					"trainNumber",
-					"stations"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
 			"AdditionalFahrzeugInfo": {
 				"properties": {
 					"klasse": {
@@ -4794,6 +4552,248 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"AdditionalId": {
+				"properties": {
+					"evaNr": {
+						"type": "string"
+					},
+					"shortName": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"evaNr",
+					"shortName"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Destination": {
+				"properties": {
+					"destinationName": {
+						"type": "string"
+					},
+					"destinationVia": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"destinationName",
+					"destinationVia"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Subtrain": {
+				"properties": {
+					"destination": {
+						"$ref": "#/components/schemas/Destination"
+					},
+					"sections": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"destination",
+					"sections"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Waggon": {
+				"properties": {
+					"position": {
+						"type": "number",
+						"format": "double"
+					},
+					"waggon": {
+						"type": "boolean"
+					},
+					"sections": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"number": {
+						"type": "string"
+					},
+					"type": {
+						"anyOf": [
+							{
+								"type": "string",
+								"enum": [
+									"2"
+								],
+								"nullable": false
+							},
+							{
+								"type": "string",
+								"enum": [
+									"1"
+								],
+								"nullable": false
+							},
+							{
+								"type": "string",
+								"enum": [
+									"s"
+								],
+								"nullable": false
+							},
+							{
+								"type": "string",
+								"enum": [
+									"e"
+								],
+								"nullable": false
+							}
+						]
+					},
+					"symbols": {
+						"type": "string"
+					},
+					"differentDestination": {
+						"type": "string"
+					},
+					"length": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"position",
+					"waggon",
+					"sections",
+					"number",
+					"type",
+					"symbols",
+					"differentDestination",
+					"length"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TrackRecord": {
+				"properties": {
+					"time": {
+						"type": "string"
+					},
+					"additionalText": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"trainNumbers": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"days": {
+						"items": {
+							"additionalProperties": true
+						},
+						"type": "array"
+					},
+					"subtrains": {
+						"items": {
+							"$ref": "#/components/schemas/Subtrain"
+						},
+						"type": "array"
+					},
+					"waggons": {
+						"items": {
+							"$ref": "#/components/schemas/Waggon"
+						},
+						"type": "array"
+					},
+					"trainTpes": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"time",
+					"additionalText",
+					"name",
+					"trainNumbers",
+					"days",
+					"subtrains",
+					"waggons"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"SpecificWagenreihung": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"additionalId": {
+						"$ref": "#/components/schemas/AdditionalId"
+					},
+					"trackRecords": {
+						"items": {
+							"$ref": "#/components/schemas/TrackRecord"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"name",
+					"additionalId",
+					"trackRecords"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"WagenreihungStation": {
+				"properties": {
+					"trainNumber": {
+						"type": "string"
+					},
+					"trainType": {
+						"additionalProperties": true
+					},
+					"time": {
+						"additionalProperties": true
+					},
+					"timeOffset": {
+						"additionalProperties": true
+					},
+					"weekday": {
+						"additionalProperties": true
+					},
+					"platform": {
+						"additionalProperties": true
+					},
+					"waggon": {
+						"additionalProperties": true
+					},
+					"trainLine": {
+						"additionalProperties": true
+					},
+					"stations": {
+						"items": {
+							"$ref": "#/components/schemas/SpecificWagenreihung"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"trainNumber",
+					"stations"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"StationSearchType": {
 				"enum": [
 					"default",
@@ -5332,16 +5332,70 @@
 				],
 				"type": "object",
 				"additionalProperties": false
+			},
+			"SearchAllResult": {
+				"properties": {
+					"default": {
+						"items": {
+							"$ref": "#/components/schemas/Station"
+						},
+						"type": "array"
+					},
+					"favendo": {
+						"items": {
+							"$ref": "#/components/schemas/Station"
+						},
+						"type": "array"
+					},
+					"hafas": {
+						"items": {
+							"$ref": "#/components/schemas/Station"
+						},
+						"type": "array"
+					},
+					"openData": {
+						"items": {
+							"$ref": "#/components/schemas/Station"
+						},
+						"type": "array"
+					},
+					"openDataOffline": {
+						"items": {
+							"$ref": "#/components/schemas/Station"
+						},
+						"type": "array"
+					},
+					"stationsData": {
+						"items": {
+							"$ref": "#/components/schemas/Station"
+						},
+						"type": "array"
+					},
+					"businessHub": {
+						"items": {
+							"$ref": "#/components/schemas/Station"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"default",
+					"favendo",
+					"hafas",
+					"openData",
+					"openDataOffline",
+					"stationsData",
+					"businessHub"
+				],
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {}
 	},
 	"info": {
-		"title": "bahnhofs-abfahrten",
-		"version": "0.0.2",
-		"license": {
-			"name": "MIT"
-		}
+		"title": "server",
+		"version": "1.0.0"
 	},
 	"openapi": "3.0.0",
 	"paths": {
@@ -5426,7 +5480,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"additionalProperties": true
+									"$ref": "#/components/schemas/ParsedHimSearchResponse"
 								}
 							}
 						},
@@ -6344,7 +6398,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"additionalProperties": true
+									"$ref": "#/components/schemas/ParsedJourneyGeoPosResponse"
 								}
 							}
 						},
@@ -6757,7 +6811,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"additionalProperties": true
+									"$ref": "#/components/schemas/SearchAllResult"
 								}
 							}
 						},

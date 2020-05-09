@@ -8,7 +8,13 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ."
   },
   "devDependencies": {
-    "@types/eslint": "6.8.0",
+    "@types/react": "16.9.34",
     "eslint": "^6.8.0"
-  }
+  },
+  "dependencies": {
+    "react": "^16.13.1"
+  },
+  "bundledDependencies": [
+    "test-helper"
+  ]
 }

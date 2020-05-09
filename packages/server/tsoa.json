@@ -1,0 +1,16 @@
+{
+  "entryFile": "./API/index.ts",
+  "controllerPathGlobs": ["./API/controller/**", "../types/**"],
+  "noImplicitAdditionalProperties": "silently-remove-extras",
+  "spec": {
+    "specVersion": 3,
+    "outputDirectory": "../../docs",
+    "host": "marudor.de",
+    "basePath": "api/"
+  },
+  "routes": {
+    "middleware": "koa",
+    "routesDir": "./API",
+    "basePath": "api/"
+  }
+}

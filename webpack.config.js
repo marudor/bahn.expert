@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 const path = require('path');
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -118,20 +119,13 @@ module.exports = {
   plugins,
   mode: isDev ? 'development' : 'production',
   devtool: isDev ? 'cheap-module-source-map' : 'source-map',
-  entry: ['./src/client/entry.ts'],
-  // entry: ['./src/client/Common/Storage.ts'],
+  entry: ['./packages/client/entry.ts'],
   resolve: {
-    // plugins: [new ReactJssHmrPlugin()],
-    modules: ['node_modules', path.resolve(__dirname, 'src')],
-    extensions: ['.js', '.json', '.web.ts', '.jsx', '.ts', '.tsx'],
+    modules: ['node_modules'],
+    extensions: ['.ts', '.tsx', '.json', '.web.ts', '.js', '.jsx'],
     alias: {
       classnames$: 'clsx',
       'lodash-es$': 'lodash',
-      Abfahrten: 'client/Abfahrten',
-      Routing: 'client/Routing',
-      Common: 'client/Common',
-      Regional: 'client/Regional',
-      testHelper$: '../test/client/testHelper',
     },
   },
   output: {
