@@ -1,17 +1,20 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+const path = require('path');
 const fs = require('fs');
 const SentryCli = require('@sentry/cli');
 const sentryCli = new SentryCli();
 
 function adjustVersion() {
+  const versionPath = path.resolve(__dirname, '../packages/server/version.js');
   return new Promise((resolve) => {
     sentryCli.releases
       .proposeVersion()
       .then((version) => {
         // eslint-disable-next-line no-sync
-        if (fs.existsSync('packages/server/version.js')) {
+        if (fs.existsSync(versionPath)) {
           // eslint-disable-next-line no-sync
           fs.writeFileSync(
-            'packages/server/version.js',
+            versionPath,
             `exports.__esModule=true;exports.default='${version.trim()}'`
           );
         }
