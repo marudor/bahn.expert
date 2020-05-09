@@ -81,7 +81,7 @@ jobs:
           build: yarn all:build
           group: ${{ matrix.browser }}
           ci-build-id: '${{github.sha}}-${{ github.workflow }}-${{ github.event_name }}'
-          start: node testDist/server/server/index.js
+          start: node packages/server/index.js
           wait-on: http://localhost:9042
           browser: ${{ matrix.browser}}
         env:
@@ -89,8 +89,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BASE_URL: http://localhost:9042
           NODE_ENV: production
+          BABEL_ENV: testProduction
           TEST_RUN: 1
-          TEST_ONLY: 1
   bundleSize:
     runs-on: ubuntu-latest
     steps:
@@ -111,6 +111,5 @@ jobs:
         env:
           NODE_ENV: production
           PT_PROJECT_TOKEN: 1ce5b3fa-b36c-4f3c-9d93-5207b79264c7
-          PROD_ONLY: 1
           PT_BRANCH: ${{github.head_ref || github.ref}}
           PT_COMMIT: ${{github.event.pull_request.head.sha || github.sha}}

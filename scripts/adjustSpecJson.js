@@ -1,5 +1,6 @@
 /* eslint-disable no-sync */
 const fs = require('fs');
+// eslint-disable-next-line import/no-extraneous-dependencies
 const path = require('path');
 
 const filePath = path.resolve(__dirname, '../docs/swagger.json');
