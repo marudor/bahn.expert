@@ -9,6 +9,7 @@ import DS100 from 'server/Search/DS100';
 import FavendoSearch from './Favendo';
 import OpenDataOfflineSearch from './OpenDataOffline';
 import OpenDataSearch from './OpenData';
+import SBBSearch from 'server/SBB/StationSearch';
 import StationsDataSearch from './StationsData';
 
 const defaultSearch = canUseBusinessHub ? BusinessHubSearch : FavendoSearch;
@@ -30,6 +31,8 @@ export function getSearchMethod(type?: StationSearchType) {
       return StationsDataSearch;
     case StationSearchType.favendo:
       return FavendoSearch;
+    case StationSearchType.sbb:
+      return SBBSearch;
     case StationSearchType.businessHub:
       return BusinessHubSearch;
     default:
