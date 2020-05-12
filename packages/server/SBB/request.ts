@@ -28,6 +28,7 @@ export const axios = Axios.create({
   }),
 });
 axios.interceptors.request.use((config) => {
+  config.url = config.url!.replace(/ /g, '');
   const urlPath = url.parse(config.url!).path!;
   const today = format(Date.now(), 'yyyy-MM-dd');
   const apiKey = crypto
@@ -35,7 +36,6 @@ axios.interceptors.request.use((config) => {
     .update(urlPath + today)
     .digest('base64');
   config.headers = config.headers || {};
-  console.log(urlPath, today, apiKey);
   config.headers['X-API-DATE'] = today;
   config.headers['X-API-AUTHORIZATION'] = apiKey;
   config.headers['User-Agent'] =

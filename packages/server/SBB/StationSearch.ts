@@ -10,7 +10,7 @@ export default async (searchTerm?: string): Promise<SBBStation[]> => {
 
   return (
     result.standorte
-      ?.filter((station) => station.externalId.length >= 7)
+      ?.filter((station) => station.externalId?.length >= 7)
       .map((station) => ({
         title: station.displayName,
         id: station.externalId,
