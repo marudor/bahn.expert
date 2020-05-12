@@ -55,7 +55,14 @@ export const logger = pino(
         return req;
       }),
       res: serializers.res,
-      err: serializers.err,
+      err: serializers.wrapErrorSerializer((err) => {
+        try {
+          delete err.config?.httpsAgent;
+        } catch {
+          // we ignore errors
+        }
+        return err;
+      }),
     },
   },
   writeOptions

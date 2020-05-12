@@ -1530,7 +1530,7 @@ const models: TsoaRoute.Models = {
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "StationSearchType": {
     "dataType": "refEnum",
-    "enums": ["default", "favendo", "hafas", "openData", "openDataOffline", "stationsData", "businessHub"],
+    "enums": ["default", "favendo", "hafas", "openData", "openDataOffline", "stationsData", "businessHub", "sbb"],
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "IrisStation": {
@@ -1727,20 +1727,6 @@ const models: TsoaRoute.Models = {
       "address": { "ref": "Address", "required": true },
       "details": { "ref": "Details", "required": true },
       "tripleSCenter": { "ref": "TripleSCenter" },
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "SearchAllResult": {
-    "dataType": "refObject",
-    "properties": {
-      "default": { "dataType": "array", "array": { "ref": "Station" }, "required": true },
-      "favendo": { "dataType": "array", "array": { "ref": "Station" }, "required": true },
-      "hafas": { "dataType": "array", "array": { "ref": "Station" }, "required": true },
-      "openData": { "dataType": "array", "array": { "ref": "Station" }, "required": true },
-      "openDataOffline": { "dataType": "array", "array": { "ref": "Station" }, "required": true },
-      "stationsData": { "dataType": "array", "array": { "ref": "Station" }, "required": true },
-      "businessHub": { "dataType": "array", "array": { "ref": "Station" }, "required": true },
     },
     "additionalProperties": false,
   },
@@ -2532,26 +2518,6 @@ export function RegisterRoutes(router: KoaRouter) {
       const controller = new StationController();
 
       const promise = controller.stationDetails.apply(controller, validatedArgs as any);
-      return promiseHandler(controller, promise, context, next);
-    });
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  router.get('/api/station/v1/searchAll/:searchTerm',
-    async (context: any, next: any) => {
-      const args = {
-        searchTerm: { "in": "path", "name": "searchTerm", "required": true, "dataType": "string" },
-      };
-
-      let validatedArgs: any[] = [];
-      try {
-        validatedArgs = getValidatedArgs(args, context);
-      } catch (error) {
-        context.status = error.status;
-        context.throw(error.status, JSON.stringify({ fields: error.fields }));
-      }
-
-      const controller = new StationController();
-
-      const promise = controller.searchAll.apply(controller, validatedArgs as any);
       return promiseHandler(controller, promise, context, next);
     });
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
