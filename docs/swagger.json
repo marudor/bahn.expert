@@ -4802,7 +4802,8 @@
 					"openData",
 					"openDataOffline",
 					"stationsData",
-					"businessHub"
+					"businessHub",
+					"sbb"
 				],
 				"type": "string"
 			},
@@ -5329,63 +5330,6 @@
 					"identifiers",
 					"address",
 					"details"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"SearchAllResult": {
-				"properties": {
-					"default": {
-						"items": {
-							"$ref": "#/components/schemas/Station"
-						},
-						"type": "array"
-					},
-					"favendo": {
-						"items": {
-							"$ref": "#/components/schemas/Station"
-						},
-						"type": "array"
-					},
-					"hafas": {
-						"items": {
-							"$ref": "#/components/schemas/Station"
-						},
-						"type": "array"
-					},
-					"openData": {
-						"items": {
-							"$ref": "#/components/schemas/Station"
-						},
-						"type": "array"
-					},
-					"openDataOffline": {
-						"items": {
-							"$ref": "#/components/schemas/Station"
-						},
-						"type": "array"
-					},
-					"stationsData": {
-						"items": {
-							"$ref": "#/components/schemas/Station"
-						},
-						"type": "array"
-					},
-					"businessHub": {
-						"items": {
-							"$ref": "#/components/schemas/Station"
-						},
-						"type": "array"
-					}
-				},
-				"required": [
-					"default",
-					"favendo",
-					"hafas",
-					"openData",
-					"openDataOffline",
-					"stationsData",
-					"businessHub"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -6795,37 +6739,6 @@
 					{
 						"in": "path",
 						"name": "evaId",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			}
-		},
-		"/station/v1/searchAll/{searchTerm}": {
-			"get": {
-				"operationId": "SearchAll",
-				"responses": {
-					"200": {
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/SearchAllResult"
-								}
-							}
-						},
-						"description": "Ok"
-					}
-				},
-				"tags": [
-					"Station V1"
-				],
-				"security": [],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "searchTerm",
 						"required": true,
 						"schema": {
 							"type": "string"

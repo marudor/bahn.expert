@@ -6,6 +6,7 @@ export enum StationSearchType {
   openDataOffline = 'openDataOffline',
   stationsData = 'stationsData',
   businessHub = 'businessHub',
+  sbb = 'sbb',
 }
 
 export interface SearchAllResult {
