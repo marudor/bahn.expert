@@ -238,6 +238,7 @@ const SettingsModal = () => {
               <option value={StationSearchType.stationsData}>
                 Open Data Stationsdaten
               </option>
+              <option value={StationSearchType.sbb}>SBB</option>
             </NativeSelect>
           }
           label="API zur Stationssuche"
