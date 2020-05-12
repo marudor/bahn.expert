@@ -19,17 +19,17 @@ module.exports = function webpackDev(koa: Koa, server: undefined | Server) {
     // eslint-disable-next-line no-console
     console.log('Clearing webpack module cache from server');
     Object.keys(require.cache).forEach((id) => {
-      if (id.match(/src\/client/)) {
+      if (id.match(/packages\/client/)) {
         delete require.cache[id];
       }
     });
-    delete require.cache[path.resolve('src/server/render.tsx')];
+    delete require.cache[path.resolve('packages/server/render.tsx')];
   });
-  const watcher = chokidar.watch(path.resolve('./src/server/**'));
+  const watcher = chokidar.watch(path.resolve('./packages/server/**'));
 
   watcher.on('change', () => {
     Object.keys(require.cache).forEach((id) => {
-      if (id.match(/src\/server/)) {
+      if (id.match(/packages\/server/)) {
         delete require.cache[id];
       }
     });
@@ -37,7 +37,9 @@ module.exports = function webpackDev(koa: Koa, server: undefined | Server) {
     // whm.publish({ action: 'sync', errors: [], warnings: [], hash: Math.random() });
   });
 
-  const routesWatcher = chokidar.watch(path.resolve('./src/server/API/**'));
+  const routesWatcher = chokidar.watch(
+    path.resolve('./packages/server/API/**')
+  );
 
   routesWatcher.on('change', (file) => {
     if (file.endsWith('routes.ts')) return;

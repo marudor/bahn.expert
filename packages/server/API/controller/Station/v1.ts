@@ -5,7 +5,6 @@ import {
   Station,
   StationSearchType,
 } from 'types/station';
-import { searchAll } from 'server/Search/searchAll';
 import businessHubSearch, {
   canUseBusinessHub,
   stationDetails,
@@ -76,12 +75,6 @@ export class StationController extends Controller {
   @Tags('Station V1')
   stationDetails(evaId: string): Promise<DetailBusinessHubStation> {
     return stationDetails(evaId);
-  }
-
-  @Get('/searchAll/{searchTerm}')
-  @Tags('Station V1')
-  searchAll(searchTerm: string) {
-    return searchAll(searchTerm);
   }
 
   @Response(400, 'No station found')
