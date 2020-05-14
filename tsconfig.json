@@ -19,7 +19,15 @@
     "emitDecoratorMetadata": false,
     "resolveJsonModule": true,
     "types": ["jest", "@testing-library/jest-dom"],
-    "keyofStringsOnly": true
+    "keyofStringsOnly": true,
+    "baseUrl": ".",
+    "paths": {
+      "server/*": ["packages/server/*"],
+      "types/*": ["packages/types/*"],
+      "client/*": ["packages/client/*"],
+      "shared/*": ["packages/shared/*"],
+      "test-helper/*": ["packages/test-helper/*"]
+    }
   },
   "include": ["@types", "packages"]
 }
