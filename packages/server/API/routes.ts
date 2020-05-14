@@ -15,6 +15,8 @@ import { ReihungMonitoringController } from './controller/Reihung/monitor';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { ReihungControllerV1 } from './controller/Reihung/v1';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { SBBExperimentalController } from './controller/SBB/experimental';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { StationController } from './controller/Station/v1';
 import * as KoaRouter from '@koa/router';
 
@@ -1528,6 +1530,35 @@ const models: TsoaRoute.Models = {
     "additionalProperties": false,
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "SBBCoordinates": {
+    "dataType": "refObject",
+    "properties": {
+      "latitude": { "dataType": "double", "required": true },
+      "longitude": { "dataType": "double", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "SBBStation": {
+    "dataType": "refObject",
+    "properties": {
+      "title": { "dataType": "string", "required": true },
+      "id": { "dataType": "string", "required": true },
+      "location": { "ref": "SBBCoordinates", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "RoutingOptions": {
+    "dataType": "refObject",
+    "properties": {
+      "start": { "dataType": "string", "required": true },
+      "destination": { "dataType": "string", "required": true },
+      "time": { "dataType": "double" },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "StationSearchType": {
     "dataType": "refEnum",
     "enums": ["default", "favendo", "hafas", "openData", "openDataOffline", "stationsData", "businessHub", "sbb"],
@@ -2433,6 +2464,46 @@ export function RegisterRoutes(router: KoaRouter) {
       const controller = new ReihungControllerV1();
 
       const promise = controller.forNumber.apply(controller, validatedArgs as any);
+      return promiseHandler(controller, promise, context, next);
+    });
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  router.get('/api/sbb/experimental/station/:searchTerm',
+    async (context: any, next: any) => {
+      const args = {
+        searchTerm: { "in": "path", "name": "searchTerm", "required": true, "dataType": "string" },
+      };
+
+      let validatedArgs: any[] = [];
+      try {
+        validatedArgs = getValidatedArgs(args, context);
+      } catch (error) {
+        context.status = error.status;
+        context.throw(error.status, JSON.stringify({ fields: error.fields }));
+      }
+
+      const controller = new SBBExperimentalController();
+
+      const promise = controller.station.apply(controller, validatedArgs as any);
+      return promiseHandler(controller, promise, context, next);
+    });
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  router.post('/api/sbb/experimental/routing',
+    async (context: any, next: any) => {
+      const args = {
+        options: { "in": "body", "name": "options", "required": true, "ref": "RoutingOptions" },
+      };
+
+      let validatedArgs: any[] = [];
+      try {
+        validatedArgs = getValidatedArgs(args, context);
+      } catch (error) {
+        context.status = error.status;
+        context.throw(error.status, JSON.stringify({ fields: error.fields }));
+      }
+
+      const controller = new SBBExperimentalController();
+
+      const promise = controller.routing.apply(controller, validatedArgs as any);
       return promiseHandler(controller, promise, context, next);
     });
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

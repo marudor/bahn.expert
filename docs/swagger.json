@@ -4794,6 +4794,64 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"SBBCoordinates": {
+				"properties": {
+					"latitude": {
+						"type": "number",
+						"format": "double"
+					},
+					"longitude": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"latitude",
+					"longitude"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"SBBStation": {
+				"properties": {
+					"title": {
+						"type": "string"
+					},
+					"id": {
+						"type": "string"
+					},
+					"location": {
+						"$ref": "#/components/schemas/SBBCoordinates"
+					}
+				},
+				"required": [
+					"title",
+					"id",
+					"location"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"RoutingOptions": {
+				"properties": {
+					"start": {
+						"type": "string"
+					},
+					"destination": {
+						"type": "string"
+					},
+					"time": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"start",
+					"destination"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"StationSearchType": {
 				"enum": [
 					"default",
@@ -6579,6 +6637,72 @@
 						}
 					}
 				]
+			}
+		},
+		"/sbb/experimental/station/{searchTerm}": {
+			"get": {
+				"operationId": "Station",
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/SBBStation"
+									},
+									"type": "array"
+								}
+							}
+						},
+						"description": "Ok"
+					}
+				},
+				"tags": [
+					"SBB Experimental"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "searchTerm",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/sbb/experimental/routing": {
+			"post": {
+				"operationId": "Routing",
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"additionalProperties": true
+								}
+							}
+						},
+						"description": "Ok"
+					}
+				},
+				"tags": [
+					"SBB Experimental"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/RoutingOptions"
+							}
+						}
+					}
+				}
 			}
 		},
 		"/station/v1/search/{searchTerm}": {
