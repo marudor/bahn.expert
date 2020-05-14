@@ -1,3 +1,4 @@
+import { CommonRoutingOptions } from 'types/common';
 import type {
   Common,
   CommonArrival,
@@ -24,14 +25,13 @@ export interface TripSearchTarifRequest {
   traveler: TripSearchTraveler[];
 }
 
-export interface TripSearchOptions extends SharedTripSearchOptions {
-  start: string;
-  destination: string;
+export interface TripSearchOptions
+  extends SharedTripSearchOptions,
+    CommonRoutingOptions {
   /**
    * Max 2 via possible
    */
   via?: string[];
-  time?: number;
   transferTime?: number;
   maxChanges?: number;
   searchForDeparture?: boolean;
