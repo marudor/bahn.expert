@@ -3556,16 +3556,16 @@
 					"destination": {
 						"type": "string"
 					},
+					"time": {
+						"type": "number",
+						"format": "double"
+					},
 					"via": {
 						"items": {
 							"type": "string"
 						},
 						"type": "array",
 						"description": "Max 2 via possible"
-					},
-					"time": {
-						"type": "number",
-						"format": "double"
 					},
 					"transferTime": {
 						"type": "number",
