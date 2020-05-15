@@ -3,6 +3,7 @@
   "controllerPathGlobs": ["./API/controller/**", "../types/**"],
   "noImplicitAdditionalProperties": "silently-remove-extras",
   "spec": {
+    "name": "Bahnhofs Abfahrten",
     "specVersion": 3,
     "outputDirectory": "../../docs",
     "host": "marudor.de",

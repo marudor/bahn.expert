@@ -229,7 +229,6 @@ const SettingsModal = () => {
               onChange={handleSelectChange('searchType')}
             >
               <option value={StationSearchType.default}>Business Hub</option>
-              <option value={StationSearchType.favendo}>Favendo</option>
               <option value={StationSearchType.openData}>Open Data</option>
               <option value={StationSearchType.openDataOffline}>
                 Open Data Offline

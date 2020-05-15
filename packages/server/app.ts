@@ -58,7 +58,7 @@ export function createApp(wsServer?: Server) {
         seoController = require('./seo').default;
         ctx.loadableStats = JSON.parse(
           // eslint-disable-next-line no-sync
-          ctx.state.fs.readFileSync(
+          ctx.state.webpack.devMiddleware.outputFileSystem.readFileSync(
             path.resolve(`${distFolder}/client/loadable-stats.json`)
           )
         );
