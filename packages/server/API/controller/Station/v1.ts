@@ -1,3 +1,8 @@
+import {
+  BusinessHubGeoSearch,
+  canUseBusinessHub,
+  stationDetails,
+} from 'server/Search/BusinessHub';
 import { Controller, Get, Query, Request, Response, Route, Tags } from 'tsoa';
 import { getStation } from 'server/Abfahrten/station';
 import {
@@ -5,10 +10,6 @@ import {
   Station,
   StationSearchType,
 } from 'types/station';
-import businessHubSearch, {
-  canUseBusinessHub,
-  stationDetails,
-} from 'server/Search/BusinessHub';
 import DS100 from 'server/Search/DS100';
 import stationSearch from 'server/Search';
 import type { Context } from 'koa';
@@ -51,13 +52,17 @@ export class StationController extends Controller {
   geoSearch(
     @Query() lat: number,
     @Query() lng: number,
-    @Query() searchText: string = ''
+    // Meter
+    @Query() radius?: number
   ): Promise<Station[]> {
     if (canUseBusinessHub) {
-      return businessHubSearch(searchText, undefined, {
-        latitude: lat,
-        longitude: lng,
-      });
+      return BusinessHubGeoSearch(
+        {
+          latitude: lat,
+          longitude: lng,
+        },
+        radius
+      );
     } else {
       throw new Error('geoSearch needs BusinessHub API Key');
     }

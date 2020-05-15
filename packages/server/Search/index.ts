@@ -1,9 +1,10 @@
+import {
+  BusinessHubSearch,
+  canUseBusinessHub,
+} from 'server/Search/BusinessHub';
 import { CacheDatabases, createNewCache } from 'server/cache';
 import { logger } from 'server/logger';
 import { Station, StationSearchType } from 'types/station';
-import BusinessHubSearch, {
-  canUseBusinessHub,
-} from 'server/Search/BusinessHub';
 import DBNavigatorSearch from 'server/HAFAS/LocMatch';
 import DS100 from 'server/Search/DS100';
 import OpenDataOfflineSearch from './OpenDataOffline';

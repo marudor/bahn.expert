@@ -6513,11 +6513,11 @@
 					},
 					{
 						"in": "query",
-						"name": "searchText",
+						"name": "radius",
 						"required": false,
 						"schema": {
-							"default": "",
-							"type": "string"
+							"format": "double",
+							"type": "number"
 						}
 					}
 				]

@@ -1,3 +1,4 @@
+import Axios from 'axios';
 import type {
   APIResult,
   BusinessHubCoordinates,
@@ -7,13 +8,16 @@ import type {
   StopPlace,
 } from 'types/BusinessHub/StopPlaces';
 
-import axios from 'axios';
-
-const baseUrl = 'https://api.businesshub.deutschebahn.com/';
 const apiKey = process.env.BUSINESS_HUB_STOP_PLACES_KEY || '';
 
 export const canUseBusinessHub =
   Boolean(apiKey) || process.env.NODE_ENV === 'test';
+const axios = Axios.create({
+  headers: {
+    key: apiKey,
+  },
+  baseURL: 'https://api.businesshub.deutschebahn.com/',
+});
 
 if (!canUseBusinessHub) {
   console.warn(
@@ -31,46 +35,50 @@ const transformBusinessHubStation = (
   stada: businessHubStation.identifiers.find((i) => i.type === 'STADA')?.value,
 });
 
-export default async (
-  searchTerm?: string,
-  needsDS100: boolean = true,
-  coordinates?: BusinessHubCoordinates
-): Promise<BusinessHubStation[]> => {
-  const result: APIResult = (
-    await axios.get(`${baseUrl}public-transport-stations/v1/stop-places`, {
-      headers: {
-        key: apiKey,
-      },
-      params: coordinates
-        ? {
-            ...coordinates,
-            radius: 3000,
-          }
-        : {
-            name: searchTerm,
-          },
-    })
-  ).data;
-
+function filterApiResult(result: APIResult) {
   return (
     result?._embedded?.stopPlaceList
       ?.map(transformBusinessHubStation)
-      .filter((s) => s.id && (!needsDS100 || s.ds100)) ?? []
+      .filter((s) => s.id && s.ds100) ?? []
   );
-};
+}
+
+export async function BusinessHubSearch(
+  searchTerm?: string
+): Promise<BusinessHubStation[]> {
+  if (!searchTerm) return [];
+  const result: APIResult = (
+    await axios.get('/public-transport-stations/v1/stop-places', {
+      params: {
+        name: searchTerm,
+      },
+    })
+  ).data;
+
+  return filterApiResult(result);
+}
+
+export async function BusinessHubGeoSearch(
+  coordinates: BusinessHubCoordinates,
+  radius: number = 3000
+): Promise<BusinessHubStation[]> {
+  const result: APIResult = (
+    await axios.get('/public-transport-stations/v1/stop-places', {
+      params: {
+        ...coordinates,
+        radius,
+      },
+    })
+  ).data;
+
+  return filterApiResult(result);
+}
 
 export const stationDetails = async (
   evaId: string
 ): Promise<DetailBusinessHubStation> => {
   const detailsResult: DetailsApiResult = (
-    await axios.get(
-      `${baseUrl}public-transport-stations/v1/stop-places/${evaId}`,
-      {
-        headers: {
-          key: apiKey,
-        },
-      }
-    )
+    await axios.get(`/public-transport-stations/v1/stop-places/${evaId}`)
   ).data;
 
   const { _embedded, _links, name, ...relevantDetails } = detailsResult;

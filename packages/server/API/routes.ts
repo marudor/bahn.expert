@@ -2430,7 +2430,7 @@ export function RegisterRoutes(router: KoaRouter) {
       const args = {
         lat: { "in": "query", "name": "lat", "required": true, "dataType": "double" },
         lng: { "in": "query", "name": "lng", "required": true, "dataType": "double" },
-        searchText: { "default": "", "in": "query", "name": "searchText", "dataType": "string" },
+        radius: { "in": "query", "name": "radius", "dataType": "double" },
       };
 
       let validatedArgs: any[] = [];
