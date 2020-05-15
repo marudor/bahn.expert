@@ -1,8 +1,9 @@
 import { makeStyles } from '@material-ui/styles';
 
-export default makeStyles({
+export default makeStyles((theme) => ({
   main: {
-    paddingLeft: '0.3em',
+    backgroundColor: theme.colors.shadedBackground,
+    padding: '0.4em',
     display: 'grid',
     gridTemplateColumns: '2fr 7fr 1fr',
     gridTemplateRows: '1fr auto 1fr',
@@ -40,4 +41,4 @@ export default makeStyles({
   platform: {
     textAlign: 'end',
   },
-});
+}));
