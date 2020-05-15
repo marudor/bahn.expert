@@ -1,20 +1,11 @@
 import { Controller, Get, Hidden, Route, SuccessResponse, Tags } from 'tsoa';
-import { wagenreihung, wagenreihungStation } from 'server/Reihung';
+import { wagenreihung } from 'server/Reihung';
 import { WRForNumber, WRForTZ } from 'server/Reihung/hasWR';
 import TrainNames from 'server/Reihung/TrainNames';
-import type { Formation, WagenreihungStation } from 'types/reihung';
+import type { Formation } from 'types/reihung';
 
 @Route('/reihung/v1')
 export class ReihungControllerV1 extends Controller {
-  @Get('/wagenstation/{train}/{station}')
-  @Tags('Reihung V1')
-  planWagenreihung(
-    train: string,
-    station: string
-  ): Promise<WagenreihungStation> {
-    return wagenreihungStation([train], station);
-  }
-
   @Get('/wagen/{trainNumber}/{date}')
   @Tags('Reihung V1')
   wagenreihung(

@@ -17,7 +17,7 @@ function setTheme(
   storage.set('theme', themeType);
 }
 
-function useTheme(initialThemeType: ThemeType = ThemeType.light) {
+function useTheme(initialThemeType: ThemeType = ThemeType.dark) {
   const [themeType, setThemeType] = useState(initialThemeType);
   const storage = useStorage();
   const theme = useMemo(() => createTheme(themeType), [themeType]);
@@ -47,9 +47,9 @@ export const ThemeProvider = ({ children }: Props) => {
     // @ts-ignore
     initialTheme = ThemeType[storage.get('theme')];
     if (!initialTheme && !global.SERVER) {
-      initialTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
-        ? ThemeType.dark
-        : ThemeType.light;
+      initialTheme = window.matchMedia('(prefers-color-scheme: light)').matches
+        ? ThemeType.light
+        : ThemeType.dark;
       setTheme(undefined, storage, initialTheme);
     }
   }

@@ -12,14 +12,6 @@ const SentryCliPlugin = require('@sentry/webpack-plugin');
 const isDev = process.env.NODE_ENV !== 'production';
 
 const plugins = [
-  new BundleAnalyzerPlugin({
-    analyzerMode: 'static',
-    openAnalyzer: false,
-  }),
-  new PacktrackerPlugin({
-    fail_build: true,
-    upload: process.env.sendStats === 'true',
-  }),
   new LoadablePlugin(),
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
@@ -72,6 +64,18 @@ if (isDev) {
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,
       skipWaiting: true,
+    })
+  );
+  plugins.push(
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      openAnalyzer: false,
+    })
+  );
+  plugins.push(
+    new PacktrackerPlugin({
+      fail_build: true,
+      upload: process.env.sendStats === 'true',
     })
   );
   optimization.minimizer = [
@@ -139,5 +143,8 @@ module.exports = {
   },
   module: {
     rules,
+  },
+  watchOptions: {
+    ignored: /node_modules/,
   },
 };

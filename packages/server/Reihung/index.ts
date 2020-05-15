@@ -14,7 +14,6 @@ import type {
   Fahrzeuggruppe,
   Formation,
   Wagenreihung,
-  WagenreihungStation,
 } from 'types/reihung';
 
 const countryMapping: any = {
@@ -449,23 +448,6 @@ export async function wagenreihung(trainNumber: string, date: number) {
   );
 
   return enrichedFormation;
-}
-
-// https://ws.favendo.de/wagon-order/rest/v1/si/1401
-export async function wagenreihungStation(
-  trainNumbers: string[],
-  station: string
-) {
-  const info: WagenreihungStation = (
-    await axios.post(
-      `https://ws.favendo.de/wagon-order/rest/v1/si/${station}`,
-      trainNumbers.map((trainNumber) => ({
-        trainNumber,
-      }))
-    )
-  ).data;
-
-  return info;
 }
 
 function wagenReihungSpecificMonitoring(id: string, departure: number) {

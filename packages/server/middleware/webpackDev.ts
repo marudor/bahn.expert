@@ -1,10 +1,11 @@
 // istanbul ignore file
 import childProcess from 'child_process';
 import chokidar from 'chokidar';
-import koaWebpack from 'koa-webpack';
 import path from 'path';
 import webpack from 'webpack';
 import webpackConfig from '../../../webpack.config';
+import webpackHotclient from 'webpack-hot-client';
+import webpackMiddleware from 'webpack-dev-middleware';
 import type { Server } from 'https';
 import type Koa from 'koa';
 
@@ -27,35 +28,57 @@ module.exports = function webpackDev(koa: Koa, server: undefined | Server) {
   });
   const watcher = chokidar.watch(path.resolve('./packages/server/**'));
 
-  watcher.on('change', () => {
+  watcher.on('change', (file) => {
+    if (file.includes('packages/server/API/controller/')) {
+      console.log('Rebuilding Routs & doc');
+      childProcess.exec('yarn doc:build');
+    }
     Object.keys(require.cache).forEach((id) => {
       if (id.match(/packages\/server/)) {
         delete require.cache[id];
       }
     });
-    // Magic to make webpack full reload the page
-    // whm.publish({ action: 'sync', errors: [], warnings: [], hash: Math.random() });
   });
 
-  const routesWatcher = chokidar.watch(
-    path.resolve('./packages/server/API/**')
-  );
+  return new Promise((resolve) => {
+    const client = webpackHotclient(compiler, {
+      https: true,
+      host: 'local.marudor.de',
+      server,
+    });
+    client.server.on('listening', () => {
+      const middleware = webpackMiddleware(compiler, {
+        serverSideRender: true,
+        publicPath: '/',
+      });
 
-  routesWatcher.on('change', (file) => {
-    if (file.endsWith('routes.ts')) return;
-    childProcess.exec('yarn doc:build');
-  });
-
-  return koaWebpack({
-    compiler,
-    devMiddleware: {
-      publicPath: '/',
-      serverSideRender: true,
-    },
-    hotClient: process.env.CYPRESS
-      ? false
-      : { https: true, host: 'local.marudor.de', server },
-  }).then((middleware) => {
-    koa.use(middleware);
+      koa.use((ctx, next) => {
+        return new Promise((resolve, reject) => {
+          middleware(
+            ctx.req,
+            {
+              // @ts-ignore
+              send: (content: any) => {
+                ctx.body = content;
+                resolve();
+              },
+              // @ts-ignore
+              get: ctx.res.getHeader.bind(ctx.res),
+              getHeader: ctx.res.getHeader.bind(ctx.res),
+              set: ctx.res.setHeader.bind(ctx.res),
+              setHeader: ctx.res.setHeader.bind(ctx.res),
+              locals: ctx.state,
+            },
+            (err) => {
+              if (err) reject(err);
+              else {
+                resolve(next());
+              }
+            }
+          );
+        });
+      });
+      resolve();
+    });
   });
 };
