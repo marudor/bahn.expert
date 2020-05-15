@@ -4528,7 +4528,6 @@ __metadata:
     ncp: ^2.0.0
     npm-run-all: ^4.1.5
     prettier: ^2.0.5
-    redoc-cli: ^0.9.8
     rimraf: ^3.0.2
     server: "workspace:*"
     source-map-support: ^0.5.19
@@ -14668,6 +14667,7 @@ fsevents@^1.2.7:
     qs: ^6.9.4
     react: ^16.13.1
     react-dom: ^16.13.1
+    redoc-cli: ^0.9.8
     rimraf: ^3.0.2
     shared: "workspace:*"
     supertest: ^4.0.2

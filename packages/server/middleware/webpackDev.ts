@@ -81,17 +81,4 @@ module.exports = function webpackDev(koa: Koa, server: undefined | Server) {
       resolve();
     });
   });
-
-  // return koaWebpack({
-  //   compiler,
-  //   devMiddleware: {
-  //     publicPath: '/',
-  //     serverSideRender: true,
-  //   },
-  //   hotClient: process.env.CYPRESS
-  //     ? false
-  //     : { https: true, host: 'local.marudor.de', server },
-  // }).then((middleware) => {
-  //   koa.use(middleware);
-  // });
 };
