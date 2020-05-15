@@ -1,6 +1,5 @@
 export enum StationSearchType {
   default = 'default',
-  favendo = 'favendo',
   hafas = 'hafas',
   openData = 'openData',
   openDataOffline = 'openDataOffline',
@@ -11,7 +10,6 @@ export enum StationSearchType {
 
 export interface SearchAllResult {
   default: Station[];
-  favendo: Station[];
   hafas: Station[];
   openData: Station[];
   openDataOffline: Station[];
@@ -30,7 +28,6 @@ export interface CommonStation {
 }
 
 export interface Station extends CommonStation {
-  favendoId?: number;
   DS100?: string;
 }
 
@@ -54,15 +51,6 @@ export interface OpenDBStation {
   lon: string;
   lat: string;
   id: string;
-}
-
-export interface FavendoStation {
-  type: 'station_search';
-  id: number;
-  title: string;
-  eva_ids: string[];
-  distanceInKm: number;
-  location: [number, number];
 }
 
 export interface OpenDataStation {

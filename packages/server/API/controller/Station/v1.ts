@@ -1,3 +1,8 @@
+import {
+  BusinessHubGeoSearch,
+  canUseBusinessHub,
+  stationDetails,
+} from 'server/Search/BusinessHub';
 import { Controller, Get, Query, Request, Response, Route, Tags } from 'tsoa';
 import { getStation } from 'server/Abfahrten/station';
 import {
@@ -5,12 +10,7 @@ import {
   Station,
   StationSearchType,
 } from 'types/station';
-import businessHubSearch, {
-  canUseBusinessHub,
-  stationDetails,
-} from 'server/Search/BusinessHub';
 import DS100 from 'server/Search/DS100';
-import favendoSearch from 'server/Search/Favendo';
 import stationSearch from 'server/Search';
 import type { Context } from 'koa';
 import type { DetailBusinessHubStation } from 'types/BusinessHub/StopPlaces';
@@ -52,17 +52,20 @@ export class StationController extends Controller {
   geoSearch(
     @Query() lat: number,
     @Query() lng: number,
-    @Query() searchText: string = ''
+    // Meter
+    @Query() radius?: number
   ): Promise<Station[]> {
-    return canUseBusinessHub
-      ? businessHubSearch(searchText, undefined, {
+    if (canUseBusinessHub) {
+      return BusinessHubGeoSearch(
+        {
           latitude: lat,
           longitude: lng,
-        })
-      : favendoSearch(searchText, {
-          lat,
-          lng,
-        });
+        },
+        radius
+      );
+    } else {
+      throw new Error('geoSearch needs BusinessHub API Key');
+    }
   }
 
   @Get('/iris/{evaId}')

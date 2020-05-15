@@ -42,7 +42,7 @@ export function render<CP extends ComponentType<any>>(
   props?: ComponentProps<CP>,
   { withNavigation, container, commonConfig }: Options = {}
 ) {
-  const themeType = ThemeType.light;
+  const themeType = ThemeType.dark;
 
   if (currentThemeType !== themeType) {
     currentThemeType = themeType;

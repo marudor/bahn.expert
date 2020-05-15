@@ -38,26 +38,6 @@ describe('Station V1', () => {
         .expect(200);
     });
 
-    it('favendo Type', () => {
-      Nock('https://si.favendo.de')
-        .get('/station-info/rest/api/search?searchTerm=Hamburg')
-        .reply(200, [
-          {
-            title: 'test',
-            eva_ids: [42],
-          },
-        ]);
-
-      return request(server)
-        .get('/api/station/v1/search/Hamburg?type=favendo')
-        .expect(200, [
-          {
-            title: 'test',
-            id: 42,
-          },
-        ]);
-    });
-
     it('hafas Type', () => {
       Nock('https://reiseauskunft.bahn.de')
         .post('/bin/mgate.exe?checksum=c42826f4e28ccc2f28080522d41dd13f')
