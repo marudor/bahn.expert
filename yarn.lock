@@ -1633,7 +1633,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hapi/joi@npm:^15.0.0, @hapi/joi@npm:^15.1.0":
+"@hapi/joi@npm:^15.1.0":
   version: 15.1.1
   resolution: "@hapi/joi@npm:15.1.1"
   dependencies:
@@ -2835,18 +2835,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/koa-webpack@npm:5.0.1":
-  version: 5.0.1
-  resolution: "@types/koa-webpack@npm:5.0.1"
-  dependencies:
-    "@types/koa": "*"
-    "@types/webpack": "*"
-    "@types/webpack-dev-middleware": "*"
-    "@types/webpack-hot-client": "*"
-  checksum: 2/f3bb89aaedd4d7f39fd90b9cee70b3f24a5f76d6d4c53566b764cffc238119f93f5cde32cde2933a7007ca5beca42236b014e5dd20317cccc6f68a8220259169
-  languageName: node
-  linkType: hard
-
 "@types/koa@npm:*, @types/koa@npm:2.11.3":
   version: 2.11.3
   resolution: "@types/koa@npm:2.11.3"
@@ -3321,7 +3309,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/webpack-dev-middleware@npm:*":
+"@types/webpack-dev-middleware@npm:3.7.0":
   version: 3.7.0
   resolution: "@types/webpack-dev-middleware@npm:3.7.0"
   dependencies:
@@ -3333,7 +3321,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/webpack-hot-client@npm:*":
+"@types/webpack-hot-client@npm:4.1.0":
   version: 4.1.0
   resolution: "@types/webpack-hot-client@npm:4.1.0"
   dependencies:
@@ -3833,13 +3821,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ansi-colors@npm:^3.0.0":
-  version: 3.2.4
-  resolution: "ansi-colors@npm:3.2.4"
-  checksum: 2/86ec4a476ae8661237c0da58c0b4c48ea57719fdd80eed00132db09ee88d69f5caa5889e13ccd07489e710bf3b9fd85123729e0660384d4373e92ef6125c1fad
-  languageName: node
-  linkType: hard
-
 "ansi-escapes@npm:^3.0.0":
   version: 3.2.0
   resolution: "ansi-escapes@npm:3.2.0"
@@ -3941,13 +3922,6 @@ __metadata:
     normalize-path: ^3.0.0
     picomatch: ^2.0.4
   checksum: 2/cf61bbaf7f34d9f94dd966230b7a7f8f1f24e3e2185540741a2561118e108206d85101ee2fc9876cd756475dbe6573d84d91115c3abdbf53a64e26a5f1f06b67
-  languageName: node
-  linkType: hard
-
-"app-root-path@npm:^2.0.1":
-  version: 2.2.1
-  resolution: "app-root-path@npm:2.2.1"
-  checksum: 2/f469f7d22529b7f5136316d3c4d7c7a4a5c05ab9e448b72fa3521a4050f0c05e6fc88a14a4944c8f387c61f8ae262a59ae7f4c51fb01e2703b82f360b50026ac
   languageName: node
   linkType: hard
 
@@ -8208,6 +8182,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fs-monkey@npm:1.0.1":
+  version: 1.0.1
+  resolution: "fs-monkey@npm:1.0.1"
+  checksum: 2/2ecb8ef5896fc66a5d6fbb9af6e1f9c5723b46ff46cbd91c815262c405318dad8cb6f1bbb36d9c63ec257131731fbdfa433683bc1fea34b4be17b07e64c826cc
+  languageName: node
+  linkType: hard
+
 "fs-readdir-recursive@npm:^1.1.0":
   version: 1.1.0
   resolution: "fs-readdir-recursive@npm:1.1.0"
@@ -10691,23 +10672,6 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"koa-webpack@npm:^5.3.0":
-  version: 5.3.0
-  resolution: "koa-webpack@npm:5.3.0"
-  dependencies:
-    "@hapi/joi": ^15.0.0
-    app-root-path: ^2.0.1
-    chalk: ^2.4.2
-    loud-rejection: ^2.1.0
-    merge-options: ^1.0.0
-    webpack-dev-middleware: ^3.0.0
-    webpack-hot-client: ^4.1.0
-  peerDependencies:
-    webpack: ^4.28.0
-  checksum: 2/977efa864e9237d2bd7d969d637a5b56a5aacb050a4a11dd3b45ccebdd9f89aec53ab3a83f21466a68093206df7c3073ac606c2828286be2c86ea955767f03ba
-  languageName: node
-  linkType: hard
-
 "koa@npm:^2.11.0":
   version: 2.11.0
   resolution: "koa@npm:2.11.0"
@@ -11108,16 +11072,6 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"loud-rejection@npm:^2.1.0":
-  version: 2.2.0
-  resolution: "loud-rejection@npm:2.2.0"
-  dependencies:
-    currently-unhandled: ^0.4.1
-    signal-exit: ^3.0.2
-  checksum: 2/2fbde4dcf4514ed2c9bf1e4e05918d370193546c9e0f5c8abdd10b20f574544a2c7a06e0d0d54801f576889a9d5752396c9715282882c5302aa66eb5922d43bb
-  languageName: node
-  linkType: hard
-
 "lru-cache@npm:4.0.0":
   version: 4.0.0
   resolution: "lru-cache@npm:4.0.0"
@@ -11198,7 +11152,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"map-age-cleaner@npm:^0.1.1":
+"map-age-cleaner@npm:^0.1.1, map-age-cleaner@npm:^0.1.3":
   version: 0.1.3
   resolution: "map-age-cleaner@npm:0.1.3"
   dependencies:
@@ -11286,6 +11240,25 @@ fsevents@^1.2.7:
     mimic-fn: ^2.0.0
     p-is-promise: ^2.0.0
   checksum: 2/3af1ac31ef775c5b23bbc0e078d22324c083822fb6ee1a183595359fc23ef638cf90e8c1e044e5f17c871c6e50dc11db11f1aee112d85dc936e3aa2093acd038
+  languageName: node
+  linkType: hard
+
+"mem@npm:^6.0.1":
+  version: 6.1.0
+  resolution: "mem@npm:6.1.0"
+  dependencies:
+    map-age-cleaner: ^0.1.3
+    mimic-fn: ^3.0.0
+  checksum: 2/5511779abf875c9303af0d1bc2a5f7a9b7db20a4e2dd0b41d4c7c34a9c21e616745252b53eaeb6c6d9867730ad09cf8aefbc29b1a4a76623eb175857bc33252c
+  languageName: node
+  linkType: hard
+
+"memfs@npm:^3.1.1":
+  version: 3.1.3
+  resolution: "memfs@npm:3.1.3"
+  dependencies:
+    fs-monkey: 1.0.1
+  checksum: 2/61aed8da3f94d8da018d35b9339a4e5b17f1f70b3eb27964030e84e38c25e5b48a8787e2c39e21437099b9073d7d99c115cc3873668a28f02cf93684a66a9e11
   languageName: node
   linkType: hard
 
@@ -11384,7 +11357,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"merge-options@npm:^1.0.0, merge-options@npm:^1.0.1":
+"merge-options@npm:^1.0.1":
   version: 1.0.1
   resolution: "merge-options@npm:1.0.1"
   dependencies:
@@ -11482,15 +11455,6 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"mime@npm:^2.4.4":
-  version: 2.4.5
-  resolution: "mime@npm:2.4.5"
-  bin:
-    mime: cli.js
-  checksum: 2/5e98b758e52e9620cb159120f8ee2483566009e60175eb3210c15de5e7a9912b6e31c578c42b063a99d8e1116a16f19e4ece336372ba3510b2830701b12ac100
-  languageName: node
-  linkType: hard
-
 "mimic-fn@npm:^1.0.0":
   version: 1.2.0
   resolution: "mimic-fn@npm:1.2.0"
@@ -11502,6 +11466,13 @@ fsevents@^1.2.7:
   version: 2.1.0
   resolution: "mimic-fn@npm:2.1.0"
   checksum: 2/f7d2d7febe3d7dd71da0700b1d455ec6c951a96b463ffcc303c93771b9fe4e45318152ea677c241505b19b39e41d906e5052cfb382d59a44bdb6d3d57f8b467b
+  languageName: node
+  linkType: hard
+
+"mimic-fn@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "mimic-fn@npm:3.0.0"
+  checksum: 2/d3f3414ab2896a6164f3377a791c5cb95f8051c7d2793110bed67675a426a12388da805a4e89f7094cf1b81477609a6390b02a4f98be593dc30c74f2307cadc1
   languageName: node
   linkType: hard
 
@@ -14509,7 +14480,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"schema-utils@npm:^2.0.0, schema-utils@npm:^2.6.5, schema-utils@npm:^2.6.6":
+"schema-utils@npm:^2.0.0, schema-utils@npm:^2.6.4, schema-utils@npm:^2.6.5, schema-utils@npm:^2.6.6":
   version: 2.6.6
   resolution: "schema-utils@npm:2.6.6"
   dependencies:
@@ -14646,7 +14617,6 @@ fsevents@^1.2.7:
     "@types/koa": 2.11.3
     "@types/koa-bodyparser": 4.3.0
     "@types/koa-static": 4.0.1
-    "@types/koa-webpack": 5.0.1
     "@types/koa__router": 8.0.2
     "@types/loadable__component": 5.10.0
     "@types/loadable__server": 5.12.1
@@ -14662,6 +14632,8 @@ fsevents@^1.2.7:
     "@types/sinonjs__fake-timers": 6.0.1
     "@types/supertest": 2.0.9
     "@types/webpack": ^4.41.13
+    "@types/webpack-dev-middleware": 3.7.0
+    "@types/webpack-hot-client": 4.1.0
     axios: ^0.19.2
     cache-manager: ^3.3.0
     cache-manager-ioredis: ^2.0.0
@@ -14683,7 +14655,6 @@ fsevents@^1.2.7:
     koa: ^2.11.0
     koa-bodyparser: ^4.3.0
     koa-static: ^5.0.0
-    koa-webpack: ^5.3.0
     libxmljs2: ^0.25.3
     lodash: ^4.17.15
     nanoid: ^3.1.7
@@ -14704,6 +14675,8 @@ fsevents@^1.2.7:
     tsoa: ^3.0.8
     types: "workspace:*"
     webpack: ^4.43.0
+    webpack-dev-middleware: next
+    webpack-hot-client: ^4.1.2
   languageName: unknown
   linkType: soft
 
@@ -16800,22 +16773,22 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"webpack-dev-middleware@npm:^3.0.0":
-  version: 3.7.2
-  resolution: "webpack-dev-middleware@npm:3.7.2"
+"webpack-dev-middleware@npm:next":
+  version: 4.0.0-rc.1
+  resolution: "webpack-dev-middleware@npm:4.0.0-rc.1"
   dependencies:
-    memory-fs: ^0.4.1
-    mime: ^2.4.4
-    mkdirp: ^0.5.1
+    mem: ^6.0.1
+    memfs: ^3.1.1
+    mime-types: ^2.1.26
     range-parser: ^1.2.1
-    webpack-log: ^2.0.0
+    schema-utils: ^2.6.4
   peerDependencies:
     webpack: ^4.0.0
-  checksum: 2/88480e7d7f8116f2a992a4f4b3ca5f2ce93e11edbedd029858f43a789109fcd001bad9fcf34df7bb0e8cb33d342205a789abafd6f6315e9fc54bc436e6caa78f
+  checksum: 2/e77d0f64aa558e021e6bf716cd2554967e9e0d3c78c8db483ad36e7879f64c7cf54789166399c4a4c76540edfc338e7607da37e716460b1633f397336886bd04
   languageName: node
   linkType: hard
 
-"webpack-hot-client@npm:^4.1.0":
+"webpack-hot-client@npm:^4.1.2":
   version: 4.1.2
   resolution: "webpack-hot-client@npm:4.1.2"
   dependencies:
@@ -16844,16 +16817,6 @@ fsevents@^1.2.7:
     loglevelnext: ^1.0.1
     uuid: ^3.1.0
   checksum: 2/e1822a5e9bc0d59f083852670437e41be243c6a88ae914005328bb0fedd0bdad74ab93f8b95e80ae866978ef9f5f74777cfef1a4b411763806fa315879b88984
-  languageName: node
-  linkType: hard
-
-"webpack-log@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "webpack-log@npm:2.0.0"
-  dependencies:
-    ansi-colors: ^3.0.0
-    uuid: ^3.3.2
-  checksum: 2/250db04c41e278aa15a4f452808ef32ca8eca0f7df9d4c7c28b3d94e45d2649fbeb90a0adbee1c675447209b6a35136e13c1fb31476c3ca81c972bb41f0535bb
   languageName: node
   linkType: hard
 
