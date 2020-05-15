@@ -15,6 +15,12 @@ const apiKey = process.env.BUSINESS_HUB_STOP_PLACES_KEY || '';
 export const canUseBusinessHub =
   Boolean(apiKey) || process.env.NODE_ENV === 'test';
 
+if (!canUseBusinessHub) {
+  console.warn(
+    'No BusinessHub API Key provided. Station search will be degraded Quality!'
+  );
+}
+
 const transformBusinessHubStation = (
   businessHubStation: Pick<StopPlace, 'name' | 'identifiers' | 'location'>
 ): BusinessHubStation => ({

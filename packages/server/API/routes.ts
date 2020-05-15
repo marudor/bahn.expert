@@ -214,7 +214,6 @@ const models: TsoaRoute.Models = {
     "properties": {
       "title": { "dataType": "string", "required": true },
       "id": { "dataType": "string", "required": true },
-      "favendoId": { "dataType": "double" },
       "DS100": { "dataType": "string" },
     },
     "additionalProperties": false,
@@ -1447,89 +1446,6 @@ const models: TsoaRoute.Models = {
     "additionalProperties": false,
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "AdditionalId": {
-    "dataType": "refObject",
-    "properties": {
-      "evaNr": { "dataType": "string", "required": true },
-      "shortName": { "dataType": "string", "required": true },
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "Destination": {
-    "dataType": "refObject",
-    "properties": {
-      "destinationName": { "dataType": "string", "required": true },
-      "destinationVia": { "dataType": "array", "array": { "dataType": "string" }, "required": true },
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "Subtrain": {
-    "dataType": "refObject",
-    "properties": {
-      "destination": { "ref": "Destination", "required": true },
-      "sections": { "dataType": "array", "array": { "dataType": "string" }, "required": true },
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "Waggon": {
-    "dataType": "refObject",
-    "properties": {
-      "position": { "dataType": "double", "required": true },
-      "waggon": { "dataType": "boolean", "required": true },
-      "sections": { "dataType": "array", "array": { "dataType": "string" }, "required": true },
-      "number": { "dataType": "string", "required": true },
-      "type": { "dataType": "union", "subSchemas": [{ "dataType": "enum", "enums": ["2"] }, { "dataType": "enum", "enums": ["1"] }, { "dataType": "enum", "enums": ["s"] }, { "dataType": "enum", "enums": ["e"] }], "required": true },
-      "symbols": { "dataType": "string", "required": true },
-      "differentDestination": { "dataType": "string", "required": true },
-      "length": { "dataType": "double", "required": true },
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "TrackRecord": {
-    "dataType": "refObject",
-    "properties": {
-      "time": { "dataType": "string", "required": true },
-      "additionalText": { "dataType": "string", "required": true },
-      "name": { "dataType": "string", "required": true },
-      "trainNumbers": { "dataType": "array", "array": { "dataType": "string" }, "required": true },
-      "days": { "dataType": "array", "array": { "dataType": "any" }, "required": true },
-      "subtrains": { "dataType": "array", "array": { "ref": "Subtrain" }, "required": true },
-      "waggons": { "dataType": "array", "array": { "ref": "Waggon" }, "required": true },
-      "trainTpes": { "dataType": "string" },
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "SpecificWagenreihung": {
-    "dataType": "refObject",
-    "properties": {
-      "name": { "dataType": "string", "required": true },
-      "additionalId": { "ref": "AdditionalId", "required": true },
-      "trackRecords": { "dataType": "array", "array": { "ref": "TrackRecord" }, "required": true },
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "WagenreihungStation": {
-    "dataType": "refObject",
-    "properties": {
-      "trainNumber": { "dataType": "string", "required": true },
-      "trainType": { "dataType": "any" },
-      "time": { "dataType": "any" },
-      "timeOffset": { "dataType": "any" },
-      "weekday": { "dataType": "any" },
-      "platform": { "dataType": "any" },
-      "waggon": { "dataType": "any" },
-      "trainLine": { "dataType": "any" },
-      "stations": { "dataType": "array", "array": { "ref": "SpecificWagenreihung" }, "required": true },
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "SBBCoordinates": {
     "dataType": "refObject",
     "properties": {
@@ -1561,7 +1477,7 @@ const models: TsoaRoute.Models = {
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "StationSearchType": {
     "dataType": "refEnum",
-    "enums": ["default", "favendo", "hafas", "openData", "openDataOffline", "stationsData", "businessHub", "sbb"],
+    "enums": ["default", "hafas", "openData", "openDataOffline", "stationsData", "businessHub", "sbb"],
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "IrisStation": {
@@ -2362,27 +2278,6 @@ export function RegisterRoutes(router: KoaRouter) {
       const controller = new ReihungMonitoringController();
 
       const promise = controller.monitoring.apply(controller, validatedArgs as any);
-      return promiseHandler(controller, promise, context, next);
-    });
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  router.get('/api/reihung/v1/wagenstation/:train/:station',
-    async (context: any, next: any) => {
-      const args = {
-        train: { "in": "path", "name": "train", "required": true, "dataType": "string" },
-        station: { "in": "path", "name": "station", "required": true, "dataType": "string" },
-      };
-
-      let validatedArgs: any[] = [];
-      try {
-        validatedArgs = getValidatedArgs(args, context);
-      } catch (error) {
-        context.status = error.status;
-        context.throw(error.status, JSON.stringify({ fields: error.fields }));
-      }
-
-      const controller = new ReihungControllerV1();
-
-      const promise = controller.planWagenreihung.apply(controller, validatedArgs as any);
       return promiseHandler(controller, promise, context, next);
     });
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

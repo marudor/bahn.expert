@@ -10,7 +10,6 @@ import businessHubSearch, {
   stationDetails,
 } from 'server/Search/BusinessHub';
 import DS100 from 'server/Search/DS100';
-import favendoSearch from 'server/Search/Favendo';
 import stationSearch from 'server/Search';
 import type { Context } from 'koa';
 import type { DetailBusinessHubStation } from 'types/BusinessHub/StopPlaces';
@@ -54,15 +53,14 @@ export class StationController extends Controller {
     @Query() lng: number,
     @Query() searchText: string = ''
   ): Promise<Station[]> {
-    return canUseBusinessHub
-      ? businessHubSearch(searchText, undefined, {
-          latitude: lat,
-          longitude: lng,
-        })
-      : favendoSearch(searchText, {
-          lat,
-          lng,
-        });
+    if (canUseBusinessHub) {
+      return businessHubSearch(searchText, undefined, {
+        latitude: lat,
+        longitude: lng,
+      });
+    } else {
+      throw new Error('geoSearch needs BusinessHub API Key');
+    }
   }
 
   @Get('/iris/{evaId}')

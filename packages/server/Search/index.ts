@@ -6,13 +6,14 @@ import BusinessHubSearch, {
 } from 'server/Search/BusinessHub';
 import DBNavigatorSearch from 'server/HAFAS/LocMatch';
 import DS100 from 'server/Search/DS100';
-import FavendoSearch from './Favendo';
 import OpenDataOfflineSearch from './OpenDataOffline';
 import OpenDataSearch from './OpenData';
 import SBBSearch from 'server/SBB/StationSearch';
 import StationsDataSearch from './StationsData';
 
-const defaultSearch = canUseBusinessHub ? BusinessHubSearch : FavendoSearch;
+const defaultSearch = canUseBusinessHub
+  ? BusinessHubSearch
+  : OpenDataOfflineSearch;
 
 const stationSearchCache = createNewCache<string, Station[]>(
   6 * 60 * 60,
@@ -29,8 +30,6 @@ export function getSearchMethod(type?: StationSearchType) {
       return OpenDataOfflineSearch;
     case StationSearchType.stationsData:
       return StationsDataSearch;
-    case StationSearchType.favendo:
-      return FavendoSearch;
     case StationSearchType.sbb:
       return SBBSearch;
     case StationSearchType.businessHub:
