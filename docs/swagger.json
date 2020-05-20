@@ -5172,11 +5172,51 @@
 				"tags": [
 					"Bahnhof V1"
 				],
+				"deprecated": true,
 				"security": [],
 				"parameters": [
 					{
 						"in": "path",
 						"name": "stationName",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/bahnhof/v1/lageplan/{stationName}/{evaId}": {
+			"get": {
+				"operationId": "LageplanWithBayern",
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/LageplanResponse"
+								}
+							}
+						},
+						"description": "Ok"
+					}
+				},
+				"tags": [
+					"Bahnhof V1"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "stationName",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "evaId",
 						"required": true,
 						"schema": {
 							"type": "string"

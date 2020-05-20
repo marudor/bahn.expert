@@ -1708,6 +1708,27 @@ export function RegisterRoutes(router: KoaRouter) {
       return promiseHandler(controller, promise, context, next);
     });
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  router.get('/api/bahnhof/v1/lageplan/:stationName/:evaId',
+    async (context: any, next: any) => {
+      const args = {
+        stationName: { "in": "path", "name": "stationName", "required": true, "dataType": "string" },
+        evaId: { "in": "path", "name": "evaId", "required": true, "dataType": "string" },
+      };
+
+      let validatedArgs: any[] = [];
+      try {
+        validatedArgs = getValidatedArgs(args, context);
+      } catch (error) {
+        context.status = error.status;
+        context.throw(error.status, JSON.stringify({ fields: error.fields }));
+      }
+
+      const controller = new BahnhofControllerV1();
+
+      const promise = controller.lageplanWithBayern.apply(controller, validatedArgs as any);
+      return promiseHandler(controller, promise, context, next);
+    });
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   router.get('/api/hafas/experimental/himMessages',
     async (context: any, next: any) => {
       const args = {
