@@ -25,7 +25,7 @@ const ExtraMenu = () => {
     setFilterOpen,
   } = AbfahrtenConfigContainer.useContainer();
   const { currentStation } = AbfahrtenContainer.useContainer();
-  const lageplan = useLageplan(currentStation && currentStation.title);
+  const lageplan = useLageplan(currentStation?.title, currentStation?.id);
   const { favs } = FavContainer.useContainer();
   const fav = useFav();
   const unfav = useUnfav();
