@@ -7,9 +7,8 @@
   "moduleNameMapper": {
     "\\.(scss|css)$": "identity-obj-proxy"
   },
-  "globalSetup": "test-helper/setupGlobal.ts",
+  "globalSetup": "./__tests__/setupGlobal.ts",
   "setupFilesAfterEnv": [
-    "test-helper/setupCommon.ts",
     "./__tests__/setup.ts",
     "@testing-library/jest-dom/extend-expect"
   ],

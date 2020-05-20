@@ -7,7 +7,7 @@
   "moduleNameMapper": {
     "\\.(scss|css)$": "identity-obj-proxy"
   },
-  "globalSetup": "test-helper/setupGlobal.ts",
-  "setupFilesAfterEnv": ["test-helper/setupCommon.ts", "./__tests__/setup.ts"],
+  "globalSetup": "./__tests__/setupGlobal.ts",
+  "setupFilesAfterEnv": ["./__tests__/setup.ts"],
   "testMatch": ["**/__tests__/**/?(*.)+(spec|test).[jt]s?(x)"]
 }

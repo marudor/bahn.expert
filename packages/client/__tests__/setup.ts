@@ -2,6 +2,13 @@
 import { cleanup } from '@testing-library/react';
 import Nock from 'nock';
 
+// Custom React setup
+global.M = require('react').createElement;
+global.MF = require('react').Fragment;
+
+// eslint-disable-next-line jest/no-standalone-expect
+expect(new Date().getTimezoneOffset()).toBe(0);
+
 afterEach(() => {
   cleanup();
   try {
