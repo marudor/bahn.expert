@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react';
 import Axios from 'axios';
 
-const useLageplan = (stationName?: string) => {
+const useLageplan = (stationName?: string, evaId?: string) => {
   const [lageplan, setLageplan] = useState<string>();
 
   useEffect(() => {
-    if (!stationName) return;
-    Axios.get(`/api/bahnhof/v1/lageplan/${encodeURIComponent(stationName)}`)
+    if (!stationName || !evaId) return;
+    Axios.get(
+      `/api/bahnhof/v1/lageplan/${encodeURIComponent(stationName)}/${evaId}`
+    )
       .then((r) => {
         setLageplan(r.data.lageplan);
       })
       .catch(() => {});
-  }, [setLageplan, stationName]);
+  }, [setLageplan, stationName, evaId]);
 
   return lageplan;
 };
