@@ -1,5 +1,5 @@
-import { CommonStation } from '../station';
-import { SBBCoordinates } from 'types/SBB/common';
+import { CommonStation } from 'types/station';
+import { SBBCoordinates } from 'sbb/types/common';
 
 export interface SBBStationResult {
   standorte?: RawSBBStation[];

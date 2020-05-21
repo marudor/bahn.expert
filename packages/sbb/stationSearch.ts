@@ -1,7 +1,9 @@
-import { axios } from './request';
-import type { SBBStation, SBBStationResult } from 'types/SBB/station';
+import { axios } from 'sbb';
+import type { SBBStation, SBBStationResult } from 'sbb/types/station';
 
-export default async (searchTerm?: string): Promise<SBBStation[]> => {
+export async function stationSearch(
+  searchTerm?: string
+): Promise<SBBStation[]> {
   if (!searchTerm) return [];
   const result = (
     await axios.get<SBBStationResult>(
@@ -22,4 +24,4 @@ export default async (searchTerm?: string): Promise<SBBStation[]> => {
         },
       })) || []
   );
-};
+}

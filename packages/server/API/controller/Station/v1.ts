@@ -1,8 +1,8 @@
 import {
-  BusinessHubGeoSearch,
-  canUseBusinessHub,
+  geoSearch as BusinessHubGeoSearch,
   stationDetails,
-} from 'server/Search/BusinessHub';
+} from 'business-hub/stationSearch';
+import { canUseBusinessHub } from 'business-hub';
 import { Controller, Get, Query, Request, Response, Route, Tags } from 'tsoa';
 import { getStation } from 'server/Abfahrten/station';
 import {
@@ -13,7 +13,7 @@ import {
 import DS100 from 'server/Search/DS100';
 import stationSearch from 'server/Search';
 import type { Context } from 'koa';
-import type { DetailBusinessHubStation } from 'types/BusinessHub/StopPlaces';
+import type { DetailBusinessHubStation } from 'business-hub/types/StopPlaces';
 
 export const validationOverwrite = [
   {

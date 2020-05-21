@@ -1,15 +1,13 @@
-import {
-  BusinessHubSearch,
-  canUseBusinessHub,
-} from 'server/Search/BusinessHub';
+import { stationSearch as BusinessHubSearch } from 'business-hub/stationSearch';
 import { CacheDatabases, createNewCache } from 'server/cache';
+import { canUseBusinessHub } from 'business-hub';
 import { logger } from 'server/logger';
+import { stationSearch as SBBSearch } from 'sbb/stationSearch';
 import { Station, StationSearchType } from 'types/station';
 import DBNavigatorSearch from 'server/HAFAS/LocMatch';
 import DS100 from 'server/Search/DS100';
 import OpenDataOfflineSearch from './OpenDataOffline';
 import OpenDataSearch from './OpenData';
-import SBBSearch from 'server/SBB/StationSearch';
 import StationsDataSearch from './StationsData';
 
 const defaultSearch = canUseBusinessHub

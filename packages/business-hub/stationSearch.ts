@@ -1,4 +1,4 @@
-import Axios from 'axios';
+import { axios } from 'business-hub';
 import type {
   APIResult,
   BusinessHubCoordinates,
@@ -6,24 +6,7 @@ import type {
   DetailBusinessHubStation,
   DetailsApiResult,
   StopPlace,
-} from 'types/BusinessHub/StopPlaces';
-
-const apiKey = process.env.BUSINESS_HUB_STOP_PLACES_KEY || '';
-
-export const canUseBusinessHub =
-  Boolean(apiKey) || process.env.NODE_ENV === 'test';
-const axios = Axios.create({
-  headers: {
-    key: apiKey,
-  },
-  baseURL: 'https://api.businesshub.deutschebahn.com/',
-});
-
-if (!canUseBusinessHub) {
-  console.warn(
-    'No BusinessHub API Key provided. Station search will be degraded Quality!'
-  );
-}
+} from 'business-hub/types/StopPlaces';
 
 const transformBusinessHubStation = (
   businessHubStation: Pick<StopPlace, 'name' | 'identifiers' | 'location'>
@@ -34,7 +17,6 @@ const transformBusinessHubStation = (
   ds100: businessHubStation.identifiers.find((i) => i.type === 'RIL100')?.value,
   stada: businessHubStation.identifiers.find((i) => i.type === 'STADA')?.value,
 });
-
 function filterApiResult(result: APIResult) {
   return (
     result?._embedded?.stopPlaceList
@@ -42,8 +24,7 @@ function filterApiResult(result: APIResult) {
       .filter((s) => s.id && s.ds100) ?? []
   );
 }
-
-export async function BusinessHubSearch(
+export async function stationSearch(
   searchTerm?: string
 ): Promise<BusinessHubStation[]> {
   if (!searchTerm) return [];
@@ -58,7 +39,7 @@ export async function BusinessHubSearch(
   return filterApiResult(result);
 }
 
-export async function BusinessHubGeoSearch(
+export async function geoSearch(
   coordinates: BusinessHubCoordinates,
   radius: number = 3000
 ): Promise<BusinessHubStation[]> {
