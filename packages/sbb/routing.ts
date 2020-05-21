@@ -1,8 +1,8 @@
-import { axios } from './request';
+import { axios } from 'sbb';
 import { format } from 'date-fns';
-import { RoutingOptions } from 'types/SBB/routing';
+import { RoutingOptions } from 'sbb/types/routing';
 
-export default async function Routing({
+export async function routing({
   start,
   destination,
   time = Date.now(),
