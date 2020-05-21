@@ -8,6 +8,7 @@ module.exports = {
     react: { version: 'detect' },
   },
   rules: {
+    'prettier/prettier': 0,
     'react/react-in-jsx-scope': 0,
     'require-await': 0,
     'import/no-extraneous-dependencies': [
