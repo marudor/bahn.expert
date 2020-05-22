@@ -16,6 +16,8 @@ const transformBusinessHubStation = (
   location: businessHubStation.location,
   ds100: businessHubStation.identifiers.find((i) => i.type === 'RIL100')?.value,
   stada: businessHubStation.identifiers.find((i) => i.type === 'STADA')?.value,
+  globalId: businessHubStation.identifiers.find((i) => i.type === 'GLOBAL_ID')
+    ?.value,
 });
 function filterApiResult(result: APIResult) {
   return (
