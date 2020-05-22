@@ -22,7 +22,8 @@ export interface StopPlace {
 type KnownIdentifier =
   | Identifier<'EVA'>
   | Identifier<'RIL100'>
-  | Identifier<'STADA'>;
+  | Identifier<'STADA'>
+  | Identifier<'GLOBAL_ID'>;
 
 /**
  * @tsoaModel
@@ -56,6 +57,7 @@ interface Href {
 export interface BusinessHubStation extends CommonStation {
   ds100?: string;
   stada?: string;
+  globalId?: string;
   location: BusinessHubCoordinates;
 }
 
