@@ -26,15 +26,16 @@ module.exports = function webpackDev(koa: Koa, server: undefined | Server) {
     });
     delete require.cache[path.resolve('packages/server/render.tsx')];
   });
-  const watcher = chokidar.watch(path.resolve('./packages/server/**'));
+  const watcher = chokidar.watch(path.resolve('./packages/**'));
 
   watcher.on('change', (file) => {
+    if (file.includes('packages/client')) return;
     if (file.includes('packages/server/API/controller/')) {
       console.log('Rebuilding Routs & doc');
       childProcess.exec('yarn doc:build');
     }
     Object.keys(require.cache).forEach((id) => {
-      if (id.match(/packages\/server/)) {
+      if (id.match(/packages\/(?!client)/)) {
         delete require.cache[id];
       }
     });
