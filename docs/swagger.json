@@ -15,6 +15,283 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"BusinessHubCoordinates": {
+				"properties": {
+					"latitude": {
+						"type": "number",
+						"format": "double"
+					},
+					"longitude": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"latitude",
+					"longitude"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"BusinessHubStation": {
+				"properties": {
+					"title": {
+						"type": "string"
+					},
+					"id": {
+						"type": "string"
+					},
+					"ds100": {
+						"type": "string"
+					},
+					"stada": {
+						"type": "string"
+					},
+					"globalId": {
+						"type": "string"
+					},
+					"location": {
+						"$ref": "#/components/schemas/BusinessHubCoordinates"
+					}
+				},
+				"required": [
+					"title",
+					"id",
+					"location"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"OptionalData": {
+				"properties": {
+					"link": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"link"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Group": {
+				"properties": {
+					"id": {
+						"type": "number",
+						"format": "double"
+					},
+					"title": {
+						"type": "string"
+					},
+					"optionalData": {
+						"$ref": "#/components/schemas/OptionalData"
+					}
+				},
+				"required": [
+					"id",
+					"title"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Section": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"title": {
+						"type": "string"
+					},
+					"optionalData": {
+						"properties": {
+							"evaNumber": {
+								"type": "string"
+							},
+							"lon": {
+								"type": "string"
+							},
+							"lat": {
+								"type": "string"
+							},
+							"ds100": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"evaNumber",
+							"lon",
+							"lat",
+							"ds100"
+						],
+						"type": "object"
+					}
+				},
+				"required": [
+					"id",
+					"title"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"News": {
+				"properties": {
+					"published": {
+						"type": "boolean"
+					},
+					"id": {
+						"type": "string"
+					},
+					"title": {
+						"type": "string"
+					},
+					"subtitle": {
+						"type": "string"
+					},
+					"content": {
+						"type": "string"
+					},
+					"startTimestamp": {
+						"type": "string"
+					},
+					"endTimestamp": {
+						"type": "string"
+					},
+					"optionalData": {
+						"$ref": "#/components/schemas/OptionalData"
+					},
+					"image": {
+						"type": "string"
+					},
+					"version": {
+						"type": "number",
+						"format": "double"
+					},
+					"updatedAt": {
+						"type": "string"
+					},
+					"createdAt": {
+						"type": "string"
+					},
+					"group": {
+						"$ref": "#/components/schemas/Group"
+					},
+					"sections": {
+						"items": {
+							"$ref": "#/components/schemas/Section"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"published",
+					"id",
+					"title",
+					"content",
+					"startTimestamp",
+					"endTimestamp",
+					"image",
+					"version",
+					"updatedAt",
+					"createdAt",
+					"group",
+					"sections"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"NewsResponse": {
+				"properties": {
+					"count": {
+						"type": "number",
+						"format": "double"
+					},
+					"offset": {
+						"type": "number",
+						"format": "double"
+					},
+					"limit": {
+						"type": "number",
+						"format": "double"
+					},
+					"news": {
+						"items": {
+							"$ref": "#/components/schemas/News"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"count",
+					"offset",
+					"limit",
+					"news"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Facilities": {
+				"properties": {
+					"description": {
+						"type": "string"
+					},
+					"equipmentnumber": {
+						"type": "number",
+						"format": "double"
+					},
+					"geocoordX": {
+						"type": "number",
+						"format": "double"
+					},
+					"geocoordY": {
+						"type": "number",
+						"format": "double"
+					},
+					"state": {
+						"type": "string"
+					},
+					"stateExplanation": {
+						"type": "string"
+					},
+					"type": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"description",
+					"equipmentnumber",
+					"geocoordX",
+					"geocoordY",
+					"state",
+					"stateExplanation",
+					"type"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"FastaResponse": {
+				"properties": {
+					"facilieites": {
+						"items": {
+							"$ref": "#/components/schemas/Facilities"
+						},
+						"type": "array"
+					},
+					"name": {
+						"type": "string"
+					},
+					"stationnumber": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"facilieites",
+					"name",
+					"stationnumber"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"OpL": {
 				"properties": {
 					"name": {
@@ -4736,24 +5013,6 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"BusinessHubCoordinates": {
-				"properties": {
-					"latitude": {
-						"type": "number",
-						"format": "double"
-					},
-					"longitude": {
-						"type": "number",
-						"format": "double"
-					}
-				},
-				"required": [
-					"latitude",
-					"longitude"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
 			"Identifier_EVA_": {
 				"properties": {
 					"type": {
@@ -4814,6 +5073,26 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"Identifier_GLOBAL_ID_": {
+				"properties": {
+					"type": {
+						"type": "string",
+						"enum": [
+							"GLOBAL_ID"
+						],
+						"nullable": false
+					},
+					"value": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"type",
+					"value"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"KnownIdentifier": {
 				"anyOf": [
 					{
@@ -4824,6 +5103,9 @@
 					},
 					{
 						"$ref": "#/components/schemas/Identifier_STADA_"
+					},
+					{
+						"$ref": "#/components/schemas/Identifier_GLOBAL_ID_"
 					}
 				]
 			},
@@ -5108,6 +5390,9 @@
 					"stada": {
 						"type": "string"
 					},
+					"globalId": {
+						"type": "string"
+					},
 					"location": {
 						"$ref": "#/components/schemas/BusinessHubCoordinates"
 					},
@@ -5217,6 +5502,143 @@
 					{
 						"in": "path",
 						"name": "evaId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/businessHub/experimental/station/{searchTerm}": {
+			"get": {
+				"operationId": "Station",
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/BusinessHubStation"
+									},
+									"type": "array"
+								}
+							}
+						},
+						"description": "Ok"
+					}
+				},
+				"tags": [
+					"BusinessHub Experimental"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "searchTerm",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/businessHub/experimental/news": {
+			"get": {
+				"operationId": "News",
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/NewsResponse"
+								}
+							}
+						},
+						"description": "Ok"
+					}
+				},
+				"tags": [
+					"BusinessHub Experimental"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "offset",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "limit",
+						"required": false,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "groupIds",
+						"required": false,
+						"schema": {
+							"type": "array",
+							"items": {
+								"type": "number",
+								"format": "double"
+							}
+						}
+					},
+					{
+						"in": "query",
+						"name": "published",
+						"required": false,
+						"schema": {
+							"type": "boolean"
+						}
+					},
+					{
+						"in": "query",
+						"name": "sectionIds",
+						"required": false,
+						"schema": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
+						}
+					}
+				]
+			}
+		},
+		"/businessHub/experimental/fasta/{stadaId}": {
+			"get": {
+				"operationId": "Fasta",
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/FastaResponse"
+								}
+							}
+						},
+						"description": "Ok"
+					}
+				},
+				"tags": [
+					"BusinessHub Experimental"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "stadaId",
 						"required": true,
 						"schema": {
 							"type": "string"
