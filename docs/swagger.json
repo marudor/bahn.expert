@@ -4092,6 +4092,45 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"IrisStation": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"meta": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"eva": {
+						"type": "string"
+					},
+					"ds100": {
+						"type": "string"
+					},
+					"db": {
+						"type": "string"
+					},
+					"creationts": {
+						"type": "string"
+					},
+					"p": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"name",
+					"meta",
+					"eva",
+					"ds100",
+					"db",
+					"creationts",
+					"p"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"AdditionalFahrzeugInfo": {
 				"properties": {
 					"klasse": {
@@ -4894,45 +4933,6 @@
 					"sbb"
 				],
 				"type": "string"
-			},
-			"IrisStation": {
-				"properties": {
-					"name": {
-						"type": "string"
-					},
-					"meta": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
-					},
-					"eva": {
-						"type": "string"
-					},
-					"ds100": {
-						"type": "string"
-					},
-					"db": {
-						"type": "string"
-					},
-					"creationts": {
-						"type": "string"
-					},
-					"p": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"name",
-					"meta",
-					"eva",
-					"ds100",
-					"db",
-					"creationts",
-					"p"
-				],
-				"type": "object",
-				"additionalProperties": false
 			},
 			"IrisStationWithRelated": {
 				"properties": {
@@ -6740,6 +6740,65 @@
 						"schema": {}
 					}
 				]
+			}
+		},
+		"/iris/v1/station/{searchTerm}": {
+			"get": {
+				"operationId": "Station",
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/IrisStation"
+									},
+									"type": "array"
+								}
+							}
+						},
+						"description": "Ok"
+					}
+				},
+				"tags": [
+					"IRIS V1"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "searchTerm",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/iris/v1/stations": {
+			"get": {
+				"operationId": "Stations",
+				"responses": {
+					"200": {
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/IrisStation"
+									},
+									"type": "array"
+								}
+							}
+						},
+						"description": "Ok"
+					}
+				},
+				"tags": [
+					"IRIS V1"
+				],
+				"security": [],
+				"parameters": []
 			}
 		},
 		"/reihung/v1/wagen/{trainNumber}/{date}": {

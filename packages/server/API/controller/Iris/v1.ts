@@ -1,3 +1,4 @@
+import { allStations, stationSearch } from 'server/iris/stationSearch';
 import { Controller, Get, Query, Route, Tags } from 'tsoa';
 import { getAbfahrten } from 'server/iris';
 import { noncdAxios, openDataAxios } from 'server/iris/helper';
@@ -42,5 +43,17 @@ export class IrisController extends Controller {
       },
       type === 'open' ? openDataAxios : noncdAxios
     );
+  }
+
+  @Get('/station/{searchTerm}')
+  @Tags('IRIS V1')
+  station(searchTerm: string) {
+    return stationSearch(searchTerm);
+  }
+
+  @Get('/stations')
+  @Tags('IRIS V1')
+  stations() {
+    return allStations();
   }
 }
