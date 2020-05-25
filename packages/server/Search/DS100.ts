@@ -1,4 +1,4 @@
-import { getSingleStation } from 'server/Abfahrten/station';
+import { getSingleStation } from 'server/iris/station';
 import type { Station } from 'types/station';
 
 export default async function (ds100: string): Promise<Station | undefined> {

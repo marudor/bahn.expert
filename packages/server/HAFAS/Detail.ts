@@ -1,5 +1,5 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
-import { getAbfahrten } from 'server/Abfahrten';
+import { getAbfahrten } from 'server/iris';
 import { getPlannedSequence } from 'server/Reihung/plan';
 import { logger } from 'server/logger';
 import { subMinutes } from 'date-fns';
