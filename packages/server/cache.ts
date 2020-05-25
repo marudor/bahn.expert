@@ -22,6 +22,7 @@ export enum CacheDatabases {
   StationSearch,
   HIMMessage,
   CouchSequence,
+  TimetableAll,
 }
 const activeCaches = new Set();
 

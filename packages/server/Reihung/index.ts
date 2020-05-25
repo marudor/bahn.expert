@@ -1,6 +1,6 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable no-fallthrough */
-import { getAbfahrten } from '../Abfahrten';
+import { getAbfahrten } from 'server/iris';
 import { getWRLink, hasWR, WRCache } from 'server/Reihung/hasWR';
 import { groupBy, maxBy, minBy } from 'lodash';
 import { isRedesignByTZ, isRedesignByUIC } from 'server/Reihung/tzInfo';

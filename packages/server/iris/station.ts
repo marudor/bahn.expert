@@ -11,7 +11,7 @@ const cache = createNewCache<string, IrisStation>(
   CacheDatabases.Station
 );
 
-function parseStation(stationNode: xmljs.Element): IrisStation {
+export function parseStation(stationNode: xmljs.Element): IrisStation {
   const station: any = {};
 
   stationNode.attrs().forEach((a) => {
