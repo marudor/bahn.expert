@@ -4,7 +4,7 @@ import {
 } from 'business-hub/stationSearch';
 import { canUseBusinessHub } from 'business-hub';
 import { Controller, Get, Query, Request, Response, Route, Tags } from 'tsoa';
-import { getStation } from 'server/Abfahrten/station';
+import { getStation } from 'server/iris/station';
 import {
   IrisStationWithRelated,
   Station,

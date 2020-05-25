@@ -1,7 +1,7 @@
 import { Controller, Get, Query, Route, Tags } from 'tsoa';
-import { getAbfahrten } from 'server/Abfahrten';
-import { noncdAxios, openDataAxios } from 'server/Abfahrten/helper';
-import wingInfo from 'server/Abfahrten/wings';
+import { getAbfahrten } from 'server/iris';
+import { noncdAxios, openDataAxios } from 'server/iris/helper';
+import wingInfo from 'server/iris/wings';
 import type { AbfahrtenResult, WingDefinition } from 'types/iris';
 
 @Route('/iris/v1')
