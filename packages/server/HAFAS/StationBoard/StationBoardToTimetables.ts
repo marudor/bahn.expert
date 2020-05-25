@@ -1,4 +1,4 @@
-import { calculateVia } from 'server/Abfahrten/helper';
+import { calculateVia } from 'server/iris/helper';
 import type { Abfahrt } from 'types/iris';
 import type {
   ArrivalStationBoardEntry,

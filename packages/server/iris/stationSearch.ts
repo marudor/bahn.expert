@@ -1,0 +1,72 @@
+import { CacheDatabases, createNewCache } from 'server/cache';
+import { logger } from 'server/logger';
+import { noncdAxios } from './helper';
+import { orderBy } from 'lodash';
+import { parseStation } from 'server/iris/station';
+import Fuse from 'fuse.js';
+import xmljs, { Element } from 'libxmljs2';
+import type { AxiosInstance } from 'axios';
+import type { IrisStation } from 'types/station';
+
+// 24 Hours in seconds
+const cache = createNewCache<string, IrisStation[]>(
+  24 * 60 * 60,
+  CacheDatabases.TimetableAll
+);
+
+const fuseSettings = {
+  includeScore: true,
+  threshold: 0.3,
+  tokenize: true,
+  matchAllTokens: true,
+  minMatchCharLength: 2,
+  location: 0,
+  distance: 100,
+  maxPatternLength: 50,
+  keys: ['name', 'eva', 'ds100'],
+};
+
+let searchableStations = new Fuse<IrisStation, typeof fuseSettings>(
+  [],
+  fuseSettings
+);
+
+async function refreshSearchableStations(axios: AxiosInstance = noncdAxios) {
+  try {
+    logger.debug('Fetching IRIS Stations to search');
+    let cached = await cache.get('*');
+    if (!cached) {
+      const rawXml = (await axios.get(`/station/*`)).data;
+      const xml = xmljs.parseXml(rawXml);
+      const xmlStations = xml.find<Element>('//station');
+
+      if (!xmlStations || !xmlStations.length) {
+        return;
+      }
+
+      cached = xmlStations.map(parseStation);
+      cache.set('*', cached);
+    }
+    searchableStations = new Fuse(cached, fuseSettings);
+    logger.debug('Fetched IRIS Stations to search');
+  } catch (e) {
+    logger.error(e, 'Iris Stations fetch failed');
+  }
+}
+
+export function stationSearch(searchTerm: string): Promise<IrisStation[]> {
+  const matches = searchableStations.search(searchTerm);
+
+  return Promise.resolve(
+    orderBy(matches, 'score', ['asc']).map(({ item }) => item)
+  );
+}
+
+export async function allStations(): Promise<IrisStation[]> {
+  return (await cache.get('*')) || [];
+}
+
+if (process.env.NODE_ENV !== 'test') {
+  setInterval(refreshSearchableStations, 10 * 60 * 1000);
+  refreshSearchableStations();
+}

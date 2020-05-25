@@ -1380,6 +1380,20 @@ const models: TsoaRoute.Models = {
     "additionalProperties": false,
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "IrisStation": {
+    "dataType": "refObject",
+    "properties": {
+      "name": { "dataType": "string", "required": true },
+      "meta": { "dataType": "array", "array": { "dataType": "string" }, "required": true },
+      "eva": { "dataType": "string", "required": true },
+      "ds100": { "dataType": "string", "required": true },
+      "db": { "dataType": "string", "required": true },
+      "creationts": { "dataType": "string", "required": true },
+      "p": { "dataType": "string", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "AdditionalFahrzeugInfo": {
     "dataType": "refObject",
     "properties": {
@@ -1586,20 +1600,6 @@ const models: TsoaRoute.Models = {
   "StationSearchType": {
     "dataType": "refEnum",
     "enums": ["default", "hafas", "openData", "openDataOffline", "stationsData", "businessHub", "sbb"],
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "IrisStation": {
-    "dataType": "refObject",
-    "properties": {
-      "name": { "dataType": "string", "required": true },
-      "meta": { "dataType": "array", "array": { "dataType": "string" }, "required": true },
-      "eva": { "dataType": "string", "required": true },
-      "ds100": { "dataType": "string", "required": true },
-      "db": { "dataType": "string", "required": true },
-      "creationts": { "dataType": "string", "required": true },
-      "p": { "dataType": "string", "required": true },
-    },
-    "additionalProperties": false,
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "IrisStationWithRelated": {
@@ -2453,6 +2453,45 @@ export function RegisterRoutes(router: KoaRouter) {
       const controller = new IrisController();
 
       const promise = controller.abfahrten.apply(controller, validatedArgs as any);
+      return promiseHandler(controller, promise, context, next);
+    });
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  router.get('/api/iris/v1/station/:searchTerm',
+    async (context: any, next: any) => {
+      const args = {
+        searchTerm: { "in": "path", "name": "searchTerm", "required": true, "dataType": "string" },
+      };
+
+      let validatedArgs: any[] = [];
+      try {
+        validatedArgs = getValidatedArgs(args, context);
+      } catch (error) {
+        context.status = error.status;
+        context.throw(error.status, JSON.stringify({ fields: error.fields }));
+      }
+
+      const controller = new IrisController();
+
+      const promise = controller.station.apply(controller, validatedArgs as any);
+      return promiseHandler(controller, promise, context, next);
+    });
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  router.get('/api/iris/v1/stations',
+    async (context: any, next: any) => {
+      const args = {
+      };
+
+      let validatedArgs: any[] = [];
+      try {
+        validatedArgs = getValidatedArgs(args, context);
+      } catch (error) {
+        context.status = error.status;
+        context.throw(error.status, JSON.stringify({ fields: error.fields }));
+      }
+
+      const controller = new IrisController();
+
+      const promise = controller.stations.apply(controller, validatedArgs as any);
       return promiseHandler(controller, promise, context, next);
     });
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

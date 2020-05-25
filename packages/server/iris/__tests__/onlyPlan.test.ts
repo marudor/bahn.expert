@@ -4,11 +4,11 @@ import {
   mockLageplan,
   mockSearch,
 } from 'server/__tests__/mockHelper';
-import { noncdAxios } from 'server/Abfahrten/helper';
+import { noncdAxios } from 'server/iris/helper';
 import fakeTimers from '@sinonjs/fake-timers';
 import fs from 'fs';
 import path from 'path';
-import Timetable from 'server/Abfahrten/Timetable';
+import Timetable from 'server/iris/Timetable';
 
 jest.mock('server/cache');
 
