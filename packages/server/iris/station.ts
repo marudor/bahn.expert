@@ -45,7 +45,7 @@ export async function getSingleStation(
     throw {
       status: 404,
       error: {
-        type: '404',
+        errroType: '404',
         description: 'Unbekannte Station',
       },
     };

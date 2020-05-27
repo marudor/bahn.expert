@@ -30,7 +30,7 @@ export class IrisController extends Controller {
     if (evaId.length < 6) {
       throw {
         status: 400,
-        message: 'Please provide a evaID',
+        error: 'Please provide a evaID',
       };
     }
 

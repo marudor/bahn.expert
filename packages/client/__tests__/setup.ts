@@ -1,10 +1,15 @@
 /* eslint-disable no-underscore-dangle */
 import { cleanup } from '@testing-library/react';
 import Nock from 'nock';
+import request from 'umi-request';
 
 // Custom React setup
 global.M = require('react').createElement;
 global.MF = require('react').Fragment;
+
+request.extendOptions({
+  prefix: 'http://localhost',
+});
 
 // eslint-disable-next-line jest/no-standalone-expect
 expect(new Date().getTimezoneOffset()).toBe(0);
