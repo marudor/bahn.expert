@@ -10,7 +10,8 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 const SentryCliPlugin = require('@sentry/webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
-const isDev = process.env.NODE_ENV !== 'production';
+const isDev =
+  process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'testDist';
 
 const plugins = [
   new LoadablePlugin(),
@@ -35,7 +36,7 @@ const rules = [
         loader: 'babel-loader',
         options: {
           rootMode: 'upward',
-          plugins: [require.resolve('react-refresh/babel')],
+          plugins: isDev ? [require.resolve('react-refresh/babel')] : undefined,
         },
       },
     ],
@@ -52,12 +53,10 @@ const rules = [
 const optimization = {};
 
 if (isDev) {
-  if (process.env.BABEL_ENV !== 'testProduction') {
-    rules[0].use.unshift('cache-loader');
-    plugins.push(new webpack.HotModuleReplacementPlugin());
-    plugins.push(new ReactRefreshWebpackPlugin());
-    entry.push('webpack-hot-middleware/client');
-  }
+  rules[0].use.unshift('cache-loader');
+  plugins.push(new webpack.HotModuleReplacementPlugin());
+  plugins.push(new ReactRefreshWebpackPlugin());
+  entry.push('webpack-hot-middleware/client');
 } else {
   if (process.env.SENTRY_AUTH_TOKEN) {
     plugins.push(
@@ -97,7 +96,7 @@ if (isDev) {
     minSize: 30000,
     cacheGroups: {
       vendor: {
-        test: /[\\/]node_modules[\\/](umi-request|react|react-dom|react-router|@material-ui|jss|downshift|date-fns)[\\/]/,
+        test: /[\\/]node_modules[\\/](umi-request|react|react-dom|react-router|react-router-dom|@material-ui|jss|downshift|date-fns)[\\/]/,
         name: 'vendor',
         chunks: 'all',
       },
