@@ -1,9 +1,9 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { format, parse, subDays } from 'date-fns';
-import axios from 'axios';
 import createCtxRecon from 'server/HAFAS/helper/createCtxRecon';
 import iconv from 'iconv-lite';
 import journeyDetails from './JourneyDetails';
+import request from 'umi-request';
 import type { TrainSearchResult } from 'types/HAFAS/Details';
 
 const profiles = {
@@ -42,25 +42,23 @@ export default async (
       date = now.getTime();
     }
   }
-  const buffer = (
-    await axios.get(profile.url, {
-      params: {
-        L: 'vs_json',
-        date: format(date, 'dd.MM.yyyy'),
-        trainname: trainName,
-        // Nur Züge die in DE halten
-        stationFilter: profile.number,
-        // evtl benutzen
-        // 1: ICE
-        // 2: IC/EC
-        // 4: RE
-        // 8: RB
-        // 16: S
-        productClassFilter: 31,
-      },
-      responseType: 'arraybuffer',
-    })
-  ).data;
+  const buffer = await request.get(profile.url, {
+    params: {
+      L: 'vs_json',
+      date: format(date, 'dd.MM.yyyy'),
+      trainname: trainName,
+      // Nur Züge die in DE halten
+      stationFilter: profile.number,
+      // evtl benutzen
+      // 1: ICE
+      // 2: IC/EC
+      // 4: RE
+      // 8: RB
+      // 16: S
+      productClassFilter: 31,
+    },
+    responseType: 'arrayBuffer',
+  });
   const rawReply = iconv.decode(buffer, 'latin-1').trim();
 
   const stringReply = rawReply.substring(11, rawReply.length - 1);

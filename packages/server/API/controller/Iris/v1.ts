@@ -1,7 +1,7 @@
 import { allStations, stationSearch } from 'server/iris/stationSearch';
 import { Controller, Get, Query, Route, Tags } from 'tsoa';
 import { getAbfahrten } from 'server/iris';
-import { noncdAxios, openDataAxios } from 'server/iris/helper';
+import { noncdRequest, openDataRequest } from 'server/iris/helper';
 import wingInfo from 'server/iris/wings';
 import type { AbfahrtenResult, WingDefinition } from 'types/iris';
 
@@ -41,7 +41,7 @@ export class IrisController extends Controller {
         lookahead,
         lookbehind,
       },
-      type === 'open' ? openDataAxios : noncdAxios
+      type === 'open' ? openDataRequest : noncdRequest
     );
   }
 

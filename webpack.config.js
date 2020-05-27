@@ -8,6 +8,7 @@ const PacktrackerPlugin = require('@packtracker/webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const SentryCliPlugin = require('@sentry/webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
 
@@ -20,6 +21,7 @@ const plugins = [
     'global.SERVER': JSON.stringify(false),
   }),
 ];
+const entry = ['./packages/client/entry.ts'];
 
 const rules = [
   {
@@ -33,6 +35,7 @@ const rules = [
         loader: 'babel-loader',
         options: {
           rootMode: 'upward',
+          plugins: [require.resolve('react-refresh/babel')],
         },
       },
     ],
@@ -51,6 +54,9 @@ const optimization = {};
 if (isDev) {
   if (process.env.BABEL_ENV !== 'testProduction') {
     rules[0].use.unshift('cache-loader');
+    plugins.push(new webpack.HotModuleReplacementPlugin());
+    plugins.push(new ReactRefreshWebpackPlugin());
+    entry.push('webpack-hot-middleware/client');
   }
 } else {
   if (process.env.SENTRY_AUTH_TOKEN) {
@@ -91,7 +97,7 @@ if (isDev) {
     minSize: 30000,
     cacheGroups: {
       vendor: {
-        test: /[\\/]node_modules[\\/](react|react-dom|react-router|core-js|@material-ui)[\\/]/,
+        test: /[\\/]node_modules[\\/](umi-request|react|react-dom|react-router|@material-ui|jss|downshift|date-fns)[\\/]/,
         name: 'vendor',
         chunks: 'all',
       },
@@ -123,7 +129,7 @@ module.exports = {
   plugins,
   mode: isDev ? 'development' : 'production',
   devtool: isDev ? 'cheap-module-source-map' : 'source-map',
-  entry: ['./packages/client/entry.ts'],
+  entry,
   resolve: {
     modules: ['node_modules'],
     extensions: ['.ts', '.tsx', '.json', '.web.ts', '.js', '.jsx'],

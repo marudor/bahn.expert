@@ -1,6 +1,5 @@
 import * as Sentry from '@sentry/node';
 import { middlewares } from './logger';
-import axios from 'axios';
 import createAdmin from './admin';
 import createDocsServer from './docsServer';
 import http from 'http';
@@ -8,9 +7,9 @@ import Koa, { Context, Middleware } from 'koa';
 import KoaBodyparser from 'koa-bodyparser';
 import koaStatic from 'koa-static';
 import path from 'path';
+import request from 'umi-request';
 import storageMiddleware from './middleware/storageMiddleware';
 import type { Server as NetServer } from 'net';
-import type { Server } from 'https';
 
 function hotHelper(getMiddleware: () => Middleware) {
   if (process.env.NODE_ENV === 'production') {
@@ -20,7 +19,7 @@ function hotHelper(getMiddleware: () => Middleware) {
   return (ctx: Context, next: () => Promise<any>) => getMiddleware()(ctx, next);
 }
 
-export function createApp(wsServer?: Server) {
+export function createApp() {
   const app = new Koa();
 
   const sentryDSN = process.env.SENTRY_DSN;
@@ -48,7 +47,7 @@ export function createApp(wsServer?: Server) {
     process.env.NODE_ENV !== 'test' &&
     process.env.NODE_ENV !== 'production'
   ) {
-    devPromise = require('./middleware/webpackDev')(app, wsServer).then(() => {
+    devPromise = require('./middleware/webpackDev')(app).then(() => {
       app.use((ctx, next) => {
         normalizePathMiddleware = require('./middleware/normalizePath').default;
         errorHandler = require('./errorHandler').default;
@@ -126,7 +125,7 @@ export default () => {
   const port = process.env.WEB_PORT || 9042;
 
   let server: NetServer;
-  let wsServer: undefined | Server;
+  let baseUrl: string;
 
   if (
     process.env.NODE_ENV !== 'production' &&
@@ -144,16 +143,21 @@ export default () => {
       key,
       cert,
     });
-    wsServer = https.createServer({
-      key,
-      cert,
-    });
-    axios.defaults.baseURL = `https://local.marudor.de:${port}`;
+    baseUrl = `https://local.marudor.de:${port}`;
   } else {
-    axios.defaults.baseURL = `http://localhost:${port}`;
     server = http.createServer();
+    baseUrl = `http://localhost:${port}`;
   }
-  const app = createApp(wsServer);
+  request.interceptors.request.use((url, options) => {
+    if (url.startsWith('/')) {
+      url = `${baseUrl}${url}`;
+    }
+    return {
+      url,
+      options,
+    };
+  });
+  const app = createApp();
 
   server.addListener('request', app.callback());
   server.listen(port);

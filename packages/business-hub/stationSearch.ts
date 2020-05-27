@@ -39,8 +39,6 @@ export async function stationSearch(
     }
   );
 
-  console.log(result);
-
   return filterApiResult(result);
 }
 

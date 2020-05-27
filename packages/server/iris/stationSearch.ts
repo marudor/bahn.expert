@@ -1,11 +1,11 @@
 import { CacheDatabases, createNewCache } from 'server/cache';
 import { logger } from 'server/logger';
-import { noncdAxios } from './helper';
+import { noncdRequest } from './helper';
 import { orderBy } from 'lodash';
 import { parseStation } from 'server/iris/station';
+import { RequestMethod } from 'umi-request';
 import Fuse from 'fuse.js';
 import xmljs, { Element } from 'libxmljs2';
-import type { AxiosInstance } from 'axios';
 import type { IrisStation } from 'types/station';
 
 // 24 Hours in seconds
@@ -31,12 +31,14 @@ let searchableStations = new Fuse<IrisStation, typeof fuseSettings>(
   fuseSettings
 );
 
-async function refreshSearchableStations(axios: AxiosInstance = noncdAxios) {
+async function refreshSearchableStations(
+  request: RequestMethod = noncdRequest
+) {
   try {
     logger.debug('Fetching IRIS Stations to search');
     let cached = await cache.get('*');
     if (!cached) {
-      const rawXml = (await axios.get(`/station/*`)).data;
+      const rawXml = await request.get<string>(`/station/*`);
       const xml = xmljs.parseXml(rawXml);
       const xmlStations = xml.find<Element>('//station');
 

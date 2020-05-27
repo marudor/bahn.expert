@@ -1,9 +1,9 @@
 import { compareAsc } from 'date-fns';
 import { getStation } from './station';
-import { noncdAxios } from './helper';
+import { noncdRequest } from './helper';
+import { RequestMethod } from 'umi-request';
 import Timetable from './Timetable';
 import type { Abfahrt, AbfahrtenResult } from 'types/iris';
-import type { AxiosInstance } from 'axios';
 
 interface AbfahrtenOptions {
   lookahead?: number;
@@ -79,17 +79,17 @@ export async function getAbfahrten(
   evaId: string,
   withRelated: boolean = true,
   options: AbfahrtenOptions = {},
-  axios: AxiosInstance = noncdAxios
+  request: RequestMethod = noncdRequest
 ): Promise<AbfahrtenResult> {
   const lookahead = options.lookahead || defaultOptions.lookahead;
   const lookbehind = options.lookbehind || defaultOptions.lookbehind;
 
-  const { station, relatedStations } = await getStation(evaId, 1, axios);
+  const { station, relatedStations } = await getStation(evaId, 1, request);
   let relatedAbfahrten = Promise.resolve(baseResult);
 
   if (withRelated) {
     relatedAbfahrten = Promise.all(
-      relatedStations.map((s) => getAbfahrten(s.eva, false, options, axios))
+      relatedStations.map((s) => getAbfahrten(s.eva, false, options, request))
     ).then((r) => r.reduce(reduceResults, baseResult));
   }
 
@@ -101,7 +101,7 @@ export async function getAbfahrten(
       lookbehind,
       currentDate: options.currentDate,
     },
-    axios
+    request
   );
   const result = (
     await Promise.all([timetable.start(), relatedAbfahrten])
