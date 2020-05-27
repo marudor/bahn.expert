@@ -126,7 +126,8 @@
     "server": "workspace:*"
   },
   "resolutions": {
-    "iconv-lite": "^0.5.1"
+    "iconv-lite": "^0.5.1",
+    "node-fetch": "^2"
   },
   "repository": {
     "type": "git",
