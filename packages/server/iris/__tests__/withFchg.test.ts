@@ -4,7 +4,7 @@ import {
   mockLageplan,
   mockSearch,
 } from 'server/__tests__/mockHelper';
-import { noncdAxios } from 'server/iris/helper';
+import { noncdRequest } from 'server/iris/helper';
 import fakeTimers, { InstalledClock } from '@sinonjs/fake-timers';
 import fs from 'fs';
 import path from 'path';
@@ -50,7 +50,7 @@ describe('withFchg', () => {
           lookahead: 120,
           lookbehind: 60,
         },
-        noncdAxios
+        noncdRequest
       );
 
       await expect(timetable.start()).resolves.toMatchSnapshot();

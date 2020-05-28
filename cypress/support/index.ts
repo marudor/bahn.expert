@@ -6,3 +6,7 @@ Cypress.Server.defaults({
 beforeEach(() => {
   cy.server();
 });
+
+Cypress.on('window:before:load', (win) => {
+  delete win.fetch;
+});

@@ -1,5 +1,5 @@
-import { axios } from 'business-hub';
 import { NewsResponse } from 'business-hub/types/News';
+import { request } from 'business-hub';
 
 interface NewsOptions {
   offset?: number;
@@ -9,14 +9,12 @@ interface NewsOptions {
   sectionIds?: string[];
 }
 export async function news(options: NewsOptions = {}): Promise<NewsResponse> {
-  const r = (
-    await axios.get('/news-api/v1/news/', {
-      params: options,
-      headers: {
-        key: process.env.BUSINESS_HUB_NEWS_KEY,
-      },
-    })
-  ).data;
+  const r = await request.get<NewsResponse>('/news-api/v1/news/', {
+    params: options,
+    headers: {
+      key: process.env.BUSINESS_HUB_NEWS_KEY || '',
+    },
+  });
 
   return r;
 }

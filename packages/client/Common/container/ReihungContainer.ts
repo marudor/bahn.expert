@@ -1,15 +1,16 @@
 import { createContainer } from 'unstated-next';
 import { useState } from 'react';
-import axios from 'axios';
+import request from 'umi-request';
 import type { Formation } from 'types/reihung';
 
 function fetchSequence(
   trainNumber: string,
   scheduledDeparture: number
 ): Promise<Formation | undefined> {
-  return axios
-    .get(`/api/reihung/v1/wagen/${trainNumber}/${scheduledDeparture}`)
-    .then((r) => r.data)
+  return request
+    .get<Formation>(
+      `/api/reihung/v1/wagen/${trainNumber}/${scheduledDeparture}`
+    )
     .catch(() => undefined);
 }
 

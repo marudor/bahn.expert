@@ -1,9 +1,9 @@
 import { createContext } from 'react';
-import type { AxiosError } from 'axios';
 import type { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
+import type { ResponseError } from 'umi-request';
 
 export default createContext<{
   details?: ParsedSearchOnTripResponse;
-  error?: AxiosError;
+  error?: ResponseError;
   urlPrefix?: string;
 }>({});

@@ -29,9 +29,7 @@ describe('Auslastung', () => {
   it('shows auslastung after loading', async () => {
     nock
       .get(
-        encodeURI(
-          `/api/hafas/v1/auslastung/${mockAbfahrt.currentStation.title}/${mockAbfahrt.destination}/${mockAbfahrt.train.number}/${mockAbfahrt.departure.scheduledTime}`
-        )
+        `/api/hafas/v1/auslastung/${mockAbfahrt.currentStation.title}/${mockAbfahrt.destination}/${mockAbfahrt.train.number}/${mockAbfahrt.departure.scheduledTime}`
       )
       .reply(200, {
         first: 1,
