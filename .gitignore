@@ -71,3 +71,4 @@ jest-coverage/
 
 packages/**/*.js
 !packages/server/logger/logWriteThread.js
+!packages/null-package/index.js

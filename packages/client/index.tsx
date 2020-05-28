@@ -4,12 +4,14 @@ import { hydrate, render } from 'react-dom';
 import { loadableReady } from '@loadable/component';
 import { StorageContext } from 'shared/hooks/useStorage';
 import { ThemeProvider } from 'client/Common/container/ThemeContainer';
-import axios from 'axios';
+import request from 'umi-request';
 import Storage from 'client/Common/Storage';
 import ThemeWrap from './ThemeWrap';
 import type { ComponentType } from 'react';
 // 15s timeout
-axios.defaults.timeout = 15000;
+request.extendOptions({
+  timeout: 15000,
+});
 
 const storage = new Storage();
 

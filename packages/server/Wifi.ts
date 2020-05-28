@@ -1,5 +1,5 @@
 import { logger } from 'server/logger';
-import axios from 'axios';
+import request from 'umi-request';
 import type { AP, WifiData } from 'types/Wifi';
 
 interface APWithTrain extends AP {
@@ -28,8 +28,9 @@ export async function fetchWifiData() {
   }
   try {
     logger.debug('Fetching WifiData');
+    // TODO: broken, auth works differently with umi-request!
     const data: WifiData = (
-      await axios.get(url, {
+      await request.get(url, {
         auth: {
           username,
           password,

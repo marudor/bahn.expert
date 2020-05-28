@@ -1,6 +1,6 @@
-import { getAttr, getBoolAttr, noncdAxios, parseTs } from './helper';
+import { getAttr, getBoolAttr, noncdRequest, parseTs } from './helper';
+import { RequestMethod } from 'umi-request';
 import xmljs, { Element } from 'libxmljs2';
-import type { AxiosInstance } from 'axios';
 import type { WingDefinition, WingInfo } from 'types/iris';
 
 function parseNode(node: null | xmljs.Element): WingInfo | undefined {
@@ -27,9 +27,9 @@ function parseNode(node: null | xmljs.Element): WingInfo | undefined {
 export default async function wingInfo(
   rawId1: string,
   rawId2: string,
-  axios: AxiosInstance = noncdAxios
+  request: RequestMethod = noncdRequest
 ): Promise<WingDefinition> {
-  const rawXml = (await axios.get(`/wingdef/${rawId1}/${rawId2}`)).data;
+  const rawXml = await request.get<string>(`/wingdef/${rawId1}/${rawId2}`);
   const node = xmljs.parseXml(rawXml);
 
   const startNode = node.find<Element>('//wing-def/start');

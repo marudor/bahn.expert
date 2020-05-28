@@ -1,10 +1,10 @@
 import { journeyMatch } from 'client/Common/service/details';
 import { MenuItem, Paper, TextField } from '@material-ui/core';
 import { useCallback, useState } from 'react';
-import Axios from 'axios';
 import debounce from 'debounce-promise';
 import Downshift from 'downshift';
 import Loading, { LoadingType } from 'client/Common/Components/Loading';
+import request from 'umi-request';
 import useStorage from 'shared/hooks/useStorage';
 import useStyles from './ZugsucheAutocomplete.style';
 import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
@@ -42,7 +42,7 @@ const ZugsucheAutocomplete = ({
 
         setSuggestions(suggestions.slice(0, 5));
       } catch (e) {
-        if (!Axios.isCancel(e)) {
+        if (!request.isCancel(e)) {
           setSuggestions([]);
         }
       }

@@ -1,7 +1,7 @@
 import { CacheDatabases, createNewCache } from 'server/cache';
-import axios from 'axios';
 import cheerio from 'cheerio';
 import qs from 'qs';
+import request from 'umi-request';
 
 // 12 hours in seconds
 export const cache = createNewCache<string, string | null>(
@@ -16,13 +16,11 @@ export async function getLageplan(stationName: string) {
   // undefined = haven't tried yet
   // null = already tried to fetch, but nothing found
   if (cached === null) return undefined;
-  const searchHtml: string = (
-    await axios.get(
-      `https://www.bahnhof.de/service/search/bahnhof-de/520608?${qs.stringify({
-        query: stationName,
-      })}`
-    )
-  ).data;
+  const searchHtml: string = await request.get<string>(
+    `https://www.bahnhof.de/service/search/bahnhof-de/520608?${qs.stringify({
+      query: stationName,
+    })}`
+  );
 
   let $ = cheerio.load(searchHtml);
   const firstResultLink = $('#result .title > a').first().attr('href');
@@ -33,9 +31,9 @@ export async function getLageplan(stationName: string) {
     return undefined;
   }
 
-  const bahnhofHtml = (
-    await axios.get(`https://www.bahnhof.de${firstResultLink}`)
-  ).data;
+  const bahnhofHtml = await request.get<string>(
+    `https://www.bahnhof.de${firstResultLink}`
+  );
 
   $ = cheerio.load(bahnhofHtml);
   const rawPdfLink = $('.bahnhof > .embeddedDownload > .download-asset > a')

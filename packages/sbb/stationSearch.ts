@@ -1,16 +1,14 @@
-import { axios } from 'sbb';
+import { request } from 'sbb';
 import type { SBBStation, SBBStationResult } from 'sbb/types/station';
 
 export async function stationSearch(
   searchTerm?: string
 ): Promise<SBBStation[]> {
   if (!searchTerm) return [];
-  const result = (
-    await axios.get<SBBStationResult>(
-      '/unauth/fahrplanservice/v1/standorte/' +
-        encodeURIComponent(encodeURIComponent(searchTerm))
-    )
-  ).data;
+  const result = await request.get<SBBStationResult>(
+    '/unauth/fahrplanservice/v1/standorte/' +
+      encodeURIComponent(encodeURIComponent(searchTerm))
+  );
 
   return (
     result.standorte

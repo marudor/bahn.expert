@@ -20,13 +20,13 @@ import { calculateVia, getAttr, getNumberAttr, parseTs } from './helper';
 import { diffArrays } from 'diff';
 import { findLast, last, uniqBy } from 'lodash';
 import { getSingleHimMessageOfToday } from 'server/HAFAS/HimSearch';
+import { RequestMethod } from 'umi-request';
 import messageLookup, {
   messageTypeLookup,
   supersededMessages,
 } from './messageLookup';
 import xmljs, { Element } from 'libxmljs2';
 import type { AbfahrtenResult } from 'types/iris';
-import type { AxiosInstance } from 'axios';
 
 interface ArDp {
   platform?: string;
@@ -138,12 +138,10 @@ const longDistanceRegex = /(ICE?|TGV|ECE?|RJ|D).*/;
 
 export default class Timetable {
   errors: any[] = [];
-  axios: AxiosInstance;
   timetable: {
     [key: string]: any;
   } = {};
   realtimeIds: string[] = [];
-  evaId: string;
   segments: Date[];
   currentStation: string;
   wingIds: Map<string, string> = new Map();
@@ -152,13 +150,11 @@ export default class Timetable {
   minDate: Date;
 
   constructor(
-    evaId: string,
+    private evaId: string,
     currentStation: string,
     options: TimetableOptions,
-    axios: AxiosInstance
+    private request: RequestMethod
   ) {
-    this.axios = axios;
-    this.evaId = evaId;
     this.currentDate = options.currentDate || new Date();
     this.maxDate = addMinutes(this.currentDate, options.lookahead);
     this.minDate = subMinutes(this.currentDate, options.lookbehind);
@@ -528,7 +524,7 @@ export default class Timetable {
   async fetchRealtime() {
     const url = `/fchg/${this.evaId}`;
 
-    const result = await this.axios.get(url).then((x) => x.data);
+    const result = await this.request.get<string>(url);
 
     if (result.includes('<soapenv:Reason')) {
       return Promise.reject(result);
@@ -682,7 +678,7 @@ export default class Timetable {
 
         if (!rawXml) {
           try {
-            rawXml = await this.axios.get<string>(key).then((x) => x.data)!;
+            rawXml = await this.request.get<string>(key);
           } catch (e) {
             this.errors.push(e);
 

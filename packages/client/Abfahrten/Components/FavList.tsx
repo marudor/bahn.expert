@@ -16,7 +16,7 @@ function getErrorText(
   error: AbfahrtenError,
   staticContext?: StaticRouterContext
 ): React.ReactNode {
-  switch (error.type) {
+  switch (error.errorType) {
     case 'redirect':
       return <Redirect to={error.redirect} />;
     case '404':
@@ -26,11 +26,9 @@ function getErrorText(
 
       return 'Die Abfahrt existiert nicht';
     default:
-      if (error.code === 'ECONNABORTED') {
+      // umi-request type
+      if (error.type === 'Timeout') {
         return 'Timeout - bitte erneut versuchen';
-      }
-      if (error && error.response && error.response.data.error) {
-        return getErrorText(error.response.data.error, staticContext);
       }
 
       return 'Unbekannter Fehler';

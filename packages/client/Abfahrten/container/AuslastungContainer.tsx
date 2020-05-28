@@ -1,6 +1,6 @@
 import { createContainer } from 'unstated-next';
 import { useState } from 'react';
-import axios from 'axios';
+import request from 'umi-request';
 import type { Route$Auslastung } from 'types/routing';
 
 function useAuslastung() {
@@ -17,8 +17,7 @@ function useAuslastung() {
     let auslastung;
 
     try {
-      auslastung = (await axios.get(`/api/hafas/v1/auslastung/${key}/${time}`))
-        .data;
+      auslastung = await request.get(`/api/hafas/v1/auslastung/${key}/${time}`);
     } catch (e) {
       auslastung = null;
     }

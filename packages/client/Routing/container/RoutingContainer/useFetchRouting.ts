@@ -1,7 +1,7 @@
 import { uniqBy } from 'lodash';
 import { useCallback, useEffect, useMemo } from 'react';
 import { useHistory } from 'react-router';
-import Axios from 'axios';
+import request from 'umi-request';
 import RoutingConfigContainer from 'client/Routing/container/RoutingConfigContainer';
 import RoutingContainer from 'client/Routing/container/RoutingContainer';
 import type { RoutingFav } from 'client/Routing/container/RoutingFavContainer';
@@ -45,20 +45,18 @@ export default () => {
       setError(undefined);
       setRoutes(undefined);
       try {
-        const routingResult: RoutingResult = (
-          await Axios.post(
-            '/api/hafas/v1/tripSearch',
-            {
+        const routingResult = await request.post<RoutingResult>(
+          '/api/hafas/v1/tripSearch',
+          {
+            data: {
               time: (date || new Date()).getTime(),
               ...routeSettings,
             },
-            {
-              params: {
-                profile: routeSettings.hafasProfile,
-              },
-            }
-          )
-        ).data;
+            params: {
+              profile: routeSettings.hafasProfile,
+            },
+          }
+        );
 
         setRoutes(routingResult.routes);
         setEarlierContext(routingResult.context.earlier);
@@ -84,20 +82,18 @@ export default () => {
       if (!commonRouteSettings) return;
 
       try {
-        const routingResult: RoutingResult = (
-          await Axios.post(
-            '/api/hafas/v1/tripSearch',
-            {
+        const routingResult = await request.post<RoutingResult>(
+          '/api/hafas/v1/tripSearch',
+          {
+            data: {
               ctxScr: type === 'earlier' ? earlierContext : laterContext,
               ...commonRouteSettings,
             },
-            {
-              params: {
-                profile: currentProfile,
-              },
-            }
-          )
-        ).data;
+            params: {
+              profile: currentProfile,
+            },
+          }
+        );
 
         setRoutes((oldRoutes = []) => {
           let newRoutes;

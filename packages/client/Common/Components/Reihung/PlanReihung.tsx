@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Axios from 'axios';
+import request from 'umi-request';
 import type { PlannedSequence } from 'types/planReihung';
 
 interface Props {
@@ -10,8 +10,9 @@ const PlanReihung = ({ trainNumber }: Props) => {
   const [planWR, setPlanWR] = useState<PlannedSequence>();
 
   useEffect(() => {
-    Axios.get(`/api/reihung/v1/plan/${trainNumber}`)
-      .then(({ data }) => {
+    request
+      .get<PlannedSequence>(`/api/reihung/v1/plan/${trainNumber}`)
+      .then((data) => {
         setPlanWR(data);
       })
       .catch(() => {});
