@@ -1,3 +1,5 @@
+require('module-alias/register');
+
 global.M = require('react').createElement;
 global.MF = require('react').Fragment;
 

@@ -16,9 +16,6 @@ const getBabelConfig = (type) => {
   const serverModuleResolver = isServer
     ? {
         extensions: ['.js', '.jsx', '.web.ts', '.ts', '.tsx'],
-        alias: {
-          classnames: 'clsx',
-        },
       }
     : undefined;
 

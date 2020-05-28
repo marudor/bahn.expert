@@ -77,6 +77,7 @@
     "@testing-library/cypress": "6.0.0",
     "@types/compression-webpack-plugin": "^2.0.1",
     "@types/jest": "^25.2.2",
+    "@types/module-alias": "2.0.0",
     "@types/rimraf": "^3.0.0",
     "@types/terser-webpack-plugin": "^2.2.0",
     "@types/webpack": "^4.41.13",
@@ -138,6 +139,8 @@
   "dependencies": {
     "client": "workspace:*",
     "core-js": "^3.6.5",
+    "module-alias": "^2.2.2",
+    "preact": "^10.4.4",
     "server": "workspace:*"
   },
   "resolutions": {
@@ -167,5 +170,11 @@
         0
       ]
     }
+  },
+  "_moduleAliases": {
+    "classnames": "node_modules/clsx",
+    "lodash-es": "node_modules/lodash",
+    "react": "node_modules/preact/compat",
+    "react-dom": "node_modules/preact/compat"
   }
 }

@@ -13,6 +13,8 @@ if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
   });
 }
 
+require('preact/debug');
+
 global.M = require('react').createElement;
 global.MF = require('react').Fragment;
 

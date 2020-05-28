@@ -2973,6 +2973,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/module-alias@npm:2.0.0":
+  version: 2.0.0
+  resolution: "@types/module-alias@npm:2.0.0"
+  checksum: 2/d25152dbe86a70c32844bfa3ef882b4c6e2456c016486596c0ffa8e541b095791c95042e3e06b44a91e6306c5d75232c317d12a71771e4767d69f2e5f8c1df80
+  languageName: node
+  linkType: hard
+
 "@types/msgpack5@npm:^3.4.1":
   version: 3.4.1
   resolution: "@types/msgpack5@npm:3.4.1"
@@ -4554,6 +4561,7 @@ __metadata:
     "@testing-library/cypress": 6.0.0
     "@types/compression-webpack-plugin": ^2.0.1
     "@types/jest": ^25.2.2
+    "@types/module-alias": 2.0.0
     "@types/rimraf": ^3.0.0
     "@types/terser-webpack-plugin": ^2.2.0
     "@types/webpack": ^4.41.13
@@ -4597,8 +4605,10 @@ __metadata:
     jest-junit: ^10.0.0
     jest-watch-typeahead: ^0.6.0
     lint-staged: ^10.2.6
+    module-alias: ^2.2.2
     ncp: ^2.0.0
     npm-run-all: ^4.1.5
+    preact: ^10.4.4
     prettier: ^2.0.5
     react-refresh: ^0.8.3
     rimraf: ^3.0.2
@@ -5550,6 +5560,7 @@ __metadata:
     lodash: ^4.17.15
     nock: ^12.0.3
     npm-run-all: ^4.1.5
+    preact: ^10.4.4
     qs: ^6.9.4
     react: ^16.13.1
     react-dom: ^16.13.1
@@ -11888,6 +11899,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"module-alias@npm:^2.2.2":
+  version: 2.2.2
+  resolution: "module-alias@npm:2.2.2"
+  checksum: 2/1b37943df4fbe56799688eb3496f5113f7f1e18ff7a53bd3543e93fd4ee6c4b04e1548fc0cb49ae73e086b18ee712ab3321f6d7f5444cf413c638914decb8918
+  languageName: node
+  linkType: hard
+
 "moment@npm:2.24.0":
   version: 2.24.0
   resolution: "moment@npm:2.24.0"
@@ -13318,6 +13336,24 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"preact-render-to-string@npm:^5.1.8":
+  version: 5.1.8
+  resolution: "preact-render-to-string@npm:5.1.8"
+  dependencies:
+    pretty-format: ^3.8.0
+  peerDependencies:
+    preact: ">=10"
+  checksum: 2/99286b76c5eac996cf3290666b2e66a7c352a47865508a0510b78a326cf5dd60423173a03a28ed1861aa8071339f08afce2fe6e2ca5583d452f443cfe099880d
+  languageName: node
+  linkType: hard
+
+"preact@npm:^10.4.4":
+  version: 10.4.4
+  resolution: "preact@npm:10.4.4"
+  checksum: 2/714db52b5ef32d2284d198eee74e43aba3d699cbc67a6a4f11efa48d2357c335cdec5a843a75f8447052c74cab0681b46fb532bf1509ffc6962ce78d85d10536
+  languageName: node
+  linkType: hard
+
 "prelude-ls@npm:~1.1.2":
   version: 1.1.2
   resolution: "prelude-ls@npm:1.1.2"
@@ -13383,6 +13419,13 @@ fsevents@^1.2.7:
     ansi-styles: ^4.0.0
     react-is: ^16.12.0
   checksum: 2/c3aca0f5888d579bfdbac83dd518a34843b34946dbf670233938033641daaaabb09240ea8742b1f74487dcf90bf527b3f773182ee3bb435ed6b61306b50ecedf
+  languageName: node
+  linkType: hard
+
+"pretty-format@npm:^3.8.0":
+  version: 3.8.0
+  resolution: "pretty-format@npm:3.8.0"
+  checksum: 2/75603b8fa8a7520fbb24bea18869d4c5cf6ae7308637eb95e083eab07e521946bc49a22fa1ac4e567305b406e756badc7febfc1c5acc811fef236db189c511bf
   languageName: node
   linkType: hard
 
@@ -14842,6 +14885,7 @@ fsevents@^1.2.7:
     "@types/loadable__component": 5.10.0
     "@types/loadable__server": 5.12.1
     "@types/lodash": 4.14.150
+    "@types/module-alias": 2.0.0
     "@types/nanoid": 2.1.0
     "@types/on-finished": 2.3.1
     "@types/pino": 6.0.1
@@ -14879,6 +14923,7 @@ fsevents@^1.2.7:
     koa-static: ^5.0.0
     libxmljs2: ^0.25.3
     lodash: ^4.17.15
+    module-alias: ^2.2.2
     nanoid: ^3.1.7
     nock: ^12.0.3
     npm-run-all: ^4.1.5
@@ -14886,6 +14931,8 @@ fsevents@^1.2.7:
     pino: ^6.2.1
     pino-pretty: ^4.0.0
     pino-std-serializers: ^2.4.2
+    preact: ^10.4.4
+    preact-render-to-string: ^5.1.8
     prom-client: ^12.0.0
     qs: ^6.9.4
     react: ^16.13.1

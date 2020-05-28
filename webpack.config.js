@@ -135,6 +135,8 @@ module.exports = {
     alias: {
       classnames$: 'clsx',
       'lodash-es$': 'lodash',
+      react$: 'preact/compat',
+      'react-dom$': 'preact/compat',
     },
   },
   output: {
