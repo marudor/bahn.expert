@@ -2,7 +2,7 @@ import { AllowedHafasProfile, ParsedPolyline } from 'types/HAFAS';
 import { createContainer } from 'unstated-next';
 import { format } from 'date-fns';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import Axios from 'axios';
+import request from 'umi-request';
 import useQuery from 'client/Common/hooks/useQuery';
 import useToggleState from 'client/Common/hooks/useToggleState';
 import type { ParsedJourneyCourseResponse } from 'types/HAFAS/JourneyCourse';
@@ -81,57 +81,56 @@ function useMap() {
 
   useEffect(() => {
     if (activeJourney && !activePolyline) {
-      Axios.post<ParsedJourneyCourseResponse>(
-        '/api/hafas/experimental/journeycourse',
-        {
-          jid: activeJourney.jid,
-          date: format(activeJourney.date, 'yyyyMMdd'),
-        },
-        {
-          params: {
-            profile,
-          },
-        }
-      )
+      request
+        .post<ParsedJourneyCourseResponse>(
+          '/api/hafas/experimental/journeycourse',
+          {
+            data: {
+              jid: activeJourney.jid,
+              date: format(activeJourney.date, 'yyyyMMdd'),
+            },
+            params: {
+              profile,
+            },
+          }
+        )
         .then((r) => {
           setPolylines((old) => ({
             ...old,
-            [activeJourney.jid]: r.data.polylines[0],
+            [activeJourney.jid]: r.polylines[0],
           }));
         })
         .catch(() => {});
     }
   }, [activeJourney, activePolyline, profile]);
   const fetchPositions = useCallback(() => {
-    Axios.post(
-      '/api/hafas/v1/journeyGeoPos',
-      {
-        jnyFltrL:
-          includeFV && includeNV
-            ? undefined
-            : [
-                {
-                  mode: includeNV ? 'INC' : 'EXC',
-                  type: 'PROD',
-                  value: '1016',
-                },
-              ],
-        ring: {
-          cCrd: {
-            x: 9997434,
-            y: 53557110,
+    request
+      .post<ParsedJourneyGeoPosResponse>('/api/hafas/v1/journeyGeoPos', {
+        data: {
+          jnyFltrL:
+            includeFV && includeNV
+              ? undefined
+              : [
+                  {
+                    mode: includeNV ? 'INC' : 'EXC',
+                    type: 'PROD',
+                    value: '1016',
+                  },
+                ],
+          ring: {
+            cCrd: {
+              x: 9997434,
+              y: 53557110,
+            },
+            maxDist: 1000000,
           },
-          maxDist: 1000000,
+          onlyRT,
         },
-        onlyRT,
-      },
-      {
         params: {
           profile,
         },
-      }
-    )
-      .then((r) => setPositions(r.data))
+      })
+      .then(setPositions)
       .catch(() => {});
   }, [includeFV, includeNV, onlyRT, profile]);
 

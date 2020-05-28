@@ -1,8 +1,8 @@
 /* eslint no-param-reassign: 0, no-await-in-loop: 0 */
 import { CacheDatabases, createNewCache } from 'server/cache';
-import { noncdAxios } from './helper';
+import { noncdRequest } from './helper';
+import { RequestMethod } from 'umi-request';
 import xmljs, { Element } from 'libxmljs2';
-import type { AxiosInstance } from 'axios';
 import type { IrisStation, IrisStationWithRelated } from 'types/station';
 
 // 4 Hours in seconds
@@ -28,14 +28,14 @@ export function parseStation(stationNode: xmljs.Element): IrisStation {
 
 export async function getSingleStation(
   evaId: string,
-  axios: AxiosInstance = noncdAxios
+  request: RequestMethod = noncdRequest
 ): Promise<IrisStation> {
   const cached = await cache.get(evaId);
 
   if (cached) {
     return cached;
   }
-  const rawXml = (await axios.get(`/station/${evaId}`)).data;
+  const rawXml = await request.get<string>(`/station/${evaId}`);
 
   const xml = xmljs.parseXml(rawXml);
 
@@ -45,7 +45,7 @@ export async function getSingleStation(
     throw {
       status: 404,
       error: {
-        type: '404',
+        errroType: '404',
         description: 'Unbekannte Station',
       },
     };
@@ -60,9 +60,9 @@ export async function getSingleStation(
 export async function getStation(
   evaId: string,
   recursive: number = 0,
-  axios?: AxiosInstance
+  request?: RequestMethod
 ): Promise<IrisStationWithRelated> {
-  const station = await getSingleStation(evaId, axios);
+  const station = await getSingleStation(evaId, request);
   let queue = station.meta;
   const seen = [station.eva];
   const relatedStations: IrisStation[] = [];
@@ -76,7 +76,7 @@ export async function getStation(
             return [];
           }
           seen.push(id);
-          const station = await getSingleStation(id, axios);
+          const station = await getSingleStation(id, request);
 
           relatedStations.push(station);
 

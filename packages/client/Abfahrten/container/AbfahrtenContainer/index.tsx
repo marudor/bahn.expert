@@ -4,7 +4,7 @@ import { ReactNode, useCallback, useEffect, useState } from 'react';
 import AbfahrtenConfigContainer, {
   AbfahrtenConfigProvider,
 } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
-import Axios, { AxiosError } from 'axios';
+import request, { ResponseError } from 'umi-request';
 import type { Abfahrt, AbfahrtenResult, Wings } from 'types/iris';
 import type { Station, StationSearchType } from 'types/station';
 
@@ -16,17 +16,17 @@ export const fetchAbfahrten = async (
   lookbehind: string
 ): Promise<AbfahrtenResult> => {
   cancelGetAbfahrten();
-  const r = await Axios.get<AbfahrtenResult>(urlWithStationId, {
-    cancelToken: new Axios.CancelToken((c) => {
-      cancelGetAbfahrten = c;
-    }),
+  const { token, cancel } = request.CancelToken.source();
+  cancelGetAbfahrten = cancel;
+  const r = request.get<AbfahrtenResult>(urlWithStationId, {
     params: {
       lookahead,
       lookbehind,
     },
+    cancelToken: token,
   });
 
-  return r.data;
+  return r;
 };
 
 interface Departures {
@@ -40,19 +40,19 @@ export type AbfahrtenError =
   | AbfahrtenError$404
   | AbfahrtenError$Default;
 type AbfahrtenError$Redirect = Error & {
-  type: 'redirect';
+  errorType: 'redirect';
   redirect: string;
   station?: void;
 };
 
 type AbfahrtenError$404 = Error & {
-  type: '404';
+  errorType: '404';
   station?: void;
 };
-type AbfahrtenError$Default = AxiosError & {
-  type: void;
+interface AbfahrtenError$Default extends ResponseError {
+  errorType: void;
   station?: string;
-};
+}
 
 const useAbfahrten = (
   stationApiFunction: (
@@ -87,14 +87,14 @@ const useAbfahrten = (
           setCurrentStation(stations[0]);
         } else {
           throw {
-            type: '404',
+            errorType: '404',
           };
         }
       } catch (e) {
         e.station = stationName;
 
         if (e.response && e.response.status === 404) {
-          e.type = '404';
+          e.errorType = '404';
         }
         setError(e);
       }

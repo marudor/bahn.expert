@@ -5,10 +5,10 @@ import Error from '@material-ui/icons/Error';
 import Loading from '../Loading';
 import Stop from 'client/Common/Components/Details/Stop';
 import useStyles from './StopList.style';
-import type { AxiosError } from 'axios';
+import type { ResponseError } from 'umi-request';
 
-function getErrorText(error: AxiosError) {
-  if (error.code === 'ECONNABORTED') return 'Timeout, bitte neuladen.';
+function getErrorText(error: ResponseError) {
+  if (error.type === 'Timeout') return 'Timeout, bitte neuladen.';
   if (error.response) {
     if (error.response.status === 404) {
       return 'Unbekannter Zug';

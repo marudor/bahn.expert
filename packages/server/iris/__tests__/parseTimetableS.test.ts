@@ -1,5 +1,5 @@
 /* eslint no-sync: 0 */
-import { noncdAxios } from 'server/iris/helper';
+import { noncdRequest } from 'server/iris/helper';
 import fs from 'fs';
 import path from 'path';
 import Timetable from 'server/iris/Timetable';
@@ -18,7 +18,7 @@ describe('parseTimetableS', () => {
           lookahead: 0,
           lookbehind: 0,
         },
-        noncdAxios
+        noncdRequest
       );
       const inXml = fs.readFileSync(
         path.resolve(__dirname, baseFixturePath, file),

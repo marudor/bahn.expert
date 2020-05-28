@@ -7,10 +7,10 @@ import {
   ParsedCommon,
   SingleHafasRequest,
 } from 'types/HAFAS';
-import axios from 'axios';
 import parseLocL from './helper/parseLocL';
 import parsePolyline from 'server/HAFAS/helper/parsePolyline';
 import parseProduct from './helper/parseProduct';
+import request from 'umi-request';
 import type {
   HimSearchRequest,
   HimSearchResponse,
@@ -185,7 +185,7 @@ async function makeRequest<
   HR extends GenericRes,
   P
 >(
-  request: R,
+  hafasRequest: R,
   parseFn: (d: HafasResponse<HR>, pc: ParsedCommon) => P = (d) => d as any,
   profile: AllowedHafasProfile = AllowedHafasProfile.DB
 ): Promise<P> {
@@ -209,28 +209,27 @@ async function makeRequest<
   //     return agg;
   //   }, {});
   // }
-  const { data, extraParam } = createRequest(request, profile);
+  const { data, extraParam } = createRequest(hafasRequest, profile);
 
   if (process.env.NODE_ENV === 'test') {
     // eslint-disable-next-line no-console
-    console.log(JSON.stringify(request));
+    console.log(JSON.stringify(hafasRequest));
     // eslint-disable-next-line no-console
     console.log(extraParam);
   }
-  const r = (
-    await axios.post<HafasResponse<HR>>(HafasProfiles[profile].url, data, {
-      params: extraParam,
-    })
-  ).data;
+  const r = await request.post<HafasResponse<HR>>(HafasProfiles[profile].url, {
+    data,
+    params: extraParam,
+  });
 
   if (('err' in r && r.err !== 'OK') || r.svcResL[0].err !== 'OK') {
-    throw new HafasError(request, r, profile);
+    throw new HafasError(hafasRequest, r, profile);
   }
 
   const rawCommon = r.svcResL[0].res.common;
 
   if (!rawCommon) {
-    throw new HafasError(request, r, profile);
+    throw new HafasError(hafasRequest, r, profile);
   }
   const parsedCommon = parseCommon(rawCommon);
 

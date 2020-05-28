@@ -6,8 +6,8 @@ import Header from './Header';
 import HeaderTagContainer from 'client/Common/container/HeaderTagContainer';
 import StopList from './StopList';
 import useQuery from 'client/Common/hooks/useQuery';
-import type { AxiosError } from 'axios';
 import type { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
+import type { ResponseError } from 'umi-request';
 
 interface Props {
   train: string;
@@ -26,7 +26,7 @@ const Details = ({
 }: Props) => {
   const query = useQuery();
   const [details, setDetails] = useState<ParsedSearchOnTripResponse>();
-  const [error, setError] = useState<AxiosError>();
+  const [error, setError] = useState<ResponseError>();
   const { updateTitle, updateDescription } = HeaderTagContainer.useContainer();
 
   useEffect(() => {

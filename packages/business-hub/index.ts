@@ -1,14 +1,14 @@
-import Axios from 'axios';
+import { extend } from 'umi-request';
 
 const apiKey = process.env.BUSINESS_HUB_STOP_PLACES_KEY || '';
 export const canUseBusinessHub =
   Boolean(apiKey) || process.env.NODE_ENV === 'test';
 
-export const axios = Axios.create({
+export const request = extend({
   headers: {
     key: apiKey,
   },
-  baseURL: 'https://api.businesshub.deutschebahn.com/',
+  prefix: 'https://api.businesshub.deutschebahn.com',
 });
 
 if (!canUseBusinessHub) {
