@@ -22,6 +22,7 @@ const key = crypto.createHash('sha256').update(rawKey).digest('hex');
 
 export const request = extend({
   prefix: 'https://active.vnext.app.sbb.ch',
+  // @ts-expect-error - agent works!
   agent: new https.Agent({
     // Self signed used - we could add the root certificate, but not checking is okay here.
     rejectUnauthorized: false,

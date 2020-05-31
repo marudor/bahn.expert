@@ -5,7 +5,7 @@ describe('Platform', () => {
   it('No platform provided', () => {
     const { container, queryByTestId } = render(Platform);
 
-    expect(queryByTestId('real')).toBeEmpty();
+    expect(queryByTestId('real')).toBeEmptyDOMElement();
     expect(container).toMatchSnapshot();
   });
   it('scheduled === real', () => {

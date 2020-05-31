@@ -55,9 +55,10 @@ export function createApp() {
         apiRoutes = require('./API').default;
         validationOverwrites = require('./API/validationOverwrites').default;
         seoController = require('./seo').default;
+        console.log(ctx.state);
         ctx.loadableStats = JSON.parse(
           // eslint-disable-next-line no-sync
-          ctx.state.webpack.devMiddleware.outputFileSystem.readFileSync(
+          ctx.state.fs.readFileSync(
             path.resolve(`${distFolder}/client/loadable-stats.json`)
           )
         );

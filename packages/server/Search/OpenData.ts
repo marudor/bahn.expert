@@ -18,7 +18,6 @@ export default async (rawSearchTerm: string): Promise<Station[]> => {
 
   try {
     const result = await request.get<{ result: OpenDataStation[] }>(url, {
-      withCredentials: true,
       headers: {
         Authorization: authKey,
       },
