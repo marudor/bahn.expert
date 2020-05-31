@@ -1,4 +1,5 @@
 /* eslint-disable no-underscore-dangle */
+import '@testing-library/jest-dom';
 import { cleanup } from '@testing-library/react';
 import Nock from 'nock';
 import request from 'umi-request';

@@ -28,12 +28,12 @@ export async function fetchWifiData() {
   }
   try {
     logger.debug('Fetching WifiData');
-    // TODO: broken, auth works differently with umi-request!
     const data: WifiData = (
       await request.get(url, {
-        auth: {
-          username,
-          password,
+        headers: {
+          Authorization: Buffer.from(`${username}:${password}`).toString(
+            'base64'
+          ),
         },
       })
     ).data;
