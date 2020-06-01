@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import { request } from 'sbb';
+import { request } from './request';
 import { RoutingOptions } from 'sbb/types/routing';
 
 export async function routing({
