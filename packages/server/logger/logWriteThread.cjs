@@ -1,5 +1,5 @@
 const { parentPort } = require('worker_threads');
-const request = require('umi-request');
+const request = require('umi-request').default;
 const { Timber } = require('@timberio/node');
 const pinoPretty = require('pino-pretty');
 

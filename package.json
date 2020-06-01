@@ -43,7 +43,7 @@
     }
   },
   "lint-staged": {
-    "*.{{t,j}s?(x),mjs}": [
+    "*.{t,j,cj,mj}s?(x)": [
       "prettier --write",
       "eslint --fix"
     ],
