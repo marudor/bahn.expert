@@ -1,8 +1,8 @@
 import {
   geoSearch as BusinessHubGeoSearch,
+  canUseBusinessHub,
   stationDetails,
-} from 'business-hub/stationSearch';
-import { canUseBusinessHub } from 'business-hub';
+} from 'business-hub';
 import { Controller, Get, Query, Request, Response, Route, Tags } from 'tsoa';
 import { getStation } from 'server/iris/station';
 import {
