@@ -70,5 +70,6 @@ jest-coverage/
 !.yarn/plugins
 
 packages/**/*.js
+packages/*/lib
 !packages/server/logger/logWriteThread.js
 !packages/null-package/index.js

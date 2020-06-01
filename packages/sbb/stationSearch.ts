@@ -1,4 +1,4 @@
-import { request } from 'sbb';
+import { request } from './request';
 import type { SBBStation, SBBStationResult } from 'sbb/types/station';
 
 export async function stationSearch(
