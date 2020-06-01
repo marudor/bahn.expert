@@ -1,8 +1,10 @@
-import { stationSearch as BusinessHubSearch } from 'business-hub/stationSearch';
+import {
+  stationSearch as BusinessHubSearch,
+  canUseBusinessHub,
+} from 'business-hub';
 import { CacheDatabases, createNewCache } from 'server/cache';
-import { canUseBusinessHub } from 'business-hub';
 import { logger } from 'server/logger';
-import { stationSearch as SBBSearch } from 'sbb/stationSearch';
+import { stationSearch as SBBSearch } from 'sbb';
 import { Station, StationSearchType } from 'types/station';
 import DBNavigatorSearch from 'server/HAFAS/LocMatch';
 import DS100 from 'server/Search/DS100';

@@ -1,7 +1,5 @@
 import { Controller, Get, Query, Route, Tags } from 'tsoa';
-import { fasta } from 'business-hub/fasta';
-import { news } from 'business-hub/news';
-import { stationSearch } from 'business-hub/stationSearch';
+import { fasta, news, stationSearch } from 'business-hub';
 import type { BusinessHubStation } from 'business-hub/types/StopPlaces';
 
 @Route('/businessHub/experimental')

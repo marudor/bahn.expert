@@ -1,4 +1,4 @@
-import { request } from 'business-hub';
+import { request } from './request';
 import type {
   APIResult,
   BusinessHubCoordinates,
