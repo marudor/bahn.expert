@@ -1,14 +1,16 @@
-FROM node:14-alpine as deps
+FROM node:14-alpine as base
 WORKDIR /app
 ENV CYPRESS_INSTALL_BINARY=0
 COPY package.json yarn.lock .yarnrc.yml ./
 COPY .yarn/ ./.yarn/
 COPY packages/ ./packages/
 COPY scripts/ ./scripts/
+
+FROM base as fulldeps
 RUN yarn --immutable --immutable-cache
 
 
-FROM deps as build
+FROM fulldeps as build
 ARG SENTRY_AUTH_TOKEN
 ARG SENTRY_ORG
 ARG SENTRY_PROJECT
@@ -17,10 +19,12 @@ COPY webpack.config.js babel.config.js ./
 COPY .git ./.git
 ENV NODE_ENV=production
 RUN yarn all:build
+RUN yarn dlx modclean -r -f -a '*.ts|*.tsx' -I 'example*'
 RUN node scripts/checkAssetFiles.js
 
-FROM deps as cleanedDeps
-RUN yarn dlx modclean -r -a '*.ts|*.tsx' -I 'example*'
+FROM base as cleanedDeps
+RUN yarn workspaces focus --production
+RUN yarn dlx modclean -r -f -a '*.ts|*.tsx' -I 'example*'
 
 FROM node:14-alpine
 ENV NODE_ENV=production
