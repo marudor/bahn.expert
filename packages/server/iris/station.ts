@@ -2,6 +2,7 @@
 import { CacheDatabases, createNewCache } from 'server/cache';
 import { noncdRequest } from './helper';
 import { RequestMethod } from 'umi-request';
+import { stationMetaFilter } from 'server/iris/stationMetaFilter';
 import xmljs, { Element } from 'libxmljs2';
 import type { IrisStation, IrisStationWithRelated } from 'types/station';
 
@@ -21,6 +22,13 @@ export function parseStation(stationNode: xmljs.Element): IrisStation {
     station.meta = station.meta.split('|');
   } else {
     station.meta = [];
+  }
+
+  const excludeList = stationMetaFilter[station.eva];
+  if (excludeList) {
+    station.meta = station.meta.filter(
+      (meta: string) => !excludeList.includes(meta)
+    );
   }
 
   return station;
