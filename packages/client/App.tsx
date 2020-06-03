@@ -3,24 +3,19 @@ import { Route, Switch } from 'react-router-dom';
 import { RoutingProvider } from 'client/Routing/container/RoutingContainer';
 import { useEffect } from 'react';
 import HeaderTagContainer from 'client/Common/container/HeaderTagContainer';
-import loadable from '@loadable/component';
-import Loading from 'client/Common/Components/Loading';
+import loadable from 'client/loadable';
 import Navigation from 'client/Common/Components/Navigation';
 import ReihungenContainer from 'client/Common/container/ReihungContainer';
 import useStyles from './App.style';
 
-const lazyOptions = {
-  fallback: <Loading />,
-};
-const LazyRouting = loadable(() => import('./Routing'), lazyOptions);
-const LazyDetails = loadable(
-  () => import('./Common/Components/Details/DetailsRoute'),
-  lazyOptions
+const LazyRouting = loadable(() => import('./Routing'));
+const LazyDetails = loadable(() =>
+  import('./Common/Components/Details/DetailsRoute')
 );
-const LazyAbfahrten = loadable(() => import('./Abfahrten'), lazyOptions);
-const LazyMap = loadable(() => import('./Map'), lazyOptions);
-const LazyRegional = loadable(() => import('./Regional'), lazyOptions);
-const About = loadable(() => import('./Common/Components/About'), lazyOptions);
+const LazyAbfahrten = loadable(() => import('./Abfahrten'));
+const LazyMap = loadable(() => import('./Map'));
+const LazyRegional = loadable(() => import('./Regional'));
+const About = loadable(() => import('./Common/Components/About'));
 
 const App = () => {
   useStyles();

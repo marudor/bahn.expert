@@ -1,14 +1,13 @@
-import AbfahrtenList from './Components/AbfahrtenList';
-import FavList from './Components/FavList';
+import loadable from 'client/loadable';
 
 export default [
   {
-    component: FavList,
+    component: loadable(() => import('./Components/FavList')),
     exact: true,
     path: '/',
   },
   {
     path: '/:station',
-    component: AbfahrtenList,
+    component: loadable(() => import('./Components/AbfahrtenList')),
   },
 ];
