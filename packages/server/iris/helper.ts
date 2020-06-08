@@ -16,15 +16,15 @@ export const openDataRequest = process.env.TIMETABLES_OPEN_DATA_KEY
     })
   : noncdRequest;
 
-export function getAttr(
+export function getAttr<T extends string>(
   node: null | Element,
   name: string
-): undefined | string {
+): undefined | T {
   if (node) {
     const attr = node.attr(name);
 
     if (attr) {
-      return attr.value();
+      return attr.value() as any;
     }
   }
 }

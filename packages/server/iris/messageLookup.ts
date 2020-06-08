@@ -91,6 +91,7 @@ export default {
   '900': 'Anschlussbus wartet(?)',
   // Generic Message - real message is freitext
   '1000': 'Kundentext',
+  '1001': 'Keine Zusatzhinweise',
 };
 
 export const messageTypeLookup = {
@@ -112,3 +113,5 @@ export const supersededMessages = {
   '96': [97],
   '97': [96],
 };
+
+export const ignoredMessageNumbers = [1000, 1001];

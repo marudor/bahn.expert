@@ -22,11 +22,12 @@ import { findLast, last, uniqBy } from 'lodash';
 import { getSingleHimMessageOfToday } from 'server/HAFAS/HimSearch';
 import { RequestMethod } from 'umi-request';
 import messageLookup, {
+  ignoredMessageNumbers,
   messageTypeLookup,
   supersededMessages,
 } from './messageLookup';
 import xmljs, { Element } from 'libxmljs2';
-import type { AbfahrtenResult } from 'types/iris';
+import type { AbfahrtenResult, IrisMessage } from 'types/iris';
 
 interface ArDp {
   platform?: string;
@@ -357,16 +358,20 @@ export default class Timetable {
     const type: undefined | string =
       messageTypeLookup[indexType as keyof typeof messageTypeLookup];
 
-    // 1000 ist freitext => wird nicht angezeigt
-    if (!type || !value || value <= 1 || value === 1000) {
+    if (
+      !type ||
+      !value ||
+      value <= 1 ||
+      ignoredMessageNumbers.includes(value)
+    ) {
       return undefined;
     }
 
-    const message = {
+    const message: IrisMessage = {
       superseded: undefined,
       // @ts-ignore
       text: messageLookup[value] || `${value} (?)`,
-      timestamp: parseTs(getAttr(mNode, 'ts')),
+      timestamp: parseTs(getAttr(mNode, 'ts'))!,
       priority: getAttr(mNode, 'pr'),
     };
 
