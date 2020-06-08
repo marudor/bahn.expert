@@ -100,6 +100,78 @@ export interface JourneyFilter {
   value: string;
 }
 
+export type LocationFilterMode = 'BIT' | 'EXC' | 'INC';
+export type LocationFilterType =
+  | 'ATTRL'
+  | 'ATTRP'
+  | 'META'
+  | 'NGR'
+  | 'PLATF'
+  | 'PROD'
+  | 'ROUP_A'
+  | 'ROUP_N'
+  | 'ROUP_S'
+  | 'ROUP_V'
+  | 'ROUP_Z'
+  | 'ROUS_A'
+  | 'ROUS_N'
+  | 'ROUS_S'
+  | 'ROUS_V'
+  | 'ROUS_Z'
+  | 'ROU_A'
+  | 'ROU_N'
+  | 'ROU_S'
+  | 'ROU_Z'
+  | 'SLCTP_A'
+  | 'SLCTP_N'
+  | 'SLCTP_V'
+  | 'SLCTP_Z'
+  | 'SLCTS_A'
+  | 'SLCTS_N'
+  | 'SLCTS_S'
+  | 'SLCTS_V'
+  | 'SLCTS_Z'
+  | 'SLCT_A'
+  | 'SLCT_N'
+  | 'SLCT_S'
+  | 'SLCT_V'
+  | 'SLCVT_Z';
+
+export type LocationNGrammFilterMode =
+  | 'DIST_ATTR'
+  | 'DIST_INFO'
+  | 'DIST_PERI'
+  | 'DIST_RNG'
+  | 'DIST_STNR'
+  | 'EXCL_ATTR'
+  | 'EXCL_INFO'
+  | 'EXCL_META'
+  | 'EXCL_PERI'
+  | 'EXCL_RNG'
+  | 'EXCL_STNR'
+  | 'ONLY_META'
+  | 'SLCT_ATTR'
+  | 'SLCT_INFO'
+  | 'SLCT_PERI'
+  | 'SLCT_PROD'
+  | 'SLCT_RNG'
+  | 'SLCT_STNR';
+export interface LocationNGrammFilter {
+  attr?: string;
+  crd?: Crd;
+  endIds?: string;
+  fTxt?: string;
+  maxDist?: number;
+  startIds?: string;
+  type: LocationNGrammFilterMode;
+}
+export interface LocationFilter {
+  mode: LocationFilterMode;
+  ngramm: LocationNGrammFilter;
+  type: LocationFilterType;
+  value: string;
+}
+
 export interface CommonProductInfo {
   name: string;
   line?: string;
