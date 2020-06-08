@@ -1,15 +1,27 @@
-import type { Common } from '.';
+import type { Common, GeoRect, GeoRing, LocationFilter } from '.';
+
+interface BaseGeoPosRequest {
+  date?: string;
+  getEvents?: boolean;
+  getPOIs?: boolean;
+  getStops?: boolean;
+  locFltrL?: LocationFilter;
+  maxLoc?: number;
+  period?: number;
+  time?: string;
+  zoom?: number;
+}
+
+interface RingGeoPosRequest extends BaseGeoPosRequest {
+  ring: GeoRing;
+}
+
+interface RectGeoPosRequest extends BaseGeoPosRequest {
+  rect: GeoRect;
+}
 
 export interface LocGeoPosRequest {
-  req: {
-    ring: {
-      maxDist: number;
-      cCrd: {
-        x: number;
-        y: number;
-      };
-    };
-  };
+  req: RingGeoPosRequest | RectGeoPosRequest;
   meth: 'LocGeoPos';
 }
 
