@@ -10,15 +10,16 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 const SentryCliPlugin = require('@sentry/webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
-const isDev =
-  process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'testDist';
+const isDev = process.env.NODE_ENV !== 'production';
 
 const plugins = [
   new LoadablePlugin(),
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     'global.PROD': JSON.stringify(!isDev),
-    'global.TEST': JSON.stringify(process.env.NODE_ENV === 'test'),
+    'global.TEST': JSON.stringify(
+      process.env.NODE_ENV === 'test' || Boolean(process.env.TEST_RUN)
+    ),
     'global.SERVER': JSON.stringify(false),
   }),
 ];
