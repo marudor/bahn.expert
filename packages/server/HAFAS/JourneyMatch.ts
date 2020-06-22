@@ -76,26 +76,25 @@ export async function enrichedJourneyMatch(
   profile?: AllowedHafasProfile
 ) {
   const journeyMatches = await JourneyMatch(options, profile);
-  const limitedJourneyMatches = journeyMatches.slice(0, 5);
+  const limitedJourneyMatches = journeyMatches.slice(0, 3);
 
-  const enriched = await Promise.all(
-    limitedJourneyMatches.map(async (j) => {
-      try {
-        const details = await JourneyDetails(j.jid, profile);
+  for (let i = 0; i < limitedJourneyMatches.length; i++) {
+    const j = limitedJourneyMatches[i];
+    try {
+      const details = await JourneyDetails(j.jid, profile);
 
-        j.firstStop = details.firstStop;
-        j.lastStop = details.lastStop;
-        j.stops = details.stops;
-        j.train = details.train;
-      } catch {
-        if (!j.train.type) {
-          j.train.type = j.train.name.match(fallbackTypeRegex)?.[1];
-        }
-      }
+      j.firstStop = details.firstStop;
+      j.lastStop = details.lastStop;
+      j.stops = details.stops;
+      j.train = details.train;
+    } catch {
+      // ignore
+    }
 
-      return j;
-    })
-  );
+    if (!j.train.type) {
+      j.train.type = j.train.name.match(fallbackTypeRegex)?.[1];
+    }
+  }
 
-  return enriched;
+  return limitedJourneyMatches;
 }
