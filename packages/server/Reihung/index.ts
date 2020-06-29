@@ -69,6 +69,13 @@ const getCountry = (fahrzeuge: Fahrzeug[], fahrzeugTypes: string[]) => {
   }
 };
 
+const ICE1LDV = (br: BRInfo, fahrzeuge: Fahrzeug[]): void => {
+  if (br.BR === '401' && fahrzeuge.length === 11) {
+    br.name += ' LDV';
+    br.noPdf = true;
+  }
+};
+
 const specificBR = (fahrzeuge: Fahrzeug[], formation: Formation): BRInfo => {
   for (const f of fahrzeuge) {
     const br = getBR(f.fahrzeugnummer);
@@ -390,6 +397,7 @@ export async function wagenreihung(trainNumber: string, date: number) {
 
       g.br = specificBR(g.allFahrzeug, enrichedFormation);
       if (g.br) {
+        ICE1LDV(g.br, g.allFahrzeug);
         g.br.country = getCountry(g.allFahrzeug, gruppenFahrzeugTypes);
         g.br.showBRInfo = Boolean(
           g.br.BR || !g.br.noPdf || (g.br.country && g.br.country !== 'DE')
