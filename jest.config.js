@@ -2,6 +2,7 @@ module.exports = {
   projects: [
     'packages/client/jest.config.json',
     'packages/server/jest.config.json',
+    'packages/shared/jest.config.json',
   ],
   reporters: ['default', 'jest-junit'],
   watchPlugins: [

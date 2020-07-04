@@ -2924,13 +2924,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:4.14.157":
-  version: 4.14.157
-  resolution: "@types/lodash@npm:4.14.157"
-  checksum: ea8d890a4d78f4690f9d8e5cb03f3581e8ea59047696e2c2114087ec471e891b3ce683e5344c9c15ea7bd9730b79e5fd808b3eff80a01741503ea59922c2bb83
-  languageName: node
-  linkType: hard
-
 "@types/memory-fs@npm:*":
   version: 0.3.2
   resolution: "@types/memory-fs@npm:0.3.2"
@@ -5498,7 +5491,6 @@ __metadata:
     "@types/debounce-promise": 3.1.2
     "@types/leaflet": 1.5.13
     "@types/loadable__component": 5.10.0
-    "@types/lodash": 4.14.157
     "@types/qs": 6.9.3
     "@types/react": 16.9.41
     "@types/react-dom": 16.9.8
@@ -5517,7 +5509,6 @@ __metadata:
     downshift: ^5.4.5
     eslint: ^7.3.1
     leaflet: ^1.6.0
-    lodash: ^4.17.15
     nock: ^13.0.2
     npm-run-all: ^4.1.5
     qs: ^6.9.4
@@ -14757,7 +14748,6 @@ fsevents@^1.2.7:
     "@types/koa__router": 8.0.2
     "@types/loadable__component": 5.10.0
     "@types/loadable__server": 5.12.2
-    "@types/lodash": 4.14.157
     "@types/nanoid": 2.1.0
     "@types/on-finished": 2.3.1
     "@types/pino": 6.3.0
@@ -14794,7 +14784,6 @@ fsevents@^1.2.7:
     koa-bodyparser: ^4.3.0
     koa-static: ^5.0.0
     libxmljs2: ^0.26.0
-    lodash: ^4.17.15
     nanoid: ^3.1.10
     nock: ^13.0.2
     npm-run-all: ^4.1.5
