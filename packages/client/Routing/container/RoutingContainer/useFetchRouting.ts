@@ -1,9 +1,9 @@
-import { uniqBy } from 'lodash';
 import { useCallback, useEffect, useMemo } from 'react';
 import { useHistory } from 'react-router';
 import request from 'umi-request';
 import RoutingConfigContainer from 'client/Routing/container/RoutingConfigContainer';
 import RoutingContainer from 'client/Routing/container/RoutingContainer';
+import uniqBy from 'shared/util/uniqBy';
 import type { RoutingFav } from 'client/Routing/container/RoutingFavContainer';
 import type { RoutingResult } from 'types/routing';
 
