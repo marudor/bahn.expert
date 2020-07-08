@@ -9,7 +9,6 @@ import koaStatic from 'koa-static';
 import path from 'path';
 import request from 'umi-request';
 import storageMiddleware from './middleware/storageMiddleware';
-import type { Server as NetServer } from 'net';
 
 function hotHelper(getMiddleware: () => Middleware) {
   if (process.env.NODE_ENV === 'production') {
@@ -41,7 +40,7 @@ export function createApp() {
 
   let devPromise = Promise.resolve();
 
-  const distFolder = process.env.TEST_RUN ? 'testDist' : 'dist';
+  const distFolder = 'dist';
 
   if (
     process.env.NODE_ENV !== 'test' &&
@@ -124,30 +123,9 @@ export function createApp() {
 export default () => {
   const port = process.env.WEB_PORT || 9042;
 
-  let server: NetServer;
-  let baseUrl: string;
+  const server = http.createServer();
+  const baseUrl = `http://localhost:${port}`;
 
-  if (
-    process.env.NODE_ENV !== 'production' &&
-    process.env.NODE_ENV !== 'test' &&
-    process.env.USE_SSL
-  ) {
-    const https = require('https');
-    const fs = require('fs');
-    // eslint-disable-next-line no-sync
-    const key = fs.readFileSync('./secrets/ssl/privkey.pem');
-    // eslint-disable-next-line no-sync
-    const cert = fs.readFileSync('./secrets/ssl/server.pem');
-
-    server = https.createServer({
-      key,
-      cert,
-    });
-    baseUrl = `https://local.marudor.de:${port}`;
-  } else {
-    server = http.createServer();
-    baseUrl = `http://localhost:${port}`;
-  }
   request.interceptors.request.use((url, options) => {
     if (url.startsWith('/')) {
       url = `${baseUrl}${url}`;

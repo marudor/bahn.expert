@@ -10,31 +10,31 @@ import DateFnsUtils from '@date-io/date-fns';
 import deLocale from 'date-fns/locale/de';
 import ThemeContainer from 'client/Common/container/ThemeContainer';
 import ThemeHeaderTags from 'client/Common/Components/ThemeHeaderTags';
-import type { Rule, SheetsRegistry, StyleSheet } from 'jss';
+import type { SheetsRegistry } from 'jss';
 
 interface Props {
   children?: ReactNode;
   sheetsRegistry?: SheetsRegistry;
+  generateClassName?: ReturnType<typeof createGenerateClassName>;
 }
 
-const ThemeWrap = ({ children = <App />, sheetsRegistry }: Props) => {
+const ThemeWrap = ({
+  children = <App />,
+  sheetsRegistry,
+  generateClassName,
+}: Props) => {
   const { theme } = ThemeContainer.useContainer();
 
-  let generateClassName = useMemo(() => createGenerateClassName(), []);
-
-  if (global.TEST) {
-    generateClassName = (rule: Rule, sheet?: StyleSheet<string>) => {
-      // @ts-ignore
-      const name = `${sheet.options.name}-${rule.key}`;
-
-      return name;
-    };
-  }
+  const classNameGenerator = useMemo(
+    () => generateClassName || createGenerateClassName(),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   return (
     <StylesProvider
       sheetsRegistry={sheetsRegistry}
-      generateClassName={generateClassName}
+      generateClassName={classNameGenerator}
     >
       <MuiPickersUtilsProvider utils={DateFnsUtils} locale={deLocale}>
         <ThemeProvider theme={theme}>
