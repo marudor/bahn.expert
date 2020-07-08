@@ -1,8 +1,16 @@
 /* eslint-disable no-underscore-dangle */
 import '@testing-library/jest-dom';
 import { cleanup } from '@testing-library/react';
+import fs from 'fs';
 import Nock from 'nock';
+import path from 'path';
 import request from 'umi-request';
+
+if (fs.existsSync(path.resolve(__dirname, 'setup.js'))) {
+  throw new Error('Run `yarn all:clean`. State dirty');
+  // eslint-disable-next-line no-unreachable
+  process.exit(1);
+}
 
 // Custom React setup
 global.M = require('react').createElement;
@@ -17,14 +25,6 @@ expect(new Date().getTimezoneOffset()).toBe(0);
 
 afterEach(() => {
   cleanup();
-  try {
-    // @ts-ignore
-    const store = window.__getTestStore__();
-
-    store.restore();
-  } catch (e) {
-    // we ignore this
-  }
 });
 
 // @ts-ignore just mocked
