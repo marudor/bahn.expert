@@ -16,6 +16,7 @@ import type { ComponentProps, ComponentType } from 'react';
 import type { Container } from 'unstated-next';
 import type { DefaultTheme } from '@material-ui/styles';
 import type { Location } from 'history';
+import type { Rule, StyleSheet } from 'jss';
 
 let currentThemeType: ThemeType;
 let theme: DefaultTheme;
@@ -35,6 +36,13 @@ const LocationHelper = ({ children }: any) => {
   location = useLocation();
 
   return children;
+};
+
+const generateClassName = (rule: Rule, sheet?: StyleSheet<string>) => {
+  // @ts-ignore
+  const name = `${sheet.options.name}-${rule.key}`;
+
+  return name;
 };
 
 export function render<CP extends ComponentType<any>>(
@@ -77,7 +85,9 @@ export function render<CP extends ComponentType<any>>(
             <LocationHelper>
               <StorageContext.Provider value={cookies}>
                 <ThemeProvider>
-                  <ThemeWrap>{result}</ThemeWrap>
+                  <ThemeWrap generateClassName={generateClassName}>
+                    {result}
+                  </ThemeWrap>
                 </ThemeProvider>
               </StorageContext.Provider>
             </LocationHelper>
