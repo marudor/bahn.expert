@@ -2,8 +2,8 @@
 /* eslint-disable no-fallthrough */
 import { getAbfahrten } from 'server/iris';
 import { getWRLink, hasWR, WRCache } from 'server/Reihung/hasWR';
-import { groupBy, maxBy, minBy } from 'lodash';
 import { isRedesignByTZ, isRedesignByUIC } from 'server/Reihung/tzInfo';
+import { maxBy, minBy } from 'shared/util/minMax';
 import getBR from 'server/Reihung/getBR';
 import request from 'umi-request';
 import TrainNames from 'server/Reihung/TrainNames';
@@ -44,9 +44,15 @@ const getCountry = (fahrzeuge: Fahrzeug[], fahrzeugTypes: string[]) => {
   const wagenOrdnungsNummern = fahrzeuge.map((f) =>
     Number.parseInt(f.wagenordnungsnummer, 10)
   );
-  const minOrdnungsnummer = minBy(wagenOrdnungsNummern) as number;
-  const maxOrdnungsnummer = maxBy(wagenOrdnungsNummern) as number;
-  const groupedFahrzeugTypes = groupBy(fahrzeugTypes);
+  const minOrdnungsnummer = minBy(wagenOrdnungsNummern)!;
+  const maxOrdnungsnummer = maxBy(wagenOrdnungsNummern)!;
+  const groupedFahrzeugTypes = fahrzeugTypes.reduce<{
+    [key: string]: number;
+  }>((agg, current) => {
+    if (current in agg) agg[current] += 1;
+    else agg[current] = 1;
+    return agg;
+  }, {});
 
   if (
     fahrzeuge.length > 10 &&
@@ -58,14 +64,19 @@ const getCountry = (fahrzeuge: Fahrzeug[], fahrzeugTypes: string[]) => {
   } else if (
     minOrdnungsnummer >= 255 &&
     maxOrdnungsnummer <= 263 &&
-    groupedFahrzeugTypes.Bdmpz &&
-    groupedFahrzeugTypes.Bdmpz.length === 1 &&
-    groupedFahrzeugTypes.Bhmpz &&
-    groupedFahrzeugTypes.Bhmpz.length === 1
+    groupedFahrzeugTypes.Bdmpz === 1 &&
+    groupedFahrzeugTypes.Bhmpz === 1
   ) {
     return 'CZ';
   } else if (minOrdnungsnummer === 81 && maxOrdnungsnummer === 82) {
     return 'DK';
+  }
+};
+
+const ICE1LDV = (br: BRInfo, fahrzeuge: Fahrzeug[]): void => {
+  if (br.BR === '401' && fahrzeuge.length === 11) {
+    br.name += ' LDV';
+    br.noPdf = true;
   }
 };
 
@@ -390,6 +401,7 @@ export async function wagenreihung(trainNumber: string, date: number) {
 
       g.br = specificBR(g.allFahrzeug, enrichedFormation);
       if (g.br) {
+        ICE1LDV(g.br, g.allFahrzeug);
         g.br.country = getCountry(g.allFahrzeug, gruppenFahrzeugTypes);
         g.br.showBRInfo = Boolean(
           g.br.BR || !g.br.noPdf || (g.br.country && g.br.country !== 'DE')

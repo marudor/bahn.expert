@@ -2,10 +2,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 const path = require('path');
 const fs = require('fs');
-const baseAssetPath =
-  process.env.BABEL_ENV === 'testProduction'
-    ? 'testDist/client'
-    : 'dist/client';
+const baseAssetPath = 'dist/client';
 const stats = require(path.resolve(`${baseAssetPath}/loadable-stats.json`));
 
 function checkFile(filePath) {

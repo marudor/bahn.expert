@@ -1,6 +1,6 @@
-import { orderBy } from 'lodash';
 import fs from 'fs';
 import Fuse from 'fuse.js';
+import orderBy from 'shared/util/orderBy';
 import path from 'path';
 import type { Station } from 'types/station';
 
@@ -53,7 +53,7 @@ export default function (searchTerm: string): Promise<Station[]> {
   const matches = searchableStations.search(searchTerm);
 
   return Promise.resolve(
-    orderBy(matches, ['score', 'item.titleLength'], ['asc', 'asc'])
+    orderBy(matches, 'score')
       .slice(0, 8)
       .map(({ item, score }) => ({
         title: item.name,

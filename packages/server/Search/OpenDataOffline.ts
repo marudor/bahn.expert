@@ -1,5 +1,5 @@
-import { orderBy } from 'lodash';
 import Fuse from 'fuse.js';
+import orderBy from 'shared/util/orderBy';
 import rawStations from 'db-stations/data.json';
 import type { Station } from 'types/station';
 
@@ -24,7 +24,7 @@ export default function (searchTerm: string): Promise<Station[]> {
   }));
 
   return Promise.resolve(
-    orderBy(weightedMatches, 'score', ['desc']).map(({ item }) => ({
+    orderBy(weightedMatches, 'score', 'desc').map(({ item }) => ({
       title: item.name,
       id: item.id,
       DS100: item.ds100,

@@ -18,7 +18,6 @@ import {
 import { CacheDatabases, createNewCache } from 'server/cache';
 import { calculateVia, getAttr, getNumberAttr, parseTs } from './helper';
 import { diffArrays } from 'diff';
-import { findLast, last, uniqBy } from 'lodash';
 import { getSingleHimMessageOfToday } from 'server/HAFAS/HimSearch';
 import { RequestMethod } from 'umi-request';
 import messageLookup, {
@@ -26,6 +25,7 @@ import messageLookup, {
   messageTypeLookup,
   supersededMessages,
 } from './messageLookup';
+import uniqBy from 'shared/util/uniqBy';
 import xmljs, { Element } from 'libxmljs2';
 import type { AbfahrtenResult, IrisMessage } from 'types/iris';
 
@@ -203,10 +203,12 @@ export default class Timetable {
       currentRoutePart,
       ...timetable.routePost,
     ];
-    const last = findLast(timetable.route, (r) => !r.cancelled);
+    const nonCancelled = timetable.route.filter((r: any) => !r.cancelled);
+    const last = nonCancelled.length
+      ? nonCancelled[nonCancelled.length - 1]
+      : undefined;
 
-    timetable.destination =
-      (last && last.name) || timetable.scheduledDestination;
+    timetable.destination = last?.name || timetable.scheduledDestination;
     calculateVia(timetable.routePost);
 
     if (timetable.departure) {
@@ -636,7 +638,8 @@ export default class Timetable {
         title: this.currentStation,
         id: this.evaId,
       },
-      scheduledDestination: last(routePost) || this.currentStation,
+      scheduledDestination:
+        routePost[routePost.length - 1] || this.currentStation,
       lineNumber,
       id,
       rawId,

@@ -1,10 +1,10 @@
 import { CacheDatabases, createNewCache } from 'server/cache';
 import { logger } from 'server/logger';
 import { noncdRequest } from './helper';
-import { orderBy } from 'lodash';
 import { parseStation } from 'server/iris/station';
 import { RequestMethod } from 'umi-request';
 import Fuse from 'fuse.js';
+import orderBy from 'shared/util/orderBy';
 import xmljs, { Element } from 'libxmljs2';
 import type { IrisStation } from 'types/station';
 
@@ -59,9 +59,7 @@ async function refreshSearchableStations(
 export function stationSearch(searchTerm: string): Promise<IrisStation[]> {
   const matches = searchableStations.search(searchTerm);
 
-  return Promise.resolve(
-    orderBy(matches, 'score', ['asc']).map(({ item }) => item)
-  );
+  return Promise.resolve(orderBy(matches, 'score').map(({ item }) => item));
 }
 
 export async function allStations(): Promise<IrisStation[]> {

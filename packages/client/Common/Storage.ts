@@ -7,7 +7,6 @@ const setCookieOptions: CookieSetOptions = {
   httpOnly: false,
   path: '/',
   sameSite: 'strict',
-  secure: global.TEST ? undefined : true,
 };
 
 export default class Storage extends Cookies implements StorageInterface {

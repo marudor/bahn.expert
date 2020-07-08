@@ -139,11 +139,7 @@ module.exports = {
     },
   },
   output: {
-    path: path.resolve(
-      process.env.BABEL_ENV === 'testProduction'
-        ? 'testDist/client'
-        : 'dist/client'
-    ),
+    path: path.resolve('dist/client'),
     filename: isDev ? 'static/[name].[hash].js' : 'static/[contenthash].js',
     publicPath: '/',
   },
