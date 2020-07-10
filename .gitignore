@@ -47,6 +47,7 @@ research/
 bahntests/
 .env
 .in
+.envrc
 
 .yalc.lock
 .yalc/
