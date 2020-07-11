@@ -46,7 +46,7 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     container:
-      image: cypress/browsers:node12.13.0-chrome80-ff74
+      image: cypress/browsers:node12.14.1-chrome83-ff77
       options: --user 1001
     strategy:
       matrix:
@@ -73,7 +73,7 @@ jobs:
         run: |
           yarn --immutable --immutable-cache
       - name: Run Cypress
-        uses: cypress-io/github-action@v1.16.1
+        uses: cypress-io/github-action@v2
         with:
           install: false
           record: true
@@ -88,7 +88,6 @@ jobs:
           CYPRESS_RECORD_KEY: 0af1d817-e8ac-4c69-ac15-c0da1e69182d
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BASE_URL: localhost:9042
-          CYPRESS_baseUrl: http://localhost:9042
           NODE_ENV: production
           BABEL_ENV: testProduction
           TEST_RUN: 1
