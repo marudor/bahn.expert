@@ -1,14 +1,14 @@
-import { AllowedHafasProfile } from 'types/HAFAS';
-import { ChangeEvent, useCallback, useMemo } from 'react';
 import {
-  ExpansionPanel,
-  ExpansionPanelDetails,
-  ExpansionPanelSummary,
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   FormControlLabel,
   NativeSelect,
   Switch,
   TextField,
 } from '@material-ui/core';
+import { AllowedHafasProfile } from 'types/HAFAS';
+import { ChangeEvent, useCallback, useMemo } from 'react';
 import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
 import Badge from '@material-ui/core/Badge';
 import CachedIcon from '@material-ui/icons/Cached';
@@ -47,8 +47,8 @@ const SettingsPanel = () => {
   );
 
   return (
-    <ExpansionPanel className={classes.expanded}>
-      <ExpansionPanelSummary
+    <Accordion className={classes.expanded}>
+      <AccordionSummary
         data-testid="routingSettingsPanel"
         classes={{ content: classes.summaryContent }}
         className={classes.summary}
@@ -77,8 +77,8 @@ const SettingsPanel = () => {
           label={settings.onlyRegional ? 'Nahverkehr' : 'Alle Zuege'}
           icon={<TrainIcon />}
         />
-      </ExpansionPanelSummary>
-      <ExpansionPanelDetails className={classes.details}>
+      </AccordionSummary>
+      <AccordionDetails className={classes.details}>
         <FormControlLabel
           className={classes.label}
           labelPlacement="start"
@@ -148,8 +148,8 @@ const SettingsPanel = () => {
           }
           label="Nur Regionalzüge"
         />
-      </ExpansionPanelDetails>
-    </ExpansionPanel>
+      </AccordionDetails>
+    </Accordion>
   );
 };
 
