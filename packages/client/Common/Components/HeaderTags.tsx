@@ -4,13 +4,13 @@ import HeaderTagContainer from 'client/Common/container/HeaderTagContainer';
 
 const HeaderTags = () => {
   const { title, description } = HeaderTagContainer.useContainer();
-  const url = `https://${global.baseUrl}${useLocation().pathname}`;
-  const image = `https://${global.baseUrl}/android-chrome-384x384.png`;
+  const url = `${global.BASE_URL}${useLocation().pathname}`;
+  const image = `${global.BASE_URL}/android-chrome-384x384.png`;
 
   return (
     <Helmet>
       <title>{title}</title>
-      <link rel="canonical" href={url} />
+      <link data-testid="canonicalLink" rel="canonical" href={url} />
       <meta name="description" content={description} />
       {/* Twitter Start */}
       <meta name="twitter:card" content="summary" />
