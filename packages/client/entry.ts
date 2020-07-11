@@ -16,9 +16,4 @@ if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
 global.M = require('react').createElement;
 global.MF = require('react').Fragment;
 
-console.log('global.PROD', global.PROD);
-console.log('global.TEST', global.TEST);
-console.log('global.SERVER', global.SERVER);
-console.log('process.env.NODE_ENV', process.env.NODE_ENV);
-
 require('./index');
