@@ -1,9 +1,6 @@
 import KoaRouter from '@koa/router';
 import rawStations from 'db-stations/data.json';
 
-// @ts-ignore
-const baseUrl: string = process.env.BASE_URL;
-
 const filterRegex = /(hbf|airport|flughafen)/i;
 const router = new KoaRouter();
 const sitemap = () => {
@@ -13,7 +10,7 @@ const sitemap = () => {
   rawStations
     .filter((s) => s.name.match(filterRegex))
     .forEach((s) => {
-      xml += `<url><loc>https://${baseUrl}/${encodeURIComponent(
+      xml += `<url><loc>${global.BASE_URL}/${encodeURIComponent(
         s.name
       )}</loc><changefreq>always</changefreq></url>`;
     });
@@ -26,7 +23,7 @@ const sitemap = () => {
 const robots = () => `User-agent: *
 Allow: *
 
-Sitemap: https://${baseUrl}/sitemap.xml
+Sitemap: ${global.BASE_URL}/sitemap.xml
 `;
 
 router

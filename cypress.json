@@ -3,5 +3,6 @@
   "baseUrl": "http://localhost:9042",
   "supportFile": "cypress/support/index.ts",
   "numTestsKeptInMemory": 0,
-  "video": false
+  "video": false,
+  "requestTimeout": 10000
 }

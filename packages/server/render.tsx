@@ -85,7 +85,7 @@ export default (ctx: Context) => {
       configOverride: JSON.stringify(global.configOverride),
       imprint: JSON.stringify(global.IMPRINT),
       jssCss: sheets.toString(),
-      baseUrl: global.baseUrl,
+      baseUrl: global.BASE_URL,
       version: global.VERSION,
     });
     ctx.body += app;

@@ -1,4 +1,4 @@
-import { AbfahrtenConfig } from 'Common/config';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import nock from 'nock';
 
 declare global {
@@ -11,12 +11,12 @@ declare global {
       PROD: boolean;
       SERVER: boolean;
       VERSION: string;
+      BASE_URL: string;
       IMPRINT: {
         name: string;
         street: string;
         town: string;
       };
-      baseUrl: string;
       configOverride: {
         abfahrten: any;
         common: any;
