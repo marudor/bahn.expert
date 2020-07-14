@@ -1,7 +1,7 @@
 import type {
-  Common,
   CommonStop,
   Crd,
+  GenericRes,
   GeoRect,
   GeoRing,
   InOutMode,
@@ -58,8 +58,7 @@ export interface JourneyGeoPos {
   isBase: boolean;
 }
 
-export interface JourneyGeoPosResponse {
-  common: Common;
+export interface JourneyGeoPosResponse extends GenericRes {
   date: string;
   time: string;
   jnyL: JourneyGeoPos[];

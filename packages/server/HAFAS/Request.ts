@@ -6,7 +6,32 @@ import {
   HafasResponse,
   ParsedCommon,
   SingleHafasRequest,
+  UncommonHafasRequest,
 } from 'types/HAFAS';
+import {
+  SubscrCreateRequest,
+  SubscrCreateResponse,
+} from 'types/HAFAS/Subscr/SubscrCreate';
+import {
+  SubscrDeleteRequest,
+  SubscrDeleteResponse,
+} from 'types/HAFAS/Subscr/SubscrDelete';
+import {
+  SubscrDetailsRequest,
+  SubscrDetailsResponse,
+} from 'types/HAFAS/Subscr/SubscrDetails';
+import {
+  SubscrSearchRequest,
+  SubscrSearchResponse,
+} from 'types/HAFAS/Subscr/SubscrSearch';
+import {
+  SubscrUserCreateRequest,
+  SubscrUserCreateResponse,
+} from 'types/HAFAS/Subscr/SubscrUserCreate';
+import {
+  SubscrUserDeleteRequest,
+  SubscrUserDeleteResponse,
+} from 'types/HAFAS/Subscr/SubscrUserDelete';
 import parseLocL from './helper/parseLocL';
 import parsePolyline from 'server/HAFAS/helper/parsePolyline';
 import parseProduct from './helper/parseProduct';
@@ -58,7 +83,7 @@ import type {
 } from 'types/HAFAS/TripSearch';
 
 function createRequest(
-  req: SingleHafasRequest,
+  req: SingleHafasRequest | UncommonHafasRequest,
   profileType: AllowedHafasProfile
 ) {
   const profile = HafasProfiles[profileType];
@@ -98,13 +123,13 @@ function parseCommon(common: Common): ParsedCommon {
 export class HafasError extends Error {
   customError = true;
   data: {
-    request: SingleHafasRequest;
+    request: SingleHafasRequest | UncommonHafasRequest;
     response: HafasResponse<any>;
     profile: AllowedHafasProfile;
   };
   errorCode: string | undefined;
   constructor(
-    request: SingleHafasRequest,
+    request: SingleHafasRequest | UncommonHafasRequest,
     response: HafasResponse<any>,
     profile: AllowedHafasProfile
   ) {
@@ -120,70 +145,36 @@ export class HafasError extends Error {
     };
   }
 }
-function makeRequest<R extends HafasResponse<JourneyCourseResponse>, P = R>(
-  r: JourneyCourseRequest,
-  parseFn?: (d: R, pc: ParsedCommon) => P,
-  profile?: AllowedHafasProfile
-): Promise<P>;
-function makeRequest<R extends HafasResponse<JourneyGraphResponse>, P = R>(
-  r: JourneyGraphRequest,
-  parseFn?: (d: R, pc: ParsedCommon) => P,
-  profile?: AllowedHafasProfile
-): Promise<P>;
-function makeRequest<R extends HafasResponse<JourneyTreeResponse>, P = R>(
-  r: JourneyTreeRequest,
-  parseFn?: (d: R, pc: ParsedCommon) => P,
-  profile?: AllowedHafasProfile
-): Promise<P>;
-function makeRequest<R extends HafasResponse<StationBoardResponse>, P = R>(
-  r: StationBoardRequest,
-  parseFn?: (d: R, pc: ParsedCommon) => P,
-  profile?: AllowedHafasProfile
-): Promise<P>;
-function makeRequest<R extends HafasResponse<HimSearchResponse>, P = R>(
-  r: HimSearchRequest,
-  parseFn?: (d: R, pc: ParsedCommon) => P,
-  profile?: AllowedHafasProfile
-): Promise<P>;
-function makeRequest<R extends HafasResponse<JourneyMatchResponse>, P = R>(
-  r: JourneyMatchRequest,
-  parseFn?: (d: R, pc: ParsedCommon) => P,
-  profile?: AllowedHafasProfile
-): Promise<P>;
-function makeRequest<R extends HafasResponse<LocGeoPosResponse>, P = R>(
-  r: LocGeoPosRequest,
-  parseFn?: (d: R, pc: ParsedCommon) => P,
-  profile?: AllowedHafasProfile
-): Promise<P>;
-function makeRequest<R extends HafasResponse<LocMatchResponse>, P = R>(
-  r: LocMatchRequest,
-  parseFn?: (d: R, pc: ParsedCommon) => P,
-  profile?: AllowedHafasProfile
-): Promise<P>;
-function makeRequest<R extends HafasResponse<JourneyDetailsResponse>, P = R>(
-  r: JourneyDetailsRequest,
-  parseFn?: (d: R, pc: ParsedCommon) => P,
-  profile?: AllowedHafasProfile
-): Promise<P>;
-function makeRequest<R extends HafasResponse<SearchOnTripResponse>, P = R>(
-  r: SearchOnTripRequest,
-  parseFn?: (d: R, pc: ParsedCommon) => P,
-  profile?: AllowedHafasProfile
-): Promise<P>;
-function makeRequest<R extends HafasResponse<TripSearchResponse>, P = R>(
-  r: TripSearchRequest,
-  parseFn?: (d: R, pc: ParsedCommon) => P,
-  profile?: AllowedHafasProfile
-): Promise<P>;
-function makeRequest<R extends HafasResponse<JourneyGeoPosResponse>, P = R>(
-  r: JourneyGeoPosRequest,
-  parseFn?: (d: R, pc: ParsedCommon) => P,
-  profile?: AllowedHafasProfile
-): Promise<P>;
+
+type CommonHafasResponse<R> = R extends TripSearchRequest
+  ? TripSearchResponse
+  : R extends JourneyCourseRequest
+  ? JourneyCourseResponse
+  : R extends JourneyGraphRequest
+  ? JourneyGraphResponse
+  : R extends JourneyTreeRequest
+  ? JourneyTreeResponse
+  : R extends StationBoardRequest
+  ? StationBoardResponse
+  : R extends HimSearchRequest
+  ? HimSearchResponse
+  : R extends JourneyMatchRequest
+  ? JourneyMatchResponse
+  : R extends LocGeoPosRequest
+  ? LocGeoPosResponse
+  : R extends LocMatchRequest
+  ? LocMatchResponse
+  : R extends JourneyDetailsRequest
+  ? JourneyDetailsResponse
+  : R extends SearchOnTripRequest
+  ? SearchOnTripResponse
+  : R extends JourneyGeoPosRequest
+  ? JourneyGeoPosResponse
+  : never;
 async function makeRequest<
   R extends SingleHafasRequest,
-  HR extends GenericRes,
-  P
+  HR extends GenericRes = CommonHafasResponse<R>,
+  P = HR
 >(
   hafasRequest: R,
   parseFn: (d: HafasResponse<HR>, pc: ParsedCommon) => P = (d) => d as any,
@@ -237,3 +228,37 @@ async function makeRequest<
 }
 
 export default makeRequest;
+
+type UncommonHafasResponse<R> = R extends SubscrCreateRequest
+  ? SubscrCreateResponse
+  : R extends SubscrDeleteRequest
+  ? SubscrDeleteResponse
+  : R extends SubscrUserCreateRequest
+  ? SubscrUserCreateResponse
+  : R extends SubscrUserDeleteRequest
+  ? SubscrUserDeleteResponse
+  : R extends SubscrDetailsRequest
+  ? SubscrDetailsResponse
+  : R extends SubscrSearchRequest
+  ? SubscrSearchResponse
+  : never;
+
+export async function makeUncommonRequest<
+  R extends UncommonHafasRequest,
+  HR = UncommonHafasResponse<R>,
+  P = HR
+>(
+  hafasRequest: R,
+  parseFn: (d: HR) => P = (d) => d as any,
+  profile: AllowedHafasProfile = AllowedHafasProfile.DB
+): Promise<P> {
+  const { data, extraParam } = createRequest(hafasRequest, profile);
+  const r = await request.post<HafasResponse<HR>>(HafasProfiles[profile].url, {
+    data,
+    params: extraParam,
+  });
+  if (('err' in r && r.err !== 'OK') || r.svcResL[0].err !== 'OK') {
+    throw new HafasError(hafasRequest, r, profile);
+  }
+  return parseFn(r.svcResL[0].res);
+}
