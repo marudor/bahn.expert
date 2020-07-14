@@ -1470,45 +1470,66 @@
         "type": "object",
         "description": "From T, pick a set of properties whose keys are in the union K"
       },
-      "Partial_LocL_": {
+      "SubscrServiceDays": {
         "properties": {
-          "lid": {
+          "endDate": {
             "type": "string"
           },
-          "type": {
+          "beginDate": {
             "type": "string"
           },
-          "name": {
-            "type": "string"
-          },
-          "icoX": {
-            "type": "number",
-            "format": "double"
-          },
-          "extId": {
-            "type": "string"
-          },
-          "state": {
-            "type": "string"
-          },
-          "crd": {
-            "$ref": "#/components/schemas/Crd"
-          },
-          "pCls": {
-            "type": "number",
-            "format": "double"
-          },
-          "pRefL": {
-            "items": {
-              "type": "number",
-              "format": "double"
-            },
-            "type": "array",
-            "description": "Reference to prodL"
+          "selectedWeekdays": {
+            "type": "string",
+            "description": "1 or 0 for each day, starts at monday\nexample: 1001001\nMonday, Thursday, Sunday selected"
           }
         },
+        "required": ["endDate", "beginDate", "selectedWeekdays"],
         "type": "object",
-        "description": "Make all properties in T optional"
+        "additionalProperties": false
+      },
+      "SubscrInterval": {
+        "properties": {
+          "jnyFltrL": {
+            "items": {
+              "$ref": "#/components/schemas/JourneyFilter"
+            },
+            "type": "array"
+          },
+          "period": {
+            "type": "number",
+            "format": "double"
+          },
+          "time": {
+            "type": "string",
+            "description": "HHmmSS"
+          },
+          "depLoc": {
+            "$ref": "#/components/schemas/OptionalLocL"
+          },
+          "arrLoc": {
+            "$ref": "#/components/schemas/OptionalLocL"
+          },
+          "monitorFlags": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "description": "[\"FTF\"] rest unknown"
+          },
+          "serviceDays": {
+            "$ref": "#/components/schemas/SubscrServiceDays"
+          }
+        },
+        "required": [
+          "period",
+          "time",
+          "depLoc",
+          "arrLoc",
+          "monitorFlags",
+          "serviceDays"
+        ],
+        "type": "object",
+        "additionalProperties": false
       },
       "SubscrCreateOptions": {
         "properties": {
@@ -1522,60 +1543,7 @@
             "type": "array"
           },
           "intvlSubscr": {
-            "properties": {
-              "serviceDays": {
-                "properties": {
-                  "selectedWeekdays": {
-                    "type": "string",
-                    "description": "1 or 0 for each day, starts at monday\nexample: 1001001\nMonday, Thursday, Sunday selected"
-                  },
-                  "beginDate": {
-                    "type": "string"
-                  },
-                  "endDate": {
-                    "type": "string"
-                  }
-                },
-                "required": ["selectedWeekdays", "beginDate", "endDate"],
-                "type": "object"
-              },
-              "monitorFlags": {
-                "items": {
-                  "type": "string"
-                },
-                "type": "array",
-                "description": "[\"FTF\"] rest unknown"
-              },
-              "arrLoc": {
-                "$ref": "#/components/schemas/Partial_LocL_"
-              },
-              "depLoc": {
-                "$ref": "#/components/schemas/Partial_LocL_"
-              },
-              "time": {
-                "type": "string",
-                "description": "HHmmSS"
-              },
-              "jnyFltrL": {
-                "items": {
-                  "$ref": "#/components/schemas/JourneyFilter"
-                },
-                "type": "array"
-              },
-              "period": {
-                "type": "number",
-                "format": "double"
-              }
-            },
-            "required": [
-              "serviceDays",
-              "monitorFlags",
-              "arrLoc",
-              "depLoc",
-              "time",
-              "period"
-            ],
-            "type": "object"
+            "$ref": "#/components/schemas/SubscrInterval"
           }
         },
         "required": ["userId", "channels", "intvlSubscr"],
@@ -1727,9 +1695,62 @@
             },
             "required": ["resultCode"],
             "type": "object"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "intvlSubscrL": {
+            "items": {
+              "properties": {
+                "arrLoc": {
+                  "$ref": "#/components/schemas/OptionalLocL"
+                },
+                "depLoc": {
+                  "$ref": "#/components/schemas/OptionalLocL"
+                },
+                "time": {
+                  "type": "string",
+                  "description": "HHmmSS"
+                },
+                "period": {
+                  "type": "number",
+                  "format": "double"
+                },
+                "channels": {
+                  "items": {
+                    "$ref": "#/components/schemas/SubscrChannel"
+                  },
+                  "type": "array"
+                },
+                "status": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "enum": ["ACTIVE"],
+                      "nullable": false
+                    },
+                    {
+                      "type": "string",
+                      "enum": ["EXPIRED"],
+                      "nullable": false
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "arrLoc",
+                "depLoc",
+                "time",
+                "period",
+                "channels",
+                "status"
+              ],
+              "type": "object"
+            },
+            "type": "array"
           }
         },
-        "required": ["result"],
+        "required": ["result", "userId", "intvlSubscrL"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1762,8 +1783,89 @@
         "type": "object",
         "additionalProperties": false
       },
-      "SubscrDetailsResponse": {
+      "SubscrRTEvent": {
         "properties": {},
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SubscrHIMEvent": {
+        "properties": {},
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SubscrEventHistory": {
+        "properties": {
+          "rtEvents": {
+            "items": {
+              "$ref": "#/components/schemas/SubscrRTEvent"
+            },
+            "type": "array"
+          },
+          "himEvents": {
+            "items": {
+              "$ref": "#/components/schemas/SubscrHIMEvent"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["rtEvents", "himEvents"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SubscrDetailsResponse": {
+        "properties": {
+          "result": {
+            "properties": {
+              "resultCode": {
+                "type": "string"
+              }
+            },
+            "required": ["resultCode"],
+            "type": "object"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "subscrId": {
+            "type": "number",
+            "format": "double"
+          },
+          "status": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": ["ACTIVE"],
+                "nullable": false
+              },
+              {
+                "type": "string",
+                "enum": ["EXPIRED"],
+                "nullable": false
+              }
+            ]
+          },
+          "channels": {
+            "items": {
+              "$ref": "#/components/schemas/SubscrChannel"
+            },
+            "type": "array"
+          },
+          "intvlSubscr": {
+            "$ref": "#/components/schemas/SubscrInterval"
+          },
+          "eventHisotry": {
+            "$ref": "#/components/schemas/SubscrEventHistory"
+          }
+        },
+        "required": [
+          "result",
+          "userId",
+          "subscrId",
+          "status",
+          "channels",
+          "intvlSubscr",
+          "eventHisotry"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5633,7 +5735,7 @@
             "description": "Ok"
           }
         },
-        "tags": ["Hafas Subscribe"],
+        "tags": ["HAFAS Subscribe"],
         "security": [],
         "parameters": [
           {
@@ -5672,7 +5774,7 @@
             "description": "Ok"
           }
         },
-        "tags": ["Hafas Subscribe"],
+        "tags": ["HAFAS Subscribe"],
         "security": [],
         "parameters": [
           {
@@ -5711,7 +5813,7 @@
             "description": "Ok"
           }
         },
-        "tags": ["Hafas Subscribe"],
+        "tags": ["HAFAS Subscribe"],
         "security": [],
         "parameters": [
           {
@@ -5750,7 +5852,7 @@
             "description": "Ok"
           }
         },
-        "tags": ["Hafas Subscribe"],
+        "tags": ["HAFAS Subscribe"],
         "security": [],
         "parameters": [
           {
@@ -5787,7 +5889,7 @@
             "description": "Ok"
           }
         },
-        "tags": ["Hafas Subscribe"],
+        "tags": ["HAFAS Subscribe"],
         "security": [],
         "parameters": [
           {
@@ -5826,7 +5928,7 @@
             "description": "Ok"
           }
         },
-        "tags": ["Hafas Subscribe"],
+        "tags": ["HAFAS Subscribe"],
         "security": [],
         "parameters": [
           {

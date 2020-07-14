@@ -4,7 +4,7 @@ import type {
   CommonDeparture,
   CommonJny,
   JourneyFilter,
-  LocL,
+  OptionalLocL,
 } from '.';
 
 export const enum StationBoardSortType {
@@ -24,8 +24,8 @@ export interface StationBoardRequest {
     getSimpleTrainComposition?: boolean;
     getTrainComposition?: boolean;
     time: string;
-    stbLoc: Partial<LocL>;
-    dirLoc?: Partial<LocL>;
+    stbLoc: OptionalLocL;
+    dirLoc?: OptionalLocL;
     jnyFltrL?: JourneyFilter[];
     locFltrL?: any[];
     maxJny?: number;

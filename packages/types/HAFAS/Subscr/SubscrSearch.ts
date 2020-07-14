@@ -1,3 +1,7 @@
+import { OptionalLocL } from 'types/HAFAS';
+import { SubscrChannel } from 'types/HAFAS/Subscr/SubscrUserCreate';
+import { SubscrDetailsResponse } from 'types/HAFAS/Subscr/SubscrDetails';
+
 export interface SubscrSearchOptions {
   userId: string;
   /**
@@ -15,4 +19,14 @@ export interface SubscrSearchResponse {
   result: {
     resultCode: string;
   };
+  userId: string;
+  intvlSubscrL: {
+    status: SubscrDetailsResponse['status'];
+    channels: SubscrChannel[];
+    period: number;
+    /** HHmmSS */
+    time: string;
+    depLoc: OptionalLocL;
+    arrLoc: OptionalLocL;
+  }[];
 }

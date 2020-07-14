@@ -1,29 +1,32 @@
-import { JourneyFilter, LocL } from 'types/HAFAS';
+import { JourneyFilter, OptionalLocL } from 'types/HAFAS';
 import { SubscrChannel } from 'types/HAFAS/Subscr/SubscrUserCreate';
+
+export interface SubscrServiceDays {
+  endDate: string;
+  beginDate: string;
+  /**
+   * 1 or 0 for each day, starts at monday
+   * example: 1001001
+   * Monday, Thursday, Sunday selected
+   */
+  selectedWeekdays: string;
+}
+export interface SubscrInterval {
+  jnyFltrL?: JourneyFilter[];
+  period: number;
+  /** HHmmSS */
+  time: string;
+  depLoc: OptionalLocL;
+  arrLoc: OptionalLocL;
+  /** ["FTF"] rest unknown */
+  monitorFlags: string[];
+  serviceDays: SubscrServiceDays;
+}
 
 export interface SubscrCreateOptions {
   userId: string;
   channels: Pick<SubscrChannel, 'channelId'>[];
-  intvlSubscr: {
-    period: number;
-    jnyFltrL?: JourneyFilter[];
-    /** HHmmSS */
-    time: string;
-    depLoc: Partial<LocL>;
-    arrLoc: Partial<LocL>;
-    /** ["FTF"] rest unknown */
-    monitorFlags: string[];
-    serviceDays: {
-      endDate: string;
-      beginDate: string;
-      /**
-       * 1 or 0 for each day, starts at monday
-       * example: 1001001
-       * Monday, Thursday, Sunday selected
-       */
-      selectedWeekdays: string;
-    };
-  };
+  intvlSubscr: SubscrInterval;
 }
 
 export interface SubscrCreateRequest {

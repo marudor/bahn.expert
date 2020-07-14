@@ -560,9 +560,28 @@ const models: TsoaRoute.Models = {
     "type": { "dataType": "nestedObjectLiteral", "nestedProperties": { "channelId": { "dataType": "string", "required": true } }, "validators": {} },
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "Partial_LocL_": {
-    "dataType": "refAlias",
-    "type": { "dataType": "nestedObjectLiteral", "nestedProperties": { "lid": { "dataType": "string" }, "type": { "dataType": "string" }, "name": { "dataType": "string" }, "icoX": { "dataType": "double" }, "extId": { "dataType": "string" }, "state": { "dataType": "string" }, "crd": { "ref": "Crd" }, "pCls": { "dataType": "double" }, "pRefL": { "dataType": "array", "array": { "dataType": "double" } } }, "validators": {} },
+  "SubscrServiceDays": {
+    "dataType": "refObject",
+    "properties": {
+      "endDate": { "dataType": "string", "required": true },
+      "beginDate": { "dataType": "string", "required": true },
+      "selectedWeekdays": { "dataType": "string", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "SubscrInterval": {
+    "dataType": "refObject",
+    "properties": {
+      "jnyFltrL": { "dataType": "array", "array": { "ref": "JourneyFilter" } },
+      "period": { "dataType": "double", "required": true },
+      "time": { "dataType": "string", "required": true },
+      "depLoc": { "ref": "OptionalLocL", "required": true },
+      "arrLoc": { "ref": "OptionalLocL", "required": true },
+      "monitorFlags": { "dataType": "array", "array": { "dataType": "string" }, "required": true },
+      "serviceDays": { "ref": "SubscrServiceDays", "required": true },
+    },
+    "additionalProperties": false,
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "SubscrCreateOptions": {
@@ -570,7 +589,7 @@ const models: TsoaRoute.Models = {
     "properties": {
       "userId": { "dataType": "string", "required": true },
       "channels": { "dataType": "array", "array": { "dataType": "refAlias", "ref": "Pick_SubscrChannel.channelId_" }, "required": true },
-      "intvlSubscr": { "dataType": "nestedObjectLiteral", "nestedProperties": { "serviceDays": { "dataType": "nestedObjectLiteral", "nestedProperties": { "selectedWeekdays": { "dataType": "string", "required": true }, "beginDate": { "dataType": "string", "required": true }, "endDate": { "dataType": "string", "required": true } }, "required": true }, "monitorFlags": { "dataType": "array", "array": { "dataType": "string" }, "required": true }, "arrLoc": { "ref": "Partial_LocL_", "required": true }, "depLoc": { "ref": "Partial_LocL_", "required": true }, "time": { "dataType": "string", "required": true }, "jnyFltrL": { "dataType": "array", "array": { "ref": "JourneyFilter" } }, "period": { "dataType": "double", "required": true } }, "required": true },
+      "intvlSubscr": { "ref": "SubscrInterval", "required": true },
     },
     "additionalProperties": false,
   },
@@ -651,6 +670,8 @@ const models: TsoaRoute.Models = {
     "dataType": "refObject",
     "properties": {
       "result": { "dataType": "nestedObjectLiteral", "nestedProperties": { "resultCode": { "dataType": "string", "required": true } }, "required": true },
+      "userId": { "dataType": "string", "required": true },
+      "intvlSubscrL": { "dataType": "array", "array": { "dataType": "nestedObjectLiteral", "nestedProperties": { "arrLoc": { "ref": "OptionalLocL", "required": true }, "depLoc": { "ref": "OptionalLocL", "required": true }, "time": { "dataType": "string", "required": true }, "period": { "dataType": "double", "required": true }, "channels": { "dataType": "array", "array": { "ref": "SubscrChannel" }, "required": true }, "status": { "dataType": "union", "subSchemas": [{ "dataType": "enum", "enums": ["ACTIVE"] }, { "dataType": "enum", "enums": ["EXPIRED"] }], "required": true } } }, "required": true },
     },
     "additionalProperties": false,
   },
@@ -672,9 +693,39 @@ const models: TsoaRoute.Models = {
     "additionalProperties": false,
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "SubscrRTEvent": {
+    "dataType": "refObject",
+    "properties": {
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "SubscrHIMEvent": {
+    "dataType": "refObject",
+    "properties": {
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "SubscrEventHistory": {
+    "dataType": "refObject",
+    "properties": {
+      "rtEvents": { "dataType": "array", "array": { "ref": "SubscrRTEvent" }, "required": true },
+      "himEvents": { "dataType": "array", "array": { "ref": "SubscrHIMEvent" }, "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "SubscrDetailsResponse": {
     "dataType": "refObject",
     "properties": {
+      "result": { "dataType": "nestedObjectLiteral", "nestedProperties": { "resultCode": { "dataType": "string", "required": true } }, "required": true },
+      "userId": { "dataType": "string", "required": true },
+      "subscrId": { "dataType": "double", "required": true },
+      "status": { "dataType": "union", "subSchemas": [{ "dataType": "enum", "enums": ["ACTIVE"] }, { "dataType": "enum", "enums": ["EXPIRED"] }], "required": true },
+      "channels": { "dataType": "array", "array": { "ref": "SubscrChannel" }, "required": true },
+      "intvlSubscr": { "ref": "SubscrInterval", "required": true },
+      "eventHisotry": { "ref": "SubscrEventHistory", "required": true },
     },
     "additionalProperties": false,
   },
