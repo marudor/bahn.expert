@@ -6,8 +6,8 @@ import type {
   CommonJny,
   CommonStop,
   JourneyFilter,
-  LocL,
   MsgL,
+  OptionalLocL,
   TrnCmpSX,
 } from '.';
 import type { JnyCl, LoyalityCard, TravelerType } from 'types/HAFAS/Tarif';
@@ -76,13 +76,13 @@ export interface TarifRequest {
 }
 
 interface GenericTripSearchRequest extends SharedTripSearchOptions {
-  arrLocL: Partial<LocL>[];
-  depLocL: Partial<LocL>[];
+  arrLocL: OptionalLocL[];
+  depLocL: OptionalLocL[];
   viaLocL: {
-    loc: Partial<LocL>;
+    loc: OptionalLocL;
   }[];
   antiViaLocL?: {
-    loc: Partial<LocL>;
+    loc: OptionalLocL;
   }[];
   getPT: boolean;
   maxChg: number;
@@ -107,7 +107,7 @@ interface GenericTripSearchRequest extends SharedTripSearchOptions {
   getIST?: boolean;
   liveSearch?: boolean;
   prefLocL?: {
-    loc: Partial<LocL>;
+    loc: OptionalLocL;
   }[];
   pt?: string;
 }
