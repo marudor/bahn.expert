@@ -48,11 +48,7 @@ export default async (
   };
 
   if (raw) {
-    return makeRequest<HafasResponse<LocMatchResponse>, HafasStation[]>(
-      req,
-      undefined,
-      profile
-    );
+    return makeRequest(req, undefined, profile) as any;
   }
 
   const cacheKey = `${profile}|${type}|${searchTerm}`;

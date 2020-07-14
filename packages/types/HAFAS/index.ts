@@ -1,3 +1,17 @@
+import { HimSearchRequest } from 'types/HAFAS/HimSearch';
+import { JourneyCourseRequest } from 'types/HAFAS/JourneyCourse';
+import { JourneyGeoPosRequest } from 'types/HAFAS/JourneyGeoPos';
+import { JourneyGraphRequest } from 'types/HAFAS/JourneyGraph';
+import { JourneyMatchRequest } from 'types/HAFAS/JourneyMatch';
+import { JourneyTreeRequest } from 'types/HAFAS/JourneyTree';
+import { SearchOnTripRequest } from 'types/HAFAS/SearchOnTrip';
+import { StationBoardRequest } from 'types/HAFAS/StationBoard';
+import { SubscrCreateRequest } from 'types/HAFAS/Subscr/SubscrCreate';
+import { SubscrDeleteRequest } from 'types/HAFAS/Subscr/SubscrDelete';
+import { SubscrDetailsRequest } from 'types/HAFAS/Subscr/SubscrDetails';
+import { SubscrSearchRequest } from 'types/HAFAS/Subscr/SubscrSearch';
+import { SubscrUserCreateRequest } from 'types/HAFAS/Subscr/SubscrUserCreate';
+import { SubscrUserDeleteRequest } from 'types/HAFAS/Subscr/SubscrUserDelete';
 import type { CommonStation, Coordinates } from 'types/station';
 import type { JourneyDetailsRequest } from './JourneyDetails';
 import type { LocGeoPosRequest } from './LocGeoPos';
@@ -246,10 +260,26 @@ export enum AllowedHafasProfile {
 
 export type HafasRequest = SingleHafasRequest[];
 export type SingleHafasRequest =
+  | JourneyCourseRequest
+  | JourneyGraphRequest
+  | JourneyTreeRequest
+  | StationBoardRequest
+  | HimSearchRequest
+  | JourneyMatchRequest
+  | LocGeoPosRequest
   | LocMatchRequest
   | JourneyDetailsRequest
+  | SearchOnTripRequest
   | TripSearchRequest
-  | LocGeoPosRequest;
+  | JourneyGeoPosRequest;
+
+export type UncommonHafasRequest =
+  | SubscrCreateRequest
+  | SubscrDeleteRequest
+  | SubscrUserDeleteRequest
+  | SubscrUserCreateRequest
+  | SubscrSearchRequest
+  | SubscrDetailsRequest;
 
 interface CInfo {
   code: string;
@@ -267,7 +297,7 @@ export interface GenericRes {
   common: Common;
 }
 
-export interface HafasResponse<Res extends GenericRes> {
+export interface HafasResponse<Res> {
   ver: string;
   lang: string;
   id: string;

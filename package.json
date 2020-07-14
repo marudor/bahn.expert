@@ -34,12 +34,13 @@
     "e2e:ci": "cypress run",
     "doc:gen": "yarn workspace server run doc:gen",
     "doc:build": "yarn workspace server run doc:build",
+    "doc:build:gitadd": "yarn doc:build && git add docs/",
     "lint-staged": "lint-staged"
   },
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "run-p doc:build lint-staged"
+      "pre-commit": "run-s doc:build:gitadd lint-staged"
     }
   },
   "lint-staged": {

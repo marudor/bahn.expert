@@ -9,6 +9,8 @@ import { BussinessHubExperimentalController } from './controller/BusinessHub/exp
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { HafasExperimentalController } from './controller/Hafas/experimental';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { HafasSubscribeController } from './controller/Hafas/subscribe';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { HafasController } from './controller/Hafas/v1';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { IrisController } from './controller/Iris/v1';
@@ -541,6 +543,189 @@ const models: TsoaRoute.Models = {
       "perSize": { "dataType": "double" },
       "perStep": { "dataType": "double" },
       "time": { "dataType": "string" },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "ParsedSubscrCreateResponse": {
+    "dataType": "refObject",
+    "properties": {
+      "subscriptionId": { "dataType": "double", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "Pick_SubscrChannel.channelId_": {
+    "dataType": "refAlias",
+    "type": { "dataType": "nestedObjectLiteral", "nestedProperties": { "channelId": { "dataType": "string", "required": true } }, "validators": {} },
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "SubscrServiceDays": {
+    "dataType": "refObject",
+    "properties": {
+      "endDate": { "dataType": "string", "required": true },
+      "beginDate": { "dataType": "string", "required": true },
+      "selectedWeekdays": { "dataType": "string", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "SubscrInterval": {
+    "dataType": "refObject",
+    "properties": {
+      "jnyFltrL": { "dataType": "array", "array": { "ref": "JourneyFilter" } },
+      "period": { "dataType": "double", "required": true },
+      "time": { "dataType": "string", "required": true },
+      "depLoc": { "ref": "OptionalLocL", "required": true },
+      "arrLoc": { "ref": "OptionalLocL", "required": true },
+      "monitorFlags": { "dataType": "array", "array": { "dataType": "string" }, "required": true },
+      "serviceDays": { "ref": "SubscrServiceDays", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "SubscrCreateOptions": {
+    "dataType": "refObject",
+    "properties": {
+      "userId": { "dataType": "string", "required": true },
+      "channels": { "dataType": "array", "array": { "dataType": "refAlias", "ref": "Pick_SubscrChannel.channelId_" }, "required": true },
+      "intvlSubscr": { "ref": "SubscrInterval", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "SubscrDeleteResponse": {
+    "dataType": "refObject",
+    "properties": {
+      "result": { "dataType": "nestedObjectLiteral", "nestedProperties": { "resultCode": { "dataType": "string", "required": true } }, "required": true },
+      "userId": { "dataType": "string", "required": true },
+      "subscrId": { "dataType": "string", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "SubscrDeleteOptions": {
+    "dataType": "refObject",
+    "properties": {
+      "userId": { "dataType": "string", "required": true },
+      "subscrId": { "dataType": "double", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "ParsedSubscrUserResponse": {
+    "dataType": "refObject",
+    "properties": {
+      "userId": { "dataType": "string", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "SubscrChannelNoSoundOption": {
+    "dataType": "refObject",
+    "properties": {
+      "type": { "dataType": "enum", "enums": ["NO_SOUND"], "required": true },
+      "value": { "dataType": "enum", "enums": ["1"], "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "SubscrChannelCustomerTypeOption": {
+    "dataType": "refObject",
+    "properties": {
+      "type": { "dataType": "enum", "enums": ["CUSTOMER_TYPE"], "required": true },
+      "value": { "dataType": "string", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "SubscrChannelOption": {
+    "dataType": "refAlias",
+    "type": { "dataType": "union", "subSchemas": [{ "ref": "SubscrChannelNoSoundOption" }, { "ref": "SubscrChannelCustomerTypeOption" }], "validators": {} },
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "SubscrChannel": {
+    "dataType": "refObject",
+    "properties": {
+      "channelId": { "dataType": "string", "required": true },
+      "address": { "dataType": "string", "required": true },
+      "type": { "dataType": "string", "required": true },
+      "options": { "dataType": "array", "array": { "dataType": "refAlias", "ref": "SubscrChannelOption" }, "required": true },
+      "name": { "dataType": "string", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "SubscrUserCreateOptions": {
+    "dataType": "refObject",
+    "properties": {
+      "userId": { "dataType": "string", "required": true },
+      "channels": { "dataType": "array", "array": { "ref": "SubscrChannel" }, "required": true },
+      "language": { "dataType": "string" },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "SubscrSearchResponse": {
+    "dataType": "refObject",
+    "properties": {
+      "result": { "dataType": "nestedObjectLiteral", "nestedProperties": { "resultCode": { "dataType": "string", "required": true } }, "required": true },
+      "userId": { "dataType": "string", "required": true },
+      "intvlSubscrL": { "dataType": "array", "array": { "dataType": "nestedObjectLiteral", "nestedProperties": { "arrLoc": { "ref": "OptionalLocL", "required": true }, "depLoc": { "ref": "OptionalLocL", "required": true }, "time": { "dataType": "string", "required": true }, "period": { "dataType": "double", "required": true }, "channels": { "dataType": "array", "array": { "ref": "SubscrChannel" }, "required": true }, "status": { "dataType": "union", "subSchemas": [{ "dataType": "enum", "enums": ["ACTIVE"] }, { "dataType": "enum", "enums": ["EXPIRED"] }], "required": true } } }, "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "SubscrUserDeleteResponse": {
+    "dataType": "refObject",
+    "properties": {
+      "result": { "dataType": "nestedObjectLiteral", "nestedProperties": { "resultCode": { "dataType": "string", "required": true } }, "required": true },
+      "userId": { "dataType": "string", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "SubscrUserDeleteOptions": {
+    "dataType": "refObject",
+    "properties": {
+      "userId": { "dataType": "string", "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "SubscrRTEvent": {
+    "dataType": "refObject",
+    "properties": {
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "SubscrHIMEvent": {
+    "dataType": "refObject",
+    "properties": {
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "SubscrEventHistory": {
+    "dataType": "refObject",
+    "properties": {
+      "rtEvents": { "dataType": "array", "array": { "ref": "SubscrRTEvent" }, "required": true },
+      "himEvents": { "dataType": "array", "array": { "ref": "SubscrHIMEvent" }, "required": true },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "SubscrDetailsResponse": {
+    "dataType": "refObject",
+    "properties": {
+      "result": { "dataType": "nestedObjectLiteral", "nestedProperties": { "resultCode": { "dataType": "string", "required": true } }, "required": true },
+      "userId": { "dataType": "string", "required": true },
+      "subscrId": { "dataType": "double", "required": true },
+      "status": { "dataType": "union", "subSchemas": [{ "dataType": "enum", "enums": ["ACTIVE"] }, { "dataType": "enum", "enums": ["EXPIRED"] }], "required": true },
+      "channels": { "dataType": "array", "array": { "ref": "SubscrChannel" }, "required": true },
+      "intvlSubscr": { "ref": "SubscrInterval", "required": true },
+      "eventHisotry": { "ref": "SubscrEventHistory", "required": true },
     },
     "additionalProperties": false,
   },
@@ -2028,6 +2213,133 @@ export function RegisterRoutes(router: KoaRouter) {
       const controller = new HafasExperimentalController();
 
       const promise = controller.JourneyCourse.apply(controller, validatedArgs as any);
+      return promiseHandler(controller, promise, context, next);
+    });
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  router.post('/api/hafas/subscribe/create',
+    async (context: any, next: any) => {
+      const args = {
+        body: { "in": "body", "name": "body", "required": true, "ref": "SubscrCreateOptions" },
+        profile: { "in": "query", "name": "profile", "ref": "AllowedHafasProfile" },
+      };
+
+      let validatedArgs: any[] = [];
+      try {
+        validatedArgs = getValidatedArgs(args, context);
+      } catch (error) {
+        context.status = error.status;
+        context.throw(error.status, JSON.stringify({ fields: error.fields }));
+      }
+
+      const controller = new HafasSubscribeController();
+
+      const promise = controller.create.apply(controller, validatedArgs as any);
+      return promiseHandler(controller, promise, context, next);
+    });
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  router.post('/api/hafas/subscribe/delete',
+    async (context: any, next: any) => {
+      const args = {
+        body: { "in": "body", "name": "body", "required": true, "ref": "SubscrDeleteOptions" },
+        profile: { "in": "query", "name": "profile", "ref": "AllowedHafasProfile" },
+      };
+
+      let validatedArgs: any[] = [];
+      try {
+        validatedArgs = getValidatedArgs(args, context);
+      } catch (error) {
+        context.status = error.status;
+        context.throw(error.status, JSON.stringify({ fields: error.fields }));
+      }
+
+      const controller = new HafasSubscribeController();
+
+      const promise = controller.delete.apply(controller, validatedArgs as any);
+      return promiseHandler(controller, promise, context, next);
+    });
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  router.post('/api/hafas/subscribe/createUser',
+    async (context: any, next: any) => {
+      const args = {
+        body: { "in": "body", "name": "body", "required": true, "ref": "SubscrUserCreateOptions" },
+        profile: { "in": "query", "name": "profile", "ref": "AllowedHafasProfile" },
+      };
+
+      let validatedArgs: any[] = [];
+      try {
+        validatedArgs = getValidatedArgs(args, context);
+      } catch (error) {
+        context.status = error.status;
+        context.throw(error.status, JSON.stringify({ fields: error.fields }));
+      }
+
+      const controller = new HafasSubscribeController();
+
+      const promise = controller.createUser.apply(controller, validatedArgs as any);
+      return promiseHandler(controller, promise, context, next);
+    });
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  router.get('/api/hafas/subscribe/search',
+    async (context: any, next: any) => {
+      const args = {
+        userId: { "in": "query", "name": "userId", "required": true, "dataType": "string" },
+        profile: { "in": "query", "name": "profile", "ref": "AllowedHafasProfile" },
+      };
+
+      let validatedArgs: any[] = [];
+      try {
+        validatedArgs = getValidatedArgs(args, context);
+      } catch (error) {
+        context.status = error.status;
+        context.throw(error.status, JSON.stringify({ fields: error.fields }));
+      }
+
+      const controller = new HafasSubscribeController();
+
+      const promise = controller.search.apply(controller, validatedArgs as any);
+      return promiseHandler(controller, promise, context, next);
+    });
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  router.post('/api/hafas/subscribe/deleteUser',
+    async (context: any, next: any) => {
+      const args = {
+        body: { "in": "body", "name": "body", "required": true, "ref": "SubscrUserDeleteOptions" },
+        profile: { "in": "query", "name": "profile", "ref": "AllowedHafasProfile" },
+      };
+
+      let validatedArgs: any[] = [];
+      try {
+        validatedArgs = getValidatedArgs(args, context);
+      } catch (error) {
+        context.status = error.status;
+        context.throw(error.status, JSON.stringify({ fields: error.fields }));
+      }
+
+      const controller = new HafasSubscribeController();
+
+      const promise = controller.deleteUser.apply(controller, validatedArgs as any);
+      return promiseHandler(controller, promise, context, next);
+    });
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  router.get('/api/hafas/subscribe/details',
+    async (context: any, next: any) => {
+      const args = {
+        userId: { "in": "query", "name": "userId", "required": true, "dataType": "string" },
+        subscribeId: { "in": "query", "name": "subscribeId", "required": true, "dataType": "double" },
+        profile: { "in": "query", "name": "profile", "ref": "AllowedHafasProfile" },
+      };
+
+      let validatedArgs: any[] = [];
+      try {
+        validatedArgs = getValidatedArgs(args, context);
+      } catch (error) {
+        context.status = error.status;
+        context.throw(error.status, JSON.stringify({ fields: error.fields }));
+      }
+
+      const controller = new HafasSubscribeController();
+
+      const promise = controller.details.apply(controller, validatedArgs as any);
       return promiseHandler(controller, promise, context, next);
     });
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

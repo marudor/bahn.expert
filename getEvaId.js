@@ -1,5 +1,5 @@
 /* eslint no-console: 0 */
-const config = require('./.babelrc.server');
+const config = require('./babel.config');
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 require('@babel/register')({
