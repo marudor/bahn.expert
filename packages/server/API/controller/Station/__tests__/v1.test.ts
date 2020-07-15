@@ -13,7 +13,7 @@ describe('Station V1', () => {
         .reply(200, '<stations></stations>');
     });
     it('no Type goes to default', () => {
-      Nock('https://api.businesshub.deutschebahn.com')
+      Nock('https://gateway.businesshub.deutschebahn.com')
         .get('/public-transport-stations/v1/stop-places?name=Hamburg')
         .reply(200, {
           _embedded: {
@@ -25,7 +25,7 @@ describe('Station V1', () => {
     });
 
     it('invalid Type goes to default', () => {
-      Nock('https://api.businesshub.deutschebahn.com')
+      Nock('https://gateway.businesshub.deutschebahn.com')
         .get('/public-transport-stations/v1/stop-places?name=Hamburg')
         .reply(200, {
           _embedded: {
@@ -136,7 +136,7 @@ describe('Station V1', () => {
         }));
 
     it('sends Request', () => {
-      Nock('https://api.businesshub.deutschebahn.com')
+      Nock('https://gateway.businesshub.deutschebahn.com')
         .get('/public-transport-stations/v1/stop-places')
         .query({
           latitude: 23.4,
