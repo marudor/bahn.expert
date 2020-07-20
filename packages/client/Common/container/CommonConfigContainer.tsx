@@ -1,14 +1,14 @@
 import { createContainer } from 'unstated-next';
 import { defaultCommonConfig } from 'client/util';
 import { ReactNode, useCallback, useState } from 'react';
-import useStorage from 'shared/hooks/useStorage';
+import useWebStorage from 'client/useWebStorage';
 import type { CommonConfig } from 'client/Common/config';
 
 const configCookieName = 'commonConfig';
 
 const useCommonConfig = (initialConfig: CommonConfig = defaultCommonConfig) => {
   const [config, setConfig] = useState(initialConfig);
-  const storage = useStorage();
+  const storage = useWebStorage();
   const setCommonConfigKey = useCallback(
     <K extends keyof CommonConfig>(key: K, value: CommonConfig[K]) => {
       const newConfig = {
@@ -37,7 +37,7 @@ interface Props {
 }
 
 export const CommonConfigProvider = ({ children }: Props) => {
-  const storage = useStorage();
+  const storage = useWebStorage();
 
   const savedAbfahrtenConfig = storage.get('config');
   const savedCommonConfig = storage.get(configCookieName);

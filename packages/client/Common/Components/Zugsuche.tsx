@@ -21,8 +21,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import stopPropagation from 'client/Common/stopPropagation';
 import TodayIcon from '@material-ui/icons/Today';
 import TrainIcon from '@material-ui/icons/Train';
-import useStorage from 'shared/hooks/useStorage';
 import useStyles from './Zugsuche.style';
+import useWebStorage from 'client/useWebStorage';
 import ZugsucheAutocomplete from 'client/Common/Components/ZugsucheAutocomplete';
 import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 
@@ -32,7 +32,7 @@ interface Props {
 const Zugsuche = ({ children }: Props) => {
   const classes = useStyles();
   const history = useHistory();
-  const storage = useStorage();
+  const storage = useWebStorage();
   const { toggleDrawer } = useContext(NavigationContext);
   const [open, setOpen] = useState(false);
   const [match, setMatch] = useState<ParsedJourneyMatchResponse | null>();

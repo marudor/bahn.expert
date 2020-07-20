@@ -1,11 +1,11 @@
 import { BrowserRouter } from 'react-router-dom';
+import { ClientStorage } from 'client/Common/Storage';
 import { HelmetProvider } from 'react-helmet-async';
 import { hydrate, render } from 'react-dom';
 import { loadableReady } from '@loadable/component';
 import { StorageContext } from 'shared/hooks/useStorage';
 import { ThemeProvider } from 'client/Common/container/ThemeContainer';
 import request from 'umi-request';
-import Storage from 'client/Common/Storage';
 import ThemeWrap from './ThemeWrap';
 import type { ComponentType } from 'react';
 // 15s timeout
@@ -13,7 +13,7 @@ request.extendOptions({
   timeout: 15000,
 });
 
-const storage = new Storage();
+const storage = new ClientStorage();
 
 const renderApp = (App: ComponentType) => (
   <HelmetProvider>

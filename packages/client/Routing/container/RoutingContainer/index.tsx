@@ -3,7 +3,7 @@ import { ReactNode, useState } from 'react';
 import RoutingConfingContainer, {
   defaultRoutingSettings,
 } from 'client/Routing/container/RoutingConfigContainer';
-import useStorage from 'shared/hooks/useStorage';
+import useWebStorage from 'client/useWebStorage';
 import type { AllowedHafasProfile } from 'types/HAFAS';
 import type { SingleRoute } from 'types/routing';
 
@@ -36,7 +36,7 @@ interface Props {
   children: ReactNode;
 }
 export const RoutingProvider = ({ children }: Props) => {
-  const storage = useStorage();
+  const storage = useWebStorage();
 
   const savedRoutingSettings = {
     ...defaultRoutingSettings,

@@ -1,11 +1,11 @@
 import { createContainer } from 'unstated-next';
 import { ReactNode, useCallback, useState } from 'react';
-import useStorage from 'shared/hooks/useStorage';
+import useWebStorage from 'client/useWebStorage';
 
 const selectedDetailCookieName = 'selectedDetail';
 
 const useSelectedDetail = (initialSelected: string | undefined) => {
-  const storage = useStorage();
+  const storage = useWebStorage();
   const [selectedDetail, realSetSelectedDetail] = useState<string | undefined>(
     initialSelected
   );
@@ -42,7 +42,7 @@ interface Props {
   children: ReactNode;
 }
 export const SelectedDetailProvider = ({ children }: Props) => {
-  const storage = useStorage();
+  const storage = useWebStorage();
   const savedSelectedDetail = storage.get(selectedDetailCookieName);
 
   return (
