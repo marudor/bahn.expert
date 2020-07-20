@@ -1,9 +1,9 @@
 import { ComponentType, ReactNode, useCallback, useState } from 'react';
 import { createContainer } from 'unstated-next';
-import useStorage from 'shared/hooks/useStorage';
+import useWebStorage from 'client/useWebStorage';
 import type { Station } from 'types/station';
 
-interface Favs {
+export interface Favs {
   [key: string]: Station;
 }
 
@@ -16,7 +16,7 @@ interface FavStorageSetup {
 function useFavStorage(setup: FavStorageSetup) {
   const [favs, setFavs] = useState<Favs>(setup.favs);
 
-  const storage = useStorage();
+  const storage = useWebStorage();
   const updateFavs = useCallback(
     (newFavs: Favs) => {
       storage.set(setup.storageKey, newFavs);
@@ -74,7 +74,7 @@ export default FavContainer;
 
 interface Props {
   children: ReactNode;
-  storageKey: string;
+  storageKey: 'favs' | 'regionalFavs';
   MostUsedComponent?: ComponentType;
 }
 
@@ -83,7 +83,7 @@ export const FavProvider = ({
   storageKey,
   MostUsedComponent,
 }: Props) => {
-  const storage = useStorage();
+  const storage = useWebStorage();
   const savedFavs = storage.get(storageKey);
 
   return (

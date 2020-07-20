@@ -1,6 +1,6 @@
 import { createContainer } from 'unstated-next';
 import { ReactNode, useCallback, useState } from 'react';
-import useStorage from 'shared/hooks/useStorage';
+import useWebStorage from 'client/useWebStorage';
 import type { AllowedHafasProfile } from 'types/HAFAS';
 import type { Station } from 'types/station';
 
@@ -11,13 +11,13 @@ export interface RoutingFav {
   via: RoutingFavStation[];
   profile: AllowedHafasProfile;
 }
-interface RoutingFavs {
+export interface RoutingFavs {
   [key: string]: RoutingFav;
 }
 
 function useRoutingFavStorage(initialFavs: RoutingFavs = {}) {
   const [favs, setFavs] = useState<RoutingFavs>(initialFavs);
-  const storage = useStorage();
+  const storage = useWebStorage();
   const updateFavs = useCallback(
     (newFavs: RoutingFavs) => {
       storage.set('rfavs', newFavs);
@@ -72,7 +72,7 @@ interface Props {
 }
 
 export const RoutingFavProvider = ({ children }: Props) => {
-  const storage = useStorage();
+  const storage = useWebStorage();
   const savedRoutingFavs = storage.get('rfavs');
 
   return (

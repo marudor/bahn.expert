@@ -3,12 +3,12 @@ import { ReactNode, useMemo, useState } from 'react';
 import { ThemeType } from 'client/Themes/type';
 import createTheme from 'client/Themes';
 import useQuery from 'client/Common/hooks/useQuery';
-import useStorage from 'shared/hooks/useStorage';
+import useWebStorage, { WebConfigMap } from 'client/useWebStorage';
 import type StorageInterface from 'shared/hooks/useStorage/StorageInterface';
 
 function setTheme(
   setFn: ((themeType: ThemeType) => void) | undefined,
-  storage: StorageInterface,
+  storage: StorageInterface<WebConfigMap>,
   themeType: ThemeType
 ) {
   if (setFn) {
@@ -19,7 +19,7 @@ function setTheme(
 
 function useTheme(initialThemeType: ThemeType = ThemeType.dark) {
   const [themeType, setThemeType] = useState(initialThemeType);
-  const storage = useStorage();
+  const storage = useWebStorage();
   const theme = useMemo(() => createTheme(themeType), [themeType]);
 
   return {
@@ -37,7 +37,7 @@ interface Props {
   children: ReactNode;
 }
 export const ThemeProvider = ({ children }: Props) => {
-  const storage = useStorage();
+  const storage = useWebStorage();
   let initialTheme;
   const query = useQuery();
 
