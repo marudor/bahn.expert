@@ -143,7 +143,8 @@
   "resolutions": {
     "iconv-lite": "^0.5.1",
     "node-fetch": "^2",
-    "ejs": "^3"
+    "ejs": "^3",
+    "lodash": "^4.17.15"
   },
   "repository": {
     "type": "git",

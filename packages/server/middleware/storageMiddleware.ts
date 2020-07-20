@@ -1,16 +1,16 @@
-import Storage from 'client/Common/Storage';
+import { ServerStorage } from 'client/Common/Storage';
 import type { Context } from 'koa';
 import type { CookieChangeOptions } from 'universal-cookie';
 
 declare module 'koa' {
   interface Request {
-    storage: Storage;
+    storage: ServerStorage;
   }
 }
 
 export default function storageMiddleware() {
   return (ctx: Context, next: () => void) => {
-    ctx.request.storage = new Storage(ctx.request.headers.cookie || '');
+    ctx.request.storage = new ServerStorage(ctx.request.headers.cookie || '');
     ctx.request.storage.addChangeListener((change: CookieChangeOptions) => {
       if (change.value === undefined) {
         // @ts-ignore

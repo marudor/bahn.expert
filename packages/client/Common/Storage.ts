@@ -1,4 +1,5 @@
 /* eslint-disable no-process-env */
+import { WebConfigMap } from 'client/useWebStorage';
 import Cookies, { CookieSetOptions } from 'universal-cookie';
 import type StorageInterface from 'shared/hooks/useStorage/StorageInterface';
 
@@ -9,8 +10,34 @@ const setCookieOptions: CookieSetOptions = {
   sameSite: 'strict',
 };
 
-export default class Storage extends Cookies implements StorageInterface {
-  set(name: string, value: any) {
+export class ServerStorage extends Cookies
+  implements StorageInterface<WebConfigMap> {
+  set<T>(name: string, value: T) {
     return super.set(name, value, setCookieOptions);
+  }
+}
+
+export class ClientStorage extends ServerStorage {
+  get<T>(name: string): T | undefined {
+    const cookieGet = super.get(name);
+    if (cookieGet) return cookieGet;
+    const storageGet = localStorage.getItem(name);
+    if (storageGet) {
+      try {
+        const value = JSON.parse(storageGet);
+        super.set(name, value);
+      } catch {
+        // ignored, fallback failed
+      }
+    }
+    return undefined;
+  }
+  set<T>(name: string, value: T) {
+    super.set(name, value);
+    localStorage.setItem(name, JSON.stringify(value));
+  }
+  remove(name: string) {
+    super.remove(name);
+    localStorage.removeItem(name);
   }
 }

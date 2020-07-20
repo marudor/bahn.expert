@@ -2,7 +2,7 @@ import { createContainer } from 'unstated-next';
 import { defaultAbfahrtenConfig } from 'client/util';
 import { ReactNode, useCallback, useState } from 'react';
 import useQuery from 'client/Common/hooks/useQuery';
-import useStorage from 'shared/hooks/useStorage';
+import useWebStorage from 'client/useWebStorage';
 import type { AbfahrtenConfig } from 'client/Common/config';
 
 export interface Filter {
@@ -14,7 +14,7 @@ const configCookieName = 'config';
 const filterCookieName = 'defaultFilter';
 
 const useFilter = (initialFilter: Filter) => {
-  const storage = useStorage();
+  const storage = useWebStorage();
   const [filterOpen, setFilterOpen] = useState(false);
   const [onlyDepartures] = useState(initialFilter.onlyDepartures);
   const [productFilter, setProductFilter] = useState(initialFilter.products);
@@ -45,7 +45,7 @@ const useFilter = (initialFilter: Filter) => {
 const useConfig = (initialConfig: AbfahrtenConfig) => {
   const [config, setConfig] = useState(initialConfig);
   const [configOpen, setConfigOpen] = useState(false);
-  const storage = useStorage();
+  const storage = useWebStorage();
 
   const setConfigKey = useCallback(
     <K extends keyof AbfahrtenConfig>(key: K, value: AbfahrtenConfig[K]) => {
@@ -102,7 +102,7 @@ export const AbfahrtenConfigProvider = ({
   fetchApiUrl,
   urlPrefix,
 }: Props) => {
-  const storage = useStorage();
+  const storage = useWebStorage();
   const query = useQuery();
   const savedFilter = storage.get(filterCookieName);
 

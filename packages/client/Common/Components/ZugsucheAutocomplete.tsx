@@ -5,8 +5,8 @@ import debounce from 'debounce-promise';
 import Downshift from 'downshift';
 import Loading, { LoadingType } from 'client/Common/Components/Loading';
 import request from 'umi-request';
-import useStorage from 'shared/hooks/useStorage';
 import useStyles from './ZugsucheAutocomplete.style';
+import useWebStorage from 'client/useWebStorage';
 import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 
 const debouncedJourneyMatch = debounce(journeyMatch, 300);
@@ -25,7 +25,7 @@ const ZugsucheAutocomplete = ({
     []
   );
   const classes = useStyles();
-  const storage = useStorage();
+  const storage = useWebStorage();
   const [loading, setLoading] = useState(0);
   const loadOptions = useCallback(
     async (value: string) => {
