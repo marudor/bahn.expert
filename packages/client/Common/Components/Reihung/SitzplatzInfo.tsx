@@ -1,5 +1,6 @@
 import { Dialog, DialogContent } from '@material-ui/core';
 import { SyntheticEvent, useCallback, useState } from 'react';
+import stopPropagation from 'client/Common/stopPropagation';
 import styled from 'styled-components/macro';
 import type { AdditionalFahrzeugInfo } from 'types/reihung';
 
@@ -35,7 +36,7 @@ const SitzplatzInfo = ({ additionalInfo, wagenordnungsnummer }: Props) => {
       <Wrap data-testid="sitzplatzinfoToggle" onClick={toggle}>
         Plätze
       </Wrap>
-      <Dialog fullWidth open={open} onClose={toggle} onClick={toggle}>
+      <Dialog fullWidth open={open} onClose={toggle} onClick={stopPropagation}>
         <DialogContent>
           <h3>Sitzplätze Wagen {wagenordnungsnummer}</h3>
           {additionalInfo.comfortSeats && (

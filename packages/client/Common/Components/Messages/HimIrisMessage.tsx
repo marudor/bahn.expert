@@ -2,6 +2,7 @@ import { cancelledCss } from 'client/util/cssUtils';
 import { Dialog, DialogContent, DialogTitle } from '@material-ui/core';
 import { format, getDate } from 'date-fns';
 import { SyntheticEvent, useCallback, useState } from 'react';
+import stopPropagation from 'client/Common/stopPropagation';
 import styled from 'styled-components/macro';
 import type { HimIrisMessage as HimIrisMessageType } from 'types/iris';
 
@@ -37,7 +38,7 @@ const HimIrisMessage = ({ message, today = new Date().getDate() }: Props) => {
   return (
     <Wrap superseded={message.superseded} onClick={toggleOpen}>
       {dateWithText}
-      <Dialog open={open} onClose={toggleOpen}>
+      <Dialog open={open} onClose={toggleOpen} onClick={stopPropagation}>
         <DialogTitle>{dateWithText}</DialogTitle>
         <DialogContent
           dangerouslySetInnerHTML={{

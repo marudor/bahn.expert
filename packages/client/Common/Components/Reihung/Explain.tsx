@@ -2,6 +2,7 @@ import { Dialog, DialogContent } from '@material-ui/core';
 import { icons } from './Fahrzeug';
 import { SyntheticEvent, useCallback, useState } from 'react';
 import SingleAuslastungsDisplay from 'client/Common/Components/SingleAuslastungsDisplay';
+import stopPropagation from 'client/Common/stopPropagation';
 import styled from 'styled-components/macro';
 
 const Legende = styled.div`
@@ -59,10 +60,6 @@ const Explain = () => {
     e.stopPropagation();
     setOpen((old) => !old);
   }, []);
-  const close = useCallback((e: SyntheticEvent) => {
-    e.stopPropagation();
-    setOpen(false);
-  }, []);
 
   return (
     <>
@@ -73,8 +70,8 @@ const Explain = () => {
         data-testid="reihungLegend"
         fullWidth
         open={open}
-        onClose={close}
-        onClick={close}
+        onClose={toggle}
+        onClick={stopPropagation}
       >
         <DialogContent>
           <h3>Legende Wagenreihung</h3>

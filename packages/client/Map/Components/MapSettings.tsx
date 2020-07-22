@@ -10,6 +10,7 @@ import {
 } from '@material-ui/core';
 import MapContainer from 'client/Map/container/MapContainer';
 import SettingsIcon from '@material-ui/icons/Settings';
+import stopPropagation from 'client/Common/stopPropagation';
 import styled from 'styled-components/macro';
 import useToggleState from 'client/Common/hooks/useToggleState';
 
@@ -76,7 +77,7 @@ const MapSettings = () => {
         data-testid="trainSettingsIcon"
         onClick={onIconClick}
       />
-      <Dialog open={open} onClose={toggleOpen}>
+      <Dialog open={open} onClose={toggleOpen} onClick={stopPropagation}>
         <DialogTitle>Settings</DialogTitle>
         <DialogContent>
           <FormSwitchLabel
