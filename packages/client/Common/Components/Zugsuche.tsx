@@ -19,18 +19,60 @@ import NavigationContext from './Navigation/NavigationContext';
 import qs from 'qs';
 import SearchIcon from '@material-ui/icons/Search';
 import stopPropagation from 'client/Common/stopPropagation';
+import styled from 'styled-components/macro';
 import TodayIcon from '@material-ui/icons/Today';
 import TrainIcon from '@material-ui/icons/Train';
-import useStyles from './Zugsuche.style';
 import useWebStorage from 'client/useWebStorage';
 import ZugsucheAutocomplete from 'client/Common/Components/ZugsucheAutocomplete';
 import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
+
+const Title = styled(DialogTitle)`
+  text-align: center;
+  padding: 16px 24px 0px 24px;
+`;
+
+const Content = styled(DialogContent)`
+  min-width: 40%;
+`;
+
+const DateInputWrapper = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  max-width: 240px;
+  margin: 0 auto;
+`;
+
+const StyledDatePicker = styled(DatePicker)`
+  margin: 20px;
+`;
+
+const Icon = styled.a`
+  position: absolute;
+  right: 20px;
+  top: 30px;
+`;
+const StyledTodayIcon = Icon.withComponent(TodayIcon);
+const StyledTrainIcon = Icon.withComponent(TrainIcon);
+
+const ZugInputWrapper = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  max-width: 240px;
+  margin: 0 auto;
+`;
+
+const SearchButton = styled(Button)`
+  height: 45px;
+  margin: 10px;
+  width: 95%;
+`;
 
 interface Props {
   children?: (toggle: (e: SyntheticEvent) => void) => ReactElement;
 }
 const Zugsuche = ({ children }: Props) => {
-  const classes = useStyles();
   const history = useHistory();
   const storage = useWebStorage();
   const { toggleDrawer } = useContext(NavigationContext);
@@ -88,41 +130,39 @@ const Zugsuche = ({ children }: Props) => {
         onClose={toggleModal}
         data-testid="Zugsuche"
       >
-        <DialogTitle className={classes.header}>Zugsuche</DialogTitle>
-        <DialogContent className={classes.main}>
+        <Title>Zugsuche</Title>
+        <Content>
           <form onSubmit={onSubmit}>
             <FormControl fullWidth component="fieldset">
-              <div className={classes.dateInputWrapper}>
-                <DatePicker
+              <DateInputWrapper>
+                <StyledDatePicker
                   showTodayButton
                   autoOk
                   label="Datum"
                   value={date}
                   onChange={setDate}
-                  className={classes.searchInput}
                 />
-                <TodayIcon className={classes.inputIcon} />
-              </div>
-              <div className={classes.zugInputWrapper}>
+                <StyledTodayIcon />
+              </DateInputWrapper>
+              <ZugInputWrapper>
                 <ZugsucheAutocomplete
                   onChange={setMatch}
                   initialDeparture={date?.getTime()}
                 />
-                <TrainIcon className={classes.inputIcon} />
-              </div>
-              <Button
+                <StyledTrainIcon />
+              </ZugInputWrapper>
+              <SearchButton
                 data-testid="ZugsucheSubmit"
                 type="submit"
                 variant="contained"
                 color="primary"
-                className={classes.searchButton}
                 startIcon={<SearchIcon />}
               >
                 Suche
-              </Button>
+              </SearchButton>
             </FormControl>
           </form>
-        </DialogContent>
+        </Content>
       </Dialog>
       {children?.(toggleModal)}
     </>

@@ -1,10 +1,49 @@
 import JnySegmentTrain from './SegmentTrainComponent/JnySegmentTrain';
 import Platform from 'client/Common/Components/Platform';
+import styled from 'styled-components/macro';
 import Time from 'client/Common/Components/Time';
-import useStyles from './RouteSegment.style';
 import WalkSegmentTrain from './SegmentTrainComponent/WalkSegmentTrain';
 import type { MouseEvent } from 'react';
 import type { Route$JourneySegment } from 'types/routing';
+
+const MainWrap = styled.div`
+  background-color: ${({ theme }) => theme.colors.shadedBackground};
+  padding: 0.4em;
+  display: grid;
+  grid-template-columns: 2fr 7fr 1fr;
+  grid-template-rows: 1fr auto 1fr;
+  grid-template-areas: 'dt dn dp' 't t t' 'at an ap';
+  margin: 1em 0;
+`;
+
+const DepartureTime = styled(Time)`
+  grid-area: dt;
+`;
+const DepartureName = styled.span`
+  grid-area: dn;
+`;
+const DeparturePlatform = styled(Platform)`
+  grid-area: dp;
+`;
+const ArrivalTime = styled(Time)`
+  grid-area: at;
+`;
+const ArrivalName = styled.span`
+  grid-area: an;
+`;
+const ArrivalPlatform = styled(Platform)`
+  grid-area: ap;
+`;
+const JnyTrain = styled(JnySegmentTrain)`
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  grid-area: t;
+  align-self: center;
+  padding-left: 0.3em;
+  overflow: hidden;
+`;
+
+const WalkTrain = JnyTrain.withComponent(WalkSegmentTrain);
 
 interface Props {
   segment: Route$JourneySegment;
@@ -12,59 +51,43 @@ interface Props {
   onTrainClick?: (e: MouseEvent) => void;
 }
 
-const RouteSegment = ({ segment, detail, onTrainClick }: Props) => {
-  const classes = useStyles();
+const RouteSegment = ({ segment, detail, onTrainClick }: Props) => (
+  <>
+    <MainWrap>
+      <DepartureTime
+        real={segment.departure.time}
+        delay={segment.departure.delay}
+      />
+      <DepartureName>{segment.segmentStart.title}</DepartureName>
 
-  return (
-    <>
-      <div className={classes.main}>
-        <Time
-          className={classes.departureTime}
-          real={segment.departure.time}
-          delay={segment.departure.delay}
-        />
-        <span className={classes.departureName}>
-          {segment.segmentStart.title}
-        </span>
-
-        <Time
-          className={classes.arrivalTime}
-          real={segment.arrival.time}
-          delay={segment.arrival.delay}
-        />
-        <span className={classes.arrivalName}>
-          {segment.segmentDestination.title}
-        </span>
-        {segment.type === 'JNY' && (
-          <>
-            <Platform
-              className={classes.departurePlatform}
-              real={segment.departure.platform}
-              scheduled={segment.departure.scheduledPlatform}
-            />
-            <Platform
-              className={classes.arrivalPlatform}
-              real={segment.arrival.platform}
-              scheduled={segment.arrival.scheduledPlatform}
-            />
-          </>
-        )}
-        {segment.type === 'JNY' ? (
-          <JnySegmentTrain
-            className={classes.train}
-            detail={detail}
-            segment={segment}
-            onTrainClick={onTrainClick}
+      <ArrivalTime real={segment.arrival.time} delay={segment.arrival.delay} />
+      <ArrivalName>{segment.segmentDestination.title}</ArrivalName>
+      {segment.type === 'JNY' && (
+        <>
+          <DeparturePlatform
+            real={segment.departure.platform}
+            scheduled={segment.departure.scheduledPlatform}
           />
-        ) : (
-          <WalkSegmentTrain className={classes.train} segment={segment} />
-        )}
-      </div>
-      {'changeDuration' in segment && (
-        <span>{segment.changeDuration} Minuten Umsteigezeit</span>
+          <ArrivalPlatform
+            real={segment.arrival.platform}
+            scheduled={segment.arrival.scheduledPlatform}
+          />
+        </>
       )}
-    </>
-  );
-};
+      {segment.type === 'JNY' ? (
+        <JnyTrain
+          detail={detail}
+          segment={segment}
+          onTrainClick={onTrainClick}
+        />
+      ) : (
+        <WalkTrain segment={segment} />
+      )}
+    </MainWrap>
+    {'changeDuration' in segment && (
+      <span>{segment.changeDuration} Minuten Umsteigezeit</span>
+    )}
+  </>
+);
 
 export default RouteSegment;

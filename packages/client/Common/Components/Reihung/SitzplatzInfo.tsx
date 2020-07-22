@@ -1,7 +1,17 @@
 import { Dialog, DialogContent } from '@material-ui/core';
 import { SyntheticEvent, useCallback, useState } from 'react';
-import useStyles from './SitzplatzInfo.style';
+import styled from 'styled-components/macro';
 import type { AdditionalFahrzeugInfo } from 'types/reihung';
+
+const Wrap = styled.span`
+  color: ${({ theme }) => theme.colors.blue};
+  cursor: pointer;
+`;
+
+const Textline = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 interface Props {
   additionalInfo: AdditionalFahrzeugInfo;
@@ -9,7 +19,6 @@ interface Props {
 }
 
 const SitzplatzInfo = ({ additionalInfo, wagenordnungsnummer }: Props) => {
-  const classes = useStyles();
   const [open, setOpen] = useState(false);
   const toggle = useCallback((e: SyntheticEvent) => {
     e.preventDefault();
@@ -23,33 +32,23 @@ const SitzplatzInfo = ({ additionalInfo, wagenordnungsnummer }: Props) => {
 
   return (
     <>
-      <span
-        data-testid="sitzplatzinfoToggle"
-        className={classes.link}
-        onClick={toggle}
-      >
+      <Wrap data-testid="sitzplatzinfoToggle" onClick={toggle}>
         Plätze
-      </span>
+      </Wrap>
       <Dialog fullWidth open={open} onClose={toggle} onClick={toggle}>
         <DialogContent>
           <h3>Sitzplätze Wagen {wagenordnungsnummer}</h3>
           {additionalInfo.comfortSeats && (
-            <div
-              data-testid="sitzplatzinfoComfort"
-              className={classes.textLine}
-            >
+            <Textline data-testid="sitzplatzinfoComfort">
               <span>Comfort:</span>
               <span>{additionalInfo.comfortSeats}</span>
-            </div>
+            </Textline>
           )}
           {additionalInfo.disabledSeats && (
-            <div
-              data-testid="sitzplatzinfoDisabled"
-              className={classes.textLine}
-            >
+            <Textline data-testid="sitzplatzinfoDisabled">
               <span>Schwerbehindert:</span>
               <span>{additionalInfo.disabledSeats}</span>
-            </div>
+            </Textline>
           )}
         </DialogContent>
       </Dialog>

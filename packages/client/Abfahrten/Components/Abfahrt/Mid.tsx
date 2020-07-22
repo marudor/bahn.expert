@@ -1,39 +1,49 @@
-import cc from 'clsx';
+import { cancelledCss, changedCss } from 'client/util/cssUtils';
 import Info from './Info';
-import useStyles from './Mid.style';
+import styled, { css } from 'styled-components/macro';
 import type { Abfahrt } from 'types/iris';
+
+const Destination = styled.div<{ cancelled?: boolean; different?: boolean }>`
+  font-size: 4em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  ${({ cancelled, different }) => [
+    cancelled && cancelledCss,
+    different && changedCss,
+  ]}
+`;
+
+const Wrap = styled.div<{ detail?: boolean }>`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-around;
+  overflow: hidden;
+  ${({ detail }) =>
+    !detail &&
+    css`
+      white-space: nowrap;
+    `}
+`;
 
 interface Props {
   abfahrt: Abfahrt;
   detail: boolean;
 }
 
-const Mid = ({ abfahrt, detail }: Props) => {
-  const classes = useStyles();
-
-  return (
-    <div
-      data-testid="abfahrtMid"
-      className={cc(
-        {
-          [classes.detail]: detail,
-        },
-        classes.main
-      )}
+const Mid = ({ abfahrt, detail }: Props) => (
+  <Wrap detail={detail} data-testid="abfahrtMid">
+    <Info abfahrt={abfahrt} detail={detail} />
+    <Destination
+      cancelled={abfahrt.cancelled}
+      different={
+        !abfahrt.cancelled &&
+        abfahrt.destination !== abfahrt.scheduledDestination
+      }
     >
-      <Info abfahrt={abfahrt} detail={detail} />
-      <div
-        className={cc(classes.destination, {
-          [classes.cancelled]: abfahrt.cancelled,
-          [classes.different]:
-            !abfahrt.cancelled &&
-            abfahrt.destination !== abfahrt.scheduledDestination,
-        })}
-      >
-        {abfahrt.cancelled ? abfahrt.scheduledDestination : abfahrt.destination}
-      </div>
-    </div>
-  );
-};
+      {abfahrt.cancelled ? abfahrt.scheduledDestination : abfahrt.destination}
+    </Destination>
+  </Wrap>
+);
 
 export default Mid;

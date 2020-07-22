@@ -1,9 +1,48 @@
 /* eslint no-nested-ternary: 0 */
+import { cancelledCss, delayCss, earlyCss } from 'client/util/cssUtils';
 import { format, subMinutes } from 'date-fns';
 import { memo } from 'react';
-import cc from 'clsx';
 import CommonConfigContainer from 'client/Common/container/CommonConfigContainer';
-import useStyles from './Time.style';
+import styled, { css } from 'styled-components/macro';
+
+const DelayOrEarlyCss = css<{ delay?: number; hasDelay: boolean }>`
+  ${({ delay, hasDelay }) =>
+    hasDelay && (delay && delay > 0 ? delayCss : earlyCss)}
+`;
+const Delay = styled.span`
+  ${DelayOrEarlyCss}
+`;
+
+const Wrap = styled.div<{
+  showOriginalTime?: boolean;
+  delay?: number;
+  hasDelay: boolean;
+  alignEnd?: boolean;
+  oneLine?: boolean;
+  cancelled?: boolean;
+}>`
+  display: flex;
+  ${({ showOriginalTime }) => !showOriginalTime && DelayOrEarlyCss};
+  ${({ alignEnd }) =>
+    alignEnd &&
+    css`
+      align-items: flex-end;
+    `};
+  ${({ oneLine }) =>
+    !oneLine &&
+    css`
+      flex-direction: column;
+    `};
+  ${({ cancelled }) => cancelled && cancelledCss};
+`;
+
+const TimeDisplay = styled.span<{ oneLine?: boolean }>`
+  ${({ oneLine }) =>
+    oneLine &&
+    css`
+      margin-right: 0.2em;
+    `}
+`;
 
 interface Props {
   alignEnd?: boolean;
@@ -32,7 +71,6 @@ const Time = ({
   oneLine,
   cancelled,
 }: Props) => {
-  const classes = useStyles();
   const showOriginalTime = !CommonConfigContainer.useContainer().config.time;
 
   if (!real) return null;
@@ -40,38 +78,25 @@ const Time = ({
 
   const hasDelay = showZero ? delay != null : Boolean(delay);
 
-  const delayStyle = !hasDelay
-    ? ''
-    : delay && delay > 0
-    ? classes.delayed
-    : classes.early;
-
   return (
-    <div
-      className={cc(className, classes.time, {
-        [delayStyle]: !showOriginalTime,
-        [classes.alignEnd]: alignEnd,
-        [classes.seperateLine]: !oneLine,
-        [classes.cancelled]: cancelled,
-      })}
+    <Wrap
+      className={className}
+      showOriginalTime={showOriginalTime}
+      alignEnd={alignEnd}
+      oneLine={oneLine}
+      cancelled={cancelled}
+      hasDelay={hasDelay}
+      delay={delay}
     >
-      <span
-        data-testid="time"
-        className={cc({
-          [classes.spacing]: oneLine,
-        })}
-      >
+      <TimeDisplay data-testid="time" oneLine={oneLine}>
         {format(time, 'HH:mm')}
-      </span>
+      </TimeDisplay>
       {hasDelay && (
-        <span
-          data-testid="delay"
-          className={cc(showOriginalTime && delayStyle)}
-        >
+        <Delay delay={delay} hasDelay={hasDelay} data-testid="delay">
           {delayString(delay as number)}
-        </span>
+        </Delay>
       )}
-    </div>
+    </Wrap>
   );
 };
 

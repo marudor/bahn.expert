@@ -2,7 +2,7 @@
 import { useMemo } from 'react';
 import BRInfo from './BRInfo';
 import Fahrzeug, { InheritedProps } from './Fahrzeug';
-import useStyles from './Gruppe.style';
+import styled from 'styled-components/macro';
 import type { Fahrzeuggruppe } from 'types/reihung';
 
 interface Props extends InheritedProps {
@@ -14,6 +14,18 @@ interface Props extends InheritedProps {
   showUIC: boolean;
 }
 
+const Bezeichnung = styled.span`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 2.5em;
+  text-align: center;
+`;
+
+const BR = styled(BRInfo)`
+  margin-right: 0.5em;
+`;
+
 const Gruppe = ({
   gruppe,
   showDestination,
@@ -22,7 +34,6 @@ const Gruppe = ({
   originalTrainNumber,
   ...rest
 }: Props) => {
-  const classes = useStyles();
   const gruppenPos = {
     left: `${(gruppe.startPercentage - rest.correctLeft) * rest.scale}%`,
     width: `${(gruppe.endPercentage - gruppe.startPercentage) * rest.scale}%`,
@@ -62,10 +73,8 @@ const Gruppe = ({
     <>
       {fahrzeuge}
       {extraInfoLine && (
-        <span className={classes.bezeichnung} style={destinationPos}>
-          {showBR && gruppe.br && (
-            <BRInfo className={classes.br} br={gruppe.br} />
-          )}
+        <Bezeichnung style={destinationPos}>
+          {showBR && gruppe.br && <BR br={gruppe.br} />}
           {showGruppenZugnummer && gruppe.verkehrlichezugnummer && (
             <span>
               {rest.type} {gruppe.verkehrlichezugnummer}
@@ -75,17 +84,13 @@ const Gruppe = ({
             <span>Ziel: {gruppe.zielbetriebsstellename}</span>
           )}
           {gruppe.name && <span>Zugname: "{gruppe.name}"</span>}
-        </span>
+        </Bezeichnung>
       )}
 
       {showFahrzeugGruppe && (
-        <span
-          data-testid="reihungFahrzeugGruppe"
-          className={classes.bezeichnung}
-          style={gruppenPos}
-        >
+        <Bezeichnung data-testid="reihungFahrzeugGruppe" style={gruppenPos}>
           {gruppe.fahrzeuggruppebezeichnung}
-        </span>
+        </Bezeichnung>
       )}
     </>
   );

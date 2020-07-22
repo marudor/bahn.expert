@@ -1,12 +1,81 @@
+import { Formation } from 'types/reihung';
 import { useEffect } from 'react';
-import cc from 'clsx';
 import CommonConfigContainer from 'client/Common/container/CommonConfigContainer';
 import Explain from './Explain';
 import Gruppe from './Gruppe';
 import Loading from 'client/Common/Components/Loading';
 import ReihungContainer from 'client/Common/container/ReihungContainer';
 import Sektor from './Sektor';
-import useStyles from './index.style';
+import styled from 'styled-components/macro';
+
+const Wrap = styled.div`
+  overflow-x: auto;
+`;
+
+const Main = styled.div<{
+  reihung: Formation;
+  fahrzeugGruppe: boolean;
+  showUIC: boolean;
+}>`
+  min-width: 70em;
+  overflow: hidden;
+  position: relative;
+  font-size: 170%;
+  margin-bottom: 1em;
+  margin-right: 0.3em;
+  height: ${({ fahrzeugGruppe, reihung, showUIC }) => {
+    let height = 8;
+    if (fahrzeugGruppe) height += 1;
+    if (showUIC) height += 1;
+    if (reihung.differentZugnummer) height += 1;
+    if (reihung.differentDestination) height += 1;
+    if (reihung.allFahrzeuggruppe.find((g) => g.br && g.br.showBRInfo))
+      height += 1;
+    if (reihung.allFahrzeuggruppe.some((g) => g.name)) {
+      height += 1;
+    }
+    return `${height}em`;
+  }};
+`;
+
+const Sektoren = styled.div`
+  position: relative;
+`;
+
+const ReihungWrap = styled.div`
+  position: relative;
+  margin-top: 1.3em;
+  height: 100%;
+`;
+
+const Plan = styled.span`
+  position: absolute;
+  bottom: 1.5em;
+`;
+
+const Richtung = styled.span<{ reihung: Formation }>`
+  background-color: ${({ theme }) => theme.palette.text.primary};
+  width: 50%;
+  height: 2px;
+  position: absolute;
+  left: 50%;
+  bottom: 0.5em;
+  z-index: 10;
+  transform: ${({ reihung }) =>
+    reihung.realFahrtrichtung
+      ? 'translateX(-50%)'
+      : 'rotate(180deg) translateX(50%)'};
+  ::after {
+    border: solid ${({ theme }) => theme.palette.text.primary};
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    content: ' ';
+    transform: rotate(135deg);
+    position: absolute;
+    top: -3px;
+  }
+`;
 
 interface Props {
   className?: string;
@@ -18,15 +87,14 @@ interface Props {
   withLegend?: boolean;
 }
 
-const Reihung = (props: Props) => {
-  const {
-    className,
-    currentStation,
-    scheduledDeparture,
-    trainNumber,
-    loadHidden,
-    fallbackTrainNumbers,
-  } = props;
+const Reihung = ({
+  className,
+  currentStation,
+  scheduledDeparture,
+  trainNumber,
+  loadHidden,
+  fallbackTrainNumbers,
+}: Props) => {
   const { reihungen, getReihung } = ReihungContainer.useContainer();
   const {
     fahrzeugGruppe,
@@ -34,11 +102,6 @@ const Reihung = (props: Props) => {
     zoomReihung,
   } = CommonConfigContainer.useContainer().config;
   const reihung = reihungen[trainNumber + currentStation + scheduledDeparture];
-  const classes = useStyles({
-    reihung,
-    fahrzeugGruppe,
-    showUIC,
-  });
 
   useEffect(() => {
     if (reihung === undefined) {
@@ -70,9 +133,9 @@ const Reihung = (props: Props) => {
   const differentZugnummer = reihung.differentZugnummer;
 
   return (
-    <div className={cc(classes.wrap, className)} data-testid="reihung">
-      <div className={classes.main}>
-        <div className={classes.sektoren}>
+    <Wrap className={className} data-testid="reihung">
+      <Main showUIC={showUIC} fahrzeugGruppe={fahrzeugGruppe} reihung={reihung}>
+        <Sektoren>
           {reihung.halt.allSektor.map((s) => (
             <Sektor
               correctLeft={correctLeft}
@@ -81,8 +144,8 @@ const Reihung = (props: Props) => {
               sektor={s}
             />
           ))}
-        </div>
-        <div className={classes.reihung}>
+        </Sektoren>
+        <ReihungWrap>
           {reihung.allFahrzeuggruppe.map((g) => (
             <Gruppe
               showGruppenZugnummer={differentZugnummer}
@@ -99,12 +162,12 @@ const Reihung = (props: Props) => {
               gruppe={g}
             />
           ))}
-        </div>
+        </ReihungWrap>
         <Explain />
-        {!reihung.isRealtime && <span className={classes.plan}>Plandaten</span>}
-        <span className={classes.richtung} />
-      </div>
-    </div>
+        {!reihung.isRealtime && <Plan>Plandaten</Plan>}
+        <Richtung reihung={reihung} />
+      </Main>
+    </Wrap>
   );
 };
 

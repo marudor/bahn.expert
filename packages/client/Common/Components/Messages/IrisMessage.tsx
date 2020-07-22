@@ -1,6 +1,6 @@
+import { cancelledCss } from 'client/util/cssUtils';
 import { format } from 'date-fns';
-import cc from 'clsx';
-import useStyles from './index.style';
+import styled from 'styled-components/macro';
 import type { IrisMessage as IrisMessageType } from 'types/iris';
 
 interface Props {
@@ -8,19 +8,18 @@ interface Props {
   today?: number;
 }
 
+const IrisMessageWrap = styled.div<{ superseded?: boolean }>`
+  ${({ superseded }) => superseded && cancelledCss}
+`;
+
 const IrisMessage = ({ message, today = new Date().getDate() }: Props) => {
-  const classes = useStyles();
   const ts = new Date(message.timestamp);
 
   return (
-    <div
-      className={cc({
-        [classes.cancelled]: message.superseded,
-      })}
-    >
+    <IrisMessageWrap superseded={message.superseded}>
       {format(ts, ts.getDate() === today ? 'HH:mm' : 'dd.MM HH:mm')}:{' '}
       {message.text}
-    </div>
+    </IrisMessageWrap>
   );
 };
 

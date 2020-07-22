@@ -4,11 +4,40 @@ import { useCallback } from 'react';
 import { useUnfav } from 'client/Abfahrten/container/FavContainer';
 import AbfahrtenConfigContainer from 'client/Abfahrten/container/AbfahrtenConfigContainer';
 import ActionDelete from '@material-ui/icons/Delete';
-import cc from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
-import useStyles from './FavEntry.style';
+import styled, { css } from 'styled-components/macro';
 import type { MouseEvent, ReactNode } from 'react';
 import type { Station } from 'types/station';
+
+const Wrap = styled(Paper)<{ clickable?: boolean }>`
+  min-height: 48px;
+  margin-bottom: 1px;
+  flex-shrink: 0;
+  padding: 0 0.5em;
+  font-size: 1.6em;
+  color: ${({ theme }) => theme.palette.text.primary};
+  display: flex;
+  align-items: center;
+  ${({ theme }) => theme.breakpoints.up('sm')} {
+    font-size: 2rem;
+  }
+  > a {
+    color: ${({ theme }) => theme.palette.text.primary};
+  }
+  ${({ clickable }) =>
+    clickable
+      ? css`
+          :hover {
+            background-color: ${({ theme }) => theme.palette.action.hover};
+          }
+          justify-content: space-between;
+        `
+      : css`
+          text-align: center;
+          font-weight: 600;
+          justify-content: cenger;
+        `}
+`;
 
 interface Props {
   fav: Station;
@@ -27,32 +56,21 @@ export const FavEntryDisplay = ({
   text,
   clickable = true,
   'data-testid': testid,
-}: FavEntryDisplayProps) => {
-  const classes = useStyles();
-
-  return (
-    <Paper
-      data-testid={testid}
-      className={cc(
-        classes.main,
-        clickable ? classes.clickable : classes.nonClickable
-      )}
-      square
-    >
-      <span>{text}</span>
-      {deleteFav && (
-        <IconButton
-          data-testid="deleteFav"
-          aria-label={`${text} entfernen`}
-          onClick={deleteFav}
-          color="inherit"
-        >
-          <ActionDelete />
-        </IconButton>
-      )}
-    </Paper>
-  );
-};
+}: FavEntryDisplayProps) => (
+  <Wrap data-testid={testid} clickable={clickable} square>
+    <span>{text}</span>
+    {deleteFav && (
+      <IconButton
+        data-testid="deleteFav"
+        aria-label={`${text} entfernen`}
+        onClick={deleteFav}
+        color="inherit"
+      >
+        <ActionDelete />
+      </IconButton>
+    )}
+  </Wrap>
+);
 
 const FavEntry = ({
   fav,

@@ -47,7 +47,7 @@ export interface Abfahrt {
    * Most likely has coach sequence
    */
   reihung: boolean;
-  route: Train[];
+  route: Stop[];
   scheduledDestination: string;
   scheduledPlatform: string;
   substitute?: boolean;
@@ -95,7 +95,7 @@ export interface SubstituteRef {
   train: string;
 }
 
-export interface Train {
+export interface Stop {
   additional?: boolean;
   cancelled?: boolean;
   showVia?: boolean;
