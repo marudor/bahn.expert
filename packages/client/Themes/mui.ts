@@ -1,5 +1,5 @@
 import { blue } from '@material-ui/core/colors';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core';
 import { ThemeType } from './type';
 import deepMerge from 'deepmerge';
 import type { MuiPickersOverrides } from '@material-ui/pickers/typings/overrides';

@@ -21,7 +21,6 @@ function useTheme(initialThemeType: ThemeType = ThemeType.dark) {
   const [themeType, setThemeType] = useState(initialThemeType);
   const storage = useWebStorage();
   const theme = useMemo(() => createTheme(themeType), [themeType]);
-
   return {
     themeType,
     setTheme: setTheme.bind(undefined, setThemeType, storage),

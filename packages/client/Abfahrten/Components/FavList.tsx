@@ -8,9 +8,15 @@ import favContainer from 'client/Abfahrten/container/FavContainer';
 import FavEntry, { FavEntryDisplay } from './FavEntry';
 import HeaderTagContainer from 'client/Common/container/HeaderTagContainer';
 import MostUsed from './MostUsed';
-import useStyles from './FavList.style';
+import styled from 'styled-components/macro';
 import Zugsuche from 'client/Common/Components/Zugsuche';
 import type { Station } from 'types/station';
+
+const Wrap = styled.main`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+`;
 
 function getErrorText(
   error: AbfahrtenError,
@@ -51,13 +57,12 @@ const FavList = ({ staticContext, children }: Props) => {
   }, [favs]);
   const { error } = AbfahrtenContainer.useContainer();
   const [savedError] = useState(error);
-  const classes = useStyles();
   const { resetTitleAndDescription } = HeaderTagContainer.useContainer();
 
   useEffect(resetTitleAndDescription, [resetTitleAndDescription]);
 
   return (
-    <main className={classes.main}>
+    <Wrap>
       {children}
       <Zugsuche />
       {/* eslint-disable-next-line no-nested-ternary */}
@@ -98,7 +103,7 @@ const FavList = ({ staticContext, children }: Props) => {
           <MostUsed />
         </>
       )}
-    </main>
+    </Wrap>
   );
 };
 

@@ -1,16 +1,21 @@
+import { createGlobalStyle } from 'styled-components/macro';
 import { Marker, Polyline, Tooltip } from 'react-leaflet';
 import { useMemo } from 'react';
 import MapContainer from 'client/Map/container/MapContainer';
-import useStyles from './ActivePolyline.style';
 // @ts-ignore
 import icon from 'leaflet/dist/images/marker-icon.png';
 // @ts-ignore
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import L from 'leaflet';
 
+const GlobalIconStyle = createGlobalStyle`
+  .mapIcon {
+    filter: hue-rotate(270deg);
+  }
+`;
+
 const ActivePolyline = () => {
   const { activePolyline, activeJourney } = MapContainer.useContainer();
-  const classes = useStyles();
   const trainIcon = useMemo(
     () =>
       L.icon({
@@ -18,15 +23,16 @@ const ActivePolyline = () => {
         shadowUrl: iconShadow,
         iconSize: [24, 36],
         iconAnchor: [12, 36],
-        className: classes.icon,
+        className: 'mapIcon',
       }),
-    [classes.icon]
+    []
   );
 
   if (!activePolyline || !activeJourney) return null;
 
   return (
     <>
+      <GlobalIconStyle />
       <Polyline color="green" positions={activePolyline.points} />
       {activePolyline.locations.map((l) => (
         <Marker

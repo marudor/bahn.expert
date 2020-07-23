@@ -382,7 +382,7 @@ const models: TsoaRoute.Models = {
     "additionalProperties": false,
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "Train": {
+  "Stop": {
     "dataType": "refObject",
     "properties": {
       "additional": { "dataType": "boolean" },
@@ -426,7 +426,7 @@ const models: TsoaRoute.Models = {
       "rawId": { "dataType": "string", "required": true },
       "ref": { "ref": "SubstituteRef" },
       "reihung": { "dataType": "boolean", "required": true },
-      "route": { "dataType": "array", "array": { "ref": "Train" }, "required": true },
+      "route": { "dataType": "array", "array": { "ref": "Stop" }, "required": true },
       "scheduledDestination": { "dataType": "string", "required": true },
       "scheduledPlatform": { "dataType": "string", "required": true },
       "substitute": { "dataType": "boolean" },

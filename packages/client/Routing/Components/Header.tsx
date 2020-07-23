@@ -1,4 +1,5 @@
 import { IconButton } from '@material-ui/core';
+import { singleLineText } from 'client/util/cssUtils';
 import { useCallback, useMemo } from 'react';
 import BaseHeader from 'client/Common/Components/BaseHeader';
 import RoutingConfigContainer from 'client/Routing/container/RoutingConfigContainer';
@@ -8,9 +9,9 @@ import RoutingFavContainer, {
   RoutingFavStation,
   useRoutingFavAction,
 } from 'client/Routing/container/RoutingFavContainer';
+import styled from 'styled-components/macro';
 import ToggleStar from '@material-ui/icons/Star';
 import ToggleStarBorder from '@material-ui/icons/StarBorder';
-import useStyles from './Header.style';
 import type { Station } from 'types/station';
 
 function stripStationToRoutingFavStation(station: Station): RoutingFavStation {
@@ -20,8 +21,27 @@ function stripStationToRoutingFavStation(station: Station): RoutingFavStation {
   };
 }
 
+const Wrapper = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: 's f' 'd f';
+  align-items: center;
+`;
+const Start = styled.span`
+  grid-area: s;
+  ${singleLineText};
+`;
+const Destination = styled.span`
+  grid-area: d;
+  ${singleLineText}
+`;
+const Fav = styled(IconButton)`
+  grid-area: f;
+`;
+
 const InnerHeader = () => {
-  const classes = useStyles();
   const {
     start,
     destination,
@@ -60,19 +80,15 @@ const InnerHeader = () => {
   }
 
   return (
-    <div className={classes.wrap}>
-      <span className={classes.start}>{start?.title}</span>
-      <span className={classes.destination}>{destination?.title}</span>
+    <Wrapper>
+      <Start>{start?.title}</Start>
+      <Destination>{destination?.title}</Destination>
       {currentFav && (
-        <IconButton
-          data-testid="routingFavButton"
-          className={classes.fav}
-          onClick={toggleFav}
-        >
+        <Fav data-testid="routingFavButton" onClick={toggleFav}>
           {isFaved ? <ToggleStar /> : <ToggleStarBorder />}
-        </IconButton>
+        </Fav>
       )}
-    </div>
+    </Wrapper>
   );
 };
 

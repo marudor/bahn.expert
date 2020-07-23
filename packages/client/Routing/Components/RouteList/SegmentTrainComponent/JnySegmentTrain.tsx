@@ -1,17 +1,21 @@
+import { Destination, TrainInfo, TrainMargin } from './common';
 import AuslastungsDisplay from 'client/Common/Components/AuslastungsDisplay';
-import cc from 'clsx';
 import DetailsLink from 'client/Common/Components/Details/DetailsLink';
 import PlannedType from 'client/Common/Components/PlannedType';
 import Reihung from 'client/Common/Components/Reihung';
 import StopList from 'client/Routing/Components/RouteList/StopList';
-import useStyles from './style';
+import styled from 'styled-components/macro';
 import type { MouseEvent } from 'react';
 import type { Route$JourneySegmentTrain } from 'types/routing';
+
+const StyledReihung = styled(Reihung)`
+  font-size: 0.5em;
+`;
 
 interface Props {
   segment: Route$JourneySegmentTrain;
   detail?: boolean;
-  className: string;
+  className?: string;
   onTrainClick?: (e: MouseEvent) => void;
 }
 const JnySegmentTrain = ({
@@ -20,36 +24,33 @@ const JnySegmentTrain = ({
   className,
   detail,
 }: Props) => {
-  const classes = useStyles();
-
   return (
     <div onClick={onTrainClick} className={className}>
-      <div className={classes.trainInfo}>
-        <span className={classes.trainMargin}>
+      <TrainInfo>
+        <TrainMargin>
           <span>
             {segment.train.name}{' '}
             {segment.plannedSequence && (
               <PlannedType plannedSequence={segment.plannedSequence} />
             )}
           </span>
-        </span>
-        <span className={cc(classes.trainMargin, classes.destination)}>
+        </TrainMargin>
+        <Destination>
           {segment.finalDestination}
           <DetailsLink
             train={segment.train}
             stationId={segment.segmentStart.id}
             initialDeparture={segment.departure.scheduledTime}
           />
-        </span>
+        </Destination>
         {segment.auslastung && (
           <AuslastungsDisplay auslastung={segment.auslastung} />
         )}
-      </div>
+      </TrainInfo>
       {detail && (
         <>
           {segment.departure.reihung && segment.train.number && (
-            <Reihung
-              className={classes.reihung}
+            <StyledReihung
               trainNumber={segment.train.number}
               currentStation={segment.segmentStart.title}
               scheduledDeparture={segment.departure.scheduledTime}

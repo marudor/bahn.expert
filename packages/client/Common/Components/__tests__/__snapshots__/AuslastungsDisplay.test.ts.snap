@@ -2,18 +2,18 @@
 
 exports[`AuslastungsDisplay Gering / Hoch 1`] = `
 <div
-  class="AuslastungsDisplay-main"
+  class="AuslastungsDisplay__Wrap-seoa9w-0 dqOxCl"
   data-testid="auslastungDisplay"
 >
   <div
-    class="AuslastungsDisplay-entry"
+    class="AuslastungsDisplay__Entry-seoa9w-1 hUlJuh"
     data-testid="first"
   >
     <span>
       1
     </span>
     <span
-      class="SingleAuslastungsDisplay-icon SingleAuslastungsDisplay-color SingleAuslastungsDisplay-color"
+      class="SingleAuslastungsDisplay__Wrap-n87yca-0 iLIJtE"
     >
       <svg
         aria-hidden="true"
@@ -28,14 +28,14 @@ exports[`AuslastungsDisplay Gering / Hoch 1`] = `
     </span>
   </div>
   <div
-    class="AuslastungsDisplay-entry"
+    class="AuslastungsDisplay__Entry-seoa9w-1 hUlJuh"
     data-testid="second"
   >
     <span>
       2
     </span>
     <span
-      class="SingleAuslastungsDisplay-icon SingleAuslastungsDisplay-color SingleAuslastungsDisplay-color"
+      class="SingleAuslastungsDisplay__Wrap-n87yca-0 dASRCK"
     >
       <svg
         aria-hidden="true"
@@ -54,18 +54,18 @@ exports[`AuslastungsDisplay Gering / Hoch 1`] = `
 
 exports[`AuslastungsDisplay SehrHoch / Ausgebucht 1`] = `
 <div
-  class="AuslastungsDisplay-main"
+  class="AuslastungsDisplay__Wrap-seoa9w-0 dqOxCl"
   data-testid="auslastungDisplay"
 >
   <div
-    class="AuslastungsDisplay-entry"
+    class="AuslastungsDisplay__Entry-seoa9w-1 hUlJuh"
     data-testid="first"
   >
     <span>
       1
     </span>
     <span
-      class="SingleAuslastungsDisplay-icon SingleAuslastungsDisplay-color SingleAuslastungsDisplay-color"
+      class="SingleAuslastungsDisplay__Wrap-n87yca-0 bcOXtV"
     >
       <svg
         aria-hidden="true"
@@ -80,14 +80,14 @@ exports[`AuslastungsDisplay SehrHoch / Ausgebucht 1`] = `
     </span>
   </div>
   <div
-    class="AuslastungsDisplay-entry"
+    class="AuslastungsDisplay__Entry-seoa9w-1 hUlJuh"
     data-testid="second"
   >
     <span>
       2
     </span>
     <span
-      class="SingleAuslastungsDisplay-icon SingleAuslastungsDisplay-color SingleAuslastungsDisplay-color"
+      class="SingleAuslastungsDisplay__Wrap-n87yca-0 iPzjCq"
     >
       <svg
         aria-hidden="true"
@@ -106,18 +106,18 @@ exports[`AuslastungsDisplay SehrHoch / Ausgebucht 1`] = `
 
 exports[`AuslastungsDisplay Unbekannt / Hoch 1`] = `
 <div
-  class="AuslastungsDisplay-main"
+  class="AuslastungsDisplay__Wrap-seoa9w-0 dqOxCl"
   data-testid="auslastungDisplay"
 >
   <div
-    class="AuslastungsDisplay-entry"
+    class="AuslastungsDisplay__Entry-seoa9w-1 hUlJuh"
     data-testid="first"
   >
     <span>
       1
     </span>
     <span
-      class="SingleAuslastungsDisplay-icon SingleAuslastungsDisplay-color SingleAuslastungsDisplay-color"
+      class="SingleAuslastungsDisplay__Wrap-n87yca-0 jqETXc"
     >
       <svg
         aria-hidden="true"
@@ -132,14 +132,14 @@ exports[`AuslastungsDisplay Unbekannt / Hoch 1`] = `
     </span>
   </div>
   <div
-    class="AuslastungsDisplay-entry"
+    class="AuslastungsDisplay__Entry-seoa9w-1 hUlJuh"
     data-testid="second"
   >
     <span>
       2
     </span>
     <span
-      class="SingleAuslastungsDisplay-icon SingleAuslastungsDisplay-color SingleAuslastungsDisplay-color"
+      class="SingleAuslastungsDisplay__Wrap-n87yca-0 dASRCK"
     >
       <svg
         aria-hidden="true"

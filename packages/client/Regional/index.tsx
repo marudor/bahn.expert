@@ -5,14 +5,13 @@ import { getHafasStationFromAPI } from 'shared/service/stationSearch';
 import { renderRoutes } from 'react-router-config';
 import AuslastungContainer from 'client/Abfahrten/container/AuslastungContainer';
 import Header from 'client/Abfahrten/Components/Header';
+import MainWrap from 'client/Common/Components/MainWrap';
 import routes from './routes';
 import SettingsModal from 'client/Abfahrten/Components/SettingsModal';
 import useQuery from 'client/Common/hooks/useQuery';
-import useStyles from 'client/Abfahrten/index.style';
 
 const BahnhofsAbfahrten = () => {
   const noHeader = useQuery().noHeader;
-  const classes = useStyles({ noHeader: Boolean(noHeader) });
 
   return (
     <AuslastungContainer.Provider>
@@ -24,11 +23,11 @@ const BahnhofsAbfahrten = () => {
         }
       >
         <FavProvider storageKey="regionalFavs">
-          <div className={classes.main}>
+          <MainWrap noHeader={Boolean(noHeader)}>
             {!noHeader && <Header profile={AllowedHafasProfile.DB} />}
             <SettingsModal />
             {renderRoutes(routes)}
-          </div>
+          </MainWrap>
         </FavProvider>
       </AbfahrtenProvider>
     </AuslastungContainer.Provider>

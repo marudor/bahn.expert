@@ -1,6 +1,6 @@
-import type { Train } from 'types/iris';
+import type { Stop } from 'types/iris';
 
-export function isHbf(stop: Train) {
+export function isHbf(stop: Stop) {
   const lowered = stop.name.toLowerCase();
 
   return (

@@ -938,7 +938,7 @@
         "type": "object",
         "additionalProperties": false
       },
-      "Train": {
+      "Stop": {
         "properties": {
           "additional": {
             "type": "boolean"
@@ -1041,7 +1041,7 @@
           },
           "route": {
             "items": {
-              "$ref": "#/components/schemas/Train"
+              "$ref": "#/components/schemas/Stop"
             },
             "type": "array"
           },

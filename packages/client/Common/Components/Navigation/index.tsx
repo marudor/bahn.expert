@@ -12,9 +12,23 @@ import ExploreIcon from '@material-ui/icons/Explore';
 import InfoIcon from '@material-ui/icons/Info';
 import NavigationContext from './NavigationContext';
 import SearchIcon from '@material-ui/icons/Search';
+import styled from 'styled-components/macro';
 import ThemeSelection from './ThemeSelection';
-import useStyles from './index.style';
 import Zugsuche from 'client/Common/Components/Zugsuche';
+
+const Headline = styled.h3`
+  text-align: center;
+`;
+
+const Drawer = styled(List)`
+  width: 230px;
+  a {
+    color: inherit;
+  }
+  .MuiListItem-button {
+    padding: 20px 20px;
+  }
+`;
 
 interface Props {
   children: ReactNode;
@@ -22,7 +36,6 @@ interface Props {
 
 const Navigation = ({ children }: Props) => {
   const [open, setOpen] = useState(false);
-  const classes = useStyles();
   const toggleDrawer = useCallback(() => {
     setOpen(!open);
   }, [open]);
@@ -36,8 +49,8 @@ const Navigation = ({ children }: Props) => {
   return (
     <NavigationContext.Provider value={navigationContext}>
       <SwipeableDrawer open={open} onClose={toggleDrawer} onOpen={toggleDrawer}>
-        <h3 className={classes.header}>BahnhofsAbfahrten</h3>
-        <List className={classes.drawer} onClick={toggleDrawer}>
+        <Headline>BahnhofsAbfahrten</Headline>
+        <Drawer onClick={toggleDrawer}>
           <Link to="/">
             <ListItem button>
               <ListItemIcon>
@@ -81,7 +94,7 @@ const Navigation = ({ children }: Props) => {
               <ListItemText primary="About" />
             </ListItem>
           </Link>
-        </List>
+        </Drawer>
       </SwipeableDrawer>
       {children}
     </NavigationContext.Provider>

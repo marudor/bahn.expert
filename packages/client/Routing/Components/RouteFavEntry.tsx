@@ -9,14 +9,44 @@ import {
   useRoutingFavAction,
 } from 'client/Routing/container/RoutingFavContainer';
 import ActionDelete from '@material-ui/icons/Delete';
-import useStyles from './RouteFavEntry.style';
+import styled from 'styled-components/macro';
 
 interface Props {
   fav: RoutingFav;
 }
 
+const Wrapper = styled(Paper)`
+  padding: 0.3em;
+  display: grid;
+  grid-template-columns: max-content 1fr max-content max-content;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: '. s f r' 'a d f r';
+  align-items: center;
+  flex: 1;
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.palette.action.hover};
+  }
+`;
+
+const Start = styled.span`
+  grid-area: s;
+`;
+const Destination = styled.span`
+  grid-area: d;
+`;
+const Arrow = styled.span`
+  grid-area: a;
+  justify-self: center;
+  margin-right: 1em;
+`;
+const Profile = styled.span`
+  grid-area: f;
+`;
+const Delete = styled(ActionDelete)`
+  grid-area: r;
+`;
 const RouteFavEntry = ({ fav }: Props) => {
-  const classes = useStyles();
   const { unfav } = useRoutingFavAction();
   const removeFav = useCallback(
     (e: SyntheticEvent) => {
@@ -37,21 +67,18 @@ const RouteFavEntry = ({ fav }: Props) => {
         },
       }}
     >
-      <Paper
-        data-testid={`RouteFavEntry-${routingFavKey(fav)}`}
-        className={classes.wrap}
-      >
-        <span className={classes.start}>{fav.start.title}</span>
-        <span className={classes.destination}>{fav.destination.title}</span>
-        <span className={classes.arrow}>{'->'}</span>
-        <span className={classes.profile}>
+      <Wrapper data-testid={`RouteFavEntry-${routingFavKey(fav)}`}>
+        <Start>{fav.start.title}</Start>
+        <Destination>{fav.destination.title}</Destination>
+        <Arrow>{'->'}</Arrow>
+        <Profile>
           {Object.keys(AllowedHafasProfile).find(
             // @ts-ignore
             (key) => AllowedHafasProfile[key] === fav.profile
           )}
-        </span>
-        <ActionDelete className={classes.delete} onClick={removeFav} />
-      </Paper>
+        </Profile>
+        <Delete onClick={removeFav} />
+      </Wrapper>
     </Link>
   );
 };

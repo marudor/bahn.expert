@@ -1,6 +1,14 @@
 import { useMemo } from 'react';
 import stopPropagation from 'client/Common/stopPropagation';
-import useStyles from './WagenLink.style';
+import styled from 'styled-components/macro';
+
+const A = styled.a`
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+`;
+const Span = A.withComponent('span');
 
 interface Props {
   fahrzeugtyp: string;
@@ -26,7 +34,6 @@ const wagenWithImage = [
   'Bvmsz',
 ];
 const WagenLink = ({ fahrzeugtyp, fahrzeugnummer, type }: Props) => {
-  const classes = useStyles();
   const imageName = useMemo(() => {
     let image = fahrzeugtyp;
 
@@ -42,19 +49,18 @@ const WagenLink = ({ fahrzeugtyp, fahrzeugnummer, type }: Props) => {
   }, [fahrzeugnummer, fahrzeugtyp]);
 
   if (type !== 'IC' || !wagenWithImage.includes(fahrzeugtyp)) {
-    return <span className={classes.type}>{fahrzeugtyp}</span>;
+    return <Span>{fahrzeugtyp}</Span>;
   }
 
   return (
-    <a
+    <A
       onClick={stopPropagation}
-      className={classes.type}
       href={`/WRSheets/Wagen/${imageName}.jpg`}
       target="_blank"
       rel="noopener noreferrer"
     >
       {fahrzeugtyp}
-    </a>
+    </A>
   );
 };
 

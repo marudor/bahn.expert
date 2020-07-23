@@ -23,10 +23,10 @@ import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import RoutingConfigContainer from 'client/Routing/container/RoutingConfigContainer';
 import SettingsPanel from './SettingsPanel';
 import StationSearch from 'client/Common/Components/StationSearch';
+import styled from 'styled-components/macro';
 import SwapVertical from '@material-ui/icons/SwapVert';
 import TodayIcon from '@material-ui/icons/Today';
 import useFetchRouting from 'client/Routing/container/RoutingContainer/useFetchRouting';
-import useStyles from './Search.styles';
 import type { RoutingFav } from 'client/Routing/container/RoutingFavContainer';
 import type { Station } from 'types/station';
 
@@ -48,8 +48,44 @@ const setStationById = async (
   }
 };
 
+const Destination = styled.div`
+  display: flex;
+`;
+const DatePickerWrap = styled.div`
+  position: relative;
+`;
+const StyledDateTimePicker = styled(DateTimePicker)`
+  & input {
+    padding-right: 10px;
+  }
+`;
+const Buttons = styled.div`
+  display: flex;
+  margin-bottom: 1em;
+  margin-top: 15px;
+  & > button:nth-child(1) {
+    flex: 2;
+  }
+  & > button:nth-child(2) {
+    flex: 1;
+  }
+  & > button {
+    margin: 0 10px;
+    height: 50px;
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 20px;
+    color: ${({ theme }) => theme.palette.text.primary};
+  }
+`;
+const PositionedTodayIcon = styled(TodayIcon)`
+  top: 50%;
+  right: 0;
+  position: absolute;
+  transform: translateY(-50%);
+`;
 const Search = () => {
-  const classes = useStyles();
   const {
     start,
     setStart,
@@ -200,7 +236,7 @@ const Search = () => {
           />
         )}
       </div>
-      <div className={classes.destination}>
+      <Destination>
         <StationSearch
           id="routingDestinationSearch"
           value={destination}
@@ -215,12 +251,11 @@ const Search = () => {
             />
           }
         />
-      </div>
-      <div className={classes.datePickerWrap}>
-        <DateTimePicker
+      </Destination>
+      <DatePickerWrap>
+        <StyledDateTimePicker
           fullWidth
           openTo="hours"
-          className={classes.datePicker}
           labelFunc={formatDate}
           ampm={false}
           value={date}
@@ -231,10 +266,10 @@ const Search = () => {
           clearLabel="Jetzt"
           minutesStep={5}
         />
-        <TodayIcon className={classes.todayIcon} />
-      </div>
+        <PositionedTodayIcon />
+      </DatePickerWrap>
       <SettingsPanel />
-      <div className={classes.buttons}>
+      <Buttons>
         <Button
           data-testid="search"
           fullWidth
@@ -254,7 +289,7 @@ const Search = () => {
           Favs
           <FavoriteBorder />
         </Button>
-      </div>
+      </Buttons>
       <Divider variant="middle" />
     </>
   );

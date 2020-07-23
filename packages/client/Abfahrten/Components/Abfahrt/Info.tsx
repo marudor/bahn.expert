@@ -1,12 +1,18 @@
 import { useMemo } from 'react';
 import AbfahrtenConfigContainer from 'client/Abfahrten/container/AbfahrtenConfigContainer';
-import cc from 'clsx';
 import DetailMessages from 'client/Common/Components/Messages/Detail';
 import DetailVia from './Via/Detail';
 import NormalMessages from 'client/Common/Components/Messages/Normal';
 import NormalVia from './Via/Normal';
-import useStyles from './Info.style';
+import styled from 'styled-components/macro';
 import type { Abfahrt } from 'types/iris';
+
+const Wrap = styled.div<{ detail: boolean }>`
+  font-size: 2.1em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: ${({ detail }) => (detail ? 'inherit' : 'nowrap')};
+`;
 
 interface Props {
   abfahrt: Abfahrt;
@@ -15,7 +21,6 @@ interface Props {
 const Info = ({ abfahrt, detail }: Props) => {
   const showSupersededMessages = AbfahrtenConfigContainer.useContainer().config
     .showSupersededMessages;
-  const classes = useStyles();
   const messages = useMemo(() => {
     const messages = abfahrt.messages.delay
       .concat(abfahrt.messages.qos)
@@ -37,12 +42,12 @@ const Info = ({ abfahrt, detail }: Props) => {
     if (!info && !via) return null;
 
     return (
-      <div className={cc(classes.main, detail && classes.detail)}>
+      <Wrap detail={detail}>
         {info}
         {via}
-      </div>
+      </Wrap>
     );
-  }, [classes, detail, info, via]);
+  }, [detail, info, via]);
 };
 
 export default Info;

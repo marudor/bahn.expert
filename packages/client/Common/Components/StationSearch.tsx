@@ -4,11 +4,47 @@ import Loading, { LoadingType } from './Loading';
 import MenuItem from '@material-ui/core/MenuItem';
 import MyLocation from '@material-ui/icons/MyLocation';
 import Paper from '@material-ui/core/Paper';
+import styled from 'styled-components/macro';
 import TextField from '@material-ui/core/TextField';
 import useStationSearch from 'shared/hooks/useStationSearch';
-import useStyles from './StationSearch.style';
 import type { AllowedHafasProfile } from 'types/HAFAS';
 import type { Station, StationSearchType } from 'types/station';
+
+const Wrap = styled.div`
+  flex: 1;
+  position: relative;
+`;
+
+const StyledPaper = styled(Paper)`
+  background: ${({ theme }) => theme.palette.background.default};
+  margin-top: ${({ theme }) => theme.spacing(1)}px;
+  left: 0;
+  right: 0;
+  z-index: 2;
+`;
+
+const StyledMenuItem = styled(MenuItem)<{ $selected?: boolean }>`
+  font-weight: ${({ $selected }) => ($selected ? 500 : 400)};
+`;
+
+const Icons = styled.div`
+  > svg {
+    font-size: 1.3em;
+    vertical-align: middle;
+  }
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+  top: 50%;
+  transform: translateY(-50%);
+`;
+
+const StyledLoading = styled(Loading)<{ additionalIcon?: boolean }>`
+  right: ${({ additionalIcon }) => (additionalIcon ? '1.7' : '.5')}em;
+  top: -1em;
+  position: absolute;
+  transform: scale(0.5);
+`;
 
 export interface Props {
   id: string;
@@ -33,7 +69,6 @@ const StationSearch = ({
   maxSuggestions = 7,
   additionalIcon,
 }: Props) => {
-  const classes = useStyles({ additionalIcon });
   const inputRef = useRef<HTMLInputElement>();
 
   const {
@@ -74,7 +109,7 @@ const StationSearch = ({
   );
 
   return (
-    <div className={classes.wrapper}>
+    <Wrap>
       <Downshift
         id={id}
         defaultHighlightedIndex={0}
@@ -142,7 +177,7 @@ const StationSearch = ({
 
               <div {...getMenuProps()}>
                 {isOpen && (
-                  <Paper className={classes.paper} square>
+                  <StyledPaper square>
                     {suggestions.length ? (
                       suggestions.map((suggestion, index) => {
                         const itemProps = getItemProps({
@@ -155,18 +190,16 @@ const StationSearch = ({
                         const highlighted = highlightedIndex === index;
 
                         return (
-                          <MenuItem
+                          <StyledMenuItem
                             data-testid="stationSearchMenuItem"
                             {...itemProps}
                             key={suggestion.id}
                             selected={highlighted}
+                            $selected={selected}
                             component="div"
-                            style={{
-                              fontWeight: selected ? 500 : 400,
-                            }}
                           >
                             {suggestion.title}
-                          </MenuItem>
+                          </StyledMenuItem>
                         );
                       })
                     ) : (
@@ -174,21 +207,24 @@ const StationSearch = ({
                         {loading ? 'Loading...' : 'No options'}
                       </MenuItem>
                     )}
-                  </Paper>
+                  </StyledPaper>
                 )}
               </div>
             </div>
           );
         }}
       </Downshift>
-      <div className={classes.icons}>
+      <Icons>
         <MyLocation onClick={getLocation} />
         {additionalIcon}
-      </div>
+      </Icons>
       {loading && (
-        <Loading className={classes.loading} type={LoadingType.dots} />
+        <StyledLoading
+          additionalIcon={Boolean(additionalIcon)}
+          type={LoadingType.dots}
+        />
       )}
-    </div>
+    </Wrap>
   );
 };
 

@@ -10,12 +10,28 @@ import ReihungContainer from 'client/Common/container/ReihungContainer';
 import SelectedDetailContainer, {
   SelectedDetailProvider,
 } from 'client/Abfahrten/container/SelectedDetailContainer';
+import styled from 'styled-components/macro';
 import useAbfahrten from 'client/Abfahrten/container/AbfahrtenContainer/useAbfahrten';
 import useRefreshCurrent from 'client/Abfahrten/container/AbfahrtenContainer/useRefreshCurrent';
-import useStyles from './AbfahrtenList.style';
+
+const Wrap = styled.main`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Lookbehind = styled.div`
+  position: relative;
+  padding-top: 10px;
+  background-color: ${({ theme }) => theme.colors.shadedBackground};
+`;
+
+const LookaheadMarker = styled.div`
+  height: 154px;
+  position: absolute;
+  bottom: 0;
+`;
 
 const AbfahrtenList = () => {
-  const classes = useStyles();
   const {
     updateCurrentStationByString,
     currentStation,
@@ -121,7 +137,7 @@ const AbfahrtenList = () => {
 
   return (
     <Loading isLoading={loading}>
-      <main className={classes.main}>
+      <Wrap>
         {error ? (
           <Redirect to={urlPrefix} />
         ) : filteredAbfahrten &&
@@ -129,22 +145,14 @@ const AbfahrtenList = () => {
             filteredAbfahrten.lookbehind.length) ? (
           <>
             {Boolean(filteredAbfahrten.lookbehind.length) && (
-              <div
-                id="lookbehind"
-                className={classes.lookbehind}
-                data-testid="lookbehind"
-              >
+              <Lookbehind id="lookbehind" data-testid="lookbehind">
                 {filteredAbfahrten.lookbehind.map((a) => (
                   <Abfahrt abfahrt={a} key={a.rawId} />
                 ))}
-                <div className={classes.lookaheadMarker} id="lookaheadMarker" />
-              </div>
+                <LookaheadMarker id="lookaheadMarker" />
+              </Lookbehind>
             )}
-            <div
-              id="lookahead"
-              className={classes.lookahead}
-              data-testid="lookahead"
-            >
+            <div id="lookahead" data-testid="lookahead">
               {filteredAbfahrten.lookahead.map((a) => (
                 <Abfahrt abfahrt={a} key={a.rawId} />
               ))}
@@ -153,7 +161,7 @@ const AbfahrtenList = () => {
         ) : (
           <div>Leider keine Abfahrten in nächster Zeit</div>
         )}
-      </main>
+      </Wrap>
     </Loading>
   );
 };
