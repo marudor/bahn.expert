@@ -1,11 +1,10 @@
 import { formatDuration } from 'client/Routing/util';
 import { SyntheticEvent, useMemo } from 'react';
-import cc from 'clsx';
 import Paper from '@material-ui/core/Paper';
 import PlannedType from 'client/Common/Components/PlannedType';
 import RouteSegments from './RouteSegments';
+import styled, { css } from 'styled-components/macro';
 import Time from 'client/Common/Components/Time';
-import useStyles from './Route.style';
 import type { SingleRoute } from 'types/routing';
 
 interface Props {
@@ -14,8 +13,35 @@ interface Props {
   onClick: (e: SyntheticEvent) => void;
 }
 
+export const gridStyle = css`
+  grid-template-columns: 2fr 2fr 2fr 1fr;
+  grid-template-rows: 60px 20px;
+  display: grid;
+  margin-bottom: 0.2em;
+  align-items: center;
+`;
+const PaperWrap = styled(Paper)`
+  min-height: 3em;
+  ${gridStyle};
+`;
+const StyledTime = styled(Time)`
+  > span {
+    margin-right: 0.2em;
+  }
+`;
+
+const DetailRouteSegments = styled(RouteSegments)`
+  text-decoration: initial;
+  overflow: hidden;
+  grid-area: 3 / 1 / 4 / 5;
+`;
+
+const Products = styled.span`
+  font-size: 0.9em;
+  grid-area: 2 / 1 / 3 / 5;
+`;
+
 const Route = ({ route, detail, onClick }: Props) => {
-  const classes = useStyles();
   const segmentTypes = useMemo(() => {
     if (route.segmentTypes.length > 1) return route.segmentTypes.join(' - ');
 
@@ -34,30 +60,17 @@ const Route = ({ route, detail, onClick }: Props) => {
   }, [route]);
 
   return (
-    <Paper
-      data-testid={`Route-${route.cid}`}
-      onClick={onClick}
-      square
-      className={cc(classes.main)}
-    >
-      <Time
-        className={classes.time}
-        real={route.departure.time}
-        delay={route.departure.delay}
-      />
-      <Time
-        className={classes.time}
-        real={route.arrival.time}
-        delay={route.arrival.delay}
-      />
+    <PaperWrap data-testid={`Route-${route.cid}`} onClick={onClick} square>
+      <StyledTime real={route.departure.time} delay={route.departure.delay} />
+      <StyledTime real={route.arrival.time} delay={route.arrival.delay} />
       <span>{formatDuration(route.duration)}</span>
       <span>{route.changes}</span>
       {detail ? (
-        <RouteSegments className={classes.detail} segments={route.segments} />
+        <DetailRouteSegments segments={route.segments} />
       ) : (
-        <span className={classes.products}>{segmentTypes}</span>
+        <Products>{segmentTypes}</Products>
       )}
-    </Paper>
+    </PaperWrap>
   );
 };
 

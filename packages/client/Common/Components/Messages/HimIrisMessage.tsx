@@ -1,8 +1,9 @@
+import { cancelledCss } from 'client/util/cssUtils';
 import { Dialog, DialogContent, DialogTitle } from '@material-ui/core';
 import { format, getDate } from 'date-fns';
 import { SyntheticEvent, useCallback, useState } from 'react';
-import cc from 'clsx';
-import useStyles from './index.style';
+import stopPropagation from 'client/Common/stopPropagation';
+import styled from 'styled-components/macro';
 import type { HimIrisMessage as HimIrisMessageType } from 'types/iris';
 
 interface Props {
@@ -10,8 +11,13 @@ interface Props {
   today?: number;
 }
 
+const Wrap = styled.div<{ superseded?: boolean }>`
+  text-decoration: underline;
+  cursor: pointer;
+  ${({ superseded }) => superseded && cancelledCss}
+`;
+
 const HimIrisMessage = ({ message, today = new Date().getDate() }: Props) => {
-  const classes = useStyles();
   const [open, setOpen] = useState(false);
   const toggleOpen = useCallback((e: SyntheticEvent) => {
     e.preventDefault();
@@ -30,14 +36,9 @@ const HimIrisMessage = ({ message, today = new Date().getDate() }: Props) => {
     : message.head;
 
   return (
-    <div
-      className={cc(classes.him, {
-        [classes.cancelled]: message.superseded,
-      })}
-      onClick={toggleOpen}
-    >
+    <Wrap superseded={message.superseded} onClick={toggleOpen}>
       {dateWithText}
-      <Dialog open={open} onClose={toggleOpen}>
+      <Dialog open={open} onClose={toggleOpen} onClick={stopPropagation}>
         <DialogTitle>{dateWithText}</DialogTitle>
         <DialogContent
           dangerouslySetInnerHTML={{
@@ -45,7 +46,7 @@ const HimIrisMessage = ({ message, today = new Date().getDate() }: Props) => {
           }}
         />
       </Dialog>
-    </div>
+    </Wrap>
   );
 };
 

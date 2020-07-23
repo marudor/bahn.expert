@@ -1,10 +1,11 @@
 import {
   createGenerateClassName,
+  ThemeProvider as MUIThemeProvider,
   StylesProvider,
-  ThemeProvider,
-} from '@material-ui/styles';
+} from '@material-ui/core';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { ReactNode, useMemo } from 'react';
+import { ThemeProvider } from 'styled-components/macro';
 import App from './App';
 import DateFnsUtils from '@date-io/date-fns';
 import deLocale from 'date-fns/locale/de';
@@ -33,14 +34,17 @@ const ThemeWrap = ({
 
   return (
     <StylesProvider
+      injectFirst
       sheetsRegistry={sheetsRegistry}
       generateClassName={classNameGenerator}
     >
       <MuiPickersUtilsProvider utils={DateFnsUtils} locale={deLocale}>
-        <ThemeProvider theme={theme}>
-          <ThemeHeaderTags />
-          {children}
-        </ThemeProvider>
+        <MUIThemeProvider theme={theme}>
+          <ThemeProvider theme={theme}>
+            <ThemeHeaderTags />
+            {children}
+          </ThemeProvider>
+        </MUIThemeProvider>
       </MuiPickersUtilsProvider>
     </StylesProvider>
   );

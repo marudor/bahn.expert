@@ -4,6 +4,7 @@ import HeaderTagContainer from 'client/Common/container/HeaderTagContainer';
 import RouteList from './RouteList';
 import RoutingConfigContainer from 'client/Routing/container/RoutingConfigContainer';
 import Search from './Search';
+import styled from 'styled-components/macro';
 
 const RouteHeaderTags = () => {
   const {
@@ -41,13 +42,18 @@ const RouteHeaderTags = () => {
   return null;
 };
 
+const Main = styled.main`
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+`;
+
 const Routing = () => {
   return (
-    <main style={{ marginLeft: '.5em', marginRight: '.5em' }}>
+    <Main>
       <RouteHeaderTags />
       <Search />
       <RouteList />
-    </main>
+    </Main>
   );
 };
 

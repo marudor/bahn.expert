@@ -5,7 +5,7 @@ import type { Theme as MaruTheme } from 'maru';
 import type { Theme as MuiTheme } from '@material-ui/core';
 import type { ThemeType } from './type';
 
-declare module '@material-ui/styles/defaultTheme' {
+declare module 'styled-components' {
   interface DefaultTheme extends MaruTheme, MuiTheme {}
 }
 

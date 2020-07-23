@@ -8,8 +8,12 @@ import {
 } from '@material-ui/core';
 import { useCallback } from 'react';
 import AbfahrtenConfigContainer from 'client/Abfahrten/container/AbfahrtenConfigContainer';
+import styled from 'styled-components/macro';
 import useAllTrainTypes from 'client/Abfahrten/container/AbfahrtenContainer/useAllTrainTypes';
-import useStyles from './FilterModal.style';
+
+const Label = styled(FormControlLabel)`
+  width: calc(50% - 1em);
+`;
 
 const FilterModal = () => {
   const {
@@ -20,7 +24,6 @@ const FilterModal = () => {
     setFilterOpen,
   } = AbfahrtenConfigContainer.useContainer();
   const types = useAllTrainTypes();
-  const classes = useStyles();
   const toggleFilter = useCallback(
     (product: string) => () => {
       toggleProduct(product);
@@ -42,8 +45,7 @@ const FilterModal = () => {
       <DialogContent>
         <h4>Train Types</h4>
         {types.map((t) => (
-          <FormControlLabel
-            className={classes.label}
+          <Label
             data-testid={`filter${t}`}
             key={t}
             control={

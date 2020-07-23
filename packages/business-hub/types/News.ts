@@ -26,6 +26,9 @@ export interface OptionalData {
   link: string;
 }
 
+/**
+ * @tsoaModel
+ */
 export interface Group {
   id: number;
   title: string;

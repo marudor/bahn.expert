@@ -12,12 +12,15 @@ import { ThemeType } from 'client/Themes/type';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import PaletteIcon from '@material-ui/icons/Palette';
+import styled from 'styled-components/macro';
 import ThemeContainer from 'client/Common/container/ThemeContainer';
-import useStyles from './ThemeSelection.style';
+
+const ThemeList = styled(List)`
+  padding-left: ${({ theme }) => theme.spacing(1)}px;
+`;
 
 const ThemeSelection = () => {
   const { themeType, setTheme } = ThemeContainer.useContainer();
-  const classes = useStyles();
   const [open, setOpen] = useState(false);
   const selectTheme = useCallback(
     (e: SyntheticEvent<HTMLElement>) => {
@@ -49,7 +52,7 @@ const ThemeSelection = () => {
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
-        <List disablePadding className={classes.nested} data-testid="themeList">
+        <ThemeList disablePadding data-testid="themeList">
           {Object.values(ThemeType).map((themeOption) => {
             const name = themeOption[0].toUpperCase() + themeOption.slice(1);
 
@@ -70,7 +73,7 @@ const ThemeSelection = () => {
               </ListItem>
             );
           })}
-        </List>
+        </ThemeList>
       </Collapse>
     </>
   );
