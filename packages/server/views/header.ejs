@@ -32,20 +32,11 @@
   <% if (linkTags) {%>
     <%- linkTags %>
   <%}%>
-  <% if (jssCss) {%>
-    <style id="jss"><%- jssCss %></style>
-  <%}%>
-<% if (cssTags) {%>
-    <%- cssTags %>
-  <%}%>
-</head>
-<body>
-
-<style>
+  <style>
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
-  font-display: swap;
+  font-display: fallback;
   font-weight: 400;
   src: local('Roboto'), local('Roboto-Regular'),
     url(/roboto.woff2) format('woff2');
@@ -56,7 +47,7 @@
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
-  font-display: swap;
+  font-display: fallback;
   font-weight: 700;
   src: local('Roboto Bold'), local('Roboto-Bold'),
     url(/roboto-bold.woff2) format('woff2');
@@ -64,6 +55,14 @@
     U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 </style>
+  <% if (jssCss) {%>
+    <style id="jss"><%- jssCss %></style>
+  <%}%>
+<% if (cssTags) {%>
+    <%- cssTags %>
+  <%}%>
+</head>
+<body>
   <script>
     window.BASE_URL="<%- baseUrl %>"
     window.IMPRINT=<%- imprint %>

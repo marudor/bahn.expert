@@ -9,7 +9,7 @@ import styled, { css } from 'styled-components/macro';
 import type { MouseEvent, ReactNode } from 'react';
 import type { Station } from 'types/station';
 
-const Wrap = styled(Paper)<{ clickable?: boolean }>`
+const Wrap = styled(Paper)<{ $clickable?: boolean }>`
   min-height: 48px;
   margin-bottom: 1px;
   flex-shrink: 0;
@@ -24,8 +24,8 @@ const Wrap = styled(Paper)<{ clickable?: boolean }>`
   > a {
     color: ${({ theme }) => theme.palette.text.primary};
   }
-  ${({ clickable }) =>
-    clickable
+  ${({ $clickable }) =>
+    $clickable
       ? css`
           :hover {
             background-color: ${({ theme }) => theme.palette.action.hover};
@@ -33,9 +33,8 @@ const Wrap = styled(Paper)<{ clickable?: boolean }>`
           justify-content: space-between;
         `
       : css`
-          text-align: center;
           font-weight: 600;
-          justify-content: cenger;
+          justify-content: center;
         `}
 `;
 
@@ -57,7 +56,7 @@ export const FavEntryDisplay = ({
   clickable = true,
   'data-testid': testid,
 }: FavEntryDisplayProps) => (
-  <Wrap data-testid={testid} clickable={clickable} square>
+  <Wrap data-testid={testid} $clickable={clickable} square>
     <span>{text}</span>
     {deleteFav && (
       <IconButton
