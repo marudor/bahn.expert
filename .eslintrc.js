@@ -8,6 +8,18 @@ module.exports = {
     react: { version: 'detect' },
   },
   rules: {
+    'no-restricted-imports': [
+      'error',
+      {
+        paths: [
+          {
+            name: 'styled-components',
+            message: 'Please import from styled-components/macro.',
+          },
+        ],
+        patterns: ['!styled-components/macro'],
+      },
+    ],
     'prettier/prettier': 0,
     'react/react-in-jsx-scope': 0,
     'require-await': 0,

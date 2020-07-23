@@ -9,8 +9,8 @@ import L from 'leaflet';
 import MapContainer from 'client/Map/container/MapContainer';
 import MapSettings from 'client/Map/Components/MapSettings';
 import Positions from 'client/Map/Components/Positions';
+import styled from 'styled-components/macro';
 import useQuery from 'client/Common/hooks/useQuery';
-import useStyles from './TrainMap.style';
 
 const DefaultIcon = L.icon({
   iconUrl: icon,
@@ -28,15 +28,17 @@ const defaultViewport: Viewport = {
 const attribution =
   '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>, Style: <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA 2.0</a> <a href="http://www.openrailwaymap.org/">OpenRailwayMap</a> and OpenStreetMap';
 
+const FlexMap = styled<any>(Map)`
+  flex: 1;
+`;
+
 const TrainMap = () => {
-  const classes = useStyles();
   const query = useQuery();
   const { setActiveJourney } = MapContainer.useContainer();
 
   return (
-    <Map
+    <FlexMap
       onClick={() => setActiveJourney(undefined)}
-      className={classes.map}
       viewport={defaultViewport}
     >
       {!query.noTiles && (
@@ -51,7 +53,7 @@ const TrainMap = () => {
       <Positions />
       <MapSettings />
       <ActivePolyline />
-    </Map>
+    </FlexMap>
   );
 };
 

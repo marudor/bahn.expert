@@ -17,12 +17,36 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import RoutingConfigContainer, {
   RoutingSettings,
 } from 'client/Routing/container/RoutingConfigContainer';
+import styled from 'styled-components/macro';
 import TimelapseIcon from '@material-ui/icons/Timelapse';
 import TrainIcon from '@material-ui/icons/Train';
-import useStyles from './SettingsPanel.style';
+
+const StyledAccordion = styled(Accordion)`
+  margin: 0 !important;
+  box-shadow: none;
+`;
+const Summary = styled(AccordionSummary)`
+  > div:first-child {
+    margin: 22px 0 !important;
+    display: flex;
+    justify-content: space-around;
+  }
+`;
+const Details = styled(AccordionDetails)`
+  flex-direction: column;
+`;
+const Label = styled(FormControlLabel)`
+  margin-left: 0;
+  & * + span {
+    flex: 1;
+  }
+`;
+const TextInput = styled(TextField)`
+  width: 3.2em;
+`;
+const SwitchInput = TextInput.withComponent(Switch);
 
 const SettingsPanel = () => {
-  const classes = useStyles();
   const { settings, updateSetting } = RoutingConfigContainer.useContainer();
   const handleInputChange = useCallback(
     (key: keyof RoutingSettings) => (e: ChangeEvent<any>) =>
@@ -47,16 +71,13 @@ const SettingsPanel = () => {
   );
 
   return (
-    <Accordion className={classes.expanded}>
-      <AccordionSummary
+    <StyledAccordion>
+      <Summary
         data-testid="routingSettingsPanel"
-        classes={{ content: classes.summaryContent }}
-        className={classes.summary}
         expandIcon={<ExpandMoreIcon />}
       >
         <Badge
           badgeContent={maxChangesBadeContent}
-          className={classes.badge}
           color="secondary"
           data-testid="routingSettingsPanel-maxChange"
         >
@@ -64,7 +85,6 @@ const SettingsPanel = () => {
         </Badge>
         <Badge
           badgeContent={`${settings.transferTime}m`}
-          className={classes.badge}
           color="secondary"
           data-testid="routingSettingsPanel-transferTime"
         >
@@ -73,22 +93,19 @@ const SettingsPanel = () => {
         <Chip
           size="small"
           color="primary"
-          className={classes.chip}
           label={settings.onlyRegional ? 'Nahverkehr' : 'Alle Zuege'}
           icon={<TrainIcon />}
         />
-      </AccordionSummary>
-      <AccordionDetails className={classes.details}>
-        <FormControlLabel
-          className={classes.label}
+      </Summary>
+      <Details>
+        <Label
           labelPlacement="start"
           control={
-            <TextField
+            <TextInput
               inputProps={{
                 'data-testid': 'routingMaxChanges',
               }}
               onChange={handleInputChange('maxChanges')}
-              className={classes.input}
               value={settings.maxChanges}
               type="number"
               name="maxChanges"
@@ -96,14 +113,12 @@ const SettingsPanel = () => {
           }
           label="Max Umstiege"
         />
-        <FormControlLabel
-          className={classes.label}
+        <Label
           labelPlacement="start"
           control={
-            <TextField
+            <TextInput
               inputProps={{ step: 5, 'data-testid': 'routingTransferTime' }}
               onChange={handleInputChange('transferTime')}
-              className={classes.input}
               value={settings.transferTime}
               type="number"
               name="transferTime"
@@ -111,8 +126,7 @@ const SettingsPanel = () => {
           }
           label="Min Umstiegszeit"
         />
-        <FormControlLabel
-          className={classes.label}
+        <Label
           labelPlacement="start"
           control={
             <NativeSelect
@@ -135,21 +149,19 @@ const SettingsPanel = () => {
           }
           label="HAFAS Provider"
         />
-        <FormControlLabel
-          className={classes.label}
+        <Label
           labelPlacement="start"
           control={
-            <Switch
+            <SwitchInput
               onChange={handleSwitchChange('onlyRegional')}
-              className={classes.input}
               checked={settings.onlyRegional}
               name="onlyRegional"
             />
           }
           label="Nur Regionalzüge"
         />
-      </AccordionDetails>
-    </Accordion>
+      </Details>
+    </StyledAccordion>
   );
 };
 

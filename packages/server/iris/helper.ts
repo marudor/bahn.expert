@@ -2,7 +2,7 @@ import { extend } from 'umi-request';
 import { parse } from 'date-fns';
 import { zonedTimeToUtc } from 'date-fns-tz';
 import type { Element } from 'libxmljs2';
-import type { Train } from 'types/iris';
+import type { Stop } from 'types/iris';
 
 export const noncdRequest = extend({
   prefix: 'https://iris.noncd.db.de/iris-tts/timetable',
@@ -58,7 +58,7 @@ export function parseTs(ts?: string): undefined | number {
 }
 
 export function calculateVia(route: any, maxParts: number = 3) {
-  const via: Train[] = [...route].filter((v) => !v.cancelled);
+  const via: Stop[] = [...route].filter((v) => !v.cancelled);
 
   via.pop();
   const important = via.filter((v) =>

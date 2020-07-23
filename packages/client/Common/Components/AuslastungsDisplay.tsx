@@ -1,27 +1,38 @@
 import * as React from 'react';
 import SingleAuslastungsDisplay from 'client/Common/Components/SingleAuslastungsDisplay';
-import useStyles from './AuslastungsDisplay.style';
+import styled from 'styled-components/macro';
 import type { Route$Auslastung } from 'types/routing';
+
+const Wrap = styled.div`
+  display: flex;
+  margin-bottom: 0.3em;
+`;
+
+const Entry = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-right: 0.5em;
+  align-items: center;
+`;
 
 export interface Props {
   auslastung: Route$Auslastung;
 }
 
 const AuslastungsDisplay = (props: Props) => {
-  const classes = useStyles(props);
   const { auslastung } = props;
 
   return (
-    <div data-testid="auslastungDisplay" className={classes.main}>
-      <div data-testid="first" className={classes.entry}>
+    <Wrap data-testid="auslastungDisplay">
+      <Entry data-testid="first">
         <span>1</span>
         <SingleAuslastungsDisplay auslastung={auslastung.first} />
-      </div>
-      <div data-testid="second" className={classes.entry}>
+      </Entry>
+      <Entry data-testid="second">
         <span>2</span>
         <SingleAuslastungsDisplay auslastung={auslastung.second} />
-      </div>
-    </div>
+      </Entry>
+    </Wrap>
   );
 };
 

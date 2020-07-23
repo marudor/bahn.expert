@@ -1,4 +1,4 @@
-import useStyles from './Sektor.style';
+import styled, { css } from 'styled-components/macro';
 import type { Sektor } from 'types/reihung';
 
 interface Props {
@@ -7,23 +7,24 @@ interface Props {
   correctLeft: number;
 }
 
-const SektorComp = ({ sektor, scale, correctLeft }: Props) => {
-  const classes = useStyles();
-  const { startprozent, endeprozent } = sektor.positionamgleis;
+const Wrap = styled.div<Props>`
+  position: absolute;
+  font-weight: bolder;
+  text-align: center;
+  ${({ sektor, correctLeft, scale }) => {
+    const { startprozent, endeprozent } = sektor.positionamgleis;
+    const start = Number.parseInt(startprozent, 10);
+    const end = Number.parseInt(endeprozent, 10);
 
-  const start = Number.parseInt(startprozent, 10);
-  const end = Number.parseInt(endeprozent, 10);
+    return css`
+      left: ${(start - correctLeft) * scale}%;
+      width: ${(end - start) * scale}%;
+    `;
+  }}
+`;
 
-  const pos = {
-    left: `${(start - correctLeft) * scale}%`,
-    width: `${(end - start) * scale}%`,
-  };
-
-  return (
-    <div className={classes.main} style={pos}>
-      {sektor.sektorbezeichnung}
-    </div>
-  );
+const SektorComp = (props: Props) => {
+  return <Wrap {...props}>{props.sektor.sektorbezeichnung}</Wrap>;
 };
 
 export default SektorComp;

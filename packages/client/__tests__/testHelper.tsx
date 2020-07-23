@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import { defaultCommonConfig } from 'client/util';
+import { DefaultTheme } from 'styled-components/macro';
 import { HelmetProvider } from 'react-helmet-async';
 import { MemoryRouter, useLocation } from 'react-router';
 import { render as realRender } from '@testing-library/react';
@@ -14,7 +15,6 @@ import ThemeWrap from 'client/ThemeWrap';
 import type { CommonConfig } from 'client/Common/config';
 import type { ComponentProps, ComponentType } from 'react';
 import type { Container } from 'unstated-next';
-import type { DefaultTheme } from '@material-ui/styles';
 import type { Location } from 'history';
 import type { Rule, StyleSheet } from 'jss';
 

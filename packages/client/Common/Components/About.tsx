@@ -3,7 +3,7 @@ import BaseHeader from 'client/Common/Components/BaseHeader';
 import BugReport from '@material-ui/icons/BugReport';
 import Extension from '@material-ui/icons/Extension';
 import Message from '@material-ui/icons/Message';
-import useStyles from './About.style';
+import styled, { css } from 'styled-components/macro';
 
 const Privacy = () => (
   <div data-testid="Privacy">
@@ -235,80 +235,104 @@ const Privacy = () => (
   </div>
 );
 
-const About = () => {
-  const classes = useStyles();
+const Wrap = styled.div`
+  margin-left: 0 10px;
+  display: flex;
+  flex-direction: column;
+  margin-top: ${({ theme }) => theme.shape.headerSpacing}px;
+`;
 
-  return (
-    <>
-      <BaseHeader>About (Version {global.VERSION})</BaseHeader>
-      <div className={classes.main}>
-        <span>
-          Entwickelt von{' '}
-          <a
-            href="https://twitter.com/marudor"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            @marudor
-          </a>{' '}
-          /{' '}
-          <a
-            href="https://chaos.social/@marudor"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            @marudor@chaos.social
-          </a>
-        </span>
-        <div className={classes.donation}>
-          Falls euch der Service gefällt, könnt ihr mir mit folgendem Button per
-          PayPal Geld spenden. Falls ihr anderweitig spenden wollt, schreibt mir
-          &apos;ne Mail an
-          <a href="mailto:spende@marudor.de"> spende@marudor.de</a>
-        </div>
-        <div className={classes.buttons}>
-          <a
-            href="https://paypal.me/marudor"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button variant="outlined">Paypal Spende</Button>
-          </a>
-          <a
-            href="https://twitter.com/marudor"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button variant="outlined">
-              <Message />
-              Kontakt
-            </Button>
-          </a>
-          <a
-            href="https://github.com/marudor/BahnhofsAbfahrten/issues/new?assignees=&labels=bug&template=bug_report.md&title="
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button variant="outlined">
-              <BugReport />
-              Bugs?
-            </Button>
-          </a>
-          <a
-            href="https://github.com/marudor/BahnhofsAbfahrten/issues/new?assignees=&labels=feature&template=feature_request.md&title="
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button variant="outlined">
-              <Extension />
-              Features?
-            </Button>
-          </a>
-        </div>
-        <Privacy />
-      </div>
-    </>
-  );
-};
+const Dontation = styled.div`
+  margin-top: 1em;
+`;
+
+const Buttons = styled.div`
+  svg {
+    margin-right: 5px;
+  }
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1em;
+  ${({ theme }) => css`
+    ${theme.breakpoints.down('md')} {
+      display: grid;
+      flex-direction: column;
+      align-items: center;
+      height: 10em;
+    }
+  `}
+`;
+
+const About = () => (
+  <>
+    <BaseHeader>About (Version {global.VERSION})</BaseHeader>
+    <Wrap>
+      <span>
+        Entwickelt von{' '}
+        <a
+          href="https://twitter.com/marudor"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          @marudor
+        </a>{' '}
+        /{' '}
+        <a
+          href="https://chaos.social/@marudor"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          @marudor@chaos.social
+        </a>
+      </span>
+      <Dontation>
+        Falls euch der Service gefällt, könnt ihr mir mit folgendem Button per
+        PayPal Geld spenden. Falls ihr anderweitig spenden wollt, schreibt mir
+        &apos;ne Mail an
+        <a href="mailto:spende@marudor.de"> spende@marudor.de</a>
+      </Dontation>
+      <Buttons>
+        <a
+          href="https://paypal.me/marudor"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button variant="outlined">Paypal Spende</Button>
+        </a>
+        <a
+          href="https://twitter.com/marudor"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button variant="outlined">
+            <Message />
+            Kontakt
+          </Button>
+        </a>
+        <a
+          href="https://github.com/marudor/BahnhofsAbfahrten/issues/new?assignees=&labels=bug&template=bug_report.md&title="
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button variant="outlined">
+            <BugReport />
+            Bugs?
+          </Button>
+        </a>
+        <a
+          href="https://github.com/marudor/BahnhofsAbfahrten/issues/new?assignees=&labels=feature&template=feature_request.md&title="
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button variant="outlined">
+            <Extension />
+            Features?
+          </Button>
+        </a>
+      </Buttons>
+      <Privacy />
+    </Wrap>
+  </>
+);
 
 export default About;

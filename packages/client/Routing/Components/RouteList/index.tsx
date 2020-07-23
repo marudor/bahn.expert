@@ -5,8 +5,8 @@ import Route from './Route';
 import RouteFavList from 'client/Routing/Components/RouteFavList';
 import RouteHeader from './RouteHeader';
 import RoutingContainer from 'client/Routing/container/RoutingContainer';
+import styled from 'styled-components/macro';
 import useFetchRouting from 'client/Routing/container/RoutingContainer/useFetchRouting';
-import useStyles from './index.style';
 
 const translateError = (e: any) => {
   if (e && e.response && e.response.data) {
@@ -21,8 +21,22 @@ const translateError = (e: any) => {
   return String(e);
 };
 
+const StyledButton = styled(Button)`
+  height: 45px;
+  margin: 10px;
+  flex: 1;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  > div {
+    padding-left: 0.1em;
+    padding-right: 0.5em;
+  }
+`;
+
 const RouteList = () => {
-  const classes = useStyles();
   const {
     routes,
     error,
@@ -45,26 +59,25 @@ const RouteList = () => {
   }, [fetchContext]);
 
   if (error) {
-    return <div className={classes.main}>{translateError(error)}</div>;
+    return <Wrapper>{translateError(error)}</Wrapper>;
   }
 
   if (!routes) return <Loading relative />;
   if (!routes.length) return <RouteFavList />;
 
   return (
-    <div className={classes.main}>
+    <Wrapper>
       {earlierContext &&
         (loadingEarlier ? (
           <Loading data-testid="fetchCtxEarlyLoading" type={1} />
         ) : (
-          <Button
+          <StyledButton
             data-testid="fetchCtxEarly"
             variant="outlined"
             onClick={searchBefore}
-            className={classes.button}
           >
             Früher
-          </Button>
+          </StyledButton>
         ))}
       {routes
         .filter((r) => r.isRideable)
@@ -75,6 +88,7 @@ const RouteList = () => {
                 <RouteHeader date={r.date} />
               )}
               <Route
+                key={r.checksum}
                 detail={detail === r.checksum}
                 onClick={() =>
                   setDetail(detail === r.checksum ? undefined : r.checksum)
@@ -88,16 +102,15 @@ const RouteList = () => {
         (loadingLater ? (
           <Loading data-testid="fetchCtxLateLoading" type={1} />
         ) : (
-          <Button
+          <StyledButton
             data-testid="fetchCtxLate"
             variant="outlined"
             onClick={searchLater}
-            className={classes.button}
           >
             Später
-          </Button>
+          </StyledButton>
         ))}
-    </div>
+    </Wrapper>
   );
 };
 

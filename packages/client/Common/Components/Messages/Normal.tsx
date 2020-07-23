@@ -1,18 +1,23 @@
 import { useMemo } from 'react';
-import useStyles from './index.style';
+import styled from 'styled-components/macro';
 import type { Message } from 'types/iris';
+
+export const MessagesWrap = styled.div`
+  color: ${({ theme }) => theme.colors.red};
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
 
 interface Props {
   messages: Message[];
 }
 const NormalMessages = ({ messages }: Props) => {
-  const classes = useStyles();
   const messagesDisplay = useMemo(
     () => messages.map((m) => ('head' in m ? m.head : m.text)).join(' +++ '),
     [messages]
   );
 
-  return <div className={classes.messages}>{messagesDisplay}</div>;
+  return <MessagesWrap>{messagesDisplay}</MessagesWrap>;
 };
 
 export default NormalMessages;

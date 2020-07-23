@@ -20,7 +20,12 @@
     "resolveJsonModule": true,
     "types": ["jest", "@testing-library/jest-dom"],
     "keyofStringsOnly": true,
-    "baseUrl": "./packages/"
+    "baseUrl": "./packages/",
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin"
+      }
+    ]
   },
   "include": ["@types", "./packages"]
 }

@@ -1,5 +1,5 @@
-import cc from 'clsx';
-import useStyles from './Platform.style';
+import { cancelledCss, changedCss } from 'client/util/cssUtils';
+import styled from 'styled-components/macro';
 
 interface Props {
   className?: string;
@@ -8,27 +8,28 @@ interface Props {
   real?: string;
 }
 
+const Wrap = styled.div<{ cancelled?: boolean; changed?: boolean }>`
+  ${({ cancelled, changed }) => [
+    cancelled && cancelledCss,
+    changed && changedCss,
+  ]}
+`;
+
+const ChangedWrapper = styled.span`
+  padding-left: 0.3em;
+  ${cancelledCss}
+`;
+
 const Platform = ({ className, cancelled, scheduled, real }: Props) => {
-  const classes = useStyles();
-  const changed = scheduled && scheduled !== real;
+  const changed = Boolean(scheduled && scheduled !== real);
 
   return (
-    <div
-      className={cc(className, {
-        [classes.cancelled]: cancelled,
-        [classes.changed]: changed,
-      })}
-    >
+    <Wrap changed={changed} cancelled={cancelled} className={className}>
       <span data-testid="real">{real}</span>
       {changed && (
-        <span
-          data-testid="scheduled"
-          className={cc(classes.changedWrapper, classes.cancelled)}
-        >
-          ({scheduled})
-        </span>
+        <ChangedWrapper data-testid="scheduled">({scheduled})</ChangedWrapper>
       )}
-    </div>
+    </Wrap>
   );
 };
 

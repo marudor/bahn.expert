@@ -5,12 +5,23 @@ import debounce from 'debounce-promise';
 import Downshift from 'downshift';
 import Loading, { LoadingType } from 'client/Common/Components/Loading';
 import request from 'umi-request';
-import useStyles from './ZugsucheAutocomplete.style';
+import styled from 'styled-components/macro';
 import useWebStorage from 'client/useWebStorage';
 import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 
 const debouncedJourneyMatch = debounce(journeyMatch, 300);
 
+const StyledLoading = styled(Loading)`
+  position: absolute;
+  top: -0.8em;
+  right: 1.1.em;
+  transform: scale(0.5);
+`;
+
+const Wrap = styled.div`
+  position: relative;
+  margin: 20px;
+`;
 interface Props {
   initialDeparture?: number;
   onChange: (match: ParsedJourneyMatchResponse | null) => any;
@@ -24,7 +35,6 @@ const ZugsucheAutocomplete = ({
   const [suggestions, setSuggestions] = useState<ParsedJourneyMatchResponse[]>(
     []
   );
-  const classes = useStyles();
   const storage = useWebStorage();
   const [loading, setLoading] = useState(0);
   const loadOptions = useCallback(
@@ -52,7 +62,7 @@ const ZugsucheAutocomplete = ({
   );
 
   return (
-    <div className={classes.wrapper}>
+    <Wrap>
       <Downshift
         onChange={onChange}
         itemToString={itemToString}
@@ -113,7 +123,6 @@ const ZugsucheAutocomplete = ({
                         const itemProps = getItemProps({
                           item: suggestion,
                         });
-                        const selected = false;
                         const highlighted = highlightedIndex === index;
 
                         return (
@@ -123,9 +132,6 @@ const ZugsucheAutocomplete = ({
                             key={suggestion.jid}
                             selected={highlighted}
                             component="div"
-                            style={{
-                              fontWeight: selected ? 500 : 400,
-                            }}
                           >
                             {suggestion.train.name} -&gt;
                             <br />
@@ -145,10 +151,8 @@ const ZugsucheAutocomplete = ({
           );
         }}
       </Downshift>
-      {Boolean(loading) && (
-        <Loading className={classes.loading} type={LoadingType.dots} />
-      )}
-    </div>
+      {Boolean(loading) && <StyledLoading type={LoadingType.dots} />}
+    </Wrap>
   );
 };
 

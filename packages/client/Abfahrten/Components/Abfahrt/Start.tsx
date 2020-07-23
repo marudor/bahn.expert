@@ -1,10 +1,30 @@
+import { cancelledCss, changedCss } from 'client/util/cssUtils';
 import AbfahrtenConfigContainer from 'client/Abfahrten/container/AbfahrtenConfigContainer';
 import Auslastung from 'client/Abfahrten/Components/Abfahrt/Auslastung';
 import CheckInLink from 'client/Common/Components/CheckInLink';
 import DetailsLink from 'client/Common/Components/Details/DetailsLink';
+import styled from 'styled-components/macro';
 import Substitute from './Substitute';
-import useStyles from './Start.style';
 import type { Abfahrt } from 'types/iris';
+
+const Wrap = styled.div`
+  flex: 1;
+  font-size: 3em;
+  max-width: 5em;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Links = styled.div`
+  font-size: 0.6em;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Cancelled = styled.span`
+  ${cancelledCss};
+  ${changedCss};
+`;
 
 interface Props {
   abfahrt: Abfahrt;
@@ -14,10 +34,9 @@ interface Props {
 
 const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
   const urlPrefix = AbfahrtenConfigContainer.useContainer().urlPrefix;
-  const classes = useStyles();
 
   return (
-    <div className={classes.main} data-testid="abfahrtStart">
+    <Wrap data-testid="abfahrtStart">
       <span>{abfahrt.train.name}</span>
       {lineAndNumber && abfahrt.train.line && (
         <span>
@@ -25,7 +44,7 @@ const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
         </span>
       )}
       {detail && (
-        <div className={classes.links}>
+        <Links>
           <CheckInLink
             arrival={abfahrt.arrival}
             departure={abfahrt.departure}
@@ -38,16 +57,14 @@ const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
             stationId={abfahrt.currentStation.id}
             initialDeparture={abfahrt.initialDeparture}
           />
-        </div>
+        </Links>
       )}
-      {abfahrt.cancelled && (
-        <span className={classes.cancelled}>Zugausfall</span>
-      )}
+      {abfahrt.cancelled && <Cancelled>Zugausfall</Cancelled>}
       {abfahrt.substitute && abfahrt.ref && (
         <Substitute substitute={abfahrt.ref} />
       )}
       {detail && abfahrt.auslastung && <Auslastung abfahrt={abfahrt} />}
-    </div>
+    </Wrap>
   );
 };
 
