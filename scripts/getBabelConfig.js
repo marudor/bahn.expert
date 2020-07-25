@@ -44,7 +44,6 @@ const getBabelConfig = (type) => {
     ['@babel/plugin-proposal-decorators', { legacy: true }],
     ['@babel/plugin-proposal-class-properties', { loose: true }],
     'babel-plugin-parameter-decorator',
-    './scripts/babelTransform/debugStyleNames.js',
     'lodash',
     [
       'module-resolver',

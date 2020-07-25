@@ -46,24 +46,27 @@ export function createApp() {
     process.env.NODE_ENV !== 'test' &&
     process.env.NODE_ENV !== 'production'
   ) {
-    devPromise = require('./middleware/webpackDev')(app).then(() => {
-      app.use((ctx, next) => {
-        normalizePathMiddleware = require('./middleware/normalizePath').default;
-        errorHandler = require('./errorHandler').default;
-        serverRender = require('./render').default;
-        apiRoutes = require('./API').default;
-        validationOverwrites = require('./API/validationOverwrites').default;
-        seoController = require('./seo').default;
-        ctx.loadableStats = JSON.parse(
-          // eslint-disable-next-line no-sync
-          ctx.state.fs.readFileSync(
-            path.resolve(`${distFolder}/client/loadable-stats.json`)
-          )
-        );
+    devPromise = require('./middleware/webpackDev')
+      .default(app)
+      .then(() => {
+        app.use((ctx, next) => {
+          normalizePathMiddleware = require('./middleware/normalizePath')
+            .default;
+          errorHandler = require('./errorHandler').default;
+          serverRender = require('./render').default;
+          apiRoutes = require('./API').default;
+          validationOverwrites = require('./API/validationOverwrites').default;
+          seoController = require('./seo').default;
+          ctx.loadableStats = JSON.parse(
+            // eslint-disable-next-line no-sync
+            ctx.state.fs.readFileSync(
+              path.resolve(`${distFolder}/client/loadable-stats.json`)
+            )
+          );
 
-        return next();
+          return next();
+        });
       });
-    });
   }
 
   devPromise.then(() => {
@@ -90,7 +93,11 @@ export function createApp() {
     );
 
     app.use((ctx, next) => {
-      if (ctx.path.endsWith('.js') || ctx.path.endsWith('.css')) {
+      if (
+        ctx.path.endsWith('.js') ||
+        ctx.path.endsWith('.css') ||
+        ctx.path.endsWith('.map')
+      ) {
         return;
       }
       if (ctx.url.startsWith('/api') || ctx.url.startsWith('/WRSheets')) {
