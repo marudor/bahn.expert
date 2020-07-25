@@ -13,8 +13,8 @@ const debouncedJourneyMatch = debounce(journeyMatch, 300);
 
 const StyledLoading = styled(Loading)`
   position: absolute;
-  top: -0.8em;
-  right: 1.1.em;
+  top: 0;
+  right: 1.1em;
   transform: scale(0.5);
 `;
 
