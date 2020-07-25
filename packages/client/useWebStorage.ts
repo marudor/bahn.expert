@@ -4,10 +4,10 @@ import { RoutingFavs } from 'client/Routing/container/RoutingFavContainer';
 import { RoutingSettings } from 'client/Routing/container/RoutingConfigContainer';
 import useStorage from 'shared/hooks/useStorage';
 
-export interface WebConfigMap {
-  rconfig: RoutingSettings;
-  config: AbfahrtenConfig;
-  commonConfig: CommonConfig;
+export interface WebConfigMap
+  extends AbfahrtenConfig,
+    CommonConfig,
+    RoutingSettings {
   selectedDetail: string;
   regionalFavs: Favs;
   favs: Favs;

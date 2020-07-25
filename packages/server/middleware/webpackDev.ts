@@ -11,7 +11,7 @@ import type Koa from 'koa';
 // @ts-ignore
 const compiler: any = webpack(webpackConfig);
 
-module.exports = function webpackDev(koa: Koa) {
+export default function webpackDev(koa: Koa) {
   // Do "hot-reloading" of react stuff on the server
   // Throw away the cached client modules and let them be re-required next time
   // see https://github.com/glenjamin/ultimate-hot-reloading-example
@@ -84,4 +84,4 @@ module.exports = function webpackDev(koa: Koa) {
     });
     resolve();
   });
-};
+}

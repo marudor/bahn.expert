@@ -8,15 +8,9 @@ import type { SyntheticEvent } from 'react';
 export interface RoutingSettings {
   maxChanges: string;
   transferTime: string;
-  onlyRegional?: boolean;
+  onlyRegional: boolean;
   hafasProfile: AllowedHafasProfile;
 }
-
-export const defaultRoutingSettings: RoutingSettings = {
-  maxChanges: '-1',
-  transferTime: '0',
-  hafasProfile: AllowedHafasProfile.DB,
-};
 
 const useRoutingSettings = (initialSettings: RoutingSettings) => {
   const [settings, setSettings] = useState<RoutingSettings>(initialSettings);
@@ -24,16 +18,11 @@ const useRoutingSettings = (initialSettings: RoutingSettings) => {
 
   const updateSetting = useCallback(
     <K extends keyof RoutingSettings>(key: K, value: RoutingSettings[K]) => {
-      setSettings((oldSettings) => {
-        const newSettings = {
-          ...oldSettings,
-          [key]: value,
-        };
-
-        storage.set('rconfig', newSettings);
-
-        return newSettings;
-      });
+      storage.set(key, value);
+      setSettings((oldSettings) => ({
+        ...oldSettings,
+        [key]: value,
+      }));
     },
     [storage]
   );
@@ -44,9 +33,7 @@ const useRoutingSettings = (initialSettings: RoutingSettings) => {
   };
 };
 
-const useRoutingConfig = (
-  initialState: RoutingSettings = defaultRoutingSettings
-) => {
+const useRoutingConfig = (initialState: RoutingSettings) => {
   const [start, setStart] = useState<Station>();
   const [destination, setDestination] = useState<Station>();
   const [via, setVia] = useState<Station[]>([]);
@@ -91,6 +78,7 @@ const useRoutingConfig = (
   };
 };
 
+// @ts-expect-error This works, we always supply a value
 const RoutingConfigContainer = createContainer(useRoutingConfig);
 
 export default RoutingConfigContainer;

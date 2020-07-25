@@ -101,12 +101,11 @@ const Zugsuche = ({ children }: Props) => {
         if (date) {
           link.push((+date).toString());
         }
-        const routeSettings = storage.get('rconfig');
 
         link.push(
           qs.stringify(
             {
-              profile: routeSettings?.hafasProfile,
+              profile: storage.get('hafasProfile'),
               station: match.firstStop.station.id,
             },
             { addQueryPrefix: true }
