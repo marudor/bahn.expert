@@ -18,6 +18,7 @@ const Wrap = styled.div`
 const StyledPaper = styled(Paper)`
   background: ${({ theme }) => theme.palette.background.default};
   margin-top: ${({ theme }) => theme.spacing(1)}px;
+  position: absolute;
   left: 0;
   right: 0;
   z-index: 2;
