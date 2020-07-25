@@ -40,13 +40,11 @@ const ZugsucheAutocomplete = ({
   const loadOptions = useCallback(
     async (value: string) => {
       setLoading((old) => old + 1);
-      const routeSettings = storage.get('rconfig');
-
       try {
         const suggestions = await debouncedJourneyMatch(
           value,
           initialDeparture,
-          routeSettings?.hafasProfile,
+          storage.get('hafasProfile'),
           'zugsuche'
         );
 

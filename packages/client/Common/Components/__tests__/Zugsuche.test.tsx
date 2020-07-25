@@ -101,9 +101,7 @@ describe('Zugsuche', () => {
       });
       await findByTestId('zugsucheAutocompleteItem');
       fireEvent.click(getByTestId('zugsucheAutocompleteItem'));
-      cookies.set('rconfig', {
-        hafasProfile: 'oebb',
-      });
+      cookies.set('hafasProfile', 'oebb');
 
       fireEvent.click(getByTestId('ZugsucheSubmit'));
       expect(getLocation().search).toBe('?profile=oebb&station=6000');
