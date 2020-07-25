@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import { defaultCommonConfig } from 'client/util';
+import { CheckInType, CommonConfig } from 'client/Common/config';
 import { DefaultTheme } from 'styled-components/macro';
 import { HelmetProvider } from 'react-helmet-async';
 import { MemoryRouter, useLocation } from 'react-router';
@@ -12,7 +12,6 @@ import Cookies from 'universal-cookie';
 import createTheme from 'client/Themes';
 import Navigation from 'client/Common/Components/Navigation';
 import ThemeWrap from 'client/ThemeWrap';
-import type { CommonConfig } from 'client/Common/config';
 import type { ComponentProps, ComponentType } from 'react';
 import type { Container } from 'unstated-next';
 import type { Location } from 'history';
@@ -74,7 +73,11 @@ export function render<CP extends ComponentType<any>>(
     }
 
     const mergedCommonConfig = {
-      ...defaultCommonConfig,
+      checkIn: CheckInType.None,
+      time: true,
+      zoomReihung: true,
+      showUIC: false,
+      fahrzeugGruppe: false,
       ...commonConfig,
     };
 

@@ -1,5 +1,4 @@
 /* eslint-disable no-redeclare */
-import type { AbfahrtenConfig } from 'client/Common/config';
 
 interface MockOptions {
   lookahead?: number;
@@ -24,7 +23,6 @@ declare global {
       mockFrankfurt(options?: MockOptions): void;
       mockHamburg(options?: MockOptions): void;
       mockHannover(options?: MockOptions): void;
-      getAbfahrtenConfig(): Cypress.Chainable<AbfahrtenConfig>;
       openSettings(): void;
     }
   }
