@@ -1,25 +1,17 @@
+import { CheckInType, CommonConfig } from 'client/Common/config';
 import { createContainer } from 'unstated-next';
-import { defaultCommonConfig } from 'client/util';
 import { ReactNode, useCallback, useState } from 'react';
 import useWebStorage from 'client/useWebStorage';
-import type { CommonConfig } from 'client/Common/config';
 
-const configCookieName = 'commonConfig';
-
-const useCommonConfig = (initialConfig: CommonConfig = defaultCommonConfig) => {
+const useCommonConfig = (initialConfig: CommonConfig) => {
   const [config, setConfig] = useState(initialConfig);
   const storage = useWebStorage();
   const setCommonConfigKey = useCallback(
     <K extends keyof CommonConfig>(key: K, value: CommonConfig[K]) => {
-      const newConfig = {
-        ...config,
-        [key]: value,
-      };
-
-      storage.set(configCookieName, newConfig);
-      setConfig(newConfig);
+      storage.set(key, value);
+      setConfig((oldConfig) => ({ ...oldConfig, [key]: value }));
     },
-    [config, storage]
+    [storage]
   );
 
   return {
@@ -28,6 +20,7 @@ const useCommonConfig = (initialConfig: CommonConfig = defaultCommonConfig) => {
   };
 };
 
+// @ts-expect-error, complains about missing default
 const CommonConfigContainer = createContainer(useCommonConfig);
 
 export default CommonConfigContainer;
@@ -36,16 +29,26 @@ interface Props {
   children: ReactNode;
 }
 
+const migrateOldConfig = (storage: ReturnType<typeof useWebStorage>) => {
+  const oldConfig = storage.get<CommonConfig>('commonConfig');
+  if (oldConfig) {
+    for (const [key, value] of Object.entries(oldConfig)) {
+      storage.set(key, value);
+    }
+    storage.remove('commonConfig');
+  }
+};
+
 export const CommonConfigProvider = ({ children }: Props) => {
   const storage = useWebStorage();
+  migrateOldConfig(storage);
 
-  const savedAbfahrtenConfig = storage.get('config');
-  const savedCommonConfig = storage.get(configCookieName);
-
-  const savedConfig = {
-    ...defaultCommonConfig,
-    ...savedAbfahrtenConfig,
-    ...savedCommonConfig,
+  const savedConfig: CommonConfig = {
+    time: storage.get('time') ?? true,
+    zoomReihung: storage.get('zoomReihung') ?? true,
+    showUIC: storage.get('showUIC') ?? false,
+    fahrzeugGruppe: storage.get('fahrzeugGruppe') ?? false,
+    checkIn: storage.get('checkIn') ?? CheckInType.Travelynx,
     ...global.configOverride.common,
   };
 

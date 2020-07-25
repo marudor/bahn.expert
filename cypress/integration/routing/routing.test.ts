@@ -62,7 +62,7 @@ describe('Routing', () => {
         findPrefix: 'routingDestinationSearch',
       });
       cy.findByTestId('routingFavButton').click();
-      cy.setCookie('rconfig', JSON.stringify({ hafasProfile: 'oebb' }));
+      cy.setCookie('hafasProfile', 'oebb');
       // Call Favorite
       cy.visit('/routing');
       cy.findByTestId('routingSettingsPanel').click();

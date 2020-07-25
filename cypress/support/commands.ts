@@ -96,18 +96,6 @@ Cypress.Commands.add(
   }
 );
 
-Cypress.Commands.add('getAbfahrtenConfig', () => {
-  return cy
-    .getCookie('config')
-    .should('exist')
-    .then((c) => {
-      if (!c) throw new Error("can't happen");
-      const config = JSON.parse(decodeURIComponent(c.value));
-
-      return cy.wrap(config);
-    });
-});
-
 Cypress.Commands.add('openSettings', () => {
   cy.findByTestId('menu').click();
   cy.findByTestId('openSettings').click();

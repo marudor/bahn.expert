@@ -1,28 +1,9 @@
 import {
-  AbfahrtenConfig,
   AbfahrtenConfigSanitize,
   CheckInType,
-  CommonConfig,
   CommonConfigSanitize,
 } from 'client/Common/config';
 import { StationSearchType } from 'types/station';
-
-export const defaultAbfahrtenConfig: AbfahrtenConfig = {
-  autoUpdate: 0,
-  lineAndNumber: false,
-  lookahead: '150',
-  lookbehind: '0',
-  searchType: StationSearchType.default,
-  showSupersededMessages: false,
-};
-
-export const defaultCommonConfig: CommonConfig = {
-  checkIn: CheckInType.None,
-  time: true,
-  zoomReihung: true,
-  showUIC: false,
-  fahrzeugGruppe: false,
-};
 
 const booleanCheck = (value: string): boolean => value === 'true';
 const numberCheck = (value: string, fallback: number): number => {

@@ -1,6 +1,6 @@
 import { createContainer } from 'unstated-next';
-import { defaultAbfahrtenConfig } from 'client/util';
 import { ReactNode, useCallback, useState } from 'react';
+import { StationSearchType } from 'types/station';
 import useQuery from 'client/Common/hooks/useQuery';
 import useWebStorage from 'client/useWebStorage';
 import type { AbfahrtenConfig } from 'client/Common/config';
@@ -10,7 +10,6 @@ export interface Filter {
   products: string[];
 }
 
-const configCookieName = 'config';
 const filterCookieName = 'defaultFilter';
 
 const useFilter = (initialFilter: Filter) => {
@@ -49,15 +48,10 @@ const useConfig = (initialConfig: AbfahrtenConfig) => {
 
   const setConfigKey = useCallback(
     <K extends keyof AbfahrtenConfig>(key: K, value: AbfahrtenConfig[K]) => {
-      const newConfig = {
-        ...config,
-        [key]: value,
-      };
-
-      storage.set(configCookieName, newConfig);
-      setConfig(newConfig);
+      storage.set(key, value);
+      setConfig((oldConfig) => ({ ...oldConfig, [key]: value }));
     },
-    [config, storage]
+    [storage]
   );
 
   return {
@@ -92,6 +86,16 @@ const AbfahrtenConfigContainer = createContainer(useAbfahrtenConfig);
 
 export default AbfahrtenConfigContainer;
 
+const migrateOldConfig = (storage: ReturnType<typeof useWebStorage>) => {
+  const oldConfig = storage.get<AbfahrtenConfig>('config');
+  if (oldConfig) {
+    for (const [key, value] of Object.entries(oldConfig)) {
+      storage.set(key, value);
+    }
+    storage.remove('config');
+  }
+};
+
 interface Props {
   children: ReactNode;
   fetchApiUrl: string;
@@ -103,17 +107,22 @@ export const AbfahrtenConfigProvider = ({
   urlPrefix,
 }: Props) => {
   const storage = useWebStorage();
+  migrateOldConfig(storage);
   const query = useQuery();
   const savedFilter = storage.get(filterCookieName);
 
-  const savedConfig = {
+  const savedConfig: AbfahrtenContainerValue = {
     filter: {
       onlyDepartures: Boolean(query.onlyDepartures),
       products: Array.isArray(savedFilter) ? savedFilter : [],
     },
     config: {
-      ...defaultAbfahrtenConfig,
-      ...storage.get(configCookieName),
+      autoUpdate: storage.get('autoUpdate') ?? 0,
+      lineAndNumber: storage.get('lineAndNumber') ?? false,
+      lookahead: storage.get('lookahead') ?? '150',
+      lookbehind: storage.get('lookbehind') ?? '0',
+      searchType: storage.get('searchType') ?? StationSearchType.default,
+      showSupersededMessages: storage.get('showSupersededMessages') ?? false,
       ...global.configOverride.abfahrten,
     },
     fetchApiUrl,

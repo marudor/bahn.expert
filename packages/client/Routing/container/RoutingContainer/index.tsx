@@ -1,10 +1,10 @@
+import { AllowedHafasProfile } from 'types/HAFAS';
 import { createContainer } from 'unstated-next';
 import { ReactNode, useState } from 'react';
 import RoutingConfingContainer, {
-  defaultRoutingSettings,
+  RoutingSettings,
 } from 'client/Routing/container/RoutingConfigContainer';
 import useWebStorage from 'client/useWebStorage';
-import type { AllowedHafasProfile } from 'types/HAFAS';
 import type { SingleRoute } from 'types/routing';
 
 const useRouting = () => {
@@ -35,12 +35,26 @@ export default RoutingContainer;
 interface Props {
   children: ReactNode;
 }
+
+const migrateOldConfig = (storage: ReturnType<typeof useWebStorage>) => {
+  const oldConfig = storage.get<RoutingSettings>('rconfig');
+  if (oldConfig) {
+    for (const [key, value] of Object.entries(oldConfig)) {
+      storage.set(key, value);
+    }
+    storage.remove('rconfig');
+  }
+};
+
 export const RoutingProvider = ({ children }: Props) => {
   const storage = useWebStorage();
+  migrateOldConfig(storage);
 
-  const savedRoutingSettings = {
-    ...defaultRoutingSettings,
-    ...storage.get('rconfig'),
+  const savedRoutingSettings: RoutingSettings = {
+    maxChanges: storage.get('maxChanges') ?? '-1',
+    transferTime: storage.get('transferTime') ?? '0',
+    hafasProfile: storage.get('hafasProfile') ?? AllowedHafasProfile.DB,
+    onlyRegional: storage.get('onlyRegional') ?? false,
   };
 
   return (
