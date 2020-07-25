@@ -50,7 +50,7 @@ const StyledDatePicker = styled(DatePicker)`
 const Icon = styled.a`
   position: absolute;
   right: 20px;
-  top: 30px;
+  top: 39px;
 `;
 const StyledTodayIcon = Icon.withComponent(TodayIcon);
 const StyledTrainIcon = Icon.withComponent(TrainIcon);
