@@ -1,11 +1,6 @@
 import type { ChangeEvent } from 'react';
 import type { StationSearchType } from 'types/station';
 
-export enum CheckInType {
-  None,
-  Travelynx,
-}
-
 export interface AbfahrtenConfig {
   readonly searchType: StationSearchType;
   readonly showSupersededMessages: boolean;
@@ -17,7 +12,6 @@ export interface AbfahrtenConfig {
 
 export interface CommonConfig {
   readonly time: boolean;
-  readonly checkIn: CheckInType;
   readonly zoomReihung: boolean;
   readonly showUIC: boolean;
   readonly fahrzeugGruppe: boolean;
