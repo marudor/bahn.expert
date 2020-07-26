@@ -1,6 +1,5 @@
 import { additionalCss, cancelledCss } from 'client/util/cssUtils';
 import { useContext } from 'react';
-import CheckInLink from 'client/Common/Components/CheckInLink';
 import DetailMessages from '../Messages/Detail';
 import DetailsContext from './DetailsContext';
 import Messages from './Messages';
@@ -9,6 +8,7 @@ import Reihung from '../Reihung';
 import StationLink from 'client/Common/Components/StationLink';
 import styled, { css } from 'styled-components/macro';
 import Time from 'client/Common/Components/Time';
+import TravelynxLink from 'client/Common/Components/CheckInLink/TravelynxLink';
 import type { ParsedProduct } from 'types/HAFAS';
 import type { Route$Stop } from 'types/routing';
 
@@ -53,7 +53,7 @@ const StationName = styled(StationLink)`
   color: inherit;
 `;
 
-const CheckIn = styled(CheckInLink)`
+const CheckIn = styled(TravelynxLink)`
   grid-area: c;
 `;
 

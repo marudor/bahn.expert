@@ -17,13 +17,9 @@ interface Props extends InheritedProps {
 const Bezeichnung = styled.span`
   display: flex;
   flex-direction: column;
+  align-items: center;
   position: absolute;
   bottom: 2.5em;
-  text-align: center;
-`;
-
-const BR = styled(BRInfo)`
-  margin-right: 0.5em;
 `;
 
 const Gruppe = ({
@@ -74,7 +70,7 @@ const Gruppe = ({
       {fahrzeuge}
       {extraInfoLine && (
         <Bezeichnung style={destinationPos}>
-          {showBR && gruppe.br && <BR br={gruppe.br} />}
+          {showBR && gruppe.br && <BRInfo br={gruppe.br} />}
           {showGruppenZugnummer && gruppe.verkehrlichezugnummer && (
             <span>
               {rest.type} {gruppe.verkehrlichezugnummer}

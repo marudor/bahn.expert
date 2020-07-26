@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import { CheckInType, CommonConfig } from 'client/Common/config';
+import { CommonConfig } from 'client/Common/config';
 import { DefaultTheme } from 'styled-components/macro';
 import { HelmetProvider } from 'react-helmet-async';
 import { MemoryRouter, useLocation } from 'react-router';
@@ -73,7 +73,6 @@ export function render<CP extends ComponentType<any>>(
     }
 
     const mergedCommonConfig = {
-      checkIn: CheckInType.None,
       time: true,
       zoomReihung: true,
       showUIC: false,

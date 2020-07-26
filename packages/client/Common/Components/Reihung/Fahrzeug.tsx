@@ -145,7 +145,7 @@ const ExtraInfo = styled.span`
   display: flex;
   flex-direction: column;
   width: 100%;
-  text-align: center;
+  align-items: center;
 `;
 
 export interface InheritedProps {

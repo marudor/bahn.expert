@@ -1,8 +1,6 @@
 import {
   AbfahrtenConfig,
-  CheckInType,
   handleConfigCheckedChange,
-  handleConfigNumberSelectChange,
 } from 'client/Common/config';
 import { ChangeEvent, useCallback } from 'react';
 import { StationSearchType } from 'types/station';
@@ -57,7 +55,7 @@ const SettingsModal = () => {
     configOpen,
   } = AbfahrtenConfigContainer.useContainer();
   const {
-    config: { fahrzeugGruppe, showUIC, zoomReihung, checkIn, time },
+    config: { fahrzeugGruppe, showUIC, zoomReihung, time },
     setCommonConfigKey,
   } = CommonConfigContainer.useContainer();
   const handleSelectChange = useCallback(
@@ -80,22 +78,6 @@ const SettingsModal = () => {
     >
       <Title>Settings</Title>
       <Content data-testid="settingsContent">
-        <Label
-          control={
-            <NativeSelect
-              value={checkIn}
-              name="checkIn"
-              onChange={handleConfigNumberSelectChange(
-                'checkIn',
-                setCommonConfigKey
-              )}
-            >
-              <option value={CheckInType.None}>Kein</option>
-              <option value={CheckInType.Travelynx}>travelynx.de</option>
-            </NativeSelect>
-          }
-          label="Traewelling Link"
-        />
         <Label
           control={
             <AutoUpdateTextField
