@@ -10,6 +10,7 @@ export const TrainMargin = styled.span`
   margin-right: 0.5em;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 `;
 
 export const Destination = styled(TrainMargin)`

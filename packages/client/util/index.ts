@@ -1,6 +1,5 @@
 import {
   AbfahrtenConfigSanitize,
-  CheckInType,
   CommonConfigSanitize,
 } from 'client/Common/config';
 import { StationSearchType } from 'types/station';
@@ -17,11 +16,6 @@ const searchTypeCheck = (value: string): StationSearchType =>
   Object.values(StationSearchType).includes(value as StationSearchType)
     ? (value as StationSearchType)
     : StationSearchType.default;
-const checkInCheck = (
-  value: string,
-  numberVal = Number.parseInt(value, 10)
-): CheckInType =>
-  Object.values(CheckInType).includes(numberVal) ? numberVal : CheckInType.None;
 
 export const abfahrtenConfigSanitize: AbfahrtenConfigSanitize = {
   autoUpdate: (value) => numberCheck(value, 0),
@@ -33,7 +27,6 @@ export const abfahrtenConfigSanitize: AbfahrtenConfigSanitize = {
 };
 
 export const commonConfigSanitize: CommonConfigSanitize = {
-  checkIn: checkInCheck,
   time: booleanCheck,
   zoomReihung: booleanCheck,
   showUIC: booleanCheck,
