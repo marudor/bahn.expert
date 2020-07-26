@@ -1,10 +1,10 @@
 import { cancelledCss, changedCss } from 'client/util/cssUtils';
 import AbfahrtenConfigContainer from 'client/Abfahrten/container/AbfahrtenConfigContainer';
 import Auslastung from 'client/Abfahrten/Components/Abfahrt/Auslastung';
-import CheckInLink from 'client/Common/Components/CheckInLink';
 import DetailsLink from 'client/Common/Components/Details/DetailsLink';
 import styled from 'styled-components/macro';
 import Substitute from './Substitute';
+import TravelynxLink from 'client/Common/Components/CheckInLink/TravelynxLink';
 import type { Abfahrt } from 'types/iris';
 
 const Wrap = styled.div`
@@ -19,6 +19,7 @@ const Links = styled.div`
   font-size: 0.6em;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 `;
 
 const Cancelled = styled.span`
@@ -45,7 +46,7 @@ const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
       )}
       {detail && (
         <Links>
-          <CheckInLink
+          <TravelynxLink
             arrival={abfahrt.arrival}
             departure={abfahrt.departure}
             train={abfahrt.train}

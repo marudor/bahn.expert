@@ -1,4 +1,4 @@
-import { CheckInType, CommonConfig } from 'client/Common/config';
+import { CommonConfig } from 'client/Common/config';
 import { createContainer } from 'unstated-next';
 import { ReactNode, useCallback, useState } from 'react';
 import useWebStorage from 'client/useWebStorage';
@@ -48,7 +48,6 @@ export const CommonConfigProvider = ({ children }: Props) => {
     zoomReihung: storage.get('zoomReihung') ?? true,
     showUIC: storage.get('showUIC') ?? false,
     fahrzeugGruppe: storage.get('fahrzeugGruppe') ?? false,
-    checkIn: storage.get('checkIn') ?? CheckInType.Travelynx,
     ...global.configOverride.common,
   };
 
