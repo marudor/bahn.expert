@@ -1,3 +1,4 @@
+import { abfahrtenConfigSanitize } from 'client/util';
 import { createContainer } from 'unstated-next';
 import { ReactNode, useCallback, useState } from 'react';
 import { StationSearchType } from 'types/station';
@@ -117,7 +118,9 @@ export const AbfahrtenConfigProvider = ({
       products: Array.isArray(savedFilter) ? savedFilter : [],
     },
     config: {
-      autoUpdate: storage.get('autoUpdate') ?? 0,
+      autoUpdate: abfahrtenConfigSanitize.autoUpdate(
+        storage.get<string>('autoUpdate')
+      ),
       lineAndNumber: storage.get('lineAndNumber') ?? false,
       lookahead: storage.get('lookahead') ?? '150',
       lookbehind: storage.get('lookbehind') ?? '0',
