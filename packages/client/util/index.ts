@@ -4,15 +4,16 @@ import {
 } from 'client/Common/config';
 import { StationSearchType } from 'types/station';
 
-const booleanCheck = (value: string): boolean => value === 'true';
-const numberCheck = (value: string, fallback: number): number => {
+const booleanCheck = (value: string | undefined): boolean => value === 'true';
+const numberCheck = (value: string | undefined, fallback: number): number => {
+  if (!value) return fallback;
   const n = +value;
 
   if (Number.isNaN(n)) return fallback;
 
   return n;
 };
-const searchTypeCheck = (value: string): StationSearchType =>
+const searchTypeCheck = (value: string | undefined): StationSearchType =>
   Object.values(StationSearchType).includes(value as StationSearchType)
     ? (value as StationSearchType)
     : StationSearchType.default;
