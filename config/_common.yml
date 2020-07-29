@@ -5,7 +5,7 @@ certificate:
   #   - '{{ .Release.Name }}.marudor.de'
   # domains:
   #   - '{{ .Release.Name }}.marudor.de'
-  issuerName: marudor-issuer
+  issuerName: http-issuer
   issuerKind: ClusterIssuer
 
 docs: true
