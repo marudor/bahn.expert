@@ -1,10 +1,10 @@
 import { format } from 'date-fns';
+import { HeaderTagContainer } from 'client/Common/container/HeaderTagContainer';
+import { RouteList } from './RouteList';
+import { RoutingConfigContainer } from 'client/Routing/container/RoutingConfigContainer';
+import { Search } from './Search';
 import { useEffect } from 'react';
-import HeaderTagContainer from 'client/Common/container/HeaderTagContainer';
-import RouteList from './RouteList';
-import RoutingConfigContainer from 'client/Routing/container/RoutingConfigContainer';
-import Search from './Search';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 const RouteHeaderTags = () => {
   const {
@@ -47,7 +47,7 @@ const Main = styled.main`
   margin-right: 0.5em;
 `;
 
-const Routing = () => {
+export const Routes = () => {
   return (
     <Main>
       <RouteHeaderTags />
@@ -56,5 +56,3 @@ const Routing = () => {
     </Main>
   );
 };
-
-export default Routing;

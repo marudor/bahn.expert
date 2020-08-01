@@ -1,8 +1,8 @@
-import styled, { css } from 'styled-components/macro';
-import type { Sektor } from 'types/reihung';
+import styled, { css } from 'styled-components';
+import type { Sektor as SektorType } from 'types/reihung';
 
 interface Props {
-  sektor: Sektor;
+  sektor: SektorType;
   scale: number;
   correctLeft: number;
 }
@@ -23,8 +23,6 @@ const Wrap = styled.div<Props>`
   }}
 `;
 
-const SektorComp = (props: Props) => {
+export const Sektor = (props: Props) => {
   return <Wrap {...props}>{props.sektor.sektorbezeichnung}</Wrap>;
 };
-
-export default SektorComp;

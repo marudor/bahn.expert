@@ -8,13 +8,13 @@ import {
   NativeSelect,
   Switch,
 } from '@material-ui/core';
-import MapContainer from 'client/Map/container/MapContainer';
-import SettingsIcon from '@material-ui/icons/Settings';
-import stopPropagation from 'client/Common/stopPropagation';
-import styled from 'styled-components/macro';
-import useToggleState from 'client/Common/hooks/useToggleState';
+import { MapContainer } from 'client/Map/container/MapContainer';
+import { Settings } from '@material-ui/icons';
+import { stopPropagation } from 'client/Common/stopPropagation';
+import { useToggleState } from 'client/Common/hooks/useToggleState';
+import styled from 'styled-components';
 
-const TrainSettingsIcon = styled(SettingsIcon)`
+const TrainSettingsIcon = styled(Settings)`
   position: absolute;
   top: 1em;
   right: 1em;
@@ -42,7 +42,7 @@ const FormSwitchLabel = ({
   />
 );
 
-const MapSettings = () => {
+export const MapSettings = () => {
   const [open, toggleOpen] = useToggleState();
   const onIconClick = useCallback(
     (e: SyntheticEvent) => {
@@ -129,5 +129,3 @@ const MapSettings = () => {
     </>
   );
 };
-
-export default MapSettings;

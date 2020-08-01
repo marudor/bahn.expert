@@ -1,7 +1,7 @@
-import { createGlobalStyle } from 'styled-components/macro';
+import { createGlobalStyle } from 'styled-components';
+import { MapContainer } from 'client/Map/container/MapContainer';
 import { Marker, Polyline, Tooltip } from 'react-leaflet';
 import { useMemo } from 'react';
-import MapContainer from 'client/Map/container/MapContainer';
 // @ts-ignore
 import icon from 'leaflet/dist/images/marker-icon.png';
 // @ts-ignore
@@ -14,7 +14,7 @@ const GlobalIconStyle = createGlobalStyle`
   }
 `;
 
-const ActivePolyline = () => {
+export const ActivePolyline = () => {
   const { activePolyline, activeJourney } = MapContainer.useContainer();
   const trainIcon = useMemo(
     () =>
@@ -46,5 +46,3 @@ const ActivePolyline = () => {
     </>
   );
 };
-
-export default ActivePolyline;

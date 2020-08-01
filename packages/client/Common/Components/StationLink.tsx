@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { StationSearchType } from 'types/station';
-import stopPropagation from 'client/Common/stopPropagation';
+import { stopPropagation } from 'client/Common/stopPropagation';
 
 interface Props {
   stationName: string;
@@ -9,7 +9,7 @@ interface Props {
   urlPrefix?: string;
 }
 
-const StationLink = ({
+export const StationLink = ({
   stationName,
   searchType = StationSearchType.stationsData,
   className,
@@ -32,5 +32,3 @@ const StationLink = ({
     </Link>
   );
 };
-
-export default StationLink;

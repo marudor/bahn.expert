@@ -1,12 +1,12 @@
+import { CommonConfigContainer } from 'client/Common/container/CommonConfigContainer';
+import { Explain } from './Explain';
 import { Formation } from 'types/reihung';
+import { Gruppe } from './Gruppe';
+import { Loading } from 'client/Common/Components/Loading';
+import { ReihungContainer } from 'client/Common/container/ReihungContainer';
+import { Sektor } from './Sektor';
 import { useEffect } from 'react';
-import CommonConfigContainer from 'client/Common/container/CommonConfigContainer';
-import Explain from './Explain';
-import Gruppe from './Gruppe';
-import Loading from 'client/Common/Components/Loading';
-import ReihungContainer from 'client/Common/container/ReihungContainer';
-import Sektor from './Sektor';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 const Wrap = styled.div`
   overflow-x: auto;
@@ -87,7 +87,7 @@ interface Props {
   withLegend?: boolean;
 }
 
-const Reihung = ({
+export const Reihung = ({
   className,
   currentStation,
   scheduledDeparture,
@@ -170,5 +170,5 @@ const Reihung = ({
     </Wrap>
   );
 };
-
+// eslint-disable-next-line import/no-default-export
 export default Reihung;

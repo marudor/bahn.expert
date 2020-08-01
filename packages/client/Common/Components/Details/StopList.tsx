@@ -1,9 +1,9 @@
+import { DetailsContext } from './DetailsContext';
+import { Error } from '@material-ui/icons';
+import { Loading } from '../Loading';
+import { Stop } from 'client/Common/Components/Details/Stop';
 import { useContext, useEffect, useMemo } from 'react';
-import DetailsContext from './DetailsContext';
-import Error from '@material-ui/icons/Error';
-import Loading from '../Loading';
-import Stop from 'client/Common/Components/Details/Stop';
-import styled, { css } from 'styled-components/macro';
+import styled, { css } from 'styled-components';
 import type { ResponseError } from 'umi-request';
 
 function getErrorText(error: ResponseError) {
@@ -32,7 +32,7 @@ const Wrap = styled.main<{ $error?: boolean }>`
   ${({ $error }) => $error && ErrorCss}
 `;
 
-const StopList = () => {
+export const StopList = () => {
   const { details, error } = useContext(DetailsContext);
 
   useEffect(() => {
@@ -89,5 +89,3 @@ const StopList = () => {
     </Wrap>
   );
 };
-
-export default StopList;

@@ -1,8 +1,9 @@
-import { fireEvent } from '@testing-library/react';
-import { render } from 'client/__tests__/testHelper';
-import Explain, {
+import {
+  Explain,
   iconExplanation,
 } from 'client/Common/Components/Reihung/Explain';
+import { fireEvent } from '@testing-library/react';
+import { render } from 'client/__tests__/testHelper';
 
 describe('Explain', () => {
   function openLegende() {

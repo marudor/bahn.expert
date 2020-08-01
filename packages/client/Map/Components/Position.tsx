@@ -1,12 +1,12 @@
+import { MapContainer } from 'client/Map/container/MapContainer';
 import { Marker, Tooltip } from 'react-leaflet';
 import { useCallback } from 'react';
-import MapContainer from 'client/Map/container/MapContainer';
 import type { SingleParsedJourneyGeoPos } from 'types/HAFAS/JourneyGeoPos';
 
 interface Props {
   journey: SingleParsedJourneyGeoPos;
 }
-const Position = ({ journey }: Props) => {
+export const Position = ({ journey }: Props) => {
   const {
     permanent,
     setActiveJourney,
@@ -31,5 +31,3 @@ const Position = ({ journey }: Props) => {
     </Marker>
   );
 };
-
-export default Position;

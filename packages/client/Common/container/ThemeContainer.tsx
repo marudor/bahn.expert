@@ -1,10 +1,10 @@
 import { createContainer } from 'unstated-next';
+import { createTheme } from 'client/Themes';
 import { ReactNode, useMemo, useState } from 'react';
 import { ThemeType } from 'client/Themes/type';
-import createTheme from 'client/Themes';
-import useQuery from 'client/Common/hooks/useQuery';
-import useWebStorage, { WebConfigMap } from 'client/useWebStorage';
-import type StorageInterface from 'shared/hooks/useStorage/StorageInterface';
+import { useQuery } from 'client/Common/hooks/useQuery';
+import { useWebStorage, WebConfigMap } from 'client/useWebStorage';
+import type { StorageInterface } from 'shared/hooks/useStorage/StorageInterface';
 
 function setTheme(
   setFn: ((themeType: ThemeType) => void) | undefined,
@@ -28,9 +28,7 @@ function useTheme(initialThemeType: ThemeType = ThemeType.dark) {
   };
 }
 
-const ThemeContainer = createContainer(useTheme);
-
-export default ThemeContainer;
+export const ThemeContainer = createContainer(useTheme);
 
 interface Props {
   children: ReactNode;

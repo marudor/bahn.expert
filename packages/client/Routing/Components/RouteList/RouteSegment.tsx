@@ -1,8 +1,8 @@
-import JnySegmentTrain from './SegmentTrainComponent/JnySegmentTrain';
-import Platform from 'client/Common/Components/Platform';
-import styled from 'styled-components/macro';
-import Time from 'client/Common/Components/Time';
-import WalkSegmentTrain from './SegmentTrainComponent/WalkSegmentTrain';
+import { JnySegmentTrain } from './SegmentTrainComponent/JnySegmentTrain';
+import { Platform } from 'client/Common/Components/Platform';
+import { Time } from 'client/Common/Components/Time';
+import { WalkSegmentTrain } from './SegmentTrainComponent/WalkSegmentTrain';
+import styled from 'styled-components';
 import type { MouseEvent } from 'react';
 import type { Route$JourneySegment } from 'types/routing';
 
@@ -51,7 +51,7 @@ interface Props {
   onTrainClick?: (e: MouseEvent) => void;
 }
 
-const RouteSegment = ({ segment, detail, onTrainClick }: Props) => (
+export const RouteSegment = ({ segment, detail, onTrainClick }: Props) => (
   <>
     <MainWrap>
       <DepartureTime
@@ -89,5 +89,3 @@ const RouteSegment = ({ segment, detail, onTrainClick }: Props) => (
     )}
   </>
 );
-
-export default RouteSegment;

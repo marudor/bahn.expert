@@ -3,7 +3,7 @@ import Close from '@material-ui/icons/Close';
 import Done from '@material-ui/icons/Done';
 import ErrorOutline from '@material-ui/icons/ErrorOutline';
 import Help from '@material-ui/icons/Help';
-import styled, { css, DefaultTheme } from 'styled-components/macro';
+import styled, { css, DefaultTheme } from 'styled-components';
 import Warning from '@material-ui/icons/Warning';
 
 function getIcon(auslastung?: AuslastungsValue) {
@@ -59,8 +59,6 @@ const Wrap = styled.span`
 export interface Props {
   auslastung?: AuslastungsValue;
 }
-const SingleAuslastungsDisplay = (props: Props) => (
+export const SingleAuslastungsDisplay = (props: Props) => (
   <Wrap {...props}>{getIcon(props.auslastung)}</Wrap>
 );
-
-export default SingleAuslastungsDisplay;

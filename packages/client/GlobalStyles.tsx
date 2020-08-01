@@ -1,6 +1,6 @@
-import { createGlobalStyle, css } from 'styled-components/macro';
+import { createGlobalStyle, css } from 'styled-components';
 
-export default createGlobalStyle`
+export const GlobalStyles = createGlobalStyle`
   html, body {
     height: 100%;
   }

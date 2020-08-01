@@ -2,18 +2,20 @@ import {
   AbfahrtenConfig,
   handleConfigCheckedChange,
 } from 'client/Common/config';
+import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
 import { ChangeEvent, useCallback } from 'react';
+import { CommonConfigContainer } from 'client/Common/container/CommonConfigContainer';
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  FormControlLabel,
+  NativeSelect,
+  Switch,
+  TextField,
+} from '@material-ui/core';
 import { StationSearchType } from 'types/station';
-import AbfahrtenConfigContainer from 'client/Abfahrten/container/AbfahrtenConfigContainer';
-import CommonConfigContainer from 'client/Common/container/CommonConfigContainer';
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import styled from 'styled-components/macro';
-import Switch from '@material-ui/core/Switch';
-import TextField from '@material-ui/core/TextField';
+import styled from 'styled-components';
 
 const Title = styled(DialogTitle)`
   text-align: center;
@@ -40,7 +42,7 @@ const Label = styled(FormControlLabel)`
 const AutoUpdateTextField = styled(TextField)`
   width: 3em;
 `;
-const SettingsModal = () => {
+export const SettingsModal = () => {
   const {
     config: {
       lineAndNumber,
@@ -240,5 +242,3 @@ const SettingsModal = () => {
     </Dialog>
   );
 };
-
-export default SettingsModal;

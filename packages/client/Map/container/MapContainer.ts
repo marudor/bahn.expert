@@ -2,9 +2,9 @@ import { AllowedHafasProfile, ParsedPolyline } from 'types/HAFAS';
 import { createContainer } from 'unstated-next';
 import { format } from 'date-fns';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useQuery } from 'client/Common/hooks/useQuery';
+import { useToggleState } from 'client/Common/hooks/useToggleState';
 import request from 'umi-request';
-import useQuery from 'client/Common/hooks/useQuery';
-import useToggleState from 'client/Common/hooks/useToggleState';
 import type { ParsedJourneyCourseResponse } from 'types/HAFAS/JourneyCourse';
 import type {
   ParsedJourneyGeoPosResponse,
@@ -171,4 +171,4 @@ function useMap() {
   };
 }
 
-export default createContainer(useMap);
+export const MapContainer = createContainer(useMap);

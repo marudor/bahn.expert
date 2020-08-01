@@ -2,7 +2,7 @@ interface Props {
   uic: string;
 }
 
-const UIC = ({ uic }: Props) => {
+export const UIC = ({ uic }: Props) => {
   const br = uic.substr(4, 4);
   const ordnungsnummer = uic.substr(8, 3);
 
@@ -12,5 +12,3 @@ const UIC = ({ uic }: Props) => {
     </span>
   );
 };
-
-export default UIC;

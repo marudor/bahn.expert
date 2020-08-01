@@ -1,15 +1,15 @@
 import { AbfahrtenProvider } from 'client/Abfahrten/container/AbfahrtenContainer';
+import { AuslastungContainer } from './container/AuslastungContainer';
 import { FavProvider } from './container/FavContainer';
+import { Header } from './Components/Header';
+import { MainWrap } from 'client/Common/Components/MainWrap';
+import { MostUsed } from 'client/Abfahrten/Components/MostUsed';
 import { renderRoutes } from 'react-router-config';
-import AuslastungContainer from './container/AuslastungContainer';
-import Header from './Components/Header';
-import MainWrap from 'client/Common/Components/MainWrap';
-import MostUsed from 'client/Abfahrten/Components/MostUsed';
-import routes from './routes';
-import SettingsModal from './Components/SettingsModal';
-import useQuery from 'client/Common/hooks/useQuery';
+import { routes } from './routes';
+import { SettingsModal } from './Components/SettingsModal';
+import { useQuery } from 'client/Common/hooks/useQuery';
 
-const BahnhofsAbfahrten = () => {
+export const BahnhofsAbfahrten = () => {
   const noHeader = useQuery().noHeader;
 
   return (
@@ -26,5 +26,5 @@ const BahnhofsAbfahrten = () => {
     </AuslastungContainer.Provider>
   );
 };
-
+// eslint-disable-next-line import/no-default-export
 export default BahnhofsAbfahrten;

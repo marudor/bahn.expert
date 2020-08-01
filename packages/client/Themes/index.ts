@@ -1,5 +1,5 @@
-import createMuiTheme from './mui';
-import getColors from './colors';
+import { createTheme as createMuiTheme } from './mui';
+import { getColors } from './colors';
 // eslint-disable-next-line import/no-unresolved
 import type { Theme as MaruTheme } from 'maru';
 import type { Theme as MuiTheme } from '@material-ui/core';
@@ -9,7 +9,7 @@ declare module 'styled-components' {
   interface DefaultTheme extends MaruTheme, MuiTheme {}
 }
 
-export default (themeType: ThemeType): MuiTheme & MaruTheme => {
+export const createTheme = (themeType: ThemeType): MuiTheme & MaruTheme => {
   const mui = createMuiTheme(themeType);
 
   const colors = getColors(mui, themeType);

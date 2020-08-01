@@ -5,7 +5,7 @@ exports[`Loading defaults to grid 1`] = `
   data-testid="loading"
 >
   <div
-    class="Loading__Grid-sc-1etkqsb-0 dWsAfw"
+    class="Loading__Grid-sc-1etkqsb-0 beQfQy"
     data-testid="grid"
   >
     <div />
@@ -32,7 +32,7 @@ exports[`Loading shows loading if no children given (dots type) 1`] = `
   data-testid="loading"
 >
   <div
-    class="Loading__Dots-sc-1etkqsb-1 dVFIeY"
+    class="Loading__Dots-sc-1etkqsb-1 UWVnE"
     data-testid="dots"
   >
     <div />
@@ -47,7 +47,7 @@ exports[`Loading shows loading if no children given 1`] = `
   data-testid="loading"
 >
   <div
-    class="Loading__Grid-sc-1etkqsb-0 dWsAfw"
+    class="Loading__Grid-sc-1etkqsb-0 beQfQy"
     data-testid="grid"
   >
     <div />
@@ -68,7 +68,7 @@ exports[`Loading shows loading instead of children if isLoading is given 1`] = `
   data-testid="loading"
 >
   <div
-    class="Loading__Grid-sc-1etkqsb-0 dWsAfw"
+    class="Loading__Grid-sc-1etkqsb-0 beQfQy"
     data-testid="grid"
   >
     <div />
@@ -90,7 +90,7 @@ exports[`Loading supports custom className 1`] = `
   data-testid="loading"
 >
   <div
-    class="Loading__Grid-sc-1etkqsb-0 dWsAfw"
+    class="Loading__Grid-sc-1etkqsb-0 beQfQy"
     data-testid="grid"
   >
     <div />

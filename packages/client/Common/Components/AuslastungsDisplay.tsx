@@ -1,6 +1,5 @@
-import * as React from 'react';
-import SingleAuslastungsDisplay from 'client/Common/Components/SingleAuslastungsDisplay';
-import styled from 'styled-components/macro';
+import { SingleAuslastungsDisplay } from 'client/Common/Components/SingleAuslastungsDisplay';
+import styled from 'styled-components';
 import type { Route$Auslastung } from 'types/routing';
 
 const Wrap = styled.div`
@@ -19,7 +18,7 @@ export interface Props {
   auslastung: Route$Auslastung;
 }
 
-const AuslastungsDisplay = (props: Props) => {
+export const AuslastungsDisplay = (props: Props) => {
   const { auslastung } = props;
 
   return (
@@ -35,5 +34,3 @@ const AuslastungsDisplay = (props: Props) => {
     </Wrap>
   );
 };
-
-export default AuslastungsDisplay;

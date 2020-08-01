@@ -23,15 +23,16 @@ const getBabelConfig = (type) => {
     : undefined;
 
   const plugins = [
-    // [
-    //   'babel-plugin-styled-components',
-    //   {
-    //     displayName: process.env.NODE_ENV !== 'production',
-    //     minify: true,
-    //     transpileTemplateLiterals: true,
-    //     pure: true,
-    //   },
-    // ],
+    [
+      'babel-plugin-styled-components',
+      {
+        displayName: process.env.NODE_ENV !== 'production',
+        fileName: process.env.NODE_ENV !== 'production',
+        minify: true,
+        transpileTemplateLiterals: true,
+        pure: true,
+      },
+    ],
     [
       'babel-plugin-const-enum',
       {
@@ -53,7 +54,6 @@ const getBabelConfig = (type) => {
       },
     ],
     '@babel/plugin-transform-react-constant-elements',
-    'macros',
   ];
 
   if (isServer) {

@@ -2,8 +2,8 @@ import { abfahrtenConfigSanitize } from 'client/util';
 import { createContainer } from 'unstated-next';
 import { ReactNode, useCallback, useState } from 'react';
 import { StationSearchType } from 'types/station';
-import useQuery from 'client/Common/hooks/useQuery';
-import useWebStorage from 'client/useWebStorage';
+import { useQuery } from 'client/Common/hooks/useQuery';
+import { useWebStorage } from 'client/useWebStorage';
 import type { AbfahrtenConfig } from 'client/Common/config';
 
 export interface Filter {
@@ -83,9 +83,7 @@ const useAbfahrtenConfig = (initialConfig: AbfahrtenContainerValue) => {
 };
 
 // @ts-ignore works, complains about missing default
-const AbfahrtenConfigContainer = createContainer(useAbfahrtenConfig);
-
-export default AbfahrtenConfigContainer;
+export const AbfahrtenConfigContainer = createContainer(useAbfahrtenConfig);
 
 const migrateOldConfig = (storage: ReturnType<typeof useWebStorage>) => {
   const oldConfig = storage.get<AbfahrtenConfig>('config');

@@ -1,10 +1,10 @@
 import { formatDuration } from 'client/Routing/util';
+import { Paper } from '@material-ui/core';
+import { PlannedType } from 'client/Common/Components/PlannedType';
+import { RouteSegments } from './RouteSegments';
 import { SyntheticEvent, useMemo } from 'react';
-import Paper from '@material-ui/core/Paper';
-import PlannedType from 'client/Common/Components/PlannedType';
-import RouteSegments from './RouteSegments';
-import styled, { css } from 'styled-components/macro';
-import Time from 'client/Common/Components/Time';
+import { Time } from 'client/Common/Components/Time';
+import styled, { css } from 'styled-components';
 import type { SingleRoute } from 'types/routing';
 
 interface Props {
@@ -41,7 +41,7 @@ const Products = styled.span`
   grid-area: 2 / 1 / 3 / 5;
 `;
 
-const Route = ({ route, detail, onClick }: Props) => {
+export const Route = ({ route, detail, onClick }: Props) => {
   const segmentTypes = useMemo(() => {
     if (route.segmentTypes.length > 1) return route.segmentTypes.join(' - ');
 
@@ -73,5 +73,3 @@ const Route = ({ route, detail, onClick }: Props) => {
     </PaperWrap>
   );
 };
-
-export default Route;

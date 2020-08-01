@@ -1,12 +1,12 @@
 import { journeyMatch } from 'client/Common/service/details';
+import { Loading, LoadingType } from 'client/Common/Components/Loading';
 import { MenuItem, Paper, TextField } from '@material-ui/core';
 import { useCallback, useState } from 'react';
+import { useWebStorage } from 'client/useWebStorage';
 import debounce from 'debounce-promise';
 import Downshift from 'downshift';
-import Loading, { LoadingType } from 'client/Common/Components/Loading';
 import request from 'umi-request';
-import styled from 'styled-components/macro';
-import useWebStorage from 'client/useWebStorage';
+import styled from 'styled-components';
 import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 
 const debouncedJourneyMatch = debounce(journeyMatch, 300);
@@ -28,7 +28,7 @@ interface Props {
 }
 const itemToString = (j: ParsedJourneyMatchResponse | null) =>
   j?.train.name || '';
-const ZugsucheAutocomplete = ({
+export const ZugsucheAutocomplete = ({
   initialDeparture = Date.now(),
   onChange,
 }: Props) => {
@@ -153,5 +153,3 @@ const ZugsucheAutocomplete = ({
     </Wrap>
   );
 };
-
-export default ZugsucheAutocomplete;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled, { css, keyframes } from 'styled-components/macro';
+import styled, { css, keyframes } from 'styled-components';
 
 const gridAnimation = keyframes`
   0%, 70%, 100% {
@@ -133,7 +133,7 @@ function getType(type: LoadingType, absolute: boolean = true) {
   }
 }
 
-const Loading = ({
+export const Loading = ({
   isLoading,
   className,
   children,
@@ -150,5 +150,3 @@ const Loading = ({
 
   return children;
 };
-
-export default Loading;

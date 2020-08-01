@@ -1,7 +1,7 @@
 import { CommonConfig } from 'client/Common/config';
 import { createContainer } from 'unstated-next';
 import { ReactNode, useCallback, useState } from 'react';
-import useWebStorage from 'client/useWebStorage';
+import { useWebStorage } from 'client/useWebStorage';
 
 const useCommonConfig = (initialConfig: CommonConfig) => {
   const [config, setConfig] = useState(initialConfig);
@@ -21,9 +21,7 @@ const useCommonConfig = (initialConfig: CommonConfig) => {
 };
 
 // @ts-expect-error, complains about missing default
-const CommonConfigContainer = createContainer(useCommonConfig);
-
-export default CommonConfigContainer;
+export const CommonConfigContainer = createContainer(useCommonConfig);
 
 interface Props {
   children: ReactNode;

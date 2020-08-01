@@ -1,9 +1,10 @@
+import {
+  AbfahrtenConfigContainer,
+  AbfahrtenConfigProvider,
+} from 'client/Abfahrten/container/AbfahrtenConfigContainer';
 import { createContainer } from 'unstated-next';
 import { getStationsFromAPI } from 'shared/service/stationSearch';
 import { ReactNode, useCallback, useEffect, useState } from 'react';
-import AbfahrtenConfigContainer, {
-  AbfahrtenConfigProvider,
-} from 'client/Abfahrten/container/AbfahrtenConfigContainer';
 import request, { ResponseError } from 'umi-request';
 import type { Abfahrt, AbfahrtenResult, Wings } from 'types/iris';
 import type { Station, StationSearchType } from 'types/station';
@@ -138,7 +139,7 @@ const useAbfahrten = (
   };
 };
 
-const AbfahrtenContainer = createContainer(useAbfahrten);
+export const AbfahrtenContainer = createContainer(useAbfahrten);
 
 interface Props {
   children: ReactNode;
@@ -158,5 +159,3 @@ export const AbfahrtenProvider = ({
     </AbfahrtenContainer.Provider>
   </AbfahrtenConfigProvider>
 );
-
-export default AbfahrtenContainer;

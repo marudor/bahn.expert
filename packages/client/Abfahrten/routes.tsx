@@ -1,7 +1,7 @@
-import AbfahrtenList from './Components/AbfahrtenList';
-import FavList from './Components/FavList';
+import { AbfahrtenList } from './Components/AbfahrtenList';
+import { FavList } from './Components/FavList';
 
-export default [
+export const routes = [
   {
     component: FavList,
     exact: true,

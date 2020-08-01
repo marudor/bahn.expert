@@ -2,7 +2,7 @@ import { AbfahrtenConfig, CommonConfig } from 'client/Common/config';
 import { Favs } from 'client/Abfahrten/container/FavContainer';
 import { RoutingFavs } from 'client/Routing/container/RoutingFavContainer';
 import { RoutingSettings } from 'client/Routing/container/RoutingConfigContainer';
-import useStorage from 'shared/hooks/useStorage';
+import { useStorage } from 'shared/hooks/useStorage';
 
 export interface WebConfigMap
   extends AbfahrtenConfig,
@@ -14,4 +14,4 @@ export interface WebConfigMap
   rfavs: RoutingFavs;
 }
 
-export default () => useStorage<WebConfigMap>();
+export const useWebStorage = () => useStorage<WebConfigMap>();

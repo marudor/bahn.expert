@@ -1,14 +1,14 @@
+import { AuslastungContainer } from 'client/Abfahrten/container/AuslastungContainer';
+import { AuslastungsDisplay } from 'client/Common/Components/AuslastungsDisplay';
+import { Loading } from 'client/Common/Components/Loading';
 import { useEffect } from 'react';
-import AuslastungContainer from 'client/Abfahrten/container/AuslastungContainer';
-import AuslastungsDisplay from 'client/Common/Components/AuslastungsDisplay';
-import Loading from 'client/Common/Components/Loading';
 import type { Abfahrt } from 'types/iris';
 
 interface Props {
   abfahrt: Abfahrt;
 }
 
-const Auslastung = ({ abfahrt }: Props) => {
+export const Auslastung = ({ abfahrt }: Props) => {
   const { auslastungen, getAuslastung } = AuslastungContainer.useContainer();
   const auslastung =
     auslastungen[
@@ -36,5 +36,3 @@ const Auslastung = ({ abfahrt }: Props) => {
 
   return <AuslastungsDisplay auslastung={auslastung} />;
 };
-
-export default Auslastung;

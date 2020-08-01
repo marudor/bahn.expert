@@ -1,15 +1,16 @@
-import { Link } from 'react-router-dom';
-import { ReactNode, useEffect, useMemo, useState } from 'react';
-import { Redirect, StaticRouterContext } from 'react-router';
-import AbfahrtenContainer, {
+import {
+  AbfahrtenContainer,
   AbfahrtenError,
 } from 'client/Abfahrten/container/AbfahrtenContainer';
-import favContainer from 'client/Abfahrten/container/FavContainer';
-import FavEntry, { FavEntryDisplay } from './FavEntry';
-import HeaderTagContainer from 'client/Common/container/HeaderTagContainer';
-import MostUsed from './MostUsed';
-import styled from 'styled-components/macro';
-import Zugsuche from 'client/Common/Components/Zugsuche';
+import { FavContainer } from 'client/Abfahrten/container/FavContainer';
+import { FavEntry, FavEntryDisplay } from './FavEntry';
+import { HeaderTagContainer } from 'client/Common/container/HeaderTagContainer';
+import { Link } from 'react-router-dom';
+import { MostUsed } from './MostUsed';
+import { ReactNode, useEffect, useMemo, useState } from 'react';
+import { Redirect, StaticRouterContext } from 'react-router';
+import { Zugsuche } from 'client/Common/Components/Zugsuche';
+import styled from 'styled-components';
 import type { Station } from 'types/station';
 
 const Wrap = styled.main`
@@ -46,8 +47,8 @@ interface Props {
   children?: ReactNode;
 }
 
-const FavList = ({ staticContext, children }: Props) => {
-  const { favs, MostUsedComponent } = favContainer.useContainer();
+export const FavList = ({ staticContext, children }: Props) => {
+  const { favs, MostUsedComponent } = FavContainer.useContainer();
   const sortedFavs = useMemo(() => {
     const values: Station[] = Object.values(favs);
 
@@ -106,5 +107,3 @@ const FavList = ({ staticContext, children }: Props) => {
     </Wrap>
   );
 };
-
-export default FavList;

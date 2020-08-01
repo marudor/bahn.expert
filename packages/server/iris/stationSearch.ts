@@ -1,10 +1,10 @@
 import { CacheDatabases, createNewCache } from 'server/cache';
 import { logger } from 'server/logger';
 import { noncdRequest } from './helper';
+import { orderBy } from 'shared/util';
 import { parseStation } from 'server/iris/station';
 import { RequestMethod } from 'umi-request';
 import Fuse from 'fuse.js';
-import orderBy from 'shared/util/orderBy';
 import xmljs, { Element } from 'libxmljs2';
 import type { IrisStation } from 'types/station';
 
