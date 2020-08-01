@@ -1,3 +1,4 @@
+import { AlarmOnOutlined, Explore, Info, Search } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import {
   List,
@@ -6,15 +7,11 @@ import {
   ListItemText,
   SwipeableDrawer,
 } from '@material-ui/core';
+import { NavigationContext } from './NavigationContext';
 import { ReactNode, useCallback, useMemo, useState } from 'react';
-import AlarmOnOutlinedIcon from '@material-ui/icons/AlarmOnOutlined';
-import ExploreIcon from '@material-ui/icons/Explore';
-import InfoIcon from '@material-ui/icons/Info';
-import NavigationContext from './NavigationContext';
-import SearchIcon from '@material-ui/icons/Search';
-import styled from 'styled-components/macro';
-import ThemeSelection from './ThemeSelection';
-import Zugsuche from 'client/Common/Components/Zugsuche';
+import { ThemeSelection } from './ThemeSelection';
+import { Zugsuche } from 'client/Common/Components/Zugsuche';
+import styled from 'styled-components';
 
 const Headline = styled.h3`
   text-align: center;
@@ -34,11 +31,11 @@ interface Props {
   children: ReactNode;
 }
 
-const Navigation = ({ children }: Props) => {
+export const Navigation = ({ children }: Props) => {
   const [open, setOpen] = useState(false);
   const toggleDrawer = useCallback(() => {
-    setOpen(!open);
-  }, [open]);
+    setOpen((old) => !old);
+  }, []);
   const navigationContext = useMemo(
     () => ({
       toggleDrawer,
@@ -54,7 +51,7 @@ const Navigation = ({ children }: Props) => {
           <Link to="/">
             <ListItem button>
               <ListItemIcon>
-                <AlarmOnOutlinedIcon />
+                <AlarmOnOutlined />
               </ListItemIcon>
               <ListItemText primary="Abfahrten" />
             </ListItem>
@@ -62,7 +59,7 @@ const Navigation = ({ children }: Props) => {
           <Link to="/regional">
             <ListItem button data-testid="regional">
               <ListItemIcon>
-                <AlarmOnOutlinedIcon />
+                <AlarmOnOutlined />
               </ListItemIcon>
               <ListItemText primary="Nahverkehr Abfahrten" />
             </ListItem>
@@ -70,7 +67,7 @@ const Navigation = ({ children }: Props) => {
           <Link to="/routing">
             <ListItem button>
               <ListItemIcon>
-                <ExploreIcon />
+                <Explore />
               </ListItemIcon>
               <ListItemText primary="Routing" />
             </ListItem>
@@ -79,7 +76,7 @@ const Navigation = ({ children }: Props) => {
             {(toggle) => (
               <ListItem button onClick={toggle}>
                 <ListItemIcon>
-                  <SearchIcon />
+                  <Search />
                 </ListItemIcon>
                 <ListItemText primary="Zugsuche" />
               </ListItem>
@@ -89,7 +86,7 @@ const Navigation = ({ children }: Props) => {
           <Link to="/about">
             <ListItem button>
               <ListItemIcon>
-                <InfoIcon />
+                <Info />
               </ListItemIcon>
               <ListItemText primary="About" />
             </ListItem>
@@ -100,5 +97,3 @@ const Navigation = ({ children }: Props) => {
     </NavigationContext.Provider>
   );
 };
-
-export default Navigation;

@@ -1,6 +1,6 @@
+import { stopPropagation } from 'client/Common/stopPropagation';
 import { useMemo } from 'react';
-import stopPropagation from 'client/Common/stopPropagation';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 const A = styled.a`
   position: absolute;
@@ -33,7 +33,7 @@ const wagenWithImage = [
   'Bvmmz',
   'Bvmsz',
 ];
-const WagenLink = ({ fahrzeugtyp, fahrzeugnummer, type }: Props) => {
+export const WagenLink = ({ fahrzeugtyp, fahrzeugnummer, type }: Props) => {
   const imageName = useMemo(() => {
     let image = fahrzeugtyp;
 
@@ -63,5 +63,3 @@ const WagenLink = ({ fahrzeugtyp, fahrzeugnummer, type }: Props) => {
     </A>
   );
 };
-
-export default WagenLink;

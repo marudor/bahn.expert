@@ -1,9 +1,7 @@
+import { BaseHeader } from 'client/Common/Components/BaseHeader';
+import { BugReport, Extension, Message } from '@material-ui/icons';
 import { Button } from '@material-ui/core';
-import BaseHeader from 'client/Common/Components/BaseHeader';
-import BugReport from '@material-ui/icons/BugReport';
-import Extension from '@material-ui/icons/Extension';
-import Message from '@material-ui/icons/Message';
-import styled, { css } from 'styled-components/macro';
+import styled, { css } from 'styled-components';
 
 const Privacy = () => (
   <div data-testid="Privacy">
@@ -263,7 +261,7 @@ const Buttons = styled.div`
   `}
 `;
 
-const About = () => (
+export const About = () => (
   <>
     <BaseHeader>About (Version {global.VERSION})</BaseHeader>
     <Wrap>
@@ -334,5 +332,5 @@ const About = () => (
     </Wrap>
   </>
 );
-
+// eslint-disable-next-line import/no-default-export
 export default About;

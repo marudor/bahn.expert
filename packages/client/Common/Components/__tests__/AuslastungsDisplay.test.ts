@@ -1,6 +1,6 @@
+import { AuslastungsDisplay } from 'client/Common/Components/AuslastungsDisplay';
 import { AuslastungsValue } from 'types/routing';
 import { render } from 'client/__tests__/testHelper';
-import AuslastungsDisplay from 'client/Common/Components/AuslastungsDisplay';
 
 describe('AuslastungsDisplay', () => {
   it('Gering / Hoch', () => {

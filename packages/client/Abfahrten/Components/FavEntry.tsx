@@ -1,11 +1,10 @@
+import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
+import { Delete } from '@material-ui/icons';
+import { IconButton, Paper } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import { Paper } from '@material-ui/core';
 import { useCallback } from 'react';
 import { useUnfav } from 'client/Abfahrten/container/FavContainer';
-import AbfahrtenConfigContainer from 'client/Abfahrten/container/AbfahrtenConfigContainer';
-import ActionDelete from '@material-ui/icons/Delete';
-import IconButton from '@material-ui/core/IconButton';
-import styled, { css } from 'styled-components/macro';
+import styled, { css } from 'styled-components';
 import type { MouseEvent, ReactNode } from 'react';
 import type { Station } from 'types/station';
 
@@ -65,13 +64,13 @@ export const FavEntryDisplay = ({
         onClick={deleteFav}
         color="inherit"
       >
-        <ActionDelete />
+        <Delete />
       </IconButton>
     )}
   </Wrap>
 );
 
-const FavEntry = ({
+export const FavEntry = ({
   fav,
   noDelete,
   'data-testid': testid = 'favEntry',
@@ -100,5 +99,3 @@ const FavEntry = ({
     </Link>
   );
 };
-
-export default FavEntry;

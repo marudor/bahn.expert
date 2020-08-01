@@ -1,10 +1,10 @@
 import { HelmetProvider } from 'react-helmet-async';
 import { StaticRouter, StaticRouterContext } from 'react-router';
 import { StorageContext } from 'shared/hooks/useStorage';
+import { StorageInterface } from 'shared/hooks/useStorage/StorageInterface';
 import { ThemeProvider } from 'client/Common/container/ThemeContainer';
+import { ThemeWrap } from 'client/ThemeWrap';
 import { WebConfigMap } from 'client/useWebStorage';
-import StorageInterface from 'shared/hooks/useStorage/StorageInterface';
-import ThemeWrap from 'client/ThemeWrap';
 
 interface Props {
   helmetContext: any;
@@ -13,7 +13,7 @@ interface Props {
   storage: StorageInterface<WebConfigMap>;
   sheetsRegistry: any;
 }
-export default function ServerBaseComponent({
+export function ServerBaseComponent({
   helmetContext,
   url,
   routeContext,

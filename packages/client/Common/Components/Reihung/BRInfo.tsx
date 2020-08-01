@@ -1,4 +1,4 @@
-import stopPropagation from 'client/Common/stopPropagation';
+import { stopPropagation } from 'client/Common/stopPropagation';
 import type { BRInfo as BRInfoType } from 'types/reihung';
 
 interface Props {
@@ -6,7 +6,7 @@ interface Props {
   className?: string;
 }
 
-const BRInfo = ({ br, className }: Props) => {
+export const BRInfo = ({ br, className }: Props) => {
   let text = br.name;
 
   let bracketText = '';
@@ -46,5 +46,3 @@ const BRInfo = ({ br, className }: Props) => {
     </a>
   );
 };
-
-export default BRInfo;

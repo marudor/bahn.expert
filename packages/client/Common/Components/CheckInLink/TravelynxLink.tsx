@@ -1,7 +1,7 @@
 import { isBefore } from 'date-fns';
+import { stopPropagation } from 'client/Common/stopPropagation';
 import { Tooltip } from '@material-ui/core';
-import stopPropagation from 'client/Common/stopPropagation';
-import TrainIcon from '@material-ui/icons/Train';
+import { Train } from '@material-ui/icons';
 import type { CommonProductInfo, CommonStopInfo } from 'types/HAFAS';
 import type { Station } from 'types/station';
 
@@ -16,7 +16,7 @@ interface Props {
 // 30 Minutes in ms
 const timeConstraint = 30 * 60 * 1000;
 
-const TravelynxLink = ({
+export const TravelynxLink = ({
   departure,
   arrival,
   station,
@@ -38,9 +38,7 @@ const TravelynxLink = ({
         target="_blank"
         href={`https://travelynx.de/s/${station.id}?train=${train.type} ${train.number}`}
       >
-        <TrainIcon />
+        <Train />
       </a>
     </Tooltip>
   ) : null;
-
-export default TravelynxLink;

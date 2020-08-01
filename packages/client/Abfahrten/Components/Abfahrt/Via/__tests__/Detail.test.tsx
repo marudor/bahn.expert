@@ -1,6 +1,6 @@
+import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
+import { DetailVia } from 'client/Abfahrten/Components/Abfahrt/Via/Detail';
 import { render } from 'client/__tests__/testHelper';
-import AbfahrtenConfigContainer from 'client/Abfahrten/container/AbfahrtenConfigContainer';
-import DetailVia from 'client/Abfahrten/Components/Abfahrt/Via/Detail';
 
 describe('DetailVia', () => {
   const mockStops = [

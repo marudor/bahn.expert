@@ -1,5 +1,5 @@
 import { render } from 'client/__tests__/testHelper';
-import Time from 'client/Common/Components/Time';
+import { Time } from 'client/Common/Components/Time';
 
 // 2019-06-12T13:55:37.648Z
 const sampleTime = 1560347737648;

@@ -1,9 +1,8 @@
 /* eslint no-nested-ternary: 0 */
 import { cancelledCss, delayCss, earlyCss } from 'client/util/cssUtils';
+import { CommonConfigContainer } from 'client/Common/container/CommonConfigContainer';
 import { format, subMinutes } from 'date-fns';
-import { memo } from 'react';
-import CommonConfigContainer from 'client/Common/container/CommonConfigContainer';
-import styled, { css } from 'styled-components/macro';
+import styled, { css } from 'styled-components';
 
 const DelayOrEarlyCss = css<{ delay?: number; hasDelay: boolean }>`
   ${({ delay, hasDelay }) =>
@@ -62,7 +61,7 @@ function delayString(delay: number) {
   return `+${delay}`;
 }
 
-const Time = ({
+export const Time = ({
   className,
   delay,
   real,
@@ -99,5 +98,3 @@ const Time = ({
     </Wrap>
   );
 };
-
-export default memo(Time);

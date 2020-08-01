@@ -1,6 +1,6 @@
 import { ComponentType, ReactNode, useCallback, useState } from 'react';
 import { createContainer } from 'unstated-next';
-import useWebStorage from 'client/useWebStorage';
+import { useWebStorage } from 'client/useWebStorage';
 import type { Station } from 'types/station';
 
 export interface Favs {
@@ -34,7 +34,7 @@ function useFavStorage(setup: FavStorageSetup) {
 }
 
 // @ts-ignore - this works, complains about missing default
-const FavContainer = createContainer(useFavStorage);
+export const FavContainer = createContainer(useFavStorage);
 
 export function useFav() {
   const { favs, updateFavs } = FavContainer.useContainer();
@@ -69,8 +69,6 @@ export function useUnfav() {
 
   return unfav;
 }
-
-export default FavContainer;
 
 interface Props {
   children: ReactNode;

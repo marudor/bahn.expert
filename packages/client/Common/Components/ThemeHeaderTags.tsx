@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
-import { useTheme } from 'styled-components/macro';
+import { useTheme } from 'styled-components';
 
-const ThemeHeaderTags = () => {
+export const ThemeHeaderTags = () => {
   const theme = useTheme();
 
   return (
@@ -15,5 +15,3 @@ const ThemeHeaderTags = () => {
     </Helmet>
   );
 };
-
-export default ThemeHeaderTags;

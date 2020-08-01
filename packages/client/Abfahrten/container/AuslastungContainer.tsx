@@ -32,4 +32,4 @@ function useAuslastung() {
   return { auslastungen, getAuslastung, clearAuslastungen };
 }
 
-export default createContainer(useAuslastung);
+export const AuslastungContainer = createContainer(useAuslastung);

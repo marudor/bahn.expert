@@ -1,12 +1,12 @@
+import { Button } from '@material-ui/core';
+import { Loading } from 'client/Common/Components/Loading';
+import { Route } from './Route';
+import { RouteFavList } from 'client/Routing/Components/RouteFavList';
+import { RouteHeader } from './RouteHeader';
+import { RoutingContainer } from 'client/Routing/container/RoutingContainer';
 import { useCallback, useState } from 'react';
-import Button from '@material-ui/core/Button';
-import Loading from 'client/Common/Components/Loading';
-import Route from './Route';
-import RouteFavList from 'client/Routing/Components/RouteFavList';
-import RouteHeader from './RouteHeader';
-import RoutingContainer from 'client/Routing/container/RoutingContainer';
-import styled from 'styled-components/macro';
-import useFetchRouting from 'client/Routing/container/RoutingContainer/useFetchRouting';
+import { useFetchRouting } from 'client/Routing/container/RoutingContainer/useFetchRouting';
+import styled from 'styled-components';
 
 const translateError = (e: any) => {
   if (e && e.response && e.response.data) {
@@ -36,7 +36,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const RouteList = () => {
+export const RouteList = () => {
   const {
     routes,
     error,
@@ -113,5 +113,3 @@ const RouteList = () => {
     </Wrapper>
   );
 };
-
-export default RouteList;

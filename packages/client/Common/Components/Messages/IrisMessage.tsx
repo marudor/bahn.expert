@@ -1,6 +1,6 @@
 import { cancelledCss } from 'client/util/cssUtils';
 import { format } from 'date-fns';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import type { IrisMessage as IrisMessageType } from 'types/iris';
 
 interface Props {
@@ -12,7 +12,10 @@ const IrisMessageWrap = styled.div<{ superseded?: boolean }>`
   ${({ superseded }) => superseded && cancelledCss}
 `;
 
-const IrisMessage = ({ message, today = new Date().getDate() }: Props) => {
+export const IrisMessage = ({
+  message,
+  today = new Date().getDate(),
+}: Props) => {
   const ts = new Date(message.timestamp);
 
   return (
@@ -22,5 +25,3 @@ const IrisMessage = ({ message, today = new Date().getDate() }: Props) => {
     </IrisMessageWrap>
   );
 };
-
-export default IrisMessage;

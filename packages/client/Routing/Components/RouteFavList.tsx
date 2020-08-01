@@ -1,7 +1,7 @@
-import RouteFavEntry from 'client/Routing/Components/RouteFavEntry';
-import RoutingFavContainer from 'client/Routing/container/RoutingFavContainer';
+import { RouteFavEntry } from 'client/Routing/Components/RouteFavEntry';
+import { RoutingFavContainer } from 'client/Routing/container/RoutingFavContainer';
 
-const RouteFavList = () => {
+export const RouteFavList = () => {
   const { favs } = RoutingFavContainer.useContainer();
 
   return (
@@ -14,5 +14,3 @@ const RouteFavList = () => {
     </div>
   );
 };
-
-export default RouteFavList;

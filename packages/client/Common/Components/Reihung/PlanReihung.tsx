@@ -6,7 +6,7 @@ interface Props {
   trainNumber: string;
 }
 
-const PlanReihung = ({ trainNumber }: Props) => {
+export const PlanReihung = ({ trainNumber }: Props) => {
   const [planWR, setPlanWR] = useState<PlannedSequence>();
 
   useEffect(() => {
@@ -22,5 +22,3 @@ const PlanReihung = ({ trainNumber }: Props) => {
 
   return <div>ICE Type nach Plan: {planWR.type}</div>;
 };
-
-export default PlanReihung;

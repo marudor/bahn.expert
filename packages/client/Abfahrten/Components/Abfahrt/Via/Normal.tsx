@@ -1,7 +1,7 @@
 import { additionalCss, cancelledCss, changedCss } from 'client/util/cssUtils';
 import { isHbf } from './index';
 import { ReactNode, useMemo } from 'react';
-import styled, { css } from 'styled-components/macro';
+import styled, { css } from 'styled-components';
 import type { Stop } from 'types/iris';
 
 export const ViaStop = styled.span<{ stop: Stop }>`
@@ -23,7 +23,7 @@ export const ViaStop = styled.span<{ stop: Stop }>`
 interface Props {
   stops: Stop[];
 }
-const NormalVia = ({ stops }: Props) => {
+export const NormalVia = ({ stops }: Props) => {
   const stopsToRender = useMemo(() => {
     const stopsToRender: ReactNode[] = [];
     const filteredStops = stops.filter((s) => s.showVia);
@@ -44,5 +44,3 @@ const NormalVia = ({ stops }: Props) => {
 
   return <>{stopsToRender}</>;
 };
-
-export default NormalVia;

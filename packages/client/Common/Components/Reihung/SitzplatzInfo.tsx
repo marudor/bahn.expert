@@ -1,7 +1,7 @@
 import { Dialog, DialogContent } from '@material-ui/core';
+import { stopPropagation } from 'client/Common/stopPropagation';
 import { SyntheticEvent, useCallback, useState } from 'react';
-import stopPropagation from 'client/Common/stopPropagation';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import type { AdditionalFahrzeugInfo } from 'types/reihung';
 
 const Wrap = styled.span`
@@ -19,7 +19,10 @@ interface Props {
   wagenordnungsnummer: string;
 }
 
-const SitzplatzInfo = ({ additionalInfo, wagenordnungsnummer }: Props) => {
+export const SitzplatzInfo = ({
+  additionalInfo,
+  wagenordnungsnummer,
+}: Props) => {
   const [open, setOpen] = useState(false);
   const toggle = useCallback((e: SyntheticEvent) => {
     e.preventDefault();
@@ -56,5 +59,3 @@ const SitzplatzInfo = ({ additionalInfo, wagenordnungsnummer }: Props) => {
     </>
   );
 };
-
-export default SitzplatzInfo;

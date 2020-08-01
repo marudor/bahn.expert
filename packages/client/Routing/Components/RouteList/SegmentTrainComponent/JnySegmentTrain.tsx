@@ -1,10 +1,10 @@
+import { AuslastungsDisplay } from 'client/Common/Components/AuslastungsDisplay';
 import { Destination, TrainInfo, TrainMargin } from './common';
-import AuslastungsDisplay from 'client/Common/Components/AuslastungsDisplay';
-import DetailsLink from 'client/Common/Components/Details/DetailsLink';
-import PlannedType from 'client/Common/Components/PlannedType';
-import Reihung from 'client/Common/Components/Reihung';
-import StopList from 'client/Routing/Components/RouteList/StopList';
-import styled from 'styled-components/macro';
+import { DetailsLink } from 'client/Common/Components/Details/DetailsLink';
+import { PlannedType } from 'client/Common/Components/PlannedType';
+import { Reihung } from 'client/Common/Components/Reihung';
+import { StopList } from 'client/Routing/Components/RouteList/StopList';
+import styled from 'styled-components';
 import type { MouseEvent } from 'react';
 import type { Route$JourneySegmentTrain } from 'types/routing';
 
@@ -18,7 +18,7 @@ interface Props {
   className?: string;
   onTrainClick?: (e: MouseEvent) => void;
 }
-const JnySegmentTrain = ({
+export const JnySegmentTrain = ({
   segment,
   onTrainClick,
   className,
@@ -62,5 +62,3 @@ const JnySegmentTrain = ({
     </div>
   );
 };
-
-export default JnySegmentTrain;

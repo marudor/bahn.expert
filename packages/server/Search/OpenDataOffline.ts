@@ -1,5 +1,5 @@
+import { orderBy } from 'shared/util';
 import Fuse from 'fuse.js';
-import orderBy from 'shared/util/orderBy';
 import rawStations from 'db-stations/data.json';
 import type { Station } from 'types/station';
 

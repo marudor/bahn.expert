@@ -1,19 +1,18 @@
+import { BaseHeader } from 'client/Common/Components/BaseHeader';
 import { IconButton } from '@material-ui/core';
-import { singleLineText } from 'client/util/cssUtils';
-import { useCallback, useMemo } from 'react';
-import BaseHeader from 'client/Common/Components/BaseHeader';
-import RoutingConfigContainer from 'client/Routing/container/RoutingConfigContainer';
-import RoutingFavContainer, {
+import { RoutingConfigContainer } from 'client/Routing/container/RoutingConfigContainer';
+import {
   RoutingFav,
+  RoutingFavContainer,
   routingFavKey,
   RoutingFavStation,
   useRoutingFavAction,
 } from 'client/Routing/container/RoutingFavContainer';
-import styled from 'styled-components/macro';
-import ToggleStar from '@material-ui/icons/Star';
-import ToggleStarBorder from '@material-ui/icons/StarBorder';
+import { singleLineText } from 'client/util/cssUtils';
+import { Star, StarBorder } from '@material-ui/icons';
+import { useCallback, useMemo } from 'react';
+import styled from 'styled-components';
 import type { Station } from 'types/station';
-
 function stripStationToRoutingFavStation(station: Station): RoutingFavStation {
   return {
     title: station.title,
@@ -85,19 +84,17 @@ const InnerHeader = () => {
       <Destination>{destination?.title}</Destination>
       {currentFav && (
         <Fav data-testid="routingFavButton" onClick={toggleFav}>
-          {isFaved ? <ToggleStar /> : <ToggleStarBorder />}
+          {isFaved ? <Star /> : <StarBorder />}
         </Fav>
       )}
     </Wrapper>
   );
 };
 
-const Header = () => {
+export const Header = () => {
   return (
     <BaseHeader>
       <InnerHeader />
     </BaseHeader>
   );
 };
-
-export default Header;

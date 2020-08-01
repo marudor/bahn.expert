@@ -1,12 +1,10 @@
-import { memo, ReactNode, SyntheticEvent, useCallback, useRef } from 'react';
+import { Loading, LoadingType } from './Loading';
+import { MenuItem, Paper, TextField } from '@material-ui/core';
+import { MyLocation } from '@material-ui/icons';
+import { ReactNode, SyntheticEvent, useCallback, useRef } from 'react';
+import { useStationSearch } from 'shared/hooks/useStationSearch';
 import Downshift from 'downshift';
-import Loading, { LoadingType } from './Loading';
-import MenuItem from '@material-ui/core/MenuItem';
-import MyLocation from '@material-ui/icons/MyLocation';
-import Paper from '@material-ui/core/Paper';
-import styled from 'styled-components/macro';
-import TextField from '@material-ui/core/TextField';
-import useStationSearch from 'shared/hooks/useStationSearch';
+import styled from 'styled-components';
 import type { AllowedHafasProfile } from 'types/HAFAS';
 import type { Station, StationSearchType } from 'types/station';
 
@@ -59,7 +57,7 @@ export interface Props {
   additionalIcon?: ReactNode;
 }
 
-const StationSearch = ({
+export const StationSearch = ({
   id,
   onChange,
   value,
@@ -228,5 +226,3 @@ const StationSearch = ({
     </Wrap>
   );
 };
-
-export default memo(StationSearch);

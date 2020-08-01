@@ -1,6 +1,6 @@
 import { createContainer } from 'unstated-next';
 import { ReactNode, useCallback, useState } from 'react';
-import useWebStorage from 'client/useWebStorage';
+import { useWebStorage } from 'client/useWebStorage';
 
 const selectedDetailCookieName = 'selectedDetail';
 
@@ -34,9 +34,7 @@ const useSelectedDetail = (initialSelected: string | undefined) => {
   };
 };
 
-const SelectedDetailContainer = createContainer(useSelectedDetail);
-
-export default SelectedDetailContainer;
+export const SelectedDetailContainer = createContainer(useSelectedDetail);
 
 interface Props {
   children: ReactNode;

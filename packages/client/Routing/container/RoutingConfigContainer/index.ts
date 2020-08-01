@@ -1,7 +1,7 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { createContainer } from 'unstated-next';
 import { useCallback, useMemo, useState } from 'react';
-import useWebStorage from 'client/useWebStorage';
+import { useWebStorage } from 'client/useWebStorage';
 import type { Station } from 'types/station';
 import type { SyntheticEvent } from 'react';
 
@@ -79,6 +79,4 @@ const useRoutingConfig = (initialState: RoutingSettings) => {
 };
 
 // @ts-expect-error This works, we always supply a value
-const RoutingConfigContainer = createContainer(useRoutingConfig);
-
-export default RoutingConfigContainer;
+export const RoutingConfigContainer = createContainer(useRoutingConfig);

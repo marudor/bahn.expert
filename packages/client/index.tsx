@@ -5,8 +5,8 @@ import { hydrate, render } from 'react-dom';
 import { loadableReady } from '@loadable/component';
 import { StorageContext } from 'shared/hooks/useStorage';
 import { ThemeProvider } from 'client/Common/container/ThemeContainer';
+import { ThemeWrap } from './ThemeWrap';
 import request from 'umi-request';
-import ThemeWrap from './ThemeWrap';
 import type { ComponentType } from 'react';
 // 15s timeout
 request.extendOptions({

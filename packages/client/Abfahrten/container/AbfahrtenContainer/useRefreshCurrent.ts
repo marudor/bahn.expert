@@ -1,10 +1,11 @@
-import { useCallback } from 'react';
-import AbfahrtenConfigContainer from 'client/Abfahrten/container/AbfahrtenConfigContainer';
-import AbfahrtenContainer, {
+import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
+import {
+  AbfahrtenContainer,
   fetchAbfahrten,
 } from 'client/Abfahrten/container/AbfahrtenContainer';
+import { useCallback } from 'react';
 
-export default () => {
+export const useRefreshCurrent = () => {
   const { currentStation, setDepartures } = AbfahrtenContainer.useContainer();
   const {
     config: { lookahead, lookbehind },

@@ -1,6 +1,6 @@
+import { orderBy } from 'shared/util';
 import fs from 'fs';
 import Fuse from 'fuse.js';
-import orderBy from 'shared/util/orderBy';
 import path from 'path';
 import type { Station } from 'types/station';
 

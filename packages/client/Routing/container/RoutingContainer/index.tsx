@@ -1,10 +1,11 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { createContainer } from 'unstated-next';
 import { ReactNode, useState } from 'react';
-import RoutingConfingContainer, {
+import {
+  RoutingConfigContainer,
   RoutingSettings,
 } from 'client/Routing/container/RoutingConfigContainer';
-import useWebStorage from 'client/useWebStorage';
+import { useWebStorage } from 'client/useWebStorage';
 import type { SingleRoute } from 'types/routing';
 
 const useRouting = () => {
@@ -28,9 +29,7 @@ const useRouting = () => {
   };
 };
 
-const RoutingContainer = createContainer(useRouting);
-
-export default RoutingContainer;
+export const RoutingContainer = createContainer(useRouting);
 
 interface Props {
   children: ReactNode;
@@ -58,8 +57,8 @@ export const RoutingProvider = ({ children }: Props) => {
   };
 
   return (
-    <RoutingConfingContainer.Provider initialState={savedRoutingSettings}>
+    <RoutingConfigContainer.Provider initialState={savedRoutingSettings}>
       <RoutingContainer.Provider>{children}</RoutingContainer.Provider>
-    </RoutingConfingContainer.Provider>
+    </RoutingConfigContainer.Provider>
   );
 };

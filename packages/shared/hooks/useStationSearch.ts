@@ -21,7 +21,7 @@ interface UseStationSearchOptions {
 
 const itemToString = (s: Station | null) => (s ? s.title : '');
 
-export default ({
+export const useStationSearch = ({
   profile,
   searchType,
   maxSuggestions,

@@ -1,5 +1,4 @@
-import { memo } from 'react';
-import FavEntry from './FavEntry';
+import { FavEntry } from './FavEntry';
 
 const mostUsed = [
   { title: 'Frankfurt(Main)Hbf', id: '8000105' },
@@ -18,12 +17,10 @@ const mostUsed = [
   { title: 'Nürnberg Hbf', id: '8000284' },
 ];
 
-const MostUsed = () => (
+export const MostUsed = () => (
   <>
     {mostUsed.map((m) => (
       <FavEntry data-testid="mostUsedEntry" noDelete key={m.id} fav={m} />
     ))}
   </>
 );
-
-export default memo(MostUsed);

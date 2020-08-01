@@ -50,4 +50,4 @@ function useReihung() {
   return { reihungen, getReihung, clearReihungen };
 }
 
-export default createContainer(useReihung);
+export const ReihungContainer = createContainer(useReihung);

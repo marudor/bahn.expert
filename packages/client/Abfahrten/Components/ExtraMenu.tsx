@@ -1,25 +1,26 @@
 import { __RouterContext } from 'react-router';
-import { IconButton } from '@material-ui/core';
-import { SyntheticEvent, useCallback, useState } from 'react';
-import AbfahrtenConfigContainer from 'client/Abfahrten/container/AbfahrtenConfigContainer';
-import AbfahrtenContainer from 'client/Abfahrten/container/AbfahrtenContainer';
-import ActionTune from '@material-ui/icons/Tune';
-import FavContainer, {
+import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
+import { AbfahrtenContainer } from 'client/Abfahrten/container/AbfahrtenContainer';
+import {
+  FavContainer,
   useFav,
   useUnfav,
 } from 'client/Abfahrten/container/FavContainer';
-import FilterList from '@material-ui/icons/FilterList';
-import FilterModal from './FilterModal';
-import Layers from '@material-ui/icons/Layers';
-import LayersClear from '@material-ui/icons/LayersClear';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Settings from '@material-ui/icons/Settings';
-import ToggleStar from '@material-ui/icons/Star';
-import ToggleStarBorder from '@material-ui/icons/StarBorder';
-import useLageplan from 'client/Abfahrten/hooks/useLageplan';
+import {
+  FilterList,
+  Layers,
+  LayersClear,
+  Settings,
+  Star,
+  StarBorder,
+  Tune,
+} from '@material-ui/icons';
+import { FilterModal } from './FilterModal';
+import { IconButton, Menu, MenuItem } from '@material-ui/core';
+import { SyntheticEvent, useCallback, useState } from 'react';
+import { useLageplan } from 'client/Abfahrten/hooks/useLageplan';
 
-const ExtraMenu = () => {
+export const ExtraMenu = () => {
   const {
     setConfigOpen,
     setFilterOpen,
@@ -71,18 +72,18 @@ const ExtraMenu = () => {
         onClick={toggleMenu}
         color="inherit"
       >
-        <ActionTune />
+        <Tune />
       </IconButton>
       <Menu open={Boolean(anchor)} anchorEl={anchor} onClose={toggleMenu}>
         {currentStation && [
           <MenuItem data-testid="toggleFav" key="1" onClick={toggleFav}>
             {isFaved ? (
               <>
-                <ToggleStar /> Unfav
+                <Star /> Unfav
               </>
             ) : (
               <>
-                <ToggleStarBorder /> Fav
+                <StarBorder /> Fav
               </>
             )}
           </MenuItem>,
@@ -100,5 +101,3 @@ const ExtraMenu = () => {
     </>
   );
 };
-
-export default ExtraMenu;

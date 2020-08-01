@@ -4,7 +4,7 @@ interface Props {
   messages?: RemL[];
 }
 
-const Messages = ({ messages }: Props) => {
+export const Messages = ({ messages }: Props) => {
   if (!messages) return null;
 
   return (
@@ -15,5 +15,3 @@ const Messages = ({ messages }: Props) => {
     </>
   );
 };
-
-export default Messages;
