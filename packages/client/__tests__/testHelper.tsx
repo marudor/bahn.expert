@@ -1,17 +1,17 @@
 /* eslint-disable no-underscore-dangle */
 import { CommonConfig } from 'client/Common/config';
-import { DefaultTheme } from 'styled-components/macro';
+import { CommonConfigContainer } from 'client/Common/container/CommonConfigContainer';
+import { createTheme } from 'client/Themes';
+import { DefaultTheme } from 'styled-components';
 import { HelmetProvider } from 'react-helmet-async';
 import { MemoryRouter, useLocation } from 'react-router';
+import { Navigation } from 'client/Common/Components/Navigation';
 import { render as realRender } from '@testing-library/react';
 import { StorageContext } from 'shared/hooks/useStorage';
 import { ThemeProvider } from 'client/Common/container/ThemeContainer';
 import { ThemeType } from 'client/Themes/type';
-import CommonConfigContainer from 'client/Common/container/CommonConfigContainer';
+import { ThemeWrap } from 'client/ThemeWrap';
 import Cookies from 'universal-cookie';
-import createTheme from 'client/Themes';
-import Navigation from 'client/Common/Components/Navigation';
-import ThemeWrap from 'client/ThemeWrap';
 import type { ComponentProps, ComponentType } from 'react';
 import type { Container } from 'unstated-next';
 import type { Location } from 'history';

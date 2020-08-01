@@ -1,18 +1,23 @@
-import Accessibility from '@material-ui/icons/Accessibility';
-import ActionAccessible from '@material-ui/icons/Accessible';
-import ActionMotorcycle from '@material-ui/icons/Motorcycle';
-import ChildCare from '@material-ui/icons/ChildCare';
-import ChildFriendly from '@material-ui/icons/ChildFriendly';
-import Info from '@material-ui/icons/InfoOutlined';
-import MapsLocalDining from '@material-ui/icons/LocalDining';
-import NotificationsOff from '@material-ui/icons/NotificationsOff';
-import SitzplatzInfo from './SitzplatzInfo';
-import styled, { css } from 'styled-components/macro';
-import UIC from './UIC';
-import WagenLink from './WagenLink';
-import Wifi from '@material-ui/icons/Wifi';
-import WifiOff from '@material-ui/icons/WifiOff';
-import type { AdditionalFahrzeugInfo, Fahrzeug } from 'types/reihung';
+import {
+  Accessibility,
+  Accessible,
+  ChildCare,
+  ChildFriendly,
+  InfoOutlined,
+  LocalDining,
+  Motorcycle,
+  NotificationsOff,
+  Wifi,
+  WifiOff,
+} from '@material-ui/icons';
+import { SitzplatzInfo } from './SitzplatzInfo';
+import { UIC } from './UIC';
+import { WagenLink } from './WagenLink';
+import styled, { css } from 'styled-components';
+import type {
+  AdditionalFahrzeugInfo,
+  Fahrzeug as FahrzeugType,
+} from 'types/reihung';
 import type { ComponentType } from 'react';
 
 const Icon = styled.a`
@@ -27,14 +32,14 @@ const Icon = styled.a`
 export const icons: {
   [key in keyof Required<AdditionalFahrzeugInfo['icons']>]: ComponentType;
 } = {
-  wheelchair: Icon.withComponent(ActionAccessible),
-  bike: Icon.withComponent(ActionMotorcycle),
-  dining: Icon.withComponent(MapsLocalDining),
+  wheelchair: Icon.withComponent(Accessible),
+  bike: Icon.withComponent(Motorcycle),
+  dining: Icon.withComponent(LocalDining),
   quiet: Icon.withComponent(NotificationsOff),
   toddler: Icon.withComponent(ChildFriendly),
   family: Icon.withComponent(ChildCare),
   disabled: Icon.withComponent(Accessibility),
-  info: Icon.withComponent(Info),
+  info: Icon.withComponent(InfoOutlined),
   wifi: Icon.withComponent(Wifi),
   wifiOff: Icon.withComponent(WifiOff),
 };
@@ -156,7 +161,7 @@ export interface InheritedProps {
 
 export interface Props extends InheritedProps {
   fahrzeug: Pick<
-    Fahrzeug,
+    FahrzeugType,
     | 'fahrzeugtyp'
     | 'wagenordnungsnummer'
     | 'positionamhalt'
@@ -169,7 +174,7 @@ export interface Props extends InheritedProps {
   showUIC: boolean;
 }
 
-const FahrzeugComp = ({
+export const Fahrzeug = ({
   fahrzeug,
   wrongWing,
   scale,
@@ -225,5 +230,3 @@ const FahrzeugComp = ({
     </Wrap>
   );
 };
-
-export default FahrzeugComp;

@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import type { Message } from 'types/iris';
 
 export const MessagesWrap = styled.div`
@@ -11,7 +11,7 @@ export const MessagesWrap = styled.div`
 interface Props {
   messages: Message[];
 }
-const NormalMessages = ({ messages }: Props) => {
+export const NormalMessages = ({ messages }: Props) => {
   const messagesDisplay = useMemo(
     () => messages.map((m) => ('head' in m ? m.head : m.text)).join(' +++ '),
     [messages]
@@ -19,5 +19,3 @@ const NormalMessages = ({ messages }: Props) => {
 
   return <MessagesWrap>{messagesDisplay}</MessagesWrap>;
 };
-
-export default NormalMessages;

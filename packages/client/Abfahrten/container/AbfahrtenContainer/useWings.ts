@@ -1,8 +1,8 @@
+import { AbfahrtenContainer } from 'client/Abfahrten/container/AbfahrtenContainer';
 import { useMemo } from 'react';
-import AbfahrtenContainer from 'client/Abfahrten/container/AbfahrtenContainer';
 import type { Abfahrt } from 'types/iris';
 
-export default (abfahrt: Abfahrt) => {
+export const useWings = (abfahrt: Abfahrt) => {
   const { departures } = AbfahrtenContainer.useContainer();
   const wings = departures && departures.wings;
 

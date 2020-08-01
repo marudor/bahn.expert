@@ -1,13 +1,13 @@
+import { BaseAbfahrt } from './BaseAbfahrt';
 import { useMemo } from 'react';
-import BaseAbfahrt from './BaseAbfahrt';
-import useWings from 'client/Abfahrten/container/AbfahrtenContainer/useWings';
+import { useWings } from 'client/Abfahrten/container/AbfahrtenContainer/useWings';
 import type { Abfahrt as AbfahrtType } from 'types/iris';
 
 interface Props {
   abfahrt: AbfahrtType;
 }
 
-const Abfahrt = ({ abfahrt }: Props) => {
+export const Abfahrt = ({ abfahrt }: Props) => {
   const wings = useWings(abfahrt);
 
   const sameTrainWing = useMemo(
@@ -51,5 +51,3 @@ const Abfahrt = ({ abfahrt }: Props) => {
     </>
   );
 };
-
-export default Abfahrt;

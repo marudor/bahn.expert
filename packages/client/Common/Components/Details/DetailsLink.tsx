@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
+import { stopPropagation } from 'client/Common/stopPropagation';
 import qs from 'qs';
-import stopPropagation from 'client/Common/stopPropagation';
 import type { CommonProductInfo } from 'types/HAFAS';
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
   initialDeparture: number;
   urlPrefix?: string;
 }
-const DetailsLink = ({
+export const DetailsLink = ({
   train,
   stationId,
   initialDeparture,
@@ -32,5 +32,3 @@ const DetailsLink = ({
     Details
   </Link>
 );
-
-export default DetailsLink;

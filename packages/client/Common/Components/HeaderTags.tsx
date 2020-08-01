@@ -1,8 +1,8 @@
+import { HeaderTagContainer } from 'client/Common/container/HeaderTagContainer';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router';
-import HeaderTagContainer from 'client/Common/container/HeaderTagContainer';
 
-const HeaderTags = () => {
+export const HeaderTags = () => {
   const { title, description } = HeaderTagContainer.useContainer();
   const url = `${global.BASE_URL}${useLocation().pathname}`;
   const image = `${global.BASE_URL}/android-chrome-384x384.png`;
@@ -31,5 +31,3 @@ const HeaderTags = () => {
     </Helmet>
   );
 };
-
-export default HeaderTags;

@@ -1,12 +1,12 @@
+import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
+import { End } from './End';
+import { Mid } from './Mid';
+import { SelectedDetailContainer } from 'client/Abfahrten/container/SelectedDetailContainer';
+import { Start } from './Start';
 import { useCallback, useMemo } from 'react';
-import AbfahrtenConfigContainer from 'client/Abfahrten/container/AbfahrtenConfigContainer';
-import End from './End';
 import loadable from '@loadable/component';
-import Mid from './Mid';
 import Paper from '@material-ui/core/Paper';
-import SelectedDetailContainer from 'client/Abfahrten/container/SelectedDetailContainer';
-import Start from './Start';
-import styled, { css } from 'styled-components/macro';
+import styled, { css } from 'styled-components';
 import type { Abfahrt } from 'types/iris';
 
 const LazyReihung = loadable(() => import('client/Common/Components/Reihung'));
@@ -80,7 +80,12 @@ export interface Props {
   wingStart?: boolean;
 }
 
-const BaseAbfahrt = ({ abfahrt, wingNumbers, wingEnd, wingStart }: Props) => {
+export const BaseAbfahrt = ({
+  abfahrt,
+  wingNumbers,
+  wingEnd,
+  wingStart,
+}: Props) => {
   const wingNumbersWithoutSelf = wingNumbers?.filter(
     (wn) => wn !== abfahrt.train.number
   );
@@ -144,5 +149,3 @@ const BaseAbfahrt = ({ abfahrt, wingNumbers, wingEnd, wingStart }: Props) => {
     ]
   );
 };
-
-export default BaseAbfahrt;

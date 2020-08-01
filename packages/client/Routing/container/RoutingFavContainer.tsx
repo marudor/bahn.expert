@@ -1,6 +1,6 @@
 import { createContainer } from 'unstated-next';
 import { ReactNode, useCallback, useState } from 'react';
-import useWebStorage from 'client/useWebStorage';
+import { useWebStorage } from 'client/useWebStorage';
 import type { AllowedHafasProfile } from 'types/HAFAS';
 import type { Station } from 'types/station';
 
@@ -32,9 +32,8 @@ function useRoutingFavStorage(initialFavs: RoutingFavs = {}) {
   };
 }
 
-const RoutingFavContainer = createContainer(useRoutingFavStorage);
+export const RoutingFavContainer = createContainer(useRoutingFavStorage);
 
-export default RoutingFavContainer;
 export function routingFavKey(fav: RoutingFav) {
   return `${fav.start.id}${fav.via.map((s) => s.id)}${fav.destination.id}${
     fav.profile

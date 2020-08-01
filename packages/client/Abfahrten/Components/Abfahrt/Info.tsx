@@ -1,10 +1,10 @@
+import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
+import { DetailMessages } from 'client/Common/Components/Messages/Detail';
+import { DetailVia } from './Via/Detail';
+import { NormalMessages } from 'client/Common/Components/Messages/Normal';
+import { NormalVia } from './Via/Normal';
 import { useMemo } from 'react';
-import AbfahrtenConfigContainer from 'client/Abfahrten/container/AbfahrtenConfigContainer';
-import DetailMessages from 'client/Common/Components/Messages/Detail';
-import DetailVia from './Via/Detail';
-import NormalMessages from 'client/Common/Components/Messages/Normal';
-import NormalVia from './Via/Normal';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import type { Abfahrt } from 'types/iris';
 
 const Wrap = styled.div<{ detail: boolean }>`
@@ -18,7 +18,7 @@ interface Props {
   abfahrt: Abfahrt;
   detail: boolean;
 }
-const Info = ({ abfahrt, detail }: Props) => {
+export const Info = ({ abfahrt, detail }: Props) => {
   const showSupersededMessages = AbfahrtenConfigContainer.useContainer().config
     .showSupersededMessages;
   const messages = useMemo(() => {
@@ -49,5 +49,3 @@ const Info = ({ abfahrt, detail }: Props) => {
     );
   }, [detail, info, via]);
 };
-
-export default Info;

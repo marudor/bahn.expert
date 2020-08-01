@@ -1,4 +1,4 @@
-import uniqBy from 'shared/util/uniqBy';
+import { uniqBy } from 'shared/util';
 import type { MsgL, ParsedCommon, RemL } from 'types/HAFAS';
 
 export default (

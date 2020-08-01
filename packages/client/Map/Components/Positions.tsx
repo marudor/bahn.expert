@@ -1,7 +1,7 @@
-import MapContainer from 'client/Map/container/MapContainer';
-import Position from 'client/Map/Components/Position';
+import { MapContainer } from 'client/Map/container/MapContainer';
+import { Position } from 'client/Map/Components/Position';
 
-const Positions = () => {
+export const Positions = () => {
   const { positions } = MapContainer.useContainer();
 
   if (positions) {
@@ -16,5 +16,3 @@ const Positions = () => {
 
   return null;
 };
-
-export default Positions;

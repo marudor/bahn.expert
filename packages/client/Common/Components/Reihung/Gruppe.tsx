@@ -1,8 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
+import { BRInfo } from './BRInfo';
+import { Fahrzeug, InheritedProps } from './Fahrzeug';
 import { useMemo } from 'react';
-import BRInfo from './BRInfo';
-import Fahrzeug, { InheritedProps } from './Fahrzeug';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import type { Fahrzeuggruppe } from 'types/reihung';
 
 interface Props extends InheritedProps {
@@ -22,7 +22,7 @@ const Bezeichnung = styled.span`
   bottom: 2.5em;
 `;
 
-const Gruppe = ({
+export const Gruppe = ({
   gruppe,
   showDestination,
   showFahrzeugGruppe,
@@ -91,5 +91,3 @@ const Gruppe = ({
     </>
   );
 };
-
-export default Gruppe;

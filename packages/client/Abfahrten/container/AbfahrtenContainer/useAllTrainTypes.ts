@@ -1,9 +1,9 @@
+import { AbfahrtenContainer } from 'client/Abfahrten/container/AbfahrtenContainer';
 import { useMemo } from 'react';
-import AbfahrtenContainer from 'client/Abfahrten/container/AbfahrtenContainer';
 
 const defaultTypes = ['ICE', 'IC', 'EC', 'RE', 'RB', 'S'];
 
-export default () => {
+export const useAllTrainTypes = () => {
   const departures = AbfahrtenContainer.useContainer().departures;
 
   return useMemo(() => {

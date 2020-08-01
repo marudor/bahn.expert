@@ -1,14 +1,14 @@
 import { AppBar, IconButton, Toolbar } from '@material-ui/core';
+import { HeaderTags } from './HeaderTags';
+import { Menu } from '@material-ui/icons';
+import { NavigationContext } from 'client/Common/Components/Navigation/NavigationContext';
 import { ReactNode, useContext } from 'react';
-import ActionMenu from '@material-ui/icons/Menu';
-import HeaderTags from './HeaderTags';
-import NavigationContext from 'client/Common/Components/Navigation/NavigationContext';
 
 interface Props {
   children: ReactNode;
 }
 
-const BaseHeader = ({ children }: Props) => {
+export const BaseHeader = ({ children }: Props) => {
   const { toggleDrawer } = useContext(NavigationContext);
 
   return (
@@ -21,12 +21,10 @@ const BaseHeader = ({ children }: Props) => {
           onClick={toggleDrawer}
           color="inherit"
         >
-          <ActionMenu color="inherit" />
+          <Menu color="inherit" />
         </IconButton>
         {children}
       </Toolbar>
     </AppBar>
   );
 };
-
-export default BaseHeader;

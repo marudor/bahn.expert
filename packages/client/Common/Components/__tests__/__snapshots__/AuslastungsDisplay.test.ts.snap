@@ -13,7 +13,7 @@ exports[`AuslastungsDisplay Gering / Hoch 1`] = `
       1
     </span>
     <span
-      class="SingleAuslastungsDisplay__Wrap-n87yca-0 iLIJtE"
+      class="SingleAuslastungsDisplay__Wrap-n87yca-0 gpgSGH"
     >
       <svg
         aria-hidden="true"
@@ -35,7 +35,7 @@ exports[`AuslastungsDisplay Gering / Hoch 1`] = `
       2
     </span>
     <span
-      class="SingleAuslastungsDisplay__Wrap-n87yca-0 dASRCK"
+      class="SingleAuslastungsDisplay__Wrap-n87yca-0 juOlup"
     >
       <svg
         aria-hidden="true"
@@ -65,7 +65,7 @@ exports[`AuslastungsDisplay SehrHoch / Ausgebucht 1`] = `
       1
     </span>
     <span
-      class="SingleAuslastungsDisplay__Wrap-n87yca-0 bcOXtV"
+      class="SingleAuslastungsDisplay__Wrap-n87yca-0 cBXlwO"
     >
       <svg
         aria-hidden="true"
@@ -87,7 +87,7 @@ exports[`AuslastungsDisplay SehrHoch / Ausgebucht 1`] = `
       2
     </span>
     <span
-      class="SingleAuslastungsDisplay__Wrap-n87yca-0 iPzjCq"
+      class="SingleAuslastungsDisplay__Wrap-n87yca-0 kmdDMt"
     >
       <svg
         aria-hidden="true"
@@ -117,7 +117,7 @@ exports[`AuslastungsDisplay Unbekannt / Hoch 1`] = `
       1
     </span>
     <span
-      class="SingleAuslastungsDisplay__Wrap-n87yca-0 jqETXc"
+      class="SingleAuslastungsDisplay__Wrap-n87yca-0 AcGHz"
     >
       <svg
         aria-hidden="true"
@@ -139,7 +139,7 @@ exports[`AuslastungsDisplay Unbekannt / Hoch 1`] = `
       2
     </span>
     <span
-      class="SingleAuslastungsDisplay__Wrap-n87yca-0 dASRCK"
+      class="SingleAuslastungsDisplay__Wrap-n87yca-0 juOlup"
     >
       <svg
         aria-hidden="true"

@@ -1,8 +1,7 @@
+import { Chip, Paper } from '@material-ui/core';
 import { format } from 'date-fns';
 import { gridStyle } from 'client/Routing/Components/RouteList/Route';
-import Chip from '@material-ui/core/Chip';
-import Paper from '@material-ui/core/Paper';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 const PaperWrap = styled(Paper)`
   font-size: 0.8em;
@@ -23,7 +22,7 @@ interface Props {
   date: number;
 }
 
-const RouteHeader = ({ date }: Props) => (
+export const RouteHeader = ({ date }: Props) => (
   <PaperWrap square>
     <Date data-testid="headerDate">
       <StyledChip
@@ -39,5 +38,3 @@ const RouteHeader = ({ date }: Props) => (
     <span>Umstiege</span>
   </PaperWrap>
 );
-
-export default RouteHeader;

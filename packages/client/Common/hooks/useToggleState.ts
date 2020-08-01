@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 
-const useToggleState = (
+export const useToggleState = (
   defaultValue: boolean = false
 ): [boolean, () => void] => {
   const [state, setState] = useState(defaultValue);
@@ -8,5 +8,3 @@ const useToggleState = (
 
   return [state, toggleState];
 };
-
-export default useToggleState;

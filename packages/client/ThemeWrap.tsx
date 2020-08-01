@@ -1,3 +1,4 @@
+import { App } from './App';
 import {
   createGenerateClassName,
   ThemeProvider as MUIThemeProvider,
@@ -5,12 +6,11 @@ import {
 } from '@material-ui/core';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { ReactNode, useMemo } from 'react';
-import { ThemeProvider } from 'styled-components/macro';
-import App from './App';
+import { ThemeContainer } from 'client/Common/container/ThemeContainer';
+import { ThemeHeaderTags } from 'client/Common/Components/ThemeHeaderTags';
+import { ThemeProvider } from 'styled-components';
 import DateFnsUtils from '@date-io/date-fns';
 import deLocale from 'date-fns/locale/de';
-import ThemeContainer from 'client/Common/container/ThemeContainer';
-import ThemeHeaderTags from 'client/Common/Components/ThemeHeaderTags';
 import type { SheetsRegistry } from 'jss';
 
 interface Props {
@@ -19,7 +19,7 @@ interface Props {
   generateClassName?: ReturnType<typeof createGenerateClassName>;
 }
 
-const ThemeWrap = ({
+export const ThemeWrap = ({
   children = <App />,
   sheetsRegistry,
   generateClassName,
@@ -49,5 +49,3 @@ const ThemeWrap = ({
     </StylesProvider>
   );
 };
-
-export default ThemeWrap;

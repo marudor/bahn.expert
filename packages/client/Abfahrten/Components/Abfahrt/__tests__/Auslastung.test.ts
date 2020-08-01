@@ -1,7 +1,7 @@
+import { Auslastung } from 'client/Abfahrten/Components/Abfahrt/Auslastung';
+import { AuslastungContainer } from 'client/Abfahrten/container/AuslastungContainer';
 import { render } from 'client/__tests__/testHelper';
 import { waitForElementToBeRemoved } from '@testing-library/react';
-import Auslastung from 'client/Abfahrten/Components/Abfahrt/Auslastung';
-import AuslastungContainer from 'client/Abfahrten/container/AuslastungContainer';
 import mockAbfahrt from './__fixtures__/mockAbfahrt.json';
 
 describe('Auslastung', () => {

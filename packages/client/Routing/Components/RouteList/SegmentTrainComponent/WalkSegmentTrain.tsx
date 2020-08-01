@@ -1,5 +1,5 @@
 import { Destination, TrainInfo, TrainMargin } from './common';
-import stopPropagation from 'client/Common/stopPropagation';
+import { stopPropagation } from 'client/Common/stopPropagation';
 import type { Route$JourneySegmentWalk } from 'types/routing';
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 
 const A = Destination.withComponent('a');
 
-const WalkSegmentTrain = ({ segment, className }: Props) => {
+export const WalkSegmentTrain = ({ segment, className }: Props) => {
   const mapsLink = `https://www.google.com/maps/dir/?api=1&origin=${segment.segmentStart.coordinates.lat},${segment.segmentStart.coordinates.lng}&destination=${segment.segmentDestination.coordinates.lat},${segment.segmentDestination.coordinates.lng}&travelmode=walking`;
 
   return (
@@ -28,5 +28,3 @@ const WalkSegmentTrain = ({ segment, className }: Props) => {
     </div>
   );
 };
-
-export default WalkSegmentTrain;

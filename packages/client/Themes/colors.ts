@@ -10,7 +10,7 @@ import {
 import { ThemeType } from './type';
 import type { Theme as MuiTheme } from '@material-ui/core';
 
-export default function getColors(theme: MuiTheme, themeType: ThemeType) {
+export function getColors(theme: MuiTheme, themeType: ThemeType) {
   const backgroundAugment = theme.palette.augmentColor({
     main: theme.palette.background.default,
   });

@@ -6,6 +6,7 @@ import {
   FormControl,
 } from '@material-ui/core';
 import { DatePicker } from '@material-ui/pickers';
+import { NavigationContext } from './Navigation/NavigationContext';
 import {
   ReactElement,
   SyntheticEvent,
@@ -13,17 +14,14 @@ import {
   useContext,
   useState,
 } from 'react';
+import { Search, Today, Train } from '@material-ui/icons';
+import { stopPropagation } from 'client/Common/stopPropagation';
 import { subHours } from 'date-fns';
 import { useHistory } from 'react-router';
-import NavigationContext from './Navigation/NavigationContext';
+import { useWebStorage } from 'client/useWebStorage';
+import { ZugsucheAutocomplete } from 'client/Common/Components/ZugsucheAutocomplete';
 import qs from 'qs';
-import SearchIcon from '@material-ui/icons/Search';
-import stopPropagation from 'client/Common/stopPropagation';
-import styled from 'styled-components/macro';
-import TodayIcon from '@material-ui/icons/Today';
-import TrainIcon from '@material-ui/icons/Train';
-import useWebStorage from 'client/useWebStorage';
-import ZugsucheAutocomplete from 'client/Common/Components/ZugsucheAutocomplete';
+import styled from 'styled-components';
 import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 
 const Title = styled(DialogTitle)`
@@ -52,8 +50,8 @@ const Icon = styled.a`
   right: 20px;
   top: 39px;
 `;
-const StyledTodayIcon = Icon.withComponent(TodayIcon);
-const StyledTrainIcon = Icon.withComponent(TrainIcon);
+const StyledTodayIcon = Icon.withComponent(Today);
+const StyledTrainIcon = Icon.withComponent(Train);
 
 const ZugInputWrapper = styled.div`
   position: relative;
@@ -72,7 +70,7 @@ const SearchButton = styled(Button)`
 interface Props {
   children?: (toggle: (e: SyntheticEvent) => void) => ReactElement;
 }
-const Zugsuche = ({ children }: Props) => {
+export const Zugsuche = ({ children }: Props) => {
   const history = useHistory();
   const storage = useWebStorage();
   const { toggleDrawer } = useContext(NavigationContext);
@@ -155,7 +153,7 @@ const Zugsuche = ({ children }: Props) => {
                 type="submit"
                 variant="contained"
                 color="primary"
-                startIcon={<SearchIcon />}
+                startIcon={<Search />}
               >
                 Suche
               </SearchButton>
@@ -167,5 +165,3 @@ const Zugsuche = ({ children }: Props) => {
     </>
   );
 };
-
-export default Zugsuche;

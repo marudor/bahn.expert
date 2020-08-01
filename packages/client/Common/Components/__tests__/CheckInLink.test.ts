@@ -1,7 +1,7 @@
 import { parse } from 'date-fns';
 import { render } from 'client/__tests__/testHelper';
+import { TravelynxLink } from 'client/Common/Components/CheckInLink/TravelynxLink';
 import MockAbfahrt from './__fixtures__/abfahrt.json';
-import TravelynxLink from 'client/Common/Components/CheckInLink/TravelynxLink';
 
 describe('Travellynx', () => {
   beforeAll(() => {

@@ -1,5 +1,5 @@
 import { cancelledCss, changedCss } from 'client/util/cssUtils';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 interface Props {
   className?: string;
@@ -20,7 +20,7 @@ const ChangedWrapper = styled.span`
   ${cancelledCss}
 `;
 
-const Platform = ({ className, cancelled, scheduled, real }: Props) => {
+export const Platform = ({ className, cancelled, scheduled, real }: Props) => {
   const changed = Boolean(scheduled && scheduled !== real);
 
   return (
@@ -32,5 +32,3 @@ const Platform = ({ className, cancelled, scheduled, real }: Props) => {
     </Wrap>
   );
 };
-
-export default Platform;

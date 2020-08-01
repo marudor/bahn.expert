@@ -1,6 +1,6 @@
 import { cancelledCss, changedCss } from 'client/util/cssUtils';
-import Info from './Info';
-import styled, { css } from 'styled-components/macro';
+import { Info } from './Info';
+import styled, { css } from 'styled-components';
 import type { Abfahrt } from 'types/iris';
 
 const Destination = styled.div<{ cancelled?: boolean; different?: boolean }>`
@@ -31,7 +31,7 @@ interface Props {
   detail: boolean;
 }
 
-const Mid = ({ abfahrt, detail }: Props) => (
+export const Mid = ({ abfahrt, detail }: Props) => (
   <Wrap detail={detail} data-testid="abfahrtMid">
     <Info abfahrt={abfahrt} detail={detail} />
     <Destination
@@ -45,5 +45,3 @@ const Mid = ({ abfahrt, detail }: Props) => (
     </Destination>
   </Wrap>
 );
-
-export default Mid;

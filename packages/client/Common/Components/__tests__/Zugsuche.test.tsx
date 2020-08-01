@@ -1,6 +1,6 @@
 import { fireEvent, waitForElementToBeRemoved } from '@testing-library/react';
 import { render } from 'client/__tests__/testHelper';
-import Zugsuche from 'client/Common/Components/Zugsuche';
+import { Zugsuche } from 'client/Common/Components/Zugsuche';
 
 describe('Zugsuche', () => {
   const dummyTrigger = (toggleModal: any) => (

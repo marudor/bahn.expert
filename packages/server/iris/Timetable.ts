@@ -20,12 +20,12 @@ import { calculateVia, getAttr, getNumberAttr, parseTs } from './helper';
 import { diffArrays } from 'diff';
 import { getSingleHimMessageOfToday } from 'server/HAFAS/HimSearch';
 import { RequestMethod } from 'umi-request';
+import { uniqBy } from 'shared/util';
 import messageLookup, {
   ignoredMessageNumbers,
   messageTypeLookup,
   supersededMessages,
 } from './messageLookup';
-import uniqBy from 'shared/util/uniqBy';
 import xmljs, { Element } from 'libxmljs2';
 import type { AbfahrtenResult, IrisMessage } from 'types/iris';
 
