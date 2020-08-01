@@ -32,6 +32,4 @@ function useHeaderTag() {
   };
 }
 
-const HeaderTagContainer = createContainer(useHeaderTag);
-
-export default HeaderTagContainer;
+export const HeaderTagContainer = createContainer(useHeaderTag);

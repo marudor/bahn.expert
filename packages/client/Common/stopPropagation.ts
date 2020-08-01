@@ -1,3 +1,3 @@
 import type { SyntheticEvent } from 'react';
 
-export default (e: SyntheticEvent) => e.stopPropagation();
+export const stopPropagation = (e: SyntheticEvent) => e.stopPropagation();

@@ -1,5 +1,5 @@
-import Details from 'client/Common/Components/Details';
-import useQuery from 'client/Common/hooks/useQuery';
+import { Details } from 'client/Common/Components/Details';
+import { useQuery } from 'client/Common/hooks/useQuery';
 import type { RouteComponentProps } from 'react-router';
 
 interface Props
@@ -10,7 +10,7 @@ interface Props
   urlPrefix?: string;
 }
 
-const DetailsRoute = ({
+export const DetailsRoute = ({
   match: {
     params: { train, initialDeparture },
   },
@@ -28,5 +28,5 @@ const DetailsRoute = ({
     />
   );
 };
-
+// eslint-disable-next-line import/no-default-export
 export default DetailsRoute;

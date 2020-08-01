@@ -1,8 +1,7 @@
 /* eslint no-nested-ternary: 0 */
-import * as React from 'react';
 import { cancelledCss } from 'client/util/cssUtils';
-import styled from 'styled-components/macro';
-import Time from 'client/Common/Components/Time';
+import { Time } from 'client/Common/Components/Time';
+import styled from 'styled-components';
 import type { Abfahrt } from 'types/iris';
 
 const Wrap = styled.div<{ cancelled?: boolean }>`
@@ -23,13 +22,13 @@ interface Props {
   detail: boolean;
 }
 
-const Times = ({
+export const Times = ({
   abfahrt: { arrival, departure, cancelled },
   detail,
 }: Props) => (
   <Wrap cancelled={cancelled}>
     {detail ? (
-      <React.Fragment>
+      <>
         {arrival && (
           <TimeWrapper cancelled={arrival.cancelled}>
             <span>{'An: '}</span>
@@ -42,7 +41,7 @@ const Times = ({
             <Time alignEnd delay={departure.delay} real={departure.time} />
           </TimeWrapper>
         )}
-      </React.Fragment>
+      </>
     ) : departure && (!departure.cancelled || cancelled) ? (
       <Time alignEnd delay={departure.delay} real={departure.time} />
     ) : (
@@ -50,5 +49,3 @@ const Times = ({
     )}
   </Wrap>
 );
-
-export default Times;

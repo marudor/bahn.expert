@@ -3,7 +3,7 @@ import type { AllowedHafasProfile } from 'types/HAFAS';
 import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 import type { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
 
-export default async function getDetails(
+export async function getDetails(
   train: string,
   initialDeparture?: string,
   stop?: string,

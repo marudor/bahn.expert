@@ -1,16 +1,16 @@
 import { AbfahrtenProvider } from 'client/Abfahrten/container/AbfahrtenContainer';
 import { AllowedHafasProfile } from 'types/HAFAS';
+import { AuslastungContainer } from 'client/Abfahrten/container/AuslastungContainer';
 import { FavProvider } from 'client/Abfahrten/container/FavContainer';
 import { getHafasStationFromAPI } from 'shared/service/stationSearch';
+import { Header } from 'client/Abfahrten/Components/Header';
+import { MainWrap } from 'client/Common/Components/MainWrap';
 import { renderRoutes } from 'react-router-config';
-import AuslastungContainer from 'client/Abfahrten/container/AuslastungContainer';
-import Header from 'client/Abfahrten/Components/Header';
-import MainWrap from 'client/Common/Components/MainWrap';
-import routes from './routes';
-import SettingsModal from 'client/Abfahrten/Components/SettingsModal';
-import useQuery from 'client/Common/hooks/useQuery';
+import { routes } from './routes';
+import { SettingsModal } from 'client/Abfahrten/Components/SettingsModal';
+import { useQuery } from 'client/Common/hooks/useQuery';
 
-const BahnhofsAbfahrten = () => {
+export const BahnhofsAbfahrten = () => {
   const noHeader = useQuery().noHeader;
 
   return (
@@ -33,5 +33,5 @@ const BahnhofsAbfahrten = () => {
     </AuslastungContainer.Provider>
   );
 };
-
+// eslint-disable-next-line import/no-default-export
 export default BahnhofsAbfahrten;

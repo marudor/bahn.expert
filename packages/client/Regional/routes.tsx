@@ -1,10 +1,10 @@
-import AbfahrtenList from 'client/Abfahrten/Components/AbfahrtenList';
-import MainPage from 'client/Regional/Components/MainPage';
-import RegionalDetailRoute from 'client/Regional/Components/RegionalDetailsRoute';
+import { AbfahrtenList } from 'client/Abfahrten/Components/AbfahrtenList';
+import { RegionalDetailRoute } from 'client/Regional/Components/RegionalDetailsRoute';
+import { RegionalMainPage } from 'client/Regional/Components/MainPage';
 
-export default [
+export const routes = [
   {
-    component: MainPage,
+    component: RegionalMainPage,
     exact: true,
     path: '/regional',
   },

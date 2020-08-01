@@ -1,16 +1,16 @@
 import 'leaflet/dist/leaflet.css';
+import { ActivePolyline } from 'client/Map/Components/ActivePolyline';
 import { Map, TileLayer, Viewport } from 'react-leaflet';
-import ActivePolyline from 'client/Map/Components/ActivePolyline';
+import { MapContainer } from 'client/Map/container/MapContainer';
+import { MapSettings } from 'client/Map/Components/MapSettings';
+import { Positions } from 'client/Map/Components/Positions';
+import { useQuery } from 'client/Common/hooks/useQuery';
 // @ts-ignore
 import icon from 'leaflet/dist/images/marker-icon.png';
 // @ts-ignore
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import L from 'leaflet';
-import MapContainer from 'client/Map/container/MapContainer';
-import MapSettings from 'client/Map/Components/MapSettings';
-import Positions from 'client/Map/Components/Positions';
-import styled from 'styled-components/macro';
-import useQuery from 'client/Common/hooks/useQuery';
+import styled from 'styled-components';
 
 const DefaultIcon = L.icon({
   iconUrl: icon,
@@ -32,7 +32,7 @@ const FlexMap = styled<any>(Map)`
   flex: 1;
 `;
 
-const TrainMap = () => {
+export const TrainMap = () => {
   const query = useQuery();
   const { setActiveJourney } = MapContainer.useContainer();
 
@@ -57,4 +57,5 @@ const TrainMap = () => {
   );
 };
 
+// eslint-disable-next-line import/no-default-export
 export default TrainMap;

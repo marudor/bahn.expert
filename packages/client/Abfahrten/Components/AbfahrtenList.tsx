@@ -1,18 +1,19 @@
+import { Abfahrt } from './Abfahrt';
+import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
+import { AbfahrtenContainer } from 'client/Abfahrten/container/AbfahrtenContainer';
+import { HeaderTagContainer } from 'client/Common/container/HeaderTagContainer';
+import { Loading } from 'client/Common/Components/Loading';
 import { Redirect } from 'react-router';
-import { useEffect, useState } from 'react';
-import { useRouteMatch } from 'react-router';
-import Abfahrt from './Abfahrt';
-import AbfahrtenConfigContainer from 'client/Abfahrten/container/AbfahrtenConfigContainer';
-import AbfahrtenContainer from 'client/Abfahrten/container/AbfahrtenContainer';
-import HeaderTagContainer from 'client/Common/container/HeaderTagContainer';
-import Loading from 'client/Common/Components/Loading';
-import ReihungContainer from 'client/Common/container/ReihungContainer';
-import SelectedDetailContainer, {
+import { ReihungContainer } from 'client/Common/container/ReihungContainer';
+import {
+  SelectedDetailContainer,
   SelectedDetailProvider,
 } from 'client/Abfahrten/container/SelectedDetailContainer';
-import styled from 'styled-components/macro';
-import useAbfahrten from 'client/Abfahrten/container/AbfahrtenContainer/useAbfahrten';
-import useRefreshCurrent from 'client/Abfahrten/container/AbfahrtenContainer/useRefreshCurrent';
+import { useAbfahrten } from 'client/Abfahrten/container/AbfahrtenContainer/useAbfahrten';
+import { useEffect, useState } from 'react';
+import { useRefreshCurrent } from 'client/Abfahrten/container/AbfahrtenContainer/useRefreshCurrent';
+import { useRouteMatch } from 'react-router';
+import styled from 'styled-components';
 
 const Wrap = styled.main`
   display: flex;
@@ -31,7 +32,7 @@ const LookaheadMarker = styled.div`
   bottom: 0;
 `;
 
-const AbfahrtenList = () => {
+const InnerAbfahrtenList = () => {
   const {
     updateCurrentStationByString,
     currentStation,
@@ -166,10 +167,8 @@ const AbfahrtenList = () => {
   );
 };
 
-const AbfahrtenListWrap = () => (
+export const AbfahrtenList = () => (
   <SelectedDetailProvider>
-    <AbfahrtenList />
+    <InnerAbfahrtenList />
   </SelectedDetailProvider>
 );
-
-export default AbfahrtenListWrap;

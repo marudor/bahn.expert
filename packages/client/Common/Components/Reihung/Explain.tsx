@@ -1,9 +1,9 @@
 import { Dialog, DialogContent } from '@material-ui/core';
 import { icons } from './Fahrzeug';
+import { SingleAuslastungsDisplay } from 'client/Common/Components/SingleAuslastungsDisplay';
+import { stopPropagation } from 'client/Common/stopPropagation';
 import { SyntheticEvent, useCallback, useState } from 'react';
-import SingleAuslastungsDisplay from 'client/Common/Components/SingleAuslastungsDisplay';
-import stopPropagation from 'client/Common/stopPropagation';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 const Legende = styled.div`
   color: ${({ theme }) => theme.colors.blue};
@@ -54,7 +54,7 @@ export const iconExplanation: { [K in keyof typeof icons]: string } = {
   wifiOff: 'Wlan offline',
 };
 
-const Explain = () => {
+export const Explain = () => {
   const [open, setOpen] = useState(false);
   const toggle = useCallback((e: SyntheticEvent) => {
     e.stopPropagation();
@@ -123,5 +123,3 @@ const Explain = () => {
     </>
   );
 };
-
-export default Explain;

@@ -1,10 +1,10 @@
+import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
+import { Auslastung } from 'client/Abfahrten/Components/Abfahrt/Auslastung';
 import { cancelledCss, changedCss } from 'client/util/cssUtils';
-import AbfahrtenConfigContainer from 'client/Abfahrten/container/AbfahrtenConfigContainer';
-import Auslastung from 'client/Abfahrten/Components/Abfahrt/Auslastung';
-import DetailsLink from 'client/Common/Components/Details/DetailsLink';
-import styled from 'styled-components/macro';
-import Substitute from './Substitute';
-import TravelynxLink from 'client/Common/Components/CheckInLink/TravelynxLink';
+import { DetailsLink } from 'client/Common/Components/Details/DetailsLink';
+import { Substitute } from './Substitute';
+import { TravelynxLink } from 'client/Common/Components/CheckInLink/TravelynxLink';
+import styled from 'styled-components';
 import type { Abfahrt } from 'types/iris';
 
 const Wrap = styled.div`
@@ -33,7 +33,7 @@ interface Props {
   lineAndNumber: boolean;
 }
 
-const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
+export const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
   const urlPrefix = AbfahrtenConfigContainer.useContainer().urlPrefix;
 
   return (
@@ -68,5 +68,3 @@ const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
     </Wrap>
   );
 };
-
-export default Start;

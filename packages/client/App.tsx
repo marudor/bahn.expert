@@ -1,13 +1,13 @@
 import { CommonConfigProvider } from 'client/Common/container/CommonConfigContainer';
+import { GlobalStyles } from 'client/GlobalStyles';
+import { HeaderTagContainer } from 'client/Common/container/HeaderTagContainer';
+import { Loading } from 'client/Common/Components/Loading';
+import { Navigation } from 'client/Common/Components/Navigation';
+import { ReihungContainer } from 'client/Common/container/ReihungContainer';
 import { Route, Switch } from 'react-router-dom';
 import { RoutingProvider } from 'client/Routing/container/RoutingContainer';
 import { useEffect } from 'react';
-import GlobalStyles from 'client/GlobalStyles';
-import HeaderTagContainer from 'client/Common/container/HeaderTagContainer';
 import loadable from '@loadable/component';
-import Loading from 'client/Common/Components/Loading';
-import Navigation from 'client/Common/Components/Navigation';
-import ReihungenContainer from 'client/Common/container/ReihungContainer';
 
 const lazyOptions = {
   fallback: <Loading />,
@@ -22,7 +22,7 @@ const LazyMap = loadable(() => import('./Map'), lazyOptions);
 const LazyRegional = loadable(() => import('./Regional'), lazyOptions);
 const About = loadable(() => import('./Common/Components/About'), lazyOptions);
 
-const App = () => {
+export const App = () => {
   useEffect(() => {
     const jssStyles = document.querySelector('#jss');
 
@@ -37,7 +37,7 @@ const App = () => {
       <HeaderTagContainer.Provider>
         <CommonConfigProvider>
           <Navigation>
-            <ReihungenContainer.Provider>
+            <ReihungContainer.Provider>
               <RoutingProvider>
                 <Switch>
                   <Route path="/about" component={About} exact />
@@ -51,12 +51,10 @@ const App = () => {
                   <Route component={LazyAbfahrten} path="/" />
                 </Switch>
               </RoutingProvider>
-            </ReihungenContainer.Provider>
+            </ReihungContainer.Provider>
           </Navigation>
         </CommonConfigProvider>
       </HeaderTagContainer.Provider>
     </>
   );
 };
-
-export default App;

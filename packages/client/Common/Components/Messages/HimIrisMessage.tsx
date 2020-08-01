@@ -1,9 +1,9 @@
 import { cancelledCss } from 'client/util/cssUtils';
 import { Dialog, DialogContent, DialogTitle } from '@material-ui/core';
 import { format, getDate } from 'date-fns';
+import { stopPropagation } from 'client/Common/stopPropagation';
 import { SyntheticEvent, useCallback, useState } from 'react';
-import stopPropagation from 'client/Common/stopPropagation';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import type { HimIrisMessage as HimIrisMessageType } from 'types/iris';
 
 interface Props {
@@ -17,7 +17,10 @@ const Wrap = styled.div<{ superseded?: boolean }>`
   ${({ superseded }) => superseded && cancelledCss}
 `;
 
-const HimIrisMessage = ({ message, today = new Date().getDate() }: Props) => {
+export const HimIrisMessage = ({
+  message,
+  today = new Date().getDate(),
+}: Props) => {
   const [open, setOpen] = useState(false);
   const toggleOpen = useCallback((e: SyntheticEvent) => {
     e.preventDefault();
@@ -49,5 +52,3 @@ const HimIrisMessage = ({ message, today = new Date().getDate() }: Props) => {
     </Wrap>
   );
 };
-
-export default HimIrisMessage;

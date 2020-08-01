@@ -1,5 +1,5 @@
 import { render } from 'client/__tests__/testHelper';
-import RouteHeader from 'client/Routing/Components/RouteList/RouteHeader';
+import { RouteHeader } from 'client/Routing/Components/RouteList/RouteHeader';
 
 describe('RouteHeader', () => {
   it('renders date in header', () => {

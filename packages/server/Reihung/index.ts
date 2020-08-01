@@ -3,7 +3,7 @@
 import { getAbfahrten } from 'server/iris';
 import { getWRLink, hasWR, WRCache } from 'server/Reihung/hasWR';
 import { isRedesignByTZ, isRedesignByUIC } from 'server/Reihung/tzInfo';
-import { maxBy, minBy } from 'shared/util/minMax';
+import { maxBy, minBy } from 'shared/util';
 import getBR from 'server/Reihung/getBR';
 import request from 'umi-request';
 import TrainNames from 'server/Reihung/TrainNames';

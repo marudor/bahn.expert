@@ -1,11 +1,11 @@
+import { DetailsContext } from './DetailsContext';
 import { format } from 'date-fns';
+import { getDetails } from 'client/Common/service/details';
+import { Header } from './Header';
+import { HeaderTagContainer } from 'client/Common/container/HeaderTagContainer';
+import { StopList } from './StopList';
 import { useEffect, useState } from 'react';
-import DetailsContext from './DetailsContext';
-import getDetails from 'client/Common/service/details';
-import Header from './Header';
-import HeaderTagContainer from 'client/Common/container/HeaderTagContainer';
-import StopList from './StopList';
-import useQuery from 'client/Common/hooks/useQuery';
+import { useQuery } from 'client/Common/hooks/useQuery';
 import type { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
 import type { ResponseError } from 'umi-request';
 
@@ -17,7 +17,7 @@ interface Props {
   urlPrefix?: string;
 }
 
-const Details = ({
+export const Details = ({
   train,
   initialDeparture,
   stationId,
@@ -82,5 +82,3 @@ const Details = ({
     </DetailsContext.Provider>
   );
 };
-
-export default Details;

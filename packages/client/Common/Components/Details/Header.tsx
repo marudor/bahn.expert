@@ -1,11 +1,11 @@
+import { BaseHeader } from '../BaseHeader';
+import { DetailsContext } from './DetailsContext';
 import { format } from 'date-fns';
+import { PlannedType } from 'client/Common/Components/PlannedType';
 import { singleLineText } from 'client/util/cssUtils';
 import { Tooltip } from '@material-ui/core';
 import { useContext } from 'react';
-import BaseHeader from '../BaseHeader';
-import DetailsContext from './DetailsContext';
-import PlannedType from 'client/Common/Components/PlannedType';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 const HeaderWrap = styled.div`
   font-size: 90%;
@@ -42,7 +42,7 @@ const Destination = styled.span`
 interface Props {
   train: string;
 }
-const Header = ({ train }: Props) => {
+export const Header = ({ train }: Props) => {
   const { details } = useContext(DetailsContext);
 
   const trainText = details ? details.train.name : train;
@@ -72,5 +72,3 @@ const Header = ({ train }: Props) => {
     </BaseHeader>
   );
 };
-
-export default Header;

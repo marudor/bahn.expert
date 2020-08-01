@@ -1,14 +1,14 @@
 import { additionalCss, cancelledCss } from 'client/util/cssUtils';
+import { DetailMessages } from '../Messages/Detail';
+import { DetailsContext } from './DetailsContext';
+import { Messages } from './Messages';
+import { Platform } from 'client/Common/Components/Platform';
+import { Reihung } from '../Reihung';
+import { StationLink } from 'client/Common/Components/StationLink';
+import { Time } from 'client/Common/Components/Time';
+import { TravelynxLink } from 'client/Common/Components/CheckInLink/TravelynxLink';
 import { useContext } from 'react';
-import DetailMessages from '../Messages/Detail';
-import DetailsContext from './DetailsContext';
-import Messages from './Messages';
-import Platform from 'client/Common/Components/Platform';
-import Reihung from '../Reihung';
-import StationLink from 'client/Common/Components/StationLink';
-import styled, { css } from 'styled-components/macro';
-import Time from 'client/Common/Components/Time';
-import TravelynxLink from 'client/Common/Components/CheckInLink/TravelynxLink';
+import styled, { css } from 'styled-components';
 import type { ParsedProduct } from 'types/HAFAS';
 import type { Route$Stop } from 'types/routing';
 
@@ -81,7 +81,7 @@ interface Props {
   showWR?: ParsedProduct;
   isPast?: boolean;
 }
-const Stop = ({ stop, showWR, train, isPast }: Props) => {
+export const Stop = ({ stop, showWR, train, isPast }: Props) => {
   const { urlPrefix } = useContext(DetailsContext);
   const depOrArrival = stop.departure || stop.arrival;
   const platforms = stop.departure
@@ -145,5 +145,3 @@ const Stop = ({ stop, showWR, train, isPast }: Props) => {
     </Wrap>
   );
 };
-
-export default Stop;

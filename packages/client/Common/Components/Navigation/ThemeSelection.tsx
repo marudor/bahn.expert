@@ -7,19 +7,17 @@ import {
   ListItemText,
   Typography,
 } from '@material-ui/core';
+import { ExpandLess, ExpandMore, Palette } from '@material-ui/icons';
 import { SyntheticEvent, useCallback, useState } from 'react';
+import { ThemeContainer } from 'client/Common/container/ThemeContainer';
 import { ThemeType } from 'client/Themes/type';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import PaletteIcon from '@material-ui/icons/Palette';
-import styled from 'styled-components/macro';
-import ThemeContainer from 'client/Common/container/ThemeContainer';
+import styled from 'styled-components';
 
 const ThemeList = styled(List)`
   padding-left: ${({ theme }) => theme.spacing(1)}px;
 `;
 
-const ThemeSelection = () => {
+export const ThemeSelection = () => {
   const { themeType, setTheme } = ThemeContainer.useContainer();
   const [open, setOpen] = useState(false);
   const selectTheme = useCallback(
@@ -46,7 +44,7 @@ const ThemeSelection = () => {
     <>
       <ListItem data-testid="themes" button onClick={toggle}>
         <ListItemIcon>
-          <PaletteIcon />
+          <Palette />
         </ListItemIcon>
         <ListItemText primary="Themes" />
         {open ? <ExpandLess /> : <ExpandMore />}
@@ -78,5 +76,3 @@ const ThemeSelection = () => {
     </>
   );
 };
-
-export default ThemeSelection;

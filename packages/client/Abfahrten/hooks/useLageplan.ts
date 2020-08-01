@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import request from 'umi-request';
-const useLageplan = (stationName?: string, evaId?: string) => {
+
+export const useLageplan = (stationName?: string, evaId?: string) => {
   const [lageplan, setLageplan] = useState<string>();
 
   useEffect(() => {
@@ -15,5 +16,3 @@ const useLageplan = (stationName?: string, evaId?: string) => {
 
   return lageplan;
 };
-
-export default useLageplan;

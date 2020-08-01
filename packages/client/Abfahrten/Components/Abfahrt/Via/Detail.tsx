@@ -1,7 +1,7 @@
+import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
 import { ReactNode, useMemo } from 'react';
+import { StationLink } from 'client/Common/Components/StationLink';
 import { ViaStop } from './Normal';
-import AbfahrtenConfigContainer from 'client/Abfahrten/container/AbfahrtenConfigContainer';
-import StationLink from 'client/Common/Components/StationLink';
 import type { Stop } from 'types/iris';
 
 const DetailViaStop = ViaStop.withComponent(StationLink);
@@ -9,7 +9,7 @@ const DetailViaStop = ViaStop.withComponent(StationLink);
 interface Props {
   stops: Stop[];
 }
-const DetailVia = ({ stops }: Props) => {
+export const DetailVia = ({ stops }: Props) => {
   const urlPrefix = AbfahrtenConfigContainer.useContainer().urlPrefix;
 
   const stopsToRender = useMemo(() => {
@@ -35,5 +35,3 @@ const DetailVia = ({ stops }: Props) => {
 
   return <>{stopsToRender}</>;
 };
-
-export default DetailVia;

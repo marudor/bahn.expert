@@ -1,3 +1,4 @@
+import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
 import {
   Button,
   Dialog,
@@ -6,16 +7,15 @@ import {
   FormControlLabel,
   Switch,
 } from '@material-ui/core';
+import { useAllTrainTypes } from 'client/Abfahrten/container/AbfahrtenContainer/useAllTrainTypes';
 import { useCallback } from 'react';
-import AbfahrtenConfigContainer from 'client/Abfahrten/container/AbfahrtenConfigContainer';
-import styled from 'styled-components/macro';
-import useAllTrainTypes from 'client/Abfahrten/container/AbfahrtenContainer/useAllTrainTypes';
+import styled from 'styled-components';
 
 const Label = styled(FormControlLabel)`
   width: calc(50% - 1em);
 `;
 
-const FilterModal = () => {
+export const FilterModal = () => {
   const {
     productFilter,
     toggleProduct,
@@ -69,5 +69,3 @@ const FilterModal = () => {
     </Dialog>
   );
 };
-
-export default FilterModal;

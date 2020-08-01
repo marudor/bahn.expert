@@ -5,7 +5,7 @@ interface Props {
   plannedSequence?: PlannedSequence;
 }
 
-const PlannedType = ({ plannedSequence }: Props) => {
+export const PlannedType = ({ plannedSequence }: Props) => {
   if (!plannedSequence?.short) return null;
 
   return (
@@ -17,5 +17,3 @@ const PlannedType = ({ plannedSequence }: Props) => {
     </Tooltip>
   );
 };
-
-export default PlannedType;

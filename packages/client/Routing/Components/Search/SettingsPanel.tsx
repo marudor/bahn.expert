@@ -2,24 +2,27 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Badge,
+  Chip,
   FormControlLabel,
   NativeSelect,
   Switch,
   TextField,
 } from '@material-ui/core';
+import {
+  AllInclusive,
+  Cached,
+  ExpandMore,
+  Timelapse,
+  Train,
+} from '@material-ui/icons';
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { ChangeEvent, useCallback, useMemo } from 'react';
-import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
-import Badge from '@material-ui/core/Badge';
-import CachedIcon from '@material-ui/icons/Cached';
-import Chip from '@material-ui/core/Chip';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import RoutingConfigContainer, {
+import {
+  RoutingConfigContainer,
   RoutingSettings,
 } from 'client/Routing/container/RoutingConfigContainer';
-import styled from 'styled-components/macro';
-import TimelapseIcon from '@material-ui/icons/Timelapse';
-import TrainIcon from '@material-ui/icons/Train';
+import styled from 'styled-components';
 
 const StyledAccordion = styled(Accordion)`
   margin: 0 !important;
@@ -46,7 +49,7 @@ const TextInput = styled(TextField)`
 `;
 const SwitchInput = TextInput.withComponent(Switch);
 
-const SettingsPanel = () => {
+export const SettingsPanel = () => {
   const { settings, updateSetting } = RoutingConfigContainer.useContainer();
   const handleInputChange = useCallback(
     (key: keyof RoutingSettings) => (e: ChangeEvent<any>) =>
@@ -63,7 +66,7 @@ const SettingsPanel = () => {
   const maxChangesBadeContent = useMemo(
     () =>
       Number.parseInt(settings.maxChanges, 10) < 0 ? (
-        <AllInclusiveIcon fontSize="small" />
+        <AllInclusive fontSize="small" />
       ) : (
         settings.maxChanges
       ),
@@ -72,29 +75,26 @@ const SettingsPanel = () => {
 
   return (
     <StyledAccordion>
-      <Summary
-        data-testid="routingSettingsPanel"
-        expandIcon={<ExpandMoreIcon />}
-      >
+      <Summary data-testid="routingSettingsPanel" expandIcon={<ExpandMore />}>
         <Badge
           badgeContent={maxChangesBadeContent}
           color="secondary"
           data-testid="routingSettingsPanel-maxChange"
         >
-          <CachedIcon />
+          <Cached />
         </Badge>
         <Badge
           badgeContent={`${settings.transferTime}m`}
           color="secondary"
           data-testid="routingSettingsPanel-transferTime"
         >
-          <TimelapseIcon />
+          <Timelapse />
         </Badge>
         <Chip
           size="small"
           color="primary"
           label={settings.onlyRegional ? 'Nahverkehr' : 'Alle Zuege'}
-          icon={<TrainIcon />}
+          icon={<Train />}
         />
       </Summary>
       <Details>
@@ -164,5 +164,3 @@ const SettingsPanel = () => {
     </StyledAccordion>
   );
 };
-
-export default SettingsPanel;

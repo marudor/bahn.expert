@@ -1,6 +1,6 @@
-import Routes from './Components/Routes';
+import { Routes } from './Components/Routes';
 
-export default [
+export const routes = [
   {
     component: Routes,
     path: '/routing/:start?/:destination?/:date?/:via?',

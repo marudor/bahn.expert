@@ -5,4 +5,4 @@ interface NavigationContext {
 }
 
 // @ts-ignore
-export default createContext<NavigationContext>();
+export const NavigationContext = createContext<NavigationContext>();

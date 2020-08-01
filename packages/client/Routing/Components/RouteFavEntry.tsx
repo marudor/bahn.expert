@@ -1,15 +1,15 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { getRouteLink } from 'client/Routing/util';
 import { Link } from 'react-router-dom';
-import { memo, SyntheticEvent, useCallback } from 'react';
 import { Paper } from '@material-ui/core';
 import {
   RoutingFav,
   routingFavKey,
   useRoutingFavAction,
 } from 'client/Routing/container/RoutingFavContainer';
+import { SyntheticEvent, useCallback } from 'react';
 import ActionDelete from '@material-ui/icons/Delete';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 interface Props {
   fav: RoutingFav;
@@ -46,7 +46,7 @@ const Profile = styled.span`
 const Delete = styled(ActionDelete)`
   grid-area: r;
 `;
-const RouteFavEntry = ({ fav }: Props) => {
+export const RouteFavEntry = ({ fav }: Props) => {
   const { unfav } = useRoutingFavAction();
   const removeFav = useCallback(
     (e: SyntheticEvent) => {
@@ -82,5 +82,3 @@ const RouteFavEntry = ({ fav }: Props) => {
     </Link>
   );
 };
-
-export default memo(RouteFavEntry);

@@ -92,5 +92,5 @@ const getMuiOptions = (themeType: ThemeType) => {
   }
 };
 
-export default (themeType: ThemeType) =>
+export const createTheme = (themeType: ThemeType) =>
   createMuiTheme(getMuiOptions(themeType));

@@ -1,7 +1,7 @@
 /* eslint-disable no-process-env */
 import { WebConfigMap } from 'client/useWebStorage';
 import Cookies, { CookieSetOptions } from 'universal-cookie';
-import type StorageInterface from 'shared/hooks/useStorage/StorageInterface';
+import type { StorageInterface } from 'shared/hooks/useStorage/StorageInterface';
 
 const setCookieOptions: CookieSetOptions = {
   maxAge: 100000000,

@@ -1,7 +1,7 @@
+import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
 import { fireEvent } from '@testing-library/react';
 import { render } from 'client/__tests__/testHelper';
-import AbfahrtenConfigContainer from 'client/Abfahrten/container/AbfahrtenConfigContainer';
-import SettingsModal from 'client/Abfahrten/Components/SettingsModal';
+import { SettingsModal } from 'client/Abfahrten/Components/SettingsModal';
 
 const OpenDummy = () => {
   const { setConfigOpen } = AbfahrtenConfigContainer.useContainer();

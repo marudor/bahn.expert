@@ -1,12 +1,12 @@
 import { abfahrtenConfigSanitize, commonConfigSanitize } from 'client/util';
 import { ChunkExtractor } from '@loadable/server';
 import { renderToString } from 'react-dom/server';
-import { ServerStyleSheet } from 'styled-components/macro';
+import { ServerBaseComponent } from 'client/ServerBaseComponent';
+import { ServerStyleSheet } from 'styled-components';
 import { SheetsRegistry } from 'jss';
 import ejs from 'ejs';
 import fs from 'fs';
 import path from 'path';
-import ServerBaseComponent from 'client/ServerBaseComponent';
 import type {
   AbfahrtenConfigSanitize,
   CommonConfigSanitize,
