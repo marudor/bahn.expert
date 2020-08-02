@@ -88,6 +88,7 @@ export default (ctx: Context) => {
         imprint: JSON.stringify(global.IMPRINT),
         jssCss: sheets.toString(),
         baseUrl: global.BASE_URL,
+        rawBaseUrl: global.RAW_BASE_URL,
         version: global.VERSION,
       });
       ctx.body += app;
