@@ -5,6 +5,7 @@ import {
   Badge,
   Chip,
   FormControlLabel,
+  makeStyles,
   NativeSelect,
   Switch,
   TextField,
@@ -22,34 +23,35 @@ import {
   RoutingConfigContainer,
   RoutingSettings,
 } from 'client/Routing/container/RoutingConfigContainer';
-import styled from 'styled-components';
 
-const StyledAccordion = styled(Accordion)`
-  margin: 0 !important;
-  box-shadow: none;
-`;
-const Summary = styled(AccordionSummary)`
-  > div:first-child {
-    margin: 22px 0 !important;
-    display: flex;
-    justify-content: space-around;
-  }
-`;
-const Details = styled(AccordionDetails)`
-  flex-direction: column;
-`;
-const Label = styled(FormControlLabel)`
-  margin-left: 0;
-  & * + span {
-    flex: 1;
-  }
-`;
-const TextInput = styled(TextField)`
-  width: 3.2em;
-`;
-const SwitchInput = TextInput.withComponent(Switch);
+const useStyles = makeStyles({
+  accordion: {
+    margin: '0!important',
+    boxShadow: 'none',
+  },
+  summary: {
+    '& > div:first-child': {
+      margin: '22px 0 !important',
+      display: 'flex',
+      justifyContent: 'space-around',
+    },
+  },
+  details: {
+    flexDirection: 'column',
+  },
+  label: {
+    marginLeft: 0,
+    '& * + span': {
+      flex: 1,
+    },
+  },
+  input: {
+    width: '3.2em',
+  },
+});
 
 export const SettingsPanel = () => {
+  const classes = useStyles();
   const { settings, updateSetting } = RoutingConfigContainer.useContainer();
   const handleInputChange = useCallback(
     (key: keyof RoutingSettings) => (e: ChangeEvent<any>) =>
@@ -74,8 +76,12 @@ export const SettingsPanel = () => {
   );
 
   return (
-    <StyledAccordion>
-      <Summary data-testid="routingSettingsPanel" expandIcon={<ExpandMore />}>
+    <Accordion className={classes.accordion}>
+      <AccordionSummary
+        className={classes.summary}
+        data-testid="routingSettingsPanel"
+        expandIcon={<ExpandMore />}
+      >
         <Badge
           badgeContent={maxChangesBadeContent}
           color="secondary"
@@ -96,12 +102,14 @@ export const SettingsPanel = () => {
           label={settings.onlyRegional ? 'Nahverkehr' : 'Alle Zuege'}
           icon={<Train />}
         />
-      </Summary>
-      <Details>
-        <Label
+      </AccordionSummary>
+      <AccordionDetails className={classes.details}>
+        <FormControlLabel
+          className={classes.label}
           labelPlacement="start"
           control={
-            <TextInput
+            <TextField
+              className={classes.input}
               inputProps={{
                 'data-testid': 'routingMaxChanges',
               }}
@@ -113,10 +121,12 @@ export const SettingsPanel = () => {
           }
           label="Max Umstiege"
         />
-        <Label
+        <FormControlLabel
+          className={classes.label}
           labelPlacement="start"
           control={
-            <TextInput
+            <TextField
+              className={classes.input}
               inputProps={{ step: 5, 'data-testid': 'routingTransferTime' }}
               onChange={handleInputChange('transferTime')}
               value={settings.transferTime}
@@ -126,7 +136,8 @@ export const SettingsPanel = () => {
           }
           label="Min Umstiegszeit"
         />
-        <Label
+        <FormControlLabel
+          className={classes.label}
           labelPlacement="start"
           control={
             <NativeSelect
@@ -149,10 +160,12 @@ export const SettingsPanel = () => {
           }
           label="HAFAS Provider"
         />
-        <Label
+        <FormControlLabel
+          className={classes.label}
           labelPlacement="start"
           control={
-            <SwitchInput
+            <Switch
+              className={classes.input}
               onChange={handleSwitchChange('onlyRegional')}
               checked={settings.onlyRegional}
               name="onlyRegional"
@@ -160,7 +173,7 @@ export const SettingsPanel = () => {
           }
           label="Nur Regionalzüge"
         />
-      </Details>
-    </StyledAccordion>
+      </AccordionDetails>
+    </Accordion>
   );
 };

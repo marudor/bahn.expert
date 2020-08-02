@@ -1,22 +1,22 @@
 /* eslint no-nested-ternary: 0 */
 import { cancelledCss } from 'client/util/cssUtils';
+import { makeStyles } from '@material-ui/core';
 import { Time } from 'client/Common/Components/Time';
-import styled from 'styled-components';
+import clsx from 'clsx';
 import type { Abfahrt } from 'types/iris';
 
-const Wrap = styled.div<{ cancelled?: boolean }>`
-  ${({ cancelled }) => cancelled && cancelledCss}
-`;
+const useStyles = makeStyles((theme) => ({
+  cancelled: theme.mixins.cancelled,
+  timeWrapper: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    '& > span': {
+      color: theme.palette.text.primary,
+      whiteSpace: 'pre-wrap',
+    },
+  },
+}));
 
-const TimeWrapper = styled.div<{ cancelled?: boolean }>`
-  display: flex;
-  justify-content: flex-end;
-  > span {
-    color: ${({ theme }) => theme.palette.text.primary};
-    white-space: pre-wrap;
-  }
-  ${({ cancelled }) => cancelled && cancelledCss};
-`;
 interface Props {
   abfahrt: Abfahrt;
   detail: boolean;
@@ -25,27 +25,41 @@ interface Props {
 export const Times = ({
   abfahrt: { arrival, departure, cancelled },
   detail,
-}: Props) => (
-  <Wrap cancelled={cancelled}>
-    {detail ? (
-      <>
-        {arrival && (
-          <TimeWrapper cancelled={arrival.cancelled}>
-            <span>{'An: '}</span>
-            <Time alignEnd delay={arrival.delay} real={arrival.time} />
-          </TimeWrapper>
-        )}
-        {departure && (
-          <TimeWrapper cancelled={departure.cancelled}>
-            <span>{'Ab: '}</span>
-            <Time alignEnd delay={departure.delay} real={departure.time} />
-          </TimeWrapper>
-        )}
-      </>
-    ) : departure && (!departure.cancelled || cancelled) ? (
-      <Time alignEnd delay={departure.delay} real={departure.time} />
-    ) : (
-      arrival && <Time alignEnd delay={arrival.delay} real={arrival.time} />
-    )}
-  </Wrap>
-);
+}: Props) => {
+  const classes = useStyles();
+
+  return (
+    <div className={clsx(cancelled && classes.cancelled)}>
+      {detail ? (
+        <>
+          {arrival && (
+            <div
+              className={clsx(
+                classes.timeWrapper,
+                arrival.cancelled && classes.cancelled
+              )}
+            >
+              <span>{'An: '}</span>
+              <Time alignEnd delay={arrival.delay} real={arrival.time} />
+            </div>
+          )}
+          {departure && (
+            <div
+              className={clsx(
+                classes.timeWrapper,
+                departure.cancelled && classes.cancelled
+              )}
+            >
+              <span>{'Ab: '}</span>
+              <Time alignEnd delay={departure.delay} real={departure.time} />
+            </div>
+          )}
+        </>
+      ) : departure && (!departure.cancelled || cancelled) ? (
+        <Time alignEnd delay={departure.delay} real={departure.time} />
+      ) : (
+        arrival && <Time alignEnd delay={arrival.delay} real={arrival.time} />
+      )}
+    </div>
+  );
+};

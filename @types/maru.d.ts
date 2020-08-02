@@ -1,4 +1,6 @@
 declare module 'maru' {
+  // eslint-disable-next-line import/no-extraneous-dependencies
+  import { CSSProperties } from '@material-ui/styles';
   interface Theme {
     colors: {
       green: string;
@@ -8,6 +10,14 @@ declare module 'maru' {
       blue: string;
       shadedBackground: string;
       transparentBackground: string;
+    };
+    mixins: {
+      cancelled: CSSProperties;
+      delayed: CSSProperties;
+      changed: CSSProperties;
+      additional: CSSProperties;
+      early: CSSProperties;
+      singleLineText: CSSProperties;
     };
   }
 }

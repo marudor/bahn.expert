@@ -1,52 +1,53 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
+import { Delete } from '@material-ui/icons';
 import { getRouteLink } from 'client/Routing/util';
 import { Link } from 'react-router-dom';
-import { Paper } from '@material-ui/core';
+import { makeStyles, Paper } from '@material-ui/core';
 import {
   RoutingFav,
   routingFavKey,
   useRoutingFavAction,
 } from 'client/Routing/container/RoutingFavContainer';
 import { SyntheticEvent, useCallback } from 'react';
-import ActionDelete from '@material-ui/icons/Delete';
-import styled from 'styled-components';
+
+const useStyles = makeStyles((theme) => ({
+  wrap: {
+    padding: '.3em',
+    display: 'grid',
+    gridTempateColumns: 'max-content 1fr max-content max-content',
+    gridTemplateRows: '1fr 1fr',
+    gridTemplateAreas: '". s f r" "a d f r"',
+    alignItems: 'center',
+    flex: 1,
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: theme.palette.action.hover,
+    },
+  },
+  start: {
+    gridArea: 's',
+  },
+  destination: {
+    gridArea: 'd',
+  },
+  arrow: {
+    gridArea: 'a',
+    justifySelf: 'center',
+    marginRight: '1em',
+  },
+  profile: {
+    gridArea: 'f',
+  },
+  delete: {
+    gridArea: 'r',
+  },
+}));
 
 interface Props {
   fav: RoutingFav;
 }
-
-const Wrapper = styled(Paper)`
-  padding: 0.3em;
-  display: grid;
-  grid-template-columns: max-content 1fr max-content max-content;
-  grid-template-rows: 1fr 1fr;
-  grid-template-areas: '. s f r' 'a d f r';
-  align-items: center;
-  flex: 1;
-  cursor: pointer;
-  &:hover {
-    background-color: ${({ theme }) => theme.palette.action.hover};
-  }
-`;
-
-const Start = styled.span`
-  grid-area: s;
-`;
-const Destination = styled.span`
-  grid-area: d;
-`;
-const Arrow = styled.span`
-  grid-area: a;
-  justify-self: center;
-  margin-right: 1em;
-`;
-const Profile = styled.span`
-  grid-area: f;
-`;
-const Delete = styled(ActionDelete)`
-  grid-area: r;
-`;
 export const RouteFavEntry = ({ fav }: Props) => {
+  const classes = useStyles();
   const { unfav } = useRoutingFavAction();
   const removeFav = useCallback(
     (e: SyntheticEvent) => {
@@ -67,18 +68,21 @@ export const RouteFavEntry = ({ fav }: Props) => {
         },
       }}
     >
-      <Wrapper data-testid={`RouteFavEntry-${routingFavKey(fav)}`}>
-        <Start>{fav.start.title}</Start>
-        <Destination>{fav.destination.title}</Destination>
-        <Arrow>{'->'}</Arrow>
-        <Profile>
+      <Paper
+        className={classes.wrap}
+        data-testid={`RouteFavEntry-${routingFavKey(fav)}`}
+      >
+        <span className={classes.start}>{fav.start.title}</span>
+        <span className={classes.destination}>{fav.destination.title}</span>
+        <span className={classes.arrow}>{'->'}</span>
+        <span className={classes.profile}>
           {Object.keys(AllowedHafasProfile).find(
             // @ts-ignore
             (key) => AllowedHafasProfile[key] === fav.profile
           )}
-        </Profile>
-        <Delete onClick={removeFav} />
-      </Wrapper>
+        </span>
+        <Delete className={classes.delete} onClick={removeFav} />
+      </Paper>
     </Link>
   );
 };

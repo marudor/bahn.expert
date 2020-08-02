@@ -5,8 +5,17 @@ import type { Theme as MaruTheme } from 'maru';
 import type { Theme as MuiTheme } from '@material-ui/core';
 import type { ThemeType } from './type';
 
-declare module 'styled-components' {
+declare module '@material-ui/styles/defaultTheme' {
   interface DefaultTheme extends MaruTheme, MuiTheme {}
+}
+
+declare module '@material-ui/core/styles/createMuiTheme' {
+  interface Theme extends MaruTheme {}
+}
+
+type MaruMixins = MaruTheme['mixins'];
+declare module '@material-ui/core/styles/createMixins' {
+  interface Mixins extends MaruMixins {}
 }
 
 export const createTheme = (themeType: ThemeType): MuiTheme & MaruTheme => {
@@ -15,6 +24,7 @@ export const createTheme = (themeType: ThemeType): MuiTheme & MaruTheme => {
   const colors = getColors(mui, themeType);
 
   const mixins = {
+    ...mui.mixins,
     cancelled: {
       textDecoration: 'line-through',
       textDecorationColor: mui.palette.text.primary,
@@ -31,7 +41,12 @@ export const createTheme = (themeType: ThemeType): MuiTheme & MaruTheme => {
     early: {
       color: colors.green,
     },
-    ...mui.mixins,
+    singleLineText: {
+      overflow: 'hidden',
+      maxWidth: '100%',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+    },
   };
 
   const maruTheme = {

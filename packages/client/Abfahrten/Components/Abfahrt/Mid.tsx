@@ -1,47 +1,51 @@
-import { cancelledCss, changedCss } from 'client/util/cssUtils';
 import { Info } from './Info';
-import styled, { css } from 'styled-components';
+import { makeStyles } from '@material-ui/core';
+import clsx from 'clsx';
 import type { Abfahrt } from 'types/iris';
 
-const Destination = styled.div<{ cancelled?: boolean; different?: boolean }>`
-  font-size: 4em;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  ${({ cancelled, different }) => [
-    cancelled && cancelledCss,
-    different && changedCss,
-  ]}
-`;
-
-const Wrap = styled.div<{ detail?: boolean }>`
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  justify-content: space-around;
-  overflow: hidden;
-  ${({ detail }) =>
-    !detail &&
-    css`
-      white-space: nowrap;
-    `}
-`;
+const useStyles = makeStyles((theme) => ({
+  destination: {
+    fontSize: '4em',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  },
+  cancelled: theme.mixins.cancelled,
+  different: theme.mixins.changed,
+  wrap: {
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 1,
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+  },
+  noDetail: {
+    whiteSpace: 'nowrap',
+  },
+}));
 
 interface Props {
   abfahrt: Abfahrt;
   detail: boolean;
 }
 
-export const Mid = ({ abfahrt, detail }: Props) => (
-  <Wrap detail={detail} data-testid="abfahrtMid">
-    <Info abfahrt={abfahrt} detail={detail} />
-    <Destination
-      cancelled={abfahrt.cancelled}
-      different={
-        !abfahrt.cancelled &&
-        abfahrt.destination !== abfahrt.scheduledDestination
-      }
+export const Mid = ({ abfahrt, detail }: Props) => {
+  const classes = useStyles();
+  return (
+    <div
+      className={clsx(classes.wrap, !detail && classes.noDetail)}
+      data-testid="abfahrtMid"
     >
-      {abfahrt.cancelled ? abfahrt.scheduledDestination : abfahrt.destination}
-    </Destination>
-  </Wrap>
-);
+      <Info abfahrt={abfahrt} detail={detail} />
+      <div
+        className={clsx(classes.destination, {
+          [classes.cancelled]: abfahrt.cancelled,
+          [classes.different]:
+            !abfahrt.cancelled &&
+            abfahrt.destination !== abfahrt.scheduledDestination,
+        })}
+      >
+        {abfahrt.cancelled ? abfahrt.scheduledDestination : abfahrt.destination}
+      </div>
+    </div>
+  );
+};

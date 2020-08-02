@@ -1,5 +1,14 @@
-import { cancelledCss, changedCss } from 'client/util/cssUtils';
-import styled from 'styled-components';
+import { makeStyles } from '@material-ui/core';
+import clsx from 'clsx';
+
+const useStyles = makeStyles((theme) => ({
+  cancelled: theme.mixins.cancelled,
+  changed: theme.mixins.changed,
+  changedWrapper: {
+    ...theme.mixins.cancelled,
+    paddingLeft: '.3em',
+  },
+}));
 
 interface Props {
   className?: string;
@@ -8,27 +17,23 @@ interface Props {
   real?: string;
 }
 
-const Wrap = styled.div<{ cancelled?: boolean; changed?: boolean }>`
-  ${({ cancelled, changed }) => [
-    cancelled && cancelledCss,
-    changed && changedCss,
-  ]}
-`;
-
-const ChangedWrapper = styled.span`
-  padding-left: 0.3em;
-  ${cancelledCss}
-`;
-
 export const Platform = ({ className, cancelled, scheduled, real }: Props) => {
+  const classes = useStyles();
   const changed = Boolean(scheduled && scheduled !== real);
 
   return (
-    <Wrap changed={changed} cancelled={cancelled} className={className}>
+    <div
+      className={clsx(className, {
+        [classes.cancelled]: cancelled,
+        [classes.changed]: changed,
+      })}
+    >
       <span data-testid="real">{real}</span>
       {changed && (
-        <ChangedWrapper data-testid="scheduled">({scheduled})</ChangedWrapper>
+        <span className={classes.changedWrapper} data-testid="scheduled">
+          ({scheduled})
+        </span>
       )}
-    </Wrap>
+    </div>
   );
 };

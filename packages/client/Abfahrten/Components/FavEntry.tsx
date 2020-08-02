@@ -1,41 +1,41 @@
 import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
 import { Delete } from '@material-ui/icons';
-import { IconButton, Paper } from '@material-ui/core';
+import { IconButton, makeStyles, Paper } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { useCallback } from 'react';
 import { useUnfav } from 'client/Abfahrten/container/FavContainer';
-import styled, { css } from 'styled-components';
+import clsx from 'clsx';
 import type { MouseEvent, ReactNode } from 'react';
 import type { Station } from 'types/station';
 
-const Wrap = styled(Paper)<{ $clickable?: boolean }>`
-  min-height: 48px;
-  margin-bottom: 1px;
-  flex-shrink: 0;
-  padding: 0 0.5em;
-  font-size: 1.6em;
-  color: ${({ theme }) => theme.palette.text.primary};
-  display: flex;
-  align-items: center;
-  ${({ theme }) => theme.breakpoints.up('sm')} {
-    font-size: 2rem;
-  }
-  > a {
-    color: ${({ theme }) => theme.palette.text.primary};
-  }
-  ${({ $clickable }) =>
-    $clickable
-      ? css`
-          :hover {
-            background-color: ${({ theme }) => theme.palette.action.hover};
-          }
-          justify-content: space-between;
-        `
-      : css`
-          font-weight: 600;
-          justify-content: center;
-        `}
-`;
+const useStyles = makeStyles((theme) => ({
+  wrap: {
+    minHeight: 48,
+    marginBottom: 1,
+    flexShrink: 0,
+    fontSize: '1.6em',
+    padding: '0 .5em',
+    color: theme.palette.text.primary,
+    display: 'flex',
+    alignItems: 'center',
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '2rem',
+    },
+    '&>a': {
+      color: theme.palette.text.primary,
+    },
+  },
+  clickable: {
+    '&:hover': {
+      backgroundColor: theme.palette.action.hover,
+    },
+    justifyContent: 'space-between',
+  },
+  unClickable: {
+    fontWeight: 600,
+    justifyContent: 'center',
+  },
+}));
 
 interface Props {
   fav: Station;
@@ -54,21 +54,31 @@ export const FavEntryDisplay = ({
   text,
   clickable = true,
   'data-testid': testid,
-}: FavEntryDisplayProps) => (
-  <Wrap data-testid={testid} $clickable={clickable} square>
-    <span>{text}</span>
-    {deleteFav && (
-      <IconButton
-        data-testid="deleteFav"
-        aria-label={`${text} entfernen`}
-        onClick={deleteFav}
-        color="inherit"
-      >
-        <Delete />
-      </IconButton>
-    )}
-  </Wrap>
-);
+}: FavEntryDisplayProps) => {
+  const classes = useStyles();
+  return (
+    <Paper
+      className={clsx(
+        classes.wrap,
+        clickable ? classes.clickable : classes.unClickable
+      )}
+      data-testid={testid}
+      square
+    >
+      <span>{text}</span>
+      {deleteFav && (
+        <IconButton
+          data-testid="deleteFav"
+          aria-label={`${text} entfernen`}
+          onClick={deleteFav}
+          color="inherit"
+        >
+          <Delete />
+        </IconButton>
+      )}
+    </Paper>
+  );
+};
 
 export const FavEntry = ({
   fav,

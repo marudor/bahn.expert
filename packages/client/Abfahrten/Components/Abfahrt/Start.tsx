@@ -1,31 +1,30 @@
 import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
 import { Auslastung } from 'client/Abfahrten/Components/Abfahrt/Auslastung';
-import { cancelledCss, changedCss } from 'client/util/cssUtils';
 import { DetailsLink } from 'client/Common/Components/Details/DetailsLink';
+import { makeStyles } from '@material-ui/core';
 import { Substitute } from './Substitute';
 import { TravelynxLink } from 'client/Common/Components/CheckInLink/TravelynxLink';
-import styled from 'styled-components';
 import type { Abfahrt } from 'types/iris';
 
-const Wrap = styled.div`
-  flex: 1;
-  font-size: 3em;
-  max-width: 5em;
-  display: flex;
-  flex-direction: column;
-`;
-
-const Links = styled.div`
-  font-size: 0.6em;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`;
-
-const Cancelled = styled.span`
-  ${cancelledCss};
-  ${changedCss};
-`;
+const useStyles = makeStyles((theme) => ({
+  wrap: {
+    flex: 1,
+    fontSize: '3em',
+    maxWidth: '5em',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  links: {
+    fontSize: '.6em',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+  },
+  cancelled: {
+    ...theme.mixins.cancelled,
+    ...theme.mixins.changed,
+  },
+}));
 
 interface Props {
   abfahrt: Abfahrt;
@@ -34,10 +33,11 @@ interface Props {
 }
 
 export const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
+  const classes = useStyles();
   const urlPrefix = AbfahrtenConfigContainer.useContainer().urlPrefix;
 
   return (
-    <Wrap data-testid="abfahrtStart">
+    <div className={classes.wrap} data-testid="abfahrtStart">
       <span>{abfahrt.train.name}</span>
       {lineAndNumber && abfahrt.train.line && (
         <span>
@@ -45,7 +45,7 @@ export const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
         </span>
       )}
       {detail && (
-        <Links>
+        <div className={classes.links}>
           <TravelynxLink
             arrival={abfahrt.arrival}
             departure={abfahrt.departure}
@@ -58,13 +58,15 @@ export const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
             stationId={abfahrt.currentStation.id}
             initialDeparture={abfahrt.initialDeparture}
           />
-        </Links>
+        </div>
       )}
-      {abfahrt.cancelled && <Cancelled>Zugausfall</Cancelled>}
+      {abfahrt.cancelled && (
+        <span className={classes.cancelled}>Zugausfall</span>
+      )}
       {abfahrt.substitute && abfahrt.ref && (
         <Substitute substitute={abfahrt.ref} />
       )}
       {detail && abfahrt.auslastung && <Auslastung abfahrt={abfahrt} />}
-    </Wrap>
+    </div>
   );
 };

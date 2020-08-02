@@ -1,5 +1,5 @@
 import { BaseHeader } from 'client/Common/Components/BaseHeader';
-import { IconButton } from '@material-ui/core';
+import { IconButton, makeStyles } from '@material-ui/core';
 import { RoutingConfigContainer } from 'client/Routing/container/RoutingConfigContainer';
 import {
   RoutingFav,
@@ -8,11 +8,10 @@ import {
   RoutingFavStation,
   useRoutingFavAction,
 } from 'client/Routing/container/RoutingFavContainer';
-import { singleLineText } from 'client/util/cssUtils';
 import { Star, StarBorder } from '@material-ui/icons';
 import { useCallback, useMemo } from 'react';
-import styled from 'styled-components';
 import type { Station } from 'types/station';
+
 function stripStationToRoutingFavStation(station: Station): RoutingFavStation {
   return {
     title: station.title,
@@ -20,27 +19,30 @@ function stripStationToRoutingFavStation(station: Station): RoutingFavStation {
   };
 }
 
-const Wrapper = styled.div`
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr max-content;
-  grid-template-rows: 1fr 1fr;
-  grid-template-areas: 's f' 'd f';
-  align-items: center;
-`;
-const Start = styled.span`
-  grid-area: s;
-  ${singleLineText};
-`;
-const Destination = styled.span`
-  grid-area: d;
-  ${singleLineText}
-`;
-const Fav = styled(IconButton)`
-  grid-area: f;
-`;
+const useStyles = makeStyles((theme) => ({
+  wrap: {
+    width: '100%',
+    display: 'grid',
+    gridTemplateColumns: '1fr max-content',
+    gridTemplateRows: '1fr 1fr',
+    gridTemplateAreas: '"s f" "d f"',
+    alignItems: 'center',
+  },
+  start: {
+    gridArea: 's',
+    ...theme.mixins.singleLineText,
+  },
+  destination: {
+    gridArea: 'd',
+    ...theme.mixins.singleLineText,
+  },
+  fav: {
+    gridArea: 'f',
+  },
+}));
 
 const InnerHeader = () => {
+  const classes = useStyles();
   const {
     start,
     destination,
@@ -79,15 +81,19 @@ const InnerHeader = () => {
   }
 
   return (
-    <Wrapper>
-      <Start>{start?.title}</Start>
-      <Destination>{destination?.title}</Destination>
+    <div className={classes.wrap}>
+      <span className={classes.start}>{start?.title}</span>
+      <span className={classes.destination}>{destination?.title}</span>
       {currentFav && (
-        <Fav data-testid="routingFavButton" onClick={toggleFav}>
+        <IconButton
+          className={classes.fav}
+          data-testid="routingFavButton"
+          onClick={toggleFav}
+        >
           {isFaved ? <Star /> : <StarBorder />}
-        </Fav>
+        </IconButton>
       )}
-    </Wrapper>
+    </div>
   );
 };
 

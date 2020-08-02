@@ -40,5 +40,13 @@ describe('NormalVia', () => {
 
     expect(hbf).not.toHaveAttribute('href', 'hbf');
     expect(hbf).toHaveStyle('font-weight: bold');
+    expect(hbf).toMatchInlineSnapshot(`
+      <span
+        class="Normal-main Normal-hbf"
+        data-testid="via-hbf"
+      >
+        hbf
+      </span>
+    `);
   });
 });
