@@ -12,6 +12,7 @@ declare global {
       SERVER: boolean;
       VERSION: string;
       BASE_URL: string;
+      RAW_BASE_URL: string;
       IMPRINT: {
         name: string;
         street: string;
