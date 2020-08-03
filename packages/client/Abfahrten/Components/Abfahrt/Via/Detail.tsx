@@ -1,15 +1,16 @@
 import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
+import { isHbf } from 'client/Abfahrten/Components/Abfahrt/Via';
 import { ReactNode, useMemo } from 'react';
 import { StationLink } from 'client/Common/Components/StationLink';
-import { ViaStop } from './Normal';
+import { useStyles } from './Normal';
+import clsx from 'clsx';
 import type { Stop } from 'types/iris';
-
-const DetailViaStop = ViaStop.withComponent(StationLink);
 
 interface Props {
   stops: Stop[];
 }
 export const DetailVia = ({ stops }: Props) => {
+  const classes = useStyles();
   const urlPrefix = AbfahrtenConfigContainer.useContainer().urlPrefix;
 
   const stopsToRender = useMemo(() => {
@@ -17,12 +18,16 @@ export const DetailVia = ({ stops }: Props) => {
 
     stops.forEach((s, i) => {
       stopsToRender.push(
-        <DetailViaStop
+        <StationLink
+          className={clsx(classes.main, {
+            [classes.hbf]: isHbf(s),
+            [classes.cancelled]: s.cancelled,
+            [classes.additional]: s.additional,
+          })}
           urlPrefix={urlPrefix}
           data-testid={`via-${s.name}`}
           key={i}
           stationName={s.name}
-          stop={s}
         />
       );
       if (i + 1 !== stops.length) {
@@ -31,7 +36,7 @@ export const DetailVia = ({ stops }: Props) => {
     });
 
     return stopsToRender;
-  }, [stops, urlPrefix]);
+  }, [classes, stops, urlPrefix]);
 
   return <>{stopsToRender}</>;
 };

@@ -1,9 +1,10 @@
 import { DetailsContext } from './DetailsContext';
 import { Error } from '@material-ui/icons';
 import { Loading } from '../Loading';
+import { makeStyles } from '@material-ui/core';
 import { Stop } from 'client/Common/Components/Details/Stop';
 import { useContext, useEffect, useMemo } from 'react';
-import styled, { css } from 'styled-components';
+import clsx from 'clsx';
 import type { ResponseError } from 'umi-request';
 
 function getErrorText(error: ResponseError) {
@@ -17,22 +18,21 @@ function getErrorText(error: ResponseError) {
   return 'Unbekannter Fehler';
 }
 
-const ErrorCss = css`
-  width: 80%;
-  height: 80%;
-  margin: 0 auto;
-  text-align: center;
-`;
-const StyledError = styled(Error)`
-  ${ErrorCss}
-`;
-const Wrap = styled.main<{ $error?: boolean }>`
-  display: flex;
-  flex-direction: column;
-  ${({ $error }) => $error && ErrorCss}
-`;
+const useStyles = makeStyles({
+  error: {
+    width: '80%',
+    height: '80%',
+    margin: '0 auto',
+    textAlign: 'center',
+  },
+  wrap: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+});
 
 export const StopList = () => {
+  const classes = useStyles();
   const { details, error } = useContext(DetailsContext);
 
   useEffect(() => {
@@ -72,9 +72,10 @@ export const StopList = () => {
 
   if (error) {
     return (
-      <Wrap $error>
-        <StyledError data-testid="error" /> {getErrorText(error)}
-      </Wrap>
+      <main className={clsx(classes.wrap, classes.error)}>
+        <Error className={classes.error} data-testid="error" />{' '}
+        {getErrorText(error)}
+      </main>
     );
   }
 
@@ -83,9 +84,9 @@ export const StopList = () => {
   }
 
   return (
-    <Wrap>
+    <main className={classes.wrap}>
       {/* <Messages messages={details.messages} /> */}
       {detailsStops}
-    </Wrap>
+    </main>
   );
 };

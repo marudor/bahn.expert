@@ -1,4 +1,5 @@
 import { BaseAbfahrt } from './BaseAbfahrt';
+import { SelectedDetailContainer } from 'client/Abfahrten/container/SelectedDetailContainer';
 import { useMemo } from 'react';
 import { useWings } from 'client/Abfahrten/container/AbfahrtenContainer/useWings';
 import type { Abfahrt as AbfahrtType } from 'types/iris';
@@ -8,6 +9,7 @@ interface Props {
 }
 
 export const Abfahrt = ({ abfahrt }: Props) => {
+  const { selectedDetail } = SelectedDetailContainer.useContainer();
   const wings = useWings(abfahrt);
 
   const sameTrainWing = useMemo(
@@ -33,6 +35,7 @@ export const Abfahrt = ({ abfahrt }: Props) => {
   return (
     <>
       <BaseAbfahrt
+        detail={abfahrt.id === selectedDetail}
         abfahrt={abfahrt}
         sameTrainWing={sameTrainWing}
         wingNumbers={wingNumbers}
@@ -41,6 +44,7 @@ export const Abfahrt = ({ abfahrt }: Props) => {
       {wings &&
         wings.map((w, index) => (
           <BaseAbfahrt
+            detail={w.id === selectedDetail}
             sameTrainWing={sameTrainWing}
             abfahrt={w}
             key={w.rawId}

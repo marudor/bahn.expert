@@ -5,33 +5,35 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  makeStyles,
   SwipeableDrawer,
 } from '@material-ui/core';
 import { NavigationContext } from './NavigationContext';
 import { ReactNode, useCallback, useMemo, useState } from 'react';
 import { ThemeSelection } from './ThemeSelection';
 import { Zugsuche } from 'client/Common/Components/Zugsuche';
-import styled from 'styled-components';
 
-const Headline = styled.h3`
-  text-align: center;
-`;
-
-const Drawer = styled(List)`
-  width: 230px;
-  a {
-    color: inherit;
-  }
-  .MuiListItem-button {
-    padding: 20px 20px;
-  }
-`;
+const useStyles = makeStyles({
+  headline: {
+    textAlign: 'center',
+  },
+  drawer: {
+    width: 230,
+    '& a': {
+      color: 'inherit',
+    },
+    '& .MuiListItem-button': {
+      padding: '20px 20px',
+    },
+  },
+});
 
 interface Props {
   children: ReactNode;
 }
 
 export const Navigation = ({ children }: Props) => {
+  const classes = useStyles();
   const [open, setOpen] = useState(false);
   const toggleDrawer = useCallback(() => {
     setOpen((old) => !old);
@@ -46,8 +48,8 @@ export const Navigation = ({ children }: Props) => {
   return (
     <NavigationContext.Provider value={navigationContext}>
       <SwipeableDrawer open={open} onClose={toggleDrawer} onOpen={toggleDrawer}>
-        <Headline>BahnhofsAbfahrten</Headline>
-        <Drawer onClick={toggleDrawer}>
+        <h3 className={classes.headline}>BahnhofsAbfahrten</h3>
+        <List className={classes.drawer} onClick={toggleDrawer}>
           <Link to="/">
             <ListItem button>
               <ListItemIcon>
@@ -91,7 +93,7 @@ export const Navigation = ({ children }: Props) => {
               <ListItemText primary="About" />
             </ListItem>
           </Link>
-        </Drawer>
+        </List>
       </SwipeableDrawer>
       {children}
     </NavigationContext.Provider>

@@ -1,24 +1,27 @@
 import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
 import { DetailMessages } from 'client/Common/Components/Messages/Detail';
 import { DetailVia } from './Via/Detail';
+import { makeStyles } from '@material-ui/core';
 import { NormalMessages } from 'client/Common/Components/Messages/Normal';
 import { NormalVia } from './Via/Normal';
+import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import { useMemo } from 'react';
-import styled from 'styled-components';
-import type { Abfahrt } from 'types/iris';
+import clsx from 'clsx';
 
-const Wrap = styled.div<{ detail: boolean }>`
-  font-size: 2.1em;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: ${({ detail }) => (detail ? 'inherit' : 'nowrap')};
-`;
+const useStyles = makeStyles({
+  wrap: {
+    fontSize: '2.1em',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  },
+  noDetail: {
+    whiteSpace: 'nowrap',
+  },
+});
 
-interface Props {
-  abfahrt: Abfahrt;
-  detail: boolean;
-}
-export const Info = ({ abfahrt, detail }: Props) => {
+export const Info = () => {
+  const { abfahrt, detail } = useAbfahrt();
+  const classes = useStyles();
   const showSupersededMessages = AbfahrtenConfigContainer.useContainer().config
     .showSupersededMessages;
   const messages = useMemo(() => {
@@ -38,14 +41,12 @@ export const Info = ({ abfahrt, detail }: Props) => {
   const info = Boolean(messages.length) && <MessagesComp messages={messages} />;
   const via = (detail || !info) && <ViaComp stops={abfahrt.route} />;
 
-  return useMemo(() => {
-    if (!info && !via) return null;
+  if (!info && !via) return null;
 
-    return (
-      <Wrap detail={detail}>
-        {info}
-        {via}
-      </Wrap>
-    );
-  }, [detail, info, via]);
+  return (
+    <div className={clsx(classes.wrap, !detail && classes.noDetail)}>
+      {info}
+      {via}
+    </div>
+  );
 };

@@ -1,81 +1,61 @@
 import { CommonConfigContainer } from 'client/Common/container/CommonConfigContainer';
 import { Explain } from './Explain';
-import { Formation } from 'types/reihung';
 import { Gruppe } from './Gruppe';
 import { Loading } from 'client/Common/Components/Loading';
+import { makeStyles } from '@material-ui/core';
 import { ReihungContainer } from 'client/Common/container/ReihungContainer';
 import { Sektor } from './Sektor';
-import { useEffect } from 'react';
-import styled from 'styled-components';
+import { useEffect, useMemo } from 'react';
+import clsx from 'clsx';
 
-const Wrap = styled.div`
-  overflow-x: auto;
-`;
-
-const Main = styled.div<{
-  reihung: Formation;
-  fahrzeugGruppe: boolean;
-  showUIC: boolean;
-}>`
-  min-width: 70em;
-  overflow: hidden;
-  position: relative;
-  font-size: 170%;
-  margin-bottom: 1em;
-  margin-right: 0.3em;
-  height: ${({ fahrzeugGruppe, reihung, showUIC }) => {
-    let height = 8;
-    if (fahrzeugGruppe) height += 1;
-    if (showUIC) height += 1;
-    if (reihung.differentZugnummer) height += 1;
-    if (reihung.differentDestination) height += 1;
-    if (reihung.allFahrzeuggruppe.find((g) => g.br && g.br.showBRInfo))
-      height += 1;
-    if (reihung.allFahrzeuggruppe.some((g) => g.name)) {
-      height += 1;
-    }
-    return `${height}em`;
-  }};
-`;
-
-const Sektoren = styled.div`
-  position: relative;
-`;
-
-const ReihungWrap = styled.div`
-  position: relative;
-  margin-top: 1.3em;
-  height: 100%;
-`;
-
-const Plan = styled.span`
-  position: absolute;
-  bottom: 1.5em;
-`;
-
-const Richtung = styled.span<{ reihung: Formation }>`
-  background-color: ${({ theme }) => theme.palette.text.primary};
-  width: 50%;
-  height: 2px;
-  position: absolute;
-  left: 50%;
-  bottom: 0.5em;
-  z-index: 10;
-  transform: ${({ reihung }) =>
-    reihung.realFahrtrichtung
-      ? 'translateX(-50%)'
-      : 'rotate(180deg) translateX(50%)'};
-  ::after {
-    border: solid ${({ theme }) => theme.palette.text.primary};
-    border-width: 0 2px 2px 0;
-    display: inline-block;
-    padding: 3px;
-    content: ' ';
-    transform: rotate(135deg);
-    position: absolute;
-    top: -3px;
-  }
-`;
+const useStyles = makeStyles((theme) => ({
+  wrap: {
+    overflowX: 'auto',
+  },
+  main: {
+    minWidth: '70em',
+    overflow: 'hidden',
+    position: 'relative',
+    fontSize: '170%',
+    marginBottom: '1em',
+    marginRight: '.3em',
+  },
+  sektoren: {
+    position: 'relative',
+  },
+  reihungWrap: {
+    position: 'relative',
+    marginTop: '1.3em',
+    height: '100%',
+  },
+  plan: {
+    position: 'absolute',
+    bottom: '1.5em',
+  },
+  richtung: {
+    backgroundColor: theme.palette.text.primary,
+    width: '50%',
+    height: 2,
+    position: 'absolute',
+    left: '50%',
+    bottom: '.5em',
+    zIndex: 10,
+    transform: 'translateX(-50%)',
+    '&::after': {
+      border: `solid ${theme.palette.text.primary}`,
+      borderWidth: '0 2px 2px 0',
+      display: 'inline-block',
+      padding: 3,
+      content: '""',
+      transform: 'rotate(135deg)',
+      position: 'absolute',
+      top: -3,
+    },
+  },
+  reverseRichtung: {
+    transform: 'rotate(180deg) translateX(50%)',
+  },
+}));
 
 interface Props {
   className?: string;
@@ -95,6 +75,7 @@ export const Reihung = ({
   loadHidden,
   fallbackTrainNumbers,
 }: Props) => {
+  const classes = useStyles();
   const { reihungen, getReihung } = ReihungContainer.useContainer();
   const {
     fahrzeugGruppe,
@@ -121,6 +102,21 @@ export const Reihung = ({
     trainNumber,
   ]);
 
+  const mainStyle = useMemo(() => {
+    if (!reihung) return {};
+    let height = 8;
+    if (fahrzeugGruppe) height += 1;
+    if (showUIC) height += 1;
+    if (reihung.differentZugnummer) height += 1;
+    if (reihung.differentDestination) height += 1;
+    if (reihung.allFahrzeuggruppe.find((g) => g.br && g.br.showBRInfo))
+      height += 1;
+    if (reihung.allFahrzeuggruppe.some((g) => g.name)) height += 1;
+    return {
+      height: `${height}em`,
+    };
+  }, [fahrzeugGruppe, showUIC, reihung]);
+
   if (reihung === null || (!reihung && loadHidden)) {
     return null;
   }
@@ -130,12 +126,11 @@ export const Reihung = ({
 
   const correctLeft = zoomReihung ? reihung.startPercentage : 0;
   const scale = zoomReihung ? reihung.scale : 1;
-  const differentZugnummer = reihung.differentZugnummer;
 
   return (
-    <Wrap className={className} data-testid="reihung">
-      <Main showUIC={showUIC} fahrzeugGruppe={fahrzeugGruppe} reihung={reihung}>
-        <Sektoren>
+    <div className={clsx(classes.wrap, className)} data-testid="reihung">
+      <div className={classes.main} style={mainStyle}>
+        <div className={classes.sektoren}>
           {reihung.halt.allSektor.map((s) => (
             <Sektor
               correctLeft={correctLeft}
@@ -144,11 +139,11 @@ export const Reihung = ({
               sektor={s}
             />
           ))}
-        </Sektoren>
-        <ReihungWrap>
+        </div>
+        <div className={classes.reihungWrap}>
           {reihung.allFahrzeuggruppe.map((g) => (
             <Gruppe
-              showGruppenZugnummer={differentZugnummer}
+              showGruppenZugnummer={reihung.differentZugnummer}
               showUIC={showUIC}
               originalTrainNumber={trainNumber}
               showFahrzeugGruppe={fahrzeugGruppe}
@@ -162,12 +157,17 @@ export const Reihung = ({
               gruppe={g}
             />
           ))}
-        </ReihungWrap>
+        </div>
         <Explain />
-        {!reihung.isRealtime && <Plan>Plandaten</Plan>}
-        <Richtung reihung={reihung} />
-      </Main>
-    </Wrap>
+        {!reihung.isRealtime && <span className={classes.plan}>Plandaten</span>}
+        <span
+          className={clsx(
+            classes.richtung,
+            !reihung.realFahrtrichtung && classes.reverseRichtung
+          )}
+        />
+      </div>
+    </div>
   );
 };
 // eslint-disable-next-line import/no-default-export

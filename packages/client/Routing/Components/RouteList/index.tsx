@@ -1,4 +1,4 @@
-import { Button } from '@material-ui/core';
+import { Button, makeStyles } from '@material-ui/core';
 import { Loading } from 'client/Common/Components/Loading';
 import { Route } from './Route';
 import { RouteFavList } from 'client/Routing/Components/RouteFavList';
@@ -6,7 +6,6 @@ import { RouteHeader } from './RouteHeader';
 import { RoutingContainer } from 'client/Routing/container/RoutingContainer';
 import { useCallback, useState } from 'react';
 import { useFetchRouting } from 'client/Routing/container/RoutingContainer/useFetchRouting';
-import styled from 'styled-components';
 
 const translateError = (e: any) => {
   if (e && e.response && e.response.data) {
@@ -21,22 +20,23 @@ const translateError = (e: any) => {
   return String(e);
 };
 
-const StyledButton = styled(Button)`
-  height: 45px;
-  margin: 10px;
-  flex: 1;
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  > div {
-    padding-left: 0.1em;
-    padding-right: 0.5em;
-  }
-`;
+const useStyles = makeStyles({
+  button: {
+    height: 45,
+    margin: 10,
+    flex: 1,
+  },
+  wrap: {
+    display: 'flex',
+    flexDirection: 'column',
+    '& > div': {
+      padding: '0 .5em 0 .1em',
+    },
+  },
+});
 
 export const RouteList = () => {
+  const classes = useStyles();
   const {
     routes,
     error,
@@ -59,25 +59,26 @@ export const RouteList = () => {
   }, [fetchContext]);
 
   if (error) {
-    return <Wrapper>{translateError(error)}</Wrapper>;
+    return <div className={classes.wrap}>{translateError(error)}</div>;
   }
 
   if (!routes) return <Loading relative />;
   if (!routes.length) return <RouteFavList />;
 
   return (
-    <Wrapper>
+    <div className={classes.wrap}>
       {earlierContext &&
         (loadingEarlier ? (
           <Loading data-testid="fetchCtxEarlyLoading" type={1} />
         ) : (
-          <StyledButton
+          <Button
+            className={classes.button}
             data-testid="fetchCtxEarly"
             variant="outlined"
             onClick={searchBefore}
           >
             Früher
-          </StyledButton>
+          </Button>
         ))}
       {routes
         .filter((r) => r.isRideable)
@@ -102,14 +103,15 @@ export const RouteList = () => {
         (loadingLater ? (
           <Loading data-testid="fetchCtxLateLoading" type={1} />
         ) : (
-          <StyledButton
+          <Button
+            className={classes.button}
             data-testid="fetchCtxLate"
             variant="outlined"
             onClick={searchLater}
           >
             Später
-          </StyledButton>
+          </Button>
         ))}
-    </Wrapper>
+    </div>
   );
 };

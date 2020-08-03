@@ -4,6 +4,7 @@ import {
   DialogContent,
   DialogTitle,
   FormControl,
+  makeStyles,
 } from '@material-ui/core';
 import { DatePicker } from '@material-ui/pickers';
 import { NavigationContext } from './Navigation/NavigationContext';
@@ -21,56 +22,43 @@ import { useHistory } from 'react-router';
 import { useWebStorage } from 'client/useWebStorage';
 import { ZugsucheAutocomplete } from 'client/Common/Components/ZugsucheAutocomplete';
 import qs from 'qs';
-import styled from 'styled-components';
 import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 
-const Title = styled(DialogTitle)`
-  text-align: center;
-  padding: 16px 24px 0px 24px;
-`;
-
-const Content = styled(DialogContent)`
-  min-width: 40%;
-`;
-
-const DateInputWrapper = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  max-width: 240px;
-  margin: 0 auto;
-`;
-
-const StyledDatePicker = styled(DatePicker)`
-  margin: 20px;
-`;
-
-const Icon = styled.a`
-  position: absolute;
-  right: 20px;
-  top: 39px;
-`;
-const StyledTodayIcon = Icon.withComponent(Today);
-const StyledTrainIcon = Icon.withComponent(Train);
-
-const ZugInputWrapper = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  max-width: 240px;
-  margin: 0 auto;
-`;
-
-const SearchButton = styled(Button)`
-  height: 45px;
-  margin: 10px;
-  width: 95%;
-`;
+const useStyles = makeStyles({
+  title: {
+    textAlign: 'center',
+    padding: '16px 24px 0 24px',
+  },
+  content: {
+    minWidth: '40%',
+  },
+  inputWrapper: {
+    position: 'relative',
+    display: 'flex',
+    justifyContent: 'space-between',
+    maxWidth: 240,
+    margin: '0 auto',
+  },
+  datePicker: {
+    margin: 20,
+  },
+  icon: {
+    position: 'absolute',
+    right: 20,
+    top: 39,
+  },
+  searchButton: {
+    height: 45,
+    margin: 10,
+    width: '95%',
+  },
+});
 
 interface Props {
   children?: (toggle: (e: SyntheticEvent) => void) => ReactElement;
 }
 export const Zugsuche = ({ children }: Props) => {
+  const classes = useStyles();
   const history = useHistory();
   const storage = useWebStorage();
   const { toggleDrawer } = useContext(NavigationContext);
@@ -127,28 +115,30 @@ export const Zugsuche = ({ children }: Props) => {
         onClose={toggleModal}
         data-testid="Zugsuche"
       >
-        <Title>Zugsuche</Title>
-        <Content>
+        <DialogTitle className={classes.title}>Zugsuche</DialogTitle>
+        <DialogContent className={classes.content}>
           <form onSubmit={onSubmit}>
             <FormControl fullWidth component="fieldset">
-              <DateInputWrapper>
-                <StyledDatePicker
+              <div className={classes.inputWrapper}>
+                <DatePicker
+                  className={classes.datePicker}
                   showTodayButton
                   autoOk
                   label="Datum"
                   value={date}
                   onChange={setDate}
                 />
-                <StyledTodayIcon />
-              </DateInputWrapper>
-              <ZugInputWrapper>
+                <Today className={classes.icon} />
+              </div>
+              <div className={classes.inputWrapper}>
                 <ZugsucheAutocomplete
                   onChange={setMatch}
                   initialDeparture={date?.getTime()}
                 />
-                <StyledTrainIcon />
-              </ZugInputWrapper>
-              <SearchButton
+                <Train className={classes.icon} />
+              </div>
+              <Button
+                className={classes.searchButton}
                 data-testid="ZugsucheSubmit"
                 type="submit"
                 variant="contained"
@@ -156,10 +146,10 @@ export const Zugsuche = ({ children }: Props) => {
                 startIcon={<Search />}
               >
                 Suche
-              </SearchButton>
+              </Button>
             </FormControl>
           </form>
-        </Content>
+        </DialogContent>
       </Dialog>
       {children?.(toggleModal)}
     </>

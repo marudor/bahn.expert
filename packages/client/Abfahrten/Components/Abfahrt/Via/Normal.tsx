@@ -1,38 +1,45 @@
-import { additionalCss, cancelledCss, changedCss } from 'client/util/cssUtils';
 import { isHbf } from './index';
+import { makeStyles } from '@material-ui/core';
 import { ReactNode, useMemo } from 'react';
-import styled, { css } from 'styled-components';
+import clsx from 'clsx';
 import type { Stop } from 'types/iris';
 
-export const ViaStop = styled.span<{ stop: Stop }>`
-  color: ${({ theme }) => theme.palette.text.primary};
-  ${({ stop }) => [
-    stop.cancelled &&
-      css`
-        ${cancelledCss};
-        ${changedCss}
-      `,
-    stop.additional && additionalCss,
-    isHbf(stop) &&
-      css`
-        font-weight: bold;
-      `,
-  ]}
-`;
+export const useStyles = makeStyles((theme) => ({
+  main: {
+    color: theme.palette.text.primary,
+  },
+  hbf: {
+    fontWeight: 'bold',
+  },
+  cancelled: {
+    ...theme.mixins.cancelled,
+    ...theme.mixins.changed,
+  },
+  additional: theme.mixins.additional,
+}));
 
 interface Props {
   stops: Stop[];
 }
 export const NormalVia = ({ stops }: Props) => {
+  const classes = useStyles();
   const stopsToRender = useMemo(() => {
     const stopsToRender: ReactNode[] = [];
     const filteredStops = stops.filter((s) => s.showVia);
 
     filteredStops.forEach((s, i) => {
       stopsToRender.push(
-        <ViaStop stop={s} data-testid={`via-${s.name}`} key={i}>
+        <span
+          className={clsx(classes.main, {
+            [classes.hbf]: isHbf(s),
+            [classes.cancelled]: s.cancelled,
+            [classes.additional]: s.additional,
+          })}
+          data-testid={`via-${s.name}`}
+          key={i}
+        >
           {s.name}
-        </ViaStop>
+        </span>
       );
       if (i + 1 !== filteredStops.length) {
         stopsToRender.push(' - ');
@@ -40,7 +47,7 @@ export const NormalVia = ({ stops }: Props) => {
     });
 
     return stopsToRender;
-  }, [stops]);
+  }, [stops, classes]);
 
   return <>{stopsToRender}</>;
 };
