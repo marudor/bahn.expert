@@ -44,7 +44,8 @@ const RouteHeaderTags = () => {
 
 const useStyles = makeStyles({
   wrap: {
-    margin: '0 .5em',
+    marginLeft: '.5em',
+    marginRight: '.5em',
   },
 });
 
