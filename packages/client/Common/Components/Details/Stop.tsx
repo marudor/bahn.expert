@@ -1,6 +1,6 @@
-import { additionalCss, cancelledCss } from 'client/util/cssUtils';
 import { DetailMessages } from '../Messages/Detail';
 import { DetailsContext } from './DetailsContext';
+import { makeStyles } from '@material-ui/core';
 import { Messages } from './Messages';
 import { Platform } from 'client/Common/Components/Platform';
 import { Reihung } from '../Reihung';
@@ -8,72 +8,61 @@ import { StationLink } from 'client/Common/Components/StationLink';
 import { Time } from 'client/Common/Components/Time';
 import { TravelynxLink } from 'client/Common/Components/CheckInLink/TravelynxLink';
 import { useContext } from 'react';
-import styled, { css } from 'styled-components';
+import clsx from 'clsx';
 import type { ParsedProduct } from 'types/HAFAS';
 import type { Route$Stop } from 'types/routing';
 
-const Wrap = styled.div<{ isPast?: boolean }>`
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-  display: grid;
-  grid-template-columns: 4.8em 1fr max-content;
-  grid-gap: 0 0.3em;
-  grid-template-rows: 1fr 1fr;
-  grid-template-areas: 'ar t p c' 'dp t p c' 'wr wr wr wr' 'm m m m';
-  align-items: center;
-  border-bottom: 1px solid ${({ theme }) => theme.palette.text.primary};
-  position: relative;
-  ${({ isPast, theme }) =>
-    isPast &&
-    css`
-      background-color: ${theme.colors.shadedBackground};
-    `}
-`;
-
-const ScrollMarker = styled.span`
-  position: absolute;
-  top: -64px;
-`;
-
-const ArrivalTime = styled(Time)`
-  grid-area: ar;
-`;
-
-const Station = styled.span<{ cancelled?: boolean; additional?: boolean }>`
-  grid-area: t;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  ${({ additional, cancelled }) => [
-    additional && additionalCss,
-    cancelled && cancelledCss,
-  ]};
-`;
-
-const StationName = styled(StationLink)`
-  color: inherit;
-`;
-
-const CheckIn = styled(TravelynxLink)`
-  grid-area: c;
-`;
-
-const DepartureTime = styled(Time)`
-  grid-area: dp;
-`;
-const StyledPlatform = styled(Platform)`
-  grid-area: p;
-`;
-
-const ReihungBox = styled.div`
-  font-size: 0.5em;
-  grid-area: wr;
-  overflow: hidden;
-`;
-
-const MessagesBox = styled.div`
-  grid-area: m;
-  padding-left: 0.75em;
-`;
+const useStyles = makeStyles((theme) => ({
+  wrap: {
+    padding: '0 .5em',
+    display: 'grid',
+    gridTemplateColumns: '4.8em 1fr max-content',
+    gridGap: '0 .3em',
+    gridTemplateRows: '1fr 1fr',
+    gridTemplateAreas: '"ar t p c" "dp t p c" "wr wr wr wr" "m m m m"',
+    alignItems: 'center',
+    borderBottom: `1px solid ${theme.palette.text.primary}`,
+    position: 'relative',
+  },
+  past: {
+    backgroundColor: theme.colors.shadedBackground,
+  },
+  scrollMarker: {
+    position: 'absolute',
+    top: -64,
+  },
+  arrival: {
+    gridArea: 'ar',
+  },
+  station: {
+    gridArea: 't',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  },
+  additional: theme.mixins.additional,
+  cancelled: theme.mixins.cancelled,
+  stationName: {
+    color: 'inherit',
+  },
+  checkIn: {
+    gridArea: 'c',
+  },
+  departure: {
+    gridArea: 'dp',
+  },
+  platform: {
+    gridArea: 'p',
+  },
+  reihungWrap: {
+    fontSize: '.5em',
+    gridArea: 'wr',
+    overflow: 'hidden',
+  },
+  messageWrap: {
+    gridArea: 'm',
+    paddingLeft: '.75em',
+  },
+}));
 
 interface Props {
   stop: Route$Stop;
@@ -82,6 +71,7 @@ interface Props {
   isPast?: boolean;
 }
 export const Stop = ({ stop, showWR, train, isPast }: Props) => {
+  const classes = useStyles();
   const { urlPrefix } = useContext(DetailsContext);
   const depOrArrival = stop.departure || stop.arrival;
   const platforms = stop.departure
@@ -97,21 +87,35 @@ export const Stop = ({ stop, showWR, train, isPast }: Props) => {
     : {};
 
   return (
-    <Wrap data-testid={stop.station.id} isPast={isPast}>
-      <ScrollMarker id={stop.station.id} />
+    <div
+      className={clsx(classes.wrap, isPast && classes.past)}
+      data-testid={stop.station.id}
+    >
+      <div className={classes.scrollMarker} id={stop.station.id} />
       {stop.arrival && (
-        <ArrivalTime
+        <Time
+          className={classes.arrival}
           cancelled={stop.arrival.cancelled}
           oneLine
           real={stop.arrival.time}
           delay={stop.arrival.delay}
         />
       )}
-      <Station cancelled={stop.cancelled} additional={stop.additional}>
-        <StationName stationName={stop.station.title} urlPrefix={urlPrefix} />
-      </Station>
+      <span
+        className={clsx(classes.station, {
+          [classes.additional]: stop.additional,
+          [classes.cancelled]: stop.cancelled,
+        })}
+      >
+        <StationLink
+          className={classes.stationName}
+          stationName={stop.station.title}
+          urlPrefix={urlPrefix}
+        />
+      </span>
       {train && (
-        <CheckIn
+        <TravelynxLink
+          className={classes.checkIn}
           station={stop.station}
           train={train}
           departure={stop.departure}
@@ -119,7 +123,8 @@ export const Stop = ({ stop, showWR, train, isPast }: Props) => {
         />
       )}
       {stop.departure && (
-        <DepartureTime
+        <Time
+          className={classes.departure}
           cancelled={stop.departure.cancelled}
           oneLine
           real={stop.departure.time}
@@ -127,8 +132,8 @@ export const Stop = ({ stop, showWR, train, isPast }: Props) => {
         />
       )}
       {/* {stop.messages && <div>{stop.messages.map(m => m.txtN)}</div>} */}
-      <StyledPlatform {...platforms} />
-      <ReihungBox>
+      <Platform className={classes.platform} {...platforms} />
+      <div className={classes.reihungWrap}>
         {showWR?.number && depOrArrival && (
           <Reihung
             trainNumber={showWR.number}
@@ -137,11 +142,11 @@ export const Stop = ({ stop, showWR, train, isPast }: Props) => {
             loadHidden={!depOrArrival?.reihung}
           />
         )}
-      </ReihungBox>
-      <MessagesBox>
+      </div>
+      <div className={classes.messageWrap}>
         {stop.irisMessages && <DetailMessages messages={stop.irisMessages} />}
         <Messages messages={stop.messages} />
-      </MessagesBox>
-    </Wrap>
+      </div>
+    </div>
   );
 };

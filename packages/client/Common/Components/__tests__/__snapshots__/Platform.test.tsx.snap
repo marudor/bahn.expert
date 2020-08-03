@@ -2,7 +2,7 @@
 
 exports[`Platform No platform provided 1`] = `
 <div
-  class="Platform__Wrap-sc-1cvybfr-0 eNHyOy"
+  class=""
 >
   <span
     data-testid="real"
@@ -12,7 +12,7 @@ exports[`Platform No platform provided 1`] = `
 
 exports[`Platform scheduled !== real & cancelled 1`] = `
 <div
-  class="Platform__Wrap-sc-1cvybfr-0 fhgPxW"
+  class="Platform-cancelled Platform-changed"
 >
   <span
     data-testid="real"
@@ -20,7 +20,7 @@ exports[`Platform scheduled !== real & cancelled 1`] = `
     1
   </span>
   <span
-    class="Platform__ChangedWrapper-sc-1cvybfr-1 fKaTIQ"
+    class="Platform-changedWrapper"
     data-testid="scheduled"
   >
     (
@@ -32,7 +32,7 @@ exports[`Platform scheduled !== real & cancelled 1`] = `
 
 exports[`Platform scheduled !== real 1`] = `
 <div
-  class="Platform__Wrap-sc-1cvybfr-0 kPshYj"
+  class="Platform-changed"
 >
   <span
     data-testid="real"
@@ -40,7 +40,7 @@ exports[`Platform scheduled !== real 1`] = `
     1
   </span>
   <span
-    class="Platform__ChangedWrapper-sc-1cvybfr-1 fKaTIQ"
+    class="Platform-changedWrapper"
     data-testid="scheduled"
   >
     (
@@ -52,7 +52,7 @@ exports[`Platform scheduled !== real 1`] = `
 
 exports[`Platform scheduled === real & cancelled 1`] = `
 <div
-  class="Platform__Wrap-sc-1cvybfr-0 gjuhnH"
+  class="Platform-cancelled"
 >
   <span
     data-testid="real"
@@ -64,7 +64,7 @@ exports[`Platform scheduled === real & cancelled 1`] = `
 
 exports[`Platform scheduled === real 1`] = `
 <div
-  class="Platform__Wrap-sc-1cvybfr-0 eNHyOy"
+  class=""
 >
   <span
     data-testid="real"

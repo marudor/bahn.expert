@@ -24,16 +24,6 @@ const getBabelConfig = (type) => {
 
   const plugins = [
     [
-      'babel-plugin-styled-components',
-      {
-        displayName: process.env.NODE_ENV !== 'production',
-        fileName: process.env.NODE_ENV !== 'production',
-        minify: true,
-        transpileTemplateLiterals: true,
-        pure: true,
-      },
-    ],
-    [
       'babel-plugin-const-enum',
       {
         transform: 'constObject',
@@ -45,6 +35,7 @@ const getBabelConfig = (type) => {
     ['@babel/plugin-proposal-decorators', { legacy: true }],
     ['@babel/plugin-proposal-class-properties', { loose: true }],
     'babel-plugin-parameter-decorator',
+    './scripts/babelTransform/debugStyleNames.js',
     'lodash',
     [
       'module-resolver',

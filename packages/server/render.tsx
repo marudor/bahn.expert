@@ -2,7 +2,6 @@ import { abfahrtenConfigSanitize, commonConfigSanitize } from 'client/util';
 import { ChunkExtractor } from '@loadable/server';
 import { renderToString } from 'react-dom/server';
 import { ServerBaseComponent } from 'client/ServerBaseComponent';
-import { ServerStyleSheet } from 'styled-components';
 import { SheetsRegistry } from 'jss';
 import ejs from 'ejs';
 import fs from 'fs';
@@ -69,38 +68,30 @@ export default (ctx: Context) => {
     />
   );
 
-  const sheet = new ServerStyleSheet();
-  try {
-    const app = renderToString(sheet.collectStyles(App));
-    if (routeContext.url) {
-      ctx.redirect(routeContext.url);
-    } else {
-      if (routeContext.status) {
-        ctx.status = routeContext.status;
-      }
-
-      ctx.body = headerTemplate({
-        tagmanager: process.env.TAGMANAGER_ID,
-        header: context.helmet,
-        cssTags: [...extractor.getStyleTags(), sheet.getStyleTags()],
-        linkTags: extractor.getLinkTags(),
-        configOverride: JSON.stringify(global.configOverride),
-        imprint: JSON.stringify(global.IMPRINT),
-        jssCss: sheets.toString(),
-        baseUrl: global.BASE_URL,
-        rawBaseUrl: global.RAW_BASE_URL,
-        version: global.VERSION,
-      });
-      ctx.body += app;
-
-      ctx.body += footerTemplate({
-        scriptTags: extractor.getScriptTags(),
-      });
+  const app = renderToString(App);
+  if (routeContext.url) {
+    ctx.redirect(routeContext.url);
+  } else {
+    if (routeContext.status) {
+      ctx.status = routeContext.status;
     }
-    // eslint-disable-next-line no-useless-catch
-  } catch (e) {
-    throw e;
-  } finally {
-    sheet.seal();
+
+    ctx.body = headerTemplate({
+      tagmanager: process.env.TAGMANAGER_ID,
+      header: context.helmet,
+      cssTags: extractor.getStyleTags(),
+      linkTags: extractor.getLinkTags(),
+      configOverride: JSON.stringify(global.configOverride),
+      imprint: JSON.stringify(global.IMPRINT),
+      jssCss: sheets.toString(),
+      baseUrl: global.BASE_URL,
+      rawBaseUrl: global.RAW_BASE_URL,
+      version: global.VERSION,
+    });
+    ctx.body += app;
+
+    ctx.body += footerTemplate({
+      scriptTags: extractor.getScriptTags(),
+    });
   }
 };

@@ -2,7 +2,6 @@
 import { CommonConfig } from 'client/Common/config';
 import { CommonConfigContainer } from 'client/Common/container/CommonConfigContainer';
 import { createTheme } from 'client/Themes';
-import { DefaultTheme } from 'styled-components';
 import { HelmetProvider } from 'react-helmet-async';
 import { MemoryRouter, useLocation } from 'react-router';
 import { Navigation } from 'client/Common/Components/Navigation';
@@ -14,6 +13,7 @@ import { ThemeWrap } from 'client/ThemeWrap';
 import Cookies from 'universal-cookie';
 import type { ComponentProps, ComponentType } from 'react';
 import type { Container } from 'unstated-next';
+import type { DefaultTheme } from '@material-ui/styles';
 import type { Location } from 'history';
 import type { Rule, StyleSheet } from 'jss';
 
@@ -23,9 +23,12 @@ let theme: DefaultTheme;
 interface ContainerWithOptions<V = any> extends Container<V, any> {
   initialState?: V;
 }
+interface ContextWithOptions<V = any> extends React.Context<V> {
+  initialState?: V;
+}
 interface Options {
   withNavigation?: boolean;
-  container?: ContainerWithOptions[];
+  container?: (ContainerWithOptions | ContextWithOptions)[];
   commonConfig?: Partial<CommonConfig>;
 }
 
@@ -67,7 +70,9 @@ export function render<CP extends ComponentType<any>>(
     if (container) {
       container.forEach((c) => {
         result = (
-          <c.Provider initialState={c.initialState}>{result}</c.Provider>
+          <c.Provider value={c.initialState} initialState={c.initialState}>
+            {result}
+          </c.Provider>
         );
       });
     }

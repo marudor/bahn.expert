@@ -1,5 +1,14 @@
-import styled, { css } from 'styled-components';
+import { makeStyles } from '@material-ui/core';
+import { useMemo } from 'react';
 import type { Sektor as SektorType } from 'types/reihung';
+
+const useStyles = makeStyles({
+  wrap: {
+    position: 'absolute',
+    fontWeight: 'bolder',
+    textAlign: 'center',
+  },
+});
 
 interface Props {
   sektor: SektorType;
@@ -7,22 +16,21 @@ interface Props {
   correctLeft: number;
 }
 
-const Wrap = styled.div<Props>`
-  position: absolute;
-  font-weight: bolder;
-  text-align: center;
-  ${({ sektor, correctLeft, scale }) => {
+export const Sektor = ({ sektor, correctLeft, scale }: Props) => {
+  const classes = useStyles();
+  const position = useMemo(() => {
     const { startprozent, endeprozent } = sektor.positionamgleis;
     const start = Number.parseInt(startprozent, 10);
     const end = Number.parseInt(endeprozent, 10);
 
-    return css`
-      left: ${(start - correctLeft) * scale}%;
-      width: ${(end - start) * scale}%;
-    `;
-  }}
-`;
-
-export const Sektor = (props: Props) => {
-  return <Wrap {...props}>{props.sektor.sektorbezeichnung}</Wrap>;
+    return {
+      left: `${(start - correctLeft) * scale}%`,
+      width: `${(end - start) * scale}%`,
+    };
+  }, [sektor, correctLeft, scale]);
+  return (
+    <div className={classes.wrap} style={position}>
+      {sektor.sektorbezeichnung}
+    </div>
+  );
 };

@@ -2,10 +2,10 @@
 
 exports[`Time does not show 0 delay number 1`] = `
 <div
-  class="Time__Wrap-sc-1pwgwbu-1 IKfED"
+  class="Time-wrap Time-multiLineWrap"
 >
   <span
-    class="Time__TimeDisplay-sc-1pwgwbu-2 kVayNL"
+    class=""
     data-testid="time"
   >
     13:55
@@ -17,16 +17,16 @@ exports[`Time no time 1`] = `null`;
 
 exports[`Time showOriginalTime = false 5 Minutes early 1`] = `
 <div
-  class="Time__Wrap-sc-1pwgwbu-1 eRXLHv"
+  class="Time-wrap Time-early Time-multiLineWrap"
 >
   <span
-    class="Time__TimeDisplay-sc-1pwgwbu-2 kVayNL"
+    class=""
     data-testid="time"
   >
     13:55
   </span>
   <span
-    class="Time__Delay-sc-1pwgwbu-0 fVTwSL"
+    class="Time-early"
     data-testid="delay"
   >
     -5
@@ -36,16 +36,16 @@ exports[`Time showOriginalTime = false 5 Minutes early 1`] = `
 
 exports[`Time showOriginalTime = false 10 Minutes delay 1`] = `
 <div
-  class="Time__Wrap-sc-1pwgwbu-1 jRUVTO"
+  class="Time-wrap Time-delayed Time-multiLineWrap"
 >
   <span
-    class="Time__TimeDisplay-sc-1pwgwbu-2 kVayNL"
+    class=""
     data-testid="time"
   >
     13:55
   </span>
   <span
-    class="Time__Delay-sc-1pwgwbu-0 haGscO"
+    class="Time-delayed"
     data-testid="delay"
   >
     +10
@@ -55,16 +55,16 @@ exports[`Time showOriginalTime = false 10 Minutes delay 1`] = `
 
 exports[`Time showOriginalTime = true 5 Minutes early 1`] = `
 <div
-  class="Time__Wrap-sc-1pwgwbu-1 IKfED"
+  class="Time-wrap Time-multiLineWrap"
 >
   <span
-    class="Time__TimeDisplay-sc-1pwgwbu-2 kVayNL"
+    class=""
     data-testid="time"
   >
     14:00
   </span>
   <span
-    class="Time__Delay-sc-1pwgwbu-0 fVTwSL"
+    class="Time-early"
     data-testid="delay"
   >
     -5
@@ -74,16 +74,16 @@ exports[`Time showOriginalTime = true 5 Minutes early 1`] = `
 
 exports[`Time showOriginalTime = true 10 Minutes delay 1`] = `
 <div
-  class="Time__Wrap-sc-1pwgwbu-1 IKfED"
+  class="Time-wrap Time-multiLineWrap"
 >
   <span
-    class="Time__TimeDisplay-sc-1pwgwbu-2 kVayNL"
+    class=""
     data-testid="time"
   >
     13:45
   </span>
   <span
-    class="Time__Delay-sc-1pwgwbu-0 haGscO"
+    class="Time-delayed"
     data-testid="delay"
   >
     +10
@@ -93,16 +93,16 @@ exports[`Time showOriginalTime = true 10 Minutes delay 1`] = `
 
 exports[`Time shows 0 delay number 1`] = `
 <div
-  class="Time__Wrap-sc-1pwgwbu-1 eRXLHv"
+  class="Time-wrap Time-early Time-multiLineWrap"
 >
   <span
-    class="Time__TimeDisplay-sc-1pwgwbu-2 kVayNL"
+    class=""
     data-testid="time"
   >
     13:55
   </span>
   <span
-    class="Time__Delay-sc-1pwgwbu-0 fVTwSL"
+    class="Time-early"
     data-testid="delay"
   >
     +0

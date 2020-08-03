@@ -1,10 +1,10 @@
 import { format } from 'date-fns';
 import { HeaderTagContainer } from 'client/Common/container/HeaderTagContainer';
+import { makeStyles } from '@material-ui/core';
 import { RouteList } from './RouteList';
 import { RoutingConfigContainer } from 'client/Routing/container/RoutingConfigContainer';
 import { Search } from './Search';
 import { useEffect } from 'react';
-import styled from 'styled-components';
 
 const RouteHeaderTags = () => {
   const {
@@ -42,17 +42,20 @@ const RouteHeaderTags = () => {
   return null;
 };
 
-const Main = styled.main`
-  margin-left: 0.5em;
-  margin-right: 0.5em;
-`;
+const useStyles = makeStyles({
+  wrap: {
+    marginLeft: '.5em',
+    marginRight: '.5em',
+  },
+});
 
 export const Routes = () => {
+  const classes = useStyles();
   return (
-    <Main>
+    <main className={classes.wrap}>
       <RouteHeaderTags />
       <Search />
       <RouteList />
-    </Main>
+    </main>
   );
 };

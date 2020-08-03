@@ -3,6 +3,7 @@ import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenCo
 import { AbfahrtenContainer } from 'client/Abfahrten/container/AbfahrtenContainer';
 import { HeaderTagContainer } from 'client/Common/container/HeaderTagContainer';
 import { Loading } from 'client/Common/Components/Loading';
+import { makeStyles } from '@material-ui/core';
 import { Redirect } from 'react-router';
 import { ReihungContainer } from 'client/Common/container/ReihungContainer';
 import {
@@ -13,26 +14,26 @@ import { useAbfahrten } from 'client/Abfahrten/container/AbfahrtenContainer/useA
 import { useEffect, useState } from 'react';
 import { useRefreshCurrent } from 'client/Abfahrten/container/AbfahrtenContainer/useRefreshCurrent';
 import { useRouteMatch } from 'react-router';
-import styled from 'styled-components';
 
-const Wrap = styled.main`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Lookbehind = styled.div`
-  position: relative;
-  padding-top: 10px;
-  background-color: ${({ theme }) => theme.colors.shadedBackground};
-`;
-
-const LookaheadMarker = styled.div`
-  height: 154px;
-  position: absolute;
-  bottom: 0;
-`;
+const useStyles = makeStyles((theme) => ({
+  wrap: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  lookbehind: {
+    position: 'relative',
+    paddingTop: 10,
+    backgroundColor: theme.colors.shadedBackground,
+  },
+  lookaheadMarker: {
+    height: 154,
+    position: 'absolute',
+    bottom: 0,
+  },
+}));
 
 const InnerAbfahrtenList = () => {
+  const classes = useStyles();
   const {
     updateCurrentStationByString,
     currentStation,
@@ -138,7 +139,7 @@ const InnerAbfahrtenList = () => {
 
   return (
     <Loading isLoading={loading}>
-      <Wrap>
+      <main className={classes.wrap}>
         {error ? (
           <Redirect to={urlPrefix} />
         ) : filteredAbfahrten &&
@@ -146,12 +147,16 @@ const InnerAbfahrtenList = () => {
             filteredAbfahrten.lookbehind.length) ? (
           <>
             {Boolean(filteredAbfahrten.lookbehind.length) && (
-              <Lookbehind id="lookbehind" data-testid="lookbehind">
+              <div
+                className={classes.lookbehind}
+                id="lookbehind"
+                data-testid="lookbehind"
+              >
                 {filteredAbfahrten.lookbehind.map((a) => (
                   <Abfahrt abfahrt={a} key={a.rawId} />
                 ))}
-                <LookaheadMarker id="lookaheadMarker" />
-              </Lookbehind>
+                <div className={classes.lookaheadMarker} id="lookaheadMarker" />
+              </div>
             )}
             <div id="lookahead" data-testid="lookahead">
               {filteredAbfahrten.lookahead.map((a) => (
@@ -162,7 +167,7 @@ const InnerAbfahrtenList = () => {
         ) : (
           <div>Leider keine Abfahrten in nächster Zeit</div>
         )}
-      </Wrap>
+      </main>
     </Loading>
   );
 };

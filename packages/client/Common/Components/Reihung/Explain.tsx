@@ -1,44 +1,42 @@
-import { Dialog, DialogContent } from '@material-ui/core';
+import { Dialog, DialogContent, makeStyles } from '@material-ui/core';
 import { icons } from './Fahrzeug';
 import { SingleAuslastungsDisplay } from 'client/Common/Components/SingleAuslastungsDisplay';
 import { stopPropagation } from 'client/Common/stopPropagation';
 import { SyntheticEvent, useCallback, useState } from 'react';
-import styled from 'styled-components';
 
-const Legende = styled.div`
-  color: ${({ theme }) => theme.colors.blue};
-  position: absolute;
-  bottom: 0.5em;
-  left: 0;
-  cursor: pointer;
-`;
-
-const Wrap = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`;
-
-const IconWrap = styled.div`
-  display: flex;
-  align-items: center;
-  min-width: 16em;
-  margin-bottom: 0.2em;
-  > svg {
-    margin-right: 1em;
-  }
-  > span {
-    font-size: 1em;
-    margin-right: 1em;
-  }
-`;
-
-const Comfort = styled.svg`
-  width: 1em;
-  height: 1em;
-  font-size: 1.5rem;
-  border-radius: 50%;
-  background-color: ${({ theme }) => theme.colors.red};
-`;
+const useStyles = makeStyles((theme) => ({
+  legende: {
+    color: theme.colors.blue,
+    position: 'absolute',
+    bottom: '.5em',
+    left: 0,
+    cursor: 'pointer',
+  },
+  wrap: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  iconWrap: {
+    display: 'flex',
+    alignItems: 'center',
+    minWidth: '16em',
+    marginBottom: '.2em',
+    '& > svg': {
+      marginRight: '1em',
+    },
+    '& > span': {
+      fontSize: '1em',
+      marginRight: '1em',
+    },
+  },
+  comfort: {
+    width: '1em',
+    height: '1em',
+    fontSize: '1.5rem',
+    borderRadius: '50%',
+    backgroundColor: theme.colors.red,
+  },
+}));
 
 // Exported for tests
 export const iconExplanation: { [K in keyof typeof icons]: string } = {
@@ -55,6 +53,7 @@ export const iconExplanation: { [K in keyof typeof icons]: string } = {
 };
 
 export const Explain = () => {
+  const classes = useStyles();
   const [open, setOpen] = useState(false);
   const toggle = useCallback((e: SyntheticEvent) => {
     e.stopPropagation();
@@ -63,9 +62,13 @@ export const Explain = () => {
 
   return (
     <>
-      <Legende onClick={toggle} data-testid="reihungLegendOpener">
+      <div
+        className={classes.legende}
+        onClick={toggle}
+        data-testid="reihungLegendOpener"
+      >
         Legende
-      </Legende>
+      </div>
       <Dialog
         data-testid="reihungLegend"
         fullWidth
@@ -76,48 +79,52 @@ export const Explain = () => {
         <DialogContent>
           <h3>Legende Wagenreihung</h3>
           {/* <FahrzeugComp {...explainFahrzeugProps} /> */}
-          <Wrap>
+          <div className={classes.wrap}>
             {Object.keys(iconExplanation).map(
               // @ts-ignore this is correct, it's exact!
               (iconName: keyof typeof icons) => {
                 const Icon = icons[iconName];
 
                 return (
-                  <IconWrap data-testid={iconName} key={iconName}>
+                  <div
+                    className={classes.iconWrap}
+                    data-testid={iconName}
+                    key={iconName}
+                  >
                     <Icon />
                     {iconExplanation[iconName]}
-                  </IconWrap>
+                  </div>
                 );
               }
             )}
-            <IconWrap data-testid="bahnComfort">
-              <Comfort />
+            <div className={classes.iconWrap} data-testid="bahnComfort">
+              <div className={classes.comfort} />
               Bahn.Comfort Sitzplätze
-            </IconWrap>
-          </Wrap>
+            </div>
+          </div>
           <h3>Auslastung</h3>
-          <Wrap>
-            <IconWrap>
+          <div className={classes.wrap}>
+            <div className={classes.iconWrap}>
               <SingleAuslastungsDisplay />
               Unbekannte Auslastung
-            </IconWrap>
-            <IconWrap>
+            </div>
+            <div className={classes.iconWrap}>
               <SingleAuslastungsDisplay auslastung={1} />
               Geringe Auslastung
-            </IconWrap>
-            <IconWrap>
+            </div>
+            <div className={classes.iconWrap}>
               <SingleAuslastungsDisplay auslastung={2} />
               Hohe Auslastung
-            </IconWrap>
-            <IconWrap>
+            </div>
+            <div className={classes.iconWrap}>
               <SingleAuslastungsDisplay auslastung={3} />
               Sehr hohe Auslastung
-            </IconWrap>
-            <IconWrap>
+            </div>
+            <div className={classes.iconWrap}>
               <SingleAuslastungsDisplay auslastung={4} />
               Zug ist ausgebucht
-            </IconWrap>
-          </Wrap>
+            </div>
+          </div>
         </DialogContent>
       </Dialog>
     </>

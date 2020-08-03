@@ -1,14 +1,15 @@
+import { makeStyles } from '@material-ui/core';
 import { stopPropagation } from 'client/Common/stopPropagation';
 import { useMemo } from 'react';
-import styled from 'styled-components';
 
-const A = styled.a`
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-`;
-const Span = A.withComponent('span');
+const useStyles = makeStyles({
+  link: {
+    position: 'absolute',
+    top: '100%',
+    left: '50%',
+    transform: 'translateX(-50%)',
+  },
+});
 
 interface Props {
   fahrzeugtyp: string;
@@ -34,6 +35,7 @@ const wagenWithImage = [
   'Bvmsz',
 ];
 export const WagenLink = ({ fahrzeugtyp, fahrzeugnummer, type }: Props) => {
+  const classes = useStyles();
   const imageName = useMemo(() => {
     let image = fahrzeugtyp;
 
@@ -49,17 +51,18 @@ export const WagenLink = ({ fahrzeugtyp, fahrzeugnummer, type }: Props) => {
   }, [fahrzeugnummer, fahrzeugtyp]);
 
   if (type !== 'IC' || !wagenWithImage.includes(fahrzeugtyp)) {
-    return <Span>{fahrzeugtyp}</Span>;
+    return <span className={classes.link}>{fahrzeugtyp}</span>;
   }
 
   return (
-    <A
+    <a
+      className={classes.link}
       onClick={stopPropagation}
       href={`/WRSheets/Wagen/${imageName}.jpg`}
       target="_blank"
       rel="noopener noreferrer"
     >
       {fahrzeugtyp}
-    </A>
+    </a>
   );
 };

@@ -1,47 +1,26 @@
 /* eslint no-nested-ternary: 0 */
-import { cancelledCss, delayCss, earlyCss } from 'client/util/cssUtils';
 import { CommonConfigContainer } from 'client/Common/container/CommonConfigContainer';
 import { format, subMinutes } from 'date-fns';
-import styled, { css } from 'styled-components';
+import { makeStyles } from '@material-ui/core';
+import clsx from 'clsx';
 
-const DelayOrEarlyCss = css<{ delay?: number; hasDelay: boolean }>`
-  ${({ delay, hasDelay }) =>
-    hasDelay && (delay && delay > 0 ? delayCss : earlyCss)}
-`;
-const Delay = styled.span`
-  ${DelayOrEarlyCss}
-`;
-
-const Wrap = styled.div<{
-  showOriginalTime?: boolean;
-  delay?: number;
-  hasDelay: boolean;
-  alignEnd?: boolean;
-  oneLine?: boolean;
-  cancelled?: boolean;
-}>`
-  display: flex;
-  ${({ showOriginalTime }) => !showOriginalTime && DelayOrEarlyCss};
-  ${({ alignEnd }) =>
-    alignEnd &&
-    css`
-      align-items: flex-end;
-    `};
-  ${({ oneLine }) =>
-    !oneLine &&
-    css`
-      flex-direction: column;
-    `};
-  ${({ cancelled }) => cancelled && cancelledCss};
-`;
-
-const TimeDisplay = styled.span<{ oneLine?: boolean }>`
-  ${({ oneLine }) =>
-    oneLine &&
-    css`
-      margin-right: 0.2em;
-    `}
-`;
+const useStyles = makeStyles((theme) => ({
+  delayed: theme.mixins.delayed,
+  early: theme.mixins.early,
+  cancelled: theme.mixins.cancelled,
+  wrap: {
+    display: 'flex',
+  },
+  alignEnd: {
+    alignItems: 'flex-end',
+  },
+  multiLineWrap: {
+    flexDirection: 'column',
+  },
+  oneLine: {
+    marginRight: '.2em',
+  },
+}));
 
 interface Props {
   alignEnd?: boolean;
@@ -70,6 +49,7 @@ export const Time = ({
   oneLine,
   cancelled,
 }: Props) => {
+  const classes = useStyles();
   const showOriginalTime = !CommonConfigContainer.useContainer().config.time;
 
   if (!real) return null;
@@ -78,23 +58,33 @@ export const Time = ({
   const hasDelay = showZero ? delay != null : Boolean(delay);
 
   return (
-    <Wrap
-      className={className}
-      showOriginalTime={showOriginalTime}
-      alignEnd={alignEnd}
-      oneLine={oneLine}
-      cancelled={cancelled}
-      hasDelay={hasDelay}
-      delay={delay}
-    >
-      <TimeDisplay data-testid="time" oneLine={oneLine}>
-        {format(time, 'HH:mm')}
-      </TimeDisplay>
-      {hasDelay && (
-        <Delay delay={delay} hasDelay={hasDelay} data-testid="delay">
-          {delayString(delay as number)}
-        </Delay>
+    <div
+      className={clsx(
+        className,
+        classes.wrap,
+        !showOriginalTime &&
+          hasDelay &&
+          (delay && delay > 0 ? classes.delayed : classes.early),
+        {
+          [classes.alignEnd]: alignEnd,
+          [classes.multiLineWrap]: !oneLine,
+          [classes.cancelled]: cancelled,
+        }
       )}
-    </Wrap>
+    >
+      <span className={clsx(oneLine && classes.oneLine)} data-testid="time">
+        {format(time, 'HH:mm')}
+      </span>
+      {hasDelay && (
+        <span
+          className={clsx(
+            hasDelay && (delay && delay > 0 ? classes.delayed : classes.early)
+          )}
+          data-testid="delay"
+        >
+          {delayString(delay as number)}
+        </span>
+      )}
+    </div>
   );
 };
