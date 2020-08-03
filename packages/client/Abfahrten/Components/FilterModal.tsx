@@ -5,17 +5,20 @@ import {
   DialogActions,
   DialogContent,
   FormControlLabel,
+  makeStyles,
   Switch,
 } from '@material-ui/core';
 import { useAllTrainTypes } from 'client/Abfahrten/container/AbfahrtenContainer/useAllTrainTypes';
 import { useCallback } from 'react';
-import styled from 'styled-components';
 
-const Label = styled(FormControlLabel)`
-  width: calc(50% - 1em);
-`;
+const useStyles = makeStyles({
+  label: {
+    width: 'calc(50% - 1em)',
+  },
+});
 
 export const FilterModal = () => {
+  const classes = useStyles();
   const {
     productFilter,
     toggleProduct,
@@ -45,7 +48,8 @@ export const FilterModal = () => {
       <DialogContent>
         <h4>Train Types</h4>
         {types.map((t) => (
-          <Label
+          <FormControlLabel
+            className={classes.label}
             data-testid={`filter${t}`}
             key={t}
             control={

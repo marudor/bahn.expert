@@ -1,49 +1,47 @@
 import { JnySegmentTrain } from './SegmentTrainComponent/JnySegmentTrain';
+import { makeStyles } from '@material-ui/core';
 import { Platform } from 'client/Common/Components/Platform';
 import { Time } from 'client/Common/Components/Time';
 import { WalkSegmentTrain } from './SegmentTrainComponent/WalkSegmentTrain';
-import styled from 'styled-components';
 import type { MouseEvent } from 'react';
 import type { Route$JourneySegment } from 'types/routing';
 
-const MainWrap = styled.div`
-  background-color: ${({ theme }) => theme.colors.shadedBackground};
-  padding: 0.4em;
-  display: grid;
-  grid-template-columns: 2fr 7fr 1fr;
-  grid-template-rows: 1fr auto 1fr;
-  grid-template-areas: 'dt dn dp' 't t t' 'at an ap';
-  margin: 1em 0;
-`;
-
-const DepartureTime = styled(Time)`
-  grid-area: dt;
-`;
-const DepartureName = styled.span`
-  grid-area: dn;
-`;
-const DeparturePlatform = styled(Platform)`
-  grid-area: dp;
-`;
-const ArrivalTime = styled(Time)`
-  grid-area: at;
-`;
-const ArrivalName = styled.span`
-  grid-area: an;
-`;
-const ArrivalPlatform = styled(Platform)`
-  grid-area: ap;
-`;
-const JnyTrain = styled(JnySegmentTrain)`
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-  grid-area: t;
-  align-self: center;
-  padding-left: 0.3em;
-  overflow: hidden;
-`;
-
-const WalkTrain = JnyTrain.withComponent(WalkSegmentTrain);
+const useStyles = makeStyles((theme) => ({
+  wrap: {
+    backgroundColor: theme.colors.shadedBackground,
+    padding: '.4em',
+    display: 'grid',
+    gridTemplateColumns: '2fr 7fr 1fr',
+    gridTemplateRows: '1fr auto 1fr',
+    gridTemplateAreas: '"dt dn dp" "t t t" "at an ap"',
+    margin: '1em 0',
+  },
+  departureTime: {
+    gridArea: 'dt',
+  },
+  departureName: {
+    gridArea: 'dn',
+  },
+  departurePlatform: {
+    gridArea: 'dp',
+  },
+  arrivalTime: {
+    gridArea: 'at',
+  },
+  arrivalName: {
+    gridArea: 'an',
+  },
+  arrivalPlatform: {
+    gridArea: 'ap',
+  },
+  segment: {
+    margin: '.5em 0',
+    gridArea: 't',
+    alignSelf: 'center',
+    paddingLeft: '.3em',
+    overflow: 'hidden',
+  },
+}));
 
 interface Props {
   segment: Route$JourneySegment;
@@ -51,41 +49,57 @@ interface Props {
   onTrainClick?: (e: MouseEvent) => void;
 }
 
-export const RouteSegment = ({ segment, detail, onTrainClick }: Props) => (
-  <>
-    <MainWrap>
-      <DepartureTime
-        real={segment.departure.time}
-        delay={segment.departure.delay}
-      />
-      <DepartureName>{segment.segmentStart.title}</DepartureName>
+export const RouteSegment = ({ segment, detail, onTrainClick }: Props) => {
+  const classes = useStyles();
 
-      <ArrivalTime real={segment.arrival.time} delay={segment.arrival.delay} />
-      <ArrivalName>{segment.segmentDestination.title}</ArrivalName>
-      {segment.type === 'JNY' && (
-        <>
-          <DeparturePlatform
-            real={segment.departure.platform}
-            scheduled={segment.departure.scheduledPlatform}
-          />
-          <ArrivalPlatform
-            real={segment.arrival.platform}
-            scheduled={segment.arrival.scheduledPlatform}
-          />
-        </>
-      )}
-      {segment.type === 'JNY' ? (
-        <JnyTrain
-          detail={detail}
-          segment={segment}
-          onTrainClick={onTrainClick}
+  return (
+    <>
+      <div className={classes.wrap}>
+        <Time
+          className={classes.departureTime}
+          real={segment.departure.time}
+          delay={segment.departure.delay}
         />
-      ) : (
-        <WalkTrain segment={segment} />
+        <span className={classes.departureName}>
+          {segment.segmentStart.title}
+        </span>
+
+        <Time
+          className={classes.arrivalTime}
+          real={segment.arrival.time}
+          delay={segment.arrival.delay}
+        />
+        <span className={classes.arrivalName}>
+          {segment.segmentDestination.title}
+        </span>
+        {segment.type === 'JNY' && (
+          <>
+            <Platform
+              className={classes.departurePlatform}
+              real={segment.departure.platform}
+              scheduled={segment.departure.scheduledPlatform}
+            />
+            <Platform
+              className={classes.arrivalPlatform}
+              real={segment.arrival.platform}
+              scheduled={segment.arrival.scheduledPlatform}
+            />
+          </>
+        )}
+        {segment.type === 'JNY' ? (
+          <JnySegmentTrain
+            className={classes.segment}
+            detail={detail}
+            segment={segment}
+            onTrainClick={onTrainClick}
+          />
+        ) : (
+          <WalkSegmentTrain className={classes.segment} segment={segment} />
+        )}
+      </div>
+      {'changeDuration' in segment && (
+        <span>{segment.changeDuration} Minuten Umsteigezeit</span>
       )}
-    </MainWrap>
-    {'changeDuration' in segment && (
-      <span>{segment.changeDuration} Minuten Umsteigezeit</span>
-    )}
-  </>
-);
+    </>
+  );
+};

@@ -10,148 +10,125 @@ import {
   Wifi,
   WifiOff,
 } from '@material-ui/icons';
+import { makeStyles } from '@material-ui/core';
 import { SitzplatzInfo } from './SitzplatzInfo';
 import { UIC } from './UIC';
 import { WagenLink } from './WagenLink';
-import styled, { css } from 'styled-components';
+import clsx from 'clsx';
 import type {
   AdditionalFahrzeugInfo,
   Fahrzeug as FahrzeugType,
 } from 'types/reihung';
 import type { ComponentType } from 'react';
 
-const Icon = styled.a`
-  width: 0.6em;
-  height: 0.6em;
-  ${({ theme }) => css`
-    ${theme.breakpoints.down('md')} {
-      font-size: 16px;
-    }
-  `}
-`;
 export const icons: {
   [key in keyof Required<AdditionalFahrzeugInfo['icons']>]: ComponentType;
 } = {
-  wheelchair: Icon.withComponent(Accessible),
-  bike: Icon.withComponent(Motorcycle),
-  dining: Icon.withComponent(LocalDining),
-  quiet: Icon.withComponent(NotificationsOff),
-  toddler: Icon.withComponent(ChildFriendly),
-  family: Icon.withComponent(ChildCare),
-  disabled: Icon.withComponent(Accessibility),
-  info: Icon.withComponent(InfoOutlined),
-  wifi: Icon.withComponent(Wifi),
-  wifiOff: Icon.withComponent(WifiOff),
+  wheelchair: Accessible,
+  bike: Motorcycle,
+  dining: LocalDining,
+  quiet: NotificationsOff,
+  toddler: ChildFriendly,
+  family: ChildCare,
+  disabled: Accessibility,
+  info: InfoOutlined,
+  wifi: Wifi,
+  wifiOff: WifiOff,
 };
 
-const Wrap = styled.div<{ closed?: boolean; wrongWing?: boolean }>`
-  position: absolute;
-  height: 2.5em;
-  border: ${({ theme }) => theme.palette.text.primary} 1px solid;
-  box-sizing: border-box;
-  ${({ closed, wrongWing, theme }) => [
-    closed &&
-      css`
-        background: repeating-linear-gradient(
-          135deg,
-          #999,
-          #999,
-          5px,
-          transparent 5px,
-          transparent 10px
-        );
-      `,
-    wrongWing &&
-      css`
-        background: ${theme.colors.shadedBackground};
-        ::after {
-          content: ' ';
-          position: absolute;
-          top: -1px;
-          left: -1px;
-          right: -1px;
-          bottom: -3.7em;
-          pointer-events: none;
-          z-index: 5;
-          background: ${theme.colors.transparentBackground};
-        }
-      `,
-  ]}
-`;
-
-const KlassenCss = [
-  css`
-    ::after {
-      content: '?';
-    }
-  `,
-  css`
-    ${({ theme }) => css`
-      background-color: ${theme.colors.yellow};
-      color: ${theme.palette.getContrastText(theme.colors.yellow)};
-    `}
-    ::after {
-      content: '1';
-    }
-  `,
-  css`
-    ${({ theme }) => css`
-      background-color: ${theme.colors.red};
-      color: ${theme.palette.getContrastText(theme.colors.red)};
-    `}
-    ::after {
-      content: '2';
-    }
-  `,
-  css`
-    background: ${({ theme }) =>
-      `linear-gradient(to right, ${theme.colors.yellow}, ${theme.colors.red})`};
-    ::after {
-      content: '1/2';
-    }
-  `,
-  css`
-    right: 50%;
-    transform: translateX(50%);
-    ::after {
-      content: 'LOK';
-    }
-  `,
-];
-
-const Klasse = styled.span<{ klasse: number }>`
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  ${({ klasse }) => KlassenCss[klasse]}
-`;
-
-const Nummer = styled.span`
-  position: absolute;
-  z-index: 1;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 0;
-`;
-
-const ComfortIcon = styled.span`
-  position: absolute;
-  top: 0.2em;
-  right: 0.3em;
-  width: 0.7em;
-  height: 0.7em;
-  background-color: ${({ theme }) => theme.colors.red};
-  border-radius: 50%;
-`;
-
-const ExtraInfo = styled.span`
-  position: absolute;
-  top: 150%;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-`;
+const useStyles = makeStyles((theme) => ({
+  icon: {
+    width: '.6em',
+    height: '.6em',
+    [theme.breakpoints.down('md')]: {
+      fontSize: 16,
+    },
+  },
+  wrap: {
+    position: 'absolute',
+    height: '2.5em',
+    border: `${theme.palette.text.primary} 1px solid`,
+    boxSizing: 'border-box',
+  },
+  closed: {
+    background:
+      'repeating-linear-gradient(135deg, #999, #999, 5px, transparent 5px, transparent 10px)',
+  },
+  wrongWing: {
+    background: theme.colors.shadedBackground,
+    '&::after': {
+      content: '""',
+      top: -1,
+      left: -1,
+      right: -1,
+      bottom: '-3.7em',
+      pointerEvents: 'none',
+      zIndex: 5,
+      background: theme.colors.transparentBackground,
+    },
+  },
+  nummer: {
+    position: 'absolute',
+    zIndex: 1,
+    left: '50%',
+    transform: 'translateX(-50%)',
+    bottom: 0,
+  },
+  comfort: {
+    position: 'absolute',
+    top: '.2em',
+    right: '.3em',
+    width: '.7em',
+    height: '.7em',
+    backgroundColor: theme.colors.red,
+    borderRadius: '50%',
+  },
+  extraInfo: {
+    position: 'absolute',
+    top: '150%',
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+    alignItems: 'center',
+  },
+  klasse: {
+    bottom: 0,
+    right: 0,
+    position: 'absolute',
+  },
+  klasse0: {
+    '&::after': {
+      content: '"?"',
+    },
+  },
+  klasse1: {
+    backgroundColor: theme.colors.yellow,
+    color: theme.palette.getContrastText(theme.colors.yellow),
+    '&::after': {
+      content: '"1"',
+    },
+  },
+  klasse2: {
+    backgroundColor: theme.colors.red,
+    color: theme.palette.getContrastText(theme.colors.red),
+    '&::after': {
+      content: '"2"',
+    },
+  },
+  klasse3: {
+    background: `linear-gradient(to right, ${theme.colors.yellow}, ${theme.colors.red})`,
+    '&::after': {
+      content: '"1/2"',
+    },
+  },
+  klasse4: {
+    right: '50%',
+    transform: 'translateX(50%)',
+    '&::after': {
+      content: '"LOK"',
+    },
+  },
+}));
 
 export interface InheritedProps {
   scale: number;
@@ -182,6 +159,7 @@ export const Fahrzeug = ({
   type,
   showUIC,
 }: Props) => {
+  const classes = useStyles();
   const { startprozent, endeprozent } = fahrzeug.positionamhalt;
   const start = Number.parseInt(startprozent, 10);
   const end = Number.parseInt(endeprozent, 10);
@@ -192,41 +170,49 @@ export const Fahrzeug = ({
   };
 
   return (
-    <Wrap
-      closed={fahrzeug.status === 'GESCHLOSSEN'}
-      wrongWing={wrongWing}
+    <div
+      className={clsx(classes.wrap, {
+        [classes.wrongWing]: wrongWing,
+        [classes.closed]: fahrzeug.status === 'GESCHLOSSEN',
+      })}
       data-testid={`reihungFahrzeug${fahrzeug.wagenordnungsnummer}`}
       style={position}
     >
-      <Klasse klasse={fahrzeug.additionalInfo.klasse} />
-      <Nummer>{fahrzeug.wagenordnungsnummer}</Nummer>
+      <span
+        className={clsx(
+          classes.klasse,
+          // @ts-expect-error
+          classes[`klasse${fahrzeug.additionalInfo.klasse}`]
+        )}
+      />
+      <span className={classes.nummer}>{fahrzeug.wagenordnungsnummer}</span>
       <span>
         {Object.entries(fahrzeug.additionalInfo.icons).map(([key, enabled]) => {
           if (enabled) {
             // @ts-ignore this is correct, it's exact!
             const SpecificIcon = icons[key];
 
-            return <SpecificIcon key={key} />;
+            return <SpecificIcon className={classes.icon} key={key} />;
           }
 
           return null;
         })}
       </span>
-      {fahrzeug.additionalInfo.comfort && <ComfortIcon />}
+      {fahrzeug.additionalInfo.comfort && <span className={classes.comfort} />}
       <WagenLink
         type={type}
         fahrzeugnummer={fahrzeug.fahrzeugnummer}
         fahrzeugtyp={fahrzeug.fahrzeugtyp}
       />
       {
-        <ExtraInfo>
+        <span className={classes.extraInfo}>
           <SitzplatzInfo
             wagenordnungsnummer={fahrzeug.wagenordnungsnummer}
             additionalInfo={fahrzeug.additionalInfo}
           />
           {showUIC && <UIC uic={fahrzeug.fahrzeugnummer} />}
-        </ExtraInfo>
+        </span>
       }
-    </Wrap>
+    </div>
   );
 };

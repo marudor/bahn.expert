@@ -10,39 +10,40 @@ import {
   DialogContent,
   DialogTitle,
   FormControlLabel,
+  makeStyles,
   NativeSelect,
   Switch,
   TextField,
 } from '@material-ui/core';
 import { StationSearchType } from 'types/station';
-import styled from 'styled-components';
 
-const Title = styled(DialogTitle)`
-  text-align: center;
-  h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-  }
-`;
+const useStyles = makeStyles({
+  title: {
+    '& h2': {
+      textAlign: 'center',
+      fontSize: '1.5rem',
+      fontWeight: 600,
+    },
+  },
+  content: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '80%',
+    margin: '0 auto',
+  },
+  label: {
+    justifyContent: 'space-between',
+    flexDirection: 'row-reverse',
+    margin: '0 0 15px',
+    width: '100%',
+  },
+  autoUpdate: {
+    width: '3em',
+  },
+});
 
-const Content = styled(DialogContent)`
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  margin: 0 auto;
-`;
-
-const Label = styled(FormControlLabel)`
-  justify-content: space-between;
-  flex-direction: row-reverse;
-  margin: 0 0 15px;
-  width: 100%;
-`;
-
-const AutoUpdateTextField = styled(TextField)`
-  width: 3em;
-`;
 export const SettingsModal = () => {
+  const classes = useStyles();
   const {
     config: {
       lineAndNumber,
@@ -78,11 +79,13 @@ export const SettingsModal = () => {
       open={configOpen}
       onClose={() => setConfigOpen(false)}
     >
-      <Title>Settings</Title>
-      <Content data-testid="settingsContent">
-        <Label
+      <DialogTitle className={classes.title}>Settings</DialogTitle>
+      <DialogContent className={classes.content} data-testid="settingsContent">
+        <FormControlLabel
+          className={classes.label}
           control={
-            <AutoUpdateTextField
+            <TextField
+              className={classes.autoUpdate}
               value={autoUpdate}
               type="number"
               inputProps={{
@@ -96,7 +99,8 @@ export const SettingsModal = () => {
           }
           label="AutoUpdate in Sekunden"
         />
-        <Label
+        <FormControlLabel
+          className={classes.label}
           control={
             <Switch
               checked={showSupersededMessages}
@@ -109,7 +113,8 @@ export const SettingsModal = () => {
           }
           label="Obsolete Messages"
         />
-        <Label
+        <FormControlLabel
+          className={classes.label}
           control={
             <Switch
               checked={time}
@@ -119,7 +124,8 @@ export const SettingsModal = () => {
           }
           label="Neue Ankunft bei Verspätung"
         />
-        <Label
+        <FormControlLabel
+          className={classes.label}
           control={
             <Switch
               checked={zoomReihung}
@@ -132,7 +138,8 @@ export const SettingsModal = () => {
           }
           label="Reihung maximal groß"
         />
-        <Label
+        <FormControlLabel
+          className={classes.label}
           control={
             <Switch
               data-testid="lineAndNumberConfig"
@@ -146,7 +153,8 @@ export const SettingsModal = () => {
           }
           label="Zeige Linie und Zugnummer"
         />
-        <Label
+        <FormControlLabel
+          className={classes.label}
           control={
             <Switch
               data-testid="showUIC"
@@ -160,7 +168,8 @@ export const SettingsModal = () => {
           }
           label="Zeige UIC Nummer"
         />
-        <Label
+        <FormControlLabel
+          className={classes.label}
           control={
             <Switch
               data-testid="fahrzeugGruppeConfig"
@@ -174,7 +183,8 @@ export const SettingsModal = () => {
           }
           label="Zeige Fahrzeuggruppen Name"
         />
-        <Label
+        <FormControlLabel
+          className={classes.label}
           control={
             <NativeSelect
               value={lookahead}
@@ -194,7 +204,8 @@ export const SettingsModal = () => {
           }
           label="Lookahead in Minuten"
         />
-        <Label
+        <FormControlLabel
+          className={classes.label}
           control={
             <NativeSelect
               data-testid="lookbehind"
@@ -216,7 +227,8 @@ export const SettingsModal = () => {
           }
           label="Lookbehind in Minuten"
         />
-        <Label
+        <FormControlLabel
+          className={classes.label}
           control={
             <NativeSelect
               data-testid="searchType"
@@ -238,7 +250,7 @@ export const SettingsModal = () => {
           }
           label="API zur Stationssuche"
         />
-      </Content>
+      </DialogContent>
     </Dialog>
   );
 };

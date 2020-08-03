@@ -1,5 +1,6 @@
 import 'leaflet/dist/leaflet.css';
 import { ActivePolyline } from 'client/Map/Components/ActivePolyline';
+import { makeStyles } from '@material-ui/core';
 import { Map, TileLayer, Viewport } from 'react-leaflet';
 import { MapContainer } from 'client/Map/container/MapContainer';
 import { MapSettings } from 'client/Map/Components/MapSettings';
@@ -10,7 +11,6 @@ import icon from 'leaflet/dist/images/marker-icon.png';
 // @ts-ignore
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import L from 'leaflet';
-import styled from 'styled-components';
 
 const DefaultIcon = L.icon({
   iconUrl: icon,
@@ -28,16 +28,20 @@ const defaultViewport: Viewport = {
 const attribution =
   '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>, Style: <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA 2.0</a> <a href="http://www.openrailwaymap.org/">OpenRailwayMap</a> and OpenStreetMap';
 
-const FlexMap = styled<any>(Map)`
-  flex: 1;
-`;
+const useStyles = makeStyles({
+  wrap: {
+    flex: 1,
+  },
+});
 
 export const TrainMap = () => {
+  const classes = useStyles();
   const query = useQuery();
   const { setActiveJourney } = MapContainer.useContainer();
 
   return (
-    <FlexMap
+    <Map
+      className={classes.wrap}
       onClick={() => setActiveJourney(undefined)}
       viewport={defaultViewport}
     >
@@ -53,7 +57,7 @@ export const TrainMap = () => {
       <Positions />
       <MapSettings />
       <ActivePolyline />
-    </FlexMap>
+    </Map>
   );
 };
 

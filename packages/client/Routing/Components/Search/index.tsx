@@ -9,7 +9,7 @@ import {
   subDays,
 } from 'date-fns';
 import { AllowedHafasProfile } from 'types/HAFAS';
-import { Button, Divider } from '@material-ui/core';
+import { Button, Divider, makeStyles } from '@material-ui/core';
 import { DateTimePicker } from '@material-ui/pickers';
 import {
   Delete,
@@ -27,7 +27,6 @@ import { SyntheticEvent, useCallback, useEffect, useMemo } from 'react';
 import { useFetchRouting } from 'client/Routing/container/RoutingContainer/useFetchRouting';
 import { useHistory, useRouteMatch } from 'react-router';
 import deLocale from 'date-fns/locale/de';
-import styled from 'styled-components';
 import type { RoutingFav } from 'client/Routing/container/RoutingFavContainer';
 import type { Station } from 'types/station';
 
@@ -49,44 +48,47 @@ const setStationById = async (
   }
 };
 
-const Destination = styled.div`
-  display: flex;
-`;
-const DatePickerWrap = styled.div`
-  position: relative;
-`;
-const StyledDateTimePicker = styled(DateTimePicker)`
-  & input {
-    padding-right: 10px;
-  }
-`;
-const Buttons = styled.div`
-  display: flex;
-  margin-bottom: 1em;
-  margin-top: 15px;
-  & > button:nth-child(1) {
-    flex: 2;
-  }
-  & > button:nth-child(2) {
-    flex: 1;
-  }
-  & > button {
-    margin: 0 10px;
-    height: 50px;
-    font-size: 1rem;
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 20px;
-    color: ${({ theme }) => theme.palette.text.primary};
-  }
-`;
-const PositionedTodayIcon = styled(Today)`
-  top: 50%;
-  right: 0;
-  position: absolute;
-  transform: translateY(-50%);
-`;
+const useStyles = makeStyles((theme) => ({
+  destination: {
+    display: 'flex',
+  },
+  datePickerWrap: {
+    position: 'relative',
+  },
+  dateTimePicker: {
+    '& input': {
+      paddingRight: 10,
+    },
+  },
+  buttons: {
+    display: 'flex',
+    margin: '15px 0 1em',
+    '& > button:nth-child(1)': {
+      flex: 2,
+    },
+    '& > button:nth-child(2)': {
+      flex: 1,
+    },
+    '& > button': {
+      margin: '0 10px',
+      height: 50,
+      fontSize: '1rem',
+      display: 'flex',
+      justifyContent: 'space-between',
+      padding: '5px 20px',
+      color: theme.palette.text.primary,
+    },
+  },
+  todayIcon: {
+    top: '50%',
+    right: 0,
+    position: 'absolute',
+    transform: 'translateY(-50%)',
+  },
+}));
+
 export const Search = () => {
+  const classes = useStyles();
   const {
     start,
     setStart,
@@ -237,7 +239,7 @@ export const Search = () => {
           />
         )}
       </div>
-      <Destination>
+      <div className={classes.destination}>
         <StationSearch
           id="routingDestinationSearch"
           value={destination}
@@ -252,9 +254,10 @@ export const Search = () => {
             />
           }
         />
-      </Destination>
-      <DatePickerWrap>
-        <StyledDateTimePicker
+      </div>
+      <div className={classes.datePickerWrap}>
+        <DateTimePicker
+          className={classes.dateTimePicker}
           fullWidth
           openTo="hours"
           labelFunc={formatDate}
@@ -267,10 +270,10 @@ export const Search = () => {
           clearLabel="Jetzt"
           minutesStep={5}
         />
-        <PositionedTodayIcon />
-      </DatePickerWrap>
+        <Today className={classes.todayIcon} />
+      </div>
       <SettingsPanel />
-      <Buttons>
+      <div className={classes.buttons}>
         <Button
           data-testid="search"
           fullWidth
@@ -290,7 +293,7 @@ export const Search = () => {
           Favs
           <FavoriteBorder />
         </Button>
-      </Buttons>
+      </div>
       <Divider variant="middle" />
     </>
   );

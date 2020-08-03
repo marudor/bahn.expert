@@ -5,6 +5,7 @@ import {
   DialogContent,
   DialogTitle,
   FormControlLabel,
+  makeStyles,
   NativeSelect,
   Switch,
 } from '@material-ui/core';
@@ -12,16 +13,17 @@ import { MapContainer } from 'client/Map/container/MapContainer';
 import { Settings } from '@material-ui/icons';
 import { stopPropagation } from 'client/Common/stopPropagation';
 import { useToggleState } from 'client/Common/hooks/useToggleState';
-import styled from 'styled-components';
 
-const TrainSettingsIcon = styled(Settings)`
-  position: absolute;
-  top: 1em;
-  right: 1em;
-  color: black;
-  z-index: 10000;
-  cursor: pointer;
-`;
+const useStyles = makeStyles({
+  settingsIcon: {
+    position: 'absolute',
+    top: '1em',
+    right: '1em',
+    color: 'black',
+    zIndex: 10000,
+    cursor: 'pointer',
+  },
+});
 
 interface FormSwitchLabelProps {
   checked: boolean;
@@ -43,6 +45,7 @@ const FormSwitchLabel = ({
 );
 
 export const MapSettings = () => {
+  const classes = useStyles();
   const [open, toggleOpen] = useToggleState();
   const onIconClick = useCallback(
     (e: SyntheticEvent) => {
@@ -73,7 +76,8 @@ export const MapSettings = () => {
 
   return (
     <>
-      <TrainSettingsIcon
+      <Settings
+        className={classes.settingsIcon}
         data-testid="trainSettingsIcon"
         onClick={onIconClick}
       />

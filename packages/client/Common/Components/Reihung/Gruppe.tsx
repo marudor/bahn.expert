@@ -1,9 +1,19 @@
 /* eslint-disable react/no-unescaped-entities */
 import { BRInfo } from './BRInfo';
 import { Fahrzeug, InheritedProps } from './Fahrzeug';
+import { makeStyles } from '@material-ui/core';
 import { useMemo } from 'react';
-import styled from 'styled-components';
 import type { Fahrzeuggruppe } from 'types/reihung';
+
+const useStyles = makeStyles({
+  bezeichnung: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: '2.5em',
+  },
+});
 
 interface Props extends InheritedProps {
   gruppe: Fahrzeuggruppe;
@@ -14,14 +24,6 @@ interface Props extends InheritedProps {
   showUIC: boolean;
 }
 
-const Bezeichnung = styled.span`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: absolute;
-  bottom: 2.5em;
-`;
-
 export const Gruppe = ({
   gruppe,
   showDestination,
@@ -30,6 +32,7 @@ export const Gruppe = ({
   originalTrainNumber,
   ...rest
 }: Props) => {
+  const classes = useStyles();
   const gruppenPos = {
     left: `${(gruppe.startPercentage - rest.correctLeft) * rest.scale}%`,
     width: `${(gruppe.endPercentage - gruppe.startPercentage) * rest.scale}%`,
@@ -69,7 +72,7 @@ export const Gruppe = ({
     <>
       {fahrzeuge}
       {extraInfoLine && (
-        <Bezeichnung style={destinationPos}>
+        <span className={classes.bezeichnung} style={destinationPos}>
           {showBR && gruppe.br && <BRInfo br={gruppe.br} />}
           {showGruppenZugnummer && gruppe.verkehrlichezugnummer && (
             <span>
@@ -80,13 +83,17 @@ export const Gruppe = ({
             <span>Ziel: {gruppe.zielbetriebsstellename}</span>
           )}
           {gruppe.name && <span>Zugname: "{gruppe.name}"</span>}
-        </Bezeichnung>
+        </span>
       )}
 
       {showFahrzeugGruppe && (
-        <Bezeichnung data-testid="reihungFahrzeugGruppe" style={gruppenPos}>
+        <span
+          className={classes.bezeichnung}
+          data-testid="reihungFahrzeugGruppe"
+          style={gruppenPos}
+        >
           {gruppe.fahrzeuggruppebezeichnung}
-        </Bezeichnung>
+        </span>
       )}
     </>
   );

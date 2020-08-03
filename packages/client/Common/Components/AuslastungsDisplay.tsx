@@ -1,36 +1,37 @@
+import { makeStyles } from '@material-ui/core';
 import { SingleAuslastungsDisplay } from 'client/Common/Components/SingleAuslastungsDisplay';
-import styled from 'styled-components';
 import type { Route$Auslastung } from 'types/routing';
 
-const Wrap = styled.div`
-  display: flex;
-  margin-bottom: 0.3em;
-`;
-
-const Entry = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-right: 0.5em;
-  align-items: center;
-`;
+const useStyles = makeStyles({
+  wrap: {
+    display: 'flex',
+    marginBottom: '.3em',
+  },
+  entry: {
+    display: 'flex',
+    flexDirection: 'column',
+    marginRight: '.5em',
+    alignItems: 'center',
+  },
+});
 
 export interface Props {
   auslastung: Route$Auslastung;
 }
 
-export const AuslastungsDisplay = (props: Props) => {
-  const { auslastung } = props;
+export const AuslastungsDisplay = ({ auslastung }: Props) => {
+  const classes = useStyles();
 
   return (
-    <Wrap data-testid="auslastungDisplay">
-      <Entry data-testid="first">
+    <div className={classes.wrap} data-testid="auslastungDisplay">
+      <div className={classes.entry} data-testid="first">
         <span>1</span>
         <SingleAuslastungsDisplay auslastung={auslastung.first} />
-      </Entry>
-      <Entry data-testid="second">
+      </div>
+      <div className={classes.entry} data-testid="second">
         <span>2</span>
         <SingleAuslastungsDisplay auslastung={auslastung.second} />
-      </Entry>
-    </Wrap>
+      </div>
+    </div>
   );
 };

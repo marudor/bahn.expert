@@ -6,18 +6,20 @@ import { FavContainer } from 'client/Abfahrten/container/FavContainer';
 import { FavEntry, FavEntryDisplay } from './FavEntry';
 import { HeaderTagContainer } from 'client/Common/container/HeaderTagContainer';
 import { Link } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core';
 import { MostUsed } from './MostUsed';
 import { ReactNode, useEffect, useMemo, useState } from 'react';
 import { Redirect, StaticRouterContext } from 'react-router';
 import { Zugsuche } from 'client/Common/Components/Zugsuche';
-import styled from 'styled-components';
 import type { Station } from 'types/station';
 
-const Wrap = styled.main`
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-`;
+const useStyles = makeStyles({
+  wrap: {
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 1,
+  },
+});
 
 function getErrorText(
   error: AbfahrtenError,
@@ -48,6 +50,7 @@ interface Props {
 }
 
 export const FavList = ({ staticContext, children }: Props) => {
+  const classes = useStyles();
   const { favs, MostUsedComponent } = FavContainer.useContainer();
   const sortedFavs = useMemo(() => {
     const values: Station[] = Object.values(favs);
@@ -63,7 +66,7 @@ export const FavList = ({ staticContext, children }: Props) => {
   useEffect(resetTitleAndDescription, [resetTitleAndDescription]);
 
   return (
-    <Wrap>
+    <main className={classes.wrap}>
       {children}
       <Zugsuche />
       {/* eslint-disable-next-line no-nested-ternary */}
@@ -104,6 +107,6 @@ export const FavList = ({ staticContext, children }: Props) => {
           <MostUsed />
         </>
       )}
-    </Wrap>
+    </main>
   );
 };

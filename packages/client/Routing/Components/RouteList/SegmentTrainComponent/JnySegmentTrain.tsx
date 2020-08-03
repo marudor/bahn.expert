@@ -1,16 +1,12 @@
 import { AuslastungsDisplay } from 'client/Common/Components/AuslastungsDisplay';
-import { Destination, TrainInfo, TrainMargin } from './common';
 import { DetailsLink } from 'client/Common/Components/Details/DetailsLink';
 import { PlannedType } from 'client/Common/Components/PlannedType';
 import { Reihung } from 'client/Common/Components/Reihung';
 import { StopList } from 'client/Routing/Components/RouteList/StopList';
-import styled from 'styled-components';
+import { useStyles } from './style';
+import clsx from 'clsx';
 import type { MouseEvent } from 'react';
 import type { Route$JourneySegmentTrain } from 'types/routing';
-
-const StyledReihung = styled(Reihung)`
-  font-size: 0.5em;
-`;
 
 interface Props {
   segment: Route$JourneySegmentTrain;
@@ -24,33 +20,35 @@ export const JnySegmentTrain = ({
   className,
   detail,
 }: Props) => {
+  const classes = useStyles();
   return (
     <div onClick={onTrainClick} className={className}>
-      <TrainInfo>
-        <TrainMargin>
+      <div className={classes.info}>
+        <span className={classes.margin}>
           <span>
             {segment.train.name}{' '}
             {segment.plannedSequence && (
               <PlannedType plannedSequence={segment.plannedSequence} />
             )}
           </span>
-        </TrainMargin>
-        <Destination>
+        </span>
+        <span className={clsx(classes.margin, classes.destination)}>
           {segment.finalDestination}
           <DetailsLink
             train={segment.train}
             stationId={segment.segmentStart.id}
             initialDeparture={segment.departure.scheduledTime}
           />
-        </Destination>
+        </span>
         {segment.auslastung && (
           <AuslastungsDisplay auslastung={segment.auslastung} />
         )}
-      </TrainInfo>
+      </div>
       {detail && (
         <>
           {segment.departure.reihung && segment.train.number && (
-            <StyledReihung
+            <Reihung
+              className={classes.reihung}
               trainNumber={segment.train.number}
               currentStation={segment.segmentStart.title}
               scheduledDeparture={segment.departure.scheduledTime}
