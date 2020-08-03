@@ -4,9 +4,9 @@ import { DetailVia } from './Via/Detail';
 import { makeStyles } from '@material-ui/core';
 import { NormalMessages } from 'client/Common/Components/Messages/Normal';
 import { NormalVia } from './Via/Normal';
+import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import { useMemo } from 'react';
 import clsx from 'clsx';
-import type { Abfahrt } from 'types/iris';
 
 const useStyles = makeStyles({
   wrap: {
@@ -19,11 +19,8 @@ const useStyles = makeStyles({
   },
 });
 
-interface Props {
-  abfahrt: Abfahrt;
-  detail: boolean;
-}
-export const Info = ({ abfahrt, detail }: Props) => {
+export const Info = () => {
+  const { abfahrt, detail } = useAbfahrt();
   const classes = useStyles();
   const showSupersededMessages = AbfahrtenConfigContainer.useContainer().config
     .showSupersededMessages;

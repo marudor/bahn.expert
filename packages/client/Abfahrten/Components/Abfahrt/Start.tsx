@@ -4,7 +4,7 @@ import { DetailsLink } from 'client/Common/Components/Details/DetailsLink';
 import { makeStyles } from '@material-ui/core';
 import { Substitute } from './Substitute';
 import { TravelynxLink } from 'client/Common/Components/CheckInLink/TravelynxLink';
-import type { Abfahrt } from 'types/iris';
+import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 
 const useStyles = makeStyles((theme) => ({
   wrap: {
@@ -26,15 +26,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-interface Props {
-  abfahrt: Abfahrt;
-  detail: boolean;
-  lineAndNumber: boolean;
-}
-
-export const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
+export const Start = () => {
   const classes = useStyles();
-  const urlPrefix = AbfahrtenConfigContainer.useContainer().urlPrefix;
+  const {
+    urlPrefix,
+    config: { lineAndNumber },
+  } = AbfahrtenConfigContainer.useContainer();
+  const { abfahrt, detail } = useAbfahrt();
 
   return (
     <div className={classes.wrap} data-testid="abfahrtStart">
@@ -66,7 +64,7 @@ export const Start = ({ abfahrt, detail, lineAndNumber }: Props) => {
       {abfahrt.substitute && abfahrt.ref && (
         <Substitute substitute={abfahrt.ref} />
       )}
-      {detail && abfahrt.auslastung && <Auslastung abfahrt={abfahrt} />}
+      {detail && abfahrt.auslastung && <Auslastung />}
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core';
 import { Platform } from 'client/Common/Components/Platform';
 import { Times } from './Times';
-import type { Abfahrt } from 'types/iris';
+import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 
 const useStyles = makeStyles({
   wrap: {
@@ -14,15 +14,12 @@ const useStyles = makeStyles({
   },
 });
 
-interface Props {
-  abfahrt: Abfahrt;
-  detail: boolean;
-}
-export const End = ({ abfahrt, detail }: Props) => {
+export const End = () => {
   const classes = useStyles();
+  const { abfahrt } = useAbfahrt();
   return (
     <div className={classes.wrap} data-testid="abfahrtEnd">
-      <Times abfahrt={abfahrt} detail={detail} />
+      <Times />
       <Platform
         real={abfahrt.platform}
         scheduled={abfahrt.scheduledPlatform}

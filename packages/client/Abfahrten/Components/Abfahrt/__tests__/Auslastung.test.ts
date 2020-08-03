@@ -1,3 +1,4 @@
+import { AbfahrtContext } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import { Auslastung } from 'client/Abfahrten/Components/Abfahrt/Auslastung';
 import { AuslastungContainer } from 'client/Abfahrten/container/AuslastungContainer';
 import { render } from 'client/__tests__/testHelper';
@@ -9,7 +10,15 @@ describe('Auslastung', () => {
     render(
       Auslastung,
       { abfahrt: mockAbfahrt },
-      { container: [AuslastungContainer] }
+      {
+        container: [
+          AuslastungContainer,
+          {
+            ...AbfahrtContext,
+            initialState: { abfahrt: mockAbfahrt, detail: false },
+          },
+        ],
+      }
     );
 
   it('shows loading first, nothing on error', async () => {

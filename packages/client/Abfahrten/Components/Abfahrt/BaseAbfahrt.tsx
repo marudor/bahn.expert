@@ -1,16 +1,22 @@
-import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
+import { createContext, memo, useCallback, useContext, useMemo } from 'react';
 import { End } from './End';
 import { makeStyles } from '@material-ui/core';
 import { Mid } from './Mid';
 import { SelectedDetailContainer } from 'client/Abfahrten/container/SelectedDetailContainer';
 import { Start } from './Start';
-import { useCallback } from 'react';
 import clsx from 'clsx';
 import loadable from '@loadable/component';
 import Paper from '@material-ui/core/Paper';
 import type { Abfahrt } from 'types/iris';
 
 const LazyReihung = loadable(() => import('client/Common/Components/Reihung'));
+
+// @ts-expect-error
+export const AbfahrtContext = createContext<{
+  abfahrt: Abfahrt;
+  detail: boolean;
+}>();
+export const useAbfahrt = () => useContext(AbfahrtContext);
 
 const wingStartEnd = (color: String) => ({
   content: '""',
@@ -69,81 +75,77 @@ const useStyles = makeStyles((theme) => ({
 
 export interface Props {
   abfahrt: Abfahrt;
+  detail: boolean;
   sameTrainWing: boolean;
   wingNumbers?: string[];
   wingEnd?: boolean;
   wingStart?: boolean;
 }
 
-export const BaseAbfahrt = ({
-  abfahrt,
-  wingNumbers,
-  wingEnd,
-  wingStart,
-}: Props) => {
-  const classes = useStyles();
-  const wingNumbersWithoutSelf = wingNumbers?.filter(
-    (wn) => wn !== abfahrt.train.number
-  );
-  const {
-    setSelectedDetail,
-    selectedDetail,
-  } = SelectedDetailContainer.useContainer();
-  const handleClick = useCallback(() => {
-    setSelectedDetail(abfahrt.id);
-  }, [abfahrt.id, setSelectedDetail]);
-  const detail = selectedDetail === abfahrt.id;
-  const {
-    config: { lineAndNumber },
-  } = AbfahrtenConfigContainer.useContainer();
+export const BaseAbfahrt = memo(
+  ({ abfahrt, wingNumbers, wingEnd, wingStart, detail }: Props) => {
+    const classes = useStyles();
+    const wingNumbersWithoutSelf = wingNumbers?.filter(
+      (wn) => wn !== abfahrt.train.number
+    );
+    const { setSelectedDetail } = SelectedDetailContainer.useContainer();
+    const handleClick = useCallback(() => {
+      setSelectedDetail(abfahrt.id);
+    }, [abfahrt.id, setSelectedDetail]);
+    const contextValue = useMemo(
+      () => ({
+        detail,
+        abfahrt,
+      }),
+      [detail, abfahrt]
+    );
 
-  return (
-    <Paper
-      className={classes.wrap}
-      square
-      id={abfahrt.id}
-      onClick={handleClick}
-    >
-      {wingNumbers && (
-        <span
-          className={clsx(classes.wing, {
-            [classes.wingEnd]: wingEnd,
-            [classes.wingStart]: wingStart,
-          })}
-        />
-      )}
-      <div
-        className={classes.entry}
-        data-testid={`abfahrt${abfahrt.train.type}${abfahrt.train.number}`}
-      >
-        <div className={classes.mainWrap}>
-          <Start
-            abfahrt={abfahrt}
-            detail={detail}
-            lineAndNumber={lineAndNumber}
-          />
-          <Mid abfahrt={abfahrt} detail={detail} />
-          <End abfahrt={abfahrt} detail={detail} />
-        </div>
-        {detail &&
-          abfahrt.departure &&
-          (abfahrt.reihung || abfahrt.hiddenReihung) && (
-            <LazyReihung
-              loadHidden={!abfahrt.reihung && abfahrt.hiddenReihung}
-              trainNumber={abfahrt.train.number}
-              currentStation={abfahrt.currentStation.id}
-              scheduledDeparture={abfahrt.departure.scheduledTime}
-              fallbackTrainNumbers={wingNumbersWithoutSelf}
+    return (
+      <AbfahrtContext.Provider value={contextValue}>
+        <Paper
+          className={classes.wrap}
+          square
+          id={abfahrt.id}
+          onClick={handleClick}
+        >
+          {wingNumbers && (
+            <span
+              className={clsx(classes.wing, {
+                [classes.wingEnd]: wingEnd,
+                [classes.wingStart]: wingStart,
+              })}
             />
           )}
-        {detail && (
           <div
-            className={classes.scrollMarker}
-            data-testid="scrollMarker"
-            id={`${abfahrt.id}Scroll`}
-          />
-        )}
-      </div>
-    </Paper>
-  );
-};
+            className={classes.entry}
+            data-testid={`abfahrt${abfahrt.train.type}${abfahrt.train.number}`}
+          >
+            <div className={classes.mainWrap}>
+              <Start />
+              <Mid />
+              <End />
+            </div>
+            {detail &&
+              abfahrt.departure &&
+              (abfahrt.reihung || abfahrt.hiddenReihung) && (
+                <LazyReihung
+                  loadHidden={!abfahrt.reihung && abfahrt.hiddenReihung}
+                  trainNumber={abfahrt.train.number}
+                  currentStation={abfahrt.currentStation.id}
+                  scheduledDeparture={abfahrt.departure.scheduledTime}
+                  fallbackTrainNumbers={wingNumbersWithoutSelf}
+                />
+              )}
+            {detail && (
+              <div
+                className={classes.scrollMarker}
+                data-testid="scrollMarker"
+                id={`${abfahrt.id}Scroll`}
+              />
+            )}
+          </div>
+        </Paper>
+      </AbfahrtContext.Provider>
+    );
+  }
+);

@@ -1,14 +1,11 @@
 import { AuslastungContainer } from 'client/Abfahrten/container/AuslastungContainer';
 import { AuslastungsDisplay } from 'client/Common/Components/AuslastungsDisplay';
 import { Loading } from 'client/Common/Components/Loading';
+import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import { useEffect } from 'react';
-import type { Abfahrt } from 'types/iris';
 
-interface Props {
-  abfahrt: Abfahrt;
-}
-
-export const Auslastung = ({ abfahrt }: Props) => {
+export const Auslastung = () => {
+  const { abfahrt } = useAbfahrt();
   const { auslastungen, getAuslastung } = AuslastungContainer.useContainer();
   const auslastung =
     auslastungen[

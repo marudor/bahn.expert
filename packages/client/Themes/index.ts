@@ -23,8 +23,7 @@ export const createTheme = (themeType: ThemeType): MuiTheme & MaruTheme => {
 
   const colors = getColors(mui, themeType);
 
-  const mixins = {
-    ...mui.mixins,
+  const mixins: MaruMixins = {
     cancelled: {
       textDecoration: 'line-through',
       textDecorationColor: mui.palette.text.primary,
@@ -51,7 +50,10 @@ export const createTheme = (themeType: ThemeType): MuiTheme & MaruTheme => {
 
   const maruTheme = {
     colors,
-    mixins,
+    mixins: {
+      ...mixins,
+      ...mui.mixins,
+    },
   };
 
   return {

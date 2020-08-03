@@ -23,9 +23,12 @@ let theme: DefaultTheme;
 interface ContainerWithOptions<V = any> extends Container<V, any> {
   initialState?: V;
 }
+interface ContextWithOptions<V = any> extends React.Context<V> {
+  initialState?: V;
+}
 interface Options {
   withNavigation?: boolean;
-  container?: ContainerWithOptions[];
+  container?: (ContainerWithOptions | ContextWithOptions)[];
   commonConfig?: Partial<CommonConfig>;
 }
 
@@ -67,7 +70,9 @@ export function render<CP extends ComponentType<any>>(
     if (container) {
       container.forEach((c) => {
         result = (
-          <c.Provider initialState={c.initialState}>{result}</c.Provider>
+          <c.Provider value={c.initialState} initialState={c.initialState}>
+            {result}
+          </c.Provider>
         );
       });
     }

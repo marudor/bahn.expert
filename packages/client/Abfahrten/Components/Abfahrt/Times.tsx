@@ -1,8 +1,8 @@
 /* eslint no-nested-ternary: 0 */
 import { makeStyles } from '@material-ui/core';
 import { Time } from 'client/Common/Components/Time';
+import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import clsx from 'clsx';
-import type { Abfahrt } from 'types/iris';
 
 const useStyles = makeStyles((theme) => ({
   cancelled: theme.mixins.cancelled,
@@ -16,16 +16,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-interface Props {
-  abfahrt: Abfahrt;
-  detail: boolean;
-}
-
-export const Times = ({
-  abfahrt: { arrival, departure, cancelled },
-  detail,
-}: Props) => {
+export const Times = () => {
   const classes = useStyles();
+  const {
+    abfahrt: { cancelled, arrival, departure },
+    detail,
+  } = useAbfahrt();
 
   return (
     <div className={clsx(cancelled && classes.cancelled)}>

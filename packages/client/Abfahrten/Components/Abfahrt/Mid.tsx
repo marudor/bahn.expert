@@ -1,7 +1,7 @@
 import { Info } from './Info';
 import { makeStyles } from '@material-ui/core';
+import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import clsx from 'clsx';
-import type { Abfahrt } from 'types/iris';
 
 const useStyles = makeStyles((theme) => ({
   destination: {
@@ -23,19 +23,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-interface Props {
-  abfahrt: Abfahrt;
-  detail: boolean;
-}
-
-export const Mid = ({ abfahrt, detail }: Props) => {
+export const Mid = () => {
+  const { abfahrt, detail } = useAbfahrt();
   const classes = useStyles();
   return (
     <div
       className={clsx(classes.wrap, !detail && classes.noDetail)}
       data-testid="abfahrtMid"
     >
-      <Info abfahrt={abfahrt} detail={detail} />
+      <Info />
       <div
         className={clsx(classes.destination, {
           [classes.cancelled]: abfahrt.cancelled,
