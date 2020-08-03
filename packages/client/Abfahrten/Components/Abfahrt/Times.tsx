@@ -1,5 +1,4 @@
 /* eslint no-nested-ternary: 0 */
-import { cancelledCss } from 'client/util/cssUtils';
 import { makeStyles } from '@material-ui/core';
 import { Time } from 'client/Common/Components/Time';
 import clsx from 'clsx';
