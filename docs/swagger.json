@@ -3640,80 +3640,6 @@
         "type": "object",
         "additionalProperties": false
       },
-      "TrainSearchResult": {
-        "properties": {
-          "value": {
-            "type": "string"
-          },
-          "cycle": {
-            "type": "number",
-            "format": "double"
-          },
-          "pool": {
-            "type": "number",
-            "format": "double"
-          },
-          "id": {
-            "type": "string"
-          },
-          "dep": {
-            "type": "string"
-          },
-          "trainLink": {
-            "type": "string"
-          },
-          "journParam": {
-            "type": "string"
-          },
-          "pubTime": {
-            "type": "string"
-          },
-          "depDate": {
-            "type": "string"
-          },
-          "depTime": {
-            "type": "string"
-          },
-          "arr": {
-            "type": "string"
-          },
-          "arrTime": {
-            "type": "string"
-          },
-          "vt": {
-            "type": "string"
-          },
-          "jid": {
-            "type": "string"
-          },
-          "ctxRecon": {
-            "type": "string"
-          },
-          "jDetails": {
-            "$ref": "#/components/schemas/ParsedJourneyDetails"
-          }
-        },
-        "required": [
-          "value",
-          "cycle",
-          "pool",
-          "id",
-          "dep",
-          "trainLink",
-          "journParam",
-          "pubTime",
-          "depDate",
-          "depTime",
-          "arr",
-          "arrTime",
-          "vt",
-          "jid",
-          "ctxRecon",
-          "jDetails"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
       "ParsedJourneyMatchResponse": {
         "properties": {
           "train": {
@@ -5285,53 +5211,26 @@
   },
   "info": {
     "title": "Bahnhofs Abfahrten",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "contact": {
+      "name": "marudor"
+    }
   },
   "openapi": "3.0.0",
   "paths": {
-    "/bahnhof/v1/lageplan/{stationName}": {
+    "/bahnhof/v1/lageplan/{stationName}/{evaId}": {
       "get": {
         "operationId": "Lageplan",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/LageplanResponse"
                 }
               }
-            },
-            "description": "Ok"
-          }
-        },
-        "tags": ["Bahnhof V1"],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "stationName",
-            "required": true,
-            "schema": {
-              "type": "string"
             }
-          }
-        ]
-      }
-    },
-    "/bahnhof/v1/lageplan/{stationName}/{evaId}": {
-      "get": {
-        "operationId": "LageplanWithBayern",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LageplanResponse"
-                }
-              }
-            },
-            "description": "Ok"
           }
         },
         "tags": ["Bahnhof V1"],
@@ -5361,6 +5260,7 @@
         "operationId": "Station",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
@@ -5370,8 +5270,7 @@
                   "type": "array"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["BusinessHub Experimental"],
@@ -5393,14 +5292,14 @@
         "operationId": "News",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NewsResponse"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["BusinessHub Experimental"],
@@ -5463,14 +5362,14 @@
         "operationId": "Fasta",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/FastaResponse"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["BusinessHub Experimental"],
@@ -5492,14 +5391,14 @@
         "operationId": "HimMessages",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ParsedHimSearchResponse"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["HAFAS Experimental"],
@@ -5532,14 +5431,14 @@
         "operationId": "HimSearch",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ParsedHimSearchResponse"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["HAFAS Experimental"],
@@ -5571,14 +5470,14 @@
         "operationId": "IrisCompatibleAbfahrten",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AbfahrtenResult"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["HAFAS Experimental"],
@@ -5608,14 +5507,12 @@
         "operationId": "JourneyTree",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
-                "schema": {
-                  "additionalProperties": true
-                }
+                "schema": {}
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["HAFAS Experimental"],
@@ -5647,14 +5544,12 @@
         "operationId": "JourneyGraph",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
-                "schema": {
-                  "additionalProperties": true
-                }
+                "schema": {}
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["HAFAS Experimental"],
@@ -5686,14 +5581,12 @@
         "operationId": "JourneyCourse",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
-                "schema": {
-                  "additionalProperties": true
-                }
+                "schema": {}
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["HAFAS Experimental"],
@@ -5725,14 +5618,14 @@
         "operationId": "Create",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ParsedSubscrCreateResponse"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["HAFAS Subscribe"],
@@ -5764,14 +5657,14 @@
         "operationId": "Delete",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SubscrDeleteResponse"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["HAFAS Subscribe"],
@@ -5803,14 +5696,14 @@
         "operationId": "CreateUser",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ParsedSubscrUserResponse"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["HAFAS Subscribe"],
@@ -5842,14 +5735,14 @@
         "operationId": "Search",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SubscrSearchResponse"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["HAFAS Subscribe"],
@@ -5879,14 +5772,14 @@
         "operationId": "DeleteUser",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SubscrUserDeleteResponse"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["HAFAS Subscribe"],
@@ -5918,14 +5811,14 @@
         "operationId": "Details",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SubscrDetailsResponse"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["HAFAS Subscribe"],
@@ -5964,14 +5857,14 @@
         "operationId": "JourneyDetails",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ParsedJourneyDetails"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["HAFAS V1"],
@@ -6001,14 +5894,14 @@
         "operationId": "SearchOnTrip",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SingleRoute"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["HAFAS V1"],
@@ -6040,19 +5933,16 @@
         "operationId": "Details",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ParsedSearchOnTripResponse"
                 }
               }
-            },
-            "description": "Ok"
+            }
           },
           "404": {
-            "content": {
-              "application/json": {}
-            },
             "description": "Train not found"
           }
         },
@@ -6111,14 +6001,14 @@
         "operationId": "Auslastung",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Route$Auslastung"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["HAFAS V1"],
@@ -6166,6 +6056,7 @@
         "operationId": "ArrivalStationBoard",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
@@ -6175,8 +6066,7 @@
                   "type": "array"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["HAFAS V1"],
@@ -6217,6 +6107,7 @@
         "operationId": "DepartureStationBoard",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
@@ -6226,8 +6117,7 @@
                   "type": "array"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["HAFAS V1"],
@@ -6272,118 +6162,12 @@
         ]
       }
     },
-    "/hafas/v1/trainSearch/{trainName}": {
-      "get": {
-        "operationId": "TrainSearch",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TrainSearchResult"
-                }
-              }
-            },
-            "description": "Ok"
-          },
-          "404": {
-            "content": {
-              "application/json": {}
-            },
-            "description": "Train not found"
-          }
-        },
-        "description": "Use JourneyMatch instead",
-        "tags": ["HAFAS V1"],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "trainName",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Unix Time (ms)",
-            "in": "query",
-            "name": "date",
-            "required": false,
-            "schema": {
-              "format": "double",
-              "type": "number"
-            }
-          },
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ]
-      }
-    },
-    "/hafas/v1/journeyMatch/{trainName}": {
-      "get": {
-        "operationId": "JourneyMatch",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/ParsedJourneyMatchResponse"
-                  },
-                  "type": "array"
-                }
-              }
-            },
-            "description": "Ok"
-          }
-        },
-        "description": "Use POST Method",
-        "tags": ["HAFAS V1"],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "trainName",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Unix Time (ms)",
-            "in": "query",
-            "name": "date",
-            "required": false,
-            "schema": {
-              "format": "double",
-              "type": "number"
-            }
-          },
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ]
-      }
-    },
     "/hafas/v1/journeyMatch": {
       "post": {
         "operationId": "JourneyMatch",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
@@ -6393,8 +6177,7 @@
                   "type": "array"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["HAFAS V1"],
@@ -6426,6 +6209,7 @@
         "operationId": "GeoStation",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
@@ -6435,8 +6219,7 @@
                   "type": "array"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["HAFAS V1"],
@@ -6486,6 +6269,7 @@
         "operationId": "Station",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
@@ -6495,8 +6279,7 @@
                   "type": "array"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["HAFAS V1"],
@@ -6532,58 +6315,17 @@
         "operationId": "TripSearch",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/RoutingResult"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["HAFAS V1"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TripSearchOptions"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/hafas/v1/route": {
-      "post": {
-        "operationId": "Route",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RoutingResult"
-                }
-              }
-            },
-            "description": "Ok"
-          }
-        },
-        "description": "Use /TripSearch",
-        "tags": ["HAFAS V1"],
-        "deprecated": true,
         "security": [],
         "parameters": [
           {
@@ -6612,14 +6354,14 @@
         "operationId": "JourneyGeoPos",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ParsedJourneyGeoPosResponse"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["HAFAS V1"],
@@ -6651,14 +6393,14 @@
         "operationId": "PositionForTrain",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ParsedJourneyGeoPosResponse"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["HAFAS V1"],
@@ -6688,14 +6430,14 @@
         "operationId": "Wings",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/WingDefinition"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["IRIS V1"],
@@ -6725,14 +6467,14 @@
         "operationId": "Abfahrten",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AbfahrtenResult"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["IRIS V1"],
@@ -6780,6 +6522,7 @@
         "operationId": "Station",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
@@ -6789,8 +6532,7 @@
                   "type": "array"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["IRIS V1"],
@@ -6812,6 +6554,7 @@
         "operationId": "Stations",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
@@ -6821,8 +6564,7 @@
                   "type": "array"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["IRIS V1"],
@@ -6835,14 +6577,14 @@
         "operationId": "Wagenreihung",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Formation"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["Reihung V1"],
@@ -6874,14 +6616,14 @@
         "operationId": "TrainName",
         "responses": {
           "200": {
+            "description": "Train name. May be undefined",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "string"
                 }
               }
-            },
-            "description": "Train name. May be undefined"
+            }
           }
         },
         "tags": ["Reihung V1"],
@@ -6904,6 +6646,7 @@
         "operationId": "Station",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
@@ -6913,8 +6656,7 @@
                   "type": "array"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["SBB Experimental"],
@@ -6936,14 +6678,12 @@
         "operationId": "Routing",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
-                "schema": {
-                  "additionalProperties": true
-                }
+                "schema": {}
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["SBB Experimental"],
@@ -6966,6 +6706,7 @@
         "operationId": "SearchStation",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
@@ -6975,8 +6716,7 @@
                   "type": "array"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["Station V1"],
@@ -7015,6 +6755,7 @@
         "operationId": "GeoSearch",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
@@ -7024,8 +6765,7 @@
                   "type": "array"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["Station V1"],
@@ -7066,14 +6806,14 @@
         "operationId": "IrisSearch",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/IrisStationWithRelated"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["Station V1"],
@@ -7095,14 +6835,14 @@
         "operationId": "StationDetails",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DetailBusinessHubStation"
                 }
               }
-            },
-            "description": "Ok"
+            }
           }
         },
         "tags": ["Station V1"],
@@ -7124,19 +6864,16 @@
         "operationId": "Ds100",
         "responses": {
           "200": {
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Station"
                 }
               }
-            },
-            "description": "Ok"
+            }
           },
           "400": {
-            "content": {
-              "application/json": {}
-            },
             "description": "No station found"
           }
         },
