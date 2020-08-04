@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-import { Controller, ValidationService, FieldErrors, ValidateError, TsoaRoute } from 'tsoa';
+import { Controller, ValidationService, FieldErrors, ValidateError, TsoaRoute, TsoaResponse, HttpStatusCodeLiteral } from 'tsoa';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { BahnhofControllerV1 } from './controller/Bahnhof/v1';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -1990,7 +1990,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2011,7 +2011,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2031,7 +2031,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2055,7 +2055,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2075,7 +2075,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2097,7 +2097,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2119,7 +2119,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2140,7 +2140,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2161,7 +2161,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2182,7 +2182,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2204,7 +2204,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2225,7 +2225,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2246,7 +2246,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2267,7 +2267,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2288,7 +2288,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2309,7 +2309,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2331,7 +2331,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2353,7 +2353,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2375,7 +2375,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2399,7 +2399,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2422,7 +2422,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2445,7 +2445,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2469,7 +2469,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2491,7 +2491,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2514,7 +2514,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2536,7 +2536,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2557,7 +2557,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2581,7 +2581,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2604,7 +2604,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2626,7 +2626,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2648,7 +2648,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2670,7 +2670,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2691,7 +2691,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2712,7 +2712,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2733,7 +2733,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2756,7 +2756,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2776,7 +2776,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2795,7 +2795,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2814,7 +2814,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2835,7 +2835,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2855,7 +2855,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2875,7 +2875,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2895,7 +2895,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2915,7 +2915,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2935,7 +2935,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2958,7 +2958,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -2980,7 +2980,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -3000,7 +3000,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -3020,7 +3020,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -3040,7 +3040,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       let validatedArgs: any[] = [];
       try {
-        validatedArgs = getValidatedArgs(args, context);
+        validatedArgs = getValidatedArgs(args, context, next);
       } catch (error) {
         context.status = error.status;
         context.throw(error.status, JSON.stringify({ fields: error.fields }));
@@ -3060,30 +3060,22 @@ export function RegisterRoutes(router: KoaRouter) {
     return 'getHeaders' in object && 'getStatus' in object && 'setStatus' in object;
   }
 
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
   function promiseHandler(controllerObj: any, promise: Promise<any>, context: any, next: () => Promise<any>) {
     return Promise.resolve(promise)
       .then((data: any) => {
-        if (data || data === false) {
-          context.body = data;
-          context.status = 200;
-        } else {
-          context.status = 204;
-        }
+        let statusCode;
+        let headers;
 
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
         if (isController(controllerObj)) {
-          const headers = controllerObj.getHeaders();
-          Object.keys(headers).forEach((name: string) => {
-            context.set(name, headers[name]);
-          });
+          headers = controllerObj.getHeaders();
 
-          const statusCode = controllerObj.getStatus();
-          if (statusCode) {
-            context.status = statusCode;
-          }
+          statusCode = controllerObj.getStatus();
         }
-        return next();
+        return returnHandler(context, next, statusCode, data, headers);
       })
       .catch((error: any) => {
         context.status = error.status || 500;
@@ -3093,7 +3085,29 @@ export function RegisterRoutes(router: KoaRouter) {
 
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
-  function getValidatedArgs(args: any, context: any): any[] {
+  function returnHandler(context: any, next: () => any, statusCode?: number, data?: any, headers: any = {}) {
+    if (!context.response.__tsoaResponded) {
+      context.set(headers);
+
+      if (data || data === false) {
+        context.body = data;
+        context.status = 200;
+      } else {
+        context.status = 204;
+      }
+
+      if (statusCode) {
+        context.status = statusCode;
+      }
+
+      context.response.__tsoaResponded = true;
+      return next();
+    }
+  }
+
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+  function getValidatedArgs(args: any, context: any, next: () => any): any[] {
     const errorFields: FieldErrors = {};
     const values = Object.keys(args).map(key => {
       const name = args[key].name;
@@ -3110,6 +3124,8 @@ export function RegisterRoutes(router: KoaRouter) {
           return validationService.ValidateParam(args[key], context.request.body, name, errorFields, undefined, { "noImplicitAdditionalProperties": "silently-remove-extras" });
         case 'body-prop':
           return validationService.ValidateParam(args[key], context.request.body[name], name, errorFields, 'body.', { "noImplicitAdditionalProperties": "silently-remove-extras" });
+        case 'res':
+          return responder(context, next);
       }
     });
     if (Object.keys(errorFields).length > 0) {
@@ -3117,6 +3133,14 @@ export function RegisterRoutes(router: KoaRouter) {
     }
     return values;
   }
+
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+  function responder(context: any, next: () => any): TsoaResponse<HttpStatusCodeLiteral, unknown> {
+    return function(status, data, headers) {
+      returnHandler(context, next, status, data, headers);
+    };
+  };
 
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 }

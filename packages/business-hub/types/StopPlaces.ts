@@ -61,6 +61,9 @@ export interface BusinessHubStation extends CommonStation {
   location: BusinessHubCoordinates;
 }
 
+/**
+ * @tsoaModel
+ */
 interface Address {
   city: string;
   postalCode: string;

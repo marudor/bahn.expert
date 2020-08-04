@@ -26,10 +26,7 @@ const fuseSettings = {
   keys: ['name', 'eva', 'ds100'],
 };
 
-let searchableStations = new Fuse<IrisStation, typeof fuseSettings>(
-  [],
-  fuseSettings
-);
+let searchableStations = new Fuse<IrisStation>([], fuseSettings);
 
 async function refreshSearchableStations(
   request: AxiosInstance = noncdRequest
