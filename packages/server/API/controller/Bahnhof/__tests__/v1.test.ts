@@ -15,6 +15,8 @@ describe('Bahnhof V1', () => {
       })
       .reply(200, '');
 
-    return request(server).get('/api/bahnhof/v1/lageplan/Hamburg').expect(200);
+    return request(server)
+      .get('/api/bahnhof/v1/lageplan/Hamburg/8002549')
+      .expect(200);
   });
 });

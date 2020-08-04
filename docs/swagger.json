@@ -3640,80 +3640,6 @@
         "type": "object",
         "additionalProperties": false
       },
-      "TrainSearchResult": {
-        "properties": {
-          "value": {
-            "type": "string"
-          },
-          "cycle": {
-            "type": "number",
-            "format": "double"
-          },
-          "pool": {
-            "type": "number",
-            "format": "double"
-          },
-          "id": {
-            "type": "string"
-          },
-          "dep": {
-            "type": "string"
-          },
-          "trainLink": {
-            "type": "string"
-          },
-          "journParam": {
-            "type": "string"
-          },
-          "pubTime": {
-            "type": "string"
-          },
-          "depDate": {
-            "type": "string"
-          },
-          "depTime": {
-            "type": "string"
-          },
-          "arr": {
-            "type": "string"
-          },
-          "arrTime": {
-            "type": "string"
-          },
-          "vt": {
-            "type": "string"
-          },
-          "jid": {
-            "type": "string"
-          },
-          "ctxRecon": {
-            "type": "string"
-          },
-          "jDetails": {
-            "$ref": "#/components/schemas/ParsedJourneyDetails"
-          }
-        },
-        "required": [
-          "value",
-          "cycle",
-          "pool",
-          "id",
-          "dep",
-          "trainLink",
-          "journParam",
-          "pubTime",
-          "depDate",
-          "depTime",
-          "arr",
-          "arrTime",
-          "vt",
-          "jid",
-          "ctxRecon",
-          "jDetails"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
       "ParsedJourneyMatchResponse": {
         "properties": {
           "train": {
@@ -5292,39 +5218,9 @@
   },
   "openapi": "3.0.0",
   "paths": {
-    "/bahnhof/v1/lageplan/{stationName}": {
-      "get": {
-        "operationId": "Lageplan",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LageplanResponse"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["Bahnhof V1"],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "stationName",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      }
-    },
     "/bahnhof/v1/lageplan/{stationName}/{evaId}": {
       "get": {
-        "operationId": "LageplanWithBayern",
+        "operationId": "Lageplan",
         "responses": {
           "200": {
             "description": "Ok",
@@ -6266,110 +6162,6 @@
         ]
       }
     },
-    "/hafas/v1/trainSearch/{trainName}": {
-      "get": {
-        "operationId": "TrainSearch",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TrainSearchResult"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Train not found"
-          }
-        },
-        "description": "Use JourneyMatch instead",
-        "tags": ["HAFAS V1"],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "trainName",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Unix Time (ms)",
-            "in": "query",
-            "name": "date",
-            "required": false,
-            "schema": {
-              "format": "double",
-              "type": "number"
-            }
-          },
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ]
-      }
-    },
-    "/hafas/v1/journeyMatch/{trainName}": {
-      "get": {
-        "operationId": "JourneyMatch",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/ParsedJourneyMatchResponse"
-                  },
-                  "type": "array"
-                }
-              }
-            }
-          }
-        },
-        "description": "Use POST Method",
-        "tags": ["HAFAS V1"],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "trainName",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Unix Time (ms)",
-            "in": "query",
-            "name": "date",
-            "required": false,
-            "schema": {
-              "format": "double",
-              "type": "number"
-            }
-          },
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ]
-      }
-    },
     "/hafas/v1/journeyMatch": {
       "post": {
         "operationId": "JourneyMatch",
@@ -6534,47 +6326,6 @@
           }
         },
         "tags": ["HAFAS V1"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TripSearchOptions"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/hafas/v1/route": {
-      "post": {
-        "operationId": "Route",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RoutingResult"
-                }
-              }
-            }
-          }
-        },
-        "description": "Use /TripSearch",
-        "tags": ["HAFAS V1"],
-        "deprecated": true,
         "security": [],
         "parameters": [
           {

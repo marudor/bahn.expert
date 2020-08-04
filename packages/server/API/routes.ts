@@ -1384,29 +1384,6 @@ const models: TsoaRoute.Models = {
     "additionalProperties": false,
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "TrainSearchResult": {
-    "dataType": "refObject",
-    "properties": {
-      "value": { "dataType": "string", "required": true },
-      "cycle": { "dataType": "double", "required": true },
-      "pool": { "dataType": "double", "required": true },
-      "id": { "dataType": "string", "required": true },
-      "dep": { "dataType": "string", "required": true },
-      "trainLink": { "dataType": "string", "required": true },
-      "journParam": { "dataType": "string", "required": true },
-      "pubTime": { "dataType": "string", "required": true },
-      "depDate": { "dataType": "string", "required": true },
-      "depTime": { "dataType": "string", "required": true },
-      "arr": { "dataType": "string", "required": true },
-      "arrTime": { "dataType": "string", "required": true },
-      "vt": { "dataType": "string", "required": true },
-      "jid": { "dataType": "string", "required": true },
-      "ctxRecon": { "dataType": "string", "required": true },
-      "jDetails": { "ref": "ParsedJourneyDetails", "required": true },
-    },
-    "additionalProperties": false,
-  },
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "ParsedJourneyMatchResponse": {
     "dataType": "refObject",
     "properties": {
@@ -1982,26 +1959,6 @@ export function RegisterRoutes(router: KoaRouter) {
   //  NOTE: If you do not see routes for all of your controllers in this file, then you might not have informed tsoa of where to look
   //      Please look into the "controllerPathGlobs" config option described in the readme: https://github.com/lukeautry/tsoa
   // ###########################################################################################################
-  router.get('/api/bahnhof/v1/lageplan/:stationName',
-    async (context: any, next: any) => {
-      const args = {
-        stationName: { "in": "path", "name": "stationName", "required": true, "dataType": "string" },
-      };
-
-      let validatedArgs: any[] = [];
-      try {
-        validatedArgs = getValidatedArgs(args, context, next);
-      } catch (error) {
-        context.status = error.status;
-        context.throw(error.status, JSON.stringify({ fields: error.fields }));
-      }
-
-      const controller = new BahnhofControllerV1();
-
-      const promise = controller.lageplan.apply(controller, validatedArgs as any);
-      return promiseHandler(controller, promise, context, next);
-    });
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   router.get('/api/bahnhof/v1/lageplan/:stationName/:evaId',
     async (context: any, next: any) => {
       const args = {
@@ -2019,7 +1976,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
       const controller = new BahnhofControllerV1();
 
-      const promise = controller.lageplanWithBayern.apply(controller, validatedArgs as any);
+      const promise = controller.lageplan.apply(controller, validatedArgs as any);
       return promiseHandler(controller, promise, context, next);
     });
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -2481,51 +2438,6 @@ export function RegisterRoutes(router: KoaRouter) {
       return promiseHandler(controller, promise, context, next);
     });
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  router.get('/api/hafas/v1/trainSearch/:trainName',
-    async (context: any, next: any) => {
-      const args = {
-        trainName: { "in": "path", "name": "trainName", "required": true, "dataType": "string" },
-        date: { "in": "query", "name": "date", "dataType": "double" },
-        profile: { "in": "query", "name": "profile", "ref": "AllowedHafasProfile" },
-      };
-
-      let validatedArgs: any[] = [];
-      try {
-        validatedArgs = getValidatedArgs(args, context, next);
-      } catch (error) {
-        context.status = error.status;
-        context.throw(error.status, JSON.stringify({ fields: error.fields }));
-      }
-
-      const controller = new HafasController();
-
-      const promise = controller.trainSearch.apply(controller, validatedArgs as any);
-      return promiseHandler(controller, promise, context, next);
-    });
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  router.get('/api/hafas/v1/journeyMatch/:trainName',
-    async (context: any, next: any) => {
-      const args = {
-        ctx: { "in": "request", "name": "ctx", "required": true, "dataType": "object" },
-        trainName: { "in": "path", "name": "trainName", "required": true, "dataType": "string" },
-        date: { "in": "query", "name": "date", "dataType": "double" },
-        profile: { "in": "query", "name": "profile", "ref": "AllowedHafasProfile" },
-      };
-
-      let validatedArgs: any[] = [];
-      try {
-        validatedArgs = getValidatedArgs(args, context, next);
-      } catch (error) {
-        context.status = error.status;
-        context.throw(error.status, JSON.stringify({ fields: error.fields }));
-      }
-
-      const controller = new HafasController();
-
-      const promise = controller.journeyMatch.apply(controller, validatedArgs as any);
-      return promiseHandler(controller, promise, context, next);
-    });
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   router.post('/api/hafas/v1/journeyMatch',
     async (context: any, next: any) => {
       const args = {
@@ -2635,28 +2547,6 @@ export function RegisterRoutes(router: KoaRouter) {
       const controller = new HafasController();
 
       const promise = controller.tripSearch.apply(controller, validatedArgs as any);
-      return promiseHandler(controller, promise, context, next);
-    });
-  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  router.post('/api/hafas/v1/route',
-    async (context: any, next: any) => {
-      const args = {
-        ctx: { "in": "request", "name": "ctx", "required": true, "dataType": "object" },
-        body: { "in": "body", "name": "body", "required": true, "ref": "TripSearchOptions" },
-        profile: { "in": "query", "name": "profile", "ref": "AllowedHafasProfile" },
-      };
-
-      let validatedArgs: any[] = [];
-      try {
-        validatedArgs = getValidatedArgs(args, context, next);
-      } catch (error) {
-        context.status = error.status;
-        context.throw(error.status, JSON.stringify({ fields: error.fields }));
-      }
-
-      const controller = new HafasController();
-
-      const promise = controller.route.apply(controller, validatedArgs as any);
       return promiseHandler(controller, promise, context, next);
     });
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
