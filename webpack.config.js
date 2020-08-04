@@ -94,7 +94,6 @@ if (isDev) {
     }),
   ];
   optimization.splitChunks = {
-    minSize: 30000,
     cacheGroups: {
       vendor: {
         test: /[\\/]node_modules[\\/](axios|react|react-dom|react-router|react-router-dom|@material-ui|jss|downshift|date-fns)[\\/]/,
