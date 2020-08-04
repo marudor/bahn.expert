@@ -1,5 +1,5 @@
 import { logger } from 'server/logger';
-import request from 'umi-request';
+import Axios from 'axios';
 import type { ParsedProduct } from 'types/HAFAS';
 import type { PlannedSequence } from 'types/planReihung';
 
@@ -12,7 +12,7 @@ let planWRMap: {
 async function fetchPlanWR() {
   try {
     logger.debug('Fetching planWR');
-    planWRMap = await request.get<typeof planWRMap>(planWRUrl);
+    planWRMap = (await Axios.get<typeof planWRMap>(planWRUrl)).data;
     logger.debug('Fetched planWR');
   } catch (e) {
     logger.error(e, 'Fetching planWR failed');

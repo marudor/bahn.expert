@@ -16,5 +16,5 @@ export async function news(options: NewsOptions = {}): Promise<NewsResponse> {
     },
   });
 
-  return r;
+  return r.data;
 }

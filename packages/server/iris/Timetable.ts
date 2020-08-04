@@ -15,11 +15,11 @@ import {
   subHours,
   subMinutes,
 } from 'date-fns';
+import { AxiosInstance } from 'axios';
 import { CacheDatabases, createNewCache } from 'server/cache';
 import { calculateVia, getAttr, getNumberAttr, parseTs } from './helper';
 import { diffArrays } from 'diff';
 import { getSingleHimMessageOfToday } from 'server/HAFAS/HimSearch';
-import { RequestMethod } from 'umi-request';
 import { uniqBy } from 'shared/util';
 import messageLookup, {
   ignoredMessageNumbers,
@@ -154,7 +154,7 @@ export default class Timetable {
     private evaId: string,
     currentStation: string,
     options: TimetableOptions,
-    private request: RequestMethod
+    private request: AxiosInstance
   ) {
     this.currentDate = options.currentDate || new Date();
     this.maxDate = addMinutes(this.currentDate, options.lookahead);
@@ -531,7 +531,7 @@ export default class Timetable {
   async fetchRealtime() {
     const url = `/fchg/${this.evaId}`;
 
-    const result = await this.request.get<string>(url);
+    const result = (await this.request.get<string>(url)).data;
 
     if (result.includes('<soapenv:Reason')) {
       return Promise.reject(result);
@@ -686,7 +686,7 @@ export default class Timetable {
 
         if (!rawXml) {
           try {
-            rawXml = await this.request.get<string>(key);
+            rawXml = (await this.request.get<string>(key)).data;
           } catch (e) {
             this.errors.push(e);
 

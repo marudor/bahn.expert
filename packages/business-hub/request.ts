@@ -1,4 +1,4 @@
-import { extend } from 'umi-request';
+import Axios from 'axios';
 
 // Community key by Bahnhof Live App
 // https://github.com/dbbahnhoflive/dbbahnhoflive-android/blob/master/modules/core/build.gradle#L15
@@ -8,11 +8,11 @@ const apiKey =
 export const canUseBusinessHub =
   Boolean(apiKey) || process.env.NODE_ENV === 'test';
 
-export const request = extend({
+export const request = Axios.create({
+  baseURL: 'https://gateway.businesshub.deutschebahn.com',
   headers: {
     key: apiKey,
   },
-  prefix: 'https://gateway.businesshub.deutschebahn.com',
 });
 
 if (!canUseBusinessHub) {

@@ -4,8 +4,8 @@ import { getAbfahrten } from 'server/iris';
 import { getWRLink, hasWR, WRCache } from 'server/Reihung/hasWR';
 import { isRedesignByTZ, isRedesignByUIC } from 'server/Reihung/tzInfo';
 import { maxBy, minBy } from 'shared/util';
+import Axios from 'axios';
 import getBR from 'server/Reihung/getBR';
-import request from 'umi-request';
 import TrainNames from 'server/Reihung/TrainNames';
 import type {
   AdditionalFahrzeugInfo,
@@ -324,7 +324,7 @@ export async function wagenreihung(trainNumber: string, date: number) {
   let info: Wagenreihung;
 
   try {
-    info = await request.get<Wagenreihung>(getWRLink(trainNumber, date));
+    info = (await Axios.get<Wagenreihung>(getWRLink(trainNumber, date))).data;
   } catch (e) {
     if (e.response?.data?.tryThese) {
       if (!(await WRCache.exists(trainNumber))) {
