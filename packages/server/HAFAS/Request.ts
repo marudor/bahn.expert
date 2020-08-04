@@ -32,10 +32,10 @@ import {
   SubscrUserDeleteRequest,
   SubscrUserDeleteResponse,
 } from 'types/HAFAS/Subscr/SubscrUserDelete';
+import Axios from 'axios';
 import parseLocL from './helper/parseLocL';
 import parsePolyline from 'server/HAFAS/helper/parsePolyline';
 import parseProduct from './helper/parseProduct';
-import request from 'umi-request';
 import type {
   HimSearchRequest,
   HimSearchResponse,
@@ -208,10 +208,11 @@ async function makeRequest<
     // eslint-disable-next-line no-console
     console.log(extraParam);
   }
-  const r = await request.post<HafasResponse<HR>>(HafasProfiles[profile].url, {
-    data,
-    params: extraParam,
-  });
+  const r = (
+    await Axios.post<HafasResponse<HR>>(HafasProfiles[profile].url, data, {
+      params: extraParam,
+    })
+  ).data;
 
   if (('err' in r && r.err !== 'OK') || r.svcResL[0].err !== 'OK') {
     throw new HafasError(hafasRequest, r, profile);
@@ -253,10 +254,11 @@ export async function makeUncommonRequest<
   profile: AllowedHafasProfile = AllowedHafasProfile.DB
 ): Promise<P> {
   const { data, extraParam } = createRequest(hafasRequest, profile);
-  const r = await request.post<HafasResponse<HR>>(HafasProfiles[profile].url, {
-    data,
-    params: extraParam,
-  });
+  const r = (
+    await Axios.post<HafasResponse<HR>>(HafasProfiles[profile].url, data, {
+      params: extraParam,
+    })
+  ).data;
   if (('err' in r && r.err !== 'OK') || r.svcResL[0].err !== 'OK') {
     throw new HafasError(hafasRequest, r, profile);
   }

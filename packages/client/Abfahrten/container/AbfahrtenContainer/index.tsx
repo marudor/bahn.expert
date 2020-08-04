@@ -5,7 +5,7 @@ import {
 import { createContainer } from 'unstated-next';
 import { getStationsFromAPI } from 'shared/service/stationSearch';
 import { ReactNode, useCallback, useEffect, useState } from 'react';
-import request, { ResponseError } from 'umi-request';
+import Axios, { AxiosError } from 'axios';
 import type { Abfahrt, AbfahrtenResult, Wings } from 'types/iris';
 import type { Station, StationSearchType } from 'types/station';
 
@@ -17,17 +17,17 @@ export const fetchAbfahrten = async (
   lookbehind: string
 ): Promise<AbfahrtenResult> => {
   cancelGetAbfahrten();
-  const { token, cancel } = request.CancelToken.source();
-  cancelGetAbfahrten = cancel;
-  const r = request.get<AbfahrtenResult>(urlWithStationId, {
+  const r = await Axios.get<AbfahrtenResult>(urlWithStationId, {
+    cancelToken: new Axios.CancelToken((c) => {
+      cancelGetAbfahrten = c;
+    }),
     params: {
       lookahead,
       lookbehind,
     },
-    cancelToken: token,
   });
 
-  return r;
+  return r.data;
 };
 
 interface Departures {
@@ -50,7 +50,7 @@ type AbfahrtenError$404 = Error & {
   errorType: '404';
   station?: void;
 };
-interface AbfahrtenError$Default extends ResponseError {
+interface AbfahrtenError$Default extends AxiosError {
   errorType: void;
   station?: string;
 }

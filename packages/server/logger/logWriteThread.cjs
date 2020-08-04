@@ -1,5 +1,5 @@
 const { parentPort } = require('worker_threads');
-const request = require('umi-request').default;
+const Axios = require('axios');
 const { Timber } = require('@timberio/node');
 const pinoPretty = require('pino-pretty');
 
@@ -21,12 +21,15 @@ if (process.env.NODE_ENV === 'production' && logglyToken) {
   streams.push((msg) => {
     // 30 is info, we log warn and above to loggly
     if (msg.level > 30) {
-      request.post(`https://logs-01.loggly.com/inputs/${logglyToken}`, {
-        data: JSON.stringify(msg),
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      });
+      Axios.post(
+        `https://logs-01.loggly.com/inputs/${logglyToken}`,
+        JSON.stringify(msg),
+        {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        }
+      );
     }
   });
 }

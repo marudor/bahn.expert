@@ -3,7 +3,7 @@ import { RoutingContainer } from 'client/Routing/container/RoutingContainer';
 import { uniqBy } from 'shared/util';
 import { useCallback, useEffect, useMemo } from 'react';
 import { useHistory } from 'react-router';
-import request from 'umi-request';
+import Axios from 'axios';
 import type { RoutingFav } from 'client/Routing/container/RoutingFavContainer';
 import type { RoutingResult } from 'types/routing';
 
@@ -45,18 +45,20 @@ export const useFetchRouting = () => {
       setError(undefined);
       setRoutes(undefined);
       try {
-        const routingResult = await request.post<RoutingResult>(
-          '/api/hafas/v1/tripSearch',
-          {
-            data: {
+        const routingResult = (
+          await Axios.post<RoutingResult>(
+            '/api/hafas/v1/tripSearch',
+            {
               time: (date || new Date()).getTime(),
               ...routeSettings,
             },
-            params: {
-              profile: routeSettings.hafasProfile,
-            },
-          }
-        );
+            {
+              params: {
+                profile: routeSettings.hafasProfile,
+              },
+            }
+          )
+        ).data;
 
         setRoutes(routingResult.routes);
         setEarlierContext(routingResult.context.earlier);
@@ -82,18 +84,20 @@ export const useFetchRouting = () => {
       if (!commonRouteSettings) return;
 
       try {
-        const routingResult = await request.post<RoutingResult>(
-          '/api/hafas/v1/tripSearch',
-          {
-            data: {
+        const routingResult = (
+          await Axios.post<RoutingResult>(
+            '/api/hafas/v1/tripSearch',
+            {
               ctxScr: type === 'earlier' ? earlierContext : laterContext,
               ...commonRouteSettings,
             },
-            params: {
-              profile: currentProfile,
-            },
-          }
-        );
+            {
+              params: {
+                profile: currentProfile,
+              },
+            }
+          )
+        ).data;
 
         setRoutes((oldRoutes = []) => {
           let newRoutes;
