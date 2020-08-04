@@ -1,4 +1,4 @@
-import request, { Canceler } from 'umi-request';
+import Axios, { Canceler } from 'axios';
 import type { AllowedHafasProfile } from 'types/HAFAS';
 import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 import type { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
@@ -10,7 +10,7 @@ export async function getDetails(
   stationId?: string,
   profile?: AllowedHafasProfile
 ): Promise<ParsedSearchOnTripResponse> {
-  const details = await request.get<ParsedSearchOnTripResponse>(
+  const r = await Axios.get<ParsedSearchOnTripResponse>(
     `/api/hafas/v1/details/${train}`,
     {
       params: {
@@ -22,7 +22,7 @@ export async function getDetails(
     }
   );
 
-  return details;
+  return r.data;
 }
 
 const journeyMatchCanelTokens: { [key: string]: Canceler } = {};
@@ -37,17 +37,17 @@ export async function journeyMatch(
 
   if (cancelIdent) {
     journeyMatchCanelTokens[cancelIdent]?.();
-    const { cancel, token } = request.CancelToken.source();
-    cancelToken = token;
-    journeyMatchCanelTokens[cancelIdent] = cancel;
+    cancelToken = new Axios.CancelToken((c) => {
+      journeyMatchCanelTokens[cancelIdent] = c;
+    });
   }
-  const matches = await request.post<ParsedJourneyMatchResponse[]>(
+  const r = await Axios.post<ParsedJourneyMatchResponse[]>(
     '/api/hafas/v1/enrichedJourneyMatch',
     {
-      data: {
-        trainName,
-        initialDepartureDate,
-      },
+      trainName,
+      initialDepartureDate,
+    },
+    {
       cancelToken,
       params: {
         profile,
@@ -55,5 +55,5 @@ export async function journeyMatch(
     }
   );
 
-  return matches;
+  return r.data;
 }

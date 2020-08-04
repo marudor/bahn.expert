@@ -1,5 +1,6 @@
 import * as Sentry from '@sentry/node';
 import { middlewares } from './logger';
+import Axios from 'axios';
 import createAdmin from './admin';
 import createDocsServer from './docsServer';
 import http from 'http';
@@ -7,7 +8,6 @@ import Koa, { Context, Middleware } from 'koa';
 import KoaBodyparser from 'koa-bodyparser';
 import koaStatic from 'koa-static';
 import path from 'path';
-import request from 'umi-request';
 import storageMiddleware from './middleware/storageMiddleware';
 
 function hotHelper(getMiddleware: () => Middleware) {
@@ -131,17 +131,9 @@ export default () => {
   const port = process.env.WEB_PORT || 9042;
 
   const server = http.createServer();
-  const baseUrl = `http://localhost:${port}`;
 
-  request.interceptors.request.use((url, options) => {
-    if (url.startsWith('/')) {
-      url = `${baseUrl}${url}`;
-    }
-    return {
-      url,
-      options,
-    };
-  });
+  Axios.defaults.baseURL = `http://localhost:${port}`;
+
   const app = createApp();
 
   server.addListener('request', app.callback());

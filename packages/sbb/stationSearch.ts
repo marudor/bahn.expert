@@ -5,10 +5,12 @@ export async function stationSearch(
   searchTerm?: string
 ): Promise<SBBStation[]> {
   if (!searchTerm) return [];
-  const result = await request.get<SBBStationResult>(
-    '/unauth/fahrplanservice/v1/standorte/' +
-      encodeURIComponent(encodeURIComponent(searchTerm))
-  );
+  const result = (
+    await request.get<SBBStationResult>(
+      '/unauth/fahrplanservice/v1/standorte/' +
+        encodeURIComponent(encodeURIComponent(searchTerm))
+    )
+  ).data;
 
   return (
     result.standorte

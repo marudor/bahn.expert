@@ -1,10 +1,10 @@
 /* eslint-disable no-underscore-dangle */
 import '@testing-library/jest-dom';
 import { cleanup } from '@testing-library/react';
+import Axios from 'axios';
 import fs from 'fs';
 import Nock from 'nock';
 import path from 'path';
-import request from 'umi-request';
 
 if (fs.existsSync(path.resolve(__dirname, 'setup.js'))) {
   throw new Error('Run `yarn all:clean`. State dirty');
@@ -16,9 +16,7 @@ if (fs.existsSync(path.resolve(__dirname, 'setup.js'))) {
 global.M = require('react').createElement;
 global.MF = require('react').Fragment;
 
-request.extendOptions({
-  prefix: 'http://localhost',
-});
+Axios.defaults.baseURL = 'http://localhost';
 
 // eslint-disable-next-line jest/no-standalone-expect
 expect(new Date().getTimezoneOffset()).toBe(0);

@@ -4279,6 +4279,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"axios@npm:^0.19.2":
+  version: 0.19.2
+  resolution: "axios@npm:0.19.2"
+  dependencies:
+    follow-redirects: 1.5.10
+  checksum: bad346deea24050f9953ce09bb8015f85a99a7b8f016806adccfab0b8981827d1fbee9c77c0ef7c70cc48392c1af6bbc65e07c3e88221d17282d2d5fd0a191f6
+  languageName: node
+  linkType: hard
+
 "babel-eslint@npm:^10.1.0":
   version: 10.1.0
   resolution: "babel-eslint@npm:10.1.0"
@@ -4990,11 +4999,11 @@ __metadata:
     "@babel/core": ^7.10.4
     "@types/babel__core": 7.1.9
     "@types/rimraf": 3.0.0
+    axios: ^0.19.2
     eslint: ^7.3.1
     npm-run-all: ^4.1.5
     rimraf: ^3.0.2
     types: "workspace:*"
-    umi-request: ^1.3.5
   languageName: unknown
   linkType: soft
 
@@ -5507,6 +5516,7 @@ __metadata:
     "@types/rimraf": 3.0.0
     "@types/testing-library__jest-dom": 5.9.1
     "@types/universal-cookie": 2.2.0
+    axios: ^0.19.2
     clsx: ^1.1.1
     date-fns: ^2.14.0
     debounce-promise: ^3.1.2
@@ -5527,7 +5537,6 @@ __metadata:
     rimraf: ^3.0.2
     shared: "workspace:*"
     types: "workspace:*"
-    umi-request: ^1.3.5
     universal-cookie: ^4.0.3
     unstated-next: ^1.1.0
   languageName: unknown
@@ -6440,21 +6449,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"debug@npm:=3.1.0, debug@npm:~3.1.0":
+  version: 3.1.0
+  resolution: "debug@npm:3.1.0"
+  dependencies:
+    ms: 2.0.0
+  checksum: 1295acd5e0531761255661d325cd0a80ac8c5f6de8942a53bb23c2197ccb97526972de662ed0e5d9393be83f3428a298a6e7185ecb02f0da6282019cd2ffb4a8
+  languageName: node
+  linkType: hard
+
 "debug@npm:^3.1.0, debug@npm:^3.2.6":
   version: 3.2.6
   resolution: "debug@npm:3.2.6"
   dependencies:
     ms: ^2.1.1
   checksum: 619feb53b115f1a8341365b8aa58a8757e6632738587d4b61b25627b74891211cb20e31fdbea37fec766e575a60cf456f7a02d6f9eddfdcef80caa6a4b0fc042
-  languageName: node
-  linkType: hard
-
-"debug@npm:~3.1.0":
-  version: 3.1.0
-  resolution: "debug@npm:3.1.0"
-  dependencies:
-    ms: 2.0.0
-  checksum: 1295acd5e0531761255661d325cd0a80ac8c5f6de8942a53bb23c2197ccb97526972de662ed0e5d9393be83f3428a298a6e7185ecb02f0da6282019cd2ffb4a8
   languageName: node
   linkType: hard
 
@@ -8142,6 +8151,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"follow-redirects@npm:1.5.10":
+  version: 1.5.10
+  resolution: "follow-redirects@npm:1.5.10"
+  dependencies:
+    debug: =3.1.0
+  checksum: 6e58e02c31337b6b41ffc3d5f3d49920b7db428eddcf374537da00ef121fe473983e12d8557f4304287604168d3efcc288d1f009abaf4c9d61e5db0c0cee3c4a
+  languageName: node
+  linkType: hard
+
 "for-in@npm:^1.0.2":
   version: 1.0.2
   resolution: "for-in@npm:1.0.2"
@@ -9704,16 +9722,6 @@ fsevents@^1.2.7:
   version: 3.0.1
   resolution: "isobject@npm:3.0.1"
   checksum: b537a9ccdd8d40ec552fe7ff5db3731f1deb77581adf9beb8ae812f8d08acfa0e74b193159ac50fb01084d7ade06d114077f984e21b8340531241bf85be9a0ab
-  languageName: node
-  linkType: hard
-
-"isomorphic-fetch@npm:^2.2.1":
-  version: 2.2.1
-  resolution: "isomorphic-fetch@npm:2.2.1"
-  dependencies:
-    node-fetch: ^1.0.1
-    whatwg-fetch: ">=0.10.0"
-  checksum: a4174e332ae98fc93269162f1d8a3ee1f7255257d4eaeea5145d4068f64ac2dbff7e7f681889097238e1e009f7a74ba1a23ffd8ed967402777a32cca96204508
   languageName: node
   linkType: hard
 
@@ -13491,7 +13499,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"qs@npm:^6.5.1, qs@npm:^6.5.2, qs@npm:^6.9.1, qs@npm:^6.9.4":
+"qs@npm:^6.5.1, qs@npm:^6.5.2, qs@npm:^6.9.4":
   version: 6.9.4
   resolution: "qs@npm:6.9.4"
   checksum: beba62d1e1c66e9888cc08a488eb95771c252a92289a96bff4b767a49e4e7afe9487d7ee3269b856292d8281b855ac5eac927c2e77f845e407ee4fe54743fea7
@@ -14566,12 +14574,12 @@ fsevents@^1.2.7:
     "@babel/core": ^7.10.4
     "@types/babel__core": 7.1.9
     "@types/rimraf": 3.0.0
+    axios: ^0.19.2
     date-fns: ^2.14.0
     eslint: ^7.3.1
     npm-run-all: ^4.1.5
     rimraf: ^3.0.2
     types: "workspace:*"
-    umi-request: ^1.3.5
   languageName: unknown
   linkType: soft
 
@@ -14762,6 +14770,7 @@ fsevents@^1.2.7:
     "@types/webpack-dev-middleware": 3.7.1
     "@types/webpack-hot-client": 4.1.0
     "@types/webpack-hot-middleware": 2.25.3
+    axios: ^0.19.2
     business-hub: "workspace:*"
     cache-manager: ^3.3.0
     cache-manager-ioredis: ^2.0.0
@@ -14802,7 +14811,6 @@ fsevents@^1.2.7:
     supertest: ^4.0.2
     tsoa: 3.0.8
     types: "workspace:*"
-    umi-request: ^1.3.5
     webpack: ^4.43.0
     webpack-dev-middleware: ^3.7.2
     webpack-hot-client: ^4.1.2
@@ -14885,13 +14893,13 @@ fsevents@^1.2.7:
     "@types/eslint": 7.2.0
     "@types/react": 16.9.41
     "@types/rimraf": 3.0.0
+    axios: ^0.19.2
     debounce-promise: ^3.1.2
     eslint: ^7.3.1
     npm-run-all: ^4.1.5
     react: ^16.13.1
     rimraf: ^3.0.2
     types: "workspace:*"
-    umi-request: ^1.3.5
   languageName: unknown
   linkType: soft
 
@@ -16466,16 +16474,6 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"umi-request@npm:^1.3.5":
-  version: 1.3.5
-  resolution: "umi-request@npm:1.3.5"
-  dependencies:
-    isomorphic-fetch: ^2.2.1
-    qs: ^6.9.1
-  checksum: dffaf72881995ed3dff4e97400991a6a91c3baf90a9196227eb6dc1a25077dada556695bca957a353f8da5b56d135901c5622b1d567a061bec85bb19715957f9
-  languageName: node
-  linkType: hard
-
 "unicode-canonical-property-names-ecmascript@npm:^1.0.4":
   version: 1.0.4
   resolution: "unicode-canonical-property-names-ecmascript@npm:1.0.4"
@@ -17108,13 +17106,6 @@ fsevents@^1.2.7:
   dependencies:
     iconv-lite: 0.4.24
   checksum: 44e4276ad2c770d1eb8c5a49294b863c581ef4bc78a10ac6a73a7eba00b377bc53ae0501d7ffce29a2c051b6af5ebbbd135f1da7d8eb98097af2cf12f7b2c984
-  languageName: node
-  linkType: hard
-
-"whatwg-fetch@npm:>=0.10.0":
-  version: 3.2.0
-  resolution: "whatwg-fetch@npm:3.2.0"
-  checksum: 17ecf86ef5bca61031376dda7a71d73686b8e726d4e01515d586dfa165d9fed743c01759bb399b918c9ee9377f18d966ac4c007c28599e0f4fc3d15e1e273b7f
   languageName: node
   linkType: hard
 

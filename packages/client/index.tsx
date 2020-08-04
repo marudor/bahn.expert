@@ -6,12 +6,10 @@ import { loadableReady } from '@loadable/component';
 import { StorageContext } from 'shared/hooks/useStorage';
 import { ThemeProvider } from 'client/Common/container/ThemeContainer';
 import { ThemeWrap } from './ThemeWrap';
-import request from 'umi-request';
+import Axios from 'axios';
 import type { ComponentType } from 'react';
 // 15s timeout
-request.extendOptions({
-  timeout: 15000,
-});
+Axios.defaults.timeout = 15000;
 
 const storage = new ClientStorage();
 

@@ -1,5 +1,5 @@
 import { logger } from 'server/logger';
-import request from 'umi-request';
+import Axios from 'axios';
 import type { AP, WifiData } from 'types/Wifi';
 
 interface APWithTrain extends AP {
@@ -28,8 +28,8 @@ export async function fetchWifiData() {
   }
   try {
     logger.debug('Fetching WifiData');
-    const data: WifiData = (
-      await request.get(url, {
+    const data = (
+      await Axios.get<WifiData>(url, {
         headers: {
           Authorization: Buffer.from(`${username}:${password}`).toString(
             'base64'

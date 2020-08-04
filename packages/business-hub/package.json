@@ -11,8 +11,8 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ."
   },
   "dependencies": {
-    "types": "workspace:*",
-    "umi-request": "^1.3.5"
+    "axios": "^0.19.2",
+    "types": "workspace:*"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.4",

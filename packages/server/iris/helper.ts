@@ -1,15 +1,15 @@
-import { extend } from 'umi-request';
 import { parse } from 'date-fns';
 import { zonedTimeToUtc } from 'date-fns-tz';
+import Axios from 'axios';
 import type { Element } from 'libxmljs2';
 import type { Stop } from 'types/iris';
 
-export const noncdRequest = extend({
-  prefix: 'https://iris.noncd.db.de/iris-tts/timetable',
+export const noncdRequest = Axios.create({
+  baseURL: 'https://iris.noncd.db.de/iris-tts/timetable',
 });
 export const openDataRequest = process.env.TIMETABLES_OPEN_DATA_KEY
-  ? extend({
-      prefix: 'https://api.deutschebahn.com/timetables/v1',
+  ? Axios.create({
+      baseURL: 'https://api.deutschebahn.com/timetables/v1',
       headers: {
         Authorization: `Bearer ${process.env.TIMETABLES_OPEN_DATA_KEY}`,
       },

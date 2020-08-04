@@ -3,7 +3,7 @@ import { format, parse } from 'date-fns';
 import { logger } from 'server/logger';
 import { utcToZonedTime } from 'date-fns-tz';
 import { wagenreihung } from 'server/Reihung';
-import request from 'umi-request';
+import Axios from 'axios';
 
 export const WRCache = createNewCache<string, string[] | null>(
   3 * 60 * 60,
@@ -22,7 +22,7 @@ export const getWRLink = (trainNumber: string, date: number) => {
 async function fetchList() {
   logger.debug('Fetching Couch Sequence');
   try {
-    await request.get(getWRLink('1', Date.now()));
+    await Axios.get(getWRLink('1', Date.now()));
   } catch (e) {
     const tryThese = e.response?.data?.tryThese;
 
