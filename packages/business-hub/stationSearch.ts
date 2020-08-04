@@ -30,14 +30,13 @@ export async function stationSearch(
   searchTerm?: string
 ): Promise<BusinessHubStation[]> {
   if (!searchTerm) return [];
-  const result = await request.get<APIResult>(
-    '/public-transport-stations/v1/stop-places',
-    {
+  const result = (
+    await request.get<APIResult>('/public-transport-stations/v1/stop-places', {
       params: {
         name: searchTerm,
       },
-    }
-  );
+    })
+  ).data;
 
   return filterApiResult(result);
 }
@@ -46,15 +45,14 @@ export async function geoSearch(
   coordinates: BusinessHubCoordinates,
   radius: number = 3000
 ): Promise<BusinessHubStation[]> {
-  const result = await request.get<APIResult>(
-    '/public-transport-stations/v1/stop-places',
-    {
+  const result = (
+    await request.get<APIResult>('/public-transport-stations/v1/stop-places', {
       params: {
         ...coordinates,
         radius,
       },
-    }
-  );
+    })
+  ).data;
 
   return filterApiResult(result);
 }
@@ -62,9 +60,11 @@ export async function geoSearch(
 export const stationDetails = async (
   evaId: string
 ): Promise<DetailBusinessHubStation> => {
-  const detailsResult = await request.get<DetailsApiResult>(
-    `/public-transport-stations/v1/stop-places/${evaId}`
-  );
+  const detailsResult = (
+    await request.get<DetailsApiResult>(
+      `/public-transport-stations/v1/stop-places/${evaId}`
+    )
+  ).data;
 
   const { _embedded, _links, name, ...relevantDetails } = detailsResult;
 

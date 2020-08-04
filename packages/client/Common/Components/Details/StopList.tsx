@@ -5,10 +5,10 @@ import { makeStyles } from '@material-ui/core';
 import { Stop } from 'client/Common/Components/Details/Stop';
 import { useContext, useEffect, useMemo } from 'react';
 import clsx from 'clsx';
-import type { ResponseError } from 'umi-request';
+import type { AxiosError } from 'axios';
 
-function getErrorText(error: ResponseError) {
-  if (error.type === 'Timeout') return 'Timeout, bitte neuladen.';
+function getErrorText(error: AxiosError) {
+  if (error.code === 'ECONNABORTED') return 'Timeout, bitte neuladen.';
   if (error.response) {
     if (error.response.status === 404) {
       return 'Unbekannter Zug';

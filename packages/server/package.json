@@ -20,6 +20,7 @@
     "@loadable/server": "^5.13.1",
     "@sentry/node": "^5.19.0",
     "@timberio/node": "^0.35.0",
+    "axios": "^0.19.2",
     "business-hub": "workspace:*",
     "cache-manager": "^3.3.0",
     "cache-manager-ioredis": "^2.0.0",
@@ -52,8 +53,7 @@
     "sbb": "workspace:*",
     "shared": "workspace:*",
     "tsoa": "3.0.8",
-    "types": "workspace:*",
-    "umi-request": "^1.3.5"
+    "types": "workspace:*"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.4",
