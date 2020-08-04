@@ -1,6 +1,10 @@
 import { AbfahrtenList } from 'client/Abfahrten/Components/AbfahrtenList';
-import { RegionalDetailRoute } from 'client/Regional/Components/RegionalDetailsRoute';
 import { RegionalMainPage } from 'client/Regional/Components/MainPage';
+import loadable from '@loadable/component';
+
+const DetailsRoute = loadable(() =>
+  import('../Common/Components/Details/DetailsRoute')
+);
 
 export const routes = [
   {
@@ -10,7 +14,10 @@ export const routes = [
   },
   {
     path: '/regional/details/:train/:initialDeparture*',
-    component: RegionalDetailRoute,
+    // eslint-disable-next-line react/display-name
+    component: (props: any) => (
+      <DetailsRoute {...props} urlPrefix="/regional/" />
+    ),
   },
   {
     path: '/regional/:station',
