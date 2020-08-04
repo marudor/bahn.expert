@@ -1,7 +1,6 @@
 import {
   Body,
   Controller,
-  Deprecated,
   Get,
   Hidden,
   OperationId,
@@ -23,7 +22,6 @@ import makeRequest from 'server/HAFAS/Request';
 import PositionForTrain from 'server/HAFAS/PositionForTrain';
 import SearchOnTrip from 'server/HAFAS/SearchOnTrip';
 import StationBoard from 'server/HAFAS/StationBoard';
-import TrainSearch from 'server/HAFAS/TrainSearch';
 import TripSearch from 'server/HAFAS/TripSearch';
 import type { AllowedHafasProfile, HafasStation } from 'types/HAFAS';
 import type {
@@ -49,7 +47,6 @@ import type {
   RoutingResult,
   SingleRoute,
 } from 'types/routing';
-import type { TrainSearchResult } from 'types/HAFAS/Details';
 import type { TripSearchOptions } from 'types/HAFAS/TripSearch';
 
 interface SearchOnTripBody {
@@ -193,57 +190,6 @@ export class HafasController extends Controller {
     );
   }
 
-  /**
-   * Use JourneyMatch instead
-   */
-  @Deprecated()
-  @Response(404, 'Train not found')
-  @Get('/trainSearch/{trainName}')
-  @Tags('HAFAS V1')
-  async trainSearch(
-    trainName: string,
-    /**
-     * Unix Time (ms)
-     */
-    @Query() date?: number,
-    @Query() profile?: AllowedHafasProfile
-  ): Promise<TrainSearchResult> {
-    const foundTrain = await TrainSearch(trainName, date, profile);
-
-    if (!foundTrain) {
-      throw {
-        status: 404,
-      };
-    }
-
-    return foundTrain;
-  }
-
-  /**
-   * Use POST Method
-   */
-  @Deprecated()
-  @Get('/journeyMatch/{trainName}')
-  @Tags('HAFAS V1')
-  journeyMatch(
-    @Request() ctx: Context,
-    trainName: string,
-    /**
-     * Unix Time (ms)
-     */
-    @Query() date?: number,
-    @Query() profile?: AllowedHafasProfile
-  ): Promise<ParsedJourneyMatchResponse[]> {
-    return JourneyMatch(
-      {
-        trainName,
-        initialDepartureDate: date,
-      },
-      profile,
-      ctx.query.raw
-    );
-  }
-
   @Post('/journeyMatch')
   @Tags('HAFAS V1')
   @OperationId('JourneyMatch')
@@ -296,20 +242,6 @@ export class HafasController extends Controller {
   @Post('/tripSearch')
   @Tags('HAFAS V1')
   tripSearch(
-    @Request() ctx: Context,
-    @Body() body: TripSearchOptions,
-    @Query() profile?: AllowedHafasProfile
-  ): Promise<RoutingResult> {
-    return TripSearch(body, profile, ctx.query.raw);
-  }
-
-  /**
-   * Use /TripSearch
-   */
-  @Deprecated()
-  @Post('/route')
-  @Tags('HAFAS V1')
-  route(
     @Request() ctx: Context,
     @Body() body: TripSearchOptions,
     @Query() profile?: AllowedHafasProfile

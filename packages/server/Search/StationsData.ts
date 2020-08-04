@@ -45,7 +45,6 @@ const searchableStations = new Fuse(stationData, {
   minMatchCharLength: 2,
   location: 0,
   distance: 10,
-  maxPatternLength: 30,
   keys: ['name'],
 });
 
