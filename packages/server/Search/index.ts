@@ -56,13 +56,20 @@ export default async (
   const searchMethod = getSearchMethod(type);
 
   try {
-    let result = await searchMethod(searchTerm);
+    let result: Station[] = await searchMethod(searchTerm);
 
     if (type !== StationSearchType.stationsData && result.length === 0) {
       // this may be a station named from iris - lets try that first
       result = await getSearchMethod(StationSearchType.stationsData)(
         searchTerm
       );
+    }
+
+    const exactMatch = result.find(
+      (s) => s.title.toLowerCase() === rawSearchTerm.toLowerCase()
+    );
+    if (exactMatch) {
+      result = [exactMatch, ...result.filter((s) => s !== exactMatch)];
     }
 
     const ds100Station = await ds100Search;
