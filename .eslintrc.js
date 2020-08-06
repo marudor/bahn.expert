@@ -4,6 +4,9 @@ module.exports = {
   env: { browser: true, node: true, es6: true },
   globals: { SERVER: false, M: false, MF: false },
   settings: {
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
     'import/resolver': 'webpack',
     react: { version: 'detect' },
   },
@@ -39,6 +42,20 @@ module.exports = {
       rules: {
         'import/no-default-export': 2,
         'no-process-env': 2,
+      },
+    },
+    {
+      files: ['packages/app/**'],
+      settings: {
+        'import/resolver': {
+          node: {
+            extensions: ['.ts', '.tsx', '.js', '.jsx'],
+          },
+        },
+      },
+      plugins: ['react-native', '@react-native-community'],
+      rules: {
+        'react-native/no-inline-styles': 1,
       },
     },
   ],

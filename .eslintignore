@@ -1,6 +1,7 @@
 flow-typed/**
 bahntests/**
 public/**
+packages/app/node_modules/**
 !.babelrc.js
 !.babelrc.server.js
 !.eslintrc.js
