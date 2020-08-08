@@ -2,7 +2,7 @@ import { Header } from './Components/Header';
 import { makeStyles } from '@material-ui/core';
 import { renderRoutes } from 'react-router-config';
 import { routes } from './routes';
-import { RoutingFavProvider } from 'client/Routing/container/RoutingFavContainer';
+import { RoutingFavProvider } from 'client/Routing/provider/RoutingFavProvider';
 
 const useStyles = makeStyles({
   wrap: {

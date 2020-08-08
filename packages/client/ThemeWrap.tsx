@@ -6,8 +6,8 @@ import {
 } from '@material-ui/core';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { ReactNode, useMemo } from 'react';
-import { ThemeContainer } from 'client/Common/container/ThemeContainer';
 import { ThemeHeaderTags } from 'client/Common/Components/ThemeHeaderTags';
+import { useTheme } from 'client/Common/provider/ThemeProvider';
 import DateFnsUtils from '@date-io/date-fns';
 import deLocale from 'date-fns/locale/de';
 import type { SheetsRegistry } from 'jss';
@@ -23,7 +23,7 @@ export const ThemeWrap = ({
   sheetsRegistry,
   generateClassName,
 }: Props) => {
-  const { theme } = ThemeContainer.useContainer();
+  const { theme } = useTheme();
 
   const classNameGenerator = useMemo(
     () => generateClassName || createGenerateClassName(),

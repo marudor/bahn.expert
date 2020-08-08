@@ -1,9 +1,13 @@
 import { CommonConfig } from 'client/Common/config';
-import { createContainer } from 'unstated-next';
 import { ReactNode, useCallback, useState } from 'react';
 import { useWebStorage } from 'client/useWebStorage';
+import constate from 'constate';
 
-const useCommonConfig = (initialConfig: CommonConfig) => {
+const useCommonConfigInternal = ({
+  initialConfig,
+}: {
+  initialConfig: CommonConfig;
+}) => {
   const [config, setConfig] = useState(initialConfig);
   const storage = useWebStorage();
   const setCommonConfigKey = useCallback(
@@ -20,9 +24,6 @@ const useCommonConfig = (initialConfig: CommonConfig) => {
   };
 };
 
-// @ts-expect-error, complains about missing default
-export const CommonConfigContainer = createContainer(useCommonConfig);
-
 interface Props {
   children: ReactNode;
 }
@@ -37,6 +38,16 @@ const migrateOldConfig = (storage: ReturnType<typeof useWebStorage>) => {
   }
 };
 
+export const [
+  InnerCommonConfigProvider,
+  useCommonConfig,
+  useSetCommonConfig,
+] = constate(
+  useCommonConfigInternal,
+  (v) => v.config,
+  (v) => v.setCommonConfigKey
+);
+
 export const CommonConfigProvider = ({ children }: Props) => {
   const storage = useWebStorage();
   migrateOldConfig(storage);
@@ -50,8 +61,8 @@ export const CommonConfigProvider = ({ children }: Props) => {
   };
 
   return (
-    <CommonConfigContainer.Provider initialState={savedConfig}>
+    <InnerCommonConfigProvider initialConfig={savedConfig}>
       {children}
-    </CommonConfigContainer.Provider>
+    </InnerCommonConfigProvider>
   );
 };

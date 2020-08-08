@@ -1,6 +1,6 @@
-import { AbfahrtenProvider } from 'client/Abfahrten/container/AbfahrtenContainer';
-import { AuslastungContainer } from './container/AuslastungContainer';
-import { FavProvider } from './container/FavContainer';
+import { AbfahrtenProvider } from 'client/Abfahrten/provider/AbfahrtenProvider';
+import { AuslastungsProvider } from 'client/Abfahrten/provider/AuslastungsProvider';
+import { FavProvider } from './provider/FavProvider';
 import { Header } from './Components/Header';
 import { MainWrap } from 'client/Common/Components/MainWrap';
 import { MostUsed } from 'client/Abfahrten/Components/MostUsed';
@@ -13,7 +13,7 @@ export const BahnhofsAbfahrten = () => {
   const noHeader = useQuery().noHeader;
 
   return (
-    <AuslastungContainer.Provider>
+    <AuslastungsProvider>
       <AbfahrtenProvider urlPrefix="/" fetchApiUrl="/api/iris/v1/abfahrten">
         <FavProvider storageKey="favs" MostUsedComponent={MostUsed}>
           <MainWrap noHeader={Boolean(noHeader)}>
@@ -23,7 +23,7 @@ export const BahnhofsAbfahrten = () => {
           </MainWrap>
         </FavProvider>
       </AbfahrtenProvider>
-    </AuslastungContainer.Provider>
+    </AuslastungsProvider>
   );
 };
 // eslint-disable-next-line import/no-default-export

@@ -1,7 +1,7 @@
 import { BaseAbfahrt } from './BaseAbfahrt';
-import { SelectedDetailContainer } from 'client/Abfahrten/container/SelectedDetailContainer';
 import { useMemo } from 'react';
-import { useWings } from 'client/Abfahrten/container/AbfahrtenContainer/useWings';
+import { useSelectedDetail } from 'client/Abfahrten/provider/SelectedDetailProvider';
+import { useWings } from 'client/Abfahrten/provider/AbfahrtenProvider/hooks';
 import type { Abfahrt as AbfahrtType } from 'types/iris';
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const Abfahrt = ({ abfahrt }: Props) => {
-  const { selectedDetail } = SelectedDetailContainer.useContainer();
+  const selectedDetail = useSelectedDetail();
   const wings = useWings(abfahrt);
 
   const sameTrainWing = useMemo(

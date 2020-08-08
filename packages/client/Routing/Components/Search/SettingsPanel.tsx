@@ -20,9 +20,10 @@ import {
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { ChangeEvent, useCallback, useMemo } from 'react';
 import {
-  RoutingConfigContainer,
   RoutingSettings,
-} from 'client/Routing/container/RoutingConfigContainer';
+  useRoutingConfigActions,
+  useRoutingSettings,
+} from 'client/Routing/provider/RoutingConfigProvider';
 
 const useStyles = makeStyles({
   accordion: {
@@ -52,17 +53,18 @@ const useStyles = makeStyles({
 
 export const SettingsPanel = () => {
   const classes = useStyles();
-  const { settings, updateSetting } = RoutingConfigContainer.useContainer();
+  const settings = useRoutingSettings();
+  const { updateSettings } = useRoutingConfigActions();
   const handleInputChange = useCallback(
     (key: keyof RoutingSettings) => (e: ChangeEvent<any>) =>
-      updateSetting(key, e.currentTarget.value),
-    [updateSetting]
+      updateSettings(key, e.currentTarget.value),
+    [updateSettings]
   );
   const handleSwitchChange = useCallback(
     (key: keyof RoutingSettings) => (_: any, checked: boolean) => {
-      updateSetting(key, checked);
+      updateSettings(key, checked);
     },
-    [updateSetting]
+    [updateSettings]
   );
 
   const maxChangesBadeContent = useMemo(

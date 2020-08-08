@@ -1,9 +1,9 @@
-import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
 import { Delete } from '@material-ui/icons';
 import { IconButton, makeStyles, Paper } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import { useAbfahrtenUrlPrefix } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useCallback } from 'react';
-import { useUnfav } from 'client/Abfahrten/container/FavContainer';
+import { useUnfav } from 'client/Abfahrten/provider/FavProvider';
 import clsx from 'clsx';
 import type { MouseEvent, ReactNode } from 'react';
 import type { Station } from 'types/station';
@@ -85,7 +85,7 @@ export const FavEntry = ({
   noDelete,
   'data-testid': testid = 'favEntry',
 }: Props) => {
-  const { urlPrefix } = AbfahrtenConfigContainer.useContainer();
+  const urlPrefix = useAbfahrtenUrlPrefix();
   const unfav = useUnfav();
   const deleteFav = useCallback(
     (e: MouseEvent) => {

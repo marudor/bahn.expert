@@ -24,7 +24,6 @@ export const abfahrtenConfigSanitize: AbfahrtenConfigSanitize = {
   lookahead: (value) => numberCheck(value, 150).toString(),
   lookbehind: (value) => numberCheck(value, 0).toString(),
   searchType: searchTypeCheck,
-  showSupersededMessages: booleanCheck,
 };
 
 export const commonConfigSanitize: CommonConfigSanitize = {

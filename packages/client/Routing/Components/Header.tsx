@@ -1,15 +1,18 @@
 import { BaseHeader } from 'client/Common/Components/BaseHeader';
 import { IconButton, makeStyles } from '@material-ui/core';
-import { RoutingConfigContainer } from 'client/Routing/container/RoutingConfigContainer';
 import {
   RoutingFav,
-  RoutingFavContainer,
   routingFavKey,
   RoutingFavStation,
-  useRoutingFavAction,
-} from 'client/Routing/container/RoutingFavContainer';
+  useRoutingFavActions,
+  useRoutingFavs,
+} from 'client/Routing/provider/RoutingFavProvider';
 import { Star, StarBorder } from '@material-ui/icons';
 import { useCallback, useMemo } from 'react';
+import {
+  useRoutingConfig,
+  useRoutingSettings,
+} from 'client/Routing/provider/RoutingConfigProvider';
 import type { Station } from 'types/station';
 
 function stripStationToRoutingFavStation(station: Station): RoutingFavStation {
@@ -43,14 +46,10 @@ const useStyles = makeStyles((theme) => ({
 
 const InnerHeader = () => {
   const classes = useStyles();
-  const {
-    start,
-    destination,
-    via,
-    settings,
-  } = RoutingConfigContainer.useContainer();
-  const { favs } = RoutingFavContainer.useContainer();
-  const { fav, unfav } = useRoutingFavAction();
+  const { start, destination, via } = useRoutingConfig();
+  const settings = useRoutingSettings();
+  const favs = useRoutingFavs();
+  const { fav, unfav } = useRoutingFavActions();
   const currentFav = useMemo<RoutingFav | undefined>(
     () =>
       start &&

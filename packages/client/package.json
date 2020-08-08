@@ -17,6 +17,7 @@
     "@material-ui/pickers": "^3.2.10",
     "axios": "^0.19.2",
     "clsx": "^1.1.1",
+    "constate": "^2.0.0",
     "date-fns": "^2.15.0",
     "debounce-promise": "^3.1.2",
     "deepmerge": "^4.2.2",
@@ -32,8 +33,7 @@
     "react-router-dom": "^5.2.0",
     "shared": "workspace:*",
     "types": "workspace:*",
-    "universal-cookie": "^4.0.3",
-    "unstated-next": "^1.1.0"
+    "universal-cookie": "^4.0.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",

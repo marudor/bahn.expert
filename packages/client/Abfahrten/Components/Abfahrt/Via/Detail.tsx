@@ -1,7 +1,7 @@
-import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
 import { isHbf } from 'client/Abfahrten/Components/Abfahrt/Via';
 import { ReactNode, useMemo } from 'react';
 import { StationLink } from 'client/Common/Components/StationLink';
+import { useAbfahrtenUrlPrefix } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useStyles } from './Normal';
 import clsx from 'clsx';
 import type { Stop } from 'types/iris';
@@ -11,7 +11,7 @@ interface Props {
 }
 export const DetailVia = ({ stops }: Props) => {
   const classes = useStyles();
-  const urlPrefix = AbfahrtenConfigContainer.useContainer().urlPrefix;
+  const urlPrefix = useAbfahrtenUrlPrefix();
 
   const stopsToRender = useMemo(() => {
     const stopsToRender: ReactNode[] = [];

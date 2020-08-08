@@ -1,7 +1,7 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
-import { createContainer } from 'unstated-next';
 import { useCallback, useMemo, useState } from 'react';
 import { useWebStorage } from 'client/useWebStorage';
+import constate from 'constate';
 import type { Station } from 'types/station';
 import type { SyntheticEvent } from 'react';
 
@@ -12,7 +12,15 @@ export interface RoutingSettings {
   hafasProfile: AllowedHafasProfile;
 }
 
-const useRoutingSettings = (initialSettings: RoutingSettings) => {
+const useRoutingConfigInternal = ({
+  initialSettings,
+}: {
+  initialSettings: RoutingSettings;
+}) => {
+  const [start, setStart] = useState<Station>();
+  const [destination, setDestination] = useState<Station>();
+  const [via, setVia] = useState<Station[]>([]);
+  const [date, setDate] = useState<Date | null>(null);
   const [settings, setSettings] = useState<RoutingSettings>(initialSettings);
   const storage = useWebStorage();
 
@@ -26,18 +34,6 @@ const useRoutingSettings = (initialSettings: RoutingSettings) => {
     },
     [storage]
   );
-
-  return {
-    settings,
-    updateSetting,
-  };
-};
-
-const useRoutingConfig = (initialState: RoutingSettings) => {
-  const [start, setStart] = useState<Station>();
-  const [destination, setDestination] = useState<Station>();
-  const [via, setVia] = useState<Station[]>([]);
-  const [date, setDate] = useState<Date | null>(null);
 
   const updateVia = useCallback((index: number, station?: Station) => {
     setVia((oldVia) => {
@@ -74,9 +70,31 @@ const useRoutingConfig = (initialState: RoutingSettings) => {
     via,
     updateVia,
     swapStartDestination,
-    ...useRoutingSettings(initialState),
+    settings,
+    updateSetting,
   };
 };
 
-// @ts-expect-error This works, we always supply a value
-export const RoutingConfigContainer = createContainer(useRoutingConfig);
+export const [
+  RoutingConfigProvider,
+  useRoutingConfig,
+  useRoutingSettings,
+  useRoutingConfigActions,
+] = constate(
+  useRoutingConfigInternal,
+  (v) => ({
+    start: v.start,
+    destination: v.destination,
+    date: v.date,
+    via: v.via,
+  }),
+  (v) => v.settings,
+  (v) => ({
+    setStart: v.setStart,
+    setDestination: v.setDestination,
+    setDate: v.setDate,
+    updateVia: v.updateVia,
+    swapStartDestination: v.swapStartDestination,
+    updateSettings: v.updateSetting,
+  })
+);

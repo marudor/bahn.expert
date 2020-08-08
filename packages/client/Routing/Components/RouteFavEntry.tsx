@@ -6,8 +6,8 @@ import { makeStyles, Paper } from '@material-ui/core';
 import {
   RoutingFav,
   routingFavKey,
-  useRoutingFavAction,
-} from 'client/Routing/container/RoutingFavContainer';
+  useRoutingFavActions,
+} from 'client/Routing/provider/RoutingFavProvider';
 import { SyntheticEvent, useCallback } from 'react';
 
 const useStyles = makeStyles((theme) => ({
@@ -48,7 +48,7 @@ interface Props {
 }
 export const RouteFavEntry = ({ fav }: Props) => {
   const classes = useStyles();
-  const { unfav } = useRoutingFavAction();
+  const { unfav } = useRoutingFavActions();
   const removeFav = useCallback(
     (e: SyntheticEvent) => {
       e.stopPropagation();

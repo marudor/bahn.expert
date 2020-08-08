@@ -1,9 +1,9 @@
 import { abfahrtenConfigSanitize } from 'client/util';
-import { createContainer } from 'unstated-next';
 import { ReactNode, useCallback, useState } from 'react';
 import { StationSearchType } from 'types/station';
 import { useQuery } from 'client/Common/hooks/useQuery';
 import { useWebStorage } from 'client/useWebStorage';
+import constate from 'constate';
 import type { AbfahrtenConfig } from 'client/Common/config';
 
 export interface Filter {
@@ -63,27 +63,53 @@ const useConfig = (initialConfig: AbfahrtenConfig) => {
   };
 };
 
-export interface AbfahrtenContainerValue {
+export interface AbfahrtenConfigProviderValue {
   filter: Filter;
   config: AbfahrtenConfig;
   fetchApiUrl: string;
   urlPrefix: string;
 }
 
-const useAbfahrtenConfig = (initialConfig: AbfahrtenContainerValue) => {
-  const filterConfig = useFilter(initialConfig.filter);
-  const config = useConfig(initialConfig.config);
+const useAbfahrtenConfigInner = ({
+  initialState,
+}: {
+  initialState: AbfahrtenConfigProviderValue;
+}) => {
+  const filterConfig = useFilter(initialState.filter);
+  const config = useConfig(initialState.config);
 
   return {
-    ...filterConfig,
+    filterConfig,
     ...config,
-    fetchApiUrl: initialConfig.fetchApiUrl,
-    urlPrefix: initialConfig.urlPrefix,
+    fetchApiUrl: initialState.fetchApiUrl,
+    urlPrefix: initialState.urlPrefix,
   };
 };
 
-// @ts-ignore works, complains about missing default
-export const AbfahrtenConfigContainer = createContainer(useAbfahrtenConfig);
+export const [
+  InnerAbfahrtenConfigProvider,
+  useAbfahrtenConfig,
+  useAbfahrtenFetchAPIUrl,
+  useAbfahrtenUrlPrefix,
+  useAbfahrtenModalToggle,
+  useAbfahrtenFilterOpen,
+  useAbfahrtenConfigOpen,
+  useAbfahrtenFilter,
+  useAbfahrtenSetConfig,
+] = constate(
+  useAbfahrtenConfigInner,
+  (v) => v.config,
+  (v) => v.fetchApiUrl,
+  (v) => v.urlPrefix,
+  (v) => ({
+    setFilterOpen: v.filterConfig.setFilterOpen,
+    setConfigOpen: v.setConfigOpen,
+  }),
+  (v) => v.filterConfig.filterOpen,
+  (v) => v.configOpen,
+  (v) => v.filterConfig,
+  (v) => v.setConfigKey
+);
 
 const migrateOldConfig = (storage: ReturnType<typeof useWebStorage>) => {
   const oldConfig = storage.get<AbfahrtenConfig>('config');
@@ -110,7 +136,7 @@ export const AbfahrtenConfigProvider = ({
   const query = useQuery();
   const savedFilter = storage.get(filterCookieName);
 
-  const savedConfig: AbfahrtenContainerValue = {
+  const savedConfig: AbfahrtenConfigProviderValue = {
     filter: {
       onlyDepartures: Boolean(query.onlyDepartures),
       products: Array.isArray(savedFilter) ? savedFilter : [],
@@ -131,8 +157,8 @@ export const AbfahrtenConfigProvider = ({
   };
 
   return (
-    <AbfahrtenConfigContainer.Provider initialState={savedConfig}>
+    <InnerAbfahrtenConfigProvider initialState={savedConfig}>
       {children}
-    </AbfahrtenConfigContainer.Provider>
+    </InnerAbfahrtenConfigProvider>
   );
 };

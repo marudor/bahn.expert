@@ -1,9 +1,12 @@
-import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
-import { AbfahrtenContainer } from 'client/Abfahrten/container/AbfahrtenContainer';
 import { BaseHeader } from 'client/Common/Components/BaseHeader';
 import { ExtraMenu } from './ExtraMenu';
 import { StationSearch } from 'client/Common/Components/StationSearch';
+import {
+  useAbfahrtenConfig,
+  useAbfahrtenUrlPrefix,
+} from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useCallback, useEffect, useState } from 'react';
+import { useCurrentAbfahrtenStation } from 'client/Abfahrten/provider/AbfahrtenProvider';
 import { useHistory } from 'react-router';
 import type { AllowedHafasProfile } from 'types/HAFAS';
 import type { Station } from 'types/station';
@@ -16,11 +19,9 @@ interface Props {
 }
 
 export const Header = ({ profile }: Props) => {
-  const { currentStation } = AbfahrtenContainer.useContainer();
-  const {
-    config: { searchType },
-    urlPrefix,
-  } = AbfahrtenConfigContainer.useContainer();
+  const currentStation = useCurrentAbfahrtenStation();
+  const { searchType } = useAbfahrtenConfig();
+  const urlPrefix = useAbfahrtenUrlPrefix();
   const history = useHistory();
   const [currentEnteredStation, setCurrentEnteredStation] = useState(
     currentStation

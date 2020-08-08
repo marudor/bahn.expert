@@ -1,5 +1,5 @@
-import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
 import { DetailVia } from 'client/Abfahrten/Components/Abfahrt/Via/Detail';
+import { InnerAbfahrtenConfigProvider } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { render } from 'client/__tests__/testHelper';
 
 describe('DetailVia', () => {
@@ -30,12 +30,14 @@ describe('DetailVia', () => {
         stops: mockStops,
       },
       {
-        container: [
+        provider: [
           {
-            ...AbfahrtenConfigContainer,
+            Provider: InnerAbfahrtenConfigProvider,
             initialState: {
-              filter: {},
-              config: {},
+              initialState: {
+                filter: {},
+                config: {},
+              },
             },
           },
         ],
