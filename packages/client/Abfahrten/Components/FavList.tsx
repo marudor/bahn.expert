@@ -1,15 +1,18 @@
 import {
-  AbfahrtenContainer,
   AbfahrtenError,
-} from 'client/Abfahrten/container/AbfahrtenContainer';
-import { FavContainer } from 'client/Abfahrten/container/FavContainer';
+  useAbfahrtenError,
+} from 'client/Abfahrten/provider/AbfahrtenProvider';
 import { FavEntry, FavEntryDisplay } from './FavEntry';
-import { HeaderTagContainer } from 'client/Common/container/HeaderTagContainer';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 import { MostUsed } from './MostUsed';
 import { ReactNode, useEffect, useMemo, useState } from 'react';
 import { Redirect, StaticRouterContext } from 'react-router';
+import {
+  useFavs,
+  useMostUsedComponent,
+} from 'client/Abfahrten/provider/FavProvider';
+import { useHeaderTagsActions } from 'client/Common/provider/HeaderTagProvider';
 import { Zugsuche } from 'client/Common/Components/Zugsuche';
 import type { Station } from 'types/station';
 
@@ -50,7 +53,8 @@ interface Props {
 
 export const FavList = ({ staticContext, children }: Props) => {
   const classes = useStyles();
-  const { favs, MostUsedComponent } = FavContainer.useContainer();
+  const favs = useFavs();
+  const MostUsedComponent = useMostUsedComponent();
   const sortedFavs = useMemo(() => {
     const values: Station[] = Object.values(favs);
 
@@ -58,11 +62,15 @@ export const FavList = ({ staticContext, children }: Props) => {
       .sort((a, b) => (a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1))
       .map((fav) => <FavEntry key={fav.id} fav={fav} />);
   }, [favs]);
-  const { error } = AbfahrtenContainer.useContainer();
+  const error = useAbfahrtenError();
   const [savedError] = useState(error);
-  const { resetTitleAndDescription } = HeaderTagContainer.useContainer();
+  const { updateTitle, updateDescription } = useHeaderTagsActions();
 
-  useEffect(resetTitleAndDescription, [resetTitleAndDescription]);
+  useEffect(() => {
+    updateTitle();
+    updateDescription();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <main className={classes.wrap}>

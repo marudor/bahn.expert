@@ -11,6 +11,12 @@ module.exports = {
     react: { version: 'detect' },
   },
   rules: {
+    'react-hooks/exhaustive-deps': [
+      'warn',
+      {
+        additionalHooks: 'useWebStorage',
+      },
+    ],
     'prettier/prettier': 0,
     'react/react-in-jsx-scope': 0,
     'require-await': 0,

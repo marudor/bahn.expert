@@ -2,9 +2,9 @@ import 'leaflet/dist/leaflet.css';
 import { ActivePolyline } from 'client/Map/Components/ActivePolyline';
 import { makeStyles } from '@material-ui/core';
 import { Map, TileLayer, Viewport } from 'react-leaflet';
-import { MapContainer } from 'client/Map/container/MapContainer';
 import { MapSettings } from 'client/Map/Components/MapSettings';
 import { Positions } from 'client/Map/Components/Positions';
+import { useMapProvider } from 'client/Map/provider/MapProvider';
 import { useQuery } from 'client/Common/hooks/useQuery';
 // @ts-ignore
 import icon from 'leaflet/dist/images/marker-icon.png';
@@ -37,7 +37,7 @@ const useStyles = makeStyles({
 export const TrainMap = () => {
   const classes = useStyles();
   const query = useQuery();
-  const { setActiveJourney } = MapContainer.useContainer();
+  const { setActiveJourney } = useMapProvider();
 
   return (
     <Map

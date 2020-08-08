@@ -1,4 +1,4 @@
-import { MapContainer } from 'client/Map/container/MapContainer';
+import { MapProvider } from 'client/Map/provider/MapProvider';
 import { NoSsr } from '@material-ui/core';
 import loadable from '@loadable/component';
 
@@ -6,9 +6,9 @@ const LazyTrainMap = loadable(() => import('./Components/TrainMap'));
 
 export const Map = () => (
   <NoSsr>
-    <MapContainer.Provider>
+    <MapProvider>
       <LazyTrainMap />
-    </MapContainer.Provider>
+    </MapProvider>
   </NoSsr>
 );
 // eslint-disable-next-line import/no-default-export

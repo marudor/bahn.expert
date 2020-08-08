@@ -1,15 +1,15 @@
 import { AllowedHafasProfile, ParsedPolyline } from 'types/HAFAS';
-import { createContainer } from 'unstated-next';
 import { format } from 'date-fns';
+import { ParsedJourneyCourseResponse } from 'types/HAFAS/JourneyCourse';
+import {
+  ParsedJourneyGeoPosResponse,
+  SingleParsedJourneyGeoPos,
+} from 'types/HAFAS/JourneyGeoPos';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useQuery } from 'client/Common/hooks/useQuery';
 import { useToggleState } from 'client/Common/hooks/useToggleState';
 import Axios from 'axios';
-import type { ParsedJourneyCourseResponse } from 'types/HAFAS/JourneyCourse';
-import type {
-  ParsedJourneyGeoPosResponse,
-  SingleParsedJourneyGeoPos,
-} from 'types/HAFAS/JourneyGeoPos';
+import constate from 'constate';
 
 function useMapDefaults() {
   const query = useQuery();
@@ -172,4 +172,4 @@ function useMap() {
   };
 }
 
-export const MapContainer = createContainer(useMap);
+export const [MapProvider, useMapProvider] = constate(useMap);

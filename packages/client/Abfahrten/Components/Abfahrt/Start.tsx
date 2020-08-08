@@ -1,10 +1,13 @@
-import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
 import { Auslastung } from 'client/Abfahrten/Components/Abfahrt/Auslastung';
 import { DetailsLink } from 'client/Common/Components/Details/DetailsLink';
 import { makeStyles } from '@material-ui/core';
 import { Substitute } from './Substitute';
 import { TravelynxLink } from 'client/Common/Components/CheckInLink/TravelynxLink';
 import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
+import {
+  useAbfahrtenConfig,
+  useAbfahrtenUrlPrefix,
+} from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
 
 const useStyles = makeStyles((theme) => ({
   wrap: {
@@ -28,10 +31,8 @@ const useStyles = makeStyles((theme) => ({
 
 export const Start = () => {
   const classes = useStyles();
-  const {
-    urlPrefix,
-    config: { lineAndNumber },
-  } = AbfahrtenConfigContainer.useContainer();
+  const { lineAndNumber } = useAbfahrtenConfig();
+  const urlPrefix = useAbfahrtenUrlPrefix();
   const { abfahrt, detail } = useAbfahrt();
 
   return (

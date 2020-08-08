@@ -1,6 +1,6 @@
 import { AbfahrtContext } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import { Auslastung } from 'client/Abfahrten/Components/Abfahrt/Auslastung';
-import { AuslastungContainer } from 'client/Abfahrten/container/AuslastungContainer';
+import { AuslastungsProvider } from 'client/Abfahrten/provider/AuslastungsProvider';
 import { render } from 'client/__tests__/testHelper';
 import { waitForElementToBeRemoved } from '@testing-library/react';
 import mockAbfahrt from './__fixtures__/mockAbfahrt.json';
@@ -11,8 +11,12 @@ describe('Auslastung', () => {
       Auslastung,
       { abfahrt: mockAbfahrt },
       {
-        container: [
-          AuslastungContainer,
+        provider: [
+          {
+            Provider: AuslastungsProvider,
+          },
+        ],
+        context: [
           {
             ...AbfahrtContext,
             initialState: { abfahrt: mockAbfahrt, detail: false },

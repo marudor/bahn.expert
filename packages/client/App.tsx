@@ -1,11 +1,11 @@
-import { CommonConfigProvider } from 'client/Common/container/CommonConfigContainer';
-import { HeaderTagContainer } from 'client/Common/container/HeaderTagContainer';
+import { CommonConfigProvider } from 'client/Common/provider/CommonConfigProvider';
+import { HeaderTagProvider } from 'client/Common/provider/HeaderTagProvider';
 import { Loading } from 'client/Common/Components/Loading';
 import { makeStyles } from '@material-ui/core';
 import { Navigation } from 'client/Common/Components/Navigation';
-import { ReihungContainer } from 'client/Common/container/ReihungContainer';
+import { ReihungenProvider } from 'client/Common/provider/ReihungenProvider';
 import { Route, Switch } from 'react-router-dom';
-import { RoutingProvider } from 'client/Routing/container/RoutingContainer';
+import { RoutingProvider } from 'client/Routing/provider/RoutingProvider';
 import { useEffect } from 'react';
 import loadable from '@loadable/component';
 
@@ -60,10 +60,10 @@ export const App = () => {
 
   return (
     <>
-      <HeaderTagContainer.Provider>
+      <HeaderTagProvider>
         <CommonConfigProvider>
           <Navigation>
-            <ReihungContainer.Provider>
+            <ReihungenProvider>
               <RoutingProvider>
                 <Switch>
                   <Route path="/about" component={About} exact />
@@ -77,10 +77,10 @@ export const App = () => {
                   <Route component={LazyAbfahrten} path="/" />
                 </Switch>
               </RoutingProvider>
-            </ReihungContainer.Provider>
+            </ReihungenProvider>
           </Navigation>
         </CommonConfigProvider>
-      </HeaderTagContainer.Provider>
+      </HeaderTagProvider>
     </>
   );
 };

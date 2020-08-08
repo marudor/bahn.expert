@@ -1,4 +1,3 @@
-import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
 import {
   Button,
   Dialog,
@@ -8,7 +7,8 @@ import {
   makeStyles,
   Switch,
 } from '@material-ui/core';
-import { useAllTrainTypes } from 'client/Abfahrten/container/AbfahrtenContainer/useAllTrainTypes';
+import { useAbfahrtenFilter } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
+import { useAllTrainTypes } from 'client/Abfahrten/provider/AbfahrtenProvider/hooks';
 import { useCallback } from 'react';
 
 const useStyles = makeStyles({
@@ -25,7 +25,7 @@ export const FilterModal = () => {
     saveProductFilter,
     filterOpen,
     setFilterOpen,
-  } = AbfahrtenConfigContainer.useContainer();
+  } = useAbfahrtenFilter();
   const types = useAllTrainTypes();
   const toggleFilter = useCallback(
     (product: string) => () => {

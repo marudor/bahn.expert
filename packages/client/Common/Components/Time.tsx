@@ -1,7 +1,7 @@
 /* eslint no-nested-ternary: 0 */
-import { CommonConfigContainer } from 'client/Common/container/CommonConfigContainer';
 import { format, subMinutes } from 'date-fns';
 import { makeStyles } from '@material-ui/core';
+import { useCommonConfig } from 'client/Common/provider/CommonConfigProvider';
 import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) => ({
@@ -50,7 +50,7 @@ export const Time = ({
   cancelled,
 }: Props) => {
   const classes = useStyles();
-  const showOriginalTime = !CommonConfigContainer.useContainer().config.time;
+  const showOriginalTime = !useCommonConfig().time;
 
   if (!real) return null;
   const time = showOriginalTime && delay ? subMinutes(real, delay) : real;

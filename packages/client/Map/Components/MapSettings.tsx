@@ -9,9 +9,9 @@ import {
   NativeSelect,
   Switch,
 } from '@material-ui/core';
-import { MapContainer } from 'client/Map/container/MapContainer';
 import { Settings } from '@material-ui/icons';
 import { stopPropagation } from 'client/Common/stopPropagation';
+import { useMapProvider } from 'client/Map/provider/MapProvider';
 import { useToggleState } from 'client/Common/hooks/useToggleState';
 
 const useStyles = makeStyles({
@@ -65,7 +65,7 @@ export const MapSettings = () => {
     togglePermanent,
     profile,
     setProfile,
-  } = MapContainer.useContainer();
+  } = useMapProvider();
 
   const handleProfileChange = useCallback(
     (e: ChangeEvent<HTMLSelectElement>) => {
