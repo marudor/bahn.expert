@@ -1,10 +1,13 @@
-import { RoutingConfigContainer } from 'client/Routing/container/RoutingConfigContainer';
-import { RoutingContainer } from 'client/Routing/container/RoutingContainer';
 import { uniqBy } from 'shared/util';
 import { useCallback, useEffect, useMemo } from 'react';
 import { useHistory } from 'react-router';
+import { useRouting } from 'client/Routing/provider/RoutingProvider';
+import {
+  useRoutingConfig,
+  useRoutingSettings,
+} from 'client/Routing/provider/RoutingConfigProvider';
 import Axios from 'axios';
-import type { RoutingFav } from 'client/Routing/container/RoutingFavContainer';
+import type { RoutingFav } from 'client/Routing/provider/RoutingFavProvider';
 import type { RoutingResult } from 'types/routing';
 
 export const useFetchRouting = () => {
@@ -17,14 +20,9 @@ export const useFetchRouting = () => {
     setCurrentProfile,
     currentProfile,
     setError,
-  } = RoutingContainer.useContainer();
-  const {
-    settings,
-    start,
-    destination,
-    date,
-    via,
-  } = RoutingConfigContainer.useContainer();
+  } = useRouting();
+  const { start, destination, date, via } = useRoutingConfig();
+  const settings = useRoutingSettings();
 
   const commonRouteSettings = useMemo(
     () =>

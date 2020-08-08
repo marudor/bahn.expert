@@ -1,14 +1,14 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
-import { createContainer } from 'unstated-next';
-import { ReactNode, useState } from 'react';
+import { PropsWithChildren, useState } from 'react';
 import {
-  RoutingConfigContainer,
+  RoutingConfigProvider,
   RoutingSettings,
-} from 'client/Routing/container/RoutingConfigContainer';
+} from 'client/Routing/provider/RoutingConfigProvider';
+import { SingleRoute } from 'types/routing';
 import { useWebStorage } from 'client/useWebStorage';
-import type { SingleRoute } from 'types/routing';
+import constate from 'constate';
 
-const useRouting = () => {
+const useRoutingInternal = () => {
   const [routes, setRoutes] = useState<SingleRoute[] | undefined>([]);
   const [earlierContext, setEarlierContext] = useState<string>();
   const [laterContext, setLaterContext] = useState<string>();
@@ -29,12 +29,6 @@ const useRouting = () => {
   };
 };
 
-export const RoutingContainer = createContainer(useRouting);
-
-interface Props {
-  children: ReactNode;
-}
-
 const migrateOldConfig = (storage: ReturnType<typeof useWebStorage>) => {
   const oldConfig = storage.get<RoutingSettings>('rconfig');
   if (oldConfig) {
@@ -45,7 +39,9 @@ const migrateOldConfig = (storage: ReturnType<typeof useWebStorage>) => {
   }
 };
 
-export const RoutingProvider = ({ children }: Props) => {
+export const [InnerRoutingProvider, useRouting] = constate(useRoutingInternal);
+
+export const RoutingProvider = ({ children }: PropsWithChildren<{}>) => {
   const storage = useWebStorage();
   migrateOldConfig(storage);
 
@@ -57,8 +53,8 @@ export const RoutingProvider = ({ children }: Props) => {
   };
 
   return (
-    <RoutingConfigContainer.Provider initialState={savedRoutingSettings}>
-      <RoutingContainer.Provider>{children}</RoutingContainer.Provider>
-    </RoutingConfigContainer.Provider>
+    <RoutingConfigProvider initialSettings={savedRoutingSettings}>
+      <InnerRoutingProvider>{children}</InnerRoutingProvider>
+    </RoutingConfigProvider>
   );
 };

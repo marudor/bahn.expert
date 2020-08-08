@@ -1,11 +1,11 @@
-import { createContainer } from 'unstated-next';
 import { useCallback, useState } from 'react';
+import constate from 'constate';
 
 const defaultDescription =
   'Zugabfahrten für Stationen der Deutsche Bahn. Nutzt verschiedene Quellen um möglichst genaue Informationen bereitzustellen. Nutzt teilweise offizielle, teilweise inoffizielle Quellen.';
 const defaultTitle = 'BahnhofsAbfahrten';
 
-function useHeaderTag() {
+function useHeaderTagInner() {
   const [title, setTitle] = useState(defaultTitle);
   const [description, setDescription] = useState(defaultDescription);
 
@@ -18,18 +18,25 @@ function useHeaderTag() {
     },
     []
   );
-  const resetTitleAndDescription = useCallback(() => {
-    updateTitle();
-    updateDescription();
-  }, [updateDescription, updateTitle]);
 
   return {
-    title,
-    updateTitle,
-    description,
-    updateDescription,
-    resetTitleAndDescription,
+    values: {
+      title,
+      description,
+    },
+    actions: {
+      updateTitle,
+      updateDescription,
+    },
   };
 }
 
-export const HeaderTagContainer = createContainer(useHeaderTag);
+export const [
+  HeaderTagProvider,
+  useHeaderTags,
+  useHeaderTagsActions,
+] = constate(
+  useHeaderTagInner,
+  (v) => v.values,
+  (v) => v.actions
+);

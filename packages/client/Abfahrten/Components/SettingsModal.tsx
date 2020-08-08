@@ -2,9 +2,7 @@ import {
   AbfahrtenConfig,
   handleConfigCheckedChange,
 } from 'client/Common/config';
-import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
 import { ChangeEvent, useCallback } from 'react';
-import { CommonConfigContainer } from 'client/Common/container/CommonConfigContainer';
 import {
   Dialog,
   DialogContent,
@@ -16,6 +14,16 @@ import {
   TextField,
 } from '@material-ui/core';
 import { StationSearchType } from 'types/station';
+import {
+  useAbfahrtenConfig,
+  useAbfahrtenConfigOpen,
+  useAbfahrtenModalToggle,
+  useAbfahrtenSetConfig,
+} from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
+import {
+  useCommonConfig,
+  useSetCommonConfig,
+} from 'client/Common/provider/CommonConfigProvider';
 
 const useStyles = makeStyles({
   title: {
@@ -45,22 +53,17 @@ const useStyles = makeStyles({
 export const SettingsModal = () => {
   const classes = useStyles();
   const {
-    config: {
-      lineAndNumber,
-      lookahead,
-      searchType,
-      showSupersededMessages,
-      autoUpdate,
-      lookbehind,
-    },
-    setConfigKey,
-    setConfigOpen,
-    configOpen,
-  } = AbfahrtenConfigContainer.useContainer();
-  const {
-    config: { fahrzeugGruppe, showUIC, zoomReihung, time },
-    setCommonConfigKey,
-  } = CommonConfigContainer.useContainer();
+    lineAndNumber,
+    lookahead,
+    searchType,
+    autoUpdate,
+    lookbehind,
+  } = useAbfahrtenConfig();
+  const { setConfigOpen } = useAbfahrtenModalToggle();
+  const configOpen = useAbfahrtenConfigOpen();
+  const setConfigKey = useAbfahrtenSetConfig();
+  const { fahrzeugGruppe, showUIC, zoomReihung, time } = useCommonConfig();
+  const setCommonConfigKey = useSetCommonConfig();
   const handleSelectChange = useCallback(
     (key: keyof AbfahrtenConfig) => (e: ChangeEvent<HTMLSelectElement>) =>
       setConfigKey(key, e.currentTarget.value),
@@ -98,20 +101,6 @@ export const SettingsModal = () => {
             />
           }
           label="AutoUpdate in Sekunden"
-        />
-        <FormControlLabel
-          className={classes.label}
-          control={
-            <Switch
-              checked={showSupersededMessages}
-              value="showSupersededMessagesConfig"
-              onChange={handleConfigCheckedChange(
-                'showSupersededMessages',
-                setConfigKey
-              )}
-            />
-          }
-          label="Obsolete Messages"
         />
         <FormControlLabel
           className={classes.label}

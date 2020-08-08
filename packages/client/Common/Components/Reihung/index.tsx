@@ -1,11 +1,14 @@
-import { CommonConfigContainer } from 'client/Common/container/CommonConfigContainer';
 import { Explain } from './Explain';
 import { Gruppe } from './Gruppe';
 import { Loading } from 'client/Common/Components/Loading';
 import { makeStyles } from '@material-ui/core';
-import { ReihungContainer } from 'client/Common/container/ReihungContainer';
 import { Sektor } from './Sektor';
+import { useCommonConfig } from 'client/Common/provider/CommonConfigProvider';
 import { useEffect, useMemo } from 'react';
+import {
+  useReihungen,
+  useReihungenActions,
+} from 'client/Common/provider/ReihungenProvider';
 import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) => ({
@@ -76,12 +79,9 @@ export const Reihung = ({
   fallbackTrainNumbers,
 }: Props) => {
   const classes = useStyles();
-  const { reihungen, getReihung } = ReihungContainer.useContainer();
-  const {
-    fahrzeugGruppe,
-    showUIC,
-    zoomReihung,
-  } = CommonConfigContainer.useContainer().config;
+  const reihungen = useReihungen();
+  const { getReihung } = useReihungenActions();
+  const { fahrzeugGruppe, showUIC, zoomReihung } = useCommonConfig();
   const reihung = reihungen[trainNumber + currentStation + scheduledDeparture];
 
   useEffect(() => {

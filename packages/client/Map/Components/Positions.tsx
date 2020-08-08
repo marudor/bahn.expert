@@ -1,8 +1,8 @@
-import { MapContainer } from 'client/Map/container/MapContainer';
 import { Position } from 'client/Map/Components/Position';
+import { useMapProvider } from 'client/Map/provider/MapProvider';
 
 export const Positions = () => {
-  const { positions } = MapContainer.useContainer();
+  const { positions } = useMapProvider();
 
   if (positions) {
     return (

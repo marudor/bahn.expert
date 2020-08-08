@@ -2,9 +2,9 @@ import { DetailsContext } from './DetailsContext';
 import { format } from 'date-fns';
 import { getDetails } from 'client/Common/service/details';
 import { Header } from './Header';
-import { HeaderTagContainer } from 'client/Common/container/HeaderTagContainer';
 import { StopList } from './StopList';
 import { useEffect, useState } from 'react';
+import { useHeaderTagsActions } from 'client/Common/provider/HeaderTagProvider';
 import { useQuery } from 'client/Common/hooks/useQuery';
 import type { AxiosError } from 'axios';
 import type { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
@@ -27,7 +27,7 @@ export const Details = ({
   const query = useQuery();
   const [details, setDetails] = useState<ParsedSearchOnTripResponse>();
   const [error, setError] = useState<AxiosError>();
-  const { updateTitle, updateDescription } = HeaderTagContainer.useContainer();
+  const { updateTitle, updateDescription } = useHeaderTagsActions();
 
   useEffect(() => {
     if (details) {

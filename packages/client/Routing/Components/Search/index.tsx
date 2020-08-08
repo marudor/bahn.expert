@@ -20,14 +20,18 @@ import {
 } from '@material-ui/icons';
 import { getHafasStationFromAPI } from 'shared/service/stationSearch';
 import { getRouteLink } from 'client/Routing/util';
-import { RoutingConfigContainer } from 'client/Routing/container/RoutingConfigContainer';
 import { SettingsPanel } from './SettingsPanel';
 import { StationSearch } from 'client/Common/Components/StationSearch';
 import { SyntheticEvent, useCallback, useEffect, useMemo } from 'react';
-import { useFetchRouting } from 'client/Routing/container/RoutingContainer/useFetchRouting';
+import { useFetchRouting } from 'client/Routing/provider/useFetchRouting';
 import { useHistory, useRouteMatch } from 'react-router';
+import {
+  useRoutingConfig,
+  useRoutingConfigActions,
+  useRoutingSettings,
+} from 'client/Routing/provider/RoutingConfigProvider';
 import deLocale from 'date-fns/locale/de';
-import type { RoutingFav } from 'client/Routing/container/RoutingFavContainer';
+import type { RoutingFav } from 'client/Routing/provider/RoutingFavProvider';
 import type { Station } from 'types/station';
 
 const maxViaForProvider = (profile?: AllowedHafasProfile) => {
@@ -90,17 +94,14 @@ const useStyles = makeStyles((theme) => ({
 export const Search = () => {
   const classes = useStyles();
   const {
-    start,
     setStart,
-    destination,
     setDestination,
     swapStartDestination,
-    date,
-    setDate,
-    settings,
-    via,
     updateVia,
-  } = RoutingConfigContainer.useContainer();
+    setDate,
+  } = useRoutingConfigActions();
+  const { start, destination, date, via } = useRoutingConfig();
+  const settings = useRoutingSettings();
   const { fetchRoutes, clearRoutes } = useFetchRouting();
 
   const match = useRouteMatch<{

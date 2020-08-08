@@ -1,7 +1,7 @@
 import { AbfahrtenConfig, CommonConfig } from 'client/Common/config';
-import { Favs } from 'client/Abfahrten/container/FavContainer';
-import { RoutingFavs } from 'client/Routing/container/RoutingFavContainer';
-import { RoutingSettings } from 'client/Routing/container/RoutingConfigContainer';
+import { Favs } from 'client/Abfahrten/provider/FavProvider';
+import { RoutingFavs } from 'client/Routing/provider/RoutingFavProvider';
+import { RoutingSettings } from 'client/Routing/provider/RoutingConfigProvider';
 import { useStorage } from 'shared/hooks/useStorage';
 
 export interface WebConfigMap

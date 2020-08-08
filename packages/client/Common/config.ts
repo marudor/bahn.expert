@@ -3,7 +3,6 @@ import type { StationSearchType } from 'types/station';
 
 export interface AbfahrtenConfig {
   readonly searchType: StationSearchType;
-  readonly showSupersededMessages: boolean;
   readonly lookahead: string;
   readonly lookbehind: string;
   readonly lineAndNumber: boolean;

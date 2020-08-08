@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
-import { MapContainer } from 'client/Map/container/MapContainer';
 import { Marker, Polyline, Tooltip } from 'react-leaflet';
+import { useMapProvider } from 'client/Map/provider/MapProvider';
 import { useMemo } from 'react';
 // @ts-ignore
 import icon from 'leaflet/dist/images/marker-icon.png';
@@ -17,7 +17,7 @@ const useStyles = makeStyles({
 });
 export const ActivePolyline = () => {
   useStyles();
-  const { activePolyline, activeJourney } = MapContainer.useContainer();
+  const { activePolyline, activeJourney } = useMapProvider();
   const trainIcon = useMemo(
     () =>
       L.icon({

@@ -10,8 +10,8 @@ import {
 } from '@material-ui/core';
 import { ExpandLess, ExpandMore, Palette } from '@material-ui/icons';
 import { SyntheticEvent, useCallback, useState } from 'react';
-import { ThemeContainer } from 'client/Common/container/ThemeContainer';
 import { ThemeType } from 'client/Themes/type';
+import { useTheme } from 'client/Common/provider/ThemeProvider';
 
 const useStyles = makeStyles((theme) => ({
   themeList: {
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const ThemeSelection = () => {
   const classes = useStyles();
-  const { themeType, setTheme } = ThemeContainer.useContainer();
+  const { themeType, setThemeType } = useTheme();
   const [open, setOpen] = useState(false);
   const selectTheme = useCallback(
     (e: SyntheticEvent<HTMLElement>) => {
@@ -30,10 +30,10 @@ export const ThemeSelection = () => {
         | ThemeType;
 
       if (newThemeType) {
-        setTheme(newThemeType);
+        setThemeType(newThemeType);
       }
     },
-    [setTheme]
+    [setThemeType]
   );
   const toggle = useCallback(
     (e: SyntheticEvent) => {

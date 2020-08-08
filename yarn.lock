@@ -6228,6 +6228,7 @@ __metadata:
     "@types/universal-cookie": 2.2.0
     axios: ^0.19.2
     clsx: ^1.1.1
+    constate: ^2.0.0
     date-fns: ^2.15.0
     debounce-promise: ^3.1.2
     deepmerge: ^4.2.2
@@ -6248,7 +6249,6 @@ __metadata:
     shared: "workspace:*"
     types: "workspace:*"
     universal-cookie: ^4.0.3
-    unstated-next: ^1.1.0
   languageName: unknown
   linkType: soft
 
@@ -6621,6 +6621,15 @@ __metadata:
   version: 1.0.0
   resolution: "constants-browserify@npm:1.0.0"
   checksum: 108cd8ebfaf3c7fa77c443ca89ec63e41411e341d8b066b1c68d992598f1b75891fbd5370d67a1929a7813be71605884c40c107c1e760d12ebcedf49d31b0c44
+  languageName: node
+  linkType: hard
+
+"constate@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "constate@npm:2.0.0"
+  peerDependencies:
+    react: ^16.8.0
+  checksum: f508ff6705fa393434af3495f86812ad23afc186f88c140600cd4ddea02dc98cb12278b939748297475bed78bda9553d39eaaef282b82e1883c3141204f4b016
   languageName: node
   linkType: hard
 
@@ -18472,13 +18481,6 @@ fsevents@^1.2.7:
     has-value: ^0.3.1
     isobject: ^3.0.0
   checksum: b4c4853f2744a91e9bb5ccb3dfb28f78c32310bf851f0e6b9e781d3ca5244a803632926b2af701da5f9153a03e405023cebc1f90b87711f73b5fc86b6c33efae
-  languageName: node
-  linkType: hard
-
-"unstated-next@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "unstated-next@npm:1.1.0"
-  checksum: 341f16bb66e2bd1101dde51463c254310566b9ba12ebce60e6a4d6ff38d1da9ee9b29b09e82e474643ecdfad3ebbc7a1638c9fd83b49b009fe1e4714a67b878a
   languageName: node
   linkType: hard
 

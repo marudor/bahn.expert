@@ -1,14 +1,11 @@
-import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
-import { AbfahrtenContainer } from 'client/Abfahrten/container/AbfahrtenContainer';
+import { useAbfahrtenDepartures } from 'client/Abfahrten/provider/AbfahrtenProvider';
+import { useAbfahrtenFilter } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useMemo } from 'react';
 import type { Abfahrt } from 'types/iris';
 
 export const useAbfahrten = () => {
-  const { departures } = AbfahrtenContainer.useContainer();
-  const {
-    onlyDepartures,
-    productFilter,
-  } = AbfahrtenConfigContainer.useContainer();
+  const departures = useAbfahrtenDepartures();
+  const { onlyDepartures, productFilter } = useAbfahrtenFilter();
 
   return {
     filteredAbfahrten: useMemo(() => {

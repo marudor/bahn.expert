@@ -4,7 +4,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { hydrate, render } from 'react-dom';
 import { loadableReady } from '@loadable/component';
 import { StorageContext } from 'shared/hooks/useStorage';
-import { ThemeProvider } from 'client/Common/container/ThemeContainer';
+import { ThemeProvider } from 'client/Common/provider/ThemeProvider';
 import { ThemeWrap } from './ThemeWrap';
 import Axios from 'axios';
 import type { ComponentType } from 'react';
