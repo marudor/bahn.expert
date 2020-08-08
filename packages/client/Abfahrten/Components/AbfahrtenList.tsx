@@ -1,18 +1,27 @@
 import { Abfahrt } from './Abfahrt';
-import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
-import { AbfahrtenContainer } from 'client/Abfahrten/container/AbfahrtenContainer';
-import { HeaderTagContainer } from 'client/Common/container/HeaderTagContainer';
 import { Loading } from 'client/Common/Components/Loading';
 import { makeStyles } from '@material-ui/core';
 import { Redirect } from 'react-router';
-import { ReihungContainer } from 'client/Common/container/ReihungContainer';
 import {
-  SelectedDetailContainer,
   SelectedDetailProvider,
-} from 'client/Abfahrten/container/SelectedDetailContainer';
-import { useAbfahrten } from 'client/Abfahrten/container/AbfahrtenContainer/useAbfahrten';
+  useSelectedDetail,
+} from 'client/Abfahrten/provider/SelectedDetailProvider';
+import {
+  useAbfahrten,
+  useRefreshCurrent,
+} from 'client/Abfahrten/provider/AbfahrtenProvider/hooks';
+import {
+  useAbfahrtenConfig,
+  useAbfahrtenUrlPrefix,
+} from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
+import {
+  useAbfahrtenError,
+  useCurrentAbfahrtenStation,
+  useRawAbfahrten,
+} from 'client/Abfahrten/provider/AbfahrtenProvider';
 import { useEffect, useState } from 'react';
-import { useRefreshCurrent } from 'client/Abfahrten/container/AbfahrtenContainer/useRefreshCurrent';
+import { useHeaderTagsActions } from 'client/Common/provider/HeaderTagProvider';
+import { useReihungenActions } from 'client/Common/provider/ReihungenProvider';
 import { useRouteMatch } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
@@ -36,39 +45,32 @@ const InnerAbfahrtenList = () => {
   const classes = useStyles();
   const {
     updateCurrentStationByString,
-    currentStation,
-    error,
     setCurrentStation,
     setError,
-  } = AbfahrtenContainer.useContainer();
-  const { selectedDetail } = SelectedDetailContainer.useContainer();
-  const { clearReihungen } = ReihungContainer.useContainer();
+  } = useRawAbfahrten();
+  const currentStation = useCurrentAbfahrtenStation();
+  const error = useAbfahrtenError();
+  const selectedDetail = useSelectedDetail();
+  const { clearReihungen } = useReihungenActions();
   const [scrolled, setScrolled] = useState(false);
   const { filteredAbfahrten, unfilteredAbfahrten } = useAbfahrten();
   const loading = !unfilteredAbfahrten && !error;
   const match = useRouteMatch<{ station: string }>();
   const paramStation = match ? match.params.station : undefined;
-  const { config, urlPrefix } = AbfahrtenConfigContainer.useContainer();
+  const config = useAbfahrtenConfig();
+  const urlPrefix = useAbfahrtenUrlPrefix();
   const refreshCurrentAbfahrten = useRefreshCurrent();
-  const {
-    updateTitle,
-    updateDescription,
-    resetTitleAndDescription,
-  } = HeaderTagContainer.useContainer();
+  const { updateTitle, updateDescription } = useHeaderTagsActions();
 
   useEffect(() => {
     if (!currentStation) {
-      resetTitleAndDescription();
+      updateTitle();
+      updateDescription();
     } else {
       updateTitle(currentStation.title);
       updateDescription(`Zugabfahrten für ${currentStation.title}`);
     }
-  }, [
-    currentStation,
-    resetTitleAndDescription,
-    updateDescription,
-    updateTitle,
-  ]);
+  }, [currentStation, updateDescription, updateTitle]);
 
   useEffect(() => {
     return () => {

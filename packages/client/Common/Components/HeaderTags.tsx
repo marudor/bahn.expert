@@ -1,9 +1,9 @@
-import { HeaderTagContainer } from 'client/Common/container/HeaderTagContainer';
 import { Helmet } from 'react-helmet-async';
+import { useHeaderTags } from 'client/Common/provider/HeaderTagProvider';
 import { useLocation } from 'react-router';
 
 export const HeaderTags = () => {
-  const { title, description } = HeaderTagContainer.useContainer();
+  const { title, description } = useHeaderTags();
   const url = `${global.BASE_URL}${useLocation().pathname}`;
   const image = `${global.BASE_URL}/android-chrome-384x384.png`;
 

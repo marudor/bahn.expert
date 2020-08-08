@@ -1,8 +1,8 @@
 import { RouteFavEntry } from 'client/Routing/Components/RouteFavEntry';
-import { RoutingFavContainer } from 'client/Routing/container/RoutingFavContainer';
+import { useRoutingFavs } from 'client/Routing/provider/RoutingFavProvider';
 
 export const RouteFavList = () => {
-  const { favs } = RoutingFavContainer.useContainer();
+  const favs = useRoutingFavs();
 
   return (
     <div data-testid="RouteFavList">

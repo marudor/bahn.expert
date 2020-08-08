@@ -2,8 +2,8 @@ import { createContext, memo, useCallback, useContext, useMemo } from 'react';
 import { End } from './End';
 import { makeStyles } from '@material-ui/core';
 import { Mid } from './Mid';
-import { SelectedDetailContainer } from 'client/Abfahrten/container/SelectedDetailContainer';
 import { Start } from './Start';
+import { useSetSelectedDetail } from 'client/Abfahrten/provider/SelectedDetailProvider';
 import clsx from 'clsx';
 import loadable from '@loadable/component';
 import Paper from '@material-ui/core/Paper';
@@ -93,7 +93,7 @@ export const BaseAbfahrt = memo(function BaseAbfahrt({
   const wingNumbersWithoutSelf = wingNumbers?.filter(
     (wn) => wn !== abfahrt.train.number
   );
-  const { setSelectedDetail } = SelectedDetailContainer.useContainer();
+  const setSelectedDetail = useSetSelectedDetail();
   const handleClick = useCallback(() => {
     setSelectedDetail(abfahrt.id);
   }, [abfahrt.id, setSelectedDetail]);

@@ -3,9 +3,9 @@ import { Loading } from 'client/Common/Components/Loading';
 import { Route } from './Route';
 import { RouteFavList } from 'client/Routing/Components/RouteFavList';
 import { RouteHeader } from './RouteHeader';
-import { RoutingContainer } from 'client/Routing/container/RoutingContainer';
 import { useCallback, useState } from 'react';
-import { useFetchRouting } from 'client/Routing/container/RoutingContainer/useFetchRouting';
+import { useFetchRouting } from 'client/Routing/provider/useFetchRouting';
+import { useRouting } from 'client/Routing/provider/RoutingProvider';
 
 const translateError = (e: any) => {
   if (e && e.response && e.response.data) {
@@ -37,12 +37,7 @@ const useStyles = makeStyles({
 
 export const RouteList = () => {
   const classes = useStyles();
-  const {
-    routes,
-    error,
-    earlierContext,
-    laterContext,
-  } = RoutingContainer.useContainer();
+  const { routes, error, earlierContext, laterContext } = useRouting();
   const { fetchContext } = useFetchRouting();
   const [detail, setDetail] = useState<undefined | string>();
   const [loadingEarlier, setLoadingEarlier] = useState(false);

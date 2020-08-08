@@ -1,11 +1,4 @@
 import { __RouterContext } from 'react-router';
-import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
-import { AbfahrtenContainer } from 'client/Abfahrten/container/AbfahrtenContainer';
-import {
-  FavContainer,
-  useFav,
-  useUnfav,
-} from 'client/Abfahrten/container/FavContainer';
 import {
   FilterList,
   Layers,
@@ -18,16 +11,20 @@ import {
 import { FilterModal } from './FilterModal';
 import { IconButton, Menu, MenuItem } from '@material-ui/core';
 import { SyntheticEvent, useCallback, useState } from 'react';
+import { useAbfahrtenModalToggle } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
+import { useCurrentAbfahrtenStation } from 'client/Abfahrten/provider/AbfahrtenProvider';
+import {
+  useFav,
+  useFavs,
+  useUnfav,
+} from 'client/Abfahrten/provider/FavProvider';
 import { useLageplan } from 'client/Abfahrten/hooks/useLageplan';
 
 export const ExtraMenu = () => {
-  const {
-    setConfigOpen,
-    setFilterOpen,
-  } = AbfahrtenConfigContainer.useContainer();
-  const { currentStation } = AbfahrtenContainer.useContainer();
+  const { setConfigOpen, setFilterOpen } = useAbfahrtenModalToggle();
+  const currentStation = useCurrentAbfahrtenStation();
   const lageplan = useLageplan(currentStation?.title, currentStation?.id);
-  const { favs } = FavContainer.useContainer();
+  const favs = useFavs();
   const fav = useFav();
   const unfav = useUnfav();
   const isFaved = Boolean(currentStation && favs[currentStation.id]);

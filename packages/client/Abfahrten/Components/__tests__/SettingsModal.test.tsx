@@ -1,10 +1,13 @@
-import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
 import { fireEvent } from '@testing-library/react';
+import {
+  InnerAbfahrtenConfigProvider,
+  useAbfahrtenModalToggle,
+} from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { render } from 'client/__tests__/testHelper';
 import { SettingsModal } from 'client/Abfahrten/Components/SettingsModal';
 
 const OpenDummy = () => {
-  const { setConfigOpen } = AbfahrtenConfigContainer.useContainer();
+  const { setConfigOpen } = useAbfahrtenModalToggle();
 
   return (
     <>
@@ -18,12 +21,14 @@ const OpenDummy = () => {
 
 const renderSetup = () =>
   render(OpenDummy, undefined, {
-    container: [
+    provider: [
       {
-        ...AbfahrtenConfigContainer,
+        Provider: InnerAbfahrtenConfigProvider,
         initialState: {
-          filter: {},
-          config: {},
+          initialState: {
+            filter: {},
+            config: {},
+          },
         },
       },
     ],

@@ -1,4 +1,3 @@
-import { AbfahrtenConfigContainer } from 'client/Abfahrten/container/AbfahrtenConfigContainer';
 import { DetailMessages } from 'client/Common/Components/Messages/Detail';
 import { DetailVia } from './Via/Detail';
 import { makeStyles } from '@material-ui/core';
@@ -22,19 +21,17 @@ const useStyles = makeStyles({
 export const Info = () => {
   const { abfahrt, detail } = useAbfahrt();
   const classes = useStyles();
-  const showSupersededMessages = AbfahrtenConfigContainer.useContainer().config
-    .showSupersededMessages;
   const messages = useMemo(() => {
     const messages = abfahrt.messages.delay
       .concat(abfahrt.messages.qos)
       .concat(abfahrt.messages.him);
 
-    if (!detail || !showSupersededMessages) {
+    if (!detail) {
       return messages.filter((m) => !m.superseded);
     }
 
     return messages;
-  }, [abfahrt.messages, detail, showSupersededMessages]);
+  }, [abfahrt.messages, detail]);
   const MessagesComp = detail ? DetailMessages : NormalMessages;
   const ViaComp = detail ? DetailVia : NormalVia;
 

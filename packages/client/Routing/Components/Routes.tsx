@@ -1,27 +1,19 @@
 import { format } from 'date-fns';
-import { HeaderTagContainer } from 'client/Common/container/HeaderTagContainer';
 import { makeStyles } from '@material-ui/core';
 import { RouteList } from './RouteList';
-import { RoutingConfigContainer } from 'client/Routing/container/RoutingConfigContainer';
 import { Search } from './Search';
 import { useEffect } from 'react';
+import { useHeaderTagsActions } from 'client/Common/provider/HeaderTagProvider';
+import { useRoutingConfig } from 'client/Routing/provider/RoutingConfigProvider';
 
 const RouteHeaderTags = () => {
-  const {
-    resetTitleAndDescription,
-    updateTitle,
-    updateDescription,
-  } = HeaderTagContainer.useContainer();
-  const {
-    start,
-    destination,
-    via,
-    date,
-  } = RoutingConfigContainer.useContainer();
+  const { updateTitle, updateDescription } = useHeaderTagsActions();
+  const { start, destination, via, date } = useRoutingConfig();
 
   useEffect(() => {
     if (!start && !destination) {
-      resetTitleAndDescription();
+      updateTitle();
+      updateDescription();
     } else {
       updateTitle(
         `${start?.title ?? '?'} -> ${destination?.title ?? '?'} @ ${format(

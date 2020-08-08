@@ -1,13 +1,17 @@
-import { createContainer } from 'unstated-next';
 import { ReactNode, useCallback, useState } from 'react';
 import { useWebStorage } from 'client/useWebStorage';
+import constate from 'constate';
 
 const selectedDetailCookieName = 'selectedDetail';
 
-const useSelectedDetail = (initialSelected: string | undefined) => {
+const useSelectedDetailInternal = ({
+  initialSelectedDetail,
+}: {
+  initialSelectedDetail?: string;
+}) => {
   const storage = useWebStorage();
   const [selectedDetail, realSetSelectedDetail] = useState<string | undefined>(
-    initialSelected
+    initialSelectedDetail
   );
 
   const setSelectedDetail = useCallback(
@@ -34,7 +38,15 @@ const useSelectedDetail = (initialSelected: string | undefined) => {
   };
 };
 
-export const SelectedDetailContainer = createContainer(useSelectedDetail);
+export const [
+  InnerSelectedDetailProvider,
+  useSelectedDetail,
+  useSetSelectedDetail,
+] = constate(
+  useSelectedDetailInternal,
+  (v) => v.selectedDetail,
+  (v) => v.setSelectedDetail
+);
 
 interface Props {
   children: ReactNode;
@@ -44,8 +56,8 @@ export const SelectedDetailProvider = ({ children }: Props) => {
   const savedSelectedDetail = storage.get(selectedDetailCookieName);
 
   return (
-    <SelectedDetailContainer.Provider initialState={savedSelectedDetail}>
+    <InnerSelectedDetailProvider initialSelectedDetail={savedSelectedDetail}>
       {children}
-    </SelectedDetailContainer.Provider>
+    </InnerSelectedDetailProvider>
   );
 };

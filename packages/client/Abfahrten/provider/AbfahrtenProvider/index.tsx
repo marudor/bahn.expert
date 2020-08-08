@@ -1,11 +1,12 @@
 import {
-  AbfahrtenConfigContainer,
   AbfahrtenConfigProvider,
-} from 'client/Abfahrten/container/AbfahrtenConfigContainer';
-import { createContainer } from 'unstated-next';
+  useAbfahrtenConfig,
+  useAbfahrtenFetchAPIUrl,
+} from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { getStationsFromAPI } from 'shared/service/stationSearch';
 import { ReactNode, useCallback, useEffect, useState } from 'react';
 import Axios, { AxiosError } from 'axios';
+import constate from 'constate';
 import type { Abfahrt, AbfahrtenResult, Wings } from 'types/iris';
 import type { Station, StationSearchType } from 'types/station';
 
@@ -55,19 +56,19 @@ interface AbfahrtenError$Default extends AxiosError {
   station?: string;
 }
 
-const useAbfahrten = (
-  stationApiFunction: (
+const useAbfahrtenInner = ({
+  stationApiFunction = getStationsFromAPI,
+}: {
+  stationApiFunction?: (
     searchType: StationSearchType,
     stationName: string
-  ) => Promise<Station[]> = getStationsFromAPI
-) => {
+  ) => Promise<Station[]>;
+}) => {
   const [currentStation, setCurrentStation] = useState<Station>();
   const [departures, setDepartures] = useState<Departures>();
   const [error, setError] = useState<AbfahrtenError>();
-  const {
-    config: { lookahead, lookbehind, searchType },
-    fetchApiUrl,
-  } = AbfahrtenConfigContainer.useContainer();
+  const { lookahead, lookbehind, searchType } = useAbfahrtenConfig();
+  const fetchApiUrl = useAbfahrtenFetchAPIUrl();
 
   const updateCurrentStationByString = useCallback(
     async (stationName: string) => {
@@ -139,7 +140,19 @@ const useAbfahrten = (
   };
 };
 
-export const AbfahrtenContainer = createContainer(useAbfahrten);
+export const [
+  InnerAbfahrtenProvider,
+  useAbfahrtenDepartures,
+  useAbfahrtenError,
+  useCurrentAbfahrtenStation,
+  useRawAbfahrten,
+] = constate(
+  useAbfahrtenInner,
+  (v) => v.departures,
+  (v) => v.error,
+  (v) => v.currentStation,
+  ({ departures, error, currentStation, ...r }) => r
+);
 
 interface Props {
   children: ReactNode;
@@ -154,8 +167,8 @@ export const AbfahrtenProvider = ({
   urlPrefix,
 }: Props) => (
   <AbfahrtenConfigProvider urlPrefix={urlPrefix} fetchApiUrl={fetchApiUrl}>
-    <AbfahrtenContainer.Provider initialState={stationApiFunction}>
+    <InnerAbfahrtenProvider stationApiFunction={stationApiFunction}>
       {children}
-    </AbfahrtenContainer.Provider>
+    </InnerAbfahrtenProvider>
   </AbfahrtenConfigProvider>
 );

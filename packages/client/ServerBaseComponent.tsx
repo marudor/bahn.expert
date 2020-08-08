@@ -2,7 +2,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { StaticRouter, StaticRouterContext } from 'react-router';
 import { StorageContext } from 'shared/hooks/useStorage';
 import { StorageInterface } from 'shared/hooks/useStorage/StorageInterface';
-import { ThemeProvider } from 'client/Common/container/ThemeContainer';
+import { ThemeProvider } from 'client/Common/provider/ThemeProvider';
 import { ThemeWrap } from 'client/ThemeWrap';
 import { WebConfigMap } from 'client/useWebStorage';
 
