@@ -2,7 +2,7 @@ declare module 'db-stations/data.json' {
   export interface OpenDataStation {
     type: 'station';
     id: string;
-    ds100: string;
+    ril100: string;
     nr: number;
     name: string;
     weight: number;
