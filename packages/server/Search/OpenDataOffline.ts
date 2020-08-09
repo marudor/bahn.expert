@@ -9,7 +9,7 @@ const searchableStations = new Fuse(rawStations, {
   minMatchCharLength: 2,
   location: 0,
   distance: 100,
-  keys: ['name', 'ds100'],
+  keys: ['name', 'ril'],
 });
 
 export default function (searchTerm: string): Promise<Station[]> {
@@ -24,7 +24,7 @@ export default function (searchTerm: string): Promise<Station[]> {
     orderBy(weightedMatches, 'score', 'desc').map(({ item }) => ({
       title: item.name,
       id: item.id,
-      DS100: item.ds100,
+      DS100: item.ril100,
       raw: global.PROD ? undefined : item,
     }))
   );
