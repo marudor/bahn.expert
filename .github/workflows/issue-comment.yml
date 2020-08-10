@@ -1,0 +1,11 @@
+on: issue_comment
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: alexjurkiewicz/pr-comment-github-deployment@master
+        with:
+          ignore_status_checks: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
