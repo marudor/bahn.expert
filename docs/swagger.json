@@ -3772,7 +3772,7 @@
         "type": "object",
         "additionalProperties": false
       },
-      "TripSearchOptions": {
+      "TripSearchOptionsV1": {
         "properties": {
           "economic": {
             "type": "boolean",
@@ -3811,13 +3811,6 @@
             "type": "number",
             "format": "double"
           },
-          "via": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array",
-            "description": "Max 2 via possible"
-          },
           "transferTime": {
             "type": "number",
             "format": "double"
@@ -3834,6 +3827,12 @@
           },
           "tarif": {
             "$ref": "#/components/schemas/TripSearchTarifRequest"
+          },
+          "via": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
           }
         },
         "required": ["start", "destination"],
@@ -3993,6 +3992,87 @@
             "format": "double"
           }
         },
+        "type": "object",
+        "additionalProperties": false
+      },
+      "TripSearchVia": {
+        "properties": {
+          "evaId": {
+            "type": "string"
+          },
+          "minChangeTime": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": ["evaId"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "TripSearchOptionsV2": {
+        "properties": {
+          "economic": {
+            "type": "boolean",
+            "description": "true = not only fastest route"
+          },
+          "getIV": {
+            "type": "boolean",
+            "description": "Unknown flag"
+          },
+          "getPasslist": {
+            "type": "boolean",
+            "description": "Get Stop inbetween"
+          },
+          "getPolyline": {
+            "type": "boolean",
+            "description": "Polylines - unknown format"
+          },
+          "numF": {
+            "type": "number",
+            "format": "double"
+          },
+          "ctxScr": {
+            "type": "string"
+          },
+          "ushrp": {
+            "type": "boolean",
+            "description": "Is a station nearby enough for routing?"
+          },
+          "start": {
+            "type": "string"
+          },
+          "destination": {
+            "type": "string"
+          },
+          "time": {
+            "type": "number",
+            "format": "double"
+          },
+          "transferTime": {
+            "type": "number",
+            "format": "double"
+          },
+          "maxChanges": {
+            "type": "number",
+            "format": "double"
+          },
+          "searchForDeparture": {
+            "type": "boolean"
+          },
+          "onlyRegional": {
+            "type": "boolean"
+          },
+          "tarif": {
+            "$ref": "#/components/schemas/TripSearchTarifRequest"
+          },
+          "via": {
+            "items": {
+              "$ref": "#/components/schemas/TripSearchVia"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["start", "destination"],
         "type": "object",
         "additionalProperties": false
       },
@@ -5867,7 +5947,7 @@
             }
           }
         },
-        "tags": ["HAFAS V1"],
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -5904,7 +5984,7 @@
             }
           }
         },
-        "tags": ["HAFAS V1"],
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -5946,7 +6026,7 @@
             "description": "Train not found"
           }
         },
-        "tags": ["HAFAS V1"],
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -6011,7 +6091,7 @@
             }
           }
         },
-        "tags": ["HAFAS V1"],
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -6069,7 +6149,7 @@
             }
           }
         },
-        "tags": ["HAFAS V1"],
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -6120,7 +6200,7 @@
             }
           }
         },
-        "tags": ["HAFAS V1"],
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -6180,7 +6260,7 @@
             }
           }
         },
-        "tags": ["HAFAS V1"],
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -6222,7 +6302,7 @@
             }
           }
         },
-        "tags": ["HAFAS V1"],
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -6282,7 +6362,7 @@
             }
           }
         },
-        "tags": ["HAFAS V1"],
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -6312,7 +6392,7 @@
     },
     "/hafas/v1/tripSearch": {
       "post": {
-        "operationId": "TripSearch",
+        "operationId": "TripSearchV1",
         "responses": {
           "200": {
             "description": "Ok",
@@ -6325,7 +6405,8 @@
             }
           }
         },
-        "tags": ["HAFAS V1"],
+        "tags": ["HAFAS"],
+        "deprecated": true,
         "security": [],
         "parameters": [
           {
@@ -6342,7 +6423,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TripSearchOptions"
+                "$ref": "#/components/schemas/TripSearchOptionsV1"
               }
             }
           }
@@ -6364,7 +6445,7 @@
             }
           }
         },
-        "tags": ["HAFAS V1"],
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -6403,7 +6484,7 @@
             }
           }
         },
-        "tags": ["HAFAS V1"],
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -6423,6 +6504,45 @@
             }
           }
         ]
+      }
+    },
+    "/hafas/v2/tripSearch": {
+      "post": {
+        "operationId": "TripSearch",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoutingResult"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["HAFAS"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TripSearchOptionsV2"
+              }
+            }
+          }
+        }
       }
     },
     "/iris/v1/wings/{rawId1}/{rawId2}": {

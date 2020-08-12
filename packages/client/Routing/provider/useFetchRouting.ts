@@ -30,7 +30,9 @@ export const useFetchRouting = () => {
         ? {
             start: start?.id,
             destination: destination?.id,
-            via: via.map((v) => v.id),
+            via: via.map((v) => ({
+              evaId: v.id,
+            })),
             ...settings,
           }
         : undefined,
@@ -45,7 +47,7 @@ export const useFetchRouting = () => {
       try {
         const routingResult = (
           await Axios.post<RoutingResult>(
-            '/api/hafas/v1/tripSearch',
+            '/api/hafas/v2/tripSearch',
             {
               time: (date || new Date()).getTime(),
               ...routeSettings,
@@ -84,7 +86,7 @@ export const useFetchRouting = () => {
       try {
         const routingResult = (
           await Axios.post<RoutingResult>(
-            '/api/hafas/v1/tripSearch',
+            '/api/hafas/v2/tripSearch',
             {
               ctxScr: type === 'earlier' ? earlierContext : laterContext,
               ...commonRouteSettings,
@@ -150,7 +152,9 @@ export const useFetchRouting = () => {
       fetchRoutes({
         start: fav.start.id,
         destination: fav.destination.id,
-        via: fav.via.map((v) => v.id),
+        via: fav.via.map((v) => ({
+          evaId: v.id,
+        })),
         ...settings,
         hafasProfile: fav.profile,
       });
