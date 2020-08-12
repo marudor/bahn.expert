@@ -49,7 +49,7 @@ describe('Routing', () => {
       );
       cy.route({
         method: 'POST',
-        url: '/api/hafas/v1/tripSearch?profile=db',
+        url: '/api/hafas/v2/tripSearch?profile=db',
         response: 'fixture:routing/FFMToHH.json',
       }).as('RouteSearchDB');
 
@@ -93,7 +93,7 @@ describe('Routing', () => {
       );
       cy.route({
         method: 'POST',
-        url: '/api/hafas/v1/tripSearch?profile=oebb',
+        url: '/api/hafas/v2/tripSearch?profile=oebb',
         response: 'fixture:routing/HHToFFM.json',
       });
       cy.findByTestId('search').click();

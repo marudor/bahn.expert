@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Deprecated,
   Get,
   Hidden,
   OperationId,
@@ -47,7 +48,10 @@ import type {
   RoutingResult,
   SingleRoute,
 } from 'types/routing';
-import type { TripSearchOptions } from 'types/HAFAS/TripSearch';
+import type {
+  TripSearchOptionsV1,
+  TripSearchOptionsV2,
+} from 'types/HAFAS/TripSearch';
 
 interface SearchOnTripBody {
   sotMode: AllowedSotMode;
@@ -57,7 +61,7 @@ interface SearchOnTripBody {
 @Route('/hafas/v1')
 export class HafasController extends Controller {
   @Get('/journeyDetails')
-  @Tags('HAFAS V1')
+  @Tags('HAFAS')
   journeyDetails(
     @Query() jid: string,
     @Request() ctx: Context,
@@ -67,7 +71,7 @@ export class HafasController extends Controller {
   }
 
   @Post('/searchOnTrip')
-  @Tags('HAFAS V1')
+  @Tags('HAFAS')
   searchOnTrip(
     @Body() body: SearchOnTripBody,
     @Request() ctx: Context,
@@ -93,7 +97,7 @@ export class HafasController extends Controller {
 
   @Response(404, 'Train not found')
   @Get('/details/{trainName}')
-  @Tags('HAFAS V1')
+  @Tags('HAFAS')
   async details(
     trainName: string,
     /**
@@ -122,7 +126,7 @@ export class HafasController extends Controller {
   }
 
   @Get('/auslastung/{start}/{destination}/{trainNumber}/{time}')
-  @Tags('HAFAS V1')
+  @Tags('HAFAS')
   auslastung(
     start: string,
     destination: string,
@@ -136,7 +140,7 @@ export class HafasController extends Controller {
   }
 
   @Get('/arrivalStationBoard')
-  @Tags('HAFAS V1')
+  @Tags('HAFAS')
   arrivalStationBoard(
     @Request() ctx: Context,
     /**
@@ -161,7 +165,7 @@ export class HafasController extends Controller {
   }
 
   @Get('/departureStationBoard')
-  @Tags('HAFAS V1')
+  @Tags('HAFAS')
   departureStationBoard(
     @Request() ctx: Context,
     /**
@@ -191,7 +195,7 @@ export class HafasController extends Controller {
   }
 
   @Post('/journeyMatch')
-  @Tags('HAFAS V1')
+  @Tags('HAFAS')
   @OperationId('JourneyMatch')
   postJourneyMatch(
     @Request() ctx: Context,
@@ -211,7 +215,7 @@ export class HafasController extends Controller {
   }
 
   @Get('/geoStation')
-  @Tags('HAFAS V1')
+  @Tags('HAFAS')
   geoStation(
     @Request() ctx: Context,
     @Query() lat: number,
@@ -229,7 +233,7 @@ export class HafasController extends Controller {
   }
 
   @Get('/station/{searchTerm}')
-  @Tags('HAFAS V1')
+  @Tags('HAFAS')
   station(
     @Request() ctx: Context,
     searchTerm: string,
@@ -239,18 +243,26 @@ export class HafasController extends Controller {
     return LocMatch(searchTerm, type, profile, ctx.query.raw);
   }
 
+  @Deprecated()
   @Post('/tripSearch')
-  @Tags('HAFAS V1')
+  @Tags('HAFAS')
+  @OperationId('TripSearchV1')
   tripSearch(
     @Request() ctx: Context,
-    @Body() body: TripSearchOptions,
+    @Body() body: TripSearchOptionsV1,
     @Query() profile?: AllowedHafasProfile
   ): Promise<RoutingResult> {
-    return TripSearch(body, profile, ctx.query.raw);
+    const v2Options: TripSearchOptionsV2 = {
+      ...body,
+      via: body.via?.map((evaId) => ({
+        evaId,
+      })),
+    };
+    return TripSearch(v2Options, profile, ctx.query.raw);
   }
 
   @Post('/journeyGeoPos')
-  @Tags('HAFAS V1')
+  @Tags('HAFAS')
   journeyGeoPos(
     @Request() ctx: Context,
     @Body() body: JourneyGeoPosOptions,
@@ -260,7 +272,7 @@ export class HafasController extends Controller {
   }
 
   @Get('/positionForTrain/{trainName}')
-  @Tags('HAFAS V1')
+  @Tags('HAFAS')
   async positionForTrain(
     trainName: string,
     @Query() profile?: AllowedHafasProfile

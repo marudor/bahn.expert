@@ -4,7 +4,7 @@ import mapLoyalityCard from 'server/HAFAS/TripSearch/mapLoyalityCard';
 import tripSearchParse from './parse';
 import type { AllowedHafasProfile } from 'types/HAFAS';
 import type {
-  TripSearchOptions,
+  TripSearchOptionsV2,
   TripSearchRequest,
 } from 'types/HAFAS/TripSearch';
 
@@ -34,7 +34,7 @@ function route(
     ctxScr,
     onlyRegional,
     tarif,
-  }: TripSearchOptions,
+  }: TripSearchOptionsV2,
   profile?: AllowedHafasProfile,
   raw?: boolean
 ) {
@@ -92,10 +92,11 @@ function route(
         },
       ],
       viaLocL: via?.length
-        ? via.map((evaId) => ({
+        ? via.map(({ evaId, minChangeTime }) => ({
             loc: {
               lid: `A=1@L=${evaId}`,
             },
+            min: minChangeTime,
           }))
         : undefined,
       trfReq: tarif
