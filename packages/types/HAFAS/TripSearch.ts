@@ -25,18 +25,27 @@ export interface TripSearchTarifRequest {
   traveler: TripSearchTraveler[];
 }
 
-export interface TripSearchOptions
+interface BaseTripSearchOptions
   extends SharedTripSearchOptions,
     CommonRoutingOptions {
-  /**
-   * Max 2 via possible
-   */
-  via?: string[];
   transferTime?: number;
   maxChanges?: number;
   searchForDeparture?: boolean;
   onlyRegional?: boolean;
   tarif?: TripSearchTarifRequest;
+}
+
+export interface TripSearchOptionsV1 extends BaseTripSearchOptions {
+  via?: string[];
+}
+
+interface TripSearchVia {
+  evaId: string;
+  minChangeTime?: number;
+}
+
+export interface TripSearchOptionsV2 extends BaseTripSearchOptions {
+  via?: TripSearchVia[];
 }
 
 interface SharedTripSearchOptions {
@@ -80,6 +89,7 @@ interface GenericTripSearchRequest extends SharedTripSearchOptions {
   depLocL: OptionalLocL[];
   viaLocL: {
     loc: OptionalLocL;
+    min?: number;
   }[];
   antiViaLocL?: {
     loc: OptionalLocL;
