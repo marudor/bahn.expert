@@ -13,6 +13,8 @@ import { HafasSubscribeController } from './controller/Hafas/subscribe';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { HafasController } from './controller/Hafas/v1';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { HafasControllerV2 } from './controller/Hafas/v2';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { IrisController } from './controller/Iris/v1';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { ReihungMonitoringController } from './controller/Reihung/monitor';
@@ -1449,7 +1451,7 @@ const models: TsoaRoute.Models = {
     "additionalProperties": false,
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "TripSearchOptions": {
+  "TripSearchOptionsV1": {
     "dataType": "refObject",
     "properties": {
       "economic": { "dataType": "boolean" },
@@ -1462,12 +1464,12 @@ const models: TsoaRoute.Models = {
       "start": { "dataType": "string", "required": true },
       "destination": { "dataType": "string", "required": true },
       "time": { "dataType": "double" },
-      "via": { "dataType": "array", "array": { "dataType": "string" } },
       "transferTime": { "dataType": "double" },
       "maxChanges": { "dataType": "double" },
       "searchForDeparture": { "dataType": "boolean" },
       "onlyRegional": { "dataType": "boolean" },
       "tarif": { "ref": "TripSearchTarifRequest" },
+      "via": { "dataType": "array", "array": { "dataType": "string" } },
     },
     "additionalProperties": false,
   },
@@ -1519,6 +1521,38 @@ const models: TsoaRoute.Models = {
       "rtMsgStatus": { "dataType": "boolean" },
       "trainPosMode": { "ref": "JourneyTrainPosMode" },
       "zoom": { "dataType": "double" },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "TripSearchVia": {
+    "dataType": "refObject",
+    "properties": {
+      "evaId": { "dataType": "string", "required": true },
+      "minChangeTime": { "dataType": "double" },
+    },
+    "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "TripSearchOptionsV2": {
+    "dataType": "refObject",
+    "properties": {
+      "economic": { "dataType": "boolean" },
+      "getIV": { "dataType": "boolean" },
+      "getPasslist": { "dataType": "boolean" },
+      "getPolyline": { "dataType": "boolean" },
+      "numF": { "dataType": "double" },
+      "ctxScr": { "dataType": "string" },
+      "ushrp": { "dataType": "boolean" },
+      "start": { "dataType": "string", "required": true },
+      "destination": { "dataType": "string", "required": true },
+      "time": { "dataType": "double" },
+      "transferTime": { "dataType": "double" },
+      "maxChanges": { "dataType": "double" },
+      "searchForDeparture": { "dataType": "boolean" },
+      "onlyRegional": { "dataType": "boolean" },
+      "tarif": { "ref": "TripSearchTarifRequest" },
+      "via": { "dataType": "array", "array": { "ref": "TripSearchVia" } },
     },
     "additionalProperties": false,
   },
@@ -2532,7 +2566,7 @@ export function RegisterRoutes(router: KoaRouter) {
     async (context: any, next: any) => {
       const args = {
         ctx: { "in": "request", "name": "ctx", "required": true, "dataType": "object" },
-        body: { "in": "body", "name": "body", "required": true, "ref": "TripSearchOptions" },
+        body: { "in": "body", "name": "body", "required": true, "ref": "TripSearchOptionsV1" },
         profile: { "in": "query", "name": "profile", "ref": "AllowedHafasProfile" },
       };
 
@@ -2611,6 +2645,28 @@ export function RegisterRoutes(router: KoaRouter) {
       const controller = new HafasController();
 
       const promise = controller.rawHafas.apply(controller, validatedArgs as any);
+      return promiseHandler(controller, promise, context, next);
+    });
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  router.post('/api/hafas/v2/tripSearch',
+    async (context: any, next: any) => {
+      const args = {
+        ctx: { "in": "request", "name": "ctx", "required": true, "dataType": "object" },
+        body: { "in": "body", "name": "body", "required": true, "ref": "TripSearchOptionsV2" },
+        profile: { "in": "query", "name": "profile", "ref": "AllowedHafasProfile" },
+      };
+
+      let validatedArgs: any[] = [];
+      try {
+        validatedArgs = getValidatedArgs(args, context, next);
+      } catch (error) {
+        context.status = error.status;
+        context.throw(error.status, JSON.stringify({ fields: error.fields }));
+      }
+
+      const controller = new HafasControllerV2();
+
+      const promise = controller.tripSearch.apply(controller, validatedArgs as any);
       return promiseHandler(controller, promise, context, next);
     });
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
