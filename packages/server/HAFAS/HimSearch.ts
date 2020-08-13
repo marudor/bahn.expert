@@ -63,7 +63,7 @@ const himMessageCache = createNewCache<string, ParsedHimMessage>(
 );
 
 const maxNum =
-  Number.parseInt(process.env.HIM_MAX_FETCH || '50000', 10) || 50000;
+  Number.parseInt(process.env.HIM_MAX_FETCH || '5000', 10) || 50000;
 
 async function fetchTodaysHimMessages() {
   try {

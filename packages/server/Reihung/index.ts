@@ -279,21 +279,6 @@ function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
     gruppe.br.redesign = true;
   }
 
-  // const ap = getAP(fahrzeug.fahrzeugnummer);
-
-  // if (ap) {
-  //   if (ap.online && isAfter(ap.trainTimestamp, subDays(new Date(), 1))) {
-  //     data.icons.wifi = true;
-  //   } else {
-  //     data.icons.wifiOff = true;
-  //   }
-
-  //   if (gruppe.br && ap.trainBR.endsWith('RD')) {
-  //     gruppe.br.redesign = true;
-  //   }
-  //   tzn = ap.tzn;
-  // }
-
   if (gruppe.br) {
     if (data.comfort) {
       data.comfortSeats = getComfortSeats(gruppe.br, data.klasse === 1 ? 1 : 2);

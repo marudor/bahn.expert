@@ -48,8 +48,6 @@ export const iconExplanation: { [K in keyof typeof icons]: string } = {
   family: 'Familienbereich',
   disabled: 'Schwerbehindertenplätze',
   info: 'Dienstabteil',
-  wifi: 'Wlan online',
-  wifiOff: 'Wlan offline',
 };
 
 export const Explain = () => {
