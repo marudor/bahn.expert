@@ -6,7 +6,7 @@ import { InnerCommonConfigProvider } from 'client/Common/provider/CommonConfigPr
 import { MemoryRouter, useLocation } from 'react-router';
 import { Navigation } from 'client/Common/Components/Navigation';
 import { render as realRender } from '@testing-library/react';
-import { StorageContext } from 'shared/hooks/useStorage';
+import { StorageContext } from 'client/useStorage';
 import { ThemeProvider } from 'client/Common/provider/ThemeProvider';
 import { ThemeType } from 'client/Themes/type';
 import { ThemeWrap } from 'client/ThemeWrap';

@@ -2,7 +2,7 @@ import { Loading, LoadingType } from './Loading';
 import { makeStyles, MenuItem, Paper, TextField } from '@material-ui/core';
 import { MyLocation } from '@material-ui/icons';
 import { ReactNode, SyntheticEvent, useCallback, useRef } from 'react';
-import { useStationSearch } from 'shared/hooks/useStationSearch';
+import { useStationSearch } from 'client/Common/hooks/useStationSearch';
 import Downshift from 'downshift';
 import type { AllowedHafasProfile } from 'types/HAFAS';
 import type { Station, StationSearchType } from 'types/station';
