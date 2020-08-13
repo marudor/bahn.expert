@@ -27,6 +27,5 @@
       }
     ]
   },
-  "include": ["@types", "./packages"],
-  "exclude": ["packages/app"]
+  "include": ["@types", "./packages"]
 }

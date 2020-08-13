@@ -1,4 +1,4 @@
-import { orderBy } from 'shared/util';
+import { orderBy } from 'client/util';
 import fs from 'fs';
 import Fuse from 'fuse.js';
 import path from 'path';

@@ -1,7 +1,7 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { PropsWithChildren, useCallback, useState } from 'react';
 import { Station } from 'types/station';
-import { useWebStorage } from 'client/useWebStorage';
+import { useStorage } from 'client/useStorage';
 import constate from 'constate';
 
 export type RoutingFavStation = Pick<Station, 'title' | 'id'>;
@@ -27,7 +27,7 @@ interface InitialRoutingFavStorageProps {
 
 function useRoutingFavStorage({ initialFavs }: InitialRoutingFavStorageProps) {
   const [favs, setFavs] = useState<RoutingFavs>(initialFavs || {});
-  const storage = useWebStorage();
+  const storage = useStorage();
   const updateFavs = useCallback(
     (updateFn: (oldFavs: RoutingFavs) => RoutingFavs) => {
       setFavs((oldFavs) => {
@@ -80,7 +80,7 @@ export const [
 );
 
 export const RoutingFavProvider = ({ children }: PropsWithChildren<{}>) => {
-  const storage = useWebStorage();
+  const storage = useStorage();
   const savedRoutingFavs = storage.get('rfavs');
   return (
     <InnerRoutingFavProvider initialFavs={savedRoutingFavs}>

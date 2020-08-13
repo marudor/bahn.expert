@@ -2,7 +2,7 @@ import { journeyMatch } from 'client/Common/service/details';
 import { Loading, LoadingType } from 'client/Common/Components/Loading';
 import { makeStyles, MenuItem, Paper, TextField } from '@material-ui/core';
 import { useCallback, useState } from 'react';
-import { useWebStorage } from 'client/useWebStorage';
+import { useStorage } from 'client/useStorage';
 import Axios from 'axios';
 import debounce from 'debounce-promise';
 import Downshift from 'downshift';
@@ -37,7 +37,7 @@ export const ZugsucheAutocomplete = ({
   const [suggestions, setSuggestions] = useState<ParsedJourneyMatchResponse[]>(
     []
   );
-  const storage = useWebStorage();
+  const storage = useStorage();
   const [loading, setLoading] = useState(0);
   const loadOptions = useCallback(
     async (value: string) => {
