@@ -7,8 +7,6 @@ import {
   LocalDining,
   Motorcycle,
   NotificationsOff,
-  Wifi,
-  WifiOff,
 } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core';
 import { SitzplatzInfo } from './SitzplatzInfo';
@@ -32,8 +30,6 @@ export const icons: {
   family: ChildCare,
   disabled: Accessibility,
   info: InfoOutlined,
-  wifi: Wifi,
-  wifiOff: WifiOff,
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -191,7 +187,7 @@ export const Fahrzeug = ({
           if (enabled) {
             // @ts-ignore this is correct, it's exact!
             const SpecificIcon = icons[key];
-
+            if (!SpecificIcon) return null;
             return <SpecificIcon className={classes.icon} key={key} />;
           }
 
