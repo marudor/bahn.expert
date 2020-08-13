@@ -18,7 +18,7 @@ import {
   SwapVert,
   Today,
 } from '@material-ui/icons';
-import { getHafasStationFromAPI } from 'shared/service/stationSearch';
+import { getHafasStationFromAPI } from 'client/Common/service/stationSearch';
 import { getRouteLink } from 'client/Routing/util';
 import { SettingsPanel } from './SettingsPanel';
 import { StationSearch } from 'client/Common/Components/StationSearch';

@@ -1,4 +1,4 @@
-import { uniqBy } from 'shared/util';
+import { uniqBy } from 'client/util';
 import { useCallback, useEffect, useMemo } from 'react';
 import { useHistory } from 'react-router';
 import { useRouting } from 'client/Routing/provider/RoutingProvider';

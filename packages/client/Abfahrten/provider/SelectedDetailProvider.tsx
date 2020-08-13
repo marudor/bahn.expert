@@ -1,5 +1,5 @@
 import { ReactNode, useCallback, useState } from 'react';
-import { useWebStorage } from 'client/useWebStorage';
+import { useStorage } from 'client/useStorage';
 import constate from 'constate';
 
 const selectedDetailCookieName = 'selectedDetail';
@@ -9,7 +9,7 @@ const useSelectedDetailInternal = ({
 }: {
   initialSelectedDetail?: string;
 }) => {
-  const storage = useWebStorage();
+  const storage = useStorage();
   const [selectedDetail, realSetSelectedDetail] = useState<string | undefined>(
     initialSelectedDetail
   );
@@ -52,7 +52,7 @@ interface Props {
   children: ReactNode;
 }
 export const SelectedDetailProvider = ({ children }: Props) => {
-  const storage = useWebStorage();
+  const storage = useStorage();
   const savedSelectedDetail = storage.get(selectedDetailCookieName);
 
   return (

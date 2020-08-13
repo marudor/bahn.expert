@@ -2,7 +2,7 @@ import { AxiosInstance } from 'axios';
 import { CacheDatabases, createNewCache } from 'server/cache';
 import { logger } from 'server/logger';
 import { noncdRequest } from './helper';
-import { orderBy } from 'shared/util';
+import { orderBy } from 'client/util';
 import { parseStation } from 'server/iris/station';
 import Fuse from 'fuse.js';
 import xmljs, { Element } from 'libxmljs2';

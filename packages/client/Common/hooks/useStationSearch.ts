@@ -4,7 +4,7 @@ import {
   getHafasStationFromCoordinates,
   getStationsFromAPI,
   getStationsFromCoordinates,
-} from 'shared/service/stationSearch';
+} from 'client/Common/service/stationSearch';
 import { useCallback, useRef, useState } from 'react';
 import debounce from 'debounce-promise';
 import type { ControllerStateAndHelpers } from 'downshift';

@@ -2,7 +2,7 @@ import { abfahrtenConfigSanitize } from 'client/util';
 import { ReactNode, useCallback, useState } from 'react';
 import { StationSearchType } from 'types/station';
 import { useQuery } from 'client/Common/hooks/useQuery';
-import { useWebStorage } from 'client/useWebStorage';
+import { useStorage } from 'client/useStorage';
 import constate from 'constate';
 import type { AbfahrtenConfig } from 'client/Common/config';
 
@@ -14,7 +14,7 @@ export interface Filter {
 const filterCookieName = 'defaultFilter';
 
 const useFilter = (initialFilter: Filter) => {
-  const storage = useWebStorage();
+  const storage = useStorage();
   const [filterOpen, setFilterOpen] = useState(false);
   const [onlyDepartures] = useState(initialFilter.onlyDepartures);
   const [productFilter, setProductFilter] = useState(initialFilter.products);
@@ -45,7 +45,7 @@ const useFilter = (initialFilter: Filter) => {
 const useConfig = (initialConfig: AbfahrtenConfig) => {
   const [config, setConfig] = useState(initialConfig);
   const [configOpen, setConfigOpen] = useState(false);
-  const storage = useWebStorage();
+  const storage = useStorage();
 
   const setConfigKey = useCallback(
     <K extends keyof AbfahrtenConfig>(key: K, value: AbfahrtenConfig[K]) => {
@@ -111,8 +111,8 @@ export const [
   (v) => v.setConfigKey
 );
 
-const migrateOldConfig = (storage: ReturnType<typeof useWebStorage>) => {
-  const oldConfig = storage.get<AbfahrtenConfig>('config');
+const migrateOldConfig = (storage: ReturnType<typeof useStorage>) => {
+  const oldConfig = storage.get('config');
   if (oldConfig) {
     for (const [key, value] of Object.entries(oldConfig)) {
       storage.set(key, value);
@@ -131,7 +131,7 @@ export const AbfahrtenConfigProvider = ({
   fetchApiUrl,
   urlPrefix,
 }: Props) => {
-  const storage = useWebStorage();
+  const storage = useStorage();
   migrateOldConfig(storage);
   const query = useQuery();
   const savedFilter = storage.get(filterCookieName);

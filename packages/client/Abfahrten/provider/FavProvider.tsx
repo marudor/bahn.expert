@@ -1,5 +1,5 @@
 import { ComponentType, ReactNode, useCallback, useState } from 'react';
-import { useWebStorage } from 'client/useWebStorage';
+import { useStorage } from 'client/useStorage';
 import constate from 'constate';
 import type { Station } from 'types/station';
 
@@ -9,14 +9,14 @@ export interface Favs {
 
 interface FavStorageSetup {
   favs: Favs;
-  storageKey: string;
+  storageKey: 'favs' | 'regionalFavs';
   MostUsedComponent?: ComponentType;
 }
 
 function useFavStorage({ initial }: { initial: FavStorageSetup }) {
   const [favs, setFavs] = useState<Favs>(initial.favs);
 
-  const storage = useWebStorage();
+  const storage = useStorage();
   const updateFavs = useCallback(
     (newFavs: Favs) => {
       storage.set(initial.storageKey, newFavs);
@@ -89,7 +89,7 @@ export const FavProvider = ({
   storageKey,
   MostUsedComponent,
 }: Props) => {
-  const storage = useWebStorage();
+  const storage = useStorage();
   const savedFavs = storage.get(storageKey);
 
   return (

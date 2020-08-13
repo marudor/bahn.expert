@@ -2,12 +2,12 @@ import { createTheme } from 'client/Themes';
 import { PropsWithChildren, useMemo, useState } from 'react';
 import { ThemeType } from 'client/Themes/type';
 import { useQuery } from 'client/Common/hooks/useQuery';
-import { useWebStorage } from 'client/useWebStorage';
+import { useStorage } from 'client/useStorage';
 import constate from 'constate';
 
 function useThemeInner({ initialThemeType }: { initialThemeType: ThemeType }) {
   const [themeType, setThemeType] = useState(initialThemeType);
-  const storage = useWebStorage();
+  const storage = useStorage();
   const theme = useMemo(() => createTheme(themeType), [themeType]);
   return {
     themeType,
@@ -22,7 +22,7 @@ function useThemeInner({ initialThemeType }: { initialThemeType: ThemeType }) {
 export const [InnerThemeProvider, useTheme] = constate(useThemeInner);
 
 export const ThemeProvider = ({ children }: PropsWithChildren<{}>) => {
-  const storage = useWebStorage();
+  const storage = useStorage();
   const query = useQuery();
   let initialTheme = query.theme;
   if (!initialTheme) {

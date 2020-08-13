@@ -20,7 +20,7 @@ import { CacheDatabases, createNewCache } from 'server/cache';
 import { calculateVia, getAttr, getNumberAttr, parseTs } from './helper';
 import { diffArrays } from 'diff';
 import { getSingleHimMessageOfToday } from 'server/HAFAS/HimSearch';
-import { uniqBy } from 'shared/util';
+import { uniqBy } from 'client/util';
 import messageLookup, {
   ignoredMessageNumbers,
   messageTypeLookup,
