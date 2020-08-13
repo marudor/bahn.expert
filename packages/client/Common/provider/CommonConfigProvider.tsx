@@ -1,6 +1,6 @@
 import { CommonConfig } from 'client/Common/config';
 import { ReactNode, useCallback, useState } from 'react';
-import { useWebStorage } from 'client/useWebStorage';
+import { useStorage } from 'client/useStorage';
 import constate from 'constate';
 
 const useCommonConfigInternal = ({
@@ -9,7 +9,7 @@ const useCommonConfigInternal = ({
   initialConfig: CommonConfig;
 }) => {
   const [config, setConfig] = useState(initialConfig);
-  const storage = useWebStorage();
+  const storage = useStorage();
   const setCommonConfigKey = useCallback(
     <K extends keyof CommonConfig>(key: K, value: CommonConfig[K]) => {
       storage.set(key, value);
@@ -28,7 +28,7 @@ interface Props {
   children: ReactNode;
 }
 
-const migrateOldConfig = (storage: ReturnType<typeof useWebStorage>) => {
+const migrateOldConfig = (storage: ReturnType<typeof useStorage>) => {
   const oldConfig = storage.get<CommonConfig>('commonConfig');
   if (oldConfig) {
     for (const [key, value] of Object.entries(oldConfig)) {
@@ -49,7 +49,7 @@ export const [
 );
 
 export const CommonConfigProvider = ({ children }: Props) => {
-  const storage = useWebStorage();
+  const storage = useStorage();
   migrateOldConfig(storage);
 
   const savedConfig: CommonConfig = {

@@ -5,7 +5,7 @@ import {
   RoutingSettings,
 } from 'client/Routing/provider/RoutingConfigProvider';
 import { SingleRoute } from 'types/routing';
-import { useWebStorage } from 'client/useWebStorage';
+import { useStorage } from 'client/useStorage';
 import constate from 'constate';
 
 const useRoutingInternal = () => {
@@ -29,8 +29,8 @@ const useRoutingInternal = () => {
   };
 };
 
-const migrateOldConfig = (storage: ReturnType<typeof useWebStorage>) => {
-  const oldConfig = storage.get<RoutingSettings>('rconfig');
+const migrateOldConfig = (storage: ReturnType<typeof useStorage>) => {
+  const oldConfig = storage.get('rconfig');
   if (oldConfig) {
     for (const [key, value] of Object.entries(oldConfig)) {
       storage.set(key, value);
@@ -42,7 +42,7 @@ const migrateOldConfig = (storage: ReturnType<typeof useWebStorage>) => {
 export const [InnerRoutingProvider, useRouting] = constate(useRoutingInternal);
 
 export const RoutingProvider = ({ children }: PropsWithChildren<{}>) => {
-  const storage = useWebStorage();
+  const storage = useStorage();
   migrateOldConfig(storage);
 
   const savedRoutingSettings: RoutingSettings = {

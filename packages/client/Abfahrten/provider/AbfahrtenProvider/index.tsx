@@ -3,7 +3,7 @@ import {
   useAbfahrtenConfig,
   useAbfahrtenFetchAPIUrl,
 } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
-import { getStationsFromAPI } from 'shared/service/stationSearch';
+import { getStationsFromAPI } from 'client/Common/service/stationSearch';
 import { ReactNode, useCallback, useEffect, useState } from 'react';
 import Axios, { AxiosError } from 'axios';
 import constate from 'constate';

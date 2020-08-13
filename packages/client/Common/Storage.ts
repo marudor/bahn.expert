@@ -1,7 +1,6 @@
 /* eslint-disable no-process-env */
-import { WebConfigMap } from 'client/useWebStorage';
+import { WebConfigMap } from 'client/useStorage';
 import Cookies, { CookieSetOptions } from 'universal-cookie';
-import type { StorageInterface } from 'shared/hooks/useStorage/StorageInterface';
 
 const setCookieOptions: CookieSetOptions = {
   maxAge: 100000000,
@@ -10,21 +9,30 @@ const setCookieOptions: CookieSetOptions = {
   sameSite: 'strict',
 };
 
-export class ServerStorage extends Cookies
-  implements StorageInterface<WebConfigMap> {
-  get(name: string) {
+export interface StorageInterface {
+  get<K extends keyof WebConfigMap>(name: K): WebConfigMap[K] | undefined;
+  get<T>(name: string): T | undefined;
+  set<K extends keyof WebConfigMap>(name: K, value: WebConfigMap[K]): void;
+  set<T>(name: string, value: T): void;
+  remove<K extends keyof WebConfigMap>(name: K): void;
+}
+
+export class ServerStorage extends Cookies implements StorageInterface {
+  get<K extends keyof WebConfigMap>(name: K): WebConfigMap[K] | undefined {
     const raw = super.get(name);
+    // @ts-expect-error
     if (raw === 'false') return false;
+    // @ts-expect-error
     if (raw === 'true') return true;
     return raw;
   }
-  set<T>(name: string, value: T) {
+  set<K extends keyof WebConfigMap>(name: K, value: WebConfigMap[K]) {
     return super.set(name, value, setCookieOptions);
   }
 }
 
 export class ClientStorage extends ServerStorage {
-  get<T>(name: string): T | undefined {
+  get<K extends keyof WebConfigMap>(name: K): WebConfigMap[K] | undefined {
     const cookieGet = super.get(name);
     if (cookieGet != null) return cookieGet;
     const storageGet = localStorage.getItem(name);
@@ -38,7 +46,7 @@ export class ClientStorage extends ServerStorage {
     }
     return undefined;
   }
-  set<T>(name: string, value: T) {
+  set<K extends keyof WebConfigMap>(name: K, value: WebConfigMap[K]) {
     super.set(name, value);
     localStorage.setItem(name, JSON.stringify(value));
   }

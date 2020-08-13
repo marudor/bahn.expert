@@ -2,7 +2,7 @@ import { AbfahrtenProvider } from 'client/Abfahrten/provider/AbfahrtenProvider';
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { AuslastungsProvider } from 'client/Abfahrten/provider/AuslastungsProvider';
 import { FavProvider } from 'client/Abfahrten/provider/FavProvider';
-import { getHafasStationFromAPI } from 'shared/service/stationSearch';
+import { getHafasStationFromAPI } from 'client/Common/service/stationSearch';
 import { Header } from 'client/Abfahrten/Components/Header';
 import { MainWrap } from 'client/Common/Components/MainWrap';
 import { renderRoutes } from 'react-router-config';

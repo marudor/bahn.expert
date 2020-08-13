@@ -1,6 +1,6 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { useCallback, useMemo, useState } from 'react';
-import { useWebStorage } from 'client/useWebStorage';
+import { useStorage } from 'client/useStorage';
 import constate from 'constate';
 import type { Station } from 'types/station';
 import type { SyntheticEvent } from 'react';
@@ -22,7 +22,7 @@ const useRoutingConfigInternal = ({
   const [via, setVia] = useState<Station[]>([]);
   const [date, setDate] = useState<Date | null>(null);
   const [settings, setSettings] = useState<RoutingSettings>(initialSettings);
-  const storage = useWebStorage();
+  const storage = useStorage();
 
   const updateSetting = useCallback(
     <K extends keyof RoutingSettings>(key: K, value: RoutingSettings[K]) => {

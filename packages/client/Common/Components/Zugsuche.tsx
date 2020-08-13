@@ -19,7 +19,7 @@ import { Search, Today, Train } from '@material-ui/icons';
 import { stopPropagation } from 'client/Common/stopPropagation';
 import { subHours } from 'date-fns';
 import { useHistory } from 'react-router';
-import { useWebStorage } from 'client/useWebStorage';
+import { useStorage } from 'client/useStorage';
 import { ZugsucheAutocomplete } from 'client/Common/Components/ZugsucheAutocomplete';
 import qs from 'qs';
 import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
@@ -60,7 +60,7 @@ interface Props {
 export const Zugsuche = ({ children }: Props) => {
   const classes = useStyles();
   const history = useHistory();
-  const storage = useWebStorage();
+  const storage = useStorage();
   const { toggleDrawer } = useContext(NavigationContext);
   const [open, setOpen] = useState(false);
   const [match, setMatch] = useState<ParsedJourneyMatchResponse | null>();
