@@ -77,7 +77,6 @@ export default (ctx: Context) => {
     }
 
     ctx.body = headerTemplate({
-      tagmanager: process.env.TAGMANAGER_ID,
       header: context.helmet,
       cssTags: extractor.getStyleTags(),
       linkTags: extractor.getLinkTags(),
