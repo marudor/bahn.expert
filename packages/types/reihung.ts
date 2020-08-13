@@ -62,7 +62,7 @@ export interface Fahrzeuggruppe extends BaseFahrzeuggruppe {
   startPercentage: number;
   endPercentage: number;
   /**
-   * 0169 for instance, either from WIFI or Gruppenbezeichnung
+   * 0169 for instance, from Gruppenbezeichnung
    */
   tzn?: string;
   /**
@@ -175,8 +175,6 @@ export interface AdditionalFahrzeugInfo {
     info?: boolean;
     family?: boolean;
     toddler?: boolean;
-    wifi?: boolean;
-    wifiOff?: boolean;
   };
   comfort?: boolean;
   comfortSeats?: string;
