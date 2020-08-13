@@ -4179,12 +4179,6 @@
           },
           "icons": {
             "properties": {
-              "wifiOff": {
-                "type": "boolean"
-              },
-              "wifi": {
-                "type": "boolean"
-              },
               "toddler": {
                 "type": "boolean"
               },
@@ -4578,7 +4572,7 @@
           },
           "tzn": {
             "type": "string",
-            "description": "0169 for instance, either from WIFI or Gruppenbezeichnung"
+            "description": "0169 for instance, from Gruppenbezeichnung"
           },
           "name": {
             "type": "string",
