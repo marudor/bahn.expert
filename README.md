@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- node v13
+- node v14
 - yarn (yarnpkg.com)
 
 ## Quickstart
@@ -24,5 +24,5 @@ Currently running at https://marudor.de
 
 ## Cross browser testing
 
-Big thanks to [BrowserStack](https://browserstack.com)
+Big thanks to [BrowserStack](https://browserstack.com)  
 <a href="https://browserstack.com"><img width=200 src="https://live.browserstack.com/images/opensource/browserstack-logo.svg"></a>
