@@ -3,7 +3,7 @@ module.exports = {
     'packages/client/jest.config.json',
     'packages/server/jest.config.json',
   ],
-  reporters: ['default', 'jest-junit'],
+  reporters: ['default'],
   watchPlugins: [
     'jest-watch-typeahead/filename',
     'jest-watch-typeahead/testname',
