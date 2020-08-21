@@ -33,6 +33,7 @@ export const Mid = () => {
     >
       <Info />
       <div
+        data-testid="destination"
         className={clsx(classes.destination, {
           [classes.cancelled]: abfahrt.cancelled,
           [classes.different]:

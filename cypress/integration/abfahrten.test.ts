@@ -57,4 +57,23 @@ describe('Abfahrten', () => {
     cy.findByTestId('loading').should('exist');
     cy.findByTestId('lookahead').should('exist');
   });
+  it('Zugausfall not strike through', () => {
+    cy.visit('/');
+    cy.mockHamburg();
+    cy.navigateToStation('Hamburg Hbf');
+    cy.findByTestId('abfahrtRB81616').within(() => {
+      cy.findByTestId('zugausfall').should(
+        'not.have.css',
+        'text-decoration-line',
+        'line-through'
+      );
+      ['destination', 'platform', 'times'].forEach((id) => {
+        cy.findByTestId(id).should(
+          'have.css',
+          'text-decoration-line',
+          'line-through'
+        );
+      });
+    });
+  });
 });
