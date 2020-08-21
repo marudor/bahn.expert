@@ -23,6 +23,7 @@ export const Platform = ({ className, cancelled, scheduled, real }: Props) => {
 
   return (
     <div
+      data-testid="platform"
       className={clsx(className, {
         [classes.cancelled]: cancelled,
         [classes.changed]: changed,

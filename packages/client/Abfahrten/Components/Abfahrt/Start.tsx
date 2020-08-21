@@ -23,10 +23,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'flex-start',
   },
-  cancelled: {
-    ...theme.mixins.cancelled,
-    ...theme.mixins.changed,
-  },
+  cancelled: theme.mixins.changed,
 }));
 
 export const Start = () => {
@@ -60,7 +57,9 @@ export const Start = () => {
         </div>
       )}
       {abfahrt.cancelled && (
-        <span className={classes.cancelled}>Zugausfall</span>
+        <span data-testid="zugausfall" className={classes.cancelled}>
+          Zugausfall
+        </span>
       )}
       {abfahrt.substitute && abfahrt.ref && (
         <Substitute substitute={abfahrt.ref} />

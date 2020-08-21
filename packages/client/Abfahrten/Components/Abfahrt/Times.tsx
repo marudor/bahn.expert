@@ -24,7 +24,7 @@ export const Times = () => {
   } = useAbfahrt();
 
   return (
-    <div className={clsx(cancelled && classes.cancelled)}>
+    <div data-testid="times" className={clsx(cancelled && classes.cancelled)}>
       {detail ? (
         <>
           {arrival && (
