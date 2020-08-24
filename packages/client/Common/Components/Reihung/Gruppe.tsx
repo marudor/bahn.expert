@@ -53,20 +53,22 @@ export const Gruppe = ({
   if (rest.showUIC) currentBottom += 1;
   if (showGruppenZugnummer && gruppe.verkehrlichezugnummer) currentBottom += 1;
 
-  const fahrzeuge = useMemo(
-    () =>
-      gruppe.allFahrzeug.map((f) => {
-        return (
-          <Fahrzeug
-            {...rest}
-            wrongWing={originalTrainNumber !== gruppe.verkehrlichezugnummer}
-            key={`${f.fahrzeugnummer}${f.positioningruppe}`}
-            fahrzeug={f}
-          />
-        );
-      }),
-    [gruppe, originalTrainNumber, rest],
-  );
+  const fahrzeuge = useMemo(() => {
+    const wrongWing =
+      originalTrainNumber !== gruppe.verkehrlichezugnummer &&
+      originalTrainNumber.length <= 4 &&
+      gruppe.verkehrlichezugnummer.length <= 4;
+    return gruppe.allFahrzeug.map((f) => {
+      return (
+        <Fahrzeug
+          {...rest}
+          wrongWing={wrongWing}
+          key={`${f.fahrzeugnummer}${f.positioningruppe}`}
+          fahrzeug={f}
+        />
+      );
+    });
+  }, [gruppe, originalTrainNumber, rest]);
 
   return (
     <>

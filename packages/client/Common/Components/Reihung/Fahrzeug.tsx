@@ -124,6 +124,16 @@ const useStyles = makeStyles((theme) => ({
       content: '"LOK"',
     },
   },
+  doppelstock: {
+    position: 'absolute',
+    height: '1px',
+    top: '45%',
+    left: 0,
+    right: 0,
+    backgroundImage: `linear-gradient(to right, ${theme.palette.text.primary} 33%, transparent 0%)`,
+    backgroundSize: '8px 1px',
+    backgroundRepeat: 'repeat-x',
+  },
 }));
 
 export interface InheritedProps {
@@ -141,6 +151,7 @@ export interface Props extends InheritedProps {
     | 'status'
     | 'additionalInfo'
     | 'fahrzeugnummer'
+    | 'kategorie'
   >;
   destination?: string;
   wrongWing?: boolean;
@@ -174,6 +185,9 @@ export const Fahrzeug = ({
       data-testid={`reihungFahrzeug${fahrzeug.wagenordnungsnummer}`}
       style={position}
     >
+      {fahrzeug.kategorie.includes('DOPPELSTOCK') && (
+        <span className={classes.doppelstock} />
+      )}
       <span
         className={clsx(
           classes.klasse,
