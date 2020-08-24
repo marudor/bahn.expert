@@ -58,13 +58,13 @@ export const SettingsPanel = () => {
   const handleInputChange = useCallback(
     (key: keyof RoutingSettings) => (e: ChangeEvent<any>) =>
       updateSettings(key, e.currentTarget.value),
-    [updateSettings]
+    [updateSettings],
   );
   const handleSwitchChange = useCallback(
     (key: keyof RoutingSettings) => (_: any, checked: boolean) => {
       updateSettings(key, checked);
     },
-    [updateSettings]
+    [updateSettings],
   );
 
   const maxChangesBadeContent = useMemo(
@@ -74,7 +74,7 @@ export const SettingsPanel = () => {
       ) : (
         settings.maxChanges
       ),
-    [settings.maxChanges]
+    [settings.maxChanges],
   );
 
   return (

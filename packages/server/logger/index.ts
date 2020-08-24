@@ -65,7 +65,7 @@ export const logger = pino(
       }),
     },
   },
-  writeOptions
+  writeOptions,
 );
 
 export const middlewares = [koaLogger(logger)];

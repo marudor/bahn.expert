@@ -6,12 +6,12 @@ export default async (
   start: string,
   destination: string,
   trainNumber: string,
-  time: number
+  time: number,
 ) => {
   const startStations = await stationSearch(start, StationSearchType.hafas);
   const destStations = await stationSearch(
     destination,
-    StationSearchType.hafas
+    StationSearchType.hafas,
   );
 
   const startStation = startStations[0];
@@ -45,10 +45,10 @@ export default async (
           s.type === 'JNY' &&
           (s.train.number === trainNumber ||
             Boolean(
-              s.wings && s.wings.find((w) => w.train.number === trainNumber)
-            ))
-      )
-    )
+              s.wings && s.wings.find((w) => w.train.number === trainNumber),
+            )),
+      ),
+    ),
   );
 
   if (

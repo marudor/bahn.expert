@@ -59,11 +59,11 @@ const InnerHeader = () => {
         via: via.map((v) => stripStationToRoutingFavStation(v)),
         profile: settings.hafasProfile,
       },
-    [destination, settings.hafasProfile, start, via]
+    [destination, settings.hafasProfile, start, via],
   );
   const isFaved = useMemo(
     () => currentFav && routingFavKey(currentFav) in favs,
-    [currentFav, favs]
+    [currentFav, favs],
   );
   const toggleFav = useCallback(() => {
     if (currentFav) {

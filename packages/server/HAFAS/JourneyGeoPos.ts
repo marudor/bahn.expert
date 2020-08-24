@@ -16,7 +16,7 @@ import type {
 
 const parseJourneyGeoPos = (
   r: HafasResponse<JourneyGeoPosResponse>,
-  common: ParsedCommon
+  common: ParsedCommon,
 ): ParsedJourneyGeoPosResponse => {
   return r.svcResL[0].res.jnyL.map((j) => {
     const train = common.prodL[j.prodX];
@@ -42,7 +42,7 @@ const parseJourneyGeoPos = (
 export default (
   options: JourneyGeoPosOptions,
   profile?: AllowedHafasProfile,
-  raw?: boolean
+  raw?: boolean,
 ) => {
   const req: JourneyGeoPosRequest = {
     req: options,

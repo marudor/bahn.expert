@@ -56,7 +56,7 @@ function createMicMacFn(secret: string) {
 export const vbn = {
   url: 'https://fahrplaner.vbn.de/bin/mgate.exe',
   secret: createMicMacFn(
-    getSecret('HLMpSMJpWe8wBXKtp2g1ey+XzkGxhYE3NsONGEmd8GE=')
+    getSecret('HLMpSMJpWe8wBXKtp2g1ey+XzkGxhYE3NsONGEmd8GE='),
   ),
   config: {
     client: {
@@ -96,7 +96,7 @@ export const smartrbl = {
 export const dbregio = {
   url: 'https://bnav.hafas.de/bin/mgate.exe',
   secret: createMicMacFn(
-    getSecret('scuNsYWPma+dzYl3K5cpjb+EsHxQJ/2VGnFwjInCQX4=')
+    getSecret('scuNsYWPma+dzYl3K5cpjb+EsHxQJ/2VGnFwjInCQX4='),
   ),
   config: {
     client: {
@@ -118,7 +118,7 @@ export const dbregio = {
 export const db = {
   url: 'https://reiseauskunft.bahn.de/bin/mgate.exe',
   secret: createChecksumFn(
-    getSecret('rGhXPq+xAlvJd8T8cMnojdD0IoaOY53X7DPAbcXYe5g=')
+    getSecret('rGhXPq+xAlvJd8T8cMnojdD0IoaOY53X7DPAbcXYe5g='),
   ),
   config: {
     client: {
@@ -246,7 +246,7 @@ export const nahsh = {
 export const hvv = {
   url: 'https://hvv-app.hafas.de/bin/mgate.exe',
   secret: createMicMacFn(
-    getSecret('ktlwfW4vVOf/LwJ4wsnENvzRQZf3WS9b1RMPbIQNEOw=')
+    getSecret('ktlwfW4vVOf/LwJ4wsnENvzRQZf3WS9b1RMPbIQNEOw='),
   ),
   config: {
     client: {

@@ -11,7 +11,7 @@ const useSelectedDetailInternal = ({
 }) => {
   const storage = useStorage();
   const [selectedDetail, realSetSelectedDetail] = useState<string | undefined>(
-    initialSelectedDetail
+    initialSelectedDetail,
   );
 
   const setSelectedDetail = useCallback(
@@ -29,7 +29,7 @@ const useSelectedDetailInternal = ({
         return detailToSave;
       });
     },
-    [storage]
+    [storage],
   );
 
   return {
@@ -45,7 +45,7 @@ export const [
 ] = constate(
   useSelectedDetailInternal,
   (v) => v.selectedDetail,
-  (v) => v.setSelectedDetail
+  (v) => v.setSelectedDetail,
 );
 
 interface Props {

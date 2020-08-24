@@ -9,7 +9,7 @@ export default (
   stop: CommonStop,
   common: ParsedCommon,
   date: Date,
-  train: ParsedProduct
+  train: ParsedProduct,
 ): Route$Stop => {
   const arrival = stop.aTimeS
     ? parseCommonArrival(stop, date, common, train)

@@ -65,7 +65,7 @@ export class HafasController extends Controller {
   journeyDetails(
     @Query() jid: string,
     @Request() ctx: Context,
-    @Query() profile?: AllowedHafasProfile
+    @Query() profile?: AllowedHafasProfile,
   ): Promise<ParsedJourneyDetails> {
     return JourneyDetails(jid, profile, ctx.query.raw);
   }
@@ -75,7 +75,7 @@ export class HafasController extends Controller {
   searchOnTrip(
     @Body() body: SearchOnTripBody,
     @Request() ctx: Context,
-    @Query() profile?: AllowedHafasProfile
+    @Query() profile?: AllowedHafasProfile,
   ): Promise<SingleRoute> {
     const { sotMode, id } = body;
     let req;
@@ -112,7 +112,7 @@ export class HafasController extends Controller {
      * Initial Departure Date (Unix Timestap)
      */
     @Query() date?: number,
-    @Query() profile?: AllowedHafasProfile
+    @Query() profile?: AllowedHafasProfile,
   ): Promise<ParsedSearchOnTripResponse> {
     const details = await Detail(trainName, stop, station, date, profile);
 
@@ -134,7 +134,7 @@ export class HafasController extends Controller {
     /**
      * Unix Time (ms)
      */
-    time: number
+    time: number,
   ): Promise<Route$Auslastung> {
     return Auslastung(start, destination, trainNumber, time);
   }
@@ -151,7 +151,7 @@ export class HafasController extends Controller {
      * Unix Time (ms)
      */
     @Query() date?: number,
-    @Query() profile?: AllowedHafasProfile
+    @Query() profile?: AllowedHafasProfile,
   ): Promise<ArrivalStationBoardEntry[]> {
     return StationBoard(
       {
@@ -160,7 +160,7 @@ export class HafasController extends Controller {
         type: 'ARR',
       },
       profile,
-      ctx.query.raw
+      ctx.query.raw,
     );
   }
 
@@ -180,7 +180,7 @@ export class HafasController extends Controller {
      * Unix Time (ms)
      */
     @Query() date?: number,
-    @Query() profile?: AllowedHafasProfile
+    @Query() profile?: AllowedHafasProfile,
   ): Promise<DepartureStationBoardEntry[]> {
     return StationBoard(
       {
@@ -190,7 +190,7 @@ export class HafasController extends Controller {
         type: 'DEP',
       },
       profile,
-      ctx.query.raw
+      ctx.query.raw,
     );
   }
 
@@ -200,7 +200,7 @@ export class HafasController extends Controller {
   postJourneyMatch(
     @Request() ctx: Context,
     @Body() options: JourneyMatchOptions,
-    @Query() profile?: AllowedHafasProfile
+    @Query() profile?: AllowedHafasProfile,
   ): Promise<ParsedJourneyMatchResponse[]> {
     return JourneyMatch(options, profile, ctx.query.raw);
   }
@@ -209,7 +209,7 @@ export class HafasController extends Controller {
   @Hidden()
   enrichedJourneyMatch(
     @Body() options: JourneyMatchOptions,
-    @Query() profile?: AllowedHafasProfile
+    @Query() profile?: AllowedHafasProfile,
   ): Promise<ParsedJourneyMatchResponse[]> {
     return enrichedJourneyMatch(options, profile);
   }
@@ -221,14 +221,14 @@ export class HafasController extends Controller {
     @Query() lat: number,
     @Query() lng: number,
     @Query() maxDist: number = 1000,
-    @Query() profile?: AllowedHafasProfile
+    @Query() profile?: AllowedHafasProfile,
   ): Promise<HafasStation[]> {
     return LocGeoPos(
       lng * 1000000,
       lat * 1000000,
       maxDist,
       profile,
-      ctx.query.raw
+      ctx.query.raw,
     );
   }
 
@@ -238,7 +238,7 @@ export class HafasController extends Controller {
     @Request() ctx: Context,
     searchTerm: string,
     @Query() type?: 'S' | 'ALL',
-    @Query() profile?: AllowedHafasProfile
+    @Query() profile?: AllowedHafasProfile,
   ): Promise<HafasStation[]> {
     return LocMatch(searchTerm, type, profile, ctx.query.raw);
   }
@@ -250,7 +250,7 @@ export class HafasController extends Controller {
   tripSearch(
     @Request() ctx: Context,
     @Body() body: TripSearchOptionsV1,
-    @Query() profile?: AllowedHafasProfile
+    @Query() profile?: AllowedHafasProfile,
   ): Promise<RoutingResult> {
     const v2Options: TripSearchOptionsV2 = {
       ...body,
@@ -266,7 +266,7 @@ export class HafasController extends Controller {
   journeyGeoPos(
     @Request() ctx: Context,
     @Body() body: JourneyGeoPosOptions,
-    @Query() profile?: AllowedHafasProfile
+    @Query() profile?: AllowedHafasProfile,
   ): Promise<ParsedJourneyGeoPosResponse> {
     return JourneyGeoPos(body, profile, ctx.query.raw);
   }
@@ -275,7 +275,7 @@ export class HafasController extends Controller {
   @Tags('HAFAS')
   async positionForTrain(
     trainName: string,
-    @Query() profile?: AllowedHafasProfile
+    @Query() profile?: AllowedHafasProfile,
   ) {
     const result = await PositionForTrain(trainName, profile);
 
@@ -292,7 +292,7 @@ export class HafasController extends Controller {
   @Post('/rawHafas')
   rawHafas(
     @Body() body: any,
-    @Query() profile?: AllowedHafasProfile
+    @Query() profile?: AllowedHafasProfile,
   ): Promise<any> {
     return makeRequest(body, undefined, profile);
   }

@@ -32,7 +32,7 @@ const useRoutingConfigInternal = ({
         [key]: value,
       }));
     },
-    [storage]
+    [storage],
   );
 
   const updateVia = useCallback((index: number, station?: Station) => {
@@ -57,7 +57,7 @@ const useRoutingConfigInternal = ({
       setDestination(start);
       setStart(destination);
     },
-    [destination, start]
+    [destination, start],
   );
 
   return {
@@ -96,5 +96,5 @@ export const [
     updateVia: v.updateVia,
     swapStartDestination: v.swapStartDestination,
     updateSettings: v.updateSetting,
-  })
+  }),
 );

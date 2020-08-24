@@ -11,7 +11,7 @@ export class HafasControllerV2 extends Controller {
   tripSearch(
     @Request() ctx: Context,
     @Body() body: TripSearchOptionsV2,
-    @Query() profile?: AllowedHafasProfile
+    @Query() profile?: AllowedHafasProfile,
   ) {
     return TripSearch(body, profile, ctx.query.raw);
   }

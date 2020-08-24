@@ -15,7 +15,7 @@ export function getRouteLink(
   start: Station,
   destination: Station,
   via: Station[],
-  date?: Date | null
+  date?: Date | null,
 ) {
   return `/routing/${start.id}/${destination.id}/${
     date?.getTime() || 0

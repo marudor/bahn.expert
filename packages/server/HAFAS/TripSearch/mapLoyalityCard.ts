@@ -20,7 +20,7 @@ const DBLoyalityCards: { [key in LoyalityCard]: number } = {
 // TODO: Expand for other profiles, DB only for now
 export default (
   loyalityCard?: LoyalityCard,
-  _profile: AllowedHafasProfile = AllowedHafasProfile.DB
+  _profile: AllowedHafasProfile = AllowedHafasProfile.DB,
 ) => {
   if (!loyalityCard) return;
 

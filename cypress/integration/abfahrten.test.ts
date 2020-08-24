@@ -13,7 +13,7 @@ describe('Abfahrten', () => {
     cy.window().then((w) =>
       cy
         .get('link[rel="canonical"]')
-        .should('have.attr', 'href', decodeURIComponent(w.location.href))
+        .should('have.attr', 'href', decodeURIComponent(w.location.href)),
     );
   });
   it('opened details should be rememberd on refresh', () => {
@@ -65,13 +65,13 @@ describe('Abfahrten', () => {
       cy.findByTestId('zugausfall').should(
         'not.have.css',
         'text-decoration-line',
-        'line-through'
+        'line-through',
       );
       ['destination', 'platform', 'times'].forEach((id) => {
         cy.findByTestId(id).should(
           'have.css',
           'text-decoration-line',
-          'line-through'
+          'line-through',
         );
       });
     });

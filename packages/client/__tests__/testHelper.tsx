@@ -54,7 +54,7 @@ const generateClassName = (rule: Rule, sheet?: StyleSheet<string>) => {
 export function render<CP extends ComponentType<any>>(
   Comp: CP,
   props?: ComponentProps<CP>,
-  { withNavigation, context, commonConfig, provider }: Options = {}
+  { withNavigation, context, commonConfig, provider }: Options = {},
 ) {
   const themeType = ThemeType.dark;
 

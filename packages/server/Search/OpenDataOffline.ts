@@ -26,6 +26,6 @@ export default function (searchTerm: string): Promise<Station[]> {
       id: item.id,
       DS100: item.ril100,
       raw: global.PROD ? undefined : item,
-    }))
+    })),
   );
 }

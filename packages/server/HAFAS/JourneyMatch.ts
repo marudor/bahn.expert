@@ -13,7 +13,7 @@ import type {
 
 const parseJourneyMatch = (
   d: HafasResponse<JourneyMatchResponse>,
-  common: ParsedCommon
+  common: ParsedCommon,
 ): ParsedJourneyMatchResponse[] => {
   return d.svcResL[0].res.jnyL.map((j) => {
     const date = parse(j.date, 'yyyyMMdd', new Date());
@@ -34,7 +34,7 @@ const parseJourneyMatch = (
 const JourneyMatch = (
   { trainName, initialDepartureDate, jnyFltrL }: JourneyMatchOptions,
   profile: AllowedHafasProfile = AllowedHafasProfile.DB,
-  raw?: boolean
+  raw?: boolean,
 ): Promise<ParsedJourneyMatchResponse[]> => {
   let date = initialDepartureDate;
 
@@ -63,7 +63,7 @@ const JourneyMatch = (
         e.status = 404;
       }
       throw e;
-    }
+    },
   );
 };
 
@@ -73,7 +73,7 @@ const fallbackTypeRegex = /(.+?)( |\d|\b).*\d+/;
 
 export async function enrichedJourneyMatch(
   options: JourneyMatchOptions,
-  profile?: AllowedHafasProfile
+  profile?: AllowedHafasProfile,
 ) {
   const journeyMatches = await JourneyMatch(options, profile);
   const limitedJourneyMatches = journeyMatches.slice(0, 3);

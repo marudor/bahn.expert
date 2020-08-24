@@ -5,7 +5,7 @@ import Axios from 'axios';
 
 export async function getStationsFromAPI(
   type: StationSearchType = StationSearchType.default,
-  stationString?: string
+  stationString?: string,
 ): Promise<Station[]> {
   if (stationString) {
     return (
@@ -13,7 +13,7 @@ export async function getStationsFromAPI(
         `/api/station/v1/search/${encodeURIComponent(stationString)}`,
         {
           params: { type },
-        }
+        },
       )
     ).data;
   }
@@ -23,7 +23,7 @@ export async function getStationsFromAPI(
 
 export async function getHafasStationFromAPI(
   profile?: AllowedHafasProfile,
-  stationString?: string
+  stationString?: string,
 ): Promise<Station[]> {
   try {
     return (
@@ -41,7 +41,7 @@ export async function getHafasStationFromAPI(
 
 export async function getHafasStationFromCoordinates(
   profile: AllowedHafasProfile = AllowedHafasProfile.DB,
-  coordinates: Coordinates
+  coordinates: Coordinates,
 ): Promise<Station[]> {
   try {
     return (
@@ -59,7 +59,7 @@ export async function getHafasStationFromCoordinates(
 }
 
 export async function getStationsFromCoordinates(
-  coordinates: Coordinates
+  coordinates: Coordinates,
 ): Promise<Station[]> {
   return (
     await Axios.get<Station[]>('/api/station/v1/geoSearch', {

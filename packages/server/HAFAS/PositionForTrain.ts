@@ -7,7 +7,7 @@ export default async (trainName: string, profile?: AllowedHafasProfile) => {
     {
       trainName,
     },
-    profile
+    profile,
   );
   const train = matchedTrains[0];
 
@@ -32,7 +32,7 @@ export default async (trainName: string, profile?: AllowedHafasProfile) => {
         maxDist: 1000000,
       },
     },
-    profile
+    profile,
   );
 
   return geoPosMatch;

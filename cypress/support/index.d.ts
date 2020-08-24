@@ -17,7 +17,7 @@ declare global {
         options?: {
           isStubbed?: boolean;
           findPrefix?: string;
-        }
+        },
       ): void;
       closeModal(): void;
       mockFrankfurt(options?: MockOptions): void;

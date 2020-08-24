@@ -42,7 +42,7 @@ const getCountry = (fahrzeuge: Fahrzeug[], fahrzeugTypes: string[]) => {
   }
 
   const wagenOrdnungsNummern = fahrzeuge.map((f) =>
-    Number.parseInt(f.wagenordnungsnummer, 10)
+    Number.parseInt(f.wagenordnungsnummer, 10),
   );
   const minOrdnungsnummer = minBy(wagenOrdnungsNummern)!;
   const maxOrdnungsnummer = maxBy(wagenOrdnungsNummern)!;
@@ -147,7 +147,7 @@ const getComfortSeats = (br: BRInfo, klasse: 1 | 2) => {
 const getDisabledSeats = (
   br: BRInfo,
   klasse: 1 | 2,
-  wagenordnungsnummer: string
+  wagenordnungsnummer: string,
 ) => {
   switch (br.BR) {
     case '401':
@@ -287,7 +287,7 @@ function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
       data.disabledSeats = getDisabledSeats(
         gruppe.br,
         data.klasse === 1 ? 1 : 2,
-        fahrzeug.wagenordnungsnummer
+        fahrzeug.wagenordnungsnummer,
       );
     }
   }
@@ -346,7 +346,7 @@ export async function wagenreihung(trainNumber: string, date: number) {
       }
 
       return true;
-    })
+    }),
   );
 
   if (!reallyHasReihung) {
@@ -358,7 +358,7 @@ export async function wagenreihung(trainNumber: string, date: number) {
     enrichedFormation.allFahrzeuggruppe.some(
       (g) =>
         g.allFahrzeug.length === 1 &&
-        g.allFahrzeug[0].fahrzeugtyp.startsWith('E')
+        g.allFahrzeug[0].fahrzeugtyp.startsWith('E'),
     );
 
   if (isActuallyIC) {
@@ -389,7 +389,7 @@ export async function wagenreihung(trainNumber: string, date: number) {
         ICE1LDV(g.br, g.allFahrzeug);
         g.br.country = getCountry(g.allFahrzeug, gruppenFahrzeugTypes);
         g.br.showBRInfo = Boolean(
-          g.br.BR || !g.br.noPdf || (g.br.country && g.br.country !== 'DE')
+          g.br.BR || !g.br.noPdf || (g.br.country && g.br.country !== 'DE'),
         );
       }
     }
@@ -415,22 +415,22 @@ export async function wagenreihung(trainNumber: string, date: number) {
     });
 
     const minFahrzeug = minBy(g.allFahrzeug, (f) =>
-      Number.parseInt(f.positionamhalt.startprozent, 10)
+      Number.parseInt(f.positionamhalt.startprozent, 10),
     );
     const maxFahrzeug = maxBy(g.allFahrzeug, (f) =>
-      Number.parseInt(f.positionamhalt.endeprozent, 10)
+      Number.parseInt(f.positionamhalt.endeprozent, 10),
     );
 
     if (minFahrzeug) {
       g.startPercentage = Number.parseInt(
         minFahrzeug.positionamhalt.startprozent,
-        10
+        10,
       );
     }
     if (maxFahrzeug) {
       g.endPercentage = Number.parseInt(
         maxFahrzeug.positionamhalt.endeprozent,
-        10
+        10,
       );
     }
   });
@@ -441,7 +441,7 @@ export async function wagenreihung(trainNumber: string, date: number) {
   enrichedFormation.startPercentage = startPercentage;
   enrichedFormation.endPercentage = endPercentage;
   enrichedFormation.isRealtime = fahrzeuge.every(
-    (f) => f.kategorie === 'LOK' || f.fahrzeugnummer
+    (f) => f.kategorie === 'LOK' || f.fahrzeugnummer,
   );
 
   return enrichedFormation;
@@ -456,7 +456,7 @@ export async function wagenReihungMonitoring() {
     lookahead: 300,
   });
   const maybeDepartures = abfahrten.departures.filter(
-    (d) => d.reihung && d.departure
+    (d) => d.reihung && d.departure,
   );
 
   let departure = maybeDepartures.shift();
@@ -472,7 +472,7 @@ export async function wagenReihungMonitoring() {
         // eslint-disable-next-line no-await-in-loop
         const wr = await wagenReihungSpecificMonitoring(
           departure.train.number,
-          departureTime
+          departureTime,
         );
 
         if (wr) return wr;
@@ -482,7 +482,7 @@ export async function wagenReihungMonitoring() {
         console.warn(
           'Failed to get WR for Monitoring!',
           e,
-          departure && departure.train
+          departure && departure.train,
         );
         departure = maybeDepartures.shift();
       }

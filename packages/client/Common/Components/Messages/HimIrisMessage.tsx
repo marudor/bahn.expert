@@ -38,7 +38,7 @@ export const HimIrisMessage = ({
     message.timestamp &&
     format(
       message.timestamp,
-      getDate(message.timestamp) === today ? 'HH:mm' : 'dd.MM HH:mm'
+      getDate(message.timestamp) === today ? 'HH:mm' : 'dd.MM HH:mm',
     );
 
   const dateWithText = formattedDate

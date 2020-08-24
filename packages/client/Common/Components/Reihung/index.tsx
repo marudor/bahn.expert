@@ -90,7 +90,7 @@ export const Reihung = ({
         trainNumber,
         currentStation,
         scheduledDeparture,
-        fallbackTrainNumbers
+        fallbackTrainNumbers,
       );
     }
   }, [
@@ -163,7 +163,7 @@ export const Reihung = ({
         <span
           className={clsx(
             classes.richtung,
-            !reihung.realFahrtrichtung && classes.reverseRichtung
+            !reihung.realFahrtrichtung && classes.reverseRichtung,
           )}
         />
       </div>

@@ -17,7 +17,7 @@ export class BussinessHubExperimentalController extends Controller {
     @Query() limit?: number,
     @Query() groupIds?: number[],
     @Query() published?: boolean,
-    @Query() sectionIds?: string[]
+    @Query() sectionIds?: string[],
   ) {
     return news({
       offset,

@@ -28,7 +28,7 @@ export const DetailVia = ({ stops }: Props) => {
           data-testid={`via-${s.name}`}
           key={i}
           stationName={s.name}
-        />
+        />,
       );
       if (i + 1 !== stops.length) {
         stopsToRender.push(' - ');

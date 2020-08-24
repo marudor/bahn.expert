@@ -27,7 +27,7 @@ export const ActivePolyline = () => {
         iconAnchor: [12, 36],
         className: 'mapIcon',
       }),
-    []
+    [],
   );
 
   if (!activePolyline || !activeJourney) return null;

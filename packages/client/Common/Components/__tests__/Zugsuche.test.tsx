@@ -43,7 +43,7 @@ describe('Zugsuche', () => {
       nock
         .post(
           '/api/hafas/v1/enrichedJourneyMatch',
-          (body) => body.trainName === 'EC 6'
+          (body) => body.trainName === 'EC 6',
         )
         .reply(200, [
           {

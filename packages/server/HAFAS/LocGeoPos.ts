@@ -12,7 +12,7 @@ import type {
 
 const parseLocGeoPos = (
   _: HafasResponse<LocGeoPosResponse>,
-  common: ParsedCommon
+  common: ParsedCommon,
 ) => common.locL;
 
 export default (
@@ -20,7 +20,7 @@ export default (
   y: number,
   maxDist: number,
   profile?: AllowedHafasProfile,
-  raw?: boolean
+  raw?: boolean,
 ): Promise<HafasStation[]> => {
   const req: LocGeoPosRequest = {
     req: {

@@ -11,7 +11,7 @@ describe('Details', () => {
 
   it('can render & header height correct', () => {
     cy.route('/api/hafas/v1/details/S30665', 'fixture:details/S6.json').as(
-      'details'
+      'details',
     );
     cy.visit('/details/S30665');
     cy.wait('@details');

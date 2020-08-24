@@ -15,7 +15,7 @@ let cancelGetAbfahrten = () => {};
 export const fetchAbfahrten = async (
   urlWithStationId: string,
   lookahead: string,
-  lookbehind: string
+  lookbehind: string,
 ): Promise<AbfahrtenResult> => {
   cancelGetAbfahrten();
   const r = await Axios.get<AbfahrtenResult>(urlWithStationId, {
@@ -61,7 +61,7 @@ const useAbfahrtenInner = ({
 }: {
   stationApiFunction?: (
     searchType: StationSearchType,
-    stationName: string
+    stationName: string,
   ) => Promise<Station[]>;
 }) => {
   const [currentStation, setCurrentStation] = useState<Station>();
@@ -101,7 +101,7 @@ const useAbfahrtenInner = ({
         setError(e);
       }
     },
-    [searchType, stationApiFunction]
+    [searchType, stationApiFunction],
   );
 
   useEffect(() => {
@@ -113,7 +113,7 @@ const useAbfahrtenInner = ({
     fetchAbfahrten(
       `${fetchApiUrl}/${currentStation.id}`,
       lookahead,
-      lookbehind
+      lookbehind,
     ).then(
       (r) => {
         setDepartures({
@@ -125,7 +125,7 @@ const useAbfahrtenInner = ({
       (e) => {
         e.station = currentStation.title;
         setError(e);
-      }
+      },
     );
   }, [currentStation, fetchApiUrl, lookahead, lookbehind]);
 
@@ -151,7 +151,7 @@ export const [
   (v) => v.departures,
   (v) => v.error,
   (v) => v.currentStation,
-  ({ departures, error, currentStation, ...r }) => r
+  ({ departures, error, currentStation, ...r }) => r,
 );
 
 interface Props {

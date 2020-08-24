@@ -51,7 +51,7 @@ describe('Platform', () => {
     expect(queryByTestId('real')).toHaveTextContent('1');
     expect(queryByTestId('scheduled')).toHaveTextContent('2');
     expect(queryByTestId('scheduled')).toHaveStyle(
-      'text-decoration: line-through;'
+      'text-decoration: line-through;',
     );
     expect(container).not.toHaveStyle(`text-decoration: line-through;`);
     expect(container).toHaveStyle(`color: ${theme.colors.red};`);

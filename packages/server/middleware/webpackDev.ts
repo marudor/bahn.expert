@@ -78,7 +78,7 @@ export default function webpackDev(koa: Koa) {
             else {
               resolve(next());
             }
-          }
+          },
         );
       });
     });

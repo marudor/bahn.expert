@@ -16,7 +16,7 @@ function useHeaderTagInner() {
     (newDescription: string = defaultDescription) => {
       setDescription(newDescription);
     },
-    []
+    [],
   );
 
   return {
@@ -38,5 +38,5 @@ export const [
 ] = constate(
   useHeaderTagInner,
   (v) => v.values,
-  (v) => v.actions
+  (v) => v.actions,
 );

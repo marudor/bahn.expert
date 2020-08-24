@@ -9,7 +9,7 @@ export function parseCoordinates(crd: Crd) {
 
 export default (
   locL: LocL,
-  products: ParsedProduct[]
+  products: ParsedProduct[],
 ): HafasStation & { raw?: any } => ({
   id: locL.extId,
   title: locL.name,

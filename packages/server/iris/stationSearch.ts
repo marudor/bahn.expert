@@ -11,7 +11,7 @@ import type { IrisStation } from 'types/station';
 // 24 Hours in seconds
 const cache = createNewCache<string, IrisStation[]>(
   24 * 60 * 60,
-  CacheDatabases.TimetableAll
+  CacheDatabases.TimetableAll,
 );
 
 const fuseSettings = {
@@ -29,7 +29,7 @@ const fuseSettings = {
 let searchableStations = new Fuse<IrisStation>([], fuseSettings);
 
 async function refreshSearchableStations(
-  request: AxiosInstance = noncdRequest
+  request: AxiosInstance = noncdRequest,
 ) {
   try {
     logger.debug('Fetching IRIS Stations to search');

@@ -12,7 +12,7 @@ const getATBR = (code: string, _serial: string): undefined | BRInfo => {
 };
 const getDEBR = (
   code: string,
-  uicOrdnungsnummer: string
+  uicOrdnungsnummer: string,
 ): undefined | BRInfo => {
   switch (code) {
     case '0812':

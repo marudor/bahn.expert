@@ -26,7 +26,7 @@ export const DetailsLink = ({
       },
       {
         addQueryPrefix: true,
-      }
+      },
     )}`}
   >
     Details

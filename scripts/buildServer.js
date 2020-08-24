@@ -15,7 +15,7 @@ function adjustVersion() {
           // eslint-disable-next-line no-sync
           fs.writeFileSync(
             versionPath,
-            `exports.__esModule=true;exports.default='${version.trim()}'`
+            `exports.__esModule=true;exports.default='${version.trim()}'`,
           );
         }
         resolve(0);

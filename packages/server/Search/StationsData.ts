@@ -64,6 +64,6 @@ export default function (searchTerm: string): Promise<Station[]> {
               score,
               item,
             },
-      }))
+      })),
   );
 }

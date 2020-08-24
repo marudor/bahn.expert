@@ -15,7 +15,7 @@ function parseResponse(r: SubscrCreateResponse): ParsedSubscrCreateResponse {
 
 export function SubscribeCreate(
   options: SubscrCreateOptions,
-  profile?: AllowedHafasProfile
+  profile?: AllowedHafasProfile,
 ) {
   const req: SubscrCreateRequest = {
     req: options,

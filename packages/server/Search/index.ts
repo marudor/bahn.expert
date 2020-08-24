@@ -18,7 +18,7 @@ const defaultSearch = canUseBusinessHub
 
 const stationSearchCache = createNewCache<string, Station[]>(
   6 * 60 * 60,
-  CacheDatabases.StationSearch
+  CacheDatabases.StationSearch,
 );
 
 export function getSearchMethod(type?: StationSearchType) {
@@ -43,7 +43,7 @@ export function getSearchMethod(type?: StationSearchType) {
 export default async (
   rawSearchTerm: string,
   type?: StationSearchType,
-  maxStations: number = 6
+  maxStations: number = 6,
 ) => {
   const searchTerm = rawSearchTerm.replace(/ {2}/g, ' ');
   const cacheKey = `${type}${searchTerm}`;
@@ -61,12 +61,12 @@ export default async (
     if (type !== StationSearchType.stationsData && result.length === 0) {
       // this may be a station named from iris - lets try that first
       result = await getSearchMethod(StationSearchType.stationsData)(
-        searchTerm
+        searchTerm,
       );
     }
 
     const exactMatch = result.find(
-      (s) => s.title.toLowerCase() === rawSearchTerm.toLowerCase()
+      (s) => s.title.toLowerCase() === rawSearchTerm.toLowerCase(),
     );
     if (exactMatch) {
       result = [exactMatch, ...result.filter((s) => s !== exactMatch)];
