@@ -13,7 +13,7 @@ function transformer(file, api) {
 
         const newStyles = j.arrowFunctionExpression(
           [j.identifier('theme')],
-          styles
+          styles,
         );
 
         path.value.arguments[0] = newStyles;

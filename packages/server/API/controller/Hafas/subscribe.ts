@@ -17,7 +17,7 @@ export class HafasSubscribeController extends Controller {
   @Tags('HAFAS Subscribe')
   create(
     @Body() body: SubscrCreateOptions,
-    @Query() profile?: AllowedHafasProfile
+    @Query() profile?: AllowedHafasProfile,
   ) {
     return SubscribeCreate(body, profile);
   }
@@ -26,7 +26,7 @@ export class HafasSubscribeController extends Controller {
   @Tags('HAFAS Subscribe')
   delete(
     @Body() body: SubscrDeleteOptions,
-    @Query() profile?: AllowedHafasProfile
+    @Query() profile?: AllowedHafasProfile,
   ) {
     return SubscribeDelete(body, profile);
   }
@@ -35,7 +35,7 @@ export class HafasSubscribeController extends Controller {
   @Tags('HAFAS Subscribe')
   createUser(
     @Body() body: SubscrUserCreateOptions,
-    @Query() profile?: AllowedHafasProfile
+    @Query() profile?: AllowedHafasProfile,
   ) {
     return SubscribeUserCreate(body, profile);
   }
@@ -47,7 +47,7 @@ export class HafasSubscribeController extends Controller {
       {
         userId,
       },
-      profile
+      profile,
     );
   }
 
@@ -55,7 +55,7 @@ export class HafasSubscribeController extends Controller {
   @Tags('HAFAS Subscribe')
   deleteUser(
     @Body() body: SubscrUserDeleteOptions,
-    @Query() profile?: AllowedHafasProfile
+    @Query() profile?: AllowedHafasProfile,
   ) {
     return SubscribeUserDelete(body, profile);
   }
@@ -65,14 +65,14 @@ export class HafasSubscribeController extends Controller {
   details(
     @Query() userId: string,
     @Query() subscribeId: number,
-    @Query() profile?: AllowedHafasProfile
+    @Query() profile?: AllowedHafasProfile,
   ) {
     return SubscribeDetails(
       {
         userId,
         subscrId: subscribeId,
       },
-      profile
+      profile,
     );
   }
 }

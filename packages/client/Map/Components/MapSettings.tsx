@@ -52,7 +52,7 @@ export const MapSettings = () => {
       e.stopPropagation();
       toggleOpen();
     },
-    [toggleOpen]
+    [toggleOpen],
   );
   const {
     includeFV,
@@ -71,7 +71,7 @@ export const MapSettings = () => {
     (e: ChangeEvent<HTMLSelectElement>) => {
       setProfile(e.currentTarget.value as AllowedHafasProfile);
     },
-    [setProfile]
+    [setProfile],
   );
 
   return (

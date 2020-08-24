@@ -60,8 +60,8 @@ export function createApp() {
           ctx.loadableStats = JSON.parse(
             // eslint-disable-next-line no-sync
             ctx.state.fs.readFileSync(
-              path.resolve(`${distFolder}/client/loadable-stats.json`)
-            )
+              path.resolve(`${distFolder}/client/loadable-stats.json`),
+            ),
           );
 
           return next();
@@ -84,12 +84,12 @@ export function createApp() {
         path.resolve(
           process.env.NODE_ENV === 'production'
             ? `${distFolder}/client`
-            : 'public'
+            : 'public',
         ),
         {
           maxAge: 31536000000, // 1 year
-        }
-      )
+        },
+      ),
     );
 
     app.use((ctx, next) => {
@@ -111,7 +111,7 @@ export function createApp() {
 
     if (process.env.NODE_ENV === 'production') {
       const loadableStats = require(path.resolve(
-        `${distFolder}/client/loadable-stats.json`
+        `${distFolder}/client/loadable-stats.json`,
       ));
 
       app.use((ctx, next) => {

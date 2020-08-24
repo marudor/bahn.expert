@@ -10,7 +10,7 @@ Cypress.Commands.add(
     }: {
       isStubbed?: boolean;
       findPrefix?: string;
-    } = {}
+    } = {},
   ) => {
     if (!isStubbed) {
       cy.route(/\/api\/iris\/v1\/abfahrten.*/).as('irisAbfahrten');
@@ -22,7 +22,7 @@ Cypress.Commands.add(
     if (!isStubbed) {
       cy.wait('@irisAbfahrten');
     }
-  }
+  },
 );
 
 Cypress.Commands.add('closeModal', () => {
@@ -50,7 +50,7 @@ function mockStation({
     response: `fixture:abfahrten${fixture}.json`,
   }).route(
     `/api/station/v1/search/${name}?type=default`,
-    `fixture:stationSearch${fixture}.json`
+    `fixture:stationSearch${fixture}.json`,
   );
 }
 
@@ -65,7 +65,7 @@ Cypress.Commands.add(
       id: '8098105',
       fixture: 'FrankfurtHbf',
     });
-  }
+  },
 );
 
 Cypress.Commands.add(
@@ -79,7 +79,7 @@ Cypress.Commands.add(
       fixture: 'HamburgHbf',
       id: '8002549',
     });
-  }
+  },
 );
 
 Cypress.Commands.add(
@@ -93,7 +93,7 @@ Cypress.Commands.add(
       fixture: 'HannoverHbf',
       id: '8000152',
     });
-  }
+  },
 );
 
 Cypress.Commands.add('openSettings', () => {

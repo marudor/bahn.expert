@@ -5,11 +5,11 @@ import type { Formation } from 'types/reihung';
 
 async function fetchSequence(
   trainNumber: string,
-  scheduledDeparture: number
+  scheduledDeparture: number,
 ): Promise<Formation | undefined> {
   try {
     const r = await Axios.get<Formation>(
-      `/api/reihung/v1/wagen/${trainNumber}/${scheduledDeparture}`
+      `/api/reihung/v1/wagen/${trainNumber}/${scheduledDeparture}`,
     );
     return r.data;
   } catch (e) {
@@ -26,7 +26,7 @@ function useReihungInner() {
       trainNumber: string,
       currentStation: string,
       scheduledDeparture: number,
-      fallbackTrainNumbers: string[] = []
+      fallbackTrainNumbers: string[] = [],
     ) => {
       let reihung: Formation | undefined | null;
 
@@ -36,7 +36,7 @@ function useReihungInner() {
           // eslint-disable-next-line no-await-in-loop
           reihung = await fetchSequence(
             fallbackTrainNumber,
-            scheduledDeparture
+            scheduledDeparture,
           );
           if (reihung) break;
         }
@@ -52,7 +52,7 @@ function useReihungInner() {
         [key]: reihung,
       }));
     },
-    []
+    [],
   );
   const clearReihungen = useCallback(() => setReihungen({}), []);
 
@@ -62,5 +62,5 @@ function useReihungInner() {
 export const [ReihungenProvider, useReihungen, useReihungenActions] = constate(
   useReihungInner,
   (v) => v.reihungen,
-  ({ reihungen, ...actions }) => actions
+  ({ reihungen, ...actions }) => actions,
 );

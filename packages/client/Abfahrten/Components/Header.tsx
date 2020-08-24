@@ -24,7 +24,7 @@ export const Header = ({ profile }: Props) => {
   const urlPrefix = useAbfahrtenUrlPrefix();
   const history = useHistory();
   const [currentEnteredStation, setCurrentEnteredStation] = useState(
-    currentStation
+    currentStation,
   );
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export const Header = ({ profile }: Props) => {
       }
       history.push(`${urlPrefix}${encodeURIComponent(station.title)}`);
     },
-    [history, urlPrefix]
+    [history, urlPrefix],
   );
 
   return (

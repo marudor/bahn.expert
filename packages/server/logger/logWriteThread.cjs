@@ -28,7 +28,7 @@ if (process.env.NODE_ENV === 'production' && logglyToken) {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
-        }
+        },
       );
     }
   });

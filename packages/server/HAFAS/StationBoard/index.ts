@@ -18,17 +18,17 @@ interface Options {
 function stationBoard(
   options: Omit<Options, 'type'> & { type: 'ARR' },
   profile?: AllowedHafasProfile,
-  raw?: boolean
+  raw?: boolean,
 ): Promise<ArrivalStationBoardEntry[]>;
 function stationBoard(
   options: Omit<Options, 'type'> & { type: 'DEP' },
   profile?: AllowedHafasProfile,
-  raw?: boolean
+  raw?: boolean,
 ): Promise<DepartureStationBoardEntry[]>;
 function stationBoard(
   { station, date = Date.now(), type, direction, filter }: Options,
   profile?: AllowedHafasProfile,
-  raw?: boolean
+  raw?: boolean,
 ) {
   const req: StationBoardRequest = {
     req: {

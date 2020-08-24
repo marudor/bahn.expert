@@ -18,7 +18,7 @@ export const Auslastung = () => {
         abfahrt.train.number,
         abfahrt.currentStation.title,
         abfahrt.destination,
-        abfahrt.departure.scheduledTime
+        abfahrt.departure.scheduledTime,
       );
     }
   }, [abfahrt, auslastung, getAuslastung]);

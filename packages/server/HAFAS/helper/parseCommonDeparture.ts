@@ -12,7 +12,7 @@ export default (
   d: CommonDeparture,
   date: Date,
   _common: ParsedCommon,
-  train?: ParsedProduct
+  train?: ParsedProduct,
 ): CommonStopInfo => {
   const scheduledTime = parseTime(date, d.dTimeS);
 

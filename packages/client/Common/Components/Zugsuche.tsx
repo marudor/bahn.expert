@@ -70,7 +70,7 @@ export const Zugsuche = ({ children }: Props) => {
       e.stopPropagation();
       setOpen(!open);
     },
-    [open]
+    [open],
   );
   const onSubmit = useCallback(
     (e: SyntheticEvent) => {
@@ -94,8 +94,8 @@ export const Zugsuche = ({ children }: Props) => {
               profile: storage.get('hafasProfile'),
               station: match.firstStop.station.id,
             },
-            { addQueryPrefix: true }
-          )
+            { addQueryPrefix: true },
+          ),
         );
 
         history.push(link.join('/'));
@@ -103,7 +103,7 @@ export const Zugsuche = ({ children }: Props) => {
         toggleDrawer();
       }
     },
-    [match, date, storage, history, toggleModal, toggleDrawer]
+    [match, date, storage, history, toggleModal, toggleDrawer],
   );
 
   return (

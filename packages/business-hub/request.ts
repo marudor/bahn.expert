@@ -17,6 +17,6 @@ export const request = Axios.create({
 
 if (!canUseBusinessHub) {
   console.warn(
-    'No BusinessHub API Key provided. Station search will be degraded Quality!'
+    'No BusinessHub API Key provided. Station search will be degraded Quality!',
   );
 }

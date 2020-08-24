@@ -9,7 +9,7 @@ import type { IrisStation, IrisStationWithRelated } from 'types/station';
 // 4 Hours in seconds
 const cache = createNewCache<string, IrisStation>(
   4 * 60 * 60,
-  CacheDatabases.Station
+  CacheDatabases.Station,
 );
 
 export function parseStation(stationNode: xmljs.Element): IrisStation {
@@ -27,7 +27,7 @@ export function parseStation(stationNode: xmljs.Element): IrisStation {
   const excludeList = stationMetaFilter[station.eva];
   if (excludeList) {
     station.meta = station.meta.filter(
-      (meta: string) => !excludeList.includes(meta)
+      (meta: string) => !excludeList.includes(meta),
     );
   }
 
@@ -36,7 +36,7 @@ export function parseStation(stationNode: xmljs.Element): IrisStation {
 
 export async function getSingleStation(
   evaId: string,
-  request: AxiosInstance = noncdRequest
+  request: AxiosInstance = noncdRequest,
 ): Promise<IrisStation> {
   const cached = await cache.get(evaId);
 
@@ -68,7 +68,7 @@ export async function getSingleStation(
 export async function getStation(
   evaId: string,
   recursive: number = 0,
-  request?: AxiosInstance
+  request?: AxiosInstance,
 ): Promise<IrisStationWithRelated> {
   const station = await getSingleStation(evaId, request);
   let queue = station.meta;
@@ -89,7 +89,7 @@ export async function getStation(
           relatedStations.push(station);
 
           return station.meta;
-        })
+        }),
       )
     ).flat();
   }
@@ -97,7 +97,7 @@ export async function getStation(
   return {
     station,
     relatedStations: relatedStations.sort((s1, s2) =>
-      s1.name > s2.name ? 1 : -1
+      s1.name > s2.name ? 1 : -1,
     ),
   };
 }

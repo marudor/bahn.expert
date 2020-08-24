@@ -39,9 +39,9 @@ describe('createCtxRecon', () => {
         firstStop,
         lastStop,
         trainName: 'test',
-      })
+      }),
     ).toBe(
-      `¶HKI¶T$A=1@L=${firstStop.station.id}@a=128@$A=1@L=${lastStop.station.id}@a=128@$${expectedDeparture}$${expectedArrival}$test$$1$`
+      `¶HKI¶T$A=1@L=${firstStop.station.id}@a=128@$A=1@L=${lastStop.station.id}@a=128@$${expectedDeparture}$${expectedArrival}$test$$1$`,
     );
   });
 
@@ -59,9 +59,9 @@ describe('createCtxRecon', () => {
             txtN: 'Ersatzfahrt',
           },
         ],
-      })
+      }),
     ).toBe(
-      `¶HKI¶T$A=1@L=${firstStop.station.id}@a=128@$A=1@L=${lastStop.station.id}@a=128@$${expectedDeparture}$${expectedArrival}$ersatz$$2$`
+      `¶HKI¶T$A=1@L=${firstStop.station.id}@a=128@$A=1@L=${lastStop.station.id}@a=128@$${expectedDeparture}$${expectedArrival}$ersatz$$2$`,
     );
   });
 });

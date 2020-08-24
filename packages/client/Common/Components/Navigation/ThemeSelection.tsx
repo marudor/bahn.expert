@@ -33,14 +33,14 @@ export const ThemeSelection = () => {
         setThemeType(newThemeType);
       }
     },
-    [setThemeType]
+    [setThemeType],
   );
   const toggle = useCallback(
     (e: SyntheticEvent) => {
       e.stopPropagation();
       setOpen(!open);
     },
-    [open]
+    [open],
   );
 
   return (

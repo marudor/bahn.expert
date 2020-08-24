@@ -16,14 +16,14 @@ import type {
 
 const parseJourneyDetails = (
   d: HafasResponse<JourneyDetailsResponse>,
-  common: ParsedCommon
+  common: ParsedCommon,
 ): ParsedJourneyDetails => {
   const journey = d.svcResL[0].res.journey;
 
   const date = parse(journey.date, 'yyyyMMdd', new Date());
   const train = common.prodL[journey.prodX];
   const stops = journey.stopL.map((stop) =>
-    parseStop(stop, common, date, train)
+    parseStop(stop, common, date, train),
   );
   const parsedJourney = {
     train,

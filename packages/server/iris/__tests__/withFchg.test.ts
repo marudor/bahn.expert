@@ -26,18 +26,18 @@ describe('withFchg', () => {
   });
   const baseFixturePath = '__fixtures__';
   const fchgFixtures = fs.readdirSync(
-    path.resolve(__dirname, baseFixturePath, 'fchg')
+    path.resolve(__dirname, baseFixturePath, 'fchg'),
   );
 
   fchgFixtures.forEach((file) => {
     it(file, async () => {
       const fchgXml = fs.readFileSync(
         path.resolve(__dirname, baseFixturePath, 'fchg', file),
-        'utf8'
+        'utf8',
       );
       const planxml = fs.readFileSync(
         path.resolve(__dirname, baseFixturePath, 'plan', file),
-        'utf8'
+        'utf8',
       );
 
       mockLageplan();
@@ -50,7 +50,7 @@ describe('withFchg', () => {
           lookahead: 120,
           lookbehind: 60,
         },
-        noncdRequest
+        noncdRequest,
       );
 
       await expect(timetable.start()).resolves.toMatchSnapshot();

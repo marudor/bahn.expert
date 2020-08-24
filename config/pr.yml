@@ -1,6 +1,0 @@
-env:
-  - name: ENVIRONMENT
-    value: pr
-
-imageRepository: ctr.run/github.com/marudor/bahnhofsabfahrten
-imagePullSecret: ctr-run

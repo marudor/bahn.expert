@@ -17,7 +17,7 @@ export const NormalMessages = ({ messages }: Props) => {
   const classes = useStyles();
   const messagesDisplay = useMemo(
     () => messages.map((m) => ('head' in m ? m.head : m.text)).join(' +++ '),
-    [messages]
+    [messages],
   );
 
   return <div className={classes.wrap}>{messagesDisplay}</div>;

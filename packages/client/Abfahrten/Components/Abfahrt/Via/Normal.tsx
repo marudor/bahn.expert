@@ -39,7 +39,7 @@ export const NormalVia = ({ stops }: Props) => {
           key={i}
         >
           {s.name}
-        </span>
+        </span>,
       );
       if (i + 1 !== filteredStops.length) {
         stopsToRender.push(' - ');

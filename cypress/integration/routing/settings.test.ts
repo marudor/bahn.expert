@@ -10,7 +10,7 @@ describe('Routing Settings', () => {
       cy.findByTestId('routingMaxChanges').clear().type('5');
       cy.findByTestId('routingSettingsPanel-maxChange').should(
         'include.text',
-        '5'
+        '5',
       );
     });
 
@@ -21,12 +21,12 @@ describe('Routing Settings', () => {
       cy.findByTestId('routingTransferTime').clear().type('5');
       cy.findByTestId('routingSettingsPanel-transferTime').should(
         'include.text',
-        '5m'
+        '5m',
       );
       cy.visit('/routing');
       cy.findByTestId('routingSettingsPanel-transferTime').should(
         'include.text',
-        '5m'
+        '5m',
       );
     });
   });

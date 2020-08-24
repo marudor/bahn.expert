@@ -15,7 +15,7 @@ const lazyOptions = {
 const LazyRouting = loadable(() => import('./Routing'), lazyOptions);
 const LazyDetails = loadable(
   () => import('./Common/Components/Details/DetailsRoute'),
-  lazyOptions
+  lazyOptions,
 );
 const LazyAbfahrten = loadable(() => import('./Abfahrten'), lazyOptions);
 const LazyMap = loadable(() => import('./Map'), lazyOptions);

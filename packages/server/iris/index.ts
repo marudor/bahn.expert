@@ -23,7 +23,7 @@ const baseResult: AbfahrtenResult = {
 
 export function reduceResults(
   agg: AbfahrtenResult,
-  r: AbfahrtenResult
+  r: AbfahrtenResult,
 ): AbfahrtenResult {
   return {
     departures: [...agg.departures, ...r.departures],
@@ -79,7 +79,7 @@ export async function getAbfahrten(
   evaId: string,
   withRelated: boolean = true,
   options: AbfahrtenOptions = {},
-  request: AxiosInstance = noncdRequest
+  request: AxiosInstance = noncdRequest,
 ): Promise<AbfahrtenResult> {
   const lookahead = options.lookahead || defaultOptions.lookahead;
   const lookbehind = options.lookbehind || defaultOptions.lookbehind;
@@ -89,7 +89,7 @@ export async function getAbfahrten(
 
   if (withRelated) {
     relatedAbfahrten = Promise.all(
-      relatedStations.map((s) => getAbfahrten(s.eva, false, options, request))
+      relatedStations.map((s) => getAbfahrten(s.eva, false, options, request)),
     ).then((r) => r.reduce(reduceResults, baseResult));
   }
 
@@ -101,7 +101,7 @@ export async function getAbfahrten(
       lookbehind,
       currentDate: options.currentDate,
     },
-    request
+    request,
   );
   const result = (
     await Promise.all([timetable.start(), relatedAbfahrten])

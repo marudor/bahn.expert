@@ -7,7 +7,7 @@ import type {
 
 export default (
   options: JourneyGraphRequestOptions,
-  profile?: AllowedHafasProfile
+  profile?: AllowedHafasProfile,
 ) => {
   const req: JourneyGraphRequest = {
     req: options,

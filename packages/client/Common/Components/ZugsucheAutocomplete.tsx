@@ -35,7 +35,7 @@ export const ZugsucheAutocomplete = ({
 }: Props) => {
   const classes = useStyles();
   const [suggestions, setSuggestions] = useState<ParsedJourneyMatchResponse[]>(
-    []
+    [],
   );
   const storage = useStorage();
   const [loading, setLoading] = useState(0);
@@ -47,7 +47,7 @@ export const ZugsucheAutocomplete = ({
           value,
           initialDeparture,
           storage.get('hafasProfile'),
-          'zugsuche'
+          'zugsuche',
         );
 
         setSuggestions(suggestions.slice(0, 5));
@@ -58,7 +58,7 @@ export const ZugsucheAutocomplete = ({
       }
       setLoading((old) => old - 1);
     },
-    [initialDeparture, storage]
+    [initialDeparture, storage],
   );
 
   return (

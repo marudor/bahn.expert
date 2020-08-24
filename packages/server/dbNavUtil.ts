@@ -3,7 +3,7 @@ import Crypto from 'crypto';
 function getSecret() {
   const enc = Buffer.from(
     'rGhXPq+xAlvJd8T8cMnojdD0IoaOY53X7DPAbcXYe5g=',
-    'base64'
+    'base64',
   );
   const key = Buffer.from([
     97,

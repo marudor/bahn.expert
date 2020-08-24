@@ -27,7 +27,7 @@ export const TravelynxLink = ({
   !departure.cancelled &&
   isBefore(
     arrival ? arrival.scheduledTime : departure.scheduledTime,
-    Date.now() + timeConstraint
+    Date.now() + timeConstraint,
   ) ? (
     <Tooltip title="travelynx">
       <a

@@ -6,7 +6,7 @@ describe('About', () => {
     cy.window().then((w) =>
       cy
         .get('link[rel="canonical"]')
-        .should('have.attr', 'href', w.location.href)
+        .should('have.attr', 'href', w.location.href),
     );
   });
 });

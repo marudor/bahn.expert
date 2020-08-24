@@ -7,7 +7,7 @@ import {
 
 export function SubscribeDetails(
   options: SubscrDetailsOptions,
-  profile?: AllowedHafasProfile
+  profile?: AllowedHafasProfile,
 ) {
   const req: SubscrDetailsRequest = {
     req: options,

@@ -42,7 +42,7 @@ function serialize(raw: any) {
 export function createNewCache<K extends string, V>(
   ttl: number,
   db: CacheDatabases,
-  useRedis = Boolean(redisSettings)
+  useRedis = Boolean(redisSettings),
 ) {
   let baseCache: Cache;
   let existsFn: (key: string) => Promise<boolean>;

@@ -20,7 +20,7 @@ const isArrival = (a: CommonArrival | CommonDeparture): a is CommonArrival =>
 
 const parseStationBoardResponse = (
   jny: StationBoardJny,
-  common: ParsedCommon
+  common: ParsedCommon,
 ): StationBoardEntry => {
   const date = parse(jny.date, 'yyyyMMdd', new Date());
   const product = common.prodL[jny.prodX];
@@ -50,11 +50,11 @@ const parseStationBoardResponse = (
 
 export default (
   r: HafasResponse<StationBoardResponse>,
-  parsedCommon: ParsedCommon
+  parsedCommon: ParsedCommon,
 ): StationBoardEntry[] => {
   // @ts-ignore ???
   const abfahrten: StationBoardEntry[] = r.svcResL[0].res.jnyL.map((j: Jny) =>
-    parseStationBoardResponse(j, parsedCommon)
+    parseStationBoardResponse(j, parsedCommon),
   );
 
   return abfahrten;

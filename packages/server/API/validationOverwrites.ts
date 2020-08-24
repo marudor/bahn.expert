@@ -18,7 +18,7 @@ router.prefix('/api').all('*', (ctx, next) => {
     }
     ctx.response.set(
       'hafasProfile',
-      ctx.query.profile || AllowedHafasProfile.DB
+      ctx.query.profile || AllowedHafasProfile.DB,
     );
   }
 

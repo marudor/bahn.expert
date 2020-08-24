@@ -13,7 +13,7 @@ export default async (rawSearchTerm: string): Promise<Station[]> => {
   }
 
   const url = `https://api.deutschebahn.com/stada/v2/stations?searchstring=*${encodeURIComponent(
-    searchTerm.replace(/ /g, '*')
+    searchTerm.replace(/ /g, '*'),
   )}*`;
 
   try {

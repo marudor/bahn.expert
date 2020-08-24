@@ -18,16 +18,16 @@ describe('parseTimetableS', () => {
           lookahead: 0,
           lookbehind: 0,
         },
-        noncdRequest
+        noncdRequest,
       );
       const inXml = fs.readFileSync(
         path.resolve(__dirname, baseFixturePath, file),
-        'utf8'
+        'utf8',
       );
       const nodes = xmljs.parseXml(inXml).find<Element>('//timetable/s');
 
       nodes.forEach((n) =>
-        expect(timetable.parseTimetableS(n)).toMatchSnapshot()
+        expect(timetable.parseTimetableS(n)).toMatchSnapshot(),
       );
     });
   });

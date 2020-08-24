@@ -31,7 +31,7 @@ export const FilterModal = () => {
     (product: string) => () => {
       toggleProduct(product);
     },
-    [toggleProduct]
+    [toggleProduct],
   );
 
   const closeFilterM = useCallback(() => {

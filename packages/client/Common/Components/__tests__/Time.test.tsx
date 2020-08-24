@@ -58,7 +58,7 @@ describe('Time', () => {
           commonConfig: {
             time: false,
           },
-        }
+        },
       );
 
       expect(queryByTestId('time')).toHaveTextContent('13:45');
@@ -78,7 +78,7 @@ describe('Time', () => {
           commonConfig: {
             time: false,
           },
-        }
+        },
       );
 
       expect(queryByTestId('time')).toHaveTextContent('14:00');

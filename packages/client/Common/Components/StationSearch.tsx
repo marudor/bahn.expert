@@ -94,10 +94,10 @@ export const StationSearch = ({
         },
         (_e: any) => {
           // ignore for now
-        }
+        },
       );
     },
-    [loadOptions, selectRef]
+    [loadOptions, selectRef],
   );
 
   const downshiftOnChange = useCallback(
@@ -105,7 +105,7 @@ export const StationSearch = ({
       inputRef.current?.blur();
       onChange(station || undefined);
     },
-    [onChange]
+    [onChange],
   );
 
   return (

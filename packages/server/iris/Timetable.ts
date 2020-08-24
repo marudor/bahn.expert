@@ -50,7 +50,7 @@ type ParsedAr = ArDp & {
 // 6 Hours in seconds
 const timetableCache = createNewCache<string, string>(
   6 * 60 * 60,
-  CacheDatabases.Timetable
+  CacheDatabases.Timetable,
 );
 
 interface Route {
@@ -72,7 +72,7 @@ const normalizeRouteName = (name: string) =>
   name.replace('(', ' (').replace(')', ') ').trim();
 
 export function parseRealtimeDp(
-  dp: null | xmljs.Element
+  dp: null | xmljs.Element,
 ): undefined | ParsedDp {
   if (!dp) return undefined;
 
@@ -87,7 +87,7 @@ export function parseRealtimeDp(
 }
 
 export function parseRealtimeAr(
-  ar: null | xmljs.Element
+  ar: null | xmljs.Element,
 ): undefined | ParsedAr {
   if (!ar) return undefined;
 
@@ -154,7 +154,7 @@ export default class Timetable {
     private evaId: string,
     currentStation: string,
     options: TimetableOptions,
-    private request: AxiosInstance
+    private request: AxiosInstance,
   ) {
     this.currentDate = options.currentDate || new Date();
     this.maxDate = addMinutes(this.currentDate, options.lookahead);
@@ -226,7 +226,7 @@ export default class Timetable {
       !timetable.departure.hidden;
     timetable.reihung = !timetable.cancelled && timetable.train.longDistance;
     timetable.hiddenReihung = ['RB', 'RE', 'IRE'].includes(
-      timetable.train.type
+      timetable.train.type,
     );
 
     delete timetable.routePre;
@@ -420,13 +420,13 @@ export default class Timetable {
     };
 
     const parsedMessages = await Promise.all(
-      mArr.map((m) => this.parseMessage(m, this.timetable[rawId].train.number))
+      mArr.map((m) => this.parseMessage(m, this.timetable[rawId].train.number)),
     );
 
     parsedMessages
       .filter((Boolean as any) as ExcludesFalse)
       .sort((a, b) =>
-        compareAsc(a.message.timestamp || 0, b.message.timestamp || 0)
+        compareAsc(a.message.timestamp || 0, b.message.timestamp || 0),
       )
       .forEach(({ type, message, value }) => {
         // @ts-ignore
@@ -452,7 +452,7 @@ export default class Timetable {
         const messageValues = Object.values(messages[messageKey]);
 
         agg[messageKey] = messageValues.sort((a, b) =>
-          compareDesc(a.timestamp, b.timestamp)
+          compareDesc(a.timestamp, b.timestamp),
         );
 
         return agg;
@@ -479,7 +479,7 @@ export default class Timetable {
     if (ar.routePre) {
       const diff = diffArrays(
         ar.routePre,
-        ar.plannedRoutePre || timetable.routePre.map((r: any) => r.name)
+        ar.plannedRoutePre || timetable.routePre.map((r: any) => r.name),
       );
 
       timetable.routePre = diff.flatMap((d) =>
@@ -487,7 +487,7 @@ export default class Timetable {
           name: v,
           additional: d.removed,
           cancelled: d.added,
-        }))
+        })),
       );
     }
     timetable.arrival.platform =
@@ -512,7 +512,7 @@ export default class Timetable {
     if (dp.routePost) {
       const diff = diffArrays(
         dp.plannedRoutePost || timetable.routePost.map((r: any) => r.name),
-        dp.routePost
+        dp.routePost,
       );
 
       timetable.routePost = diff.flatMap((d) =>
@@ -520,7 +520,7 @@ export default class Timetable {
           name: v,
           additional: d.added,
           cancelled: d.removed,
-        }))
+        })),
       );
     } else if (timetable.departure.cancelled && timetable.routePost) {
       timetable.routePost.forEach((r: any) => (r.cancelled = true));
@@ -559,13 +559,13 @@ export default class Timetable {
         this.addDepartureInfo(timetable, realtime.departure);
         timetable.messages = realtime.messages;
         timetable.ref = realtime.ref;
-      })
+      }),
     );
   }
   getWings(
     node: null | xmljs.Element,
     displayAsWing: boolean,
-    referenceTrainRawId: string
+    referenceTrainRawId: string,
   ) {
     const wingAttr = getAttr(node, 'wings');
 
@@ -699,7 +699,7 @@ export default class Timetable {
           ...this.getTimetable(rawXml),
         };
         timetableCache.set(key, rawXml);
-      })
+      }),
     );
   }
 }
