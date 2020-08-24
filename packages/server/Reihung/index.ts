@@ -1,7 +1,7 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable no-fallthrough */
 import { getAbfahrten } from 'server/iris';
-import { getWRLink, hasWR, WRCache } from 'server/Reihung/hasWR';
+import { getWRLink, WRCache } from 'server/Reihung/hasWR';
 import { isRedesignByTZ, isRedesignByUIC } from 'server/Reihung/tzInfo';
 import { maxBy, minBy } from 'client/util';
 import Axios from 'axios';
@@ -295,21 +295,20 @@ function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
   fahrzeug.additionalInfo = data;
 }
 
+const wrFetchTimeout = process.env.NODE_ENV === 'production' ? 1500 : 3000;
 // https://www.apps-bahn.de/wr/wagenreihung/1.0/6/201802021930
 export async function wagenreihung(trainNumber: string, date: number) {
-  if ((await hasWR(trainNumber, date)) === false) {
-    throw {
-      response: {
-        status: 404,
-        statusText: 'Not Found',
-        data: 404,
-      },
-    };
-  }
   let info: Wagenreihung;
 
   try {
-    info = (await Axios.get<Wagenreihung>(getWRLink(trainNumber, date))).data;
+    const cancelToken = new Axios.CancelToken((c) => {
+      setTimeout(c, wrFetchTimeout);
+    });
+    info = (
+      await Axios.get<Wagenreihung>(getWRLink(trainNumber, date), {
+        cancelToken,
+      })
+    ).data;
   } catch (e) {
     if (e.response?.data?.tryThese) {
       if (!(await WRCache.exists(trainNumber))) {

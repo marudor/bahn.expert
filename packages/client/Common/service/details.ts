@@ -25,7 +25,7 @@ export async function getDetails(
   return r.data;
 }
 
-const journeyMatchCanelTokens: { [key: string]: Canceler } = {};
+const journeyMatchCacnelTokens: { [key: string]: Canceler } = {};
 
 export async function journeyMatch(
   trainName: string,
@@ -36,9 +36,9 @@ export async function journeyMatch(
   let cancelToken;
 
   if (cancelIdent) {
-    journeyMatchCanelTokens[cancelIdent]?.();
+    journeyMatchCacnelTokens[cancelIdent]?.();
     cancelToken = new Axios.CancelToken((c) => {
-      journeyMatchCanelTokens[cancelIdent] = c;
+      journeyMatchCacnelTokens[cancelIdent] = c;
     });
   }
   const r = await Axios.post<ParsedJourneyMatchResponse[]>(

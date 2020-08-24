@@ -43,7 +43,7 @@ async function fetchList() {
       await WRCache.reset();
 
       for (const [number, entries] of WRMap.entries()) {
-        WRCache.set(number, entries);
+        await WRCache.set(number, entries);
       }
     }
     logger.debug('Fetched Couch Sequence');
@@ -55,13 +55,6 @@ if (process.env.NODE_ENV !== 'test') {
 
   setInterval(fetchList, 2 * 60 * 1000 * 60);
 }
-
-export const hasWR = async (trainNumber?: string, date?: number) => {
-  if (!trainNumber) return false;
-  const WRDates = await WRCache.get(trainNumber);
-
-  return date ? WRDates?.includes(formatDate(date)) : Boolean(WRDates);
-};
 
 /**
  *

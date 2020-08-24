@@ -30,18 +30,19 @@ function useReihungInner() {
     ) => {
       let reihung: Formation | undefined | null;
 
-      reihung = await fetchSequence(trainNumber, scheduledDeparture);
-      if (!reihung) {
-        for (const fallbackTrainNumber of fallbackTrainNumbers) {
-          // eslint-disable-next-line no-await-in-loop
-          reihung = await fetchSequence(
-            fallbackTrainNumber,
-            scheduledDeparture,
-          );
-          if (reihung) break;
+      const reihungen = await Promise.all([
+        fetchSequence(trainNumber, scheduledDeparture),
+        ...fallbackTrainNumbers.map((fallback) =>
+          fetchSequence(fallback, scheduledDeparture),
+        ),
+      ]);
+      const newReihungen = reihungen.reduce((agg, f) => {
+        if (f) {
+          agg[f.zugnummer + currentStation + scheduledDeparture] = f;
         }
-      }
-
+        return agg;
+      }, {} as Record<string, Formation>);
+      reihung = reihungen.find((f) => f);
       if (!reihung) {
         reihung = null;
       }
@@ -49,6 +50,7 @@ function useReihungInner() {
 
       setReihungen((oldReihungen) => ({
         ...oldReihungen,
+        ...newReihungen,
         [key]: reihung,
       }));
     },
