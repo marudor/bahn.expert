@@ -4,5 +4,6 @@
   "supportFile": "cypress/support/index.ts",
   "numTestsKeptInMemory": 0,
   "video": false,
-  "requestTimeout": 10000
+  "requestTimeout": 10000,
+  "retries": 1
 }
