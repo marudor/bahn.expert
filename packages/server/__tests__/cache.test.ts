@@ -2,7 +2,7 @@ import { createNewCache } from 'server/cache';
 
 describe('Cache', () => {
   const defineCacheTests = (
-    createCache: () => ReturnType<typeof createNewCache>
+    createCache: () => ReturnType<typeof createNewCache>,
   ) => {
     const cache: ReturnType<typeof createNewCache> = createCache();
 

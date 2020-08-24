@@ -6,11 +6,11 @@ describe('Reihung', () => {
       cy.navigateToStation('Frankfurt (Main) Hbf');
       cy.route(
         '/api/hafas/v1/auslastung/8000105/Interlaken Ost/371/1565182200000',
-        { first: 1, second: 1 }
+        { first: 1, second: 1 },
       );
       cy.route(
         '/api/reihung/v1/wagen/371/1565182200000',
-        'fixture:sequence/genericICE1.json'
+        'fixture:sequence/genericICE1.json',
       );
       cy.findByTestId('abfahrtICE371').click();
     });
@@ -47,7 +47,7 @@ describe('Reihung', () => {
       cy.navigateToStation('Hannover Hbf');
       cy.route(
         '/api/reihung/v1/wagen/537/1582370760000',
-        'fixture:sequence/537Wing.json'
+        'fixture:sequence/537Wing.json',
       ).as('537');
       cy.route({
         method: 'GET',

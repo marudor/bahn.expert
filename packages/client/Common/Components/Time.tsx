@@ -69,7 +69,7 @@ export const Time = ({
           [classes.alignEnd]: alignEnd,
           [classes.multiLineWrap]: !oneLine,
           [classes.cancelled]: cancelled,
-        }
+        },
       )}
     >
       <span className={clsx(oneLine && classes.oneLine)} data-testid="time">
@@ -78,7 +78,7 @@ export const Time = ({
       {hasDelay && (
         <span
           className={clsx(
-            hasDelay && (delay && delay > 0 ? classes.delayed : classes.early)
+            hasDelay && (delay && delay > 0 ? classes.delayed : classes.early),
           )}
           data-testid="delay"
         >

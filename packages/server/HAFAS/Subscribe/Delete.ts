@@ -7,7 +7,7 @@ import {
 
 export function SubscribeDelete(
   options: SubscrDeleteOptions,
-  profile?: AllowedHafasProfile
+  profile?: AllowedHafasProfile,
 ) {
   const req: SubscrDeleteRequest = {
     req: options,

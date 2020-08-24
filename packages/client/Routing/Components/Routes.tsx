@@ -18,15 +18,15 @@ const RouteHeaderTags = () => {
       updateTitle(
         `${start?.title ?? '?'} -> ${destination?.title ?? '?'} @ ${format(
           date || Date.now(),
-          'HH:mm dd.MM.yy'
-        )}`
+          'HH:mm dd.MM.yy',
+        )}`,
       );
       const viaString = `-> ${via.map((v) => `${v.title} -> `)}`;
 
       updateDescription(
         `${start?.title ?? '?'} ${viaString}${
           destination?.title ?? '?'
-        } @ ${format(date || Date.now(), 'HH:mm dd.MM.yy')}`
+        } @ ${format(date || Date.now(), 'HH:mm dd.MM.yy')}`,
       );
     }
   });

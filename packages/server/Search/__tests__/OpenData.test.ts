@@ -15,7 +15,7 @@ describe('DBNavigator Search', () => {
     await expect(
       testHamburgSearch(OpenDataSearch, {
         includeDS100: true,
-      })
+      }),
     ).resolves.toBeUndefined();
   });
 

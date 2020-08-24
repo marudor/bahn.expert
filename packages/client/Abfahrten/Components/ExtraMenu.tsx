@@ -43,7 +43,7 @@ export const ExtraMenu = () => {
     (e: SyntheticEvent<HTMLElement>) => {
       setAnchor(anchor ? undefined : e.currentTarget);
     },
-    [anchor]
+    [anchor],
   );
   const openLageplan = useCallback(() => {
     setAnchor(undefined);

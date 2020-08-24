@@ -20,8 +20,8 @@ describe('util', () => {
               a: 2,
             },
           ],
-          'a'
-        )
+          'a',
+        ),
       ).toEqual({
         a: 1,
       });
@@ -35,8 +35,8 @@ describe('util', () => {
               a: 4,
             },
           ],
-          'a'
-        )
+          'a',
+        ),
       ).toEqual({
         a: 2,
       });
@@ -53,8 +53,8 @@ describe('util', () => {
               a: 2,
             },
           ],
-          (a) => a.a
-        )
+          (a) => a.a,
+        ),
       ).toEqual({
         a: 1,
       });
@@ -70,8 +70,8 @@ describe('util', () => {
               b: '21',
             },
           ],
-          (a) => Number.parseInt(a.b)
-        )
+          (a) => Number.parseInt(a.b),
+        ),
       ).toEqual({
         a: 2,
         b: '21',
@@ -98,8 +98,8 @@ describe('util', () => {
               a: 2,
             },
           ],
-          'a'
-        )
+          'a',
+        ),
       ).toEqual({
         a: 2,
       });
@@ -113,8 +113,8 @@ describe('util', () => {
               a: 4,
             },
           ],
-          'a'
-        )
+          'a',
+        ),
       ).toEqual({
         a: 4,
       });
@@ -131,8 +131,8 @@ describe('util', () => {
               a: 2,
             },
           ],
-          (a) => a.a
-        )
+          (a) => a.a,
+        ),
       ).toEqual({
         a: 2,
       });
@@ -148,8 +148,8 @@ describe('util', () => {
               b: '21',
             },
           ],
-          (a) => Number.parseInt(a.b)
-        )
+          (a) => Number.parseInt(a.b),
+        ),
       ).toEqual({
         a: 1,
         b: '123',

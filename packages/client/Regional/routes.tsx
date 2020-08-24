@@ -3,7 +3,7 @@ import { RegionalMainPage } from 'client/Regional/Components/MainPage';
 import loadable from '@loadable/component';
 
 const DetailsRoute = loadable(
-  () => import('../Common/Components/Details/DetailsRoute')
+  () => import('../Common/Components/Details/DetailsRoute'),
 );
 
 export const routes = [

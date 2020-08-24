@@ -91,7 +91,7 @@ export const BaseAbfahrt = memo(function BaseAbfahrt({
 }: Props) {
   const classes = useStyles();
   const wingNumbersWithoutSelf = wingNumbers?.filter(
-    (wn) => wn !== abfahrt.train.number
+    (wn) => wn !== abfahrt.train.number,
   );
   const setSelectedDetail = useSetSelectedDetail();
   const handleClick = useCallback(() => {
@@ -102,7 +102,7 @@ export const BaseAbfahrt = memo(function BaseAbfahrt({
       detail,
       abfahrt,
     }),
-    [detail, abfahrt]
+    [detail, abfahrt],
   );
 
   return (

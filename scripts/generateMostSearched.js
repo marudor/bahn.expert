@@ -33,10 +33,10 @@ Promise.all(mostUsedNames.map((s) => search(s).then((s) => s[0]))).then(
         stations.map((s) => ({
           title: s.title,
           id: s.id,
-        }))
-      )
+        })),
+      ),
     );
     // eslint-disable-next-line no-process-exit
     process.exit(0);
-  }
+  },
 );

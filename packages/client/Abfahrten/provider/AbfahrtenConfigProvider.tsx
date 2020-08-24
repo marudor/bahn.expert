@@ -52,7 +52,7 @@ const useConfig = (initialConfig: AbfahrtenConfig) => {
       storage.set(key, value);
       setConfig((oldConfig) => ({ ...oldConfig, [key]: value }));
     },
-    [storage]
+    [storage],
   );
 
   return {
@@ -108,7 +108,7 @@ export const [
   (v) => v.filterConfig.filterOpen,
   (v) => v.configOpen,
   (v) => v.filterConfig,
-  (v) => v.setConfigKey
+  (v) => v.setConfigKey,
 );
 
 const migrateOldConfig = (storage: ReturnType<typeof useStorage>) => {
@@ -143,7 +143,7 @@ export const AbfahrtenConfigProvider = ({
     },
     config: {
       autoUpdate: abfahrtenConfigSanitize.autoUpdate(
-        storage.get<string>('autoUpdate')
+        storage.get<string>('autoUpdate'),
       ),
       lineAndNumber: storage.get('lineAndNumber') ?? false,
       lookahead: storage.get('lookahead') ?? '150',

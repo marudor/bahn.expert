@@ -34,8 +34,8 @@ export const Details = ({
       updateTitle(
         `${details.train.name} @ ${format(
           details.departure.time,
-          'dd.MM.yyyy'
-        )}`
+          'dd.MM.yyyy',
+        )}`,
       );
     } else {
       updateTitle(train);
@@ -45,7 +45,7 @@ export const Details = ({
     if (initialDeparture) {
       description += ` am ${format(
         Number.parseInt(initialDeparture, 10),
-        'dd.MM.yyyy'
+        'dd.MM.yyyy',
       )}`;
     }
     updateDescription(description);
@@ -58,7 +58,7 @@ export const Details = ({
       initialDeparture,
       currentStopId,
       stationId,
-      query.profile as any
+      query.profile as any,
     )
       .then((details) => {
         setDetails(details);

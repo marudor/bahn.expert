@@ -27,7 +27,7 @@ const mapDepartureRoute = (departureRoute: Route$Stop[]) => {
 export default (
   j: DepartureStationBoardEntry,
   hafasArrivals: MappedHafasArrivals,
-  idSet: Set<string>
+  idSet: Set<string>,
 ): Abfahrt | void => {
   if (!j.stops) return;
 
@@ -44,7 +44,7 @@ export default (
 
   if (j.stops.every((s) => s.station.title.endsWith(townSuffix))) {
     j.stops.forEach(
-      (s) => (s.station.title = s.station.title.replace(townSuffix, ''))
+      (s) => (s.station.title = s.station.title.replace(townSuffix, '')),
     );
   }
 

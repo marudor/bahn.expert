@@ -28,7 +28,7 @@ export const useAbfahrten = () => {
 
       if (productFilter.length) {
         filterFunctions.push(
-          (a: Abfahrt) => !productFilter.includes(a.train.type)
+          (a: Abfahrt) => !productFilter.includes(a.train.type),
         );
       }
       if (onlyDepartures) {
@@ -84,7 +84,7 @@ export const useRefreshCurrent = () => {
       const r = await fetchAbfahrten(
         `${fetchApiUrl}/${currentStation.id}`,
         lookahead,
-        lookbehind
+        lookbehind,
       );
 
       setDepartures({

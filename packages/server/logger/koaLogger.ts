@@ -36,7 +36,7 @@ const formatResponseMessage = (ctx: Context, data: any) =>
     ctx.request.method,
     ctx.request.originalUrl,
     ctx.status,
-    data.duration
+    data.duration,
   );
 
 export default (logger: Logger) => (ctx: Context, next: Next) => {
@@ -55,7 +55,7 @@ export default (logger: Logger) => (ctx: Context, next: Next) => {
     {
       req: ctx.req,
     },
-    formatRequestMessage(ctx)
+    formatRequestMessage(ctx),
   );
 
   const startTime = Date.now();

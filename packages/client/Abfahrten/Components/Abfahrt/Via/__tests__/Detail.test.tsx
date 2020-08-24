@@ -41,7 +41,7 @@ describe('DetailVia', () => {
             },
           },
         ],
-      }
+      },
     );
 
     const additional = getByTestId('via-additional');

@@ -5,7 +5,7 @@ import cheerio from 'cheerio';
 // 12 hours in seconds
 export const cache = createNewCache<string, string | null>(
   12 * 60 * 60,
-  CacheDatabases.Lageplan
+  CacheDatabases.Lageplan,
 );
 
 export async function getLageplan(stationName: string) {
@@ -22,7 +22,7 @@ export async function getLageplan(stationName: string) {
         params: {
           query: stationName,
         },
-      }
+      },
     )
   ).data;
 

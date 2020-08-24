@@ -58,13 +58,13 @@ describe('Lageplan', () => {
         .get('/bahnhof-de/bahnhof/Hamburg_Hbf-1030112')
         .reply(200, readFixutre('HamburgHbf.html'));
       await expect(getLageplan('Hamburg Hbf')).resolves.toBe(
-        'https://www.bahnhof.de/resource/blob/1029874/4869d8dea83b386b0bb773ec64ddb021/Hamburg-Hbf_locationPdf-data.pdf'
+        'https://www.bahnhof.de/resource/blob/1029874/4869d8dea83b386b0bb773ec64ddb021/Hamburg-Hbf_locationPdf-data.pdf',
       );
     });
 
     it('cache resolves', async () => {
       await expect(getLageplan('Hamburg Hbf')).resolves.toBe(
-        'https://www.bahnhof.de/resource/blob/1029874/4869d8dea83b386b0bb773ec64ddb021/Hamburg-Hbf_locationPdf-data.pdf'
+        'https://www.bahnhof.de/resource/blob/1029874/4869d8dea83b386b0bb773ec64ddb021/Hamburg-Hbf_locationPdf-data.pdf',
       );
     });
   });

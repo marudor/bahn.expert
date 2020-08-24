@@ -36,7 +36,7 @@ export const useFetchRouting = () => {
             ...settings,
           }
         : undefined,
-    [destination, settings, start, via]
+    [destination, settings, start, via],
   );
 
   const fetchRoutes = useCallback(
@@ -56,7 +56,7 @@ export const useFetchRouting = () => {
               params: {
                 profile: routeSettings.hafasProfile,
               },
-            }
+            },
           )
         ).data;
 
@@ -76,7 +76,7 @@ export const useFetchRouting = () => {
       setError,
       setLaterContext,
       setRoutes,
-    ]
+    ],
   );
 
   const fetchContext = useCallback(
@@ -95,7 +95,7 @@ export const useFetchRouting = () => {
               params: {
                 profile: currentProfile,
               },
-            }
+            },
           )
         ).data;
 
@@ -128,7 +128,7 @@ export const useFetchRouting = () => {
       setEarlierContext,
       setLaterContext,
       setRoutes,
-    ]
+    ],
   );
 
   const clearRoutes = useCallback(() => {

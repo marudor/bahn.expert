@@ -181,7 +181,7 @@ export interface OpenDataStation {
         coordinates: [number, number];
       };
       isMain: boolean;
-    }
+    },
   ];
   ril100Identifiers: [
     {
@@ -192,6 +192,6 @@ export interface OpenDataStation {
         type: string;
         coordinates: [number, number];
       };
-    }
+    },
   ];
 }

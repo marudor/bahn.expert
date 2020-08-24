@@ -36,7 +36,7 @@ function useRoutingFavStorage({ initialFavs }: InitialRoutingFavStorageProps) {
         return newFavs;
       });
     },
-    [storage]
+    [storage],
   );
 
   const unfav = useCallback(
@@ -46,7 +46,7 @@ function useRoutingFavStorage({ initialFavs }: InitialRoutingFavStorageProps) {
         return { ...oldFavs };
       });
     },
-    [updateFavs]
+    [updateFavs],
   );
 
   const favorite = useCallback(
@@ -56,7 +56,7 @@ function useRoutingFavStorage({ initialFavs }: InitialRoutingFavStorageProps) {
         [routingFavKey(fav)]: fav,
       }));
     },
-    [updateFavs]
+    [updateFavs],
   );
 
   return {
@@ -76,7 +76,7 @@ export const [
   (v) => ({
     fav: v.fav,
     unfav: v.unfav,
-  })
+  }),
 );
 
 export const RoutingFavProvider = ({ children }: PropsWithChildren<{}>) => {

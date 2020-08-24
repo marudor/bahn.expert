@@ -31,7 +31,7 @@ describe('onlyPlan', () => {
     it(file, async () => {
       const inXml = fs.readFileSync(
         path.resolve(__dirname, baseFixturePath, file),
-        'utf8'
+        'utf8',
       );
 
       mockLageplan();
@@ -44,7 +44,7 @@ describe('onlyPlan', () => {
           lookahead: 120,
           lookbehind: 60,
         },
-        noncdRequest
+        noncdRequest,
       );
 
       await expect(timetable.start()).resolves.toMatchSnapshot();

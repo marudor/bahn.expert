@@ -48,7 +48,7 @@ export const useStationSearch = ({
       setSuggestions(currentSuggestions.slice(0, maxSuggestions));
       setLoading(false);
     },
-    [maxSuggestions, profile, searchType]
+    [maxSuggestions, profile, searchType],
   );
   const selectRef = useRef<ControllerStateAndHelpers<Station>>();
 

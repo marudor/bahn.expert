@@ -26,7 +26,7 @@ const useStyles = makeStyles({
 
 function getErrorText(
   error: AbfahrtenError,
-  staticContext?: StaticRouterContext
+  staticContext?: StaticRouterContext,
 ): React.ReactNode {
   switch (error.errorType) {
     case 'redirect':

@@ -169,7 +169,7 @@ describe('Station V1', () => {
         .get('/iris-tts/timetable/station/42')
         .reply(
           200,
-          '<stations><station meta="" name="test" eva="42"/></stations>'
+          '<stations><station meta="" name="test" eva="42"/></stations>',
         );
 
       return request(server)

@@ -36,7 +36,7 @@ function route(
     tarif,
   }: TripSearchOptionsV2,
   profile?: AllowedHafasProfile,
-  raw?: boolean
+  raw?: boolean,
 ) {
   let requestTypeSpecific;
 

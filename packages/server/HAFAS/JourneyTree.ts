@@ -7,7 +7,7 @@ import type {
 
 export default (
   options: JourneyTreeRequestOptions,
-  profile?: AllowedHafasProfile
+  profile?: AllowedHafasProfile,
 ) => {
   const req: JourneyTreeRequest = {
     req: options,

@@ -25,7 +25,7 @@ export class IrisController extends Controller {
      * in Minutes
      */
     @Query() lookbehind?: number,
-    @Query() type?: 'open' | 'default'
+    @Query() type?: 'open' | 'default',
   ): Promise<AbfahrtenResult> {
     if (evaId.length < 6) {
       throw {
@@ -41,7 +41,7 @@ export class IrisController extends Controller {
         lookahead,
         lookbehind,
       },
-      type === 'open' ? openDataRequest : noncdRequest
+      type === 'open' ? openDataRequest : noncdRequest,
     );
   }
 

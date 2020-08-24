@@ -18,8 +18,8 @@ describe('Hafas V1', () => {
           200,
           path.resolve(
             __dirname,
-            '__fixtures__/journeyDetails/1|295600|0|80|10122019'
-          )
+            '__fixtures__/journeyDetails/1|295600|0|80|10122019',
+          ),
         );
 
       return request(server)

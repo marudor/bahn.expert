@@ -42,7 +42,7 @@ export const Navigation = ({ children }: Props) => {
     () => ({
       toggleDrawer,
     }),
-    [toggleDrawer]
+    [toggleDrawer],
   );
 
   return (

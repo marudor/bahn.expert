@@ -39,6 +39,6 @@ module.exports = (on, config) => {
           ],
         },
       },
-    })
+    }),
   );
 };

@@ -7,7 +7,7 @@ export const useLageplan = (stationName?: string, evaId?: string) => {
   useEffect(() => {
     if (!stationName || !evaId) return;
     Axios.get(
-      `/api/bahnhof/v1/lageplan/${encodeURIComponent(stationName)}/${evaId}`
+      `/api/bahnhof/v1/lageplan/${encodeURIComponent(stationName)}/${evaId}`,
     )
       .then((r) => setLageplan(r.data.lageplan))
       .catch(() => {});
