@@ -167,5 +167,10 @@
         0
       ]
     }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "printWidth": 80
   }
 }
