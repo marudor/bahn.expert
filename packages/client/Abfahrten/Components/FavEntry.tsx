@@ -60,7 +60,7 @@ export const FavEntryDisplay = ({
     <Paper
       className={clsx(
         classes.wrap,
-        clickable ? classes.clickable : classes.unClickable
+        clickable ? classes.clickable : classes.unClickable,
       )}
       data-testid={testid}
       square
@@ -93,7 +93,7 @@ export const FavEntry = ({
       e.preventDefault();
       unfav(fav);
     },
-    [fav, unfav]
+    [fav, unfav],
   );
 
   return (

@@ -93,7 +93,7 @@ export const Explain = () => {
                     {iconExplanation[iconName]}
                   </div>
                 );
-              }
+              },
             )}
             <div className={classes.iconWrap} data-testid="bahnComfort">
               <div className={classes.comfort} />

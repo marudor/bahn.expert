@@ -51,7 +51,7 @@ function parseFullStation(fullStation: string): Station {
 
 function adjustToFirstTrain(
   departure: CommonStopInfo,
-  segments: Route$JourneySegment[]
+  segments: Route$JourneySegment[],
 ) {
   if (segments.length && segments[0].type !== 'JNY') {
     const firstTrainSegment = segments.find((s) => s.type === 'JNY');
@@ -64,7 +64,7 @@ function adjustToFirstTrain(
 
 function adjustToLastTrain(
   arrival: CommonStopInfo,
-  segments: Route$JourneySegment[]
+  segments: Route$JourneySegment[],
 ) {
   if (segments.length && segments[segments.length - 1].type !== 'JNY') {
     const allTrainSegments = segments.filter((s) => s.type === 'JNY');
@@ -120,7 +120,7 @@ export class Journey {
   }
   parseStops = (
     stops: CommonStop[] | undefined,
-    train: ParsedProduct
+    train: ParsedProduct,
   ): Route$Stop[] => {
     if (!stops) return [];
 
@@ -151,13 +151,13 @@ export class Journey {
           t.arr,
           this.date,
           this.common,
-          this.common.prodL[t.jny.prodX]
+          this.common.prodL[t.jny.prodX],
         );
         const departure = parseCommonDeparture(
           t.dep,
           this.date,
           this.common,
-          this.common.prodL[t.jny.prodX]
+          this.common.prodL[t.jny.prodX],
         );
 
         return {
@@ -199,7 +199,7 @@ export class Journey {
 
 export default (
   r: HafasResponse<TripSearchResponse>,
-  parsedCommon: ParsedCommon
+  parsedCommon: ParsedCommon,
 ): RoutingResult => {
   const routes = r.svcResL[0].res.outConL
     .flatMap((j) => new Journey(j, parsedCommon).journey)

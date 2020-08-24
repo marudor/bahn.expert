@@ -8,7 +8,7 @@ export async function getDetails(
   initialDeparture?: string,
   stop?: string,
   stationId?: string,
-  profile?: AllowedHafasProfile
+  profile?: AllowedHafasProfile,
 ): Promise<ParsedSearchOnTripResponse> {
   const r = await Axios.get<ParsedSearchOnTripResponse>(
     `/api/hafas/v1/details/${train}`,
@@ -19,7 +19,7 @@ export async function getDetails(
         profile,
         date: initialDeparture,
       },
-    }
+    },
   );
 
   return r.data;
@@ -31,7 +31,7 @@ export async function journeyMatch(
   trainName: string,
   initialDepartureDate?: number,
   profile?: AllowedHafasProfile,
-  cancelIdent?: string
+  cancelIdent?: string,
 ): Promise<ParsedJourneyMatchResponse[]> {
   let cancelToken;
 
@@ -52,7 +52,7 @@ export async function journeyMatch(
       params: {
         profile,
       },
-    }
+    },
   );
 
   return r.data;

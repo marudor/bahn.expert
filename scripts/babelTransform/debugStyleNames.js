@@ -24,7 +24,7 @@ module.exports = (babel) => {
             return;
           }
           options.properties.push(
-            t.ObjectProperty(t.Identifier('name'), t.stringLiteral(relevant))
+            t.ObjectProperty(t.Identifier('name'), t.stringLiteral(relevant)),
           );
           path.node.arguments[1] = options;
         }

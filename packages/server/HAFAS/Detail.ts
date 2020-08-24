@@ -13,7 +13,7 @@ import type { Route$JourneySegmentTrain } from 'types/routing';
 
 function calculateCurrentStation(
   segment: ParsedSearchOnTripResponse,
-  currentStopId?: string
+  currentStopId?: string,
 ) {
   const currentDate = Date.now();
   let currentStop;
@@ -38,7 +38,7 @@ export default async (
   currentStopId?: string,
   station?: string,
   date: number = Date.now(),
-  hafasProfile: AllowedHafasProfile = AllowedHafasProfile.DB
+  hafasProfile: AllowedHafasProfile = AllowedHafasProfile.DB,
 ): Promise<ParsedSearchOnTripResponse | undefined> => {
   let possibleTrains: undefined | ParsedJourneyMatchResponse[];
 
@@ -66,7 +66,7 @@ export default async (
         trainName,
         initialDepartureDate: date,
       },
-      hafasProfile
+      hafasProfile,
     );
   }
 
@@ -97,11 +97,11 @@ export default async (
         }),
         sotMode: 'RC',
       },
-      hafasProfile
+      hafasProfile,
     );
 
     relevantSegment = route.segments.find(
-      (s) => s.type === 'JNY'
+      (s) => s.type === 'JNY',
     ) as Route$JourneySegmentTrain;
   } catch (e) {
     logger.error({
@@ -139,7 +139,7 @@ export default async (
 
   if (currentStopId) {
     relevantSegment.currentStop = relevantSegment.stops.find(
-      (s) => s.station.id === currentStopId
+      (s) => s.station.id === currentStopId,
     );
   }
 
@@ -161,7 +161,7 @@ export default async (
 
   relevantSegment.currentStop = calculateCurrentStation(
     relevantSegment,
-    currentStopId
+    currentStopId,
   );
 
   const irisStop =
@@ -180,7 +180,7 @@ export default async (
         });
 
         const irisDeparture = irisData.departures.find(
-          (a) => a.train.name === relevantSegment.train.name
+          (a) => a.train.name === relevantSegment.train.name,
         );
 
         if (irisDeparture) {

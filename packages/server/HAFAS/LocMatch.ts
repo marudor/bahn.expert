@@ -12,12 +12,12 @@ import type { LocMatchRequest, LocMatchResponse } from 'types/HAFAS/LocMatch';
 // 8 Hours in seconds
 const cache = createNewCache<string, HafasStation[]>(
   8 * 60 * 60,
-  CacheDatabases.LocMatch
+  CacheDatabases.LocMatch,
 );
 
 function parseFn(
   d: HafasResponse<LocMatchResponse>,
-  parsedCommon: ParsedCommon
+  parsedCommon: ParsedCommon,
 ): HafasStation[] {
   const stations = d.svcResL[0].res.match.locL;
 
@@ -32,7 +32,7 @@ export default async (
   searchTerm: string,
   type: 'S' | 'ALL' = 'ALL',
   profile?: AllowedHafasProfile,
-  raw?: boolean
+  raw?: boolean,
 ) => {
   const req: LocMatchRequest = {
     req: {

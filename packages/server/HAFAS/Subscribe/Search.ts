@@ -7,7 +7,7 @@ import {
 
 export function SubscribeSearch(
   options: SubscrSearchOptions,
-  profile?: AllowedHafasProfile
+  profile?: AllowedHafasProfile,
 ) {
   const req: SubscrSearchRequest = {
     req: options,

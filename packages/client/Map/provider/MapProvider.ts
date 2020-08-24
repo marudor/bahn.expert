@@ -47,7 +47,7 @@ function useMapDefaults() {
       profile,
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
+    [],
   );
 }
 
@@ -76,7 +76,7 @@ function useMap() {
 
   const activePolyline = useMemo(
     () => (activeJourney ? polylines?.[activeJourney.jid] : undefined),
-    [activeJourney, polylines]
+    [activeJourney, polylines],
   );
 
   useEffect(() => {
@@ -91,7 +91,7 @@ function useMap() {
           params: {
             profile,
           },
-        }
+        },
       )
         .then((r) => {
           setPolylines((old) => ({
@@ -129,7 +129,7 @@ function useMap() {
         params: {
           profile,
         },
-      }
+      },
     )
       .then((r) => setPositions(r.data))
       .catch(() => {});

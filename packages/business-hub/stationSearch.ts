@@ -9,7 +9,7 @@ import type {
 } from 'business-hub/types/StopPlaces';
 
 const transformBusinessHubStation = (
-  businessHubStation: Pick<StopPlace, 'name' | 'identifiers' | 'location'>
+  businessHubStation: Pick<StopPlace, 'name' | 'identifiers' | 'location'>,
 ): BusinessHubStation => ({
   title: businessHubStation.name,
   id: businessHubStation.identifiers.find((i) => i.type === 'EVA')?.value || '',
@@ -27,7 +27,7 @@ function filterApiResult(result: APIResult) {
   );
 }
 export async function stationSearch(
-  searchTerm?: string
+  searchTerm?: string,
 ): Promise<BusinessHubStation[]> {
   if (!searchTerm) return [];
   const result = (
@@ -43,7 +43,7 @@ export async function stationSearch(
 
 export async function geoSearch(
   coordinates: BusinessHubCoordinates,
-  radius: number = 3000
+  radius: number = 3000,
 ): Promise<BusinessHubStation[]> {
   const result = (
     await request.get<APIResult>('/public-transport-stations/v1/stop-places', {
@@ -58,11 +58,11 @@ export async function geoSearch(
 }
 
 export const stationDetails = async (
-  evaId: string
+  evaId: string,
 ): Promise<DetailBusinessHubStation> => {
   const detailsResult = (
     await request.get<DetailsApiResult>(
-      `/public-transport-stations/v1/stop-places/${evaId}`
+      `/public-transport-stations/v1/stop-places/${evaId}`,
     )
   ).data;
 

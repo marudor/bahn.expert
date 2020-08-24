@@ -38,7 +38,7 @@ export class StationController extends Controller {
     @Request() ctx: Context,
     searchTerm: string,
     @Query() type?: StationSearchType,
-    @Query() max?: number
+    @Query() max?: number,
   ): Promise<Station[]> {
     const result = await stationSearch(searchTerm, type, max);
 
@@ -53,7 +53,7 @@ export class StationController extends Controller {
     @Query() lat: number,
     @Query() lng: number,
     // Meter
-    @Query() radius?: number
+    @Query() radius?: number,
   ): Promise<Station[]> {
     if (canUseBusinessHub) {
       return BusinessHubGeoSearch(
@@ -61,7 +61,7 @@ export class StationController extends Controller {
           latitude: lat,
           longitude: lng,
         },
-        radius
+        radius,
       );
     } else {
       throw new Error('geoSearch needs BusinessHub API Key');

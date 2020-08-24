@@ -9,7 +9,7 @@ export class BahnhofControllerV1 extends Controller {
   @Tags('Bahnhof V1')
   async lageplan(
     stationName: string,
-    evaId: string
+    evaId: string,
   ): Promise<LageplanResponse> {
     const lageplan =
       getBayernLageplan(evaId) || (await getLageplan(stationName));

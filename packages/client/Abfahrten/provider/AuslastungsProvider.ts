@@ -12,7 +12,7 @@ function useAuslastungInner() {
       trainNumber: string,
       start: string,
       destination: string,
-      time: number
+      time: number,
     ) => {
       const key = `${start}/${destination}/${trainNumber}`;
       let auslastung: Route$Auslastung | null;
@@ -20,7 +20,7 @@ function useAuslastungInner() {
       try {
         auslastung = (
           await Axios.get<Route$Auslastung>(
-            `/api/hafas/v1/auslastung/${key}/${time}`
+            `/api/hafas/v1/auslastung/${key}/${time}`,
           )
         ).data;
       } catch (e) {
@@ -32,7 +32,7 @@ function useAuslastungInner() {
         [key]: auslastung,
       }));
     },
-    []
+    [],
   );
   const clearAuslastungen = useCallback(() => setAuslastungen({}), []);
 
@@ -40,5 +40,5 @@ function useAuslastungInner() {
 }
 
 export const [AuslastungsProvider, useAuslastung] = constate(
-  useAuslastungInner
+  useAuslastungInner,
 );

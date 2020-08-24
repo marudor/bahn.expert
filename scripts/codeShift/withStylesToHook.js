@@ -16,7 +16,7 @@ function transformer(file, api) {
   let result = j(file.source)
     .find(
       j.VariableDeclaration,
-      (n) => n.declarations[0].id.name === 'useStyles'
+      (n) => n.declarations[0].id.name === 'useStyles',
     )
     .forEach((path) => {
       path.prune();
@@ -58,7 +58,7 @@ function transformer(file, api) {
     .find(j.TSIntersectionType)
     .forEach((path) => {
       path.value.types = path.value.types.filter(
-        (n) => n.type !== 'TSTypeReference' || n.typeName.name !== 'WithStyles'
+        (n) => n.type !== 'TSTypeReference' || n.typeName.name !== 'WithStyles',
       );
     })
     .toSource();
@@ -102,18 +102,18 @@ function transformer(file, api) {
   result = j(result)
     .find(
       j.ArrowFunctionExpression,
-      (n) => n.params.length && n.params[0].type === 'ObjectPattern'
+      (n) => n.params.length && n.params[0].type === 'ObjectPattern',
     )
     .forEach((path) => {
       const param = path.value.params[0];
 
       param.properties = param.properties.filter(
-        (p) => p.type !== 'ObjectProperty' || p.value.name !== 'classes'
+        (p) => p.type !== 'ObjectProperty' || p.value.name !== 'classes',
       );
       const hookCall = j.variableDeclaration('const', [
         j.variableDeclarator(
           j.identifier('classes'),
-          j.callExpression(j.identifier('useStyles'), [])
+          j.callExpression(j.identifier('useStyles'), []),
         ),
       ]);
 

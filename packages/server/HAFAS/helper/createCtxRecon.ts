@@ -29,9 +29,9 @@ export default ({
     lastStop.station.id
   }@a=128@$${format(
     firstStop.departure.scheduledTime,
-    'yyyyMMddHHmm'
+    'yyyyMMddHHmm',
   )}$${format(
     lastStop.arrival.scheduledTime,
-    'yyyyMMddHHmm'
+    'yyyyMMddHHmm',
   )}$${trainName}$$${replacementNumber}$`;
 };

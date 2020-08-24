@@ -36,7 +36,7 @@ export const commonConfigSanitize: CommonConfigSanitize = {
 export const orderBy = <T>(
   array: T[],
   identifier: keyof T,
-  order: 'asc' | 'desc' = 'asc'
+  order: 'asc' | 'desc' = 'asc',
 ): T[] => {
   const sorted = [...array].sort((a, b) => {
     return a[identifier] > b[identifier]
@@ -52,7 +52,7 @@ export const orderBy = <T>(
 const minMax = <T>(
   array: T[],
   compareFn: <X>(a: X, b: X) => boolean,
-  idFn: IdFn<T>
+  idFn: IdFn<T>,
 ): T | undefined => {
   if (!array.length) return undefined;
   let searched = array[0];
@@ -73,12 +73,12 @@ const getIdFn = <T>(identifier?: Identifier<T>) => {
 
 export const minBy = <T>(
   array: T[],
-  identifier?: Identifier<T>
+  identifier?: Identifier<T>,
 ): T | undefined => minMax(array, (a, b) => a > b, getIdFn(identifier));
 
 export const maxBy = <T>(
   array: T[],
-  identifier?: Identifier<T>
+  identifier?: Identifier<T>,
 ): T | undefined => minMax(array, (a, b) => a < b, getIdFn(identifier));
 
 export const uniqBy = <T>(array: T[], identifier: keyof T): T[] => {

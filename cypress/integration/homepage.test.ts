@@ -42,7 +42,7 @@ describe('Homepage', () => {
       response: {},
     }).route(
       '/api/station/v1/search/Frankfurt (Main) Hbf?type=default',
-      'fixture:stationSearchFrankfurtHbf.json'
+      'fixture:stationSearchFrankfurtHbf.json',
     );
     cy.visit('/');
     cy.navigateToStation('Frankfurt (Main) Hbf');

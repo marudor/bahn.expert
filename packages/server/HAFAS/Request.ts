@@ -84,7 +84,7 @@ import type {
 
 function createRequest(
   req: SingleHafasRequest | UncommonHafasRequest,
-  profileType: AllowedHafasProfile
+  profileType: AllowedHafasProfile,
 ) {
   const profile = HafasProfiles[profileType];
   const data: any = profile.config;
@@ -131,7 +131,7 @@ export class HafasError extends Error {
   constructor(
     request: SingleHafasRequest | UncommonHafasRequest,
     response: HafasResponse<any>,
-    profile: AllowedHafasProfile
+    profile: AllowedHafasProfile,
   ) {
     super(`${request.meth} HAFAS Error`);
     Error.captureStackTrace(this, HafasError);
@@ -178,7 +178,7 @@ async function makeRequest<
 >(
   hafasRequest: R,
   parseFn: (d: HafasResponse<HR>, pc: ParsedCommon) => P = (d) => d as any,
-  profile: AllowedHafasProfile = AllowedHafasProfile.DB
+  profile: AllowedHafasProfile = AllowedHafasProfile.DB,
 ): Promise<P> {
   // if (profile === 'all') {
   //   const prod = global.PROD;
@@ -251,7 +251,7 @@ export async function makeUncommonRequest<
 >(
   hafasRequest: R,
   parseFn: (d: HR) => P = (d) => d as any,
-  profile: AllowedHafasProfile = AllowedHafasProfile.DB
+  profile: AllowedHafasProfile = AllowedHafasProfile.DB,
 ): Promise<P> {
   const { data, extraParam } = createRequest(hafasRequest, profile);
   const r = (

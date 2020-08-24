@@ -141,7 +141,8 @@
     "node-fetch": "^2",
     "ejs": "^3",
     "lodash": "^4.17.15",
-    "chokidar": "^3"
+    "chokidar": "^3",
+    "redoc": "2.0.0-rc.40"
   },
   "repository": {
     "type": "git",
@@ -166,5 +167,10 @@
         0
       ]
     }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all",
+    "printWidth": 80
   }
 }

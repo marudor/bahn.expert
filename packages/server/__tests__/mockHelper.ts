@@ -12,7 +12,7 @@ export function mockLageplan(bahnhof: string = 'test', lageplan: string = '') {
 export function mockSearch(
   count: number,
   results: string[],
-  startTime: number = 12
+  startTime: number = 12,
 ) {
   for (let i = 0; i <= count; i += 1) {
     const hour = startTime + i;

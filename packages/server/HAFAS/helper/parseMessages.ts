@@ -3,7 +3,7 @@ import type { MsgL, ParsedCommon, RemL } from 'types/HAFAS';
 
 export default (
   msgL: undefined | MsgL[],
-  common: ParsedCommon
+  common: ParsedCommon,
 ): undefined | RemL[] => {
   if (!msgL) return undefined;
 
@@ -15,7 +15,7 @@ export default (
         return rem;
       })
       .filter((msg) => msg && msg.txtN !== 'Gleiswechsel'),
-    'txtN'
+    'txtN',
   );
 
   return messages;

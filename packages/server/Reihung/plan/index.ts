@@ -27,7 +27,7 @@ if (process.env.NODE_ENV !== 'test') {
 const allowedPlannedProductTypes = ['IC', 'ICE', 'EC', 'ECE'];
 
 export const getPlannedSequence = (
-  product: ParsedProduct
+  product: ParsedProduct,
 ): PlannedSequence | undefined => {
   if (
     !product.number ||

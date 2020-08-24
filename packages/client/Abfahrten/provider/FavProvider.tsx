@@ -22,7 +22,7 @@ function useFavStorage({ initial }: { initial: FavStorageSetup }) {
       storage.set(initial.storageKey, newFavs);
       setFavs(newFavs);
     },
-    [initial.storageKey, storage]
+    [initial.storageKey, storage],
   );
 
   const fav = useCallback(
@@ -39,7 +39,7 @@ function useFavStorage({ initial }: { initial: FavStorageSetup }) {
         return newFavs;
       });
     },
-    [initial.storageKey, storage]
+    [initial.storageKey, storage],
   );
 
   const unfav = useCallback(
@@ -51,7 +51,7 @@ function useFavStorage({ initial }: { initial: FavStorageSetup }) {
         return newFavs;
       });
     },
-    [initial.storageKey, storage]
+    [initial.storageKey, storage],
   );
 
   return {
@@ -75,7 +75,7 @@ export const [
   (v) => v.fav,
   (v) => v.unfav,
   (v) => v.favs,
-  (v) => v.MostUsedComponent
+  (v) => v.MostUsedComponent,
 );
 
 interface Props {

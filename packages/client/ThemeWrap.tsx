@@ -28,7 +28,7 @@ export const ThemeWrap = ({
   const classNameGenerator = useMemo(
     () => generateClassName || createGenerateClassName(),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
+    [],
   );
 
   return (

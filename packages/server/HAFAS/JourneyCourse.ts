@@ -13,7 +13,7 @@ import type {
 
 function parseJourneyCourse(
   r: HafasResponse<JourneyCourseResponse>,
-  common: ParsedCommon
+  common: ParsedCommon,
 ): ParsedJourneyCourseResponse {
   const polyL = common.polyL;
 
@@ -21,7 +21,7 @@ function parseJourneyCourse(
 
   return {
     polylines: r.svcResL[0].res.mainPoly.polyXL.map(
-      (polyIndex) => polyL[polyIndex]
+      (polyIndex) => polyL[polyIndex],
     ),
   };
 }
@@ -29,7 +29,7 @@ function parseJourneyCourse(
 export default (
   options: JourneyCourseRequestOptions,
   profile?: AllowedHafasProfile,
-  raw?: boolean
+  raw?: boolean,
 ) => {
   const req: JourneyCourseRequest = {
     req: options,

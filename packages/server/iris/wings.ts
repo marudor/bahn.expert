@@ -27,7 +27,7 @@ function parseNode(node: null | xmljs.Element): WingInfo | undefined {
 export default async function wingInfo(
   rawId1: string,
   rawId2: string,
-  request: AxiosInstance = noncdRequest
+  request: AxiosInstance = noncdRequest,
 ): Promise<WingDefinition> {
   const rawXml = (await request.get<string>(`/wingdef/${rawId1}/${rawId2}`))
     .data;

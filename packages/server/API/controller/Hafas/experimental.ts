@@ -24,7 +24,7 @@ export class HafasExperimentalController extends Controller {
   himMessages(
     @Request() ctx: Context,
     @Query() himIds: string[],
-    @Query() profile?: AllowedHafasProfile
+    @Query() profile?: AllowedHafasProfile,
   ): Promise<ParsedHimSearchResponse> {
     return HimSearch(
       {
@@ -35,7 +35,7 @@ export class HafasExperimentalController extends Controller {
         })),
       },
       profile,
-      ctx.query.raw
+      ctx.query.raw,
     );
   }
 
@@ -44,7 +44,7 @@ export class HafasExperimentalController extends Controller {
   himSearch(
     @Request() ctx: Context,
     @Body() options: HimSearchRequestOptions,
-    @Query() profile?: AllowedHafasProfile
+    @Query() profile?: AllowedHafasProfile,
   ): Promise<ParsedHimSearchResponse> {
     return HimSearch(options, profile, ctx.query.raw);
   }
@@ -53,21 +53,21 @@ export class HafasExperimentalController extends Controller {
   @Tags('HAFAS Experimental')
   async irisCompatibleAbfahrten(
     evaId: string,
-    @Query() profile?: AllowedHafasProfile
+    @Query() profile?: AllowedHafasProfile,
   ): Promise<AbfahrtenResult> {
     const hafasDeparture = await StationBoard(
       {
         type: 'DEP',
         station: evaId,
       },
-      profile
+      profile,
     );
     const hafasArrivals = await StationBoard(
       {
         type: 'ARR',
         station: evaId,
       },
-      profile
+      profile,
     ).catch(() => undefined);
 
     const mappedHafasArrivals =
@@ -76,13 +76,13 @@ export class HafasExperimentalController extends Controller {
           map: {
             [key: string]: ArrivalStationBoardEntry;
           },
-          arrival
+          arrival,
         ) => {
           map[`${arrival.jid}${arrival.train.number}`] = arrival;
 
           return map;
         },
-        {}
+        {},
       ) || {};
 
     const idSet = new Set<string>();
@@ -91,7 +91,7 @@ export class HafasExperimentalController extends Controller {
       lookbehind: [],
       departures: hafasDeparture
         .map((departure) =>
-          StationBoardToTimetables(departure, mappedHafasArrivals, idSet)
+          StationBoardToTimetables(departure, mappedHafasArrivals, idSet),
         )
         .filter((Boolean as any) as ExcludesFalse)
         .slice(0, 75),
@@ -103,7 +103,7 @@ export class HafasExperimentalController extends Controller {
   @Tags('HAFAS Experimental')
   JourneyTree(
     @Body() options: JourneyTreeRequestOptions,
-    @Query() profile?: AllowedHafasProfile
+    @Query() profile?: AllowedHafasProfile,
   ): Promise<any> {
     return JourneyTree(options, profile);
   }
@@ -112,7 +112,7 @@ export class HafasExperimentalController extends Controller {
   @Tags('HAFAS Experimental')
   JourneyGraph(
     @Body() options: JourneyGraphRequestOptions,
-    @Query() profile?: AllowedHafasProfile
+    @Query() profile?: AllowedHafasProfile,
   ): Promise<any> {
     return JourneyGraph(options, profile);
   }
@@ -122,7 +122,7 @@ export class HafasExperimentalController extends Controller {
   JourneyCourse(
     @Request() ctx: Context,
     @Body() options: JourneyCourseRequestOptions,
-    @Query() profile?: AllowedHafasProfile
+    @Query() profile?: AllowedHafasProfile,
   ): Promise<any> {
     return JourneyCourse(options, profile, ctx.query.raw);
   }

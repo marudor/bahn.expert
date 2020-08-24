@@ -43,7 +43,7 @@ const maxViaForProvider = (profile?: AllowedHafasProfile) => {
 const setStationById = async (
   stationId: string,
   setAction: (station: Station) => void,
-  hafasProfile: AllowedHafasProfile
+  hafasProfile: AllowedHafasProfile,
 ) => {
   const stations = await getHafasStationFromAPI(hafasProfile, stationId);
 
@@ -157,7 +157,7 @@ export const Search = () => {
       setStationById(
         match.params.start,
         setStart,
-        favProfile || settings.hafasProfile
+        favProfile || settings.hafasProfile,
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -167,7 +167,7 @@ export const Search = () => {
       setStationById(
         match.params.destination,
         setDestination,
-        favProfile || settings.hafasProfile
+        favProfile || settings.hafasProfile,
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -187,7 +187,7 @@ export const Search = () => {
           (station) => {
             updateVia(index, station);
           },
-          settings.hafasProfile
+          settings.hafasProfile,
         );
       });
     }
@@ -202,7 +202,7 @@ export const Search = () => {
         history.push(getRouteLink(start, destination, via, date));
       }
     },
-    [date, destination, fetchRoutes, history, start, via]
+    [date, destination, fetchRoutes, history, start, via],
   );
 
   const mappedViaList = useMemo(
@@ -217,7 +217,7 @@ export const Search = () => {
           profile={settings.hafasProfile}
         />
       )),
-    [settings.hafasProfile, updateVia, via]
+    [settings.hafasProfile, updateVia, via],
   );
 
   return (

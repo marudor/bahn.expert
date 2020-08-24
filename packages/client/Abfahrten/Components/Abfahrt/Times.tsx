@@ -31,7 +31,7 @@ export const Times = () => {
             <div
               className={clsx(
                 classes.timeWrapper,
-                arrival.cancelled && classes.cancelled
+                arrival.cancelled && classes.cancelled,
               )}
             >
               <span>{'An: '}</span>
@@ -42,7 +42,7 @@ export const Times = () => {
             <div
               className={clsx(
                 classes.timeWrapper,
-                departure.cancelled && classes.cancelled
+                departure.cancelled && classes.cancelled,
               )}
             >
               <span>{'Ab: '}</span>

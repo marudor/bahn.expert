@@ -6,7 +6,7 @@ const allowdTypes = ['ICE', 'IC', 'TGV', 'EC', 'ECE', 'RJ', 'D'];
 export default (
   scheduledTime: number,
   trnCmpSX?: TrnCmpSX,
-  train?: ParsedProduct
+  train?: ParsedProduct,
 ) => {
   if (isBefore(addDays(new Date(), 1), scheduledTime)) return false;
   if (train?.type && allowdTypes.includes(train.type)) return true;

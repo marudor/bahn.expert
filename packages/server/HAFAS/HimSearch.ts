@@ -23,17 +23,17 @@ const parseHimMessage = (himMessage: HimMessage, common: ParsedCommon) => {
       himMessage.affProdRefL?.map((prodRef) => common.prodL[prodRef]) ?? [],
     startTime: parseTime(
       parse(himMessage.sDate, 'yyyyMMdd', Date.now()),
-      himMessage.sTime
+      himMessage.sTime,
     ),
     endTime: parseTime(
       parse(himMessage.eDate, 'yyyyMMdd', Date.now()),
-      himMessage.eTime
+      himMessage.eTime,
     ),
   };
 };
 const parseHimSearch = (
   d: HafasResponse<HimSearchResponse>,
-  common: ParsedCommon
+  common: ParsedCommon,
 ): ParsedHimSearchResponse => {
   return {
     messages:
@@ -44,7 +44,7 @@ const parseHimSearch = (
 const HimSearch = (
   request: HimSearchRequest['req'],
   profile?: AllowedHafasProfile,
-  raw?: boolean
+  raw?: boolean,
 ): Promise<ParsedHimSearchResponse> => {
   const req: HimSearchRequest = {
     req: request,
@@ -59,7 +59,7 @@ export default HimSearch;
 // 24 hours in seconds
 const himMessageCache = createNewCache<string, ParsedHimMessage>(
   24 * 60 * 60,
-  CacheDatabases.HIMMessage
+  CacheDatabases.HIMMessage,
 );
 
 const maxNum =
@@ -90,5 +90,5 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 export const getSingleHimMessageOfToday = (
-  hid: string
+  hid: string,
 ): Promise<undefined | ParsedHimMessage> => himMessageCache.get(hid);

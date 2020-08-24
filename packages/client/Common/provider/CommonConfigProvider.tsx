@@ -15,7 +15,7 @@ const useCommonConfigInternal = ({
       storage.set(key, value);
       setConfig((oldConfig) => ({ ...oldConfig, [key]: value }));
     },
-    [storage]
+    [storage],
   );
 
   return {
@@ -45,7 +45,7 @@ export const [
 ] = constate(
   useCommonConfigInternal,
   (v) => v.config,
-  (v) => v.setCommonConfigKey
+  (v) => v.setCommonConfigKey,
 );
 
 export const CommonConfigProvider = ({ children }: Props) => {

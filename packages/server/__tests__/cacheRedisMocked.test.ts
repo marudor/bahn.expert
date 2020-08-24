@@ -14,7 +14,7 @@ jest.mock('cache-manager', () => {
           }),
           exists: jest.fn((key) => Promise.resolve(key in simpleCache)),
           mget: jest.fn((keys) =>
-            Promise.resolve(keys.map((k: string) => simpleCache[k]))
+            Promise.resolve(keys.map((k: string) => simpleCache[k])),
           ),
         };
       },

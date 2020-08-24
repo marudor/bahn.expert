@@ -12,7 +12,7 @@ import type {
 
 const parseSearchOnTrip = (
   d: HafasResponse<SearchOnTripResponse>,
-  common: ParsedCommon
+  common: ParsedCommon,
 ) => {
   return new Journey(d.svcResL[0].res.outConL[0], common).journey;
 };
@@ -20,7 +20,7 @@ const parseSearchOnTrip = (
 export default (
   req: SearchOnTripRequest['req'],
   profile?: AllowedHafasProfile,
-  raw?: boolean
+  raw?: boolean,
 ) => {
   const request: SearchOnTripRequest = {
     req,

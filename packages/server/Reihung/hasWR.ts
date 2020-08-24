@@ -7,7 +7,7 @@ import Axios from 'axios';
 
 export const WRCache = createNewCache<string, string[] | null>(
   3 * 60 * 60,
-  CacheDatabases.CouchSequence
+  CacheDatabases.CouchSequence,
 );
 
 const formatDate = (date: number) =>
@@ -15,7 +15,7 @@ const formatDate = (date: number) =>
 
 export const getWRLink = (trainNumber: string, date: number) => {
   return `https://www.apps-bahn.de/wr/wagenreihung/1.0/${trainNumber}/${formatDate(
-    date
+    date,
   )}`;
 };
 
@@ -87,7 +87,7 @@ export const WRForTZ = async (TZNumber: string) => {
       // eslint-disable-next-line no-await-in-loop
       const WR = await wagenreihung(
         number,
-        parse(times[0], 'yyyyMMddHHmm', Date.now()).getTime()
+        parse(times[0], 'yyyyMMddHHmm', Date.now()).getTime(),
       );
 
       if (WR.allFahrzeuggruppe.some((g) => g.tzn === TZNumber)) {
@@ -108,7 +108,7 @@ export const WRForNumber = async (trainNumber: string) => {
 
   const wr = await wagenreihung(
     trainNumber,
-    parse(WRDates[0], 'yyyyMMddHHmm', Date.now()).getTime()
+    parse(WRDates[0], 'yyyyMMddHHmm', Date.now()).getTime(),
   );
 
   return wr;

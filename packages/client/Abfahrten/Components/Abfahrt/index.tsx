@@ -18,10 +18,10 @@ export const Abfahrt = ({ abfahrt }: Props) => {
         wings?.every(
           (w) =>
             w.train.number.endsWith(abfahrt.train.number) &&
-            w.train.type !== abfahrt.train.type
-        )
+            w.train.type !== abfahrt.train.type,
+        ),
       ),
-    [abfahrt.train.number, abfahrt.train.type, wings]
+    [abfahrt.train.number, abfahrt.train.type, wings],
   );
 
   const wingNumbers = useMemo(
@@ -29,7 +29,7 @@ export const Abfahrt = ({ abfahrt }: Props) => {
       wings?.length
         ? wings.map((w) => w.train.number).concat([abfahrt.train.number])
         : undefined,
-    [abfahrt.train.number, wings]
+    [abfahrt.train.number, wings],
   );
 
   return (

@@ -67,12 +67,12 @@ export const SettingsModal = () => {
   const handleSelectChange = useCallback(
     (key: keyof AbfahrtenConfig) => (e: ChangeEvent<HTMLSelectElement>) =>
       setConfigKey(key, e.currentTarget.value),
-    [setConfigKey]
+    [setConfigKey],
   );
   const handleNumberValueChange = useCallback(
     (key: keyof AbfahrtenConfig) => (e: ChangeEvent<HTMLInputElement>) =>
       setConfigKey(key, Number.parseInt(e.currentTarget.value, 10)),
-    [setConfigKey]
+    [setConfigKey],
   );
 
   return (
@@ -121,7 +121,7 @@ export const SettingsModal = () => {
               value="zoomReihungConfig"
               onChange={handleConfigCheckedChange(
                 'zoomReihung',
-                setCommonConfigKey
+                setCommonConfigKey,
               )}
             />
           }
@@ -136,7 +136,7 @@ export const SettingsModal = () => {
               value="lineAndNumberConfig"
               onChange={handleConfigCheckedChange(
                 'lineAndNumber',
-                setConfigKey
+                setConfigKey,
               )}
             />
           }
@@ -151,7 +151,7 @@ export const SettingsModal = () => {
               value="showUIC"
               onChange={handleConfigCheckedChange(
                 'showUIC',
-                setCommonConfigKey
+                setCommonConfigKey,
               )}
             />
           }
@@ -166,7 +166,7 @@ export const SettingsModal = () => {
               value="fahrzeugGruppeConfig"
               onChange={handleConfigCheckedChange(
                 'fahrzeugGruppe',
-                setCommonConfigKey
+                setCommonConfigKey,
               )}
             />
           }

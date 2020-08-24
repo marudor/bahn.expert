@@ -13,7 +13,7 @@ export class ReihungControllerV1 extends Controller {
     /**
      * Unix Time (ms)
      */
-    date: number
+    date: number,
   ): Promise<Formation> {
     return wagenreihung(trainNumber, date);
   }
@@ -25,7 +25,7 @@ export class ReihungControllerV1 extends Controller {
     /**
      * TZ Number (e.g. 0169)
      */
-    tz?: string
+    tz?: string,
   ): Promise<string> {
     return Promise.resolve(TrainNames(tz)!);
   }

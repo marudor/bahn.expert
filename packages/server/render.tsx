@@ -42,7 +42,7 @@ export default (ctx: Context) => {
   Object.keys(ctx.query).forEach((key: any) => {
     if (commonConfigSanitize.hasOwnProperty(key)) {
       const value = commonConfigSanitize[key as keyof CommonConfigSanitize](
-        ctx.query[key]
+        ctx.query[key],
       );
 
       global.configOverride.common[key] = value;
@@ -65,7 +65,7 @@ export default (ctx: Context) => {
       routeContext={routeContext}
       storage={ctx.request.storage}
       sheetsRegistry={sheets}
-    />
+    />,
   );
 
   const app = renderToString(App);

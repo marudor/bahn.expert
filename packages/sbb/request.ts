@@ -10,7 +10,7 @@ import url from 'url';
 const staticKey = 'c3eAd3eC3a7845dE98f73942b3d5f9c0';
 // Certificate in DER, found in the SBB APP. (res/raw/ca_cert.crt)
 const certificateBuffer = fs.readFileSync(
-  path.resolve(__dirname, 'certificate.crt')
+  path.resolve(__dirname, 'certificate.crt'),
 );
 const certificateBasedKey = crypto
   .createHash('sha1')

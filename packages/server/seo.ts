@@ -11,7 +11,7 @@ const sitemap = () => {
     .filter((s) => s.name.match(filterRegex))
     .forEach((s) => {
       xml += `<url><loc>${global.BASE_URL}/${encodeURIComponent(
-        s.name
+        s.name,
       )}</loc><changefreq>always</changefreq></url>`;
     });
 

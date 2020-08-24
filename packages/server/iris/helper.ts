@@ -18,7 +18,7 @@ export const openDataRequest = process.env.TIMETABLES_OPEN_DATA_KEY
 
 export function getAttr<T extends string>(
   node: null | Element,
-  name: string
+  name: string,
 ): undefined | T {
   if (node) {
     const attr = node.attr(name);
@@ -31,7 +31,7 @@ export function getAttr<T extends string>(
 
 export function getNumberAttr(
   node: null | Element,
-  name: string
+  name: string,
 ): undefined | number {
   const attr = getAttr(node, name);
 
@@ -52,7 +52,7 @@ export function parseTs(ts?: string): undefined | number {
   if (ts) {
     return zonedTimeToUtc(
       parse(ts, 'yyMMddHHmm', Date.now()),
-      'Europe/Berlin'
+      'Europe/Berlin',
     ).getTime();
   }
 }
@@ -62,7 +62,7 @@ export function calculateVia(route: any, maxParts: number = 3) {
 
   via.pop();
   const important = via.filter((v) =>
-    v.name.match(/(HB$|Hbf|Centraal|Flughafen)/)
+    v.name.match(/(HB$|Hbf|Centraal|Flughafen)/),
   );
 
   const showing = [];

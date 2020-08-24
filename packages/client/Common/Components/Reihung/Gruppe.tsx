@@ -65,7 +65,7 @@ export const Gruppe = ({
           />
         );
       }),
-    [gruppe, originalTrainNumber, rest]
+    [gruppe, originalTrainNumber, rest],
   );
 
   return (

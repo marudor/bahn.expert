@@ -1,7 +1,7 @@
 import cacheManager from 'cache-manager';
 
 const mocked = jest.genMockFromModule<typeof import('../cache')>(
-  'server/cache'
+  'server/cache',
 );
 
 // @ts-ignore
