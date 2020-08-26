@@ -1,3 +1,5 @@
+name: manual deploy
+
 on:
   workflow_dispatch:
     inputs:
@@ -15,7 +17,7 @@ jobs:
         with:
           ref: ${{ github.sha }}
           task: deploy
-          environment: ${{ github.event.input.environment }}
+          environment: ${{ github.event.inputs.environment }}
           required_contexts: docker,node
           payload: '{"value_files": ["./config/beta.yml","./config/_common.yml"],"release": "bahnhofs-abfahrten-beta","namespace": "marudor","track": "stable"}'
         env:
