@@ -1,0 +1,14 @@
+on:
+  workflow_dispatch:
+    inputs:
+      hash:
+        description: 'Hash to deploy'
+        required: true
+
+jobs:
+  printInputs:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "hash: ${{ github.event.inputs.hash }}"
+          echo "triggered hash: ${{ GITHUB_SHA }}"
