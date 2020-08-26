@@ -19,6 +19,7 @@ jobs:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_ORG: marudor
           SENTRY_PROJECT: bahnhofsabfahrten
+          DOCKER_BUILDKIT: 1
         with:
           name: marudor/bahnhofsabfahrten/standalone:${{ github.sha }}
           username: marudor

@@ -7,18 +7,22 @@ on:
         description: 'where to deploy to? beta or production'
         required: true
         default: beta
+      hashToDeploy:
+        description: what hash should I deploy?
+        required: true
+        default: master
 
 jobs:
-  printInputs:
+  createDeploy:
     runs-on: ubuntu-latest
     steps:
       - name: 'Create Deployment'
         uses: avakar/create-deployment@v1.0.1
         with:
-          ref: ${{ github.sha }}
+          ref: ${{ github.event.inputs.hashToDeploy }}
           task: deploy
           environment: ${{ github.event.inputs.environment }}
           required_contexts: docker,node
-          payload: '{"value_files": ["./config/beta.yml","./config/_common.yml"],"release": "bahnhofs-abfahrten-beta","namespace": "marudor","track": "stable"}'
+          payload: '{"value_files": ["./config/${{ github.event.inputs.environment }}.yml","./config/_common.yml"],"release": "bahnhofs-abfahrten-${{ github.event.inputs.environment }}","namespace": "marudor","track": "stable"}'
         env:
           GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
