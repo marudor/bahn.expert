@@ -12,9 +12,9 @@ production:
     namespace: marudor
     track: stable
 
-# Automatic deployment to a staging environment on every push to master.
+# Automatic deployment to a staging environment on every push to main.
 beta:
-  auto_deploy_on: refs/heads/master
+  auto_deploy_on: refs/heads/main
   required_contexts: ['docker', 'node']
   environment: beta
   description: 'Beta'
