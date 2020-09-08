@@ -41,7 +41,7 @@ describe('Abfahrten Settings', () => {
     cy.findByTestId('searchType').within(() => {
       cy.get('select').select('hafas');
     });
-    cy.getCookie('searchType').should('be', 'hafas');
+    cy.getCookie('searchType').should('have.property', 'value', 'hafas');
   });
 
   it('set lookbehind', () => {
@@ -50,6 +50,6 @@ describe('Abfahrten Settings', () => {
     cy.findByTestId('lookbehind').within(() => {
       cy.get('select').select('240');
     });
-    cy.getCookie('lookbehind').should('be', '240');
+    cy.getCookie('lookbehind').should('have.property', 'value', '240');
   });
 });

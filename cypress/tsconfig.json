@@ -6,7 +6,7 @@
     "strict": true,
     "target": "es5",
     "lib": ["es6", "dom", "esnext"],
-    "types": ["cypress", "../cypress/support/index"]
+    "types": ["cypress", "@testing-library/cypress", "../cypress/support/index"]
   },
   "include": ["**/*.ts", "support/index.ts"]
 }
