@@ -8,20 +8,15 @@ import {
 } from '@material-ui/core';
 import { DatePicker } from '@material-ui/pickers';
 import { NavigationContext } from './Navigation/NavigationContext';
-import {
-  ReactElement,
-  SyntheticEvent,
-  useCallback,
-  useContext,
-  useState,
-} from 'react';
 import { Search, Today, Train } from '@material-ui/icons';
 import { stopPropagation } from 'client/Common/stopPropagation';
 import { subHours } from 'date-fns';
+import { useCallback, useContext, useState } from 'react';
 import { useHistory } from 'react-router';
 import { useStorage } from 'client/useStorage';
 import { ZugsucheAutocomplete } from 'client/Common/Components/ZugsucheAutocomplete';
 import qs from 'qs';
+import type { FC, ReactElement, SyntheticEvent } from 'react';
 import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 
 const useStyles = makeStyles({
@@ -57,7 +52,7 @@ const useStyles = makeStyles({
 interface Props {
   children?: (toggle: (e: SyntheticEvent) => void) => ReactElement;
 }
-export const Zugsuche = ({ children }: Props) => {
+export const Zugsuche: FC<Props> = ({ children }) => {
   const classes = useStyles();
   const history = useHistory();
   const storage = useStorage();

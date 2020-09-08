@@ -12,6 +12,7 @@ import {
 import { useCallback, useMemo } from 'react';
 import type { Abfahrt } from 'types/iris';
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const useAbfahrten = () => {
   const departures = useAbfahrtenDepartures();
   const { onlyDepartures, productFilter } = useAbfahrtenFilter();
@@ -50,6 +51,7 @@ export const useAbfahrten = () => {
 
 const defaultTypes = ['ICE', 'IC', 'EC', 'RE', 'RB', 'S'];
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const useAllTrainTypes = () => {
   const departures = useAbfahrtenDepartures();
 
@@ -73,6 +75,7 @@ export const useAllTrainTypes = () => {
   }, [departures]);
 };
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const useRefreshCurrent = () => {
   const { setDepartures } = useRawAbfahrten();
   const currentStation = useCurrentAbfahrtenStation();
@@ -96,6 +99,7 @@ export const useRefreshCurrent = () => {
   }, [currentStation, fetchApiUrl, lookahead, lookbehind, setDepartures]);
 };
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const useWings = (abfahrt: Abfahrt) => {
   const departures = useAbfahrtenDepartures();
   const wings = departures && departures.wings;

@@ -1,4 +1,4 @@
-export default (duration: string | undefined | null) => {
+export default (duration: string | undefined | null): number => {
   if (!duration) return 0;
   const sanitized = duration.padStart(8, '0');
 

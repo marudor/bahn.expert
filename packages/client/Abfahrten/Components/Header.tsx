@@ -9,6 +9,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useCurrentAbfahrtenStation } from 'client/Abfahrten/provider/AbfahrtenProvider';
 import { useHistory } from 'react-router';
 import type { AllowedHafasProfile } from 'types/HAFAS';
+import type { FC } from 'react';
 import type { Station } from 'types/station';
 
 interface Props {
@@ -18,7 +19,7 @@ interface Props {
   profile?: AllowedHafasProfile;
 }
 
-export const Header = ({ profile }: Props) => {
+export const Header: FC<Props> = ({ profile }: Props) => {
   const currentStation = useCurrentAbfahrtenStation();
   const { searchType } = useAbfahrtenConfig();
   const urlPrefix = useAbfahrtenUrlPrefix();

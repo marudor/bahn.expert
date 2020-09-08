@@ -8,8 +8,9 @@ import { renderRoutes } from 'react-router-config';
 import { routes } from './routes';
 import { SettingsModal } from './Components/SettingsModal';
 import { useQuery } from 'client/Common/hooks/useQuery';
+import type { FC } from 'react';
 
-export const BahnhofsAbfahrten = () => {
+export const BahnhofsAbfahrten: FC = () => {
   const noHeader = useQuery().noHeader;
 
   return (

@@ -8,4 +8,5 @@ csv.split('\n').forEach((line) => {
   stationPlans.set(evaId, link);
 });
 
-export const getBayernLageplan = (evaId: string) => stationPlans.get(evaId);
+export const getBayernLageplan = (evaId: string): string | undefined =>
+  stationPlans.get(evaId);

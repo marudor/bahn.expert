@@ -1,12 +1,13 @@
 import { stopPropagation } from 'client/Common/stopPropagation';
 import type { BRInfo as BRInfoType } from 'types/reihung';
+import type { FC } from 'react';
 
 interface Props {
   br: BRInfoType;
   className?: string;
 }
 
-export const BRInfo = ({ br, className }: Props) => {
+export const BRInfo: FC<Props> = ({ br, className }) => {
   let text = br.name;
 
   let bracketText = '';

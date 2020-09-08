@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 import { SingleAuslastungsDisplay } from 'client/Common/Components/SingleAuslastungsDisplay';
+import type { FC } from 'react';
 import type { Route$Auslastung } from 'types/routing';
 
 const useStyles = makeStyles({
@@ -19,7 +20,7 @@ export interface Props {
   auslastung: Route$Auslastung;
 }
 
-export const AuslastungsDisplay = ({ auslastung }: Props) => {
+export const AuslastungsDisplay: FC<Props> = ({ auslastung }) => {
   const classes = useStyles();
 
   return (

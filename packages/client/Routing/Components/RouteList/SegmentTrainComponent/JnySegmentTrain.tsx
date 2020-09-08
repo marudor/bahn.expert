@@ -5,7 +5,7 @@ import { Reihung } from 'client/Common/Components/Reihung';
 import { StopList } from 'client/Routing/Components/RouteList/StopList';
 import { useStyles } from './style';
 import clsx from 'clsx';
-import type { MouseEvent } from 'react';
+import type { FC, MouseEvent } from 'react';
 import type { Route$JourneySegmentTrain } from 'types/routing';
 
 interface Props {
@@ -14,12 +14,12 @@ interface Props {
   className?: string;
   onTrainClick?: (e: MouseEvent) => void;
 }
-export const JnySegmentTrain = ({
+export const JnySegmentTrain: FC<Props> = ({
   segment,
   onTrainClick,
   className,
   detail,
-}: Props) => {
+}) => {
   const classes = useStyles();
   return (
     <div onClick={onTrainClick} className={className}>

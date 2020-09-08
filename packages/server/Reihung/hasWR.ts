@@ -4,6 +4,7 @@ import { logger } from 'server/logger';
 import { utcToZonedTime } from 'date-fns-tz';
 import { wagenreihung } from 'server/Reihung';
 import Axios from 'axios';
+import type { Formation } from 'types/reihung';
 
 export const WRCache = createNewCache<string, string[] | null>(
   3 * 60 * 60,
@@ -13,7 +14,7 @@ export const WRCache = createNewCache<string, string[] | null>(
 const formatDate = (date: number) =>
   format(utcToZonedTime(date, 'Europe/Berlin'), 'yyyyMMddHHmm');
 
-export const getWRLink = (trainNumber: string, date: number) => {
+export const getWRLink = (trainNumber: string, date: number): string => {
   return `https://www.apps-bahn.de/wr/wagenreihung/1.0/${trainNumber}/${formatDate(
     date,
   )}`;
@@ -29,7 +30,7 @@ async function fetchList() {
     if (tryThese && Array.isArray(tryThese)) {
       const WRMap = new Map<string, string[]>();
 
-      tryThese.forEach(async (line) => {
+      tryThese.forEach((line) => {
         const [, number, time] = line.split('/');
         let entriesForNumber = WRMap.get(number);
 
@@ -51,8 +52,9 @@ async function fetchList() {
 }
 
 if (process.env.NODE_ENV !== 'test') {
-  fetchList();
+  void fetchList();
 
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
   setInterval(fetchList, 2 * 60 * 1000 * 60);
 }
 
@@ -60,7 +62,9 @@ if (process.env.NODE_ENV !== 'test') {
  *
  * @param TZNumber only the number
  */
-export const WRForTZ = async (TZNumber: string) => {
+export const WRForTZ = async (
+  TZNumber: string,
+): Promise<Formation | undefined> => {
   const keys = await WRCache.keys();
   const timesArray = await WRCache.mget(keys);
 
@@ -94,7 +98,9 @@ export const WRForTZ = async (TZNumber: string) => {
   }
 };
 
-export const WRForNumber = async (trainNumber: string) => {
+export const WRForNumber = async (
+  trainNumber: string,
+): Promise<Formation | undefined> => {
   const WRDates = await WRCache.get(trainNumber);
 
   if (!WRDates) return;

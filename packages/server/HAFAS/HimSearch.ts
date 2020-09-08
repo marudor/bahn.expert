@@ -76,7 +76,7 @@ async function fetchTodaysHimMessages() {
     if (!messages.messages) return;
 
     messages.messages.forEach((message) => {
-      himMessageCache.set(message.hid, message);
+      void himMessageCache.set(message.hid, message);
     });
     logger.debug('Fetched HimMessages');
   } catch (e) {
@@ -85,7 +85,8 @@ async function fetchTodaysHimMessages() {
 }
 
 if (process.env.NODE_ENV !== 'test') {
-  fetchTodaysHimMessages();
+  void fetchTodaysHimMessages();
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
   setInterval(fetchTodaysHimMessages, 2 * 60 * 1000);
 }
 

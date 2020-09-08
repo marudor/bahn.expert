@@ -3,6 +3,7 @@ import makeRequest from '../Request';
 import mapLoyalityCard from 'server/HAFAS/TripSearch/mapLoyalityCard';
 import tripSearchParse from './parse';
 import type { AllowedHafasProfile } from 'types/HAFAS';
+import type { RoutingResult } from 'types/routing';
 import type {
   TripSearchOptionsV2,
   TripSearchRequest,
@@ -37,7 +38,7 @@ function route(
   }: TripSearchOptionsV2,
   profile?: AllowedHafasProfile,
   raw?: boolean,
-) {
+): Promise<RoutingResult> {
   let requestTypeSpecific;
 
   if (time) {
@@ -111,7 +112,7 @@ function route(
         : undefined,
     },
     meth: 'TripSearch',
-    // @ts-ignore
+    // @ts-expect-error spread works
     ...profileConfig[profile],
   };
 

@@ -8,6 +8,5 @@ beforeEach(() => {
 });
 
 Cypress.on('window:before:load', (win) => {
-  // @ts-expect-error
   delete win.fetch;
 });

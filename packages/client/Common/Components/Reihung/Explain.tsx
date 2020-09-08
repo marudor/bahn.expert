@@ -2,7 +2,8 @@ import { Dialog, DialogContent, makeStyles } from '@material-ui/core';
 import { icons } from './Fahrzeug';
 import { SingleAuslastungsDisplay } from 'client/Common/Components/SingleAuslastungsDisplay';
 import { stopPropagation } from 'client/Common/stopPropagation';
-import { SyntheticEvent, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
+import type { FC, SyntheticEvent } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   legende: {
@@ -50,7 +51,7 @@ export const iconExplanation: { [K in keyof typeof icons]: string } = {
   info: 'Dienstabteil',
 };
 
-export const Explain = () => {
+export const Explain: FC = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const toggle = useCallback((e: SyntheticEvent) => {
@@ -79,7 +80,7 @@ export const Explain = () => {
           {/* <FahrzeugComp {...explainFahrzeugProps} /> */}
           <div className={classes.wrap}>
             {Object.keys(iconExplanation).map(
-              // @ts-ignore this is correct, it's exact!
+              // @ts-expect-error this is correct, it's exact!
               (iconName: keyof typeof icons) => {
                 const Icon = icons[iconName];
 

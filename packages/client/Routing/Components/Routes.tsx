@@ -5,6 +5,7 @@ import { Search } from './Search';
 import { useEffect } from 'react';
 import { useHeaderTagsActions } from 'client/Common/provider/HeaderTagProvider';
 import { useRoutingConfig } from 'client/Routing/provider/RoutingConfigProvider';
+import type { FC } from 'react';
 
 const RouteHeaderTags = () => {
   const { updateTitle, updateDescription } = useHeaderTagsActions();
@@ -41,7 +42,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const Routes = () => {
+export const Routes: FC = () => {
   const classes = useStyles();
   return (
     <main className={classes.wrap}>

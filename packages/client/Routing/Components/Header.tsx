@@ -1,9 +1,7 @@
 import { BaseHeader } from 'client/Common/Components/BaseHeader';
 import { IconButton, makeStyles } from '@material-ui/core';
 import {
-  RoutingFav,
   routingFavKey,
-  RoutingFavStation,
   useRoutingFavActions,
   useRoutingFavs,
 } from 'client/Routing/provider/RoutingFavProvider';
@@ -13,6 +11,11 @@ import {
   useRoutingConfig,
   useRoutingSettings,
 } from 'client/Routing/provider/RoutingConfigProvider';
+import type { FC } from 'react';
+import type {
+  RoutingFav,
+  RoutingFavStation,
+} from 'client/Routing/provider/RoutingFavProvider';
 import type { Station } from 'types/station';
 
 function stripStationToRoutingFavStation(station: Station): RoutingFavStation {
@@ -96,7 +99,7 @@ const InnerHeader = () => {
   );
 };
 
-export const Header = () => {
+export const Header: FC = () => {
   return (
     <BaseHeader>
       <InnerHeader />

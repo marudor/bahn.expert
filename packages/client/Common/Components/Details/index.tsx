@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { useHeaderTagsActions } from 'client/Common/provider/HeaderTagProvider';
 import { useQuery } from 'client/Common/hooks/useQuery';
 import type { AxiosError } from 'axios';
+import type { FC } from 'react';
 import type { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
 
 interface Props {
@@ -17,13 +18,13 @@ interface Props {
   urlPrefix?: string;
 }
 
-export const Details = ({
+export const Details: FC<Props> = ({
   train,
   initialDeparture,
   stationId,
   currentStopId,
   urlPrefix,
-}: Props) => {
+}) => {
   const query = useQuery();
   const [details, setDetails] = useState<ParsedSearchOnTripResponse>();
   const [error, setError] = useState<AxiosError>();

@@ -3,6 +3,7 @@ import { format, subMinutes } from 'date-fns';
 import { makeStyles } from '@material-ui/core';
 import { useCommonConfig } from 'client/Common/provider/CommonConfigProvider';
 import clsx from 'clsx';
+import type { FC } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   delayed: theme.mixins.delayed,
@@ -40,7 +41,7 @@ function delayString(delay: number) {
   return `+${delay}`;
 }
 
-export const Time = ({
+export const Time: FC<Props> = ({
   className,
   delay,
   real,
@@ -48,7 +49,7 @@ export const Time = ({
   alignEnd,
   oneLine,
   cancelled,
-}: Props) => {
+}) => {
   const classes = useStyles();
   const showOriginalTime = !useCommonConfig().time;
 

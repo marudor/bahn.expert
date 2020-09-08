@@ -1,11 +1,12 @@
-import { AxiosInstance } from 'axios';
 import { CacheDatabases, createNewCache } from 'server/cache';
 import { logger } from 'server/logger';
 import { noncdRequest } from './helper';
 import { orderBy } from 'client/util';
 import { parseStation } from 'server/iris/station';
 import Fuse from 'fuse.js';
-import xmljs, { Element } from 'libxmljs2';
+import xmljs from 'libxmljs2';
+import type { AxiosInstance } from 'axios';
+import type { Element } from 'libxmljs2';
 import type { IrisStation } from 'types/station';
 
 // 24 Hours in seconds
@@ -44,7 +45,7 @@ async function refreshSearchableStations(
       }
 
       cached = xmlStations.map(parseStation);
-      cache.set('*', cached);
+      void cache.set('*', cached);
     }
     searchableStations = new Fuse(cached, fuseSettings);
     logger.debug('Fetched IRIS Stations to search');
@@ -64,6 +65,7 @@ export async function allStations(): Promise<IrisStation[]> {
 }
 
 if (process.env.NODE_ENV !== 'test') {
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
   setInterval(refreshSearchableStations, 10 * 60 * 1000);
-  refreshSearchableStations();
+  void refreshSearchableStations();
 }

@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 import clsx from 'clsx';
+import type { FC } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   cancelled: theme.mixins.cancelled,
@@ -17,7 +18,12 @@ interface Props {
   real?: string;
 }
 
-export const Platform = ({ className, cancelled, scheduled, real }: Props) => {
+export const Platform: FC<Props> = ({
+  className,
+  cancelled,
+  scheduled,
+  real,
+}) => {
   const classes = useStyles();
   const changed = Boolean(scheduled && scheduled !== real);
 

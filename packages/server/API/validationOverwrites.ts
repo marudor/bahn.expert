@@ -26,7 +26,7 @@ router.prefix('/api').all('*', (ctx, next) => {
 });
 
 allOverwrites.forEach(({ url, type, middleware }) => {
-  // @ts-ignore
+  // @ts-expect-error works
   router[type](url, middleware);
 });
 

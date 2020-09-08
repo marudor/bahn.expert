@@ -1,5 +1,5 @@
-import { SubscrChannel } from 'types/HAFAS/Subscr/SubscrUserCreate';
-import { SubscrInterval } from 'types/HAFAS/Subscr/SubscrCreate';
+import type { SubscrChannel } from 'types/HAFAS/Subscr/SubscrUserCreate';
+import type { SubscrInterval } from 'types/HAFAS/Subscr/SubscrCreate';
 
 export interface SubscrDetailsOptions {
   userId: string;

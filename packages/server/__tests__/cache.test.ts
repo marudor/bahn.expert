@@ -11,7 +11,7 @@ describe('Cache', () => {
       expect(await cache.get('undef')).toBeUndefined();
     });
     it('can save implicit undefined', async () => {
-      // @ts-ignore
+      // @ts-expect-error test only
       await cache.set('');
       expect(await cache.get('')).toBeUndefined();
     });

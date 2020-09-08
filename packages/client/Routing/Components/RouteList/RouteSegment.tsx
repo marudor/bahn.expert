@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core';
 import { Platform } from 'client/Common/Components/Platform';
 import { Time } from 'client/Common/Components/Time';
 import { WalkSegmentTrain } from './SegmentTrainComponent/WalkSegmentTrain';
-import type { MouseEvent } from 'react';
+import type { FC, MouseEvent } from 'react';
 import type { Route$JourneySegment } from 'types/routing';
 
 const useStyles = makeStyles((theme) => ({
@@ -49,7 +49,7 @@ interface Props {
   onTrainClick?: (e: MouseEvent) => void;
 }
 
-export const RouteSegment = ({ segment, detail, onTrainClick }: Props) => {
+export const RouteSegment: FC<Props> = ({ segment, detail, onTrainClick }) => {
   const classes = useStyles();
 
   return (

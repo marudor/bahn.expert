@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core';
 import { Time } from 'client/Common/Components/Time';
 import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import clsx from 'clsx';
+import type { FC } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   cancelled: theme.mixins.cancelled,
@@ -16,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Times = () => {
+export const Times: FC = () => {
   const classes = useStyles();
   const {
     abfahrt: { cancelled, arrival, departure },

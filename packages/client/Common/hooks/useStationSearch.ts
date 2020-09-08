@@ -1,4 +1,3 @@
-import { AllowedHafasProfile } from 'types/HAFAS';
 import {
   getHafasStationFromAPI,
   getHafasStationFromCoordinates,
@@ -7,6 +6,7 @@ import {
 } from 'client/Common/service/stationSearch';
 import { useCallback, useRef, useState } from 'react';
 import debounce from 'debounce-promise';
+import type { AllowedHafasProfile } from 'types/HAFAS';
 import type { ControllerStateAndHelpers } from 'downshift';
 import type { Station, StationSearchType } from 'types/station';
 
@@ -21,6 +21,7 @@ interface UseStationSearchOptions {
 
 const itemToString = (s: Station | null) => (s ? s.title : '');
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const useStationSearch = ({
   profile,
   searchType,
@@ -42,7 +43,7 @@ export const useStationSearch = ({
         : getStationsFromCoordinates;
 
       const searchFn = typeof value === 'string' ? stationFn : geoFn;
-      // @ts-ignore this works
+      // @ts-expect-error this works
       const currentSuggestions = await searchFn(value);
 
       setSuggestions(currentSuggestions.slice(0, maxSuggestions));

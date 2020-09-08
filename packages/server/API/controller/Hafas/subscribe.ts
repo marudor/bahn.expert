@@ -1,15 +1,23 @@
-import { AllowedHafasProfile } from 'types/HAFAS';
 import { Body, Controller, Get, Post, Query, Route, Tags } from 'tsoa';
-import { SubscrCreateOptions } from 'types/HAFAS/Subscr/SubscrCreate';
-import { SubscrDeleteOptions } from 'types/HAFAS/Subscr/SubscrDelete';
 import { SubscribeCreate } from 'server/HAFAS/Subscribe/Create';
 import { SubscribeDelete } from 'server/HAFAS/Subscribe/Delete';
 import { SubscribeDetails } from 'server/HAFAS/Subscribe/Details';
 import { SubscribeSearch } from 'server/HAFAS/Subscribe/Search';
 import { SubscribeUserCreate } from 'server/HAFAS/Subscribe/UserCreate';
 import { SubscribeUserDelete } from 'server/HAFAS/Subscribe/UserDelete';
-import { SubscrUserCreateOptions } from 'types/HAFAS/Subscr/SubscrUserCreate';
-import { SubscrUserDeleteOptions } from 'types/HAFAS/Subscr/SubscrUserDelete';
+import type { AllowedHafasProfile } from 'types/HAFAS';
+import type {
+  ParsedSubscrUserResponse,
+  SubscrUserCreateOptions,
+} from 'types/HAFAS/Subscr/SubscrUserCreate';
+import type { SubscrCreateOptions } from 'types/HAFAS/Subscr/SubscrCreate';
+import type {
+  SubscrDeleteOptions,
+  SubscrDeleteResponse,
+} from 'types/HAFAS/Subscr/SubscrDelete';
+import type { SubscrDetailsResponse } from 'types/HAFAS/Subscr/SubscrDetails';
+import type { SubscrSearchResponse } from 'types/HAFAS/Subscr/SubscrSearch';
+import type { SubscrUserDeleteOptions } from 'types/HAFAS/Subscr/SubscrUserDelete';
 
 @Route('/hafas/subscribe')
 export class HafasSubscribeController extends Controller {
@@ -18,7 +26,7 @@ export class HafasSubscribeController extends Controller {
   create(
     @Body() body: SubscrCreateOptions,
     @Query() profile?: AllowedHafasProfile,
-  ) {
+  ): Promise<ParsedSubscrCreateResponse> {
     return SubscribeCreate(body, profile);
   }
 
@@ -27,7 +35,7 @@ export class HafasSubscribeController extends Controller {
   delete(
     @Body() body: SubscrDeleteOptions,
     @Query() profile?: AllowedHafasProfile,
-  ) {
+  ): Promise<SubscrDeleteResponse> {
     return SubscribeDelete(body, profile);
   }
 
@@ -36,13 +44,16 @@ export class HafasSubscribeController extends Controller {
   createUser(
     @Body() body: SubscrUserCreateOptions,
     @Query() profile?: AllowedHafasProfile,
-  ) {
+  ): Promise<ParsedSubscrUserResponse> {
     return SubscribeUserCreate(body, profile);
   }
 
   @Get('/search')
   @Tags('HAFAS Subscribe')
-  search(@Query() userId: string, @Query() profile?: AllowedHafasProfile) {
+  search(
+    @Query() userId: string,
+    @Query() profile?: AllowedHafasProfile,
+  ): Promise<SubscrSearchResponse> {
     return SubscribeSearch(
       {
         userId,
@@ -56,7 +67,7 @@ export class HafasSubscribeController extends Controller {
   deleteUser(
     @Body() body: SubscrUserDeleteOptions,
     @Query() profile?: AllowedHafasProfile,
-  ) {
+  ): Promise<SubscrUserDeleteResponse> {
     return SubscribeUserDelete(body, profile);
   }
 
@@ -66,7 +77,7 @@ export class HafasSubscribeController extends Controller {
     @Query() userId: string,
     @Query() subscribeId: number,
     @Query() profile?: AllowedHafasProfile,
-  ) {
+  ): Promise<SubscrDetailsResponse> {
     return SubscribeDetails(
       {
         userId,

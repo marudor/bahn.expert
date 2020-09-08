@@ -2,8 +2,9 @@ import { formatDuration } from 'client/Routing/util';
 import { makeStyles, Paper } from '@material-ui/core';
 import { PlannedType } from 'client/Common/Components/PlannedType';
 import { RouteSegments } from './RouteSegments';
-import { SyntheticEvent, useMemo } from 'react';
 import { Time } from 'client/Common/Components/Time';
+import { useMemo } from 'react';
+import type { FC, SyntheticEvent } from 'react';
 import type { SingleRoute } from 'types/routing';
 
 interface Props {
@@ -37,7 +38,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const Route = ({ route, detail, onClick }: Props) => {
+export const Route: FC<Props> = ({ route, detail, onClick }) => {
   const classes = useStyles();
   const segmentTypes = useMemo(() => {
     if (route.segmentTypes.length > 1) return route.segmentTypes.join(' - ');

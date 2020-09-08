@@ -1,8 +1,9 @@
-import { AllowedHafasProfile } from 'types/HAFAS';
-import { PropsWithChildren, useCallback, useState } from 'react';
-import { Station } from 'types/station';
+import { useCallback, useState } from 'react';
 import { useStorage } from 'client/useStorage';
 import constate from 'constate';
+import type { AllowedHafasProfile } from 'types/HAFAS';
+import type { FC } from 'react';
+import type { Station } from 'types/station';
 
 export type RoutingFavStation = Pick<Station, 'title' | 'id'>;
 export interface RoutingFav {
@@ -15,7 +16,7 @@ export interface RoutingFavs {
   [key: string]: RoutingFav;
 }
 
-export function routingFavKey(fav: RoutingFav) {
+export function routingFavKey(fav: RoutingFav): string {
   return `${fav.start.id}${fav.via.map((s) => s.id)}${fav.destination.id}${
     fav.profile
   }`;
@@ -79,7 +80,7 @@ export const [
   }),
 );
 
-export const RoutingFavProvider = ({ children }: PropsWithChildren<{}>) => {
+export const RoutingFavProvider: FC = ({ children }) => {
   const storage = useStorage();
   const savedRoutingFavs = storage.get('rfavs');
   return (

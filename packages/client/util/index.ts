@@ -1,8 +1,8 @@
-import {
+import { StationSearchType } from 'types/station';
+import type {
   AbfahrtenConfigSanitize,
   CommonConfigSanitize,
 } from 'client/Common/config';
-import { StationSearchType } from 'types/station';
 
 const booleanCheck = (value: string | undefined): boolean => value === 'true';
 const numberCheck = (value: string | undefined, fallback: number): number => {

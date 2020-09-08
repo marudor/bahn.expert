@@ -152,7 +152,7 @@ const models: TsoaRoute.Models = {
     "additionalProperties": false,
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "ParsedProduct": {
+  "CommonProductInfo": {
     "dataType": "refObject",
     "properties": {
       "name": { "dataType": "string", "required": true },
@@ -163,6 +163,11 @@ const models: TsoaRoute.Models = {
       "admin": { "dataType": "string" },
     },
     "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "ParsedProduct": {
+    "dataType": "refAlias",
+    "type": { "ref": "CommonProductInfo", "validators": {} },
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "PubChL": {
@@ -201,7 +206,7 @@ const models: TsoaRoute.Models = {
       "cat": { "dataType": "double", "required": true },
       "pubChL": { "dataType": "array", "array": { "ref": "PubChL" }, "required": true },
       "edgeRefL": { "dataType": "array", "array": { "dataType": "double" }, "required": true },
-      "affectedProducts": { "dataType": "array", "array": { "ref": "ParsedProduct" }, "required": true },
+      "affectedProducts": { "dataType": "array", "array": { "dataType": "refAlias", "ref": "ParsedProduct" }, "required": true },
       "startTime": { "dataType": "double", "required": true },
       "endTime": { "dataType": "double", "required": true },
     },
@@ -1184,7 +1189,7 @@ const models: TsoaRoute.Models = {
     "properties": {
       "title": { "dataType": "string", "required": true },
       "id": { "dataType": "string", "required": true },
-      "products": { "dataType": "array", "array": { "ref": "ParsedProduct" } },
+      "products": { "dataType": "array", "array": { "dataType": "refAlias", "ref": "ParsedProduct" } },
       "coordinates": { "ref": "Coordinates", "required": true },
     },
     "additionalProperties": false,
@@ -1501,7 +1506,7 @@ const models: TsoaRoute.Models = {
     "type": { "dataType": "union", "subSchemas": [{ "dataType": "enum", "enums": ["CALC"] }, { "dataType": "enum", "enums": ["CALC_FOR_REPORT"] }, { "dataType": "enum", "enums": ["CALC_ONLY"] }, { "dataType": "enum", "enums": ["CALC_REPORT"] }, { "dataType": "enum", "enums": ["REPORT_ONLY"] }, { "dataType": "enum", "enums": ["REPORT_ONLY_WITH_STOPS"] }], "validators": {} },
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-  "JourneyGeoPosOptions": {
+  "JourneyGeoPosRequestOptions": {
     "dataType": "refObject",
     "properties": {
       "ageOfReport": { "dataType": "boolean" },
@@ -1523,6 +1528,11 @@ const models: TsoaRoute.Models = {
       "zoom": { "dataType": "double" },
     },
     "additionalProperties": false,
+  },
+  // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+  "JourneyGeoPosOptions": {
+    "dataType": "refAlias",
+    "type": { "ref": "JourneyGeoPosRequestOptions", "validators": {} },
   },
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   "TripSearchVia": {

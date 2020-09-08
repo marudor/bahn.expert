@@ -1,6 +1,6 @@
-import { OptionalLocL } from 'types/HAFAS';
-import { SubscrChannel } from 'types/HAFAS/Subscr/SubscrUserCreate';
-import { SubscrDetailsResponse } from 'types/HAFAS/Subscr/SubscrDetails';
+import type { OptionalLocL } from 'types/HAFAS';
+import type { SubscrChannel } from 'types/HAFAS/Subscr/SubscrUserCreate';
+import type { SubscrDetailsResponse } from 'types/HAFAS/Subscr/SubscrDetails';
 
 export interface SubscrSearchOptions {
   userId: string;

@@ -1,5 +1,6 @@
 import { Details } from 'client/Common/Components/Details';
 import { useQuery } from 'client/Common/hooks/useQuery';
+import type { FC } from 'react';
 import type { RouteComponentProps } from 'react-router';
 
 interface Props
@@ -10,12 +11,12 @@ interface Props
   urlPrefix?: string;
 }
 
-export const DetailsRoute = ({
+export const DetailsRoute: FC<Props> = ({
   match: {
     params: { train, initialDeparture },
   },
   urlPrefix,
-}: Props) => {
+}) => {
   const query = useQuery();
 
   return (

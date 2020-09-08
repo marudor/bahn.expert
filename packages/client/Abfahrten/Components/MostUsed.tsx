@@ -1,4 +1,5 @@
 import { FavEntry } from './FavEntry';
+import type { FC } from 'react';
 
 const mostUsed = [
   { title: 'Frankfurt(Main)Hbf', id: '8000105' },
@@ -17,7 +18,7 @@ const mostUsed = [
   { title: 'Nürnberg Hbf', id: '8000284' },
 ];
 
-export const MostUsed = () => (
+export const MostUsed: FC = () => (
   <>
     {mostUsed.map((m) => (
       <FavEntry data-testid="mostUsedEntry" noDelete key={m.id} fav={m} />

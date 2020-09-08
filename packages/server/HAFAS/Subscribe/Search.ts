@@ -1,14 +1,15 @@
-import { AllowedHafasProfile } from 'types/HAFAS';
 import { makeUncommonRequest } from 'server/HAFAS/Request';
-import {
+import type { AllowedHafasProfile } from 'types/HAFAS';
+import type {
   SubscrSearchOptions,
   SubscrSearchRequest,
+  SubscrSearchResponse,
 } from 'types/HAFAS/Subscr/SubscrSearch';
 
 export function SubscribeSearch(
   options: SubscrSearchOptions,
   profile?: AllowedHafasProfile,
-) {
+): Promise<SubscrSearchResponse> {
   const req: SubscrSearchRequest = {
     req: options,
     meth: 'SubscrSearch',

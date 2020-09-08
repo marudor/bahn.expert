@@ -1,6 +1,6 @@
-import { CommonRoutingOptions } from 'types/common';
-import { RawSBBStation } from 'sbb/types/station';
-import { SBBCoordinates } from 'sbb/types/common';
+import type { CommonRoutingOptions } from 'types/common';
+import type { RawSBBStation } from 'sbb/types/station';
+import type { SBBCoordinates } from 'sbb/types/common';
 
 export type SBBBelegung = 'UNKNOWN' | 'LOW' | string;
 export interface RoutingOptions extends CommonRoutingOptions {
@@ -22,7 +22,7 @@ export interface SBBLegendBfr {}
 export interface SBBLegend {
   code: string;
   description: string;
-  actions: {};
+  actions: Record<string, unknown>;
 }
 
 export interface SBBVerbindungen {

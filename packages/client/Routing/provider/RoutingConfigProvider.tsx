@@ -1,7 +1,7 @@
-import { AllowedHafasProfile } from 'types/HAFAS';
 import { useCallback, useMemo, useState } from 'react';
 import { useStorage } from 'client/useStorage';
 import constate from 'constate';
+import type { AllowedHafasProfile } from 'types/HAFAS';
 import type { Station } from 'types/station';
 import type { SyntheticEvent } from 'react';
 

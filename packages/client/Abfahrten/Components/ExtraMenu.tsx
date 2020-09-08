@@ -1,4 +1,3 @@
-import { __RouterContext } from 'react-router';
 import {
   FilterList,
   Layers,
@@ -10,8 +9,8 @@ import {
 } from '@material-ui/icons';
 import { FilterModal } from './FilterModal';
 import { IconButton, Menu, MenuItem } from '@material-ui/core';
-import { SyntheticEvent, useCallback, useState } from 'react';
 import { useAbfahrtenModalToggle } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
+import { useCallback, useState } from 'react';
 import { useCurrentAbfahrtenStation } from 'client/Abfahrten/provider/AbfahrtenProvider';
 import {
   useFav,
@@ -19,8 +18,9 @@ import {
   useUnfav,
 } from 'client/Abfahrten/provider/FavProvider';
 import { useLageplan } from 'client/Abfahrten/hooks/useLageplan';
+import type { FC, SyntheticEvent } from 'react';
 
-export const ExtraMenu = () => {
+export const ExtraMenu: FC = () => {
   const { setConfigOpen, setFilterOpen } = useAbfahrtenModalToggle();
   const currentStation = useCurrentAbfahrtenStation();
   const lageplan = useLageplan(currentStation?.title, currentStation?.id);

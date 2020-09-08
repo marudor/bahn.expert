@@ -1,8 +1,12 @@
 import JourneyGeoPos from 'server/HAFAS/JourneyGeoPos';
 import JourneyMatch from 'server/HAFAS/JourneyMatch';
 import type { AllowedHafasProfile } from 'types/HAFAS';
+import type { ParsedJourneyGeoPosResponse } from 'types/HAFAS/JourneyGeoPos';
 
-export default async (trainName: string, profile?: AllowedHafasProfile) => {
+export default async (
+  trainName: string,
+  profile?: AllowedHafasProfile,
+): Promise<ParsedJourneyGeoPosResponse | undefined> => {
   const matchedTrains = await JourneyMatch(
     {
       trainName,

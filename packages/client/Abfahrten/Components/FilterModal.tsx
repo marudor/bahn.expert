@@ -10,6 +10,7 @@ import {
 import { useAbfahrtenFilter } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useAllTrainTypes } from 'client/Abfahrten/provider/AbfahrtenProvider/hooks';
 import { useCallback } from 'react';
+import type { FC } from 'react';
 
 const useStyles = makeStyles({
   label: {
@@ -17,7 +18,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const FilterModal = () => {
+export const FilterModal: FC = () => {
   const classes = useStyles();
   const {
     productFilter,

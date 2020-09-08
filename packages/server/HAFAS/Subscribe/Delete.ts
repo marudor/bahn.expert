@@ -1,6 +1,6 @@
-import { AllowedHafasProfile } from 'types/HAFAS';
 import { makeUncommonRequest } from 'server/HAFAS/Request';
-import {
+import type { AllowedHafasProfile } from 'types/HAFAS';
+import type {
   SubscrDeleteOptions,
   SubscrDeleteRequest,
 } from 'types/HAFAS/Subscr/SubscrDelete';
@@ -8,7 +8,7 @@ import {
 export function SubscribeDelete(
   options: SubscrDeleteOptions,
   profile?: AllowedHafasProfile,
-) {
+): Promise<SubscrDeleteResponse> {
   const req: SubscrDeleteRequest = {
     req: options,
     meth: 'SubscrDelete',

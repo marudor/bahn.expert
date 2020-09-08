@@ -3,7 +3,7 @@ import parseDuration from './parseDuration';
 
 function parseTime(date: Date, time: string): number;
 function parseTime(date: Date, time: undefined): undefined;
-function parseTime(date: Date, time?: string) {
+function parseTime(date: Date, time?: string): number | undefined {
   if (time) {
     let parsedDate = addMilliseconds(date, parseDuration(time));
     const TzDifference =

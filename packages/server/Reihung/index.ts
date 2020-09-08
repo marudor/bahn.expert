@@ -297,7 +297,10 @@ function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
 
 const wrFetchTimeout = process.env.NODE_ENV === 'production' ? 1500 : 3000;
 // https://www.apps-bahn.de/wr/wagenreihung/1.0/6/201802021930
-export async function wagenreihung(trainNumber: string, date: number) {
+export async function wagenreihung(
+  trainNumber: string,
+  date: number,
+): Promise<Formation> {
   let info: Wagenreihung;
 
   try {
@@ -324,7 +327,7 @@ export async function wagenreihung(trainNumber: string, date: number) {
     };
   }
 
-  // @ts-ignore - We're enriching information now.
+  // @ts-expect-error We're enriching information now.
   const enrichedFormation: Formation = info.data.istformation;
 
   let startPercentage = 100;
@@ -400,7 +403,7 @@ export async function wagenreihung(trainNumber: string, date: number) {
     if (g.fahrzeuggruppebezeichnung.startsWith('IC')) {
       const tzn = g.fahrzeuggruppebezeichnung;
 
-      g.tzn = tzn?.match(tznRegex)?.[0];
+      g.tzn = tznRegex.exec(tzn)?.[0];
       g.name = TrainNames(g.tzn);
 
       if (g.br && isRedesignByTZ(g.tzn)) {
@@ -450,7 +453,7 @@ function wagenReihungSpecificMonitoring(id: string, departure: number) {
   return wagenreihung(id, departure);
 }
 
-export async function wagenReihungMonitoring() {
+export async function wagenReihungMonitoring(): Promise<Formation | undefined> {
   const abfahrten = await getAbfahrten('8002549', false, {
     lookahead: 300,
   });

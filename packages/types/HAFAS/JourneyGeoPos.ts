@@ -12,7 +12,7 @@ import type {
 import type { Coordinates } from 'types/station';
 import type { Route$Stop } from 'types/routing';
 
-export interface JourneyGeoPosOptions extends JourneyGeoPosRequestOptions {}
+export type JourneyGeoPosOptions = JourneyGeoPosRequestOptions;
 
 export type JourneyTrainPosMode =
   | 'CALC'

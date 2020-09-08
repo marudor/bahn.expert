@@ -1,7 +1,8 @@
-import { CommonConfig } from 'client/Common/config';
-import { ReactNode, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useStorage } from 'client/useStorage';
 import constate from 'constate';
+import type { CommonConfig } from 'client/Common/config';
+import type { FC, ReactNode } from 'react';
 
 const useCommonConfigInternal = ({
   initialConfig,
@@ -48,7 +49,7 @@ export const [
   (v) => v.setCommonConfigKey,
 );
 
-export const CommonConfigProvider = ({ children }: Props) => {
+export const CommonConfigProvider: FC<Props> = ({ children }) => {
   const storage = useStorage();
   migrateOldConfig(storage);
 

@@ -10,6 +10,7 @@ import {
   useReihungenActions,
 } from 'client/Common/provider/ReihungenProvider';
 import clsx from 'clsx';
+import type { FC } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   wrap: {
@@ -70,23 +71,24 @@ interface Props {
   withLegend?: boolean;
 }
 
-export const Reihung = ({
+export const Reihung: FC<Props> = ({
   className,
   currentStation,
   scheduledDeparture,
   trainNumber,
   loadHidden,
   fallbackTrainNumbers,
-}: Props) => {
+}) => {
   const classes = useStyles();
   const reihungen = useReihungen();
   const { getReihung } = useReihungenActions();
   const { fahrzeugGruppe, showUIC, zoomReihung } = useCommonConfig();
-  const reihung = reihungen[trainNumber + currentStation + scheduledDeparture];
+  const reihung =
+    reihungen[`${trainNumber}${currentStation}${scheduledDeparture}`];
 
   useEffect(() => {
     if (reihung === undefined) {
-      getReihung(
+      void getReihung(
         trainNumber,
         currentStation,
         scheduledDeparture,

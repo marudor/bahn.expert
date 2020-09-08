@@ -2,6 +2,7 @@ import { Info } from './Info';
 import { makeStyles } from '@material-ui/core';
 import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import clsx from 'clsx';
+import type { FC } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   destination: {
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Mid = () => {
+export const Mid: FC = () => {
   const { abfahrt, detail } = useAbfahrt();
   const classes = useStyles();
   return (

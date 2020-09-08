@@ -5,10 +5,11 @@ import {
   mockSearch,
 } from 'server/__tests__/mockHelper';
 import { noncdRequest } from 'server/iris/helper';
-import fakeTimers, { InstalledClock } from '@sinonjs/fake-timers';
+import fakeTimers from '@sinonjs/fake-timers';
 import fs from 'fs';
 import path from 'path';
 import Timetable from 'server/iris/Timetable';
+import type { InstalledClock } from '@sinonjs/fake-timers';
 
 jest.mock('server/cache');
 
@@ -30,6 +31,7 @@ describe('withFchg', () => {
   );
 
   fchgFixtures.forEach((file) => {
+    // eslint-disable-next-line jest/valid-title
     it(file, async () => {
       const fchgXml = fs.readFileSync(
         path.resolve(__dirname, baseFixturePath, 'fchg', file),

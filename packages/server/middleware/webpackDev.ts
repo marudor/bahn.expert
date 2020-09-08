@@ -8,10 +8,11 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackMiddleware from 'webpack-dev-middleware';
 import type Koa from 'koa';
 
-// @ts-ignore
+// @ts-expect-error typing wrong
 const compiler: any = webpack(webpackConfig);
-
-export default function webpackDev(koa: Koa) {
+const clientRegexp = /packages\/client/;
+const serverRegexp = /packages\/(?!client)/;
+export default function webpackDev(koa: Koa): Promise<unknown> {
   // Do "hot-reloading" of react stuff on the server
   // Throw away the cached client modules and let them be re-required next time
   // see https://github.com/glenjamin/ultimate-hot-reloading-example
@@ -19,7 +20,7 @@ export default function webpackDev(koa: Koa) {
     // eslint-disable-next-line no-console
     console.log('Clearing webpack module cache from server');
     Object.keys(require.cache).forEach((id) => {
-      if (id.match(/packages\/client/)) {
+      if (clientRegexp.exec(id)) {
         delete require.cache[id];
       }
     });
@@ -34,7 +35,7 @@ export default function webpackDev(koa: Koa) {
       childProcess.exec('yarn doc:build');
     }
     Object.keys(require.cache).forEach((id) => {
-      if (id.match(/packages\/(?!client)/)) {
+      if (serverRegexp.exec(id)) {
         delete require.cache[id];
       }
     });
@@ -61,12 +62,11 @@ export default function webpackDev(koa: Koa) {
         middleware(
           ctx.req,
           {
-            // @ts-ignore
+            // @ts-expect-error ???
             send: (content: any) => {
               ctx.body = content;
               resolve();
             },
-            // @ts-ignore
             get: ctx.res.getHeader.bind(ctx.res),
             getHeader: ctx.res.getHeader.bind(ctx.res),
             set: ctx.res.setHeader.bind(ctx.res),

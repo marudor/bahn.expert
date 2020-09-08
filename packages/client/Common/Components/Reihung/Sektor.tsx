@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 import { useMemo } from 'react';
+import type { FC } from 'react';
 import type { Sektor as SektorType } from 'types/reihung';
 
 const useStyles = makeStyles({
@@ -16,7 +17,7 @@ interface Props {
   correctLeft: number;
 }
 
-export const Sektor = ({ sektor, correctLeft, scale }: Props) => {
+export const Sektor: FC<Props> = ({ sektor, correctLeft, scale }) => {
   const classes = useStyles();
   const position = useMemo(() => {
     const { startprozent, endeprozent } = sektor.positionamgleis;

@@ -1,5 +1,4 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
-import { ChangeEvent, SyntheticEvent, useCallback } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -11,8 +10,10 @@ import {
 } from '@material-ui/core';
 import { Settings } from '@material-ui/icons';
 import { stopPropagation } from 'client/Common/stopPropagation';
+import { useCallback } from 'react';
 import { useMapProvider } from 'client/Map/provider/MapProvider';
 import { useToggleState } from 'client/Common/hooks/useToggleState';
+import type { ChangeEvent, FC, SyntheticEvent } from 'react';
 
 const useStyles = makeStyles({
   settingsIcon: {
@@ -44,7 +45,7 @@ const FormSwitchLabel = ({
   />
 );
 
-export const MapSettings = () => {
+export const MapSettings: FC = () => {
   const classes = useStyles();
   const [open, toggleOpen] = useToggleState();
   const onIconClick = useCallback(
@@ -118,7 +119,7 @@ export const MapSettings = () => {
                 {Object.keys(AllowedHafasProfile).map((allowedProfile) => (
                   <option
                     key={allowedProfile}
-                    // @ts-ignore
+                    // @ts-expect-error works
                     value={AllowedHafasProfile[allowedProfile]}
                   >
                     {allowedProfile}

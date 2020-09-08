@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint no-continue: 0 */
 /*
  ** This algorithm is heavily inspired by https://github.com/derf/Travel-Status-DE-IRIS
@@ -15,7 +16,6 @@ import {
   subHours,
   subMinutes,
 } from 'date-fns';
-import { AxiosInstance } from 'axios';
 import { CacheDatabases, createNewCache } from 'server/cache';
 import { calculateVia, getAttr, getNumberAttr, parseTs } from './helper';
 import { diffArrays } from 'diff';
@@ -26,8 +26,10 @@ import messageLookup, {
   messageTypeLookup,
   supersededMessages,
 } from './messageLookup';
-import xmljs, { Element } from 'libxmljs2';
+import xmljs from 'libxmljs2';
 import type { AbfahrtenResult, IrisMessage } from 'types/iris';
+import type { AxiosInstance } from 'axios';
+import type { Element } from 'libxmljs2';
 
 interface ArDp {
   platform?: string;
@@ -102,6 +104,7 @@ export function parseRealtimeAr(
   };
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function parseTl(tl: xmljs.Element) {
   return {
     // D = Irregular, like third party
@@ -121,9 +124,9 @@ const mediumIdRegex = /-?(\w+-\w+)/;
 const initialDepartureRegex = /-?\w+-(\w+)/;
 
 function parseRawId(rawId: string) {
-  const idMatch = rawId.match(idRegex);
-  const mediumIdMatch = rawId.match(mediumIdRegex);
-  const initialDepartureMatch = rawId.match(initialDepartureRegex);
+  const idMatch = idRegex.exec(rawId);
+  const mediumIdMatch = mediumIdRegex.exec(rawId);
+  const initialDepartureMatch = initialDepartureRegex.exec(rawId);
 
   return {
     id: (idMatch && idMatch[1]) || rawId,
@@ -371,7 +374,7 @@ export default class Timetable {
 
     const message: IrisMessage = {
       superseded: undefined,
-      // @ts-ignore
+      // @ts-expect-error ???
       text: messageLookup[value] || `${value} (?)`,
       timestamp: parseTs(getAttr(mNode, 'ts'))!,
       priority: getAttr(mNode, 'pr'),
@@ -429,7 +432,7 @@ export default class Timetable {
         compareAsc(a.message.timestamp || 0, b.message.timestamp || 0),
       )
       .forEach(({ type, message, value }) => {
-        // @ts-ignore
+        // @ts-exoect-error ???
         const supersedes: undefined | number[] = supersededMessages[value];
 
         if (!messages[type]) messages[type] = {};
@@ -698,7 +701,7 @@ export default class Timetable {
           ...this.timetable,
           ...this.getTimetable(rawXml),
         };
-        timetableCache.set(key, rawXml);
+        void timetableCache.set(key, rawXml);
       }),
     );
   }

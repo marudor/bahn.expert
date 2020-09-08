@@ -1,6 +1,7 @@
 import { format } from 'date-fns';
 import { makeStyles } from '@material-ui/core';
 import clsx from 'clsx';
+import type { FC } from 'react';
 import type { IrisMessage as IrisMessageType } from 'types/iris';
 
 const useStyles = makeStyles((theme) => ({
@@ -12,10 +13,10 @@ interface Props {
   today?: number;
 }
 
-export const IrisMessage = ({
+export const IrisMessage: FC<Props> = ({
   message,
   today = new Date().getDate(),
-}: Props) => {
+}) => {
   const classes = useStyles();
   const ts = new Date(message.timestamp);
 

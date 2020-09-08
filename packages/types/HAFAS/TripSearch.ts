@@ -1,4 +1,3 @@
-import { CommonRoutingOptions } from 'types/common';
 import type {
   Common,
   CommonArrival,
@@ -10,6 +9,7 @@ import type {
   OptionalLocL,
   TrnCmpSX,
 } from '.';
+import type { CommonRoutingOptions } from 'types/common';
 import type { JnyCl, LoyalityCard, TravelerType } from 'types/HAFAS/Tarif';
 
 export interface TripSearchTraveler {

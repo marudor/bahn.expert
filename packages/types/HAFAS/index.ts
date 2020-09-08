@@ -1,21 +1,21 @@
-import { HimSearchRequest } from 'types/HAFAS/HimSearch';
-import { JourneyCourseRequest } from 'types/HAFAS/JourneyCourse';
-import { JourneyGeoPosRequest } from 'types/HAFAS/JourneyGeoPos';
-import { JourneyGraphRequest } from 'types/HAFAS/JourneyGraph';
-import { JourneyMatchRequest } from 'types/HAFAS/JourneyMatch';
-import { JourneyTreeRequest } from 'types/HAFAS/JourneyTree';
-import { SearchOnTripRequest } from 'types/HAFAS/SearchOnTrip';
-import { StationBoardRequest } from 'types/HAFAS/StationBoard';
-import { SubscrCreateRequest } from 'types/HAFAS/Subscr/SubscrCreate';
-import { SubscrDeleteRequest } from 'types/HAFAS/Subscr/SubscrDelete';
-import { SubscrDetailsRequest } from 'types/HAFAS/Subscr/SubscrDetails';
-import { SubscrSearchRequest } from 'types/HAFAS/Subscr/SubscrSearch';
-import { SubscrUserCreateRequest } from 'types/HAFAS/Subscr/SubscrUserCreate';
-import { SubscrUserDeleteRequest } from 'types/HAFAS/Subscr/SubscrUserDelete';
 import type { CommonStation, Coordinates } from 'types/station';
+import type { HimSearchRequest } from 'types/HAFAS/HimSearch';
+import type { JourneyCourseRequest } from 'types/HAFAS/JourneyCourse';
 import type { JourneyDetailsRequest } from './JourneyDetails';
+import type { JourneyGeoPosRequest } from 'types/HAFAS/JourneyGeoPos';
+import type { JourneyGraphRequest } from 'types/HAFAS/JourneyGraph';
+import type { JourneyMatchRequest } from 'types/HAFAS/JourneyMatch';
+import type { JourneyTreeRequest } from 'types/HAFAS/JourneyTree';
 import type { LocGeoPosRequest } from './LocGeoPos';
 import type { LocMatchRequest } from './LocMatch';
+import type { SearchOnTripRequest } from 'types/HAFAS/SearchOnTrip';
+import type { StationBoardRequest } from 'types/HAFAS/StationBoard';
+import type { SubscrCreateRequest } from 'types/HAFAS/Subscr/SubscrCreate';
+import type { SubscrDeleteRequest } from 'types/HAFAS/Subscr/SubscrDelete';
+import type { SubscrDetailsRequest } from 'types/HAFAS/Subscr/SubscrDetails';
+import type { SubscrSearchRequest } from 'types/HAFAS/Subscr/SubscrSearch';
+import type { SubscrUserCreateRequest } from 'types/HAFAS/Subscr/SubscrUserCreate';
+import type { SubscrUserDeleteRequest } from 'types/HAFAS/Subscr/SubscrUserDelete';
 import type { TripSearchRequest } from './TripSearch';
 
 export type JourneyFilterMode = 'BIT' | 'EXC' | 'INC' | 'UNDEF';
@@ -524,7 +524,7 @@ interface _ParsedCommon {
 export type ParsedCommon = _ParsedCommon &
   Omit<Common, 'locL' | 'prodL' | 'polyL'>;
 
-export interface ParsedProduct extends CommonProductInfo {}
+export type ParsedProduct = CommonProductInfo;
 
 export interface ParsedPolyline {
   points: [number, number][];

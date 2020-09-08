@@ -1,4 +1,5 @@
 import { makeStyles, Tooltip } from '@material-ui/core';
+import type { FC } from 'react';
 import type { PlannedSequence } from 'types/planReihung';
 
 const useStyles = makeStyles({
@@ -11,7 +12,7 @@ interface Props {
   plannedSequence?: PlannedSequence;
 }
 
-export const PlannedType = ({ plannedSequence }: Props) => {
+export const PlannedType: FC<Props> = ({ plannedSequence }) => {
   const classes = useStyles();
   if (!plannedSequence?.short) return null;
 
