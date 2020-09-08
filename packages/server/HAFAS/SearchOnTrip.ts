@@ -9,6 +9,7 @@ import type {
   SearchOnTripRequest,
   SearchOnTripResponse,
 } from 'types/HAFAS/SearchOnTrip';
+import type { SingleRoute } from 'types/routing';
 
 const parseSearchOnTrip = (
   d: HafasResponse<SearchOnTripResponse>,
@@ -21,7 +22,7 @@ export default (
   req: SearchOnTripRequest['req'],
   profile?: AllowedHafasProfile,
   raw?: boolean,
-) => {
+): Promise<SingleRoute> => {
   const request: SearchOnTripRequest = {
     req,
     meth: 'SearchOnTrip',

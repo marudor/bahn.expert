@@ -4,11 +4,12 @@ import { getRouteLink } from 'client/Routing/util';
 import { Link } from 'react-router-dom';
 import { makeStyles, Paper } from '@material-ui/core';
 import {
-  RoutingFav,
   routingFavKey,
   useRoutingFavActions,
 } from 'client/Routing/provider/RoutingFavProvider';
-import { SyntheticEvent, useCallback } from 'react';
+import { useCallback } from 'react';
+import type { FC, SyntheticEvent } from 'react';
+import type { RoutingFav } from 'client/Routing/provider/RoutingFavProvider';
 
 const useStyles = makeStyles((theme) => ({
   wrap: {
@@ -46,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
 interface Props {
   fav: RoutingFav;
 }
-export const RouteFavEntry = ({ fav }: Props) => {
+export const RouteFavEntry: FC<Props> = ({ fav }) => {
   const classes = useStyles();
   const { unfav } = useRoutingFavActions();
   const removeFav = useCallback(
@@ -77,7 +78,7 @@ export const RouteFavEntry = ({ fav }: Props) => {
         <span className={classes.arrow}>{'->'}</span>
         <span className={classes.profile}>
           {Object.keys(AllowedHafasProfile).find(
-            // @ts-ignore
+            // @ts-expect-error works
             (key) => AllowedHafasProfile[key] === fav.profile,
           )}
         </span>

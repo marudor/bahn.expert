@@ -3,10 +3,11 @@ import { wagenReihungMonitoring } from 'server/Reihung';
 
 @Route('/reihung/monitoring')
 export class ReihungMonitoringController extends Controller {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   @Get('/wagen')
   @Hidden()
-  monitoring() {
-    const reihung = wagenReihungMonitoring();
+  async monitoring() {
+    const reihung = await wagenReihungMonitoring();
 
     if (!reihung) {
       this.setStatus(404);

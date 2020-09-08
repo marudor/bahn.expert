@@ -1,6 +1,7 @@
 import { makeStyles } from '@material-ui/core';
 import { stopPropagation } from 'client/Common/stopPropagation';
 import { useMemo } from 'react';
+import type { FC } from 'react';
 
 const useStyles = makeStyles({
   link: {
@@ -34,7 +35,7 @@ const wagenWithImage = [
   'Bvmmz',
   'Bvmsz',
 ];
-export const WagenLink = ({ fahrzeugtyp, fahrzeugnummer, type }: Props) => {
+export const WagenLink: FC<Props> = ({ fahrzeugtyp, fahrzeugnummer, type }) => {
   const classes = useStyles();
   const imageName = useMemo(() => {
     let image = fahrzeugtyp;

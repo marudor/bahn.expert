@@ -17,7 +17,7 @@ import type {
   AdditionalFahrzeugInfo,
   Fahrzeug as FahrzeugType,
 } from 'types/reihung';
-import type { ComponentType } from 'react';
+import type { ComponentType, FC } from 'react';
 
 export const icons: {
   [key in keyof Required<AdditionalFahrzeugInfo['icons']>]: ComponentType;
@@ -158,14 +158,14 @@ export interface Props extends InheritedProps {
   showUIC: boolean;
 }
 
-export const Fahrzeug = ({
+export const Fahrzeug: FC<Props> = ({
   fahrzeug,
   wrongWing,
   scale,
   correctLeft,
   type,
   showUIC,
-}: Props) => {
+}) => {
   const classes = useStyles();
   const { startprozent, endeprozent } = fahrzeug.positionamhalt;
   const start = Number.parseInt(startprozent, 10);
@@ -191,7 +191,7 @@ export const Fahrzeug = ({
       <span
         className={clsx(
           classes.klasse,
-          // @ts-expect-error
+          // @ts-expect-error works
           classes[`klasse${fahrzeug.additionalInfo.klasse}`],
         )}
       />
@@ -199,7 +199,7 @@ export const Fahrzeug = ({
       <span>
         {Object.entries(fahrzeug.additionalInfo.icons).map(([key, enabled]) => {
           if (enabled) {
-            // @ts-ignore this is correct, it's exact!
+            // @ts-expect-error this is correct, it's exact!
             const SpecificIcon = icons[key];
             if (!SpecificIcon) return null;
             return <SpecificIcon className={classes.icon} key={key} />;

@@ -1,9 +1,10 @@
-import { AllowedHafasProfile, HafasResponse, ParsedCommon } from 'types/HAFAS';
+import { AllowedHafasProfile } from 'types/HAFAS';
 import { format, parse, subDays } from 'date-fns';
 import JourneyDetails from 'server/HAFAS/JourneyDetails';
 import makeRequest from './Request';
 import parseMessages from './helper/parseMessages';
 import parseStop from './helper/parseStop';
+import type { HafasResponse, ParsedCommon } from 'types/HAFAS';
 import type {
   JourneyMatchOptions,
   JourneyMatchRequest,
@@ -74,7 +75,7 @@ const fallbackTypeRegex = /(.+?)( |\d|\b).*\d+/;
 export async function enrichedJourneyMatch(
   options: JourneyMatchOptions,
   profile?: AllowedHafasProfile,
-) {
+): Promise<ParsedJourneyMatchResponse[]> {
   const journeyMatches = await JourneyMatch(options, profile);
   const limitedJourneyMatches = journeyMatches.slice(0, 3);
 
@@ -92,7 +93,7 @@ export async function enrichedJourneyMatch(
     }
 
     if (!j.train.type) {
-      j.train.type = j.train.name.match(fallbackTypeRegex)?.[1];
+      j.train.type = fallbackTypeRegex.exec(j.train.name)?.[1];
     }
   }
 

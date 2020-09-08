@@ -43,7 +43,7 @@ export async function stationSearch(
 
 export async function geoSearch(
   coordinates: BusinessHubCoordinates,
-  radius: number = 3000,
+  radius = 3000,
 ): Promise<BusinessHubStation[]> {
   const result = (
     await request.get<APIResult>('/public-transport-stations/v1/stop-places', {

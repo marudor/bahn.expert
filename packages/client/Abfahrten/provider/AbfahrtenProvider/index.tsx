@@ -4,12 +4,15 @@ import {
   useAbfahrtenFetchAPIUrl,
 } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { getStationsFromAPI } from 'client/Common/service/stationSearch';
-import { ReactNode, useCallback, useEffect, useState } from 'react';
-import Axios, { AxiosError } from 'axios';
+import { useCallback, useEffect, useState } from 'react';
+import Axios from 'axios';
 import constate from 'constate';
 import type { Abfahrt, AbfahrtenResult, Wings } from 'types/iris';
+import type { AxiosError } from 'axios';
+import type { FC, ReactNode } from 'react';
 import type { Station, StationSearchType } from 'types/station';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 let cancelGetAbfahrten = () => {};
 
 export const fetchAbfahrten = async (
@@ -160,12 +163,12 @@ interface Props {
   stationApiFunction?: typeof getStationsFromAPI;
   urlPrefix: string;
 }
-export const AbfahrtenProvider = ({
+export const AbfahrtenProvider: FC<Props> = ({
   children,
   fetchApiUrl,
   stationApiFunction,
   urlPrefix,
-}: Props) => (
+}) => (
   <AbfahrtenConfigProvider urlPrefix={urlPrefix} fetchApiUrl={fetchApiUrl}>
     <InnerAbfahrtenProvider stationApiFunction={stationApiFunction}>
       {children}

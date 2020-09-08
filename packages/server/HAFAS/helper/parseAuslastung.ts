@@ -1,6 +1,14 @@
 import type { TcocL, TrnCmpSX } from 'types/HAFAS';
 
-export default (dTrnCmpSX?: TrnCmpSX, tcocL?: TcocL[]) => {
+export default (
+  dTrnCmpSX?: TrnCmpSX,
+  tcocL?: TcocL[],
+):
+  | {
+      first?: number;
+      second?: number;
+    }
+  | undefined => {
   if (!tcocL || !dTrnCmpSX || !dTrnCmpSX.tcocX) return;
 
   const auslastung: {

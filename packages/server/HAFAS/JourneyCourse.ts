@@ -30,7 +30,7 @@ export default (
   options: JourneyCourseRequestOptions,
   profile?: AllowedHafasProfile,
   raw?: boolean,
-) => {
+): Promise<ParsedJourneyCourseResponse> => {
   const req: JourneyCourseRequest = {
     req: options,
     meth: 'JourneyCourse',

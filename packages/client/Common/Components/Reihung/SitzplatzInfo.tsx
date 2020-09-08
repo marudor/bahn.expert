@@ -1,7 +1,8 @@
 import { Dialog, DialogContent, makeStyles } from '@material-ui/core';
 import { stopPropagation } from 'client/Common/stopPropagation';
-import { SyntheticEvent, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import type { AdditionalFahrzeugInfo } from 'types/reihung';
+import type { FC, SyntheticEvent } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   wrap: {
@@ -19,10 +20,10 @@ interface Props {
   wagenordnungsnummer: string;
 }
 
-export const SitzplatzInfo = ({
+export const SitzplatzInfo: FC<Props> = ({
   additionalInfo,
   wagenordnungsnummer,
-}: Props) => {
+}) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const toggle = useCallback((e: SyntheticEvent) => {

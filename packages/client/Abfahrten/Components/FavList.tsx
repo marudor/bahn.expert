@@ -1,19 +1,19 @@
-import {
-  AbfahrtenError,
-  useAbfahrtenError,
-} from 'client/Abfahrten/provider/AbfahrtenProvider';
 import { FavEntry, FavEntryDisplay } from './FavEntry';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 import { MostUsed } from './MostUsed';
-import { ReactNode, useEffect, useMemo, useState } from 'react';
-import { Redirect, StaticRouterContext } from 'react-router';
+import { Redirect } from 'react-router';
+import { useAbfahrtenError } from 'client/Abfahrten/provider/AbfahrtenProvider';
+import { useEffect, useMemo, useState } from 'react';
 import {
   useFavs,
   useMostUsedComponent,
 } from 'client/Abfahrten/provider/FavProvider';
 import { useHeaderTagsActions } from 'client/Common/provider/HeaderTagProvider';
 import { Zugsuche } from 'client/Common/Components/Zugsuche';
+import type { AbfahrtenError } from 'client/Abfahrten/provider/AbfahrtenProvider';
+import type { FC, ReactNode } from 'react';
+import type { StaticRouterContext } from 'react-router';
 import type { Station } from 'types/station';
 
 const useStyles = makeStyles({
@@ -51,7 +51,7 @@ interface Props {
   children?: ReactNode;
 }
 
-export const FavList = ({ staticContext, children }: Props) => {
+export const FavList: FC<Props> = ({ staticContext, children }) => {
   const classes = useStyles();
   const favs = useFavs();
   const MostUsedComponent = useMostUsedComponent();

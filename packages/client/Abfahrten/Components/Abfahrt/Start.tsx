@@ -8,6 +8,7 @@ import {
   useAbfahrtenConfig,
   useAbfahrtenUrlPrefix,
 } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
+import type { FC } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   wrap: {
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   cancelled: theme.mixins.changed,
 }));
 
-export const Start = () => {
+export const Start: FC = () => {
   const classes = useStyles();
   const { lineAndNumber } = useAbfahrtenConfig();
   const urlPrefix = useAbfahrtenUrlPrefix();

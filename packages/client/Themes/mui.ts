@@ -3,6 +3,7 @@ import { createMuiTheme } from '@material-ui/core';
 import { ThemeType } from './type';
 import deepMerge from 'deepmerge';
 import type { MuiPickersOverrides } from '@material-ui/pickers/typings/overrides';
+import type { Theme as MuiTheme } from '@material-ui/core';
 import type { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
 
 declare module '@material-ui/core/styles/overrides' {
@@ -92,5 +93,5 @@ const getMuiOptions = (themeType: ThemeType) => {
   }
 };
 
-export const createTheme = (themeType: ThemeType) =>
+export const createTheme = (themeType: ThemeType): MuiTheme =>
   createMuiTheme(getMuiOptions(themeType));

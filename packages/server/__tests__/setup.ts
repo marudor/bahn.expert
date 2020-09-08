@@ -22,9 +22,7 @@ beforeAll(() => {
 });
 
 beforeEach(async () => {
-  // @ts-ignore
   if (cache.store.getClient) {
-    // @ts-ignore
     await cache.store.getClient().flushall();
   }
 });

@@ -25,7 +25,7 @@ const footerEjs = fs
   .trim();
 const footerTemplate = ejs.compile(footerEjs);
 
-export default (ctx: Context) => {
+export default (ctx: Context): void => {
   const extractor = new ChunkExtractor({ stats: ctx.loadableStats });
   const selectedDetail = ctx.query.selectedDetail;
 

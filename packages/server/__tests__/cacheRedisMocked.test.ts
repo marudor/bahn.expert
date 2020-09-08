@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-expect-error test only
 import { baseCache } from 'cache-manager';
 import { createNewCache } from 'server/cache';
 

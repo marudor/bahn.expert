@@ -1,9 +1,10 @@
 /* eslint no-param-reassign: 0, no-await-in-loop: 0 */
-import { AxiosInstance } from 'axios';
 import { CacheDatabases, createNewCache } from 'server/cache';
 import { noncdRequest } from './helper';
 import { stationMetaFilter } from 'server/iris/stationMetaFilter';
-import xmljs, { Element } from 'libxmljs2';
+import xmljs from 'libxmljs2';
+import type { AxiosInstance } from 'axios';
+import type { Element } from 'libxmljs2';
 import type { IrisStation, IrisStationWithRelated } from 'types/station';
 
 // 4 Hours in seconds
@@ -60,14 +61,14 @@ export async function getSingleStation(
   }
   const station = parseStation(xmlStation);
 
-  cache.set(evaId, station);
+  void cache.set(evaId, station);
 
   return station;
 }
 
 export async function getStation(
   evaId: string,
-  recursive: number = 0,
+  recursive = 0,
   request?: AxiosInstance,
 ): Promise<IrisStationWithRelated> {
   const station = await getSingleStation(evaId, request);

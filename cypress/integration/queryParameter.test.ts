@@ -17,12 +17,12 @@ describe('Query Parameter', () => {
     cy.findByTestId('lookbehind').within(() => {
       cy.get('select').select('10');
     });
-    cy.getCookie('lookbehind').should('be', '10');
+    cy.getCookie('lookbehind').should('have.property', 'value', '10');
     cy.mockFrankfurt({ lookbehind: 150 });
     cy.visit('/Frankfurt (Main) Hbf?lookbehind=150');
-    cy.getCookie('lookbehind').should('be', '10');
+    cy.getCookie('lookbehind').should('have.property', 'value', '10');
     cy.visit('/');
     cy.navigateToStation('Frankfurt (Main) Hbf');
-    cy.getCookie('lookbehind').should('be', '10');
+    cy.getCookie('lookbehind').should('have.property', 'value', '10');
   });
 });

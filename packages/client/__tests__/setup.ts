@@ -25,7 +25,7 @@ afterEach(() => {
   cleanup();
 });
 
-// @ts-ignore just mocked
+// @ts-expect-error just mocked
 window.matchMedia = () => ({
   matches: false,
 });
@@ -46,6 +46,6 @@ beforeAll(() => {
 
 afterAll(() => {
   Nock.restore();
-  // @ts-ignore
+  // @ts-expect-error mocked
   global.nock = undefined;
 });

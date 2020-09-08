@@ -2,13 +2,14 @@ import { compareDesc } from 'date-fns';
 import { HimIrisMessage } from 'client/Common/Components/Messages/HimIrisMessage';
 import { IrisMessage } from 'client/Common/Components/Messages/IrisMessage';
 import { useStyles } from './Normal';
+import type { FC } from 'react';
 import type { Message } from 'types/iris';
 
 interface Props {
   messages: Message[];
 }
 
-export const DetailMessages = ({ messages }: Props) => {
+export const DetailMessages: FC<Props> = ({ messages }) => {
   const classes = useStyles();
   const sorted = messages.sort((a, b) => compareDesc(a.timestamp, b.timestamp));
 

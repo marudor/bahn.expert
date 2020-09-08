@@ -3,8 +3,9 @@ import { Loading } from 'client/Common/Components/Loading';
 import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import { useAuslastung } from 'client/Abfahrten/provider/AuslastungsProvider';
 import { useEffect } from 'react';
+import type { FC } from 'react';
 
-export const Auslastung = () => {
+export const Auslastung: FC = () => {
   const { abfahrt } = useAbfahrt();
   const { auslastungen, getAuslastung } = useAuslastung();
   const auslastung =
@@ -14,7 +15,7 @@ export const Auslastung = () => {
 
   useEffect(() => {
     if (auslastung === undefined && abfahrt.departure) {
-      getAuslastung(
+      void getAuslastung(
         abfahrt.train.number,
         abfahrt.currentStation.title,
         abfahrt.destination,

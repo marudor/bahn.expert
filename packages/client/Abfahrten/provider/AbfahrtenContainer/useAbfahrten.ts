@@ -3,6 +3,7 @@ import { useAbfahrtenFilter } from 'client/Abfahrten/provider/AbfahrtenConfigPro
 import { useMemo } from 'react';
 import type { Abfahrt } from 'types/iris';
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const useAbfahrten = () => {
   const departures = useAbfahrtenDepartures();
   const { onlyDepartures, productFilter } = useAbfahrtenFilter();

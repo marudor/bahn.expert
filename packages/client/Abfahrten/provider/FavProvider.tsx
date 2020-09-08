@@ -1,6 +1,7 @@
-import { ComponentType, ReactNode, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useStorage } from 'client/useStorage';
 import constate from 'constate';
+import type { ComponentType, FC, ReactNode } from 'react';
 import type { Station } from 'types/station';
 
 export interface Favs {
@@ -84,11 +85,11 @@ interface Props {
   MostUsedComponent?: ComponentType;
 }
 
-export const FavProvider = ({
+export const FavProvider: FC<Props> = ({
   children,
   storageKey,
   MostUsedComponent,
-}: Props) => {
+}) => {
   const storage = useStorage();
   const savedFavs = storage.get(storageKey);
 

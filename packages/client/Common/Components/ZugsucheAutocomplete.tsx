@@ -6,6 +6,7 @@ import { useStorage } from 'client/useStorage';
 import Axios from 'axios';
 import debounce from 'debounce-promise';
 import Downshift from 'downshift';
+import type { FC } from 'react';
 import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 
 const debouncedJourneyMatch = debounce(journeyMatch, 300);
@@ -29,10 +30,10 @@ interface Props {
 }
 const itemToString = (j: ParsedJourneyMatchResponse | null) =>
   j?.train.name || '';
-export const ZugsucheAutocomplete = ({
+export const ZugsucheAutocomplete: FC<Props> = ({
   initialDeparture = Date.now(),
   onChange,
-}: Props) => {
+}) => {
   const classes = useStyles();
   const [suggestions, setSuggestions] = useState<ParsedJourneyMatchResponse[]>(
     [],
@@ -83,7 +84,7 @@ export const ZugsucheAutocomplete = ({
               if (event.target.value === '') {
                 clearSelection();
               } else {
-                loadOptions(event.target.value);
+                void loadOptions(event.target.value);
               }
             },
             onFocus: () => {

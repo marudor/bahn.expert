@@ -9,6 +9,7 @@ import { Time } from 'client/Common/Components/Time';
 import { TravelynxLink } from 'client/Common/Components/CheckInLink/TravelynxLink';
 import { useContext } from 'react';
 import clsx from 'clsx';
+import type { FC } from 'react';
 import type { ParsedProduct } from 'types/HAFAS';
 import type { Route$Stop } from 'types/routing';
 
@@ -70,7 +71,7 @@ interface Props {
   showWR?: ParsedProduct;
   isPast?: boolean;
 }
-export const Stop = ({ stop, showWR, train, isPast }: Props) => {
+export const Stop: FC<Props> = ({ stop, showWR, train, isPast }) => {
   const classes = useStyles();
   const { urlPrefix } = useContext(DetailsContext);
   const depOrArrival = stop.departure || stop.arrival;

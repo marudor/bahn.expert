@@ -13,7 +13,9 @@ const IS_TEST = process.env.NODE_ENV === 'test';
 
 const writeOptions = {
   write: IS_TEST
-    ? () => {}
+    ? () => {
+        // mocked in tests
+      }
     : (msg: string) => {
         writeWorker.postMessage(msg);
       },
@@ -25,7 +27,6 @@ if (IS_TEST) {
 
 export const logger = pino(
   {
-    // @ts-ignore
     redact: {
       paths: [
         'req.remoteAddress',
@@ -43,7 +44,7 @@ export const logger = pino(
           const cookies = cookie.parse(req.headers.cookie);
 
           req.headers = {
-            // @ts-ignore
+            // @ts-expect-error typing wrong
             cookie: cookies,
             'user-agent': req.headers['user-agent'],
             referer: req.headers.referer,

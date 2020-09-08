@@ -1,10 +1,11 @@
 import cacheManager from 'cache-manager';
 
-const mocked = jest.genMockFromModule<typeof import('../cache')>(
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+const mocked = jest.createMockFromModule<typeof import('../cache')>(
   'server/cache',
 );
 
-// @ts-ignore
+// @ts-expect-error mocking
 mocked.createNewCache = () => {
   return cacheManager.caching({
     store: 'none',

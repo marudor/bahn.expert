@@ -1,6 +1,7 @@
 import { stopPropagation } from 'client/Common/stopPropagation';
 import { useStyles } from './style';
 import clsx from 'clsx';
+import type { FC } from 'react';
 import type { Route$JourneySegmentWalk } from 'types/routing';
 
 interface Props {
@@ -8,7 +9,7 @@ interface Props {
   className?: string;
 }
 
-export const WalkSegmentTrain = ({ segment, className }: Props) => {
+export const WalkSegmentTrain: FC<Props> = ({ segment, className }) => {
   const classes = useStyles();
   const mapsLink = `https://www.google.com/maps/dir/?api=1&origin=${segment.segmentStart.coordinates.lat},${segment.segmentStart.coordinates.lng}&destination=${segment.segmentDestination.coordinates.lat},${segment.segmentDestination.coordinates.lng}&travelmode=walking`;
 

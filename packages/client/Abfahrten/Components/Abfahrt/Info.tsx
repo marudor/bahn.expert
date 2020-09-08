@@ -6,6 +6,7 @@ import { NormalVia } from './Via/Normal';
 import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import { useMemo } from 'react';
 import clsx from 'clsx';
+import type { FC } from 'react';
 
 const useStyles = makeStyles({
   wrap: {
@@ -18,7 +19,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const Info = () => {
+export const Info: FC = () => {
   const { abfahrt, detail } = useAbfahrt();
   const classes = useStyles();
   const messages = useMemo(() => {

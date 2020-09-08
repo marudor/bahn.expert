@@ -10,6 +10,7 @@ import Axios from 'axios';
 import type { RoutingFav } from 'client/Routing/provider/RoutingFavProvider';
 import type { RoutingResult } from 'types/routing';
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const useFetchRouting = () => {
   const {
     setRoutes,
@@ -149,7 +150,7 @@ export const useFetchRouting = () => {
 
     if (fav) {
       history.replace(history.location.pathname);
-      fetchRoutes({
+      void fetchRoutes({
         start: fav.start.id,
         destination: fav.destination.id,
         via: fav.via.map((v) => ({

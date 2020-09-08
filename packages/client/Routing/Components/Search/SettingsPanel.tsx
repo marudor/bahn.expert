@@ -18,12 +18,13 @@ import {
   Train,
 } from '@material-ui/icons';
 import { AllowedHafasProfile } from 'types/HAFAS';
-import { ChangeEvent, useCallback, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import {
-  RoutingSettings,
   useRoutingConfigActions,
   useRoutingSettings,
 } from 'client/Routing/provider/RoutingConfigProvider';
+import type { ChangeEvent, FC } from 'react';
+import type { RoutingSettings } from 'client/Routing/provider/RoutingConfigProvider';
 
 const useStyles = makeStyles({
   accordion: {
@@ -51,7 +52,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const SettingsPanel = () => {
+export const SettingsPanel: FC = () => {
   const classes = useStyles();
   const settings = useRoutingSettings();
   const { updateSettings } = useRoutingConfigActions();
@@ -143,7 +144,7 @@ export const SettingsPanel = () => {
           labelPlacement="start"
           control={
             <NativeSelect
-              // @ts-ignore
+              // @ts-expect-error works
               inputProps={{ 'data-testid': 'routingHafasProfile' }}
               value={settings.hafasProfile}
               name="checkIn"
@@ -152,7 +153,7 @@ export const SettingsPanel = () => {
               {Object.keys(AllowedHafasProfile).map((allowedProfile) => (
                 <option
                   key={allowedProfile}
-                  // @ts-ignore
+                  // @ts-expect-error works
                   value={AllowedHafasProfile[allowedProfile]}
                 >
                   {allowedProfile}

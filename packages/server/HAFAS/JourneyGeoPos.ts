@@ -43,7 +43,7 @@ export default (
   options: JourneyGeoPosOptions,
   profile?: AllowedHafasProfile,
   raw?: boolean,
-) => {
+): Promise<ParsedJourneyGeoPosResponse> => {
   const req: JourneyGeoPosRequest = {
     req: options,
     meth: 'JourneyGeoPos',

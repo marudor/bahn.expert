@@ -1,5 +1,6 @@
 import { Chip, makeStyles, Paper } from '@material-ui/core';
 import { format } from 'date-fns';
+import type { FC } from 'react';
 
 const useStyles = makeStyles({
   wrap: {
@@ -24,7 +25,7 @@ interface Props {
   date: number;
 }
 
-export const RouteHeader = ({ date }: Props) => {
+export const RouteHeader: FC<Props> = ({ date }) => {
   const classes = useStyles();
 
   return (

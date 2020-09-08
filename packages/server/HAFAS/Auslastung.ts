@@ -1,13 +1,14 @@
 import { StationSearchType } from 'types/station';
 import stationSearch from '../Search';
 import tripSearch from '../HAFAS/TripSearch';
+import type { Route$Auslastung } from 'types/routing';
 
 export default async (
   start: string,
   destination: string,
   trainNumber: string,
   time: number,
-) => {
+): Promise<Route$Auslastung | undefined> => {
   const startStations = await stationSearch(start, StationSearchType.hafas);
   const destStations = await stationSearch(
     destination,

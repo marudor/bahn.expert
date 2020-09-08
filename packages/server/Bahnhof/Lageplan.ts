@@ -8,7 +8,9 @@ export const cache = createNewCache<string, string | null>(
   CacheDatabases.Lageplan,
 );
 
-export async function getLageplan(stationName: string) {
+export async function getLageplan(
+  stationName: string,
+): Promise<string | undefined> {
   const cached = await getCachedLageplan(stationName);
 
   if (cached) return cached;
@@ -30,7 +32,7 @@ export async function getLageplan(stationName: string) {
   const firstResultLink = $('#result .title > a').first().attr('href');
 
   if (!firstResultLink) {
-    cache.set(stationName, null);
+    void cache.set(stationName, null);
 
     return undefined;
   }
@@ -45,16 +47,18 @@ export async function getLageplan(stationName: string) {
     .attr('href');
 
   if (!rawPdfLink) {
-    cache.set(stationName, null);
+    void cache.set(stationName, null);
 
     return undefined;
   }
   const pdfLink = `https://www.bahnhof.de${rawPdfLink}`;
 
-  cache.set(stationName, pdfLink);
+  void cache.set(stationName, pdfLink);
 
   return pdfLink;
 }
-export function getCachedLageplan(stationName: string) {
+export function getCachedLageplan(
+  stationName: string,
+): Promise<string | null | undefined> {
   return cache.get(stationName);
 }

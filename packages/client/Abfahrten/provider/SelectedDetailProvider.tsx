@@ -1,6 +1,7 @@
-import { ReactNode, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useStorage } from 'client/useStorage';
 import constate from 'constate';
+import type { FC } from 'react';
 
 const selectedDetailCookieName = 'selectedDetail';
 
@@ -48,10 +49,7 @@ export const [
   (v) => v.setSelectedDetail,
 );
 
-interface Props {
-  children: ReactNode;
-}
-export const SelectedDetailProvider = ({ children }: Props) => {
+export const SelectedDetailProvider: FC = ({ children }) => {
   const storage = useStorage();
   const savedSelectedDetail = storage.get(selectedDetailCookieName);
 

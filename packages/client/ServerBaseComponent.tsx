@@ -1,9 +1,11 @@
 import { HelmetProvider } from 'react-helmet-async';
-import { StaticRouter, StaticRouterContext } from 'react-router';
+import { StaticRouter } from 'react-router';
 import { StorageContext } from 'client/useStorage';
-import { StorageInterface } from 'client/Common/Storage';
 import { ThemeProvider } from 'client/Common/provider/ThemeProvider';
 import { ThemeWrap } from 'client/ThemeWrap';
+import type { ReactElement } from 'react';
+import type { StaticRouterContext } from 'react-router';
+import type { StorageInterface } from 'client/Common/Storage';
 
 interface Props {
   helmetContext: any;
@@ -18,7 +20,7 @@ export function ServerBaseComponent({
   routeContext,
   storage,
   sheetsRegistry,
-}: Props) {
+}: Props): ReactElement {
   return (
     <HelmetProvider context={helmetContext}>
       <StaticRouter location={url} context={routeContext}>

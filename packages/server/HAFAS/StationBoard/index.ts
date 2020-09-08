@@ -5,6 +5,7 @@ import type { AllowedHafasProfile, JourneyFilter } from 'types/HAFAS';
 import type {
   ArrivalStationBoardEntry,
   DepartureStationBoardEntry,
+  StationBoardEntry,
 } from 'types/stationBoard';
 import type { StationBoardRequest } from 'types/HAFAS/StationBoard';
 
@@ -29,7 +30,7 @@ function stationBoard(
   { station, date = Date.now(), type, direction, filter }: Options,
   profile?: AllowedHafasProfile,
   raw?: boolean,
-) {
+): Promise<StationBoardEntry[]> {
   const req: StationBoardRequest = {
     req: {
       type,

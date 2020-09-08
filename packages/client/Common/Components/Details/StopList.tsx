@@ -6,6 +6,7 @@ import { Stop } from 'client/Common/Components/Details/Stop';
 import { useContext, useEffect, useMemo } from 'react';
 import clsx from 'clsx';
 import type { AxiosError } from 'axios';
+import type { FC } from 'react';
 
 function getErrorText(error: AxiosError) {
   if (error.code === 'ECONNABORTED') return 'Timeout, bitte neuladen.';
@@ -31,7 +32,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const StopList = () => {
+export const StopList: FC = () => {
   const classes = useStyles();
   const { details, error } = useContext(DetailsContext);
 

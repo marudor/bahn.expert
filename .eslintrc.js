@@ -28,7 +28,15 @@ module.exports = {
     ],
   },
   overrides: [
-    { files: ['**/*.ts', '**/*.tsx'], extends: ['marudor/typescript'] },
+    {
+      files: ['**/*.ts', '**/*.tsx'],
+      extends: ['marudor/typescript'],
+      parserOptions: {
+        tsconfigRootDir: __dirname,
+        project: ['./tsconfig.json'],
+        warnOnUnsupportedTypeScriptVersion: true,
+      },
+    },
     {
       files: ['**/__tests__/**'],
       globals: { nock: true },

@@ -9,10 +9,9 @@ describe('docsServer', () => {
     server.close();
   });
 
-  it('should deliver docs', () => {
+  it('should deliver docs', () =>
     request(server)
       .get('/')
       .expect(/Download OpenAPI specification/)
-      .expect(200);
-  });
+      .expect(200));
 });

@@ -9,9 +9,10 @@ import {
   Typography,
 } from '@material-ui/core';
 import { ExpandLess, ExpandMore, Palette } from '@material-ui/icons';
-import { SyntheticEvent, useCallback, useState } from 'react';
 import { ThemeType } from 'client/Themes/type';
+import { useCallback, useState } from 'react';
 import { useTheme } from 'client/Common/provider/ThemeProvider';
+import type { FC, SyntheticEvent } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   themeList: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const ThemeSelection = () => {
+export const ThemeSelection: FC = () => {
   const classes = useStyles();
   const { themeType, setThemeType } = useTheme();
   const [open, setOpen] = useState(false);

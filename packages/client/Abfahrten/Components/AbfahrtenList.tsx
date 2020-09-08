@@ -23,6 +23,7 @@ import { useEffect, useState } from 'react';
 import { useHeaderTagsActions } from 'client/Common/provider/HeaderTagProvider';
 import { useReihungenActions } from 'client/Common/provider/ReihungenProvider';
 import { useRouteMatch } from 'react-router';
+import type { FC } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   wrap: {
@@ -93,7 +94,7 @@ const InnerAbfahrtenList = () => {
 
     if (config.autoUpdate) {
       intervalId = setInterval(() => {
-        refreshCurrentAbfahrten();
+        void refreshCurrentAbfahrten();
         clearReihungen();
       }, config.autoUpdate * 1000);
     } else {
@@ -108,7 +109,7 @@ const InnerAbfahrtenList = () => {
   useEffect(() => {
     if (!currentStation || oldMatch !== paramStation) {
       setOldMatch(paramStation);
-      updateCurrentStationByString(decodeURIComponent(paramStation || ''));
+      void updateCurrentStationByString(decodeURIComponent(paramStation || ''));
     }
   }, [currentStation, oldMatch, paramStation, updateCurrentStationByString]);
 
@@ -174,7 +175,7 @@ const InnerAbfahrtenList = () => {
   );
 };
 
-export const AbfahrtenList = () => (
+export const AbfahrtenList: FC = () => (
   <SelectedDetailProvider>
     <InnerAbfahrtenList />
   </SelectedDetailProvider>

@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 import { Stop } from 'client/Common/Components/Details/Stop';
+import type { FC } from 'react';
 import type { Route$Stop } from 'types/routing';
 
 const useStyles = makeStyles({
@@ -11,7 +12,7 @@ interface Props {
   stops?: Route$Stop[];
 }
 
-export const StopList = ({ stops }: Props) => {
+export const StopList: FC<Props> = ({ stops }) => {
   const classes = useStyles();
 
   return stops ? (

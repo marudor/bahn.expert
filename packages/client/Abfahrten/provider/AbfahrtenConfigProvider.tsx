@@ -1,10 +1,11 @@
 import { abfahrtenConfigSanitize } from 'client/util';
-import { ReactNode, useCallback, useState } from 'react';
 import { StationSearchType } from 'types/station';
+import { useCallback, useState } from 'react';
 import { useQuery } from 'client/Common/hooks/useQuery';
 import { useStorage } from 'client/useStorage';
 import constate from 'constate';
 import type { AbfahrtenConfig } from 'client/Common/config';
+import type { FC, ReactNode } from 'react';
 
 export interface Filter {
   onlyDepartures?: boolean;
@@ -126,11 +127,11 @@ interface Props {
   fetchApiUrl: string;
   urlPrefix: string;
 }
-export const AbfahrtenConfigProvider = ({
+export const AbfahrtenConfigProvider: FC<Props> = ({
   children,
   fetchApiUrl,
   urlPrefix,
-}: Props) => {
+}) => {
   const storage = useStorage();
   migrateOldConfig(storage);
   const query = useQuery();

@@ -1,9 +1,9 @@
-import type { Context } from 'koa';
+import type { Context, Middleware, Next } from 'koa';
 
-export default function normalizePathMiddleware() {
+export default function normalizePathMiddleware(): Middleware {
   const doubleSlashRegex = /\/\//g;
 
-  return (ctx: Context, next: () => void) => {
+  return (ctx: Context, next: Next) => {
     if (doubleSlashRegex.test(ctx.url)) {
       const normalized = ctx.url.replace(doubleSlashRegex, '/');
 

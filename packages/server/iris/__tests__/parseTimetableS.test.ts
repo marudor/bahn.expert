@@ -3,13 +3,15 @@ import { noncdRequest } from 'server/iris/helper';
 import fs from 'fs';
 import path from 'path';
 import Timetable from 'server/iris/Timetable';
-import xmljs, { Element } from 'libxmljs2';
+import xmljs from 'libxmljs2';
+import type { Element } from 'libxmljs2';
 
 describe('parseTimetableS', () => {
   const baseFixturePath = '__fixtures__/plan';
   const fixtures = fs.readdirSync(path.resolve(__dirname, baseFixturePath));
 
   fixtures.forEach((file) => {
+    // eslint-disable-next-line jest/valid-title
     it(file, () => {
       const timetable = new Timetable(
         'test',

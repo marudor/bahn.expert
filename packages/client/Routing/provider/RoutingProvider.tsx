@@ -1,12 +1,11 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
-import { PropsWithChildren, useState } from 'react';
-import {
-  RoutingConfigProvider,
-  RoutingSettings,
-} from 'client/Routing/provider/RoutingConfigProvider';
-import { SingleRoute } from 'types/routing';
+import { RoutingConfigProvider } from 'client/Routing/provider/RoutingConfigProvider';
+import { useState } from 'react';
 import { useStorage } from 'client/useStorage';
 import constate from 'constate';
+import type { FC } from 'react';
+import type { RoutingSettings } from 'client/Routing/provider/RoutingConfigProvider';
+import type { SingleRoute } from 'types/routing';
 
 const useRoutingInternal = () => {
   const [routes, setRoutes] = useState<SingleRoute[] | undefined>([]);
@@ -41,7 +40,7 @@ const migrateOldConfig = (storage: ReturnType<typeof useStorage>) => {
 
 export const [InnerRoutingProvider, useRouting] = constate(useRoutingInternal);
 
-export const RoutingProvider = ({ children }: PropsWithChildren<{}>) => {
+export const RoutingProvider: FC = ({ children }) => {
   const storage = useStorage();
   migrateOldConfig(storage);
 

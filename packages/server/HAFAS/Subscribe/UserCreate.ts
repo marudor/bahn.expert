@@ -1,6 +1,6 @@
-import { AllowedHafasProfile } from 'types/HAFAS';
 import { makeUncommonRequest } from 'server/HAFAS/Request';
-import {
+import type { AllowedHafasProfile } from 'types/HAFAS';
+import type {
   ParsedSubscrUserResponse,
   SubscrUserCreateOptions,
   SubscrUserCreateRequest,
@@ -16,7 +16,7 @@ function parseResponse(r: SubscrUserCreateResponse): ParsedSubscrUserResponse {
 export function SubscribeUserCreate(
   options: SubscrUserCreateOptions,
   profile?: AllowedHafasProfile,
-) {
+): Promise<ParsedSubscrUserResponse> {
   const req: SubscrUserCreateRequest = {
     req: options,
     meth: 'SubscrUserCreate',

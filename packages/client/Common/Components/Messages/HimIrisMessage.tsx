@@ -6,8 +6,9 @@ import {
 } from '@material-ui/core';
 import { format, getDate } from 'date-fns';
 import { stopPropagation } from 'client/Common/stopPropagation';
-import { SyntheticEvent, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import clsx from 'clsx';
+import type { FC, SyntheticEvent } from 'react';
 import type { HimIrisMessage as HimIrisMessageType } from 'types/iris';
 
 const useStyles = makeStyles((theme) => ({
@@ -23,10 +24,10 @@ interface Props {
   today?: number;
 }
 
-export const HimIrisMessage = ({
+export const HimIrisMessage: FC<Props> = ({
   message,
   today = new Date().getDate(),
-}: Props) => {
+}) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const toggleOpen = useCallback((e: SyntheticEvent) => {
