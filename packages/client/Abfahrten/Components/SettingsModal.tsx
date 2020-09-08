@@ -1,9 +1,4 @@
 import {
-  AbfahrtenConfig,
-  handleConfigCheckedChange,
-} from 'client/Common/config';
-import { ChangeEvent, useCallback } from 'react';
-import {
   Dialog,
   DialogContent,
   DialogTitle,
@@ -13,6 +8,7 @@ import {
   Switch,
   TextField,
 } from '@material-ui/core';
+import { handleConfigCheckedChange } from 'client/Common/config';
 import { StationSearchType } from 'types/station';
 import {
   useAbfahrtenConfig,
@@ -20,10 +16,13 @@ import {
   useAbfahrtenModalToggle,
   useAbfahrtenSetConfig,
 } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
+import { useCallback } from 'react';
 import {
   useCommonConfig,
   useSetCommonConfig,
 } from 'client/Common/provider/CommonConfigProvider';
+import type { AbfahrtenConfig } from 'client/Common/config';
+import type { ChangeEvent, FC } from 'react';
 
 const useStyles = makeStyles({
   title: {
@@ -50,7 +49,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const SettingsModal = () => {
+export const SettingsModal: FC = () => {
   const classes = useStyles();
   const {
     lineAndNumber,

@@ -1,5 +1,4 @@
 /* eslint-disable no-underscore-dangle */
-import { CommonConfig } from 'client/Common/config';
 import { createTheme } from 'client/Themes';
 import { HelmetProvider } from 'react-helmet-async';
 import { InnerCommonConfigProvider } from 'client/Common/provider/CommonConfigProvider';
@@ -11,6 +10,7 @@ import { ThemeProvider } from 'client/Common/provider/ThemeProvider';
 import { ThemeType } from 'client/Themes/type';
 import { ThemeWrap } from 'client/ThemeWrap';
 import Cookies from 'universal-cookie';
+import type { CommonConfig } from 'client/Common/config';
 import type { ComponentProps, ComponentType } from 'react';
 import type { DefaultTheme } from '@material-ui/styles';
 import type { Location } from 'history';
@@ -45,7 +45,7 @@ const LocationHelper = ({ children }: any) => {
 };
 
 const generateClassName = (rule: Rule, sheet?: StyleSheet<string>) => {
-  // @ts-ignore
+  // @ts-expect-error sheet wrongly typed
   const name = `${sheet.options.name}-${rule.key}`;
 
   return name;
@@ -55,7 +55,12 @@ export function render<CP extends ComponentType<any>>(
   Comp: CP,
   props?: ComponentProps<CP>,
   { withNavigation, context, commonConfig, provider }: Options = {},
-) {
+): ReturnType<typeof realRender> & {
+  container: ChildNode | null;
+  theme: DefaultTheme;
+  cookies: Cookies;
+  getLocation: () => Location;
+} {
   const themeType = ThemeType.dark;
 
   if (currentThemeType !== themeType) {
@@ -110,8 +115,8 @@ export function render<CP extends ComponentType<any>>(
     );
   };
 
-  // @ts-ignore
-  const p: P = props || {};
+  // @ts-expect-error this works
+  const p: ComponentProps<CP> = props || {};
   const rendered = realRender(<Comp {...p} />, { wrapper });
 
   return {

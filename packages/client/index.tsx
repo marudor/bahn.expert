@@ -27,13 +27,13 @@ const renderApp = (App: ComponentType) => (
 
 const container = document.getElementById('app');
 
-loadableReady(() => {
+void loadableReady(() => {
   hydrate(renderApp(ThemeWrap), container);
 });
 
-// @ts-ignore
+// @ts-expect-error hot not typed
 if (module.hot) {
-  // @ts-ignore
+  // @ts-expect-error hot not typed
   module.hot.accept('./ThemeWrap', () => {
     const App = require('./ThemeWrap').default;
 

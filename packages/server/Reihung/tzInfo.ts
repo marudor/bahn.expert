@@ -31,10 +31,10 @@ export function infoByUIC(uic: string): TzInfo | undefined {
   );
 }
 
-export function BRByUIC(uic: string) {
+export function BRByUIC(uic: string): string | undefined {
   return infoByUIC(uic)?.br;
 }
 
-export function isRedesignByUIC(uic: string) {
+export function isRedesignByUIC(uic: string): boolean | undefined {
   return BRByUIC(uic)?.includes('RD');
 }

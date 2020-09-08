@@ -1,7 +1,8 @@
 import * as Sentry from '@sentry/node';
 import { logger } from 'server/logger';
-import cacheManager, { Cache } from 'cache-manager';
+import cacheManager from 'cache-manager';
 import redisStore from 'cache-manager-ioredis';
+import type { Cache } from 'cache-manager';
 
 const redisSettings = process.env.REDIS_HOST
   ? {
@@ -39,6 +40,7 @@ function serialize(raw: any) {
   return JSON.stringify(raw);
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function createNewCache<K extends string, V>(
   ttl: number,
   db: CacheDatabases,
@@ -56,13 +58,13 @@ export function createNewCache<K extends string, V>(
       ttl,
       db,
     });
-    // @ts-ignore
+    // @ts-expect-error baseCache untyped
     const client = baseCache.store.getClient();
 
     activeCaches.add(client);
 
     existsFn = client.exists.bind(client);
-    // @ts-ignore
+    // @ts-expect-error baseCache untyped
     keysFn = baseCache.keys.bind(client, '*');
     mgetFn = async (keys) => {
       const rawResult = await client.mget(keys);
@@ -75,8 +77,9 @@ export function createNewCache<K extends string, V>(
       store: 'memory',
       ttl,
     });
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     existsFn = baseCache.get;
-    // @ts-ignore
+    // @ts-expect-error baseCache untyped
     keysFn = baseCache.keys;
     mgetFn = (keys) => baseCache.store.mget!(...keys);
   }
@@ -129,7 +132,6 @@ export function createNewCache<K extends string, V>(
       return keysFn();
     },
     reset(): Promise<void> {
-      // @ts-ignore
       return baseCache.reset();
     },
     store: baseCache.store,
@@ -137,7 +139,7 @@ export function createNewCache<K extends string, V>(
   };
 }
 
-export function cleanupCaches() {
+export function cleanupCaches(): void {
   activeCaches.forEach((c: any) => c.disconnect());
   activeCaches.clear();
 }

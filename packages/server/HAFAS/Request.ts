@@ -1,6 +1,10 @@
 import * as HafasProfiles from './profiles';
-import {
-  AllowedHafasProfile,
+import { AllowedHafasProfile } from 'types/HAFAS';
+import Axios from 'axios';
+import parseLocL from './helper/parseLocL';
+import parsePolyline from 'server/HAFAS/helper/parsePolyline';
+import parseProduct from './helper/parseProduct';
+import type {
   Common,
   GenericRes,
   HafasResponse,
@@ -8,34 +12,6 @@ import {
   SingleHafasRequest,
   UncommonHafasRequest,
 } from 'types/HAFAS';
-import {
-  SubscrCreateRequest,
-  SubscrCreateResponse,
-} from 'types/HAFAS/Subscr/SubscrCreate';
-import {
-  SubscrDeleteRequest,
-  SubscrDeleteResponse,
-} from 'types/HAFAS/Subscr/SubscrDelete';
-import {
-  SubscrDetailsRequest,
-  SubscrDetailsResponse,
-} from 'types/HAFAS/Subscr/SubscrDetails';
-import {
-  SubscrSearchRequest,
-  SubscrSearchResponse,
-} from 'types/HAFAS/Subscr/SubscrSearch';
-import {
-  SubscrUserCreateRequest,
-  SubscrUserCreateResponse,
-} from 'types/HAFAS/Subscr/SubscrUserCreate';
-import {
-  SubscrUserDeleteRequest,
-  SubscrUserDeleteResponse,
-} from 'types/HAFAS/Subscr/SubscrUserDelete';
-import Axios from 'axios';
-import parseLocL from './helper/parseLocL';
-import parsePolyline from 'server/HAFAS/helper/parsePolyline';
-import parseProduct from './helper/parseProduct';
 import type {
   HimSearchRequest,
   HimSearchResponse,
@@ -78,6 +54,30 @@ import type {
   StationBoardResponse,
 } from 'types/HAFAS/StationBoard';
 import type {
+  SubscrCreateRequest,
+  SubscrCreateResponse,
+} from 'types/HAFAS/Subscr/SubscrCreate';
+import type {
+  SubscrDeleteRequest,
+  SubscrDeleteResponse,
+} from 'types/HAFAS/Subscr/SubscrDelete';
+import type {
+  SubscrDetailsRequest,
+  SubscrDetailsResponse,
+} from 'types/HAFAS/Subscr/SubscrDetails';
+import type {
+  SubscrSearchRequest,
+  SubscrSearchResponse,
+} from 'types/HAFAS/Subscr/SubscrSearch';
+import type {
+  SubscrUserCreateRequest,
+  SubscrUserCreateResponse,
+} from 'types/HAFAS/Subscr/SubscrUserCreate';
+import type {
+  SubscrUserDeleteRequest,
+  SubscrUserDeleteResponse,
+} from 'types/HAFAS/Subscr/SubscrUserDelete';
+import type {
   TripSearchRequest,
   TripSearchResponse,
 } from 'types/HAFAS/TripSearch';
@@ -97,7 +97,7 @@ function createRequest(
 
   data.auth = auth;
 
-  // @ts-ignore 7053
+  // @ts-expect-error 7053
   const extraParam = profile.secret ? profile.secret(data) : undefined;
 
   return {

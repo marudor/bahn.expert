@@ -8,6 +8,7 @@ beforeEach(() => {
 });
 
 Cypress.on('window:before:load', (win) => {
-  // @ts-expect-error
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   delete win.fetch;
 });

@@ -11,14 +11,17 @@ import type { Abfahrt } from 'types/iris';
 
 const LazyReihung = loadable(() => import('client/Common/Components/Reihung'));
 
-// @ts-expect-error
-export const AbfahrtContext = createContext<{
+interface AbfahrtContextValues {
   abfahrt: Abfahrt;
   detail: boolean;
-}>();
-export const useAbfahrt = () => useContext(AbfahrtContext);
+}
 
-const wingStartEnd = (color: String) => ({
+// @ts-expect-error default context not needed
+export const AbfahrtContext = createContext<AbfahrtContextValues>();
+export const useAbfahrt = (): AbfahrtContextValues =>
+  useContext(AbfahrtContext);
+
+const wingStartEnd = (color: string) => ({
   content: '""',
   borderLeft: `1em solid ${color}`,
   position: 'absolute',

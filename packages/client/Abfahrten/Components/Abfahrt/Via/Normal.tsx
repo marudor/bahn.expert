@@ -1,7 +1,8 @@
 import { isHbf } from './index';
 import { makeStyles } from '@material-ui/core';
-import { ReactNode, useMemo } from 'react';
+import { useMemo } from 'react';
 import clsx from 'clsx';
+import type { FC, ReactNode } from 'react';
 import type { Stop } from 'types/iris';
 
 export const useStyles = makeStyles((theme) => ({
@@ -21,7 +22,7 @@ export const useStyles = makeStyles((theme) => ({
 interface Props {
   stops: Stop[];
 }
-export const NormalVia = ({ stops }: Props) => {
+export const NormalVia: FC<Props> = ({ stops }) => {
   const classes = useStyles();
   const stopsToRender = useMemo(() => {
     const stopsToRender: ReactNode[] = [];

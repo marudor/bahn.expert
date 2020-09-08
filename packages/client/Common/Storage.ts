@@ -1,6 +1,7 @@
 /* eslint-disable no-process-env */
-import { WebConfigMap } from 'client/useStorage';
-import Cookies, { CookieSetOptions } from 'universal-cookie';
+import Cookies from 'universal-cookie';
+import type { CookieSetOptions } from 'universal-cookie';
+import type { WebConfigMap } from 'client/useStorage';
 
 const setCookieOptions: CookieSetOptions = {
   maxAge: 100000000,
@@ -20,13 +21,13 @@ export interface StorageInterface {
 export class ServerStorage extends Cookies implements StorageInterface {
   get<K extends keyof WebConfigMap>(name: K): WebConfigMap[K] | undefined {
     const raw = super.get(name);
-    // @ts-expect-error
+    // @ts-expect-error works
     if (raw === 'false') return false;
-    // @ts-expect-error
+    // @ts-expect-error works
     if (raw === 'true') return true;
     return raw;
   }
-  set<K extends keyof WebConfigMap>(name: K, value: WebConfigMap[K]) {
+  set<K extends keyof WebConfigMap>(name: K, value: WebConfigMap[K]): void {
     return super.set(name, value, setCookieOptions);
   }
 }
@@ -46,11 +47,11 @@ export class ClientStorage extends ServerStorage {
     }
     return undefined;
   }
-  set<K extends keyof WebConfigMap>(name: K, value: WebConfigMap[K]) {
+  set<K extends keyof WebConfigMap>(name: K, value: WebConfigMap[K]): void {
     super.set(name, value);
     localStorage.setItem(name, JSON.stringify(value));
   }
-  remove(name: string) {
+  remove(name: string): void {
     super.remove(name);
     localStorage.removeItem(name);
   }

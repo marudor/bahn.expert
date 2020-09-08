@@ -5,7 +5,7 @@ import { useAbfahrtenUrlPrefix } from 'client/Abfahrten/provider/AbfahrtenConfig
 import { useCallback } from 'react';
 import { useUnfav } from 'client/Abfahrten/provider/FavProvider';
 import clsx from 'clsx';
-import type { MouseEvent, ReactNode } from 'react';
+import type { FC, MouseEvent, ReactNode } from 'react';
 import type { Station } from 'types/station';
 
 const useStyles = makeStyles((theme) => ({
@@ -49,12 +49,12 @@ interface FavEntryDisplayProps {
   'data-testid'?: string;
   clickable?: boolean;
 }
-export const FavEntryDisplay = ({
+export const FavEntryDisplay: FC<FavEntryDisplayProps> = ({
   deleteFav,
   text,
   clickable = true,
   'data-testid': testid,
-}: FavEntryDisplayProps) => {
+}) => {
   const classes = useStyles();
   return (
     <Paper
@@ -80,11 +80,11 @@ export const FavEntryDisplay = ({
   );
 };
 
-export const FavEntry = ({
+export const FavEntry: FC<Props> = ({
   fav,
   noDelete,
   'data-testid': testid = 'favEntry',
-}: Props) => {
+}) => {
   const urlPrefix = useAbfahrtenUrlPrefix();
   const unfav = useUnfav();
   const deleteFav = useCallback(

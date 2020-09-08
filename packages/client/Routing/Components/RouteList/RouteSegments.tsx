@@ -1,6 +1,6 @@
 import { RouteSegment } from './RouteSegment';
 import { useState } from 'react';
-import type { MouseEvent } from 'react';
+import type { FC, MouseEvent } from 'react';
 import type { Route$JourneySegment } from 'types/routing';
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
   className?: string;
 }
 
-export const RouteSegments = ({ segments, className }: Props) => {
+export const RouteSegments: FC<Props> = ({ segments, className }) => {
   const [detail, setDetail] = useState<undefined | string>();
 
   return (

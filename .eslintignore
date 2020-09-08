@@ -1,6 +1,6 @@
-flow-typed/**
-bahntests/**
 public/**
+research/**
+@types/**
 !.babelrc.js
 !.babelrc.server.js
 !.eslintrc.js

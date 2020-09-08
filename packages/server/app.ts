@@ -4,11 +4,12 @@ import Axios from 'axios';
 import createAdmin from './admin';
 import createDocsServer from './docsServer';
 import http from 'http';
-import Koa, { Context, Middleware } from 'koa';
+import Koa from 'koa';
 import KoaBodyparser from 'koa-bodyparser';
 import koaStatic from 'koa-static';
 import path from 'path';
 import storageMiddleware from './middleware/storageMiddleware';
+import type { Context, Middleware } from 'koa';
 
 function hotHelper(getMiddleware: () => Middleware) {
   if (process.env.NODE_ENV === 'production') {
@@ -18,7 +19,7 @@ function hotHelper(getMiddleware: () => Middleware) {
   return (ctx: Context, next: () => Promise<any>) => getMiddleware()(ctx, next);
 }
 
-export function createApp() {
+export function createApp(): Koa {
   const app = new Koa();
 
   const sentryDSN = process.env.SENTRY_DSN;
@@ -69,7 +70,7 @@ export function createApp() {
       });
   }
 
-  devPromise.then(() => {
+  void devPromise.then(() => {
     app.use(hotHelper(() => errorHandler));
     app.use(hotHelper(() => normalizePathMiddleware()));
     app.use(storageMiddleware());
@@ -127,7 +128,7 @@ export function createApp() {
   return app;
 }
 
-export default () => {
+export default (): http.Server => {
   const port = process.env.WEB_PORT || 9042;
 
   const server = http.createServer();
@@ -136,6 +137,7 @@ export default () => {
 
   const app = createApp();
 
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
   server.addListener('request', app.callback());
   server.listen(port);
   // istanbul ignore next

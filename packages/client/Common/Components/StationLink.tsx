@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { StationSearchType } from 'types/station';
 import { stopPropagation } from 'client/Common/stopPropagation';
+import type { FC } from 'react';
 
 interface Props {
   stationName: string;
@@ -9,13 +10,13 @@ interface Props {
   urlPrefix?: string;
 }
 
-export const StationLink = ({
+export const StationLink: FC<Props> = ({
   stationName,
   searchType = StationSearchType.stationsData,
   className,
   urlPrefix = '/',
   ...rest
-}: Props) => {
+}) => {
   return (
     <Link
       data-testid="stationLink"

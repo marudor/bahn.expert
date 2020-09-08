@@ -2,6 +2,7 @@ import { makeStyles } from '@material-ui/core';
 import { Platform } from 'client/Common/Components/Platform';
 import { Times } from './Times';
 import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
+import type { FC } from 'react';
 
 const useStyles = makeStyles({
   wrap: {
@@ -14,7 +15,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const End = () => {
+export const End: FC = () => {
   const classes = useStyles();
   const { abfahrt } = useAbfahrt();
   return (

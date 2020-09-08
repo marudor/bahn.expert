@@ -1,6 +1,7 @@
 import { BaseHeader } from 'client/Common/Components/BaseHeader';
 import { BugReport, Extension, Message } from '@material-ui/icons';
 import { Button, makeStyles } from '@material-ui/core';
+import type { FC } from 'react';
 
 const Privacy = () => (
   <div data-testid="Privacy">
@@ -61,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const About = () => {
+export const About: FC = () => {
   const classes = useStyles();
   return (
     <>

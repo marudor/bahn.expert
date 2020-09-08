@@ -1,10 +1,11 @@
 import { Loading, LoadingType } from './Loading';
 import { makeStyles, MenuItem, Paper, TextField } from '@material-ui/core';
 import { MyLocation } from '@material-ui/icons';
-import { ReactNode, SyntheticEvent, useCallback, useRef } from 'react';
+import { useCallback, useRef } from 'react';
 import { useStationSearch } from 'client/Common/hooks/useStationSearch';
 import Downshift from 'downshift';
 import type { AllowedHafasProfile } from 'types/HAFAS';
+import type { FC, ReactNode, SyntheticEvent } from 'react';
 import type { Station, StationSearchType } from 'types/station';
 
 const useStyles = makeStyles((theme) => ({
@@ -57,7 +58,7 @@ export interface Props {
   additionalIcon?: ReactNode;
 }
 
-export const StationSearch = ({
+export const StationSearch: FC<Props> = ({
   id,
   onChange,
   value,
@@ -67,7 +68,7 @@ export const StationSearch = ({
   profile,
   maxSuggestions = 7,
   additionalIcon,
-}: Props) => {
+}) => {
   const classes = useStyles({ additionalIcon: Boolean(additionalIcon) });
   const inputRef = useRef<HTMLInputElement>();
 
@@ -89,7 +90,7 @@ export const StationSearch = ({
       e.stopPropagation();
       navigator.geolocation.getCurrentPosition(
         (p) => {
-          loadOptions(p.coords);
+          void loadOptions(p.coords);
           selectRef.current?.openMenu();
         },
         (_e: any) => {
@@ -113,7 +114,7 @@ export const StationSearch = ({
       <Downshift
         id={id}
         defaultHighlightedIndex={0}
-        // @ts-ignore
+        // @ts-expect-error typing for ref wrong
         ref={selectRef}
         selectedItem={value || null}
         itemToString={itemToString}
@@ -137,7 +138,7 @@ export const StationSearch = ({
               if (event.target.value === '') {
                 clearSelection();
               } else {
-                loadOptions(event.target.value);
+                void loadOptions(event.target.value);
               }
             },
             onFocus: () => {

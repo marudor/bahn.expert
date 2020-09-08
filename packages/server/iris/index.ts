@@ -1,9 +1,9 @@
-import { AxiosInstance } from 'axios';
 import { compareAsc } from 'date-fns';
 import { getStation } from './station';
 import { noncdRequest } from './helper';
 import Timetable from './Timetable';
 import type { Abfahrt, AbfahrtenResult } from 'types/iris';
+import type { AxiosInstance } from 'axios';
 
 interface AbfahrtenOptions {
   lookahead?: number;
@@ -60,7 +60,7 @@ const timeByReal = (a: Abfahrt) => {
 const sortAbfahrt = (timeFn: typeof timeByReal) => (a: Abfahrt, b: Abfahrt) => {
   const timeA = timeFn(a);
   const timeB = timeFn(b);
-  // @ts-ignore - either arrival or departure always exists
+  // @ts-expect-error either arrival or departure always exists
   const sort = compareAsc(timeA, timeB);
 
   if (!sort) {
@@ -77,7 +77,7 @@ const sortAbfahrt = (timeFn: typeof timeByReal) => (a: Abfahrt, b: Abfahrt) => {
 
 export async function getAbfahrten(
   evaId: string,
-  withRelated: boolean = true,
+  withRelated = true,
   options: AbfahrtenOptions = {},
   request: AxiosInstance = noncdRequest,
 ): Promise<AbfahrtenResult> {

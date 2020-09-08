@@ -21,7 +21,7 @@ const DBLoyalityCards: { [key in LoyalityCard]: number } = {
 export default (
   loyalityCard?: LoyalityCard,
   _profile: AllowedHafasProfile = AllowedHafasProfile.DB,
-) => {
+): number | undefined => {
   if (!loyalityCard) return;
 
   return DBLoyalityCards[loyalityCard];

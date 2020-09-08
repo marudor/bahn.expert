@@ -32,7 +32,8 @@ function getSecret() {
 
 export const secret = getSecret();
 
-export default function createChecksum(data: any) {
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export default function createChecksum(data: any): string {
   const hasher = Crypto.createHash('md5');
 
   hasher.update(JSON.stringify(data) + secret);

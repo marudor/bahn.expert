@@ -1,5 +1,5 @@
-import { JourneyFilter, OptionalLocL } from 'types/HAFAS';
-import { SubscrChannel } from 'types/HAFAS/Subscr/SubscrUserCreate';
+import type { JourneyFilter, OptionalLocL } from 'types/HAFAS';
+import type { SubscrChannel } from 'types/HAFAS/Subscr/SubscrUserCreate';
 
 export interface SubscrServiceDays {
   endDate: string;

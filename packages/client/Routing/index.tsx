@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core';
 import { renderRoutes } from 'react-router-config';
 import { routes } from './routes';
 import { RoutingFavProvider } from 'client/Routing/provider/RoutingFavProvider';
+import type { FC } from 'react';
 
 const useStyles = makeStyles({
   wrap: {
@@ -11,7 +12,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const Routing = () => {
+export const Routing: FC = () => {
   const classes = useStyles();
   return (
     <RoutingFavProvider>

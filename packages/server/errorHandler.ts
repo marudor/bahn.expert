@@ -1,9 +1,9 @@
 import * as Sentry from '@sentry/node';
-import type { Context } from 'koa';
+import type { Context, Next } from 'koa';
 
 const handledHafasError = ['H9380', 'NO_MATCH'];
 
-export default async (ctx: Context, next: Function) => {
+export default async (ctx: Context, next: Next): Promise<void> => {
   try {
     // eslint-disable-next-line callback-return
     await next();
@@ -16,7 +16,7 @@ export default async (ctx: Context, next: Function) => {
       };
       ctx.status = e.response.status || 500;
     } else {
-      // @ts-ignore
+      // @ts-expect-error works
       if (e instanceof Error && !handledHafasError.includes(e.errorCode)) {
         Sentry.withScope((scope) => {
           if (e.data) {
@@ -27,13 +27,13 @@ export default async (ctx: Context, next: Function) => {
           );
           Sentry.captureException(e);
         });
-        // @ts-ignore
+        // @ts-expect-error works
         if (e.status === 400) {
           try {
             const parsed = JSON.parse(e.message);
 
             ctx.body = parsed;
-            // @ts-ignore
+            // @ts-expect-error works
             ctx.status = e.status || 500;
 
             return;

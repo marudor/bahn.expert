@@ -20,7 +20,8 @@ async function fetchPlanWR() {
 }
 
 if (process.env.NODE_ENV !== 'test') {
-  fetchPlanWR();
+  void fetchPlanWR();
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
   setInterval(fetchPlanWR, 8 * 60 * 1000 * 60);
 }
 

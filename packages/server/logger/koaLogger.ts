@@ -39,7 +39,10 @@ const formatResponseMessage = (ctx: Context, data: any) =>
     data.duration,
   );
 
-export default (logger: Logger) => (ctx: Context, next: Next) => {
+export default (logger: Logger) => (
+  ctx: Context,
+  next: Next,
+): Promise<void> => {
   ctx.log = logger;
 
   const reqId = ctx.request.get(headerName) || nanoid();
@@ -77,7 +80,7 @@ export default (logger: Logger) => (ctx: Context, next: Next) => {
 
     ctx.log[level](responseData, formatResponseMessage(ctx, responseData));
 
-    // @ts-ignore
+    // @ts-expect-error mocked
     ctx.log = null;
   };
 

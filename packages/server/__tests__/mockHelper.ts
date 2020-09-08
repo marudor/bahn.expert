@@ -2,7 +2,7 @@ import Nock from 'nock';
 
 const emptyTimetable = '<timetable station="empty"></timetable>';
 
-export function mockLageplan(bahnhof: string = 'test', lageplan: string = '') {
+export function mockLageplan(bahnhof = 'test', lageplan = ''): void {
   Nock('https://www.bahnhof.de')
     .get('/service/search/bahnhof-de/520608')
     .query({ query: bahnhof })
@@ -12,8 +12,8 @@ export function mockLageplan(bahnhof: string = 'test', lageplan: string = '') {
 export function mockSearch(
   count: number,
   results: string[],
-  startTime: number = 12,
-) {
+  startTime = 12,
+): void {
   for (let i = 0; i <= count; i += 1) {
     const hour = startTime + i;
 
@@ -23,7 +23,7 @@ export function mockSearch(
   }
 }
 
-export function mockFchg(result: string = emptyTimetable) {
+export function mockFchg(result: string = emptyTimetable): void {
   Nock('https://iris.noncd.db.de')
     .get('/iris-tts/timetable/fchg/test')
     .reply(200, result);

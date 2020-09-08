@@ -43,11 +43,7 @@ import type {
   ParsedJourneyMatchResponse,
 } from 'types/HAFAS/JourneyMatch';
 import type { ParsedJourneyDetails } from 'types/HAFAS/JourneyDetails';
-import type {
-  Route$Auslastung,
-  RoutingResult,
-  SingleRoute,
-} from 'types/routing';
+import type { RoutingResult, SingleRoute } from 'types/routing';
 import type {
   TripSearchOptionsV1,
   TripSearchOptionsV2,
@@ -125,6 +121,7 @@ export class HafasController extends Controller {
     return details;
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   @Get('/auslastung/{start}/{destination}/{trainNumber}/{time}')
   @Tags('HAFAS')
   auslastung(
@@ -135,7 +132,7 @@ export class HafasController extends Controller {
      * Unix Time (ms)
      */
     time: number,
-  ): Promise<Route$Auslastung> {
+  ) {
     return Auslastung(start, destination, trainNumber, time);
   }
 
@@ -220,7 +217,7 @@ export class HafasController extends Controller {
     @Request() ctx: Context,
     @Query() lat: number,
     @Query() lng: number,
-    @Query() maxDist: number = 1000,
+    @Query() maxDist = 1000,
     @Query() profile?: AllowedHafasProfile,
   ): Promise<HafasStation[]> {
     return LocGeoPos(
@@ -276,7 +273,7 @@ export class HafasController extends Controller {
   async positionForTrain(
     trainName: string,
     @Query() profile?: AllowedHafasProfile,
-  ) {
+  ): Promise<ParsedJourneyGeoPosResponse> {
     const result = await PositionForTrain(trainName, profile);
 
     if (!result) {
@@ -291,6 +288,7 @@ export class HafasController extends Controller {
   @Hidden()
   @Post('/rawHafas')
   rawHafas(
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     @Body() body: any,
     @Query() profile?: AllowedHafasProfile,
   ): Promise<any> {

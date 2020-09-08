@@ -1,9 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 import { BRInfo } from './BRInfo';
-import { Fahrzeug, InheritedProps } from './Fahrzeug';
+import { Fahrzeug } from './Fahrzeug';
 import { makeStyles } from '@material-ui/core';
 import { useMemo } from 'react';
 import type { Fahrzeuggruppe } from 'types/reihung';
+import type { FC } from 'react';
+import type { InheritedProps } from './Fahrzeug';
 
 const useStyles = makeStyles({
   bezeichnung: {
@@ -24,14 +26,14 @@ interface Props extends InheritedProps {
   showUIC: boolean;
 }
 
-export const Gruppe = ({
+export const Gruppe: FC<Props> = ({
   gruppe,
   showDestination,
   showFahrzeugGruppe,
   showGruppenZugnummer,
   originalTrainNumber,
   ...rest
-}: Props) => {
+}) => {
   const classes = useStyles();
   const gruppenPos = {
     left: `${(gruppe.startPercentage - rest.correctLeft) * rest.scale}%`,

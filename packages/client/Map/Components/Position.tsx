@@ -1,12 +1,13 @@
 import { Marker, Tooltip } from 'react-leaflet';
 import { useCallback } from 'react';
 import { useMapProvider } from 'client/Map/provider/MapProvider';
+import type { FC } from 'react';
 import type { SingleParsedJourneyGeoPos } from 'types/HAFAS/JourneyGeoPos';
 
 interface Props {
   journey: SingleParsedJourneyGeoPos;
 }
-export const Position = ({ journey }: Props) => {
+export const Position: FC<Props> = ({ journey }) => {
   const { permanent, setActiveJourney, activeJourney } = useMapProvider();
 
   const setCurrentJourneyActive = useCallback(() => {

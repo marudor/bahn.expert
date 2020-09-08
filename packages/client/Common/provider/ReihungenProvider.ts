@@ -38,7 +38,7 @@ function useReihungInner() {
       ]);
       const newReihungen = reihungen.reduce((agg, f) => {
         if (f) {
-          agg[f.zugnummer + currentStation + scheduledDeparture] = f;
+          agg[`${f.zugnummer}${currentStation}${scheduledDeparture}`] = f;
         }
         return agg;
       }, {} as Record<string, Formation>);
@@ -46,7 +46,7 @@ function useReihungInner() {
       if (!reihung) {
         reihung = null;
       }
-      const key = trainNumber + currentStation + scheduledDeparture;
+      const key = `${trainNumber}${currentStation}${scheduledDeparture}`;
 
       setReihungen((oldReihungen) => ({
         ...oldReihungen,

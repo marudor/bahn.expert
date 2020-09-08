@@ -3,6 +3,7 @@ import { stopPropagation } from 'client/Common/stopPropagation';
 import { Tooltip } from '@material-ui/core';
 import { Train } from '@material-ui/icons';
 import type { CommonProductInfo, CommonStopInfo } from 'types/HAFAS';
+import type { FC } from 'react';
 import type { Station } from 'types/station';
 
 interface Props {
@@ -16,13 +17,13 @@ interface Props {
 // 30 Minutes in ms
 const timeConstraint = 30 * 60 * 1000;
 
-export const TravelynxLink = ({
+export const TravelynxLink: FC<Props> = ({
   departure,
   arrival,
   station,
   train,
   className,
-}: Props) =>
+}) =>
   departure &&
   !departure.cancelled &&
   isBefore(

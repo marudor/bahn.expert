@@ -1,15 +1,16 @@
-import { AllowedHafasProfile, ParsedPolyline } from 'types/HAFAS';
+import { AllowedHafasProfile } from 'types/HAFAS';
 import { format } from 'date-fns';
-import { ParsedJourneyCourseResponse } from 'types/HAFAS/JourneyCourse';
-import {
-  ParsedJourneyGeoPosResponse,
-  SingleParsedJourneyGeoPos,
-} from 'types/HAFAS/JourneyGeoPos';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useQuery } from 'client/Common/hooks/useQuery';
 import { useToggleState } from 'client/Common/hooks/useToggleState';
 import Axios from 'axios';
 import constate from 'constate';
+import type { ParsedJourneyCourseResponse } from 'types/HAFAS/JourneyCourse';
+import type {
+  ParsedJourneyGeoPosResponse,
+  SingleParsedJourneyGeoPos,
+} from 'types/HAFAS/JourneyGeoPos';
+import type { ParsedPolyline } from 'types/HAFAS';
 
 function useMapDefaults() {
   const query = useQuery();
@@ -99,7 +100,9 @@ function useMap() {
             [activeJourney.jid]: r.data.polylines[0],
           }));
         })
-        .catch(() => {});
+        .catch(() => {
+          // do nothing on catch
+        });
     }
   }, [activeJourney, activePolyline, profile]);
   const fetchPositions = useCallback(() => {
@@ -132,7 +135,9 @@ function useMap() {
       },
     )
       .then((r) => setPositions(r.data))
-      .catch(() => {});
+      .catch(() => {
+        // do nothing on error
+      });
   }, [includeFV, includeNV, onlyRT, profile]);
 
   useEffect(() => {

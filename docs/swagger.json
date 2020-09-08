@@ -277,7 +277,7 @@
         "type": "object",
         "additionalProperties": false
       },
-      "ParsedProduct": {
+      "CommonProductInfo": {
         "properties": {
           "name": {
             "type": "string"
@@ -301,6 +301,9 @@
         "required": ["name"],
         "type": "object",
         "additionalProperties": false
+      },
+      "ParsedProduct": {
+        "$ref": "#/components/schemas/CommonProductInfo"
       },
       "PubChL": {
         "properties": {
@@ -3929,7 +3932,7 @@
           }
         ]
       },
-      "JourneyGeoPosOptions": {
+      "JourneyGeoPosRequestOptions": {
         "properties": {
           "ageOfReport": {
             "type": "boolean"
@@ -3994,6 +3997,9 @@
         },
         "type": "object",
         "additionalProperties": false
+      },
+      "JourneyGeoPosOptions": {
+        "$ref": "#/components/schemas/JourneyGeoPosRequestOptions"
       },
       "TripSearchVia": {
         "properties": {

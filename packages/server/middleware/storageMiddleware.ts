@@ -1,5 +1,5 @@
 import { ServerStorage } from 'client/Common/Storage';
-import type { Context } from 'koa';
+import type { Context, Next } from 'koa';
 import type { CookieChangeOptions } from 'universal-cookie';
 
 declare module 'koa' {
@@ -9,11 +9,11 @@ declare module 'koa' {
 }
 
 export default function storageMiddleware() {
-  return (ctx: Context, next: () => void) => {
+  return (ctx: Context, next: Next): Promise<void> => {
     ctx.request.storage = new ServerStorage(ctx.request.headers.cookie || '');
     ctx.request.storage.addChangeListener((change: CookieChangeOptions) => {
       if (change.value === undefined) {
-        // @ts-ignore
+        // @ts-expect-error ???
         ctx.cookies.set(change.name, null);
       } else {
         ctx.cookies.set(change.name, change.value, change.options);

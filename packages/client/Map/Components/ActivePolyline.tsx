@@ -2,9 +2,10 @@ import { makeStyles } from '@material-ui/core';
 import { Marker, Polyline, Tooltip } from 'react-leaflet';
 import { useMapProvider } from 'client/Map/provider/MapProvider';
 import { useMemo } from 'react';
-// @ts-ignore
+import type { FC } from 'react';
+// @ts-expect-error TS doesnt know png
 import icon from 'leaflet/dist/images/marker-icon.png';
-// @ts-ignore
+// @ts-expect-error TS doesnt know png
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import L from 'leaflet';
 
@@ -15,7 +16,7 @@ const useStyles = makeStyles({
     },
   },
 });
-export const ActivePolyline = () => {
+export const ActivePolyline: FC = () => {
   useStyles();
   const { activePolyline, activeJourney } = useMapProvider();
   const trainIcon = useMemo(

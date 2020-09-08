@@ -7,23 +7,19 @@ import mockAbfahrt from './__fixtures__/mockAbfahrt.json';
 
 describe('Auslastung', () => {
   const renderAuslastung = () =>
-    render(
-      Auslastung,
-      { abfahrt: mockAbfahrt },
-      {
-        provider: [
-          {
-            Provider: AuslastungsProvider,
-          },
-        ],
-        context: [
-          {
-            ...AbfahrtContext,
-            initialState: { abfahrt: mockAbfahrt, detail: false },
-          },
-        ],
-      },
-    );
+    render(Auslastung, undefined, {
+      provider: [
+        {
+          Provider: AuslastungsProvider,
+        },
+      ],
+      context: [
+        {
+          ...AbfahrtContext,
+          initialState: { abfahrt: mockAbfahrt, detail: false },
+        },
+      ],
+    });
 
   it('shows loading first, nothing on error', async () => {
     nock

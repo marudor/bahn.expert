@@ -30,7 +30,7 @@ function buildResults(options: Options): any[] {
 export async function testHamburgSearch(
   searchFn: (s: string) => Promise<Station[]>,
   options: Options = {},
-) {
+): Promise<void> {
   const result = await searchFn('Hamburg');
 
   const expectedResult = buildResults(options);

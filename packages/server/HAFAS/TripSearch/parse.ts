@@ -34,8 +34,8 @@ const nameRegex = /O=([^@]+)/;
 const evaRegex = /L=(\d+)/;
 
 function parseFullStation(fullStation: string): Station {
-  const titleMatch = fullStation.match(nameRegex);
-  const idMatch = fullStation.match(evaRegex);
+  const titleMatch = nameRegex.exec(fullStation);
+  const idMatch = evaRegex.exec(fullStation);
 
   let title = '';
   let id = '';

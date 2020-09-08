@@ -1,9 +1,10 @@
 import { createTheme } from 'client/Themes';
-import { PropsWithChildren, useMemo, useState } from 'react';
 import { ThemeType } from 'client/Themes/type';
+import { useMemo, useState } from 'react';
 import { useQuery } from 'client/Common/hooks/useQuery';
 import { useStorage } from 'client/useStorage';
 import constate from 'constate';
+import type { FC } from 'react';
 
 function useThemeInner({ initialThemeType }: { initialThemeType: ThemeType }) {
   const [themeType, setThemeType] = useState(initialThemeType);
@@ -21,12 +22,12 @@ function useThemeInner({ initialThemeType }: { initialThemeType: ThemeType }) {
 
 export const [InnerThemeProvider, useTheme] = constate(useThemeInner);
 
-export const ThemeProvider = ({ children }: PropsWithChildren<{}>) => {
+export const ThemeProvider: FC = ({ children }) => {
   const storage = useStorage();
   const query = useQuery();
   let initialTheme = query.theme;
   if (!initialTheme) {
-    // @ts-expect-error
+    // @ts-expect-error works
     initialTheme = ThemeType[storage.get('theme')];
     if (!initialTheme && !global.SERVER) {
       initialTheme = window.matchMedia('(prefers-color-scheme: light)').matches

@@ -10,7 +10,17 @@ import {
 import { ThemeType } from './type';
 import type { Theme as MuiTheme } from '@material-ui/core';
 
-export function getColors(theme: MuiTheme, themeType: ThemeType) {
+interface Colors {
+  red: string;
+  green: string;
+  yellow: string;
+  orange: string;
+  blue: string;
+  shadedBackground: string;
+  transparentBackground: string;
+}
+
+export function getColors(theme: MuiTheme, themeType: ThemeType): Colors {
   const backgroundAugment = theme.palette.augmentColor({
     main: theme.palette.background.default,
   });

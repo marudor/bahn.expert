@@ -33,7 +33,7 @@ export default async (
   type: 'S' | 'ALL' = 'ALL',
   profile?: AllowedHafasProfile,
   raw?: boolean,
-) => {
+): Promise<HafasStation[]> => {
   const req: LocMatchRequest = {
     req: {
       input: {
@@ -60,7 +60,7 @@ export default async (
 
   const result = await makeRequest(req, raw ? undefined : parseFn, profile);
 
-  cache.set(cacheKey, result);
+  void cache.set(cacheKey, result);
 
   return result;
 };

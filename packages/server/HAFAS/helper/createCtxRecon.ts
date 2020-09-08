@@ -16,7 +16,7 @@ export default ({
   lastStop,
   trainName,
   messages,
-}: CreateCtxReconOptions) => {
+}: CreateCtxReconOptions): string => {
   // highly unknown what this exactly does
   // some replacement trains need a 2 here.
   let replacementNumber = 1;

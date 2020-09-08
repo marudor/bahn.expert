@@ -4,6 +4,7 @@ import { getAbfahrten } from 'server/iris';
 import { noncdRequest, openDataRequest } from 'server/iris/helper';
 import wingInfo from 'server/iris/wings';
 import type { AbfahrtenResult, WingDefinition } from 'types/iris';
+import type { IrisStation } from 'types/station';
 
 @Route('/iris/v1')
 export class IrisController extends Controller {
@@ -47,13 +48,13 @@ export class IrisController extends Controller {
 
   @Get('/station/{searchTerm}')
   @Tags('IRIS V1')
-  station(searchTerm: string) {
+  station(searchTerm: string): Promise<IrisStation[]> {
     return stationSearch(searchTerm);
   }
 
   @Get('/stations')
   @Tags('IRIS V1')
-  stations() {
+  stations(): Promise<IrisStation[]> {
     return allStations();
   }
 }

@@ -7,7 +7,7 @@ export default (
   scheduledTime: number,
   trnCmpSX?: TrnCmpSX,
   train?: ParsedProduct,
-) => {
+): boolean | undefined => {
   if (isBefore(addDays(new Date(), 1), scheduledTime)) return false;
   if (train?.type && allowdTypes.includes(train.type)) return true;
 

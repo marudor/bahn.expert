@@ -1,6 +1,6 @@
-import * as React from 'react';
 import { makeStyles } from '@material-ui/core';
 import clsx from 'clsx';
+import type { FC, ReactElement } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   absolute: {
@@ -80,9 +80,9 @@ const useStyles = makeStyles((theme) => ({
 interface Props {
   isLoading?: boolean;
   className?: string;
-  children?: React.ReactElement;
   type?: LoadingType;
   relative?: boolean;
+  children?: ReactElement;
 }
 
 export const enum LoadingType {
@@ -122,13 +122,13 @@ const InnerLoading = ({ type, relative }: Pick<Props, 'type' | 'relative'>) => {
   }
 };
 
-export const Loading = ({
+export const Loading: FC<Props> = ({
   isLoading,
   className,
   children,
   relative = false,
   type = LoadingType.grid,
-}: Props) => {
+}) => {
   if (isLoading || !children) {
     return (
       <div data-testid="loading" className={className}>

@@ -1,5 +1,5 @@
-import { NewsResponse } from 'business-hub/types/News';
 import { request } from './request';
+import type { NewsResponse } from 'business-hub/types/News';
 
 interface NewsOptions {
   offset?: number;

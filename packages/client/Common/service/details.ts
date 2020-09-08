@@ -1,5 +1,6 @@
-import Axios, { Canceler } from 'axios';
+import Axios from 'axios';
 import type { AllowedHafasProfile } from 'types/HAFAS';
+import type { Canceler } from 'axios';
 import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 import type { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
 

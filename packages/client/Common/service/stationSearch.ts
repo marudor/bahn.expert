@@ -1,7 +1,8 @@
 /* eslint import/prefer-default-export: 0 */
 import { AllowedHafasProfile } from 'types/HAFAS';
-import { Station, StationSearchType } from 'types/station';
+import { StationSearchType } from 'types/station';
 import Axios from 'axios';
+import type { Station } from 'types/station';
 
 export async function getStationsFromAPI(
   type: StationSearchType = StationSearchType.default,

@@ -38,7 +38,11 @@ const parseJourneyDetails = (
   return parsedJourney as ParsedJourneyDetails;
 };
 
-export default (jid: string, profile?: AllowedHafasProfile, raw?: boolean) => {
+export default (
+  jid: string,
+  profile?: AllowedHafasProfile,
+  raw?: boolean,
+): Promise<ParsedJourneyDetails> => {
   const req: JourneyDetailsRequest = {
     req: { jid },
     meth: 'JourneyDetails',

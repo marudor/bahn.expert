@@ -5,6 +5,7 @@ import { makeStyles, Tooltip } from '@material-ui/core';
 import { PlannedType } from 'client/Common/Components/PlannedType';
 import { useContext } from 'react';
 import clsx from 'clsx';
+import type { FC } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   wrap: {
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 interface Props {
   train: string;
 }
-export const Header = ({ train }: Props) => {
+export const Header: FC<Props> = ({ train }) => {
   const classes = useStyles();
   const { details } = useContext(DetailsContext);
 

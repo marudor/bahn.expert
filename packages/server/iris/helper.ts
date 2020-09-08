@@ -57,13 +57,12 @@ export function parseTs(ts?: string): undefined | number {
   }
 }
 
-export function calculateVia(route: any, maxParts: number = 3) {
+const hbfRegex = /(HB$|Hbf|Centraal|Flughafen)/;
+export function calculateVia(route: any, maxParts = 3): void {
   const via: Stop[] = [...route].filter((v) => !v.cancelled);
 
   via.pop();
-  const important = via.filter((v) =>
-    v.name.match(/(HB$|Hbf|Centraal|Flughafen)/),
-  );
+  const important = via.filter((v) => hbfRegex.exec(v.name));
 
   const showing = [];
 

@@ -5,12 +5,13 @@ import {
 import { CacheDatabases, createNewCache } from 'server/cache';
 import { logger } from 'server/logger';
 import { stationSearch as SBBSearch } from 'sbb';
-import { Station, StationSearchType } from 'types/station';
+import { StationSearchType } from 'types/station';
 import DBNavigatorSearch from 'server/HAFAS/LocMatch';
 import DS100 from 'server/Search/DS100';
 import OpenDataOfflineSearch from './OpenDataOffline';
 import OpenDataSearch from './OpenData';
 import StationsDataSearch from './StationsData';
+import type { Station } from 'types/station';
 
 const defaultSearch = canUseBusinessHub
   ? BusinessHubSearch
@@ -21,7 +22,9 @@ const stationSearchCache = createNewCache<string, Station[]>(
   CacheDatabases.StationSearch,
 );
 
-export function getSearchMethod(type?: StationSearchType) {
+export function getSearchMethod(
+  type?: StationSearchType,
+): (searchTerm: string) => Promise<Station[]> {
   switch (type) {
     case StationSearchType.hafas:
       return DBNavigatorSearch;
@@ -43,8 +46,8 @@ export function getSearchMethod(type?: StationSearchType) {
 export default async (
   rawSearchTerm: string,
   type?: StationSearchType,
-  maxStations: number = 6,
-) => {
+  maxStations = 6,
+): Promise<Station[]> => {
   const searchTerm = rawSearchTerm.replace(/ {2}/g, ' ');
   const cacheKey = `${type}${searchTerm}`;
   const cached = await stationSearchCache.get(cacheKey);
@@ -78,7 +81,7 @@ export default async (
       result = [ds100Station, ...result];
     }
 
-    stationSearchCache.set(cacheKey, result);
+    void stationSearchCache.set(cacheKey, result);
 
     return result.slice(0, maxStations);
   } catch (e) {

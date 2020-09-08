@@ -8,6 +8,7 @@ import { Route, Switch } from 'react-router-dom';
 import { RoutingProvider } from 'client/Routing/provider/RoutingProvider';
 import { useEffect } from 'react';
 import loadable from '@loadable/component';
+import type { FC } from 'react';
 
 const lazyOptions = {
   fallback: <Loading />,
@@ -48,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const App = () => {
+export const App: FC = () => {
   useStyles();
   useEffect(() => {
     const jssStyles = document.querySelector('#jss');

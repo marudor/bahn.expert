@@ -1,11 +1,13 @@
 import { AuslastungsValue } from 'types/routing';
-import { makeStyles, Theme } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import Close from '@material-ui/icons/Close';
 import clsx from 'clsx';
 import Done from '@material-ui/icons/Done';
 import ErrorOutline from '@material-ui/icons/ErrorOutline';
 import Help from '@material-ui/icons/Help';
 import Warning from '@material-ui/icons/Warning';
+import type { FC } from 'react';
+import type { Theme } from '@material-ui/core';
 
 function getIcon(auslastung?: AuslastungsValue) {
   switch (auslastung) {
@@ -45,11 +47,11 @@ const useStyles = makeStyles((theme) => ({
 export interface Props {
   auslastung?: AuslastungsValue;
 }
-export const SingleAuslastungsDisplay = ({ auslastung }: Props) => {
+export const SingleAuslastungsDisplay: FC<Props> = ({ auslastung }) => {
   const classes = useStyles();
 
   return (
-    // @ts-expect-error
+    // @ts-expect-error works
     <span className={clsx(classes[auslastung], classes.wrap)}>
       {getIcon(auslastung)}
     </span>

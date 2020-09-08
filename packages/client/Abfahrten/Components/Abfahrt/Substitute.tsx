@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core';
+import type { FC } from 'react';
 import type { SubstituteRef } from 'types/iris';
 
 const useStyles = makeStyles({
@@ -11,7 +12,7 @@ interface Props {
   substitute: SubstituteRef;
 }
 
-export const Substitute = ({ substitute }: Props) => {
+export const Substitute: FC<Props> = ({ substitute }) => {
   const classes = useStyles();
   return (
     <>

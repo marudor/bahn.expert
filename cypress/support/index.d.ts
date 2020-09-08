@@ -1,4 +1,5 @@
 /* eslint-disable no-redeclare */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 interface MockOptions {
   lookahead?: number;

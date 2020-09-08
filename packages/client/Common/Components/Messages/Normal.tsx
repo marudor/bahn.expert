@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 import { useMemo } from 'react';
+import type { FC } from 'react';
 import type { Message } from 'types/iris';
 
 export const useStyles = makeStyles((theme) => ({
@@ -13,7 +14,7 @@ export const useStyles = makeStyles((theme) => ({
 interface Props {
   messages: Message[];
 }
-export const NormalMessages = ({ messages }: Props) => {
+export const NormalMessages: FC<Props> = ({ messages }) => {
   const classes = useStyles();
   const messagesDisplay = useMemo(
     () => messages.map((m) => ('head' in m ? m.head : m.text)).join(' +++ '),

@@ -5,22 +5,19 @@ import {
 } from 'business-hub';
 import { Controller, Get, Query, Request, Response, Route, Tags } from 'tsoa';
 import { getStation } from 'server/iris/station';
-import {
-  IrisStationWithRelated,
-  Station,
-  StationSearchType,
-} from 'types/station';
+import { StationSearchType } from 'types/station';
 import DS100 from 'server/Search/DS100';
 import stationSearch from 'server/Search';
-import type { Context } from 'koa';
+import type { Context, Next } from 'koa';
 import type { DetailBusinessHubStation } from 'business-hub/types/StopPlaces';
+import type { IrisStationWithRelated, Station } from 'types/station';
 
 export const validationOverwrite = [
   {
     url: '/station/v1/search/:searchTerm',
     type: 'get',
-    middleware: (ctx: any, next: any) => {
-      // @ts-ignore
+    middleware: (ctx: Context, next: Next): Promise<any> => {
+      // @ts-expect-error enum works
       if (!StationSearchType[ctx.query.type]) {
         ctx.query.type = StationSearchType.default;
       }

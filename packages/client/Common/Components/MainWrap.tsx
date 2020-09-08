@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
-import { ReactNode } from 'react';
 import clsx from 'clsx';
+import type { FC, ReactNode } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   noHeader: {
@@ -17,7 +17,7 @@ interface Props {
   children: ReactNode;
 }
 
-export const MainWrap = ({ noHeader, children }: Props) => {
+export const MainWrap: FC<Props> = ({ noHeader, children }) => {
   const classes = useStyles();
   return (
     <div className={clsx(classes.wrap, noHeader && classes.noHeader)}>

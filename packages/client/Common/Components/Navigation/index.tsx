@@ -9,9 +9,10 @@ import {
   SwipeableDrawer,
 } from '@material-ui/core';
 import { NavigationContext } from './NavigationContext';
-import { ReactNode, useCallback, useMemo, useState } from 'react';
 import { ThemeSelection } from './ThemeSelection';
+import { useCallback, useMemo, useState } from 'react';
 import { Zugsuche } from 'client/Common/Components/Zugsuche';
+import type { FC, ReactNode } from 'react';
 
 const useStyles = makeStyles({
   headline: {
@@ -32,7 +33,7 @@ interface Props {
   children: ReactNode;
 }
 
-export const Navigation = ({ children }: Props) => {
+export const Navigation: FC<Props> = ({ children }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const toggleDrawer = useCallback(() => {

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { stopPropagation } from 'client/Common/stopPropagation';
 import qs from 'qs';
 import type { CommonProductInfo } from 'types/HAFAS';
+import type { FC } from 'react';
 
 interface Props {
   train: CommonProductInfo;
@@ -9,12 +10,12 @@ interface Props {
   initialDeparture: number;
   urlPrefix?: string;
 }
-export const DetailsLink = ({
+export const DetailsLink: FC<Props> = ({
   train,
   stationId,
   initialDeparture,
   urlPrefix = '/',
-}: Props) => (
+}) => (
   <Link
     data-testid="detailsLink"
     onClick={stopPropagation}

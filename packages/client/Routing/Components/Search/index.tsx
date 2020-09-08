@@ -22,7 +22,7 @@ import { getHafasStationFromAPI } from 'client/Common/service/stationSearch';
 import { getRouteLink } from 'client/Routing/util';
 import { SettingsPanel } from './SettingsPanel';
 import { StationSearch } from 'client/Common/Components/StationSearch';
-import { SyntheticEvent, useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { useFetchRouting } from 'client/Routing/provider/useFetchRouting';
 import { useHistory, useRouteMatch } from 'react-router';
 import {
@@ -31,6 +31,7 @@ import {
   useRoutingSettings,
 } from 'client/Routing/provider/RoutingConfigProvider';
 import deLocale from 'date-fns/locale/de';
+import type { FC, SyntheticEvent } from 'react';
 import type { RoutingFav } from 'client/Routing/provider/RoutingFavProvider';
 import type { Station } from 'types/station';
 
@@ -91,7 +92,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Search = () => {
+export const Search: FC = () => {
   const classes = useStyles();
   const {
     setStart,
@@ -154,7 +155,7 @@ export const Search = () => {
 
   useEffect(() => {
     if (match.params.start) {
-      setStationById(
+      void setStationById(
         match.params.start,
         setStart,
         favProfile || settings.hafasProfile,
@@ -164,7 +165,7 @@ export const Search = () => {
   }, [match.params.start, setStart, settings.hafasProfile]);
   useEffect(() => {
     if (match.params.destination) {
-      setStationById(
+      void setStationById(
         match.params.destination,
         setDestination,
         favProfile || settings.hafasProfile,
@@ -182,7 +183,7 @@ export const Search = () => {
       const viaStations = match.params.via.split('|').filter(Boolean);
 
       viaStations.forEach((viaId, index) => {
-        setStationById(
+        void setStationById(
           viaId,
           (station) => {
             updateVia(index, station);
@@ -198,7 +199,7 @@ export const Search = () => {
       e.preventDefault();
 
       if (start && destination && start.id !== destination.id) {
-        fetchRoutes();
+        void fetchRoutes();
         history.push(getRouteLink(start, destination, via, date));
       }
     },
