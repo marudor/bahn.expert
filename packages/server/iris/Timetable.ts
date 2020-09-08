@@ -432,7 +432,7 @@ export default class Timetable {
         compareAsc(a.message.timestamp || 0, b.message.timestamp || 0),
       )
       .forEach(({ type, message, value }) => {
-        // @ts-exoect-error ???
+        // @ts-expect-error This ´works...
         const supersedes: undefined | number[] = supersededMessages[value];
 
         if (!messages[type]) messages[type] = {};

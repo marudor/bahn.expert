@@ -1,12 +1,12 @@
 import { Controller, Get, Hidden, Route } from 'tsoa';
 import { wagenReihungMonitoring } from 'server/Reihung';
-import type { Formation } from 'types/reihung';
 
 @Route('/reihung/monitoring')
 export class ReihungMonitoringController extends Controller {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   @Get('/wagen')
   @Hidden()
-  async monitoring(): Promise<Formation> {
+  async monitoring() {
     const reihung = await wagenReihungMonitoring();
 
     if (!reihung) {

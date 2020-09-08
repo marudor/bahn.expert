@@ -3,6 +3,7 @@ import type { AllowedHafasProfile } from 'types/HAFAS';
 import type {
   SubscrDeleteOptions,
   SubscrDeleteRequest,
+  SubscrDeleteResponse,
 } from 'types/HAFAS/Subscr/SubscrDelete';
 
 export function SubscribeDelete(

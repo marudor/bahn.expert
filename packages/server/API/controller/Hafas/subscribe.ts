@@ -7,17 +7,23 @@ import { SubscribeUserCreate } from 'server/HAFAS/Subscribe/UserCreate';
 import { SubscribeUserDelete } from 'server/HAFAS/Subscribe/UserDelete';
 import type { AllowedHafasProfile } from 'types/HAFAS';
 import type {
+  ParsedSubscrCreateResponse,
+  SubscrCreateOptions,
+} from 'types/HAFAS/Subscr/SubscrCreate';
+import type {
   ParsedSubscrUserResponse,
   SubscrUserCreateOptions,
 } from 'types/HAFAS/Subscr/SubscrUserCreate';
-import type { SubscrCreateOptions } from 'types/HAFAS/Subscr/SubscrCreate';
 import type {
   SubscrDeleteOptions,
   SubscrDeleteResponse,
 } from 'types/HAFAS/Subscr/SubscrDelete';
 import type { SubscrDetailsResponse } from 'types/HAFAS/Subscr/SubscrDetails';
 import type { SubscrSearchResponse } from 'types/HAFAS/Subscr/SubscrSearch';
-import type { SubscrUserDeleteOptions } from 'types/HAFAS/Subscr/SubscrUserDelete';
+import type {
+  SubscrUserDeleteOptions,
+  SubscrUserDeleteResponse,
+} from 'types/HAFAS/Subscr/SubscrUserDelete';
 
 @Route('/hafas/subscribe')
 export class HafasSubscribeController extends Controller {

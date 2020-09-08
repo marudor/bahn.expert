@@ -30,15 +30,17 @@ export class ReihungControllerV1 extends Controller {
     return Promise.resolve(TrainNames(tz)!);
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   @Hidden()
   @Get('/forTZ/{tz}')
-  forTZ(tz: string): Promise<Formation> {
+  forTZ(tz: string) {
     return WRForTZ(tz);
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   @Hidden()
   @Get('/forNumber/{number}')
-  forNumber(number: string): Promise<Formation> {
+  forNumber(number: string) {
     return WRForNumber(number);
   }
 }
