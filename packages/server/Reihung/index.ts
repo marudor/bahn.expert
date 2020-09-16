@@ -295,11 +295,12 @@ function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
   fahrzeug.additionalInfo = data;
 }
 
-const wrFetchTimeout = process.env.NODE_ENV === 'production' ? 1500 : 3000;
+const wrFetchTimeout = process.env.NODE_ENV === 'production' ? 2500 : 10000;
 // https://www.apps-bahn.de/wr/wagenreihung/1.0/6/201802021930
 export async function wagenreihung(
   trainNumber: string,
   date: number,
+  retry = 2,
 ): Promise<Formation> {
   let info: Wagenreihung;
 
@@ -313,6 +314,16 @@ export async function wagenreihung(
       })
     ).data;
   } catch (e) {
+    if (Axios.isCancel(e)) {
+      if (retry) return wagenreihung(trainNumber, date, retry - 1);
+      throw {
+        response: {
+          status: 404,
+          statusText: 'Timeout',
+          data: 404,
+        },
+      };
+    }
     if (e.response?.data?.tryThese) {
       if (!(await WRCache.exists(trainNumber))) {
         await WRCache.set(trainNumber, null);
