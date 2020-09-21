@@ -83,6 +83,7 @@ const naming = {
   226: 'Lutherstadt Wittenberg',
   227: 'Ludwigslust',
   228: 'Altenburg',
+  229: 'Templin',
   230: 'Delitzsch',
   231: 'Brandenburg an der Havel',
   232: 'Frankfurt (Oder)',
