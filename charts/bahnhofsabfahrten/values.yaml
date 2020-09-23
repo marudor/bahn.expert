@@ -20,6 +20,8 @@ env:
   - name: test
     value: test
 
+redis: {}
+
 docs: false
 
 certificate:

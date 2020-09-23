@@ -32,7 +32,7 @@
     "e2e:ci": "cypress run",
     "doc:gen": "yarn workspace server run doc:gen",
     "doc:build": "yarn workspace server run doc:build",
-    "doc:build:gitadd": "yarn doc:build && git add docs/",
+    "doc:build:gitadd": "yarn doc:build && git add public/swagger.json",
     "lint-staged": "lint-staged"
   },
   "husky": {
@@ -142,7 +142,6 @@
     "ejs": "^3",
     "lodash": "^4.17.15",
     "chokidar": "^3",
-    "redoc": "2.0.0-rc.40",
     "lru-cache": "^6",
     "ws": "^7",
     "typescript": "^4"
