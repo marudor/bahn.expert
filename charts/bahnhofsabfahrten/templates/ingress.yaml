@@ -67,6 +67,10 @@ spec:
             backend:
               serviceName: docs-{{ $fullName }}
               servicePort: 80
+          - path: /swagger.json
+            backend:
+              serviceName: {{ $fullName }}
+              servicePort: http
     {{ end }}
     {{ if .Values.docs }}
     {{ if .Values.hostName }}
@@ -80,5 +84,9 @@ spec:
             backend:
               serviceName: docs-{{ $fullName }}
               servicePort: 80
+          - path: /swagger.json
+            backend:
+              serviceName: {{ $fullName }}
+              servicePort: http
     {{ end }}
 {{- end }}
