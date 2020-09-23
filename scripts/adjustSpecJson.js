@@ -3,7 +3,7 @@ const fs = require('fs');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const path = require('path');
 
-const filePath = path.resolve(__dirname, '../docs/swagger.json');
+const filePath = path.resolve(__dirname, '../public/swagger.json');
 
 const content = fs.readFileSync(filePath, 'utf8');
 

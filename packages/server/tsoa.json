@@ -5,7 +5,7 @@
   "spec": {
     "name": "Bahnhofs Abfahrten",
     "specVersion": 3,
-    "outputDirectory": "../../docs",
+    "outputDirectory": "../../public",
     "host": "marudor.de",
     "basePath": "api/"
   },

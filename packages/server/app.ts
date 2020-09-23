@@ -2,7 +2,6 @@ import * as Sentry from '@sentry/node';
 import { middlewares } from './logger';
 import Axios from 'axios';
 import createAdmin from './admin';
-import createDocsServer from './docsServer';
 import http from 'http';
 import Koa from 'koa';
 import KoaBodyparser from 'koa-bodyparser';
@@ -146,11 +145,6 @@ export default (): http.Server => {
     console.log('running in DEV mode!');
   } else {
     createAdmin();
-  }
-
-  // istanbul ignore next
-  if (process.env.NODE_ENV !== 'TEST') {
-    createDocsServer(Number.parseInt(process.env.DOCS_PORT || '9023', 10));
   }
 
   return server;

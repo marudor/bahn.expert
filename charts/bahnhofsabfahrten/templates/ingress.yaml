@@ -65,8 +65,8 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: {{ $fullName }}
-              servicePort: docs
+              serviceName: docs-{{ $fullName }}
+              servicePort: 80
     {{ end }}
     {{ if .Values.docs }}
     {{ if .Values.hostName }}
@@ -78,7 +78,7 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: {{ $fullName }}
-              servicePort: docs
+              serviceName: docs-{{ $fullName }}
+              servicePort: 80
     {{ end }}
 {{- end }}
