@@ -30,7 +30,6 @@ FROM node:14-alpine
 ENV NODE_ENV=production
 ENV TZ=Europe/Berlin
 WORKDIR /app
-COPY docs ./docs
 COPY public/ ./dist/client/
 COPY --from=cleanedDeps /app/node_modules/ ./node_modules/
 COPY --from=build /app/dist/ ./dist/
