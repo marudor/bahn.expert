@@ -144,7 +144,9 @@
     "chokidar": "^3",
     "lru-cache": "^6",
     "ws": "^7",
-    "typescript": "^4"
+    "typescript": "^4",
+    "react": "next",
+    "react-dom": "next"
   },
   "repository": {
     "type": "git",
