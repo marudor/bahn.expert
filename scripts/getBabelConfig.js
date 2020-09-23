@@ -72,8 +72,7 @@ const getBabelConfig = (type) => {
       [
         '@babel/preset-react',
         {
-          pragma: 'M',
-          pragmaFrag: 'MF',
+          runtime: 'automatic',
         },
       ],
     ],
