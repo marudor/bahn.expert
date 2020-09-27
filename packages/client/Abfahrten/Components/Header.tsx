@@ -1,5 +1,7 @@
 import { BaseHeader } from 'client/Common/Components/BaseHeader';
 import { ExtraMenu } from './ExtraMenu';
+import { IconButton } from '@material-ui/core';
+import { Refresh } from '@material-ui/icons';
 import { StationSearch } from 'client/Common/Components/StationSearch';
 import {
   useAbfahrtenConfig,
@@ -8,6 +10,7 @@ import {
 import { useCallback, useEffect, useState } from 'react';
 import { useCurrentAbfahrtenStation } from 'client/Abfahrten/provider/AbfahrtenProvider';
 import { useHistory } from 'react-router';
+import { useRefreshCurrent } from 'client/Abfahrten/provider/AbfahrtenProvider/hooks';
 import type { AllowedHafasProfile } from 'types/HAFAS';
 import type { FC } from 'react';
 import type { Station } from 'types/station';
@@ -22,6 +25,7 @@ interface Props {
 export const Header: FC<Props> = ({ profile }: Props) => {
   const currentStation = useCurrentAbfahrtenStation();
   const { searchType } = useAbfahrtenConfig();
+  const refreshCurrentAbfahrten = useRefreshCurrent(true);
   const urlPrefix = useAbfahrtenUrlPrefix();
   const history = useHistory();
   const [currentEnteredStation, setCurrentEnteredStation] = useState(
@@ -56,6 +60,16 @@ export const Header: FC<Props> = ({ profile }: Props) => {
             currentStation ? currentStation.title : 'Kiel Hbf'
           })`}
         />
+        {!global.navigator?.standalone && Boolean(currentStation) && (
+          <IconButton
+            onClick={refreshCurrentAbfahrten}
+            aria-label="refresh"
+            color="inherit"
+            edge="end"
+          >
+            <Refresh />
+          </IconButton>
+        )}
         <ExtraMenu />
       </BaseHeader>
     </>

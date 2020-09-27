@@ -27,5 +27,9 @@ declare global {
     }
   }
 
+  interface Navigator {
+    standalone?: boolean;
+  }
+
   type ExcludesFalse = <T>(x: T | undefined | void | null | false) => x is T;
 }
