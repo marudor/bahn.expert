@@ -76,7 +76,7 @@ export const useAllTrainTypes = () => {
 };
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const useRefreshCurrent = () => {
+export const useRefreshCurrent = (visible = false) => {
   const { setDepartures } = useRawAbfahrten();
   const currentStation = useCurrentAbfahrtenStation();
   const { lookahead, lookbehind } = useAbfahrtenConfig();
@@ -84,6 +84,9 @@ export const useRefreshCurrent = () => {
 
   return useCallback(async () => {
     if (currentStation && currentStation.id) {
+      if (visible) {
+        setDepartures(undefined);
+      }
       const r = await fetchAbfahrten(
         `${fetchApiUrl}/${currentStation.id}`,
         lookahead,
@@ -96,7 +99,14 @@ export const useRefreshCurrent = () => {
         wings: r.wings,
       });
     }
-  }, [currentStation, fetchApiUrl, lookahead, lookbehind, setDepartures]);
+  }, [
+    currentStation,
+    fetchApiUrl,
+    lookahead,
+    lookbehind,
+    setDepartures,
+    visible,
+  ]);
 };
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
