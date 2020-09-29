@@ -46,6 +46,11 @@ const useStyles = makeStyles((theme) => ({
   donation: {
     marginTop: 5,
   },
+  buttonsWrap: {
+    [theme.breakpoints.down('md')]: {
+      height: '10em',
+    },
+  },
   buttons: {
     '& svg': {
       marginRight: 5,
@@ -57,7 +62,6 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      height: '10em',
     },
   },
 }));
@@ -92,44 +96,46 @@ export const About: FC = () => {
           &apos;ne Mail an
           <a href="mailto:spende@marudor.de"> spende@marudor.de</a>
         </div>
-        <div className={classes.buttons}>
-          <a
-            href="https://paypal.me/marudor"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button variant="outlined">Paypal Spende</Button>
-          </a>
-          <a
-            href="https://twitter.com/marudor"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button variant="outlined">
-              <Message />
-              Kontakt
-            </Button>
-          </a>
-          <a
-            href="https://github.com/marudor/BahnhofsAbfahrten/issues/new?assignees=&labels=bug&template=bug_report.md&title="
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button variant="outlined">
-              <BugReport />
-              Bugs?
-            </Button>
-          </a>
-          <a
-            href="https://github.com/marudor/BahnhofsAbfahrten/issues/new?assignees=&labels=feature&template=feature_request.md&title="
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button variant="outlined">
-              <Extension />
-              Features?
-            </Button>
-          </a>
+        <div className={classes.buttonsWrap}>
+          <div className={classes.buttons}>
+            <a
+              href="https://paypal.me/marudor"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="outlined">Paypal Spende</Button>
+            </a>
+            <a
+              href="https://twitter.com/marudor"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="outlined">
+                <Message />
+                Kontakt
+              </Button>
+            </a>
+            <a
+              href="https://github.com/marudor/BahnhofsAbfahrten/issues/new?assignees=&labels=bug&template=bug_report.md&title="
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="outlined">
+                <BugReport />
+                Bugs?
+              </Button>
+            </a>
+            <a
+              href="https://github.com/marudor/BahnhofsAbfahrten/issues/new?assignees=&labels=feature&template=feature_request.md&title="
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="outlined">
+                <Extension />
+                Features?
+              </Button>
+            </a>
+          </div>
         </div>
         <Privacy />
       </div>
