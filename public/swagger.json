@@ -556,101 +556,26 @@
         "additionalProperties": false
       },
       "HimFilterMode": {
-        "anyOf": [
-          {
-            "type": "string",
-            "enum": ["BIT"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["EXC"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["INC"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["UNDEF"],
-            "nullable": false
-          }
-        ]
+        "type": "string",
+        "enum": ["BIT", "EXC", "INC", "UNDEF"]
       },
       "HimFilterType": {
-        "anyOf": [
-          {
-            "type": "string",
-            "enum": ["ADMIN"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["CAT"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["CH"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["COMP"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["DEPT"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["EID"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["HIMCAT"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["HIMID"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["LINE"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["OPR"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["PID"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["PROD"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["REG"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["TRAIN"],
-            "nullable": false
-          }
+        "type": "string",
+        "enum": [
+          "ADMIN",
+          "CAT",
+          "CH",
+          "COMP",
+          "DEPT",
+          "EID",
+          "HIMCAT",
+          "HIMID",
+          "LINE",
+          "OPR",
+          "PID",
+          "PROD",
+          "REG",
+          "TRAIN"
         ]
       },
       "HimFilter": {
@@ -818,28 +743,8 @@
         "additionalProperties": false
       },
       "MessagePrio": {
-        "anyOf": [
-          {
-            "type": "string",
-            "enum": ["1"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["2"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["3"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["4"],
-            "nullable": false
-          }
-        ],
+        "type": "string",
+        "enum": ["1", "2", "3", "4"],
         "description": "1: High; 2: Medium; 3: Low; 4: Done"
       },
       "IrisMessage": {
@@ -1115,151 +1020,36 @@
         "additionalProperties": false
       },
       "JourneyFilterMode": {
-        "anyOf": [
-          {
-            "type": "string",
-            "enum": ["BIT"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["EXC"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["INC"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["UNDEF"],
-            "nullable": false
-          }
-        ]
+        "type": "string",
+        "enum": ["BIT", "EXC", "INC", "UNDEF"]
       },
       "JourneyFilterType": {
-        "anyOf": [
-          {
-            "type": "string",
-            "enum": ["ADM"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["ATTRF"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["ATTRJ"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["ATTRL"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["BC"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["CAT"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["COUCH"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["CTX_RECON"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["GROUP"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["INFOTEXTS"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["JID"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["LID"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["LINE"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["LINEID"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["META"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["NAME"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["NUM"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["OP"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["PID"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["PROD"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["ROUTE"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["SLEEP"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["STATIONS"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["UIC"],
-            "nullable": false
-          }
+        "type": "string",
+        "enum": [
+          "ADM",
+          "ATTRF",
+          "ATTRJ",
+          "ATTRL",
+          "BC",
+          "CAT",
+          "COUCH",
+          "CTX_RECON",
+          "GROUP",
+          "INFOTEXTS",
+          "JID",
+          "LID",
+          "LINE",
+          "LINEID",
+          "META",
+          "NAME",
+          "NUM",
+          "OP",
+          "PID",
+          "PROD",
+          "ROUTE",
+          "SLEEP",
+          "STATIONS",
+          "UIC"
         ]
       },
       "JourneyFilter": {
@@ -1372,23 +1162,8 @@
         "additionalProperties": false
       },
       "HafasDirection": {
-        "anyOf": [
-          {
-            "type": "string",
-            "enum": ["B"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["F"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["FB"],
-            "nullable": false
-          }
-        ]
+        "type": "string",
+        "enum": ["B", "F", "FB"]
       },
       "JourneyCourseRequestOptions": {
         "properties": {
@@ -1726,18 +1501,8 @@
                   "type": "array"
                 },
                 "status": {
-                  "anyOf": [
-                    {
-                      "type": "string",
-                      "enum": ["ACTIVE"],
-                      "nullable": false
-                    },
-                    {
-                      "type": "string",
-                      "enum": ["EXPIRED"],
-                      "nullable": false
-                    }
-                  ]
+                  "type": "string",
+                  "enum": ["ACTIVE", "EXPIRED"]
                 }
               },
               "required": [
@@ -1834,18 +1599,8 @@
             "format": "double"
           },
           "status": {
-            "anyOf": [
-              {
-                "type": "string",
-                "enum": ["ACTIVE"],
-                "nullable": false
-              },
-              {
-                "type": "string",
-                "enum": ["EXPIRED"],
-                "nullable": false
-              }
-            ]
+            "type": "string",
+            "enum": ["ACTIVE", "EXPIRED"]
           },
           "channels": {
             "items": {
@@ -2616,23 +2371,8 @@
             "type": "array"
           },
           "resState": {
-            "anyOf": [
-              {
-                "type": "string",
-                "enum": ["N"],
-                "nullable": false
-              },
-              {
-                "type": "string",
-                "enum": ["B"],
-                "nullable": false
-              },
-              {
-                "type": "string",
-                "enum": ["S"],
-                "nullable": false
-              }
-            ]
+            "type": "string",
+            "enum": ["N", "B", "S"]
           },
           "resRecommendation": {
             "type": "string"
@@ -2691,18 +2431,8 @@
       "SecLWALK": {
         "properties": {
           "type": {
-            "anyOf": [
-              {
-                "type": "string",
-                "enum": ["WALK"],
-                "nullable": false
-              },
-              {
-                "type": "string",
-                "enum": ["TRSF"],
-                "nullable": false
-              }
-            ]
+            "type": "string",
+            "enum": ["WALK", "TRSF"]
           },
           "icoX": {
             "type": "number",
@@ -2793,43 +2523,8 @@
         "additionalProperties": false
       },
       "PossibleShort": {
-        "anyOf": [
-          {
-            "type": "string",
-            "enum": ["3R"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["3"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["4"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["2"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["1"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["T"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["3V"],
-            "nullable": false
-          }
-        ]
+        "type": "string",
+        "enum": ["1", "2", "3", "4", "3R", "T", "3V"]
       },
       "Wagons": {
         "properties": {},
@@ -3195,12 +2890,11 @@
           "statusCode": {
             "anyOf": [
               {
-                "type": "string",
-                "enum": ["OK"],
-                "nullable": false
+                "type": "string"
               },
               {
-                "type": "string"
+                "type": "string",
+                "enum": ["OK"]
               }
             ]
           },
@@ -3438,18 +3132,8 @@
         "additionalProperties": false
       },
       "AllowedSotMode": {
-        "anyOf": [
-          {
-            "type": "string",
-            "enum": ["JI"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["RC"],
-            "nullable": false
-          }
-        ]
+        "type": "string",
+        "enum": ["JI", "RC"]
       },
       "SearchOnTripBody": {
         "properties": {
@@ -3875,61 +3559,18 @@
         "type": "array"
       },
       "InOutMode": {
-        "anyOf": [
-          {
-            "type": "string",
-            "enum": ["B"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["I"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["N"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["O"],
-            "nullable": false
-          }
-        ]
+        "type": "string",
+        "enum": ["B", "I", "N", "O"]
       },
       "JourneyTrainPosMode": {
-        "anyOf": [
-          {
-            "type": "string",
-            "enum": ["CALC"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["CALC_FOR_REPORT"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["CALC_ONLY"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["CALC_REPORT"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["REPORT_ONLY"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["REPORT_ONLY_WITH_STOPS"],
-            "nullable": false
-          }
+        "type": "string",
+        "enum": [
+          "CALC",
+          "CALC_FOR_REPORT",
+          "CALC_ONLY",
+          "CALC_REPORT",
+          "REPORT_ONLY",
+          "REPORT_ONLY_WITH_STOPS"
         ]
       },
       "JourneyGeoPosRequestOptions": {
@@ -4154,33 +3795,8 @@
       "AdditionalFahrzeugInfo": {
         "properties": {
           "klasse": {
-            "anyOf": [
-              {
-                "type": "number",
-                "enum": ["0"],
-                "nullable": false
-              },
-              {
-                "type": "number",
-                "enum": ["1"],
-                "nullable": false
-              },
-              {
-                "type": "number",
-                "enum": ["2"],
-                "nullable": false
-              },
-              {
-                "type": "number",
-                "enum": ["3"],
-                "nullable": false
-              },
-              {
-                "type": "number",
-                "enum": ["4"],
-                "nullable": false
-              }
-            ],
+            "type": "number",
+            "enum": ["0", "1", "2", "3", "4"],
             "description": "0: Unknown; 1: erste; 2: zweite; 3: 1&2; 4: Not for passengers"
           },
           "icons": {
@@ -4246,87 +3862,24 @@
         "additionalProperties": false
       },
       "FahrzeugKategorie": {
-        "anyOf": [
-          {
-            "type": "string",
-            "enum": ["DOPPELSTOCKSTEUERWAGENERSTEZWEITEKLASSE"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["DOPPELSTOCKSTEUERWAGENZWEITEKLASSE"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["DOPPELSTOCKWAGENERSTEKLASSE"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["DOPPELSTOCKWAGENERSTEZWEITEKLASSE"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["DOPPELSTOCKWAGENZWEITEKLASSE"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["HALBSPEISEWAGENERSTEKLASSE"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["HALBSPEISEWAGENZWEITEKLASSE"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["LOK"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["REISEZUGWAGENERSTEKLASSE"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["REISEZUGWAGENERSTEZWEITEKLASSE"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["REISEZUGWAGENZWEITEKLASSE"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["SPEISEWAGEN"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["STEUERWAGENERSTEKLASSE"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["STEUERWAGENERSTEZWEITEKLASSE"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["STEUERWAGENZWEITEKLASSE"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["TRIEBKOPF"],
-            "nullable": false
-          }
+        "type": "string",
+        "enum": [
+          "DOPPELSTOCKSTEUERWAGENERSTEZWEITEKLASSE",
+          "DOPPELSTOCKSTEUERWAGENZWEITEKLASSE",
+          "DOPPELSTOCKWAGENERSTEKLASSE",
+          "DOPPELSTOCKWAGENERSTEZWEITEKLASSE",
+          "DOPPELSTOCKWAGENZWEITEKLASSE",
+          "HALBSPEISEWAGENERSTEKLASSE",
+          "HALBSPEISEWAGENZWEITEKLASSE",
+          "LOK",
+          "REISEZUGWAGENERSTEKLASSE",
+          "REISEZUGWAGENERSTEZWEITEKLASSE",
+          "REISEZUGWAGENZWEITEKLASSE",
+          "SPEISEWAGEN",
+          "STEUERWAGENERSTEKLASSE",
+          "STEUERWAGENERSTEZWEITEKLASSE",
+          "STEUERWAGENZWEITEKLASSE",
+          "TRIEBKOPF"
         ]
       },
       "Position": {
@@ -4404,52 +3957,17 @@
         "additionalProperties": false
       },
       "AvailableBR": {
-        "anyOf": [
-          {
-            "type": "string",
-            "enum": ["401"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["402"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["403"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["406"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["407"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["410.1"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["411"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["412"],
-            "nullable": false
-          },
-          {
-            "type": "string",
-            "enum": ["415"],
-            "nullable": false
-          }
+        "type": "string",
+        "enum": [
+          "401",
+          "402",
+          "403",
+          "406",
+          "407",
+          "411",
+          "412",
+          "415",
+          "410.1"
         ]
       },
       "BRInfo": {
@@ -4473,18 +3991,8 @@
             "type": "string"
           },
           "country": {
-            "anyOf": [
-              {
-                "type": "string",
-                "enum": ["DE"],
-                "nullable": false
-              },
-              {
-                "type": "string",
-                "enum": ["AT"],
-                "nullable": false
-              }
-            ]
+            "type": "string",
+            "enum": ["DE", "AT"]
           },
           "showBRInfo": {
             "type": "boolean"
@@ -4688,18 +4196,8 @@
       "Formation": {
         "properties": {
           "fahrtrichtung": {
-            "anyOf": [
-              {
-                "type": "string",
-                "enum": ["VORWAERTS"],
-                "nullable": false
-              },
-              {
-                "type": "string",
-                "enum": ["RUCKWAERTS"],
-                "nullable": false
-              }
-            ],
+            "type": "string",
+            "enum": ["VORWAERTS", "RUCKWAERTS"],
             "description": "Should always be VORWAERTS"
           },
           "allFahrzeuggruppe": {
@@ -5059,42 +4557,15 @@
       "Availability": {
         "properties": {
           "day": {
-            "anyOf": [
-              {
-                "type": "string",
-                "enum": ["monday"],
-                "nullable": false
-              },
-              {
-                "type": "string",
-                "enum": ["tuesday"],
-                "nullable": false
-              },
-              {
-                "type": "string",
-                "enum": ["wednesday"],
-                "nullable": false
-              },
-              {
-                "type": "string",
-                "enum": ["thursday"],
-                "nullable": false
-              },
-              {
-                "type": "string",
-                "enum": ["friday"],
-                "nullable": false
-              },
-              {
-                "type": "string",
-                "enum": ["saturday"],
-                "nullable": false
-              },
-              {
-                "type": "string",
-                "enum": ["sunday"],
-                "nullable": false
-              }
+            "type": "string",
+            "enum": [
+              "monday",
+              "tuesday",
+              "wednesday",
+              "thursday",
+              "friday",
+              "saturday",
+              "sunday"
             ]
           },
           "openTime": {
@@ -6377,7 +5848,10 @@
             "in": "query",
             "name": "type",
             "required": false,
-            "schema": {}
+            "schema": {
+              "type": "string",
+              "enum": ["S", "ALL"]
+            }
           },
           {
             "in": "query",
@@ -6632,7 +6106,10 @@
             "in": "query",
             "name": "type",
             "required": false,
-            "schema": {}
+            "schema": {
+              "type": "string",
+              "enum": ["open", "default"]
+            }
           }
         ]
       }
