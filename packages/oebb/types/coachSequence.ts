@@ -46,8 +46,8 @@ export interface OebbSector {
 }
 
 export interface OebbHaltepunkt {
-  haltepunktInMeters: unknown | null;
-  departureDirectionSectorA: unknown | null;
+  haltepunktInMeters?: unknown;
+  departureDirectionSectorA?: unknown;
 }
 
 export interface OebbPlatform {
@@ -64,10 +64,10 @@ export interface OebbReihung {
    */
   hasWifi: boolean;
   scheduledDeparture: string;
-  actualDeparture: string | null;
+  actualDeparture?: string;
   scheduledArrival: string;
-  actualArrival: string | null;
-  tranStation: OebbStation;
+  actualArrival?: string;
+  trainStation: OebbStation;
   platform: OebbPlatform;
-  wagons: unknown[];
+  wagons: OebbWagon[];
 }

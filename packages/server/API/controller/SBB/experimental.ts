@@ -1,7 +1,6 @@
 import { Body, Controller, Get, Post, Route, Tags } from 'tsoa';
 import { routing, stationSearch } from 'sbb';
-import type { RoutingOptions } from 'sbb/types/routing';
-import type { SBBStation } from 'sbb/types/station';
+import type { RoutingOptions, SBBStation } from 'sbb';
 
 @Route('/sbb/experimental')
 export class SBBExperimentalController extends Controller {

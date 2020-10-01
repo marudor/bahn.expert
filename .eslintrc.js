@@ -52,5 +52,16 @@ module.exports = {
         'no-process-env': 2,
       },
     },
+    {
+      files: ['packages/server/**'],
+      rules: {
+        'no-restricted-imports': [
+          2,
+          {
+            patterns: ['sbb/*', 'oebb/*'],
+          },
+        ],
+      },
+    },
   ],
 };

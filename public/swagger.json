@@ -4151,6 +4151,231 @@
         "type": "object",
         "additionalProperties": false
       },
+      "OebbStation": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "evaCode": {
+            "type": "string"
+          }
+        },
+        "required": ["name", "evaCode"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OebbHaltepunkt": {
+        "properties": {
+          "haltepunktInMeters": {},
+          "departureDirectionSectorA": {}
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OebbSector": {
+        "properties": {
+          "sectorName": {
+            "type": "string"
+          },
+          "length": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": ["sectorName", "length"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OebbEgress": {
+        "properties": {
+          "Bahnsteig": {
+            "type": "string"
+          },
+          "Distanz": {
+            "type": "number",
+            "format": "double"
+          },
+          "Type": {
+            "type": "string"
+          },
+          "DB640Code": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": ["Bahnsteig", "Distanz", "Type", "DB640Code", "name"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OebbPlatform": {
+        "properties": {
+          "platform": {
+            "type": "string"
+          },
+          "haltepunkt": {
+            "$ref": "#/components/schemas/OebbHaltepunkt"
+          },
+          "sectors": {
+            "items": {
+              "$ref": "#/components/schemas/OebbSector"
+            },
+            "type": "array"
+          },
+          "egresses": {
+            "items": {
+              "$ref": "#/components/schemas/OebbEgress"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["platform", "haltepunkt", "sectors", "egresses"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OebbWagon": {
+        "description": "url: https://live.oebb.at/backend/api/train/<TrainType> <TrainNumber>/stationEva/<EVAId>/departure/<Departure Date as dd.MM.yyyy>\nexample: https://live.oebb.at/backend/api/train/ICE%2028/stationEva/8103000/departure/01.09.2020",
+        "properties": {
+          "ordnungsNummer": {
+            "type": "number",
+            "format": "double"
+          },
+          "uicNummer": {
+            "type": "string"
+          },
+          "laengeUeberPuffer": {
+            "type": "number",
+            "format": "double"
+          },
+          "triebfahrzeug": {
+            "type": "boolean"
+          },
+          "speisewagen": {
+            "type": "boolean"
+          },
+          "businessClass": {
+            "type": "number",
+            "format": "double"
+          },
+          "firstClass": {
+            "type": "number",
+            "format": "double"
+          },
+          "secondClass": {
+            "type": "number",
+            "format": "double"
+          },
+          "schlafplaetze": {
+            "type": "number",
+            "format": "double"
+          },
+          "liegeplaetze": {
+            "type": "number",
+            "format": "double"
+          },
+          "autoreisezug": {
+            "type": "boolean"
+          },
+          "kinderspielwagen": {
+            "type": "boolean"
+          },
+          "kinderkino": {
+            "type": "boolean"
+          },
+          "rollstuhlgerecht": {
+            "type": "boolean"
+          },
+          "fahrradmitnahme": {
+            "type": "boolean"
+          },
+          "abgesperrt": {
+            "type": "boolean"
+          },
+          "origin": {
+            "$ref": "#/components/schemas/OebbStation"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/OebbStation"
+          },
+          "ruhebereich": {
+            "type": "boolean"
+          },
+          "infoPoint": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "ordnungsNummer",
+          "uicNummer",
+          "laengeUeberPuffer",
+          "triebfahrzeug",
+          "speisewagen",
+          "businessClass",
+          "firstClass",
+          "secondClass",
+          "schlafplaetze",
+          "liegeplaetze",
+          "autoreisezug",
+          "kinderspielwagen",
+          "kinderkino",
+          "rollstuhlgerecht",
+          "fahrradmitnahme",
+          "abgesperrt",
+          "origin",
+          "destination",
+          "ruhebereich",
+          "infoPoint"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OebbReihung": {
+        "properties": {
+          "trainName": {
+            "type": "string"
+          },
+          "hasWifi": {
+            "type": "boolean",
+            "description": "always true so far?"
+          },
+          "scheduledDeparture": {
+            "type": "string"
+          },
+          "actualDeparture": {
+            "type": "string"
+          },
+          "scheduledArrival": {
+            "type": "string"
+          },
+          "actualArrival": {
+            "type": "string"
+          },
+          "trainStation": {
+            "$ref": "#/components/schemas/OebbStation"
+          },
+          "platform": {
+            "$ref": "#/components/schemas/OebbPlatform"
+          },
+          "wagons": {
+            "items": {
+              "$ref": "#/components/schemas/OebbWagon"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "trainName",
+          "hasWifi",
+          "scheduledDeparture",
+          "scheduledArrival",
+          "trainStation",
+          "platform",
+          "wagons"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
       "AdditionalFahrzeugInfo": {
         "properties": {
           "klasse": {
@@ -6690,6 +6915,52 @@
         "tags": ["IRIS V1"],
         "security": [],
         "parameters": []
+      }
+    },
+    "/oebb/experimental/coachsequence/{trainName}/{evaId}/{date}": {
+      "get": {
+        "operationId": "CoachSequence",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OebbReihung"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["OEBB Experimental"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trainName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "evaId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "date",
+            "required": true,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          }
+        ]
       }
     },
     "/reihung/v1/wagen/{trainNumber}/{date}": {

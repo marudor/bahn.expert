@@ -48,7 +48,8 @@
     "react-dom": "next",
     "sbb": "workspace:*",
     "tsoa": "3.2.1",
-    "types": "workspace:*"
+    "types": "workspace:*",
+    "oebb": "workspace:*"
   },
   "devDependencies": {
     "@babel/cli": "^7.11.6",

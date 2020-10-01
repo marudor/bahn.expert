@@ -11833,6 +11833,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"oebb@workspace:packages/oebb":
+  version: 0.0.0-use.local
+  resolution: "oebb@workspace:packages/oebb"
+  dependencies:
+    "@babel/cli": ^7.11.6
+    "@babel/core": ^7.11.6
+    "@types/babel__core": 7.1.9
+    "@types/rimraf": ^3.0.0
+    axios: ^0.20.0
+    date-fns: ^2.16.1
+    eslint: ^7.9.0
+    npm-run-all: ^4.1.5
+    rimraf: ^3.0.2
+    types: "workspace:*"
+  languageName: unknown
+  linkType: soft
+
 "omit-deep@npm:^0.3.0":
   version: 0.3.0
   resolution: "omit-deep@npm:0.3.0"
