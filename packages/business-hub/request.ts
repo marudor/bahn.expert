@@ -11,6 +11,7 @@ export const canUseBusinessHub =
 export const request = Axios.create({
   baseURL: 'https://gateway.businesshub.deutschebahn.com',
   headers: {
+    'user-agent': 'marudor.de',
     key: apiKey,
   },
 });
