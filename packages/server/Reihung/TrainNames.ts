@@ -262,6 +262,7 @@ const naming = {
   9026: 'Zürichsee',
   9028: 'Freistaat Sachsen',
   9041: 'Baden-Württemberg',
+  9050: 'Metropole Ruhr',
 };
 
 export default (tzn?: string): string | undefined => {
