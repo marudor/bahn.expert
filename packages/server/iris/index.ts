@@ -75,6 +75,32 @@ const sortAbfahrt = (timeFn: typeof timeByReal) => (a: Abfahrt, b: Abfahrt) => {
   return sort;
 };
 
+function getRawIdsToRemove(
+  departures: Abfahrt[],
+  lookbehind: Abfahrt[],
+): string[] {
+  const groupedByMediumId = new Map<string, Abfahrt[]>();
+  [...lookbehind, ...departures].forEach((a) => {
+    const currentList = groupedByMediumId.get(a.mediumId) || [];
+    currentList.push(a);
+    groupedByMediumId.set(a.mediumId, currentList);
+  });
+  const idsToRemove: string[] = [];
+
+  groupedByMediumId.forEach((list) => {
+    if (list.length) {
+      const cancelledInList = list.filter((a) => a.cancelled);
+      if (cancelledInList.length !== list.length) {
+        cancelledInList.forEach((cancelledAbfahrt) => {
+          idsToRemove.push(cancelledAbfahrt.rawId);
+        });
+      }
+    }
+  });
+
+  return idsToRemove;
+}
+
 export async function getAbfahrten(
   evaId: string,
   withRelated = true,
@@ -106,6 +132,22 @@ export async function getAbfahrten(
   const result = (
     await Promise.all([timetable.start(), relatedAbfahrten])
   ).reduce(reduceResults, baseResult);
+
+  /**
+   * We search if trains with the same mediumId exist. Should only happen if the same train departs or arrives at the same station (like Stuttgart Hbf and Stuttgart Hbf (tief))
+   * If we find those we remove any cancelled. Unless all are cancelled If all are cancelled we keep all.
+   */
+  const rawIdsToRemove = getRawIdsToRemove(
+    result.departures,
+    result.lookbehind,
+  );
+
+  result.departures = result.departures.filter(
+    (a) => !rawIdsToRemove.includes(a.rawId),
+  );
+  result.lookbehind = result.lookbehind.filter(
+    (a) => !rawIdsToRemove.includes(a.rawId),
+  );
 
   result.departures.sort(sortAbfahrt(timeByScheduled));
   result.lookbehind.sort(sortAbfahrt(timeByReal));
