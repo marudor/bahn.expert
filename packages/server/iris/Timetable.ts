@@ -182,17 +182,6 @@ export default class Timetable {
         timetable.departure.cancelled &&
         (!timetable.arrival || !timetable.arrival.scheduledTime));
 
-    // if (timetable.cancelled) {
-    //   const anyCancelled =
-    //     timetable.routePre.some((r: any) => r.cancelled) ||
-    //     timetable.routePost.some((r: any) => r.cancelled);
-
-    //   if (anyCancelled) {
-    //     timetable.routePre.forEach((r: any) => (r.cancelled = true));
-    //     timetable.routePost.forEach((r: any) => (r.cancelled = true));
-    //   }
-    // }
-
     timetable.messages.him = timetable.messages.him.filter((m: any) => m.text);
 
     const currentRoutePart = {
@@ -215,6 +204,12 @@ export default class Timetable {
     calculateVia(timetable.routePost);
 
     if (timetable.departure) {
+      if (
+        !timetable.departure.cancelled &&
+        timetable.destination === timetable.currentStation.title
+      ) {
+        timetable.departure.cancelled = true;
+      }
       timetable.platform = timetable.departure.platform;
       timetable.scheduledPlatform = timetable.departure.scheduledPlatform;
     } else if (timetable.arrival) {
