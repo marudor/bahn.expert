@@ -14,6 +14,8 @@ export const WRCache = createNewCache<string, string[] | null>(
 const formatDate = (date: number) =>
   format(utcToZonedTime(date, 'Europe/Berlin'), 'yyyyMMddHHmm');
 
+// https://ist-wr.noncd.db.de/wagenreihung/1.0/
+// https://www.apps-bahn.de/wr/wagenreihung/1.0/
 export const getWRLink = (trainNumber: string, date: number): string => {
   return `https://www.apps-bahn.de/wr/wagenreihung/1.0/${trainNumber}/${formatDate(
     date,
