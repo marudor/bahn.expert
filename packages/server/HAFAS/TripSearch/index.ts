@@ -69,7 +69,6 @@ function route(
             },
           ]
         : undefined,
-      // Always true!
       getPT: true,
       numF,
       ...requestTypeSpecific,
