@@ -6,8 +6,11 @@ import type { LageplanResponse } from 'types/bahnhof';
 export class BahnhofControllerV1 extends Controller {
   @Get('/lageplan/{stationName}/{evaId}')
   @Tags('Bahnhof V1')
-  async lageplan(stationName: string): Promise<LageplanResponse> {
-    const lageplan = await getLageplan(stationName);
+  async lageplan(
+    stationName: string,
+    evaId: string,
+  ): Promise<LageplanResponse> {
+    const lageplan = await getLageplan(stationName, evaId);
     return {
       lageplan,
     };
