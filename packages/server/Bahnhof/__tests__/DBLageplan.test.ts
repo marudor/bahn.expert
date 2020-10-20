@@ -1,5 +1,5 @@
 /* eslint no-sync: 0 */
-import { getCachedLageplan, getLageplan } from 'server/Bahnhof/Lageplan';
+import { getCachedDBLageplan, getDBLageplan } from 'server/Bahnhof/DBLageplan';
 import fs from 'fs';
 import Nock from 'nock';
 import path from 'path';
@@ -11,7 +11,7 @@ describe('Lageplan', () => {
     return fs.readFileSync(path.resolve(__dirname, '__fixtures__/', f));
   }
   it('first time cached is undefined', async () => {
-    expect(await getCachedLageplan('Hamburg Hbf')).toBeUndefined();
+    expect(await getCachedDBLageplan('Hamburg Hbf')).toBeUndefined();
   });
 
   describe('Example without Lageplan', () => {
@@ -26,11 +26,11 @@ describe('Lageplan', () => {
       nock
         .get('/bahnhof-de/bahnhof/Langenfelde-1025344')
         .reply(200, readFixutre('Langenfelde.html'));
-      await expect(getLageplan('Langenfelde')).resolves.toBeUndefined();
+      await expect(getDBLageplan('Langenfelde')).resolves.toBeUndefined();
     });
 
     it('cache resolves', async () => {
-      await expect(getLageplan('Langenfelde')).resolves.toBeUndefined();
+      await expect(getDBLageplan('Langenfelde')).resolves.toBeUndefined();
     });
 
     it('is undefined if html has no result', async () => {
@@ -41,7 +41,7 @@ describe('Lageplan', () => {
         })
         .reply(200, readFixutre('LangenfeldeSearchMissing.html'));
 
-      await expect(getLageplan('Langenfeld')).resolves.toBeUndefined();
+      await expect(getDBLageplan('Langenfeld')).resolves.toBeUndefined();
     });
   });
 
@@ -57,13 +57,13 @@ describe('Lageplan', () => {
       nock
         .get('/bahnhof-de/bahnhof/Hamburg_Hbf-1030112')
         .reply(200, readFixutre('HamburgHbf.html'));
-      await expect(getLageplan('Hamburg Hbf')).resolves.toBe(
+      await expect(getDBLageplan('Hamburg Hbf')).resolves.toBe(
         'https://www.bahnhof.de/resource/blob/1029874/4869d8dea83b386b0bb773ec64ddb021/Hamburg-Hbf_locationPdf-data.pdf',
       );
     });
 
     it('cache resolves', async () => {
-      await expect(getLageplan('Hamburg Hbf')).resolves.toBe(
+      await expect(getDBLageplan('Hamburg Hbf')).resolves.toBe(
         'https://www.bahnhof.de/resource/blob/1029874/4869d8dea83b386b0bb773ec64ddb021/Hamburg-Hbf_locationPdf-data.pdf',
       );
     });

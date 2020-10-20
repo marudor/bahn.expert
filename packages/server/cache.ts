@@ -18,13 +18,15 @@ const redisSettings = process.env.REDIS_HOST
 export enum CacheDatabases {
   Station,
   Timetable,
-  Lageplan,
+  DBLageplan,
   LocMatch,
   StationSearch,
   HIMMessage,
   CouchSequence,
   TimetableAll,
   Operators,
+  HVVLageplan,
+  NAHSHLageplan,
 }
 const activeCaches = new Set();
 
