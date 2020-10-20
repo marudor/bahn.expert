@@ -4794,14 +4794,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "in": "path",
-            "name": "evaId",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
           }
         ]
       }
