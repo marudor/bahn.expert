@@ -1,5 +1,4 @@
 import { Controller, Get, Route, Tags } from 'tsoa';
-import { getBayernLageplan } from 'server/Bahnhof/LageplanBayern';
 import { getLageplan } from 'server/Bahnhof/Lageplan';
 import type { LageplanResponse } from 'types/bahnhof';
 
@@ -11,8 +10,7 @@ export class BahnhofControllerV1 extends Controller {
     stationName: string,
     evaId: string,
   ): Promise<LageplanResponse> {
-    const lageplan =
-      getBayernLageplan(evaId) || (await getLageplan(stationName));
+    const lageplan = await getLageplan(stationName, evaId);
     return {
       lageplan,
     };
