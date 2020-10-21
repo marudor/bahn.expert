@@ -68,15 +68,13 @@ export const SettingsPanel: FC = () => {
     [updateSettings],
   );
 
-  const maxChangesBadeContent = useMemo(
-    () =>
-      Number.parseInt(settings.maxChanges, 10) < 0 ? (
-        <AllInclusive fontSize="small" />
-      ) : (
-        settings.maxChanges
-      ),
-    [settings.maxChanges],
-  );
+  const maxChangesBadeContent = useMemo(() => {
+    const numberMaxChange = Number.parseInt(settings.maxChanges, 10);
+    if (Number.isNaN(numberMaxChange) || numberMaxChange) {
+      return <AllInclusive fontSize="small" />;
+    }
+    return numberMaxChange;
+  }, [settings.maxChanges]);
 
   return (
     <Accordion className={classes.accordion}>
@@ -93,7 +91,7 @@ export const SettingsPanel: FC = () => {
           <Cached />
         </Badge>
         <Badge
-          badgeContent={`${settings.transferTime}m`}
+          badgeContent={`${settings.transferTime || 0}m`}
           color="secondary"
           data-testid="routingSettingsPanel-transferTime"
         >

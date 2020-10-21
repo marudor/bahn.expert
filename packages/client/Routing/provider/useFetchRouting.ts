@@ -35,6 +35,8 @@ export const useFetchRouting = () => {
               evaId: v.id,
             })),
             ...settings,
+            maxChanges: settings.maxChanges || '-1',
+            transferTime: settings.transferTime || '0',
           }
         : undefined,
     [destination, settings, start, via],
