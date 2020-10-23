@@ -70,7 +70,7 @@ export const SettingsPanel: FC = () => {
 
   const maxChangesBadeContent = useMemo(() => {
     const numberMaxChange = Number.parseInt(settings.maxChanges, 10);
-    if (Number.isNaN(numberMaxChange) || numberMaxChange) {
+    if (Number.isNaN(numberMaxChange) || numberMaxChange <= 0) {
       return <AllInclusive fontSize="small" />;
     }
     return numberMaxChange;
