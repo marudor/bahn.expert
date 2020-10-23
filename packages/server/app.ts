@@ -32,7 +32,6 @@ export function createApp(): Koa {
   }
 
   let apiRoutes = require('./API').default;
-  let validationOverwrites = require('./API/validationOverwrites').default;
   let serverRender = require('./render').default;
   let seoController = require('./seo').default;
   let errorHandler = require('./errorHandler').default;
@@ -55,7 +54,6 @@ export function createApp(): Koa {
           errorHandler = require('./errorHandler').default;
           serverRender = require('./render').default;
           apiRoutes = require('./API').default;
-          validationOverwrites = require('./API/validationOverwrites').default;
           seoController = require('./seo').default;
           ctx.loadableStats = JSON.parse(
             // eslint-disable-next-line no-sync
@@ -76,7 +74,6 @@ export function createApp(): Koa {
     middlewares.forEach((m) => app.use(m));
     app.use(KoaBodyparser());
 
-    app.use(hotHelper(() => validationOverwrites.routes()));
     app.use(hotHelper(() => apiRoutes.routes()));
 
     app.use(

@@ -6,21 +6,16 @@ const allOverwrites = [...stationValidationOverwrite];
 
 const router = new KoaRouter();
 
-router.prefix('/api').all('*', (ctx, next) => {
-  if (ctx.url.startsWith('/api/hafas')) {
-    const hafasProfile = ctx.query.profile;
+router.all('/api/hafas/(.*)', (ctx, next) => {
+  const hafasProfile = ctx.query.profile;
 
-    if (
-      hafasProfile &&
-      !Object.values(AllowedHafasProfile).includes(hafasProfile)
-    ) {
-      delete ctx.query.profile;
-    }
-    ctx.response.set(
-      'hafasProfile',
-      ctx.query.profile || AllowedHafasProfile.DB,
-    );
+  if (
+    hafasProfile &&
+    !Object.values(AllowedHafasProfile).includes(hafasProfile)
+  ) {
+    delete ctx.query.profile;
   }
+  ctx.response.set('hafasProfile', ctx.query.profile || AllowedHafasProfile.DB);
 
   return next();
 });

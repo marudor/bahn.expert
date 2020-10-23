@@ -11,7 +11,7 @@
     "doc:build": "tsoa spec-and-routes && node ../../scripts/adjustSpecJson"
   },
   "dependencies": {
-    "@koa/router": "^8.0.8",
+    "@koa/router": "^9.4.0",
     "@loadable/component": "^5.14.1",
     "@loadable/server": "^5.14.0",
     "@sentry/node": "^5.27.1",
@@ -47,7 +47,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "sbb": "workspace:*",
-    "tsoa": "3.3.0",
+    "tsoa": "3.4.0",
     "types": "workspace:*"
   },
   "devDependencies": {
