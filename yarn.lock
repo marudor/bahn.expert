@@ -1970,17 +1970,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@koa/router@npm:^8.0.8":
-  version: 8.0.8
-  resolution: "@koa/router@npm:8.0.8"
+"@koa/router@npm:^9.4.0":
+  version: 9.4.0
+  resolution: "@koa/router@npm:9.4.0"
   dependencies:
     debug: ^4.1.1
     http-errors: ^1.7.3
     koa-compose: ^4.1.0
     methods: ^1.1.2
-    path-to-regexp: 1.x
-    urijs: ^1.19.2
-  checksum: 7cff1d7df03032d8754f958e82f8046ed3cb6846741d2ed550e552446d619ba0c0df5579d05af01134887bbfc23d9e5f247350d2da028a75f293fc349c02bdd0
+    path-to-regexp: ^6.1.0
+  checksum: 225a891b9e33e9f00571dd567f739315209b84f875cdfd66064e1dbe3196172ede64a185c4db6f89f05c153df55a3b221ecc40fb18c0ef1da0587d12ccff4d8f
   languageName: node
   linkType: hard
 
@@ -2504,9 +2503,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/jest-dom@npm:^5.11.4":
-  version: 5.11.4
-  resolution: "@testing-library/jest-dom@npm:5.11.4"
+"@testing-library/jest-dom@npm:^5.11.5":
+  version: 5.11.5
+  resolution: "@testing-library/jest-dom@npm:5.11.5"
   dependencies:
     "@babel/runtime": ^7.9.2
     "@types/testing-library__jest-dom": ^5.9.1
@@ -2516,7 +2515,7 @@ __metadata:
     css.escape: ^1.5.1
     lodash: ^4.17.15
     redent: ^3.0.0
-  checksum: 2d59d588285017896060b76c175414adf246639558665ad3a8662d91c320f366d2bd3c95cf60163617090e2ca7bdc4b27d7a101bf96d8318513f15b45855991f
+  checksum: 72896002096a03cd3b46e31891149088ae83f87a129ea4be143f254fb4db6afbf9f7f46b4f6f73e0b9b0520b87428f627508a68a75471e9245b683619ed5d6b6
   languageName: node
   linkType: hard
 
@@ -2574,7 +2573,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tsoa/cli@npm:^3.3.0":
+"@tsoa/cli@npm:^3.4.0":
   version: 3.4.0
   resolution: "@tsoa/cli@npm:3.4.0"
   dependencies:
@@ -2596,7 +2595,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tsoa/runtime@npm:^3.3.0, @tsoa/runtime@npm:^3.4.0":
+"@tsoa/runtime@npm:^3.4.0":
   version: 3.4.0
   resolution: "@tsoa/runtime@npm:3.4.0"
   dependencies:
@@ -4610,7 +4609,7 @@ __metadata:
     rimraf: ^3.0.2
     server: "workspace:*"
     style-loader: ^1.3.0
-    terser-webpack-plugin: ^4.0.0
+    terser-webpack-plugin: ^4.2.3
     typescript: ^4.0.3
     url-loader: ^4.1.1
     wait-for: ^2.1.1
@@ -5419,7 +5418,7 @@ __metadata:
     "@material-ui/core": ^4.11.0
     "@material-ui/icons": ^4.9.1
     "@material-ui/pickers": ^3.2.10
-    "@testing-library/jest-dom": ^5.11.4
+    "@testing-library/jest-dom": ^5.11.5
     "@testing-library/react": ^11.1.0
     "@types/babel__core": 7.1.10
     "@types/debounce-promise": 3.1.3
@@ -12210,12 +12209,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"path-to-regexp@npm:1.x, path-to-regexp@npm:^1.7.0":
+"path-to-regexp@npm:^1.7.0":
   version: 1.8.0
   resolution: "path-to-regexp@npm:1.8.0"
   dependencies:
     isarray: 0.0.1
   checksum: 4c0d9aaf3fc55db0b2d9aab379856acbf4e437f2252bbc2a178aec9f707c8457f8084ea6243a80e0b37c8c1c20d23e918cd43e772a7e71142a8ad67af699686b
+  languageName: node
+  linkType: hard
+
+"path-to-regexp@npm:^6.1.0":
+  version: 6.2.0
+  resolution: "path-to-regexp@npm:6.2.0"
+  checksum: 4116de71f5453163910347f199ab28fdd07f4053ed88093acb42dc044a2e5e7d9e18379e81e8d5d982d1b88291be3666e56be34a0741298673248fd21e3c1c16
   languageName: node
   linkType: hard
 
@@ -13841,7 +13847,7 @@ __metadata:
   dependencies:
     "@babel/cli": ^7.12.1
     "@babel/core": ^7.12.3
-    "@koa/router": ^8.0.8
+    "@koa/router": ^9.4.0
     "@loadable/component": ^5.14.1
     "@loadable/server": ^5.14.0
     "@sentry/node": ^5.27.1
@@ -13911,7 +13917,7 @@ __metadata:
     rimraf: ^3.0.2
     sbb: "workspace:*"
     supertest: ^4.0.2
-    tsoa: 3.3.0
+    tsoa: 3.4.0
     types: "workspace:*"
     webpack: ^4.44.2
     webpack-dev-middleware: ^3.7.2
@@ -14848,7 +14854,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"terser-webpack-plugin@npm:^4.0.0":
+"terser-webpack-plugin@npm:^4.2.3":
   version: 4.2.3
   resolution: "terser-webpack-plugin@npm:4.2.3"
   dependencies:
@@ -15154,15 +15160,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsoa@npm:3.3.0":
-  version: 3.3.0
-  resolution: "tsoa@npm:3.3.0"
+"tsoa@npm:3.4.0":
+  version: 3.4.0
+  resolution: "tsoa@npm:3.4.0"
   dependencies:
-    "@tsoa/cli": ^3.3.0
-    "@tsoa/runtime": ^3.3.0
+    "@tsoa/cli": ^3.4.0
+    "@tsoa/runtime": ^3.4.0
   bin:
     tsoa: dist/cli.js
-  checksum: a685d1f0f91da5ebf3dd4902eb181f06acc4222d983a0ea7f4fbec9c0b32b1a997a3e9db883f1aec7e17547fc795c9ce3c9850aa4b0c3a7fe504ac648a6b5ce8
+  checksum: 0121441c61eed73a20e7bc050db20a6a73e525aec2968449d3e38c766449d54aef9474b5c702ef700c68e56fc41bb5fcc60d518f37ad8a7fa8f5445645a7dc8d
   languageName: node
   linkType: hard
 
@@ -15485,13 +15491,6 @@ __metadata:
   dependencies:
     punycode: ^2.1.0
   checksum: 970577344101f43aa64d1e6ab7f78ff0371df0ff7731de66da268125c2703e7bf70693afd0b76c96325e247466b49b4b081d9f54339e9520b2b9c02b598542a6
-  languageName: node
-  linkType: hard
-
-"urijs@npm:^1.19.2":
-  version: 1.19.2
-  resolution: "urijs@npm:1.19.2"
-  checksum: de6b943c354b092be71e10c5c16d9d9b67186d6283031f55382d11507dc8a7748001b5aa8136f515f746f2f4786d7f4e43e17c23ba661abcc7dbbbe254924feb
   languageName: node
   linkType: hard
 
