@@ -14,7 +14,7 @@ import type { IrisStationWithRelated, Station } from 'types/station';
 
 export const validationOverwrite = [
   {
-    url: '/station/v1/search/:searchTerm',
+    url: '/api/station/v1/search/:searchTerm',
     type: 'get',
     middleware: (ctx: Context, next: Next): Promise<any> => {
       // @ts-expect-error enum works
