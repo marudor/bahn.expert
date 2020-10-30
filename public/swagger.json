@@ -263,6 +263,91 @@
         "type": "object",
         "additionalProperties": false
       },
+      "LimitationEnum": {
+        "enum": ["true", "false", "unknown", "not applicable"],
+        "type": "string"
+      },
+      "QuayAccessibilityLimitation": {
+        "properties": {
+          "audibleSignalsAvailable": {
+            "$ref": "#/components/schemas/LimitationEnum"
+          },
+          "automaticDoor": {
+            "$ref": "#/components/schemas/LimitationEnum"
+          },
+          "boardingAid": {
+            "$ref": "#/components/schemas/LimitationEnum"
+          },
+          "passengerInformationDisplay": {
+            "$ref": "#/components/schemas/LimitationEnum"
+          },
+          "platformHeight": {
+            "$ref": "#/components/schemas/LimitationEnum"
+          },
+          "platformSign": {
+            "$ref": "#/components/schemas/LimitationEnum"
+          },
+          "stairsMarking": {
+            "$ref": "#/components/schemas/LimitationEnum"
+          },
+          "stepFreeAccess": {
+            "$ref": "#/components/schemas/LimitationEnum"
+          },
+          "tactileGuidingStrips": {
+            "$ref": "#/components/schemas/LimitationEnum"
+          },
+          "tactileHandrailLabel": {
+            "$ref": "#/components/schemas/LimitationEnum"
+          },
+          "tactilePlatformAccess": {
+            "$ref": "#/components/schemas/LimitationEnum"
+          }
+        },
+        "required": [
+          "audibleSignalsAvailable",
+          "automaticDoor",
+          "boardingAid",
+          "passengerInformationDisplay",
+          "platformHeight",
+          "platformSign",
+          "stairsMarking",
+          "stepFreeAccess",
+          "tactileGuidingStrips",
+          "tactileHandrailLabel",
+          "tactilePlatformAccess"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "QuayAccessibilityAssessment": {
+        "properties": {
+          "accessibilityLimitation": {
+            "$ref": "#/components/schemas/QuayAccessibilityLimitation"
+          }
+        },
+        "required": ["accessibilityLimitation"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Quay": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "accessibilityAssessment": {
+            "$ref": "#/components/schemas/QuayAccessibilityAssessment"
+          },
+          "quayType": {
+            "type": "string"
+          }
+        },
+        "required": ["id", "name", "accessibilityAssessment", "quayType"],
+        "type": "object",
+        "additionalProperties": false
+      },
       "OpL": {
         "properties": {
           "name": {
@@ -4929,6 +5014,38 @@
           {
             "in": "path",
             "name": "stadaId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/businessHub/experimental/quays/{evaId}": {
+      "get": {
+        "operationId": "Quays",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Quay"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["BusinessHub Experimental"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "evaId",
             "required": true,
             "schema": {
               "type": "string"

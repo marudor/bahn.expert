@@ -7,6 +7,7 @@ import type {
   DetailsApiResult,
   StopPlace,
 } from 'business-hub/types/StopPlaces';
+import type { Quay } from 'business-hub/types/Quays';
 
 const transformBusinessHubStation = (
   businessHubStation: Pick<StopPlace, 'name' | 'identifiers' | 'location'>,
@@ -75,4 +76,14 @@ export const stationDetails = async (
     ...relevantDetails,
     tripleSCenter: _embedded?.tripleSCenter,
   };
+};
+
+export const stationQuays = async (evaId: string): Promise<Quay[]> => {
+  const quays = (
+    await request.get<Quay[]>(
+      `/public-transport-stations/v1/stop-places/${evaId}/quays`,
+    )
+  ).data;
+
+  return quays;
 };

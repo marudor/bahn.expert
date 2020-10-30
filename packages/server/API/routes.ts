@@ -143,6 +143,48 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "LimitationEnum": {
+        "dataType": "refEnum",
+        "enums": ["true","false","unknown","not applicable"],
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "QuayAccessibilityLimitation": {
+        "dataType": "refObject",
+        "properties": {
+            "audibleSignalsAvailable": {"ref":"LimitationEnum","required":true},
+            "automaticDoor": {"ref":"LimitationEnum","required":true},
+            "boardingAid": {"ref":"LimitationEnum","required":true},
+            "passengerInformationDisplay": {"ref":"LimitationEnum","required":true},
+            "platformHeight": {"ref":"LimitationEnum","required":true},
+            "platformSign": {"ref":"LimitationEnum","required":true},
+            "stairsMarking": {"ref":"LimitationEnum","required":true},
+            "stepFreeAccess": {"ref":"LimitationEnum","required":true},
+            "tactileGuidingStrips": {"ref":"LimitationEnum","required":true},
+            "tactileHandrailLabel": {"ref":"LimitationEnum","required":true},
+            "tactilePlatformAccess": {"ref":"LimitationEnum","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "QuayAccessibilityAssessment": {
+        "dataType": "refObject",
+        "properties": {
+            "accessibilityLimitation": {"ref":"QuayAccessibilityLimitation","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Quay": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"string","required":true},
+            "name": {"dataType":"string","required":true},
+            "accessibilityAssessment": {"ref":"QuayAccessibilityAssessment","required":true},
+            "quayType": {"dataType":"string","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "OpL": {
         "dataType": "refObject",
         "properties": {
@@ -2085,6 +2127,26 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new BussinessHubExperimentalController();
 
             const promise = controller.fasta.apply(controller, validatedArgs as any);
+            return promiseHandler(controller, promise, context, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        router.get('/api/businessHub/experimental/quays/:evaId',
+            async (context: any, next: any) => {
+            const args = {
+                    evaId: {"in":"path","name":"evaId","required":true,"dataType":"string"},
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+              validatedArgs = getValidatedArgs(args, context, next);
+            } catch (error) {
+              context.status = error.status;
+              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+            }
+
+            const controller = new BussinessHubExperimentalController();
+
+            const promise = controller.quays.apply(controller, validatedArgs as any);
             return promiseHandler(controller, promise, context, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
