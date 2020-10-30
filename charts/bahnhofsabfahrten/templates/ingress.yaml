@@ -11,6 +11,7 @@ metadata:
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- with .Values.ingress.annotations }}
   annotations:
+    nginx.ingress.kubernetes.io/from-to-www-redirect: true
 {{ toYaml . | indent 4 }}
 {{- end }}
 spec:
@@ -18,17 +19,13 @@ spec:
     - hosts:
       {{ if .Values.hostName }}
         - {{ .Values.hostName }}
-        - www.{{ .Values.hostName }}
         {{ if .Values.docs }}
         - docs.{{ .Values.hostName }}
-        - www.docs.{{ .Values.hostName }}
         {{ end }}
       {{ else }}
         - {{ .Release.Name }}.marudor.de
-        - www.{{ .Release.Name }}.marudor.de
         {{ if .Values.docs }}
         - docs.{{ .Release.Name }}.marudor.de
-        - www.docs.{{ .Release.Name }}.marudor.de
         {{ end }}
       {{ end }}
       secretName: {{ $fullName }}
@@ -44,39 +41,11 @@ spec:
             backend:
               serviceName: {{ $fullName }}
               servicePort: http
-    {{ if .Values.hostName }}
-    - host: www.{{ .Values.hostName }}
-    {{ else }}
-    - host: www.{{ .Release.Name }}.marudor.de
-    {{ end }}
-      http:
-        paths:
-          - path: /
-            backend:
-              serviceName: {{ $fullName }}
-              servicePort: http
     {{ if .Values.docs }}
     {{ if .Values.hostName }}
     - host: docs.{{ .Values.hostName }}
     {{ else }}
     - host: docs.{{ .Release.Name }}.marudor.de
-    {{ end }}
-      http:
-        paths:
-          - path: /
-            backend:
-              serviceName: docs-{{ $fullName }}
-              servicePort: 80
-          - path: /swagger.json
-            backend:
-              serviceName: {{ $fullName }}
-              servicePort: http
-    {{ end }}
-    {{ if .Values.docs }}
-    {{ if .Values.hostName }}
-    - host: www.docs.{{ .Values.hostName }}
-    {{ else }}
-    - host: www.docs.{{ .Release.Name }}.marudor.de
     {{ end }}
       http:
         paths:
