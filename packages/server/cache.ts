@@ -27,6 +27,7 @@ export enum CacheDatabases {
   Operators,
   HVVLageplan,
   NAHSHLageplan,
+  Categories,
 }
 const activeCaches = new Set();
 

@@ -6,6 +6,11 @@ const operatorCache = createNewCache<string, boolean>(
   CacheDatabases.Operators,
 );
 
+const categoryCache = createNewCache<string, boolean>(
+  100 * 6 * 60 * 60,
+  CacheDatabases.Categories,
+);
+
 export default (product: ProdL, common: Common): ParsedProduct => {
   const operator =
     product.oprX !== undefined ? common.opL[product.oprX] : undefined;
@@ -16,6 +21,15 @@ export default (product: ProdL, common: Common): ParsedProduct => {
         void operatorCache.set(operator.name, true);
       }
     });
+  }
+
+  if (product.prodCtx) {
+    const categoryString = `${product.addName || product.name} | ${
+      product.prodCtx.catCode
+    } | ${product.prodCtx.catOut} | ${product.prodCtx.catOutL} | ${
+      product.prodCtx.catOutS
+    }`;
+    void categoryCache.set(categoryString, true);
   }
 
   return {
