@@ -24,10 +24,8 @@ export enum CacheDatabases {
   HIMMessage,
   CouchSequence,
   TimetableAll,
-  Operators,
   HVVLageplan,
   NAHSHLageplan,
-  Categories,
 }
 const activeCaches = new Set();
 
