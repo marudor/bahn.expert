@@ -5,25 +5,28 @@ import path from 'path';
 import pino from 'pino';
 import serializers from 'pino-std-serializers';
 
-const writeWorker = new Worker(path.resolve(__dirname, 'logWriteThread.cjs'), {
-  env: SHARE_ENV,
-});
-
-const IS_TEST = process.env.NODE_ENV === 'test';
-
-const writeOptions = {
-  write: IS_TEST
-    ? () => {
-        // mocked in tests
-      }
-    : (msg: string) => {
-        writeWorker.postMessage(msg);
+const createWriteOptions = () => {
+  if (process.env.NODE_ENV === 'test') {
+    return {
+      write() {
+        // No logging in tests
       },
-};
+    };
+  }
 
-if (IS_TEST) {
-  writeWorker.unref();
-}
+  const writeWorker = new Worker(
+    path.resolve(__dirname, 'logWriteThread.cjs'),
+    {
+      env: SHARE_ENV,
+    },
+  );
+
+  return {
+    write: (msg: string) => {
+      writeWorker.postMessage(msg);
+    },
+  };
+};
 
 export const logger = pino(
   {
@@ -66,7 +69,7 @@ export const logger = pino(
       }),
     },
   },
-  writeOptions,
+  createWriteOptions(),
 );
 
 export const middlewares = [koaLogger(logger)];
