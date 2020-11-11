@@ -93,7 +93,9 @@ export type AvailableBR =
   | '407'
   | '410.1'
   | '411'
-  | '412'
+  | '412.7'
+  | '412.12'
+  | '412.13'
   | '415';
 export interface BRInfo {
   name: string;
