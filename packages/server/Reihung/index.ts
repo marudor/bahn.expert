@@ -130,6 +130,8 @@ const getComfortSeats = (br: BRInfo, klasse: 1 | 2) => {
       return klasse === 1 ? '21-26, 31, 33, 35' : '31-55, 57';
     case '411':
       return klasse === 1 ? '41, 46, 52, 54-56' : '92, 94, 96, 98, 101-118';
+    case '412.7':
+      return klasse === 1 ? '44-53' : '11-44';
     case '412.12':
       return klasse === 1 ? '11-46' : '11-68';
     case '415':
@@ -168,6 +170,8 @@ const getDisabledSeats = (
       return klasse === 1 ? '13, 15' : '11, 13, 15, 17';
     case '411':
       return klasse === 1 ? '21, 22' : '15-18';
+    case '412.7':
+      return klasse === 1 ? '12, 13' : '11-18';
     case '412.12':
       if (klasse === 1)
         return wagenordnungsnummer === '10' ? '12, 13' : '11, 14, 21';
