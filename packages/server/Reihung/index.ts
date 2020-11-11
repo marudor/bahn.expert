@@ -82,7 +82,7 @@ const ICE1LDV = (br: BRInfo, fahrzeuge: Fahrzeug[]): void => {
 
 const specificBR = (fahrzeuge: Fahrzeug[], formation: Formation): BRInfo => {
   for (const f of fahrzeuge) {
-    const br = getBR(f.fahrzeugnummer);
+    const br = getBR(f.fahrzeugnummer, fahrzeuge.length);
 
     if (br) return br;
   }
@@ -130,7 +130,7 @@ const getComfortSeats = (br: BRInfo, klasse: 1 | 2) => {
       return klasse === 1 ? '21-26, 31, 33, 35' : '31-55, 57';
     case '411':
       return klasse === 1 ? '41, 46, 52, 54-56' : '92, 94, 96, 98, 101-118';
-    case '412':
+    case '412.12':
       return klasse === 1 ? '11-46' : '11-68';
     case '415':
       return klasse === 1 ? '52, 54, 56' : '81-88, 91-98';
@@ -168,7 +168,7 @@ const getDisabledSeats = (
       return klasse === 1 ? '13, 15' : '11, 13, 15, 17';
     case '411':
       return klasse === 1 ? '21, 22' : '15-18';
-    case '412':
+    case '412.12':
       if (klasse === 1)
         return wagenordnungsnummer === '10' ? '12, 13' : '11, 14, 21';
 

@@ -1,6 +1,10 @@
 import type { BRInfo } from 'types/reihung';
 
-const getATBR = (code: string, _serial: string): undefined | BRInfo => {
+const getATBR = (
+  code: string,
+  _serial: string,
+  _anzahlFahrzeuge: number,
+): undefined | BRInfo => {
   switch (code) {
     case '4011':
       return {
@@ -13,6 +17,7 @@ const getATBR = (code: string, _serial: string): undefined | BRInfo => {
 const getDEBR = (
   code: string,
   uicOrdnungsnummer: string,
+  anzahlFahrzeuge: number,
 ): undefined | BRInfo => {
   switch (code) {
     case '0812':
@@ -32,7 +37,9 @@ const getDEBR = (
     case '9812':
       return {
         name: 'ICE 4',
-        BR: '412',
+        // @ts-expect-error this should work
+        BR: `412.${anzahlFahrzeuge}`,
+        noPdf: anzahlFahrzeuge != 12,
       };
     case '5401':
     case '5801':
@@ -94,7 +101,10 @@ const getDEBR = (
   }
 };
 
-export default (fahrzeugnummer: string): undefined | BRInfo => {
+export default (
+  fahrzeugnummer: string,
+  anzahlFahrzeuge: number,
+): undefined | BRInfo => {
   const country = fahrzeugnummer.substr(2, 2);
   const code = fahrzeugnummer.substr(4, 4);
   const serial = fahrzeugnummer.substr(8, 3);
@@ -103,10 +113,10 @@ export default (fahrzeugnummer: string): undefined | BRInfo => {
 
   switch (country) {
     case '80':
-      info = getDEBR(code, serial);
+      info = getDEBR(code, serial, anzahlFahrzeuge);
       break;
     case '81':
-      info = getATBR(code, serial);
+      info = getATBR(code, serial, anzahlFahrzeuge);
       break;
   }
 
