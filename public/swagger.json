@@ -348,6 +348,122 @@
         "type": "object",
         "additionalProperties": false
       },
+      "OccupancyPeriod": {
+        "properties": {
+          "start": {
+            "type": "string"
+          },
+          "end": {
+            "type": "string"
+          }
+        },
+        "required": ["start", "end"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OccupancyLevelDescription": {
+        "properties": {
+          "language": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          }
+        },
+        "required": ["language", "text"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OccupancyLevel": {
+        "properties": {
+          "value": {
+            "type": "number",
+            "format": "double"
+          },
+          "description": {
+            "items": {
+              "$ref": "#/components/schemas/OccupancyLevelDescription"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["value", "description"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OccupancyTimeSlot": {
+        "properties": {
+          "period": {
+            "$ref": "#/components/schemas/OccupancyPeriod"
+          },
+          "currentCount": {
+            "type": "number",
+            "format": "double"
+          },
+          "averageCount": {
+            "type": "number",
+            "format": "double"
+          },
+          "currentPercentage": {
+            "type": "number",
+            "format": "double"
+          },
+          "level": {
+            "$ref": "#/components/schemas/OccupancyLevel"
+          }
+        },
+        "required": [
+          "period",
+          "currentCount",
+          "averageCount",
+          "currentPercentage",
+          "level"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OccupancyItem": {
+        "properties": {
+          "period": {
+            "$ref": "#/components/schemas/OccupancyPeriod"
+          },
+          "currentCountMax": {
+            "type": "number",
+            "format": "double"
+          },
+          "averageCountMax": {
+            "type": "number",
+            "format": "double"
+          },
+          "occupancyTimeSlot": {
+            "items": {
+              "$ref": "#/components/schemas/OccupancyTimeSlot"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "period",
+          "currentCountMax",
+          "averageCountMax",
+          "occupancyTimeSlot"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OccupancyResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/OccupancyItem"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["items"],
+        "type": "object",
+        "additionalProperties": false
+      },
       "OpL": {
         "properties": {
           "name": {
@@ -5024,7 +5140,7 @@
         ]
       }
     },
-    "/businessHub/experimental/quays/{evaId}": {
+    "/businessHub/experimental/stationQuays/{evaId}": {
       "get": {
         "operationId": "Quays",
         "responses": {
@@ -5051,6 +5167,45 @@
             "required": true,
             "schema": {
               "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/businessHub/experimental/stationOccupancy/{evaId}/{date}": {
+      "get": {
+        "operationId": "StationOccupancy",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OccupancyResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["BusinessHub Experimental"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "evaId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Unix Time (ms)",
+            "in": "path",
+            "name": "date",
+            "required": true,
+            "schema": {
+              "format": "double",
+              "type": "number"
             }
           }
         ]
