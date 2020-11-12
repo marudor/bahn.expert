@@ -185,6 +185,64 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "OccupancyPeriod": {
+        "dataType": "refObject",
+        "properties": {
+            "start": {"dataType":"string","required":true},
+            "end": {"dataType":"string","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "OccupancyLevelDescription": {
+        "dataType": "refObject",
+        "properties": {
+            "language": {"dataType":"string","required":true},
+            "text": {"dataType":"string","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "OccupancyLevel": {
+        "dataType": "refObject",
+        "properties": {
+            "value": {"dataType":"double","required":true},
+            "description": {"dataType":"array","array":{"ref":"OccupancyLevelDescription"},"required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "OccupancyTimeSlot": {
+        "dataType": "refObject",
+        "properties": {
+            "period": {"ref":"OccupancyPeriod","required":true},
+            "currentCount": {"dataType":"double","required":true},
+            "averageCount": {"dataType":"double","required":true},
+            "currentPercentage": {"dataType":"double","required":true},
+            "level": {"ref":"OccupancyLevel","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "OccupancyItem": {
+        "dataType": "refObject",
+        "properties": {
+            "period": {"ref":"OccupancyPeriod","required":true},
+            "currentCountMax": {"dataType":"double","required":true},
+            "averageCountMax": {"dataType":"double","required":true},
+            "occupancyTimeSlot": {"dataType":"array","array":{"ref":"OccupancyTimeSlot"},"required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "OccupancyResponse": {
+        "dataType": "refObject",
+        "properties": {
+            "items": {"dataType":"array","array":{"ref":"OccupancyItem"},"required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "OpL": {
         "dataType": "refObject",
         "properties": {
@@ -2130,7 +2188,7 @@ export function RegisterRoutes(router: KoaRouter) {
             return promiseHandler(controller, promise, context, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        router.get('/api/businessHub/experimental/quays/:evaId',
+        router.get('/api/businessHub/experimental/stationQuays/:evaId',
             async (context: any, next: any) => {
             const args = {
                     evaId: {"in":"path","name":"evaId","required":true,"dataType":"string"},
@@ -2147,6 +2205,27 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new BussinessHubExperimentalController();
 
             const promise = controller.quays.apply(controller, validatedArgs as any);
+            return promiseHandler(controller, promise, context, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        router.get('/api/businessHub/experimental/stationOccupancy/:evaId/:date',
+            async (context: any, next: any) => {
+            const args = {
+                    evaId: {"in":"path","name":"evaId","required":true,"dataType":"string"},
+                    date: {"in":"path","name":"date","required":true,"dataType":"double"},
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+              validatedArgs = getValidatedArgs(args, context, next);
+            } catch (error) {
+              context.status = error.status;
+              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+            }
+
+            const controller = new BussinessHubExperimentalController();
+
+            const promise = controller.stationOccupancy.apply(controller, validatedArgs as any);
             return promiseHandler(controller, promise, context, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

@@ -1,3 +1,4 @@
+import { formatISO } from 'date-fns';
 import { request } from './request';
 import type {
   APIResult,
@@ -7,6 +8,7 @@ import type {
   DetailsApiResult,
   StopPlace,
 } from 'business-hub/types/StopPlaces';
+import type { OccupancyResponse } from 'business-hub/types/Occupancy';
 import type { Quay } from 'business-hub/types/Quays';
 
 const transformBusinessHubStation = (
@@ -86,4 +88,22 @@ export const stationQuays = async (evaId: string): Promise<Quay[]> => {
   ).data;
 
   return quays;
+};
+
+export const stationOccupancy = async (
+  evaId: string,
+  date: number,
+): Promise<OccupancyResponse> => {
+  const occupancy = (
+    await request.get<OccupancyResponse>(
+      `/public-transport-stations/v1/stop-places/${evaId}/occupancy/${formatISO(
+        date,
+        {
+          representation: 'date',
+        },
+      )}`,
+    )
+  ).data;
+
+  return occupancy;
 };
