@@ -35,10 +35,6 @@ interface BaseTripSearchOptions
   tarif?: TripSearchTarifRequest;
 }
 
-export interface TripSearchOptionsV1 extends BaseTripSearchOptions {
-  via?: string[];
-}
-
 interface TripSearchVia {
   evaId: string;
   minChangeTime?: number;

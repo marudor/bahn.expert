@@ -3579,154 +3579,6 @@
         "type": "object",
         "additionalProperties": false
       },
-      "RoutingResult": {
-        "properties": {
-          "routes": {
-            "items": {
-              "$ref": "#/components/schemas/SingleRoute"
-            },
-            "type": "array"
-          },
-          "context": {
-            "properties": {
-              "later": {
-                "type": "string"
-              },
-              "earlier": {
-                "type": "string"
-              }
-            },
-            "required": ["later", "earlier"],
-            "type": "object"
-          }
-        },
-        "required": ["routes", "context"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "JnyCl": {
-        "enum": [1, 2],
-        "type": "number"
-      },
-      "TravelerType": {
-        "enum": ["E", "K", "B"],
-        "type": "string"
-      },
-      "LoyalityCard": {
-        "enum": [
-          "BC25First",
-          "BC25Second",
-          "BC50First",
-          "BC50Second",
-          "SHCard",
-          "ATVorteilscard",
-          "CHGeneral",
-          "CHHalfWithRailplus",
-          "CHHalfWithoutRailplus",
-          "NLWithRailplus",
-          "NLWithoutRailplus",
-          "BC100First",
-          "BC100Second"
-        ],
-        "type": "string"
-      },
-      "TripSearchTraveler": {
-        "properties": {
-          "type": {
-            "$ref": "#/components/schemas/TravelerType"
-          },
-          "loyalityCard": {
-            "$ref": "#/components/schemas/LoyalityCard",
-            "description": "Testing Comment"
-          }
-        },
-        "required": ["type"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "TripSearchTarifRequest": {
-        "properties": {
-          "class": {
-            "$ref": "#/components/schemas/JnyCl"
-          },
-          "traveler": {
-            "items": {
-              "$ref": "#/components/schemas/TripSearchTraveler"
-            },
-            "type": "array"
-          }
-        },
-        "required": ["class", "traveler"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "TripSearchOptionsV1": {
-        "properties": {
-          "economic": {
-            "type": "boolean",
-            "description": "true = not only fastest route"
-          },
-          "getIV": {
-            "type": "boolean",
-            "description": "Unknown flag"
-          },
-          "getPasslist": {
-            "type": "boolean",
-            "description": "Get Stop inbetween"
-          },
-          "getPolyline": {
-            "type": "boolean",
-            "description": "Polylines - unknown format"
-          },
-          "numF": {
-            "type": "number",
-            "format": "double"
-          },
-          "ctxScr": {
-            "type": "string"
-          },
-          "ushrp": {
-            "type": "boolean",
-            "description": "Is a station nearby enough for routing?"
-          },
-          "start": {
-            "type": "string"
-          },
-          "destination": {
-            "type": "string"
-          },
-          "time": {
-            "type": "number",
-            "format": "double"
-          },
-          "transferTime": {
-            "type": "number",
-            "format": "double"
-          },
-          "maxChanges": {
-            "type": "number",
-            "format": "double"
-          },
-          "searchForDeparture": {
-            "type": "boolean"
-          },
-          "onlyRegional": {
-            "type": "boolean"
-          },
-          "tarif": {
-            "$ref": "#/components/schemas/TripSearchTarifRequest"
-          },
-          "via": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array"
-          }
-        },
-        "required": ["start", "destination"],
-        "type": "object",
-        "additionalProperties": false
-      },
       "SingleParsedJourneyGeoPos": {
         "properties": {
           "jid": {
@@ -3843,6 +3695,31 @@
       "JourneyGeoPosOptions": {
         "$ref": "#/components/schemas/JourneyGeoPosRequestOptions"
       },
+      "RoutingResult": {
+        "properties": {
+          "routes": {
+            "items": {
+              "$ref": "#/components/schemas/SingleRoute"
+            },
+            "type": "array"
+          },
+          "context": {
+            "properties": {
+              "later": {
+                "type": "string"
+              },
+              "earlier": {
+                "type": "string"
+              }
+            },
+            "required": ["later", "earlier"],
+            "type": "object"
+          }
+        },
+        "required": ["routes", "context"],
+        "type": "object",
+        "additionalProperties": false
+      },
       "TripSearchVia": {
         "properties": {
           "evaId": {
@@ -3854,6 +3731,62 @@
           }
         },
         "required": ["evaId"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "JnyCl": {
+        "enum": [1, 2],
+        "type": "number"
+      },
+      "TravelerType": {
+        "enum": ["E", "K", "B"],
+        "type": "string"
+      },
+      "LoyalityCard": {
+        "enum": [
+          "BC25First",
+          "BC25Second",
+          "BC50First",
+          "BC50Second",
+          "SHCard",
+          "ATVorteilscard",
+          "CHGeneral",
+          "CHHalfWithRailplus",
+          "CHHalfWithoutRailplus",
+          "NLWithRailplus",
+          "NLWithoutRailplus",
+          "BC100First",
+          "BC100Second"
+        ],
+        "type": "string"
+      },
+      "TripSearchTraveler": {
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/TravelerType"
+          },
+          "loyalityCard": {
+            "$ref": "#/components/schemas/LoyalityCard",
+            "description": "Testing Comment"
+          }
+        },
+        "required": ["type"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "TripSearchTarifRequest": {
+        "properties": {
+          "class": {
+            "$ref": "#/components/schemas/JnyCl"
+          },
+          "traveler": {
+            "items": {
+              "$ref": "#/components/schemas/TripSearchTraveler"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["class", "traveler"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3959,37 +3892,6 @@
             "$ref": "#/components/schemas/WingInfo"
           }
         },
-        "type": "object",
-        "additionalProperties": false
-      },
-      "IrisStation": {
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "meta": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array"
-          },
-          "eva": {
-            "type": "string"
-          },
-          "ds100": {
-            "type": "string"
-          },
-          "db": {
-            "type": "string"
-          },
-          "creationts": {
-            "type": "string"
-          },
-          "p": {
-            "type": "string"
-          }
-        },
-        "required": ["name", "meta", "eva", "ds100", "db", "creationts", "p"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4552,6 +4454,37 @@
           "sbb"
         ],
         "type": "string"
+      },
+      "IrisStation": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "meta": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "eva": {
+            "type": "string"
+          },
+          "ds100": {
+            "type": "string"
+          },
+          "db": {
+            "type": "string"
+          },
+          "creationts": {
+            "type": "string"
+          },
+          "p": {
+            "type": "string"
+          }
+        },
+        "required": ["name", "meta", "eva", "ds100", "db", "creationts", "p"],
+        "type": "object",
+        "additionalProperties": false
       },
       "IrisStationWithRelated": {
         "properties": {
@@ -5174,7 +5107,7 @@
     },
     "/businessHub/experimental/stationOccupancy/{evaId}/{date}": {
       "get": {
-        "operationId": "StationOccupancy",
+        "operationId": "stationOccupancyDeprecated",
         "responses": {
           "200": {
             "description": "Ok",
@@ -5188,6 +5121,7 @@
           }
         },
         "tags": ["BusinessHub Experimental"],
+        "deprecated": true,
         "security": [],
         "parameters": [
           {
@@ -5206,6 +5140,44 @@
             "schema": {
               "format": "double",
               "type": "number"
+            }
+          }
+        ]
+      }
+    },
+    "/businessHub/v1/stationOccupancy/{evaId}/{date}": {
+      "get": {
+        "operationId": "StationOccupancy",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OccupancyResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["BusinessHub"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "evaId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "date",
+            "required": true,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
             }
           }
         ]
@@ -6138,46 +6110,6 @@
         ]
       }
     },
-    "/hafas/v1/tripSearch": {
-      "post": {
-        "operationId": "TripSearchV1",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RoutingResult"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["HAFAS"],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TripSearchOptionsV1"
-              }
-            }
-          }
-        }
-      }
-    },
     "/hafas/v1/journeyGeoPos": {
       "post": {
         "operationId": "JourneyGeoPos",
@@ -6386,61 +6318,6 @@
             }
           }
         ]
-      }
-    },
-    "/iris/v1/station/{searchTerm}": {
-      "get": {
-        "operationId": "Station",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/IrisStation"
-                  },
-                  "type": "array"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["IRIS V1"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "searchTerm",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      }
-    },
-    "/iris/v1/stations": {
-      "get": {
-        "operationId": "Stations",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/IrisStation"
-                  },
-                  "type": "array"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["IRIS V1"],
-        "security": [],
-        "parameters": []
       }
     },
     "/reihung/v1/wagen/{trainNumber}/{date}": {

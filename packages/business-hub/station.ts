@@ -92,7 +92,7 @@ export const stationQuays = async (evaId: string): Promise<Quay[]> => {
 
 export const stationOccupancy = async (
   evaId: string,
-  date: number,
+  date: Date,
 ): Promise<OccupancyResponse> => {
   const occupancy = (
     await request.get<OccupancyResponse>(

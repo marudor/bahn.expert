@@ -22,8 +22,6 @@ export enum CacheDatabases {
   LocMatch,
   StationSearch,
   HIMMessage,
-  CouchSequence,
-  TimetableAll,
   HVVLageplan,
   NAHSHLageplan,
 }
