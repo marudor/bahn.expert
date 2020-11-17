@@ -1,6 +1,6 @@
 import { Controller, Get, Hidden, Route, SuccessResponse, Tags } from 'tsoa';
 import { wagenreihung } from 'server/Reihung';
-import { WRForNumber, WRForTZ } from 'server/Reihung/hasWR';
+import { WRForNumber, WRForTZ } from 'server/Reihung/searchWR';
 import TrainNames from 'server/Reihung/TrainNames';
 import type { Formation } from 'types/reihung';
 

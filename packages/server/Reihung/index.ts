@@ -1,9 +1,10 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable no-fallthrough */
+import { format } from 'date-fns';
 import { getAbfahrten } from 'server/iris';
-import { getWRLink, WRCache } from 'server/Reihung/hasWR';
 import { isRedesignByTZ, isRedesignByUIC } from 'server/Reihung/tzInfo';
 import { maxBy, minBy } from 'client/util';
+import { utcToZonedTime } from 'date-fns-tz';
 import Axios from 'axios';
 import getBR from 'server/Reihung/getBR';
 import TrainNames from 'server/Reihung/TrainNames';
@@ -15,6 +16,17 @@ import type {
   Formation,
   Wagenreihung,
 } from 'types/reihung';
+
+const formatDate = (date: number) =>
+  format(utcToZonedTime(date, 'Europe/Berlin'), 'yyyyMMddHHmm');
+
+// https://ist-wr.noncd.db.de/wagenreihung/1.0/
+// https://www.apps-bahn.de/wr/wagenreihung/1.0/
+export const getWRLink = (trainNumber: string, date: number): string => {
+  return `https://www.apps-bahn.de/wr/wagenreihung/1.0/${trainNumber}/${formatDate(
+    date,
+  )}`;
+};
 
 const countryMapping: any = {
   80: 'DE',
@@ -328,11 +340,7 @@ export async function wagenreihung(
         },
       };
     }
-    if (e.response?.data?.tryThese) {
-      if (!(await WRCache.exists(trainNumber))) {
-        await WRCache.set(trainNumber, null);
-      }
-    }
+
     throw {
       response: {
         status: 404,
@@ -367,7 +375,7 @@ export async function wagenreihung(
   );
 
   if (!reallyHasReihung) {
-    throw { status: 404 };
+    throw { status: 404, statusText: 'Data invalid' };
   }
 
   const isActuallyIC =
