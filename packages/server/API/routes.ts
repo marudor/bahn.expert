@@ -7,6 +7,8 @@ import { BahnhofControllerV1 } from './controller/Bahnhof/v1';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { BussinessHubExperimentalController } from './controller/BusinessHub/experimental';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { BusinessHubV1Controller } from './controller/BusinessHub/v1';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { HafasExperimentalController } from './controller/Hafas/experimental';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { HafasSubscribeController } from './controller/Hafas/subscribe';
@@ -1514,71 +1516,6 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "RoutingResult": {
-        "dataType": "refObject",
-        "properties": {
-            "routes": {"dataType":"array","array":{"ref":"SingleRoute"},"required":true},
-            "context": {"dataType":"nestedObjectLiteral","nestedProperties":{"later":{"dataType":"string","required":true},"earlier":{"dataType":"string","required":true}},"required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "JnyCl": {
-        "dataType": "refEnum",
-        "enums": [1,2],
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "TravelerType": {
-        "dataType": "refEnum",
-        "enums": ["E","K","B"],
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "LoyalityCard": {
-        "dataType": "refEnum",
-        "enums": ["BC25First","BC25Second","BC50First","BC50Second","SHCard","ATVorteilscard","CHGeneral","CHHalfWithRailplus","CHHalfWithoutRailplus","NLWithRailplus","NLWithoutRailplus","BC100First","BC100Second"],
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "TripSearchTraveler": {
-        "dataType": "refObject",
-        "properties": {
-            "type": {"ref":"TravelerType","required":true},
-            "loyalityCard": {"ref":"LoyalityCard"},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "TripSearchTarifRequest": {
-        "dataType": "refObject",
-        "properties": {
-            "class": {"ref":"JnyCl","required":true},
-            "traveler": {"dataType":"array","array":{"ref":"TripSearchTraveler"},"required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "TripSearchOptionsV1": {
-        "dataType": "refObject",
-        "properties": {
-            "economic": {"dataType":"boolean"},
-            "getIV": {"dataType":"boolean"},
-            "getPasslist": {"dataType":"boolean"},
-            "getPolyline": {"dataType":"boolean"},
-            "numF": {"dataType":"double"},
-            "ctxScr": {"dataType":"string"},
-            "ushrp": {"dataType":"boolean"},
-            "start": {"dataType":"string","required":true},
-            "destination": {"dataType":"string","required":true},
-            "time": {"dataType":"double"},
-            "transferTime": {"dataType":"double"},
-            "maxChanges": {"dataType":"double"},
-            "searchForDeparture": {"dataType":"boolean"},
-            "onlyRegional": {"dataType":"boolean"},
-            "tarif": {"ref":"TripSearchTarifRequest"},
-            "via": {"dataType":"array","array":{"dataType":"string"}},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "SingleParsedJourneyGeoPos": {
         "dataType": "refObject",
         "properties": {
@@ -1635,11 +1572,53 @@ const models: TsoaRoute.Models = {
         "type": {"ref":"JourneyGeoPosRequestOptions","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "RoutingResult": {
+        "dataType": "refObject",
+        "properties": {
+            "routes": {"dataType":"array","array":{"ref":"SingleRoute"},"required":true},
+            "context": {"dataType":"nestedObjectLiteral","nestedProperties":{"later":{"dataType":"string","required":true},"earlier":{"dataType":"string","required":true}},"required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "TripSearchVia": {
         "dataType": "refObject",
         "properties": {
             "evaId": {"dataType":"string","required":true},
             "minChangeTime": {"dataType":"double"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "JnyCl": {
+        "dataType": "refEnum",
+        "enums": [1,2],
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "TravelerType": {
+        "dataType": "refEnum",
+        "enums": ["E","K","B"],
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "LoyalityCard": {
+        "dataType": "refEnum",
+        "enums": ["BC25First","BC25Second","BC50First","BC50Second","SHCard","ATVorteilscard","CHGeneral","CHHalfWithRailplus","CHHalfWithoutRailplus","NLWithRailplus","NLWithoutRailplus","BC100First","BC100Second"],
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "TripSearchTraveler": {
+        "dataType": "refObject",
+        "properties": {
+            "type": {"ref":"TravelerType","required":true},
+            "loyalityCard": {"ref":"LoyalityCard"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "TripSearchTarifRequest": {
+        "dataType": "refObject",
+        "properties": {
+            "class": {"ref":"JnyCl","required":true},
+            "traveler": {"dataType":"array","array":{"ref":"TripSearchTraveler"},"required":true},
         },
         "additionalProperties": false,
     },
@@ -1682,20 +1661,6 @@ const models: TsoaRoute.Models = {
         "properties": {
             "start": {"ref":"WingInfo"},
             "end": {"ref":"WingInfo"},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "IrisStation": {
-        "dataType": "refObject",
-        "properties": {
-            "name": {"dataType":"string","required":true},
-            "meta": {"dataType":"array","array":{"dataType":"string"},"required":true},
-            "eva": {"dataType":"string","required":true},
-            "ds100": {"dataType":"string","required":true},
-            "db": {"dataType":"string","required":true},
-            "creationts": {"dataType":"string","required":true},
-            "p": {"dataType":"string","required":true},
         },
         "additionalProperties": false,
     },
@@ -1906,6 +1871,20 @@ const models: TsoaRoute.Models = {
     "StationSearchType": {
         "dataType": "refEnum",
         "enums": ["default","hafas","openData","openDataOffline","stationsData","businessHub","sbb"],
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "IrisStation": {
+        "dataType": "refObject",
+        "properties": {
+            "name": {"dataType":"string","required":true},
+            "meta": {"dataType":"array","array":{"dataType":"string"},"required":true},
+            "eva": {"dataType":"string","required":true},
+            "ds100": {"dataType":"string","required":true},
+            "db": {"dataType":"string","required":true},
+            "creationts": {"dataType":"string","required":true},
+            "p": {"dataType":"string","required":true},
+        },
+        "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "IrisStationWithRelated": {
@@ -2224,6 +2203,27 @@ export function RegisterRoutes(router: KoaRouter) {
             }
 
             const controller = new BussinessHubExperimentalController();
+
+            const promise = controller.stationOccupancy.apply(controller, validatedArgs as any);
+            return promiseHandler(controller, promise, context, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        router.get('/api/businessHub/v1/stationOccupancy/:evaId/:date',
+            async (context: any, next: any) => {
+            const args = {
+                    evaId: {"in":"path","name":"evaId","required":true,"dataType":"string"},
+                    date: {"in":"path","name":"date","required":true,"dataType":"datetime"},
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+              validatedArgs = getValidatedArgs(args, context, next);
+            } catch (error) {
+              context.status = error.status;
+              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+            }
+
+            const controller = new BusinessHubV1Controller();
 
             const promise = controller.stationOccupancy.apply(controller, validatedArgs as any);
             return promiseHandler(controller, promise, context, next);
@@ -2713,28 +2713,6 @@ export function RegisterRoutes(router: KoaRouter) {
             return promiseHandler(controller, promise, context, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        router.post('/api/hafas/v1/tripSearch',
-            async (context: any, next: any) => {
-            const args = {
-                    ctx: {"in":"request","name":"ctx","required":true,"dataType":"object"},
-                    body: {"in":"body","name":"body","required":true,"ref":"TripSearchOptionsV1"},
-                    profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
-            };
-
-            let validatedArgs: any[] = [];
-            try {
-              validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
-              context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
-            }
-
-            const controller = new HafasController();
-
-            const promise = controller.tripSearch.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.post('/api/hafas/v1/journeyGeoPos',
             async (context: any, next: any) => {
             const args = {
@@ -2862,45 +2840,6 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new IrisController();
 
             const promise = controller.abfahrten.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        router.get('/api/iris/v1/station/:searchTerm',
-            async (context: any, next: any) => {
-            const args = {
-                    searchTerm: {"in":"path","name":"searchTerm","required":true,"dataType":"string"},
-            };
-
-            let validatedArgs: any[] = [];
-            try {
-              validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
-              context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
-            }
-
-            const controller = new IrisController();
-
-            const promise = controller.station.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        router.get('/api/iris/v1/stations',
-            async (context: any, next: any) => {
-            const args = {
-            };
-
-            let validatedArgs: any[] = [];
-            try {
-              validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
-              context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
-            }
-
-            const controller = new IrisController();
-
-            const promise = controller.stations.apply(controller, validatedArgs as any);
             return promiseHandler(controller, promise, context, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

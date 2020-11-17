@@ -202,12 +202,12 @@ async function makeRequest<
   // }
   const { data, extraParam } = createRequest(hafasRequest, profile);
 
-  // if (process.env.NODE_ENV === 'test') {
-  // eslint-disable-next-line no-console
-  console.log(JSON.stringify(hafasRequest));
-  // eslint-disable-next-line no-console
-  console.log(extraParam);
-  // }
+  if (process.env.NODE_ENV === 'test') {
+    // eslint-disable-next-line no-console
+    console.log(JSON.stringify(hafasRequest));
+    // eslint-disable-next-line no-console
+    console.log(extraParam);
+  }
   const r = (
     await Axios.post<HafasResponse<HR>>(HafasProfiles[profile].url, data, {
       params: extraParam,

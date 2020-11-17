@@ -28,7 +28,7 @@ function route(
     searchForDeparture = true,
     getPasslist = true,
     economic = true,
-    ushrp = true,
+    ushrp = false,
     getPolyline = false,
     getIV = true,
     numF = 6,

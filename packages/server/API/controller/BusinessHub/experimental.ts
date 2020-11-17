@@ -1,4 +1,12 @@
-import { Controller, Get, Query, Route, Tags } from 'tsoa';
+import {
+  Controller,
+  Deprecated,
+  Get,
+  OperationId,
+  Query,
+  Route,
+  Tags,
+} from 'tsoa';
 import {
   fasta,
   news,
@@ -50,8 +58,10 @@ export class BussinessHubExperimentalController extends Controller {
     return stationQuays(evaId);
   }
 
+  @Deprecated()
   @Get('/stationOccupancy/{evaId}/{date}')
   @Tags('BusinessHub Experimental')
+  @OperationId('stationOccupancyDeprecated')
   stationOccupancy(
     evaId: string,
     /**
@@ -59,6 +69,6 @@ export class BussinessHubExperimentalController extends Controller {
      */
     date: number,
   ): Promise<OccupancyResponse> {
-    return stationOccupancy(evaId, date);
+    return stationOccupancy(evaId, new Date(date));
   }
 }

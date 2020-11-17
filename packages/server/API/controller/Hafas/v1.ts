@@ -1,7 +1,6 @@
 import {
   Body,
   Controller,
-  Deprecated,
   Get,
   Hidden,
   OperationId,
@@ -23,7 +22,6 @@ import makeRequest from 'server/HAFAS/Request';
 import PositionForTrain from 'server/HAFAS/PositionForTrain';
 import SearchOnTrip from 'server/HAFAS/SearchOnTrip';
 import StationBoard from 'server/HAFAS/StationBoard';
-import TripSearch from 'server/HAFAS/TripSearch';
 import type { AllowedHafasProfile, HafasStation } from 'types/HAFAS';
 import type {
   AllowedSotMode,
@@ -43,11 +41,7 @@ import type {
   ParsedJourneyMatchResponse,
 } from 'types/HAFAS/JourneyMatch';
 import type { ParsedJourneyDetails } from 'types/HAFAS/JourneyDetails';
-import type { RoutingResult, SingleRoute } from 'types/routing';
-import type {
-  TripSearchOptionsV1,
-  TripSearchOptionsV2,
-} from 'types/HAFAS/TripSearch';
+import type { SingleRoute } from 'types/routing';
 
 interface SearchOnTripBody {
   sotMode: AllowedSotMode;
@@ -238,24 +232,6 @@ export class HafasController extends Controller {
     @Query() profile?: AllowedHafasProfile,
   ): Promise<HafasStation[]> {
     return LocMatch(searchTerm, type, profile, ctx.query.raw);
-  }
-
-  @Deprecated()
-  @Post('/tripSearch')
-  @Tags('HAFAS')
-  @OperationId('TripSearchV1')
-  tripSearch(
-    @Request() ctx: Context,
-    @Body() body: TripSearchOptionsV1,
-    @Query() profile?: AllowedHafasProfile,
-  ): Promise<RoutingResult> {
-    const v2Options: TripSearchOptionsV2 = {
-      ...body,
-      via: body.via?.map((evaId) => ({
-        evaId,
-      })),
-    };
-    return TripSearch(v2Options, profile, ctx.query.raw);
   }
 
   @Post('/journeyGeoPos')
