@@ -5,7 +5,7 @@ import type { RoutingOptions, SBBRoutingResult } from 'sbb/types/routing';
 export async function routing({
   start,
   destination,
-  time = Date.now(),
+  time = new Date(),
 }: RoutingOptions): Promise<SBBRoutingResult> {
   const result = (
     await request.get(

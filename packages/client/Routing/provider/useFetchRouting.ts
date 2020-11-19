@@ -50,9 +50,9 @@ export const useFetchRouting = () => {
       try {
         const routingResult = (
           await Axios.post<RoutingResult>(
-            '/api/hafas/v2/tripSearch',
+            '/api/hafas/v3/tripSearch',
             {
-              time: (date || new Date()).getTime(),
+              time: date || new Date(),
               ...routeSettings,
             },
             {
@@ -89,7 +89,7 @@ export const useFetchRouting = () => {
       try {
         const routingResult = (
           await Axios.post<RoutingResult>(
-            '/api/hafas/v2/tripSearch',
+            '/api/hafas/v3/tripSearch',
             {
               ctxScr: type === 'earlier' ? earlierContext : laterContext,
               ...commonRouteSettings,

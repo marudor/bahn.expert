@@ -30,7 +30,7 @@ export default (
     scheduledTime,
     time,
     delay,
-    reihung: checkReihung(scheduledTime, d.dTrnCmpSX, train),
+    reihung: checkReihung(scheduledTime.getTime(), d.dTrnCmpSX, train),
     cancelled: d.dCncl,
     // messages: d.msgL ? parseMessages(d.msgL, common) : undefined,
   };

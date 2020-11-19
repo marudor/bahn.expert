@@ -17,6 +17,8 @@ import { HafasController } from './controller/Hafas/v1';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { HafasControllerV2 } from './controller/Hafas/v2';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { HafasControllerV3 } from './controller/Hafas/v3';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { IrisController } from './controller/Iris/v1';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { ReihungMonitoringController } from './controller/Reihung/monitor';
@@ -416,9 +418,9 @@ const models: TsoaRoute.Models = {
         "properties": {
             "scheduledPlatform": {"dataType":"string"},
             "platform": {"dataType":"string"},
-            "scheduledTime": {"dataType":"double","required":true},
-            "time": {"dataType":"double","required":true},
-            "delay": {"dataType":"double"},
+            "scheduledTime": {"dataType":"datetime","required":true},
+            "time": {"dataType":"datetime","required":true},
+            "delay": {"dataType":"integer"},
             "reihung": {"dataType":"boolean"},
             "messages": {"dataType":"array","array":{"ref":"RemL"}},
             "cancelled": {"dataType":"boolean"},
@@ -858,9 +860,24 @@ const models: TsoaRoute.Models = {
         "properties": {
             "scheduledPlatform": {"dataType":"string"},
             "platform": {"dataType":"string"},
-            "scheduledTime": {"dataType":"double","required":true},
-            "time": {"dataType":"double","required":true},
-            "delay": {"dataType":"double"},
+            "scheduledTime": {"dataType":"datetime","required":true},
+            "time": {"dataType":"datetime","required":true},
+            "delay": {"dataType":"integer"},
+            "reihung": {"dataType":"boolean"},
+            "messages": {"dataType":"array","array":{"ref":"RemL"}},
+            "cancelled": {"dataType":"boolean"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "CommonStopInfo_Date_": {
+        "dataType": "refObject",
+        "properties": {
+            "scheduledPlatform": {"dataType":"string"},
+            "platform": {"dataType":"string"},
+            "scheduledTime": {"dataType":"datetime","required":true},
+            "time": {"dataType":"datetime","required":true},
+            "delay": {"dataType":"integer"},
             "reihung": {"dataType":"boolean"},
             "messages": {"dataType":"array","array":{"ref":"RemL"}},
             "cancelled": {"dataType":"boolean"},
@@ -871,7 +888,7 @@ const models: TsoaRoute.Models = {
     "Route%24ValidDepartureStop": {
         "dataType": "refObject",
         "properties": {
-            "arrival": {"ref":"CommonStopInfo"},
+            "arrival": {"ref":"CommonStopInfo_Date_"},
             "departure": {"ref":"CommonStopInfo","required":true},
             "station": {"ref":"Station","required":true},
             "auslastung": {"ref":"Route%24Auslastung"},
@@ -887,7 +904,7 @@ const models: TsoaRoute.Models = {
         "dataType": "refObject",
         "properties": {
             "arrival": {"ref":"CommonStopInfo","required":true},
-            "departure": {"ref":"CommonStopInfo"},
+            "departure": {"ref":"CommonStopInfo_Date_"},
             "station": {"ref":"Station","required":true},
             "auslastung": {"ref":"Route%24Auslastung"},
             "messages": {"dataType":"array","array":{"ref":"RemL"}},
@@ -901,8 +918,8 @@ const models: TsoaRoute.Models = {
     "Route%24Stop": {
         "dataType": "refObject",
         "properties": {
-            "arrival": {"ref":"CommonStopInfo"},
-            "departure": {"ref":"CommonStopInfo"},
+            "arrival": {"ref":"CommonStopInfo_Date_"},
+            "departure": {"ref":"CommonStopInfo_Date_"},
             "station": {"ref":"Station","required":true},
             "auslastung": {"ref":"Route%24Auslastung"},
             "messages": {"dataType":"array","array":{"ref":"RemL"}},
@@ -1176,10 +1193,25 @@ const models: TsoaRoute.Models = {
         "type": {"dataType":"union","subSchemas":[{"ref":"SecLJNY"},{"ref":"SecLWALK"},{"ref":"SecLKISS"}],"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Route%24Stop_Date_": {
+        "dataType": "refObject",
+        "properties": {
+            "arrival": {"ref":"CommonStopInfo_Date_"},
+            "departure": {"ref":"CommonStopInfo_Date_"},
+            "station": {"ref":"Station","required":true},
+            "auslastung": {"ref":"Route%24Auslastung"},
+            "messages": {"dataType":"array","array":{"ref":"RemL"}},
+            "additional": {"dataType":"boolean"},
+            "cancelled": {"dataType":"boolean"},
+            "irisMessages": {"dataType":"array","array":{"dataType":"refAlias","ref":"Message"}},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Route%24TarifFare": {
         "dataType": "refObject",
         "properties": {
-            "price": {"dataType":"double","required":true},
+            "price": {"dataType":"integer","required":true,"validators":{"isInt":{"errorMsg":"in Cent"}}},
             "moreExpensiveAvailable": {"dataType":"boolean","required":true},
             "bookable": {"dataType":"boolean","required":true},
             "upsell": {"dataType":"boolean","required":true},
@@ -1219,7 +1251,7 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Route%24Journey": {
+    "Route%24Journey_Date_": {
         "dataType": "refObject",
         "properties": {
             "cancelled": {"dataType":"boolean"},
@@ -1231,7 +1263,7 @@ const models: TsoaRoute.Models = {
             "raw": {"ref":"SecL"},
             "segmentDestination": {"ref":"Station","required":true},
             "segmentStart": {"ref":"Station","required":true},
-            "stops": {"dataType":"array","array":{"ref":"Route%24Stop"},"required":true},
+            "stops": {"dataType":"array","array":{"ref":"Route%24Stop_Date_"},"required":true},
             "train": {"ref":"ParsedProduct","required":true},
             "auslastung": {"ref":"Route%24Auslastung"},
             "messages": {"dataType":"array","array":{"ref":"RemL"}},
@@ -1253,28 +1285,23 @@ const models: TsoaRoute.Models = {
             "raw": {"ref":"SecL"},
             "segmentDestination": {"ref":"Station","required":true},
             "segmentStart": {"ref":"Station","required":true},
-            "stops": {"dataType":"array","array":{"ref":"Route%24Stop"},"required":true},
+            "stops": {"dataType":"array","array":{"ref":"Route%24Stop_Date_"},"required":true},
             "train": {"ref":"ParsedProduct","required":true},
             "auslastung": {"ref":"Route%24Auslastung"},
             "messages": {"dataType":"array","array":{"ref":"RemL"}},
             "tarifSet": {"dataType":"array","array":{"ref":"Route%24TarifFareSet"}},
             "plannedSequence": {"ref":"PlannedSequence"},
             "type": {"dataType":"enum","enums":["JNY"],"required":true},
-            "arrival": {"ref":"CommonStopInfo","required":true},
-            "departure": {"ref":"CommonStopInfo","required":true},
-            "wings": {"dataType":"array","array":{"ref":"Route%24Journey"}},
+            "arrival": {"ref":"CommonStopInfo_Date_","required":true},
+            "departure": {"ref":"CommonStopInfo_Date_","required":true},
+            "wings": {"dataType":"array","array":{"ref":"Route%24Journey_Date_"}},
         },
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Pick_CommonStopInfo.time-or-delay_": {
+    "WalkStopInfo_Date_": {
         "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"time":{"dataType":"double","required":true},"delay":{"dataType":"double"}},"validators":{}},
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "WalkStopInfo": {
-        "dataType": "refAlias",
-        "type": {"ref":"Pick_CommonStopInfo.time-or-delay_","validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"delay":{"dataType":"double"},"time":{"dataType":"datetime","required":true}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Coordinates": {
@@ -1302,9 +1329,9 @@ const models: TsoaRoute.Models = {
         "properties": {
             "type": {"dataType":"enum","enums":["WALK"],"required":true},
             "train": {"ref":"ParsedProduct","required":true},
-            "arrival": {"ref":"WalkStopInfo","required":true},
-            "departure": {"ref":"WalkStopInfo","required":true},
-            "duration": {"dataType":"double","required":true},
+            "arrival": {"ref":"WalkStopInfo_Date_","required":true},
+            "departure": {"ref":"WalkStopInfo_Date_","required":true},
+            "duration": {"dataType":"integer","required":true},
             "segmentStart": {"ref":"HafasStation","required":true},
             "segmentDestination": {"ref":"HafasStation","required":true},
         },
@@ -1406,14 +1433,14 @@ const models: TsoaRoute.Models = {
     "SingleRoute": {
         "dataType": "refObject",
         "properties": {
-            "arrival": {"ref":"CommonStopInfo","required":true},
-            "departure": {"ref":"CommonStopInfo","required":true},
+            "arrival": {"ref":"CommonStopInfo_Date_","required":true},
+            "departure": {"ref":"CommonStopInfo_Date_","required":true},
             "isRideable": {"dataType":"boolean","required":true},
             "checksum": {"dataType":"string","required":true},
             "cid": {"dataType":"string","required":true},
-            "date": {"dataType":"double","required":true},
-            "duration": {"dataType":"double","required":true},
-            "changes": {"dataType":"double","required":true},
+            "date": {"dataType":"datetime","required":true},
+            "duration": {"dataType":"integer","required":true,"validators":{"isInt":{"errorMsg":"in ms"}}},
+            "changes": {"dataType":"integer","required":true},
             "segments": {"dataType":"array","array":{"dataType":"refAlias","ref":"Route%24JourneySegment"},"required":true},
             "segmentTypes": {"dataType":"array","array":{"dataType":"string"},"required":true},
             "tarifSet": {"dataType":"array","array":{"ref":"Route%24TarifFareSet"}},
@@ -1448,16 +1475,16 @@ const models: TsoaRoute.Models = {
             "raw": {"ref":"SecL"},
             "segmentDestination": {"ref":"Station","required":true},
             "segmentStart": {"ref":"Station","required":true},
-            "stops": {"dataType":"array","array":{"ref":"Route%24Stop"},"required":true},
+            "stops": {"dataType":"array","array":{"ref":"Route%24Stop_Date_"},"required":true},
             "train": {"ref":"ParsedProduct","required":true},
             "auslastung": {"ref":"Route%24Auslastung"},
             "messages": {"dataType":"array","array":{"ref":"RemL"}},
             "tarifSet": {"dataType":"array","array":{"ref":"Route%24TarifFareSet"}},
             "plannedSequence": {"ref":"PlannedSequence"},
             "type": {"dataType":"enum","enums":["JNY"],"required":true},
-            "arrival": {"ref":"CommonStopInfo","required":true},
-            "departure": {"ref":"CommonStopInfo","required":true},
-            "wings": {"dataType":"array","array":{"ref":"Route%24Journey"}},
+            "arrival": {"ref":"CommonStopInfo_Date_","required":true},
+            "departure": {"ref":"CommonStopInfo_Date_","required":true},
+            "wings": {"dataType":"array","array":{"ref":"Route%24Journey_Date_"}},
             "currentStop": {"ref":"Route%24Stop"},
         },
         "additionalProperties": false,
@@ -1572,10 +1599,44 @@ const models: TsoaRoute.Models = {
         "type": {"ref":"JourneyGeoPosRequestOptions","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "RoutingResult": {
+    "CommonStopInfo_number_": {
         "dataType": "refObject",
         "properties": {
-            "routes": {"dataType":"array","array":{"ref":"SingleRoute"},"required":true},
+            "scheduledPlatform": {"dataType":"string"},
+            "platform": {"dataType":"string"},
+            "scheduledTime": {"dataType":"double","required":true},
+            "time": {"dataType":"double","required":true},
+            "delay": {"dataType":"integer"},
+            "reihung": {"dataType":"boolean"},
+            "messages": {"dataType":"array","array":{"ref":"RemL"}},
+            "cancelled": {"dataType":"boolean"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "SingleRoute_number_": {
+        "dataType": "refObject",
+        "properties": {
+            "arrival": {"ref":"CommonStopInfo_number_","required":true},
+            "departure": {"ref":"CommonStopInfo_number_","required":true},
+            "isRideable": {"dataType":"boolean","required":true},
+            "checksum": {"dataType":"string","required":true},
+            "cid": {"dataType":"string","required":true},
+            "date": {"dataType":"double","required":true},
+            "duration": {"dataType":"integer","required":true,"validators":{"isInt":{"errorMsg":"in ms"}}},
+            "changes": {"dataType":"integer","required":true},
+            "segments": {"dataType":"array","array":{"dataType":"refAlias","ref":"Route%24JourneySegment"},"required":true},
+            "segmentTypes": {"dataType":"array","array":{"dataType":"string"},"required":true},
+            "tarifSet": {"dataType":"array","array":{"ref":"Route%24TarifFareSet"}},
+            "raw": {"ref":"OutConL"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "RoutingResult_number_": {
+        "dataType": "refObject",
+        "properties": {
+            "routes": {"dataType":"array","array":{"ref":"SingleRoute_number_"},"required":true},
             "context": {"dataType":"nestedObjectLiteral","nestedProperties":{"later":{"dataType":"string","required":true},"earlier":{"dataType":"string","required":true}},"required":true},
         },
         "additionalProperties": false,
@@ -1636,6 +1697,57 @@ const models: TsoaRoute.Models = {
             "start": {"dataType":"string","required":true},
             "destination": {"dataType":"string","required":true},
             "time": {"dataType":"double"},
+            "transferTime": {"dataType":"double"},
+            "maxChanges": {"dataType":"double"},
+            "searchForDeparture": {"dataType":"boolean"},
+            "onlyRegional": {"dataType":"boolean"},
+            "tarif": {"ref":"TripSearchTarifRequest"},
+            "via": {"dataType":"array","array":{"ref":"TripSearchVia"}},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "SingleRoute_Date_": {
+        "dataType": "refObject",
+        "properties": {
+            "arrival": {"ref":"CommonStopInfo_Date_","required":true},
+            "departure": {"ref":"CommonStopInfo_Date_","required":true},
+            "isRideable": {"dataType":"boolean","required":true},
+            "checksum": {"dataType":"string","required":true},
+            "cid": {"dataType":"string","required":true},
+            "date": {"dataType":"datetime","required":true},
+            "duration": {"dataType":"integer","required":true,"validators":{"isInt":{"errorMsg":"in ms"}}},
+            "changes": {"dataType":"integer","required":true},
+            "segments": {"dataType":"array","array":{"dataType":"refAlias","ref":"Route%24JourneySegment"},"required":true},
+            "segmentTypes": {"dataType":"array","array":{"dataType":"string"},"required":true},
+            "tarifSet": {"dataType":"array","array":{"ref":"Route%24TarifFareSet"}},
+            "raw": {"ref":"OutConL"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "RoutingResult_Date_": {
+        "dataType": "refObject",
+        "properties": {
+            "routes": {"dataType":"array","array":{"ref":"SingleRoute_Date_"},"required":true},
+            "context": {"dataType":"nestedObjectLiteral","nestedProperties":{"later":{"dataType":"string","required":true},"earlier":{"dataType":"string","required":true}},"required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "TripSearchOptionsV3": {
+        "dataType": "refObject",
+        "properties": {
+            "economic": {"dataType":"boolean"},
+            "getIV": {"dataType":"boolean"},
+            "getPasslist": {"dataType":"boolean"},
+            "getPolyline": {"dataType":"boolean"},
+            "numF": {"dataType":"double"},
+            "ctxScr": {"dataType":"string"},
+            "ushrp": {"dataType":"boolean"},
+            "start": {"dataType":"string","required":true},
+            "destination": {"dataType":"string","required":true},
+            "time": {"dataType":"datetime"},
             "transferTime": {"dataType":"double"},
             "maxChanges": {"dataType":"double"},
             "searchForDeparture": {"dataType":"boolean"},
@@ -1863,7 +1975,7 @@ const models: TsoaRoute.Models = {
         "properties": {
             "start": {"dataType":"string","required":true},
             "destination": {"dataType":"string","required":true},
-            "time": {"dataType":"double"},
+            "time": {"dataType":"datetime"},
         },
         "additionalProperties": false,
     },
@@ -2794,6 +2906,28 @@ export function RegisterRoutes(router: KoaRouter) {
             }
 
             const controller = new HafasControllerV2();
+
+            const promise = controller.tripSearchV2.apply(controller, validatedArgs as any);
+            return promiseHandler(controller, promise, context, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        router.post('/api/hafas/v3/tripSearch',
+            async (context: any, next: any) => {
+            const args = {
+                    ctx: {"in":"request","name":"ctx","required":true,"dataType":"object"},
+                    body: {"in":"body","name":"body","required":true,"ref":"TripSearchOptionsV3"},
+                    profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+              validatedArgs = getValidatedArgs(args, context, next);
+            } catch (error) {
+              context.status = error.status;
+              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+            }
+
+            const controller = new HafasControllerV3();
 
             const promise = controller.tripSearch.apply(controller, validatedArgs as any);
             return promiseHandler(controller, promise, context, next);

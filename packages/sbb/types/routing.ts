@@ -6,7 +6,7 @@ export type SBBBelegung = 'UNKNOWN' | 'LOW' | string;
 export interface RoutingOptions extends CommonRoutingOptions {
   start: string;
   destination: string;
-  time?: number;
+  time?: Date;
 }
 
 export interface SBBRoutingResult {

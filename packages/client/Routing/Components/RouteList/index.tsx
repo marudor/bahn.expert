@@ -1,4 +1,5 @@
 import { Button, makeStyles } from '@material-ui/core';
+import { isSameDay } from 'date-fns';
 import { Loading } from 'client/Common/Components/Loading';
 import { Route } from './Route';
 import { RouteFavList } from 'client/Routing/Components/RouteFavList';
@@ -81,7 +82,7 @@ export const RouteList: FC = () => {
         .map((r, i) => {
           return (
             <>
-              {(i === 0 || routes[i - 1].date !== r.date) && (
+              {(i === 0 || !isSameDay(routes[i - 1].date, r.date)) && (
                 <RouteHeader date={r.date} />
               )}
               <Route

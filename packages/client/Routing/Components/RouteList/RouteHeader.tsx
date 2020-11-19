@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 });
 
 interface Props {
-  date: number;
+  date: Date;
 }
 
 export const RouteHeader: FC<Props> = ({ date }) => {

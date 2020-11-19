@@ -497,7 +497,7 @@ export async function wagenReihungMonitoring(): Promise<Formation | undefined> {
         // eslint-disable-next-line no-await-in-loop
         const wr = await wagenReihungSpecificMonitoring(
           departure.train.number,
-          departureTime,
+          departureTime.getTime(),
         );
 
         if (wr) return wr;

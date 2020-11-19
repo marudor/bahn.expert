@@ -27,7 +27,7 @@ interface Props {
   alignEnd?: boolean;
   className?: string;
   delay?: number;
-  real?: number;
+  real?: Date;
   showZero?: boolean;
   oneLine?: boolean;
   cancelled?: boolean;

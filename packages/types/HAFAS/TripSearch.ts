@@ -25,9 +25,9 @@ export interface TripSearchTarifRequest {
   traveler: TripSearchTraveler[];
 }
 
-interface BaseTripSearchOptions
+interface BaseTripSearchOptions<T = Date>
   extends SharedTripSearchOptions,
-    CommonRoutingOptions {
+    CommonRoutingOptions<T> {
   transferTime?: number;
   maxChanges?: number;
   searchForDeparture?: boolean;
@@ -40,7 +40,11 @@ interface TripSearchVia {
   minChangeTime?: number;
 }
 
-export interface TripSearchOptionsV2 extends BaseTripSearchOptions {
+export interface TripSearchOptionsV2 extends BaseTripSearchOptions<number> {
+  via?: TripSearchVia[];
+}
+
+export interface TripSearchOptionsV3 extends BaseTripSearchOptions {
   via?: TripSearchVia[];
 }
 

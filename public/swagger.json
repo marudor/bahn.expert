@@ -887,19 +887,16 @@
             "type": "string"
           },
           "scheduledTime": {
-            "type": "number",
-            "format": "double",
-            "description": "Unix Time (ms)"
+            "type": "string",
+            "format": "date-time"
           },
           "time": {
-            "type": "number",
-            "format": "double",
-            "description": "Unix Time (ms)"
+            "type": "string",
+            "format": "date-time"
           },
           "delay": {
-            "type": "number",
-            "format": "double",
-            "description": "Minutes"
+            "type": "integer",
+            "format": "int32"
           },
           "reihung": {
             "type": "boolean"
@@ -1854,19 +1851,53 @@
             "type": "string"
           },
           "scheduledTime": {
-            "type": "number",
-            "format": "double",
-            "description": "Unix Time (ms)"
+            "type": "string",
+            "format": "date-time"
           },
           "time": {
-            "type": "number",
-            "format": "double",
-            "description": "Unix Time (ms)"
+            "type": "string",
+            "format": "date-time"
           },
           "delay": {
-            "type": "number",
-            "format": "double",
-            "description": "Minutes"
+            "type": "integer",
+            "format": "int32"
+          },
+          "reihung": {
+            "type": "boolean"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "cancelled": {
+            "type": "boolean"
+          }
+        },
+        "required": ["scheduledTime", "time"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CommonStopInfo_Date_": {
+        "properties": {
+          "scheduledPlatform": {
+            "type": "string"
+          },
+          "platform": {
+            "type": "string"
+          },
+          "scheduledTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "delay": {
+            "type": "integer",
+            "format": "int32"
           },
           "reihung": {
             "type": "boolean"
@@ -1888,7 +1919,7 @@
       "Route$ValidDepartureStop": {
         "properties": {
           "arrival": {
-            "$ref": "#/components/schemas/CommonStopInfo"
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
           },
           "departure": {
             "$ref": "#/components/schemas/CommonStopInfo"
@@ -1928,7 +1959,7 @@
             "$ref": "#/components/schemas/CommonStopInfo"
           },
           "departure": {
-            "$ref": "#/components/schemas/CommonStopInfo"
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
           },
           "station": {
             "$ref": "#/components/schemas/Station"
@@ -1962,10 +1993,10 @@
       "Route$Stop": {
         "properties": {
           "arrival": {
-            "$ref": "#/components/schemas/CommonStopInfo"
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
           },
           "departure": {
-            "$ref": "#/components/schemas/CommonStopInfo"
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
           },
           "station": {
             "$ref": "#/components/schemas/Station"
@@ -2678,12 +2709,48 @@
           }
         ]
       },
+      "Route$Stop_Date_": {
+        "properties": {
+          "arrival": {
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
+          },
+          "station": {
+            "$ref": "#/components/schemas/Station"
+          },
+          "auslastung": {
+            "$ref": "#/components/schemas/Route$Auslastung"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "additional": {
+            "type": "boolean"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "irisMessages": {
+            "items": {
+              "$ref": "#/components/schemas/Message"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["station"],
+        "type": "object",
+        "additionalProperties": false
+      },
       "Route$TarifFare": {
         "properties": {
           "price": {
-            "type": "number",
-            "format": "double",
-            "description": "in Cent"
+            "type": "integer",
+            "format": "int32"
           },
           "moreExpensiveAvailable": {
             "type": "boolean"
@@ -2753,7 +2820,7 @@
         "type": "object",
         "additionalProperties": false
       },
-      "Route$Journey": {
+      "Route$Journey_Date_": {
         "properties": {
           "cancelled": {
             "type": "boolean"
@@ -2786,7 +2853,7 @@
           },
           "stops": {
             "items": {
-              "$ref": "#/components/schemas/Route$Stop"
+              "$ref": "#/components/schemas/Route$Stop_Date_"
             },
             "type": "array"
           },
@@ -2856,7 +2923,7 @@
           },
           "stops": {
             "items": {
-              "$ref": "#/components/schemas/Route$Stop"
+              "$ref": "#/components/schemas/Route$Stop_Date_"
             },
             "type": "array"
           },
@@ -2887,14 +2954,14 @@
             "nullable": false
           },
           "arrival": {
-            "$ref": "#/components/schemas/CommonStopInfo"
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
           },
           "departure": {
-            "$ref": "#/components/schemas/CommonStopInfo"
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
           },
           "wings": {
             "items": {
-              "$ref": "#/components/schemas/Route$Journey"
+              "$ref": "#/components/schemas/Route$Journey_Date_"
             },
             "type": "array"
           }
@@ -2913,25 +2980,19 @@
         "type": "object",
         "additionalProperties": false
       },
-      "Pick_CommonStopInfo.time-or-delay_": {
+      "WalkStopInfo_Date_": {
         "properties": {
-          "time": {
-            "type": "number",
-            "format": "double",
-            "description": "Unix Time (ms)"
-          },
           "delay": {
             "type": "number",
-            "format": "double",
-            "description": "Minutes"
+            "format": "double"
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "required": ["time"],
-        "type": "object",
-        "description": "From T, pick a set of properties whose keys are in the union K"
-      },
-      "WalkStopInfo": {
-        "$ref": "#/components/schemas/Pick_CommonStopInfo.time-or-delay_"
+        "type": "object"
       },
       "Coordinates": {
         "properties": {
@@ -2981,14 +3042,14 @@
             "$ref": "#/components/schemas/ParsedProduct"
           },
           "arrival": {
-            "$ref": "#/components/schemas/WalkStopInfo"
+            "$ref": "#/components/schemas/WalkStopInfo_Date_"
           },
           "departure": {
-            "$ref": "#/components/schemas/WalkStopInfo"
+            "$ref": "#/components/schemas/WalkStopInfo_Date_"
           },
           "duration": {
-            "type": "number",
-            "format": "double"
+            "type": "integer",
+            "format": "int32"
           },
           "segmentStart": {
             "$ref": "#/components/schemas/HafasStation"
@@ -3269,10 +3330,10 @@
       "SingleRoute": {
         "properties": {
           "arrival": {
-            "$ref": "#/components/schemas/CommonStopInfo"
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
           },
           "departure": {
-            "$ref": "#/components/schemas/CommonStopInfo"
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
           },
           "isRideable": {
             "type": "boolean"
@@ -3284,16 +3345,16 @@
             "type": "string"
           },
           "date": {
-            "type": "number",
-            "format": "double"
+            "type": "string",
+            "format": "date-time"
           },
           "duration": {
-            "type": "number",
-            "format": "double"
+            "type": "integer",
+            "format": "int32"
           },
           "changes": {
-            "type": "number",
-            "format": "double"
+            "type": "integer",
+            "format": "int32"
           },
           "segments": {
             "items": {
@@ -3382,7 +3443,7 @@
           },
           "stops": {
             "items": {
-              "$ref": "#/components/schemas/Route$Stop"
+              "$ref": "#/components/schemas/Route$Stop_Date_"
             },
             "type": "array"
           },
@@ -3413,14 +3474,14 @@
             "nullable": false
           },
           "arrival": {
-            "$ref": "#/components/schemas/CommonStopInfo"
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
           },
           "departure": {
-            "$ref": "#/components/schemas/CommonStopInfo"
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
           },
           "wings": {
             "items": {
-              "$ref": "#/components/schemas/Route$Journey"
+              "$ref": "#/components/schemas/Route$Journey_Date_"
             },
             "type": "array"
           },
@@ -3695,11 +3756,114 @@
       "JourneyGeoPosOptions": {
         "$ref": "#/components/schemas/JourneyGeoPosRequestOptions"
       },
-      "RoutingResult": {
+      "CommonStopInfo_number_": {
+        "properties": {
+          "scheduledPlatform": {
+            "type": "string"
+          },
+          "platform": {
+            "type": "string"
+          },
+          "scheduledTime": {
+            "type": "number",
+            "format": "double"
+          },
+          "time": {
+            "type": "number",
+            "format": "double"
+          },
+          "delay": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "reihung": {
+            "type": "boolean"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "cancelled": {
+            "type": "boolean"
+          }
+        },
+        "required": ["scheduledTime", "time"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SingleRoute_number_": {
+        "properties": {
+          "arrival": {
+            "$ref": "#/components/schemas/CommonStopInfo_number_"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/CommonStopInfo_number_"
+          },
+          "isRideable": {
+            "type": "boolean"
+          },
+          "checksum": {
+            "type": "string"
+          },
+          "cid": {
+            "type": "string"
+          },
+          "date": {
+            "type": "number",
+            "format": "double"
+          },
+          "duration": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "changes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "segments": {
+            "items": {
+              "$ref": "#/components/schemas/Route$JourneySegment"
+            },
+            "type": "array"
+          },
+          "segmentTypes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "tarifSet": {
+            "items": {
+              "$ref": "#/components/schemas/Route$TarifFareSet"
+            },
+            "type": "array"
+          },
+          "raw": {
+            "$ref": "#/components/schemas/OutConL"
+          }
+        },
+        "required": [
+          "arrival",
+          "departure",
+          "isRideable",
+          "checksum",
+          "cid",
+          "date",
+          "duration",
+          "changes",
+          "segments",
+          "segmentTypes"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "RoutingResult_number_": {
         "properties": {
           "routes": {
             "items": {
-              "$ref": "#/components/schemas/SingleRoute"
+              "$ref": "#/components/schemas/SingleRoute_number_"
             },
             "type": "array"
           },
@@ -3828,6 +3992,164 @@
           "time": {
             "type": "number",
             "format": "double"
+          },
+          "transferTime": {
+            "type": "number",
+            "format": "double"
+          },
+          "maxChanges": {
+            "type": "number",
+            "format": "double"
+          },
+          "searchForDeparture": {
+            "type": "boolean"
+          },
+          "onlyRegional": {
+            "type": "boolean"
+          },
+          "tarif": {
+            "$ref": "#/components/schemas/TripSearchTarifRequest"
+          },
+          "via": {
+            "items": {
+              "$ref": "#/components/schemas/TripSearchVia"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["start", "destination"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SingleRoute_Date_": {
+        "properties": {
+          "arrival": {
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
+          },
+          "isRideable": {
+            "type": "boolean"
+          },
+          "checksum": {
+            "type": "string"
+          },
+          "cid": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "duration": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "changes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "segments": {
+            "items": {
+              "$ref": "#/components/schemas/Route$JourneySegment"
+            },
+            "type": "array"
+          },
+          "segmentTypes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "tarifSet": {
+            "items": {
+              "$ref": "#/components/schemas/Route$TarifFareSet"
+            },
+            "type": "array"
+          },
+          "raw": {
+            "$ref": "#/components/schemas/OutConL"
+          }
+        },
+        "required": [
+          "arrival",
+          "departure",
+          "isRideable",
+          "checksum",
+          "cid",
+          "date",
+          "duration",
+          "changes",
+          "segments",
+          "segmentTypes"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "RoutingResult_Date_": {
+        "properties": {
+          "routes": {
+            "items": {
+              "$ref": "#/components/schemas/SingleRoute_Date_"
+            },
+            "type": "array"
+          },
+          "context": {
+            "properties": {
+              "later": {
+                "type": "string"
+              },
+              "earlier": {
+                "type": "string"
+              }
+            },
+            "required": ["later", "earlier"],
+            "type": "object"
+          }
+        },
+        "required": ["routes", "context"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "TripSearchOptionsV3": {
+        "properties": {
+          "economic": {
+            "type": "boolean",
+            "description": "true = not only fastest route"
+          },
+          "getIV": {
+            "type": "boolean",
+            "description": "Unknown flag"
+          },
+          "getPasslist": {
+            "type": "boolean",
+            "description": "Get Stop inbetween"
+          },
+          "getPolyline": {
+            "type": "boolean",
+            "description": "Polylines - unknown format"
+          },
+          "numF": {
+            "type": "number",
+            "format": "double"
+          },
+          "ctxScr": {
+            "type": "string"
+          },
+          "ushrp": {
+            "type": "boolean",
+            "description": "Is a station nearby enough for routing?"
+          },
+          "start": {
+            "type": "string"
+          },
+          "destination": {
+            "type": "string"
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time"
           },
           "transferTime": {
             "type": "number",
@@ -4435,8 +4757,8 @@
             "type": "string"
           },
           "time": {
-            "type": "number",
-            "format": "double"
+            "type": "string",
+            "format": "date-time"
           }
         },
         "required": ["start", "destination"],
@@ -6188,6 +6510,46 @@
     },
     "/hafas/v2/tripSearch": {
       "post": {
+        "operationId": "TripSearch Deprecated",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoutingResult_number_"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["HAFAS"],
+        "deprecated": true,
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TripSearchOptionsV2"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hafas/v3/tripSearch": {
+      "post": {
         "operationId": "TripSearch",
         "responses": {
           "200": {
@@ -6195,7 +6557,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RoutingResult"
+                  "$ref": "#/components/schemas/RoutingResult_Date_"
                 }
               }
             }
@@ -6218,7 +6580,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TripSearchOptionsV2"
+                "$ref": "#/components/schemas/TripSearchOptionsV3"
               }
             }
           }

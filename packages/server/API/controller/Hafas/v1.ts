@@ -127,7 +127,7 @@ export class HafasController extends Controller {
      */
     time: number,
   ) {
-    return Auslastung(start, destination, trainNumber, time);
+    return Auslastung(start, destination, trainNumber, new Date(time));
   }
 
   @Get('/arrivalStationBoard')

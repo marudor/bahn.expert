@@ -49,7 +49,7 @@ export default (
   }
 
   return {
-    initialDeparture: j.stops[0].departure!.scheduledTime,
+    initialDeparture: j.stops[0].departure!.scheduledTime.getTime(),
     arrival: matchingArrival?.arrival,
     departure: j.departure,
     auslastung: false,

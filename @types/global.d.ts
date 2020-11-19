@@ -24,6 +24,7 @@ declare global {
       };
       // test only
       nock: nock.Scope;
+      parseJson<T = unknown>(json: string): T;
     }
   }
 
