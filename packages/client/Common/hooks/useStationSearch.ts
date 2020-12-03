@@ -31,7 +31,7 @@ export const useStationSearch = ({
   const [loading, setLoading] = useState(false);
 
   const loadOptions = useCallback(
-    async (value: string | Coordinates) => {
+    async (value: string | GeolocationCoordinates) => {
       setLoading(true);
 
       const stationFn = profile
