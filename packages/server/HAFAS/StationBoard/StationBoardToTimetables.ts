@@ -49,7 +49,7 @@ export default (
   }
 
   return {
-    initialDeparture: j.stops[0].departure!.scheduledTime.getTime(),
+    initialDeparture: j.stops[0].departure!.scheduledTime,
     arrival: matchingArrival?.arrival,
     departure: j.departure,
     auslastung: false,
@@ -68,7 +68,6 @@ export default (
         j.messages?.map((m) => ({
           text: m.txtN,
           head: !m.txtS ? 'Information' : m.txtS,
-          timestamp: 0,
         })) || [],
     },
     platform: j.departure.platform ?? '',

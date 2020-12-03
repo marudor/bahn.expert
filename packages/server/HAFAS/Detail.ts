@@ -39,7 +39,7 @@ export default async (
   trainName: string,
   currentStopId?: string,
   station?: string,
-  date: number = Date.now(),
+  date: Date = new Date(),
   hafasProfile: AllowedHafasProfile = AllowedHafasProfile.DB,
 ): Promise<ParsedSearchOnTripResponse | undefined> => {
   let possibleTrains: undefined | ParsedJourneyMatchResponse[];

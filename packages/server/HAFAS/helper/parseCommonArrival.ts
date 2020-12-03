@@ -29,7 +29,7 @@ export default (
     scheduledTime,
     time,
     delay,
-    reihung: checkReihung(scheduledTime.getTime(), a.aTrnCmpSX, train),
+    reihung: checkReihung(scheduledTime, a.aTrnCmpSX, train),
     cancelled: a.aCncl,
     // messages: a.msgL ? parseMessages(a.msgL, common) : undefined,
   };

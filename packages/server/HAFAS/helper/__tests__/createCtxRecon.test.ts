@@ -29,7 +29,7 @@ describe('createCtxRecon', () => {
     },
     arrival: {
       scheduledTime: arrivalTime,
-      time: addSeconds(arrivalTime.getTime(), 123),
+      time: addSeconds(arrivalTime, 123),
     },
   };
 

@@ -167,8 +167,8 @@ export class Journey {
             arrival.scheduledTime &&
             departure.scheduledTime &&
             differenceInMilliseconds(
-              departure.scheduledTime,
               arrival.scheduledTime,
+              departure.scheduledTime,
             ),
           wings: t.parJnyL
             ? t.parJnyL.map(this.parseSegmentJourney)

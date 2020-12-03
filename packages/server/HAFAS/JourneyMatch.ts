@@ -43,9 +43,9 @@ const JourneyMatch = (
     const now = new Date();
 
     if (now.getHours() < 3) {
-      date = subDays(now, 1).getTime();
+      date = subDays(now, 1);
     } else {
-      date = now.getTime();
+      date = now;
     }
   }
 

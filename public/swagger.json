@@ -26,7 +26,10 @@
             "format": "double"
           }
         },
-        "required": ["latitude", "longitude"],
+        "required": [
+          "latitude",
+          "longitude"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -51,156 +54,11 @@
             "$ref": "#/components/schemas/BusinessHubCoordinates"
           }
         },
-        "required": ["title", "id", "location"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "OptionalData": {
-        "properties": {
-          "link": {
-            "type": "string"
-          }
-        },
-        "required": ["link"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "Group": {
-        "properties": {
-          "id": {
-            "type": "number",
-            "format": "double"
-          },
-          "title": {
-            "type": "string"
-          },
-          "optionalData": {
-            "$ref": "#/components/schemas/OptionalData"
-          }
-        },
-        "required": ["id", "title"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "Section": {
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "title": {
-            "type": "string"
-          },
-          "optionalData": {
-            "properties": {
-              "evaNumber": {
-                "type": "string"
-              },
-              "lon": {
-                "type": "string"
-              },
-              "lat": {
-                "type": "string"
-              },
-              "ds100": {
-                "type": "string"
-              }
-            },
-            "required": ["evaNumber", "lon", "lat", "ds100"],
-            "type": "object"
-          }
-        },
-        "required": ["id", "title"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "News": {
-        "properties": {
-          "published": {
-            "type": "boolean"
-          },
-          "id": {
-            "type": "string"
-          },
-          "title": {
-            "type": "string"
-          },
-          "subtitle": {
-            "type": "string"
-          },
-          "content": {
-            "type": "string"
-          },
-          "startTimestamp": {
-            "type": "string"
-          },
-          "endTimestamp": {
-            "type": "string"
-          },
-          "optionalData": {
-            "$ref": "#/components/schemas/OptionalData"
-          },
-          "image": {
-            "type": "string"
-          },
-          "version": {
-            "type": "number",
-            "format": "double"
-          },
-          "updatedAt": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "group": {
-            "$ref": "#/components/schemas/Group"
-          },
-          "sections": {
-            "items": {
-              "$ref": "#/components/schemas/Section"
-            },
-            "type": "array"
-          }
-        },
         "required": [
-          "published",
-          "id",
           "title",
-          "content",
-          "startTimestamp",
-          "endTimestamp",
-          "image",
-          "version",
-          "updatedAt",
-          "createdAt",
-          "group",
-          "sections"
+          "id",
+          "location"
         ],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "NewsResponse": {
-        "properties": {
-          "count": {
-            "type": "number",
-            "format": "double"
-          },
-          "offset": {
-            "type": "number",
-            "format": "double"
-          },
-          "limit": {
-            "type": "number",
-            "format": "double"
-          },
-          "news": {
-            "items": {
-              "$ref": "#/components/schemas/News"
-            },
-            "type": "array"
-          }
-        },
-        "required": ["count", "offset", "limit", "news"],
         "type": "object",
         "additionalProperties": false
       },
@@ -259,12 +117,21 @@
             "format": "double"
           }
         },
-        "required": ["facilieites", "name", "stationnumber"],
+        "required": [
+          "facilieites",
+          "name",
+          "stationnumber"
+        ],
         "type": "object",
         "additionalProperties": false
       },
       "LimitationEnum": {
-        "enum": ["true", "false", "unknown", "not applicable"],
+        "enum": [
+          "true",
+          "false",
+          "unknown",
+          "not applicable"
+        ],
         "type": "string"
       },
       "QuayAccessibilityLimitation": {
@@ -325,7 +192,9 @@
             "$ref": "#/components/schemas/QuayAccessibilityLimitation"
           }
         },
-        "required": ["accessibilityLimitation"],
+        "required": [
+          "accessibilityLimitation"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -344,7 +213,12 @@
             "type": "string"
           }
         },
-        "required": ["id", "name", "accessibilityAssessment", "quayType"],
+        "required": [
+          "id",
+          "name",
+          "accessibilityAssessment",
+          "quayType"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -357,7 +231,10 @@
             "type": "string"
           }
         },
-        "required": ["start", "end"],
+        "required": [
+          "start",
+          "end"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -370,7 +247,10 @@
             "type": "string"
           }
         },
-        "required": ["language", "text"],
+        "required": [
+          "language",
+          "text"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -387,7 +267,10 @@
             "type": "array"
           }
         },
-        "required": ["value", "description"],
+        "required": [
+          "value",
+          "description"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -460,7 +343,9 @@
             "type": "array"
           }
         },
-        "required": ["items"],
+        "required": [
+          "items"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -474,7 +359,10 @@
             "format": "double"
           }
         },
-        "required": ["name", "icoX"],
+        "required": [
+          "name",
+          "icoX"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -499,7 +387,9 @@
             "type": "string"
           }
         },
-        "required": ["name"],
+        "required": [
+          "name"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -524,11 +414,17 @@
             "type": "string"
           }
         },
-        "required": ["name", "fDate", "fTime", "tDate", "tTime"],
+        "required": [
+          "name",
+          "fDate",
+          "fTime",
+          "tDate",
+          "tTime"
+        ],
         "type": "object",
         "additionalProperties": false
       },
-      "ParsedHimMessage": {
+      "ParsedHimMessage_Date_": {
         "properties": {
           "hid": {
             "type": "string"
@@ -617,12 +513,12 @@
             "type": "array"
           },
           "startTime": {
-            "type": "number",
-            "format": "double"
+            "type": "string",
+            "format": "date-time"
           },
           "endTime": {
-            "type": "number",
-            "format": "double"
+            "type": "string",
+            "format": "date-time"
           }
         },
         "required": [
@@ -658,12 +554,14 @@
         "properties": {
           "messages": {
             "items": {
-              "$ref": "#/components/schemas/ParsedHimMessage"
+              "$ref": "#/components/schemas/ParsedHimMessage_Date_"
             },
             "type": "array"
           }
         },
-        "required": ["messages"],
+        "required": [
+          "messages"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -712,7 +610,10 @@
             "format": "double"
           }
         },
-        "required": ["x", "y"],
+        "required": [
+          "x",
+          "y"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -758,7 +659,12 @@
       },
       "HimFilterMode": {
         "type": "string",
-        "enum": ["BIT", "EXC", "INC", "UNDEF"]
+        "enum": [
+          "BIT",
+          "EXC",
+          "INC",
+          "UNDEF"
+        ]
       },
       "HimFilterType": {
         "type": "string",
@@ -791,7 +697,11 @@
             "type": "string"
           }
         },
-        "required": ["mode", "type", "value"],
+        "required": [
+          "mode",
+          "type",
+          "value"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -874,11 +784,16 @@
             "format": "double"
           }
         },
-        "required": ["type", "code", "icoX", "txtN"],
+        "required": [
+          "type",
+          "code",
+          "icoX",
+          "txtN"
+        ],
         "type": "object",
         "additionalProperties": false
       },
-      "StopInfo": {
+      "StopInfo_Date_": {
         "properties": {
           "scheduledPlatform": {
             "type": "string"
@@ -920,7 +835,10 @@
             "type": "boolean"
           }
         },
-        "required": ["scheduledTime", "time"],
+        "required": [
+          "scheduledTime",
+          "time"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -936,23 +854,31 @@
             "type": "string"
           }
         },
-        "required": ["title", "id"],
+        "required": [
+          "title",
+          "id"
+        ],
         "type": "object",
         "additionalProperties": false
       },
       "MessagePrio": {
         "type": "string",
-        "enum": ["1", "2", "3", "4"],
+        "enum": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
         "description": "1: High; 2: Medium; 3: Low; 4: Done"
       },
-      "IrisMessage": {
+      "IrisMessage_Date_": {
         "properties": {
           "text": {
             "type": "string"
           },
           "timestamp": {
-            "type": "number",
-            "format": "double"
+            "type": "string",
+            "format": "date-time"
           },
           "superseded": {
             "type": "boolean"
@@ -961,18 +887,20 @@
             "$ref": "#/components/schemas/MessagePrio"
           }
         },
-        "required": ["text", "timestamp"],
+        "required": [
+          "text"
+        ],
         "type": "object",
         "additionalProperties": false
       },
-      "HimIrisMessage": {
+      "HimIrisMessage_Date_": {
         "properties": {
           "text": {
             "type": "string"
           },
           "timestamp": {
-            "type": "number",
-            "format": "double"
+            "type": "string",
+            "format": "date-time"
           },
           "superseded": {
             "type": "boolean"
@@ -984,46 +912,53 @@
             "type": "string"
           }
         },
-        "required": ["text", "timestamp", "head"],
+        "required": [
+          "text",
+          "head"
+        ],
         "type": "object",
         "additionalProperties": false
       },
-      "Message": {
+      "Message_Date_": {
         "anyOf": [
           {
-            "$ref": "#/components/schemas/IrisMessage"
+            "$ref": "#/components/schemas/IrisMessage_Date_"
           },
           {
-            "$ref": "#/components/schemas/HimIrisMessage"
+            "$ref": "#/components/schemas/HimIrisMessage_Date_"
           }
         ]
       },
-      "Messages": {
+      "Messages_Date_": {
         "properties": {
           "qos": {
             "items": {
-              "$ref": "#/components/schemas/IrisMessage"
+              "$ref": "#/components/schemas/IrisMessage_Date_"
             },
             "type": "array"
           },
           "delay": {
             "items": {
-              "$ref": "#/components/schemas/IrisMessage"
+              "$ref": "#/components/schemas/IrisMessage_Date_"
             },
             "type": "array"
           },
           "him": {
             "items": {
-              "$ref": "#/components/schemas/HimIrisMessage"
+              "$ref": "#/components/schemas/HimIrisMessage_Date_"
             },
             "type": "array"
           }
         },
-        "required": ["qos", "delay", "him"],
+        "required": [
+          "qos",
+          "delay",
+          "him"
+        ],
         "type": "object",
         "additionalProperties": {
           "items": {
-            "$ref": "#/components/schemas/Message"
+            "$ref": "#/components/schemas/Message_Date_"
           },
           "type": "array"
         }
@@ -1040,7 +975,11 @@
             "type": "string"
           }
         },
-        "required": ["trainNumber", "trainType", "train"],
+        "required": [
+          "trainNumber",
+          "trainType",
+          "train"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1059,7 +998,9 @@
             "type": "string"
           }
         },
-        "required": ["name"],
+        "required": [
+          "name"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1087,19 +1028,22 @@
             "type": "boolean"
           }
         },
-        "required": ["name", "type", "number"],
+        "required": [
+          "name",
+          "type",
+          "number"
+        ],
         "type": "object",
         "additionalProperties": false
       },
-      "Abfahrt": {
+      "Abfahrt_Date_": {
         "properties": {
           "initialDeparture": {
-            "type": "number",
-            "format": "double",
-            "description": "Unix Time (ms)"
+            "type": "string",
+            "format": "date-time"
           },
           "arrival": {
-            "$ref": "#/components/schemas/StopInfo"
+            "$ref": "#/components/schemas/StopInfo_Date_"
           },
           "auslastung": {
             "type": "boolean"
@@ -1108,7 +1052,7 @@
             "$ref": "#/components/schemas/Station"
           },
           "departure": {
-            "$ref": "#/components/schemas/StopInfo"
+            "$ref": "#/components/schemas/StopInfo_Date_"
           },
           "destination": {
             "type": "string"
@@ -1126,7 +1070,7 @@
             "type": "string"
           },
           "messages": {
-            "$ref": "#/components/schemas/Messages"
+            "$ref": "#/components/schemas/Messages_Date_"
           },
           "platform": {
             "type": "string"
@@ -1188,38 +1132,47 @@
         "type": "object",
         "additionalProperties": false
       },
-      "Wings": {
+      "Wings_Date_": {
         "properties": {},
         "type": "object",
         "additionalProperties": {
-          "$ref": "#/components/schemas/Abfahrt"
+          "$ref": "#/components/schemas/Abfahrt_Date_"
         }
       },
       "AbfahrtenResult": {
         "properties": {
           "departures": {
             "items": {
-              "$ref": "#/components/schemas/Abfahrt"
+              "$ref": "#/components/schemas/Abfahrt_Date_"
             },
             "type": "array"
           },
           "lookbehind": {
             "items": {
-              "$ref": "#/components/schemas/Abfahrt"
+              "$ref": "#/components/schemas/Abfahrt_Date_"
             },
             "type": "array"
           },
           "wings": {
-            "$ref": "#/components/schemas/Wings"
+            "$ref": "#/components/schemas/Wings_Date_"
           }
         },
-        "required": ["departures", "lookbehind", "wings"],
+        "required": [
+          "departures",
+          "lookbehind",
+          "wings"
+        ],
         "type": "object",
         "additionalProperties": false
       },
       "JourneyFilterMode": {
         "type": "string",
-        "enum": ["BIT", "EXC", "INC", "UNDEF"]
+        "enum": [
+          "BIT",
+          "EXC",
+          "INC",
+          "UNDEF"
+        ]
       },
       "JourneyFilterType": {
         "type": "string",
@@ -1262,7 +1215,11 @@
             "type": "string"
           }
         },
-        "required": ["mode", "type", "value"],
+        "required": [
+          "mode",
+          "type",
+          "value"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1275,7 +1232,10 @@
             "$ref": "#/components/schemas/Crd"
           }
         },
-        "required": ["llCrd", "urCrd"],
+        "required": [
+          "llCrd",
+          "urCrd"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1293,7 +1253,10 @@
             "format": "double"
           }
         },
-        "required": ["cCrd", "maxDist"],
+        "required": [
+          "cCrd",
+          "maxDist"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1361,7 +1324,11 @@
       },
       "HafasDirection": {
         "type": "string",
-        "enum": ["B", "F", "FB"]
+        "enum": [
+          "B",
+          "F",
+          "FB"
+        ]
       },
       "JourneyCourseRequestOptions": {
         "properties": {
@@ -1421,7 +1388,10 @@
             "description": "HHmm"
           }
         },
-        "required": ["date", "jid"],
+        "required": [
+          "date",
+          "jid"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1432,7 +1402,9 @@
             "format": "double"
           }
         },
-        "required": ["subscriptionId"],
+        "required": [
+          "subscriptionId"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1442,7 +1414,9 @@
             "type": "string"
           }
         },
-        "required": ["channelId"],
+        "required": [
+          "channelId"
+        ],
         "type": "object",
         "description": "From T, pick a set of properties whose keys are in the union K"
       },
@@ -1459,7 +1433,11 @@
             "description": "1 or 0 for each day, starts at monday\nexample: 1001001\nMonday, Thursday, Sunday selected"
           }
         },
-        "required": ["endDate", "beginDate", "selectedWeekdays"],
+        "required": [
+          "endDate",
+          "beginDate",
+          "selectedWeekdays"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1522,7 +1500,11 @@
             "$ref": "#/components/schemas/SubscrInterval"
           }
         },
-        "required": ["userId", "channels", "intvlSubscr"],
+        "required": [
+          "userId",
+          "channels",
+          "intvlSubscr"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1534,7 +1516,9 @@
                 "type": "string"
               }
             },
-            "required": ["resultCode"],
+            "required": [
+              "resultCode"
+            ],
             "type": "object"
           },
           "userId": {
@@ -1544,7 +1528,11 @@
             "type": "string"
           }
         },
-        "required": ["result", "userId", "subscrId"],
+        "required": [
+          "result",
+          "userId",
+          "subscrId"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1558,7 +1546,10 @@
             "format": "double"
           }
         },
-        "required": ["userId", "subscrId"],
+        "required": [
+          "userId",
+          "subscrId"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1568,7 +1559,9 @@
             "type": "string"
           }
         },
-        "required": ["userId"],
+        "required": [
+          "userId"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1576,16 +1569,23 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["NO_SOUND"],
+            "enum": [
+              "NO_SOUND"
+            ],
             "nullable": false
           },
           "value": {
             "type": "string",
-            "enum": ["1"],
+            "enum": [
+              "1"
+            ],
             "nullable": false
           }
         },
-        "required": ["type", "value"],
+        "required": [
+          "type",
+          "value"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1593,14 +1593,19 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["CUSTOMER_TYPE"],
+            "enum": [
+              "CUSTOMER_TYPE"
+            ],
             "nullable": false
           },
           "value": {
             "type": "string"
           }
         },
-        "required": ["type", "value"],
+        "required": [
+          "type",
+          "value"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1637,7 +1642,13 @@
             "description": "PUSH_IPHONE"
           }
         },
-        "required": ["channelId", "address", "type", "options", "name"],
+        "required": [
+          "channelId",
+          "address",
+          "type",
+          "options",
+          "name"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1657,7 +1668,10 @@
             "description": "de"
           }
         },
-        "required": ["userId", "channels"],
+        "required": [
+          "userId",
+          "channels"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1669,7 +1683,9 @@
                 "type": "string"
               }
             },
-            "required": ["resultCode"],
+            "required": [
+              "resultCode"
+            ],
             "type": "object"
           },
           "userId": {
@@ -1700,7 +1716,10 @@
                 },
                 "status": {
                   "type": "string",
-                  "enum": ["ACTIVE", "EXPIRED"]
+                  "enum": [
+                    "ACTIVE",
+                    "EXPIRED"
+                  ]
                 }
               },
               "required": [
@@ -1716,7 +1735,11 @@
             "type": "array"
           }
         },
-        "required": ["result", "userId", "intvlSubscrL"],
+        "required": [
+          "result",
+          "userId",
+          "intvlSubscrL"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1728,14 +1751,19 @@
                 "type": "string"
               }
             },
-            "required": ["resultCode"],
+            "required": [
+              "resultCode"
+            ],
             "type": "object"
           },
           "userId": {
             "type": "string"
           }
         },
-        "required": ["result", "userId"],
+        "required": [
+          "result",
+          "userId"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1745,7 +1773,9 @@
             "type": "string"
           }
         },
-        "required": ["userId"],
+        "required": [
+          "userId"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1774,7 +1804,10 @@
             "type": "array"
           }
         },
-        "required": ["rtEvents", "himEvents"],
+        "required": [
+          "rtEvents",
+          "himEvents"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1786,7 +1819,9 @@
                 "type": "string"
               }
             },
-            "required": ["resultCode"],
+            "required": [
+              "resultCode"
+            ],
             "type": "object"
           },
           "userId": {
@@ -1798,7 +1833,10 @@
           },
           "status": {
             "type": "string",
-            "enum": ["ACTIVE", "EXPIRED"]
+            "enum": [
+              "ACTIVE",
+              "EXPIRED"
+            ]
           },
           "channels": {
             "items": {
@@ -1825,24 +1863,7 @@
         "type": "object",
         "additionalProperties": false
       },
-      "AuslastungsValue": {
-        "description": "1: Gering\n2: Hoch\n3: Sehr Hoch\n4: Ausgebucht",
-        "enum": [1, 2, 3, 4],
-        "type": "number"
-      },
-      "Route$Auslastung": {
-        "properties": {
-          "first": {
-            "$ref": "#/components/schemas/AuslastungsValue"
-          },
-          "second": {
-            "$ref": "#/components/schemas/AuslastungsValue"
-          }
-        },
-        "type": "object",
-        "additionalProperties": false
-      },
-      "CommonStopInfo": {
+      "CommonStopInfo_number_": {
         "properties": {
           "scheduledPlatform": {
             "type": "string"
@@ -1851,12 +1872,12 @@
             "type": "string"
           },
           "scheduledTime": {
-            "type": "string",
-            "format": "date-time"
+            "type": "number",
+            "format": "double"
           },
           "time": {
-            "type": "string",
-            "format": "date-time"
+            "type": "number",
+            "format": "double"
           },
           "delay": {
             "type": "integer",
@@ -1875,7 +1896,10 @@
             "type": "boolean"
           }
         },
-        "required": ["scheduledTime", "time"],
+        "required": [
+          "scheduledTime",
+          "time"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1912,152 +1936,10 @@
             "type": "boolean"
           }
         },
-        "required": ["scheduledTime", "time"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "Route$ValidDepartureStop": {
-        "properties": {
-          "arrival": {
-            "$ref": "#/components/schemas/CommonStopInfo_Date_"
-          },
-          "departure": {
-            "$ref": "#/components/schemas/CommonStopInfo"
-          },
-          "station": {
-            "$ref": "#/components/schemas/Station"
-          },
-          "auslastung": {
-            "$ref": "#/components/schemas/Route$Auslastung"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          },
-          "additional": {
-            "type": "boolean"
-          },
-          "cancelled": {
-            "type": "boolean"
-          },
-          "irisMessages": {
-            "items": {
-              "$ref": "#/components/schemas/Message"
-            },
-            "type": "array"
-          }
-        },
-        "required": ["station", "departure"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "Route$ValidArrivalStop": {
-        "properties": {
-          "arrival": {
-            "$ref": "#/components/schemas/CommonStopInfo"
-          },
-          "departure": {
-            "$ref": "#/components/schemas/CommonStopInfo_Date_"
-          },
-          "station": {
-            "$ref": "#/components/schemas/Station"
-          },
-          "auslastung": {
-            "$ref": "#/components/schemas/Route$Auslastung"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          },
-          "additional": {
-            "type": "boolean"
-          },
-          "cancelled": {
-            "type": "boolean"
-          },
-          "irisMessages": {
-            "items": {
-              "$ref": "#/components/schemas/Message"
-            },
-            "type": "array"
-          }
-        },
-        "required": ["station", "arrival"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "Route$Stop": {
-        "properties": {
-          "arrival": {
-            "$ref": "#/components/schemas/CommonStopInfo_Date_"
-          },
-          "departure": {
-            "$ref": "#/components/schemas/CommonStopInfo_Date_"
-          },
-          "station": {
-            "$ref": "#/components/schemas/Station"
-          },
-          "auslastung": {
-            "$ref": "#/components/schemas/Route$Auslastung"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          },
-          "additional": {
-            "type": "boolean"
-          },
-          "cancelled": {
-            "type": "boolean"
-          },
-          "irisMessages": {
-            "items": {
-              "$ref": "#/components/schemas/Message"
-            },
-            "type": "array"
-          }
-        },
-        "required": ["station"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "ParsedJourneyDetails": {
-        "properties": {
-          "train": {
-            "$ref": "#/components/schemas/ParsedProduct"
-          },
-          "auslastung": {
-            "$ref": "#/components/schemas/Route$Auslastung"
-          },
-          "jid": {
-            "type": "string"
-          },
-          "firstStop": {
-            "$ref": "#/components/schemas/Route$ValidDepartureStop"
-          },
-          "lastStop": {
-            "$ref": "#/components/schemas/Route$ValidArrivalStop"
-          },
-          "stops": {
-            "items": {
-              "$ref": "#/components/schemas/Route$Stop"
-            },
-            "type": "array"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          }
-        },
-        "required": ["train", "jid", "firstStop", "lastStop", "stops"],
+        "required": [
+          "scheduledTime",
+          "time"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2105,7 +1987,11 @@
             "format": "double"
           }
         },
-        "required": ["name", "cls", "icoX"],
+        "required": [
+          "name",
+          "cls",
+          "icoX"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2142,7 +2028,11 @@
             "type": "string"
           }
         },
-        "required": ["name", "icoX", "cls"],
+        "required": [
+          "name",
+          "icoX",
+          "cls"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2178,7 +2068,11 @@
             "format": "double"
           }
         },
-        "required": ["r", "g", "b"],
+        "required": [
+          "r",
+          "g",
+          "b"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2213,7 +2107,15 @@
             "type": "array"
           }
         },
-        "required": ["type", "remX", "txtC", "prio", "fIdx", "tIdx", "tagL"],
+        "required": [
+          "type",
+          "remX",
+          "txtC",
+          "prio",
+          "fIdx",
+          "tIdx",
+          "tagL"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2272,7 +2174,12 @@
             "type": "array"
           }
         },
-        "required": ["locX", "dInS", "dInR", "dTimeS"],
+        "required": [
+          "locX",
+          "dInS",
+          "dInR",
+          "dTimeS"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2328,7 +2235,11 @@
             "type": "array"
           }
         },
-        "required": ["locX", "aOutR", "aTimeS"],
+        "required": [
+          "locX",
+          "aOutR",
+          "aTimeS"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2422,7 +2333,14 @@
             "type": "boolean"
           }
         },
-        "required": ["locX", "aOutR", "aTimeS", "dInS", "dInR", "dTimeS"],
+        "required": [
+          "locX",
+          "aOutR",
+          "aTimeS",
+          "dInS",
+          "dInR",
+          "dTimeS"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2499,7 +2417,12 @@
             "type": "array"
           }
         },
-        "required": ["minC", "maxC", "numC", "jnyL"],
+        "required": [
+          "minC",
+          "maxC",
+          "numC",
+          "jnyL"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2580,7 +2503,9 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["JNY"],
+            "enum": [
+              "JNY"
+            ],
             "nullable": false
           },
           "icoX": {
@@ -2604,7 +2529,11 @@
           },
           "resState": {
             "type": "string",
-            "enum": ["N", "B", "S"]
+            "enum": [
+              "N",
+              "B",
+              "S"
+            ]
           },
           "resRecommendation": {
             "type": "string"
@@ -2664,7 +2593,10 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["WALK", "TRSF"]
+            "enum": [
+              "WALK",
+              "TRSF"
+            ]
           },
           "icoX": {
             "type": "number",
@@ -2680,7 +2612,13 @@
             "$ref": "#/components/schemas/Gis"
           }
         },
-        "required": ["type", "icoX", "dep", "arr", "gis"],
+        "required": [
+          "type",
+          "icoX",
+          "dep",
+          "arr",
+          "gis"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2688,11 +2626,15 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["KISS"],
+            "enum": [
+              "KISS"
+            ],
             "nullable": false
           }
         },
-        "required": ["type"],
+        "required": [
+          "type"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2706,6 +2648,38 @@
           },
           {
             "$ref": "#/components/schemas/SecLKISS"
+          }
+        ]
+      },
+      "AuslastungsValue": {
+        "description": "1: Gering\n2: Hoch\n3: Sehr Hoch\n4: Ausgebucht",
+        "enum": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "type": "number"
+      },
+      "Route$Auslastung": {
+        "properties": {
+          "first": {
+            "$ref": "#/components/schemas/AuslastungsValue"
+          },
+          "second": {
+            "$ref": "#/components/schemas/AuslastungsValue"
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Message": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/IrisMessage_Date_"
+          },
+          {
+            "$ref": "#/components/schemas/HimIrisMessage_Date_"
           }
         ]
       },
@@ -2742,7 +2716,9 @@
             "type": "array"
           }
         },
-        "required": ["station"],
+        "required": [
+          "station"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2786,13 +2762,23 @@
             "type": "array"
           }
         },
-        "required": ["fares"],
+        "required": [
+          "fares"
+        ],
         "type": "object",
         "additionalProperties": false
       },
       "PossibleShort": {
         "type": "string",
-        "enum": ["1", "2", "3", "4", "3R", "T", "3V"]
+        "enum": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "3R",
+          "T",
+          "3V"
+        ]
       },
       "Wagons": {
         "properties": {},
@@ -2816,7 +2802,11 @@
             "$ref": "#/components/schemas/Wagons"
           }
         },
-        "required": ["raw", "type", "wagons"],
+        "required": [
+          "raw",
+          "type",
+          "wagons"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2950,7 +2940,9 @@
           },
           "type": {
             "type": "string",
-            "enum": ["JNY"],
+            "enum": [
+              "JNY"
+            ],
             "nullable": false
           },
           "arrival": {
@@ -2991,7 +2983,9 @@
             "format": "date-time"
           }
         },
-        "required": ["time"],
+        "required": [
+          "time"
+        ],
         "type": "object"
       },
       "Coordinates": {
@@ -3005,7 +2999,10 @@
             "format": "double"
           }
         },
-        "required": ["lat", "lng"],
+        "required": [
+          "lat",
+          "lng"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -3027,7 +3024,11 @@
             "$ref": "#/components/schemas/Coordinates"
           }
         },
-        "required": ["title", "id", "coordinates"],
+        "required": [
+          "title",
+          "id",
+          "coordinates"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -3035,7 +3036,9 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["WALK"],
+            "enum": [
+              "WALK"
+            ],
             "nullable": false
           },
           "train": {
@@ -3092,7 +3095,11 @@
             "type": "string"
           }
         },
-        "required": ["sDaysR", "sDaysI", "sDaysB"],
+        "required": [
+          "sDaysR",
+          "sDaysI",
+          "sDaysB"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -3143,7 +3150,9 @@
             "type": "array"
           }
         },
-        "required": ["fareL"],
+        "required": [
+          "fareL"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -3156,7 +3165,9 @@
               },
               {
                 "type": "string",
-                "enum": ["OK"]
+                "enum": [
+                  "OK"
+                ]
               }
             ]
           },
@@ -3167,7 +3178,10 @@
             "type": "array"
           }
         },
-        "required": ["statusCode", "fareSetL"],
+        "required": [
+          "statusCode",
+          "fareSetL"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -3327,472 +3341,6 @@
         "type": "object",
         "additionalProperties": false
       },
-      "SingleRoute": {
-        "properties": {
-          "arrival": {
-            "$ref": "#/components/schemas/CommonStopInfo_Date_"
-          },
-          "departure": {
-            "$ref": "#/components/schemas/CommonStopInfo_Date_"
-          },
-          "isRideable": {
-            "type": "boolean"
-          },
-          "checksum": {
-            "type": "string"
-          },
-          "cid": {
-            "type": "string"
-          },
-          "date": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "duration": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "changes": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "segments": {
-            "items": {
-              "$ref": "#/components/schemas/Route$JourneySegment"
-            },
-            "type": "array"
-          },
-          "segmentTypes": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array"
-          },
-          "tarifSet": {
-            "items": {
-              "$ref": "#/components/schemas/Route$TarifFareSet"
-            },
-            "type": "array"
-          },
-          "raw": {
-            "$ref": "#/components/schemas/OutConL"
-          }
-        },
-        "required": [
-          "arrival",
-          "departure",
-          "isRideable",
-          "checksum",
-          "cid",
-          "date",
-          "duration",
-          "changes",
-          "segments",
-          "segmentTypes"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "AllowedSotMode": {
-        "type": "string",
-        "enum": ["JI", "RC"]
-      },
-      "SearchOnTripBody": {
-        "properties": {
-          "sotMode": {
-            "$ref": "#/components/schemas/AllowedSotMode"
-          },
-          "id": {
-            "type": "string"
-          }
-        },
-        "required": ["sotMode", "id"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "ParsedSearchOnTripResponse": {
-        "properties": {
-          "cancelled": {
-            "type": "boolean"
-          },
-          "changeDuration": {
-            "type": "number",
-            "format": "double"
-          },
-          "duration": {
-            "type": "number",
-            "format": "double"
-          },
-          "finalDestination": {
-            "type": "string"
-          },
-          "jid": {
-            "type": "string"
-          },
-          "product": {
-            "$ref": "#/components/schemas/ProdL"
-          },
-          "raw": {
-            "$ref": "#/components/schemas/SecL"
-          },
-          "segmentDestination": {
-            "$ref": "#/components/schemas/Station"
-          },
-          "segmentStart": {
-            "$ref": "#/components/schemas/Station"
-          },
-          "stops": {
-            "items": {
-              "$ref": "#/components/schemas/Route$Stop_Date_"
-            },
-            "type": "array"
-          },
-          "train": {
-            "$ref": "#/components/schemas/ParsedProduct"
-          },
-          "auslastung": {
-            "$ref": "#/components/schemas/Route$Auslastung"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          },
-          "tarifSet": {
-            "items": {
-              "$ref": "#/components/schemas/Route$TarifFareSet"
-            },
-            "type": "array"
-          },
-          "plannedSequence": {
-            "$ref": "#/components/schemas/PlannedSequence"
-          },
-          "type": {
-            "type": "string",
-            "enum": ["JNY"],
-            "nullable": false
-          },
-          "arrival": {
-            "$ref": "#/components/schemas/CommonStopInfo_Date_"
-          },
-          "departure": {
-            "$ref": "#/components/schemas/CommonStopInfo_Date_"
-          },
-          "wings": {
-            "items": {
-              "$ref": "#/components/schemas/Route$Journey_Date_"
-            },
-            "type": "array"
-          },
-          "currentStop": {
-            "$ref": "#/components/schemas/Route$Stop"
-          }
-        },
-        "required": [
-          "finalDestination",
-          "jid",
-          "segmentDestination",
-          "segmentStart",
-          "stops",
-          "train",
-          "type",
-          "arrival",
-          "departure"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "ArrivalStationBoardEntry": {
-        "properties": {
-          "train": {
-            "$ref": "#/components/schemas/ParsedProduct"
-          },
-          "cancelled": {
-            "type": "boolean"
-          },
-          "finalDestination": {
-            "type": "string"
-          },
-          "jid": {
-            "type": "string"
-          },
-          "stops": {
-            "items": {
-              "$ref": "#/components/schemas/Route$Stop"
-            },
-            "type": "array"
-          },
-          "currentStation": {
-            "$ref": "#/components/schemas/HafasStation"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          },
-          "arrival": {
-            "$ref": "#/components/schemas/CommonStopInfo"
-          }
-        },
-        "required": [
-          "train",
-          "finalDestination",
-          "jid",
-          "currentStation",
-          "arrival"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "DepartureStationBoardEntry": {
-        "properties": {
-          "train": {
-            "$ref": "#/components/schemas/ParsedProduct"
-          },
-          "cancelled": {
-            "type": "boolean"
-          },
-          "finalDestination": {
-            "type": "string"
-          },
-          "jid": {
-            "type": "string"
-          },
-          "stops": {
-            "items": {
-              "$ref": "#/components/schemas/Route$Stop"
-            },
-            "type": "array"
-          },
-          "currentStation": {
-            "$ref": "#/components/schemas/HafasStation"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          },
-          "departure": {
-            "$ref": "#/components/schemas/CommonStopInfo"
-          }
-        },
-        "required": [
-          "train",
-          "finalDestination",
-          "jid",
-          "currentStation",
-          "departure"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "ParsedJourneyMatchResponse": {
-        "properties": {
-          "train": {
-            "$ref": "#/components/schemas/ParsedProduct"
-          },
-          "stops": {
-            "items": {
-              "$ref": "#/components/schemas/Route$Stop"
-            },
-            "type": "array"
-          },
-          "jid": {
-            "type": "string"
-          },
-          "firstStop": {
-            "$ref": "#/components/schemas/Route$Stop"
-          },
-          "lastStop": {
-            "$ref": "#/components/schemas/Route$Stop"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          }
-        },
-        "required": ["train", "stops", "jid", "firstStop", "lastStop"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "JourneyMatchOptions": {
-        "properties": {
-          "trainName": {
-            "type": "string"
-          },
-          "initialDepartureDate": {
-            "type": "number",
-            "format": "double"
-          },
-          "jnyFltrL": {
-            "items": {
-              "$ref": "#/components/schemas/JourneyFilter"
-            },
-            "type": "array"
-          }
-        },
-        "required": ["trainName"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "SingleParsedJourneyGeoPos": {
-        "properties": {
-          "jid": {
-            "type": "string"
-          },
-          "date": {
-            "type": "number",
-            "format": "double"
-          },
-          "train": {
-            "$ref": "#/components/schemas/ParsedProduct"
-          },
-          "position": {
-            "$ref": "#/components/schemas/Coordinates"
-          },
-          "stops": {
-            "items": {
-              "$ref": "#/components/schemas/Route$Stop"
-            },
-            "type": "array"
-          }
-        },
-        "required": ["jid", "date", "train", "position", "stops"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "ParsedJourneyGeoPosResponse": {
-        "items": {
-          "$ref": "#/components/schemas/SingleParsedJourneyGeoPos"
-        },
-        "type": "array"
-      },
-      "InOutMode": {
-        "type": "string",
-        "enum": ["B", "I", "N", "O"]
-      },
-      "JourneyTrainPosMode": {
-        "type": "string",
-        "enum": [
-          "CALC",
-          "CALC_FOR_REPORT",
-          "CALC_ONLY",
-          "CALC_REPORT",
-          "REPORT_ONLY",
-          "REPORT_ONLY_WITH_STOPS"
-        ]
-      },
-      "JourneyGeoPosRequestOptions": {
-        "properties": {
-          "ageOfReport": {
-            "type": "boolean"
-          },
-          "date": {
-            "type": "string"
-          },
-          "time": {
-            "type": "string"
-          },
-          "getSimpleTrainComposition": {
-            "type": "boolean"
-          },
-          "getUnmatched": {
-            "type": "boolean"
-          },
-          "inOut": {
-            "$ref": "#/components/schemas/InOutMode"
-          },
-          "jnyFltrL": {
-            "items": {
-              "$ref": "#/components/schemas/JourneyFilter"
-            },
-            "type": "array"
-          },
-          "locL": {
-            "items": {
-              "$ref": "#/components/schemas/OptionalLocL"
-            },
-            "type": "array"
-          },
-          "maxJny": {
-            "type": "boolean"
-          },
-          "onlyRT": {
-            "type": "boolean"
-          },
-          "perSize": {
-            "type": "number",
-            "format": "double"
-          },
-          "perStep": {
-            "type": "number",
-            "format": "double"
-          },
-          "rect": {
-            "$ref": "#/components/schemas/GeoRect"
-          },
-          "ring": {
-            "$ref": "#/components/schemas/GeoRing"
-          },
-          "rtMsgStatus": {
-            "type": "boolean"
-          },
-          "trainPosMode": {
-            "$ref": "#/components/schemas/JourneyTrainPosMode"
-          },
-          "zoom": {
-            "type": "number",
-            "format": "double"
-          }
-        },
-        "type": "object",
-        "additionalProperties": false
-      },
-      "JourneyGeoPosOptions": {
-        "$ref": "#/components/schemas/JourneyGeoPosRequestOptions"
-      },
-      "CommonStopInfo_number_": {
-        "properties": {
-          "scheduledPlatform": {
-            "type": "string"
-          },
-          "platform": {
-            "type": "string"
-          },
-          "scheduledTime": {
-            "type": "number",
-            "format": "double"
-          },
-          "time": {
-            "type": "number",
-            "format": "double"
-          },
-          "delay": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "reihung": {
-            "type": "boolean"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          },
-          "cancelled": {
-            "type": "boolean"
-          }
-        },
-        "required": ["scheduledTime", "time"],
-        "type": "object",
-        "additionalProperties": false
-      },
       "SingleRoute_number_": {
         "properties": {
           "arrival": {
@@ -3876,11 +3424,17 @@
                 "type": "string"
               }
             },
-            "required": ["later", "earlier"],
+            "required": [
+              "later",
+              "earlier"
+            ],
             "type": "object"
           }
         },
-        "required": ["routes", "context"],
+        "required": [
+          "routes",
+          "context"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -3894,16 +3448,25 @@
             "format": "double"
           }
         },
-        "required": ["evaId"],
+        "required": [
+          "evaId"
+        ],
         "type": "object",
         "additionalProperties": false
       },
       "JnyCl": {
-        "enum": [1, 2],
+        "enum": [
+          1,
+          2
+        ],
         "type": "number"
       },
       "TravelerType": {
-        "enum": ["E", "K", "B"],
+        "enum": [
+          "E",
+          "K",
+          "B"
+        ],
         "type": "string"
       },
       "LoyalityCard": {
@@ -3934,7 +3497,9 @@
             "description": "Testing Comment"
           }
         },
-        "required": ["type"],
+        "required": [
+          "type"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -3950,7 +3515,10 @@
             "type": "array"
           }
         },
-        "required": ["class", "traveler"],
+        "required": [
+          "class",
+          "traveler"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4017,9 +3585,1057 @@
             "type": "array"
           }
         },
-        "required": ["start", "destination"],
+        "required": [
+          "start",
+          "destination"
+        ],
         "type": "object",
         "additionalProperties": false
+      },
+      "Route$ValidDepartureStop_Date_": {
+        "properties": {
+          "arrival": {
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
+          },
+          "station": {
+            "$ref": "#/components/schemas/Station"
+          },
+          "auslastung": {
+            "$ref": "#/components/schemas/Route$Auslastung"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "additional": {
+            "type": "boolean"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "irisMessages": {
+            "items": {
+              "$ref": "#/components/schemas/Message"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "station",
+          "departure"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Route$ValidArrivalStop_Date_": {
+        "properties": {
+          "arrival": {
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
+          },
+          "station": {
+            "$ref": "#/components/schemas/Station"
+          },
+          "auslastung": {
+            "$ref": "#/components/schemas/Route$Auslastung"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "additional": {
+            "type": "boolean"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "irisMessages": {
+            "items": {
+              "$ref": "#/components/schemas/Message"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "station",
+          "arrival"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ParsedJourneyDetails": {
+        "properties": {
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "auslastung": {
+            "$ref": "#/components/schemas/Route$Auslastung"
+          },
+          "jid": {
+            "type": "string"
+          },
+          "firstStop": {
+            "$ref": "#/components/schemas/Route$ValidDepartureStop_Date_"
+          },
+          "lastStop": {
+            "$ref": "#/components/schemas/Route$ValidArrivalStop_Date_"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop_Date_"
+            },
+            "type": "array"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "train",
+          "jid",
+          "firstStop",
+          "lastStop",
+          "stops"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ArrivalStationBoardEntry": {
+        "properties": {
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "finalDestination": {
+            "type": "string"
+          },
+          "jid": {
+            "type": "string"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop_Date_"
+            },
+            "type": "array"
+          },
+          "currentStation": {
+            "$ref": "#/components/schemas/HafasStation"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "arrival": {
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
+          }
+        },
+        "required": [
+          "train",
+          "finalDestination",
+          "jid",
+          "currentStation",
+          "arrival"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "DepartureStationBoardEntry": {
+        "properties": {
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "finalDestination": {
+            "type": "string"
+          },
+          "jid": {
+            "type": "string"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop_Date_"
+            },
+            "type": "array"
+          },
+          "currentStation": {
+            "$ref": "#/components/schemas/HafasStation"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
+          }
+        },
+        "required": [
+          "train",
+          "finalDestination",
+          "jid",
+          "currentStation",
+          "departure"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ParsedJourneyMatchResponse": {
+        "properties": {
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop_Date_"
+            },
+            "type": "array"
+          },
+          "jid": {
+            "type": "string"
+          },
+          "firstStop": {
+            "$ref": "#/components/schemas/Route$Stop_Date_"
+          },
+          "lastStop": {
+            "$ref": "#/components/schemas/Route$Stop_Date_"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "train",
+          "stops",
+          "jid",
+          "firstStop",
+          "lastStop"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "JourneyMatchOptions": {
+        "properties": {
+          "trainName": {
+            "type": "string"
+          },
+          "initialDepartureDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "jnyFltrL": {
+            "items": {
+              "$ref": "#/components/schemas/JourneyFilter"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "trainName"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ParsedSearchOnTripResponse": {
+        "properties": {
+          "cancelled": {
+            "type": "boolean"
+          },
+          "changeDuration": {
+            "type": "number",
+            "format": "double"
+          },
+          "duration": {
+            "type": "number",
+            "format": "double"
+          },
+          "finalDestination": {
+            "type": "string"
+          },
+          "jid": {
+            "type": "string"
+          },
+          "product": {
+            "$ref": "#/components/schemas/ProdL"
+          },
+          "raw": {
+            "$ref": "#/components/schemas/SecL"
+          },
+          "segmentDestination": {
+            "$ref": "#/components/schemas/Station"
+          },
+          "segmentStart": {
+            "$ref": "#/components/schemas/Station"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop_Date_"
+            },
+            "type": "array"
+          },
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "auslastung": {
+            "$ref": "#/components/schemas/Route$Auslastung"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "tarifSet": {
+            "items": {
+              "$ref": "#/components/schemas/Route$TarifFareSet"
+            },
+            "type": "array"
+          },
+          "plannedSequence": {
+            "$ref": "#/components/schemas/PlannedSequence"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "JNY"
+            ],
+            "nullable": false
+          },
+          "arrival": {
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
+          },
+          "wings": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Journey_Date_"
+            },
+            "type": "array"
+          },
+          "currentStop": {
+            "$ref": "#/components/schemas/Route$Stop_Date_"
+          }
+        },
+        "required": [
+          "finalDestination",
+          "jid",
+          "segmentDestination",
+          "segmentStart",
+          "stops",
+          "train",
+          "type",
+          "arrival",
+          "departure"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SingleRoute": {
+        "properties": {
+          "arrival": {
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
+          },
+          "isRideable": {
+            "type": "boolean"
+          },
+          "checksum": {
+            "type": "string"
+          },
+          "cid": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "duration": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "changes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "segments": {
+            "items": {
+              "$ref": "#/components/schemas/Route$JourneySegment"
+            },
+            "type": "array"
+          },
+          "segmentTypes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "tarifSet": {
+            "items": {
+              "$ref": "#/components/schemas/Route$TarifFareSet"
+            },
+            "type": "array"
+          },
+          "raw": {
+            "$ref": "#/components/schemas/OutConL"
+          }
+        },
+        "required": [
+          "arrival",
+          "departure",
+          "isRideable",
+          "checksum",
+          "cid",
+          "date",
+          "duration",
+          "changes",
+          "segments",
+          "segmentTypes"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "AllowedSotMode": {
+        "type": "string",
+        "enum": [
+          "JI",
+          "RC"
+        ]
+      },
+      "SearchOnTripBody": {
+        "properties": {
+          "sotMode": {
+            "$ref": "#/components/schemas/AllowedSotMode"
+          },
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "sotMode",
+          "id"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Route$ValidDepartureStop_number_": {
+        "properties": {
+          "arrival": {
+            "$ref": "#/components/schemas/CommonStopInfo_number_"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/CommonStopInfo_number_"
+          },
+          "station": {
+            "$ref": "#/components/schemas/Station"
+          },
+          "auslastung": {
+            "$ref": "#/components/schemas/Route$Auslastung"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "additional": {
+            "type": "boolean"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "irisMessages": {
+            "items": {
+              "$ref": "#/components/schemas/Message"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "station",
+          "departure"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Route$ValidArrivalStop_number_": {
+        "properties": {
+          "arrival": {
+            "$ref": "#/components/schemas/CommonStopInfo_number_"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/CommonStopInfo_number_"
+          },
+          "station": {
+            "$ref": "#/components/schemas/Station"
+          },
+          "auslastung": {
+            "$ref": "#/components/schemas/Route$Auslastung"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "additional": {
+            "type": "boolean"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "irisMessages": {
+            "items": {
+              "$ref": "#/components/schemas/Message"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "station",
+          "arrival"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Route$Stop_number_": {
+        "properties": {
+          "arrival": {
+            "$ref": "#/components/schemas/CommonStopInfo_number_"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/CommonStopInfo_number_"
+          },
+          "station": {
+            "$ref": "#/components/schemas/Station"
+          },
+          "auslastung": {
+            "$ref": "#/components/schemas/Route$Auslastung"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "additional": {
+            "type": "boolean"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "irisMessages": {
+            "items": {
+              "$ref": "#/components/schemas/Message"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "station"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ParsedJourneyDetails_number_": {
+        "properties": {
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "auslastung": {
+            "$ref": "#/components/schemas/Route$Auslastung"
+          },
+          "jid": {
+            "type": "string"
+          },
+          "firstStop": {
+            "$ref": "#/components/schemas/Route$ValidDepartureStop_number_"
+          },
+          "lastStop": {
+            "$ref": "#/components/schemas/Route$ValidArrivalStop_number_"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop_number_"
+            },
+            "type": "array"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "train",
+          "jid",
+          "firstStop",
+          "lastStop",
+          "stops"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Route$Journey_number_": {
+        "properties": {
+          "cancelled": {
+            "type": "boolean"
+          },
+          "changeDuration": {
+            "type": "number",
+            "format": "double"
+          },
+          "duration": {
+            "type": "number",
+            "format": "double"
+          },
+          "finalDestination": {
+            "type": "string"
+          },
+          "jid": {
+            "type": "string"
+          },
+          "product": {
+            "$ref": "#/components/schemas/ProdL"
+          },
+          "raw": {
+            "$ref": "#/components/schemas/SecL"
+          },
+          "segmentDestination": {
+            "$ref": "#/components/schemas/Station"
+          },
+          "segmentStart": {
+            "$ref": "#/components/schemas/Station"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop_number_"
+            },
+            "type": "array"
+          },
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "auslastung": {
+            "$ref": "#/components/schemas/Route$Auslastung"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "tarifSet": {
+            "items": {
+              "$ref": "#/components/schemas/Route$TarifFareSet"
+            },
+            "type": "array"
+          },
+          "plannedSequence": {
+            "$ref": "#/components/schemas/PlannedSequence"
+          }
+        },
+        "required": [
+          "finalDestination",
+          "jid",
+          "segmentDestination",
+          "segmentStart",
+          "stops",
+          "train"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ParsedSearchOnTripResponse_number_": {
+        "properties": {
+          "cancelled": {
+            "type": "boolean"
+          },
+          "changeDuration": {
+            "type": "number",
+            "format": "double"
+          },
+          "duration": {
+            "type": "number",
+            "format": "double"
+          },
+          "finalDestination": {
+            "type": "string"
+          },
+          "jid": {
+            "type": "string"
+          },
+          "product": {
+            "$ref": "#/components/schemas/ProdL"
+          },
+          "raw": {
+            "$ref": "#/components/schemas/SecL"
+          },
+          "segmentDestination": {
+            "$ref": "#/components/schemas/Station"
+          },
+          "segmentStart": {
+            "$ref": "#/components/schemas/Station"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop_number_"
+            },
+            "type": "array"
+          },
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "auslastung": {
+            "$ref": "#/components/schemas/Route$Auslastung"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "tarifSet": {
+            "items": {
+              "$ref": "#/components/schemas/Route$TarifFareSet"
+            },
+            "type": "array"
+          },
+          "plannedSequence": {
+            "$ref": "#/components/schemas/PlannedSequence"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "JNY"
+            ],
+            "nullable": false
+          },
+          "arrival": {
+            "$ref": "#/components/schemas/CommonStopInfo_number_"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/CommonStopInfo_number_"
+          },
+          "wings": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Journey_number_"
+            },
+            "type": "array"
+          },
+          "currentStop": {
+            "$ref": "#/components/schemas/Route$Stop_number_"
+          }
+        },
+        "required": [
+          "finalDestination",
+          "jid",
+          "segmentDestination",
+          "segmentStart",
+          "stops",
+          "train",
+          "type",
+          "arrival",
+          "departure"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ArrivalStationBoardEntry_number_": {
+        "properties": {
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "finalDestination": {
+            "type": "string"
+          },
+          "jid": {
+            "type": "string"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop_number_"
+            },
+            "type": "array"
+          },
+          "currentStation": {
+            "$ref": "#/components/schemas/HafasStation"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "arrival": {
+            "$ref": "#/components/schemas/CommonStopInfo_number_"
+          }
+        },
+        "required": [
+          "train",
+          "finalDestination",
+          "jid",
+          "currentStation",
+          "arrival"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "DepartureStationBoardEntry_number_": {
+        "properties": {
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "finalDestination": {
+            "type": "string"
+          },
+          "jid": {
+            "type": "string"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop_number_"
+            },
+            "type": "array"
+          },
+          "currentStation": {
+            "$ref": "#/components/schemas/HafasStation"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/CommonStopInfo_number_"
+          }
+        },
+        "required": [
+          "train",
+          "finalDestination",
+          "jid",
+          "currentStation",
+          "departure"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ParsedJourneyMatchResponse_number_": {
+        "properties": {
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop_number_"
+            },
+            "type": "array"
+          },
+          "jid": {
+            "type": "string"
+          },
+          "firstStop": {
+            "$ref": "#/components/schemas/Route$Stop_number_"
+          },
+          "lastStop": {
+            "$ref": "#/components/schemas/Route$Stop_number_"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "train",
+          "stops",
+          "jid",
+          "firstStop",
+          "lastStop"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "JourneyMatchOptions_number_": {
+        "properties": {
+          "trainName": {
+            "type": "string"
+          },
+          "initialDepartureDate": {
+            "type": "number",
+            "format": "double"
+          },
+          "jnyFltrL": {
+            "items": {
+              "$ref": "#/components/schemas/JourneyFilter"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "trainName"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SingleParsedJourneyGeoPos_Date_": {
+        "properties": {
+          "jid": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "position": {
+            "$ref": "#/components/schemas/Coordinates"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop_Date_"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "jid",
+          "date",
+          "train",
+          "position",
+          "stops"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ParsedJourneyGeoPosResponse": {
+        "items": {
+          "$ref": "#/components/schemas/SingleParsedJourneyGeoPos_Date_"
+        },
+        "type": "array"
+      },
+      "InOutMode": {
+        "type": "string",
+        "enum": [
+          "B",
+          "I",
+          "N",
+          "O"
+        ]
+      },
+      "JourneyTrainPosMode": {
+        "type": "string",
+        "enum": [
+          "CALC",
+          "CALC_FOR_REPORT",
+          "CALC_ONLY",
+          "CALC_REPORT",
+          "REPORT_ONLY",
+          "REPORT_ONLY_WITH_STOPS"
+        ]
+      },
+      "JourneyGeoPosRequestOptions": {
+        "properties": {
+          "ageOfReport": {
+            "type": "boolean"
+          },
+          "date": {
+            "type": "string"
+          },
+          "time": {
+            "type": "string"
+          },
+          "getSimpleTrainComposition": {
+            "type": "boolean"
+          },
+          "getUnmatched": {
+            "type": "boolean"
+          },
+          "inOut": {
+            "$ref": "#/components/schemas/InOutMode"
+          },
+          "jnyFltrL": {
+            "items": {
+              "$ref": "#/components/schemas/JourneyFilter"
+            },
+            "type": "array"
+          },
+          "locL": {
+            "items": {
+              "$ref": "#/components/schemas/OptionalLocL"
+            },
+            "type": "array"
+          },
+          "maxJny": {
+            "type": "boolean"
+          },
+          "onlyRT": {
+            "type": "boolean"
+          },
+          "perSize": {
+            "type": "number",
+            "format": "double"
+          },
+          "perStep": {
+            "type": "number",
+            "format": "double"
+          },
+          "rect": {
+            "$ref": "#/components/schemas/GeoRect"
+          },
+          "ring": {
+            "$ref": "#/components/schemas/GeoRing"
+          },
+          "rtMsgStatus": {
+            "type": "boolean"
+          },
+          "trainPosMode": {
+            "$ref": "#/components/schemas/JourneyTrainPosMode"
+          },
+          "zoom": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
+      "JourneyGeoPosOptions": {
+        "$ref": "#/components/schemas/JourneyGeoPosRequestOptions"
       },
       "SingleRoute_Date_": {
         "properties": {
@@ -4104,11 +4720,17 @@
                 "type": "string"
               }
             },
-            "required": ["later", "earlier"],
+            "required": [
+              "later",
+              "earlier"
+            ],
             "type": "object"
           }
         },
-        "required": ["routes", "context"],
+        "required": [
+          "routes",
+          "context"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4175,11 +4797,14 @@
             "type": "array"
           }
         },
-        "required": ["start", "destination"],
+        "required": [
+          "start",
+          "destination"
+        ],
         "type": "object",
         "additionalProperties": false
       },
-      "WingInfo": {
+      "WingInfo_number_": {
         "properties": {
           "station": {
             "properties": {
@@ -4190,7 +4815,10 @@
                 "type": "string"
               }
             },
-            "required": ["title", "id"],
+            "required": [
+              "title",
+              "id"
+            ],
             "type": "object"
           },
           "pt": {
@@ -4201,17 +4829,336 @@
             "type": "boolean"
           }
         },
-        "required": ["station", "pt", "fl"],
+        "required": [
+          "station",
+          "pt",
+          "fl"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "WingDefinition_number_": {
+        "properties": {
+          "start": {
+            "$ref": "#/components/schemas/WingInfo_number_"
+          },
+          "end": {
+            "$ref": "#/components/schemas/WingInfo_number_"
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
+      "StopInfo_number_": {
+        "properties": {
+          "scheduledPlatform": {
+            "type": "string"
+          },
+          "platform": {
+            "type": "string"
+          },
+          "scheduledTime": {
+            "type": "number",
+            "format": "double"
+          },
+          "time": {
+            "type": "number",
+            "format": "double"
+          },
+          "delay": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "reihung": {
+            "type": "boolean"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "wingIds": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "hidden": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "scheduledTime",
+          "time"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "IrisMessage_number_": {
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "number",
+            "format": "double"
+          },
+          "superseded": {
+            "type": "boolean"
+          },
+          "priority": {
+            "$ref": "#/components/schemas/MessagePrio"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "HimIrisMessage_number_": {
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "number",
+            "format": "double"
+          },
+          "superseded": {
+            "type": "boolean"
+          },
+          "priority": {
+            "$ref": "#/components/schemas/MessagePrio"
+          },
+          "head": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "text",
+          "head"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Message_number_": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/IrisMessage_number_"
+          },
+          {
+            "$ref": "#/components/schemas/HimIrisMessage_number_"
+          }
+        ]
+      },
+      "Messages_number_": {
+        "properties": {
+          "qos": {
+            "items": {
+              "$ref": "#/components/schemas/IrisMessage_number_"
+            },
+            "type": "array"
+          },
+          "delay": {
+            "items": {
+              "$ref": "#/components/schemas/IrisMessage_number_"
+            },
+            "type": "array"
+          },
+          "him": {
+            "items": {
+              "$ref": "#/components/schemas/HimIrisMessage_number_"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "qos",
+          "delay",
+          "him"
+        ],
+        "type": "object",
+        "additionalProperties": {
+          "items": {
+            "$ref": "#/components/schemas/Message_number_"
+          },
+          "type": "array"
+        }
+      },
+      "Abfahrt_number_": {
+        "properties": {
+          "initialDeparture": {
+            "type": "number",
+            "format": "double"
+          },
+          "arrival": {
+            "$ref": "#/components/schemas/StopInfo_number_"
+          },
+          "auslastung": {
+            "type": "boolean"
+          },
+          "currentStation": {
+            "$ref": "#/components/schemas/Station"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/StopInfo_number_"
+          },
+          "destination": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "additional": {
+            "type": "boolean"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "mediumId": {
+            "type": "string"
+          },
+          "messages": {
+            "$ref": "#/components/schemas/Messages_number_"
+          },
+          "platform": {
+            "type": "string"
+          },
+          "productClass": {
+            "type": "string",
+            "description": "Most likely D | N | S | F"
+          },
+          "rawId": {
+            "type": "string"
+          },
+          "ref": {
+            "$ref": "#/components/schemas/SubstituteRef"
+          },
+          "reihung": {
+            "type": "boolean",
+            "description": "Most likely has coach sequence"
+          },
+          "route": {
+            "items": {
+              "$ref": "#/components/schemas/Stop"
+            },
+            "type": "array"
+          },
+          "scheduledDestination": {
+            "type": "string"
+          },
+          "scheduledPlatform": {
+            "type": "string"
+          },
+          "substitute": {
+            "type": "boolean"
+          },
+          "train": {
+            "$ref": "#/components/schemas/TrainInfo"
+          },
+          "hiddenReihung": {
+            "type": "boolean",
+            "description": "Most likely does not have coach sequence"
+          }
+        },
+        "required": [
+          "initialDeparture",
+          "auslastung",
+          "currentStation",
+          "destination",
+          "id",
+          "mediumId",
+          "messages",
+          "platform",
+          "productClass",
+          "rawId",
+          "reihung",
+          "route",
+          "scheduledDestination",
+          "scheduledPlatform",
+          "train"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Wings_number_": {
+        "properties": {},
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/Abfahrt_number_"
+        }
+      },
+      "AbfahrtenResult_number_": {
+        "properties": {
+          "departures": {
+            "items": {
+              "$ref": "#/components/schemas/Abfahrt_number_"
+            },
+            "type": "array"
+          },
+          "lookbehind": {
+            "items": {
+              "$ref": "#/components/schemas/Abfahrt_number_"
+            },
+            "type": "array"
+          },
+          "wings": {
+            "$ref": "#/components/schemas/Wings_number_"
+          }
+        },
+        "required": [
+          "departures",
+          "lookbehind",
+          "wings"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "WingInfo_Date_": {
+        "properties": {
+          "station": {
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "title",
+              "id"
+            ],
+            "type": "object"
+          },
+          "pt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "fl": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "station",
+          "pt",
+          "fl"
+        ],
         "type": "object",
         "additionalProperties": false
       },
       "WingDefinition": {
         "properties": {
           "start": {
-            "$ref": "#/components/schemas/WingInfo"
+            "$ref": "#/components/schemas/WingInfo_Date_"
           },
           "end": {
-            "$ref": "#/components/schemas/WingInfo"
+            "$ref": "#/components/schemas/WingInfo_Date_"
           }
         },
         "type": "object",
@@ -4221,7 +5168,13 @@
         "properties": {
           "klasse": {
             "type": "number",
-            "enum": ["0", "1", "2", "3", "4"],
+            "enum": [
+              "0",
+              "1",
+              "2",
+              "3",
+              "4"
+            ],
             "description": "0: Unknown; 1: erste; 2: zweite; 3: 1&2; 4: Not for passengers"
           },
           "icons": {
@@ -4263,7 +5216,10 @@
             "type": "string"
           }
         },
-        "required": ["klasse", "icons"],
+        "required": [
+          "klasse",
+          "icons"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4282,7 +5238,12 @@
             "type": "string"
           }
         },
-        "required": ["anzahl", "ausstattungsart", "bezeichnung", "status"],
+        "required": [
+          "anzahl",
+          "ausstattungsart",
+          "bezeichnung",
+          "status"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4322,7 +5283,12 @@
             "type": "string"
           }
         },
-        "required": ["endemeter", "endeprozent", "startmeter", "startprozent"],
+        "required": [
+          "endemeter",
+          "endeprozent",
+          "startmeter",
+          "startprozent"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4419,13 +5385,18 @@
           },
           "country": {
             "type": "string",
-            "enum": ["DE", "AT"]
+            "enum": [
+              "DE",
+              "AT"
+            ]
           },
           "showBRInfo": {
             "type": "boolean"
           }
         },
-        "required": ["name"],
+        "required": [
+          "name"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4576,7 +5547,10 @@
             "type": "string"
           }
         },
-        "required": ["positionamgleis", "sektorbezeichnung"],
+        "required": [
+          "positionamgleis",
+          "sektorbezeichnung"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4624,7 +5598,10 @@
         "properties": {
           "fahrtrichtung": {
             "type": "string",
-            "enum": ["VORWAERTS", "RUCKWAERTS"],
+            "enum": [
+              "VORWAERTS",
+              "RUCKWAERTS"
+            ],
             "description": "Should always be VORWAERTS"
           },
           "allFahrzeuggruppe": {
@@ -4728,7 +5705,10 @@
             "format": "double"
           }
         },
-        "required": ["latitude", "longitude"],
+        "required": [
+          "latitude",
+          "longitude"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4744,7 +5724,11 @@
             "$ref": "#/components/schemas/SBBCoordinates"
           }
         },
-        "required": ["title", "id", "location"],
+        "required": [
+          "title",
+          "id",
+          "location"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4761,7 +5745,10 @@
             "format": "date-time"
           }
         },
-        "required": ["start", "destination"],
+        "required": [
+          "start",
+          "destination"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4804,7 +5791,15 @@
             "type": "string"
           }
         },
-        "required": ["name", "meta", "eva", "ds100", "db", "creationts", "p"],
+        "required": [
+          "name",
+          "meta",
+          "eva",
+          "ds100",
+          "db",
+          "creationts",
+          "p"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4820,7 +5815,10 @@
             "type": "array"
           }
         },
-        "required": ["station", "relatedStations"],
+        "required": [
+          "station",
+          "relatedStations"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4839,7 +5837,11 @@
             "type": "string"
           }
         },
-        "required": ["city", "postalCode", "street"],
+        "required": [
+          "city",
+          "postalCode",
+          "street"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4884,14 +5886,19 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["EVA"],
+            "enum": [
+              "EVA"
+            ],
             "nullable": false
           },
           "value": {
             "type": "string"
           }
         },
-        "required": ["type", "value"],
+        "required": [
+          "type",
+          "value"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4899,14 +5906,19 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["RIL100"],
+            "enum": [
+              "RIL100"
+            ],
             "nullable": false
           },
           "value": {
             "type": "string"
           }
         },
-        "required": ["type", "value"],
+        "required": [
+          "type",
+          "value"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4914,14 +5926,19 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["STADA"],
+            "enum": [
+              "STADA"
+            ],
             "nullable": false
           },
           "value": {
             "type": "string"
           }
         },
-        "required": ["type", "value"],
+        "required": [
+          "type",
+          "value"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4929,14 +5946,19 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["GLOBAL_ID"],
+            "enum": [
+              "GLOBAL_ID"
+            ],
             "nullable": false
           },
           "value": {
             "type": "string"
           }
         },
-        "required": ["type", "value"],
+        "required": [
+          "type",
+          "value"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4966,7 +5988,10 @@
             "type": "string"
           }
         },
-        "required": ["identifier", "name"],
+        "required": [
+          "identifier",
+          "name"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4979,7 +6004,10 @@
             "type": "string"
           }
         },
-        "required": ["shortName", "name"],
+        "required": [
+          "shortName",
+          "name"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4995,7 +6023,11 @@
             "type": "string"
           }
         },
-        "required": ["identifier", "shortName", "name"],
+        "required": [
+          "identifier",
+          "shortName",
+          "name"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5008,7 +6040,10 @@
             "type": "string"
           }
         },
-        "required": ["name", "email"],
+        "required": [
+          "name",
+          "email"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5033,7 +6068,11 @@
             "type": "string"
           }
         },
-        "required": ["day", "openTime", "closeTime"],
+        "required": [
+          "day",
+          "openTime",
+          "closeTime"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5046,7 +6085,9 @@
             "type": "array"
           }
         },
-        "required": ["availability"],
+        "required": [
+          "availability"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5059,7 +6100,9 @@
             "type": "array"
           }
         },
-        "required": ["availability"],
+        "required": [
+          "availability"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5227,222 +6270,24 @@
   },
   "openapi": "3.0.0",
   "paths": {
-    "/bahnhof/v1/lageplan/{stationName}/{evaId}": {
+    "/iris/v1/abfahrten/{evaId}": {
       "get": {
-        "operationId": "Lageplan",
+        "operationId": "Abfahrten v1",
         "responses": {
           "200": {
             "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LageplanResponse"
+                  "$ref": "#/components/schemas/AbfahrtenResult_number_"
                 }
               }
             }
           }
         },
-        "tags": ["Bahnhof V1"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "stationName",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "path",
-            "name": "evaId",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      }
-    },
-    "/businessHub/experimental/station/{searchTerm}": {
-      "get": {
-        "operationId": "Station",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/BusinessHubStation"
-                  },
-                  "type": "array"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["BusinessHub Experimental"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "searchTerm",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      }
-    },
-    "/businessHub/experimental/news": {
-      "get": {
-        "operationId": "News",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NewsResponse"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["BusinessHub Experimental"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "offset",
-            "required": false,
-            "schema": {
-              "format": "double",
-              "type": "number"
-            }
-          },
-          {
-            "in": "query",
-            "name": "limit",
-            "required": false,
-            "schema": {
-              "format": "double",
-              "type": "number"
-            }
-          },
-          {
-            "in": "query",
-            "name": "groupIds",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "number",
-                "format": "double"
-              }
-            }
-          },
-          {
-            "in": "query",
-            "name": "published",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "in": "query",
-            "name": "sectionIds",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        ]
-      }
-    },
-    "/businessHub/experimental/fasta/{stadaId}": {
-      "get": {
-        "operationId": "Fasta",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FastaResponse"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["BusinessHub Experimental"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "stadaId",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      }
-    },
-    "/businessHub/experimental/stationQuays/{evaId}": {
-      "get": {
-        "operationId": "Quays",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/Quay"
-                  },
-                  "type": "array"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["BusinessHub Experimental"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "evaId",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      }
-    },
-    "/businessHub/experimental/stationOccupancy/{evaId}/{date}": {
-      "get": {
-        "operationId": "stationOccupancyDeprecated",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OccupancyResponse"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["BusinessHub Experimental"],
+        "tags": [
+          "IRIS"
+        ],
         "deprecated": true,
         "security": [],
         "parameters": [
@@ -5455,9 +6300,258 @@
             }
           },
           {
+            "description": "in Minutes",
+            "in": "query",
+            "name": "lookahead",
+            "required": false,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "description": "in Minutes",
+            "in": "query",
+            "name": "lookbehind",
+            "required": false,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "open",
+                "default"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "/iris/v2/abfahrten/{evaId}": {
+      "get": {
+        "operationId": "Abfahrten v2",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AbfahrtenResult"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "IRIS"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "evaId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "in Minutes",
+            "in": "query",
+            "name": "lookahead",
+            "required": false,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "description": "in Minutes",
+            "in": "query",
+            "name": "lookbehind",
+            "required": false,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "open",
+                "default"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "/hafas/v1/arrivalStationBoard": {
+      "get": {
+        "operationId": "Arrival Station Board v1",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ArrivalStationBoardEntry_number_"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS"
+        ],
+        "deprecated": true,
+        "security": [],
+        "parameters": [
+          {
+            "description": "EvaId",
+            "in": "query",
+            "name": "station",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Unix Time (ms)",
+            "in": "query",
+            "name": "date",
+            "required": false,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ]
+      }
+    },
+    "/hafas/v2/arrivalStationBoard": {
+      "get": {
+        "operationId": "Arrival Station Board v2",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ArrivalStationBoardEntry"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "description": "EvaId",
+            "in": "query",
+            "name": "station",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date",
+            "required": false,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ]
+      }
+    },
+    "/hafas/v1/auslastung/{start}/{destination}/{trainNumber}/{time}": {
+      "get": {
+        "operationId": "Auslastung v1",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Route$Auslastung"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS"
+        ],
+        "deprecated": true,
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "start",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "destination",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "trainNumber",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "description": "Unix Time (ms)",
             "in": "path",
-            "name": "date",
+            "name": "time",
             "required": true,
             "schema": {
               "format": "double",
@@ -5467,9 +6561,65 @@
         ]
       }
     },
+    "/hafas/v2/auslastung/{start}/{destination}/{trainNumber}/{time}": {
+      "get": {
+        "operationId": "Auslastung v2",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Route$Auslastung"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "start",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "destination",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "trainNumber",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "time",
+            "required": true,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/businessHub/v1/stationOccupancy/{evaId}/{date}": {
       "get": {
-        "operationId": "StationOccupancy",
+        "operationId": "Bahnhofs Auslastung v1",
         "responses": {
           "200": {
             "description": "Ok",
@@ -5482,7 +6632,9 @@
             }
           }
         },
-        "tags": ["BusinessHub"],
+        "tags": [
+          "BusinessHub"
+        ],
         "security": [],
         "parameters": [
           {
@@ -5505,456 +6657,53 @@
         ]
       }
     },
-    "/hafas/experimental/himMessages": {
+    "/hafas/v1/departureStationBoard": {
       "get": {
-        "operationId": "HimMessages",
+        "operationId": "Departure Station Board v1",
         "responses": {
           "200": {
             "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ParsedHimSearchResponse"
+                  "items": {
+                    "$ref": "#/components/schemas/DepartureStationBoardEntry_number_"
+                  },
+                  "type": "array"
                 }
               }
             }
           }
         },
-        "tags": ["HAFAS Experimental"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "himIds",
-            "required": true,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ]
-      }
-    },
-    "/hafas/experimental/HimSearch": {
-      "post": {
-        "operationId": "HimSearch",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ParsedHimSearchResponse"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["HAFAS Experimental"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
+        "tags": [
+          "HAFAS"
         ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/HimSearchRequestOptions"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/hafas/experimental/irisCompatibleAbfahrten/{evaId}": {
-      "get": {
-        "operationId": "IrisCompatibleAbfahrten",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AbfahrtenResult"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["HAFAS Experimental"],
+        "deprecated": true,
         "security": [],
         "parameters": [
           {
-            "in": "path",
-            "name": "evaId",
+            "description": "EvaId",
+            "in": "query",
+            "name": "station",
             "required": true,
             "schema": {
               "type": "string"
             }
           },
           {
+            "description": "EvaId",
             "in": "query",
-            "name": "profile",
+            "name": "direction",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ]
-      }
-    },
-    "/hafas/experimental/JourneyTree": {
-      "post": {
-        "operationId": "JourneyTree",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          }
-        },
-        "tags": ["HAFAS Experimental"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/JourneyTreeRequestOptions"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/hafas/experimental/JourneyGraph": {
-      "post": {
-        "operationId": "JourneyGraph",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          }
-        },
-        "tags": ["HAFAS Experimental"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/JourneyGraphRequestOptions"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/hafas/experimental/JourneyCourse": {
-      "post": {
-        "operationId": "JourneyCourse",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          }
-        },
-        "tags": ["HAFAS Experimental"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/JourneyCourseRequestOptions"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/hafas/subscribe/create": {
-      "post": {
-        "operationId": "Create",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ParsedSubscrCreateResponse"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["HAFAS Subscribe"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SubscrCreateOptions"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/hafas/subscribe/delete": {
-      "post": {
-        "operationId": "Delete",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SubscrDeleteResponse"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["HAFAS Subscribe"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SubscrDeleteOptions"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/hafas/subscribe/createUser": {
-      "post": {
-        "operationId": "CreateUser",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ParsedSubscrUserResponse"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["HAFAS Subscribe"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SubscrUserCreateOptions"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/hafas/subscribe/search": {
-      "get": {
-        "operationId": "Search",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SubscrSearchResponse"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["HAFAS Subscribe"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "userId",
-            "required": true,
             "schema": {
               "type": "string"
             }
           },
           {
+            "description": "Unix Time (ms)",
             "in": "query",
-            "name": "profile",
+            "name": "date",
             "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ]
-      }
-    },
-    "/hafas/subscribe/deleteUser": {
-      "post": {
-        "operationId": "DeleteUser",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SubscrUserDeleteResponse"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["HAFAS Subscribe"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SubscrUserDeleteOptions"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/hafas/subscribe/details": {
-      "get": {
-        "operationId": "Details",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SubscrDetailsResponse"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["HAFAS Subscribe"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "userId",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "subscribeId",
-            "required": true,
             "schema": {
               "format": "double",
               "type": "number"
@@ -5971,29 +6720,53 @@
         ]
       }
     },
-    "/hafas/v1/journeyDetails": {
+    "/hafas/v2/departureStationBoard": {
       "get": {
-        "operationId": "JourneyDetails",
+        "operationId": "Departure Station Board v2",
         "responses": {
           "200": {
             "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ParsedJourneyDetails"
+                  "items": {
+                    "$ref": "#/components/schemas/DepartureStationBoardEntry"
+                  },
+                  "type": "array"
                 }
               }
             }
           }
         },
-        "tags": ["HAFAS"],
+        "tags": [
+          "HAFAS"
+        ],
         "security": [],
         "parameters": [
           {
+            "description": "EvaId",
             "in": "query",
-            "name": "jid",
+            "name": "station",
             "required": true,
             "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "EvaId",
+            "in": "query",
+            "name": "direction",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date",
+            "required": false,
+            "schema": {
+              "format": "date-time",
               "type": "string"
             }
           },
@@ -6008,55 +6781,16 @@
         ]
       }
     },
-    "/hafas/v1/searchOnTrip": {
-      "post": {
-        "operationId": "SearchOnTrip",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SingleRoute"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["HAFAS"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SearchOnTripBody"
-              }
-            }
-          }
-        }
-      }
-    },
     "/hafas/v1/details/{trainName}": {
       "get": {
-        "operationId": "Details",
+        "operationId": "Details v1",
         "responses": {
           "200": {
             "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ParsedSearchOnTripResponse"
+                  "$ref": "#/components/schemas/ParsedSearchOnTripResponse_number_"
                 }
               }
             }
@@ -6065,7 +6799,10 @@
             "description": "Train not found"
           }
         },
-        "tags": ["HAFAS"],
+        "tags": [
+          "HAFAS"
+        ],
+        "deprecated": true,
         "security": [],
         "parameters": [
           {
@@ -6115,217 +6852,142 @@
         ]
       }
     },
-    "/hafas/v1/auslastung/{start}/{destination}/{trainNumber}/{time}": {
+    "/hafas/v2/details/{trainName}": {
       "get": {
-        "operationId": "Auslastung",
+        "operationId": "Details v2",
         "responses": {
           "200": {
             "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Route$Auslastung"
+                  "$ref": "#/components/schemas/ParsedSearchOnTripResponse"
                 }
               }
             }
+          },
+          "404": {
+            "description": "Train not found"
           }
         },
-        "tags": ["HAFAS"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "start",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "path",
-            "name": "destination",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "path",
-            "name": "trainNumber",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Unix Time (ms)",
-            "in": "path",
-            "name": "time",
-            "required": true,
-            "schema": {
-              "format": "double",
-              "type": "number"
-            }
-          }
-        ]
-      }
-    },
-    "/hafas/v1/arrivalStationBoard": {
-      "get": {
-        "operationId": "ArrivalStationBoard",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/ArrivalStationBoardEntry"
-                  },
-                  "type": "array"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["HAFAS"],
-        "security": [],
-        "parameters": [
-          {
-            "description": "EvaId",
-            "in": "query",
-            "name": "station",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Unix Time (ms)",
-            "in": "query",
-            "name": "date",
-            "required": false,
-            "schema": {
-              "format": "double",
-              "type": "number"
-            }
-          },
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ]
-      }
-    },
-    "/hafas/v1/departureStationBoard": {
-      "get": {
-        "operationId": "DepartureStationBoard",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/DepartureStationBoardEntry"
-                  },
-                  "type": "array"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["HAFAS"],
-        "security": [],
-        "parameters": [
-          {
-            "description": "EvaId",
-            "in": "query",
-            "name": "station",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "EvaId",
-            "in": "query",
-            "name": "direction",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Unix Time (ms)",
-            "in": "query",
-            "name": "date",
-            "required": false,
-            "schema": {
-              "format": "double",
-              "type": "number"
-            }
-          },
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ]
-      }
-    },
-    "/hafas/v1/journeyMatch": {
-      "post": {
-        "operationId": "JourneyMatch",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/ParsedJourneyMatchResponse"
-                  },
-                  "type": "array"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["HAFAS"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
+        "tags": [
+          "HAFAS"
         ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/JourneyMatchOptions"
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trainName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "stop",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "EVA Id of a stop of your train",
+            "in": "query",
+            "name": "station",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date",
+            "required": false,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ]
+      }
+    },
+    "/station/v1/ds100/{ds100}": {
+      "get": {
+        "operationId": "Ds100",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Station"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "No station found"
+          }
+        },
+        "tags": [
+          "Station V1"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ds100",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/businessHub/experimental/fasta/{stadaId}": {
+      "get": {
+        "operationId": "Fahrstühle",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FastaResponse"
+                }
               }
             }
           }
-        }
+        },
+        "tags": [
+          "BusinessHub experimental"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "stadaId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
       }
     },
     "/hafas/v1/geoStation": {
       "get": {
-        "operationId": "GeoStation",
+        "operationId": "Geo Station v1",
         "responses": {
           "200": {
             "description": "Ok",
@@ -6341,7 +7003,9 @@
             }
           }
         },
-        "tags": ["HAFAS"],
+        "tags": [
+          "HAFAS"
+        ],
         "security": [],
         "parameters": [
           {
@@ -6383,483 +7047,6 @@
         ]
       }
     },
-    "/hafas/v1/station/{searchTerm}": {
-      "get": {
-        "operationId": "Station",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/HafasStation"
-                  },
-                  "type": "array"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["HAFAS"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "searchTerm",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "type",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "enum": ["S", "ALL"]
-            }
-          },
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ]
-      }
-    },
-    "/hafas/v1/journeyGeoPos": {
-      "post": {
-        "operationId": "JourneyGeoPos",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ParsedJourneyGeoPosResponse"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["HAFAS"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/JourneyGeoPosOptions"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/hafas/v1/positionForTrain/{trainName}": {
-      "get": {
-        "operationId": "PositionForTrain",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ParsedJourneyGeoPosResponse"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["HAFAS"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "trainName",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ]
-      }
-    },
-    "/hafas/v2/tripSearch": {
-      "post": {
-        "operationId": "TripSearch Deprecated",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RoutingResult_number_"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["HAFAS"],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TripSearchOptionsV2"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/hafas/v3/tripSearch": {
-      "post": {
-        "operationId": "TripSearch",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RoutingResult_Date_"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["HAFAS"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TripSearchOptionsV3"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/iris/v1/wings/{rawId1}/{rawId2}": {
-      "get": {
-        "operationId": "Wings",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/WingDefinition"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["IRIS V1"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "rawId1",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "path",
-            "name": "rawId2",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      }
-    },
-    "/iris/v1/abfahrten/{evaId}": {
-      "get": {
-        "operationId": "Abfahrten",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AbfahrtenResult"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["IRIS V1"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "evaId",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "in Minutes",
-            "in": "query",
-            "name": "lookahead",
-            "required": false,
-            "schema": {
-              "format": "double",
-              "type": "number"
-            }
-          },
-          {
-            "description": "in Minutes",
-            "in": "query",
-            "name": "lookbehind",
-            "required": false,
-            "schema": {
-              "format": "double",
-              "type": "number"
-            }
-          },
-          {
-            "in": "query",
-            "name": "type",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "enum": ["open", "default"]
-            }
-          }
-        ]
-      }
-    },
-    "/reihung/v1/wagen/{trainNumber}/{date}": {
-      "get": {
-        "operationId": "Wagenreihung",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Formation"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["Reihung V1"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "trainNumber",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Unix Time (ms)",
-            "in": "path",
-            "name": "date",
-            "required": true,
-            "schema": {
-              "format": "double",
-              "type": "number"
-            }
-          }
-        ]
-      }
-    },
-    "/reihung/v1/trainName/{tz}": {
-      "get": {
-        "operationId": "TrainName",
-        "responses": {
-          "200": {
-            "description": "Train name. May be undefined",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["Reihung V1"],
-        "security": [],
-        "parameters": [
-          {
-            "description": "TZ Number (e.g. 0169)",
-            "in": "path",
-            "name": "tz",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      }
-    },
-    "/sbb/experimental/station/{searchTerm}": {
-      "get": {
-        "operationId": "Station",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/SBBStation"
-                  },
-                  "type": "array"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["SBB Experimental"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "searchTerm",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      }
-    },
-    "/sbb/experimental/routing": {
-      "post": {
-        "operationId": "Routing",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          }
-        },
-        "tags": ["SBB Experimental"],
-        "security": [],
-        "parameters": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RoutingOptions"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/station/v1/search/{searchTerm}": {
-      "get": {
-        "operationId": "SearchStation",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/Station"
-                  },
-                  "type": "array"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["Station V1"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "searchTerm",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "type",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/StationSearchType"
-            }
-          },
-          {
-            "in": "query",
-            "name": "max",
-            "required": false,
-            "schema": {
-              "format": "double",
-              "type": "number"
-            }
-          }
-        ]
-      }
-    },
     "/station/v1/geoSearch": {
       "get": {
         "operationId": "GeoSearch",
@@ -6878,7 +7065,9 @@
             }
           }
         },
-        "tags": ["Station V1"],
+        "tags": [
+          "Station V1"
+        ],
         "security": [],
         "parameters": [
           {
@@ -6911,6 +7100,123 @@
         ]
       }
     },
+    "/businessHub/experimental/stationQuays/{evaId}": {
+      "get": {
+        "operationId": "Gleise",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Quay"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "BusinessHub experimental"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "evaId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/hafas/experimental/himMessages": {
+      "get": {
+        "operationId": "Him Messages",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParsedHimSearchResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS Experimental"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "himIds",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ]
+      }
+    },
+    "/hafas/experimental/HimSearch": {
+      "post": {
+        "operationId": "Him Search",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParsedHimSearchResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS Experimental"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HimSearchRequestOptions"
+              }
+            }
+          }
+        }
+      }
+    },
     "/station/v1/iris/{evaId}": {
       "get": {
         "operationId": "IrisSearch",
@@ -6926,12 +7232,616 @@
             }
           }
         },
-        "tags": ["Station V1"],
+        "tags": [
+          "Station V1"
+        ],
         "security": [],
         "parameters": [
           {
             "in": "path",
             "name": "evaId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/hafas/experimental/JourneyCourse": {
+      "post": {
+        "operationId": "Journey Course",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS Experimental"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JourneyCourseRequestOptions"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hafas/v1/journeyGeoPos": {
+      "post": {
+        "operationId": "Journey Geo Position v1",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParsedJourneyGeoPosResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JourneyGeoPosOptions"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hafas/experimental/JourneyGraph": {
+      "post": {
+        "operationId": "Journey Graph",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS Experimental"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JourneyGraphRequestOptions"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hafas/v1/journeyMatch": {
+      "post": {
+        "operationId": "Journey Match v1",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ParsedJourneyMatchResponse_number_"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS"
+        ],
+        "deprecated": true,
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JourneyMatchOptions_number_"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hafas/v2/journeyMatch": {
+      "post": {
+        "operationId": "Journey Match v2",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ParsedJourneyMatchResponse"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JourneyMatchOptions"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hafas/experimental/JourneyTree": {
+      "post": {
+        "operationId": "Journey Tree",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS Experimental"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JourneyTreeRequestOptions"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hafas/v1/journeyDetails": {
+      "get": {
+        "operationId": "JourneyDetails v1",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParsedJourneyDetails_number_"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS"
+        ],
+        "deprecated": true,
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "jid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ]
+      }
+    },
+    "/hafas/v2/journeyDetails": {
+      "get": {
+        "operationId": "JourneyDetails v2",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParsedJourneyDetails"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "jid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ]
+      }
+    },
+    "/bahnhof/v1/lageplan/{stationName}/{evaId}": {
+      "get": {
+        "operationId": "Lageplan v1",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LageplanResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Bahnhof"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "stationName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "evaId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/hafas/v1/positionForTrain/{trainName}": {
+      "get": {
+        "operationId": "Position for Train v1",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParsedJourneyGeoPosResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trainName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ]
+      }
+    },
+    "/sbb/experimental/routing": {
+      "post": {
+        "operationId": "Routing",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "tags": [
+          "SBB Experimental"
+        ],
+        "security": [],
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoutingOptions"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hafas/v1/searchOnTrip": {
+      "post": {
+        "operationId": "Search on Trip v1",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SingleRoute_number_"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS"
+        ],
+        "deprecated": true,
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchOnTripBody"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hafas/v2/searchOnTrip": {
+      "post": {
+        "operationId": "Search on Trip v2",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SingleRoute"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchOnTripBody"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/station/v1/search/{searchTerm}": {
+      "get": {
+        "operationId": "SearchStation",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Station"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Station V1"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "searchTerm",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/StationSearchType"
+            }
+          },
+          {
+            "in": "query",
+            "name": "max",
+            "required": false,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          }
+        ]
+      }
+    },
+    "/sbb/experimental/station/{searchTerm}": {
+      "get": {
+        "operationId": "Station",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/SBBStation"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "SBB Experimental"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "searchTerm",
             "required": true,
             "schema": {
               "type": "string"
@@ -6955,7 +7865,9 @@
             }
           }
         },
-        "tags": ["Station V1"],
+        "tags": [
+          "Station V1"
+        ],
         "security": [],
         "parameters": [
           {
@@ -6969,30 +7881,525 @@
         ]
       }
     },
-    "/station/v1/ds100/{ds100}": {
-      "get": {
-        "operationId": "Ds100",
+    "/hafas/subscribe/create": {
+      "post": {
+        "operationId": "Subscribe create",
         "responses": {
           "200": {
             "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Station"
+                  "$ref": "#/components/schemas/ParsedSubscrCreateResponse"
                 }
               }
             }
-          },
-          "400": {
-            "description": "No station found"
           }
         },
-        "tags": ["Station V1"],
+        "tags": [
+          "HAFAS Subscribe"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscrCreateOptions"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hafas/subscribe/createUser": {
+      "post": {
+        "operationId": "Subscribe create User",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParsedSubscrUserResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS Subscribe"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscrUserCreateOptions"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hafas/subscribe/delete": {
+      "post": {
+        "operationId": "Subscribe delete",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscrDeleteResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS Subscribe"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscrDeleteOptions"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hafas/subscribe/deleteUser": {
+      "post": {
+        "operationId": "Subscribe delete User",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscrUserDeleteResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS Subscribe"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscrUserDeleteOptions"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hafas/subscribe/details": {
+      "get": {
+        "operationId": "Subscribe details",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscrDetailsResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS Subscribe"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "subscribeId",
+            "required": true,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ]
+      }
+    },
+    "/hafas/subscribe/search": {
+      "get": {
+        "operationId": "Subscribe Search",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscrSearchResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS Subscribe"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ]
+      }
+    },
+    "/reihung/v1/trainName/{tz}": {
+      "get": {
+        "operationId": "Train Name v1",
+        "responses": {
+          "200": {
+            "description": "Train name. May be undefined",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reihung"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "description": "TZ Number (e.g. 0169)",
+            "in": "path",
+            "name": "tz",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/hafas/v2/tripSearch": {
+      "post": {
+        "operationId": "TripSearch v2",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoutingResult_number_"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS"
+        ],
+        "deprecated": true,
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TripSearchOptionsV2"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hafas/v3/tripSearch": {
+      "post": {
+        "operationId": "TripSearch v3",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoutingResult_Date_"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "HAFAS"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TripSearchOptionsV3"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reihung/v1/wagen/{trainNumber}/{date}": {
+      "get": {
+        "operationId": "Wagenreihung v1",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Formation"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reihung"
+        ],
+        "deprecated": true,
         "security": [],
         "parameters": [
           {
             "in": "path",
-            "name": "ds100",
+            "name": "trainNumber",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Unix Time (ms)",
+            "in": "path",
+            "name": "date",
+            "required": true,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          }
+        ]
+      }
+    },
+    "/reihung/v2/wagen/{trainNumber}/{date}": {
+      "get": {
+        "operationId": "Wagenreihung v2",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Formation"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Reihung"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trainNumber",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "date",
+            "required": true,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/iris/v1/wings/{rawId1}/{rawId2}": {
+      "get": {
+        "operationId": "WingInfo v1",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WingDefinition_number_"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "IRIS"
+        ],
+        "deprecated": true,
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "rawId1",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "rawId2",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/iris/v2/wings/{rawId1}/{rawId2}": {
+      "get": {
+        "operationId": "WingInfo v2",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WingDefinition"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "IRIS"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "rawId1",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "rawId2",
             "required": true,
             "schema": {
               "type": "string"

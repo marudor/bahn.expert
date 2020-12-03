@@ -24,11 +24,11 @@ const parseHimMessage = (himMessage: HimMessage, common: ParsedCommon) => {
     startTime: parseTime(
       parse(himMessage.sDate, 'yyyyMMdd', Date.now()),
       himMessage.sTime,
-    ).getTime(),
+    ),
     endTime: parseTime(
       parse(himMessage.eDate, 'yyyyMMdd', Date.now()),
       himMessage.eTime,
-    ).getTime(),
+    ),
   };
 };
 const parseHimSearch = (

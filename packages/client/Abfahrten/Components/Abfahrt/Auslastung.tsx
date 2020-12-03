@@ -19,7 +19,7 @@ export const Auslastung: FC = () => {
         abfahrt.train.number,
         abfahrt.currentStation.title,
         abfahrt.destination,
-        abfahrt.departure.scheduledTime.getTime(),
+        abfahrt.departure.scheduledTime,
       );
     }
   }, [abfahrt, auslastung, getAuslastung]);

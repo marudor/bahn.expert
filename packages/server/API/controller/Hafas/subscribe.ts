@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Post, Query, Route, Tags } from 'tsoa';
+import {
+  Body,
+  Controller,
+  Get,
+  OperationId,
+  Post,
+  Query,
+  Route,
+  Tags,
+} from 'tsoa';
 import { SubscribeCreate } from 'server/HAFAS/Subscribe/Create';
 import { SubscribeDelete } from 'server/HAFAS/Subscribe/Delete';
 import { SubscribeDetails } from 'server/HAFAS/Subscribe/Details';
@@ -29,6 +38,7 @@ import type {
 export class HafasSubscribeController extends Controller {
   @Post('/create')
   @Tags('HAFAS Subscribe')
+  @OperationId('Subscribe create')
   create(
     @Body() body: SubscrCreateOptions,
     @Query() profile?: AllowedHafasProfile,
@@ -38,6 +48,7 @@ export class HafasSubscribeController extends Controller {
 
   @Post('/delete')
   @Tags('HAFAS Subscribe')
+  @OperationId('Subscribe delete')
   delete(
     @Body() body: SubscrDeleteOptions,
     @Query() profile?: AllowedHafasProfile,
@@ -47,6 +58,7 @@ export class HafasSubscribeController extends Controller {
 
   @Post('/createUser')
   @Tags('HAFAS Subscribe')
+  @OperationId('Subscribe create User')
   createUser(
     @Body() body: SubscrUserCreateOptions,
     @Query() profile?: AllowedHafasProfile,
@@ -56,6 +68,7 @@ export class HafasSubscribeController extends Controller {
 
   @Get('/search')
   @Tags('HAFAS Subscribe')
+  @OperationId('Subscribe Search')
   search(
     @Query() userId: string,
     @Query() profile?: AllowedHafasProfile,
@@ -70,6 +83,7 @@ export class HafasSubscribeController extends Controller {
 
   @Post('/deleteUser')
   @Tags('HAFAS Subscribe')
+  @OperationId('Subscribe delete User')
   deleteUser(
     @Body() body: SubscrUserDeleteOptions,
     @Query() profile?: AllowedHafasProfile,
@@ -79,6 +93,7 @@ export class HafasSubscribeController extends Controller {
 
   @Get('/details')
   @Tags('HAFAS Subscribe')
+  @OperationId('Subscribe details')
   details(
     @Query() userId: string,
     @Query() subscribeId: number,

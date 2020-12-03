@@ -84,14 +84,16 @@ export const Reihung: FC<Props> = ({
   const { getReihung } = useReihungenActions();
   const { fahrzeugGruppe, showUIC, zoomReihung } = useCommonConfig();
   const reihung =
-    reihungen[`${trainNumber}${currentStation}${scheduledDeparture}`];
+    reihungen[
+      `${trainNumber}${currentStation}${scheduledDeparture.toISOString()}`
+    ];
 
   useEffect(() => {
     if (reihung === undefined) {
       void getReihung(
         trainNumber,
         currentStation,
-        scheduledDeparture.getTime(),
+        scheduledDeparture,
         fallbackTrainNumbers,
       );
     }

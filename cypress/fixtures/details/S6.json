@@ -1,12 +1,12 @@
 {
   "arrival": {
     "platform": "12",
-    "scheduledTime": 1582890720000,
-    "time": 1582890720000
+    "scheduledTime": "2020-02-28T11:52:00.000Z",
+    "time": "2020-02-28T11:52:00.000Z"
   },
   "departure": {
-    "scheduledTime": 1582884720000,
-    "time": 1582884720000,
+    "scheduledTime": "2020-02-28T10:12:00.000Z",
+    "time": "2020-02-28T10:12:00.000Z",
     "cancelled": true
   },
   "duration": 6000000,
@@ -16,25 +16,42 @@
     "admin": "800337",
     "number": "30665",
     "type": "S",
-    "operator": { "name": "DB Regio AG NRW", "icoX": 2 }
+    "operator": {
+      "name": "DB Regio AG NRW",
+      "icoX": 2
+    }
   },
-  "segmentStart": { "title": "Köln-Nippes", "id": "8003372" },
-  "segmentDestination": { "title": "Essen Hbf", "id": "8000098" },
+  "segmentStart": {
+    "title": "Köln-Nippes",
+    "id": "8003372"
+  },
+  "segmentDestination": {
+    "title": "Essen Hbf",
+    "id": "8000098"
+  },
   "stops": [
     {
       "station": {
         "id": "8003372",
         "title": "Köln-Nippes",
-        "coordinates": { "lng": 6.921829, "lat": 50.98447 }
+        "coordinates": {
+          "lng": 6.921829,
+          "lat": 50.98447
+        }
       },
       "departure": {
-        "scheduledTime": 1582884720000,
-        "time": 1582884720000,
+        "scheduledTime": "2020-02-28T10:12:00.000Z",
+        "time": "2020-02-28T10:12:00.000Z",
         "cancelled": true
       },
       "cancelled": true,
       "messages": [
-        { "type": "O", "code": "", "icoX": 3, "txtN": "Halt entfällt" },
+        {
+          "type": "O",
+          "code": "",
+          "icoX": 3,
+          "txtN": "Halt entfällt"
+        },
         {
           "type": "D",
           "code": "",
@@ -48,340 +65,400 @@
       "station": {
         "id": "8003392",
         "title": "Köln Hansaring",
-        "coordinates": { "lng": 6.952698, "lat": 50.949124 }
+        "coordinates": {
+          "lng": 6.952698,
+          "lat": 50.949124
+        }
       },
       "arrival": {
-        "scheduledTime": 1582884840000,
-        "time": 1582884840000,
+        "scheduledTime": "2020-02-28T10:14:00.000Z",
+        "time": "2020-02-28T10:14:00.000Z",
         "cancelled": true
       },
       "departure": {
         "platform": "2",
-        "scheduledTime": 1582884900000,
-        "time": 1582884900000
+        "scheduledTime": "2020-02-28T10:15:00.000Z",
+        "time": "2020-02-28T10:15:00.000Z"
       }
     },
     {
       "station": {
         "id": "8000207",
         "title": "Köln Hbf",
-        "coordinates": { "lng": 6.959197, "lat": 50.942823 }
+        "coordinates": {
+          "lng": 6.959197,
+          "lat": 50.942823
+        }
       },
       "arrival": {
         "platform": "10 A-B",
-        "scheduledTime": 1582884960000,
-        "time": 1582884960000
+        "scheduledTime": "2020-02-28T10:16:00.000Z",
+        "time": "2020-02-28T10:16:00.000Z"
       },
       "departure": {
         "platform": "10 A-B",
-        "scheduledTime": 1582885020000,
-        "time": 1582885020000
+        "scheduledTime": "2020-02-28T10:17:00.000Z",
+        "time": "2020-02-28T10:17:00.000Z"
       }
     },
     {
       "station": {
         "id": "8083368",
         "title": "Köln Messe/Deutz Gl. 9-10",
-        "coordinates": { "lng": 6.974658, "lat": 50.941285 }
+        "coordinates": {
+          "lng": 6.974658,
+          "lat": 50.941285
+        }
       },
       "arrival": {
         "platform": "9",
-        "scheduledTime": 1582885140000,
-        "time": 1582885140000
+        "scheduledTime": "2020-02-28T10:19:00.000Z",
+        "time": "2020-02-28T10:19:00.000Z"
       },
       "departure": {
         "platform": "9",
-        "scheduledTime": 1582885200000,
-        "time": 1582885200000
+        "scheduledTime": "2020-02-28T10:20:00.000Z",
+        "time": "2020-02-28T10:20:00.000Z"
       }
     },
     {
       "station": {
         "id": "8003364",
         "title": "Köln-Buchforst",
-        "coordinates": { "lng": 7.004359, "lat": 50.953484 }
+        "coordinates": {
+          "lng": 7.004359,
+          "lat": 50.953484
+        }
       },
       "arrival": {
         "platform": "1",
-        "scheduledTime": 1582885380000,
-        "time": 1582885380000
+        "scheduledTime": "2020-02-28T10:23:00.000Z",
+        "time": "2020-02-28T10:23:00.000Z"
       },
       "departure": {
         "platform": "1",
-        "scheduledTime": 1582885380000,
-        "time": 1582885380000
+        "scheduledTime": "2020-02-28T10:23:00.000Z",
+        "time": "2020-02-28T10:23:00.000Z"
       }
     },
     {
       "station": {
         "id": "8000209",
         "title": "Köln-Mülheim",
-        "coordinates": { "lng": 7.013069, "lat": 50.957637 }
+        "coordinates": {
+          "lng": 7.013069,
+          "lat": 50.957637
+        }
       },
       "arrival": {
         "platform": "7",
-        "scheduledTime": 1582885560000,
-        "time": 1582885560000
+        "scheduledTime": "2020-02-28T10:26:00.000Z",
+        "time": "2020-02-28T10:26:00.000Z"
       },
       "departure": {
         "platform": "7",
-        "scheduledTime": 1582885620000,
-        "time": 1582885620000
+        "scheduledTime": "2020-02-28T10:27:00.000Z",
+        "time": "2020-02-28T10:27:00.000Z"
       }
     },
     {
       "station": {
         "id": "8003310",
         "title": "Köln-Stammheim",
-        "coordinates": { "lng": 7.001986, "lat": 50.990025 }
+        "coordinates": {
+          "lng": 7.001986,
+          "lat": 50.990025
+        }
       },
       "arrival": {
         "platform": "1",
-        "scheduledTime": 1582885800000,
-        "time": 1582885800000
+        "scheduledTime": "2020-02-28T10:30:00.000Z",
+        "time": "2020-02-28T10:30:00.000Z"
       },
       "departure": {
         "platform": "1",
-        "scheduledTime": 1582885860000,
-        "time": 1582885860000
+        "scheduledTime": "2020-02-28T10:31:00.000Z",
+        "time": "2020-02-28T10:31:00.000Z"
       }
     },
     {
       "station": {
         "id": "8000832",
         "title": "Leverkusen Chempark",
-        "coordinates": { "lng": 6.996655, "lat": 51.011401 }
+        "coordinates": {
+          "lng": 6.996655,
+          "lat": 51.011401
+        }
       },
       "arrival": {
         "platform": "1",
-        "scheduledTime": 1582885980000,
-        "time": 1582885980000
+        "scheduledTime": "2020-02-28T10:33:00.000Z",
+        "time": "2020-02-28T10:33:00.000Z"
       },
       "departure": {
         "platform": "1",
-        "scheduledTime": 1582886040000,
-        "time": 1582886040000
+        "scheduledTime": "2020-02-28T10:34:00.000Z",
+        "time": "2020-02-28T10:34:00.000Z"
       }
     },
     {
       "station": {
         "id": "8006713",
         "title": "Leverkusen Mitte",
-        "coordinates": { "lng": 6.991504, "lat": 51.031456 }
+        "coordinates": {
+          "lng": 6.991504,
+          "lat": 51.031456
+        }
       },
       "arrival": {
         "platform": "1",
-        "scheduledTime": 1582886160000,
-        "time": 1582886160000
+        "scheduledTime": "2020-02-28T10:36:00.000Z",
+        "time": "2020-02-28T10:36:00.000Z"
       },
       "departure": {
         "platform": "1",
-        "scheduledTime": 1582886220000,
-        "time": 1582886220000
+        "scheduledTime": "2020-02-28T10:37:00.000Z",
+        "time": "2020-02-28T10:37:00.000Z"
       }
     },
     {
       "station": {
         "id": "8003668",
         "title": "Leverkusen-Küppersteg",
-        "coordinates": { "lng": 6.988412, "lat": 51.045021 }
+        "coordinates": {
+          "lng": 6.988412,
+          "lat": 51.045021
+        }
       },
       "arrival": {
         "platform": "1",
-        "scheduledTime": 1582886340000,
-        "time": 1582886340000
+        "scheduledTime": "2020-02-28T10:39:00.000Z",
+        "time": "2020-02-28T10:39:00.000Z"
       },
       "departure": {
         "platform": "1",
-        "scheduledTime": 1582886340000,
-        "time": 1582886340000
+        "scheduledTime": "2020-02-28T10:39:00.000Z",
+        "time": "2020-02-28T10:39:00.000Z"
       }
     },
     {
       "station": {
         "id": "8003672",
         "title": "Leverkusen-Rheindorf",
-        "coordinates": { "lng": 6.96353, "lat": 51.064258 }
+        "coordinates": {
+          "lng": 6.96353,
+          "lat": 51.064258
+        }
       },
       "arrival": {
         "platform": "1",
-        "scheduledTime": 1582886520000,
-        "time": 1582886520000
+        "scheduledTime": "2020-02-28T10:42:00.000Z",
+        "time": "2020-02-28T10:42:00.000Z"
       },
       "departure": {
         "platform": "1",
-        "scheduledTime": 1582886520000,
-        "time": 1582886520000
+        "scheduledTime": "2020-02-28T10:42:00.000Z",
+        "time": "2020-02-28T10:42:00.000Z"
       }
     },
     {
       "station": {
         "id": "8003540",
         "title": "Langenfeld(Rhld)",
-        "coordinates": { "lng": 6.940922, "lat": 51.098633 }
+        "coordinates": {
+          "lng": 6.940922,
+          "lat": 51.098633
+        }
       },
       "arrival": {
         "platform": "3",
-        "scheduledTime": 1582886700000,
-        "time": 1582886700000
+        "scheduledTime": "2020-02-28T10:45:00.000Z",
+        "time": "2020-02-28T10:45:00.000Z"
       },
       "departure": {
         "platform": "3",
-        "scheduledTime": 1582886760000,
-        "time": 1582886760000
+        "scheduledTime": "2020-02-28T10:46:00.000Z",
+        "time": "2020-02-28T10:46:00.000Z"
       }
     },
     {
       "station": {
         "id": "8003539",
         "title": "Langenfeld(Rhld)-Berghausen",
-        "coordinates": { "lng": 6.923752, "lat": 51.117537 }
+        "coordinates": {
+          "lng": 6.923752,
+          "lat": 51.117537
+        }
       },
       "arrival": {
         "platform": "3",
-        "scheduledTime": 1582886880000,
-        "time": 1582886880000
+        "scheduledTime": "2020-02-28T10:48:00.000Z",
+        "time": "2020-02-28T10:48:00.000Z"
       },
       "departure": {
         "platform": "3",
-        "scheduledTime": 1582886940000,
-        "time": 1582886940000
+        "scheduledTime": "2020-02-28T10:49:00.000Z",
+        "time": "2020-02-28T10:49:00.000Z"
       }
     },
     {
       "station": {
         "id": "8004920",
         "title": "Düsseldorf-Hellerhof",
-        "coordinates": { "lng": 6.908075, "lat": 51.133223 }
+        "coordinates": {
+          "lng": 6.908075,
+          "lat": 51.133223
+        }
       },
       "arrival": {
         "platform": "3",
-        "scheduledTime": 1582887060000,
-        "time": 1582887060000
+        "scheduledTime": "2020-02-28T10:51:00.000Z",
+        "time": "2020-02-28T10:51:00.000Z"
       },
       "departure": {
         "platform": "3",
-        "scheduledTime": 1582887060000,
-        "time": 1582887060000
+        "scheduledTime": "2020-02-28T10:51:00.000Z",
+        "time": "2020-02-28T10:51:00.000Z"
       }
     },
     {
       "station": {
         "id": "8001589",
         "title": "Düsseldorf-Garath",
-        "coordinates": { "lng": 6.898205, "lat": 51.143147 }
+        "coordinates": {
+          "lng": 6.898205,
+          "lat": 51.143147
+        }
       },
       "arrival": {
         "platform": "3",
-        "scheduledTime": 1582887180000,
-        "time": 1582887180000
+        "scheduledTime": "2020-02-28T10:53:00.000Z",
+        "time": "2020-02-28T10:53:00.000Z"
       },
       "departure": {
         "platform": "3",
-        "scheduledTime": 1582887180000,
-        "time": 1582887180000
+        "scheduledTime": "2020-02-28T10:53:00.000Z",
+        "time": "2020-02-28T10:53:00.000Z"
       }
     },
     {
       "station": {
         "id": "8001584",
         "title": "Düsseldorf-Benrath",
-        "coordinates": { "lng": 6.878905, "lat": 51.162339 }
+        "coordinates": {
+          "lng": 6.878905,
+          "lat": 51.162339
+        }
       },
       "arrival": {
         "platform": "3",
-        "scheduledTime": 1582887360000,
-        "time": 1582887360000
+        "scheduledTime": "2020-02-28T10:56:00.000Z",
+        "time": "2020-02-28T10:56:00.000Z"
       },
       "departure": {
         "platform": "3",
-        "scheduledTime": 1582887360000,
-        "time": 1582887360000
+        "scheduledTime": "2020-02-28T10:56:00.000Z",
+        "time": "2020-02-28T10:56:00.000Z"
       }
     },
     {
       "station": {
         "id": "8001594",
         "title": "Düsseldorf-Reisholz",
-        "coordinates": { "lng": 6.860495, "lat": 51.181279 }
+        "coordinates": {
+          "lng": 6.860495,
+          "lat": 51.181279
+        }
       },
       "arrival": {
         "platform": "3",
-        "scheduledTime": 1582887480000,
-        "time": 1582887480000
+        "scheduledTime": "2020-02-28T10:58:00.000Z",
+        "time": "2020-02-28T10:58:00.000Z"
       },
       "departure": {
         "platform": "3",
-        "scheduledTime": 1582887540000,
-        "time": 1582887540000
+        "scheduledTime": "2020-02-28T10:59:00.000Z",
+        "time": "2020-02-28T10:59:00.000Z"
       }
     },
     {
       "station": {
         "id": "8001588",
         "title": "Düsseldorf-Eller Süd",
-        "coordinates": { "lng": 6.836296, "lat": 51.197981 }
+        "coordinates": {
+          "lng": 6.836296,
+          "lat": 51.197981
+        }
       },
       "arrival": {
         "platform": "3",
-        "scheduledTime": 1582887660000,
-        "time": 1582887660000
+        "scheduledTime": "2020-02-28T11:01:00.000Z",
+        "time": "2020-02-28T11:01:00.000Z"
       },
       "departure": {
         "platform": "3",
-        "scheduledTime": 1582887720000,
-        "time": 1582887720000
+        "scheduledTime": "2020-02-28T11:02:00.000Z",
+        "time": "2020-02-28T11:02:00.000Z"
       }
     },
     {
       "station": {
         "id": "8001591",
         "title": "Düsseldorf-Oberbilk",
-        "coordinates": { "lng": 6.808969, "lat": 51.208067 }
+        "coordinates": {
+          "lng": 6.808969,
+          "lat": 51.208067
+        }
       },
       "arrival": {
         "platform": "2",
-        "scheduledTime": 1582887840000,
-        "time": 1582887840000
+        "scheduledTime": "2020-02-28T11:04:00.000Z",
+        "time": "2020-02-28T11:04:00.000Z"
       },
       "departure": {
         "platform": "2",
-        "scheduledTime": 1582887840000,
-        "time": 1582887840000
+        "scheduledTime": "2020-02-28T11:04:00.000Z",
+        "time": "2020-02-28T11:04:00.000Z"
       }
     },
     {
       "station": {
         "id": "8001581",
         "title": "Düsseldorf Volksgarten",
-        "coordinates": { "lng": 6.791935, "lat": 51.210117 }
+        "coordinates": {
+          "lng": 6.791935,
+          "lat": 51.210117
+        }
       },
       "arrival": {
         "platform": "2",
-        "scheduledTime": 1582887960000,
-        "time": 1582887960000
+        "scheduledTime": "2020-02-28T11:06:00.000Z",
+        "time": "2020-02-28T11:06:00.000Z"
       },
       "departure": {
         "platform": "2",
-        "scheduledTime": 1582888020000,
-        "time": 1582888020000
+        "scheduledTime": "2020-02-28T11:07:00.000Z",
+        "time": "2020-02-28T11:07:00.000Z"
       }
     },
     {
       "station": {
         "id": "8000085",
         "title": "Düsseldorf Hbf",
-        "coordinates": { "lng": 6.794011, "lat": 51.219708 }
+        "coordinates": {
+          "lng": 6.794011,
+          "lat": 51.219708
+        }
       },
       "arrival": {
         "platform": "14",
-        "scheduledTime": 1582888080000,
-        "time": 1582888080000
+        "scheduledTime": "2020-02-28T11:08:00.000Z",
+        "time": "2020-02-28T11:08:00.000Z"
       },
       "departure": {
         "platform": "14",
-        "scheduledTime": 1582888200000,
-        "time": 1582888200000,
+        "scheduledTime": "2020-02-28T11:10:00.000Z",
+        "time": "2020-02-28T11:10:00.000Z",
         "delay": 0
       }
     },
@@ -389,18 +466,21 @@
       "station": {
         "id": "8001582",
         "title": "Düsseldorf Wehrhahn",
-        "coordinates": { "lng": 6.7982, "lat": 51.228491 }
+        "coordinates": {
+          "lng": 6.7982,
+          "lat": 51.228491
+        }
       },
       "arrival": {
         "platform": "2",
-        "scheduledTime": 1582888320000,
-        "time": 1582888320000,
+        "scheduledTime": "2020-02-28T11:12:00.000Z",
+        "time": "2020-02-28T11:12:00.000Z",
         "delay": 0
       },
       "departure": {
         "platform": "2",
-        "scheduledTime": 1582888320000,
-        "time": 1582888320000,
+        "scheduledTime": "2020-02-28T11:12:00.000Z",
+        "time": "2020-02-28T11:12:00.000Z",
         "delay": 0
       },
       "irisMessages": []
@@ -409,18 +489,21 @@
       "station": {
         "id": "8001583",
         "title": "Düsseldorf-Zoo",
-        "coordinates": { "lng": 6.797005, "lat": 51.23748 }
+        "coordinates": {
+          "lng": 6.797005,
+          "lat": 51.23748
+        }
       },
       "arrival": {
         "platform": "2",
-        "scheduledTime": 1582888440000,
-        "time": 1582888440000,
+        "scheduledTime": "2020-02-28T11:14:00.000Z",
+        "time": "2020-02-28T11:14:00.000Z",
         "delay": 0
       },
       "departure": {
         "platform": "2",
-        "scheduledTime": 1582888440000,
-        "time": 1582888440000,
+        "scheduledTime": "2020-02-28T11:14:00.000Z",
+        "time": "2020-02-28T11:14:00.000Z",
         "delay": 0
       }
     },
@@ -428,18 +511,21 @@
       "station": {
         "id": "8001586",
         "title": "Düsseldorf-Derendorf",
-        "coordinates": { "lng": 6.794398, "lat": 51.246874 }
+        "coordinates": {
+          "lng": 6.794398,
+          "lat": 51.246874
+        }
       },
       "arrival": {
         "platform": "2",
-        "scheduledTime": 1582888560000,
-        "time": 1582888560000,
+        "scheduledTime": "2020-02-28T11:16:00.000Z",
+        "time": "2020-02-28T11:16:00.000Z",
         "delay": 0
       },
       "departure": {
         "platform": "2",
-        "scheduledTime": 1582888560000,
-        "time": 1582888560000,
+        "scheduledTime": "2020-02-28T11:16:00.000Z",
+        "time": "2020-02-28T11:16:00.000Z",
         "delay": 0
       }
     },
@@ -447,18 +533,21 @@
       "station": {
         "id": "8001593",
         "title": "Düsseldorf-Rath Mitte",
-        "coordinates": { "lng": 6.808214, "lat": 51.261167 }
+        "coordinates": {
+          "lng": 6.808214,
+          "lat": 51.261167
+        }
       },
       "arrival": {
         "platform": "2",
-        "scheduledTime": 1582888740000,
-        "time": 1582888740000,
+        "scheduledTime": "2020-02-28T11:19:00.000Z",
+        "time": "2020-02-28T11:19:00.000Z",
         "delay": 0
       },
       "departure": {
         "platform": "2",
-        "scheduledTime": 1582888740000,
-        "time": 1582888740000,
+        "scheduledTime": "2020-02-28T11:19:00.000Z",
+        "time": "2020-02-28T11:19:00.000Z",
         "delay": 0
       }
     },
@@ -466,18 +555,21 @@
       "station": {
         "id": "8001592",
         "title": "Düsseldorf-Rath",
-        "coordinates": { "lng": 6.821213, "lat": 51.264187 }
+        "coordinates": {
+          "lng": 6.821213,
+          "lat": 51.264187
+        }
       },
       "arrival": {
         "platform": "2",
-        "scheduledTime": 1582888860000,
-        "time": 1582888860000,
+        "scheduledTime": "2020-02-28T11:21:00.000Z",
+        "time": "2020-02-28T11:21:00.000Z",
         "delay": 0
       },
       "departure": {
         "platform": "2",
-        "scheduledTime": 1582888860000,
-        "time": 1582888860000,
+        "scheduledTime": "2020-02-28T11:21:00.000Z",
+        "time": "2020-02-28T11:21:00.000Z",
         "delay": 0
       }
     },
@@ -485,18 +577,21 @@
       "station": {
         "id": "8004948",
         "title": "Ratingen Ost",
-        "coordinates": { "lng": 6.863794, "lat": 51.295469 }
+        "coordinates": {
+          "lng": 6.863794,
+          "lat": 51.295469
+        }
       },
       "arrival": {
         "platform": "2",
-        "scheduledTime": 1582889100000,
-        "time": 1582889100000,
+        "scheduledTime": "2020-02-28T11:25:00.000Z",
+        "time": "2020-02-28T11:25:00.000Z",
         "delay": 0
       },
       "departure": {
         "platform": "2",
-        "scheduledTime": 1582889160000,
-        "time": 1582889160000,
+        "scheduledTime": "2020-02-28T11:26:00.000Z",
+        "time": "2020-02-28T11:26:00.000Z",
         "delay": 0
       }
     },
@@ -504,18 +599,21 @@
       "station": {
         "id": "8002919",
         "title": "Hösel",
-        "coordinates": { "lng": 6.893252, "lat": 51.34153 }
+        "coordinates": {
+          "lng": 6.893252,
+          "lat": 51.34153
+        }
       },
       "arrival": {
         "platform": "1",
-        "scheduledTime": 1582889400000,
-        "time": 1582889400000,
+        "scheduledTime": "2020-02-28T11:30:00.000Z",
+        "time": "2020-02-28T11:30:00.000Z",
         "delay": 0
       },
       "departure": {
         "platform": "1",
-        "scheduledTime": 1582889400000,
-        "time": 1582889400000,
+        "scheduledTime": "2020-02-28T11:30:00.000Z",
+        "time": "2020-02-28T11:30:00.000Z",
         "delay": 0
       }
     },
@@ -523,18 +621,21 @@
       "station": {
         "id": "8003245",
         "title": "Kettwig Stausee",
-        "coordinates": { "lng": 6.938836, "lat": 51.356506 }
+        "coordinates": {
+          "lng": 6.938836,
+          "lat": 51.356506
+        }
       },
       "arrival": {
         "platform": "2",
-        "scheduledTime": 1582889640000,
-        "time": 1582889640000,
+        "scheduledTime": "2020-02-28T11:34:00.000Z",
+        "time": "2020-02-28T11:34:00.000Z",
         "delay": 0
       },
       "departure": {
         "platform": "2",
-        "scheduledTime": 1582889640000,
-        "time": 1582889640000,
+        "scheduledTime": "2020-02-28T11:34:00.000Z",
+        "time": "2020-02-28T11:34:00.000Z",
         "delay": 0
       }
     },
@@ -542,18 +643,21 @@
       "station": {
         "id": "8000198",
         "title": "Kettwig",
-        "coordinates": { "lng": 6.953633, "lat": 51.363284 }
+        "coordinates": {
+          "lng": 6.953633,
+          "lat": 51.363284
+        }
       },
       "arrival": {
         "platform": "2",
-        "scheduledTime": 1582889760000,
-        "time": 1582889760000,
+        "scheduledTime": "2020-02-28T11:36:00.000Z",
+        "time": "2020-02-28T11:36:00.000Z",
         "delay": 0
       },
       "departure": {
         "platform": "2",
-        "scheduledTime": 1582889760000,
-        "time": 1582889760000,
+        "scheduledTime": "2020-02-28T11:36:00.000Z",
+        "time": "2020-02-28T11:36:00.000Z",
         "delay": 0
       }
     },
@@ -561,18 +665,21 @@
       "station": {
         "id": "8001915",
         "title": "Essen-Werden",
-        "coordinates": { "lng": 6.997851, "lat": 51.386917 }
+        "coordinates": {
+          "lng": 6.997851,
+          "lat": 51.386917
+        }
       },
       "arrival": {
         "platform": "1",
-        "scheduledTime": 1582890000000,
-        "time": 1582890000000,
+        "scheduledTime": "2020-02-28T11:40:00.000Z",
+        "time": "2020-02-28T11:40:00.000Z",
         "delay": 0
       },
       "departure": {
         "platform": "1",
-        "scheduledTime": 1582890000000,
-        "time": 1582890000000,
+        "scheduledTime": "2020-02-28T11:40:00.000Z",
+        "time": "2020-02-28T11:40:00.000Z",
         "delay": 0
       }
     },
@@ -580,18 +687,21 @@
       "station": {
         "id": "8001908",
         "title": "Essen-Hügel",
-        "coordinates": { "lng": 7.008512, "lat": 51.404473 }
+        "coordinates": {
+          "lng": 7.008512,
+          "lat": 51.404473
+        }
       },
       "arrival": {
         "platform": "1",
-        "scheduledTime": 1582890180000,
-        "time": 1582890180000,
+        "scheduledTime": "2020-02-28T11:43:00.000Z",
+        "time": "2020-02-28T11:43:00.000Z",
         "delay": 0
       },
       "departure": {
         "platform": "1",
-        "scheduledTime": 1582890180000,
-        "time": 1582890180000,
+        "scheduledTime": "2020-02-28T11:43:00.000Z",
+        "time": "2020-02-28T11:43:00.000Z",
         "delay": 0
       }
     },
@@ -599,18 +709,21 @@
       "station": {
         "id": "8001896",
         "title": "Essen Stadtwald",
-        "coordinates": { "lng": 7.023308, "lat": 51.422388 }
+        "coordinates": {
+          "lng": 7.023308,
+          "lat": 51.422388
+        }
       },
       "arrival": {
         "platform": "1",
-        "scheduledTime": 1582890360000,
-        "time": 1582890360000,
+        "scheduledTime": "2020-02-28T11:46:00.000Z",
+        "time": "2020-02-28T11:46:00.000Z",
         "delay": 0
       },
       "departure": {
         "platform": "1",
-        "scheduledTime": 1582890360000,
-        "time": 1582890360000,
+        "scheduledTime": "2020-02-28T11:46:00.000Z",
+        "time": "2020-02-28T11:46:00.000Z",
         "delay": 0
       }
     },
@@ -618,18 +731,21 @@
       "station": {
         "id": "8001897",
         "title": "Essen Süd",
-        "coordinates": { "lng": 7.023092, "lat": 51.440169 }
+        "coordinates": {
+          "lng": 7.023092,
+          "lat": 51.440169
+        }
       },
       "arrival": {
         "platform": "2",
-        "scheduledTime": 1582890480000,
-        "time": 1582890480000,
+        "scheduledTime": "2020-02-28T11:48:00.000Z",
+        "time": "2020-02-28T11:48:00.000Z",
         "delay": 0
       },
       "departure": {
         "platform": "2",
-        "scheduledTime": 1582890540000,
-        "time": 1582890540000,
+        "scheduledTime": "2020-02-28T11:49:00.000Z",
+        "time": "2020-02-28T11:49:00.000Z",
         "delay": 0
       }
     },
@@ -637,12 +753,15 @@
       "station": {
         "id": "8000098",
         "title": "Essen Hbf",
-        "coordinates": { "lng": 7.01386, "lat": 51.451378 }
+        "coordinates": {
+          "lng": 7.01386,
+          "lat": 51.451378
+        }
       },
       "arrival": {
         "platform": "12",
-        "scheduledTime": 1582890720000,
-        "time": 1582890720000,
+        "scheduledTime": "2020-02-28T11:52:00.000Z",
+        "time": "2020-02-28T11:52:00.000Z",
         "delay": 0
       }
     }
@@ -677,18 +796,21 @@
     "station": {
       "id": "8001582",
       "title": "Düsseldorf Wehrhahn",
-      "coordinates": { "lng": 6.7982, "lat": 51.228491 }
+      "coordinates": {
+        "lng": 6.7982,
+        "lat": 51.228491
+      }
     },
     "arrival": {
       "platform": "2",
-      "scheduledTime": 1582888320000,
-      "time": 1582888320000,
+      "scheduledTime": "2020-02-28T11:12:00.000Z",
+      "time": "2020-02-28T11:12:00.000Z",
       "delay": 0
     },
     "departure": {
       "platform": "2",
-      "scheduledTime": 1582888320000,
-      "time": 1582888320000,
+      "scheduledTime": "2020-02-28T11:12:00.000Z",
+      "time": "2020-02-28T11:12:00.000Z",
       "delay": 0
     },
     "irisMessages": []

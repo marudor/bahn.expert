@@ -36,7 +36,7 @@ describe('Homepage', () => {
 
   it('Shows error on mainPage', () => {
     cy.route({
-      url: '/api/iris/v1/abfahrten/8098105?lookahead=150&lookbehind=0',
+      url: '/api/iris/v2/abfahrten/8098105?lookahead=150&lookbehind=0',
       status: 500,
       delay: 200,
       response: {},

@@ -5,11 +5,11 @@ import type { Formation } from 'types/reihung';
 
 async function fetchSequence(
   trainNumber: string,
-  scheduledDeparture: number,
+  scheduledDeparture: Date,
 ): Promise<Formation | undefined> {
   try {
     const r = await Axios.get<Formation>(
-      `/api/reihung/v1/wagen/${trainNumber}/${scheduledDeparture}`,
+      `/api/reihung/v2/wagen/${trainNumber}/${scheduledDeparture.toISOString()}`,
     );
     return r.data;
   } catch (e) {
@@ -25,7 +25,7 @@ function useReihungInner() {
     async (
       trainNumber: string,
       currentStation: string,
-      scheduledDeparture: number,
+      scheduledDeparture: Date,
       fallbackTrainNumbers: string[] = [],
     ) => {
       let reihung: Formation | undefined | null;
@@ -38,7 +38,9 @@ function useReihungInner() {
       ]);
       const newReihungen = reihungen.reduce((agg, f) => {
         if (f) {
-          agg[`${f.zugnummer}${currentStation}${scheduledDeparture}`] = f;
+          agg[
+            `${f.zugnummer}${currentStation}${scheduledDeparture.toISOString()}`
+          ] = f;
         }
         return agg;
       }, {} as Record<string, Formation>);
@@ -46,7 +48,7 @@ function useReihungInner() {
       if (!reihung) {
         reihung = null;
       }
-      const key = `${trainNumber}${currentStation}${scheduledDeparture}`;
+      const key = `${trainNumber}${currentStation}${scheduledDeparture.toISOString()}`;
 
       setReihungen((oldReihungen) => ({
         ...oldReihungen,

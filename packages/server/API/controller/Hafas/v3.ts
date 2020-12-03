@@ -1,4 +1,13 @@
-import { Body, Controller, Post, Query, Request, Route, Tags } from 'tsoa';
+import {
+  Body,
+  Controller,
+  OperationId,
+  Post,
+  Query,
+  Request,
+  Route,
+  Tags,
+} from 'tsoa';
 import TripSearch from 'server/HAFAS/TripSearch';
 import type { AllowedHafasProfile } from 'types/HAFAS';
 import type { Context } from 'koa';
@@ -9,6 +18,7 @@ import type { TripSearchOptionsV3 } from 'types/HAFAS/TripSearch';
 export class HafasControllerV3 extends Controller {
   @Post('/tripSearch')
   @Tags('HAFAS')
+  @OperationId('TripSearch v3')
   tripSearch(
     @Request() ctx: Context,
     @Body() body: TripSearchOptionsV3,
