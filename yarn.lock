@@ -4593,7 +4593,7 @@ __metadata:
     compression-webpack-plugin: ^6.1.1
     core-js: ^3.8.0
     css-loader: ^5.0.1
-    cypress: ^5.6.0
+    cypress: ^6.0.1
     eslint: ^7.14.0
     eslint-config-marudor: ^7.3.3
     eslint-config-prettier: ^6.15.0
@@ -5175,9 +5175,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001164":
-  version: 1.0.30001164
-  resolution: "caniuse-lite@npm:1.0.30001164"
-  checksum: ac2213c81b4a406e71795fe13834ea716d4f2c98935631289d6c7c3a421d5984f8535c90bd533c353f07f03d17ad6661b6eed10286a0647cc7f7d7affa79ed54
+  version: 1.0.30001165
+  resolution: "caniuse-lite@npm:1.0.30001165"
+  checksum: f01ea7f22389b403feb86790b4815437b816aeab685a177ab20297aa7f4447c8d9242ed544738003c7a6f03e302f7dde808171ccd0940659fd62c34f53452cbd
   languageName: node
   linkType: hard
 
@@ -6181,9 +6181,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@npm:^5.6.0":
-  version: 5.6.0
-  resolution: "cypress@npm:5.6.0"
+"cypress@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "cypress@npm:6.0.1"
   dependencies:
     "@cypress/listr-verbose-renderer": ^0.4.1
     "@cypress/request": ^2.88.5
@@ -6225,7 +6225,7 @@ __metadata:
     yauzl: ^2.10.0
   bin:
     cypress: bin/cypress
-  checksum: 159ab7df348dcd0d98e75e639a12886ce733d63b3981cba7e4045f3e728d6b877f37ab51d6aaf32dc694774028a28a8f846cb652591b76194b7c7df92a3f9af3
+  checksum: 0fb6c0df12c092f7f52debf386870e62ecacb9caa62c11a319ffa5b59195f4609488da331bf19a63b941b3390c4778e0d3638cc1153e4f42635a54d4952f5226
   languageName: node
   linkType: hard
 
@@ -6739,9 +6739,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.3.612":
-  version: 1.3.614
-  resolution: "electron-to-chromium@npm:1.3.614"
-  checksum: a82e0c407db33e74758fc36b25042a6c5f0d6c82a3899dbf069bb1ec5863a8cb2368d7c4f69aa0aa6d2cd858ac0154d2e3d6208bc7953e3d40295cacb39d6d82
+  version: 1.3.615
+  resolution: "electron-to-chromium@npm:1.3.615"
+  checksum: 37fb4e572589a0f211327393bcb07dfd9b3e04e185f611b96107ed7d9c60d2895174cbe7e083a750682ec9b33bfc4576055e24d352df7f057874bedde703a258
   languageName: node
   linkType: hard
 
@@ -12695,14 +12695,13 @@ __metadata:
   linkType: hard
 
 "postcss@npm:^8.1.4":
-  version: 8.1.13
-  resolution: "postcss@npm:8.1.13"
+  version: 8.1.14
+  resolution: "postcss@npm:8.1.14"
   dependencies:
     colorette: ^1.2.1
     nanoid: ^3.1.20
     source-map: ^0.6.1
-    vfile-location: ^3.2.0
-  checksum: 6c51aa29034ade2024cc4c60ab95d03cfaad77b468c9f6a9cf18920e9c3ce92b46b77579ae95f88cecc2c775772d4743ccebda2b1bd129c8a4fe9c71eb7f76df
+  checksum: 1d28f12c6f18306f5bc374b3d9f360eded798ea9d893a7873cf40005b737464a610f7aa850fc6bb0db14ab3e2eadb99710009c827160f2d13ce5251414510edd
   languageName: node
   linkType: hard
 
@@ -15915,13 +15914,6 @@ __metadata:
     core-util-is: 1.0.2
     extsprintf: ^1.2.0
   checksum: 38ea80312cb42e5e8b4ac562d108d675b2354a79f8f125d363671f692657461b9181fd26f4fc9acdca433f8afee099cb78058806e1303e6b15b8fb022affba94
-  languageName: node
-  linkType: hard
-
-"vfile-location@npm:^3.2.0":
-  version: 3.2.0
-  resolution: "vfile-location@npm:3.2.0"
-  checksum: 4102f03560826baf456ad16ad3a83e745d62380e2f90c5ae9452a4cc093102f9355332f5f18699d660ed0cfecd526416032d6d6ea06e53c45823e23c80691ac0
   languageName: node
   linkType: hard
 
