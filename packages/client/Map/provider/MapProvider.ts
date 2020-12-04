@@ -66,9 +66,10 @@ function useMap() {
   const [polylines, setPolylines] = useState<{
     [key: string]: ParsedPolyline;
   }>({});
-  const [activeJourney, setActiveJourney] = useState<
-    SingleParsedJourneyGeoPos
-  >();
+  const [
+    activeJourney,
+    setActiveJourney,
+  ] = useState<SingleParsedJourneyGeoPos>();
 
   useEffect(() => {
     setActiveJourney(undefined);

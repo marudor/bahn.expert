@@ -42,7 +42,7 @@ export async function getHafasStationFromAPI(
 
 export async function getHafasStationFromCoordinates(
   profile: AllowedHafasProfile = AllowedHafasProfile.DB,
-  coordinates: Coordinates,
+  coordinates: GeolocationCoordinates,
 ): Promise<Station[]> {
   try {
     return (
@@ -60,7 +60,7 @@ export async function getHafasStationFromCoordinates(
 }
 
 export async function getStationsFromCoordinates(
-  coordinates: Coordinates,
+  coordinates: GeolocationCoordinates,
 ): Promise<Station[]> {
   return (
     await Axios.get<Station[]>('/api/station/v1/geoSearch', {

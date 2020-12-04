@@ -41,7 +41,7 @@ export default function webpackDev(koa: Koa): Promise<unknown> {
     });
   });
 
-  return new Promise((resolve) => {
+  return new Promise<void>((resolve) => {
     const middleware = webpackMiddleware(compiler, {
       serverSideRender: true,
       publicPath: '/',
@@ -58,7 +58,7 @@ export default function webpackDev(koa: Koa): Promise<unknown> {
     });
 
     koa.use((ctx, next) => {
-      return new Promise((resolve, reject) => {
+      return new Promise<void>((resolve, reject) => {
         middleware(
           ctx.req,
           {
