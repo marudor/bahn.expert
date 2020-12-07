@@ -8,7 +8,7 @@ import type { Quay } from 'business-hub/types/Quays';
 export class BusinessHubV1Controller extends Controller {
   @Get('/stationOccupancy/{evaId}/{date}')
   @Tags('BusinessHub')
-  @OperationId('Bahnhofs Auslastung v1')
+  @OperationId('Bahnhofs Auslastung')
   stationOccupancy(evaId: string, date: Date): Promise<OccupancyResponse> {
     return stationOccupancy(evaId, date);
   }
