@@ -6056,7 +6056,7 @@
     },
     "/businessHub/v1/stationOccupancy/{evaId}/{date}": {
       "get": {
-        "operationId": "Bahnhofs Auslastung v1",
+        "operationId": "Bahnhofs Auslastung",
         "responses": {
           "200": {
             "description": "Ok",
