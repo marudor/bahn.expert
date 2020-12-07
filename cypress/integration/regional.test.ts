@@ -14,7 +14,7 @@ describe('Regional', () => {
       'fixture:regional/departurePostStrasse.json',
     );
     cy.route(
-      '/api/hafas/v1/details/STR 1761?station=723870&date=1588442040000',
+      '/api/hafas/v2/details/STR 1761?station=723870&date=2020-05-02T17:54:00.000Z',
       'fixture:regional/detailsStr1761.json',
     );
     cy.visit('/');

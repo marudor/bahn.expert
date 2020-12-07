@@ -1,7 +1,7 @@
 describe('Details', () => {
   it('Can Render (with error)', () => {
     cy.route({
-      url: '/api/hafas/v1/details/ICE70',
+      url: '/api/hafas/v2/details/ICE70',
       status: 404,
       response: {},
     });
@@ -10,7 +10,7 @@ describe('Details', () => {
   });
 
   it('can render & header height correct', () => {
-    cy.route('/api/hafas/v1/details/S30665', 'fixture:details/S6.json').as(
+    cy.route('/api/hafas/v2/details/S30665', 'fixture:details/S6.json').as(
       'details',
     );
     cy.visit('/details/S30665');

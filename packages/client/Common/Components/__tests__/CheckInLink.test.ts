@@ -1,7 +1,16 @@
 import { parse } from 'date-fns';
 import { render } from 'client/__tests__/testHelper';
 import { TravelynxLink } from 'client/Common/Components/CheckInLink/TravelynxLink';
-import MockAbfahrt from './__fixtures__/abfahrt.json';
+import fs from 'fs';
+import path from 'path';
+import type { Abfahrt } from 'types/iris';
+
+const MockAbfahrt = global.parseJson<Abfahrt>(
+  fs.readFileSync(
+    path.resolve(__dirname, './__fixtures__/abfahrt.json'),
+    'utf8',
+  ),
+);
 
 describe('Travellynx', () => {
   beforeAll(() => {
@@ -55,8 +64,8 @@ describe('Travellynx', () => {
       station: MockAbfahrt.currentStation,
       train: MockAbfahrt.train,
       arrival: {
-        ...MockAbfahrt.arrival,
-        time: parse('22.07.2019 17:52', 'dd.MM.yyyy HH:mm', 0).getTime(),
+        ...MockAbfahrt.arrival!,
+        time: parse('22.07.2019 17:52', 'dd.MM.yyyy HH:mm', 0),
       },
     });
 

@@ -48,12 +48,9 @@ export function getBoolAttr(node: null | Element, name: string): boolean {
   return attr === 'true';
 }
 
-export function parseTs(ts?: string): undefined | number {
+export function parseTs(ts?: string): undefined | Date {
   if (ts) {
-    return zonedTimeToUtc(
-      parse(ts, 'yyMMddHHmm', Date.now()),
-      'Europe/Berlin',
-    ).getTime();
+    return zonedTimeToUtc(parse(ts, 'yyMMddHHmm', Date.now()), 'Europe/Berlin');
   }
 }
 

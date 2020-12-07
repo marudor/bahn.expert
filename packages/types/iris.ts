@@ -1,41 +1,38 @@
 import type { CommonProductInfo, CommonStopInfo } from 'types/HAFAS';
 import type { Station } from 'types/station';
 
-export interface WingInfo {
+export interface WingInfo<DateType = Date> {
   station: {
     id: string;
     title: string;
   };
-  pt: number;
+  pt: DateType;
   fl: boolean;
 }
 
-export interface WingDefinition {
-  start?: WingInfo;
-  end?: WingInfo;
+export interface WingDefinition<DateType = Date> {
+  start?: WingInfo<DateType>;
+  end?: WingInfo<DateType>;
 }
 
-export interface AbfahrtenResult {
-  departures: Abfahrt[];
-  lookbehind: Abfahrt[];
-  wings: Wings;
+export interface AbfahrtenResult<DateType = Date> {
+  departures: Abfahrt<DateType>[];
+  lookbehind: Abfahrt<DateType>[];
+  wings: Wings<DateType>;
 }
 
-export interface Abfahrt {
-  /**
-   * Unix Time (ms)
-   */
-  initialDeparture: number;
-  arrival?: StopInfo;
+export interface Abfahrt<DateType = Date> {
+  initialDeparture: DateType;
+  arrival?: StopInfo<DateType>;
   auslastung: boolean;
   currentStation: Station;
-  departure?: StopInfo;
+  departure?: StopInfo<DateType>;
   destination: string;
   id: string;
   additional?: boolean;
   cancelled?: boolean;
   mediumId: string;
-  messages: Messages;
+  messages: Messages<DateType>;
   platform: string;
   /**
    * Most likely D | N | S | F
@@ -58,32 +55,34 @@ export interface Abfahrt {
   hiddenReihung?: boolean;
 }
 
-export interface IrisMessage {
+export interface IrisMessage<DateType = Date> {
   text: string;
-  timestamp: number;
+  timestamp?: DateType;
   superseded?: boolean;
   priority?: MessagePrio;
 }
 
-export interface HimIrisMessage extends IrisMessage {
+export interface HimIrisMessage<DateType = Date> extends IrisMessage<DateType> {
   head: string;
 }
 
-export type Message = IrisMessage | HimIrisMessage;
+export type Message<DateType = Date> =
+  | IrisMessage<DateType>
+  | HimIrisMessage<DateType>;
 
 /**
  * 1: High; 2: Medium; 3: Low; 4: Done
  */
 
 export type MessagePrio = '1' | '2' | '3' | '4';
-export interface Messages {
-  [name: string]: Message[];
-  qos: IrisMessage[];
-  delay: IrisMessage[];
-  him: HimIrisMessage[];
+export interface Messages<DateType = Date> {
+  [name: string]: Message<DateType>[];
+  qos: IrisMessage<DateType>[];
+  delay: IrisMessage<DateType>[];
+  him: HimIrisMessage<DateType>[];
 }
 
-export interface StopInfo extends CommonStopInfo {
+export interface StopInfo<DateType = Date> extends CommonStopInfo<DateType> {
   wingIds?: string[];
   cancelled?: boolean;
   hidden?: boolean;
@@ -108,6 +107,6 @@ export interface TrainInfo extends CommonProductInfo {
   number: string;
 }
 
-export interface Wings {
-  [name: string]: Abfahrt;
+export interface Wings<DateType = Date> {
+  [name: string]: Abfahrt<DateType>;
 }

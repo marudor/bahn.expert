@@ -26,8 +26,8 @@
           }
         },
         "departure": {
-          "scheduledTime": 1581085020000,
-          "time": 1581085020000,
+          "scheduledTime": "2020-02-07T14:17:00.000Z",
+          "time": "2020-02-07T14:17:00.000Z",
           "delay": 0
         }
       },
@@ -43,15 +43,15 @@
         "arrival": {
           "scheduledPlatform": "2",
           "platform": "2",
-          "scheduledTime": 1581085680000,
-          "time": 1581085740000,
+          "scheduledTime": "2020-02-07T14:28:00.000Z",
+          "time": "2020-02-07T14:29:00.000Z",
           "delay": 1
         },
         "departure": {
           "scheduledPlatform": "2",
           "platform": "2",
-          "scheduledTime": 1581085680000,
-          "time": 1581085740000,
+          "scheduledTime": "2020-02-07T14:28:00.000Z",
+          "time": "2020-02-07T14:29:00.000Z",
           "delay": 1
         }
       },
@@ -65,13 +65,13 @@
           }
         },
         "arrival": {
-          "scheduledTime": 1581085740000,
-          "time": 1581085800000,
+          "scheduledTime": "2020-02-07T14:29:00.000Z",
+          "time": "2020-02-07T14:30:00.000Z",
           "delay": 1
         },
         "departure": {
-          "scheduledTime": 1581085740000,
-          "time": 1581085800000,
+          "scheduledTime": "2020-02-07T14:29:00.000Z",
+          "time": "2020-02-07T14:30:00.000Z",
           "delay": 1
         }
       },
@@ -85,8 +85,8 @@
           }
         },
         "arrival": {
-          "scheduledTime": 1581086400000,
-          "time": 1581086460000,
+          "scheduledTime": "2020-02-07T14:40:00.000Z",
+          "time": "2020-02-07T14:41:00.000Z",
           "delay": 1
         }
       }

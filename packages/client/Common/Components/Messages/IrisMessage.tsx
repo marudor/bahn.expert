@@ -18,11 +18,11 @@ export const IrisMessage: FC<Props> = ({
   today = new Date().getDate(),
 }) => {
   const classes = useStyles();
-  const ts = new Date(message.timestamp);
+  const ts = message.timestamp;
 
   return (
     <div className={clsx(message.superseded && classes.superseded)}>
-      {format(ts, ts.getDate() === today ? 'HH:mm' : 'dd.MM HH:mm')}:{' '}
+      {ts && format(ts, ts.getDate() === today ? 'HH:mm' : 'dd.MM HH:mm')}:{' '}
       {message.text}
     </div>
   );

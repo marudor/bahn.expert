@@ -1,4 +1,13 @@
-import { Controller, Get, Hidden, Route, SuccessResponse, Tags } from 'tsoa';
+import {
+  Controller,
+  Deprecated,
+  Get,
+  Hidden,
+  OperationId,
+  Route,
+  SuccessResponse,
+  Tags,
+} from 'tsoa';
 import { wagenreihung } from 'server/Reihung';
 import { WRForNumber, WRForTZ } from 'server/Reihung/searchWR';
 import TrainNames from 'server/Reihung/TrainNames';
@@ -6,8 +15,10 @@ import type { Formation } from 'types/reihung';
 
 @Route('/reihung/v1')
 export class ReihungControllerV1 extends Controller {
+  @Deprecated()
   @Get('/wagen/{trainNumber}/{date}')
-  @Tags('Reihung V1')
+  @Tags('Reihung')
+  @OperationId('Wagenreihung v1')
   wagenreihung(
     trainNumber: string,
     /**
@@ -15,12 +26,13 @@ export class ReihungControllerV1 extends Controller {
      */
     date: number,
   ): Promise<Formation> {
-    return wagenreihung(trainNumber, date);
+    return wagenreihung(trainNumber, new Date(date));
   }
 
   @SuccessResponse(200, 'Train name. May be undefined')
   @Get('/trainName/{tz}')
-  @Tags('Reihung V1')
+  @Tags('Reihung')
+  @OperationId('Train Name v1')
   trainName(
     /**
      * TZ Number (e.g. 0169)

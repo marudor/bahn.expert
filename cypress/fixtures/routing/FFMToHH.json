@@ -7,35 +7,35 @@
     {
       "checksum": "426db007_3",
       "cid": "C-0",
-      "date": 1581807600000,
+      "date": "2020-02-15T23:00:00.000Z",
       "duration": 12900000,
       "changes": 0,
       "isRideable": true,
       "arrival": {
         "platform": "12",
-        "scheduledTime": 1581874500000,
-        "time": 1581874620000,
+        "scheduledTime": "2020-02-16T17:35:00.000Z",
+        "time": "2020-02-16T17:37:00.000Z",
         "delay": 2
       },
       "departure": {
         "platform": "8",
-        "scheduledTime": 1581861480000,
-        "time": 1581861720000,
+        "scheduledTime": "2020-02-16T13:58:00.000Z",
+        "time": "2020-02-16T14:02:00.000Z",
         "delay": 4
       },
       "segments": [
         {
           "arrival": {
             "platform": "12",
-            "scheduledTime": 1581874500000,
-            "time": 1581874620000,
+            "scheduledTime": "2020-02-16T17:35:00.000Z",
+            "time": "2020-02-16T17:37:00.000Z",
             "delay": 2,
             "reihung": true
           },
           "departure": {
             "platform": "8",
-            "scheduledTime": 1581861480000,
-            "time": 1581861720000,
+            "scheduledTime": "2020-02-16T13:58:00.000Z",
+            "time": "2020-02-16T14:02:00.000Z",
             "delay": 4,
             "reihung": true
           },
@@ -57,25 +57,40 @@
             "admin": "80____",
             "number": "576",
             "type": "ICE",
-            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+            "operator": {
+              "name": "DB Fernverkehr AG",
+              "icoX": 2
+            }
           },
-          "segmentStart": { "title": "Frankfurt(Main)Hbf", "id": "8000105" },
-          "segmentDestination": { "title": "Hamburg Hbf", "id": "8002549" },
+          "segmentStart": {
+            "title": "Frankfurt(Main)Hbf",
+            "id": "8000105"
+          },
+          "segmentDestination": {
+            "title": "Hamburg Hbf",
+            "id": "8002549"
+          },
           "stops": [
             {
               "station": {
                 "id": "8000105",
                 "title": "Frankfurt(Main)Hbf",
-                "coordinates": { "lng": 8.663003, "lat": 50.106817 }
+                "coordinates": {
+                  "lng": 8.663003,
+                  "lat": 50.106817
+                }
               },
               "departure": {
                 "platform": "8",
-                "scheduledTime": 1581861480000,
-                "time": 1581861720000,
+                "scheduledTime": "2020-02-16T13:58:00.000Z",
+                "time": "2020-02-16T14:02:00.000Z",
                 "delay": 4,
                 "reihung": true
               },
-              "auslastung": { "first": 2, "second": 2 },
+              "auslastung": {
+                "first": 2,
+                "second": 2
+              },
               "messages": [
                 {
                   "type": "D",
@@ -90,78 +105,99 @@
               "station": {
                 "id": "8003200",
                 "title": "Kassel-Wilhelmshöhe",
-                "coordinates": { "lng": 9.446845, "lat": 51.312998 }
+                "coordinates": {
+                  "lng": 9.446845,
+                  "lat": 51.312998
+                }
               },
               "arrival": {
                 "platform": "3",
-                "scheduledTime": 1581866340000,
-                "time": 1581866580000,
+                "scheduledTime": "2020-02-16T15:19:00.000Z",
+                "time": "2020-02-16T15:23:00.000Z",
                 "delay": 4,
                 "reihung": true
               },
               "departure": {
                 "platform": "3",
-                "scheduledTime": 1581866460000,
-                "time": 1581866700000,
+                "scheduledTime": "2020-02-16T15:21:00.000Z",
+                "time": "2020-02-16T15:25:00.000Z",
                 "delay": 4,
                 "reihung": true
               },
-              "auslastung": { "first": 1, "second": 2 }
+              "auslastung": {
+                "first": 1,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000128",
                 "title": "Göttingen",
-                "coordinates": { "lng": 9.926257, "lat": 51.536758 }
+                "coordinates": {
+                  "lng": 9.926257,
+                  "lat": 51.536758
+                }
               },
               "arrival": {
                 "platform": "9",
-                "scheduledTime": 1581867480000,
-                "time": 1581867780000,
+                "scheduledTime": "2020-02-16T15:38:00.000Z",
+                "time": "2020-02-16T15:43:00.000Z",
                 "delay": 5,
                 "reihung": true
               },
               "departure": {
                 "platform": "9",
-                "scheduledTime": 1581867600000,
-                "time": 1581867900000,
+                "scheduledTime": "2020-02-16T15:40:00.000Z",
+                "time": "2020-02-16T15:45:00.000Z",
                 "delay": 5,
                 "reihung": true
               },
-              "auslastung": { "first": 2, "second": 2 }
+              "auslastung": {
+                "first": 2,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000152",
                 "title": "Hannover Hbf",
-                "coordinates": { "lng": 9.741763, "lat": 52.377079 }
+                "coordinates": {
+                  "lng": 9.741763,
+                  "lat": 52.377079
+                }
               },
               "arrival": {
                 "platform": "7",
-                "scheduledTime": 1581869820000,
-                "time": 1581869820000,
+                "scheduledTime": "2020-02-16T16:17:00.000Z",
+                "time": "2020-02-16T16:17:00.000Z",
                 "delay": 0,
                 "reihung": true
               },
               "departure": {
                 "platform": "7",
-                "scheduledTime": 1581870000000,
-                "time": 1581870120000,
+                "scheduledTime": "2020-02-16T16:20:00.000Z",
+                "time": "2020-02-16T16:22:00.000Z",
                 "delay": 2,
                 "reihung": true
               },
-              "auslastung": { "first": 1, "second": 2 }
+              "auslastung": {
+                "first": 1,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8002549",
                 "title": "Hamburg Hbf",
-                "coordinates": { "lng": 10.00636, "lat": 53.553533 }
+                "coordinates": {
+                  "lng": 10.00636,
+                  "lat": 53.553533
+                }
               },
               "arrival": {
                 "platform": "12",
-                "scheduledTime": 1581874500000,
-                "time": 1581874620000,
+                "scheduledTime": "2020-02-16T17:35:00.000Z",
+                "time": "2020-02-16T17:37:00.000Z",
                 "delay": 2,
                 "reihung": true
               }
@@ -169,7 +205,10 @@
           ],
           "finalDestination": "Hamburg-Altona",
           "jid": "1|223533|0|80|16022020",
-          "auslastung": { "first": 2, "second": 2 },
+          "auslastung": {
+            "first": 2,
+            "second": 2
+          },
           "messages": [
             {
               "type": "A",
@@ -189,42 +228,44 @@
           "type": "JNY"
         }
       ],
-      "segmentTypes": ["ICE"]
+      "segmentTypes": [
+        "ICE"
+      ]
     },
     {
       "checksum": "3519f3db_3",
       "cid": "C-1",
-      "date": 1581807600000,
+      "date": "2020-02-15T23:00:00.000Z",
       "duration": 13380000,
       "changes": 0,
       "isRideable": true,
       "arrival": {
         "platform": "12",
-        "scheduledTime": 1581870900000,
-        "time": 1581875640000,
+        "scheduledTime": "2020-02-16T16:35:00.000Z",
+        "time": "2020-02-16T17:54:00.000Z",
         "delay": 79
       },
       "departure": {
         "scheduledPlatform": "8",
         "platform": "9",
-        "scheduledTime": 1581857880000,
-        "time": 1581862260000,
+        "scheduledTime": "2020-02-16T12:58:00.000Z",
+        "time": "2020-02-16T14:11:00.000Z",
         "delay": 73
       },
       "segments": [
         {
           "arrival": {
             "platform": "12",
-            "scheduledTime": 1581870900000,
-            "time": 1581875640000,
+            "scheduledTime": "2020-02-16T16:35:00.000Z",
+            "time": "2020-02-16T17:54:00.000Z",
             "delay": 79,
             "reihung": true
           },
           "departure": {
             "scheduledPlatform": "8",
             "platform": "9",
-            "scheduledTime": 1581857880000,
-            "time": 1581862260000,
+            "scheduledTime": "2020-02-16T12:58:00.000Z",
+            "time": "2020-02-16T14:11:00.000Z",
             "delay": 73,
             "reihung": true
           },
@@ -247,26 +288,41 @@
             "admin": "80____",
             "number": "74",
             "type": "ICE",
-            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+            "operator": {
+              "name": "DB Fernverkehr AG",
+              "icoX": 2
+            }
           },
-          "segmentStart": { "title": "Frankfurt(Main)Hbf", "id": "8000105" },
-          "segmentDestination": { "title": "Hamburg Hbf", "id": "8002549" },
+          "segmentStart": {
+            "title": "Frankfurt(Main)Hbf",
+            "id": "8000105"
+          },
+          "segmentDestination": {
+            "title": "Hamburg Hbf",
+            "id": "8002549"
+          },
           "stops": [
             {
               "station": {
                 "id": "8000105",
                 "title": "Frankfurt(Main)Hbf",
-                "coordinates": { "lng": 8.663003, "lat": 50.106817 }
+                "coordinates": {
+                  "lng": 8.663003,
+                  "lat": 50.106817
+                }
               },
               "departure": {
                 "scheduledPlatform": "8",
                 "platform": "9",
-                "scheduledTime": 1581857880000,
-                "time": 1581862260000,
+                "scheduledTime": "2020-02-16T12:58:00.000Z",
+                "time": "2020-02-16T14:11:00.000Z",
                 "delay": 73,
                 "reihung": true
               },
-              "auslastung": { "first": 2, "second": 3 },
+              "auslastung": {
+                "first": 2,
+                "second": 3
+              },
               "messages": [
                 {
                   "type": "D",
@@ -281,78 +337,99 @@
               "station": {
                 "id": "8003200",
                 "title": "Kassel-Wilhelmshöhe",
-                "coordinates": { "lng": 9.446845, "lat": 51.312998 }
+                "coordinates": {
+                  "lng": 9.446845,
+                  "lat": 51.312998
+                }
               },
               "arrival": {
                 "platform": "3",
-                "scheduledTime": 1581862740000,
-                "time": 1581867180000,
+                "scheduledTime": "2020-02-16T14:19:00.000Z",
+                "time": "2020-02-16T15:33:00.000Z",
                 "delay": 74,
                 "reihung": true
               },
               "departure": {
                 "platform": "3",
-                "scheduledTime": 1581862860000,
-                "time": 1581867360000,
+                "scheduledTime": "2020-02-16T14:21:00.000Z",
+                "time": "2020-02-16T15:36:00.000Z",
                 "delay": 75,
                 "reihung": true
               },
-              "auslastung": { "first": 2, "second": 3 }
+              "auslastung": {
+                "first": 2,
+                "second": 3
+              }
             },
             {
               "station": {
                 "id": "8000128",
                 "title": "Göttingen",
-                "coordinates": { "lng": 9.926257, "lat": 51.536758 }
+                "coordinates": {
+                  "lng": 9.926257,
+                  "lat": 51.536758
+                }
               },
               "arrival": {
                 "platform": "9",
-                "scheduledTime": 1581863880000,
-                "time": 1581868440000,
+                "scheduledTime": "2020-02-16T14:38:00.000Z",
+                "time": "2020-02-16T15:54:00.000Z",
                 "delay": 76,
                 "reihung": true
               },
               "departure": {
                 "platform": "9",
-                "scheduledTime": 1581864000000,
-                "time": 1581868620000,
+                "scheduledTime": "2020-02-16T14:40:00.000Z",
+                "time": "2020-02-16T15:57:00.000Z",
                 "delay": 77,
                 "reihung": true
               },
-              "auslastung": { "first": 2, "second": 3 }
+              "auslastung": {
+                "first": 2,
+                "second": 3
+              }
             },
             {
               "station": {
                 "id": "8000152",
                 "title": "Hannover Hbf",
-                "coordinates": { "lng": 9.741763, "lat": 52.377079 }
+                "coordinates": {
+                  "lng": 9.741763,
+                  "lat": 52.377079
+                }
               },
               "arrival": {
                 "platform": "7",
-                "scheduledTime": 1581866220000,
-                "time": 1581870660000,
+                "scheduledTime": "2020-02-16T15:17:00.000Z",
+                "time": "2020-02-16T16:31:00.000Z",
                 "delay": 74,
                 "reihung": true
               },
               "departure": {
                 "platform": "7",
-                "scheduledTime": 1581866400000,
-                "time": 1581870900000,
+                "scheduledTime": "2020-02-16T15:20:00.000Z",
+                "time": "2020-02-16T16:35:00.000Z",
                 "delay": 75,
                 "reihung": true
               },
-              "auslastung": { "first": 2, "second": 2 }
+              "auslastung": {
+                "first": 2,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8002549",
                 "title": "Hamburg Hbf",
-                "coordinates": { "lng": 10.00636, "lat": 53.553533 }
+                "coordinates": {
+                  "lng": 10.00636,
+                  "lat": 53.553533
+                }
               },
               "arrival": {
                 "platform": "12",
-                "scheduledTime": 1581870900000,
-                "time": 1581875640000,
+                "scheduledTime": "2020-02-16T16:35:00.000Z",
+                "time": "2020-02-16T17:54:00.000Z",
                 "delay": 79,
                 "reihung": true
               }
@@ -360,7 +437,10 @@
           ],
           "finalDestination": "Kiel Hbf",
           "jid": "1|278958|0|80|16022020",
-          "auslastung": { "first": 2, "second": 3 },
+          "auslastung": {
+            "first": 2,
+            "second": 3
+          },
           "messages": [
             {
               "type": "A",
@@ -416,40 +496,42 @@
           "type": "JNY"
         }
       ],
-      "segmentTypes": ["ICE"]
+      "segmentTypes": [
+        "ICE"
+      ]
     },
     {
       "checksum": "ff223bad_3",
       "cid": "C-2",
-      "date": 1581807600000,
+      "date": "2020-02-15T23:00:00.000Z",
       "duration": 13800000,
       "changes": 1,
       "isRideable": false,
       "arrival": {
         "platform": "12",
-        "scheduledTime": 1581876600000,
-        "time": 1581876720000,
+        "scheduledTime": "2020-02-16T18:10:00.000Z",
+        "time": "2020-02-16T18:12:00.000Z",
         "delay": 2
       },
       "departure": {
         "platform": "9",
-        "scheduledTime": 1581862800000,
-        "time": 1581862920000,
+        "scheduledTime": "2020-02-16T14:20:00.000Z",
+        "time": "2020-02-16T14:22:00.000Z",
         "delay": 2
       },
       "segments": [
         {
           "arrival": {
             "platform": "7",
-            "scheduledTime": 1581865920000,
-            "time": 1581866100000,
+            "scheduledTime": "2020-02-16T15:12:00.000Z",
+            "time": "2020-02-16T15:15:00.000Z",
             "delay": 3,
             "reihung": true
           },
           "departure": {
             "platform": "9",
-            "scheduledTime": 1581862800000,
-            "time": 1581862920000,
+            "scheduledTime": "2020-02-16T14:20:00.000Z",
+            "time": "2020-02-16T14:22:00.000Z",
             "delay": 2,
             "reihung": true
           },
@@ -475,37 +557,55 @@
             "admin": "80____",
             "number": "1653",
             "type": "ICE",
-            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+            "operator": {
+              "name": "DB Fernverkehr AG",
+              "icoX": 2
+            }
           },
           "changeDuration": 5,
-          "segmentStart": { "title": "Frankfurt(Main)Hbf", "id": "8000105" },
-          "segmentDestination": { "title": "Fulda", "id": "8000115" },
+          "segmentStart": {
+            "title": "Frankfurt(Main)Hbf",
+            "id": "8000105"
+          },
+          "segmentDestination": {
+            "title": "Fulda",
+            "id": "8000115"
+          },
           "stops": [
             {
               "station": {
                 "id": "8000105",
                 "title": "Frankfurt(Main)Hbf",
-                "coordinates": { "lng": 8.663003, "lat": 50.106817 }
+                "coordinates": {
+                  "lng": 8.663003,
+                  "lat": 50.106817
+                }
               },
               "departure": {
                 "platform": "9",
-                "scheduledTime": 1581862800000,
-                "time": 1581862920000,
+                "scheduledTime": "2020-02-16T14:20:00.000Z",
+                "time": "2020-02-16T14:22:00.000Z",
                 "delay": 2,
                 "reihung": true
               },
-              "auslastung": { "first": 1, "second": 2 }
+              "auslastung": {
+                "first": 1,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000115",
                 "title": "Fulda",
-                "coordinates": { "lng": 9.684178, "lat": 50.554794 }
+                "coordinates": {
+                  "lng": 9.684178,
+                  "lat": 50.554794
+                }
               },
               "arrival": {
                 "platform": "7",
-                "scheduledTime": 1581865920000,
-                "time": 1581866100000,
+                "scheduledTime": "2020-02-16T15:12:00.000Z",
+                "time": "2020-02-16T15:15:00.000Z",
                 "delay": 3,
                 "reihung": true
               }
@@ -513,7 +613,10 @@
           ],
           "finalDestination": "Dresden Hbf",
           "jid": "1|220016|0|80|16022020",
-          "auslastung": { "first": 1, "second": 2 },
+          "auslastung": {
+            "first": 1,
+            "second": 2
+          },
           "messages": [
             {
               "type": "A",
@@ -549,15 +652,15 @@
         {
           "arrival": {
             "platform": "12",
-            "scheduledTime": 1581876600000,
-            "time": 1581876720000,
+            "scheduledTime": "2020-02-16T18:10:00.000Z",
+            "time": "2020-02-16T18:12:00.000Z",
             "delay": 2,
             "reihung": true
           },
           "departure": {
             "platform": "6",
-            "scheduledTime": 1581866400000,
-            "time": 1581866400000,
+            "scheduledTime": "2020-02-16T15:20:00.000Z",
+            "time": "2020-02-16T15:20:00.000Z",
             "delay": 0,
             "reihung": true
           },
@@ -579,21 +682,33 @@
             "admin": "80____",
             "number": "586",
             "type": "ICE",
-            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+            "operator": {
+              "name": "DB Fernverkehr AG",
+              "icoX": 2
+            }
           },
-          "segmentStart": { "title": "Fulda", "id": "8000115" },
-          "segmentDestination": { "title": "Hamburg Hbf", "id": "8002549" },
+          "segmentStart": {
+            "title": "Fulda",
+            "id": "8000115"
+          },
+          "segmentDestination": {
+            "title": "Hamburg Hbf",
+            "id": "8002549"
+          },
           "stops": [
             {
               "station": {
                 "id": "8000115",
                 "title": "Fulda",
-                "coordinates": { "lng": 9.684178, "lat": 50.554794 }
+                "coordinates": {
+                  "lng": 9.684178,
+                  "lat": 50.554794
+                }
               },
               "departure": {
                 "platform": "6",
-                "scheduledTime": 1581866400000,
-                "time": 1581866400000,
+                "scheduledTime": "2020-02-16T15:20:00.000Z",
+                "time": "2020-02-16T15:20:00.000Z",
                 "delay": 0,
                 "reihung": true
               }
@@ -602,19 +717,22 @@
               "station": {
                 "id": "8003200",
                 "title": "Kassel-Wilhelmshöhe",
-                "coordinates": { "lng": 9.446845, "lat": 51.312998 }
+                "coordinates": {
+                  "lng": 9.446845,
+                  "lat": 51.312998
+                }
               },
               "arrival": {
                 "platform": "3",
-                "scheduledTime": 1581868080000,
-                "time": 1581868080000,
+                "scheduledTime": "2020-02-16T15:48:00.000Z",
+                "time": "2020-02-16T15:48:00.000Z",
                 "delay": 0,
                 "reihung": true
               },
               "departure": {
                 "platform": "3",
-                "scheduledTime": 1581868200000,
-                "time": 1581868200000,
+                "scheduledTime": "2020-02-16T15:50:00.000Z",
+                "time": "2020-02-16T15:50:00.000Z",
                 "delay": 0,
                 "reihung": true
               }
@@ -623,19 +741,22 @@
               "station": {
                 "id": "8000128",
                 "title": "Göttingen",
-                "coordinates": { "lng": 9.926257, "lat": 51.536758 }
+                "coordinates": {
+                  "lng": 9.926257,
+                  "lat": 51.536758
+                }
               },
               "arrival": {
                 "platform": "9",
-                "scheduledTime": 1581869400000,
-                "time": 1581869400000,
+                "scheduledTime": "2020-02-16T16:10:00.000Z",
+                "time": "2020-02-16T16:10:00.000Z",
                 "delay": 0,
                 "reihung": true
               },
               "departure": {
                 "platform": "9",
-                "scheduledTime": 1581869460000,
-                "time": 1581869460000,
+                "scheduledTime": "2020-02-16T16:11:00.000Z",
+                "time": "2020-02-16T16:11:00.000Z",
                 "delay": 0,
                 "reihung": true
               }
@@ -644,37 +765,46 @@
               "station": {
                 "id": "8000152",
                 "title": "Hannover Hbf",
-                "coordinates": { "lng": 9.741763, "lat": 52.377079 }
+                "coordinates": {
+                  "lng": 9.741763,
+                  "lat": 52.377079
+                }
               },
               "arrival": {
                 "scheduledPlatform": "8",
                 "platform": "4",
-                "scheduledTime": 1581871500000,
-                "time": 1581871500000,
+                "scheduledTime": "2020-02-16T16:45:00.000Z",
+                "time": "2020-02-16T16:45:00.000Z",
                 "delay": 0,
                 "reihung": true
               },
               "departure": {
                 "scheduledPlatform": "8 D-G",
                 "platform": "4",
-                "scheduledTime": 1581871740000,
-                "time": 1581871740000,
+                "scheduledTime": "2020-02-16T16:49:00.000Z",
+                "time": "2020-02-16T16:49:00.000Z",
                 "delay": 0,
                 "reihung": true
               },
-              "auslastung": { "first": 2, "second": 3 },
+              "auslastung": {
+                "first": 2,
+                "second": 3
+              },
               "messages": []
             },
             {
               "station": {
                 "id": "8000147",
                 "title": "Hamburg-Harburg",
-                "coordinates": { "lng": 9.991591, "lat": 53.456198 }
+                "coordinates": {
+                  "lng": 9.991591,
+                  "lat": 53.456198
+                }
               },
               "arrival": {
                 "platform": "1",
-                "scheduledTime": 1581875880000,
-                "time": 1581875880000,
+                "scheduledTime": "2020-02-16T17:58:00.000Z",
+                "time": "2020-02-16T17:58:00.000Z",
                 "delay": 0,
                 "reihung": true
               }
@@ -683,12 +813,15 @@
               "station": {
                 "id": "8002549",
                 "title": "Hamburg Hbf",
-                "coordinates": { "lng": 10.00636, "lat": 53.553533 }
+                "coordinates": {
+                  "lng": 10.00636,
+                  "lat": 53.553533
+                }
               },
               "arrival": {
                 "platform": "12",
-                "scheduledTime": 1581876600000,
-                "time": 1581876720000,
+                "scheduledTime": "2020-02-16T18:10:00.000Z",
+                "time": "2020-02-16T18:12:00.000Z",
                 "delay": 2,
                 "reihung": true
               }
@@ -696,7 +829,10 @@
           ],
           "finalDestination": "Hamburg-Altona",
           "jid": "1|223632|0|80|16022020",
-          "auslastung": { "first": 2, "second": 3 },
+          "auslastung": {
+            "first": 2,
+            "second": 3
+          },
           "messages": [
             {
               "type": "A",
@@ -716,40 +852,43 @@
           "type": "JNY"
         }
       ],
-      "segmentTypes": ["ICE", "ICE"]
+      "segmentTypes": [
+        "ICE",
+        "ICE"
+      ]
     },
     {
       "checksum": "b0ea0d7d_3",
       "cid": "C-3",
-      "date": 1581807600000,
+      "date": "2020-02-15T23:00:00.000Z",
       "duration": 12840000,
       "changes": 0,
       "isRideable": true,
       "arrival": {
         "platform": "14",
-        "scheduledTime": 1581878100000,
-        "time": 1581878280000,
+        "scheduledTime": "2020-02-16T18:35:00.000Z",
+        "time": "2020-02-16T18:38:00.000Z",
         "delay": 3
       },
       "departure": {
         "platform": "8",
-        "scheduledTime": 1581865080000,
-        "time": 1581865440000,
+        "scheduledTime": "2020-02-16T14:58:00.000Z",
+        "time": "2020-02-16T15:04:00.000Z",
         "delay": 6
       },
       "segments": [
         {
           "arrival": {
             "platform": "14",
-            "scheduledTime": 1581878100000,
-            "time": 1581878280000,
+            "scheduledTime": "2020-02-16T18:35:00.000Z",
+            "time": "2020-02-16T18:38:00.000Z",
             "delay": 3,
             "reihung": true
           },
           "departure": {
             "platform": "8",
-            "scheduledTime": 1581865080000,
-            "time": 1581865440000,
+            "scheduledTime": "2020-02-16T14:58:00.000Z",
+            "time": "2020-02-16T15:04:00.000Z",
             "delay": 6,
             "reihung": true
           },
@@ -772,102 +911,138 @@
             "admin": "80____",
             "number": "72",
             "type": "ICE",
-            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+            "operator": {
+              "name": "DB Fernverkehr AG",
+              "icoX": 2
+            }
           },
-          "segmentStart": { "title": "Frankfurt(Main)Hbf", "id": "8000105" },
-          "segmentDestination": { "title": "Hamburg Hbf", "id": "8002549" },
+          "segmentStart": {
+            "title": "Frankfurt(Main)Hbf",
+            "id": "8000105"
+          },
+          "segmentDestination": {
+            "title": "Hamburg Hbf",
+            "id": "8002549"
+          },
           "stops": [
             {
               "station": {
                 "id": "8000105",
                 "title": "Frankfurt(Main)Hbf",
-                "coordinates": { "lng": 8.663003, "lat": 50.106817 }
+                "coordinates": {
+                  "lng": 8.663003,
+                  "lat": 50.106817
+                }
               },
               "departure": {
                 "platform": "8",
-                "scheduledTime": 1581865080000,
-                "time": 1581865440000,
+                "scheduledTime": "2020-02-16T14:58:00.000Z",
+                "time": "2020-02-16T15:04:00.000Z",
                 "delay": 6,
                 "reihung": true
               },
-              "auslastung": { "first": 2, "second": 2 }
+              "auslastung": {
+                "first": 2,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8003200",
                 "title": "Kassel-Wilhelmshöhe",
-                "coordinates": { "lng": 9.446845, "lat": 51.312998 }
+                "coordinates": {
+                  "lng": 9.446845,
+                  "lat": 51.312998
+                }
               },
               "arrival": {
                 "platform": "3",
-                "scheduledTime": 1581869940000,
-                "time": 1581870300000,
+                "scheduledTime": "2020-02-16T16:19:00.000Z",
+                "time": "2020-02-16T16:25:00.000Z",
                 "delay": 6,
                 "reihung": true
               },
               "departure": {
                 "platform": "3",
-                "scheduledTime": 1581870060000,
-                "time": 1581870420000,
+                "scheduledTime": "2020-02-16T16:21:00.000Z",
+                "time": "2020-02-16T16:27:00.000Z",
                 "delay": 6,
                 "reihung": true
               },
-              "auslastung": { "first": 2, "second": 3 }
+              "auslastung": {
+                "first": 2,
+                "second": 3
+              }
             },
             {
               "station": {
                 "id": "8000128",
                 "title": "Göttingen",
-                "coordinates": { "lng": 9.926257, "lat": 51.536758 }
+                "coordinates": {
+                  "lng": 9.926257,
+                  "lat": 51.536758
+                }
               },
               "arrival": {
                 "platform": "9",
-                "scheduledTime": 1581871080000,
-                "time": 1581871440000,
+                "scheduledTime": "2020-02-16T16:38:00.000Z",
+                "time": "2020-02-16T16:44:00.000Z",
                 "delay": 6,
                 "reihung": true
               },
               "departure": {
                 "platform": "9",
-                "scheduledTime": 1581871200000,
-                "time": 1581871620000,
+                "scheduledTime": "2020-02-16T16:40:00.000Z",
+                "time": "2020-02-16T16:47:00.000Z",
                 "delay": 7,
                 "reihung": true
               },
-              "auslastung": { "first": 2, "second": 3 }
+              "auslastung": {
+                "first": 2,
+                "second": 3
+              }
             },
             {
               "station": {
                 "id": "8000152",
                 "title": "Hannover Hbf",
-                "coordinates": { "lng": 9.741763, "lat": 52.377079 }
+                "coordinates": {
+                  "lng": 9.741763,
+                  "lat": 52.377079
+                }
               },
               "arrival": {
                 "platform": "7",
-                "scheduledTime": 1581873420000,
-                "time": 1581873540000,
+                "scheduledTime": "2020-02-16T17:17:00.000Z",
+                "time": "2020-02-16T17:19:00.000Z",
                 "delay": 2,
                 "reihung": true
               },
               "departure": {
                 "platform": "7",
-                "scheduledTime": 1581873600000,
-                "time": 1581873780000,
+                "scheduledTime": "2020-02-16T17:20:00.000Z",
+                "time": "2020-02-16T17:23:00.000Z",
                 "delay": 3,
                 "reihung": true
               },
-              "auslastung": { "first": 1, "second": 2 }
+              "auslastung": {
+                "first": 1,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8002549",
                 "title": "Hamburg Hbf",
-                "coordinates": { "lng": 10.00636, "lat": 53.553533 }
+                "coordinates": {
+                  "lng": 10.00636,
+                  "lat": 53.553533
+                }
               },
               "arrival": {
                 "platform": "14",
-                "scheduledTime": 1581878100000,
-                "time": 1581878280000,
+                "scheduledTime": "2020-02-16T18:35:00.000Z",
+                "time": "2020-02-16T18:38:00.000Z",
                 "delay": 3,
                 "reihung": true
               }
@@ -875,7 +1050,10 @@
           ],
           "finalDestination": "Hamburg-Altona",
           "jid": "1|278925|0|80|16022020",
-          "auslastung": { "first": 2, "second": 3 },
+          "auslastung": {
+            "first": 2,
+            "second": 3
+          },
           "messages": [
             {
               "type": "A",
@@ -924,37 +1102,39 @@
           "type": "JNY"
         }
       ],
-      "segmentTypes": ["ICE"]
+      "segmentTypes": [
+        "ICE"
+      ]
     },
     {
       "checksum": "0d8414f0_3",
       "cid": "C-4",
-      "date": 1581807600000,
+      "date": "2020-02-15T23:00:00.000Z",
       "duration": 12660000,
       "changes": 0,
       "isRideable": true,
       "arrival": {
         "platform": "11",
-        "scheduledTime": 1581881340000,
-        "time": 1581881340000
+        "scheduledTime": "2020-02-16T19:29:00.000Z",
+        "time": "2020-02-16T19:29:00.000Z"
       },
       "departure": {
         "platform": "8",
-        "scheduledTime": 1581868680000,
-        "time": 1581868680000
+        "scheduledTime": "2020-02-16T15:58:00.000Z",
+        "time": "2020-02-16T15:58:00.000Z"
       },
       "segments": [
         {
           "arrival": {
             "platform": "11",
-            "scheduledTime": 1581881340000,
-            "time": 1581881340000,
+            "scheduledTime": "2020-02-16T19:29:00.000Z",
+            "time": "2020-02-16T19:29:00.000Z",
             "reihung": true
           },
           "departure": {
             "platform": "8",
-            "scheduledTime": 1581868680000,
-            "time": 1581868680000,
+            "scheduledTime": "2020-02-16T15:58:00.000Z",
+            "time": "2020-02-16T15:58:00.000Z",
             "reihung": true
           },
           "duration": 12660000,
@@ -975,61 +1155,85 @@
             "admin": "80____",
             "number": "1094",
             "type": "ICE",
-            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+            "operator": {
+              "name": "DB Fernverkehr AG",
+              "icoX": 2
+            }
           },
-          "segmentStart": { "title": "Frankfurt(Main)Hbf", "id": "8000105" },
-          "segmentDestination": { "title": "Hamburg Hbf", "id": "8002549" },
+          "segmentStart": {
+            "title": "Frankfurt(Main)Hbf",
+            "id": "8000105"
+          },
+          "segmentDestination": {
+            "title": "Hamburg Hbf",
+            "id": "8002549"
+          },
           "stops": [
             {
               "station": {
                 "id": "8000105",
                 "title": "Frankfurt(Main)Hbf",
-                "coordinates": { "lng": 8.663003, "lat": 50.106817 }
+                "coordinates": {
+                  "lng": 8.663003,
+                  "lat": 50.106817
+                }
               },
               "departure": {
                 "platform": "8",
-                "scheduledTime": 1581868680000,
-                "time": 1581868680000,
+                "scheduledTime": "2020-02-16T15:58:00.000Z",
+                "time": "2020-02-16T15:58:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 2, "second": 2 }
+              "auslastung": {
+                "first": 2,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000152",
                 "title": "Hannover Hbf",
-                "coordinates": { "lng": 9.741763, "lat": 52.377079 }
+                "coordinates": {
+                  "lng": 9.741763,
+                  "lat": 52.377079
+                }
               },
               "arrival": {
                 "platform": "8",
-                "scheduledTime": 1581876360000,
-                "time": 1581876360000,
+                "scheduledTime": "2020-02-16T18:06:00.000Z",
+                "time": "2020-02-16T18:06:00.000Z",
                 "reihung": true
               },
               "departure": {
                 "platform": "8",
-                "scheduledTime": 1581876540000,
-                "time": 1581876540000,
+                "scheduledTime": "2020-02-16T18:09:00.000Z",
+                "time": "2020-02-16T18:09:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 1, "second": 2 }
+              "auslastung": {
+                "first": 1,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000147",
                 "title": "Hamburg-Harburg",
-                "coordinates": { "lng": 9.991591, "lat": 53.456198 }
+                "coordinates": {
+                  "lng": 9.991591,
+                  "lat": 53.456198
+                }
               },
               "arrival": {
                 "platform": "1",
-                "scheduledTime": 1581880500000,
-                "time": 1581880500000,
+                "scheduledTime": "2020-02-16T19:15:00.000Z",
+                "time": "2020-02-16T19:15:00.000Z",
                 "reihung": true
               },
               "departure": {
                 "platform": "1",
-                "scheduledTime": 1581880620000,
-                "time": 1581880620000,
+                "scheduledTime": "2020-02-16T19:17:00.000Z",
+                "time": "2020-02-16T19:17:00.000Z",
                 "reihung": true
               }
             },
@@ -1037,19 +1241,25 @@
               "station": {
                 "id": "8002549",
                 "title": "Hamburg Hbf",
-                "coordinates": { "lng": 10.00636, "lat": 53.553533 }
+                "coordinates": {
+                  "lng": 10.00636,
+                  "lat": 53.553533
+                }
               },
               "arrival": {
                 "platform": "11",
-                "scheduledTime": 1581881340000,
-                "time": 1581881340000,
+                "scheduledTime": "2020-02-16T19:29:00.000Z",
+                "time": "2020-02-16T19:29:00.000Z",
                 "reihung": true
               }
             }
           ],
           "finalDestination": "Kiel Hbf",
           "jid": "1|219159|0|80|16022020",
-          "auslastung": { "first": 2, "second": 2 },
+          "auslastung": {
+            "first": 2,
+            "second": 2
+          },
           "messages": [
             {
               "type": "A",
@@ -1076,36 +1286,38 @@
           "type": "JNY"
         }
       ],
-      "segmentTypes": ["ICE"]
+      "segmentTypes": [
+        "ICE"
+      ]
     },
     {
       "checksum": "6a28aeff_3",
       "cid": "C-5",
-      "date": 1581807600000,
+      "date": "2020-02-15T23:00:00.000Z",
       "duration": 15180000,
       "changes": 1,
       "isRideable": false,
       "arrival": {
         "platform": "12",
-        "scheduledTime": 1581884940000,
-        "time": 1581884940000
+        "scheduledTime": "2020-02-16T20:29:00.000Z",
+        "time": "2020-02-16T20:29:00.000Z"
       },
       "departure": {
-        "scheduledTime": 1581869760000,
-        "time": 1581869760000,
+        "scheduledTime": "2020-02-16T16:16:00.000Z",
+        "time": "2020-02-16T16:16:00.000Z",
         "cancelled": true
       },
       "segments": [
         {
           "arrival": {
-            "scheduledTime": 1581878820000,
-            "time": 1581878820000,
+            "scheduledTime": "2020-02-16T18:47:00.000Z",
+            "time": "2020-02-16T18:47:00.000Z",
             "reihung": true,
             "cancelled": true
           },
           "departure": {
-            "scheduledTime": 1581869760000,
-            "time": 1581869760000,
+            "scheduledTime": "2020-02-16T16:16:00.000Z",
+            "time": "2020-02-16T16:16:00.000Z",
             "reihung": true,
             "cancelled": true
           },
@@ -1127,22 +1339,34 @@
             "admin": "80____",
             "number": "776",
             "type": "ICE",
-            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+            "operator": {
+              "name": "DB Fernverkehr AG",
+              "icoX": 2
+            }
           },
           "cancelled": true,
           "changeDuration": 12,
-          "segmentStart": { "title": "Frankfurt(Main)Hbf", "id": "8000105" },
-          "segmentDestination": { "title": "Hannover Hbf", "id": "8000152" },
+          "segmentStart": {
+            "title": "Frankfurt(Main)Hbf",
+            "id": "8000105"
+          },
+          "segmentDestination": {
+            "title": "Hannover Hbf",
+            "id": "8000152"
+          },
           "stops": [
             {
               "station": {
                 "id": "8000105",
                 "title": "Frankfurt(Main)Hbf",
-                "coordinates": { "lng": 8.663003, "lat": 50.106817 }
+                "coordinates": {
+                  "lng": 8.663003,
+                  "lat": 50.106817
+                }
               },
               "departure": {
-                "scheduledTime": 1581869760000,
-                "time": 1581869760000,
+                "scheduledTime": "2020-02-16T16:16:00.000Z",
+                "time": "2020-02-16T16:16:00.000Z",
                 "reihung": true,
                 "cancelled": true
               },
@@ -1152,17 +1376,20 @@
               "station": {
                 "id": "8000115",
                 "title": "Fulda",
-                "coordinates": { "lng": 9.684178, "lat": 50.554794 }
+                "coordinates": {
+                  "lng": 9.684178,
+                  "lat": 50.554794
+                }
               },
               "arrival": {
-                "scheduledTime": 1581873420000,
-                "time": 1581873420000,
+                "scheduledTime": "2020-02-16T17:17:00.000Z",
+                "time": "2020-02-16T17:17:00.000Z",
                 "reihung": true,
                 "cancelled": true
               },
               "departure": {
-                "scheduledTime": 1581873540000,
-                "time": 1581873540000,
+                "scheduledTime": "2020-02-16T17:19:00.000Z",
+                "time": "2020-02-16T17:19:00.000Z",
                 "reihung": true,
                 "cancelled": true
               },
@@ -1172,17 +1399,20 @@
               "station": {
                 "id": "8003200",
                 "title": "Kassel-Wilhelmshöhe",
-                "coordinates": { "lng": 9.446845, "lat": 51.312998 }
+                "coordinates": {
+                  "lng": 9.446845,
+                  "lat": 51.312998
+                }
               },
               "arrival": {
-                "scheduledTime": 1581875400000,
-                "time": 1581875400000,
+                "scheduledTime": "2020-02-16T17:50:00.000Z",
+                "time": "2020-02-16T17:50:00.000Z",
                 "reihung": true,
                 "cancelled": true
               },
               "departure": {
-                "scheduledTime": 1581875520000,
-                "time": 1581875520000,
+                "scheduledTime": "2020-02-16T17:52:00.000Z",
+                "time": "2020-02-16T17:52:00.000Z",
                 "reihung": true,
                 "cancelled": true
               },
@@ -1192,17 +1422,20 @@
               "station": {
                 "id": "8000128",
                 "title": "Göttingen",
-                "coordinates": { "lng": 9.926257, "lat": 51.536758 }
+                "coordinates": {
+                  "lng": 9.926257,
+                  "lat": 51.536758
+                }
               },
               "arrival": {
-                "scheduledTime": 1581876600000,
-                "time": 1581876600000,
+                "scheduledTime": "2020-02-16T18:10:00.000Z",
+                "time": "2020-02-16T18:10:00.000Z",
                 "reihung": true,
                 "cancelled": true
               },
               "departure": {
-                "scheduledTime": 1581876720000,
-                "time": 1581876720000,
+                "scheduledTime": "2020-02-16T18:12:00.000Z",
+                "time": "2020-02-16T18:12:00.000Z",
                 "reihung": true,
                 "cancelled": true
               },
@@ -1212,11 +1445,14 @@
               "station": {
                 "id": "8000152",
                 "title": "Hannover Hbf",
-                "coordinates": { "lng": 9.741763, "lat": 52.377079 }
+                "coordinates": {
+                  "lng": 9.741763,
+                  "lat": 52.377079
+                }
               },
               "arrival": {
-                "scheduledTime": 1581878820000,
-                "time": 1581878820000,
+                "scheduledTime": "2020-02-16T18:47:00.000Z",
+                "time": "2020-02-16T18:47:00.000Z",
                 "reihung": true,
                 "cancelled": true
               },
@@ -1225,7 +1461,10 @@
           ],
           "finalDestination": "Oldenburg(Oldb)",
           "jid": "1|224969|0|80|16022020",
-          "auslastung": { "first": 1, "second": 2 },
+          "auslastung": {
+            "first": 1,
+            "second": 2
+          },
           "messages": [
             {
               "type": "A",
@@ -1262,14 +1501,14 @@
         {
           "arrival": {
             "platform": "12",
-            "scheduledTime": 1581884940000,
-            "time": 1581884940000,
+            "scheduledTime": "2020-02-16T20:29:00.000Z",
+            "time": "2020-02-16T20:29:00.000Z",
             "reihung": true
           },
           "departure": {
             "platform": "7",
-            "scheduledTime": 1581879540000,
-            "time": 1581879540000,
+            "scheduledTime": "2020-02-16T18:59:00.000Z",
+            "time": "2020-02-16T18:59:00.000Z",
             "reihung": true
           },
           "duration": 5400000,
@@ -1292,95 +1531,131 @@
             "admin": "80____",
             "number": "1574",
             "type": "ICE",
-            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+            "operator": {
+              "name": "DB Fernverkehr AG",
+              "icoX": 2
+            }
           },
-          "segmentStart": { "title": "Hannover Hbf", "id": "8000152" },
-          "segmentDestination": { "title": "Hamburg Hbf", "id": "8002549" },
+          "segmentStart": {
+            "title": "Hannover Hbf",
+            "id": "8000152"
+          },
+          "segmentDestination": {
+            "title": "Hamburg Hbf",
+            "id": "8002549"
+          },
           "stops": [
             {
               "station": {
                 "id": "8000152",
                 "title": "Hannover Hbf",
-                "coordinates": { "lng": 9.741763, "lat": 52.377079 }
+                "coordinates": {
+                  "lng": 9.741763,
+                  "lat": 52.377079
+                }
               },
               "departure": {
                 "platform": "7",
-                "scheduledTime": 1581879540000,
-                "time": 1581879540000,
+                "scheduledTime": "2020-02-16T18:59:00.000Z",
+                "time": "2020-02-16T18:59:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 2, "second": 2 }
+              "auslastung": {
+                "first": 2,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000064",
                 "title": "Celle",
-                "coordinates": { "lng": 10.062651, "lat": 52.621019 }
+                "coordinates": {
+                  "lng": 10.062651,
+                  "lat": 52.621019
+                }
               },
               "arrival": {
                 "platform": "5",
-                "scheduledTime": 1581880740000,
-                "time": 1581880740000,
+                "scheduledTime": "2020-02-16T19:19:00.000Z",
+                "time": "2020-02-16T19:19:00.000Z",
                 "reihung": true
               },
               "departure": {
                 "platform": "5",
-                "scheduledTime": 1581880800000,
-                "time": 1581880800000,
+                "scheduledTime": "2020-02-16T19:20:00.000Z",
+                "time": "2020-02-16T19:20:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 1, "second": 2 }
+              "auslastung": {
+                "first": 1,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000168",
                 "title": "Uelzen",
-                "coordinates": { "lng": 10.553246, "lat": 52.96998 }
+                "coordinates": {
+                  "lng": 10.553246,
+                  "lat": 52.96998
+                }
               },
               "arrival": {
                 "platform": "102",
-                "scheduledTime": 1581882000000,
-                "time": 1581882000000,
+                "scheduledTime": "2020-02-16T19:40:00.000Z",
+                "time": "2020-02-16T19:40:00.000Z",
                 "reihung": true
               },
               "departure": {
                 "platform": "102",
-                "scheduledTime": 1581882120000,
-                "time": 1581882120000,
+                "scheduledTime": "2020-02-16T19:42:00.000Z",
+                "time": "2020-02-16T19:42:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 1, "second": 2 }
+              "auslastung": {
+                "first": 1,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000238",
                 "title": "Lüneburg",
-                "coordinates": { "lng": 10.419873, "lat": 53.249742 }
+                "coordinates": {
+                  "lng": 10.419873,
+                  "lat": 53.249742
+                }
               },
               "arrival": {
                 "platform": "2",
-                "scheduledTime": 1581882960000,
-                "time": 1581882960000,
+                "scheduledTime": "2020-02-16T19:56:00.000Z",
+                "time": "2020-02-16T19:56:00.000Z",
                 "reihung": true
               },
               "departure": {
                 "platform": "2",
-                "scheduledTime": 1581883080000,
-                "time": 1581883080000,
+                "scheduledTime": "2020-02-16T19:58:00.000Z",
+                "time": "2020-02-16T19:58:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 1, "second": 2 }
+              "auslastung": {
+                "first": 1,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000147",
                 "title": "Hamburg-Harburg",
-                "coordinates": { "lng": 9.991591, "lat": 53.456198 }
+                "coordinates": {
+                  "lng": 9.991591,
+                  "lat": 53.456198
+                }
               },
               "arrival": {
                 "platform": "1",
-                "scheduledTime": 1581884160000,
-                "time": 1581884160000,
+                "scheduledTime": "2020-02-16T20:16:00.000Z",
+                "time": "2020-02-16T20:16:00.000Z",
                 "reihung": true
               }
             },
@@ -1388,19 +1663,25 @@
               "station": {
                 "id": "8002549",
                 "title": "Hamburg Hbf",
-                "coordinates": { "lng": 10.00636, "lat": 53.553533 }
+                "coordinates": {
+                  "lng": 10.00636,
+                  "lat": 53.553533
+                }
               },
               "arrival": {
                 "platform": "12",
-                "scheduledTime": 1581884940000,
-                "time": 1581884940000,
+                "scheduledTime": "2020-02-16T20:29:00.000Z",
+                "time": "2020-02-16T20:29:00.000Z",
                 "reihung": true
               }
             }
           ],
           "finalDestination": "Hamburg-Altona",
           "jid": "1|219640|0|80|16022020",
-          "auslastung": { "first": 2, "second": 2 },
+          "auslastung": {
+            "first": 2,
+            "second": 2
+          },
           "messages": [
             {
               "type": "A",
@@ -1434,37 +1715,40 @@
           "type": "JNY"
         }
       ],
-      "segmentTypes": ["ICE", "ICE"]
+      "segmentTypes": [
+        "ICE",
+        "ICE"
+      ]
     },
     {
       "checksum": "a1d2a7b0_3",
       "cid": "C-6",
-      "date": 1581807600000,
+      "date": "2020-02-15T23:00:00.000Z",
       "duration": 18600000,
       "changes": 1,
       "isRideable": true,
       "arrival": {
         "platform": "11",
-        "scheduledTime": 1581888360000,
-        "time": 1581888360000
+        "scheduledTime": "2020-02-16T21:26:00.000Z",
+        "time": "2020-02-16T21:26:00.000Z"
       },
       "departure": {
         "platform": "1",
-        "scheduledTime": 1581869760000,
-        "time": 1581869760000
+        "scheduledTime": "2020-02-16T16:16:00.000Z",
+        "time": "2020-02-16T16:16:00.000Z"
       },
       "segments": [
         {
           "arrival": {
             "platform": "3",
-            "scheduledTime": 1581882420000,
-            "time": 1581882420000,
+            "scheduledTime": "2020-02-16T19:47:00.000Z",
+            "time": "2020-02-16T19:47:00.000Z",
             "reihung": true
           },
           "departure": {
             "platform": "1",
-            "scheduledTime": 1581869760000,
-            "time": 1581869760000,
+            "scheduledTime": "2020-02-16T16:16:00.000Z",
+            "time": "2020-02-16T16:16:00.000Z",
             "reihung": true
           },
           "duration": 12660000,
@@ -1473,102 +1757,138 @@
             "admin": "80____",
             "number": "2914",
             "type": "IC",
-            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+            "operator": {
+              "name": "DB Fernverkehr AG",
+              "icoX": 2
+            }
           },
           "changeDuration": 11,
-          "segmentStart": { "title": "Frankfurt(Main)Hbf", "id": "8000105" },
-          "segmentDestination": { "title": "Bremen Hbf", "id": "8000050" },
+          "segmentStart": {
+            "title": "Frankfurt(Main)Hbf",
+            "id": "8000105"
+          },
+          "segmentDestination": {
+            "title": "Bremen Hbf",
+            "id": "8000050"
+          },
           "stops": [
             {
               "station": {
                 "id": "8000105",
                 "title": "Frankfurt(Main)Hbf",
-                "coordinates": { "lng": 8.663003, "lat": 50.106817 }
+                "coordinates": {
+                  "lng": 8.663003,
+                  "lat": 50.106817
+                }
               },
               "departure": {
                 "platform": "1",
-                "scheduledTime": 1581869760000,
-                "time": 1581869760000,
+                "scheduledTime": "2020-02-16T16:16:00.000Z",
+                "time": "2020-02-16T16:16:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 4, "second": 4 }
+              "auslastung": {
+                "first": 4,
+                "second": 4
+              }
             },
             {
               "station": {
                 "id": "8000115",
                 "title": "Fulda",
-                "coordinates": { "lng": 9.684178, "lat": 50.554794 }
+                "coordinates": {
+                  "lng": 9.684178,
+                  "lat": 50.554794
+                }
               },
               "arrival": {
                 "platform": "6",
-                "scheduledTime": 1581873420000,
-                "time": 1581873420000,
+                "scheduledTime": "2020-02-16T17:17:00.000Z",
+                "time": "2020-02-16T17:17:00.000Z",
                 "reihung": true
               },
               "departure": {
                 "platform": "6",
-                "scheduledTime": 1581873540000,
-                "time": 1581873540000,
+                "scheduledTime": "2020-02-16T17:19:00.000Z",
+                "time": "2020-02-16T17:19:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 4, "second": 4 }
+              "auslastung": {
+                "first": 4,
+                "second": 4
+              }
             },
             {
               "station": {
                 "id": "8003200",
                 "title": "Kassel-Wilhelmshöhe",
-                "coordinates": { "lng": 9.446845, "lat": 51.312998 }
+                "coordinates": {
+                  "lng": 9.446845,
+                  "lat": 51.312998
+                }
               },
               "arrival": {
                 "platform": "3",
-                "scheduledTime": 1581875400000,
-                "time": 1581875400000,
+                "scheduledTime": "2020-02-16T17:50:00.000Z",
+                "time": "2020-02-16T17:50:00.000Z",
                 "reihung": true
               },
               "departure": {
                 "platform": "3",
-                "scheduledTime": 1581875520000,
-                "time": 1581875520000,
+                "scheduledTime": "2020-02-16T17:52:00.000Z",
+                "time": "2020-02-16T17:52:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 4, "second": 4 }
+              "auslastung": {
+                "first": 4,
+                "second": 4
+              }
             },
             {
               "station": {
                 "id": "8000128",
                 "title": "Göttingen",
-                "coordinates": { "lng": 9.926257, "lat": 51.536758 }
+                "coordinates": {
+                  "lng": 9.926257,
+                  "lat": 51.536758
+                }
               },
               "arrival": {
                 "platform": "9",
-                "scheduledTime": 1581876600000,
-                "time": 1581876600000,
+                "scheduledTime": "2020-02-16T18:10:00.000Z",
+                "time": "2020-02-16T18:10:00.000Z",
                 "reihung": true
               },
               "departure": {
                 "platform": "9",
-                "scheduledTime": 1581876720000,
-                "time": 1581876720000,
+                "scheduledTime": "2020-02-16T18:12:00.000Z",
+                "time": "2020-02-16T18:12:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 4, "second": 4 }
+              "auslastung": {
+                "first": 4,
+                "second": 4
+              }
             },
             {
               "station": {
                 "id": "8000152",
                 "title": "Hannover Hbf",
-                "coordinates": { "lng": 9.741763, "lat": 52.377079 }
+                "coordinates": {
+                  "lng": 9.741763,
+                  "lat": 52.377079
+                }
               },
               "arrival": {
                 "platform": "7",
-                "scheduledTime": 1581878820000,
-                "time": 1581878820000,
+                "scheduledTime": "2020-02-16T18:47:00.000Z",
+                "time": "2020-02-16T18:47:00.000Z",
                 "reihung": true
               },
               "departure": {
                 "platform": "7",
-                "scheduledTime": 1581879000000,
-                "time": 1581879000000,
+                "scheduledTime": "2020-02-16T18:50:00.000Z",
+                "time": "2020-02-16T18:50:00.000Z",
                 "reihung": true
               }
             },
@@ -1576,19 +1896,25 @@
               "station": {
                 "id": "8000050",
                 "title": "Bremen Hbf",
-                "coordinates": { "lng": 8.813681, "lat": 53.08328 }
+                "coordinates": {
+                  "lng": 8.813681,
+                  "lat": 53.08328
+                }
               },
               "arrival": {
                 "platform": "3",
-                "scheduledTime": 1581882420000,
-                "time": 1581882420000,
+                "scheduledTime": "2020-02-16T19:47:00.000Z",
+                "time": "2020-02-16T19:47:00.000Z",
                 "reihung": true
               }
             }
           ],
           "finalDestination": "Oldenburg(Oldb)",
           "jid": "1|1323596|0|80|16022020",
-          "auslastung": { "first": 4, "second": 4 },
+          "auslastung": {
+            "first": 4,
+            "second": 4
+          },
           "messages": [
             {
               "type": "M",
@@ -1620,13 +1946,13 @@
         {
           "arrival": {
             "platform": "11",
-            "scheduledTime": 1581888360000,
-            "time": 1581888360000
+            "scheduledTime": "2020-02-16T21:26:00.000Z",
+            "time": "2020-02-16T21:26:00.000Z"
           },
           "departure": {
             "platform": "10",
-            "scheduledTime": 1581883080000,
-            "time": 1581883080000
+            "scheduledTime": "2020-02-16T19:58:00.000Z",
+            "time": "2020-02-16T19:58:00.000Z"
           },
           "duration": 5280000,
           "train": {
@@ -1635,254 +1961,308 @@
             "admin": "R1____",
             "number": "81938",
             "type": "ME",
-            "operator": { "name": "metronom", "icoX": 15 }
+            "operator": {
+              "name": "metronom",
+              "icoX": 15
+            }
           },
-          "segmentStart": { "title": "Bremen Hbf", "id": "8000050" },
-          "segmentDestination": { "title": "Hamburg Hbf", "id": "8002549" },
+          "segmentStart": {
+            "title": "Bremen Hbf",
+            "id": "8000050"
+          },
+          "segmentDestination": {
+            "title": "Hamburg Hbf",
+            "id": "8002549"
+          },
           "stops": [
             {
               "station": {
                 "id": "8000050",
                 "title": "Bremen Hbf",
-                "coordinates": { "lng": 8.813681, "lat": 53.08328 }
+                "coordinates": {
+                  "lng": 8.813681,
+                  "lat": 53.08328
+                }
               },
               "departure": {
                 "platform": "10",
-                "scheduledTime": 1581883080000,
-                "time": 1581883080000
+                "scheduledTime": "2020-02-16T19:58:00.000Z",
+                "time": "2020-02-16T19:58:00.000Z"
               }
             },
             {
               "station": {
                 "id": "8001161",
                 "title": "Bremen-Oberneuland",
-                "coordinates": { "lng": 8.938001, "lat": 53.087154 }
+                "coordinates": {
+                  "lng": 8.938001,
+                  "lat": 53.087154
+                }
               },
               "arrival": {
                 "platform": "3",
-                "scheduledTime": 1581883560000,
-                "time": 1581883560000
+                "scheduledTime": "2020-02-16T20:06:00.000Z",
+                "time": "2020-02-16T20:06:00.000Z"
               },
               "departure": {
                 "platform": "3",
-                "scheduledTime": 1581883560000,
-                "time": 1581883560000
+                "scheduledTime": "2020-02-16T20:06:00.000Z",
+                "time": "2020-02-16T20:06:00.000Z"
               }
             },
             {
               "station": {
                 "id": "8005256",
                 "title": "Sagehorn",
-                "coordinates": { "lng": 9.02232, "lat": 53.08408 }
+                "coordinates": {
+                  "lng": 9.02232,
+                  "lat": 53.08408
+                }
               },
               "arrival": {
                 "platform": "2",
-                "scheduledTime": 1581883860000,
-                "time": 1581883860000
+                "scheduledTime": "2020-02-16T20:11:00.000Z",
+                "time": "2020-02-16T20:11:00.000Z"
               },
               "departure": {
                 "platform": "2",
-                "scheduledTime": 1581883860000,
-                "time": 1581883860000
+                "scheduledTime": "2020-02-16T20:11:00.000Z",
+                "time": "2020-02-16T20:11:00.000Z"
               }
             },
             {
               "station": {
                 "id": "8004728",
                 "title": "Ottersberg(Han)",
-                "coordinates": { "lng": 9.133157, "lat": 53.09689 }
+                "coordinates": {
+                  "lng": 9.133157,
+                  "lat": 53.09689
+                }
               },
               "arrival": {
                 "platform": "2",
-                "scheduledTime": 1581884160000,
-                "time": 1581884160000
+                "scheduledTime": "2020-02-16T20:16:00.000Z",
+                "time": "2020-02-16T20:16:00.000Z"
               },
               "departure": {
                 "platform": "2",
-                "scheduledTime": 1581884160000,
-                "time": 1581884160000
+                "scheduledTime": "2020-02-16T20:16:00.000Z",
+                "time": "2020-02-16T20:16:00.000Z"
               }
             },
             {
               "station": {
                 "id": "8005613",
                 "title": "Sottrum",
-                "coordinates": { "lng": 9.250071, "lat": 53.101294 }
+                "coordinates": {
+                  "lng": 9.250071,
+                  "lat": 53.101294
+                }
               },
               "arrival": {
                 "platform": "2",
-                "scheduledTime": 1581884460000,
-                "time": 1581884460000
+                "scheduledTime": "2020-02-16T20:21:00.000Z",
+                "time": "2020-02-16T20:21:00.000Z"
               },
               "departure": {
                 "platform": "2",
-                "scheduledTime": 1581884520000,
-                "time": 1581884520000
+                "scheduledTime": "2020-02-16T20:22:00.000Z",
+                "time": "2020-02-16T20:22:00.000Z"
               }
             },
             {
               "station": {
                 "id": "8000321",
                 "title": "Rotenburg(Wümme)",
-                "coordinates": { "lng": 9.389925, "lat": 53.112432 }
+                "coordinates": {
+                  "lng": 9.389925,
+                  "lat": 53.112432
+                }
               },
               "arrival": {
                 "platform": "5",
-                "scheduledTime": 1581884880000,
-                "time": 1581884880000
+                "scheduledTime": "2020-02-16T20:28:00.000Z",
+                "time": "2020-02-16T20:28:00.000Z"
               },
               "departure": {
                 "platform": "5",
-                "scheduledTime": 1581884940000,
-                "time": 1581884940000
+                "scheduledTime": "2020-02-16T20:29:00.000Z",
+                "time": "2020-02-16T20:29:00.000Z"
               }
             },
             {
               "station": {
                 "id": "8005330",
                 "title": "Scheeßel",
-                "coordinates": { "lng": 9.497823, "lat": 53.166457 }
+                "coordinates": {
+                  "lng": 9.497823,
+                  "lat": 53.166457
+                }
               },
               "arrival": {
                 "platform": "3",
-                "scheduledTime": 1581885300000,
-                "time": 1581885300000
+                "scheduledTime": "2020-02-16T20:35:00.000Z",
+                "time": "2020-02-16T20:35:00.000Z"
               },
               "departure": {
                 "platform": "3",
-                "scheduledTime": 1581885300000,
-                "time": 1581885300000
+                "scheduledTime": "2020-02-16T20:35:00.000Z",
+                "time": "2020-02-16T20:35:00.000Z"
               }
             },
             {
               "station": {
                 "id": "8003576",
                 "title": "Lauenbrück",
-                "coordinates": { "lng": 9.563174, "lat": 53.196841 }
+                "coordinates": {
+                  "lng": 9.563174,
+                  "lat": 53.196841
+                }
               },
               "arrival": {
                 "platform": "3",
-                "scheduledTime": 1581885540000,
-                "time": 1581885540000
+                "scheduledTime": "2020-02-16T20:39:00.000Z",
+                "time": "2020-02-16T20:39:00.000Z"
               },
               "departure": {
                 "platform": "3",
-                "scheduledTime": 1581885600000,
-                "time": 1581885600000
+                "scheduledTime": "2020-02-16T20:40:00.000Z",
+                "time": "2020-02-16T20:40:00.000Z"
               }
             },
             {
               "station": {
                 "id": "8005888",
                 "title": "Tostedt",
-                "coordinates": { "lng": 9.732055, "lat": 53.272018 }
+                "coordinates": {
+                  "lng": 9.732055,
+                  "lat": 53.272018
+                }
               },
               "arrival": {
                 "platform": "3",
-                "scheduledTime": 1581886020000,
-                "time": 1581886020000
+                "scheduledTime": "2020-02-16T20:47:00.000Z",
+                "time": "2020-02-16T20:47:00.000Z"
               },
               "departure": {
                 "platform": "3",
-                "scheduledTime": 1581886080000,
-                "time": 1581886080000
+                "scheduledTime": "2020-02-16T20:48:00.000Z",
+                "time": "2020-02-16T20:48:00.000Z"
               }
             },
             {
               "station": {
                 "id": "8005640",
                 "title": "Sprötze",
-                "coordinates": { "lng": 9.812562, "lat": 53.309583 }
+                "coordinates": {
+                  "lng": 9.812562,
+                  "lat": 53.309583
+                }
               },
               "arrival": {
                 "platform": "2",
-                "scheduledTime": 1581886320000,
-                "time": 1581886320000
+                "scheduledTime": "2020-02-16T20:52:00.000Z",
+                "time": "2020-02-16T20:52:00.000Z"
               },
               "departure": {
                 "platform": "2",
-                "scheduledTime": 1581886380000,
-                "time": 1581886380000
+                "scheduledTime": "2020-02-16T20:53:00.000Z",
+                "time": "2020-02-16T20:53:00.000Z"
               }
             },
             {
               "station": {
                 "id": "8000056",
                 "title": "Buchholz(Nordheide)",
-                "coordinates": { "lng": 9.876206, "lat": 53.324649 }
+                "coordinates": {
+                  "lng": 9.876206,
+                  "lat": 53.324649
+                }
               },
               "arrival": {
                 "platform": "1",
-                "scheduledTime": 1581886620000,
-                "time": 1581886620000
+                "scheduledTime": "2020-02-16T20:57:00.000Z",
+                "time": "2020-02-16T20:57:00.000Z"
               },
               "departure": {
                 "platform": "1",
-                "scheduledTime": 1581886740000,
-                "time": 1581886740000
+                "scheduledTime": "2020-02-16T20:59:00.000Z",
+                "time": "2020-02-16T20:59:00.000Z"
               }
             },
             {
               "station": {
                 "id": "8003309",
                 "title": "Klecken",
-                "coordinates": { "lng": 9.928864, "lat": 53.366 }
+                "coordinates": {
+                  "lng": 9.928864,
+                  "lat": 53.366
+                }
               },
               "arrival": {
                 "platform": "2",
-                "scheduledTime": 1581886980000,
-                "time": 1581886980000
+                "scheduledTime": "2020-02-16T21:03:00.000Z",
+                "time": "2020-02-16T21:03:00.000Z"
               },
               "departure": {
                 "platform": "2",
-                "scheduledTime": 1581887040000,
-                "time": 1581887040000
+                "scheduledTime": "2020-02-16T21:04:00.000Z",
+                "time": "2020-02-16T21:04:00.000Z"
               }
             },
             {
               "station": {
                 "id": "8002864",
                 "title": "Hittfeld",
-                "coordinates": { "lng": 9.974476, "lat": 53.40353 }
+                "coordinates": {
+                  "lng": 9.974476,
+                  "lat": 53.40353
+                }
               },
               "arrival": {
                 "platform": "1",
-                "scheduledTime": 1581887280000,
-                "time": 1581887280000
+                "scheduledTime": "2020-02-16T21:08:00.000Z",
+                "time": "2020-02-16T21:08:00.000Z"
               },
               "departure": {
                 "platform": "1",
-                "scheduledTime": 1581887280000,
-                "time": 1581887280000
+                "scheduledTime": "2020-02-16T21:08:00.000Z",
+                "time": "2020-02-16T21:08:00.000Z"
               }
             },
             {
               "station": {
                 "id": "8000147",
                 "title": "Hamburg-Harburg",
-                "coordinates": { "lng": 9.991591, "lat": 53.456198 }
+                "coordinates": {
+                  "lng": 9.991591,
+                  "lat": 53.456198
+                }
               },
               "arrival": {
                 "platform": "2",
-                "scheduledTime": 1581887580000,
-                "time": 1581887580000
+                "scheduledTime": "2020-02-16T21:13:00.000Z",
+                "time": "2020-02-16T21:13:00.000Z"
               },
               "departure": {
                 "platform": "2",
-                "scheduledTime": 1581887640000,
-                "time": 1581887640000
+                "scheduledTime": "2020-02-16T21:14:00.000Z",
+                "time": "2020-02-16T21:14:00.000Z"
               }
             },
             {
               "station": {
                 "id": "8002549",
                 "title": "Hamburg Hbf",
-                "coordinates": { "lng": 10.00636, "lat": 53.553533 }
+                "coordinates": {
+                  "lng": 10.00636,
+                  "lat": 53.553533
+                }
               },
               "arrival": {
                 "platform": "11",
-                "scheduledTime": 1581888360000,
-                "time": 1581888360000
+                "scheduledTime": "2020-02-16T21:26:00.000Z",
+                "time": "2020-02-16T21:26:00.000Z"
               }
             }
           ],
@@ -1907,39 +2287,42 @@
           "type": "JNY"
         }
       ],
-      "segmentTypes": ["IC", "ME"]
+      "segmentTypes": [
+        "IC",
+        "ME"
+      ]
     },
     {
       "checksum": "aa84e9ab_3",
       "cid": "C-7",
-      "date": 1581807600000,
+      "date": "2020-02-15T23:00:00.000Z",
       "duration": 15060000,
       "changes": 1,
       "isRideable": true,
       "arrival": {
         "platform": "12",
-        "scheduledTime": 1581884940000,
-        "time": 1581884940000
+        "scheduledTime": "2020-02-16T20:29:00.000Z",
+        "time": "2020-02-16T20:29:00.000Z"
       },
       "departure": {
         "platform": "8",
-        "scheduledTime": 1581869640000,
-        "time": 1581869880000,
+        "scheduledTime": "2020-02-16T16:14:00.000Z",
+        "time": "2020-02-16T16:18:00.000Z",
         "delay": 4
       },
       "segments": [
         {
           "arrival": {
             "platform": "3",
-            "scheduledTime": 1581874980000,
-            "time": 1581875100000,
+            "scheduledTime": "2020-02-16T17:43:00.000Z",
+            "time": "2020-02-16T17:45:00.000Z",
             "delay": 2,
             "reihung": true
           },
           "departure": {
             "platform": "8",
-            "scheduledTime": 1581869640000,
-            "time": 1581869880000,
+            "scheduledTime": "2020-02-16T16:14:00.000Z",
+            "time": "2020-02-16T16:18:00.000Z",
             "delay": 4,
             "reihung": true
           },
@@ -1961,10 +2344,16 @@
             "admin": "80____",
             "number": "276",
             "type": "ICE",
-            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+            "operator": {
+              "name": "DB Fernverkehr AG",
+              "icoX": 2
+            }
           },
           "changeDuration": 12,
-          "segmentStart": { "title": "Frankfurt(Main)Hbf", "id": "8000105" },
+          "segmentStart": {
+            "title": "Frankfurt(Main)Hbf",
+            "id": "8000105"
+          },
           "segmentDestination": {
             "title": "Kassel-Wilhelmshöhe",
             "id": "8003200"
@@ -1974,71 +2363,92 @@
               "station": {
                 "id": "8000105",
                 "title": "Frankfurt(Main)Hbf",
-                "coordinates": { "lng": 8.663003, "lat": 50.106817 }
+                "coordinates": {
+                  "lng": 8.663003,
+                  "lat": 50.106817
+                }
               },
               "departure": {
                 "platform": "8",
-                "scheduledTime": 1581869640000,
-                "time": 1581869880000,
+                "scheduledTime": "2020-02-16T16:14:00.000Z",
+                "time": "2020-02-16T16:18:00.000Z",
                 "delay": 4,
                 "reihung": true
               },
-              "auslastung": { "first": 1, "second": 2 }
+              "auslastung": {
+                "first": 1,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000150",
                 "title": "Hanau Hbf",
-                "coordinates": { "lng": 8.92921, "lat": 50.120903 }
+                "coordinates": {
+                  "lng": 8.92921,
+                  "lat": 50.120903
+                }
               },
               "arrival": {
                 "platform": "7",
-                "scheduledTime": 1581870480000,
-                "time": 1581870720000,
+                "scheduledTime": "2020-02-16T16:28:00.000Z",
+                "time": "2020-02-16T16:32:00.000Z",
                 "delay": 4,
                 "reihung": true
               },
               "departure": {
                 "platform": "7",
-                "scheduledTime": 1581870600000,
-                "time": 1581870840000,
+                "scheduledTime": "2020-02-16T16:30:00.000Z",
+                "time": "2020-02-16T16:34:00.000Z",
                 "delay": 4,
                 "reihung": true
               },
-              "auslastung": { "first": 1, "second": 2 }
+              "auslastung": {
+                "first": 1,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000115",
                 "title": "Fulda",
-                "coordinates": { "lng": 9.684178, "lat": 50.554794 }
+                "coordinates": {
+                  "lng": 9.684178,
+                  "lat": 50.554794
+                }
               },
               "arrival": {
                 "platform": "6",
-                "scheduledTime": 1581873000000,
-                "time": 1581873180000,
+                "scheduledTime": "2020-02-16T17:10:00.000Z",
+                "time": "2020-02-16T17:13:00.000Z",
                 "delay": 3,
                 "reihung": true
               },
               "departure": {
                 "platform": "6",
-                "scheduledTime": 1581873120000,
-                "time": 1581873360000,
+                "scheduledTime": "2020-02-16T17:12:00.000Z",
+                "time": "2020-02-16T17:16:00.000Z",
                 "delay": 4,
                 "reihung": true
               },
-              "auslastung": { "first": 1, "second": 2 }
+              "auslastung": {
+                "first": 1,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8003200",
                 "title": "Kassel-Wilhelmshöhe",
-                "coordinates": { "lng": 9.446845, "lat": 51.312998 }
+                "coordinates": {
+                  "lng": 9.446845,
+                  "lat": 51.312998
+                }
               },
               "arrival": {
                 "platform": "3",
-                "scheduledTime": 1581874980000,
-                "time": 1581875100000,
+                "scheduledTime": "2020-02-16T17:43:00.000Z",
+                "time": "2020-02-16T17:45:00.000Z",
                 "delay": 2,
                 "reihung": true
               }
@@ -2046,7 +2456,10 @@
           ],
           "finalDestination": "Berlin Ostbahnhof",
           "jid": "1|222766|0|80|16022020",
-          "auslastung": { "first": 1, "second": 2 },
+          "auslastung": {
+            "first": 1,
+            "second": 2
+          },
           "messages": [
             {
               "type": "A",
@@ -2068,14 +2481,14 @@
         {
           "arrival": {
             "platform": "12",
-            "scheduledTime": 1581884940000,
-            "time": 1581884940000,
+            "scheduledTime": "2020-02-16T20:29:00.000Z",
+            "time": "2020-02-16T20:29:00.000Z",
             "reihung": true
           },
           "departure": {
             "platform": "4",
-            "scheduledTime": 1581875820000,
-            "time": 1581875820000,
+            "scheduledTime": "2020-02-16T17:57:00.000Z",
+            "time": "2020-02-16T17:57:00.000Z",
             "reihung": true
           },
           "duration": 9120000,
@@ -2098,135 +2511,183 @@
             "admin": "80____",
             "number": "1574",
             "type": "ICE",
-            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+            "operator": {
+              "name": "DB Fernverkehr AG",
+              "icoX": 2
+            }
           },
-          "segmentStart": { "title": "Kassel-Wilhelmshöhe", "id": "8003200" },
-          "segmentDestination": { "title": "Hamburg Hbf", "id": "8002549" },
+          "segmentStart": {
+            "title": "Kassel-Wilhelmshöhe",
+            "id": "8003200"
+          },
+          "segmentDestination": {
+            "title": "Hamburg Hbf",
+            "id": "8002549"
+          },
           "stops": [
             {
               "station": {
                 "id": "8003200",
                 "title": "Kassel-Wilhelmshöhe",
-                "coordinates": { "lng": 9.446845, "lat": 51.312998 }
+                "coordinates": {
+                  "lng": 9.446845,
+                  "lat": 51.312998
+                }
               },
               "departure": {
                 "platform": "4",
-                "scheduledTime": 1581875820000,
-                "time": 1581875820000,
+                "scheduledTime": "2020-02-16T17:57:00.000Z",
+                "time": "2020-02-16T17:57:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 2, "second": 3 }
+              "auslastung": {
+                "first": 2,
+                "second": 3
+              }
             },
             {
               "station": {
                 "id": "8000128",
                 "title": "Göttingen",
-                "coordinates": { "lng": 9.926257, "lat": 51.536758 }
+                "coordinates": {
+                  "lng": 9.926257,
+                  "lat": 51.536758
+                }
               },
               "arrival": {
                 "platform": "9",
-                "scheduledTime": 1581876960000,
-                "time": 1581876960000,
+                "scheduledTime": "2020-02-16T18:16:00.000Z",
+                "time": "2020-02-16T18:16:00.000Z",
                 "reihung": true
               },
               "departure": {
                 "platform": "9",
-                "scheduledTime": 1581877080000,
-                "time": 1581877080000,
+                "scheduledTime": "2020-02-16T18:18:00.000Z",
+                "time": "2020-02-16T18:18:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 3, "second": 2 }
+              "auslastung": {
+                "first": 3,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000152",
                 "title": "Hannover Hbf",
-                "coordinates": { "lng": 9.741763, "lat": 52.377079 }
+                "coordinates": {
+                  "lng": 9.741763,
+                  "lat": 52.377079
+                }
               },
               "arrival": {
                 "platform": "7",
-                "scheduledTime": 1581879360000,
-                "time": 1581879360000,
+                "scheduledTime": "2020-02-16T18:56:00.000Z",
+                "time": "2020-02-16T18:56:00.000Z",
                 "reihung": true
               },
               "departure": {
                 "platform": "7",
-                "scheduledTime": 1581879540000,
-                "time": 1581879540000,
+                "scheduledTime": "2020-02-16T18:59:00.000Z",
+                "time": "2020-02-16T18:59:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 2, "second": 2 }
+              "auslastung": {
+                "first": 2,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000064",
                 "title": "Celle",
-                "coordinates": { "lng": 10.062651, "lat": 52.621019 }
+                "coordinates": {
+                  "lng": 10.062651,
+                  "lat": 52.621019
+                }
               },
               "arrival": {
                 "platform": "5",
-                "scheduledTime": 1581880740000,
-                "time": 1581880740000,
+                "scheduledTime": "2020-02-16T19:19:00.000Z",
+                "time": "2020-02-16T19:19:00.000Z",
                 "reihung": true
               },
               "departure": {
                 "platform": "5",
-                "scheduledTime": 1581880800000,
-                "time": 1581880800000,
+                "scheduledTime": "2020-02-16T19:20:00.000Z",
+                "time": "2020-02-16T19:20:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 1, "second": 2 }
+              "auslastung": {
+                "first": 1,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000168",
                 "title": "Uelzen",
-                "coordinates": { "lng": 10.553246, "lat": 52.96998 }
+                "coordinates": {
+                  "lng": 10.553246,
+                  "lat": 52.96998
+                }
               },
               "arrival": {
                 "platform": "102",
-                "scheduledTime": 1581882000000,
-                "time": 1581882000000,
+                "scheduledTime": "2020-02-16T19:40:00.000Z",
+                "time": "2020-02-16T19:40:00.000Z",
                 "reihung": true
               },
               "departure": {
                 "platform": "102",
-                "scheduledTime": 1581882120000,
-                "time": 1581882120000,
+                "scheduledTime": "2020-02-16T19:42:00.000Z",
+                "time": "2020-02-16T19:42:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 1, "second": 2 }
+              "auslastung": {
+                "first": 1,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000238",
                 "title": "Lüneburg",
-                "coordinates": { "lng": 10.419873, "lat": 53.249742 }
+                "coordinates": {
+                  "lng": 10.419873,
+                  "lat": 53.249742
+                }
               },
               "arrival": {
                 "platform": "2",
-                "scheduledTime": 1581882960000,
-                "time": 1581882960000,
+                "scheduledTime": "2020-02-16T19:56:00.000Z",
+                "time": "2020-02-16T19:56:00.000Z",
                 "reihung": true
               },
               "departure": {
                 "platform": "2",
-                "scheduledTime": 1581883080000,
-                "time": 1581883080000,
+                "scheduledTime": "2020-02-16T19:58:00.000Z",
+                "time": "2020-02-16T19:58:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 1, "second": 2 }
+              "auslastung": {
+                "first": 1,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000147",
                 "title": "Hamburg-Harburg",
-                "coordinates": { "lng": 9.991591, "lat": 53.456198 }
+                "coordinates": {
+                  "lng": 9.991591,
+                  "lat": 53.456198
+                }
               },
               "arrival": {
                 "platform": "1",
-                "scheduledTime": 1581884160000,
-                "time": 1581884160000,
+                "scheduledTime": "2020-02-16T20:16:00.000Z",
+                "time": "2020-02-16T20:16:00.000Z",
                 "reihung": true
               }
             },
@@ -2234,19 +2695,25 @@
               "station": {
                 "id": "8002549",
                 "title": "Hamburg Hbf",
-                "coordinates": { "lng": 10.00636, "lat": 53.553533 }
+                "coordinates": {
+                  "lng": 10.00636,
+                  "lat": 53.553533
+                }
               },
               "arrival": {
                 "platform": "12",
-                "scheduledTime": 1581884940000,
-                "time": 1581884940000,
+                "scheduledTime": "2020-02-16T20:29:00.000Z",
+                "time": "2020-02-16T20:29:00.000Z",
                 "reihung": true
               }
             }
           ],
           "finalDestination": "Hamburg-Altona",
           "jid": "1|219640|0|80|16022020",
-          "auslastung": { "first": 3, "second": 3 },
+          "auslastung": {
+            "first": 3,
+            "second": 3
+          },
           "messages": [
             {
               "type": "A",
@@ -2280,37 +2747,40 @@
           "type": "JNY"
         }
       ],
-      "segmentTypes": ["ICE", "ICE"]
+      "segmentTypes": [
+        "ICE",
+        "ICE"
+      ]
     },
     {
       "checksum": "eea82c99_3",
       "cid": "C-8",
-      "date": 1581807600000,
+      "date": "2020-02-15T23:00:00.000Z",
       "duration": 14940000,
       "changes": 2,
       "isRideable": false,
       "arrival": {
         "platform": "12",
-        "scheduledTime": 1581884940000,
-        "time": 1581884940000
+        "scheduledTime": "2020-02-16T20:29:00.000Z",
+        "time": "2020-02-16T20:29:00.000Z"
       },
       "departure": {
         "platform": "9",
-        "scheduledTime": 1581870000000,
-        "time": 1581870000000
+        "scheduledTime": "2020-02-16T16:20:00.000Z",
+        "time": "2020-02-16T16:20:00.000Z"
       },
       "segments": [
         {
           "arrival": {
             "platform": "7",
-            "scheduledTime": 1581873120000,
-            "time": 1581873120000,
+            "scheduledTime": "2020-02-16T17:12:00.000Z",
+            "time": "2020-02-16T17:12:00.000Z",
             "reihung": true
           },
           "departure": {
             "platform": "9",
-            "scheduledTime": 1581870000000,
-            "time": 1581870000000,
+            "scheduledTime": "2020-02-16T16:20:00.000Z",
+            "time": "2020-02-16T16:20:00.000Z",
             "reihung": true
           },
           "duration": 3120000,
@@ -2335,43 +2805,64 @@
             "admin": "80____",
             "number": "1655",
             "type": "ICE",
-            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+            "operator": {
+              "name": "DB Fernverkehr AG",
+              "icoX": 2
+            }
           },
           "changeDuration": 7,
-          "segmentStart": { "title": "Frankfurt(Main)Hbf", "id": "8000105" },
-          "segmentDestination": { "title": "Fulda", "id": "8000115" },
+          "segmentStart": {
+            "title": "Frankfurt(Main)Hbf",
+            "id": "8000105"
+          },
+          "segmentDestination": {
+            "title": "Fulda",
+            "id": "8000115"
+          },
           "stops": [
             {
               "station": {
                 "id": "8000105",
                 "title": "Frankfurt(Main)Hbf",
-                "coordinates": { "lng": 8.663003, "lat": 50.106817 }
+                "coordinates": {
+                  "lng": 8.663003,
+                  "lat": 50.106817
+                }
               },
               "departure": {
                 "platform": "9",
-                "scheduledTime": 1581870000000,
-                "time": 1581870000000,
+                "scheduledTime": "2020-02-16T16:20:00.000Z",
+                "time": "2020-02-16T16:20:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 1, "second": 2 }
+              "auslastung": {
+                "first": 1,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000115",
                 "title": "Fulda",
-                "coordinates": { "lng": 9.684178, "lat": 50.554794 }
+                "coordinates": {
+                  "lng": 9.684178,
+                  "lat": 50.554794
+                }
               },
               "arrival": {
                 "platform": "7",
-                "scheduledTime": 1581873120000,
-                "time": 1581873120000,
+                "scheduledTime": "2020-02-16T17:12:00.000Z",
+                "time": "2020-02-16T17:12:00.000Z",
                 "reihung": true
               }
             }
           ],
           "finalDestination": "Dresden Hbf",
           "jid": "1|220034|0|80|16022020",
-          "auslastung": { "first": 1, "second": 2 },
+          "auslastung": {
+            "first": 1,
+            "second": 2
+          },
           "messages": [
             {
               "type": "A",
@@ -2406,14 +2897,14 @@
         },
         {
           "arrival": {
-            "scheduledTime": 1581878820000,
-            "time": 1581878820000,
+            "scheduledTime": "2020-02-16T18:47:00.000Z",
+            "time": "2020-02-16T18:47:00.000Z",
             "reihung": true,
             "cancelled": true
           },
           "departure": {
-            "scheduledTime": 1581873540000,
-            "time": 1581873540000,
+            "scheduledTime": "2020-02-16T17:19:00.000Z",
+            "time": "2020-02-16T17:19:00.000Z",
             "reihung": true,
             "cancelled": true
           },
@@ -2435,22 +2926,34 @@
             "admin": "80____",
             "number": "776",
             "type": "ICE",
-            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+            "operator": {
+              "name": "DB Fernverkehr AG",
+              "icoX": 2
+            }
           },
           "cancelled": true,
           "changeDuration": 12,
-          "segmentStart": { "title": "Fulda", "id": "8000115" },
-          "segmentDestination": { "title": "Hannover Hbf", "id": "8000152" },
+          "segmentStart": {
+            "title": "Fulda",
+            "id": "8000115"
+          },
+          "segmentDestination": {
+            "title": "Hannover Hbf",
+            "id": "8000152"
+          },
           "stops": [
             {
               "station": {
                 "id": "8000115",
                 "title": "Fulda",
-                "coordinates": { "lng": 9.684178, "lat": 50.554794 }
+                "coordinates": {
+                  "lng": 9.684178,
+                  "lat": 50.554794
+                }
               },
               "departure": {
-                "scheduledTime": 1581873540000,
-                "time": 1581873540000,
+                "scheduledTime": "2020-02-16T17:19:00.000Z",
+                "time": "2020-02-16T17:19:00.000Z",
                 "reihung": true,
                 "cancelled": true
               },
@@ -2460,17 +2963,20 @@
               "station": {
                 "id": "8003200",
                 "title": "Kassel-Wilhelmshöhe",
-                "coordinates": { "lng": 9.446845, "lat": 51.312998 }
+                "coordinates": {
+                  "lng": 9.446845,
+                  "lat": 51.312998
+                }
               },
               "arrival": {
-                "scheduledTime": 1581875400000,
-                "time": 1581875400000,
+                "scheduledTime": "2020-02-16T17:50:00.000Z",
+                "time": "2020-02-16T17:50:00.000Z",
                 "reihung": true,
                 "cancelled": true
               },
               "departure": {
-                "scheduledTime": 1581875520000,
-                "time": 1581875520000,
+                "scheduledTime": "2020-02-16T17:52:00.000Z",
+                "time": "2020-02-16T17:52:00.000Z",
                 "reihung": true,
                 "cancelled": true
               },
@@ -2480,17 +2986,20 @@
               "station": {
                 "id": "8000128",
                 "title": "Göttingen",
-                "coordinates": { "lng": 9.926257, "lat": 51.536758 }
+                "coordinates": {
+                  "lng": 9.926257,
+                  "lat": 51.536758
+                }
               },
               "arrival": {
-                "scheduledTime": 1581876600000,
-                "time": 1581876600000,
+                "scheduledTime": "2020-02-16T18:10:00.000Z",
+                "time": "2020-02-16T18:10:00.000Z",
                 "reihung": true,
                 "cancelled": true
               },
               "departure": {
-                "scheduledTime": 1581876720000,
-                "time": 1581876720000,
+                "scheduledTime": "2020-02-16T18:12:00.000Z",
+                "time": "2020-02-16T18:12:00.000Z",
                 "reihung": true,
                 "cancelled": true
               },
@@ -2500,11 +3009,14 @@
               "station": {
                 "id": "8000152",
                 "title": "Hannover Hbf",
-                "coordinates": { "lng": 9.741763, "lat": 52.377079 }
+                "coordinates": {
+                  "lng": 9.741763,
+                  "lat": 52.377079
+                }
               },
               "arrival": {
-                "scheduledTime": 1581878820000,
-                "time": 1581878820000,
+                "scheduledTime": "2020-02-16T18:47:00.000Z",
+                "time": "2020-02-16T18:47:00.000Z",
                 "reihung": true,
                 "cancelled": true
               },
@@ -2513,7 +3025,10 @@
           ],
           "finalDestination": "Oldenburg(Oldb)",
           "jid": "1|224969|0|80|16022020",
-          "auslastung": { "first": 1, "second": 2 },
+          "auslastung": {
+            "first": 1,
+            "second": 2
+          },
           "messages": [
             {
               "type": "A",
@@ -2550,14 +3065,14 @@
         {
           "arrival": {
             "platform": "12",
-            "scheduledTime": 1581884940000,
-            "time": 1581884940000,
+            "scheduledTime": "2020-02-16T20:29:00.000Z",
+            "time": "2020-02-16T20:29:00.000Z",
             "reihung": true
           },
           "departure": {
             "platform": "7",
-            "scheduledTime": 1581879540000,
-            "time": 1581879540000,
+            "scheduledTime": "2020-02-16T18:59:00.000Z",
+            "time": "2020-02-16T18:59:00.000Z",
             "reihung": true
           },
           "duration": 5400000,
@@ -2580,95 +3095,131 @@
             "admin": "80____",
             "number": "1574",
             "type": "ICE",
-            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+            "operator": {
+              "name": "DB Fernverkehr AG",
+              "icoX": 2
+            }
           },
-          "segmentStart": { "title": "Hannover Hbf", "id": "8000152" },
-          "segmentDestination": { "title": "Hamburg Hbf", "id": "8002549" },
+          "segmentStart": {
+            "title": "Hannover Hbf",
+            "id": "8000152"
+          },
+          "segmentDestination": {
+            "title": "Hamburg Hbf",
+            "id": "8002549"
+          },
           "stops": [
             {
               "station": {
                 "id": "8000152",
                 "title": "Hannover Hbf",
-                "coordinates": { "lng": 9.741763, "lat": 52.377079 }
+                "coordinates": {
+                  "lng": 9.741763,
+                  "lat": 52.377079
+                }
               },
               "departure": {
                 "platform": "7",
-                "scheduledTime": 1581879540000,
-                "time": 1581879540000,
+                "scheduledTime": "2020-02-16T18:59:00.000Z",
+                "time": "2020-02-16T18:59:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 2, "second": 2 }
+              "auslastung": {
+                "first": 2,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000064",
                 "title": "Celle",
-                "coordinates": { "lng": 10.062651, "lat": 52.621019 }
+                "coordinates": {
+                  "lng": 10.062651,
+                  "lat": 52.621019
+                }
               },
               "arrival": {
                 "platform": "5",
-                "scheduledTime": 1581880740000,
-                "time": 1581880740000,
+                "scheduledTime": "2020-02-16T19:19:00.000Z",
+                "time": "2020-02-16T19:19:00.000Z",
                 "reihung": true
               },
               "departure": {
                 "platform": "5",
-                "scheduledTime": 1581880800000,
-                "time": 1581880800000,
+                "scheduledTime": "2020-02-16T19:20:00.000Z",
+                "time": "2020-02-16T19:20:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 1, "second": 2 }
+              "auslastung": {
+                "first": 1,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000168",
                 "title": "Uelzen",
-                "coordinates": { "lng": 10.553246, "lat": 52.96998 }
+                "coordinates": {
+                  "lng": 10.553246,
+                  "lat": 52.96998
+                }
               },
               "arrival": {
                 "platform": "102",
-                "scheduledTime": 1581882000000,
-                "time": 1581882000000,
+                "scheduledTime": "2020-02-16T19:40:00.000Z",
+                "time": "2020-02-16T19:40:00.000Z",
                 "reihung": true
               },
               "departure": {
                 "platform": "102",
-                "scheduledTime": 1581882120000,
-                "time": 1581882120000,
+                "scheduledTime": "2020-02-16T19:42:00.000Z",
+                "time": "2020-02-16T19:42:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 1, "second": 2 }
+              "auslastung": {
+                "first": 1,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000238",
                 "title": "Lüneburg",
-                "coordinates": { "lng": 10.419873, "lat": 53.249742 }
+                "coordinates": {
+                  "lng": 10.419873,
+                  "lat": 53.249742
+                }
               },
               "arrival": {
                 "platform": "2",
-                "scheduledTime": 1581882960000,
-                "time": 1581882960000,
+                "scheduledTime": "2020-02-16T19:56:00.000Z",
+                "time": "2020-02-16T19:56:00.000Z",
                 "reihung": true
               },
               "departure": {
                 "platform": "2",
-                "scheduledTime": 1581883080000,
-                "time": 1581883080000,
+                "scheduledTime": "2020-02-16T19:58:00.000Z",
+                "time": "2020-02-16T19:58:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 1, "second": 2 }
+              "auslastung": {
+                "first": 1,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000147",
                 "title": "Hamburg-Harburg",
-                "coordinates": { "lng": 9.991591, "lat": 53.456198 }
+                "coordinates": {
+                  "lng": 9.991591,
+                  "lat": 53.456198
+                }
               },
               "arrival": {
                 "platform": "1",
-                "scheduledTime": 1581884160000,
-                "time": 1581884160000,
+                "scheduledTime": "2020-02-16T20:16:00.000Z",
+                "time": "2020-02-16T20:16:00.000Z",
                 "reihung": true
               }
             },
@@ -2676,19 +3227,25 @@
               "station": {
                 "id": "8002549",
                 "title": "Hamburg Hbf",
-                "coordinates": { "lng": 10.00636, "lat": 53.553533 }
+                "coordinates": {
+                  "lng": 10.00636,
+                  "lat": 53.553533
+                }
               },
               "arrival": {
                 "platform": "12",
-                "scheduledTime": 1581884940000,
-                "time": 1581884940000,
+                "scheduledTime": "2020-02-16T20:29:00.000Z",
+                "time": "2020-02-16T20:29:00.000Z",
                 "reihung": true
               }
             }
           ],
           "finalDestination": "Hamburg-Altona",
           "jid": "1|219640|0|80|16022020",
-          "auslastung": { "first": 2, "second": 2 },
+          "auslastung": {
+            "first": 2,
+            "second": 2
+          },
           "messages": [
             {
               "type": "A",
@@ -2722,37 +3279,41 @@
           "type": "JNY"
         }
       ],
-      "segmentTypes": ["ICE", "ICE", "ICE"]
+      "segmentTypes": [
+        "ICE",
+        "ICE",
+        "ICE"
+      ]
     },
     {
       "checksum": "b9192403_3",
       "cid": "C-9",
-      "date": 1581807600000,
+      "date": "2020-02-15T23:00:00.000Z",
       "duration": 14940000,
       "changes": 2,
       "isRideable": true,
       "arrival": {
         "platform": "12",
-        "scheduledTime": 1581884940000,
-        "time": 1581884940000
+        "scheduledTime": "2020-02-16T20:29:00.000Z",
+        "time": "2020-02-16T20:29:00.000Z"
       },
       "departure": {
         "platform": "9",
-        "scheduledTime": 1581870000000,
-        "time": 1581870000000
+        "scheduledTime": "2020-02-16T16:20:00.000Z",
+        "time": "2020-02-16T16:20:00.000Z"
       },
       "segments": [
         {
           "arrival": {
             "platform": "7",
-            "scheduledTime": 1581873120000,
-            "time": 1581873120000,
+            "scheduledTime": "2020-02-16T17:12:00.000Z",
+            "time": "2020-02-16T17:12:00.000Z",
             "reihung": true
           },
           "departure": {
             "platform": "9",
-            "scheduledTime": 1581870000000,
-            "time": 1581870000000,
+            "scheduledTime": "2020-02-16T16:20:00.000Z",
+            "time": "2020-02-16T16:20:00.000Z",
             "reihung": true
           },
           "duration": 3120000,
@@ -2777,43 +3338,64 @@
             "admin": "80____",
             "number": "1655",
             "type": "ICE",
-            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+            "operator": {
+              "name": "DB Fernverkehr AG",
+              "icoX": 2
+            }
           },
           "changeDuration": 7,
-          "segmentStart": { "title": "Frankfurt(Main)Hbf", "id": "8000105" },
-          "segmentDestination": { "title": "Fulda", "id": "8000115" },
+          "segmentStart": {
+            "title": "Frankfurt(Main)Hbf",
+            "id": "8000105"
+          },
+          "segmentDestination": {
+            "title": "Fulda",
+            "id": "8000115"
+          },
           "stops": [
             {
               "station": {
                 "id": "8000105",
                 "title": "Frankfurt(Main)Hbf",
-                "coordinates": { "lng": 8.663003, "lat": 50.106817 }
+                "coordinates": {
+                  "lng": 8.663003,
+                  "lat": 50.106817
+                }
               },
               "departure": {
                 "platform": "9",
-                "scheduledTime": 1581870000000,
-                "time": 1581870000000,
+                "scheduledTime": "2020-02-16T16:20:00.000Z",
+                "time": "2020-02-16T16:20:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 1, "second": 2 }
+              "auslastung": {
+                "first": 1,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000115",
                 "title": "Fulda",
-                "coordinates": { "lng": 9.684178, "lat": 50.554794 }
+                "coordinates": {
+                  "lng": 9.684178,
+                  "lat": 50.554794
+                }
               },
               "arrival": {
                 "platform": "7",
-                "scheduledTime": 1581873120000,
-                "time": 1581873120000,
+                "scheduledTime": "2020-02-16T17:12:00.000Z",
+                "time": "2020-02-16T17:12:00.000Z",
                 "reihung": true
               }
             }
           ],
           "finalDestination": "Dresden Hbf",
           "jid": "1|220034|0|80|16022020",
-          "auslastung": { "first": 1, "second": 2 },
+          "auslastung": {
+            "first": 1,
+            "second": 2
+          },
           "messages": [
             {
               "type": "A",
@@ -2849,14 +3431,14 @@
         {
           "arrival": {
             "platform": "9",
-            "scheduledTime": 1581876600000,
-            "time": 1581876600000,
+            "scheduledTime": "2020-02-16T18:10:00.000Z",
+            "time": "2020-02-16T18:10:00.000Z",
             "reihung": true
           },
           "departure": {
             "platform": "6",
-            "scheduledTime": 1581873540000,
-            "time": 1581873540000,
+            "scheduledTime": "2020-02-16T17:19:00.000Z",
+            "time": "2020-02-16T17:19:00.000Z",
             "reihung": true
           },
           "duration": 3060000,
@@ -2865,63 +3447,90 @@
             "admin": "80____",
             "number": "2914",
             "type": "IC",
-            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+            "operator": {
+              "name": "DB Fernverkehr AG",
+              "icoX": 2
+            }
           },
           "changeDuration": 8,
-          "segmentStart": { "title": "Fulda", "id": "8000115" },
-          "segmentDestination": { "title": "Göttingen", "id": "8000128" },
+          "segmentStart": {
+            "title": "Fulda",
+            "id": "8000115"
+          },
+          "segmentDestination": {
+            "title": "Göttingen",
+            "id": "8000128"
+          },
           "stops": [
             {
               "station": {
                 "id": "8000115",
                 "title": "Fulda",
-                "coordinates": { "lng": 9.684178, "lat": 50.554794 }
+                "coordinates": {
+                  "lng": 9.684178,
+                  "lat": 50.554794
+                }
               },
               "departure": {
                 "platform": "6",
-                "scheduledTime": 1581873540000,
-                "time": 1581873540000,
+                "scheduledTime": "2020-02-16T17:19:00.000Z",
+                "time": "2020-02-16T17:19:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 4, "second": 4 }
+              "auslastung": {
+                "first": 4,
+                "second": 4
+              }
             },
             {
               "station": {
                 "id": "8003200",
                 "title": "Kassel-Wilhelmshöhe",
-                "coordinates": { "lng": 9.446845, "lat": 51.312998 }
+                "coordinates": {
+                  "lng": 9.446845,
+                  "lat": 51.312998
+                }
               },
               "arrival": {
                 "platform": "3",
-                "scheduledTime": 1581875400000,
-                "time": 1581875400000,
+                "scheduledTime": "2020-02-16T17:50:00.000Z",
+                "time": "2020-02-16T17:50:00.000Z",
                 "reihung": true
               },
               "departure": {
                 "platform": "3",
-                "scheduledTime": 1581875520000,
-                "time": 1581875520000,
+                "scheduledTime": "2020-02-16T17:52:00.000Z",
+                "time": "2020-02-16T17:52:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 4, "second": 4 }
+              "auslastung": {
+                "first": 4,
+                "second": 4
+              }
             },
             {
               "station": {
                 "id": "8000128",
                 "title": "Göttingen",
-                "coordinates": { "lng": 9.926257, "lat": 51.536758 }
+                "coordinates": {
+                  "lng": 9.926257,
+                  "lat": 51.536758
+                }
               },
               "arrival": {
                 "platform": "9",
-                "scheduledTime": 1581876600000,
-                "time": 1581876600000,
+                "scheduledTime": "2020-02-16T18:10:00.000Z",
+                "time": "2020-02-16T18:10:00.000Z",
                 "reihung": true
               }
             }
           ],
           "finalDestination": "Oldenburg(Oldb)",
           "jid": "1|1323596|0|80|16022020",
-          "auslastung": { "first": 4, "second": 4 },
+          "auslastung": {
+            "first": 4,
+            "second": 4
+          },
           "messages": [
             {
               "type": "M",
@@ -2937,14 +3546,14 @@
         {
           "arrival": {
             "platform": "12",
-            "scheduledTime": 1581884940000,
-            "time": 1581884940000,
+            "scheduledTime": "2020-02-16T20:29:00.000Z",
+            "time": "2020-02-16T20:29:00.000Z",
             "reihung": true
           },
           "departure": {
             "platform": "9",
-            "scheduledTime": 1581877080000,
-            "time": 1581877080000,
+            "scheduledTime": "2020-02-16T18:18:00.000Z",
+            "time": "2020-02-16T18:18:00.000Z",
             "reihung": true
           },
           "duration": 7860000,
@@ -2967,115 +3576,157 @@
             "admin": "80____",
             "number": "1574",
             "type": "ICE",
-            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+            "operator": {
+              "name": "DB Fernverkehr AG",
+              "icoX": 2
+            }
           },
-          "segmentStart": { "title": "Göttingen", "id": "8000128" },
-          "segmentDestination": { "title": "Hamburg Hbf", "id": "8002549" },
+          "segmentStart": {
+            "title": "Göttingen",
+            "id": "8000128"
+          },
+          "segmentDestination": {
+            "title": "Hamburg Hbf",
+            "id": "8002549"
+          },
           "stops": [
             {
               "station": {
                 "id": "8000128",
                 "title": "Göttingen",
-                "coordinates": { "lng": 9.926257, "lat": 51.536758 }
+                "coordinates": {
+                  "lng": 9.926257,
+                  "lat": 51.536758
+                }
               },
               "departure": {
                 "platform": "9",
-                "scheduledTime": 1581877080000,
-                "time": 1581877080000,
+                "scheduledTime": "2020-02-16T18:18:00.000Z",
+                "time": "2020-02-16T18:18:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 3, "second": 2 }
+              "auslastung": {
+                "first": 3,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000152",
                 "title": "Hannover Hbf",
-                "coordinates": { "lng": 9.741763, "lat": 52.377079 }
+                "coordinates": {
+                  "lng": 9.741763,
+                  "lat": 52.377079
+                }
               },
               "arrival": {
                 "platform": "7",
-                "scheduledTime": 1581879360000,
-                "time": 1581879360000,
+                "scheduledTime": "2020-02-16T18:56:00.000Z",
+                "time": "2020-02-16T18:56:00.000Z",
                 "reihung": true
               },
               "departure": {
                 "platform": "7",
-                "scheduledTime": 1581879540000,
-                "time": 1581879540000,
+                "scheduledTime": "2020-02-16T18:59:00.000Z",
+                "time": "2020-02-16T18:59:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 2, "second": 2 }
+              "auslastung": {
+                "first": 2,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000064",
                 "title": "Celle",
-                "coordinates": { "lng": 10.062651, "lat": 52.621019 }
+                "coordinates": {
+                  "lng": 10.062651,
+                  "lat": 52.621019
+                }
               },
               "arrival": {
                 "platform": "5",
-                "scheduledTime": 1581880740000,
-                "time": 1581880740000,
+                "scheduledTime": "2020-02-16T19:19:00.000Z",
+                "time": "2020-02-16T19:19:00.000Z",
                 "reihung": true
               },
               "departure": {
                 "platform": "5",
-                "scheduledTime": 1581880800000,
-                "time": 1581880800000,
+                "scheduledTime": "2020-02-16T19:20:00.000Z",
+                "time": "2020-02-16T19:20:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 1, "second": 2 }
+              "auslastung": {
+                "first": 1,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000168",
                 "title": "Uelzen",
-                "coordinates": { "lng": 10.553246, "lat": 52.96998 }
+                "coordinates": {
+                  "lng": 10.553246,
+                  "lat": 52.96998
+                }
               },
               "arrival": {
                 "platform": "102",
-                "scheduledTime": 1581882000000,
-                "time": 1581882000000,
+                "scheduledTime": "2020-02-16T19:40:00.000Z",
+                "time": "2020-02-16T19:40:00.000Z",
                 "reihung": true
               },
               "departure": {
                 "platform": "102",
-                "scheduledTime": 1581882120000,
-                "time": 1581882120000,
+                "scheduledTime": "2020-02-16T19:42:00.000Z",
+                "time": "2020-02-16T19:42:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 1, "second": 2 }
+              "auslastung": {
+                "first": 1,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000238",
                 "title": "Lüneburg",
-                "coordinates": { "lng": 10.419873, "lat": 53.249742 }
+                "coordinates": {
+                  "lng": 10.419873,
+                  "lat": 53.249742
+                }
               },
               "arrival": {
                 "platform": "2",
-                "scheduledTime": 1581882960000,
-                "time": 1581882960000,
+                "scheduledTime": "2020-02-16T19:56:00.000Z",
+                "time": "2020-02-16T19:56:00.000Z",
                 "reihung": true
               },
               "departure": {
                 "platform": "2",
-                "scheduledTime": 1581883080000,
-                "time": 1581883080000,
+                "scheduledTime": "2020-02-16T19:58:00.000Z",
+                "time": "2020-02-16T19:58:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 1, "second": 2 }
+              "auslastung": {
+                "first": 1,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000147",
                 "title": "Hamburg-Harburg",
-                "coordinates": { "lng": 9.991591, "lat": 53.456198 }
+                "coordinates": {
+                  "lng": 9.991591,
+                  "lat": 53.456198
+                }
               },
               "arrival": {
                 "platform": "1",
-                "scheduledTime": 1581884160000,
-                "time": 1581884160000,
+                "scheduledTime": "2020-02-16T20:16:00.000Z",
+                "time": "2020-02-16T20:16:00.000Z",
                 "reihung": true
               }
             },
@@ -3083,19 +3734,25 @@
               "station": {
                 "id": "8002549",
                 "title": "Hamburg Hbf",
-                "coordinates": { "lng": 10.00636, "lat": 53.553533 }
+                "coordinates": {
+                  "lng": 10.00636,
+                  "lat": 53.553533
+                }
               },
               "arrival": {
                 "platform": "12",
-                "scheduledTime": 1581884940000,
-                "time": 1581884940000,
+                "scheduledTime": "2020-02-16T20:29:00.000Z",
+                "time": "2020-02-16T20:29:00.000Z",
                 "reihung": true
               }
             }
           ],
           "finalDestination": "Hamburg-Altona",
           "jid": "1|219640|0|80|16022020",
-          "auslastung": { "first": 3, "second": 2 },
+          "auslastung": {
+            "first": 3,
+            "second": 2
+          },
           "messages": [
             {
               "type": "A",
@@ -3129,37 +3786,41 @@
           "type": "JNY"
         }
       ],
-      "segmentTypes": ["ICE", "IC", "ICE"]
+      "segmentTypes": [
+        "ICE",
+        "IC",
+        "ICE"
+      ]
     },
     {
       "checksum": "418cabcb_3",
       "cid": "C-10",
-      "date": 1581807600000,
+      "date": "2020-02-15T23:00:00.000Z",
       "duration": 15180000,
       "changes": 1,
       "isRideable": true,
       "arrival": {
         "platform": "8",
-        "scheduledTime": 1581885180000,
-        "time": 1581885180000
+        "scheduledTime": "2020-02-16T20:33:00.000Z",
+        "time": "2020-02-16T20:33:00.000Z"
       },
       "departure": {
         "platform": "9",
-        "scheduledTime": 1581870000000,
-        "time": 1581870000000
+        "scheduledTime": "2020-02-16T16:20:00.000Z",
+        "time": "2020-02-16T16:20:00.000Z"
       },
       "segments": [
         {
           "arrival": {
             "platform": "7",
-            "scheduledTime": 1581873120000,
-            "time": 1581873120000,
+            "scheduledTime": "2020-02-16T17:12:00.000Z",
+            "time": "2020-02-16T17:12:00.000Z",
             "reihung": true
           },
           "departure": {
             "platform": "9",
-            "scheduledTime": 1581870000000,
-            "time": 1581870000000,
+            "scheduledTime": "2020-02-16T16:20:00.000Z",
+            "time": "2020-02-16T16:20:00.000Z",
             "reihung": true
           },
           "duration": 3120000,
@@ -3184,43 +3845,64 @@
             "admin": "80____",
             "number": "1655",
             "type": "ICE",
-            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+            "operator": {
+              "name": "DB Fernverkehr AG",
+              "icoX": 2
+            }
           },
           "changeDuration": 15,
-          "segmentStart": { "title": "Frankfurt(Main)Hbf", "id": "8000105" },
-          "segmentDestination": { "title": "Fulda", "id": "8000115" },
+          "segmentStart": {
+            "title": "Frankfurt(Main)Hbf",
+            "id": "8000105"
+          },
+          "segmentDestination": {
+            "title": "Fulda",
+            "id": "8000115"
+          },
           "stops": [
             {
               "station": {
                 "id": "8000105",
                 "title": "Frankfurt(Main)Hbf",
-                "coordinates": { "lng": 8.663003, "lat": 50.106817 }
+                "coordinates": {
+                  "lng": 8.663003,
+                  "lat": 50.106817
+                }
               },
               "departure": {
                 "platform": "9",
-                "scheduledTime": 1581870000000,
-                "time": 1581870000000,
+                "scheduledTime": "2020-02-16T16:20:00.000Z",
+                "time": "2020-02-16T16:20:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 1, "second": 2 }
+              "auslastung": {
+                "first": 1,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000115",
                 "title": "Fulda",
-                "coordinates": { "lng": 9.684178, "lat": 50.554794 }
+                "coordinates": {
+                  "lng": 9.684178,
+                  "lat": 50.554794
+                }
               },
               "arrival": {
                 "platform": "7",
-                "scheduledTime": 1581873120000,
-                "time": 1581873120000,
+                "scheduledTime": "2020-02-16T17:12:00.000Z",
+                "time": "2020-02-16T17:12:00.000Z",
                 "reihung": true
               }
             }
           ],
           "finalDestination": "Dresden Hbf",
           "jid": "1|220034|0|80|16022020",
-          "auslastung": { "first": 1, "second": 2 },
+          "auslastung": {
+            "first": 1,
+            "second": 2
+          },
           "messages": [
             {
               "type": "A",
@@ -3256,14 +3938,14 @@
         {
           "arrival": {
             "platform": "8",
-            "scheduledTime": 1581885180000,
-            "time": 1581885180000,
+            "scheduledTime": "2020-02-16T20:33:00.000Z",
+            "time": "2020-02-16T20:33:00.000Z",
             "reihung": true
           },
           "departure": {
             "platform": "6",
-            "scheduledTime": 1581874020000,
-            "time": 1581874020000,
+            "scheduledTime": "2020-02-16T17:27:00.000Z",
+            "time": "2020-02-16T17:27:00.000Z",
             "reihung": true
           },
           "duration": 11160000,
@@ -3286,21 +3968,33 @@
                 "admin": "80____",
                 "number": "984",
                 "type": "ICE",
-                "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+                "operator": {
+                  "name": "DB Fernverkehr AG",
+                  "icoX": 2
+                }
               },
-              "segmentStart": { "title": "Fulda", "id": "8000115" },
-              "segmentDestination": { "title": "Hamburg Hbf", "id": "8002549" },
+              "segmentStart": {
+                "title": "Fulda",
+                "id": "8000115"
+              },
+              "segmentDestination": {
+                "title": "Hamburg Hbf",
+                "id": "8002549"
+              },
               "stops": [
                 {
                   "station": {
                     "id": "8000115",
                     "title": "Fulda",
-                    "coordinates": { "lng": 9.684178, "lat": 50.554794 }
+                    "coordinates": {
+                      "lng": 9.684178,
+                      "lat": 50.554794
+                    }
                   },
                   "departure": {
                     "platform": "6",
-                    "scheduledTime": 1581874020000,
-                    "time": 1581874020000,
+                    "scheduledTime": "2020-02-16T17:27:00.000Z",
+                    "time": "2020-02-16T17:27:00.000Z",
                     "reihung": true
                   }
                 },
@@ -3308,12 +4002,15 @@
                   "station": {
                     "id": "8003200",
                     "title": "Kassel-Wilhelmshöhe",
-                    "coordinates": { "lng": 9.446845, "lat": 51.312998 }
+                    "coordinates": {
+                      "lng": 9.446845,
+                      "lat": 51.312998
+                    }
                   },
                   "arrival": {
                     "platform": "3",
-                    "scheduledTime": 1581875880000,
-                    "time": 1581875880000,
+                    "scheduledTime": "2020-02-16T17:58:00.000Z",
+                    "time": "2020-02-16T17:58:00.000Z",
                     "reihung": true
                   }
                 },
@@ -3321,12 +4018,15 @@
                   "station": {
                     "id": "8000128",
                     "title": "Göttingen",
-                    "coordinates": { "lng": 9.926257, "lat": 51.536758 }
+                    "coordinates": {
+                      "lng": 9.926257,
+                      "lat": 51.536758
+                    }
                   },
                   "arrival": {
                     "platform": "9",
-                    "scheduledTime": 1581877320000,
-                    "time": 1581877320000,
+                    "scheduledTime": "2020-02-16T18:22:00.000Z",
+                    "time": "2020-02-16T18:22:00.000Z",
                     "reihung": true
                   }
                 },
@@ -3334,12 +4034,15 @@
                   "station": {
                     "id": "8000152",
                     "title": "Hannover Hbf",
-                    "coordinates": { "lng": 9.741763, "lat": 52.377079 }
+                    "coordinates": {
+                      "lng": 9.741763,
+                      "lat": 52.377079
+                    }
                   },
                   "arrival": {
                     "platform": "8",
-                    "scheduledTime": 1581879540000,
-                    "time": 1581879540000,
+                    "scheduledTime": "2020-02-16T18:59:00.000Z",
+                    "time": "2020-02-16T18:59:00.000Z",
                     "reihung": true
                   }
                 },
@@ -3347,12 +4050,15 @@
                   "station": {
                     "id": "8000238",
                     "title": "Lüneburg",
-                    "coordinates": { "lng": 10.419873, "lat": 53.249742 }
+                    "coordinates": {
+                      "lng": 10.419873,
+                      "lat": 53.249742
+                    }
                   },
                   "arrival": {
                     "platform": "2",
-                    "scheduledTime": 1581883200000,
-                    "time": 1581883200000,
+                    "scheduledTime": "2020-02-16T20:00:00.000Z",
+                    "time": "2020-02-16T20:00:00.000Z",
                     "reihung": true
                   }
                 },
@@ -3360,12 +4066,15 @@
                   "station": {
                     "id": "8000147",
                     "title": "Hamburg-Harburg",
-                    "coordinates": { "lng": 9.991591, "lat": 53.456198 }
+                    "coordinates": {
+                      "lng": 9.991591,
+                      "lat": 53.456198
+                    }
                   },
                   "arrival": {
                     "platform": "1",
-                    "scheduledTime": 1581884460000,
-                    "time": 1581884460000,
+                    "scheduledTime": "2020-02-16T20:21:00.000Z",
+                    "time": "2020-02-16T20:21:00.000Z",
                     "reihung": true
                   }
                 },
@@ -3373,12 +4082,15 @@
                   "station": {
                     "id": "8002549",
                     "title": "Hamburg Hbf",
-                    "coordinates": { "lng": 10.00636, "lat": 53.553533 }
+                    "coordinates": {
+                      "lng": 10.00636,
+                      "lat": 53.553533
+                    }
                   },
                   "arrival": {
                     "platform": "8",
-                    "scheduledTime": 1581885180000,
-                    "time": 1581885180000,
+                    "scheduledTime": "2020-02-16T20:33:00.000Z",
+                    "time": "2020-02-16T20:33:00.000Z",
                     "reihung": true
                   }
                 }
@@ -3420,121 +4132,163 @@
             "admin": "80____",
             "number": "584",
             "type": "ICE",
-            "operator": { "name": "DB Fernverkehr AG", "icoX": 2 }
+            "operator": {
+              "name": "DB Fernverkehr AG",
+              "icoX": 2
+            }
           },
-          "segmentStart": { "title": "Fulda", "id": "8000115" },
-          "segmentDestination": { "title": "Hamburg Hbf", "id": "8002549" },
+          "segmentStart": {
+            "title": "Fulda",
+            "id": "8000115"
+          },
+          "segmentDestination": {
+            "title": "Hamburg Hbf",
+            "id": "8002549"
+          },
           "stops": [
             {
               "station": {
                 "id": "8000115",
                 "title": "Fulda",
-                "coordinates": { "lng": 9.684178, "lat": 50.554794 }
+                "coordinates": {
+                  "lng": 9.684178,
+                  "lat": 50.554794
+                }
               },
               "departure": {
                 "platform": "6",
-                "scheduledTime": 1581874020000,
-                "time": 1581874020000,
+                "scheduledTime": "2020-02-16T17:27:00.000Z",
+                "time": "2020-02-16T17:27:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 1, "second": 3 }
+              "auslastung": {
+                "first": 1,
+                "second": 3
+              }
             },
             {
               "station": {
                 "id": "8003200",
                 "title": "Kassel-Wilhelmshöhe",
-                "coordinates": { "lng": 9.446845, "lat": 51.312998 }
+                "coordinates": {
+                  "lng": 9.446845,
+                  "lat": 51.312998
+                }
               },
               "arrival": {
                 "platform": "3",
-                "scheduledTime": 1581875880000,
-                "time": 1581875880000,
+                "scheduledTime": "2020-02-16T17:58:00.000Z",
+                "time": "2020-02-16T17:58:00.000Z",
                 "reihung": true
               },
               "departure": {
                 "platform": "3",
-                "scheduledTime": 1581876000000,
-                "time": 1581876000000,
+                "scheduledTime": "2020-02-16T18:00:00.000Z",
+                "time": "2020-02-16T18:00:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 1, "second": 2 }
+              "auslastung": {
+                "first": 1,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000128",
                 "title": "Göttingen",
-                "coordinates": { "lng": 9.926257, "lat": 51.536758 }
+                "coordinates": {
+                  "lng": 9.926257,
+                  "lat": 51.536758
+                }
               },
               "arrival": {
                 "platform": "9",
-                "scheduledTime": 1581877320000,
-                "time": 1581877320000,
+                "scheduledTime": "2020-02-16T18:22:00.000Z",
+                "time": "2020-02-16T18:22:00.000Z",
                 "reihung": true
               },
               "departure": {
                 "platform": "9",
-                "scheduledTime": 1581877380000,
-                "time": 1581877380000,
+                "scheduledTime": "2020-02-16T18:23:00.000Z",
+                "time": "2020-02-16T18:23:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 1, "second": 2 }
+              "auslastung": {
+                "first": 1,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000152",
                 "title": "Hannover Hbf",
-                "coordinates": { "lng": 9.741763, "lat": 52.377079 }
+                "coordinates": {
+                  "lng": 9.741763,
+                  "lat": 52.377079
+                }
               },
               "arrival": {
                 "platform": "8",
-                "scheduledTime": 1581879540000,
-                "time": 1581879540000,
+                "scheduledTime": "2020-02-16T18:59:00.000Z",
+                "time": "2020-02-16T18:59:00.000Z",
                 "reihung": true
               },
               "departure": {
                 "platform": "8",
-                "scheduledTime": 1581879780000,
-                "time": 1581879780000,
+                "scheduledTime": "2020-02-16T19:03:00.000Z",
+                "time": "2020-02-16T19:03:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 1, "second": 2 }
+              "auslastung": {
+                "first": 1,
+                "second": 2
+              }
             },
             {
               "station": {
                 "id": "8000238",
                 "title": "Lüneburg",
-                "coordinates": { "lng": 10.419873, "lat": 53.249742 }
+                "coordinates": {
+                  "lng": 10.419873,
+                  "lat": 53.249742
+                }
               },
               "arrival": {
                 "platform": "2",
-                "scheduledTime": 1581883200000,
-                "time": 1581883200000,
+                "scheduledTime": "2020-02-16T20:00:00.000Z",
+                "time": "2020-02-16T20:00:00.000Z",
                 "reihung": true
               },
               "departure": {
                 "platform": "2",
-                "scheduledTime": 1581883320000,
-                "time": 1581883320000,
+                "scheduledTime": "2020-02-16T20:02:00.000Z",
+                "time": "2020-02-16T20:02:00.000Z",
                 "reihung": true
               },
-              "auslastung": { "first": 1, "second": 1 }
+              "auslastung": {
+                "first": 1,
+                "second": 1
+              }
             },
             {
               "station": {
                 "id": "8000147",
                 "title": "Hamburg-Harburg",
-                "coordinates": { "lng": 9.991591, "lat": 53.456198 }
+                "coordinates": {
+                  "lng": 9.991591,
+                  "lat": 53.456198
+                }
               },
               "arrival": {
                 "platform": "1",
-                "scheduledTime": 1581884460000,
-                "time": 1581884460000,
+                "scheduledTime": "2020-02-16T20:21:00.000Z",
+                "time": "2020-02-16T20:21:00.000Z",
                 "reihung": true
               },
               "departure": {
                 "platform": "1",
-                "scheduledTime": 1581884580000,
-                "time": 1581884580000,
+                "scheduledTime": "2020-02-16T20:23:00.000Z",
+                "time": "2020-02-16T20:23:00.000Z",
                 "reihung": true
               }
             },
@@ -3542,19 +4296,25 @@
               "station": {
                 "id": "8002549",
                 "title": "Hamburg Hbf",
-                "coordinates": { "lng": 10.00636, "lat": 53.553533 }
+                "coordinates": {
+                  "lng": 10.00636,
+                  "lat": 53.553533
+                }
               },
               "arrival": {
                 "platform": "8",
-                "scheduledTime": 1581885180000,
-                "time": 1581885180000,
+                "scheduledTime": "2020-02-16T20:33:00.000Z",
+                "time": "2020-02-16T20:33:00.000Z",
                 "reihung": true
               }
             }
           ],
           "finalDestination": "Lübeck Hbf",
           "jid": "1|223613|0|80|16022020",
-          "auslastung": { "first": 1, "second": 3 },
+          "auslastung": {
+            "first": 1,
+            "second": 3
+          },
           "messages": [
             {
               "type": "A",
@@ -3574,7 +4334,10 @@
           "type": "JNY"
         }
       ],
-      "segmentTypes": ["ICE", "ICE"]
+      "segmentTypes": [
+        "ICE",
+        "ICE"
+      ]
     }
   ]
 }

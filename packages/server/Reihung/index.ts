@@ -17,12 +17,12 @@ import type {
   Wagenreihung,
 } from 'types/reihung';
 
-const formatDate = (date: number) =>
+const formatDate = (date: Date) =>
   format(utcToZonedTime(date, 'Europe/Berlin'), 'yyyyMMddHHmm');
 
 // https://ist-wr.noncd.db.de/wagenreihung/1.0/
 // https://www.apps-bahn.de/wr/wagenreihung/1.0/
-export const getWRLink = (trainNumber: string, date: number): string => {
+export const getWRLink = (trainNumber: string, date: Date): string => {
   return `https://www.apps-bahn.de/wr/wagenreihung/1.0/${trainNumber}/${formatDate(
     date,
   )}`;
@@ -315,7 +315,7 @@ const wrFetchTimeout = process.env.NODE_ENV === 'production' ? 2500 : 10000;
 // https://www.apps-bahn.de/wr/wagenreihung/1.0/6/201802021930
 export async function wagenreihung(
   trainNumber: string,
-  date: number,
+  date: Date,
   retry = 2,
 ): Promise<Formation> {
   let info: Wagenreihung;
@@ -472,7 +472,7 @@ export async function wagenreihung(
   return enrichedFormation;
 }
 
-function wagenReihungSpecificMonitoring(id: string, departure: number) {
+function wagenReihungSpecificMonitoring(id: string, departure: Date) {
   return wagenreihung(id, departure);
 }
 

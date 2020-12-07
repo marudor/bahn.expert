@@ -4,7 +4,7 @@ import type { ParsedProduct, TrnCmpSX } from 'types/HAFAS';
 const allowdTypes = ['ICE', 'IC', 'TGV', 'EC', 'ECE', 'RJ', 'D'];
 
 export default (
-  scheduledTime: number,
+  scheduledTime: Date,
   trnCmpSX?: TrnCmpSX,
   train?: ParsedProduct,
 ): boolean | undefined => {

@@ -6,13 +6,13 @@ import type { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
 
 export async function getDetails(
   train: string,
-  initialDeparture?: string,
+  initialDeparture?: Date,
   stop?: string,
   stationId?: string,
   profile?: AllowedHafasProfile,
 ): Promise<ParsedSearchOnTripResponse> {
   const r = await Axios.get<ParsedSearchOnTripResponse>(
-    `/api/hafas/v1/details/${train}`,
+    `/api/hafas/v2/details/${train}`,
     {
       params: {
         stop,
@@ -30,7 +30,7 @@ const journeyMatchCacnelTokens: { [key: string]: Canceler } = {};
 
 export async function journeyMatch(
   trainName: string,
-  initialDepartureDate?: number,
+  initialDepartureDate?: Date,
   profile?: AllowedHafasProfile,
   cancelIdent?: string,
 ): Promise<ParsedJourneyMatchResponse[]> {
@@ -43,7 +43,7 @@ export async function journeyMatch(
     });
   }
   const r = await Axios.post<ParsedJourneyMatchResponse[]>(
-    '/api/hafas/v1/enrichedJourneyMatch',
+    '/api/hafas/v2/enrichedJourneyMatch',
     {
       trainName,
       initialDepartureDate,

@@ -19,7 +19,10 @@
             "startprozent": "95"
           },
           "status": "OFFEN",
-          "additionalInfo": { "klasse": 4, "icons": {} }
+          "additionalInfo": {
+            "klasse": 4,
+            "icons": {}
+          }
         },
         {
           "allFahrzeugausstattung": [
@@ -58,7 +61,10 @@
           "status": "OFFEN",
           "additionalInfo": {
             "klasse": 1,
-            "icons": { "quiet": true, "disabled": true },
+            "icons": {
+              "quiet": true,
+              "disabled": true
+            },
             "disabledSeats": "12, 21"
           }
         },
@@ -135,7 +141,11 @@
           "status": "OFFEN",
           "additionalInfo": {
             "klasse": 2,
-            "icons": { "dining": true, "info": true, "wheelchair": true }
+            "icons": {
+              "dining": true,
+              "info": true,
+              "wheelchair": true
+            }
           }
         },
         {
@@ -267,7 +277,12 @@
             "startprozent": "56"
           },
           "status": "OFFEN",
-          "additionalInfo": { "klasse": 2, "icons": { "quiet": true } }
+          "additionalInfo": {
+            "klasse": 2,
+            "icons": {
+              "quiet": true
+            }
+          }
         },
         {
           "allFahrzeugausstattung": [
@@ -292,7 +307,10 @@
             "startprozent": "50"
           },
           "status": "OFFEN",
-          "additionalInfo": { "klasse": 2, "icons": {} }
+          "additionalInfo": {
+            "klasse": 2,
+            "icons": {}
+          }
         }
       ],
       "fahrzeuggruppebezeichnung": "ICE0242",
@@ -329,7 +347,10 @@
             "startprozent": "45"
           },
           "status": "OFFEN",
-          "additionalInfo": { "klasse": 4, "icons": {} }
+          "additionalInfo": {
+            "klasse": 4,
+            "icons": {}
+          }
         },
         {
           "allFahrzeugausstattung": [
@@ -368,7 +389,10 @@
           "status": "OFFEN",
           "additionalInfo": {
             "klasse": 1,
-            "icons": { "quiet": true, "disabled": true },
+            "icons": {
+              "quiet": true,
+              "disabled": true
+            },
             "disabledSeats": "12, 21"
           }
         },
@@ -445,7 +469,11 @@
           "status": "OFFEN",
           "additionalInfo": {
             "klasse": 2,
-            "icons": { "dining": true, "info": true, "wheelchair": true }
+            "icons": {
+              "dining": true,
+              "info": true,
+              "wheelchair": true
+            }
           }
         },
         {
@@ -577,7 +605,12 @@
             "startprozent": "6"
           },
           "status": "OFFEN",
-          "additionalInfo": { "klasse": 2, "icons": { "quiet": true } }
+          "additionalInfo": {
+            "klasse": 2,
+            "icons": {
+              "quiet": true
+            }
+          }
         },
         {
           "allFahrzeugausstattung": [
@@ -602,7 +635,10 @@
             "startprozent": "-0"
           },
           "status": "OFFEN",
-          "additionalInfo": { "klasse": 2, "icons": {} }
+          "additionalInfo": {
+            "klasse": 2,
+            "icons": {}
+          }
         }
       ],
       "fahrzeuggruppebezeichnung": "ICE0239",

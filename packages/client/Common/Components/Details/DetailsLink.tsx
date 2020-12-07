@@ -7,7 +7,7 @@ import type { FC } from 'react';
 interface Props {
   train: CommonProductInfo;
   stationId?: string;
-  initialDeparture: number;
+  initialDeparture: Date;
   urlPrefix?: string;
 }
 export const DetailsLink: FC<Props> = ({
@@ -21,7 +21,7 @@ export const DetailsLink: FC<Props> = ({
     onClick={stopPropagation}
     to={`${urlPrefix}details/${train.type} ${
       train.number
-    }/${initialDeparture}${qs.stringify(
+    }/${initialDeparture.toISOString()}${qs.stringify(
       {
         station: stationId,
       },

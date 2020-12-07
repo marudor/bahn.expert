@@ -1,4 +1,4 @@
-import { isBefore } from 'date-fns';
+import { addMinutes, isBefore } from 'date-fns';
 import { stopPropagation } from 'client/Common/stopPropagation';
 import { Tooltip } from '@material-ui/core';
 import { Train } from '@material-ui/icons';
@@ -14,9 +14,6 @@ interface Props {
   className?: string;
 }
 
-// 30 Minutes in ms
-const timeConstraint = 30 * 60 * 1000;
-
 export const TravelynxLink: FC<Props> = ({
   departure,
   arrival,
@@ -28,7 +25,7 @@ export const TravelynxLink: FC<Props> = ({
   !departure.cancelled &&
   isBefore(
     arrival ? arrival.scheduledTime : departure.scheduledTime,
-    Date.now() + timeConstraint,
+    addMinutes(Date.now(), 30),
   ) ? (
     <Tooltip title="travelynx">
       <a

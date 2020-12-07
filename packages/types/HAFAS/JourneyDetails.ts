@@ -41,20 +41,22 @@ export interface JourneyDetailsRequest {
   meth: 'JourneyDetails';
 }
 
-export interface Route$ValidArrivalStop extends Route$Stop {
-  arrival: CommonStopInfo;
+export interface Route$ValidArrivalStop<DateType = Date>
+  extends Route$Stop<DateType> {
+  arrival: CommonStopInfo<DateType>;
 }
 
-export interface Route$ValidDepartureStop extends Route$Stop {
-  departure: CommonStopInfo;
+export interface Route$ValidDepartureStop<DateType = Date>
+  extends Route$Stop<DateType> {
+  departure: CommonStopInfo<DateType>;
 }
 
-export interface ParsedJourneyDetails {
+export interface ParsedJourneyDetails<DateType = Date> {
   train: ParsedProduct;
   auslastung?: Route$Auslastung;
   jid: string;
-  firstStop: Route$ValidDepartureStop;
-  lastStop: Route$ValidArrivalStop;
-  stops: Route$Stop[];
+  firstStop: Route$ValidDepartureStop<DateType>;
+  lastStop: Route$ValidArrivalStop<DateType>;
+  stops: Route$Stop<DateType>[];
   messages?: RemL[];
 }

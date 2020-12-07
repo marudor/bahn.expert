@@ -1,5 +1,5 @@
+import { differenceInMilliseconds, parse } from 'date-fns';
 import { getPlannedSequence } from 'server/Reihung/plan';
-import { parse } from 'date-fns';
 import mergeSegments from 'server/HAFAS/TripSearch/mergeSegments';
 import parseAuslastung from '../helper/parseAuslastung';
 import parseCommonArrival from '../helper/parseCommonArrival';
@@ -104,7 +104,7 @@ export class Journey {
     this.journey = {
       checksum: raw.cksum,
       cid: raw.cid,
-      date: this.date.getTime(),
+      date: this.date,
       duration: parseDuration(raw.dur),
       changes: raw.chg,
       isRideable: !raw.isNotRdbl,
@@ -166,7 +166,10 @@ export class Journey {
           duration:
             arrival.scheduledTime &&
             departure.scheduledTime &&
-            arrival.scheduledTime - departure.scheduledTime,
+            differenceInMilliseconds(
+              arrival.scheduledTime,
+              departure.scheduledTime,
+            ),
           wings: t.parJnyL
             ? t.parJnyL.map(this.parseSegmentJourney)
             : undefined,

@@ -194,19 +194,13 @@ export interface CommonProductInfo {
   operator?: OpL;
   admin?: string;
 }
-export interface CommonStopInfo {
+export interface CommonStopInfo<DateType = Date> {
   scheduledPlatform?: string;
   platform?: string;
+  scheduledTime: DateType;
+  time: DateType;
   /**
-   * Unix Time (ms)
-   */
-  scheduledTime: number;
-  /**
-   * Unix Time (ms)
-   */
-  time: number;
-  /**
-   * Minutes
+   * @isInt
    */
   delay?: number;
   reihung?: boolean;

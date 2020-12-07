@@ -128,7 +128,7 @@ export const Zugsuche: FC<Props> = ({ children }) => {
               <div className={classes.inputWrapper}>
                 <ZugsucheAutocomplete
                   onChange={setMatch}
-                  initialDeparture={date?.getTime()}
+                  initialDeparture={date || undefined}
                 />
                 <Train className={classes.icon} />
               </div>

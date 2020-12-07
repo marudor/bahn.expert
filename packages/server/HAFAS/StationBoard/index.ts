@@ -10,7 +10,7 @@ import type {
 import type { StationBoardRequest } from 'types/HAFAS/StationBoard';
 
 interface Options {
-  date?: number;
+  date?: Date;
   direction?: string;
   station: string;
   type: 'ARR' | 'DEP';
@@ -27,7 +27,7 @@ function stationBoard(
   raw?: boolean,
 ): Promise<DepartureStationBoardEntry[]>;
 function stationBoard(
-  { station, date = Date.now(), type, direction, filter }: Options,
+  { station, date = new Date(), type, direction, filter }: Options,
   profile?: AllowedHafasProfile,
   raw?: boolean,
 ): Promise<StationBoardEntry[]> {

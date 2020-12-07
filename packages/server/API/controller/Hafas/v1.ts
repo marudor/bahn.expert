@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Deprecated,
   Get,
   Hidden,
   OperationId,
@@ -11,6 +12,7 @@ import {
   Route,
   Tags,
 } from 'tsoa';
+import { convertDateToEpoch } from 'server/API/controller/Hafas/convertDateToEpoch';
 import Auslastung from 'server/HAFAS/Auslastung';
 import Detail from 'server/HAFAS/Detail';
 import JourneyDetails from 'server/HAFAS/JourneyDetails';
@@ -23,10 +25,6 @@ import PositionForTrain from 'server/HAFAS/PositionForTrain';
 import SearchOnTrip from 'server/HAFAS/SearchOnTrip';
 import StationBoard from 'server/HAFAS/StationBoard';
 import type { AllowedHafasProfile, HafasStation } from 'types/HAFAS';
-import type {
-  AllowedSotMode,
-  ParsedSearchOnTripResponse,
-} from 'types/HAFAS/SearchOnTrip';
 import type {
   ArrivalStationBoardEntry,
   DepartureStationBoardEntry,
@@ -41,32 +39,36 @@ import type {
   ParsedJourneyMatchResponse,
 } from 'types/HAFAS/JourneyMatch';
 import type { ParsedJourneyDetails } from 'types/HAFAS/JourneyDetails';
+import type { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
+import type { SearchOnTripBody } from 'server/API/controller/Hafas/v2';
 import type { SingleRoute } from 'types/routing';
-
-interface SearchOnTripBody {
-  sotMode: AllowedSotMode;
-  id: string;
-}
 
 @Route('/hafas/v1')
 export class HafasController extends Controller {
   @Get('/journeyDetails')
   @Tags('HAFAS')
-  journeyDetails(
+  @Deprecated()
+  @OperationId('JourneyDetails v1')
+  async journeyDetailsv1(
     @Query() jid: string,
     @Request() ctx: Context,
     @Query() profile?: AllowedHafasProfile,
-  ): Promise<ParsedJourneyDetails> {
-    return JourneyDetails(jid, profile, ctx.query.raw);
+  ): Promise<ParsedJourneyDetails<number>> {
+    const v2Details = await JourneyDetails(jid, profile, ctx.query.raw);
+    convertDateToEpoch(v2Details);
+    // @ts-expect-error we just converted!
+    return v2Details;
   }
 
   @Post('/searchOnTrip')
   @Tags('HAFAS')
-  searchOnTrip(
+  @Deprecated()
+  @OperationId('Search on Trip v1')
+  async searchOnTrip(
     @Body() body: SearchOnTripBody,
     @Request() ctx: Context,
     @Query() profile?: AllowedHafasProfile,
-  ): Promise<SingleRoute> {
+  ): Promise<SingleRoute<number>> {
     const { sotMode, id } = body;
     let req;
 
@@ -82,12 +84,17 @@ export class HafasController extends Controller {
       };
     }
 
-    return SearchOnTrip(req, profile, ctx.query.raw);
+    const result = await SearchOnTrip(req, profile, ctx.query.raw);
+    convertDateToEpoch(result);
+    // @ts-expect-error we just converted!
+    return result;
   }
 
   @Response(404, 'Train not found')
   @Get('/details/{trainName}')
   @Tags('HAFAS')
+  @Deprecated()
+  @OperationId('Details v1')
   async details(
     trainName: string,
     /**
@@ -103,21 +110,30 @@ export class HafasController extends Controller {
      */
     @Query() date?: number,
     @Query() profile?: AllowedHafasProfile,
-  ): Promise<ParsedSearchOnTripResponse> {
-    const details = await Detail(trainName, stop, station, date, profile);
+  ): Promise<ParsedSearchOnTripResponse<number>> {
+    const details = await Detail(
+      trainName,
+      stop,
+      station,
+      date ? new Date(date) : undefined,
+      profile,
+    );
 
     if (!details) {
       throw {
         status: 404,
       };
     }
-
-    return details;
+    convertDateToEpoch(details);
+    // @ts-expect-error we just converted
+    return details as ParsedSearchOnTripResponse<number>;
   }
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   @Get('/auslastung/{start}/{destination}/{trainNumber}/{time}')
   @Tags('HAFAS')
+  @Deprecated()
+  @OperationId('Auslastung v1')
   auslastung(
     start: string,
     destination: string,
@@ -127,12 +143,14 @@ export class HafasController extends Controller {
      */
     time: number,
   ) {
-    return Auslastung(start, destination, trainNumber, time);
+    return Auslastung(start, destination, trainNumber, new Date(time));
   }
 
   @Get('/arrivalStationBoard')
   @Tags('HAFAS')
-  arrivalStationBoard(
+  @Deprecated()
+  @OperationId('Arrival Station Board v1')
+  async arrivalStationBoard(
     @Request() ctx: Context,
     /**
      * EvaId
@@ -143,21 +161,26 @@ export class HafasController extends Controller {
      */
     @Query() date?: number,
     @Query() profile?: AllowedHafasProfile,
-  ): Promise<ArrivalStationBoardEntry[]> {
-    return StationBoard(
+  ): Promise<ArrivalStationBoardEntry<number>[]> {
+    const board = await StationBoard(
       {
         station,
-        date,
+        date: date ? new Date(date) : undefined,
         type: 'ARR',
       },
       profile,
       ctx.query.raw,
     );
+    convertDateToEpoch(board);
+    // @ts-expect-error just converted
+    return board;
   }
 
   @Get('/departureStationBoard')
   @Tags('HAFAS')
-  departureStationBoard(
+  @Deprecated()
+  @OperationId('Departure Station Board v1')
+  async departureStationBoard(
     @Request() ctx: Context,
     /**
      * EvaId
@@ -172,28 +195,44 @@ export class HafasController extends Controller {
      */
     @Query() date?: number,
     @Query() profile?: AllowedHafasProfile,
-  ): Promise<DepartureStationBoardEntry[]> {
-    return StationBoard(
+  ): Promise<DepartureStationBoardEntry<number>[]> {
+    const board = await StationBoard(
       {
         station,
-        date,
+        date: date ? new Date(date) : undefined,
         direction,
         type: 'DEP',
       },
       profile,
       ctx.query.raw,
     );
+    convertDateToEpoch(board);
+    // @ts-expect-error just converted
+    return board;
   }
 
   @Post('/journeyMatch')
   @Tags('HAFAS')
-  @OperationId('JourneyMatch')
-  postJourneyMatch(
+  @OperationId('Journey Match v1')
+  @Deprecated()
+  async postJourneyMatch(
     @Request() ctx: Context,
-    @Body() options: JourneyMatchOptions,
+    @Body() options: JourneyMatchOptions<number>,
     @Query() profile?: AllowedHafasProfile,
-  ): Promise<ParsedJourneyMatchResponse[]> {
-    return JourneyMatch(options, profile, ctx.query.raw);
+  ): Promise<ParsedJourneyMatchResponse<number>[]> {
+    const match = await JourneyMatch(
+      {
+        ...options,
+        initialDepartureDate: options.initialDepartureDate
+          ? new Date(options.initialDepartureDate)
+          : undefined,
+      },
+      profile,
+      ctx.query.raw,
+    );
+    convertDateToEpoch(match);
+    // @ts-expect-error just converted
+    return match;
   }
 
   @Post('/enrichedJourneyMatch')
@@ -207,6 +246,7 @@ export class HafasController extends Controller {
 
   @Get('/geoStation')
   @Tags('HAFAS')
+  @OperationId('Geo Station v1')
   geoStation(
     @Request() ctx: Context,
     @Query() lat: number,
@@ -225,6 +265,7 @@ export class HafasController extends Controller {
 
   @Get('/station/{searchTerm}')
   @Tags('HAFAS')
+  @Hidden()
   station(
     @Request() ctx: Context,
     searchTerm: string,
@@ -236,6 +277,7 @@ export class HafasController extends Controller {
 
   @Post('/journeyGeoPos')
   @Tags('HAFAS')
+  @OperationId('Journey Geo Position v1')
   journeyGeoPos(
     @Request() ctx: Context,
     @Body() body: JourneyGeoPosOptions,
@@ -246,6 +288,7 @@ export class HafasController extends Controller {
 
   @Get('/positionForTrain/{trainName}')
   @Tags('HAFAS')
+  @OperationId('Position for Train v1')
   async positionForTrain(
     trainName: string,
     @Query() profile?: AllowedHafasProfile,

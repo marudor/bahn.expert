@@ -15,7 +15,7 @@ export const BahnhofsAbfahrten: FC = () => {
 
   return (
     <AuslastungsProvider>
-      <AbfahrtenProvider urlPrefix="/" fetchApiUrl="/api/iris/v1/abfahrten">
+      <AbfahrtenProvider urlPrefix="/" fetchApiUrl="/api/iris/v2/abfahrten">
         <FavProvider storageKey="favs" MostUsedComponent={MostUsed}>
           <MainWrap noHeader={Boolean(noHeader)}>
             {!noHeader && <Header />}

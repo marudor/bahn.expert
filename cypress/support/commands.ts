@@ -45,7 +45,7 @@ function mockStation({
   id: string;
 }) {
   cy.route({
-    url: `/api/iris/v1/abfahrten/${id}?lookahead=${lookahead}&lookbehind=${lookbehind}`,
+    url: `/api/iris/v2/abfahrten/${id}?lookahead=${lookahead}&lookbehind=${lookbehind}`,
     delay,
     response: `fixture:abfahrten${fixture}.json`,
   }).route(
