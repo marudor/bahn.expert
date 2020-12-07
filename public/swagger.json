@@ -6365,7 +6365,7 @@
             "description": "No station found"
           }
         },
-        "tags": ["Station V1"],
+        "tags": ["Station"],
         "security": [],
         "parameters": [
           {
@@ -6486,7 +6486,7 @@
             }
           }
         },
-        "tags": ["Station V1"],
+        "tags": ["Station"],
         "security": [],
         "parameters": [
           {
@@ -6645,7 +6645,7 @@
             }
           }
         },
-        "tags": ["Station V1"],
+        "tags": ["Station"],
         "security": [],
         "parameters": [
           {
@@ -7168,7 +7168,7 @@
             }
           }
         },
-        "tags": ["Station V1"],
+        "tags": ["Station"],
         "security": [],
         "parameters": [
           {
@@ -7246,7 +7246,7 @@
             }
           }
         },
-        "tags": ["Station V1"],
+        "tags": ["Station"],
         "security": [],
         "parameters": [
           {

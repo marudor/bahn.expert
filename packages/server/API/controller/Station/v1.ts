@@ -30,7 +30,7 @@ export const validationOverwrite = [
 @Route('/station/v1')
 export class StationController extends Controller {
   @Get('/search/{searchTerm}')
-  @Tags('Station V1')
+  @Tags('Station')
   async searchStation(
     @Request() ctx: Context,
     searchTerm: string,
@@ -45,7 +45,7 @@ export class StationController extends Controller {
   }
 
   @Get('/geoSearch')
-  @Tags('Station V1')
+  @Tags('Station')
   geoSearch(
     @Query() lat: number,
     @Query() lng: number,
@@ -66,20 +66,20 @@ export class StationController extends Controller {
   }
 
   @Get('/iris/{evaId}')
-  @Tags('Station V1')
+  @Tags('Station')
   irisSearch(evaId: string): Promise<IrisStationWithRelated> {
     return getStation(evaId, 1);
   }
 
   @Get('/station/{evaId}')
-  @Tags('Station V1')
+  @Tags('Station')
   stationDetails(evaId: string): Promise<DetailBusinessHubStation> {
     return stationDetails(evaId);
   }
 
   @Response(400, 'No station found')
   @Get('/ds100/{ds100}')
-  @Tags('Station V1')
+  @Tags('Station')
   async ds100(ds100: string): Promise<Station> {
     const station = await DS100(ds100);
 
