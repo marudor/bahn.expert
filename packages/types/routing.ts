@@ -10,9 +10,9 @@ import type { OutConL, SecL } from './HAFAS/TripSearch';
 import type { PlannedSequence } from 'types/planReihung';
 import type { Station } from './station';
 
-export interface Route$Stop {
-  arrival?: CommonStopInfo;
-  departure?: CommonStopInfo;
+export interface Route$Stop<DateType = Date> {
+  arrival?: CommonStopInfo<DateType>;
+  departure?: CommonStopInfo<DateType>;
   station: Station;
   auslastung?: Route$Auslastung;
   messages?: RemL[];
@@ -40,7 +40,7 @@ export interface Route$Auslastung {
   first?: AuslastungsValue;
   second?: AuslastungsValue;
 }
-export interface Route$Journey {
+export interface Route$Journey<DateType = Date> {
   cancelled?: boolean;
   changeDuration?: number;
   duration?: number;
@@ -50,34 +50,43 @@ export interface Route$Journey {
   raw?: SecL;
   segmentDestination: Station;
   segmentStart: Station;
-  stops: Route$Stop[];
+  stops: Route$Stop<DateType>[];
   train: ParsedProduct;
   auslastung?: Route$Auslastung;
   messages?: RemL[];
   tarifSet?: Route$TarifFareSet[];
   plannedSequence?: PlannedSequence;
 }
-export interface Route$JourneySegmentTrain extends Route$Journey {
+export interface Route$JourneySegmentTrain<DateType = Date>
+  extends Route$Journey<DateType> {
   type: 'JNY';
-  arrival: CommonStopInfo;
-  departure: CommonStopInfo;
-  wings?: Route$Journey[];
+  arrival: CommonStopInfo<DateType>;
+  departure: CommonStopInfo<DateType>;
+  wings?: Route$Journey<DateType>[];
 }
 
-export type WalkStopInfo = Pick<CommonStopInfo, 'time' | 'delay'>;
+export type WalkStopInfo<DateType = Date> = {
+  time: DateType;
+  delay?: number;
+};
 
-export interface Route$JourneySegmentWalk {
+export interface Route$JourneySegmentWalk<DateType = Date> {
   type: 'WALK';
   train: ParsedProduct;
-  arrival: WalkStopInfo;
-  departure: WalkStopInfo;
+  arrival: WalkStopInfo<DateType>;
+  departure: WalkStopInfo<DateType>;
+  /**
+   * @isInt
+   */
   duration: number;
   segmentStart: HafasStation;
   segmentDestination: HafasStation;
 }
 
 export interface Route$TarifFare {
-  /** in Cent */
+  /**
+   * @isInt in Cent
+   */
   price: number;
   moreExpensiveAvailable: boolean;
   bookable: boolean;
@@ -91,14 +100,20 @@ export interface Route$TarifFareSet {
   fares: Route$TarifFare[];
 }
 
-export interface SingleRoute {
-  arrival: CommonStopInfo;
-  departure: CommonStopInfo;
+export interface SingleRoute<DateType = Date> {
+  arrival: CommonStopInfo<DateType>;
+  departure: CommonStopInfo<DateType>;
   isRideable: boolean;
   checksum: string;
   cid: string;
-  date: number;
+  date: DateType;
+  /**
+   * @isInt in ms
+   */
   duration: number;
+  /**
+   * @isInt
+   */
   changes: number;
   segments: Route$JourneySegment[];
   segmentTypes: string[];
@@ -106,8 +121,8 @@ export interface SingleRoute {
   raw?: OutConL;
 }
 
-export interface RoutingResult {
-  routes: SingleRoute[];
+export interface RoutingResult<DateType = Date> {
+  routes: SingleRoute<DateType>[];
   context: {
     earlier: string;
     later: string;

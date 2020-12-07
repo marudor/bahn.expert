@@ -3,7 +3,16 @@ import { Auslastung } from 'client/Abfahrten/Components/Abfahrt/Auslastung';
 import { AuslastungsProvider } from 'client/Abfahrten/provider/AuslastungsProvider';
 import { render } from 'client/__tests__/testHelper';
 import { waitForElementToBeRemoved } from '@testing-library/react';
-import mockAbfahrt from './__fixtures__/mockAbfahrt.json';
+import fs from 'fs';
+import path from 'path';
+import type { Abfahrt } from 'types/iris';
+
+const mockAbfahrt: Abfahrt = global.parseJson(
+  fs.readFileSync(
+    path.resolve(__dirname, '__fixtures__/mockAbfahrt.json'),
+    'utf8',
+  ),
+);
 
 describe('Auslastung', () => {
   const renderAuslastung = () =>
@@ -25,7 +34,11 @@ describe('Auslastung', () => {
     nock
       .get(
         encodeURI(
-          `/api/hafas/v1/auslastung/${mockAbfahrt.currentStation.title}/${mockAbfahrt.destination}/${mockAbfahrt.train.number}/${mockAbfahrt.departure.scheduledTime}`,
+          `/api/hafas/v2/auslastung/${mockAbfahrt.currentStation.title}/${
+            mockAbfahrt.destination
+          }/${
+            mockAbfahrt.train.number
+          }/${mockAbfahrt.departure!.scheduledTime.toISOString()}`,
         ),
       )
       .reply(500);
@@ -39,7 +52,11 @@ describe('Auslastung', () => {
     nock
       .get(
         encodeURI(
-          `/api/hafas/v1/auslastung/${mockAbfahrt.currentStation.title}/${mockAbfahrt.destination}/${mockAbfahrt.train.number}/${mockAbfahrt.departure.scheduledTime}`,
+          `/api/hafas/v2/auslastung/${mockAbfahrt.currentStation.title}/${
+            mockAbfahrt.destination
+          }/${
+            mockAbfahrt.train.number
+          }/${mockAbfahrt.departure!.scheduledTime.toISOString()}`,
         ),
       )
       .reply(200, {

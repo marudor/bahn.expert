@@ -25,13 +25,13 @@ const useStyles = makeStyles({
 });
 
 interface Props {
-  initialDeparture?: number;
+  initialDeparture?: Date;
   onChange: (match: ParsedJourneyMatchResponse | null) => any;
 }
 const itemToString = (j: ParsedJourneyMatchResponse | null) =>
   j?.train.name || '';
 export const ZugsucheAutocomplete: FC<Props> = ({
-  initialDeparture = Date.now(),
+  initialDeparture = new Date(),
   onChange,
 }) => {
   const classes = useStyles();

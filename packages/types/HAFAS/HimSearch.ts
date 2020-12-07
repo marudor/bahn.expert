@@ -57,10 +57,10 @@ export interface HimMessage {
   edgeRefL: number[];
 }
 
-export interface ParsedHimMessage extends HimMessage {
+export interface ParsedHimMessage<DateType = Date> extends HimMessage {
   affectedProducts: ParsedProduct[];
-  startTime: number;
-  endTime: number;
+  startTime: DateType;
+  endTime: DateType;
 }
 
 export interface HimSearchResponse {
@@ -68,6 +68,6 @@ export interface HimSearchResponse {
   msgL: HimMessage[];
 }
 
-export interface ParsedHimSearchResponse {
-  messages: ParsedHimMessage[];
+export interface ParsedHimSearchResponse<DateType = Date> {
+  messages: ParsedHimMessage<DateType>[];
 }

@@ -2,8 +2,8 @@
   "o": "80",
   "initialDeparture": 1563805560000,
   "arrival": {
-    "scheduledTime": 1563806340000,
-    "time": 1563806940000,
+    "scheduledTime": "2019-07-22T14:39:00.000Z",
+    "time": "2019-07-22T14:49:00.000Z",
     "wingIds": [
       "3763871362376381297-1907221626"
     ],
@@ -14,8 +14,8 @@
     "delay": 10
   },
   "departure": {
-    "scheduledTime": 1563806580000,
-    "time": 1563807060000,
+    "scheduledTime": "2019-07-22T14:43:00.000Z",
+    "time": "2019-07-22T14:51:00.000Z",
     "platform": "Fern 7",
     "scheduledPlatform": "Fern 7",
     "hidden": false,

@@ -1,4 +1,15 @@
-import { Body, Controller, Get, Post, Query, Request, Route, Tags } from 'tsoa';
+import {
+  Body,
+  Controller,
+  Get,
+  Hidden,
+  OperationId,
+  Post,
+  Query,
+  Request,
+  Route,
+  Tags,
+} from 'tsoa';
 import HimSearch from 'server/HAFAS/HimSearch';
 import JourneyCourse from 'server/HAFAS/JourneyCourse';
 import JourneyGraph from 'server/HAFAS/JourneyGraph';
@@ -21,6 +32,7 @@ import type { JourneyTreeRequestOptions } from 'types/HAFAS/JourneyTree';
 export class HafasExperimentalController extends Controller {
   @Get('/himMessages')
   @Tags('HAFAS Experimental')
+  @OperationId('Him Messages')
   himMessages(
     @Request() ctx: Context,
     @Query() himIds: string[],
@@ -41,6 +53,7 @@ export class HafasExperimentalController extends Controller {
 
   @Post('/HimSearch')
   @Tags('HAFAS Experimental')
+  @OperationId('Him Search')
   himSearch(
     @Request() ctx: Context,
     @Body() options: HimSearchRequestOptions,
@@ -51,6 +64,7 @@ export class HafasExperimentalController extends Controller {
 
   @Get('/irisCompatibleAbfahrten/{evaId}')
   @Tags('HAFAS Experimental')
+  @Hidden()
   async irisCompatibleAbfahrten(
     evaId: string,
     @Query() profile?: AllowedHafasProfile,
@@ -101,6 +115,7 @@ export class HafasExperimentalController extends Controller {
 
   @Post('/JourneyTree')
   @Tags('HAFAS Experimental')
+  @OperationId('Journey Tree')
   JourneyTree(
     @Body() options: JourneyTreeRequestOptions,
     @Query() profile?: AllowedHafasProfile,
@@ -110,6 +125,7 @@ export class HafasExperimentalController extends Controller {
 
   @Post('/JourneyGraph')
   @Tags('HAFAS Experimental')
+  @OperationId('Journey Graph')
   JourneyGraph(
     @Body() options: JourneyGraphRequestOptions,
     @Query() profile?: AllowedHafasProfile,
@@ -119,6 +135,7 @@ export class HafasExperimentalController extends Controller {
 
   @Post('/JourneyCourse')
   @Tags('HAFAS Experimental')
+  @OperationId('Journey Course')
   JourneyCourse(
     @Request() ctx: Context,
     @Body() options: JourneyCourseRequestOptions,

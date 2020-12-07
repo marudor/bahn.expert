@@ -5,7 +5,7 @@ import type { Formation } from 'types/reihung';
 
 const getPossibleWRs = async (): Promise<string[] | undefined> => {
   try {
-    await Axios.get(getWRLink('1', Date.now()));
+    await Axios.get(getWRLink('1', new Date()));
   } catch (e) {
     const tryThese = e.response?.data?.tryThese;
     if (tryThese && Array.isArray(tryThese)) {
@@ -33,7 +33,7 @@ export const WRForTZ = async (
         console.log(`Check if TZN${TZNumber} is today ${number}`);
         const wr = await wagenreihung(
           number,
-          parse(time, 'yyyyMMddHHmm', Date.now()).getTime(),
+          parse(time, 'yyyyMMddHHmm', Date.now()),
         );
         triedNumbers.push(number);
         if (wr.allFahrzeuggruppe.some((g) => g.tzn === TZNumber)) {
@@ -62,7 +62,7 @@ export const WRForNumber = async (
       try {
         const wr = await wagenreihung(
           trainNumber,
-          parse(time, 'yyyyMMddHHmm', Date.now()).getTime(),
+          parse(time, 'yyyyMMddHHmm', Date.now()),
         );
 
         return wr;

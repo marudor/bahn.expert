@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 import { getDetails } from 'client/Common/service/details';
 import { Header } from './Header';
 import { StopList } from './StopList';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useHeaderTagsActions } from 'client/Common/provider/HeaderTagProvider';
 import { useQuery } from 'client/Common/hooks/useQuery';
 import type { AxiosError } from 'axios';
@@ -30,6 +30,16 @@ export const Details: FC<Props> = ({
   const [error, setError] = useState<AxiosError>();
   const { updateTitle, updateDescription } = useHeaderTagsActions();
 
+  const initialDepartureDate = useMemo(() => {
+    if (!initialDeparture) return undefined;
+    const initialDepartureNumber = +initialDeparture;
+    return new Date(
+      Number.isNaN(initialDepartureNumber)
+        ? initialDeparture
+        : initialDepartureNumber,
+    );
+  }, [initialDeparture]);
+
   useEffect(() => {
     if (details) {
       updateTitle(
@@ -43,20 +53,17 @@ export const Details: FC<Props> = ({
     }
     let description = `Details zu ${train}`;
 
-    if (initialDeparture) {
-      description += ` am ${format(
-        Number.parseInt(initialDeparture, 10),
-        'dd.MM.yyyy',
-      )}`;
+    if (initialDepartureDate) {
+      description += ` am ${format(initialDepartureDate, 'dd.MM.yyyy')}`;
     }
     updateDescription(description);
-  }, [details, initialDeparture, train, updateDescription, updateTitle]);
+  }, [details, initialDepartureDate, train, updateDescription, updateTitle]);
 
   useEffect(() => {
     setDetails(undefined);
     getDetails(
       train,
-      initialDeparture,
+      initialDepartureDate,
       currentStopId,
       stationId,
       query.profile as any,
@@ -68,7 +75,7 @@ export const Details: FC<Props> = ({
       .catch((e) => {
         setError(e);
       });
-  }, [train, initialDeparture, currentStopId, query.profile, stationId]);
+  }, [train, initialDepartureDate, currentStopId, query.profile, stationId]);
 
   return (
     <DetailsContext.Provider

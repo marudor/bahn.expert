@@ -7,7 +7,7 @@ export default async (
   start: string,
   destination: string,
   trainNumber: string,
-  time: number,
+  time: Date,
 ): Promise<Route$Auslastung | undefined> => {
   const startStations = await stationSearch(start, StationSearchType.hafas);
   const destStations = await stationSearch(

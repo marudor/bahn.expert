@@ -68,7 +68,6 @@ export default (
         j.messages?.map((m) => ({
           text: m.txtN,
           head: !m.txtS ? 'Information' : m.txtS,
-          timestamp: 0,
         })) || [],
     },
     platform: j.departure.platform ?? '',

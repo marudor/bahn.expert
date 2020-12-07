@@ -175,7 +175,10 @@ export const Search: FC = () => {
   }, [match.params.destination, setDestination, settings.hafasProfile]);
   useEffect(() => {
     if (match.params.date && match.params.date !== '0') {
-      setDate(new Date(Number.parseInt(match.params.date, 10)));
+      const dateNumber = +match.params.date;
+      setDate(
+        new Date(Number.isNaN(dateNumber) ? match.params.date : dateNumber),
+      );
     }
   }, [match.params.date, setDate]);
   useEffect(() => {

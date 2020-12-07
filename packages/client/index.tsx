@@ -11,6 +11,27 @@ import type { ComponentType } from 'react';
 // 15s timeout
 Axios.defaults.timeout = 15000;
 
+const isoDateRegex = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/;
+Axios.defaults.transformResponse = [
+  (data) => {
+    if (typeof data === 'string') {
+      try {
+        return JSON.parse(data, (_key, value) => {
+          if (typeof value === 'string') {
+            if (isoDateRegex.exec(value)) {
+              return new Date(value);
+            }
+          }
+          return value;
+        });
+      } catch {
+        // Ignoring
+      }
+    }
+    return data;
+  },
+];
+
 const storage = new ClientStorage();
 
 const renderApp = (App: ComponentType) => (

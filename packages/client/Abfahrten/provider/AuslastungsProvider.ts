@@ -12,7 +12,7 @@ function useAuslastungInner() {
       trainNumber: string,
       start: string,
       destination: string,
-      time: number,
+      time: Date,
     ) => {
       const key = `${start}/${destination}/${trainNumber}`;
       let auslastung: Route$Auslastung | null;
@@ -20,7 +20,7 @@ function useAuslastungInner() {
       try {
         auslastung = (
           await Axios.get<Route$Auslastung>(
-            `/api/hafas/v1/auslastung/${key}/${time}`,
+            `/api/hafas/v2/auslastung/${key}/${time.toISOString()}`,
           )
         ).data;
       } catch (e) {

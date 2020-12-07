@@ -1,4 +1,4 @@
-import { parse } from 'date-fns';
+import { addSeconds, parse } from 'date-fns';
 import createCtxRecon from 'server/HAFAS/helper/createCtxRecon';
 import type {
   Route$ValidArrivalStop,
@@ -17,8 +17,8 @@ describe('createCtxRecon', () => {
       title: 'dummy',
     },
     departure: {
-      scheduledTime: departureTime.getTime(),
-      time: departureTime.getTime(),
+      scheduledTime: departureTime,
+      time: departureTime,
     },
   };
 
@@ -28,8 +28,8 @@ describe('createCtxRecon', () => {
       title: 'otherDummy',
     },
     arrival: {
-      scheduledTime: arrivalTime.getTime(),
-      time: arrivalTime.getTime() + 123456,
+      scheduledTime: arrivalTime,
+      time: addSeconds(arrivalTime, 123),
     },
   };
 

@@ -1,1 +1,583 @@
-{"fahrtrichtung":"VORWAERTS","allFahrzeuggruppe":[{"allFahrzeug":[{"allFahrzeugausstattung":[],"kategorie":"TRIEBKOPF","fahrzeugnummer":"938054010526","orientierung":"UNDEFINIERT","positioningruppe":"1","fahrzeugsektor":"F","fahrzeugtyp":"I4010","wagenordnungsnummer":"","positionamhalt":{"endemeter":"377.92","endeprozent":"87","startmeter":"357.36","startprozent":"83"},"status":"OFFEN","additionalInfo":{"klasse":4,"icons":{}}},{"allFahrzeugausstattung":[{"anzahl":"","ausstattungsart":"KLIMA","bezeichnung":"","status":"UNDEFINIERT"}],"kategorie":"REISEZUGWAGENZWEITEKLASSE","fahrzeugnummer":"938058028524","orientierung":"UNDEFINIERT","positioningruppe":"2","fahrzeugsektor":"F","fahrzeugtyp":"Bvmz","wagenordnungsnummer":"1","positionamhalt":{"endemeter":"357.36","endeprozent":"83","startmeter":"330.96","startprozent":"76"},"status":"OFFEN","additionalInfo":{"klasse":2,"icons":{"wifi":true}}},{"allFahrzeugausstattung":[{"anzahl":"","ausstattungsart":"KLIMA","bezeichnung":"","status":"UNDEFINIERT"},{"anzahl":"","ausstattungsart":"RUHE","bezeichnung":"","status":"UNDEFINIERT"}],"kategorie":"REISEZUGWAGENZWEITEKLASSE","fahrzeugnummer":"938058026205","orientierung":"UNDEFINIERT","positioningruppe":"3","fahrzeugsektor":"E","fahrzeugtyp":"Bvmz","wagenordnungsnummer":"2","positionamhalt":{"endemeter":"330.96","endeprozent":"76","startmeter":"304.56","startprozent":"70"},"status":"OFFEN","additionalInfo":{"klasse":2,"icons":{"quiet":true,"wifi":true}}},{"allFahrzeugausstattung":[{"anzahl":"","ausstattungsart":"KLIMA","bezeichnung":"","status":"UNDEFINIERT"}],"kategorie":"REISEZUGWAGENZWEITEKLASSE","fahrzeugnummer":"938058023905","orientierung":"UNDEFINIERT","positioningruppe":"4","fahrzeugsektor":"E","fahrzeugtyp":"Bvmz","wagenordnungsnummer":"3","positionamhalt":{"endemeter":"304.56","endeprozent":"70","startmeter":"278.16","startprozent":"64"},"status":"OFFEN","additionalInfo":{"klasse":2,"icons":{"wifi":true}}},{"allFahrzeugausstattung":[{"anzahl":"","ausstattungsart":"KLIMA","bezeichnung":"","status":"UNDEFINIERT"},{"anzahl":"","ausstattungsart":"RUHE","bezeichnung":"","status":"UNDEFINIERT"}],"kategorie":"REISEZUGWAGENZWEITEKLASSE","fahrzeugnummer":"938058023376","orientierung":"UNDEFINIERT","positioningruppe":"5","fahrzeugsektor":"D","fahrzeugtyp":"Bvmz","wagenordnungsnummer":"4","positionamhalt":{"endemeter":"278.16","endeprozent":"64","startmeter":"251.76","startprozent":"58"},"status":"OFFEN","additionalInfo":{"klasse":2,"icons":{"quiet":true,"wifi":true}}},{"allFahrzeugausstattung":[{"anzahl":"","ausstattungsart":"KLIMA","bezeichnung":"","status":"UNDEFINIERT"},{"anzahl":"","ausstattungsart":"FAMILIE","bezeichnung":"","status":"UNDEFINIERT"}],"kategorie":"REISEZUGWAGENZWEITEKLASSE","fahrzeugnummer":"938058023368","orientierung":"UNDEFINIERT","positioningruppe":"6","fahrzeugsektor":"D","fahrzeugtyp":"Bvmz","wagenordnungsnummer":"5","positionamhalt":{"endemeter":"251.76","endeprozent":"58","startmeter":"225.36","startprozent":"52"},"status":"OFFEN","additionalInfo":{"klasse":2,"icons":{"family":true,"wifi":true}}},{"allFahrzeugausstattung":[{"anzahl":"","ausstattungsart":"KLIMA","bezeichnung":"","status":"UNDEFINIERT"}],"kategorie":"REISEZUGWAGENZWEITEKLASSE","fahrzeugnummer":"938058027047","orientierung":"UNDEFINIERT","positioningruppe":"7","fahrzeugsektor":"C","fahrzeugtyp":"Bvmz","wagenordnungsnummer":"6","positionamhalt":{"endemeter":"225.36","endeprozent":"52","startmeter":"198.96","startprozent":"46"},"status":"OFFEN","additionalInfo":{"klasse":2,"icons":{"wifi":true}}},{"allFahrzeugausstattung":[{"anzahl":"","ausstattungsart":"KLIMA","bezeichnung":"","status":"UNDEFINIERT"},{"anzahl":"","ausstattungsart":"PLAETZEBAHNCOMFORT","bezeichnung":"","status":"UNDEFINIERT"},{"anzahl":"","ausstattungsart":"PLAETZESCHWERBEH","bezeichnung":"","status":"UNDEFINIERT"}],"kategorie":"REISEZUGWAGENZWEITEKLASSE","fahrzeugnummer":"938058028557","orientierung":"UNDEFINIERT","positioningruppe":"8","fahrzeugsektor":"C","fahrzeugtyp":"Bvmz","wagenordnungsnummer":"7","positionamhalt":{"endemeter":"198.96","endeprozent":"46","startmeter":"172.56","startprozent":"40"},"status":"OFFEN","additionalInfo":{"klasse":2,"icons":{"disabled":true,"wifi":true},"comfort":true,"comfortSeats":"11-57","disabledSeats":"111-116"}},{"allFahrzeugausstattung":[],"kategorie":"SPEISEWAGEN","fahrzeugnummer":"938058040388","orientierung":"UNDEFINIERT","positioningruppe":"9","fahrzeugsektor":"C","fahrzeugtyp":"WRmz","wagenordnungsnummer":"8","positionamhalt":{"endemeter":"172.56","endeprozent":"40","startmeter":"146.16","startprozent":"34"},"status":"OFFEN","additionalInfo":{"klasse":2,"icons":{"dining":true,"wifi":true}}},{"allFahrzeugausstattung":[{"anzahl":"","ausstattungsart":"KLIMA","bezeichnung":"","status":"UNDEFINIERT"},{"anzahl":"","ausstattungsart":"INFO","bezeichnung":"","status":"UNDEFINIERT"},{"anzahl":"","ausstattungsart":"ABTEILKLEINKIND","bezeichnung":"","status":"UNDEFINIERT"},{"anzahl":"","ausstattungsart":"PLAETZEROLLSTUHL","bezeichnung":"","status":"UNDEFINIERT"},{"anzahl":"","ausstattungsart":"ROLLSTUHLTOILETTE","bezeichnung":"","status":"UNDEFINIERT"},{"anzahl":"","ausstattungsart":"PLAETZESCHWERBEH","bezeichnung":"","status":"UNDEFINIERT"}],"kategorie":"REISEZUGWAGENERSTEKLASSE","fahrzeugnummer":"938058031163","orientierung":"UNDEFINIERT","positioningruppe":"10","fahrzeugsektor":"B","fahrzeugtyp":"Apmbsz","wagenordnungsnummer":"9","positionamhalt":{"endemeter":"146.16","endeprozent":"34","startmeter":"119.76","startprozent":"28"},"status":"OFFEN","additionalInfo":{"klasse":1,"icons":{"info":true,"toddler":true,"wheelchair":true,"disabled":true,"wifi":true},"disabledSeats":"51, 52, 53, 55"}},{"allFahrzeugausstattung":[{"anzahl":"","ausstattungsart":"KLIMA","bezeichnung":"","status":"UNDEFINIERT"},{"anzahl":"","ausstattungsart":"PLAETZEBAHNCOMFORT","bezeichnung":"","status":"UNDEFINIERT"}],"kategorie":"REISEZUGWAGENERSTEKLASSE","fahrzeugnummer":"938058010266","orientierung":"UNDEFINIERT","positioningruppe":"11","fahrzeugsektor":"B","fahrzeugtyp":"Avmz","wagenordnungsnummer":"11","positionamhalt":{"endemeter":"119.76","endeprozent":"28","startmeter":"93.36","startprozent":"22"},"status":"OFFEN","additionalInfo":{"klasse":1,"icons":{"wifi":true},"comfort":true,"comfortSeats":"11-36"}},{"allFahrzeugausstattung":[{"anzahl":"","ausstattungsart":"KLIMA","bezeichnung":"","status":"UNDEFINIERT"},{"anzahl":"","ausstattungsart":"RUHE","bezeichnung":"","status":"UNDEFINIERT"}],"kategorie":"REISEZUGWAGENERSTEKLASSE","fahrzeugnummer":"938058014177","orientierung":"UNDEFINIERT","positioningruppe":"12","fahrzeugsektor":"B","fahrzeugtyp":"Avmz","wagenordnungsnummer":"12","positionamhalt":{"endemeter":"93.36","endeprozent":"22","startmeter":"66.96","startprozent":"15"},"status":"OFFEN","additionalInfo":{"klasse":1,"icons":{"quiet":true,"wifi":true}}},{"allFahrzeugausstattung":[{"anzahl":"","ausstattungsart":"KLIMA","bezeichnung":"","status":"UNDEFINIERT"}],"kategorie":"REISEZUGWAGENERSTEKLASSE","fahrzeugnummer":"938058018509","orientierung":"UNDEFINIERT","positioningruppe":"13","fahrzeugsektor":"A","fahrzeugtyp":"Avmz","wagenordnungsnummer":"14","positionamhalt":{"endemeter":"66.96","endeprozent":"15","startmeter":"40.56","startprozent":"9"},"status":"OFFEN","additionalInfo":{"klasse":1,"icons":{"wifi":true}}},{"allFahrzeugausstattung":[],"kategorie":"TRIEBKOPF","fahrzeugnummer":"938054015525","orientierung":"UNDEFINIERT","positioningruppe":"14","fahrzeugsektor":"A","fahrzeugtyp":"I4015","wagenordnungsnummer":"","positionamhalt":{"endemeter":"40.56","endeprozent":"9","startmeter":"20","startprozent":"5"},"status":"OFFEN","additionalInfo":{"klasse":4,"icons":{}}}],"fahrzeuggruppebezeichnung":"ICE0152","zielbetriebsstellename":"Berlin Ostbahnhof","startbetriebsstellename":"Basel SBB","verkehrlichezugnummer":"371","br":{"name":"ICE 1","BR":"401","country":"DE","showBRInfo":true},"goesToFrance":false,"startPercentage":5,"endPercentage":87}],"halt":{"abfahrtszeit":"2019-11-22T13:14:00","ankunftszeit":"2019-11-22T13:08:00","bahnhofsname":"Frankfurt(Main)Hbf","evanummer":"8000105","gleisbezeichnung":"8","haltid":"FF","rl100":"FF","allSektor":[{"positionamgleis":{"endemeter":"79.725","endeprozent":"18","startmeter":"0","startprozent":"0"},"sektorbezeichnung":"A"},{"positionamgleis":{"endemeter":"145.575","endeprozent":"34","startmeter":"79.725","startprozent":"18"},"sektorbezeichnung":"B"},{"positionamgleis":{"endemeter":"218.1","endeprozent":"50","startmeter":"145.575","startprozent":"34"},"sektorbezeichnung":"C"},{"positionamgleis":{"endemeter":"269.05","endeprozent":"62","startmeter":"218.1","startprozent":"50"},"sektorbezeichnung":"D"},{"positionamgleis":{"endemeter":"320.025","endeprozent":"74","startmeter":"269.05","startprozent":"62"},"sektorbezeichnung":"E"},{"positionamgleis":{"endemeter":"432.8","endeprozent":"100","startmeter":"320.025","startprozent":"74"},"sektorbezeichnung":"F"}]},"liniebezeichnung":"12","zuggattung":"ICE","zugnummer":"370","serviceid":"1422017338","planstarttag":"2019-11-22","fahrtid":"","istplaninformation":true,"differentDestination":false,"differentZugnummer":false,"realFahrtrichtung":false,"scale":1.2195121951219512,"startPercentage":5,"endPercentage":87}
+{
+  "fahrtrichtung": "VORWAERTS",
+  "allFahrzeuggruppe": [
+    {
+      "allFahrzeug": [
+        {
+          "allFahrzeugausstattung": [],
+          "kategorie": "TRIEBKOPF",
+          "fahrzeugnummer": "938054010526",
+          "orientierung": "UNDEFINIERT",
+          "positioningruppe": "1",
+          "fahrzeugsektor": "F",
+          "fahrzeugtyp": "I4010",
+          "wagenordnungsnummer": "",
+          "positionamhalt": {
+            "endemeter": "377.92",
+            "endeprozent": "87",
+            "startmeter": "357.36",
+            "startprozent": "83"
+          },
+          "status": "OFFEN",
+          "additionalInfo": {
+            "klasse": 4,
+            "icons": {}
+          }
+        },
+        {
+          "allFahrzeugausstattung": [
+            {
+              "anzahl": "",
+              "ausstattungsart": "KLIMA",
+              "bezeichnung": "",
+              "status": "UNDEFINIERT"
+            }
+          ],
+          "kategorie": "REISEZUGWAGENZWEITEKLASSE",
+          "fahrzeugnummer": "938058028524",
+          "orientierung": "UNDEFINIERT",
+          "positioningruppe": "2",
+          "fahrzeugsektor": "F",
+          "fahrzeugtyp": "Bvmz",
+          "wagenordnungsnummer": "1",
+          "positionamhalt": {
+            "endemeter": "357.36",
+            "endeprozent": "83",
+            "startmeter": "330.96",
+            "startprozent": "76"
+          },
+          "status": "OFFEN",
+          "additionalInfo": {
+            "klasse": 2,
+            "icons": {
+              "wifi": true
+            }
+          }
+        },
+        {
+          "allFahrzeugausstattung": [
+            {
+              "anzahl": "",
+              "ausstattungsart": "KLIMA",
+              "bezeichnung": "",
+              "status": "UNDEFINIERT"
+            },
+            {
+              "anzahl": "",
+              "ausstattungsart": "RUHE",
+              "bezeichnung": "",
+              "status": "UNDEFINIERT"
+            }
+          ],
+          "kategorie": "REISEZUGWAGENZWEITEKLASSE",
+          "fahrzeugnummer": "938058026205",
+          "orientierung": "UNDEFINIERT",
+          "positioningruppe": "3",
+          "fahrzeugsektor": "E",
+          "fahrzeugtyp": "Bvmz",
+          "wagenordnungsnummer": "2",
+          "positionamhalt": {
+            "endemeter": "330.96",
+            "endeprozent": "76",
+            "startmeter": "304.56",
+            "startprozent": "70"
+          },
+          "status": "OFFEN",
+          "additionalInfo": {
+            "klasse": 2,
+            "icons": {
+              "quiet": true,
+              "wifi": true
+            }
+          }
+        },
+        {
+          "allFahrzeugausstattung": [
+            {
+              "anzahl": "",
+              "ausstattungsart": "KLIMA",
+              "bezeichnung": "",
+              "status": "UNDEFINIERT"
+            }
+          ],
+          "kategorie": "REISEZUGWAGENZWEITEKLASSE",
+          "fahrzeugnummer": "938058023905",
+          "orientierung": "UNDEFINIERT",
+          "positioningruppe": "4",
+          "fahrzeugsektor": "E",
+          "fahrzeugtyp": "Bvmz",
+          "wagenordnungsnummer": "3",
+          "positionamhalt": {
+            "endemeter": "304.56",
+            "endeprozent": "70",
+            "startmeter": "278.16",
+            "startprozent": "64"
+          },
+          "status": "OFFEN",
+          "additionalInfo": {
+            "klasse": 2,
+            "icons": {
+              "wifi": true
+            }
+          }
+        },
+        {
+          "allFahrzeugausstattung": [
+            {
+              "anzahl": "",
+              "ausstattungsart": "KLIMA",
+              "bezeichnung": "",
+              "status": "UNDEFINIERT"
+            },
+            {
+              "anzahl": "",
+              "ausstattungsart": "RUHE",
+              "bezeichnung": "",
+              "status": "UNDEFINIERT"
+            }
+          ],
+          "kategorie": "REISEZUGWAGENZWEITEKLASSE",
+          "fahrzeugnummer": "938058023376",
+          "orientierung": "UNDEFINIERT",
+          "positioningruppe": "5",
+          "fahrzeugsektor": "D",
+          "fahrzeugtyp": "Bvmz",
+          "wagenordnungsnummer": "4",
+          "positionamhalt": {
+            "endemeter": "278.16",
+            "endeprozent": "64",
+            "startmeter": "251.76",
+            "startprozent": "58"
+          },
+          "status": "OFFEN",
+          "additionalInfo": {
+            "klasse": 2,
+            "icons": {
+              "quiet": true,
+              "wifi": true
+            }
+          }
+        },
+        {
+          "allFahrzeugausstattung": [
+            {
+              "anzahl": "",
+              "ausstattungsart": "KLIMA",
+              "bezeichnung": "",
+              "status": "UNDEFINIERT"
+            },
+            {
+              "anzahl": "",
+              "ausstattungsart": "FAMILIE",
+              "bezeichnung": "",
+              "status": "UNDEFINIERT"
+            }
+          ],
+          "kategorie": "REISEZUGWAGENZWEITEKLASSE",
+          "fahrzeugnummer": "938058023368",
+          "orientierung": "UNDEFINIERT",
+          "positioningruppe": "6",
+          "fahrzeugsektor": "D",
+          "fahrzeugtyp": "Bvmz",
+          "wagenordnungsnummer": "5",
+          "positionamhalt": {
+            "endemeter": "251.76",
+            "endeprozent": "58",
+            "startmeter": "225.36",
+            "startprozent": "52"
+          },
+          "status": "OFFEN",
+          "additionalInfo": {
+            "klasse": 2,
+            "icons": {
+              "family": true,
+              "wifi": true
+            }
+          }
+        },
+        {
+          "allFahrzeugausstattung": [
+            {
+              "anzahl": "",
+              "ausstattungsart": "KLIMA",
+              "bezeichnung": "",
+              "status": "UNDEFINIERT"
+            }
+          ],
+          "kategorie": "REISEZUGWAGENZWEITEKLASSE",
+          "fahrzeugnummer": "938058027047",
+          "orientierung": "UNDEFINIERT",
+          "positioningruppe": "7",
+          "fahrzeugsektor": "C",
+          "fahrzeugtyp": "Bvmz",
+          "wagenordnungsnummer": "6",
+          "positionamhalt": {
+            "endemeter": "225.36",
+            "endeprozent": "52",
+            "startmeter": "198.96",
+            "startprozent": "46"
+          },
+          "status": "OFFEN",
+          "additionalInfo": {
+            "klasse": 2,
+            "icons": {
+              "wifi": true
+            }
+          }
+        },
+        {
+          "allFahrzeugausstattung": [
+            {
+              "anzahl": "",
+              "ausstattungsart": "KLIMA",
+              "bezeichnung": "",
+              "status": "UNDEFINIERT"
+            },
+            {
+              "anzahl": "",
+              "ausstattungsart": "PLAETZEBAHNCOMFORT",
+              "bezeichnung": "",
+              "status": "UNDEFINIERT"
+            },
+            {
+              "anzahl": "",
+              "ausstattungsart": "PLAETZESCHWERBEH",
+              "bezeichnung": "",
+              "status": "UNDEFINIERT"
+            }
+          ],
+          "kategorie": "REISEZUGWAGENZWEITEKLASSE",
+          "fahrzeugnummer": "938058028557",
+          "orientierung": "UNDEFINIERT",
+          "positioningruppe": "8",
+          "fahrzeugsektor": "C",
+          "fahrzeugtyp": "Bvmz",
+          "wagenordnungsnummer": "7",
+          "positionamhalt": {
+            "endemeter": "198.96",
+            "endeprozent": "46",
+            "startmeter": "172.56",
+            "startprozent": "40"
+          },
+          "status": "OFFEN",
+          "additionalInfo": {
+            "klasse": 2,
+            "icons": {
+              "disabled": true,
+              "wifi": true
+            },
+            "comfort": true,
+            "comfortSeats": "11-57",
+            "disabledSeats": "111-116"
+          }
+        },
+        {
+          "allFahrzeugausstattung": [],
+          "kategorie": "SPEISEWAGEN",
+          "fahrzeugnummer": "938058040388",
+          "orientierung": "UNDEFINIERT",
+          "positioningruppe": "9",
+          "fahrzeugsektor": "C",
+          "fahrzeugtyp": "WRmz",
+          "wagenordnungsnummer": "8",
+          "positionamhalt": {
+            "endemeter": "172.56",
+            "endeprozent": "40",
+            "startmeter": "146.16",
+            "startprozent": "34"
+          },
+          "status": "OFFEN",
+          "additionalInfo": {
+            "klasse": 2,
+            "icons": {
+              "dining": true,
+              "wifi": true
+            }
+          }
+        },
+        {
+          "allFahrzeugausstattung": [
+            {
+              "anzahl": "",
+              "ausstattungsart": "KLIMA",
+              "bezeichnung": "",
+              "status": "UNDEFINIERT"
+            },
+            {
+              "anzahl": "",
+              "ausstattungsart": "INFO",
+              "bezeichnung": "",
+              "status": "UNDEFINIERT"
+            },
+            {
+              "anzahl": "",
+              "ausstattungsart": "ABTEILKLEINKIND",
+              "bezeichnung": "",
+              "status": "UNDEFINIERT"
+            },
+            {
+              "anzahl": "",
+              "ausstattungsart": "PLAETZEROLLSTUHL",
+              "bezeichnung": "",
+              "status": "UNDEFINIERT"
+            },
+            {
+              "anzahl": "",
+              "ausstattungsart": "ROLLSTUHLTOILETTE",
+              "bezeichnung": "",
+              "status": "UNDEFINIERT"
+            },
+            {
+              "anzahl": "",
+              "ausstattungsart": "PLAETZESCHWERBEH",
+              "bezeichnung": "",
+              "status": "UNDEFINIERT"
+            }
+          ],
+          "kategorie": "REISEZUGWAGENERSTEKLASSE",
+          "fahrzeugnummer": "938058031163",
+          "orientierung": "UNDEFINIERT",
+          "positioningruppe": "10",
+          "fahrzeugsektor": "B",
+          "fahrzeugtyp": "Apmbsz",
+          "wagenordnungsnummer": "9",
+          "positionamhalt": {
+            "endemeter": "146.16",
+            "endeprozent": "34",
+            "startmeter": "119.76",
+            "startprozent": "28"
+          },
+          "status": "OFFEN",
+          "additionalInfo": {
+            "klasse": 1,
+            "icons": {
+              "info": true,
+              "toddler": true,
+              "wheelchair": true,
+              "disabled": true,
+              "wifi": true
+            },
+            "disabledSeats": "51, 52, 53, 55"
+          }
+        },
+        {
+          "allFahrzeugausstattung": [
+            {
+              "anzahl": "",
+              "ausstattungsart": "KLIMA",
+              "bezeichnung": "",
+              "status": "UNDEFINIERT"
+            },
+            {
+              "anzahl": "",
+              "ausstattungsart": "PLAETZEBAHNCOMFORT",
+              "bezeichnung": "",
+              "status": "UNDEFINIERT"
+            }
+          ],
+          "kategorie": "REISEZUGWAGENERSTEKLASSE",
+          "fahrzeugnummer": "938058010266",
+          "orientierung": "UNDEFINIERT",
+          "positioningruppe": "11",
+          "fahrzeugsektor": "B",
+          "fahrzeugtyp": "Avmz",
+          "wagenordnungsnummer": "11",
+          "positionamhalt": {
+            "endemeter": "119.76",
+            "endeprozent": "28",
+            "startmeter": "93.36",
+            "startprozent": "22"
+          },
+          "status": "OFFEN",
+          "additionalInfo": {
+            "klasse": 1,
+            "icons": {
+              "wifi": true
+            },
+            "comfort": true,
+            "comfortSeats": "11-36"
+          }
+        },
+        {
+          "allFahrzeugausstattung": [
+            {
+              "anzahl": "",
+              "ausstattungsart": "KLIMA",
+              "bezeichnung": "",
+              "status": "UNDEFINIERT"
+            },
+            {
+              "anzahl": "",
+              "ausstattungsart": "RUHE",
+              "bezeichnung": "",
+              "status": "UNDEFINIERT"
+            }
+          ],
+          "kategorie": "REISEZUGWAGENERSTEKLASSE",
+          "fahrzeugnummer": "938058014177",
+          "orientierung": "UNDEFINIERT",
+          "positioningruppe": "12",
+          "fahrzeugsektor": "B",
+          "fahrzeugtyp": "Avmz",
+          "wagenordnungsnummer": "12",
+          "positionamhalt": {
+            "endemeter": "93.36",
+            "endeprozent": "22",
+            "startmeter": "66.96",
+            "startprozent": "15"
+          },
+          "status": "OFFEN",
+          "additionalInfo": {
+            "klasse": 1,
+            "icons": {
+              "quiet": true,
+              "wifi": true
+            }
+          }
+        },
+        {
+          "allFahrzeugausstattung": [
+            {
+              "anzahl": "",
+              "ausstattungsart": "KLIMA",
+              "bezeichnung": "",
+              "status": "UNDEFINIERT"
+            }
+          ],
+          "kategorie": "REISEZUGWAGENERSTEKLASSE",
+          "fahrzeugnummer": "938058018509",
+          "orientierung": "UNDEFINIERT",
+          "positioningruppe": "13",
+          "fahrzeugsektor": "A",
+          "fahrzeugtyp": "Avmz",
+          "wagenordnungsnummer": "14",
+          "positionamhalt": {
+            "endemeter": "66.96",
+            "endeprozent": "15",
+            "startmeter": "40.56",
+            "startprozent": "9"
+          },
+          "status": "OFFEN",
+          "additionalInfo": {
+            "klasse": 1,
+            "icons": {
+              "wifi": true
+            }
+          }
+        },
+        {
+          "allFahrzeugausstattung": [],
+          "kategorie": "TRIEBKOPF",
+          "fahrzeugnummer": "938054015525",
+          "orientierung": "UNDEFINIERT",
+          "positioningruppe": "14",
+          "fahrzeugsektor": "A",
+          "fahrzeugtyp": "I4015",
+          "wagenordnungsnummer": "",
+          "positionamhalt": {
+            "endemeter": "40.56",
+            "endeprozent": "9",
+            "startmeter": "20",
+            "startprozent": "5"
+          },
+          "status": "OFFEN",
+          "additionalInfo": {
+            "klasse": 4,
+            "icons": {}
+          }
+        }
+      ],
+      "fahrzeuggruppebezeichnung": "ICE0152",
+      "zielbetriebsstellename": "Berlin Ostbahnhof",
+      "startbetriebsstellename": "Basel SBB",
+      "verkehrlichezugnummer": "371",
+      "br": {
+        "name": "ICE 1",
+        "BR": "401",
+        "country": "DE",
+        "showBRInfo": true
+      },
+      "goesToFrance": false,
+      "startPercentage": 5,
+      "endPercentage": 87
+    }
+  ],
+  "halt": {
+    "abfahrtszeit": "2019-11-22T13:14:00",
+    "ankunftszeit": "2019-11-22T13:08:00",
+    "bahnhofsname": "Frankfurt(Main)Hbf",
+    "evanummer": "8000105",
+    "gleisbezeichnung": "8",
+    "haltid": "FF",
+    "rl100": "FF",
+    "allSektor": [
+      {
+        "positionamgleis": {
+          "endemeter": "79.725",
+          "endeprozent": "18",
+          "startmeter": "0",
+          "startprozent": "0"
+        },
+        "sektorbezeichnung": "A"
+      },
+      {
+        "positionamgleis": {
+          "endemeter": "145.575",
+          "endeprozent": "34",
+          "startmeter": "79.725",
+          "startprozent": "18"
+        },
+        "sektorbezeichnung": "B"
+      },
+      {
+        "positionamgleis": {
+          "endemeter": "218.1",
+          "endeprozent": "50",
+          "startmeter": "145.575",
+          "startprozent": "34"
+        },
+        "sektorbezeichnung": "C"
+      },
+      {
+        "positionamgleis": {
+          "endemeter": "269.05",
+          "endeprozent": "62",
+          "startmeter": "218.1",
+          "startprozent": "50"
+        },
+        "sektorbezeichnung": "D"
+      },
+      {
+        "positionamgleis": {
+          "endemeter": "320.025",
+          "endeprozent": "74",
+          "startmeter": "269.05",
+          "startprozent": "62"
+        },
+        "sektorbezeichnung": "E"
+      },
+      {
+        "positionamgleis": {
+          "endemeter": "432.8",
+          "endeprozent": "100",
+          "startmeter": "320.025",
+          "startprozent": "74"
+        },
+        "sektorbezeichnung": "F"
+      }
+    ]
+  },
+  "liniebezeichnung": "12",
+  "zuggattung": "ICE",
+  "zugnummer": "370",
+  "serviceid": "1422017338",
+  "planstarttag": "2019-11-22",
+  "fahrtid": "",
+  "istplaninformation": true,
+  "differentDestination": false,
+  "differentZugnummer": false,
+  "realFahrtrichtung": false,
+  "scale": 1.2195121951219512,
+  "startPercentage": 5,
+  "endPercentage": 87
+}

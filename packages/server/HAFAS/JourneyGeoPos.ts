@@ -25,7 +25,7 @@ const parseJourneyGeoPos = (
 
     return {
       jid: j.jid,
-      date: date.getTime(),
+      date,
       train,
       dirTxt: j.dirTxt,
       dirGeo: j.dirGeo,

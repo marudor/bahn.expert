@@ -1,9 +1,9 @@
 {
   "o": "80",
-  "initialDeparture": 1567945680000,
+  "initialDeparture": "2019-09-08T12:28:00.000Z",
   "arrival": {
-    "scheduledTime": 1567947300000,
-    "time": 1567947840000,
+    "scheduledTime": "2019-09-08T12:55:00.000Z",
+    "time": "2019-09-08T13:04:00.000Z",
     "platform": "18",
     "scheduledPlatform": "18",
     "hidden": false,
@@ -11,8 +11,8 @@
     "delay": 9
   },
   "departure": {
-    "scheduledTime": 1567947480000,
-    "time": 1567947900000,
+    "scheduledTime": "2019-09-08T12:58:00.000Z",
+    "time": "2019-09-08T13:05:00.000Z",
     "platform": "18",
     "scheduledPlatform": "18",
     "hidden": false,
@@ -40,13 +40,13 @@
     "delay": [
       {
         "text": "Verzögerungen im Betriebsablauf",
-        "timestamp": 1567946340000
+        "timestamp": "2019-09-08T12:39:00.000Z"
       }
     ],
     "qos": [
       {
         "text": "Abweichende Wagenreihung",
-        "timestamp": 1567943400000
+        "timestamp": "2019-09-08T11:50:00.000Z"
       }
     ],
     "him": []

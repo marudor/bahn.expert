@@ -11,7 +11,9 @@ interface Props {
 
 export const DetailMessages: FC<Props> = ({ messages }) => {
   const classes = useStyles();
-  const sorted = messages.sort((a, b) => compareDesc(a.timestamp, b.timestamp));
+  const sorted = messages.sort((a, b) =>
+    compareDesc(a.timestamp || 0, b.timestamp || 0),
+  );
 
   return (
     <div className={classes.wrap}>

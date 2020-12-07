@@ -18,6 +18,6 @@ export function getRouteLink(
   date?: Date | null,
 ): string {
   return `/routing/${start.id}/${destination.id}/${
-    date?.getTime() || 0
+    date?.toISOString() || 0
   }/${via.map((v) => `${v.id}|`).join('')}`;
 }

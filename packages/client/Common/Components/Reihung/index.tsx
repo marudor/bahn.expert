@@ -66,7 +66,7 @@ interface Props {
   trainNumber: string;
   fallbackTrainNumbers?: string[];
   currentStation: string;
-  scheduledDeparture: number;
+  scheduledDeparture: Date;
   loadHidden?: boolean;
   withLegend?: boolean;
 }
@@ -84,7 +84,9 @@ export const Reihung: FC<Props> = ({
   const { getReihung } = useReihungenActions();
   const { fahrzeugGruppe, showUIC, zoomReihung } = useCommonConfig();
   const reihung =
-    reihungen[`${trainNumber}${currentStation}${scheduledDeparture}`];
+    reihungen[
+      `${trainNumber}${currentStation}${scheduledDeparture.toISOString()}`
+    ];
 
   useEffect(() => {
     if (reihung === undefined) {

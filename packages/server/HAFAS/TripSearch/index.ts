@@ -5,7 +5,7 @@ import tripSearchParse from './parse';
 import type { AllowedHafasProfile } from 'types/HAFAS';
 import type { RoutingResult } from 'types/routing';
 import type {
-  TripSearchOptionsV2,
+  TripSearchOptionsV3,
   TripSearchRequest,
 } from 'types/HAFAS/TripSearch';
 
@@ -35,7 +35,7 @@ function route(
     ctxScr,
     onlyRegional,
     tarif,
-  }: TripSearchOptionsV2,
+  }: TripSearchOptionsV3,
   profile?: AllowedHafasProfile,
   raw?: boolean,
 ): Promise<RoutingResult> {

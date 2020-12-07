@@ -1,8 +1,8 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { getAbfahrten } from 'server/iris';
 import { getPlannedSequence } from 'server/Reihung/plan';
+import { isAfter, subMinutes } from 'date-fns';
 import { logger } from 'server/logger';
-import { subMinutes } from 'date-fns';
 import createCtxRecon from 'server/HAFAS/helper/createCtxRecon';
 import JourneyDetails from 'server/HAFAS/JourneyDetails';
 import JourneyMatch from 'server/HAFAS/JourneyMatch';
@@ -26,7 +26,9 @@ function calculateCurrentStation(
     currentStop = segment.stops.find((s) => {
       const stopInfo = s.departure || s.arrival;
 
-      return stopInfo && !stopInfo.cancelled && stopInfo.time > currentDate;
+      return (
+        stopInfo && !stopInfo.cancelled && isAfter(stopInfo.time, currentDate)
+      );
     });
   }
 
@@ -37,7 +39,7 @@ export default async (
   trainName: string,
   currentStopId?: string,
   station?: string,
-  date: number = Date.now(),
+  date: Date = new Date(),
   hafasProfile: AllowedHafasProfile = AllowedHafasProfile.DB,
 ): Promise<ParsedSearchOnTripResponse | undefined> => {
   let possibleTrains: undefined | ParsedJourneyMatchResponse[];
