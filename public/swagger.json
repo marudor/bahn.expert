@@ -15,213 +15,6 @@
         "type": "object",
         "additionalProperties": false
       },
-      "BusinessHubCoordinates": {
-        "properties": {
-          "latitude": {
-            "type": "number",
-            "format": "double"
-          },
-          "longitude": {
-            "type": "number",
-            "format": "double"
-          }
-        },
-        "required": [
-          "latitude",
-          "longitude"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "BusinessHubStation": {
-        "properties": {
-          "title": {
-            "type": "string"
-          },
-          "id": {
-            "type": "string"
-          },
-          "ds100": {
-            "type": "string"
-          },
-          "stada": {
-            "type": "string"
-          },
-          "globalId": {
-            "type": "string"
-          },
-          "location": {
-            "$ref": "#/components/schemas/BusinessHubCoordinates"
-          }
-        },
-        "required": [
-          "title",
-          "id",
-          "location"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "Facilities": {
-        "properties": {
-          "description": {
-            "type": "string"
-          },
-          "equipmentnumber": {
-            "type": "number",
-            "format": "double"
-          },
-          "geocoordX": {
-            "type": "number",
-            "format": "double"
-          },
-          "geocoordY": {
-            "type": "number",
-            "format": "double"
-          },
-          "state": {
-            "type": "string"
-          },
-          "stateExplanation": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "description",
-          "equipmentnumber",
-          "geocoordX",
-          "geocoordY",
-          "state",
-          "stateExplanation",
-          "type"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "FastaResponse": {
-        "properties": {
-          "facilieites": {
-            "items": {
-              "$ref": "#/components/schemas/Facilities"
-            },
-            "type": "array"
-          },
-          "name": {
-            "type": "string"
-          },
-          "stationnumber": {
-            "type": "number",
-            "format": "double"
-          }
-        },
-        "required": [
-          "facilieites",
-          "name",
-          "stationnumber"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "LimitationEnum": {
-        "enum": [
-          "true",
-          "false",
-          "unknown",
-          "not applicable"
-        ],
-        "type": "string"
-      },
-      "QuayAccessibilityLimitation": {
-        "properties": {
-          "audibleSignalsAvailable": {
-            "$ref": "#/components/schemas/LimitationEnum"
-          },
-          "automaticDoor": {
-            "$ref": "#/components/schemas/LimitationEnum"
-          },
-          "boardingAid": {
-            "$ref": "#/components/schemas/LimitationEnum"
-          },
-          "passengerInformationDisplay": {
-            "$ref": "#/components/schemas/LimitationEnum"
-          },
-          "platformHeight": {
-            "$ref": "#/components/schemas/LimitationEnum"
-          },
-          "platformSign": {
-            "$ref": "#/components/schemas/LimitationEnum"
-          },
-          "stairsMarking": {
-            "$ref": "#/components/schemas/LimitationEnum"
-          },
-          "stepFreeAccess": {
-            "$ref": "#/components/schemas/LimitationEnum"
-          },
-          "tactileGuidingStrips": {
-            "$ref": "#/components/schemas/LimitationEnum"
-          },
-          "tactileHandrailLabel": {
-            "$ref": "#/components/schemas/LimitationEnum"
-          },
-          "tactilePlatformAccess": {
-            "$ref": "#/components/schemas/LimitationEnum"
-          }
-        },
-        "required": [
-          "audibleSignalsAvailable",
-          "automaticDoor",
-          "boardingAid",
-          "passengerInformationDisplay",
-          "platformHeight",
-          "platformSign",
-          "stairsMarking",
-          "stepFreeAccess",
-          "tactileGuidingStrips",
-          "tactileHandrailLabel",
-          "tactilePlatformAccess"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "QuayAccessibilityAssessment": {
-        "properties": {
-          "accessibilityLimitation": {
-            "$ref": "#/components/schemas/QuayAccessibilityLimitation"
-          }
-        },
-        "required": [
-          "accessibilityLimitation"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "Quay": {
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "accessibilityAssessment": {
-            "$ref": "#/components/schemas/QuayAccessibilityAssessment"
-          },
-          "quayType": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "accessibilityAssessment",
-          "quayType"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
       "OccupancyPeriod": {
         "properties": {
           "start": {
@@ -231,10 +24,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "start",
-          "end"
-        ],
+        "required": ["start", "end"],
         "type": "object",
         "additionalProperties": false
       },
@@ -247,10 +37,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "language",
-          "text"
-        ],
+        "required": ["language", "text"],
         "type": "object",
         "additionalProperties": false
       },
@@ -267,10 +54,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "value",
-          "description"
-        ],
+        "required": ["value", "description"],
         "type": "object",
         "additionalProperties": false
       },
@@ -343,9 +127,151 @@
             "type": "array"
           }
         },
+        "required": ["items"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "LimitationEnum": {
+        "enum": ["true", "false", "unknown", "not applicable"],
+        "type": "string"
+      },
+      "QuayAccessibilityLimitation": {
+        "properties": {
+          "audibleSignalsAvailable": {
+            "$ref": "#/components/schemas/LimitationEnum"
+          },
+          "automaticDoor": {
+            "$ref": "#/components/schemas/LimitationEnum"
+          },
+          "boardingAid": {
+            "$ref": "#/components/schemas/LimitationEnum"
+          },
+          "passengerInformationDisplay": {
+            "$ref": "#/components/schemas/LimitationEnum"
+          },
+          "platformHeight": {
+            "$ref": "#/components/schemas/LimitationEnum"
+          },
+          "platformSign": {
+            "$ref": "#/components/schemas/LimitationEnum"
+          },
+          "stairsMarking": {
+            "$ref": "#/components/schemas/LimitationEnum"
+          },
+          "stepFreeAccess": {
+            "$ref": "#/components/schemas/LimitationEnum"
+          },
+          "tactileGuidingStrips": {
+            "$ref": "#/components/schemas/LimitationEnum"
+          },
+          "tactileHandrailLabel": {
+            "$ref": "#/components/schemas/LimitationEnum"
+          },
+          "tactilePlatformAccess": {
+            "$ref": "#/components/schemas/LimitationEnum"
+          }
+        },
         "required": [
-          "items"
+          "audibleSignalsAvailable",
+          "automaticDoor",
+          "boardingAid",
+          "passengerInformationDisplay",
+          "platformHeight",
+          "platformSign",
+          "stairsMarking",
+          "stepFreeAccess",
+          "tactileGuidingStrips",
+          "tactileHandrailLabel",
+          "tactilePlatformAccess"
         ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "QuayAccessibilityAssessment": {
+        "properties": {
+          "accessibilityLimitation": {
+            "$ref": "#/components/schemas/QuayAccessibilityLimitation"
+          }
+        },
+        "required": ["accessibilityLimitation"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Quay": {
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "accessibilityAssessment": {
+            "$ref": "#/components/schemas/QuayAccessibilityAssessment"
+          },
+          "quayType": {
+            "type": "string"
+          }
+        },
+        "required": ["id", "name", "accessibilityAssessment", "quayType"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Facilities": {
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "equipmentnumber": {
+            "type": "number",
+            "format": "double"
+          },
+          "geocoordX": {
+            "type": "number",
+            "format": "double"
+          },
+          "geocoordY": {
+            "type": "number",
+            "format": "double"
+          },
+          "state": {
+            "type": "string"
+          },
+          "stateExplanation": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "description",
+          "equipmentnumber",
+          "geocoordX",
+          "geocoordY",
+          "state",
+          "stateExplanation",
+          "type"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "FastaResponse": {
+        "properties": {
+          "facilieites": {
+            "items": {
+              "$ref": "#/components/schemas/Facilities"
+            },
+            "type": "array"
+          },
+          "name": {
+            "type": "string"
+          },
+          "stationnumber": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": ["facilieites", "name", "stationnumber"],
         "type": "object",
         "additionalProperties": false
       },
@@ -359,10 +285,7 @@
             "format": "double"
           }
         },
-        "required": [
-          "name",
-          "icoX"
-        ],
+        "required": ["name", "icoX"],
         "type": "object",
         "additionalProperties": false
       },
@@ -387,9 +310,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "type": "object",
         "additionalProperties": false
       },
@@ -414,13 +335,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "name",
-          "fDate",
-          "fTime",
-          "tDate",
-          "tTime"
-        ],
+        "required": ["name", "fDate", "fTime", "tDate", "tTime"],
         "type": "object",
         "additionalProperties": false
       },
@@ -559,9 +474,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "messages"
-        ],
+        "required": ["messages"],
         "type": "object",
         "additionalProperties": false
       },
@@ -610,10 +523,7 @@
             "format": "double"
           }
         },
-        "required": [
-          "x",
-          "y"
-        ],
+        "required": ["x", "y"],
         "type": "object",
         "additionalProperties": false
       },
@@ -659,12 +569,7 @@
       },
       "HimFilterMode": {
         "type": "string",
-        "enum": [
-          "BIT",
-          "EXC",
-          "INC",
-          "UNDEF"
-        ]
+        "enum": ["BIT", "EXC", "INC", "UNDEF"]
       },
       "HimFilterType": {
         "type": "string",
@@ -697,11 +602,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "mode",
-          "type",
-          "value"
-        ],
+        "required": ["mode", "type", "value"],
         "type": "object",
         "additionalProperties": false
       },
@@ -784,12 +685,7 @@
             "format": "double"
           }
         },
-        "required": [
-          "type",
-          "code",
-          "icoX",
-          "txtN"
-        ],
+        "required": ["type", "code", "icoX", "txtN"],
         "type": "object",
         "additionalProperties": false
       },
@@ -835,10 +731,7 @@
             "type": "boolean"
           }
         },
-        "required": [
-          "scheduledTime",
-          "time"
-        ],
+        "required": ["scheduledTime", "time"],
         "type": "object",
         "additionalProperties": false
       },
@@ -854,21 +747,13 @@
             "type": "string"
           }
         },
-        "required": [
-          "title",
-          "id"
-        ],
+        "required": ["title", "id"],
         "type": "object",
         "additionalProperties": false
       },
       "MessagePrio": {
         "type": "string",
-        "enum": [
-          "1",
-          "2",
-          "3",
-          "4"
-        ],
+        "enum": ["1", "2", "3", "4"],
         "description": "1: High; 2: Medium; 3: Low; 4: Done"
       },
       "IrisMessage_Date_": {
@@ -887,9 +772,7 @@
             "$ref": "#/components/schemas/MessagePrio"
           }
         },
-        "required": [
-          "text"
-        ],
+        "required": ["text"],
         "type": "object",
         "additionalProperties": false
       },
@@ -912,10 +795,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "text",
-          "head"
-        ],
+        "required": ["text", "head"],
         "type": "object",
         "additionalProperties": false
       },
@@ -950,11 +830,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "qos",
-          "delay",
-          "him"
-        ],
+        "required": ["qos", "delay", "him"],
         "type": "object",
         "additionalProperties": {
           "items": {
@@ -975,11 +851,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "trainNumber",
-          "trainType",
-          "train"
-        ],
+        "required": ["trainNumber", "trainType", "train"],
         "type": "object",
         "additionalProperties": false
       },
@@ -998,9 +870,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1028,11 +898,7 @@
             "type": "boolean"
           }
         },
-        "required": [
-          "name",
-          "type",
-          "number"
-        ],
+        "required": ["name", "type", "number"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1157,22 +1023,13 @@
             "$ref": "#/components/schemas/Wings_Date_"
           }
         },
-        "required": [
-          "departures",
-          "lookbehind",
-          "wings"
-        ],
+        "required": ["departures", "lookbehind", "wings"],
         "type": "object",
         "additionalProperties": false
       },
       "JourneyFilterMode": {
         "type": "string",
-        "enum": [
-          "BIT",
-          "EXC",
-          "INC",
-          "UNDEF"
-        ]
+        "enum": ["BIT", "EXC", "INC", "UNDEF"]
       },
       "JourneyFilterType": {
         "type": "string",
@@ -1215,11 +1072,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "mode",
-          "type",
-          "value"
-        ],
+        "required": ["mode", "type", "value"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1232,10 +1085,7 @@
             "$ref": "#/components/schemas/Crd"
           }
         },
-        "required": [
-          "llCrd",
-          "urCrd"
-        ],
+        "required": ["llCrd", "urCrd"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1253,10 +1103,7 @@
             "format": "double"
           }
         },
-        "required": [
-          "cCrd",
-          "maxDist"
-        ],
+        "required": ["cCrd", "maxDist"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1324,11 +1171,7 @@
       },
       "HafasDirection": {
         "type": "string",
-        "enum": [
-          "B",
-          "F",
-          "FB"
-        ]
+        "enum": ["B", "F", "FB"]
       },
       "JourneyCourseRequestOptions": {
         "properties": {
@@ -1388,10 +1231,7 @@
             "description": "HHmm"
           }
         },
-        "required": [
-          "date",
-          "jid"
-        ],
+        "required": ["date", "jid"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1402,9 +1242,7 @@
             "format": "double"
           }
         },
-        "required": [
-          "subscriptionId"
-        ],
+        "required": ["subscriptionId"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1414,9 +1252,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "channelId"
-        ],
+        "required": ["channelId"],
         "type": "object",
         "description": "From T, pick a set of properties whose keys are in the union K"
       },
@@ -1433,11 +1269,7 @@
             "description": "1 or 0 for each day, starts at monday\nexample: 1001001\nMonday, Thursday, Sunday selected"
           }
         },
-        "required": [
-          "endDate",
-          "beginDate",
-          "selectedWeekdays"
-        ],
+        "required": ["endDate", "beginDate", "selectedWeekdays"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1500,11 +1332,7 @@
             "$ref": "#/components/schemas/SubscrInterval"
           }
         },
-        "required": [
-          "userId",
-          "channels",
-          "intvlSubscr"
-        ],
+        "required": ["userId", "channels", "intvlSubscr"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1516,9 +1344,7 @@
                 "type": "string"
               }
             },
-            "required": [
-              "resultCode"
-            ],
+            "required": ["resultCode"],
             "type": "object"
           },
           "userId": {
@@ -1528,11 +1354,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "result",
-          "userId",
-          "subscrId"
-        ],
+        "required": ["result", "userId", "subscrId"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1546,10 +1368,7 @@
             "format": "double"
           }
         },
-        "required": [
-          "userId",
-          "subscrId"
-        ],
+        "required": ["userId", "subscrId"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1559,9 +1378,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "userId"
-        ],
+        "required": ["userId"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1569,23 +1386,16 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "NO_SOUND"
-            ],
+            "enum": ["NO_SOUND"],
             "nullable": false
           },
           "value": {
             "type": "string",
-            "enum": [
-              "1"
-            ],
+            "enum": ["1"],
             "nullable": false
           }
         },
-        "required": [
-          "type",
-          "value"
-        ],
+        "required": ["type", "value"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1593,19 +1403,14 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "CUSTOMER_TYPE"
-            ],
+            "enum": ["CUSTOMER_TYPE"],
             "nullable": false
           },
           "value": {
             "type": "string"
           }
         },
-        "required": [
-          "type",
-          "value"
-        ],
+        "required": ["type", "value"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1642,13 +1447,7 @@
             "description": "PUSH_IPHONE"
           }
         },
-        "required": [
-          "channelId",
-          "address",
-          "type",
-          "options",
-          "name"
-        ],
+        "required": ["channelId", "address", "type", "options", "name"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1668,10 +1467,7 @@
             "description": "de"
           }
         },
-        "required": [
-          "userId",
-          "channels"
-        ],
+        "required": ["userId", "channels"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1683,9 +1479,7 @@
                 "type": "string"
               }
             },
-            "required": [
-              "resultCode"
-            ],
+            "required": ["resultCode"],
             "type": "object"
           },
           "userId": {
@@ -1716,10 +1510,7 @@
                 },
                 "status": {
                   "type": "string",
-                  "enum": [
-                    "ACTIVE",
-                    "EXPIRED"
-                  ]
+                  "enum": ["ACTIVE", "EXPIRED"]
                 }
               },
               "required": [
@@ -1735,11 +1526,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "result",
-          "userId",
-          "intvlSubscrL"
-        ],
+        "required": ["result", "userId", "intvlSubscrL"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1751,19 +1538,14 @@
                 "type": "string"
               }
             },
-            "required": [
-              "resultCode"
-            ],
+            "required": ["resultCode"],
             "type": "object"
           },
           "userId": {
             "type": "string"
           }
         },
-        "required": [
-          "result",
-          "userId"
-        ],
+        "required": ["result", "userId"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1773,9 +1555,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "userId"
-        ],
+        "required": ["userId"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1804,10 +1584,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "rtEvents",
-          "himEvents"
-        ],
+        "required": ["rtEvents", "himEvents"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1819,9 +1596,7 @@
                 "type": "string"
               }
             },
-            "required": [
-              "resultCode"
-            ],
+            "required": ["resultCode"],
             "type": "object"
           },
           "userId": {
@@ -1833,10 +1608,7 @@
           },
           "status": {
             "type": "string",
-            "enum": [
-              "ACTIVE",
-              "EXPIRED"
-            ]
+            "enum": ["ACTIVE", "EXPIRED"]
           },
           "channels": {
             "items": {
@@ -1896,10 +1668,7 @@
             "type": "boolean"
           }
         },
-        "required": [
-          "scheduledTime",
-          "time"
-        ],
+        "required": ["scheduledTime", "time"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1936,10 +1705,7 @@
             "type": "boolean"
           }
         },
-        "required": [
-          "scheduledTime",
-          "time"
-        ],
+        "required": ["scheduledTime", "time"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1987,11 +1753,7 @@
             "format": "double"
           }
         },
-        "required": [
-          "name",
-          "cls",
-          "icoX"
-        ],
+        "required": ["name", "cls", "icoX"],
         "type": "object",
         "additionalProperties": false
       },
@@ -2028,11 +1790,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "name",
-          "icoX",
-          "cls"
-        ],
+        "required": ["name", "icoX", "cls"],
         "type": "object",
         "additionalProperties": false
       },
@@ -2068,11 +1826,7 @@
             "format": "double"
           }
         },
-        "required": [
-          "r",
-          "g",
-          "b"
-        ],
+        "required": ["r", "g", "b"],
         "type": "object",
         "additionalProperties": false
       },
@@ -2107,15 +1861,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "type",
-          "remX",
-          "txtC",
-          "prio",
-          "fIdx",
-          "tIdx",
-          "tagL"
-        ],
+        "required": ["type", "remX", "txtC", "prio", "fIdx", "tIdx", "tagL"],
         "type": "object",
         "additionalProperties": false
       },
@@ -2174,12 +1920,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "locX",
-          "dInS",
-          "dInR",
-          "dTimeS"
-        ],
+        "required": ["locX", "dInS", "dInR", "dTimeS"],
         "type": "object",
         "additionalProperties": false
       },
@@ -2235,11 +1976,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "locX",
-          "aOutR",
-          "aTimeS"
-        ],
+        "required": ["locX", "aOutR", "aTimeS"],
         "type": "object",
         "additionalProperties": false
       },
@@ -2333,14 +2070,7 @@
             "type": "boolean"
           }
         },
-        "required": [
-          "locX",
-          "aOutR",
-          "aTimeS",
-          "dInS",
-          "dInR",
-          "dTimeS"
-        ],
+        "required": ["locX", "aOutR", "aTimeS", "dInS", "dInR", "dTimeS"],
         "type": "object",
         "additionalProperties": false
       },
@@ -2417,12 +2147,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "minC",
-          "maxC",
-          "numC",
-          "jnyL"
-        ],
+        "required": ["minC", "maxC", "numC", "jnyL"],
         "type": "object",
         "additionalProperties": false
       },
@@ -2503,9 +2228,7 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "JNY"
-            ],
+            "enum": ["JNY"],
             "nullable": false
           },
           "icoX": {
@@ -2529,11 +2252,7 @@
           },
           "resState": {
             "type": "string",
-            "enum": [
-              "N",
-              "B",
-              "S"
-            ]
+            "enum": ["N", "B", "S"]
           },
           "resRecommendation": {
             "type": "string"
@@ -2593,10 +2312,7 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "WALK",
-              "TRSF"
-            ]
+            "enum": ["WALK", "TRSF"]
           },
           "icoX": {
             "type": "number",
@@ -2612,13 +2328,7 @@
             "$ref": "#/components/schemas/Gis"
           }
         },
-        "required": [
-          "type",
-          "icoX",
-          "dep",
-          "arr",
-          "gis"
-        ],
+        "required": ["type", "icoX", "dep", "arr", "gis"],
         "type": "object",
         "additionalProperties": false
       },
@@ -2626,15 +2336,11 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "KISS"
-            ],
+            "enum": ["KISS"],
             "nullable": false
           }
         },
-        "required": [
-          "type"
-        ],
+        "required": ["type"],
         "type": "object",
         "additionalProperties": false
       },
@@ -2653,12 +2359,7 @@
       },
       "AuslastungsValue": {
         "description": "1: Gering\n2: Hoch\n3: Sehr Hoch\n4: Ausgebucht",
-        "enum": [
-          1,
-          2,
-          3,
-          4
-        ],
+        "enum": [1, 2, 3, 4],
         "type": "number"
       },
       "Route$Auslastung": {
@@ -2716,9 +2417,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "station"
-        ],
+        "required": ["station"],
         "type": "object",
         "additionalProperties": false
       },
@@ -2762,23 +2461,13 @@
             "type": "array"
           }
         },
-        "required": [
-          "fares"
-        ],
+        "required": ["fares"],
         "type": "object",
         "additionalProperties": false
       },
       "PossibleShort": {
         "type": "string",
-        "enum": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "3R",
-          "T",
-          "3V"
-        ]
+        "enum": ["1", "2", "3", "4", "3R", "T", "3V"]
       },
       "Wagons": {
         "properties": {},
@@ -2802,11 +2491,7 @@
             "$ref": "#/components/schemas/Wagons"
           }
         },
-        "required": [
-          "raw",
-          "type",
-          "wagons"
-        ],
+        "required": ["raw", "type", "wagons"],
         "type": "object",
         "additionalProperties": false
       },
@@ -2940,9 +2625,7 @@
           },
           "type": {
             "type": "string",
-            "enum": [
-              "JNY"
-            ],
+            "enum": ["JNY"],
             "nullable": false
           },
           "arrival": {
@@ -2983,9 +2666,7 @@
             "format": "date-time"
           }
         },
-        "required": [
-          "time"
-        ],
+        "required": ["time"],
         "type": "object"
       },
       "Coordinates": {
@@ -2999,10 +2680,7 @@
             "format": "double"
           }
         },
-        "required": [
-          "lat",
-          "lng"
-        ],
+        "required": ["lat", "lng"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3024,11 +2702,7 @@
             "$ref": "#/components/schemas/Coordinates"
           }
         },
-        "required": [
-          "title",
-          "id",
-          "coordinates"
-        ],
+        "required": ["title", "id", "coordinates"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3036,9 +2710,7 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "WALK"
-            ],
+            "enum": ["WALK"],
             "nullable": false
           },
           "train": {
@@ -3095,11 +2767,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "sDaysR",
-          "sDaysI",
-          "sDaysB"
-        ],
+        "required": ["sDaysR", "sDaysI", "sDaysB"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3150,9 +2818,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "fareL"
-        ],
+        "required": ["fareL"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3165,9 +2831,7 @@
               },
               {
                 "type": "string",
-                "enum": [
-                  "OK"
-                ]
+                "enum": ["OK"]
               }
             ]
           },
@@ -3178,10 +2842,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "statusCode",
-          "fareSetL"
-        ],
+        "required": ["statusCode", "fareSetL"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3424,17 +3085,11 @@
                 "type": "string"
               }
             },
-            "required": [
-              "later",
-              "earlier"
-            ],
+            "required": ["later", "earlier"],
             "type": "object"
           }
         },
-        "required": [
-          "routes",
-          "context"
-        ],
+        "required": ["routes", "context"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3448,25 +3103,16 @@
             "format": "double"
           }
         },
-        "required": [
-          "evaId"
-        ],
+        "required": ["evaId"],
         "type": "object",
         "additionalProperties": false
       },
       "JnyCl": {
-        "enum": [
-          1,
-          2
-        ],
+        "enum": [1, 2],
         "type": "number"
       },
       "TravelerType": {
-        "enum": [
-          "E",
-          "K",
-          "B"
-        ],
+        "enum": ["E", "K", "B"],
         "type": "string"
       },
       "LoyalityCard": {
@@ -3497,9 +3143,7 @@
             "description": "Testing Comment"
           }
         },
-        "required": [
-          "type"
-        ],
+        "required": ["type"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3515,10 +3159,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "class",
-          "traveler"
-        ],
+        "required": ["class", "traveler"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3585,10 +3226,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "start",
-          "destination"
-        ],
+        "required": ["start", "destination"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3625,10 +3263,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "station",
-          "departure"
-        ],
+        "required": ["station", "departure"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3665,10 +3300,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "station",
-          "arrival"
-        ],
+        "required": ["station", "arrival"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3702,13 +3334,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "train",
-          "jid",
-          "firstStop",
-          "lastStop",
-          "stops"
-        ],
+        "required": ["train", "jid", "firstStop", "lastStop", "stops"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3825,13 +3451,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "train",
-          "stops",
-          "jid",
-          "firstStop",
-          "lastStop"
-        ],
+        "required": ["train", "stops", "jid", "firstStop", "lastStop"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3851,9 +3471,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "trainName"
-        ],
+        "required": ["trainName"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3917,9 +3535,7 @@
           },
           "type": {
             "type": "string",
-            "enum": [
-              "JNY"
-            ],
+            "enum": ["JNY"],
             "nullable": false
           },
           "arrival": {
@@ -4020,10 +3636,7 @@
       },
       "AllowedSotMode": {
         "type": "string",
-        "enum": [
-          "JI",
-          "RC"
-        ]
+        "enum": ["JI", "RC"]
       },
       "SearchOnTripBody": {
         "properties": {
@@ -4034,10 +3647,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "sotMode",
-          "id"
-        ],
+        "required": ["sotMode", "id"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4074,10 +3684,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "station",
-          "departure"
-        ],
+        "required": ["station", "departure"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4114,10 +3721,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "station",
-          "arrival"
-        ],
+        "required": ["station", "arrival"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4154,9 +3758,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "station"
-        ],
+        "required": ["station"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4190,13 +3792,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "train",
-          "jid",
-          "firstStop",
-          "lastStop",
-          "stops"
-        ],
+        "required": ["train", "jid", "firstStop", "lastStop", "stops"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4330,9 +3926,7 @@
           },
           "type": {
             "type": "string",
-            "enum": [
-              "JNY"
-            ],
+            "enum": ["JNY"],
             "nullable": false
           },
           "arrival": {
@@ -4478,13 +4072,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "train",
-          "stops",
-          "jid",
-          "firstStop",
-          "lastStop"
-        ],
+        "required": ["train", "stops", "jid", "firstStop", "lastStop"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4504,9 +4092,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "trainName"
-        ],
+        "required": ["trainName"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4532,13 +4118,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "jid",
-          "date",
-          "train",
-          "position",
-          "stops"
-        ],
+        "required": ["jid", "date", "train", "position", "stops"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4550,12 +4130,7 @@
       },
       "InOutMode": {
         "type": "string",
-        "enum": [
-          "B",
-          "I",
-          "N",
-          "O"
-        ]
+        "enum": ["B", "I", "N", "O"]
       },
       "JourneyTrainPosMode": {
         "type": "string",
@@ -4720,17 +4295,11 @@
                 "type": "string"
               }
             },
-            "required": [
-              "later",
-              "earlier"
-            ],
+            "required": ["later", "earlier"],
             "type": "object"
           }
         },
-        "required": [
-          "routes",
-          "context"
-        ],
+        "required": ["routes", "context"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4797,10 +4366,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "start",
-          "destination"
-        ],
+        "required": ["start", "destination"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4815,10 +4381,7 @@
                 "type": "string"
               }
             },
-            "required": [
-              "title",
-              "id"
-            ],
+            "required": ["title", "id"],
             "type": "object"
           },
           "pt": {
@@ -4829,11 +4392,7 @@
             "type": "boolean"
           }
         },
-        "required": [
-          "station",
-          "pt",
-          "fl"
-        ],
+        "required": ["station", "pt", "fl"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4891,10 +4450,7 @@
             "type": "boolean"
           }
         },
-        "required": [
-          "scheduledTime",
-          "time"
-        ],
+        "required": ["scheduledTime", "time"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4914,9 +4470,7 @@
             "$ref": "#/components/schemas/MessagePrio"
           }
         },
-        "required": [
-          "text"
-        ],
+        "required": ["text"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4939,10 +4493,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "text",
-          "head"
-        ],
+        "required": ["text", "head"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4977,11 +4528,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "qos",
-          "delay",
-          "him"
-        ],
+        "required": ["qos", "delay", "him"],
         "type": "object",
         "additionalProperties": {
           "items": {
@@ -5111,11 +4658,7 @@
             "$ref": "#/components/schemas/Wings_number_"
           }
         },
-        "required": [
-          "departures",
-          "lookbehind",
-          "wings"
-        ],
+        "required": ["departures", "lookbehind", "wings"],
         "type": "object",
         "additionalProperties": false
       },
@@ -5130,10 +4673,7 @@
                 "type": "string"
               }
             },
-            "required": [
-              "title",
-              "id"
-            ],
+            "required": ["title", "id"],
             "type": "object"
           },
           "pt": {
@@ -5144,11 +4684,7 @@
             "type": "boolean"
           }
         },
-        "required": [
-          "station",
-          "pt",
-          "fl"
-        ],
+        "required": ["station", "pt", "fl"],
         "type": "object",
         "additionalProperties": false
       },
@@ -5168,13 +4704,7 @@
         "properties": {
           "klasse": {
             "type": "number",
-            "enum": [
-              "0",
-              "1",
-              "2",
-              "3",
-              "4"
-            ],
+            "enum": ["0", "1", "2", "3", "4"],
             "description": "0: Unknown; 1: erste; 2: zweite; 3: 1&2; 4: Not for passengers"
           },
           "icons": {
@@ -5216,10 +4746,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "klasse",
-          "icons"
-        ],
+        "required": ["klasse", "icons"],
         "type": "object",
         "additionalProperties": false
       },
@@ -5238,12 +4765,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "anzahl",
-          "ausstattungsart",
-          "bezeichnung",
-          "status"
-        ],
+        "required": ["anzahl", "ausstattungsart", "bezeichnung", "status"],
         "type": "object",
         "additionalProperties": false
       },
@@ -5283,12 +4805,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "endemeter",
-          "endeprozent",
-          "startmeter",
-          "startprozent"
-        ],
+        "required": ["endemeter", "endeprozent", "startmeter", "startprozent"],
         "type": "object",
         "additionalProperties": false
       },
@@ -5385,18 +4902,13 @@
           },
           "country": {
             "type": "string",
-            "enum": [
-              "DE",
-              "AT"
-            ]
+            "enum": ["DE", "AT"]
           },
           "showBRInfo": {
             "type": "boolean"
           }
         },
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "type": "object",
         "additionalProperties": false
       },
@@ -5547,10 +5059,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "positionamgleis",
-          "sektorbezeichnung"
-        ],
+        "required": ["positionamgleis", "sektorbezeichnung"],
         "type": "object",
         "additionalProperties": false
       },
@@ -5598,10 +5107,7 @@
         "properties": {
           "fahrtrichtung": {
             "type": "string",
-            "enum": [
-              "VORWAERTS",
-              "RUCKWAERTS"
-            ],
+            "enum": ["VORWAERTS", "RUCKWAERTS"],
             "description": "Should always be VORWAERTS"
           },
           "allFahrzeuggruppe": {
@@ -5705,10 +5211,7 @@
             "format": "double"
           }
         },
-        "required": [
-          "latitude",
-          "longitude"
-        ],
+        "required": ["latitude", "longitude"],
         "type": "object",
         "additionalProperties": false
       },
@@ -5724,11 +5227,7 @@
             "$ref": "#/components/schemas/SBBCoordinates"
           }
         },
-        "required": [
-          "title",
-          "id",
-          "location"
-        ],
+        "required": ["title", "id", "location"],
         "type": "object",
         "additionalProperties": false
       },
@@ -5745,10 +5244,7 @@
             "format": "date-time"
           }
         },
-        "required": [
-          "start",
-          "destination"
-        ],
+        "required": ["start", "destination"],
         "type": "object",
         "additionalProperties": false
       },
@@ -5791,15 +5287,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "name",
-          "meta",
-          "eva",
-          "ds100",
-          "db",
-          "creationts",
-          "p"
-        ],
+        "required": ["name", "meta", "eva", "ds100", "db", "creationts", "p"],
         "type": "object",
         "additionalProperties": false
       },
@@ -5815,10 +5303,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "station",
-          "relatedStations"
-        ],
+        "required": ["station", "relatedStations"],
         "type": "object",
         "additionalProperties": false
       },
@@ -5837,11 +5322,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "city",
-          "postalCode",
-          "street"
-        ],
+        "required": ["city", "postalCode", "street"],
         "type": "object",
         "additionalProperties": false
       },
@@ -5882,23 +5363,33 @@
         "type": "object",
         "additionalProperties": false
       },
+      "BusinessHubCoordinates": {
+        "properties": {
+          "latitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": ["latitude", "longitude"],
+        "type": "object",
+        "additionalProperties": false
+      },
       "Identifier_EVA_": {
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "EVA"
-            ],
+            "enum": ["EVA"],
             "nullable": false
           },
           "value": {
             "type": "string"
           }
         },
-        "required": [
-          "type",
-          "value"
-        ],
+        "required": ["type", "value"],
         "type": "object",
         "additionalProperties": false
       },
@@ -5906,19 +5397,14 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "RIL100"
-            ],
+            "enum": ["RIL100"],
             "nullable": false
           },
           "value": {
             "type": "string"
           }
         },
-        "required": [
-          "type",
-          "value"
-        ],
+        "required": ["type", "value"],
         "type": "object",
         "additionalProperties": false
       },
@@ -5926,19 +5412,14 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "STADA"
-            ],
+            "enum": ["STADA"],
             "nullable": false
           },
           "value": {
             "type": "string"
           }
         },
-        "required": [
-          "type",
-          "value"
-        ],
+        "required": ["type", "value"],
         "type": "object",
         "additionalProperties": false
       },
@@ -5946,19 +5427,14 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "GLOBAL_ID"
-            ],
+            "enum": ["GLOBAL_ID"],
             "nullable": false
           },
           "value": {
             "type": "string"
           }
         },
-        "required": [
-          "type",
-          "value"
-        ],
+        "required": ["type", "value"],
         "type": "object",
         "additionalProperties": false
       },
@@ -5988,10 +5464,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "identifier",
-          "name"
-        ],
+        "required": ["identifier", "name"],
         "type": "object",
         "additionalProperties": false
       },
@@ -6004,10 +5477,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "shortName",
-          "name"
-        ],
+        "required": ["shortName", "name"],
         "type": "object",
         "additionalProperties": false
       },
@@ -6023,11 +5493,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "identifier",
-          "shortName",
-          "name"
-        ],
+        "required": ["identifier", "shortName", "name"],
         "type": "object",
         "additionalProperties": false
       },
@@ -6040,10 +5506,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "name",
-          "email"
-        ],
+        "required": ["name", "email"],
         "type": "object",
         "additionalProperties": false
       },
@@ -6068,11 +5531,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "day",
-          "openTime",
-          "closeTime"
-        ],
+        "required": ["day", "openTime", "closeTime"],
         "type": "object",
         "additionalProperties": false
       },
@@ -6085,9 +5544,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "availability"
-        ],
+        "required": ["availability"],
         "type": "object",
         "additionalProperties": false
       },
@@ -6100,9 +5557,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "availability"
-        ],
+        "required": ["availability"],
         "type": "object",
         "additionalProperties": false
       },
@@ -6285,9 +5740,7 @@
             }
           }
         },
-        "tags": [
-          "IRIS"
-        ],
+        "tags": ["IRIS"],
         "deprecated": true,
         "security": [],
         "parameters": [
@@ -6325,10 +5778,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "open",
-                "default"
-              ]
+              "enum": ["open", "default"]
             }
           }
         ]
@@ -6349,9 +5799,7 @@
             }
           }
         },
-        "tags": [
-          "IRIS"
-        ],
+        "tags": ["IRIS"],
         "security": [],
         "parameters": [
           {
@@ -6388,10 +5836,7 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": [
-                "open",
-                "default"
-              ]
+              "enum": ["open", "default"]
             }
           }
         ]
@@ -6415,9 +5860,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "tags": ["HAFAS"],
         "deprecated": true,
         "security": [],
         "parameters": [
@@ -6469,9 +5912,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -6518,9 +5959,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "tags": ["HAFAS"],
         "deprecated": true,
         "security": [],
         "parameters": [
@@ -6576,9 +6015,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -6632,9 +6069,7 @@
             }
           }
         },
-        "tags": [
-          "BusinessHub"
-        ],
+        "tags": ["BusinessHub"],
         "security": [],
         "parameters": [
           {
@@ -6675,9 +6110,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "tags": ["HAFAS"],
         "deprecated": true,
         "security": [],
         "parameters": [
@@ -6738,9 +6171,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -6799,9 +6230,7 @@
             "description": "Train not found"
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "tags": ["HAFAS"],
         "deprecated": true,
         "security": [],
         "parameters": [
@@ -6870,9 +6299,7 @@
             "description": "Train not found"
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -6938,9 +6365,7 @@
             "description": "No station found"
           }
         },
-        "tags": [
-          "Station V1"
-        ],
+        "tags": ["Station V1"],
         "security": [],
         "parameters": [
           {
@@ -6954,7 +6379,7 @@
         ]
       }
     },
-    "/businessHub/experimental/fasta/{stadaId}": {
+    "/businessHub/v1/fasta/{stadaId}": {
       "get": {
         "operationId": "Fahrstühle",
         "responses": {
@@ -6969,9 +6394,7 @@
             }
           }
         },
-        "tags": [
-          "BusinessHub experimental"
-        ],
+        "tags": ["BusinessHub"],
         "security": [],
         "parameters": [
           {
@@ -7003,9 +6426,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -7065,9 +6486,7 @@
             }
           }
         },
-        "tags": [
-          "Station V1"
-        ],
+        "tags": ["Station V1"],
         "security": [],
         "parameters": [
           {
@@ -7100,7 +6519,7 @@
         ]
       }
     },
-    "/businessHub/experimental/stationQuays/{evaId}": {
+    "/businessHub/v1/stationQuays/{evaId}": {
       "get": {
         "operationId": "Gleise",
         "responses": {
@@ -7118,9 +6537,7 @@
             }
           }
         },
-        "tags": [
-          "BusinessHub experimental"
-        ],
+        "tags": ["BusinessHub"],
         "security": [],
         "parameters": [
           {
@@ -7149,9 +6566,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS Experimental"
-        ],
+        "tags": ["HAFAS Experimental"],
         "security": [],
         "parameters": [
           {
@@ -7191,9 +6606,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS Experimental"
-        ],
+        "tags": ["HAFAS Experimental"],
         "security": [],
         "parameters": [
           {
@@ -7232,9 +6645,7 @@
             }
           }
         },
-        "tags": [
-          "Station V1"
-        ],
+        "tags": ["Station V1"],
         "security": [],
         "parameters": [
           {
@@ -7261,9 +6672,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS Experimental"
-        ],
+        "tags": ["HAFAS Experimental"],
         "security": [],
         "parameters": [
           {
@@ -7302,9 +6711,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -7341,9 +6748,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS Experimental"
-        ],
+        "tags": ["HAFAS Experimental"],
         "security": [],
         "parameters": [
           {
@@ -7385,9 +6790,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "tags": ["HAFAS"],
         "deprecated": true,
         "security": [],
         "parameters": [
@@ -7430,9 +6833,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -7469,9 +6870,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS Experimental"
-        ],
+        "tags": ["HAFAS Experimental"],
         "security": [],
         "parameters": [
           {
@@ -7510,9 +6909,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "tags": ["HAFAS"],
         "deprecated": true,
         "security": [],
         "parameters": [
@@ -7550,9 +6947,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -7589,9 +6984,7 @@
             }
           }
         },
-        "tags": [
-          "Bahnhof"
-        ],
+        "tags": ["Bahnhof"],
         "security": [],
         "parameters": [
           {
@@ -7628,9 +7021,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -7665,9 +7056,7 @@
             }
           }
         },
-        "tags": [
-          "SBB Experimental"
-        ],
+        "tags": ["SBB Experimental"],
         "security": [],
         "parameters": [],
         "requestBody": {
@@ -7697,9 +7086,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "tags": ["HAFAS"],
         "deprecated": true,
         "security": [],
         "parameters": [
@@ -7739,9 +7126,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -7783,9 +7168,7 @@
             }
           }
         },
-        "tags": [
-          "Station V1"
-        ],
+        "tags": ["Station V1"],
         "security": [],
         "parameters": [
           {
@@ -7834,9 +7217,7 @@
             }
           }
         },
-        "tags": [
-          "SBB Experimental"
-        ],
+        "tags": ["SBB Experimental"],
         "security": [],
         "parameters": [
           {
@@ -7865,9 +7246,7 @@
             }
           }
         },
-        "tags": [
-          "Station V1"
-        ],
+        "tags": ["Station V1"],
         "security": [],
         "parameters": [
           {
@@ -7896,9 +7275,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS Subscribe"
-        ],
+        "tags": ["HAFAS Subscribe"],
         "security": [],
         "parameters": [
           {
@@ -7937,9 +7314,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS Subscribe"
-        ],
+        "tags": ["HAFAS Subscribe"],
         "security": [],
         "parameters": [
           {
@@ -7978,9 +7353,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS Subscribe"
-        ],
+        "tags": ["HAFAS Subscribe"],
         "security": [],
         "parameters": [
           {
@@ -8019,9 +7392,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS Subscribe"
-        ],
+        "tags": ["HAFAS Subscribe"],
         "security": [],
         "parameters": [
           {
@@ -8060,9 +7431,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS Subscribe"
-        ],
+        "tags": ["HAFAS Subscribe"],
         "security": [],
         "parameters": [
           {
@@ -8108,9 +7477,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS Subscribe"
-        ],
+        "tags": ["HAFAS Subscribe"],
         "security": [],
         "parameters": [
           {
@@ -8147,9 +7514,7 @@
             }
           }
         },
-        "tags": [
-          "Reihung"
-        ],
+        "tags": ["Reihung"],
         "security": [],
         "parameters": [
           {
@@ -8179,9 +7544,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "tags": ["HAFAS"],
         "deprecated": true,
         "security": [],
         "parameters": [
@@ -8221,9 +7584,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -8262,9 +7623,7 @@
             }
           }
         },
-        "tags": [
-          "Reihung"
-        ],
+        "tags": ["Reihung"],
         "deprecated": true,
         "security": [],
         "parameters": [
@@ -8304,9 +7663,7 @@
             }
           }
         },
-        "tags": [
-          "Reihung"
-        ],
+        "tags": ["Reihung"],
         "security": [],
         "parameters": [
           {
@@ -8344,9 +7701,7 @@
             }
           }
         },
-        "tags": [
-          "IRIS"
-        ],
+        "tags": ["IRIS"],
         "deprecated": true,
         "security": [],
         "parameters": [
@@ -8384,9 +7739,7 @@
             }
           }
         },
-        "tags": [
-          "IRIS"
-        ],
+        "tags": ["IRIS"],
         "security": [],
         "parameters": [
           {
