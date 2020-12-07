@@ -5,8 +5,6 @@
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { BahnhofControllerV1 } from './controller/Bahnhof/v1';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-import { BussinessHubExperimentalController } from './controller/BusinessHub/experimental';
-// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { BusinessHubV1Controller } from './controller/BusinessHub/v1';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { HafasExperimentalController } from './controller/Hafas/experimental';
@@ -41,94 +39,6 @@ const models: TsoaRoute.Models = {
         "dataType": "refObject",
         "properties": {
             "lageplan": {"dataType":"string"},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "BusinessHubCoordinates": {
-        "dataType": "refObject",
-        "properties": {
-            "latitude": {"dataType":"double","required":true},
-            "longitude": {"dataType":"double","required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "BusinessHubStation": {
-        "dataType": "refObject",
-        "properties": {
-            "title": {"dataType":"string","required":true},
-            "id": {"dataType":"string","required":true},
-            "ds100": {"dataType":"string"},
-            "stada": {"dataType":"string"},
-            "globalId": {"dataType":"string"},
-            "location": {"ref":"BusinessHubCoordinates","required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Facilities": {
-        "dataType": "refObject",
-        "properties": {
-            "description": {"dataType":"string","required":true},
-            "equipmentnumber": {"dataType":"double","required":true},
-            "geocoordX": {"dataType":"double","required":true},
-            "geocoordY": {"dataType":"double","required":true},
-            "state": {"dataType":"string","required":true},
-            "stateExplanation": {"dataType":"string","required":true},
-            "type": {"dataType":"string","required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "FastaResponse": {
-        "dataType": "refObject",
-        "properties": {
-            "facilieites": {"dataType":"array","array":{"ref":"Facilities"},"required":true},
-            "name": {"dataType":"string","required":true},
-            "stationnumber": {"dataType":"double","required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "LimitationEnum": {
-        "dataType": "refEnum",
-        "enums": ["true","false","unknown","not applicable"],
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "QuayAccessibilityLimitation": {
-        "dataType": "refObject",
-        "properties": {
-            "audibleSignalsAvailable": {"ref":"LimitationEnum","required":true},
-            "automaticDoor": {"ref":"LimitationEnum","required":true},
-            "boardingAid": {"ref":"LimitationEnum","required":true},
-            "passengerInformationDisplay": {"ref":"LimitationEnum","required":true},
-            "platformHeight": {"ref":"LimitationEnum","required":true},
-            "platformSign": {"ref":"LimitationEnum","required":true},
-            "stairsMarking": {"ref":"LimitationEnum","required":true},
-            "stepFreeAccess": {"ref":"LimitationEnum","required":true},
-            "tactileGuidingStrips": {"ref":"LimitationEnum","required":true},
-            "tactileHandrailLabel": {"ref":"LimitationEnum","required":true},
-            "tactilePlatformAccess": {"ref":"LimitationEnum","required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "QuayAccessibilityAssessment": {
-        "dataType": "refObject",
-        "properties": {
-            "accessibilityLimitation": {"ref":"QuayAccessibilityLimitation","required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Quay": {
-        "dataType": "refObject",
-        "properties": {
-            "id": {"dataType":"string","required":true},
-            "name": {"dataType":"string","required":true},
-            "accessibilityAssessment": {"ref":"QuayAccessibilityAssessment","required":true},
-            "quayType": {"dataType":"string","required":true},
         },
         "additionalProperties": false,
     },
@@ -187,6 +97,72 @@ const models: TsoaRoute.Models = {
         "dataType": "refObject",
         "properties": {
             "items": {"dataType":"array","array":{"ref":"OccupancyItem"},"required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "LimitationEnum": {
+        "dataType": "refEnum",
+        "enums": ["true","false","unknown","not applicable"],
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "QuayAccessibilityLimitation": {
+        "dataType": "refObject",
+        "properties": {
+            "audibleSignalsAvailable": {"ref":"LimitationEnum","required":true},
+            "automaticDoor": {"ref":"LimitationEnum","required":true},
+            "boardingAid": {"ref":"LimitationEnum","required":true},
+            "passengerInformationDisplay": {"ref":"LimitationEnum","required":true},
+            "platformHeight": {"ref":"LimitationEnum","required":true},
+            "platformSign": {"ref":"LimitationEnum","required":true},
+            "stairsMarking": {"ref":"LimitationEnum","required":true},
+            "stepFreeAccess": {"ref":"LimitationEnum","required":true},
+            "tactileGuidingStrips": {"ref":"LimitationEnum","required":true},
+            "tactileHandrailLabel": {"ref":"LimitationEnum","required":true},
+            "tactilePlatformAccess": {"ref":"LimitationEnum","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "QuayAccessibilityAssessment": {
+        "dataType": "refObject",
+        "properties": {
+            "accessibilityLimitation": {"ref":"QuayAccessibilityLimitation","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Quay": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"string","required":true},
+            "name": {"dataType":"string","required":true},
+            "accessibilityAssessment": {"ref":"QuayAccessibilityAssessment","required":true},
+            "quayType": {"dataType":"string","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Facilities": {
+        "dataType": "refObject",
+        "properties": {
+            "description": {"dataType":"string","required":true},
+            "equipmentnumber": {"dataType":"double","required":true},
+            "geocoordX": {"dataType":"double","required":true},
+            "geocoordY": {"dataType":"double","required":true},
+            "state": {"dataType":"string","required":true},
+            "stateExplanation": {"dataType":"string","required":true},
+            "type": {"dataType":"string","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "FastaResponse": {
+        "dataType": "refObject",
+        "properties": {
+            "facilieites": {"dataType":"array","array":{"ref":"Facilities"},"required":true},
+            "name": {"dataType":"string","required":true},
+            "stationnumber": {"dataType":"double","required":true},
         },
         "additionalProperties": false,
     },
@@ -2233,6 +2209,15 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "BusinessHubCoordinates": {
+        "dataType": "refObject",
+        "properties": {
+            "latitude": {"dataType":"double","required":true},
+            "longitude": {"dataType":"double","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Identifier_EVA_": {
         "dataType": "refObject",
         "properties": {
@@ -2415,66 +2400,6 @@ export function RegisterRoutes(router: KoaRouter) {
             return promiseHandler(controller, promise, context, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        router.get('/api/businessHub/experimental/station/:searchTerm',
-            async (context: any, next: any) => {
-            const args = {
-                    searchTerm: {"in":"path","name":"searchTerm","required":true,"dataType":"string"},
-            };
-
-            let validatedArgs: any[] = [];
-            try {
-              validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
-              context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
-            }
-
-            const controller = new BussinessHubExperimentalController();
-
-            const promise = controller.station.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        router.get('/api/businessHub/experimental/fasta/:stadaId',
-            async (context: any, next: any) => {
-            const args = {
-                    stadaId: {"in":"path","name":"stadaId","required":true,"dataType":"string"},
-            };
-
-            let validatedArgs: any[] = [];
-            try {
-              validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
-              context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
-            }
-
-            const controller = new BussinessHubExperimentalController();
-
-            const promise = controller.fasta.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        router.get('/api/businessHub/experimental/stationQuays/:evaId',
-            async (context: any, next: any) => {
-            const args = {
-                    evaId: {"in":"path","name":"evaId","required":true,"dataType":"string"},
-            };
-
-            let validatedArgs: any[] = [];
-            try {
-              validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
-              context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
-            }
-
-            const controller = new BussinessHubExperimentalController();
-
-            const promise = controller.quays.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/businessHub/v1/stationOccupancy/:evaId/:date',
             async (context: any, next: any) => {
             const args = {
@@ -2493,6 +2418,46 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new BusinessHubV1Controller();
 
             const promise = controller.stationOccupancy.apply(controller, validatedArgs as any);
+            return promiseHandler(controller, promise, context, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        router.get('/api/businessHub/v1/stationQuays/:evaId',
+            async (context: any, next: any) => {
+            const args = {
+                    evaId: {"in":"path","name":"evaId","required":true,"dataType":"string"},
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+              validatedArgs = getValidatedArgs(args, context, next);
+            } catch (error) {
+              context.status = error.status;
+              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+            }
+
+            const controller = new BusinessHubV1Controller();
+
+            const promise = controller.quays.apply(controller, validatedArgs as any);
+            return promiseHandler(controller, promise, context, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        router.get('/api/businessHub/v1/fasta/:stadaId',
+            async (context: any, next: any) => {
+            const args = {
+                    stadaId: {"in":"path","name":"stadaId","required":true,"dataType":"string"},
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+              validatedArgs = getValidatedArgs(args, context, next);
+            } catch (error) {
+              context.status = error.status;
+              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+            }
+
+            const controller = new BusinessHubV1Controller();
+
+            const promise = controller.fasta.apply(controller, validatedArgs as any);
             return promiseHandler(controller, promise, context, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
