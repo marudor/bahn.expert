@@ -43,7 +43,7 @@ export async function journeyMatch(
     });
   }
   const r = await Axios.post<ParsedJourneyMatchResponse[]>(
-    '/api/hafas/v2/enrichedJourneyMatch',
+    '/api/hafas/v1/enrichedJourneyMatch',
     {
       trainName,
       initialDepartureDate,

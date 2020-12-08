@@ -5,6 +5,7 @@ import Axios from 'axios';
 import fs from 'fs';
 import Nock from 'nock';
 import path from 'path';
+import routes from 'server/API';
 
 if (fs.existsSync(path.resolve(__dirname, 'setup.js'))) {
   throw new Error('Run `yarn all:clean`. State dirty');
@@ -59,6 +60,17 @@ beforeAll(() => {
       return oldFn.apply(this, args);
     };
   })(global.nock.intercept);
+});
+
+const routeRegexp = /\/v(\d+|experimental)\//;
+afterEach(() => {
+  const allRoutes = routes.stack.filter((s) => routeRegexp.exec(s.path));
+  // @ts-expect-error this exsits
+  global.nock.interceptors.forEach((i) => {
+    if (!allRoutes.some((r) => r.match(i.path))) {
+      throw new Error(`${i.path} does not match available routes`);
+    }
+  });
 });
 
 afterAll(() => {
