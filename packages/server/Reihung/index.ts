@@ -200,7 +200,7 @@ const getDisabledSeats = (
 
 const tznRegex = /(\d+)/;
 
-function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
+function enrichFahrzeug(fahrzeug: Fahrzeug) {
   const data: AdditionalFahrzeugInfo = {
     klasse: 0,
     icons: {},
@@ -272,6 +272,11 @@ function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
     }
   });
 
+  fahrzeug.additionalInfo = data;
+}
+
+function calculateComfort(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
+  const data = fahrzeug.additionalInfo;
   if (gruppe.goesToFrance) {
     data.comfort = false;
     data.icons.disabled = false;
@@ -302,8 +307,6 @@ function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
       );
     }
   }
-
-  fahrzeug.additionalInfo = data;
 }
 
 const wrFetchTimeout = process.env.NODE_ENV === 'production' ? 2500 : 10000;
@@ -402,7 +405,7 @@ export async function wagenreihung(
       }
     }
     g.allFahrzeug.forEach((fahrzeug) => {
-      enrichFahrzeug(fahrzeug, g);
+      enrichFahrzeug(fahrzeug);
       fahrzeuge.push(fahrzeug);
     });
     if (['IC', 'EC', 'ICE', 'ECE'].includes(enrichedFormation.zuggattung)) {
@@ -432,6 +435,10 @@ export async function wagenreihung(
         g.br.redesign = true;
       }
     }
+
+    fahrzeuge.forEach((f) => {
+      calculateComfort(f, g);
+    });
 
     const minFahrzeug = minBy(g.allFahrzeug, (f) =>
       Number.parseInt(f.positionamhalt.startprozent, 10),
