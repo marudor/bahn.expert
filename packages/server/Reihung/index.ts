@@ -2,7 +2,7 @@
 /* eslint-disable no-fallthrough */
 import { format } from 'date-fns';
 import { getAbfahrten } from 'server/iris';
-import { isRedesignByTZ, isRedesignByUIC } from 'server/Reihung/tzInfo';
+import { isRedesignByTZ } from 'server/Reihung/tzInfo';
 import { maxBy, minBy } from 'client/util';
 import { utcToZonedTime } from 'date-fns-tz';
 import Axios from 'axios';
@@ -86,7 +86,11 @@ const getCountry = (fahrzeuge: Fahrzeug[], fahrzeugTypes: string[]) => {
 };
 
 const ICE1LDV = (br: BRInfo, fahrzeuge: Fahrzeug[]): void => {
-  if (br.BR === '401' && fahrzeuge.length === 11) {
+  if (
+    br.BR === '401' &&
+    fahrzeuge.length === 11 &&
+    fahrzeuge.filter((f) => f.additionalInfo.klasse === 1).length === 2
+  ) {
     br.name += ' LDV';
     br.noPdf = true;
   }
@@ -286,15 +290,6 @@ function enrichFahrzeug(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
     }
   }
 
-  if (
-    gruppe.tzn &&
-    gruppe.br &&
-    !gruppe.br.redesign &&
-    isRedesignByUIC(gruppe.tzn)
-  ) {
-    gruppe.br.redesign = true;
-  }
-
   if (gruppe.br) {
     if (data.comfort) {
       data.comfortSeats = getComfortSeats(gruppe.br, data.klasse === 1 ? 1 : 2);
@@ -406,6 +401,10 @@ export async function wagenreihung(
         enrichedFormation.differentDestination = true;
       }
     }
+    g.allFahrzeug.forEach((fahrzeug) => {
+      enrichFahrzeug(fahrzeug, g);
+      fahrzeuge.push(fahrzeug);
+    });
     if (['IC', 'EC', 'ICE', 'ECE'].includes(enrichedFormation.zuggattung)) {
       const gruppenFahrzeugTypes = g.allFahrzeug.map((f) => f.fahrzeugtyp);
 
@@ -433,11 +432,6 @@ export async function wagenreihung(
         g.br.redesign = true;
       }
     }
-
-    g.allFahrzeug.forEach((fahrzeug) => {
-      enrichFahrzeug(fahrzeug, g);
-      fahrzeuge.push(fahrzeug);
-    });
 
     const minFahrzeug = minBy(g.allFahrzeug, (f) =>
       Number.parseInt(f.positionamhalt.startprozent, 10),

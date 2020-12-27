@@ -14,14 +14,14 @@ interface Props {
 
 export const PlannedType: FC<Props> = ({ plannedSequence }) => {
   const classes = useStyles();
-  if (!plannedSequence?.short) return null;
+  if (!plannedSequence?.shortType) return null;
 
   return (
     <Tooltip
       enterTouchDelay={0}
       title={`Planned Type: ${plannedSequence.type}`}
     >
-      <span className={classes.wrap}> ({plannedSequence.short})</span>
+      <span className={classes.wrap}> ({plannedSequence.shortType})</span>
     </Tooltip>
   );
 };
