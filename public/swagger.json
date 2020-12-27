@@ -2467,31 +2467,21 @@
       },
       "PossibleShort": {
         "type": "string",
-        "enum": ["1", "2", "3", "4", "3R", "T", "3V"]
-      },
-      "Wagons": {
-        "properties": {},
-        "type": "object",
-        "additionalProperties": {
-          "type": "boolean"
-        }
+        "enum": ["1", "2", "3", "4", "3R", "T", "3V", "M"]
       },
       "PlannedSequence": {
         "properties": {
-          "raw": {
+          "rawType": {
             "type": "string"
           },
-          "short": {
+          "shortType": {
             "$ref": "#/components/schemas/PossibleShort"
           },
           "type": {
             "type": "string"
-          },
-          "wagons": {
-            "$ref": "#/components/schemas/Wagons"
           }
         },
-        "required": ["raw", "type", "wagons"],
+        "required": ["rawType", "type"],
         "type": "object",
         "additionalProperties": false
       },
