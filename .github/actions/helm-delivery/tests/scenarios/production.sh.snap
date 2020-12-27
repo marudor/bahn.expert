@@ -1,0 +1,21 @@
+##[debug]not setting deployment status
+##[debug]param: track = "stable"
+##[debug]param: release = "app"
+##[debug]param: appName = "app"
+##[debug]param: namespace = "default"
+##[debug]param: chart = "/usr/src/charts/app"
+##[debug]param: chart_version = ""
+##[debug]param: values = "{"replicaCount": 1, "image": {"repository": "nginx", "tag": "latest"}}"
+##[debug]param: dryRun = ""
+##[debug]param: task = ""
+##[debug]param: version = "1234"
+##[debug]param: secrets = "{"secret":"val"}"
+##[debug]param: valueFiles = "[]"
+##[debug]param: removeCanary = 
+##[debug]param: timeout = "30"
+##[debug]param: repository = ""
+##[debug]env: KUBECONFIG="undefined"
+##[debug]rendering value files [./values.yml] with: {"secrets":{"secret":"val"}}
+[command]helm upgrade app /usr/src/charts/app --install --wait --atomic --namespace=default --set=app.name=app --set=app.version=1234 --timeout=30 --values=./values.yml
+helm upgrade app /usr/src/charts/app --install --wait --atomic --namespace=default --set=app.name=app --set=app.version=1234 --timeout=30 --values=./values.yml
+##[debug]not setting deployment status

@@ -1,0 +1,104 @@
+# replicaCount -- Replica count for deployments.
+replicaCount: 1
+
+app:
+  # app.name -- Application name: Can be consistent between tracks. (required)
+  name: null
+  # app.version -- Application version: Unique tag for this release. (required)
+  version: null
+
+image:
+  # image.repository -- Docker image repository.
+  repository: nginx
+  # image.tag -- Docker image tag.
+  tag: latest
+  pullPolicy: IfNotPresent
+
+# imagePullSecrets -- Defines secrets to use for pulling docker images.
+imagePullSecrets: []
+
+service:
+  # service.enabled -- Enable service resource.
+  enabled: true
+  # service.type -- Kubernetes service type.
+  type: ClusterIP
+  # service.port -- Kubernetes service port.
+  port: 80
+  # service.internalPort -- Deployment internal port.
+  internalPort: 80
+
+ingress:
+  # ingress.enabled -- Enable ingress resource.
+  enabled: false
+  # ingress.annotations -- Configures annotations for the ingress.
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    # ingress.hosts[0].host -- Host name for routing traffic.
+    - host: chart-example.local
+      # ingress.hosts[0].paths -- Array of routable paths.
+      paths: ["/"]
+
+  # ingress.tls -- Kubernetes ingress tls resource.
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+# resources -- Kubernetes resources for Deployment resources.
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+# nodeSelector -- Kubernetes node selectors for Deployment resources.
+nodeSelector: {}
+
+# tolerations -- Kubernetes tolerations for Deployment resources.
+tolerations: []
+
+# affinity -- Kubernetes affinity resource.
+affinity: {}
+
+# env -- Environment variables for the application.
+env: []
+# - name: ENVIRONMENT
+#   value: production
+
+# secrets -- Creates a secret for the application. All variables passed in env.
+# Uses envFrom in the deployment specification to pass these all through.
+secrets: []
+# - name: TEST
+#   value: "foobar"
+
+# livenessProbe -- Customize the livenessProbe.
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+
+# readinessProbe -- Customize the readiness probe.
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
+
+migrate:
+  # migrate.enabled -- Run a pod before the application is released to migrate.
+  enabled: false
+  # migrate.command -- Command to run on the migrate pod.
+  command: "rails db:migrate"
+
+# workers -- Deploy background jobs with the same config as the main app.
+workers: []
+#  - name: delayed-job
+#    command: ["rails", "jobs:work"]
+#    enableProbes: true
