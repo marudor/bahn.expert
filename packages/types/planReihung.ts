@@ -1,12 +1,16 @@
-interface Wagons {
-  [key: string]: boolean;
-}
-
-type PossibleShort = '3R' | '3' | '4' | '2' | '1' | 'T' | '3V';
+type PossibleShort = '3R' | '3' | '4' | '2' | '1' | 'T' | '3V' | 'M';
 
 export interface PlannedSequence {
-  raw: string;
-  short?: PossibleShort;
+  rawType: string;
+  shortType?: PossibleShort;
   type: string;
-  wagons: Wagons;
+}
+
+export interface PlannedSequenceMeta {
+  deprecated: boolean;
+  source: string;
+  train: {
+    [number: string]: PlannedSequence;
+  };
+  valid: string;
 }
