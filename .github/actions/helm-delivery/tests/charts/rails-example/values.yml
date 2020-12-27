@@ -1,0 +1,31 @@
+app:
+  name: example-rails
+  version: v1
+
+image:
+  repository: myrepo
+  tag: v1
+
+ingress:
+  enabled: true
+  hosts:
+    - host: example.com
+      paths: ["/"]
+
+secrets:
+  - name: DATABASE_URL
+    value: postgres://123@test.com
+
+env:
+  - name: RAILS_ENV
+    value: production
+
+migrate:
+  enabled: true
+  command: "rails db:migrate"
+
+workers:
+  - name: delayed-job
+    command: ["rails"]
+    args: ["jobs:work"]
+    replicaCount: 1

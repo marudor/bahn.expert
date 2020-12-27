@@ -1,0 +1,220 @@
+---
+# Source: app/templates/secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: rails-example
+  namespace: default
+  labels:
+    app.kubernetes.io/name: example-rails
+    app.kubernetes.io/instance: rails-example
+    app.kubernetes.io/version: "v1"
+    app.kubernetes.io/managed-by: Tiller
+    helm.sh/chart: app-0.0.2
+type: Opaque
+data:
+  DATABASE_URL: "cG9zdGdyZXM6Ly8xMjNAdGVzdC5jb20="
+
+---
+# Source: app/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: rails-example
+  namespace: default
+  labels:
+    app.kubernetes.io/name: example-rails
+    app.kubernetes.io/instance: rails-example
+    app.kubernetes.io/version: "v1"
+    app.kubernetes.io/managed-by: Tiller
+    helm.sh/chart: app-0.0.2
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: example-rails
+
+---
+# Source: app/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rails-example
+  namespace: default
+  annotations:
+    "deliverybot.dev/secret-checksum": c840b214c2ae393334d47c94952d2c73c441af1724ad43c9bee736cb3b3fd7d4
+  labels:
+    app.kubernetes.io/name: example-rails
+    app.kubernetes.io/instance: rails-example
+    app.kubernetes.io/version: "v1"
+    app.kubernetes.io/managed-by: Tiller
+    helm.sh/chart: app-0.0.2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: example-rails
+      app.kubernetes.io/instance: rails-example
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: example-rails
+        app.kubernetes.io/instance: rails-example
+    spec:
+      containers:
+        - name: app
+          image: "myrepo:v1"
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - secretRef:
+                name: rails-example
+        
+          env:
+            - name: RAILS_ENV
+              value: production
+            
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            
+
+---
+# Source: app/templates/workers.yaml
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rails-example-delayed-job
+  namespace: default
+  annotations:
+    "deliverybot.dev/secret-checksum": c840b214c2ae393334d47c94952d2c73c441af1724ad43c9bee736cb3b3fd7d4
+  labels:
+    app.kubernetes.io/component: delayed-job
+    app.kubernetes.io/name: example-rails
+    app.kubernetes.io/instance: rails-example
+    app.kubernetes.io/version: "v1"
+    app.kubernetes.io/managed-by: Tiller
+    helm.sh/chart: app-0.0.2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: delayed-job
+      app.kubernetes.io/name: example-rails
+      app.kubernetes.io/instance: rails-example
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: delayed-job
+        app.kubernetes.io/name: example-rails
+        app.kubernetes.io/instance: rails-example
+    spec:
+      containers:
+        - name: app
+          image: "myrepo:v1"
+          imagePullPolicy: IfNotPresent
+          command: ["rails"]
+          args: ["jobs:work"]
+          envFrom:
+            - secretRef:
+                name: rails-example
+        
+          env:
+            - name: RAILS_ENV
+              value: production
+            
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            
+
+---
+# Source: app/templates/migration.yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: rails-example-migrate
+  namespace: default
+  labels:
+    app.kubernetes.io/name: example-rails
+    app.kubernetes.io/instance: rails-example
+    app.kubernetes.io/version: "v1"
+    app.kubernetes.io/managed-by: Tiller
+    helm.sh/chart: app-0.0.2
+  annotations:
+    "helm.sh/hook": pre-upgrade
+    "helm.sh/hook-delete-policy": before-hook-creation
+    "helm.sh/hook-weight": "0"
+spec:
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: migrate
+        app.kubernetes.io/name: example-rails
+        app.kubernetes.io/instance: rails-example
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: app
+          command: ["/bin/sh"]
+          args: ["-c", "rails db:migrate"]
+          image: "myrepo:v1"
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - secretRef:
+                name: rails-example
+        
+          env:
+            - name: RAILS_ENV
+              value: production
+            
+---
+# Source: app/templates/ingress.yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: rails-example
+  namespace: default
+  labels:
+    app.kubernetes.io/name: example-rails
+    app.kubernetes.io/instance: rails-example
+    app.kubernetes.io/version: "v1"
+    app.kubernetes.io/managed-by: Tiller
+    helm.sh/chart: app-0.0.2
+spec:
+  rules:
+    - host: "example.com"
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: rails-example
+              servicePort: http
+
