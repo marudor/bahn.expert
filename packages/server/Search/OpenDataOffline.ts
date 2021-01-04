@@ -1,6 +1,7 @@
 import { orderBy } from 'client/util';
 import Fuse from 'fuse.js';
 import rawStations from 'db-stations/data.json';
+import type { OpenDataStation } from 'db-stations/data.json';
 import type { Station } from 'types/station';
 
 const searchableStations = new Fuse(rawStations, {
@@ -13,7 +14,7 @@ const searchableStations = new Fuse(rawStations, {
 });
 
 export default function (searchTerm: string): Promise<Station[]> {
-  const matches = searchableStations.search(searchTerm);
+  const matches = searchableStations.search<OpenDataStation>(searchTerm);
 
   const weightedMatches = matches.map((m) => ({
     item: m.item,
