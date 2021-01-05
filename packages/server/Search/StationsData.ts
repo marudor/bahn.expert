@@ -49,7 +49,7 @@ const searchableStations = new Fuse(stationData, {
 });
 
 export default function (searchTerm: string): Promise<Station[]> {
-  const matches = searchableStations.search(searchTerm);
+  const matches = searchableStations.search<StationsData>(searchTerm);
 
   return Promise.resolve(
     orderBy(matches, 'score')
