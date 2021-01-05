@@ -1,12 +1,13 @@
 import 'leaflet/dist/leaflet.css';
 import { ActivePolyline } from 'client/Map/Components/ActivePolyline';
 import { makeStyles } from '@material-ui/core';
-import { Map, TileLayer } from 'react-leaflet';
+import { MapContainer, TileLayer } from 'react-leaflet';
 import { MapSettings } from 'client/Map/Components/MapSettings';
 import { Positions } from 'client/Map/Components/Positions';
 import { useMapProvider } from 'client/Map/provider/MapProvider';
+import { useMemo } from 'react';
 import { useQuery } from 'client/Common/hooks/useQuery';
-import type { Viewport } from 'react-leaflet';
+import type { LatLngTuple } from 'leaflet';
 // @ts-expect-error TS doesnt know png
 import icon from 'leaflet/dist/images/marker-icon.png';
 // @ts-expect-error TS doesnt know png
@@ -23,10 +24,9 @@ const DefaultIcon = L.icon({
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
-const defaultViewport: Viewport = {
-  center: [50.954032, 9.955472],
-  zoom: 7,
-};
+const center: LatLngTuple = [50.954032, 9.955472];
+const zoom = 7;
+
 const attribution =
   '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>, Style: <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA 2.0</a> <a href="http://www.openrailwaymap.org/">OpenRailwayMap</a> and OpenStreetMap';
 
@@ -41,11 +41,23 @@ export const TrainMap: FC = () => {
   const query = useQuery();
   const { setActiveJourney } = useMapProvider();
 
+  const whenReady = useMemo(
+    () => () => {
+      const leafletContainer = document.querySelector('.leaflet-container');
+      leafletContainer?.addEventListener('click', () => {
+        setActiveJourney(undefined);
+      });
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
+
   return (
-    <Map
+    <MapContainer
       className={classes.wrap}
-      onClick={() => setActiveJourney(undefined)}
-      viewport={defaultViewport}
+      center={center}
+      zoom={zoom}
+      whenReady={whenReady}
     >
       {!query.noTiles && (
         <>
@@ -59,7 +71,7 @@ export const TrainMap: FC = () => {
       <Positions />
       <MapSettings />
       <ActivePolyline />
-    </Map>
+    </MapContainer>
   );
 };
 
