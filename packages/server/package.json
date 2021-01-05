@@ -33,7 +33,7 @@
     "google-polyline": "^1.0.3",
     "iconv-lite": "^0.6.2",
     "jss": "^10.5.0",
-    "koa": "^2.13.0",
+    "koa": "^2.13.1",
     "koa-bodyparser": "^4.3.0",
     "koa-static": "^5.0.0",
     "libxmljs2": "^0.26.6",
