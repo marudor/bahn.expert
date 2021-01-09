@@ -2221,6 +2221,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-leaflet/core@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@react-leaflet/core@npm:1.0.2"
+  peerDependencies:
+    leaflet: ^1.7.1
+    react: ^17.0.1
+    react-dom: ^17.0.1
+  checksum: d0819720426ae84df87eb156e6477d0bc9060f1715eeadebc774ee630124d5b94155ce007becfe62f2bee854f8bc982b5b2b862b3b77d0654ed88265f572cb30
+  languageName: node
+  linkType: hard
+
 "@rollup/plugin-node-resolve@npm:^7.1.1":
   version: 7.1.3
   resolution: "@rollup/plugin-node-resolve@npm:7.1.3"
@@ -2937,7 +2948,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/leaflet@npm:*, @types/leaflet@npm:1.5.19":
+"@types/leaflet@npm:1.5.19":
   version: 1.5.19
   resolution: "@types/leaflet@npm:1.5.19"
   dependencies:
@@ -3096,16 +3107,6 @@ __metadata:
   dependencies:
     "@types/react": "*"
   checksum: 7ca9351b6c2523327cd7afe40082a37034898f65e9d86700236682efed910ba7c9cec10e9a3b829aa7b804b18791a28743ce468fcb42e9a788bfc33b84137e45
-  languageName: node
-  linkType: hard
-
-"@types/react-leaflet@npm:2.5.2":
-  version: 2.5.2
-  resolution: "@types/react-leaflet@npm:2.5.2"
-  dependencies:
-    "@types/leaflet": "*"
-    "@types/react": "*"
-  checksum: a648bf3b2a062aacab00e7fbc19d646b1411d094e5911915a39e0aa426b94b516168ee087a357f01e843cee7890e3c5cf8de1314fd427c83e4bade4023a7e860
   languageName: node
   linkType: hard
 
@@ -5601,7 +5602,6 @@ __metadata:
     "@types/qs": 6.9.5
     "@types/react": 17.0.0
     "@types/react-dom": 17.0.0
-    "@types/react-leaflet": 2.5.2
     "@types/react-router": 5.1.9
     "@types/react-router-config": 5.0.2
     "@types/react-router-dom": 5.1.7
@@ -5622,7 +5622,7 @@ __metadata:
     react: ^17.0.1
     react-dom: ^17.0.1
     react-helmet-async: ^1.0.7
-    react-leaflet: ^2.8.0
+    react-leaflet: ^3.0.5
     react-router: ^5.2.0
     react-router-config: ^5.1.1
     react-router-dom: ^5.2.0
@@ -6617,17 +6617,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"depd@npm:^1.1.2, depd@npm:~1.1.2":
-  version: 1.1.2
-  resolution: "depd@npm:1.1.2"
-  checksum: f45566ff7019a346852f095768a380778ed544de24e103b479fd5d3e61982d670efbb5234c09d0588d7fdb09c26c48283d7150e4be5e6ce5d3d37cd268d75c4d
-  languageName: node
-  linkType: hard
-
-"depd@npm:~2.0.0":
+"depd@npm:^2.0.0, depd@npm:~2.0.0":
   version: 2.0.0
   resolution: "depd@npm:2.0.0"
   checksum: 20726d843f5ab5e933211fcb5a440a1a3986ef9d6f85d38cf1eae815ea3cc12fa4436bd35a38e21bdb391a021b57f2d97b9f856873852506acac1b07ac913ba4
+  languageName: node
+  linkType: hard
+
+"depd@npm:~1.1.2":
+  version: 1.1.2
+  resolution: "depd@npm:1.1.2"
+  checksum: f45566ff7019a346852f095768a380778ed544de24e103b479fd5d3e61982d670efbb5234c09d0588d7fdb09c26c48283d7150e4be5e6ce5d3d37cd268d75c4d
   languageName: node
   linkType: hard
 
@@ -7813,7 +7813,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-deep-equal@npm:^3.1.1, fast-deep-equal@npm:^3.1.3":
+"fast-deep-equal@npm:^3.1.1":
   version: 3.1.3
   resolution: "fast-deep-equal@npm:3.1.3"
   checksum: 451526766b219503131d11e823eaadd1533080b0be4860e316670b039dcaf31cd1007c2fe036a9b922abba7c040dfad5e942ed79d21f2ff849e50049f36e0fb7
@@ -10738,9 +10738,9 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"koa@npm:^2.13.0":
-  version: 2.13.0
-  resolution: "koa@npm:2.13.0"
+"koa@npm:^2.13.1":
+  version: 2.13.1
+  resolution: "koa@npm:2.13.1"
   dependencies:
     accepts: ^1.3.5
     cache-content-type: ^1.0.0
@@ -10749,7 +10749,7 @@ fsevents@~2.1.2:
     cookies: ~0.8.0
     debug: ~3.1.0
     delegates: ^1.0.0
-    depd: ^1.1.2
+    depd: ^2.0.0
     destroy: ^1.0.4
     encodeurl: ^1.0.2
     escape-html: ^1.0.3
@@ -10765,7 +10765,7 @@ fsevents@~2.1.2:
     statuses: ^1.5.0
     type-is: ^1.6.16
     vary: ^1.1.2
-  checksum: d8dca4c17f1c0c59a0d9df3680c1eec2e0107564f04e306614e236966381a5db49577f9dcb0b1a3cccb74c08319052be9bfbd4bb53a6c4a695bc872607902bc3
+  checksum: d7e5a6f483c2e5b40b14e063951687ac914bdeec8afc58a0e2cc75d5ab931fbf30753b9751932cd31a506abe5f3d4599b2c002ac5ac7a179b9d3304983470afd
   languageName: node
   linkType: hard
 
@@ -13325,19 +13325,16 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"react-leaflet@npm:^2.8.0":
-  version: 2.8.0
-  resolution: "react-leaflet@npm:2.8.0"
+"react-leaflet@npm:^3.0.5":
+  version: 3.0.5
+  resolution: "react-leaflet@npm:3.0.5"
   dependencies:
-    "@babel/runtime": ^7.12.1
-    fast-deep-equal: ^3.1.3
-    hoist-non-react-statics: ^3.3.2
-    warning: ^4.0.3
+    "@react-leaflet/core": ^1.0.2
   peerDependencies:
-    leaflet: ^1.6.0
-    react: ^16.8.0 || ^17.0.0
-    react-dom: ^16.8.0  || ^17.0.0
-  checksum: 37ad193a7bb7de5243190ce4dccb4e5f5423a274a8f3b853fe07d0aa97fa7b9c0ec58259d33fad65623b059bf9fdfa2bd1bfe35b0378213e046c880db7877ffa
+    leaflet: ^1.7.1
+    react: ^17.0.1
+    react-dom: ^17.0.1
+  checksum: 51862b10d86242996a7eceb837ea01fac943881c01c054ea50d98d3f700da3d08c1d49e94b809bf9e4769571eb9e19985c57348212d44bc7affdf47a0af699ca
   languageName: node
   linkType: hard
 
@@ -14361,7 +14358,7 @@ fsevents@~2.1.2:
     google-polyline: ^1.0.3
     iconv-lite: ^0.6.2
     jss: ^10.5.0
-    koa: ^2.13.0
+    koa: ^2.13.1
     koa-bodyparser: ^4.3.0
     koa-static: ^5.0.0
     libxmljs2: ^0.26.6
@@ -16206,15 +16203,6 @@ fsevents@~2.1.2:
   dependencies:
     makeerror: 1.0.x
   checksum: c014f264c473fc4464ba8f59eb9f7ffa1c0cf2c83b65353de28a6012d8dd29e974bf2b0fbd5c71231f56762a3ea0d970b635f7d6f6d670ff83f426741ce6a4da
-  languageName: node
-  linkType: hard
-
-"warning@npm:^4.0.3":
-  version: 4.0.3
-  resolution: "warning@npm:4.0.3"
-  dependencies:
-    loose-envify: ^1.0.0
-  checksum: 20ef5d29ff9c20af3060e504914a00d5a90ce346e75e6691efbedb540481cdc82070c966d75195f812de64bb0bd7f1b02315fcb52469db151c0f15e29002781c
   languageName: node
   linkType: hard
 
