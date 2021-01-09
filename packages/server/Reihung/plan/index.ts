@@ -39,14 +39,6 @@ export const getPlannedSequence = (
   const [start, end] = plannedSequences.valid
     .split('/')
     .map((r) => parseISO(r));
-  console.log(
-    start,
-    end,
-    isWithinInterval(new Date(), {
-      start,
-      end,
-    }),
-  );
   if (
     !isWithinInterval(new Date(), {
       start,

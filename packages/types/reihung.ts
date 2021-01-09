@@ -107,8 +107,6 @@ export type AvailableIdentifier =
   | '403.R'
   | '403.S1'
   | '403.S2'
-  | '403.S1R'
-  | '403.S2R'
   | '406.R'
   | 'IC2.TWIN'
   | 'IC2.KISS'

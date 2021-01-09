@@ -9,9 +9,7 @@ const nameMap: {
   '402': 'ICE 2 (BR402)',
   '403': 'ICE 3 (BR403)',
   '403.S1': 'ICE 3 (BR403 1. Serie)',
-  '403.S1R': 'ICE 3 (BR403 1. Serie Redesign)',
   '403.S2': 'ICE 3 (BR403 2. Serie)',
-  '403.S2R': 'ICE 3 (BR403 2. Serie Redesign)',
   '403.R': 'ICE 3 (BR403 Redesign)',
   '406': 'ICE 3 (BR406)',
   '406.R': 'ICE 3 (BR406 Redesign)',
@@ -31,5 +29,6 @@ const nameMap: {
 };
 
 export function getName(br: Omit<BRInfo, 'name'>): string | undefined {
+  console.log(br.identifier);
   if (br.identifier) return nameMap[br.identifier];
 }

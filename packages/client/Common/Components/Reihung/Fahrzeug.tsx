@@ -15,6 +15,7 @@ import { WagenLink } from './WagenLink';
 import clsx from 'clsx';
 import type {
   AdditionalFahrzeugInfo,
+  AvailableIdentifier,
   Fahrzeug as FahrzeugType,
 } from 'types/reihung';
 import type { ComponentType, FC } from 'react';
@@ -139,6 +140,7 @@ const useStyles = makeStyles((theme) => ({
 export interface InheritedProps {
   scale: number;
   correctLeft: number;
+  identifier?: AvailableIdentifier;
   type: string;
 }
 
@@ -163,8 +165,8 @@ export const Fahrzeug: FC<Props> = ({
   wrongWing,
   scale,
   correctLeft,
-  type,
   showUIC,
+  identifier,
 }) => {
   const classes = useStyles();
   const { startprozent, endeprozent } = fahrzeug.positionamhalt;
@@ -210,9 +212,9 @@ export const Fahrzeug: FC<Props> = ({
       </span>
       {fahrzeug.additionalInfo.comfort && <span className={classes.comfort} />}
       <WagenLink
-        type={type}
         fahrzeugnummer={fahrzeug.fahrzeugnummer}
         fahrzeugtyp={fahrzeug.fahrzeugtyp}
+        identifier={identifier}
       />
       {
         <span className={classes.extraInfo}>

@@ -361,6 +361,18 @@ export async function wagenreihung(
       const gruppenFahrzeugTypes = g.allFahrzeug.map((f) => f.fahrzeugtyp);
 
       const br = specificBR(g.allFahrzeug);
+      if (g.fahrzeuggruppebezeichnung.startsWith('IC')) {
+        const tzn = g.fahrzeuggruppebezeichnung;
+
+        g.tzn = tznRegex.exec(tzn)?.[0];
+        g.name = TrainNames(g.tzn);
+
+        if (br?.identifier && isRedesignByTZ(g.tzn)) {
+          // @ts-expect-error this works
+          br.identifier = br.identifier.replace('.S1', '').replace('.S2', '');
+          br.identifier += '.R';
+        }
+      }
       g.br = {
         ...br,
         name: getName(br) ?? enrichedFormation.zuggattung,
@@ -377,16 +389,6 @@ export async function wagenreihung(
     const trainNumberAsNumber = Number.parseInt(g.verkehrlichezugnummer, 10);
 
     g.goesToFrance = trainNumberAsNumber >= 9550 && trainNumberAsNumber <= 9599;
-    if (g.fahrzeuggruppebezeichnung.startsWith('IC')) {
-      const tzn = g.fahrzeuggruppebezeichnung;
-
-      g.tzn = tznRegex.exec(tzn)?.[0];
-      g.name = TrainNames(g.tzn);
-
-      if (g.br?.identifier && isRedesignByTZ(g.tzn)) {
-        g.br.identifier += 'R';
-      }
-    }
 
     fahrzeuge.forEach((f) => {
       calculateComfort(f, g);

@@ -17,8 +17,6 @@ export function getComfortSeats(
     case '406':
       return klasse === 1 ? '12-26' : '11-38';
     case '403.R':
-    case '403.S1R':
-    case '403.S2R':
     case '406.R':
       return klasse === 1 ? '12-26' : '11-37';
     case '407':
@@ -37,7 +35,6 @@ export function getComfortSeats(
     case 'IC2.TWIN':
       return klasse === 1 ? '73, 75, 83-86' : '31-38, 41-45, 47';
     case 'IC2.KISS':
-      console.log(klasse);
       return klasse === 3 ? '144, 145' : '55-68';
   }
 }
@@ -57,9 +54,7 @@ export function getDisabledSeats(
     case '403':
     case '403.R':
     case '403.S1':
-    case '403.S1R':
     case '403.S2':
-    case '403.S2R':
       // 406 has no seat 64/66 Looks like no disabled seats either. At least for trains going to Amsterdam/NL
       // case '406':
       if (klasse === 1) return '64, 66';
@@ -117,9 +112,7 @@ export function getFamilySeats(br: BRInfo): string | undefined {
     case '403':
     case '403.R':
     case '403.S1':
-    case '403.S1R':
     case '403.S2':
-    case '403.S2R':
     case '406':
     case '406.R':
       return '11-28';
