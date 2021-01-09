@@ -1953,6 +1953,7 @@ const models: TsoaRoute.Models = {
             "comfort": {"dataType":"boolean"},
             "comfortSeats": {"dataType":"string"},
             "disabledSeats": {"dataType":"string"},
+            "familySeats": {"dataType":"string"},
         },
         "additionalProperties": false,
     },
@@ -2004,7 +2005,12 @@ const models: TsoaRoute.Models = {
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "AvailableBR": {
         "dataType": "refAlias",
-        "type": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["401"]},{"dataType":"enum","enums":["402"]},{"dataType":"enum","enums":["403"]},{"dataType":"enum","enums":["406"]},{"dataType":"enum","enums":["407"]},{"dataType":"enum","enums":["410.1"]},{"dataType":"enum","enums":["411"]},{"dataType":"enum","enums":["412.7"]},{"dataType":"enum","enums":["412.12"]},{"dataType":"enum","enums":["412.13"]},{"dataType":"enum","enums":["415"]}],"validators":{}},
+        "type": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["401"]},{"dataType":"enum","enums":["402"]},{"dataType":"enum","enums":["403"]},{"dataType":"enum","enums":["406"]},{"dataType":"enum","enums":["407"]},{"dataType":"enum","enums":["410.1"]},{"dataType":"enum","enums":["411"]},{"dataType":"enum","enums":["412"]},{"dataType":"enum","enums":["415"]}],"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "AvailableIdentifier": {
+        "dataType": "refAlias",
+        "type": {"dataType":"union","subSchemas":[{"ref":"AvailableBR"},{"dataType":"enum","enums":["401.LDV"]},{"dataType":"enum","enums":["401.9"]},{"dataType":"enum","enums":["411.S1"]},{"dataType":"enum","enums":["411.S2"]},{"dataType":"enum","enums":["412.7"]},{"dataType":"enum","enums":["412.13"]},{"dataType":"enum","enums":["403.R"]},{"dataType":"enum","enums":["403.S1"]},{"dataType":"enum","enums":["403.S2"]},{"dataType":"enum","enums":["406.R"]},{"dataType":"enum","enums":["IC2.TWIN"]},{"dataType":"enum","enums":["IC2.KISS"]},{"dataType":"enum","enums":["MET"]},{"dataType":"enum","enums":["TGV"]}],"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "BRInfo": {
@@ -2012,10 +2018,8 @@ const models: TsoaRoute.Models = {
         "properties": {
             "name": {"dataType":"string","required":true},
             "BR": {"ref":"AvailableBR"},
-            "serie": {"dataType":"string"},
-            "redesign": {"dataType":"boolean"},
+            "identifier": {"ref":"AvailableIdentifier"},
             "noPdf": {"dataType":"boolean"},
-            "pdf": {"dataType":"string"},
             "country": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["DE"]},{"dataType":"enum","enums":["AT"]}]},
             "showBRInfo": {"dataType":"boolean"},
         },

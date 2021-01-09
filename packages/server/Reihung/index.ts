@@ -2,6 +2,12 @@
 /* eslint-disable no-fallthrough */
 import { format } from 'date-fns';
 import { getAbfahrten } from 'server/iris';
+import {
+  getComfortSeats,
+  getDisabledSeats,
+  getFamilySeats,
+} from 'server/Reihung/specialSeats';
+import { getName } from 'server/Reihung/identifierNameMap';
 import { isRedesignByTZ } from 'server/Reihung/tzInfo';
 import { maxBy, minBy } from 'client/util';
 import { utcToZonedTime } from 'date-fns-tz';
@@ -80,44 +86,51 @@ const getCountry = (fahrzeuge: Fahrzeug[], fahrzeugTypes: string[]) => {
     groupedFahrzeugTypes.Bhmpz === 1
   ) {
     return 'CZ';
-  } else if (minOrdnungsnummer === 81 && maxOrdnungsnummer === 82) {
+  } else if (
+    (minOrdnungsnummer === 81 && maxOrdnungsnummer === 82) ||
+    (minOrdnungsnummer === 71 && maxOrdnungsnummer === 72)
+  ) {
     return 'DK';
   }
 };
 
-const ICE1LDV = (br: BRInfo, fahrzeuge: Fahrzeug[]): void => {
-  if (
-    br.BR === '401' &&
-    fahrzeuge.length === 11 &&
-    fahrzeuge.filter((f) => f.additionalInfo.klasse === 1).length === 2
-  ) {
-    br.name += ' LDV';
-    br.noPdf = true;
-  }
-};
-
-const specificBR = (fahrzeuge: Fahrzeug[], formation: Formation): BRInfo => {
+const specificBR = (fahrzeuge: Fahrzeug[]): Omit<BRInfo, 'name'> => {
   for (const f of fahrzeuge) {
-    const br = getBR(f.fahrzeugnummer, fahrzeuge.length);
+    const br = getBR(f.fahrzeugnummer, fahrzeuge);
 
     if (br) return br;
   }
 
   if (fahrzeuge.find((f) => f.fahrzeugtyp === 'Apmbzf')) {
     return {
-      name: 'MET',
-      pdf: 'MET',
+      identifier: 'MET',
     };
   } else if (fahrzeuge.find((f) => f.fahrzeugtyp === 'DBpbzfa')) {
     return {
-      name: 'IC 2',
-      pdf: 'IC2',
+      identifier: 'IC2.TWIN',
+    };
+  } else if (fahrzeuge.find((f) => f.fahrzeugtyp === 'DBpdzfa')) {
+    fahrzeuge.forEach((f) => {
+      switch (f.fahrzeugtyp) {
+        case 'DABpzfa':
+          f.additionalInfo.comfort = true;
+          f.additionalInfo.icons.disabled = true;
+          break;
+        case 'DBpbza':
+          f.additionalInfo.icons.family = true;
+          break;
+        case 'DBpdzfa':
+          f.additionalInfo.icons.bike = true;
+          break;
+      }
+    });
+    return {
+      identifier: 'IC2.KISS',
+      noPdf: true,
     };
   }
 
-  const fallback: BRInfo = { name: formation.zuggattung, noPdf: true };
-
-  return fallback;
+  return { noPdf: true };
 };
 
 function fahrtrichtung(fahrzeuge: Fahrzeug[]) {
@@ -130,73 +143,6 @@ function fahrtrichtung(fahrzeuge: Fahrzeug[]) {
     Number.parseInt(first.positionamhalt.startprozent, 10)
   );
 }
-
-const getComfortSeats = (br: BRInfo, klasse: 1 | 2) => {
-  switch (br.BR) {
-    case '401':
-      return klasse === 1 ? '11-36' : '11-57';
-    case '402':
-      return klasse === 1 ? '11-16, 21, 22' : '81-108';
-    case '403':
-    case '406':
-      if (klasse === 1) return '12-26';
-
-      return br.redesign ? '11-37' : '11-38';
-    case '407':
-      return klasse === 1 ? '21-26, 31, 33, 35' : '31-55, 57';
-    case '411':
-      return klasse === 1 ? '41, 46, 52, 54-56' : '92, 94, 96, 98, 101-118';
-    case '412.7':
-      return klasse === 1 ? '44-53' : '11-44';
-    case '412.12':
-      return klasse === 1 ? '11-46' : '11-68';
-    case '415':
-      return klasse === 1 ? '52, 54, 56' : '81-88, 91-98';
-  }
-
-  switch (br.name) {
-    case 'MET':
-      return klasse === 1 ? '61-66' : '91-106';
-    case 'IC 2':
-      return klasse === 1 ? '73, 75, 83-86' : '31-38, 41-45, 47';
-  }
-};
-
-const getDisabledSeats = (
-  br: BRInfo,
-  klasse: 1 | 2,
-  wagenordnungsnummer: string,
-) => {
-  switch (br.BR) {
-    case '401':
-      return klasse === 1 ? '51, 52, 53, 55' : '111-116';
-    case '402':
-      return klasse === 1 ? '12, 21' : '81, 85-88';
-
-    case '403':
-      // 406 has no seat 64/66 Looks like no disabled seats either. At least for trains going to Amsterdam/NL
-      // case '406':
-      if (klasse === 1) return '64, 66';
-      if (wagenordnungsnummer === '25' || wagenordnungsnummer === '35') {
-        return br.redesign ? '61, 63, 65-67' : '61, 63, 65, 67';
-      }
-
-      return '106, 108';
-    case '407':
-      return klasse === 1 ? '13, 15' : '11, 13, 15, 17';
-    case '411':
-      return klasse === 1 ? '21, 22' : '15-18';
-    case '412.7':
-      return klasse === 1 ? '12, 13' : '11-18';
-    case '412.12':
-      if (klasse === 1)
-        return wagenordnungsnummer === '10' ? '12, 13' : '11, 14, 21';
-
-      return wagenordnungsnummer === '1' ? '11-24' : '41, 45, 46';
-    case '415':
-      return klasse === 1 ? '21' : '15, 17';
-  }
-};
 
 const tznRegex = /(\d+)/;
 
@@ -297,14 +243,17 @@ function calculateComfort(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
 
   if (gruppe.br) {
     if (data.comfort) {
-      data.comfortSeats = getComfortSeats(gruppe.br, data.klasse === 1 ? 1 : 2);
+      data.comfortSeats = getComfortSeats(gruppe.br, data.klasse);
     }
     if (data.icons.disabled) {
       data.disabledSeats = getDisabledSeats(
         gruppe.br,
-        data.klasse === 1 ? 1 : 2,
+        data.klasse,
         fahrzeug.wagenordnungsnummer,
       );
+    }
+    if (data.icons.family) {
+      data.familySeats = getFamilySeats(gruppe.br);
     }
   }
 }
@@ -411,9 +360,24 @@ export async function wagenreihung(
     if (['IC', 'EC', 'ICE', 'ECE'].includes(enrichedFormation.zuggattung)) {
       const gruppenFahrzeugTypes = g.allFahrzeug.map((f) => f.fahrzeugtyp);
 
-      g.br = specificBR(g.allFahrzeug, enrichedFormation);
+      const br = specificBR(g.allFahrzeug);
+      if (g.fahrzeuggruppebezeichnung.startsWith('IC')) {
+        const tzn = g.fahrzeuggruppebezeichnung;
+
+        g.tzn = tznRegex.exec(tzn)?.[0];
+        g.name = TrainNames(g.tzn);
+
+        if (br?.identifier && isRedesignByTZ(g.tzn)) {
+          // @ts-expect-error this works
+          br.identifier = br.identifier.replace('.S1', '').replace('.S2', '');
+          br.identifier += '.R';
+        }
+      }
+      g.br = {
+        ...br,
+        name: getName(br) ?? enrichedFormation.zuggattung,
+      };
       if (g.br) {
-        ICE1LDV(g.br, g.allFahrzeug);
         g.br.country = getCountry(g.allFahrzeug, gruppenFahrzeugTypes);
         g.br.showBRInfo = Boolean(
           g.br.BR || !g.br.noPdf || (g.br.country && g.br.country !== 'DE'),
@@ -425,16 +389,6 @@ export async function wagenreihung(
     const trainNumberAsNumber = Number.parseInt(g.verkehrlichezugnummer, 10);
 
     g.goesToFrance = trainNumberAsNumber >= 9550 && trainNumberAsNumber <= 9599;
-    if (g.fahrzeuggruppebezeichnung.startsWith('IC')) {
-      const tzn = g.fahrzeuggruppebezeichnung;
-
-      g.tzn = tznRegex.exec(tzn)?.[0];
-      g.name = TrainNames(g.tzn);
-
-      if (g.br && isRedesignByTZ(g.tzn)) {
-        g.br.redesign = true;
-      }
-    }
 
     fahrzeuge.forEach((f) => {
       calculateComfort(f, g);

@@ -10,30 +10,12 @@ interface Props {
 export const BRInfo: FC<Props> = ({ br, className }) => {
   let text = br.name;
 
-  let bracketText = '';
-
-  if (br.BR) {
-    const serieText = br.serie ? ` ${br.serie}. Serie` : '';
-    const redesignText = br.redesign ? ' Redesign' : '';
-    const countryText = br.country ? ` ${br.country}` : '';
-
-    bracketText = `BR${br.BR}${serieText}${redesignText}${countryText}`;
-  } else if (br.country) {
-    bracketText = br.country;
-  }
-  if (bracketText) {
-    text += ` (${bracketText})`;
+  if (text === 'IC' && br.country) {
+    text = `${text} (${br.country})`;
   }
 
-  if (br.noPdf) return <span className={className}>{text}</span>;
-
-  let pdfName = br.pdf || br.BR;
-
-  if (br.redesign) {
-    pdfName += 'R';
-  } else if (br.serie) {
-    pdfName += `.${br.serie}`;
-  }
+  if (br.noPdf || !br.identifier)
+    return <span className={className}>{text}</span>;
 
   return (
     <a
@@ -41,7 +23,7 @@ export const BRInfo: FC<Props> = ({ br, className }) => {
       onClick={stopPropagation}
       target="_blank"
       rel="noopener noreferrer"
-      href={`/WRSheets/${pdfName}.pdf`}
+      href={`/WRSheets/${br.identifier}.pdf`}
     >
       {text}
     </a>
