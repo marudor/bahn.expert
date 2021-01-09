@@ -104,13 +104,13 @@ export type AvailableIdentifier =
   | '411.S2'
   | '412.7'
   | '412.13'
-  | '403R'
+  | '403.R'
   | '403.S1'
   | '403.S2'
   | '403.S1R'
   | '403.S2R'
-  | '406R'
-  | 'IC2'
+  | '406.R'
+  | 'IC2.TWIN'
   | 'IC2.KISS'
   | 'MET'
   | 'TGV';
@@ -197,6 +197,7 @@ export interface AdditionalFahrzeugInfo {
   comfort?: boolean;
   comfortSeats?: string;
   disabledSeats?: string;
+  familySeats?: string;
 }
 
 export interface Fahrzeugausstattung {

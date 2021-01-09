@@ -2,7 +2,11 @@
 /* eslint-disable no-fallthrough */
 import { format } from 'date-fns';
 import { getAbfahrten } from 'server/iris';
-import { getComfortSeats, getDisabledSeats } from 'server/Reihung/specialSeats';
+import {
+  getComfortSeats,
+  getDisabledSeats,
+  getFamilySeats,
+} from 'server/Reihung/specialSeats';
 import { getName } from 'server/Reihung/identifierNameMap';
 import { isRedesignByTZ } from 'server/Reihung/tzInfo';
 import { maxBy, minBy } from 'client/util';
@@ -103,9 +107,23 @@ const specificBR = (fahrzeuge: Fahrzeug[]): Omit<BRInfo, 'name'> => {
     };
   } else if (fahrzeuge.find((f) => f.fahrzeugtyp === 'DBpbzfa')) {
     return {
-      identifier: 'IC2',
+      identifier: 'IC2.TWIN',
     };
   } else if (fahrzeuge.find((f) => f.fahrzeugtyp === 'DBpdzfa')) {
+    fahrzeuge.forEach((f) => {
+      switch (f.fahrzeugtyp) {
+        case 'DABpzfa':
+          f.additionalInfo.comfort = true;
+          f.additionalInfo.icons.disabled = true;
+          break;
+        case 'DBpbza':
+          f.additionalInfo.icons.family = true;
+          break;
+        case 'DBpdzfa':
+          f.additionalInfo.icons.bike = true;
+          break;
+      }
+    });
     return {
       identifier: 'IC2.KISS',
       noPdf: true,
@@ -225,14 +243,17 @@ function calculateComfort(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
 
   if (gruppe.br) {
     if (data.comfort) {
-      data.comfortSeats = getComfortSeats(gruppe.br, data.klasse === 1 ? 1 : 2);
+      data.comfortSeats = getComfortSeats(gruppe.br, data.klasse);
     }
     if (data.icons.disabled) {
       data.disabledSeats = getDisabledSeats(
         gruppe.br,
-        data.klasse === 1 ? 1 : 2,
+        data.klasse,
         fahrzeug.wagenordnungsnummer,
       );
+    }
+    if (data.icons.family) {
+      data.familySeats = getFamilySeats(gruppe.br);
     }
   }
 }

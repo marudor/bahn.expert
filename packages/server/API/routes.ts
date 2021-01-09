@@ -1953,6 +1953,7 @@ const models: TsoaRoute.Models = {
             "comfort": {"dataType":"boolean"},
             "comfortSeats": {"dataType":"string"},
             "disabledSeats": {"dataType":"string"},
+            "familySeats": {"dataType":"string"},
         },
         "additionalProperties": false,
     },
@@ -2009,7 +2010,7 @@ const models: TsoaRoute.Models = {
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "AvailableIdentifier": {
         "dataType": "refAlias",
-        "type": {"dataType":"union","subSchemas":[{"ref":"AvailableBR"},{"dataType":"enum","enums":["401.LDV"]},{"dataType":"enum","enums":["401.9"]},{"dataType":"enum","enums":["411.S1"]},{"dataType":"enum","enums":["411.S2"]},{"dataType":"enum","enums":["412.7"]},{"dataType":"enum","enums":["412.13"]},{"dataType":"enum","enums":["403R"]},{"dataType":"enum","enums":["403.S1"]},{"dataType":"enum","enums":["403.S2"]},{"dataType":"enum","enums":["403.S1R"]},{"dataType":"enum","enums":["403.S2R"]},{"dataType":"enum","enums":["406R"]},{"dataType":"enum","enums":["IC2"]},{"dataType":"enum","enums":["IC2.KISS"]},{"dataType":"enum","enums":["MET"]},{"dataType":"enum","enums":["TGV"]}],"validators":{}},
+        "type": {"dataType":"union","subSchemas":[{"ref":"AvailableBR"},{"dataType":"enum","enums":["401.LDV"]},{"dataType":"enum","enums":["401.9"]},{"dataType":"enum","enums":["411.S1"]},{"dataType":"enum","enums":["411.S2"]},{"dataType":"enum","enums":["412.7"]},{"dataType":"enum","enums":["412.13"]},{"dataType":"enum","enums":["403.R"]},{"dataType":"enum","enums":["403.S1"]},{"dataType":"enum","enums":["403.S2"]},{"dataType":"enum","enums":["403.S1R"]},{"dataType":"enum","enums":["403.S2R"]},{"dataType":"enum","enums":["406.R"]},{"dataType":"enum","enums":["IC2.TWIN"]},{"dataType":"enum","enums":["IC2.KISS"]},{"dataType":"enum","enums":["MET"]},{"dataType":"enum","enums":["TGV"]}],"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "BRInfo": {
