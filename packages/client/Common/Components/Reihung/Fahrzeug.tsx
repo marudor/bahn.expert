@@ -167,6 +167,7 @@ export const Fahrzeug: FC<Props> = ({
   correctLeft,
   showUIC,
   identifier,
+  type,
 }) => {
   const classes = useStyles();
   const { startprozent, endeprozent } = fahrzeug.positionamhalt;
@@ -211,11 +212,7 @@ export const Fahrzeug: FC<Props> = ({
         })}
       </span>
       {fahrzeug.additionalInfo.comfort && <span className={classes.comfort} />}
-      <WagenLink
-        fahrzeugnummer={fahrzeug.fahrzeugnummer}
-        fahrzeugtyp={fahrzeug.fahrzeugtyp}
-        identifier={identifier}
-      />
+      <WagenLink fahrzeug={fahrzeug} identifier={identifier} type={type} />
       {
         <span className={classes.extraInfo}>
           <SitzplatzInfo
