@@ -1,6 +1,7 @@
 import { makeStyles } from '@material-ui/core';
 import { stopPropagation } from 'client/Common/stopPropagation';
 import { useMemo } from 'react';
+import type { AvailableIdentifier } from 'types/reihung';
 import type { FC } from 'react';
 
 const useStyles = makeStyles({
@@ -15,43 +16,69 @@ const useStyles = makeStyles({
 interface Props {
   fahrzeugtyp: string;
   fahrzeugnummer: string;
-  type: string;
+  identifier?: AvailableIdentifier;
 }
 
 const wagenWithImage = [
-  'Apmmz',
   'ARkimbz',
-  'ARKimmbz',
+  'ARkimnbz',
+  'Apmmz',
   'Avmmz',
   'Avmz',
   'Bimmdzf',
+  'Bpmbz',
   'Bpmmbdz',
   'Bpmmbdzf',
   'Bpmmbz',
   'Bpmmdz',
   'Bpmmz',
-  'Bpmz',
   'Bvmmsz',
   'Bvmmz',
   'Bvmsz',
+  'DApza',
+  'DBpza',
+  'DBpbzfa',
 ];
-export const WagenLink: FC<Props> = ({ fahrzeugtyp, fahrzeugnummer, type }) => {
+
+// const uicWithImage = [
+//   // IC2.KISS
+//   '1101',
+//   '1104',
+//   '1105',
+//   '1106',
+//   '4038.2',
+//   '4038.1',
+// ];
+
+const seriesRegex = /\.S(\d)/;
+
+export const WagenLink: FC<Props> = ({
+  fahrzeugtyp,
+  fahrzeugnummer,
+  identifier,
+}) => {
   const classes = useStyles();
   const imageName = useMemo(() => {
-    let image = fahrzeugtyp;
-
-    if (fahrzeugtyp === 'Apmmz') {
-      const uicType = Number.parseInt(fahrzeugnummer.substr(8, 3), 10);
-
-      if (uicType >= 500 && uicType <= 506) {
-        image += '118';
-      }
+    if (
+      !identifier ||
+      (identifier === 'IC2.TWIN' && wagenWithImage.includes(fahrzeugtyp))
+    ) {
+      return fahrzeugtyp;
     }
 
-    return image;
-  }, [fahrzeugnummer, fahrzeugtyp]);
+    if (identifier !== 'TGV' && identifier !== 'MET') {
+      let relevantUIC = fahrzeugnummer.substr(4, 5);
+      if (identifier.endsWith('R')) {
+        relevantUIC += '.r';
+      } else if (identifier.includes('.S')) {
+        // @ts-expect-error this works
+        relevantUIC += `.${seriesRegex.exec(identifier)[1]}`;
+      }
+      return relevantUIC;
+    }
+  }, [fahrzeugnummer, fahrzeugtyp, identifier]);
 
-  if (type !== 'IC' || !wagenWithImage.includes(fahrzeugtyp)) {
+  if (!imageName) {
     return <span className={classes.link}>{fahrzeugtyp}</span>;
   }
 
@@ -59,7 +86,7 @@ export const WagenLink: FC<Props> = ({ fahrzeugtyp, fahrzeugnummer, type }) => {
     <a
       className={classes.link}
       onClick={stopPropagation}
-      href={`/WRSheets/Wagen/${imageName}.jpg`}
+      href={`https://lib.finalrewind.org/dbdb/db_wagen/${imageName}.png`}
       target="_blank"
       rel="noopener noreferrer"
     >

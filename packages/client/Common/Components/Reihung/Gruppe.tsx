@@ -64,6 +64,7 @@ export const Gruppe: FC<Props> = ({
       return (
         <Fahrzeug
           {...rest}
+          identifier={gruppe.br?.identifier}
           wrongWing={wrongWing}
           key={`${f.fahrzeugnummer}${f.positioningruppe}`}
           fahrzeug={f}

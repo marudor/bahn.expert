@@ -93,17 +93,31 @@ export type AvailableBR =
   | '407'
   | '410.1'
   | '411'
-  | '412.7'
-  | '412.12'
-  | '412.13'
+  | '412'
   | '415';
+
+export type AvailableIdentifier =
+  | AvailableBR
+  | '401.LDV'
+  | '401.9'
+  | '411.S1'
+  | '411.S2'
+  | '412.7'
+  | '412.13'
+  | '403.R'
+  | '403.S1'
+  | '403.S2'
+  | '406.R'
+  | 'IC2.TWIN'
+  | 'IC2.KISS'
+  | 'MET'
+  | 'TGV';
+
 export interface BRInfo {
   name: string;
   BR?: AvailableBR;
-  serie?: string;
-  redesign?: boolean;
+  identifier?: AvailableIdentifier;
   noPdf?: boolean;
-  pdf?: string;
   country?: 'DE' | 'AT';
   showBRInfo?: boolean;
 }
@@ -181,6 +195,7 @@ export interface AdditionalFahrzeugInfo {
   comfort?: boolean;
   comfortSeats?: string;
   disabledSeats?: string;
+  familySeats?: string;
 }
 
 export interface Fahrzeugausstattung {

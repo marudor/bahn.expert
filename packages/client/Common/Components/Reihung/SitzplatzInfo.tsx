@@ -32,7 +32,11 @@ export const SitzplatzInfo: FC<Props> = ({
     setOpen((oldOpen) => !oldOpen);
   }, []);
 
-  if (!additionalInfo.comfortSeats && !additionalInfo.disabledSeats) {
+  if (
+    !additionalInfo.comfortSeats &&
+    !additionalInfo.disabledSeats &&
+    !additionalInfo.familySeats
+  ) {
     return null;
   }
 
@@ -64,6 +68,12 @@ export const SitzplatzInfo: FC<Props> = ({
             >
               <span>Schwerbehindert:</span>
               <span>{additionalInfo.disabledSeats}</span>
+            </div>
+          )}
+          {additionalInfo.familySeats && (
+            <div className={classes.textLine} data-testid="sitzplatzinfoFamily">
+              <span>Familienbereich:</span>
+              <span>{additionalInfo.familySeats}</span>
             </div>
           )}
         </DialogContent>
