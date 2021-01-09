@@ -4863,11 +4863,37 @@
           "406",
           "407",
           "411",
+          "412",
           "415",
-          "410.1",
-          "412.7",
-          "412.12",
-          "412.13"
+          "410.1"
+        ]
+      },
+      "AvailableIdentifier": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/AvailableBR"
+          },
+          {
+            "type": "string",
+            "enum": [
+              "401.LDV",
+              "401.9",
+              "411.S1",
+              "411.S2",
+              "412.7",
+              "412.13",
+              "403R",
+              "403.S1",
+              "403.S2",
+              "403.S1R",
+              "403.S2R",
+              "406R",
+              "IC2",
+              "IC2.KISS",
+              "MET",
+              "TGV"
+            ]
+          }
         ]
       },
       "BRInfo": {
@@ -4878,17 +4904,11 @@
           "BR": {
             "$ref": "#/components/schemas/AvailableBR"
           },
-          "serie": {
-            "type": "string"
-          },
-          "redesign": {
-            "type": "boolean"
+          "identifier": {
+            "$ref": "#/components/schemas/AvailableIdentifier"
           },
           "noPdf": {
             "type": "boolean"
-          },
-          "pdf": {
-            "type": "string"
           },
           "country": {
             "type": "string",

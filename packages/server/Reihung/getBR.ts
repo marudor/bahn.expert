@@ -1,24 +1,23 @@
-import type { BRInfo } from 'types/reihung';
+import type { BRInfo, Fahrzeug } from 'types/reihung';
 
 const getATBR = (
   code: string,
   _serial: string,
-  _anzahlFahrzeuge: number,
-): undefined | BRInfo => {
+  _fahrzeuge: Fahrzeug[],
+): undefined | Omit<BRInfo, 'name'> => {
   switch (code) {
     case '4011':
       return {
-        name: 'ICE T',
         BR: '411',
-        serie: '1',
+        identifier: '411.S1',
       };
   }
 };
 const getDEBR = (
   code: string,
   uicOrdnungsnummer: string,
-  anzahlFahrzeuge: number,
-): undefined | BRInfo => {
+  fahrzeuge: Fahrzeug[],
+): undefined | Omit<BRInfo, 'name'> => {
   switch (code) {
     case '0812':
     case '1412':
@@ -34,68 +33,91 @@ const getDEBR = (
     case '7812':
     case '8812':
     case '9412':
-    case '9812':
+    case '9812': {
+      let identifier: '412' | '412.13' | '412.7' = '412';
+      switch (fahrzeuge.length) {
+        case 13:
+          identifier = '412.13';
+          break;
+        case 7:
+          identifier = '412.7';
+          break;
+      }
       return {
-        name: 'ICE 4',
-        // @ts-expect-error this should work
-        BR: `412.${anzahlFahrzeuge}`,
-        noPdf: anzahlFahrzeuge != 12,
+        identifier,
+        BR: '412',
+        noPdf: fahrzeuge.length !== 12,
       };
+    }
     case '5401':
     case '5801':
     case '5802':
     case '5803':
-    case '5804':
+    case '5804': {
+      let identifier: '401' | '401.LDV' | '401.9' = '401';
+      if (fahrzeuge.length === 11) {
+        if (
+          fahrzeuge.filter((f) => f.additionalInfo.klasse === 1).length === 2
+        ) {
+          identifier = '401.LDV';
+        } else {
+          identifier = '401.9';
+        }
+      }
       return {
-        name: 'ICE 1',
+        identifier,
         BR: '401',
       };
+    }
     case '5402':
     case '5805':
     case '5806':
     case '5807':
     case '5808':
       return {
-        name: 'ICE 2',
         BR: '402',
+        identifier: '402',
       };
     case '5403':
       return {
-        name: 'ICE 3',
         BR: '403',
-        serie:
-          Number.parseInt(uicOrdnungsnummer.substr(1), 10) <= 37 ? '1' : '2',
+        // @ts-expect-error this works
+        identifier: `403.S${
+          Number.parseInt(uicOrdnungsnummer.substr(1), 10) <= 37 ? '1' : '2'
+        }`,
       };
     case '5406':
       return {
-        name: 'ICE 3',
         BR: '406',
+        identifier: '406',
       };
     case '5407':
       return {
-        name: 'ICE 3 Velaro',
         BR: '407',
+        identifier: '407',
       };
     case '5410':
       return {
-        name: 'ICE S',
         BR: '410.1',
+        identifier: '410.1',
         noPdf: true,
       };
     case '5411':
       return {
-        name: 'ICE T',
         BR: '411',
-        serie: Number.parseInt(uicOrdnungsnummer, 10) <= 32 ? '1' : '2',
+        // @ts-expect-error this works
+        identifier: `411.S${
+          Number.parseInt(uicOrdnungsnummer, 10) <= 32 ? '1' : '2'
+        }`,
       };
     case '5415':
       return {
-        name: 'ICE T',
         BR: '415',
+        identifier: '415',
       };
     case '5475':
       return {
-        name: 'TGV',
+        identifier: 'TGV',
         noPdf: true,
       };
   }
@@ -103,8 +125,8 @@ const getDEBR = (
 
 export default (
   fahrzeugnummer: string,
-  anzahlFahrzeuge: number,
-): undefined | BRInfo => {
+  fahrzeuge: Fahrzeug[],
+): undefined | Omit<BRInfo, 'name'> => {
   const country = fahrzeugnummer.substr(2, 2);
   const code = fahrzeugnummer.substr(4, 4);
   const serial = fahrzeugnummer.substr(8, 3);
@@ -113,10 +135,10 @@ export default (
 
   switch (country) {
     case '80':
-      info = getDEBR(code, serial, anzahlFahrzeuge);
+      info = getDEBR(code, serial, fahrzeuge);
       break;
     case '81':
-      info = getATBR(code, serial, anzahlFahrzeuge);
+      info = getATBR(code, serial, fahrzeuge);
       break;
   }
 
