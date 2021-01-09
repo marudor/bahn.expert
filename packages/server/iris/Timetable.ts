@@ -223,7 +223,7 @@ export default class Timetable {
       timetable.departure &&
       !timetable.departure.hidden;
     timetable.reihung = !timetable.cancelled && timetable.train.longDistance;
-    timetable.hiddenReihung = ['RB', 'RE', 'IRE'].includes(
+    timetable.hiddenReihung = ['RB', 'RE', 'IRE', 'S'].includes(
       timetable.train.type,
     );
 
