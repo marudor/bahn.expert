@@ -55,7 +55,7 @@
     "@babel/core": "^7.12.10",
     "@sinonjs/fake-timers": "^6.0.1",
     "@types/babel__core": "7.1.12",
-    "@types/cache-manager": "2.10.3",
+    "@types/cache-manager": "3.4.0",
     "@types/cookie": "0.4.0",
     "@types/core-js": "2.5.4",
     "@types/diff": "5.0.0",
@@ -78,7 +78,7 @@
     "@types/sinonjs__fake-timers": "6.0.2",
     "@types/supertest": "2.0.10",
     "@types/webpack": "^4.41.26",
-    "@types/webpack-dev-middleware": "3.7.3",
+    "@types/webpack-dev-middleware": "4.1.0",
     "@types/webpack-hot-middleware": "2.25.3",
     "chokidar": "^3.5.1",
     "eslint": "^7.18.0",
@@ -86,8 +86,8 @@
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2",
     "supertest": "^4.0.2",
-    "webpack": "^4.46.0",
-    "webpack-dev-middleware": "^3.7.3",
+    "webpack": "^5.17.0",
+    "webpack-dev-middleware": "^4.1.0",
     "webpack-hot-middleware": "^2.25.0"
   },
   "bundledDependencies": [
