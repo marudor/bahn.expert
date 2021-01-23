@@ -26,6 +26,8 @@ interface Props extends InheritedProps {
   showUIC: boolean;
 }
 
+const RPFRegex = /(RP)(F\d)(\d{5})/;
+
 export const Gruppe: FC<Props> = ({
   gruppe,
   showDestination,
@@ -97,7 +99,7 @@ export const Gruppe: FC<Props> = ({
           data-testid="reihungFahrzeugGruppe"
           style={gruppenPos}
         >
-          {gruppe.fahrzeuggruppebezeichnung}
+          {gruppe.fahrzeuggruppebezeichnung.replace(RPFRegex, '$1 $2 $3')}
         </span>
       )}
     </>
