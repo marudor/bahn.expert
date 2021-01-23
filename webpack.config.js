@@ -18,7 +18,7 @@ const plugins = [
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     'global.PROD': JSON.stringify(!isDev),
     'global.TEST': JSON.stringify(
-      process.env.NODE_ENV === 'test' || Boolean(process.env.TEST_RUN)
+      process.env.NODE_ENV === 'test' || Boolean(process.env.TEST_RUN),
     ),
     'global.SERVER': JSON.stringify(false),
   }),
@@ -63,26 +63,26 @@ if (isDev) {
     plugins.push(
       new SentryCliPlugin({
         include: path.resolve('dist'),
-      })
+      }),
     );
   }
   plugins.push(
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,
       skipWaiting: true,
-    })
+    }),
   );
   plugins.push(
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
       openAnalyzer: false,
-    })
+    }),
   );
   plugins.push(
     new PacktrackerPlugin({
       fail_build: true,
       upload: process.env.sendStats === 'true',
-    })
+    }),
   );
   optimization.minimizer = [
     new TerserPlugin({
@@ -105,7 +105,7 @@ if (isDev) {
   plugins.push(
     ...[
       new CompressionPlugin({
-        filename: '[path].br[query]',
+        filename: '[path]/[base].br[query]',
         test: /\.(js|css|svg)$/,
         algorithm: 'brotliCompress',
         compressionOptions: { level: 11 },
@@ -113,13 +113,13 @@ if (isDev) {
         minRatio: 1,
       }),
       new CompressionPlugin({
-        filename: '[path].gz[query]',
+        filename: '[path]/[base].gz[query]',
         test: /\.(js|css|svg)$/,
         algorithm: 'gzip',
         threshold: 0,
         minRatio: 1,
       }),
-    ]
+    ],
   );
 }
 
@@ -139,7 +139,7 @@ module.exports = {
   },
   output: {
     path: path.resolve('dist/client'),
-    filename: isDev ? 'static/[name].[hash].js' : 'static/[contenthash].js',
+    filename: 'static/[contenthash].js',
     publicPath: '/',
   },
   module: {
