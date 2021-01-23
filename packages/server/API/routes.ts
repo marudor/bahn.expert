@@ -2393,7 +2393,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new BahnhofControllerV1();
 
             const promise = controller.lageplan.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/businessHub/v1/stationOccupancy/:evaId/:date',
@@ -2414,7 +2414,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new BusinessHubV1Controller();
 
             const promise = controller.stationOccupancy.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/businessHub/v1/stationQuays/:evaId',
@@ -2434,7 +2434,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new BusinessHubV1Controller();
 
             const promise = controller.quays.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/businessHub/v1/fasta/:stadaId',
@@ -2454,7 +2454,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new BusinessHubV1Controller();
 
             const promise = controller.fasta.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/experimental/himMessages',
@@ -2476,7 +2476,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasExperimentalController();
 
             const promise = controller.himMessages.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.post('/api/hafas/experimental/HimSearch',
@@ -2498,7 +2498,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasExperimentalController();
 
             const promise = controller.himSearch.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/experimental/irisCompatibleAbfahrten/:evaId',
@@ -2519,7 +2519,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasExperimentalController();
 
             const promise = controller.irisCompatibleAbfahrten.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.post('/api/hafas/experimental/JourneyTree',
@@ -2540,7 +2540,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasExperimentalController();
 
             const promise = controller.JourneyTree.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.post('/api/hafas/experimental/JourneyGraph',
@@ -2561,7 +2561,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasExperimentalController();
 
             const promise = controller.JourneyGraph.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.post('/api/hafas/experimental/JourneyCourse',
@@ -2583,7 +2583,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasExperimentalController();
 
             const promise = controller.JourneyCourse.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.post('/api/hafas/subscribe/create',
@@ -2604,7 +2604,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasSubscribeController();
 
             const promise = controller.create.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.post('/api/hafas/subscribe/delete',
@@ -2625,7 +2625,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasSubscribeController();
 
             const promise = controller.delete.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.post('/api/hafas/subscribe/createUser',
@@ -2646,7 +2646,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasSubscribeController();
 
             const promise = controller.createUser.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/subscribe/search',
@@ -2667,7 +2667,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasSubscribeController();
 
             const promise = controller.search.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.post('/api/hafas/subscribe/deleteUser',
@@ -2688,7 +2688,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasSubscribeController();
 
             const promise = controller.deleteUser.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/subscribe/details',
@@ -2710,7 +2710,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasSubscribeController();
 
             const promise = controller.details.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.post('/api/hafas/v2/tripSearch',
@@ -2732,7 +2732,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasControllerV2();
 
             const promise = controller.tripSearchV2.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/v2/journeyDetails',
@@ -2754,7 +2754,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasControllerV2();
 
             const promise = controller.journeyDetails.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/v2/auslastung/:start/:destination/:trainNumber/:time',
@@ -2777,7 +2777,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasControllerV2();
 
             const promise = controller.auslastung.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/v2/arrivalStationBoard',
@@ -2800,7 +2800,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasControllerV2();
 
             const promise = controller.arrivalStationBoard.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/v2/departureStationBoard',
@@ -2824,7 +2824,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasControllerV2();
 
             const promise = controller.departureStationBoard.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.post('/api/hafas/v2/journeyMatch',
@@ -2846,7 +2846,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasControllerV2();
 
             const promise = controller.postJourneyMatch.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/v2/details/:trainName',
@@ -2870,7 +2870,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasControllerV2();
 
             const promise = controller.details.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.post('/api/hafas/v2/searchOnTrip',
@@ -2892,7 +2892,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasControllerV2();
 
             const promise = controller.searchOnTrip.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/v1/journeyDetails',
@@ -2914,7 +2914,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasController();
 
             const promise = controller.journeyDetailsv1.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.post('/api/hafas/v1/searchOnTrip',
@@ -2936,7 +2936,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasController();
 
             const promise = controller.searchOnTrip.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/v1/details/:trainName',
@@ -2960,7 +2960,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasController();
 
             const promise = controller.details.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/v1/auslastung/:start/:destination/:trainNumber/:time',
@@ -2983,7 +2983,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasController();
 
             const promise = controller.auslastung.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/v1/arrivalStationBoard',
@@ -3006,7 +3006,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasController();
 
             const promise = controller.arrivalStationBoard.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/v1/departureStationBoard',
@@ -3030,7 +3030,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasController();
 
             const promise = controller.departureStationBoard.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.post('/api/hafas/v1/journeyMatch',
@@ -3052,7 +3052,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasController();
 
             const promise = controller.postJourneyMatch.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.post('/api/hafas/v1/enrichedJourneyMatch',
@@ -3073,7 +3073,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasController();
 
             const promise = controller.enrichedJourneyMatch.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/v1/geoStation',
@@ -3097,7 +3097,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasController();
 
             const promise = controller.geoStation.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/v1/station/:searchTerm',
@@ -3120,7 +3120,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasController();
 
             const promise = controller.station.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.post('/api/hafas/v1/journeyGeoPos',
@@ -3142,7 +3142,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasController();
 
             const promise = controller.journeyGeoPos.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/v1/positionForTrain/:trainName',
@@ -3163,7 +3163,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasController();
 
             const promise = controller.positionForTrain.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.post('/api/hafas/v1/rawHafas',
@@ -3184,7 +3184,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasController();
 
             const promise = controller.rawHafas.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.post('/api/hafas/v3/tripSearch',
@@ -3206,7 +3206,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasControllerV3();
 
             const promise = controller.tripSearch.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/iris/v1/wings/:rawId1/:rawId2',
@@ -3227,7 +3227,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new IrisControllerv1();
 
             const promise = controller.wings.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/iris/v1/abfahrten/:evaId',
@@ -3250,7 +3250,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new IrisControllerv1();
 
             const promise = controller.abfahrten.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/iris/v2/wings/:rawId1/:rawId2',
@@ -3271,7 +3271,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new IrisControllerv2();
 
             const promise = controller.wings.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/iris/v2/abfahrten/:evaId',
@@ -3294,7 +3294,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new IrisControllerv2();
 
             const promise = controller.abfahrten.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/reihung/monitoring/wagen',
@@ -3313,7 +3313,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new ReihungMonitoringController();
 
             const promise = controller.monitoring.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/reihung/v1/wagen/:trainNumber/:date',
@@ -3334,7 +3334,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new ReihungControllerV1();
 
             const promise = controller.wagenreihung.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/reihung/v1/trainName/:tz',
@@ -3354,7 +3354,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new ReihungControllerV1();
 
             const promise = controller.trainName.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/reihung/v1/forTZ/:tz',
@@ -3374,7 +3374,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new ReihungControllerV1();
 
             const promise = controller.forTZ.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/reihung/v1/forNumber/:number',
@@ -3394,7 +3394,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new ReihungControllerV1();
 
             const promise = controller.forNumber.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/reihung/v2/wagen/:trainNumber/:date',
@@ -3415,7 +3415,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new ReihungControllerV2();
 
             const promise = controller.wagenreihung.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/sbb/experimental/station/:searchTerm',
@@ -3435,7 +3435,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new SBBExperimentalController();
 
             const promise = controller.station.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.post('/api/sbb/experimental/routing',
@@ -3455,7 +3455,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new SBBExperimentalController();
 
             const promise = controller.routing.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/station/v1/search/:searchTerm',
@@ -3478,7 +3478,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new StationController();
 
             const promise = controller.searchStation.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/station/v1/geoSearch',
@@ -3500,7 +3500,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new StationController();
 
             const promise = controller.geoSearch.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/station/v1/iris/:evaId',
@@ -3520,7 +3520,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new StationController();
 
             const promise = controller.irisSearch.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/station/v1/station/:evaId',
@@ -3540,7 +3540,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new StationController();
 
             const promise = controller.stationDetails.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/station/v1/ds100/:ds100',
@@ -3560,7 +3560,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new StationController();
 
             const promise = controller.ds100.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, next);
+            return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
@@ -3573,10 +3573,10 @@ export function RegisterRoutes(router: KoaRouter) {
 
   // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
-  function promiseHandler(controllerObj: any, promise: Promise<any>, context: any, next: () => Promise<any>) {
+  function promiseHandler(controllerObj: any, promise: Promise<any>, context: any, successStatus: any, next: () => Promise<any>) {
       return Promise.resolve(promise)
         .then((data: any) => {
-            let statusCode;
+            let statusCode = successStatus;
             let headers;
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

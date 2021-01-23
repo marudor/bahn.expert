@@ -27,8 +27,8 @@ export enum CacheDatabases {
 }
 const activeCaches = new Set();
 
-function deserialize(raw: string | null) {
-  if (raw === null) return undefined;
+function deserialize(raw?: string | null) {
+  if (raw == null) return undefined;
   if (raw === '__UNDEF__INED__') return undefined;
 
   return JSON.parse(raw);
@@ -105,7 +105,7 @@ export function createNewCache<K extends string, V>(
 
         if (!exists) return undefined;
 
-        const result = await baseCache.get(key).then(deserialize);
+        const result = await baseCache.get<string>(key).then(deserialize);
 
         return result;
       } catch (e) {

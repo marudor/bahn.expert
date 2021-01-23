@@ -110,6 +110,6 @@ jobs:
         run: yarn build:client:ci
         env:
           NODE_ENV: production
-          PT_PROJECT_TOKEN: 1ce5b3fa-b36c-4f3c-9d93-5207b79264c7
+          PT_PROJECT_TOKEN: a7f6dae0-81aa-496b-aeb4-8ffebdc28646
           PT_BRANCH: ${{github.head_ref || github.ref}}
           PT_COMMIT: ${{github.event.pull_request.head.sha || github.sha}}
