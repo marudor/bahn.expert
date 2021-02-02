@@ -6,14 +6,14 @@ import request from 'supertest';
 import type { Formation } from 'types/reihung';
 
 describe('Reihung V1', () => {
-  const nock = Nock('https://www.apps-bahn.de');
+  const nock = Nock('https://ist-wr.noncd.db.de');
   const loadFixture = (fileName: string) =>
     fs.readFile(path.resolve(__dirname, '__fixtures__/', fileName), 'utf8');
   const server = createTestServer();
 
   it('Get ICE1 Reihung', async () => {
     nock
-      .get('/wr/wagenreihung/1.0/373/201911221650')
+      .get('/wagenreihung/1.0/373/201911221650')
       .reply(200, await loadFixture('ICE1.json'));
 
     return request(server)

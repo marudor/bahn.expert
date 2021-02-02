@@ -29,7 +29,7 @@ const formatDate = (date: Date) =>
 // https://ist-wr.noncd.db.de/wagenreihung/1.0/
 // https://www.apps-bahn.de/wr/wagenreihung/1.0/
 export const getWRLink = (trainNumber: string, date: Date): string => {
-  return `https://www.apps-bahn.de/wr/wagenreihung/1.0/${trainNumber}/${formatDate(
+  return `https://ist-wr.noncd.db.de/wagenreihung/1.0/${trainNumber}/${formatDate(
     date,
   )}`;
 };
