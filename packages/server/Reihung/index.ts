@@ -26,12 +26,16 @@ import type {
 const formatDate = (date: Date) =>
   format(utcToZonedTime(date, 'Europe/Berlin'), 'yyyyMMddHHmm');
 
-// https://ist-wr.noncd.db.de/wagenreihung/1.0/
-// https://www.apps-bahn.de/wr/wagenreihung/1.0/
-export const getWRLink = (trainNumber: string, date: Date): string => {
-  return `https://ist-wr.noncd.db.de/wagenreihung/1.0/${trainNumber}/${formatDate(
-    date,
-  )}`;
+const wrUrls = {
+  apps: 'https://www.apps-bahn.de/wr/wagenreihung/1.0',
+  noncd: 'https://ist-wr.noncd.db.de/wagenreihung/1.0',
+};
+export const getWRLink = (
+  trainNumber: string,
+  date: Date,
+  type: 'apps' | 'noncd' = 'noncd',
+): string => {
+  return `${wrUrls[type]}/${trainNumber}/${formatDate(date)}`;
 };
 
 const countryMapping: any = {
@@ -259,6 +263,33 @@ function calculateComfort(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
 }
 
 const wrFetchTimeout = process.env.NODE_ENV === 'production' ? 2500 : 10000;
+
+async function getBestReihung(trainNumber: string, date: Date) {
+  if (trainNumber.length <= 4) {
+    try {
+      const cancelToken = new Axios.CancelToken((c) => {
+        setTimeout(c, wrFetchTimeout);
+      });
+      const info = (
+        await Axios.get<Wagenreihung>(getWRLink(trainNumber, date), {
+          cancelToken,
+        })
+      ).data;
+      return info;
+    } catch {
+      // we just ignore it and try the next one
+    }
+  }
+  const cancelToken = new Axios.CancelToken((c) => {
+    setTimeout(c, wrFetchTimeout);
+  });
+  const info = (
+    await Axios.get<Wagenreihung>(getWRLink(trainNumber, date, 'apps'), {
+      cancelToken,
+    })
+  ).data;
+  return info;
+}
 // https://www.apps-bahn.de/wr/wagenreihung/1.0/6/201802021930
 export async function wagenreihung(
   trainNumber: string,
@@ -268,14 +299,7 @@ export async function wagenreihung(
   let info: Wagenreihung;
 
   try {
-    const cancelToken = new Axios.CancelToken((c) => {
-      setTimeout(c, wrFetchTimeout);
-    });
-    info = (
-      await Axios.get<Wagenreihung>(getWRLink(trainNumber, date), {
-        cancelToken,
-      })
-    ).data;
+    info = await getBestReihung(trainNumber, date);
   } catch (e) {
     if (Axios.isCancel(e)) {
       if (retry) return wagenreihung(trainNumber, date, retry - 1);
