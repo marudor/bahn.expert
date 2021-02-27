@@ -1,6 +1,5 @@
 const { parentPort } = require('worker_threads');
 const Axios = require('axios');
-const { Timber } = require('@timberio/node');
 const pinoPretty = require('pino-pretty');
 
 const prettyLog = pinoPretty({
@@ -30,28 +29,6 @@ if (process.env.NODE_ENV === 'production' && logglyToken) {
           },
         },
       );
-    }
-  });
-}
-
-const timberSource = process.env.TIMBER_SOURCE;
-const timberToken = process.env.TIMBER_TOKEN;
-
-if (process.env.NODE_ENV === 'production' && timberSource && timberToken) {
-  // eslint-disable-next-line no-console
-  console.log('Using Timber to log');
-  const timber = new Timber(timberToken, timberSource);
-  const timberLevelMap = {
-    20: 'debug',
-    30: 'info',
-    40: 'warn',
-    50: 'error',
-  };
-
-  streams.push((msg) => {
-    // 30 is info, we log warn and above to timber
-    if (msg.level > 30) {
-      timber.log(msg.msg, timberLevelMap[msg.level] || msg.level, msg);
     }
   });
 }
