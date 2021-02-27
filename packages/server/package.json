@@ -15,7 +15,6 @@
     "@loadable/component": "^5.14.1",
     "@loadable/server": "^5.14.0",
     "@sentry/node": "^6.0.1",
-    "@timberio/node": "^0.35.0",
     "axios": "^0.21.1",
     "business-hub": "workspace:*",
     "cache-manager": "^3.4.0",

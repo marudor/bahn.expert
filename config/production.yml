@@ -7,18 +7,6 @@ env:
         name: bahnhofs-abfahrten-config
         key: loggly_token
         optional: true
-  - name: TIMBER_SOURCE
-    valueFrom:
-      secretKeyRef:
-        name: bahnhofs-abfahrten-config
-        key: timber_source
-        optional: true
-  - name: TIMBER_TOKEN
-    valueFrom:
-      secretKeyRef:
-        name: bahnhofs-abfahrten-config
-        key: timber_token
-        optional: true
 
 hostName: marudor.de
 
