@@ -2508,47 +2508,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@timberio/core@npm:^0.35.0":
-  version: 0.35.0
-  resolution: "@timberio/core@npm:0.35.0"
-  dependencies:
-    "@timberio/tools": ^0.35.0
-    "@timberio/types": ^0.35.0
-  checksum: 85b935f243f2dfead5ae0bb39cb85fa5b0f8cf448a42484e3697d00c900ce7e0ab3d0613cc8d3a7761a0e44bf6a80087471a65bbe9b2ceeafe1d76999fd42711
-  languageName: node
-  linkType: hard
-
-"@timberio/node@npm:^0.35.0":
-  version: 0.35.0
-  resolution: "@timberio/node@npm:0.35.0"
-  dependencies:
-    "@timberio/core": ^0.35.0
-    "@timberio/types": ^0.35.0
-    "@types/msgpack5": ^3.4.1
-    cross-fetch: ^3.0.4
-    msgpack5: ^4.2.1
-  checksum: 5311d4109af51d64f1c64fd830f93a5f0cd191620e077a936c4ac00868bb216798233628a01c31452d8e03af54665f463e2887b4d9698dec05e398e7981214f8
-  languageName: node
-  linkType: hard
-
-"@timberio/tools@npm:^0.35.0":
-  version: 0.35.0
-  resolution: "@timberio/tools@npm:0.35.0"
-  dependencies:
-    "@timberio/types": ^0.35.0
-  checksum: 5b02281fb52be125779073725a562b7800ca2c41baad52dec467119378ee1a6c0b338a19e18a1d0c12ac491a672b66389ef926a119e9b4bc019140dd74cbe8f5
-  languageName: node
-  linkType: hard
-
-"@timberio/types@npm:^0.35.0":
-  version: 0.35.0
-  resolution: "@timberio/types@npm:0.35.0"
-  dependencies:
-    js: ^0.1.0
-  checksum: be4272c2575b7a14da461754550a060467ae59b40662e772d366893214210a64d645f15d7db317cbc13e7b89b76e0278d88f490e6f2a22af62a2b36f07491d74
-  languageName: node
-  linkType: hard
-
 "@tsoa/cli@npm:^3.5.1":
   version: 3.5.1
   resolution: "@tsoa/cli@npm:3.5.1"
@@ -2642,15 +2601,6 @@ __metadata:
   dependencies:
     "@babel/types": ^7.3.0
   checksum: cfb83f1633aafbd447008caf6d40d188a7318ac64d64beaa469dd6d35f72c8298869a6668f082e1116fecf1425654ed0a3dc7fccdc2e18c803b0a7b44f88bec0
-  languageName: node
-  linkType: hard
-
-"@types/bl@npm:*":
-  version: 2.1.0
-  resolution: "@types/bl@npm:2.1.0"
-  dependencies:
-    "@types/node": "*"
-  checksum: 5abc8901fc12ea784bc7e497cda0c1d6c29465b32fca929eba57ca9ca7f62f082147ea448a5d796ed7095c0bbb4a1b6a00fcfae832cdee1038013d94813e51c6
   languageName: node
   linkType: hard
 
@@ -3024,15 +2974,6 @@ __metadata:
   version: 1.2.1
   resolution: "@types/minimist@npm:1.2.1"
   checksum: 3a6f5fe35f1656b34a4ccd5a5db1c38509d8d5b59625865b8c2b997994fcb0cfde0d9af7c5507b95dc5a0a32a22886c189e505cd2e52a7ef36d3c9982f07ed5a
-  languageName: node
-  linkType: hard
-
-"@types/msgpack5@npm:^3.4.1":
-  version: 3.4.1
-  resolution: "@types/msgpack5@npm:3.4.1"
-  dependencies:
-    "@types/bl": "*"
-  checksum: 702a7e7d3a7708d1fbc627466884776138d5acec5844019188e8bb62af60063ac66a2e9116ad52c7776b2aa02bf01ad9089d66dbc3cd21529ebbd138248a4d50
   languageName: node
   linkType: hard
 
@@ -4630,16 +4571,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bl@npm:^2.0.1":
-  version: 2.2.1
-  resolution: "bl@npm:2.2.1"
-  dependencies:
-    readable-stream: ^2.3.5
-    safe-buffer: ^5.1.1
-  checksum: 438c510aa211ec4398819ad1cb4ef1617b0ffeb0f1946c2b359fc5aefbe6f8e22dc2f6788e8746509779fabee89f1c3b34ec87ff30fb7b3d95654d8cd51e3b70
-  languageName: node
-  linkType: hard
-
 "blob-util@npm:2.0.2":
   version: 2.0.2
   resolution: "blob-util@npm:2.0.2"
@@ -5544,15 +5475,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:~1.1.1":
-  version: 1.1.1
-  resolution: "commander@npm:1.1.1"
-  dependencies:
-    keypress: 0.1.x
-  checksum: c67be3eb7f2792eb5f368ab1c8504968e462313beab7d7cdad62604f2c7d5cba6ce44197da007ab7e1c0e0afb7ca9a020baa766272aeda41aae6f55b7af9162b
-  languageName: node
-  linkType: hard
-
 "common-tags@npm:^1.8.0":
   version: 1.8.0
   resolution: "common-tags@npm:1.8.0"
@@ -5859,15 +5781,6 @@ __metadata:
     safe-buffer: ^5.0.1
     sha.js: ^2.4.8
   checksum: 98957676a93081678a2a915ae14898d65aac9b5651ffa55b8888484dd9d79c06d3cb3f85b137cd833ab536d87adee17394bb2b0efc591ea0e34110266d5bcd75
-  languageName: node
-  linkType: hard
-
-"cross-fetch@npm:^3.0.4":
-  version: 3.0.6
-  resolution: "cross-fetch@npm:3.0.6"
-  dependencies:
-    node-fetch: 2.6.1
-  checksum: a491ad1b89988a351f8b8b252b68a5e653636d911042648c43a806cf7575ff043379a80d6269102ca60ec633af0b49ca4c83536007793bb0e65e491769f70d9d
   languageName: node
   linkType: hard
 
@@ -9907,17 +9820,6 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"js@npm:^0.1.0":
-  version: 0.1.0
-  resolution: "js@npm:0.1.0"
-  dependencies:
-    commander: ~1.1.1
-  bin:
-    js: ./bin/js
-  checksum: 49e5b76b8e3487c8157bab1fbd61839d8dcf7ed6e868ee09b96dfa7519a040d71daf0bdda862ba21e328473db1d864b724e4a866b9c702bbd43ee6b3de3b989f
-  languageName: node
-  linkType: hard
-
 "jsbn@npm:~0.1.0":
   version: 0.1.1
   resolution: "jsbn@npm:0.1.1"
@@ -10209,13 +10111,6 @@ fsevents@~2.1.2:
   dependencies:
     tsscmp: 1.0.6
   checksum: 917fc9c6ad8528537534ae181f85a566bf74716f3e38e83ff858862ebad24f31f70781b875fbf5a34bba115433361d2dbdad94d4debf0ca6631c85b47a5f0e31
-  languageName: node
-  linkType: hard
-
-"keypress@npm:0.1.x":
-  version: 0.1.0
-  resolution: "keypress@npm:0.1.0"
-  checksum: aa8f6205b9d2b8e1cbfe73ee7d2b5f2f0a14449c8ce6dbb3ff9fb9843f4ff1b0c9f7d085bb0d3accd502bb85b93a4c48422cb436f087df8aca033cae1634d0c0
   languageName: node
   linkType: hard
 
@@ -11193,18 +11088,6 @@ fsevents@~2.1.2:
   version: 2.1.3
   resolution: "ms@npm:2.1.3"
   checksum: 6e721e648a544154d5de4c114b32f573d8027ca8ec505cf6c1105e505986d6ac46934a1256735aa0eece8eb2f5b2a1230503b2dddd3b100f9f016fd8a4f15f33
-  languageName: node
-  linkType: hard
-
-"msgpack5@npm:^4.2.1":
-  version: 4.5.0
-  resolution: "msgpack5@npm:4.5.0"
-  dependencies:
-    bl: ^2.0.1
-    inherits: ^2.0.3
-    readable-stream: ^2.3.6
-    safe-buffer: ^5.1.2
-  checksum: f1c8c7cb7e8a385210fa66504619c88cd6906535541e0b680b3cd09fee3aa62e047222e94d53124ff00ca0d3b315ae01a8fee62deef8f61353ca542d1a761472
   languageName: node
   linkType: hard
 
@@ -13720,7 +13603,6 @@ fsevents@~2.1.2:
     "@loadable/server": ^5.14.0
     "@sentry/node": ^6.0.1
     "@sinonjs/fake-timers": ^6.0.1
-    "@timberio/node": ^0.35.0
     "@types/babel__core": 7.1.12
     "@types/cache-manager": 3.4.0
     "@types/cookie": 0.4.0
