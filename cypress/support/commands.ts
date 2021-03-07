@@ -1,27 +1,24 @@
 import '@testing-library/cypress/add-commands';
 
+Cypress.Commands.add('force404', () => {
+  cy.intercept('/api/**', { statusCode: 404, body: 'unmocked disallowed' });
+});
+
 Cypress.Commands.add(
   'navigateToStation',
   (
     value: string,
     {
-      isStubbed = true,
       findPrefix,
     }: {
       isStubbed?: boolean;
       findPrefix?: string;
     } = {},
   ) => {
-    if (!isStubbed) {
-      cy.route(/\/api\/iris\/v1\/abfahrten.*/).as('irisAbfahrten');
-    }
     const baseFind = findPrefix ? cy.findByTestId(findPrefix) : cy;
 
     baseFind.findByTestId('stationSearchInput').type(value);
     cy.findAllByTestId('stationSearchMenuItem').first().click();
-    if (!isStubbed) {
-      cy.wait('@irisAbfahrten');
-    }
   },
 );
 
@@ -44,13 +41,28 @@ function mockStation({
   fixture: string;
   id: string;
 }) {
-  cy.route({
-    url: `/api/iris/v2/abfahrten/${id}?lookahead=${lookahead}&lookbehind=${lookbehind}`,
-    delay,
-    response: `fixture:abfahrten${fixture}.json`,
-  }).route(
-    `/api/station/v1/search/${name}?type=default`,
-    `fixture:stationSearch${fixture}.json`,
+  cy.intercept(
+    {
+      url: `/api/iris/v2/abfahrten/${id}`,
+      query: {
+        lookahead: lookahead.toString(),
+        lookbehind: lookbehind.toString(),
+      },
+    },
+    {
+      delayMs: delay,
+      fixture: `abfahrten${fixture}`,
+    },
+  ).intercept(
+    {
+      url: `/api/station/v1/search/${encodeURIComponent(name)}`,
+      query: {
+        type: 'default',
+      },
+    },
+    {
+      fixture: `stationSearch${fixture}`,
+    },
   );
 }
 
