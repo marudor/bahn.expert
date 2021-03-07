@@ -3,11 +3,18 @@ import type { Station } from 'types/station';
 
 export default async function (ds100: string): Promise<Station | undefined> {
   try {
-    const timetablesStation = await getSingleStation(ds100);
+    const timetablesStation = await getSingleStation(
+      ds100.replace(' ', '%20 '),
+    );
 
-    if (timetablesStation.ds100.toLowerCase() === ds100.toLowerCase()) {
+    const sanitizedDs100 = timetablesStation.ds100
+      .split(' ')
+      .filter(Boolean)
+      .join(' ');
+
+    if (sanitizedDs100.toLowerCase() === ds100.toLowerCase()) {
       return {
-        DS100: timetablesStation.ds100,
+        DS100: sanitizedDs100,
         title: timetablesStation.name,
         id: timetablesStation.eva,
       };
