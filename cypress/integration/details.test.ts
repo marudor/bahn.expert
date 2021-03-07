@@ -1,18 +1,19 @@
 describe('Details', () => {
   it('Can Render (with error)', () => {
-    cy.route({
-      url: '/api/hafas/v2/details/ICE70',
-      status: 404,
+    cy.intercept('/api/hafas/v2/details/ICE70', {
+      statusCode: 404,
       response: {},
     });
+    cy.force404();
     cy.visit('/details/ICE70');
     cy.findByTestId('error').should('exist');
   });
 
   it('can render & header height correct', () => {
-    cy.route('/api/hafas/v2/details/S30665', 'fixture:details/S6.json').as(
-      'details',
-    );
+    cy.intercept('/api/hafas/v2/details/S30665', {
+      fixture: 'details/S6',
+    }).as('details');
+    cy.force404();
     cy.visit('/details/S30665');
     cy.wait('@details');
     cy.findByTestId('header').should('have.css', 'height', '54px');

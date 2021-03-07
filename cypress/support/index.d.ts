@@ -16,7 +16,6 @@ declare global {
       navigateToStation(
         value: string,
         options?: {
-          isStubbed?: boolean;
           findPrefix?: string;
         },
       ): void;
@@ -25,6 +24,7 @@ declare global {
       mockHamburg(options?: MockOptions): void;
       mockHannover(options?: MockOptions): void;
       openSettings(): void;
+      force404(): void;
     }
   }
 }

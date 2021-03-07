@@ -27,14 +27,20 @@ export async function getHafasStationFromAPI(
   stationString?: string,
 ): Promise<Station[]> {
   try {
-    return (
-      await Axios.get<Station[]>(`/api/hafas/v1/station/${stationString}`, {
-        params: {
-          profile,
-          type: 'S',
-        },
-      })
-    ).data;
+    if (stationString) {
+      return (
+        await Axios.get<Station[]>(
+          `/api/hafas/v1/station/${encodeURIComponent(stationString)}`,
+          {
+            params: {
+              profile,
+              type: 'S',
+            },
+          },
+        )
+      ).data;
+    }
+    return [];
   } catch {
     return [];
   }

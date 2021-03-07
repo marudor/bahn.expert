@@ -2,6 +2,7 @@ describe('Routing Settings', () => {
   describe('normal', () => {
     beforeEach(() => {
       cy.visit('/routing');
+      cy.force404();
     });
     it('can change settings', () => {
       cy.findByTestId('routingSettingsPanel')

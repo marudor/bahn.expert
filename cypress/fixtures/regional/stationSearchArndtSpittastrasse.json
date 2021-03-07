@@ -1,0 +1,252 @@
+[
+  {
+    "id": "000559177",
+    "title": "Arndt-/Spittastraße, Stuttgart",
+    "coordinates": {
+      "lng": 9.150767,
+      "lat": 48.774894
+    },
+    "products": [
+      {
+        "name": "STB U2",
+        "line": "8_vvs020_U2"
+      },
+      {
+        "name": "STB U29",
+        "line": "8_vvs020_U29"
+      },
+      {
+        "name": "STB U34",
+        "line": "8_vvs020_U34"
+      }
+    ]
+  },
+  {
+    "title": "Stuttgart - West, Spittastraße",
+    "coordinates": {
+      "lng": 9.151136,
+      "lat": 48.775281
+    }
+  },
+  {
+    "title": "Stuttgart - West, Arndtstraße",
+    "coordinates": {
+      "lng": 9.151118,
+      "lat": 48.774427
+    }
+  },
+  {
+    "title": "Stuttgart - Ost, Spittlerstraße",
+    "coordinates": {
+      "lng": 9.198644,
+      "lat": 48.787587
+    }
+  },
+  {
+    "title": "Stuttgart - Degerloch, Melittastraße",
+    "coordinates": {
+      "lng": 9.181879,
+      "lat": 48.754722
+    }
+  },
+  {
+    "id": "981238217",
+    "title": "Stuttgart, Melittastraße",
+    "coordinates": {
+      "lng": 9.181879,
+      "lat": 48.754722
+    }
+  },
+  {
+    "id": "991532120",
+    "title": "Stuttgart, Rössle (Arnoldstraße 3) (Gastronomie)",
+    "coordinates": {
+      "lng": 9.229324,
+      "lat": 48.842017
+    }
+  },
+  {
+    "id": "991531742",
+    "title": "Stuttgart, Pasta Baby (Hospitalstraße 19) (Gastron",
+    "coordinates": {
+      "lng": 9.172701,
+      "lat": 48.777294
+    }
+  },
+  {
+    "title": "Stuttgart - Feuerbach, Spitzäckerstraße",
+    "coordinates": {
+      "lng": 9.151351,
+      "lat": 48.808559
+    }
+  },
+  {
+    "title": "Stuttgart - Feuerbach, Spitzwegstraße",
+    "coordinates": {
+      "lng": 9.164089,
+      "lat": 48.801556
+    }
+  },
+  {
+    "title": "Stuttgart - Mitte, Hospitalstraße",
+    "coordinates": {
+      "lng": 9.172719,
+      "lat": 48.777339
+    }
+  },
+  {
+    "title": "Stuttgart - Zazenhausen, Spitalhofstraße",
+    "coordinates": {
+      "lng": 9.199462,
+      "lat": 48.839904
+    }
+  },
+  {
+    "title": "Stuttgart - Zuffenhausen, Spitalstraße",
+    "coordinates": {
+      "lng": 9.178409,
+      "lat": 48.831248
+    }
+  },
+  {
+    "id": "981238399",
+    "title": "Stuttgart, Weiler-Spitz-Straße",
+    "coordinates": {
+      "lng": 9.249442,
+      "lat": 48.749751
+    }
+  },
+  {
+    "title": "Stuttgart - Süd, Cottastraße",
+    "coordinates": {
+      "lng": 9.174723,
+      "lat": 48.766148
+    }
+  },
+  {
+    "title": "Stuttgart - Untertürkheim, Silvrettastraße",
+    "coordinates": {
+      "lng": 9.251446,
+      "lat": 48.781402
+    }
+  },
+  {
+    "title": "Stuttgart - Luginsland, Arnulfstraße",
+    "coordinates": {
+      "lng": 9.262233,
+      "lat": 48.790994
+    }
+  },
+  {
+    "title": "Stuttgart - Mühlhausen, Arnoldstraße",
+    "coordinates": {
+      "lng": 9.223957,
+      "lat": 48.840327
+    }
+  },
+  {
+    "title": "Stuttgart - Zuffenhausen, Spielberger Straße",
+    "coordinates": {
+      "lng": 9.172188,
+      "lat": 48.837648
+    }
+  },
+  {
+    "id": "000560957",
+    "title": "Jurastraße, Stuttgart",
+    "coordinates": {
+      "lng": 9.117156,
+      "lat": 48.728968
+    },
+    "products": [
+      {
+        "name": "STB U3",
+        "line": "8_vvs020_U3"
+      },
+      {
+        "name": "STB U8",
+        "line": "8_vvs020_U8"
+      }
+    ]
+  },
+  {
+    "id": "000559507",
+    "title": "Peregrinastraße, Stuttgart",
+    "coordinates": {
+      "lng": 9.159711,
+      "lat": 48.744205
+    },
+    "products": [
+      {
+        "name": "STB U5",
+        "line": "8_vvs020_U5"
+      },
+      {
+        "name": "STB U6",
+        "line": "8_vvs020_U6"
+      },
+      {
+        "name": "STB U8",
+        "line": "8_vvs020_U8"
+      },
+      {
+        "name": "STB U12",
+        "line": "8_vvs020_U12"
+      }
+    ]
+  },
+  {
+    "id": "000559526",
+    "title": "Rastatter Straße, Stuttgart",
+    "coordinates": {
+      "lng": 9.108203,
+      "lat": 48.810375
+    },
+    "products": [
+      {
+        "name": "STB U6",
+        "line": "8_vvs020_U6"
+      },
+      {
+        "name": "STB U16",
+        "line": "8_vvs020_U16"
+      }
+    ]
+  },
+  {
+    "id": "000559665",
+    "title": "Wilhelm-/Olgastraße, Stuttgart",
+    "coordinates": {
+      "lng": 9.180611,
+      "lat": 48.769528
+    },
+    "products": [
+      {
+        "name": "Bus 43",
+        "line": "5_vvs030_43"
+      }
+    ]
+  },
+  {
+    "id": "000559456",
+    "title": "Mittnachtstraße, Stuttgart",
+    "coordinates": {
+      "lng": 9.190113,
+      "lat": 48.797466
+    },
+    "products": [
+      {
+        "name": "STB U12",
+        "line": "8_vvs020_U12"
+      }
+    ]
+  },
+  {
+    "id": "991531533",
+    "title": "Stuttgart, La Bruschetta (Weberstraße 108) (Gastro",
+    "coordinates": {
+      "lng": 9.184027,
+      "lat": 48.774481
+    }
+  }
+]
