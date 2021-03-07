@@ -17,18 +17,7 @@ describe('Regional', () => {
       '/api/hafas/v2/details/STR 1761?station=723870&date=2020-05-02T17:54:00.000Z',
       'fixture:regional/detailsStr1761.json',
     );
-    cy.route(
-      '/api/hafas/v1/station/Arndt-/Spittastraße, Stuttgart?profile=db&type=S',
-      'fixture:regional/stationSearchArndtSpittastrasse.json',
-    );
-    cy.route(
-      '/api/hafas/v1/station/Arndt-/Spittastraße, Stuttgart?type=S',
-      'fixture:regional/stationSearchArndtSpittastrasse.json',
-    );
-    cy.route(
-      '/api/hafas/experimental/irisCompatibleAbfahrten/000559177?lookahead=150&lookbehind=0',
-      'fixture:regional/departureArndtSpittastrasse.json',
-    );
+
     cy.visit('/');
     cy.findByTestId('navToggle').click();
     cy.findByTestId('regional').click();
@@ -42,6 +31,18 @@ describe('Regional', () => {
         '/regional/Karlsruhe%20Bahnhofsvorplatz',
       );
     });
+  });
+
+  it('can handle slashes', () => {
+    cy.intercept(
+      '/api/hafas/v1/station/' +
+        encodeURIComponent('Arndt-/Spittastraße, Stuttgart'),
+      { fixture: 'regional/stationSearchArndtSpittastrasse.json' },
+    );
+    cy.intercept(
+      '/api/hafas/experimental/irisCompatibleAbfahrten/000559177?lookahead=150&lookbehind=0',
+      { fixture: 'regional/departureArndtSpittastrasse.json' },
+    );
     cy.visit('/');
     cy.findByTestId('navToggle').click();
     cy.findByTestId('regional').click();
