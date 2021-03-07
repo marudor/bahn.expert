@@ -5,6 +5,7 @@ describe('Filter', () => {
   }
   beforeEach(() => {
     cy.mockFrankfurt();
+    cy.force404();
   });
   it('Type Filter Temporary', () => {
     cy.visit('/');

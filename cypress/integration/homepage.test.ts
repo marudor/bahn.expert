@@ -35,15 +35,17 @@ describe('Homepage', () => {
   });
 
   it('Shows error on mainPage', () => {
-    cy.route({
-      url: '/api/iris/v2/abfahrten/8098105?lookahead=150&lookbehind=0',
-      status: 500,
-      delay: 200,
-      response: {},
-    }).route(
-      '/api/station/v1/search/Frankfurt (Main) Hbf?type=default',
-      'fixture:stationSearchFrankfurtHbf.json',
+    cy.intercept('/api/iris/v2/abfahrten/8098105', {
+      statusCode: 500,
+      delayMs: 2000,
+      body: {},
+    }).intercept(
+      `/api/station/v1/search/${encodeURIComponent('Frankfurt (Main) Hbf')}`,
+      {
+        fixture: 'stationSearchFrankfurtHbf',
+      },
     );
+    cy.force404();
     cy.visit('/');
     cy.navigateToStation('Frankfurt (Main) Hbf');
     cy.findByTestId('loading').should('exist');

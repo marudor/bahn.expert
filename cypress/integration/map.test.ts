@@ -1,10 +1,15 @@
 describe('Map', () => {
   it('opens oebb by default', () => {
-    cy.route({
-      url: '/api/hafas/v1/journeyGeoPos?profile=oebb',
-      method: 'POST',
-      response: 'fixture:journeyGeoPosOebbSingle.json',
-    }).as('geoPos');
+    cy.intercept(
+      {
+        url: '/api/hafas/v1/journeyGeoPos?profile=oebb',
+        method: 'POST',
+      },
+      {
+        fixture: 'journeyGeoPosOebbSingle',
+      },
+    ).as('geoPos');
+    cy.force404();
     cy.visit('/map?noTiles=1');
     cy.wait('@geoPos');
   });
@@ -19,11 +24,16 @@ describe('Map', () => {
     };
 
     it('profile', () => {
-      cy.route({
-        url: '/api/hafas/v1/journeyGeoPos?profile=db',
-        method: 'POST',
-        response: 'fixture:journeyGeoPosOebbSingle.json',
-      }).as('geoPos');
+      cy.intercept(
+        {
+          url: '/api/hafas/v1/journeyGeoPos?profile=db',
+          method: 'POST',
+        },
+        {
+          fixture: 'journeyGeoPosOebbSingle',
+        },
+      ).as('geoPos');
+      cy.force404();
       cy.visit('/map?profile=db&noTiles=1');
       cy.wait('@geoPos');
     });

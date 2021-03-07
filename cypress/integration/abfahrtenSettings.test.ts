@@ -7,6 +7,7 @@ describe('Abfahrten Settings', () => {
     });
 
     it('Show Zugnummer & Linie', () => {
+      cy.force404();
       cy.findByTestId('abfahrtS35744').within(() => {
         cy.findByTestId('abfahrtStart').should('have.text', 'S 7');
       });
@@ -19,14 +20,10 @@ describe('Abfahrten Settings', () => {
     });
 
     it('Show fahrzeuggruppe', () => {
-      cy.route(
-        '/api/hafas/v2/auslastung/8000105/Interlaken Ost/371/2019-08-07T12:50:00.000Z',
-        { first: 1, second: 1 },
-      );
-      cy.route(
-        '/api/reihung/v2/wagen/371/2019-08-07T12:50:00.000Z',
-        'fixture:sequence/genericICE1.json',
-      );
+      cy.intercept('/api/reihung/v2/wagen/371/2019-08-07T12:50:00.000Z', {
+        fixture: 'sequence/genericICE1',
+      });
+      cy.force404();
       cy.findByTestId('abfahrtICE371').click();
       cy.openSettings();
       cy.findByTestId('fahrzeugGruppeConfig').click();
@@ -45,6 +42,7 @@ describe('Abfahrten Settings', () => {
   });
 
   it('set lookbehind', () => {
+    cy.force404();
     cy.visit('/');
     cy.openSettings();
     cy.findByTestId('lookbehind').within(() => {

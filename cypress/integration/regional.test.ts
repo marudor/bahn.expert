@@ -1,22 +1,26 @@
 describe('Regional', () => {
   it('can navigate to Details Page', () => {
-    cy.server();
-    cy.route(
-      '/api/hafas/v1/station/Poststraße, Karlsruhe?profile=db&type=S',
-      'fixture:regional/stationSearchPoststrasse',
+    cy.intercept(
+      `/api/hafas/v1/station/${encodeURIComponent('Poststraße, Karlsruhe')}`,
+      {
+        fixture: 'regional/stationSearchPoststrasse',
+      },
     );
-    cy.route(
-      '/api/hafas/v1/station/Poststraße, Karlsruhe?type=S',
-      'fixture:regional/stationSearchPoststrasse',
-    );
-    cy.route(
+    cy.intercept(
       '/api/hafas/experimental/irisCompatibleAbfahrten/000723869?lookahead=150&lookbehind=0',
-      'fixture:regional/departurePostStrasse.json',
+      { fixture: 'regional/departurePostStrasse' },
     );
-    cy.route(
-      '/api/hafas/v2/details/STR 1761?station=723870&date=2020-05-02T17:54:00.000Z',
-      'fixture:regional/detailsStr1761.json',
+    cy.intercept(
+      {
+        url: `/api/hafas/v2/details/${encodeURIComponent('STR 1761')}`,
+        query: {
+          station: '723870',
+          date: '2020-05-02T17:54:00.000Z',
+        },
+      },
+      { fixture: 'regional/detailsStr1761' },
     );
+    cy.force404();
     cy.visit('/');
     cy.findByTestId('navToggle').click();
     cy.findByTestId('regional').click();
@@ -30,5 +34,23 @@ describe('Regional', () => {
         '/regional/Karlsruhe%20Bahnhofsvorplatz',
       );
     });
+  });
+
+  it('can handle slashes', () => {
+    cy.intercept(
+      '/api/hafas/v1/station/' +
+        encodeURIComponent('Arndt-/Spittastraße, Stuttgart'),
+      { fixture: 'regional/stationSearchArndtSpittastrasse' },
+    );
+    cy.intercept(
+      '/api/hafas/experimental/irisCompatibleAbfahrten/000559177?lookahead=150&lookbehind=0',
+      { fixture: 'regional/departureArndtSpittastrasse' },
+    );
+    cy.force404();
+    cy.visit('/');
+    cy.findByTestId('navToggle').click();
+    cy.findByTestId('regional').click();
+    cy.navigateToStation('Arndt-/Spittastraße, Stuttgart');
+    cy.findByTestId('abfahrtSTB77629');
   });
 });
