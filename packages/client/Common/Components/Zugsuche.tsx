@@ -80,7 +80,7 @@ export const Zugsuche: FC<Props> = ({ children }) => {
 
         // istanbul ignore else
         if (date) {
-          link.push((+date).toString());
+          link.push(date.toISOString());
         }
 
         link.push(
