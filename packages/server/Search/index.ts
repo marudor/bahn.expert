@@ -52,9 +52,8 @@ export function getSearchMethod(
       return SBBSearch;
     case StationSearchType.businessHub:
       return BusinessHubSearch;
-    case StationSearchType.ris:
-      return risStationSearch;
     default:
+    case StationSearchType.ris:
       return risStationSearch;
   }
 }
@@ -64,6 +63,9 @@ export default async (
   type?: StationSearchType,
   maxStations = 6,
 ): Promise<Station[]> => {
+  if (!type || type === StationSearchType.default) {
+    type = StationSearchType.ris;
+  }
   const searchTerm = rawSearchTerm.replace(/ {2}/g, ' ');
   const cacheKey = `${type}${searchTerm}`;
   const cached = await stationSearchCache.get(cacheKey);
