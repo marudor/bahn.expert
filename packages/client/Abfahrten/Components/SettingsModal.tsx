@@ -224,7 +224,7 @@ export const SettingsModal: FC = () => {
               name="searchType"
               onChange={handleSelectChange('searchType')}
             >
-              <option value={StationSearchType.default}>Business Hub</option>
+              <option value={StationSearchType.default}>RIS</option>
               <option value={StationSearchType.openData}>Open Data</option>
               <option value={StationSearchType.openDataOffline}>
                 Open Data Offline

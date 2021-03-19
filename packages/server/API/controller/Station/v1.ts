@@ -1,16 +1,15 @@
-import {
-  geoSearch as BusinessHubGeoSearch,
-  canUseBusinessHub,
-  stationDetails,
-} from 'business-hub';
+import { byPosition, byRl100, stationDetails } from 'business-hub';
 import { Controller, Get, Query, Request, Response, Route, Tags } from 'tsoa';
 import { getStation } from 'server/iris/station';
 import { StationSearchType } from 'types/station';
-import DS100 from 'server/Search/DS100';
 import stationSearch from 'server/Search';
+import type {
+  CommonStation,
+  IrisStationWithRelated,
+  Station,
+} from 'types/station';
 import type { Context, Next } from 'koa';
 import type { DetailBusinessHubStation } from 'business-hub/types/StopPlaces';
-import type { IrisStationWithRelated, Station } from 'types/station';
 
 export const validationOverwrite = [
   {
@@ -51,18 +50,13 @@ export class StationController extends Controller {
     @Query() lng: number,
     // Meter
     @Query() radius?: number,
-  ): Promise<Station[]> {
-    if (canUseBusinessHub) {
-      return BusinessHubGeoSearch(
-        {
-          latitude: lat,
-          longitude: lng,
-        },
-        radius,
-      );
-    } else {
-      throw new Error('geoSearch needs BusinessHub API Key');
-    }
+  ): Promise<CommonStation[]> {
+    return byPosition(lat, lng, radius || 500).then((list) =>
+      list.map((s) => ({
+        title: s.names.DE.nameLong,
+        id: s.evaNumber,
+      })),
+    );
   }
 
   @Get('/iris/{evaId}')
@@ -81,10 +75,14 @@ export class StationController extends Controller {
   @Get('/ds100/{ds100}')
   @Tags('Station')
   async ds100(ds100: string): Promise<Station> {
-    const station = await DS100(ds100);
+    const station = await byRl100(ds100);
 
     if (station) {
-      return station;
+      return {
+        title: station.names.DE.nameLong,
+        id: station.evaNumber,
+        DS100: ds100,
+      };
     }
 
     throw {
