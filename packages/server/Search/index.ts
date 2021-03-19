@@ -1,21 +1,35 @@
 import {
   stationSearch as BusinessHubSearch,
-  canUseBusinessHub,
+  byName,
+  byRl100,
 } from 'business-hub';
 import { CacheDatabases, createNewCache } from 'server/cache';
 import { logger } from 'server/logger';
 import { stationSearch as SBBSearch } from 'sbb';
 import { StationSearchType } from 'types/station';
 import DBNavigatorSearch from 'server/HAFAS/LocMatch';
-import DS100 from 'server/Search/DS100';
 import OpenDataOfflineSearch from './OpenDataOffline';
 import OpenDataSearch from './OpenData';
 import StationsDataSearch from './StationsData';
-import type { Station } from 'types/station';
+import type { CommonStation, Station } from 'types/station';
+import type {
+  StopPlace,
+  StopPlaceSearchResult,
+} from 'business-hub/types/RisStations';
 
-const defaultSearch = canUseBusinessHub
-  ? BusinessHubSearch
-  : OpenDataOfflineSearch;
+function risMapping(
+  stopPlace: StopPlace | StopPlaceSearchResult,
+): CommonStation {
+  return {
+    title: stopPlace.names.DE.nameLong,
+    id: stopPlace.evaNumber,
+  };
+}
+
+const risStationSearch = async (searchTerm: string): Promise<Station[]> => {
+  const rawResult = await byName(searchTerm, true);
+  return rawResult.map(risMapping);
+};
 
 const stationSearchCache = createNewCache<string, Station[]>(
   6 * 60 * 60,
@@ -38,8 +52,10 @@ export function getSearchMethod(
       return SBBSearch;
     case StationSearchType.businessHub:
       return BusinessHubSearch;
+    case StationSearchType.ris:
+      return risStationSearch;
     default:
-      return defaultSearch;
+      return risStationSearch;
   }
 }
 
@@ -54,7 +70,7 @@ export default async (
 
   if (cached) return cached.slice(0, maxStations);
 
-  const ds100Search = DS100(searchTerm);
+  const rl100Result = byRl100(searchTerm);
 
   const searchMethod = getSearchMethod(type);
 
@@ -75,10 +91,10 @@ export default async (
       result = [exactMatch, ...result.filter((s) => s !== exactMatch)];
     }
 
-    const ds100Station = await ds100Search;
+    const rl100Station = await rl100Result;
 
-    if (ds100Station) {
-      result = [ds100Station, ...result];
+    if (rl100Station) {
+      result = [risMapping(rl100Station), ...result];
     }
 
     void stationSearchCache.set(cacheKey, result);
