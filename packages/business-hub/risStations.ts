@@ -12,7 +12,7 @@ import type {
   StopPlaceSearchResults,
 } from 'business-hub/types/RisStations';
 
-const ÖPNVTypes = [
+const nonÖPNVTypes = [
   TransportType.HIGH_SPEED_TRAIN,
   TransportType.INTERCITY_TRAIN,
   TransportType.INTER_REGIONAL_TRAIN,
@@ -21,7 +21,7 @@ const ÖPNVTypes = [
 ];
 
 function withoutÖPNV(stopPlace: StopPlaceSearchResult) {
-  return stopPlace.availableTransports.some((t) => ÖPNVTypes.includes(t));
+  return stopPlace.availableTransports.some((t) => nonÖPNVTypes.includes(t));
 }
 
 export async function byName(
@@ -31,12 +31,13 @@ export async function byName(
   if (!searchTerm) return [];
   const result = (
     await request.get<StopPlaceSearchResults>(
-      `/ris-stations/v1/stop-places/by-name/${searchTerm}`,
+      `/ris-stations/v1/stop-places/by-name/${encodeURIComponent(searchTerm)}`,
     )
   ).data;
   if (onlySPNV) {
     return result.stopPlaces?.filter(withoutÖPNV) || [];
   }
+
   return result.stopPlaces || [];
 }
 
