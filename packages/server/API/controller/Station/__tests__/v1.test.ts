@@ -14,11 +14,9 @@ describe('Station V1', () => {
     });
     it('no Type goes to default', () => {
       Nock('https://gateway.businesshub.deutschebahn.com')
-        .get('/public-transport-stations/v1/stop-places?name=Hamburg')
+        .get('/ris-stations/v1/stop-places/by-name/Hamburg')
         .reply(200, {
-          _embedded: {
-            stopPlaceList: [],
-          },
+          stopPlaces: [],
         });
 
       return request(server).get('/api/station/v1/search/Hamburg').expect(200);
@@ -26,11 +24,9 @@ describe('Station V1', () => {
 
     it('invalid Type goes to default', () => {
       Nock('https://gateway.businesshub.deutschebahn.com')
-        .get('/public-transport-stations/v1/stop-places?name=Hamburg')
+        .get('/ris-stations/v1/stop-places/by-name/Hamburg')
         .reply(200, {
-          _embedded: {
-            stopPlaceList: [],
-          },
+          stopPlaces: [],
         });
 
       return request(server)

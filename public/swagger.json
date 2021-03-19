@@ -216,62 +216,236 @@
         "type": "object",
         "additionalProperties": false
       },
-      "Facilities": {
+      "Sector": {
+        "description": "Platform [Gleis, Bahnsteig, Plattform] sector [Gleisabschnitt, Steigabschnitt] information.",
         "properties": {
-          "description": {
-            "type": "string"
+          "name": {
+            "type": "string",
+            "description": "Name of the sector [Sektor / Mast etc.]."
           },
-          "equipmentnumber": {
+          "start": {
             "type": "number",
-            "format": "double"
+            "format": "double",
+            "description": "Start of the sector given in meters in local coordinates."
           },
-          "geocoordX": {
+          "end": {
             "type": "number",
-            "format": "double"
+            "format": "double",
+            "description": "End of the sector given in meters in local coordinates."
           },
-          "geocoordY": {
+          "cubePosition": {
             "type": "number",
-            "format": "double"
+            "format": "double",
+            "description": "Position of the cube [Sektorwuerfel] given in meters in local coordinates."
           },
-          "state": {
-            "type": "string"
+          "cubeSignage": {
+            "type": "boolean",
+            "description": "Indicates whether cube [Sektorwuerfel] has signage [Beschilderung] nor not."
+          }
+        },
+        "required": ["name", "start", "end"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "AccessibilityStatus": {
+        "description": "Status of platform accessibility [Barrierefreiheit] information.\n- AVAILABLE (accessibility item is available)\n- NOT_AVAILABLE (accessibility item is not available)\n- PARTIAL (accessibility item is only partial available, for instance availble for 12a but not for 12b and therefore not for 12 in total)\n- NOT_APPLICABLE (accessibility item is not applicable because it depends on availability of other items, for instance stair mark depends on step free access)\n- UNKNOWN (no information on availability for accessibility item)",
+        "enum": [
+          "AVAILABLE",
+          "NOT_AVAILABLE",
+          "PARTIAL",
+          "NOT_APPLICABLE",
+          "UNKNOWN"
+        ],
+        "type": "string"
+      },
+      "Accessibility": {
+        "description": "Accessibility [Barrierefreiheit] information for a particular platform.",
+        "properties": {
+          "audibleSignalsAvailable": {
+            "$ref": "#/components/schemas/AccessibilityStatus",
+            "description": "Status of platform accessibility [Barrierefreiheit] information.\n- AVAILABLE (accessibility item is available)\n- NOT_AVAILABLE (accessibility item is not available)\n- PARTIAL (accessibility item is only partial available, for instance availble for 12a but not for 12b and therefore not for 12 in total)\n- NOT_APPLICABLE (accessibility item is not applicable because it depends on availability of other items, for instance stair mark depends on step free access)\n- UNKNOWN (no information on availability for accessibility item)"
           },
-          "stateExplanation": {
-            "type": "string"
+          "automaticDoor": {
+            "$ref": "#/components/schemas/AccessibilityStatus",
+            "description": "Status of platform accessibility [Barrierefreiheit] information.\n- AVAILABLE (accessibility item is available)\n- NOT_AVAILABLE (accessibility item is not available)\n- PARTIAL (accessibility item is only partial available, for instance availble for 12a but not for 12b and therefore not for 12 in total)\n- NOT_APPLICABLE (accessibility item is not applicable because it depends on availability of other items, for instance stair mark depends on step free access)\n- UNKNOWN (no information on availability for accessibility item)"
           },
-          "type": {
-            "type": "string"
+          "boardingAid": {
+            "$ref": "#/components/schemas/AccessibilityStatus",
+            "description": "Status of platform accessibility [Barrierefreiheit] information.\n- AVAILABLE (accessibility item is available)\n- NOT_AVAILABLE (accessibility item is not available)\n- PARTIAL (accessibility item is only partial available, for instance availble for 12a but not for 12b and therefore not for 12 in total)\n- NOT_APPLICABLE (accessibility item is not applicable because it depends on availability of other items, for instance stair mark depends on step free access)\n- UNKNOWN (no information on availability for accessibility item)"
+          },
+          "passengerInformationDisplay": {
+            "$ref": "#/components/schemas/AccessibilityStatus",
+            "description": "Status of platform accessibility [Barrierefreiheit] information.\n- AVAILABLE (accessibility item is available)\n- NOT_AVAILABLE (accessibility item is not available)\n- PARTIAL (accessibility item is only partial available, for instance availble for 12a but not for 12b and therefore not for 12 in total)\n- NOT_APPLICABLE (accessibility item is not applicable because it depends on availability of other items, for instance stair mark depends on step free access)\n- UNKNOWN (no information on availability for accessibility item)"
+          },
+          "standardPlatformHeight": {
+            "$ref": "#/components/schemas/AccessibilityStatus",
+            "description": "Status of platform accessibility [Barrierefreiheit] information.\n- AVAILABLE (accessibility item is available)\n- NOT_AVAILABLE (accessibility item is not available)\n- PARTIAL (accessibility item is only partial available, for instance availble for 12a but not for 12b and therefore not for 12 in total)\n- NOT_APPLICABLE (accessibility item is not applicable because it depends on availability of other items, for instance stair mark depends on step free access)\n- UNKNOWN (no information on availability for accessibility item)"
+          },
+          "platformSign": {
+            "$ref": "#/components/schemas/AccessibilityStatus",
+            "description": "Status of platform accessibility [Barrierefreiheit] information.\n- AVAILABLE (accessibility item is available)\n- NOT_AVAILABLE (accessibility item is not available)\n- PARTIAL (accessibility item is only partial available, for instance availble for 12a but not for 12b and therefore not for 12 in total)\n- NOT_APPLICABLE (accessibility item is not applicable because it depends on availability of other items, for instance stair mark depends on step free access)\n- UNKNOWN (no information on availability for accessibility item)"
+          },
+          "stairsMarking": {
+            "$ref": "#/components/schemas/AccessibilityStatus",
+            "description": "Status of platform accessibility [Barrierefreiheit] information.\n- AVAILABLE (accessibility item is available)\n- NOT_AVAILABLE (accessibility item is not available)\n- PARTIAL (accessibility item is only partial available, for instance availble for 12a but not for 12b and therefore not for 12 in total)\n- NOT_APPLICABLE (accessibility item is not applicable because it depends on availability of other items, for instance stair mark depends on step free access)\n- UNKNOWN (no information on availability for accessibility item)"
+          },
+          "stepFreeAccess": {
+            "$ref": "#/components/schemas/AccessibilityStatus",
+            "description": "Status of platform accessibility [Barrierefreiheit] information.\n- AVAILABLE (accessibility item is available)\n- NOT_AVAILABLE (accessibility item is not available)\n- PARTIAL (accessibility item is only partial available, for instance availble for 12a but not for 12b and therefore not for 12 in total)\n- NOT_APPLICABLE (accessibility item is not applicable because it depends on availability of other items, for instance stair mark depends on step free access)\n- UNKNOWN (no information on availability for accessibility item)"
+          },
+          "tactileGuidingStrips": {
+            "$ref": "#/components/schemas/AccessibilityStatus",
+            "description": "Status of platform accessibility [Barrierefreiheit] information.\n- AVAILABLE (accessibility item is available)\n- NOT_AVAILABLE (accessibility item is not available)\n- PARTIAL (accessibility item is only partial available, for instance availble for 12a but not for 12b and therefore not for 12 in total)\n- NOT_APPLICABLE (accessibility item is not applicable because it depends on availability of other items, for instance stair mark depends on step free access)\n- UNKNOWN (no information on availability for accessibility item)"
+          },
+          "tactileHandrailLabel": {
+            "$ref": "#/components/schemas/AccessibilityStatus",
+            "description": "Status of platform accessibility [Barrierefreiheit] information.\n- AVAILABLE (accessibility item is available)\n- NOT_AVAILABLE (accessibility item is not available)\n- PARTIAL (accessibility item is only partial available, for instance availble for 12a but not for 12b and therefore not for 12 in total)\n- NOT_APPLICABLE (accessibility item is not applicable because it depends on availability of other items, for instance stair mark depends on step free access)\n- UNKNOWN (no information on availability for accessibility item)"
+          },
+          "tactilePlatformAccess": {
+            "$ref": "#/components/schemas/AccessibilityStatus",
+            "description": "Status of platform accessibility [Barrierefreiheit] information.\n- AVAILABLE (accessibility item is available)\n- NOT_AVAILABLE (accessibility item is not available)\n- PARTIAL (accessibility item is only partial available, for instance availble for 12a but not for 12b and therefore not for 12 in total)\n- NOT_APPLICABLE (accessibility item is not applicable because it depends on availability of other items, for instance stair mark depends on step free access)\n- UNKNOWN (no information on availability for accessibility item)"
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ReferencePointType": {
+        "description": "Type of a reference point.\n- STOP_SIGNAL (Haltesignal)\n- STOP_BOARD (Haltetafel)",
+        "enum": ["STOP_SIGNAL", "STOP_BOARD"],
+        "type": "string"
+      },
+      "ReferencePoint": {
+        "description": "Reference point that indicates where a vehicle [Fahrzeug] stops at a platform [Gleis, Bahnsteig, Plattform].",
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "description": "Unique ID of reference point."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the reference point."
+          },
+          "referencePointType": {
+            "$ref": "#/components/schemas/ReferencePointType",
+            "description": "Type of a reference point.\n- STOP_SIGNAL (Haltesignal)\n- STOP_BOARD (Haltetafel)"
+          },
+          "position": {
+            "type": "number",
+            "format": "double",
+            "description": "Position of the reference point in meter in local coordinates."
+          },
+          "maxLength": {
+            "type": "number",
+            "format": "double",
+            "description": "Length up to the reference point is to be used by a stopping formation."
+          },
+          "readableFromOrigin": {
+            "type": "boolean",
+            "description": "Determines the direction the reference point is to be used. If true, the formation moves from origin to positive values in local coordinates."
           }
         },
         "required": [
-          "description",
-          "equipmentnumber",
-          "geocoordX",
-          "geocoordY",
-          "state",
-          "stateExplanation",
-          "type"
+          "uuid",
+          "name",
+          "referencePointType",
+          "position",
+          "readableFromOrigin"
         ],
         "type": "object",
         "additionalProperties": false
       },
-      "FastaResponse": {
+      "Operational": {
+        "description": "Detailed operational [Betrieb] information.",
         "properties": {
-          "facilieites": {
-            "items": {
-              "$ref": "#/components/schemas/Facilities"
-            },
-            "type": "array"
-          },
-          "name": {
-            "type": "string"
-          },
-          "stationnumber": {
+          "length": {
             "type": "number",
-            "format": "double"
+            "format": "double",
+            "description": "Total length of platform [Baulicher Bereich]."
+          },
+          "orientation": {
+            "type": "number",
+            "format": "double",
+            "description": "Orientation of the platform in degrees (north=0, east=90, ...), seen from the origin of the local coordinates."
+          },
+          "referencePoints": {
+            "items": {
+              "$ref": "#/components/schemas/ReferencePoint"
+            },
+            "type": "array",
+            "description": "Positions of the reference points that determine the position of a stopping train at the platform."
+          },
+          "optics": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "description": "Names of the operational units [Optiken] that belong to the platform."
+          },
+          "networkPlatforms": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "description": "Names of the network platforms [Netzgleis] that belong to the platform."
           }
         },
-        "required": ["facilieites", "name", "stationnumber"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Platform": {
+        "description": "Platform [Gleis, Bahnsteig, Plattform] information. All ranges and positions of objects are given in meter in local coordinates, e.g. as a distance to a fixed point somewhere on the platform and differentiating between the two possible directions by a plus- and a minus-sign.",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the platform (12, 1a, Nord, Süd etc.)."
+          },
+          "start": {
+            "type": "number",
+            "format": "double",
+            "description": "Start of the usable part of the platform given in meter in local coordinates. This value may differ from zero and may be positive as well as negative."
+          },
+          "end": {
+            "type": "number",
+            "format": "double",
+            "description": "End of the usable part of the platform given in meter in local coordinates."
+          },
+          "length": {
+            "type": "number",
+            "format": "double",
+            "description": "Total length of platform [Baulicher Bereich]."
+          },
+          "linkedPlatforms": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "description": "List of platforms [Gleise] that share the same physical platform [Bahnsteig]."
+          },
+          "parentPlatform": {
+            "type": "string",
+            "description": "Name of parent platform in case this is a subplatform [Teilgleis]."
+          },
+          "headPlatform": {
+            "type": "boolean",
+            "description": "Indicates whether platform is a head platform [Kopfgleis]."
+          },
+          "sectors": {
+            "items": {
+              "$ref": "#/components/schemas/Sector"
+            },
+            "type": "array",
+            "description": "List of sectors [Sektoren] that belong to the platform."
+          },
+          "accessibility": {
+            "$ref": "#/components/schemas/Accessibility",
+            "description": "Accessibility [Barrierefreiheit] information for a particular platform."
+          },
+          "operational": {
+            "$ref": "#/components/schemas/Operational",
+            "description": "Detailed operational [Betrieb] information."
+          }
+        },
+        "required": ["name"],
         "type": "object",
         "additionalProperties": false
       },
@@ -5267,9 +5441,23 @@
           "openDataOffline",
           "stationsData",
           "businessHub",
-          "sbb"
+          "sbb",
+          "ris"
         ],
         "type": "string"
+      },
+      "CommonStation": {
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": ["title", "id"],
+        "type": "object",
+        "additionalProperties": false
       },
       "IrisStation": {
         "properties": {
@@ -6390,35 +6578,6 @@
         ]
       }
     },
-    "/businessHub/v1/fasta/{stadaId}": {
-      "get": {
-        "operationId": "Fahrstühle",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FastaResponse"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["BusinessHub"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "stadaId",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      }
-    },
     "/hafas/v1/geoStation": {
       "get": {
         "operationId": "Geo Station v1",
@@ -6489,7 +6648,7 @@
               "application/json": {
                 "schema": {
                   "items": {
-                    "$ref": "#/components/schemas/Station"
+                    "$ref": "#/components/schemas/CommonStation"
                   },
                   "type": "array"
                 }
@@ -6530,7 +6689,39 @@
         ]
       }
     },
-    "/businessHub/v1/stationQuays/{evaId}": {
+    "/businessHub/v1/platforms/{evaNumber}": {
+      "get": {
+        "operationId": "Gleise",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Platform"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["BusinessHub"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "evaNumber",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/businessHub/v1/stationQuays/{evaNumber}": {
       "get": {
         "operationId": "Gleise",
         "responses": {
@@ -6549,11 +6740,12 @@
           }
         },
         "tags": ["BusinessHub"],
+        "deprecated": true,
         "security": [],
         "parameters": [
           {
             "in": "path",
-            "name": "evaId",
+            "name": "evaNumber",
             "required": true,
             "schema": {
               "type": "string"

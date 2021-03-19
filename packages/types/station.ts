@@ -6,6 +6,7 @@ export enum StationSearchType {
   stationsData = 'stationsData',
   businessHub = 'businessHub',
   sbb = 'sbb',
+  ris = 'ris',
 }
 
 export interface SearchAllResult {
@@ -15,6 +16,7 @@ export interface SearchAllResult {
   openDataOffline: Station[];
   stationsData: Station[];
   businessHub: Station[];
+  ris: Station[];
 }
 
 export interface Coordinates {

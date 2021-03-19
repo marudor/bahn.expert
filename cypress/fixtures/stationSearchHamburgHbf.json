@@ -1,20 +1,6 @@
 [
   {
     "title": "Hamburg Hbf",
-    "id": "8002549",
-    "raw": {
-      "type": "station_search",
-      "id": 2514,
-      "title": "Hamburg Hbf",
-      "eva_ids": [
-        "8002549",
-        "8098549"
-      ],
-      "distanceInKm": 0,
-      "location": [
-        10.006909,
-        53.552736
-      ]
-    }
+    "id": "8002549"
   }
 ]
