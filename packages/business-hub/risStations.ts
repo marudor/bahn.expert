@@ -87,6 +87,9 @@ export async function platforms(evaNumber: string): Promise<Platform[]> {
       await request.get<Platforms>(`/ris-stations/v1/stop-places/platforms`, {
         params: {
           evaNumber,
+          includeSubPlatforms: true,
+          includeOperational: true,
+          includeAccessibility: true,
         },
       })
     ).data;
