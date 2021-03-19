@@ -58,11 +58,11 @@ export function getSearchMethod(
   }
 }
 
-export default async (
+async function stationSearch(
   rawSearchTerm: string,
   type?: StationSearchType,
   maxStations = 6,
-): Promise<Station[]> => {
+): Promise<Station[]> {
   if (!type || type === StationSearchType.default) {
     type = StationSearchType.ris;
   }
@@ -79,12 +79,12 @@ export default async (
   try {
     let result: Station[] = await searchMethod(searchTerm);
 
-    if (type !== StationSearchType.stationsData && result.length === 0) {
-      // this may be a station named from iris - lets try that first
-      result = await getSearchMethod(StationSearchType.stationsData)(
-        searchTerm,
-      );
-    }
+    // if (type !== StationSearchType.stationsData && result.length === 0) {
+    //   // this may be a station named from iris - lets try that first
+    //   result = await getSearchMethod(StationSearchType.stationsData)(
+    //     searchTerm,
+    //   );
+    // }
 
     const exactMatch = result.find(
       (s) => s.title.toLowerCase() === rawSearchTerm.toLowerCase(),
@@ -119,4 +119,5 @@ export default async (
 
     throw e;
   }
-};
+}
+export default stationSearch;
