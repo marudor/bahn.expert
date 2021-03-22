@@ -5433,6 +5433,40 @@
         "type": "object",
         "additionalProperties": false
       },
+      "Coordinate2D": {
+        "description": "2D Coordinate within geo reference system.",
+        "properties": {
+          "longitude": {
+            "type": "number",
+            "format": "double",
+            "description": "Longitude position in reference system."
+          },
+          "latitude": {
+            "type": "number",
+            "format": "double",
+            "description": "Latitude position in reference system."
+          }
+        },
+        "required": ["longitude", "latitude"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CommonStationWithLocation": {
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "location": {
+            "$ref": "#/components/schemas/Coordinate2D"
+          }
+        },
+        "required": ["title", "id"],
+        "type": "object",
+        "additionalProperties": false
+      },
       "StationSearchType": {
         "enum": [
           "default",
@@ -5445,19 +5479,6 @@
           "ris"
         ],
         "type": "string"
-      },
-      "CommonStation": {
-        "properties": {
-          "title": {
-            "type": "string"
-          },
-          "id": {
-            "type": "string"
-          }
-        },
-        "required": ["title", "id"],
-        "type": "object",
-        "additionalProperties": false
       },
       "IrisStation": {
         "properties": {
@@ -6648,7 +6669,7 @@
               "application/json": {
                 "schema": {
                   "items": {
-                    "$ref": "#/components/schemas/CommonStation"
+                    "$ref": "#/components/schemas/CommonStationWithLocation"
                   },
                   "type": "array"
                 }
@@ -6678,6 +6699,7 @@
             }
           },
           {
+            "description": "meter, defaults to 500",
             "in": "query",
             "name": "radius",
             "required": false,
@@ -7363,7 +7385,7 @@
               "application/json": {
                 "schema": {
                   "items": {
-                    "$ref": "#/components/schemas/Station"
+                    "$ref": "#/components/schemas/CommonStationWithLocation"
                   },
                   "type": "array"
                 }
