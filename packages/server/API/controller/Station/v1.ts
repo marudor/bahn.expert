@@ -48,7 +48,9 @@ export class StationController extends Controller {
   geoSearch(
     @Query() lat: number,
     @Query() lng: number,
-    // Meter
+    /**
+     * meter, defaults to 500
+     */
     @Query() radius?: number,
   ): Promise<CommonStationWithLocation[]> {
     return byPosition(lat, lng, radius || 500).then((list) =>
