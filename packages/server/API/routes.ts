@@ -2210,18 +2210,28 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "StationSearchType": {
-        "dataType": "refEnum",
-        "enums": ["default","hafas","openData","openDataOffline","stationsData","businessHub","sbb","ris"],
+    "Coordinate2D": {
+        "dataType": "refObject",
+        "properties": {
+            "longitude": {"dataType":"double","required":true},
+            "latitude": {"dataType":"double","required":true},
+        },
+        "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "CommonStation": {
+    "CommonStationWithLocation": {
         "dataType": "refObject",
         "properties": {
             "title": {"dataType":"string","required":true},
             "id": {"dataType":"string","required":true},
+            "location": {"ref":"Coordinate2D"},
         },
         "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "StationSearchType": {
+        "dataType": "refEnum",
+        "enums": ["default","hafas","openData","openDataOffline","stationsData","businessHub","sbb","ris"],
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "IrisStation": {
