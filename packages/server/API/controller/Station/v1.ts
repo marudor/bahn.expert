@@ -4,7 +4,7 @@ import { getStation } from 'server/iris/station';
 import { StationSearchType } from 'types/station';
 import stationSearch from 'server/Search';
 import type {
-  CommonStation,
+  CommonStationWithLocation,
   IrisStationWithRelated,
   Station,
 } from 'types/station';
@@ -35,7 +35,7 @@ export class StationController extends Controller {
     searchTerm: string,
     @Query() type?: StationSearchType,
     @Query() max?: number,
-  ): Promise<Station[]> {
+  ): Promise<CommonStationWithLocation[]> {
     const result = await stationSearch(searchTerm, type, max);
 
     ctx.res.setHeader('searchType', type!);
@@ -50,11 +50,12 @@ export class StationController extends Controller {
     @Query() lng: number,
     // Meter
     @Query() radius?: number,
-  ): Promise<CommonStation[]> {
+  ): Promise<CommonStationWithLocation[]> {
     return byPosition(lat, lng, radius || 500).then((list) =>
       list.map((s) => ({
         title: s.names.DE.nameLong,
         id: s.evaNumber,
+        location: s.position,
       })),
     );
   }
