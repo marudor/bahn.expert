@@ -1,3 +1,5 @@
+import type { Coordinate2D } from 'business-hub/types/RisStations';
+
 export enum StationSearchType {
   default = 'default',
   hafas = 'hafas',
@@ -27,6 +29,10 @@ export interface Coordinates {
 export interface CommonStation {
   title: string;
   id: string;
+}
+
+export interface CommonStationWithLocation extends CommonStation {
+  location?: Coordinate2D;
 }
 
 export interface Station extends CommonStation {

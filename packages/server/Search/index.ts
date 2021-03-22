@@ -11,7 +11,11 @@ import DBNavigatorSearch from 'server/HAFAS/LocMatch';
 import OpenDataOfflineSearch from './OpenDataOffline';
 import OpenDataSearch from './OpenData';
 import StationsDataSearch from './StationsData';
-import type { CommonStation, Station } from 'types/station';
+import type {
+  CommonStation,
+  CommonStationWithLocation,
+  Station,
+} from 'types/station';
 import type {
   StopPlace,
   StopPlaceSearchResult,
@@ -19,26 +23,29 @@ import type {
 
 function risMapping(
   stopPlace: StopPlace | StopPlaceSearchResult,
-): CommonStation {
+): CommonStationWithLocation {
   return {
     title: stopPlace.names.DE.nameLong,
     id: stopPlace.evaNumber,
+    location: stopPlace.position!,
   };
 }
 
-const risStationSearch = async (searchTerm: string): Promise<Station[]> => {
+const risStationSearch = async (
+  searchTerm: string,
+): Promise<CommonStation[]> => {
   const rawResult = await byName(searchTerm, true);
   return rawResult.map(risMapping);
 };
 
-const stationSearchCache = createNewCache<string, Station[]>(
+const stationSearchCache = createNewCache<string, CommonStation[]>(
   6 * 60 * 60,
   CacheDatabases.StationSearch,
 );
 
 export function getSearchMethod(
   type?: StationSearchType,
-): (searchTerm: string) => Promise<Station[]> {
+): (searchTerm: string) => Promise<CommonStation[]> {
   switch (type) {
     case StationSearchType.hafas:
       return DBNavigatorSearch;
@@ -58,11 +65,11 @@ export function getSearchMethod(
   }
 }
 
-async function stationSearch(
+export default async (
   rawSearchTerm: string,
   type?: StationSearchType,
   maxStations = 6,
-): Promise<Station[]> {
+): Promise<Station[]> => {
   if (!type || type === StationSearchType.default) {
     type = StationSearchType.ris;
   }
@@ -79,12 +86,12 @@ async function stationSearch(
   try {
     let result: Station[] = await searchMethod(searchTerm);
 
-    // if (type !== StationSearchType.stationsData && result.length === 0) {
-    //   // this may be a station named from iris - lets try that first
-    //   result = await getSearchMethod(StationSearchType.stationsData)(
-    //     searchTerm,
-    //   );
-    // }
+    if (type !== StationSearchType.stationsData && result.length === 0) {
+      // this may be a station named from iris - lets try that first
+      result = await getSearchMethod(StationSearchType.stationsData)(
+        searchTerm,
+      );
+    }
 
     const exactMatch = result.find(
       (s) => s.title.toLowerCase() === rawSearchTerm.toLowerCase(),
@@ -119,5 +126,4 @@ async function stationSearch(
 
     throw e;
   }
-}
-export default stationSearch;
+};
