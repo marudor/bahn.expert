@@ -10,9 +10,9 @@ import type { OutConL, SecL } from './HAFAS/TripSearch';
 import type { PlannedSequence } from 'types/planReihung';
 import type { Station } from './station';
 
-export interface Route$Stop<DateType = Date> {
-  arrival?: CommonStopInfo<DateType>;
-  departure?: CommonStopInfo<DateType>;
+export interface Route$Stop {
+  arrival?: CommonStopInfo;
+  departure?: CommonStopInfo;
   station: Station;
   auslastung?: Route$Auslastung;
   messages?: RemL[];
@@ -40,7 +40,7 @@ export interface Route$Auslastung {
   first?: AuslastungsValue;
   second?: AuslastungsValue;
 }
-export interface Route$Journey<DateType = Date> {
+export interface Route$Journey {
   cancelled?: boolean;
   changeDuration?: number;
   duration?: number;
@@ -50,31 +50,30 @@ export interface Route$Journey<DateType = Date> {
   raw?: SecL;
   segmentDestination: Station;
   segmentStart: Station;
-  stops: Route$Stop<DateType>[];
+  stops: Route$Stop[];
   train: ParsedProduct;
   auslastung?: Route$Auslastung;
   messages?: RemL[];
   tarifSet?: Route$TarifFareSet[];
   plannedSequence?: PlannedSequence;
 }
-export interface Route$JourneySegmentTrain<DateType = Date>
-  extends Route$Journey<DateType> {
+export interface Route$JourneySegmentTrain extends Route$Journey {
   type: 'JNY';
-  arrival: CommonStopInfo<DateType>;
-  departure: CommonStopInfo<DateType>;
-  wings?: Route$Journey<DateType>[];
+  arrival: CommonStopInfo;
+  departure: CommonStopInfo;
+  wings?: Route$Journey[];
 }
 
-export type WalkStopInfo<DateType = Date> = {
-  time: DateType;
+export type WalkStopInfo = {
+  time: Date;
   delay?: number;
 };
 
-export interface Route$JourneySegmentWalk<DateType = Date> {
+export interface Route$JourneySegmentWalk {
   type: 'WALK';
   train: ParsedProduct;
-  arrival: WalkStopInfo<DateType>;
-  departure: WalkStopInfo<DateType>;
+  arrival: WalkStopInfo;
+  departure: WalkStopInfo;
   /**
    * @isInt
    */
@@ -100,13 +99,13 @@ export interface Route$TarifFareSet {
   fares: Route$TarifFare[];
 }
 
-export interface SingleRoute<DateType = Date> {
-  arrival: CommonStopInfo<DateType>;
-  departure: CommonStopInfo<DateType>;
+export interface SingleRoute {
+  arrival: CommonStopInfo;
+  departure: CommonStopInfo;
   isRideable: boolean;
   checksum: string;
   cid: string;
-  date: DateType;
+  date: Date;
   /**
    * @isInt in ms
    */
@@ -121,8 +120,8 @@ export interface SingleRoute<DateType = Date> {
   raw?: OutConL;
 }
 
-export interface RoutingResult<DateType = Date> {
-  routes: SingleRoute<DateType>[];
+export interface RoutingResult {
+  routes: SingleRoute[];
   context: {
     earlier: string;
     later: string;

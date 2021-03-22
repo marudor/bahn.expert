@@ -24,7 +24,10 @@
             "type": "string"
           }
         },
-        "required": ["start", "end"],
+        "required": [
+          "start",
+          "end"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -37,7 +40,10 @@
             "type": "string"
           }
         },
-        "required": ["language", "text"],
+        "required": [
+          "language",
+          "text"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -54,7 +60,10 @@
             "type": "array"
           }
         },
-        "required": ["value", "description"],
+        "required": [
+          "value",
+          "description"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -127,12 +136,19 @@
             "type": "array"
           }
         },
-        "required": ["items"],
+        "required": [
+          "items"
+        ],
         "type": "object",
         "additionalProperties": false
       },
       "LimitationEnum": {
-        "enum": ["true", "false", "unknown", "not applicable"],
+        "enum": [
+          "true",
+          "false",
+          "unknown",
+          "not applicable"
+        ],
         "type": "string"
       },
       "QuayAccessibilityLimitation": {
@@ -193,7 +209,9 @@
             "$ref": "#/components/schemas/QuayAccessibilityLimitation"
           }
         },
-        "required": ["accessibilityLimitation"],
+        "required": [
+          "accessibilityLimitation"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -212,7 +230,12 @@
             "type": "string"
           }
         },
-        "required": ["id", "name", "accessibilityAssessment", "quayType"],
+        "required": [
+          "id",
+          "name",
+          "accessibilityAssessment",
+          "quayType"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -243,7 +266,11 @@
             "description": "Indicates whether cube [Sektorwuerfel] has signage [Beschilderung] nor not."
           }
         },
-        "required": ["name", "start", "end"],
+        "required": [
+          "name",
+          "start",
+          "end"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -311,7 +338,10 @@
       },
       "ReferencePointType": {
         "description": "Type of a reference point.\n- STOP_SIGNAL (Haltesignal)\n- STOP_BOARD (Haltetafel)",
-        "enum": ["STOP_SIGNAL", "STOP_BOARD"],
+        "enum": [
+          "STOP_SIGNAL",
+          "STOP_BOARD"
+        ],
         "type": "string"
       },
       "ReferencePoint": {
@@ -445,7 +475,9 @@
             "description": "Detailed operational [Betrieb] information."
           }
         },
-        "required": ["name"],
+        "required": [
+          "name"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -459,7 +491,10 @@
             "format": "double"
           }
         },
-        "required": ["name", "icoX"],
+        "required": [
+          "name",
+          "icoX"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -484,7 +519,9 @@
             "type": "string"
           }
         },
-        "required": ["name"],
+        "required": [
+          "name"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -509,7 +546,13 @@
             "type": "string"
           }
         },
-        "required": ["name", "fDate", "fTime", "tDate", "tTime"],
+        "required": [
+          "name",
+          "fDate",
+          "fTime",
+          "tDate",
+          "tTime"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -648,7 +691,9 @@
             "type": "array"
           }
         },
-        "required": ["messages"],
+        "required": [
+          "messages"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -697,7 +742,10 @@
             "format": "double"
           }
         },
-        "required": ["x", "y"],
+        "required": [
+          "x",
+          "y"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -743,7 +791,12 @@
       },
       "HimFilterMode": {
         "type": "string",
-        "enum": ["BIT", "EXC", "INC", "UNDEF"]
+        "enum": [
+          "BIT",
+          "EXC",
+          "INC",
+          "UNDEF"
+        ]
       },
       "HimFilterType": {
         "type": "string",
@@ -776,7 +829,11 @@
             "type": "string"
           }
         },
-        "required": ["mode", "type", "value"],
+        "required": [
+          "mode",
+          "type",
+          "value"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -859,7 +916,12 @@
             "format": "double"
           }
         },
-        "required": ["type", "code", "icoX", "txtN"],
+        "required": [
+          "type",
+          "code",
+          "icoX",
+          "txtN"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -905,7 +967,10 @@
             "type": "boolean"
           }
         },
-        "required": ["scheduledTime", "time"],
+        "required": [
+          "scheduledTime",
+          "time"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -921,13 +986,21 @@
             "type": "string"
           }
         },
-        "required": ["title", "id"],
+        "required": [
+          "title",
+          "id"
+        ],
         "type": "object",
         "additionalProperties": false
       },
       "MessagePrio": {
         "type": "string",
-        "enum": ["1", "2", "3", "4"],
+        "enum": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
         "description": "1: High; 2: Medium; 3: Low; 4: Done"
       },
       "IrisMessage_Date_": {
@@ -946,7 +1019,9 @@
             "$ref": "#/components/schemas/MessagePrio"
           }
         },
-        "required": ["text"],
+        "required": [
+          "text"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -969,7 +1044,10 @@
             "type": "string"
           }
         },
-        "required": ["text", "head"],
+        "required": [
+          "text",
+          "head"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1004,7 +1082,11 @@
             "type": "array"
           }
         },
-        "required": ["qos", "delay", "him"],
+        "required": [
+          "qos",
+          "delay",
+          "him"
+        ],
         "type": "object",
         "additionalProperties": {
           "items": {
@@ -1025,7 +1107,11 @@
             "type": "string"
           }
         },
-        "required": ["trainNumber", "trainType", "train"],
+        "required": [
+          "trainNumber",
+          "trainType",
+          "train"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1044,7 +1130,9 @@
             "type": "string"
           }
         },
-        "required": ["name"],
+        "required": [
+          "name"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1072,7 +1160,11 @@
             "type": "boolean"
           }
         },
-        "required": ["name", "type", "number"],
+        "required": [
+          "name",
+          "type",
+          "number"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1197,13 +1289,22 @@
             "$ref": "#/components/schemas/Wings_Date_"
           }
         },
-        "required": ["departures", "lookbehind", "wings"],
+        "required": [
+          "departures",
+          "lookbehind",
+          "wings"
+        ],
         "type": "object",
         "additionalProperties": false
       },
       "JourneyFilterMode": {
         "type": "string",
-        "enum": ["BIT", "EXC", "INC", "UNDEF"]
+        "enum": [
+          "BIT",
+          "EXC",
+          "INC",
+          "UNDEF"
+        ]
       },
       "JourneyFilterType": {
         "type": "string",
@@ -1246,7 +1347,11 @@
             "type": "string"
           }
         },
-        "required": ["mode", "type", "value"],
+        "required": [
+          "mode",
+          "type",
+          "value"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1259,7 +1364,10 @@
             "$ref": "#/components/schemas/Crd"
           }
         },
-        "required": ["llCrd", "urCrd"],
+        "required": [
+          "llCrd",
+          "urCrd"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1277,7 +1385,10 @@
             "format": "double"
           }
         },
-        "required": ["cCrd", "maxDist"],
+        "required": [
+          "cCrd",
+          "maxDist"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1345,7 +1456,11 @@
       },
       "HafasDirection": {
         "type": "string",
-        "enum": ["B", "F", "FB"]
+        "enum": [
+          "B",
+          "F",
+          "FB"
+        ]
       },
       "JourneyCourseRequestOptions": {
         "properties": {
@@ -1405,7 +1520,10 @@
             "description": "HHmm"
           }
         },
-        "required": ["date", "jid"],
+        "required": [
+          "date",
+          "jid"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1416,7 +1534,9 @@
             "format": "double"
           }
         },
-        "required": ["subscriptionId"],
+        "required": [
+          "subscriptionId"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1426,7 +1546,9 @@
             "type": "string"
           }
         },
-        "required": ["channelId"],
+        "required": [
+          "channelId"
+        ],
         "type": "object",
         "description": "From T, pick a set of properties whose keys are in the union K"
       },
@@ -1443,7 +1565,11 @@
             "description": "1 or 0 for each day, starts at monday\nexample: 1001001\nMonday, Thursday, Sunday selected"
           }
         },
-        "required": ["endDate", "beginDate", "selectedWeekdays"],
+        "required": [
+          "endDate",
+          "beginDate",
+          "selectedWeekdays"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1506,7 +1632,11 @@
             "$ref": "#/components/schemas/SubscrInterval"
           }
         },
-        "required": ["userId", "channels", "intvlSubscr"],
+        "required": [
+          "userId",
+          "channels",
+          "intvlSubscr"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1518,7 +1648,9 @@
                 "type": "string"
               }
             },
-            "required": ["resultCode"],
+            "required": [
+              "resultCode"
+            ],
             "type": "object"
           },
           "userId": {
@@ -1528,7 +1660,11 @@
             "type": "string"
           }
         },
-        "required": ["result", "userId", "subscrId"],
+        "required": [
+          "result",
+          "userId",
+          "subscrId"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1542,7 +1678,10 @@
             "format": "double"
           }
         },
-        "required": ["userId", "subscrId"],
+        "required": [
+          "userId",
+          "subscrId"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1552,7 +1691,9 @@
             "type": "string"
           }
         },
-        "required": ["userId"],
+        "required": [
+          "userId"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1560,16 +1701,23 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["NO_SOUND"],
+            "enum": [
+              "NO_SOUND"
+            ],
             "nullable": false
           },
           "value": {
             "type": "string",
-            "enum": ["1"],
+            "enum": [
+              "1"
+            ],
             "nullable": false
           }
         },
-        "required": ["type", "value"],
+        "required": [
+          "type",
+          "value"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1577,14 +1725,19 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["CUSTOMER_TYPE"],
+            "enum": [
+              "CUSTOMER_TYPE"
+            ],
             "nullable": false
           },
           "value": {
             "type": "string"
           }
         },
-        "required": ["type", "value"],
+        "required": [
+          "type",
+          "value"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1621,7 +1774,13 @@
             "description": "PUSH_IPHONE"
           }
         },
-        "required": ["channelId", "address", "type", "options", "name"],
+        "required": [
+          "channelId",
+          "address",
+          "type",
+          "options",
+          "name"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1641,7 +1800,10 @@
             "description": "de"
           }
         },
-        "required": ["userId", "channels"],
+        "required": [
+          "userId",
+          "channels"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1653,7 +1815,9 @@
                 "type": "string"
               }
             },
-            "required": ["resultCode"],
+            "required": [
+              "resultCode"
+            ],
             "type": "object"
           },
           "userId": {
@@ -1684,7 +1848,10 @@
                 },
                 "status": {
                   "type": "string",
-                  "enum": ["ACTIVE", "EXPIRED"]
+                  "enum": [
+                    "ACTIVE",
+                    "EXPIRED"
+                  ]
                 }
               },
               "required": [
@@ -1700,7 +1867,11 @@
             "type": "array"
           }
         },
-        "required": ["result", "userId", "intvlSubscrL"],
+        "required": [
+          "result",
+          "userId",
+          "intvlSubscrL"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1712,14 +1883,19 @@
                 "type": "string"
               }
             },
-            "required": ["resultCode"],
+            "required": [
+              "resultCode"
+            ],
             "type": "object"
           },
           "userId": {
             "type": "string"
           }
         },
-        "required": ["result", "userId"],
+        "required": [
+          "result",
+          "userId"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1729,7 +1905,9 @@
             "type": "string"
           }
         },
-        "required": ["userId"],
+        "required": [
+          "userId"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1758,7 +1936,10 @@
             "type": "array"
           }
         },
-        "required": ["rtEvents", "himEvents"],
+        "required": [
+          "rtEvents",
+          "himEvents"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1770,7 +1951,9 @@
                 "type": "string"
               }
             },
-            "required": ["resultCode"],
+            "required": [
+              "resultCode"
+            ],
             "type": "object"
           },
           "userId": {
@@ -1782,7 +1965,10 @@
           },
           "status": {
             "type": "string",
-            "enum": ["ACTIVE", "EXPIRED"]
+            "enum": [
+              "ACTIVE",
+              "EXPIRED"
+            ]
           },
           "channels": {
             "items": {
@@ -1806,43 +1992,6 @@
           "intvlSubscr",
           "eventHisotry"
         ],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "CommonStopInfo_number_": {
-        "properties": {
-          "scheduledPlatform": {
-            "type": "string"
-          },
-          "platform": {
-            "type": "string"
-          },
-          "scheduledTime": {
-            "type": "number",
-            "format": "double"
-          },
-          "time": {
-            "type": "number",
-            "format": "double"
-          },
-          "delay": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "reihung": {
-            "type": "boolean"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          },
-          "cancelled": {
-            "type": "boolean"
-          }
-        },
-        "required": ["scheduledTime", "time"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1879,7 +2028,517 @@
             "type": "boolean"
           }
         },
-        "required": ["scheduledTime", "time"],
+        "required": [
+          "scheduledTime",
+          "time"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "AuslastungsValue": {
+        "description": "1: Gering\n2: Hoch\n3: Sehr Hoch\n4: Ausgebucht",
+        "enum": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "type": "number"
+      },
+      "Route$Auslastung": {
+        "properties": {
+          "first": {
+            "$ref": "#/components/schemas/AuslastungsValue"
+          },
+          "second": {
+            "$ref": "#/components/schemas/AuslastungsValue"
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Message": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/IrisMessage_Date_"
+          },
+          {
+            "$ref": "#/components/schemas/HimIrisMessage_Date_"
+          }
+        ]
+      },
+      "Route$Stop_Date_": {
+        "properties": {
+          "arrival": {
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
+          },
+          "station": {
+            "$ref": "#/components/schemas/Station"
+          },
+          "auslastung": {
+            "$ref": "#/components/schemas/Route$Auslastung"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "additional": {
+            "type": "boolean"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "irisMessages": {
+            "items": {
+              "$ref": "#/components/schemas/Message"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "station"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ParsedJourneyMatchResponse": {
+        "properties": {
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop_Date_"
+            },
+            "type": "array"
+          },
+          "jid": {
+            "type": "string"
+          },
+          "firstStop": {
+            "$ref": "#/components/schemas/Route$Stop_Date_"
+          },
+          "lastStop": {
+            "$ref": "#/components/schemas/Route$Stop_Date_"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "train",
+          "stops",
+          "jid",
+          "firstStop",
+          "lastStop"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "JourneyMatchOptions": {
+        "properties": {
+          "trainName": {
+            "type": "string"
+          },
+          "initialDepartureDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "jnyFltrL": {
+            "items": {
+              "$ref": "#/components/schemas/JourneyFilter"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "trainName"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Coordinates": {
+        "properties": {
+          "lat": {
+            "type": "number",
+            "format": "double"
+          },
+          "lng": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "lat",
+          "lng"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "HafasStation": {
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "products": {
+            "items": {
+              "$ref": "#/components/schemas/ParsedProduct"
+            },
+            "type": "array"
+          },
+          "coordinates": {
+            "$ref": "#/components/schemas/Coordinates"
+          }
+        },
+        "required": [
+          "title",
+          "id",
+          "coordinates"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SingleParsedJourneyGeoPos_Date_": {
+        "properties": {
+          "jid": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "position": {
+            "$ref": "#/components/schemas/Coordinates"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop_Date_"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "jid",
+          "date",
+          "train",
+          "position",
+          "stops"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ParsedJourneyGeoPosResponse": {
+        "items": {
+          "$ref": "#/components/schemas/SingleParsedJourneyGeoPos_Date_"
+        },
+        "type": "array"
+      },
+      "InOutMode": {
+        "type": "string",
+        "enum": [
+          "B",
+          "I",
+          "N",
+          "O"
+        ]
+      },
+      "JourneyTrainPosMode": {
+        "type": "string",
+        "enum": [
+          "CALC",
+          "CALC_FOR_REPORT",
+          "CALC_ONLY",
+          "CALC_REPORT",
+          "REPORT_ONLY",
+          "REPORT_ONLY_WITH_STOPS"
+        ]
+      },
+      "JourneyGeoPosRequestOptions": {
+        "properties": {
+          "ageOfReport": {
+            "type": "boolean"
+          },
+          "date": {
+            "type": "string"
+          },
+          "time": {
+            "type": "string"
+          },
+          "getSimpleTrainComposition": {
+            "type": "boolean"
+          },
+          "getUnmatched": {
+            "type": "boolean"
+          },
+          "inOut": {
+            "$ref": "#/components/schemas/InOutMode"
+          },
+          "jnyFltrL": {
+            "items": {
+              "$ref": "#/components/schemas/JourneyFilter"
+            },
+            "type": "array"
+          },
+          "locL": {
+            "items": {
+              "$ref": "#/components/schemas/OptionalLocL"
+            },
+            "type": "array"
+          },
+          "maxJny": {
+            "type": "boolean"
+          },
+          "onlyRT": {
+            "type": "boolean"
+          },
+          "perSize": {
+            "type": "number",
+            "format": "double"
+          },
+          "perStep": {
+            "type": "number",
+            "format": "double"
+          },
+          "rect": {
+            "$ref": "#/components/schemas/GeoRect"
+          },
+          "ring": {
+            "$ref": "#/components/schemas/GeoRing"
+          },
+          "rtMsgStatus": {
+            "type": "boolean"
+          },
+          "trainPosMode": {
+            "$ref": "#/components/schemas/JourneyTrainPosMode"
+          },
+          "zoom": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
+      "JourneyGeoPosOptions": {
+        "$ref": "#/components/schemas/JourneyGeoPosRequestOptions"
+      },
+      "Route$ValidDepartureStop_Date_": {
+        "properties": {
+          "arrival": {
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
+          },
+          "station": {
+            "$ref": "#/components/schemas/Station"
+          },
+          "auslastung": {
+            "$ref": "#/components/schemas/Route$Auslastung"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "additional": {
+            "type": "boolean"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "irisMessages": {
+            "items": {
+              "$ref": "#/components/schemas/Message"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "station",
+          "departure"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Route$ValidArrivalStop_Date_": {
+        "properties": {
+          "arrival": {
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
+          },
+          "station": {
+            "$ref": "#/components/schemas/Station"
+          },
+          "auslastung": {
+            "$ref": "#/components/schemas/Route$Auslastung"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "additional": {
+            "type": "boolean"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "irisMessages": {
+            "items": {
+              "$ref": "#/components/schemas/Message"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "station",
+          "arrival"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ParsedJourneyDetails": {
+        "properties": {
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "auslastung": {
+            "$ref": "#/components/schemas/Route$Auslastung"
+          },
+          "jid": {
+            "type": "string"
+          },
+          "firstStop": {
+            "$ref": "#/components/schemas/Route$ValidDepartureStop_Date_"
+          },
+          "lastStop": {
+            "$ref": "#/components/schemas/Route$ValidArrivalStop_Date_"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop_Date_"
+            },
+            "type": "array"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "train",
+          "jid",
+          "firstStop",
+          "lastStop",
+          "stops"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ArrivalStationBoardEntry": {
+        "properties": {
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "finalDestination": {
+            "type": "string"
+          },
+          "jid": {
+            "type": "string"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop_Date_"
+            },
+            "type": "array"
+          },
+          "currentStation": {
+            "$ref": "#/components/schemas/HafasStation"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "arrival": {
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
+          }
+        },
+        "required": [
+          "train",
+          "finalDestination",
+          "jid",
+          "currentStation",
+          "arrival"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "DepartureStationBoardEntry": {
+        "properties": {
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "finalDestination": {
+            "type": "string"
+          },
+          "jid": {
+            "type": "string"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop_Date_"
+            },
+            "type": "array"
+          },
+          "currentStation": {
+            "$ref": "#/components/schemas/HafasStation"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
+          }
+        },
+        "required": [
+          "train",
+          "finalDestination",
+          "jid",
+          "currentStation",
+          "departure"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1927,7 +2586,11 @@
             "format": "double"
           }
         },
-        "required": ["name", "cls", "icoX"],
+        "required": [
+          "name",
+          "cls",
+          "icoX"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1964,7 +2627,11 @@
             "type": "string"
           }
         },
-        "required": ["name", "icoX", "cls"],
+        "required": [
+          "name",
+          "icoX",
+          "cls"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2000,7 +2667,11 @@
             "format": "double"
           }
         },
-        "required": ["r", "g", "b"],
+        "required": [
+          "r",
+          "g",
+          "b"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2035,7 +2706,15 @@
             "type": "array"
           }
         },
-        "required": ["type", "remX", "txtC", "prio", "fIdx", "tIdx", "tagL"],
+        "required": [
+          "type",
+          "remX",
+          "txtC",
+          "prio",
+          "fIdx",
+          "tIdx",
+          "tagL"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2094,7 +2773,12 @@
             "type": "array"
           }
         },
-        "required": ["locX", "dInS", "dInR", "dTimeS"],
+        "required": [
+          "locX",
+          "dInS",
+          "dInR",
+          "dTimeS"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2150,7 +2834,11 @@
             "type": "array"
           }
         },
-        "required": ["locX", "aOutR", "aTimeS"],
+        "required": [
+          "locX",
+          "aOutR",
+          "aTimeS"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2244,7 +2932,14 @@
             "type": "boolean"
           }
         },
-        "required": ["locX", "aOutR", "aTimeS", "dInS", "dInR", "dTimeS"],
+        "required": [
+          "locX",
+          "aOutR",
+          "aTimeS",
+          "dInS",
+          "dInR",
+          "dTimeS"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2321,7 +3016,12 @@
             "type": "array"
           }
         },
-        "required": ["minC", "maxC", "numC", "jnyL"],
+        "required": [
+          "minC",
+          "maxC",
+          "numC",
+          "jnyL"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2402,7 +3102,9 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["JNY"],
+            "enum": [
+              "JNY"
+            ],
             "nullable": false
           },
           "icoX": {
@@ -2426,7 +3128,11 @@
           },
           "resState": {
             "type": "string",
-            "enum": ["N", "B", "S"]
+            "enum": [
+              "N",
+              "B",
+              "S"
+            ]
           },
           "resRecommendation": {
             "type": "string"
@@ -2486,7 +3192,10 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["WALK", "TRSF"]
+            "enum": [
+              "WALK",
+              "TRSF"
+            ]
           },
           "icoX": {
             "type": "number",
@@ -2502,7 +3211,13 @@
             "$ref": "#/components/schemas/Gis"
           }
         },
-        "required": ["type", "icoX", "dep", "arr", "gis"],
+        "required": [
+          "type",
+          "icoX",
+          "dep",
+          "arr",
+          "gis"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2510,11 +3225,15 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["KISS"],
+            "enum": [
+              "KISS"
+            ],
             "nullable": false
           }
         },
-        "required": ["type"],
+        "required": [
+          "type"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2530,70 +3249,6 @@
             "$ref": "#/components/schemas/SecLKISS"
           }
         ]
-      },
-      "AuslastungsValue": {
-        "description": "1: Gering\n2: Hoch\n3: Sehr Hoch\n4: Ausgebucht",
-        "enum": [1, 2, 3, 4],
-        "type": "number"
-      },
-      "Route$Auslastung": {
-        "properties": {
-          "first": {
-            "$ref": "#/components/schemas/AuslastungsValue"
-          },
-          "second": {
-            "$ref": "#/components/schemas/AuslastungsValue"
-          }
-        },
-        "type": "object",
-        "additionalProperties": false
-      },
-      "Message": {
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/IrisMessage_Date_"
-          },
-          {
-            "$ref": "#/components/schemas/HimIrisMessage_Date_"
-          }
-        ]
-      },
-      "Route$Stop_Date_": {
-        "properties": {
-          "arrival": {
-            "$ref": "#/components/schemas/CommonStopInfo_Date_"
-          },
-          "departure": {
-            "$ref": "#/components/schemas/CommonStopInfo_Date_"
-          },
-          "station": {
-            "$ref": "#/components/schemas/Station"
-          },
-          "auslastung": {
-            "$ref": "#/components/schemas/Route$Auslastung"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          },
-          "additional": {
-            "type": "boolean"
-          },
-          "cancelled": {
-            "type": "boolean"
-          },
-          "irisMessages": {
-            "items": {
-              "$ref": "#/components/schemas/Message"
-            },
-            "type": "array"
-          }
-        },
-        "required": ["station"],
-        "type": "object",
-        "additionalProperties": false
       },
       "Route$TarifFare": {
         "properties": {
@@ -2635,13 +3290,24 @@
             "type": "array"
           }
         },
-        "required": ["fares"],
+        "required": [
+          "fares"
+        ],
         "type": "object",
         "additionalProperties": false
       },
       "PossibleShort": {
         "type": "string",
-        "enum": ["1", "2", "3", "4", "3R", "T", "3V", "M"]
+        "enum": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "3R",
+          "T",
+          "3V",
+          "M"
+        ]
       },
       "PlannedSequence": {
         "properties": {
@@ -2655,7 +3321,10 @@
             "type": "string"
           }
         },
-        "required": ["rawType", "type"],
+        "required": [
+          "rawType",
+          "type"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2729,6 +3398,101 @@
         "type": "object",
         "additionalProperties": false
       },
+      "ParsedSearchOnTripResponse": {
+        "properties": {
+          "cancelled": {
+            "type": "boolean"
+          },
+          "changeDuration": {
+            "type": "number",
+            "format": "double"
+          },
+          "duration": {
+            "type": "number",
+            "format": "double"
+          },
+          "finalDestination": {
+            "type": "string"
+          },
+          "jid": {
+            "type": "string"
+          },
+          "product": {
+            "$ref": "#/components/schemas/ProdL"
+          },
+          "raw": {
+            "$ref": "#/components/schemas/SecL"
+          },
+          "segmentDestination": {
+            "$ref": "#/components/schemas/Station"
+          },
+          "segmentStart": {
+            "$ref": "#/components/schemas/Station"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop_Date_"
+            },
+            "type": "array"
+          },
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "auslastung": {
+            "$ref": "#/components/schemas/Route$Auslastung"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "tarifSet": {
+            "items": {
+              "$ref": "#/components/schemas/Route$TarifFareSet"
+            },
+            "type": "array"
+          },
+          "plannedSequence": {
+            "$ref": "#/components/schemas/PlannedSequence"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "JNY"
+            ],
+            "nullable": false
+          },
+          "arrival": {
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/CommonStopInfo_Date_"
+          },
+          "wings": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Journey_Date_"
+            },
+            "type": "array"
+          },
+          "currentStop": {
+            "$ref": "#/components/schemas/Route$Stop_Date_"
+          }
+        },
+        "required": [
+          "finalDestination",
+          "jid",
+          "segmentDestination",
+          "segmentStart",
+          "stops",
+          "train",
+          "type",
+          "arrival",
+          "departure"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
       "Route$JourneySegmentTrain": {
         "properties": {
           "cancelled": {
@@ -2789,7 +3553,9 @@
           },
           "type": {
             "type": "string",
-            "enum": ["JNY"],
+            "enum": [
+              "JNY"
+            ],
             "nullable": false
           },
           "arrival": {
@@ -2830,51 +3596,18 @@
             "format": "date-time"
           }
         },
-        "required": ["time"],
+        "required": [
+          "time"
+        ],
         "type": "object"
-      },
-      "Coordinates": {
-        "properties": {
-          "lat": {
-            "type": "number",
-            "format": "double"
-          },
-          "lng": {
-            "type": "number",
-            "format": "double"
-          }
-        },
-        "required": ["lat", "lng"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "HafasStation": {
-        "properties": {
-          "title": {
-            "type": "string"
-          },
-          "id": {
-            "type": "string"
-          },
-          "products": {
-            "items": {
-              "$ref": "#/components/schemas/ParsedProduct"
-            },
-            "type": "array"
-          },
-          "coordinates": {
-            "$ref": "#/components/schemas/Coordinates"
-          }
-        },
-        "required": ["title", "id", "coordinates"],
-        "type": "object",
-        "additionalProperties": false
       },
       "Route$JourneySegmentWalk": {
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["WALK"],
+            "enum": [
+              "WALK"
+            ],
             "nullable": false
           },
           "train": {
@@ -2931,7 +3664,11 @@
             "type": "string"
           }
         },
-        "required": ["sDaysR", "sDaysI", "sDaysB"],
+        "required": [
+          "sDaysR",
+          "sDaysI",
+          "sDaysB"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2982,7 +3719,9 @@
             "type": "array"
           }
         },
-        "required": ["fareL"],
+        "required": [
+          "fareL"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2995,7 +3734,9 @@
               },
               {
                 "type": "string",
-                "enum": ["OK"]
+                "enum": [
+                  "OK"
+                ]
               }
             ]
           },
@@ -3006,7 +3747,10 @@
             "type": "array"
           }
         },
-        "required": ["statusCode", "fareSetL"],
+        "required": [
+          "statusCode",
+          "fareSetL"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -3166,572 +3910,6 @@
         "type": "object",
         "additionalProperties": false
       },
-      "SingleRoute_number_": {
-        "properties": {
-          "arrival": {
-            "$ref": "#/components/schemas/CommonStopInfo_number_"
-          },
-          "departure": {
-            "$ref": "#/components/schemas/CommonStopInfo_number_"
-          },
-          "isRideable": {
-            "type": "boolean"
-          },
-          "checksum": {
-            "type": "string"
-          },
-          "cid": {
-            "type": "string"
-          },
-          "date": {
-            "type": "number",
-            "format": "double"
-          },
-          "duration": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "changes": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "segments": {
-            "items": {
-              "$ref": "#/components/schemas/Route$JourneySegment"
-            },
-            "type": "array"
-          },
-          "segmentTypes": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array"
-          },
-          "tarifSet": {
-            "items": {
-              "$ref": "#/components/schemas/Route$TarifFareSet"
-            },
-            "type": "array"
-          },
-          "raw": {
-            "$ref": "#/components/schemas/OutConL"
-          }
-        },
-        "required": [
-          "arrival",
-          "departure",
-          "isRideable",
-          "checksum",
-          "cid",
-          "date",
-          "duration",
-          "changes",
-          "segments",
-          "segmentTypes"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "RoutingResult_number_": {
-        "properties": {
-          "routes": {
-            "items": {
-              "$ref": "#/components/schemas/SingleRoute_number_"
-            },
-            "type": "array"
-          },
-          "context": {
-            "properties": {
-              "later": {
-                "type": "string"
-              },
-              "earlier": {
-                "type": "string"
-              }
-            },
-            "required": ["later", "earlier"],
-            "type": "object"
-          }
-        },
-        "required": ["routes", "context"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "TripSearchVia": {
-        "properties": {
-          "evaId": {
-            "type": "string"
-          },
-          "minChangeTime": {
-            "type": "number",
-            "format": "double"
-          }
-        },
-        "required": ["evaId"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "JnyCl": {
-        "enum": [1, 2],
-        "type": "number"
-      },
-      "TravelerType": {
-        "enum": ["E", "K", "B"],
-        "type": "string"
-      },
-      "LoyalityCard": {
-        "enum": [
-          "BC25First",
-          "BC25Second",
-          "BC50First",
-          "BC50Second",
-          "SHCard",
-          "ATVorteilscard",
-          "CHGeneral",
-          "CHHalfWithRailplus",
-          "CHHalfWithoutRailplus",
-          "NLWithRailplus",
-          "NLWithoutRailplus",
-          "BC100First",
-          "BC100Second"
-        ],
-        "type": "string"
-      },
-      "TripSearchTraveler": {
-        "properties": {
-          "type": {
-            "$ref": "#/components/schemas/TravelerType"
-          },
-          "loyalityCard": {
-            "$ref": "#/components/schemas/LoyalityCard",
-            "description": "Testing Comment"
-          }
-        },
-        "required": ["type"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "TripSearchTarifRequest": {
-        "properties": {
-          "class": {
-            "$ref": "#/components/schemas/JnyCl"
-          },
-          "traveler": {
-            "items": {
-              "$ref": "#/components/schemas/TripSearchTraveler"
-            },
-            "type": "array"
-          }
-        },
-        "required": ["class", "traveler"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "TripSearchOptionsV2": {
-        "properties": {
-          "economic": {
-            "type": "boolean",
-            "description": "true = not only fastest route"
-          },
-          "getIV": {
-            "type": "boolean",
-            "description": "Unknown flag"
-          },
-          "getPasslist": {
-            "type": "boolean",
-            "description": "Get Stop inbetween"
-          },
-          "getPolyline": {
-            "type": "boolean",
-            "description": "Polylines - unknown format"
-          },
-          "numF": {
-            "type": "number",
-            "format": "double"
-          },
-          "ctxScr": {
-            "type": "string"
-          },
-          "ushrp": {
-            "type": "boolean",
-            "description": "Is a station nearby enough for routing?"
-          },
-          "start": {
-            "type": "string"
-          },
-          "destination": {
-            "type": "string"
-          },
-          "time": {
-            "type": "number",
-            "format": "double"
-          },
-          "transferTime": {
-            "type": "number",
-            "format": "double"
-          },
-          "maxChanges": {
-            "type": "number",
-            "format": "double"
-          },
-          "searchForDeparture": {
-            "type": "boolean"
-          },
-          "onlyRegional": {
-            "type": "boolean"
-          },
-          "tarif": {
-            "$ref": "#/components/schemas/TripSearchTarifRequest"
-          },
-          "via": {
-            "items": {
-              "$ref": "#/components/schemas/TripSearchVia"
-            },
-            "type": "array"
-          }
-        },
-        "required": ["start", "destination"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "Route$ValidDepartureStop_Date_": {
-        "properties": {
-          "arrival": {
-            "$ref": "#/components/schemas/CommonStopInfo_Date_"
-          },
-          "departure": {
-            "$ref": "#/components/schemas/CommonStopInfo_Date_"
-          },
-          "station": {
-            "$ref": "#/components/schemas/Station"
-          },
-          "auslastung": {
-            "$ref": "#/components/schemas/Route$Auslastung"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          },
-          "additional": {
-            "type": "boolean"
-          },
-          "cancelled": {
-            "type": "boolean"
-          },
-          "irisMessages": {
-            "items": {
-              "$ref": "#/components/schemas/Message"
-            },
-            "type": "array"
-          }
-        },
-        "required": ["station", "departure"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "Route$ValidArrivalStop_Date_": {
-        "properties": {
-          "arrival": {
-            "$ref": "#/components/schemas/CommonStopInfo_Date_"
-          },
-          "departure": {
-            "$ref": "#/components/schemas/CommonStopInfo_Date_"
-          },
-          "station": {
-            "$ref": "#/components/schemas/Station"
-          },
-          "auslastung": {
-            "$ref": "#/components/schemas/Route$Auslastung"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          },
-          "additional": {
-            "type": "boolean"
-          },
-          "cancelled": {
-            "type": "boolean"
-          },
-          "irisMessages": {
-            "items": {
-              "$ref": "#/components/schemas/Message"
-            },
-            "type": "array"
-          }
-        },
-        "required": ["station", "arrival"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "ParsedJourneyDetails": {
-        "properties": {
-          "train": {
-            "$ref": "#/components/schemas/ParsedProduct"
-          },
-          "auslastung": {
-            "$ref": "#/components/schemas/Route$Auslastung"
-          },
-          "jid": {
-            "type": "string"
-          },
-          "firstStop": {
-            "$ref": "#/components/schemas/Route$ValidDepartureStop_Date_"
-          },
-          "lastStop": {
-            "$ref": "#/components/schemas/Route$ValidArrivalStop_Date_"
-          },
-          "stops": {
-            "items": {
-              "$ref": "#/components/schemas/Route$Stop_Date_"
-            },
-            "type": "array"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          }
-        },
-        "required": ["train", "jid", "firstStop", "lastStop", "stops"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "ArrivalStationBoardEntry": {
-        "properties": {
-          "train": {
-            "$ref": "#/components/schemas/ParsedProduct"
-          },
-          "cancelled": {
-            "type": "boolean"
-          },
-          "finalDestination": {
-            "type": "string"
-          },
-          "jid": {
-            "type": "string"
-          },
-          "stops": {
-            "items": {
-              "$ref": "#/components/schemas/Route$Stop_Date_"
-            },
-            "type": "array"
-          },
-          "currentStation": {
-            "$ref": "#/components/schemas/HafasStation"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          },
-          "arrival": {
-            "$ref": "#/components/schemas/CommonStopInfo_Date_"
-          }
-        },
-        "required": [
-          "train",
-          "finalDestination",
-          "jid",
-          "currentStation",
-          "arrival"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "DepartureStationBoardEntry": {
-        "properties": {
-          "train": {
-            "$ref": "#/components/schemas/ParsedProduct"
-          },
-          "cancelled": {
-            "type": "boolean"
-          },
-          "finalDestination": {
-            "type": "string"
-          },
-          "jid": {
-            "type": "string"
-          },
-          "stops": {
-            "items": {
-              "$ref": "#/components/schemas/Route$Stop_Date_"
-            },
-            "type": "array"
-          },
-          "currentStation": {
-            "$ref": "#/components/schemas/HafasStation"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          },
-          "departure": {
-            "$ref": "#/components/schemas/CommonStopInfo_Date_"
-          }
-        },
-        "required": [
-          "train",
-          "finalDestination",
-          "jid",
-          "currentStation",
-          "departure"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "ParsedJourneyMatchResponse": {
-        "properties": {
-          "train": {
-            "$ref": "#/components/schemas/ParsedProduct"
-          },
-          "stops": {
-            "items": {
-              "$ref": "#/components/schemas/Route$Stop_Date_"
-            },
-            "type": "array"
-          },
-          "jid": {
-            "type": "string"
-          },
-          "firstStop": {
-            "$ref": "#/components/schemas/Route$Stop_Date_"
-          },
-          "lastStop": {
-            "$ref": "#/components/schemas/Route$Stop_Date_"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          }
-        },
-        "required": ["train", "stops", "jid", "firstStop", "lastStop"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "JourneyMatchOptions": {
-        "properties": {
-          "trainName": {
-            "type": "string"
-          },
-          "initialDepartureDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "jnyFltrL": {
-            "items": {
-              "$ref": "#/components/schemas/JourneyFilter"
-            },
-            "type": "array"
-          }
-        },
-        "required": ["trainName"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "ParsedSearchOnTripResponse": {
-        "properties": {
-          "cancelled": {
-            "type": "boolean"
-          },
-          "changeDuration": {
-            "type": "number",
-            "format": "double"
-          },
-          "duration": {
-            "type": "number",
-            "format": "double"
-          },
-          "finalDestination": {
-            "type": "string"
-          },
-          "jid": {
-            "type": "string"
-          },
-          "product": {
-            "$ref": "#/components/schemas/ProdL"
-          },
-          "raw": {
-            "$ref": "#/components/schemas/SecL"
-          },
-          "segmentDestination": {
-            "$ref": "#/components/schemas/Station"
-          },
-          "segmentStart": {
-            "$ref": "#/components/schemas/Station"
-          },
-          "stops": {
-            "items": {
-              "$ref": "#/components/schemas/Route$Stop_Date_"
-            },
-            "type": "array"
-          },
-          "train": {
-            "$ref": "#/components/schemas/ParsedProduct"
-          },
-          "auslastung": {
-            "$ref": "#/components/schemas/Route$Auslastung"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          },
-          "tarifSet": {
-            "items": {
-              "$ref": "#/components/schemas/Route$TarifFareSet"
-            },
-            "type": "array"
-          },
-          "plannedSequence": {
-            "$ref": "#/components/schemas/PlannedSequence"
-          },
-          "type": {
-            "type": "string",
-            "enum": ["JNY"],
-            "nullable": false
-          },
-          "arrival": {
-            "$ref": "#/components/schemas/CommonStopInfo_Date_"
-          },
-          "departure": {
-            "$ref": "#/components/schemas/CommonStopInfo_Date_"
-          },
-          "wings": {
-            "items": {
-              "$ref": "#/components/schemas/Route$Journey_Date_"
-            },
-            "type": "array"
-          },
-          "currentStop": {
-            "$ref": "#/components/schemas/Route$Stop_Date_"
-          }
-        },
-        "required": [
-          "finalDestination",
-          "jid",
-          "segmentDestination",
-          "segmentStart",
-          "stops",
-          "train",
-          "type",
-          "arrival",
-          "departure"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
       "SingleRoute": {
         "properties": {
           "arrival": {
@@ -3800,7 +3978,10 @@
       },
       "AllowedSotMode": {
         "type": "string",
-        "enum": ["JI", "RC"]
+        "enum": [
+          "JI",
+          "RC"
+        ]
       },
       "SearchOnTripBody": {
         "properties": {
@@ -3811,570 +3992,12 @@
             "type": "string"
           }
         },
-        "required": ["sotMode", "id"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "Route$ValidDepartureStop_number_": {
-        "properties": {
-          "arrival": {
-            "$ref": "#/components/schemas/CommonStopInfo_number_"
-          },
-          "departure": {
-            "$ref": "#/components/schemas/CommonStopInfo_number_"
-          },
-          "station": {
-            "$ref": "#/components/schemas/Station"
-          },
-          "auslastung": {
-            "$ref": "#/components/schemas/Route$Auslastung"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          },
-          "additional": {
-            "type": "boolean"
-          },
-          "cancelled": {
-            "type": "boolean"
-          },
-          "irisMessages": {
-            "items": {
-              "$ref": "#/components/schemas/Message"
-            },
-            "type": "array"
-          }
-        },
-        "required": ["station", "departure"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "Route$ValidArrivalStop_number_": {
-        "properties": {
-          "arrival": {
-            "$ref": "#/components/schemas/CommonStopInfo_number_"
-          },
-          "departure": {
-            "$ref": "#/components/schemas/CommonStopInfo_number_"
-          },
-          "station": {
-            "$ref": "#/components/schemas/Station"
-          },
-          "auslastung": {
-            "$ref": "#/components/schemas/Route$Auslastung"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          },
-          "additional": {
-            "type": "boolean"
-          },
-          "cancelled": {
-            "type": "boolean"
-          },
-          "irisMessages": {
-            "items": {
-              "$ref": "#/components/schemas/Message"
-            },
-            "type": "array"
-          }
-        },
-        "required": ["station", "arrival"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "Route$Stop_number_": {
-        "properties": {
-          "arrival": {
-            "$ref": "#/components/schemas/CommonStopInfo_number_"
-          },
-          "departure": {
-            "$ref": "#/components/schemas/CommonStopInfo_number_"
-          },
-          "station": {
-            "$ref": "#/components/schemas/Station"
-          },
-          "auslastung": {
-            "$ref": "#/components/schemas/Route$Auslastung"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          },
-          "additional": {
-            "type": "boolean"
-          },
-          "cancelled": {
-            "type": "boolean"
-          },
-          "irisMessages": {
-            "items": {
-              "$ref": "#/components/schemas/Message"
-            },
-            "type": "array"
-          }
-        },
-        "required": ["station"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "ParsedJourneyDetails_number_": {
-        "properties": {
-          "train": {
-            "$ref": "#/components/schemas/ParsedProduct"
-          },
-          "auslastung": {
-            "$ref": "#/components/schemas/Route$Auslastung"
-          },
-          "jid": {
-            "type": "string"
-          },
-          "firstStop": {
-            "$ref": "#/components/schemas/Route$ValidDepartureStop_number_"
-          },
-          "lastStop": {
-            "$ref": "#/components/schemas/Route$ValidArrivalStop_number_"
-          },
-          "stops": {
-            "items": {
-              "$ref": "#/components/schemas/Route$Stop_number_"
-            },
-            "type": "array"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          }
-        },
-        "required": ["train", "jid", "firstStop", "lastStop", "stops"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "Route$Journey_number_": {
-        "properties": {
-          "cancelled": {
-            "type": "boolean"
-          },
-          "changeDuration": {
-            "type": "number",
-            "format": "double"
-          },
-          "duration": {
-            "type": "number",
-            "format": "double"
-          },
-          "finalDestination": {
-            "type": "string"
-          },
-          "jid": {
-            "type": "string"
-          },
-          "product": {
-            "$ref": "#/components/schemas/ProdL"
-          },
-          "raw": {
-            "$ref": "#/components/schemas/SecL"
-          },
-          "segmentDestination": {
-            "$ref": "#/components/schemas/Station"
-          },
-          "segmentStart": {
-            "$ref": "#/components/schemas/Station"
-          },
-          "stops": {
-            "items": {
-              "$ref": "#/components/schemas/Route$Stop_number_"
-            },
-            "type": "array"
-          },
-          "train": {
-            "$ref": "#/components/schemas/ParsedProduct"
-          },
-          "auslastung": {
-            "$ref": "#/components/schemas/Route$Auslastung"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          },
-          "tarifSet": {
-            "items": {
-              "$ref": "#/components/schemas/Route$TarifFareSet"
-            },
-            "type": "array"
-          },
-          "plannedSequence": {
-            "$ref": "#/components/schemas/PlannedSequence"
-          }
-        },
         "required": [
-          "finalDestination",
-          "jid",
-          "segmentDestination",
-          "segmentStart",
-          "stops",
-          "train"
+          "sotMode",
+          "id"
         ],
         "type": "object",
         "additionalProperties": false
-      },
-      "ParsedSearchOnTripResponse_number_": {
-        "properties": {
-          "cancelled": {
-            "type": "boolean"
-          },
-          "changeDuration": {
-            "type": "number",
-            "format": "double"
-          },
-          "duration": {
-            "type": "number",
-            "format": "double"
-          },
-          "finalDestination": {
-            "type": "string"
-          },
-          "jid": {
-            "type": "string"
-          },
-          "product": {
-            "$ref": "#/components/schemas/ProdL"
-          },
-          "raw": {
-            "$ref": "#/components/schemas/SecL"
-          },
-          "segmentDestination": {
-            "$ref": "#/components/schemas/Station"
-          },
-          "segmentStart": {
-            "$ref": "#/components/schemas/Station"
-          },
-          "stops": {
-            "items": {
-              "$ref": "#/components/schemas/Route$Stop_number_"
-            },
-            "type": "array"
-          },
-          "train": {
-            "$ref": "#/components/schemas/ParsedProduct"
-          },
-          "auslastung": {
-            "$ref": "#/components/schemas/Route$Auslastung"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          },
-          "tarifSet": {
-            "items": {
-              "$ref": "#/components/schemas/Route$TarifFareSet"
-            },
-            "type": "array"
-          },
-          "plannedSequence": {
-            "$ref": "#/components/schemas/PlannedSequence"
-          },
-          "type": {
-            "type": "string",
-            "enum": ["JNY"],
-            "nullable": false
-          },
-          "arrival": {
-            "$ref": "#/components/schemas/CommonStopInfo_number_"
-          },
-          "departure": {
-            "$ref": "#/components/schemas/CommonStopInfo_number_"
-          },
-          "wings": {
-            "items": {
-              "$ref": "#/components/schemas/Route$Journey_number_"
-            },
-            "type": "array"
-          },
-          "currentStop": {
-            "$ref": "#/components/schemas/Route$Stop_number_"
-          }
-        },
-        "required": [
-          "finalDestination",
-          "jid",
-          "segmentDestination",
-          "segmentStart",
-          "stops",
-          "train",
-          "type",
-          "arrival",
-          "departure"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "ArrivalStationBoardEntry_number_": {
-        "properties": {
-          "train": {
-            "$ref": "#/components/schemas/ParsedProduct"
-          },
-          "cancelled": {
-            "type": "boolean"
-          },
-          "finalDestination": {
-            "type": "string"
-          },
-          "jid": {
-            "type": "string"
-          },
-          "stops": {
-            "items": {
-              "$ref": "#/components/schemas/Route$Stop_number_"
-            },
-            "type": "array"
-          },
-          "currentStation": {
-            "$ref": "#/components/schemas/HafasStation"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          },
-          "arrival": {
-            "$ref": "#/components/schemas/CommonStopInfo_number_"
-          }
-        },
-        "required": [
-          "train",
-          "finalDestination",
-          "jid",
-          "currentStation",
-          "arrival"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "DepartureStationBoardEntry_number_": {
-        "properties": {
-          "train": {
-            "$ref": "#/components/schemas/ParsedProduct"
-          },
-          "cancelled": {
-            "type": "boolean"
-          },
-          "finalDestination": {
-            "type": "string"
-          },
-          "jid": {
-            "type": "string"
-          },
-          "stops": {
-            "items": {
-              "$ref": "#/components/schemas/Route$Stop_number_"
-            },
-            "type": "array"
-          },
-          "currentStation": {
-            "$ref": "#/components/schemas/HafasStation"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          },
-          "departure": {
-            "$ref": "#/components/schemas/CommonStopInfo_number_"
-          }
-        },
-        "required": [
-          "train",
-          "finalDestination",
-          "jid",
-          "currentStation",
-          "departure"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "ParsedJourneyMatchResponse_number_": {
-        "properties": {
-          "train": {
-            "$ref": "#/components/schemas/ParsedProduct"
-          },
-          "stops": {
-            "items": {
-              "$ref": "#/components/schemas/Route$Stop_number_"
-            },
-            "type": "array"
-          },
-          "jid": {
-            "type": "string"
-          },
-          "firstStop": {
-            "$ref": "#/components/schemas/Route$Stop_number_"
-          },
-          "lastStop": {
-            "$ref": "#/components/schemas/Route$Stop_number_"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          }
-        },
-        "required": ["train", "stops", "jid", "firstStop", "lastStop"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "JourneyMatchOptions_number_": {
-        "properties": {
-          "trainName": {
-            "type": "string"
-          },
-          "initialDepartureDate": {
-            "type": "number",
-            "format": "double"
-          },
-          "jnyFltrL": {
-            "items": {
-              "$ref": "#/components/schemas/JourneyFilter"
-            },
-            "type": "array"
-          }
-        },
-        "required": ["trainName"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "SingleParsedJourneyGeoPos_Date_": {
-        "properties": {
-          "jid": {
-            "type": "string"
-          },
-          "date": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "train": {
-            "$ref": "#/components/schemas/ParsedProduct"
-          },
-          "position": {
-            "$ref": "#/components/schemas/Coordinates"
-          },
-          "stops": {
-            "items": {
-              "$ref": "#/components/schemas/Route$Stop_Date_"
-            },
-            "type": "array"
-          }
-        },
-        "required": ["jid", "date", "train", "position", "stops"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "ParsedJourneyGeoPosResponse": {
-        "items": {
-          "$ref": "#/components/schemas/SingleParsedJourneyGeoPos_Date_"
-        },
-        "type": "array"
-      },
-      "InOutMode": {
-        "type": "string",
-        "enum": ["B", "I", "N", "O"]
-      },
-      "JourneyTrainPosMode": {
-        "type": "string",
-        "enum": [
-          "CALC",
-          "CALC_FOR_REPORT",
-          "CALC_ONLY",
-          "CALC_REPORT",
-          "REPORT_ONLY",
-          "REPORT_ONLY_WITH_STOPS"
-        ]
-      },
-      "JourneyGeoPosRequestOptions": {
-        "properties": {
-          "ageOfReport": {
-            "type": "boolean"
-          },
-          "date": {
-            "type": "string"
-          },
-          "time": {
-            "type": "string"
-          },
-          "getSimpleTrainComposition": {
-            "type": "boolean"
-          },
-          "getUnmatched": {
-            "type": "boolean"
-          },
-          "inOut": {
-            "$ref": "#/components/schemas/InOutMode"
-          },
-          "jnyFltrL": {
-            "items": {
-              "$ref": "#/components/schemas/JourneyFilter"
-            },
-            "type": "array"
-          },
-          "locL": {
-            "items": {
-              "$ref": "#/components/schemas/OptionalLocL"
-            },
-            "type": "array"
-          },
-          "maxJny": {
-            "type": "boolean"
-          },
-          "onlyRT": {
-            "type": "boolean"
-          },
-          "perSize": {
-            "type": "number",
-            "format": "double"
-          },
-          "perStep": {
-            "type": "number",
-            "format": "double"
-          },
-          "rect": {
-            "$ref": "#/components/schemas/GeoRect"
-          },
-          "ring": {
-            "$ref": "#/components/schemas/GeoRing"
-          },
-          "rtMsgStatus": {
-            "type": "boolean"
-          },
-          "trainPosMode": {
-            "$ref": "#/components/schemas/JourneyTrainPosMode"
-          },
-          "zoom": {
-            "type": "number",
-            "format": "double"
-          }
-        },
-        "type": "object",
-        "additionalProperties": false
-      },
-      "JourneyGeoPosOptions": {
-        "$ref": "#/components/schemas/JourneyGeoPosRequestOptions"
       },
       "SingleRoute_Date_": {
         "properties": {
@@ -4459,11 +4082,101 @@
                 "type": "string"
               }
             },
-            "required": ["later", "earlier"],
+            "required": [
+              "later",
+              "earlier"
+            ],
             "type": "object"
           }
         },
-        "required": ["routes", "context"],
+        "required": [
+          "routes",
+          "context"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "TripSearchVia": {
+        "properties": {
+          "evaId": {
+            "type": "string"
+          },
+          "minChangeTime": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "evaId"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "JnyCl": {
+        "enum": [
+          1,
+          2
+        ],
+        "type": "number"
+      },
+      "TravelerType": {
+        "enum": [
+          "E",
+          "K",
+          "B"
+        ],
+        "type": "string"
+      },
+      "LoyalityCard": {
+        "enum": [
+          "BC25First",
+          "BC25Second",
+          "BC50First",
+          "BC50Second",
+          "SHCard",
+          "ATVorteilscard",
+          "CHGeneral",
+          "CHHalfWithRailplus",
+          "CHHalfWithoutRailplus",
+          "NLWithRailplus",
+          "NLWithoutRailplus",
+          "BC100First",
+          "BC100Second"
+        ],
+        "type": "string"
+      },
+      "TripSearchTraveler": {
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/TravelerType"
+          },
+          "loyalityCard": {
+            "$ref": "#/components/schemas/LoyalityCard",
+            "description": "Testing Comment"
+          }
+        },
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "TripSearchTarifRequest": {
+        "properties": {
+          "class": {
+            "$ref": "#/components/schemas/JnyCl"
+          },
+          "traveler": {
+            "items": {
+              "$ref": "#/components/schemas/TripSearchTraveler"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "class",
+          "traveler"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4530,299 +4243,10 @@
             "type": "array"
           }
         },
-        "required": ["start", "destination"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "WingInfo_number_": {
-        "properties": {
-          "station": {
-            "properties": {
-              "title": {
-                "type": "string"
-              },
-              "id": {
-                "type": "string"
-              }
-            },
-            "required": ["title", "id"],
-            "type": "object"
-          },
-          "pt": {
-            "type": "number",
-            "format": "double"
-          },
-          "fl": {
-            "type": "boolean"
-          }
-        },
-        "required": ["station", "pt", "fl"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "WingDefinition_number_": {
-        "properties": {
-          "start": {
-            "$ref": "#/components/schemas/WingInfo_number_"
-          },
-          "end": {
-            "$ref": "#/components/schemas/WingInfo_number_"
-          }
-        },
-        "type": "object",
-        "additionalProperties": false
-      },
-      "StopInfo_number_": {
-        "properties": {
-          "scheduledPlatform": {
-            "type": "string"
-          },
-          "platform": {
-            "type": "string"
-          },
-          "scheduledTime": {
-            "type": "number",
-            "format": "double"
-          },
-          "time": {
-            "type": "number",
-            "format": "double"
-          },
-          "delay": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "reihung": {
-            "type": "boolean"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          },
-          "cancelled": {
-            "type": "boolean"
-          },
-          "wingIds": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array"
-          },
-          "hidden": {
-            "type": "boolean"
-          }
-        },
-        "required": ["scheduledTime", "time"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "IrisMessage_number_": {
-        "properties": {
-          "text": {
-            "type": "string"
-          },
-          "timestamp": {
-            "type": "number",
-            "format": "double"
-          },
-          "superseded": {
-            "type": "boolean"
-          },
-          "priority": {
-            "$ref": "#/components/schemas/MessagePrio"
-          }
-        },
-        "required": ["text"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "HimIrisMessage_number_": {
-        "properties": {
-          "text": {
-            "type": "string"
-          },
-          "timestamp": {
-            "type": "number",
-            "format": "double"
-          },
-          "superseded": {
-            "type": "boolean"
-          },
-          "priority": {
-            "$ref": "#/components/schemas/MessagePrio"
-          },
-          "head": {
-            "type": "string"
-          }
-        },
-        "required": ["text", "head"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "Message_number_": {
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/IrisMessage_number_"
-          },
-          {
-            "$ref": "#/components/schemas/HimIrisMessage_number_"
-          }
-        ]
-      },
-      "Messages_number_": {
-        "properties": {
-          "qos": {
-            "items": {
-              "$ref": "#/components/schemas/IrisMessage_number_"
-            },
-            "type": "array"
-          },
-          "delay": {
-            "items": {
-              "$ref": "#/components/schemas/IrisMessage_number_"
-            },
-            "type": "array"
-          },
-          "him": {
-            "items": {
-              "$ref": "#/components/schemas/HimIrisMessage_number_"
-            },
-            "type": "array"
-          }
-        },
-        "required": ["qos", "delay", "him"],
-        "type": "object",
-        "additionalProperties": {
-          "items": {
-            "$ref": "#/components/schemas/Message_number_"
-          },
-          "type": "array"
-        }
-      },
-      "Abfahrt_number_": {
-        "properties": {
-          "initialDeparture": {
-            "type": "number",
-            "format": "double"
-          },
-          "arrival": {
-            "$ref": "#/components/schemas/StopInfo_number_"
-          },
-          "auslastung": {
-            "type": "boolean"
-          },
-          "currentStation": {
-            "$ref": "#/components/schemas/Station"
-          },
-          "departure": {
-            "$ref": "#/components/schemas/StopInfo_number_"
-          },
-          "destination": {
-            "type": "string"
-          },
-          "id": {
-            "type": "string"
-          },
-          "additional": {
-            "type": "boolean"
-          },
-          "cancelled": {
-            "type": "boolean"
-          },
-          "mediumId": {
-            "type": "string"
-          },
-          "messages": {
-            "$ref": "#/components/schemas/Messages_number_"
-          },
-          "platform": {
-            "type": "string"
-          },
-          "productClass": {
-            "type": "string",
-            "description": "Most likely D | N | S | F"
-          },
-          "rawId": {
-            "type": "string"
-          },
-          "ref": {
-            "$ref": "#/components/schemas/SubstituteRef"
-          },
-          "reihung": {
-            "type": "boolean",
-            "description": "Most likely has coach sequence"
-          },
-          "route": {
-            "items": {
-              "$ref": "#/components/schemas/Stop"
-            },
-            "type": "array"
-          },
-          "scheduledDestination": {
-            "type": "string"
-          },
-          "scheduledPlatform": {
-            "type": "string"
-          },
-          "substitute": {
-            "type": "boolean"
-          },
-          "train": {
-            "$ref": "#/components/schemas/TrainInfo"
-          },
-          "hiddenReihung": {
-            "type": "boolean",
-            "description": "Most likely does not have coach sequence"
-          }
-        },
         "required": [
-          "initialDeparture",
-          "auslastung",
-          "currentStation",
-          "destination",
-          "id",
-          "mediumId",
-          "messages",
-          "platform",
-          "productClass",
-          "rawId",
-          "reihung",
-          "route",
-          "scheduledDestination",
-          "scheduledPlatform",
-          "train"
+          "start",
+          "destination"
         ],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "Wings_number_": {
-        "properties": {},
-        "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/Abfahrt_number_"
-        }
-      },
-      "AbfahrtenResult_number_": {
-        "properties": {
-          "departures": {
-            "items": {
-              "$ref": "#/components/schemas/Abfahrt_number_"
-            },
-            "type": "array"
-          },
-          "lookbehind": {
-            "items": {
-              "$ref": "#/components/schemas/Abfahrt_number_"
-            },
-            "type": "array"
-          },
-          "wings": {
-            "$ref": "#/components/schemas/Wings_number_"
-          }
-        },
-        "required": ["departures", "lookbehind", "wings"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4837,7 +4261,10 @@
                 "type": "string"
               }
             },
-            "required": ["title", "id"],
+            "required": [
+              "title",
+              "id"
+            ],
             "type": "object"
           },
           "pt": {
@@ -4848,7 +4275,11 @@
             "type": "boolean"
           }
         },
-        "required": ["station", "pt", "fl"],
+        "required": [
+          "station",
+          "pt",
+          "fl"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4868,7 +4299,13 @@
         "properties": {
           "klasse": {
             "type": "number",
-            "enum": ["0", "1", "2", "3", "4"],
+            "enum": [
+              "0",
+              "1",
+              "2",
+              "3",
+              "4"
+            ],
             "description": "0: Unknown; 1: erste; 2: zweite; 3: 1&2; 4: Not for passengers"
           },
           "icons": {
@@ -4913,7 +4350,10 @@
             "type": "string"
           }
         },
-        "required": ["klasse", "icons"],
+        "required": [
+          "klasse",
+          "icons"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4932,7 +4372,12 @@
             "type": "string"
           }
         },
-        "required": ["anzahl", "ausstattungsart", "bezeichnung", "status"],
+        "required": [
+          "anzahl",
+          "ausstattungsart",
+          "bezeichnung",
+          "status"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4972,7 +4417,12 @@
             "type": "string"
           }
         },
-        "required": ["endemeter", "endeprozent", "startmeter", "startprozent"],
+        "required": [
+          "endemeter",
+          "endeprozent",
+          "startmeter",
+          "startprozent"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5087,13 +4537,18 @@
           },
           "country": {
             "type": "string",
-            "enum": ["DE", "AT"]
+            "enum": [
+              "DE",
+              "AT"
+            ]
           },
           "showBRInfo": {
             "type": "boolean"
           }
         },
-        "required": ["name"],
+        "required": [
+          "name"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5244,7 +4699,10 @@
             "type": "string"
           }
         },
-        "required": ["positionamgleis", "sektorbezeichnung"],
+        "required": [
+          "positionamgleis",
+          "sektorbezeichnung"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5292,7 +4750,10 @@
         "properties": {
           "fahrtrichtung": {
             "type": "string",
-            "enum": ["VORWAERTS", "RUCKWAERTS"],
+            "enum": [
+              "VORWAERTS",
+              "RUCKWAERTS"
+            ],
             "description": "Should always be VORWAERTS"
           },
           "allFahrzeuggruppe": {
@@ -5396,7 +4857,10 @@
             "format": "double"
           }
         },
-        "required": ["latitude", "longitude"],
+        "required": [
+          "latitude",
+          "longitude"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5412,7 +4876,11 @@
             "$ref": "#/components/schemas/SBBCoordinates"
           }
         },
-        "required": ["title", "id", "location"],
+        "required": [
+          "title",
+          "id",
+          "location"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5429,7 +4897,10 @@
             "format": "date-time"
           }
         },
-        "required": ["start", "destination"],
+        "required": [
+          "start",
+          "destination"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5447,7 +4918,10 @@
             "description": "Latitude position in reference system."
           }
         },
-        "required": ["longitude", "latitude"],
+        "required": [
+          "longitude",
+          "latitude"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5463,7 +4937,10 @@
             "$ref": "#/components/schemas/Coordinate2D"
           }
         },
-        "required": ["title", "id"],
+        "required": [
+          "title",
+          "id"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5507,7 +4984,15 @@
             "type": "string"
           }
         },
-        "required": ["name", "meta", "eva", "ds100", "db", "creationts", "p"],
+        "required": [
+          "name",
+          "meta",
+          "eva",
+          "ds100",
+          "db",
+          "creationts",
+          "p"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5523,7 +5008,10 @@
             "type": "array"
           }
         },
-        "required": ["station", "relatedStations"],
+        "required": [
+          "station",
+          "relatedStations"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5542,7 +5030,11 @@
             "type": "string"
           }
         },
-        "required": ["city", "postalCode", "street"],
+        "required": [
+          "city",
+          "postalCode",
+          "street"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5594,7 +5086,10 @@
             "format": "double"
           }
         },
-        "required": ["latitude", "longitude"],
+        "required": [
+          "latitude",
+          "longitude"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5602,14 +5097,19 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["EVA"],
+            "enum": [
+              "EVA"
+            ],
             "nullable": false
           },
           "value": {
             "type": "string"
           }
         },
-        "required": ["type", "value"],
+        "required": [
+          "type",
+          "value"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5617,14 +5117,19 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["RIL100"],
+            "enum": [
+              "RIL100"
+            ],
             "nullable": false
           },
           "value": {
             "type": "string"
           }
         },
-        "required": ["type", "value"],
+        "required": [
+          "type",
+          "value"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5632,14 +5137,19 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["STADA"],
+            "enum": [
+              "STADA"
+            ],
             "nullable": false
           },
           "value": {
             "type": "string"
           }
         },
-        "required": ["type", "value"],
+        "required": [
+          "type",
+          "value"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5647,14 +5157,19 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["GLOBAL_ID"],
+            "enum": [
+              "GLOBAL_ID"
+            ],
             "nullable": false
           },
           "value": {
             "type": "string"
           }
         },
-        "required": ["type", "value"],
+        "required": [
+          "type",
+          "value"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5684,7 +5199,10 @@
             "type": "string"
           }
         },
-        "required": ["identifier", "name"],
+        "required": [
+          "identifier",
+          "name"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5697,7 +5215,10 @@
             "type": "string"
           }
         },
-        "required": ["shortName", "name"],
+        "required": [
+          "shortName",
+          "name"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5713,7 +5234,11 @@
             "type": "string"
           }
         },
-        "required": ["identifier", "shortName", "name"],
+        "required": [
+          "identifier",
+          "shortName",
+          "name"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5726,7 +5251,10 @@
             "type": "string"
           }
         },
-        "required": ["name", "email"],
+        "required": [
+          "name",
+          "email"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5751,7 +5279,11 @@
             "type": "string"
           }
         },
-        "required": ["day", "openTime", "closeTime"],
+        "required": [
+          "day",
+          "openTime",
+          "closeTime"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5764,7 +5296,9 @@
             "type": "array"
           }
         },
-        "required": ["availability"],
+        "required": [
+          "availability"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5777,7 +5311,9 @@
             "type": "array"
           }
         },
-        "required": ["availability"],
+        "required": [
+          "availability"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -5945,65 +5481,6 @@
   },
   "openapi": "3.0.0",
   "paths": {
-    "/iris/v1/abfahrten/{evaId}": {
-      "get": {
-        "operationId": "Abfahrten v1",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AbfahrtenResult_number_"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["IRIS"],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "evaId",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "in Minutes",
-            "in": "query",
-            "name": "lookahead",
-            "required": false,
-            "schema": {
-              "format": "double",
-              "type": "number"
-            }
-          },
-          {
-            "description": "in Minutes",
-            "in": "query",
-            "name": "lookbehind",
-            "required": false,
-            "schema": {
-              "format": "double",
-              "type": "number"
-            }
-          },
-          {
-            "in": "query",
-            "name": "type",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "enum": ["open", "default"]
-            }
-          }
-        ]
-      }
-    },
     "/iris/v2/abfahrten/{evaId}": {
       "get": {
         "operationId": "Abfahrten v2",
@@ -6019,7 +5496,9 @@
             }
           }
         },
-        "tags": ["IRIS"],
+        "tags": [
+          "IRIS"
+        ],
         "security": [],
         "parameters": [
           {
@@ -6056,59 +5535,10 @@
             "required": false,
             "schema": {
               "type": "string",
-              "enum": ["open", "default"]
-            }
-          }
-        ]
-      }
-    },
-    "/hafas/v1/arrivalStationBoard": {
-      "get": {
-        "operationId": "Arrival Station Board v1",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/ArrivalStationBoardEntry_number_"
-                  },
-                  "type": "array"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["HAFAS"],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "description": "EvaId",
-            "in": "query",
-            "name": "station",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Unix Time (ms)",
-            "in": "query",
-            "name": "date",
-            "required": false,
-            "schema": {
-              "format": "double",
-              "type": "number"
-            }
-          },
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
+              "enum": [
+                "open",
+                "default"
+              ]
             }
           }
         ]
@@ -6132,7 +5562,9 @@
             }
           }
         },
-        "tags": ["HAFAS"],
+        "tags": [
+          "HAFAS"
+        ],
         "security": [],
         "parameters": [
           {
@@ -6164,62 +5596,6 @@
         ]
       }
     },
-    "/hafas/v1/auslastung/{start}/{destination}/{trainNumber}/{time}": {
-      "get": {
-        "operationId": "Auslastung v1",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Route$Auslastung"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["HAFAS"],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "start",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "path",
-            "name": "destination",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "path",
-            "name": "trainNumber",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Unix Time (ms)",
-            "in": "path",
-            "name": "time",
-            "required": true,
-            "schema": {
-              "format": "double",
-              "type": "number"
-            }
-          }
-        ]
-      }
-    },
     "/hafas/v2/auslastung/{start}/{destination}/{trainNumber}/{time}": {
       "get": {
         "operationId": "Auslastung v2",
@@ -6235,7 +5611,9 @@
             }
           }
         },
-        "tags": ["HAFAS"],
+        "tags": [
+          "HAFAS"
+        ],
         "security": [],
         "parameters": [
           {
@@ -6289,7 +5667,9 @@
             }
           }
         },
-        "tags": ["BusinessHub"],
+        "tags": [
+          "BusinessHub"
+        ],
         "security": [],
         "parameters": [
           {
@@ -6307,67 +5687,6 @@
             "schema": {
               "format": "date-time",
               "type": "string"
-            }
-          }
-        ]
-      }
-    },
-    "/hafas/v1/departureStationBoard": {
-      "get": {
-        "operationId": "Departure Station Board v1",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/DepartureStationBoardEntry_number_"
-                  },
-                  "type": "array"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["HAFAS"],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "description": "EvaId",
-            "in": "query",
-            "name": "station",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "EvaId",
-            "in": "query",
-            "name": "direction",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Unix Time (ms)",
-            "in": "query",
-            "name": "date",
-            "required": false,
-            "schema": {
-              "format": "double",
-              "type": "number"
-            }
-          },
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
             }
           }
         ]
@@ -6391,7 +5710,9 @@
             }
           }
         },
-        "tags": ["HAFAS"],
+        "tags": [
+          "HAFAS"
+        ],
         "security": [],
         "parameters": [
           {
@@ -6419,75 +5740,6 @@
             "schema": {
               "format": "date-time",
               "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ]
-      }
-    },
-    "/hafas/v1/details/{trainName}": {
-      "get": {
-        "operationId": "Details v1",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ParsedSearchOnTripResponse_number_"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Train not found"
-          }
-        },
-        "tags": ["HAFAS"],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "trainName",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Unix Time (ms)",
-            "in": "query",
-            "name": "stop",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "EVA Id of a stop of your train",
-            "in": "query",
-            "name": "station",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Initial Departure Date (Unix Timestap)",
-            "in": "query",
-            "name": "date",
-            "required": false,
-            "schema": {
-              "format": "double",
-              "type": "number"
             }
           },
           {
@@ -6519,7 +5771,9 @@
             "description": "Train not found"
           }
         },
-        "tags": ["HAFAS"],
+        "tags": [
+          "HAFAS"
+        ],
         "security": [],
         "parameters": [
           {
@@ -6585,7 +5839,9 @@
             "description": "No station found"
           }
         },
-        "tags": ["Station"],
+        "tags": [
+          "Station"
+        ],
         "security": [],
         "parameters": [
           {
@@ -6617,7 +5873,9 @@
             }
           }
         },
-        "tags": ["HAFAS"],
+        "tags": [
+          "HAFAS"
+        ],
         "security": [],
         "parameters": [
           {
@@ -6677,7 +5935,9 @@
             }
           }
         },
-        "tags": ["Station"],
+        "tags": [
+          "Station"
+        ],
         "security": [],
         "parameters": [
           {
@@ -6729,7 +5989,9 @@
             }
           }
         },
-        "tags": ["BusinessHub"],
+        "tags": [
+          "BusinessHub"
+        ],
         "security": [],
         "parameters": [
           {
@@ -6761,7 +6023,9 @@
             }
           }
         },
-        "tags": ["BusinessHub"],
+        "tags": [
+          "BusinessHub"
+        ],
         "deprecated": true,
         "security": [],
         "parameters": [
@@ -6791,7 +6055,9 @@
             }
           }
         },
-        "tags": ["HAFAS Experimental"],
+        "tags": [
+          "HAFAS Experimental"
+        ],
         "security": [],
         "parameters": [
           {
@@ -6831,7 +6097,9 @@
             }
           }
         },
-        "tags": ["HAFAS Experimental"],
+        "tags": [
+          "HAFAS Experimental"
+        ],
         "security": [],
         "parameters": [
           {
@@ -6870,7 +6138,9 @@
             }
           }
         },
-        "tags": ["Station"],
+        "tags": [
+          "Station"
+        ],
         "security": [],
         "parameters": [
           {
@@ -6897,7 +6167,9 @@
             }
           }
         },
-        "tags": ["HAFAS Experimental"],
+        "tags": [
+          "HAFAS Experimental"
+        ],
         "security": [],
         "parameters": [
           {
@@ -6936,7 +6208,9 @@
             }
           }
         },
-        "tags": ["HAFAS"],
+        "tags": [
+          "HAFAS"
+        ],
         "security": [],
         "parameters": [
           {
@@ -6973,7 +6247,9 @@
             }
           }
         },
-        "tags": ["HAFAS Experimental"],
+        "tags": [
+          "HAFAS Experimental"
+        ],
         "security": [],
         "parameters": [
           {
@@ -6991,49 +6267,6 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/JourneyGraphRequestOptions"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/hafas/v1/journeyMatch": {
-      "post": {
-        "operationId": "Journey Match v1",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/ParsedJourneyMatchResponse_number_"
-                  },
-                  "type": "array"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["HAFAS"],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/JourneyMatchOptions_number_"
               }
             }
           }
@@ -7058,7 +6291,9 @@
             }
           }
         },
-        "tags": ["HAFAS"],
+        "tags": [
+          "HAFAS"
+        ],
         "security": [],
         "parameters": [
           {
@@ -7095,7 +6330,9 @@
             }
           }
         },
-        "tags": ["HAFAS Experimental"],
+        "tags": [
+          "HAFAS Experimental"
+        ],
         "security": [],
         "parameters": [
           {
@@ -7119,44 +6356,6 @@
         }
       }
     },
-    "/hafas/v1/journeyDetails": {
-      "get": {
-        "operationId": "JourneyDetails v1",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ParsedJourneyDetails_number_"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["HAFAS"],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "jid",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ]
-      }
-    },
     "/hafas/v2/journeyDetails": {
       "get": {
         "operationId": "JourneyDetails v2",
@@ -7172,7 +6371,9 @@
             }
           }
         },
-        "tags": ["HAFAS"],
+        "tags": [
+          "HAFAS"
+        ],
         "security": [],
         "parameters": [
           {
@@ -7209,7 +6410,9 @@
             }
           }
         },
-        "tags": ["Bahnhof"],
+        "tags": [
+          "Bahnhof"
+        ],
         "security": [],
         "parameters": [
           {
@@ -7246,7 +6449,9 @@
             }
           }
         },
-        "tags": ["HAFAS"],
+        "tags": [
+          "HAFAS"
+        ],
         "security": [],
         "parameters": [
           {
@@ -7281,7 +6486,9 @@
             }
           }
         },
-        "tags": ["SBB Experimental"],
+        "tags": [
+          "SBB Experimental"
+        ],
         "security": [],
         "parameters": [],
         "requestBody": {
@@ -7290,46 +6497,6 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/RoutingOptions"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/hafas/v1/searchOnTrip": {
-      "post": {
-        "operationId": "Search on Trip v1",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SingleRoute_number_"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["HAFAS"],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SearchOnTripBody"
               }
             }
           }
@@ -7351,7 +6518,9 @@
             }
           }
         },
-        "tags": ["HAFAS"],
+        "tags": [
+          "HAFAS"
+        ],
         "security": [],
         "parameters": [
           {
@@ -7393,7 +6562,9 @@
             }
           }
         },
-        "tags": ["Station"],
+        "tags": [
+          "Station"
+        ],
         "security": [],
         "parameters": [
           {
@@ -7442,7 +6613,9 @@
             }
           }
         },
-        "tags": ["SBB Experimental"],
+        "tags": [
+          "SBB Experimental"
+        ],
         "security": [],
         "parameters": [
           {
@@ -7471,7 +6644,9 @@
             }
           }
         },
-        "tags": ["Station"],
+        "tags": [
+          "Station"
+        ],
         "security": [],
         "parameters": [
           {
@@ -7500,7 +6675,9 @@
             }
           }
         },
-        "tags": ["HAFAS Subscribe"],
+        "tags": [
+          "HAFAS Subscribe"
+        ],
         "security": [],
         "parameters": [
           {
@@ -7539,7 +6716,9 @@
             }
           }
         },
-        "tags": ["HAFAS Subscribe"],
+        "tags": [
+          "HAFAS Subscribe"
+        ],
         "security": [],
         "parameters": [
           {
@@ -7578,7 +6757,9 @@
             }
           }
         },
-        "tags": ["HAFAS Subscribe"],
+        "tags": [
+          "HAFAS Subscribe"
+        ],
         "security": [],
         "parameters": [
           {
@@ -7617,7 +6798,9 @@
             }
           }
         },
-        "tags": ["HAFAS Subscribe"],
+        "tags": [
+          "HAFAS Subscribe"
+        ],
         "security": [],
         "parameters": [
           {
@@ -7656,7 +6839,9 @@
             }
           }
         },
-        "tags": ["HAFAS Subscribe"],
+        "tags": [
+          "HAFAS Subscribe"
+        ],
         "security": [],
         "parameters": [
           {
@@ -7702,7 +6887,9 @@
             }
           }
         },
-        "tags": ["HAFAS Subscribe"],
+        "tags": [
+          "HAFAS Subscribe"
+        ],
         "security": [],
         "parameters": [
           {
@@ -7739,7 +6926,9 @@
             }
           }
         },
-        "tags": ["Reihung"],
+        "tags": [
+          "Reihung"
+        ],
         "security": [],
         "parameters": [
           {
@@ -7752,46 +6941,6 @@
             }
           }
         ]
-      }
-    },
-    "/hafas/v2/tripSearch": {
-      "post": {
-        "operationId": "TripSearch v2",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RoutingResult_number_"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["HAFAS"],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TripSearchOptionsV2"
-              }
-            }
-          }
-        }
       }
     },
     "/hafas/v3/tripSearch": {
@@ -7809,7 +6958,9 @@
             }
           }
         },
-        "tags": ["HAFAS"],
+        "tags": [
+          "HAFAS"
+        ],
         "security": [],
         "parameters": [
           {
@@ -7833,46 +6984,6 @@
         }
       }
     },
-    "/reihung/v1/wagen/{trainNumber}/{date}": {
-      "get": {
-        "operationId": "Wagenreihung v1",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Formation"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["Reihung"],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "trainNumber",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Unix Time (ms)",
-            "in": "path",
-            "name": "date",
-            "required": true,
-            "schema": {
-              "format": "double",
-              "type": "number"
-            }
-          }
-        ]
-      }
-    },
     "/reihung/v2/wagen/{trainNumber}/{date}": {
       "get": {
         "operationId": "Wagenreihung v2",
@@ -7888,7 +6999,9 @@
             }
           }
         },
-        "tags": ["Reihung"],
+        "tags": [
+          "Reihung"
+        ],
         "security": [],
         "parameters": [
           {
@@ -7911,44 +7024,6 @@
         ]
       }
     },
-    "/iris/v1/wings/{rawId1}/{rawId2}": {
-      "get": {
-        "operationId": "WingInfo v1",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/WingDefinition_number_"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["IRIS"],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "rawId1",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "path",
-            "name": "rawId2",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      }
-    },
     "/iris/v2/wings/{rawId1}/{rawId2}": {
       "get": {
         "operationId": "WingInfo v2",
@@ -7964,7 +7039,9 @@
             }
           }
         },
-        "tags": ["IRIS"],
+        "tags": [
+          "IRIS"
+        ],
         "security": [],
         "parameters": [
           {

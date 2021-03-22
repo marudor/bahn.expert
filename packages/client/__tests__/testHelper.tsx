@@ -55,7 +55,7 @@ export function render<CP extends ComponentType<any>>(
   Comp: CP,
   props?: ComponentProps<CP>,
   { withNavigation, context, commonConfig, provider }: Options = {},
-): ReturnType<typeof realRender> & {
+): Omit<ReturnType<typeof realRender>, 'container'> & {
   container: ChildNode | null;
   theme: DefaultTheme;
   cookies: Cookies;

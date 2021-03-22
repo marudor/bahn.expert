@@ -1,6 +1,5 @@
 import {
   Controller,
-  Deprecated,
   Get,
   Hidden,
   OperationId,
@@ -8,27 +7,11 @@ import {
   SuccessResponse,
   Tags,
 } from 'tsoa';
-import { wagenreihung } from 'server/Reihung';
 import { WRForNumber, WRForTZ } from 'server/Reihung/searchWR';
 import TrainNames from 'server/Reihung/TrainNames';
-import type { Formation } from 'types/reihung';
 
 @Route('/reihung/v1')
 export class ReihungControllerV1 extends Controller {
-  @Deprecated()
-  @Get('/wagen/{trainNumber}/{date}')
-  @Tags('Reihung')
-  @OperationId('Wagenreihung v1')
-  wagenreihung(
-    trainNumber: string,
-    /**
-     * Unix Time (ms)
-     */
-    date: number,
-  ): Promise<Formation> {
-    return wagenreihung(trainNumber, new Date(date));
-  }
-
   @SuccessResponse(200, 'Train name. May be undefined')
   @Get('/trainName/{tz}')
   @Tags('Reihung')
