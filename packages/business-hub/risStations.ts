@@ -7,6 +7,8 @@ import type {
   Platform,
   Platforms,
   StopPlace,
+  StopPlaceKey,
+  StopPlaceKeys,
   StopPlaces,
   StopPlaceSearchResult,
   StopPlaceSearchResults,
@@ -39,6 +41,14 @@ export async function byName(
   }
 
   return result.stopPlaces || [];
+}
+
+export async function keys(evaNumber: string): Promise<StopPlaceKey[]> {
+  return (
+    await request.get<StopPlaceKeys>(
+      `/ris-stations/v1/stop-places/${evaNumber}/keys`,
+    )
+  ).data.keys;
 }
 
 export async function byRl100(rl100: string): Promise<StopPlace | undefined> {

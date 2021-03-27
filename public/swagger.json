@@ -131,91 +131,6 @@
         "type": "object",
         "additionalProperties": false
       },
-      "LimitationEnum": {
-        "enum": ["true", "false", "unknown", "not applicable"],
-        "type": "string"
-      },
-      "QuayAccessibilityLimitation": {
-        "properties": {
-          "audibleSignalsAvailable": {
-            "$ref": "#/components/schemas/LimitationEnum"
-          },
-          "automaticDoor": {
-            "$ref": "#/components/schemas/LimitationEnum"
-          },
-          "boardingAid": {
-            "$ref": "#/components/schemas/LimitationEnum"
-          },
-          "passengerInformationDisplay": {
-            "$ref": "#/components/schemas/LimitationEnum"
-          },
-          "platformHeight": {
-            "$ref": "#/components/schemas/LimitationEnum"
-          },
-          "platformSign": {
-            "$ref": "#/components/schemas/LimitationEnum"
-          },
-          "stairsMarking": {
-            "$ref": "#/components/schemas/LimitationEnum"
-          },
-          "stepFreeAccess": {
-            "$ref": "#/components/schemas/LimitationEnum"
-          },
-          "tactileGuidingStrips": {
-            "$ref": "#/components/schemas/LimitationEnum"
-          },
-          "tactileHandrailLabel": {
-            "$ref": "#/components/schemas/LimitationEnum"
-          },
-          "tactilePlatformAccess": {
-            "$ref": "#/components/schemas/LimitationEnum"
-          }
-        },
-        "required": [
-          "audibleSignalsAvailable",
-          "automaticDoor",
-          "boardingAid",
-          "passengerInformationDisplay",
-          "platformHeight",
-          "platformSign",
-          "stairsMarking",
-          "stepFreeAccess",
-          "tactileGuidingStrips",
-          "tactileHandrailLabel",
-          "tactilePlatformAccess"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "QuayAccessibilityAssessment": {
-        "properties": {
-          "accessibilityLimitation": {
-            "$ref": "#/components/schemas/QuayAccessibilityLimitation"
-          }
-        },
-        "required": ["accessibilityLimitation"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "Quay": {
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "accessibilityAssessment": {
-            "$ref": "#/components/schemas/QuayAccessibilityAssessment"
-          },
-          "quayType": {
-            "type": "string"
-          }
-        },
-        "required": ["id", "name", "accessibilityAssessment", "quayType"],
-        "type": "object",
-        "additionalProperties": false
-      },
       "Sector": {
         "description": "Platform [Gleis, Bahnsteig, Plattform] sector [Gleisabschnitt, Steigabschnitt] information.",
         "properties": {
@@ -4924,6 +4839,76 @@
         ],
         "type": "object",
         "additionalProperties": false
+      },
+      "TransportType": {
+        "description": "Type of transport.\n- HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.)\n- INTERCITY_TRAIN (Inter city train [Intercityzug])\n- INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug])\n- REGIONAL_TRAIN (Regional train [Regionalzug])\n- CITY_TRAIN (City train [S-Bahn])\n- SUBWAY (Subway [U-Bahn])\n- TRAM (Tram [Strassenbahn])\n- BUS (Bus [Bus])\n- FERRY (Ferry [Faehre])\n- FLIGHT (Flight [Flugzeug])\n- CAR (Car [Auto])\n- TAXI (Taxi)\n- SHUTTLE (Shuttle [Ruftaxi])\n- BIKE ((E-)Bike [Fahrrad])\n- SCOOTER ((E-)Scooter [Roller])\n- WALK (Walk ([Laufen])\n- UNKNOWN (Unknown)",
+        "enum": [
+          "HIGH_SPEED_TRAIN",
+          "INTERCITY_TRAIN",
+          "INTER_REGIONAL_TRAIN",
+          "REGIONAL_TRAIN",
+          "CITY_TRAIN",
+          "SUBWAY",
+          "TRAM",
+          "BUS",
+          "FERRY",
+          "FLIGHT",
+          "CAR",
+          "TAXI",
+          "SHUTTLE",
+          "BIKE",
+          "SCOOTER",
+          "WALK",
+          "UNKNOWN"
+        ],
+        "type": "string"
+      },
+      "StopPlaceIdentifier": {
+        "properties": {
+          "stationId": {
+            "type": "string"
+          },
+          "ifopt": {
+            "type": "string",
+            "description": "also known as DHID, globalId"
+          },
+          "ril100": {
+            "type": "string"
+          },
+          "alternativeRil100": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
+      "GroupedStopPlace": {
+        "properties": {
+          "evaNumber": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "availableTransports": {
+            "items": {
+              "$ref": "#/components/schemas/TransportType"
+            },
+            "type": "array"
+          },
+          "position": {
+            "$ref": "#/components/schemas/Coordinate2D"
+          },
+          "identifier": {
+            "$ref": "#/components/schemas/StopPlaceIdentifier"
+          }
+        },
+        "required": ["evaNumber", "name", "availableTransports"],
+        "type": "object",
+        "additionalProperties": false
       }
     },
     "securitySchemes": {}
@@ -5281,6 +5266,7 @@
           }
         },
         "tags": ["Station"],
+        "deprecated": true,
         "security": [],
         "parameters": [
           {
@@ -5373,6 +5359,7 @@
           }
         },
         "tags": ["Station"],
+        "deprecated": true,
         "security": [],
         "parameters": [
           {
@@ -5426,39 +5413,6 @@
           }
         },
         "tags": ["BusinessHub"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "evaNumber",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      }
-    },
-    "/businessHub/v1/stationQuays/{evaNumber}": {
-      "get": {
-        "operationId": "Gleise",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/Quay"
-                  },
-                  "type": "array"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["BusinessHub"],
-        "deprecated": true,
         "security": [],
         "parameters": [
           {
@@ -5567,6 +5521,7 @@
           }
         },
         "tags": ["Station"],
+        "deprecated": true,
         "security": [],
         "parameters": [
           {
@@ -5969,6 +5924,7 @@
           }
         },
         "tags": ["Station"],
+        "deprecated": true,
         "security": [],
         "parameters": [
           {
@@ -6047,6 +6003,7 @@
           }
         },
         "tags": ["Station"],
+        "deprecated": true,
         "security": [],
         "parameters": [
           {
@@ -6055,6 +6012,147 @@
             "required": true,
             "schema": {
               "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/stopPlace/v1/geoSearch": {
+      "get": {
+        "operationId": "StopPlaceGeoSearch",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/GroupedStopPlace"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["StopPlace"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "lat",
+            "required": true,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "lng",
+            "required": true,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "meter",
+            "in": "query",
+            "name": "radius",
+            "required": false,
+            "schema": {
+              "default": 500,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filterForIris",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ]
+      }
+    },
+    "/stopPlace/v1/{evaNumber}/identifier": {
+      "get": {
+        "operationId": "StopPlaceIdentifier",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StopPlaceIdentifier"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["StopPlace"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "evaNumber",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/stopPlace/v1/search/{searchTerm}": {
+      "get": {
+        "operationId": "StopPlaceSearch",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/GroupedStopPlace"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["StopPlace"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "searchTerm",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "max",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filterForIris",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
             }
           }
         ]

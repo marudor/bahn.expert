@@ -25,6 +25,9 @@ export enum CacheDatabases {
   HVVLageplan,
   NAHSHLageplan,
   RISGeo,
+  StopPlaceSearch,
+  StopPlaceGeo,
+  StopPlaceIdentifier,
 }
 const activeCaches = new Set();
 

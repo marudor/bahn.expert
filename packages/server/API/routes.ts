@@ -28,6 +28,8 @@ import { ReihungControllerV2 } from './controller/Reihung/v2';
 import { SBBExperimentalController } from './controller/SBB/experimental';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { StationController } from './controller/Station/v1';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { StopPlaceController } from './controller/StopPlace/v1';
 import * as KoaRouter from '@koa/router';
 
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -95,48 +97,6 @@ const models: TsoaRoute.Models = {
         "dataType": "refObject",
         "properties": {
             "items": {"dataType":"array","array":{"ref":"OccupancyItem"},"required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "LimitationEnum": {
-        "dataType": "refEnum",
-        "enums": ["true","false","unknown","not applicable"],
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "QuayAccessibilityLimitation": {
-        "dataType": "refObject",
-        "properties": {
-            "audibleSignalsAvailable": {"ref":"LimitationEnum","required":true},
-            "automaticDoor": {"ref":"LimitationEnum","required":true},
-            "boardingAid": {"ref":"LimitationEnum","required":true},
-            "passengerInformationDisplay": {"ref":"LimitationEnum","required":true},
-            "platformHeight": {"ref":"LimitationEnum","required":true},
-            "platformSign": {"ref":"LimitationEnum","required":true},
-            "stairsMarking": {"ref":"LimitationEnum","required":true},
-            "stepFreeAccess": {"ref":"LimitationEnum","required":true},
-            "tactileGuidingStrips": {"ref":"LimitationEnum","required":true},
-            "tactileHandrailLabel": {"ref":"LimitationEnum","required":true},
-            "tactilePlatformAccess": {"ref":"LimitationEnum","required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "QuayAccessibilityAssessment": {
-        "dataType": "refObject",
-        "properties": {
-            "accessibilityLimitation": {"ref":"QuayAccessibilityLimitation","required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Quay": {
-        "dataType": "refObject",
-        "properties": {
-            "id": {"dataType":"string","required":true},
-            "name": {"dataType":"string","required":true},
-            "accessibilityAssessment": {"ref":"QuayAccessibilityAssessment","required":true},
-            "quayType": {"dataType":"string","required":true},
         },
         "additionalProperties": false,
     },
@@ -2069,6 +2029,34 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "TransportType": {
+        "dataType": "refEnum",
+        "enums": ["HIGH_SPEED_TRAIN","INTERCITY_TRAIN","INTER_REGIONAL_TRAIN","REGIONAL_TRAIN","CITY_TRAIN","SUBWAY","TRAM","BUS","FERRY","FLIGHT","CAR","TAXI","SHUTTLE","BIKE","SCOOTER","WALK","UNKNOWN"],
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "StopPlaceIdentifier": {
+        "dataType": "refObject",
+        "properties": {
+            "stationId": {"dataType":"string"},
+            "ifopt": {"dataType":"string"},
+            "ril100": {"dataType":"string"},
+            "alternativeRil100": {"dataType":"array","array":{"dataType":"string"}},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "GroupedStopPlace": {
+        "dataType": "refObject",
+        "properties": {
+            "evaNumber": {"dataType":"string","required":true},
+            "name": {"dataType":"string","required":true},
+            "availableTransports": {"dataType":"array","array":{"dataType":"refEnum","enums":["HIGH_SPEED_TRAIN","INTERCITY_TRAIN","INTER_REGIONAL_TRAIN","REGIONAL_TRAIN","CITY_TRAIN","SUBWAY","TRAM","BUS","FERRY","FLIGHT","CAR","TAXI","SHUTTLE","BIKE","SCOOTER","WALK","UNKNOWN"]},"required":true},
+            "position": {"ref":"Coordinate2D"},
+            "identifier": {"ref":"StopPlaceIdentifier"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 };
 const validationService = new ValidationService(models);
 
@@ -2118,26 +2106,6 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new BusinessHubV1Controller();
 
             const promise = controller.stationOccupancy.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, next);
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        router.get('/api/businessHub/v1/stationQuays/:evaNumber',
-            async function BusinessHubV1Controller_quays(context: any, next: any) {
-            const args = {
-                    evaNumber: {"in":"path","name":"evaNumber","required":true,"dataType":"string"},
-            };
-
-            let validatedArgs: any[] = [];
-            try {
-              validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
-              context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
-            }
-
-            const controller = new BusinessHubV1Controller();
-
-            const promise = controller.quays.apply(controller, validatedArgs as any);
             return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -3017,6 +2985,71 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new StationController();
 
             const promise = controller.ds100.apply(controller, validatedArgs as any);
+            return promiseHandler(controller, promise, context, undefined, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        router.get('/api/stopPlace/v1/search/:searchTerm',
+            async function StopPlaceController_stopPlaceSearch(context: any, next: any) {
+            const args = {
+                    searchTerm: {"in":"path","name":"searchTerm","required":true,"dataType":"string"},
+                    max: {"in":"query","name":"max","dataType":"integer","validators":{"isInt":{"errorMsg":"max"}}},
+                    filterForIris: {"default":false,"in":"query","name":"filterForIris","dataType":"boolean"},
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+              validatedArgs = getValidatedArgs(args, context, next);
+            } catch (error) {
+              context.status = error.status;
+              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+            }
+
+            const controller = new StopPlaceController();
+
+            const promise = controller.stopPlaceSearch.apply(controller, validatedArgs as any);
+            return promiseHandler(controller, promise, context, undefined, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        router.get('/api/stopPlace/v1/geoSearch',
+            async function StopPlaceController_stopPlaceGeoSearch(context: any, next: any) {
+            const args = {
+                    lat: {"in":"query","name":"lat","required":true,"dataType":"integer","validators":{"isInt":{"errorMsg":"lat"}}},
+                    lng: {"in":"query","name":"lng","required":true,"dataType":"integer","validators":{"isInt":{"errorMsg":"lng"}}},
+                    radius: {"default":500,"in":"query","name":"radius","dataType":"integer","validators":{"isInt":{"errorMsg":"radius"}}},
+                    filterForIris: {"default":false,"in":"query","name":"filterForIris","dataType":"boolean"},
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+              validatedArgs = getValidatedArgs(args, context, next);
+            } catch (error) {
+              context.status = error.status;
+              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+            }
+
+            const controller = new StopPlaceController();
+
+            const promise = controller.stopPlaceGeoSearch.apply(controller, validatedArgs as any);
+            return promiseHandler(controller, promise, context, undefined, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        router.get('/api/stopPlace/v1/:evaNumber/identifier',
+            async function StopPlaceController_stopPlaceIdentifier(context: any, next: any) {
+            const args = {
+                    evaNumber: {"in":"path","name":"evaNumber","required":true,"dataType":"string"},
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+              validatedArgs = getValidatedArgs(args, context, next);
+            } catch (error) {
+              context.status = error.status;
+              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+            }
+
+            const controller = new StopPlaceController();
+
+            const promise = controller.stopPlaceIdentifier.apply(controller, validatedArgs as any);
             return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

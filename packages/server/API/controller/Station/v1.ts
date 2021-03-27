@@ -1,6 +1,15 @@
 import { byPosition, byRl100, stationDetails } from 'business-hub';
 import { CacheDatabases, createNewCache } from 'server/cache';
-import { Controller, Get, Query, Request, Response, Route, Tags } from 'tsoa';
+import {
+  Controller,
+  Deprecated,
+  Get,
+  Query,
+  Request,
+  Response,
+  Route,
+  Tags,
+} from 'tsoa';
 import { getStation } from 'server/iris/station';
 import { StationSearchType } from 'types/station';
 import stationSearch from 'server/Search';
@@ -36,6 +45,7 @@ export const validationOverwrite = [
 export class StationController extends Controller {
   @Get('/search/{searchTerm}')
   @Tags('Station')
+  @Deprecated()
   async searchStation(
     @Request() ctx: Context,
     searchTerm: string,
@@ -56,6 +66,7 @@ export class StationController extends Controller {
    */
   @Get('/geoSearch')
   @Tags('Station')
+  @Deprecated()
   async geoSearch(
     @Query() lat: number,
     @Query() lng: number,
@@ -76,12 +87,14 @@ export class StationController extends Controller {
 
   @Get('/iris/{evaId}')
   @Tags('Station')
+  @Deprecated()
   irisSearch(evaId: string): Promise<IrisStationWithRelated> {
     return getStation(evaId, 1);
   }
 
   @Get('/station/{evaId}')
   @Tags('Station')
+  @Deprecated()
   stationDetails(evaId: string): Promise<DetailBusinessHubStation> {
     return stationDetails(evaId);
   }
@@ -89,6 +102,7 @@ export class StationController extends Controller {
   @Response(400, 'No station found')
   @Get('/ds100/{ds100}')
   @Tags('Station')
+  @Deprecated()
   async ds100(ds100: string): Promise<Station> {
     const station = await byRl100(ds100);
 
