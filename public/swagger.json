@@ -513,7 +513,7 @@
         "type": "object",
         "additionalProperties": false
       },
-      "ParsedHimMessage_Date_": {
+      "ParsedHimMessage": {
         "properties": {
           "hid": {
             "type": "string"
@@ -643,7 +643,7 @@
         "properties": {
           "messages": {
             "items": {
-              "$ref": "#/components/schemas/ParsedHimMessage_Date_"
+              "$ref": "#/components/schemas/ParsedHimMessage"
             },
             "type": "array"
           }
@@ -5380,8 +5380,8 @@
             "name": "lat",
             "required": true,
             "schema": {
-              "format": "double",
-              "type": "number"
+              "format": "int32",
+              "type": "integer"
             }
           },
           {
@@ -5389,19 +5389,19 @@
             "name": "lng",
             "required": true,
             "schema": {
-              "format": "double",
-              "type": "number"
+              "format": "int32",
+              "type": "integer"
             }
           },
           {
-            "description": "meter, defaults to 500",
+            "description": "meter",
             "in": "query",
             "name": "radius",
             "required": false,
             "schema": {
               "default": 500,
-              "format": "double",
-              "type": "number"
+              "format": "int32",
+              "type": "integer"
             }
           }
         ]

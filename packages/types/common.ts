@@ -1,7 +1,7 @@
-export interface CommonRoutingOptions<T = Date> {
+export interface CommonRoutingOptions {
   // evaid
   start: string;
   // evaid
   destination: string;
-  time?: T;
+  time?: Date;
 }

@@ -49,14 +49,17 @@ export class StationController extends Controller {
     return result;
   }
 
+  /**
+   * @isInt lat
+   * @isInt lng
+   * @isInt radius
+   */
   @Get('/geoSearch')
   @Tags('Station')
   async geoSearch(
     @Query() lat: number,
     @Query() lng: number,
-    /**
-     * meter, defaults to 500
-     */
+    /** meter */
     @Query() radius = 500,
   ): Promise<CommonStationWithLocation[]> {
     const cacheKey = `${lat}${lng}${radius}`;

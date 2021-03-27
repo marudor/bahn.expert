@@ -262,7 +262,7 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "ParsedHimMessage_Date_": {
+    "ParsedHimMessage": {
         "dataType": "refObject",
         "properties": {
             "hid": {"dataType":"string","required":true},
@@ -296,7 +296,7 @@ const models: TsoaRoute.Models = {
     "ParsedHimSearchResponse": {
         "dataType": "refObject",
         "properties": {
-            "messages": {"dataType":"array","array":{"ref":"ParsedHimMessage_Date_"},"required":true},
+            "messages": {"dataType":"array","array":{"ref":"ParsedHimMessage"},"required":true},
         },
         "additionalProperties": false,
     },
@@ -2941,9 +2941,9 @@ export function RegisterRoutes(router: KoaRouter) {
         router.get('/api/station/v1/geoSearch',
             async function StationController_geoSearch(context: any, next: any) {
             const args = {
-                    lat: {"in":"query","name":"lat","required":true,"dataType":"double"},
-                    lng: {"in":"query","name":"lng","required":true,"dataType":"double"},
-                    radius: {"default":500,"in":"query","name":"radius","dataType":"double"},
+                    lat: {"in":"query","name":"lat","required":true,"dataType":"integer","validators":{"isInt":{"errorMsg":"lat"}}},
+                    lng: {"in":"query","name":"lng","required":true,"dataType":"integer","validators":{"isInt":{"errorMsg":"lng"}}},
+                    radius: {"default":500,"in":"query","name":"radius","dataType":"integer","validators":{"isInt":{"errorMsg":"radius"}}},
             };
 
             let validatedArgs: any[] = [];

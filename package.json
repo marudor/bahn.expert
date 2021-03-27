@@ -31,7 +31,6 @@
     "e2e:local": "cypress open",
     "e2e:ci": "cypress run",
     "doc:start": "./startDocServer.sh",
-    "doc:gen": "yarn workspace server run doc:gen",
     "doc:build": "yarn workspace server run doc:build",
     "doc:build:gitadd": "yarn doc:build && git add public/swagger.json && git add packages/server/API/routes.ts",
     "lint-staged": "lint-staged"
