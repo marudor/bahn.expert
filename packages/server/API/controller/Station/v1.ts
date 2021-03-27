@@ -1,4 +1,5 @@
 import { byPosition, byRl100, stationDetails } from 'business-hub';
+import { CacheDatabases, createNewCache } from 'server/cache';
 import { Controller, Get, Query, Request, Response, Route, Tags } from 'tsoa';
 import { getStation } from 'server/iris/station';
 import { StationSearchType } from 'types/station';
@@ -10,6 +11,11 @@ import type {
 } from 'types/station';
 import type { Context, Next } from 'koa';
 import type { DetailBusinessHubStation } from 'business-hub/types/StopPlaces';
+
+const geoCache = createNewCache<string, CommonStationWithLocation[]>(
+  3 * 24 * 60 * 60,
+  CacheDatabases.RISGeo,
+);
 
 export const validationOverwrite = [
   {
@@ -45,21 +51,24 @@ export class StationController extends Controller {
 
   @Get('/geoSearch')
   @Tags('Station')
-  geoSearch(
+  async geoSearch(
     @Query() lat: number,
     @Query() lng: number,
     /**
      * meter, defaults to 500
      */
-    @Query() radius?: number,
+    @Query() radius = 500,
   ): Promise<CommonStationWithLocation[]> {
-    return byPosition(lat, lng, radius || 500).then((list) =>
-      list.map((s) => ({
-        title: s.names.DE.nameLong,
-        id: s.evaNumber,
-        location: s.position,
-      })),
-    );
+    const cacheKey = `${lat}${lng}${radius}`;
+    const cached = await geoCache.get(cacheKey);
+    if (cached) return cached;
+    const result = (await byPosition(lat, lng, radius)).map((s) => ({
+      title: s.names.DE.nameLong,
+      id: s.evaNumber,
+      location: s.position,
+    }));
+    void geoCache.set(cacheKey, result);
+    return result;
   }
 
   @Get('/iris/{evaId}')
