@@ -31,7 +31,6 @@ export type Route$JourneySegment =
  */
 export enum AuslastungsValue {
   Gering = 1,
-  // Hoch
   Hoch,
   SehrHoch,
   Ausgebucht,

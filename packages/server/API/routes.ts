@@ -2072,6 +2072,22 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "NormalizedTrainOccupancy": {
+        "dataType": "refObject",
+        "properties": {
+            "first": {"ref":"AuslastungsValue","required":true},
+            "second": {"ref":"AuslastungsValue","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "TrainOccupancyList": {
+        "dataType": "refObject",
+        "properties": {
+        },
+        "additionalProperties": {"dataType":"union","subSchemas":[{"ref":"NormalizedTrainOccupancy"},{"dataType":"enum","enums":[null]}]},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 };
 const validationService = new ValidationService(models);
 
@@ -3091,6 +3107,27 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new StopPlaceController();
 
             const promise = controller.stopPlaceIdentifier.apply(controller, validatedArgs as any);
+            return promiseHandler(controller, promise, context, undefined, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        router.get('/api/stopPlace/v1/:evaNumber/trainOccupancy',
+            async function StopPlaceController_trainOccupancy(context: any, next: any) {
+            const args = {
+                    evaNumber: {"in":"path","name":"evaNumber","required":true,"ref":"EvaNumber"},
+                    notFoundResponse: {"in":"res","name":"404","required":true,"dataType":"void"},
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+              validatedArgs = getValidatedArgs(args, context, next);
+            } catch (error) {
+              context.status = error.status;
+              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+            }
+
+            const controller = new StopPlaceController();
+
+            const promise = controller.trainOccupancy.apply(controller, validatedArgs as any);
             return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

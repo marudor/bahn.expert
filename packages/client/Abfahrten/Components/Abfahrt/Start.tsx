@@ -8,6 +8,7 @@ import {
   useAbfahrtenConfig,
   useAbfahrtenUrlPrefix,
 } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
+import { VRRAuslastung } from 'client/Abfahrten/Components/Abfahrt/VRRAuslastung';
 import type { FC } from 'react';
 
 const useStyles = makeStyles((theme) => ({
@@ -65,7 +66,7 @@ export const Start: FC = () => {
       {abfahrt.substitute && abfahrt.ref && (
         <Substitute substitute={abfahrt.ref} />
       )}
-      {detail && abfahrt.auslastung && <Auslastung />}
+      {detail && (abfahrt.auslastung ? <Auslastung /> : <VRRAuslastung />)}
     </div>
   );
 };

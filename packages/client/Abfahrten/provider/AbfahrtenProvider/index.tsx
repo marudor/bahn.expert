@@ -151,7 +151,7 @@ export const [
   (v) => v.departures,
   (v) => v.error,
   (v) => v.currentStopPlace,
-  ({ departures, error, currentStopPlace: currentStation, ...r }) => r,
+  ({ departures, error, currentStopPlace, ...r }) => r,
 );
 
 interface Props {

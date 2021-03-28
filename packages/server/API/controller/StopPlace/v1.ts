@@ -1,3 +1,4 @@
+import { AuslastungsValue } from 'types/routing';
 import { Controller, Get, Query, Res, Response, Route, Tags } from 'tsoa';
 import {
   geoSearchStopPlace,
@@ -5,8 +6,16 @@ import {
   getStopPlaceByEva,
   searchStopPlace,
 } from 'server/StopPlace/search';
+import axios from 'axios';
 import type { EvaNumber } from 'types/common';
-import type { GroupedStopPlace, StopPlaceIdentifier } from 'types/stopPlace';
+import type {
+  GroupedStopPlace,
+  StopPlaceIdentifier,
+  TrainOccupancy,
+  TrainOccupancyList,
+  VRRTrainOccupancy,
+  VRRTrainOccupancyValues,
+} from 'types/stopPlace';
 import type { TsoaResponse } from 'tsoa';
 
 @Route('/stopPlace/v1')
@@ -70,5 +79,53 @@ export class StopPlaceController extends Controller {
       return notFoundResponse(404);
     }
     return identifiers;
+  }
+
+  /**
+   * Currently only for VRR. <br>
+   * Source: https://github.com/derf/eva-to-efa-gw<br>
+   * Thanks derf.
+   */
+  @Response(404)
+  @Get('/{evaNumber}/trainOccupancy')
+  @Tags('StopPlace')
+  async trainOccupancy(
+    evaNumber: EvaNumber,
+    @Res() notFoundResponse: TsoaResponse<404, void>,
+  ): Promise<TrainOccupancyList> {
+    try {
+      const result = (
+        await axios.get<TrainOccupancy<VRRTrainOccupancy>>(
+          `https://vrrf.finalrewind.org/_eva/${evaNumber}.json`,
+        )
+      ).data;
+
+      const normalizedResult: TrainOccupancyList = {};
+      Object.entries(result.train).forEach(([trainNumber, vrrOccupancy]) => {
+        normalizedResult[trainNumber] = vrrOccupancy?.occupancy
+          ? {
+              first: mapVrrOccupancy(vrrOccupancy.occupancy),
+              second: mapVrrOccupancy(vrrOccupancy.occupancy),
+            }
+          : null;
+      });
+
+      return normalizedResult;
+    } catch {
+      return notFoundResponse(404);
+    }
+  }
+}
+
+function mapVrrOccupancy(
+  vrrOccupancy: VRRTrainOccupancyValues,
+): AuslastungsValue {
+  switch (vrrOccupancy) {
+    case 1:
+      return AuslastungsValue.Gering;
+    case 2:
+      return AuslastungsValue.Hoch;
+    case 3:
+      return AuslastungsValue.SehrHoch;
   }
 }

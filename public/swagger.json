@@ -4930,6 +4930,31 @@
         "required": ["evaNumber", "name", "availableTransports"],
         "type": "object",
         "additionalProperties": false
+      },
+      "NormalizedTrainOccupancy": {
+        "properties": {
+          "first": {
+            "$ref": "#/components/schemas/AuslastungsValue"
+          },
+          "second": {
+            "$ref": "#/components/schemas/AuslastungsValue"
+          }
+        },
+        "required": ["first", "second"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "TrainOccupancyList": {
+        "properties": {},
+        "type": "object",
+        "additionalProperties": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/NormalizedTrainOccupancy"
+            }
+          ],
+          "nullable": true
+        }
       }
     },
     "securitySchemes": {}
@@ -6481,6 +6506,39 @@
             "required": true,
             "schema": {
               "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/stopPlace/v1/{evaNumber}/trainOccupancy": {
+      "get": {
+        "operationId": "TrainOccupancy",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TrainOccupancyList"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "description": "Currently only for VRR. <br>\nSource: https://github.com/derf/eva-to-efa-gw<br>\nThanks derf.",
+        "tags": ["StopPlace"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "evaNumber",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/EvaNumber"
             }
           }
         ]
