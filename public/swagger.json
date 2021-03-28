@@ -829,21 +829,21 @@
         "type": "object",
         "additionalProperties": false
       },
-      "Station": {
+      "Pick_GroupedStopPlace.name-or-evaNumber_": {
         "properties": {
-          "title": {
+          "name": {
             "type": "string"
           },
-          "id": {
-            "type": "string"
-          },
-          "DS100": {
+          "evaNumber": {
             "type": "string"
           }
         },
-        "required": ["title", "id"],
+        "required": ["name", "evaNumber"],
         "type": "object",
-        "additionalProperties": false
+        "description": "From T, pick a set of properties whose keys are in the union K"
+      },
+      "MinimalStopPlace": {
+        "$ref": "#/components/schemas/Pick_GroupedStopPlace.name-or-evaNumber_"
       },
       "MessagePrio": {
         "type": "string",
@@ -1008,8 +1008,8 @@
           "auslastung": {
             "type": "boolean"
           },
-          "currentStation": {
-            "$ref": "#/components/schemas/Station"
+          "currentStopPlace": {
+            "$ref": "#/components/schemas/MinimalStopPlace"
           },
           "departure": {
             "$ref": "#/components/schemas/StopInfo"
@@ -1075,7 +1075,7 @@
         "required": [
           "initialDeparture",
           "auslastung",
-          "currentStation",
+          "currentStopPlace",
           "destination",
           "id",
           "mediumId",
@@ -1763,6 +1763,22 @@
           }
         },
         "required": ["scheduledTime", "time"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Station": {
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "DS100": {
+            "type": "string"
+          }
+        },
+        "required": ["title", "id"],
         "type": "object",
         "additionalProperties": false
       },

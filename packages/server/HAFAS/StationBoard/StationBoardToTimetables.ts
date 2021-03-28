@@ -53,7 +53,16 @@ export default (
     arrival: matchingArrival?.arrival,
     departure: j.departure,
     auslastung: false,
-    currentStation: j.currentStation,
+    currentStopPlace: {
+      name: j.currentStation.title,
+      evaNumber: j.currentStation.id,
+    },
+    // TODO: remove this
+    // @ts-expect-error temporary only
+    currentStation: {
+      title: j.currentStation.title,
+      id: j.currentStation.id,
+    },
     destination: j.finalDestination,
     scheduledDestination: j.finalDestination,
     id,

@@ -4,12 +4,11 @@ import { Tooltip } from '@material-ui/core';
 import { Train } from '@material-ui/icons';
 import type { CommonProductInfo, CommonStopInfo } from 'types/HAFAS';
 import type { FC } from 'react';
-import type { Station } from 'types/station';
 
 interface Props {
   departure?: CommonStopInfo;
   arrival?: CommonStopInfo;
-  station: Station;
+  evaNumber: string;
   train: CommonProductInfo;
   className?: string;
 }
@@ -17,7 +16,7 @@ interface Props {
 export const TravelynxLink: FC<Props> = ({
   departure,
   arrival,
-  station,
+  evaNumber,
   train,
   className,
 }) =>
@@ -34,7 +33,7 @@ export const TravelynxLink: FC<Props> = ({
         onClick={stopPropagation}
         rel="noopener noreferrer"
         target="_blank"
-        href={`https://travelynx.de/s/${station.id}?train=${train.type} ${train.number}`}
+        href={`https://travelynx.de/s/${evaNumber}?train=${train.type} ${train.number}`}
       >
         <Train />
       </a>

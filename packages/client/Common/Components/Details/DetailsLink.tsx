@@ -6,13 +6,13 @@ import type { FC } from 'react';
 
 interface Props {
   train: CommonProductInfo;
-  stationId?: string;
+  evaNumber?: string;
   initialDeparture: Date;
   urlPrefix?: string;
 }
 export const DetailsLink: FC<Props> = ({
   train,
-  stationId,
+  evaNumber,
   initialDeparture,
   urlPrefix = '/',
 }) => (
@@ -23,7 +23,7 @@ export const DetailsLink: FC<Props> = ({
       train.number
     }/${initialDeparture.toISOString()}${qs.stringify(
       {
-        station: stationId,
+        station: evaNumber,
       },
       {
         addQueryPrefix: true,

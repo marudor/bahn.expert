@@ -1,5 +1,5 @@
 import type { CommonProductInfo, CommonStopInfo } from 'types/HAFAS';
-import type { Station } from 'types/station';
+import type { MinimalStopPlace } from 'types/stopPlace';
 
 export interface WingInfo {
   station: {
@@ -25,7 +25,7 @@ export interface Abfahrt {
   initialDeparture: Date;
   arrival?: StopInfo;
   auslastung: boolean;
-  currentStation: Station;
+  currentStopPlace: MinimalStopPlace;
   departure?: StopInfo;
   destination: string;
   id: string;

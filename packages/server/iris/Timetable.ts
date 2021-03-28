@@ -147,15 +147,15 @@ export default class Timetable {
   } = {};
   realtimeIds: string[] = [];
   segments: Date[];
-  currentStation: string;
+  currentStopPlaceName: string;
   wingIds: Map<string, string> = new Map();
   currentDate: Date;
   maxDate: Date;
   minDate: Date;
 
   constructor(
-    private evaId: string,
-    currentStation: string,
+    private evaNumber: string,
+    currentStopPlaceName: string,
     options: TimetableOptions,
     private request: AxiosInstance,
   ) {
@@ -169,7 +169,7 @@ export default class Timetable {
     for (let i = 1; i <= Math.ceil((options.lookbehind || 1) / 60); i += 1) {
       this.segments.push(subHours(this.currentDate, i));
     }
-    this.currentStation = normalizeRouteName(currentStation);
+    this.currentStopPlaceName = normalizeRouteName(currentStopPlaceName);
   }
   computeExtra(timetable: any) {
     timetable.cancelled =
@@ -185,7 +185,7 @@ export default class Timetable {
     timetable.messages.him = timetable.messages.him.filter((m: any) => m.text);
 
     const currentRoutePart = {
-      name: timetable.currentStation.title,
+      name: timetable.currentStopPlace.name,
       cancelled: timetable.cancelled,
       additional: timetable.additional,
     };
@@ -206,7 +206,7 @@ export default class Timetable {
     if (timetable.departure) {
       if (
         !timetable.departure.cancelled &&
-        timetable.destination === timetable.currentStation.title
+        timetable.destination === timetable.currentStopPlace.name
       ) {
         timetable.departure.cancelled = true;
       }
@@ -531,7 +531,7 @@ export default class Timetable {
       dp.platform || timetable.departure.scheduledPlatform;
   }
   async fetchRealtime() {
-    const url = `/fchg/${this.evaId}`;
+    const url = `/fchg/${this.evaNumber}`;
 
     const result = (await this.request.get<string>(url)).data;
 
@@ -636,12 +636,17 @@ export default class Timetable {
       },
       productClass,
       // classes: getAttr(tl, 'f'),
-      currentStation: {
-        title: this.currentStation,
-        id: this.evaId,
+      currentStopPlace: {
+        name: this.currentStopPlaceName,
+        evaNumber: this.evaNumber,
       },
+      // TODO: remove this
+      // currentStation: {
+      //   id: this.evaNumber,
+      //   title: this.currentStopPlaceName,
+      // },
       scheduledDestination:
-        routePost[routePost.length - 1] || this.currentStation,
+        routePost[routePost.length - 1] || this.currentStopPlaceName,
       lineNumber,
       id,
       rawId,
@@ -683,7 +688,7 @@ export default class Timetable {
   getTimetables() {
     return Promise.all(
       this.segments.map(async (date) => {
-        const key = `/plan/${this.evaId}/${format(date, 'yyMMdd/HH')}`;
+        const key = `/plan/${this.evaNumber}/${format(date, 'yyMMdd/HH')}`;
         let rawXml = await timetableCache.get(key);
 
         if (!rawXml) {

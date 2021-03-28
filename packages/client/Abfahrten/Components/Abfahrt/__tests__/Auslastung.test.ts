@@ -34,7 +34,7 @@ describe('Auslastung', () => {
     nock
       .get(
         encodeURI(
-          `/api/hafas/v2/auslastung/${mockAbfahrt.currentStation.title}/${
+          `/api/hafas/v2/auslastung/${mockAbfahrt.currentStopPlace.name}/${
             mockAbfahrt.destination
           }/${
             mockAbfahrt.train.number
@@ -52,7 +52,7 @@ describe('Auslastung', () => {
     nock
       .get(
         encodeURI(
-          `/api/hafas/v2/auslastung/${mockAbfahrt.currentStation.title}/${
+          `/api/hafas/v2/auslastung/${mockAbfahrt.currentStopPlace.name}/${
             mockAbfahrt.destination
           }/${
             mockAbfahrt.train.number

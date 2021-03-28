@@ -28,7 +28,7 @@ describe('Travellynx', () => {
     const { getByTestId } = render(TravelynxLink, {
       arrival: MockAbfahrt.arrival,
       departure: MockAbfahrt.departure,
-      station: MockAbfahrt.currentStation,
+      evaNumber: MockAbfahrt.currentStopPlace.evaNumber,
       train: MockAbfahrt.train,
     });
 
@@ -39,7 +39,7 @@ describe('Travellynx', () => {
 
     const { getByTestId } = render(TravelynxLink, {
       departure: MockAbfahrt.departure,
-      station: MockAbfahrt.currentStation,
+      evaNumber: MockAbfahrt.currentStopPlace.evaNumber,
       train: MockAbfahrt.train,
     });
 
@@ -51,7 +51,7 @@ describe('Travellynx', () => {
     const { queryByTestId } = render(TravelynxLink, {
       arrival: MockAbfahrt.arrival,
       departure: MockAbfahrt.departure,
-      station: MockAbfahrt.currentStation,
+      evaNumber: MockAbfahrt.currentStopPlace.evaNumber,
       train: MockAbfahrt.train,
     });
 
@@ -61,7 +61,7 @@ describe('Travellynx', () => {
     jest.setSystemTime(parse('22.07.2019 14:19', 'dd.MM.yyyy HH:mm', 0));
     const { getByTestId } = render(TravelynxLink, {
       departure: MockAbfahrt.departure,
-      station: MockAbfahrt.currentStation,
+      evaNumber: MockAbfahrt.currentStopPlace.evaNumber,
       train: MockAbfahrt.train,
       arrival: {
         ...MockAbfahrt.arrival!,

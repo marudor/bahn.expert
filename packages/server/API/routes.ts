@@ -371,14 +371,14 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Station": {
-        "dataType": "refObject",
-        "properties": {
-            "title": {"dataType":"string","required":true},
-            "id": {"dataType":"string","required":true},
-            "DS100": {"dataType":"string"},
-        },
-        "additionalProperties": false,
+    "Pick_GroupedStopPlace.name-or-evaNumber_": {
+        "dataType": "refAlias",
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"name":{"dataType":"string","required":true},"evaNumber":{"dataType":"string","required":true}},"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "MinimalStopPlace": {
+        "dataType": "refAlias",
+        "type": {"ref":"Pick_GroupedStopPlace.name-or-evaNumber_","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "MessagePrio": {
@@ -465,7 +465,7 @@ const models: TsoaRoute.Models = {
             "initialDeparture": {"dataType":"datetime","required":true},
             "arrival": {"ref":"StopInfo"},
             "auslastung": {"dataType":"boolean","required":true},
-            "currentStation": {"ref":"Station","required":true},
+            "currentStopPlace": {"ref":"MinimalStopPlace","required":true},
             "departure": {"ref":"StopInfo"},
             "destination": {"dataType":"string","required":true},
             "id": {"dataType":"string","required":true},
@@ -793,6 +793,16 @@ const models: TsoaRoute.Models = {
             "reihung": {"dataType":"boolean"},
             "messages": {"dataType":"array","array":{"ref":"RemL"}},
             "cancelled": {"dataType":"boolean"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Station": {
+        "dataType": "refObject",
+        "properties": {
+            "title": {"dataType":"string","required":true},
+            "id": {"dataType":"string","required":true},
+            "DS100": {"dataType":"string"},
         },
         "additionalProperties": false,
     },
