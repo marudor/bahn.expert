@@ -1,12 +1,9 @@
-import { byName, byPosition, byRl100, keys } from 'business-hub';
+import { byEva, byName, byPosition, byRl100, keys } from 'business-hub';
 import { CacheDatabases, createNewCache } from 'server/cache';
 import { getSingleStation } from 'server/iris/station';
 import { StopPlaceKeyType } from 'business-hub/types/RisStations';
-import type {
-  Coordinate2D,
-  StopPlaceSearchResult,
-  TransportType,
-} from 'business-hub/types/RisStations';
+import type { GroupedStopPlace, StopPlaceIdentifier } from 'types/stopPlace';
+import type { StopPlaceSearchResult } from 'business-hub/types/RisStations';
 
 const stopPlaceSearchCache = createNewCache<string, GroupedStopPlace[]>(
   3 * 24 * 60 * 60,
@@ -20,22 +17,10 @@ const stopPlaceIdentifierCache = createNewCache<
   string,
   StopPlaceIdentifier | undefined
 >(3 * 24 * 60 * 60, CacheDatabases.StopPlaceIdentifier);
-
-export interface StopPlaceIdentifier {
-  stationId?: string;
-  /** also known as DHID, globalId */
-  ifopt?: string;
-  ril100?: string;
-  alternativeRil100?: string[];
-}
-
-export interface GroupedStopPlace {
-  evaNumber: string;
-  name: string;
-  availableTransports: TransportType[];
-  position?: Coordinate2D;
-  identifier?: StopPlaceIdentifier;
-}
+const stopPlaceByEvaCache = createNewCache<string, GroupedStopPlace>(
+  3 * 24 * 60 * 60,
+  CacheDatabases.StopPlaceByEva,
+);
 
 function mapToGroupedStopPlace(
   stopPlace: Pick<
@@ -91,10 +76,24 @@ export async function searchStopPlace(
   return groupedStopPlaces;
 }
 
+export async function getStopPlaceByEva(
+  evaNumber: string,
+): Promise<GroupedStopPlace | undefined> {
+  const cached = await stopPlaceByEvaCache.get(evaNumber);
+  if (cached) return cached;
+  const risResult = await byEva(evaNumber);
+  if (risResult) {
+    const groupedStopPlace = mapToGroupedStopPlace(risResult);
+    void stopPlaceByEvaCache.set(groupedStopPlace.evaNumber, groupedStopPlace);
+    return groupedStopPlace;
+  }
+}
+
 export async function geoSearchStopPlace(
   lat: number,
   lng: number,
   radius: number,
+  max?: number,
   filterForIris?: boolean,
 ): Promise<GroupedStopPlace[]> {
   const cacheKey = `${lat}_${lng}_${radius}`;
@@ -106,6 +105,10 @@ export async function geoSearchStopPlace(
   );
   await addIdentifiers(groupedStopPlaces);
   void stopPlaceGeoCache.set(cacheKey, groupedStopPlaces);
+
+  if (max) {
+    groupedStopPlaces = groupedStopPlaces.splice(0, max);
+  }
 
   if (filterForIris) {
     groupedStopPlaces = await irisFilter(groupedStopPlaces);
@@ -126,6 +129,9 @@ async function searchStopPlaceRemote(searchTerm: string) {
   await addIdentifiers(groupedStopPlaces);
 
   void stopPlaceSearchCache.set(searchTerm, groupedStopPlaces);
+  groupedStopPlaces.forEach((s) => {
+    void stopPlaceByEvaCache.set(s.evaNumber, s);
+  });
   return groupedStopPlaces;
 }
 

@@ -15,6 +15,11 @@
         "type": "object",
         "additionalProperties": false
       },
+      "EvaNumber": {
+        "type": "string",
+        "minLength": 7,
+        "maxLength": 7
+      },
       "OccupancyPeriod": {
         "properties": {
           "start": {
@@ -4922,7 +4927,7 @@
   },
   "openapi": "3.0.0",
   "paths": {
-    "/iris/v2/abfahrten/{evaId}": {
+    "/iris/v2/abfahrten/{evaNumber}": {
       "get": {
         "operationId": "Abfahrten v2",
         "responses": {
@@ -4942,39 +4947,30 @@
         "parameters": [
           {
             "in": "path",
-            "name": "evaId",
+            "name": "evaNumber",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/EvaNumber"
             }
           },
           {
-            "description": "in Minutes",
+            "description": "minutes",
             "in": "query",
             "name": "lookahead",
             "required": false,
             "schema": {
-              "format": "double",
-              "type": "number"
+              "format": "int32",
+              "type": "integer"
             }
           },
           {
-            "description": "in Minutes",
+            "description": "minutes",
             "in": "query",
             "name": "lookbehind",
             "required": false,
             "schema": {
-              "format": "double",
-              "type": "number"
-            }
-          },
-          {
-            "in": "query",
-            "name": "type",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "enum": ["open", "default"]
+              "format": "int32",
+              "type": "integer"
             }
           }
         ]
@@ -5002,12 +4998,12 @@
         "security": [],
         "parameters": [
           {
-            "description": "EvaId",
+            "description": "evaNumber",
             "in": "query",
             "name": "station",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/EvaNumber"
             }
           },
           {
@@ -5084,7 +5080,7 @@
         ]
       }
     },
-    "/businessHub/v1/stationOccupancy/{evaId}/{date}": {
+    "/businessHub/v1/stationOccupancy/{evaNumber}/{date}": {
       "get": {
         "operationId": "Bahnhofs Auslastung",
         "responses": {
@@ -5104,10 +5100,10 @@
         "parameters": [
           {
             "in": "path",
-            "name": "evaId",
+            "name": "evaNumber",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/EvaNumber"
             }
           },
           {
@@ -5144,21 +5140,19 @@
         "security": [],
         "parameters": [
           {
-            "description": "EvaId",
             "in": "query",
             "name": "station",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/EvaNumber"
             }
           },
           {
-            "description": "EvaId",
             "in": "query",
             "name": "direction",
             "required": false,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/EvaNumber"
             }
           },
           {
@@ -5219,12 +5213,12 @@
             }
           },
           {
-            "description": "EVA Id of a stop of your train",
+            "description": "EvaNumber of a stop of your train",
             "in": "query",
             "name": "station",
             "required": false,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/EvaNumber"
             }
           },
           {
@@ -5420,7 +5414,7 @@
             "name": "evaNumber",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/EvaNumber"
             }
           }
         ]
@@ -5764,9 +5758,9 @@
         ]
       }
     },
-    "/bahnhof/v1/lageplan/{stationName}/{evaId}": {
+    "/bahnhof/v1/lageplan/{stopPlaceName}/{evaNumber}": {
       "get": {
-        "operationId": "Lageplan v1",
+        "operationId": "Lageplan",
         "responses": {
           "200": {
             "description": "Ok",
@@ -5784,7 +5778,7 @@
         "parameters": [
           {
             "in": "path",
-            "name": "stationName",
+            "name": "stopPlaceName",
             "required": true,
             "schema": {
               "type": "string"
@@ -5792,10 +5786,10 @@
           },
           {
             "in": "path",
-            "name": "evaId",
+            "name": "evaNumber",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/EvaNumber"
             }
           }
         ]
@@ -6017,6 +6011,38 @@
         ]
       }
     },
+    "/stopPlace/v1/{evaNumber}": {
+      "get": {
+        "operationId": "StopPlaceByEva",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupedStopPlace"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "tags": ["StopPlace"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "evaNumber",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/EvaNumber"
+            }
+          }
+        ]
+      }
+    },
     "/stopPlace/v1/geoSearch": {
       "get": {
         "operationId": "StopPlaceGeoSearch",
@@ -6068,12 +6094,22 @@
             }
           },
           {
+            "description": "Only returns stopPlaces iris-tts can handle (/abfahrten)",
             "in": "query",
             "name": "filterForIris",
             "required": false,
             "schema": {
               "default": false,
               "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "max",
+            "required": false,
+            "schema": {
+              "format": "double",
+              "type": "number"
             }
           }
         ]
@@ -6092,6 +6128,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": ""
           }
         },
         "tags": ["StopPlace"],
@@ -6102,7 +6141,7 @@
             "name": "evaNumber",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/EvaNumber"
             }
           }
         ]
@@ -6147,6 +6186,7 @@
             }
           },
           {
+            "description": "Only returns stopPlaces iris-tts can handle (/abfahrten)",
             "in": "query",
             "name": "filterForIris",
             "required": false,
@@ -6402,7 +6442,7 @@
         "operationId": "Train Name v1",
         "responses": {
           "200": {
-            "description": "Train name. May be undefined",
+            "description": "Ok",
             "content": {
               "application/json": {
                 "schema": {
@@ -6410,6 +6450,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": ""
           }
         },
         "tags": ["Reihung"],

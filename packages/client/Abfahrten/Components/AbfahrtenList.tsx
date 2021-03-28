@@ -16,7 +16,7 @@ import {
 } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
 import {
   useAbfahrtenError,
-  useCurrentAbfahrtenStation,
+  useCurrentAbfahrtenStopPlace,
   useRawAbfahrten,
 } from 'client/Abfahrten/provider/AbfahrtenProvider';
 import { useEffect, useState } from 'react';
@@ -45,11 +45,11 @@ const useStyles = makeStyles((theme) => ({
 const InnerAbfahrtenList = () => {
   const classes = useStyles();
   const {
-    updateCurrentStationByString,
-    setCurrentStation,
+    updateCurrentStopPlaceByString,
+    setCurrentStopPlace,
     setError,
   } = useRawAbfahrten();
-  const currentStation = useCurrentAbfahrtenStation();
+  const currentStation = useCurrentAbfahrtenStopPlace();
   const error = useAbfahrtenError();
   const selectedDetail = useSelectedDetail();
   const { clearReihungen } = useReihungenActions();
@@ -68,17 +68,17 @@ const InnerAbfahrtenList = () => {
       updateTitle();
       updateDescription();
     } else {
-      updateTitle(currentStation.title);
-      updateDescription(`Zugabfahrten für ${currentStation.title}`);
+      updateTitle(currentStation.name);
+      updateDescription(`Zugabfahrten für ${currentStation.name}`);
     }
   }, [currentStation, updateDescription, updateTitle]);
 
   useEffect(() => {
     return () => {
-      setCurrentStation(undefined);
+      setCurrentStopPlace(undefined);
       setError(undefined);
     };
-  }, [setCurrentStation, setError]);
+  }, [setCurrentStopPlace, setError]);
 
   useEffect(() => {
     if (unfilteredAbfahrten) {
@@ -109,9 +109,11 @@ const InnerAbfahrtenList = () => {
   useEffect(() => {
     if (!currentStation || oldMatch !== paramStation) {
       setOldMatch(paramStation);
-      void updateCurrentStationByString(decodeURIComponent(paramStation || ''));
+      void updateCurrentStopPlaceByString(
+        decodeURIComponent(paramStation || ''),
+      );
     }
-  }, [currentStation, oldMatch, paramStation, updateCurrentStationByString]);
+  }, [currentStation, oldMatch, paramStation, updateCurrentStopPlaceByString]);
 
   useEffect(() => {
     if (scrolled) {

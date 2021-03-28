@@ -8,7 +8,6 @@ import {
   startOfDay,
   subDays,
 } from 'date-fns';
-import { AllowedHafasProfile } from 'types/HAFAS';
 import { Button, Divider, makeStyles } from '@material-ui/core';
 import { DateTimePicker } from '@material-ui/pickers';
 import {
@@ -18,38 +17,29 @@ import {
   SwapVert,
   Today,
 } from '@material-ui/icons';
-import { getHafasStationFromAPI } from 'client/Common/service/stationSearch';
 import { getRouteLink } from 'client/Routing/util';
+import { getStopPlaceFromAPI } from 'client/Common/service/stationSearch';
 import { SettingsPanel } from './SettingsPanel';
-import { StationSearch } from 'client/Common/Components/StationSearch';
+import { StopPlaceSearch } from 'client/Common/Components/StopPlaceSearch';
 import { useCallback, useEffect, useMemo } from 'react';
 import { useFetchRouting } from 'client/Routing/provider/useFetchRouting';
 import { useHistory, useRouteMatch } from 'react-router';
 import {
   useRoutingConfig,
   useRoutingConfigActions,
-  useRoutingSettings,
 } from 'client/Routing/provider/RoutingConfigProvider';
 import deLocale from 'date-fns/locale/de';
 import type { FC, SyntheticEvent } from 'react';
+import type { MinimalStopPlace } from 'types/stopPlace';
 import type { RoutingFav } from 'client/Routing/provider/RoutingFavProvider';
-import type { Station } from 'types/station';
 
-const maxViaForProvider = (profile?: AllowedHafasProfile) => {
-  if (profile === AllowedHafasProfile.SBB) return 99;
-
-  return 2;
-};
-
-const setStationById = async (
-  stationId: string,
-  setAction: (station: Station) => void,
-  hafasProfile: AllowedHafasProfile,
+const setStopPlaceById = async (
+  evaNumber: string,
+  setAction: (station: MinimalStopPlace) => void,
 ) => {
-  const stations = await getHafasStationFromAPI(hafasProfile, stationId);
-
-  if (stations.length) {
-    setAction(stations[0]);
+  const stopPlace = await getStopPlaceFromAPI(evaNumber);
+  if (stopPlace) {
+    setAction(stopPlace);
   }
 };
 
@@ -102,7 +92,6 @@ export const Search: FC = () => {
     setDate,
   } = useRoutingConfigActions();
   const { start, destination, date, via } = useRoutingConfig();
-  const settings = useRoutingSettings();
   const { fetchRoutes, clearRoutes } = useFetchRouting();
 
   const match = useRouteMatch<{
@@ -148,31 +137,16 @@ export const Search: FC = () => {
       }
   >();
 
-  // This is not a dependency for the initialStationSearch. We do not want to retrigger them when this changes! (Unless one of the other 3 also changed)
-  const favProfile = useMemo(() => {
-    return history.location.state?.fav?.profile;
-  }, [history.location.state]);
-
   useEffect(() => {
     if (match.params.start) {
-      void setStationById(
-        match.params.start,
-        setStart,
-        favProfile || settings.hafasProfile,
-      );
+      void setStopPlaceById(match.params.start, setStart);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [match.params.start, setStart, settings.hafasProfile]);
+  }, [match.params.start, setStart]);
   useEffect(() => {
     if (match.params.destination) {
-      void setStationById(
-        match.params.destination,
-        setDestination,
-        favProfile || settings.hafasProfile,
-      );
+      void setStopPlaceById(match.params.destination, setDestination);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [match.params.destination, setDestination, settings.hafasProfile]);
+  }, [match.params.destination, setDestination]);
   useEffect(() => {
     if (match.params.date && match.params.date !== '0') {
       const dateNumber = +match.params.date;
@@ -186,22 +160,18 @@ export const Search: FC = () => {
       const viaStations = match.params.via.split('|').filter(Boolean);
 
       viaStations.forEach((viaId, index) => {
-        void setStationById(
-          viaId,
-          (station) => {
-            updateVia(index, station);
-          },
-          settings.hafasProfile,
-        );
+        void setStopPlaceById(viaId, (stopPlace) => {
+          updateVia(index, stopPlace);
+        });
       });
     }
-  }, [match.params.via, settings.hafasProfile, updateVia]);
+  }, [match.params.via, updateVia]);
 
   const searchRoute = useCallback(
     (e: SyntheticEvent) => {
       e.preventDefault();
 
-      if (start && destination && start.id !== destination.id) {
+      if (start && destination && start.evaNumber !== destination.evaNumber) {
         void fetchRoutes();
         history.push(getRouteLink(start, destination, via, date));
       }
@@ -212,45 +182,45 @@ export const Search: FC = () => {
   const mappedViaList = useMemo(
     () =>
       via.map((v, index) => (
-        <StationSearch
+        <StopPlaceSearch
           id={`via${index}`}
           onChange={(s) => updateVia(index, s)}
           value={v}
           key={index}
+          filterForIris={false}
           additionalIcon={<Delete onClick={() => updateVia(index)} />}
-          profile={settings.hafasProfile}
         />
       )),
-    [settings.hafasProfile, updateVia, via],
+    [updateVia, via],
   );
 
   return (
     <>
-      <StationSearch
+      <StopPlaceSearch
         id="routingStartSearch"
         value={start}
         onChange={setStart}
         placeholder="Start"
-        profile={settings.hafasProfile}
+        filterForIris={false}
       />
       <div>
         {mappedViaList}
-        {mappedViaList.length < maxViaForProvider(settings.hafasProfile) && (
-          <StationSearch
+        {mappedViaList.length < 2 && (
+          <StopPlaceSearch
             placeholder="Via Station"
             id="addVia"
             onChange={(s) => updateVia(-1, s)}
-            profile={settings.hafasProfile}
+            filterForIris={false}
           />
         )}
       </div>
       <div className={classes.destination}>
-        <StationSearch
+        <StopPlaceSearch
           id="routingDestinationSearch"
           value={destination}
           onChange={setDestination}
           placeholder="Destination"
-          profile={settings.hafasProfile}
+          filterForIris={false}
           additionalIcon={
             <SwapVert
               data-testid="swapStations"

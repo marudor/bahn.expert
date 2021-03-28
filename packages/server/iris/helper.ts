@@ -7,14 +7,6 @@ import type { Stop } from 'types/iris';
 export const noncdRequest = Axios.create({
   baseURL: 'https://iris.noncd.db.de/iris-tts/timetable',
 });
-export const openDataRequest = process.env.TIMETABLES_OPEN_DATA_KEY
-  ? Axios.create({
-      baseURL: 'https://api.deutschebahn.com/timetables/v1',
-      headers: {
-        Authorization: `Bearer ${process.env.TIMETABLES_OPEN_DATA_KEY}`,
-      },
-    })
-  : noncdRequest;
 
 export function getAttr<T extends string>(
   node: null | Element,

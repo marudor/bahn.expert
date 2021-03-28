@@ -9,7 +9,6 @@ import {
   TextField,
 } from '@material-ui/core';
 import { handleConfigCheckedChange } from 'client/Common/config';
-import { StationSearchType } from 'types/station';
 import {
   useAbfahrtenConfig,
   useAbfahrtenConfigOpen,
@@ -54,7 +53,6 @@ export const SettingsModal: FC = () => {
   const {
     lineAndNumber,
     lookahead,
-    searchType,
     autoUpdate,
     lookbehind,
   } = useAbfahrtenConfig();
@@ -214,29 +212,6 @@ export const SettingsModal: FC = () => {
             </NativeSelect>
           }
           label="Lookbehind in Minuten"
-        />
-        <FormControlLabel
-          className={classes.label}
-          control={
-            <NativeSelect
-              data-testid="searchType"
-              value={searchType}
-              name="searchType"
-              onChange={handleSelectChange('searchType')}
-            >
-              <option value={StationSearchType.default}>RIS</option>
-              <option value={StationSearchType.openData}>Open Data</option>
-              <option value={StationSearchType.openDataOffline}>
-                Open Data Offline
-              </option>
-              <option value={StationSearchType.hafas}>Hafas</option>
-              <option value={StationSearchType.stationsData}>
-                Open Data Stationsdaten
-              </option>
-              <option value={StationSearchType.sbb}>SBB</option>
-            </NativeSelect>
-          }
-          label="API zur Stationssuche"
         />
       </DialogContent>
     </Dialog>

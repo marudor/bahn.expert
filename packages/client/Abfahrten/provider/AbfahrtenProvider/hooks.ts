@@ -1,7 +1,7 @@
 import {
   fetchAbfahrten,
   useAbfahrtenDepartures,
-  useCurrentAbfahrtenStation,
+  useCurrentAbfahrtenStopPlace,
   useRawAbfahrten,
 } from 'client/Abfahrten/provider/AbfahrtenProvider';
 import {
@@ -78,17 +78,17 @@ export const useAllTrainTypes = () => {
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const useRefreshCurrent = (visible = false) => {
   const { setDepartures } = useRawAbfahrten();
-  const currentStation = useCurrentAbfahrtenStation();
+  const currentStopPlace = useCurrentAbfahrtenStopPlace();
   const { lookahead, lookbehind } = useAbfahrtenConfig();
   const fetchApiUrl = useAbfahrtenFetchAPIUrl();
 
   return useCallback(async () => {
-    if (currentStation && currentStation.id) {
+    if (currentStopPlace && currentStopPlace.evaNumber) {
       if (visible) {
         setDepartures(undefined);
       }
       const r = await fetchAbfahrten(
-        `${fetchApiUrl}/${currentStation.id}`,
+        `${fetchApiUrl}/${currentStopPlace.evaNumber}`,
         lookahead,
         lookbehind,
       );
@@ -100,7 +100,7 @@ export const useRefreshCurrent = (visible = false) => {
       });
     }
   }, [
-    currentStation,
+    currentStopPlace,
     fetchApiUrl,
     lookahead,
     lookbehind,

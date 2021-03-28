@@ -1,24 +1,21 @@
 import { useCallback, useState } from 'react';
 import { useStorage } from 'client/useStorage';
 import constate from 'constate';
-import type { AllowedHafasProfile } from 'types/HAFAS';
 import type { FC } from 'react';
-import type { Station } from 'types/station';
+import type { MinimalStopPlace } from 'types/stopPlace';
 
-export type RoutingFavStation = Pick<Station, 'title' | 'id'>;
 export interface RoutingFav {
-  start: RoutingFavStation;
-  destination: RoutingFavStation;
-  via: RoutingFavStation[];
-  profile: AllowedHafasProfile;
+  start: MinimalStopPlace;
+  destination: MinimalStopPlace;
+  via: MinimalStopPlace[];
 }
 export interface RoutingFavs {
   [key: string]: RoutingFav;
 }
 
 export function routingFavKey(fav: RoutingFav): string {
-  return `${fav.start.id}${fav.via.map((s) => s.id)}${fav.destination.id}${
-    fav.profile
+  return `${fav.start.evaNumber}${fav.via.map((s) => s.evaNumber)}${
+    fav.destination.evaNumber
   }`;
 }
 

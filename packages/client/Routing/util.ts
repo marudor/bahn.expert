@@ -1,5 +1,5 @@
 /* eslint import/prefer-default-export: 0 */
-import type { Station } from 'types/station';
+import type { MinimalStopPlace } from 'types/stopPlace';
 
 export function formatDuration(duration: number): string {
   const durInMinutes = duration / 1000 / 60;
@@ -12,12 +12,12 @@ export function formatDuration(duration: number): string {
 }
 
 export function getRouteLink(
-  start: Station,
-  destination: Station,
-  via: Station[],
+  start: MinimalStopPlace,
+  destination: MinimalStopPlace,
+  via: MinimalStopPlace[],
   date?: Date | null,
 ): string {
-  return `/routing/${start.id}/${destination.id}/${
+  return `/routing/${start.evaNumber}/${destination.evaNumber}/${
     date?.toISOString() || 0
-  }/${via.map((v) => `${v.id}|`).join('')}`;
+  }/${via.map((v) => `${v.evaNumber}|`).join('')}`;
 }

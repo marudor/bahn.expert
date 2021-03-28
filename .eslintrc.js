@@ -49,6 +49,12 @@ module.exports = {
       },
       rules: {
         'import/no-default-export': 2,
+        'no-restricted-imports': [
+          'error',
+          {
+            patterns: ['server/*'],
+          },
+        ],
         'no-process-env': 2,
       },
     },

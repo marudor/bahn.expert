@@ -7,21 +7,17 @@ import {
 } from 'client/Routing/provider/RoutingFavProvider';
 import { Star, StarBorder } from '@material-ui/icons';
 import { useCallback, useMemo } from 'react';
-import {
-  useRoutingConfig,
-  useRoutingSettings,
-} from 'client/Routing/provider/RoutingConfigProvider';
+import { useRoutingConfig } from 'client/Routing/provider/RoutingConfigProvider';
 import type { FC } from 'react';
-import type {
-  RoutingFav,
-  RoutingFavStation,
-} from 'client/Routing/provider/RoutingFavProvider';
-import type { Station } from 'types/station';
+import type { MinimalStopPlace } from 'types/stopPlace';
+import type { RoutingFav } from 'client/Routing/provider/RoutingFavProvider';
 
-function stripStationToRoutingFavStation(station: Station): RoutingFavStation {
+function stripToMinimalStopPlace(
+  stopPlace: MinimalStopPlace,
+): MinimalStopPlace {
   return {
-    title: station.title,
-    id: station.id,
+    evaNumber: stopPlace.evaNumber,
+    name: stopPlace.name,
   };
 }
 
@@ -50,19 +46,17 @@ const useStyles = makeStyles((theme) => ({
 const InnerHeader = () => {
   const classes = useStyles();
   const { start, destination, via } = useRoutingConfig();
-  const settings = useRoutingSettings();
   const favs = useRoutingFavs();
   const { fav, unfav } = useRoutingFavActions();
   const currentFav = useMemo<RoutingFav | undefined>(
     () =>
       start &&
       destination && {
-        start: stripStationToRoutingFavStation(start),
-        destination: stripStationToRoutingFavStation(destination),
-        via: via.map((v) => stripStationToRoutingFavStation(v)),
-        profile: settings.hafasProfile,
+        start: stripToMinimalStopPlace(start),
+        destination: stripToMinimalStopPlace(destination),
+        via: via.map((v) => stripToMinimalStopPlace(v)),
       },
-    [destination, settings.hafasProfile, start, via],
+    [destination, start, via],
   );
   const isFaved = useMemo(
     () => currentFav && routingFavKey(currentFav) in favs,
@@ -84,8 +78,8 @@ const InnerHeader = () => {
 
   return (
     <div className={classes.wrap}>
-      <span className={classes.start}>{start?.title}</span>
-      <span className={classes.destination}>{destination?.title}</span>
+      <span className={classes.start}>{start?.name}</span>
+      <span className={classes.destination}>{destination?.name}</span>
       {currentFav && (
         <IconButton
           className={classes.fav}

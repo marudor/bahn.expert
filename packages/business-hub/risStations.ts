@@ -68,6 +68,17 @@ export async function byRl100(rl100: string): Promise<StopPlace | undefined> {
   }
 }
 
+export async function byEva(evaNumber: string): Promise<StopPlace | undefined> {
+  try {
+    const result = (
+      await request.get<StopPlaces>(`/ris-stations/v1/stop-places/${evaNumber}`)
+    ).data;
+    return result.stopPlaces?.[0];
+  } catch {
+    return undefined;
+  }
+}
+
 export async function byPosition(
   latitude: number,
   longitude: number,

@@ -5,3 +5,9 @@ export interface CommonRoutingOptions {
   destination: string;
   time?: Date;
 }
+
+/**
+ * @minLength 7
+ * @maxLength 7
+ */
+export type EvaNumber = string;

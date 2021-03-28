@@ -26,12 +26,13 @@ import type {
   DepartureStationBoardEntry,
 } from 'types/stationBoard';
 import type { Context } from 'koa';
+import type { EvaNumber } from 'types/common';
 import type {
   JourneyMatchOptions,
   ParsedJourneyMatchResponse,
 } from 'types/HAFAS/JourneyMatch';
 import type { ParsedJourneyDetails } from 'types/HAFAS/JourneyDetails';
-import type { SingleRoute } from 'types/routing';
+import type { Route$Auslastung, SingleRoute } from 'types/routing';
 
 export interface SearchOnTripBody {
   sotMode: AllowedSotMode;
@@ -51,7 +52,6 @@ export class HafasControllerV2 extends Controller {
     return JourneyDetails(jid, profile, ctx.query.raw);
   }
 
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   @Get('/auslastung/{start}/{destination}/{trainNumber}/{time}')
   @Tags('HAFAS')
   @OperationId('Auslastung v2')
@@ -60,7 +60,8 @@ export class HafasControllerV2 extends Controller {
     destination: string,
     trainNumber: string,
     time: Date,
-  ) {
+  ): Promise<Route$Auslastung> {
+    // @ts-expect-error TODO: use @res with 404
     return Auslastung(start, destination, trainNumber, time);
   }
 
@@ -70,9 +71,9 @@ export class HafasControllerV2 extends Controller {
   arrivalStationBoard(
     @Request() ctx: Context,
     /**
-     * EvaId
+     * evaNumber
      */
-    @Query() station: string,
+    @Query() station: EvaNumber,
     @Query() date?: Date,
     @Query() profile?: AllowedHafasProfile,
   ): Promise<ArrivalStationBoardEntry[]> {
@@ -92,14 +93,8 @@ export class HafasControllerV2 extends Controller {
   @OperationId('Departure Station Board v2')
   departureStationBoard(
     @Request() ctx: Context,
-    /**
-     * EvaId
-     */
-    @Query() station: string,
-    /**
-     * EvaId
-     */
-    @Query() direction?: string,
+    @Query() station: EvaNumber,
+    @Query() direction?: EvaNumber,
     @Query() date?: Date,
     @Query() profile?: AllowedHafasProfile,
   ): Promise<DepartureStationBoardEntry[]> {
@@ -134,9 +129,9 @@ export class HafasControllerV2 extends Controller {
     trainName: string,
     @Query() stop?: string,
     /**
-     * EVA Id of a stop of your train
+     * EvaNumber of a stop of your train
      */
-    @Query() station?: string,
+    @Query() station?: EvaNumber,
     @Query() date?: Date,
     @Query() profile?: AllowedHafasProfile,
   ): Promise<ParsedSearchOnTripResponse> {

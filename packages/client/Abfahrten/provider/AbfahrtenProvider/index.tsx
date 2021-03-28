@@ -3,14 +3,13 @@ import {
   useAbfahrtenConfig,
   useAbfahrtenFetchAPIUrl,
 } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
-import { getStationsFromAPI } from 'client/Common/service/stationSearch';
 import { useCallback, useEffect, useState } from 'react';
 import Axios from 'axios';
 import constate from 'constate';
 import type { Abfahrt, AbfahrtenResult, Wings } from 'types/iris';
 import type { AxiosError } from 'axios';
 import type { FC, ReactNode } from 'react';
-import type { Station, StationSearchType } from 'types/station';
+import type { MinimalStopPlace } from 'types/stopPlace';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 let cancelGetAbfahrten = () => {};
@@ -60,43 +59,41 @@ interface AbfahrtenError$Default extends AxiosError {
 }
 
 const useAbfahrtenInner = ({
-  stationApiFunction = getStationsFromAPI,
+  searchFunction,
 }: {
-  stationApiFunction?: (
-    searchType: StationSearchType,
-    stationName: string,
-  ) => Promise<Station[]>;
+  searchFunction: (searchTerm: string) => Promise<MinimalStopPlace[]>;
 }) => {
-  const [currentStation, setCurrentStation] = useState<Station>();
+  const [currentStopPlace, setCurrentStopPlace] = useState<MinimalStopPlace>();
   const [departures, setDepartures] = useState<Departures>();
   const [error, setError] = useState<AbfahrtenError>();
-  const { lookahead, lookbehind, searchType } = useAbfahrtenConfig();
+  const { lookahead, lookbehind } = useAbfahrtenConfig();
   const fetchApiUrl = useAbfahrtenFetchAPIUrl();
 
-  const updateCurrentStationByString = useCallback(
-    async (stationName: string) => {
+  const updateCurrentStopPlaceByString = useCallback(
+    async (stopPlaceName: string) => {
       try {
-        setCurrentStation((oldStation) => {
-          if (oldStation && oldStation.title !== stationName) {
+        setCurrentStopPlace((oldStopPlace) => {
+          if (oldStopPlace && oldStopPlace.name !== stopPlaceName) {
             setDepartures(undefined);
           }
 
           return {
-            title: stationName,
-            id: '',
+            name: stopPlaceName,
+            evaNumber: '',
+            availableTransports: [],
           };
         });
-        const stations = await stationApiFunction(searchType, stationName);
+        const stopPlaces = await searchFunction(stopPlaceName);
 
-        if (stations.length) {
-          setCurrentStation(stations[0]);
+        if (stopPlaces.length) {
+          setCurrentStopPlace(stopPlaces[0]);
         } else {
           throw {
             errorType: '404',
           };
         }
       } catch (e) {
-        e.station = stationName;
+        e.station = stopPlaceName;
 
         if (e.response && e.response.status === 404) {
           e.errorType = '404';
@@ -104,17 +101,17 @@ const useAbfahrtenInner = ({
         setError(e);
       }
     },
-    [searchType, stationApiFunction],
+    [searchFunction],
   );
 
   useEffect(() => {
-    if (!currentStation || !currentStation.id) {
+    if (!currentStopPlace || !currentStopPlace.evaNumber) {
       setDepartures(undefined);
 
       return;
     }
     fetchAbfahrten(
-      `${fetchApiUrl}/${currentStation.id}`,
+      `${fetchApiUrl}/${currentStopPlace.evaNumber}`,
       lookahead,
       lookbehind,
     ).then(
@@ -126,16 +123,16 @@ const useAbfahrtenInner = ({
         });
       },
       (e) => {
-        e.station = currentStation.title;
+        e.station = currentStopPlace.name;
         setError(e);
       },
     );
-  }, [currentStation, fetchApiUrl, lookahead, lookbehind]);
+  }, [currentStopPlace, fetchApiUrl, lookahead, lookbehind]);
 
   return {
-    updateCurrentStationByString,
-    currentStation,
-    setCurrentStation,
+    updateCurrentStopPlaceByString,
+    currentStopPlace,
+    setCurrentStopPlace,
     departures,
     setDepartures,
     error,
@@ -147,30 +144,30 @@ export const [
   InnerAbfahrtenProvider,
   useAbfahrtenDepartures,
   useAbfahrtenError,
-  useCurrentAbfahrtenStation,
+  useCurrentAbfahrtenStopPlace,
   useRawAbfahrten,
 ] = constate(
   useAbfahrtenInner,
   (v) => v.departures,
   (v) => v.error,
-  (v) => v.currentStation,
-  ({ departures, error, currentStation, ...r }) => r,
+  (v) => v.currentStopPlace,
+  ({ departures, error, currentStopPlace: currentStation, ...r }) => r,
 );
 
 interface Props {
   children: ReactNode;
   fetchApiUrl: string;
-  stationApiFunction?: typeof getStationsFromAPI;
+  stopPlaceApiFunction: (searchTerm: string) => Promise<MinimalStopPlace[]>;
   urlPrefix: string;
 }
 export const AbfahrtenProvider: FC<Props> = ({
   children,
   fetchApiUrl,
-  stationApiFunction,
+  stopPlaceApiFunction,
   urlPrefix,
 }) => (
   <AbfahrtenConfigProvider urlPrefix={urlPrefix} fetchApiUrl={fetchApiUrl}>
-    <InnerAbfahrtenProvider stationApiFunction={stationApiFunction}>
+    <InnerAbfahrtenProvider searchFunction={stopPlaceApiFunction}>
       {children}
     </InnerAbfahrtenProvider>
   </AbfahrtenConfigProvider>

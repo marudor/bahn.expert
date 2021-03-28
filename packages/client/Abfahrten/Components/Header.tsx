@@ -2,46 +2,38 @@ import { BaseHeader } from 'client/Common/Components/BaseHeader';
 import { ExtraMenu } from './ExtraMenu';
 import { IconButton } from '@material-ui/core';
 import { Refresh } from '@material-ui/icons';
-import { StationSearch } from 'client/Common/Components/StationSearch';
-import {
-  useAbfahrtenConfig,
-  useAbfahrtenUrlPrefix,
-} from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
+import { StopPlaceSearch } from 'client/Common/Components/StopPlaceSearch';
+import { useAbfahrtenUrlPrefix } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useCallback, useEffect, useState } from 'react';
-import { useCurrentAbfahrtenStation } from 'client/Abfahrten/provider/AbfahrtenProvider';
+import { useCurrentAbfahrtenStopPlace } from 'client/Abfahrten/provider/AbfahrtenProvider';
 import { useHistory } from 'react-router';
 import { useRefreshCurrent } from 'client/Abfahrten/provider/AbfahrtenProvider/hooks';
-import type { AllowedHafasProfile } from 'types/HAFAS';
 import type { FC } from 'react';
-import type { Station } from 'types/station';
+import type { MinimalStopPlace } from 'types/stopPlace';
 
 interface Props {
-  /**
-   * If set will use HAFAS Search
-   */
-  profile?: AllowedHafasProfile;
+  filterForIris: boolean;
 }
 
-export const Header: FC<Props> = ({ profile }: Props) => {
-  const currentStation = useCurrentAbfahrtenStation();
-  const { searchType } = useAbfahrtenConfig();
+export const Header: FC<Props> = ({ filterForIris }: Props) => {
+  const currentStopPlace = useCurrentAbfahrtenStopPlace();
   const refreshCurrentAbfahrten = useRefreshCurrent(true);
   const urlPrefix = useAbfahrtenUrlPrefix();
   const history = useHistory();
-  const [currentEnteredStation, setCurrentEnteredStation] = useState(
-    currentStation,
-  );
+  const [currentEnteredStopPlace, setCurrentEnteredStopPlace] = useState<
+    MinimalStopPlace | undefined
+  >(currentStopPlace);
 
   useEffect(() => {
-    setCurrentEnteredStation(currentStation);
-  }, [currentStation]);
+    setCurrentEnteredStopPlace(currentStopPlace);
+  }, [currentStopPlace]);
   const submit = useCallback(
-    (station: Station | undefined) => {
-      setCurrentEnteredStation(station);
-      if (!station) {
+    (stopPlace: MinimalStopPlace | undefined) => {
+      setCurrentEnteredStopPlace(stopPlace);
+      if (!stopPlace) {
         return;
       }
-      history.push(`${urlPrefix}${encodeURIComponent(station.title)}`);
+      history.push(`${urlPrefix}${encodeURIComponent(stopPlace.name)}`);
     },
     [history, urlPrefix],
   );
@@ -49,18 +41,17 @@ export const Header: FC<Props> = ({ profile }: Props) => {
   return (
     <>
       <BaseHeader>
-        <StationSearch
+        <StopPlaceSearch
           id="abfahrtenHeaderSearch"
-          profile={profile}
-          autoFocus={!currentStation}
-          searchType={searchType}
-          value={currentEnteredStation}
+          autoFocus={!currentStopPlace}
+          filterForIris={filterForIris}
+          value={currentEnteredStopPlace}
           onChange={submit}
           placeholder={`Station (z.B. ${
-            currentStation ? currentStation.title : 'Kiel Hbf'
+            currentStopPlace ? currentStopPlace.name : 'Kiel Hbf'
           })`}
         />
-        {!global.navigator?.standalone && Boolean(currentStation) && (
+        {!global.navigator?.standalone && Boolean(currentStopPlace) && (
           <IconButton
             onClick={refreshCurrentAbfahrten}
             aria-label="refresh"

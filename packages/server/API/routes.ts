@@ -43,6 +43,11 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "EvaNumber": {
+        "dataType": "refAlias",
+        "type": {"dataType":"string","validators":{"minLength":{"value":7},"maxLength":{"value":7}}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "OccupancyPeriod": {
         "dataType": "refObject",
         "properties": {
@@ -2067,11 +2072,11 @@ export function RegisterRoutes(router: KoaRouter) {
     //  NOTE: If you do not see routes for all of your controllers in this file, then you might not have informed tsoa of where to look
     //      Please look into the "controllerPathGlobs" config option described in the readme: https://github.com/lukeautry/tsoa
     // ###########################################################################################################
-        router.get('/api/bahnhof/v1/lageplan/:stationName/:evaId',
+        router.get('/api/bahnhof/v1/lageplan/:stopPlaceName/:evaNumber',
             async function BahnhofControllerV1_lageplan(context: any, next: any) {
             const args = {
-                    stationName: {"in":"path","name":"stationName","required":true,"dataType":"string"},
-                    evaId: {"in":"path","name":"evaId","required":true,"dataType":"string"},
+                    stopPlaceName: {"in":"path","name":"stopPlaceName","required":true,"dataType":"string"},
+                    evaNumber: {"in":"path","name":"evaNumber","required":true,"ref":"EvaNumber"},
             };
 
             let validatedArgs: any[] = [];
@@ -2088,10 +2093,10 @@ export function RegisterRoutes(router: KoaRouter) {
             return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        router.get('/api/businessHub/v1/stationOccupancy/:evaId/:date',
+        router.get('/api/businessHub/v1/stationOccupancy/:evaNumber/:date',
             async function BusinessHubV1Controller_stationOccupancy(context: any, next: any) {
             const args = {
-                    evaId: {"in":"path","name":"evaId","required":true,"dataType":"string"},
+                    evaNumber: {"in":"path","name":"evaNumber","required":true,"ref":"EvaNumber"},
                     date: {"in":"path","name":"date","required":true,"dataType":"datetime"},
             };
 
@@ -2112,7 +2117,7 @@ export function RegisterRoutes(router: KoaRouter) {
         router.get('/api/businessHub/v1/platforms/:evaNumber',
             async function BusinessHubV1Controller_platforms(context: any, next: any) {
             const args = {
-                    evaNumber: {"in":"path","name":"evaNumber","required":true,"dataType":"string"},
+                    evaNumber: {"in":"path","name":"evaNumber","required":true,"ref":"EvaNumber"},
             };
 
             let validatedArgs: any[] = [];
@@ -2566,7 +2571,7 @@ export function RegisterRoutes(router: KoaRouter) {
             async function HafasControllerV2_arrivalStationBoard(context: any, next: any) {
             const args = {
                     ctx: {"in":"request","name":"ctx","required":true,"dataType":"object"},
-                    station: {"in":"query","name":"station","required":true,"dataType":"string"},
+                    station: {"in":"query","name":"station","required":true,"ref":"EvaNumber"},
                     date: {"in":"query","name":"date","dataType":"datetime"},
                     profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
             };
@@ -2589,8 +2594,8 @@ export function RegisterRoutes(router: KoaRouter) {
             async function HafasControllerV2_departureStationBoard(context: any, next: any) {
             const args = {
                     ctx: {"in":"request","name":"ctx","required":true,"dataType":"object"},
-                    station: {"in":"query","name":"station","required":true,"dataType":"string"},
-                    direction: {"in":"query","name":"direction","dataType":"string"},
+                    station: {"in":"query","name":"station","required":true,"ref":"EvaNumber"},
+                    direction: {"in":"query","name":"direction","ref":"EvaNumber"},
                     date: {"in":"query","name":"date","dataType":"datetime"},
                     profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
             };
@@ -2636,7 +2641,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const args = {
                     trainName: {"in":"path","name":"trainName","required":true,"dataType":"string"},
                     stop: {"in":"query","name":"stop","dataType":"string"},
-                    station: {"in":"query","name":"station","dataType":"string"},
+                    station: {"in":"query","name":"station","ref":"EvaNumber"},
                     date: {"in":"query","name":"date","dataType":"datetime"},
                     profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
             };
@@ -2720,13 +2725,12 @@ export function RegisterRoutes(router: KoaRouter) {
             return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        router.get('/api/iris/v2/abfahrten/:evaId',
+        router.get('/api/iris/v2/abfahrten/:evaNumber',
             async function IrisControllerv2_abfahrten(context: any, next: any) {
             const args = {
-                    evaId: {"in":"path","name":"evaId","required":true,"dataType":"string"},
-                    lookahead: {"in":"query","name":"lookahead","dataType":"double"},
-                    lookbehind: {"in":"query","name":"lookbehind","dataType":"double"},
-                    type: {"in":"query","name":"type","dataType":"union","subSchemas":[{"dataType":"enum","enums":["open"]},{"dataType":"enum","enums":["default"]}]},
+                    evaNumber: {"in":"path","name":"evaNumber","required":true,"ref":"EvaNumber"},
+                    lookahead: {"in":"query","name":"lookahead","dataType":"integer","validators":{"isInt":{"errorMsg":"lookahead"}}},
+                    lookbehind: {"in":"query","name":"lookbehind","dataType":"integer","validators":{"isInt":{"errorMsg":"lookbehind"}}},
             };
 
             let validatedArgs: any[] = [];
@@ -2746,6 +2750,7 @@ export function RegisterRoutes(router: KoaRouter) {
         router.get('/api/reihung/monitoring/wagen',
             async function ReihungMonitoringController_monitoring(context: any, next: any) {
             const args = {
+                    notFoundResponse: {"in":"res","name":"404","required":true,"dataType":"void"},
             };
 
             let validatedArgs: any[] = [];
@@ -2766,6 +2771,7 @@ export function RegisterRoutes(router: KoaRouter) {
             async function ReihungControllerV1_trainName(context: any, next: any) {
             const args = {
                     tz: {"in":"path","name":"tz","required":true,"dataType":"string"},
+                    notFoundResponse: {"in":"res","name":"404","required":true,"dataType":"void"},
             };
 
             let validatedArgs: any[] = [];
@@ -2786,6 +2792,7 @@ export function RegisterRoutes(router: KoaRouter) {
             async function ReihungControllerV1_forTZ(context: any, next: any) {
             const args = {
                     tz: {"in":"path","name":"tz","required":true,"dataType":"string"},
+                    notFoundResponse: {"in":"res","name":"404","required":true,"dataType":"void"},
             };
 
             let validatedArgs: any[] = [];
@@ -2806,6 +2813,7 @@ export function RegisterRoutes(router: KoaRouter) {
             async function ReihungControllerV1_forNumber(context: any, next: any) {
             const args = {
                     number: {"in":"path","name":"number","required":true,"dataType":"string"},
+                    notFoundResponse: {"in":"res","name":"404","required":true,"dataType":"void"},
             };
 
             let validatedArgs: any[] = [];
@@ -3017,6 +3025,7 @@ export function RegisterRoutes(router: KoaRouter) {
                     lng: {"in":"query","name":"lng","required":true,"dataType":"integer","validators":{"isInt":{"errorMsg":"lng"}}},
                     radius: {"default":500,"in":"query","name":"radius","dataType":"integer","validators":{"isInt":{"errorMsg":"radius"}}},
                     filterForIris: {"default":false,"in":"query","name":"filterForIris","dataType":"boolean"},
+                    max: {"in":"query","name":"max","dataType":"double"},
             };
 
             let validatedArgs: any[] = [];
@@ -3033,10 +3042,32 @@ export function RegisterRoutes(router: KoaRouter) {
             return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        router.get('/api/stopPlace/v1/:evaNumber',
+            async function StopPlaceController_stopPlaceByEva(context: any, next: any) {
+            const args = {
+                    evaNumber: {"in":"path","name":"evaNumber","required":true,"ref":"EvaNumber"},
+                    notFoundResponse: {"in":"res","name":"404","required":true,"dataType":"void"},
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+              validatedArgs = getValidatedArgs(args, context, next);
+            } catch (error) {
+              context.status = error.status;
+              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+            }
+
+            const controller = new StopPlaceController();
+
+            const promise = controller.stopPlaceByEva.apply(controller, validatedArgs as any);
+            return promiseHandler(controller, promise, context, undefined, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/stopPlace/v1/:evaNumber/identifier',
             async function StopPlaceController_stopPlaceIdentifier(context: any, next: any) {
             const args = {
-                    evaNumber: {"in":"path","name":"evaNumber","required":true,"dataType":"string"},
+                    evaNumber: {"in":"path","name":"evaNumber","required":true,"ref":"EvaNumber"},
+                    notFoundResponse: {"in":"res","name":"404","required":true,"dataType":"void"},
             };
 
             let validatedArgs: any[] = [];

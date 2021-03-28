@@ -1,79 +1,56 @@
 /* eslint import/prefer-default-export: 0 */
-import { AllowedHafasProfile } from 'types/HAFAS';
-import { StationSearchType } from 'types/station';
 import Axios from 'axios';
-import type { Station } from 'types/station';
+import type { GroupedStopPlace } from 'types/stopPlace';
 
-export async function getStationsFromAPI(
-  type: StationSearchType = StationSearchType.default,
-  stationString?: string,
-): Promise<Station[]> {
-  if (stationString) {
+export async function getStopPlaceFromAPI(
+  evaNumber: string,
+): Promise<GroupedStopPlace | undefined> {
+  return (
+    await Axios.get<GroupedStopPlace | undefined>(
+      `/api/stopPlace/v1/${evaNumber}`,
+    )
+  ).data;
+}
+
+export async function getStopPlacesFromAPI(
+  filterForIris: boolean,
+  max?: number,
+  searchTerm?: string,
+): Promise<GroupedStopPlace[]> {
+  if (searchTerm) {
     return (
-      await Axios.get<Station[]>(
-        `/api/station/v1/search/${encodeURIComponent(stationString)}`,
+      await Axios.get<GroupedStopPlace[]>(
+        `/api/stopPlace/v1/search/${encodeURIComponent(searchTerm)}`,
         {
-          params: { type },
+          params: {
+            filterForIris,
+            max,
+          },
         },
       )
     ).data;
   }
-
   return [];
 }
 
-export async function getHafasStationFromAPI(
-  profile?: AllowedHafasProfile,
-  stationString?: string,
-): Promise<Station[]> {
-  try {
-    if (stationString) {
-      return (
-        await Axios.get<Station[]>(
-          `/api/hafas/v1/station/${encodeURIComponent(stationString)}`,
-          {
-            params: {
-              profile,
-              type: 'S',
-            },
-          },
-        )
-      ).data;
-    }
-    return [];
-  } catch {
-    return [];
-  }
-}
-
-export async function getHafasStationFromCoordinates(
-  profile: AllowedHafasProfile = AllowedHafasProfile.DB,
-  coordinates: GeolocationCoordinates,
-): Promise<Station[]> {
+export async function getStopPlacesFromCoordinates(
+  filterForIris: boolean,
+  max?: number,
+  coordinates?: GeolocationCoordinates,
+): Promise<GroupedStopPlace[]> {
+  if (!coordinates) return [];
   try {
     return (
-      await Axios.get<Station[]>('/api/hafas/v1/geoStation', {
+      await Axios.get<GroupedStopPlace[]>('/api/stopPlace/v1/geoSearch', {
         params: {
           lat: coordinates.latitude,
           lng: coordinates.longitude,
-          profile,
+          filterForIris,
+          max,
         },
       })
     ).data;
   } catch {
     return [];
   }
-}
-
-export async function getStationsFromCoordinates(
-  coordinates: GeolocationCoordinates,
-): Promise<Station[]> {
-  return (
-    await Axios.get<Station[]>('/api/station/v1/geoSearch', {
-      params: {
-        lat: coordinates.latitude,
-        lng: coordinates.longitude,
-      },
-    })
-  ).data;
 }
