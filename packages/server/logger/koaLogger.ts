@@ -54,12 +54,14 @@ export default (logger: Logger) => (
     [logField]: reqId,
   });
 
-  ctx.log.info(
-    {
-      req: ctx.req,
-    },
-    formatRequestMessage(ctx),
-  );
+  if (process.env.NODE_ENV === 'production') {
+    ctx.log.info(
+      {
+        req: ctx.req,
+      },
+      formatRequestMessage(ctx),
+    );
+  }
 
   const startTime = Date.now();
   let err: any;
@@ -89,7 +91,9 @@ export default (logger: Logger) => (
       err = e;
     })
     .then(() => {
-      onFinished(ctx.response.res, onResponseFinished);
+      if (process.env.NODE_ENV === 'production') {
+        onFinished(ctx.response.res, onResponseFinished);
+      }
 
       if (err) throw err;
     });

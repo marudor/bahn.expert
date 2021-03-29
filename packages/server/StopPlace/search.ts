@@ -61,6 +61,7 @@ export async function searchStopPlace(
   filterForIris?: boolean,
 ): Promise<GroupedStopPlace[]> {
   if (!searchTerm) return [];
+
   let groupedStopPlaces =
     (await stopPlaceSearchCache.get(searchTerm)) ||
     (await searchStopPlaceRemote(searchTerm));
@@ -117,8 +118,17 @@ export async function geoSearchStopPlace(
   return groupedStopPlaces;
 }
 
+async function byRl100WithSpaceHandling(rl100: string) {
+  const rl100Promise = byRl100(rl100.toUpperCase());
+  let rl100DoubleSpacePromise: typeof rl100Promise = Promise.resolve(undefined);
+  if (rl100.length < 5 && rl100.includes(' ')) {
+    rl100DoubleSpacePromise = byRl100(rl100.replace(/ /g, '  ').toUpperCase());
+  }
+  return (await rl100Promise) || (await rl100DoubleSpacePromise);
+}
+
 async function searchStopPlaceRemote(searchTerm: string) {
-  const rl100Promise = byRl100(searchTerm.toUpperCase());
+  const rl100Promise = byRl100WithSpaceHandling(searchTerm.toUpperCase());
   const risResultPromise = byName(searchTerm);
   const risResult = await risResultPromise;
   const rl100Result = await rl100Promise;
