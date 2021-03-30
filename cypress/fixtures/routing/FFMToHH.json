@@ -228,9 +228,7 @@
           "type": "JNY"
         }
       ],
-      "segmentTypes": [
-        "ICE"
-      ]
+      "segmentTypes": ["ICE"]
     },
     {
       "checksum": "3519f3db_3",
@@ -496,9 +494,7 @@
           "type": "JNY"
         }
       ],
-      "segmentTypes": [
-        "ICE"
-      ]
+      "segmentTypes": ["ICE"]
     },
     {
       "checksum": "ff223bad_3",
@@ -852,10 +848,7 @@
           "type": "JNY"
         }
       ],
-      "segmentTypes": [
-        "ICE",
-        "ICE"
-      ]
+      "segmentTypes": ["ICE", "ICE"]
     },
     {
       "checksum": "b0ea0d7d_3",
@@ -1102,9 +1095,7 @@
           "type": "JNY"
         }
       ],
-      "segmentTypes": [
-        "ICE"
-      ]
+      "segmentTypes": ["ICE"]
     },
     {
       "checksum": "0d8414f0_3",
@@ -1286,9 +1277,7 @@
           "type": "JNY"
         }
       ],
-      "segmentTypes": [
-        "ICE"
-      ]
+      "segmentTypes": ["ICE"]
     },
     {
       "checksum": "6a28aeff_3",
@@ -1715,10 +1704,7 @@
           "type": "JNY"
         }
       ],
-      "segmentTypes": [
-        "ICE",
-        "ICE"
-      ]
+      "segmentTypes": ["ICE", "ICE"]
     },
     {
       "checksum": "a1d2a7b0_3",
@@ -2287,10 +2273,7 @@
           "type": "JNY"
         }
       ],
-      "segmentTypes": [
-        "IC",
-        "ME"
-      ]
+      "segmentTypes": ["IC", "ME"]
     },
     {
       "checksum": "aa84e9ab_3",
@@ -2747,10 +2730,7 @@
           "type": "JNY"
         }
       ],
-      "segmentTypes": [
-        "ICE",
-        "ICE"
-      ]
+      "segmentTypes": ["ICE", "ICE"]
     },
     {
       "checksum": "eea82c99_3",
@@ -3279,11 +3259,7 @@
           "type": "JNY"
         }
       ],
-      "segmentTypes": [
-        "ICE",
-        "ICE",
-        "ICE"
-      ]
+      "segmentTypes": ["ICE", "ICE", "ICE"]
     },
     {
       "checksum": "b9192403_3",
@@ -3786,11 +3762,7 @@
           "type": "JNY"
         }
       ],
-      "segmentTypes": [
-        "ICE",
-        "IC",
-        "ICE"
-      ]
+      "segmentTypes": ["ICE", "IC", "ICE"]
     },
     {
       "checksum": "418cabcb_3",
@@ -4334,10 +4306,7 @@
           "type": "JNY"
         }
       ],
-      "segmentTypes": [
-        "ICE",
-        "ICE"
-      ]
+      "segmentTypes": ["ICE", "ICE"]
     }
   ]
 }
