@@ -73,7 +73,7 @@ jobs:
         run: |
           yarn --immutable --immutable-cache
       - name: Run Cypress
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@master
         with:
           install: false
           record: true
