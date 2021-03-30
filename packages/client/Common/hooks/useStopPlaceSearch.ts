@@ -1,7 +1,7 @@
 import {
   getStopPlacesFromAPI,
   getStopPlacesFromCoordinates,
-} from 'client/Common/service/stationSearch';
+} from 'client/Common/service/stopPlaceSearch';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import debounce from 'debounce-promise';
 import type { ControllerStateAndHelpers } from 'downshift';

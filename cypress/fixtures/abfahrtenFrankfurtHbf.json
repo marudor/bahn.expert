@@ -13,9 +13,9 @@
         "delay": 39
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Frankfurt (Main) Hbf",
       "lineNumber": "7",
@@ -97,9 +97,9 @@
         "delay": 36
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Frankfurt (Main) Hbf",
       "lineNumber": "70",
@@ -189,9 +189,7 @@
       "arrival": {
         "scheduledTime": "2019-08-07T12:48:00.000Z",
         "time": "2019-08-07T13:01:00.000Z",
-        "wingIds": [
-          "2724419709331148824-1908071317"
-        ],
+        "wingIds": ["2724419709331148824-1908071317"],
         "platform": "10",
         "scheduledPlatform": "10",
         "hidden": false,
@@ -199,9 +197,9 @@
         "delay": 13
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Frankfurt (Main) Hbf",
       "lineNumber": "68",
@@ -318,9 +316,9 @@
         "delay": 13
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Frankfurt (Main) Hbf",
       "lineNumber": "67",
@@ -425,9 +423,9 @@
         "delay": 10
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Frankfurt (Main) Hbf",
       "lineNumber": "2",
@@ -526,9 +524,9 @@
         "delay": 49
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Interlaken Ost",
       "id": "5036600979734019557",
@@ -691,9 +689,9 @@
         "delay": 7
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "München Hbf",
       "id": "2307301279586290347",
@@ -769,9 +767,9 @@
         "delay": 3
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Frankfurt (Main) Hbf",
       "id": "929343339578447900",
@@ -838,9 +836,9 @@
         "delay": 5
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt Hbf  (tief)",
-        "id": "8098105"
+      "currentStopPlace": {
+        "name": "Frankfurt Hbf  (tief)",
+        "evaNumber": "8098105"
       },
       "scheduledDestination": "Frankfurt (Main) Süd",
       "lineNumber": "6",
@@ -965,9 +963,9 @@
         "delay": 1
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt Hbf  (tief)",
-        "id": "8098105"
+      "currentStopPlace": {
+        "name": "Frankfurt Hbf  (tief)",
+        "evaNumber": "8098105"
       },
       "scheduledDestination": "Hochheim (Main)",
       "lineNumber": "1",
@@ -1081,9 +1079,9 @@
         "delay": 6
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Hamburg-Altona",
       "id": "1302275594339840200",
@@ -1167,9 +1165,9 @@
         "delay": 0
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Frankfurt (Main) Hbf",
       "lineNumber": "20",
@@ -1248,9 +1246,9 @@
         "delay": 1
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt Hbf  (tief)",
-        "id": "8098105"
+      "currentStopPlace": {
+        "name": "Frankfurt Hbf  (tief)",
+        "evaNumber": "8098105"
       },
       "scheduledDestination": "Hanau Hbf",
       "lineNumber": "9",
@@ -1387,9 +1385,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt Hbf  (tief)",
-        "id": "8098105"
+      "currentStopPlace": {
+        "name": "Frankfurt Hbf  (tief)",
+        "evaNumber": "8098105"
       },
       "scheduledDestination": "Kronberg (Taunus)",
       "lineNumber": "4",
@@ -1503,9 +1501,9 @@
         "delay": 0
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Frankfurt (Main) Hbf",
       "lineNumber": "61",
@@ -1600,9 +1598,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Limburg (Lahn)",
       "lineNumber": "20",
@@ -1684,9 +1682,9 @@
         "delay": 1
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt Hbf  (tief)",
-        "id": "8098105"
+      "currentStopPlace": {
+        "name": "Frankfurt Hbf  (tief)",
+        "evaNumber": "8098105"
       },
       "scheduledDestination": "Wiesbaden Hbf",
       "lineNumber": "9",
@@ -1823,9 +1821,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt Hbf  (tief)",
-        "id": "8098105"
+      "currentStopPlace": {
+        "name": "Frankfurt Hbf  (tief)",
+        "evaNumber": "8098105"
       },
       "scheduledDestination": "Langen (Hess)",
       "lineNumber": "4",
@@ -1937,9 +1935,9 @@
         "hidden": false
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Berlin Gesundbrunnen",
       "id": "7045405255925623225",
@@ -2010,9 +2008,9 @@
         "delay": 1
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt Hbf  (tief)",
-        "id": "8098105"
+      "currentStopPlace": {
+        "name": "Frankfurt Hbf  (tief)",
+        "evaNumber": "8098105"
       },
       "scheduledDestination": "Friedberg (Hess)",
       "lineNumber": "6",
@@ -2132,9 +2130,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt Hbf  (tief)",
-        "id": "8098105"
+      "currentStopPlace": {
+        "name": "Frankfurt Hbf  (tief)",
+        "evaNumber": "8098105"
       },
       "scheduledDestination": "Rödermark-Ober Roden",
       "lineNumber": "1",
@@ -2251,9 +2249,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Frankfurt (Main) Hbf",
       "lineNumber": "RB10",
@@ -2390,9 +2388,9 @@
         "delay": 3
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Stuttgart Hbf",
       "id": "3868889213374348128",
@@ -2475,9 +2473,9 @@
         "delay": 4
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Frankfurt (Main) Hbf",
       "lineNumber": "7",
@@ -2550,9 +2548,7 @@
       "departure": {
         "scheduledTime": "2019-08-07T13:06:00.000Z",
         "time": "2019-08-07T13:14:00.000Z",
-        "wingIds": [
-          "1186458192854678463-1908071506"
-        ],
+        "wingIds": ["1186458192854678463-1908071506"],
         "platform": "10",
         "scheduledPlatform": "10",
         "hidden": false,
@@ -2560,9 +2556,9 @@
         "delay": 8
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Wiesloch-Walldorf",
       "lineNumber": "68",
@@ -2693,9 +2689,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt Hbf  (tief)",
-        "id": "8098105"
+      "currentStopPlace": {
+        "name": "Frankfurt Hbf  (tief)",
+        "evaNumber": "8098105"
       },
       "scheduledDestination": "Frankfurt (Main) Süd",
       "lineNumber": "5",
@@ -2803,9 +2799,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt Hbf  (tief)",
-        "id": "8098105"
+      "currentStopPlace": {
+        "name": "Frankfurt Hbf  (tief)",
+        "evaNumber": "8098105"
       },
       "scheduledDestination": "Hofheim (Taunus)",
       "lineNumber": "2",
@@ -2904,9 +2900,9 @@
         "delay": 0
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Koblenz Hbf",
       "lineNumber": "2",
@@ -2999,9 +2995,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Frankfurt (M)  Flughafen Regionalbf",
       "lineNumber": "8",
@@ -3067,9 +3063,9 @@
         "delay": 1
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt Hbf  (tief)",
-        "id": "8098105"
+      "currentStopPlace": {
+        "name": "Frankfurt Hbf  (tief)",
+        "evaNumber": "8098105"
       },
       "scheduledDestination": "Dietzenbach Bahnhof",
       "lineNumber": "2",
@@ -3203,9 +3199,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt Hbf  (tief)",
-        "id": "8098105"
+      "currentStopPlace": {
+        "name": "Frankfurt Hbf  (tief)",
+        "evaNumber": "8098105"
       },
       "scheduledDestination": "Bad Homburg",
       "lineNumber": "5",
@@ -3305,9 +3301,9 @@
         "delay": 2
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Düsseldorf Hbf",
       "id": "8429649765325465614",
@@ -3395,9 +3391,9 @@
         "delay": 4
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt Hbf  (tief)",
-        "id": "8098105"
+      "currentStopPlace": {
+        "name": "Frankfurt Hbf  (tief)",
+        "evaNumber": "8098105"
       },
       "scheduledDestination": "Wiesbaden Hbf",
       "lineNumber": "1",
@@ -3550,9 +3546,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt Hbf  (tief)",
-        "id": "8098105"
+      "currentStopPlace": {
+        "name": "Frankfurt Hbf  (tief)",
+        "evaNumber": "8098105"
       },
       "scheduledDestination": "Frankfurt (Main) Süd",
       "lineNumber": "6",
@@ -3651,9 +3647,9 @@
         "delay": 15
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Mannheim Hbf",
       "lineNumber": "70",
@@ -3754,9 +3750,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Limburg (Lahn)",
       "lineNumber": "22",
@@ -3850,9 +3846,9 @@
         "delay": 18
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Berlin Ostbahnhof",
       "id": "4961782681481677440",
@@ -3979,9 +3975,9 @@
         "delay": 0
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Frankfurt (Main) Hbf",
       "lineNumber": "34",
@@ -4081,9 +4077,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt Hbf  (tief)",
-        "id": "8098105"
+      "currentStopPlace": {
+        "name": "Frankfurt Hbf  (tief)",
+        "evaNumber": "8098105"
       },
       "scheduledDestination": "Hanau Hbf",
       "lineNumber": "8",
@@ -4224,9 +4220,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt Hbf  (tief)",
-        "id": "8098105"
+      "currentStopPlace": {
+        "name": "Frankfurt Hbf  (tief)",
+        "evaNumber": "8098105"
       },
       "scheduledDestination": "Bad Soden (Taunus)",
       "lineNumber": "3",
@@ -4361,9 +4357,9 @@
         "delay": 0
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Frankfurt (Main) Hbf",
       "lineNumber": "51",
@@ -4445,9 +4441,9 @@
         "delay": 0
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Dieburg",
       "lineNumber": "61",
@@ -4542,9 +4538,9 @@
         "hidden": false
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Köln Hbf",
       "id": "1980200309778804828",
@@ -4610,9 +4606,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Königstein (Taunus)",
       "lineNumber": "12",
@@ -4736,9 +4732,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt Hbf  (tief)",
-        "id": "8098105"
+      "currentStopPlace": {
+        "name": "Frankfurt Hbf  (tief)",
+        "evaNumber": "8098105"
       },
       "scheduledDestination": "Darmstadt Hbf",
       "lineNumber": "3",
@@ -4882,9 +4878,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt Hbf  (tief)",
-        "id": "8098105"
+      "currentStopPlace": {
+        "name": "Frankfurt Hbf  (tief)",
+        "evaNumber": "8098105"
       },
       "scheduledDestination": "Wiesbaden Hbf",
       "lineNumber": "8",
@@ -5018,9 +5014,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt Hbf  (tief)",
-        "id": "8098105"
+      "currentStopPlace": {
+        "name": "Frankfurt Hbf  (tief)",
+        "evaNumber": "8098105"
       },
       "scheduledDestination": "Rödermark-Ober Roden",
       "lineNumber": "1",
@@ -5169,9 +5165,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt Hbf  (tief)",
-        "id": "8098105"
+      "currentStopPlace": {
+        "name": "Frankfurt Hbf  (tief)",
+        "evaNumber": "8098105"
       },
       "scheduledDestination": "Groß Karben",
       "lineNumber": "6",
@@ -5277,9 +5273,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Heidelberg Hbf",
       "id": "4185909531060188052",
@@ -5357,9 +5353,9 @@
         "delay": 0
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Frankfurt (Main) Hbf",
       "lineNumber": "14",
@@ -5431,9 +5427,9 @@
         "delay": 8
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Frankfurt (Main) Hbf",
       "lineNumber": "RE85",
@@ -5513,9 +5509,9 @@
         "delay": 2
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Dresden Hbf",
       "id": "8317284780065095268",
@@ -5600,9 +5596,9 @@
         "delay": 4
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Riedstadt-Goddelau",
       "lineNumber": "7",
@@ -5683,9 +5679,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Kassel Hbf",
       "lineNumber": "30",
@@ -5776,9 +5772,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt Hbf  (tief)",
-        "id": "8098105"
+      "currentStopPlace": {
+        "name": "Frankfurt Hbf  (tief)",
+        "evaNumber": "8098105"
       },
       "scheduledDestination": "Niedernhausen (Taunus)",
       "lineNumber": "2",
@@ -5912,9 +5908,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt Hbf  (tief)",
-        "id": "8098105"
+      "currentStopPlace": {
+        "name": "Frankfurt Hbf  (tief)",
+        "evaNumber": "8098105"
       },
       "scheduledDestination": "Frankfurt (Main) Süd",
       "lineNumber": "5",
@@ -6003,9 +5999,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Frankfurt (Main) Hbf",
       "lineNumber": "8",
@@ -6061,9 +6057,9 @@
         "hidden": false
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Koblenz Hbf",
       "lineNumber": "RB10",
@@ -6188,9 +6184,9 @@
         "delay": 0
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Frankfurt (Main) Hbf",
       "lineNumber": "55",
@@ -6284,9 +6280,9 @@
         "delay": 2
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Frankfurt (Main) Hbf",
       "lineNumber": "60",
@@ -6367,9 +6363,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt Hbf  (tief)",
-        "id": "8098105"
+      "currentStopPlace": {
+        "name": "Frankfurt Hbf  (tief)",
+        "evaNumber": "8098105"
       },
       "scheduledDestination": "Friedrichsdorf (Taunus)",
       "lineNumber": "5",
@@ -6471,9 +6467,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Frankfurt Hbf  (tief)",
-        "id": "8098105"
+      "currentStopPlace": {
+        "name": "Frankfurt Hbf  (tief)",
+        "evaNumber": "8098105"
       },
       "scheduledDestination": "Dietzenbach Bahnhof",
       "lineNumber": "2",
@@ -6567,9 +6563,9 @@
         "delay": 0
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Saarbrücken Hbf",
       "lineNumber": "3",
@@ -6666,9 +6662,9 @@
         "hidden": false
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Erbach (Odenw)",
       "lineNumber": "RB82",
@@ -6769,9 +6765,9 @@
         "delay": 1
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Mannheim Hbf",
       "lineNumber": "67",
@@ -6876,9 +6872,9 @@
         "delay": 3
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Siegen Hbf",
       "lineNumber": "99",
@@ -6950,9 +6946,9 @@
         "delay": 0
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Dillenburg",
       "lineNumber": "40",
@@ -7067,9 +7063,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Dillenburg",
       "lineNumber": "40",
@@ -7169,9 +7165,9 @@
         "delay": 8
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Mannheim Hbf",
       "lineNumber": "67",
@@ -7281,9 +7277,9 @@
         "delay": 1
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Mannheim Hbf",
       "lineNumber": "67",
@@ -7388,9 +7384,9 @@
         "delay": 0
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Dillenburg",
       "lineNumber": "40",
@@ -7492,9 +7488,9 @@
         "delay": 40
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Bruxelles Midi",
       "id": "3626013332719834621",
@@ -7572,9 +7568,9 @@
         "delay": 43
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Frankfurt (Main) Hbf",
-        "id": "8000105"
+      "currentStopPlace": {
+        "name": "Frankfurt (Main) Hbf",
+        "evaNumber": "8000105"
       },
       "scheduledDestination": "Siegen Hbf",
       "lineNumber": "99",

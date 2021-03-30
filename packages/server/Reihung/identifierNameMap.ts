@@ -29,6 +29,5 @@ const nameMap: {
 };
 
 export function getName(br: Omit<BRInfo, 'name'>): string | undefined {
-  console.log(br.identifier);
   if (br.identifier) return nameMap[br.identifier];
 }

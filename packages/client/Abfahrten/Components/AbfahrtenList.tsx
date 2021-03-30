@@ -49,7 +49,7 @@ const InnerAbfahrtenList = () => {
     setCurrentStopPlace,
     setError,
   } = useRawAbfahrten();
-  const currentStation = useCurrentAbfahrtenStopPlace();
+  const currentStopPlace = useCurrentAbfahrtenStopPlace();
   const error = useAbfahrtenError();
   const selectedDetail = useSelectedDetail();
   const { clearReihungen } = useReihungenActions();
@@ -64,14 +64,14 @@ const InnerAbfahrtenList = () => {
   const { updateTitle, updateDescription } = useHeaderTagsActions();
 
   useEffect(() => {
-    if (!currentStation) {
+    if (!currentStopPlace) {
       updateTitle();
       updateDescription();
     } else {
-      updateTitle(currentStation.name);
-      updateDescription(`Zugabfahrten für ${currentStation.name}`);
+      updateTitle(currentStopPlace.name);
+      updateDescription(`Zugabfahrten für ${currentStopPlace.name}`);
     }
-  }, [currentStation, updateDescription, updateTitle]);
+  }, [currentStopPlace, updateDescription, updateTitle]);
 
   useEffect(() => {
     return () => {
@@ -107,13 +107,18 @@ const InnerAbfahrtenList = () => {
   const [oldMatch, setOldMatch] = useState(paramStation);
 
   useEffect(() => {
-    if (!currentStation || oldMatch !== paramStation) {
+    if (!currentStopPlace || oldMatch !== paramStation) {
       setOldMatch(paramStation);
       void updateCurrentStopPlaceByString(
         decodeURIComponent(paramStation || ''),
       );
     }
-  }, [currentStation, oldMatch, paramStation, updateCurrentStopPlaceByString]);
+  }, [
+    currentStopPlace,
+    oldMatch,
+    paramStation,
+    updateCurrentStopPlaceByString,
+  ]);
 
   useEffect(() => {
     if (scrolled) {

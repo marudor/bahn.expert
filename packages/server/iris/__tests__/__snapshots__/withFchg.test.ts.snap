@@ -17,9 +17,9 @@ Object {
       },
       "auslastung": false,
       "cancelled": undefined,
-      "currentStation": Object {
-        "id": "test",
-        "title": "test",
+      "currentStopPlace": Object {
+        "evaNumber": "test",
+        "name": "test",
       },
       "departure": Object {
         "hidden": false,
@@ -203,9 +203,9 @@ Object {
       },
       "auslastung": true,
       "cancelled": false,
-      "currentStation": Object {
-        "id": "test",
-        "title": "test",
+      "currentStopPlace": Object {
+        "evaNumber": "test",
+        "name": "test",
       },
       "departure": Object {
         "cancelled": false,
@@ -307,9 +307,9 @@ Object {
       },
       "auslastung": true,
       "cancelled": false,
-      "currentStation": Object {
-        "id": "test",
-        "title": "test",
+      "currentStopPlace": Object {
+        "evaNumber": "test",
+        "name": "test",
       },
       "departure": Object {
         "cancelled": false,
@@ -409,9 +409,9 @@ Object {
       },
       "auslastung": false,
       "cancelled": true,
-      "currentStation": Object {
-        "id": "test",
-        "title": "test",
+      "currentStopPlace": Object {
+        "evaNumber": "test",
+        "name": "test",
       },
       "departure": Object {
         "cancelled": true,
@@ -615,9 +615,9 @@ Object {
       },
       "auslastung": false,
       "cancelled": false,
-      "currentStation": Object {
-        "id": "test",
-        "title": "test",
+      "currentStopPlace": Object {
+        "evaNumber": "test",
+        "name": "test",
       },
       "departure": Object {
         "cancelled": true,
@@ -823,9 +823,9 @@ Object {
       },
       "auslastung": true,
       "cancelled": false,
-      "currentStation": Object {
-        "id": "test",
-        "title": "test",
+      "currentStopPlace": Object {
+        "evaNumber": "test",
+        "name": "test",
       },
       "departure": Object {
         "cancelled": false,
@@ -927,9 +927,9 @@ Object {
       },
       "auslastung": true,
       "cancelled": false,
-      "currentStation": Object {
-        "id": "test",
-        "title": "test",
+      "currentStopPlace": Object {
+        "evaNumber": "test",
+        "name": "test",
       },
       "departure": Object {
         "cancelled": false,
@@ -1032,9 +1032,9 @@ Object {
       },
       "auslastung": true,
       "cancelled": false,
-      "currentStation": Object {
-        "id": "test",
-        "title": "test",
+      "currentStopPlace": Object {
+        "evaNumber": "test",
+        "name": "test",
       },
       "departure": Object {
         "cancelled": false,
@@ -1143,9 +1143,9 @@ Object {
       "arrival": undefined,
       "auslastung": false,
       "cancelled": false,
-      "currentStation": Object {
-        "id": "test",
-        "title": "test",
+      "currentStopPlace": Object {
+        "evaNumber": "test",
+        "name": "test",
       },
       "departure": Object {
         "cancelled": false,
@@ -1276,9 +1276,9 @@ Object {
       "arrival": undefined,
       "auslastung": false,
       "cancelled": false,
-      "currentStation": Object {
-        "id": "test",
-        "title": "test",
+      "currentStopPlace": Object {
+        "evaNumber": "test",
+        "name": "test",
       },
       "departure": Object {
         "cancelled": false,
@@ -1383,9 +1383,9 @@ Object {
       "arrival": undefined,
       "auslastung": false,
       "cancelled": false,
-      "currentStation": Object {
-        "id": "test",
-        "title": "test",
+      "currentStopPlace": Object {
+        "evaNumber": "test",
+        "name": "test",
       },
       "departure": Object {
         "cancelled": false,
@@ -1511,9 +1511,9 @@ Object {
       },
       "auslastung": false,
       "cancelled": undefined,
-      "currentStation": Object {
-        "id": "test",
-        "title": "test",
+      "currentStopPlace": Object {
+        "evaNumber": "test",
+        "name": "test",
       },
       "departure": undefined,
       "destination": "test",
@@ -1595,9 +1595,9 @@ Object {
       "arrival": undefined,
       "auslastung": false,
       "cancelled": false,
-      "currentStation": Object {
-        "id": "test",
-        "title": "test",
+      "currentStopPlace": Object {
+        "evaNumber": "test",
+        "name": "test",
       },
       "departure": Object {
         "cancelled": false,
@@ -1707,9 +1707,9 @@ Object {
       },
       "auslastung": false,
       "cancelled": undefined,
-      "currentStation": Object {
-        "id": "test",
-        "title": "test",
+      "currentStopPlace": Object {
+        "evaNumber": "test",
+        "name": "test",
       },
       "departure": Object {
         "hidden": false,
@@ -1890,9 +1890,9 @@ Object {
       },
       "auslastung": true,
       "cancelled": false,
-      "currentStation": Object {
-        "id": "test",
-        "title": "test",
+      "currentStopPlace": Object {
+        "evaNumber": "test",
+        "name": "test",
       },
       "departure": Object {
         "cancelled": false,
@@ -2010,9 +2010,9 @@ Object {
       },
       "auslastung": false,
       "cancelled": false,
-      "currentStation": Object {
-        "id": "test",
-        "title": "test",
+      "currentStopPlace": Object {
+        "evaNumber": "test",
+        "name": "test",
       },
       "departure": Object {
         "cancelled": false,
@@ -2198,9 +2198,9 @@ Object {
       },
       "auslastung": true,
       "cancelled": false,
-      "currentStation": Object {
-        "id": "test",
-        "title": "test",
+      "currentStopPlace": Object {
+        "evaNumber": "test",
+        "name": "test",
       },
       "departure": Object {
         "cancelled": false,

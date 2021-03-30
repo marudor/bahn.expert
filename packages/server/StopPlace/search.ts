@@ -36,8 +36,6 @@ function mapToGroupedStopPlace(
   };
 }
 
-type B<X> = (x: X | undefined) => x is X;
-
 async function irisFilter(
   stopPlaces: GroupedStopPlace[],
 ): Promise<GroupedStopPlace[]> {
@@ -52,7 +50,7 @@ async function irisFilter(
         }
       }),
     )
-  ).filter((Boolean as unknown) as B<GroupedStopPlace>);
+  ).filter((Boolean as unknown) as ExcludesFalse);
 }
 
 export async function searchStopPlace(

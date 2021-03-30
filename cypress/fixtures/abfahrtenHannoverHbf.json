@@ -13,9 +13,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "6",
@@ -78,9 +78,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Braunschweig Hbf",
       "lineNumber": "RE70",
@@ -157,9 +157,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hildesheim Hbf",
       "lineNumber": "4",
@@ -266,9 +266,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hamburg-Altona",
       "id": "8160985285898732989",
@@ -383,9 +383,9 @@
         "delay": 0
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Bremerhaven-Lehe",
       "lineNumber": "8",
@@ -471,9 +471,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "3",
@@ -545,9 +545,9 @@
         "delay": 1
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "1",
@@ -646,9 +646,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hameln",
       "lineNumber": "5",
@@ -745,9 +745,7 @@
       "departure": {
         "scheduledTime": "2020-02-22T11:26:00.000Z",
         "time": "2020-02-22T11:26:00.000Z",
-        "wingIds": [
-          "3757333051659636301-2002221115"
-        ],
+        "wingIds": ["3757333051659636301-2002221115"],
         "platform": "4",
         "scheduledPlatform": "4",
         "hidden": false,
@@ -755,9 +753,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "München Hbf",
       "id": "7453810721306932927",
@@ -836,9 +834,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Minden (Westf)",
       "lineNumber": "1",
@@ -922,9 +920,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "1",
@@ -998,9 +996,7 @@
       "arrival": {
         "scheduledTime": "2020-02-22T11:28:00.000Z",
         "time": "2020-02-22T11:28:00.000Z",
-        "wingIds": [
-          "7127812590731908748-2002220948"
-        ],
+        "wingIds": ["7127812590731908748-2002220948"],
         "platform": "9",
         "scheduledPlatform": "9",
         "hidden": false,
@@ -1010,9 +1006,7 @@
       "departure": {
         "scheduledTime": "2020-02-22T11:31:00.000Z",
         "time": "2020-02-22T11:31:00.000Z",
-        "wingIds": [
-          "7127812590731908748-2002220948"
-        ],
+        "wingIds": ["7127812590731908748-2002220948"],
         "platform": "9",
         "scheduledPlatform": "9",
         "hidden": false,
@@ -1020,9 +1014,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Berlin Gesundbrunnen",
       "id": "8906112445839706377",
@@ -1108,9 +1102,7 @@
       "arrival": {
         "scheduledTime": "2020-02-22T11:28:00.000Z",
         "time": "2020-02-22T11:57:00.000Z",
-        "wingIds": [
-          "5480249421472748019-2002221035"
-        ],
+        "wingIds": ["5480249421472748019-2002221035"],
         "platform": "12",
         "scheduledPlatform": "12",
         "hidden": false,
@@ -1120,9 +1112,7 @@
       "departure": {
         "scheduledTime": "2020-02-22T11:31:00.000Z",
         "time": "2020-02-22T12:01:00.000Z",
-        "wingIds": [
-          "5480249421472748019-2002221035"
-        ],
+        "wingIds": ["5480249421472748019-2002221035"],
         "platform": "12",
         "scheduledPlatform": "12",
         "hidden": false,
@@ -1130,9 +1120,9 @@
         "delay": 30
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Düsseldorf Hbf",
       "id": "3844771116961649940",
@@ -1221,9 +1211,9 @@
         "delay": 9
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Göttingen",
       "lineNumber": "RE2",
@@ -1337,9 +1327,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Haste",
       "lineNumber": "1",
@@ -1430,9 +1420,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hildesheim Hbf",
       "lineNumber": "3",
@@ -1516,9 +1506,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Flughafen",
       "lineNumber": "5",
@@ -1622,9 +1612,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Kiel Hbf",
       "id": "4151394777712103696",
@@ -1716,9 +1706,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Dresden Hbf",
       "id": "118238635598518792",
@@ -1825,9 +1815,9 @@
         "delay": 1
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "1",
@@ -1949,9 +1939,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Amsterdam Centraal",
       "id": "7485471744845804129",
@@ -2059,9 +2049,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Uelzen",
       "lineNumber": "RE2",
@@ -2177,9 +2167,9 @@
         "delay": 5
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Bennemühlen",
       "lineNumber": "4",
@@ -2291,9 +2281,9 @@
         "delay": 3
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Stuttgart Hbf",
       "id": "3868889213374348128",
@@ -2368,9 +2358,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Celle",
       "lineNumber": "6",
@@ -2446,9 +2436,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RE70",
@@ -2520,9 +2510,9 @@
         "delay": 2
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Emden Hbf",
       "id": "7042552500258897940",
@@ -2630,9 +2620,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "4",
@@ -2704,9 +2694,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Bad Harzburg",
       "lineNumber": "RE10",
@@ -2778,9 +2768,9 @@
         "cancelled": false,
         "delay": 0
       },
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Wolfsburg Hbf",
       "lineNumber": "RE30",
@@ -2860,9 +2850,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hamburg-Harburg",
       "lineNumber": "RB38",
@@ -2969,9 +2959,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RE3",
@@ -3073,9 +3063,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Braunschweig Hbf",
       "lineNumber": "RE60",
@@ -3202,9 +3192,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "7",
@@ -3284,9 +3274,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Altenbeken",
       "lineNumber": "5",
@@ -3406,9 +3396,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Nienburg (Weser)",
       "lineNumber": "2",
@@ -3548,9 +3538,9 @@
         "delay": 2
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hamburg-Altona",
       "id": "6420722458247196361",
@@ -3670,9 +3660,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Haste",
       "lineNumber": "2",
@@ -3799,9 +3789,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Celle",
       "lineNumber": "7",
@@ -3888,9 +3878,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Flughafen",
       "lineNumber": "5",
@@ -4003,9 +3993,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "RE3",
@@ -4097,9 +4087,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RB38",
@@ -4210,9 +4200,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Rheine",
       "lineNumber": "RE60",
@@ -4334,9 +4324,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RE10",
@@ -4403,9 +4393,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Bennemühlen",
       "lineNumber": "4",
@@ -4479,9 +4469,9 @@
         "cancelled": false,
         "delay": 0
       },
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RE30",
@@ -4556,9 +4546,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RE3",
@@ -4650,9 +4640,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "6",
@@ -4728,9 +4718,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Braunschweig Hbf",
       "lineNumber": "RE70",
@@ -4803,9 +4793,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hildesheim Hbf",
       "lineNumber": "4",
@@ -4910,9 +4900,9 @@
         "delay": 12
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hamburg-Altona",
       "id": "2644894577584480568",
@@ -5061,9 +5051,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hamburg-Altona",
       "id": "6012005053401607387",
@@ -5161,9 +5151,9 @@
         "delay": 0
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Norddeich Mole",
       "lineNumber": "1",
@@ -5290,9 +5280,9 @@
         "delay": 2
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Berlin Ostbahnhof",
       "id": "2622763224815699783",
@@ -5396,9 +5386,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "3",
@@ -5468,9 +5458,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "1",
@@ -5565,9 +5555,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hameln",
       "lineNumber": "5",
@@ -5669,9 +5659,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "München Hbf",
       "id": "5797981650559212701",
@@ -5757,9 +5747,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RE2",
@@ -5835,9 +5825,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Minden (Westf)",
       "lineNumber": "1",
@@ -5919,9 +5909,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "1",
@@ -5995,9 +5985,7 @@
       "arrival": {
         "scheduledTime": "2020-02-22T12:28:00.000Z",
         "time": "2020-02-22T13:06:00.000Z",
-        "wingIds": [
-          "8614664585551473503-2002221048"
-        ],
+        "wingIds": ["8614664585551473503-2002221048"],
         "platform": "9",
         "scheduledPlatform": "9",
         "hidden": false,
@@ -6007,9 +5995,7 @@
       "departure": {
         "scheduledTime": "2020-02-22T12:31:00.000Z",
         "time": "2020-02-22T13:10:00.000Z",
-        "wingIds": [
-          "8614664585551473503-2002221048"
-        ],
+        "wingIds": ["8614664585551473503-2002221048"],
         "platform": "9",
         "scheduledPlatform": "9",
         "hidden": false,
@@ -6017,9 +6003,9 @@
         "delay": 39
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Berlin Gesundbrunnen",
       "id": "211585818996437737",
@@ -6104,9 +6090,7 @@
       "arrival": {
         "scheduledTime": "2020-02-22T12:28:00.000Z",
         "time": "2020-02-22T12:27:00.000Z",
-        "wingIds": [
-          "8435242070287707292-2002221135"
-        ],
+        "wingIds": ["8435242070287707292-2002221135"],
         "platform": "12",
         "scheduledPlatform": "12",
         "hidden": false,
@@ -6116,9 +6100,7 @@
       "departure": {
         "scheduledTime": "2020-02-22T12:31:00.000Z",
         "time": "2020-02-22T12:31:00.000Z",
-        "wingIds": [
-          "8435242070287707292-2002221135"
-        ],
+        "wingIds": ["8435242070287707292-2002221135"],
         "platform": "12",
         "scheduledPlatform": "12",
         "hidden": false,
@@ -6126,9 +6108,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Düsseldorf Hbf",
       "id": "2997741281188976229",
@@ -6215,9 +6197,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Berlin Gesundbrunnen",
       "id": "7374787949111714164",
@@ -6293,9 +6275,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Haste",
       "lineNumber": "1",
@@ -6388,9 +6370,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hildesheim Hbf",
       "lineNumber": "3",
@@ -6472,9 +6454,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Flughafen",
       "lineNumber": "5",
@@ -6560,9 +6542,7 @@
       "arrival": {
         "scheduledTime": "2020-02-22T12:32:00.000Z",
         "time": "2020-02-22T12:32:00.000Z",
-        "wingIds": [
-          "5624723375993531306-2002220918"
-        ],
+        "wingIds": ["5624723375993531306-2002220918"],
         "platform": "8",
         "scheduledPlatform": "8",
         "hidden": false,
@@ -6579,9 +6559,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hamburg-Altona",
       "id": "4550748245722881479",
@@ -6661,9 +6641,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Göttingen",
       "lineNumber": "RE2",
@@ -6755,9 +6735,9 @@
         "delay": 2
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Leipzig Hbf",
       "id": "7707971615618156348",
@@ -6884,9 +6864,9 @@
         "delay": 0
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "8",
@@ -6976,9 +6956,9 @@
         "delay": 2
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Köln Hbf",
       "id": "5036776284380011862",
@@ -7094,9 +7074,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Bennemühlen",
       "lineNumber": "4",
@@ -7192,9 +7172,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "RE3",
@@ -7295,9 +7275,9 @@
         "delay": 4
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Zürich HB",
       "id": "8900832569111771375",
@@ -7392,9 +7372,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RE70",
@@ -7457,9 +7437,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Celle",
       "lineNumber": "6",
@@ -7544,9 +7524,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Bremen Hbf",
       "id": "5624723375993531306",
@@ -7613,9 +7593,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "4",
@@ -7686,9 +7666,9 @@
         "cancelled": false,
         "delay": 0
       },
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Wolfsburg Hbf",
       "lineNumber": "RE30",
@@ -7768,9 +7748,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Bad Harzburg",
       "lineNumber": "RE10",
@@ -7843,9 +7823,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hamburg-Harburg",
       "lineNumber": "RB38",
@@ -7961,9 +7941,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Braunschweig Hbf",
       "lineNumber": "RE70",
@@ -8059,9 +8039,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "7",
@@ -8141,9 +8121,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Altenbeken",
       "lineNumber": "5",
@@ -8259,9 +8239,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Nienburg (Weser)",
       "lineNumber": "2",
@@ -8399,9 +8379,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Westerland (Sylt)",
       "id": "7357241754404858444",
@@ -8536,9 +8516,9 @@
         "delay": 2
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Karlsruhe Hbf",
       "id": "3635312093175709895",
@@ -8672,9 +8652,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Haste",
       "lineNumber": "2",
@@ -8801,9 +8781,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Celle",
       "lineNumber": "7",
@@ -8886,9 +8866,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Flughafen",
       "lineNumber": "5",
@@ -8999,9 +8979,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RB38",
@@ -9112,9 +9092,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Bielefeld Hbf",
       "lineNumber": "RE70",
@@ -9212,9 +9192,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RE10",
@@ -9281,9 +9261,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Bennemühlen",
       "lineNumber": "4",
@@ -9357,9 +9337,9 @@
         "cancelled": false,
         "delay": 0
       },
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RE30",
@@ -9434,9 +9414,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "6",
@@ -9512,9 +9492,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Braunschweig Hbf",
       "lineNumber": "RE70",
@@ -9587,9 +9567,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hildesheim Hbf",
       "lineNumber": "4",
@@ -9694,9 +9674,9 @@
         "delay": 7
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hamburg-Altona",
       "id": "1810961569118299205",
@@ -9794,9 +9774,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Bremerhaven-Lehe",
       "lineNumber": "8",
@@ -9878,9 +9858,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "3",
@@ -9950,9 +9930,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "1",
@@ -10047,9 +10027,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hameln",
       "lineNumber": "5",
@@ -10142,17 +10122,15 @@
       "departure": {
         "scheduledTime": "2020-02-22T13:26:00.000Z",
         "time": "2020-02-22T13:26:00.000Z",
-        "wingIds": [
-          "1266697995060816588-2002221315"
-        ],
+        "wingIds": ["1266697995060816588-2002221315"],
         "platform": "4",
         "scheduledPlatform": "4",
         "hidden": false
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "München Hbf",
       "id": "6507907371883116918",
@@ -10229,9 +10207,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Minden (Westf)",
       "lineNumber": "1",
@@ -10313,9 +10291,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "1",
@@ -10389,9 +10367,7 @@
       "arrival": {
         "scheduledTime": "2020-02-22T13:28:00.000Z",
         "time": "2020-02-22T13:30:00.000Z",
-        "wingIds": [
-          "9221432942161771616-2002221148"
-        ],
+        "wingIds": ["9221432942161771616-2002221148"],
         "platform": "9",
         "scheduledPlatform": "9",
         "hidden": false,
@@ -10401,9 +10377,7 @@
       "departure": {
         "scheduledTime": "2020-02-22T13:31:00.000Z",
         "time": "2020-02-22T13:34:00.000Z",
-        "wingIds": [
-          "9221432942161771616-2002221148"
-        ],
+        "wingIds": ["9221432942161771616-2002221148"],
         "platform": "9",
         "scheduledPlatform": "9",
         "hidden": false,
@@ -10411,9 +10385,9 @@
         "delay": 3
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Berlin Gesundbrunnen",
       "id": "3935110464616838577",
@@ -10497,9 +10471,7 @@
       "arrival": {
         "scheduledTime": "2020-02-22T13:28:00.000Z",
         "time": "2020-02-22T13:28:00.000Z",
-        "wingIds": [
-          "3966313825661476920-2002221235"
-        ],
+        "wingIds": ["3966313825661476920-2002221235"],
         "platform": "12",
         "scheduledPlatform": "12",
         "hidden": false,
@@ -10509,9 +10481,7 @@
       "departure": {
         "scheduledTime": "2020-02-22T13:31:00.000Z",
         "time": "2020-02-22T13:31:00.000Z",
-        "wingIds": [
-          "3966313825661476920-2002221235"
-        ],
+        "wingIds": ["3966313825661476920-2002221235"],
         "platform": "12",
         "scheduledPlatform": "12",
         "hidden": false,
@@ -10519,9 +10489,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Düsseldorf Hbf",
       "id": "3038761731734864195",
@@ -10617,9 +10587,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Göttingen",
       "lineNumber": "RE2",
@@ -10724,9 +10694,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Haste",
       "lineNumber": "1",
@@ -10817,9 +10787,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hildesheim Hbf",
       "lineNumber": "3",
@@ -10899,9 +10869,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Flughafen",
       "lineNumber": "5",
@@ -11003,9 +10973,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hamburg-Altona",
       "id": "561569379985084080",
@@ -11094,9 +11064,9 @@
         "delay": 2
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Dresden Hbf",
       "id": "998383187091030086",
@@ -11198,9 +11168,9 @@
         "delay": 0
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "1",
@@ -11318,9 +11288,9 @@
         "hidden": false
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Amsterdam Centraal",
       "id": "1529981537398557010",
@@ -11426,9 +11396,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Uelzen",
       "lineNumber": "RE2",
@@ -11540,9 +11510,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Bennemühlen",
       "lineNumber": "4",
@@ -11647,9 +11617,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Stuttgart Hbf",
       "id": "7296891133630702952",
@@ -11724,9 +11694,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RE70",
@@ -11787,9 +11757,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Celle",
       "lineNumber": "6",
@@ -11864,9 +11834,9 @@
         "delay": 2
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Emden Hbf",
       "id": "4512211485092713032",
@@ -11979,9 +11949,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "4",
@@ -12053,9 +12023,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Bad Harzburg",
       "lineNumber": "RE10",
@@ -12127,9 +12097,9 @@
         "cancelled": false,
         "delay": 0
       },
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Wolfsburg Hbf",
       "lineNumber": "RE30",
@@ -12209,9 +12179,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hamburg-Harburg",
       "lineNumber": "RB38",
@@ -12327,9 +12297,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Braunschweig Hbf",
       "lineNumber": "RE60",
@@ -12449,9 +12419,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "7",
@@ -12531,9 +12501,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Altenbeken",
       "lineNumber": "5",
@@ -12649,9 +12619,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Nienburg (Weser)",
       "lineNumber": "2",
@@ -12785,9 +12755,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Haste",
       "lineNumber": "2",
@@ -12914,9 +12884,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Celle",
       "lineNumber": "7",
@@ -13003,9 +12973,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Flughafen",
       "lineNumber": "5",
@@ -13118,9 +13088,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RB38",
@@ -13231,9 +13201,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Rheine",
       "lineNumber": "RE60",
@@ -13355,9 +13325,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RE10",
@@ -13424,9 +13394,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Bennemühlen",
       "lineNumber": "4",
@@ -13500,9 +13470,9 @@
         "cancelled": false,
         "delay": 0
       },
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RE30",
@@ -13577,9 +13547,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RE3",
@@ -13666,9 +13636,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "6",
@@ -13744,9 +13714,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Braunschweig Hbf",
       "lineNumber": "RE70",
@@ -13819,9 +13789,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hildesheim Hbf",
       "lineNumber": "4",
@@ -13926,9 +13896,9 @@
         "delay": 2
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hamburg-Altona",
       "id": "2843829057041584062",
@@ -14002,9 +13972,9 @@
         "delay": 0
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Norddeich Mole",
       "lineNumber": "1",
@@ -14131,9 +14101,9 @@
         "delay": 2
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Berlin Ostbahnhof",
       "id": "3734400738937518806",
@@ -14235,9 +14205,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "3",
@@ -14307,9 +14277,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "1",
@@ -14404,9 +14374,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hameln",
       "lineNumber": "5",
@@ -14508,9 +14478,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "München Hbf",
       "id": "5828668492254781810",
@@ -14594,9 +14564,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RE2",
@@ -14672,9 +14642,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Minden (Westf)",
       "lineNumber": "1",
@@ -14756,9 +14726,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "1",
@@ -14832,9 +14802,7 @@
       "arrival": {
         "scheduledTime": "2020-02-22T14:28:00.000Z",
         "time": "2020-02-22T14:28:00.000Z",
-        "wingIds": [
-          "5886092952094503689-2002221248"
-        ],
+        "wingIds": ["5886092952094503689-2002221248"],
         "platform": "9",
         "scheduledPlatform": "9",
         "hidden": false
@@ -14842,17 +14810,15 @@
       "departure": {
         "scheduledTime": "2020-02-22T14:31:00.000Z",
         "time": "2020-02-22T14:31:00.000Z",
-        "wingIds": [
-          "5886092952094503689-2002221248"
-        ],
+        "wingIds": ["5886092952094503689-2002221248"],
         "platform": "9",
         "scheduledPlatform": "9",
         "hidden": false
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Berlin Gesundbrunnen",
       "id": "5225265888807154878",
@@ -14917,9 +14883,7 @@
       "arrival": {
         "scheduledTime": "2020-02-22T14:28:00.000Z",
         "time": "2020-02-22T14:28:00.000Z",
-        "wingIds": [
-          "360379485333124722-2002221335"
-        ],
+        "wingIds": ["360379485333124722-2002221335"],
         "platform": "12",
         "scheduledPlatform": "12",
         "hidden": false
@@ -14927,17 +14891,15 @@
       "departure": {
         "scheduledTime": "2020-02-22T14:31:00.000Z",
         "time": "2020-02-22T14:31:00.000Z",
-        "wingIds": [
-          "360379485333124722-2002221335"
-        ],
+        "wingIds": ["360379485333124722-2002221335"],
         "platform": "12",
         "scheduledPlatform": "12",
         "hidden": false
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Köln Hbf",
       "id": "6434717143434306115",
@@ -15025,9 +14987,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Bremen Hbf",
       "id": "5494809838162286659",
@@ -15122,9 +15084,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Haste",
       "lineNumber": "1",
@@ -15215,9 +15177,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hildesheim Hbf",
       "lineNumber": "3",
@@ -15297,9 +15259,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Flughafen",
       "lineNumber": "5",
@@ -15385,9 +15347,7 @@
       "arrival": {
         "scheduledTime": "2020-02-22T14:32:00.000Z",
         "time": "2020-02-22T14:30:00.000Z",
-        "wingIds": [
-          "5494809838162286659-2002221119"
-        ],
+        "wingIds": ["5494809838162286659-2002221119"],
         "platform": "8",
         "scheduledPlatform": "8",
         "hidden": false,
@@ -15404,9 +15364,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hamburg-Altona",
       "id": "1184509608867288236",
@@ -15514,9 +15474,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Göttingen",
       "lineNumber": "RE2",
@@ -15608,9 +15568,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Berlin Ostbahnhof",
       "id": "3642361880164599102",
@@ -15721,9 +15681,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "8",
@@ -15813,9 +15773,9 @@
         "delay": 2
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Köln Hbf",
       "id": "4140470391187734614",
@@ -15931,9 +15891,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Bennemühlen",
       "lineNumber": "4",
@@ -16029,9 +15989,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "RE3",
@@ -16128,9 +16088,9 @@
         "hidden": false
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Zürich HB",
       "id": "1722455581587366838",
@@ -16215,9 +16175,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RE70",
@@ -16280,9 +16240,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Celle",
       "lineNumber": "6",
@@ -16358,9 +16318,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Bremen Hbf",
       "id": "5959097614914299166",
@@ -16437,9 +16397,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "4",
@@ -16510,9 +16470,9 @@
         "cancelled": false,
         "delay": 0
       },
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Wolfsburg Hbf",
       "lineNumber": "RE30",
@@ -16592,9 +16552,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Bad Harzburg",
       "lineNumber": "RE10",
@@ -16667,9 +16627,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hamburg-Harburg",
       "lineNumber": "RB38",
@@ -16785,9 +16745,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Braunschweig Hbf",
       "lineNumber": "RE70",
@@ -16883,9 +16843,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "7",
@@ -16965,9 +16925,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Altenbeken",
       "lineNumber": "5",
@@ -17083,9 +17043,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Nienburg (Weser)",
       "lineNumber": "2",
@@ -17223,9 +17183,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Stralsund Hbf",
       "id": "2849772715769172580",
@@ -17363,9 +17323,9 @@
         "delay": 2
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Karlsruhe Hbf",
       "id": "3281432353838358850",
@@ -17499,9 +17459,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Haste",
       "lineNumber": "2",
@@ -17628,9 +17588,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Celle",
       "lineNumber": "7",
@@ -17717,9 +17677,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Flughafen",
       "lineNumber": "5",
@@ -17832,9 +17792,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RB38",
@@ -17945,9 +17905,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Bielefeld Hbf",
       "lineNumber": "RE70",
@@ -18045,9 +18005,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RE10",
@@ -18114,9 +18074,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Bennemühlen",
       "lineNumber": "4",
@@ -18190,9 +18150,9 @@
         "cancelled": false,
         "delay": 0
       },
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RE30",
@@ -18265,9 +18225,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "6",
@@ -18328,9 +18288,9 @@
         "hidden": false
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Braunschweig Hbf",
       "lineNumber": "RE70",
@@ -18401,9 +18361,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hildesheim Hbf",
       "lineNumber": "4",
@@ -18508,9 +18468,9 @@
         "delay": 2
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Kiel Hbf",
       "id": "2677562958045670522",
@@ -18602,9 +18562,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Bremerhaven-Lehe",
       "lineNumber": "8",
@@ -18692,9 +18652,9 @@
         "scheduledPlatform": "9",
         "hidden": false
       },
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Köln Hbf",
       "id": "3642494987963817809",
@@ -18762,9 +18722,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "3",
@@ -18834,9 +18794,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "1",
@@ -18931,9 +18891,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hameln",
       "lineNumber": "5",
@@ -19026,17 +18986,15 @@
       "departure": {
         "scheduledTime": "2020-02-22T15:26:00.000Z",
         "time": "2020-02-22T15:26:00.000Z",
-        "wingIds": [
-          "8603587689572102071-2002221515"
-        ],
+        "wingIds": ["8603587689572102071-2002221515"],
         "platform": "4",
         "scheduledPlatform": "4",
         "hidden": false
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "München Hbf",
       "id": "5574299897835997930",
@@ -19110,9 +19068,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Minden (Westf)",
       "lineNumber": "1",
@@ -19194,9 +19152,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "1",
@@ -19270,9 +19228,7 @@
       "arrival": {
         "scheduledTime": "2020-02-22T15:28:00.000Z",
         "time": "2020-02-22T15:28:00.000Z",
-        "wingIds": [
-          "4020550040361167307-2002221348"
-        ],
+        "wingIds": ["4020550040361167307-2002221348"],
         "platform": "9",
         "scheduledPlatform": "9",
         "hidden": false
@@ -19280,17 +19236,15 @@
       "departure": {
         "scheduledTime": "2020-02-22T15:31:00.000Z",
         "time": "2020-02-22T15:31:00.000Z",
-        "wingIds": [
-          "4020550040361167307-2002221348"
-        ],
+        "wingIds": ["4020550040361167307-2002221348"],
         "platform": "9",
         "scheduledPlatform": "9",
         "hidden": false
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Berlin Südkreuz",
       "id": "1360629902197387952",
@@ -19358,9 +19312,7 @@
       "arrival": {
         "scheduledTime": "2020-02-22T15:28:00.000Z",
         "time": "2020-02-22T15:28:00.000Z",
-        "wingIds": [
-          "543689973036291538-2002221435"
-        ],
+        "wingIds": ["543689973036291538-2002221435"],
         "platform": "12",
         "scheduledPlatform": "12",
         "hidden": false
@@ -19368,17 +19320,15 @@
       "departure": {
         "scheduledTime": "2020-02-22T15:31:00.000Z",
         "time": "2020-02-22T15:31:00.000Z",
-        "wingIds": [
-          "543689973036291538-2002221435"
-        ],
+        "wingIds": ["543689973036291538-2002221435"],
         "platform": "12",
         "scheduledPlatform": "12",
         "hidden": false
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Düsseldorf Hbf",
       "id": "7902140562776965628",
@@ -19460,9 +19410,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Göttingen",
       "lineNumber": "RE2",
@@ -19567,9 +19517,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Haste",
       "lineNumber": "1",
@@ -19660,9 +19610,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hildesheim Hbf",
       "lineNumber": "3",
@@ -19742,9 +19692,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Flughafen",
       "lineNumber": "5",
@@ -19842,9 +19792,9 @@
         "hidden": false
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hamburg-Altona",
       "id": "7714364757423921343",
@@ -19931,9 +19881,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Leipzig Hbf",
       "id": "8912183872654497860",
@@ -20063,9 +20013,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Leipzig Hbf",
       "id": "3068006615906234264",
@@ -20173,9 +20123,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "1",
@@ -20288,9 +20238,9 @@
         "hidden": false
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Amsterdam Centraal",
       "id": "6651321817368009437",
@@ -20396,9 +20346,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Uelzen",
       "lineNumber": "RE2",
@@ -20510,9 +20460,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Bennemühlen",
       "lineNumber": "4",
@@ -20613,9 +20563,9 @@
         "hidden": false
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Stuttgart Hbf",
       "id": "3225792409406152550",
@@ -20688,9 +20638,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RE70",
@@ -20751,9 +20701,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Celle",
       "lineNumber": "6",
@@ -20828,9 +20778,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Emden Hbf",
       "id": "1154466046196233813",
@@ -20932,9 +20882,9 @@
         "scheduledPlatform": "14 D-F",
         "hidden": false
       },
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Wolfsburg Hbf",
       "lineNumber": "RE30",
@@ -21010,9 +20960,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "4",
@@ -21082,9 +21032,9 @@
         "hidden": false
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Bad Harzburg",
       "lineNumber": "RE10",
@@ -21153,9 +21103,9 @@
         "hidden": false
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hamburg-Harburg",
       "lineNumber": "RB38",
@@ -21269,9 +21219,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Braunschweig Hbf",
       "lineNumber": "RE60",
@@ -21391,9 +21341,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "7",
@@ -21473,9 +21423,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Altenbeken",
       "lineNumber": "5",
@@ -21595,9 +21545,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hamburg-Altona",
       "id": "8593658168921970782",
@@ -21722,9 +21672,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Nienburg (Weser)",
       "lineNumber": "2",
@@ -21858,9 +21808,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Haste",
       "lineNumber": "2",
@@ -21987,9 +21937,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Celle",
       "lineNumber": "7",
@@ -22076,9 +22026,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Flughafen",
       "lineNumber": "5",
@@ -22191,9 +22141,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RB38",
@@ -22300,9 +22250,9 @@
         "hidden": false
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Rheine",
       "lineNumber": "RE60",
@@ -22422,9 +22372,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RE10",
@@ -22491,9 +22441,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Bennemühlen",
       "lineNumber": "4",
@@ -22565,9 +22515,9 @@
         "scheduledPlatform": "14 D-F",
         "hidden": false
       },
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RE30",
@@ -22644,9 +22594,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RE3",
@@ -22748,9 +22698,9 @@
         "cancelled": false,
         "delay": 5
       },
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Wolfsburg Hbf",
       "lineNumber": "RE30",
@@ -22844,9 +22794,9 @@
         "delay": 79
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hamburg-Altona",
       "id": "3212205364154915817",
@@ -22954,9 +22904,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Braunschweig Hbf",
       "lineNumber": "RE70",
@@ -23059,9 +23009,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "7",
@@ -23145,9 +23095,9 @@
         "delay": 2
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Altenbeken",
       "lineNumber": "5",
@@ -23269,9 +23219,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Nienburg (Weser)",
       "lineNumber": "2",
@@ -23416,9 +23366,9 @@
         "delay": 1
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Ostseebad Binz",
       "id": "1698974169433520451",
@@ -23567,9 +23517,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Karlsruhe Hbf",
       "id": "1470222707133384842",
@@ -23733,9 +23683,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Karlsruhe Hbf",
       "id": "5592824990971072116",
@@ -23878,9 +23828,9 @@
         "delay": 1
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Haste",
       "lineNumber": "2",
@@ -24016,9 +23966,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Celle",
       "lineNumber": "7",
@@ -24107,9 +24057,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Flughafen",
       "lineNumber": "5",
@@ -24222,9 +24172,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "RE3",
@@ -24327,9 +24277,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RB38",
@@ -24440,9 +24390,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Bielefeld Hbf",
       "lineNumber": "RE70",
@@ -24540,9 +24490,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RE10",
@@ -24611,9 +24561,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Bennemühlen",
       "lineNumber": "4",
@@ -24689,9 +24639,9 @@
         "cancelled": false,
         "delay": 0
       },
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RE30",
@@ -24777,9 +24727,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Berlin Gesundbrunnen",
       "id": "7127812590731908748",
@@ -24867,9 +24817,9 @@
         "delay": 30
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Köln Hbf",
       "id": "5480249421472748019",
@@ -24955,9 +24905,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "München Hbf",
       "id": "3757333051659636301",
@@ -25038,9 +24988,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Berlin Gesundbrunnen",
       "id": "8614664585551473503",
@@ -25136,9 +25086,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Köln Hbf",
       "id": "8435242070287707292",
@@ -25222,9 +25172,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Köln Hbf",
       "id": "3966313825661476920",
@@ -25335,9 +25285,9 @@
         "delay": 3
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Berlin Gesundbrunnen",
       "id": "9221432942161771616",
@@ -25421,9 +25371,9 @@
         "hidden": false
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "München Hbf",
       "id": "1266697995060816588",
@@ -25498,9 +25448,9 @@
         "hidden": false
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Köln Hbf",
       "id": "360379485333124722",
@@ -25578,9 +25528,9 @@
         "hidden": false
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Berlin Gesundbrunnen",
       "id": "5886092952094503689",
@@ -25654,9 +25604,9 @@
         "hidden": false
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Berlin Südkreuz",
       "id": "4020550040361167307",
@@ -25733,9 +25683,9 @@
         "hidden": false
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "München Hbf",
       "id": "8603587689572102071",
@@ -25810,9 +25760,9 @@
         "hidden": false
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Köln Hbf",
       "id": "543689973036291538",
@@ -25887,9 +25837,9 @@
         "hidden": false
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Köln Hbf",
       "id": "1951882110793686742",
@@ -25967,9 +25917,9 @@
         "hidden": false
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Berlin Gesundbrunnen",
       "id": "6270903731699972278",
@@ -26047,9 +25997,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Köln Hbf",
       "id": "2625224039751841654",
@@ -26130,9 +26080,9 @@
         "delay": 18
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hannover Hbf",
-        "id": "8000152"
+      "currentStopPlace": {
+        "name": "Hannover Hbf",
+        "evaNumber": "8000152"
       },
       "scheduledDestination": "Berlin Gesundbrunnen",
       "id": "5067205027928923412",

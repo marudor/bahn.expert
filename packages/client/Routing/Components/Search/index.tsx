@@ -18,7 +18,7 @@ import {
   Today,
 } from '@material-ui/icons';
 import { getRouteLink } from 'client/Routing/util';
-import { getStopPlaceFromAPI } from 'client/Common/service/stationSearch';
+import { getStopPlaceFromAPI } from 'client/Common/service/stopPlaceSearch';
 import { SettingsPanel } from './SettingsPanel';
 import { StopPlaceSearch } from 'client/Common/Components/StopPlaceSearch';
 import { useCallback, useEffect, useMemo } from 'react';

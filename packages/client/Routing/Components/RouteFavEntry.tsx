@@ -82,7 +82,11 @@ export const RouteFavEntry: FC<Props> = ({ fav }) => {
             (key) => AllowedHafasProfile[key] === fav.profile,
           )}
         </span>
-        <Delete className={classes.delete} onClick={removeFav} />
+        <Delete
+          data-testid="deleteFav"
+          className={classes.delete}
+          onClick={removeFav}
+        />
       </Paper>
     </Link>
   );

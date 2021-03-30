@@ -170,7 +170,7 @@ export const StopPlaceSearch: FC<Props> = ({
                 }}
                 inputProps={{
                   ...inputProps,
-                  'data-testid': 'stationSearchInput',
+                  'data-testid': 'stopPlaceSearchInput',
                 }}
               />
 
@@ -194,7 +194,7 @@ export const StopPlaceSearch: FC<Props> = ({
                                 ? classes.selectedMenuItem
                                 : classes.menuItem
                             }
-                            data-testid="stationSearchMenuItem"
+                            data-testid="stopPlaceSearchMenuItem"
                             {...itemProps}
                             key={suggestion.evaNumber}
                             selected={highlighted}

@@ -426,7 +426,7 @@ export default class Timetable {
     );
 
     parsedMessages
-      .filter((Boolean as any) as ExcludesFalse)
+      .filter((Boolean as unknown) as ExcludesFalse)
       .sort((a, b) =>
         compareAsc(a.message.timestamp || 0, b.message.timestamp || 0),
       )
@@ -640,11 +640,6 @@ export default class Timetable {
         name: this.currentStopPlaceName,
         evaNumber: this.evaNumber,
       },
-      // TODO: remove this
-      // currentStation: {
-      //   id: this.evaNumber,
-      //   title: this.currentStopPlaceName,
-      // },
       scheduledDestination:
         routePost[routePost.length - 1] || this.currentStopPlaceName,
       lineNumber,

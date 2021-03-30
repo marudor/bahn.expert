@@ -1,13 +1,13 @@
 describe('Regional', () => {
   it('can navigate to Details Page', () => {
     cy.intercept(
-      `/api/hafas/v1/station/${encodeURIComponent('Poststraße, Karlsruhe')}`,
+      `/api/stopPlace/v1/search/${encodeURIComponent('Poststraße, Karlsruhe')}`,
       {
-        fixture: 'regional/stationSearchPoststrasse',
+        fixture: 'regional/stopPlaceSearchPoststrasse',
       },
     );
     cy.intercept(
-      '/api/hafas/experimental/irisCompatibleAbfahrten/000723869?lookahead=150&lookbehind=0',
+      '/api/hafas/experimental/irisCompatibleAbfahrten/0723869?lookahead=150&lookbehind=0',
       { fixture: 'regional/departurePostStrasse' },
     );
     cy.intercept(
@@ -38,12 +38,12 @@ describe('Regional', () => {
 
   it('can handle slashes', () => {
     cy.intercept(
-      '/api/hafas/v1/station/' +
+      '/api/stopPlace/v1/search/' +
         encodeURIComponent('Arndt-/Spittastraße, Stuttgart'),
-      { fixture: 'regional/stationSearchArndtSpittastrasse' },
+      { fixture: 'regional/stopPlaceSearchArndtSpittastrasse' },
     );
     cy.intercept(
-      '/api/hafas/experimental/irisCompatibleAbfahrten/000559177?lookahead=150&lookbehind=0',
+      '/api/hafas/experimental/irisCompatibleAbfahrten/0369218?lookahead=150&lookbehind=0',
       { fixture: 'regional/departureArndtSpittastrasse' },
     );
     cy.force404();

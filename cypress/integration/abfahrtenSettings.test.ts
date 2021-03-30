@@ -32,15 +32,6 @@ describe('Abfahrten Settings', () => {
     });
   });
 
-  it('Set searchType', () => {
-    cy.visit('/');
-    cy.openSettings();
-    cy.findByTestId('searchType').within(() => {
-      cy.get('select').select('hafas');
-    });
-    cy.getCookie('searchType').should('have.property', 'value', 'hafas');
-  });
-
   it('set lookbehind', () => {
     cy.force404();
     cy.visit('/');
