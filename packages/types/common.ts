@@ -1,7 +1,13 @@
-export interface CommonRoutingOptions<T = Date> {
+export interface CommonRoutingOptions {
   // evaid
   start: string;
   // evaid
   destination: string;
-  time?: T;
+  time?: Date;
 }
+
+/**
+ * @minLength 7
+ * @maxLength 7
+ */
+export type EvaNumber = string;

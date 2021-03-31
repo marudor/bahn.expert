@@ -201,9 +201,7 @@
           "type": "JNY"
         }
       ],
-      "segmentTypes": [
-        "ICE     "
-      ]
+      "segmentTypes": ["ICE     "]
     },
     {
       "checksum": "80f443c0_3",
@@ -641,10 +639,7 @@
           "type": "JNY"
         }
       ],
-      "segmentTypes": [
-        "ICE     ",
-        "ICE     "
-      ]
+      "segmentTypes": ["ICE     ", "ICE     "]
     },
     {
       "checksum": "88b526ac_3",
@@ -1074,9 +1069,7 @@
           "type": "JNY"
         }
       ],
-      "segmentTypes": [
-        "ICE     "
-      ]
+      "segmentTypes": ["ICE     "]
     },
     {
       "checksum": "86d71c30_3",
@@ -1516,9 +1509,7 @@
           "type": "JNY"
         }
       ],
-      "segmentTypes": [
-        "IC      "
-      ]
+      "segmentTypes": ["IC      "]
     },
     {
       "checksum": "fbb86cc8_3",
@@ -1705,9 +1696,7 @@
           "type": "JNY"
         }
       ],
-      "segmentTypes": [
-        "ICE     "
-      ]
+      "segmentTypes": ["ICE     "]
     },
     {
       "checksum": "676654ba_3",
@@ -2156,10 +2145,7 @@
           "type": "JNY"
         }
       ],
-      "segmentTypes": [
-        "ICE     ",
-        "ICE     "
-      ]
+      "segmentTypes": ["ICE     ", "ICE     "]
     }
   ]
 }

@@ -1,10 +1,10 @@
 import { Button, makeStyles } from '@material-ui/core';
+import { Fragment, useCallback, useState } from 'react';
 import { isSameDay } from 'date-fns';
 import { Loading } from 'client/Common/Components/Loading';
 import { Route } from './Route';
 import { RouteFavList } from 'client/Routing/Components/RouteFavList';
 import { RouteHeader } from './RouteHeader';
-import { useCallback, useState } from 'react';
 import { useFetchRouting } from 'client/Routing/provider/useFetchRouting';
 import { useRouting } from 'client/Routing/provider/RoutingProvider';
 import type { FC } from 'react';
@@ -81,19 +81,18 @@ export const RouteList: FC = () => {
         .filter((r) => r.isRideable)
         .map((r, i) => {
           return (
-            <>
+            <Fragment key={r.checksum}>
               {(i === 0 || !isSameDay(routes[i - 1].date, r.date)) && (
                 <RouteHeader date={r.date} />
               )}
               <Route
-                key={r.checksum}
                 detail={detail === r.checksum}
                 onClick={() =>
                   setDetail(detail === r.checksum ? undefined : r.checksum)
                 }
                 route={r}
               />
-            </>
+            </Fragment>
           );
         })}
       {laterContext &&

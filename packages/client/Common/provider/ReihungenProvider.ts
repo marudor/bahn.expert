@@ -24,7 +24,7 @@ function useReihungInner() {
   const getReihung = useCallback(
     async (
       trainNumber: string,
-      currentStation: string,
+      currentEvaNumber: string,
       scheduledDeparture: Date,
       fallbackTrainNumbers: string[] = [],
     ) => {
@@ -39,7 +39,9 @@ function useReihungInner() {
       const newReihungen = reihungen.reduce((agg, f) => {
         if (f) {
           agg[
-            `${f.zugnummer}${currentStation}${scheduledDeparture.toISOString()}`
+            `${
+              f.zugnummer
+            }${currentEvaNumber}${scheduledDeparture.toISOString()}`
           ] = f;
         }
         return agg;
@@ -48,7 +50,7 @@ function useReihungInner() {
       if (!reihung) {
         reihung = null;
       }
-      const key = `${trainNumber}${currentStation}${scheduledDeparture.toISOString()}`;
+      const key = `${trainNumber}${currentEvaNumber}${scheduledDeparture.toISOString()}`;
 
       setReihungen((oldReihungen) => ({
         ...oldReihungen,

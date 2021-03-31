@@ -18,8 +18,6 @@ export const useFetchRouting = () => {
     setLaterContext,
     earlierContext,
     laterContext,
-    setCurrentProfile,
-    currentProfile,
     setError,
   } = useRouting();
   const { start, destination, date, via } = useRoutingConfig();
@@ -27,12 +25,12 @@ export const useFetchRouting = () => {
 
   const commonRouteSettings = useMemo(
     () =>
-      start && destination && start.id !== destination.id
+      start && destination && start.evaNumber !== destination.evaNumber
         ? {
-            start: start?.id,
-            destination: destination?.id,
+            start: start?.evaNumber,
+            destination: destination?.evaNumber,
             via: via.map((v) => ({
-              evaId: v.id,
+              evaId: v.evaNumber,
             })),
             ...settings,
             maxChanges: settings.maxChanges || '-1',
@@ -49,24 +47,15 @@ export const useFetchRouting = () => {
       setRoutes(undefined);
       try {
         const routingResult = (
-          await Axios.post<RoutingResult>(
-            '/api/hafas/v3/tripSearch',
-            {
-              time: date || new Date(),
-              ...routeSettings,
-            },
-            {
-              params: {
-                profile: routeSettings.hafasProfile,
-              },
-            },
-          )
+          await Axios.post<RoutingResult>('/api/hafas/v3/tripSearch', {
+            time: date || new Date(),
+            ...routeSettings,
+          })
         ).data;
 
         setRoutes(routingResult.routes);
         setEarlierContext(routingResult.context.earlier);
         setLaterContext(routingResult.context.later);
-        setCurrentProfile(routeSettings.hafasProfile);
       } catch (e) {
         setError(e);
       }
@@ -74,7 +63,6 @@ export const useFetchRouting = () => {
     [
       commonRouteSettings,
       date,
-      setCurrentProfile,
       setEarlierContext,
       setError,
       setLaterContext,
@@ -88,18 +76,10 @@ export const useFetchRouting = () => {
 
       try {
         const routingResult = (
-          await Axios.post<RoutingResult>(
-            '/api/hafas/v3/tripSearch',
-            {
-              ctxScr: type === 'earlier' ? earlierContext : laterContext,
-              ...commonRouteSettings,
-            },
-            {
-              params: {
-                profile: currentProfile,
-              },
-            },
-          )
+          await Axios.post<RoutingResult>('/api/hafas/v3/tripSearch', {
+            ctxScr: type === 'earlier' ? earlierContext : laterContext,
+            ...commonRouteSettings,
+          })
         ).data;
 
         setRoutes((oldRoutes = []) => {
@@ -125,7 +105,6 @@ export const useFetchRouting = () => {
     },
     [
       commonRouteSettings,
-      currentProfile,
       earlierContext,
       laterContext,
       setEarlierContext,
@@ -153,13 +132,12 @@ export const useFetchRouting = () => {
     if (fav) {
       history.replace(history.location.pathname);
       void fetchRoutes({
-        start: fav.start.id,
-        destination: fav.destination.id,
+        start: fav.start.evaNumber,
+        destination: fav.destination.evaNumber,
         via: fav.via.map((v) => ({
-          evaId: v.id,
+          evaId: v.evaNumber,
         })),
         ...settings,
-        hafasProfile: fav.profile,
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

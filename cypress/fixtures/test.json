@@ -11,9 +11,9 @@
     "delay": 6
   },
   "productClass": "D",
-  "currentStation": {
-    "title": "Hamburg Hbf",
-    "id": "8002549"
+  "currentStopPlace": {
+    "name": "Hamburg Hbf",
+    "evaNumber": "8002549"
   },
   "scheduledDestination": "Hamburg Hbf",
   "lineNumber": "RB31",

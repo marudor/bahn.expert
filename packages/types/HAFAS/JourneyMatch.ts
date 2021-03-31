@@ -30,16 +30,16 @@ export interface JourneyMatchResponse {
   planrtTS: string;
 }
 
-export interface ParsedJourneyMatchResponse<DateType = Date> {
+export interface ParsedJourneyMatchResponse {
   train: ParsedProduct;
-  stops: Route$Stop<DateType>[];
+  stops: Route$Stop[];
   jid: string;
-  firstStop: Route$Stop<DateType>;
-  lastStop: Route$Stop<DateType>;
+  firstStop: Route$Stop;
+  lastStop: Route$Stop;
   messages?: RemL[];
 }
-export interface JourneyMatchOptions<DateType = Date> {
+export interface JourneyMatchOptions {
   trainName: string;
-  initialDepartureDate?: DateType;
+  initialDepartureDate?: Date;
   jnyFltrL?: JourneyFilter[];
 }

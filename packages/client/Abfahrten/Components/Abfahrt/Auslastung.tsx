@@ -10,26 +10,26 @@ export const Auslastung: FC = () => {
   const { auslastungen, getAuslastung } = useAuslastung();
   const auslastung =
     auslastungen[
-      `${abfahrt.currentStation.title}/${abfahrt.destination}/${abfahrt.train.number}`
+      `${abfahrt.currentStopPlace.name}/${abfahrt.destination}/${abfahrt.train.number}`
     ];
 
   useEffect(() => {
     if (auslastung === undefined && abfahrt.departure) {
       void getAuslastung(
         abfahrt.train.number,
-        abfahrt.currentStation.title,
+        abfahrt.currentStopPlace.name,
         abfahrt.destination,
         abfahrt.departure.scheduledTime,
       );
     }
   }, [abfahrt, auslastung, getAuslastung]);
 
-  if (auslastung === null) {
-    return null;
+  if (auslastung === undefined && abfahrt.departure) {
+    return <Loading type={1} />;
   }
 
-  if (auslastung === undefined) {
-    return <Loading type={1} />;
+  if (!auslastung) {
+    return null;
   }
 
   return <AuslastungsDisplay auslastung={auslastung} />;

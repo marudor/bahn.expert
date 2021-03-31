@@ -1,4 +1,3 @@
-import { AllowedHafasProfile } from 'types/HAFAS';
 import { RoutingConfigProvider } from 'client/Routing/provider/RoutingConfigProvider';
 import { useState } from 'react';
 import { useStorage } from 'client/useStorage';
@@ -12,7 +11,6 @@ const useRoutingInternal = () => {
   const [earlierContext, setEarlierContext] = useState<string>();
   const [laterContext, setLaterContext] = useState<string>();
   const [error, setError] = useState();
-  const [currentProfile, setCurrentProfile] = useState<AllowedHafasProfile>();
 
   return {
     routes,
@@ -23,8 +21,6 @@ const useRoutingInternal = () => {
     earlierContext,
     laterContext,
     setError,
-    currentProfile,
-    setCurrentProfile,
   };
 };
 
@@ -47,7 +43,6 @@ export const RoutingProvider: FC = ({ children }) => {
   const savedRoutingSettings: RoutingSettings = {
     maxChanges: storage.get('maxChanges') ?? '-1',
     transferTime: storage.get('transferTime') ?? '0',
-    hafasProfile: storage.get('hafasProfile') ?? AllowedHafasProfile.DB,
     onlyRegional: storage.get('onlyRegional') ?? false,
   };
 

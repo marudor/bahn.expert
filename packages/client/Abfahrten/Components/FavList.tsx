@@ -13,8 +13,8 @@ import { useHeaderTagsActions } from 'client/Common/provider/HeaderTagProvider';
 import { Zugsuche } from 'client/Common/Components/Zugsuche';
 import type { AbfahrtenError } from 'client/Abfahrten/provider/AbfahrtenProvider';
 import type { FC, ReactNode } from 'react';
+import type { MinimalStopPlace } from 'types/stopPlace';
 import type { StaticRouterContext } from 'react-router';
-import type { Station } from 'types/station';
 
 const useStyles = makeStyles({
   wrap: {
@@ -56,11 +56,11 @@ export const FavList: FC<Props> = ({ staticContext, children }) => {
   const favs = useFavs();
   const MostUsedComponent = useMostUsedComponent();
   const sortedFavs = useMemo(() => {
-    const values: Station[] = Object.values(favs);
+    const values: MinimalStopPlace[] = Object.values(favs);
 
     return values
-      .sort((a, b) => (a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1))
-      .map((fav) => <FavEntry key={fav.id} fav={fav} />);
+      .sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1))
+      .map((fav) => <FavEntry key={fav.evaNumber} fav={fav} />);
   }, [favs]);
   const error = useAbfahrtenError();
   const [savedError] = useState(error);

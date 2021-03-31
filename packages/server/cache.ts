@@ -24,6 +24,11 @@ export enum CacheDatabases {
   HIMMessage,
   HVVLageplan,
   NAHSHLageplan,
+  RISGeo,
+  StopPlaceSearch,
+  StopPlaceGeo,
+  StopPlaceIdentifier,
+  StopPlaceByEva,
 }
 const activeCaches = new Set();
 
@@ -42,6 +47,7 @@ function serialize(raw: any) {
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function createNewCache<K extends string, V>(
+  /** in seconds */
   ttl: number,
   db: CacheDatabases,
   useRedis = Boolean(redisSettings),

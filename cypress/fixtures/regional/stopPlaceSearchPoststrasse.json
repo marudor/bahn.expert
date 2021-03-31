@@ -1,0 +1,30 @@
+[
+  {
+    "evaNumber": "0723869",
+    "name": "Poststraße, Karlsruhe",
+    "availableTransports": ["CITY_TRAIN", "TRAM"],
+    "position": { "longitude": 8.40352982, "latitude": 48.9951692 },
+    "identifier": { "ifopt": "de:08212:98:1", "ril100": "RKAP" }
+  },
+  {
+    "evaNumber": "0723870",
+    "name": "Poststraße, Karlsruhe",
+    "availableTransports": ["CITY_TRAIN", "TRAM"],
+    "position": { "longitude": 8.403982, "latitude": 48.995224 },
+    "identifier": { "ifopt": "de:08212:98:2", "ril100": "PQKAP" }
+  },
+  {
+    "evaNumber": "0721695",
+    "name": "Poststraße, Karlsruhe",
+    "availableTransports": ["BUS"],
+    "position": { "longitude": 8.40294, "latitude": 48.994917 },
+    "identifier": { "ifopt": "de:08212:98:12" }
+  },
+  {
+    "evaNumber": "0721696",
+    "name": "Poststraße, Karlsruhe",
+    "availableTransports": ["BUS"],
+    "position": { "longitude": 8.403012, "latitude": 48.995118 },
+    "identifier": { "ifopt": "de:08212:98:11" }
+  }
+]

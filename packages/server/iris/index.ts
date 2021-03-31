@@ -3,7 +3,6 @@ import { getStation } from './station';
 import { noncdRequest } from './helper';
 import Timetable from './Timetable';
 import type { Abfahrt, AbfahrtenResult } from 'types/iris';
-import type { AxiosInstance } from 'axios';
 
 interface AbfahrtenOptions {
   lookahead?: number;
@@ -60,7 +59,7 @@ const timeByReal = (a: Abfahrt) => {
 const sortAbfahrt = (timeFn: typeof timeByReal) => (a: Abfahrt, b: Abfahrt) => {
   const timeA = timeFn(a);
   const timeB = timeFn(b);
-  // @ts-expect-error either arrival or departure always exists
+  // @ts-expect-error this works
   const sort = compareAsc(timeA, timeB);
 
   if (!sort) {
@@ -105,17 +104,16 @@ export async function getAbfahrten(
   evaId: string,
   withRelated = true,
   options: AbfahrtenOptions = {},
-  request: AxiosInstance = noncdRequest,
 ): Promise<AbfahrtenResult> {
   const lookahead = options.lookahead || defaultOptions.lookahead;
   const lookbehind = options.lookbehind || defaultOptions.lookbehind;
 
-  const { station, relatedStations } = await getStation(evaId, 1, request);
+  const { station, relatedStations } = await getStation(evaId, 1, noncdRequest);
   let relatedAbfahrten = Promise.resolve(baseResult);
 
   if (withRelated) {
     relatedAbfahrten = Promise.all(
-      relatedStations.map((s) => getAbfahrten(s.eva, false, options, request)),
+      relatedStations.map((s) => getAbfahrten(s.eva, false, options)),
     ).then((r) => r.reduce(reduceResults, baseResult));
   }
 
@@ -127,7 +125,7 @@ export async function getAbfahrten(
       lookbehind,
       currentDate: options.currentDate,
     },
-    request,
+    noncdRequest,
   );
   const result = (
     await Promise.all([timetable.start(), relatedAbfahrten])

@@ -2,10 +2,10 @@ import { useCallback, useState } from 'react';
 import { useStorage } from 'client/useStorage';
 import constate from 'constate';
 import type { ComponentType, FC, ReactNode } from 'react';
-import type { Station } from 'types/station';
+import type { MinimalStopPlace } from 'types/stopPlace';
 
 export interface Favs {
-  [key: string]: Station;
+  [key: string]: MinimalStopPlace;
 }
 
 interface FavStorageSetup {
@@ -27,13 +27,13 @@ function useFavStorage({ initial }: { initial: FavStorageSetup }) {
   );
 
   const fav = useCallback(
-    (station: Station) => {
+    (stopPlace: MinimalStopPlace) => {
       setFavs((oldFavs) => {
         const newFavs = {
           ...oldFavs,
-          [station.id]: {
-            title: station.title,
-            id: station.id,
+          [stopPlace.evaNumber]: {
+            name: stopPlace.name,
+            evaNumber: stopPlace.evaNumber,
           },
         };
         storage.set(initial.storageKey, newFavs);
@@ -44,9 +44,9 @@ function useFavStorage({ initial }: { initial: FavStorageSetup }) {
   );
 
   const unfav = useCallback(
-    (station: Station) => {
+    (stopPlace: MinimalStopPlace) => {
       setFavs((oldFavs) => {
-        delete oldFavs[station.id];
+        delete oldFavs[stopPlace.evaNumber];
         const newFavs = { ...oldFavs };
         storage.set(initial.storageKey, newFavs);
         return newFavs;
@@ -92,6 +92,22 @@ export const FavProvider: FC<Props> = ({
 }) => {
   const storage = useStorage();
   const savedFavs = storage.get(storageKey);
+  if (savedFavs) {
+    Object.keys(savedFavs).forEach((favKey) => {
+      // @ts-expect-error old format had this
+      const fav: {
+        title: string;
+        id: string;
+      } = savedFavs[favKey];
+      if (fav.id) {
+        savedFavs[favKey] = {
+          name: fav.title,
+          evaNumber: fav.id,
+        };
+      }
+    });
+    storage.set(storageKey, savedFavs);
+  }
 
   return (
     <InnerFavProvider

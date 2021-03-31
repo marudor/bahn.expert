@@ -1,4 +1,3 @@
-import { StationSearchType } from 'types/station';
 import type {
   AbfahrtenConfigSanitize,
   CommonConfigSanitize,
@@ -13,17 +12,12 @@ const numberCheck = (value: string | undefined, fallback: number): number => {
 
   return n;
 };
-const searchTypeCheck = (value: string | undefined): StationSearchType =>
-  Object.values(StationSearchType).includes(value as StationSearchType)
-    ? (value as StationSearchType)
-    : StationSearchType.default;
 
 export const abfahrtenConfigSanitize: AbfahrtenConfigSanitize = {
   autoUpdate: (value) => numberCheck(value, 0),
   lineAndNumber: booleanCheck,
   lookahead: (value) => numberCheck(value, 150).toString(),
   lookbehind: (value) => numberCheck(value, 0).toString(),
-  searchType: searchTypeCheck,
 };
 
 export const commonConfigSanitize: CommonConfigSanitize = {

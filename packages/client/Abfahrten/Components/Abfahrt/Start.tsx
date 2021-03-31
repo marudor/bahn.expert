@@ -8,6 +8,7 @@ import {
   useAbfahrtenConfig,
   useAbfahrtenUrlPrefix,
 } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
+import { VRRAuslastung } from 'client/Abfahrten/Components/Abfahrt/VRRAuslastung';
 import type { FC } from 'react';
 
 const useStyles = makeStyles((theme) => ({
@@ -47,12 +48,12 @@ export const Start: FC = () => {
             arrival={abfahrt.arrival}
             departure={abfahrt.departure}
             train={abfahrt.train}
-            station={abfahrt.currentStation}
+            evaNumber={abfahrt.currentStopPlace.evaNumber}
           />
           <DetailsLink
             urlPrefix={urlPrefix}
             train={abfahrt.train}
-            stationId={abfahrt.currentStation.id}
+            evaNumber={abfahrt.currentStopPlace.evaNumber}
             initialDeparture={abfahrt.initialDeparture}
           />
         </div>
@@ -65,7 +66,7 @@ export const Start: FC = () => {
       {abfahrt.substitute && abfahrt.ref && (
         <Substitute substitute={abfahrt.ref} />
       )}
-      {detail && abfahrt.auslastung && <Auslastung />}
+      {detail && (abfahrt.auslastung ? <Auslastung /> : <VRRAuslastung />)}
     </div>
   );
 };

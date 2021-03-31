@@ -31,8 +31,14 @@ export default function webpackDev(koa: Koa): Promise<unknown> {
   watcher.on('change', (file) => {
     if (file.includes('packages/client')) return;
     if (file.includes('packages/server/API/controller/')) {
-      console.log('Rebuilding Routs & doc');
-      childProcess.exec('yarn doc:build');
+      console.log('Rebuilding Routes & doc');
+      childProcess.exec('yarn doc:build', (err, _, stderr) => {
+        if (err) {
+          console.error(stderr);
+        } else {
+          console.log('Done rebuilding');
+        }
+      });
     }
     Object.keys(require.cache).forEach((id) => {
       if (serverRegexp.exec(id)) {

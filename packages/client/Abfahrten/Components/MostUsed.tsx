@@ -2,24 +2,29 @@ import { FavEntry } from './FavEntry';
 import type { FC } from 'react';
 
 const mostUsed = [
-  { title: 'Frankfurt(Main)Hbf', id: '8000105' },
-  { title: 'Karlsruhe Hbf', id: '8000191' },
-  { title: 'Stuttgart Hbf', id: '8000096' },
-  { title: 'Hamburg Hbf', id: '8002549' },
-  { title: 'Hannover Hbf', id: '8000152' },
-  { title: 'Düsseldorf Hbf', id: '8000085' },
-  { title: 'Köln Hbf', id: '8000207' },
-  { title: 'Berlin Hbf', id: '8011160' },
-  { title: 'Mannheim Hbf', id: '8000244' },
-  { title: 'München Hbf', id: '8000261' },
-  { title: 'Nürnberg Hbf', id: '8000284' },
-  { title: 'Ulm Hbf', id: '8000170' },
+  { name: 'Frankfurt(Main)Hbf', evaNumber: '8000105' },
+  { name: 'Karlsruhe Hbf', evaNumber: '8000191' },
+  { name: 'Stuttgart Hbf', evaNumber: '8000096' },
+  { name: 'Hamburg Hbf', evaNumber: '8002549' },
+  { name: 'Hannover Hbf', evaNumber: '8000152' },
+  { name: 'Düsseldorf Hbf', evaNumber: '8000085' },
+  { name: 'Köln Hbf', evaNumber: '8000207' },
+  { name: 'Berlin Hbf', evaNumber: '8011160' },
+  { name: 'Mannheim Hbf', evaNumber: '8000244' },
+  { name: 'München Hbf', evaNumber: '8000261' },
+  { name: 'Nürnberg Hbf', evaNumber: '8000284' },
+  { name: 'Ulm Hbf', evaNumber: '8000170' },
 ];
 
 export const MostUsed: FC = () => (
   <>
     {mostUsed.map((m) => (
-      <FavEntry data-testid="mostUsedEntry" noDelete key={m.id} fav={m} />
+      <FavEntry
+        data-testid="mostUsedEntry"
+        noDelete
+        key={m.evaNumber}
+        fav={m}
+      />
     ))}
   </>
 );

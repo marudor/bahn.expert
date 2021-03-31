@@ -67,14 +67,12 @@ export interface JourneyGeoPosResponse extends GenericRes {
   planrtTS: string;
 }
 
-export interface SingleParsedJourneyGeoPos<DateType = Date> {
+export interface SingleParsedJourneyGeoPos {
   jid: string;
   date: Date;
   train: ParsedProduct;
   position: Coordinates;
-  stops: Route$Stop<DateType>[];
+  stops: Route$Stop[];
 }
 
-export type ParsedJourneyGeoPosResponse<
-  DateType = Date
-> = SingleParsedJourneyGeoPos<DateType>[];
+export type ParsedJourneyGeoPosResponse = SingleParsedJourneyGeoPos[];

@@ -2,11 +2,11 @@ import { Loading, LoadingType } from './Loading';
 import { makeStyles, MenuItem, Paper, TextField } from '@material-ui/core';
 import { MyLocation } from '@material-ui/icons';
 import { useCallback, useRef } from 'react';
-import { useStationSearch } from 'client/Common/hooks/useStationSearch';
+import { useStopPlaceSearch } from 'client/Common/hooks/useStopPlaceSearch';
 import Downshift from 'downshift';
 import type { AllowedHafasProfile } from 'types/HAFAS';
 import type { FC, ReactNode, SyntheticEvent } from 'react';
-import type { Station, StationSearchType } from 'types/station';
+import type { MinimalStopPlace } from 'types/stopPlace';
 
 const useStyles = makeStyles((theme) => ({
   wrap: {
@@ -48,26 +48,25 @@ const useStyles = makeStyles((theme) => ({
 
 export interface Props {
   id: string;
-  searchType?: StationSearchType;
-  value?: Station;
-  onChange: (s?: Station) => any;
+  value?: MinimalStopPlace;
+  onChange: (s?: MinimalStopPlace) => any;
   autoFocus?: boolean;
   placeholder?: string;
   profile?: AllowedHafasProfile;
   maxSuggestions?: number;
   additionalIcon?: ReactNode;
+  filterForIris: boolean;
 }
 
-export const StationSearch: FC<Props> = ({
+export const StopPlaceSearch: FC<Props> = ({
   id,
   onChange,
   value,
   autoFocus,
   placeholder,
-  searchType,
-  profile,
   maxSuggestions = 7,
   additionalIcon,
+  filterForIris,
 }) => {
   const classes = useStyles({ additionalIcon: Boolean(additionalIcon) });
   const inputRef = useRef<HTMLInputElement>();
@@ -79,9 +78,8 @@ export const StationSearch: FC<Props> = ({
     loadOptions,
     itemToString,
     selectRef,
-  } = useStationSearch({
-    profile,
-    searchType,
+  } = useStopPlaceSearch({
+    filterForIris,
     maxSuggestions,
   });
 
@@ -102,9 +100,9 @@ export const StationSearch: FC<Props> = ({
   );
 
   const downshiftOnChange = useCallback(
-    (station: Station | null) => {
+    (stopPlace: MinimalStopPlace | null) => {
       inputRef.current?.blur();
-      onChange(station || undefined);
+      onChange(stopPlace || undefined);
     },
     [onChange],
   );
@@ -142,7 +140,7 @@ export const StationSearch: FC<Props> = ({
               }
             },
             onFocus: () => {
-              if (value && value.title === inputValue) {
+              if (value && value.name === inputValue) {
                 setState({ inputValue: '' });
               }
               if (suggestions.length) {
@@ -152,7 +150,7 @@ export const StationSearch: FC<Props> = ({
             onBlur: () => {
               setSuggestions([]);
               if (value) {
-                setState({ inputValue: value.title });
+                setState({ inputValue: value.name });
               }
             },
             placeholder,
@@ -172,7 +170,7 @@ export const StationSearch: FC<Props> = ({
                 }}
                 inputProps={{
                   ...inputProps,
-                  'data-testid': 'stationSearchInput',
+                  'data-testid': 'stopPlaceSearchInput',
                 }}
               />
 
@@ -186,8 +184,7 @@ export const StationSearch: FC<Props> = ({
                           index,
                         });
                         const selected =
-                          selectedItem &&
-                          selectedItem.title === suggestion.title;
+                          selectedItem && selectedItem.name === suggestion.name;
                         const highlighted = highlightedIndex === index;
 
                         return (
@@ -197,13 +194,13 @@ export const StationSearch: FC<Props> = ({
                                 ? classes.selectedMenuItem
                                 : classes.menuItem
                             }
-                            data-testid="stationSearchMenuItem"
+                            data-testid="stopPlaceSearchMenuItem"
                             {...itemProps}
-                            key={suggestion.id}
+                            key={suggestion.evaNumber}
                             selected={highlighted}
                             component="div"
                           >
-                            {suggestion.title}
+                            {suggestion.name}
                           </MenuItem>
                         );
                       })

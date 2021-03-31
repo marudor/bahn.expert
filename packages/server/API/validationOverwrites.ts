@@ -7,7 +7,7 @@ const allOverwrites = [...stationValidationOverwrite];
 const router = new KoaRouter();
 
 router.all('/api/hafas/(.*)', (ctx, next) => {
-  const hafasProfile = ctx.query.profile;
+  const hafasProfile: any = ctx.query.profile;
 
   if (
     hafasProfile &&

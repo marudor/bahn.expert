@@ -117,7 +117,7 @@ export const Stop: FC<Props> = ({ stop, showWR, train, isPast }) => {
       {train && (
         <TravelynxLink
           className={classes.checkIn}
-          station={stop.station}
+          evaNumber={stop.station.id}
           train={train}
           departure={stop.departure}
           arrival={stop.arrival}
@@ -138,7 +138,7 @@ export const Stop: FC<Props> = ({ stop, showWR, train, isPast }) => {
         {showWR?.number && depOrArrival && (
           <Reihung
             trainNumber={showWR.number}
-            currentStation={stop.station.title}
+            currentEvaNumber={stop.station.id}
             scheduledDeparture={depOrArrival.scheduledTime}
             loadHidden={!depOrArrival?.reihung}
           />
