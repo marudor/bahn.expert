@@ -139,7 +139,7 @@ export const BaseAbfahrt = memo(function BaseAbfahrt({
               <LazyReihung
                 loadHidden={!abfahrt.reihung && abfahrt.hiddenReihung}
                 trainNumber={abfahrt.train.number}
-                currentStation={abfahrt.currentStation.id}
+                currentEvaNumber={abfahrt.currentStopPlace.evaNumber}
                 scheduledDeparture={abfahrt.departure.scheduledTime}
                 fallbackTrainNumbers={wingNumbersWithoutSelf}
               />

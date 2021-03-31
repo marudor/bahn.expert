@@ -8,7 +8,7 @@ import type { Element } from 'libxmljs2';
 import type { IrisStation, IrisStationWithRelated } from 'types/station';
 
 // 4 Hours in seconds
-const cache = createNewCache<string, IrisStation>(
+const cache = createNewCache<string, IrisStation | null>(
   4 * 60 * 60,
   CacheDatabases.Station,
 );
@@ -44,6 +44,15 @@ export async function getSingleStation(
   if (cached) {
     return cached;
   }
+  if (cached === null) {
+    throw {
+      status: 404,
+      error: {
+        errroType: '404',
+        description: 'Unbekannte Station',
+      },
+    };
+  }
   const rawXml = (await request.get<string>(`/station/${evaId}`)).data;
 
   const xml = xmljs.parseXml(rawXml);
@@ -51,6 +60,7 @@ export async function getSingleStation(
   const xmlStation = xml.get<Element>('//station');
 
   if (!xmlStation) {
+    void cache.set(evaId, null);
     throw {
       status: 404,
       error: {

@@ -29,7 +29,6 @@ export interface SearchOnTripRequest {
   meth: 'SearchOnTrip';
 }
 
-export interface ParsedSearchOnTripResponse<DateType = Date>
-  extends Route$JourneySegmentTrain<DateType> {
-  currentStop?: Route$Stop<DateType>;
+export interface ParsedSearchOnTripResponse extends Route$JourneySegmentTrain {
+  currentStop?: Route$Stop;
 }

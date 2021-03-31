@@ -3,6 +3,12 @@ describe('Homepage', () => {
     cy.visit('/');
   });
 
+  const currentFFMCookie =
+    '%7B%228000105%22%3A%7B%22name%22%3A%22Frankfurt(Main)Hbf%22%2C%22evaNumber%22%3A%228000105%22%7D%7D';
+
+  const oldFFMCookie =
+    '%7B%228000105%22%3A%7B%22title%22%3A%22Frankfurt(Main)Hbf%22%2C%22id%22%3A%228000105%22%7D%7D';
+
   it('Theme Selection', () => {
     function openThemeSelection() {
       cy.findByTestId('navToggle').click();
@@ -35,14 +41,14 @@ describe('Homepage', () => {
   });
 
   it('Shows error on mainPage', () => {
-    cy.intercept('/api/iris/v2/abfahrten/8098105', {
+    cy.intercept('/api/iris/v2/abfahrten/8000105', {
       statusCode: 500,
       delayMs: 2000,
       body: {},
     }).intercept(
-      `/api/station/v1/search/${encodeURIComponent('Frankfurt (Main) Hbf')}`,
+      `/api/stopPlace/v1/search/${encodeURIComponent('Frankfurt (Main) Hbf')}`,
       {
-        fixture: 'stationSearchFrankfurtHbf',
+        fixture: 'stopPlaceSearchFrankfurtHbf',
       },
     );
     cy.force404();
@@ -51,5 +57,20 @@ describe('Homepage', () => {
     cy.findByTestId('loading').should('exist');
     cy.findByTestId('error').should('exist');
     cy.findByTestId('triedStation').should('have.text', 'Frankfurt (Main) Hbf');
+  });
+
+  it('shows favs from cookie', () => {
+    cy.force404();
+    cy.setCookie('favs', currentFFMCookie);
+    cy.visit('/');
+    cy.findByTestId('favEntry').should('have.text', 'Frankfurt(Main)Hbf');
+  });
+
+  it('shows favs from cookie (old format)', () => {
+    cy.force404();
+    cy.setCookie('favs', oldFFMCookie);
+    cy.visit('/');
+    cy.findByTestId('favEntry').should('have.text', 'Frankfurt(Main)Hbf');
+    cy.getCookie('favs').should('have.property', 'value', currentFFMCookie);
   });
 });

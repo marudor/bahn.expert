@@ -6,7 +6,7 @@ import { useCallback } from 'react';
 import { useUnfav } from 'client/Abfahrten/provider/FavProvider';
 import clsx from 'clsx';
 import type { FC, MouseEvent, ReactNode } from 'react';
-import type { Station } from 'types/station';
+import type { MinimalStopPlace } from 'types/stopPlace';
 
 const useStyles = makeStyles((theme) => ({
   wrap: {
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface Props {
-  fav: Station;
+  fav: MinimalStopPlace;
   noDelete?: boolean;
   'data-testid'?: string;
 }
@@ -99,11 +99,11 @@ export const FavEntry: FC<Props> = ({
   return (
     <Link
       data-testid={testid}
-      to={`${urlPrefix}${encodeURIComponent(fav.title)}`}
-      title={`Zugabfahrten für ${fav.title}`}
+      to={`${urlPrefix}${encodeURIComponent(fav.name)}`}
+      title={`Zugabfahrten für ${fav.name}`}
     >
       <FavEntryDisplay
-        text={fav.title}
+        text={fav.name}
         deleteFav={noDelete ? undefined : deleteFav}
       />
     </Link>

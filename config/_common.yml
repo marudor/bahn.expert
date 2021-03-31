@@ -44,11 +44,6 @@ baseEnv:
       secretKeyRef:
         name: bahnhofs-abfahrten-config
         key: sentry_dsn
-  - name: TIMETABLES_OPEN_DATA_KEY
-    valueFrom:
-      secretKeyRef:
-        name: bahnhofs-abfahrten-config
-        key: timetables_open_data_key
   - name: IMPRINT_NAME
     valueFrom:
       secretKeyRef:

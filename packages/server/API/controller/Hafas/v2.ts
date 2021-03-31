@@ -1,7 +1,6 @@
 import {
   Body,
   Controller,
-  Deprecated,
   Get,
   OperationId,
   Post,
@@ -11,14 +10,12 @@ import {
   Route,
   Tags,
 } from 'tsoa';
-import { convertDateToEpoch } from 'server/API/controller/Hafas/convertDateToEpoch';
 import Auslastung from 'server/HAFAS/Auslastung';
 import Detail from 'server/HAFAS/Detail';
 import JourneyDetails from 'server/HAFAS/JourneyDetails';
 import JourneyMatch from 'server/HAFAS/JourneyMatch';
 import SearchOnTrip from 'server/HAFAS/SearchOnTrip';
 import StationBoard from 'server/HAFAS/StationBoard';
-import TripSearch from 'server/HAFAS/TripSearch';
 import type { AllowedHafasProfile } from 'types/HAFAS';
 import type {
   AllowedSotMode,
@@ -29,16 +26,13 @@ import type {
   DepartureStationBoardEntry,
 } from 'types/stationBoard';
 import type { Context } from 'koa';
+import type { EvaNumber } from 'types/common';
 import type {
   JourneyMatchOptions,
   ParsedJourneyMatchResponse,
 } from 'types/HAFAS/JourneyMatch';
 import type { ParsedJourneyDetails } from 'types/HAFAS/JourneyDetails';
-import type { RoutingResult, SingleRoute } from 'types/routing';
-import type {
-  TripSearchOptionsV2,
-  TripSearchOptionsV3,
-} from 'types/HAFAS/TripSearch';
+import type { Route$Auslastung, SingleRoute } from 'types/routing';
 
 export interface SearchOnTripBody {
   sotMode: AllowedSotMode;
@@ -47,27 +41,6 @@ export interface SearchOnTripBody {
 
 @Route('/hafas/v2')
 export class HafasControllerV2 extends Controller {
-  @Post('/tripSearch')
-  @Tags('HAFAS')
-  @Deprecated()
-  @OperationId('TripSearch v2')
-  async tripSearchV2(
-    @Request() ctx: Context,
-    @Body() body: TripSearchOptionsV2,
-    @Query() profile?: AllowedHafasProfile,
-  ): Promise<RoutingResult<number>> {
-    // @ts-expect-error actual conversion happens right after this line
-    const v3Body: TripSearchOptionsV3 = body;
-    if (body.time) {
-      v3Body.time = new Date(body.time);
-    }
-
-    const v3TripSearch = await TripSearch(v3Body, profile, ctx.query.raw);
-    convertDateToEpoch(v3TripSearch);
-    // @ts-expect-error we just converted it - type unsafe
-    return v3TripSearch;
-  }
-
   @Get('/journeyDetails')
   @Tags('HAFAS')
   @OperationId('JourneyDetails v2')
@@ -79,7 +52,6 @@ export class HafasControllerV2 extends Controller {
     return JourneyDetails(jid, profile, ctx.query.raw);
   }
 
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   @Get('/auslastung/{start}/{destination}/{trainNumber}/{time}')
   @Tags('HAFAS')
   @OperationId('Auslastung v2')
@@ -88,7 +60,8 @@ export class HafasControllerV2 extends Controller {
     destination: string,
     trainNumber: string,
     time: Date,
-  ) {
+  ): Promise<Route$Auslastung> {
+    // @ts-expect-error TODO: use @res with 404
     return Auslastung(start, destination, trainNumber, time);
   }
 
@@ -98,9 +71,9 @@ export class HafasControllerV2 extends Controller {
   arrivalStationBoard(
     @Request() ctx: Context,
     /**
-     * EvaId
+     * evaNumber
      */
-    @Query() station: string,
+    @Query() station: EvaNumber,
     @Query() date?: Date,
     @Query() profile?: AllowedHafasProfile,
   ): Promise<ArrivalStationBoardEntry[]> {
@@ -120,14 +93,8 @@ export class HafasControllerV2 extends Controller {
   @OperationId('Departure Station Board v2')
   departureStationBoard(
     @Request() ctx: Context,
-    /**
-     * EvaId
-     */
-    @Query() station: string,
-    /**
-     * EvaId
-     */
-    @Query() direction?: string,
+    @Query() station: EvaNumber,
+    @Query() direction?: EvaNumber,
     @Query() date?: Date,
     @Query() profile?: AllowedHafasProfile,
   ): Promise<DepartureStationBoardEntry[]> {
@@ -162,9 +129,9 @@ export class HafasControllerV2 extends Controller {
     trainName: string,
     @Query() stop?: string,
     /**
-     * EVA Id of a stop of your train
+     * EvaNumber of a stop of your train
      */
-    @Query() station?: string,
+    @Query() station?: EvaNumber,
     @Query() date?: Date,
     @Query() profile?: AllowedHafasProfile,
   ): Promise<ParsedSearchOnTripResponse> {

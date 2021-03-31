@@ -4,9 +4,9 @@
   "author": "marudor",
   "scripts": {
     "build": "run-s build:clean build:babel build:version",
-    "build:babel": "SERVER=1 babel -x .ts,.tsx,.js --root-mode upward . --out-dir .",
+    "build:babel": "SERVER=1 babel -x .ts,.tsx,.js --root-mode upward . --out-dir . --ignore 'node_modules/**'",
     "build:version": "node ../../scripts/buildServer",
-    "build:clean": "rimraf '**/*.js'",
+    "build:clean": "rimraf '[!node_modules]**/**/*.js' && rimraf '*.js'",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "doc:build": "tsoa spec-and-routes && node ../../scripts/adjustSpecJson"
   },

@@ -11,7 +11,7 @@ import { FilterModal } from './FilterModal';
 import { IconButton, Menu, MenuItem } from '@material-ui/core';
 import { useAbfahrtenModalToggle } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useCallback, useState } from 'react';
-import { useCurrentAbfahrtenStation } from 'client/Abfahrten/provider/AbfahrtenProvider';
+import { useCurrentAbfahrtenStopPlace } from 'client/Abfahrten/provider/AbfahrtenProvider';
 import {
   useFav,
   useFavs,
@@ -22,23 +22,26 @@ import type { FC, SyntheticEvent } from 'react';
 
 export const ExtraMenu: FC = () => {
   const { setConfigOpen, setFilterOpen } = useAbfahrtenModalToggle();
-  const currentStation = useCurrentAbfahrtenStation();
-  const lageplan = useLageplan(currentStation?.title, currentStation?.id);
+  const currentStopPlace = useCurrentAbfahrtenStopPlace();
+  const lageplan = useLageplan(
+    currentStopPlace?.name,
+    currentStopPlace?.evaNumber,
+  );
   const favs = useFavs();
   const fav = useFav();
   const unfav = useUnfav();
-  const isFaved = Boolean(currentStation && favs[currentStation.id]);
+  const isFaved = Boolean(currentStopPlace && favs[currentStopPlace.evaNumber]);
   const [anchor, setAnchor] = useState<undefined | HTMLElement>();
   const toggleFav = useCallback(() => {
     setAnchor(undefined);
-    if (currentStation) {
+    if (currentStopPlace) {
       if (isFaved) {
-        unfav(currentStation);
+        unfav(currentStopPlace);
       } else {
-        fav(currentStation);
+        fav(currentStopPlace);
       }
     }
-  }, [currentStation, fav, isFaved, unfav]);
+  }, [currentStopPlace, fav, isFaved, unfav]);
   const toggleMenu = useCallback(
     (e: SyntheticEvent<HTMLElement>) => {
       setAnchor(anchor ? undefined : e.currentTarget);
@@ -72,7 +75,7 @@ export const ExtraMenu: FC = () => {
         <Tune />
       </IconButton>
       <Menu open={Boolean(anchor)} anchorEl={anchor} onClose={toggleMenu}>
-        {currentStation && [
+        {currentStopPlace && [
           <MenuItem data-testid="toggleFav" key="1" onClick={toggleFav}>
             {isFaved ? (
               <>

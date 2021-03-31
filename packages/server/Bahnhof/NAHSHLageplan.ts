@@ -41,7 +41,7 @@ export async function getNAHSHLageplan(
       void cache.set(evaId, fullLink);
       return fullLink;
     } catch (e) {
-      console.log(e);
+      console.error(e);
       // we ignore failing requests and fall back to undefined for lageplanURL
     }
   }

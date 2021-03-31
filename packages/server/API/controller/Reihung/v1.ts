@@ -1,35 +1,11 @@
-import {
-  Controller,
-  Deprecated,
-  Get,
-  Hidden,
-  OperationId,
-  Route,
-  SuccessResponse,
-  Tags,
-} from 'tsoa';
-import { wagenreihung } from 'server/Reihung';
+import { Controller, Get, Hidden, OperationId, Res, Route, Tags } from 'tsoa';
 import { WRForNumber, WRForTZ } from 'server/Reihung/searchWR';
 import TrainNames from 'server/Reihung/TrainNames';
 import type { Formation } from 'types/reihung';
+import type { TsoaResponse } from 'tsoa';
 
 @Route('/reihung/v1')
 export class ReihungControllerV1 extends Controller {
-  @Deprecated()
-  @Get('/wagen/{trainNumber}/{date}')
-  @Tags('Reihung')
-  @OperationId('Wagenreihung v1')
-  wagenreihung(
-    trainNumber: string,
-    /**
-     * Unix Time (ms)
-     */
-    date: number,
-  ): Promise<Formation> {
-    return wagenreihung(trainNumber, new Date(date));
-  }
-
-  @SuccessResponse(200, 'Train name. May be undefined')
   @Get('/trainName/{tz}')
   @Tags('Reihung')
   @OperationId('Train Name v1')
@@ -37,22 +13,34 @@ export class ReihungControllerV1 extends Controller {
     /**
      * TZ Number (e.g. 0169)
      */
-    tz?: string,
+    tz: string,
+    @Res() notFoundResponse: TsoaResponse<404, void>,
   ): Promise<string> {
-    return Promise.resolve(TrainNames(tz)!);
+    const name = TrainNames(tz);
+    if (!name) return notFoundResponse(404);
+    return Promise.resolve(name);
   }
 
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   @Hidden()
   @Get('/forTZ/{tz}')
-  forTZ(tz: string) {
-    return WRForTZ(tz);
+  async forTZ(
+    tz: string,
+    @Res() notFoundResponse: TsoaResponse<404, void>,
+  ): Promise<Formation> {
+    const reihung = await WRForTZ(tz);
+    if (!reihung) return notFoundResponse(404);
+    return reihung;
   }
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   @Hidden()
   @Get('/forNumber/{number}')
-  forNumber(number: string) {
-    return WRForNumber(number);
+  async forNumber(
+    number: string,
+    @Res() notFoundResponse: TsoaResponse<404, void>,
+  ): Promise<Formation> {
+    const reihung = await WRForNumber(number);
+    if (!reihung) return notFoundResponse(404);
+    return reihung;
   }
 }

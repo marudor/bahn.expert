@@ -17,8 +17,8 @@ Cypress.Commands.add(
   ) => {
     const baseFind = findPrefix ? cy.findByTestId(findPrefix) : cy;
 
-    baseFind.findByTestId('stationSearchInput').type(value);
-    cy.findAllByTestId('stationSearchMenuItem').first().click();
+    baseFind.findByTestId('stopPlaceSearchInput').type(value);
+    cy.findAllByTestId('stopPlaceSearchMenuItem').first().click();
   },
 );
 
@@ -26,7 +26,7 @@ Cypress.Commands.add('closeModal', () => {
   cy.get('.MuiBackdrop-root').click({ force: true });
 });
 
-function mockStation({
+function mockStopPlace({
   lookbehind,
   lookahead,
   delay,
@@ -55,13 +55,10 @@ function mockStation({
     },
   ).intercept(
     {
-      url: `/api/station/v1/search/${encodeURIComponent(name)}`,
-      query: {
-        type: 'default',
-      },
+      url: `/api/stopPlace/v1/search/${encodeURIComponent(name)}`,
     },
     {
-      fixture: `stationSearch${fixture}`,
+      fixture: `stopPlaceSearch${fixture}`,
     },
   );
 }
@@ -69,12 +66,12 @@ function mockStation({
 Cypress.Commands.add(
   'mockFrankfurt',
   ({ lookbehind = 0, lookahead = 150, delay = 0 } = {}) => {
-    mockStation({
+    mockStopPlace({
       lookahead,
       lookbehind,
       delay,
       name: 'Frankfurt (Main) Hbf',
-      id: '8098105',
+      id: '8000105',
       fixture: 'FrankfurtHbf',
     });
   },
@@ -83,7 +80,7 @@ Cypress.Commands.add(
 Cypress.Commands.add(
   'mockHamburg',
   ({ lookbehind = 0, lookahead = 150, delay = 0 } = {}) => {
-    mockStation({
+    mockStopPlace({
       lookahead,
       lookbehind,
       delay,
@@ -97,7 +94,7 @@ Cypress.Commands.add(
 Cypress.Commands.add(
   'mockHannover',
   ({ lookbehind = 0, lookahead = 150, delay = 0 } = {}) => {
-    mockStation({
+    mockStopPlace({
       lookahead,
       lookbehind,
       delay,

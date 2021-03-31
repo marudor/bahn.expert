@@ -23,7 +23,7 @@ export class HafasControllerV3 extends Controller {
     @Request() ctx: Context,
     @Body() body: TripSearchOptionsV3,
     @Query() profile?: AllowedHafasProfile,
-  ): Promise<RoutingResult<Date>> {
+  ): Promise<RoutingResult> {
     return TripSearch(body, profile, ctx.query.raw);
   }
 }

@@ -6,7 +6,6 @@ import {
   Chip,
   FormControlLabel,
   makeStyles,
-  NativeSelect,
   Switch,
   TextField,
 } from '@material-ui/core';
@@ -17,7 +16,6 @@ import {
   Timelapse,
   Train,
 } from '@material-ui/icons';
-import { AllowedHafasProfile } from 'types/HAFAS';
 import { useCallback, useMemo } from 'react';
 import {
   useRoutingConfigActions,
@@ -136,30 +134,6 @@ export const SettingsPanel: FC = () => {
             />
           }
           label="Min Umstiegszeit"
-        />
-        <FormControlLabel
-          className={classes.label}
-          labelPlacement="start"
-          control={
-            <NativeSelect
-              // @ts-expect-error works
-              inputProps={{ 'data-testid': 'routingHafasProfile' }}
-              value={settings.hafasProfile}
-              name="checkIn"
-              onChange={handleInputChange('hafasProfile')}
-            >
-              {Object.keys(AllowedHafasProfile).map((allowedProfile) => (
-                <option
-                  key={allowedProfile}
-                  // @ts-expect-error works
-                  value={AllowedHafasProfile[allowedProfile]}
-                >
-                  {allowedProfile}
-                </option>
-              ))}
-            </NativeSelect>
-          }
-          label="HAFAS Provider"
         />
         <FormControlLabel
           className={classes.label}

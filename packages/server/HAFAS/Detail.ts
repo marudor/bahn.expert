@@ -11,7 +11,7 @@ import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 import type { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
 import type { Route$JourneySegmentTrain } from 'types/routing';
 
-function calculateCurrentStation(
+function calculateCurrentStopPlace(
   segment: ParsedSearchOnTripResponse,
   currentStopId?: string,
 ) {
@@ -161,7 +161,7 @@ export default async (
     });
   }
 
-  relevantSegment.currentStop = calculateCurrentStation(
+  relevantSegment.currentStop = calculateCurrentStopPlace(
     relevantSegment,
     currentStopId,
   );

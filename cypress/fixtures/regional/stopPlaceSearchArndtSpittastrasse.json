@@ -1,0 +1,26 @@
+[
+  {
+    "evaNumber": "0369218",
+    "name": "Arndt-/Spittastraße, Stuttgart",
+    "availableTransports": ["TRAM"],
+    "position": {
+      "longitude": 9.150787,
+      "latitude": 48.774831
+    },
+    "identifier": {
+      "ifopt": "de:08111:218:2"
+    }
+  },
+  {
+    "evaNumber": "0559177",
+    "name": "Arndt-/Spittastraße, Stuttgart",
+    "availableTransports": ["TRAM"],
+    "position": {
+      "longitude": 9.150769,
+      "latitude": 48.774897
+    },
+    "identifier": {
+      "ifopt": "de:08111:218:1"
+    }
+  }
+]

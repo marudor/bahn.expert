@@ -16,7 +16,7 @@ import {
 } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
 import {
   useAbfahrtenError,
-  useCurrentAbfahrtenStation,
+  useCurrentAbfahrtenStopPlace,
   useRawAbfahrten,
 } from 'client/Abfahrten/provider/AbfahrtenProvider';
 import { useEffect, useState } from 'react';
@@ -45,11 +45,11 @@ const useStyles = makeStyles((theme) => ({
 const InnerAbfahrtenList = () => {
   const classes = useStyles();
   const {
-    updateCurrentStationByString,
-    setCurrentStation,
+    updateCurrentStopPlaceByString,
+    setCurrentStopPlace,
     setError,
   } = useRawAbfahrten();
-  const currentStation = useCurrentAbfahrtenStation();
+  const currentStopPlace = useCurrentAbfahrtenStopPlace();
   const error = useAbfahrtenError();
   const selectedDetail = useSelectedDetail();
   const { clearReihungen } = useReihungenActions();
@@ -64,21 +64,21 @@ const InnerAbfahrtenList = () => {
   const { updateTitle, updateDescription } = useHeaderTagsActions();
 
   useEffect(() => {
-    if (!currentStation) {
+    if (!currentStopPlace) {
       updateTitle();
       updateDescription();
     } else {
-      updateTitle(currentStation.title);
-      updateDescription(`Zugabfahrten für ${currentStation.title}`);
+      updateTitle(currentStopPlace.name);
+      updateDescription(`Zugabfahrten für ${currentStopPlace.name}`);
     }
-  }, [currentStation, updateDescription, updateTitle]);
+  }, [currentStopPlace, updateDescription, updateTitle]);
 
   useEffect(() => {
     return () => {
-      setCurrentStation(undefined);
+      setCurrentStopPlace(undefined);
       setError(undefined);
     };
-  }, [setCurrentStation, setError]);
+  }, [setCurrentStopPlace, setError]);
 
   useEffect(() => {
     if (unfilteredAbfahrten) {
@@ -107,11 +107,18 @@ const InnerAbfahrtenList = () => {
   const [oldMatch, setOldMatch] = useState(paramStation);
 
   useEffect(() => {
-    if (!currentStation || oldMatch !== paramStation) {
+    if (!currentStopPlace || oldMatch !== paramStation) {
       setOldMatch(paramStation);
-      void updateCurrentStationByString(decodeURIComponent(paramStation || ''));
+      void updateCurrentStopPlaceByString(
+        decodeURIComponent(paramStation || ''),
+      );
     }
-  }, [currentStation, oldMatch, paramStation, updateCurrentStationByString]);
+  }, [
+    currentStopPlace,
+    oldMatch,
+    paramStation,
+    updateCurrentStopPlaceByString,
+  ]);
 
   useEffect(() => {
     if (scrolled) {

@@ -5,6 +5,7 @@ import Axios from 'axios';
 import fs from 'fs';
 import Nock from 'nock';
 import path from 'path';
+// eslint-disable-next-line no-restricted-imports
 import routes from 'server/API';
 
 if (fs.existsSync(path.resolve(__dirname, 'setup.js'))) {

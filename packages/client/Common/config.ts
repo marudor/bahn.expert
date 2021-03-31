@@ -1,8 +1,6 @@
 import type { ChangeEvent } from 'react';
-import type { StationSearchType } from 'types/station';
 
 export interface AbfahrtenConfig {
-  readonly searchType: StationSearchType;
   readonly lookahead: string;
   readonly lookbehind: string;
   readonly lineAndNumber: boolean;

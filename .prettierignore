@@ -1,5 +1,4 @@
 **/__fixtures__/**
 packages/server/API/routes.ts
-cypress/fixtures/**
 packages/app/android
 packages/app/ios

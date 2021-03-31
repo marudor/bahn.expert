@@ -20,9 +20,9 @@
     "delay": 7
   },
   "productClass": "F",
-  "currentStation": {
-    "title": "Düsseldorf Hbf",
-    "id": "8000085"
+  "currentStopPlace": {
+    "name": "Düsseldorf Hbf",
+    "evaNumber": "8000085"
   },
   "scheduledDestination": "Rostock Hbf",
   "id": "4264666229068276457",

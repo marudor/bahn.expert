@@ -23,9 +23,9 @@
     "delay": 8
   },
   "productClass": "F",
-  "currentStation": {
-    "title": "Frankfurt (M)  Flughafen Fernbf",
-    "id": "8070003"
+  "currentStopPlace": {
+    "name": "Frankfurt (M)  Flughafen Fernbf",
+    "evaNumber": "8070003"
   },
   "scheduledDestination": "Amsterdam Centraal",
   "id": "4524910290568704513",

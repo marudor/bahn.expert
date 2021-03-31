@@ -36,7 +36,7 @@ export const JnySegmentTrain: FC<Props> = ({
           {segment.finalDestination}
           <DetailsLink
             train={segment.train}
-            stationId={segment.segmentStart.id}
+            evaNumber={segment.segmentStart.id}
             initialDeparture={segment.departure.scheduledTime}
           />
         </span>
@@ -50,7 +50,7 @@ export const JnySegmentTrain: FC<Props> = ({
             <Reihung
               className={classes.reihung}
               trainNumber={segment.train.number}
-              currentStation={segment.segmentStart.title}
+              currentEvaNumber={segment.segmentStart.id}
               scheduledDeparture={segment.departure.scheduledTime}
             />
           )}

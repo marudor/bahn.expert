@@ -14,9 +14,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723870",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "723870",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403979,
           "lat": 48.99522
@@ -180,9 +180,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "721695",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "721695",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.402936,
           "lat": 48.994914
@@ -264,9 +264,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723869",
-        "title": "Poststraße, Karlsruhe",
+      "currentStopPlace": {
+        "evaNumber": "723869",
+        "name": "Poststraße, Karlsruhe",
         "coordinates": {
           "lng": 8.40379,
           "lat": 48.995211
@@ -424,9 +424,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723870",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "723870",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403979,
           "lat": 48.99522
@@ -641,9 +641,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "721695",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "721695",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.402936,
           "lat": 48.994914
@@ -761,9 +761,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723869",
-        "title": "Poststraße, Karlsruhe",
+      "currentStopPlace": {
+        "evaNumber": "723869",
+        "name": "Poststraße, Karlsruhe",
         "coordinates": {
           "lng": 8.40379,
           "lat": 48.995211
@@ -1005,9 +1005,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "721696",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "721696",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403008,
           "lat": 48.995121
@@ -1082,9 +1082,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723870",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "723870",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403979,
           "lat": 48.99522
@@ -1359,9 +1359,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723869",
-        "title": "Poststraße, Karlsruhe",
+      "currentStopPlace": {
+        "evaNumber": "723869",
+        "name": "Poststraße, Karlsruhe",
         "coordinates": {
           "lng": 8.40379,
           "lat": 48.995211
@@ -1576,9 +1576,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723870",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "723870",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403979,
           "lat": 48.99522
@@ -1742,9 +1742,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "721695",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "721695",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.402936,
           "lat": 48.994914
@@ -1826,9 +1826,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723869",
-        "title": "Poststraße, Karlsruhe",
+      "currentStopPlace": {
+        "evaNumber": "723869",
+        "name": "Poststraße, Karlsruhe",
         "coordinates": {
           "lng": 8.40379,
           "lat": 48.995211
@@ -1986,9 +1986,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723870",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "723870",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403979,
           "lat": 48.99522
@@ -2203,9 +2203,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "721695",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "721695",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.402936,
           "lat": 48.994914
@@ -2323,9 +2323,9 @@
         "delay": 1
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723869",
-        "title": "Poststraße, Karlsruhe",
+      "currentStopPlace": {
+        "evaNumber": "723869",
+        "name": "Poststraße, Karlsruhe",
         "coordinates": {
           "lng": 8.40379,
           "lat": 48.995211
@@ -2549,9 +2549,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723870",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "723870",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403979,
           "lat": 48.99522
@@ -2823,9 +2823,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "721696",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "721696",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403008,
           "lat": 48.995121
@@ -2900,9 +2900,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723869",
-        "title": "Poststraße, Karlsruhe",
+      "currentStopPlace": {
+        "evaNumber": "723869",
+        "name": "Poststraße, Karlsruhe",
         "coordinates": {
           "lng": 8.40379,
           "lat": 48.995211
@@ -3172,9 +3172,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723870",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "723870",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403979,
           "lat": 48.99522
@@ -3374,9 +3374,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723869",
-        "title": "Poststraße, Karlsruhe",
+      "currentStopPlace": {
+        "evaNumber": "723869",
+        "name": "Poststraße, Karlsruhe",
         "coordinates": {
           "lng": 8.40379,
           "lat": 48.995211
@@ -3591,9 +3591,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723870",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "723870",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403979,
           "lat": 48.99522
@@ -3757,9 +3757,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "721695",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "721695",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.402936,
           "lat": 48.994914
@@ -3841,9 +3841,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723869",
-        "title": "Poststraße, Karlsruhe",
+      "currentStopPlace": {
+        "evaNumber": "723869",
+        "name": "Poststraße, Karlsruhe",
         "coordinates": {
           "lng": 8.40379,
           "lat": 48.995211
@@ -4001,9 +4001,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723870",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "723870",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403979,
           "lat": 48.99522
@@ -4218,9 +4218,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723869",
-        "title": "Poststraße, Karlsruhe",
+      "currentStopPlace": {
+        "evaNumber": "723869",
+        "name": "Poststraße, Karlsruhe",
         "coordinates": {
           "lng": 8.40379,
           "lat": 48.995211
@@ -4495,9 +4495,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "721696",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "721696",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403008,
           "lat": 48.995121
@@ -4572,9 +4572,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723870",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "723870",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403979,
           "lat": 48.99522
@@ -4816,9 +4816,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723869",
-        "title": "Poststraße, Karlsruhe",
+      "currentStopPlace": {
+        "evaNumber": "723869",
+        "name": "Poststraße, Karlsruhe",
         "coordinates": {
           "lng": 8.40379,
           "lat": 48.995211
@@ -5033,9 +5033,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723870",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "723870",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403979,
           "lat": 48.99522
@@ -5322,9 +5322,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723870",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "723870",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403979,
           "lat": 48.99522
@@ -5488,9 +5488,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "721695",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "721695",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.402936,
           "lat": 48.994914
@@ -5572,9 +5572,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723869",
-        "title": "Poststraße, Karlsruhe",
+      "currentStopPlace": {
+        "evaNumber": "723869",
+        "name": "Poststraße, Karlsruhe",
         "coordinates": {
           "lng": 8.40379,
           "lat": 48.995211
@@ -5732,9 +5732,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723870",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "723870",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403979,
           "lat": 48.99522
@@ -5947,9 +5947,9 @@
         "time": "2020-05-02T18:54:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "721695",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "721695",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.402936,
           "lat": 48.994914
@@ -6067,9 +6067,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723869",
-        "title": "Poststraße, Karlsruhe",
+      "currentStopPlace": {
+        "evaNumber": "723869",
+        "name": "Poststraße, Karlsruhe",
         "coordinates": {
           "lng": 8.40379,
           "lat": 48.995211
@@ -6267,9 +6267,9 @@
         "time": "2020-05-02T18:59:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "721696",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "721696",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403008,
           "lat": 48.995121
@@ -6344,9 +6344,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723870",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "723870",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403979,
           "lat": 48.99522
@@ -6579,9 +6579,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723869",
-        "title": "Poststraße, Karlsruhe",
+      "currentStopPlace": {
+        "evaNumber": "723869",
+        "name": "Poststraße, Karlsruhe",
         "coordinates": {
           "lng": 8.40379,
           "lat": 48.995211
@@ -6794,9 +6794,9 @@
         "time": "2020-05-02T19:09:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723870",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "723870",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403979,
           "lat": 48.99522
@@ -6958,9 +6958,9 @@
         "time": "2020-05-02T19:09:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "721695",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "721695",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.402936,
           "lat": 48.994914
@@ -7040,9 +7040,9 @@
         "time": "2020-05-02T19:10:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723869",
-        "title": "Poststraße, Karlsruhe",
+      "currentStopPlace": {
+        "evaNumber": "723869",
+        "name": "Poststraße, Karlsruhe",
         "coordinates": {
           "lng": 8.40379,
           "lat": 48.995211
@@ -7296,9 +7296,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723869",
-        "title": "Poststraße, Karlsruhe",
+      "currentStopPlace": {
+        "evaNumber": "723869",
+        "name": "Poststraße, Karlsruhe",
         "coordinates": {
           "lng": 8.40379,
           "lat": 48.995211
@@ -7456,9 +7456,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723870",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "723870",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403979,
           "lat": 48.99522
@@ -7671,9 +7671,9 @@
         "time": "2020-05-02T19:14:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "721695",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "721695",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.402936,
           "lat": 48.994914
@@ -7791,9 +7791,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723869",
-        "title": "Poststraße, Karlsruhe",
+      "currentStopPlace": {
+        "evaNumber": "723869",
+        "name": "Poststraße, Karlsruhe",
         "coordinates": {
           "lng": 8.40379,
           "lat": 48.995211
@@ -8033,9 +8033,9 @@
         "time": "2020-05-02T19:16:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723870",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "723870",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403979,
           "lat": 48.99522
@@ -8305,9 +8305,9 @@
         "time": "2020-05-02T19:19:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "721696",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "721696",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403008,
           "lat": 48.995121
@@ -8380,9 +8380,9 @@
         "time": "2020-05-02T19:26:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723869",
-        "title": "Poststraße, Karlsruhe",
+      "currentStopPlace": {
+        "evaNumber": "723869",
+        "name": "Poststraße, Karlsruhe",
         "coordinates": {
           "lng": 8.40379,
           "lat": 48.995211
@@ -8595,9 +8595,9 @@
         "time": "2020-05-02T19:29:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723870",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "723870",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403979,
           "lat": 48.99522
@@ -8759,9 +8759,9 @@
         "time": "2020-05-02T19:29:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "721695",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "721695",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.402936,
           "lat": 48.994914
@@ -8841,9 +8841,9 @@
         "time": "2020-05-02T19:31:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723869",
-        "title": "Poststraße, Karlsruhe",
+      "currentStopPlace": {
+        "evaNumber": "723869",
+        "name": "Poststraße, Karlsruhe",
         "coordinates": {
           "lng": 8.40379,
           "lat": 48.995211
@@ -8999,9 +8999,9 @@
         "time": "2020-05-02T19:35:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723869",
-        "title": "Poststraße, Karlsruhe",
+      "currentStopPlace": {
+        "evaNumber": "723869",
+        "name": "Poststraße, Karlsruhe",
         "coordinates": {
           "lng": 8.40379,
           "lat": 48.995211
@@ -9232,9 +9232,9 @@
         "time": "2020-05-02T19:39:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723870",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "723870",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403979,
           "lat": 48.99522
@@ -9447,9 +9447,9 @@
         "time": "2020-05-02T19:39:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "721696",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "721696",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403008,
           "lat": 48.995121
@@ -9524,9 +9524,9 @@
         "delay": 0
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723869",
-        "title": "Poststraße, Karlsruhe",
+      "currentStopPlace": {
+        "evaNumber": "723869",
+        "name": "Poststraße, Karlsruhe",
         "coordinates": {
           "lng": 8.40379,
           "lat": 48.995211
@@ -9794,9 +9794,9 @@
         "time": "2020-05-02T19:45:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723870",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "723870",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403979,
           "lat": 48.99522
@@ -10060,9 +10060,9 @@
         "time": "2020-05-02T19:49:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "721695",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "721695",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.402936,
           "lat": 48.994914
@@ -10142,9 +10142,9 @@
         "time": "2020-05-02T19:51:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723869",
-        "title": "Poststraße, Karlsruhe",
+      "currentStopPlace": {
+        "evaNumber": "723869",
+        "name": "Poststraße, Karlsruhe",
         "coordinates": {
           "lng": 8.40379,
           "lat": 48.995211
@@ -10357,9 +10357,9 @@
         "time": "2020-05-02T19:55:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723869",
-        "title": "Poststraße, Karlsruhe",
+      "currentStopPlace": {
+        "evaNumber": "723869",
+        "name": "Poststraße, Karlsruhe",
         "coordinates": {
           "lng": 8.40379,
           "lat": 48.995211
@@ -10599,9 +10599,9 @@
         "time": "2020-05-02T19:57:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "721695",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "721695",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.402936,
           "lat": 48.994914
@@ -10717,9 +10717,9 @@
         "time": "2020-05-02T19:59:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723870",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "723870",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403979,
           "lat": 48.99522
@@ -10881,9 +10881,9 @@
         "time": "2020-05-02T19:59:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "721696",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "721696",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403008,
           "lat": 48.995121
@@ -10956,9 +10956,9 @@
         "time": "2020-05-02T20:01:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723869",
-        "title": "Poststraße, Karlsruhe",
+      "currentStopPlace": {
+        "evaNumber": "723869",
+        "name": "Poststraße, Karlsruhe",
         "coordinates": {
           "lng": 8.40379,
           "lat": 48.995211
@@ -11114,9 +11114,9 @@
         "time": "2020-05-02T20:05:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723870",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "723870",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403979,
           "lat": 48.99522
@@ -11347,9 +11347,9 @@
         "time": "2020-05-02T20:09:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723870",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "723870",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403979,
           "lat": 48.99522
@@ -11562,9 +11562,9 @@
         "time": "2020-05-02T20:09:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "721695",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "721695",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.402936,
           "lat": 48.994914
@@ -11644,9 +11644,9 @@
         "time": "2020-05-02T20:10:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723869",
-        "title": "Poststraße, Karlsruhe",
+      "currentStopPlace": {
+        "evaNumber": "723869",
+        "name": "Poststraße, Karlsruhe",
         "coordinates": {
           "lng": 8.40379,
           "lat": 48.995211
@@ -11898,9 +11898,9 @@
         "time": "2020-05-02T20:15:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723869",
-        "title": "Poststraße, Karlsruhe",
+      "currentStopPlace": {
+        "evaNumber": "723869",
+        "name": "Poststraße, Karlsruhe",
         "coordinates": {
           "lng": 8.40379,
           "lat": 48.995211
@@ -12122,9 +12122,9 @@
         "time": "2020-05-02T20:16:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723870",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "723870",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403979,
           "lat": 48.99522
@@ -12394,9 +12394,9 @@
         "time": "2020-05-02T20:17:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "721695",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "721695",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.402936,
           "lat": 48.994914
@@ -12512,9 +12512,9 @@
         "time": "2020-05-02T20:19:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "721696",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "721696",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403008,
           "lat": 48.995121
@@ -12587,9 +12587,9 @@
         "time": "2020-05-02T20:21:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723869",
-        "title": "Poststraße, Karlsruhe",
+      "currentStopPlace": {
+        "evaNumber": "723869",
+        "name": "Poststraße, Karlsruhe",
         "coordinates": {
           "lng": 8.40379,
           "lat": 48.995211
@@ -12802,9 +12802,9 @@
         "time": "2020-05-02T20:29:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723870",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "723870",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.403979,
           "lat": 48.99522
@@ -12966,9 +12966,9 @@
         "time": "2020-05-02T20:29:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "721695",
-        "title": "Poststraße",
+      "currentStopPlace": {
+        "evaNumber": "721695",
+        "name": "Poststraße",
         "coordinates": {
           "lng": 8.402936,
           "lat": 48.994914
@@ -13048,9 +13048,9 @@
         "time": "2020-05-02T20:31:00.000Z"
       },
       "auslastung": false,
-      "currentStation": {
-        "id": "723869",
-        "title": "Poststraße, Karlsruhe",
+      "currentStopPlace": {
+        "evaNumber": "723869",
+        "name": "Poststraße, Karlsruhe",
         "coordinates": {
           "lng": 8.40379,
           "lat": 48.995211

@@ -1,24 +1,21 @@
 import { useCallback, useState } from 'react';
 import { useStorage } from 'client/useStorage';
 import constate from 'constate';
-import type { AllowedHafasProfile } from 'types/HAFAS';
 import type { FC } from 'react';
-import type { Station } from 'types/station';
+import type { MinimalStopPlace } from 'types/stopPlace';
 
-export type RoutingFavStation = Pick<Station, 'title' | 'id'>;
 export interface RoutingFav {
-  start: RoutingFavStation;
-  destination: RoutingFavStation;
-  via: RoutingFavStation[];
-  profile: AllowedHafasProfile;
+  start: MinimalStopPlace;
+  destination: MinimalStopPlace;
+  via: MinimalStopPlace[];
 }
 export interface RoutingFavs {
   [key: string]: RoutingFav;
 }
 
 export function routingFavKey(fav: RoutingFav): string {
-  return `${fav.start.id}${fav.via.map((s) => s.id)}${fav.destination.id}${
-    fav.profile
+  return `${fav.start.evaNumber}${fav.via.map((s) => s.evaNumber)}${
+    fav.destination.evaNumber
   }`;
 }
 
@@ -43,7 +40,12 @@ function useRoutingFavStorage({ initialFavs }: InitialRoutingFavStorageProps) {
   const unfav = useCallback(
     (fav: RoutingFav) => {
       updateFavs((oldFavs) => {
-        delete oldFavs[routingFavKey(fav)];
+        const relevantFav = Object.entries(oldFavs).find(([_, favEntry]) => {
+          return favEntry === fav;
+        });
+        if (relevantFav) {
+          delete oldFavs[relevantFav[0]];
+        }
         return { ...oldFavs };
       });
     },
@@ -80,9 +82,39 @@ export const [
   }),
 );
 
+type OldFavStopPlace = {
+  title: string;
+  id: string;
+};
+
+function migrateOldFav(old: OldFavStopPlace): MinimalStopPlace {
+  return {
+    name: old.title,
+    evaNumber: old.id.length > 7 ? old.id.substring(2) : old.id,
+  };
+}
+
 export const RoutingFavProvider: FC = ({ children }) => {
   const storage = useStorage();
   const savedRoutingFavs = storage.get('rfavs');
+  if (savedRoutingFavs) {
+    Object.keys(savedRoutingFavs).forEach((favKey) => {
+      // @ts-expect-error old format had this
+      const fav: {
+        start: OldFavStopPlace;
+        destination: OldFavStopPlace;
+        via: OldFavStopPlace[];
+      } = savedRoutingFavs[favKey];
+      if (fav.start.id) {
+        savedRoutingFavs[favKey] = {
+          start: migrateOldFav(fav.start),
+          destination: migrateOldFav(fav.destination),
+          via: fav.via.map(migrateOldFav),
+        };
+      }
+    });
+    storage.set('rfavs', savedRoutingFavs);
+  }
   return (
     <InnerRoutingFavProvider initialFavs={savedRoutingFavs}>
       {children}

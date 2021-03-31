@@ -23,7 +23,6 @@ export default async (ctx: Context, next: Next): Promise<void> => {
             scope.setExtra('data', e.data);
           }
           scope.addEventProcessor((event) =>
-            // @ts-expect-error sentry can handle koa request
             Sentry.Handlers.parseRequest(event, ctx.request),
           );
           Sentry.captureException(e);

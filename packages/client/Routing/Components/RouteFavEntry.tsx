@@ -73,8 +73,8 @@ export const RouteFavEntry: FC<Props> = ({ fav }) => {
         className={classes.wrap}
         data-testid={`RouteFavEntry-${routingFavKey(fav)}`}
       >
-        <span className={classes.start}>{fav.start.title}</span>
-        <span className={classes.destination}>{fav.destination.title}</span>
+        <span className={classes.start}>{fav.start.name}</span>
+        <span className={classes.destination}>{fav.destination.name}</span>
         <span className={classes.arrow}>{'->'}</span>
         <span className={classes.profile}>
           {Object.keys(AllowedHafasProfile).find(
@@ -82,7 +82,11 @@ export const RouteFavEntry: FC<Props> = ({ fav }) => {
             (key) => AllowedHafasProfile[key] === fav.profile,
           )}
         </span>
-        <Delete className={classes.delete} onClick={removeFav} />
+        <Delete
+          data-testid="deleteFav"
+          className={classes.delete}
+          onClick={removeFav}
+        />
       </Paper>
     </Link>
   );

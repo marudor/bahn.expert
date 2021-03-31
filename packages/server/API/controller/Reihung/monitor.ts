@@ -1,16 +1,19 @@
-import { Controller, Get, Hidden, Route } from 'tsoa';
+import { Controller, Get, Hidden, Res, Route } from 'tsoa';
 import { wagenReihungMonitoring } from 'server/Reihung';
+import type { Formation } from 'types/reihung';
+import type { TsoaResponse } from 'tsoa';
 
 @Route('/reihung/monitoring')
 export class ReihungMonitoringController extends Controller {
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   @Get('/wagen')
   @Hidden()
-  async monitoring() {
+  async monitoring(
+    @Res() notFoundResponse: TsoaResponse<404, void>,
+  ): Promise<Formation> {
     const reihung = await wagenReihungMonitoring();
 
     if (!reihung) {
-      this.setStatus(404);
+      return notFoundResponse(404);
     }
 
     return reihung;

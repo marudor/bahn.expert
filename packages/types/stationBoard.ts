@@ -6,25 +6,23 @@ import type {
 } from './HAFAS';
 import type { Route$Stop } from 'types/routing';
 
-interface CommonStationBoardEntry<DateType = Date> {
+interface CommonStationBoardEntry {
   train: ParsedProduct;
   cancelled?: boolean;
   finalDestination: string;
   jid: string;
-  stops?: Route$Stop<DateType>[];
+  stops?: Route$Stop[];
   currentStation: HafasStation;
   messages?: RemL[];
 }
 
-export interface ArrivalStationBoardEntry<DateType = Date>
-  extends CommonStationBoardEntry<DateType> {
-  arrival: CommonStopInfo<DateType>;
+export interface ArrivalStationBoardEntry extends CommonStationBoardEntry {
+  arrival: CommonStopInfo;
 }
 
-export interface DepartureStationBoardEntry<DateType = Date>
-  extends CommonStationBoardEntry<DateType> {
-  departure: CommonStopInfo<DateType>;
+export interface DepartureStationBoardEntry extends CommonStationBoardEntry {
+  departure: CommonStopInfo;
 }
-export type StationBoardEntry<DateType = Date> =
-  | ArrivalStationBoardEntry<DateType>
-  | DepartureStationBoardEntry<DateType>;
+export type StationBoardEntry =
+  | ArrivalStationBoardEntry
+  | DepartureStationBoardEntry;

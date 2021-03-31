@@ -22,9 +22,9 @@
         "delay": 30
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg-Altona",
       "id": "7666577999389624901",
@@ -117,9 +117,9 @@
         "delay": 37
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "id": "2916859508763515481",
@@ -198,9 +198,9 @@
         "delay": 6
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "RB31",
@@ -299,9 +299,9 @@
         "delay": 2
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Aumühle",
       "lineNumber": "21",
@@ -418,9 +418,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Pinneberg",
       "lineNumber": "3",
@@ -540,9 +540,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "3",
@@ -646,9 +646,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T10:27:00.000Z",
         "time": "2019-11-30T10:34:00.000Z",
-        "wingIds": [
-          "1825339416904800641-1911301059"
-        ],
+        "wingIds": ["1825339416904800641-1911301059"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false,
@@ -658,9 +656,7 @@
       "departure": {
         "scheduledTime": "2019-11-30T10:28:00.000Z",
         "time": "2019-11-30T10:34:00.000Z",
-        "wingIds": [
-          "1825339416904800641-1911301059"
-        ],
+        "wingIds": ["1825339416904800641-1911301059"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false,
@@ -668,9 +664,9 @@
         "delay": 6
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Blankenese",
       "lineNumber": "1",
@@ -798,9 +794,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Elbgaustraße",
       "lineNumber": "21",
@@ -908,9 +904,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "München Hbf",
       "id": "5797981650559212701",
@@ -1015,9 +1011,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Altona (S)",
       "lineNumber": "31",
@@ -1104,9 +1100,9 @@
         "delay": 4
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg-Altona",
       "id": "8324833040028709884",
@@ -1187,9 +1183,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "31",
@@ -1276,9 +1272,9 @@
         "delay": 2
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg-Altona",
       "id": "2051319428480509986",
@@ -1365,9 +1361,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T10:33:00.000Z",
         "time": "2019-11-30T10:33:00.000Z",
-        "wingIds": [
-          "4824035606402589556-1911301107"
-        ],
+        "wingIds": ["4824035606402589556-1911301107"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false,
@@ -1377,9 +1371,7 @@
       "departure": {
         "scheduledTime": "2019-11-30T10:34:00.000Z",
         "time": "2019-11-30T10:34:00.000Z",
-        "wingIds": [
-          "4824035606402589556-1911301107"
-        ],
+        "wingIds": ["4824035606402589556-1911301107"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false,
@@ -1387,9 +1379,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Airport",
       "lineNumber": "1",
@@ -1512,9 +1504,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Bergedorf",
       "lineNumber": "21",
@@ -1613,9 +1605,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "RE3",
@@ -1718,9 +1710,9 @@
         "delay": 2
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Pinneberg",
       "lineNumber": "3",
@@ -1840,9 +1832,9 @@
         "delay": 2
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "München Hbf",
       "id": "4803413020616385260",
@@ -1930,9 +1922,9 @@
         "delay": 0
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "70",
@@ -1999,9 +1991,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Bremen Hbf",
       "lineNumber": "RB41",
@@ -2095,9 +2087,9 @@
         "delay": 2
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "1",
@@ -2206,9 +2198,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "3",
@@ -2328,9 +2320,9 @@
         "delay": 1
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Elbgaustraße",
       "lineNumber": "21",
@@ -2431,9 +2423,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T10:37:00.000Z",
         "time": "2019-11-30T10:38:00.000Z",
-        "wingIds": [
-          "698142480475912228-1911301109"
-        ],
+        "wingIds": ["698142480475912228-1911301109"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false,
@@ -2443,9 +2433,7 @@
       "departure": {
         "scheduledTime": "2019-11-30T10:38:00.000Z",
         "time": "2019-11-30T10:38:00.000Z",
-        "wingIds": [
-          "698142480475912228-1911301109"
-        ],
+        "wingIds": ["698142480475912228-1911301109"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false,
@@ -2453,9 +2441,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Wedel (Holst)",
       "lineNumber": "1",
@@ -2579,9 +2567,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Bad Oldesloe",
       "lineNumber": "81",
@@ -2662,9 +2650,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Altona (S)",
       "lineNumber": "31",
@@ -2745,9 +2733,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "31",
@@ -2823,9 +2811,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "RE4",
@@ -2887,9 +2875,9 @@
         "delay": 0
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "81",
@@ -2943,17 +2931,15 @@
       "departure": {
         "scheduledTime": "2019-11-30T10:43:00.000Z",
         "time": "2019-11-30T10:43:00.000Z",
-        "wingIds": [
-          "409128140720699266-1911301143"
-        ],
+        "wingIds": ["409128140720699266-1911301143"],
         "platform": "13D-F",
         "scheduledPlatform": "13D-F",
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Kiel Hbf",
       "lineNumber": "7",
@@ -3016,9 +3002,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T10:43:00.000Z",
         "time": "2019-11-30T10:46:00.000Z",
-        "wingIds": [
-          "3759246301279391203-1911301103"
-        ],
+        "wingIds": ["3759246301279391203-1911301103"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false,
@@ -3028,9 +3012,7 @@
       "departure": {
         "scheduledTime": "2019-11-30T10:44:00.000Z",
         "time": "2019-11-30T10:46:00.000Z",
-        "wingIds": [
-          "3759246301279391203-1911301103"
-        ],
+        "wingIds": ["3759246301279391203-1911301103"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false,
@@ -3038,9 +3020,9 @@
         "delay": 2
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Airport",
       "lineNumber": "1",
@@ -3176,9 +3158,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Aumühle",
       "lineNumber": "21",
@@ -3293,9 +3275,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Pinneberg",
       "lineNumber": "3",
@@ -3411,9 +3393,9 @@
         "hidden": false
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Stuttgart Hbf",
       "id": "8798924542857990668",
@@ -3523,9 +3505,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "3",
@@ -3629,9 +3611,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T10:47:00.000Z",
         "time": "2019-11-30T10:48:00.000Z",
-        "wingIds": [
-          "7440948382797739729-1911301119"
-        ],
+        "wingIds": ["7440948382797739729-1911301119"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false,
@@ -3641,9 +3621,7 @@
       "departure": {
         "scheduledTime": "2019-11-30T10:48:00.000Z",
         "time": "2019-11-30T10:48:00.000Z",
-        "wingIds": [
-          "7440948382797739729-1911301119"
-        ],
+        "wingIds": ["7440948382797739729-1911301119"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false,
@@ -3651,9 +3629,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Blankenese",
       "lineNumber": "1",
@@ -3772,9 +3750,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Elbgaustraße",
       "lineNumber": "21",
@@ -3876,9 +3854,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Altona (S)",
       "lineNumber": "31",
@@ -3954,9 +3932,9 @@
         "delay": 3
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "8",
@@ -4016,9 +3994,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "31",
@@ -4094,9 +4072,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "RB61",
@@ -4166,9 +4144,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T10:53:00.000Z",
         "time": "2019-11-30T10:53:00.000Z",
-        "wingIds": [
-          "2363687393968313743-1911301127"
-        ],
+        "wingIds": ["2363687393968313743-1911301127"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false
@@ -4176,17 +4152,15 @@
       "departure": {
         "scheduledTime": "2019-11-30T10:54:00.000Z",
         "time": "2019-11-30T10:54:00.000Z",
-        "wingIds": [
-          "2363687393968313743-1911301127"
-        ],
+        "wingIds": ["2363687393968313743-1911301127"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Airport",
       "lineNumber": "1",
@@ -4303,9 +4277,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Bergedorf",
       "lineNumber": "21",
@@ -4407,9 +4381,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Pinneberg",
       "lineNumber": "3",
@@ -4518,9 +4492,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Uelzen",
       "lineNumber": "RE3",
@@ -4599,9 +4573,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "3",
@@ -4717,9 +4691,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Elbgaustraße",
       "lineNumber": "21",
@@ -4818,9 +4792,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T10:57:00.000Z",
         "time": "2019-11-30T10:57:00.000Z",
-        "wingIds": [
-          "2253211385183153076-1911301129"
-        ],
+        "wingIds": ["2253211385183153076-1911301129"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false
@@ -4828,17 +4800,15 @@
       "departure": {
         "scheduledTime": "2019-11-30T10:58:00.000Z",
         "time": "2019-11-30T10:58:00.000Z",
-        "wingIds": [
-          "2253211385183153076-1911301129"
-        ],
+        "wingIds": ["2253211385183153076-1911301129"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Wedel (Holst)",
       "lineNumber": "1",
@@ -4971,9 +4941,9 @@
         "delay": 8
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Kiel Hbf",
       "id": "841077657761633745",
@@ -5076,9 +5046,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Altona (S)",
       "lineNumber": "31",
@@ -5163,9 +5133,9 @@
         "delay": 2
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Zürich HB",
       "id": "5834172882815071602",
@@ -5264,9 +5234,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "31",
@@ -5335,9 +5305,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T11:03:00.000Z",
         "time": "2019-11-30T11:03:00.000Z",
-        "wingIds": [
-          "1612548017760054961-1911301123"
-        ],
+        "wingIds": ["1612548017760054961-1911301123"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false,
@@ -5347,9 +5315,7 @@
       "departure": {
         "scheduledTime": "2019-11-30T11:04:00.000Z",
         "time": "2019-11-30T11:04:00.000Z",
-        "wingIds": [
-          "1612548017760054961-1911301123"
-        ],
+        "wingIds": ["1612548017760054961-1911301123"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false,
@@ -5357,9 +5323,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Airport",
       "lineNumber": "1",
@@ -5490,9 +5456,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Aumühle",
       "lineNumber": "21",
@@ -5596,9 +5562,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Lübeck Hbf",
       "lineNumber": "8",
@@ -5655,9 +5621,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "RE3",
@@ -5751,9 +5717,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Pinneberg",
       "lineNumber": "3",
@@ -5862,9 +5828,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Itzehoe",
       "lineNumber": "RB61",
@@ -5951,9 +5917,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "3",
@@ -6055,9 +6021,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T11:07:00.000Z",
         "time": "2019-11-30T11:07:00.000Z",
-        "wingIds": [
-          "42564079979081586-1911301139"
-        ],
+        "wingIds": ["42564079979081586-1911301139"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false
@@ -6065,17 +6029,15 @@
       "departure": {
         "scheduledTime": "2019-11-30T11:08:00.000Z",
         "time": "2019-11-30T11:08:00.000Z",
-        "wingIds": [
-          "42564079979081586-1911301139"
-        ],
+        "wingIds": ["42564079979081586-1911301139"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Blankenese",
       "lineNumber": "1",
@@ -6192,9 +6154,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Elbgaustraße",
       "lineNumber": "21",
@@ -6289,9 +6251,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Ahrensburg",
       "lineNumber": "81",
@@ -6360,9 +6322,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Altona (S)",
       "lineNumber": "31",
@@ -6443,9 +6405,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "31",
@@ -6521,9 +6483,9 @@
         "delay": 4
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "81",
@@ -6599,9 +6561,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T11:13:00.000Z",
         "time": "2019-11-30T11:13:00.000Z",
-        "wingIds": [
-          "4020467174808887142-1911301147"
-        ],
+        "wingIds": ["4020467174808887142-1911301147"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false
@@ -6609,17 +6569,15 @@
       "departure": {
         "scheduledTime": "2019-11-30T11:14:00.000Z",
         "time": "2019-11-30T11:14:00.000Z",
-        "wingIds": [
-          "4020467174808887142-1911301147"
-        ],
+        "wingIds": ["4020467174808887142-1911301147"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Airport",
       "lineNumber": "1",
@@ -6736,9 +6694,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Bergedorf",
       "lineNumber": "21",
@@ -6828,9 +6786,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T11:15:00.000Z",
         "time": "2019-11-30T11:21:00.000Z",
-        "wingIds": [
-          "7894855798469854549-1911301102"
-        ],
+        "wingIds": ["7894855798469854549-1911301102"],
         "platform": "11D-F",
         "scheduledPlatform": "11D-F",
         "hidden": false,
@@ -6838,9 +6794,9 @@
         "delay": 6
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "7",
@@ -6921,9 +6877,9 @@
         "delay": 6
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "7",
@@ -6990,9 +6946,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Bremen Hbf",
       "lineNumber": "RE4",
@@ -7059,9 +7015,9 @@
         "delay": 1
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "id": "395444803167548450",
@@ -7121,9 +7077,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Pinneberg",
       "lineNumber": "3",
@@ -7237,9 +7193,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "3",
@@ -7353,9 +7309,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Elbgaustraße",
       "lineNumber": "21",
@@ -7454,9 +7410,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T11:17:00.000Z",
         "time": "2019-11-30T11:17:00.000Z",
-        "wingIds": [
-          "3186524107149826288-1911301149"
-        ],
+        "wingIds": ["3186524107149826288-1911301149"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false
@@ -7464,17 +7418,15 @@
       "departure": {
         "scheduledTime": "2019-11-30T11:18:00.000Z",
         "time": "2019-11-30T11:18:00.000Z",
-        "wingIds": [
-          "3186524107149826288-1911301149"
-        ],
+        "wingIds": ["3186524107149826288-1911301149"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Wedel (Holst)",
       "lineNumber": "1",
@@ -7603,9 +7555,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Altona (S)",
       "lineNumber": "31",
@@ -7689,9 +7641,9 @@
         "cancelled": false,
         "delay": 5
       },
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg-Altona",
       "id": "354236939477731341",
@@ -7763,9 +7715,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Rostock Hbf",
       "lineNumber": "1",
@@ -7868,9 +7820,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "RB31",
@@ -7949,9 +7901,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "31",
@@ -8025,9 +7977,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Kiel Hbf",
       "lineNumber": "70",
@@ -8090,9 +8042,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T11:23:00.000Z",
         "time": "2019-11-30T11:23:00.000Z",
-        "wingIds": [
-          "2648134038006527929-1911301143"
-        ],
+        "wingIds": ["2648134038006527929-1911301143"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false
@@ -8100,17 +8050,15 @@
       "departure": {
         "scheduledTime": "2019-11-30T11:24:00.000Z",
         "time": "2019-11-30T11:24:00.000Z",
-        "wingIds": [
-          "2648134038006527929-1911301143"
-        ],
+        "wingIds": ["2648134038006527929-1911301143"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Airport",
       "lineNumber": "1",
@@ -8239,9 +8187,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Aumühle",
       "lineNumber": "21",
@@ -8347,9 +8295,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "RB41",
@@ -8447,9 +8395,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Ostseebad Binz",
       "id": "4099684208263039472",
@@ -8574,9 +8522,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Pinneberg",
       "lineNumber": "3",
@@ -8694,9 +8642,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hannover Hbf",
       "id": "3635312093175709895",
@@ -8773,9 +8721,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "3",
@@ -8877,9 +8825,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T11:27:00.000Z",
         "time": "2019-11-30T11:27:00.000Z",
-        "wingIds": [
-          "3901142906405953257-1911301159"
-        ],
+        "wingIds": ["3901142906405953257-1911301159"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false
@@ -8887,17 +8833,15 @@
       "departure": {
         "scheduledTime": "2019-11-30T11:28:00.000Z",
         "time": "2019-11-30T11:28:00.000Z",
-        "wingIds": [
-          "3901142906405953257-1911301159"
-        ],
+        "wingIds": ["3901142906405953257-1911301159"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Blankenese",
       "lineNumber": "1",
@@ -9014,9 +8958,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Elbgaustraße",
       "lineNumber": "21",
@@ -9118,9 +9062,9 @@
         "hidden": false
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "München Hbf",
       "id": "6523045328284948841",
@@ -9209,9 +9153,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "RE3",
@@ -9305,9 +9249,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Altona (S)",
       "lineNumber": "31",
@@ -9388,9 +9332,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "31",
@@ -9466,9 +9410,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Lüneburg",
       "lineNumber": "RB31",
@@ -9540,9 +9484,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T11:33:00.000Z",
         "time": "2019-11-30T11:33:00.000Z",
-        "wingIds": [
-          "3763783510578728487-1911301207"
-        ],
+        "wingIds": ["3763783510578728487-1911301207"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false
@@ -9550,17 +9492,15 @@
       "departure": {
         "scheduledTime": "2019-11-30T11:34:00.000Z",
         "time": "2019-11-30T11:34:00.000Z",
-        "wingIds": [
-          "3763783510578728487-1911301207"
-        ],
+        "wingIds": ["3763783510578728487-1911301207"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Airport",
       "lineNumber": "1",
@@ -9677,9 +9617,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Bergedorf",
       "lineNumber": "21",
@@ -9785,9 +9725,9 @@
         "delay": 2
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "München Hbf",
       "id": "235347214713352060",
@@ -9878,9 +9818,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Kiel Hbf",
       "id": "6417234063813327523",
@@ -9978,9 +9918,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Pinneberg",
       "lineNumber": "3",
@@ -10087,9 +10027,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "70",
@@ -10156,9 +10096,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Bremen Hbf",
       "lineNumber": "RB41",
@@ -10261,9 +10201,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg-Altona",
       "id": "3212205364154915817",
@@ -10367,9 +10307,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "3",
@@ -10483,9 +10423,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Elbgaustraße",
       "lineNumber": "21",
@@ -10584,9 +10524,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T11:37:00.000Z",
         "time": "2019-11-30T11:37:00.000Z",
-        "wingIds": [
-          "7737888705604473953-1911301209"
-        ],
+        "wingIds": ["7737888705604473953-1911301209"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false
@@ -10594,17 +10532,15 @@
       "departure": {
         "scheduledTime": "2019-11-30T11:38:00.000Z",
         "time": "2019-11-30T11:38:00.000Z",
-        "wingIds": [
-          "7737888705604473953-1911301209"
-        ],
+        "wingIds": ["7737888705604473953-1911301209"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Wedel (Holst)",
       "lineNumber": "1",
@@ -10728,9 +10664,9 @@
         "delay": 0
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Bad Oldesloe",
       "lineNumber": "81",
@@ -10818,9 +10754,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Altona (S)",
       "lineNumber": "31",
@@ -10894,9 +10830,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "1",
@@ -10959,9 +10895,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "31",
@@ -11035,9 +10971,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "81",
@@ -11091,9 +11027,7 @@
       "departure": {
         "scheduledTime": "2019-11-30T11:43:00.000Z",
         "time": "2019-11-30T11:43:00.000Z",
-        "wingIds": [
-          "4039469425671528170-1911301243"
-        ],
+        "wingIds": ["4039469425671528170-1911301243"],
         "platform": "11D-F",
         "scheduledPlatform": "11D-F",
         "hidden": false,
@@ -11101,9 +11035,9 @@
         "delay": 0
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Kiel Hbf",
       "lineNumber": "7",
@@ -11168,9 +11102,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T11:43:00.000Z",
         "time": "2019-11-30T11:43:00.000Z",
-        "wingIds": [
-          "5242166522454428329-1911301203"
-        ],
+        "wingIds": ["5242166522454428329-1911301203"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false
@@ -11178,17 +11110,15 @@
       "departure": {
         "scheduledTime": "2019-11-30T11:44:00.000Z",
         "time": "2019-11-30T11:44:00.000Z",
-        "wingIds": [
-          "5242166522454428329-1911301203"
-        ],
+        "wingIds": ["5242166522454428329-1911301203"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Airport",
       "lineNumber": "1",
@@ -11317,9 +11247,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Aumühle",
       "lineNumber": "21",
@@ -11425,9 +11355,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "RE4",
@@ -11494,9 +11424,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Pinneberg",
       "lineNumber": "3",
@@ -11610,9 +11540,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "3",
@@ -11714,9 +11644,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T11:47:00.000Z",
         "time": "2019-11-30T11:47:00.000Z",
-        "wingIds": [
-          "27204670265056589-1911301219"
-        ],
+        "wingIds": ["27204670265056589-1911301219"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false
@@ -11724,17 +11652,15 @@
       "departure": {
         "scheduledTime": "2019-11-30T11:48:00.000Z",
         "time": "2019-11-30T11:48:00.000Z",
-        "wingIds": [
-          "27204670265056589-1911301219"
-        ],
+        "wingIds": ["27204670265056589-1911301219"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Blankenese",
       "lineNumber": "1",
@@ -11851,9 +11777,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Elbgaustraße",
       "lineNumber": "21",
@@ -11955,9 +11881,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Altona (S)",
       "lineNumber": "31",
@@ -12031,9 +11957,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "8",
@@ -12093,9 +12019,9 @@
         "hidden": false
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Praha hl.n.",
       "id": "6299276539551011981",
@@ -12189,9 +12115,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "31",
@@ -12267,9 +12193,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "RB61",
@@ -12339,9 +12265,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T11:53:00.000Z",
         "time": "2019-11-30T11:53:00.000Z",
-        "wingIds": [
-          "1712618767779414048-1911301227"
-        ],
+        "wingIds": ["1712618767779414048-1911301227"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false
@@ -12349,17 +12273,15 @@
       "departure": {
         "scheduledTime": "2019-11-30T11:54:00.000Z",
         "time": "2019-11-30T11:54:00.000Z",
-        "wingIds": [
-          "1712618767779414048-1911301227"
-        ],
+        "wingIds": ["1712618767779414048-1911301227"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Airport",
       "lineNumber": "1",
@@ -12476,9 +12398,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Bergedorf",
       "lineNumber": "21",
@@ -12580,9 +12502,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Pinneberg",
       "lineNumber": "3",
@@ -12700,9 +12622,9 @@
         "delay": 7
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg-Altona",
       "id": "1821867798830895907",
@@ -12778,9 +12700,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hannover Hbf",
       "lineNumber": "RE3",
@@ -12879,9 +12801,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "3",
@@ -12995,9 +12917,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Elbgaustraße",
       "lineNumber": "21",
@@ -13096,9 +13018,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T11:57:00.000Z",
         "time": "2019-11-30T11:57:00.000Z",
-        "wingIds": [
-          "8711316388160984905-1911301229"
-        ],
+        "wingIds": ["8711316388160984905-1911301229"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false
@@ -13106,17 +13026,15 @@
       "departure": {
         "scheduledTime": "2019-11-30T11:58:00.000Z",
         "time": "2019-11-30T11:58:00.000Z",
-        "wingIds": [
-          "8711316388160984905-1911301229"
-        ],
+        "wingIds": ["8711316388160984905-1911301229"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Wedel (Holst)",
       "lineNumber": "1",
@@ -13245,9 +13163,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Altona (S)",
       "lineNumber": "31",
@@ -13332,9 +13250,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Stuttgart Hbf",
       "id": "6006071730545146568",
@@ -13412,9 +13330,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "31",
@@ -13490,9 +13408,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "RE3",
@@ -13550,9 +13468,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T12:03:00.000Z",
         "time": "2019-11-30T12:03:00.000Z",
-        "wingIds": [
-          "1972681094537759269-1911301223"
-        ],
+        "wingIds": ["1972681094537759269-1911301223"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false
@@ -13560,17 +13476,15 @@
       "departure": {
         "scheduledTime": "2019-11-30T12:04:00.000Z",
         "time": "2019-11-30T12:04:00.000Z",
-        "wingIds": [
-          "1972681094537759269-1911301223"
-        ],
+        "wingIds": ["1972681094537759269-1911301223"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Airport",
       "lineNumber": "1",
@@ -13699,9 +13613,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Aumühle",
       "lineNumber": "21",
@@ -13807,9 +13721,9 @@
         "delay": 0
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Lübeck Hbf",
       "lineNumber": "8",
@@ -13873,9 +13787,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Pinneberg",
       "lineNumber": "3",
@@ -13984,9 +13898,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Itzehoe",
       "lineNumber": "RB61",
@@ -14073,9 +13987,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "3",
@@ -14177,9 +14091,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T12:07:00.000Z",
         "time": "2019-11-30T12:07:00.000Z",
-        "wingIds": [
-          "3692757439469485571-1911301239"
-        ],
+        "wingIds": ["3692757439469485571-1911301239"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false
@@ -14187,17 +14099,15 @@
       "departure": {
         "scheduledTime": "2019-11-30T12:08:00.000Z",
         "time": "2019-11-30T12:08:00.000Z",
-        "wingIds": [
-          "3692757439469485571-1911301239"
-        ],
+        "wingIds": ["3692757439469485571-1911301239"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Blankenese",
       "lineNumber": "1",
@@ -14314,9 +14224,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Elbgaustraße",
       "lineNumber": "21",
@@ -14411,9 +14321,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Ahrensburg",
       "lineNumber": "81",
@@ -14482,9 +14392,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Altona (S)",
       "lineNumber": "31",
@@ -14565,9 +14475,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "31",
@@ -14641,9 +14551,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "81",
@@ -14709,9 +14619,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T12:13:00.000Z",
         "time": "2019-11-30T12:13:00.000Z",
-        "wingIds": [
-          "1634979690266506546-1911301247"
-        ],
+        "wingIds": ["1634979690266506546-1911301247"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false
@@ -14719,17 +14627,15 @@
       "departure": {
         "scheduledTime": "2019-11-30T12:14:00.000Z",
         "time": "2019-11-30T12:14:00.000Z",
-        "wingIds": [
-          "1634979690266506546-1911301247"
-        ],
+        "wingIds": ["1634979690266506546-1911301247"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Airport",
       "lineNumber": "1",
@@ -14846,9 +14752,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Bergedorf",
       "lineNumber": "21",
@@ -14938,9 +14844,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T12:15:00.000Z",
         "time": "2019-11-30T12:15:00.000Z",
-        "wingIds": [
-          "8671396109579480180-1911301202"
-        ],
+        "wingIds": ["8671396109579480180-1911301202"],
         "platform": "6D-E",
         "scheduledPlatform": "6D-E",
         "hidden": false,
@@ -14948,9 +14852,9 @@
         "delay": 0
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "7",
@@ -15024,9 +14928,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "7",
@@ -15093,9 +14997,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Bremen Hbf",
       "lineNumber": "RE4",
@@ -15167,9 +15071,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Pinneberg",
       "lineNumber": "3",
@@ -15287,9 +15191,9 @@
         "delay": 4
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg-Altona",
       "id": "5132848987199748904",
@@ -15400,9 +15304,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "3",
@@ -15516,9 +15420,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Elbgaustraße",
       "lineNumber": "21",
@@ -15617,9 +15521,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T12:17:00.000Z",
         "time": "2019-11-30T12:17:00.000Z",
-        "wingIds": [
-          "2836705208891855570-1911301249"
-        ],
+        "wingIds": ["2836705208891855570-1911301249"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false
@@ -15627,17 +15529,15 @@
       "departure": {
         "scheduledTime": "2019-11-30T12:18:00.000Z",
         "time": "2019-11-30T12:18:00.000Z",
-        "wingIds": [
-          "2836705208891855570-1911301249"
-        ],
+        "wingIds": ["2836705208891855570-1911301249"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Wedel (Holst)",
       "lineNumber": "1",
@@ -15766,9 +15666,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Altona (S)",
       "lineNumber": "31",
@@ -15842,9 +15742,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Büchen",
       "lineNumber": "1",
@@ -15910,9 +15810,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "31",
@@ -15986,9 +15886,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Kiel Hbf",
       "lineNumber": "70",
@@ -16058,9 +15958,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "RB31",
@@ -16127,9 +16027,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T12:23:00.000Z",
         "time": "2019-11-30T12:23:00.000Z",
-        "wingIds": [
-          "9052702819312580247-1911301243"
-        ],
+        "wingIds": ["9052702819312580247-1911301243"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false
@@ -16137,17 +16035,15 @@
       "departure": {
         "scheduledTime": "2019-11-30T12:24:00.000Z",
         "time": "2019-11-30T12:24:00.000Z",
-        "wingIds": [
-          "9052702819312580247-1911301243"
-        ],
+        "wingIds": ["9052702819312580247-1911301243"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Airport",
       "lineNumber": "1",
@@ -16276,9 +16172,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Aumühle",
       "lineNumber": "21",
@@ -16384,9 +16280,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "RB41",
@@ -16480,9 +16376,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Pinneberg",
       "lineNumber": "3",
@@ -16596,9 +16492,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "3",
@@ -16700,9 +16596,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T12:27:00.000Z",
         "time": "2019-11-30T12:27:00.000Z",
-        "wingIds": [
-          "5700177111237437690-1911301259"
-        ],
+        "wingIds": ["5700177111237437690-1911301259"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false
@@ -16710,17 +16604,15 @@
       "departure": {
         "scheduledTime": "2019-11-30T12:28:00.000Z",
         "time": "2019-11-30T12:28:00.000Z",
-        "wingIds": [
-          "5700177111237437690-1911301259"
-        ],
+        "wingIds": ["5700177111237437690-1911301259"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Blankenese",
       "lineNumber": "1",
@@ -16837,9 +16729,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Elbgaustraße",
       "lineNumber": "21",
@@ -16941,9 +16833,9 @@
         "hidden": false
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "München Hbf",
       "id": "5828668492254781810",
@@ -17030,9 +16922,9 @@
         "hidden": false
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Roedby",
       "id": "9193306378186554161",
@@ -17095,9 +16987,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Altona (S)",
       "lineNumber": "31",
@@ -17178,9 +17070,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "31",
@@ -17265,9 +17157,9 @@
         "delay": 4
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg-Altona",
       "id": "5603561853147413116",
@@ -17366,9 +17258,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Lüneburg",
       "lineNumber": "RB31",
@@ -17440,9 +17332,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T12:33:00.000Z",
         "time": "2019-11-30T12:33:00.000Z",
-        "wingIds": [
-          "1800108602608416714-1911301307"
-        ],
+        "wingIds": ["1800108602608416714-1911301307"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false
@@ -17450,17 +17340,15 @@
       "departure": {
         "scheduledTime": "2019-11-30T12:34:00.000Z",
         "time": "2019-11-30T12:34:00.000Z",
-        "wingIds": [
-          "1800108602608416714-1911301307"
-        ],
+        "wingIds": ["1800108602608416714-1911301307"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Airport",
       "lineNumber": "1",
@@ -17577,9 +17465,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Bergedorf",
       "lineNumber": "21",
@@ -17676,9 +17564,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "RE3",
@@ -17772,9 +17660,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Pinneberg",
       "lineNumber": "3",
@@ -17881,9 +17769,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "70",
@@ -17950,9 +17838,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Bremen Hbf",
       "lineNumber": "RB41",
@@ -18046,9 +17934,9 @@
         "delay": 0
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "1",
@@ -18153,9 +18041,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "3",
@@ -18269,9 +18157,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Elbgaustraße",
       "lineNumber": "21",
@@ -18370,9 +18258,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T12:37:00.000Z",
         "time": "2019-11-30T12:37:00.000Z",
-        "wingIds": [
-          "6466181558478075299-1911301309"
-        ],
+        "wingIds": ["6466181558478075299-1911301309"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false
@@ -18380,17 +18266,15 @@
       "departure": {
         "scheduledTime": "2019-11-30T12:38:00.000Z",
         "time": "2019-11-30T12:38:00.000Z",
-        "wingIds": [
-          "6466181558478075299-1911301309"
-        ],
+        "wingIds": ["6466181558478075299-1911301309"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Wedel (Holst)",
       "lineNumber": "1",
@@ -18519,9 +18403,9 @@
         "hidden": false
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "München Hbf",
       "id": "7894185240135079180",
@@ -18605,9 +18489,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Bad Oldesloe",
       "lineNumber": "81",
@@ -18692,9 +18576,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg-Altona",
       "id": "5894767788106580379",
@@ -18782,9 +18666,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Altona (S)",
       "lineNumber": "31",
@@ -18865,9 +18749,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "31",
@@ -18943,9 +18827,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "RE4",
@@ -19016,9 +18900,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Ostseebad Binz",
       "id": "6038651376191880477",
@@ -19104,9 +18988,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "81",
@@ -19160,17 +19044,15 @@
       "departure": {
         "scheduledTime": "2019-11-30T12:43:00.000Z",
         "time": "2019-11-30T12:43:00.000Z",
-        "wingIds": [
-          "1687578433996553139-1911301343"
-        ],
+        "wingIds": ["1687578433996553139-1911301343"],
         "platform": "6D-E",
         "scheduledPlatform": "6D-E",
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Kiel Hbf",
       "lineNumber": "7",
@@ -19233,9 +19115,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T12:43:00.000Z",
         "time": "2019-11-30T12:43:00.000Z",
-        "wingIds": [
-          "6370868157721217980-1911301303"
-        ],
+        "wingIds": ["6370868157721217980-1911301303"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false
@@ -19243,17 +19123,15 @@
       "departure": {
         "scheduledTime": "2019-11-30T12:44:00.000Z",
         "time": "2019-11-30T12:44:00.000Z",
-        "wingIds": [
-          "6370868157721217980-1911301303"
-        ],
+        "wingIds": ["6370868157721217980-1911301303"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Airport",
       "lineNumber": "1",
@@ -19382,9 +19260,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Aumühle",
       "lineNumber": "21",
@@ -19499,9 +19377,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Stuttgart Hbf",
       "id": "5854834007165243199",
@@ -19634,9 +19512,9 @@
         "delay": 0
       },
       "productClass": "F",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Frankfurt (Main) Hbf",
       "id": "7126144812995555990",
@@ -19757,9 +19635,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Pinneberg",
       "lineNumber": "3",
@@ -19873,9 +19751,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "3",
@@ -19977,9 +19855,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T12:47:00.000Z",
         "time": "2019-11-30T12:47:00.000Z",
-        "wingIds": [
-          "6564252413990975436-1911301319"
-        ],
+        "wingIds": ["6564252413990975436-1911301319"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false
@@ -19987,17 +19863,15 @@
       "departure": {
         "scheduledTime": "2019-11-30T12:48:00.000Z",
         "time": "2019-11-30T12:48:00.000Z",
-        "wingIds": [
-          "6564252413990975436-1911301319"
-        ],
+        "wingIds": ["6564252413990975436-1911301319"],
         "platform": "1",
         "scheduledPlatform": "1",
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Blankenese",
       "lineNumber": "1",
@@ -20114,9 +19988,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Elbgaustraße",
       "lineNumber": "21",
@@ -20218,9 +20092,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Altona (S)",
       "lineNumber": "31",
@@ -20296,9 +20170,9 @@
         "delay": 0
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "8",
@@ -20357,9 +20231,9 @@
         "scheduledPlatform": "14",
         "hidden": false
       },
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Köln Hbf",
       "id": "6453604967386213023",
@@ -20439,9 +20313,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Harburg Rathaus",
       "lineNumber": "31",
@@ -20517,9 +20391,9 @@
         "delay": 0
       },
       "productClass": "D",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Hamburg Hbf",
       "lineNumber": "RB61",
@@ -20589,9 +20463,7 @@
       "arrival": {
         "scheduledTime": "2019-11-30T12:53:00.000Z",
         "time": "2019-11-30T12:53:00.000Z",
-        "wingIds": [
-          "1771987211812626597-1911301327"
-        ],
+        "wingIds": ["1771987211812626597-1911301327"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false
@@ -20599,17 +20471,15 @@
       "departure": {
         "scheduledTime": "2019-11-30T12:54:00.000Z",
         "time": "2019-11-30T12:54:00.000Z",
-        "wingIds": [
-          "1771987211812626597-1911301327"
-        ],
+        "wingIds": ["1771987211812626597-1911301327"],
         "platform": "3",
         "scheduledPlatform": "3",
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg Airport",
       "lineNumber": "1",
@@ -20726,9 +20596,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Bergedorf",
       "lineNumber": "21",
@@ -20826,9 +20696,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Flensburg",
       "lineNumber": "7",
@@ -20907,9 +20777,9 @@
         "delay": 0
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Flensburg",
       "lineNumber": "7",
@@ -20988,9 +20858,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Flensburg",
       "lineNumber": "7",
@@ -21067,9 +20937,9 @@
         "hidden": false
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Flensburg",
       "lineNumber": "7",
@@ -21148,9 +21018,9 @@
         "delay": 2
       },
       "productClass": "N",
-      "currentStation": {
-        "title": "Hamburg Hbf",
-        "id": "8002549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf",
+        "evaNumber": "8002549"
       },
       "scheduledDestination": "Flensburg",
       "lineNumber": "7",
@@ -21240,9 +21110,9 @@
         "delay": 1
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -21392,9 +21262,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Blankenese",
       "lineNumber": "1",
@@ -21526,9 +21396,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Wedel (Holst)",
       "lineNumber": "1",
@@ -21672,9 +21542,9 @@
         "delay": 2
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -21818,9 +21688,9 @@
         "delay": 6
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Blankenese",
       "lineNumber": "1",
@@ -21957,9 +21827,9 @@
         "delay": 3
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Blankenese",
       "lineNumber": "1",
@@ -22091,9 +21961,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -22237,9 +22107,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -22371,9 +22241,9 @@
         "delay": 1
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Wedel (Holst)",
       "lineNumber": "1",
@@ -22517,9 +22387,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -22659,9 +22529,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -22787,9 +22657,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Wedel (Holst)",
       "lineNumber": "1",
@@ -22927,9 +22797,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -23067,9 +22937,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -23195,9 +23065,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Blankenese",
       "lineNumber": "1",
@@ -23323,9 +23193,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Blankenese",
       "lineNumber": "1",
@@ -23451,9 +23321,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -23583,9 +23453,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -23725,9 +23595,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Wedel (Holst)",
       "lineNumber": "1",
@@ -23865,9 +23735,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Blankenese",
       "lineNumber": "1",
@@ -23993,9 +23863,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Wedel (Holst)",
       "lineNumber": "1",
@@ -24133,9 +24003,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -24273,9 +24143,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Wedel (Holst)",
       "lineNumber": "1",
@@ -24413,9 +24283,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -24541,9 +24411,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -24669,9 +24539,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -24809,9 +24679,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -24937,9 +24807,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Blankenese",
       "lineNumber": "1",
@@ -25065,9 +24935,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -25205,9 +25075,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Blankenese",
       "lineNumber": "1",
@@ -25333,9 +25203,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Wedel (Holst)",
       "lineNumber": "1",
@@ -25473,9 +25343,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -25613,9 +25483,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Wedel (Holst)",
       "lineNumber": "1",
@@ -25753,9 +25623,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Wedel (Holst)",
       "lineNumber": "1",
@@ -25893,9 +25763,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -26021,9 +25891,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Blankenese",
       "lineNumber": "1",
@@ -26149,9 +26019,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Wedel (Holst)",
       "lineNumber": "1",
@@ -26289,9 +26159,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Blankenese",
       "lineNumber": "1",
@@ -26417,9 +26287,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -26557,9 +26427,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -26697,9 +26567,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -26837,9 +26707,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Blankenese",
       "lineNumber": "1",
@@ -26965,9 +26835,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Wedel (Holst)",
       "lineNumber": "1",
@@ -27105,9 +26975,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Wedel (Holst)",
       "lineNumber": "1",
@@ -27245,9 +27115,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -27373,9 +27243,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Blankenese",
       "lineNumber": "1",
@@ -27501,9 +27371,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -27629,9 +27499,9 @@
         "hidden": false
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -27761,9 +27631,9 @@
         "delay": 1
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Blankenese",
       "lineNumber": "1",
@@ -27895,9 +27765,9 @@
         "delay": 4
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -28046,9 +27916,9 @@
         "delay": 1
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -28180,9 +28050,9 @@
         "delay": 3
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Wedel (Holst)",
       "lineNumber": "1",
@@ -28331,9 +28201,9 @@
         "delay": 1
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Blankenese",
       "lineNumber": "1",
@@ -28465,9 +28335,9 @@
         "delay": 5
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Wedel (Holst)",
       "lineNumber": "1",
@@ -28611,9 +28481,9 @@
         "delay": 0
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -28745,9 +28615,9 @@
         "delay": 5
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Blankenese",
       "lineNumber": "1",
@@ -28884,9 +28754,9 @@
         "delay": 1
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -29018,9 +28888,9 @@
         "delay": 2
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
@@ -29164,9 +29034,9 @@
         "delay": 8
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Wedel (Holst)",
       "lineNumber": "1",
@@ -29315,9 +29185,9 @@
         "delay": 2
       },
       "productClass": "S",
-      "currentStation": {
-        "title": "Hamburg Hbf  (S-Bahn)",
-        "id": "8098549"
+      "currentStopPlace": {
+        "name": "Hamburg Hbf  (S-Bahn)",
+        "evaNumber": "8098549"
       },
       "scheduledDestination": "Hamburg-Poppenbüttel",
       "lineNumber": "1",
