@@ -1,13 +1,10 @@
 export interface CommonRoutingOptions {
-  // evaid
-  start: string;
-  // evaid
-  destination: string;
+  start: EvaNumber;
+  destination: EvaNumber;
   time?: Date;
 }
 
 /**
- * @minLength 7
- * @maxLength 7
+ * Usually 7 digits
  */
 export type EvaNumber = string;
