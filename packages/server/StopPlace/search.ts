@@ -117,6 +117,9 @@ export async function geoSearchStopPlace(
 }
 
 async function byRl100WithSpaceHandling(rl100: string) {
+  if (rl100.length > 5) {
+    return Promise.resolve(undefined);
+  }
   const rl100Promise = byRl100(rl100.toUpperCase());
   let rl100DoubleSpacePromise: typeof rl100Promise = Promise.resolve(undefined);
   if (rl100.length < 5 && rl100.includes(' ')) {

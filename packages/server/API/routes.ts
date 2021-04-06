@@ -45,7 +45,7 @@ const models: TsoaRoute.Models = {
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "EvaNumber": {
         "dataType": "refAlias",
-        "type": {"dataType":"string","validators":{"minLength":{"value":7},"maxLength":{"value":7}}},
+        "type": {"dataType":"string","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "OccupancyPeriod": {
@@ -1573,8 +1573,8 @@ const models: TsoaRoute.Models = {
             "numF": {"dataType":"double"},
             "ctxScr": {"dataType":"string"},
             "ushrp": {"dataType":"boolean"},
-            "start": {"dataType":"string","required":true},
-            "destination": {"dataType":"string","required":true},
+            "start": {"ref":"EvaNumber","required":true},
+            "destination": {"ref":"EvaNumber","required":true},
             "time": {"dataType":"datetime"},
             "transferTime": {"dataType":"double"},
             "maxChanges": {"dataType":"double"},

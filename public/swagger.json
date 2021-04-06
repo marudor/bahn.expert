@@ -17,8 +17,7 @@
       },
       "EvaNumber": {
         "type": "string",
-        "minLength": 7,
-        "maxLength": 7
+        "description": "Usually 7 digits"
       },
       "OccupancyPeriod": {
         "properties": {
@@ -3717,10 +3716,10 @@
             "description": "Is a station nearby enough for routing?"
           },
           "start": {
-            "type": "string"
+            "$ref": "#/components/schemas/EvaNumber"
           },
           "destination": {
-            "type": "string"
+            "$ref": "#/components/schemas/EvaNumber"
           },
           "time": {
             "type": "string",
