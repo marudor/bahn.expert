@@ -2368,112 +2368,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sentry/cli@npm:^1.61.0, @sentry/cli@npm:^1.63.1":
-  version: 1.63.1
-  resolution: "@sentry/cli@npm:1.63.1"
-  dependencies:
-    https-proxy-agent: ^5.0.0
-    mkdirp: ^0.5.5
-    node-fetch: ^2.6.0
-    progress: ^2.0.3
-    proxy-from-env: ^1.1.0
-  bin:
-    sentry-cli: bin/sentry-cli
-  checksum: 32e718d4595eaf3bf4ffb3fe9937ebd772e24834e95a3154c007ac9556ecb08dd6818d7f76ca26941def3cd0e759352208ca1eadace16f34ddd574ed42e6b2b3
-  languageName: node
-  linkType: hard
-
-"@sentry/core@npm:6.2.4":
-  version: 6.2.4
-  resolution: "@sentry/core@npm:6.2.4"
-  dependencies:
-    "@sentry/hub": 6.2.4
-    "@sentry/minimal": 6.2.4
-    "@sentry/types": 6.2.4
-    "@sentry/utils": 6.2.4
-    tslib: ^1.9.3
-  checksum: c372627568859191c501d4c1b9e283dd80edef1aa252962b94ff49f25f2e49da2df2956f4baecbfaed5f8a7fb26c0373093f300d558bdbc6901526a27eeea512
-  languageName: node
-  linkType: hard
-
-"@sentry/hub@npm:6.2.4":
-  version: 6.2.4
-  resolution: "@sentry/hub@npm:6.2.4"
-  dependencies:
-    "@sentry/types": 6.2.4
-    "@sentry/utils": 6.2.4
-    tslib: ^1.9.3
-  checksum: 8e7aef648dfb2a4f04bb7c5c24322491e0b667609780ae1d7047184e8f95bc924a57339d18bc57fda71fde316d1b1448dbef0b1e0dfc1d6ed3925ca5566be54e
-  languageName: node
-  linkType: hard
-
-"@sentry/minimal@npm:6.2.4":
-  version: 6.2.4
-  resolution: "@sentry/minimal@npm:6.2.4"
-  dependencies:
-    "@sentry/hub": 6.2.4
-    "@sentry/types": 6.2.4
-    tslib: ^1.9.3
-  checksum: 1581abf1e4d35d48581e77d97be65de395fa458a59015774909b6390c01cde5131a4edf73d184a40e70e60b0e8fac7fbedce96b2d83fce1f8c5ac6bd54841a39
-  languageName: node
-  linkType: hard
-
-"@sentry/node@npm:^6.0.1":
-  version: 6.2.4
-  resolution: "@sentry/node@npm:6.2.4"
-  dependencies:
-    "@sentry/core": 6.2.4
-    "@sentry/hub": 6.2.4
-    "@sentry/tracing": 6.2.4
-    "@sentry/types": 6.2.4
-    "@sentry/utils": 6.2.4
-    cookie: ^0.4.1
-    https-proxy-agent: ^5.0.0
-    lru_map: ^0.3.3
-    tslib: ^1.9.3
-  checksum: bc288c03b764b293f9f54d3ab2d6f924a75ca6960112f41d6878241797d77dbe2f186d9c0c2c161c9c5b7e8d9f3aa92ca7df27037022718ec11339146df45fe3
-  languageName: node
-  linkType: hard
-
-"@sentry/tracing@npm:6.2.4":
-  version: 6.2.4
-  resolution: "@sentry/tracing@npm:6.2.4"
-  dependencies:
-    "@sentry/hub": 6.2.4
-    "@sentry/minimal": 6.2.4
-    "@sentry/types": 6.2.4
-    "@sentry/utils": 6.2.4
-    tslib: ^1.9.3
-  checksum: 7f00c062ad2fb24e42ca98440f319603930a7f6a0b6632d5c0bbee4720e3990cf78496c3d76cc2ed34346e23a5b8539da0a2da7723df2b9891b715fb719e641a
-  languageName: node
-  linkType: hard
-
-"@sentry/types@npm:6.2.4":
-  version: 6.2.4
-  resolution: "@sentry/types@npm:6.2.4"
-  checksum: 776b62a65cd340add7bb0096aa0ae3600bae6b20bc0f38de3a587c9d0521b07391d570474d28f6f6e7d98466e1cf6837842a95c821229bcc9c5cac088a8cea23
-  languageName: node
-  linkType: hard
-
-"@sentry/utils@npm:6.2.4":
-  version: 6.2.4
-  resolution: "@sentry/utils@npm:6.2.4"
-  dependencies:
-    "@sentry/types": 6.2.4
-    tslib: ^1.9.3
-  checksum: 40b2441dd15f2115a0987772028dd37d4319fd682e8d117c64d1995389f8e82fb30bb29e6d43447090b3fe3bc8868154259a804d152f98c8f4674b7119ec980d
-  languageName: node
-  linkType: hard
-
-"@sentry/webpack-plugin@npm:^1.14.0":
-  version: 1.14.2
-  resolution: "@sentry/webpack-plugin@npm:1.14.2"
-  dependencies:
-    "@sentry/cli": ^1.63.1
-  checksum: 3517da8d40d0c0eba1e7ae1bf5f1500cf5944b29ed3bbd76833dd648c44a6789a0fd0d642943b8d00d1a06f5f5d3bb0334dcf7b912fc0f3f70f2aeb855684ca7
-  languageName: node
-  linkType: hard
-
 "@sinonjs/commons@npm:^1.7.0":
   version: 1.8.2
   resolution: "@sinonjs/commons@npm:1.8.2"
@@ -4602,8 +4496,6 @@ __metadata:
     "@loadable/webpack-plugin": ^5.14.0
     "@packtracker/webpack-plugin": ^2.3.0
     "@pmmmwh/react-refresh-webpack-plugin": ^0.4.3
-    "@sentry/cli": ^1.61.0
-    "@sentry/webpack-plugin": ^1.14.0
     "@testing-library/cypress": 7.0.3
     "@types/compression-webpack-plugin": ^6.0.4
     "@types/jest": ^26.0.20
@@ -10806,13 +10698,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lru_map@npm:^0.3.3":
-  version: 0.3.3
-  resolution: "lru_map@npm:0.3.3"
-  checksum: c1d5347da0658d31f9440496c97e87cc67f201f79e46e9f83dd4cf3766cc93f021c6226f900f096d0e357913cad290c7d464ac632e5e124efbdb2af1da08774c
-  languageName: node
-  linkType: hard
-
 "lz-string@npm:^1.4.4":
   version: 1.4.4
   resolution: "lz-string@npm:1.4.4"
@@ -11191,7 +11076,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mkdirp@npm:^0.5.1, mkdirp@npm:^0.5.4, mkdirp@npm:^0.5.5":
+"mkdirp@npm:^0.5.1, mkdirp@npm:^0.5.4":
   version: 0.5.5
   resolution: "mkdirp@npm:0.5.5"
   dependencies:
@@ -12458,7 +12343,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"progress@npm:^2.0.0, progress@npm:^2.0.3":
+"progress@npm:^2.0.0":
   version: 2.0.3
   resolution: "progress@npm:2.0.3"
   checksum: c46ef5a1de4d527dfd32fe56a7df0c1c8b420a4c02617196813bf7f10ac7c2a929afc265d44fdd68f5c439a7e7cb3d70d569716c82d6b4148ec72089860a1312
@@ -12509,13 +12394,6 @@ __metadata:
     forwarded: ~0.1.2
     ipaddr.js: 1.9.1
   checksum: a7dcfd70258cdc3b73c5dc4a35c73db9857f3bf4cf5e6404380e8ea558f8c5569147e721a01195d00b450e36b4dde727fc9d22fdea14310ba38faa595530cd58
-  languageName: node
-  linkType: hard
-
-"proxy-from-env@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "proxy-from-env@npm:1.1.0"
-  checksum: 6459372a57f3e8ef5211f7847ca2fffabcdd6490005892fcc0dcd62fe2b3551900c8a07fad7df9de3897547b1ab4ac7a7197964cd6fa7e76303caa4936bfaf32
   languageName: node
   linkType: hard
 
@@ -13673,7 +13551,6 @@ resolve@^2.0.0-next.3:
     "@koa/router": ^10.0.0
     "@loadable/component": ^5.14.1
     "@loadable/server": ^5.14.0
-    "@sentry/node": ^6.0.1
     "@sinonjs/fake-timers": ^6.0.1
     "@types/babel__core": 7.1.12
     "@types/cache-manager": 3.4.0
@@ -14950,7 +14827,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"tslib@npm:^1.8.1, tslib@npm:^1.9.0, tslib@npm:^1.9.3":
+"tslib@npm:^1.8.1, tslib@npm:^1.9.0":
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
   checksum: f44fe7f216946b17d3e3074df3746372703cf24e9127b4c045511456e8e4bf25515fb0a1bb3937676cc305651c5d4fcb6377b0588a4c6a957e748c4c28905d17

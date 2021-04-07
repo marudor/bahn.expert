@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/node';
 import type { Context, Next } from 'koa';
 
 const handledHafasError = ['H9380', 'NO_MATCH'];
@@ -18,15 +17,6 @@ export default async (ctx: Context, next: Next): Promise<void> => {
     } else {
       // @ts-expect-error works
       if (e instanceof Error && !handledHafasError.includes(e.errorCode)) {
-        Sentry.withScope((scope) => {
-          if (e.data) {
-            scope.setExtra('data', e.data);
-          }
-          scope.addEventProcessor((event) =>
-            Sentry.Handlers.parseRequest(event, ctx.request),
-          );
-          Sentry.captureException(e);
-        });
         // @ts-expect-error works
         if (e.status === 400) {
           try {

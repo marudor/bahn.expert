@@ -69,8 +69,6 @@
     "@loadable/webpack-plugin": "^5.14.0",
     "@packtracker/webpack-plugin": "^2.3.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
-    "@sentry/cli": "^1.61.0",
-    "@sentry/webpack-plugin": "^1.14.0",
     "@testing-library/cypress": "7.0.3",
     "@types/compression-webpack-plugin": "^6.0.4",
     "@types/jest": "^26.0.20",

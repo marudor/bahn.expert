@@ -70,7 +70,7 @@ export const About: FC = () => {
   const classes = useStyles();
   return (
     <>
-      <BaseHeader>About (Version {globalThis.VERSION})</BaseHeader>
+      <BaseHeader>About</BaseHeader>
       <div className={classes.wrap}>
         <span>
           Entwickelt von{' '}

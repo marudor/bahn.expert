@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/node';
 import { middlewares } from './logger';
 import Axios from 'axios';
 import createAdmin from './admin';
@@ -20,16 +19,6 @@ function hotHelper(getMiddleware: () => Middleware) {
 
 export function createApp(): Koa {
   const app = new Koa();
-
-  const sentryDSN = process.env.SENTRY_DSN;
-
-  if (sentryDSN && process.env.NODE_ENV !== 'test') {
-    Sentry.init({
-      dsn: sentryDSN,
-      environment: process.env.ENVIRONMENT,
-      release: global.VERSION,
-    });
-  }
 
   let apiRoutes = require('./API').default;
   let serverRender = require('./render').default;

@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "author": "marudor",
   "scripts": {
-    "build": "run-s build:clean build:babel build:version",
+    "build": "run-s build:clean build:babel",
     "build:babel": "SERVER=1 babel -x .ts,.tsx,.js --root-mode upward . --out-dir . --ignore 'node_modules/**'",
-    "build:version": "node ../../scripts/buildServer",
     "build:clean": "rimraf '[!node_modules]**/**/*.js' && rimraf '*.js'",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "doc:build": "tsoa spec-and-routes && node ../../scripts/adjustSpecJson"
@@ -14,7 +13,6 @@
     "@koa/router": "^10.0.0",
     "@loadable/component": "^5.14.1",
     "@loadable/server": "^5.14.0",
-    "@sentry/node": "^6.0.1",
     "axios": "^0.21.1",
     "business-hub": "workspace:*",
     "cache-manager": "^3.4.0",

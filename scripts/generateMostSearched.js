@@ -5,8 +5,7 @@ require('@babel/register')({
   ...config,
 });
 
-global.PROD = true;
-const search = require('../packages/server/Search').default;
+const search = require('../packages/server/StopPlace/search').searchStopPlace;
 
 const mostUsedNames = [
   'Frankfurt (Main) Hbf',
@@ -24,11 +23,11 @@ const mostUsedNames = [
 ].map((n) => n.toLowerCase());
 
 Promise.all(mostUsedNames.map((s) => search(s).then((s) => s[0]))).then(
-  (stations) => {
+  (stopPlaces) => {
     // eslint-disable-next-line no-console
     console.log(
       JSON.stringify(
-        stations.map((s) => ({
+        stopPlaces.map((s) => ({
           title: s.title,
           id: s.id,
         })),

@@ -38,7 +38,7 @@ export default (ctx: Context): void => {
 
   const routeContext: StaticRouterContext = {};
 
-  global.configOverride = {
+  globalThis.configOverride = {
     common: {},
     abfahrten: {},
   };
@@ -49,14 +49,14 @@ export default (ctx: Context): void => {
         ctx.query[key],
       );
 
-      global.configOverride.common[key] = value;
+      globalThis.configOverride.common[key] = value;
     }
     if (abfahrtenConfigSanitize.hasOwnProperty(key)) {
       const value = abfahrtenConfigSanitize[
         key as keyof AbfahrtenConfigSanitize
       ](ctx.query[key]);
 
-      global.configOverride.abfahrten[key] = value;
+      globalThis.configOverride.abfahrten[key] = value;
     }
   });
 
@@ -84,12 +84,11 @@ export default (ctx: Context): void => {
       header: context.helmet,
       cssTags: extractor.getStyleTags(),
       linkTags: extractor.getLinkTags(),
-      configOverride: JSON.stringify(global.configOverride),
-      imprint: JSON.stringify(global.IMPRINT),
+      configOverride: JSON.stringify(globalThis.configOverride),
+      imprint: JSON.stringify(globalThis.IMPRINT),
       jssCss: sheets.toString(),
-      baseUrl: global.BASE_URL,
-      rawBaseUrl: global.RAW_BASE_URL,
-      version: global.VERSION,
+      baseUrl: globalThis.BASE_URL,
+      rawBaseUrl: globalThis.RAW_BASE_URL,
     });
     ctx.body += app;
 

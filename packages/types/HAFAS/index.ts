@@ -513,7 +513,6 @@ interface _ParsedCommon {
   locL: HafasStation[];
   prodL: ParsedProduct[];
   polyL?: ParsedPolyline[];
-  raw?: Common;
 }
 export type ParsedCommon = _ParsedCommon &
   Omit<Common, 'locL' | 'prodL' | 'polyL'>;

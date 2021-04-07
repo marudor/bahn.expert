@@ -12,13 +12,9 @@ export function parseCoordinates(
   };
 }
 
-export default (
-  locL: LocL,
-  products: ParsedProduct[],
-): HafasStation & { raw?: any } => ({
+export default (locL: LocL, products: ParsedProduct[]): HafasStation => ({
   id: locL.extId,
   title: locL.name,
   coordinates: locL.crd && parseCoordinates(locL.crd),
   products: locL.pRefL && locL.pRefL.map((p) => products[p]),
-  raw: global.PROD ? undefined : locL,
 });

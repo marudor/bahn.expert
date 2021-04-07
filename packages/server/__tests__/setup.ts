@@ -1,15 +1,11 @@
 import 'core-js/stable';
 import Nock from 'nock';
 
-// Custom React setup
-global.M = require('react').createElement;
-global.MF = require('react').Fragment;
-
 // eslint-disable-next-line jest/no-standalone-expect
 expect(new Date().getTimezoneOffset()).toBe(0);
 
 const isoDateRegex = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/;
-global.parseJson = (json: string) => {
+globalThis.parseJson = (json: string) => {
   try {
     return JSON.parse(json, (_key, value) => {
       if (typeof value === 'string') {

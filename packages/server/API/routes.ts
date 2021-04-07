@@ -1392,93 +1392,6 @@ const models: TsoaRoute.Models = {
         "type": {"dataType":"union","subSchemas":[{"ref":"Route%24JourneySegmentTrain"},{"ref":"Route%24JourneySegmentWalk"}],"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "SDays": {
-        "dataType": "refObject",
-        "properties": {
-            "sDaysR": {"dataType":"string","required":true},
-            "sDaysI": {"dataType":"string","required":true},
-            "sDaysB": {"dataType":"string","required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "TarifFare": {
-        "dataType": "refObject",
-        "properties": {
-            "prc": {"dataType":"double","required":true},
-            "isFromPrice": {"dataType":"boolean","required":true},
-            "isBookable": {"dataType":"boolean","required":true},
-            "isUpsell": {"dataType":"boolean","required":true},
-            "targetCtx": {"dataType":"string","required":true},
-            "buttonText": {"dataType":"string","required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "TarifFareSet": {
-        "dataType": "refObject",
-        "properties": {
-            "fareL": {"dataType":"array","array":{"ref":"TarifFare"},"required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "HafasTarifResponse": {
-        "dataType": "refObject",
-        "properties": {
-            "statusCode": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["OK"]},{"dataType":"string"}],"required":true},
-            "fareSetL": {"dataType":"array","array":{"ref":"TarifFareSet"},"required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "SotCtxt": {
-        "dataType": "refObject",
-        "properties": {
-            "cnLocX": {"dataType":"double","required":true},
-            "calcDate": {"dataType":"string","required":true},
-            "jid": {"dataType":"string","required":true},
-            "locMode": {"dataType":"string","required":true},
-            "pLocX": {"dataType":"double","required":true},
-            "reqMode": {"dataType":"string","required":true},
-            "sectX": {"dataType":"double","required":true},
-            "calcTime": {"dataType":"string","required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "OutConL": {
-        "dataType": "refObject",
-        "properties": {
-            "isNotRdbl": {"dataType":"boolean"},
-            "cid": {"dataType":"string","required":true},
-            "date": {"dataType":"string","required":true},
-            "dur": {"dataType":"string","required":true},
-            "chg": {"dataType":"double","required":true},
-            "sDays": {"ref":"SDays","required":true},
-            "dep": {"ref":"CommonDeparture","required":true},
-            "arr": {"ref":"CommonArrival","required":true},
-            "secL": {"dataType":"array","array":{"dataType":"refAlias","ref":"SecL"},"required":true},
-            "ctxRecon": {"dataType":"string","required":true},
-            "trfRes": {"ref":"HafasTarifResponse"},
-            "conSubscr": {"dataType":"string","required":true},
-            "resState": {"dataType":"string","required":true},
-            "resRecommendation": {"dataType":"string","required":true},
-            "recState": {"dataType":"string","required":true},
-            "sotRating": {"dataType":"double","required":true},
-            "isSotCon": {"dataType":"boolean","required":true},
-            "showARSLink": {"dataType":"boolean","required":true},
-            "sotCtxt": {"ref":"SotCtxt","required":true},
-            "cksum": {"dataType":"string","required":true},
-            "cksumDti": {"dataType":"string","required":true},
-            "msgL": {"dataType":"array","array":{"ref":"MsgL"},"required":true},
-            "dTrnCmpSX": {"ref":"TrnCmpSX","required":true},
-            "freq": {"ref":"Freq","required":true},
-            "isAlt": {"dataType":"boolean"},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "SingleRoute": {
         "dataType": "refObject",
         "properties": {
@@ -1493,7 +1406,6 @@ const models: TsoaRoute.Models = {
             "segments": {"dataType":"array","array":{"dataType":"refAlias","ref":"Route%24JourneySegment"},"required":true},
             "segmentTypes": {"dataType":"array","array":{"dataType":"string"},"required":true},
             "tarifSet": {"dataType":"array","array":{"ref":"Route%24TarifFareSet"}},
-            "raw": {"ref":"OutConL"},
         },
         "additionalProperties": false,
     },

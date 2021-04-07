@@ -12,8 +12,8 @@ declare global {
       abfahrten: any;
       common: any;
     };
-    declare var VERSION: string;
     declare var BASE_URL: string;
+    declare var RAW_BASE_URL: string;
 
     // test only
     declare var nock: nock.Scope;
