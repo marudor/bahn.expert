@@ -16,11 +16,6 @@ const plugins = [
   new LoadablePlugin(),
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-    'global.PROD': JSON.stringify(!isDev),
-    'global.TEST': JSON.stringify(
-      process.env.NODE_ENV === 'test' || Boolean(process.env.TEST_RUN),
-    ),
-    'global.SERVER': JSON.stringify(false),
   }),
 ];
 const entry = ['./packages/client/entry.ts'];

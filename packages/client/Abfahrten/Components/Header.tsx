@@ -51,7 +51,7 @@ export const Header: FC<Props> = ({ filterForIris }: Props) => {
             currentStopPlace ? currentStopPlace.name : 'Kiel Hbf'
           })`}
         />
-        {!global.navigator?.standalone && Boolean(currentStopPlace) && (
+        {!globalThis.navigator?.standalone && Boolean(currentStopPlace) && (
           <IconButton
             onClick={refreshCurrentAbfahrten}
             aria-label="refresh"

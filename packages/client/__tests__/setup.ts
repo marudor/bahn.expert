@@ -15,7 +15,7 @@ if (fs.existsSync(path.resolve(__dirname, 'setup.js'))) {
 }
 
 const isoDateRegex = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/;
-global.parseJson = (json: string) => {
+globalThis.parseJson = (json: string) => {
   try {
     return JSON.parse(json, (_key, value) => {
       if (typeof value === 'string') {
@@ -30,10 +30,6 @@ global.parseJson = (json: string) => {
     // Ignoring
   }
 };
-
-// Custom React setup
-global.M = require('react').createElement;
-global.MF = require('react').Fragment;
 
 Axios.defaults.baseURL = 'http://localhost';
 
@@ -52,22 +48,22 @@ window.matchMedia = () => ({
 beforeAll(() => {
   Nock.disableNetConnect();
 
-  global.nock = Nock('http://localhost');
-  global.nock.intercept = ((oldFn) => {
+  globalThis.nock = Nock('http://localhost');
+  globalThis.nock.intercept = ((oldFn) => {
     // eslint-disable-next-line func-names
     return function (this: any, ...args: any) {
       args[0] = args[0].replace(/ /g, '%20');
 
       return oldFn.apply(this, args);
     };
-  })(global.nock.intercept);
+  })(globalThis.nock.intercept);
 });
 
 const routeRegexp = /\/v(\d+|experimental)\//;
 afterEach(() => {
   const allRoutes = routes.stack.filter((s) => routeRegexp.exec(s.path));
   // @ts-expect-error this exsits
-  global.nock.interceptors.forEach((i) => {
+  globalThis.nock.interceptors.forEach((i) => {
     if (!allRoutes.some((r) => r.match(i.path))) {
       throw new Error(`${i.path} does not match available routes`);
     }
@@ -77,5 +73,5 @@ afterEach(() => {
 afterAll(() => {
   Nock.restore();
   // @ts-expect-error mocked
-  global.nock = undefined;
+  globalThis.nock = undefined;
 });

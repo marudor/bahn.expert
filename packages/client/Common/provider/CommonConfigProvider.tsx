@@ -29,16 +29,6 @@ interface Props {
   children: ReactNode;
 }
 
-const migrateOldConfig = (storage: ReturnType<typeof useStorage>) => {
-  const oldConfig = storage.get<CommonConfig>('commonConfig');
-  if (oldConfig) {
-    for (const [key, value] of Object.entries(oldConfig)) {
-      storage.set(key, value);
-    }
-    storage.remove('commonConfig');
-  }
-};
-
 export const [
   InnerCommonConfigProvider,
   useCommonConfig,
@@ -51,14 +41,13 @@ export const [
 
 export const CommonConfigProvider: FC<Props> = ({ children }) => {
   const storage = useStorage();
-  migrateOldConfig(storage);
 
   const savedConfig: CommonConfig = {
     time: storage.get('time') ?? true,
     zoomReihung: storage.get('zoomReihung') ?? true,
     showUIC: storage.get('showUIC') ?? false,
     fahrzeugGruppe: storage.get('fahrzeugGruppe') ?? false,
-    ...global.configOverride.common,
+    ...globalThis.configOverride.common,
   };
 
   return (

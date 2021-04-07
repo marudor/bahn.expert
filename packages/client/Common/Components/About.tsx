@@ -9,11 +9,11 @@ const Privacy = () => (
     <p>Verantwortlich für diese Seite ist:</p>
     <p>
       <span>
-        {global.IMPRINT.name}
+        {globalThis.IMPRINT.name}
         <br />
-        {global.IMPRINT.street}
+        {globalThis.IMPRINT.street}
         <br />
-        {global.IMPRINT.town}
+        {globalThis.IMPRINT.town}
       </span>
     </p>
     <h2>Datenschutzerklärung</h2>
@@ -70,7 +70,7 @@ export const About: FC = () => {
   const classes = useStyles();
   return (
     <>
-      <BaseHeader>About (Version {global.VERSION})</BaseHeader>
+      <BaseHeader>About (Version {globalThis.VERSION})</BaseHeader>
       <div className={classes.wrap}>
         <span>
           Entwickelt von{' '}
