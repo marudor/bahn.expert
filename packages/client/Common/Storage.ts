@@ -36,23 +36,6 @@ export class ClientStorage extends ServerStorage {
   get<K extends keyof WebConfigMap>(name: K): WebConfigMap[K] | undefined {
     const cookieGet = super.get(name);
     if (cookieGet != null) return cookieGet;
-    const storageGet = localStorage.getItem(name);
-    if (storageGet) {
-      try {
-        const value = JSON.parse(storageGet);
-        super.set(name, value);
-      } catch {
-        // ignored, fallback failed
-      }
-    }
     return undefined;
-  }
-  set<K extends keyof WebConfigMap>(name: K, value: WebConfigMap[K]): void {
-    super.set(name, value);
-    localStorage.setItem(name, JSON.stringify(value));
-  }
-  remove(name: string): void {
-    super.remove(name);
-    localStorage.removeItem(name);
   }
 }

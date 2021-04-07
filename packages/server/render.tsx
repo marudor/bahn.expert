@@ -1,6 +1,7 @@
 import { abfahrtenConfigSanitize, commonConfigSanitize } from 'client/util';
 import { ChunkExtractor } from '@loadable/server';
 import { renderToString } from 'react-dom/server';
+import { sanitizeStorage } from 'server/sanitizeStorage';
 import { ServerBaseComponent } from 'client/ServerBaseComponent';
 import { SheetsRegistry } from 'jss';
 import ejs from 'ejs';
@@ -32,6 +33,9 @@ export default (ctx: Context): void => {
   if (selectedDetail) {
     ctx.request.storage.set('selectedDetail', selectedDetail);
   }
+
+  sanitizeStorage(ctx.request.storage);
+
   const routeContext: StaticRouterContext = {};
 
   global.configOverride = {
