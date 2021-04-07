@@ -2398,15 +2398,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/cypress@npm:7.0.3":
-  version: 7.0.3
-  resolution: "@testing-library/cypress@npm:7.0.3"
+"@testing-library/cypress@npm:7.0.5":
+  version: 7.0.5
+  resolution: "@testing-library/cypress@npm:7.0.5"
   dependencies:
     "@babel/runtime": ^7.12.5
     "@testing-library/dom": ^7.28.1
   peerDependencies:
     cypress: ^2.1.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
-  checksum: cc1c5c9c8ad5878508fd192fcf83bbf3863faacd691024b9badd8add4d995eb6c1b36cba3957308fc34e4370cd22d5011ef160471169c6f0221181000ba53fa4
+  checksum: 7ca2f8fa99fa029961f0cf271e9d05562b1809d693c13cbab8060179155ef7fb15837be631ccfec1f5f68300fb5946ef24b3e83638463f65bf1c3b68b599025b
   languageName: node
   linkType: hard
 
@@ -2426,7 +2426,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/jest-dom@npm:^5.11.9":
+"@testing-library/jest-dom@npm:^5.11.10":
   version: 5.11.10
   resolution: "@testing-library/jest-dom@npm:5.11.10"
   dependencies:
@@ -2442,7 +2442,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/react@npm:^11.2.3":
+"@testing-library/react@npm:^11.2.6":
   version: 11.2.6
   resolution: "@testing-library/react@npm:11.2.6"
   dependencies:
@@ -4470,7 +4470,7 @@ __metadata:
     "@loadable/webpack-plugin": ^5.14.2
     "@packtracker/webpack-plugin": ^2.3.0
     "@pmmmwh/react-refresh-webpack-plugin": ^0.4.3
-    "@testing-library/cypress": 7.0.3
+    "@testing-library/cypress": 7.0.5
     "@types/compression-webpack-plugin": ^6.0.5
     "@types/jest": ^26.0.22
     "@types/rimraf": ^3.0.0
@@ -4517,7 +4517,7 @@ __metadata:
     ncp: ^2.0.0
     npm-run-all: ^4.1.5
     prettier: ^2.2.1
-    react-refresh: ^0.9.0
+    react-refresh: ^0.10.0
     rimraf: ^3.0.2
     server: "workspace:*"
     style-loader: ^2.0.0
@@ -4610,13 +4610,6 @@ __metadata:
   dependencies:
     file-uri-to-path: 1.0.0
   checksum: bd623dec58f126eb0c30f04a20da7080f06cdd5af26bf5a91615e70055fbba66c4cec5c88b156e8181c1d822f2392034a40a9121ef3ebc25638dc2163332b12d
-  languageName: node
-  linkType: hard
-
-"bintrees@npm:1.0.1":
-  version: 1.0.1
-  resolution: "bintrees@npm:1.0.1"
-  checksum: e78592a05f6fb0635ef23a7763e8d7a0a1f060efeb0523308484cfc2e36f2bbe0517f397b6a1dfd4fc09e83c874990dafd5fef451b1c43b51763ec9d3aa1f272
   languageName: node
   linkType: hard
 
@@ -5284,8 +5277,8 @@ __metadata:
     "@material-ui/core": ^4.11.3
     "@material-ui/icons": ^4.11.2
     "@material-ui/pickers": ^3.3.10
-    "@testing-library/jest-dom": ^5.11.9
-    "@testing-library/react": ^11.2.3
+    "@testing-library/jest-dom": ^5.11.10
+    "@testing-library/react": ^11.2.6
     "@types/babel__core": 7.1.14
     "@types/debounce-promise": 3.1.3
     "@types/leaflet": 1.7.0
@@ -5309,11 +5302,11 @@ __metadata:
     leaflet: ^1.7.1
     nock: ^13.0.11
     npm-run-all: ^4.1.5
-    qs: ^6.9.6
+    qs: ^6.10.1
     react: ^17.0.2
     react-dom: ^17.0.2
     react-helmet-async: ^1.0.9
-    react-leaflet: ^3.0.5
+    react-leaflet: ^3.1.0
     react-router: ^5.2.0
     react-router-config: ^5.1.1
     react-router-dom: ^5.2.0
@@ -12134,15 +12127,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prom-client@npm:^13.0.0":
-  version: 13.1.0
-  resolution: "prom-client@npm:13.1.0"
-  dependencies:
-    tdigest: ^0.1.1
-  checksum: b665fe505374e622bee3c0e448ab992383cbc8c3163975170c885df9c8c73748ecdc21931cc32890744ff07433a189c02109d3ecd4adc3ebe315af33addbeb2b
-  languageName: node
-  linkType: hard
-
 "prompts@npm:^2.0.1":
   version: 2.4.0
   resolution: "prompts@npm:2.4.0"
@@ -12247,7 +12231,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qs@npm:^6.5.1, qs@npm:^6.5.2, qs@npm:^6.9.6":
+"qs@npm:^6.10.1, qs@npm:^6.5.1, qs@npm:^6.5.2":
   version: 6.10.1
   resolution: "qs@npm:6.10.1"
   dependencies:
@@ -12412,7 +12396,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-leaflet@npm:^3.0.5":
+"react-leaflet@npm:^3.1.0":
   version: 3.1.0
   resolution: "react-leaflet@npm:3.1.0"
   dependencies:
@@ -12425,10 +12409,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-refresh@npm:^0.9.0":
-  version: 0.9.0
-  resolution: "react-refresh@npm:0.9.0"
-  checksum: 300dc431389f4c532bdfec08d5bc59b591c8c440486a7d5770c8954adf3afe62501b659c5acbdb7831751e8be506eb90a6f72491fab40352f3b3fba16897acf6
+"react-refresh@npm:^0.10.0":
+  version: 0.10.0
+  resolution: "react-refresh@npm:0.10.0"
+  checksum: 09a59d2732d8f2e9df3f59670146a507ea027f6b35a18b5a2116919f18ef056cfcc0455bed2f6b916ac154e4af78e3c57748cfbf9383930729624f7b8c672b91
   languageName: node
   linkType: hard
 
@@ -13344,8 +13328,7 @@ resolve@^2.0.0-next.3:
     pino: ^6.11.2
     pino-pretty: ^4.7.1
     pino-std-serializers: ^3.2.0
-    prom-client: ^13.0.0
-    qs: ^6.9.6
+    qs: ^6.10.1
     react: ^17.0.2
     react-dom: ^17.0.2
     rimraf: ^3.0.2
@@ -14201,15 +14184,6 @@ resolve@^2.0.0-next.3:
     mkdirp: ^1.0.3
     yallist: ^4.0.0
   checksum: d1d988eceb1ad2ecfaaf6fc5ecfe0c46fa005d04fe4c283355ccc52d3ffb4b6bf459a62f9ac7e36fd35251ab020399bdf527ab48b968120e06b4f61906a87d62
-  languageName: node
-  linkType: hard
-
-"tdigest@npm:^0.1.1":
-  version: 0.1.1
-  resolution: "tdigest@npm:0.1.1"
-  dependencies:
-    bintrees: 1.0.1
-  checksum: 467e2ecd00437339ba55dc41bb89a2ce84f6a0fd36fea49d872e72a12eba56490e00fa7f9f140333c0d3ff2bce83ab315d3b7edfb6ea794cc251458bd1ede520
   languageName: node
   linkType: hard
 
