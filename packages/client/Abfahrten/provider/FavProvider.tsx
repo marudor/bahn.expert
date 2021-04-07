@@ -92,22 +92,6 @@ export const FavProvider: FC<Props> = ({
 }) => {
   const storage = useStorage();
   const savedFavs = storage.get(storageKey);
-  if (savedFavs) {
-    Object.keys(savedFavs).forEach((favKey) => {
-      // @ts-expect-error old format had this
-      const fav: {
-        title: string;
-        id: string;
-      } = savedFavs[favKey];
-      if (fav.id) {
-        savedFavs[favKey] = {
-          name: fav.title,
-          evaNumber: fav.id,
-        };
-      }
-    });
-    storage.set(storageKey, savedFavs);
-  }
 
   return (
     <InnerFavProvider
