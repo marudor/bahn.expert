@@ -71,6 +71,10 @@ describe('Homepage', () => {
     cy.setCookie('favs', oldFFMCookie);
     cy.visit('/');
     cy.findByTestId('favEntry').should('have.text', 'Frankfurt(Main)Hbf');
-    cy.getCookie('favs').should('have.property', 'value', currentFFMCookie);
+    cy.getCookie('favs').should(
+      'have.property',
+      'value',
+      decodeURIComponent(currentFFMCookie),
+    );
   });
 });
