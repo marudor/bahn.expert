@@ -53,6 +53,7 @@ export class HafasController extends Controller {
       lat * 1000000,
       maxDist,
       profile,
+      // @ts-expect-error untyped
       ctx.query.raw,
     );
   }
@@ -66,6 +67,7 @@ export class HafasController extends Controller {
     @Query() type?: 'S' | 'ALL',
     @Query() profile?: AllowedHafasProfile,
   ): Promise<HafasStation[]> {
+    // @ts-expect-error untyped
     return LocMatch(searchTerm, type, profile, ctx.query.raw);
   }
 
@@ -77,6 +79,7 @@ export class HafasController extends Controller {
     @Body() body: JourneyGeoPosOptions,
     @Query() profile?: AllowedHafasProfile,
   ): Promise<ParsedJourneyGeoPosResponse> {
+    // @ts-expect-error untyped
     return JourneyGeoPos(body, profile, ctx.query.raw);
   }
 

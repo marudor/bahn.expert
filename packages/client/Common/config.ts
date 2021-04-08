@@ -15,7 +15,7 @@ export interface CommonConfig {
 }
 
 type Sanitize<Config> = {
-  [K in keyof Config]: (input: string | undefined) => Config[K];
+  [K in keyof Config]: (input: string | string[] | undefined) => Config[K];
 };
 
 export type AbfahrtenConfigSanitize = Sanitize<AbfahrtenConfig>;

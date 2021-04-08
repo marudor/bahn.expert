@@ -112,16 +112,6 @@ export const [
   (v) => v.setConfigKey,
 );
 
-const migrateOldConfig = (storage: ReturnType<typeof useStorage>) => {
-  const oldConfig = storage.get('config');
-  if (oldConfig) {
-    for (const [key, value] of Object.entries(oldConfig)) {
-      storage.set(key, value);
-    }
-    storage.remove('config');
-  }
-};
-
 interface Props {
   children: ReactNode;
   fetchApiUrl: string;
@@ -133,7 +123,6 @@ export const AbfahrtenConfigProvider: FC<Props> = ({
   urlPrefix,
 }) => {
   const storage = useStorage();
-  migrateOldConfig(storage);
   const query = useQuery();
   const savedFilter = storage.get(filterCookieName);
 
@@ -151,7 +140,7 @@ export const AbfahrtenConfigProvider: FC<Props> = ({
       lookbehind: storage.get('lookbehind') ?? '0',
       searchType: storage.get('searchType') ?? StationSearchType.default,
       showSupersededMessages: storage.get('showSupersededMessages') ?? false,
-      ...global.configOverride.abfahrten,
+      ...globalThis.configOverride.abfahrten,
     },
     fetchApiUrl,
     urlPrefix,

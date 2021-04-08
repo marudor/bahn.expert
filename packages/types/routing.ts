@@ -6,8 +6,8 @@ import type {
   RemL,
 } from './HAFAS';
 import type { Message } from './iris';
-import type { OutConL, SecL } from './HAFAS/TripSearch';
 import type { PlannedSequence } from 'types/planReihung';
+import type { SecL } from './HAFAS/TripSearch';
 import type { Station } from './station';
 
 export interface Route$Stop {
@@ -116,7 +116,6 @@ export interface SingleRoute {
   segments: Route$JourneySegment[];
   segmentTypes: string[];
   tarifSet?: Route$TarifFareSet[];
-  raw?: OutConL;
 }
 
 export interface RoutingResult {

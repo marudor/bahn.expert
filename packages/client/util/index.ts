@@ -3,8 +3,12 @@ import type {
   CommonConfigSanitize,
 } from 'client/Common/config';
 
-const booleanCheck = (value: string | undefined): boolean => value === 'true';
-const numberCheck = (value: string | undefined, fallback: number): number => {
+const booleanCheck = (value: string | string[] | undefined): boolean =>
+  value === 'true';
+const numberCheck = (
+  value: string | string[] | undefined,
+  fallback: number,
+): number => {
   if (!value) return fallback;
   const n = +value;
 

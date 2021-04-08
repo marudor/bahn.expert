@@ -5,8 +5,8 @@ import type { FC } from 'react';
 
 export const HeaderTags: FC = () => {
   const { title, description } = useHeaderTags();
-  const url = `${global.BASE_URL}${useLocation().pathname}`;
-  const image = `${global.BASE_URL}/android-chrome-384x384.png`;
+  const url = `${globalThis.BASE_URL}${useLocation().pathname}`;
+  const image = `${globalThis.BASE_URL}/android-chrome-384x384.png`;
 
   return (
     <Helmet>

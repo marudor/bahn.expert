@@ -7,7 +7,7 @@ import fs from 'fs';
 import path from 'path';
 import type { Abfahrt } from 'types/iris';
 
-const mockAbfahrt: Abfahrt = global.parseJson(
+const mockAbfahrt: Abfahrt = globalThis.parseJson(
   fs.readFileSync(
     path.resolve(__dirname, '__fixtures__/mockAbfahrt.json'),
     'utf8',

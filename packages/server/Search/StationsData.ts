@@ -54,16 +54,10 @@ export default function (searchTerm: string): Promise<Station[]> {
   return Promise.resolve(
     orderBy(matches, 'score')
       .slice(0, 8)
-      .map(({ item, score }) => ({
+      .map(({ item }) => ({
         title: item.name,
         id: item.id,
         DS100: item.DS100,
-        raw: global.PROD
-          ? undefined
-          : {
-              score,
-              item,
-            },
       })),
   );
 }

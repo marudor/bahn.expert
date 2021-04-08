@@ -47,6 +47,7 @@ export class HafasExperimentalController extends Controller {
         })),
       },
       profile,
+      // @ts-expect-error untyped
       ctx.query.raw,
     );
   }
@@ -59,6 +60,7 @@ export class HafasExperimentalController extends Controller {
     @Body() options: HimSearchRequestOptions,
     @Query() profile?: AllowedHafasProfile,
   ): Promise<ParsedHimSearchResponse> {
+    // @ts-expect-error untyped
     return HimSearch(options, profile, ctx.query.raw);
   }
 
@@ -141,6 +143,7 @@ export class HafasExperimentalController extends Controller {
     @Body() options: JourneyCourseRequestOptions,
     @Query() profile?: AllowedHafasProfile,
   ): Promise<any> {
+    // @ts-expect-error untyped
     return JourneyCourse(options, profile, ctx.query.raw);
   }
 }

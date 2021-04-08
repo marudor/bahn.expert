@@ -26,7 +26,6 @@ export default function (searchTerm: string): Promise<Station[]> {
       title: item.name,
       id: item.id,
       DS100: item.ril100,
-      raw: global.PROD ? undefined : item,
     })),
   );
 }

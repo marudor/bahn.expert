@@ -29,8 +29,9 @@ export const ThemeProvider: FC = ({ children }) => {
   if (!initialTheme) {
     // @ts-expect-error works
     initialTheme = ThemeType[storage.get('theme')];
-    if (!initialTheme && !global.SERVER) {
-      initialTheme = window.matchMedia('(prefers-color-scheme: light)').matches
+    if (!initialTheme) {
+      initialTheme = globalThis.matchMedia?.('(prefers-color-scheme: light)')
+        .matches
         ? ThemeType.light
         : ThemeType.dark;
       storage.set('theme', initialTheme);

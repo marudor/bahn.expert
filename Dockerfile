@@ -11,9 +11,6 @@ RUN yarn --immutable --immutable-cache
 
 
 FROM fulldeps as build
-ARG SENTRY_AUTH_TOKEN
-ARG SENTRY_ORG
-ARG SENTRY_PROJECT
 
 COPY webpack.config.js babel.config.js ./
 COPY .git ./.git
