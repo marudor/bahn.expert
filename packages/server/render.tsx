@@ -30,7 +30,7 @@ export default (ctx: Context): void => {
   const extractor = new ChunkExtractor({ stats: ctx.loadableStats });
   const selectedDetail = ctx.query.selectedDetail;
 
-  if (selectedDetail) {
+  if (selectedDetail && typeof selectedDetail == 'string') {
     ctx.request.storage.set('selectedDetail', selectedDetail);
   }
 

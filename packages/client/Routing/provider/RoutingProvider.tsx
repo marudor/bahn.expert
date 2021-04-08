@@ -24,21 +24,10 @@ const useRoutingInternal = () => {
   };
 };
 
-const migrateOldConfig = (storage: ReturnType<typeof useStorage>) => {
-  const oldConfig = storage.get('rconfig');
-  if (oldConfig) {
-    for (const [key, value] of Object.entries(oldConfig)) {
-      storage.set(key, value);
-    }
-    storage.remove('rconfig');
-  }
-};
-
 export const [InnerRoutingProvider, useRouting] = constate(useRoutingInternal);
 
 export const RoutingProvider: FC = ({ children }) => {
   const storage = useStorage();
-  migrateOldConfig(storage);
 
   const savedRoutingSettings: RoutingSettings = {
     maxChanges: storage.get('maxChanges') ?? '-1',
