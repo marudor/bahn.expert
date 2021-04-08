@@ -15,13 +15,6 @@ export interface WebConfigMap
   readonly favs: Favs;
   readonly rfavs: RoutingFavs;
   readonly defaultFilter: string[];
-
-  // legacy
-  readonly config: AbfahrtenConfig;
-  // legacy
-  readonly commonConfig: CommonConfig;
-  // legacy
-  readonly rconfig: RoutingSettings;
 }
 
 // @ts-expect-error context without default is fine

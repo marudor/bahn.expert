@@ -17,7 +17,5 @@ export default (product: ProdL, common: Common): ParsedProduct => {
     type:
       product.prodCtx && (product.prodCtx.catOut || product.prodCtx.catOutL),
     operator,
-    // @ts-expect-error just debug
-    raw: global.PROD ? undefined : product,
   };
 };

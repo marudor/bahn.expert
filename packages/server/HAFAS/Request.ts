@@ -116,7 +116,6 @@ function parseCommon(common: Common): ParsedCommon {
     locL,
     prodL,
     polyL,
-    raw: global.PROD ? undefined : common,
   };
 }
 
@@ -180,26 +179,6 @@ async function makeRequest<
   parseFn: (d: HafasResponse<HR>, pc: ParsedCommon) => P = (d) => d as any,
   profile: AllowedHafasProfile = AllowedHafasProfile.DB,
 ): Promise<P> {
-  // if (profile === 'all') {
-  //   const prod = global.PROD;
-
-  //   global.PROD = true;
-  //   const promises: any[] = [];
-
-  //   Object.keys(AllowedHafasProfile).forEach(p => {
-  //     // @ts-ignore
-  //     promises.push(makeRequest(request, parseFn, p).then(r => [p, r]));
-  //   });
-  //   const results = await Promise.all(promises);
-
-  //   global.PROD = prod;
-
-  //   return results.reduce((agg, [p, r]) => {
-  //     agg[p] = r;
-
-  //     return agg;
-  //   }, {});
-  // }
   const { data, extraParam } = createRequest(hafasRequest, profile);
 
   if (process.env.NODE_ENV === 'test') {

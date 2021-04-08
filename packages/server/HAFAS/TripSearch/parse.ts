@@ -115,7 +115,6 @@ export class Journey {
         .map((s) => (s.type === 'JNY' ? s.train.type : s.train.name))
         .filter(Boolean as any),
       tarifSet: parseTarif(raw.trfRes),
-      raw: global.PROD ? undefined : raw,
     };
   }
   parseStops = (

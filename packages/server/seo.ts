@@ -10,7 +10,7 @@ const sitemap = () => {
   rawStations
     .filter((s) => filterRegex.exec(s.name))
     .forEach((s) => {
-      xml += `<url><loc>${global.BASE_URL}/${encodeURIComponent(
+      xml += `<url><loc>${globalThis.BASE_URL}/${encodeURIComponent(
         s.name,
       )}</loc><changefreq>always</changefreq></url>`;
     });
@@ -23,7 +23,7 @@ const sitemap = () => {
 const robots = () => `User-agent: *
 Allow: *
 
-Sitemap: ${global.BASE_URL}/sitemap.xml
+Sitemap: ${globalThis.BASE_URL}/sitemap.xml
 `;
 
 router

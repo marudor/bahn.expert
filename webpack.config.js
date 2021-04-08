@@ -7,7 +7,6 @@ const LoadablePlugin = require('@loadable/webpack-plugin');
 const PacktrackerPlugin = require('@packtracker/webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const WorkboxPlugin = require('workbox-webpack-plugin');
-const SentryCliPlugin = require('@sentry/webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const isDev = process.env.NODE_ENV !== 'production';
@@ -16,11 +15,6 @@ const plugins = [
   new LoadablePlugin(),
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-    'global.PROD': JSON.stringify(!isDev),
-    'global.TEST': JSON.stringify(
-      process.env.NODE_ENV === 'test' || Boolean(process.env.TEST_RUN),
-    ),
-    'global.SERVER': JSON.stringify(false),
   }),
 ];
 const entry = ['./packages/client/entry.ts'];
@@ -59,13 +53,6 @@ if (isDev) {
   plugins.push(new ReactRefreshWebpackPlugin());
   entry.push('webpack-hot-middleware/client');
 } else {
-  if (process.env.SENTRY_AUTH_TOKEN) {
-    plugins.push(
-      new SentryCliPlugin({
-        include: path.resolve('dist'),
-      }),
-    );
-  }
   plugins.push(
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,

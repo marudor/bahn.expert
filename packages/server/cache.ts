@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/node';
 import { logger } from 'server/logger';
 import cacheManager from 'cache-manager';
 import redisStore from 'cache-manager-ioredis';
@@ -100,8 +99,6 @@ export function createNewCache<K extends string, V>(
 
         return rawResult.map(deserialize);
       } catch (e) {
-        Sentry.captureException(e);
-
         return [];
       }
     },
@@ -115,8 +112,6 @@ export function createNewCache<K extends string, V>(
 
         return result;
       } catch (e) {
-        Sentry.captureException(e);
-
         return undefined;
       }
     },
@@ -124,14 +119,14 @@ export function createNewCache<K extends string, V>(
       try {
         return await baseCache.set(key, serialize(value), ttl);
       } catch (e) {
-        Sentry.captureException(e);
+        // ignoring
       }
     },
     async del(key: K) {
       try {
         return await baseCache.del(key);
       } catch (e) {
-        Sentry.captureException(e);
+        // ignoring
       }
     },
     keys() {

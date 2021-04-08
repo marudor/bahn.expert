@@ -39,11 +39,6 @@ tolerations: []
 affinity: {}
 
 baseEnv:
-  - name: SENTRY_DSN
-    valueFrom:
-      secretKeyRef:
-        name: bahnhofs-abfahrten-config
-        key: sentry_dsn
   - name: IMPRINT_NAME
     valueFrom:
       secretKeyRef:

@@ -49,6 +49,7 @@ export class HafasControllerV2 extends Controller {
     @Request() ctx: Context,
     @Query() profile?: AllowedHafasProfile,
   ): Promise<ParsedJourneyDetails> {
+    // @ts-expect-error untyped
     return JourneyDetails(jid, profile, ctx.query.raw);
   }
 
@@ -84,7 +85,8 @@ export class HafasControllerV2 extends Controller {
         type: 'ARR',
       },
       profile,
-      ctx.query.raw,
+      // @ts-expect-error untyped
+      ctx.query.raw as boolean,
     );
   }
 
@@ -106,7 +108,8 @@ export class HafasControllerV2 extends Controller {
         type: 'DEP',
       },
       profile,
-      ctx.query.raw,
+      // @ts-expect-error untyped
+      ctx.query.raw as boolean,
     );
   }
 
@@ -118,6 +121,7 @@ export class HafasControllerV2 extends Controller {
     @Body() options: JourneyMatchOptions,
     @Query() profile?: AllowedHafasProfile,
   ): Promise<ParsedJourneyMatchResponse[]> {
+    // @ts-expect-error untyped
     return JourneyMatch(options, profile, ctx.query.raw);
   }
 
@@ -168,6 +172,7 @@ export class HafasControllerV2 extends Controller {
       };
     }
 
+    // @ts-expect-error untyped
     return SearchOnTrip(req, profile, ctx.query.raw);
   }
 }

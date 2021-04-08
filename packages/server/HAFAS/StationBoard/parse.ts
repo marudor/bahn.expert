@@ -32,7 +32,6 @@ const parseStationBoardResponse = (
     currentStation: common.locL[jny.stbStop.locX],
     stops: jny.stopL?.map((s) => parseStop(s, common, date, product)),
     messages: parseMessages(jny.msgL, common),
-    raw: global.PROD ? undefined : jny,
   };
 
   if (isArrival(jny.stbStop)) {

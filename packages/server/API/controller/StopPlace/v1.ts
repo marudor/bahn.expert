@@ -35,9 +35,8 @@ export class StopPlaceController extends Controller {
   }
 
   /**
-   * @isInt lat
-   * @isInt lng
    * @isInt radius
+   * @isInt max
    */
   @Get('/geoSearch')
   @Tags('StopPlace')

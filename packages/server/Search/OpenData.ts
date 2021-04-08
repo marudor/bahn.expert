@@ -31,7 +31,6 @@ export default async (rawSearchTerm: string): Promise<Station[]> => {
       DS100: s.ril100Identifiers[0]
         ? s.ril100Identifiers[0].rilIdentifier
         : undefined,
-      raw: global.PROD ? undefined : s,
     }));
   } catch (e) {
     if (e.response?.status === 404) {

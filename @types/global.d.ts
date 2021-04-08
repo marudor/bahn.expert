@@ -2,30 +2,22 @@
 import nock from 'nock';
 
 declare global {
-  declare const nock: nock.Scope;
-  declare namespace NodeJS {
-    declare interface Global {
-      M: any;
-      MF: any;
-      TEST: boolean;
-      PROD: boolean;
-      SERVER: boolean;
-      VERSION: string;
-      BASE_URL: string;
-      RAW_BASE_URL: string;
-      IMPRINT: {
-        name: string;
-        street: string;
-        town: string;
-      };
-      configOverride: {
-        abfahrten: any;
-        common: any;
-      };
-      // test only
-      nock: nock.Scope;
-      parseJson<T = unknown>(json: string): T;
-    }
+  declare namespace globalThis {
+    declare var IMPRINT: {
+      name: string;
+      street: string;
+      town: string;
+    };
+    declare var configOverride: {
+      abfahrten: any;
+      common: any;
+    };
+    declare var BASE_URL: string;
+    declare var RAW_BASE_URL: string;
+
+    // test only
+    declare var nock: nock.Scope;
+    declare var parseJson: <T = unknown>(json: string) => T;
   }
 
   interface Navigator {

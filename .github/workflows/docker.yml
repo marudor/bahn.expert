@@ -16,9 +16,6 @@ jobs:
       - name: docker
         uses: elgohr/Publish-Docker-Github-Action@master
         env:
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-          SENTRY_ORG: marudor
-          SENTRY_PROJECT: bahnhofsabfahrten
           DOCKER_BUILDKIT: 1
         with:
           name: marudor/bahnhofsabfahrten/standalone:${{ github.sha }}
@@ -26,4 +23,3 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
           snapshot: 'true'
-          buildargs: SENTRY_AUTH_TOKEN,SENTRY_ORG,SENTRY_PROJECT
