@@ -18,7 +18,7 @@ jobs:
           ref: ${{ github.sha }}
           task: deploy
           environment: ${{ github.event.inputs.environment }}
-          required_contexts: docker,node
+          required_contexts: docker,node,e2e
           payload: '{"value_files": ["./config/${{ github.event.inputs.environment }}.yml","./config/_common.yml"],"release": "bahnhofs-abfahrten-${{ github.event.inputs.environment }}","namespace": "marudor","track": "stable"}'
         env:
           GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
