@@ -60,8 +60,6 @@ export class StationController extends Controller {
   }
 
   /**
-   * @isInt lat
-   * @isInt lng
    * @isInt radius
    */
   @Get('/geoSearch')

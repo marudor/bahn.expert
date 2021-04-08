@@ -2855,8 +2855,8 @@ export function RegisterRoutes(router: KoaRouter) {
         router.get('/api/station/v1/geoSearch',
             async function StationController_geoSearch(context: any, next: any) {
             const args = {
-                    lat: {"in":"query","name":"lat","required":true,"dataType":"integer","validators":{"isInt":{"errorMsg":"lat"}}},
-                    lng: {"in":"query","name":"lng","required":true,"dataType":"integer","validators":{"isInt":{"errorMsg":"lng"}}},
+                    lat: {"in":"query","name":"lat","required":true,"dataType":"double"},
+                    lng: {"in":"query","name":"lng","required":true,"dataType":"double"},
                     radius: {"default":500,"in":"query","name":"radius","dataType":"integer","validators":{"isInt":{"errorMsg":"radius"}}},
             };
 
@@ -2959,11 +2959,11 @@ export function RegisterRoutes(router: KoaRouter) {
         router.get('/api/stopPlace/v1/geoSearch',
             async function StopPlaceController_stopPlaceGeoSearch(context: any, next: any) {
             const args = {
-                    lat: {"in":"query","name":"lat","required":true,"dataType":"integer","validators":{"isInt":{"errorMsg":"lat"}}},
-                    lng: {"in":"query","name":"lng","required":true,"dataType":"integer","validators":{"isInt":{"errorMsg":"lng"}}},
+                    lat: {"in":"query","name":"lat","required":true,"dataType":"double"},
+                    lng: {"in":"query","name":"lng","required":true,"dataType":"double"},
                     radius: {"default":500,"in":"query","name":"radius","dataType":"integer","validators":{"isInt":{"errorMsg":"radius"}}},
                     filterForIris: {"default":false,"in":"query","name":"filterForIris","dataType":"boolean"},
-                    max: {"in":"query","name":"max","dataType":"double"},
+                    max: {"in":"query","name":"max","dataType":"integer","validators":{"isInt":{"errorMsg":"max"}}},
             };
 
             let validatedArgs: any[] = [];
