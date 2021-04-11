@@ -1,8 +1,8 @@
-import type { AuslastungsValue } from 'types/routing';
 import type {
   Coordinate2D,
   TransportType,
 } from 'business-hub/types/RisStations';
+import type { Route$Auslastung } from 'types/routing';
 
 export interface StopPlaceIdentifier {
   stationId?: string;
@@ -26,7 +26,7 @@ export interface TrainOccupancy<T> {
   train: TrainOccupancyList<T>;
 }
 
-export interface TrainOccupancyList<T = NormalizedTrainOccupancy> {
+export interface TrainOccupancyList<T = Route$Auslastung> {
   [trainNumber: string]: T | null;
 }
 
@@ -41,8 +41,3 @@ export interface VRRTrainOccupancy {
 }
 
 export type VRRTrainOccupancyValues = 1 | 2 | 3;
-
-export interface NormalizedTrainOccupancy {
-  first: AuslastungsValue;
-  second: AuslastungsValue;
-}
