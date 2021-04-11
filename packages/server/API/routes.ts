@@ -1984,20 +1984,11 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "NormalizedTrainOccupancy": {
-        "dataType": "refObject",
-        "properties": {
-            "first": {"ref":"AuslastungsValue","required":true},
-            "second": {"ref":"AuslastungsValue","required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "TrainOccupancyList": {
         "dataType": "refObject",
         "properties": {
         },
-        "additionalProperties": {"dataType":"union","subSchemas":[{"ref":"NormalizedTrainOccupancy"},{"dataType":"enum","enums":[null]}]},
+        "additionalProperties": {"dataType":"union","subSchemas":[{"ref":"Route%24Auslastung"},{"dataType":"enum","enums":[null]}]},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 };

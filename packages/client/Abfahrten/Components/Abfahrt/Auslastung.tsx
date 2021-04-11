@@ -2,29 +2,46 @@ import { AuslastungsDisplay } from 'client/Common/Components/AuslastungsDisplay'
 import { Loading } from 'client/Common/Components/Loading';
 import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import { useAuslastung } from 'client/Abfahrten/provider/AuslastungsProvider';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import type { FC } from 'react';
 
 export const Auslastung: FC = () => {
   const { abfahrt } = useAbfahrt();
-  const { auslastungen, getAuslastung } = useAuslastung();
-  const auslastung =
-    auslastungen[
-      `${abfahrt.currentStopPlace.name}/${abfahrt.destination}/${abfahrt.train.number}`
-    ];
+  const {
+    getDBAuslastung,
+    getVRRAuslastung,
+    fetchDBAuslastung,
+    fetchVRRAuslastung,
+  } = useAuslastung();
+  const { getAuslastung, fetchAuslastung } = useMemo(
+    () =>
+      abfahrt.auslastung
+        ? {
+            getAuslastung: getDBAuslastung,
+            fetchAuslastung: fetchDBAuslastung,
+          }
+        : {
+            getAuslastung: getVRRAuslastung,
+            fetchAuslastung: fetchVRRAuslastung,
+          },
+    [
+      abfahrt.auslastung,
+      fetchDBAuslastung,
+      fetchVRRAuslastung,
+      getDBAuslastung,
+      getVRRAuslastung,
+    ],
+  );
+
+  const auslastung = getAuslastung(abfahrt);
 
   useEffect(() => {
     if (auslastung === undefined && abfahrt.departure) {
-      void getAuslastung(
-        abfahrt.train.number,
-        abfahrt.currentStopPlace.name,
-        abfahrt.destination,
-        abfahrt.departure.scheduledTime,
-      );
+      void fetchAuslastung(abfahrt);
     }
-  }, [abfahrt, auslastung, getAuslastung]);
+  }, [abfahrt, auslastung, fetchAuslastung]);
 
-  if (auslastung === undefined && abfahrt.departure) {
+  if (abfahrt.auslastung && auslastung === undefined) {
     return <Loading type={1} />;
   }
 

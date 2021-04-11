@@ -55,6 +55,7 @@ const getDEBR = (
     case '5803':
     case '5804': {
       let identifier: '401' | '401.LDV' | '401.9' = '401';
+      let noPdf = undefined;
       if (fahrzeuge.length === 11) {
         if (
           fahrzeuge.filter((f) => f.additionalInfo.klasse === 1).length === 2
@@ -63,10 +64,12 @@ const getDEBR = (
         } else {
           identifier = '401.9';
         }
+        noPdf = true;
       }
       return {
         identifier,
         BR: '401',
+        noPdf,
       };
     }
     case '5402':
