@@ -44,11 +44,7 @@ describe('Routing', () => {
       cy.setCookie('rfavs', oldFavCookie);
       cy.visit('/routing');
       cy.findByTestId('RouteFavEntry-80001918000105').should('exist');
-      cy.getCookie('rfavs').should(
-        'have.property',
-        'value',
-        decodeURIComponent(favCookie),
-      );
+      cy.getCookie('rfavs').should('have.property', 'value', favCookie);
     });
 
     it('can load fav from cookie', () => {

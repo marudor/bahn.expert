@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
     '&>a': {
       color: theme.palette.text.primary,
     },
+    wordBreak: 'break-word',
   },
   clickable: {
     '&:hover': {

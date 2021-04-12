@@ -15,7 +15,11 @@ export default function storageMiddleware() {
       if (change.value === undefined) {
         ctx.cookies.set(change.name, null);
       } else {
-        ctx.cookies.set(change.name, change.value, change.options);
+        ctx.cookies.set(
+          change.name,
+          encodeURIComponent(change.value),
+          change.options,
+        );
       }
     });
 
