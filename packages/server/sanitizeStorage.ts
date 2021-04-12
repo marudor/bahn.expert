@@ -19,17 +19,20 @@ function sanitizeFavs(
     storage.remove(storageKey);
     return;
   }
+  let modified = false;
   Object.keys(favs).forEach((favKey) => {
     // @ts-expect-error migrating old format
     if (favs[favKey].title || favs[favKey].id) {
       favs[favKey] = migrateOldFav(favs[favKey]);
+      modified = true;
     }
 
     if (!isCurrentFormatFav(favs[favKey])) {
       delete favs[favKey];
+      modified = true;
     }
   });
-  storage.set(storageKey, favs);
+  if (modified) storage.set(storageKey, favs);
 }
 
 function isCurrentFormatFav(stop: MinimalStopPlace): boolean {
@@ -55,6 +58,7 @@ export function sanitizeRoutingFavs(
     storage.remove(storageKey);
     return;
   }
+  let modified = false;
   Object.keys(favs).forEach((favKey) => {
     const fav = favs[favKey];
     // @ts-expect-error migrateOldFormat
@@ -64,6 +68,7 @@ export function sanitizeRoutingFavs(
       fav.via = fav.via.map(migrateOldFav);
       // @ts-expect-error old format hat profile
       delete fav.profile;
+      modified = true;
     }
 
     if (
@@ -72,7 +77,8 @@ export function sanitizeRoutingFavs(
       !fav.via?.every(isCurrentFormatFav)
     ) {
       delete favs[favKey];
+      modified = true;
     }
   });
-  storage.set(storageKey, favs);
+  if (modified) storage.set(storageKey, favs);
 }
