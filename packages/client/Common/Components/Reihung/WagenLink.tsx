@@ -21,7 +21,7 @@ interface Props {
 
 const wagenWithImage = [
   'ARkimbz',
-  'ARkimnbz',
+  'ARkimmbz',
   'Apmmz',
   'Avmmz',
   'Avmz',
