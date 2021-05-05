@@ -148,7 +148,6 @@ export async function byRl100WithSpaceHandling(
 }
 
 async function searchStopPlaceRemote(searchTerm: string) {
-  console.log('searching remote');
   const rl100Promise = byRl100WithSpaceHandling(searchTerm.toUpperCase());
   const risResultPromise = byName(searchTerm);
   const risResult = await risResultPromise;
