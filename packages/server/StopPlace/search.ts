@@ -3,22 +3,31 @@ import { CacheDatabases, createNewCache } from 'server/cache';
 import { getSingleStation } from 'server/iris/station';
 import { StopPlaceKeyType } from 'business-hub/types/RisStations';
 import type { GroupedStopPlace, StopPlaceIdentifier } from 'types/stopPlace';
-import type { StopPlaceSearchResult } from 'business-hub/types/RisStations';
+import type {
+  StopPlace,
+  StopPlaceSearchResult,
+} from 'business-hub/types/RisStations';
+
+const ttl = 5 * 24 * 60 * 60;
 
 const stopPlaceSearchCache = createNewCache<string, GroupedStopPlace[]>(
-  3 * 24 * 60 * 60,
+  ttl,
   CacheDatabases.StopPlaceSearch,
 );
 const stopPlaceGeoCache = createNewCache<string, GroupedStopPlace[]>(
-  3 * 24 * 60 * 60,
+  ttl,
   CacheDatabases.StopPlaceGeo,
 );
 const stopPlaceIdentifierCache = createNewCache<
   string,
   StopPlaceIdentifier | undefined
->(3 * 24 * 60 * 60, CacheDatabases.StopPlaceIdentifier);
+>(ttl, CacheDatabases.StopPlaceIdentifier);
+const stopPlaceByRilCache = createNewCache<string, StopPlace>(
+  ttl,
+  CacheDatabases.StopPlaceByRil,
+);
 const stopPlaceByEvaCache = createNewCache<string, GroupedStopPlace>(
-  3 * 24 * 60 * 60,
+  ttl,
   CacheDatabases.StopPlaceByEva,
 );
 
@@ -116,19 +125,30 @@ export async function geoSearchStopPlace(
   return groupedStopPlaces;
 }
 
-async function byRl100WithSpaceHandling(rl100: string) {
+export async function byRl100WithSpaceHandling(
+  rl100: string,
+): Promise<StopPlace | undefined> {
   if (rl100.length > 5) {
     return Promise.resolve(undefined);
+  }
+  const cached = await stopPlaceByRilCache.get(rl100);
+  if (cached) {
+    return cached;
   }
   const rl100Promise = byRl100(rl100.toUpperCase());
   let rl100DoubleSpacePromise: typeof rl100Promise = Promise.resolve(undefined);
   if (rl100.length < 5 && rl100.includes(' ')) {
     rl100DoubleSpacePromise = byRl100(rl100.replace(/ /g, '  ').toUpperCase());
   }
-  return (await rl100Promise) || (await rl100DoubleSpacePromise);
+  const result = (await rl100Promise) || (await rl100DoubleSpacePromise);
+  if (result) {
+    void stopPlaceByRilCache.set(rl100, result);
+  }
+  return result;
 }
 
 async function searchStopPlaceRemote(searchTerm: string) {
+  console.log('searching remote');
   const rl100Promise = byRl100WithSpaceHandling(searchTerm.toUpperCase());
   const risResultPromise = byName(searchTerm);
   const risResult = await risResultPromise;

@@ -1,4 +1,5 @@
-import { byPosition, byRl100, stationDetails } from 'business-hub';
+import { byPosition, stationDetails } from 'business-hub';
+import { byRl100WithSpaceHandling } from 'server/StopPlace/search';
 import { CacheDatabases, createNewCache } from 'server/cache';
 import {
   Controller,
@@ -102,7 +103,7 @@ export class StationController extends Controller {
   @Tags('Station')
   @Deprecated()
   async ds100(ds100: string): Promise<Station> {
-    const station = await byRl100(ds100);
+    const station = await byRl100WithSpaceHandling(ds100);
 
     if (station) {
       return {
