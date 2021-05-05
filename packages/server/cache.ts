@@ -28,6 +28,7 @@ export enum CacheDatabases {
   StopPlaceGeo,
   StopPlaceIdentifier,
   StopPlaceByEva,
+  StopPlaceByRil,
 }
 const activeCaches = new Set();
 

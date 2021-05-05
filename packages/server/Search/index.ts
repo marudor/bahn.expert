@@ -1,8 +1,5 @@
-import {
-  stationSearch as BusinessHubSearch,
-  byName,
-  byRl100,
-} from 'business-hub';
+import { stationSearch as BusinessHubSearch, byName } from 'business-hub';
+import { byRl100WithSpaceHandling } from 'server/StopPlace/search';
 import { CacheDatabases, createNewCache } from 'server/cache';
 import { logger } from 'server/logger';
 import { stationSearch as SBBSearch } from 'sbb';
@@ -79,7 +76,7 @@ export default async (
 
   if (cached) return cached.slice(0, maxStations);
 
-  const rl100Result = byRl100(searchTerm);
+  const rl100Result = byRl100WithSpaceHandling(searchTerm);
 
   const searchMethod = getSearchMethod(type);
 
