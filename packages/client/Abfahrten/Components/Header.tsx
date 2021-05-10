@@ -20,9 +20,8 @@ export const Header: FC<Props> = ({ filterForIris }: Props) => {
   const refreshCurrentAbfahrten = useRefreshCurrent(true);
   const urlPrefix = useAbfahrtenUrlPrefix();
   const history = useHistory();
-  const [currentEnteredStopPlace, setCurrentEnteredStopPlace] = useState<
-    MinimalStopPlace | undefined
-  >(currentStopPlace);
+  const [currentEnteredStopPlace, setCurrentEnteredStopPlace] =
+    useState<MinimalStopPlace | undefined>(currentStopPlace);
 
   useEffect(() => {
     setCurrentEnteredStopPlace(currentStopPlace);

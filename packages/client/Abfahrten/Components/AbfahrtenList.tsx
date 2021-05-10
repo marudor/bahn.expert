@@ -44,11 +44,8 @@ const useStyles = makeStyles((theme) => ({
 
 const InnerAbfahrtenList = () => {
   const classes = useStyles();
-  const {
-    updateCurrentStopPlaceByString,
-    setCurrentStopPlace,
-    setError,
-  } = useRawAbfahrten();
+  const { updateCurrentStopPlaceByString, setCurrentStopPlace, setError } =
+    useRawAbfahrten();
   const currentStopPlace = useCurrentAbfahrtenStopPlace();
   const error = useAbfahrtenError();
   const selectedDetail = useSelectedDetail();

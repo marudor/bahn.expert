@@ -29,15 +29,12 @@ interface Props {
   children: ReactNode;
 }
 
-export const [
-  InnerCommonConfigProvider,
-  useCommonConfig,
-  useSetCommonConfig,
-] = constate(
-  useCommonConfigInternal,
-  (v) => v.config,
-  (v) => v.setCommonConfigKey,
-);
+export const [InnerCommonConfigProvider, useCommonConfig, useSetCommonConfig] =
+  constate(
+    useCommonConfigInternal,
+    (v) => v.config,
+    (v) => v.setCommonConfigKey,
+  );
 
 export const CommonConfigProvider: FC<Props> = ({ children }) => {
   const storage = useStorage();

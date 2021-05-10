@@ -173,7 +173,7 @@ type CommonHafasResponse<R> = R extends TripSearchRequest
 async function makeRequest<
   R extends SingleHafasRequest,
   HR extends GenericRes = CommonHafasResponse<R>,
-  P = HR
+  P = HR,
 >(
   hafasRequest: R,
   parseFn: (d: HafasResponse<HR>, pc: ParsedCommon) => P = (d) => d as any,
@@ -226,7 +226,7 @@ type UncommonHafasResponse<R> = R extends SubscrCreateRequest
 export async function makeUncommonRequest<
   R extends UncommonHafasRequest,
   HR = UncommonHafasResponse<R>,
-  P = HR
+  P = HR,
 >(
   hafasRequest: R,
   parseFn: (d: HR) => P = (d) => d as any,

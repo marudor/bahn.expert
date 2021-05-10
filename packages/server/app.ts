@@ -38,8 +38,8 @@ export function createApp(): Koa {
       .default(app)
       .then(() => {
         app.use((ctx, next) => {
-          normalizePathMiddleware = require('./middleware/normalizePath')
-            .default;
+          normalizePathMiddleware =
+            require('./middleware/normalizePath').default;
           errorHandler = require('./errorHandler').default;
           serverRender = require('./render').default;
           apiRoutes = require('./API').default;

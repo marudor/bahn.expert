@@ -81,6 +81,5 @@ function useAuslastungInner() {
   };
 }
 
-export const [AuslastungsProvider, useAuslastung] = constate(
-  useAuslastungInner,
-);
+export const [AuslastungsProvider, useAuslastung] =
+  constate(useAuslastungInner);
