@@ -50,12 +50,8 @@ const useStyles = makeStyles({
 
 export const SettingsModal: FC = () => {
   const classes = useStyles();
-  const {
-    lineAndNumber,
-    lookahead,
-    autoUpdate,
-    lookbehind,
-  } = useAbfahrtenConfig();
+  const { lineAndNumber, lookahead, autoUpdate, lookbehind } =
+    useAbfahrtenConfig();
   const { setConfigOpen } = useAbfahrtenModalToggle();
   const configOpen = useAbfahrtenConfigOpen();
   const setConfigKey = useAbfahrtenSetConfig();

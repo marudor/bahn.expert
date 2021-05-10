@@ -31,12 +31,9 @@ function useHeaderTagInner() {
   };
 }
 
-export const [
-  HeaderTagProvider,
-  useHeaderTags,
-  useHeaderTagsActions,
-] = constate(
-  useHeaderTagInner,
-  (v) => v.values,
-  (v) => v.actions,
-);
+export const [HeaderTagProvider, useHeaderTags, useHeaderTagsActions] =
+  constate(
+    useHeaderTagInner,
+    (v) => v.values,
+    (v) => v.actions,
+  );

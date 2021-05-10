@@ -2,7 +2,7 @@ import { AbfahrtContext } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt'
 import { Auslastung } from 'client/Abfahrten/Components/Abfahrt/Auslastung';
 import { AuslastungsProvider } from 'client/Abfahrten/provider/AuslastungsProvider';
 import { render } from 'client/__tests__/testHelper';
-import { waitForElementToBeRemoved } from '@testing-library/react';
+import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 import fs from 'fs';
 import path from 'path';
 import type { Abfahrt } from 'types/iris';
@@ -42,10 +42,10 @@ describe('Auslastung', () => {
         ),
       )
       .reply(500);
-    const { queryByTestId } = renderAuslastung();
+    renderAuslastung();
 
-    await waitForElementToBeRemoved(() => queryByTestId('loading'));
-    expect(queryByTestId('auslastungDisplay')).toBeNull();
+    await waitForElementToBeRemoved(() => screen.queryByTestId('loading'));
+    expect(screen.queryByTestId('auslastungDisplay')).toBeNull();
   });
 
   it('shows auslastung after loading', async () => {
@@ -64,9 +64,9 @@ describe('Auslastung', () => {
         second: 2,
       });
 
-    const { getByTestId, findByTestId } = renderAuslastung();
+    renderAuslastung();
 
-    expect(getByTestId('loading')).toBeInTheDocument();
-    await findByTestId('auslastungDisplay');
+    expect(screen.getByTestId('loading')).toBeInTheDocument();
+    await screen.findByTestId('auslastungDisplay');
   });
 });

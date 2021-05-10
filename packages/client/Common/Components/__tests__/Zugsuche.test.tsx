@@ -1,4 +1,8 @@
-import { fireEvent, waitForElementToBeRemoved } from '@testing-library/react';
+import {
+  fireEvent,
+  screen,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
 import { render } from 'client/__tests__/testHelper';
 import { Zugsuche } from 'client/Common/Components/Zugsuche';
 
@@ -11,31 +15,31 @@ describe('Zugsuche', () => {
     render(Zugsuche, { children: dummyTrigger }, { withNavigation: true });
 
   it('renders children', () => {
-    const { getByTestId } = renderZugsuche();
+    renderZugsuche();
 
-    expect(getByTestId('dummytoggle')).toBeInTheDocument();
+    expect(screen.getByTestId('dummytoggle')).toBeInTheDocument();
   });
 
   it('closed by default', () => {
-    const { queryByTestId } = renderZugsuche();
+    renderZugsuche();
 
-    expect(queryByTestId('Zugsuche')).toBeNull();
+    expect(screen.queryByTestId('Zugsuche')).toBeNull();
   });
 
   it('can be opened', () => {
-    const { getByTestId } = renderZugsuche();
+    renderZugsuche();
 
-    fireEvent.click(getByTestId('dummytoggle'));
-    expect(getByTestId('Zugsuche')).toBeInTheDocument();
+    fireEvent.click(screen.getByTestId('dummytoggle'));
+    expect(screen.getByTestId('Zugsuche')).toBeInTheDocument();
   });
 
   it('entering nothing & submit keeps it open', async () => {
-    const { getByTestId } = renderZugsuche();
+    renderZugsuche();
 
-    fireEvent.click(getByTestId('dummytoggle'));
-    fireEvent.click(getByTestId('ZugsucheSubmit'));
+    fireEvent.click(screen.getByTestId('dummytoggle'));
+    fireEvent.click(screen.getByTestId('ZugsucheSubmit'));
     await new Promise((resolve) => setTimeout(resolve, 200));
-    expect(getByTestId('Zugsuche')).toBeInTheDocument();
+    expect(screen.getByTestId('Zugsuche')).toBeInTheDocument();
   });
 
   describe('Uses Search', () => {
@@ -67,43 +71,33 @@ describe('Zugsuche', () => {
         ]);
     });
     it('Navigates to details', async () => {
-      const {
-        getByTestId,
-        queryByTestId,
-        getLocation,
-        findByTestId,
-      } = renderZugsuche();
+      const { getLocation } = renderZugsuche();
 
-      fireEvent.click(getByTestId('dummytoggle'));
-      fireEvent.change(getByTestId('zugsucheAutocompleteInput'), {
+      fireEvent.click(screen.getByTestId('dummytoggle'));
+      fireEvent.change(screen.getByTestId('zugsucheAutocompleteInput'), {
         target: { value: 'EC 6' },
       });
-      await findByTestId('zugsucheAutocompleteItem');
-      fireEvent.click(getByTestId('zugsucheAutocompleteItem'));
-      fireEvent.click(getByTestId('ZugsucheSubmit'));
-      await waitForElementToBeRemoved(() => getByTestId('Zugsuche'));
-      expect(queryByTestId('Zugsuche')).toBeNull();
+      await screen.findByTestId('zugsucheAutocompleteItem');
+      fireEvent.click(screen.getByTestId('zugsucheAutocompleteItem'));
+      fireEvent.click(screen.getByTestId('ZugsucheSubmit'));
+      await waitForElementToBeRemoved(() => screen.getByTestId('Zugsuche'));
+      expect(screen.queryByTestId('Zugsuche')).toBeNull();
       expect(getLocation().pathname.startsWith('/details/EC 6')).toBeTruthy();
       expect(getLocation().search.includes('station=6000')).toBeTruthy();
     });
 
     it('Navigates to OEBB if cookie set', async () => {
-      const {
-        getByTestId,
-        getLocation,
-        cookies,
-        findByTestId,
-      } = renderZugsuche();
+      const { getLocation, cookies } = renderZugsuche();
 
-      fireEvent.click(getByTestId('dummytoggle'));
-      fireEvent.change(getByTestId('zugsucheAutocompleteInput'), {
+      fireEvent.click(screen.getByTestId('dummytoggle'));
+      fireEvent.change(screen.getByTestId('zugsucheAutocompleteInput'), {
         target: { value: 'EC 6' },
       });
-      await findByTestId('zugsucheAutocompleteItem');
-      fireEvent.click(getByTestId('zugsucheAutocompleteItem'));
+      await screen.findByTestId('zugsucheAutocompleteItem');
+      fireEvent.click(screen.getByTestId('zugsucheAutocompleteItem'));
       cookies.set('hafasProfile', 'oebb');
 
-      fireEvent.click(getByTestId('ZugsucheSubmit'));
+      fireEvent.click(screen.getByTestId('ZugsucheSubmit'));
       expect(getLocation().search).toBe('?profile=oebb&station=6000');
     });
   });

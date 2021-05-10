@@ -69,18 +69,15 @@ function useRoutingFavStorage({ initialFavs }: InitialRoutingFavStorageProps) {
   };
 }
 
-export const [
-  InnerRoutingFavProvider,
-  useRoutingFavs,
-  useRoutingFavActions,
-] = constate(
-  useRoutingFavStorage,
-  (v) => v.favs,
-  (v) => ({
-    fav: v.fav,
-    unfav: v.unfav,
-  }),
-);
+export const [InnerRoutingFavProvider, useRoutingFavs, useRoutingFavActions] =
+  constate(
+    useRoutingFavStorage,
+    (v) => v.favs,
+    (v) => ({
+      fav: v.fav,
+      unfav: v.unfav,
+    }),
+  );
 
 export const RoutingFavProvider: FC = ({ children }) => {
   const storage = useStorage();

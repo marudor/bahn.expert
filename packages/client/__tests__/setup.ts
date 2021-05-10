@@ -14,7 +14,9 @@ if (fs.existsSync(path.resolve(__dirname, 'setup.js'))) {
   process.exit(1);
 }
 
-const isoDateRegex = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/;
+const isoDateRegex =
+  /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/;
+
 globalThis.parseJson = (json: string) => {
   try {
     return JSON.parse(json, (_key, value) => {

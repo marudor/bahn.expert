@@ -59,7 +59,7 @@ async function irisFilter(
         }
       }),
     )
-  ).filter((Boolean as unknown) as ExcludesFalse);
+  ).filter(Boolean as unknown as ExcludesFalse);
 }
 
 export async function searchStopPlace(

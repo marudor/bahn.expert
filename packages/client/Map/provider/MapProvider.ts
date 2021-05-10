@@ -60,16 +60,13 @@ function useMap() {
   const [permanent, togglePermanent] = useToggleState(defaults.permanent);
   const [map, setMap] = useState();
   const [profile, setProfile] = useState<AllowedHafasProfile>(defaults.profile);
-  const [positions, setPositions] = useState<
-    ParsedJourneyGeoPosResponse | undefined
-  >();
+  const [positions, setPositions] =
+    useState<ParsedJourneyGeoPosResponse | undefined>();
   const [polylines, setPolylines] = useState<{
     [key: string]: ParsedPolyline;
   }>({});
-  const [
-    activeJourney,
-    setActiveJourney,
-  ] = useState<SingleParsedJourneyGeoPos>();
+  const [activeJourney, setActiveJourney] =
+    useState<SingleParsedJourneyGeoPos>();
 
   useEffect(() => {
     setActiveJourney(undefined);
