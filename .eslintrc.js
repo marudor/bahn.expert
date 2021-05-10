@@ -14,6 +14,7 @@ module.exports = {
     'prettier/prettier': 0,
     'react/react-in-jsx-scope': 0,
     'require-await': 0,
+    'testing-library/no-debug': 0,
     'import/no-extraneous-dependencies': [
       'error',
       {

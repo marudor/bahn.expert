@@ -1,4 +1,4 @@
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import {
   InnerAbfahrtenConfigProvider,
   useAbfahrtenModalToggle,
@@ -36,9 +36,9 @@ const renderSetup = () =>
 
 describe('SettingsModal', () => {
   it('Opens if container set', () => {
-    const { getByTestId } = renderSetup();
+    renderSetup();
 
-    fireEvent.click(getByTestId('open'));
-    expect(getByTestId('settingsContent')).toBeInTheDocument();
+    fireEvent.click(screen.getByTestId('open'));
+    expect(screen.getByTestId('settingsContent')).toBeInTheDocument();
   });
 });

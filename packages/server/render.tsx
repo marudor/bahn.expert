@@ -72,6 +72,7 @@ export default (ctx: Context): void => {
     />,
   );
 
+  // eslint-disable-next-line testing-library/render-result-naming-convention
   const app = renderToString(App);
   if (routeContext.url) {
     ctx.redirect(routeContext.url);

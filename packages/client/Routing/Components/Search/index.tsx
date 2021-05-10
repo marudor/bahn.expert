@@ -84,22 +84,18 @@ const useStyles = makeStyles((theme) => ({
 
 export const Search: FC = () => {
   const classes = useStyles();
-  const {
-    setStart,
-    setDestination,
-    swapStartDestination,
-    updateVia,
-    setDate,
-  } = useRoutingConfigActions();
+  const { setStart, setDestination, swapStartDestination, updateVia, setDate } =
+    useRoutingConfigActions();
   const { start, destination, date, via } = useRoutingConfig();
   const { fetchRoutes, clearRoutes } = useFetchRouting();
 
-  const match = useRouteMatch<{
-    start?: string;
-    destination?: string;
-    date?: string;
-    via?: string;
-  }>();
+  const match =
+    useRouteMatch<{
+      start?: string;
+      destination?: string;
+      date?: string;
+      via?: string;
+    }>();
 
   const formatDate = useCallback((date: null | Date) => {
     if (!date) {
@@ -130,12 +126,13 @@ export const Search: FC = () => {
     return relativeDayString;
   }, []);
 
-  const history = useHistory<
-    | undefined
-    | {
-        fav: RoutingFav;
-      }
-  >();
+  const history =
+    useHistory<
+      | undefined
+      | {
+          fav: RoutingFav;
+        }
+    >();
 
   useEffect(() => {
     if (match.params.start) {

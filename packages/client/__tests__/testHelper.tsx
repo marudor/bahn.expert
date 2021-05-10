@@ -23,7 +23,7 @@ interface ContextWithOptions<V = any> extends React.Context<V> {
   initialState?: V;
 }
 export interface ProviderWithOptions<
-  C extends React.FunctionComponent = React.FunctionComponent<any>
+  C extends React.FunctionComponent = React.FunctionComponent<any>,
 > {
   Provider: C;
   // FIXME: should be Props of C
@@ -117,11 +117,11 @@ export function render<CP extends ComponentType<any>>(
 
   // @ts-expect-error this works
   const p: ComponentProps<CP> = props || {};
-  const rendered = realRender(<Comp {...p} />, { wrapper });
+  const view = realRender(<Comp {...p} />, { wrapper });
 
   return {
-    ...rendered,
-    container: rendered.container.firstChild,
+    ...view,
+    container: view.container.firstChild,
     theme,
     cookies,
     getLocation: () => location,

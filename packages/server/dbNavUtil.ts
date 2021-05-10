@@ -6,22 +6,7 @@ function getSecret() {
     'base64',
   );
   const key = Buffer.from([
-    97,
-    72,
-    54,
-    70,
-    56,
-    122,
-    82,
-    117,
-    105,
-    66,
-    110,
-    109,
-    51,
-    51,
-    102,
-    85,
+    97, 72, 54, 70, 56, 122, 82, 117, 105, 66, 110, 109, 51, 51, 102, 85,
   ]);
   const iv = Buffer.alloc(16);
   const cipher = Crypto.createDecipheriv('aes-128-cbc', key, iv);

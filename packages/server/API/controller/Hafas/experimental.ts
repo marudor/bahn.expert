@@ -109,7 +109,7 @@ export class HafasExperimentalController extends Controller {
         .map((departure) =>
           StationBoardToTimetables(departure, mappedHafasArrivals, idSet),
         )
-        .filter((Boolean as unknown) as ExcludesFalse)
+        .filter(Boolean as unknown as ExcludesFalse)
         .slice(0, 75),
       wings: {},
     };

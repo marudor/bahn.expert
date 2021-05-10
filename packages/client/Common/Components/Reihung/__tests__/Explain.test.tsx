@@ -2,28 +2,26 @@ import {
   Explain,
   iconExplanation,
 } from 'client/Common/Components/Reihung/Explain';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import { render } from 'client/__tests__/testHelper';
 
 describe('Explain', () => {
   function openLegende() {
-    const renderResult = render(Explain);
+    render(Explain);
 
-    fireEvent.click(renderResult.getByTestId('reihungLegendOpener'));
-
-    return renderResult;
+    fireEvent.click(screen.getByTestId('reihungLegendOpener'));
   }
   it('ensures BahnComfort exists', () => {
-    const { getByTestId } = openLegende();
+    openLegende();
 
-    expect(getByTestId('bahnComfort')).toBeInTheDocument();
+    expect(screen.getByTestId('bahnComfort')).toBeInTheDocument();
   });
 
   Object.keys(iconExplanation).forEach((icon) => {
     it(`ensures ${icon} exists`, () => {
-      const { getByTestId } = openLegende();
+      openLegende();
 
-      expect(getByTestId(icon)).toBeInTheDocument();
+      expect(screen.getByTestId(icon)).toBeInTheDocument();
     });
   });
 });

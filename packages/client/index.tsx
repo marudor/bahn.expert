@@ -11,7 +11,8 @@ import type { ComponentType } from 'react';
 // 15s timeout
 Axios.defaults.timeout = 15000;
 
-const isoDateRegex = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/;
+const isoDateRegex =
+  /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/;
 Axios.defaults.transformResponse = [
   (data) => {
     if (typeof data === 'string') {
