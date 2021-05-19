@@ -12,8 +12,8 @@
   ],
   "engineStrict": true,
   "scripts": {
-    "all:clean": "yarn workspaces foreach -pv run build:clean",
-    "all:build": "yarn workspaces foreach -pv run build",
+    "all:clean": "scripts/eachWorkspace.sh build:clean",
+    "all:build": "scripts/eachWorkspace.sh build",
     "all:lint": "scripts/eachWorkspace.sh lint",
     "build:clean": "rimraf dist && mkdir dist",
     "build:client": "node scripts/buildClient",

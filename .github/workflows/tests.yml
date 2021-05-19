@@ -59,7 +59,7 @@ jobs:
         uses: actions/setup-node@master
         with:
           node-version: 16
-      - name: test
+      - name: browser versions
         run: |
           firefox --version
           google-chrome --version
