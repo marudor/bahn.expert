@@ -25,10 +25,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Use Node.js 14
+      - name: Use Node.js 16
         uses: actions/setup-node@master
         with:
-          node-version: 14
+          node-version: 16
       - name: install
         run: |
           yarn --immutable --immutable-cache
@@ -55,11 +55,11 @@ jobs:
       fail-fast: false
     steps:
       - uses: actions/checkout@master
-      - name: Use Node.js 14
+      - name: Use Node.js 16
         uses: actions/setup-node@master
         with:
-          node-version: 14
-      - name: test
+          node-version: 16
+      - name: browser versions
         run: |
           firefox --version
           google-chrome --version
@@ -97,10 +97,10 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Use Node.js 14
+      - name: Use Node.js 16
         uses: actions/setup-node@master
         with:
-          node-version: 14
+          node-version: 16
       - name: install
         run: |
           yarn --immutable --immutable-cache
