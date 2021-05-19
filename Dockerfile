@@ -1,4 +1,4 @@
-FROM node:14-alpine as base
+FROM node:16-alpine as base
 WORKDIR /app
 ENV CYPRESS_INSTALL_BINARY=0
 COPY package.json yarn.lock .yarnrc.yml ./
@@ -23,7 +23,7 @@ FROM base as cleanedDeps
 RUN yarn workspaces focus --production
 RUN yarn dlx modclean -r -f -a '*.ts|*.tsx' -I 'example*'
 
-FROM node:14-alpine
+FROM node:16-alpine
 ENV NODE_ENV=production
 ENV TZ=Europe/Berlin
 WORKDIR /app
