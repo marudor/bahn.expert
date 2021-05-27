@@ -19,20 +19,20 @@ import PositionForTrain from 'server/HAFAS/PositionForTrain';
 import type { AllowedHafasProfile, HafasStation } from 'types/HAFAS';
 import type { Context } from 'koa';
 import type {
+  EnrichedJourneyMatchOptions,
+  ParsedJourneyMatchResponse,
+} from 'types/HAFAS/JourneyMatch';
+import type {
   JourneyGeoPosOptions,
   ParsedJourneyGeoPosResponse,
 } from 'types/HAFAS/JourneyGeoPos';
-import type {
-  JourneyMatchOptions,
-  ParsedJourneyMatchResponse,
-} from 'types/HAFAS/JourneyMatch';
 
 @Route('/hafas/v1')
 export class HafasController extends Controller {
   @Post('/enrichedJourneyMatch')
   @Hidden()
   enrichedJourneyMatch(
-    @Body() options: JourneyMatchOptions,
+    @Body() options: EnrichedJourneyMatchOptions,
     @Query() profile?: AllowedHafasProfile,
   ): Promise<ParsedJourneyMatchResponse[]> {
     return enrichedJourneyMatch(options, profile);

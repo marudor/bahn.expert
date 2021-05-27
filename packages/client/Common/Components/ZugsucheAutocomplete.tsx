@@ -51,7 +51,7 @@ export const ZugsucheAutocomplete: FC<Props> = ({
           'zugsuche',
         );
 
-        setSuggestions(suggestions.slice(0, 5));
+        setSuggestions(suggestions);
       } catch (e) {
         if (!Axios.isCancel(e)) {
           setSuggestions([]);
