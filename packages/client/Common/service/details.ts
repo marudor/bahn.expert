@@ -47,6 +47,7 @@ export async function journeyMatch(
     {
       trainName,
       initialDepartureDate,
+      limit: 5,
     },
     {
       cancelToken,

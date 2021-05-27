@@ -43,3 +43,7 @@ export interface JourneyMatchOptions {
   initialDepartureDate?: Date;
   jnyFltrL?: JourneyFilter[];
 }
+
+export interface EnrichedJourneyMatchOptions extends JourneyMatchOptions {
+  limit?: number;
+}

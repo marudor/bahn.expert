@@ -849,12 +849,13 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "JourneyMatchOptions": {
+    "EnrichedJourneyMatchOptions": {
         "dataType": "refObject",
         "properties": {
             "trainName": {"dataType":"string","required":true},
             "initialDepartureDate": {"dataType":"datetime"},
             "jnyFltrL": {"dataType":"array","array":{"ref":"JourneyFilter"}},
+            "limit": {"dataType":"double"},
         },
         "additionalProperties": false,
     },
@@ -1005,6 +1006,16 @@ const models: TsoaRoute.Models = {
             "currentStation": {"ref":"HafasStation","required":true},
             "messages": {"dataType":"array","array":{"ref":"RemL"}},
             "departure": {"ref":"CommonStopInfo","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "JourneyMatchOptions": {
+        "dataType": "refObject",
+        "properties": {
+            "trainName": {"dataType":"string","required":true},
+            "initialDepartureDate": {"dataType":"datetime"},
+            "jnyFltrL": {"dataType":"array","array":{"ref":"JourneyFilter"}},
         },
         "additionalProperties": false,
     },
@@ -2322,7 +2333,7 @@ export function RegisterRoutes(router: KoaRouter) {
         router.post('/api/hafas/v1/enrichedJourneyMatch',
             async function HafasController_enrichedJourneyMatch(context: any, next: any) {
             const args = {
-                    options: {"in":"body","name":"options","required":true,"ref":"JourneyMatchOptions"},
+                    options: {"in":"body","name":"options","required":true,"ref":"EnrichedJourneyMatchOptions"},
                     profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
             };
 

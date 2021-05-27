@@ -1866,7 +1866,7 @@
         "type": "object",
         "additionalProperties": false
       },
-      "JourneyMatchOptions": {
+      "EnrichedJourneyMatchOptions": {
         "properties": {
           "trainName": {
             "type": "string"
@@ -1880,6 +1880,10 @@
               "$ref": "#/components/schemas/JourneyFilter"
             },
             "type": "array"
+          },
+          "limit": {
+            "type": "number",
+            "format": "double"
           }
         },
         "required": ["trainName"],
@@ -2230,6 +2234,26 @@
           "currentStation",
           "departure"
         ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "JourneyMatchOptions": {
+        "properties": {
+          "trainName": {
+            "type": "string"
+          },
+          "initialDepartureDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "jnyFltrL": {
+            "items": {
+              "$ref": "#/components/schemas/JourneyFilter"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["trainName"],
         "type": "object",
         "additionalProperties": false
       },
