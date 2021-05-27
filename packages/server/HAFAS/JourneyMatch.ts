@@ -4,13 +4,14 @@ import JourneyDetails from 'server/HAFAS/JourneyDetails';
 import makeRequest from './Request';
 import parseMessages from './helper/parseMessages';
 import parseStop from './helper/parseStop';
-import type { HafasResponse, ParsedCommon } from 'types/HAFAS';
 import type {
+  EnrichedJourneyMatchOptions,
   JourneyMatchOptions,
   JourneyMatchRequest,
   JourneyMatchResponse,
   ParsedJourneyMatchResponse,
 } from 'types/HAFAS/JourneyMatch';
+import type { HafasResponse, ParsedCommon } from 'types/HAFAS';
 
 const parseJourneyMatch = (
   d: HafasResponse<JourneyMatchResponse>,
@@ -73,11 +74,13 @@ export default JourneyMatch;
 const fallbackTypeRegex = /(.+?)( |\d|\b).*\d+/;
 
 export async function enrichedJourneyMatch(
-  options: JourneyMatchOptions,
+  options: EnrichedJourneyMatchOptions,
   profile?: AllowedHafasProfile,
 ): Promise<ParsedJourneyMatchResponse[]> {
   const journeyMatches = await JourneyMatch(options, profile);
-  const limitedJourneyMatches = journeyMatches.slice(0, 3);
+  const limitedJourneyMatches = options.limit
+    ? journeyMatches.slice(0, options.limit)
+    : journeyMatches;
 
   for (let i = 0; i < limitedJourneyMatches.length; i++) {
     const j = limitedJourneyMatches[i];

@@ -22,6 +22,9 @@ const parseJourneyDetails = (
 
   const date = parse(journey.date, 'yyyyMMdd', new Date());
   const train = common.prodL[journey.prodX];
+  if (!train.name) {
+    train.name = `${train.type} ${train.number}`;
+  }
   const stops = journey.stopL.map((stop) =>
     parseStop(stop, common, date, train),
   );
