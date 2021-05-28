@@ -6,7 +6,6 @@ describe('Reihung', () => {
       cy.intercept('/api/reihung/v2/wagen/371/2019-08-07T12:50:00.000Z', {
         fixture: 'sequence/genericICE1',
       });
-      cy.force404();
       cy.navigateToStation('Frankfurt (Main) Hbf');
       cy.findByTestId('abfahrtICE371').click();
     });

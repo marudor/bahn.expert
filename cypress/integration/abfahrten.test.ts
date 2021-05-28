@@ -2,7 +2,6 @@ describe('Abfahrten', () => {
   describe('generic', () => {
     beforeEach(() => {
       cy.mockFrankfurt();
-      cy.force404();
     });
     it('open details', () => {
       cy.visit('/');
@@ -51,7 +50,6 @@ describe('Abfahrten', () => {
   it('going back & showing different station should reload', () => {
     cy.mockFrankfurt({ delay: 2000 });
     cy.mockHamburg({ delay: 2000 });
-    cy.force404();
     cy.visit('/');
     cy.navigateToStation('Frankfurt (Main) Hbf');
     cy.findByTestId('loading').should('exist');
@@ -63,7 +61,6 @@ describe('Abfahrten', () => {
   });
   it('Zugausfall not strike through', () => {
     cy.mockHamburg();
-    cy.force404();
     cy.visit('/');
     cy.navigateToStation('Hamburg Hbf');
     cy.findByTestId('abfahrtRB81616').within(() => {
