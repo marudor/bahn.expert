@@ -3430,6 +3430,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:^15.3.0":
+  version: 15.6.1
+  resolution: "@types/node@npm:15.6.1"
+  checksum: 07b3855bc0a1ba2215455a3ef4ed5e88711321b3cdc0ba1ea0286f6facbdf61530970b9fa7eec79eb1d46231f986c21ef3b7c1f1e0c365cf1b887d76b0addb86
+  languageName: node
+  linkType: hard
+
 "@types/normalize-package-data@npm:^2.4.0":
   version: 2.4.0
   resolution: "@types/normalize-package-data@npm:2.4.0"
@@ -3462,7 +3469,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/pino-std-serializers@npm:*, @types/pino-std-serializers@npm:2.4.1":
+"@types/pino-std-serializers@npm:*":
   version: 2.4.1
   resolution: "@types/pino-std-serializers@npm:2.4.1"
   dependencies:
@@ -11953,11 +11960,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pino-pretty@npm:^4.8.0":
-  version: 4.8.0
-  resolution: "pino-pretty@npm:4.8.0"
+"pino-pretty@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "pino-pretty@npm:5.0.0"
   dependencies:
     "@hapi/bourne": ^2.0.0
+    "@types/node": ^15.3.0
     args: ^5.0.1
     chalk: ^4.0.0
     dateformat: ^4.5.1
@@ -11971,14 +11979,21 @@ __metadata:
     strip-json-comments: ^3.1.1
   bin:
     pino-pretty: bin.js
-  checksum: f4b908352cec4d1983812263c1f02301274b97644371a23bcc17470c9b70b1285b075195559c611fffa1777d16cc31cd5ea5636abf73b43aa64bc9304d85ab6e
+  checksum: 72d6355428240cd6fe5a74f753812a92e534c1f64b06680561ee2d0185facb6866f029fc9ab17637b8ad4d56a09ea2580e15593581c4bf9c7ae98c11cc6c2801
   languageName: node
   linkType: hard
 
-"pino-std-serializers@npm:^3.1.0, pino-std-serializers@npm:^3.2.0":
+"pino-std-serializers@npm:^3.1.0":
   version: 3.2.0
   resolution: "pino-std-serializers@npm:3.2.0"
   checksum: fb386422f018951ecdaf241b76554d6149928e9dd5c89d1bc12100d61d7f14b140fcbbfcf9203921b21cda05cc3eab2499289fe272358d50836627ccda15f5ec
+  languageName: node
+  linkType: hard
+
+"pino-std-serializers@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "pino-std-serializers@npm:4.0.0"
+  checksum: 2b6de9ebaf8d4edd7fe05302ce6f2ef0c7ca5c2ad1e5e567d6dfcfa3b6ee9a8a6bdb3f0c2dd65742c9018527aea5f1dc3784cfc14901603ca24531fc4b969761
   languageName: node
   linkType: hard
 
@@ -13281,7 +13296,6 @@ resolve@^2.0.0-next.3:
     "@types/nanoid": 3.0.0
     "@types/on-finished": 2.3.1
     "@types/pino": 6.3.8
-    "@types/pino-std-serializers": 2.4.1
     "@types/qs": 6.9.6
     "@types/react": 17.0.8
     "@types/react-dom": 17.0.5
@@ -13318,8 +13332,8 @@ resolve@^2.0.0-next.3:
     npm-run-all: ^4.1.5
     on-finished: ^2.3.0
     pino: ^6.11.3
-    pino-pretty: ^4.8.0
-    pino-std-serializers: ^3.2.0
+    pino-pretty: ^5.0.0
+    pino-std-serializers: ^4.0.0
     qs: ^6.10.1
     react: ^17.0.2
     react-dom: ^17.0.2
