@@ -6,77 +6,69 @@ module.exports = {
     plugin = (() => {
       'use strict';
       var e = {
-          997: (e, t, n) => {
-            n.r(t), n.d(t, { default: () => R });
-            function o(e, t, n, o) {
-              var r,
-                a = arguments.length,
-                s =
-                  a < 3
-                    ? t
-                    : null === o
-                    ? (o = Object.getOwnPropertyDescriptor(t, n))
-                    : o;
-              if (
-                'object' == typeof Reflect &&
-                'function' == typeof Reflect.decorate
-              )
-                s = Reflect.decorate(e, t, n, o);
-              else
-                for (var i = e.length - 1; i >= 0; i--)
-                  (r = e[i]) &&
-                    (s = (a < 3 ? r(s) : a > 3 ? r(t, n, s) : r(t, n)) || s);
-              return a > 3 && s && Object.defineProperty(t, n, s), s;
-            }
+          660: (e, t, n) => {
+            n.r(t), n.d(t, { default: () => g });
             const r = require('@yarnpkg/cli'),
-              a = require('@yarnpkg/core'),
-              s = require('clipanion'),
-              i = require('yup');
-            class l extends r.BaseCommand {
+              o = require('@yarnpkg/core'),
+              s = require('clipanion');
+            class a extends r.BaseCommand {
               constructor() {
                 super(...arguments),
-                  (this.workspaces = []),
-                  (this.json = !1),
-                  (this.production = !1),
-                  (this.all = !1);
+                  (this.json = s.Option.Boolean('--json', !1, {
+                    description: 'Format the output as an NDJSON stream',
+                  })),
+                  (this.production = s.Option.Boolean('--production', !1, {
+                    description:
+                      'Only install regular dependencies by omitting dev dependencies',
+                  })),
+                  (this.all = s.Option.Boolean('-A,--all', !1, {
+                    description: 'Install the entire project',
+                  })),
+                  (this.workspaces = s.Option.Rest());
               }
               async execute() {
-                const e = await a.Configuration.find(
+                const e = await o.Configuration.find(
                     this.context.cwd,
                     this.context.plugins,
                   ),
-                  { project: t, workspace: n } = await a.Project.find(
+                  { project: t, workspace: n } = await o.Project.find(
                     e,
                     this.context.cwd,
                   ),
-                  o = await a.Cache.find(e);
-                let s;
-                if (this.all) s = new Set(t.workspaces);
+                  s = await o.Cache.find(e);
+                let a;
+                if (
+                  (await t.restoreInstallState({ restoreResolutions: !1 }),
+                  this.all)
+                )
+                  a = new Set(t.workspaces);
                 else if (0 === this.workspaces.length) {
                   if (!n)
                     throw new r.WorkspaceRequiredError(t.cwd, this.context.cwd);
-                  s = new Set([n]);
+                  a = new Set([n]);
                 } else
-                  s = new Set(
+                  a = new Set(
                     this.workspaces.map((e) =>
-                      t.getWorkspaceByIdent(a.structUtils.parseIdent(e)),
+                      t.getWorkspaceByIdent(o.structUtils.parseIdent(e)),
                     ),
                   );
-                for (const e of s)
-                  for (const n of a.Manifest.hardDependencies)
-                    for (const o of e.manifest.getForScope(n).values()) {
-                      const e = t.tryWorkspaceByDescriptor(o);
-                      null !== e && s.add(e);
+                for (const e of a)
+                  for (const n of this.production
+                    ? ['dependencies']
+                    : o.Manifest.hardDependencies)
+                    for (const r of e.manifest.getForScope(n).values()) {
+                      const e = t.tryWorkspaceByDescriptor(r);
+                      null !== e && a.add(e);
                     }
                 for (const e of t.workspaces)
-                  s.has(e)
+                  a.has(e)
                     ? this.production && e.manifest.devDependencies.clear()
                     : (e.manifest.dependencies.clear(),
                       e.manifest.devDependencies.clear(),
                       e.manifest.peerDependencies.clear(),
                       e.manifest.scripts.clear());
                 return (
-                  await a.StreamReport.start(
+                  await o.StreamReport.start(
                     {
                       configuration: e,
                       json: this.json,
@@ -85,7 +77,7 @@ module.exports = {
                     },
                     async (e) => {
                       await t.install({
-                        cache: o,
+                        cache: s,
                         report: e,
                         persistProject: !1,
                       });
@@ -94,180 +86,144 @@ module.exports = {
                 ).exitCode();
               }
             }
-            (l.usage = s.Command.Usage({
-              category: 'Workspace-related commands',
-              description: 'install a single workspace and its dependencies',
-              details:
-                '\n      This command will run an install as if the specified workspaces (and all other workspaces they depend on) were the only ones in the project. If no workspaces are explicitly listed, the active one will be assumed.\n\n      Note that this command is only very moderately useful when using zero-installs, since the cache will contain all the packages anyway - meaning that the only difference between a full install and a focused install would just be a few extra lines in the `.pnp.js` file, at the cost of introducing an extra complexity.\n\n      If the `-A,--all` flag is set, the entire project will be installed. Combine with `--production` to replicate the old `yarn install --production`.\n    ',
-            })),
-              (l.schema = i
-                .object()
-                .shape({
-                  all: i.bool(),
-                  workspaces: i
-                    .array()
-                    .when('all', {
-                      is: !0,
-                      then: i
-                        .array()
-                        .max(
-                          0,
-                          'Cannot specify workspaces when using the --all flag',
-                        ),
-                      otherwise: i.array(),
-                    }),
-                })),
-              o([s.Command.Rest()], l.prototype, 'workspaces', void 0),
-              o(
-                [
-                  s.Command.Boolean('--json', {
-                    description: 'Format the output as an NDJSON stream',
-                  }),
-                ],
-                l.prototype,
-                'json',
-                void 0,
-              ),
-              o(
-                [
-                  s.Command.Boolean('--production', {
-                    description:
-                      'Only install regular dependencies by omitting dev dependencies',
-                  }),
-                ],
-                l.prototype,
-                'production',
-                void 0,
-              ),
-              o(
-                [
-                  s.Command.Boolean('-A,--all', {
-                    description: 'Install the entire project',
-                  }),
-                ],
-                l.prototype,
-                'all',
-                void 0,
-              ),
-              o(
-                [s.Command.Path('workspaces', 'focus')],
-                l.prototype,
-                'execute',
-                null,
-              );
-            var u = n(401),
-              p = n.n(u);
-            const c = require('os');
-            var d = n(578),
-              f = n.n(d);
-            const h = (e, t) => {
-                const n = [];
-                for (const o of e.workspacesCwds) {
-                  const e = t.workspacesByCwd.get(o);
-                  e && n.push(e, ...h(e, t));
-                }
-                return n;
-              },
-              g = (e, t) => {
-                const n = new Set(),
-                  o = (e) => {
-                    const r = new Map([
-                      ...e.manifest.dependencies,
-                      ...e.manifest.devDependencies,
-                    ]);
-                    for (const e of r.values()) {
-                      const r = t.tryWorkspaceByDescriptor(e);
-                      null === r || n.has(r) || (n.add(r), o(r));
-                    }
-                  };
-                return o(e), n;
-              };
-            class A extends r.BaseCommand {
+            (a.paths = [['workspaces', 'focus']]),
+              (a.usage = s.Command.Usage({
+                category: 'Workspace-related commands',
+                description: 'install a single workspace and its dependencies',
+                details:
+                  '\n      This command will run an install as if the specified workspaces (and all other workspaces they depend on) were the only ones in the project. If no workspaces are explicitly listed, the active one will be assumed.\n\n      Note that this command is only very moderately useful when using zero-installs, since the cache will contain all the packages anyway - meaning that the only difference between a full install and a focused install would just be a few extra lines in the `.pnp.cjs` file, at the cost of introducing an extra complexity.\n\n      If the `-A,--all` flag is set, the entire project will be installed. Combine with `--production` to replicate the old `yarn install --production`.\n    ',
+              }));
+            var i = n(529),
+              l = n.n(i);
+            const u = require('os');
+            var p = n(741),
+              c = n.n(p);
+            const f = require('typanion');
+            class d extends r.BaseCommand {
               constructor() {
                 super(...arguments),
-                  (this.args = []),
-                  (this.allLegacy = !1),
-                  (this.recursive = !1),
-                  (this.verbose = !1),
-                  (this.parallel = !1),
-                  (this.interlaced = !1),
-                  (this.topological = !1),
-                  (this.topologicalDev = !1),
-                  (this.include = []),
-                  (this.exclude = []),
-                  (this.publicOnly = !1);
+                  (this.recursive = s.Option.Boolean('-R,--recursive', !1, {
+                    description:
+                      'Find packages via dependencies/devDependencies instead of using the workspaces field',
+                  })),
+                  (this.all = s.Option.Boolean('-A,--all', !1, {
+                    description:
+                      'Run the command on all workspaces of a project',
+                  })),
+                  (this.verbose = s.Option.Boolean('-v,--verbose', !1, {
+                    description:
+                      'Prefix each output line with the name of the originating workspace',
+                  })),
+                  (this.parallel = s.Option.Boolean('-p,--parallel', !1, {
+                    description: 'Run the commands in parallel',
+                  })),
+                  (this.interlaced = s.Option.Boolean('-i,--interlaced', !1, {
+                    description:
+                      'Print the output of commands in real-time instead of buffering it',
+                  })),
+                  (this.jobs = s.Option.String('-j,--jobs', {
+                    description:
+                      'The maximum number of parallel tasks that the execution will be limited to',
+                    validator: f.applyCascade(f.isNumber(), [
+                      f.isInteger(),
+                      f.isAtLeast(2),
+                    ]),
+                  })),
+                  (this.topological = s.Option.Boolean('-t,--topological', !1, {
+                    description:
+                      'Run the command after all workspaces it depends on (regular) have finished',
+                  })),
+                  (this.topologicalDev = s.Option.Boolean(
+                    '--topological-dev',
+                    !1,
+                    {
+                      description:
+                        'Run the command after all workspaces it depends on (regular + dev) have finished',
+                    },
+                  )),
+                  (this.include = s.Option.Array('--include', [], {
+                    description:
+                      'An array of glob pattern idents; only matching workspaces will be traversed',
+                  })),
+                  (this.exclude = s.Option.Array('--exclude', [], {
+                    description:
+                      "An array of glob pattern idents; matching workspaces won't be traversed",
+                  })),
+                  (this.publicOnly = s.Option.Boolean('--no-private', {
+                    description:
+                      'Avoid running the command on private workspaces',
+                  })),
+                  (this.commandName = s.Option.String()),
+                  (this.args = s.Option.Proxy());
               }
               async execute() {
-                var e;
-                const t = await a.Configuration.find(
+                const e = await o.Configuration.find(
                     this.context.cwd,
                     this.context.plugins,
                   ),
-                  { project: n, workspace: o } = await a.Project.find(
-                    t,
+                  { project: t, workspace: n } = await o.Project.find(
+                    e,
                     this.context.cwd,
-                  ),
+                  );
+                if (!this.all && !n)
+                  throw new r.WorkspaceRequiredError(t.cwd, this.context.cwd);
+                const a = this.cli.process([this.commandName, ...this.args]),
                   i =
-                    null !== (e = this.all) && void 0 !== e
-                      ? e
-                      : this.allLegacy;
-                if (!i && !o)
-                  throw new r.WorkspaceRequiredError(n.cwd, this.context.cwd);
-                const l = this.cli.process([this.commandName, ...this.args]),
-                  u =
-                    1 === l.path.length &&
-                    'run' === l.path[0] &&
-                    void 0 !== l.scriptName
-                      ? l.scriptName
+                    1 === a.path.length &&
+                    'run' === a.path[0] &&
+                    void 0 !== a.scriptName
+                      ? a.scriptName
                       : null;
-                if (0 === l.path.length)
+                if (0 === a.path.length)
                   throw new s.UsageError(
                     "Invalid subcommand name for iteration - use the 'run' keyword if you wish to execute a script",
                   );
-                const d = i ? n.topLevelWorkspace : o,
-                  A = this.recursive ? [d, ...g(d, n)] : [d, ...h(d, n)],
-                  R = [];
-                for (const e of A)
-                  (!u || e.manifest.scripts.has(u) || u.includes(':')) &&
-                    ((u === process.env.npm_lifecycle_event &&
-                      e.cwd === o.cwd) ||
+                const p = this.all ? t.topLevelWorkspace : n,
+                  f = this.recursive
+                    ? [p, ...p.getRecursiveWorkspaceDependencies()]
+                    : [p, ...p.getRecursiveWorkspaceChildren()],
+                  d = [];
+                for (const e of f)
+                  (!i || e.manifest.scripts.has(i) || i.includes(':')) &&
+                    ((i === process.env.npm_lifecycle_event &&
+                      e.cwd === n.cwd) ||
                       (this.include.length > 0 &&
-                        !p().isMatch(
-                          a.structUtils.stringifyIdent(e.locator),
+                        !l().isMatch(
+                          o.structUtils.stringifyIdent(e.locator),
                           this.include,
                         )) ||
                       (this.exclude.length > 0 &&
-                        p().isMatch(
-                          a.structUtils.stringifyIdent(e.locator),
+                        l().isMatch(
+                          o.structUtils.stringifyIdent(e.locator),
                           this.exclude,
                         )) ||
                       (this.publicOnly && !0 === e.manifest.private) ||
-                      R.push(e));
-                let m = this.interlaced;
-                this.parallel || (m = !0);
-                const _ = new Map(),
-                  E = new Set(),
-                  C = this.parallel ? Math.max(1, (0, c.cpus)().length / 2) : 1,
-                  b = f()(this.jobs || C);
-                let v = 0,
-                  x = null,
-                  w = !1;
-                const S = await a.StreamReport.start(
-                  { configuration: t, stdout: this.context.stdout },
-                  async (e) => {
-                    const o = async (n, { commandIndex: o }) => {
-                      if (w) return -1;
+                      d.push(e));
+                let g = this.interlaced;
+                this.parallel || (g = !0);
+                const A = new Map(),
+                  R = new Set(),
+                  y = this.parallel ? Math.max(1, (0, u.cpus)().length / 2) : 1,
+                  m = c()(this.jobs || y);
+                let _ = 0,
+                  E = null,
+                  b = !1;
+                const C = await o.StreamReport.start(
+                  { configuration: e, stdout: this.context.stdout },
+                  async (n) => {
+                    const r = async (t, { commandIndex: r }) => {
+                      if (b) return -1;
                       !this.parallel &&
                         this.verbose &&
-                        o > 1 &&
-                        e.reportSeparator();
-                      const r = (function (
+                        r > 1 &&
+                        n.reportSeparator();
+                      const s = (function (
                           e,
-                          { configuration: t, commandIndex: n, verbose: o },
+                          { configuration: t, commandIndex: n, verbose: r },
                         ) {
-                          if (!o) return null;
-                          const r = a.structUtils.convertToIdent(e.locator),
-                            s = `[${a.structUtils.stringifyIdent(r)}]:`,
+                          if (!r) return null;
+                          const s = o.structUtils.convertToIdent(e.locator),
+                            a = `[${o.structUtils.stringifyIdent(s)}]:`,
                             i = [
                               '#2E86AB',
                               '#A23B72',
@@ -276,73 +232,79 @@ module.exports = {
                               '#CCE2A3',
                             ],
                             l = i[n % i.length];
-                          return a.formatUtils.pretty(t, s, l);
-                        })(n, {
-                          configuration: t,
+                          return o.formatUtils.pretty(t, a, l);
+                        })(t, {
+                          configuration: e,
                           verbose: this.verbose,
-                          commandIndex: o,
+                          commandIndex: r,
                         }),
-                        [s, i] = y(e, { prefix: r, interlaced: m }),
-                        [l, u] = y(e, { prefix: r, interlaced: m });
+                        [a, i] = h(n, { prefix: s, interlaced: g }),
+                        [l, u] = h(n, { prefix: s, interlaced: g });
                       try {
-                        const t =
-                          (await this.cli.run(
-                            [this.commandName, ...this.args],
-                            { cwd: n.cwd, stdout: s, stderr: l },
-                          )) || 0;
-                        s.end(), l.end();
-                        const o = await i,
-                          a = await u;
-                        return (
-                          this.verbose &&
-                            o &&
-                            a &&
-                            e.reportInfo(
-                              null,
-                              `${r} Process exited without output (exit code ${t})`,
-                            ),
-                          130 === t && ((w = !0), (x = t)),
-                          t
-                        );
+                        this.verbose &&
+                          n.reportInfo(null, s + ' Process started');
+                        const r = Date.now(),
+                          p =
+                            (await this.cli.run(
+                              [this.commandName, ...this.args],
+                              { cwd: t.cwd, stdout: a, stderr: l },
+                            )) || 0;
+                        a.end(), l.end(), await i, await u;
+                        const c = Date.now();
+                        if (this.verbose) {
+                          const t = e.get('enableTimers')
+                            ? ', completed in ' +
+                              o.formatUtils.pretty(
+                                e,
+                                c - r,
+                                o.formatUtils.Type.DURATION,
+                              )
+                            : '';
+                          n.reportInfo(
+                            null,
+                            `${s} Process exited (exit code ${p})${t}`,
+                          );
+                        }
+                        return 130 === p && ((b = !0), (E = p)), p;
                       } catch (e) {
-                        throw (s.end(), l.end(), await i, await u, e);
+                        throw (a.end(), l.end(), await i, await u, e);
                       }
                     };
-                    for (const e of R) _.set(e.anchoredLocator.locatorHash, e);
-                    for (; _.size > 0 && !e.hasErrors(); ) {
-                      const r = [];
-                      for (const [e, t] of _) {
-                        if (E.has(t.anchoredDescriptor.descriptorHash))
+                    for (const e of d) A.set(e.anchoredLocator.locatorHash, e);
+                    for (; A.size > 0 && !n.hasErrors(); ) {
+                      const s = [];
+                      for (const [e, n] of A) {
+                        if (R.has(n.anchoredDescriptor.descriptorHash))
                           continue;
-                        let a = !0;
+                        let o = !0;
                         if (this.topological || this.topologicalDev) {
                           const e = this.topologicalDev
                             ? new Map([
-                                ...t.manifest.dependencies,
-                                ...t.manifest.devDependencies,
+                                ...n.manifest.dependencies,
+                                ...n.manifest.devDependencies,
                               ])
-                            : t.manifest.dependencies;
-                          for (const t of e.values()) {
-                            const e = n.tryWorkspaceByDescriptor(t);
+                            : n.manifest.dependencies;
+                          for (const n of e.values()) {
+                            const e = t.tryWorkspaceByDescriptor(n);
                             if (
-                              ((a =
+                              ((o =
                                 null === e ||
-                                !_.has(e.anchoredLocator.locatorHash)),
-                              !a)
+                                !A.has(e.anchoredLocator.locatorHash)),
+                              !o)
                             )
                               break;
                           }
                         }
                         if (
-                          a &&
-                          (E.add(t.anchoredDescriptor.descriptorHash),
-                          r.push(
-                            b(async () => {
-                              const n = await o(t, { commandIndex: ++v });
+                          o &&
+                          (R.add(n.anchoredDescriptor.descriptorHash),
+                          s.push(
+                            m(async () => {
+                              const t = await r(n, { commandIndex: ++_ });
                               return (
-                                _.delete(e),
-                                E.delete(t.anchoredDescriptor.descriptorHash),
-                                n
+                                A.delete(e),
+                                R.delete(n.anchoredDescriptor.descriptorHash),
+                                t
                               );
                             }),
                           ),
@@ -350,68 +312,55 @@ module.exports = {
                         )
                           break;
                       }
-                      if (0 === r.length) {
-                        const n = Array.from(_.values())
-                          .map((e) =>
-                            a.structUtils.prettyLocator(t, e.anchoredLocator),
+                      if (0 === s.length) {
+                        const t = Array.from(A.values())
+                          .map((t) =>
+                            o.structUtils.prettyLocator(e, t.anchoredLocator),
                           )
                           .join(', ');
-                        return void e.reportError(
-                          a.MessageName.CYCLIC_DEPENDENCIES,
-                          `Dependency cycle detected (${n})`,
+                        return void n.reportError(
+                          o.MessageName.CYCLIC_DEPENDENCIES,
+                          `Dependency cycle detected (${t})`,
                         );
                       }
-                      const s = (await Promise.all(r)).find((e) => 0 !== e);
-                      null === x && (x = void 0 !== s ? 1 : x),
+                      const a = (await Promise.all(s)).find((e) => 0 !== e);
+                      null === E && (E = void 0 !== a ? 1 : E),
                         (this.topological || this.topologicalDev) &&
-                          void 0 !== s &&
-                          e.reportError(
-                            a.MessageName.UNNAMED,
+                          void 0 !== a &&
+                          n.reportError(
+                            o.MessageName.UNNAMED,
                             "The command failed for workspaces that are depended upon by other workspaces; can't satisfy the dependency graph",
                           );
                     }
                   },
                 );
-                return null !== x ? x : S.exitCode();
+                return null !== E ? E : C.exitCode();
               }
             }
-            function y(e, { prefix: t, interlaced: n }) {
-              const o = e.createStreamReporter(t),
-                r = new a.miscUtils.DefaultStream();
-              r.pipe(o, { end: !1 }),
-                r.on('finish', () => {
-                  o.end();
+            function h(e, { prefix: t, interlaced: n }) {
+              const r = e.createStreamReporter(t),
+                s = new o.miscUtils.DefaultStream();
+              s.pipe(r, { end: !1 }),
+                s.on('finish', () => {
+                  r.end();
                 });
-              const s = new Promise((e) => {
-                o.on('finish', () => {
-                  e(r.active);
+              const a = new Promise((e) => {
+                r.on('finish', () => {
+                  e(s.active);
                 });
               });
-              if (n) return [r, s];
-              const i = new a.miscUtils.BufferStream();
+              if (n) return [s, a];
+              const i = new o.miscUtils.BufferStream();
               return (
-                i.pipe(r, { end: !1 }),
+                i.pipe(s, { end: !1 }),
                 i.on('finish', () => {
-                  r.end();
+                  s.end();
                 }),
-                [i, s]
+                [i, a]
               );
             }
-            (A.schema = i
-              .object()
-              .shape({
-                jobs: i.number().min(2),
-                parallel: i
-                  .boolean()
-                  .when('jobs', {
-                    is: (e) => e > 1,
-                    then: i
-                      .boolean()
-                      .oneOf([!0], '--parallel must be set when using --jobs'),
-                    otherwise: i.boolean(),
-                  }),
-              })),
-              (A.usage = s.Command.Usage({
+            (d.paths = [['workspaces', 'foreach']]),
+              (d.usage = s.Command.Usage({
                 category: 'Workspace-related commands',
                 description: 'run a command on all workspaces',
                 details:
@@ -430,153 +379,19 @@ module.exports = {
                     'yarn workspaces foreach -pt run build',
                   ],
                 ],
-              })),
-              o([s.Command.String()], A.prototype, 'commandName', void 0),
-              o([s.Command.Proxy()], A.prototype, 'args', void 0),
-              o(
-                [s.Command.Boolean('-a', { hidden: !0 })],
-                A.prototype,
-                'allLegacy',
-                void 0,
-              ),
-              o(
-                [
-                  s.Command.Boolean('-R,--recursive', {
-                    description:
-                      'Find packages via dependencies/devDependencies instead of using the workspaces field',
-                  }),
-                ],
-                A.prototype,
-                'recursive',
-                void 0,
-              ),
-              o(
-                [
-                  s.Command.Boolean('-A,--all', {
-                    description:
-                      'Run the command on all workspaces of a project',
-                  }),
-                ],
-                A.prototype,
-                'all',
-                void 0,
-              ),
-              o(
-                [
-                  s.Command.Boolean('-v,--verbose', {
-                    description:
-                      'Prefix each output line with the name of the originating workspace',
-                  }),
-                ],
-                A.prototype,
-                'verbose',
-                void 0,
-              ),
-              o(
-                [
-                  s.Command.Boolean('-p,--parallel', {
-                    description: 'Run the commands in parallel',
-                  }),
-                ],
-                A.prototype,
-                'parallel',
-                void 0,
-              ),
-              o(
-                [
-                  s.Command.Boolean('-i,--interlaced', {
-                    description:
-                      'Print the output of commands in real-time instead of buffering it',
-                  }),
-                ],
-                A.prototype,
-                'interlaced',
-                void 0,
-              ),
-              o(
-                [
-                  s.Command.String('-j,--jobs', {
-                    description:
-                      'The maximum number of parallel tasks that the execution will be limited to',
-                  }),
-                ],
-                A.prototype,
-                'jobs',
-                void 0,
-              ),
-              o(
-                [
-                  s.Command.Boolean('-t,--topological', {
-                    description:
-                      'Run the command after all workspaces it depends on (regular) have finished',
-                  }),
-                ],
-                A.prototype,
-                'topological',
-                void 0,
-              ),
-              o(
-                [
-                  s.Command.Boolean('--topological-dev', {
-                    description:
-                      'Run the command after all workspaces it depends on (regular + dev) have finished',
-                  }),
-                ],
-                A.prototype,
-                'topologicalDev',
-                void 0,
-              ),
-              o(
-                [
-                  s.Command.Array('--include', {
-                    description:
-                      'An array of glob pattern idents; only matching workspaces will be traversed',
-                  }),
-                ],
-                A.prototype,
-                'include',
-                void 0,
-              ),
-              o(
-                [
-                  s.Command.Array('--exclude', {
-                    description:
-                      "An array of glob pattern idents; matching workspaces won't be traversed",
-                  }),
-                ],
-                A.prototype,
-                'exclude',
-                void 0,
-              ),
-              o(
-                [
-                  s.Command.Boolean('--no-private', {
-                    description:
-                      'Avoid running the command on private workspaces',
-                  }),
-                ],
-                A.prototype,
-                'publicOnly',
-                void 0,
-              ),
-              o(
-                [s.Command.Path('workspaces', 'foreach')],
-                A.prototype,
-                'execute',
-                null,
-              );
-            const R = { commands: [l, A] };
+              }));
+            const g = { commands: [a, d] };
           },
-          235: (e, t, n) => {
-            const o = n(900),
-              r = n(617),
-              a = n(495),
-              s = n(425),
+          46: (e, t, n) => {
+            const r = n(372),
+              o = n(179),
+              s = n(273),
+              a = n(8),
               i = (e, t = {}) => {
                 let n = [];
                 if (Array.isArray(e))
-                  for (let o of e) {
-                    let e = i.create(o, t);
+                  for (let r of e) {
+                    let e = i.create(r, t);
                     Array.isArray(e) ? n.push(...e) : n.push(e);
                   }
                 else n = [].concat(i.create(e, t));
@@ -588,15 +403,15 @@ module.exports = {
                   n
                 );
               };
-            (i.parse = (e, t = {}) => s(e, t)),
+            (i.parse = (e, t = {}) => a(e, t)),
               (i.stringify = (e, t = {}) =>
-                o('string' == typeof e ? i.parse(e, t) : e, t)),
+                r('string' == typeof e ? i.parse(e, t) : e, t)),
               (i.compile = (e, t = {}) => (
-                'string' == typeof e && (e = i.parse(e, t)), r(e, t)
+                'string' == typeof e && (e = i.parse(e, t)), o(e, t)
               )),
               (i.expand = (e, t = {}) => {
                 'string' == typeof e && (e = i.parse(e, t));
-                let n = a(e, t);
+                let n = s(e, t);
                 return (
                   !0 === t.noempty && (n = n.filter(Boolean)),
                   !0 === t.nodupes && (n = [...new Set(n)]),
@@ -611,14 +426,14 @@ module.exports = {
                   : i.expand(e, t)),
               (e.exports = i);
           },
-          617: (e, t, n) => {
-            const o = n(169),
-              r = n(542);
+          179: (e, t, n) => {
+            const r = n(792),
+              o = n(641);
             e.exports = (e, t = {}) => {
-              let n = (e, a = {}) => {
-                let s = r.isInvalidBrace(a),
+              let n = (e, s = {}) => {
+                let a = o.isInvalidBrace(s),
                   i = !0 === e.invalid && !0 === t.escapeInvalid,
-                  l = !0 === s || !0 === i,
+                  l = !0 === a || !0 === i,
                   u = !0 === t.escapeInvalid ? '\\' : '',
                   p = '';
                 if (!0 === e.isOpen) return u + e.value;
@@ -629,10 +444,10 @@ module.exports = {
                   return 'comma' === e.prev.type ? '' : l ? e.value : '|';
                 if (e.value) return e.value;
                 if (e.nodes && e.ranges > 0) {
-                  let n = r.reduce(e.nodes),
-                    a = o(...n, { ...t, wrap: !1, toRegex: !0 });
-                  if (0 !== a.length)
-                    return n.length > 1 && a.length > 1 ? `(${a})` : a;
+                  let n = o.reduce(e.nodes),
+                    s = r(...n, { ...t, wrap: !1, toRegex: !0 });
+                  if (0 !== s.length)
+                    return n.length > 1 && s.length > 1 ? `(${s})` : s;
                 }
                 if (e.nodes) for (let t of e.nodes) p += n(t, e);
                 return p;
@@ -640,7 +455,7 @@ module.exports = {
               return n(e);
             };
           },
-          384: (e) => {
+          472: (e) => {
             e.exports = {
               MAX_LENGTH: 65536,
               CHAR_0: '0',
@@ -689,21 +504,21 @@ module.exports = {
               CHAR_ZERO_WIDTH_NOBREAK_SPACE: '\ufeff',
             };
           },
-          495: (e, t, n) => {
-            const o = n(169),
-              r = n(900),
-              a = n(542),
-              s = (e = '', t = '', n = !1) => {
-                let o = [];
+          273: (e, t, n) => {
+            const r = n(792),
+              o = n(372),
+              s = n(641),
+              a = (e = '', t = '', n = !1) => {
+                let r = [];
                 if (((e = [].concat(e)), !(t = [].concat(t)).length)) return e;
-                if (!e.length) return n ? a.flatten(t).map((e) => `{${e}}`) : t;
-                for (let r of e)
-                  if (Array.isArray(r)) for (let e of r) o.push(s(e, t, n));
+                if (!e.length) return n ? s.flatten(t).map((e) => `{${e}}`) : t;
+                for (let o of e)
+                  if (Array.isArray(o)) for (let e of o) r.push(a(e, t, n));
                   else
                     for (let e of t)
                       !0 === n && 'string' == typeof e && (e = `{${e}}`),
-                        o.push(Array.isArray(e) ? s(r, e, n) : r + e);
-                return a.flatten(o);
+                        r.push(Array.isArray(e) ? a(o, e, n) : o + e);
+                return s.flatten(r);
               };
             e.exports = (e, t = {}) => {
               let n = void 0 === t.rangeLimit ? 1e3 : t.rangeLimit,
@@ -714,169 +529,169 @@ module.exports = {
                   for (; 'brace' !== u.type && 'root' !== u.type && u.parent; )
                     (u = u.parent), (p = u.queue);
                   if (e.invalid || e.dollar)
-                    return void p.push(s(p.pop(), r(e, t)));
+                    return void p.push(a(p.pop(), o(e, t)));
                   if (
                     'brace' === e.type &&
                     !0 !== e.invalid &&
                     2 === e.nodes.length
                   )
-                    return void p.push(s(p.pop(), ['{}']));
+                    return void p.push(a(p.pop(), ['{}']));
                   if (e.nodes && e.ranges > 0) {
-                    let i = a.reduce(e.nodes);
-                    if (a.exceedsLimit(...i, t.step, n))
+                    let i = s.reduce(e.nodes);
+                    if (s.exceedsLimit(...i, t.step, n))
                       throw new RangeError(
                         'expanded array length exceeds range limit. Use options.rangeLimit to increase or disable the limit.',
                       );
-                    let l = o(...i, t);
+                    let l = r(...i, t);
                     return (
-                      0 === l.length && (l = r(e, t)),
-                      p.push(s(p.pop(), l)),
+                      0 === l.length && (l = o(e, t)),
+                      p.push(a(p.pop(), l)),
                       void (e.nodes = [])
                     );
                   }
-                  let c = a.encloseBrace(e),
-                    d = e.queue,
-                    f = e;
-                  for (; 'brace' !== f.type && 'root' !== f.type && f.parent; )
-                    (f = f.parent), (d = f.queue);
+                  let c = s.encloseBrace(e),
+                    f = e.queue,
+                    d = e;
+                  for (; 'brace' !== d.type && 'root' !== d.type && d.parent; )
+                    (d = d.parent), (f = d.queue);
                   for (let t = 0; t < e.nodes.length; t++) {
                     let n = e.nodes[t];
                     'comma' !== n.type || 'brace' !== e.type
                       ? 'close' !== n.type
                         ? n.value && 'open' !== n.type
-                          ? d.push(s(d.pop(), n.value))
+                          ? f.push(a(f.pop(), n.value))
                           : n.nodes && i(n, e)
-                        : p.push(s(p.pop(), d, c))
-                      : (1 === t && d.push(''), d.push(''));
+                        : p.push(a(p.pop(), f, c))
+                      : (1 === t && f.push(''), f.push(''));
                   }
-                  return d;
+                  return f;
                 };
-              return a.flatten(i(e));
+              return s.flatten(i(e));
             };
           },
-          425: (e, t, n) => {
-            const o = n(900),
+          8: (e, t, n) => {
+            const r = n(372),
               {
-                MAX_LENGTH: r,
-                CHAR_BACKSLASH: a,
-                CHAR_BACKTICK: s,
+                MAX_LENGTH: o,
+                CHAR_BACKSLASH: s,
+                CHAR_BACKTICK: a,
                 CHAR_COMMA: i,
                 CHAR_DOT: l,
                 CHAR_LEFT_PARENTHESES: u,
                 CHAR_RIGHT_PARENTHESES: p,
                 CHAR_LEFT_CURLY_BRACE: c,
-                CHAR_RIGHT_CURLY_BRACE: d,
-                CHAR_LEFT_SQUARE_BRACKET: f,
+                CHAR_RIGHT_CURLY_BRACE: f,
+                CHAR_LEFT_SQUARE_BRACKET: d,
                 CHAR_RIGHT_SQUARE_BRACKET: h,
                 CHAR_DOUBLE_QUOTE: g,
                 CHAR_SINGLE_QUOTE: A,
-                CHAR_NO_BREAK_SPACE: y,
-                CHAR_ZERO_WIDTH_NOBREAK_SPACE: R,
-              } = n(384);
+                CHAR_NO_BREAK_SPACE: R,
+                CHAR_ZERO_WIDTH_NOBREAK_SPACE: y,
+              } = n(472);
             e.exports = (e, t = {}) => {
               if ('string' != typeof e)
                 throw new TypeError('Expected a string');
               let n = t || {},
                 m =
-                  'number' == typeof n.maxLength ? Math.min(r, n.maxLength) : r;
+                  'number' == typeof n.maxLength ? Math.min(o, n.maxLength) : o;
               if (e.length > m)
                 throw new SyntaxError(
                   `Input length (${e.length}), exceeds max characters (${m})`,
                 );
               let _,
                 E = { type: 'root', input: e, nodes: [] },
-                C = [E],
-                b = E,
-                v = E,
-                x = 0,
-                w = e.length,
-                S = 0,
+                b = [E],
+                C = E,
+                x = E,
+                v = 0,
+                S = e.length,
+                w = 0,
                 H = 0;
-              const T = () => e[S++],
-                k = (e) => {
+              const T = () => e[w++],
+                O = (e) => {
                   if (
-                    ('text' === e.type && 'dot' === v.type && (v.type = 'text'),
-                    !v || 'text' !== v.type || 'text' !== e.type)
+                    ('text' === e.type && 'dot' === x.type && (x.type = 'text'),
+                    !x || 'text' !== x.type || 'text' !== e.type)
                   )
                     return (
-                      b.nodes.push(e), (e.parent = b), (e.prev = v), (v = e), e
+                      C.nodes.push(e), (e.parent = C), (e.prev = x), (x = e), e
                     );
-                  v.value += e.value;
+                  x.value += e.value;
                 };
-              for (k({ type: 'bos' }); S < w; )
-                if (((b = C[C.length - 1]), (_ = T()), _ !== R && _ !== y))
-                  if (_ !== a)
+              for (O({ type: 'bos' }); w < S; )
+                if (((C = b[b.length - 1]), (_ = T()), _ !== y && _ !== R))
+                  if (_ !== s)
                     if (_ !== h)
-                      if (_ !== f)
+                      if (_ !== d)
                         if (_ !== u)
                           if (_ !== p)
-                            if (_ !== g && _ !== A && _ !== s)
+                            if (_ !== g && _ !== A && _ !== a)
                               if (_ !== c)
-                                if (_ !== d)
+                                if (_ !== f)
                                   if (_ === i && H > 0) {
-                                    if (b.ranges > 0) {
-                                      b.ranges = 0;
-                                      let e = b.nodes.shift();
-                                      b.nodes = [
+                                    if (C.ranges > 0) {
+                                      C.ranges = 0;
+                                      let e = C.nodes.shift();
+                                      C.nodes = [
                                         e,
-                                        { type: 'text', value: o(b) },
+                                        { type: 'text', value: r(C) },
                                       ];
                                     }
-                                    k({ type: 'comma', value: _ }), b.commas++;
+                                    O({ type: 'comma', value: _ }), C.commas++;
                                   } else if (
                                     _ === l &&
                                     H > 0 &&
-                                    0 === b.commas
+                                    0 === C.commas
                                   ) {
-                                    let e = b.nodes;
+                                    let e = C.nodes;
                                     if (0 === H || 0 === e.length) {
-                                      k({ type: 'text', value: _ });
+                                      O({ type: 'text', value: _ });
                                       continue;
                                     }
-                                    if ('dot' === v.type) {
+                                    if ('dot' === x.type) {
                                       if (
-                                        ((b.range = []),
-                                        (v.value += _),
-                                        (v.type = 'range'),
-                                        3 !== b.nodes.length &&
-                                          5 !== b.nodes.length)
+                                        ((C.range = []),
+                                        (x.value += _),
+                                        (x.type = 'range'),
+                                        3 !== C.nodes.length &&
+                                          5 !== C.nodes.length)
                                       ) {
-                                        (b.invalid = !0),
-                                          (b.ranges = 0),
-                                          (v.type = 'text');
+                                        (C.invalid = !0),
+                                          (C.ranges = 0),
+                                          (x.type = 'text');
                                         continue;
                                       }
-                                      b.ranges++, (b.args = []);
+                                      C.ranges++, (C.args = []);
                                       continue;
                                     }
-                                    if ('range' === v.type) {
+                                    if ('range' === x.type) {
                                       e.pop();
                                       let t = e[e.length - 1];
-                                      (t.value += v.value + _),
-                                        (v = t),
-                                        b.ranges--;
+                                      (t.value += x.value + _),
+                                        (x = t),
+                                        C.ranges--;
                                       continue;
                                     }
-                                    k({ type: 'dot', value: _ });
-                                  } else k({ type: 'text', value: _ });
+                                    O({ type: 'dot', value: _ });
+                                  } else O({ type: 'text', value: _ });
                                 else {
-                                  if ('brace' !== b.type) {
-                                    k({ type: 'text', value: _ });
+                                  if ('brace' !== C.type) {
+                                    O({ type: 'text', value: _ });
                                     continue;
                                   }
                                   let e = 'close';
-                                  (b = C.pop()),
-                                    (b.close = !0),
-                                    k({ type: e, value: _ }),
+                                  (C = b.pop()),
+                                    (C.close = !0),
+                                    O({ type: e, value: _ }),
                                     H--,
-                                    (b = C[C.length - 1]);
+                                    (C = b[b.length - 1]);
                                 }
                               else {
                                 H++;
                                 let e =
-                                  (v.value && '$' === v.value.slice(-1)) ||
-                                  !0 === b.dollar;
-                                (b = k({
+                                  (x.value && '$' === x.value.slice(-1)) ||
+                                  !0 === C.dollar;
+                                (C = O({
                                   type: 'brace',
                                   open: !0,
                                   close: !1,
@@ -886,79 +701,79 @@ module.exports = {
                                   ranges: 0,
                                   nodes: [],
                                 })),
-                                  C.push(b),
-                                  k({ type: 'open', value: _ });
+                                  b.push(C),
+                                  O({ type: 'open', value: _ });
                               }
                             else {
                               let e,
                                 n = _;
                               for (
                                 !0 !== t.keepQuotes && (_ = '');
-                                S < w && (e = T());
+                                w < S && (e = T());
 
                               )
-                                if (e !== a) {
+                                if (e !== s) {
                                   if (e === n) {
                                     !0 === t.keepQuotes && (_ += e);
                                     break;
                                   }
                                   _ += e;
                                 } else _ += e + T();
-                              k({ type: 'text', value: _ });
+                              O({ type: 'text', value: _ });
                             }
                           else {
-                            if ('paren' !== b.type) {
-                              k({ type: 'text', value: _ });
+                            if ('paren' !== C.type) {
+                              O({ type: 'text', value: _ });
                               continue;
                             }
-                            (b = C.pop()),
-                              k({ type: 'text', value: _ }),
-                              (b = C[C.length - 1]);
+                            (C = b.pop()),
+                              O({ type: 'text', value: _ }),
+                              (C = b[b.length - 1]);
                           }
                         else
-                          (b = k({ type: 'paren', nodes: [] })),
-                            C.push(b),
-                            k({ type: 'text', value: _ });
+                          (C = O({ type: 'paren', nodes: [] })),
+                            b.push(C),
+                            O({ type: 'text', value: _ });
                       else {
-                        x++;
+                        v++;
                         let e;
-                        for (; S < w && (e = T()); )
-                          if (((_ += e), e !== f))
-                            if (e !== a) {
-                              if (e === h && (x--, 0 === x)) break;
+                        for (; w < S && (e = T()); )
+                          if (((_ += e), e !== d))
+                            if (e !== s) {
+                              if (e === h && (v--, 0 === v)) break;
                             } else _ += T();
-                          else x++;
-                        k({ type: 'text', value: _ });
+                          else v++;
+                        O({ type: 'text', value: _ });
                       }
-                    else k({ type: 'text', value: '\\' + _ });
+                    else O({ type: 'text', value: '\\' + _ });
                   else
-                    k({ type: 'text', value: (t.keepEscaping ? _ : '') + T() });
+                    O({ type: 'text', value: (t.keepEscaping ? _ : '') + T() });
               do {
-                if (((b = C.pop()), 'root' !== b.type)) {
-                  b.nodes.forEach((e) => {
+                if (((C = b.pop()), 'root' !== C.type)) {
+                  C.nodes.forEach((e) => {
                     e.nodes ||
                       ('open' === e.type && (e.isOpen = !0),
                       'close' === e.type && (e.isClose = !0),
                       e.nodes || (e.type = 'text'),
                       (e.invalid = !0));
                   });
-                  let e = C[C.length - 1],
-                    t = e.nodes.indexOf(b);
-                  e.nodes.splice(t, 1, ...b.nodes);
+                  let e = b[b.length - 1],
+                    t = e.nodes.indexOf(C);
+                  e.nodes.splice(t, 1, ...C.nodes);
                 }
-              } while (C.length > 0);
-              return k({ type: 'eos' }), E;
+              } while (b.length > 0);
+              return O({ type: 'eos' }), E;
             };
           },
-          900: (e, t, n) => {
-            const o = n(542);
+          372: (e, t, n) => {
+            const r = n(641);
             e.exports = (e, t = {}) => {
-              let n = (e, r = {}) => {
-                let a = t.escapeInvalid && o.isInvalidBrace(r),
-                  s = !0 === e.invalid && !0 === t.escapeInvalid,
+              let n = (e, o = {}) => {
+                let s = t.escapeInvalid && r.isInvalidBrace(o),
+                  a = !0 === e.invalid && !0 === t.escapeInvalid,
                   i = '';
                 if (e.value)
-                  return (a || s) && o.isOpenOrClose(e)
+                  return (s || a) && r.isOpenOrClose(e)
                     ? '\\' + e.value
                     : e.value;
                 if (e.value) return e.value;
@@ -968,7 +783,7 @@ module.exports = {
               return n(e);
             };
           },
-          542: (e, t) => {
+          641: (e, t) => {
             (t.isInteger = (e) =>
               'number' == typeof e
                 ? Number.isInteger(e)
@@ -976,18 +791,18 @@ module.exports = {
                   '' !== e.trim() &&
                   Number.isInteger(Number(e))),
               (t.find = (e, t) => e.nodes.find((e) => e.type === t)),
-              (t.exceedsLimit = (e, n, o = 1, r) =>
-                !1 !== r &&
+              (t.exceedsLimit = (e, n, r = 1, o) =>
+                !1 !== o &&
                 !(!t.isInteger(e) || !t.isInteger(n)) &&
-                (Number(n) - Number(e)) / Number(o) >= r),
+                (Number(n) - Number(e)) / Number(r) >= o),
               (t.escapeNode = (e, t = 0, n) => {
-                let o = e.nodes[t];
-                o &&
-                  ((n && o.type === n) ||
-                    'open' === o.type ||
-                    'close' === o.type) &&
-                  !0 !== o.escaped &&
-                  ((o.value = '\\' + o.value), (o.escaped = !0));
+                let r = e.nodes[t];
+                r &&
+                  ((n && r.type === n) ||
+                    'open' === r.type ||
+                    'close' === r.type) &&
+                  !0 !== r.escaped &&
+                  ((r.value = '\\' + r.value), (r.escaped = !0));
               }),
               (t.encloseBrace = (e) =>
                 'brace' === e.type &&
@@ -1017,27 +832,27 @@ module.exports = {
               (t.flatten = (...e) => {
                 const t = [],
                   n = (e) => {
-                    for (let o = 0; o < e.length; o++) {
-                      let r = e[o];
-                      Array.isArray(r) ? n(r, t) : void 0 !== r && t.push(r);
+                    for (let r = 0; r < e.length; r++) {
+                      let o = e[r];
+                      Array.isArray(o) ? n(o, t) : void 0 !== o && t.push(o);
                     }
                     return t;
                   };
                 return n(e), t;
               });
           },
-          169: (e, t, n) => {
+          792: (e, t, n) => {
             /*!
              * fill-range <https://github.com/jonschlinkert/fill-range>
              *
              * Copyright (c) 2014-present, Jon Schlinkert.
              * Licensed under the MIT License.
              */
-            const o = n(669),
-              r = n(615),
-              a = (e) =>
-                null !== e && 'object' == typeof e && !Array.isArray(e),
+            const r = n(669),
+              o = n(543),
               s = (e) =>
+                null !== e && 'object' == typeof e && !Array.isArray(e),
+              a = (e) =>
                 'number' == typeof e || ('string' == typeof e && '' !== e),
               i = (e) => Number.isInteger(+e),
               l = (e) => {
@@ -1060,67 +875,67 @@ module.exports = {
                 for (n && ((e = e.slice(1)), t--); e.length < t; ) e = '0' + e;
                 return n ? '-' + e : e;
               },
-              c = (e, t, n, o) => {
-                if (n) return r(e, t, { wrap: !1, ...o });
-                let a = String.fromCharCode(e);
-                return e === t ? a : `[${a}-${String.fromCharCode(t)}]`;
+              c = (e, t, n, r) => {
+                if (n) return o(e, t, { wrap: !1, ...r });
+                let s = String.fromCharCode(e);
+                return e === t ? s : `[${s}-${String.fromCharCode(t)}]`;
               },
-              d = (e, t, n) => {
+              f = (e, t, n) => {
                 if (Array.isArray(e)) {
                   let t = !0 === n.wrap,
-                    o = n.capture ? '' : '?:';
-                  return t ? `(${o}${e.join('|')})` : e.join('|');
+                    r = n.capture ? '' : '?:';
+                  return t ? `(${r}${e.join('|')})` : e.join('|');
                 }
-                return r(e, t, n);
+                return o(e, t, n);
               },
-              f = (...e) =>
-                new RangeError('Invalid range arguments: ' + o.inspect(...e)),
+              d = (...e) =>
+                new RangeError('Invalid range arguments: ' + r.inspect(...e)),
               h = (e, t, n) => {
-                if (!0 === n.strictRanges) throw f([e, t]);
+                if (!0 === n.strictRanges) throw d([e, t]);
                 return [];
               },
-              g = (e, t, n = 1, o = {}) => {
-                let r = Number(e),
-                  a = Number(t);
-                if (!Number.isInteger(r) || !Number.isInteger(a)) {
-                  if (!0 === o.strictRanges) throw f([e, t]);
+              g = (e, t, n = 1, r = {}) => {
+                let o = Number(e),
+                  s = Number(t);
+                if (!Number.isInteger(o) || !Number.isInteger(s)) {
+                  if (!0 === r.strictRanges) throw d([e, t]);
                   return [];
                 }
-                0 === r && (r = 0), 0 === a && (a = 0);
-                let s = r > a,
+                0 === o && (o = 0), 0 === s && (s = 0);
+                let a = o > s,
                   i = String(e),
                   h = String(t),
                   g = String(n);
                 n = Math.max(Math.abs(n), 1);
                 let A = l(i) || l(h) || l(g),
-                  y = A ? Math.max(i.length, h.length, g.length) : 0,
-                  R =
+                  R = A ? Math.max(i.length, h.length, g.length) : 0,
+                  y =
                     !1 === A &&
                     !1 ===
                       ((e, t, n) =>
                         'string' == typeof e ||
                         'string' == typeof t ||
-                        !0 === n.stringify)(e, t, o),
+                        !0 === n.stringify)(e, t, r),
                   m =
-                    o.transform ||
+                    r.transform ||
                     (
                       (e) => (t) =>
                         !0 === e ? Number(t) : String(t)
-                    )(R);
-                if (o.toRegex && 1 === n) return c(p(e, y), p(t, y), !0, o);
+                    )(y);
+                if (r.toRegex && 1 === n) return c(p(e, R), p(t, R), !0, r);
                 let _ = { negatives: [], positives: [] },
                   E = [],
-                  C = 0;
-                for (; s ? r >= a : r <= a; )
-                  !0 === o.toRegex && n > 1
-                    ? _[(b = r) < 0 ? 'negatives' : 'positives'].push(
-                        Math.abs(b),
+                  b = 0;
+                for (; a ? o >= s : o <= s; )
+                  !0 === r.toRegex && n > 1
+                    ? _[(C = o) < 0 ? 'negatives' : 'positives'].push(
+                        Math.abs(C),
                       )
-                    : E.push(u(m(r, C), y, R)),
-                    (r = s ? r - n : r + n),
-                    C++;
-                var b;
-                return !0 === o.toRegex
+                    : E.push(u(m(o, b), R, y)),
+                    (o = a ? o - n : o + n),
+                    b++;
+                var C;
+                return !0 === r.toRegex
                   ? n > 1
                     ? ((e, t) => {
                         e.negatives.sort((e, t) =>
@@ -1130,55 +945,55 @@ module.exports = {
                             e < t ? -1 : e > t ? 1 : 0,
                           );
                         let n,
-                          o = t.capture ? '' : '?:',
-                          r = '',
-                          a = '';
+                          r = t.capture ? '' : '?:',
+                          o = '',
+                          s = '';
                         return (
-                          e.positives.length && (r = e.positives.join('|')),
+                          e.positives.length && (o = e.positives.join('|')),
                           e.negatives.length &&
-                            (a = `-(${o}${e.negatives.join('|')})`),
-                          (n = r && a ? `${r}|${a}` : r || a),
-                          t.wrap ? `(${o}${n})` : n
+                            (s = `-(${r}${e.negatives.join('|')})`),
+                          (n = o && s ? `${o}|${s}` : o || s),
+                          t.wrap ? `(${r}${n})` : n
                         );
-                      })(_, o)
-                    : d(E, null, { wrap: !1, ...o })
+                      })(_, r)
+                    : f(E, null, { wrap: !1, ...r })
                   : E;
               },
-              A = (e, t, n, o = {}) => {
-                if (null == t && s(e)) return [e];
-                if (!s(e) || !s(t)) return h(e, t, o);
+              A = (e, t, n, r = {}) => {
+                if (null == t && a(e)) return [e];
+                if (!a(e) || !a(t)) return h(e, t, r);
                 if ('function' == typeof n) return A(e, t, 1, { transform: n });
-                if (a(n)) return A(e, t, 0, n);
-                let r = { ...o };
+                if (s(n)) return A(e, t, 0, n);
+                let o = { ...r };
                 return (
-                  !0 === r.capture && (r.wrap = !0),
-                  (n = n || r.step || 1),
+                  !0 === o.capture && (o.wrap = !0),
+                  (n = n || o.step || 1),
                   i(n)
                     ? i(e) && i(t)
-                      ? g(e, t, n, r)
-                      : ((e, t, n = 1, o = {}) => {
+                      ? g(e, t, n, o)
+                      : ((e, t, n = 1, r = {}) => {
                           if (
                             (!i(e) && e.length > 1) ||
                             (!i(t) && t.length > 1)
                           )
-                            return h(e, t, o);
-                          let r =
-                              o.transform || ((e) => String.fromCharCode(e)),
-                            a = ('' + e).charCodeAt(0),
-                            s = ('' + t).charCodeAt(0),
-                            l = a > s,
-                            u = Math.min(a, s),
-                            p = Math.max(a, s);
-                          if (o.toRegex && 1 === n) return c(u, p, !1, o);
-                          let f = [],
+                            return h(e, t, r);
+                          let o =
+                              r.transform || ((e) => String.fromCharCode(e)),
+                            s = ('' + e).charCodeAt(0),
+                            a = ('' + t).charCodeAt(0),
+                            l = s > a,
+                            u = Math.min(s, a),
+                            p = Math.max(s, a);
+                          if (r.toRegex && 1 === n) return c(u, p, !1, r);
+                          let d = [],
                             g = 0;
-                          for (; l ? a >= s : a <= s; )
-                            f.push(r(a, g)), (a = l ? a - n : a + n), g++;
-                          return !0 === o.toRegex
-                            ? d(f, null, { wrap: !1, options: o })
-                            : f;
-                        })(e, t, Math.max(Math.abs(n), 1), r)
-                    : null == n || a(n)
+                          for (; l ? s >= a : s <= a; )
+                            d.push(o(s, g)), (s = l ? s - n : s + n), g++;
+                          return !0 === r.toRegex
+                            ? f(d, null, { wrap: !1, options: r })
+                            : d;
+                        })(e, t, Math.max(Math.abs(n), 1), o)
+                    : null == n || s(n)
                     ? A(e, t, 1, n)
                     : ((e, t) => {
                         if (!0 === t.strictRanges)
@@ -1186,12 +1001,12 @@ module.exports = {
                             `Expected step "${e}" to be a number`,
                           );
                         return [];
-                      })(n, r)
+                      })(n, o)
                 );
               };
             e.exports = A;
           },
-          761: (e) => {
+          651: (e) => {
             /*!
              * is-number <https://github.com/jonschlinkert/is-number>
              *
@@ -1206,35 +1021,35 @@ module.exports = {
                     (Number.isFinite ? Number.isFinite(+e) : isFinite(+e));
             };
           },
-          401: (e, t, n) => {
-            const o = n(669),
-              r = n(235),
-              a = n(722),
-              s = n(598),
+          529: (e, t, n) => {
+            const r = n(669),
+              o = n(46),
+              s = n(202),
+              a = n(558),
               i = (e) => 'string' == typeof e && ('' === e || './' === e),
               l = (e, t, n) => {
                 (t = [].concat(t)), (e = [].concat(e));
-                let o = new Set(),
-                  r = new Set(),
-                  s = new Set(),
+                let r = new Set(),
+                  o = new Set(),
+                  a = new Set(),
                   i = 0,
                   l = (e) => {
-                    s.add(e.output), n && n.onResult && n.onResult(e);
+                    a.add(e.output), n && n.onResult && n.onResult(e);
                   };
-                for (let s = 0; s < t.length; s++) {
-                  let u = a(String(t[s]), { ...n, onResult: l }, !0),
+                for (let a = 0; a < t.length; a++) {
+                  let u = s(String(t[a]), { ...n, onResult: l }, !0),
                     p = u.state.negated || u.state.negatedExtglob;
                   p && i++;
                   for (let t of e) {
                     let e = u(t, !0);
                     (p ? !e.isMatch : e.isMatch) &&
                       (p
-                        ? o.add(e.output)
-                        : (o.delete(e.output), r.add(e.output)));
+                        ? r.add(e.output)
+                        : (r.delete(e.output), o.add(e.output)));
                   }
                 }
-                let u = (i === t.length ? [...s] : [...r]).filter(
-                  (e) => !o.has(e),
+                let u = (i === t.length ? [...a] : [...o]).filter(
+                  (e) => !r.has(e),
                 );
                 if (n && 0 === u.length) {
                   if (!0 === n.failglob)
@@ -1245,24 +1060,24 @@ module.exports = {
                 return u;
               };
             (l.match = l),
-              (l.matcher = (e, t) => a(e, t)),
-              (l.any = l.isMatch = (e, t, n) => a(t, n)(e)),
+              (l.matcher = (e, t) => s(e, t)),
+              (l.any = l.isMatch = (e, t, n) => s(t, n)(e)),
               (l.not = (e, t, n = {}) => {
                 t = [].concat(t).map(String);
-                let o = new Set(),
-                  r = [],
-                  a = l(e, t, {
+                let r = new Set(),
+                  o = [],
+                  s = l(e, t, {
                     ...n,
                     onResult: (e) => {
-                      n.onResult && n.onResult(e), r.push(e.output);
+                      n.onResult && n.onResult(e), o.push(e.output);
                     },
                   });
-                for (let e of r) a.includes(e) || o.add(e);
-                return [...o];
+                for (let e of o) s.includes(e) || r.add(e);
+                return [...r];
               }),
               (l.contains = (e, t, n) => {
                 if ('string' != typeof e)
-                  throw new TypeError(`Expected a string: "${o.inspect(e)}"`);
+                  throw new TypeError(`Expected a string: "${r.inspect(e)}"`);
                 if (Array.isArray(t)) return t.some((t) => l.contains(e, t, n));
                 if ('string' == typeof t) {
                   if (i(e) || i(t)) return !1;
@@ -1275,49 +1090,49 @@ module.exports = {
                 return l.isMatch(e, t, { ...n, contains: !0 });
               }),
               (l.matchKeys = (e, t, n) => {
-                if (!s.isObject(e))
+                if (!a.isObject(e))
                   throw new TypeError(
                     'Expected the first argument to be an object',
                   );
-                let o = l(Object.keys(e), t, n),
-                  r = {};
-                for (let t of o) r[t] = e[t];
-                return r;
+                let r = l(Object.keys(e), t, n),
+                  o = {};
+                for (let t of r) o[t] = e[t];
+                return o;
               }),
               (l.some = (e, t, n) => {
-                let o = [].concat(e);
+                let r = [].concat(e);
                 for (let e of [].concat(t)) {
-                  let t = a(String(e), n);
-                  if (o.some((e) => t(e))) return !0;
+                  let t = s(String(e), n);
+                  if (r.some((e) => t(e))) return !0;
                 }
                 return !1;
               }),
               (l.every = (e, t, n) => {
-                let o = [].concat(e);
+                let r = [].concat(e);
                 for (let e of [].concat(t)) {
-                  let t = a(String(e), n);
-                  if (!o.every((e) => t(e))) return !1;
+                  let t = s(String(e), n);
+                  if (!r.every((e) => t(e))) return !1;
                 }
                 return !0;
               }),
               (l.all = (e, t, n) => {
                 if ('string' != typeof e)
-                  throw new TypeError(`Expected a string: "${o.inspect(e)}"`);
-                return [].concat(t).every((t) => a(t, n)(e));
+                  throw new TypeError(`Expected a string: "${r.inspect(e)}"`);
+                return [].concat(t).every((t) => s(t, n)(e));
               }),
               (l.capture = (e, t, n) => {
-                let o = s.isWindows(n),
-                  r = a
+                let r = a.isWindows(n),
+                  o = s
                     .makeRe(String(e), { ...n, capture: !0 })
-                    .exec(o ? s.toPosixSlashes(t) : t);
-                if (r) return r.slice(1).map((e) => (void 0 === e ? '' : e));
+                    .exec(r ? a.toPosixSlashes(t) : t);
+                if (o) return o.slice(1).map((e) => (void 0 === e ? '' : e));
               }),
-              (l.makeRe = (...e) => a.makeRe(...e)),
-              (l.scan = (...e) => a.scan(...e)),
+              (l.makeRe = (...e) => s.makeRe(...e)),
+              (l.scan = (...e) => s.scan(...e)),
               (l.parse = (e, t) => {
                 let n = [];
-                for (let o of [].concat(e || []))
-                  for (let e of r(String(o), t)) n.push(a.parse(e, t));
+                for (let r of [].concat(e || []))
+                  for (let e of o(String(r), t)) n.push(s.parse(e, t));
                 return n;
               }),
               (l.braces = (e, t) => {
@@ -1325,7 +1140,7 @@ module.exports = {
                   throw new TypeError('Expected a string');
                 return (t && !0 === t.nobrace) || !/\{.*\}/.test(e)
                   ? [e]
-                  : r(e, t);
+                  : o(e, t);
               }),
               (l.braceExpand = (e, t) => {
                 if ('string' != typeof e)
@@ -1334,53 +1149,53 @@ module.exports = {
               }),
               (e.exports = l);
           },
-          578: (e, t, n) => {
-            const o = n(550),
-              r = (e) => {
+          741: (e, t, n) => {
+            const r = n(765),
+              o = (e) => {
                 if (e < 1)
                   throw new TypeError(
                     'Expected `concurrency` to be a number from 1 and up',
                   );
                 const t = [];
                 let n = 0;
-                const r = () => {
+                const o = () => {
                     n--, t.length > 0 && t.shift()();
                   },
-                  a = (e, t, ...a) => {
+                  s = (e, t, ...s) => {
                     n++;
-                    const s = o(e, ...a);
-                    t(s), s.then(r, r);
+                    const a = r(e, ...s);
+                    t(a), a.then(o, o);
                   },
-                  s = (o, ...r) =>
-                    new Promise((s) =>
-                      ((o, r, ...s) => {
+                  a = (r, ...o) =>
+                    new Promise((a) =>
+                      ((r, o, ...a) => {
                         n < e
-                          ? a(o, r, ...s)
-                          : t.push(a.bind(null, o, r, ...s));
-                      })(o, s, ...r),
+                          ? s(r, o, ...a)
+                          : t.push(s.bind(null, r, o, ...a));
+                      })(r, a, ...o),
                     );
                 return (
-                  Object.defineProperties(s, {
+                  Object.defineProperties(a, {
                     activeCount: { get: () => n },
                     pendingCount: { get: () => t.length },
                   }),
-                  s
+                  a
                 );
               };
-            (e.exports = r), (e.exports.default = r);
+            (e.exports = o), (e.exports.default = o);
           },
-          550: (e) => {
+          765: (e) => {
             e.exports = (e, ...t) =>
               new Promise((n) => {
                 n(e(...t));
               });
           },
-          722: (e, t, n) => {
-            e.exports = n(828);
+          202: (e, t, n) => {
+            e.exports = n(73);
           },
-          86: (e, t, n) => {
-            const o = n(622),
-              r = {
+          240: (e, t, n) => {
+            const r = n(622),
+              o = {
                 DOT_LITERAL: '\\.',
                 PLUS_LITERAL: '\\+',
                 QMARK_LITERAL: '\\?',
@@ -1397,8 +1212,8 @@ module.exports = {
                 STAR: '[^/]*?',
                 START_ANCHOR: '(?:^|\\/)',
               },
-              a = {
-                ...r,
+              s = {
+                ...o,
                 SLASH_LITERAL: '[\\\\/]',
                 QMARK: '[^\\\\/]',
                 STAR: '[^\\\\/]*?',
@@ -1479,7 +1294,7 @@ module.exports = {
               CHAR_UNDERSCORE: 95,
               CHAR_VERTICAL_LINE: 124,
               CHAR_ZERO_WIDTH_NOBREAK_SPACE: 65279,
-              SEP: o.sep,
+              SEP: r.sep,
               extglobChars: (e) => ({
                 '!': {
                   type: 'negate',
@@ -1491,19 +1306,19 @@ module.exports = {
                 '*': { type: 'star', open: '(?:', close: ')*' },
                 '@': { type: 'at', open: '(?:', close: ')' },
               }),
-              globChars: (e) => (!0 === e ? a : r),
+              globChars: (e) => (!0 === e ? s : o),
             };
           },
-          974: (e, t, n) => {
-            const o = n(86),
-              r = n(598),
+          561: (e, t, n) => {
+            const r = n(240),
+              o = n(558),
               {
-                MAX_LENGTH: a,
-                POSIX_REGEX_SOURCE: s,
+                MAX_LENGTH: s,
+                POSIX_REGEX_SOURCE: a,
                 REGEX_NON_SPECIAL_CHARS: i,
                 REGEX_SPECIAL_CHARS_BACKREF: l,
                 REPLACEMENTS: u,
-              } = o,
+              } = r,
               p = (e, t) => {
                 if ('function' == typeof t.expandRange)
                   return t.expandRange(...e, t);
@@ -1512,50 +1327,50 @@ module.exports = {
                 try {
                   new RegExp(n);
                 } catch (t) {
-                  return e.map((e) => r.escapeRegex(e)).join('..');
+                  return e.map((e) => o.escapeRegex(e)).join('..');
                 }
                 return n;
               },
               c = (e, t) =>
                 `Missing ${e}: "${t}" - use "\\\\${t}" to match literal characters`,
-              d = (e, t) => {
+              f = (e, t) => {
                 if ('string' != typeof e)
                   throw new TypeError('Expected a string');
                 e = u[e] || e;
                 const n = { ...t },
-                  d =
+                  f =
                     'number' == typeof n.maxLength
-                      ? Math.min(a, n.maxLength)
-                      : a;
-                let f = e.length;
-                if (f > d)
+                      ? Math.min(s, n.maxLength)
+                      : s;
+                let d = e.length;
+                if (d > f)
                   throw new SyntaxError(
-                    `Input length: ${f}, exceeds maximum allowed length: ${d}`,
+                    `Input length: ${d}, exceeds maximum allowed length: ${f}`,
                   );
                 const h = { type: 'bos', value: '', output: n.prepend || '' },
                   g = [h],
                   A = n.capture ? '' : '?:',
-                  y = r.isWindows(t),
-                  R = o.globChars(y),
-                  m = o.extglobChars(R),
+                  R = o.isWindows(t),
+                  y = r.globChars(R),
+                  m = r.extglobChars(y),
                   {
                     DOT_LITERAL: _,
                     PLUS_LITERAL: E,
-                    SLASH_LITERAL: C,
-                    ONE_CHAR: b,
-                    DOTS_SLASH: v,
-                    NO_DOT: x,
-                    NO_DOT_SLASH: w,
-                    NO_DOTS_SLASH: S,
+                    SLASH_LITERAL: b,
+                    ONE_CHAR: C,
+                    DOTS_SLASH: x,
+                    NO_DOT: v,
+                    NO_DOT_SLASH: S,
+                    NO_DOTS_SLASH: w,
                     QMARK: H,
                     QMARK_NO_DOT: T,
-                    STAR: k,
-                    START_ANCHOR: L,
-                  } = R,
-                  O = (e) => `(${A}(?:(?!${L}${e.dot ? v : _}).)*?)`,
-                  $ = n.dot ? '' : x,
+                    STAR: O,
+                    START_ANCHOR: k,
+                  } = y,
+                  L = (e) => `(${A}(?:(?!${k}${e.dot ? x : _}).)*?)`,
+                  $ = n.dot ? '' : v,
                   N = n.dot ? H : T;
-                let I = !0 === n.bash ? O(n) : k;
+                let I = !0 === n.bash ? L(n) : O;
                 n.capture && (I = `(${I})`),
                   'boolean' == typeof n.noext && (n.noextglob = n.noext);
                 const B = {
@@ -1575,14 +1390,14 @@ module.exports = {
                   globstar: !1,
                   tokens: g,
                 };
-                (e = r.removePrefix(e, B)), (f = e.length);
+                (e = o.removePrefix(e, B)), (d = e.length);
                 const M = [],
-                  P = [],
-                  D = [];
+                  D = [],
+                  P = [];
                 let U,
                   G = h;
-                const j = () => B.index === f - 1,
-                  K = (B.peek = (t = 1) => e[B.index + t]),
+                const K = () => B.index === d - 1,
+                  j = (B.peek = (t = 1) => e[B.index + t]),
                   F = (B.advance = () => e[++B.index]),
                   W = () => e.slice(B.index + 1),
                   Q = (e = '', t = 0) => {
@@ -1594,15 +1409,15 @@ module.exports = {
                   },
                   q = () => {
                     let e = 1;
-                    for (; '!' === K() && ('(' !== K(2) || '?' === K(3)); )
+                    for (; '!' === j() && ('(' !== j(2) || '?' === j(3)); )
                       F(), B.start++, e++;
                     return e % 2 != 0 && ((B.negated = !0), B.start++, !0);
                   },
                   Z = (e) => {
-                    B[e]++, D.push(e);
+                    B[e]++, P.push(e);
                   },
                   Y = (e) => {
-                    B[e]--, D.pop();
+                    B[e]--, P.pop();
                   },
                   z = (e) => {
                     if ('globstar' === G.type) {
@@ -1638,67 +1453,67 @@ module.exports = {
                     (e.prev = G), g.push(e), (G = e);
                   },
                   V = (e, t) => {
-                    const o = { ...m[t], conditions: 1, inner: '' };
-                    (o.prev = G), (o.parens = B.parens), (o.output = B.output);
-                    const r = (n.capture ? '(' : '') + o.open;
+                    const r = { ...m[t], conditions: 1, inner: '' };
+                    (r.prev = G), (r.parens = B.parens), (r.output = B.output);
+                    const o = (n.capture ? '(' : '') + r.open;
                     Z('parens'),
-                      z({ type: e, value: t, output: B.output ? '' : b }),
-                      z({ type: 'paren', extglob: !0, value: F(), output: r }),
-                      M.push(o);
+                      z({ type: e, value: t, output: B.output ? '' : C }),
+                      z({ type: 'paren', extglob: !0, value: F(), output: o }),
+                      M.push(r);
                   },
                   J = (e) => {
                     let t = e.close + (n.capture ? ')' : '');
                     if ('negate' === e.type) {
-                      let o = I;
+                      let r = I;
                       e.inner &&
                         e.inner.length > 1 &&
                         e.inner.includes('/') &&
-                        (o = O(n)),
-                        (o !== I || j() || /^\)+$/.test(W())) &&
-                          (t = e.close = ')$))' + o),
-                        'bos' === e.prev.type && j() && (B.negatedExtglob = !0);
+                        (r = L(n)),
+                        (r !== I || K() || /^\)+$/.test(W())) &&
+                          (t = e.close = ')$))' + r),
+                        'bos' === e.prev.type && K() && (B.negatedExtglob = !0);
                     }
                     z({ type: 'paren', extglob: !0, value: U, output: t }),
                       Y('parens');
                   };
                 if (!1 !== n.fastpaths && !/(^[*!]|[/()[\]{}"])/.test(e)) {
-                  let o = !1,
-                    a = e.replace(l, (e, t, n, r, a, s) =>
-                      '\\' === r
-                        ? ((o = !0), e)
-                        : '?' === r
+                  let r = !1,
+                    s = e.replace(l, (e, t, n, o, s, a) =>
+                      '\\' === o
+                        ? ((r = !0), e)
+                        : '?' === o
                         ? t
-                          ? t + r + (a ? H.repeat(a.length) : '')
-                          : 0 === s
-                          ? N + (a ? H.repeat(a.length) : '')
+                          ? t + o + (s ? H.repeat(s.length) : '')
+                          : 0 === a
+                          ? N + (s ? H.repeat(s.length) : '')
                           : H.repeat(n.length)
-                        : '.' === r
+                        : '.' === o
                         ? _.repeat(n.length)
-                        : '*' === r
+                        : '*' === o
                         ? t
-                          ? t + r + (a ? I : '')
+                          ? t + o + (s ? I : '')
                           : I
                         : t
                         ? e
                         : '\\' + e,
                     );
                   return (
-                    !0 === o &&
-                      (a =
+                    !0 === r &&
+                      (s =
                         !0 === n.unescape
-                          ? a.replace(/\\/g, '')
-                          : a.replace(/\\+/g, (e) =>
+                          ? s.replace(/\\/g, '')
+                          : s.replace(/\\+/g, (e) =>
                               e.length % 2 == 0 ? '\\\\' : e ? '\\' : '',
                             )),
-                    a === e && !0 === n.contains
+                    s === e && !0 === n.contains
                       ? ((B.output = e), B)
-                      : ((B.output = r.wrapOutput(a, B, t)), B)
+                      : ((B.output = o.wrapOutput(s, B, t)), B)
                   );
                 }
-                for (; !j(); ) {
+                for (; !K(); ) {
                   if (((U = F()), '\0' === U)) continue;
                   if ('\\' === U) {
-                    const e = K();
+                    const e = j();
                     if ('/' === e && !0 !== n.bash) continue;
                     if ('.' === e || ';' === e) continue;
                     if (!e) {
@@ -1706,13 +1521,13 @@ module.exports = {
                       continue;
                     }
                     const t = /^\\+/.exec(W());
-                    let o = 0;
+                    let r = 0;
                     if (
                       (t &&
                         t[0].length > 2 &&
-                        ((o = t[0].length),
-                        (B.index += o),
-                        o % 2 != 0 && (U += '\\')),
+                        ((r = t[0].length),
+                        (B.index += r),
+                        r % 2 != 0 && (U += '\\')),
                       !0 === n.unescape ? (U = F() || '') : (U += F() || ''),
                       0 === B.brackets)
                     ) {
@@ -1733,18 +1548,18 @@ module.exports = {
                         const e = G.value.lastIndexOf('['),
                           t = G.value.slice(0, e),
                           n = G.value.slice(e + 2),
-                          o = s[n];
-                        if (o) {
-                          (G.value = t + o),
+                          r = a[n];
+                        if (r) {
+                          (G.value = t + r),
                             (B.backtrack = !0),
                             F(),
-                            h.output || 1 !== g.indexOf(G) || (h.output = b);
+                            h.output || 1 !== g.indexOf(G) || (h.output = C);
                           continue;
                         }
                       }
                     }
-                    (('[' === U && ':' !== K()) ||
-                      ('-' === U && ']' === K())) &&
+                    (('[' === U && ':' !== j()) ||
+                      ('-' === U && ']' === j())) &&
                       (U = '\\' + U),
                       ']' !== U ||
                         ('[' !== G.value && '[^' !== G.value) ||
@@ -1758,7 +1573,7 @@ module.exports = {
                     continue;
                   }
                   if (1 === B.quotes && '"' !== U) {
-                    (U = r.escapeRegex(U)), (G.value += U), X({ value: U });
+                    (U = o.escapeRegex(U)), (G.value += U), X({ value: U });
                     continue;
                   }
                   if ('"' === U) {
@@ -1819,10 +1634,10 @@ module.exports = {
                         (U = '/' + U),
                       (G.value += U),
                       X({ value: U }),
-                      !1 === n.literalBrackets || r.hasRegexChars(e))
+                      !1 === n.literalBrackets || o.hasRegexChars(e))
                     )
                       continue;
-                    const t = r.escapeRegex(G.value);
+                    const t = o.escapeRegex(G.value);
                     if (
                       ((B.output = B.output.slice(0, -G.value.length)),
                       !0 === n.literalBrackets)
@@ -1842,11 +1657,11 @@ module.exports = {
                       outputIndex: B.output.length,
                       tokensIndex: B.tokens.length,
                     };
-                    P.push(e), z(e);
+                    D.push(e), z(e);
                     continue;
                   }
                   if ('}' === U) {
-                    const e = P[P.length - 1];
+                    const e = D[D.length - 1];
                     if (!0 === n.nobrace || !e) {
                       z({ type: 'text', value: U, output: U });
                       continue;
@@ -1854,26 +1669,26 @@ module.exports = {
                     let t = ')';
                     if (!0 === e.dots) {
                       const e = g.slice(),
-                        o = [];
+                        r = [];
                       for (
                         let t = e.length - 1;
                         t >= 0 && (g.pop(), 'brace' !== e[t].type);
                         t--
                       )
-                        'dots' !== e[t].type && o.unshift(e[t].value);
-                      (t = p(o, n)), (B.backtrack = !0);
+                        'dots' !== e[t].type && r.unshift(e[t].value);
+                      (t = p(r, n)), (B.backtrack = !0);
                     }
                     if (!0 !== e.comma && !0 !== e.dots) {
                       const n = B.output.slice(0, e.outputIndex),
-                        o = B.tokens.slice(e.tokensIndex);
+                        r = B.tokens.slice(e.tokensIndex);
                       (e.value = e.output = '\\{'),
                         (U = t = '\\}'),
                         (B.output = n);
-                      for (const e of o) B.output += e.output || e.value;
+                      for (const e of r) B.output += e.output || e.value;
                     }
                     z({ type: 'brace', value: U, output: t }),
                       Y('braces'),
-                      P.pop();
+                      D.pop();
                     continue;
                   }
                   if ('|' === U) {
@@ -1883,9 +1698,9 @@ module.exports = {
                   }
                   if (',' === U) {
                     let e = U;
-                    const t = P[P.length - 1];
+                    const t = D[D.length - 1];
                     t &&
-                      'braces' === D[D.length - 1] &&
+                      'braces' === P[P.length - 1] &&
                       ((t.comma = !0), (e = '|')),
                       z({ type: 'comma', value: U, output: e });
                     continue;
@@ -1899,13 +1714,13 @@ module.exports = {
                         (G = h);
                       continue;
                     }
-                    z({ type: 'slash', value: U, output: C });
+                    z({ type: 'slash', value: U, output: b });
                     continue;
                   }
                   if ('.' === U) {
                     if (B.braces > 0 && 'dot' === G.type) {
                       '.' === G.value && (G.output = _);
-                      const e = P[P.length - 1];
+                      const e = D[D.length - 1];
                       (G.type = 'dots'),
                         (G.output += U),
                         (G.value += U),
@@ -1927,16 +1742,16 @@ module.exports = {
                     if (
                       !(G && '(' === G.value) &&
                       !0 !== n.noextglob &&
-                      '(' === K() &&
-                      '?' !== K(2)
+                      '(' === j() &&
+                      '?' !== j(2)
                     ) {
                       V('qmark', U);
                       continue;
                     }
                     if (G && 'paren' === G.type) {
-                      const e = K();
+                      const e = j();
                       let t = U;
-                      if ('<' === e && !r.supportsLookbehinds())
+                      if ('<' === e && !o.supportsLookbehinds())
                         throw new Error(
                           'Node.js v10 or higher is required for regex lookbehinds',
                         );
@@ -1959,8 +1774,8 @@ module.exports = {
                   if ('!' === U) {
                     if (
                       !0 !== n.noextglob &&
-                      '(' === K() &&
-                      ('?' !== K(2) || !/[!=<:]/.test(K(3)))
+                      '(' === j() &&
+                      ('?' !== j(2) || !/[!=<:]/.test(j(3)))
                     ) {
                       V('negate', U);
                       continue;
@@ -1971,7 +1786,7 @@ module.exports = {
                     }
                   }
                   if ('+' === U) {
-                    if (!0 !== n.noextglob && '(' === K() && '?' !== K(2)) {
+                    if (!0 !== n.noextglob && '(' === j() && '?' !== j(2)) {
                       V('plus', U);
                       continue;
                     }
@@ -1993,7 +1808,7 @@ module.exports = {
                     continue;
                   }
                   if ('@' === U) {
-                    if (!0 !== n.noextglob && '(' === K() && '?' !== K(2)) {
+                    if (!0 !== n.noextglob && '(' === j() && '?' !== j(2)) {
                       z({ type: 'at', extglob: !0, value: U, output: '' });
                       continue;
                     }
@@ -2027,19 +1842,19 @@ module.exports = {
                       Q(U);
                       continue;
                     }
-                    const o = G.prev,
-                      r = o.prev,
-                      a = 'slash' === o.type || 'bos' === o.type,
-                      s = r && ('star' === r.type || 'globstar' === r.type);
-                    if (!0 === n.bash && (!a || (t[0] && '/' !== t[0]))) {
+                    const r = G.prev,
+                      o = r.prev,
+                      s = 'slash' === r.type || 'bos' === r.type,
+                      a = o && ('star' === o.type || 'globstar' === o.type);
+                    if (!0 === n.bash && (!s || (t[0] && '/' !== t[0]))) {
                       z({ type: 'star', value: U, output: '' });
                       continue;
                     }
                     const i =
                         B.braces > 0 &&
-                        ('comma' === o.type || 'brace' === o.type),
-                      l = M.length && ('pipe' === o.type || 'paren' === o.type);
-                    if (!a && 'paren' !== o.type && !i && !l) {
+                        ('comma' === r.type || 'brace' === r.type),
+                      l = M.length && ('pipe' === r.type || 'paren' === r.type);
+                    if (!s && 'paren' !== r.type && !i && !l) {
                       z({ type: 'star', value: U, output: '' });
                       continue;
                     }
@@ -2048,58 +1863,58 @@ module.exports = {
                       if (n && '/' !== n) break;
                       (t = t.slice(3)), Q('/**', 3);
                     }
-                    if ('bos' === o.type && j()) {
+                    if ('bos' === r.type && K()) {
                       (G.type = 'globstar'),
                         (G.value += U),
-                        (G.output = O(n)),
+                        (G.output = L(n)),
                         (B.output = G.output),
                         (B.globstar = !0),
                         Q(U);
                       continue;
                     }
                     if (
-                      'slash' === o.type &&
-                      'bos' !== o.prev.type &&
-                      !s &&
-                      j()
+                      'slash' === r.type &&
+                      'bos' !== r.prev.type &&
+                      !a &&
+                      K()
                     ) {
                       (B.output = B.output.slice(
                         0,
-                        -(o.output + G.output).length,
+                        -(r.output + G.output).length,
                       )),
-                        (o.output = '(?:' + o.output),
+                        (r.output = '(?:' + r.output),
                         (G.type = 'globstar'),
-                        (G.output = O(n) + (n.strictSlashes ? ')' : '|$)')),
+                        (G.output = L(n) + (n.strictSlashes ? ')' : '|$)')),
                         (G.value += U),
                         (B.globstar = !0),
-                        (B.output += o.output + G.output),
+                        (B.output += r.output + G.output),
                         Q(U);
                       continue;
                     }
                     if (
-                      'slash' === o.type &&
-                      'bos' !== o.prev.type &&
+                      'slash' === r.type &&
+                      'bos' !== r.prev.type &&
                       '/' === t[0]
                     ) {
                       const e = void 0 !== t[1] ? '|$' : '';
                       (B.output = B.output.slice(
                         0,
-                        -(o.output + G.output).length,
+                        -(r.output + G.output).length,
                       )),
-                        (o.output = '(?:' + o.output),
+                        (r.output = '(?:' + r.output),
                         (G.type = 'globstar'),
-                        (G.output = `${O(n)}${C}|${C}${e})`),
+                        (G.output = `${L(n)}${b}|${b}${e})`),
                         (G.value += U),
-                        (B.output += o.output + G.output),
+                        (B.output += r.output + G.output),
                         (B.globstar = !0),
                         Q(U + F()),
                         z({ type: 'slash', value: '/', output: '' });
                       continue;
                     }
-                    if ('bos' === o.type && '/' === t[0]) {
+                    if ('bos' === r.type && '/' === t[0]) {
                       (G.type = 'globstar'),
                         (G.value += U),
-                        (G.output = `(?:^|${C}|${O(n)}${C})`),
+                        (G.output = `(?:^|${b}|${L(n)}${b})`),
                         (B.output = G.output),
                         (B.globstar = !0),
                         Q(U + F()),
@@ -2108,14 +1923,14 @@ module.exports = {
                     }
                     (B.output = B.output.slice(0, -G.output.length)),
                       (G.type = 'globstar'),
-                      (G.output = O(n)),
+                      (G.output = L(n)),
                       (G.value += U),
                       (B.output += G.output),
                       (B.globstar = !0),
                       Q(U);
                     continue;
                   }
-                  const o = { type: 'star', value: U, output: I };
+                  const r = { type: 'star', value: U, output: I };
                   !0 !== n.bash
                     ? !G ||
                       ('bracket' !== G.type && 'paren' !== G.type) ||
@@ -2124,37 +1939,37 @@ module.exports = {
                           'slash' !== G.type &&
                           'dot' !== G.type) ||
                           ('dot' === G.type
-                            ? ((B.output += w), (G.output += w))
-                            : !0 === n.dot
                             ? ((B.output += S), (G.output += S))
+                            : !0 === n.dot
+                            ? ((B.output += w), (G.output += w))
                             : ((B.output += $), (G.output += $)),
-                          '*' !== K() && ((B.output += b), (G.output += b))),
-                        z(o))
-                      : ((o.output = U), z(o))
-                    : ((o.output = '.*?'),
+                          '*' !== j() && ((B.output += C), (G.output += C))),
+                        z(r))
+                      : ((r.output = U), z(r))
+                    : ((r.output = '.*?'),
                       ('bos' !== G.type && 'slash' !== G.type) ||
-                        (o.output = $ + o.output),
-                      z(o));
+                        (r.output = $ + r.output),
+                      z(r));
                 }
                 for (; B.brackets > 0; ) {
                   if (!0 === n.strictBrackets)
                     throw new SyntaxError(c('closing', ']'));
-                  (B.output = r.escapeLast(B.output, '[')), Y('brackets');
+                  (B.output = o.escapeLast(B.output, '[')), Y('brackets');
                 }
                 for (; B.parens > 0; ) {
                   if (!0 === n.strictBrackets)
                     throw new SyntaxError(c('closing', ')'));
-                  (B.output = r.escapeLast(B.output, '(')), Y('parens');
+                  (B.output = o.escapeLast(B.output, '(')), Y('parens');
                 }
                 for (; B.braces > 0; ) {
                   if (!0 === n.strictBrackets)
                     throw new SyntaxError(c('closing', '}'));
-                  (B.output = r.escapeLast(B.output, '{')), Y('braces');
+                  (B.output = o.escapeLast(B.output, '{')), Y('braces');
                 }
                 if (
                   (!0 === n.strictSlashes ||
                     ('star' !== G.type && 'bracket' !== G.type) ||
-                    z({ type: 'maybe_slash', value: '', output: C + '?' }),
+                    z({ type: 'maybe_slash', value: '', output: b + '?' }),
                   !0 === B.backtrack)
                 ) {
                   B.output = '';
@@ -2164,196 +1979,196 @@ module.exports = {
                 }
                 return B;
               };
-            (d.fastpaths = (e, t) => {
+            (f.fastpaths = (e, t) => {
               const n = { ...t },
-                s =
-                  'number' == typeof n.maxLength ? Math.min(a, n.maxLength) : a,
+                a =
+                  'number' == typeof n.maxLength ? Math.min(s, n.maxLength) : s,
                 i = e.length;
-              if (i > s)
+              if (i > a)
                 throw new SyntaxError(
-                  `Input length: ${i}, exceeds maximum allowed length: ${s}`,
+                  `Input length: ${i}, exceeds maximum allowed length: ${a}`,
                 );
               e = u[e] || e;
-              const l = r.isWindows(t),
+              const l = o.isWindows(t),
                 {
                   DOT_LITERAL: p,
                   SLASH_LITERAL: c,
-                  ONE_CHAR: d,
-                  DOTS_SLASH: f,
+                  ONE_CHAR: f,
+                  DOTS_SLASH: d,
                   NO_DOT: h,
                   NO_DOTS: g,
                   NO_DOTS_SLASH: A,
-                  STAR: y,
-                  START_ANCHOR: R,
-                } = o.globChars(l),
+                  STAR: R,
+                  START_ANCHOR: y,
+                } = r.globChars(l),
                 m = n.dot ? g : h,
                 _ = n.dot ? A : h,
                 E = n.capture ? '' : '?:';
-              let C = !0 === n.bash ? '.*?' : y;
-              n.capture && (C = `(${C})`);
-              const b = (e) =>
+              let b = !0 === n.bash ? '.*?' : R;
+              n.capture && (b = `(${b})`);
+              const C = (e) =>
                   !0 === e.noglobstar
-                    ? C
-                    : `(${E}(?:(?!${R}${e.dot ? f : p}).)*?)`,
-                v = (e) => {
+                    ? b
+                    : `(${E}(?:(?!${y}${e.dot ? d : p}).)*?)`,
+                x = (e) => {
                   switch (e) {
                     case '*':
-                      return `${m}${d}${C}`;
+                      return `${m}${f}${b}`;
                     case '.*':
-                      return `${p}${d}${C}`;
+                      return `${p}${f}${b}`;
                     case '*.*':
-                      return `${m}${C}${p}${d}${C}`;
+                      return `${m}${b}${p}${f}${b}`;
                     case '*/*':
-                      return `${m}${C}${c}${d}${_}${C}`;
+                      return `${m}${b}${c}${f}${_}${b}`;
                     case '**':
-                      return m + b(n);
+                      return m + C(n);
                     case '**/*':
-                      return `(?:${m}${b(n)}${c})?${_}${d}${C}`;
+                      return `(?:${m}${C(n)}${c})?${_}${f}${b}`;
                     case '**/*.*':
-                      return `(?:${m}${b(n)}${c})?${_}${C}${p}${d}${C}`;
+                      return `(?:${m}${C(n)}${c})?${_}${b}${p}${f}${b}`;
                     case '**/.*':
-                      return `(?:${m}${b(n)}${c})?${p}${d}${C}`;
+                      return `(?:${m}${C(n)}${c})?${p}${f}${b}`;
                     default: {
                       const t = /^(.*?)\.(\w+)$/.exec(e);
                       if (!t) return;
-                      const n = v(t[1]);
+                      const n = x(t[1]);
                       if (!n) return;
                       return n + p + t[2];
                     }
                   }
                 },
-                x = r.removePrefix(e, { negated: !1, prefix: '' });
-              let w = v(x);
-              return w && !0 !== n.strictSlashes && (w += c + '?'), w;
+                v = o.removePrefix(e, { negated: !1, prefix: '' });
+              let S = x(v);
+              return S && !0 !== n.strictSlashes && (S += c + '?'), S;
             }),
-              (e.exports = d);
+              (e.exports = f);
           },
-          828: (e, t, n) => {
-            const o = n(622),
-              r = n(321),
-              a = n(974),
-              s = n(598),
-              i = n(86),
+          73: (e, t, n) => {
+            const r = n(622),
+              o = n(910),
+              s = n(561),
+              a = n(558),
+              i = n(240),
               l = (e, t, n = !1) => {
                 if (Array.isArray(e)) {
-                  const o = e.map((e) => l(e, t, n));
+                  const r = e.map((e) => l(e, t, n));
                   return (e) => {
-                    for (const t of o) {
+                    for (const t of r) {
                       const n = t(e);
                       if (n) return n;
                     }
                     return !1;
                   };
                 }
-                const o =
-                  (r = e) &&
-                  'object' == typeof r &&
-                  !Array.isArray(r) &&
+                const r =
+                  (o = e) &&
+                  'object' == typeof o &&
+                  !Array.isArray(o) &&
                   e.tokens &&
                   e.input;
-                var r;
-                if ('' === e || ('string' != typeof e && !o))
+                var o;
+                if ('' === e || ('string' != typeof e && !r))
                   throw new TypeError(
                     'Expected pattern to be a non-empty string',
                   );
-                const a = t || {},
-                  i = s.isWindows(t),
-                  u = o ? l.compileRe(e, t) : l.makeRe(e, t, !1, !0),
+                const s = t || {},
+                  i = a.isWindows(t),
+                  u = r ? l.compileRe(e, t) : l.makeRe(e, t, !1, !0),
                   p = u.state;
                 delete u.state;
                 let c = () => !1;
-                if (a.ignore) {
+                if (s.ignore) {
                   const e = {
                     ...t,
                     ignore: null,
                     onMatch: null,
                     onResult: null,
                   };
-                  c = l(a.ignore, e, n);
+                  c = l(s.ignore, e, n);
                 }
-                const d = (n, o = !1) => {
+                const f = (n, r = !1) => {
                   const {
-                      isMatch: r,
-                      match: s,
-                      output: d,
+                      isMatch: o,
+                      match: a,
+                      output: f,
                     } = l.test(n, u, t, { glob: e, posix: i }),
-                    f = {
+                    d = {
                       glob: e,
                       state: p,
                       regex: u,
                       posix: i,
                       input: n,
-                      output: d,
-                      match: s,
-                      isMatch: r,
+                      output: f,
+                      match: a,
+                      isMatch: o,
                     };
                   return (
-                    'function' == typeof a.onResult && a.onResult(f),
-                    !1 === r
-                      ? ((f.isMatch = !1), !!o && f)
+                    'function' == typeof s.onResult && s.onResult(d),
+                    !1 === o
+                      ? ((d.isMatch = !1), !!r && d)
                       : c(n)
-                      ? ('function' == typeof a.onIgnore && a.onIgnore(f),
-                        (f.isMatch = !1),
-                        !!o && f)
-                      : ('function' == typeof a.onMatch && a.onMatch(f),
-                        !o || f)
+                      ? ('function' == typeof s.onIgnore && s.onIgnore(d),
+                        (d.isMatch = !1),
+                        !!r && d)
+                      : ('function' == typeof s.onMatch && s.onMatch(d),
+                        !r || d)
                   );
                 };
-                return n && (d.state = p), d;
+                return n && (f.state = p), f;
               };
-            (l.test = (e, t, n, { glob: o, posix: r } = {}) => {
+            (l.test = (e, t, n, { glob: r, posix: o } = {}) => {
               if ('string' != typeof e)
                 throw new TypeError('Expected input to be a string');
               if ('' === e) return { isMatch: !1, output: '' };
-              const a = n || {},
-                i = a.format || (r ? s.toPosixSlashes : null);
-              let u = e === o,
+              const s = n || {},
+                i = s.format || (o ? a.toPosixSlashes : null);
+              let u = e === r,
                 p = u && i ? i(e) : e;
               return (
-                !1 === u && ((p = i ? i(e) : e), (u = p === o)),
-                (!1 !== u && !0 !== a.capture) ||
+                !1 === u && ((p = i ? i(e) : e), (u = p === r)),
+                (!1 !== u && !0 !== s.capture) ||
                   (u =
-                    !0 === a.matchBase || !0 === a.basename
-                      ? l.matchBase(e, t, n, r)
+                    !0 === s.matchBase || !0 === s.basename
+                      ? l.matchBase(e, t, n, o)
                       : t.exec(p)),
                 { isMatch: Boolean(u), match: u, output: p }
               );
             }),
-              (l.matchBase = (e, t, n, r = s.isWindows(n)) =>
-                (t instanceof RegExp ? t : l.makeRe(t, n)).test(o.basename(e))),
+              (l.matchBase = (e, t, n, o = a.isWindows(n)) =>
+                (t instanceof RegExp ? t : l.makeRe(t, n)).test(r.basename(e))),
               (l.isMatch = (e, t, n) => l(t, n)(e)),
               (l.parse = (e, t) =>
                 Array.isArray(e)
                   ? e.map((e) => l.parse(e, t))
-                  : a(e, { ...t, fastpaths: !1 })),
-              (l.scan = (e, t) => r(e, t)),
-              (l.compileRe = (e, t, n = !1, o = !1) => {
+                  : s(e, { ...t, fastpaths: !1 })),
+              (l.scan = (e, t) => o(e, t)),
+              (l.compileRe = (e, t, n = !1, r = !1) => {
                 if (!0 === n) return e.output;
-                const r = t || {},
-                  a = r.contains ? '' : '^',
-                  s = r.contains ? '' : '$';
-                let i = `${a}(?:${e.output})${s}`;
+                const o = t || {},
+                  s = o.contains ? '' : '^',
+                  a = o.contains ? '' : '$';
+                let i = `${s}(?:${e.output})${a}`;
                 e && !0 === e.negated && (i = `^(?!${i}).*$`);
                 const u = l.toRegex(i, t);
-                return !0 === o && (u.state = e), u;
+                return !0 === r && (u.state = e), u;
               }),
-              (l.makeRe = (e, t, n = !1, o = !1) => {
+              (l.makeRe = (e, t, n = !1, r = !1) => {
                 if (!e || 'string' != typeof e)
                   throw new TypeError('Expected a non-empty string');
-                const r = t || {};
-                let s,
+                const o = t || {};
+                let a,
                   i = { negated: !1, fastpaths: !0 },
                   u = '';
                 return (
                   e.startsWith('./') &&
                     ((e = e.slice(2)), (u = i.prefix = './')),
-                  !1 === r.fastpaths ||
+                  !1 === o.fastpaths ||
                     ('.' !== e[0] && '*' !== e[0]) ||
-                    (s = a.fastpaths(e, t)),
-                  void 0 === s
-                    ? ((i = a(e, t)), (i.prefix = u + (i.prefix || '')))
-                    : (i.output = s),
-                  l.compileRe(i, t, n, o)
+                    (a = s.fastpaths(e, t)),
+                  void 0 === a
+                    ? ((i = s(e, t)), (i.prefix = u + (i.prefix || '')))
+                    : (i.output = a),
+                  l.compileRe(i, t, n, r)
                 );
               }),
               (l.toRegex = (e, t) => {
@@ -2368,190 +2183,190 @@ module.exports = {
               (l.constants = i),
               (e.exports = l);
           },
-          321: (e, t, n) => {
-            const o = n(598),
+          910: (e, t, n) => {
+            const r = n(558),
               {
-                CHAR_ASTERISK: r,
-                CHAR_AT: a,
-                CHAR_BACKWARD_SLASH: s,
+                CHAR_ASTERISK: o,
+                CHAR_AT: s,
+                CHAR_BACKWARD_SLASH: a,
                 CHAR_COMMA: i,
                 CHAR_DOT: l,
                 CHAR_EXCLAMATION_MARK: u,
                 CHAR_FORWARD_SLASH: p,
                 CHAR_LEFT_CURLY_BRACE: c,
-                CHAR_LEFT_PARENTHESES: d,
-                CHAR_LEFT_SQUARE_BRACKET: f,
+                CHAR_LEFT_PARENTHESES: f,
+                CHAR_LEFT_SQUARE_BRACKET: d,
                 CHAR_PLUS: h,
                 CHAR_QUESTION_MARK: g,
                 CHAR_RIGHT_CURLY_BRACE: A,
-                CHAR_RIGHT_PARENTHESES: y,
-                CHAR_RIGHT_SQUARE_BRACKET: R,
-              } = n(86),
-              m = (e) => e === p || e === s,
+                CHAR_RIGHT_PARENTHESES: R,
+                CHAR_RIGHT_SQUARE_BRACKET: y,
+              } = n(240),
+              m = (e) => e === p || e === a,
               _ = (e) => {
                 !0 !== e.isPrefix && (e.depth = e.isGlobstar ? 1 / 0 : 1);
               };
             e.exports = (e, t) => {
               const n = t || {},
                 E = e.length - 1,
-                C = !0 === n.parts || !0 === n.scanToEnd,
-                b = [],
-                v = [],
-                x = [];
-              let w,
-                S,
+                b = !0 === n.parts || !0 === n.scanToEnd,
+                C = [],
+                x = [],
+                v = [];
+              let S,
+                w,
                 H = e,
                 T = -1,
+                O = 0,
                 k = 0,
-                L = 0,
-                O = !1,
+                L = !1,
                 $ = !1,
                 N = !1,
                 I = !1,
                 B = !1,
                 M = !1,
-                P = !1,
                 D = !1,
+                P = !1,
                 U = !1,
                 G = 0,
-                j = { value: '', depth: 0, isGlob: !1 };
-              const K = () => T >= E,
-                F = () => ((w = S), H.charCodeAt(++T));
+                K = { value: '', depth: 0, isGlob: !1 };
+              const j = () => T >= E,
+                F = () => ((S = w), H.charCodeAt(++T));
               for (; T < E; ) {
                 let e;
-                if (((S = F()), S !== s)) {
-                  if (!0 === M || S === c) {
-                    for (G++; !0 !== K() && (S = F()); )
-                      if (S !== s)
-                        if (S !== c) {
-                          if (!0 !== M && S === l && (S = F()) === l) {
+                if (((w = F()), w !== a)) {
+                  if (!0 === M || w === c) {
+                    for (G++; !0 !== j() && (w = F()); )
+                      if (w !== a)
+                        if (w !== c) {
+                          if (!0 !== M && w === l && (w = F()) === l) {
                             if (
-                              ((O = j.isBrace = !0),
-                              (N = j.isGlob = !0),
+                              ((L = K.isBrace = !0),
+                              (N = K.isGlob = !0),
                               (U = !0),
-                              !0 === C)
+                              !0 === b)
                             )
                               continue;
                             break;
                           }
-                          if (!0 !== M && S === i) {
+                          if (!0 !== M && w === i) {
                             if (
-                              ((O = j.isBrace = !0),
-                              (N = j.isGlob = !0),
+                              ((L = K.isBrace = !0),
+                              (N = K.isGlob = !0),
                               (U = !0),
-                              !0 === C)
+                              !0 === b)
                             )
                               continue;
                             break;
                           }
-                          if (S === A && (G--, 0 === G)) {
-                            (M = !1), (O = j.isBrace = !0), (U = !0);
+                          if (w === A && (G--, 0 === G)) {
+                            (M = !1), (L = K.isBrace = !0), (U = !0);
                             break;
                           }
                         } else G++;
-                      else (P = j.backslashes = !0), F();
-                    if (!0 === C) continue;
+                      else (D = K.backslashes = !0), F();
+                    if (!0 === b) continue;
                     break;
                   }
-                  if (S !== p) {
+                  if (w !== p) {
                     if (!0 !== n.noext) {
                       if (
                         !0 ===
-                          (S === h ||
-                            S === a ||
-                            S === r ||
-                            S === g ||
-                            S === u) &&
-                        H.charCodeAt(T + 1) === d
+                          (w === h ||
+                            w === s ||
+                            w === o ||
+                            w === g ||
+                            w === u) &&
+                        H.charCodeAt(T + 1) === f
                       ) {
                         if (
-                          ((N = j.isGlob = !0),
-                          (I = j.isExtglob = !0),
+                          ((N = K.isGlob = !0),
+                          (I = K.isExtglob = !0),
                           (U = !0),
-                          !0 === C)
+                          !0 === b)
                         ) {
-                          for (; !0 !== K() && (S = F()); )
-                            if (S !== s) {
-                              if (S === y) {
-                                (N = j.isGlob = !0), (U = !0);
+                          for (; !0 !== j() && (w = F()); )
+                            if (w !== a) {
+                              if (w === R) {
+                                (N = K.isGlob = !0), (U = !0);
                                 break;
                               }
-                            } else (P = j.backslashes = !0), (S = F());
+                            } else (D = K.backslashes = !0), (w = F());
                           continue;
                         }
                         break;
                       }
                     }
-                    if (S === r) {
+                    if (w === o) {
                       if (
-                        (w === r && (B = j.isGlobstar = !0),
-                        (N = j.isGlob = !0),
+                        (S === o && (B = K.isGlobstar = !0),
+                        (N = K.isGlob = !0),
                         (U = !0),
-                        !0 === C)
+                        !0 === b)
                       )
                         continue;
                       break;
                     }
-                    if (S === g) {
-                      if (((N = j.isGlob = !0), (U = !0), !0 === C)) continue;
+                    if (w === g) {
+                      if (((N = K.isGlob = !0), (U = !0), !0 === b)) continue;
                       break;
                     }
-                    if (S === f)
-                      for (; !0 !== K() && (e = F()); )
-                        if (e !== s) {
-                          if (e === R) {
+                    if (w === d)
+                      for (; !0 !== j() && (e = F()); )
+                        if (e !== a) {
+                          if (e === y) {
                             if (
-                              (($ = j.isBracket = !0),
-                              (N = j.isGlob = !0),
+                              (($ = K.isBracket = !0),
+                              (N = K.isGlob = !0),
                               (U = !0),
-                              !0 === C)
+                              !0 === b)
                             )
                               continue;
                             break;
                           }
-                        } else (P = j.backslashes = !0), F();
-                    if (!0 === n.nonegate || S !== u || T !== k) {
-                      if (!0 !== n.noparen && S === d) {
-                        if (((N = j.isGlob = !0), !0 === C)) {
-                          for (; !0 !== K() && (S = F()); )
-                            if (S !== d) {
-                              if (S === y) {
+                        } else (D = K.backslashes = !0), F();
+                    if (!0 === n.nonegate || w !== u || T !== O) {
+                      if (!0 !== n.noparen && w === f) {
+                        if (((N = K.isGlob = !0), !0 === b)) {
+                          for (; !0 !== j() && (w = F()); )
+                            if (w !== f) {
+                              if (w === R) {
                                 U = !0;
                                 break;
                               }
-                            } else (P = j.backslashes = !0), (S = F());
+                            } else (D = K.backslashes = !0), (w = F());
                           continue;
                         }
                         break;
                       }
                       if (!0 === N) {
-                        if (((U = !0), !0 === C)) continue;
+                        if (((U = !0), !0 === b)) continue;
                         break;
                       }
-                    } else (D = j.negated = !0), k++;
+                    } else (P = K.negated = !0), O++;
                   } else {
                     if (
-                      (b.push(T),
-                      v.push(j),
-                      (j = { value: '', depth: 0, isGlob: !1 }),
+                      (C.push(T),
+                      x.push(K),
+                      (K = { value: '', depth: 0, isGlob: !1 }),
                       !0 === U)
                     )
                       continue;
-                    if (w === l && T === k + 1) {
-                      k += 2;
+                    if (S === l && T === O + 1) {
+                      O += 2;
                       continue;
                     }
-                    L = T + 1;
+                    k = T + 1;
                   }
-                } else (P = j.backslashes = !0), (S = F()), S === c && (M = !0);
+                } else (D = K.backslashes = !0), (w = F()), w === c && (M = !0);
               }
               !0 === n.noext && ((I = !1), (N = !1));
               let W = H,
                 Q = '',
                 X = '';
-              k > 0 && ((Q = H.slice(0, k)), (H = H.slice(k)), (L -= k)),
-                W && !0 === N && L > 0
-                  ? ((W = H.slice(0, L)), (X = H.slice(L)))
+              O > 0 && ((Q = H.slice(0, O)), (H = H.slice(O)), (k -= O)),
+                W && !0 === N && k > 0
+                  ? ((W = H.slice(0, k)), (X = H.slice(k)))
                   : !0 === N
                   ? ((W = ''), (X = H))
                   : (W = H),
@@ -2562,70 +2377,70 @@ module.exports = {
                   m(W.charCodeAt(W.length - 1)) &&
                   (W = W.slice(0, -1)),
                 !0 === n.unescape &&
-                  (X && (X = o.removeBackslashes(X)),
-                  W && !0 === P && (W = o.removeBackslashes(W)));
+                  (X && (X = r.removeBackslashes(X)),
+                  W && !0 === D && (W = r.removeBackslashes(W)));
               const q = {
                 prefix: Q,
                 input: e,
-                start: k,
+                start: O,
                 base: W,
                 glob: X,
-                isBrace: O,
+                isBrace: L,
                 isBracket: $,
                 isGlob: N,
                 isExtglob: I,
                 isGlobstar: B,
-                negated: D,
+                negated: P,
               };
               if (
                 (!0 === n.tokens &&
-                  ((q.maxDepth = 0), m(S) || v.push(j), (q.tokens = v)),
+                  ((q.maxDepth = 0), m(w) || x.push(K), (q.tokens = x)),
                 !0 === n.parts || !0 === n.tokens)
               ) {
                 let t;
-                for (let o = 0; o < b.length; o++) {
-                  const r = t ? t + 1 : k,
-                    a = b[o],
-                    s = e.slice(r, a);
+                for (let r = 0; r < C.length; r++) {
+                  const o = t ? t + 1 : O,
+                    s = C[r],
+                    a = e.slice(o, s);
                   n.tokens &&
-                    (0 === o && 0 !== k
-                      ? ((v[o].isPrefix = !0), (v[o].value = Q))
-                      : (v[o].value = s),
-                    _(v[o]),
-                    (q.maxDepth += v[o].depth)),
-                    (0 === o && '' === s) || x.push(s),
-                    (t = a);
+                    (0 === r && 0 !== O
+                      ? ((x[r].isPrefix = !0), (x[r].value = Q))
+                      : (x[r].value = a),
+                    _(x[r]),
+                    (q.maxDepth += x[r].depth)),
+                    (0 === r && '' === a) || v.push(a),
+                    (t = s);
                 }
                 if (t && t + 1 < e.length) {
-                  const o = e.slice(t + 1);
-                  x.push(o),
+                  const r = e.slice(t + 1);
+                  v.push(r),
                     n.tokens &&
-                      ((v[v.length - 1].value = o),
-                      _(v[v.length - 1]),
-                      (q.maxDepth += v[v.length - 1].depth));
+                      ((x[x.length - 1].value = r),
+                      _(x[x.length - 1]),
+                      (q.maxDepth += x[x.length - 1].depth));
                 }
-                (q.slashes = b), (q.parts = x);
+                (q.slashes = C), (q.parts = v);
               }
               return q;
             };
           },
-          598: (e, t, n) => {
-            const o = n(622),
-              r = 'win32' === process.platform,
+          558: (e, t, n) => {
+            const r = n(622),
+              o = 'win32' === process.platform,
               {
-                REGEX_BACKSLASH: a,
-                REGEX_REMOVE_BACKSLASH: s,
+                REGEX_BACKSLASH: s,
+                REGEX_REMOVE_BACKSLASH: a,
                 REGEX_SPECIAL_CHARS: i,
                 REGEX_SPECIAL_CHARS_GLOBAL: l,
-              } = n(86);
+              } = n(240);
             (t.isObject = (e) =>
               null !== e && 'object' == typeof e && !Array.isArray(e)),
               (t.hasRegexChars = (e) => i.test(e)),
               (t.isRegexChar = (e) => 1 === e.length && t.hasRegexChars(e)),
               (t.escapeRegex = (e) => e.replace(l, '\\$1')),
-              (t.toPosixSlashes = (e) => e.replace(a, '/')),
+              (t.toPosixSlashes = (e) => e.replace(s, '/')),
               (t.removeBackslashes = (e) =>
-                e.replace(s, (e) => ('\\' === e ? '' : e))),
+                e.replace(a, (e) => ('\\' === e ? '' : e))),
               (t.supportsLookbehinds = () => {
                 const e = process.version.slice(1).split('.').map(Number);
                 return (
@@ -2635,14 +2450,14 @@ module.exports = {
               (t.isWindows = (e) =>
                 e && 'boolean' == typeof e.windows
                   ? e.windows
-                  : !0 === r || '\\' === o.sep),
-              (t.escapeLast = (e, n, o) => {
-                const r = e.lastIndexOf(n, o);
-                return -1 === r
+                  : !0 === o || '\\' === r.sep),
+              (t.escapeLast = (e, n, r) => {
+                const o = e.lastIndexOf(n, r);
+                return -1 === o
                   ? e
-                  : '\\' === e[r - 1]
-                  ? t.escapeLast(e, n, r - 1)
-                  : `${e.slice(0, r)}\\${e.slice(r)}`;
+                  : '\\' === e[o - 1]
+                  ? t.escapeLast(e, n, o - 1)
+                  : `${e.slice(0, o)}\\${e.slice(o)}`;
               }),
               (t.removePrefix = (e, t = {}) => {
                 let n = e;
@@ -2651,141 +2466,141 @@ module.exports = {
                 );
               }),
               (t.wrapOutput = (e, t = {}, n = {}) => {
-                let o = `${n.contains ? '' : '^'}(?:${e})${
+                let r = `${n.contains ? '' : '^'}(?:${e})${
                   n.contains ? '' : '$'
                 }`;
-                return !0 === t.negated && (o = `(?:^(?!${o}).*$)`), o;
+                return !0 === t.negated && (r = `(?:^(?!${r}).*$)`), r;
               });
           },
-          615: (e, t, n) => {
+          543: (e, t, n) => {
             /*!
              * to-regex-range <https://github.com/micromatch/to-regex-range>
              *
              * Copyright (c) 2015-present, Jon Schlinkert.
              * Released under the MIT License.
              */
-            const o = n(761),
-              r = (e, t, n) => {
-                if (!1 === o(e))
+            const r = n(651),
+              o = (e, t, n) => {
+                if (!1 === r(e))
                   throw new TypeError(
                     'toRegexRange: expected the first argument to be a number',
                   );
                 if (void 0 === t || e === t) return String(e);
-                if (!1 === o(t))
+                if (!1 === r(t))
                   throw new TypeError(
                     'toRegexRange: expected the second argument to be a number.',
                   );
-                let a = { relaxZeros: !0, ...n };
-                'boolean' == typeof a.strictZeros &&
-                  (a.relaxZeros = !1 === a.strictZeros);
+                let s = { relaxZeros: !0, ...n };
+                'boolean' == typeof s.strictZeros &&
+                  (s.relaxZeros = !1 === s.strictZeros);
                 let l =
                   e +
                   ':' +
                   t +
                   '=' +
-                  String(a.relaxZeros) +
-                  String(a.shorthand) +
-                  String(a.capture) +
-                  String(a.wrap);
-                if (r.cache.hasOwnProperty(l)) return r.cache[l].result;
+                  String(s.relaxZeros) +
+                  String(s.shorthand) +
+                  String(s.capture) +
+                  String(s.wrap);
+                if (o.cache.hasOwnProperty(l)) return o.cache[l].result;
                 let u = Math.min(e, t),
                   p = Math.max(e, t);
                 if (1 === Math.abs(u - p)) {
                   let n = e + '|' + t;
-                  return a.capture ? `(${n})` : !1 === a.wrap ? n : `(?:${n})`;
+                  return s.capture ? `(${n})` : !1 === s.wrap ? n : `(?:${n})`;
                 }
                 let c = h(e) || h(t),
-                  d = { min: e, max: t, a: u, b: p },
-                  f = [],
+                  f = { min: e, max: t, a: u, b: p },
+                  d = [],
                   g = [];
                 if (
-                  (c && ((d.isPadded = c), (d.maxLen = String(d.max).length)),
+                  (c && ((f.isPadded = c), (f.maxLen = String(f.max).length)),
                   u < 0)
                 ) {
-                  (g = s(p < 0 ? Math.abs(p) : 1, Math.abs(u), d, a)),
-                    (u = d.a = 0);
+                  (g = a(p < 0 ? Math.abs(p) : 1, Math.abs(u), f, s)),
+                    (u = f.a = 0);
                 }
                 return (
-                  p >= 0 && (f = s(u, p, d, a)),
-                  (d.negatives = g),
-                  (d.positives = f),
-                  (d.result = (function (e, t, n) {
-                    let o = i(e, t, '-', !1, n) || [],
-                      r = i(t, e, '', !1, n) || [],
-                      a = i(e, t, '-?', !0, n) || [];
-                    return o.concat(a).concat(r).join('|');
-                  })(g, f, a)),
-                  !0 === a.capture
-                    ? (d.result = `(${d.result})`)
-                    : !1 !== a.wrap &&
-                      f.length + g.length > 1 &&
-                      (d.result = `(?:${d.result})`),
-                  (r.cache[l] = d),
-                  d.result
+                  p >= 0 && (d = a(u, p, f, s)),
+                  (f.negatives = g),
+                  (f.positives = d),
+                  (f.result = (function (e, t, n) {
+                    let r = i(e, t, '-', !1, n) || [],
+                      o = i(t, e, '', !1, n) || [],
+                      s = i(e, t, '-?', !0, n) || [];
+                    return r.concat(s).concat(o).join('|');
+                  })(g, d, s)),
+                  !0 === s.capture
+                    ? (f.result = `(${f.result})`)
+                    : !1 !== s.wrap &&
+                      d.length + g.length > 1 &&
+                      (f.result = `(?:${f.result})`),
+                  (o.cache[l] = f),
+                  f.result
                 );
               };
-            function a(e, t, n) {
+            function s(e, t, n) {
               if (e === t) return { pattern: e, count: [], digits: 0 };
-              let o = (function (e, t) {
+              let r = (function (e, t) {
                   let n = [];
-                  for (let o = 0; o < e.length; o++) n.push([e[o], t[o]]);
+                  for (let r = 0; r < e.length; r++) n.push([e[r], t[r]]);
                   return n;
                 })(e, t),
-                r = o.length,
-                a = '',
-                s = 0;
-              for (let e = 0; e < r; e++) {
-                let [t, r] = o[e];
-                t === r
-                  ? (a += t)
-                  : '0' !== t || '9' !== r
-                  ? (a += f(t, r, n))
-                  : s++;
+                o = r.length,
+                s = '',
+                a = 0;
+              for (let e = 0; e < o; e++) {
+                let [t, o] = r[e];
+                t === o
+                  ? (s += t)
+                  : '0' !== t || '9' !== o
+                  ? (s += d(t, o, n))
+                  : a++;
               }
               return (
-                s && (a += !0 === n.shorthand ? '\\d' : '[0-9]'),
-                { pattern: a, count: [s], digits: r }
+                a && (s += !0 === n.shorthand ? '\\d' : '[0-9]'),
+                { pattern: s, count: [a], digits: o }
               );
             }
-            function s(e, t, n, o) {
-              let r,
-                s = (function (e, t) {
+            function a(e, t, n, r) {
+              let o,
+                a = (function (e, t) {
                   let n = 1,
-                    o = 1,
-                    r = p(e, n),
-                    a = new Set([t]);
-                  for (; e <= r && r <= t; ) a.add(r), (n += 1), (r = p(e, n));
-                  for (r = c(t + 1, o) - 1; e < r && r <= t; )
-                    a.add(r), (o += 1), (r = c(t + 1, o) - 1);
-                  return (a = [...a]), a.sort(l), a;
+                    r = 1,
+                    o = p(e, n),
+                    s = new Set([t]);
+                  for (; e <= o && o <= t; ) s.add(o), (n += 1), (o = p(e, n));
+                  for (o = c(t + 1, r) - 1; e < o && o <= t; )
+                    s.add(o), (r += 1), (o = c(t + 1, r) - 1);
+                  return (s = [...s]), s.sort(l), s;
                 })(e, t),
                 i = [],
                 u = e;
-              for (let e = 0; e < s.length; e++) {
-                let t = s[e],
-                  l = a(String(u), String(t), o),
+              for (let e = 0; e < a.length; e++) {
+                let t = a[e],
+                  l = s(String(u), String(t), r),
                   p = '';
-                n.isPadded || !r || r.pattern !== l.pattern
-                  ? (n.isPadded && (p = g(t, n, o)),
-                    (l.string = p + l.pattern + d(l.count)),
+                n.isPadded || !o || o.pattern !== l.pattern
+                  ? (n.isPadded && (p = g(t, n, r)),
+                    (l.string = p + l.pattern + f(l.count)),
                     i.push(l),
                     (u = t + 1),
-                    (r = l))
-                  : (r.count.length > 1 && r.count.pop(),
-                    r.count.push(l.count[0]),
-                    (r.string = r.pattern + d(r.count)),
+                    (o = l))
+                  : (o.count.length > 1 && o.count.pop(),
+                    o.count.push(l.count[0]),
+                    (o.string = o.pattern + f(o.count)),
                     (u = t + 1));
               }
               return i;
             }
-            function i(e, t, n, o, r) {
-              let a = [];
-              for (let r of e) {
-                let { string: e } = r;
-                o || u(t, 'string', e) || a.push(n + e),
-                  o && u(t, 'string', e) && a.push(n + e);
+            function i(e, t, n, r, o) {
+              let s = [];
+              for (let o of e) {
+                let { string: e } = o;
+                r || u(t, 'string', e) || s.push(n + e),
+                  r && u(t, 'string', e) && s.push(n + e);
               }
-              return a;
+              return s;
             }
             function l(e, t) {
               return e > t ? 1 : t > e ? -1 : 0;
@@ -2799,11 +2614,11 @@ module.exports = {
             function c(e, t) {
               return e - (e % Math.pow(10, t));
             }
-            function d(e) {
+            function f(e) {
               let [t = 0, n = ''] = e;
               return n || t > 1 ? `{${t + (n ? ',' + n : '')}}` : '';
             }
-            function f(e, t, n) {
+            function d(e, t, n) {
               return `[${e}${t - e == 1 ? '' : '-'}${t}]`;
             }
             function h(e) {
@@ -2811,22 +2626,22 @@ module.exports = {
             }
             function g(e, t, n) {
               if (!t.isPadded) return e;
-              let o = Math.abs(t.maxLen - String(e).length),
-                r = !1 !== n.relaxZeros;
-              switch (o) {
+              let r = Math.abs(t.maxLen - String(e).length),
+                o = !1 !== n.relaxZeros;
+              switch (r) {
                 case 0:
                   return '';
                 case 1:
-                  return r ? '0?' : '0';
+                  return o ? '0?' : '0';
                 case 2:
-                  return r ? '0{0,2}' : '00';
+                  return o ? '0{0,2}' : '00';
                 default:
-                  return r ? `0{0,${o}}` : `0{${o}}`;
+                  return o ? `0{0,${r}}` : `0{${r}}`;
               }
             }
-            (r.cache = {}),
-              (r.clearCache = () => (r.cache = {})),
-              (e.exports = r);
+            (o.cache = {}),
+              (o.clearCache = () => (o.cache = {})),
+              (e.exports = o);
           },
           622: (e) => {
             e.exports = require('path');
@@ -2836,10 +2651,10 @@ module.exports = {
           },
         },
         t = {};
-      function n(o) {
-        if (t[o]) return t[o].exports;
-        var r = (t[o] = { exports: {} });
-        return e[o](r, r.exports, n), r.exports;
+      function n(r) {
+        if (t[r]) return t[r].exports;
+        var o = (t[r] = { exports: {} });
+        return e[r](o, o.exports, n), o.exports;
       }
       return (
         (n.n = (e) => {
@@ -2847,10 +2662,10 @@ module.exports = {
           return n.d(t, { a: t }), t;
         }),
         (n.d = (e, t) => {
-          for (var o in t)
-            n.o(t, o) &&
-              !n.o(e, o) &&
-              Object.defineProperty(e, o, { enumerable: !0, get: t[o] });
+          for (var r in t)
+            n.o(t, r) &&
+              !n.o(e, r) &&
+              Object.defineProperty(e, r, { enumerable: !0, get: t[r] });
         }),
         (n.o = (e, t) => Object.prototype.hasOwnProperty.call(e, t)),
         (n.r = (e) => {
@@ -2859,7 +2674,7 @@ module.exports = {
             Object.defineProperty(e, Symbol.toStringTag, { value: 'Module' }),
             Object.defineProperty(e, '__esModule', { value: !0 });
         }),
-        n(997)
+        n(660)
       );
     })();
     return plugin;
