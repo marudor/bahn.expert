@@ -84,7 +84,6 @@ const getDEBR = (
     case '5403':
       return {
         BR: '403',
-        // @ts-expect-error this works
         identifier: `403.S${
           Number.parseInt(uicOrdnungsnummer.substr(1), 10) <= 37 ? '1' : '2'
         }`,
@@ -108,7 +107,6 @@ const getDEBR = (
     case '5411':
       return {
         BR: '411',
-        // @ts-expect-error this works
         identifier: `411.S${
           Number.parseInt(uicOrdnungsnummer, 10) <= 32 ? '1' : '2'
         }`,
