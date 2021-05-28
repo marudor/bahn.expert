@@ -9,7 +9,6 @@ describe('Map', () => {
         fixture: 'journeyGeoPosOebbSingle',
       },
     ).as('geoPos');
-    cy.force404();
     cy.visit('/map?noTiles=1');
     cy.wait('@geoPos');
   });
@@ -33,7 +32,6 @@ describe('Map', () => {
           fixture: 'journeyGeoPosOebbSingle',
         },
       ).as('geoPos');
-      cy.force404();
       cy.visit('/map?profile=db&noTiles=1');
       cy.wait('@geoPos');
     });

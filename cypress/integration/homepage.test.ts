@@ -41,17 +41,18 @@ describe('Homepage', () => {
   });
 
   it('Shows error on mainPage', () => {
-    cy.intercept('/api/iris/v2/abfahrten/8000105', {
+    cy.intercept('/api/iris/v2/abfahrten/8000105?*', {
       statusCode: 500,
       delayMs: 2000,
       body: {},
     }).intercept(
-      `/api/stopPlace/v1/search/${encodeURIComponent('Frankfurt (Main) Hbf')}`,
+      `/api/stopPlace/v1/search/${encodeURIComponent(
+        'Frankfurt (Main) Hbf',
+      )}?*`,
       {
         fixture: 'stopPlaceSearchFrankfurtHbf',
       },
     );
-    cy.force404();
     cy.visit('/');
     cy.navigateToStation('Frankfurt (Main) Hbf');
     cy.findByTestId('loading').should('exist');
@@ -60,14 +61,12 @@ describe('Homepage', () => {
   });
 
   it('shows favs from cookie', () => {
-    cy.force404();
     cy.setCookie('favs', currentKölnCookie);
     cy.visit('/');
     cy.findByTestId('favEntry').should('have.text', 'Köln Hbf');
   });
 
   it('shows favs from cookie (old format)', () => {
-    cy.force404();
     cy.setCookie('favs', oldKölnCookie);
     cy.visit('/');
     cy.findByTestId('favEntry').should('have.text', 'Köln Hbf');

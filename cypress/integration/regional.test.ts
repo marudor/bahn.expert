@@ -1,18 +1,26 @@
 describe('Regional', () => {
   it('can navigate to Details Page', () => {
     cy.intercept(
-      `/api/stopPlace/v1/search/${encodeURIComponent('Poststraße, Karlsruhe')}`,
+      `/api/stopPlace/v1/search/${encodeURIComponent(
+        'Poststraße, Karlsruhe',
+      )}?*`,
       {
         fixture: 'regional/stopPlaceSearchPoststrasse',
       },
     );
     cy.intercept(
-      '/api/hafas/experimental/irisCompatibleAbfahrten/0723869?lookahead=150&lookbehind=0',
+      {
+        url: '/api/hafas/experimental/irisCompatibleAbfahrten/0723869?*',
+        query: {
+          lookahead: '150',
+          lookbehind: '0',
+        },
+      },
       { fixture: 'regional/departurePostStrasse' },
     );
     cy.intercept(
       {
-        url: `/api/hafas/v2/details/${encodeURIComponent('STR 1761')}`,
+        url: `/api/hafas/v2/details/${encodeURIComponent('STR 1761')}?*`,
         query: {
           station: '723870',
           date: '2020-05-02T17:54:00.000Z',
@@ -20,7 +28,6 @@ describe('Regional', () => {
       },
       { fixture: 'regional/detailsStr1761' },
     );
-    cy.force404();
     cy.visit('/');
     cy.findByTestId('navToggle').click();
     cy.findByTestId('regional').click();
@@ -38,15 +45,21 @@ describe('Regional', () => {
 
   it('can handle slashes', () => {
     cy.intercept(
-      '/api/stopPlace/v1/search/' +
-        encodeURIComponent('Arndt-/Spittastraße, Stuttgart'),
+      `/api/stopPlace/v1/search/${encodeURIComponent(
+        'Arndt-/Spittastraße, Stuttgart',
+      )}?*`,
       { fixture: 'regional/stopPlaceSearchArndtSpittastrasse' },
     );
     cy.intercept(
-      '/api/hafas/experimental/irisCompatibleAbfahrten/0369218?lookahead=150&lookbehind=0',
+      {
+        url: '/api/hafas/experimental/irisCompatibleAbfahrten/0369218?*',
+        query: {
+          lookahead: '150',
+          lookbehind: '0',
+        },
+      },
       { fixture: 'regional/departureArndtSpittastrasse' },
     );
-    cy.force404();
     cy.visit('/');
     cy.findByTestId('navToggle').click();
     cy.findByTestId('regional').click();
