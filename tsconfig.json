@@ -20,7 +20,10 @@
     "resolveJsonModule": true,
     "types": ["jest", "@testing-library/jest-dom"],
     "keyofStringsOnly": true,
-    "baseUrl": "./packages/"
+    "baseUrl": "./packages/",
+    "paths": {
+      "@sinonjs/fake-timers": ["../node_modules/@types/sinonjs__fake-timers"]
+    }
   },
   "include": ["@types", "./packages"]
 }

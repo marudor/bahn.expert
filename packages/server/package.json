@@ -49,7 +49,7 @@
   "devDependencies": {
     "@babel/cli": "^7.14.3",
     "@babel/core": "^7.14.3",
-    "@sinonjs/fake-timers": "^6.0.1",
+    "@sinonjs/fake-timers": "^7.1.1",
     "@types/babel__core": "7.1.14",
     "@types/cache-manager": "3.4.0",
     "@types/cookie": "0.4.0",
@@ -71,7 +71,6 @@
     "@types/react": "17.0.8",
     "@types/react-dom": "17.0.5",
     "@types/rimraf": "^3.0.0",
-    "@types/sinonjs__fake-timers": "6.0.2",
     "@types/supertest": "2.0.11",
     "@types/webpack": "^5.28.0",
     "@types/webpack-dev-middleware": "4.3.0",
