@@ -9,11 +9,12 @@ import fakeTimers from '@sinonjs/fake-timers';
 import fs from 'fs';
 import path from 'path';
 import Timetable from 'server/iris/Timetable';
+import type { InstalledClock } from '@sinonjs/fake-timers';
 
 jest.mock('server/cache');
 
 describe('onlyPlan', () => {
-  let clock: ReturnType<typeof fakeTimers.install>;
+  let clock: InstalledClock;
 
   beforeAll(() => {
     clock = fakeTimers.install({

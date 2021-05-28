@@ -4,7 +4,7 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "jsx": "preserve",
-    "lib": ["es6", "dom", "esnext"],
+    "lib": ["DOM", "ES2020", "ESNext"],
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
@@ -20,7 +20,10 @@
     "resolveJsonModule": true,
     "types": ["jest", "@testing-library/jest-dom"],
     "keyofStringsOnly": true,
-    "baseUrl": "./packages/"
+    "baseUrl": "./packages/",
+    "paths": {
+      "@sinonjs/fake-timers": ["../node_modules/@types/sinonjs__fake-timers"]
+    }
   },
   "include": ["@types", "./packages"]
 }

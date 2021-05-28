@@ -4,7 +4,6 @@ describe('Details', () => {
       statusCode: 404,
       response: {},
     });
-    cy.force404();
     cy.visit('/details/ICE70');
     cy.findByTestId('error').should('exist');
   });
@@ -13,7 +12,6 @@ describe('Details', () => {
     cy.intercept('/api/hafas/v2/details/S30665', {
       fixture: 'details/S6',
     }).as('details');
-    cy.force404();
     cy.visit('/details/S30665');
     cy.wait('@details');
     cy.findByTestId('header').should('have.css', 'height', '54px');

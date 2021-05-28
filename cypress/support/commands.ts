@@ -43,7 +43,7 @@ function mockStopPlace({
 }) {
   cy.intercept(
     {
-      url: `/api/iris/v2/abfahrten/${id}`,
+      url: `/api/iris/v2/abfahrten/${id}?*`,
       query: {
         lookahead: lookahead.toString(),
         lookbehind: lookbehind.toString(),
@@ -55,7 +55,7 @@ function mockStopPlace({
     },
   ).intercept(
     {
-      url: `/api/stopPlace/v1/search/${encodeURIComponent(name)}`,
+      url: `/api/stopPlace/v1/search/${encodeURIComponent(name)}?*`,
     },
     {
       fixture: `stopPlaceSearch${fixture}`,
