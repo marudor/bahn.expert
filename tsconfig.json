@@ -4,7 +4,7 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "jsx": "preserve",
-    "lib": ["es6", "dom", "esnext"],
+    "lib": ["DOM", "ES2020", "ESNext"],
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
