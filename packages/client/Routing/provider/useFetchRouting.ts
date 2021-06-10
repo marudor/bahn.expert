@@ -119,13 +119,12 @@ export const useFetchRouting = () => {
     setLaterContext(undefined);
   }, [setEarlierContext, setLaterContext, setRoutes]);
 
-  const history =
-    useHistory<
-      | undefined
-      | {
-          fav: RoutingFav;
-        }
-    >();
+  const history = useHistory<
+    | undefined
+    | {
+        fav: RoutingFav;
+      }
+  >();
 
   useEffect(() => {
     const fav = history.location.state?.fav;
