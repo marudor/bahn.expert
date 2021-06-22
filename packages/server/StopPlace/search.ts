@@ -1,6 +1,7 @@
 import { byEva, byName, byPosition, byRl100, keys } from 'business-hub';
 import { CacheDatabases, createNewCache } from 'server/cache';
 import { getSingleStation } from 'server/iris/station';
+import { manualNameOverrides } from 'server/StopPlace/manualNameOverrides';
 import { StopPlaceKeyType } from 'business-hub/types/RisStations';
 import type { GroupedStopPlace, StopPlaceIdentifier } from 'types/stopPlace';
 import type {
@@ -68,6 +69,8 @@ export async function searchStopPlace(
   filterForIris?: boolean,
 ): Promise<GroupedStopPlace[]> {
   if (!searchTerm) return [];
+
+  searchTerm = manualNameOverrides.get(searchTerm.toLowerCase()) || searchTerm;
 
   let groupedStopPlaces =
     (await stopPlaceSearchCache.get(searchTerm)) ||
