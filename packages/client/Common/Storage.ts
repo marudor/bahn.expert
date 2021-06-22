@@ -7,7 +7,6 @@ const setCookieOptions: CookieSetOptions = {
   maxAge: 100000000,
   httpOnly: false,
   path: '/',
-  sameSite: 'strict',
 };
 
 export interface StorageInterface {
