@@ -95,7 +95,7 @@ export class StopPlaceController extends Controller {
     try {
       const result = (
         await axios.get<TrainOccupancy<VRRTrainOccupancy>>(
-          `https://vrrf.finalrewind.org/_eva/${evaNumber}.json`,
+          `https://vrrf.finalrewind.org/_eva/occupancy-by-eva/${evaNumber}.json`,
         )
       ).data;
 
