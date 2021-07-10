@@ -1,5 +1,4 @@
-import { StationSearchType } from 'types/station';
-import stationSearch from '../Search';
+import { searchStopPlace } from 'server/StopPlace/search';
 import tripSearch from '../HAFAS/TripSearch';
 import type { Route$Auslastung } from 'types/routing';
 
@@ -9,11 +8,8 @@ export default async (
   trainNumber: string,
   time: Date,
 ): Promise<Route$Auslastung | undefined> => {
-  const startStations = await stationSearch(start, StationSearchType.hafas);
-  const destStations = await stationSearch(
-    destination,
-    StationSearchType.hafas,
-  );
+  const startStations = await searchStopPlace(start);
+  const destStations = await searchStopPlace(destination);
 
   const startStation = startStations[0];
   const destStation = destStations[0];
@@ -32,8 +28,8 @@ export default async (
   }
 
   const trips = await tripSearch({
-    start: startStation.id,
-    destination: destStation.id,
+    start: startStation.evaNumber,
+    destination: destStation.evaNumber,
     time,
     getPasslist: false,
     maxChanges: 0,
