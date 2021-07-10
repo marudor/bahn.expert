@@ -11,16 +11,6 @@ export enum StationSearchType {
   ris = 'ris',
 }
 
-export interface SearchAllResult {
-  default: Station[];
-  hafas: Station[];
-  openData: Station[];
-  openDataOffline: Station[];
-  stationsData: Station[];
-  businessHub: Station[];
-  ris: Station[];
-}
-
 export interface Coordinates {
   lat: number;
   lng: number;

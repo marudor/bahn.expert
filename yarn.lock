@@ -7443,13 +7443,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fuse.js@npm:^6.4.6":
-  version: 6.4.6
-  resolution: "fuse.js@npm:6.4.6"
-  checksum: 012dfacdc9a3c065d05d031b4eaaad7dd460f66dca100fcef182ed4e70a6b763b6753071702589d0b28def34b48ad077f01426d4ac1d75ef374564f6baa943fd
-  languageName: node
-  linkType: hard
-
 "gauge@npm:~2.7.3":
   version: 2.7.4
   resolution: "gauge@npm:2.7.4"
@@ -12632,7 +12625,6 @@ resolve@^2.0.0-next.3:
     diff: ^5.0.0
     ejs: ^3.1.6
     eslint: ^7.28.0
-    fuse.js: ^6.4.6
     google-polyline: ^1.0.3
     iconv-lite: ^0.6.3
     jss: ^10.6.0

@@ -106,9 +106,8 @@ export async function byPosition(
 export async function platforms(evaNumber: string): Promise<Platform[]> {
   try {
     const result = (
-      await request.get<Platforms>(`/ris-stations/v1/stop-places/platforms`, {
+      await request.get<Platforms>(`/ris-stations/v1/platforms/${evaNumber}`, {
         params: {
-          evaNumber,
           includeSubPlatforms: true,
           includeOperational: true,
           includeAccessibility: true,
