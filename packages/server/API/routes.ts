@@ -795,12 +795,11 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Station": {
+    "RoutingStation": {
         "dataType": "refObject",
         "properties": {
             "title": {"dataType":"string","required":true},
             "id": {"dataType":"string","required":true},
-            "DS100": {"dataType":"string"},
         },
         "additionalProperties": false,
     },
@@ -824,7 +823,7 @@ const models: TsoaRoute.Models = {
         "properties": {
             "arrival": {"ref":"CommonStopInfo"},
             "departure": {"ref":"CommonStopInfo"},
-            "station": {"ref":"Station","required":true},
+            "station": {"ref":"RoutingStation","required":true},
             "auslastung": {"ref":"Route%24Auslastung"},
             "messages": {"dataType":"array","array":{"dataType":"refObject","ref":"RemL"}},
             "additional": {"dataType":"boolean"},
@@ -858,7 +857,7 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Coordinates": {
+    "HafasCoordinates": {
         "dataType": "refObject",
         "properties": {
             "lat": {"dataType":"double","required":true},
@@ -870,10 +869,10 @@ const models: TsoaRoute.Models = {
     "HafasStation": {
         "dataType": "refObject",
         "properties": {
+            "products": {"dataType":"array","array":{"dataType":"refAlias","ref":"ParsedProduct"}},
+            "coordinates": {"ref":"HafasCoordinates","required":true},
             "title": {"dataType":"string","required":true},
             "id": {"dataType":"string","required":true},
-            "products": {"dataType":"array","array":{"dataType":"refAlias","ref":"ParsedProduct"}},
-            "coordinates": {"ref":"Coordinates","required":true},
         },
         "additionalProperties": false,
     },
@@ -884,7 +883,7 @@ const models: TsoaRoute.Models = {
             "jid": {"dataType":"string","required":true},
             "date": {"dataType":"datetime","required":true},
             "train": {"ref":"ParsedProduct","required":true},
-            "position": {"ref":"Coordinates","required":true},
+            "position": {"ref":"HafasCoordinates","required":true},
             "stops": {"dataType":"array","array":{"dataType":"refObject","ref":"Route%24Stop"},"required":true},
         },
         "additionalProperties": false,
@@ -939,7 +938,7 @@ const models: TsoaRoute.Models = {
         "properties": {
             "arrival": {"ref":"CommonStopInfo"},
             "departure": {"ref":"CommonStopInfo","required":true},
-            "station": {"ref":"Station","required":true},
+            "station": {"ref":"RoutingStation","required":true},
             "auslastung": {"ref":"Route%24Auslastung"},
             "messages": {"dataType":"array","array":{"dataType":"refObject","ref":"RemL"}},
             "additional": {"dataType":"boolean"},
@@ -954,7 +953,7 @@ const models: TsoaRoute.Models = {
         "properties": {
             "arrival": {"ref":"CommonStopInfo","required":true},
             "departure": {"ref":"CommonStopInfo"},
-            "station": {"ref":"Station","required":true},
+            "station": {"ref":"RoutingStation","required":true},
             "auslastung": {"ref":"Route%24Auslastung"},
             "messages": {"dataType":"array","array":{"dataType":"refObject","ref":"RemL"}},
             "additional": {"dataType":"boolean"},
@@ -1312,8 +1311,8 @@ const models: TsoaRoute.Models = {
             "jid": {"dataType":"string","required":true},
             "product": {"ref":"ProdL"},
             "raw": {"ref":"SecL"},
-            "segmentDestination": {"ref":"Station","required":true},
-            "segmentStart": {"ref":"Station","required":true},
+            "segmentDestination": {"ref":"RoutingStation","required":true},
+            "segmentStart": {"ref":"RoutingStation","required":true},
             "stops": {"dataType":"array","array":{"dataType":"refObject","ref":"Route%24Stop"},"required":true},
             "train": {"ref":"ParsedProduct","required":true},
             "auslastung": {"ref":"Route%24Auslastung"},
@@ -1334,8 +1333,8 @@ const models: TsoaRoute.Models = {
             "jid": {"dataType":"string","required":true},
             "product": {"ref":"ProdL"},
             "raw": {"ref":"SecL"},
-            "segmentDestination": {"ref":"Station","required":true},
-            "segmentStart": {"ref":"Station","required":true},
+            "segmentDestination": {"ref":"RoutingStation","required":true},
+            "segmentStart": {"ref":"RoutingStation","required":true},
             "stops": {"dataType":"array","array":{"dataType":"refObject","ref":"Route%24Stop"},"required":true},
             "train": {"ref":"ParsedProduct","required":true},
             "auslastung": {"ref":"Route%24Auslastung"},
@@ -1361,8 +1360,8 @@ const models: TsoaRoute.Models = {
             "jid": {"dataType":"string","required":true},
             "product": {"ref":"ProdL"},
             "raw": {"ref":"SecL"},
-            "segmentDestination": {"ref":"Station","required":true},
-            "segmentStart": {"ref":"Station","required":true},
+            "segmentDestination": {"ref":"RoutingStation","required":true},
+            "segmentStart": {"ref":"RoutingStation","required":true},
             "stops": {"dataType":"array","array":{"dataType":"refObject","ref":"Route%24Stop"},"required":true},
             "train": {"ref":"ParsedProduct","required":true},
             "auslastung": {"ref":"Route%24Auslastung"},
@@ -1716,9 +1715,9 @@ const models: TsoaRoute.Models = {
     "SBBStation": {
         "dataType": "refObject",
         "properties": {
+            "location": {"ref":"SBBCoordinates","required":true},
             "title": {"dataType":"string","required":true},
             "id": {"dataType":"string","required":true},
-            "location": {"ref":"SBBCoordinates","required":true},
         },
         "additionalProperties": false,
     },
@@ -2603,6 +2602,27 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new SBBExperimentalController();
 
             const promise = controller.routing.apply(controller, validatedArgs as any);
+            return promiseHandler(controller, promise, context, undefined, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        router.get('/api/stopPlace/v1/lageplan/:stopPlaceName/:evaNumber',
+            async function StopPlaceController_lageplan(context: any, next: any) {
+            const args = {
+                    stopPlaceName: {"in":"path","name":"stopPlaceName","required":true,"dataType":"string"},
+                    evaNumber: {"in":"path","name":"evaNumber","required":true,"ref":"EvaNumber"},
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+              validatedArgs = getValidatedArgs(args, context, next);
+            } catch (error) {
+              context.status = error.status;
+              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+            }
+
+            const controller = new StopPlaceController();
+
+            const promise = controller.lageplan.apply(controller, validatedArgs as any);
             return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

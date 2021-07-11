@@ -1,4 +1,3 @@
-import type { CommonStation } from 'types/station';
 import type { SBBCoordinates } from 'sbb/types/common';
 
 export interface SBBStationResult {
@@ -12,6 +11,8 @@ export interface RawSBBStation extends SBBCoordinates {
   barriereFreiheit: null | 'SELBSTAENDIG';
 }
 
-export interface SBBStation extends CommonStation {
+export interface SBBStation {
   location: SBBCoordinates;
+  title: string;
+  id: string;
 }

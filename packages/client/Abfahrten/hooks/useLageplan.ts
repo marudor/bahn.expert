@@ -10,7 +10,7 @@ export const useLageplan = (
   useEffect(() => {
     if (!stationName || !evaId) return;
     Axios.get(
-      `/api/bahnhof/v1/lageplan/${encodeURIComponent(stationName)}/${evaId}`,
+      `/api/stopPlace/v1/lageplan/${encodeURIComponent(stationName)}/${evaId}`,
     )
       .then((r) => setLageplan(r.data.lageplan))
       // eslint-disable-next-line @typescript-eslint/no-empty-function

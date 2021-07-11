@@ -1,5 +1,5 @@
-import { Controller, Get, OperationId, Route, Tags } from 'tsoa';
-import { getLageplan } from 'server/Bahnhof/Lageplan';
+import { Controller, Deprecated, Get, OperationId, Route, Tags } from 'tsoa';
+import { getLageplan } from 'server/StopPlace/Lageplan';
 import type { EvaNumber } from 'types/common';
 import type { LageplanResponse } from 'types/bahnhof';
 
@@ -8,6 +8,7 @@ export class BahnhofControllerV1 extends Controller {
   @Get('/lageplan/{stopPlaceName}/{evaNumber}')
   @Tags('Bahnhof')
   @OperationId('Lageplan')
+  @Deprecated()
   async lageplan(
     stopPlaceName: string,
     evaNumber: EvaNumber,
