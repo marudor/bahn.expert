@@ -1,10 +1,10 @@
 import { blue } from '@material-ui/core/colors';
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme as createMuiTheme } from '@material-ui/core';
 import { ThemeType } from './type';
 import deepMerge from 'deepmerge';
 import type { MuiPickersOverrides } from '@material-ui/pickers/typings/overrides';
 import type { Theme as MuiTheme } from '@material-ui/core';
-import type { ThemeOptions } from '@material-ui/core/styles/createMuiTheme';
+import type { ThemeOptions } from '@material-ui/core/styles/createTheme';
 
 declare module '@material-ui/core/styles/overrides' {
   export interface ComponentNameToClassKey extends MuiPickersOverrides {}
