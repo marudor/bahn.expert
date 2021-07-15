@@ -26,7 +26,6 @@ export const abfahrtenConfigSanitize: AbfahrtenConfigSanitize = {
 
 export const commonConfigSanitize: CommonConfigSanitize = {
   time: booleanCheck,
-  zoomReihung: booleanCheck,
   showUIC: booleanCheck,
   fahrzeugGruppe: booleanCheck,
 };

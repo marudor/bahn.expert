@@ -9,7 +9,6 @@ export interface AbfahrtenConfig {
 
 export interface CommonConfig {
   readonly time: boolean;
-  readonly zoomReihung: boolean;
   readonly showUIC: boolean;
   readonly fahrzeugGruppe: boolean;
 }
