@@ -53,44 +53,6 @@ exports[`Time showOriginalTime = false 10 Minutes delay 1`] = `
 </div>
 `;
 
-exports[`Time showOriginalTime = true 5 Minutes early 1`] = `
-<div
-  class="Time-wrap Time-multiLineWrap"
->
-  <span
-    class=""
-    data-testid="time"
-  >
-    14:00
-  </span>
-  <span
-    class="Time-early"
-    data-testid="delay"
-  >
-    -5
-  </span>
-</div>
-`;
-
-exports[`Time showOriginalTime = true 10 Minutes delay 1`] = `
-<div
-  class="Time-wrap Time-multiLineWrap"
->
-  <span
-    class=""
-    data-testid="time"
-  >
-    13:45
-  </span>
-  <span
-    class="Time-delayed"
-    data-testid="delay"
-  >
-    +10
-  </span>
-</div>
-`;
-
 exports[`Time shows 0 delay number 1`] = `
 <div
   class="Time-wrap Time-early Time-multiLineWrap"
