@@ -5,7 +5,7 @@ import { stationMetaFilter } from 'server/iris/stationMetaFilter';
 import xmljs from 'libxmljs2';
 import type { AxiosInstance } from 'axios';
 import type { Element } from 'libxmljs2';
-import type { IrisStation, IrisStationWithRelated } from 'types/station';
+import type { IrisStation, IrisStationWithRelated } from 'types/iris';
 
 // 4 Hours in seconds
 const cache = createNewCache<string, IrisStation | null>(

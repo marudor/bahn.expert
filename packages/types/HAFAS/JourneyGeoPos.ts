@@ -4,12 +4,12 @@ import type {
   GenericRes,
   GeoRect,
   GeoRing,
+  HafasCoordinates,
   InOutMode,
   JourneyFilter,
   OptionalLocL,
   ParsedProduct,
 } from 'types/HAFAS';
-import type { Coordinates } from 'types/station';
 import type { Route$Stop } from 'types/routing';
 
 export type JourneyGeoPosOptions = JourneyGeoPosRequestOptions;
@@ -71,7 +71,7 @@ export interface SingleParsedJourneyGeoPos {
   jid: string;
   date: Date;
   train: ParsedProduct;
-  position: Coordinates;
+  position: HafasCoordinates;
   stops: Route$Stop[];
 }
 

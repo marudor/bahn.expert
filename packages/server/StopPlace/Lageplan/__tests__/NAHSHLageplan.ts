@@ -1,4 +1,4 @@
-import { getNAHSHLageplan } from 'server/Bahnhof/NAHSHLageplan';
+import { getNAHSHLageplan } from 'server/StopPlace/Lageplan/NAHSHLageplan';
 import Nock from 'nock';
 
 describe('HVV Lageplan', () => {

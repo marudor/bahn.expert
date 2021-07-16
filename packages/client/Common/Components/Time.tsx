@@ -1,7 +1,6 @@
 /* eslint no-nested-ternary: 0 */
-import { format, subMinutes } from 'date-fns';
+import { format } from 'date-fns';
 import { makeStyles } from '@material-ui/core';
-import { useCommonConfig } from 'client/Common/provider/CommonConfigProvider';
 import clsx from 'clsx';
 import type { FC } from 'react';
 
@@ -51,11 +50,8 @@ export const Time: FC<Props> = ({
   cancelled,
 }) => {
   const classes = useStyles();
-  const showOriginalTime = !useCommonConfig().time;
 
   if (!real) return null;
-  const time = showOriginalTime && delay ? subMinutes(real, delay) : real;
-
   const hasDelay = showZero ? delay != null : Boolean(delay);
 
   return (
@@ -63,9 +59,7 @@ export const Time: FC<Props> = ({
       className={clsx(
         className,
         classes.wrap,
-        !showOriginalTime &&
-          hasDelay &&
-          (delay && delay > 0 ? classes.delayed : classes.early),
+        hasDelay && (delay && delay > 0 ? classes.delayed : classes.early),
         {
           [classes.alignEnd]: alignEnd,
           [classes.multiLineWrap]: !oneLine,
@@ -74,7 +68,7 @@ export const Time: FC<Props> = ({
       )}
     >
       <span className={clsx(oneLine && classes.oneLine)} data-testid="time">
-        {format(time, 'HH:mm')}
+        {format(real, 'HH:mm')}
       </span>
       {hasDelay && (
         <span

@@ -1,6 +1,6 @@
-import { getDBLageplan } from 'server/Bahnhof/DBLageplan';
-import { getHVVLageplan } from 'server/Bahnhof/HVVLageplan';
-import { getNAHSHLageplan } from 'server/Bahnhof/NAHSHLageplan';
+import { getDBLageplan } from './DBLageplan';
+import { getHVVLageplan } from './HVVLageplan';
+import { getNAHSHLageplan } from './NAHSHLageplan';
 
 export async function getLageplan(
   stationName: string,

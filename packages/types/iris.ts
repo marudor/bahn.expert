@@ -1,6 +1,20 @@
 import type { CommonProductInfo, CommonStopInfo } from 'types/HAFAS';
 import type { MinimalStopPlace } from 'types/stopPlace';
 
+export interface IrisStationWithRelated {
+  station: IrisStation;
+  relatedStations: IrisStation[];
+}
+
+export interface IrisStation {
+  name: string;
+  meta: string[];
+  eva: string;
+  ds100: string;
+  db: string;
+  creationts: string;
+  p: string;
+}
 export interface WingInfo {
   station: {
     id: string;
