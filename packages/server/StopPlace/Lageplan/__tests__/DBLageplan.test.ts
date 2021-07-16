@@ -1,5 +1,8 @@
 /* eslint no-sync: 0 */
-import { getCachedDBLageplan, getDBLageplan } from 'server/Bahnhof/DBLageplan';
+import {
+  getCachedDBLageplan,
+  getDBLageplan,
+} from 'server/StopPlace/Lageplan/DBLageplan';
 import fs from 'fs';
 import Nock from 'nock';
 import path from 'path';

@@ -42,12 +42,23 @@ export const Header: FC<Props> = ({ train }) => {
   const { details } = useContext(DetailsContext);
 
   const trainText = details ? details.train.name : train;
+  const showLine =
+    details &&
+    details.train.number &&
+    details.train.name.endsWith(details.train.number);
+  const tooltipText =
+    details &&
+    (showLine
+      ? `Linie ${details.train.line}`
+      : `Nummer ${details.train.number}`);
 
   return (
     <BaseHeader>
       <div className={classes.wrap} data-testid="detailsHeader">
         <span className={classes.singleLine}>
-          {trainText}
+          <Tooltip title={tooltipText ?? trainText}>
+            <span>{trainText}</span>
+          </Tooltip>
           {details?.plannedSequence && (
             <PlannedType plannedSequence={details.plannedSequence} />
           )}

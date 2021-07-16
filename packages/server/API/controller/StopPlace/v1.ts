@@ -1,11 +1,21 @@
 import { AuslastungsValue } from 'types/routing';
-import { Controller, Get, Query, Res, Response, Route, Tags } from 'tsoa';
+import {
+  Controller,
+  Get,
+  OperationId,
+  Query,
+  Res,
+  Response,
+  Route,
+  Tags,
+} from 'tsoa';
 import {
   geoSearchStopPlace,
   getIdentifiers,
   getStopPlaceByEva,
   searchStopPlace,
 } from 'server/StopPlace/search';
+import { getLageplan } from 'server/StopPlace/Lageplan';
 import axios from 'axios';
 import type { EvaNumber } from 'types/common';
 import type {
@@ -16,10 +26,27 @@ import type {
   VRRTrainOccupancy,
   VRRTrainOccupancyValues,
 } from 'types/stopPlace';
+import type { LageplanResponse } from 'types/bahnhof';
 import type { TsoaResponse } from 'tsoa';
 
 @Route('/stopPlace/v1')
 export class StopPlaceController extends Controller {
+  /**
+   *
+   * @returns URL to DB, HVV or NAHSH Lageplan
+   */
+  @Get('/lageplan/{stopPlaceName}/{evaNumber}')
+  @Tags('StopPlace')
+  @OperationId('Lageplan')
+  async lageplan(
+    stopPlaceName: string,
+    evaNumber: EvaNumber,
+  ): Promise<LageplanResponse> {
+    const lageplan = await getLageplan(stopPlaceName, evaNumber);
+    return {
+      lageplan,
+    };
+  }
   /**
    * @isInt max
    */

@@ -55,7 +55,7 @@ export const SettingsModal: FC = () => {
   const { setConfigOpen } = useAbfahrtenModalToggle();
   const configOpen = useAbfahrtenConfigOpen();
   const setConfigKey = useAbfahrtenSetConfig();
-  const { fahrzeugGruppe, showUIC, zoomReihung, time } = useCommonConfig();
+  const { fahrzeugGruppe, showUIC } = useCommonConfig();
   const setCommonConfigKey = useSetCommonConfig();
   const handleSelectChange = useCallback(
     (key: keyof AbfahrtenConfig) => (e: ChangeEvent<HTMLSelectElement>) =>
@@ -94,31 +94,6 @@ export const SettingsModal: FC = () => {
             />
           }
           label="AutoUpdate in Sekunden"
-        />
-        <FormControlLabel
-          className={classes.label}
-          control={
-            <Switch
-              checked={time}
-              value="timeConfig"
-              onChange={handleConfigCheckedChange('time', setCommonConfigKey)}
-            />
-          }
-          label="Neue Ankunft bei Verspätung"
-        />
-        <FormControlLabel
-          className={classes.label}
-          control={
-            <Switch
-              checked={zoomReihung}
-              value="zoomReihungConfig"
-              onChange={handleConfigCheckedChange(
-                'zoomReihung',
-                setCommonConfigKey,
-              )}
-            />
-          }
-          label="Reihung maximal groß"
         />
         <FormControlLabel
           className={classes.label}

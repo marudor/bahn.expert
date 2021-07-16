@@ -1765,15 +1765,12 @@
         "type": "object",
         "additionalProperties": false
       },
-      "Station": {
+      "RoutingStation": {
         "properties": {
           "title": {
             "type": "string"
           },
           "id": {
-            "type": "string"
-          },
-          "DS100": {
             "type": "string"
           }
         },
@@ -1807,7 +1804,7 @@
             "$ref": "#/components/schemas/CommonStopInfo"
           },
           "station": {
-            "$ref": "#/components/schemas/Station"
+            "$ref": "#/components/schemas/RoutingStation"
           },
           "auslastung": {
             "$ref": "#/components/schemas/Route$Auslastung"
@@ -1890,7 +1887,7 @@
         "type": "object",
         "additionalProperties": false
       },
-      "Coordinates": {
+      "HafasCoordinates": {
         "properties": {
           "lat": {
             "type": "number",
@@ -1907,12 +1904,6 @@
       },
       "HafasStation": {
         "properties": {
-          "title": {
-            "type": "string"
-          },
-          "id": {
-            "type": "string"
-          },
           "products": {
             "items": {
               "$ref": "#/components/schemas/ParsedProduct"
@@ -1920,10 +1911,16 @@
             "type": "array"
           },
           "coordinates": {
-            "$ref": "#/components/schemas/Coordinates"
+            "$ref": "#/components/schemas/HafasCoordinates"
+          },
+          "title": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
           }
         },
-        "required": ["title", "id", "coordinates"],
+        "required": ["coordinates", "title", "id"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1940,7 +1937,7 @@
             "$ref": "#/components/schemas/ParsedProduct"
           },
           "position": {
-            "$ref": "#/components/schemas/Coordinates"
+            "$ref": "#/components/schemas/HafasCoordinates"
           },
           "stops": {
             "items": {
@@ -2052,7 +2049,7 @@
             "$ref": "#/components/schemas/CommonStopInfo"
           },
           "station": {
-            "$ref": "#/components/schemas/Station"
+            "$ref": "#/components/schemas/RoutingStation"
           },
           "auslastung": {
             "$ref": "#/components/schemas/Route$Auslastung"
@@ -2089,7 +2086,7 @@
             "$ref": "#/components/schemas/CommonStopInfo"
           },
           "station": {
-            "$ref": "#/components/schemas/Station"
+            "$ref": "#/components/schemas/RoutingStation"
           },
           "auslastung": {
             "$ref": "#/components/schemas/Route$Auslastung"
@@ -2995,10 +2992,10 @@
             "$ref": "#/components/schemas/SecL"
           },
           "segmentDestination": {
-            "$ref": "#/components/schemas/Station"
+            "$ref": "#/components/schemas/RoutingStation"
           },
           "segmentStart": {
-            "$ref": "#/components/schemas/Station"
+            "$ref": "#/components/schemas/RoutingStation"
           },
           "stops": {
             "items": {
@@ -3065,10 +3062,10 @@
             "$ref": "#/components/schemas/SecL"
           },
           "segmentDestination": {
-            "$ref": "#/components/schemas/Station"
+            "$ref": "#/components/schemas/RoutingStation"
           },
           "segmentStart": {
-            "$ref": "#/components/schemas/Station"
+            "$ref": "#/components/schemas/RoutingStation"
           },
           "stops": {
             "items": {
@@ -3158,10 +3155,10 @@
             "$ref": "#/components/schemas/SecL"
           },
           "segmentDestination": {
-            "$ref": "#/components/schemas/Station"
+            "$ref": "#/components/schemas/RoutingStation"
           },
           "segmentStart": {
-            "$ref": "#/components/schemas/Station"
+            "$ref": "#/components/schemas/RoutingStation"
           },
           "stops": {
             "items": {
@@ -4103,17 +4100,17 @@
       },
       "SBBStation": {
         "properties": {
+          "location": {
+            "$ref": "#/components/schemas/SBBCoordinates"
+          },
           "title": {
             "type": "string"
           },
           "id": {
             "type": "string"
-          },
-          "location": {
-            "$ref": "#/components/schemas/SBBCoordinates"
           }
         },
-        "required": ["title", "id", "location"],
+        "required": ["location", "title", "id"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4960,6 +4957,43 @@
         ]
       }
     },
+    "/stopPlace/v1/lageplan/{stopPlaceName}/{evaNumber}": {
+      "get": {
+        "operationId": "Lageplan",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LageplanResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["StopPlace"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "stopPlaceName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "evaNumber",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/EvaNumber"
+            }
+          }
+        ]
+      }
+    },
     "/bahnhof/v1/lageplan/{stopPlaceName}/{evaNumber}": {
       "get": {
         "operationId": "Lageplan",
@@ -4976,6 +5010,7 @@
           }
         },
         "tags": ["Bahnhof"],
+        "deprecated": true,
         "security": [],
         "parameters": [
           {

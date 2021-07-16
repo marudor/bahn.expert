@@ -2739,13 +2739,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:*, @types/eslint@npm:7.2.14":
+"@types/eslint@npm:*":
   version: 7.2.14
   resolution: "@types/eslint@npm:7.2.14"
   dependencies:
     "@types/estree": "*"
     "@types/json-schema": "*"
   checksum: 83c166031d396eefe74acc52ae635dad2702dc62dcc33c764bbffb471b5d6b079a69f5319426056bb24e88d2e12619b0f6f3137658ad18704111a91e3890dd51
+  languageName: node
+  linkType: hard
+
+"@types/eslint@npm:7.28.0":
+  version: 7.28.0
+  resolution: "@types/eslint@npm:7.28.0"
+  dependencies:
+    "@types/estree": "*"
+    "@types/json-schema": "*"
+  checksum: 75ac2577d2a2e35bae66f56d2d1c871d5e836b2721cf14bd3df450c9d584eba48fa3b1013fba710245bf4795f16e1df0ed315e543e3199c4815ee4782537d0ae
   languageName: node
   linkType: hard
 
@@ -4431,7 +4441,7 @@ __metadata:
     client: "workspace:*"
     compression-webpack-plugin: ^8.0.1
     core-js: ^3.15.2
-    css-loader: ^5.2.6
+    css-loader: ^6.0.0
     cypress: ^7.7.0
     eslint: ^7.30.0
     eslint-config-marudor: ^8.0.1
@@ -4442,14 +4452,14 @@ __metadata:
     husky: ^7.0.1
     jest: ^27.0.6
     jest-watch-typeahead: ^0.6.4
-    lint-staged: ^11.0.0
+    lint-staged: ^11.0.1
     ncp: ^2.0.0
     npm-run-all: ^4.1.5
     prettier: ^2.3.2
     react-refresh: ^0.10.0
     rimraf: ^3.0.2
     server: "workspace:*"
-    style-loader: ^3.0.0
+    style-loader: ^3.1.0
     terser-webpack-plugin: ^5.1.4
     typescript: 4.3.5
     url-loader: ^4.1.1
@@ -5532,23 +5542,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"css-loader@npm:^5.2.6":
-  version: 5.2.6
-  resolution: "css-loader@npm:5.2.6"
+"css-loader@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "css-loader@npm:6.0.0"
   dependencies:
     icss-utils: ^5.1.0
-    loader-utils: ^2.0.0
     postcss: ^8.2.15
     postcss-modules-extract-imports: ^3.0.0
     postcss-modules-local-by-default: ^4.0.0
     postcss-modules-scope: ^3.0.0
     postcss-modules-values: ^4.0.0
     postcss-value-parser: ^4.1.0
-    schema-utils: ^3.0.0
     semver: ^7.3.5
   peerDependencies:
-    webpack: ^4.27.0 || ^5.0.0
-  checksum: 993354a24887724712dc1320abba5c1c4f7a4fdc6cfd64d160a0706218d6eeb241dbf4cea0694cd2752f7c3626b543efdd9993d12f4bb5b75f33e9c4da155e10
+    webpack: ^5.0.0
+  checksum: d0d0ec6f13b0df5591d8d881297adf7756889b91defb6bb0ce3b5a407f69a8163695063a4f7ec644e14a274058c75b5ac1d21565c770f3d896d941c78662b34a
   languageName: node
   linkType: hard
 
@@ -9726,9 +9734,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lint-staged@npm:^11.0.0":
-  version: 11.0.0
-  resolution: "lint-staged@npm:11.0.0"
+"lint-staged@npm:^11.0.1":
+  version: 11.0.1
+  resolution: "lint-staged@npm:11.0.1"
   dependencies:
     chalk: ^4.1.1
     cli-truncate: ^2.1.0
@@ -9747,7 +9755,7 @@ __metadata:
     stringify-object: ^3.3.0
   bin:
     lint-staged: bin/lint-staged.js
-  checksum: 3be24b4a88799264bbb9baeedfc5be278d25aa85dc766c5328da23d5d92300c0a163563b455d530ca2a74510a161f17623e846e1aca81e44f389108274ad2acd
+  checksum: 5046fbaa020e573ca31a4b7a3819cdd5383912c53dc55f5e68db4a525eba1fc23312f4cf0162742ef6a358464394e584b718049cd62b883b1d4f06fdfb163022
   languageName: node
   linkType: hard
 
@@ -12496,7 +12504,7 @@ resolve@^2.0.0-next.3:
     "@types/core-js": 2.5.4
     "@types/diff": 5.0.1
     "@types/ejs": 3.0.7
-    "@types/eslint": 7.2.14
+    "@types/eslint": 7.28.0
     "@types/koa": 2.13.4
     "@types/koa-bodyparser": 4.3.2
     "@types/koa-static": 4.0.2
@@ -13243,12 +13251,12 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"style-loader@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "style-loader@npm:3.0.0"
+"style-loader@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "style-loader@npm:3.1.0"
   peerDependencies:
     webpack: ^5.0.0
-  checksum: 082bee844418fcb3c2b3ef3b524ff0aa184ee103dc725f5ad34c86da73d6725a418a683ebea012746d7c297ad87888f56a27fb74bc14cf77719540f9a699a94a
+  checksum: bf7e8d2cc9b5d51b39ce5a975604b67e9d8c96f7b44fee38da1b04c42d92f66c8dc0bb533c1e035921facd1e41cb9caab9567589e961d93cc6785ce55f49311e
   languageName: node
   linkType: hard
 
@@ -13821,7 +13829,7 @@ resolve@^2.0.0-next.3:
     "@babel/cli": ^7.14.5
     "@babel/core": ^7.14.6
     "@types/babel__core": 7.1.15
-    "@types/eslint": 7.2.14
+    "@types/eslint": 7.28.0
     "@types/rimraf": ^3.0.1
     eslint: ^7.30.0
     npm-run-all: ^4.1.5

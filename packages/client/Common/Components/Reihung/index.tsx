@@ -82,7 +82,7 @@ export const Reihung: FC<Props> = ({
   const classes = useStyles();
   const reihungen = useReihungen();
   const { getReihung } = useReihungenActions();
-  const { fahrzeugGruppe, showUIC, zoomReihung } = useCommonConfig();
+  const { fahrzeugGruppe, showUIC } = useCommonConfig();
   const reihung =
     reihungen[
       `${trainNumber}${currentEvaNumber}${scheduledDeparture.toISOString()}`
@@ -128,17 +128,14 @@ export const Reihung: FC<Props> = ({
     return <Loading type={1} />;
   }
 
-  const correctLeft = zoomReihung ? reihung.startPercentage : 0;
-  const scale = zoomReihung ? reihung.scale : 1;
-
   return (
     <div className={clsx(classes.wrap, className)} data-testid="reihung">
       <div className={classes.main} style={mainStyle}>
         <div className={classes.sektoren}>
           {reihung.halt.allSektor.map((s) => (
             <Sektor
-              correctLeft={correctLeft}
-              scale={scale}
+              correctLeft={reihung.startPercentage}
+              scale={reihung.scale}
               key={s.sektorbezeichnung}
               sektor={s}
             />
@@ -151,8 +148,8 @@ export const Reihung: FC<Props> = ({
               showUIC={showUIC}
               originalTrainNumber={trainNumber}
               showFahrzeugGruppe={fahrzeugGruppe}
-              correctLeft={correctLeft}
-              scale={scale}
+              correctLeft={reihung.startPercentage}
+              scale={reihung.scale}
               type={reihung.zuggattung}
               showDestination={
                 reihung.differentDestination && g.allFahrzeug.length > 1

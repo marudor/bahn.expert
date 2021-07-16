@@ -8,12 +8,16 @@ import type {
 import type { Message } from './iris';
 import type { PlannedSequence } from 'types/planReihung';
 import type { SecL } from './HAFAS/TripSearch';
-import type { Station } from './station';
+
+export interface RoutingStation {
+  title: string;
+  id: string;
+}
 
 export interface Route$Stop {
   arrival?: CommonStopInfo;
   departure?: CommonStopInfo;
-  station: Station;
+  station: RoutingStation;
   auslastung?: Route$Auslastung;
   messages?: RemL[];
   additional?: boolean;
@@ -47,8 +51,8 @@ export interface Route$Journey {
   jid: string;
   product?: ProdL;
   raw?: SecL;
-  segmentDestination: Station;
-  segmentStart: Station;
+  segmentDestination: RoutingStation;
+  segmentStart: RoutingStation;
   stops: Route$Stop[];
   train: ParsedProduct;
   auslastung?: Route$Auslastung;

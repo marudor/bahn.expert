@@ -26,14 +26,14 @@ import type {
   Route$JourneySegment,
   Route$Stop,
   RoutingResult,
+  RoutingStation,
   SingleRoute,
 } from 'types/routing';
-import type { Station } from 'types/station';
 
 const nameRegex = /O=([^@]+)/;
 const evaRegex = /L=(\d+)/;
 
-function parseFullStation(fullStation: string): Station {
+function parseFullStation(fullStation: string): RoutingStation {
   const titleMatch = nameRegex.exec(fullStation);
   const idMatch = evaRegex.exec(fullStation);
 

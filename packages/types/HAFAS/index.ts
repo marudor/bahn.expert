@@ -1,4 +1,3 @@
-import type { CommonStation, Coordinates } from 'types/station';
 import type { HimSearchRequest } from 'types/HAFAS/HimSearch';
 import type { JourneyCourseRequest } from 'types/HAFAS/JourneyCourse';
 import type { JourneyDetailsRequest } from './JourneyDetails';
@@ -226,9 +225,16 @@ export interface SDaysL {
   tLocX: number;
 }
 
-export interface HafasStation extends CommonStation {
+export interface HafasCoordinates {
+  lat: number;
+  lng: number;
+}
+
+export interface HafasStation {
   products?: ParsedProduct[];
-  coordinates: Coordinates;
+  coordinates: HafasCoordinates;
+  title: string;
+  id: string;
 }
 
 export enum AllowedHafasProfile {

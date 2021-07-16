@@ -41,7 +41,6 @@ export const CommonConfigProvider: FC<Props> = ({ children }) => {
 
   const savedConfig: CommonConfig = {
     time: storage.get('time') ?? true,
-    zoomReihung: storage.get('zoomReihung') ?? true,
     showUIC: storage.get('showUIC') ?? false,
     fahrzeugGruppe: storage.get('fahrzeugGruppe') ?? false,
     ...globalThis.configOverride.common,
