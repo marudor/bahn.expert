@@ -10,6 +10,7 @@ export interface AbfahrtenConfig {
 export interface CommonConfig {
   readonly showUIC: boolean;
   readonly fahrzeugGruppe: boolean;
+  readonly time: boolean;
 }
 
 type Sanitize<Config> = {

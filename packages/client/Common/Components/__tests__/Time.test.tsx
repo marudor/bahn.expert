@@ -46,6 +46,48 @@ describe('Time', () => {
     });
   });
 
+  describe('showOriginalTime = true', () => {
+    it('10 Minutes delay', () => {
+      const { container, theme } = render(
+        Time,
+        {
+          real: sampleTime,
+          delay: 10,
+        },
+        {
+          commonConfig: {
+            time: false,
+          },
+        },
+      );
+
+      expect(screen.queryByTestId('time')).toHaveTextContent('13:45');
+      expect(screen.queryByTestId('delay')).toHaveTextContent('+10');
+      expect(container).not.toHaveStyle(`color: ${theme.colors.red}`);
+      expect(container).toMatchSnapshot();
+    });
+
+    it('5 Minutes early', () => {
+      const { container, theme } = render(
+        Time,
+        {
+          real: sampleTime,
+          delay: -5,
+        },
+        {
+          commonConfig: {
+            time: false,
+          },
+        },
+      );
+
+      expect(screen.queryByTestId('time')).toHaveTextContent('14:00');
+      expect(screen.queryByTestId('delay')).toHaveTextContent('-5');
+      expect(container).not.toHaveStyle(`color: ${theme.colors.green}`);
+      expect(container).toMatchSnapshot();
+    });
+  });
+
   it('shows 0 delay number', () => {
     const { container, theme } = render(Time, {
       real: sampleTime,
