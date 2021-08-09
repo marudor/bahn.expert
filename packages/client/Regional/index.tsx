@@ -12,8 +12,9 @@ import type { FC } from 'react';
 
 const regionalStopPlaceApiFunction = getStopPlacesFromAPI.bind(
   undefined,
-  false,
+  undefined,
   7,
+  true,
 );
 
 export const BahnhofsAbfahrten: FC = () => {
@@ -28,7 +29,7 @@ export const BahnhofsAbfahrten: FC = () => {
       >
         <FavProvider storageKey="regionalFavs">
           <MainWrap noHeader={Boolean(noHeader)}>
-            {!noHeader && <Header filterForIris={false} />}
+            {!noHeader && <Header regional />}
             <SettingsModal />
             {renderRoutes(routes)}
           </MainWrap>

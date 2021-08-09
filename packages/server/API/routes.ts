@@ -1753,6 +1753,7 @@ const models: TsoaRoute.Models = {
             "ifopt": {"dataType":"string"},
             "ril100": {"dataType":"string"},
             "alternativeRil100": {"dataType":"array","array":{"dataType":"string"}},
+            "evaNumber": {"dataType":"string","required":true},
         },
         "additionalProperties": false,
     },
@@ -2632,6 +2633,7 @@ export function RegisterRoutes(router: KoaRouter) {
                     searchTerm: {"in":"path","name":"searchTerm","required":true,"dataType":"string"},
                     max: {"in":"query","name":"max","dataType":"integer","validators":{"isInt":{"errorMsg":"max"}}},
                     filterForIris: {"default":false,"in":"query","name":"filterForIris","dataType":"boolean"},
+                    groupedBySales: {"default":false,"in":"query","name":"groupedBySales","dataType":"boolean"},
             };
 
             let validatedArgs: any[] = [];

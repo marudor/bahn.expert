@@ -167,7 +167,7 @@
         "additionalProperties": false
       },
       "AccessibilityStatus": {
-        "description": "Status of platform accessibility [Barrierefreiheit] information.\n- AVAILABLE (accessibility item is available)\n- NOT_AVAILABLE (accessibility item is not available)\n- PARTIAL (accessibility item is only partial available, for instance availble for 12a but not for 12b and therefore not for 12 in total)\n- NOT_APPLICABLE (accessibility item is not applicable because it depends on availability of other items, for instance stair mark depends on step free access)\n- UNKNOWN (no information on availability for accessibility item)",
+        "description": "Status of platform accessibility [Barrierefreiheit] information. - AVAILABLE (accessibility item is available) - NOT_AVAILABLE (accessibility item is not available) - PARTIAL (accessibility item is only partial available, for instance availble for 12a but not for 12b and therefore not for 12 in total) - NOT_APPLICABLE (accessibility item is not applicable because it depends on availability of other items, for instance stair mark depends on step free access) - UNKNOWN (no information on availability for accessibility item)",
         "enum": [
           "AVAILABLE",
           "NOT_AVAILABLE",
@@ -181,55 +181,44 @@
         "description": "Accessibility [Barrierefreiheit] information for a particular platform.",
         "properties": {
           "audibleSignalsAvailable": {
-            "$ref": "#/components/schemas/AccessibilityStatus",
-            "description": "Status of platform accessibility [Barrierefreiheit] information.\n- AVAILABLE (accessibility item is available)\n- NOT_AVAILABLE (accessibility item is not available)\n- PARTIAL (accessibility item is only partial available, for instance availble for 12a but not for 12b and therefore not for 12 in total)\n- NOT_APPLICABLE (accessibility item is not applicable because it depends on availability of other items, for instance stair mark depends on step free access)\n- UNKNOWN (no information on availability for accessibility item)"
+            "$ref": "#/components/schemas/AccessibilityStatus"
           },
           "automaticDoor": {
-            "$ref": "#/components/schemas/AccessibilityStatus",
-            "description": "Status of platform accessibility [Barrierefreiheit] information.\n- AVAILABLE (accessibility item is available)\n- NOT_AVAILABLE (accessibility item is not available)\n- PARTIAL (accessibility item is only partial available, for instance availble for 12a but not for 12b and therefore not for 12 in total)\n- NOT_APPLICABLE (accessibility item is not applicable because it depends on availability of other items, for instance stair mark depends on step free access)\n- UNKNOWN (no information on availability for accessibility item)"
+            "$ref": "#/components/schemas/AccessibilityStatus"
           },
           "boardingAid": {
-            "$ref": "#/components/schemas/AccessibilityStatus",
-            "description": "Status of platform accessibility [Barrierefreiheit] information.\n- AVAILABLE (accessibility item is available)\n- NOT_AVAILABLE (accessibility item is not available)\n- PARTIAL (accessibility item is only partial available, for instance availble for 12a but not for 12b and therefore not for 12 in total)\n- NOT_APPLICABLE (accessibility item is not applicable because it depends on availability of other items, for instance stair mark depends on step free access)\n- UNKNOWN (no information on availability for accessibility item)"
+            "$ref": "#/components/schemas/AccessibilityStatus"
           },
           "passengerInformationDisplay": {
-            "$ref": "#/components/schemas/AccessibilityStatus",
-            "description": "Status of platform accessibility [Barrierefreiheit] information.\n- AVAILABLE (accessibility item is available)\n- NOT_AVAILABLE (accessibility item is not available)\n- PARTIAL (accessibility item is only partial available, for instance availble for 12a but not for 12b and therefore not for 12 in total)\n- NOT_APPLICABLE (accessibility item is not applicable because it depends on availability of other items, for instance stair mark depends on step free access)\n- UNKNOWN (no information on availability for accessibility item)"
+            "$ref": "#/components/schemas/AccessibilityStatus"
           },
           "standardPlatformHeight": {
-            "$ref": "#/components/schemas/AccessibilityStatus",
-            "description": "Status of platform accessibility [Barrierefreiheit] information.\n- AVAILABLE (accessibility item is available)\n- NOT_AVAILABLE (accessibility item is not available)\n- PARTIAL (accessibility item is only partial available, for instance availble for 12a but not for 12b and therefore not for 12 in total)\n- NOT_APPLICABLE (accessibility item is not applicable because it depends on availability of other items, for instance stair mark depends on step free access)\n- UNKNOWN (no information on availability for accessibility item)"
+            "$ref": "#/components/schemas/AccessibilityStatus"
           },
           "platformSign": {
-            "$ref": "#/components/schemas/AccessibilityStatus",
-            "description": "Status of platform accessibility [Barrierefreiheit] information.\n- AVAILABLE (accessibility item is available)\n- NOT_AVAILABLE (accessibility item is not available)\n- PARTIAL (accessibility item is only partial available, for instance availble for 12a but not for 12b and therefore not for 12 in total)\n- NOT_APPLICABLE (accessibility item is not applicable because it depends on availability of other items, for instance stair mark depends on step free access)\n- UNKNOWN (no information on availability for accessibility item)"
+            "$ref": "#/components/schemas/AccessibilityStatus"
           },
           "stairsMarking": {
-            "$ref": "#/components/schemas/AccessibilityStatus",
-            "description": "Status of platform accessibility [Barrierefreiheit] information.\n- AVAILABLE (accessibility item is available)\n- NOT_AVAILABLE (accessibility item is not available)\n- PARTIAL (accessibility item is only partial available, for instance availble for 12a but not for 12b and therefore not for 12 in total)\n- NOT_APPLICABLE (accessibility item is not applicable because it depends on availability of other items, for instance stair mark depends on step free access)\n- UNKNOWN (no information on availability for accessibility item)"
+            "$ref": "#/components/schemas/AccessibilityStatus"
           },
           "stepFreeAccess": {
-            "$ref": "#/components/schemas/AccessibilityStatus",
-            "description": "Status of platform accessibility [Barrierefreiheit] information.\n- AVAILABLE (accessibility item is available)\n- NOT_AVAILABLE (accessibility item is not available)\n- PARTIAL (accessibility item is only partial available, for instance availble for 12a but not for 12b and therefore not for 12 in total)\n- NOT_APPLICABLE (accessibility item is not applicable because it depends on availability of other items, for instance stair mark depends on step free access)\n- UNKNOWN (no information on availability for accessibility item)"
+            "$ref": "#/components/schemas/AccessibilityStatus"
           },
           "tactileGuidingStrips": {
-            "$ref": "#/components/schemas/AccessibilityStatus",
-            "description": "Status of platform accessibility [Barrierefreiheit] information.\n- AVAILABLE (accessibility item is available)\n- NOT_AVAILABLE (accessibility item is not available)\n- PARTIAL (accessibility item is only partial available, for instance availble for 12a but not for 12b and therefore not for 12 in total)\n- NOT_APPLICABLE (accessibility item is not applicable because it depends on availability of other items, for instance stair mark depends on step free access)\n- UNKNOWN (no information on availability for accessibility item)"
+            "$ref": "#/components/schemas/AccessibilityStatus"
           },
           "tactileHandrailLabel": {
-            "$ref": "#/components/schemas/AccessibilityStatus",
-            "description": "Status of platform accessibility [Barrierefreiheit] information.\n- AVAILABLE (accessibility item is available)\n- NOT_AVAILABLE (accessibility item is not available)\n- PARTIAL (accessibility item is only partial available, for instance availble for 12a but not for 12b and therefore not for 12 in total)\n- NOT_APPLICABLE (accessibility item is not applicable because it depends on availability of other items, for instance stair mark depends on step free access)\n- UNKNOWN (no information on availability for accessibility item)"
+            "$ref": "#/components/schemas/AccessibilityStatus"
           },
           "tactilePlatformAccess": {
-            "$ref": "#/components/schemas/AccessibilityStatus",
-            "description": "Status of platform accessibility [Barrierefreiheit] information.\n- AVAILABLE (accessibility item is available)\n- NOT_AVAILABLE (accessibility item is not available)\n- PARTIAL (accessibility item is only partial available, for instance availble for 12a but not for 12b and therefore not for 12 in total)\n- NOT_APPLICABLE (accessibility item is not applicable because it depends on availability of other items, for instance stair mark depends on step free access)\n- UNKNOWN (no information on availability for accessibility item)"
+            "$ref": "#/components/schemas/AccessibilityStatus"
           }
         },
         "type": "object",
         "additionalProperties": false
       },
       "ReferencePointType": {
-        "description": "Type of a reference point.\n- STOP_SIGNAL (Haltesignal)\n- STOP_BOARD (Haltetafel)",
+        "description": "Type of a reference point. - STOP_SIGNAL (Haltesignal) - STOP_BOARD (Haltetafel)",
         "enum": ["STOP_SIGNAL", "STOP_BOARD"],
         "type": "string"
       },
@@ -245,8 +234,7 @@
             "description": "Name of the reference point."
           },
           "referencePointType": {
-            "$ref": "#/components/schemas/ReferencePointType",
-            "description": "Type of a reference point.\n- STOP_SIGNAL (Haltesignal)\n- STOP_BOARD (Haltetafel)"
+            "$ref": "#/components/schemas/ReferencePointType"
           },
           "position": {
             "type": "number",
@@ -356,12 +344,10 @@
             "description": "List of sectors [Sektoren] that belong to the platform."
           },
           "accessibility": {
-            "$ref": "#/components/schemas/Accessibility",
-            "description": "Accessibility [Barrierefreiheit] information for a particular platform."
+            "$ref": "#/components/schemas/Accessibility"
           },
           "operational": {
-            "$ref": "#/components/schemas/Operational",
-            "description": "Detailed operational [Betrieb] information."
+            "$ref": "#/components/schemas/Operational"
           }
         },
         "required": ["name"],
@@ -4132,7 +4118,7 @@
         "additionalProperties": false
       },
       "TransportType": {
-        "description": "Type of transport.\n- HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.)\n- INTERCITY_TRAIN (Inter city train [Intercityzug])\n- INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug])\n- REGIONAL_TRAIN (Regional train [Regionalzug])\n- CITY_TRAIN (City train [S-Bahn])\n- SUBWAY (Subway [U-Bahn])\n- TRAM (Tram [Strassenbahn])\n- BUS (Bus [Bus])\n- FERRY (Ferry [Faehre])\n- FLIGHT (Flight [Flugzeug])\n- CAR (Car [Auto])\n- TAXI (Taxi)\n- SHUTTLE (Shuttle [Ruftaxi])\n- BIKE ((E-)Bike [Fahrrad])\n- SCOOTER ((E-)Scooter [Roller])\n- WALK (Walk ([Laufen])\n- UNKNOWN (Unknown)",
+        "description": "Type of transport. - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - FLIGHT (Flight [Flugzeug]) - CAR (Car [Auto]) - TAXI (Taxi) - SHUTTLE (Shuttle [Ruftaxi]) - BIKE ((E-)Bike [Fahrrad]) - SCOOTER ((E-)Scooter [Roller]) - WALK (Walk ([Laufen]) - UNKNOWN (Unknown)",
         "enum": [
           "HIGH_SPEED_TRAIN",
           "INTERCITY_TRAIN",
@@ -4155,7 +4141,7 @@
         "type": "string"
       },
       "Coordinate2D": {
-        "description": "2D Coordinate within geo reference system.",
+        "description": "2D coordinate within geo reference system.",
         "properties": {
           "longitude": {
             "type": "number",
@@ -4189,8 +4175,12 @@
               "type": "string"
             },
             "type": "array"
+          },
+          "evaNumber": {
+            "type": "string"
           }
         },
+        "required": ["evaNumber"],
         "type": "object",
         "additionalProperties": false
       },
@@ -5346,6 +5336,15 @@
             "description": "Only returns stopPlaces iris-tts can handle (/abfahrten)",
             "in": "query",
             "name": "filterForIris",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "groupedBySales",
             "required": false,
             "schema": {
               "default": false,

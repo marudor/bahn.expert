@@ -1,13 +1,14 @@
-import { byEva, byName, byPosition, byRl100, keys } from 'business-hub';
+import { byEva, byName, byPosition, byRl100, groups, keys } from 'business-hub';
 import { CacheDatabases, createNewCache } from 'server/cache';
 import { getSingleStation } from 'server/iris/station';
 import { manualNameOverrides } from 'server/StopPlace/manualNameOverrides';
-import { StopPlaceKeyType } from 'business-hub/types/RisStations';
+import { StopPlaceKeyType } from 'business-hub/types';
 import type { GroupedStopPlace, StopPlaceIdentifier } from 'types/stopPlace';
 import type {
+  ResolvedStopPlaceGroups,
   StopPlace,
   StopPlaceSearchResult,
-} from 'business-hub/types/RisStations';
+} from 'business-hub/types';
 
 const ttl = 5 * 24 * 60 * 60;
 
@@ -30,6 +31,10 @@ const stopPlaceByRilCache = createNewCache<string, StopPlace>(
 const stopPlaceByEvaCache = createNewCache<string, GroupedStopPlace>(
   ttl,
   CacheDatabases.StopPlaceByEva,
+);
+const stopPlaceGroupCache = createNewCache<string, ResolvedStopPlaceGroups>(
+  ttl,
+  CacheDatabases.StopPlaceGroups,
 );
 
 function mapToGroupedStopPlace(
@@ -85,6 +90,54 @@ export async function searchStopPlace(
   }
 
   return groupedStopPlaces;
+}
+
+export async function searchStopPlaceGroupedBySales(
+  searchTerm?: string,
+  max?: number,
+  filterForIris?: boolean,
+): Promise<GroupedStopPlace[]> {
+  const ungroupedResult = await searchStopPlace(
+    searchTerm,
+    undefined,
+    filterForIris,
+  );
+  const groups = (
+    await Promise.all(
+      ungroupedResult.map(async (r) => ({
+        groups: await getGroups(r.evaNumber),
+        evaNumber: r.evaNumber,
+      })),
+    )
+  ).reduce(
+    (agg, c) => {
+      if (c) {
+        agg[c.evaNumber] = c.groups;
+      }
+      return agg;
+    },
+    {} as {
+      [key: string]: ResolvedStopPlaceGroups;
+    },
+  );
+
+  const seenEvas = new Set();
+  const result: GroupedStopPlace[] = [];
+
+  ungroupedResult.forEach((r) => {
+    if (seenEvas.has(r.evaNumber)) {
+      return;
+    }
+    result.push(r);
+    groups[r.evaNumber]?.SALES?.forEach((m) => seenEvas.add(m));
+    seenEvas.add(r.evaNumber);
+  });
+
+  if (max) {
+    result.splice(max);
+  }
+
+  return result;
 }
 
 export async function getStopPlaceByEva(
@@ -181,24 +234,26 @@ export async function getIdentifiers(
 ): Promise<StopPlaceIdentifier | undefined> {
   const cached = await stopPlaceIdentifierCache.get(evaNumber);
   if (cached) return Object.values(cached).length > 0 ? cached : undefined;
-  const identifier: StopPlaceIdentifier = {};
+  const identifier: StopPlaceIdentifier = {
+    evaNumber,
+  };
   try {
     const stopPlaceKeys = await keys(evaNumber);
     stopPlaceKeys.forEach(({ type, key }) => {
       switch (type) {
-        case StopPlaceKeyType.IFOPT:
+        case StopPlaceKeyType.Ifopt:
           identifier.ifopt = key;
           break;
-        case StopPlaceKeyType.RL100:
+        case StopPlaceKeyType.Rl100:
           identifier.ril100 = key;
           break;
-        case StopPlaceKeyType.RL100ALTERNATIVE:
+        case StopPlaceKeyType.Rl100Alternative:
           if (!identifier.alternativeRil100) {
             identifier.alternativeRil100 = [];
           }
           identifier.alternativeRil100.push(key);
           break;
-        case StopPlaceKeyType.STADA:
+        case StopPlaceKeyType.Stada:
           identifier.stationId = key;
           break;
       }
@@ -212,4 +267,8 @@ export async function getIdentifiers(
   }
 
   return undefined;
+}
+
+export function getGroups(evaNumber: string): Promise<ResolvedStopPlaceGroups> {
+  return stopPlaceGroupCache.wrap(evaNumber, () => groups(evaNumber));
 }

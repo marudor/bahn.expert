@@ -1,26 +1,28 @@
-import { request } from './request';
 import {
-  StopPlaceKeyType,
-  TransportType,
-} from 'business-hub/types/RisStations';
+  PlatformsApi,
+  StopPlaceKeyFilter,
+  StopPlacesApi,
+} from 'business-hub/generated';
+import { risStationsConfiguration } from 'business-hub/config';
+import { TransportType } from 'business-hub/types';
 import type {
   Platform,
-  Platforms,
+  ResolvedStopPlaceGroups,
   StopPlace,
   StopPlaceKey,
-  StopPlaceKeys,
-  StopPlaces,
   StopPlaceSearchResult,
-  StopPlaceSearchResults,
-} from 'business-hub/types/RisStations';
+} from 'business-hub/types';
 
 const nonÖPNVTypes = [
-  TransportType.HIGH_SPEED_TRAIN,
-  TransportType.INTERCITY_TRAIN,
-  TransportType.INTER_REGIONAL_TRAIN,
-  TransportType.REGIONAL_TRAIN,
-  TransportType.CITY_TRAIN,
+  TransportType.HighSpeedTrain,
+  TransportType.IntercityTrain,
+  TransportType.InterRegionalTrain,
+  TransportType.RegionalTrain,
+  TransportType.CityTrain,
 ];
+
+const stopPlaceClient = new StopPlacesApi(risStationsConfiguration);
+const platformsClient = new PlatformsApi(risStationsConfiguration);
 
 function withoutÖPNV(stopPlace: StopPlaceSearchResult) {
   return stopPlace.availableTransports.some((t) => nonÖPNVTypes.includes(t));
@@ -32,9 +34,9 @@ export async function byName(
 ): Promise<StopPlaceSearchResult[]> {
   if (!searchTerm) return [];
   const result = (
-    await request.get<StopPlaceSearchResults>(
-      `/ris-stations/v1/stop-places/by-name/${encodeURIComponent(searchTerm)}`,
-    )
+    await stopPlaceClient.byName({
+      query: searchTerm,
+    })
   ).data;
   if (onlySPNV) {
     return result.stopPlaces?.filter(withoutÖPNV) || [];
@@ -45,23 +47,18 @@ export async function byName(
 
 export async function keys(evaNumber: string): Promise<StopPlaceKey[]> {
   return (
-    await request.get<StopPlaceKeys>(
-      `/ris-stations/v1/stop-places/${evaNumber}/keys`,
-    )
+    await stopPlaceClient.keys({
+      evaNumber,
+    })
   ).data.keys;
 }
 
 export async function byRl100(rl100: string): Promise<StopPlace | undefined> {
   try {
-    const result = await request.get<StopPlaces>(
-      '/ris-stations/v1/stop-places/by-key',
-      {
-        params: {
-          key: rl100,
-          keyType: StopPlaceKeyType.RL100,
-        },
-      },
-    );
+    const result = await stopPlaceClient.byKey({
+      keyType: StopPlaceKeyFilter.Rl100,
+      key: rl100,
+    });
     return result.data.stopPlaces?.[0];
   } catch {
     return undefined;
@@ -71,7 +68,9 @@ export async function byRl100(rl100: string): Promise<StopPlace | undefined> {
 export async function byEva(evaNumber: string): Promise<StopPlace | undefined> {
   try {
     const result = (
-      await request.get<StopPlaces>(`/ris-stations/v1/stop-places/${evaNumber}`)
+      await stopPlaceClient.byEvaNumber({
+        evaNumber,
+      })
     ).data;
     return result.stopPlaces?.[0];
   } catch {
@@ -86,16 +85,11 @@ export async function byPosition(
 ): Promise<StopPlaceSearchResult[]> {
   try {
     const result = (
-      await request.get<StopPlaceSearchResults>(
-        '/ris-stations/v1/stop-places/by-position',
-        {
-          params: {
-            longitude,
-            latitude,
-            radius,
-          },
-        },
-      )
+      await stopPlaceClient.byPosition({
+        longitude,
+        latitude,
+        radius,
+      })
     ).data;
     return result.stopPlaces || [];
   } catch {
@@ -106,16 +100,30 @@ export async function byPosition(
 export async function platforms(evaNumber: string): Promise<Platform[]> {
   try {
     const result = (
-      await request.get<Platforms>(`/ris-stations/v1/platforms/${evaNumber}`, {
-        params: {
-          includeSubPlatforms: true,
-          includeOperational: true,
-          includeAccessibility: true,
-        },
+      await platformsClient.platforms({
+        evaNumber,
+        includeSubPlatforms: true,
+        includeOperational: true,
+        includeAccessibility: true,
       })
     ).data;
     return result.platforms || [];
   } catch {
     return [];
   }
+}
+
+export async function groups(
+  evaNumber: string,
+): Promise<ResolvedStopPlaceGroups> {
+  const groups = (
+    await stopPlaceClient.groups({
+      evaNumber,
+    })
+  ).data.groups;
+
+  return groups.reduce((agg, g) => {
+    agg[g.type] = g.members;
+    return agg;
+  }, {} as ResolvedStopPlaceGroups);
 }
