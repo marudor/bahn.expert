@@ -1,7 +1,4 @@
-import type {
-  Coordinate2D,
-  TransportType,
-} from 'business-hub/types/RisStations';
+import type { Coordinate2D, TransportType } from 'business-hub/types';
 import type { Route$Auslastung } from 'types/routing';
 
 export interface StopPlaceIdentifier {
@@ -10,6 +7,7 @@ export interface StopPlaceIdentifier {
   ifopt?: string;
   ril100?: string;
   alternativeRil100?: string[];
+  evaNumber: string;
 }
 
 export interface GroupedStopPlace {

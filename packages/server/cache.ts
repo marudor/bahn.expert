@@ -27,6 +27,7 @@ export enum CacheDatabases {
   StopPlaceIdentifier,
   StopPlaceByEva,
   StopPlaceByRil,
+  StopPlaceGroups,
 }
 const activeCaches = new Set();
 
@@ -136,6 +137,9 @@ export function createNewCache<K extends string, V>(
     },
     store: baseCache.store,
     baseCache,
+    wrap<T>(key: string, work: () => Promise<T>): Promise<T> {
+      return baseCache.wrap(key, work);
+    },
   };
 }
 

@@ -11,7 +11,12 @@ import { SettingsModal } from './Components/SettingsModal';
 import { useQuery } from 'client/Common/hooks/useQuery';
 import type { FC } from 'react';
 
-const stopPlaceApiFunction = getStopPlacesFromAPI.bind(undefined, true, 1);
+const stopPlaceApiFunction = getStopPlacesFromAPI.bind(
+  undefined,
+  true,
+  1,
+  undefined,
+);
 
 export const BahnhofsAbfahrten: FC = () => {
   const noHeader = useQuery().noHeader;
@@ -25,7 +30,7 @@ export const BahnhofsAbfahrten: FC = () => {
       >
         <FavProvider storageKey="favs" MostUsedComponent={MostUsed}>
           <MainWrap noHeader={Boolean(noHeader)}>
-            {!noHeader && <Header filterForIris={true} />}
+            {!noHeader && <Header />}
             <SettingsModal />
             {renderRoutes(routes)}
           </MainWrap>

@@ -2,7 +2,7 @@ import { Controller, Get, OperationId, Route, Tags } from 'tsoa';
 import { platforms, stationOccupancy } from 'business-hub';
 import type { EvaNumber } from 'types/common';
 import type { OccupancyResponse } from 'business-hub/types/Occupancy';
-import type { Platform } from 'business-hub/types/RisStations';
+import type { Platform } from 'business-hub/types';
 
 @Route('/businessHub/v1')
 export class BusinessHubV1Controller extends Controller {

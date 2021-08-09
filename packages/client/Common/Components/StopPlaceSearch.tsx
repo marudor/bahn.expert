@@ -55,7 +55,8 @@ export interface Props {
   profile?: AllowedHafasProfile;
   maxSuggestions?: number;
   additionalIcon?: ReactNode;
-  filterForIris: boolean;
+  filterForIris?: boolean;
+  groupedBySales?: boolean;
 }
 
 export const StopPlaceSearch: FC<Props> = ({
@@ -66,7 +67,8 @@ export const StopPlaceSearch: FC<Props> = ({
   placeholder,
   maxSuggestions = 7,
   additionalIcon,
-  filterForIris,
+  filterForIris = false,
+  groupedBySales = false,
 }) => {
   const classes = useStyles({ additionalIcon: Boolean(additionalIcon) });
   const inputRef = useRef<HTMLInputElement>();
@@ -81,6 +83,7 @@ export const StopPlaceSearch: FC<Props> = ({
   } = useStopPlaceSearch({
     filterForIris,
     maxSuggestions,
+    groupedBySales,
   });
 
   const getLocation = useCallback(

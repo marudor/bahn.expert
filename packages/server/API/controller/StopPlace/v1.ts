@@ -14,6 +14,7 @@ import {
   getIdentifiers,
   getStopPlaceByEva,
   searchStopPlace,
+  searchStopPlaceGroupedBySales,
 } from 'server/StopPlace/search';
 import { getLageplan } from 'server/StopPlace/Lageplan';
 import axios from 'axios';
@@ -57,7 +58,11 @@ export class StopPlaceController extends Controller {
     @Query() max?: number,
     /** Only returns stopPlaces iris-tts can handle (/abfahrten) */
     @Query() filterForIris = false,
+    @Query() groupedBySales = false,
   ): Promise<GroupedStopPlace[]> {
+    if (groupedBySales) {
+      return searchStopPlaceGroupedBySales(searchTerm, max, filterForIris);
+    }
     return searchStopPlace(searchTerm, max, filterForIris);
   }
 
