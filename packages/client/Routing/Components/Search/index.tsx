@@ -182,7 +182,6 @@ export const Search: FC = () => {
           onChange={(s) => updateVia(index, s)}
           value={v}
           key={index}
-          filterForIris={false}
           additionalIcon={<Delete onClick={() => updateVia(index)} />}
         />
       )),
@@ -196,7 +195,6 @@ export const Search: FC = () => {
         value={start}
         onChange={setStart}
         placeholder="Start"
-        filterForIris={false}
       />
       <div>
         {mappedViaList}
@@ -205,7 +203,6 @@ export const Search: FC = () => {
             placeholder="Via Station"
             id="addVia"
             onChange={(s) => updateVia(-1, s)}
-            filterForIris={false}
           />
         )}
       </div>
@@ -215,7 +212,6 @@ export const Search: FC = () => {
           value={destination}
           onChange={setDestination}
           placeholder="Destination"
-          filterForIris={false}
           additionalIcon={
             <SwapVert
               data-testid="swapStations"

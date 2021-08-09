@@ -13,11 +13,13 @@ export async function getStopPlaceFromAPI(
 }
 
 export async function getStopPlacesFromAPI(
-  filterForIris: boolean,
+  filterForIris?: boolean,
   max?: number,
+  groupedBySales?: boolean,
   searchTerm?: string,
 ): Promise<GroupedStopPlace[]> {
   if (searchTerm) {
+    console.log(groupedBySales);
     return (
       await Axios.get<GroupedStopPlace[]>(
         `/api/stopPlace/v1/search/${encodeURIComponent(searchTerm)}`,
@@ -25,6 +27,7 @@ export async function getStopPlacesFromAPI(
           params: {
             filterForIris,
             max,
+            groupedBySales,
           },
         },
       )

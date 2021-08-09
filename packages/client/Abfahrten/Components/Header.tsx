@@ -12,10 +12,10 @@ import type { FC } from 'react';
 import type { MinimalStopPlace } from 'types/stopPlace';
 
 interface Props {
-  filterForIris: boolean;
+  regional?: boolean;
 }
 
-export const Header: FC<Props> = ({ filterForIris }: Props) => {
+export const Header: FC<Props> = ({ regional = false }: Props) => {
   const currentStopPlace = useCurrentAbfahrtenStopPlace();
   const refreshCurrentAbfahrten = useRefreshCurrent(true);
   const urlPrefix = useAbfahrtenUrlPrefix();
@@ -44,7 +44,8 @@ export const Header: FC<Props> = ({ filterForIris }: Props) => {
         <StopPlaceSearch
           id="abfahrtenHeaderSearch"
           autoFocus={!currentStopPlace}
-          filterForIris={filterForIris}
+          filterForIris={!regional}
+          groupedBySales={regional}
           value={currentEnteredStopPlace}
           onChange={submit}
           placeholder={`Station (z.B. ${

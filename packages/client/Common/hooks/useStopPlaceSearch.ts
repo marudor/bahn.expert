@@ -12,6 +12,7 @@ const debouncedStopPlacesFromAPI = debounce(getStopPlacesFromAPI, 500);
 interface UseStationSearchOptions {
   maxSuggestions: number;
   filterForIris: boolean;
+  groupedBySales: boolean;
 }
 
 const itemToString = (s: MinimalStopPlace | null) => (s ? s.name : '');
@@ -20,14 +21,20 @@ const itemToString = (s: MinimalStopPlace | null) => (s ? s.name : '');
 export const useStopPlaceSearch = ({
   filterForIris,
   maxSuggestions,
+  groupedBySales,
 }: UseStationSearchOptions) => {
   const [suggestions, setSuggestions] = useState<MinimalStopPlace[]>([]);
   const [loading, setLoading] = useState(false);
 
   const stopPlaceFn = useMemo(
     () =>
-      debouncedStopPlacesFromAPI.bind(undefined, filterForIris, maxSuggestions),
-    [filterForIris, maxSuggestions],
+      debouncedStopPlacesFromAPI.bind(
+        undefined,
+        filterForIris,
+        maxSuggestions,
+        groupedBySales,
+      ),
+    [filterForIris, groupedBySales, maxSuggestions],
   );
   const geoFn = useMemo(
     () =>
