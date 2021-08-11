@@ -6,7 +6,7 @@ import {
 import { useCallback, useEffect, useState } from 'react';
 import Axios from 'axios';
 import constate from 'constate';
-import type { Abfahrt, AbfahrtenResult, Wings } from 'types/iris';
+import type { AbfahrtenResult } from 'types/iris';
 import type { AxiosError } from 'axios';
 import type { FC, ReactNode } from 'react';
 import type { MinimalStopPlace } from 'types/stopPlace';
@@ -33,12 +33,6 @@ export const fetchAbfahrten = async (
   return r.data;
 };
 
-interface Departures {
-  lookahead: Abfahrt[];
-  lookbehind: Abfahrt[];
-  wings?: Wings;
-}
-
 export type AbfahrtenError =
   | AbfahrtenError$Redirect
   | AbfahrtenError$404
@@ -64,7 +58,7 @@ const useAbfahrtenInner = ({
   searchFunction: (searchTerm: string) => Promise<MinimalStopPlace[]>;
 }) => {
   const [currentStopPlace, setCurrentStopPlace] = useState<MinimalStopPlace>();
-  const [departures, setDepartures] = useState<Departures>();
+  const [departures, setDepartures] = useState<AbfahrtenResult>();
   const [error, setError] = useState<AbfahrtenError>();
   const { lookahead, lookbehind } = useAbfahrtenConfig();
   const fetchApiUrl = useAbfahrtenFetchAPIUrl();
@@ -114,19 +108,10 @@ const useAbfahrtenInner = ({
       `${fetchApiUrl}/${currentStopPlace.evaNumber}`,
       lookahead,
       lookbehind,
-    ).then(
-      (r) => {
-        setDepartures({
-          lookahead: r.departures,
-          lookbehind: r.lookbehind,
-          wings: r.wings,
-        });
-      },
-      (e) => {
-        e.station = currentStopPlace.name;
-        setError(e);
-      },
-    );
+    ).then(setDepartures, (e) => {
+      e.station = currentStopPlace.name;
+      setError(e);
+    });
   }, [currentStopPlace, fetchApiUrl, lookahead, lookbehind]);
 
   return {

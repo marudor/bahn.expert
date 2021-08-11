@@ -32,7 +32,8 @@ export interface WingDefinition {
 export interface AbfahrtenResult {
   departures: Abfahrt[];
   lookbehind: Abfahrt[];
-  wings: Wings;
+  wings?: Wings;
+  strike?: boolean;
 }
 
 export interface Abfahrt {
@@ -74,6 +75,7 @@ export interface IrisMessage {
   timestamp?: Date;
   superseded?: boolean;
   priority?: MessagePrio;
+  value: number;
 }
 
 export interface HimIrisMessage extends IrisMessage {

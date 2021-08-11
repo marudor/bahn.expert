@@ -377,6 +377,7 @@ export default class Timetable {
       text: messageLookup[value] || `${value} (?)`,
       timestamp: parseTs(getAttr(mNode, 'ts'))!,
       priority: getAttr(mNode, 'pr'),
+      value,
     };
 
     return {
