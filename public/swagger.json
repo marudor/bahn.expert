@@ -849,9 +849,13 @@
           },
           "priority": {
             "$ref": "#/components/schemas/MessagePrio"
+          },
+          "value": {
+            "type": "number",
+            "format": "double"
           }
         },
-        "required": ["text"],
+        "required": ["text", "value"],
         "type": "object",
         "additionalProperties": false
       },
@@ -870,11 +874,15 @@
           "priority": {
             "$ref": "#/components/schemas/MessagePrio"
           },
+          "value": {
+            "type": "number",
+            "format": "double"
+          },
           "head": {
             "type": "string"
           }
         },
-        "required": ["text", "head"],
+        "required": ["text", "value", "head"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1100,9 +1108,12 @@
           },
           "wings": {
             "$ref": "#/components/schemas/Wings"
+          },
+          "strike": {
+            "type": "boolean"
           }
         },
-        "required": ["departures", "lookbehind", "wings"],
+        "required": ["departures", "lookbehind"],
         "type": "object",
         "additionalProperties": false
       },

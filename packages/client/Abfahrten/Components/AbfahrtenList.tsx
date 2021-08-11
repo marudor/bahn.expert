@@ -6,6 +6,7 @@ import {
   SelectedDetailProvider,
   useSelectedDetail,
 } from 'client/Abfahrten/provider/SelectedDetailProvider';
+import { Streik } from 'client/Common/Components/Streik';
 import {
   useAbfahrten,
   useRefreshCurrent,
@@ -150,9 +151,10 @@ const InnerAbfahrtenList = () => {
         {error ? (
           <Redirect to={urlPrefix} />
         ) : filteredAbfahrten &&
-          (filteredAbfahrten.lookahead.length ||
+          (filteredAbfahrten.departures.length ||
             filteredAbfahrten.lookbehind.length) ? (
           <>
+            {unfilteredAbfahrten?.strike && <Streik />}
             {Boolean(filteredAbfahrten.lookbehind.length) && (
               <div
                 className={classes.lookbehind}
@@ -166,7 +168,7 @@ const InnerAbfahrtenList = () => {
               </div>
             )}
             <div id="lookahead" data-testid="lookahead">
-              {filteredAbfahrten.lookahead.map((a) => (
+              {filteredAbfahrten.departures.map((a) => (
                 <Abfahrt abfahrt={a} key={a.rawId} />
               ))}
             </div>

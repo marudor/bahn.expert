@@ -21,7 +21,7 @@ export const useAbfahrten = () => {
     filteredAbfahrten: useMemo(() => {
       if (!departures) return departures;
       const filtered = {
-        lookahead: departures.lookahead,
+        departures: departures.departures,
         lookbehind: departures.lookbehind,
       };
 
@@ -39,7 +39,7 @@ export const useAbfahrten = () => {
       if (filterFunctions.length) {
         const f = (a: Abfahrt) => filterFunctions.every((fn) => fn(a));
 
-        filtered.lookahead = filtered.lookahead.filter(f);
+        filtered.departures = filtered.departures.filter(f);
         filtered.lookbehind = filtered.lookbehind.filter(f);
       }
 
@@ -59,7 +59,7 @@ export const useAllTrainTypes = () => {
     const typeSet = new Set<string>(defaultTypes);
 
     if (departures) {
-      departures.lookahead.forEach((a) => {
+      departures.departures.forEach((a) => {
         if (a.train.type) {
           typeSet.add(a.train.type);
         }
@@ -93,11 +93,7 @@ export const useRefreshCurrent = (visible = false) => {
         lookbehind,
       );
 
-      setDepartures({
-        lookahead: r.departures,
-        lookbehind: r.lookbehind,
-        wings: r.wings,
-      });
+      setDepartures(r);
     }
   }, [
     currentStopPlace,

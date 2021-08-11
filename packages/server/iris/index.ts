@@ -150,5 +150,18 @@ export async function getAbfahrten(
   result.departures.sort(sortAbfahrt(timeByScheduled));
   result.lookbehind.sort(sortAbfahrt(timeByReal));
 
+  result.strike = Boolean(
+    result.departures.find((d) =>
+      Object.values(d.messages)
+        .flat()
+        .find((m) => m.value === 9 || m.value === 52),
+    ) ||
+      result.lookbehind.find((d) =>
+        Object.values(d.messages)
+          .flat()
+          .find((m) => m.value === 9 || m.value === 52),
+      ),
+  );
+
   return result;
 }
