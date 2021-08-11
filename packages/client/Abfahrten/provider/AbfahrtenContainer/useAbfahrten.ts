@@ -12,7 +12,7 @@ export const useAbfahrten = () => {
     filteredAbfahrten: useMemo(() => {
       if (!departures) return departures;
       const filtered = {
-        lookahead: departures.lookahead,
+        departures: departures.departures,
         lookbehind: departures.lookbehind,
       };
 
@@ -30,7 +30,7 @@ export const useAbfahrten = () => {
       if (filterFunctions.length) {
         const f = (a: Abfahrt) => filterFunctions.every((fn) => fn(a));
 
-        filtered.lookahead = filtered.lookahead.filter(f);
+        filtered.departures = filtered.departures.filter(f);
         filtered.lookbehind = filtered.lookbehind.filter(f);
       }
 
