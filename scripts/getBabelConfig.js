@@ -54,7 +54,7 @@ const getBabelConfig = (type) => {
 
   const config = {
     assumptions: {
-      arrayLikeIsIterable: true,
+      arrayLikeIsIterable: false,
       constantReexports: true,
       constantSuper: true,
       enumerableModuleMeta: true,
