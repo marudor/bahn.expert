@@ -53,16 +53,39 @@ const getBabelConfig = (type) => {
   }
 
   const config = {
+    assumptions: {
+      arrayLikeIsIterable: true,
+      constantReexports: true,
+      constantSuper: true,
+      enumerableModuleMeta: true,
+      ignoreFunctionLength: true,
+      ignoreToPrimitiveHint: true,
+      iterableIsArray: true,
+      mutableTemplateObject: true,
+      noClassCalls: true,
+      noDocumentAll: true,
+      noIncompleteNsImportDetection: true,
+      noNewArrows: true,
+      objectRestNoSymbols: true,
+      privateFieldsAsProperties: true,
+      pureGetters: true,
+      setComputedProperties: true,
+      setPublicClassFields: true,
+      setSpreadProperties: true,
+      skipForOfIteratorClosing: true,
+      superIsCallableConstructor: true,
+    },
     presets: [
       '@babel/preset-typescript',
       [
         '@babel/preset-env',
         {
           ...presetEnvTargets,
-          loose: true,
+          // loose: true,
           useBuiltIns: 'usage',
           modules: isServer ? 'commonjs' : undefined,
-          corejs: 3,
+          corejs: '3.16',
+          exclude: ['proposal-optional-chaining'],
         },
       ],
       [
