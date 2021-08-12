@@ -1,8 +1,8 @@
 import { useCallback, useMemo, useState } from 'react';
 import { useStorage } from 'client/useStorage';
 import constate from 'constate';
+import type { FC, SyntheticEvent } from 'react';
 import type { MinimalStopPlace } from 'types/stopPlace';
-import type { SyntheticEvent } from 'react';
 
 export interface RoutingSettings {
   maxChanges: string;
@@ -77,7 +77,7 @@ const useRoutingConfigInternal = ({
 };
 
 export const [
-  RoutingConfigProvider,
+  InnerRoutingConfigProvider,
   useRoutingConfig,
   useRoutingSettings,
   useRoutingConfigActions,
@@ -99,3 +99,19 @@ export const [
     updateSettings: v.updateSetting,
   }),
 );
+
+export const RoutingConfigProvider: FC = ({ children }) => {
+  const storage = useStorage();
+
+  const savedRoutingSettings: RoutingSettings = {
+    maxChanges: storage.get('maxChanges') ?? '-1',
+    transferTime: storage.get('transferTime') ?? '0',
+    onlyRegional: storage.get('onlyRegional') ?? false,
+  };
+
+  return (
+    <InnerRoutingConfigProvider initialSettings={savedRoutingSettings}>
+      {children}
+    </InnerRoutingConfigProvider>
+  );
+};
