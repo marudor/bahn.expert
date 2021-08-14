@@ -34,7 +34,9 @@ export const ThemeProvider: FC = ({ children }) => {
         .matches
         ? ThemeType.light
         : ThemeType.dark;
-      storage.set('theme', initialTheme);
+      if (initialTheme === ThemeType.light) {
+        storage.set('theme', initialTheme);
+      }
     }
   }
 
