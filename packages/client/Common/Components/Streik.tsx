@@ -9,7 +9,7 @@ export const Streik: FC = () => {
   return (
     <Snackbar open={open}>
       <Alert onClick={onClick} severity="info" icon={false}>
-        Grade wird gestreikt. Das hat einfluss auf den Zugverkehr. Volle
+        Grade wird gestreikt. Das hat Einfluss auf den Zugverkehr. Volle
         Solidarität mit Streikenden!
       </Alert>
     </Snackbar>
