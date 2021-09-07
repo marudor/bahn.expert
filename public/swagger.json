@@ -4963,7 +4963,7 @@
         "operationId": "Lageplan",
         "responses": {
           "200": {
-            "description": "Ok",
+            "description": "URL to DB, HVV or NAHSH Lageplan",
             "content": {
               "application/json": {
                 "schema": {
