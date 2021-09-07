@@ -2,6 +2,7 @@
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
+    "useUnknownInCatchVariables": false,
     "experimentalDecorators": true,
     "jsx": "preserve",
     "lib": ["DOM", "ES2020", "ESNext"],

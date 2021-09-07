@@ -86,7 +86,7 @@ const useAbfahrtenInner = ({
             errorType: '404',
           };
         }
-      } catch (e) {
+      } catch (e: any) {
         e.station = stopPlaceName;
 
         if (e.response && e.response.status === 404) {

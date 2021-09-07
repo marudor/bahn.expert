@@ -56,7 +56,7 @@ export const useFetchRouting = () => {
         setRoutes(routingResult.routes);
         setEarlierContext(routingResult.context.earlier);
         setLaterContext(routingResult.context.later);
-      } catch (e) {
+      } catch (e: any) {
         setError(e);
       }
     },

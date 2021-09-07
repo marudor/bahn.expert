@@ -6,7 +6,7 @@ import type { Formation } from 'types/reihung';
 const getPossibleWRs = async (): Promise<string[] | undefined> => {
   try {
     await Axios.get(getWRLink('1', new Date(), 'apps'));
-  } catch (e) {
+  } catch (e: any) {
     const tryThese = e.response?.data?.tryThese;
     if (tryThese && Array.isArray(tryThese)) {
       return tryThese;
