@@ -48,7 +48,7 @@ export const Header: FC<Props> = ({ regional = false }: Props) => {
           groupedBySales={regional}
           value={currentEnteredStopPlace}
           onChange={submit}
-          placeholder={`Station (z.B. ${
+          placeholder={`Bahnhof (z.B. ${
             currentStopPlace ? currentStopPlace.name : 'Kiel Hbf'
           })`}
         />

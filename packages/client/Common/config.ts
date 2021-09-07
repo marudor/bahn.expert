@@ -5,6 +5,7 @@ export interface AbfahrtenConfig {
   readonly lookbehind: string;
   readonly lineAndNumber: boolean;
   readonly autoUpdate: number;
+  readonly showCancelled: boolean;
 }
 
 export interface CommonConfig {

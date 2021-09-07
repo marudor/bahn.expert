@@ -15,6 +15,7 @@ import type { Abfahrt } from 'types/iris';
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const useAbfahrten = () => {
   const departures = useAbfahrtenDepartures();
+  const { showCancelled } = useAbfahrtenConfig();
   const { onlyDepartures, productFilter } = useAbfahrtenFilter();
 
   return {
@@ -35,6 +36,9 @@ export const useAbfahrten = () => {
       if (onlyDepartures) {
         filterFunctions.push((a: Abfahrt) => Boolean(a.departure));
       }
+      if (!showCancelled) {
+        filterFunctions.push((a) => !a.cancelled);
+      }
 
       if (filterFunctions.length) {
         const f = (a: Abfahrt) => filterFunctions.every((fn) => fn(a));
@@ -44,7 +48,7 @@ export const useAbfahrten = () => {
       }
 
       return filtered;
-    }, [departures, onlyDepartures, productFilter]),
+    }, [departures, onlyDepartures, productFilter, showCancelled]),
     unfilteredAbfahrten: departures,
   };
 };

@@ -95,7 +95,7 @@ export const ExtraMenu: FC = () => {
           <FilterList /> Filter
         </MenuItem>
         <MenuItem data-testid="openSettings" onClick={openSettingsCb}>
-          <Settings /> Settings
+          <Settings /> Einstellungen
         </MenuItem>
       </Menu>
     </>
