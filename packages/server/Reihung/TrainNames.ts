@@ -106,6 +106,7 @@ const naming = {
   303: 'Dortmund',
   304: 'München',
   305: 'Baden-Baden',
+  306: 'Nördlingen',
   307: 'Oberhausen',
   308: 'Murnau am Staffelsee',
   309: 'Aalen',
