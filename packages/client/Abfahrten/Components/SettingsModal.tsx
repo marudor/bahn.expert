@@ -50,7 +50,7 @@ const useStyles = makeStyles({
 
 export const SettingsModal: FC = () => {
   const classes = useStyles();
-  const { lineAndNumber, lookahead, autoUpdate, lookbehind } =
+  const { lineAndNumber, lookahead, autoUpdate, lookbehind, showCancelled } =
     useAbfahrtenConfig();
   const { setConfigOpen } = useAbfahrtenModalToggle();
   const configOpen = useAbfahrtenConfigOpen();
@@ -75,7 +75,7 @@ export const SettingsModal: FC = () => {
       open={configOpen}
       onClose={() => setConfigOpen(false)}
     >
-      <DialogTitle className={classes.title}>Settings</DialogTitle>
+      <DialogTitle className={classes.title}>Einstellungen</DialogTitle>
       <DialogContent className={classes.content} data-testid="settingsContent">
         <FormControlLabel
           className={classes.label}
@@ -150,6 +150,21 @@ export const SettingsModal: FC = () => {
             />
           }
           label="Zeige Fahrzeuggruppen Name"
+        />
+        <FormControlLabel
+          className={classes.label}
+          control={
+            <Switch
+              data-testid="showCancelled"
+              checked={showCancelled}
+              value="showCancelled"
+              onChange={handleConfigCheckedChange(
+                'showCancelled',
+                setConfigKey,
+              )}
+            />
+          }
+          label="Zeige ausfallende Fahrten"
         />
         <FormControlLabel
           className={classes.label}

@@ -40,4 +40,17 @@ describe('Filter', () => {
     cy.navigateToStation('Frankfurt (Main) Hbf');
     cy.findByTestId('abfahrtICE1632').should('not.exist');
   });
+
+  it('showCancelled', () => {
+    cy.visit('/');
+    cy.navigateToStation('Frankfurt (Main) Hbf');
+    cy.findByTestId('abfahrtRB15663').should('exist');
+    cy.openSettings();
+    cy.findByTestId('showCancelled').click();
+    cy.closeModal();
+    cy.findByTestId('abfahrtRB15663').should('not.exist');
+    cy.mockFrankfurt();
+    cy.navigateToStation('Frankfurt (Main) Hbf');
+    cy.findByTestId('abfahrtRB15663').should('not.exist');
+  });
 });
