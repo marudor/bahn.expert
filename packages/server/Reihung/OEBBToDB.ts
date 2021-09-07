@@ -26,6 +26,11 @@ export function OEBBToDB(coachSequence: OEBBCoachSequence): Formation | null {
     sektoren.push(sector);
   }
   const [trainType, trainNumber] = coachSequence.trainName.split(' ');
+  const fahrzeuggruppe = coachSequenceToFahrzeuggruppe(
+    coachSequence,
+    trainNumber,
+    maxMeter,
+  );
   return {
     fahrtid: 'oebb',
     fahrtrichtung: 'VORWAERTS',
@@ -55,12 +60,11 @@ export function OEBBToDB(coachSequence: OEBBCoachSequence): Formation | null {
     zugnummer: trainNumber,
     realFahrtrichtung:
       !coachSequence.platform.haltepunkt.departureDirectionSectorA,
-    scale: 1,
-    startPercentage: 0,
-    endPercentage: 100,
-    allFahrzeuggruppe: [
-      coachSequenceToFahrzeuggruppe(coachSequence, trainNumber, maxMeter),
-    ],
+    scale:
+      100 / (fahrzeuggruppe.endPercentage - fahrzeuggruppe.startPercentage),
+    startPercentage: fahrzeuggruppe.startPercentage,
+    endPercentage: fahrzeuggruppe.endPercentage,
+    allFahrzeuggruppe: [fahrzeuggruppe],
   };
 }
 
@@ -103,14 +107,18 @@ function coachSequenceToFahrzeuggruppe(
     startOffset = endemeter;
     positions.push(position);
   }
+  const startProzente = positions.map((p) => Number.parseFloat(p.startprozent));
+  const minPercentage = Math.min(...startProzente);
+  const endeProzente = positions.map((p) => Number.parseFloat(p.endeprozent));
+  const maxPercentage = Math.max(...endeProzente);
   return {
     goesToFrance: false,
     zielbetriebsstellename: '',
     verkehrlichezugnummer: trainNumber,
     fahrzeuggruppebezeichnung: 'oebb',
     startbetriebsstellename: coachSequence.wagons[0].origin.name,
-    startPercentage: 0,
-    endPercentage: 100,
+    startPercentage: minPercentage,
+    endPercentage: maxPercentage,
     allFahrzeug: wagons.map(
       (w, i): Fahrzeug => ({
         additionalInfo: {
@@ -132,7 +140,7 @@ function coachSequenceToFahrzeuggruppe(
         kategorie: 'OEBB',
         orientierung: '',
         status: '',
-        positioningruppe: '0',
+        positioningruppe: String(i),
         fahrzeugsektor: '',
         positionamhalt: positions[i],
       }),
