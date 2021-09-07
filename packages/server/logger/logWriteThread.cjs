@@ -20,15 +20,19 @@ if (process.env.NODE_ENV === 'production' && logglyToken) {
   streams.push((msg) => {
     // 30 is info, we log warn and above to loggly
     if (msg.level > 30) {
-      Axios.post(
-        `https://logs-01.loggly.com/inputs/${logglyToken}`,
-        JSON.stringify(msg),
-        {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
+      try {
+        Axios.post(
+          `https://logs-01.loggly.com/inputs/${logglyToken}`,
+          JSON.stringify(msg),
+          {
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
           },
-        },
-      );
+        );
+      } catch {
+        // Logging failed, lets just drop this then :(
+      }
     }
   });
 }

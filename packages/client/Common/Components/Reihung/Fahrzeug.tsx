@@ -194,8 +194,7 @@ export const Fahrzeug: FC<Props> = ({
       <span
         className={clsx(
           classes.klasse,
-          // @ts-expect-error works
-          classes[`klasse${fahrzeug.additionalInfo.klasse}`],
+          classes[`klasse${fahrzeug.additionalInfo.klasse}` as const],
         )}
       />
       <span className={classes.nummer}>{fahrzeug.wagenordnungsnummer}</span>

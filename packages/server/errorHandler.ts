@@ -6,7 +6,7 @@ export default async (ctx: Context, next: Next): Promise<void> => {
   try {
     // eslint-disable-next-line callback-return
     await next();
-  } catch (e) {
+  } catch (e: any) {
     ctx.set('Content-Type', 'application/json');
     if (e.response && !e.customError) {
       ctx.body = {
