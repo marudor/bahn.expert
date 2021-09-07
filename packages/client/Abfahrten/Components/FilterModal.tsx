@@ -47,7 +47,7 @@ export const FilterModal: FC = () => {
   return (
     <Dialog maxWidth="md" fullWidth open={filterOpen} onClose={closeFilterM}>
       <DialogContent>
-        <h4>Train Types</h4>
+        <h4>Zug Typen</h4>
         {types.map((t) => (
           <FormControlLabel
             className={classes.label}
