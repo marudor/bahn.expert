@@ -79,7 +79,7 @@ async function fetchTodaysHimMessages() {
       void himMessageCache.set(message.hid, message);
     });
     logger.debug('Fetched HimMessages');
-  } catch (e) {
+  } catch (e: any) {
     logger.error(e, 'HimMessages fetch failed');
   }
 }

@@ -6,7 +6,7 @@ const useRoutingInternal = () => {
   const [routes, setRoutes] = useState<SingleRoute[] | undefined>([]);
   const [earlierContext, setEarlierContext] = useState<string>();
   const [laterContext, setLaterContext] = useState<string>();
-  const [error, setError] = useState();
+  const [error, setError] = useState<any>();
 
   return {
     routes,

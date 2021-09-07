@@ -13,7 +13,7 @@ async function fetchPlanWR() {
     logger.debug('Fetching planWR');
     plannedSequences = (await Axios.get<PlannedSequenceMeta>(planWRUrl)).data;
     logger.debug('Fetched planWR');
-  } catch (e) {
+  } catch (e: any) {
     logger.error(e, 'Fetching planWR failed');
   }
 }
