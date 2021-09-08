@@ -3,9 +3,18 @@ describe('Reihung', () => {
     beforeEach(() => {
       cy.mockFrankfurt();
       cy.visit('/');
-      cy.intercept('/api/reihung/v2/wagen/371/2019-08-07T12:50:00.000Z', {
-        fixture: 'sequence/genericICE1',
-      });
+      cy.intercept(
+        {
+          url: '/api/reihung/v2/wagen/371/2019-08-07T12:50:00.000Z?*',
+          query: {
+            trainType: 'ICE',
+            evaNumber: '8000105',
+          },
+        },
+        {
+          fixture: 'sequence/genericICE1',
+        },
+      );
       cy.navigateToStation('Frankfurt (Main) Hbf');
       cy.findByTestId('abfahrtICE371').click();
     });
@@ -40,12 +49,30 @@ describe('Reihung', () => {
       cy.mockHannover();
       cy.visit('/');
       cy.navigateToStation('Hannover Hbf');
-      cy.intercept('/api/reihung/v2/wagen/537/2020-02-22T11:26:00.000Z', {
-        fixture: 'sequence/537Wing',
-      }).as('537');
-      cy.intercept('/api/reihung/v2/wagen/587/2020-02-22T11:26:00.000Z', {
-        statusCode: 404,
-      }).as('587');
+      cy.intercept(
+        {
+          url: '/api/reihung/v2/wagen/537/2020-02-22T11:26:00.000Z?*',
+          query: {
+            trainType: 'ICE',
+            evaNumber: '8000152',
+          },
+        },
+        {
+          fixture: 'sequence/537Wing',
+        },
+      ).as('537');
+      cy.intercept(
+        {
+          url: '/api/reihung/v2/wagen/587/2020-02-22T11:26:00.000Z?*',
+          query: {
+            trainType: 'ICE',
+            evaNumber: '8000152',
+          },
+        },
+        {
+          statusCode: 404,
+        },
+      ).as('587');
     });
     it('only loads reihung of selected train if available', () => {
       cy.findByTestId('abfahrtICE537').click();

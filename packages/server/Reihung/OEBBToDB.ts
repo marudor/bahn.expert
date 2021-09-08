@@ -113,7 +113,7 @@ function coachSequenceToFahrzeuggruppe(
   const maxPercentage = Math.max(...endeProzente);
   return {
     goesToFrance: false,
-    zielbetriebsstellename: '',
+    zielbetriebsstellename: coachSequence.wagons[0].destination.name,
     verkehrlichezugnummer: trainNumber,
     fahrzeuggruppebezeichnung: 'oebb',
     startbetriebsstellename: coachSequence.wagons[0].origin.name,
