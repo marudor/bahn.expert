@@ -19,9 +19,18 @@ describe('Abfahrten Settings', () => {
     });
 
     it('Show fahrzeuggruppe', () => {
-      cy.intercept('/api/reihung/v2/wagen/371/2019-08-07T12:50:00.000Z', {
-        fixture: 'sequence/genericICE1',
-      });
+      cy.intercept(
+        {
+          url: '/api/reihung/v2/wagen/371/2019-08-07T12:50:00.000Z?*',
+          query: {
+            trainType: 'ICE',
+            evaNumber: '8000105',
+          },
+        },
+        {
+          fixture: 'sequence/genericICE1',
+        },
+      );
       cy.findByTestId('abfahrtICE371').click();
       cy.openSettings();
       cy.findByTestId('fahrzeugGruppeConfig').click();

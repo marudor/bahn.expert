@@ -3559,6 +3559,252 @@
         "type": "object",
         "additionalProperties": false
       },
+      "OEBBCoachSequenceTrainStation": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "evaCode": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EvaNumber"
+              }
+            ],
+            "nullable": true
+          }
+        },
+        "required": ["name", "evaCode"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBCoachSequenceHaltepunkt": {
+        "properties": {
+          "haltepunktInMeters": {
+            "type": "number",
+            "format": "double"
+          },
+          "departureDirectionSectorA": {
+            "type": "boolean"
+          }
+        },
+        "required": ["haltepunktInMeters", "departureDirectionSectorA"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBCoachSequenceSector": {
+        "properties": {
+          "sectorName": {
+            "type": "string"
+          },
+          "length": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": ["sectorName", "length"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBCoachSequenceEgress": {
+        "properties": {
+          "Bahnsteig": {
+            "type": "string"
+          },
+          "Distanz": {
+            "type": "number",
+            "format": "double"
+          },
+          "Typ": {
+            "type": "string"
+          },
+          "DB640Code": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          }
+        },
+        "required": ["Bahnsteig", "Distanz", "Typ", "DB640Code", "Name"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBCoachSequencePlatform": {
+        "properties": {
+          "platform": {
+            "type": "string"
+          },
+          "haltepunkt": {
+            "$ref": "#/components/schemas/OEBBCoachSequenceHaltepunkt"
+          },
+          "sectors": {
+            "items": {
+              "$ref": "#/components/schemas/OEBBCoachSequenceSector"
+            },
+            "type": "array"
+          },
+          "egresses": {
+            "items": {
+              "$ref": "#/components/schemas/OEBBCoachSequenceEgress"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["platform", "haltepunkt", "sectors", "egresses"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBCoachSequenceWagon": {
+        "properties": {
+          "ordnungsNummer": {
+            "type": "number",
+            "format": "double"
+          },
+          "uicNummer": {
+            "type": "string"
+          },
+          "laengeUeberPuffer": {
+            "type": "number",
+            "format": "double"
+          },
+          "triebfahrzeug": {
+            "type": "boolean"
+          },
+          "speisewagen": {
+            "type": "boolean"
+          },
+          "businessClass": {
+            "type": "number",
+            "format": "double"
+          },
+          "firstClass": {
+            "type": "number",
+            "format": "double"
+          },
+          "secondClass": {
+            "type": "number",
+            "format": "double"
+          },
+          "schlafplaetze": {
+            "type": "number",
+            "format": "double"
+          },
+          "liegeplaetze": {
+            "type": "number",
+            "format": "double"
+          },
+          "autoreisezug": {
+            "type": "boolean"
+          },
+          "kinderspielwagen": {
+            "type": "boolean"
+          },
+          "kinderkino": {
+            "type": "boolean"
+          },
+          "rollstuhlgerecht": {
+            "type": "boolean"
+          },
+          "fahrradmitnahme": {
+            "type": "boolean"
+          },
+          "abgesperrt": {
+            "type": "boolean"
+          },
+          "origin": {
+            "$ref": "#/components/schemas/OEBBCoachSequenceTrainStation"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/OEBBCoachSequenceTrainStation"
+          },
+          "ruhebereich": {
+            "type": "boolean"
+          },
+          "infoPoint": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "ordnungsNummer",
+          "laengeUeberPuffer",
+          "triebfahrzeug",
+          "speisewagen",
+          "businessClass",
+          "firstClass",
+          "secondClass",
+          "schlafplaetze",
+          "liegeplaetze",
+          "autoreisezug",
+          "kinderspielwagen",
+          "kinderkino",
+          "rollstuhlgerecht",
+          "fahrradmitnahme",
+          "abgesperrt",
+          "origin",
+          "destination",
+          "ruhebereich",
+          "infoPoint"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBCoachSequence": {
+        "properties": {
+          "trainName": {
+            "type": "string"
+          },
+          "hasWifi": {
+            "type": "boolean"
+          },
+          "scheduledDeparture": {
+            "type": "string",
+            "nullable": true,
+            "description": "Iso DateTime"
+          },
+          "actualDeparture": {
+            "type": "string",
+            "nullable": true,
+            "description": "Iso DateTime"
+          },
+          "scheduledArrival": {
+            "type": "string",
+            "nullable": true,
+            "description": "Iso DateTime"
+          },
+          "actualArrival": {
+            "type": "string",
+            "nullable": true,
+            "description": "Iso DateTime"
+          },
+          "trainStation": {
+            "$ref": "#/components/schemas/OEBBCoachSequenceTrainStation"
+          },
+          "platform": {
+            "$ref": "#/components/schemas/OEBBCoachSequencePlatform"
+          },
+          "wagons": {
+            "items": {
+              "$ref": "#/components/schemas/OEBBCoachSequenceWagon"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "trainName",
+          "hasWifi",
+          "scheduledDeparture",
+          "actualDeparture",
+          "scheduledArrival",
+          "actualArrival",
+          "trainStation",
+          "wagons"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ReturnType_typeofcoachSequence_": {
+        "$ref": "#/components/schemas/OEBBCoachSequence",
+        "description": "Obtain the return type of a function type"
+      },
       "AdditionalFahrzeugInfo": {
         "properties": {
           "klasse": {
@@ -3649,7 +3895,8 @@
           "STEUERWAGENERSTEKLASSE",
           "STEUERWAGENERSTEZWEITEKLASSE",
           "STEUERWAGENZWEITEKLASSE",
-          "TRIEBKOPF"
+          "TRIEBKOPF",
+          "OEBB"
         ]
       },
       "Position": {
@@ -5709,6 +5956,52 @@
         }
       }
     },
+    "/oebb/experimental/coachSequence/{trainName}/{evaNumber}/{departureDate}": {
+      "get": {
+        "operationId": "Wagenreihung experimental",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReturnType_typeofcoachSequence_"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["OEBB"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trainName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "evaNumber",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/EvaNumber"
+            }
+          },
+          {
+            "in": "path",
+            "name": "departureDate",
+            "required": true,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/reihung/v2/wagen/{trainNumber}/{date}": {
       "get": {
         "operationId": "Wagenreihung v2",
@@ -5741,6 +6034,22 @@
             "required": true,
             "schema": {
               "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "trainType",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "evaNumber",
+            "required": false,
+            "schema": {
               "type": "string"
             }
           }

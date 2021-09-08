@@ -64,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
 interface Props {
   className?: string;
   trainNumber: string;
+  trainType?: string;
   fallbackTrainNumbers?: string[];
   currentEvaNumber: string;
   scheduledDeparture: Date;
@@ -76,6 +77,7 @@ export const Reihung: FC<Props> = ({
   currentEvaNumber,
   scheduledDeparture,
   trainNumber,
+  trainType,
   loadHidden,
   fallbackTrainNumbers,
 }) => {
@@ -92,6 +94,7 @@ export const Reihung: FC<Props> = ({
     if (reihung === undefined) {
       void getReihung(
         trainNumber,
+        trainType,
         currentEvaNumber,
         scheduledDeparture,
         fallbackTrainNumbers,
@@ -104,6 +107,7 @@ export const Reihung: FC<Props> = ({
     reihung,
     scheduledDeparture,
     trainNumber,
+    trainType,
   ]);
 
   const mainStyle = useMemo(() => {

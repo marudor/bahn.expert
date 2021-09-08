@@ -197,7 +197,9 @@ export const Fahrzeug: FC<Props> = ({
           classes[`klasse${fahrzeug.additionalInfo.klasse}` as const],
         )}
       />
-      <span className={classes.nummer}>{fahrzeug.wagenordnungsnummer}</span>
+      {fahrzeug.additionalInfo.klasse !== 4 && (
+        <span className={classes.nummer}>{fahrzeug.wagenordnungsnummer}</span>
+      )}
       <span>
         {Object.entries(fahrzeug.additionalInfo.icons).map(([key, enabled]) => {
           if (enabled) {

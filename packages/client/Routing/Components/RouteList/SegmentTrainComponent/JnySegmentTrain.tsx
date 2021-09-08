@@ -64,6 +64,7 @@ export const JnySegmentTrain: FC<Props> = ({
               className={classes.reihung}
               trainNumber={segment.train.number}
               currentEvaNumber={segment.segmentStart.id}
+              trainType={segment.train.type}
               scheduledDeparture={segment.departure.scheduledTime}
             />
           )}
