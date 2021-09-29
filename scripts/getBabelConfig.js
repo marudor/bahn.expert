@@ -85,7 +85,7 @@ const getBabelConfig = (type) => {
           useBuiltIns: 'usage',
           modules: isServer ? 'commonjs' : undefined,
           corejs: '3.16',
-          exclude: ['proposal-optional-chaining'],
+          exclude: [],
         },
       ],
       [
