@@ -62,8 +62,7 @@
       "platform": "14 A-C",
       "scheduledPlatform": "14 A-C",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "W3",
@@ -132,8 +131,7 @@
       "platform": "12",
       "scheduledPlatform": "11",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -241,8 +239,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "85",
@@ -367,8 +364,7 @@
       "platform": "7",
       "scheduledPlatform": "7",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800295",
@@ -455,8 +451,7 @@
       "platform": "11",
       "scheduledPlatform": "12",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "800244",
@@ -529,8 +524,7 @@
       "platform": "13",
       "scheduledPlatform": "13",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -621,8 +615,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -727,8 +720,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -820,8 +812,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800244",
@@ -904,8 +895,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -987,8 +977,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -1093,8 +1082,7 @@
       "platform": "9",
       "scheduledPlatform": "9",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "80",
@@ -1186,8 +1174,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "R1",
@@ -1313,8 +1300,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -1406,8 +1392,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -1481,8 +1466,7 @@
       "platform": "13 A-C",
       "scheduledPlatform": "13 A-C",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -1587,8 +1571,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -1681,8 +1664,7 @@
       "platform": "7",
       "scheduledPlatform": "7",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "80",
@@ -1799,8 +1781,7 @@
       "platform": "10",
       "scheduledPlatform": "10",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800295",
@@ -1914,8 +1895,7 @@
       "platform": "9",
       "scheduledPlatform": "9",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "80",
@@ -2024,8 +2004,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "R1",
@@ -2142,8 +2121,7 @@
       "platform": "8",
       "scheduledPlatform": "8",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -2256,8 +2234,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -2342,8 +2319,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800244",
@@ -2420,8 +2396,7 @@
       "platform": "14 A-C",
       "scheduledPlatform": "14 A-C",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "W3",
@@ -2485,8 +2460,7 @@
       "platform": "10",
       "scheduledPlatform": "10",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -2606,8 +2580,7 @@
       "platform": "11",
       "scheduledPlatform": "11",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800244",
@@ -2678,8 +2651,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "X2",
@@ -2753,8 +2725,7 @@
       "platform": "8",
       "scheduledPlatform": "8",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R0",
@@ -2834,8 +2805,7 @@
       "platform": "13 D-F",
       "scheduledPlatform": "13 D-F",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "X1",
@@ -2943,8 +2913,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R1",
@@ -3038,8 +3007,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "W3",
@@ -3176,8 +3144,7 @@
       "platform": "9",
       "scheduledPlatform": "9",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -3253,8 +3220,7 @@
       "platform": "14",
       "scheduledPlatform": "14",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -3371,8 +3337,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -3513,8 +3478,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -3639,8 +3603,7 @@
       "platform": "7",
       "scheduledPlatform": "7",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800244",
@@ -3775,8 +3738,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -3853,8 +3815,7 @@
       "platform": "14",
       "scheduledPlatform": "14",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -3977,8 +3938,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R1",
@@ -4071,8 +4031,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "X1",
@@ -4175,8 +4134,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "W3",
@@ -4308,8 +4266,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "X2",
@@ -4379,8 +4336,7 @@
       "platform": "8",
       "scheduledPlatform": "8",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -4454,8 +4410,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R0",
@@ -4530,8 +4485,7 @@
       "platform": "13",
       "scheduledPlatform": "13",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R1",
@@ -4624,8 +4578,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -4702,8 +4655,7 @@
       "platform": "14",
       "scheduledPlatform": "14",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "W3",
@@ -4772,8 +4724,7 @@
       "platform": "11",
       "scheduledPlatform": "11",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -4875,8 +4826,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -5026,8 +4976,7 @@
       "platform": "7",
       "scheduledPlatform": "7",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "80",
@@ -5135,8 +5084,7 @@
       "platform": "7",
       "scheduledPlatform": "7",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800295",
@@ -5255,8 +5203,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "84",
@@ -5370,8 +5317,7 @@
       "platform": "9",
       "scheduledPlatform": "9",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800244",
@@ -5444,8 +5390,7 @@
       "platform": "14",
       "scheduledPlatform": "13",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -5534,8 +5479,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -5634,8 +5578,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -5731,8 +5674,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "R1",
@@ -5811,8 +5753,7 @@
       "platform": "7",
       "scheduledPlatform": "7",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -5895,8 +5836,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -5976,8 +5916,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -6081,8 +6020,7 @@
       "platform": "9",
       "scheduledPlatform": "9",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "80",
@@ -6172,8 +6110,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "80",
@@ -6261,8 +6198,7 @@
       "platform": "9",
       "scheduledPlatform": "9",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800244",
@@ -6354,8 +6290,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -6433,8 +6368,7 @@
       "platform": "14",
       "scheduledPlatform": "13",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -6533,8 +6467,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -6625,8 +6558,7 @@
       "platform": "8 D-G",
       "scheduledPlatform": "8 D-G",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "R1",
@@ -6710,8 +6642,7 @@
       "platform": "7",
       "scheduledPlatform": "7",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -6848,8 +6779,7 @@
       "platform": "10",
       "scheduledPlatform": "10",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800295",
@@ -6931,8 +6861,7 @@
       "platform": "9",
       "scheduledPlatform": "9",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "80",
@@ -7053,8 +6982,7 @@
       "platform": "11",
       "scheduledPlatform": "11",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800244",
@@ -7156,8 +7084,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R1",
@@ -7250,8 +7177,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -7356,8 +7282,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "W3",
@@ -7421,8 +7346,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -7499,8 +7423,7 @@
       "platform": "14",
       "scheduledPlatform": "14",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -7579,8 +7502,7 @@
       "platform": "8 A-D",
       "scheduledPlatform": "8 A-D",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800244",
@@ -7651,8 +7573,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R0",
@@ -7732,8 +7653,7 @@
       "platform": "13",
       "scheduledPlatform": "13",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "X2",
@@ -7807,8 +7727,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "X1",
@@ -7916,8 +7835,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "W3",
@@ -8025,8 +7943,7 @@
       "platform": "9",
       "scheduledPlatform": "9",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -8100,8 +8017,7 @@
       "platform": "14",
       "scheduledPlatform": "14",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -8218,8 +8134,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -8354,8 +8269,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -8491,8 +8405,7 @@
       "platform": "7",
       "scheduledPlatform": "7",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "80",
@@ -8631,8 +8544,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800244",
@@ -8767,8 +8679,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -8845,8 +8756,7 @@
       "platform": "14",
       "scheduledPlatform": "14",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -8963,8 +8873,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "X1",
@@ -9067,8 +8976,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "W3",
@@ -9176,8 +9084,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "X2",
@@ -9247,8 +9154,7 @@
       "platform": "8",
       "scheduledPlatform": "8",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -9322,8 +9228,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R0",
@@ -9398,8 +9303,7 @@
       "platform": "14 D-F",
       "scheduledPlatform": "14 D-F",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -9476,8 +9380,7 @@
       "platform": "14 A-C",
       "scheduledPlatform": "14 A-C",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "W3",
@@ -9546,8 +9449,7 @@
       "platform": "13",
       "scheduledPlatform": "13",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -9649,8 +9551,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "85",
@@ -9760,8 +9661,7 @@
       "platform": "7",
       "scheduledPlatform": "7",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800295",
@@ -9844,8 +9744,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "800244",
@@ -9916,8 +9815,7 @@
       "platform": "13",
       "scheduledPlatform": "13",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -10006,8 +9904,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -10106,8 +10003,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -10193,8 +10089,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800244",
@@ -10277,8 +10172,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -10358,8 +10252,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -10462,8 +10355,7 @@
       "platform": "9",
       "scheduledPlatform": "9",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "80",
@@ -10562,8 +10454,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "R1",
@@ -10680,8 +10571,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -10773,8 +10663,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -10848,8 +10737,7 @@
       "platform": "13",
       "scheduledPlatform": "13",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -10948,8 +10836,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -11039,8 +10926,7 @@
       "platform": "7",
       "scheduledPlatform": "7",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "80",
@@ -11152,8 +11038,7 @@
       "platform": "10",
       "scheduledPlatform": "10",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800295",
@@ -11267,8 +11152,7 @@
       "platform": "9",
       "scheduledPlatform": "9",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "80",
@@ -11371,8 +11255,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "R1",
@@ -11489,8 +11372,7 @@
       "platform": "8",
       "scheduledPlatform": "8",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -11592,8 +11474,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -11678,8 +11559,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "W3",
@@ -11743,8 +11623,7 @@
       "platform": "13",
       "scheduledPlatform": "13",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -11809,8 +11688,7 @@
       "platform": "14 A-C",
       "scheduledPlatform": "14 A-C",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -11935,8 +11813,7 @@
       "platform": "11",
       "scheduledPlatform": "11",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800244",
@@ -12007,8 +11884,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "X2",
@@ -12082,8 +11958,7 @@
       "platform": "8",
       "scheduledPlatform": "8",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R0",
@@ -12163,8 +12038,7 @@
       "platform": "14",
       "scheduledPlatform": "14",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "X1",
@@ -12272,8 +12146,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "W3",
@@ -12405,8 +12278,7 @@
       "platform": "11",
       "scheduledPlatform": "11",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -12480,8 +12352,7 @@
       "platform": "14",
       "scheduledPlatform": "14",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -12598,8 +12469,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -12734,8 +12604,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -12870,8 +12739,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -12948,8 +12816,7 @@
       "platform": "14",
       "scheduledPlatform": "14",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -13072,8 +12939,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "X1",
@@ -13176,8 +13042,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "W3",
@@ -13309,8 +13174,7 @@
       "platform": "13",
       "scheduledPlatform": "13",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "X2",
@@ -13380,8 +13244,7 @@
       "platform": "8",
       "scheduledPlatform": "8",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -13455,8 +13318,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R0",
@@ -13531,8 +13393,7 @@
       "platform": "14 D-F",
       "scheduledPlatform": "14 D-F",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R1",
@@ -13620,8 +13481,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -13698,8 +13558,7 @@
       "platform": "14 A-C",
       "scheduledPlatform": "14 A-C",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "W3",
@@ -13768,8 +13627,7 @@
       "platform": "11",
       "scheduledPlatform": "11",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -13871,8 +13729,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -13956,8 +13813,7 @@
       "platform": "7",
       "scheduledPlatform": "7",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800295",
@@ -14076,8 +13932,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "84",
@@ -14191,8 +14046,7 @@
       "platform": "9",
       "scheduledPlatform": "9",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800244",
@@ -14263,8 +14117,7 @@
       "platform": "13",
       "scheduledPlatform": "13",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -14353,8 +14206,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -14453,8 +14305,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -14548,8 +14399,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "R1",
@@ -14628,8 +14478,7 @@
       "platform": "7",
       "scheduledPlatform": "7",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -14712,8 +14561,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -14793,8 +14641,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -14874,8 +14721,7 @@
       "platform": "9",
       "scheduledPlatform": "9",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "80",
@@ -14962,8 +14808,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "80",
@@ -15070,8 +14915,7 @@
       "platform": "8 A-D",
       "scheduledPlatform": "8 A-D",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800244",
@@ -15163,8 +15007,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -15238,8 +15081,7 @@
       "platform": "13",
       "scheduledPlatform": "13",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -15338,8 +15180,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -15458,8 +15299,7 @@
       "platform": "8 D-G",
       "scheduledPlatform": "8 D-G",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "R1",
@@ -15543,8 +15383,7 @@
       "platform": "7",
       "scheduledPlatform": "7",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -15667,8 +15506,7 @@
       "platform": "10",
       "scheduledPlatform": "10",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800295",
@@ -15748,8 +15586,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "80",
@@ -15870,8 +15707,7 @@
       "platform": "11",
       "scheduledPlatform": "11",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800244",
@@ -15973,8 +15809,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R1",
@@ -16067,8 +15902,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -16159,8 +15993,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "W3",
@@ -16224,8 +16057,7 @@
       "platform": "13",
       "scheduledPlatform": "13",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -16302,8 +16134,7 @@
       "platform": "14 A-C",
       "scheduledPlatform": "14 A-C",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -16383,8 +16214,7 @@
       "platform": "8 A-D",
       "scheduledPlatform": "8 A-D",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800244",
@@ -16455,8 +16285,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R0",
@@ -16536,8 +16365,7 @@
       "platform": "14 D-F",
       "scheduledPlatform": "14 D-F",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "X2",
@@ -16611,8 +16439,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "X1",
@@ -16720,8 +16547,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "W3",
@@ -16829,8 +16655,7 @@
       "platform": "9",
       "scheduledPlatform": "9",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -16904,8 +16729,7 @@
       "platform": "14",
       "scheduledPlatform": "14",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -17022,8 +16846,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -17158,8 +16981,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -17298,8 +17120,7 @@
       "platform": "8",
       "scheduledPlatform": "8",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "80",
@@ -17438,8 +17259,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800244",
@@ -17574,8 +17394,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -17652,8 +17471,7 @@
       "platform": "14",
       "scheduledPlatform": "14",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -17776,8 +17594,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "X1",
@@ -17880,8 +17697,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "W3",
@@ -17989,8 +17805,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "X2",
@@ -18060,8 +17875,7 @@
       "platform": "8",
       "scheduledPlatform": "8",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -18135,8 +17949,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R0",
@@ -18211,8 +18024,7 @@
       "platform": "14 D-F",
       "scheduledPlatform": "14 D-F",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -18274,8 +18086,7 @@
       "platform": "14 A-C",
       "scheduledPlatform": "14 A-C",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "W3",
@@ -18340,8 +18151,7 @@
       "platform": "13",
       "scheduledPlatform": "13",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -18443,8 +18253,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "85",
@@ -18548,8 +18357,7 @@
       "platform": "7",
       "scheduledPlatform": "7",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800295",
@@ -18632,8 +18440,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "FLX30",
@@ -18708,8 +18515,7 @@
       "platform": "9",
       "scheduledPlatform": "9",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -18780,8 +18586,7 @@
       "platform": "13",
       "scheduledPlatform": "13",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -18870,8 +18675,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -18970,8 +18774,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -19054,8 +18857,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800244",
@@ -19138,8 +18940,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -19219,8 +19020,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -19303,8 +19103,7 @@
       "platform": "9",
       "scheduledPlatform": "9",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "80",
@@ -19385,8 +19184,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "R1",
@@ -19503,8 +19301,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -19596,8 +19393,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -19671,8 +19467,7 @@
       "platform": "13",
       "scheduledPlatform": "13",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -19771,8 +19566,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -19856,8 +19650,7 @@
       "platform": "7",
       "scheduledPlatform": "7",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "80",
@@ -19988,8 +19781,7 @@
       "platform": "10",
       "scheduledPlatform": "10",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "80",
@@ -20109,8 +19901,7 @@
       "platform": "10",
       "scheduledPlatform": "10",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800295",
@@ -20217,8 +20008,7 @@
       "platform": "9",
       "scheduledPlatform": "9",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "80",
@@ -20321,8 +20111,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "R1",
@@ -20439,8 +20228,7 @@
       "platform": "8",
       "scheduledPlatform": "8",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -20542,8 +20330,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -20622,8 +20409,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "W3",
@@ -20687,8 +20473,7 @@
       "platform": "13",
       "scheduledPlatform": "13",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -20753,8 +20538,7 @@
       "platform": "14 A-C",
       "scheduledPlatform": "14 A-C",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -20869,8 +20653,7 @@
       "platform": "11",
       "scheduledPlatform": "11",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "R0",
@@ -20946,8 +20729,7 @@
       "platform": "14 D-F",
       "scheduledPlatform": "14 D-F",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -21018,8 +20800,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "X2",
@@ -21089,8 +20870,7 @@
       "platform": "7",
       "scheduledPlatform": "7",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "X1",
@@ -21194,8 +20974,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "W3",
@@ -21327,8 +21106,7 @@
       "platform": "9",
       "scheduledPlatform": "9",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -21402,8 +21180,7 @@
       "platform": "14",
       "scheduledPlatform": "14",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -21520,8 +21297,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -21651,8 +21427,7 @@
       "platform": "7",
       "scheduledPlatform": "7",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800244",
@@ -21787,8 +21562,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -21923,8 +21697,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -22001,8 +21774,7 @@
       "platform": "14",
       "scheduledPlatform": "14",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -22125,8 +21897,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "X1",
@@ -22229,8 +22000,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "W3",
@@ -22356,8 +22126,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "X2",
@@ -22427,8 +22196,7 @@
       "platform": "8",
       "scheduledPlatform": "8",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -22502,8 +22270,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R0",
@@ -22576,8 +22343,7 @@
       "platform": "14 D-F",
       "scheduledPlatform": "14 D-F",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     }
   ],
   "lookbehind": [
@@ -22683,8 +22449,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R0",
@@ -22769,8 +22534,7 @@
       "platform": "13",
       "scheduledPlatform": "13",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -22879,8 +22643,7 @@
       "platform": "7",
       "scheduledPlatform": "7",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "W3",
@@ -22993,8 +22756,7 @@
       "platform": "9",
       "scheduledPlatform": "9",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -23070,8 +22832,7 @@
       "platform": "14",
       "scheduledPlatform": "14",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -23194,8 +22955,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -23341,8 +23101,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -23492,8 +23251,7 @@
       "platform": "8",
       "scheduledPlatform": "8",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "80",
@@ -23658,8 +23416,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "80",
@@ -23803,8 +23560,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -23950,8 +23706,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -24032,8 +23787,7 @@
       "platform": "14",
       "scheduledPlatform": "14",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -24156,8 +23910,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R1",
@@ -24261,8 +24014,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "X1",
@@ -24365,8 +24117,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "W3",
@@ -24474,8 +24225,7 @@
       "platform": "11",
       "scheduledPlatform": "12",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "X2",
@@ -24545,8 +24295,7 @@
       "platform": "8",
       "scheduledPlatform": "8",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800244",
@@ -24624,8 +24373,7 @@
       "platform": "3",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R0",
@@ -24700,8 +24448,7 @@
       "platform": "13",
       "scheduledPlatform": "13",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     }
   ],
   "wings": {
@@ -24792,8 +24539,7 @@
       "platform": "9",
       "scheduledPlatform": "9",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     "5480249421472748019-2002221035": {
       "o": "80",
@@ -24880,8 +24626,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     "3757333051659636301-2002221115": {
       "o": "80",
@@ -24963,8 +24708,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     "8614664585551473503-2002221048": {
       "o": "80",
@@ -25061,8 +24805,7 @@
       "platform": "9",
       "scheduledPlatform": "9",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     "8435242070287707292-2002221135": {
       "o": "80",
@@ -25147,8 +24890,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     "3966313825661476920-2002221235": {
       "o": "80",
@@ -25260,8 +25002,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     "9221432942161771616-2002221148": {
       "o": "80",
@@ -25350,8 +25091,7 @@
       "platform": "9",
       "scheduledPlatform": "9",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     "1266697995060816588-2002221315": {
       "o": "80",
@@ -25427,8 +25167,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     "360379485333124722-2002221335": {
       "o": "80",
@@ -25507,8 +25246,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     "5886092952094503689-2002221248": {
       "o": "80",
@@ -25583,8 +25321,7 @@
       "platform": "9",
       "scheduledPlatform": "9",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     "4020550040361167307-2002221348": {
       "o": "80",
@@ -25662,8 +25399,7 @@
       "platform": "9",
       "scheduledPlatform": "9",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     "8603587689572102071-2002221515": {
       "o": "80",
@@ -25739,8 +25475,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     "543689973036291538-2002221435": {
       "o": "80",
@@ -25816,8 +25551,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     "1951882110793686742-2002221538": {
       "o": "80",
@@ -25896,8 +25630,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     "6270903731699972278-2002221448": {
       "o": "80",
@@ -25972,8 +25705,7 @@
       "platform": "9",
       "scheduledPlatform": "9",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     "2625224039751841654-2002220948": {
       "o": "80",
@@ -26055,8 +25787,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     "5067205027928923412-2002220848": {
       "o": "80",
@@ -26142,8 +25873,7 @@
       "platform": "10",
       "scheduledPlatform": "9",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     }
   }
 }

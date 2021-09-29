@@ -1,3 +1,4 @@
+import { addBRtoGruppe, calculateComfort } from 'server/Reihung';
 import type {
   Fahrzeug,
   Fahrzeuggruppe,
@@ -17,7 +18,7 @@ export function OEBBToDB(coachSequence: OEBBCoachSequence): Formation | null {
   let startOffsetMeter = 0;
   const maxMeter = coachSequence.platform.sectors.reduce(
     (agg, s) => agg + s.length,
-    0,
+    1,
   );
   for (const s of coachSequence.platform.sectors) {
     const sector = sectorMap(s, startOffsetMeter, maxMeter);
@@ -26,12 +27,18 @@ export function OEBBToDB(coachSequence: OEBBCoachSequence): Formation | null {
     sektoren.push(sector);
   }
   const [trainType, trainNumber] = coachSequence.trainName.split(' ');
-  const fahrzeuggruppe = coachSequenceToFahrzeuggruppe(
+  const fahrzeuggruppen = coachSequenceToFahrzeuggruppen(
     coachSequence,
     trainNumber,
     maxMeter,
   );
-  return {
+  const startPercentage = Math.min(
+    ...fahrzeuggruppen.map((f) => f.startPercentage),
+  );
+  const endPercentage = Math.max(
+    ...fahrzeuggruppen.map((f) => f.endPercentage),
+  );
+  const formation: Formation = {
     fahrtid: 'oebb',
     fahrtrichtung: 'VORWAERTS',
     halt: {
@@ -60,12 +67,20 @@ export function OEBBToDB(coachSequence: OEBBCoachSequence): Formation | null {
     zugnummer: trainNumber,
     realFahrtrichtung:
       !coachSequence.platform.haltepunkt.departureDirectionSectorA,
-    scale:
-      100 / (fahrzeuggruppe.endPercentage - fahrzeuggruppe.startPercentage),
-    startPercentage: fahrzeuggruppe.startPercentage,
-    endPercentage: fahrzeuggruppe.endPercentage,
-    allFahrzeuggruppe: [fahrzeuggruppe],
+    scale: 100 / (endPercentage - startPercentage),
+    startPercentage,
+    endPercentage,
+    allFahrzeuggruppe: fahrzeuggruppen,
   };
+
+  formation.allFahrzeuggruppe.forEach((g) => {
+    addBRtoGruppe(g, formation);
+    g.allFahrzeug.forEach((f) => {
+      calculateComfort(f, g);
+    });
+  });
+
+  return formation;
 }
 
 function sectorMap(
@@ -86,11 +101,11 @@ function sectorMap(
   };
 }
 
-function coachSequenceToFahrzeuggruppe(
+function coachSequenceToFahrzeuggruppen(
   coachSequence: OEBBCoachSequence,
   trainNumber: string,
   maxMeter: number,
-): Fahrzeuggruppe {
+): Fahrzeuggruppe[] {
   const wagons = coachSequence.wagons;
   const positions: Position[] = [];
   let startOffset = coachSequence.platform!.haltepunkt.haltepunktInMeters;
@@ -111,41 +126,43 @@ function coachSequenceToFahrzeuggruppe(
   const minPercentage = Math.min(...startProzente);
   const endeProzente = positions.map((p) => Number.parseFloat(p.endeprozent));
   const maxPercentage = Math.max(...endeProzente);
-  return {
-    goesToFrance: false,
-    zielbetriebsstellename: coachSequence.wagons[0].destination.name,
-    verkehrlichezugnummer: trainNumber,
-    fahrzeuggruppebezeichnung: 'oebb',
-    startbetriebsstellename: coachSequence.wagons[0].origin.name,
-    startPercentage: minPercentage,
-    endPercentage: maxPercentage,
-    allFahrzeug: wagons.map(
-      (w, i): Fahrzeug => ({
-        additionalInfo: {
-          icons: {
-            bike: w.fahrradmitnahme,
-            dining: w.speisewagen,
-            info: w.infoPoint,
-            wheelchair: w.rollstuhlgerecht,
-            quiet: w.ruhebereich,
-            family: w.kinderkino,
-            // TODO: WIFI
+  return [
+    {
+      goesToFrance: false,
+      zielbetriebsstellename: coachSequence.wagons[0].destination.name,
+      verkehrlichezugnummer: trainNumber,
+      fahrzeuggruppebezeichnung: 'oebb',
+      startbetriebsstellename: coachSequence.wagons[0].origin.name,
+      startPercentage: minPercentage,
+      endPercentage: maxPercentage,
+      allFahrzeug: wagons.map(
+        (w, i): Fahrzeug => ({
+          additionalInfo: {
+            icons: {
+              bike: w.fahrradmitnahme,
+              dining: w.speisewagen,
+              info: w.infoPoint,
+              wheelchair: w.rollstuhlgerecht,
+              quiet: w.ruhebereich,
+              family: w.kinderkino,
+              wifi: coachSequence.hasWifi,
+            },
+            klasse: OEBBWagonToKlasse(w),
           },
-          klasse: OEBBWagonToKlasse(w),
-        },
-        allFahrzeugausstattung: [],
-        wagenordnungsnummer: String(w.ordnungsNummer),
-        fahrzeugnummer: w.uicNummer || '',
-        fahrzeugtyp: '',
-        kategorie: 'OEBB',
-        orientierung: '',
-        status: '',
-        positioningruppe: String(i),
-        fahrzeugsektor: '',
-        positionamhalt: positions[i],
-      }),
-    ),
-  };
+          allFahrzeugausstattung: [],
+          wagenordnungsnummer: String(w.ordnungsNummer),
+          fahrzeugnummer: w.uicNummer || '',
+          fahrzeugtyp: '',
+          kategorie: 'OEBB',
+          orientierung: '',
+          status: '',
+          positioningruppe: String(i),
+          fahrzeugsektor: '',
+          positionamhalt: positions[i],
+        }),
+      ),
+    },
+  ];
 }
 
 function OEBBWagonToKlasse(
@@ -155,5 +172,9 @@ function OEBBWagonToKlasse(
   if (wagon.firstClass && wagon.secondClass) return 3;
   if (wagon.secondClass) return 2;
   if (wagon.firstClass) return 1;
+  // TODO: mark this as liegeplätze?
+  if (wagon.liegeplaetze) return 2;
+  // TODO: mark this as schlafplätze?
+  if (wagon.schlafplaetze) return 1;
   return 0;
 }

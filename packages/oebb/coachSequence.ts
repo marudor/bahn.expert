@@ -11,6 +11,12 @@ export async function coachSequence(
   evaNumber: string,
   departureDate: Date,
 ): Promise<OEBBCoachSequence> {
+  console.log(
+    `/${trainName}/stationEva/${evaNumber}/departure/${format(
+      departureDate,
+      'dd.MM.yyyy',
+    )}`,
+  );
   return await (
     await client.get(
       `/${trainName}/stationEva/${evaNumber}/departure/${format(

@@ -1059,10 +1059,6 @@
           },
           "train": {
             "$ref": "#/components/schemas/TrainInfo"
-          },
-          "hiddenReihung": {
-            "type": "boolean",
-            "description": "Most likely does not have coach sequence"
           }
         },
         "required": [
@@ -3814,6 +3810,9 @@
           },
           "icons": {
             "properties": {
+              "wifi": {
+                "type": "boolean"
+              },
               "toddler": {
                 "type": "boolean"
               },
@@ -6018,6 +6017,7 @@
           }
         },
         "tags": ["Reihung"],
+        "deprecated": true,
         "security": [],
         "parameters": [
           {
@@ -6036,12 +6036,43 @@
               "format": "date-time",
               "type": "string"
             }
+          }
+        ]
+      }
+    },
+    "/reihung/v3/wagen/{trainName}": {
+      "get": {
+        "operationId": "Wagenreihung v3",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Formation"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Reihung"],
+        "security": [],
+        "parameters": [
+          {
+            "description": "TrainType and Number eg ICE 23",
+            "in": "path",
+            "name": "trainName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "in": "query",
-            "name": "trainType",
-            "required": false,
+            "name": "departure",
+            "required": true,
             "schema": {
+              "format": "date-time",
               "type": "string"
             }
           },
@@ -6050,6 +6081,15 @@
             "name": "evaNumber",
             "required": false,
             "schema": {
+              "$ref": "#/components/schemas/EvaNumber"
+            }
+          },
+          {
+            "in": "query",
+            "name": "initialDeparture",
+            "required": false,
+            "schema": {
+              "format": "date-time",
               "type": "string"
             }
           }

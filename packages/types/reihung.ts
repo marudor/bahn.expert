@@ -192,6 +192,7 @@ export interface AdditionalFahrzeugInfo {
     info?: boolean;
     family?: boolean;
     toddler?: boolean;
+    wifi?: boolean;
   };
   comfort?: boolean;
   comfortSeats?: string;

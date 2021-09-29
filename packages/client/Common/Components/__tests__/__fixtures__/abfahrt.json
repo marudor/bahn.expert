@@ -116,6 +116,5 @@
   "platform": "Fern 7",
   "scheduledPlatform": "Fern 7",
   "auslastung": true,
-  "reihung": true,
-  "hiddenReihung": false
+  "reihung": true
 }

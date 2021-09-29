@@ -81,8 +81,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800574",
@@ -180,8 +179,7 @@
       "platform": "17",
       "scheduledPlatform": "17",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "800574",
@@ -300,8 +298,7 @@
       "platform": "10",
       "scheduledPlatform": "10",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "800574",
@@ -407,8 +404,7 @@
       "platform": "10",
       "scheduledPlatform": "10",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "800640",
@@ -499,8 +495,7 @@
       "platform": "20",
       "scheduledPlatform": "20",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "80",
@@ -664,8 +659,7 @@
       "platform": "9",
       "scheduledPlatform": "9",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "80",
@@ -751,8 +745,7 @@
       "platform": "7",
       "scheduledPlatform": "7",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "80",
@@ -811,8 +804,7 @@
       "destination": "Frankfurt (Main) Hbf",
       "platform": "12",
       "scheduledPlatform": "12",
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800528",
@@ -938,8 +930,7 @@
       "platform": "101",
       "scheduledPlatform": "101",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800528",
@@ -1054,8 +1045,7 @@
       "platform": "103",
       "scheduledPlatform": "103",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -1149,8 +1139,7 @@
       "platform": "8",
       "scheduledPlatform": "8",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800553",
@@ -1221,8 +1210,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "800528",
@@ -1360,8 +1348,7 @@
       "platform": "102",
       "scheduledPlatform": "102",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800528",
@@ -1485,8 +1472,7 @@
       "platform": "104",
       "scheduledPlatform": "104",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "8005A4",
@@ -1584,8 +1570,7 @@
       "platform": "11",
       "scheduledPlatform": "11",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "800553",
@@ -1657,8 +1642,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "800528",
@@ -1796,8 +1780,7 @@
       "platform": "103",
       "scheduledPlatform": "103",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800528",
@@ -1921,8 +1904,7 @@
       "platform": "101",
       "scheduledPlatform": "101",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -1983,8 +1965,7 @@
       "platform": "13",
       "scheduledPlatform": "13",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800528",
@@ -2105,8 +2086,7 @@
       "platform": "104",
       "scheduledPlatform": "104",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800528",
@@ -2233,8 +2213,7 @@
       "platform": "102",
       "scheduledPlatform": "102",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R4RH",
@@ -2363,8 +2342,7 @@
       "platform": "24",
       "scheduledPlatform": "24",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "80",
@@ -2457,8 +2435,7 @@
       "platform": "6",
       "scheduledPlatform": "6",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800528",
@@ -2539,8 +2516,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800574",
@@ -2664,8 +2640,7 @@
       "platform": "10",
       "scheduledPlatform": "10",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "800528",
@@ -2774,8 +2749,7 @@
       "platform": "101",
       "scheduledPlatform": "101",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800528",
@@ -2884,8 +2858,7 @@
       "platform": "103",
       "scheduledPlatform": "103",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800640",
@@ -2981,8 +2954,7 @@
       "platform": "20",
       "scheduledPlatform": "20",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "800528",
@@ -3038,8 +3010,7 @@
       "platform": "21",
       "scheduledPlatform": "21",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800528",
@@ -3178,8 +3149,7 @@
       "platform": "102",
       "scheduledPlatform": "102",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800528",
@@ -3276,8 +3246,7 @@
       "platform": "104",
       "scheduledPlatform": "104",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -3366,8 +3335,7 @@
       "platform": "7",
       "scheduledPlatform": "7",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800528",
@@ -3521,8 +3489,7 @@
       "platform": "103",
       "scheduledPlatform": "103",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800528",
@@ -3631,8 +3598,7 @@
       "platform": "101",
       "scheduledPlatform": "101",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800574",
@@ -3736,8 +3702,7 @@
       "platform": "17",
       "scheduledPlatform": "17",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "800553",
@@ -3821,8 +3786,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "85",
@@ -3959,8 +3923,7 @@
       "platform": "8",
       "scheduledPlatform": "8",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "8005ND",
@@ -4052,8 +4015,7 @@
       "platform": "14",
       "scheduledPlatform": "14",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "800528",
@@ -4195,8 +4157,7 @@
       "platform": "102",
       "scheduledPlatform": "102",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800528",
@@ -4341,8 +4302,7 @@
       "platform": "104",
       "scheduledPlatform": "104",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "8005KG",
@@ -4425,8 +4385,7 @@
       "platform": "5",
       "scheduledPlatform": "5",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "8005A4",
@@ -4524,8 +4483,7 @@
       "platform": "11",
       "scheduledPlatform": "11",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "80",
@@ -4585,8 +4543,7 @@
       "platform": "19",
       "scheduledPlatform": "19",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "K4RB",
@@ -4707,8 +4664,7 @@
       "platform": "22",
       "scheduledPlatform": "22",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "800528",
@@ -4853,8 +4809,7 @@
       "platform": "101",
       "scheduledPlatform": "101",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800528",
@@ -4989,8 +4944,7 @@
       "platform": "103",
       "scheduledPlatform": "103",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800528",
@@ -5144,8 +5098,7 @@
       "platform": "102",
       "scheduledPlatform": "102",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800528",
@@ -5248,8 +5201,7 @@
       "platform": "104",
       "scheduledPlatform": "104",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -5337,8 +5289,7 @@
       "platform": "13",
       "scheduledPlatform": "13",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800640",
@@ -5411,8 +5362,7 @@
       "platform": "1a",
       "scheduledPlatform": "1a",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "R4",
@@ -5484,8 +5434,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "80",
@@ -5580,8 +5529,7 @@
       "platform": "9",
       "scheduledPlatform": "9",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800528",
@@ -5665,8 +5613,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "8005MW",
@@ -5747,8 +5694,7 @@
       "platform": "16",
       "scheduledPlatform": "16",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "800528",
@@ -5887,8 +5833,7 @@
       "platform": "103",
       "scheduledPlatform": "103",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800528",
@@ -5985,8 +5930,7 @@
       "platform": "101",
       "scheduledPlatform": "101",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800528",
@@ -6043,8 +5987,7 @@
       "platform": "21",
       "scheduledPlatform": "21",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R4RH",
@@ -6168,8 +6111,7 @@
       "platform": "24",
       "scheduledPlatform": "24",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "800772",
@@ -6264,8 +6206,7 @@
       "platform": "6",
       "scheduledPlatform": "6",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "800574",
@@ -6342,8 +6283,7 @@
       "platform": "11",
       "scheduledPlatform": "11",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "800528",
@@ -6446,8 +6386,7 @@
       "platform": "104",
       "scheduledPlatform": "104",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800528",
@@ -6547,8 +6486,7 @@
       "platform": "102",
       "scheduledPlatform": "102",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "V6RE",
@@ -6648,8 +6586,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "R4",
@@ -6746,8 +6683,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     }
   ],
   "lookbehind": [],
@@ -6856,8 +6792,7 @@
       "platform": "11",
       "scheduledPlatform": "11",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     "859374122770042489-1908071421": {
       "o": "K4RE",
@@ -6930,8 +6865,7 @@
       "platform": "15",
       "scheduledPlatform": "15",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     "1181097143050291141-1908071431": {
       "o": "800535",
@@ -7049,8 +6983,7 @@
       "platform": "16",
       "scheduledPlatform": "16",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     "8791795277896736185-1908071551": {
       "o": "800535",
@@ -7149,8 +7082,7 @@
       "platform": "14",
       "scheduledPlatform": "14",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     "1186458192854678463-1908071506": {
       "o": "800574",
@@ -7261,8 +7193,7 @@
       "platform": "10",
       "scheduledPlatform": "10",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     "5512194522829670175-1908071306": {
       "o": "800574",
@@ -7368,8 +7299,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     "7497450269011895840-1908071351": {
       "o": "800535",
@@ -7472,8 +7402,7 @@
       "platform": "13",
       "scheduledPlatform": "13",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     "3626013332719834621-1908070826": {
       "o": "80",
@@ -7552,8 +7481,7 @@
       "platform": "18",
       "scheduledPlatform": "18",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     "8922294650485137672-1908070815": {
       "o": "K4RE",
@@ -7628,8 +7556,7 @@
       "platform": "15",
       "scheduledPlatform": "12",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     }
   },
   "lageplan": "https://www.bahnhof.de/resource/blob/1038882/60baa6e8ee9692d4abd7a742c0d3b129/Frankfurt-Main-Hbf_locationPdf-data.pdf"

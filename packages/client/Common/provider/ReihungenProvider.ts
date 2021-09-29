@@ -4,21 +4,19 @@ import constate from 'constate';
 import type { Formation } from 'types/reihung';
 
 async function fetchSequence(
-  trainNumber: string,
+  trainName: string,
   scheduledDeparture: Date,
   evaNumber: string,
-  trainType?: string,
+  initialDeparture?: Date,
 ): Promise<Formation | undefined> {
   try {
-    const r = await Axios.get<Formation>(
-      `/api/reihung/v2/wagen/${trainNumber}/${scheduledDeparture.toISOString()}`,
-      {
-        params: {
-          evaNumber,
-          trainType,
-        },
+    const r = await Axios.get<Formation>(`/api/reihung/v3/wagen/${trainName}`, {
+      params: {
+        evaNumber,
+        departure: scheduledDeparture.toISOString(),
+        initialDeparture: initialDeparture?.toISOString(),
       },
-    );
+    });
     return r.data;
   } catch (e) {
     return undefined;
@@ -35,23 +33,24 @@ function useReihungInner() {
       trainType: string | undefined,
       currentEvaNumber: string,
       scheduledDeparture: Date,
+      initialDeparture?: Date,
       fallbackTrainNumbers: string[] = [],
     ) => {
       let reihung: Formation | undefined | null;
 
       const reihungen = await Promise.all([
         fetchSequence(
-          trainNumber,
+          trainType ? `${trainType} ${trainNumber}` : trainNumber,
           scheduledDeparture,
           currentEvaNumber,
-          trainType,
+          initialDeparture,
         ),
         ...fallbackTrainNumbers.map((fallback) =>
           fetchSequence(
-            fallback,
+            trainType ? `${trainType} ${fallback}` : fallback,
             scheduledDeparture,
             currentEvaNumber,
-            trainType,
+            initialDeparture,
           ),
         ),
       ]);

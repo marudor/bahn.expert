@@ -101,8 +101,7 @@
       "platform": "",
       "scheduledPlatform": "",
       "auslastung": false,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800164",
@@ -182,8 +181,7 @@
       "platform": "14",
       "scheduledPlatform": "14",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "R1",
@@ -274,7 +272,6 @@
       "scheduledPlatform": "12",
       "auslastung": false,
       "reihung": false,
-      "hiddenReihung": true,
       "cancelled": true
     },
     {
@@ -393,8 +390,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -515,8 +511,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -637,8 +632,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -769,8 +763,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -879,8 +872,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -986,8 +978,7 @@
       "platform": "11",
       "scheduledPlatform": "11",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "0S",
@@ -1075,8 +1066,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -1158,8 +1148,7 @@
       "platform": "",
       "scheduledPlatform": "",
       "auslastung": false,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "0S",
@@ -1247,8 +1236,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -1352,8 +1340,7 @@
       "platform": "14",
       "scheduledPlatform": "14",
       "auslastung": false,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "0S",
@@ -1479,8 +1466,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -1589,8 +1575,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R1",
@@ -1685,8 +1670,7 @@
       "platform": "11",
       "scheduledPlatform": "11",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -1807,8 +1791,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -1906,8 +1889,7 @@
       "platform": "6",
       "scheduledPlatform": "6",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800201",
@@ -1975,8 +1957,7 @@
       "platform": "7G-I",
       "scheduledPlatform": "7G-I",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "R1",
@@ -2071,8 +2052,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "800155",
@@ -2173,8 +2153,7 @@
       "platform": "7A-D",
       "scheduledPlatform": "7A-D",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -2295,8 +2274,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -2414,8 +2392,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -2553,8 +2530,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800279",
@@ -2629,8 +2605,7 @@
       "platform": "5D-E",
       "scheduledPlatform": "5D-E",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -2712,8 +2687,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -2795,8 +2769,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R1",
@@ -2859,8 +2832,7 @@
       "platform": "13A-C",
       "scheduledPlatform": "13A-C",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "800279",
@@ -2922,8 +2894,7 @@
       "platform": "5D-E",
       "scheduledPlatform": "5D-E",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "800201",
@@ -2993,8 +2964,7 @@
       "platform": "13D-F",
       "scheduledPlatform": "13D-F",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -3137,8 +3107,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -3250,8 +3219,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -3372,8 +3340,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -3480,8 +3447,7 @@
       "platform": "13",
       "scheduledPlatform": "13",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "0S",
@@ -3602,8 +3568,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -3729,8 +3694,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -3833,8 +3797,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -3916,8 +3879,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800279",
@@ -3973,8 +3935,7 @@
       "platform": "5A-C",
       "scheduledPlatform": "5A-C",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -4056,8 +4017,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "O0",
@@ -4135,8 +4095,7 @@
       "platform": "13D-F",
       "scheduledPlatform": "13D-F",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -4256,8 +4215,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -4360,8 +4318,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -4476,8 +4433,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R1",
@@ -4548,8 +4504,7 @@
       "platform": "13A-C",
       "scheduledPlatform": "13A-C",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -4670,8 +4625,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -4783,8 +4737,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -4916,8 +4869,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -5025,8 +4977,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "0S",
@@ -5108,8 +5059,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -5213,8 +5163,7 @@
       "platform": "14",
       "scheduledPlatform": "14",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "0S",
@@ -5296,8 +5245,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -5435,8 +5383,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -5548,8 +5495,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800279",
@@ -5605,8 +5551,7 @@
       "platform": "5A-C",
       "scheduledPlatform": "5A-C",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "R1",
@@ -5696,8 +5641,7 @@
       "platform": "13A-C",
       "scheduledPlatform": "13A-C",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -5812,8 +5756,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "O0",
@@ -5896,8 +5839,7 @@
       "platform": "13D-F",
       "scheduledPlatform": "13D-F",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -6012,8 +5954,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -6133,8 +6074,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -6237,8 +6177,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800279",
@@ -6301,8 +6240,7 @@
       "platform": "5D-E",
       "scheduledPlatform": "5D-E",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -6384,8 +6322,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -6467,8 +6404,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800279",
@@ -6552,8 +6488,7 @@
       "platform": "6D-E",
       "scheduledPlatform": "6D-E",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -6673,8 +6608,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -6777,8 +6711,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800201",
@@ -6861,8 +6794,7 @@
       "platform": "11D-F",
       "scheduledPlatform": "11D-F",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "800201",
@@ -6930,8 +6862,7 @@
       "platform": "11D-F",
       "scheduledPlatform": "11D-F",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "R1",
@@ -6999,8 +6930,7 @@
       "platform": "13A-C",
       "scheduledPlatform": "13A-C",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "86",
@@ -7056,8 +6986,7 @@
       "destination": "Hamburg Hbf",
       "platform": "6A-C",
       "scheduledPlatform": "6A-C",
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "0S",
@@ -7172,8 +7101,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -7288,8 +7216,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -7401,8 +7328,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -7534,8 +7460,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -7617,8 +7542,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "HK",
@@ -7701,8 +7625,7 @@
       "platform": "8",
       "scheduledPlatform": "8",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800155",
@@ -7804,8 +7727,7 @@
       "platform": "7A-D",
       "scheduledPlatform": "7A-D",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "R1",
@@ -7880,8 +7802,7 @@
       "platform": "13D-F",
       "scheduledPlatform": "13D-F",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -7963,8 +7884,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800201",
@@ -8033,8 +7953,7 @@
       "platform": "7G-I",
       "scheduledPlatform": "7G-I",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -8166,8 +8085,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -8279,8 +8197,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R1",
@@ -8370,8 +8287,7 @@
       "platform": "13A-C",
       "scheduledPlatform": "13A-C",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "80",
@@ -8501,8 +8417,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "0S",
@@ -8617,8 +8532,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -8700,8 +8614,7 @@
       "platform": "12",
       "scheduledPlatform": "12",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "0S",
@@ -8816,8 +8729,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -8937,8 +8849,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -9041,8 +8952,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -9137,8 +9047,7 @@
       "platform": "14",
       "scheduledPlatform": "14",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "R1",
@@ -9228,8 +9137,7 @@
       "platform": "11A-C",
       "scheduledPlatform": "11A-C",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -9311,8 +9219,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -9394,8 +9301,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R1",
@@ -9475,8 +9381,7 @@
       "platform": "13A-C",
       "scheduledPlatform": "13A-C",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -9596,8 +9501,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -9700,8 +9604,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -9793,8 +9696,7 @@
       "platform": "8",
       "scheduledPlatform": "8",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "80",
@@ -9897,8 +9799,7 @@
       "platform": "5",
       "scheduledPlatform": "5",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "0S",
@@ -10013,8 +9914,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800201",
@@ -10080,8 +9980,7 @@
       "platform": "7G-I",
       "scheduledPlatform": "7G-I",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "R1",
@@ -10176,8 +10075,7 @@
       "platform": "13D-F",
       "scheduledPlatform": "13D-F",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "80",
@@ -10286,8 +10184,7 @@
       "platform": "",
       "scheduledPlatform": "",
       "auslastung": false,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "0S",
@@ -10402,8 +10299,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -10515,8 +10411,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -10648,8 +10543,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800279",
@@ -10733,8 +10627,7 @@
       "platform": "5",
       "scheduledPlatform": "5",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -10816,8 +10709,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800279",
@@ -10874,8 +10766,7 @@
       "platform": "11A-C",
       "scheduledPlatform": "11A-C",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -10957,8 +10848,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800279",
@@ -11018,8 +10908,7 @@
       "platform": "7A-D",
       "scheduledPlatform": "7A-D",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "800201",
@@ -11093,8 +10982,7 @@
       "platform": "11D-F",
       "scheduledPlatform": "11D-F",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -11226,8 +11114,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -11339,8 +11226,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R1",
@@ -11403,8 +11289,7 @@
       "platform": "12A-B",
       "scheduledPlatform": "12A-B",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -11519,8 +11404,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -11635,8 +11519,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -11756,8 +11639,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -11860,8 +11742,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -11943,8 +11824,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800279",
@@ -11998,8 +11878,7 @@
       "platform": "6",
       "scheduledPlatform": "6",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "80",
@@ -12094,8 +11973,7 @@
       "platform": "5",
       "scheduledPlatform": "5",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "0S",
@@ -12177,8 +12055,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "O0",
@@ -12256,8 +12133,7 @@
       "platform": "12C-F",
       "scheduledPlatform": "12C-F",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -12377,8 +12253,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -12481,8 +12356,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -12597,8 +12471,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -12684,8 +12557,7 @@
       "platform": "13",
       "scheduledPlatform": "13",
       "auslastung": false,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "R1",
@@ -12780,8 +12652,7 @@
       "platform": "12A-B",
       "scheduledPlatform": "12A-B",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -12896,8 +12767,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -13009,8 +12879,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -13142,8 +13011,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -13225,8 +13093,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -13309,8 +13176,7 @@
       "platform": "14",
       "scheduledPlatform": "14",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "0S",
@@ -13392,8 +13258,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R1",
@@ -13459,8 +13324,7 @@
       "platform": "12A-B",
       "scheduledPlatform": "12A-B",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -13592,8 +13456,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -13705,8 +13568,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800279",
@@ -13766,8 +13628,7 @@
       "platform": "6",
       "scheduledPlatform": "6",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -13882,8 +13743,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "O0",
@@ -13966,8 +13826,7 @@
       "platform": "12C-F",
       "scheduledPlatform": "12C-F",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -14082,8 +13941,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -14203,8 +14061,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -14307,8 +14164,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800279",
@@ -14371,8 +14227,7 @@
       "platform": "7A-D",
       "scheduledPlatform": "7A-D",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -14454,8 +14309,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -14537,8 +14391,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800279",
@@ -14610,8 +14463,7 @@
       "platform": "7A-D",
       "scheduledPlatform": "7A-D",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -14731,8 +14583,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -14835,8 +14686,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800201",
@@ -14914,8 +14764,7 @@
       "platform": "6D-E",
       "scheduledPlatform": "6D-E",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "800201",
@@ -14981,8 +14830,7 @@
       "platform": "6D-E",
       "scheduledPlatform": "6D-E",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "R1",
@@ -15050,8 +14898,7 @@
       "platform": "12A-B",
       "scheduledPlatform": "12A-B",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -15166,8 +15013,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -15283,8 +15129,7 @@
       "platform": "",
       "scheduledPlatform": "",
       "auslastung": false,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "0S",
@@ -15399,8 +15244,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -15512,8 +15356,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -15645,8 +15488,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -15728,8 +15570,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800279",
@@ -15789,8 +15630,7 @@
       "platform": "11D-F",
       "scheduledPlatform": "11D-F",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -15872,8 +15712,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800201",
@@ -15942,8 +15781,7 @@
       "platform": "7G-I",
       "scheduledPlatform": "7G-I",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "R1",
@@ -16018,8 +15856,7 @@
       "platform": "12C-F",
       "scheduledPlatform": "12C-F",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -16151,8 +15988,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -16264,8 +16100,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R1",
@@ -16355,8 +16190,7 @@
       "platform": "12A-B",
       "scheduledPlatform": "12A-B",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -16471,8 +16305,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -16587,8 +16420,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -16708,8 +16540,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -16812,8 +16643,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -16908,8 +16738,7 @@
       "platform": "13",
       "scheduledPlatform": "13",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "80",
@@ -16966,8 +16795,7 @@
       "platform": "8",
       "scheduledPlatform": "8",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "0S",
@@ -17049,8 +16877,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -17132,8 +16959,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -17242,8 +17068,7 @@
       "platform": "",
       "scheduledPlatform": "",
       "auslastung": false,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "R1",
@@ -17323,8 +17148,7 @@
       "platform": "12A-B",
       "scheduledPlatform": "12A-B",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -17444,8 +17268,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -17548,8 +17371,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R1",
@@ -17639,8 +17461,7 @@
       "platform": "14D-F",
       "scheduledPlatform": "14D-F",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -17755,8 +17576,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800201",
@@ -17822,8 +17642,7 @@
       "platform": "7G-I",
       "scheduledPlatform": "7G-I",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "R1",
@@ -17918,8 +17737,7 @@
       "platform": "12C-F",
       "scheduledPlatform": "12C-F",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "800155",
@@ -18020,8 +17838,7 @@
       "platform": "6A-C",
       "scheduledPlatform": "6A-C",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -18136,8 +17953,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -18249,8 +18065,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -18382,8 +18197,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -18475,8 +18289,7 @@
       "platform": "5",
       "scheduledPlatform": "5",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800279",
@@ -18551,8 +18364,7 @@
       "platform": "7A-D",
       "scheduledPlatform": "7A-D",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "80",
@@ -18645,8 +18457,7 @@
       "platform": "",
       "scheduledPlatform": "",
       "auslastung": false,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "0S",
@@ -18728,8 +18539,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -18811,8 +18621,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "R1",
@@ -18875,8 +18684,7 @@
       "platform": "13A-C",
       "scheduledPlatform": "13A-C",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "80",
@@ -18974,8 +18782,7 @@
       "platform": "11",
       "scheduledPlatform": "11",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "800279",
@@ -19035,8 +18842,7 @@
       "platform": "5D-E",
       "scheduledPlatform": "5D-E",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "800201",
@@ -19106,8 +18912,7 @@
       "platform": "6D-E",
       "scheduledPlatform": "6D-E",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -19239,8 +19044,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -19352,8 +19156,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "80",
@@ -19487,8 +19290,7 @@
       "platform": "11",
       "scheduledPlatform": "11",
       "auslastung": true,
-      "reihung": true,
-      "hiddenReihung": false
+      "reihung": true
     },
     {
       "o": "80",
@@ -19614,8 +19416,7 @@
       "platform": "14",
       "scheduledPlatform": "14",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -19730,8 +19531,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -19846,8 +19646,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -19967,8 +19766,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -20071,8 +19869,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -20154,8 +19951,7 @@
       "platform": "2",
       "scheduledPlatform": "2",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "800279",
@@ -20211,8 +20007,7 @@
       "platform": "5A-C",
       "scheduledPlatform": "5A-C",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "HK",
@@ -20292,8 +20087,7 @@
       "platform": "14",
       "scheduledPlatform": "14",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -20375,8 +20169,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "O0",
@@ -20454,8 +20247,7 @@
       "platform": "13D-F",
       "scheduledPlatform": "13D-F",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     {
       "o": "0S",
@@ -20575,8 +20367,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     {
       "o": "0S",
@@ -20679,8 +20470,7 @@
       "platform": "4",
       "scheduledPlatform": "4",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     }
   ],
   "lookbehind": [],
@@ -20761,8 +20551,7 @@
       "platform": "13D-F",
       "scheduledPlatform": "13D-F",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     "4039469425671528170-1911301243": {
       "o": "800201",
@@ -20844,8 +20633,7 @@
       "platform": "11D-F",
       "scheduledPlatform": "11D-F",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     "1687578433996553139-1911301343": {
       "o": "800201",
@@ -20923,8 +20711,7 @@
       "platform": "6D-E",
       "scheduledPlatform": "6D-E",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     "7412834530678165209-1911301443": {
       "o": "800201",
@@ -21002,8 +20789,7 @@
       "platform": "12C-F",
       "scheduledPlatform": "12C-F",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     "9109709213801137737-1911301043": {
       "o": "800201",
@@ -21085,8 +20871,7 @@
       "platform": "13D-F",
       "scheduledPlatform": "13D-F",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": true
+      "reihung": false
     },
     "5367438647545958387-1911301047": {
       "o": "0S",
@@ -21237,8 +21022,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "7440948382797739729-1911301119": {
       "o": "0S",
@@ -21371,8 +21155,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "698142480475912228-1911301109": {
       "o": "0S",
@@ -21517,8 +21300,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "3759246301279391203-1911301103": {
       "o": "0S",
@@ -21663,8 +21445,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "1825339416904800641-1911301059": {
       "o": "0S",
@@ -21802,8 +21583,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "5064008227077142242-1911301039": {
       "o": "0S",
@@ -21936,8 +21716,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "4925550873009141464-1911301023": {
       "o": "0S",
@@ -22082,8 +21861,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "4824035606402589556-1911301107": {
       "o": "0S",
@@ -22216,8 +21994,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "6944902359726372531-1911301049": {
       "o": "0S",
@@ -22362,8 +22139,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "5472254006308011284-1911301043": {
       "o": "0S",
@@ -22508,8 +22284,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "2363687393968313743-1911301127": {
       "o": "0S",
@@ -22636,8 +22411,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "2253211385183153076-1911301129": {
       "o": "0S",
@@ -22776,8 +22550,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "5242166522454428329-1911301203": {
       "o": "0S",
@@ -22916,8 +22689,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "4020467174808887142-1911301147": {
       "o": "0S",
@@ -23044,8 +22816,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "42564079979081586-1911301139": {
       "o": "0S",
@@ -23172,8 +22943,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "27204670265056589-1911301219": {
       "o": "0S",
@@ -23300,8 +23070,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "1712618767779414048-1911301227": {
       "o": "0S",
@@ -23428,8 +23197,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "1612548017760054961-1911301123": {
       "o": "0S",
@@ -23574,8 +23342,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "8711316388160984905-1911301229": {
       "o": "0S",
@@ -23714,8 +23481,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "3901142906405953257-1911301159": {
       "o": "0S",
@@ -23842,8 +23608,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "3186524107149826288-1911301149": {
       "o": "0S",
@@ -23982,8 +23747,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "2648134038006527929-1911301143": {
       "o": "0S",
@@ -24122,8 +23886,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "7737888705604473953-1911301209": {
       "o": "0S",
@@ -24262,8 +24025,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "3763783510578728487-1911301207": {
       "o": "0S",
@@ -24390,8 +24152,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "1771987211812626597-1911301327": {
       "o": "0S",
@@ -24518,8 +24279,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "9052702819312580247-1911301243": {
       "o": "0S",
@@ -24658,8 +24418,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "1634979690266506546-1911301247": {
       "o": "0S",
@@ -24786,8 +24545,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "6564252413990975436-1911301319": {
       "o": "0S",
@@ -24914,8 +24672,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "6370868157721217980-1911301303": {
       "o": "0S",
@@ -25054,8 +24811,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "5700177111237437690-1911301259": {
       "o": "0S",
@@ -25182,8 +24938,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "6697348168660899199-1911301329": {
       "o": "0S",
@@ -25322,8 +25077,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "1972681094537759269-1911301223": {
       "o": "0S",
@@ -25462,8 +25216,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "2836705208891855570-1911301249": {
       "o": "0S",
@@ -25602,8 +25355,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "6466181558478075299-1911301309": {
       "o": "0S",
@@ -25742,8 +25494,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "1800108602608416714-1911301307": {
       "o": "0S",
@@ -25870,8 +25621,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "3692757439469485571-1911301239": {
       "o": "0S",
@@ -25998,8 +25748,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "8379953264893158754-1911301429": {
       "o": "0S",
@@ -26138,8 +25887,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "2853662787869745645-1911301339": {
       "o": "0S",
@@ -26266,8 +26014,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "8430324648289081751-1911301323": {
       "o": "0S",
@@ -26406,8 +26153,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "5827236813959639941-1911301403": {
       "o": "0S",
@@ -26546,8 +26292,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "8254480534566868635-1911301343": {
       "o": "0S",
@@ -26686,8 +26431,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "5697501305537618430-1911301419": {
       "o": "0S",
@@ -26814,8 +26558,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "9038388446319928736-1911301349": {
       "o": "0S",
@@ -26954,8 +26697,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "3516441429893083970-1911301409": {
       "o": "0S",
@@ -27094,8 +26836,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "3817558370482750225-1911301347": {
       "o": "0S",
@@ -27222,8 +26963,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "2145442407591060334-1911301359": {
       "o": "0S",
@@ -27350,8 +27090,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "354799385917966852-1911301407": {
       "o": "0S",
@@ -27478,8 +27217,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "3516591086552309235-1911301427": {
       "o": "0S",
@@ -27606,8 +27344,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "135219235991582258-1911300939": {
       "o": "0S",
@@ -27740,8 +27477,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "5229540442106619834-1911300943": {
       "o": "0S",
@@ -27891,8 +27627,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "7121004600371568989-1911300947": {
       "o": "0S",
@@ -28025,8 +27760,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "8479847089095301097-1911301029": {
       "o": "0S",
@@ -28176,8 +27910,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "7641473899416857173-1911300959": {
       "o": "0S",
@@ -28310,8 +28043,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "1204121542220777134-1911300949": {
       "o": "0S",
@@ -28456,8 +28188,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "4381321087133436549-1911301007": {
       "o": "0S",
@@ -28590,8 +28321,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "4460116205121041496-1911301019": {
       "o": "0S",
@@ -28729,8 +28459,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "810672474454030491-1911301027": {
       "o": "0S",
@@ -28863,8 +28592,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "5934233633416555667-1911300923": {
       "o": "0S",
@@ -29009,8 +28737,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "7095676071326727140-1911301009": {
       "o": "0S",
@@ -29160,8 +28887,7 @@
       "platform": "1",
       "scheduledPlatform": "1",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     },
     "7486183059515541139-1911301003": {
       "o": "0S",
@@ -29306,8 +29032,7 @@
       "platform": "3",
       "scheduledPlatform": "3",
       "auslastung": false,
-      "reihung": false,
-      "hiddenReihung": false
+      "reihung": false
     }
   }
 }

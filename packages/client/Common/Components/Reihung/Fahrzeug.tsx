@@ -7,6 +7,7 @@ import {
   LocalDining,
   Motorcycle,
   NotificationsOff,
+  WifiOutlined,
 } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core';
 import { SitzplatzInfo } from './SitzplatzInfo';
@@ -31,6 +32,7 @@ export const icons: {
   family: ChildCare,
   disabled: Accessibility,
   info: InfoOutlined,
+  wifi: WifiOutlined,
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -171,8 +173,8 @@ export const Fahrzeug: FC<Props> = ({
 }) => {
   const classes = useStyles();
   const { startprozent, endeprozent } = fahrzeug.positionamhalt;
-  const start = Number.parseInt(startprozent, 10);
-  const end = Number.parseInt(endeprozent, 10);
+  const start = Number.parseFloat(startprozent);
+  const end = Number.parseFloat(endeprozent);
 
   const position = {
     left: `${(start - correctLeft) * scale}%`,

@@ -225,7 +225,45 @@ function enrichFahrzeug(fahrzeug: Fahrzeug) {
   fahrzeug.additionalInfo = data;
 }
 
-function calculateComfort(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
+export function addBRtoGruppe(
+  gruppe: Fahrzeuggruppe,
+  formation: Formation,
+): void {
+  if (['IC', 'EC', 'ICE', 'ECE'].includes(formation.zuggattung)) {
+    const gruppenFahrzeugTypes = gruppe.allFahrzeug.map((f) => f.fahrzeugtyp);
+
+    const br = specificBR(gruppe.allFahrzeug);
+    if (gruppe.fahrzeuggruppebezeichnung.startsWith('IC')) {
+      const tzn = gruppe.fahrzeuggruppebezeichnung;
+
+      gruppe.tzn = tznRegex.exec(tzn)?.[0];
+      gruppe.name = TrainNames(gruppe.tzn);
+
+      if (br?.identifier && isRedesignByTZ(gruppe.tzn)) {
+        // @ts-expect-error this works
+        br.identifier = br.identifier.replace('.S1', '').replace('.S2', '');
+        br.identifier += '.R';
+      }
+    }
+    gruppe.br = {
+      ...br,
+      name: getName(br) ?? formation.zuggattung,
+    };
+    if (gruppe.br) {
+      gruppe.br.country = getCountry(gruppe.allFahrzeug, gruppenFahrzeugTypes);
+      gruppe.br.showBRInfo = Boolean(
+        gruppe.br.BR ||
+          !gruppe.br.noPdf ||
+          (gruppe.br.country && gruppe.br.country !== 'DE'),
+      );
+    }
+  }
+}
+
+export function calculateComfort(
+  fahrzeug: Fahrzeug,
+  gruppe: Fahrzeuggruppe,
+): void {
   const data = fahrzeug.additionalInfo;
   if (gruppe.goesToFrance) {
     data.comfort = false;
@@ -265,6 +303,7 @@ function calculateComfort(fahrzeug: Fahrzeug, gruppe: Fahrzeuggruppe) {
 const wrFetchTimeout = process.env.NODE_ENV === 'production' ? 2500 : 10000;
 
 async function getBestReihung(trainNumber: string, date: Date) {
+  console.log(getWRLink(trainNumber, date));
   if (trainNumber.length <= 4) {
     try {
       const cancelToken = new Axios.CancelToken((c) => {
@@ -329,8 +368,8 @@ export async function wagenreihung(
 
   const reallyHasReihung = enrichedFormation.allFahrzeuggruppe.every((g) =>
     g.allFahrzeug.every((f) => {
-      const start = Number.parseInt(f.positionamhalt.startprozent, 10);
-      const end = Number.parseInt(f.positionamhalt.endeprozent, 10);
+      const start = Number.parseFloat(f.positionamhalt.startprozent);
+      const end = Number.parseFloat(f.positionamhalt.endeprozent);
 
       if (!start && !end) return false;
 
@@ -381,40 +420,15 @@ export async function wagenreihung(
       enrichFahrzeug(fahrzeug);
       fahrzeuge.push(fahrzeug);
     });
-    if (['IC', 'EC', 'ICE', 'ECE'].includes(enrichedFormation.zuggattung)) {
-      const gruppenFahrzeugTypes = g.allFahrzeug.map((f) => f.fahrzeugtyp);
 
-      const br = specificBR(g.allFahrzeug);
-      if (g.fahrzeuggruppebezeichnung.startsWith('IC')) {
-        const tzn = g.fahrzeuggruppebezeichnung;
-
-        g.tzn = tznRegex.exec(tzn)?.[0];
-        g.name = TrainNames(g.tzn);
-
-        if (br?.identifier && isRedesignByTZ(g.tzn)) {
-          // @ts-expect-error this works
-          br.identifier = br.identifier.replace('.S1', '').replace('.S2', '');
-          br.identifier += '.R';
-        }
-      }
-      g.br = {
-        ...br,
-        name: getName(br) ?? enrichedFormation.zuggattung,
-      };
-      if (g.br) {
-        g.br.country = getCountry(g.allFahrzeug, gruppenFahrzeugTypes);
-        g.br.showBRInfo = Boolean(
-          g.br.BR || !g.br.noPdf || (g.br.country && g.br.country !== 'DE'),
-        );
-      }
-    }
+    addBRtoGruppe(g, enrichedFormation);
 
     // https://inside.bahn.de/entstehung-zugnummern/?dbkanal_006=L01_S01_D088_KTL0006_INSIDE-BAHN-2019_Zugnummern_LZ01
     const trainNumberAsNumber = Number.parseInt(g.verkehrlichezugnummer, 10);
 
     g.goesToFrance = trainNumberAsNumber >= 9550 && trainNumberAsNumber <= 9599;
 
-    fahrzeuge.forEach((f) => {
+    g.allFahrzeug.forEach((f) => {
       calculateComfort(f, g);
     });
 

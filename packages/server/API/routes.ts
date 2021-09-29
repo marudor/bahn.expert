@@ -27,6 +27,8 @@ import { ReihungControllerV1 } from './controller/Reihung/v1';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { ReihungControllerV2 } from './controller/Reihung/v2';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { ReihungControllerV3 } from './controller/Reihung/v3';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { SBBExperimentalController } from './controller/SBB/experimental';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { StopPlaceController } from './controller/StopPlace/v1';
@@ -485,7 +487,6 @@ const models: TsoaRoute.Models = {
             "scheduledPlatform": {"dataType":"string","required":true},
             "substitute": {"dataType":"boolean"},
             "train": {"ref":"TrainInfo","required":true},
-            "hiddenReihung": {"dataType":"boolean"},
         },
         "additionalProperties": false,
     },
@@ -1632,7 +1633,7 @@ const models: TsoaRoute.Models = {
         "dataType": "refObject",
         "properties": {
             "klasse": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":[0]},{"dataType":"enum","enums":[1]},{"dataType":"enum","enums":[2]},{"dataType":"enum","enums":[3]},{"dataType":"enum","enums":[4]}],"required":true},
-            "icons": {"dataType":"nestedObjectLiteral","nestedProperties":{"toddler":{"dataType":"boolean"},"family":{"dataType":"boolean"},"info":{"dataType":"boolean"},"quiet":{"dataType":"boolean"},"disabled":{"dataType":"boolean"},"bike":{"dataType":"boolean"},"wheelchair":{"dataType":"boolean"},"dining":{"dataType":"boolean"}},"required":true},
+            "icons": {"dataType":"nestedObjectLiteral","nestedProperties":{"wifi":{"dataType":"boolean"},"toddler":{"dataType":"boolean"},"family":{"dataType":"boolean"},"info":{"dataType":"boolean"},"quiet":{"dataType":"boolean"},"disabled":{"dataType":"boolean"},"bike":{"dataType":"boolean"},"wheelchair":{"dataType":"boolean"},"dining":{"dataType":"boolean"}},"required":true},
             "comfort": {"dataType":"boolean"},
             "comfortSeats": {"dataType":"string"},
             "disabledSeats": {"dataType":"string"},
@@ -2675,8 +2676,6 @@ export function RegisterRoutes(router: KoaRouter) {
             const args = {
                     trainNumber: {"in":"path","name":"trainNumber","required":true,"dataType":"string"},
                     date: {"in":"path","name":"date","required":true,"dataType":"datetime"},
-                    trainType: {"in":"query","name":"trainType","dataType":"string"},
-                    evaNumber: {"in":"query","name":"evaNumber","dataType":"string"},
             };
 
             let validatedArgs: any[] = [];
@@ -2688,6 +2687,29 @@ export function RegisterRoutes(router: KoaRouter) {
             }
 
             const controller = new ReihungControllerV2();
+
+            const promise = controller.wagenreihung.apply(controller, validatedArgs as any);
+            return promiseHandler(controller, promise, context, undefined, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        router.get('/api/reihung/v3/wagen/:trainName',
+            async function ReihungControllerV3_wagenreihung(context: any, next: any) {
+            const args = {
+                    trainName: {"in":"path","name":"trainName","required":true,"dataType":"string"},
+                    departure: {"in":"query","name":"departure","required":true,"dataType":"datetime"},
+                    evaNumber: {"in":"query","name":"evaNumber","ref":"EvaNumber"},
+                    initialDeparture: {"in":"query","name":"initialDeparture","dataType":"datetime"},
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+              validatedArgs = getValidatedArgs(args, context, next);
+            } catch (error) {
+              context.status = error.status;
+              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+            }
+
+            const controller = new ReihungControllerV3();
 
             const promise = controller.wagenreihung.apply(controller, validatedArgs as any);
             return promiseHandler(controller, promise, context, undefined, next);

@@ -68,6 +68,7 @@ interface Props {
   fallbackTrainNumbers?: string[];
   currentEvaNumber: string;
   scheduledDeparture: Date;
+  initialDeparture?: Date;
   loadHidden?: boolean;
   withLegend?: boolean;
 }
@@ -78,6 +79,7 @@ export const Reihung: FC<Props> = ({
   scheduledDeparture,
   trainNumber,
   trainType,
+  initialDeparture,
   loadHidden,
   fallbackTrainNumbers,
 }) => {
@@ -97,6 +99,7 @@ export const Reihung: FC<Props> = ({
         trainType,
         currentEvaNumber,
         scheduledDeparture,
+        initialDeparture,
         fallbackTrainNumbers,
       );
     }
@@ -104,6 +107,7 @@ export const Reihung: FC<Props> = ({
     currentEvaNumber,
     fallbackTrainNumbers,
     getReihung,
+    initialDeparture,
     reihung,
     scheduledDeparture,
     trainNumber,
