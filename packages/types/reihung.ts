@@ -139,7 +139,7 @@ export type FahrzeugKategorie =
   | 'STEUERWAGENERSTEZWEITEKLASSE'
   | 'STEUERWAGENZWEITEKLASSE'
   | 'TRIEBKOPF'
-  | 'OEBB';
+  | '';
 
 export interface BaseFahrzeug {
   allFahrzeugausstattung: Fahrzeugausstattung[];
