@@ -1,70 +1,127 @@
-import type { EvaNumber } from 'types/common';
-
-export interface OEBBCoachSequence {
-  trainName: string;
+export interface OEBBCoachSequenceWagon {
+  uicNumber?: string;
+  kind?: string;
+  origin: OEBBIdentifier;
+  destination: OEBBIdentifier;
+  ranking: number;
+  capacityBusinessClass: number;
+  capacityFirstClass: number;
+  capacitySecondClass: number;
+  capacityCouchette: number;
+  capacitySleeper: number;
+  capacityWheelChair: number;
+  capacityBicycle: number;
+  isBicycleAllowed: boolean;
+  isWheelChairAccessible: boolean;
   hasWifi: boolean;
-  /** Iso DateTime */
-  scheduledDeparture: string | null;
-  /** Iso DateTime */
-  actualDeparture: string | null;
-  /** Iso DateTime */
-  scheduledArrival: string | null;
-  /** Iso DateTime */
-  actualArrival: string | null;
-  trainStation: OEBBCoachSequenceTrainStation;
-  platform?: OEBBCoachSequencePlatform;
+  isInfoPoint: boolean;
+  isPlayZone: boolean;
+  isChildCinema: boolean;
+  isDining: boolean;
+  isQuietZone: boolean;
+  isLocked: boolean;
+  destinationName: string;
+  lengthOverBuffers: number;
+  originTime: string;
+  destinationTime: string;
+  seasoning?: {
+    startDate: string;
+    seasoningString: string;
+  };
+}
+
+/** example: WBF (Wien Hbf) */
+export type OEBBIdentifier = string;
+
+export interface OEBBTrainInfo {
+  trainNr: number;
+  /** ISO Date */
+  date: string;
+  version: number;
+  isReported: boolean;
+  assemblyStation: string;
+  source: string;
+  stations: OEBBIdentifier[];
   wagons: OEBBCoachSequenceWagon[];
 }
 
-export interface OEBBCoachSequenceTrainStation {
-  name: string;
-  evaCode: EvaNumber | null;
+export interface OEBBSectorInfo {
+  scheduled: string;
+  reported?: string;
 }
 
-export interface OEBBCoachSequenceWagon {
-  ordnungsNummer: number;
-  uicNummer?: string;
-  laengeUeberPuffer: number;
-  triebfahrzeug: boolean;
-  speisewagen: boolean;
-  businessClass: number;
-  firstClass: number;
-  secondClass: number;
-  schlafplaetze: number;
-  liegeplaetze: number;
-  autoreisezug: boolean;
-  kinderspielwagen: boolean;
-  kinderkino: boolean;
-  rollstuhlgerecht: boolean;
-  fahrradmitnahme: boolean;
-  abgesperrt: boolean;
-  origin: OEBBCoachSequenceTrainStation;
-  destination: OEBBCoachSequenceTrainStation;
-  ruhebereich: boolean;
-  infoPoint: boolean;
+export interface OEBBPlatforms {
+  /** @isInt */
+  scheduled: number;
+  /** @isInt */
+  reported: number;
 }
 
-export interface OEBBCoachSequencePlatform {
+export interface OEBBTimeFormat {
+  /** @isInt */
+  days: number;
+  /** @isInt */
+  hours: number;
+  /** @isInt */
+  minutes: number;
+}
+export interface OEBBTime {
+  scheduled: OEBBTimeFormat;
+  reported?: OEBBTimeFormat;
+}
+
+export interface OEBBPortion {
+  /** @isInt */
+  trainNr: number;
+  /** `${type} ${number}` */
+  trainName: string;
+}
+
+export interface OEBBTimeTableInfo {
+  date: string;
+  /** @isInt */
+  trainNr: number;
+  trainName: string;
+  stationName: string;
+  platform: OEBBPlatforms;
+  sectors: OEBBSectorInfo;
+  time: OEBBTime;
+  portions: OEBBPortion[];
+}
+
+export type OEBBAccessType =
+  | 'STIEGENAUFGANG'
+  | 'AUFZUG'
+  | 'STIEGENAUFGANG'
+  | 'ROLLTREPPE';
+
+export interface OEBBAccess {
   platform: string;
-  haltepunkt: OEBBCoachSequenceHaltepunkt;
-  sectors: OEBBCoachSequenceSector[];
-  egresses: OEBBCoachSequenceEgress[];
+  distance: number;
+  name: string;
+  type: OEBBAccessType;
 }
 
-export interface OEBBCoachSequenceHaltepunkt {
-  haltepunktInMeters: number;
-  departureDirectionSectorA: boolean;
+export interface OEBBTrainOnPlatform {
+  position: number;
+  departureTowardsFirstSector: boolean;
 }
 
-export interface OEBBCoachSequenceSector {
-  sectorName: string;
+export interface OEBBSector {
+  name: string;
   length: number;
 }
 
-export interface OEBBCoachSequenceEgress {
-  Bahnsteig: string;
-  Distanz: number;
-  Typ: string;
-  DB640Code: string;
-  Name: string;
+export interface OEBBPlatformInfo {
+  /** @isInt */
+  platform: number;
+  length: number;
+  sectors: OEBBSector[];
+}
+export interface OEBBInfo {
+  timeTableInfo: OEBBTimeTableInfo;
+  train?: OEBBTrainInfo;
+  accessess: OEBBAccess[];
+  trainOnPlatform?: OEBBTrainOnPlatform;
+  platform?: OEBBPlatformInfo;
 }

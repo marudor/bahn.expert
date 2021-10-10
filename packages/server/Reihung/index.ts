@@ -251,11 +251,7 @@ export function addBRtoGruppe(
     };
     if (gruppe.br) {
       gruppe.br.country = getCountry(gruppe.allFahrzeug, gruppenFahrzeugTypes);
-      gruppe.br.showBRInfo = Boolean(
-        gruppe.br.BR ||
-          !gruppe.br.noPdf ||
-          (gruppe.br.country && gruppe.br.country !== 'DE'),
-      );
+      gruppe.br.showBRInfo = Boolean(gruppe.br.BR || !gruppe.br.noPdf);
     }
   }
 }
@@ -303,7 +299,6 @@ export function calculateComfort(
 const wrFetchTimeout = process.env.NODE_ENV === 'production' ? 2500 : 10000;
 
 async function getBestReihung(trainNumber: string, date: Date) {
-  console.log(getWRLink(trainNumber, date));
   if (trainNumber.length <= 4) {
     try {
       const cancelToken = new Axios.CancelToken((c) => {

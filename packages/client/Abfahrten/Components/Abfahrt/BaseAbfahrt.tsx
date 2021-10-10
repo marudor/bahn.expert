@@ -138,7 +138,6 @@ export const BaseAbfahrt = memo(function BaseAbfahrt({
               loadHidden={!abfahrt.reihung}
               trainNumber={abfahrt.train.number}
               currentEvaNumber={abfahrt.currentStopPlace.evaNumber}
-              trainType={abfahrt.train.type}
               initialDeparture={abfahrt.initialDeparture}
               scheduledDeparture={abfahrt.departure.scheduledTime}
               fallbackTrainNumbers={wingNumbersWithoutSelf}

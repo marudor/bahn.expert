@@ -1531,102 +1531,179 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "OEBBCoachSequenceTrainStation": {
+    "OEBBPlatforms": {
         "dataType": "refObject",
         "properties": {
-            "name": {"dataType":"string","required":true},
-            "evaCode": {"dataType":"union","subSchemas":[{"ref":"EvaNumber"},{"dataType":"enum","enums":[null]}],"required":true},
+            "scheduled": {"dataType":"integer","required":true},
+            "reported": {"dataType":"integer","required":true},
         },
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "OEBBCoachSequenceHaltepunkt": {
+    "OEBBSectorInfo": {
         "dataType": "refObject",
         "properties": {
-            "haltepunktInMeters": {"dataType":"double","required":true},
-            "departureDirectionSectorA": {"dataType":"boolean","required":true},
+            "scheduled": {"dataType":"string","required":true},
+            "reported": {"dataType":"string"},
         },
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "OEBBCoachSequenceSector": {
+    "OEBBTimeFormat": {
         "dataType": "refObject",
         "properties": {
-            "sectorName": {"dataType":"string","required":true},
-            "length": {"dataType":"double","required":true},
+            "days": {"dataType":"integer","required":true},
+            "hours": {"dataType":"integer","required":true},
+            "minutes": {"dataType":"integer","required":true},
         },
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "OEBBCoachSequenceEgress": {
+    "OEBBTime": {
         "dataType": "refObject",
         "properties": {
-            "Bahnsteig": {"dataType":"string","required":true},
-            "Distanz": {"dataType":"double","required":true},
-            "Typ": {"dataType":"string","required":true},
-            "DB640Code": {"dataType":"string","required":true},
-            "Name": {"dataType":"string","required":true},
+            "scheduled": {"ref":"OEBBTimeFormat","required":true},
+            "reported": {"ref":"OEBBTimeFormat"},
         },
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "OEBBCoachSequencePlatform": {
+    "OEBBPortion": {
         "dataType": "refObject",
         "properties": {
-            "platform": {"dataType":"string","required":true},
-            "haltepunkt": {"ref":"OEBBCoachSequenceHaltepunkt","required":true},
-            "sectors": {"dataType":"array","array":{"dataType":"refObject","ref":"OEBBCoachSequenceSector"},"required":true},
-            "egresses": {"dataType":"array","array":{"dataType":"refObject","ref":"OEBBCoachSequenceEgress"},"required":true},
+            "trainNr": {"dataType":"integer","required":true},
+            "trainName": {"dataType":"string","required":true},
         },
         "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "OEBBTimeTableInfo": {
+        "dataType": "refObject",
+        "properties": {
+            "date": {"dataType":"string","required":true},
+            "trainNr": {"dataType":"integer","required":true},
+            "trainName": {"dataType":"string","required":true},
+            "stationName": {"dataType":"string","required":true},
+            "platform": {"ref":"OEBBPlatforms","required":true},
+            "sectors": {"ref":"OEBBSectorInfo","required":true},
+            "time": {"ref":"OEBBTime","required":true},
+            "portions": {"dataType":"array","array":{"dataType":"refObject","ref":"OEBBPortion"},"required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "OEBBIdentifier": {
+        "dataType": "refAlias",
+        "type": {"dataType":"string","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "OEBBCoachSequenceWagon": {
         "dataType": "refObject",
         "properties": {
-            "ordnungsNummer": {"dataType":"double","required":true},
-            "uicNummer": {"dataType":"string"},
-            "laengeUeberPuffer": {"dataType":"double","required":true},
-            "triebfahrzeug": {"dataType":"boolean","required":true},
-            "speisewagen": {"dataType":"boolean","required":true},
-            "businessClass": {"dataType":"double","required":true},
-            "firstClass": {"dataType":"double","required":true},
-            "secondClass": {"dataType":"double","required":true},
-            "schlafplaetze": {"dataType":"double","required":true},
-            "liegeplaetze": {"dataType":"double","required":true},
-            "autoreisezug": {"dataType":"boolean","required":true},
-            "kinderspielwagen": {"dataType":"boolean","required":true},
-            "kinderkino": {"dataType":"boolean","required":true},
-            "rollstuhlgerecht": {"dataType":"boolean","required":true},
-            "fahrradmitnahme": {"dataType":"boolean","required":true},
-            "abgesperrt": {"dataType":"boolean","required":true},
-            "origin": {"ref":"OEBBCoachSequenceTrainStation","required":true},
-            "destination": {"ref":"OEBBCoachSequenceTrainStation","required":true},
-            "ruhebereich": {"dataType":"boolean","required":true},
-            "infoPoint": {"dataType":"boolean","required":true},
+            "uicNumber": {"dataType":"string"},
+            "kind": {"dataType":"string"},
+            "origin": {"ref":"OEBBIdentifier","required":true},
+            "destination": {"ref":"OEBBIdentifier","required":true},
+            "ranking": {"dataType":"double","required":true},
+            "capacityBusinessClass": {"dataType":"double","required":true},
+            "capacityFirstClass": {"dataType":"double","required":true},
+            "capacitySecondClass": {"dataType":"double","required":true},
+            "capacityCouchette": {"dataType":"double","required":true},
+            "capacitySleeper": {"dataType":"double","required":true},
+            "capacityWheelChair": {"dataType":"double","required":true},
+            "capacityBicycle": {"dataType":"double","required":true},
+            "isBicycleAllowed": {"dataType":"boolean","required":true},
+            "isWheelChairAccessible": {"dataType":"boolean","required":true},
+            "hasWifi": {"dataType":"boolean","required":true},
+            "isInfoPoint": {"dataType":"boolean","required":true},
+            "isPlayZone": {"dataType":"boolean","required":true},
+            "isChildCinema": {"dataType":"boolean","required":true},
+            "isDining": {"dataType":"boolean","required":true},
+            "isQuietZone": {"dataType":"boolean","required":true},
+            "isLocked": {"dataType":"boolean","required":true},
+            "destinationName": {"dataType":"string","required":true},
+            "lengthOverBuffers": {"dataType":"double","required":true},
+            "originTime": {"dataType":"string","required":true},
+            "destinationTime": {"dataType":"string","required":true},
+            "seasoning": {"dataType":"nestedObjectLiteral","nestedProperties":{"seasoningString":{"dataType":"string","required":true},"startDate":{"dataType":"string","required":true}}},
         },
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "OEBBCoachSequence": {
+    "OEBBTrainInfo": {
         "dataType": "refObject",
         "properties": {
-            "trainName": {"dataType":"string","required":true},
-            "hasWifi": {"dataType":"boolean","required":true},
-            "scheduledDeparture": {"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"enum","enums":[null]}],"required":true},
-            "actualDeparture": {"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"enum","enums":[null]}],"required":true},
-            "scheduledArrival": {"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"enum","enums":[null]}],"required":true},
-            "actualArrival": {"dataType":"union","subSchemas":[{"dataType":"string"},{"dataType":"enum","enums":[null]}],"required":true},
-            "trainStation": {"ref":"OEBBCoachSequenceTrainStation","required":true},
-            "platform": {"ref":"OEBBCoachSequencePlatform"},
+            "trainNr": {"dataType":"double","required":true},
+            "date": {"dataType":"string","required":true},
+            "version": {"dataType":"double","required":true},
+            "isReported": {"dataType":"boolean","required":true},
+            "assemblyStation": {"dataType":"string","required":true},
+            "source": {"dataType":"string","required":true},
+            "stations": {"dataType":"array","array":{"dataType":"refAlias","ref":"OEBBIdentifier"},"required":true},
             "wagons": {"dataType":"array","array":{"dataType":"refObject","ref":"OEBBCoachSequenceWagon"},"required":true},
         },
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "ReturnType_typeofcoachSequence_": {
+    "OEBBAccessType": {
         "dataType": "refAlias",
-        "type": {"ref":"OEBBCoachSequence","validators":{}},
+        "type": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["STIEGENAUFGANG"]},{"dataType":"enum","enums":["AUFZUG"]},{"dataType":"enum","enums":["STIEGENAUFGANG"]},{"dataType":"enum","enums":["ROLLTREPPE"]}],"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "OEBBAccess": {
+        "dataType": "refObject",
+        "properties": {
+            "platform": {"dataType":"string","required":true},
+            "distance": {"dataType":"double","required":true},
+            "name": {"dataType":"string","required":true},
+            "type": {"ref":"OEBBAccessType","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "OEBBTrainOnPlatform": {
+        "dataType": "refObject",
+        "properties": {
+            "position": {"dataType":"double","required":true},
+            "departureTowardsFirstSector": {"dataType":"boolean","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "OEBBSector": {
+        "dataType": "refObject",
+        "properties": {
+            "name": {"dataType":"string","required":true},
+            "length": {"dataType":"double","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "OEBBPlatformInfo": {
+        "dataType": "refObject",
+        "properties": {
+            "platform": {"dataType":"integer","required":true},
+            "length": {"dataType":"double","required":true},
+            "sectors": {"dataType":"array","array":{"dataType":"refObject","ref":"OEBBSector"},"required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "OEBBInfo": {
+        "dataType": "refObject",
+        "properties": {
+            "timeTableInfo": {"ref":"OEBBTimeTableInfo","required":true},
+            "train": {"ref":"OEBBTrainInfo"},
+            "accessess": {"dataType":"array","array":{"dataType":"refObject","ref":"OEBBAccess"},"required":true},
+            "trainOnPlatform": {"ref":"OEBBTrainOnPlatform"},
+            "platform": {"ref":"OEBBPlatformInfo"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "ReturnType_typeofinfo_": {
+        "dataType": "refAlias",
+        "type": {"ref":"OEBBInfo","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "AdditionalFahrzeugInfo": {
@@ -1681,7 +1758,7 @@ const models: TsoaRoute.Models = {
             "fahrzeugtyp": {"dataType":"string","required":true},
             "wagenordnungsnummer": {"dataType":"string","required":true},
             "positionamhalt": {"ref":"Position","required":true},
-            "status": {"dataType":"string","required":true},
+            "status": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["GESCHLOSSEN"]},{"dataType":"string"}],"required":true},
             "additionalInfo": {"ref":"AdditionalFahrzeugInfo","required":true},
         },
         "additionalProperties": false,
@@ -1722,7 +1799,7 @@ const models: TsoaRoute.Models = {
             "fahrzeugtyp": {"dataType":"string","required":true},
             "wagenordnungsnummer": {"dataType":"string","required":true},
             "positionamhalt": {"ref":"Position","required":true},
-            "status": {"dataType":"string","required":true},
+            "status": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["GESCHLOSSEN"]},{"dataType":"string"}],"required":true},
         },
         "additionalProperties": false,
     },
@@ -1801,7 +1878,7 @@ const models: TsoaRoute.Models = {
             "scale": {"dataType":"double","required":true},
             "startPercentage": {"dataType":"double","required":true},
             "endPercentage": {"dataType":"double","required":true},
-            "realFahrtrichtung": {"dataType":"boolean","required":true},
+            "realFahrtrichtung": {"dataType":"boolean"},
             "isRealtime": {"dataType":"boolean","required":true},
         },
         "additionalProperties": false,
@@ -2566,10 +2643,10 @@ export function RegisterRoutes(router: KoaRouter) {
             return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        router.get('/api/oebb/experimental/coachSequence/:trainName/:evaNumber/:departureDate',
-            async function OEBBExperimentalController_wagenreihung(context: any, next: any) {
+        router.get('/api/oebb/experimental/trainInfo/:trainNumber/:evaNumber/:departureDate',
+            async function OEBBExperimentalController_trainInfo(context: any, next: any) {
             const args = {
-                    trainName: {"in":"path","name":"trainName","required":true,"dataType":"string"},
+                    trainNumber: {"in":"path","name":"trainNumber","required":true,"dataType":"integer","validators":{"isInt":{"errorMsg":"trainNumber"}}},
                     evaNumber: {"in":"path","name":"evaNumber","required":true,"ref":"EvaNumber"},
                     departureDate: {"in":"path","name":"departureDate","required":true,"dataType":"datetime"},
             };
@@ -2584,7 +2661,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new OEBBExperimentalController();
 
-            const promise = controller.wagenreihung.apply(controller, validatedArgs as any);
+            const promise = controller.trainInfo.apply(controller, validatedArgs as any);
             return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -2692,10 +2769,10 @@ export function RegisterRoutes(router: KoaRouter) {
             return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        router.get('/api/reihung/v3/wagen/:trainName',
+        router.get('/api/reihung/v3/wagen/:trainNumber',
             async function ReihungControllerV3_wagenreihung(context: any, next: any) {
             const args = {
-                    trainName: {"in":"path","name":"trainName","required":true,"dataType":"string"},
+                    trainNumber: {"in":"path","name":"trainNumber","required":true,"dataType":"integer","validators":{"isInt":{"errorMsg":"trainNumber"}}},
                     departure: {"in":"query","name":"departure","required":true,"dataType":"datetime"},
                     evaNumber: {"in":"query","name":"evaNumber","ref":"EvaNumber"},
                     initialDeparture: {"in":"query","name":"initialDeparture","dataType":"datetime"},

@@ -28,7 +28,10 @@
             "type": "string"
           }
         },
-        "required": ["start", "end"],
+        "required": [
+          "start",
+          "end"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -41,7 +44,10 @@
             "type": "string"
           }
         },
-        "required": ["language", "text"],
+        "required": [
+          "language",
+          "text"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -58,7 +64,10 @@
             "type": "array"
           }
         },
-        "required": ["value", "description"],
+        "required": [
+          "value",
+          "description"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -131,7 +140,9 @@
             "type": "array"
           }
         },
-        "required": ["items"],
+        "required": [
+          "items"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -162,7 +173,11 @@
             "description": "Indicates whether cube [Sektorwuerfel] has signage [Beschilderung] nor not."
           }
         },
-        "required": ["name", "start", "end"],
+        "required": [
+          "name",
+          "start",
+          "end"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -219,7 +234,10 @@
       },
       "ReferencePointType": {
         "description": "Type of a reference point. - STOP_SIGNAL (Haltesignal) - STOP_BOARD (Haltetafel)",
-        "enum": ["STOP_SIGNAL", "STOP_BOARD"],
+        "enum": [
+          "STOP_SIGNAL",
+          "STOP_BOARD"
+        ],
         "type": "string"
       },
       "ReferencePoint": {
@@ -350,7 +368,9 @@
             "$ref": "#/components/schemas/Operational"
           }
         },
-        "required": ["name"],
+        "required": [
+          "name"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -364,7 +384,10 @@
             "format": "double"
           }
         },
-        "required": ["name", "icoX"],
+        "required": [
+          "name",
+          "icoX"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -389,7 +412,9 @@
             "type": "string"
           }
         },
-        "required": ["name"],
+        "required": [
+          "name"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -414,7 +439,13 @@
             "type": "string"
           }
         },
-        "required": ["name", "fDate", "fTime", "tDate", "tTime"],
+        "required": [
+          "name",
+          "fDate",
+          "fTime",
+          "tDate",
+          "tTime"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -553,7 +584,9 @@
             "type": "array"
           }
         },
-        "required": ["messages"],
+        "required": [
+          "messages"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -602,7 +635,10 @@
             "format": "double"
           }
         },
-        "required": ["x", "y"],
+        "required": [
+          "x",
+          "y"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -648,7 +684,12 @@
       },
       "HimFilterMode": {
         "type": "string",
-        "enum": ["BIT", "EXC", "INC", "UNDEF"]
+        "enum": [
+          "BIT",
+          "EXC",
+          "INC",
+          "UNDEF"
+        ]
       },
       "HimFilterType": {
         "type": "string",
@@ -681,7 +722,11 @@
             "type": "string"
           }
         },
-        "required": ["mode", "type", "value"],
+        "required": [
+          "mode",
+          "type",
+          "value"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -764,7 +809,12 @@
             "format": "double"
           }
         },
-        "required": ["type", "code", "icoX", "txtN"],
+        "required": [
+          "type",
+          "code",
+          "icoX",
+          "txtN"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -810,7 +860,10 @@
             "type": "boolean"
           }
         },
-        "required": ["scheduledTime", "time"],
+        "required": [
+          "scheduledTime",
+          "time"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -823,7 +876,10 @@
             "type": "string"
           }
         },
-        "required": ["name", "evaNumber"],
+        "required": [
+          "name",
+          "evaNumber"
+        ],
         "type": "object",
         "description": "From T, pick a set of properties whose keys are in the union K"
       },
@@ -832,7 +888,12 @@
       },
       "MessagePrio": {
         "type": "string",
-        "enum": ["1", "2", "3", "4"],
+        "enum": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
         "description": "1: High; 2: Medium; 3: Low; 4: Done"
       },
       "IrisMessage": {
@@ -855,7 +916,10 @@
             "format": "double"
           }
         },
-        "required": ["text", "value"],
+        "required": [
+          "text",
+          "value"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -882,7 +946,11 @@
             "type": "string"
           }
         },
-        "required": ["text", "value", "head"],
+        "required": [
+          "text",
+          "value",
+          "head"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -917,7 +985,11 @@
             "type": "array"
           }
         },
-        "required": ["qos", "delay", "him"],
+        "required": [
+          "qos",
+          "delay",
+          "him"
+        ],
         "type": "object",
         "additionalProperties": {
           "items": {
@@ -938,7 +1010,11 @@
             "type": "string"
           }
         },
-        "required": ["trainNumber", "trainType", "train"],
+        "required": [
+          "trainNumber",
+          "trainType",
+          "train"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -957,7 +1033,9 @@
             "type": "string"
           }
         },
-        "required": ["name"],
+        "required": [
+          "name"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -985,7 +1063,11 @@
             "type": "boolean"
           }
         },
-        "required": ["name", "type", "number"],
+        "required": [
+          "name",
+          "type",
+          "number"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1109,13 +1191,21 @@
             "type": "boolean"
           }
         },
-        "required": ["departures", "lookbehind"],
+        "required": [
+          "departures",
+          "lookbehind"
+        ],
         "type": "object",
         "additionalProperties": false
       },
       "JourneyFilterMode": {
         "type": "string",
-        "enum": ["BIT", "EXC", "INC", "UNDEF"]
+        "enum": [
+          "BIT",
+          "EXC",
+          "INC",
+          "UNDEF"
+        ]
       },
       "JourneyFilterType": {
         "type": "string",
@@ -1158,7 +1248,11 @@
             "type": "string"
           }
         },
-        "required": ["mode", "type", "value"],
+        "required": [
+          "mode",
+          "type",
+          "value"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1171,7 +1265,10 @@
             "$ref": "#/components/schemas/Crd"
           }
         },
-        "required": ["llCrd", "urCrd"],
+        "required": [
+          "llCrd",
+          "urCrd"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1189,7 +1286,10 @@
             "format": "double"
           }
         },
-        "required": ["cCrd", "maxDist"],
+        "required": [
+          "cCrd",
+          "maxDist"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1257,7 +1357,11 @@
       },
       "HafasDirection": {
         "type": "string",
-        "enum": ["B", "F", "FB"]
+        "enum": [
+          "B",
+          "F",
+          "FB"
+        ]
       },
       "JourneyCourseRequestOptions": {
         "properties": {
@@ -1317,7 +1421,10 @@
             "description": "HHmm"
           }
         },
-        "required": ["date", "jid"],
+        "required": [
+          "date",
+          "jid"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1328,7 +1435,9 @@
             "format": "double"
           }
         },
-        "required": ["subscriptionId"],
+        "required": [
+          "subscriptionId"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1338,7 +1447,9 @@
             "type": "string"
           }
         },
-        "required": ["channelId"],
+        "required": [
+          "channelId"
+        ],
         "type": "object",
         "description": "From T, pick a set of properties whose keys are in the union K"
       },
@@ -1355,7 +1466,11 @@
             "description": "1 or 0 for each day, starts at monday\nexample: 1001001\nMonday, Thursday, Sunday selected"
           }
         },
-        "required": ["endDate", "beginDate", "selectedWeekdays"],
+        "required": [
+          "endDate",
+          "beginDate",
+          "selectedWeekdays"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1418,7 +1533,11 @@
             "$ref": "#/components/schemas/SubscrInterval"
           }
         },
-        "required": ["userId", "channels", "intvlSubscr"],
+        "required": [
+          "userId",
+          "channels",
+          "intvlSubscr"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1430,7 +1549,9 @@
                 "type": "string"
               }
             },
-            "required": ["resultCode"],
+            "required": [
+              "resultCode"
+            ],
             "type": "object"
           },
           "userId": {
@@ -1440,7 +1561,11 @@
             "type": "string"
           }
         },
-        "required": ["result", "userId", "subscrId"],
+        "required": [
+          "result",
+          "userId",
+          "subscrId"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1454,7 +1579,10 @@
             "format": "double"
           }
         },
-        "required": ["userId", "subscrId"],
+        "required": [
+          "userId",
+          "subscrId"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1464,7 +1592,9 @@
             "type": "string"
           }
         },
-        "required": ["userId"],
+        "required": [
+          "userId"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1472,16 +1602,23 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["NO_SOUND"],
+            "enum": [
+              "NO_SOUND"
+            ],
             "nullable": false
           },
           "value": {
             "type": "string",
-            "enum": ["1"],
+            "enum": [
+              "1"
+            ],
             "nullable": false
           }
         },
-        "required": ["type", "value"],
+        "required": [
+          "type",
+          "value"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1489,14 +1626,19 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["CUSTOMER_TYPE"],
+            "enum": [
+              "CUSTOMER_TYPE"
+            ],
             "nullable": false
           },
           "value": {
             "type": "string"
           }
         },
-        "required": ["type", "value"],
+        "required": [
+          "type",
+          "value"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1533,7 +1675,13 @@
             "description": "PUSH_IPHONE"
           }
         },
-        "required": ["channelId", "address", "type", "options", "name"],
+        "required": [
+          "channelId",
+          "address",
+          "type",
+          "options",
+          "name"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1553,7 +1701,10 @@
             "description": "de"
           }
         },
-        "required": ["userId", "channels"],
+        "required": [
+          "userId",
+          "channels"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1565,7 +1716,9 @@
                 "type": "string"
               }
             },
-            "required": ["resultCode"],
+            "required": [
+              "resultCode"
+            ],
             "type": "object"
           },
           "userId": {
@@ -1596,7 +1749,10 @@
                 },
                 "status": {
                   "type": "string",
-                  "enum": ["ACTIVE", "EXPIRED"]
+                  "enum": [
+                    "ACTIVE",
+                    "EXPIRED"
+                  ]
                 }
               },
               "required": [
@@ -1612,7 +1768,11 @@
             "type": "array"
           }
         },
-        "required": ["result", "userId", "intvlSubscrL"],
+        "required": [
+          "result",
+          "userId",
+          "intvlSubscrL"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1624,14 +1784,19 @@
                 "type": "string"
               }
             },
-            "required": ["resultCode"],
+            "required": [
+              "resultCode"
+            ],
             "type": "object"
           },
           "userId": {
             "type": "string"
           }
         },
-        "required": ["result", "userId"],
+        "required": [
+          "result",
+          "userId"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1641,7 +1806,9 @@
             "type": "string"
           }
         },
-        "required": ["userId"],
+        "required": [
+          "userId"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1670,7 +1837,10 @@
             "type": "array"
           }
         },
-        "required": ["rtEvents", "himEvents"],
+        "required": [
+          "rtEvents",
+          "himEvents"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1682,7 +1852,9 @@
                 "type": "string"
               }
             },
-            "required": ["resultCode"],
+            "required": [
+              "resultCode"
+            ],
             "type": "object"
           },
           "userId": {
@@ -1694,7 +1866,10 @@
           },
           "status": {
             "type": "string",
-            "enum": ["ACTIVE", "EXPIRED"]
+            "enum": [
+              "ACTIVE",
+              "EXPIRED"
+            ]
           },
           "channels": {
             "items": {
@@ -1754,7 +1929,10 @@
             "type": "boolean"
           }
         },
-        "required": ["scheduledTime", "time"],
+        "required": [
+          "scheduledTime",
+          "time"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1767,13 +1945,21 @@
             "type": "string"
           }
         },
-        "required": ["title", "id"],
+        "required": [
+          "title",
+          "id"
+        ],
         "type": "object",
         "additionalProperties": false
       },
       "AuslastungsValue": {
         "description": "1: Gering\n2: Hoch\n3: Sehr Hoch\n4: Ausgebucht",
-        "enum": [1, 2, 3, 4],
+        "enum": [
+          1,
+          2,
+          3,
+          4
+        ],
         "type": "number"
       },
       "Route$Auslastung": {
@@ -1821,7 +2007,9 @@
             "type": "array"
           }
         },
-        "required": ["station"],
+        "required": [
+          "station"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1852,7 +2040,13 @@
             "type": "array"
           }
         },
-        "required": ["train", "stops", "jid", "firstStop", "lastStop"],
+        "required": [
+          "train",
+          "stops",
+          "jid",
+          "firstStop",
+          "lastStop"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1876,7 +2070,9 @@
             "format": "double"
           }
         },
-        "required": ["trainName"],
+        "required": [
+          "trainName"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1891,7 +2087,10 @@
             "format": "double"
           }
         },
-        "required": ["lat", "lng"],
+        "required": [
+          "lat",
+          "lng"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1913,7 +2112,11 @@
             "type": "string"
           }
         },
-        "required": ["coordinates", "title", "id"],
+        "required": [
+          "coordinates",
+          "title",
+          "id"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1939,7 +2142,13 @@
             "type": "array"
           }
         },
-        "required": ["jid", "date", "train", "position", "stops"],
+        "required": [
+          "jid",
+          "date",
+          "train",
+          "position",
+          "stops"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -1951,7 +2160,12 @@
       },
       "InOutMode": {
         "type": "string",
-        "enum": ["B", "I", "N", "O"]
+        "enum": [
+          "B",
+          "I",
+          "N",
+          "O"
+        ]
       },
       "JourneyTrainPosMode": {
         "type": "string",
@@ -2066,7 +2280,10 @@
             "type": "array"
           }
         },
-        "required": ["station", "departure"],
+        "required": [
+          "station",
+          "departure"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2103,7 +2320,10 @@
             "type": "array"
           }
         },
-        "required": ["station", "arrival"],
+        "required": [
+          "station",
+          "arrival"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2137,7 +2357,13 @@
             "type": "array"
           }
         },
-        "required": ["train", "jid", "firstStop", "lastStop", "stops"],
+        "required": [
+          "train",
+          "jid",
+          "firstStop",
+          "lastStop",
+          "stops"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2243,7 +2469,9 @@
             "type": "array"
           }
         },
-        "required": ["trainName"],
+        "required": [
+          "trainName"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2291,7 +2519,11 @@
             "format": "double"
           }
         },
-        "required": ["name", "cls", "icoX"],
+        "required": [
+          "name",
+          "cls",
+          "icoX"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2328,7 +2560,11 @@
             "type": "string"
           }
         },
-        "required": ["name", "icoX", "cls"],
+        "required": [
+          "name",
+          "icoX",
+          "cls"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2364,7 +2600,11 @@
             "format": "double"
           }
         },
-        "required": ["r", "g", "b"],
+        "required": [
+          "r",
+          "g",
+          "b"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2399,7 +2639,15 @@
             "type": "array"
           }
         },
-        "required": ["type", "remX", "txtC", "prio", "fIdx", "tIdx", "tagL"],
+        "required": [
+          "type",
+          "remX",
+          "txtC",
+          "prio",
+          "fIdx",
+          "tIdx",
+          "tagL"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2458,7 +2706,12 @@
             "type": "array"
           }
         },
-        "required": ["locX", "dInS", "dInR", "dTimeS"],
+        "required": [
+          "locX",
+          "dInS",
+          "dInR",
+          "dTimeS"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2514,7 +2767,11 @@
             "type": "array"
           }
         },
-        "required": ["locX", "aOutR", "aTimeS"],
+        "required": [
+          "locX",
+          "aOutR",
+          "aTimeS"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2608,7 +2865,14 @@
             "type": "boolean"
           }
         },
-        "required": ["locX", "aOutR", "aTimeS", "dInS", "dInR", "dTimeS"],
+        "required": [
+          "locX",
+          "aOutR",
+          "aTimeS",
+          "dInS",
+          "dInR",
+          "dTimeS"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2685,7 +2949,12 @@
             "type": "array"
           }
         },
-        "required": ["minC", "maxC", "numC", "jnyL"],
+        "required": [
+          "minC",
+          "maxC",
+          "numC",
+          "jnyL"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2766,7 +3035,9 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["JNY"],
+            "enum": [
+              "JNY"
+            ],
             "nullable": false
           },
           "icoX": {
@@ -2790,7 +3061,11 @@
           },
           "resState": {
             "type": "string",
-            "enum": ["N", "B", "S"]
+            "enum": [
+              "N",
+              "B",
+              "S"
+            ]
           },
           "resRecommendation": {
             "type": "string"
@@ -2850,7 +3125,10 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["WALK", "TRSF"]
+            "enum": [
+              "WALK",
+              "TRSF"
+            ]
           },
           "icoX": {
             "type": "number",
@@ -2866,7 +3144,13 @@
             "$ref": "#/components/schemas/Gis"
           }
         },
-        "required": ["type", "icoX", "dep", "arr", "gis"],
+        "required": [
+          "type",
+          "icoX",
+          "dep",
+          "arr",
+          "gis"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2874,11 +3158,15 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["KISS"],
+            "enum": [
+              "KISS"
+            ],
             "nullable": false
           }
         },
-        "required": ["type"],
+        "required": [
+          "type"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -2935,13 +3223,24 @@
             "type": "array"
           }
         },
-        "required": ["fares"],
+        "required": [
+          "fares"
+        ],
         "type": "object",
         "additionalProperties": false
       },
       "PossibleShort": {
         "type": "string",
-        "enum": ["1", "2", "3", "4", "3R", "T", "3V", "M"]
+        "enum": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "3R",
+          "T",
+          "3V",
+          "M"
+        ]
       },
       "PlannedSequence": {
         "properties": {
@@ -2955,7 +3254,10 @@
             "type": "string"
           }
         },
-        "required": ["rawType", "type"],
+        "required": [
+          "rawType",
+          "type"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -3089,7 +3391,9 @@
           },
           "type": {
             "type": "string",
-            "enum": ["JNY"],
+            "enum": [
+              "JNY"
+            ],
             "nullable": false
           },
           "arrival": {
@@ -3182,7 +3486,9 @@
           },
           "type": {
             "type": "string",
-            "enum": ["JNY"],
+            "enum": [
+              "JNY"
+            ],
             "nullable": false
           },
           "arrival": {
@@ -3223,14 +3529,18 @@
             "format": "date-time"
           }
         },
-        "required": ["time"],
+        "required": [
+          "time"
+        ],
         "type": "object"
       },
       "Route$JourneySegmentWalk": {
         "properties": {
           "type": {
             "type": "string",
-            "enum": ["WALK"],
+            "enum": [
+              "WALK"
+            ],
             "nullable": false
           },
           "train": {
@@ -3340,7 +3650,10 @@
       },
       "AllowedSotMode": {
         "type": "string",
-        "enum": ["JI", "RC"]
+        "enum": [
+          "JI",
+          "RC"
+        ]
       },
       "SearchOnTripBody": {
         "properties": {
@@ -3351,7 +3664,10 @@
             "type": "string"
           }
         },
-        "required": ["sotMode", "id"],
+        "required": [
+          "sotMode",
+          "id"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -3372,11 +3688,17 @@
                 "type": "string"
               }
             },
-            "required": ["later", "earlier"],
+            "required": [
+              "later",
+              "earlier"
+            ],
             "type": "object"
           }
         },
-        "required": ["routes", "context"],
+        "required": [
+          "routes",
+          "context"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -3390,16 +3712,25 @@
             "format": "double"
           }
         },
-        "required": ["evaId"],
+        "required": [
+          "evaId"
+        ],
         "type": "object",
         "additionalProperties": false
       },
       "JnyCl": {
-        "enum": [1, 2],
+        "enum": [
+          1,
+          2
+        ],
         "type": "number"
       },
       "TravelerType": {
-        "enum": ["E", "K", "B"],
+        "enum": [
+          "E",
+          "K",
+          "B"
+        ],
         "type": "string"
       },
       "LoyalityCard": {
@@ -3430,7 +3761,9 @@
             "description": "Testing Comment"
           }
         },
-        "required": ["type"],
+        "required": [
+          "type"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -3446,7 +3779,10 @@
             "type": "array"
           }
         },
-        "required": ["class", "traveler"],
+        "required": [
+          "class",
+          "traveler"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -3513,7 +3849,10 @@
             "type": "array"
           }
         },
-        "required": ["start", "destination"],
+        "required": [
+          "start",
+          "destination"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -3528,7 +3867,10 @@
                 "type": "string"
               }
             },
-            "required": ["title", "id"],
+            "required": [
+              "title",
+              "id"
+            ],
             "type": "object"
           },
           "pt": {
@@ -3539,7 +3881,11 @@
             "type": "boolean"
           }
         },
-        "required": ["station", "pt", "fl"],
+        "required": [
+          "station",
+          "pt",
+          "fl"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -3555,227 +3901,301 @@
         "type": "object",
         "additionalProperties": false
       },
-      "OEBBCoachSequenceTrainStation": {
+      "OEBBPlatforms": {
         "properties": {
-          "name": {
-            "type": "string"
+          "scheduled": {
+            "type": "integer",
+            "format": "int32"
           },
-          "evaCode": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/EvaNumber"
-              }
-            ],
-            "nullable": true
-          }
-        },
-        "required": ["name", "evaCode"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "OEBBCoachSequenceHaltepunkt": {
-        "properties": {
-          "haltepunktInMeters": {
-            "type": "number",
-            "format": "double"
-          },
-          "departureDirectionSectorA": {
-            "type": "boolean"
-          }
-        },
-        "required": ["haltepunktInMeters", "departureDirectionSectorA"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "OEBBCoachSequenceSector": {
-        "properties": {
-          "sectorName": {
-            "type": "string"
-          },
-          "length": {
-            "type": "number",
-            "format": "double"
-          }
-        },
-        "required": ["sectorName", "length"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "OEBBCoachSequenceEgress": {
-        "properties": {
-          "Bahnsteig": {
-            "type": "string"
-          },
-          "Distanz": {
-            "type": "number",
-            "format": "double"
-          },
-          "Typ": {
-            "type": "string"
-          },
-          "DB640Code": {
-            "type": "string"
-          },
-          "Name": {
-            "type": "string"
-          }
-        },
-        "required": ["Bahnsteig", "Distanz", "Typ", "DB640Code", "Name"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "OEBBCoachSequencePlatform": {
-        "properties": {
-          "platform": {
-            "type": "string"
-          },
-          "haltepunkt": {
-            "$ref": "#/components/schemas/OEBBCoachSequenceHaltepunkt"
-          },
-          "sectors": {
-            "items": {
-              "$ref": "#/components/schemas/OEBBCoachSequenceSector"
-            },
-            "type": "array"
-          },
-          "egresses": {
-            "items": {
-              "$ref": "#/components/schemas/OEBBCoachSequenceEgress"
-            },
-            "type": "array"
-          }
-        },
-        "required": ["platform", "haltepunkt", "sectors", "egresses"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "OEBBCoachSequenceWagon": {
-        "properties": {
-          "ordnungsNummer": {
-            "type": "number",
-            "format": "double"
-          },
-          "uicNummer": {
-            "type": "string"
-          },
-          "laengeUeberPuffer": {
-            "type": "number",
-            "format": "double"
-          },
-          "triebfahrzeug": {
-            "type": "boolean"
-          },
-          "speisewagen": {
-            "type": "boolean"
-          },
-          "businessClass": {
-            "type": "number",
-            "format": "double"
-          },
-          "firstClass": {
-            "type": "number",
-            "format": "double"
-          },
-          "secondClass": {
-            "type": "number",
-            "format": "double"
-          },
-          "schlafplaetze": {
-            "type": "number",
-            "format": "double"
-          },
-          "liegeplaetze": {
-            "type": "number",
-            "format": "double"
-          },
-          "autoreisezug": {
-            "type": "boolean"
-          },
-          "kinderspielwagen": {
-            "type": "boolean"
-          },
-          "kinderkino": {
-            "type": "boolean"
-          },
-          "rollstuhlgerecht": {
-            "type": "boolean"
-          },
-          "fahrradmitnahme": {
-            "type": "boolean"
-          },
-          "abgesperrt": {
-            "type": "boolean"
-          },
-          "origin": {
-            "$ref": "#/components/schemas/OEBBCoachSequenceTrainStation"
-          },
-          "destination": {
-            "$ref": "#/components/schemas/OEBBCoachSequenceTrainStation"
-          },
-          "ruhebereich": {
-            "type": "boolean"
-          },
-          "infoPoint": {
-            "type": "boolean"
+          "reported": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "required": [
-          "ordnungsNummer",
-          "laengeUeberPuffer",
-          "triebfahrzeug",
-          "speisewagen",
-          "businessClass",
-          "firstClass",
-          "secondClass",
-          "schlafplaetze",
-          "liegeplaetze",
-          "autoreisezug",
-          "kinderspielwagen",
-          "kinderkino",
-          "rollstuhlgerecht",
-          "fahrradmitnahme",
-          "abgesperrt",
-          "origin",
-          "destination",
-          "ruhebereich",
-          "infoPoint"
+          "scheduled",
+          "reported"
         ],
         "type": "object",
         "additionalProperties": false
       },
-      "OEBBCoachSequence": {
+      "OEBBSectorInfo": {
         "properties": {
+          "scheduled": {
+            "type": "string"
+          },
+          "reported": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "scheduled"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBTimeFormat": {
+        "properties": {
+          "days": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hours": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minutes": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "days",
+          "hours",
+          "minutes"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBTime": {
+        "properties": {
+          "scheduled": {
+            "$ref": "#/components/schemas/OEBBTimeFormat"
+          },
+          "reported": {
+            "$ref": "#/components/schemas/OEBBTimeFormat"
+          }
+        },
+        "required": [
+          "scheduled"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBPortion": {
+        "properties": {
+          "trainNr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "trainName": {
+            "type": "string",
+            "description": "`${type} ${number}`"
+          }
+        },
+        "required": [
+          "trainNr",
+          "trainName"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBTimeTableInfo": {
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "trainNr": {
+            "type": "integer",
+            "format": "int32"
+          },
           "trainName": {
             "type": "string"
+          },
+          "stationName": {
+            "type": "string"
+          },
+          "platform": {
+            "$ref": "#/components/schemas/OEBBPlatforms"
+          },
+          "sectors": {
+            "$ref": "#/components/schemas/OEBBSectorInfo"
+          },
+          "time": {
+            "$ref": "#/components/schemas/OEBBTime"
+          },
+          "portions": {
+            "items": {
+              "$ref": "#/components/schemas/OEBBPortion"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "date",
+          "trainNr",
+          "trainName",
+          "stationName",
+          "platform",
+          "sectors",
+          "time",
+          "portions"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBIdentifier": {
+        "type": "string",
+        "description": "example: WBF (Wien Hbf)"
+      },
+      "OEBBCoachSequenceWagon": {
+        "properties": {
+          "uicNumber": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "origin": {
+            "$ref": "#/components/schemas/OEBBIdentifier"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/OEBBIdentifier"
+          },
+          "ranking": {
+            "type": "number",
+            "format": "double"
+          },
+          "capacityBusinessClass": {
+            "type": "number",
+            "format": "double"
+          },
+          "capacityFirstClass": {
+            "type": "number",
+            "format": "double"
+          },
+          "capacitySecondClass": {
+            "type": "number",
+            "format": "double"
+          },
+          "capacityCouchette": {
+            "type": "number",
+            "format": "double"
+          },
+          "capacitySleeper": {
+            "type": "number",
+            "format": "double"
+          },
+          "capacityWheelChair": {
+            "type": "number",
+            "format": "double"
+          },
+          "capacityBicycle": {
+            "type": "number",
+            "format": "double"
+          },
+          "isBicycleAllowed": {
+            "type": "boolean"
+          },
+          "isWheelChairAccessible": {
+            "type": "boolean"
           },
           "hasWifi": {
             "type": "boolean"
           },
-          "scheduledDeparture": {
+          "isInfoPoint": {
+            "type": "boolean"
+          },
+          "isPlayZone": {
+            "type": "boolean"
+          },
+          "isChildCinema": {
+            "type": "boolean"
+          },
+          "isDining": {
+            "type": "boolean"
+          },
+          "isQuietZone": {
+            "type": "boolean"
+          },
+          "isLocked": {
+            "type": "boolean"
+          },
+          "destinationName": {
+            "type": "string"
+          },
+          "lengthOverBuffers": {
+            "type": "number",
+            "format": "double"
+          },
+          "originTime": {
+            "type": "string"
+          },
+          "destinationTime": {
+            "type": "string"
+          },
+          "seasoning": {
+            "properties": {
+              "seasoningString": {
+                "type": "string"
+              },
+              "startDate": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "seasoningString",
+              "startDate"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "origin",
+          "destination",
+          "ranking",
+          "capacityBusinessClass",
+          "capacityFirstClass",
+          "capacitySecondClass",
+          "capacityCouchette",
+          "capacitySleeper",
+          "capacityWheelChair",
+          "capacityBicycle",
+          "isBicycleAllowed",
+          "isWheelChairAccessible",
+          "hasWifi",
+          "isInfoPoint",
+          "isPlayZone",
+          "isChildCinema",
+          "isDining",
+          "isQuietZone",
+          "isLocked",
+          "destinationName",
+          "lengthOverBuffers",
+          "originTime",
+          "destinationTime"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBTrainInfo": {
+        "properties": {
+          "trainNr": {
+            "type": "number",
+            "format": "double"
+          },
+          "date": {
             "type": "string",
-            "nullable": true,
-            "description": "Iso DateTime"
+            "description": "ISO Date"
           },
-          "actualDeparture": {
-            "type": "string",
-            "nullable": true,
-            "description": "Iso DateTime"
+          "version": {
+            "type": "number",
+            "format": "double"
           },
-          "scheduledArrival": {
-            "type": "string",
-            "nullable": true,
-            "description": "Iso DateTime"
+          "isReported": {
+            "type": "boolean"
           },
-          "actualArrival": {
-            "type": "string",
-            "nullable": true,
-            "description": "Iso DateTime"
+          "assemblyStation": {
+            "type": "string"
           },
-          "trainStation": {
-            "$ref": "#/components/schemas/OEBBCoachSequenceTrainStation"
+          "source": {
+            "type": "string"
           },
-          "platform": {
-            "$ref": "#/components/schemas/OEBBCoachSequencePlatform"
+          "stations": {
+            "items": {
+              "$ref": "#/components/schemas/OEBBIdentifier"
+            },
+            "type": "array"
           },
           "wagons": {
             "items": {
@@ -3785,27 +4205,153 @@
           }
         },
         "required": [
-          "trainName",
-          "hasWifi",
-          "scheduledDeparture",
-          "actualDeparture",
-          "scheduledArrival",
-          "actualArrival",
-          "trainStation",
+          "trainNr",
+          "date",
+          "version",
+          "isReported",
+          "assemblyStation",
+          "source",
+          "stations",
           "wagons"
         ],
         "type": "object",
         "additionalProperties": false
       },
-      "ReturnType_typeofcoachSequence_": {
-        "$ref": "#/components/schemas/OEBBCoachSequence",
+      "OEBBAccessType": {
+        "type": "string",
+        "enum": [
+          "STIEGENAUFGANG",
+          "AUFZUG",
+          "ROLLTREPPE"
+        ]
+      },
+      "OEBBAccess": {
+        "properties": {
+          "platform": {
+            "type": "string"
+          },
+          "distance": {
+            "type": "number",
+            "format": "double"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/OEBBAccessType"
+          }
+        },
+        "required": [
+          "platform",
+          "distance",
+          "name",
+          "type"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBTrainOnPlatform": {
+        "properties": {
+          "position": {
+            "type": "number",
+            "format": "double"
+          },
+          "departureTowardsFirstSector": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "position",
+          "departureTowardsFirstSector"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBSector": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "length": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "name",
+          "length"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBPlatformInfo": {
+        "properties": {
+          "platform": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "length": {
+            "type": "number",
+            "format": "double"
+          },
+          "sectors": {
+            "items": {
+              "$ref": "#/components/schemas/OEBBSector"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "platform",
+          "length",
+          "sectors"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBInfo": {
+        "properties": {
+          "timeTableInfo": {
+            "$ref": "#/components/schemas/OEBBTimeTableInfo"
+          },
+          "train": {
+            "$ref": "#/components/schemas/OEBBTrainInfo"
+          },
+          "accessess": {
+            "items": {
+              "$ref": "#/components/schemas/OEBBAccess"
+            },
+            "type": "array"
+          },
+          "trainOnPlatform": {
+            "$ref": "#/components/schemas/OEBBTrainOnPlatform"
+          },
+          "platform": {
+            "$ref": "#/components/schemas/OEBBPlatformInfo"
+          }
+        },
+        "required": [
+          "timeTableInfo",
+          "accessess"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ReturnType_typeofinfo_": {
+        "$ref": "#/components/schemas/OEBBInfo",
         "description": "Obtain the return type of a function type"
       },
       "AdditionalFahrzeugInfo": {
         "properties": {
           "klasse": {
             "type": "number",
-            "enum": ["0", "1", "2", "3", "4"],
+            "enum": [
+              "0",
+              "1",
+              "2",
+              "3",
+              "4"
+            ],
             "description": "0: Unknown; 1: erste; 2: zweite; 3: 1&2; 4: Not for passengers"
           },
           "icons": {
@@ -3853,7 +4399,10 @@
             "type": "string"
           }
         },
-        "required": ["klasse", "icons"],
+        "required": [
+          "klasse",
+          "icons"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -3872,7 +4421,12 @@
             "type": "string"
           }
         },
-        "required": ["anzahl", "ausstattungsart", "bezeichnung", "status"],
+        "required": [
+          "anzahl",
+          "ausstattungsart",
+          "bezeichnung",
+          "status"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -3913,7 +4467,12 @@
             "type": "string"
           }
         },
-        "required": ["endemeter", "endeprozent", "startmeter", "startprozent"],
+        "required": [
+          "endemeter",
+          "endeprozent",
+          "startmeter",
+          "startprozent"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -3950,7 +4509,17 @@
             "$ref": "#/components/schemas/Position"
           },
           "status": {
-            "type": "string"
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "GESCHLOSSEN"
+                ]
+              }
+            ]
           },
           "additionalInfo": {
             "$ref": "#/components/schemas/AdditionalFahrzeugInfo"
@@ -4028,13 +4597,18 @@
           },
           "country": {
             "type": "string",
-            "enum": ["DE", "AT"]
+            "enum": [
+              "DE",
+              "AT"
+            ]
           },
           "showBRInfo": {
             "type": "boolean"
           }
         },
-        "required": ["name"],
+        "required": [
+          "name"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4071,7 +4645,17 @@
             "$ref": "#/components/schemas/Position"
           },
           "status": {
-            "type": "string"
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "GESCHLOSSEN"
+                ]
+              }
+            ]
           }
         },
         "required": [
@@ -4185,7 +4769,10 @@
             "type": "string"
           }
         },
-        "required": ["positionamgleis", "sektorbezeichnung"],
+        "required": [
+          "positionamgleis",
+          "sektorbezeichnung"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4233,7 +4820,10 @@
         "properties": {
           "fahrtrichtung": {
             "type": "string",
-            "enum": ["VORWAERTS", "RUCKWAERTS"],
+            "enum": [
+              "VORWAERTS",
+              "RUCKWAERTS"
+            ],
             "description": "Should always be VORWAERTS"
           },
           "allFahrzeuggruppe": {
@@ -4298,7 +4888,7 @@
           },
           "realFahrtrichtung": {
             "type": "boolean",
-            "description": "true = Vorwärts"
+            "description": "true = Vorwärts, undefined = we do not know"
           },
           "isRealtime": {
             "type": "boolean"
@@ -4320,7 +4910,6 @@
           "scale",
           "startPercentage",
           "endPercentage",
-          "realFahrtrichtung",
           "isRealtime"
         ],
         "type": "object",
@@ -4337,7 +4926,10 @@
             "format": "double"
           }
         },
-        "required": ["latitude", "longitude"],
+        "required": [
+          "latitude",
+          "longitude"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4353,7 +4945,11 @@
             "type": "string"
           }
         },
-        "required": ["location", "title", "id"],
+        "required": [
+          "location",
+          "title",
+          "id"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4370,7 +4966,10 @@
             "format": "date-time"
           }
         },
-        "required": ["start", "destination"],
+        "required": [
+          "start",
+          "destination"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4411,7 +5010,10 @@
             "description": "Latitude position in reference system."
           }
         },
-        "required": ["longitude", "latitude"],
+        "required": [
+          "longitude",
+          "latitude"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4437,7 +5039,9 @@
             "type": "string"
           }
         },
-        "required": ["evaNumber"],
+        "required": [
+          "evaNumber"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4462,7 +5066,11 @@
             "$ref": "#/components/schemas/StopPlaceIdentifier"
           }
         },
-        "required": ["evaNumber", "name", "availableTransports"],
+        "required": [
+          "evaNumber",
+          "name",
+          "availableTransports"
+        ],
         "type": "object",
         "additionalProperties": false
       },
@@ -4505,7 +5113,9 @@
             }
           }
         },
-        "tags": ["IRIS"],
+        "tags": [
+          "IRIS"
+        ],
         "security": [],
         "parameters": [
           {
@@ -4557,7 +5167,9 @@
             }
           }
         },
-        "tags": ["HAFAS"],
+        "tags": [
+          "HAFAS"
+        ],
         "security": [],
         "parameters": [
           {
@@ -4604,7 +5216,9 @@
             }
           }
         },
-        "tags": ["HAFAS"],
+        "tags": [
+          "HAFAS"
+        ],
         "security": [],
         "parameters": [
           {
@@ -4658,7 +5272,9 @@
             }
           }
         },
-        "tags": ["BusinessHub"],
+        "tags": [
+          "BusinessHub"
+        ],
         "security": [],
         "parameters": [
           {
@@ -4699,7 +5315,9 @@
             }
           }
         },
-        "tags": ["HAFAS"],
+        "tags": [
+          "HAFAS"
+        ],
         "security": [],
         "parameters": [
           {
@@ -4756,7 +5374,9 @@
             "description": "Train not found"
           }
         },
-        "tags": ["HAFAS"],
+        "tags": [
+          "HAFAS"
+        ],
         "security": [],
         "parameters": [
           {
@@ -4822,7 +5442,9 @@
             }
           }
         },
-        "tags": ["HAFAS"],
+        "tags": [
+          "HAFAS"
+        ],
         "security": [],
         "parameters": [
           {
@@ -4882,7 +5504,9 @@
             }
           }
         },
-        "tags": ["BusinessHub"],
+        "tags": [
+          "BusinessHub"
+        ],
         "security": [],
         "parameters": [
           {
@@ -4911,7 +5535,9 @@
             }
           }
         },
-        "tags": ["HAFAS Experimental"],
+        "tags": [
+          "HAFAS Experimental"
+        ],
         "security": [],
         "parameters": [
           {
@@ -4951,7 +5577,9 @@
             }
           }
         },
-        "tags": ["HAFAS Experimental"],
+        "tags": [
+          "HAFAS Experimental"
+        ],
         "security": [],
         "parameters": [
           {
@@ -4988,7 +5616,9 @@
             }
           }
         },
-        "tags": ["HAFAS Experimental"],
+        "tags": [
+          "HAFAS Experimental"
+        ],
         "security": [],
         "parameters": [
           {
@@ -5027,7 +5657,9 @@
             }
           }
         },
-        "tags": ["HAFAS"],
+        "tags": [
+          "HAFAS"
+        ],
         "security": [],
         "parameters": [
           {
@@ -5064,7 +5696,9 @@
             }
           }
         },
-        "tags": ["HAFAS Experimental"],
+        "tags": [
+          "HAFAS Experimental"
+        ],
         "security": [],
         "parameters": [
           {
@@ -5106,7 +5740,9 @@
             }
           }
         },
-        "tags": ["HAFAS"],
+        "tags": [
+          "HAFAS"
+        ],
         "security": [],
         "parameters": [
           {
@@ -5143,7 +5779,9 @@
             }
           }
         },
-        "tags": ["HAFAS Experimental"],
+        "tags": [
+          "HAFAS Experimental"
+        ],
         "security": [],
         "parameters": [
           {
@@ -5182,7 +5820,9 @@
             }
           }
         },
-        "tags": ["HAFAS"],
+        "tags": [
+          "HAFAS"
+        ],
         "security": [],
         "parameters": [
           {
@@ -5219,7 +5859,9 @@
             }
           }
         },
-        "tags": ["StopPlace"],
+        "tags": [
+          "StopPlace"
+        ],
         "security": [],
         "parameters": [
           {
@@ -5256,7 +5898,9 @@
             }
           }
         },
-        "tags": ["Bahnhof"],
+        "tags": [
+          "Bahnhof"
+        ],
         "deprecated": true,
         "security": [],
         "parameters": [
@@ -5294,7 +5938,9 @@
             }
           }
         },
-        "tags": ["HAFAS"],
+        "tags": [
+          "HAFAS"
+        ],
         "security": [],
         "parameters": [
           {
@@ -5329,7 +5975,9 @@
             }
           }
         },
-        "tags": ["SBB Experimental"],
+        "tags": [
+          "SBB Experimental"
+        ],
         "security": [],
         "parameters": [],
         "requestBody": {
@@ -5359,7 +6007,9 @@
             }
           }
         },
-        "tags": ["HAFAS"],
+        "tags": [
+          "HAFAS"
+        ],
         "security": [],
         "parameters": [
           {
@@ -5401,7 +6051,9 @@
             }
           }
         },
-        "tags": ["SBB Experimental"],
+        "tags": [
+          "SBB Experimental"
+        ],
         "security": [],
         "parameters": [
           {
@@ -5433,7 +6085,9 @@
             "description": ""
           }
         },
-        "tags": ["StopPlace"],
+        "tags": [
+          "StopPlace"
+        ],
         "security": [],
         "parameters": [
           {
@@ -5465,7 +6119,9 @@
             }
           }
         },
-        "tags": ["StopPlace"],
+        "tags": [
+          "StopPlace"
+        ],
         "security": [],
         "parameters": [
           {
@@ -5537,7 +6193,9 @@
             "description": ""
           }
         },
-        "tags": ["StopPlace"],
+        "tags": [
+          "StopPlace"
+        ],
         "security": [],
         "parameters": [
           {
@@ -5569,7 +6227,9 @@
             }
           }
         },
-        "tags": ["StopPlace"],
+        "tags": [
+          "StopPlace"
+        ],
         "security": [],
         "parameters": [
           {
@@ -5626,7 +6286,9 @@
             }
           }
         },
-        "tags": ["HAFAS Subscribe"],
+        "tags": [
+          "HAFAS Subscribe"
+        ],
         "security": [],
         "parameters": [
           {
@@ -5665,7 +6327,9 @@
             }
           }
         },
-        "tags": ["HAFAS Subscribe"],
+        "tags": [
+          "HAFAS Subscribe"
+        ],
         "security": [],
         "parameters": [
           {
@@ -5704,7 +6368,9 @@
             }
           }
         },
-        "tags": ["HAFAS Subscribe"],
+        "tags": [
+          "HAFAS Subscribe"
+        ],
         "security": [],
         "parameters": [
           {
@@ -5743,7 +6409,9 @@
             }
           }
         },
-        "tags": ["HAFAS Subscribe"],
+        "tags": [
+          "HAFAS Subscribe"
+        ],
         "security": [],
         "parameters": [
           {
@@ -5782,7 +6450,9 @@
             }
           }
         },
-        "tags": ["HAFAS Subscribe"],
+        "tags": [
+          "HAFAS Subscribe"
+        ],
         "security": [],
         "parameters": [
           {
@@ -5828,7 +6498,9 @@
             }
           }
         },
-        "tags": ["HAFAS Subscribe"],
+        "tags": [
+          "HAFAS Subscribe"
+        ],
         "security": [],
         "parameters": [
           {
@@ -5868,7 +6540,9 @@
             "description": ""
           }
         },
-        "tags": ["Reihung"],
+        "tags": [
+          "Reihung"
+        ],
         "security": [],
         "parameters": [
           {
@@ -5877,6 +6551,55 @@
             "name": "tz",
             "required": true,
             "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/oebb/experimental/trainInfo/{trainNumber}/{evaNumber}/{departureDate}": {
+      "get": {
+        "operationId": "TrainInfo experimental",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReturnType_typeofinfo_"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "OEBB"
+        ],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trainNumber",
+            "required": true,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "path",
+            "name": "evaNumber",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/EvaNumber"
+            }
+          },
+          {
+            "in": "path",
+            "name": "departureDate",
+            "required": true,
+            "schema": {
+              "format": "date-time",
               "type": "string"
             }
           }
@@ -5902,7 +6625,9 @@
           }
         },
         "description": "Currently only for VRR. <br>\nSource: https://github.com/derf/eva-to-efa-gw<br>\nThanks derf.",
-        "tags": ["StopPlace"],
+        "tags": [
+          "StopPlace"
+        ],
         "security": [],
         "parameters": [
           {
@@ -5931,7 +6656,9 @@
             }
           }
         },
-        "tags": ["HAFAS"],
+        "tags": [
+          "HAFAS"
+        ],
         "security": [],
         "parameters": [
           {
@@ -5955,52 +6682,6 @@
         }
       }
     },
-    "/oebb/experimental/coachSequence/{trainName}/{evaNumber}/{departureDate}": {
-      "get": {
-        "operationId": "Wagenreihung experimental",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ReturnType_typeofcoachSequence_"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["OEBB"],
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "trainName",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "path",
-            "name": "evaNumber",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/EvaNumber"
-            }
-          },
-          {
-            "in": "path",
-            "name": "departureDate",
-            "required": true,
-            "schema": {
-              "format": "date-time",
-              "type": "string"
-            }
-          }
-        ]
-      }
-    },
     "/reihung/v2/wagen/{trainNumber}/{date}": {
       "get": {
         "operationId": "Wagenreihung v2",
@@ -6016,7 +6697,9 @@
             }
           }
         },
-        "tags": ["Reihung"],
+        "tags": [
+          "Reihung"
+        ],
         "deprecated": true,
         "security": [],
         "parameters": [
@@ -6040,7 +6723,7 @@
         ]
       }
     },
-    "/reihung/v3/wagen/{trainName}": {
+    "/reihung/v3/wagen/{trainNumber}": {
       "get": {
         "operationId": "Wagenreihung v3",
         "responses": {
@@ -6055,16 +6738,18 @@
             }
           }
         },
-        "tags": ["Reihung"],
+        "tags": [
+          "Reihung"
+        ],
         "security": [],
         "parameters": [
           {
-            "description": "TrainType and Number eg ICE 23",
             "in": "path",
-            "name": "trainName",
+            "name": "trainNumber",
             "required": true,
             "schema": {
-              "type": "string"
+              "format": "int32",
+              "type": "integer"
             }
           },
           {
@@ -6077,6 +6762,7 @@
             }
           },
           {
+            "description": "needed for OEBB Reihung, usually 7 digits",
             "in": "query",
             "name": "evaNumber",
             "required": false,
@@ -6085,6 +6771,7 @@
             }
           },
           {
+            "description": "needed for OEBB Reihung",
             "in": "query",
             "name": "initialDeparture",
             "required": false,
@@ -6111,7 +6798,9 @@
             }
           }
         },
-        "tags": ["IRIS"],
+        "tags": [
+          "IRIS"
+        ],
         "security": [],
         "parameters": [
           {

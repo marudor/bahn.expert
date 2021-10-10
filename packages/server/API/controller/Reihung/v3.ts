@@ -1,4 +1,3 @@
-import { coachSequence } from 'oebb';
 import {
   Controller,
   Get,
@@ -7,6 +6,7 @@ import {
   Route,
   Tags,
 } from '@tsoa/runtime';
+import { info } from 'oebb';
 import { OEBBToDB } from 'server/Reihung/OEBBToDB';
 import { wagenreihung } from 'server/Reihung';
 import type { EvaNumber } from 'types/common';
@@ -14,23 +14,21 @@ import type { Formation } from 'types/reihung';
 
 @Route('/reihung/v3')
 export class ReihungControllerV3 extends Controller {
-  @Get('/wagen/{trainName}')
+  /**
+   * @isInt trainNumber */
+  @Get('/wagen/{trainNumber}')
   @Tags('Reihung')
   @OperationId('Wagenreihung v3')
   async wagenreihung(
-    /** TrainType and Number eg ICE 23 */
-    trainName: string,
+    trainNumber: number,
     @Query() departure: Date,
+    /** needed for OEBB Reihung, usually 7 digits */
     @Query() evaNumber?: EvaNumber,
+    /** needed for OEBB Reihung */
     @Query() initialDeparture?: Date,
   ): Promise<Formation> {
-    const trainNumber = trainName.split(' ').pop();
     if (evaNumber && initialDeparture && !evaNumber.startsWith('80')) {
-      const oebbReihung = await coachSequence(
-        trainName,
-        evaNumber,
-        initialDeparture,
-      );
+      const oebbReihung = await info(trainNumber, evaNumber, initialDeparture);
       if (oebbReihung) {
         const mappedReihung = OEBBToDB(oebbReihung);
         if (mappedReihung) return mappedReihung;
@@ -41,6 +39,6 @@ export class ReihungControllerV3 extends Controller {
         status: 404,
       };
     }
-    return wagenreihung(trainNumber, departure);
+    return wagenreihung(trainNumber.toString(), departure);
   }
 }

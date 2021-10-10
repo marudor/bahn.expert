@@ -185,7 +185,9 @@ export const Fahrzeug: FC<Props> = ({
     <div
       className={clsx(classes.wrap, {
         [classes.wrongWing]: wrongWing,
-        [classes.closed]: fahrzeug.status === 'GESCHLOSSEN',
+        [classes.closed]:
+          fahrzeug.status === 'GESCHLOSSEN' ||
+          fahrzeug.additionalInfo.klasse === 4,
       })}
       data-testid={`reihungFahrzeug${fahrzeug.wagenordnungsnummer}`}
       style={position}
