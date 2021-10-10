@@ -64,10 +64,6 @@ export interface Abfahrt {
   scheduledPlatform: string;
   substitute?: boolean;
   train: TrainInfo;
-  /**
-   * Most likely does not have coach sequence
-   */
-  hiddenReihung?: boolean;
 }
 
 export interface IrisMessage {

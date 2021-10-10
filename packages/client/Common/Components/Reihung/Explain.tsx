@@ -49,6 +49,7 @@ export const iconExplanation: { [K in keyof typeof icons]: string } = {
   family: 'Familienbereich',
   disabled: 'Schwerbehindertenplätze',
   info: 'Dienstabteil',
+  wifi: 'WLAN',
 };
 
 export const Explain: FC = () => {
