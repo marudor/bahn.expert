@@ -101,6 +101,5 @@
   "platform": "18",
   "scheduledPlatform": "18",
   "auslastung": true,
-  "reihung": true,
-  "hiddenReihung": false
+  "reihung": true
 }

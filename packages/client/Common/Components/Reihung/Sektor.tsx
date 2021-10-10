@@ -21,8 +21,8 @@ export const Sektor: FC<Props> = ({ sektor, correctLeft, scale }) => {
   const classes = useStyles();
   const position = useMemo(() => {
     const { startprozent, endeprozent } = sektor.positionamgleis;
-    const start = Number.parseInt(startprozent, 10);
-    const end = Number.parseInt(endeprozent, 10);
+    const start = Number.parseFloat(startprozent);
+    const end = Number.parseFloat(endeprozent);
 
     return {
       left: `${(start - correctLeft) * scale}%`,

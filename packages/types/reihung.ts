@@ -42,9 +42,9 @@ export interface Formation extends BaseFormation {
   startPercentage: number;
   endPercentage: number;
   /**
-   * true = Vorwärts
+   * true = Vorwärts, undefined = we do not know
    */
-  realFahrtrichtung: boolean;
+  realFahrtrichtung?: boolean;
   isRealtime: boolean;
 }
 
@@ -151,7 +151,7 @@ export interface BaseFahrzeug {
   fahrzeugtyp: string;
   wagenordnungsnummer: string;
   positionamhalt: Position;
-  status: string;
+  status: 'GESCHLOSSEN' | string;
 }
 
 export interface Fahrzeug extends BaseFahrzeug {
@@ -192,6 +192,7 @@ export interface AdditionalFahrzeugInfo {
     info?: boolean;
     family?: boolean;
     toddler?: boolean;
+    wifi?: boolean;
   };
   comfort?: boolean;
   comfortSeats?: string;

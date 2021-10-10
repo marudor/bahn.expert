@@ -60,8 +60,11 @@ export const Gruppe: FC<Props> = ({
   const fahrzeuge = useMemo(() => {
     const wrongWing =
       originalTrainNumber !== gruppe.verkehrlichezugnummer &&
-      originalTrainNumber.length <= 4 &&
-      gruppe.verkehrlichezugnummer.length <= 4;
+      // originalTrainNumber.length <= 4 &&
+      // gruppe.verkehrlichezugnummer.length <= 4 &&
+      gruppe.allFahrzeug.some(
+        (f) => f.status !== 'GESCHLOSSEN' && f.additionalInfo.klasse !== 4,
+      );
     return gruppe.allFahrzeug.map((f) => {
       return (
         <Fahrzeug

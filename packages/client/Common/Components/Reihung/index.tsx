@@ -64,10 +64,10 @@ const useStyles = makeStyles((theme) => ({
 interface Props {
   className?: string;
   trainNumber: string;
-  trainType?: string;
   fallbackTrainNumbers?: string[];
   currentEvaNumber: string;
   scheduledDeparture: Date;
+  initialDeparture?: Date;
   loadHidden?: boolean;
   withLegend?: boolean;
 }
@@ -77,7 +77,7 @@ export const Reihung: FC<Props> = ({
   currentEvaNumber,
   scheduledDeparture,
   trainNumber,
-  trainType,
+  initialDeparture,
   loadHidden,
   fallbackTrainNumbers,
 }) => {
@@ -94,9 +94,9 @@ export const Reihung: FC<Props> = ({
     if (reihung === undefined) {
       void getReihung(
         trainNumber,
-        trainType,
         currentEvaNumber,
         scheduledDeparture,
+        initialDeparture,
         fallbackTrainNumbers,
       );
     }
@@ -104,10 +104,10 @@ export const Reihung: FC<Props> = ({
     currentEvaNumber,
     fallbackTrainNumbers,
     getReihung,
+    initialDeparture,
     reihung,
     scheduledDeparture,
     trainNumber,
-    trainType,
   ]);
 
   const mainStyle = useMemo(() => {
@@ -146,7 +146,7 @@ export const Reihung: FC<Props> = ({
           ))}
         </div>
         <div className={classes.reihungWrap}>
-          {reihung.allFahrzeuggruppe.map((g) => (
+          {reihung.allFahrzeuggruppe.map((g, i) => (
             <Gruppe
               showGruppenZugnummer={reihung.differentZugnummer}
               showUIC={showUIC}
@@ -158,8 +158,8 @@ export const Reihung: FC<Props> = ({
               showDestination={
                 reihung.differentDestination && g.allFahrzeug.length > 1
               }
-              key={g.fahrzeuggruppebezeichnung}
               gruppe={g}
+              key={i}
             />
           ))}
         </div>

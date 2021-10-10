@@ -1,17 +1,18 @@
-import { coachSequence } from 'oebb';
 import { Controller, Get, OperationId, Route, Tags } from '@tsoa/runtime';
+import { info } from 'oebb';
 import type { EvaNumber } from 'types/common';
 
 @Route('/oebb/experimental')
 export class OEBBExperimentalController extends Controller {
-  @Get('/coachSequence/{trainName}/{evaNumber}/{departureDate}')
+  /** @isInt trainNumber */
+  @Get('/trainInfo/{trainNumber}/{evaNumber}/{departureDate}')
   @Tags('OEBB')
-  @OperationId('Wagenreihung experimental')
-  wagenreihung(
-    trainName: string,
+  @OperationId('TrainInfo experimental')
+  trainInfo(
+    trainNumber: number,
     evaNumber: EvaNumber,
     departureDate: Date,
-  ): ReturnType<typeof coachSequence> {
-    return coachSequence(trainName, evaNumber, departureDate);
+  ): ReturnType<typeof info> {
+    return info(trainNumber, evaNumber, departureDate);
   }
 }

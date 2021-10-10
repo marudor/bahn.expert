@@ -1,22 +1,25 @@
 import { format } from 'date-fns';
 import Axios from 'axios';
-import type { OEBBCoachSequence } from 'oebb/types/coachSequence';
+import type { OEBBInfo } from 'oebb/types/coachSequence';
 
 const client = Axios.create({
-  baseURL: 'https://live.oebb.at/backend/api/train',
+  baseURL: 'https://live.oebb.at/backend',
 });
 
-export async function coachSequence(
-  trainName: string,
+export async function info(
+  trainNumber: number,
   evaNumber: string,
   departureDate: Date,
-): Promise<OEBBCoachSequence> {
-  return await (
-    await client.get(
-      `/${trainName}/stationEva/${evaNumber}/departure/${format(
-        departureDate,
-        'dd.MM.yyyy',
-      )}`,
-    )
+): Promise<OEBBInfo | undefined> {
+  const info = (
+    await client.get<OEBBInfo>('/info', {
+      params: {
+        trainNr: trainNumber,
+        station: evaNumber,
+        date: format(departureDate, 'yyyy-MM-dd'),
+      },
+    })
   ).data;
+  if (info.timeTableInfo.trainNr !== trainNumber) return undefined;
+  return info;
 }

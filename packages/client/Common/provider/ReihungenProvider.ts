@@ -7,15 +7,16 @@ async function fetchSequence(
   trainNumber: string,
   scheduledDeparture: Date,
   evaNumber: string,
-  trainType?: string,
+  initialDeparture?: Date,
 ): Promise<Formation | undefined> {
   try {
     const r = await Axios.get<Formation>(
-      `/api/reihung/v2/wagen/${trainNumber}/${scheduledDeparture.toISOString()}`,
+      `/api/reihung/v3/wagen/${trainNumber}`,
       {
         params: {
           evaNumber,
-          trainType,
+          departure: scheduledDeparture.toISOString(),
+          initialDeparture: initialDeparture?.toISOString(),
         },
       },
     );
@@ -32,9 +33,9 @@ function useReihungInner() {
   const getReihung = useCallback(
     async (
       trainNumber: string,
-      trainType: string | undefined,
       currentEvaNumber: string,
       scheduledDeparture: Date,
+      initialDeparture?: Date,
       fallbackTrainNumbers: string[] = [],
     ) => {
       let reihung: Formation | undefined | null;
@@ -44,14 +45,14 @@ function useReihungInner() {
           trainNumber,
           scheduledDeparture,
           currentEvaNumber,
-          trainType,
+          initialDeparture,
         ),
         ...fallbackTrainNumbers.map((fallback) =>
           fetchSequence(
             fallback,
             scheduledDeparture,
             currentEvaNumber,
-            trainType,
+            initialDeparture,
           ),
         ),
       ]);

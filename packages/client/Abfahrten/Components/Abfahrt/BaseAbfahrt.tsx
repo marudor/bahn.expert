@@ -133,18 +133,16 @@ export const BaseAbfahrt = memo(function BaseAbfahrt({
             <Mid />
             <End />
           </div>
-          {detail &&
-            abfahrt.departure &&
-            (abfahrt.reihung || abfahrt.hiddenReihung) && (
-              <LazyReihung
-                loadHidden={!abfahrt.reihung && abfahrt.hiddenReihung}
-                trainNumber={abfahrt.train.number}
-                currentEvaNumber={abfahrt.currentStopPlace.evaNumber}
-                trainType={abfahrt.train.type}
-                scheduledDeparture={abfahrt.departure.scheduledTime}
-                fallbackTrainNumbers={wingNumbersWithoutSelf}
-              />
-            )}
+          {detail && abfahrt.departure && (
+            <LazyReihung
+              loadHidden={!abfahrt.reihung}
+              trainNumber={abfahrt.train.number}
+              currentEvaNumber={abfahrt.currentStopPlace.evaNumber}
+              initialDeparture={abfahrt.initialDeparture}
+              scheduledDeparture={abfahrt.departure.scheduledTime}
+              fallbackTrainNumbers={wingNumbersWithoutSelf}
+            />
+          )}
           {detail && (
             <div
               className={classes.scrollMarker}
