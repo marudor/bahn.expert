@@ -2,7 +2,7 @@ const { parentPort } = require('worker_threads');
 const Axios = require('axios');
 const pinoPretty = require('pino-pretty');
 
-const prettyLog = pinoPretty({
+const prettyLog = pinoPretty.prettyFactory({
   colorize: true,
   translateTime: true,
 });
