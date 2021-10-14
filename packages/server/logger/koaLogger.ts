@@ -2,11 +2,11 @@ import { nanoid } from 'nanoid';
 import onFinished from 'on-finished';
 import util from 'util';
 import type { Context, Next } from 'koa';
-import type { Logger } from 'pino';
+import type P from 'pino';
 
 declare module 'koa' {
   interface BaseContext {
-    log: Logger;
+    log: P.Logger;
   }
   interface Request {
     reqId: string;
@@ -39,7 +39,7 @@ const formatResponseMessage = (ctx: Context, data: any) =>
     data.duration,
   );
 
-export default (logger: Logger) =>
+export default (logger: P.Logger) =>
   (ctx: Context, next: Next): Promise<void> => {
     ctx.log = logger;
 
