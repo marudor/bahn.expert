@@ -1978,7 +1978,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -1999,7 +2000,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2019,7 +2021,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2041,7 +2044,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2063,7 +2067,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2084,7 +2089,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2105,7 +2111,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2126,7 +2133,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2148,7 +2156,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2169,7 +2178,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2190,7 +2200,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2211,7 +2222,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2232,7 +2244,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2253,7 +2266,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2275,7 +2289,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2296,7 +2311,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2320,7 +2336,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2343,7 +2360,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2365,7 +2383,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2386,7 +2405,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2407,7 +2427,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2429,7 +2450,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2452,7 +2474,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2475,7 +2498,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2499,7 +2523,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2521,7 +2546,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2545,7 +2571,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2567,7 +2594,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2589,7 +2617,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2610,7 +2639,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2632,7 +2662,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2654,7 +2685,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2674,7 +2706,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2695,7 +2728,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2716,7 +2750,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2737,7 +2772,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2758,7 +2794,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2781,7 +2818,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2801,7 +2839,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2821,7 +2860,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2842,7 +2882,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2865,7 +2906,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2889,7 +2931,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2910,7 +2953,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2931,7 +2975,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
@@ -2952,7 +2997,8 @@ export function RegisterRoutes(router: KoaRouter) {
             let validatedArgs: any[] = [];
             try {
               validatedArgs = getValidatedArgs(args, context, next);
-            } catch (error) {
+            } catch (err) {
+              const error = err as any;
               context.status = error.status;
               context.throw(error.status, JSON.stringify({ fields: error.fields }));
             }
