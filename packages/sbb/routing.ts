@@ -8,7 +8,7 @@ export async function routing({
   time = new Date(),
 }: RoutingOptions): Promise<SBBRoutingResult> {
   const result = (
-    await request.get(
+    await request.get<SBBRoutingResult>(
       `/unauth/fahrplanservice/v1/verbindungen/s/${start}/s/${destination}/ab/${format(
         time,
         'yyyy-MM-dd',

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Axios from 'axios';
+import type { LageplanResponse } from 'types/bahnhof';
 
 export const useLageplan = (
   stationName?: string,
@@ -9,7 +10,7 @@ export const useLageplan = (
 
   useEffect(() => {
     if (!stationName || !evaId) return;
-    Axios.get(
+    Axios.get<LageplanResponse>(
       `/api/stopPlace/v1/lageplan/${encodeURIComponent(stationName)}/${evaId}`,
     )
       .then((r) => setLageplan(r.data.lageplan))
