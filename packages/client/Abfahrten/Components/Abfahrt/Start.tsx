@@ -1,13 +1,11 @@
 import { Auslastung } from 'client/Abfahrten/Components/Abfahrt/Auslastung';
 import { DetailsLink } from 'client/Common/Components/Details/DetailsLink';
 import { makeStyles } from '@material-ui/core';
+import { Name } from 'client/Abfahrten/Components/Abfahrt/Name';
 import { Substitute } from './Substitute';
 import { TravelynxLink } from 'client/Common/Components/CheckInLink/TravelynxLink';
 import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
-import {
-  useAbfahrtenConfig,
-  useAbfahrtenUrlPrefix,
-} from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
+import { useAbfahrtenUrlPrefix } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
 import type { FC } from 'react';
 
 const useStyles = makeStyles((theme) => ({
@@ -29,18 +27,12 @@ const useStyles = makeStyles((theme) => ({
 
 export const Start: FC = () => {
   const classes = useStyles();
-  const { lineAndNumber } = useAbfahrtenConfig();
   const urlPrefix = useAbfahrtenUrlPrefix();
   const { abfahrt, detail } = useAbfahrt();
 
   return (
     <div className={classes.wrap} data-testid="abfahrtStart">
-      <span>{abfahrt.train.name}</span>
-      {lineAndNumber && abfahrt.train.line && (
-        <span>
-          {abfahrt.train.type} {abfahrt.train.number}
-        </span>
-      )}
+      <Name />
       {detail && (
         <div className={classes.links}>
           <TravelynxLink
