@@ -32,7 +32,6 @@ Object {
       "destination": "Hagen Hbf",
       "id": "6062058741531589910",
       "initialDeparture": 2019-03-16T14:24:00.000Z,
-      "lineNumber": "8",
       "mediumId": "6062058741531589910-1903161424",
       "messages": Object {
         "delay": Array [],
@@ -219,7 +218,6 @@ Object {
       "destination": "Hamburg-Altona",
       "id": "4771830392602697451",
       "initialDeparture": 2019-03-17T08:18:00.000Z,
-      "lineNumber": undefined,
       "mediumId": "4771830392602697451-1903170818",
       "messages": Object {
         "delay": Array [],
@@ -322,7 +320,6 @@ Object {
       "destination": "Bremen Hbf",
       "id": "4550748245722881479",
       "initialDeparture": 2019-03-17T08:18:00.000Z,
-      "lineNumber": undefined,
       "mediumId": "4550748245722881479-1903170818",
       "messages": Object {
         "delay": Array [],
@@ -376,7 +373,7 @@ Object {
       "scheduledPlatform": "8 A-D",
       "substitute": false,
       "train": Object {
-        "line": undefined,
+        "line": "24",
         "longDistance": true,
         "name": "ICE 1580",
         "number": "1580",
@@ -423,7 +420,6 @@ Object {
       "destination": "Düsseldorf Friedrichstadt",
       "id": "6062058741531589910",
       "initialDeparture": 2019-03-16T14:24:00.000Z,
-      "lineNumber": "8",
       "mediumId": "6062058741531589910-1903161424",
       "messages": Object {
         "delay": Array [],
@@ -628,7 +624,6 @@ Object {
       "destination": "test",
       "id": "6062058741531589910",
       "initialDeparture": 2019-03-16T14:24:00.000Z,
-      "lineNumber": "8",
       "mediumId": "6062058741531589910-1903161424",
       "messages": Object {
         "delay": Array [],
@@ -837,7 +832,6 @@ Object {
       "destination": "München Hbf",
       "id": "6523045328284948841",
       "initialDeparture": 2019-03-17T12:46:00.000Z,
-      "lineNumber": undefined,
       "mediumId": "6523045328284948841-1903171246",
       "messages": Object {
         "delay": Array [],
@@ -897,7 +891,7 @@ Object {
       "scheduledPlatform": "4",
       "substitute": false,
       "train": Object {
-        "line": undefined,
+        "line": "24",
         "longDistance": true,
         "name": "ICE 1689",
         "number": "1689",
@@ -938,7 +932,6 @@ Object {
       "destination": "München Hbf",
       "id": "8086827825752200553",
       "initialDeparture": 2019-03-17T13:15:00.000Z,
-      "lineNumber": undefined,
       "mediumId": "8086827825752200553-1903171315",
       "messages": Object {
         "delay": Array [],
@@ -989,7 +982,7 @@ Object {
       "scheduledPlatform": "4",
       "substitute": false,
       "train": Object {
-        "line": undefined,
+        "line": "24",
         "longDistance": true,
         "name": "ICE 1589",
         "number": "1589",
@@ -1042,7 +1035,6 @@ Object {
       "destination": "Frankfurt (M)  Flughafen Fernbf",
       "id": "1869793107893408377",
       "initialDeparture": 2019-03-17T10:38:00.000Z,
-      "lineNumber": undefined,
       "mediumId": "1869793107893408377-1903171038",
       "messages": Object {
         "delay": Array [
@@ -1115,7 +1107,7 @@ Object {
       "scheduledPlatform": "16",
       "substitute": false,
       "train": Object {
-        "line": undefined,
+        "line": "78",
         "longDistance": true,
         "name": "ICE 123",
         "number": "123",
@@ -1156,7 +1148,6 @@ Object {
       "destination": "Bayrischzell",
       "id": "4645697665836328305",
       "initialDeparture": 2019-03-17T13:04:00.000Z,
-      "lineNumber": undefined,
       "mediumId": "4645697665836328305-1903171304",
       "messages": Object {
         "delay": Array [],
@@ -1285,7 +1276,6 @@ Object {
       "destination": "Tegernsee",
       "id": "2583448959431566845",
       "initialDeparture": 2019-03-17T13:04:00.000Z,
-      "lineNumber": undefined,
       "mediumId": "2583448959431566845-1903171304",
       "messages": Object {
         "delay": Array [],
@@ -1391,7 +1381,6 @@ Object {
       "destination": "Lenggries",
       "id": "7715731422484591852",
       "initialDeparture": 2019-03-17T13:04:00.000Z,
-      "lineNumber": undefined,
       "mediumId": "7715731422484591852-1903171304",
       "messages": Object {
         "delay": Array [],
@@ -1509,7 +1498,6 @@ Object {
       "destination": "test",
       "id": "425081070176277607",
       "initialDeparture": 2019-03-17T11:00:00.000Z,
-      "lineNumber": "RE11",
       "mediumId": "425081070176277607-1903171100",
       "messages": Object {
         "delay": Array [],
@@ -1601,7 +1589,6 @@ Object {
       "destination": "Paderborn Hbf",
       "id": "1178432179369711067",
       "initialDeparture": 2019-03-17T12:36:00.000Z,
-      "lineNumber": "RE11",
       "mediumId": "1178432179369711067-1903171236",
       "messages": Object {
         "delay": Array [],
@@ -1710,7 +1697,6 @@ Object {
       "destination": "Hagen Hbf",
       "id": "6062058741531589910",
       "initialDeparture": 2019-03-16T14:24:00.000Z,
-      "lineNumber": "8",
       "mediumId": "6062058741531589910-1903161424",
       "messages": Object {
         "delay": Array [],
@@ -1894,7 +1880,6 @@ Object {
       "destination": "Frankfurt (M)  Flughafen Fernbf",
       "id": "1869793107893408377",
       "initialDeparture": 2019-03-17T10:38:00.000Z,
-      "lineNumber": undefined,
       "mediumId": "1869793107893408377-1903171038",
       "messages": Object {
         "delay": Array [
@@ -1967,7 +1952,7 @@ Object {
       "scheduledPlatform": "16",
       "substitute": false,
       "train": Object {
-        "line": undefined,
+        "line": "78",
         "longDistance": true,
         "name": "ICE 123",
         "number": "123",
@@ -2014,7 +1999,6 @@ Object {
       "destination": "Hagen Hbf",
       "id": "6062058741531589910",
       "initialDeparture": 2019-03-16T14:24:00.000Z,
-      "lineNumber": "8",
       "mediumId": "6062058741531589910-1903161424",
       "messages": Object {
         "delay": Array [],
@@ -2203,7 +2187,6 @@ Object {
       "destination": "München Hbf",
       "id": "7616096009230090656",
       "initialDeparture": 2019-03-17T13:28:00.000Z,
-      "lineNumber": undefined,
       "mediumId": "7616096009230090656-1903171328",
       "messages": Object {
         "delay": Array [],
@@ -2266,7 +2249,7 @@ Object {
       "scheduledPlatform": "4",
       "substitute": false,
       "train": Object {
-        "line": undefined,
+        "line": "24",
         "longDistance": true,
         "name": "ICE 1587",
         "number": "1587",
