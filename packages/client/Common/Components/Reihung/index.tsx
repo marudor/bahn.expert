@@ -3,11 +3,12 @@ import { Gruppe } from './Gruppe';
 import { Loading } from 'client/Common/Components/Loading';
 import { makeStyles } from '@material-ui/core';
 import { Sektor } from './Sektor';
+import { sequenceId } from 'client/Common/provider/ReihungenProvider';
 import { useCommonConfig } from 'client/Common/provider/CommonConfigProvider';
 import { useEffect, useMemo } from 'react';
 import {
-  useReihungen,
-  useReihungenActions,
+  useSequences,
+  useSequencesActions,
 } from 'client/Common/provider/ReihungenProvider';
 import clsx from 'clsx';
 import type { FC } from 'react';
@@ -82,17 +83,15 @@ export const Reihung: FC<Props> = ({
   fallbackTrainNumbers,
 }) => {
   const classes = useStyles();
-  const reihungen = useReihungen();
-  const { getReihung } = useReihungenActions();
+  const sequences = useSequences();
+  const { getSequences } = useSequencesActions();
   const { fahrzeugGruppe, showUIC } = useCommonConfig();
-  const reihung =
-    reihungen[
-      `${trainNumber}${currentEvaNumber}${scheduledDeparture.toISOString()}`
-    ];
+  const sequence =
+    sequences[sequenceId(trainNumber, currentEvaNumber, scheduledDeparture)];
 
   useEffect(() => {
-    if (reihung === undefined) {
-      void getReihung(
+    if (sequence === undefined) {
+      void getSequences(
         trainNumber,
         currentEvaNumber,
         scheduledDeparture,
@@ -103,32 +102,55 @@ export const Reihung: FC<Props> = ({
   }, [
     currentEvaNumber,
     fallbackTrainNumbers,
-    getReihung,
+    getSequences,
     initialDeparture,
-    reihung,
+    sequence,
     scheduledDeparture,
     trainNumber,
   ]);
 
+  const [scale, startPercent] = useMemo(() => {
+    if (!sequence) return [1, 0];
+    const coaches = sequence.sequence.groups.flatMap((g) => g.coaches);
+    const endPercent = Math.max(...coaches.map((c) => c.position.endPercent));
+    const startPercent = Math.min(
+      ...coaches.map((c) => c.position.startPercent),
+    );
+    return [100 / (endPercent - startPercent), startPercent];
+  }, [sequence]);
+
   const mainStyle = useMemo(() => {
-    if (!reihung) return {};
-    let height = 8;
+    if (!sequence) return {};
+    let height = 7.5;
     if (fahrzeugGruppe) height += 1;
     if (showUIC) height += 1;
-    if (reihung.differentZugnummer) height += 1;
-    if (reihung.differentDestination) height += 1;
-    if (reihung.allFahrzeuggruppe.find((g) => g.br && g.br.showBRInfo))
-      height += 1;
-    if (reihung.allFahrzeuggruppe.some((g) => g.name)) height += 1;
+    if (sequence.multipleDestinations) height += 1;
+    if (sequence.multipleTrainNumbers) height += 1;
+
+    let withName = false;
+    let withBR = false;
+    let withSeats = false;
+    for (const g of sequence.sequence.groups) {
+      if (g.trainName) withName = true;
+      if (g.baureihe) withBR = true;
+      for (const c of g.coaches) {
+        if (c.seats) withSeats = true;
+      }
+    }
+
+    if (withName) height += 1;
+    if (withBR) height += 1;
+    if (withSeats) height += 1;
+
     return {
       height: `${height}em`,
     };
-  }, [fahrzeugGruppe, showUIC, reihung]);
+  }, [fahrzeugGruppe, showUIC, sequence]);
 
-  if (reihung === null || (!reihung && loadHidden)) {
+  if (sequence === null || (!sequence && loadHidden)) {
     return null;
   }
-  if (reihung === undefined) {
+  if (sequence === undefined) {
     return <Loading type={1} />;
   }
 
@@ -136,41 +158,45 @@ export const Reihung: FC<Props> = ({
     <div className={clsx(classes.wrap, className)} data-testid="reihung">
       <div className={classes.main} style={mainStyle}>
         <div className={classes.sektoren}>
-          {reihung.halt.allSektor.map((s) => (
+          {sequence.stop.sectors.map((s) => (
             <Sektor
-              correctLeft={reihung.startPercentage}
-              scale={reihung.scale}
-              key={s.sektorbezeichnung}
-              sektor={s}
+              correctLeft={startPercent}
+              scale={scale}
+              key={s.name}
+              sector={s}
             />
           ))}
         </div>
         <div className={classes.reihungWrap}>
-          {reihung.allFahrzeuggruppe.map((g, i) => (
+          {sequence.sequence.groups.map((g, i) => (
             <Gruppe
-              showGruppenZugnummer={reihung.differentZugnummer}
               showUIC={showUIC}
               originalTrainNumber={trainNumber}
               showFahrzeugGruppe={fahrzeugGruppe}
-              correctLeft={reihung.startPercentage}
-              scale={reihung.scale}
-              type={reihung.zuggattung}
+              correctLeft={startPercent}
+              scale={scale}
+              type={sequence.product.type}
               showDestination={
-                reihung.differentDestination && g.allFahrzeug.length > 1
+                sequence.multipleDestinations && g.coaches.length > 1
               }
+              showGruppenZugnummer={sequence.multipleTrainNumbers}
               gruppe={g}
               key={i}
             />
           ))}
         </div>
         <Explain />
-        {!reihung.isRealtime && <span className={classes.plan}>Plandaten</span>}
-        <span
-          className={clsx(
-            classes.richtung,
-            !reihung.realFahrtrichtung && classes.reverseRichtung,
-          )}
-        />
+        {!sequence.isRealtime && (
+          <span className={classes.plan}>Plandaten</span>
+        )}
+        {sequence.direction != null && (
+          <span
+            className={clsx(
+              classes.richtung,
+              !sequence.direction && classes.reverseRichtung,
+            )}
+          />
+        )}
       </div>
     </div>
   );

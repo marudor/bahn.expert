@@ -1,9 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
-import { BRInfo } from './BRInfo';
+import { BRInfo } from 'client/Common/Components/Reihung/BRInfo';
 import { Fahrzeug } from './Fahrzeug';
 import { makeStyles } from '@material-ui/core';
 import { useMemo } from 'react';
-import type { Fahrzeuggruppe } from 'types/reihung';
+import type { CoachSequenceGroup } from 'types/coachSequence';
 import type { FC } from 'react';
 import type { InheritedProps } from './Fahrzeug';
 
@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 });
 
 interface Props extends InheritedProps {
-  gruppe: Fahrzeuggruppe;
+  gruppe: CoachSequenceGroup;
   showDestination?: boolean;
   showGruppenZugnummer?: boolean;
   showFahrzeugGruppe: boolean;
@@ -37,42 +37,39 @@ export const Gruppe: FC<Props> = ({
   ...rest
 }) => {
   const classes = useStyles();
-  const gruppenPos = {
-    left: `${(gruppe.startPercentage - rest.correctLeft) * rest.scale}%`,
-    width: `${(gruppe.endPercentage - gruppe.startPercentage) * rest.scale}%`,
-  };
+  const gruppenPos = useMemo(() => {
+    const groupStart = Math.min(
+      ...gruppe.coaches.map((c) => c.position.startPercent),
+    );
+    const groupEnd = Math.max(
+      ...gruppe.coaches.map((c) => c.position.endPercent),
+    );
+    return {
+      left: `${(groupStart - rest.correctLeft) * rest.scale}%`,
+      width: `${(groupEnd - groupStart) * rest.scale}%`,
+    };
+  }, [gruppe.coaches, rest.correctLeft, rest.scale]);
 
-  let currentBottom = 2.5;
-
-  if (showFahrzeugGruppe) currentBottom += 1;
-  const destinationPos = {
-    ...gruppenPos,
-    bottom: `${currentBottom}em`,
-  };
-
-  const showBR = gruppe.br && gruppe.br.showBRInfo;
-  const extraInfoLine = Boolean(showDestination || showBR);
-
-  if (extraInfoLine) currentBottom += 1;
-  if (rest.showUIC) currentBottom += 1;
-  if (showGruppenZugnummer && gruppe.verkehrlichezugnummer) currentBottom += 1;
+  const extraInfoLine = Boolean(
+    showFahrzeugGruppe ||
+      showGruppenZugnummer ||
+      showDestination ||
+      gruppe.trainName ||
+      gruppe.baureihe,
+  );
 
   const fahrzeuge = useMemo(() => {
     const wrongWing =
-      originalTrainNumber !== gruppe.verkehrlichezugnummer &&
-      // originalTrainNumber.length <= 4 &&
-      // gruppe.verkehrlichezugnummer.length <= 4 &&
-      gruppe.allFahrzeug.some(
-        (f) => f.status !== 'GESCHLOSSEN' && f.additionalInfo.klasse !== 4,
-      );
-    return gruppe.allFahrzeug.map((f) => {
+      originalTrainNumber !== gruppe.number &&
+      gruppe.coaches.some((f) => !f.closed);
+    return gruppe.coaches.map((c) => {
       return (
         <Fahrzeug
           {...rest}
-          identifier={gruppe.br?.identifier}
+          identifier={gruppe.baureihe?.identifier}
           wrongWing={wrongWing}
-          key={`${f.fahrzeugnummer}${f.positioningruppe}`}
-          fahrzeug={f}
+          key={`${c.uic}${c.position}`}
+          fahrzeug={c}
         />
       );
     });
@@ -82,27 +79,20 @@ export const Gruppe: FC<Props> = ({
     <>
       {fahrzeuge}
       {extraInfoLine && (
-        <span className={classes.bezeichnung} style={destinationPos}>
-          {showBR && gruppe.br && <BRInfo br={gruppe.br} />}
-          {showGruppenZugnummer && gruppe.verkehrlichezugnummer && (
+        <span className={classes.bezeichnung} style={gruppenPos}>
+          {gruppe.baureihe && <BRInfo br={gruppe.baureihe} />}
+          {showGruppenZugnummer && gruppe.number && (
             <span>
-              {rest.type} {gruppe.verkehrlichezugnummer}
+              {rest.type} {gruppe.number}
             </span>
           )}
-          {showDestination && (
-            <span>Ziel: {gruppe.zielbetriebsstellename}</span>
+          {showDestination && <span>Ziel: {gruppe.destinationName}</span>}
+          {gruppe.trainName && <span>Zugname: "{gruppe.trainName}"</span>}
+          {showFahrzeugGruppe && (
+            <span data-testid="reihungFahrzeugGruppe">
+              {gruppe.name.replace(RPFRegex, '$1 $2 $3')}
+            </span>
           )}
-          {gruppe.name && <span>Zugname: "{gruppe.name}"</span>}
-        </span>
-      )}
-
-      {showFahrzeugGruppe && (
-        <span
-          className={classes.bezeichnung}
-          data-testid="reihungFahrzeugGruppe"
-          style={gruppenPos}
-        >
-          {gruppe.fahrzeuggruppebezeichnung.replace(RPFRegex, '$1 $2 $3')}
         </span>
       )}
     </>

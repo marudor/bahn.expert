@@ -1,17 +1,17 @@
 import { useCallback, useState } from 'react';
 import Axios from 'axios';
 import constate from 'constate';
-import type { Formation } from 'types/reihung';
+import type { CoachSequenceInformation } from 'types/coachSequence';
 
 async function fetchSequence(
   trainNumber: string,
   scheduledDeparture: Date,
   evaNumber: string,
   initialDeparture?: Date,
-): Promise<Formation | undefined> {
+): Promise<CoachSequenceInformation | undefined> {
   try {
-    const r = await Axios.get<Formation>(
-      `/api/reihung/v3/wagen/${trainNumber}`,
+    const r = await Axios.get<CoachSequenceInformation>(
+      `/api/reihung/v4/wagen/${trainNumber}`,
       {
         params: {
           evaNumber,
@@ -26,11 +26,18 @@ async function fetchSequence(
   }
 }
 
+export const sequenceId = (
+  trainNumber: string,
+  currentEvaNumber: string,
+  scheduledDeparture: Date,
+): string =>
+  `${trainNumber}${currentEvaNumber}${scheduledDeparture.toISOString()}`;
+
 function useReihungInner() {
-  const [reihungen, setReihungen] = useState<{
-    [key: string]: undefined | null | Formation;
+  const [sequences, setSequences] = useState<{
+    [key: string]: undefined | null | CoachSequenceInformation;
   }>({});
-  const getReihung = useCallback(
+  const getSequences = useCallback(
     async (
       trainNumber: string,
       currentEvaNumber: string,
@@ -38,9 +45,9 @@ function useReihungInner() {
       initialDeparture?: Date,
       fallbackTrainNumbers: string[] = [],
     ) => {
-      let reihung: Formation | undefined | null;
+      let reihung: CoachSequenceInformation | undefined | null;
 
-      const reihungen = await Promise.all([
+      const sequence = await Promise.all([
         fetchSequence(
           trainNumber,
           scheduledDeparture,
@@ -56,37 +63,35 @@ function useReihungInner() {
           ),
         ),
       ]);
-      const newReihungen = reihungen.reduce((agg, f) => {
-        if (f) {
+      const newSequence = sequence.reduce((agg, s) => {
+        if (s) {
           agg[
-            `${
-              f.zugnummer
-            }${currentEvaNumber}${scheduledDeparture.toISOString()}`
-          ] = f;
+            sequenceId(s.product.number, currentEvaNumber, scheduledDeparture)
+          ] = s;
         }
         return agg;
-      }, {} as Record<string, Formation>);
-      reihung = reihungen.find((f) => f);
+      }, {} as Record<string, CoachSequenceInformation>);
+      reihung = sequence.find((f) => f);
       if (!reihung) {
         reihung = null;
       }
       const key = `${trainNumber}${currentEvaNumber}${scheduledDeparture.toISOString()}`;
 
-      setReihungen((oldReihungen) => ({
+      setSequences((oldReihungen) => ({
         ...oldReihungen,
-        ...newReihungen,
+        ...newSequence,
         [key]: reihung,
       }));
     },
     [],
   );
-  const clearReihungen = useCallback(() => setReihungen({}), []);
+  const clearSequences = useCallback(() => setSequences({}), []);
 
-  return { reihungen, getReihung, clearReihungen };
+  return { sequences, getSequences, clearSequences };
 }
 
-export const [ReihungenProvider, useReihungen, useReihungenActions] = constate(
+export const [ReihungenProvider, useSequences, useSequencesActions] = constate(
   useReihungInner,
-  (v) => v.reihungen,
-  ({ reihungen, ...actions }) => actions,
+  (v) => v.sequences,
+  ({ sequences, ...actions }) => actions,
 );

@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core';
 import { useMemo } from 'react';
+import type { CoachSequenceSector } from 'types/coachSequence';
 import type { FC } from 'react';
-import type { Sektor as SektorType } from 'types/reihung';
 
 const useStyles = makeStyles({
   wrap: {
@@ -12,26 +12,24 @@ const useStyles = makeStyles({
 });
 
 interface Props {
-  sektor: SektorType;
+  sector: CoachSequenceSector;
   scale: number;
   correctLeft: number;
 }
 
-export const Sektor: FC<Props> = ({ sektor, correctLeft, scale }) => {
+export const Sektor: FC<Props> = ({ sector, correctLeft, scale }) => {
   const classes = useStyles();
   const position = useMemo(() => {
-    const { startprozent, endeprozent } = sektor.positionamgleis;
-    const start = Number.parseFloat(startprozent);
-    const end = Number.parseFloat(endeprozent);
+    const { startPercent, endPercent } = sector.position;
 
     return {
-      left: `${(start - correctLeft) * scale}%`,
-      width: `${(end - start) * scale}%`,
+      left: `${(startPercent - correctLeft) * scale}%`,
+      width: `${(endPercent - startPercent) * scale}%`,
     };
-  }, [sektor, correctLeft, scale]);
+  }, [correctLeft, scale, sector.position]);
   return (
     <div className={classes.wrap} style={position}>
-      {sektor.sektorbezeichnung}
+      {sector.name}
     </div>
   );
 };

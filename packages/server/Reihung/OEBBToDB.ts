@@ -188,7 +188,6 @@ export function OEBBToDB(info: OEBBInfo): Formation | null {
       gleisbezeichnung: info.platform?.platform.toString(),
     },
     isRealtime: info.train?.isReported ?? false,
-    isActuallyIC: false,
     istplaninformation: false,
     liniebezeichnung: '',
     planstarttag: info.timeTableInfo.date,
