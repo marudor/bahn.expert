@@ -19,6 +19,7 @@ import {
 import { CacheDatabases, createNewCache } from 'server/cache';
 import { calculateVia, getAttr, getNumberAttr, parseTs } from './helper';
 import { diffArrays } from 'diff';
+import { getLineFromNumber } from 'server/journeys/lineNumberMapping';
 import { getSingleHimMessageOfToday } from 'server/HAFAS/HimSearch';
 import { uniqBy } from 'client/util';
 import messageLookup, {
@@ -104,8 +105,7 @@ export function parseRealtimeAr(
   };
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function parseTl(tl: xmljs.Element) {
+function parseTl(tl: xmljs.Element) {
   return {
     // D = Irregular, like third party
     // N = Nahverkehr
@@ -597,8 +597,8 @@ export default class Timetable {
 
     const scheduledArrival = parseTs(getAttr(ar, 'pt'));
     const scheduledDeparture = parseTs(getAttr(dp, 'pt'));
-    const lineNumber = getAttr(dp || ar, 'l');
     const { trainNumber, trainCategory, t, o, productClass } = parseTl(tl);
+    const lineNumber = getAttr(dp || ar, 'l') || getLineFromNumber(trainNumber);
     const longDistance = longDistanceRegex.test(trainCategory);
     const fullTrainText = `${trainCategory} ${
       longDistance ? trainNumber : lineNumber || trainNumber
@@ -640,7 +640,6 @@ export default class Timetable {
       },
       scheduledDestination:
         routePost[routePost.length - 1] || this.currentStopPlaceName,
-      lineNumber,
       id,
       rawId,
       mediumId,
