@@ -1,4 +1,5 @@
-import type { AvailableIdentifier, BRInfo } from 'types/reihung';
+import type { AvailableIdentifier } from 'types/coachSequence';
+import type { BRInfo } from 'types/reihung';
 
 const nameMap: {
   [K in AvailableIdentifier]: string;

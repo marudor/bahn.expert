@@ -1,10 +1,14 @@
-import type { AdditionalFahrzeugInfo, BRInfo } from 'types/reihung';
+import type {
+  AvailableIdentifier,
+  CoachSequenceCoach,
+  CoachSequenceCoachSeats,
+} from 'types/coachSequence';
 
 export function getComfortSeats(
-  br: BRInfo,
-  klasse: AdditionalFahrzeugInfo['klasse'],
+  identifier: AvailableIdentifier | undefined,
+  klasse: CoachSequenceCoach['class'],
 ): string | undefined {
-  switch (br.identifier) {
+  switch (identifier) {
     case '401':
       return klasse === 1 ? '11-36' : '11-57';
     case '401.9':
@@ -40,11 +44,11 @@ export function getComfortSeats(
 }
 
 export function getDisabledSeats(
-  br: BRInfo,
-  klasse: AdditionalFahrzeugInfo['klasse'],
-  wagenordnungsnummer: string,
+  identifier: AvailableIdentifier | undefined,
+  klasse: CoachSequenceCoach['class'],
+  wagenordnungsnummer: string | undefined,
 ): string | undefined {
-  switch (br.identifier) {
+  switch (identifier) {
     case '401':
       return klasse === 1 ? '51, 52, 53, 55' : '111-116';
     case '401.9':
@@ -60,7 +64,7 @@ export function getDisabledSeats(
       if (klasse === 1) return '64, 66';
       if (wagenordnungsnummer === '25' || wagenordnungsnummer === '35') {
         // redesign slighlty different
-        return ['403R', '403.S1R', '403.S2R'].includes(br.identifier)
+        return ['403R', '403.S1R', '403.S2R'].includes(identifier)
           ? '61, 63, 65-67'
           : '61, 63, 65, 67';
       }
@@ -101,8 +105,10 @@ export function getDisabledSeats(
   }
 }
 
-export function getFamilySeats(br: BRInfo): string | undefined {
-  switch (br.identifier) {
+export function getFamilySeats(
+  identifier: AvailableIdentifier | undefined,
+): string | undefined {
+  switch (identifier) {
     case '401':
       return '81-116';
     case '401.9':
@@ -131,5 +137,25 @@ export function getFamilySeats(br: BRInfo): string | undefined {
       return '121, 123, 131-138';
     case 'IC2.KISS':
       return '42, 43, 45, 46, 52-56';
+  }
+}
+
+export function getSeatsForCoach(
+  coach: CoachSequenceCoach,
+  identifier: AvailableIdentifier,
+): CoachSequenceCoachSeats | undefined {
+  const family = coach.features.family ? getFamilySeats(identifier) : undefined;
+  const disabled = coach.features.disabled
+    ? getDisabledSeats(identifier, coach.class, coach.identificationNumber)
+    : undefined;
+  const comfort = coach.features.comfort
+    ? getComfortSeats(identifier, coach.class)
+    : undefined;
+  if (family || disabled || comfort) {
+    return {
+      comfort,
+      disabled,
+      family,
+    };
   }
 }

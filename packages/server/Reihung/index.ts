@@ -6,14 +6,14 @@ import {
   getComfortSeats,
   getDisabledSeats,
   getFamilySeats,
-} from 'server/Reihung/specialSeats';
+} from 'server/coachSequence/specialSeats';
 import { getName } from 'server/Reihung/identifierNameMap';
-import { isRedesignByTZ } from 'server/Reihung/tzInfo';
+import { isRedesignByTZ } from 'server/coachSequence/tzInfo';
 import { maxBy, minBy } from 'client/util';
 import { utcToZonedTime } from 'date-fns-tz';
 import Axios from 'axios';
 import getBR from 'server/Reihung/getBR';
-import TrainNames from 'server/Reihung/TrainNames';
+import TrainNames from '../coachSequence/TrainNames';
 import type {
   AdditionalFahrzeugInfo,
   BRInfo,
@@ -281,17 +281,17 @@ export function calculateComfort(
 
   if (gruppe.br) {
     if (data.comfort) {
-      data.comfortSeats = getComfortSeats(gruppe.br, data.klasse);
+      data.comfortSeats = getComfortSeats(gruppe.br.identifier, data.klasse);
     }
     if (data.icons.disabled) {
       data.disabledSeats = getDisabledSeats(
-        gruppe.br,
+        gruppe.br.identifier,
         data.klasse,
         fahrzeug.wagenordnungsnummer,
       );
     }
     if (data.icons.family) {
-      data.familySeats = getFamilySeats(gruppe.br);
+      data.familySeats = getFamilySeats(gruppe.br.identifier);
     }
   }
 }
@@ -381,19 +381,6 @@ export async function wagenreihung(
 
   if (!reallyHasReihung) {
     throw { status: 404, statusText: 'Data invalid' };
-  }
-
-  const isActuallyIC =
-    enrichedFormation.zuggattung === 'ICE' &&
-    enrichedFormation.allFahrzeuggruppe.some(
-      (g) =>
-        g.allFahrzeug.length === 1 &&
-        g.allFahrzeug[0].fahrzeugtyp.startsWith('E'),
-    );
-
-  if (isActuallyIC) {
-    enrichedFormation.reportedZuggattung = enrichedFormation.zuggattung;
-    enrichedFormation.zuggattung = 'IC';
   }
 
   const fahrzeuge: Fahrzeug[] = [];

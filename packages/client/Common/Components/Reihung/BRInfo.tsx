@@ -1,21 +1,33 @@
 import { stopPropagation } from 'client/Common/stopPropagation';
-import type { BRInfo as BRInfoType } from 'types/reihung';
+import type { CoachSequenceBaureihe } from 'types/coachSequence';
 import type { FC } from 'react';
 
 interface Props {
-  br: BRInfoType;
+  br: CoachSequenceBaureihe;
   className?: string;
 }
 
+const identifierWithPDF = [
+  '401',
+  '402',
+  '403.R',
+  '403.S1',
+  '403.S2',
+  '406',
+  '406.R',
+  '407',
+  '411.S1',
+  '411.S2',
+  '412',
+  '415',
+  'IC2.KISS',
+  'IC2.TWIN',
+  'MET',
+];
+
 export const BRInfo: FC<Props> = ({ br, className }) => {
-  let text = br.name;
-
-  if (text === 'IC' && br.country) {
-    text = `${text} (${br.country})`;
-  }
-
-  if (br.noPdf || !br.identifier)
-    return <span className={className}>{text}</span>;
+  if (!identifierWithPDF.includes(br.identifier))
+    return <span className={className}>{br.name}</span>;
 
   return (
     <a
@@ -25,7 +37,7 @@ export const BRInfo: FC<Props> = ({ br, className }) => {
       rel="noopener noreferrer"
       href={`/WRSheets/${br.identifier}.pdf`}
     >
-      {text}
+      {br.name}
     </a>
   );
 };

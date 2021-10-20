@@ -11,11 +11,6 @@ describe('Explain', () => {
 
     fireEvent.click(screen.getByTestId('reihungLegendOpener'));
   }
-  it('ensures BahnComfort exists', () => {
-    openLegende();
-
-    expect(screen.getByTestId('bahnComfort')).toBeInTheDocument();
-  });
 
   Object.keys(iconExplanation).forEach((icon) => {
     it(`ensures ${icon} exists`, () => {

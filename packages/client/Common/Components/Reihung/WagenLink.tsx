@@ -1,7 +1,10 @@
 import { makeStyles } from '@material-ui/core';
 import { stopPropagation } from 'client/Common/stopPropagation';
 import { useMemo } from 'react';
-import type { AvailableIdentifier, Fahrzeug } from 'types/reihung';
+import type {
+  AvailableIdentifier,
+  CoachSequenceCoach,
+} from 'types/coachSequence';
 import type { FC } from 'react';
 
 const useStyles = makeStyles({
@@ -14,7 +17,7 @@ const useStyles = makeStyles({
 });
 
 interface Props {
-  fahrzeug: Pick<Fahrzeug, 'fahrzeugnummer' | 'fahrzeugtyp' | 'kategorie'>;
+  fahrzeug: CoachSequenceCoach;
   identifier?: AvailableIdentifier;
   type: string;
 }
@@ -49,20 +52,26 @@ export const WagenLink: FC<Props> = ({ fahrzeug, identifier, type }) => {
   const imageName = useMemo(() => {
     if (
       !allowedTypes.includes(type) ||
-      fahrzeug.kategorie === 'TRIEBKOPF' ||
-      fahrzeug.kategorie === 'LOK'
+      fahrzeug.category === 'TRIEBKOPF' ||
+      fahrzeug.category === 'LOK'
     ) {
       return;
     }
     if (
       (!identifier || identifier === 'IC2.TWIN') &&
-      wagenWithImage.includes(fahrzeug.fahrzeugtyp)
+      fahrzeug.type &&
+      wagenWithImage.includes(fahrzeug.type)
     ) {
-      return fahrzeug.fahrzeugtyp;
+      return fahrzeug.type;
     }
 
-    if (identifier && identifier !== 'TGV' && identifier !== 'MET') {
-      let relevantUIC = fahrzeug.fahrzeugnummer.substr(4, 5);
+    if (
+      identifier &&
+      identifier !== 'TGV' &&
+      identifier !== 'MET' &&
+      fahrzeug.uic
+    ) {
+      let relevantUIC = fahrzeug.uic.substr(4, 5);
       if (identifier.endsWith('R')) {
         relevantUIC += '.r';
       } else if (identifier.includes('.S')) {
@@ -71,16 +80,10 @@ export const WagenLink: FC<Props> = ({ fahrzeug, identifier, type }) => {
       }
       return relevantUIC;
     }
-  }, [
-    fahrzeug.fahrzeugnummer,
-    fahrzeug.fahrzeugtyp,
-    fahrzeug.kategorie,
-    identifier,
-    type,
-  ]);
+  }, [fahrzeug.category, fahrzeug.type, fahrzeug.uic, identifier, type]);
 
   if (!imageName) {
-    return <span className={classes.link}>{fahrzeug.fahrzeugtyp}</span>;
+    return <span className={classes.link}>{fahrzeug.type}</span>;
   }
 
   return (
@@ -91,7 +94,7 @@ export const WagenLink: FC<Props> = ({ fahrzeug, identifier, type }) => {
       target="_blank"
       rel="noopener noreferrer"
     >
-      {fahrzeug.fahrzeugtyp}
+      {fahrzeug.type}
     </a>
   );
 };

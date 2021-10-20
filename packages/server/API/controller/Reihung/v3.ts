@@ -1,5 +1,6 @@
 import {
   Controller,
+  Deprecated,
   Get,
   OperationId,
   Query,
@@ -19,6 +20,7 @@ export class ReihungControllerV3 extends Controller {
   @Get('/wagen/{trainNumber}')
   @Tags('Reihung')
   @OperationId('Wagenreihung v3')
+  @Deprecated()
   async wagenreihung(
     trainNumber: number,
     @Query() departure: Date,

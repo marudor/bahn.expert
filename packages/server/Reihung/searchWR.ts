@@ -1,11 +1,12 @@
-import { getWRLink, wagenreihung } from 'server/Reihung';
+import { coachSequence } from 'server/coachSequence';
+import { getDBCoachSequenceUrl } from 'server/coachSequence/DB';
 import { parse } from 'date-fns';
 import Axios from 'axios';
-import type { Formation } from 'types/reihung';
+import type { CoachSequenceInformation } from 'types/coachSequence';
 
 const getPossibleWRs = async (): Promise<string[] | undefined> => {
   try {
-    await Axios.get(getWRLink('1', new Date(), 'noncd'));
+    await Axios.get(getDBCoachSequenceUrl('1', new Date(), 'noncd'));
   } catch (e: any) {
     const tryThese = e.response?.data?.tryThese;
     if (tryThese && Array.isArray(tryThese)) {
@@ -20,7 +21,7 @@ const getPossibleWRs = async (): Promise<string[] | undefined> => {
  */
 export const WRForTZ = async (
   TZNumber: string,
-): Promise<Formation | undefined> => {
+): Promise<CoachSequenceInformation | undefined> => {
   const tryThese = await getPossibleWRs();
   const triedNumbers: string[] = [];
   if (tryThese) {
@@ -30,13 +31,12 @@ export const WRForTZ = async (
       const parsedNumber = Number.parseInt(number, 10);
       if (parsedNumber > 3000 && parsedNumber < 9000) continue;
       try {
-        const wr = await wagenreihung(
+        const wr = await coachSequence(
           number,
           parse(time, 'yyyyMMddHHmm', Date.now()),
-          0,
         );
         triedNumbers.push(number);
-        if (wr.allFahrzeuggruppe.some((g) => g.tzn === TZNumber)) {
+        if (wr?.sequence.groups.some((g) => g.name.endsWith(TZNumber))) {
           return wr;
         }
       } catch {
@@ -48,7 +48,7 @@ export const WRForTZ = async (
 
 export const WRForNumber = async (
   trainNumber: string,
-): Promise<Formation | undefined> => {
+): Promise<CoachSequenceInformation | undefined> => {
   const tryThese = await getPossibleWRs();
   if (tryThese) {
     const relevantLines = tryThese.filter((line) => {
@@ -58,7 +58,7 @@ export const WRForNumber = async (
     for (const relevantLine of relevantLines) {
       const [, , time] = relevantLine.split('/');
       try {
-        const wr = await wagenreihung(
+        const wr = await coachSequence(
           trainNumber,
           parse(time, 'yyyyMMddHHmm', Date.now()),
         );

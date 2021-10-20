@@ -1,7 +1,7 @@
 import { Dialog, DialogContent, makeStyles } from '@material-ui/core';
 import { stopPropagation } from 'client/Common/stopPropagation';
 import { useCallback, useState } from 'react';
-import type { AdditionalFahrzeugInfo } from 'types/reihung';
+import type { CoachSequenceCoachSeats } from 'types/coachSequence';
 import type { FC, SyntheticEvent } from 'react';
 
 const useStyles = makeStyles((theme) => ({
@@ -16,14 +16,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface Props {
-  additionalInfo: AdditionalFahrzeugInfo;
-  wagenordnungsnummer: string;
+  seats?: CoachSequenceCoachSeats;
+  identificationNumber?: string;
 }
 
-export const SitzplatzInfo: FC<Props> = ({
-  additionalInfo,
-  wagenordnungsnummer,
-}) => {
+export const SitzplatzInfo: FC<Props> = ({ seats, identificationNumber }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const toggle = useCallback((e: SyntheticEvent) => {
@@ -32,11 +29,7 @@ export const SitzplatzInfo: FC<Props> = ({
     setOpen((oldOpen) => !oldOpen);
   }, []);
 
-  if (
-    !additionalInfo.comfortSeats &&
-    !additionalInfo.disabledSeats &&
-    !additionalInfo.familySeats
-  ) {
+  if (!seats || (!seats.comfort && !seats.disabled && !seats.family)) {
     return null;
   }
 
@@ -51,29 +44,29 @@ export const SitzplatzInfo: FC<Props> = ({
       </span>
       <Dialog fullWidth open={open} onClose={toggle} onClick={stopPropagation}>
         <DialogContent>
-          <h3>Sitzplätze Wagen {wagenordnungsnummer}</h3>
-          {additionalInfo.comfortSeats && (
+          <h3>Sitzplätze Wagen {identificationNumber}</h3>
+          {seats.comfort && (
             <div
               className={classes.textLine}
               data-testid="sitzplatzinfoComfort"
             >
               <span>Comfort:</span>
-              <span>{additionalInfo.comfortSeats}</span>
+              <span>{seats.comfort}</span>
             </div>
           )}
-          {additionalInfo.disabledSeats && (
+          {seats.disabled && (
             <div
               className={classes.textLine}
               data-testid="sitzplatzinfoDisabled"
             >
               <span>Schwerbehindert:</span>
-              <span>{additionalInfo.disabledSeats}</span>
+              <span>{seats.disabled}</span>
             </div>
           )}
-          {additionalInfo.familySeats && (
+          {seats.family && (
             <div className={classes.textLine} data-testid="sitzplatzinfoFamily">
               <span>Familienbereich:</span>
-              <span>{additionalInfo.familySeats}</span>
+              <span>{seats.family}</span>
             </div>
           )}
         </DialogContent>

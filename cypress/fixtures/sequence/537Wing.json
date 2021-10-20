@@ -1,749 +1,239 @@
 {
-  "fahrtrichtung": "VORWAERTS",
-  "allFahrzeuggruppe": [
-    {
-      "allFahrzeug": [
-        {
-          "allFahrzeugausstattung": [],
-          "kategorie": "TRIEBKOPF",
-          "fahrzeugnummer": "938054020426",
-          "orientierung": "UNDEFINIERT",
-          "positioningruppe": "1",
-          "fahrzeugsektor": "A",
-          "fahrzeugtyp": "I4020",
-          "wagenordnungsnummer": "",
-          "positionamhalt": {
-            "endemeter": "410",
-            "endeprozent": "100",
-            "startmeter": "389.44",
-            "startprozent": "95"
+  "sequence": {
+    "groups": [
+      {
+        "coaches": [
+          {
+            "class": 4,
+            "category": "TRIEBKOPF",
+            "closed": true,
+            "position": { "endPercent": 100, "startPercent": 95 },
+            "identificationNumber": "",
+            "type": "I4015",
+            "uic": "938054015566",
+            "features": {}
           },
-          "status": "OFFEN",
-          "additionalInfo": {
-            "klasse": 4,
-            "icons": {}
-          }
-        },
-        {
-          "allFahrzeugausstattung": [
-            {
-              "anzahl": "",
-              "ausstattungsart": "KLIMA",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            },
-            {
-              "anzahl": "",
-              "ausstattungsart": "RUHE",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            },
-            {
-              "anzahl": "",
-              "ausstattungsart": "PLAETZESCHWERBEH",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            }
-          ],
-          "kategorie": "REISEZUGWAGENERSTEKLASSE",
-          "fahrzeugnummer": "938058053266",
-          "orientierung": "UNDEFINIERT",
-          "positioningruppe": "2",
-          "fahrzeugsektor": "A",
-          "fahrzeugtyp": "Apmz",
-          "wagenordnungsnummer": "37",
-          "positionamhalt": {
-            "endemeter": "389.44",
-            "endeprozent": "95",
-            "startmeter": "363.04",
-            "startprozent": "89"
+          {
+            "class": 1,
+            "category": "REISEZUGWAGENERSTEKLASSE",
+            "position": { "endPercent": 95, "startPercent": 89 },
+            "identificationNumber": "12",
+            "type": "Avmz",
+            "uic": "938058018558",
+            "features": { "quiet": true, "disabled": true }
           },
-          "status": "OFFEN",
-          "additionalInfo": {
-            "klasse": 1,
-            "icons": {
-              "quiet": true,
-              "disabled": true
-            },
-            "disabledSeats": "12, 21"
-          }
-        },
-        {
-          "allFahrzeugausstattung": [
-            {
-              "anzahl": "",
-              "ausstattungsart": "KLIMA",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            },
-            {
-              "anzahl": "",
-              "ausstattungsart": "PLAETZEBAHNCOMFORT",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            }
-          ],
-          "kategorie": "REISEZUGWAGENERSTEKLASSE",
-          "fahrzeugnummer": "938058050395",
-          "orientierung": "UNDEFINIERT",
-          "positioningruppe": "3",
-          "fahrzeugsektor": "A",
-          "fahrzeugtyp": "Apmz",
-          "wagenordnungsnummer": "36",
-          "positionamhalt": {
-            "endemeter": "363.04",
-            "endeprozent": "89",
-            "startmeter": "336.64",
-            "startprozent": "82"
+          {
+            "class": 1,
+            "category": "REISEZUGWAGENERSTEKLASSE",
+            "position": { "endPercent": 89, "startPercent": 82 },
+            "identificationNumber": "11",
+            "type": "Avmz",
+            "uic": "938058010852",
+            "features": { "comfort": true }
           },
-          "status": "OFFEN",
-          "additionalInfo": {
-            "klasse": 1,
-            "icons": {},
-            "comfort": true,
-            "comfortSeats": "11-16, 21, 22"
-          }
-        },
-        {
-          "allFahrzeugausstattung": [
-            {
-              "anzahl": "",
-              "ausstattungsart": "INFO",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            },
-            {
-              "anzahl": "",
-              "ausstattungsart": "PLAETZEROLLSTUHL",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            },
-            {
-              "anzahl": "",
-              "ausstattungsart": "ROLLSTUHLTOILETTE",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            }
-          ],
-          "kategorie": "SPEISEWAGEN",
-          "fahrzeugnummer": "938058070195",
-          "orientierung": "UNDEFINIERT",
-          "positioningruppe": "4",
-          "fahrzeugsektor": "A",
-          "fahrzeugtyp": "WRmbsz",
-          "wagenordnungsnummer": "35",
-          "positionamhalt": {
-            "endemeter": "336.64",
-            "endeprozent": "82",
-            "startmeter": "310.24",
-            "startprozent": "76"
+          {
+            "class": 2,
+            "category": "SPEISEWAGEN",
+            "position": { "endPercent": 82, "startPercent": 76 },
+            "identificationNumber": "7",
+            "type": "WRmz",
+            "uic": "938058040081",
+            "features": { "dining": true }
           },
-          "status": "OFFEN",
-          "additionalInfo": {
-            "klasse": 2,
-            "icons": {
-              "dining": true,
+          {
+            "class": 2,
+            "category": "REISEZUGWAGENZWEITEKLASSE",
+            "position": { "endPercent": 76, "startPercent": 69 },
+            "identificationNumber": "6",
+            "type": "Bpmbsz",
+            "uic": "938058031403",
+            "features": {
               "info": true,
-              "wheelchair": true
+              "toddler": true,
+              "wheelchair": true,
+              "comfort": true,
+              "disabled": true
             }
-          }
-        },
-        {
-          "allFahrzeugausstattung": [
-            {
-              "anzahl": "",
-              "ausstattungsart": "KLIMA",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            },
-            {
-              "anzahl": "",
-              "ausstattungsart": "FAMILIE",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            },
-            {
-              "anzahl": "",
-              "ausstattungsart": "ABTEILKLEINKIND",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            },
-            {
-              "anzahl": "",
-              "ausstattungsart": "PLAETZEROLLSTUHL",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            },
-            {
-              "anzahl": "",
-              "ausstattungsart": "ROLLSTUHLTOILETTE",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            },
-            {
-              "anzahl": "",
-              "ausstattungsart": "PLAETZESCHWERBEH",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            }
-          ],
-          "kategorie": "REISEZUGWAGENZWEITEKLASSE",
-          "fahrzeugnummer": "938058060162",
-          "orientierung": "UNDEFINIERT",
-          "positioningruppe": "5",
-          "fahrzeugsektor": "B",
-          "fahrzeugtyp": "Bpmbz",
-          "wagenordnungsnummer": "34",
-          "positionamhalt": {
-            "endemeter": "310.24",
-            "endeprozent": "76",
-            "startmeter": "283.84",
-            "startprozent": "69"
           },
-          "status": "OFFEN",
-          "additionalInfo": {
-            "klasse": 2,
-            "icons": {
+          {
+            "class": 2,
+            "category": "REISEZUGWAGENZWEITEKLASSE",
+            "position": { "endPercent": 69, "startPercent": 63 },
+            "identificationNumber": "5",
+            "type": "Bvmz",
+            "uic": "938058023020",
+            "features": { "family": true }
+          },
+          {
+            "class": 2,
+            "category": "REISEZUGWAGENZWEITEKLASSE",
+            "position": { "endPercent": 63, "startPercent": 56 },
+            "identificationNumber": "4",
+            "type": "Bvmz",
+            "uic": "938058020885",
+            "features": { "disabled": true }
+          },
+          {
+            "class": 2,
+            "category": "REISEZUGWAGENZWEITEKLASSE",
+            "position": { "endPercent": 56, "startPercent": 50 },
+            "identificationNumber": "3",
+            "type": "Bvmz",
+            "uic": "938058023673",
+            "features": {}
+          },
+          {
+            "class": 2,
+            "category": "REISEZUGWAGENZWEITEKLASSE",
+            "position": { "endPercent": 50, "startPercent": 43 },
+            "identificationNumber": "2",
+            "type": "Bvmz",
+            "uic": "938058026528",
+            "features": { "quiet": true }
+          },
+          {
+            "class": 2,
+            "category": "REISEZUGWAGENZWEITEKLASSE",
+            "position": { "endPercent": 43, "startPercent": 37 },
+            "identificationNumber": "1",
+            "type": "Bvmz",
+            "uic": "938058028268",
+            "features": {}
+          },
+          {
+            "class": 4,
+            "category": "TRIEBKOPF",
+            "closed": true,
+            "position": { "endPercent": 37, "startPercent": 32 },
+            "identificationNumber": "",
+            "type": "I4010",
+            "uic": "938054010567",
+            "features": {}
+          }
+        ],
+        "destinationName": "Nürnberg Hbf",
+        "originName": "Hamburg-Altona",
+        "name": "ICE0156",
+        "number": "587",
+        "trainName": "Heppenheim/Bergstraße",
+        "baureihe": {
+          "identifier": "401.LDV",
+          "baureihe": "401",
+          "name": "ICE 1 LDV (BR401)"
+        }
+      },
+      {
+        "coaches": [
+          {
+            "class": 4,
+            "category": "TRIEBKOPF",
+            "closed": true,
+            "position": { "endPercent": 32, "startPercent": 27 },
+            "identificationNumber": "",
+            "type": "I4020",
+            "uic": "938054020095",
+            "features": {}
+          },
+          {
+            "class": 1,
+            "category": "REISEZUGWAGENERSTEKLASSE",
+            "position": { "endPercent": 27, "startPercent": 21 },
+            "identificationNumber": "37",
+            "type": "Apmz",
+            "uic": "938058053134",
+            "features": { "quiet": true, "disabled": true },
+            "seats": { "disabled": "12, 21" }
+          },
+          {
+            "class": 1,
+            "category": "REISEZUGWAGENERSTEKLASSE",
+            "position": { "endPercent": 21, "startPercent": 14 },
+            "identificationNumber": "36",
+            "type": "Apmz",
+            "uic": "938058050130",
+            "features": { "comfort": true },
+            "seats": { "comfort": "11-16, 21, 22" }
+          },
+          {
+            "class": 2,
+            "category": "SPEISEWAGEN",
+            "position": { "endPercent": 14, "startPercent": 8 },
+            "identificationNumber": "35",
+            "type": "WRmbsz",
+            "uic": "938058070310",
+            "features": { "dining": true, "info": true, "wheelchair": true }
+          },
+          {
+            "class": 2,
+            "category": "REISEZUGWAGENZWEITEKLASSE",
+            "position": { "endPercent": 8, "startPercent": 1 },
+            "identificationNumber": "34",
+            "type": "Bpmbz",
+            "uic": "938058060170",
+            "features": {
               "family": true,
               "toddler": true,
               "wheelchair": true,
               "disabled": true
             },
-            "disabledSeats": "81, 85-88"
-          }
-        },
-        {
-          "allFahrzeugausstattung": [
-            {
-              "anzahl": "",
-              "ausstattungsart": "KLIMA",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            },
-            {
-              "anzahl": "",
-              "ausstattungsart": "PLAETZEBAHNCOMFORT",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            }
-          ],
-          "kategorie": "REISEZUGWAGENZWEITEKLASSE",
-          "fahrzeugnummer": "938058063232",
-          "orientierung": "UNDEFINIERT",
-          "positioningruppe": "6",
-          "fahrzeugsektor": "B",
-          "fahrzeugtyp": "Bpmz",
-          "wagenordnungsnummer": "33",
-          "positionamhalt": {
-            "endemeter": "283.84",
-            "endeprozent": "69",
-            "startmeter": "257.44",
-            "startprozent": "63"
+            "seats": { "disabled": "81, 85-88", "family": "61-78" }
           },
-          "status": "OFFEN",
-          "additionalInfo": {
-            "klasse": 2,
-            "icons": {},
-            "comfort": true,
-            "comfortSeats": "81-108"
-          }
-        },
-        {
-          "allFahrzeugausstattung": [
-            {
-              "anzahl": "",
-              "ausstattungsart": "KLIMA",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            },
-            {
-              "anzahl": "",
-              "ausstattungsart": "RUHE",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            }
-          ],
-          "kategorie": "REISEZUGWAGENZWEITEKLASSE",
-          "fahrzeugnummer": "938058066177",
-          "orientierung": "UNDEFINIERT",
-          "positioningruppe": "7",
-          "fahrzeugsektor": "C",
-          "fahrzeugtyp": "Bpmz",
-          "wagenordnungsnummer": "32",
-          "positionamhalt": {
-            "endemeter": "257.44",
-            "endeprozent": "63",
-            "startmeter": "231.04",
-            "startprozent": "56"
+          {
+            "class": 2,
+            "category": "REISEZUGWAGENZWEITEKLASSE",
+            "position": { "endPercent": 1, "startPercent": -5 },
+            "identificationNumber": "33",
+            "type": "Bpmz",
+            "uic": "938058063141",
+            "features": { "comfort": true },
+            "seats": { "comfort": "81-108" }
           },
-          "status": "OFFEN",
-          "additionalInfo": {
-            "klasse": 2,
-            "icons": {
-              "quiet": true
-            }
-          }
-        },
-        {
-          "allFahrzeugausstattung": [
-            {
-              "anzahl": "",
-              "ausstattungsart": "KLIMA",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            }
-          ],
-          "kategorie": "STEUERWAGENZWEITEKLASSE",
-          "fahrzeugnummer": "938058080426",
-          "orientierung": "UNDEFINIERT",
-          "positioningruppe": "8",
-          "fahrzeugsektor": "C",
-          "fahrzeugtyp": "Bpmzf",
-          "wagenordnungsnummer": "31",
-          "positionamhalt": {
-            "endemeter": "231.04",
-            "endeprozent": "56",
-            "startmeter": "204.64",
-            "startprozent": "50"
+          {
+            "class": 2,
+            "category": "REISEZUGWAGENZWEITEKLASSE",
+            "position": { "endPercent": -5, "startPercent": -12 },
+            "identificationNumber": "32",
+            "type": "Bpmz",
+            "uic": "938058066037",
+            "features": { "quiet": true }
           },
-          "status": "OFFEN",
-          "additionalInfo": {
-            "klasse": 2,
-            "icons": {}
+          {
+            "class": 2,
+            "category": "STEUERWAGENZWEITEKLASSE",
+            "position": { "endPercent": -12, "startPercent": -18 },
+            "identificationNumber": "31",
+            "type": "Bpmzf",
+            "uic": "938058080095",
+            "features": {}
           }
+        ],
+        "destinationName": "Nürnberg Hbf",
+        "originName": "Bremen Hbf",
+        "name": "ICE0209",
+        "number": "537",
+        "trainName": "Riesa",
+        "baureihe": {
+          "baureihe": "402",
+          "identifier": "402",
+          "name": "ICE 2 (BR402)"
         }
-      ],
-      "fahrzeuggruppebezeichnung": "ICE0242",
-      "zielbetriebsstellename": "München Hbf",
-      "startbetriebsstellename": "Bremen Hbf",
-      "verkehrlichezugnummer": "537",
-      "br": {
-        "name": "ICE 2",
-        "BR": "402",
-        "country": "DE",
-        "showBRInfo": true
-      },
-      "goesToFrance": false,
-      "tzn": "0242",
-      "name": "Quedlinburg",
-      "startPercentage": 50,
-      "endPercentage": 100
-    },
-    {
-      "allFahrzeug": [
-        {
-          "allFahrzeugausstattung": [],
-          "kategorie": "TRIEBKOPF",
-          "fahrzeugnummer": "938054020392",
-          "orientierung": "UNDEFINIERT",
-          "positioningruppe": "1",
-          "fahrzeugsektor": "D",
-          "fahrzeugtyp": "I4020",
-          "wagenordnungsnummer": "",
-          "positionamhalt": {
-            "endemeter": "204.64",
-            "endeprozent": "50",
-            "startmeter": "184.08",
-            "startprozent": "45"
-          },
-          "status": "OFFEN",
-          "additionalInfo": {
-            "klasse": 4,
-            "icons": {}
-          }
-        },
-        {
-          "allFahrzeugausstattung": [
-            {
-              "anzahl": "",
-              "ausstattungsart": "KLIMA",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            },
-            {
-              "anzahl": "",
-              "ausstattungsart": "RUHE",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            },
-            {
-              "anzahl": "",
-              "ausstattungsart": "PLAETZESCHWERBEH",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            }
-          ],
-          "kategorie": "REISEZUGWAGENERSTEKLASSE",
-          "fahrzeugnummer": "938058053175",
-          "orientierung": "UNDEFINIERT",
-          "positioningruppe": "2",
-          "fahrzeugsektor": "D",
-          "fahrzeugtyp": "Apmz",
-          "wagenordnungsnummer": "27",
-          "positionamhalt": {
-            "endemeter": "184.08",
-            "endeprozent": "45",
-            "startmeter": "157.68",
-            "startprozent": "38"
-          },
-          "status": "OFFEN",
-          "additionalInfo": {
-            "klasse": 1,
-            "icons": {
-              "quiet": true,
-              "disabled": true
-            },
-            "disabledSeats": "12, 21"
-          }
-        },
-        {
-          "allFahrzeugausstattung": [
-            {
-              "anzahl": "",
-              "ausstattungsart": "KLIMA",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            },
-            {
-              "anzahl": "",
-              "ausstattungsart": "PLAETZEBAHNCOMFORT",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            }
-          ],
-          "kategorie": "REISEZUGWAGENERSTEKLASSE",
-          "fahrzeugnummer": "938058050163",
-          "orientierung": "UNDEFINIERT",
-          "positioningruppe": "3",
-          "fahrzeugsektor": "E",
-          "fahrzeugtyp": "Apmz",
-          "wagenordnungsnummer": "26",
-          "positionamhalt": {
-            "endemeter": "157.68",
-            "endeprozent": "38",
-            "startmeter": "131.28",
-            "startprozent": "32"
-          },
-          "status": "OFFEN",
-          "additionalInfo": {
-            "klasse": 1,
-            "icons": {},
-            "comfort": true,
-            "comfortSeats": "11-16, 21, 22"
-          }
-        },
-        {
-          "allFahrzeugausstattung": [
-            {
-              "anzahl": "",
-              "ausstattungsart": "INFO",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            },
-            {
-              "anzahl": "",
-              "ausstattungsart": "PLAETZEROLLSTUHL",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            },
-            {
-              "anzahl": "",
-              "ausstattungsart": "ROLLSTUHLTOILETTE",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            }
-          ],
-          "kategorie": "SPEISEWAGEN",
-          "fahrzeugnummer": "938058070062",
-          "orientierung": "UNDEFINIERT",
-          "positioningruppe": "4",
-          "fahrzeugsektor": "E",
-          "fahrzeugtyp": "WRmbsz",
-          "wagenordnungsnummer": "25",
-          "positionamhalt": {
-            "endemeter": "131.28",
-            "endeprozent": "32",
-            "startmeter": "104.88",
-            "startprozent": "26"
-          },
-          "status": "OFFEN",
-          "additionalInfo": {
-            "klasse": 2,
-            "icons": {
-              "dining": true,
-              "info": true,
-              "wheelchair": true
-            }
-          }
-        },
-        {
-          "allFahrzeugausstattung": [
-            {
-              "anzahl": "",
-              "ausstattungsart": "KLIMA",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            },
-            {
-              "anzahl": "",
-              "ausstattungsart": "FAMILIE",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            },
-            {
-              "anzahl": "",
-              "ausstattungsart": "ABTEILKLEINKIND",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            },
-            {
-              "anzahl": "",
-              "ausstattungsart": "PLAETZEROLLSTUHL",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            },
-            {
-              "anzahl": "",
-              "ausstattungsart": "ROLLSTUHLTOILETTE",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            },
-            {
-              "anzahl": "",
-              "ausstattungsart": "PLAETZESCHWERBEH",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            }
-          ],
-          "kategorie": "REISEZUGWAGENZWEITEKLASSE",
-          "fahrzeugnummer": "938058060238",
-          "orientierung": "UNDEFINIERT",
-          "positioningruppe": "5",
-          "fahrzeugsektor": "F",
-          "fahrzeugtyp": "Bpmbz",
-          "wagenordnungsnummer": "24",
-          "positionamhalt": {
-            "endemeter": "104.88",
-            "endeprozent": "26",
-            "startmeter": "78.48",
-            "startprozent": "19"
-          },
-          "status": "OFFEN",
-          "additionalInfo": {
-            "klasse": 2,
-            "icons": {
-              "family": true,
-              "toddler": true,
-              "wheelchair": true,
-              "disabled": true
-            },
-            "disabledSeats": "81, 85-88"
-          }
-        },
-        {
-          "allFahrzeugausstattung": [
-            {
-              "anzahl": "",
-              "ausstattungsart": "KLIMA",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            },
-            {
-              "anzahl": "",
-              "ausstattungsart": "PLAETZEBAHNCOMFORT",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            }
-          ],
-          "kategorie": "REISEZUGWAGENZWEITEKLASSE",
-          "fahrzeugnummer": "938058063257",
-          "orientierung": "UNDEFINIERT",
-          "positioningruppe": "6",
-          "fahrzeugsektor": "F",
-          "fahrzeugtyp": "Bpmz",
-          "wagenordnungsnummer": "23",
-          "positionamhalt": {
-            "endemeter": "78.48",
-            "endeprozent": "19",
-            "startmeter": "52.08",
-            "startprozent": "13"
-          },
-          "status": "OFFEN",
-          "additionalInfo": {
-            "klasse": 2,
-            "icons": {},
-            "comfort": true,
-            "comfortSeats": "81-108"
-          }
-        },
-        {
-          "allFahrzeugausstattung": [
-            {
-              "anzahl": "",
-              "ausstattungsart": "KLIMA",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            },
-            {
-              "anzahl": "",
-              "ausstattungsart": "RUHE",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            }
-          ],
-          "kategorie": "REISEZUGWAGENZWEITEKLASSE",
-          "fahrzeugnummer": "938058066078",
-          "orientierung": "UNDEFINIERT",
-          "positioningruppe": "7",
-          "fahrzeugsektor": "G",
-          "fahrzeugtyp": "Bpmz",
-          "wagenordnungsnummer": "22",
-          "positionamhalt": {
-            "endemeter": "52.08",
-            "endeprozent": "13",
-            "startmeter": "25.68",
-            "startprozent": "6"
-          },
-          "status": "OFFEN",
-          "additionalInfo": {
-            "klasse": 2,
-            "icons": {
-              "quiet": true
-            }
-          }
-        },
-        {
-          "allFahrzeugausstattung": [
-            {
-              "anzahl": "",
-              "ausstattungsart": "KLIMA",
-              "bezeichnung": "",
-              "status": "UNDEFINIERT"
-            }
-          ],
-          "kategorie": "STEUERWAGENZWEITEKLASSE",
-          "fahrzeugnummer": "938058080392",
-          "orientierung": "UNDEFINIERT",
-          "positioningruppe": "8",
-          "fahrzeugsektor": "G",
-          "fahrzeugtyp": "Bpmzf",
-          "wagenordnungsnummer": "21",
-          "positionamhalt": {
-            "endemeter": "25.68",
-            "endeprozent": "6",
-            "startmeter": "-0.72",
-            "startprozent": "-0"
-          },
-          "status": "OFFEN",
-          "additionalInfo": {
-            "klasse": 2,
-            "icons": {}
-          }
-        }
-      ],
-      "fahrzeuggruppebezeichnung": "ICE0239",
-      "zielbetriebsstellename": "München Hbf",
-      "startbetriebsstellename": "Hamburg-Altona",
-      "verkehrlichezugnummer": "587",
-      "br": {
-        "name": "ICE 2",
-        "BR": "402",
-        "country": "DE",
-        "showBRInfo": true
-      },
-      "goesToFrance": false,
-      "tzn": "0239",
-      "name": "Essen",
-      "startPercentage": 0,
-      "endPercentage": 50
-    }
-  ],
-  "halt": {
-    "abfahrtszeit": "2020-02-22T12:26:00",
-    "ankunftszeit": "2020-02-22T12:22:00",
-    "bahnhofsname": "Hannover Hbf",
-    "evanummer": "8000152",
-    "gleisbezeichnung": "4",
-    "haltid": "HH",
-    "rl100": "HH",
-    "allSektor": [
-      {
-        "positionamgleis": {
-          "endemeter": "40.475",
-          "endeprozent": "10",
-          "startmeter": "0",
-          "startprozent": "0"
-        },
-        "sektorbezeichnung": "G"
-      },
-      {
-        "positionamgleis": {
-          "endemeter": "93",
-          "endeprozent": "23",
-          "startmeter": "40.475",
-          "startprozent": "10"
-        },
-        "sektorbezeichnung": "F"
-      },
-      {
-        "positionamgleis": {
-          "endemeter": "145.475",
-          "endeprozent": "35",
-          "startmeter": "93",
-          "startprozent": "23"
-        },
-        "sektorbezeichnung": "E"
-      },
-      {
-        "positionamgleis": {
-          "endemeter": "197.025",
-          "endeprozent": "48",
-          "startmeter": "145.475",
-          "startprozent": "35"
-        },
-        "sektorbezeichnung": "D"
-      },
-      {
-        "positionamgleis": {
-          "endemeter": "249.45",
-          "endeprozent": "61",
-          "startmeter": "197.025",
-          "startprozent": "48"
-        },
-        "sektorbezeichnung": "C"
-      },
-      {
-        "positionamgleis": {
-          "endemeter": "302.7",
-          "endeprozent": "74",
-          "startmeter": "249.45",
-          "startprozent": "61"
-        },
-        "sektorbezeichnung": "B"
-      },
-      {
-        "positionamgleis": {
-          "endemeter": "410",
-          "endeprozent": "100",
-          "startmeter": "302.7",
-          "startprozent": "74"
-        },
-        "sektorbezeichnung": "A"
       }
     ]
   },
-  "liniebezeichnung": "25",
-  "zuggattung": "ICE",
-  "zugnummer": "587",
-  "serviceid": "2551370026",
-  "planstarttag": "2020-02-22",
-  "fahrtid": "",
-  "istplaninformation": true,
-  "differentDestination": false,
-  "differentZugnummer": true,
-  "realFahrtrichtung": false,
-  "scale": 1,
-  "startPercentage": 0,
-  "endPercentage": 100,
-  "isRealtime": true
+  "product": { "number": "587", "type": "ICE" },
+  "stop": {
+    "stopPlace": { "evaNumber": "8000152", "name": "Hannover Hbf" },
+    "sectors": [
+      { "name": "G", "position": { "endPercent": 10, "startPercent": 0 } },
+      { "name": "F", "position": { "endPercent": 23, "startPercent": 10 } },
+      { "name": "E", "position": { "endPercent": 35, "startPercent": 23 } },
+      { "name": "D", "position": { "endPercent": 48, "startPercent": 35 } },
+      { "name": "C", "position": { "endPercent": 61, "startPercent": 48 } },
+      { "name": "B", "position": { "endPercent": 74, "startPercent": 61 } },
+      { "name": "A", "position": { "endPercent": 100, "startPercent": 74 } }
+    ]
+  },
+  "direction": false,
+  "isRealtime": true,
+  "multipleTrainNumbers": true
 }
