@@ -50,6 +50,7 @@ export const iconExplanation: { [K in keyof typeof icons]: string } = {
   disabled: 'Schwerbehindertenplätze',
   info: 'Dienstabteil',
   wifi: 'WLAN',
+  comfort: '',
 };
 
 export const Explain: FC = () => {
@@ -86,18 +87,20 @@ export const Explain: FC = () => {
                 const Icon = icons[iconName];
 
                 return (
-                  <div
-                    className={classes.iconWrap}
-                    data-testid={iconName}
-                    key={iconName}
-                  >
-                    <Icon />
-                    {iconExplanation[iconName]}
-                  </div>
+                  Icon && (
+                    <div
+                      className={classes.iconWrap}
+                      data-testid={iconName}
+                      key={iconName}
+                    >
+                      <Icon />
+                      {iconExplanation[iconName]}
+                    </div>
+                  )
                 );
               },
             )}
-            <div className={classes.iconWrap} data-testid="bahnComfort">
+            <div className={classes.iconWrap} data-testid="comfort">
               <div className={classes.comfort} />
               Bahn.Comfort Sitzplätze
             </div>

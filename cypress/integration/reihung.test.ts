@@ -5,7 +5,7 @@ describe('Reihung', () => {
       cy.visit('/');
       cy.intercept(
         {
-          url: '/api/reihung/v3/wagen/371?*',
+          url: '/api/reihung/v4/wagen/371?*',
           query: {
             evaNumber: '8000105',
             departure: '2019-08-07T12:50:00.000Z',
@@ -51,7 +51,7 @@ describe('Reihung', () => {
       cy.navigateToStation('Hannover Hbf');
       cy.intercept(
         {
-          url: '/api/reihung/v3/wagen/537?*',
+          url: '/api/reihung/v4/wagen/537?*',
           query: {
             evaNumber: '8000152',
             departure: '2020-02-22T11:26:00.000Z',
@@ -63,7 +63,7 @@ describe('Reihung', () => {
       ).as('537');
       cy.intercept(
         {
-          url: '/api/reihung/v3/wagen/587?*',
+          url: '/api/reihung/v4/wagen/587?*',
           query: {
             evaNumber: '8000152',
             departure: '2020-02-22T11:26:00.000Z',

@@ -1,7 +1,7 @@
 import { Controller, Get, Hidden, OperationId, Res, Route, Tags } from 'tsoa';
 import { WRForNumber, WRForTZ } from 'server/Reihung/searchWR';
-import TrainNames from 'server/Reihung/TrainNames';
-import type { Formation } from 'types/reihung';
+import TrainNames from '../../../coachSequence/TrainNames';
+import type { CoachSequenceInformation } from 'types/coachSequence';
 import type { TsoaResponse } from 'tsoa';
 
 @Route('/reihung/v1')
@@ -26,7 +26,7 @@ export class ReihungControllerV1 extends Controller {
   async forTZ(
     tz: string,
     @Res() notFoundResponse: TsoaResponse<404, void>,
-  ): Promise<Formation> {
+  ): Promise<CoachSequenceInformation> {
     const reihung = await WRForTZ(tz);
     if (!reihung) return notFoundResponse(404);
     return reihung;
@@ -38,7 +38,7 @@ export class ReihungControllerV1 extends Controller {
   async forNumber(
     number: string,
     @Res() notFoundResponse: TsoaResponse<404, void>,
-  ): Promise<Formation> {
+  ): Promise<CoachSequenceInformation> {
     const reihung = await WRForNumber(number);
     if (!reihung) return notFoundResponse(404);
     return reihung;

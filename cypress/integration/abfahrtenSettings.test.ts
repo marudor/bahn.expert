@@ -21,7 +21,7 @@ describe('Abfahrten Settings', () => {
     it('Show fahrzeuggruppe', () => {
       cy.intercept(
         {
-          url: '/api/reihung/v3/wagen/371?*',
+          url: '/api/reihung/v4/wagen/371?*',
           query: {
             evaNumber: '8000105',
             departure: '2019-08-07T12:50:00.000Z',
@@ -36,6 +36,26 @@ describe('Abfahrten Settings', () => {
       cy.findByTestId('fahrzeugGruppeConfig').click();
       cy.closeModal();
       cy.findByTestId('reihungFahrzeugGruppe').should('exist');
+    });
+
+    it('Show uic', () => {
+      cy.intercept(
+        {
+          url: '/api/reihung/v4/wagen/371?*',
+          query: {
+            evaNumber: '8000105',
+            departure: '2019-08-07T12:50:00.000Z',
+          },
+        },
+        {
+          fixture: 'sequence/genericICE1',
+        },
+      );
+      cy.findByTestId('abfahrtICE371').click();
+      cy.openSettings();
+      cy.findByTestId('showUIC').click();
+      cy.closeModal();
+      cy.findAllByTestId('uic').should('exist');
     });
   });
 

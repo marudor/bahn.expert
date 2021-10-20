@@ -1,3 +1,5 @@
+import type { AvailableBR, AvailableIdentifier } from 'types/coachSequence';
+
 export interface BaseFormation {
   /**
    * Should always be VORWAERTS
@@ -22,10 +24,6 @@ export interface BaseFormation {
 
 export interface Formation extends BaseFormation {
   allFahrzeuggruppe: Fahrzeuggruppe[];
-  /**
-   * Train is reported as ICE but has IC coach sequence
-   */
-  isActuallyIC: boolean;
   /**
    * Train Category that was reported
    */
@@ -84,34 +82,6 @@ export interface Halt {
   rl100: string;
   allSektor: Sektor[];
 }
-
-export type AvailableBR =
-  | '401'
-  | '402'
-  | '403'
-  | '406'
-  | '407'
-  | '410.1'
-  | '411'
-  | '412'
-  | '415';
-
-export type AvailableIdentifier =
-  | AvailableBR
-  | '401.LDV'
-  | '401.9'
-  | '411.S1'
-  | '411.S2'
-  | '412.7'
-  | '412.13'
-  | '403.R'
-  | '403.S1'
-  | '403.S2'
-  | '406.R'
-  | 'IC2.TWIN'
-  | 'IC2.KISS'
-  | 'MET'
-  | 'TGV';
 
 export interface BRInfo {
   name: string;

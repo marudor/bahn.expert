@@ -15,14 +15,14 @@ import { UIC } from './UIC';
 import { WagenLink } from './WagenLink';
 import clsx from 'clsx';
 import type {
-  AdditionalFahrzeugInfo,
   AvailableIdentifier,
-  Fahrzeug as FahrzeugType,
-} from 'types/reihung';
+  CoachSequenceCoach,
+  CoachSequenceCoachFeatures,
+} from 'types/coachSequence';
 import type { ComponentType, FC } from 'react';
 
 export const icons: {
-  [key in keyof Required<AdditionalFahrzeugInfo['icons']>]: ComponentType;
+  [key in keyof Required<CoachSequenceCoachFeatures>]: ComponentType | null;
 } = {
   wheelchair: Accessible,
   bike: Motorcycle,
@@ -33,6 +33,7 @@ export const icons: {
   disabled: Accessibility,
   info: InfoOutlined,
   wifi: WifiOutlined,
+  comfort: null,
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -50,8 +51,7 @@ const useStyles = makeStyles((theme) => ({
     boxSizing: 'border-box',
   },
   closed: {
-    background:
-      'repeating-linear-gradient(135deg, #999, #999, 5px, transparent 5px, transparent 10px)',
+    background: `repeating-linear-gradient(135deg, ${theme.colors.shadedBackground}, ${theme.colors.shadedBackground}, 5px, transparent 5px, transparent 10px)`,
   },
   wrongWing: {
     background: theme.colors.shadedBackground,
@@ -142,21 +142,12 @@ const useStyles = makeStyles((theme) => ({
 export interface InheritedProps {
   scale: number;
   correctLeft: number;
-  identifier?: AvailableIdentifier;
   type: string;
 }
 
 export interface Props extends InheritedProps {
-  fahrzeug: Pick<
-    FahrzeugType,
-    | 'fahrzeugtyp'
-    | 'wagenordnungsnummer'
-    | 'positionamhalt'
-    | 'status'
-    | 'additionalInfo'
-    | 'fahrzeugnummer'
-    | 'kategorie'
-  >;
+  identifier?: AvailableIdentifier;
+  fahrzeug: CoachSequenceCoach;
   destination?: string;
   wrongWing?: boolean;
   showUIC: boolean;
@@ -172,40 +163,36 @@ export const Fahrzeug: FC<Props> = ({
   type,
 }) => {
   const classes = useStyles();
-  const { startprozent, endeprozent } = fahrzeug.positionamhalt;
-  const start = Number.parseFloat(startprozent);
-  const end = Number.parseFloat(endeprozent);
+  const { startPercent, endPercent } = fahrzeug.position;
 
   const position = {
-    left: `${(start - correctLeft) * scale}%`,
-    width: `${(end - start) * scale}%`,
+    left: `${(startPercent - correctLeft) * scale}%`,
+    width: `${(endPercent - startPercent) * scale}%`,
   };
 
   return (
     <div
       className={clsx(classes.wrap, {
-        [classes.wrongWing]: wrongWing,
-        [classes.closed]:
-          fahrzeug.status === 'GESCHLOSSEN' ||
-          fahrzeug.additionalInfo.klasse === 4,
+        [classes.wrongWing]: wrongWing && !fahrzeug.closed,
+        [classes.closed]: fahrzeug.closed,
       })}
-      data-testid={`reihungFahrzeug${fahrzeug.wagenordnungsnummer}`}
+      data-testid={`reihungFahrzeug${fahrzeug.identificationNumber}`}
       style={position}
     >
-      {fahrzeug.kategorie.includes('DOPPELSTOCK') && (
+      {fahrzeug.category.includes('DOPPELSTOCK') && (
         <span className={classes.doppelstock} />
       )}
       <span
         className={clsx(
           classes.klasse,
-          classes[`klasse${fahrzeug.additionalInfo.klasse}` as const],
+          classes[`klasse${fahrzeug.class}` as const],
         )}
       />
-      {fahrzeug.additionalInfo.klasse !== 4 && (
-        <span className={classes.nummer}>{fahrzeug.wagenordnungsnummer}</span>
+      {fahrzeug.identificationNumber && (
+        <span className={classes.nummer}>{fahrzeug.identificationNumber}</span>
       )}
       <span>
-        {Object.entries(fahrzeug.additionalInfo.icons).map(([key, enabled]) => {
+        {Object.entries(fahrzeug.features).map(([key, enabled]) => {
           if (enabled) {
             // @ts-expect-error this is correct, it's exact!
             const SpecificIcon = icons[key];
@@ -216,17 +203,15 @@ export const Fahrzeug: FC<Props> = ({
           return null;
         })}
       </span>
-      {fahrzeug.additionalInfo.comfort && <span className={classes.comfort} />}
+      {fahrzeug.features.comfort && <span className={classes.comfort} />}
       <WagenLink fahrzeug={fahrzeug} identifier={identifier} type={type} />
-      {
-        <span className={classes.extraInfo}>
-          <SitzplatzInfo
-            wagenordnungsnummer={fahrzeug.wagenordnungsnummer}
-            additionalInfo={fahrzeug.additionalInfo}
-          />
-          {showUIC && <UIC uic={fahrzeug.fahrzeugnummer} />}
-        </span>
-      }
+      <span className={classes.extraInfo}>
+        <SitzplatzInfo
+          identificationNumber={fahrzeug.identificationNumber}
+          seats={fahrzeug.seats}
+        />
+        {showUIC && <UIC uic={fahrzeug.uic} />}
+      </span>
     </div>
   );
 };

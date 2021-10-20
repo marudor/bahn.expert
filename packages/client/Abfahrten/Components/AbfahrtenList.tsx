@@ -22,8 +22,8 @@ import {
 } from 'client/Abfahrten/provider/AbfahrtenProvider';
 import { useEffect, useState } from 'react';
 import { useHeaderTagsActions } from 'client/Common/provider/HeaderTagProvider';
-import { useReihungenActions } from 'client/Common/provider/ReihungenProvider';
 import { useRouteMatch } from 'react-router';
+import { useSequencesActions } from 'client/Common/provider/ReihungenProvider';
 import type { FC } from 'react';
 
 const useStyles = makeStyles((theme) => ({
@@ -50,7 +50,7 @@ const InnerAbfahrtenList = () => {
   const currentStopPlace = useCurrentAbfahrtenStopPlace();
   const error = useAbfahrtenError();
   const selectedDetail = useSelectedDetail();
-  const { clearReihungen } = useReihungenActions();
+  const { clearSequences } = useSequencesActions();
   const [scrolled, setScrolled] = useState(false);
   const { filteredAbfahrten, unfilteredAbfahrten } = useAbfahrten();
   const loading = !unfilteredAbfahrten && !error;
@@ -93,14 +93,14 @@ const InnerAbfahrtenList = () => {
     if (config.autoUpdate) {
       intervalId = setInterval(() => {
         void refreshCurrentAbfahrten();
-        clearReihungen();
+        clearSequences();
       }, config.autoUpdate * 1000);
     } else {
       cleanup();
     }
 
     return cleanup;
-  }, [clearReihungen, config.autoUpdate, refreshCurrentAbfahrten]);
+  }, [clearSequences, config.autoUpdate, refreshCurrentAbfahrten]);
 
   const [oldMatch, setOldMatch] = useState(paramStation);
 
