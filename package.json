@@ -11,6 +11,33 @@
     "packages/*"
   ],
   "engineStrict": true,
+  "jest-junit": {
+    "output": "./reports/junitresults.xml"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "footer-leading-blank": [
+        0
+      ]
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all",
+    "printWidth": 80
+  },
+  "percy": {
+    "version": 2,
+    "snapshot": {
+      "widths": [
+        375,
+        1366
+      ]
+    }
+  },
   "scripts": {
     "all:clean": "scripts/eachWorkspace.sh build:clean",
     "all:build": "scripts/eachWorkspace.sh build",
@@ -133,23 +160,5 @@
   },
   "keywords": [],
   "contributors": [],
-  "homepage": "http://marudor.de",
-  "jest-junit": {
-    "output": "./reports/junitresults.xml"
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ],
-    "rules": {
-      "footer-leading-blank": [
-        0
-      ]
-    }
-  },
-  "prettier": {
-    "singleQuote": true,
-    "trailingComma": "all",
-    "printWidth": 80
-  }
+  "homepage": "http://marudor.de"
 }
