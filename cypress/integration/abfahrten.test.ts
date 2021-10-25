@@ -77,5 +77,6 @@ describe('Abfahrten', () => {
         );
       });
     });
+    cy.percySnapshot();
   });
 });

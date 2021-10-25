@@ -37,6 +37,7 @@ describe('Abfahrten Settings', () => {
       cy.findByTestId('fahrzeugGruppeConfig').click();
       cy.closeModal();
       cy.findByTestId('reihungFahrzeugGruppe').should('exist');
+      cy.percySnapshot();
     });
 
     it('Show uic', () => {
@@ -57,6 +58,7 @@ describe('Abfahrten Settings', () => {
       cy.findByTestId('showUIC').click();
       cy.closeModal();
       cy.findAllByTestId('uic').should('exist');
+      cy.percySnapshot();
     });
   });
 
