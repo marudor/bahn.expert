@@ -69,6 +69,7 @@ export const App: FC = () => {
                 <Switch>
                   <Route path="/about" component={About} exact />
                   <Route path="/map" component={LazyMap} exact />
+                  {/* If you change this route also change hafasDetailsRedirect.ts */}
                   <Route
                     component={LazyDetails}
                     path="/details/:train/:initialDeparture*"

@@ -4788,6 +4788,40 @@
         ]
       }
     },
+    "/hafas/v1/detailsRedirect/{tripId}": {
+      "get": {
+        "operationId": "DetailsRedirect",
+        "responses": {
+          "302": {
+            "description": ""
+          },
+          "500": {
+            "description": "Failed to fetch a journey for this tripId"
+          }
+        },
+        "description": "This redirects to the current Details Page with a provided HAFAS TripId / JourneyId / JID",
+        "tags": ["HAFAS"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tripId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ]
+      }
+    },
     "/hafas/v1/geoStation": {
       "get": {
         "operationId": "Geo Station v1",

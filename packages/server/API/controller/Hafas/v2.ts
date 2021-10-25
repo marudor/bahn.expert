@@ -25,12 +25,12 @@ import type {
   ArrivalStationBoardEntry,
   DepartureStationBoardEntry,
 } from 'types/stationBoard';
-import type { Context } from 'koa';
 import type { EvaNumber } from 'types/common';
 import type {
   JourneyMatchOptions,
   ParsedJourneyMatchResponse,
 } from 'types/HAFAS/JourneyMatch';
+import type { Request as KRequest } from 'koa';
 import type { ParsedJourneyDetails } from 'types/HAFAS/JourneyDetails';
 import type { Route$Auslastung, SingleRoute } from 'types/routing';
 
@@ -46,11 +46,11 @@ export class HafasControllerV2 extends Controller {
   @OperationId('JourneyDetails v2')
   async journeyDetails(
     @Query() jid: string,
-    @Request() ctx: Context,
+    @Request() req: KRequest,
     @Query() profile?: AllowedHafasProfile,
   ): Promise<ParsedJourneyDetails> {
     // @ts-expect-error untyped
-    return JourneyDetails(jid, profile, ctx.query.raw);
+    return JourneyDetails(jid, profile, req.query.raw);
   }
 
   @Get('/auslastung/{start}/{destination}/{trainNumber}/{time}')
@@ -70,7 +70,7 @@ export class HafasControllerV2 extends Controller {
   @Tags('HAFAS')
   @OperationId('Arrival Station Board v2')
   arrivalStationBoard(
-    @Request() ctx: Context,
+    @Request() req: KRequest,
     /**
      * evaNumber
      */
@@ -86,7 +86,7 @@ export class HafasControllerV2 extends Controller {
       },
       profile,
       // @ts-expect-error untyped
-      ctx.query.raw as boolean,
+      req.query.raw as boolean,
     );
   }
 
@@ -94,7 +94,7 @@ export class HafasControllerV2 extends Controller {
   @Tags('HAFAS')
   @OperationId('Departure Station Board v2')
   departureStationBoard(
-    @Request() ctx: Context,
+    @Request() req: KRequest,
     @Query() station: EvaNumber,
     @Query() direction?: EvaNumber,
     @Query() date?: Date,
@@ -109,7 +109,7 @@ export class HafasControllerV2 extends Controller {
       },
       profile,
       // @ts-expect-error untyped
-      ctx.query.raw as boolean,
+      req.query.raw as boolean,
     );
   }
 
@@ -117,12 +117,12 @@ export class HafasControllerV2 extends Controller {
   @Tags('HAFAS')
   @OperationId('Journey Match v2')
   postJourneyMatch(
-    @Request() ctx: Context,
+    @Request() req: KRequest,
     @Body() options: JourneyMatchOptions,
     @Query() profile?: AllowedHafasProfile,
   ): Promise<ParsedJourneyMatchResponse[]> {
     // @ts-expect-error untyped
-    return JourneyMatch(options, profile, ctx.query.raw);
+    return JourneyMatch(options, profile, req.query.raw);
   }
 
   @Response(404, 'Train not found')
@@ -154,25 +154,25 @@ export class HafasControllerV2 extends Controller {
   @OperationId('Search on Trip v2')
   searchOnTrip(
     @Body() body: SearchOnTripBody,
-    @Request() ctx: Context,
+    @Request() req: KRequest,
     @Query() profile?: AllowedHafasProfile,
   ): Promise<SingleRoute> {
     const { sotMode, id } = body;
-    let req;
+    let hafasRequest;
 
     if (sotMode === 'RC') {
-      req = {
+      hafasRequest = {
         sotMode,
         ctxRecon: id,
       };
     } else {
-      req = {
+      hafasRequest = {
         sotMode,
         jid: id,
       };
     }
 
     // @ts-expect-error untyped
-    return SearchOnTrip(req, profile, ctx.query.raw);
+    return SearchOnTrip(hafasRequest, profile, req.query.raw);
   }
 }
