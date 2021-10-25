@@ -91,28 +91,6 @@ jobs:
           NODE_ENV: production
           BABEL_ENV: testProduction
           TEST_RUN: 1
-  bundleSize:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Use Node.js 16
-        uses: actions/setup-node@master
-        with:
-          node-version: 16
-      - name: install
-        run: |
-          yarn --immutable --immutable-cache
-        env:
-          CYPRESS_INSTALL_BINARY: 0
-      - name: bundleSize
-        run: yarn build:client:ci
-        env:
-          NODE_ENV: production
-          PT_PROJECT_TOKEN: a7f6dae0-81aa-496b-aeb4-8ffebdc28646
-          PT_BRANCH: ${{github.head_ref || github.ref}}
-          PT_COMMIT: ${{github.event.pull_request.head.sha || github.sha}}
   docker:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
