@@ -16,6 +16,7 @@ describe('Abfahrten Settings', () => {
       cy.findByTestId('abfahrtS35744').within(() => {
         cy.findByTestId('abfahrtStart').should('have.text', 'S 7S 35744');
       });
+      cy.percySnapshot();
     });
 
     it('Show fahrzeuggruppe', () => {
