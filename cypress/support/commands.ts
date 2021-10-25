@@ -22,8 +22,20 @@ Cypress.Commands.add(
   },
 );
 
+Cypress.Commands.add('theme', (type: 'dark' | 'light' | 'black') => {
+  cy.findByTestId('navToggle').click();
+  cy.findByTestId('themes').click();
+  cy.findByTestId('themeList').find(`[data-value="${type}"]`).click();
+});
+
 Cypress.Commands.add('closeModal', () => {
   cy.get('.MuiBackdrop-root').click({ force: true });
+});
+
+Cypress.Commands.add('percy', (name: string) => {
+  cy.percySnapshot(name);
+  cy.theme('dark');
+  cy.percySnapshot(`${name} dark`);
 });
 
 function mockStopPlace({
