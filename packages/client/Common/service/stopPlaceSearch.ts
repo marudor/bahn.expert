@@ -19,7 +19,6 @@ export async function getStopPlacesFromAPI(
   searchTerm?: string,
 ): Promise<GroupedStopPlace[]> {
   if (searchTerm) {
-    console.log(groupedBySales);
     return (
       await Axios.get<GroupedStopPlace[]>(
         `/api/stopPlace/v1/search/${encodeURIComponent(searchTerm)}`,

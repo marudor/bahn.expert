@@ -16,6 +16,7 @@ describe('Abfahrten Settings', () => {
       cy.findByTestId('abfahrtS35744').within(() => {
         cy.findByTestId('abfahrtStart').should('have.text', 'S 7S 35744');
       });
+      cy.percy('Zugnummer & Linie');
     });
 
     it('Show fahrzeuggruppe', () => {
@@ -36,6 +37,7 @@ describe('Abfahrten Settings', () => {
       cy.findByTestId('fahrzeugGruppeConfig').click();
       cy.closeModal();
       cy.findByTestId('reihungFahrzeugGruppe').should('exist');
+      cy.percy('Fahrzeuggruppe');
     });
 
     it('Show uic', () => {
@@ -56,6 +58,7 @@ describe('Abfahrten Settings', () => {
       cy.findByTestId('showUIC').click();
       cy.closeModal();
       cy.findAllByTestId('uic').should('exist');
+      cy.percy('UIC');
     });
   });
 

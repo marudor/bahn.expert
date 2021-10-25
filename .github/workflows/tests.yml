@@ -84,13 +84,31 @@ jobs:
           start: node packages/server/index.js
           wait-on: http://localhost:9042
           browser: ${{ matrix.browser}}
+          command-prefix: 'percy exec --parallel -- yarn'
         env:
+          PERCY_TOKEN: 5cf53deda8dca3c09d13bfa3eb02edb0f4c6c80e7f96ed29086fec0c28a38380
           CYPRESS_RECORD_KEY: 0af1d817-e8ac-4c69-ac15-c0da1e69182d
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BASE_URL: localhost:9042
           NODE_ENV: production
           BABEL_ENV: testProduction
           TEST_RUN: 1
+  finalizeE2e:
+    runs-on: ubuntu-latest
+    needs:
+      - e2e
+    steps:
+      - uses: actions/checkout@master
+      - name: Use Node.js 16
+        uses: actions/setup-node@master
+        with:
+          node-version: 16
+      - name: finalize percy
+        run: |
+          yarn --immutable --immutable-cache
+          yarn percy build:finalize
+        env:
+          PERCY_TOKEN: 5cf53deda8dca3c09d13bfa3eb02edb0f4c6c80e7f96ed29086fec0c28a38380
   docker:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'

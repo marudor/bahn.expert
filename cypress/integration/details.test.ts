@@ -15,5 +15,6 @@ describe('Details', () => {
     cy.visit('/details/S30665');
     cy.wait('@details');
     cy.findByTestId('header').should('have.css', 'height', '54px');
+    cy.percy('details');
   });
 });
