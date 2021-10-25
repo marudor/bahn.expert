@@ -19,7 +19,6 @@ import StationBoardToTimetables from 'server/HAFAS/StationBoard/StationBoardToTi
 import type { AbfahrtenResult } from 'types/iris';
 import type { AllowedHafasProfile } from 'types/HAFAS';
 import type { ArrivalStationBoardEntry } from 'types/stationBoard';
-import type { Context } from 'koa';
 import type {
   HimSearchRequestOptions,
   ParsedHimSearchResponse,
@@ -27,6 +26,7 @@ import type {
 import type { JourneyCourseRequestOptions } from 'types/HAFAS/JourneyCourse';
 import type { JourneyGraphRequestOptions } from 'types/HAFAS/JourneyGraph';
 import type { JourneyTreeRequestOptions } from 'types/HAFAS/JourneyTree';
+import type { Request as KRequest } from 'koa';
 
 @Route('/hafas/experimental')
 export class HafasExperimentalController extends Controller {
@@ -34,7 +34,7 @@ export class HafasExperimentalController extends Controller {
   @Tags('HAFAS Experimental')
   @OperationId('Him Messages')
   himMessages(
-    @Request() ctx: Context,
+    @Request() req: KRequest,
     @Query() himIds: string[],
     @Query() profile?: AllowedHafasProfile,
   ): Promise<ParsedHimSearchResponse> {
@@ -48,7 +48,7 @@ export class HafasExperimentalController extends Controller {
       },
       profile,
       // @ts-expect-error untyped
-      ctx.query.raw,
+      req.query.raw,
     );
   }
 
@@ -56,12 +56,12 @@ export class HafasExperimentalController extends Controller {
   @Tags('HAFAS Experimental')
   @OperationId('Him Search')
   himSearch(
-    @Request() ctx: Context,
+    @Request() req: KRequest,
     @Body() options: HimSearchRequestOptions,
     @Query() profile?: AllowedHafasProfile,
   ): Promise<ParsedHimSearchResponse> {
     // @ts-expect-error untyped
-    return HimSearch(options, profile, ctx.query.raw);
+    return HimSearch(options, profile, req.query.raw);
   }
 
   @Get('/irisCompatibleAbfahrten/{evaId}')
@@ -139,11 +139,11 @@ export class HafasExperimentalController extends Controller {
   @Tags('HAFAS Experimental')
   @OperationId('Journey Course')
   JourneyCourse(
-    @Request() ctx: Context,
+    @Request() req: KRequest,
     @Body() options: JourneyCourseRequestOptions,
     @Query() profile?: AllowedHafasProfile,
   ): Promise<any> {
     // @ts-expect-error untyped
-    return JourneyCourse(options, profile, ctx.query.raw);
+    return JourneyCourse(options, profile, req.query.raw);
   }
 }

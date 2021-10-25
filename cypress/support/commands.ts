@@ -33,9 +33,8 @@ Cypress.Commands.add('closeModal', () => {
 });
 
 Cypress.Commands.add('percy', (name: string) => {
-  cy.percySnapshot(name);
   cy.theme('dark');
-  cy.percySnapshot(`${name} dark`);
+  cy.percySnapshot(name);
 });
 
 function mockStopPlace({

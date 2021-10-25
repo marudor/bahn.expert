@@ -17,12 +17,15 @@ export const DetailsRoute: FC<Props> = ({
   },
   urlPrefix,
 }) => {
+  /**
+   * If you change query params also change hafasDetailsRedirect.ts
+   */
   const query = useQuery();
 
   return (
     <Details
       train={train}
-      stationId={query.station as string}
+      stationId={(query.stopEva || query.station) as string}
       initialDeparture={initialDeparture}
       currentStopId={query.stop as string}
       urlPrefix={urlPrefix}
