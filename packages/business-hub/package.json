@@ -10,7 +10,7 @@
     "generate:apiClient": "openapi-generator-cli generate --additional-properties=useSingleRequestParameter=true -i https://gateway.businesshub.deutschebahn.com/ris-stations/v1/docs/openapi -o generated -g typescript-axios"
   },
   "dependencies": {
-    "@openapitools/openapi-generator-cli": "^2.4.12",
+    "@openapitools/openapi-generator-cli": "^2.4.13",
     "axios": "^0.23.0",
     "date-fns": "^2.25.0",
     "types": "workspace:*"

@@ -2,12 +2,9 @@
 const childProcess = require('child_process');
 const ncp = require('ncp');
 
-const sendStats = Boolean(process.argv[2] === 'sendStats');
-
 const webpackProductionProcess = childProcess.spawn('webpack', [], {
   env: {
     ...process.env,
-    sendStats,
   },
 });
 
