@@ -23,7 +23,7 @@ export const DetailsLink: FC<Props> = ({
       train.number
     }/${initialDeparture.toISOString()}${qs.stringify(
       {
-        station: evaNumber,
+        stopEva: evaNumber,
       },
       {
         addQueryPrefix: true,

@@ -1946,7 +1946,7 @@ export function RegisterRoutes(router: KoaRouter) {
         router.get('/api/hafas/experimental/himMessages',
             async function HafasExperimentalController_himMessages(context: any, next: any) {
             const args = {
-                    ctx: {"in":"request","name":"ctx","required":true,"dataType":"object"},
+                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
                     himIds: {"in":"query","name":"himIds","required":true,"dataType":"array","array":{"dataType":"string"}},
                     profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
             };
@@ -1969,7 +1969,7 @@ export function RegisterRoutes(router: KoaRouter) {
         router.post('/api/hafas/experimental/HimSearch',
             async function HafasExperimentalController_himSearch(context: any, next: any) {
             const args = {
-                    ctx: {"in":"request","name":"ctx","required":true,"dataType":"object"},
+                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
                     options: {"in":"body","name":"options","required":true,"ref":"HimSearchRequestOptions"},
                     profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
             };
@@ -2058,7 +2058,7 @@ export function RegisterRoutes(router: KoaRouter) {
         router.post('/api/hafas/experimental/JourneyCourse',
             async function HafasExperimentalController_JourneyCourse(context: any, next: any) {
             const args = {
-                    ctx: {"in":"request","name":"ctx","required":true,"dataType":"object"},
+                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
                     options: {"in":"body","name":"options","required":true,"ref":"JourneyCourseRequestOptions"},
                     profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
             };
@@ -2211,6 +2211,29 @@ export function RegisterRoutes(router: KoaRouter) {
             return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        router.get('/api/hafas/v1/detailsRedirect/:tripId',
+            async function HafasController_detailsRedirect(context: any, next: any) {
+            const args = {
+                    tripId: {"in":"path","name":"tripId","required":true,"dataType":"string"},
+                    res: {"in":"res","name":"302","required":true,"dataType":"void"},
+                    profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+              validatedArgs = getValidatedArgs(args, context, next);
+            } catch (err) {
+              const error = err as any;
+              context.status = error.status;
+              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+            }
+
+            const controller = new HafasController();
+
+            const promise = controller.detailsRedirect.apply(controller, validatedArgs as any);
+            return promiseHandler(controller, promise, context, undefined, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.post('/api/hafas/v1/enrichedJourneyMatch',
             async function HafasController_enrichedJourneyMatch(context: any, next: any) {
             const args = {
@@ -2236,7 +2259,7 @@ export function RegisterRoutes(router: KoaRouter) {
         router.get('/api/hafas/v1/geoStation',
             async function HafasController_geoStation(context: any, next: any) {
             const args = {
-                    ctx: {"in":"request","name":"ctx","required":true,"dataType":"object"},
+                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
                     lat: {"in":"query","name":"lat","required":true,"dataType":"double"},
                     lng: {"in":"query","name":"lng","required":true,"dataType":"double"},
                     maxDist: {"default":1000,"in":"query","name":"maxDist","dataType":"double"},
@@ -2261,7 +2284,7 @@ export function RegisterRoutes(router: KoaRouter) {
         router.get('/api/hafas/v1/station/:searchTerm',
             async function HafasController_station(context: any, next: any) {
             const args = {
-                    ctx: {"in":"request","name":"ctx","required":true,"dataType":"object"},
+                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
                     searchTerm: {"in":"path","name":"searchTerm","required":true,"dataType":"string"},
                     type: {"in":"query","name":"type","dataType":"union","subSchemas":[{"dataType":"enum","enums":["S"]},{"dataType":"enum","enums":["ALL"]}]},
                     profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
@@ -2285,7 +2308,7 @@ export function RegisterRoutes(router: KoaRouter) {
         router.post('/api/hafas/v1/journeyGeoPos',
             async function HafasController_journeyGeoPos(context: any, next: any) {
             const args = {
-                    ctx: {"in":"request","name":"ctx","required":true,"dataType":"object"},
+                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
                     body: {"in":"body","name":"body","required":true,"ref":"JourneyGeoPosOptions"},
                     profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
             };
@@ -2353,7 +2376,7 @@ export function RegisterRoutes(router: KoaRouter) {
             async function HafasControllerV2_journeyDetails(context: any, next: any) {
             const args = {
                     jid: {"in":"query","name":"jid","required":true,"dataType":"string"},
-                    ctx: {"in":"request","name":"ctx","required":true,"dataType":"object"},
+                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
                     profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
             };
 
@@ -2399,7 +2422,7 @@ export function RegisterRoutes(router: KoaRouter) {
         router.get('/api/hafas/v2/arrivalStationBoard',
             async function HafasControllerV2_arrivalStationBoard(context: any, next: any) {
             const args = {
-                    ctx: {"in":"request","name":"ctx","required":true,"dataType":"object"},
+                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
                     station: {"in":"query","name":"station","required":true,"ref":"EvaNumber"},
                     date: {"in":"query","name":"date","dataType":"datetime"},
                     profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
@@ -2423,7 +2446,7 @@ export function RegisterRoutes(router: KoaRouter) {
         router.get('/api/hafas/v2/departureStationBoard',
             async function HafasControllerV2_departureStationBoard(context: any, next: any) {
             const args = {
-                    ctx: {"in":"request","name":"ctx","required":true,"dataType":"object"},
+                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
                     station: {"in":"query","name":"station","required":true,"ref":"EvaNumber"},
                     direction: {"in":"query","name":"direction","ref":"EvaNumber"},
                     date: {"in":"query","name":"date","dataType":"datetime"},
@@ -2448,7 +2471,7 @@ export function RegisterRoutes(router: KoaRouter) {
         router.post('/api/hafas/v2/journeyMatch',
             async function HafasControllerV2_postJourneyMatch(context: any, next: any) {
             const args = {
-                    ctx: {"in":"request","name":"ctx","required":true,"dataType":"object"},
+                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
                     options: {"in":"body","name":"options","required":true,"ref":"JourneyMatchOptions"},
                     profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
             };
@@ -2497,7 +2520,7 @@ export function RegisterRoutes(router: KoaRouter) {
             async function HafasControllerV2_searchOnTrip(context: any, next: any) {
             const args = {
                     body: {"in":"body","name":"body","required":true,"ref":"SearchOnTripBody"},
-                    ctx: {"in":"request","name":"ctx","required":true,"dataType":"object"},
+                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
                     profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
             };
 
@@ -2519,7 +2542,7 @@ export function RegisterRoutes(router: KoaRouter) {
         router.post('/api/hafas/v3/tripSearch',
             async function HafasControllerV3_tripSearch(context: any, next: any) {
             const args = {
-                    ctx: {"in":"request","name":"ctx","required":true,"dataType":"object"},
+                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
                     body: {"in":"body","name":"body","required":true,"ref":"TripSearchOptionsV3"},
                     profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
             };
