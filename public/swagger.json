@@ -1,0 +1,6096 @@
+{
+  "components": {
+    "examples": {},
+    "headers": {},
+    "parameters": {},
+    "requestBodies": {},
+    "responses": {},
+    "schemas": {
+      "LageplanResponse": {
+        "properties": {
+          "lageplan": {
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
+      "EvaNumber": {
+        "type": "string",
+        "description": "Usually 7 digits"
+      },
+      "OpL": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "icoX": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": ["name", "icoX"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CommonProductInfo": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "line": {
+            "type": "string"
+          },
+          "number": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "operator": {
+            "$ref": "#/components/schemas/OpL"
+          },
+          "admin": {
+            "type": "string"
+          }
+        },
+        "required": ["name"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ParsedProduct": {
+        "$ref": "#/components/schemas/CommonProductInfo"
+      },
+      "PubChL": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "fDate": {
+            "type": "string"
+          },
+          "fTime": {
+            "type": "string"
+          },
+          "tDate": {
+            "type": "string"
+          },
+          "tTime": {
+            "type": "string"
+          }
+        },
+        "required": ["name", "fDate", "fTime", "tDate", "tTime"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ParsedHimMessage": {
+        "properties": {
+          "hid": {
+            "type": "string"
+          },
+          "act": {
+            "type": "boolean"
+          },
+          "head": {
+            "type": "string"
+          },
+          "lead": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "icoX": {
+            "type": "number",
+            "format": "double"
+          },
+          "prio": {
+            "type": "number",
+            "format": "double"
+          },
+          "fLocX": {
+            "type": "number",
+            "format": "double"
+          },
+          "tLocX": {
+            "type": "number",
+            "format": "double"
+          },
+          "prod": {
+            "type": "number",
+            "format": "double"
+          },
+          "affProdRefL": {
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "type": "array"
+          },
+          "IModDate": {
+            "type": "string"
+          },
+          "IModTime": {
+            "type": "string"
+          },
+          "sDate": {
+            "type": "string"
+          },
+          "sTime": {
+            "type": "string"
+          },
+          "eDate": {
+            "type": "string"
+          },
+          "eTime": {
+            "type": "string"
+          },
+          "comp": {
+            "type": "string"
+          },
+          "cat": {
+            "type": "number",
+            "format": "double"
+          },
+          "pubChL": {
+            "items": {
+              "$ref": "#/components/schemas/PubChL"
+            },
+            "type": "array"
+          },
+          "edgeRefL": {
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "type": "array"
+          },
+          "affectedProducts": {
+            "items": {
+              "$ref": "#/components/schemas/ParsedProduct"
+            },
+            "type": "array"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "hid",
+          "act",
+          "head",
+          "lead",
+          "text",
+          "icoX",
+          "prio",
+          "fLocX",
+          "tLocX",
+          "prod",
+          "affProdRefL",
+          "IModDate",
+          "IModTime",
+          "sDate",
+          "sTime",
+          "eDate",
+          "eTime",
+          "comp",
+          "cat",
+          "pubChL",
+          "edgeRefL",
+          "affectedProducts",
+          "startTime",
+          "endTime"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ParsedHimSearchResponse": {
+        "properties": {
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/ParsedHimMessage"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["messages"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "AllowedHafasProfile": {
+        "enum": [
+          "db",
+          "oebb",
+          "bvg",
+          "hvv",
+          "rmv",
+          "sncb",
+          "avv",
+          "nahsh",
+          "insa",
+          "anachb",
+          "vao",
+          "sbb",
+          "dbnetz",
+          "pkp",
+          "dbregio",
+          "smartrbl",
+          "vbn"
+        ],
+        "type": "string"
+      },
+      "Crd": {
+        "properties": {
+          "x": {
+            "type": "number",
+            "format": "double"
+          },
+          "y": {
+            "type": "number",
+            "format": "double"
+          },
+          "z": {
+            "type": "number",
+            "format": "double"
+          },
+          "layerX": {
+            "type": "number",
+            "format": "double"
+          },
+          "crdSysX": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": ["x", "y"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OptionalLocL": {
+        "properties": {
+          "lid": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "icoX": {
+            "type": "number",
+            "format": "double"
+          },
+          "extId": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "crd": {
+            "$ref": "#/components/schemas/Crd"
+          },
+          "pCls": {
+            "type": "number",
+            "format": "double"
+          },
+          "pRefL": {
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "type": "array",
+            "description": "Reference to prodL"
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
+      "HimFilterMode": {
+        "type": "string",
+        "enum": ["BIT", "EXC", "INC", "UNDEF"]
+      },
+      "HimFilterType": {
+        "type": "string",
+        "enum": [
+          "ADMIN",
+          "CAT",
+          "CH",
+          "COMP",
+          "DEPT",
+          "EID",
+          "HIMCAT",
+          "HIMID",
+          "LINE",
+          "OPR",
+          "PID",
+          "PROD",
+          "REG",
+          "TRAIN"
+        ]
+      },
+      "HimFilter": {
+        "properties": {
+          "mode": {
+            "$ref": "#/components/schemas/HimFilterMode"
+          },
+          "type": {
+            "$ref": "#/components/schemas/HimFilterType"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": ["mode", "type", "value"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "HimSearchRequestOptions": {
+        "properties": {
+          "comp": {
+            "type": "string"
+          },
+          "dailyB": {
+            "type": "string"
+          },
+          "dailyE": {
+            "type": "string"
+          },
+          "dateB": {
+            "type": "string"
+          },
+          "dateE": {
+            "type": "string"
+          },
+          "dept": {
+            "type": "string"
+          },
+          "dirLoc": {
+            "$ref": "#/components/schemas/OptionalLocL"
+          },
+          "himFltrL": {
+            "items": {
+              "$ref": "#/components/schemas/HimFilter"
+            },
+            "type": "array"
+          },
+          "maxNum": {
+            "type": "number",
+            "format": "double"
+          },
+          "onlyHimId": {
+            "type": "boolean"
+          },
+          "onlyToday": {
+            "type": "boolean"
+          },
+          "stLoc": {
+            "$ref": "#/components/schemas/OptionalLocL"
+          },
+          "timeB": {
+            "type": "string"
+          },
+          "timeE": {
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
+      "RemL": {
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "icoX": {
+            "type": "number",
+            "format": "double"
+          },
+          "txtN": {
+            "type": "string"
+          },
+          "txtS": {
+            "type": "string"
+          },
+          "prio": {
+            "type": "number",
+            "format": "double"
+          },
+          "sIdx": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": ["type", "code", "icoX", "txtN"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "StopInfo": {
+        "properties": {
+          "scheduledPlatform": {
+            "type": "string"
+          },
+          "platform": {
+            "type": "string"
+          },
+          "scheduledTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "delay": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "reihung": {
+            "type": "boolean"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "wingIds": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "hidden": {
+            "type": "boolean"
+          }
+        },
+        "required": ["scheduledTime", "time"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Pick_GroupedStopPlace.name-or-evaNumber_": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "evaNumber": {
+            "type": "string"
+          }
+        },
+        "required": ["name", "evaNumber"],
+        "type": "object",
+        "description": "From T, pick a set of properties whose keys are in the union K"
+      },
+      "MinimalStopPlace": {
+        "$ref": "#/components/schemas/Pick_GroupedStopPlace.name-or-evaNumber_"
+      },
+      "MessagePrio": {
+        "type": "string",
+        "enum": ["1", "2", "3", "4"],
+        "description": "1: High; 2: Medium; 3: Low; 4: Done"
+      },
+      "IrisMessage": {
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "superseded": {
+            "type": "boolean"
+          },
+          "priority": {
+            "$ref": "#/components/schemas/MessagePrio"
+          },
+          "value": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": ["text", "value"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "HimIrisMessage": {
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "superseded": {
+            "type": "boolean"
+          },
+          "priority": {
+            "$ref": "#/components/schemas/MessagePrio"
+          },
+          "value": {
+            "type": "number",
+            "format": "double"
+          },
+          "head": {
+            "type": "string"
+          }
+        },
+        "required": ["text", "value", "head"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Message": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/IrisMessage"
+          },
+          {
+            "$ref": "#/components/schemas/HimIrisMessage"
+          }
+        ]
+      },
+      "Messages": {
+        "properties": {
+          "qos": {
+            "items": {
+              "$ref": "#/components/schemas/IrisMessage"
+            },
+            "type": "array"
+          },
+          "delay": {
+            "items": {
+              "$ref": "#/components/schemas/IrisMessage"
+            },
+            "type": "array"
+          },
+          "him": {
+            "items": {
+              "$ref": "#/components/schemas/HimIrisMessage"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["qos", "delay", "him"],
+        "type": "object",
+        "additionalProperties": {
+          "items": {
+            "$ref": "#/components/schemas/Message"
+          },
+          "type": "array"
+        }
+      },
+      "SubstituteRef": {
+        "properties": {
+          "trainNumber": {
+            "type": "string"
+          },
+          "trainType": {
+            "type": "string"
+          },
+          "train": {
+            "type": "string"
+          }
+        },
+        "required": ["trainNumber", "trainType", "train"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Stop": {
+        "properties": {
+          "additional": {
+            "type": "boolean"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "showVia": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": ["name"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "TrainInfo": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "line": {
+            "type": "string"
+          },
+          "number": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "operator": {
+            "$ref": "#/components/schemas/OpL"
+          },
+          "admin": {
+            "type": "string"
+          },
+          "longDistance": {
+            "type": "boolean"
+          }
+        },
+        "required": ["name", "type", "number"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Abfahrt": {
+        "properties": {
+          "initialDeparture": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "arrival": {
+            "$ref": "#/components/schemas/StopInfo"
+          },
+          "auslastung": {
+            "type": "boolean"
+          },
+          "currentStopPlace": {
+            "$ref": "#/components/schemas/MinimalStopPlace"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/StopInfo"
+          },
+          "destination": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "additional": {
+            "type": "boolean"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "mediumId": {
+            "type": "string"
+          },
+          "messages": {
+            "$ref": "#/components/schemas/Messages"
+          },
+          "platform": {
+            "type": "string"
+          },
+          "productClass": {
+            "type": "string",
+            "description": "Most likely D | N | S | F"
+          },
+          "rawId": {
+            "type": "string"
+          },
+          "ref": {
+            "$ref": "#/components/schemas/SubstituteRef"
+          },
+          "reihung": {
+            "type": "boolean",
+            "description": "Most likely has coach sequence"
+          },
+          "route": {
+            "items": {
+              "$ref": "#/components/schemas/Stop"
+            },
+            "type": "array"
+          },
+          "scheduledDestination": {
+            "type": "string"
+          },
+          "scheduledPlatform": {
+            "type": "string"
+          },
+          "substitute": {
+            "type": "boolean"
+          },
+          "train": {
+            "$ref": "#/components/schemas/TrainInfo"
+          }
+        },
+        "required": [
+          "initialDeparture",
+          "auslastung",
+          "currentStopPlace",
+          "destination",
+          "id",
+          "mediumId",
+          "messages",
+          "platform",
+          "productClass",
+          "rawId",
+          "reihung",
+          "route",
+          "scheduledDestination",
+          "scheduledPlatform",
+          "train"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Wings": {
+        "properties": {},
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/Abfahrt"
+        }
+      },
+      "AbfahrtenResult": {
+        "properties": {
+          "departures": {
+            "items": {
+              "$ref": "#/components/schemas/Abfahrt"
+            },
+            "type": "array"
+          },
+          "lookbehind": {
+            "items": {
+              "$ref": "#/components/schemas/Abfahrt"
+            },
+            "type": "array"
+          },
+          "wings": {
+            "$ref": "#/components/schemas/Wings"
+          },
+          "strike": {
+            "type": "boolean"
+          }
+        },
+        "required": ["departures", "lookbehind"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "JourneyFilterMode": {
+        "type": "string",
+        "enum": ["BIT", "EXC", "INC", "UNDEF"]
+      },
+      "JourneyFilterType": {
+        "type": "string",
+        "enum": [
+          "ADM",
+          "ATTRF",
+          "ATTRJ",
+          "ATTRL",
+          "BC",
+          "CAT",
+          "COUCH",
+          "CTX_RECON",
+          "GROUP",
+          "INFOTEXTS",
+          "JID",
+          "LID",
+          "LINE",
+          "LINEID",
+          "META",
+          "NAME",
+          "NUM",
+          "OP",
+          "PID",
+          "PROD",
+          "ROUTE",
+          "SLEEP",
+          "STATIONS",
+          "UIC"
+        ]
+      },
+      "JourneyFilter": {
+        "properties": {
+          "mode": {
+            "$ref": "#/components/schemas/JourneyFilterMode"
+          },
+          "type": {
+            "$ref": "#/components/schemas/JourneyFilterType"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": ["mode", "type", "value"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "GeoRect": {
+        "properties": {
+          "llCrd": {
+            "$ref": "#/components/schemas/Crd"
+          },
+          "urCrd": {
+            "$ref": "#/components/schemas/Crd"
+          }
+        },
+        "required": ["llCrd", "urCrd"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "GeoRing": {
+        "properties": {
+          "cCrd": {
+            "$ref": "#/components/schemas/Crd"
+          },
+          "maxDist": {
+            "type": "number",
+            "format": "double"
+          },
+          "minDist": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": ["cCrd", "maxDist"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "JourneyTreeRequestOptions": {
+        "properties": {
+          "getChilds": {
+            "type": "number",
+            "format": "double"
+          },
+          "getHIM": {
+            "type": "boolean"
+          },
+          "getParent": {
+            "type": "boolean"
+          },
+          "getStatus": {
+            "type": "boolean"
+          },
+          "himFltrL": {
+            "items": {
+              "$ref": "#/components/schemas/HimFilter"
+            },
+            "type": "array"
+          },
+          "jnyFltrL": {
+            "items": {
+              "$ref": "#/components/schemas/JourneyFilter"
+            },
+            "type": "array"
+          },
+          "pid": {
+            "type": "string"
+          },
+          "rect": {
+            "$ref": "#/components/schemas/GeoRect"
+          },
+          "ring": {
+            "$ref": "#/components/schemas/GeoRing"
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
+      "JourneyGraphRequestOptions": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "description": "yyyyMMdd"
+          },
+          "getPasslist": {
+            "type": "boolean"
+          },
+          "getProductStartEndInfo": {
+            "type": "boolean"
+          },
+          "jnyFltrL": {
+            "items": {
+              "$ref": "#/components/schemas/JourneyFilter"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
+      "HafasDirection": {
+        "type": "string",
+        "enum": ["B", "F", "FB"]
+      },
+      "JourneyCourseRequestOptions": {
+        "properties": {
+          "arrLoc": {
+            "$ref": "#/components/schemas/OptionalLocL"
+          },
+          "date": {
+            "type": "string",
+            "description": "yyyyMMdd"
+          },
+          "depLoc": {
+            "$ref": "#/components/schemas/OptionalLocL"
+          },
+          "dir": {
+            "$ref": "#/components/schemas/HafasDirection"
+          },
+          "getEdgeAni": {
+            "type": "boolean"
+          },
+          "getEdgeCourse": {
+            "type": "boolean"
+          },
+          "getIST": {
+            "type": "boolean"
+          },
+          "getMainAni": {
+            "type": "boolean"
+          },
+          "getMainCourse": {
+            "type": "boolean"
+          },
+          "getPassLoc": {
+            "type": "boolean"
+          },
+          "getPolyline": {
+            "type": "boolean"
+          },
+          "jid": {
+            "type": "string"
+          },
+          "jnyFltrL": {
+            "items": {
+              "$ref": "#/components/schemas/JourneyFilter"
+            },
+            "type": "array"
+          },
+          "perSize": {
+            "type": "number",
+            "format": "double"
+          },
+          "perStep": {
+            "type": "number",
+            "format": "double"
+          },
+          "time": {
+            "type": "string",
+            "description": "HHmm"
+          }
+        },
+        "required": ["date", "jid"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ParsedSubscrCreateResponse": {
+        "properties": {
+          "subscriptionId": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": ["subscriptionId"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Pick_SubscrChannel.channelId_": {
+        "properties": {
+          "channelId": {
+            "type": "string"
+          }
+        },
+        "required": ["channelId"],
+        "type": "object",
+        "description": "From T, pick a set of properties whose keys are in the union K"
+      },
+      "SubscrServiceDays": {
+        "properties": {
+          "endDate": {
+            "type": "string"
+          },
+          "beginDate": {
+            "type": "string"
+          },
+          "selectedWeekdays": {
+            "type": "string",
+            "description": "1 or 0 for each day, starts at monday\nexample: 1001001\nMonday, Thursday, Sunday selected"
+          }
+        },
+        "required": ["endDate", "beginDate", "selectedWeekdays"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SubscrInterval": {
+        "properties": {
+          "jnyFltrL": {
+            "items": {
+              "$ref": "#/components/schemas/JourneyFilter"
+            },
+            "type": "array"
+          },
+          "period": {
+            "type": "number",
+            "format": "double"
+          },
+          "time": {
+            "type": "string",
+            "description": "HHmmSS"
+          },
+          "depLoc": {
+            "$ref": "#/components/schemas/OptionalLocL"
+          },
+          "arrLoc": {
+            "$ref": "#/components/schemas/OptionalLocL"
+          },
+          "monitorFlags": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "description": "[\"FTF\"] rest unknown"
+          },
+          "serviceDays": {
+            "$ref": "#/components/schemas/SubscrServiceDays"
+          }
+        },
+        "required": [
+          "period",
+          "time",
+          "depLoc",
+          "arrLoc",
+          "monitorFlags",
+          "serviceDays"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SubscrCreateOptions": {
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "channels": {
+            "items": {
+              "$ref": "#/components/schemas/Pick_SubscrChannel.channelId_"
+            },
+            "type": "array"
+          },
+          "intvlSubscr": {
+            "$ref": "#/components/schemas/SubscrInterval"
+          }
+        },
+        "required": ["userId", "channels", "intvlSubscr"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SubscrDeleteResponse": {
+        "properties": {
+          "result": {
+            "properties": {
+              "resultCode": {
+                "type": "string"
+              }
+            },
+            "required": ["resultCode"],
+            "type": "object"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "subscrId": {
+            "type": "string"
+          }
+        },
+        "required": ["result", "userId", "subscrId"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SubscrDeleteOptions": {
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "subscrId": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": ["userId", "subscrId"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ParsedSubscrUserResponse": {
+        "properties": {
+          "userId": {
+            "type": "string"
+          }
+        },
+        "required": ["userId"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SubscrChannelNoSoundOption": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["NO_SOUND"],
+            "nullable": false
+          },
+          "value": {
+            "type": "string",
+            "enum": ["1"],
+            "nullable": false
+          }
+        },
+        "required": ["type", "value"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SubscrChannelCustomerTypeOption": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["CUSTOMER_TYPE"],
+            "nullable": false
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": ["type", "value"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SubscrChannelOption": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/SubscrChannelNoSoundOption"
+          },
+          {
+            "$ref": "#/components/schemas/SubscrChannelCustomerTypeOption"
+          }
+        ]
+      },
+      "SubscrChannel": {
+        "properties": {
+          "channelId": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "description": "IPHONE"
+          },
+          "options": {
+            "items": {
+              "$ref": "#/components/schemas/SubscrChannelOption"
+            },
+            "type": "array"
+          },
+          "name": {
+            "type": "string",
+            "description": "PUSH_IPHONE"
+          }
+        },
+        "required": ["channelId", "address", "type", "options", "name"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SubscrUserCreateOptions": {
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "channels": {
+            "items": {
+              "$ref": "#/components/schemas/SubscrChannel"
+            },
+            "type": "array"
+          },
+          "language": {
+            "type": "string",
+            "description": "de"
+          }
+        },
+        "required": ["userId", "channels"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SubscrSearchResponse": {
+        "properties": {
+          "result": {
+            "properties": {
+              "resultCode": {
+                "type": "string"
+              }
+            },
+            "required": ["resultCode"],
+            "type": "object"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "intvlSubscrL": {
+            "items": {
+              "properties": {
+                "arrLoc": {
+                  "$ref": "#/components/schemas/OptionalLocL"
+                },
+                "depLoc": {
+                  "$ref": "#/components/schemas/OptionalLocL"
+                },
+                "time": {
+                  "type": "string",
+                  "description": "HHmmSS"
+                },
+                "period": {
+                  "type": "number",
+                  "format": "double"
+                },
+                "channels": {
+                  "items": {
+                    "$ref": "#/components/schemas/SubscrChannel"
+                  },
+                  "type": "array"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": ["ACTIVE", "EXPIRED"]
+                }
+              },
+              "required": [
+                "arrLoc",
+                "depLoc",
+                "time",
+                "period",
+                "channels",
+                "status"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["result", "userId", "intvlSubscrL"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SubscrUserDeleteResponse": {
+        "properties": {
+          "result": {
+            "properties": {
+              "resultCode": {
+                "type": "string"
+              }
+            },
+            "required": ["resultCode"],
+            "type": "object"
+          },
+          "userId": {
+            "type": "string"
+          }
+        },
+        "required": ["result", "userId"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SubscrUserDeleteOptions": {
+        "properties": {
+          "userId": {
+            "type": "string"
+          }
+        },
+        "required": ["userId"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SubscrRTEvent": {
+        "properties": {},
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SubscrHIMEvent": {
+        "properties": {},
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SubscrEventHistory": {
+        "properties": {
+          "rtEvents": {
+            "items": {
+              "$ref": "#/components/schemas/SubscrRTEvent"
+            },
+            "type": "array"
+          },
+          "himEvents": {
+            "items": {
+              "$ref": "#/components/schemas/SubscrHIMEvent"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["rtEvents", "himEvents"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SubscrDetailsResponse": {
+        "properties": {
+          "result": {
+            "properties": {
+              "resultCode": {
+                "type": "string"
+              }
+            },
+            "required": ["resultCode"],
+            "type": "object"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "subscrId": {
+            "type": "number",
+            "format": "double"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["ACTIVE", "EXPIRED"]
+          },
+          "channels": {
+            "items": {
+              "$ref": "#/components/schemas/SubscrChannel"
+            },
+            "type": "array"
+          },
+          "intvlSubscr": {
+            "$ref": "#/components/schemas/SubscrInterval"
+          },
+          "eventHisotry": {
+            "$ref": "#/components/schemas/SubscrEventHistory"
+          }
+        },
+        "required": [
+          "result",
+          "userId",
+          "subscrId",
+          "status",
+          "channels",
+          "intvlSubscr",
+          "eventHisotry"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CommonStopInfo": {
+        "properties": {
+          "scheduledPlatform": {
+            "type": "string"
+          },
+          "platform": {
+            "type": "string"
+          },
+          "scheduledTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "delay": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "reihung": {
+            "type": "boolean"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "cancelled": {
+            "type": "boolean"
+          }
+        },
+        "required": ["scheduledTime", "time"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "RoutingStation": {
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": ["title", "id"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "AuslastungsValue": {
+        "description": "1: Gering\n2: Hoch\n3: Sehr Hoch\n4: Ausgebucht",
+        "enum": [1, 2, 3, 4],
+        "type": "number"
+      },
+      "Route$Auslastung": {
+        "properties": {
+          "first": {
+            "$ref": "#/components/schemas/AuslastungsValue"
+          },
+          "second": {
+            "$ref": "#/components/schemas/AuslastungsValue"
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Route$Stop": {
+        "properties": {
+          "arrival": {
+            "$ref": "#/components/schemas/CommonStopInfo"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/CommonStopInfo"
+          },
+          "station": {
+            "$ref": "#/components/schemas/RoutingStation"
+          },
+          "auslastung": {
+            "$ref": "#/components/schemas/Route$Auslastung"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "additional": {
+            "type": "boolean"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "irisMessages": {
+            "items": {
+              "$ref": "#/components/schemas/Message"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["station"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ParsedJourneyMatchResponse": {
+        "properties": {
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop"
+            },
+            "type": "array"
+          },
+          "jid": {
+            "type": "string"
+          },
+          "firstStop": {
+            "$ref": "#/components/schemas/Route$Stop"
+          },
+          "lastStop": {
+            "$ref": "#/components/schemas/Route$Stop"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["train", "stops", "jid", "firstStop", "lastStop"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "EnrichedJourneyMatchOptions": {
+        "properties": {
+          "trainName": {
+            "type": "string"
+          },
+          "initialDepartureDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "jnyFltrL": {
+            "items": {
+              "$ref": "#/components/schemas/JourneyFilter"
+            },
+            "type": "array"
+          },
+          "limit": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": ["trainName"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "HafasCoordinates": {
+        "properties": {
+          "lat": {
+            "type": "number",
+            "format": "double"
+          },
+          "lng": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": ["lat", "lng"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "HafasStation": {
+        "properties": {
+          "products": {
+            "items": {
+              "$ref": "#/components/schemas/ParsedProduct"
+            },
+            "type": "array"
+          },
+          "coordinates": {
+            "$ref": "#/components/schemas/HafasCoordinates"
+          },
+          "title": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": ["coordinates", "title", "id"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SingleParsedJourneyGeoPos": {
+        "properties": {
+          "jid": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "position": {
+            "$ref": "#/components/schemas/HafasCoordinates"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["jid", "date", "train", "position", "stops"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ParsedJourneyGeoPosResponse": {
+        "items": {
+          "$ref": "#/components/schemas/SingleParsedJourneyGeoPos"
+        },
+        "type": "array"
+      },
+      "InOutMode": {
+        "type": "string",
+        "enum": ["B", "I", "N", "O"]
+      },
+      "JourneyTrainPosMode": {
+        "type": "string",
+        "enum": [
+          "CALC",
+          "CALC_FOR_REPORT",
+          "CALC_ONLY",
+          "CALC_REPORT",
+          "REPORT_ONLY",
+          "REPORT_ONLY_WITH_STOPS"
+        ]
+      },
+      "JourneyGeoPosRequestOptions": {
+        "properties": {
+          "ageOfReport": {
+            "type": "boolean"
+          },
+          "date": {
+            "type": "string"
+          },
+          "time": {
+            "type": "string"
+          },
+          "getSimpleTrainComposition": {
+            "type": "boolean"
+          },
+          "getUnmatched": {
+            "type": "boolean"
+          },
+          "inOut": {
+            "$ref": "#/components/schemas/InOutMode"
+          },
+          "jnyFltrL": {
+            "items": {
+              "$ref": "#/components/schemas/JourneyFilter"
+            },
+            "type": "array"
+          },
+          "locL": {
+            "items": {
+              "$ref": "#/components/schemas/OptionalLocL"
+            },
+            "type": "array"
+          },
+          "maxJny": {
+            "type": "boolean"
+          },
+          "onlyRT": {
+            "type": "boolean"
+          },
+          "perSize": {
+            "type": "number",
+            "format": "double"
+          },
+          "perStep": {
+            "type": "number",
+            "format": "double"
+          },
+          "rect": {
+            "$ref": "#/components/schemas/GeoRect"
+          },
+          "ring": {
+            "$ref": "#/components/schemas/GeoRing"
+          },
+          "rtMsgStatus": {
+            "type": "boolean"
+          },
+          "trainPosMode": {
+            "$ref": "#/components/schemas/JourneyTrainPosMode"
+          },
+          "zoom": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
+      "JourneyGeoPosOptions": {
+        "$ref": "#/components/schemas/JourneyGeoPosRequestOptions"
+      },
+      "Route$ValidDepartureStop": {
+        "properties": {
+          "arrival": {
+            "$ref": "#/components/schemas/CommonStopInfo"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/CommonStopInfo"
+          },
+          "station": {
+            "$ref": "#/components/schemas/RoutingStation"
+          },
+          "auslastung": {
+            "$ref": "#/components/schemas/Route$Auslastung"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "additional": {
+            "type": "boolean"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "irisMessages": {
+            "items": {
+              "$ref": "#/components/schemas/Message"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["station", "departure"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Route$ValidArrivalStop": {
+        "properties": {
+          "arrival": {
+            "$ref": "#/components/schemas/CommonStopInfo"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/CommonStopInfo"
+          },
+          "station": {
+            "$ref": "#/components/schemas/RoutingStation"
+          },
+          "auslastung": {
+            "$ref": "#/components/schemas/Route$Auslastung"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "additional": {
+            "type": "boolean"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "irisMessages": {
+            "items": {
+              "$ref": "#/components/schemas/Message"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["station", "arrival"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ParsedJourneyDetails": {
+        "properties": {
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "auslastung": {
+            "$ref": "#/components/schemas/Route$Auslastung"
+          },
+          "jid": {
+            "type": "string"
+          },
+          "firstStop": {
+            "$ref": "#/components/schemas/Route$ValidDepartureStop"
+          },
+          "lastStop": {
+            "$ref": "#/components/schemas/Route$ValidArrivalStop"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop"
+            },
+            "type": "array"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["train", "jid", "firstStop", "lastStop", "stops"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ArrivalStationBoardEntry": {
+        "properties": {
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "finalDestination": {
+            "type": "string"
+          },
+          "jid": {
+            "type": "string"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop"
+            },
+            "type": "array"
+          },
+          "currentStation": {
+            "$ref": "#/components/schemas/HafasStation"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "arrival": {
+            "$ref": "#/components/schemas/CommonStopInfo"
+          }
+        },
+        "required": [
+          "train",
+          "finalDestination",
+          "jid",
+          "currentStation",
+          "arrival"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "DepartureStationBoardEntry": {
+        "properties": {
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "cancelled": {
+            "type": "boolean"
+          },
+          "finalDestination": {
+            "type": "string"
+          },
+          "jid": {
+            "type": "string"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop"
+            },
+            "type": "array"
+          },
+          "currentStation": {
+            "$ref": "#/components/schemas/HafasStation"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/CommonStopInfo"
+          }
+        },
+        "required": [
+          "train",
+          "finalDestination",
+          "jid",
+          "currentStation",
+          "departure"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "JourneyMatchOptions": {
+        "properties": {
+          "trainName": {
+            "type": "string"
+          },
+          "initialDepartureDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "jnyFltrL": {
+            "items": {
+              "$ref": "#/components/schemas/JourneyFilter"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["trainName"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ProdCtx": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "num": {
+            "type": "string"
+          },
+          "matchId": {
+            "type": "string"
+          },
+          "catOut": {
+            "type": "string"
+          },
+          "catOutS": {
+            "type": "string"
+          },
+          "catOutL": {
+            "type": "string"
+          },
+          "catIn": {
+            "type": "string"
+          },
+          "catCode": {
+            "type": "string"
+          },
+          "admin": {
+            "type": "string"
+          },
+          "lineId": {
+            "type": "string"
+          },
+          "line": {
+            "type": "string"
+          },
+          "cls": {
+            "type": "number",
+            "format": "double"
+          },
+          "icoX": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": ["name", "cls", "icoX"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ProdL": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "number": {
+            "type": "string"
+          },
+          "icoX": {
+            "type": "number",
+            "format": "double"
+          },
+          "cls": {
+            "type": "number",
+            "format": "double"
+          },
+          "oprX": {
+            "type": "number",
+            "format": "double"
+          },
+          "prodCtx": {
+            "$ref": "#/components/schemas/ProdCtx"
+          },
+          "addName": {
+            "type": "string"
+          },
+          "nameS": {
+            "type": "string"
+          },
+          "matchId": {
+            "type": "string"
+          }
+        },
+        "required": ["name", "icoX", "cls"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "TrnCmpSX": {
+        "properties": {
+          "tcocX": {
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "type": "array"
+          },
+          "tcM": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
+      "TxtC": {
+        "properties": {
+          "r": {
+            "type": "number",
+            "format": "double"
+          },
+          "g": {
+            "type": "number",
+            "format": "double"
+          },
+          "b": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": ["r", "g", "b"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "MsgL": {
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "remX": {
+            "type": "number",
+            "format": "double"
+          },
+          "txtC": {
+            "$ref": "#/components/schemas/TxtC"
+          },
+          "prio": {
+            "type": "number",
+            "format": "double"
+          },
+          "fIdx": {
+            "type": "number",
+            "format": "double"
+          },
+          "tIdx": {
+            "type": "number",
+            "format": "double"
+          },
+          "tagL": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["type", "remX", "txtC", "prio", "fIdx", "tIdx", "tagL"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CommonDeparture": {
+        "properties": {
+          "locX": {
+            "type": "number",
+            "format": "double"
+          },
+          "idx": {
+            "type": "number",
+            "format": "double"
+          },
+          "dCncl": {
+            "type": "boolean"
+          },
+          "dProdX": {
+            "type": "number",
+            "format": "double"
+          },
+          "dInS": {
+            "type": "boolean"
+          },
+          "dInR": {
+            "type": "boolean"
+          },
+          "dTimeS": {
+            "type": "string"
+          },
+          "dTimeR": {
+            "type": "string"
+          },
+          "dPlatfS": {
+            "type": "string"
+          },
+          "dPlatfR": {
+            "type": "string"
+          },
+          "dProgType": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "dTZOffset": {
+            "type": "number",
+            "format": "double"
+          },
+          "dTrnCmpSX": {
+            "$ref": "#/components/schemas/TrnCmpSX"
+          },
+          "msgL": {
+            "items": {
+              "$ref": "#/components/schemas/MsgL"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["locX", "dInS", "dInR", "dTimeS"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CommonArrival": {
+        "properties": {
+          "locX": {
+            "type": "number",
+            "format": "double"
+          },
+          "idx": {
+            "type": "number",
+            "format": "double"
+          },
+          "aCncl": {
+            "type": "boolean"
+          },
+          "aProdX": {
+            "type": "number",
+            "format": "double"
+          },
+          "aOutR": {
+            "type": "boolean"
+          },
+          "aTimeS": {
+            "type": "string"
+          },
+          "aTimeR": {
+            "type": "string"
+          },
+          "aPlatfS": {
+            "type": "string"
+          },
+          "aPlatfR": {
+            "type": "string"
+          },
+          "aProgType": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "aTZOffset": {
+            "type": "number",
+            "format": "double"
+          },
+          "aTrnCmpSX": {
+            "$ref": "#/components/schemas/TrnCmpSX"
+          },
+          "msgL": {
+            "items": {
+              "$ref": "#/components/schemas/MsgL"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["locX", "aOutR", "aTimeS"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CommonStop": {
+        "properties": {
+          "locX": {
+            "type": "number",
+            "format": "double"
+          },
+          "idx": {
+            "type": "number",
+            "format": "double"
+          },
+          "aCncl": {
+            "type": "boolean"
+          },
+          "aProdX": {
+            "type": "number",
+            "format": "double"
+          },
+          "aOutR": {
+            "type": "boolean"
+          },
+          "aTimeS": {
+            "type": "string"
+          },
+          "aTimeR": {
+            "type": "string"
+          },
+          "aPlatfS": {
+            "type": "string"
+          },
+          "aPlatfR": {
+            "type": "string"
+          },
+          "aProgType": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "aTZOffset": {
+            "type": "number",
+            "format": "double"
+          },
+          "aTrnCmpSX": {
+            "$ref": "#/components/schemas/TrnCmpSX"
+          },
+          "msgL": {
+            "items": {
+              "$ref": "#/components/schemas/MsgL"
+            },
+            "type": "array"
+          },
+          "dCncl": {
+            "type": "boolean"
+          },
+          "dProdX": {
+            "type": "number",
+            "format": "double"
+          },
+          "dInS": {
+            "type": "boolean"
+          },
+          "dInR": {
+            "type": "boolean"
+          },
+          "dTimeS": {
+            "type": "string"
+          },
+          "dTimeR": {
+            "type": "string"
+          },
+          "dPlatfS": {
+            "type": "string"
+          },
+          "dPlatfR": {
+            "type": "string"
+          },
+          "dProgType": {
+            "type": "string"
+          },
+          "dTZOffset": {
+            "type": "number",
+            "format": "double"
+          },
+          "dTrnCmpSX": {
+            "$ref": "#/components/schemas/TrnCmpSX"
+          },
+          "isAdd": {
+            "type": "boolean"
+          }
+        },
+        "required": ["locX", "aOutR", "aTimeS", "dInS", "dInR", "dTimeS"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "JnyL": {
+        "properties": {
+          "jid": {
+            "type": "string"
+          },
+          "prodX": {
+            "type": "number",
+            "format": "double"
+          },
+          "dirTxt": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "isRchbl": {
+            "type": "boolean"
+          },
+          "isCncl": {
+            "type": "boolean"
+          },
+          "isPartCncl": {
+            "type": "boolean"
+          },
+          "subscr": {
+            "type": "string"
+          },
+          "stopL": {
+            "items": {
+              "$ref": "#/components/schemas/CommonStop"
+            },
+            "type": "array"
+          },
+          "msgL": {
+            "items": {
+              "$ref": "#/components/schemas/MsgL"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "jid",
+          "prodX",
+          "dirTxt",
+          "status",
+          "isRchbl",
+          "subscr",
+          "stopL"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Freq": {
+        "properties": {
+          "minC": {
+            "type": "number",
+            "format": "double"
+          },
+          "maxC": {
+            "type": "number",
+            "format": "double"
+          },
+          "numC": {
+            "type": "number",
+            "format": "double"
+          },
+          "jnyL": {
+            "items": {
+              "$ref": "#/components/schemas/JnyL"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["minC", "maxC", "numC", "jnyL"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Jny": {
+        "properties": {
+          "jid": {
+            "type": "string"
+          },
+          "prodX": {
+            "type": "number",
+            "format": "double"
+          },
+          "dirTxt": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "isRchbl": {
+            "type": "boolean"
+          },
+          "isCncl": {
+            "type": "boolean"
+          },
+          "isPartCncl": {
+            "type": "boolean"
+          },
+          "subscr": {
+            "type": "string"
+          },
+          "stopL": {
+            "items": {
+              "$ref": "#/components/schemas/CommonStop"
+            },
+            "type": "array"
+          },
+          "msgL": {
+            "items": {
+              "$ref": "#/components/schemas/MsgL"
+            },
+            "type": "array"
+          },
+          "chgDurR": {
+            "type": "number",
+            "format": "double"
+          },
+          "ctxRecon": {
+            "type": "string"
+          },
+          "dTrnCmpSXmsgL": {
+            "items": {
+              "$ref": "#/components/schemas/MsgL"
+            },
+            "type": "array"
+          },
+          "dTrnCmpSX": {
+            "$ref": "#/components/schemas/TrnCmpSX"
+          },
+          "freq": {
+            "$ref": "#/components/schemas/Freq"
+          }
+        },
+        "required": [
+          "jid",
+          "prodX",
+          "dirTxt",
+          "status",
+          "isRchbl",
+          "subscr",
+          "ctxRecon",
+          "dTrnCmpSXmsgL",
+          "freq"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SecLJNY": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["JNY"],
+            "nullable": false
+          },
+          "icoX": {
+            "type": "number",
+            "format": "double"
+          },
+          "dep": {
+            "$ref": "#/components/schemas/CommonDeparture"
+          },
+          "arr": {
+            "$ref": "#/components/schemas/CommonArrival"
+          },
+          "jny": {
+            "$ref": "#/components/schemas/Jny"
+          },
+          "parJnyL": {
+            "items": {
+              "$ref": "#/components/schemas/Jny"
+            },
+            "type": "array"
+          },
+          "resState": {
+            "type": "string",
+            "enum": ["N", "B", "S"]
+          },
+          "resRecommendation": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "icoX",
+          "dep",
+          "arr",
+          "jny",
+          "resState",
+          "resRecommendation"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Gis": {
+        "properties": {
+          "dist": {
+            "type": "number",
+            "format": "double"
+          },
+          "durS": {
+            "type": "string"
+          },
+          "dirGeo": {
+            "type": "number",
+            "format": "double"
+          },
+          "ctx": {
+            "type": "string"
+          },
+          "gisPrvr": {
+            "type": "string"
+          },
+          "getDescr": {
+            "type": "boolean"
+          },
+          "getPoly": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "dist",
+          "durS",
+          "dirGeo",
+          "ctx",
+          "gisPrvr",
+          "getDescr",
+          "getPoly"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SecLWALK": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["WALK", "TRSF"]
+          },
+          "icoX": {
+            "type": "number",
+            "format": "double"
+          },
+          "dep": {
+            "$ref": "#/components/schemas/CommonDeparture"
+          },
+          "arr": {
+            "$ref": "#/components/schemas/CommonArrival"
+          },
+          "gis": {
+            "$ref": "#/components/schemas/Gis"
+          }
+        },
+        "required": ["type", "icoX", "dep", "arr", "gis"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SecLKISS": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["KISS"],
+            "nullable": false
+          }
+        },
+        "required": ["type"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SecL": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/SecLJNY"
+          },
+          {
+            "$ref": "#/components/schemas/SecLWALK"
+          },
+          {
+            "$ref": "#/components/schemas/SecLKISS"
+          }
+        ]
+      },
+      "Route$TarifFare": {
+        "properties": {
+          "price": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "moreExpensiveAvailable": {
+            "type": "boolean"
+          },
+          "bookable": {
+            "type": "boolean"
+          },
+          "upsell": {
+            "type": "boolean",
+            "description": "???"
+          },
+          "targetContext": {
+            "type": "string",
+            "description": "???"
+          }
+        },
+        "required": [
+          "price",
+          "moreExpensiveAvailable",
+          "bookable",
+          "upsell",
+          "targetContext"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Route$TarifFareSet": {
+        "properties": {
+          "fares": {
+            "items": {
+              "$ref": "#/components/schemas/Route$TarifFare"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["fares"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "PossibleShort": {
+        "type": "string",
+        "enum": ["1", "2", "3", "4", "3R", "T", "3V", "M"]
+      },
+      "PlannedSequence": {
+        "properties": {
+          "rawType": {
+            "type": "string"
+          },
+          "shortType": {
+            "$ref": "#/components/schemas/PossibleShort"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "required": ["rawType", "type"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Route$Journey": {
+        "properties": {
+          "cancelled": {
+            "type": "boolean"
+          },
+          "changeDuration": {
+            "type": "number",
+            "format": "double"
+          },
+          "duration": {
+            "type": "number",
+            "format": "double"
+          },
+          "finalDestination": {
+            "type": "string"
+          },
+          "jid": {
+            "type": "string"
+          },
+          "product": {
+            "$ref": "#/components/schemas/ProdL"
+          },
+          "raw": {
+            "$ref": "#/components/schemas/SecL"
+          },
+          "segmentDestination": {
+            "$ref": "#/components/schemas/RoutingStation"
+          },
+          "segmentStart": {
+            "$ref": "#/components/schemas/RoutingStation"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop"
+            },
+            "type": "array"
+          },
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "auslastung": {
+            "$ref": "#/components/schemas/Route$Auslastung"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "tarifSet": {
+            "items": {
+              "$ref": "#/components/schemas/Route$TarifFareSet"
+            },
+            "type": "array"
+          },
+          "plannedSequence": {
+            "$ref": "#/components/schemas/PlannedSequence"
+          }
+        },
+        "required": [
+          "finalDestination",
+          "jid",
+          "segmentDestination",
+          "segmentStart",
+          "stops",
+          "train"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ParsedSearchOnTripResponse": {
+        "properties": {
+          "cancelled": {
+            "type": "boolean"
+          },
+          "changeDuration": {
+            "type": "number",
+            "format": "double"
+          },
+          "duration": {
+            "type": "number",
+            "format": "double"
+          },
+          "finalDestination": {
+            "type": "string"
+          },
+          "jid": {
+            "type": "string"
+          },
+          "product": {
+            "$ref": "#/components/schemas/ProdL"
+          },
+          "raw": {
+            "$ref": "#/components/schemas/SecL"
+          },
+          "segmentDestination": {
+            "$ref": "#/components/schemas/RoutingStation"
+          },
+          "segmentStart": {
+            "$ref": "#/components/schemas/RoutingStation"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop"
+            },
+            "type": "array"
+          },
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "auslastung": {
+            "$ref": "#/components/schemas/Route$Auslastung"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "tarifSet": {
+            "items": {
+              "$ref": "#/components/schemas/Route$TarifFareSet"
+            },
+            "type": "array"
+          },
+          "plannedSequence": {
+            "$ref": "#/components/schemas/PlannedSequence"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["JNY"],
+            "nullable": false
+          },
+          "arrival": {
+            "$ref": "#/components/schemas/CommonStopInfo"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/CommonStopInfo"
+          },
+          "wings": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Journey"
+            },
+            "type": "array"
+          },
+          "currentStop": {
+            "$ref": "#/components/schemas/Route$Stop"
+          }
+        },
+        "required": [
+          "finalDestination",
+          "jid",
+          "segmentDestination",
+          "segmentStart",
+          "stops",
+          "train",
+          "type",
+          "arrival",
+          "departure"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Route$JourneySegmentTrain": {
+        "properties": {
+          "cancelled": {
+            "type": "boolean"
+          },
+          "changeDuration": {
+            "type": "number",
+            "format": "double"
+          },
+          "duration": {
+            "type": "number",
+            "format": "double"
+          },
+          "finalDestination": {
+            "type": "string"
+          },
+          "jid": {
+            "type": "string"
+          },
+          "product": {
+            "$ref": "#/components/schemas/ProdL"
+          },
+          "raw": {
+            "$ref": "#/components/schemas/SecL"
+          },
+          "segmentDestination": {
+            "$ref": "#/components/schemas/RoutingStation"
+          },
+          "segmentStart": {
+            "$ref": "#/components/schemas/RoutingStation"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop"
+            },
+            "type": "array"
+          },
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "auslastung": {
+            "$ref": "#/components/schemas/Route$Auslastung"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          },
+          "tarifSet": {
+            "items": {
+              "$ref": "#/components/schemas/Route$TarifFareSet"
+            },
+            "type": "array"
+          },
+          "plannedSequence": {
+            "$ref": "#/components/schemas/PlannedSequence"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["JNY"],
+            "nullable": false
+          },
+          "arrival": {
+            "$ref": "#/components/schemas/CommonStopInfo"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/CommonStopInfo"
+          },
+          "wings": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Journey"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "finalDestination",
+          "jid",
+          "segmentDestination",
+          "segmentStart",
+          "stops",
+          "train",
+          "type",
+          "arrival",
+          "departure"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "WalkStopInfo": {
+        "properties": {
+          "delay": {
+            "type": "number",
+            "format": "double"
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": ["time"],
+        "type": "object"
+      },
+      "Route$JourneySegmentWalk": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["WALK"],
+            "nullable": false
+          },
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "arrival": {
+            "$ref": "#/components/schemas/WalkStopInfo"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/WalkStopInfo"
+          },
+          "duration": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "segmentStart": {
+            "$ref": "#/components/schemas/HafasStation"
+          },
+          "segmentDestination": {
+            "$ref": "#/components/schemas/HafasStation"
+          }
+        },
+        "required": [
+          "type",
+          "train",
+          "arrival",
+          "departure",
+          "duration",
+          "segmentStart",
+          "segmentDestination"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Route$JourneySegment": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/Route$JourneySegmentTrain"
+          },
+          {
+            "$ref": "#/components/schemas/Route$JourneySegmentWalk"
+          }
+        ]
+      },
+      "SingleRoute": {
+        "properties": {
+          "arrival": {
+            "$ref": "#/components/schemas/CommonStopInfo"
+          },
+          "departure": {
+            "$ref": "#/components/schemas/CommonStopInfo"
+          },
+          "isRideable": {
+            "type": "boolean"
+          },
+          "checksum": {
+            "type": "string"
+          },
+          "cid": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "duration": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "changes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "segments": {
+            "items": {
+              "$ref": "#/components/schemas/Route$JourneySegment"
+            },
+            "type": "array"
+          },
+          "segmentTypes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "tarifSet": {
+            "items": {
+              "$ref": "#/components/schemas/Route$TarifFareSet"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "arrival",
+          "departure",
+          "isRideable",
+          "checksum",
+          "cid",
+          "date",
+          "duration",
+          "changes",
+          "segments",
+          "segmentTypes"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "AllowedSotMode": {
+        "type": "string",
+        "enum": ["JI", "RC"]
+      },
+      "SearchOnTripBody": {
+        "properties": {
+          "sotMode": {
+            "$ref": "#/components/schemas/AllowedSotMode"
+          },
+          "id": {
+            "type": "string"
+          }
+        },
+        "required": ["sotMode", "id"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "RoutingResult": {
+        "properties": {
+          "routes": {
+            "items": {
+              "$ref": "#/components/schemas/SingleRoute"
+            },
+            "type": "array"
+          },
+          "context": {
+            "properties": {
+              "later": {
+                "type": "string"
+              },
+              "earlier": {
+                "type": "string"
+              }
+            },
+            "required": ["later", "earlier"],
+            "type": "object"
+          }
+        },
+        "required": ["routes", "context"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "TripSearchVia": {
+        "properties": {
+          "evaId": {
+            "type": "string"
+          },
+          "minChangeTime": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": ["evaId"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "JnyCl": {
+        "enum": [1, 2],
+        "type": "number"
+      },
+      "TravelerType": {
+        "enum": ["E", "K", "B"],
+        "type": "string"
+      },
+      "LoyalityCard": {
+        "enum": [
+          "BC25First",
+          "BC25Second",
+          "BC50First",
+          "BC50Second",
+          "SHCard",
+          "ATVorteilscard",
+          "CHGeneral",
+          "CHHalfWithRailplus",
+          "CHHalfWithoutRailplus",
+          "NLWithRailplus",
+          "NLWithoutRailplus",
+          "BC100First",
+          "BC100Second"
+        ],
+        "type": "string"
+      },
+      "TripSearchTraveler": {
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/TravelerType"
+          },
+          "loyalityCard": {
+            "$ref": "#/components/schemas/LoyalityCard",
+            "description": "Testing Comment"
+          }
+        },
+        "required": ["type"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "TripSearchTarifRequest": {
+        "properties": {
+          "class": {
+            "$ref": "#/components/schemas/JnyCl"
+          },
+          "traveler": {
+            "items": {
+              "$ref": "#/components/schemas/TripSearchTraveler"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["class", "traveler"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "TripSearchOptionsV3": {
+        "properties": {
+          "economic": {
+            "type": "boolean",
+            "description": "true = not only fastest route"
+          },
+          "getIV": {
+            "type": "boolean",
+            "description": "Unknown flag"
+          },
+          "getPasslist": {
+            "type": "boolean",
+            "description": "Get Stop inbetween"
+          },
+          "getPolyline": {
+            "type": "boolean",
+            "description": "Polylines - unknown format"
+          },
+          "numF": {
+            "type": "number",
+            "format": "double"
+          },
+          "ctxScr": {
+            "type": "string"
+          },
+          "ushrp": {
+            "type": "boolean",
+            "description": "Is a station nearby enough for routing?"
+          },
+          "start": {
+            "$ref": "#/components/schemas/EvaNumber"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/EvaNumber"
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "transferTime": {
+            "type": "number",
+            "format": "double"
+          },
+          "maxChanges": {
+            "type": "number",
+            "format": "double"
+          },
+          "searchForDeparture": {
+            "type": "boolean"
+          },
+          "onlyRegional": {
+            "type": "boolean"
+          },
+          "tarif": {
+            "$ref": "#/components/schemas/TripSearchTarifRequest"
+          },
+          "via": {
+            "items": {
+              "$ref": "#/components/schemas/TripSearchVia"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["start", "destination"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "WingInfo": {
+        "properties": {
+          "station": {
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              }
+            },
+            "required": ["title", "id"],
+            "type": "object"
+          },
+          "pt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "fl": {
+            "type": "boolean"
+          }
+        },
+        "required": ["station", "pt", "fl"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "WingDefinition": {
+        "properties": {
+          "start": {
+            "$ref": "#/components/schemas/WingInfo"
+          },
+          "end": {
+            "$ref": "#/components/schemas/WingInfo"
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBPlatforms": {
+        "properties": {
+          "scheduled": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "reported": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": ["scheduled", "reported"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBSectorInfo": {
+        "properties": {
+          "scheduled": {
+            "type": "string"
+          },
+          "reported": {
+            "type": "string"
+          }
+        },
+        "required": ["scheduled"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBTimeFormat": {
+        "properties": {
+          "days": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hours": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minutes": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": ["days", "hours", "minutes"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBTime": {
+        "properties": {
+          "scheduled": {
+            "$ref": "#/components/schemas/OEBBTimeFormat"
+          },
+          "reported": {
+            "$ref": "#/components/schemas/OEBBTimeFormat"
+          }
+        },
+        "required": ["scheduled"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBPortion": {
+        "properties": {
+          "trainNr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "trainName": {
+            "type": "string",
+            "description": "`${type} ${number}`"
+          }
+        },
+        "required": ["trainNr", "trainName"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBTimeTableInfo": {
+        "properties": {
+          "date": {
+            "type": "string"
+          },
+          "trainNr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "trainName": {
+            "type": "string"
+          },
+          "stationName": {
+            "type": "string"
+          },
+          "platform": {
+            "$ref": "#/components/schemas/OEBBPlatforms"
+          },
+          "sectors": {
+            "$ref": "#/components/schemas/OEBBSectorInfo"
+          },
+          "time": {
+            "$ref": "#/components/schemas/OEBBTime"
+          },
+          "portions": {
+            "items": {
+              "$ref": "#/components/schemas/OEBBPortion"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "date",
+          "trainNr",
+          "trainName",
+          "stationName",
+          "platform",
+          "sectors",
+          "time",
+          "portions"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBIdentifier": {
+        "type": "string",
+        "description": "example: WBF (Wien Hbf)"
+      },
+      "OEBBCoachSequenceWagon": {
+        "properties": {
+          "uicNumber": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "origin": {
+            "$ref": "#/components/schemas/OEBBIdentifier"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/OEBBIdentifier"
+          },
+          "ranking": {
+            "type": "number",
+            "format": "double"
+          },
+          "capacityBusinessClass": {
+            "type": "number",
+            "format": "double"
+          },
+          "capacityFirstClass": {
+            "type": "number",
+            "format": "double"
+          },
+          "capacitySecondClass": {
+            "type": "number",
+            "format": "double"
+          },
+          "capacityCouchette": {
+            "type": "number",
+            "format": "double"
+          },
+          "capacitySleeper": {
+            "type": "number",
+            "format": "double"
+          },
+          "capacityWheelChair": {
+            "type": "number",
+            "format": "double"
+          },
+          "capacityBicycle": {
+            "type": "number",
+            "format": "double"
+          },
+          "isBicycleAllowed": {
+            "type": "boolean"
+          },
+          "isWheelChairAccessible": {
+            "type": "boolean"
+          },
+          "hasWifi": {
+            "type": "boolean"
+          },
+          "isInfoPoint": {
+            "type": "boolean"
+          },
+          "isPlayZone": {
+            "type": "boolean"
+          },
+          "isChildCinema": {
+            "type": "boolean"
+          },
+          "isDining": {
+            "type": "boolean"
+          },
+          "isQuietZone": {
+            "type": "boolean"
+          },
+          "isLocked": {
+            "type": "boolean"
+          },
+          "destinationName": {
+            "type": "string"
+          },
+          "lengthOverBuffers": {
+            "type": "number",
+            "format": "double"
+          },
+          "originTime": {
+            "type": "string"
+          },
+          "destinationTime": {
+            "type": "string"
+          },
+          "seasoning": {
+            "properties": {
+              "seasoningString": {
+                "type": "string"
+              },
+              "startDate": {
+                "type": "string"
+              }
+            },
+            "required": ["seasoningString", "startDate"],
+            "type": "object"
+          }
+        },
+        "required": [
+          "origin",
+          "destination",
+          "ranking",
+          "capacityBusinessClass",
+          "capacityFirstClass",
+          "capacitySecondClass",
+          "capacityCouchette",
+          "capacitySleeper",
+          "capacityWheelChair",
+          "capacityBicycle",
+          "isBicycleAllowed",
+          "isWheelChairAccessible",
+          "hasWifi",
+          "isInfoPoint",
+          "isPlayZone",
+          "isChildCinema",
+          "isDining",
+          "isQuietZone",
+          "isLocked",
+          "destinationName",
+          "lengthOverBuffers",
+          "originTime",
+          "destinationTime"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBTrainInfo": {
+        "properties": {
+          "trainNr": {
+            "type": "number",
+            "format": "double"
+          },
+          "date": {
+            "type": "string",
+            "description": "ISO Date"
+          },
+          "version": {
+            "type": "number",
+            "format": "double"
+          },
+          "isReported": {
+            "type": "boolean"
+          },
+          "assemblyStation": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "stations": {
+            "items": {
+              "$ref": "#/components/schemas/OEBBIdentifier"
+            },
+            "type": "array"
+          },
+          "wagons": {
+            "items": {
+              "$ref": "#/components/schemas/OEBBCoachSequenceWagon"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "trainNr",
+          "date",
+          "version",
+          "isReported",
+          "assemblyStation",
+          "source",
+          "stations",
+          "wagons"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBAccessType": {
+        "type": "string",
+        "enum": ["STIEGENAUFGANG", "AUFZUG", "ROLLTREPPE"]
+      },
+      "OEBBAccess": {
+        "properties": {
+          "platform": {
+            "type": "string"
+          },
+          "distance": {
+            "type": "number",
+            "format": "double"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/OEBBAccessType"
+          }
+        },
+        "required": ["platform", "distance", "name", "type"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBTrainOnPlatform": {
+        "properties": {
+          "position": {
+            "type": "number",
+            "format": "double"
+          },
+          "departureTowardsFirstSector": {
+            "type": "boolean"
+          }
+        },
+        "required": ["position", "departureTowardsFirstSector"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBSector": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "length": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": ["name", "length"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBPlatformInfo": {
+        "properties": {
+          "platform": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "length": {
+            "type": "number",
+            "format": "double"
+          },
+          "sectors": {
+            "items": {
+              "$ref": "#/components/schemas/OEBBSector"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["platform", "length", "sectors"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "OEBBInfo": {
+        "properties": {
+          "timeTableInfo": {
+            "$ref": "#/components/schemas/OEBBTimeTableInfo"
+          },
+          "train": {
+            "$ref": "#/components/schemas/OEBBTrainInfo"
+          },
+          "accessess": {
+            "items": {
+              "$ref": "#/components/schemas/OEBBAccess"
+            },
+            "type": "array"
+          },
+          "trainOnPlatform": {
+            "$ref": "#/components/schemas/OEBBTrainOnPlatform"
+          },
+          "platform": {
+            "$ref": "#/components/schemas/OEBBPlatformInfo"
+          }
+        },
+        "required": ["timeTableInfo", "accessess"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "ReturnType_typeofinfo_": {
+        "$ref": "#/components/schemas/OEBBInfo",
+        "description": "Obtain the return type of a function type"
+      },
+      "AdditionalFahrzeugInfo": {
+        "properties": {
+          "klasse": {
+            "type": "number",
+            "enum": ["0", "1", "2", "3", "4"],
+            "description": "0: Unknown; 1: erste; 2: zweite; 3: 1&2; 4: Not for passengers"
+          },
+          "icons": {
+            "properties": {
+              "wifi": {
+                "type": "boolean"
+              },
+              "toddler": {
+                "type": "boolean"
+              },
+              "family": {
+                "type": "boolean"
+              },
+              "info": {
+                "type": "boolean"
+              },
+              "quiet": {
+                "type": "boolean"
+              },
+              "disabled": {
+                "type": "boolean"
+              },
+              "bike": {
+                "type": "boolean"
+              },
+              "wheelchair": {
+                "type": "boolean"
+              },
+              "dining": {
+                "type": "boolean"
+              }
+            },
+            "type": "object"
+          },
+          "comfort": {
+            "type": "boolean"
+          },
+          "comfortSeats": {
+            "type": "string"
+          },
+          "disabledSeats": {
+            "type": "string"
+          },
+          "familySeats": {
+            "type": "string"
+          }
+        },
+        "required": ["klasse", "icons"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Fahrzeugausstattung": {
+        "properties": {
+          "anzahl": {
+            "type": "string"
+          },
+          "ausstattungsart": {
+            "type": "string"
+          },
+          "bezeichnung": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": ["anzahl", "ausstattungsart", "bezeichnung", "status"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "FahrzeugKategorie": {
+        "type": "string",
+        "enum": [
+          "DOPPELSTOCKSTEUERWAGENERSTEZWEITEKLASSE",
+          "DOPPELSTOCKSTEUERWAGENZWEITEKLASSE",
+          "DOPPELSTOCKWAGENERSTEKLASSE",
+          "DOPPELSTOCKWAGENERSTEZWEITEKLASSE",
+          "DOPPELSTOCKWAGENZWEITEKLASSE",
+          "HALBSPEISEWAGENERSTEKLASSE",
+          "HALBSPEISEWAGENZWEITEKLASSE",
+          "LOK",
+          "REISEZUGWAGENERSTEKLASSE",
+          "REISEZUGWAGENERSTEZWEITEKLASSE",
+          "REISEZUGWAGENZWEITEKLASSE",
+          "SPEISEWAGEN",
+          "STEUERWAGENERSTEKLASSE",
+          "STEUERWAGENERSTEZWEITEKLASSE",
+          "STEUERWAGENZWEITEKLASSE",
+          "TRIEBKOPF",
+          ""
+        ]
+      },
+      "Position": {
+        "properties": {
+          "endemeter": {
+            "type": "string"
+          },
+          "endeprozent": {
+            "type": "string"
+          },
+          "startmeter": {
+            "type": "string"
+          },
+          "startprozent": {
+            "type": "string"
+          }
+        },
+        "required": ["endemeter", "endeprozent", "startmeter", "startprozent"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Fahrzeug": {
+        "properties": {
+          "allFahrzeugausstattung": {
+            "items": {
+              "$ref": "#/components/schemas/Fahrzeugausstattung"
+            },
+            "type": "array"
+          },
+          "kategorie": {
+            "$ref": "#/components/schemas/FahrzeugKategorie"
+          },
+          "fahrzeugnummer": {
+            "type": "string"
+          },
+          "orientierung": {
+            "type": "string"
+          },
+          "positioningruppe": {
+            "type": "string"
+          },
+          "fahrzeugsektor": {
+            "type": "string"
+          },
+          "fahrzeugtyp": {
+            "type": "string"
+          },
+          "wagenordnungsnummer": {
+            "type": "string"
+          },
+          "positionamhalt": {
+            "$ref": "#/components/schemas/Position"
+          },
+          "status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "string",
+                "enum": ["GESCHLOSSEN"]
+              }
+            ]
+          },
+          "additionalInfo": {
+            "$ref": "#/components/schemas/AdditionalFahrzeugInfo"
+          }
+        },
+        "required": [
+          "allFahrzeugausstattung",
+          "kategorie",
+          "fahrzeugnummer",
+          "orientierung",
+          "positioningruppe",
+          "fahrzeugsektor",
+          "fahrzeugtyp",
+          "wagenordnungsnummer",
+          "positionamhalt",
+          "status",
+          "additionalInfo"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "AvailableBR": {
+        "type": "string",
+        "enum": [
+          "401",
+          "402",
+          "403",
+          "406",
+          "407",
+          "411",
+          "412",
+          "415",
+          "410.1"
+        ]
+      },
+      "AvailableIdentifier": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/AvailableBR"
+          },
+          {
+            "type": "string",
+            "enum": [
+              "401.LDV",
+              "401.9",
+              "411.S1",
+              "411.S2",
+              "412.7",
+              "412.13",
+              "403.R",
+              "403.S1",
+              "403.S2",
+              "406.R",
+              "IC2.TWIN",
+              "IC2.KISS",
+              "MET",
+              "TGV"
+            ]
+          }
+        ]
+      },
+      "BRInfo": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "BR": {
+            "$ref": "#/components/schemas/AvailableBR"
+          },
+          "identifier": {
+            "$ref": "#/components/schemas/AvailableIdentifier"
+          },
+          "noPdf": {
+            "type": "boolean"
+          },
+          "country": {
+            "type": "string",
+            "enum": ["DE", "AT"]
+          },
+          "showBRInfo": {
+            "type": "boolean"
+          }
+        },
+        "required": ["name"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "BaseFahrzeug": {
+        "properties": {
+          "allFahrzeugausstattung": {
+            "items": {
+              "$ref": "#/components/schemas/Fahrzeugausstattung"
+            },
+            "type": "array"
+          },
+          "kategorie": {
+            "$ref": "#/components/schemas/FahrzeugKategorie"
+          },
+          "fahrzeugnummer": {
+            "type": "string"
+          },
+          "orientierung": {
+            "type": "string"
+          },
+          "positioningruppe": {
+            "type": "string"
+          },
+          "fahrzeugsektor": {
+            "type": "string"
+          },
+          "fahrzeugtyp": {
+            "type": "string"
+          },
+          "wagenordnungsnummer": {
+            "type": "string"
+          },
+          "positionamhalt": {
+            "$ref": "#/components/schemas/Position"
+          },
+          "status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "string",
+                "enum": ["GESCHLOSSEN"]
+              }
+            ]
+          }
+        },
+        "required": [
+          "allFahrzeugausstattung",
+          "kategorie",
+          "fahrzeugnummer",
+          "orientierung",
+          "positioningruppe",
+          "fahrzeugsektor",
+          "fahrzeugtyp",
+          "wagenordnungsnummer",
+          "positionamhalt",
+          "status"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Fahrzeuggruppe": {
+        "properties": {
+          "allFahrzeug": {
+            "items": {
+              "$ref": "#/components/schemas/Fahrzeug"
+            },
+            "type": "array"
+          },
+          "fahrzeuggruppebezeichnung": {
+            "type": "string"
+          },
+          "zielbetriebsstellename": {
+            "type": "string"
+          },
+          "startbetriebsstellename": {
+            "type": "string"
+          },
+          "verkehrlichezugnummer": {
+            "type": "string"
+          },
+          "goesToFrance": {
+            "type": "boolean"
+          },
+          "startPercentage": {
+            "type": "number",
+            "format": "double"
+          },
+          "endPercentage": {
+            "type": "number",
+            "format": "double"
+          },
+          "tzn": {
+            "type": "string",
+            "description": "0169 for instance, from Gruppenbezeichnung"
+          },
+          "name": {
+            "type": "string",
+            "description": "Worms for instance"
+          },
+          "br": {
+            "$ref": "#/components/schemas/BRInfo"
+          }
+        },
+        "required": [
+          "allFahrzeug",
+          "fahrzeuggruppebezeichnung",
+          "zielbetriebsstellename",
+          "startbetriebsstellename",
+          "verkehrlichezugnummer",
+          "goesToFrance",
+          "startPercentage",
+          "endPercentage"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "BaseFahrzeuggruppe": {
+        "properties": {
+          "allFahrzeug": {
+            "items": {
+              "$ref": "#/components/schemas/BaseFahrzeug"
+            },
+            "type": "array"
+          },
+          "fahrzeuggruppebezeichnung": {
+            "type": "string"
+          },
+          "zielbetriebsstellename": {
+            "type": "string"
+          },
+          "startbetriebsstellename": {
+            "type": "string"
+          },
+          "verkehrlichezugnummer": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "allFahrzeug",
+          "fahrzeuggruppebezeichnung",
+          "zielbetriebsstellename",
+          "startbetriebsstellename",
+          "verkehrlichezugnummer"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Sektor": {
+        "properties": {
+          "positionamgleis": {
+            "$ref": "#/components/schemas/Position"
+          },
+          "sektorbezeichnung": {
+            "type": "string"
+          }
+        },
+        "required": ["positionamgleis", "sektorbezeichnung"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Halt": {
+        "properties": {
+          "abfahrtszeit": {
+            "type": "string"
+          },
+          "ankunftszeit": {
+            "type": "string"
+          },
+          "bahnhofsname": {
+            "type": "string"
+          },
+          "evanummer": {
+            "type": "string"
+          },
+          "gleisbezeichnung": {
+            "type": "string"
+          },
+          "haltid": {
+            "type": "string"
+          },
+          "rl100": {
+            "type": "string"
+          },
+          "allSektor": {
+            "items": {
+              "$ref": "#/components/schemas/Sektor"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "bahnhofsname",
+          "evanummer",
+          "haltid",
+          "rl100",
+          "allSektor"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Formation": {
+        "properties": {
+          "fahrtrichtung": {
+            "type": "string",
+            "enum": ["VORWAERTS", "RUCKWAERTS"],
+            "description": "Should always be VORWAERTS"
+          },
+          "allFahrzeuggruppe": {
+            "items": {
+              "$ref": "#/components/schemas/Fahrzeuggruppe"
+            },
+            "type": "array"
+          },
+          "halt": {
+            "$ref": "#/components/schemas/Halt"
+          },
+          "liniebezeichnung": {
+            "type": "string"
+          },
+          "zuggattung": {
+            "type": "string"
+          },
+          "zugnummer": {
+            "type": "string"
+          },
+          "serviceid": {
+            "type": "string",
+            "description": "???"
+          },
+          "planstarttag": {
+            "type": "string"
+          },
+          "fahrtid": {
+            "type": "string",
+            "description": "???"
+          },
+          "istplaninformation": {
+            "type": "boolean"
+          },
+          "reportedZuggattung": {
+            "type": "string",
+            "description": "Train Category that was reported"
+          },
+          "differentDestination": {
+            "type": "boolean",
+            "description": "do groups have a different destination"
+          },
+          "differentZugnummer": {
+            "type": "boolean",
+            "description": "Do we have several trains in one? (Flügelung)"
+          },
+          "scale": {
+            "type": "number",
+            "format": "double"
+          },
+          "startPercentage": {
+            "type": "number",
+            "format": "double"
+          },
+          "endPercentage": {
+            "type": "number",
+            "format": "double"
+          },
+          "realFahrtrichtung": {
+            "type": "boolean",
+            "description": "true = Vorwärts, undefined = we do not know"
+          },
+          "isRealtime": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "fahrtrichtung",
+          "allFahrzeuggruppe",
+          "halt",
+          "liniebezeichnung",
+          "zuggattung",
+          "zugnummer",
+          "serviceid",
+          "planstarttag",
+          "fahrtid",
+          "istplaninformation",
+          "reportedZuggattung",
+          "scale",
+          "startPercentage",
+          "endPercentage",
+          "isRealtime"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CoachSequencePosition": {
+        "properties": {
+          "startPercent": {
+            "type": "number",
+            "format": "double"
+          },
+          "endPercent": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": ["startPercent", "endPercent"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CoachSequenceSector": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "position": {
+            "$ref": "#/components/schemas/CoachSequencePosition"
+          }
+        },
+        "required": ["name", "position"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CoachSequenceStop": {
+        "properties": {
+          "stopPlace": {
+            "$ref": "#/components/schemas/MinimalStopPlace"
+          },
+          "sectors": {
+            "items": {
+              "$ref": "#/components/schemas/CoachSequenceSector"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["stopPlace", "sectors"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CoachSequenceProduct": {
+        "properties": {
+          "number": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "required": ["number", "type"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CoachSequenceCoachFeatures": {
+        "properties": {
+          "dining": {
+            "type": "boolean"
+          },
+          "wheelchair": {
+            "type": "boolean"
+          },
+          "bike": {
+            "type": "boolean"
+          },
+          "disabled": {
+            "type": "boolean"
+          },
+          "quiet": {
+            "type": "boolean"
+          },
+          "info": {
+            "type": "boolean"
+          },
+          "family": {
+            "type": "boolean"
+          },
+          "toddler": {
+            "type": "boolean"
+          },
+          "wifi": {
+            "type": "boolean"
+          },
+          "comfort": {
+            "type": "boolean"
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CoachSequenceCoachSeats": {
+        "properties": {
+          "comfort": {
+            "type": "string"
+          },
+          "disabled": {
+            "type": "string"
+          },
+          "family": {
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CoachSequenceCoach": {
+        "properties": {
+          "class": {
+            "type": "number",
+            "enum": ["0", "1", "2", "3", "4"],
+            "description": "0: Unknown; 1: erste; 2: zweite; 3: 1&2; 4: Not for passengers"
+          },
+          "category": {
+            "$ref": "#/components/schemas/FahrzeugKategorie"
+          },
+          "closed": {
+            "type": "boolean"
+          },
+          "uic": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "identificationNumber": {
+            "type": "string",
+            "description": "Wagenordnungsnummer"
+          },
+          "position": {
+            "$ref": "#/components/schemas/CoachSequencePosition"
+          },
+          "features": {
+            "$ref": "#/components/schemas/CoachSequenceCoachFeatures"
+          },
+          "seats": {
+            "$ref": "#/components/schemas/CoachSequenceCoachSeats"
+          }
+        },
+        "required": ["class", "category", "position", "features"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CoachSequenceBaureihe": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "baureihe": {
+            "$ref": "#/components/schemas/AvailableBR"
+          },
+          "identifier": {
+            "$ref": "#/components/schemas/AvailableIdentifier"
+          }
+        },
+        "required": ["name", "identifier"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CoachSequenceGroup": {
+        "properties": {
+          "coaches": {
+            "items": {
+              "$ref": "#/components/schemas/CoachSequenceCoach"
+            },
+            "type": "array"
+          },
+          "name": {
+            "type": "string"
+          },
+          "originName": {
+            "type": "string"
+          },
+          "destinationName": {
+            "type": "string"
+          },
+          "trainName": {
+            "type": "string"
+          },
+          "number": {
+            "type": "string"
+          },
+          "baureihe": {
+            "$ref": "#/components/schemas/CoachSequenceBaureihe"
+          }
+        },
+        "required": [
+          "coaches",
+          "name",
+          "originName",
+          "destinationName",
+          "number"
+        ],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CoachSequence": {
+        "properties": {
+          "groups": {
+            "items": {
+              "$ref": "#/components/schemas/CoachSequenceGroup"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["groups"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "CoachSequenceInformation": {
+        "properties": {
+          "stop": {
+            "$ref": "#/components/schemas/CoachSequenceStop"
+          },
+          "product": {
+            "$ref": "#/components/schemas/CoachSequenceProduct"
+          },
+          "sequence": {
+            "$ref": "#/components/schemas/CoachSequence"
+          },
+          "multipleTrainNumbers": {
+            "type": "boolean"
+          },
+          "multipleDestinations": {
+            "type": "boolean"
+          },
+          "isRealtime": {
+            "type": "boolean"
+          },
+          "direction": {
+            "type": "boolean",
+            "description": "true = in direction of first sector in array\nfalse = in direction of last sector in array\nundefined = we do not know"
+          }
+        },
+        "required": ["stop", "product", "sequence", "isRealtime"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "TransportType": {
+        "description": "Type of transport. - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - FLIGHT (Flight [Flugzeug]) - CAR (Car [Auto]) - TAXI (Taxi) - SHUTTLE (Shuttle [Ruftaxi]) - BIKE ((E-)Bike [Fahrrad]) - SCOOTER ((E-)Scooter [Roller]) - WALK (Walk ([Laufen]) - UNKNOWN (Unknown)",
+        "enum": [
+          "HIGH_SPEED_TRAIN",
+          "INTERCITY_TRAIN",
+          "INTER_REGIONAL_TRAIN",
+          "REGIONAL_TRAIN",
+          "CITY_TRAIN",
+          "SUBWAY",
+          "TRAM",
+          "BUS",
+          "FERRY",
+          "FLIGHT",
+          "CAR",
+          "TAXI",
+          "SHUTTLE",
+          "BIKE",
+          "SCOOTER",
+          "WALK",
+          "UNKNOWN"
+        ],
+        "type": "string"
+      },
+      "Coordinate2D": {
+        "description": "2D coordinate within geo reference system.",
+        "properties": {
+          "longitude": {
+            "type": "number",
+            "format": "double",
+            "description": "Longitude position in reference system."
+          },
+          "latitude": {
+            "type": "number",
+            "format": "double",
+            "description": "Latitude position in reference system."
+          }
+        },
+        "required": ["longitude", "latitude"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "StopPlaceIdentifier": {
+        "properties": {
+          "stationId": {
+            "type": "string"
+          },
+          "ifopt": {
+            "type": "string",
+            "description": "also known as DHID, globalId"
+          },
+          "ril100": {
+            "type": "string"
+          },
+          "alternativeRil100": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "evaNumber": {
+            "type": "string"
+          }
+        },
+        "required": ["evaNumber"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "GroupedStopPlace": {
+        "properties": {
+          "evaNumber": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "availableTransports": {
+            "items": {
+              "$ref": "#/components/schemas/TransportType"
+            },
+            "type": "array"
+          },
+          "position": {
+            "$ref": "#/components/schemas/Coordinate2D"
+          },
+          "identifier": {
+            "$ref": "#/components/schemas/StopPlaceIdentifier"
+          }
+        },
+        "required": ["evaNumber", "name", "availableTransports"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "TrainOccupancyList": {
+        "properties": {},
+        "type": "object",
+        "additionalProperties": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/Route$Auslastung"
+            }
+          ],
+          "nullable": true
+        }
+      }
+    },
+    "securitySchemes": {}
+  },
+  "info": {
+    "title": "Bahnhofs Abfahrten",
+    "version": "1.0.0",
+    "contact": {
+      "name": "marudor"
+    }
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/iris/v2/abfahrten/{evaNumber}": {
+      "get": {
+        "operationId": "Abfahrten v2",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AbfahrtenResult"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["IRIS"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "evaNumber",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/EvaNumber"
+            }
+          },
+          {
+            "description": "minutes",
+            "in": "query",
+            "name": "lookahead",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "minutes",
+            "in": "query",
+            "name": "lookbehind",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        ]
+      }
+    },
+    "/hafas/v2/arrivalStationBoard": {
+      "get": {
+        "operationId": "Arrival Station Board v2",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ArrivalStationBoardEntry"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["HAFAS"],
+        "security": [],
+        "parameters": [
+          {
+            "description": "evaNumber",
+            "in": "query",
+            "name": "station",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/EvaNumber"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date",
+            "required": false,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ]
+      }
+    },
+    "/hafas/v2/auslastung/{start}/{destination}/{trainNumber}/{time}": {
+      "get": {
+        "operationId": "Auslastung v2",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Route$Auslastung"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["HAFAS"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "start",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "destination",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "trainNumber",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "time",
+            "required": true,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/hafas/v2/departureStationBoard": {
+      "get": {
+        "operationId": "Departure Station Board v2",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/DepartureStationBoardEntry"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["HAFAS"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "station",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/EvaNumber"
+            }
+          },
+          {
+            "in": "query",
+            "name": "direction",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/EvaNumber"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date",
+            "required": false,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ]
+      }
+    },
+    "/hafas/v2/details/{trainName}": {
+      "get": {
+        "operationId": "Details v2",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParsedSearchOnTripResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Train not found"
+          }
+        },
+        "tags": ["HAFAS"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trainName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "stop",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "EvaNumber of a stop of your train",
+            "in": "query",
+            "name": "station",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/EvaNumber"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date",
+            "required": false,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ]
+      }
+    },
+    "/hafas/v1/geoStation": {
+      "get": {
+        "operationId": "Geo Station v1",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/HafasStation"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["HAFAS"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "lat",
+            "required": true,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "lng",
+            "required": true,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "maxDist",
+            "required": false,
+            "schema": {
+              "default": 1000,
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ]
+      }
+    },
+    "/hafas/experimental/himMessages": {
+      "get": {
+        "operationId": "Him Messages",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParsedHimSearchResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["HAFAS Experimental"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "himIds",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ]
+      }
+    },
+    "/hafas/experimental/HimSearch": {
+      "post": {
+        "operationId": "Him Search",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParsedHimSearchResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["HAFAS Experimental"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HimSearchRequestOptions"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hafas/experimental/JourneyCourse": {
+      "post": {
+        "operationId": "Journey Course",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "tags": ["HAFAS Experimental"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JourneyCourseRequestOptions"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hafas/v1/journeyGeoPos": {
+      "post": {
+        "operationId": "Journey Geo Position v1",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParsedJourneyGeoPosResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["HAFAS"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JourneyGeoPosOptions"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hafas/experimental/JourneyGraph": {
+      "post": {
+        "operationId": "Journey Graph",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "tags": ["HAFAS Experimental"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JourneyGraphRequestOptions"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hafas/v2/journeyMatch": {
+      "post": {
+        "operationId": "Journey Match v2",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ParsedJourneyMatchResponse"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["HAFAS"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JourneyMatchOptions"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hafas/experimental/JourneyTree": {
+      "post": {
+        "operationId": "Journey Tree",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        },
+        "tags": ["HAFAS Experimental"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JourneyTreeRequestOptions"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hafas/v2/journeyDetails": {
+      "get": {
+        "operationId": "JourneyDetails v2",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParsedJourneyDetails"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["HAFAS"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "jid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ]
+      }
+    },
+    "/stopPlace/v1/lageplan/{stopPlaceName}/{evaNumber}": {
+      "get": {
+        "operationId": "Lageplan",
+        "responses": {
+          "200": {
+            "description": "URL to DB, HVV or NAHSH Lageplan",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LageplanResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["StopPlace"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "stopPlaceName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "evaNumber",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/EvaNumber"
+            }
+          }
+        ]
+      }
+    },
+    "/bahnhof/v1/lageplan/{stopPlaceName}/{evaNumber}": {
+      "get": {
+        "operationId": "Lageplan",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LageplanResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Bahnhof"],
+        "deprecated": true,
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "stopPlaceName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "evaNumber",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/EvaNumber"
+            }
+          }
+        ]
+      }
+    },
+    "/hafas/v1/positionForTrain/{trainName}": {
+      "get": {
+        "operationId": "Position for Train v1",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParsedJourneyGeoPosResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["HAFAS"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trainName",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ]
+      }
+    },
+    "/hafas/v2/searchOnTrip": {
+      "post": {
+        "operationId": "Search on Trip v2",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SingleRoute"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["HAFAS"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchOnTripBody"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stopPlace/v1/{evaNumber}": {
+      "get": {
+        "operationId": "StopPlaceByEva",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupedStopPlace"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "tags": ["StopPlace"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "evaNumber",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/EvaNumber"
+            }
+          }
+        ]
+      }
+    },
+    "/stopPlace/v1/geoSearch": {
+      "get": {
+        "operationId": "StopPlaceGeoSearch",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/GroupedStopPlace"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["StopPlace"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "lat",
+            "required": true,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "lng",
+            "required": true,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "description": "meter",
+            "in": "query",
+            "name": "radius",
+            "required": false,
+            "schema": {
+              "default": 500,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Only returns stopPlaces iris-tts can handle (/abfahrten)",
+            "in": "query",
+            "name": "filterForIris",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "max",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        ]
+      }
+    },
+    "/stopPlace/v1/{evaNumber}/identifier": {
+      "get": {
+        "operationId": "StopPlaceIdentifier",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StopPlaceIdentifier"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "tags": ["StopPlace"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "evaNumber",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/EvaNumber"
+            }
+          }
+        ]
+      }
+    },
+    "/stopPlace/v1/search/{searchTerm}": {
+      "get": {
+        "operationId": "StopPlaceSearch",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/GroupedStopPlace"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["StopPlace"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "searchTerm",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "max",
+            "required": false,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Only returns stopPlaces iris-tts can handle (/abfahrten)",
+            "in": "query",
+            "name": "filterForIris",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "groupedBySales",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ]
+      }
+    },
+    "/hafas/subscribe/create": {
+      "post": {
+        "operationId": "Subscribe create",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParsedSubscrCreateResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["HAFAS Subscribe"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscrCreateOptions"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hafas/subscribe/createUser": {
+      "post": {
+        "operationId": "Subscribe create User",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParsedSubscrUserResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["HAFAS Subscribe"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscrUserCreateOptions"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hafas/subscribe/delete": {
+      "post": {
+        "operationId": "Subscribe delete",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscrDeleteResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["HAFAS Subscribe"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscrDeleteOptions"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hafas/subscribe/deleteUser": {
+      "post": {
+        "operationId": "Subscribe delete User",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscrUserDeleteResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["HAFAS Subscribe"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SubscrUserDeleteOptions"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hafas/subscribe/details": {
+      "get": {
+        "operationId": "Subscribe details",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscrDetailsResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["HAFAS Subscribe"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "subscribeId",
+            "required": true,
+            "schema": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ]
+      }
+    },
+    "/hafas/subscribe/search": {
+      "get": {
+        "operationId": "Subscribe Search",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SubscrSearchResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["HAFAS Subscribe"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ]
+      }
+    },
+    "/reihung/v1/trainName/{tz}": {
+      "get": {
+        "operationId": "Train Name v1",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "tags": ["Reihung"],
+        "security": [],
+        "parameters": [
+          {
+            "description": "TZ Number (e.g. 0169)",
+            "in": "path",
+            "name": "tz",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/oebb/experimental/trainInfo/{trainNumber}/{evaNumber}/{departureDate}": {
+      "get": {
+        "operationId": "TrainInfo experimental",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReturnType_typeofinfo_"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["OEBB"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trainNumber",
+            "required": true,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "path",
+            "name": "evaNumber",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/EvaNumber"
+            }
+          },
+          {
+            "in": "path",
+            "name": "departureDate",
+            "required": true,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/stopPlace/v1/{evaNumber}/trainOccupancy": {
+      "get": {
+        "operationId": "TrainOccupancy",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TrainOccupancyList"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "description": "Currently only for VRR. <br>\nSource: https://github.com/derf/eva-to-efa-gw<br>\nThanks derf.",
+        "tags": ["StopPlace"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "evaNumber",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/EvaNumber"
+            }
+          }
+        ]
+      }
+    },
+    "/hafas/v3/tripSearch": {
+      "post": {
+        "operationId": "TripSearch v3",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoutingResult"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["HAFAS"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TripSearchOptionsV3"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reihung/v2/wagen/{trainNumber}/{date}": {
+      "get": {
+        "operationId": "Wagenreihung v2",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Formation"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Reihung"],
+        "deprecated": true,
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trainNumber",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "date",
+            "required": true,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/reihung/v3/wagen/{trainNumber}": {
+      "get": {
+        "operationId": "Wagenreihung v3",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Formation"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Reihung"],
+        "deprecated": true,
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trainNumber",
+            "required": true,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "departure",
+            "required": true,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "description": "needed for OEBB Reihung, usually 7 digits",
+            "in": "query",
+            "name": "evaNumber",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/EvaNumber"
+            }
+          },
+          {
+            "description": "needed for OEBB Reihung",
+            "in": "query",
+            "name": "initialDeparture",
+            "required": false,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/reihung/v4/wagen/{trainNumber}": {
+      "get": {
+        "operationId": "Wagenreihung v4",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CoachSequenceInformation"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Reihung"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trainNumber",
+            "required": true,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "departure",
+            "required": true,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "description": "needed for OEBB Reihung, usually 7 digits",
+            "in": "query",
+            "name": "evaNumber",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/EvaNumber"
+            }
+          },
+          {
+            "description": "needed for OEBB Reihung",
+            "in": "query",
+            "name": "initialDeparture",
+            "required": false,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/iris/v2/wings/{rawId1}/{rawId2}": {
+      "get": {
+        "operationId": "WingInfo v2",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WingDefinition"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["IRIS"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "rawId1",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "rawId2",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://marudor.de/api"
+    }
+  ]
+}

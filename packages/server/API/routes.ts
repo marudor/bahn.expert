@@ -29,8 +29,6 @@ import { ReihungControllerV3 } from './controller/Reihung/v3';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { ReihungControllerV4 } from './controller/Reihung/v4';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-import { SBBExperimentalController } from './controller/SBB/experimental';
-// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { StopPlaceController } from './controller/StopPlace/v1';
 import * as KoaRouter from '@koa/router';
 
@@ -1868,35 +1866,6 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "SBBCoordinates": {
-        "dataType": "refObject",
-        "properties": {
-            "latitude": {"dataType":"double","required":true},
-            "longitude": {"dataType":"double","required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "SBBStation": {
-        "dataType": "refObject",
-        "properties": {
-            "location": {"ref":"SBBCoordinates","required":true},
-            "title": {"dataType":"string","required":true},
-            "id": {"dataType":"string","required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "RoutingOptions": {
-        "dataType": "refObject",
-        "properties": {
-            "start": {"dataType":"string","required":true},
-            "destination": {"dataType":"string","required":true},
-            "time": {"dataType":"datetime"},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "TransportType": {
         "dataType": "refEnum",
         "enums": ["HIGH_SPEED_TRAIN","INTERCITY_TRAIN","INTER_REGIONAL_TRAIN","REGIONAL_TRAIN","CITY_TRAIN","SUBWAY","TRAM","BUS","FERRY","FLIGHT","CAR","TAXI","SHUTTLE","BIKE","SCOOTER","WALK","UNKNOWN"],
@@ -2792,48 +2761,6 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new ReihungControllerV4();
 
             const promise = controller.wagenreihung.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, next);
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        router.get('/api/sbb/experimental/station/:searchTerm',
-            async function SBBExperimentalController_station(context: any, next: any) {
-            const args = {
-                    searchTerm: {"in":"path","name":"searchTerm","required":true,"dataType":"string"},
-            };
-
-            let validatedArgs: any[] = [];
-            try {
-              validatedArgs = getValidatedArgs(args, context, next);
-            } catch (err) {
-              const error = err as any;
-              context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
-            }
-
-            const controller = new SBBExperimentalController();
-
-            const promise = controller.station.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, next);
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        router.post('/api/sbb/experimental/routing',
-            async function SBBExperimentalController_routing(context: any, next: any) {
-            const args = {
-                    options: {"in":"body","name":"options","required":true,"ref":"RoutingOptions"},
-            };
-
-            let validatedArgs: any[] = [];
-            try {
-              validatedArgs = getValidatedArgs(args, context, next);
-            } catch (err) {
-              const error = err as any;
-              context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
-            }
-
-            const controller = new SBBExperimentalController();
-
-            const promise = controller.routing.apply(controller, validatedArgs as any);
             return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

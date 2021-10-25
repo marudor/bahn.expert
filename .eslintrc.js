@@ -15,18 +15,6 @@ module.exports = {
     'react/react-in-jsx-scope': 0,
     'require-await': 0,
     'testing-library/no-debug': 0,
-    // 'import/no-extraneous-dependencies': [
-    //   'error',
-    //   {
-    //     devDependencies: [
-    //       '**/__tests__/**',
-    //       '**/webpackDev.ts',
-    //       './scripts/**',
-    //       './webpack.config.js',
-    //       './cypress/**',
-    //     ],
-    //   },
-    // ],
   },
   overrides: [
     {
