@@ -225,14 +225,15 @@ const naming = {
   1524: 'Hansestadt Rostock',
   //
   // Intercity2
-  2871: 'Leipziger Neuseenland',
-  2875: 'Magdeburger Börde',
   2853: 'Nationalpark Sächsische Schweiz',
-  2874: 'Oberer Neckar',
-  2868: 'Nationalpark Niedersächsisches Wattenmeer',
   2865: 'Remstal',
+  2868: 'Nationalpark Niedersächsisches Wattenmeer',
+  2871: 'Leipziger Neuseenland',
+  2874: 'Oberer Neckar',
+  2875: 'Magdeburger Börde',
   //
   // Intercity2 KISS - BR 4110
+  4111: 'Gäu',
   4114: 'Dresden Elbland',
   4117: 'Mecklenburgische Ostseeküste',
   //
