@@ -15,6 +15,7 @@ module.exports = {
     'react/react-in-jsx-scope': 0,
     'require-await': 0,
     'testing-library/no-debug': 0,
+    'react-hooks/exhaustive-deps': 0,
   },
   overrides: [
     {
