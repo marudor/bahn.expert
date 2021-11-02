@@ -16,6 +16,7 @@ module.exports = {
     'require-await': 0,
     'testing-library/no-debug': 0,
     'react-hooks/exhaustive-deps': 0,
+    'testing-library/no-debugging-utils': 0,
   },
   overrides: [
     {
@@ -25,6 +26,9 @@ module.exports = {
         tsconfigRootDir: __dirname,
         project: ['./tsconfig.json'],
         warnOnUnsupportedTypeScriptVersion: true,
+      },
+      rules: {
+        '@typescript-eslint/no-unsafe-argument': 0,
       },
     },
     {

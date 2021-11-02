@@ -80,7 +80,7 @@ describe('Zugsuche', () => {
       await screen.findByTestId('zugsucheAutocompleteItem');
       fireEvent.click(screen.getByTestId('zugsucheAutocompleteItem'));
       fireEvent.click(screen.getByTestId('ZugsucheSubmit'));
-      await waitForElementToBeRemoved(() => screen.getByTestId('Zugsuche'));
+      await waitForElementToBeRemoved(() => screen.queryByTestId('Zugsuche'));
       expect(screen.queryByTestId('Zugsuche')).toBeNull();
       expect(getLocation().pathname.startsWith('/details/EC 6')).toBeTruthy();
       expect(getLocation().search.includes('station=6000')).toBeTruthy();

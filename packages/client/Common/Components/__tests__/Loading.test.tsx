@@ -8,7 +8,7 @@ describe('Loading', () => {
       children: <div data-testid="temp" />,
     });
 
-    expect(screen.queryByTestId('temp')).toBeDefined();
+    expect(screen.queryByTestId('temp')).toBeVisible();
     expect(container).toMatchSnapshot();
   });
 
