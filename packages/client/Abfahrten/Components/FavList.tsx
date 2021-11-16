@@ -2,7 +2,7 @@ import { FavEntry, FavEntryDisplay } from './FavEntry';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 import { MostUsed } from './MostUsed';
-import { Redirect } from 'react-router';
+import { Navigate } from 'react-router';
 import { useAbfahrtenError } from 'client/Abfahrten/provider/AbfahrtenProvider';
 import { useEffect, useMemo, useState } from 'react';
 import {
@@ -30,7 +30,7 @@ function getErrorText(
 ): React.ReactNode {
   switch (error.errorType) {
     case 'redirect':
-      return <Redirect to={error.redirect} />;
+      return <Navigate to={error.redirect} />;
     case '404':
       if (staticContext) {
         staticContext.status = 404;

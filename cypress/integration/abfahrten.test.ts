@@ -14,7 +14,7 @@ describe('Abfahrten', () => {
       cy.window().then((w) =>
         cy
           .get('link[rel="canonical"]')
-          .should('have.attr', 'href', decodeURIComponent(w.location.href)),
+          .should('have.attr', 'href', w.location.href),
       );
     });
     it('opened details should be rememberd on refresh', () => {

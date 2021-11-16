@@ -1,12 +1,11 @@
 import { AbfahrtenProvider } from 'client/Abfahrten/provider/AbfahrtenProvider';
+import { AbfahrtenRoutes } from 'client/Abfahrten/AbfahrtenRoutes';
 import { AuslastungsProvider } from 'client/Abfahrten/provider/AuslastungsProvider';
 import { FavProvider } from './provider/FavProvider';
 import { getStopPlacesFromAPI } from 'client/Common/service/stopPlaceSearch';
 import { Header } from './Components/Header';
 import { MainWrap } from 'client/Common/Components/MainWrap';
 import { MostUsed } from 'client/Abfahrten/Components/MostUsed';
-import { renderRoutes } from 'react-router-config';
-import { routes } from './routes';
 import { SettingsModal } from './Components/SettingsModal';
 import { useQuery } from 'client/Common/hooks/useQuery';
 import type { FC } from 'react';
@@ -32,7 +31,7 @@ export const BahnhofsAbfahrten: FC = () => {
           <MainWrap noHeader={Boolean(noHeader)}>
             {!noHeader && <Header />}
             <SettingsModal />
-            {renderRoutes(routes)}
+            <AbfahrtenRoutes />
           </MainWrap>
         </FavProvider>
       </AbfahrtenProvider>

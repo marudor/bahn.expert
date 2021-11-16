@@ -62,12 +62,7 @@ export const RouteFavEntry: FC<Props> = ({ fav }) => {
   return (
     <Link
       date-testid="RouteFavEntry"
-      to={{
-        pathname: getRouteLink(fav.start, fav.destination, fav.via),
-        state: {
-          fav,
-        },
-      }}
+      to={getRouteLink(fav.start, fav.destination, fav.via)}
     >
       <Paper
         className={classes.wrap}

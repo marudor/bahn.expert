@@ -42,7 +42,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const Routes: FC = () => {
+export const RoutesMain: FC = () => {
   const classes = useStyles();
   return (
     <main className={classes.wrap}>
