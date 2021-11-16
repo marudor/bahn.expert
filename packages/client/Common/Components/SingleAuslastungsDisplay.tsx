@@ -52,7 +52,7 @@ export const SingleAuslastungsDisplay: FC<Props> = ({ auslastung }) => {
 
   return (
     // @ts-expect-error works
-    <span className={clsx(classes[auslastung], classes.wrap)}>
+    <span className={clsx(classes[auslastung] as unknown, classes.wrap)}>
       {getIcon(auslastung)}
     </span>
   );
