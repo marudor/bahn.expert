@@ -38,7 +38,7 @@ describe('Regional', () => {
       cy.get('a').should(
         'have.attr',
         'href',
-        '/regional/Karlsruhe Bahnhofsvorplatz',
+        '/regional/Karlsruhe%20Bahnhofsvorplatz',
       );
     });
   });

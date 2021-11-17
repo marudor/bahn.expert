@@ -4,8 +4,7 @@ import { FavProvider } from 'client/Abfahrten/provider/FavProvider';
 import { getStopPlacesFromAPI } from 'client/Common/service/stopPlaceSearch';
 import { Header } from 'client/Abfahrten/Components/Header';
 import { MainWrap } from 'client/Common/Components/MainWrap';
-import { renderRoutes } from 'react-router-config';
-import { routes } from './routes';
+import { RegionalRoutes } from 'client/Regional/RegionalRoutes';
 import { SettingsModal } from 'client/Abfahrten/Components/SettingsModal';
 import { useQuery } from 'client/Common/hooks/useQuery';
 import type { FC } from 'react';
@@ -31,7 +30,7 @@ export const BahnhofsAbfahrten: FC = () => {
           <MainWrap noHeader={Boolean(noHeader)}>
             {!noHeader && <Header regional />}
             <SettingsModal />
-            {renderRoutes(routes)}
+            <RegionalRoutes />
           </MainWrap>
         </FavProvider>
       </AbfahrtenProvider>
