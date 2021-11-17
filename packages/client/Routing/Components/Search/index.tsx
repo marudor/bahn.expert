@@ -23,7 +23,7 @@ import { SettingsPanel } from './SettingsPanel';
 import { StopPlaceSearch } from 'client/Common/Components/StopPlaceSearch';
 import { useCallback, useEffect, useMemo } from 'react';
 import { useFetchRouting } from 'client/Routing/provider/useFetchRouting';
-import { useHistory, useRouteMatch } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import {
   useRoutingConfig,
   useRoutingConfigActions,
@@ -31,7 +31,6 @@ import {
 import deLocale from 'date-fns/locale/de';
 import type { FC, SyntheticEvent } from 'react';
 import type { MinimalStopPlace } from 'types/stopPlace';
-import type { RoutingFav } from 'client/Routing/provider/RoutingFavProvider';
 
 const setStopPlaceById = async (
   evaNumber: string,
@@ -89,12 +88,7 @@ export const Search: FC = () => {
   const { start, destination, date, via } = useRoutingConfig();
   const { fetchRoutes, clearRoutes } = useFetchRouting();
 
-  const match = useRouteMatch<{
-    start?: string;
-    destination?: string;
-    date?: string;
-    via?: string;
-  }>();
+  const params = useParams<'start' | 'destination' | 'date' | 'via'>();
 
   const formatDate = useCallback((date: null | Date) => {
     if (!date) {
@@ -125,34 +119,27 @@ export const Search: FC = () => {
     return relativeDayString;
   }, []);
 
-  const history = useHistory<
-    | undefined
-    | {
-        fav: RoutingFav;
-      }
-  >();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (match.params.start) {
-      void setStopPlaceById(match.params.start, setStart);
+    if (params.start) {
+      void setStopPlaceById(params.start, setStart);
     }
-  }, [match.params.start, setStart]);
+  }, [params.start, setStart]);
   useEffect(() => {
-    if (match.params.destination) {
-      void setStopPlaceById(match.params.destination, setDestination);
+    if (params.destination) {
+      void setStopPlaceById(params.destination, setDestination);
     }
-  }, [match.params.destination, setDestination]);
+  }, [params.destination, setDestination]);
   useEffect(() => {
-    if (match.params.date && match.params.date !== '0') {
-      const dateNumber = +match.params.date;
-      setDate(
-        new Date(Number.isNaN(dateNumber) ? match.params.date : dateNumber),
-      );
+    if (params.date && params.date !== '0') {
+      const dateNumber = +params.date;
+      setDate(new Date(Number.isNaN(dateNumber) ? params.date : dateNumber));
     }
-  }, [match.params.date, setDate]);
+  }, [params.date, setDate]);
   useEffect(() => {
-    if (match.params.via) {
-      const viaStations = match.params.via.split('|').filter(Boolean);
+    if (params.via) {
+      const viaStations = params.via.split('|').filter(Boolean);
 
       viaStations.forEach((viaId, index) => {
         void setStopPlaceById(viaId, (stopPlace) => {
@@ -160,7 +147,7 @@ export const Search: FC = () => {
         });
       });
     }
-  }, [match.params.via, updateVia]);
+  }, [params.via, updateVia]);
 
   const searchRoute = useCallback(
     (e: SyntheticEvent) => {
@@ -168,10 +155,10 @@ export const Search: FC = () => {
 
       if (start && destination && start.evaNumber !== destination.evaNumber) {
         void fetchRoutes();
-        history.push(getRouteLink(start, destination, via, date));
+        navigate(getRouteLink(start, destination, via, date));
       }
     },
-    [date, destination, fetchRoutes, history, start, via],
+    [date, destination, fetchRoutes, navigate, start, via],
   );
 
   const mappedViaList = useMemo(
@@ -223,6 +210,7 @@ export const Search: FC = () => {
       </div>
       <div className={classes.datePickerWrap}>
         <DateTimePicker
+          data-testid="routingDatePicker"
           className={classes.dateTimePicker}
           fullWidth
           openTo="hours"

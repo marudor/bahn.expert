@@ -60,4 +60,79 @@ describe('Routing', () => {
       cy.findByTestId('RouteFavEntry-80001918000105').should('not.exist');
     });
   });
+
+  describe('url based', () => {
+    beforeEach(() => {
+      cy.intercept(`/api/stopPlace/v1/8000105`, {
+        fixture: 'stopPlace/8000105',
+      });
+      cy.intercept('/api/stopPlace/v1/8002549', {
+        fixture: 'stopPlace/8002549',
+      });
+      cy.intercept('/api/stopPlace/v1/8000244', {
+        fixture: 'stopPlace/8000244',
+      });
+    });
+
+    function searchInput(id: string, value: string) {
+      cy.findByTestId(id)
+        .findByTestId('stopPlaceSearchInput')
+        .should('have.value', value);
+    }
+
+    it('with start', () => {
+      cy.visit('/routing/8000105');
+      searchInput('routingStartSearch', 'Frankfurt(Main)Hbf');
+      searchInput('routingDestinationSearch', '');
+      searchInput('addVia', '');
+      cy.findByTestId('routingDatePicker')
+        .find('input')
+        .should('contain.value', 'Jetzt');
+    });
+
+    it('with start & destination', () => {
+      cy.visit('/routing/8000105/8002549');
+      searchInput('routingStartSearch', 'Frankfurt(Main)Hbf');
+      searchInput('routingDestinationSearch', 'Hamburg Hbf');
+      searchInput('addVia', '');
+      cy.findByTestId('routingDatePicker')
+        .find('input')
+        .should('contain.value', 'Jetzt');
+    });
+
+    it('with start, destination & time', () => {
+      cy.visit('/routing/8000105/8002549/2020-11-17T10:00:15.589Z');
+      searchInput('routingStartSearch', 'Frankfurt(Main)Hbf');
+      searchInput('routingDestinationSearch', 'Hamburg Hbf');
+      searchInput('addVia', '');
+      cy.findByTestId('routingDatePicker')
+        .find('input')
+        .should('contain.value', 'Dienstag 17.11.2020 10:00');
+    });
+
+    it('with start, destination, time & 1 via', () => {
+      cy.visit('/routing/8000105/8002549/2020-11-17T10:00:15.589Z/8000244|');
+      searchInput('routingStartSearch', 'Frankfurt(Main)Hbf');
+      searchInput('routingDestinationSearch', 'Hamburg Hbf');
+      searchInput('via0', 'Mannheim Hbf');
+      searchInput('addVia', '');
+      cy.findByTestId('routingDatePicker')
+        .find('input')
+        .should('contain.value', 'Dienstag 17.11.2020 10:00');
+    });
+
+    it('with start, destination, time & 2 via', () => {
+      cy.visit(
+        '/routing/8000105/8002549/2020-11-17T10:00:15.589Z/8000244|8000105|',
+      );
+      searchInput('routingStartSearch', 'Frankfurt(Main)Hbf');
+      searchInput('routingDestinationSearch', 'Hamburg Hbf');
+      searchInput('via0', 'Mannheim Hbf');
+      searchInput('via1', 'Frankfurt(Main)Hbf');
+      cy.findByTestId('addVia').should('not.exist');
+      cy.findByTestId('routingDatePicker')
+        .find('input')
+        .should('contain.value', 'Dienstag 17.11.2020 10:00');
+    });
+  });
 });

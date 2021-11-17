@@ -12,7 +12,7 @@ import { Search, Today, Train } from '@material-ui/icons';
 import { stopPropagation } from 'client/Common/stopPropagation';
 import { subHours } from 'date-fns';
 import { useCallback, useContext, useState } from 'react';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import { useStorage } from 'client/useStorage';
 import { ZugsucheAutocomplete } from 'client/Common/Components/ZugsucheAutocomplete';
 import qs from 'qs';
@@ -54,7 +54,7 @@ interface Props {
 }
 export const Zugsuche: FC<Props> = ({ children }) => {
   const classes = useStyles();
-  const history = useHistory();
+  const navigate = useNavigate();
   const storage = useStorage();
   const { toggleDrawer } = useContext(NavigationContext);
   const [open, setOpen] = useState(false);
@@ -93,12 +93,12 @@ export const Zugsuche: FC<Props> = ({ children }) => {
           ),
         );
 
-        history.push(link.join('/'));
+        navigate(link.join('/'));
         toggleModal(e);
         toggleDrawer();
       }
     },
-    [match, date, storage, history, toggleModal, toggleDrawer],
+    [match, date, storage, toggleModal, toggleDrawer],
   );
 
   return (

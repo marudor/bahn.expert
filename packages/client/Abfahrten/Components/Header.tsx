@@ -6,7 +6,7 @@ import { StopPlaceSearch } from 'client/Common/Components/StopPlaceSearch';
 import { useAbfahrtenUrlPrefix } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useCallback, useEffect, useState } from 'react';
 import { useCurrentAbfahrtenStopPlace } from 'client/Abfahrten/provider/AbfahrtenProvider';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import { useRefreshCurrent } from 'client/Abfahrten/provider/AbfahrtenProvider/hooks';
 import type { FC } from 'react';
 import type { MinimalStopPlace } from 'types/stopPlace';
@@ -19,7 +19,7 @@ export const Header: FC<Props> = ({ regional = false }: Props) => {
   const currentStopPlace = useCurrentAbfahrtenStopPlace();
   const refreshCurrentAbfahrten = useRefreshCurrent(true);
   const urlPrefix = useAbfahrtenUrlPrefix();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [currentEnteredStopPlace, setCurrentEnteredStopPlace] = useState<
     MinimalStopPlace | undefined
   >(currentStopPlace);
@@ -33,9 +33,9 @@ export const Header: FC<Props> = ({ regional = false }: Props) => {
       if (!stopPlace) {
         return;
       }
-      history.push(`${urlPrefix}${encodeURIComponent(stopPlace.name)}`);
+      navigate(`${urlPrefix}${encodeURIComponent(stopPlace.name)}`);
     },
-    [history, urlPrefix],
+    [urlPrefix],
   );
 
   return (

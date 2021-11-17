@@ -1,9 +1,8 @@
 import { Header } from './Components/Header';
 import { makeStyles } from '@material-ui/core';
-import { renderRoutes } from 'react-router-config';
-import { routes } from './routes';
 import { RoutingConfigProvider } from 'client/Routing/provider/RoutingConfigProvider';
 import { RoutingFavProvider } from 'client/Routing/provider/RoutingFavProvider';
+import { RoutingRoutes } from 'client/Routing/RoutingRoutes';
 import type { FC } from 'react';
 
 const useStyles = makeStyles({
@@ -20,7 +19,7 @@ export const Routing: FC = () => {
       <RoutingFavProvider>
         <div className={classes.wrap}>
           <Header />
-          {renderRoutes(routes)}
+          <RoutingRoutes />
         </div>
       </RoutingFavProvider>
     </RoutingConfigProvider>

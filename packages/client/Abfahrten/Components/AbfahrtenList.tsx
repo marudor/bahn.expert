@@ -1,7 +1,7 @@
 import { Abfahrt } from './Abfahrt';
 import { Loading } from 'client/Common/Components/Loading';
 import { makeStyles } from '@material-ui/core';
-import { Redirect } from 'react-router';
+import { Navigate, useParams } from 'react-router';
 import {
   SelectedDetailProvider,
   useSelectedDetail,
@@ -22,7 +22,6 @@ import {
 } from 'client/Abfahrten/provider/AbfahrtenProvider';
 import { useEffect, useState } from 'react';
 import { useHeaderTagsActions } from 'client/Common/provider/HeaderTagProvider';
-import { useRouteMatch } from 'react-router';
 import { useSequencesActions } from 'client/Common/provider/ReihungenProvider';
 import type { FC } from 'react';
 
@@ -54,8 +53,7 @@ const InnerAbfahrtenList = () => {
   const [scrolled, setScrolled] = useState(false);
   const { filteredAbfahrten, unfilteredAbfahrten } = useAbfahrten();
   const loading = !unfilteredAbfahrten && !error;
-  const match = useRouteMatch<{ station: string }>();
-  const paramStation = match ? match.params.station : undefined;
+  const paramStation = useParams().station;
   const config = useAbfahrtenConfig();
   const urlPrefix = useAbfahrtenUrlPrefix();
   const refreshCurrentAbfahrten = useRefreshCurrent();
@@ -149,7 +147,7 @@ const InnerAbfahrtenList = () => {
     <Loading isLoading={loading}>
       <main className={classes.wrap}>
         {error ? (
-          <Redirect to={urlPrefix} />
+          <Navigate to={urlPrefix} />
         ) : filteredAbfahrten &&
           (filteredAbfahrten.departures.length ||
             filteredAbfahrten.lookbehind.length) ? (

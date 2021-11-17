@@ -12,7 +12,6 @@ import type {
   CommonConfigSanitize,
 } from 'client/Common/config';
 import type { Context } from 'koa';
-import type { StaticRouterContext } from 'react-router';
 
 const headerFilename = path.resolve(__dirname, './views/header.ejs');
 // eslint-disable-next-line no-sync
@@ -35,8 +34,6 @@ export default (ctx: Context): void => {
   }
 
   sanitizeStorage(ctx.request.storage);
-
-  const routeContext: StaticRouterContext = {};
 
   globalThis.configOverride = {
     common: {},
@@ -66,7 +63,6 @@ export default (ctx: Context): void => {
     <ServerBaseComponent
       helmetContext={context}
       url={ctx.url}
-      routeContext={routeContext}
       storage={ctx.request.storage}
       sheetsRegistry={sheets}
     />,
@@ -74,27 +70,19 @@ export default (ctx: Context): void => {
 
   // eslint-disable-next-line testing-library/render-result-naming-convention
   const app = renderToString(App);
-  if (routeContext.url) {
-    ctx.redirect(routeContext.url);
-  } else {
-    if (routeContext.status) {
-      ctx.status = routeContext.status;
-    }
+  ctx.body = headerTemplate({
+    header: context.helmet,
+    cssTags: extractor.getStyleTags(),
+    linkTags: extractor.getLinkTags(),
+    configOverride: JSON.stringify(globalThis.configOverride),
+    imprint: JSON.stringify(globalThis.IMPRINT),
+    jssCss: sheets.toString(),
+    baseUrl: globalThis.BASE_URL,
+    rawBaseUrl: globalThis.RAW_BASE_URL,
+  });
+  ctx.body += app;
 
-    ctx.body = headerTemplate({
-      header: context.helmet,
-      cssTags: extractor.getStyleTags(),
-      linkTags: extractor.getLinkTags(),
-      configOverride: JSON.stringify(globalThis.configOverride),
-      imprint: JSON.stringify(globalThis.IMPRINT),
-      jssCss: sheets.toString(),
-      baseUrl: globalThis.BASE_URL,
-      rawBaseUrl: globalThis.RAW_BASE_URL,
-    });
-    ctx.body += app;
-
-    ctx.body += footerTemplate({
-      scriptTags: extractor.getScriptTags(),
-    });
-  }
+  ctx.body += footerTemplate({
+    scriptTags: extractor.getScriptTags(),
+  });
 };

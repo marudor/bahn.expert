@@ -36,7 +36,7 @@ interface Options {
   commonConfig?: Partial<CommonConfig>;
 }
 
-let location: Location<any>;
+let location: Location;
 
 const LocationHelper = ({ children }: any) => {
   location = useLocation();

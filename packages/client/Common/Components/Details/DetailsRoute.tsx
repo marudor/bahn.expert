@@ -1,30 +1,22 @@
 import { Details } from 'client/Common/Components/Details';
+import { useParams } from 'react-router';
 import { useQuery } from 'client/Common/hooks/useQuery';
 import type { FC } from 'react';
-import type { RouteComponentProps } from 'react-router';
 
-interface Props
-  extends RouteComponentProps<{
-    train: string;
-    initialDeparture?: string;
-  }> {
+interface Props {
   urlPrefix?: string;
 }
 
-export const DetailsRoute: FC<Props> = ({
-  match: {
-    params: { train, initialDeparture },
-  },
-  urlPrefix,
-}) => {
+export const DetailsRoute: FC<Props> = ({ urlPrefix }) => {
   /**
    * If you change query params also change hafasDetailsRedirect.ts
    */
   const query = useQuery();
+  const { train, initialDeparture } = useParams();
 
   return (
     <Details
-      train={train}
+      train={train!}
       stationId={(query.stopEva || query.station) as string}
       initialDeparture={initialDeparture}
       currentStopId={query.stop as string}

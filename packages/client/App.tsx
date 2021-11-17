@@ -4,10 +4,10 @@ import { Loading } from 'client/Common/Components/Loading';
 import { makeStyles } from '@material-ui/core';
 import { Navigation } from 'client/Common/Components/Navigation';
 import { ReihungenProvider } from 'client/Common/provider/ReihungenProvider';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { RoutingProvider } from 'client/Routing/provider/RoutingProvider';
-import { useEffect } from 'react';
 import loadable from '@loadable/component';
+import React, { useEffect } from 'react';
 import type { FC } from 'react';
 
 const lazyOptions = {
@@ -66,18 +66,19 @@ export const App: FC = () => {
           <Navigation>
             <ReihungenProvider>
               <RoutingProvider>
-                <Switch>
-                  <Route path="/about" component={About} exact />
-                  <Route path="/map" component={LazyMap} exact />
+                <Routes>
+                  <Route path="/about" element={<About />} />
+                  <Route path="/map" element={<LazyMap />} />
                   {/* If you change this route also change hafasDetailsRedirect.ts */}
                   <Route
-                    component={LazyDetails}
-                    path="/details/:train/:initialDeparture*"
+                    path="/details/:train/:initialDeparture/*"
+                    element={<LazyDetails />}
                   />
-                  <Route component={LazyRouting} path="/routing" />
-                  <Route component={LazyRegional} path="/regional" />
-                  <Route component={LazyAbfahrten} path="/" />
-                </Switch>
+                  <Route path="/details/:train" element={<LazyDetails />} />
+                  <Route path="/routing/*" element={<LazyRouting />} />
+                  <Route path="/regional/*" element={<LazyRegional />} />
+                  <Route path="/*" element={<LazyAbfahrten />} />
+                </Routes>
               </RoutingProvider>
             </ReihungenProvider>
           </Navigation>

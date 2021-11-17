@@ -1,13 +1,11 @@
 import { uniqBy } from 'client/util';
-import { useCallback, useEffect, useMemo } from 'react';
-import { useHistory } from 'react-router';
+import { useCallback, useMemo } from 'react';
 import { useRouting } from 'client/Routing/provider/RoutingProvider';
 import {
   useRoutingConfig,
   useRoutingSettings,
 } from 'client/Routing/provider/RoutingConfigProvider';
 import Axios from 'axios';
-import type { RoutingFav } from 'client/Routing/provider/RoutingFavProvider';
 import type { RoutingResult } from 'types/routing';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -118,30 +116,6 @@ export const useFetchRouting = () => {
     setEarlierContext(undefined);
     setLaterContext(undefined);
   }, [setEarlierContext, setLaterContext, setRoutes]);
-
-  const history = useHistory<
-    | undefined
-    | {
-        fav: RoutingFav;
-      }
-  >();
-
-  useEffect(() => {
-    const fav = history.location.state?.fav;
-
-    if (fav) {
-      history.replace(history.location.pathname);
-      void fetchRoutes({
-        start: fav.start.evaNumber,
-        destination: fav.destination.evaNumber,
-        via: fav.via.map((v) => ({
-          evaId: v.evaNumber,
-        })),
-        ...settings,
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [history.location.state]);
 
   return {
     fetchRoutes,
