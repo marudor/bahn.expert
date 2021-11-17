@@ -35,6 +35,7 @@ const useStyles = makeStyles({
 export const StopList: FC = () => {
   const classes = useStyles();
   const { details, error } = useContext(DetailsContext);
+  const hasOccupancy = details?.stops.some((s) => s.auslastung);
 
   useEffect(() => {
     if (details && details.currentStop) {
@@ -57,6 +58,7 @@ export const StopList: FC = () => {
 
       return (
         <Stop
+          hasOccupancy={hasOccupancy}
           isPast={!hadCurrent}
           train={details.train}
           stop={s}

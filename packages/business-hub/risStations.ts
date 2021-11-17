@@ -5,6 +5,7 @@ import {
 } from 'business-hub/generated';
 import { risStationsConfiguration } from 'business-hub/config';
 import { TransportType } from 'business-hub/types';
+import axios from 'axios';
 import type {
   Platform,
   ResolvedStopPlaceGroups,
@@ -21,8 +22,20 @@ const nonÖPNVTypes = [
   TransportType.CityTrain,
 ];
 
-const stopPlaceClient = new StopPlacesApi(risStationsConfiguration);
-const platformsClient = new PlatformsApi(risStationsConfiguration);
+const axiosWithTimeout = axios.create({
+  timeout: 4000,
+});
+
+const stopPlaceClient = new StopPlacesApi(
+  risStationsConfiguration,
+  undefined,
+  axiosWithTimeout,
+);
+const platformsClient = new PlatformsApi(
+  risStationsConfiguration,
+  undefined,
+  axiosWithTimeout,
+);
 
 function withoutÖPNV(stopPlace: StopPlaceSearchResult) {
   return stopPlace.availableTransports.some((t) => nonÖPNVTypes.includes(t));

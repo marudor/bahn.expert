@@ -11,7 +11,7 @@ describe('Hafas Details Redirect', () => {
     nock
       .post('/bin/mgate.exe')
       .query({
-        checksum: '275ef414b005d0cd8c2ffe02c8d3dc1d',
+        checksum: 'c56c6563ac8261a5208ca61b97cef6d4',
       })
       .replyWithFile(
         200,

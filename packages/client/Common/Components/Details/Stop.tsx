@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core';
 import { Messages } from './Messages';
 import { Platform } from 'client/Common/Components/Platform';
 import { Reihung } from '../Reihung';
+import { SingleAuslastungsDisplay } from 'client/Common/Components/SingleAuslastungsDisplay';
 import { StationLink } from 'client/Common/Components/StationLink';
 import { Time } from 'client/Common/Components/Time';
 import { TravelynxLink } from 'client/Common/Components/CheckInLink/TravelynxLink';
@@ -17,13 +18,15 @@ const useStyles = makeStyles((theme) => ({
   wrap: {
     padding: '0 .5em',
     display: 'grid',
-    gridTemplateColumns: '4.8em 1fr max-content',
     gridGap: '0 .3em',
     gridTemplateRows: '1fr 1fr',
-    gridTemplateAreas: '"ar t p c" "dp t p c" "wr wr wr wr" "m m m m"',
+    gridTemplateAreas:
+      '"ar o1 t p c" "dp o2 t p c" "wr wr wr wr wr" "m m m m m"',
     alignItems: 'center',
     borderBottom: `1px solid ${theme.palette.text.primary}`,
     position: 'relative',
+    gridTemplateColumns: ({ hasOccupancy }: { hasOccupancy: boolean }) =>
+      `4.8em ${hasOccupancy ? '1.7em' : '0'} 1fr max-content`,
   },
   past: {
     backgroundColor: theme.colors.shadedBackground,
@@ -51,6 +54,12 @@ const useStyles = makeStyles((theme) => ({
   departure: {
     gridArea: 'dp',
   },
+  occupancy1: {
+    gridArea: 'o1',
+  },
+  occupancy2: {
+    gridArea: 'o2',
+  },
   platform: {
     gridArea: 'p',
   },
@@ -70,9 +79,16 @@ interface Props {
   train?: ParsedProduct;
   showWR?: ParsedProduct;
   isPast?: boolean;
+  hasOccupancy?: boolean;
 }
-export const Stop: FC<Props> = ({ stop, showWR, train, isPast }) => {
-  const classes = useStyles();
+export const Stop: FC<Props> = ({
+  stop,
+  showWR,
+  train,
+  isPast,
+  hasOccupancy = false,
+}) => {
+  const classes = useStyles({ hasOccupancy });
   const { urlPrefix } = useContext(DetailsContext);
   const depOrArrival = stop.departure || stop.arrival;
   const platforms = stop.departure
@@ -114,6 +130,18 @@ export const Stop: FC<Props> = ({ stop, showWR, train, isPast }) => {
           urlPrefix={urlPrefix}
         />
       </span>
+      {stop.auslastung && (
+        <>
+          <span className={classes.occupancy1} data-testid="occupancy1">
+            1
+            <SingleAuslastungsDisplay auslastung={stop.auslastung.first} />
+          </span>
+          <span className={classes.occupancy2} data-testid="occupancy2">
+            2
+            <SingleAuslastungsDisplay auslastung={stop.auslastung.second} />
+          </span>
+        </>
+      )}
       {train && (
         <TravelynxLink
           className={classes.checkIn}
