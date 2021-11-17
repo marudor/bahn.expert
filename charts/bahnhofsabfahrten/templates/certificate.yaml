@@ -1,6 +1,6 @@
 {{- if .Values.certificate.enabled -}}
 {{- $fullName := include "bahnhofsAbfahrten.fullname" . -}}
-apiVersion: cert-manager.io/v1alpha2
+apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: {{ $fullName }}
@@ -15,7 +15,6 @@ spec:
     name: {{ .Values.certificate.issuerName }}
     kind: {{ .Values.certificate.issuerKind }}
   {{ if .Values.hostName }}
-  commonName: {{ .Values.hostName }}
   dnsNames:
     - {{ .Values.hostName }}
     - www.{{ .Values.hostName }}
@@ -24,7 +23,6 @@ spec:
     - www.docs.{{ .Values.hostName }}
     {{ end }}
   {{ else }}
-  commonName: {{ .Release.Name }}.marudor.de
   dnsNames:
     - {{ .Release.Name }}.marudor.de
     - www.{{ .Release.Name }}.marudor.de
