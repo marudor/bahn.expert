@@ -3625,7 +3625,7 @@
         "properties": {
           "klasse": {
             "type": "number",
-            "enum": ["0", "1", "2", "3", "4"],
+            "enum": [0, 1, 2, 3, 4],
             "description": "0: Unknown; 1: erste; 2: zweite; 3: 1&2; 4: Not for passengers"
           },
           "icons": {
@@ -4268,7 +4268,7 @@
         "properties": {
           "class": {
             "type": "number",
-            "enum": ["0", "1", "2", "3", "4"],
+            "enum": [0, 1, 2, 3, 4],
             "description": "0: Unknown; 1: erste; 2: zweite; 3: 1&2; 4: Not for passengers"
           },
           "category": {
