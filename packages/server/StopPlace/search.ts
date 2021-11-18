@@ -2,6 +2,7 @@ import { byEva, byName, byPosition, byRl100, groups, keys } from 'business-hub';
 import { CacheDatabases, createNewCache } from 'server/cache';
 import { getSingleStation } from 'server/iris/station';
 import { manualNameOverrides } from 'server/StopPlace/manualNameOverrides';
+import { searchWithHafas } from 'server/StopPlace/hafasSearch';
 import { StopPlaceKeyType } from 'business-hub/types';
 import type { GroupedStopPlace, StopPlaceIdentifier } from 'types/stopPlace';
 import type {
@@ -51,7 +52,7 @@ function mapToGroupedStopPlace(
   };
 }
 
-async function irisFilter(
+export async function irisFilter(
   stopPlaces: GroupedStopPlace[],
 ): Promise<GroupedStopPlace[]> {
   return (
@@ -69,6 +70,18 @@ async function irisFilter(
 }
 
 export async function searchStopPlace(
+  searchTerm?: string,
+  max?: number,
+  filterForIris?: boolean,
+): Promise<GroupedStopPlace[]> {
+  try {
+    return await searchStopPlaceRisStations(searchTerm, max, filterForIris);
+  } catch {
+    return searchWithHafas(searchTerm, max, filterForIris);
+  }
+}
+
+export async function searchStopPlaceRisStations(
   searchTerm?: string,
   max?: number,
   filterForIris?: boolean,
@@ -204,10 +217,10 @@ export async function byRl100WithSpaceHandling(
 }
 
 async function searchStopPlaceRemote(searchTerm: string) {
-  const rl100Promise = byRl100WithSpaceHandling(searchTerm.toUpperCase());
-  const risResultPromise = byName(searchTerm);
-  const risResult = await risResultPromise;
-  const rl100Result = await rl100Promise;
+  const [risResult, rl100Result] = await Promise.all([
+    byName(searchTerm),
+    byRl100WithSpaceHandling(searchTerm.toUpperCase()),
+  ]);
   const groupedStopPlaces = risResult.map(mapToGroupedStopPlace);
   if (rl100Result) {
     groupedStopPlaces.unshift(mapToGroupedStopPlace(rl100Result));

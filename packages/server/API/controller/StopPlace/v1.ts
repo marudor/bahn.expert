@@ -49,11 +49,12 @@ export class StopPlaceController extends Controller {
     };
   }
   /**
+   * This might fall back to use HAFAS
    * @isInt max
    */
   @Get('/search/{searchTerm}')
   @Tags('StopPlace')
-  stopPlaceSearch(
+  async stopPlaceSearch(
     searchTerm: string,
     @Query() max?: number,
     /** Only returns stopPlaces iris-tts can handle (/abfahrten) */
@@ -61,9 +62,13 @@ export class StopPlaceController extends Controller {
     @Query() groupedBySales = false,
   ): Promise<GroupedStopPlace[]> {
     if (groupedBySales) {
-      return searchStopPlaceGroupedBySales(searchTerm, max, filterForIris);
+      return await searchStopPlaceGroupedBySales(
+        searchTerm,
+        max,
+        filterForIris,
+      );
     }
-    return searchStopPlace(searchTerm, max, filterForIris);
+    return await searchStopPlace(searchTerm, max, filterForIris);
   }
 
   /**
