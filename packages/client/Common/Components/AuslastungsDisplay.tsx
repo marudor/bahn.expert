@@ -10,9 +10,9 @@ const useStyles = makeStyles({
   },
   entry: {
     display: 'flex',
-    flexDirection: 'column',
     marginRight: '.5em',
     alignItems: 'center',
+    flexDirection: 'column',
   },
 });
 

@@ -8,8 +8,8 @@ export default async (
   trainNumber: string,
   time: Date,
 ): Promise<Route$Auslastung | undefined> => {
-  const startStations = await searchStopPlace(start);
-  const destStations = await searchStopPlace(destination);
+  const startStations = await searchStopPlace(start, 1);
+  const destStations = await searchStopPlace(destination, 1);
 
   const startStation = startStations[0];
   const destStation = destStations[0];

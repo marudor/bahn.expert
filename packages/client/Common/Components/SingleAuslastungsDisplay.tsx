@@ -46,13 +46,19 @@ const useStyles = makeStyles((theme) => ({
 
 export interface Props {
   auslastung?: AuslastungsValue;
+  className?: string;
 }
-export const SingleAuslastungsDisplay: FC<Props> = ({ auslastung }) => {
+export const SingleAuslastungsDisplay: FC<Props> = ({
+  auslastung,
+  className,
+}) => {
   const classes = useStyles();
 
   return (
-    // @ts-expect-error works
-    <span className={clsx(classes[auslastung] as unknown, classes.wrap)}>
+    <span
+      // @ts-expect-error cant handle dynamic enum stuff
+      className={clsx(classes[auslastung], classes.wrap, className)}
+    >
       {getIcon(auslastung)}
     </span>
   );

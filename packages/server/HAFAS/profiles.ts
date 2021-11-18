@@ -112,7 +112,7 @@ export const db = {
       type: 'AND',
       name: 'DB Navigator',
     },
-    ext: 'DB.R19.12.a',
+    ext: 'DB.R20.12.b',
     lang: 'de',
     ver: '1.18',
     auth: {
