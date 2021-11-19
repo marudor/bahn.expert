@@ -2838,7 +2838,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const args = {
                     lat: {"in":"query","name":"lat","required":true,"dataType":"double"},
                     lng: {"in":"query","name":"lng","required":true,"dataType":"double"},
-                    radius: {"default":500,"in":"query","name":"radius","dataType":"integer","validators":{"isInt":{"errorMsg":"radius"}}},
+                    radius: {"default":1500,"in":"query","name":"radius","dataType":"integer","validators":{"isInt":{"errorMsg":"radius"}}},
                     filterForIris: {"default":false,"in":"query","name":"filterForIris","dataType":"boolean"},
                     max: {"in":"query","name":"max","dataType":"integer","validators":{"isInt":{"errorMsg":"max"}}},
             };
