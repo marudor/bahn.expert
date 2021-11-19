@@ -94,8 +94,8 @@ export const StopPlaceSearch: FC<Props> = ({
           void loadOptions(p.coords);
           selectRef.current?.openMenu();
         },
-        (_e: any) => {
-          // ignore for now
+        (e: any) => {
+          console.error(e);
         },
       );
     },
