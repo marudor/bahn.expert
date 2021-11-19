@@ -5901,7 +5901,7 @@
             "name": "radius",
             "required": false,
             "schema": {
-              "default": 500,
+              "default": 1500,
               "format": "int32",
               "type": "integer"
             }
