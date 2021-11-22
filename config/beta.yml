@@ -1,5 +1,7 @@
 env:
   - name: ENVIRONMENT
     value: beta
+  - name: PLAUSIBLE_URL
+    value: https://beta.marudor.de/api/event
 
 hostName: beta.marudor.de

@@ -3,8 +3,6 @@
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
   import { Controller, ValidationService, FieldErrors, ValidateError, TsoaRoute, HttpStatusCodeLiteral, TsoaResponse } from '@tsoa/runtime';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-import { BahnhofControllerV1 } from './controller/Bahnhof/v1';
-// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { HafasExperimentalController } from './controller/Hafas/experimental';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { HafasSubscribeController } from './controller/Hafas/subscribe';
@@ -25,8 +23,6 @@ import { ReihungControllerV1 } from './controller/Reihung/v1';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { ReihungControllerV2 } from './controller/Reihung/v2';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-import { ReihungControllerV3 } from './controller/Reihung/v3';
-// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { ReihungControllerV4 } from './controller/Reihung/v4';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { StopPlaceController } from './controller/StopPlace/v1';
@@ -35,19 +31,6 @@ import * as KoaRouter from '@koa/router';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
 const models: TsoaRoute.Models = {
-    "LageplanResponse": {
-        "dataType": "refObject",
-        "properties": {
-            "lageplan": {"dataType":"string"},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "EvaNumber": {
-        "dataType": "refAlias",
-        "type": {"dataType":"string","validators":{}},
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "OpL": {
         "dataType": "refObject",
         "properties": {
@@ -857,6 +840,11 @@ const models: TsoaRoute.Models = {
             "arrival": {"ref":"CommonStopInfo","required":true},
         },
         "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "EvaNumber": {
+        "dataType": "refAlias",
+        "type": {"dataType":"string","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "DepartureStationBoardEntry": {
@@ -1869,6 +1857,14 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "LageplanResponse": {
+        "dataType": "refObject",
+        "properties": {
+            "lageplan": {"dataType":"string"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "TransportType": {
         "dataType": "refEnum",
         "enums": ["HIGH_SPEED_TRAIN","INTERCITY_TRAIN","INTER_REGIONAL_TRAIN","REGIONAL_TRAIN","CITY_TRAIN","SUBWAY","TRAM","BUS","FERRY","FLIGHT","CAR","TAXI","SHUTTLE","BIKE","SCOOTER","WALK","UNKNOWN"],
@@ -1924,28 +1920,6 @@ export function RegisterRoutes(router: KoaRouter) {
     //  NOTE: If you do not see routes for all of your controllers in this file, then you might not have informed tsoa of where to look
     //      Please look into the "controllerPathGlobs" config option described in the readme: https://github.com/lukeautry/tsoa
     // ###########################################################################################################
-        router.get('/api/bahnhof/v1/lageplan/:stopPlaceName/:evaNumber',
-            async function BahnhofControllerV1_lageplan(context: any, next: any) {
-            const args = {
-                    stopPlaceName: {"in":"path","name":"stopPlaceName","required":true,"dataType":"string"},
-                    evaNumber: {"in":"path","name":"evaNumber","required":true,"ref":"EvaNumber"},
-            };
-
-            let validatedArgs: any[] = [];
-            try {
-              validatedArgs = getValidatedArgs(args, context, next);
-            } catch (err) {
-              const error = err as any;
-              context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
-            }
-
-            const controller = new BahnhofControllerV1();
-
-            const promise = controller.lageplan.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, next);
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/experimental/himMessages',
             async function HafasExperimentalController_himMessages(context: any, next: any) {
             const args = {
@@ -2723,6 +2697,7 @@ export function RegisterRoutes(router: KoaRouter) {
         router.get('/api/reihung/v2/wagen/:trainNumber/:date',
             async function ReihungControllerV2_wagenreihung(context: any, next: any) {
             const args = {
+                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
                     trainNumber: {"in":"path","name":"trainNumber","required":true,"dataType":"string"},
                     date: {"in":"path","name":"date","required":true,"dataType":"datetime"},
             };
@@ -2737,30 +2712,6 @@ export function RegisterRoutes(router: KoaRouter) {
             }
 
             const controller = new ReihungControllerV2();
-
-            const promise = controller.wagenreihung.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, next);
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        router.get('/api/reihung/v3/wagen/:trainNumber',
-            async function ReihungControllerV3_wagenreihung(context: any, next: any) {
-            const args = {
-                    trainNumber: {"in":"path","name":"trainNumber","required":true,"dataType":"integer","validators":{"isInt":{"errorMsg":"trainNumber"}}},
-                    departure: {"in":"query","name":"departure","required":true,"dataType":"datetime"},
-                    evaNumber: {"in":"query","name":"evaNumber","ref":"EvaNumber"},
-                    initialDeparture: {"in":"query","name":"initialDeparture","dataType":"datetime"},
-            };
-
-            let validatedArgs: any[] = [];
-            try {
-              validatedArgs = getValidatedArgs(args, context, next);
-            } catch (err) {
-              const error = err as any;
-              context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
-            }
-
-            const controller = new ReihungControllerV3();
 
             const promise = controller.wagenreihung.apply(controller, validatedArgs as any);
             return promiseHandler(controller, promise, context, undefined, next);

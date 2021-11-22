@@ -8,3 +8,4 @@ export REDIS_HOST=
 export REDIS_PORT=
 export REDIS_PASSWORD=
 export HIM_MAX_FETCH=50000
+export PLAUSIBLE_URL=
