@@ -75,6 +75,26 @@ const models: TsoaRoute.Models = {
         "type": {"ref":"CommonProductInfo","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "HafasCoordinates": {
+        "dataType": "refObject",
+        "properties": {
+            "lat": {"dataType":"double","required":true},
+            "lng": {"dataType":"double","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "HafasStation": {
+        "dataType": "refObject",
+        "properties": {
+            "products": {"dataType":"array","array":{"dataType":"refAlias","ref":"ParsedProduct"}},
+            "coordinates": {"ref":"HafasCoordinates","required":true},
+            "title": {"dataType":"string","required":true},
+            "id": {"dataType":"string","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "PubChL": {
         "dataType": "refObject",
         "properties": {
@@ -114,6 +134,8 @@ const models: TsoaRoute.Models = {
             "affectedProducts": {"dataType":"array","array":{"dataType":"refAlias","ref":"ParsedProduct"},"required":true},
             "startTime": {"dataType":"datetime","required":true},
             "endTime": {"dataType":"datetime","required":true},
+            "fromStopPlace": {"ref":"HafasStation"},
+            "toStopPlace": {"ref":"HafasStation"},
         },
         "additionalProperties": false,
     },
@@ -267,6 +289,7 @@ const models: TsoaRoute.Models = {
             "priority": {"ref":"MessagePrio"},
             "value": {"dataType":"double","required":true},
             "head": {"dataType":"string","required":true},
+            "stopPlace": {"ref":"HafasStation"},
         },
         "additionalProperties": false,
     },
@@ -717,26 +740,6 @@ const models: TsoaRoute.Models = {
             "initialDepartureDate": {"dataType":"datetime"},
             "jnyFltrL": {"dataType":"array","array":{"dataType":"refObject","ref":"JourneyFilter"}},
             "limit": {"dataType":"double"},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "HafasCoordinates": {
-        "dataType": "refObject",
-        "properties": {
-            "lat": {"dataType":"double","required":true},
-            "lng": {"dataType":"double","required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "HafasStation": {
-        "dataType": "refObject",
-        "properties": {
-            "products": {"dataType":"array","array":{"dataType":"refAlias","ref":"ParsedProduct"}},
-            "coordinates": {"ref":"HafasCoordinates","required":true},
-            "title": {"dataType":"string","required":true},
-            "id": {"dataType":"string","required":true},
         },
         "additionalProperties": false,
     },
