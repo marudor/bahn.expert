@@ -342,6 +342,10 @@ export default class Timetable {
       priority: getAttr(mNode, 'pr'),
       head: himMessage.head,
       text: himMessage.text,
+      stopPlace:
+        himMessage.fromStopPlace && !himMessage.toStopPlace
+          ? himMessage.fromStopPlace
+          : undefined,
       raw: process.env.NODE_ENV !== 'production' ? himMessage : undefined,
     };
 

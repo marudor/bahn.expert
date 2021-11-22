@@ -29,6 +29,8 @@ const parseHimMessage = (himMessage: HimMessage, common: ParsedCommon) => {
       parse(himMessage.eDate, 'yyyyMMdd', Date.now()),
       himMessage.eTime,
     ),
+    fromStopPlace: common.locL[himMessage.fLocX],
+    toStopPlace: common.locL[himMessage.tLocX],
   };
 };
 const parseHimSearch = (

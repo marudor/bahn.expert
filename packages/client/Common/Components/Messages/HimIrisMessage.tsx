@@ -45,6 +45,9 @@ export const HimIrisMessage: FC<Props> = ({
   const dateWithText = formattedDate
     ? `${formattedDate}: ${message.head}`
     : message.head;
+  const stopPlaceInfo = message.stopPlace
+    ? ` - ${message.stopPlace.title}`
+    : null;
 
   return (
     <div
@@ -53,7 +56,10 @@ export const HimIrisMessage: FC<Props> = ({
     >
       {dateWithText}
       <Dialog open={open} onClose={toggleOpen} onClick={stopPropagation}>
-        <DialogTitle>{dateWithText}</DialogTitle>
+        <DialogTitle>
+          {dateWithText}
+          {stopPlaceInfo}
+        </DialogTitle>
         <DialogContent
           dangerouslySetInnerHTML={{
             __html: message.text,

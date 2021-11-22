@@ -1,5 +1,6 @@
 import type {
   Common,
+  HafasStation,
   HimFilter,
   OptionalLocL,
   ParsedProduct,
@@ -61,6 +62,8 @@ export interface ParsedHimMessage extends HimMessage {
   affectedProducts: ParsedProduct[];
   startTime: Date;
   endTime: Date;
+  fromStopPlace?: HafasStation;
+  toStopPlace?: HafasStation;
 }
 
 export interface HimSearchResponse {
