@@ -2,6 +2,7 @@ import { nanoid } from 'nanoid';
 import onFinished from 'on-finished';
 import util from 'util';
 import type { Context, Next } from 'koa';
+import type { IncomingMessage } from 'http';
 import type P from 'pino';
 
 declare module 'koa' {
@@ -26,6 +27,15 @@ const levelFromStatus = (status: number) => {
 
   return 'info';
 };
+
+const trimRequest = (req: IncomingMessage) => ({
+  ...req,
+  headers: {
+    ...req.headers,
+    'x-real-ip': undefined,
+    'x-forwarded-for': undefined,
+  },
+});
 
 const formatRequestMessage = (ctx: Context) =>
   util.format('<-- %s %s', ctx.request.method, ctx.request.originalUrl);
@@ -55,7 +65,7 @@ export default (logger: P.Logger) =>
     if (process.env.NODE_ENV === 'production') {
       ctx.log.info(
         {
-          req: ctx.req,
+          req: trimRequest(ctx.req),
         },
         formatRequestMessage(ctx),
       );
@@ -66,7 +76,7 @@ export default (logger: P.Logger) =>
 
     const onResponseFinished = () => {
       const responseData = {
-        req: ctx.req,
+        req: trimRequest(ctx.req),
         res: ctx.res,
         err: undefined,
         duration: Date.now() - startTime,

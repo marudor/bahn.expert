@@ -7,7 +7,30 @@
     "specVersion": 3,
     "outputDirectory": "../../public",
     "host": "marudor.de",
-    "basePath": "api/"
+    "basePath": "api/",
+    "tags": [
+      {
+        "name": "HAFAS"
+      },
+      {
+        "name": "HAFAS Subscribe"
+      },
+      {
+        "name": "HAFAS Experimental"
+      },
+      {
+        "name": "IRIS"
+      },
+      {
+        "name": "OEBB"
+      },
+      {
+        "name": "Reihung"
+      },
+      {
+        "name": "StopPlace"
+      }
+    ]
   },
   "routes": {
     "middleware": "koa",

@@ -20,7 +20,7 @@ const Privacy = () => (
     <h3>Logdaten des Webservers</h3>
     <p>
       Bei jedem Aufruf dieser Website werden vom Webserver die folgenden Daten
-      gespeichert und für zwei Wochen aufbewahrt:
+      gespeichert und für vier Wochen aufbewahrt:
     </p>
     <p>
       Datum und Uhrzeit,
@@ -32,7 +32,10 @@ const Privacy = () => (
       Browser deaktiviert werden).
       <br />
       Die IP-Adresse sowie die bei Aufruf der Hauptseite an den Server
-      übertragenen Geokoordinaten werden nicht gespeichert.
+      übertragenen Geokoordinaten werden nicht gespeichert. Eine Ausnahme für
+      das Speichern der IP ist die Nutzung von deprecated APIs. In diesen Fällen
+      wird die IP gespeichert bis die API entfernt wird um eventuelle Nutzern
+      bescheid zu geben.
     </p>
   </div>
 );
