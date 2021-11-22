@@ -31,17 +31,33 @@ export enum CacheDatabases {
 }
 const activeCaches = new Set();
 
+function dateSerialize(this: any, key: string, value: any): any {
+  // eslint-disable-next-line babel/no-invalid-this
+  if (this[key] instanceof Date) {
+    // eslint-disable-next-line babel/no-invalid-this
+    return `DATE${this[key].toISOString()}`;
+  }
+  return value;
+}
+
+function dateDeserialze(_key: string, value: any): any {
+  if (typeof value === 'string' && value.startsWith('DATE')) {
+    return new Date(value.substr(4));
+  }
+  return value;
+}
+
 function deserialize(raw?: string | null) {
   if (raw == null) return undefined;
   if (raw === '__UNDEF__INED__') return undefined;
 
-  return JSON.parse(raw);
+  return JSON.parse(raw, dateDeserialze);
 }
 
 function serialize(raw: any) {
   if (raw === undefined) return '__UNDEF__INED__';
 
-  return JSON.stringify(raw);
+  return JSON.stringify(raw, dateSerialize);
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -62,6 +78,7 @@ export function createNewCache<K extends string, V>(
       store: redisStore,
       ttl,
       db,
+      max: 10000,
     });
     // @ts-expect-error baseCache untyped
     const client = baseCache.store.getClient();
@@ -81,6 +98,7 @@ export function createNewCache<K extends string, V>(
     baseCache = cacheManager.caching({
       store: 'memory',
       ttl,
+      max: 10000,
     });
     // eslint-disable-next-line @typescript-eslint/unbound-method
     existsFn = baseCache.get;

@@ -317,7 +317,7 @@ export default class Timetable {
       train,
     };
   }
-  async parseHafasMessage(mNode: xmljs.Element, trainNumber: string) {
+  async parseHafasMessage(mNode: xmljs.Element, _trainNumber: string) {
     const id = getAttr(mNode, 'id');
 
     if (!id) return undefined;
@@ -325,8 +325,9 @@ export default class Timetable {
     const himMessage = await getSingleHimMessageOfToday(id.substr(1));
 
     if (!himMessage) return undefined;
-    if (!himMessage.affectedProducts.some((p) => p.name.endsWith(trainNumber)))
-      return undefined;
+    // Sadly this is not accurate. Often affected Products is not corectly set
+    // if (!himMessage.affectedProducts.some((p) => p.name.endsWith(trainNumber)))
+    //   return undefined;
     const now = new Date();
 
     if (
