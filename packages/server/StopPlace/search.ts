@@ -134,9 +134,22 @@ async function groupBySales(
     if (seenEvas.has(r.evaNumber)) {
       return;
     }
-    result.push(r);
-    groups[r.evaNumber]?.SALES?.forEach((m) => seenEvas.add(m));
-    seenEvas.add(r.evaNumber);
+    const group = groups[r.evaNumber]?.SALES;
+    if (group) {
+      group.sort().reverse();
+      group.forEach((evaNumber) => {
+        const mostRelevantStopPlace = stopPlaces.find(
+          (s) => s.evaNumber === evaNumber,
+        );
+        if (mostRelevantStopPlace) {
+          result.push(mostRelevantStopPlace);
+          group.forEach((e) => seenEvas.add(e));
+        }
+      });
+    } else {
+      result.push(r);
+      seenEvas.add(r.evaNumber);
+    }
   });
 
   return result;

@@ -1,11 +1,10 @@
 import { Loading, LoadingType } from './Loading';
 import { makeStyles, MenuItem, Paper, TextField } from '@material-ui/core';
-import { MyLocation } from '@material-ui/icons';
 import { useCallback, useRef } from 'react';
 import { useStopPlaceSearch } from 'client/Common/hooks/useStopPlaceSearch';
 import Downshift from 'downshift';
 import type { AllowedHafasProfile } from 'types/HAFAS';
-import type { FC, ReactNode, SyntheticEvent } from 'react';
+import type { FC, ReactNode } from 'react';
 import type { MinimalStopPlace } from 'types/stopPlace';
 
 const useStyles = makeStyles((theme) => ({
@@ -85,22 +84,6 @@ export const StopPlaceSearch: FC<Props> = ({
     maxSuggestions,
     groupedBySales,
   });
-
-  const getLocation = useCallback(
-    (e: SyntheticEvent<any>) => {
-      e.stopPropagation();
-      navigator.geolocation.getCurrentPosition(
-        (p) => {
-          void loadOptions(p.coords);
-          selectRef.current?.openMenu();
-        },
-        (e: any) => {
-          console.error(e);
-        },
-      );
-    },
-    [loadOptions, selectRef],
-  );
 
   const downshiftOnChange = useCallback(
     (stopPlace: MinimalStopPlace | null) => {
@@ -219,10 +202,10 @@ export const StopPlaceSearch: FC<Props> = ({
           );
         }}
       </Downshift>
-      <div className={classes.icons}>
+      {/* <div className={classes.icons}>
         <MyLocation onClick={getLocation} />
         {additionalIcon}
-      </div>
+      </div> */}
       {loading && (
         <Loading className={classes.loading} type={LoadingType.dots} />
       )}
