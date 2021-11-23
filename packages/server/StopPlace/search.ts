@@ -99,7 +99,7 @@ export async function searchStopPlaceRisStations(
   }
 
   if (max) {
-    groupedStopPlaces = groupedStopPlaces.splice(0, max);
+    return groupedStopPlaces.splice(0, max);
   }
 
   return groupedStopPlaces;
@@ -153,10 +153,12 @@ export async function searchStopPlaceGroupedBySales(
     filterForIris,
   );
 
+  console.log(ungroupedResult);
+
   const grouped = await groupBySales(ungroupedResult);
 
   if (max) {
-    grouped.splice(0, max);
+    return grouped.splice(0, max);
   }
 
   return grouped;
@@ -193,7 +195,7 @@ export async function geoSearchStopPlace(
   }
 
   if (max) {
-    groupedStopPlaces = groupedStopPlaces.splice(0, max);
+    return groupedStopPlaces.splice(0, max);
   }
 
   return groupedStopPlaces;
