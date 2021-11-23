@@ -18,7 +18,7 @@ export const StopList: FC<Props> = ({ stops }) => {
   return stops ? (
     <div className={classes.wrap}>
       {stops.map((s) => (
-        <Stop key={s.station.id} stop={s} />
+        <Stop doNotRenderOccupancy key={s.station.id} stop={s} />
       ))}
     </div>
   ) : null;
