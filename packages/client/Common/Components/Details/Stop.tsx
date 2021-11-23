@@ -80,6 +80,7 @@ interface Props {
   showWR?: ParsedProduct;
   isPast?: boolean;
   hasOccupancy?: boolean;
+  doNotRenderOccupancy?: boolean;
 }
 export const Stop: FC<Props> = ({
   stop,
@@ -87,6 +88,7 @@ export const Stop: FC<Props> = ({
   train,
   isPast,
   hasOccupancy = false,
+  doNotRenderOccupancy,
 }) => {
   const classes = useStyles({ hasOccupancy });
   const { urlPrefix } = useContext(DetailsContext);
@@ -130,7 +132,7 @@ export const Stop: FC<Props> = ({
           urlPrefix={urlPrefix}
         />
       </span>
-      {stop.auslastung && (
+      {stop.auslastung && !doNotRenderOccupancy && (
         <>
           <span className={classes.occupancy1} data-testid="occupancy1">
             1
