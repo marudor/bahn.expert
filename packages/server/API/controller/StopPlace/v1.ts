@@ -81,7 +81,7 @@ export class StopPlaceController extends Controller {
     @Query() lat: number,
     @Query() lng: number,
     /** meter */
-    @Query() radius = 1500,
+    @Query() radius = 5000,
     /** Only returns stopPlaces iris-tts can handle (/abfahrten) */
     @Query() filterForIris = false,
     @Query() max?: number,
