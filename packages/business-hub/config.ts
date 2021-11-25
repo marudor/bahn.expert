@@ -6,4 +6,9 @@ export const risStationsConfiguration = new Configuration({
     // https://github.com/dbbahnhoflive/dbbahnhoflive-android/blob/master/modules/core/build.gradle#L15
     process.env.BUSINESS_HUB_STOP_PLACES_KEY ||
     'TOL1jxXeqIW72s7vKPCcUuPNqFJTvPQx',
+  baseOptions: {
+    headers: {
+      'user-agent': 'marudor.de',
+    },
+  },
 });
