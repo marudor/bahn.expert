@@ -67,7 +67,7 @@ export const JnySegmentTrain: FC<Props> = ({
               scheduledDeparture={segment.departure.scheduledTime}
             />
           )}
-          <StopList stops={segment.stops} />
+          <StopList stops={segment.stops} product={segment.train} />
         </>
       )}
     </div>

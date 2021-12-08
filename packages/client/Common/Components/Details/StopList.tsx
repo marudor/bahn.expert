@@ -3,10 +3,11 @@ import { Error } from '@material-ui/icons';
 import { Loading } from '../Loading';
 import { makeStyles } from '@material-ui/core';
 import { Stop } from 'client/Common/Components/Details/Stop';
-import { useContext, useEffect, useMemo } from 'react';
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import clsx from 'clsx';
 import type { AxiosError } from 'axios';
 import type { FC } from 'react';
+import type { Route$Stop } from 'types/routing';
 
 function getErrorText(error: AxiosError) {
   if (error.code === 'ECONNABORTED') return 'Timeout, bitte neuladen.';
@@ -32,10 +33,21 @@ const useStyles = makeStyles({
   },
 });
 
-export const StopList: FC = () => {
+interface Props {
+  initialDepartureDate?: Date;
+}
+
+export const StopList: FC<Props> = ({ initialDepartureDate }) => {
   const classes = useStyles();
   const { details, error } = useContext(DetailsContext);
   const hasOccupancy = details?.stops.some((s) => s.auslastung);
+  const [currentSequenceStop, setCurrentSequenceStop] = useState(
+    details?.currentStop?.station.id,
+  );
+
+  const onStopClick = useCallback((stop: Route$Stop) => {
+    setCurrentSequenceStop(stop.station.id);
+  }, []);
 
   useEffect(() => {
     if (details && details.currentStop) {
@@ -59,19 +71,19 @@ export const StopList: FC = () => {
       return (
         <Stop
           hasOccupancy={hasOccupancy}
+          onStopClick={onStopClick}
           isPast={!hadCurrent}
           train={details.train}
           stop={s}
           key={s.station.id}
           showWR={
-            details.currentStop?.station.id === s.station.id
-              ? details.train
-              : undefined
+            currentSequenceStop === s.station.id ? details.train : undefined
           }
+          initialDepartureDate={initialDepartureDate}
         />
       );
     });
-  }, [details]);
+  }, [details, currentSequenceStop]);
 
   if (error) {
     return (

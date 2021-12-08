@@ -18,5 +18,5 @@ export async function coachSequence(
     if (oebbSequence) return oebbSequence;
   }
 
-  return DBCoachSequence(trainNumber, departure);
+  return await DBCoachSequence(trainNumber, departure);
 }
