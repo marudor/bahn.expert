@@ -61,28 +61,13 @@ export async function rawDBCoachSequence(
   trainNumber: string,
   date: Date,
   retry = 2,
-): Promise<Wagenreihung> {
+): Promise<Wagenreihung | undefined> {
   try {
     return coachSequence(trainNumber, date);
   } catch (e) {
     if (Axios.isCancel(e)) {
       if (retry) return rawDBCoachSequence(trainNumber, date, retry - 1);
-      throw {
-        response: {
-          status: 404,
-          statusText: 'Timeout',
-          data: 404,
-        },
-      };
     }
-
-    throw {
-      response: {
-        status: 404,
-        statusText: 'Not Found',
-        data: 404,
-      },
-    };
   }
 }
 
@@ -91,6 +76,7 @@ export async function DBCoachSequence(
   date: Date,
 ): Promise<CoachSequenceInformation | undefined> {
   const rawSequence = await rawDBCoachSequence(trainNumber, date);
+  if (!rawSequence) return undefined;
 
   return mapInformation(rawSequence.data.istformation);
 }

@@ -5,7 +5,7 @@ import type {
   CoachSequenceCoach,
 } from 'types/coachSequence';
 
-const nameMap: Record<AvailableIdentifier, string> = {
+export const nameMap: Record<AvailableIdentifier, string> = {
   '401': 'ICE 1 (BR401)',
   '401.9': 'ICE 1 Kurz (BR401)',
   '401.LDV': 'ICE 1 LDV (BR401)',

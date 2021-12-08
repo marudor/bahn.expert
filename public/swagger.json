@@ -5876,7 +5876,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CoachSequenceInformation"
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/CoachSequenceInformation"
+                    },
+                    {}
+                  ]
                 }
               }
             }

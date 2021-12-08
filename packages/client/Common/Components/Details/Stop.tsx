@@ -8,9 +8,9 @@ import { SingleAuslastungsDisplay } from 'client/Common/Components/SingleAuslast
 import { StationLink } from 'client/Common/Components/StationLink';
 import { Time } from 'client/Common/Components/Time';
 import { TravelynxLink } from 'client/Common/Components/CheckInLink/TravelynxLink';
-import { useContext } from 'react';
+import { useCallback, useContext } from 'react';
 import clsx from 'clsx';
-import type { FC } from 'react';
+import type { FC, MouseEvent } from 'react';
 import type { ParsedProduct } from 'types/HAFAS';
 import type { Route$Stop } from 'types/routing';
 
@@ -81,6 +81,8 @@ interface Props {
   isPast?: boolean;
   hasOccupancy?: boolean;
   doNotRenderOccupancy?: boolean;
+  initialDepartureDate?: Date;
+  onStopClick?: (stop: Route$Stop) => void;
 }
 export const Stop: FC<Props> = ({
   stop,
@@ -89,6 +91,8 @@ export const Stop: FC<Props> = ({
   isPast,
   hasOccupancy = false,
   doNotRenderOccupancy,
+  initialDepartureDate,
+  onStopClick,
 }) => {
   const classes = useStyles({ hasOccupancy });
   const { urlPrefix } = useContext(DetailsContext);
@@ -105,10 +109,19 @@ export const Stop: FC<Props> = ({
       }
     : {};
 
+  const onClick = useCallback(
+    (e: MouseEvent<HTMLDivElement>) => {
+      e.stopPropagation();
+      onStopClick?.(stop);
+    },
+    [stop, onStopClick],
+  );
+
   return (
     <div
       className={clsx(classes.wrap, isPast && classes.past)}
       data-testid={stop.station.id}
+      onClick={onClick}
     >
       <div className={classes.scrollMarker} id={stop.station.id} />
       {stop.arrival && (
@@ -170,6 +183,7 @@ export const Stop: FC<Props> = ({
             trainNumber={showWR.number}
             currentEvaNumber={stop.station.id}
             scheduledDeparture={depOrArrival.scheduledTime}
+            initialDeparture={initialDepartureDate}
             loadHidden={!depOrArrival?.reihung}
           />
         )}

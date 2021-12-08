@@ -70,3 +70,13 @@ baseEnv:
         name: bahnhofs-abfahrten-config
         key: him_max_fetch
         optional: true
+  - name: PLANNED_API_URL
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: planned_api_url
+  - name: PLANNED_API_KEY
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: planned_api_key
