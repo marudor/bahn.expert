@@ -25,34 +25,25 @@ export class ReihungControllerV4 extends Controller {
     @Query() evaNumber?: EvaNumber,
     /** needed for OEBB Reihung */
     @Query() initialDeparture?: Date,
-  ): Promise<CoachSequenceInformation> {
-    try {
-      const sequence = await coachSequence(
-        trainNumber.toString(),
-        departure,
+  ): Promise<CoachSequenceInformation | void> {
+    const sequence = await coachSequence(
+      trainNumber.toString(),
+      departure,
+      evaNumber,
+      initialDeparture,
+    );
+    if (sequence) return sequence;
+
+    if (trainNumber < 10000 && evaNumber) {
+      const plannedSequence = await getPlannedSequence(
+        trainNumber,
+        initialDeparture ?? departure,
         evaNumber,
-        initialDeparture,
       );
-      if (sequence) {
-        return sequence;
+      if (plannedSequence) {
+        return plannedSequence;
       }
-      throw {
-        response: {
-          status: 404,
-        },
-      };
-    } catch (e) {
-      if (trainNumber < 10000 && evaNumber) {
-        const plannedSequence = await getPlannedSequence(
-          trainNumber,
-          initialDeparture ?? departure,
-          evaNumber,
-        );
-        if (plannedSequence) {
-          return plannedSequence;
-        }
-      }
-      throw e;
     }
+    this.setStatus(404);
   }
 }
