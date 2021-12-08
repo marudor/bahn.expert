@@ -68,7 +68,7 @@ export const Gruppe: FC<Props> = ({
           {...rest}
           identifier={gruppe.baureihe?.identifier}
           wrongWing={wrongWing}
-          key={`${c.uic}${c.position}`}
+          key={`${c.uic}${c.position.startPercent}`}
           fahrzeug={c}
         />
       );

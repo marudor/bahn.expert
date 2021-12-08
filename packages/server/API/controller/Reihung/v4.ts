@@ -7,6 +7,7 @@ import {
   Route,
   Tags,
 } from '@tsoa/runtime';
+import { getPlannedSequence } from 'server/coachSequence/DB/plannedSequence';
 import type { CoachSequenceInformation } from 'types/coachSequence';
 import type { EvaNumber } from 'types/common';
 
@@ -25,17 +26,33 @@ export class ReihungControllerV4 extends Controller {
     /** needed for OEBB Reihung */
     @Query() initialDeparture?: Date,
   ): Promise<CoachSequenceInformation> {
-    const sequence = await coachSequence(
-      trainNumber.toString(),
-      departure,
-      evaNumber,
-      initialDeparture,
-    );
-    if (!sequence) {
+    try {
+      const sequence = await coachSequence(
+        trainNumber.toString(),
+        departure,
+        evaNumber,
+        initialDeparture,
+      );
+      if (sequence) {
+        return sequence;
+      }
       throw {
-        status: 404,
+        response: {
+          status: 404,
+        },
       };
+    } catch (e) {
+      if (trainNumber < 10000 && evaNumber) {
+        const plannedSequence = await getPlannedSequence(
+          trainNumber,
+          initialDeparture ?? departure,
+          evaNumber,
+        );
+        if (plannedSequence) {
+          return plannedSequence;
+        }
+      }
+      throw e;
     }
-    return sequence;
   }
 }

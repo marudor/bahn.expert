@@ -86,7 +86,7 @@ export const Details: FC<Props> = ({
       }}
     >
       <Header train={train} />
-      <StopList />
+      <StopList initialDepartureDate={initialDepartureDate} />
     </DetailsContext.Provider>
   );
 };
