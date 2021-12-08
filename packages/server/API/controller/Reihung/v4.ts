@@ -26,15 +26,20 @@ export class ReihungControllerV4 extends Controller {
     /** needed for OEBB Reihung */
     @Query() initialDeparture?: Date,
   ): Promise<CoachSequenceInformation | void> {
-    const sequence = await coachSequence(
-      trainNumber.toString(),
-      departure,
-      evaNumber,
-      initialDeparture,
-    );
-    if (sequence) return sequence;
+    try {
+      const sequence = await coachSequence(
+        trainNumber.toString(),
+        departure,
+        evaNumber,
+        initialDeparture,
+      );
+      if (sequence) return sequence;
+    } catch {
+      // we ignore this
+    }
 
     if (trainNumber < 10000 && evaNumber) {
+      console.log(trainNumber, evaNumber, initialDeparture ?? departure);
       const plannedSequence = await getPlannedSequence(
         trainNumber,
         initialDeparture ?? departure,
