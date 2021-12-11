@@ -17,7 +17,13 @@ import {
   subMinutes,
 } from 'date-fns';
 import { CacheDatabases, createNewCache } from 'server/cache';
-import { calculateVia, getAttr, getNumberAttr, parseTs } from './helper';
+import {
+  calculateVia,
+  getAttr,
+  getNumberAttr,
+  irisGetRequest,
+  parseTs,
+} from './helper';
 import { diffArrays } from 'diff';
 import { getLineFromNumber } from 'server/journeys/lineNumberMapping';
 import { getSingleHimMessageOfToday } from 'server/HAFAS/HimSearch';
@@ -29,7 +35,6 @@ import messageLookup, {
 } from './messageLookup';
 import xmljs from 'libxmljs2';
 import type { AbfahrtenResult, IrisMessage, Messages } from 'types/iris';
-import type { AxiosInstance } from 'axios';
 import type { Element } from 'libxmljs2';
 
 interface ArDp {
@@ -157,7 +162,6 @@ export default class Timetable {
     private evaNumber: string,
     currentStopPlaceName: string,
     options: TimetableOptions,
-    private request: AxiosInstance,
   ) {
     this.currentDate = options.currentDate || new Date();
     this.maxDate = addMinutes(this.currentDate, options.lookahead);
@@ -536,7 +540,7 @@ export default class Timetable {
   async fetchRealtime() {
     const url = `/fchg/${this.evaNumber}`;
 
-    const result = (await this.request.get<string>(url)).data;
+    const result = await irisGetRequest<string>(url);
 
     if (result.includes('<soapenv:Reason')) {
       return Promise.reject(result);
@@ -690,7 +694,7 @@ export default class Timetable {
 
         if (!rawXml) {
           try {
-            rawXml = (await this.request.get<string>(key)).data;
+            rawXml = await irisGetRequest<string>(key);
           } catch (e) {
             this.errors.push(e);
 
