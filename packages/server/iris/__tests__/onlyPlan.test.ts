@@ -4,7 +4,6 @@ import {
   mockLageplan,
   mockSearch,
 } from 'server/__tests__/mockHelper';
-import { noncdRequest } from 'server/iris/helper';
 import fakeTimers from '@sinonjs/fake-timers';
 import fs from 'fs';
 import path from 'path';
@@ -39,15 +38,10 @@ describe('onlyPlan', () => {
       mockLageplan();
       mockFchg();
       mockSearch(3, ['', inXml]);
-      const timetable = new Timetable(
-        'test',
-        'test',
-        {
-          lookahead: 120,
-          lookbehind: 60,
-        },
-        noncdRequest,
-      );
+      const timetable = new Timetable('test', 'test', {
+        lookahead: 120,
+        lookbehind: 60,
+      });
 
       await expect(timetable.start()).resolves.toMatchSnapshot();
     });

@@ -1,5 +1,4 @@
 /* eslint no-sync: 0 */
-import { noncdRequest } from 'server/iris/helper';
 import fs from 'fs';
 import path from 'path';
 import Timetable from 'server/iris/Timetable';
@@ -13,15 +12,10 @@ describe('parseTimetableS', () => {
   fixtures.forEach((file) => {
     // eslint-disable-next-line jest/valid-title
     it(file, () => {
-      const timetable = new Timetable(
-        'test',
-        'test',
-        {
-          lookahead: 0,
-          lookbehind: 0,
-        },
-        noncdRequest,
-      );
+      const timetable = new Timetable('test', 'test', {
+        lookahead: 0,
+        lookbehind: 0,
+      });
       const inXml = fs.readFileSync(
         path.resolve(__dirname, baseFixturePath, file),
         'utf8',

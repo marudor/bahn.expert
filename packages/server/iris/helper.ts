@@ -1,12 +1,48 @@
 import { parse } from 'date-fns';
 import { zonedTimeToUtc } from 'date-fns-tz';
 import Axios from 'axios';
+import type { AxiosInstance } from 'axios';
 import type { Element } from 'libxmljs2';
 import type { Stop } from 'types/iris';
 
-export const noncdRequest = Axios.create({
-  baseURL: 'https://iris.noncd.db.de/iris-tts/timetable',
+const noncdRequest = Axios.create({
+  baseURL:
+    process.env.IRIS_URL || 'https://iris.noncd.db.de/iris-tts/timetable',
+  headers: {
+    'user-agent': '',
+  },
 });
+
+// eslint-disable-next-line import/no-mutable-exports
+let fallbackRequest: AxiosInstance | undefined;
+if (process.env.IRIS_FALLBACK_URL) {
+  fallbackRequest = Axios.create({
+    baseURL: process.env.IRIS_FALLBACK_URL,
+    headers: {
+      'user-agent': '',
+    },
+  });
+}
+
+export async function irisGetRequest<T>(url: string): Promise<T> {
+  try {
+    const result = (await noncdRequest.get<T>(url)).data;
+    console.log(result);
+    return result;
+  } catch (e) {
+    console.log(e);
+    if (
+      fallbackRequest &&
+      Axios.isAxiosError(e) &&
+      e.response?.status === 503
+    ) {
+      console.log('Getting fallback');
+      const fallbackResult = (await fallbackRequest.get<T>(url)).data;
+      return fallbackResult;
+    }
+    throw e;
+  }
+}
 
 export function getAttr<T extends string>(
   node: null | Element,

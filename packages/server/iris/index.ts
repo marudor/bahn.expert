@@ -1,6 +1,5 @@
 import { compareAsc } from 'date-fns';
 import { getStation } from './station';
-import { noncdRequest } from './helper';
 import Timetable from './Timetable';
 import type { Abfahrt, AbfahrtenResult } from 'types/iris';
 
@@ -108,7 +107,7 @@ export async function getAbfahrten(
   const lookahead = options.lookahead || defaultOptions.lookahead;
   const lookbehind = options.lookbehind || defaultOptions.lookbehind;
 
-  const { station, relatedStations } = await getStation(evaId, 1, noncdRequest);
+  const { station, relatedStations } = await getStation(evaId, 1);
   let relatedAbfahrten = Promise.resolve(baseResult);
 
   if (withRelated) {
@@ -117,16 +116,11 @@ export async function getAbfahrten(
     ).then((r) => r.reduce(reduceResults, baseResult));
   }
 
-  const timetable = new Timetable(
-    evaId,
-    station.name,
-    {
-      lookahead,
-      lookbehind,
-      currentDate: options.currentDate,
-    },
-    noncdRequest,
-  );
+  const timetable = new Timetable(evaId, station.name, {
+    lookahead,
+    lookbehind,
+    currentDate: options.currentDate,
+  });
   const result = (
     await Promise.all([timetable.start(), relatedAbfahrten])
   ).reduce(reduceResults, baseResult);
