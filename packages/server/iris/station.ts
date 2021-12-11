@@ -1,9 +1,8 @@
 /* eslint no-param-reassign: 0, no-await-in-loop: 0 */
 import { CacheDatabases, createNewCache } from 'server/cache';
-import { noncdRequest } from './helper';
+import { irisGetRequest } from './helper';
 import { stationMetaFilter } from 'server/iris/stationMetaFilter';
 import xmljs from 'libxmljs2';
-import type { AxiosInstance } from 'axios';
 import type { Element } from 'libxmljs2';
 import type { IrisStation, IrisStationWithRelated } from 'types/iris';
 
@@ -35,10 +34,7 @@ export function parseStation(stationNode: xmljs.Element): IrisStation {
   return station;
 }
 
-export async function getSingleStation(
-  evaId: string,
-  request: AxiosInstance = noncdRequest,
-): Promise<IrisStation> {
+export async function getSingleStation(evaId: string): Promise<IrisStation> {
   const cached = await cache.get(evaId);
 
   if (cached) {
@@ -53,7 +49,7 @@ export async function getSingleStation(
       },
     };
   }
-  const rawXml = (await request.get<string>(`/station/${evaId}`)).data;
+  const rawXml = await irisGetRequest<string>(`/station/${evaId}`);
 
   const xml = xmljs.parseXml(rawXml);
 
@@ -79,9 +75,8 @@ export async function getSingleStation(
 export async function getStation(
   evaId: string,
   recursive = 0,
-  request?: AxiosInstance,
 ): Promise<IrisStationWithRelated> {
-  const station = await getSingleStation(evaId, request);
+  const station = await getSingleStation(evaId);
   let queue = station.meta;
   const seen = [station.eva];
   const relatedStations: IrisStation[] = [];
@@ -95,7 +90,7 @@ export async function getStation(
             return [];
           }
           seen.push(id);
-          const station = await getSingleStation(id, request);
+          const station = await getSingleStation(id);
 
           relatedStations.push(station);
 
