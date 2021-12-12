@@ -5,23 +5,20 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  makeStyles,
   Typography,
-} from '@material-ui/core';
-import { ExpandLess, ExpandMore, Palette } from '@material-ui/icons';
+} from '@mui/material';
+import { ExpandLess, ExpandMore, Palette } from '@mui/icons-material';
 import { ThemeType } from 'client/Themes/type';
 import { useCallback, useState } from 'react';
 import { useTheme } from 'client/Common/provider/ThemeProvider';
+import styled from '@emotion/styled';
 import type { FC, SyntheticEvent } from 'react';
 
-const useStyles = makeStyles((theme) => ({
-  themeList: {
-    paddingLeft: theme.spacing(1),
-  },
+const ThemeList = styled(List)(({ theme }) => ({
+  paddingLeft: theme.spacing(1),
 }));
 
 export const ThemeSelection: FC = () => {
-  const classes = useStyles();
   const { themeType, setThemeType } = useTheme();
   const [open, setOpen] = useState(false);
   const selectTheme = useCallback(
@@ -54,11 +51,7 @@ export const ThemeSelection: FC = () => {
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
-        <List
-          className={classes.themeList}
-          disablePadding
-          data-testid="themeList"
-        >
+        <ThemeList disablePadding data-testid="themeList">
           {Object.values(ThemeType).map((themeOption) => {
             const name = themeOption[0].toUpperCase() + themeOption.slice(1);
 
@@ -79,7 +72,7 @@ export const ThemeSelection: FC = () => {
               </ListItem>
             );
           })}
-        </List>
+        </ThemeList>
       </Collapse>
     </>
   );

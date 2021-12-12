@@ -16,9 +16,6 @@ const getBabelConfig = (type) => {
   const serverModuleResolver = isServer
     ? {
         extensions: ['.js', '.jsx', '.web.ts', '.ts', '.tsx'],
-        alias: {
-          classnames: 'clsx',
-        },
       }
     : undefined;
 
@@ -32,7 +29,7 @@ const getBabelConfig = (type) => {
     '@loadable/babel-plugin',
     ['@babel/plugin-proposal-decorators', { legacy: true }],
     'babel-plugin-parameter-decorator',
-    './scripts/babelTransform/debugStyleNames.js',
+    // './scripts/babelTransform/debugStyleNames.js',
     [
       'module-resolver',
       {
@@ -92,6 +89,7 @@ const getBabelConfig = (type) => {
         '@babel/preset-react',
         {
           runtime: 'automatic',
+          importSource: '@emotion/react',
         },
       ],
     ],
@@ -103,7 +101,10 @@ const getBabelConfig = (type) => {
     env: {
       production: {
         compact: true,
-        plugins: ['babel-plugin-jsx-remove-data-test-id'],
+        plugins: ['@emotion', 'babel-plugin-jsx-remove-data-test-id'],
+      },
+      development: {
+        plugins: ['@emotion'],
       },
     },
   };

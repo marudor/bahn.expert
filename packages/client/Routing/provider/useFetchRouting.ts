@@ -18,7 +18,7 @@ export const useFetchRouting = () => {
     laterContext,
     setError,
   } = useRouting();
-  const { start, destination, date, via } = useRoutingConfig();
+  const { start, destination, date, via, touchedDate } = useRoutingConfig();
   const settings = useRoutingSettings();
 
   const commonRouteSettings = useMemo(
@@ -46,7 +46,7 @@ export const useFetchRouting = () => {
       try {
         const routingResult = (
           await Axios.post<RoutingResult>('/api/hafas/v3/tripSearch', {
-            time: date || new Date(),
+            time: touchedDate ? date : new Date(),
             ...routeSettings,
           })
         ).data;

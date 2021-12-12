@@ -4,22 +4,19 @@ import {
   DialogActions,
   DialogContent,
   FormControlLabel,
-  makeStyles,
   Switch,
-} from '@material-ui/core';
+} from '@mui/material';
 import { useAbfahrtenFilter } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useAllTrainTypes } from 'client/Abfahrten/provider/AbfahrtenProvider/hooks';
 import { useCallback } from 'react';
+import styled from '@emotion/styled';
 import type { FC } from 'react';
 
-const useStyles = makeStyles({
-  label: {
-    width: 'calc(50% - 1em)',
-  },
-});
+const Label = styled(FormControlLabel)`
+  width: calc(50% - 1em);
+`;
 
 export const FilterModal: FC = () => {
-  const classes = useStyles();
   const {
     productFilter,
     toggleProduct,
@@ -49,8 +46,7 @@ export const FilterModal: FC = () => {
       <DialogContent>
         <h4>Zug Typen</h4>
         {types.map((t) => (
-          <FormControlLabel
-            className={classes.label}
+          <Label
             data-testid={`filter${t}`}
             key={t}
             control={

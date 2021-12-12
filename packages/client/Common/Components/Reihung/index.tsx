@@ -1,7 +1,6 @@
 import { Explain } from './Explain';
 import { Gruppe } from './Gruppe';
 import { Loading } from 'client/Common/Components/Loading';
-import { makeStyles } from '@material-ui/core';
 import { Sektor } from './Sektor';
 import { sequenceId } from 'client/Common/provider/ReihungenProvider';
 import { useCommonConfig } from 'client/Common/provider/CommonConfigProvider';
@@ -10,34 +9,39 @@ import {
   useSequences,
   useSequencesActions,
 } from 'client/Common/provider/ReihungenProvider';
-import clsx from 'clsx';
+import styled from '@emotion/styled';
 import type { FC } from 'react';
 
-const useStyles = makeStyles((theme) => ({
-  wrap: {
-    overflowX: 'auto',
-  },
-  main: {
-    minWidth: '70em',
-    overflow: 'hidden',
-    position: 'relative',
-    fontSize: '170%',
-    marginBottom: '1em',
-    marginRight: '.3em',
-  },
-  sektoren: {
-    position: 'relative',
-  },
-  reihungWrap: {
-    position: 'relative',
-    marginTop: '1.3em',
-    height: '100%',
-  },
-  plan: {
-    position: 'absolute',
-    bottom: '1.5em',
-  },
-  richtung: {
+const ContainerWrap = styled.div`
+  overflow-x: auto;
+`;
+
+const Container = styled.div`
+  min-width: 70em;
+  overflow: hidden;
+  position: relative;
+  font-size: 170%;
+  margin-bottom: 1em;
+  margin-right: 0.3em;
+`;
+
+const Sectors = styled.div`
+  position: relative;
+`;
+
+const Sequence = styled.div`
+  position: relative;
+  margin-top: 1.3em;
+  height: 100%;
+`;
+
+const PlannedOnlyIndicator = styled.span`
+  position: absolute;
+  bottom: 1.5em;
+`;
+
+const DirectionOfTravel = styled.span<{ reversed?: boolean }>(
+  ({ theme, reversed }) => ({
     backgroundColor: theme.palette.text.primary,
     width: '50%',
     height: 2,
@@ -45,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     left: '50%',
     bottom: '.5em',
     zIndex: 10,
-    transform: 'translateX(-50%)',
+    transform: reversed ? 'rotate(180deg) translateX(50%)' : 'translateX(-50%)',
     '&::after': {
       border: `solid ${theme.palette.text.primary}`,
       borderWidth: '0 2px 2px 0',
@@ -56,11 +60,8 @@ const useStyles = makeStyles((theme) => ({
       position: 'absolute',
       top: -3,
     },
-  },
-  reverseRichtung: {
-    transform: 'rotate(180deg) translateX(50%)',
-  },
-}));
+  }),
+);
 
 interface Props {
   className?: string;
@@ -82,7 +83,6 @@ export const Reihung: FC<Props> = ({
   loadHidden,
   fallbackTrainNumbers,
 }) => {
-  const classes = useStyles();
   const sequences = useSequences();
   const { getSequences } = useSequencesActions();
   const { fahrzeugGruppe, showUIC } = useCommonConfig();
@@ -155,9 +155,9 @@ export const Reihung: FC<Props> = ({
   }
 
   return (
-    <div className={clsx(classes.wrap, className)} data-testid="reihung">
-      <div className={classes.main} style={mainStyle}>
-        <div className={classes.sektoren}>
+    <ContainerWrap className={className} data-testid="reihung">
+      <Container style={mainStyle}>
+        <Sectors>
           {sequence.stop.sectors.map((s) => (
             <Sektor
               correctLeft={startPercent}
@@ -166,8 +166,8 @@ export const Reihung: FC<Props> = ({
               sector={s}
             />
           ))}
-        </div>
-        <div className={classes.reihungWrap}>
+        </Sectors>
+        <Sequence>
           {sequence.sequence.groups.map((g, i) => (
             <Gruppe
               showUIC={showUIC}
@@ -184,21 +184,16 @@ export const Reihung: FC<Props> = ({
               key={i}
             />
           ))}
-        </div>
+        </Sequence>
         <Explain />
         {!sequence.isRealtime && (
-          <span className={classes.plan}>Plandaten</span>
+          <PlannedOnlyIndicator>Plandaten</PlannedOnlyIndicator>
         )}
         {sequence.direction != null && (
-          <span
-            className={clsx(
-              classes.richtung,
-              !sequence.direction && classes.reverseRichtung,
-            )}
-          />
+          <DirectionOfTravel reversed={!sequence.direction} />
         )}
-      </div>
-    </div>
+      </Container>
+    </ContainerWrap>
   );
 };
 // eslint-disable-next-line import/no-default-export

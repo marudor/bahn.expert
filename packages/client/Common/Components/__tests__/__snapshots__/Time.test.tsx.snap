@@ -1,11 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Time does not show 0 delay number 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
 <div
-  class="Time-wrap Time-multiLineWrap"
+  class="emotion-0"
 >
   <span
-    class=""
+    class="emotion-1"
     data-testid="time"
   >
     13:55
@@ -16,17 +56,32 @@ exports[`Time does not show 0 delay number 1`] = `
 exports[`Time no time 1`] = `null`;
 
 exports[`Time showOriginalTime = false 5 Minutes early 1`] = `
+.emotion-0 {
+  color: #7cb342;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-2 {
+  color: #7cb342;
+}
+
 <div
-  class="Time-wrap Time-early Time-multiLineWrap"
+  class="emotion-0"
 >
   <span
-    class=""
+    class="emotion-1"
     data-testid="time"
   >
     13:55
   </span>
   <span
-    class="Time-early"
+    class="emotion-2"
     data-testid="delay"
   >
     -5
@@ -35,17 +90,32 @@ exports[`Time showOriginalTime = false 5 Minutes early 1`] = `
 `;
 
 exports[`Time showOriginalTime = false 10 Minutes delay 1`] = `
+.emotion-0 {
+  color: #ff1744;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-2 {
+  color: #ff1744;
+}
+
 <div
-  class="Time-wrap Time-delayed Time-multiLineWrap"
+  class="emotion-0"
 >
   <span
-    class=""
+    class="emotion-1"
     data-testid="time"
   >
     13:55
   </span>
   <span
-    class="Time-delayed"
+    class="emotion-2"
     data-testid="delay"
   >
     +10
@@ -54,17 +124,55 @@ exports[`Time showOriginalTime = false 10 Minutes delay 1`] = `
 `;
 
 exports[`Time showOriginalTime = true 5 Minutes early 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-2 {
+  color: #7cb342;
+}
+
+.emotion-2 {
+  color: #7cb342;
+}
+
 <div
-  class="Time-wrap Time-multiLineWrap"
+  class="emotion-0"
 >
   <span
-    class=""
+    class="emotion-1"
     data-testid="time"
   >
     14:00
   </span>
   <span
-    class="Time-early"
+    class="emotion-2"
     data-testid="delay"
   >
     -5
@@ -73,17 +181,45 @@ exports[`Time showOriginalTime = true 5 Minutes early 1`] = `
 `;
 
 exports[`Time showOriginalTime = true 10 Minutes delay 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-2 {
+  color: #ff1744;
+}
+
+.emotion-2 {
+  color: #ff1744;
+}
+
 <div
-  class="Time-wrap Time-multiLineWrap"
+  class="emotion-0"
 >
   <span
-    class=""
+    class="emotion-1"
     data-testid="time"
   >
     13:45
   </span>
   <span
-    class="Time-delayed"
+    class="emotion-2"
     data-testid="delay"
   >
     +10
@@ -92,17 +228,39 @@ exports[`Time showOriginalTime = true 10 Minutes delay 1`] = `
 `;
 
 exports[`Time shows 0 delay number 1`] = `
+.emotion-0 {
+  color: #7cb342;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-0 {
+  color: #7cb342;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
 <div
-  class="Time-wrap Time-early Time-multiLineWrap"
+  class="emotion-0"
 >
   <span
-    class=""
+    class="emotion-1"
     data-testid="time"
   >
     13:55
   </span>
   <span
-    class="Time-early"
+    class="emotion-1"
     data-testid="delay"
   >
     +0

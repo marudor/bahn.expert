@@ -1,8 +1,8 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export const useToggleState = (defaultValue = false): [boolean, () => void] => {
   const [state, setState] = useState(defaultValue);
-  const toggleState = useMemo(() => () => setState((old) => !old), []);
+  const toggleState = useCallback(() => setState((old) => !old), []);
 
   return [state, toggleState];
 };

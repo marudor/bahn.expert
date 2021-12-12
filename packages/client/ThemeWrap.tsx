@@ -1,49 +1,47 @@
 import { App } from './App';
-import {
-  createGenerateClassName,
-  StylesProvider,
-  ThemeProvider,
-} from '@material-ui/core';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import { CacheProvider } from '@emotion/react';
+import { LocalizationProvider } from '@mui/lab';
+import { StyledEngineProvider } from '@mui/material';
 import { ThemeHeaderTags } from 'client/Common/Components/ThemeHeaderTags';
-import { useMemo } from 'react';
+import { ThemeProvider } from '@mui/material';
 import { useTheme } from 'client/Common/provider/ThemeProvider';
-import DateFnsUtils from '@date-io/date-fns';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import createEmotionCache from '@emotion/cache';
 import deLocale from 'date-fns/locale/de';
+import type { EmotionCache } from '@emotion/react';
 import type { ReactElement, ReactNode } from 'react';
-import type { SheetsRegistry } from 'jss';
 
 interface Props {
   children?: ReactNode;
-  sheetsRegistry?: SheetsRegistry;
-  generateClassName?: ReturnType<typeof createGenerateClassName>;
+  // generateClassName?: ReturnType<typeof createGenerateClassName>;
+  emotionCache?: EmotionCache;
 }
 
 export const ThemeWrap = ({
   children = <App />,
-  sheetsRegistry,
-  generateClassName,
+  // generateClassName,
+  emotionCache = createEmotionCache({
+    key: 'css',
+  }),
 }: Props): ReactElement => {
   const { theme } = useTheme();
 
-  const classNameGenerator = useMemo(
-    () => generateClassName || createGenerateClassName(),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
-  );
+  // const classNameGenerator = useMemo(
+  //   () => generateClassName || createGenerateClassName(),
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   [],
+  // );
 
   return (
-    <StylesProvider
-      injectFirst
-      sheetsRegistry={sheetsRegistry}
-      generateClassName={classNameGenerator}
-    >
-      <MuiPickersUtilsProvider utils={DateFnsUtils} locale={deLocale}>
-        <ThemeProvider theme={theme}>
-          <ThemeHeaderTags />
-          {children}
-        </ThemeProvider>
-      </MuiPickersUtilsProvider>
-    </StylesProvider>
+    <StyledEngineProvider injectFirst>
+      <LocalizationProvider dateAdapter={AdapterDateFns} locale={deLocale}>
+        <CacheProvider value={emotionCache}>
+          <ThemeProvider theme={theme}>
+            <ThemeHeaderTags />
+            {children}
+          </ThemeProvider>
+        </CacheProvider>
+      </LocalizationProvider>
+    </StyledEngineProvider>
   );
 };

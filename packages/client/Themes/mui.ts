@@ -1,20 +1,9 @@
-import { blue } from '@material-ui/core/colors';
-import { createTheme as createMuiTheme } from '@material-ui/core';
+import { blue, purple } from '@mui/material/colors';
+import { createTheme } from '@mui/material';
 import { ThemeType } from './type';
 import deepMerge from 'deepmerge';
-import type { MuiPickersOverrides } from '@material-ui/pickers/typings/overrides';
-import type { Theme as MuiTheme } from '@material-ui/core';
-import type { ThemeOptions } from '@material-ui/core/styles/createTheme';
-
-declare module '@material-ui/core/styles/overrides' {
-  export interface ComponentNameToClassKey extends MuiPickersOverrides {}
-}
-
-declare module '@material-ui/core/styles/shape' {
-  export interface Shape {
-    headerSpacing: number;
-  }
-}
+import type { Mixins as MaruMixins } from 'maru';
+import type { Theme, ThemeOptions } from '@mui/material';
 
 const getPaletteType = (themeType: ThemeType) => {
   switch (themeType) {
@@ -26,30 +15,53 @@ const getPaletteType = (themeType: ThemeType) => {
   }
 };
 
+declare module '@mui/system/createTheme/shape' {
+  export interface Shape {
+    headerSpacing: number;
+  }
+}
+
+declare module '@mui/material/styles/createMixins' {
+  export interface Mixins extends MaruMixins {}
+}
+
 const headerSpacing = 54;
+
 const getMuiOptions = (themeType: ThemeType) => {
   const commonOptions: ThemeOptions = {
     palette: {
-      type: getPaletteType(themeType),
+      mode: getPaletteType(themeType),
     },
     shape: {
       headerSpacing,
     },
-    overrides: {
-      MuiPickersModal: {
-        withAdditionalAction: {
-          color: 'red',
+    components: {
+      MuiTextField: {
+        defaultProps: {
+          variant: 'standard',
         },
       },
       MuiToolbar: {
-        regular: {
-          minHeight: `${headerSpacing}px!important`,
+        styleOverrides: {
+          regular: {
+            minHeight: `${headerSpacing}px!important`,
+          },
+        },
+      },
+      MuiAppBar: {
+        styleOverrides: {
+          root: {
+            backgroundImage: 'unset',
+          },
         },
       },
       MuiPaper: {
-        elevation1: {
-          backgroundColor: 'inherit',
-          boxShadow: '0 1px 0 rgba(0, 0, 0, 0.24)',
+        styleOverrides: {
+          elevation1: {
+            backgroundColor: 'inherit',
+            backgroundImage: 'unset',
+            boxShadow: '0 1px 0 rgba(0, 0, 0, 0.24)',
+          },
         },
       },
     },
@@ -68,8 +80,10 @@ const getMuiOptions = (themeType: ThemeType) => {
         },
         overrides: {
           MuiPaper: {
-            elevation1: {
-              boxShadow: '0 1px 0 rgba(120, 120, 120, 0.5)',
+            styleOverrides: {
+              elevation1: {
+                boxShadow: '0 1px 0 rgba(120, 120, 120, 0.5)',
+              },
             },
           },
         },
@@ -77,8 +91,14 @@ const getMuiOptions = (themeType: ThemeType) => {
     case ThemeType.dark:
       return deepMerge(commonOptions, {
         palette: {
+          background: {
+            default: '#303030',
+          },
           primary: {
             main: blue[700],
+          },
+          secondary: {
+            main: purple.A400,
           },
         },
       });
@@ -88,10 +108,13 @@ const getMuiOptions = (themeType: ThemeType) => {
           primary: {
             main: blue[400],
           },
+          background: {
+            default: '#fafafa',
+          },
         },
       });
   }
 };
 
-export const createTheme = (themeType: ThemeType): MuiTheme =>
-  createMuiTheme(getMuiOptions(themeType));
+export const createMuiTheme = (themeType: ThemeType): Theme =>
+  createTheme(getMuiOptions(themeType));

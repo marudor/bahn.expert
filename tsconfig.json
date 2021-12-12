@@ -24,7 +24,13 @@
     "baseUrl": "./packages/",
     "paths": {
       "@sinonjs/fake-timers": ["../node_modules/@types/sinonjs__fake-timers"]
-    }
+    },
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin"
+      }
+    ],
+    "jsxImportSource": "@emotion/react"
   },
   "include": ["@types", "./packages"]
 }

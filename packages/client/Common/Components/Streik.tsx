@@ -1,5 +1,5 @@
-import { Alert } from '@material-ui/lab';
-import { Snackbar } from '@material-ui/core';
+import { Alert } from '@mui/lab';
+import { Snackbar } from '@mui/material';
 import { useCallback, useState } from 'react';
 import type { FC } from 'react';
 

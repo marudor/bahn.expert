@@ -1,28 +1,28 @@
 import { journeyMatch } from 'client/Common/service/details';
 import { Loading, LoadingType } from 'client/Common/Components/Loading';
-import { makeStyles, MenuItem, Paper, TextField } from '@material-ui/core';
+import { MenuItem, Paper, TextField } from '@mui/material';
 import { useCallback, useState } from 'react';
 import { useStorage } from 'client/useStorage';
 import Axios from 'axios';
 import debounce from 'debounce-promise';
 import Downshift from 'downshift';
+import styled from '@emotion/styled';
 import type { FC } from 'react';
 import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 
 const debouncedJourneyMatch = debounce(journeyMatch, 300);
 
-const useStyles = makeStyles({
-  loading: {
-    position: 'absolute',
-    top: 0,
-    right: '1.1em',
-    transform: 'scale(.5)',
-  },
-  wrap: {
-    position: 'relative',
-    margin: 20,
-  },
-});
+const Container = styled.div`
+  position: relative;
+  margin: 20px;
+`;
+
+const PositionedLoading = styled(Loading)`
+  position: absolute;
+  top: 0;
+  right: 1.1em;
+  transform: scale(0.5);
+`;
 
 interface Props {
   initialDeparture?: Date;
@@ -34,7 +34,6 @@ export const ZugsucheAutocomplete: FC<Props> = ({
   initialDeparture = new Date(),
   onChange,
 }) => {
-  const classes = useStyles();
   const [suggestions, setSuggestions] = useState<ParsedJourneyMatchResponse[]>(
     [],
   );
@@ -63,7 +62,7 @@ export const ZugsucheAutocomplete: FC<Props> = ({
   );
 
   return (
-    <div className={classes.wrap}>
+    <Container>
       <Downshift
         onChange={onChange}
         itemToString={itemToString}
@@ -152,9 +151,7 @@ export const ZugsucheAutocomplete: FC<Props> = ({
           );
         }}
       </Downshift>
-      {Boolean(loading) && (
-        <Loading className={classes.loading} type={LoadingType.dots} />
-      )}
-    </div>
+      {Boolean(loading) && <PositionedLoading type={LoadingType.dots} />}
+    </Container>
   );
 };

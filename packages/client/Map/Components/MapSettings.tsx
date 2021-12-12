@@ -4,27 +4,24 @@ import {
   DialogContent,
   DialogTitle,
   FormControlLabel,
-  makeStyles,
   NativeSelect,
   Switch,
-} from '@material-ui/core';
-import { Settings } from '@material-ui/icons';
-import { stopPropagation } from 'client/Common/stopPropagation';
+} from '@mui/material';
+import { Settings } from '@mui/icons-material';
 import { useCallback } from 'react';
 import { useMapProvider } from 'client/Map/provider/MapProvider';
 import { useToggleState } from 'client/Common/hooks/useToggleState';
+import styled from '@emotion/styled';
 import type { ChangeEvent, FC, SyntheticEvent } from 'react';
 
-const useStyles = makeStyles({
-  settingsIcon: {
-    position: 'absolute',
-    top: '1em',
-    right: '1em',
-    color: 'black',
-    zIndex: 10000,
-    cursor: 'pointer',
-  },
-});
+const SettingsIcon = styled(Settings)`
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  color: black;
+  z-index: 10000;
+  cursor: pointer;
+`;
 
 interface FormSwitchLabelProps {
   checked: boolean;
@@ -46,7 +43,6 @@ const FormSwitchLabel = ({
 );
 
 export const MapSettings: FC = () => {
-  const classes = useStyles();
   const [open, toggleOpen] = useToggleState();
   const onIconClick = useCallback(
     (e: SyntheticEvent) => {
@@ -77,12 +73,8 @@ export const MapSettings: FC = () => {
 
   return (
     <>
-      <Settings
-        className={classes.settingsIcon}
-        data-testid="trainSettingsIcon"
-        onClick={onIconClick}
-      />
-      <Dialog open={open} onClose={toggleOpen} onClick={stopPropagation}>
+      <SettingsIcon data-testid="trainSettingsIcon" onClick={onIconClick} />
+      <Dialog fullWidth open={open} onClose={toggleOpen}>
         <DialogTitle>Settings</DialogTitle>
         <DialogContent>
           <FormSwitchLabel

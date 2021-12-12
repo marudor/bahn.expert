@@ -5,53 +5,56 @@ import {
   Badge,
   Chip,
   FormControlLabel,
-  makeStyles,
   Switch,
   TextField,
-} from '@material-ui/core';
+} from '@mui/material';
 import {
   AllInclusive,
   Cached,
   ExpandMore,
   Timelapse,
   Train,
-} from '@material-ui/icons';
+} from '@mui/icons-material';
+import { css } from '@emotion/react';
 import { useCallback, useMemo } from 'react';
 import {
   useRoutingConfigActions,
   useRoutingSettings,
 } from 'client/Routing/provider/RoutingConfigProvider';
+import styled from '@emotion/styled';
 import type { ChangeEvent, FC } from 'react';
 import type { RoutingSettings } from 'client/Routing/provider/RoutingConfigProvider';
 
-const useStyles = makeStyles({
-  accordion: {
-    margin: '0!important',
-    boxShadow: 'none',
-  },
-  summary: {
-    '& > div:first-child': {
-      margin: '22px 0 !important',
-      display: 'flex',
-      justifyContent: 'space-around',
-    },
-  },
-  details: {
-    flexDirection: 'column',
-  },
-  label: {
-    marginLeft: 0,
-    '& * + span': {
-      flex: 1,
-    },
-  },
-  input: {
-    width: '3.2em',
-  },
-});
+const StyledAccordion = styled(Accordion)`
+  margin: 0 !important;
+  box-shadow: none;
+`;
+
+const StyledAccordionSummary = styled(AccordionSummary)`
+  & > div:first-of-type {
+    margin: 22px 0 !important;
+    display: flex;
+    justify-content: space-around;
+  }
+`;
+
+const StyledAccordionDetails = styled(AccordionDetails)`
+  flex-direction: column;
+  display: flex;
+`;
+
+const FormLabel = styled(FormControlLabel)`
+  margin-left: 0;
+  & * + span {
+    flex: 1;
+  }
+`;
+
+const inputCss = css`
+  width: 3.2em;
+`;
 
 export const SettingsPanel: FC = () => {
-  const classes = useStyles();
   const settings = useRoutingSettings();
   const { updateSettings } = useRoutingConfigActions();
   const handleInputChange = useCallback(
@@ -75,9 +78,8 @@ export const SettingsPanel: FC = () => {
   }, [settings.maxChanges]);
 
   return (
-    <Accordion className={classes.accordion}>
-      <AccordionSummary
-        className={classes.summary}
+    <StyledAccordion>
+      <StyledAccordionSummary
         data-testid="routingSettingsPanel"
         expandIcon={<ExpandMore />}
       >
@@ -101,14 +103,13 @@ export const SettingsPanel: FC = () => {
           label={settings.onlyRegional ? 'Nahverkehr' : 'Alle Zuege'}
           icon={<Train />}
         />
-      </AccordionSummary>
-      <AccordionDetails className={classes.details}>
-        <FormControlLabel
-          className={classes.label}
+      </StyledAccordionSummary>
+      <StyledAccordionDetails>
+        <FormLabel
           labelPlacement="start"
           control={
             <TextField
-              className={classes.input}
+              css={inputCss}
               inputProps={{
                 'data-testid': 'routingMaxChanges',
               }}
@@ -120,12 +121,11 @@ export const SettingsPanel: FC = () => {
           }
           label="Max Umstiege"
         />
-        <FormControlLabel
-          className={classes.label}
+        <FormLabel
           labelPlacement="start"
           control={
             <TextField
-              className={classes.input}
+              css={inputCss}
               inputProps={{ step: 5, 'data-testid': 'routingTransferTime' }}
               onChange={handleInputChange('transferTime')}
               value={settings.transferTime}
@@ -135,12 +135,11 @@ export const SettingsPanel: FC = () => {
           }
           label="Min Umstiegszeit"
         />
-        <FormControlLabel
-          className={classes.label}
+        <FormLabel
           labelPlacement="start"
           control={
             <Switch
-              className={classes.input}
+              css={inputCss}
               onChange={handleSwitchChange('onlyRegional')}
               checked={settings.onlyRegional}
               name="onlyRegional"
@@ -148,7 +147,7 @@ export const SettingsPanel: FC = () => {
           }
           label="Nur Regionalzüge"
         />
-      </AccordionDetails>
-    </Accordion>
+      </StyledAccordionDetails>
+    </StyledAccordion>
   );
 };

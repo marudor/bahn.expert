@@ -1,31 +1,29 @@
-import { makeStyles } from '@material-ui/core';
 import { Platform } from 'client/Common/Components/Platform';
 import { Times } from './Times';
 import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
+import styled from '@emotion/styled';
 import type { FC } from 'react';
 
-const useStyles = makeStyles({
-  wrap: {
-    fontSize: '2.5em',
-    alignItems: 'flex-end',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    marginLeft: '1em',
-  },
-});
+
+const Container = styled.div`
+  font-size: 2.5em;
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 1em;
+`;
 
 export const End: FC = () => {
-  const classes = useStyles();
   const { abfahrt } = useAbfahrt();
   return (
-    <div className={classes.wrap} data-testid="abfahrtEnd">
+    <Container data-testid="abfahrtEnd">
       <Times />
       <Platform
         real={abfahrt.platform}
         scheduled={abfahrt.scheduledPlatform}
         cancelled={abfahrt.cancelled}
       />
-    </div>
+    </Container>
   );
 };

@@ -1,10 +1,10 @@
+import { css } from '@emotion/react';
 import { DetailsContext } from './DetailsContext';
-import { Error } from '@material-ui/icons';
+import { Error } from '@mui/icons-material';
 import { Loading } from '../Loading';
-import { makeStyles } from '@material-ui/core';
 import { Stop } from 'client/Common/Components/Details/Stop';
 import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import clsx from 'clsx';
+import styled from '@emotion/styled';
 import type { AxiosError } from 'axios';
 import type { FC } from 'react';
 import type { Route$Stop } from 'types/routing';
@@ -20,25 +20,26 @@ function getErrorText(error: AxiosError) {
   return 'Unbekannter Fehler';
 }
 
-const useStyles = makeStyles({
-  error: {
-    width: '80%',
-    height: '80%',
-    margin: '0 auto',
-    textAlign: 'center',
-  },
-  wrap: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-});
+const Container = styled.main`
+  display: flex;
+  flex-direction: column;
+`;
+
+const ErrorStyle = css`
+  width: 80%;
+  height: 80%;
+  margin: 0 auto;
+  text-align: center;
+`;
+
+const ErrorContainer = styled(Container)(ErrorStyle);
+const ErrorIcon = styled(Error)(ErrorStyle);
 
 interface Props {
   initialDepartureDate?: Date;
 }
 
 export const StopList: FC<Props> = ({ initialDepartureDate }) => {
-  const classes = useStyles();
   const { details, error } = useContext(DetailsContext);
   const hasOccupancy = details?.stops.some((s) => s.auslastung);
   const [currentSequenceStop, setCurrentSequenceStop] = useState(
@@ -51,6 +52,7 @@ export const StopList: FC<Props> = ({ initialDepartureDate }) => {
 
   useEffect(() => {
     if (details && details.currentStop) {
+      setCurrentSequenceStop(details.currentStop.station.id);
       const scrollDom = document.getElementById(details.currentStop.station.id);
 
       if (scrollDom) {
@@ -87,10 +89,9 @@ export const StopList: FC<Props> = ({ initialDepartureDate }) => {
 
   if (error) {
     return (
-      <main className={clsx(classes.wrap, classes.error)}>
-        <Error className={classes.error} data-testid="error" />{' '}
-        {getErrorText(error)}
-      </main>
+      <ErrorContainer>
+        <ErrorIcon data-testid="error" /> {getErrorText(error)}
+      </ErrorContainer>
     );
   }
 
@@ -99,9 +100,9 @@ export const StopList: FC<Props> = ({ initialDepartureDate }) => {
   }
 
   return (
-    <main className={classes.wrap}>
+    <Container>
       {/* <Messages messages={details.messages} /> */}
       {detailsStops}
-    </main>
+    </Container>
   );
 };

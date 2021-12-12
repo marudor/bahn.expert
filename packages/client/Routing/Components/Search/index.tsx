@@ -8,17 +8,15 @@ import {
   startOfDay,
   subDays,
 } from 'date-fns';
-import { Button, Divider, makeStyles } from '@material-ui/core';
-import { DateTimePicker } from '@material-ui/pickers';
+import { Button, Divider, TextField } from '@mui/material';
 import {
-  Delete,
   FavoriteBorder,
   Search as SearchIcon,
-  SwapVert,
   Today,
-} from '@material-ui/icons';
+} from '@mui/icons-material';
 import { getRouteLink } from 'client/Routing/util';
 import { getStopPlaceFromAPI } from 'client/Common/service/stopPlaceSearch';
+import { MobileDateTimePicker } from '@mui/lab';
 import { SettingsPanel } from './SettingsPanel';
 import { StopPlaceSearch } from 'client/Common/Components/StopPlaceSearch';
 import { useCallback, useEffect, useMemo } from 'react';
@@ -29,6 +27,7 @@ import {
   useRoutingConfigActions,
 } from 'client/Routing/provider/RoutingConfigProvider';
 import deLocale from 'date-fns/locale/de';
+import styled from '@emotion/styled';
 import type { FC, SyntheticEvent } from 'react';
 import type { MinimalStopPlace } from 'types/stopPlace';
 
@@ -42,56 +41,55 @@ const setStopPlaceById = async (
   }
 };
 
-const useStyles = makeStyles((theme) => ({
-  destination: {
+const DateTimePickerContainer = styled.div`
+  position: relative;
+`;
+
+const TodayIcon = styled(Today)`
+  top: 50%;
+  right: 0;
+  position: absolute;
+  transform: translateY(-50%);
+`;
+
+const Destination = styled.div`
+  display: flex;
+`;
+
+const Buttons = styled.div(({ theme }) => ({
+  display: 'flex',
+  margin: '15px 0 1em',
+  '& > button:nth-of-type(1)': {
+    flex: 2,
+  },
+  '& > button:nth-of-type(2)': {
+    flex: 1,
+  },
+  '& > button': {
+    margin: '0 10px',
+    height: 50,
+    fontSize: '1rem',
     display: 'flex',
-  },
-  datePickerWrap: {
-    position: 'relative',
-  },
-  dateTimePicker: {
-    '& input': {
-      paddingRight: 10,
-    },
-  },
-  buttons: {
-    display: 'flex',
-    margin: '15px 0 1em',
-    '& > button:nth-child(1)': {
-      flex: 2,
-    },
-    '& > button:nth-child(2)': {
-      flex: 1,
-    },
-    '& > button': {
-      margin: '0 10px',
-      height: 50,
-      fontSize: '1rem',
-      display: 'flex',
-      justifyContent: 'space-between',
-      padding: '5px 20px',
-      color: theme.palette.text.primary,
-    },
-  },
-  todayIcon: {
-    top: '50%',
-    right: 0,
-    position: 'absolute',
-    transform: 'translateY(-50%)',
+    justifyContent: 'space-between',
+    padding: '5px 20px',
+    color: theme.palette.text.primary,
   },
 }));
 
+const DateTimePickerInput = styled(TextField)`
+  width: 100%;
+`;
+
 export const Search: FC = () => {
-  const classes = useStyles();
-  const { setStart, setDestination, swapStartDestination, updateVia, setDate } =
+  const { setStart, setDestination, updateVia, setDate } =
     useRoutingConfigActions();
-  const { start, destination, date, via } = useRoutingConfig();
+  const { start, destination, date, via, touchedDate } = useRoutingConfig();
   const { fetchRoutes, clearRoutes } = useFetchRouting();
 
   const params = useParams<'start' | 'destination' | 'date' | 'via'>();
 
-  const formatDate = useCallback((date: null | Date) => {
-    if (!date) {
+  const formattedDate = useMemo(() => {
+    if (!touchedDate) {
       return `Jetzt (Heute ${lightFormat(new Date(), 'HH:mm')})`;
     }
     const today = startOfDay(new Date());
@@ -117,7 +115,7 @@ export const Search: FC = () => {
     relativeDayString += ` ${lightFormat(date, 'HH:mm')}`;
 
     return relativeDayString;
-  }, []);
+  }, [touchedDate, date]);
 
   const navigate = useNavigate();
 
@@ -169,7 +167,6 @@ export const Search: FC = () => {
           onChange={(s) => updateVia(index, s)}
           value={v}
           key={index}
-          additionalIcon={<Delete onClick={() => updateVia(index)} />}
         />
       )),
     [updateVia, via],
@@ -193,41 +190,39 @@ export const Search: FC = () => {
           />
         )}
       </div>
-      <div className={classes.destination}>
+      <Destination>
         <StopPlaceSearch
           id="routingDestinationSearch"
           value={destination}
           onChange={setDestination}
           placeholder="Destination"
-          additionalIcon={
-            <SwapVert
-              data-testid="swapStations"
-              onClick={swapStartDestination}
-              fontSize="large"
-            />
-          }
         />
-      </div>
-      <div className={classes.datePickerWrap}>
-        <DateTimePicker
-          data-testid="routingDatePicker"
-          className={classes.dateTimePicker}
-          fullWidth
+      </Destination>
+      <DateTimePickerContainer>
+        <MobileDateTimePicker
           openTo="hours"
-          labelFunc={formatDate}
-          ampm={false}
+          clearText="Jetzt"
+          cancelText="Abbrechen"
           value={date}
+          renderInput={(props) => (
+            <DateTimePickerInput
+              {...props}
+              inputProps={{
+                ...props.inputProps,
+                'data-testid': 'routingDatePicker',
+                value: formattedDate,
+              }}
+            />
+          )}
           onChange={setDate}
-          cancelLabel="Abbrechen"
-          autoOk
           clearable
-          clearLabel="Jetzt"
           minutesStep={5}
+          toolbarTitle=""
         />
-        <Today className={classes.todayIcon} />
-      </div>
+        <TodayIcon />
+      </DateTimePickerContainer>
       <SettingsPanel />
-      <div className={classes.buttons}>
+      <Buttons>
         <Button
           data-testid="search"
           fullWidth
@@ -247,7 +242,7 @@ export const Search: FC = () => {
           Favs
           <FavoriteBorder />
         </Button>
-      </div>
+      </Buttons>
       <Divider variant="middle" />
     </>
   );

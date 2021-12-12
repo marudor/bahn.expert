@@ -1,46 +1,55 @@
+import { css } from '@emotion/react';
 import { JnySegmentTrain } from './SegmentTrainComponent/JnySegmentTrain';
-import { makeStyles } from '@material-ui/core';
 import { Platform } from 'client/Common/Components/Platform';
 import { Time } from 'client/Common/Components/Time';
 import { WalkSegmentTrain } from './SegmentTrainComponent/WalkSegmentTrain';
+import styled from '@emotion/styled';
 import type { FC, MouseEvent } from 'react';
 import type { Route$JourneySegment } from 'types/routing';
 
-const useStyles = makeStyles((theme) => ({
-  wrap: {
-    backgroundColor: theme.colors.shadedBackground,
-    padding: '.4em',
-    display: 'grid',
-    gridTemplateColumns: '2fr 7fr 1fr',
-    gridTemplateRows: '1fr auto 1fr',
-    gridTemplateAreas: '"dt dn dp" "t t t" "at an ap"',
-    margin: '1em 0',
-  },
-  departureTime: {
-    gridArea: 'dt',
-  },
-  departureName: {
-    gridArea: 'dn',
-  },
-  departurePlatform: {
-    gridArea: 'dp',
-  },
-  arrivalTime: {
-    gridArea: 'at',
-  },
-  arrivalName: {
-    gridArea: 'an',
-  },
-  arrivalPlatform: {
-    gridArea: 'ap',
-  },
-  segment: {
-    margin: '.5em 0',
-    gridArea: 't',
-    alignSelf: 'center',
-    paddingLeft: '.3em',
-    overflow: 'hidden',
-  },
+const DepartureTime = styled(Time)`
+  grid-area: dt;
+`;
+
+const DepartureName = styled.span`
+  grid-area: dn;
+`;
+
+const DeparturePlatform = styled(Platform)`
+  grid-area: dp;
+`;
+
+const ArrivalTime = styled(Time)`
+  grid-area: at;
+`;
+
+const ArrivalName = styled.span`
+  grid-area: an;
+`;
+
+const ArrivalPlatform = styled(Platform)`
+  grid-area: ap;
+`;
+
+const segmentCss = css`
+  margin: 0.5em 0;
+  grid-area: t;
+  align-self: center;
+  padding-left: 0.3em;
+`;
+
+const JourneySegment = styled(JnySegmentTrain)(segmentCss);
+
+const WalkSegment = styled(WalkSegmentTrain)(segmentCss);
+
+const Container = styled.div(({ theme }) => ({
+  backgroundColor: theme.colors.shadedBackground,
+  padding: '.4em',
+  display: 'grid',
+  gridTemplateColumns: '2fr 7fr 1fr',
+  gridTemplateRows: '1fr auto 1fr',
+  gridTemplateAreas: '"dt dn dp" "t t t" "at an ap"',
+  margin: '1em 0',
 }));
 
 interface Props {
@@ -50,53 +59,42 @@ interface Props {
 }
 
 export const RouteSegment: FC<Props> = ({ segment, detail, onTrainClick }) => {
-  const classes = useStyles();
-
   return (
     <>
-      <div className={classes.wrap}>
-        <Time
-          className={classes.departureTime}
+      <Container>
+        <DepartureTime
           real={segment.departure.time}
           delay={segment.departure.delay}
         />
-        <span className={classes.departureName}>
-          {segment.segmentStart.title}
-        </span>
+        <DepartureName>{segment.segmentStart.title}</DepartureName>
 
-        <Time
-          className={classes.arrivalTime}
+        <ArrivalTime
           real={segment.arrival.time}
           delay={segment.arrival.delay}
         />
-        <span className={classes.arrivalName}>
-          {segment.segmentDestination.title}
-        </span>
+        <ArrivalName>{segment.segmentDestination.title}</ArrivalName>
         {segment.type === 'JNY' && (
           <>
-            <Platform
-              className={classes.departurePlatform}
+            <DeparturePlatform
               real={segment.departure.platform}
               scheduled={segment.departure.scheduledPlatform}
             />
-            <Platform
-              className={classes.arrivalPlatform}
+            <ArrivalPlatform
               real={segment.arrival.platform}
               scheduled={segment.arrival.scheduledPlatform}
             />
           </>
         )}
         {segment.type === 'JNY' ? (
-          <JnySegmentTrain
-            className={classes.segment}
+          <JourneySegment
             detail={detail}
             segment={segment}
             onTrainClick={onTrainClick}
           />
         ) : (
-          <WalkSegmentTrain className={classes.segment} segment={segment} />
+          <WalkSegment segment={segment} />
         )}
-      </div>
+      </Container>
       {'changeDuration' in segment && (
         <span>{segment.changeDuration} Minuten Umsteigezeit</span>
       )}

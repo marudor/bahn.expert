@@ -1,9 +1,10 @@
 import { formatDuration } from 'client/Routing/util';
-import { makeStyles, Paper } from '@material-ui/core';
+import { Paper } from '@mui/material';
 import { PlannedType } from 'client/Common/Components/PlannedType';
 import { RouteSegments } from './RouteSegments';
 import { Time } from 'client/Common/Components/Time';
 import { useMemo } from 'react';
+import styled from '@emotion/styled';
 import type { FC, SyntheticEvent } from 'react';
 import type { SingleRoute } from 'types/routing';
 
@@ -13,33 +14,33 @@ interface Props {
   onClick: (e: SyntheticEvent) => void;
 }
 
-const useStyles = makeStyles({
-  wrap: {
-    gridTemplateColumns: '2fr 2fr 2fr 2fr',
-    gridTemplateRows: '60px 20px',
-    display: 'grid',
-    marginBottom: '.2em',
-    alignItems: 'center',
-    minHeight: '3em',
-  },
-  time: {
-    '& > span': {
-      marginRight: '.2em',
-    },
-  },
-  detailRouteSegments: {
-    textDecoration: 'initial',
-    overflow: 'hidden',
-    gridArea: '3 / 1 / 4 / 5',
-  },
-  products: {
-    fontSize: '.9em',
-    gridArea: '2 / 1 / 3 / 5',
-  },
-});
+const Container = styled(Paper)`
+  grid-template-columns: 2fr 2fr 2fr 2fr;
+  grid-template-rows: 60px 20px;
+  display: grid;
+  margin-bottom: 0.2em;
+  align-items: center;
+  min-height: 3em;
+`;
+
+const StyledTime = styled(Time)`
+  & > span {
+    margin-right: 0.2em;
+  }
+`;
+
+const StyledRouteSegments = styled(RouteSegments)`
+  text-decoration: initial;
+  overflow: hidden;
+  grid-area: 3 / 1 / 4 / 5;
+`;
+
+const Product = styled.span`
+  font-size: 0.9em;
+  grid-area: 2 / 1 / 3 / 5;
+`;
 
 export const Route: FC<Props> = ({ route, detail, onClick }) => {
-  const classes = useStyles();
   const segmentTypes = useMemo(() => {
     if (route.segmentTypes.length > 1) return route.segmentTypes.join(' - ');
 
@@ -58,32 +59,16 @@ export const Route: FC<Props> = ({ route, detail, onClick }) => {
   }, [route]);
 
   return (
-    <Paper
-      className={classes.wrap}
-      data-testid={`Route-${route.cid}`}
-      onClick={onClick}
-      square
-    >
-      <Time
-        className={classes.time}
-        real={route.departure.time}
-        delay={route.departure.delay}
-      />
-      <Time
-        className={classes.time}
-        real={route.arrival.time}
-        delay={route.arrival.delay}
-      />
+    <Container data-testid={`Route-${route.cid}`} onClick={onClick} square>
+      <StyledTime real={route.departure.time} delay={route.departure.delay} />
+      <StyledTime real={route.arrival.time} delay={route.arrival.delay} />
       <span>{formatDuration(route.duration)}</span>
       <span>{route.changes}</span>
       {detail ? (
-        <RouteSegments
-          className={classes.detailRouteSegments}
-          segments={route.segments}
-        />
+        <StyledRouteSegments segments={route.segments} />
       ) : (
-        <span className={classes.products}>{segmentTypes}</span>
+        <Product>{segmentTypes}</Product>
       )}
-    </Paper>
+    </Container>
   );
 };

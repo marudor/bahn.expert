@@ -18,7 +18,8 @@ const useRoutingConfigInternal = ({
   const [start, setStart] = useState<MinimalStopPlace>();
   const [destination, setDestination] = useState<MinimalStopPlace>();
   const [via, setVia] = useState<MinimalStopPlace[]>([]);
-  const [date, setDate] = useState<Date | null>(null);
+  const [date, setDate] = useState<Date>(new Date());
+  const [touchedDate, setTouchedDate] = useState(false);
   const [settings, setSettings] = useState<RoutingSettings>(initialSettings);
   const storage = useStorage();
 
@@ -61,13 +62,22 @@ const useRoutingConfigInternal = ({
     [destination, start],
   );
 
+  const setDateWithTouched = useCallback((date: Date | null) => {
+    setTouchedDate(Boolean(date));
+    if (!date) {
+      date = new Date();
+    }
+    setDate(date);
+  }, []);
+
   return {
     start,
     setStart,
     destination,
     setDestination,
     date,
-    setDate,
+    setDate: setDateWithTouched,
+    touchedDate,
     via,
     updateVia,
     swapStartDestination,
@@ -88,6 +98,7 @@ export const [
     destination: v.destination,
     date: v.date,
     via: v.via,
+    touchedDate: v.touchedDate,
   }),
   (v) => v.settings,
   (v) => ({

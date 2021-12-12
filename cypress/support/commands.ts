@@ -76,7 +76,7 @@ function mockStopPlace({
 
 Cypress.Commands.add(
   'mockFrankfurt',
-  ({ lookbehind = 0, lookahead = 150, delay = 0 } = {}) => {
+  ({ lookbehind = 10, lookahead = 150, delay = 0 } = {}) => {
     mockStopPlace({
       lookahead,
       lookbehind,
@@ -90,7 +90,7 @@ Cypress.Commands.add(
 
 Cypress.Commands.add(
   'mockHamburg',
-  ({ lookbehind = 0, lookahead = 150, delay = 0 } = {}) => {
+  ({ lookbehind = 10, lookahead = 150, delay = 0 } = {}) => {
     mockStopPlace({
       lookahead,
       lookbehind,
@@ -104,7 +104,7 @@ Cypress.Commands.add(
 
 Cypress.Commands.add(
   'mockHannover',
-  ({ lookbehind = 0, lookahead = 150, delay = 0 } = {}) => {
+  ({ lookbehind = 10, lookahead = 150, delay = 0 } = {}) => {
     mockStopPlace({
       lookahead,
       lookbehind,

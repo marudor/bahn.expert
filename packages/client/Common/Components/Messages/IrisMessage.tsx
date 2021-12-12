@@ -1,12 +1,11 @@
 import { format } from 'date-fns';
-import { makeStyles } from '@material-ui/core';
-import clsx from 'clsx';
+import styled from '@emotion/styled';
 import type { FC } from 'react';
 import type { IrisMessage as IrisMessageType } from 'types/iris';
 
-const useStyles = makeStyles((theme) => ({
-  superseded: theme.mixins.cancelled,
-}));
+const Container = styled.div<{ superseded?: boolean }>(
+  ({ theme, superseded }) => superseded && theme.mixins.cancelled,
+);
 
 interface Props {
   message: IrisMessageType;
@@ -17,13 +16,12 @@ export const IrisMessage: FC<Props> = ({
   message,
   today = new Date().getDate(),
 }) => {
-  const classes = useStyles();
   const ts = message.timestamp;
 
   return (
-    <div className={clsx(message.superseded && classes.superseded)}>
+    <Container superseded={message.superseded}>
       {ts && format(ts, ts.getDate() === today ? 'HH:mm' : 'dd.MM HH:mm')}:{' '}
       {message.text}
-    </div>
+    </Container>
   );
 };

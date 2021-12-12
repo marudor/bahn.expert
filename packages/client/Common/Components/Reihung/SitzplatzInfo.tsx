@@ -1,19 +1,18 @@
-import { Dialog, DialogContent, makeStyles } from '@material-ui/core';
-import { stopPropagation } from 'client/Common/stopPropagation';
+import { Dialog, DialogContent } from '@mui/material';
 import { useCallback, useState } from 'react';
+import styled from '@emotion/styled';
 import type { CoachSequenceCoachSeats } from 'types/coachSequence';
 import type { FC, SyntheticEvent } from 'react';
 
-const useStyles = makeStyles((theme) => ({
-  wrap: {
-    color: theme.colors.blue,
-    cursor: 'pointer',
-  },
-  textLine: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
+const OpenText = styled.span(({ theme }) => ({
+  color: theme.colors.blue,
+  cursor: 'pointer',
 }));
+
+const TextLine = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 interface Props {
   seats?: CoachSequenceCoachSeats;
@@ -21,7 +20,6 @@ interface Props {
 }
 
 export const SitzplatzInfo: FC<Props> = ({ seats, identificationNumber }) => {
-  const classes = useStyles();
   const [open, setOpen] = useState(false);
   const toggle = useCallback((e: SyntheticEvent) => {
     e.preventDefault();
@@ -35,39 +33,29 @@ export const SitzplatzInfo: FC<Props> = ({ seats, identificationNumber }) => {
 
   return (
     <>
-      <span
-        className={classes.wrap}
-        data-testid="sitzplatzinfoToggle"
-        onClick={toggle}
-      >
+      <OpenText data-testid="sitzplatzinfoToggle" onClick={toggle}>
         Plätze
-      </span>
-      <Dialog fullWidth open={open} onClose={toggle} onClick={stopPropagation}>
+      </OpenText>
+      <Dialog fullWidth open={open} onClose={toggle}>
         <DialogContent>
           <h3>Sitzplätze Wagen {identificationNumber}</h3>
           {seats.comfort && (
-            <div
-              className={classes.textLine}
-              data-testid="sitzplatzinfoComfort"
-            >
+            <TextLine data-testid="sitzplatzinfoComfort">
               <span>Comfort:</span>
               <span>{seats.comfort}</span>
-            </div>
+            </TextLine>
           )}
           {seats.disabled && (
-            <div
-              className={classes.textLine}
-              data-testid="sitzplatzinfoDisabled"
-            >
+            <TextLine data-testid="sitzplatzinfoDisabled">
               <span>Schwerbehindert:</span>
               <span>{seats.disabled}</span>
-            </div>
+            </TextLine>
           )}
           {seats.family && (
-            <div className={classes.textLine} data-testid="sitzplatzinfoFamily">
+            <TextLine data-testid="sitzplatzinfoFamily">
               <span>Familienbereich:</span>
               <span>{seats.family}</span>
-            </div>
+            </TextLine>
           )}
         </DialogContent>
       </Dialog>

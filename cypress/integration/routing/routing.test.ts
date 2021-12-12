@@ -85,9 +85,7 @@ describe('Routing', () => {
       searchInput('routingStartSearch', 'Frankfurt(Main)Hbf');
       searchInput('routingDestinationSearch', '');
       searchInput('addVia', '');
-      cy.findByTestId('routingDatePicker')
-        .find('input')
-        .should('contain.value', 'Jetzt');
+      cy.findByTestId('routingDatePicker').should('contain.value', 'Jetzt');
     });
 
     it('with start & destination', () => {
@@ -95,9 +93,7 @@ describe('Routing', () => {
       searchInput('routingStartSearch', 'Frankfurt(Main)Hbf');
       searchInput('routingDestinationSearch', 'Hamburg Hbf');
       searchInput('addVia', '');
-      cy.findByTestId('routingDatePicker')
-        .find('input')
-        .should('contain.value', 'Jetzt');
+      cy.findByTestId('routingDatePicker').should('contain.value', 'Jetzt');
     });
 
     it('with start, destination & time', () => {
@@ -105,9 +101,10 @@ describe('Routing', () => {
       searchInput('routingStartSearch', 'Frankfurt(Main)Hbf');
       searchInput('routingDestinationSearch', 'Hamburg Hbf');
       searchInput('addVia', '');
-      cy.findByTestId('routingDatePicker')
-        .find('input')
-        .should('contain.value', 'Dienstag 17.11.2020 10:00');
+      cy.findByTestId('routingDatePicker').should(
+        'contain.value',
+        'Dienstag 17.11.2020 10:00',
+      );
     });
 
     it('with start, destination, time & 1 via', () => {
@@ -116,9 +113,10 @@ describe('Routing', () => {
       searchInput('routingDestinationSearch', 'Hamburg Hbf');
       searchInput('via0', 'Mannheim Hbf');
       searchInput('addVia', '');
-      cy.findByTestId('routingDatePicker')
-        .find('input')
-        .should('contain.value', 'Dienstag 17.11.2020 10:00');
+      cy.findByTestId('routingDatePicker').should(
+        'contain.value',
+        'Dienstag 17.11.2020 10:00',
+      );
     });
 
     it('with start, destination, time & 2 via', () => {
@@ -130,9 +128,10 @@ describe('Routing', () => {
       searchInput('via0', 'Mannheim Hbf');
       searchInput('via1', 'Frankfurt(Main)Hbf');
       cy.findByTestId('addVia').should('not.exist');
-      cy.findByTestId('routingDatePicker')
-        .find('input')
-        .should('contain.value', 'Dienstag 17.11.2020 10:00');
+      cy.findByTestId('routingDatePicker').should(
+        'contain.value',
+        'Dienstag 17.11.2020 10:00',
+      );
     });
   });
 });

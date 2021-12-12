@@ -2,10 +2,9 @@ import { AuslastungsDisplay } from 'client/Common/Components/AuslastungsDisplay'
 import { DetailsLink } from 'client/Common/Components/Details/DetailsLink';
 import { PlannedType } from 'client/Common/Components/PlannedType';
 import { Reihung } from 'client/Common/Components/Reihung';
+import { segmentStyles } from './style';
 import { StopList } from 'client/Routing/Components/RouteList/StopList';
-import { Tooltip } from '@material-ui/core';
-import { useStyles } from './style';
-import clsx from 'clsx';
+import { Tooltip } from '@mui/material';
 import type { FC, MouseEvent } from 'react';
 import type { Route$JourneySegmentTrain } from 'types/routing';
 
@@ -21,8 +20,6 @@ export const JnySegmentTrain: FC<Props> = ({
   className,
   detail,
 }) => {
-  const classes = useStyles();
-
   const tooltipTitle =
     segment.train.number &&
     segment.train.number &&
@@ -32,8 +29,8 @@ export const JnySegmentTrain: FC<Props> = ({
 
   return (
     <div onClick={onTrainClick} className={className}>
-      <div className={classes.info}>
-        <span className={classes.margin}>
+      <div css={segmentStyles.info}>
+        <span css={segmentStyles.margin}>
           <span>
             <Tooltip title={tooltipTitle ?? segment.train.name}>
               <span>
@@ -45,7 +42,7 @@ export const JnySegmentTrain: FC<Props> = ({
             </Tooltip>
           </span>
         </span>
-        <span className={clsx(classes.margin, classes.destination)}>
+        <span css={[segmentStyles.margin, segmentStyles.destination]}>
           {segment.finalDestination}
           <DetailsLink
             train={segment.train}
@@ -59,15 +56,16 @@ export const JnySegmentTrain: FC<Props> = ({
       </div>
       {detail && (
         <>
-          {segment.departure.reihung && segment.train.number && (
+          {segment.train.number && (
             <Reihung
-              className={classes.reihung}
+              css={segmentStyles.reihung}
               trainNumber={segment.train.number}
               currentEvaNumber={segment.segmentStart.id}
               scheduledDeparture={segment.departure.scheduledTime}
+              loadHidden={!segment.departure.reihung}
             />
           )}
-          <StopList stops={segment.stops} product={segment.train} />
+          <StopList stops={segment.stops} />
         </>
       )}
     </div>

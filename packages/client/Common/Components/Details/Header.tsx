@@ -1,44 +1,48 @@
 import { BaseHeader } from '../BaseHeader';
 import { DetailsContext } from './DetailsContext';
 import { format } from 'date-fns';
-import { makeStyles, Tooltip } from '@material-ui/core';
 import { PlannedType } from 'client/Common/Components/PlannedType';
+import { Tooltip } from '@mui/material';
 import { useContext } from 'react';
-import clsx from 'clsx';
+import styled from '@emotion/styled';
 import type { FC } from 'react';
 
-const useStyles = makeStyles((theme) => ({
-  wrap: {
-    fontSize: '90%',
-    width: '100%',
-    display: 'grid',
-    gridTemplateColumns: '1fr min-content 1fr',
-    gridTemplateRows: '1fr 1fr 1fr',
-    gridTemplateAreas: '"p a g" "o a g" "d a g"',
-    alignItems: 'center',
-    justifyItems: 'center',
-  },
-  singleLine: theme.mixins.singleLineText,
-  operator: {
-    gridArea: 'o',
-  },
-  date: {
-    gridArea: 'd',
-  },
-  destination: {
-    gridArea: 'g',
-  },
-  arrow: {
-    gridArea: 'a',
-    minWidth: '1.5em',
-  },
+const Operator = styled.span(({ theme }) => ({
+  ...theme.mixins.singleLineText,
+  gridArea: 'o',
 }));
+
+const Destination = styled.span`
+  grid-area: g;
+`;
+
+const TrainText = styled.span(({ theme }) => theme.mixins.singleLineText);
+
+const Container = styled.div`
+  font-size: 90%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr min-content 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas: 'p a g' 'o a g' 'd a g';
+  align-items: center;
+  justify-items: center;
+`;
+
+const DateDisplay = styled.span(({ theme }) => ({
+  ...theme.mixins.singleLineText,
+  gridArea: 'd',
+}));
+
+const Arrow = styled.span`
+  grid-area: a;
+  min-width: 1.5em;
+`;
 
 interface Props {
   train: string;
 }
 export const Header: FC<Props> = ({ train }) => {
-  const classes = useStyles();
   const { details } = useContext(DetailsContext);
 
   const trainText = details ? details.train.name : train;
@@ -54,34 +58,30 @@ export const Header: FC<Props> = ({ train }) => {
 
   return (
     <BaseHeader>
-      <div className={classes.wrap} data-testid="detailsHeader">
-        <span className={classes.singleLine}>
+      <Container data-testid="detailsHeader">
+        <TrainText>
           <Tooltip title={tooltipText ?? trainText}>
             <span>{trainText}</span>
           </Tooltip>
           {details?.plannedSequence && (
             <PlannedType plannedSequence={details.plannedSequence} />
           )}
-        </span>
+        </TrainText>
         {details && (
           <>
             {details.train.operator && (
               <Tooltip title={details.train.operator.name}>
-                <span className={clsx(classes.operator, classes.singleLine)}>
-                  {details.train.operator.name}
-                </span>
+                <Operator>{details.train.operator.name}</Operator>
               </Tooltip>
             )}
-            <span className={clsx(classes.date, classes.singleLine)}>
+            <DateDisplay>
               {format(details.departure.time, 'dd.MM.yyyy')}
-            </span>
-            <span className={classes.arrow}> -&gt; </span>
-            <span className={classes.destination}>
-              {details.segmentDestination.title}
-            </span>
+            </DateDisplay>
+            <Arrow> -&gt; </Arrow>
+            <Destination>{details.segmentDestination.title}</Destination>
           </>
         )}
-      </div>
+      </Container>
     </BaseHeader>
   );
 };
