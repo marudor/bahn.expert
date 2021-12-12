@@ -13,3 +13,8 @@ env:
 hostName: marudor.de
 
 replicaCount: 2
+
+resources:
+  requests:
+    memory: '1Gi'
+    cpu: '800m'

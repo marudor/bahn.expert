@@ -39,7 +39,6 @@ export class ReihungControllerV4 extends Controller {
     }
 
     if (trainNumber < 10000 && evaNumber) {
-      console.log(trainNumber, evaNumber, initialDeparture ?? departure);
       const plannedSequence = await getPlannedSequence(
         trainNumber,
         initialDeparture ?? departure,
