@@ -27,16 +27,13 @@ if (process.env.IRIS_FALLBACK_URL) {
 export async function irisGetRequest<T>(url: string): Promise<T> {
   try {
     const result = (await noncdRequest.get<T>(url)).data;
-    console.log(result);
     return result;
   } catch (e) {
-    console.log(e);
     if (
       fallbackRequest &&
       Axios.isAxiosError(e) &&
       e.response?.status === 503
     ) {
-      console.log('Getting fallback');
       const fallbackResult = (await fallbackRequest.get<T>(url)).data;
       return fallbackResult;
     }

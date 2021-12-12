@@ -17,6 +17,7 @@ module.exports = {
     'testing-library/no-debug': 0,
     'react-hooks/exhaustive-deps': 0,
     'testing-library/no-debugging-utils': 0,
+    'no-console': 2,
   },
   overrides: [
     {

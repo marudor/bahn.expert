@@ -31,11 +31,14 @@ export default function webpackDev(koa: Koa): Promise<unknown> {
   watcher.on('change', (file) => {
     if (file.includes('packages/client')) return;
     if (file.includes('packages/server/API/controller/')) {
+      // eslint-disable-next-line no-console
       console.log('Rebuilding Routes & doc');
       childProcess.exec('yarn doc:build', (err, _, stderr) => {
         if (err) {
+          // eslint-disable-next-line no-console
           console.error(stderr);
         } else {
+          // eslint-disable-next-line no-console
           console.log('Done rebuilding');
         }
       });

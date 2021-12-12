@@ -166,8 +166,6 @@ export async function searchStopPlaceGroupedBySales(
     filterForIris,
   );
 
-  console.log(ungroupedResult);
-
   const grouped = await groupBySales(ungroupedResult);
 
   if (max) {
