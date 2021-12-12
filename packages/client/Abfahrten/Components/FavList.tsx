@@ -1,6 +1,7 @@
+import { ErrorOutline } from '@material-ui/icons';
 import { FavEntry, FavEntryDisplay } from './FavEntry';
 import { Link } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Paper } from '@material-ui/core';
 import { MostUsed } from './MostUsed';
 import { Navigate } from 'react-router';
 import { useAbfahrtenError } from 'client/Abfahrten/provider/AbfahrtenProvider';
@@ -16,13 +17,20 @@ import type { FC, ReactNode } from 'react';
 import type { MinimalStopPlace } from 'types/stopPlace';
 import type { StaticRouterContext } from 'react-router';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   wrap: {
     display: 'flex',
     flexDirection: 'column',
     flex: 1,
   },
-});
+  error: {
+    margin: '1em',
+    fontSize: '2em',
+  },
+  errorHead: {
+    color: theme.colors.red,
+  },
+}));
 
 function getErrorText(
   error: AbfahrtenError,
@@ -76,6 +84,25 @@ export const FavList: FC<Props> = ({ staticContext, children }) => {
     <main className={classes.wrap}>
       {children}
       <Zugsuche />
+      <Paper>
+        <FavEntryDisplay
+          clickable={false}
+          text={
+            <span className={classes.errorHead}>
+              <ErrorOutline /> Hinweis
+            </span>
+          }
+        />
+        <div className={classes.error}>
+          Aktuell ist die Bahn Schnittstelle hinter den Abfahrten oft nicht
+          erreichbar. Deswegen funktionieren diese erst mal nur sporadisch. Ich
+          vermute das es im Laufe der nächsten Woche (13-19.12) wieder
+          funktioniert. Versprechen kann ich nichts.
+          <br />
+          Das Routing, die Zugsuche und die Nahverkehrsabfahrten funktionieren
+          weiterhin.
+        </div>
+      </Paper>
       {/* eslint-disable-next-line no-nested-ternary */}
       {savedError && (
         <>
@@ -94,6 +121,7 @@ export const FavList: FC<Props> = ({ staticContext, children }) => {
           )}
         </>
       )}
+
       {sortedFavs.length ? (
         <>
           <FavEntryDisplay clickable={false} text="Favoriten" />
