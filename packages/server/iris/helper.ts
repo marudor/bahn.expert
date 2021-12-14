@@ -29,11 +29,7 @@ export async function irisGetRequest<T>(url: string): Promise<T> {
     const result = (await noncdRequest.get<T>(url)).data;
     return result;
   } catch (e) {
-    if (
-      fallbackRequest &&
-      Axios.isAxiosError(e) &&
-      e.response?.status === 503
-    ) {
+    if (fallbackRequest && Axios.isAxiosError(e)) {
       const fallbackResult = (await fallbackRequest.get<T>(url)).data;
       return fallbackResult;
     }
