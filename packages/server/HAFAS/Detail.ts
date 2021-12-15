@@ -2,7 +2,6 @@ import { AllowedHafasProfile } from 'types/HAFAS';
 import { getAbfahrten } from 'server/iris';
 import { getPlannedSequence } from 'server/Reihung/plan';
 import { isAfter, subMinutes } from 'date-fns';
-import { logger } from 'server/logger';
 import createCtxRecon from 'server/HAFAS/helper/createCtxRecon';
 import JourneyDetails from 'server/HAFAS/JourneyDetails';
 import JourneyMatch from 'server/HAFAS/JourneyMatch';
@@ -106,11 +105,6 @@ export default async (
       (s) => s.type === 'JNY',
     ) as Route$JourneySegmentTrain;
   } catch (e) {
-    logger.error({
-      msg: 'HAFAS Error',
-      error: e,
-    });
-
     relevantSegment = {
       type: 'JNY',
       cancelled: journeyDetails.stops.every((s) => s.cancelled),
