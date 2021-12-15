@@ -40,8 +40,7 @@ export async function getNAHSHLageplan(
       await Axios.get(fullLink);
       void cache.set(evaId, fullLink);
       return fullLink;
-    } catch (e) {
-      // console.error(e);
+    } catch {
       // we ignore failing requests and fall back to undefined for lageplanURL
     }
   }

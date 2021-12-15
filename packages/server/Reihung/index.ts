@@ -479,11 +479,11 @@ export async function wagenReihungMonitoring(): Promise<Formation | undefined> {
         departure = maybeDepartures.shift();
       } catch (e) {
         // eslint-disable-next-line no-console
-        console.warn(
-          'Failed to get WR for Monitoring!',
-          e,
-          departure && departure.train,
-        );
+        // console.warn(
+        //   'Failed to get WR for Monitoring!',
+        //   e,
+        //   departure && departure.train,
+        // );
         departure = maybeDepartures.shift();
       }
     }
