@@ -83,7 +83,7 @@ async function fetchTodaysHimMessages() {
     });
     logger.debug('Fetched HimMessages');
   } catch (e: any) {
-    logger.error(e, 'HimMessages fetch failed');
+    logger.error('HimMessages fetch failed');
   }
 }
 
