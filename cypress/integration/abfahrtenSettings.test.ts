@@ -58,6 +58,11 @@ describe('Abfahrten Settings', () => {
       cy.findByTestId('showUIC').click();
       cy.closeModal();
       cy.findAllByTestId('uic').should('exist');
+      cy.findByTestId('via-Berlin Ostbahnhof').should(
+        'have.css',
+        'text-decoration-line',
+        'line-through',
+      );
       cy.percySnapshot('UIC');
     });
   });

@@ -7,10 +7,9 @@ import { useContext } from 'react';
 import styled from '@emotion/styled';
 import type { FC } from 'react';
 
-const Operator = styled.span(({ theme }) => ({
-  ...theme.mixins.singleLineText,
+const Operator = styled.span(({ theme }) => theme.mixins.singleLineText, {
   gridArea: 'o',
-}));
+});
 
 const Destination = styled.span`
   grid-area: g;
@@ -29,10 +28,9 @@ const Container = styled.div`
   justify-items: center;
 `;
 
-const DateDisplay = styled.span(({ theme }) => ({
-  ...theme.mixins.singleLineText,
+const DateDisplay = styled.span(({ theme }) => theme.mixins.singleLineText, {
   gridArea: 'd',
-}));
+});
 
 const Arrow = styled.span`
   grid-area: a;

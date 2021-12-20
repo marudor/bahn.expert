@@ -1,3 +1,4 @@
+import { css } from '@emotion/react';
 import { isHbf } from './index';
 import { useMemo } from 'react';
 import styled from '@emotion/styled';
@@ -9,10 +10,11 @@ export const StyledViaStop = styled.span<{ stop: Stop }>(({ theme, stop }) => ({
   ...(isHbf(stop) && {
     fontWeight: 'bold',
   }),
-  ...(stop.cancelled && {
-    ...theme.mixins.cancelled,
-    ...theme.mixins.changed,
-  }),
+  ...(stop.cancelled &&
+    css`
+      ${theme.mixins.cancelled};
+      ${theme.mixins.changed};
+    `),
   ...(stop.additional && theme.mixins.additional),
 }));
 
