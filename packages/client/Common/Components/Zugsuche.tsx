@@ -4,11 +4,11 @@ import {
   DialogContent,
   DialogTitle,
   FormControl,
-  makeStyles,
-} from '@material-ui/core';
-import { DatePicker } from '@material-ui/pickers';
+  TextField,
+} from '@mui/material';
+import { MobileDatePicker } from '@mui/lab';
 import { NavigationContext } from './Navigation/NavigationContext';
-import { Search, Today, Train } from '@material-ui/icons';
+import { Search, Today, Train } from '@mui/icons-material';
 import { stopPropagation } from 'client/Common/stopPropagation';
 import { subHours } from 'date-fns';
 import { useCallback, useContext, useState } from 'react';
@@ -16,44 +16,47 @@ import { useNavigate } from 'react-router';
 import { useStorage } from 'client/useStorage';
 import { ZugsucheAutocomplete } from 'client/Common/Components/ZugsucheAutocomplete';
 import qs from 'qs';
+import styled from '@emotion/styled';
 import type { FC, ReactElement, SyntheticEvent } from 'react';
 import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 
-const useStyles = makeStyles({
-  title: {
-    textAlign: 'center',
-    padding: '16px 24px 0 24px',
-  },
-  content: {
-    minWidth: '40%',
-  },
-  inputWrapper: {
-    position: 'relative',
-    display: 'flex',
-    justifyContent: 'space-between',
-    maxWidth: 240,
-    margin: '0 auto',
-  },
-  datePicker: {
-    margin: 20,
-  },
-  icon: {
-    position: 'absolute',
-    right: 20,
-    top: 39,
-  },
-  searchButton: {
-    height: 45,
-    margin: 10,
-    width: '95%',
-  },
-});
+const Title = styled(DialogTitle)`
+  text-align: center;
+  padding: 16px 24px 0 24px;
+`;
+
+const Content = styled(DialogContent)`
+  min-width: 40%;
+`;
+
+const DateInputField = styled(TextField)`
+  margin: 20px;
+`;
+const TrainIcon = styled(Train)`
+  position: absolute;
+  right: 20px;
+  top: 39px;
+`;
+const TodayIcon = TrainIcon.withComponent(Today);
+
+const InputContainer = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  max-width: 240px;
+  margin: 0 auto;
+`;
+
+const SearchButton = styled(Button)`
+  height: 45px;
+  margin: 10px;
+  width: 95%;
+`;
 
 interface Props {
   children?: (toggle: (e: SyntheticEvent) => void) => ReactElement;
 }
 export const Zugsuche: FC<Props> = ({ children }) => {
-  const classes = useStyles();
   const navigate = useNavigate();
   const storage = useStorage();
   const { toggleDrawer } = useContext(NavigationContext);
@@ -104,36 +107,35 @@ export const Zugsuche: FC<Props> = ({ children }) => {
   return (
     <>
       <Dialog
-        onClick={stopPropagation}
         maxWidth="xs"
         open={open}
         onClose={toggleModal}
         data-testid="Zugsuche"
       >
-        <DialogTitle className={classes.title}>Zugsuche</DialogTitle>
-        <DialogContent className={classes.content}>
+        <Title onClick={stopPropagation}>Zugsuche</Title>
+        <Content onClick={stopPropagation}>
           <form onSubmit={onSubmit}>
             <FormControl fullWidth component="fieldset">
-              <div className={classes.inputWrapper}>
-                <DatePicker
-                  className={classes.datePicker}
+              <InputContainer>
+                <MobileDatePicker
+                  allowSameDateSelection
                   showTodayButton
-                  autoOk
+                  disableCloseOnSelect={false}
+                  renderInput={(props) => <DateInputField {...props} />}
                   label="Datum"
                   value={date}
                   onChange={setDate}
                 />
-                <Today className={classes.icon} />
-              </div>
-              <div className={classes.inputWrapper}>
+                <TodayIcon />
+              </InputContainer>
+              <InputContainer>
                 <ZugsucheAutocomplete
                   onChange={setMatch}
                   initialDeparture={date || undefined}
                 />
-                <Train className={classes.icon} />
-              </div>
-              <Button
-                className={classes.searchButton}
+                <TrainIcon />
+              </InputContainer>
+              <SearchButton
                 data-testid="ZugsucheSubmit"
                 type="submit"
                 variant="contained"
@@ -141,10 +143,10 @@ export const Zugsuche: FC<Props> = ({ children }) => {
                 startIcon={<Search />}
               >
                 Suche
-              </Button>
+              </SearchButton>
             </FormControl>
           </form>
-        </DialogContent>
+        </Content>
       </Dialog>
       {children?.(toggleModal)}
     </>

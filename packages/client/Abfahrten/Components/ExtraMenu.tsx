@@ -1,14 +1,14 @@
 import {
+  Favorite,
+  FavoriteBorder,
   FilterList,
   Layers,
   LayersClear,
   Settings,
-  Star,
-  StarBorder,
   Tune,
-} from '@material-ui/icons';
+} from '@mui/icons-material';
 import { FilterModal } from './FilterModal';
-import { IconButton, Menu, MenuItem } from '@material-ui/core';
+import { IconButton, Menu, MenuItem } from '@mui/material';
 import { useAbfahrtenModalToggle } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useCallback, useState } from 'react';
 import { useCurrentAbfahrtenStopPlace } from 'client/Abfahrten/provider/AbfahrtenProvider';
@@ -79,11 +79,11 @@ export const ExtraMenu: FC = () => {
           <MenuItem data-testid="toggleFav" key="1" onClick={toggleFav}>
             {isFaved ? (
               <>
-                <Star /> Unfav
+                <Favorite /> Unfav
               </>
             ) : (
               <>
-                <StarBorder /> Fav
+                <FavoriteBorder /> Fav
               </>
             )}
           </MenuItem>,

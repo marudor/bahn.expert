@@ -1,29 +1,24 @@
 import { Header } from './Components/Header';
-import { makeStyles } from '@material-ui/core';
 import { RoutingConfigProvider } from 'client/Routing/provider/RoutingConfigProvider';
 import { RoutingFavProvider } from 'client/Routing/provider/RoutingFavProvider';
 import { RoutingRoutes } from 'client/Routing/RoutingRoutes';
+import styled from '@emotion/styled';
 import type { FC } from 'react';
 
-const useStyles = makeStyles({
-  wrap: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-});
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
-export const Routing: FC = () => {
-  const classes = useStyles();
-  return (
-    <RoutingConfigProvider>
-      <RoutingFavProvider>
-        <div className={classes.wrap}>
-          <Header />
-          <RoutingRoutes />
-        </div>
-      </RoutingFavProvider>
-    </RoutingConfigProvider>
-  );
-};
+export const Routing: FC = () => (
+  <RoutingConfigProvider>
+    <RoutingFavProvider>
+      <Container>
+        <Header />
+        <RoutingRoutes />
+      </Container>
+    </RoutingFavProvider>
+  </RoutingConfigProvider>
+);
 // eslint-disable-next-line import/no-default-export
 export default Routing;

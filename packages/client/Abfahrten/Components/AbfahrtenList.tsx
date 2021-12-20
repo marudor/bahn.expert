@@ -1,6 +1,5 @@
 import { Abfahrt } from './Abfahrt';
 import { Loading } from 'client/Common/Components/Loading';
-import { makeStyles } from '@material-ui/core';
 import { Navigate, useParams } from 'react-router';
 import {
   SelectedDetailProvider,
@@ -23,27 +22,27 @@ import {
 import { useEffect, useState } from 'react';
 import { useHeaderTagsActions } from 'client/Common/provider/HeaderTagProvider';
 import { useSequencesActions } from 'client/Common/provider/ReihungenProvider';
+import styled from '@emotion/styled';
 import type { FC } from 'react';
 
-const useStyles = makeStyles((theme) => ({
-  wrap: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  lookbehind: {
-    position: 'relative',
-    paddingTop: 10,
-    backgroundColor: theme.colors.shadedBackground,
-  },
-  lookaheadMarker: {
-    height: 154,
-    position: 'absolute',
-    bottom: 0,
-  },
+const LookaheadMarker = styled.div`
+  height: 154px;
+  position: absolute;
+  bottom: 0;
+`;
+
+const Lookbehind = styled.div(({ theme }) => ({
+  position: 'relative',
+  paddingTop: 10,
+  backgroundColor: theme.colors.shadedBackground,
 }));
 
+const Container = styled.main`
+  display: flex;
+  flex-direction: column;
+`;
+
 const InnerAbfahrtenList = () => {
-  const classes = useStyles();
   const { updateCurrentStopPlaceByString, setCurrentStopPlace, setError } =
     useRawAbfahrten();
   const currentStopPlace = useCurrentAbfahrtenStopPlace();
@@ -145,7 +144,7 @@ const InnerAbfahrtenList = () => {
 
   return (
     <Loading isLoading={loading}>
-      <main className={classes.wrap}>
+      <Container>
         {error ? (
           <Navigate to={urlPrefix} />
         ) : filteredAbfahrten &&
@@ -154,16 +153,12 @@ const InnerAbfahrtenList = () => {
           <>
             {unfilteredAbfahrten?.strike && <Streik />}
             {Boolean(filteredAbfahrten.lookbehind.length) && (
-              <div
-                className={classes.lookbehind}
-                id="lookbehind"
-                data-testid="lookbehind"
-              >
+              <Lookbehind id="lookbehind" data-testid="lookbehind">
                 {filteredAbfahrten.lookbehind.map((a) => (
                   <Abfahrt abfahrt={a} key={a.rawId} />
                 ))}
-                <div className={classes.lookaheadMarker} id="lookaheadMarker" />
-              </div>
+                <LookaheadMarker id="lookaheadMarker" />
+              </Lookbehind>
             )}
             <div id="lookahead" data-testid="lookahead">
               {filteredAbfahrten.departures.map((a) => (
@@ -174,7 +169,7 @@ const InnerAbfahrtenList = () => {
         ) : (
           <div>Leider keine Abfahrten in nächster Zeit</div>
         )}
-      </main>
+      </Container>
     </Loading>
   );
 };

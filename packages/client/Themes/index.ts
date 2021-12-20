@@ -1,24 +1,21 @@
-import { createTheme as createMuiTheme } from './mui';
+import { createMuiTheme } from './mui';
 import { getColors } from './colors';
 // eslint-disable-next-line import/no-unresolved
+import { css } from '@mui/material';
 import type { Theme as MaruTheme } from 'maru';
-import type { Theme as MuiTheme } from '@material-ui/core';
+import type { Theme as MuiTheme } from '@mui/material';
 import type { ThemeType } from './type';
 
-declare module '@material-ui/styles/defaultTheme' {
-  interface DefaultTheme extends MaruTheme, MuiTheme {}
-}
-
-declare module '@material-ui/core/styles/createTheme' {
+type MaruMixins = MaruTheme['mixins'];
+declare module '@mui/material/styles/createTheme' {
   interface Theme extends MaruTheme {}
 }
 
-type MaruMixins = MaruTheme['mixins'];
-declare module '@material-ui/core/styles/createMixins' {
-  interface Mixins extends MaruMixins {}
+declare module '@emotion/react' {
+  interface Theme extends MuiTheme {}
 }
 
-export const createTheme = (themeType: ThemeType): MuiTheme & MaruTheme => {
+export const createTheme = (themeType: ThemeType): MuiTheme => {
   const mui = createMuiTheme(themeType);
 
   const colors = getColors(mui, themeType);
@@ -51,8 +48,12 @@ export const createTheme = (themeType: ThemeType): MuiTheme & MaruTheme => {
   const maruTheme = {
     colors,
     mixins: {
-      ...mixins,
       ...mui.mixins,
+      ...Object.keys(mixins).reduce((m, mixinKey) => {
+        // @ts-expect-error workaround for now
+        m[mixinKey] = css(mixins[mixinKey]);
+        return m;
+      }, {}),
     },
   };
 

@@ -1,48 +1,32 @@
 import { Loading, LoadingType } from './Loading';
-import { makeStyles, MenuItem, Paper, TextField } from '@material-ui/core';
+import { MenuItem, Paper, TextField } from '@mui/material';
 import { useCallback, useRef } from 'react';
 import { useStopPlaceSearch } from 'client/Common/hooks/useStopPlaceSearch';
 import Downshift from 'downshift';
+import styled from '@emotion/styled';
 import type { AllowedHafasProfile } from 'types/HAFAS';
-import type { FC, ReactNode } from 'react';
+import type { FC } from 'react';
 import type { MinimalStopPlace } from 'types/stopPlace';
 
-const useStyles = makeStyles((theme) => ({
-  wrap: {
-    flex: 1,
-    position: 'relative',
-  },
-  menuWrap: {
-    background: theme.palette.background.default,
-    marginTop: theme.spacing(1),
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    zIndex: 2,
-  },
-  menuItem: {
-    fontWeight: 400,
-  },
-  selectedMenuItem: {
-    fontWeight: 500,
-  },
-  icons: {
-    '& > svg': {
-      fontSize: '1.3em',
-      verticalAlign: 'center',
-    },
-    position: 'absolute',
-    right: 0,
-    cursor: 'pointer',
-    top: '50%',
-    transform: 'translateY(-50%)',
-  },
-  loading: ({ additionalIcon }: { additionalIcon: boolean }) => ({
-    right: additionalIcon ? '1.7em' : '.5em',
-    top: '-1em',
-    position: 'absolute',
-    transform: 'scale(.5)',
-  }),
+const PositionedLoading = styled(Loading)`
+  right: 0.5em;
+  top: -1em;
+  position: absolute;
+  transform: scale(0.5);
+`;
+
+const Container = styled.div`
+  flex: 1;
+  position: relative;
+`;
+
+const SuggestionContainer = styled(Paper)(({ theme }) => ({
+  background: theme.palette.background.default,
+  marginTop: theme.spacing(1),
+  position: 'absolute',
+  left: 0,
+  right: 0,
+  zIndex: 2,
 }));
 
 export interface Props {
@@ -53,7 +37,6 @@ export interface Props {
   placeholder?: string;
   profile?: AllowedHafasProfile;
   maxSuggestions?: number;
-  additionalIcon?: ReactNode;
   filterForIris?: boolean;
   groupedBySales?: boolean;
 }
@@ -65,11 +48,9 @@ export const StopPlaceSearch: FC<Props> = ({
   autoFocus,
   placeholder,
   maxSuggestions = 7,
-  additionalIcon,
   filterForIris = false,
   groupedBySales = false,
 }) => {
-  const classes = useStyles({ additionalIcon: Boolean(additionalIcon) });
   const inputRef = useRef<HTMLInputElement>();
 
   const {
@@ -94,7 +75,7 @@ export const StopPlaceSearch: FC<Props> = ({
   );
 
   return (
-    <div className={classes.wrap}>
+    <Container>
       <Downshift
         id={id}
         defaultHighlightedIndex={0}
@@ -114,7 +95,6 @@ export const StopPlaceSearch: FC<Props> = ({
           inputValue,
           isOpen,
           setState,
-          selectedItem,
           openMenu,
         }) => {
           const { onBlur, onChange, onFocus, ...inputProps } = getInputProps({
@@ -162,24 +142,17 @@ export const StopPlaceSearch: FC<Props> = ({
 
               <div {...getMenuProps()}>
                 {isOpen && (
-                  <Paper className={classes.menuWrap} square>
+                  <SuggestionContainer square>
                     {suggestions.length ? (
                       suggestions.map((suggestion, index) => {
                         const itemProps = getItemProps({
                           item: suggestion,
                           index,
                         });
-                        const selected =
-                          selectedItem && selectedItem.name === suggestion.name;
                         const highlighted = highlightedIndex === index;
 
                         return (
                           <MenuItem
-                            className={
-                              selected
-                                ? classes.selectedMenuItem
-                                : classes.menuItem
-                            }
                             data-testid="stopPlaceSearchMenuItem"
                             {...itemProps}
                             key={suggestion.evaNumber}
@@ -195,20 +168,14 @@ export const StopPlaceSearch: FC<Props> = ({
                         {loading ? 'Loading...' : 'No options'}
                       </MenuItem>
                     )}
-                  </Paper>
+                  </SuggestionContainer>
                 )}
               </div>
             </div>
           );
         }}
       </Downshift>
-      {/* <div className={classes.icons}>
-        <MyLocation onClick={getLocation} />
-        {additionalIcon}
-      </div> */}
-      {loading && (
-        <Loading className={classes.loading} type={LoadingType.dots} />
-      )}
-    </div>
+      {loading && <PositionedLoading type={LoadingType.dots} />}
+    </Container>
   );
 };

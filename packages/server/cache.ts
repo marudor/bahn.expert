@@ -1,6 +1,5 @@
 import { logger } from 'server/logger';
 import cacheManager from 'cache-manager';
-import redisStore from 'cache-manager-ioredis';
 import type { Cache } from 'cache-manager';
 
 const redisSettings = process.env.REDIS_HOST
@@ -75,7 +74,7 @@ export function createNewCache<K extends string, V>(
   if (useRedis) {
     baseCache = cacheManager.caching({
       ...redisSettings,
-      store: redisStore,
+      store: require('cache-manager-ioredis'),
       ttl,
       db,
       max: 10000,

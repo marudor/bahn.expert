@@ -1,49 +1,45 @@
 import { Info } from './Info';
-import { makeStyles } from '@material-ui/core';
 import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
-import clsx from 'clsx';
+import styled from '@emotion/styled';
 import type { FC } from 'react';
 
-const useStyles = makeStyles((theme) => ({
-  destination: {
+const Wrapper = styled.div<{ detail: boolean }>(({ detail }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  flex: 1,
+  justifyContent: 'space-around',
+  overflow: 'hidden',
+  whiteSpace: !detail ? 'nowrap' : undefined,
+}));
+
+const Destination = styled.div<{
+  cancelled?: boolean;
+  different?: boolean;
+}>(
+  {
     fontSize: '4em',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
   },
-  cancelled: theme.mixins.cancelled,
-  different: theme.mixins.changed,
-  wrap: {
-    display: 'flex',
-    flexDirection: 'column',
-    flex: 1,
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-  },
-  noDetail: {
-    whiteSpace: 'nowrap',
-  },
-}));
+  ({ theme, cancelled }) => cancelled && theme.mixins.cancelled,
+  ({ theme, different }) => different && theme.mixins.changed,
+);
 
 export const Mid: FC = () => {
   const { abfahrt, detail } = useAbfahrt();
-  const classes = useStyles();
   return (
-    <div
-      className={clsx(classes.wrap, !detail && classes.noDetail)}
-      data-testid="abfahrtMid"
-    >
+    <Wrapper detail={detail} data-testid="abfahrtMid">
       <Info />
-      <div
+      <Destination
+        cancelled={abfahrt.cancelled}
+        different={
+          !abfahrt.cancelled &&
+          abfahrt.destination !== abfahrt.scheduledDestination
+        }
         data-testid="destination"
-        className={clsx(classes.destination, {
-          [classes.cancelled]: abfahrt.cancelled,
-          [classes.different]:
-            !abfahrt.cancelled &&
-            abfahrt.destination !== abfahrt.scheduledDestination,
-        })}
       >
         {abfahrt.cancelled ? abfahrt.scheduledDestination : abfahrt.destination}
-      </div>
-    </div>
+      </Destination>
+    </Wrapper>
   );
 };

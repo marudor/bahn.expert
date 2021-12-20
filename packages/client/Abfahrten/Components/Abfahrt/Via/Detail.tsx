@@ -1,17 +1,15 @@
-import { isHbf } from 'client/Abfahrten/Components/Abfahrt/Via';
 import { StationLink } from 'client/Common/Components/StationLink';
+import { StyledViaStop } from './Normal';
 import { useAbfahrtenUrlPrefix } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useMemo } from 'react';
-import { useStyles } from './Normal';
-import clsx from 'clsx';
 import type { FC, ReactNode } from 'react';
 import type { Stop } from 'types/iris';
 
+const StyledStationLink = StyledViaStop.withComponent(StationLink);
 interface Props {
   stops: Stop[];
 }
 export const DetailVia: FC<Props> = ({ stops }) => {
-  const classes = useStyles();
   const urlPrefix = useAbfahrtenUrlPrefix();
 
   const stopsToRender = useMemo(() => {
@@ -19,12 +17,8 @@ export const DetailVia: FC<Props> = ({ stops }) => {
 
     stops.forEach((s, i) => {
       stopsToRender.push(
-        <StationLink
-          className={clsx(classes.main, {
-            [classes.hbf]: isHbf(s),
-            [classes.cancelled]: s.cancelled,
-            [classes.additional]: s.additional,
-          })}
+        <StyledStationLink
+          stop={s}
           urlPrefix={urlPrefix}
           data-testid={`via-${s.name}`}
           key={i}
@@ -37,7 +31,7 @@ export const DetailVia: FC<Props> = ({ stops }) => {
     });
 
     return stopsToRender;
-  }, [classes, stops, urlPrefix]);
+  }, [stops, urlPrefix]);
 
   return <>{stopsToRender}</>;
 };

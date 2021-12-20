@@ -23,6 +23,11 @@ declare global {
   interface Navigator {
     standalone?: boolean;
   }
-
-  type ExcludesFalse = <T>(x: T | undefined | void | null | false) => x is T;
+  type Falsy = false | 0 | '' | null | undefined | void;
+  interface Array<T> {
+    filter<S extends T>(
+      predicate: BooleanConstructor,
+      thisArg?: any,
+    ): Exclude<S, Falsy>[];
+  }
 }

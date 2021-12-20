@@ -1,27 +1,25 @@
-import { makeStyles, Tooltip } from '@material-ui/core';
+import { Tooltip } from '@mui/material';
+import styled from '@emotion/styled';
 import type { FC } from 'react';
 import type { PlannedSequence } from 'types/planReihung';
 
-const useStyles = makeStyles({
-  wrap: {
-    color: 'lightgray',
-  },
-});
+const StyledTooltip = styled(Tooltip)`
+  color: lightgray;
+`;
 
 interface Props {
   plannedSequence?: PlannedSequence;
 }
 
 export const PlannedType: FC<Props> = ({ plannedSequence }) => {
-  const classes = useStyles();
   if (!plannedSequence?.shortType) return null;
 
   return (
-    <Tooltip
+    <StyledTooltip
       enterTouchDelay={0}
       title={`Planned Type: ${plannedSequence.type}`}
     >
-      <span className={classes.wrap}> ({plannedSequence.shortType})</span>
-    </Tooltip>
+      <span> ({plannedSequence.shortType})</span>
+    </StyledTooltip>
   );
 };

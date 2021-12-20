@@ -76,7 +76,7 @@ if (isDev) {
   optimization.splitChunks = {
     cacheGroups: {
       vendor: {
-        test: /[\\/]node_modules[\\/](axios|react|react-dom|react-router|react-router-dom|@material-ui|jss|downshift|date-fns)[\\/]/,
+        test: /[\\/]node_modules[\\/](axios|react|react-dom|react-router|react-router-dom|@mui|@emotion|downshift|date-fns)[\\/]/,
         name: 'vendor',
         chunks: 'all',
       },
@@ -113,7 +113,6 @@ module.exports = {
     modules: ['node_modules'],
     extensions: ['.ts', '.tsx', '.json', '.web.ts', '.js', '.jsx'],
     alias: {
-      classnames$: 'clsx',
       'lodash-es$': 'lodash',
     },
   },

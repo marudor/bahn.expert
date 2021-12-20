@@ -12,12 +12,11 @@ import { ThemeWrap } from 'client/ThemeWrap';
 import Cookies from 'universal-cookie';
 import type { CommonConfig } from 'client/Common/config';
 import type { ComponentProps, ComponentType } from 'react';
-import type { DefaultTheme } from '@material-ui/styles';
 import type { Location } from 'history';
-import type { Rule, StyleSheet } from 'jss';
+import type { Theme } from '@mui/material';
 
 let currentThemeType: ThemeType;
-let theme: DefaultTheme;
+let theme: Theme;
 
 interface ContextWithOptions<V = any> extends React.Context<V> {
   initialState?: V;
@@ -44,12 +43,12 @@ const LocationHelper = ({ children }: any) => {
   return children;
 };
 
-const generateClassName = (rule: Rule, sheet?: StyleSheet<string>) => {
-  // @ts-expect-error sheet wrongly typed
-  const name = `${sheet.options.name}-${rule.key}`;
+// const generateClassName = (rule: Rule, sheet?: StyleSheet<string>) => {
+//   // @ts-expect-error sheet wrongly typed
+//   const name = `${sheet.options.name}-${rule.key}`;
 
-  return name;
-};
+//   return name;
+// };
 
 export function render<CP extends ComponentType<any>>(
   Comp: CP,
@@ -57,7 +56,7 @@ export function render<CP extends ComponentType<any>>(
   { withNavigation, context, commonConfig, provider }: Options = {},
 ): Omit<ReturnType<typeof realRender>, 'container'> & {
   container: ChildNode | null;
-  theme: DefaultTheme;
+  theme: Theme;
   cookies: Cookies;
   getLocation: () => Location;
 } {
@@ -103,7 +102,7 @@ export function render<CP extends ComponentType<any>>(
             <LocationHelper>
               <StorageContext.Provider value={cookies}>
                 <ThemeProvider>
-                  <ThemeWrap generateClassName={generateClassName}>
+                  <ThemeWrap /*generateClassName={generateClassName}*/>
                     {result}
                   </ThemeWrap>
                 </ThemeProvider>

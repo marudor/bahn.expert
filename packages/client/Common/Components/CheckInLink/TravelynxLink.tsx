@@ -1,7 +1,7 @@
 import { addMinutes, isBefore } from 'date-fns';
 import { stopPropagation } from 'client/Common/stopPropagation';
-import { Tooltip } from '@material-ui/core';
-import { Train } from '@material-ui/icons';
+import { Tooltip } from '@mui/material';
+import { Train } from '@mui/icons-material';
 import type { CommonProductInfo, CommonStopInfo } from 'types/HAFAS';
 import type { FC } from 'react';
 

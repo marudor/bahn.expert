@@ -1,20 +1,8 @@
-import { blue } from '@material-ui/core/colors';
-import { createTheme as createMuiTheme } from '@material-ui/core';
+import { blue, purple } from '@mui/material/colors';
+import { createTheme } from '@mui/material';
 import { ThemeType } from './type';
-import deepMerge from 'deepmerge';
-import type { MuiPickersOverrides } from '@material-ui/pickers/typings/overrides';
-import type { Theme as MuiTheme } from '@material-ui/core';
-import type { ThemeOptions } from '@material-ui/core/styles/createTheme';
-
-declare module '@material-ui/core/styles/overrides' {
-  export interface ComponentNameToClassKey extends MuiPickersOverrides {}
-}
-
-declare module '@material-ui/core/styles/shape' {
-  export interface Shape {
-    headerSpacing: number;
-  }
-}
+import type { Mixins as MaruMixins } from 'maru';
+import type { Theme, ThemeOptions } from '@mui/material';
 
 const getPaletteType = (themeType: ThemeType) => {
   switch (themeType) {
@@ -26,72 +14,101 @@ const getPaletteType = (themeType: ThemeType) => {
   }
 };
 
+declare module '@mui/system/createTheme/shape' {
+  export interface Shape {
+    headerSpacing: number;
+  }
+}
+
+declare module '@mui/material/styles/createMixins' {
+  export interface Mixins extends MaruMixins {}
+}
+
 const headerSpacing = 54;
-const getMuiOptions = (themeType: ThemeType) => {
-  const commonOptions: ThemeOptions = {
+
+const primaryColor = {
+  [ThemeType.dark]: blue[700],
+  [ThemeType.black]: blue[800],
+  [ThemeType.light]: blue[400],
+};
+
+const backgroundColor = {
+  [ThemeType.dark]: '#303030',
+  [ThemeType.black]: '#000000',
+  [ThemeType.light]: '#fafafa',
+};
+
+const secondaryColor = {
+  [ThemeType.dark]: purple.A400,
+  [ThemeType.black]: purple.A400,
+  [ThemeType.light]: purple[400],
+};
+
+const overrides = {
+  [ThemeType.black]: {
+    MuiPaper: {
+      styleOverrides: {
+        elevation1: {
+          backgroundColor: 'inherit',
+          backgroundImage: 'unset',
+          boxShadow: '0 1px 0 rgba(120, 120, 120, 0.5)',
+        },
+      },
+    },
+  },
+};
+
+const getMuiOptions = (themeType: ThemeType): ThemeOptions => {
+  return {
     palette: {
-      type: getPaletteType(themeType),
+      background: {
+        default: backgroundColor[themeType],
+      },
+      primary: {
+        main: primaryColor[themeType],
+      },
+      secondary: {
+        main: secondaryColor[themeType],
+      },
+      mode: getPaletteType(themeType),
     },
     shape: {
       headerSpacing,
     },
-    overrides: {
-      MuiPickersModal: {
-        withAdditionalAction: {
-          color: 'red',
+    components: {
+      MuiTextField: {
+        defaultProps: {
+          variant: 'standard',
         },
       },
       MuiToolbar: {
-        regular: {
-          minHeight: `${headerSpacing}px!important`,
+        styleOverrides: {
+          regular: {
+            minHeight: `${headerSpacing}px!important`,
+          },
+        },
+      },
+      MuiAppBar: {
+        styleOverrides: {
+          root: {
+            backgroundImage: 'unset',
+          },
         },
       },
       MuiPaper: {
-        elevation1: {
-          backgroundColor: 'inherit',
-          boxShadow: '0 1px 0 rgba(0, 0, 0, 0.24)',
+        styleOverrides: {
+          elevation1: {
+            backgroundColor: 'inherit',
+            backgroundImage: 'unset',
+            boxShadow: '0 1px 0 rgba(0, 0, 0, 0.24)',
+          },
         },
       },
+      // @ts-expect-error undefined works if index doesnt exist
+      ...overrides[themeType],
     },
   };
-
-  switch (themeType) {
-    case ThemeType.black:
-      return deepMerge(commonOptions, {
-        palette: {
-          background: {
-            default: '#000000',
-          },
-          primary: {
-            main: blue[800],
-          },
-        },
-        overrides: {
-          MuiPaper: {
-            elevation1: {
-              boxShadow: '0 1px 0 rgba(120, 120, 120, 0.5)',
-            },
-          },
-        },
-      });
-    case ThemeType.dark:
-      return deepMerge(commonOptions, {
-        palette: {
-          primary: {
-            main: blue[700],
-          },
-        },
-      });
-    case ThemeType.light:
-      return deepMerge(commonOptions, {
-        palette: {
-          primary: {
-            main: blue[400],
-          },
-        },
-      });
-  }
 };
 
-export const createTheme = (themeType: ThemeType): MuiTheme =>
-  createMuiTheme(getMuiOptions(themeType));
+export const createMuiTheme = (themeType: ThemeType): Theme =>
+  createTheme(getMuiOptions(themeType));

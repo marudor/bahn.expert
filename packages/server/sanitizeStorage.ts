@@ -35,8 +35,8 @@ function sanitizeFavs(
   if (modified) storage.set(storageKey, favs);
 }
 
-function isCurrentFormatFav(stop: MinimalStopPlace): boolean {
-  return Boolean(stop.evaNumber && stop.name);
+function isCurrentFormatFav(stop?: MinimalStopPlace): boolean {
+  return Boolean(stop && stop.evaNumber && stop.name);
 }
 
 function migrateOldFav(oldFav: any): MinimalStopPlace {

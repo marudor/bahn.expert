@@ -1,12 +1,12 @@
 import { createContext, memo, useCallback, useContext, useMemo } from 'react';
+import { css } from '@emotion/react';
 import { End } from './End';
-import { makeStyles } from '@material-ui/core';
 import { Mid } from './Mid';
+import { Paper } from '@mui/material';
 import { Start } from './Start';
 import { useSetSelectedDetail } from 'client/Abfahrten/provider/SelectedDetailProvider';
-import clsx from 'clsx';
 import loadable from '@loadable/component';
-import Paper from '@material-ui/core/Paper';
+import styled from '@emotion/styled';
 import type { Abfahrt } from 'types/iris';
 
 const LazyReihung = loadable(() => import('client/Common/Components/Reihung'));
@@ -21,60 +21,63 @@ export const AbfahrtContext = createContext<AbfahrtContextValues>();
 export const useAbfahrt = (): AbfahrtContextValues =>
   useContext(AbfahrtContext);
 
-const wingStartEnd = (color: string) => ({
-  content: '""',
-  borderLeft: `1em solid ${color}`,
-  position: 'absolute',
-  height: '1px',
-});
+const wingStartEnd = (color: string) =>
+  css({
+    content: '" "',
+    borderLeft: `1em solid ${color}`,
+    position: 'absolute',
+    height: '1px',
+  });
 
-const useStyles = makeStyles((theme) => ({
-  wing: {
+const Container = styled(Paper)`
+  line-height: 1.2;
+  flex-shrink: 0;
+  margin-top: 0.3em;
+  overflow: visible;
+  padding: 0 0.5em;
+  position: relative;
+`;
+
+const WingIndicator = styled.span<{ wingEnd?: boolean; wingStart?: boolean }>(
+  ({ wingEnd, wingStart, theme }) => ({
     position: 'absolute',
     borderLeft: `1px solid ${theme.palette.text.primary}`,
-    content: ' ',
+    content: '" "',
     left: '.3em',
-    top: '-1em',
-    bottom: 0,
-  },
-  wingStart: {
-    top: 0,
-    '&::before': wingStartEnd(theme.palette.text.primary),
-  },
-  wingEnd: {
-    bottom: '.3em',
-    '&::after': {
-      ...wingStartEnd(theme.palette.text.primary),
-      bottom: 0,
-    },
-  },
-  wrap: {
-    lineHeight: 1.2,
-    flexShrink: 0,
-    marginTop: '.3em',
-    overflow: 'visible',
-    padding: '0 .5em',
-    position: 'relative',
-  },
-  entry: {
-    overflow: 'hidden',
-    display: 'flex',
-    flexDirection: 'column',
-    flexShrink: 0,
-    fontSize: '.6em',
-    userSelect: 'none',
-    [theme.breakpoints.down('md')]: {
-      fontSize: '.36em',
-    },
-  },
-  mainWrap: {
-    display: 'flex',
-  },
-  scrollMarker: {
-    position: 'absolute',
-    top: -64,
+    top: wingStart ? 0 : '-1em',
+    bottom: wingEnd ? '.3em' : 0,
+    '&::before': wingStart
+      ? wingStartEnd(theme.palette.text.primary)
+      : undefined,
+    '&::after': wingEnd
+      ? css`
+          ${wingStartEnd(theme.palette.text.primary)};
+          bottom: 0;
+        `
+      : undefined,
+  }),
+);
+
+const Entry = styled.div(({ theme }) => ({
+  overflow: 'hidden',
+  display: 'flex',
+  flexDirection: 'column',
+  flexShrink: 0,
+  fontSize: '.6em',
+  userSelect: 'none',
+  [theme.breakpoints.down('md')]: {
+    fontSize: '.36em',
   },
 }));
+
+const MainWrap = styled.div`
+  display: flex;
+`;
+
+const ScrollMarker = styled.div`
+  position: absolute;
+  top: -64px;
+`;
 
 export interface Props {
   abfahrt: Abfahrt;
@@ -92,7 +95,6 @@ export const BaseAbfahrt = memo(function BaseAbfahrt({
   wingStart,
   detail,
 }: Props) {
-  const classes = useStyles();
   const wingNumbersWithoutSelf = wingNumbers?.filter(
     (wn) => wn !== abfahrt.train.number,
   );
@@ -110,29 +112,18 @@ export const BaseAbfahrt = memo(function BaseAbfahrt({
 
   return (
     <AbfahrtContext.Provider value={contextValue}>
-      <Paper
-        className={classes.wrap}
-        square
-        id={abfahrt.id}
-        onClick={handleClick}
-      >
+      <Container square id={abfahrt.id} onClick={handleClick}>
         {wingNumbers && (
-          <span
-            className={clsx(classes.wing, {
-              [classes.wingEnd]: wingEnd,
-              [classes.wingStart]: wingStart,
-            })}
-          />
+          <WingIndicator wingEnd={wingEnd} wingStart={wingStart} />
         )}
-        <div
-          className={classes.entry}
+        <Entry
           data-testid={`abfahrt${abfahrt.train.type}${abfahrt.train.number}`}
         >
-          <div className={classes.mainWrap}>
+          <MainWrap>
             <Start />
             <Mid />
             <End />
-          </div>
+          </MainWrap>
           {detail && abfahrt.departure && (
             <LazyReihung
               loadHidden={!abfahrt.reihung}
@@ -144,14 +135,13 @@ export const BaseAbfahrt = memo(function BaseAbfahrt({
             />
           )}
           {detail && (
-            <div
-              className={classes.scrollMarker}
+            <ScrollMarker
               data-testid="scrollMarker"
               id={`${abfahrt.id}Scroll`}
             />
           )}
-        </div>
-      </Paper>
+        </Entry>
+      </Container>
     </AbfahrtContext.Provider>
   );
 });

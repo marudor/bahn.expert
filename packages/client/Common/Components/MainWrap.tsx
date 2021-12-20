@@ -1,27 +1,21 @@
-import { makeStyles } from '@material-ui/core';
-import clsx from 'clsx';
+import styled from '@emotion/styled';
 import type { FC, ReactNode } from 'react';
 
-const useStyles = makeStyles((theme) => ({
-  noHeader: {
-    marginTop: -theme.shape.headerSpacing,
-  },
-  wrap: {
+const Container = styled.div<{ noHeader?: boolean }>(
+  {
     display: 'flex',
     flexDirection: 'column',
   },
-}));
-
+  ({ noHeader, theme }) =>
+    noHeader && {
+      marginTop: -theme.shape.headerSpacing,
+    },
+);
 interface Props {
   noHeader?: boolean;
   children: ReactNode;
 }
 
 export const MainWrap: FC<Props> = ({ noHeader, children }) => {
-  const classes = useStyles();
-  return (
-    <div className={clsx(classes.wrap, noHeader && classes.noHeader)}>
-      {children}
-    </div>
-  );
+  return <Container noHeader={noHeader}>{children}</Container>;
 };

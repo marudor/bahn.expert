@@ -1,6 +1,5 @@
 import 'leaflet/dist/leaflet.css';
 import { ActivePolyline } from 'client/Map/Components/ActivePolyline';
-import { makeStyles } from '@material-ui/core';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import { MapSettings } from 'client/Map/Components/MapSettings';
 import { Positions } from 'client/Map/Components/Positions';
@@ -13,6 +12,7 @@ import icon from 'leaflet/dist/images/marker-icon.png';
 // @ts-expect-error TS doesnt know png
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import L from 'leaflet';
+import styled from '@emotion/styled';
 import type { FC } from 'react';
 
 const DefaultIcon = L.icon({
@@ -30,14 +30,11 @@ const zoom = 7;
 const attribution =
   '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>, Style: <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA 2.0</a> <a href="http://www.openrailwaymap.org/">OpenRailwayMap</a> and OpenStreetMap';
 
-const useStyles = makeStyles({
-  wrap: {
-    flex: 1,
-  },
-});
+const Container = styled(MapContainer)`
+  flex: 1;
+`;
 
 export const TrainMap: FC = () => {
-  const classes = useStyles();
   const query = useQuery();
   const { setActiveJourney } = useMapProvider();
 
@@ -53,25 +50,22 @@ export const TrainMap: FC = () => {
   );
 
   return (
-    <MapContainer
-      className={classes.wrap}
-      center={center}
-      zoom={zoom}
-      whenReady={whenReady}
-    >
-      {!query.noTiles && (
-        <>
-          <TileLayer
-            attribution={attribution}
-            url="https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png"
-          />
-          <TileLayer url="https://{s}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png" />
-        </>
-      )}
-      <Positions />
+    <>
+      <Container center={center} zoom={zoom} whenReady={whenReady}>
+        {!query.noTiles && (
+          <>
+            <TileLayer
+              attribution={attribution}
+              url="https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png"
+            />
+            <TileLayer url="https://{s}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png" />
+          </>
+        )}
+        <Positions />
+        <ActivePolyline />
+      </Container>
       <MapSettings />
-      <ActivePolyline />
-    </MapContainer>
+    </>
   );
 };
 

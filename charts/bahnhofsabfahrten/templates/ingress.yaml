@@ -19,13 +19,17 @@ spec:
     - hosts:
       {{ if .Values.hostName }}
         - {{ .Values.hostName }}
+        - www.{{ .Values.hostName }}
         {{ if .Values.docs }}
         - docs.{{ .Values.hostName }}
+        - www.docs.{{ .Values.hostName }}
         {{ end }}
       {{ else }}
         - {{ .Release.Name }}.marudor.de
+        - www.{{ .Release.Name }}.marudor.de
         {{ if .Values.docs }}
         - docs.{{ .Release.Name }}.marudor.de
+        - www.docs.{{ .Release.Name }}.marudor.de
         {{ end }}
       {{ end }}
       secretName: {{ $fullName }}
@@ -44,11 +48,48 @@ spec:
                 name: {{ $fullName }}
                 port:
                   name: http
+    {{ if .Values.hostName }}
+    - host: www.{{ .Values.hostName }}
+    {{ else }}
+    - host: www.{{ .Release.Name }}.marudor.de
+    {{ end }}
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: {{ $fullName }}
+                port:
+                  name: http
     {{ if .Values.docs }}
     {{ if .Values.hostName }}
     - host: docs.{{ .Values.hostName }}
     {{ else }}
     - host: docs.{{ .Release.Name }}.marudor.de
+    {{ end }}
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: docs-{{ $fullName }}
+                port:
+                  number: 80
+          - path: /swagger.json
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: {{ $fullName }}
+                port:
+                  name: http
+    {{ end }}
+    {{ if .Values.docs }}
+    {{ if .Values.hostName }}
+    - host: www.docs.{{ .Values.hostName }}
+    {{ else }}
+    - host: www.docs.{{ .Release.Name }}.marudor.de
     {{ end }}
       http:
         paths:

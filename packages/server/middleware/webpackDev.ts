@@ -68,7 +68,7 @@ export default function webpackDev(koa: Koa): Promise<unknown> {
 
     koa.use((ctx, next) => {
       return new Promise<void>((resolve, reject) => {
-        middleware(
+        void middleware(
           ctx.req,
           {
             // @ts-expect-error ???

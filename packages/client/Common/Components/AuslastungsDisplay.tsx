@@ -1,38 +1,34 @@
-import { makeStyles } from '@material-ui/core';
 import { SingleAuslastungsDisplay } from 'client/Common/Components/SingleAuslastungsDisplay';
+import styled from '@emotion/styled';
 import type { FC } from 'react';
 import type { Route$Auslastung } from 'types/routing';
 
-const useStyles = makeStyles({
-  wrap: {
-    display: 'flex',
-    marginBottom: '.3em',
-  },
-  entry: {
-    display: 'flex',
-    marginRight: '.5em',
-    alignItems: 'center',
-    flexDirection: 'column',
-  },
-});
+const Container = styled.div`
+  display: flex;
+  margin-bottom: 0.3em;
+`;
 
+const Entry = styled.div`
+  display: flex;
+  margin-right: 0.5em;
+  align-items: center;
+  flex-direction: column;
+`;
 export interface Props {
   auslastung: Route$Auslastung;
 }
 
 export const AuslastungsDisplay: FC<Props> = ({ auslastung }) => {
-  const classes = useStyles();
-
   return (
-    <div className={classes.wrap} data-testid="auslastungDisplay">
-      <div className={classes.entry} data-testid="first">
+    <Container data-testid="auslastungDisplay">
+      <Entry data-testid="first">
         <span>1</span>
         <SingleAuslastungsDisplay auslastung={auslastung.first} />
-      </div>
-      <div className={classes.entry} data-testid="second">
+      </Entry>
+      <Entry data-testid="second">
         <span>2</span>
         <SingleAuslastungsDisplay auslastung={auslastung.second} />
-      </div>
-    </div>
+      </Entry>
+    </Container>
   );
 };

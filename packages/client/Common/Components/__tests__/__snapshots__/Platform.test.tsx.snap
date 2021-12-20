@@ -2,7 +2,7 @@
 
 exports[`Platform No platform provided 1`] = `
 <div
-  class=""
+  class="emotion-0"
   data-testid="platform"
 >
   <span
@@ -12,8 +12,22 @@ exports[`Platform No platform provided 1`] = `
 `;
 
 exports[`Platform scheduled !== real & cancelled 1`] = `
+.emotion-0 {
+  -webkit-text-decoration: line-through;
+  text-decoration: line-through;
+  text-decoration-color: #fff;
+  color: #ff1744!important;
+}
+
+.emotion-1 {
+  -webkit-text-decoration: line-through;
+  text-decoration: line-through;
+  text-decoration-color: #fff;
+  padding-left: .3em;
+}
+
 <div
-  class="Platform-cancelled Platform-changed"
+  class="emotion-0"
   data-testid="platform"
 >
   <span
@@ -22,7 +36,7 @@ exports[`Platform scheduled !== real & cancelled 1`] = `
     1
   </span>
   <span
-    class="Platform-changedWrapper"
+    class="emotion-1"
     data-testid="scheduled"
   >
     (
@@ -33,8 +47,26 @@ exports[`Platform scheduled !== real & cancelled 1`] = `
 `;
 
 exports[`Platform scheduled !== real 1`] = `
+.emotion-0 {
+  color: #ff1744!important;
+}
+
+.emotion-1 {
+  -webkit-text-decoration: line-through;
+  text-decoration: line-through;
+  text-decoration-color: #fff;
+  padding-left: .3em;
+}
+
+.emotion-1 {
+  -webkit-text-decoration: line-through;
+  text-decoration: line-through;
+  text-decoration-color: #fff;
+  padding-left: .3em;
+}
+
 <div
-  class="Platform-changed"
+  class="emotion-0"
   data-testid="platform"
 >
   <span
@@ -43,7 +75,7 @@ exports[`Platform scheduled !== real 1`] = `
     1
   </span>
   <span
-    class="Platform-changedWrapper"
+    class="emotion-1"
     data-testid="scheduled"
   >
     (
@@ -54,8 +86,14 @@ exports[`Platform scheduled !== real 1`] = `
 `;
 
 exports[`Platform scheduled === real & cancelled 1`] = `
+.emotion-0 {
+  -webkit-text-decoration: line-through;
+  text-decoration: line-through;
+  text-decoration-color: #fff;
+}
+
 <div
-  class="Platform-cancelled"
+  class="emotion-0"
   data-testid="platform"
 >
   <span
@@ -68,7 +106,7 @@ exports[`Platform scheduled === real & cancelled 1`] = `
 
 exports[`Platform scheduled === real 1`] = `
 <div
-  class=""
+  class="emotion-0"
   data-testid="platform"
 >
   <span

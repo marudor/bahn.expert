@@ -17,11 +17,11 @@ export const StationLink: FC<Props> = ({
   return (
     <Link
       data-testid="stationLink"
-      {...rest}
       className={className}
       onClick={stopPropagation}
       to={`${urlPrefix}${encodeURIComponent(stationName)}`}
       title={`Zugabfahrten für ${stationName}`}
+      {...rest}
     >
       {stationName}
     </Link>

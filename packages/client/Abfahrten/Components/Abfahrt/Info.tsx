@@ -1,27 +1,20 @@
 import { DetailMessages } from 'client/Common/Components/Messages/Detail';
 import { DetailVia } from './Via/Detail';
-import { makeStyles } from '@material-ui/core';
 import { NormalMessages } from 'client/Common/Components/Messages/Normal';
 import { NormalVia } from './Via/Normal';
 import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import { useMemo } from 'react';
-import clsx from 'clsx';
+import styled from '@emotion/styled';
 import type { FC } from 'react';
 
-const useStyles = makeStyles({
-  wrap: {
-    fontSize: '2.1em',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-  },
-  noDetail: {
-    whiteSpace: 'nowrap',
-  },
-});
+const Container = styled.div`
+  font-size: 2.1em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
 
 export const Info: FC = () => {
   const { abfahrt, detail } = useAbfahrt();
-  const classes = useStyles();
   const messages = useMemo(() => {
     const messages = abfahrt.messages.delay
       .concat(abfahrt.messages.qos)
@@ -42,9 +35,9 @@ export const Info: FC = () => {
   if (!info && !via) return null;
 
   return (
-    <div className={clsx(classes.wrap, !detail && classes.noDetail)}>
+    <Container>
       {info}
       {via}
-    </div>
+    </Container>
   );
 };

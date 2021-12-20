@@ -25,25 +25,25 @@ export const [InnerThemeProvider, useTheme] = constate(useThemeInner);
 export const ThemeProvider: FC = ({ children }) => {
   const storage = useStorage();
   const query = useQuery();
-  let initialTheme = query.theme;
-  if (!initialTheme) {
-    // @ts-expect-error works
-    initialTheme = ThemeType[storage.get('theme')];
-    if (!initialTheme) {
-      initialTheme = globalThis.matchMedia?.('(prefers-color-scheme: light)')
-        .matches
-        ? ThemeType.light
-        : ThemeType.dark;
-      if (initialTheme === ThemeType.light) {
-        storage.set('theme', initialTheme);
+  const initialTheme = useMemo(() => {
+    let theme = query.theme;
+    if (!theme) {
+      // @ts-expect-error works
+      theme = ThemeType[storage.get('theme')];
+      if (!theme) {
+        theme = globalThis.matchMedia?.('(prefers-color-scheme: light)').matches
+          ? ThemeType.light
+          : ThemeType.dark;
+        if (theme === ThemeType.light) {
+          storage.set('theme', theme);
+        }
       }
     }
-  }
+    return (theme as ThemeType) || ThemeType.dark;
+  }, []);
 
   return (
-    <InnerThemeProvider
-      initialThemeType={(initialTheme as ThemeType) || ThemeType.dark}
-    >
+    <InnerThemeProvider initialThemeType={initialTheme}>
       {children}
     </InnerThemeProvider>
   );

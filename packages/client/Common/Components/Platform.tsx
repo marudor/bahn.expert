@@ -1,46 +1,43 @@
-import { makeStyles } from '@material-ui/core';
-import clsx from 'clsx';
+import styled from '@emotion/styled';
 import type { FC } from 'react';
 
-const useStyles = makeStyles((theme) => ({
-  cancelled: theme.mixins.cancelled,
-  changed: theme.mixins.changed,
-  changedWrapper: {
-    ...theme.mixins.cancelled,
-    paddingLeft: '.3em',
-  },
-}));
+const Container = styled.div<{ cancelled?: boolean; changed?: boolean }>(
+  ({ theme, cancelled }) => cancelled && theme.mixins.cancelled,
+  ({ theme, changed }) => changed && theme.mixins.changed,
+);
+
+const ChangedContainer = styled.span(({ theme }) => theme.mixins.cancelled, {
+  paddingLeft: '.3em',
+});
 
 interface Props {
-  className?: string;
   cancelled?: boolean;
   scheduled?: string;
   real?: string;
+  className?: string;
 }
 
 export const Platform: FC<Props> = ({
-  className,
   cancelled,
   scheduled,
   real,
+  className,
 }) => {
-  const classes = useStyles();
   const changed = Boolean(scheduled && scheduled !== real);
 
   return (
-    <div
+    <Container
+      className={className}
       data-testid="platform"
-      className={clsx(className, {
-        [classes.cancelled]: cancelled,
-        [classes.changed]: changed,
-      })}
+      cancelled={cancelled}
+      changed={changed}
     >
       <span data-testid="real">{real}</span>
       {changed && (
-        <span className={classes.changedWrapper} data-testid="scheduled">
+        <ChangedContainer data-testid="scheduled">
           ({scheduled})
-        </span>
+        </ChangedContainer>
       )}
-    </div>
+    </Container>
   );
 };

@@ -1,42 +1,43 @@
-import { Dialog, DialogContent, makeStyles } from '@material-ui/core';
+import { Dialog, DialogContent } from '@mui/material';
 import { icons } from './Fahrzeug';
 import { SingleAuslastungsDisplay } from 'client/Common/Components/SingleAuslastungsDisplay';
-import { stopPropagation } from 'client/Common/stopPropagation';
 import { useCallback, useState } from 'react';
+import styled from '@emotion/styled';
 import type { FC, SyntheticEvent } from 'react';
 
-const useStyles = makeStyles((theme) => ({
-  legende: {
-    color: theme.colors.blue,
-    position: 'absolute',
-    bottom: '.5em',
-    left: 0,
-    cursor: 'pointer',
-  },
-  wrap: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  iconWrap: {
-    display: 'flex',
-    alignItems: 'center',
-    minWidth: '16em',
-    marginBottom: '.2em',
-    '& > svg': {
-      marginRight: '1em',
-    },
-    '& > span': {
-      fontSize: '1em',
-      marginRight: '1em',
-    },
-  },
-  comfort: {
-    width: '1em',
-    height: '1em',
-    fontSize: '1.5rem',
-    borderRadius: '50%',
-    backgroundColor: theme.colors.red,
-  },
+const OpenLink = styled.div(({ theme }) => ({
+  color: theme.colors.blue,
+  position: 'absolute',
+  bottom: '.5em',
+  left: 0,
+  cursor: 'pointer',
+}));
+
+const ContentContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const IconWrap = styled.div`
+  display: flex;
+  align-items: center;
+  min-width: 16em;
+  margin-bottom: 0.2em;
+  & > svg {
+    margin-right: 1em;
+  }
+  & > span {
+    font-size: 1em;
+    margin-right: 1em;
+  }
+`;
+
+const ComfortIcon = styled.div(({ theme }) => ({
+  width: '1em',
+  height: '1em',
+  fontSize: '1.5rem',
+  borderRadius: '50%',
+  backgroundColor: theme.colors.red,
 }));
 
 // Exported for tests
@@ -54,7 +55,6 @@ export const iconExplanation: { [K in keyof typeof icons]: string } = {
 };
 
 export const Explain: FC = () => {
-  const classes = useStyles();
   const [open, setOpen] = useState(false);
   const toggle = useCallback((e: SyntheticEvent) => {
     e.stopPropagation();
@@ -63,24 +63,18 @@ export const Explain: FC = () => {
 
   return (
     <>
-      <div
-        className={classes.legende}
-        onClick={toggle}
-        data-testid="reihungLegendOpener"
-      >
+      <OpenLink onClick={toggle} data-testid="reihungLegendOpener">
         Legende
-      </div>
+      </OpenLink>
       <Dialog
         data-testid="reihungLegend"
         fullWidth
         open={open}
         onClose={toggle}
-        onClick={stopPropagation}
       >
         <DialogContent>
           <h3>Legende Wagenreihung</h3>
-          {/* <FahrzeugComp {...explainFahrzeugProps} /> */}
-          <div className={classes.wrap}>
+          <ContentContainer>
             {Object.keys(iconExplanation).map(
               // @ts-expect-error this is correct, it's exact!
               (iconName: keyof typeof icons) => {
@@ -88,46 +82,42 @@ export const Explain: FC = () => {
 
                 return (
                   Icon && (
-                    <div
-                      className={classes.iconWrap}
-                      data-testid={iconName}
-                      key={iconName}
-                    >
+                    <IconWrap data-testid={iconName} key={iconName}>
                       <Icon />
                       {iconExplanation[iconName]}
-                    </div>
+                    </IconWrap>
                   )
                 );
               },
             )}
-            <div className={classes.iconWrap} data-testid="comfort">
-              <div className={classes.comfort} />
+            <IconWrap data-testid="comfort">
+              <ComfortIcon />
               Bahn.Comfort Sitzplätze
-            </div>
-          </div>
+            </IconWrap>
+          </ContentContainer>
           <h3>Auslastung</h3>
-          <div className={classes.wrap}>
-            <div className={classes.iconWrap}>
+          <ContentContainer>
+            <IconWrap>
               <SingleAuslastungsDisplay />
               Unbekannte Auslastung
-            </div>
-            <div className={classes.iconWrap}>
+            </IconWrap>
+            <IconWrap>
               <SingleAuslastungsDisplay auslastung={1} />
               Geringe Auslastung
-            </div>
-            <div className={classes.iconWrap}>
+            </IconWrap>
+            <IconWrap>
               <SingleAuslastungsDisplay auslastung={2} />
               Hohe Auslastung
-            </div>
-            <div className={classes.iconWrap}>
+            </IconWrap>
+            <IconWrap>
               <SingleAuslastungsDisplay auslastung={3} />
               Sehr hohe Auslastung
-            </div>
-            <div className={classes.iconWrap}>
+            </IconWrap>
+            <IconWrap>
               <SingleAuslastungsDisplay auslastung={4} />
               Zug ist ausgebucht
-            </div>
-          </div>
+            </IconWrap>
+          </ContentContainer>
         </DialogContent>
       </Dialog>
     </>

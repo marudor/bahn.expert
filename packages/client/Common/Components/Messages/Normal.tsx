@@ -1,25 +1,22 @@
-import { makeStyles } from '@material-ui/core';
 import { useMemo } from 'react';
+import styled from '@emotion/styled';
 import type { FC } from 'react';
 import type { Message } from 'types/iris';
 
-export const useStyles = makeStyles((theme) => ({
-  wrap: {
-    color: theme.colors.red,
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-  },
+export const MessageContainer = styled.div(({ theme }) => ({
+  color: theme.colors.red,
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
 }));
 
 interface Props {
   messages: Message[];
 }
 export const NormalMessages: FC<Props> = ({ messages }) => {
-  const classes = useStyles();
   const messagesDisplay = useMemo(
     () => messages.map((m) => ('head' in m ? m.head : m.text)).join(' +++ '),
     [messages],
   );
 
-  return <div className={classes.wrap}>{messagesDisplay}</div>;
+  return <MessageContainer>{messagesDisplay}</MessageContainer>;
 };
