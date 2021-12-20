@@ -34,11 +34,6 @@ Cypress.Commands.add('closeModal', () => {
   cy.get('.MuiBackdrop-root').should('not.exist');
 });
 
-Cypress.Commands.add('percy', (name: string) => {
-  cy.theme('dark');
-  cy.percySnapshot(name);
-});
-
 function mockStopPlace({
   lookbehind,
   lookahead,

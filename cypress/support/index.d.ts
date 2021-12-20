@@ -25,7 +25,6 @@ declare global {
       mockHannover(options?: MockOptions): void;
       openSettings(): void;
       force404(): void;
-      percy(name: string): void;
       theme(type: 'dark' | 'light' | 'black'): void;
     }
   }
