@@ -81,7 +81,7 @@ const DateTimePickerInput = styled(TextField)`
 `;
 
 export const Search: FC = () => {
-  const { setStart, setDestination, updateVia, setDate } =
+  const { setStart, setDestination, updateVia, setDate, setVia } =
     useRoutingConfigActions();
   const { start, destination, date, via, touchedDate } = useRoutingConfig();
   const { fetchRoutes, clearRoutes } = useFetchRouting();
@@ -139,11 +139,11 @@ export const Search: FC = () => {
     if (params.via) {
       const viaStations = params.via.split('|').filter(Boolean);
 
-      viaStations.forEach((viaId, index) => {
-        void setStopPlaceById(viaId, (stopPlace) => {
-          updateVia(index, stopPlace);
-        });
-      });
+      void Promise.all(viaStations.map(getStopPlaceFromAPI)).then(
+        (resolvedVias) => {
+          setVia(resolvedVias.filter(Boolean));
+        },
+      );
     }
   }, [params.via, updateVia]);
 

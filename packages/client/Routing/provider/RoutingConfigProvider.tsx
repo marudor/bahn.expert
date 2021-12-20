@@ -17,7 +17,7 @@ const useRoutingConfigInternal = ({
 }) => {
   const [start, setStart] = useState<MinimalStopPlace>();
   const [destination, setDestination] = useState<MinimalStopPlace>();
-  const [via, setVia] = useState<(MinimalStopPlace | undefined)[]>([]);
+  const [via, setVia] = useState<MinimalStopPlace[]>([]);
   const [date, setDate] = useState<Date>(new Date());
   const [touchedDate, setTouchedDate] = useState(false);
   const [settings, setSettings] = useState<RoutingSettings>(initialSettings);
@@ -80,6 +80,7 @@ const useRoutingConfigInternal = ({
     touchedDate,
     via,
     updateVia,
+    setVia,
     swapStartDestination,
     settings,
     updateSetting,
@@ -106,6 +107,7 @@ export const [
     setDestination: v.setDestination,
     setDate: v.setDate,
     updateVia: v.updateVia,
+    setVia: v.setVia,
     swapStartDestination: v.swapStartDestination,
     updateSettings: v.updateSetting,
   }),

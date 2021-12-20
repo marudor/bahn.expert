@@ -7,14 +7,14 @@ import type { MinimalStopPlace } from 'types/stopPlace';
 export interface RoutingFav {
   start: MinimalStopPlace;
   destination: MinimalStopPlace;
-  via: (MinimalStopPlace | undefined)[];
+  via: MinimalStopPlace[];
 }
 export interface RoutingFavs {
   [key: string]: RoutingFav;
 }
 
 export function routingFavKey(fav: RoutingFav): string {
-  return `${fav.start.evaNumber}${fav.via.map((s) => s?.evaNumber)}${
+  return `${fav.start.evaNumber}${fav.via.map((s) => s.evaNumber)}${
     fav.destination.evaNumber
   }`;
 }

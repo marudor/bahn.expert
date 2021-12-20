@@ -106,6 +106,9 @@ const getBabelConfig = (type) => {
       development: {
         plugins: ['@emotion'],
       },
+      testProduction: {
+        plugins: ['@emotion'],
+      },
     },
   };
 
