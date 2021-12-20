@@ -29,7 +29,7 @@ Cypress.Commands.add('theme', (type: 'dark' | 'light' | 'black') => {
 });
 
 Cypress.Commands.add('closeModal', () => {
-  cy.get('.MuiBackdrop-root').click({ force: true, multiple: true });
+  cy.get('body').type('{esc}');
 });
 
 Cypress.Commands.add('percy', (name: string) => {
