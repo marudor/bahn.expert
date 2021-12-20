@@ -22,7 +22,7 @@ const RouteHeaderTags = () => {
           'HH:mm dd.MM.yy',
         )}`,
       );
-      const viaString = `-> ${via.map((v) => `${v.name} -> `)}`;
+      const viaString = `-> ${via.map((v) => `${v?.name} -> `)}`;
 
       updateDescription(
         `${start?.name ?? '?'} ${viaString}${
@@ -30,7 +30,7 @@ const RouteHeaderTags = () => {
         } @ ${format(date || Date.now(), 'HH:mm dd.MM.yy')}`,
       );
     }
-  });
+  }, [start, destination, via, date]);
 
   return null;
 };

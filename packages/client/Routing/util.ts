@@ -14,10 +14,10 @@ export function formatDuration(duration: number): string {
 export function getRouteLink(
   start: MinimalStopPlace,
   destination: MinimalStopPlace,
-  via: MinimalStopPlace[],
+  via: (MinimalStopPlace | undefined)[],
   date?: Date | null,
 ): string {
   return `/routing/${start.evaNumber}/${destination.evaNumber}/${
     date?.toISOString() || 0
-  }/${via.map((v) => `${v.evaNumber}|`).join('')}`;
+  }/${via.map((v) => `${v?.evaNumber}|`).join('')}`;
 }

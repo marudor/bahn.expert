@@ -27,7 +27,7 @@ export const useFetchRouting = () => {
         ? {
             start: start?.evaNumber,
             destination: destination?.evaNumber,
-            via: via.map((v) => ({
+            via: via.filter(Boolean).map((v) => ({
               evaId: v.evaNumber,
             })),
             ...settings,

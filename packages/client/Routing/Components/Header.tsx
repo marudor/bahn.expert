@@ -13,9 +13,14 @@ import type { FC } from 'react';
 import type { MinimalStopPlace } from 'types/stopPlace';
 import type { RoutingFav } from 'client/Routing/provider/RoutingFavProvider';
 
+function stripToMinimalStopPlace(stopPlace: MinimalStopPlace): MinimalStopPlace;
 function stripToMinimalStopPlace(
-  stopPlace: MinimalStopPlace,
-): MinimalStopPlace {
+  stopPlace?: MinimalStopPlace,
+): MinimalStopPlace | undefined;
+function stripToMinimalStopPlace(
+  stopPlace?: MinimalStopPlace,
+): MinimalStopPlace | undefined {
+  if (!stopPlace) return undefined;
   return {
     evaNumber: stopPlace.evaNumber,
     name: stopPlace.name,
