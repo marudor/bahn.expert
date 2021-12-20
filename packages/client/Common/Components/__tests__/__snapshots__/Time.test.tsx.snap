@@ -43,6 +43,7 @@ exports[`Time does not show 0 delay number 1`] = `
 
 <div
   class="emotion-0"
+  data-testid="timeContainer"
 >
   <span
     class="emotion-1"
@@ -73,6 +74,7 @@ exports[`Time showOriginalTime = false 5 Minutes early 1`] = `
 
 <div
   class="emotion-0"
+  data-testid="timeContainer"
 >
   <span
     class="emotion-1"
@@ -107,6 +109,7 @@ exports[`Time showOriginalTime = false 10 Minutes delay 1`] = `
 
 <div
   class="emotion-0"
+  data-testid="timeContainer"
 >
   <span
     class="emotion-1"
@@ -164,6 +167,7 @@ exports[`Time showOriginalTime = true 5 Minutes early 1`] = `
 
 <div
   class="emotion-0"
+  data-testid="timeContainer"
 >
   <span
     class="emotion-1"
@@ -211,6 +215,7 @@ exports[`Time showOriginalTime = true 10 Minutes delay 1`] = `
 
 <div
   class="emotion-0"
+  data-testid="timeContainer"
 >
   <span
     class="emotion-1"
@@ -252,6 +257,7 @@ exports[`Time shows 0 delay number 1`] = `
 
 <div
   class="emotion-0"
+  data-testid="timeContainer"
 >
   <span
     class="emotion-1"
