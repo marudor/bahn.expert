@@ -1,7 +1,7 @@
 import { BaseHeader } from 'client/Common/Components/BaseHeader';
 import { ExtraMenu } from './ExtraMenu';
-import { IconButton } from '@material-ui/core';
-import { Refresh } from '@material-ui/icons';
+import { IconButton } from '@mui/material';
+import { Refresh } from '@mui/icons-material';
 import { StopPlaceSearch } from 'client/Common/Components/StopPlaceSearch';
 import { useAbfahrtenUrlPrefix } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
 import { useCallback, useEffect, useState } from 'react';

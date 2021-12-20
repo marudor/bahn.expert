@@ -16,7 +16,7 @@ describe('Abfahrten Settings', () => {
       cy.findByTestId('abfahrtS35744').within(() => {
         cy.findByTestId('abfahrtStart').should('have.text', 'S 7S 35744');
       });
-      cy.percy('Zugnummer & Linie');
+      cy.percySnapshot('Zugnummer & Linie');
     });
 
     it('Show fahrzeuggruppe', () => {
@@ -37,7 +37,7 @@ describe('Abfahrten Settings', () => {
       cy.findByTestId('fahrzeugGruppeConfig').click();
       cy.closeModal();
       cy.findByTestId('reihungFahrzeugGruppe').should('exist');
-      cy.percy('Fahrzeuggruppe');
+      cy.percySnapshot('Fahrzeuggruppe');
     });
 
     it('Show uic', () => {
@@ -58,7 +58,12 @@ describe('Abfahrten Settings', () => {
       cy.findByTestId('showUIC').click();
       cy.closeModal();
       cy.findAllByTestId('uic').should('exist');
-      cy.percy('UIC');
+      cy.findByTestId('via-Berlin Ostbahnhof').should(
+        'have.css',
+        'text-decoration-line',
+        'line-through',
+      );
+      cy.percySnapshot('UIC');
     });
   });
 

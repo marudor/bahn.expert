@@ -1,6 +1,7 @@
 import { BaseHeader } from 'client/Common/Components/BaseHeader';
-import { BugReport, Extension, Message } from '@material-ui/icons';
-import { Button, makeStyles } from '@material-ui/core';
+import { BugReport, Extension, Message } from '@mui/icons-material';
+import { Button } from '@mui/material';
+import styled from '@emotion/styled';
 import type { FC } from 'react';
 
 const Privacy = () => (
@@ -40,41 +41,41 @@ const Privacy = () => (
   </div>
 );
 
-const useStyles = makeStyles((theme) => ({
-  wrap: {
-    margin: `${theme.shape.headerSpacing}px 10px 0`,
+const Container = styled.div(({ theme }) => ({
+  margin: `${theme.shape.headerSpacing}px 10px 0`,
+  display: 'flex',
+  flexDirection: 'column',
+}));
+
+const DonationText = styled.div`
+  margin-top: 5px;
+`;
+
+const ButtonsContainer = styled.div(({ theme }) => ({
+  [theme.breakpoints.down('md')]: {
+    height: '10em',
+  },
+}));
+
+const Buttons = styled.div(({ theme }) => ({
+  '& svg': {
+    marginRight: 5,
+  },
+  display: 'flex',
+  justifyContent: 'space-around',
+  marginTop: '1em',
+  [theme.breakpoints.down('md')]: {
     display: 'flex',
     flexDirection: 'column',
-  },
-  donation: {
-    marginTop: 5,
-  },
-  buttonsWrap: {
-    [theme.breakpoints.down('md')]: {
-      height: '10em',
-    },
-  },
-  buttons: {
-    '& svg': {
-      marginRight: 5,
-    },
-    display: 'flex',
-    justifyContent: 'space-around',
-    marginTop: '1em',
-    [theme.breakpoints.down('md')]: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-    },
+    alignItems: 'center',
   },
 }));
 
 export const About: FC = () => {
-  const classes = useStyles();
   return (
     <>
       <BaseHeader>About</BaseHeader>
-      <div className={classes.wrap}>
+      <Container>
         <span>
           Entwickelt von{' '}
           <a
@@ -93,14 +94,14 @@ export const About: FC = () => {
             @marudor@chaos.social
           </a>
         </span>
-        <div className={classes.donation}>
+        <DonationText>
           Falls euch der Service gefällt, könnt ihr mir mit folgendem Button per
           PayPal Geld spenden. Falls ihr anderweitig spenden wollt, schreibt mir
           &apos;ne Mail an
           <a href="mailto:spende@marudor.de"> spende@marudor.de</a>
-        </div>
-        <div className={classes.buttonsWrap}>
-          <div className={classes.buttons}>
+        </DonationText>
+        <ButtonsContainer>
+          <Buttons>
             <a
               href="https://paypal.me/marudor"
               target="_blank"
@@ -138,10 +139,10 @@ export const About: FC = () => {
                 Features?
               </Button>
             </a>
-          </div>
-        </div>
+          </Buttons>
+        </ButtonsContainer>
         <Privacy />
-      </div>
+      </Container>
     </>
   );
 };

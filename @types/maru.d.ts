@@ -1,6 +1,15 @@
 declare module 'maru' {
   // eslint-disable-next-line import/no-extraneous-dependencies
-  import { CSSProperties } from '@material-ui/styles';
+  import { SerializedStyles } from '@mui/material';
+
+  interface Mixins {
+    cancelled: SerializedStyles;
+    delayed: SerializedStyles;
+    changed: SerializedStyles;
+    additional: SerializedStyles;
+    early: SerializedStyles;
+    singleLineText: SerializedStyles;
+  }
   interface Theme {
     colors: {
       green: string;
@@ -11,13 +20,6 @@ declare module 'maru' {
       shadedBackground: string;
       transparentBackground: string;
     };
-    mixins: {
-      cancelled: CSSProperties;
-      delayed: CSSProperties;
-      changed: CSSProperties;
-      additional: CSSProperties;
-      early: CSSProperties;
-      singleLineText: CSSProperties;
-    };
+    mixins: Mixins;
   }
 }

@@ -1,4 +1,3 @@
-import { makeStyles } from '@material-ui/core';
 import { Marker, Polyline, Tooltip } from 'react-leaflet';
 import { useMapProvider } from 'client/Map/provider/MapProvider';
 import { useMemo } from 'react';
@@ -9,15 +8,7 @@ import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import L from 'leaflet';
 
-const useStyles = makeStyles({
-  '@global': {
-    '.mapIcon': {
-      filter: 'hue-rotate(270deg)',
-    },
-  },
-});
 export const ActivePolyline: FC = () => {
-  useStyles();
   const { activePolyline, activeJourney } = useMapProvider();
   const trainIcon = useMemo(
     () =>

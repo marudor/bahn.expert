@@ -1,13 +1,8 @@
 import { AuslastungsValue } from 'types/routing';
-import { makeStyles } from '@material-ui/core';
-import Close from '@material-ui/icons/Close';
-import clsx from 'clsx';
-import Done from '@material-ui/icons/Done';
-import ErrorOutline from '@material-ui/icons/ErrorOutline';
-import Help from '@material-ui/icons/Help';
-import Warning from '@material-ui/icons/Warning';
+import { Close, Done, ErrorOutline, Help, Warning } from '@mui/icons-material';
+import styled from '@emotion/styled';
 import type { FC } from 'react';
-import type { Theme } from '@material-ui/core';
+import type { Theme } from '@emotion/react';
 
 function getIcon(auslastung?: AuslastungsValue) {
   switch (auslastung) {
@@ -29,12 +24,8 @@ const getColors = (backgroundColor: string, theme: Theme) => ({
   color: theme.palette.getContrastText(backgroundColor),
 });
 
-const useStyles = makeStyles((theme) => ({
-  [AuslastungsValue.Gering]: getColors(theme.colors.green, theme),
-  [AuslastungsValue.Hoch]: getColors(theme.colors.yellow, theme),
-  [AuslastungsValue.SehrHoch]: getColors(theme.colors.orange, theme),
-  [AuslastungsValue.Ausgebucht]: getColors(theme.colors.red, theme),
-  wrap: {
+const Container = styled.span<{ auslastung?: AuslastungsValue }>(
+  {
     fontSize: '.7em',
     display: 'inline-block',
     borderRadius: '50%',
@@ -42,7 +33,21 @@ const useStyles = makeStyles((theme) => ({
     padding: '.2em',
     lineHeight: 0,
   },
-}));
+  ({ theme, auslastung }) => {
+    switch (auslastung) {
+      case AuslastungsValue.Gering:
+        return getColors(theme.colors.green, theme);
+      case AuslastungsValue.Hoch:
+        return getColors(theme.colors.yellow, theme);
+      case AuslastungsValue.SehrHoch:
+        return getColors(theme.colors.orange, theme);
+      case AuslastungsValue.Ausgebucht:
+        return getColors(theme.colors.red, theme);
+      default:
+        return {};
+    }
+  },
+);
 
 export interface Props {
   auslastung?: AuslastungsValue;
@@ -52,14 +57,9 @@ export const SingleAuslastungsDisplay: FC<Props> = ({
   auslastung,
   className,
 }) => {
-  const classes = useStyles();
-
   return (
-    <span
-      // @ts-expect-error cant handle dynamic enum stuff
-      className={clsx(classes[auslastung], classes.wrap, className)}
-    >
+    <Container className={className} auslastung={auslastung}>
       {getIcon(auslastung)}
-    </span>
+    </Container>
   );
 };

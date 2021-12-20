@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { useTheme } from '@material-ui/core';
+import { useTheme } from '@mui/system';
 import type { FC } from 'react';
 
 export const ThemeHeaderTags: FC = () => {

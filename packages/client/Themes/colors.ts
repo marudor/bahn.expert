@@ -6,9 +6,9 @@ import {
   orange,
   red,
   yellow,
-} from '@material-ui/core/colors';
+} from '@mui/material/colors';
 import { ThemeType } from './type';
-import type { Theme as MuiTheme } from '@material-ui/core';
+import type { Theme } from '@mui/material';
 
 interface Colors {
   red: string;
@@ -20,9 +20,11 @@ interface Colors {
   transparentBackground: string;
 }
 
-export function getColors(theme: MuiTheme, themeType: ThemeType): Colors {
+export function getColors(theme: Theme, themeType: ThemeType): Colors {
   const backgroundAugment = theme.palette.augmentColor({
-    main: theme.palette.background.default,
+    color: {
+      main: theme.palette.background.default,
+    },
   });
 
   switch (themeType) {

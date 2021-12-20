@@ -42,8 +42,13 @@ describe('NormalVia', () => {
     expect(hbf).not.toHaveAttribute('href', 'hbf');
     expect(hbf).toHaveStyle('font-weight: bold');
     expect(hbf).toMatchInlineSnapshot(`
+      .emotion-0 {
+        color: #fff;
+        font-weight: bold;
+      }
+
       <span
-        class="Normal-main Normal-hbf"
+        class="emotion-0"
         data-testid="via-hbf"
       >
         hbf

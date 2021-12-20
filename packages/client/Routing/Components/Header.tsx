@@ -1,50 +1,57 @@
 import { BaseHeader } from 'client/Common/Components/BaseHeader';
-import { IconButton, makeStyles } from '@material-ui/core';
+import { Favorite, FavoriteBorder } from '@mui/icons-material';
+import { IconButton } from '@mui/material';
 import {
   routingFavKey,
   useRoutingFavActions,
   useRoutingFavs,
 } from 'client/Routing/provider/RoutingFavProvider';
-import { Star, StarBorder } from '@material-ui/icons';
 import { useCallback, useMemo } from 'react';
 import { useRoutingConfig } from 'client/Routing/provider/RoutingConfigProvider';
+import styled from '@emotion/styled';
 import type { FC } from 'react';
 import type { MinimalStopPlace } from 'types/stopPlace';
 import type { RoutingFav } from 'client/Routing/provider/RoutingFavProvider';
 
+function stripToMinimalStopPlace(stopPlace: MinimalStopPlace): MinimalStopPlace;
 function stripToMinimalStopPlace(
-  stopPlace: MinimalStopPlace,
-): MinimalStopPlace {
+  stopPlace?: MinimalStopPlace,
+): MinimalStopPlace | undefined;
+function stripToMinimalStopPlace(
+  stopPlace?: MinimalStopPlace,
+): MinimalStopPlace | undefined {
+  if (!stopPlace) return undefined;
   return {
     evaNumber: stopPlace.evaNumber,
     name: stopPlace.name,
   };
 }
 
-const useStyles = makeStyles((theme) => ({
-  wrap: {
-    width: '100%',
-    display: 'grid',
-    gridTemplateColumns: '1fr max-content',
-    gridTemplateRows: '1fr 1fr',
-    gridTemplateAreas: '"s f" "d f"',
-    alignItems: 'center',
-  },
-  start: {
-    gridArea: 's',
-    ...theme.mixins.singleLineText,
-  },
-  destination: {
+const Container = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: 's f' 'd f';
+  align-items: center;
+`;
+
+const StartName = styled.span(({ theme }) => theme.mixins.singleLineText, {
+  gridArea: 's',
+});
+
+const DestinationName = styled.span(
+  ({ theme }) => theme.mixins.singleLineText,
+  {
     gridArea: 'd',
-    ...theme.mixins.singleLineText,
   },
-  fav: {
-    gridArea: 'f',
-  },
-}));
+);
+
+const FavoriteButton = styled(IconButton)`
+  grid-area: f;
+`;
 
 const InnerHeader = () => {
-  const classes = useStyles();
   const { start, destination, via } = useRoutingConfig();
   const favs = useRoutingFavs();
   const { fav, unfav } = useRoutingFavActions();
@@ -77,19 +84,15 @@ const InnerHeader = () => {
   }
 
   return (
-    <div className={classes.wrap}>
-      <span className={classes.start}>{start?.name}</span>
-      <span className={classes.destination}>{destination?.name}</span>
+    <Container>
+      <StartName>{start?.name}</StartName>
+      <DestinationName>{destination?.name}</DestinationName>
       {currentFav && (
-        <IconButton
-          className={classes.fav}
-          data-testid="routingFavButton"
-          onClick={toggleFav}
-        >
-          {isFaved ? <Star /> : <StarBorder />}
-        </IconButton>
+        <FavoriteButton data-testid="routingFavButton" onClick={toggleFav}>
+          {isFaved ? <Favorite /> : <FavoriteBorder />}
+        </FavoriteButton>
       )}
-    </div>
+    </Container>
   );
 };
 

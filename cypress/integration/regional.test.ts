@@ -13,7 +13,7 @@ describe('Regional', () => {
         url: '/api/hafas/experimental/irisCompatibleAbfahrten/0723869?*',
         query: {
           lookahead: '150',
-          lookbehind: '0',
+          lookbehind: '10',
         },
       },
       { fixture: 'regional/departurePostStrasse' },
@@ -55,7 +55,7 @@ describe('Regional', () => {
         url: '/api/hafas/experimental/irisCompatibleAbfahrten/0369218?*',
         query: {
           lookahead: '150',
-          lookbehind: '0',
+          lookbehind: '10',
         },
       },
       { fixture: 'regional/departureArndtSpittastrasse' },

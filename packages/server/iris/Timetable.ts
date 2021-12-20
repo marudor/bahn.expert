@@ -433,7 +433,7 @@ export default class Timetable {
     );
 
     parsedMessages
-      .filter(Boolean as unknown as ExcludesFalse)
+      .filter(Boolean)
       .sort((a, b) =>
         compareAsc(a.message.timestamp || 0, b.message.timestamp || 0),
       )

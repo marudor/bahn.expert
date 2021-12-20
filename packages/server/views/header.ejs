@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <script async defer data-api="https://<%- rawBaseUrl %>/api/event" data-domain="<%- rawBaseUrl %>" src="https://<%- rawBaseUrl %>/js/script.js"></script>
+  <% if (withStats) { %>
+    <script async defer data-api="https://<%- rawBaseUrl %>/api/event" data-domain="<%- rawBaseUrl %>" src="https://<%- rawBaseUrl %>/js/script.js"></script>
+  <% } %>
   <meta charSet="utf-8" >
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -44,9 +46,7 @@
     U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 </style>
-  <% if (jssCss) {%>
-    <style id="jss"><%- jssCss %></style>
-  <%}%>
+  <%- emotionCss %>
 <% if (cssTags) {%>
     <%- cssTags %>
   <%}%>

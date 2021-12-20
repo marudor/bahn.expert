@@ -3,7 +3,8 @@ import { ChunkExtractor } from '@loadable/server';
 import { renderToString } from 'react-dom/server';
 import { sanitizeStorage } from 'server/sanitizeStorage';
 import { ServerBaseComponent } from 'client/ServerBaseComponent';
-import { SheetsRegistry } from 'jss';
+import createEmotionCache from '@emotion/cache';
+import createEmotionServer from '@emotion/server/create-instance';
 import ejs from 'ejs';
 import fs from 'fs';
 import path from 'path';
@@ -26,6 +27,12 @@ const footerEjs = fs
 const footerTemplate = ejs.compile(footerEjs);
 
 export default (ctx: Context): void => {
+  const emotionCache = createEmotionCache({
+    key: 'css',
+  });
+  // eslint-disable-next-line @typescript-eslint/unbound-method
+  const { extractCriticalToChunks, constructStyleTagsFromChunks } =
+    createEmotionServer(emotionCache);
   const extractor = new ChunkExtractor({ stats: ctx.loadableStats });
   const selectedDetail = ctx.query.selectedDetail;
 
@@ -58,25 +65,27 @@ export default (ctx: Context): void => {
   });
 
   const context: any = {};
-  const sheets = new SheetsRegistry();
   const App = extractor.collectChunks(
     <ServerBaseComponent
       helmetContext={context}
       url={ctx.url}
       storage={ctx.request.storage}
-      sheetsRegistry={sheets}
+      emotionCache={emotionCache}
     />,
   );
 
   // eslint-disable-next-line testing-library/render-result-naming-convention
   const app = renderToString(App);
+  const emotionChunks = extractCriticalToChunks(app);
+  const emotionCss = constructStyleTagsFromChunks(emotionChunks);
   ctx.body = headerTemplate({
+    withStats: process.env.NODE_ENV === 'production',
     header: context.helmet,
     cssTags: extractor.getStyleTags(),
     linkTags: extractor.getLinkTags(),
     configOverride: JSON.stringify(globalThis.configOverride),
     imprint: JSON.stringify(globalThis.IMPRINT),
-    jssCss: sheets.toString(),
+    emotionCss,
     baseUrl: globalThis.BASE_URL,
     rawBaseUrl: globalThis.RAW_BASE_URL,
   });

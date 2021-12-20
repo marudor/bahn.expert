@@ -13,14 +13,4 @@ describe('StationLink', () => {
     expect(anchor).toHaveAttribute('href', '/test');
     expect(anchor).toHaveTextContent('test');
   });
-
-  it('passes extra props', () => {
-    render(StationLink, {
-      stationName: 'test',
-      // @ts-expect-error just for test
-      extra: 1,
-    });
-
-    expect(screen.queryByTestId('stationLink')).toHaveAttribute('extra', '1');
-  });
 });

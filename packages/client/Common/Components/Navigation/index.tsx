@@ -1,31 +1,30 @@
-import { AlarmOnOutlined, Explore, Info, Search } from '@material-ui/icons';
+import { AlarmOnOutlined, Explore, Info, Search } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import {
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
-  makeStyles,
   SwipeableDrawer,
-} from '@material-ui/core';
+} from '@mui/material';
 import { NavigationContext } from './NavigationContext';
 import { ThemeSelection } from './ThemeSelection';
 import { useCallback, useMemo, useState } from 'react';
 import { Zugsuche } from 'client/Common/Components/Zugsuche';
+import styled from '@emotion/styled';
 import type { FC, ReactNode } from 'react';
 
-const useStyles = makeStyles({
-  headline: {
-    textAlign: 'center',
+const Headline = styled.h3`
+  text-align: center;
+`;
+
+const Drawer = styled(List)({
+  width: 230,
+  '& a': {
+    color: 'inherit',
   },
-  drawer: {
-    width: 230,
-    '& a': {
-      color: 'inherit',
-    },
-    '& .MuiListItem-button': {
-      padding: '20px 20px',
-    },
+  '& .MuiListItem-button': {
+    padding: '20px 20px',
   },
 });
 
@@ -34,7 +33,6 @@ interface Props {
 }
 
 export const Navigation: FC<Props> = ({ children }) => {
-  const classes = useStyles();
   const [open, setOpen] = useState(false);
   const toggleDrawer = useCallback(() => {
     setOpen((old) => !old);
@@ -49,8 +47,8 @@ export const Navigation: FC<Props> = ({ children }) => {
   return (
     <NavigationContext.Provider value={navigationContext}>
       <SwipeableDrawer open={open} onClose={toggleDrawer} onOpen={toggleDrawer}>
-        <h3 className={classes.headline}>BahnhofsAbfahrten</h3>
-        <List className={classes.drawer} onClick={toggleDrawer}>
+        <Headline>BahnhofsAbfahrten</Headline>
+        <Drawer onClick={toggleDrawer}>
           <Link to="/">
             <ListItem button>
               <ListItemIcon>
@@ -94,7 +92,7 @@ export const Navigation: FC<Props> = ({ children }) => {
               <ListItemText primary="About" />
             </ListItem>
           </Link>
-        </List>
+        </Drawer>
       </SwipeableDrawer>
       {children}
     </NavigationContext.Provider>

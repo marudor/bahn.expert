@@ -3,6 +3,8 @@ import { StaticRouter } from 'react-router-dom/server';
 import { StorageContext } from 'client/useStorage';
 import { ThemeProvider } from 'client/Common/provider/ThemeProvider';
 import { ThemeWrap } from 'client/ThemeWrap';
+import React from 'react';
+import type { EmotionCache } from '@emotion/react';
 import type { ReactElement } from 'react';
 import type { StorageInterface } from 'client/Common/Storage';
 
@@ -10,23 +12,25 @@ interface Props {
   helmetContext: any;
   url: string;
   storage: StorageInterface;
-  sheetsRegistry: any;
+  emotionCache: EmotionCache;
 }
 export function ServerBaseComponent({
   helmetContext,
   url,
   storage,
-  sheetsRegistry,
+  emotionCache,
 }: Props): ReactElement {
   return (
-    <HelmetProvider context={helmetContext}>
-      <StaticRouter location={url}>
-        <StorageContext.Provider value={storage}>
-          <ThemeProvider>
-            <ThemeWrap sheetsRegistry={sheetsRegistry} />
-          </ThemeProvider>
-        </StorageContext.Provider>
-      </StaticRouter>
-    </HelmetProvider>
+    <React.StrictMode>
+      <HelmetProvider context={helmetContext}>
+        <StaticRouter location={url}>
+          <StorageContext.Provider value={storage}>
+            <ThemeProvider>
+              <ThemeWrap emotionCache={emotionCache} />
+            </ThemeProvider>
+          </StorageContext.Provider>
+        </StaticRouter>
+      </HelmetProvider>
+    </React.StrictMode>
   );
 }

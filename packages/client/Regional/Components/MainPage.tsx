@@ -9,6 +9,6 @@ interface Props {
 
 export const RegionalMainPage: FC<Props> = ({ staticContext }) => (
   <FavList staticContext={staticContext}>
-    <FavEntryDisplay clickable={false} text="Nahverkehr Abfahrten <BETA>" />
+    <FavEntryDisplay nonClickable text="Nahverkehr Abfahrten <BETA>" />
   </FavList>
 );

@@ -1,6 +1,5 @@
 import { FavEntry, FavEntryDisplay } from './FavEntry';
 import { Link } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core';
 import { MostUsed } from './MostUsed';
 import { Navigate } from 'react-router';
 import { useAbfahrtenError } from 'client/Abfahrten/provider/AbfahrtenProvider';
@@ -11,25 +10,17 @@ import {
 } from 'client/Abfahrten/provider/FavProvider';
 import { useHeaderTagsActions } from 'client/Common/provider/HeaderTagProvider';
 import { Zugsuche } from 'client/Common/Components/Zugsuche';
+import styled from '@emotion/styled';
 import type { AbfahrtenError } from 'client/Abfahrten/provider/AbfahrtenProvider';
 import type { FC, ReactNode } from 'react';
 import type { MinimalStopPlace } from 'types/stopPlace';
 import type { StaticRouterContext } from 'react-router';
 
-const useStyles = makeStyles((theme) => ({
-  wrap: {
-    display: 'flex',
-    flexDirection: 'column',
-    flex: 1,
-  },
-  error: {
-    margin: '1em',
-    fontSize: '2em',
-  },
-  errorHead: {
-    color: theme.colors.red,
-  },
-}));
+const Main = styled.main`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+`;
 
 function getErrorText(
   error: AbfahrtenError,
@@ -59,7 +50,6 @@ interface Props {
 }
 
 export const FavList: FC<Props> = ({ staticContext, children }) => {
-  const classes = useStyles();
   const favs = useFavs();
   const MostUsedComponent = useMostUsedComponent();
   const sortedFavs = useMemo(() => {
@@ -80,7 +70,7 @@ export const FavList: FC<Props> = ({ staticContext, children }) => {
   }, []);
 
   return (
-    <main className={classes.wrap}>
+    <Main>
       {children}
       <Zugsuche />
       {/* eslint-disable-next-line no-nested-ternary */}
@@ -88,7 +78,7 @@ export const FavList: FC<Props> = ({ staticContext, children }) => {
         <>
           <FavEntryDisplay
             data-testid="error"
-            clickable={false}
+            nonClickable
             text={getErrorText(savedError, staticContext)}
           />
           {savedError.station && (
@@ -104,13 +94,13 @@ export const FavList: FC<Props> = ({ staticContext, children }) => {
 
       {sortedFavs.length ? (
         <>
-          <FavEntryDisplay clickable={false} text="Favoriten" />
+          <FavEntryDisplay nonClickable text="Favoriten" />
           {sortedFavs}
         </>
       ) : (
         <>
           <FavEntryDisplay
-            clickable={false}
+            nonClickable
             data-testid="noFav"
             text="Keine Favoriten"
           />
@@ -118,10 +108,10 @@ export const FavList: FC<Props> = ({ staticContext, children }) => {
       )}
       {MostUsedComponent && (
         <>
-          <FavEntryDisplay clickable={false} text="Oft Gesucht" />
+          <FavEntryDisplay nonClickable text="Oft Gesucht" />
           <MostUsed />
         </>
       )}
-    </main>
+    </Main>
   );
 };

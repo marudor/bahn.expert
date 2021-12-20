@@ -1,10 +1,10 @@
 import { format } from 'date-fns';
-import { makeStyles } from '@material-ui/core';
 import { RouteList } from './RouteList';
 import { Search } from './Search';
 import { useEffect } from 'react';
 import { useHeaderTagsActions } from 'client/Common/provider/HeaderTagProvider';
 import { useRoutingConfig } from 'client/Routing/provider/RoutingConfigProvider';
+import styled from '@emotion/styled';
 import type { FC } from 'react';
 
 const RouteHeaderTags = () => {
@@ -30,25 +30,22 @@ const RouteHeaderTags = () => {
         } @ ${format(date || Date.now(), 'HH:mm dd.MM.yy')}`,
       );
     }
-  });
+  }, [start, destination, via, date]);
 
   return null;
 };
 
-const useStyles = makeStyles({
-  wrap: {
-    marginLeft: '.5em',
-    marginRight: '.5em',
-  },
-});
+const Container = styled.main`
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+`;
 
 export const RoutesMain: FC = () => {
-  const classes = useStyles();
   return (
-    <main className={classes.wrap}>
+    <Container>
       <RouteHeaderTags />
       <Search />
       <RouteList />
-    </main>
+    </Container>
   );
 };

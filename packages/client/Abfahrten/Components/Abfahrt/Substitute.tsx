@@ -1,23 +1,19 @@
-import { makeStyles } from '@material-ui/core';
+import styled from '@emotion/styled';
 import type { FC } from 'react';
 import type { SubstituteRef } from 'types/iris';
 
-const useStyles = makeStyles({
-  text: {
-    fontSize: '.7em',
-  },
-});
-
+const Text = styled.span`
+  font-size: 0.7em;
+`;
 interface Props {
   substitute: SubstituteRef;
 }
 
 export const Substitute: FC<Props> = ({ substitute }) => {
-  const classes = useStyles();
   return (
     <>
-      <span className={classes.text}>Ersatzzug für</span>
-      <span className={classes.text}>{substitute.train}</span>
+      <Text>Ersatzzug für</Text>
+      <Text>{substitute.train}</Text>
     </>
   );
 };

@@ -1,60 +1,66 @@
 /* eslint no-nested-ternary: 0 */
-import { makeStyles } from '@material-ui/core';
 import { Time } from 'client/Common/Components/Time';
 import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
-import clsx from 'clsx';
+import styled from '@emotion/styled';
 import type { FC } from 'react';
 
-const useStyles = makeStyles((theme) => ({
-  cancelled: theme.mixins.cancelled,
-  timeWrapper: {
+const TimeContainer = styled.div<{ cancelled?: boolean }>(
+  ({ theme }) => ({
     display: 'flex',
     justifyContent: 'flex-end',
     '& > span': {
       color: theme.palette.text.primary,
       whiteSpace: 'pre-wrap',
     },
-  },
-}));
+  }),
+  ({ theme, cancelled }) => cancelled && theme.mixins.cancelled,
+);
 
 export const Times: FC = () => {
-  const classes = useStyles();
   const {
     abfahrt: { cancelled, arrival, departure },
     detail,
   } = useAbfahrt();
 
   return (
-    <div data-testid="times" className={clsx(cancelled && classes.cancelled)}>
+    <div data-testid="times">
       {detail ? (
         <>
           {arrival && (
-            <div
-              className={clsx(
-                classes.timeWrapper,
-                arrival.cancelled && classes.cancelled,
-              )}
+            <TimeContainer
+              cancelled={arrival.cancelled || cancelled}
+              data-testid="arrivalTimeContainer"
             >
               <span>{'An: '}</span>
               <Time alignEnd delay={arrival.delay} real={arrival.time} />
-            </div>
+            </TimeContainer>
           )}
           {departure && (
-            <div
-              className={clsx(
-                classes.timeWrapper,
-                departure.cancelled && classes.cancelled,
-              )}
+            <TimeContainer
+              cancelled={departure.cancelled || cancelled}
+              data-testid="departureTimeContainer"
             >
               <span>{'Ab: '}</span>
               <Time alignEnd delay={departure.delay} real={departure.time} />
-            </div>
+            </TimeContainer>
           )}
         </>
       ) : departure && (!departure.cancelled || cancelled) ? (
-        <Time alignEnd delay={departure.delay} real={departure.time} />
+        <Time
+          alignEnd
+          delay={departure.delay}
+          real={departure.time}
+          cancelled={cancelled}
+        />
       ) : (
-        arrival && <Time alignEnd delay={arrival.delay} real={arrival.time} />
+        arrival && (
+          <Time
+            alignEnd
+            delay={arrival.delay}
+            real={arrival.time}
+            cancelled={cancelled}
+          />
+        )
       )}
     </div>
   );

@@ -1,21 +1,19 @@
 /* eslint-disable react/no-unescaped-entities */
 import { BRInfo } from 'client/Common/Components/Reihung/BRInfo';
 import { Fahrzeug } from './Fahrzeug';
-import { makeStyles } from '@material-ui/core';
 import { useMemo } from 'react';
+import styled from '@emotion/styled';
 import type { CoachSequenceGroup } from 'types/coachSequence';
 import type { FC } from 'react';
 import type { InheritedProps } from './Fahrzeug';
 
-const useStyles = makeStyles({
-  bezeichnung: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    position: 'absolute',
-    bottom: '2.5em',
-  },
-});
+const Bezeichnung = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  bottom: 2.5em;
+`;
 
 interface Props extends InheritedProps {
   gruppe: CoachSequenceGroup;
@@ -36,7 +34,6 @@ export const Gruppe: FC<Props> = ({
   originalTrainNumber,
   ...rest
 }) => {
-  const classes = useStyles();
   const gruppenPos = useMemo(() => {
     const groupStart = Math.min(
       ...gruppe.coaches.map((c) => c.position.startPercent),
@@ -79,7 +76,7 @@ export const Gruppe: FC<Props> = ({
     <>
       {fahrzeuge}
       {extraInfoLine && (
-        <span className={classes.bezeichnung} style={gruppenPos}>
+        <Bezeichnung style={gruppenPos}>
           {gruppe.baureihe && <BRInfo br={gruppe.baureihe} />}
           {showGruppenZugnummer && gruppe.number && (
             <span>
@@ -93,7 +90,7 @@ export const Gruppe: FC<Props> = ({
               {gruppe.name.replace(RPFRegex, '$1 $2 $3')}
             </span>
           )}
-        </span>
+        </Bezeichnung>
       )}
     </>
   );

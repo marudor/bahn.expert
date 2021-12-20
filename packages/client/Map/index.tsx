@@ -1,5 +1,5 @@
 import { MapProvider } from 'client/Map/provider/MapProvider';
-import { NoSsr } from '@material-ui/core';
+import { NoSsr } from '@mui/material';
 import loadable from '@loadable/component';
 import type { FC } from 'react';
 

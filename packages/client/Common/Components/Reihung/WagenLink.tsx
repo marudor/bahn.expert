@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core';
+import { css } from '@emotion/react';
 import { stopPropagation } from 'client/Common/stopPropagation';
 import { useMemo } from 'react';
 import type {
@@ -7,14 +7,12 @@ import type {
 } from 'types/coachSequence';
 import type { FC } from 'react';
 
-const useStyles = makeStyles({
-  link: {
-    position: 'absolute',
-    top: '100%',
-    left: '50%',
-    transform: 'translateX(-50%)',
-  },
-});
+const linkCss = css`
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+`;
 
 interface Props {
   fahrzeug: CoachSequenceCoach;
@@ -48,7 +46,6 @@ const allowedTypes = ['IC', 'ICE'];
 const seriesRegex = /\.S(\d)/;
 
 export const WagenLink: FC<Props> = ({ fahrzeug, identifier, type }) => {
-  const classes = useStyles();
   const imageName = useMemo(() => {
     if (
       !allowedTypes.includes(type) ||
@@ -83,12 +80,12 @@ export const WagenLink: FC<Props> = ({ fahrzeug, identifier, type }) => {
   }, [fahrzeug.category, fahrzeug.type, fahrzeug.uic, identifier, type]);
 
   if (!imageName) {
-    return <span className={classes.link}>{fahrzeug.type}</span>;
+    return <span css={linkCss}>{fahrzeug.type}</span>;
   }
 
   return (
     <a
-      className={classes.link}
+      css={linkCss}
       onClick={stopPropagation}
       href={`https://lib.finalrewind.org/dbdb/db_wagen/${imageName}.png`}
       target="_blank"

@@ -1,21 +1,21 @@
-import { makeStyles } from '@material-ui/core';
+import { css } from '@emotion/react';
 
-export const useStyles = makeStyles({
-  info: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-  margin: {
-    flex: 0.7,
-    marginRight: '.5em',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-  },
-  destination: {
-    flex: 1,
-  },
-  reihung: {
-    fontSize: '.5em',
-  },
-});
+export const segmentStyles = {
+  info: css`
+    display: flex;
+    align-items: center;
+  `,
+  margin: css`
+    flex: 0.7;
+    margin-right: 0.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  `,
+  destination: css`
+    flex: 1;
+  `,
+  reihung: css`
+    font-size: 0.5em;
+  `,
+};

@@ -26,15 +26,12 @@ Cypress.Commands.add('theme', (type: 'dark' | 'light' | 'black') => {
   cy.findByTestId('navToggle').click();
   cy.findByTestId('themes').click();
   cy.findByTestId('themeList').find(`[data-value="${type}"]`).click();
+  cy.reload();
 });
 
 Cypress.Commands.add('closeModal', () => {
-  cy.get('.MuiBackdrop-root').click({ force: true });
-});
-
-Cypress.Commands.add('percy', (name: string) => {
-  cy.theme('dark');
-  cy.percySnapshot(name);
+  cy.get('body').type('{esc}');
+  cy.get('.MuiBackdrop-root').should('not.exist');
 });
 
 function mockStopPlace({
@@ -76,7 +73,7 @@ function mockStopPlace({
 
 Cypress.Commands.add(
   'mockFrankfurt',
-  ({ lookbehind = 0, lookahead = 150, delay = 0 } = {}) => {
+  ({ lookbehind = 10, lookahead = 150, delay = 0 } = {}) => {
     mockStopPlace({
       lookahead,
       lookbehind,
@@ -90,7 +87,7 @@ Cypress.Commands.add(
 
 Cypress.Commands.add(
   'mockHamburg',
-  ({ lookbehind = 0, lookahead = 150, delay = 0 } = {}) => {
+  ({ lookbehind = 10, lookahead = 150, delay = 0 } = {}) => {
     mockStopPlace({
       lookahead,
       lookbehind,
@@ -104,7 +101,7 @@ Cypress.Commands.add(
 
 Cypress.Commands.add(
   'mockHannover',
-  ({ lookbehind = 0, lookahead = 150, delay = 0 } = {}) => {
+  ({ lookbehind = 10, lookahead = 150, delay = 0 } = {}) => {
     mockStopPlace({
       lookahead,
       lookbehind,
