@@ -14,8 +14,6 @@ describe('Homepage', () => {
       cy.theme('dark');
       cy.getCookie('theme').should('have.property', 'value', 'dark');
       cy.get('body').should('have.css', 'background-color', 'rgb(48, 48, 48)');
-      // eslint-disable-next-line cypress/no-unnecessary-waiting
-      cy.wait(100);
       cy.percySnapshot('dark theme');
     });
 
@@ -23,8 +21,6 @@ describe('Homepage', () => {
       cy.theme('black');
       cy.getCookie('theme').should('have.property', 'value', 'black');
       cy.get('body').should('have.css', 'background-color', 'rgb(0, 0, 0)');
-      // eslint-disable-next-line cypress/no-unnecessary-waiting
-      cy.wait(100);
       cy.percySnapshot('black theme');
     });
 
@@ -36,8 +32,6 @@ describe('Homepage', () => {
         'background-color',
         'rgb(250, 250, 250)',
       );
-      // eslint-disable-next-line cypress/no-unnecessary-waiting
-      cy.wait(100);
       cy.percySnapshot('light theme');
     });
   });

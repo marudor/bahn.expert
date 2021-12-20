@@ -1,7 +1,6 @@
 import { blue, purple } from '@mui/material/colors';
 import { createTheme } from '@mui/material';
 import { ThemeType } from './type';
-import deepMerge from 'deepmerge';
 import type { Mixins as MaruMixins } from 'maru';
 import type { Theme, ThemeOptions } from '@mui/material';
 
@@ -27,9 +26,50 @@ declare module '@mui/material/styles/createMixins' {
 
 const headerSpacing = 54;
 
-const getMuiOptions = (themeType: ThemeType) => {
-  const commonOptions: ThemeOptions = {
+const primaryColor = {
+  [ThemeType.dark]: blue[700],
+  [ThemeType.black]: blue[800],
+  [ThemeType.light]: blue[400],
+};
+
+const backgroundColor = {
+  [ThemeType.dark]: '#303030',
+  [ThemeType.black]: '#000000',
+  [ThemeType.light]: '#fafafa',
+};
+
+const secondaryColor = {
+  [ThemeType.dark]: purple.A400,
+  [ThemeType.black]: purple.A400,
+  [ThemeType.light]: purple[400],
+};
+
+const overrides = {
+  [ThemeType.black]: {
+    MuiPaper: {
+      styleOverrides: {
+        elevation1: {
+          backgroundColor: 'inherit',
+          backgroundImage: 'unset',
+          boxShadow: '0 1px 0 rgba(120, 120, 120, 0.5)',
+        },
+      },
+    },
+  },
+};
+
+const getMuiOptions = (themeType: ThemeType): ThemeOptions => {
+  return {
     palette: {
+      background: {
+        default: backgroundColor[themeType],
+      },
+      primary: {
+        main: primaryColor[themeType],
+      },
+      secondary: {
+        main: secondaryColor[themeType],
+      },
       mode: getPaletteType(themeType),
     },
     shape: {
@@ -64,56 +104,10 @@ const getMuiOptions = (themeType: ThemeType) => {
           },
         },
       },
+      // @ts-expect-error undefined works if index doesnt exist
+      ...overrides[themeType],
     },
   };
-
-  switch (themeType) {
-    case ThemeType.black:
-      return deepMerge(commonOptions, {
-        palette: {
-          background: {
-            default: '#000000',
-          },
-          primary: {
-            main: blue[800],
-          },
-        },
-        overrides: {
-          MuiPaper: {
-            styleOverrides: {
-              elevation1: {
-                boxShadow: '0 1px 0 rgba(120, 120, 120, 0.5)',
-              },
-            },
-          },
-        },
-      });
-    case ThemeType.dark:
-      return deepMerge(commonOptions, {
-        palette: {
-          background: {
-            default: '#303030',
-          },
-          primary: {
-            main: blue[700],
-          },
-          secondary: {
-            main: purple.A400,
-          },
-        },
-      });
-    case ThemeType.light:
-      return deepMerge(commonOptions, {
-        palette: {
-          primary: {
-            main: blue[400],
-          },
-          background: {
-            default: '#fafafa',
-          },
-        },
-      });
-  }
 };
 
 export const createMuiTheme = (themeType: ThemeType): Theme =>

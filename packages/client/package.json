@@ -21,7 +21,6 @@
     "constate": "^3.3.0",
     "date-fns": "^2.27.0",
     "debounce-promise": "^3.1.2",
-    "deepmerge": "^4.2.2",
     "downshift": "^6.1.7",
     "leaflet": "^1.7.1",
     "qs": "^6.10.2",

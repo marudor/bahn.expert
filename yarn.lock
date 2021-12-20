@@ -5682,7 +5682,6 @@ __metadata:
     constate: ^3.3.0
     date-fns: ^2.27.0
     debounce-promise: ^3.1.2
-    deepmerge: ^4.2.2
     downshift: ^6.1.7
     eslint: ^8.4.1
     leaflet: ^1.7.1
