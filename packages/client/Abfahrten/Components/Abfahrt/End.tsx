@@ -4,7 +4,6 @@ import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import styled from '@emotion/styled';
 import type { FC } from 'react';
 
-
 const Container = styled.div`
   font-size: 2.5em;
   align-items: flex-end;
