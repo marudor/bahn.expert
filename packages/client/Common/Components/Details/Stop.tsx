@@ -45,7 +45,7 @@ const StyledPlatform = styled(Platform)`
 
 const ReihungContainer = styled.div`
   grid-area: wr;
-  font-size: 0.5;
+  font-size: 0.5em;
   overflow: hidden;
 `;
 
