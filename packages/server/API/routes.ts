@@ -21,8 +21,6 @@ import { ReihungMonitoringController } from './controller/Reihung/monitor';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { ReihungControllerV1 } from './controller/Reihung/v1';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-import { ReihungControllerV2 } from './controller/Reihung/v2';
-// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { ReihungControllerV4 } from './controller/Reihung/v4';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { StopPlaceController } from './controller/StopPlace/v1';
@@ -1555,183 +1553,6 @@ const models: TsoaRoute.Models = {
         "type": {"ref":"OEBBInfo","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "AdditionalFahrzeugInfo": {
-        "dataType": "refObject",
-        "properties": {
-            "klasse": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":[0]},{"dataType":"enum","enums":[1]},{"dataType":"enum","enums":[2]},{"dataType":"enum","enums":[3]},{"dataType":"enum","enums":[4]}],"required":true},
-            "icons": {"dataType":"nestedObjectLiteral","nestedProperties":{"wifi":{"dataType":"boolean"},"toddler":{"dataType":"boolean"},"family":{"dataType":"boolean"},"info":{"dataType":"boolean"},"quiet":{"dataType":"boolean"},"disabled":{"dataType":"boolean"},"bike":{"dataType":"boolean"},"wheelchair":{"dataType":"boolean"},"dining":{"dataType":"boolean"}},"required":true},
-            "comfort": {"dataType":"boolean"},
-            "comfortSeats": {"dataType":"string"},
-            "disabledSeats": {"dataType":"string"},
-            "familySeats": {"dataType":"string"},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Fahrzeugausstattung": {
-        "dataType": "refObject",
-        "properties": {
-            "anzahl": {"dataType":"string","required":true},
-            "ausstattungsart": {"dataType":"string","required":true},
-            "bezeichnung": {"dataType":"string","required":true},
-            "status": {"dataType":"string","required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "FahrzeugKategorie": {
-        "dataType": "refAlias",
-        "type": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["DOPPELSTOCKSTEUERWAGENERSTEZWEITEKLASSE"]},{"dataType":"enum","enums":["DOPPELSTOCKSTEUERWAGENZWEITEKLASSE"]},{"dataType":"enum","enums":["DOPPELSTOCKWAGENERSTEKLASSE"]},{"dataType":"enum","enums":["DOPPELSTOCKWAGENERSTEZWEITEKLASSE"]},{"dataType":"enum","enums":["DOPPELSTOCKWAGENZWEITEKLASSE"]},{"dataType":"enum","enums":["HALBSPEISEWAGENERSTEKLASSE"]},{"dataType":"enum","enums":["HALBSPEISEWAGENZWEITEKLASSE"]},{"dataType":"enum","enums":["LOK"]},{"dataType":"enum","enums":["REISEZUGWAGENERSTEKLASSE"]},{"dataType":"enum","enums":["REISEZUGWAGENERSTEZWEITEKLASSE"]},{"dataType":"enum","enums":["REISEZUGWAGENZWEITEKLASSE"]},{"dataType":"enum","enums":["SPEISEWAGEN"]},{"dataType":"enum","enums":["STEUERWAGENERSTEKLASSE"]},{"dataType":"enum","enums":["STEUERWAGENERSTEZWEITEKLASSE"]},{"dataType":"enum","enums":["STEUERWAGENZWEITEKLASSE"]},{"dataType":"enum","enums":["TRIEBKOPF"]},{"dataType":"enum","enums":[""]}],"validators":{}},
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Position": {
-        "dataType": "refObject",
-        "properties": {
-            "endemeter": {"dataType":"string","required":true},
-            "endeprozent": {"dataType":"string","required":true},
-            "startmeter": {"dataType":"string","required":true},
-            "startprozent": {"dataType":"string","required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Fahrzeug": {
-        "dataType": "refObject",
-        "properties": {
-            "allFahrzeugausstattung": {"dataType":"array","array":{"dataType":"refObject","ref":"Fahrzeugausstattung"},"required":true},
-            "kategorie": {"ref":"FahrzeugKategorie","required":true},
-            "fahrzeugnummer": {"dataType":"string","required":true},
-            "orientierung": {"dataType":"string","required":true},
-            "positioningruppe": {"dataType":"string","required":true},
-            "fahrzeugsektor": {"dataType":"string","required":true},
-            "fahrzeugtyp": {"dataType":"string","required":true},
-            "wagenordnungsnummer": {"dataType":"string","required":true},
-            "positionamhalt": {"ref":"Position","required":true},
-            "status": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["GESCHLOSSEN"]},{"dataType":"string"}],"required":true},
-            "additionalInfo": {"ref":"AdditionalFahrzeugInfo","required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "AvailableBR": {
-        "dataType": "refAlias",
-        "type": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["401"]},{"dataType":"enum","enums":["402"]},{"dataType":"enum","enums":["403"]},{"dataType":"enum","enums":["406"]},{"dataType":"enum","enums":["407"]},{"dataType":"enum","enums":["410.1"]},{"dataType":"enum","enums":["411"]},{"dataType":"enum","enums":["412"]},{"dataType":"enum","enums":["415"]}],"validators":{}},
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "AvailableIdentifier": {
-        "dataType": "refAlias",
-        "type": {"dataType":"union","subSchemas":[{"ref":"AvailableBR"},{"dataType":"enum","enums":["401.LDV"]},{"dataType":"enum","enums":["401.9"]},{"dataType":"enum","enums":["411.S1"]},{"dataType":"enum","enums":["411.S2"]},{"dataType":"enum","enums":["412.7"]},{"dataType":"enum","enums":["412.13"]},{"dataType":"enum","enums":["403.R"]},{"dataType":"enum","enums":["403.S1"]},{"dataType":"enum","enums":["403.S2"]},{"dataType":"enum","enums":["406.R"]},{"dataType":"enum","enums":["IC2.TWIN"]},{"dataType":"enum","enums":["IC2.KISS"]},{"dataType":"enum","enums":["MET"]},{"dataType":"enum","enums":["TGV"]}],"validators":{}},
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "BRInfo": {
-        "dataType": "refObject",
-        "properties": {
-            "name": {"dataType":"string","required":true},
-            "BR": {"ref":"AvailableBR"},
-            "identifier": {"ref":"AvailableIdentifier"},
-            "noPdf": {"dataType":"boolean"},
-            "country": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["DE"]},{"dataType":"enum","enums":["AT"]}]},
-            "showBRInfo": {"dataType":"boolean"},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "BaseFahrzeug": {
-        "dataType": "refObject",
-        "properties": {
-            "allFahrzeugausstattung": {"dataType":"array","array":{"dataType":"refObject","ref":"Fahrzeugausstattung"},"required":true},
-            "kategorie": {"ref":"FahrzeugKategorie","required":true},
-            "fahrzeugnummer": {"dataType":"string","required":true},
-            "orientierung": {"dataType":"string","required":true},
-            "positioningruppe": {"dataType":"string","required":true},
-            "fahrzeugsektor": {"dataType":"string","required":true},
-            "fahrzeugtyp": {"dataType":"string","required":true},
-            "wagenordnungsnummer": {"dataType":"string","required":true},
-            "positionamhalt": {"ref":"Position","required":true},
-            "status": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["GESCHLOSSEN"]},{"dataType":"string"}],"required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Fahrzeuggruppe": {
-        "dataType": "refObject",
-        "properties": {
-            "allFahrzeug": {"dataType":"array","array":{"dataType":"refObject","ref":"Fahrzeug"},"required":true},
-            "fahrzeuggruppebezeichnung": {"dataType":"string","required":true},
-            "zielbetriebsstellename": {"dataType":"string","required":true},
-            "startbetriebsstellename": {"dataType":"string","required":true},
-            "verkehrlichezugnummer": {"dataType":"string","required":true},
-            "goesToFrance": {"dataType":"boolean","required":true},
-            "startPercentage": {"dataType":"double","required":true},
-            "endPercentage": {"dataType":"double","required":true},
-            "tzn": {"dataType":"string"},
-            "name": {"dataType":"string"},
-            "br": {"ref":"BRInfo"},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "BaseFahrzeuggruppe": {
-        "dataType": "refObject",
-        "properties": {
-            "allFahrzeug": {"dataType":"array","array":{"dataType":"refObject","ref":"BaseFahrzeug"},"required":true},
-            "fahrzeuggruppebezeichnung": {"dataType":"string","required":true},
-            "zielbetriebsstellename": {"dataType":"string","required":true},
-            "startbetriebsstellename": {"dataType":"string","required":true},
-            "verkehrlichezugnummer": {"dataType":"string","required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Sektor": {
-        "dataType": "refObject",
-        "properties": {
-            "positionamgleis": {"ref":"Position","required":true},
-            "sektorbezeichnung": {"dataType":"string","required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Halt": {
-        "dataType": "refObject",
-        "properties": {
-            "abfahrtszeit": {"dataType":"string"},
-            "ankunftszeit": {"dataType":"string"},
-            "bahnhofsname": {"dataType":"string","required":true},
-            "evanummer": {"dataType":"string","required":true},
-            "gleisbezeichnung": {"dataType":"string"},
-            "haltid": {"dataType":"string","required":true},
-            "rl100": {"dataType":"string","required":true},
-            "allSektor": {"dataType":"array","array":{"dataType":"refObject","ref":"Sektor"},"required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Formation": {
-        "dataType": "refObject",
-        "properties": {
-            "fahrtrichtung": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["VORWAERTS"]},{"dataType":"enum","enums":["RUCKWAERTS"]}],"required":true},
-            "allFahrzeuggruppe": {"dataType":"array","array":{"dataType":"refObject","ref":"Fahrzeuggruppe"},"required":true},
-            "halt": {"ref":"Halt","required":true},
-            "liniebezeichnung": {"dataType":"string","required":true},
-            "zuggattung": {"dataType":"string","required":true},
-            "zugnummer": {"dataType":"string","required":true},
-            "serviceid": {"dataType":"string","required":true},
-            "planstarttag": {"dataType":"string","required":true},
-            "fahrtid": {"dataType":"string","required":true},
-            "istplaninformation": {"dataType":"boolean","required":true},
-            "reportedZuggattung": {"dataType":"string","required":true},
-            "differentDestination": {"dataType":"boolean"},
-            "differentZugnummer": {"dataType":"boolean"},
-            "scale": {"dataType":"double","required":true},
-            "startPercentage": {"dataType":"double","required":true},
-            "endPercentage": {"dataType":"double","required":true},
-            "realFahrtrichtung": {"dataType":"boolean"},
-            "isRealtime": {"dataType":"boolean","required":true},
-        },
-        "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "CoachSequencePosition": {
         "dataType": "refObject",
         "properties": {
@@ -1766,6 +1587,11 @@ const models: TsoaRoute.Models = {
             "type": {"dataType":"string","required":true},
         },
         "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "FahrzeugKategorie": {
+        "dataType": "refAlias",
+        "type": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["DOPPELSTOCKSTEUERWAGENERSTEZWEITEKLASSE"]},{"dataType":"enum","enums":["DOPPELSTOCKSTEUERWAGENZWEITEKLASSE"]},{"dataType":"enum","enums":["DOPPELSTOCKWAGENERSTEKLASSE"]},{"dataType":"enum","enums":["DOPPELSTOCKWAGENERSTEZWEITEKLASSE"]},{"dataType":"enum","enums":["DOPPELSTOCKWAGENZWEITEKLASSE"]},{"dataType":"enum","enums":["HALBSPEISEWAGENERSTEKLASSE"]},{"dataType":"enum","enums":["HALBSPEISEWAGENZWEITEKLASSE"]},{"dataType":"enum","enums":["LOK"]},{"dataType":"enum","enums":["REISEZUGWAGENERSTEKLASSE"]},{"dataType":"enum","enums":["REISEZUGWAGENERSTEZWEITEKLASSE"]},{"dataType":"enum","enums":["REISEZUGWAGENZWEITEKLASSE"]},{"dataType":"enum","enums":["SPEISEWAGEN"]},{"dataType":"enum","enums":["STEUERWAGENERSTEKLASSE"]},{"dataType":"enum","enums":["STEUERWAGENERSTEZWEITEKLASSE"]},{"dataType":"enum","enums":["STEUERWAGENZWEITEKLASSE"]},{"dataType":"enum","enums":["TRIEBKOPF"]},{"dataType":"enum","enums":[""]}],"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "CoachSequenceCoachFeatures": {
@@ -1809,6 +1635,16 @@ const models: TsoaRoute.Models = {
             "seats": {"ref":"CoachSequenceCoachSeats"},
         },
         "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "AvailableBR": {
+        "dataType": "refAlias",
+        "type": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["401"]},{"dataType":"enum","enums":["402"]},{"dataType":"enum","enums":["403"]},{"dataType":"enum","enums":["406"]},{"dataType":"enum","enums":["407"]},{"dataType":"enum","enums":["410.1"]},{"dataType":"enum","enums":["411"]},{"dataType":"enum","enums":["412"]},{"dataType":"enum","enums":["415"]}],"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "AvailableIdentifier": {
+        "dataType": "refAlias",
+        "type": {"dataType":"union","subSchemas":[{"ref":"AvailableBR"},{"dataType":"enum","enums":["401.LDV"]},{"dataType":"enum","enums":["401.9"]},{"dataType":"enum","enums":["411.S1"]},{"dataType":"enum","enums":["411.S2"]},{"dataType":"enum","enums":["412.7"]},{"dataType":"enum","enums":["412.13"]},{"dataType":"enum","enums":["403.R"]},{"dataType":"enum","enums":["403.S1"]},{"dataType":"enum","enums":["403.S2"]},{"dataType":"enum","enums":["406.R"]},{"dataType":"enum","enums":["IC2.TWIN"]},{"dataType":"enum","enums":["IC2.KISS"]},{"dataType":"enum","enums":["MET"]},{"dataType":"enum","enums":["TGV"]}],"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "CoachSequenceBaureihe": {
@@ -2691,29 +2527,6 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new ReihungControllerV1();
 
             const promise = controller.forNumber.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, next);
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        router.get('/api/reihung/v2/wagen/:trainNumber/:date',
-            async function ReihungControllerV2_wagenreihung(context: any, next: any) {
-            const args = {
-                    req: {"in":"request","name":"req","required":true,"dataType":"object"},
-                    trainNumber: {"in":"path","name":"trainNumber","required":true,"dataType":"string"},
-                    date: {"in":"path","name":"date","required":true,"dataType":"datetime"},
-            };
-
-            let validatedArgs: any[] = [];
-            try {
-              validatedArgs = getValidatedArgs(args, context, next);
-            } catch (err) {
-              const error = err as any;
-              context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
-            }
-
-            const controller = new ReihungControllerV2();
-
-            const promise = controller.wagenreihung.apply(controller, validatedArgs as any);
             return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

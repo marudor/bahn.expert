@@ -3621,541 +3621,6 @@
         "$ref": "#/components/schemas/OEBBInfo",
         "description": "Obtain the return type of a function type"
       },
-      "AdditionalFahrzeugInfo": {
-        "properties": {
-          "klasse": {
-            "type": "number",
-            "enum": [0, 1, 2, 3, 4],
-            "description": "0: Unknown; 1: erste; 2: zweite; 3: 1&2; 4: Not for passengers"
-          },
-          "icons": {
-            "properties": {
-              "wifi": {
-                "type": "boolean"
-              },
-              "toddler": {
-                "type": "boolean"
-              },
-              "family": {
-                "type": "boolean"
-              },
-              "info": {
-                "type": "boolean"
-              },
-              "quiet": {
-                "type": "boolean"
-              },
-              "disabled": {
-                "type": "boolean"
-              },
-              "bike": {
-                "type": "boolean"
-              },
-              "wheelchair": {
-                "type": "boolean"
-              },
-              "dining": {
-                "type": "boolean"
-              }
-            },
-            "type": "object"
-          },
-          "comfort": {
-            "type": "boolean"
-          },
-          "comfortSeats": {
-            "type": "string"
-          },
-          "disabledSeats": {
-            "type": "string"
-          },
-          "familySeats": {
-            "type": "string"
-          }
-        },
-        "required": ["klasse", "icons"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "Fahrzeugausstattung": {
-        "properties": {
-          "anzahl": {
-            "type": "string"
-          },
-          "ausstattungsart": {
-            "type": "string"
-          },
-          "bezeichnung": {
-            "type": "string"
-          },
-          "status": {
-            "type": "string"
-          }
-        },
-        "required": ["anzahl", "ausstattungsart", "bezeichnung", "status"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "FahrzeugKategorie": {
-        "type": "string",
-        "enum": [
-          "DOPPELSTOCKSTEUERWAGENERSTEZWEITEKLASSE",
-          "DOPPELSTOCKSTEUERWAGENZWEITEKLASSE",
-          "DOPPELSTOCKWAGENERSTEKLASSE",
-          "DOPPELSTOCKWAGENERSTEZWEITEKLASSE",
-          "DOPPELSTOCKWAGENZWEITEKLASSE",
-          "HALBSPEISEWAGENERSTEKLASSE",
-          "HALBSPEISEWAGENZWEITEKLASSE",
-          "LOK",
-          "REISEZUGWAGENERSTEKLASSE",
-          "REISEZUGWAGENERSTEZWEITEKLASSE",
-          "REISEZUGWAGENZWEITEKLASSE",
-          "SPEISEWAGEN",
-          "STEUERWAGENERSTEKLASSE",
-          "STEUERWAGENERSTEZWEITEKLASSE",
-          "STEUERWAGENZWEITEKLASSE",
-          "TRIEBKOPF",
-          ""
-        ]
-      },
-      "Position": {
-        "properties": {
-          "endemeter": {
-            "type": "string"
-          },
-          "endeprozent": {
-            "type": "string"
-          },
-          "startmeter": {
-            "type": "string"
-          },
-          "startprozent": {
-            "type": "string"
-          }
-        },
-        "required": ["endemeter", "endeprozent", "startmeter", "startprozent"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "Fahrzeug": {
-        "properties": {
-          "allFahrzeugausstattung": {
-            "items": {
-              "$ref": "#/components/schemas/Fahrzeugausstattung"
-            },
-            "type": "array"
-          },
-          "kategorie": {
-            "$ref": "#/components/schemas/FahrzeugKategorie"
-          },
-          "fahrzeugnummer": {
-            "type": "string"
-          },
-          "orientierung": {
-            "type": "string"
-          },
-          "positioningruppe": {
-            "type": "string"
-          },
-          "fahrzeugsektor": {
-            "type": "string"
-          },
-          "fahrzeugtyp": {
-            "type": "string"
-          },
-          "wagenordnungsnummer": {
-            "type": "string"
-          },
-          "positionamhalt": {
-            "$ref": "#/components/schemas/Position"
-          },
-          "status": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "string",
-                "enum": ["GESCHLOSSEN"]
-              }
-            ]
-          },
-          "additionalInfo": {
-            "$ref": "#/components/schemas/AdditionalFahrzeugInfo"
-          }
-        },
-        "required": [
-          "allFahrzeugausstattung",
-          "kategorie",
-          "fahrzeugnummer",
-          "orientierung",
-          "positioningruppe",
-          "fahrzeugsektor",
-          "fahrzeugtyp",
-          "wagenordnungsnummer",
-          "positionamhalt",
-          "status",
-          "additionalInfo"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "AvailableBR": {
-        "type": "string",
-        "enum": [
-          "401",
-          "402",
-          "403",
-          "406",
-          "407",
-          "411",
-          "412",
-          "415",
-          "410.1"
-        ]
-      },
-      "AvailableIdentifier": {
-        "anyOf": [
-          {
-            "$ref": "#/components/schemas/AvailableBR"
-          },
-          {
-            "type": "string",
-            "enum": [
-              "401.LDV",
-              "401.9",
-              "411.S1",
-              "411.S2",
-              "412.7",
-              "412.13",
-              "403.R",
-              "403.S1",
-              "403.S2",
-              "406.R",
-              "IC2.TWIN",
-              "IC2.KISS",
-              "MET",
-              "TGV"
-            ]
-          }
-        ]
-      },
-      "BRInfo": {
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "BR": {
-            "$ref": "#/components/schemas/AvailableBR"
-          },
-          "identifier": {
-            "$ref": "#/components/schemas/AvailableIdentifier"
-          },
-          "noPdf": {
-            "type": "boolean"
-          },
-          "country": {
-            "type": "string",
-            "enum": ["DE", "AT"]
-          },
-          "showBRInfo": {
-            "type": "boolean"
-          }
-        },
-        "required": ["name"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "BaseFahrzeug": {
-        "properties": {
-          "allFahrzeugausstattung": {
-            "items": {
-              "$ref": "#/components/schemas/Fahrzeugausstattung"
-            },
-            "type": "array"
-          },
-          "kategorie": {
-            "$ref": "#/components/schemas/FahrzeugKategorie"
-          },
-          "fahrzeugnummer": {
-            "type": "string"
-          },
-          "orientierung": {
-            "type": "string"
-          },
-          "positioningruppe": {
-            "type": "string"
-          },
-          "fahrzeugsektor": {
-            "type": "string"
-          },
-          "fahrzeugtyp": {
-            "type": "string"
-          },
-          "wagenordnungsnummer": {
-            "type": "string"
-          },
-          "positionamhalt": {
-            "$ref": "#/components/schemas/Position"
-          },
-          "status": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "string",
-                "enum": ["GESCHLOSSEN"]
-              }
-            ]
-          }
-        },
-        "required": [
-          "allFahrzeugausstattung",
-          "kategorie",
-          "fahrzeugnummer",
-          "orientierung",
-          "positioningruppe",
-          "fahrzeugsektor",
-          "fahrzeugtyp",
-          "wagenordnungsnummer",
-          "positionamhalt",
-          "status"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "Fahrzeuggruppe": {
-        "properties": {
-          "allFahrzeug": {
-            "items": {
-              "$ref": "#/components/schemas/Fahrzeug"
-            },
-            "type": "array"
-          },
-          "fahrzeuggruppebezeichnung": {
-            "type": "string"
-          },
-          "zielbetriebsstellename": {
-            "type": "string"
-          },
-          "startbetriebsstellename": {
-            "type": "string"
-          },
-          "verkehrlichezugnummer": {
-            "type": "string"
-          },
-          "goesToFrance": {
-            "type": "boolean"
-          },
-          "startPercentage": {
-            "type": "number",
-            "format": "double"
-          },
-          "endPercentage": {
-            "type": "number",
-            "format": "double"
-          },
-          "tzn": {
-            "type": "string",
-            "description": "0169 for instance, from Gruppenbezeichnung"
-          },
-          "name": {
-            "type": "string",
-            "description": "Worms for instance"
-          },
-          "br": {
-            "$ref": "#/components/schemas/BRInfo"
-          }
-        },
-        "required": [
-          "allFahrzeug",
-          "fahrzeuggruppebezeichnung",
-          "zielbetriebsstellename",
-          "startbetriebsstellename",
-          "verkehrlichezugnummer",
-          "goesToFrance",
-          "startPercentage",
-          "endPercentage"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "BaseFahrzeuggruppe": {
-        "properties": {
-          "allFahrzeug": {
-            "items": {
-              "$ref": "#/components/schemas/BaseFahrzeug"
-            },
-            "type": "array"
-          },
-          "fahrzeuggruppebezeichnung": {
-            "type": "string"
-          },
-          "zielbetriebsstellename": {
-            "type": "string"
-          },
-          "startbetriebsstellename": {
-            "type": "string"
-          },
-          "verkehrlichezugnummer": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "allFahrzeug",
-          "fahrzeuggruppebezeichnung",
-          "zielbetriebsstellename",
-          "startbetriebsstellename",
-          "verkehrlichezugnummer"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "Sektor": {
-        "properties": {
-          "positionamgleis": {
-            "$ref": "#/components/schemas/Position"
-          },
-          "sektorbezeichnung": {
-            "type": "string"
-          }
-        },
-        "required": ["positionamgleis", "sektorbezeichnung"],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "Halt": {
-        "properties": {
-          "abfahrtszeit": {
-            "type": "string"
-          },
-          "ankunftszeit": {
-            "type": "string"
-          },
-          "bahnhofsname": {
-            "type": "string"
-          },
-          "evanummer": {
-            "type": "string"
-          },
-          "gleisbezeichnung": {
-            "type": "string"
-          },
-          "haltid": {
-            "type": "string"
-          },
-          "rl100": {
-            "type": "string"
-          },
-          "allSektor": {
-            "items": {
-              "$ref": "#/components/schemas/Sektor"
-            },
-            "type": "array"
-          }
-        },
-        "required": [
-          "bahnhofsname",
-          "evanummer",
-          "haltid",
-          "rl100",
-          "allSektor"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
-      "Formation": {
-        "properties": {
-          "fahrtrichtung": {
-            "type": "string",
-            "enum": ["VORWAERTS", "RUCKWAERTS"],
-            "description": "Should always be VORWAERTS"
-          },
-          "allFahrzeuggruppe": {
-            "items": {
-              "$ref": "#/components/schemas/Fahrzeuggruppe"
-            },
-            "type": "array"
-          },
-          "halt": {
-            "$ref": "#/components/schemas/Halt"
-          },
-          "liniebezeichnung": {
-            "type": "string"
-          },
-          "zuggattung": {
-            "type": "string"
-          },
-          "zugnummer": {
-            "type": "string"
-          },
-          "serviceid": {
-            "type": "string",
-            "description": "???"
-          },
-          "planstarttag": {
-            "type": "string"
-          },
-          "fahrtid": {
-            "type": "string",
-            "description": "???"
-          },
-          "istplaninformation": {
-            "type": "boolean"
-          },
-          "reportedZuggattung": {
-            "type": "string",
-            "description": "Train Category that was reported"
-          },
-          "differentDestination": {
-            "type": "boolean",
-            "description": "do groups have a different destination"
-          },
-          "differentZugnummer": {
-            "type": "boolean",
-            "description": "Do we have several trains in one? (Flügelung)"
-          },
-          "scale": {
-            "type": "number",
-            "format": "double"
-          },
-          "startPercentage": {
-            "type": "number",
-            "format": "double"
-          },
-          "endPercentage": {
-            "type": "number",
-            "format": "double"
-          },
-          "realFahrtrichtung": {
-            "type": "boolean",
-            "description": "true = Vorwärts, undefined = we do not know"
-          },
-          "isRealtime": {
-            "type": "boolean"
-          }
-        },
-        "required": [
-          "fahrtrichtung",
-          "allFahrzeuggruppe",
-          "halt",
-          "liniebezeichnung",
-          "zuggattung",
-          "zugnummer",
-          "serviceid",
-          "planstarttag",
-          "fahrtid",
-          "istplaninformation",
-          "reportedZuggattung",
-          "scale",
-          "startPercentage",
-          "endPercentage",
-          "isRealtime"
-        ],
-        "type": "object",
-        "additionalProperties": false
-      },
       "CoachSequencePosition": {
         "properties": {
           "startPercent": {
@@ -4212,6 +3677,28 @@
         "required": ["number", "type"],
         "type": "object",
         "additionalProperties": false
+      },
+      "FahrzeugKategorie": {
+        "type": "string",
+        "enum": [
+          "DOPPELSTOCKSTEUERWAGENERSTEZWEITEKLASSE",
+          "DOPPELSTOCKSTEUERWAGENZWEITEKLASSE",
+          "DOPPELSTOCKWAGENERSTEKLASSE",
+          "DOPPELSTOCKWAGENERSTEZWEITEKLASSE",
+          "DOPPELSTOCKWAGENZWEITEKLASSE",
+          "HALBSPEISEWAGENERSTEKLASSE",
+          "HALBSPEISEWAGENZWEITEKLASSE",
+          "LOK",
+          "REISEZUGWAGENERSTEKLASSE",
+          "REISEZUGWAGENERSTEZWEITEKLASSE",
+          "REISEZUGWAGENZWEITEKLASSE",
+          "SPEISEWAGEN",
+          "STEUERWAGENERSTEKLASSE",
+          "STEUERWAGENERSTEZWEITEKLASSE",
+          "STEUERWAGENZWEITEKLASSE",
+          "TRIEBKOPF",
+          ""
+        ]
       },
       "CoachSequenceCoachFeatures": {
         "properties": {
@@ -4300,6 +3787,46 @@
         "required": ["class", "category", "position", "features"],
         "type": "object",
         "additionalProperties": false
+      },
+      "AvailableBR": {
+        "type": "string",
+        "enum": [
+          "401",
+          "402",
+          "403",
+          "406",
+          "407",
+          "411",
+          "412",
+          "415",
+          "410.1"
+        ]
+      },
+      "AvailableIdentifier": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/AvailableBR"
+          },
+          {
+            "type": "string",
+            "enum": [
+              "401.LDV",
+              "401.9",
+              "411.S1",
+              "411.S2",
+              "412.7",
+              "412.13",
+              "403.R",
+              "403.S1",
+              "403.S2",
+              "406.R",
+              "IC2.TWIN",
+              "IC2.KISS",
+              "MET",
+              "TGV"
+            ]
+          }
+        ]
       },
       "CoachSequenceBaureihe": {
         "properties": {
@@ -5826,45 +5353,6 @@
             }
           }
         }
-      }
-    },
-    "/reihung/v2/wagen/{trainNumber}/{date}": {
-      "get": {
-        "operationId": "Wagenreihung v2",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Formation"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["Reihung"],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "trainNumber",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "path",
-            "name": "date",
-            "required": true,
-            "schema": {
-              "format": "date-time",
-              "type": "string"
-            }
-          }
-        ]
       }
     },
     "/reihung/v4/wagen/{trainNumber}": {
