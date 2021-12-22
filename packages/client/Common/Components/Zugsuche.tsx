@@ -107,7 +107,7 @@ export const Zugsuche: FC<Props> = ({ children }) => {
   return (
     <>
       <Dialog
-        maxWidth="xs"
+        maxWidth="md"
         open={open}
         onClose={toggleModal}
         data-testid="Zugsuche"
