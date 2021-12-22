@@ -24,6 +24,10 @@ const PositionedLoading = styled(Loading)`
   transform: scale(0.5);
 `;
 
+const StyledMenuItem = styled(MenuItem)`
+  white-space: initial;
+`;
+
 interface Props {
   initialDeparture?: Date;
   onChange: (match: ParsedJourneyMatchResponse | null) => any;
@@ -126,7 +130,7 @@ export const ZugsucheAutocomplete: FC<Props> = ({
                         const highlighted = highlightedIndex === index;
 
                         return (
-                          <MenuItem
+                          <StyledMenuItem
                             data-testid="zugsucheAutocompleteItem"
                             {...itemProps}
                             key={suggestion.jid}
@@ -136,13 +140,13 @@ export const ZugsucheAutocomplete: FC<Props> = ({
                             {suggestion.train.name} -&gt;
                             <br />
                             {suggestion.lastStop.station.title}
-                          </MenuItem>
+                          </StyledMenuItem>
                         );
                       })
                     ) : (
-                      <MenuItem>
+                      <StyledMenuItem>
                         {loading ? 'Loading...' : 'No Matching Trains'}
-                      </MenuItem>
+                      </StyledMenuItem>
                     )}
                   </Paper>
                 )}
