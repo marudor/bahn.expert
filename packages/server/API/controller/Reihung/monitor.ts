@@ -1,6 +1,6 @@
+import { coachSequenceMonitoring } from 'server/coachSequence/monitoring';
 import { Controller, Get, Hidden, Res, Route } from 'tsoa';
-import { wagenReihungMonitoring } from 'server/Reihung';
-import type { Formation } from 'types/reihung';
+import type { CoachSequenceInformation } from 'types/coachSequence';
 import type { TsoaResponse } from 'tsoa';
 
 @Route('/reihung/monitoring')
@@ -9,8 +9,8 @@ export class ReihungMonitoringController extends Controller {
   @Hidden()
   async monitoring(
     @Res() notFoundResponse: TsoaResponse<404, void>,
-  ): Promise<Formation> {
-    const reihung = await wagenReihungMonitoring();
+  ): Promise<CoachSequenceInformation> {
+    const reihung = await coachSequenceMonitoring();
 
     if (!reihung) {
       return notFoundResponse(404);
