@@ -1,14 +1,29 @@
 import { createTheme } from 'client/Themes';
 import { ThemeType } from 'client/Themes/type';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useQuery } from 'client/Common/hooks/useQuery';
 import { useStorage } from 'client/useStorage';
 import constate from 'constate';
 import type { FC } from 'react';
 
-function useThemeInner({ initialThemeType }: { initialThemeType: ThemeType }) {
-  const [themeType, setThemeType] = useState(initialThemeType);
+function useThemeInner({ initialThemeType }: { initialThemeType?: ThemeType }) {
+  const [themeType, setThemeType] = useState(
+    initialThemeType || ThemeType.dark,
+  );
   const storage = useStorage();
+  useEffect(() => {
+    if (!initialThemeType) {
+      const prefferedTheme = globalThis.matchMedia?.(
+        '(prefers-color-scheme: light)',
+      ).matches
+        ? ThemeType.light
+        : ThemeType.dark;
+      if (prefferedTheme === ThemeType.light) {
+        storage.set('theme', prefferedTheme);
+      }
+      setThemeType(prefferedTheme);
+    }
+  }, []);
   const theme = useMemo(() => createTheme(themeType), [themeType]);
   return {
     themeType,
@@ -25,22 +40,22 @@ export const [InnerThemeProvider, useTheme] = constate(useThemeInner);
 export const ThemeProvider: FC = ({ children }) => {
   const storage = useStorage();
   const query = useQuery();
-  const initialTheme = useMemo(() => {
-    let theme = query.theme;
-    if (!theme) {
-      // @ts-expect-error works
-      theme = ThemeType[storage.get('theme')];
-      if (!theme) {
-        theme = globalThis.matchMedia?.('(prefers-color-scheme: light)').matches
-          ? ThemeType.light
-          : ThemeType.dark;
-        if (theme === ThemeType.light) {
-          storage.set('theme', theme);
-        }
-      }
-    }
-    return (theme as ThemeType) || ThemeType.dark;
-  }, []);
+
+  // @ts-expect-error works
+  let initialTheme: ThemeType = query.theme;
+  if (!initialTheme) {
+    // @ts-expect-error works
+    initialTheme = ThemeType[storage.get('theme')];
+    // if (!initialTheme) {
+    //   initialTheme = globalThis.matchMedia?.('(prefers-color-scheme: light)')
+    //     .matches
+    //     ? ThemeType.light
+    //     : ThemeType.dark;
+    //   if (initialTheme === ThemeType.light) {
+    //     storage.set('theme', initialTheme);
+    //   }
+    // }
+  }
 
   return (
     <InnerThemeProvider initialThemeType={initialTheme}>
