@@ -26,12 +26,6 @@ export const ThemeWrap = ({
 }: Props): ReactElement => {
   const { theme } = useTheme();
 
-  // const classNameGenerator = useMemo(
-  //   () => generateClassName || createGenerateClassName(),
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   [],
-  // );
-
   return (
     <StyledEngineProvider injectFirst>
       <LocalizationProvider dateAdapter={AdapterDateFns} locale={deLocale}>

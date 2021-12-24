@@ -26,7 +26,7 @@ Cypress.Commands.add('theme', (type: 'dark' | 'light' | 'black') => {
   cy.findByTestId('navToggle').click();
   cy.findByTestId('themes').click();
   cy.findByTestId('themeList').find(`[data-value="${type}"]`).click();
-  cy.reload();
+  cy.get('.MuiBackdrop-root').should('not.exist');
 });
 
 Cypress.Commands.add('closeModal', () => {
