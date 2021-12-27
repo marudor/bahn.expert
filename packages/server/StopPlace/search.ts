@@ -261,6 +261,11 @@ async function searchStopPlaceRemote(searchTerm: string) {
   const groupedStopPlaces = risResult.map(mapToGroupedStopPlace);
   if (rl100Result) {
     groupedStopPlaces.unshift(mapToGroupedStopPlace(rl100Result));
+    if (groupedStopPlaces[1]?.name.toLowerCase() === searchTerm.toLowerCase()) {
+      const [rl100, directMatch] = groupedStopPlaces;
+      groupedStopPlaces[0] = directMatch;
+      groupedStopPlaces[1] = rl100;
+    }
   }
   await addIdentifiers(groupedStopPlaces);
 

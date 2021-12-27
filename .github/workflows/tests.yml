@@ -87,6 +87,7 @@ jobs:
           command-prefix: 'percy exec --parallel -- yarn'
         env:
           PERCY_TOKEN: 5cf53deda8dca3c09d13bfa3eb02edb0f4c6c80e7f96ed29086fec0c28a38380
+          PERCY_BROWSER_EXECUTABLE: /usr/bin/google-chrome
           CYPRESS_RECORD_KEY: 0af1d817-e8ac-4c69-ac15-c0da1e69182d
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BASE_URL: localhost:9042
