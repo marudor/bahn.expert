@@ -1,12 +1,22 @@
 import { createMuiTheme } from './mui';
-import { getColors } from './colors';
-// eslint-disable-next-line import/no-unresolved
 import { css } from '@mui/material';
+import { getColors } from './colors';
 import type { Theme as MaruTheme } from 'maru';
 import type { Theme as MuiTheme } from '@mui/material';
 import type { ThemeType } from './type';
 
 type MaruMixins = MaruTheme['mixins'];
+
+declare module '@mui/system' {
+  interface Shape {
+    headerSpacing: number;
+  }
+}
+
+declare module '@mui/material/styles/createMixins' {
+  interface Mixins extends MaruMixins {}
+}
+
 declare module '@mui/material/styles/createTheme' {
   interface Theme extends MaruTheme {}
 }

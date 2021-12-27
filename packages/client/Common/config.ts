@@ -4,12 +4,12 @@ export interface AbfahrtenConfig {
   readonly lookahead: string;
   readonly lookbehind: string;
   readonly lineAndNumber: boolean;
-  readonly autoUpdate: number;
   readonly showCancelled: boolean;
 }
 
 export interface CommonConfig {
   readonly showUIC: boolean;
+  readonly autoUpdate: number;
   readonly fahrzeugGruppe: boolean;
   readonly time: boolean;
 }

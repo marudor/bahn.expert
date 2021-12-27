@@ -18,7 +18,6 @@ const numberCheck = (
 };
 
 export const abfahrtenConfigSanitize: AbfahrtenConfigSanitize = {
-  autoUpdate: (value) => numberCheck(value, 0),
   lineAndNumber: booleanCheck,
   lookahead: (value) => numberCheck(value, 150).toString(),
   lookbehind: (value) => numberCheck(value, 0).toString(),
@@ -26,6 +25,7 @@ export const abfahrtenConfigSanitize: AbfahrtenConfigSanitize = {
 };
 
 export const commonConfigSanitize: CommonConfigSanitize = {
+  autoUpdate: (value) => numberCheck(value, 0),
   showUIC: booleanCheck,
   fahrzeugGruppe: booleanCheck,
   time: booleanCheck,
