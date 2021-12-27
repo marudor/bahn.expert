@@ -92,6 +92,7 @@ export function render<CP extends ComponentType<any>>(
       zoomReihung: true,
       showUIC: false,
       fahrzeugGruppe: false,
+      autoUpdate: 0,
       ...commonConfig,
     };
 

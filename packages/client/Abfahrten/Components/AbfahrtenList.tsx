@@ -11,14 +11,12 @@ import {
   useRefreshCurrent,
 } from 'client/Abfahrten/provider/AbfahrtenProvider/hooks';
 import {
-  useAbfahrtenConfig,
-  useAbfahrtenUrlPrefix,
-} from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
-import {
   useAbfahrtenError,
   useCurrentAbfahrtenStopPlace,
   useRawAbfahrten,
 } from 'client/Abfahrten/provider/AbfahrtenProvider';
+import { useAbfahrtenUrlPrefix } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
+import { useCommonConfig } from 'client/Common/provider/CommonConfigProvider';
 import { useEffect, useState } from 'react';
 import { useHeaderTagsActions } from 'client/Common/provider/HeaderTagProvider';
 import { useSequencesActions } from 'client/Common/provider/ReihungenProvider';
@@ -53,7 +51,7 @@ const InnerAbfahrtenList = () => {
   const { filteredAbfahrten, unfilteredAbfahrten } = useAbfahrten();
   const loading = !unfilteredAbfahrten && !error;
   const paramStation = useParams().station;
-  const config = useAbfahrtenConfig();
+  const { autoUpdate } = useCommonConfig();
   const urlPrefix = useAbfahrtenUrlPrefix();
   const refreshCurrentAbfahrten = useRefreshCurrent();
   const { updateTitle, updateDescription } = useHeaderTagsActions();
@@ -87,17 +85,17 @@ const InnerAbfahrtenList = () => {
       clearInterval(intervalId);
     };
 
-    if (config.autoUpdate) {
+    if (autoUpdate) {
       intervalId = setInterval(() => {
         void refreshCurrentAbfahrten();
         clearSequences();
-      }, config.autoUpdate * 1000);
+      }, autoUpdate * 1000);
     } else {
       cleanup();
     }
 
     return cleanup;
-  }, [clearSequences, config.autoUpdate, refreshCurrentAbfahrten]);
+  }, [clearSequences, autoUpdate, refreshCurrentAbfahrten]);
 
   const [oldMatch, setOldMatch] = useState(paramStation);
 

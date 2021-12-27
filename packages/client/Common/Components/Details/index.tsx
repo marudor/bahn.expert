@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 import { getDetails } from 'client/Common/service/details';
 import { Header } from './Header';
 import { StopList } from './StopList';
+import { useCommonConfig } from 'client/Common/provider/CommonConfigProvider';
 import { useEffect, useMemo, useState } from 'react';
 import { useHeaderTagsActions } from 'client/Common/provider/HeaderTagProvider';
 import { useQuery } from 'client/Common/hooks/useQuery';
@@ -29,6 +30,7 @@ export const Details: FC<Props> = ({
   const [details, setDetails] = useState<ParsedSearchOnTripResponse>();
   const [error, setError] = useState<AxiosError>();
   const { updateTitle, updateDescription } = useHeaderTagsActions();
+  const { autoUpdate } = useCommonConfig();
 
   const initialDepartureDate = useMemo(() => {
     if (!initialDeparture) return undefined;
@@ -75,6 +77,26 @@ export const Details: FC<Props> = ({
       .catch((e) => {
         setError(e);
       });
+    let intervalId: NodeJS.Timeout;
+    const cleanup = () => clearInterval(intervalId);
+    if (autoUpdate) {
+      intervalId = setInterval(() => {
+        getDetails(
+          train,
+          initialDepartureDate,
+          currentStopId,
+          stationId,
+          query.profile as any,
+        )
+          .then(setDetails)
+          .catch(() => {
+            // we ignore auto update error
+          });
+      }, autoUpdate * 1000);
+    } else {
+      cleanup();
+    }
+    return cleanup;
   }, [train, initialDepartureDate, currentStopId, query.profile, stationId]);
 
   return (
