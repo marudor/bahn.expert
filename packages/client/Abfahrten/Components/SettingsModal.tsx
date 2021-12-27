@@ -20,7 +20,7 @@ import {
   useSetCommonConfig,
 } from 'client/Common/provider/CommonConfigProvider';
 import styled from '@emotion/styled';
-import type { AbfahrtenConfig } from 'client/Common/config';
+import type { AbfahrtenConfig, CommonConfig } from 'client/Common/config';
 import type { ChangeEvent, FC } from 'react';
 
 const Title = styled(DialogTitle)`
@@ -49,12 +49,12 @@ const AutoUpdateField = styled(TextField)`
 `;
 
 export const SettingsModal: FC = () => {
-  const { lineAndNumber, lookahead, autoUpdate, lookbehind, showCancelled } =
+  const { lineAndNumber, lookahead, lookbehind, showCancelled } =
     useAbfahrtenConfig();
   const { setConfigOpen } = useAbfahrtenModalToggle();
   const configOpen = useAbfahrtenConfigOpen();
   const setConfigKey = useAbfahrtenSetConfig();
-  const { fahrzeugGruppe, showUIC, time } = useCommonConfig();
+  const { fahrzeugGruppe, showUIC, time, autoUpdate } = useCommonConfig();
   const setCommonConfigKey = useSetCommonConfig();
   const handleSelectChange = useCallback(
     (key: keyof AbfahrtenConfig) => (e: ChangeEvent<HTMLSelectElement>) =>
@@ -62,8 +62,8 @@ export const SettingsModal: FC = () => {
     [setConfigKey],
   );
   const handleNumberValueChange = useCallback(
-    (key: keyof AbfahrtenConfig) => (e: ChangeEvent<HTMLInputElement>) =>
-      setConfigKey(key, Number.parseInt(e.currentTarget.value, 10)),
+    (key: keyof CommonConfig) => (e: ChangeEvent<HTMLInputElement>) =>
+      setCommonConfigKey(key, Number.parseInt(e.currentTarget.value, 10)),
     [setConfigKey],
   );
 

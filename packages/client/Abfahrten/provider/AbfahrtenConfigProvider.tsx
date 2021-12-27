@@ -1,4 +1,3 @@
-import { abfahrtenConfigSanitize } from 'client/util';
 import { useCallback, useState } from 'react';
 import { useQuery } from 'client/Common/hooks/useQuery';
 import { useStorage } from 'client/useStorage';
@@ -131,9 +130,6 @@ export const AbfahrtenConfigProvider: FC<Props> = ({
       products: Array.isArray(savedFilter) ? savedFilter : [],
     },
     config: {
-      autoUpdate: abfahrtenConfigSanitize.autoUpdate(
-        storage.get<string>('autoUpdate'),
-      ),
       lineAndNumber: storage.get('lineAndNumber') ?? false,
       lookahead: storage.get('lookahead') ?? '150',
       lookbehind: storage.get('lookbehind') ?? '10',

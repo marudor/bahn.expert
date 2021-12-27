@@ -1,8 +1,7 @@
 import { blue, purple } from '@mui/material/colors';
 import { createTheme } from '@mui/material';
 import { ThemeType } from './type';
-import type { Mixins as MaruMixins } from 'maru';
-import type { Theme, ThemeOptions } from '@mui/material';
+import type { Theme as MuiTheme, ThemeOptions } from '@mui/material';
 
 const getPaletteType = (themeType: ThemeType) => {
   switch (themeType) {
@@ -13,16 +12,6 @@ const getPaletteType = (themeType: ThemeType) => {
       return 'light';
   }
 };
-
-declare module '@mui/system/createTheme/shape' {
-  export interface Shape {
-    headerSpacing: number;
-  }
-}
-
-declare module '@mui/material/styles/createMixins' {
-  export interface Mixins extends MaruMixins {}
-}
 
 const headerSpacing = 54;
 
@@ -110,5 +99,5 @@ const getMuiOptions = (themeType: ThemeType): ThemeOptions => {
   };
 };
 
-export const createMuiTheme = (themeType: ThemeType): Theme =>
+export const createMuiTheme = (themeType: ThemeType): MuiTheme =>
   createTheme(getMuiOptions(themeType));
