@@ -37,7 +37,8 @@ export interface AbfahrtenResult {
   departures: Abfahrt[];
   lookbehind: Abfahrt[];
   wings?: Wings;
-  strike?: boolean;
+  // @isInt
+  strike?: number;
 }
 
 export interface Abfahrt {
