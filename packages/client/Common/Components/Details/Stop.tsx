@@ -1,9 +1,9 @@
+import { AuslastungsDisplay } from 'client/Common/Components/AuslastungsDisplay';
 import { DetailMessages } from '../Messages/Detail';
 import { DetailsContext } from './DetailsContext';
 import { Messages } from './Messages';
 import { Platform } from 'client/Common/Components/Platform';
 import { Reihung } from '../Reihung';
-import { SingleAuslastungsDisplay } from 'client/Common/Components/SingleAuslastungsDisplay';
 import { StationLink } from 'client/Common/Components/StationLink';
 import { Time } from 'client/Common/Components/Time';
 import { TravelynxLink } from 'client/Common/Components/CheckInLink/TravelynxLink';
@@ -58,51 +58,45 @@ const StyledTravelynxLink = styled(TravelynxLink)`
   grid-area: c;
 `;
 
-const Container = styled.div<{ past?: boolean; hasOccupancy?: boolean }>(
+const StyledOccupancy = styled(AuslastungsDisplay)`
+  grid-area: o;
+`;
+
+const Container = styled.div<{ past?: boolean; hasOccupancy: boolean }>(
   ({ theme, hasOccupancy }) => ({
-    padding: '0 .5em',
+    padding: '.1em .5em',
     display: 'grid',
     gridGap: '0 .3em',
-    gridTemplateRows: '1fr 1fr',
-    gridTemplateAreas:
-      '"ar o1 t p c" "dp o2 t p c" "wr wr wr wr wr" "m m m m m"',
+    gridTemplateRows: '1fr',
+    gridTemplateAreas: `"ar t p c" "dp ${
+      hasOccupancy ? 'o' : 't'
+    } p c" "wr wr wr wr" "m m m m"`,
     alignItems: 'center',
     borderBottom: `1px solid ${theme.palette.text.primary}`,
     position: 'relative',
-    gridTemplateColumns: `4.8em ${
-      hasOccupancy ? '1.7em' : '0'
-    } 1fr max-content`,
+    gridTemplateColumns: `4.8em 1fr max-content`,
   }),
   ({ theme, past }) =>
     past && { backgroundColor: theme.colors.shadedBackground },
 );
-
-const Occupancy1 = styled.span`
-  grid-area: o1;
-`;
-const Occupancy2 = styled.span`
-  grid-area: o2;
-`;
 
 interface Props {
   stop: Route$Stop;
   train?: ParsedProduct;
   showWR?: ParsedProduct;
   isPast?: boolean;
-  hasOccupancy?: boolean;
-  doNotRenderOccupancy?: boolean;
   initialDepartureDate?: Date;
   onStopClick?: (stop: Route$Stop) => void;
+  doNotRenderOccupancy?: boolean;
 }
 export const Stop: FC<Props> = ({
   stop,
   showWR,
   train,
   isPast,
-  hasOccupancy = false,
-  doNotRenderOccupancy,
   initialDepartureDate,
   onStopClick,
+  doNotRenderOccupancy,
 }) => {
   const { urlPrefix } = useContext(DetailsContext);
   const depOrArrival = stop.departure || stop.arrival;
@@ -128,8 +122,8 @@ export const Stop: FC<Props> = ({
 
   return (
     <Container
+      hasOccupancy={Boolean(stop.auslastung) && !doNotRenderOccupancy}
       past={isPast}
-      hasOccupancy={hasOccupancy}
       data-testid={stop.station.id}
       onClick={onClick}
     >
@@ -145,17 +139,8 @@ export const Stop: FC<Props> = ({
       <StopName stop={stop}>
         <StationLink stationName={stop.station.title} urlPrefix={urlPrefix} />
       </StopName>
-      {stop.auslastung && !doNotRenderOccupancy && (
-        <>
-          <Occupancy1 data-testid="occupancy1">
-            1
-            <SingleAuslastungsDisplay auslastung={stop.auslastung.first} />
-          </Occupancy1>
-          <Occupancy2 data-testid="occupancy2">
-            2
-            <SingleAuslastungsDisplay auslastung={stop.auslastung.second} />
-          </Occupancy2>
-        </>
+      {!doNotRenderOccupancy && stop.auslastung && (
+        <StyledOccupancy oneLine auslastung={stop.auslastung} />
       )}
       {train && (
         <StyledTravelynxLink

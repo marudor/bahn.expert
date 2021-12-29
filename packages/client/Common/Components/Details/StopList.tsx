@@ -41,7 +41,6 @@ interface Props {
 
 export const StopList: FC<Props> = ({ initialDepartureDate }) => {
   const { details, error } = useContext(DetailsContext);
-  const hasOccupancy = details?.stops.some((s) => s.auslastung);
   const [currentSequenceStop, setCurrentSequenceStop] = useState(
     details?.currentStop?.station.id,
   );
@@ -72,7 +71,6 @@ export const StopList: FC<Props> = ({ initialDepartureDate }) => {
 
       return (
         <Stop
-          hasOccupancy={hasOccupancy}
           onStopClick={onStopClick}
           isPast={!hadCurrent}
           train={details.train}

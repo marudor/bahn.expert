@@ -1,34 +1,50 @@
 import { SingleAuslastungsDisplay } from 'client/Common/Components/SingleAuslastungsDisplay';
 import styled from '@emotion/styled';
-import type { FC } from 'react';
+import type { ComponentProps, FC } from 'react';
 import type { Route$Auslastung } from 'types/routing';
 
-const Container = styled.div`
-  display: flex;
-  margin-bottom: 0.3em;
+const Container = styled.div<{ oneLine?: boolean }>(
+  {
+    fontSize: '.75em',
+    display: 'flex',
+  },
+  ({ oneLine }) =>
+    !oneLine && {
+      flexDirection: 'column',
+    },
+);
+
+const Seperator = styled.span`
+  margin: 0 0.25em;
 `;
 
-const Entry = styled.div`
+const EntryContainer = styled.span`
   display: flex;
-  margin-right: 0.5em;
-  align-items: center;
-  flex-direction: column;
+  margin-left: 0.2em;
 `;
-export interface Props {
+
+export interface Props extends ComponentProps<'div'> {
   auslastung: Route$Auslastung;
+  oneLine?: boolean;
 }
 
-export const AuslastungsDisplay: FC<Props> = ({ auslastung }) => {
+export const AuslastungsDisplay: FC<Props> = ({
+  auslastung,
+  oneLine,
+  ...rest
+}) => {
   return (
-    <Container data-testid="auslastungDisplay">
-      <Entry data-testid="first">
-        <span>1</span>
-        <SingleAuslastungsDisplay auslastung={auslastung.first} />
-      </Entry>
-      <Entry data-testid="second">
-        <span>2</span>
-        <SingleAuslastungsDisplay auslastung={auslastung.second} />
-      </Entry>
+    <Container oneLine={oneLine} data-testid="auslastungDisplay" {...rest}>
+      Auslastung
+      <EntryContainer>
+        <div data-testid="first">
+          1. <SingleAuslastungsDisplay auslastung={auslastung.first} />
+        </div>
+        <Seperator>|</Seperator>
+        <div data-testid="second">
+          2. <SingleAuslastungsDisplay auslastung={auslastung.second} />
+        </div>
+      </EntryContainer>
     </Container>
   );
 };
