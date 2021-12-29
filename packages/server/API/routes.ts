@@ -366,7 +366,7 @@ const models: TsoaRoute.Models = {
             "departures": {"dataType":"array","array":{"dataType":"refObject","ref":"Abfahrt"},"required":true},
             "lookbehind": {"dataType":"array","array":{"dataType":"refObject","ref":"Abfahrt"},"required":true},
             "wings": {"ref":"Wings"},
-            "strike": {"dataType":"boolean"},
+            "strike": {"dataType":"double"},
         },
         "additionalProperties": false,
     },
