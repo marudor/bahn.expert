@@ -1,3 +1,5 @@
+import type { Message } from 'types/iris';
+
 /*
  ** Initially this file is copied from https://github.com/derf/Travel-Status-DE-IRIS
  ** Thanks for finding these!
@@ -125,3 +127,6 @@ export const supersededMessages = {
 };
 
 export const ignoredMessageNumbers = [1000, 1001];
+
+export const isStrikeMessage = (message: Message): boolean =>
+  message.value === 9 || message.value === 52;
