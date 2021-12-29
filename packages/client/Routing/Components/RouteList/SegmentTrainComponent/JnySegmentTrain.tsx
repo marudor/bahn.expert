@@ -5,30 +5,29 @@ import { Reihung } from 'client/Common/Components/Reihung';
 import { segmentStyles } from './style';
 import { StopList } from 'client/Routing/Components/RouteList/StopList';
 import { Tooltip } from '@mui/material';
-import type { FC, MouseEvent } from 'react';
+import type { FC, HTMLProps, MouseEvent } from 'react';
 import type { Route$JourneySegmentTrain } from 'types/routing';
 
-interface Props {
+interface Props extends HTMLProps<HTMLDivElement> {
   segment: Route$JourneySegmentTrain;
   detail?: boolean;
-  className?: string;
   onTrainClick?: (e: MouseEvent) => void;
 }
 export const JnySegmentTrain: FC<Props> = ({
   segment,
   onTrainClick,
-  className,
   detail,
+  ...rest
 }) => {
   const tooltipTitle =
     segment.train.number &&
-    segment.train.number &&
+    segment.train.line &&
     (segment.train.name.endsWith(segment.train.number)
       ? `Linie ${segment.train.line}`
       : `Nummer ${segment.train.number}`);
 
   return (
-    <div onClick={onTrainClick} className={className}>
+    <div onClick={onTrainClick} {...rest}>
       <div css={segmentStyles.info}>
         <span css={segmentStyles.margin}>
           <span>

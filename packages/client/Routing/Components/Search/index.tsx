@@ -153,10 +153,12 @@ export const Search: FC = () => {
 
       if (start && destination && start.evaNumber !== destination.evaNumber) {
         void fetchRoutes();
-        navigate(getRouteLink(start, destination, via, date));
+        navigate(
+          getRouteLink(start, destination, via, touchedDate ? date : null),
+        );
       }
     },
-    [date, destination, fetchRoutes, navigate, start, via],
+    [date, destination, fetchRoutes, navigate, start, via, touchedDate],
   );
 
   const mappedViaList = useMemo(

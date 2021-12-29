@@ -36,6 +36,7 @@ const segmentCss = css`
   grid-area: t;
   align-self: center;
   padding-left: 0.3em;
+  overflow: hidden;
 `;
 
 const JourneySegment = styled(JnySegmentTrain)(segmentCss);
