@@ -3,7 +3,12 @@ import { Loading } from 'client/Common/Components/Loading';
 import { useAbfahrt } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import { useAuslastung } from 'client/Abfahrten/provider/AuslastungsProvider';
 import { useEffect, useMemo } from 'react';
+import styled from '@emotion/styled';
 import type { FC } from 'react';
+
+const Occupancy = styled(AuslastungsDisplay)`
+  margin-top: 0.2em;
+`;
 
 export const Auslastung: FC = () => {
   const { abfahrt } = useAbfahrt();
@@ -49,5 +54,5 @@ export const Auslastung: FC = () => {
     return null;
   }
 
-  return <AuslastungsDisplay auslastung={auslastung} />;
+  return <Occupancy auslastung={auslastung} />;
 };
