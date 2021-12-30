@@ -17,11 +17,11 @@ const logglyToken = process.env.LOGGLY_TOKEN;
 if (process.env.NODE_ENV === 'production' && logglyToken) {
   // eslint-disable-next-line no-console
   console.log('Using loggly to log');
-  streams.push((msg) => {
+  streams.push(async (msg) => {
     // 30 is info, we log warn and above to loggly
     if (msg.level > 30) {
       try {
-        Axios.post(
+        await Axios.post(
           `https://logs-01.loggly.com/inputs/${logglyToken}`,
           JSON.stringify(msg),
           {
