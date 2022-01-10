@@ -769,7 +769,7 @@ Object {
   "scheduledDestination": "München Hbf",
   "substitute": false,
   "train": Object {
-    "line": "24",
+    "line": undefined,
     "longDistance": true,
     "name": "ICE 1589",
     "number": "1589",
