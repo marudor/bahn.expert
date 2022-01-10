@@ -16,7 +16,7 @@ const mockAbfahrt: Abfahrt = globalThis.parseJson(
 
 describe('Auslastung', () => {
   const renderAuslastung = () =>
-    render(Auslastung, undefined, {
+    render(<Auslastung />, {
       provider: [
         {
           Provider: AuslastungsProvider,

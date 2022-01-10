@@ -1,48 +1,32 @@
 import { Loading, LoadingType } from 'client/Common/Components/Loading';
 import { render } from 'client/__tests__/testHelper';
 import { screen } from '@testing-library/react';
+import type { FC, ReactNode } from 'react';
+
+interface DummyProps {
+  content?: ReactNode;
+}
+const DummyComponent: FC<DummyProps> = ({ content }) => (
+  <div data-testid="dummy">{content}</div>
+);
 
 describe('Loading', () => {
-  it('returns children if isLoading is false', () => {
-    const { container } = render(Loading, {
-      children: <div data-testid="temp" />,
-    });
-
-    expect(screen.queryByTestId('temp')).toBeVisible();
-    expect(container).toMatchSnapshot();
-  });
-
-  it('shows loading instead of children if isLoading is given', () => {
-    const { container } = render(Loading, {
-      children: <div data-testid="temp" />,
-      isLoading: true,
-    });
-
-    expect(screen.queryByTestId('temp')).toBeNull();
-    expect(screen.queryByTestId('grid')).toBeVisible();
-    expect(container).toMatchSnapshot();
-  });
-
   it('shows loading if no children given', () => {
-    const { container } = render(Loading);
+    const { container } = render(<Loading />);
 
     expect(screen.queryByTestId('grid')).toBeVisible();
     expect(container).toMatchSnapshot();
   });
 
   it('shows loading if no children given (dots type)', () => {
-    const { container } = render(Loading, {
-      type: LoadingType.dots,
-    });
+    const { container } = render(<Loading type={LoadingType.dots} />);
 
     expect(screen.queryByTestId('dots')).toBeVisible();
     expect(container).toMatchSnapshot();
   });
 
   it('supports custom className', () => {
-    const { container } = render(Loading, {
-      className: 'test',
-    });
+    const { container } = render(<Loading className="test" />);
 
     expect(screen.queryByTestId('grid')).toBeVisible();
     expect(container).toHaveClass('test');
@@ -50,11 +34,25 @@ describe('Loading', () => {
   });
 
   it('defaults to grid', () => {
-    const { container } = render(Loading, {
-      type: 5,
-    });
+    const { container } = render(<Loading type={5} />);
 
     expect(screen.queryByTestId('grid')).toBeVisible();
     expect(container).toMatchSnapshot();
+  });
+
+  it('shows children if check is true', () => {
+    render(<Loading check>{() => <DummyComponent />}</Loading>);
+    expect(screen.getByTestId('dummy')).toBeInTheDocument();
+    expect(screen.queryByTestId('loading')).toBeNull();
+  });
+
+  it('calls children with check variable', () => {
+    render(
+      <Loading check="content">
+        {(content) => <DummyComponent content={content} />}
+      </Loading>,
+    );
+
+    expect(screen.getByTestId('dummy')).toHaveTextContent('content');
   });
 });

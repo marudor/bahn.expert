@@ -12,7 +12,7 @@ describe('Zugsuche', () => {
   );
 
   const renderZugsuche = () =>
-    render(Zugsuche, { children: dummyTrigger }, { withNavigation: true });
+    render(<Zugsuche>{dummyTrigger}</Zugsuche>, { withNavigation: true });
 
   it('renders children', () => {
     renderZugsuche();

@@ -1,4 +1,5 @@
 import { enrichCoachSequence } from 'server/coachSequence/commonMapping';
+import { getLineFromNumber } from 'server/journeys/lineNumberMapping';
 import type {
   BaseFahrzeug,
   BaseFahrzeuggruppe,
@@ -198,6 +199,7 @@ const mapStop = (halt: Halt): CoachSequenceStop => {
 const mapProduct = (formation: BaseFormation): CoachSequenceProduct => ({
   number: formation.zugnummer,
   type: formation.zuggattung,
+  line: getLineFromNumber(formation.zugnummer),
 });
 
 function mapDirection(coaches: CoachSequenceCoach[]) {

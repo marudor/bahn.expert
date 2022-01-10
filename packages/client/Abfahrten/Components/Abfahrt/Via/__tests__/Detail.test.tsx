@@ -25,25 +25,19 @@ describe('DetailVia', () => {
   ];
 
   it('Renders Via as links', () => {
-    const { theme } = render(
-      DetailVia,
-      {
-        stops: mockStops,
-      },
-      {
-        provider: [
-          {
-            Provider: InnerAbfahrtenConfigProvider,
+    const { theme } = render(<DetailVia stops={mockStops} />, {
+      provider: [
+        {
+          Provider: InnerAbfahrtenConfigProvider,
+          initialState: {
             initialState: {
-              initialState: {
-                filter: {},
-                config: {},
-              },
+              filter: {},
+              config: {},
             },
           },
-        ],
-      },
-    );
+        },
+      ],
+    });
 
     const additional = screen.getByTestId('via-additional');
 

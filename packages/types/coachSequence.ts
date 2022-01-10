@@ -19,6 +19,7 @@ export interface CoachSequenceStop {
 export interface CoachSequenceProduct {
   number: string;
   type: string;
+  line?: string;
 }
 
 export interface CoachSequenceCoachSeats {
@@ -58,33 +59,38 @@ export interface CoachSequenceCoach {
   seats?: CoachSequenceCoachSeats;
 }
 
-export type AvailableBR =
-  | '401'
-  | '402'
-  | '403'
-  | '406'
-  | '407'
-  | '410.1'
-  | '411'
-  | '412'
-  | '415';
+export const AvailableBRConstant = [
+  '401' as const,
+  '402' as const,
+  '403' as const,
+  '406' as const,
+  '407' as const,
+  '410.1' as const,
+  '411' as const,
+  '412' as const,
+  '415' as const,
+];
+export type AvailableBR = typeof AvailableBRConstant[number];
 
-export type AvailableIdentifier =
-  | AvailableBR
-  | '401.LDV'
-  | '401.9'
-  | '411.S1'
-  | '411.S2'
-  | '412.7'
-  | '412.13'
-  | '403.R'
-  | '403.S1'
-  | '403.S2'
-  | '406.R'
-  | 'IC2.TWIN'
-  | 'IC2.KISS'
-  | 'MET'
-  | 'TGV';
+export const AvailableIdentifierConstant = [
+  '401.LDV' as const,
+  '401.9' as const,
+  '411.S1' as const,
+  '411.S2' as const,
+  '412.7' as const,
+  '412.13' as const,
+  '403.R' as const,
+  '403.S1' as const,
+  '403.S2' as const,
+  '406.R' as const,
+  'IC2.TWIN' as const,
+  'IC2.KISS' as const,
+  'MET' as const,
+  'TGV' as const,
+];
+export type AvailableIdentifierOnly =
+  typeof AvailableIdentifierConstant[number];
+export type AvailableIdentifier = AvailableIdentifierOnly | AvailableBR;
 
 export interface CoachSequenceBaureihe {
   name: string;
