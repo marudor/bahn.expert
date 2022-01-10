@@ -149,9 +149,9 @@ const InnerAbfahrtenList = () => {
           (filteredAbfahrten.departures.length ||
             filteredAbfahrten.lookbehind.length) ? (
           <>
-            {unfilteredAbfahrten?.strike && unfilteredAbfahrten.strike > 10 && (
-              <Streik />
-            )}
+            {Boolean(
+              unfilteredAbfahrten?.strike && unfilteredAbfahrten.strike > 10,
+            ) && <Streik />}
             {Boolean(filteredAbfahrten.lookbehind.length) && (
               <Lookbehind id="lookbehind" data-testid="lookbehind">
                 {filteredAbfahrten.lookbehind.map((a) => (
