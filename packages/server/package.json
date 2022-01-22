@@ -33,7 +33,7 @@
     "koa-bodyparser": "^4.3.0",
     "koa-static": "^5.0.0",
     "libxmljs2": "^0.29.0",
-    "nanoid": "^3.1.30",
+    "nanoid": "^3.1.32",
     "oebb": "workspace:*",
     "on-finished": "^2.3.0",
     "pino": "^7.6.1",
