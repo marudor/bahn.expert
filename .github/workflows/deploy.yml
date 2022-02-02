@@ -10,7 +10,7 @@ jobs:
       - name: 'Deploy'
         # Parameters are pulled directly from the GitHub deployment event so the
         # configuration for the job here is very minimal.
-        uses: 'elseu/sdu-helm-deploy-action@0.0.5'
+        uses: 'elseu/sdu-helm-deploy-action@0.0.9'
         with:
           helm: 'helm3'
           token: '${{ github.token }}'
