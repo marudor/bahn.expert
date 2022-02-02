@@ -45,7 +45,7 @@ const naming = {
   178: 'Bremerhaven',
   180: 'Castrop-Rauxel',
   181: 'Interlaken',
-  182: 'Rüdesheim',
+  182: 'Rüdesheim am Rhein',
   183: 'Timmendorfer Strand',
   184: 'Bruchsal',
   185: 'Freilassing',
