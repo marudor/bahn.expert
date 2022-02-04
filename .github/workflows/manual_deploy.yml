@@ -6,7 +6,7 @@ on:
       environment:
         description: 'where to deploy to? beta or production'
         required: true
-        default: beta
+        default: production
 
 jobs:
   createDeploy:
