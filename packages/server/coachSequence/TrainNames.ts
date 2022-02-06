@@ -265,6 +265,7 @@ const naming = {
   9028: 'Freistaat Sachsen',
   9041: 'Baden-Württemberg',
   9050: 'Metropole Ruhr',
+  9202: 'Schleswig-Holstein',
   9457: 'Bundesrepublik Deutschland',
 };
 
