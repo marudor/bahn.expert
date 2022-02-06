@@ -11,8 +11,8 @@ import { ThemeType } from 'client/Themes/type';
 import { ThemeWrap } from 'client/ThemeWrap';
 import Cookies from 'universal-cookie';
 import type { CommonConfig } from 'client/Common/config';
-import type { ComponentProps, ComponentType } from 'react';
 import type { Location } from 'history';
+import type { ReactElement } from 'react';
 import type { Theme } from '@mui/material';
 
 let currentThemeType: ThemeType;
@@ -50,9 +50,8 @@ const LocationHelper = ({ children }: any) => {
 //   return name;
 // };
 
-export function render<CP extends ComponentType<any>>(
-  Comp: CP,
-  props?: ComponentProps<CP>,
+export function render(
+  ui: ReactElement,
   { withNavigation, context, commonConfig, provider }: Options = {},
 ): Omit<ReturnType<typeof realRender>, 'container'> & {
   container: ChildNode | null;
@@ -115,9 +114,7 @@ export function render<CP extends ComponentType<any>>(
     );
   };
 
-  // @ts-expect-error this works
-  const p: ComponentProps<CP> = props || {};
-  const view = realRender(<Comp {...p} />, { wrapper });
+  const view = realRender(ui, { wrapper });
 
   return {
     ...view,

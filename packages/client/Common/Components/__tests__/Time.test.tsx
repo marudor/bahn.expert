@@ -6,15 +6,13 @@ const sampleTime = new Date('2019-06-12T13:55:37.648Z');
 
 describe('Time', () => {
   it('no time', () => {
-    const { container } = render(Time);
+    const { container } = render(<Time />);
 
     expect(container).toBeNull();
     expect(container).toMatchSnapshot();
   });
   it('only scheduled Data', () => {
-    render(Time, {
-      real: sampleTime,
-    });
+    render(<Time real={sampleTime} />);
 
     expect(screen.queryByTestId('delay')).toBeNull();
     expect(screen.queryByTestId('time')).toHaveTextContent('13:55');
@@ -22,10 +20,9 @@ describe('Time', () => {
 
   describe('showOriginalTime = false', () => {
     it('10 Minutes delay', () => {
-      const { container, theme } = render(Time, {
-        real: sampleTime,
-        delay: 10,
-      });
+      const { container, theme } = render(
+        <Time real={sampleTime} delay={10} />,
+      );
 
       expect(screen.queryByTestId('time')).toHaveTextContent('13:55');
       expect(screen.queryByTestId('delay')).toHaveTextContent('+10');
@@ -34,10 +31,9 @@ describe('Time', () => {
     });
 
     it('5 Minutes early', () => {
-      const { container, theme } = render(Time, {
-        real: sampleTime,
-        delay: -5,
-      });
+      const { container, theme } = render(
+        <Time real={sampleTime} delay={-5} />,
+      );
 
       expect(screen.queryByTestId('time')).toHaveTextContent('13:55');
       expect(screen.queryByTestId('delay')).toHaveTextContent('-5');
@@ -49,11 +45,7 @@ describe('Time', () => {
   describe('showOriginalTime = true', () => {
     it('10 Minutes delay', () => {
       const { container, theme } = render(
-        Time,
-        {
-          real: sampleTime,
-          delay: 10,
-        },
+        <Time real={sampleTime} delay={10} />,
         {
           commonConfig: {
             time: false,
@@ -69,11 +61,7 @@ describe('Time', () => {
 
     it('5 Minutes early', () => {
       const { container, theme } = render(
-        Time,
-        {
-          real: sampleTime,
-          delay: -5,
-        },
+        <Time real={sampleTime} delay={-5} />,
         {
           commonConfig: {
             time: false,
@@ -89,10 +77,7 @@ describe('Time', () => {
   });
 
   it('shows 0 delay number', () => {
-    const { container, theme } = render(Time, {
-      real: sampleTime,
-      delay: 0,
-    });
+    const { container, theme } = render(<Time real={sampleTime} delay={0} />);
 
     expect(screen.queryByTestId('time')).toHaveTextContent('13:55');
     expect(screen.queryByTestId('delay')).toHaveTextContent('0');
@@ -101,11 +86,9 @@ describe('Time', () => {
   });
 
   it('does not show 0 delay number', () => {
-    const { container, theme } = render(Time, {
-      real: sampleTime,
-      delay: 0,
-      showZero: false,
-    });
+    const { container, theme } = render(
+      <Time real={sampleTime} delay={0} showZero={false} />,
+    );
 
     expect(screen.queryByTestId('time')).toHaveTextContent('13:55');
     expect(screen.queryByTestId('delay')).toBeNull();

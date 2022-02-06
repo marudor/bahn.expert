@@ -1,6 +1,6 @@
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
-import type { FC, ReactElement } from 'react';
+import type { ReactElement } from 'react';
 
 const dotsKeyframes = keyframes`
   0% {
@@ -81,20 +81,15 @@ const Dots = styled.div(({ theme }) => ({
   },
 }));
 
-interface Props {
-  isLoading?: boolean;
-  className?: string;
-  type?: LoadingType;
-  relative?: boolean;
-  children?: ReactElement;
-}
-
 export const enum LoadingType {
   grid,
   dots,
 }
 
-const InnerLoading = ({ type, relative }: Pick<Props, 'type' | 'relative'>) => {
+const InnerLoading = ({
+  type,
+  relative,
+}: Pick<CommonProps, 'type' | 'relative'>) => {
   switch (type) {
     default:
     case LoadingType.grid:
@@ -122,20 +117,38 @@ const InnerLoading = ({ type, relative }: Pick<Props, 'type' | 'relative'>) => {
   }
 };
 
-export const Loading: FC<Props> = ({
-  isLoading,
-  className,
+type CheckFn<T> = (check: T) => ReactElement | null;
+
+interface CommonProps {
+  className?: string;
+  type?: LoadingType;
+  relative?: boolean;
+}
+interface Props<T> extends CommonProps {
+  children: CheckFn<T>;
+  check: T | undefined;
+}
+
+interface NoProps extends CommonProps {
+  children?: never;
+  check?: never;
+}
+
+export const Loading = <T,>({
+  check,
   children,
+  className,
   relative = false,
   type = LoadingType.grid,
-}) => {
-  if (isLoading || !children) {
-    return (
-      <div data-testid="loading" className={className}>
-        <InnerLoading type={type} relative={relative} />
-      </div>
-    );
-  }
+}: Props<T> | NoProps): ReactElement | null => {
+  const loading = (
+    <div data-testid="loading" className={className}>
+      <InnerLoading type={type} relative={relative} />
+    </div>
+  );
+  if (!children) return loading;
 
-  return children;
+  if (check) return children(check);
+
+  return loading;
 };

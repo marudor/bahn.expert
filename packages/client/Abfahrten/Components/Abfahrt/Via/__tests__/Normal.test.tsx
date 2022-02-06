@@ -26,9 +26,7 @@ describe('NormalVia', () => {
   ];
 
   it('Renders Via are not links', () => {
-    const { theme } = render(NormalVia, {
-      stops: mockStops,
-    });
+    const { theme } = render(<NormalVia stops={mockStops} />);
 
     const additional = screen.getByTestId('via-additional');
 
