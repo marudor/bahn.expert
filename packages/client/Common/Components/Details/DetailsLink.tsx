@@ -5,7 +5,7 @@ import type { CommonProductInfo } from 'types/HAFAS';
 import type { FC } from 'react';
 
 interface Props {
-  train: CommonProductInfo;
+  train: Pick<CommonProductInfo, 'type' | 'number'>;
   evaNumber?: string;
   initialDeparture: Date;
   urlPrefix?: string;

@@ -7,7 +7,7 @@ import { render } from 'client/__tests__/testHelper';
 
 describe('Explain', () => {
   function openLegende() {
-    render(Explain);
+    render(<Explain />);
 
     fireEvent.click(screen.getByTestId('reihungLegendOpener'));
   }

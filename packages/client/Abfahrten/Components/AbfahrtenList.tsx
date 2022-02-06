@@ -49,7 +49,6 @@ const InnerAbfahrtenList = () => {
   const { clearSequences } = useSequencesActions();
   const [scrolled, setScrolled] = useState(false);
   const { filteredAbfahrten, unfilteredAbfahrten } = useAbfahrten();
-  const loading = !unfilteredAbfahrten && !error;
   const paramStation = useParams().station;
   const { autoUpdate } = useCommonConfig();
   const urlPrefix = useAbfahrtenUrlPrefix();
@@ -141,35 +140,37 @@ const InnerAbfahrtenList = () => {
   }, [unfilteredAbfahrten, scrolled, selectedDetail]);
 
   return (
-    <Loading isLoading={loading}>
-      <Container>
-        {error ? (
-          <Navigate to={urlPrefix} />
-        ) : filteredAbfahrten &&
-          (filteredAbfahrten.departures.length ||
-            filteredAbfahrten.lookbehind.length) ? (
-          <>
-            {Boolean(
-              unfilteredAbfahrten?.strike && unfilteredAbfahrten.strike > 10,
-            ) && <Streik />}
-            {Boolean(filteredAbfahrten.lookbehind.length) && (
-              <Lookbehind id="lookbehind" data-testid="lookbehind">
-                {filteredAbfahrten.lookbehind.map((a) => (
+    <Loading check={unfilteredAbfahrten || error}>
+      {() => (
+        <Container>
+          {error ? (
+            <Navigate to={urlPrefix} />
+          ) : filteredAbfahrten &&
+            (filteredAbfahrten.departures.length ||
+              filteredAbfahrten.lookbehind.length) ? (
+            <>
+              {Boolean(
+                unfilteredAbfahrten?.strike && unfilteredAbfahrten.strike > 10,
+              ) && <Streik />}
+              {Boolean(filteredAbfahrten.lookbehind.length) && (
+                <Lookbehind id="lookbehind" data-testid="lookbehind">
+                  {filteredAbfahrten.lookbehind.map((a) => (
+                    <Abfahrt abfahrt={a} key={a.rawId} />
+                  ))}
+                  <LookaheadMarker id="lookaheadMarker" />
+                </Lookbehind>
+              )}
+              <div id="lookahead" data-testid="lookahead">
+                {filteredAbfahrten.departures.map((a) => (
                   <Abfahrt abfahrt={a} key={a.rawId} />
                 ))}
-                <LookaheadMarker id="lookaheadMarker" />
-              </Lookbehind>
-            )}
-            <div id="lookahead" data-testid="lookahead">
-              {filteredAbfahrten.departures.map((a) => (
-                <Abfahrt abfahrt={a} key={a.rawId} />
-              ))}
-            </div>
-          </>
-        ) : (
-          <div>Leider keine Abfahrten in nächster Zeit</div>
-        )}
-      </Container>
+              </div>
+            </>
+          ) : (
+            <div>Leider keine Abfahrten in nächster Zeit</div>
+          )}
+        </Container>
+      )}
     </Loading>
   );
 };

@@ -7,6 +7,7 @@ import { StorageContext } from 'client/useStorage';
 import { ThemeProvider } from 'client/Common/provider/ThemeProvider';
 import { ThemeWrap } from './ThemeWrap';
 import Axios from 'axios';
+import qs from 'qs';
 import React from 'react';
 import type { ComponentType } from 'react';
 // 15s timeout
@@ -33,6 +34,8 @@ Axios.defaults.transformResponse = [
     return data;
   },
 ];
+Axios.defaults.paramsSerializer = (p) =>
+  qs.stringify(p, { arrayFormat: 'repeat' });
 
 const storage = new ClientStorage();
 

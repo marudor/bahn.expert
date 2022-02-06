@@ -4,38 +4,29 @@ import { screen } from '@testing-library/react';
 
 describe('Platform', () => {
   it('No platform provided', () => {
-    const { container } = render(Platform);
+    const { container } = render(<Platform />);
 
     expect(screen.queryByTestId('real')).toBeEmptyDOMElement();
     expect(container).toMatchSnapshot();
   });
   it('scheduled === real', () => {
-    const { container } = render(Platform, {
-      real: '1',
-      scheduled: '1',
-    });
+    const { container } = render(<Platform real="1" scheduled="1" />);
 
     expect(screen.queryByTestId('real')).toHaveTextContent('1');
     expect(screen.queryByTestId('scheduled')).toBeNull();
     expect(container).toMatchSnapshot();
   });
   it('scheduled === real & cancelled', () => {
-    const { container } = render(Platform, {
-      real: '1',
-      scheduled: '1',
-      cancelled: true,
-    });
+    const { container } = render(<Platform real="1" scheduled="1" cancelled />);
 
     expect(screen.queryByTestId('real')).toHaveTextContent('1');
     expect(container).toHaveStyle('text-decoration: line-through');
     expect(container).toMatchSnapshot();
   });
   it('scheduled !== real & cancelled', () => {
-    const { container, theme } = render(Platform, {
-      real: '1',
-      scheduled: '2',
-      cancelled: true,
-    });
+    const { container, theme } = render(
+      <Platform real="1" scheduled="2" cancelled />,
+    );
 
     expect(screen.queryByTestId('real')).toHaveTextContent('1');
     expect(container).toHaveStyle(`
@@ -44,10 +35,7 @@ describe('Platform', () => {
     expect(container).toMatchSnapshot();
   });
   it('scheduled !== real', () => {
-    const { container, theme } = render(Platform, {
-      real: '1',
-      scheduled: '2',
-    });
+    const { container, theme } = render(<Platform real="1" scheduled="2" />);
 
     expect(screen.queryByTestId('real')).toHaveTextContent('1');
     expect(screen.queryByTestId('scheduled')).toHaveTextContent('2');

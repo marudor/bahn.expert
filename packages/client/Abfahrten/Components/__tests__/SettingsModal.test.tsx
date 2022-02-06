@@ -20,7 +20,7 @@ const OpenDummy = () => {
 };
 
 const renderSetup = () =>
-  render(OpenDummy, undefined, {
+  render(<OpenDummy />, {
     provider: [
       {
         Provider: InnerAbfahrtenConfigProvider,

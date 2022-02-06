@@ -1,4 +1,10 @@
-import { AlarmOnOutlined, Explore, Info, Search } from '@mui/icons-material';
+import {
+  AlarmOnOutlined,
+  Explore,
+  Info,
+  Search,
+  Train,
+} from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import {
   List,
@@ -18,15 +24,16 @@ const Headline = styled.h3`
   text-align: center;
 `;
 
-const Drawer = styled(List)({
-  width: 230,
-  '& a': {
-    color: 'inherit',
-  },
-  '& .MuiListItem-button': {
-    padding: '20px 20px',
-  },
-});
+const Drawer = styled(List)`
+  width: 230px;
+  overflow-x: hidden;
+  & a {
+    color: inherit;
+  }
+  & .MuiListItem-button {
+    padding: 20px 20px;
+  }
+`;
 
 interface Props {
   children: ReactNode;
@@ -83,6 +90,14 @@ export const Navigation: FC<Props> = ({ children }) => {
               </ListItem>
             )}
           </Zugsuche>
+          <Link to="/trainRuns">
+            <ListItem button>
+              <ListItemIcon>
+                <Train />
+              </ListItemIcon>
+              <ListItemText primary="Zugläufe" />
+            </ListItem>
+          </Link>
           <ThemeSelection />
           <Link to="/about">
             <ListItem button>

@@ -3673,6 +3673,9 @@
           },
           "type": {
             "type": "string"
+          },
+          "line": {
+            "type": "string"
           }
         },
         "required": ["number", "type"],
@@ -3803,29 +3806,32 @@
           "410.1"
         ]
       },
+      "AvailableIdentifierOnly": {
+        "type": "string",
+        "enum": [
+          "401.LDV",
+          "401.9",
+          "411.S1",
+          "411.S2",
+          "412.7",
+          "412.13",
+          "403.R",
+          "403.S1",
+          "403.S2",
+          "406.R",
+          "IC2.TWIN",
+          "IC2.KISS",
+          "MET",
+          "TGV"
+        ]
+      },
       "AvailableIdentifier": {
         "anyOf": [
           {
-            "$ref": "#/components/schemas/AvailableBR"
+            "$ref": "#/components/schemas/AvailableIdentifierOnly"
           },
           {
-            "type": "string",
-            "enum": [
-              "401.LDV",
-              "401.9",
-              "411.S1",
-              "411.S2",
-              "412.7",
-              "412.13",
-              "403.R",
-              "403.S1",
-              "403.S2",
-              "406.R",
-              "IC2.TWIN",
-              "IC2.KISS",
-              "MET",
-              "TGV"
-            ]
+            "$ref": "#/components/schemas/AvailableBR"
           }
         ]
       },
@@ -3921,6 +3927,88 @@
           }
         },
         "required": ["stop", "product", "sequence", "isRealtime"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "TrainRunStop": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "evaNumber": {
+            "type": "string"
+          },
+          "arrivalTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "departureTime": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": ["name", "evaNumber"],
+        "type": "object",
+        "additionalProperties": false
+      },
+      "Pick_TrainRun.Exclude_keyofTrainRun.primaryVehicleGroupName__": {
+        "properties": {
+          "product": {
+            "$ref": "#/components/schemas/CoachSequenceProduct"
+          },
+          "origin": {
+            "$ref": "#/components/schemas/TrainRunStop"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/TrainRunStop"
+          },
+          "via": {
+            "items": {
+              "$ref": "#/components/schemas/TrainRunStop"
+            },
+            "type": "array"
+          },
+          "dates": {
+            "items": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "type": "array"
+          }
+        },
+        "required": ["product", "origin", "destination", "via", "dates"],
+        "type": "object",
+        "description": "From T, pick a set of properties whose keys are in the union K"
+      },
+      "TrainRunWithBR": {
+        "properties": {
+          "product": {
+            "$ref": "#/components/schemas/CoachSequenceProduct"
+          },
+          "origin": {
+            "$ref": "#/components/schemas/TrainRunStop"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/TrainRunStop"
+          },
+          "via": {
+            "items": {
+              "$ref": "#/components/schemas/TrainRunStop"
+            },
+            "type": "array"
+          },
+          "dates": {
+            "items": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "type": "array"
+          },
+          "br": {
+            "$ref": "#/components/schemas/CoachSequenceBaureihe"
+          }
+        },
+        "required": ["product", "origin", "destination", "via", "dates"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4796,6 +4884,72 @@
             "required": false,
             "schema": {
               "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ]
+      }
+    },
+    "/reihung/v4/runsPerDate/{date}": {
+      "get": {
+        "operationId": "Runs per Date v4",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/TrainRunWithBR"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Reihung"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "date",
+            "required": true,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "baureihen",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AvailableBR"
+              }
+            }
+          },
+          {
+            "in": "query",
+            "name": "identifier",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AvailableIdentifier"
+              }
+            }
+          },
+          {
+            "in": "query",
+            "name": "stopsAt",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/EvaNumber"
+              }
             }
           }
         ]

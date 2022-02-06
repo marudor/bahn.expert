@@ -4,9 +4,7 @@ import { StationLink } from 'client/Common/Components/StationLink';
 
 describe('StationLink', () => {
   it('renders anchor for stationName', () => {
-    render(StationLink, {
-      stationName: 'test',
-    });
+    render(<StationLink stationName="test" />);
 
     const anchor = screen.getByTestId('stationLink');
 

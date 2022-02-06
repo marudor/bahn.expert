@@ -4,7 +4,6 @@ import { Search } from './Search';
 import { useEffect } from 'react';
 import { useHeaderTagsActions } from 'client/Common/provider/HeaderTagProvider';
 import { useRoutingConfig } from 'client/Routing/provider/RoutingConfigProvider';
-import styled from '@emotion/styled';
 import type { FC } from 'react';
 
 const RouteHeaderTags = () => {
@@ -35,17 +34,12 @@ const RouteHeaderTags = () => {
   return null;
 };
 
-const Container = styled.main`
-  margin-left: 0.5em;
-  margin-right: 0.5em;
-`;
-
 export const RoutesMain: FC = () => {
   return (
-    <Container>
+    <main>
       <RouteHeaderTags />
       <Search />
       <RouteList />
-    </Container>
+    </main>
   );
 };
