@@ -13,7 +13,8 @@ if (process.env.PRETTY_LOG) {
 
   streams.push((msg) => process.stdout.write(prettyLog(JSON.stringify(msg))));
 } else {
-  streams.push((msg) => process.stdout.write(JSON.stringify(msg)));
+  // eslint-disable-next-line no-console
+  streams.push((msg) => console.log(JSON.stringify(msg)));
 }
 
 const logglyToken = process.env.LOGGLY_TOKEN;
