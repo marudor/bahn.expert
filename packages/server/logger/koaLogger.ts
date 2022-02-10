@@ -3,6 +3,7 @@ import onFinished from 'on-finished';
 import util from 'util';
 import type { Context, Next } from 'koa';
 import type { IncomingMessage } from 'http';
+import type { RouterContext } from '@koa/router';
 import type P from 'pino';
 
 declare module 'koa' {
@@ -50,7 +51,7 @@ const formatResponseMessage = (ctx: Context, data: any) =>
   );
 
 export default (logger: P.Logger) =>
-  (ctx: Context, next: Next): Promise<void> => {
+  (ctx: Context & RouterContext, next: Next): Promise<void> => {
     ctx.log = logger;
 
     const reqId = ctx.request.get(headerName) || nanoid();
@@ -75,6 +76,8 @@ export default (logger: P.Logger) =>
     let err: any;
 
     const onResponseFinished = () => {
+      // @ts-expect-error custom log field
+      ctx.req.matchedRoute = ctx._matchedRoute?.toString();
       const responseData = {
         req: trimRequest(ctx.req),
         res: ctx.res,
