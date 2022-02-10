@@ -31,12 +31,7 @@ const createWriteOptions = () => {
 export const logger = pino(
   {
     redact: {
-      paths: [
-        'req.remoteAddress',
-        'req.remotePort',
-        'res.headers',
-        'res.statusCode',
-      ],
+      paths: ['req.remoteAddress', 'req.remotePort', 'res.headers'],
       remove: true,
     },
     name: 'BahnhofsAbfahrten',
