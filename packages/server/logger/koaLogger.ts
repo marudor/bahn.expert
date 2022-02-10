@@ -76,10 +76,9 @@ export default (logger: P.Logger) =>
     let err: any;
 
     const onResponseFinished = () => {
-      // @ts-expect-error custom log field
-      ctx.req.matchedRoute = ctx._matchedRoute?.toString();
       const responseData = {
         req: trimRequest(ctx.req),
+        matchedRouted: ctx._matchedRoute?.toString(),
         res: ctx.res,
         err: undefined,
         duration: Date.now() - startTime,
