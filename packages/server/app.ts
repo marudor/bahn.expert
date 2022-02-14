@@ -129,9 +129,8 @@ export default (): http.Server => {
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line no-console
     console.log('running in DEV mode!');
-  } else {
-    createAdmin();
   }
+  createAdmin();
 
   return server;
 };
