@@ -6,7 +6,9 @@ import type { Route$Auslastung } from 'types/routing';
 import type { TrainOccupancyList } from 'types/stopPlace';
 
 function getAuslastungKey(abfahrt: Abfahrt) {
-  return `${abfahrt.currentStopPlace.name}/${abfahrt.destination}/${abfahrt.train.number}`;
+  return `${encodeURIComponent(
+    abfahrt.currentStopPlace.name,
+  )}/${encodeURIComponent(abfahrt.destination)}/${abfahrt.train.number}`;
 }
 
 function useAuslastungInner() {
