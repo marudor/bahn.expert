@@ -2,6 +2,7 @@ import { addMinutes, isBefore } from 'date-fns';
 import { stopPropagation } from 'client/Common/stopPropagation';
 import { Tooltip } from '@mui/material';
 import { Train } from '@mui/icons-material';
+import { useCommonConfig } from 'client/Common/provider/CommonConfigProvider';
 import type { CommonProductInfo, CommonStopInfo } from 'types/HAFAS';
 import type { FC } from 'react';
 
@@ -19,13 +20,16 @@ export const TravelynxLink: FC<Props> = ({
   evaNumber,
   train,
   className,
-}) =>
-  departure &&
-  !departure.cancelled &&
-  isBefore(
-    arrival ? arrival.scheduledTime : departure.scheduledTime,
-    addMinutes(Date.now(), 30),
-  ) ? (
+}) => {
+  const { hideTravelynx } = useCommonConfig();
+
+  return !hideTravelynx &&
+    departure &&
+    !departure.cancelled &&
+    isBefore(
+      arrival ? arrival.scheduledTime : departure.scheduledTime,
+      addMinutes(Date.now(), 30),
+    ) ? (
     <Tooltip title="travelynx">
       <a
         data-testid="travellynxlink"
@@ -39,3 +43,4 @@ export const TravelynxLink: FC<Props> = ({
       </a>
     </Tooltip>
   ) : null;
+};
