@@ -12,6 +12,7 @@ export interface CommonConfig {
   readonly autoUpdate: number;
   readonly fahrzeugGruppe: boolean;
   readonly time: boolean;
+  readonly hideTravelynx: boolean;
 }
 
 type Sanitize<Config> = {

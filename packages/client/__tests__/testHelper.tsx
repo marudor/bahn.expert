@@ -92,6 +92,7 @@ export function render(
       showUIC: false,
       fahrzeugGruppe: false,
       autoUpdate: 0,
+      hideTravelynx: false,
       ...commonConfig,
     };
 

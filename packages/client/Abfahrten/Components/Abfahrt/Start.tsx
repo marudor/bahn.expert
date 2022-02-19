@@ -23,6 +23,9 @@ const Links = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  > a:last-of-type {
+    font-size: 1.5em;
+  }
 `;
 
 export const Start: FC = () => {

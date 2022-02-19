@@ -54,7 +54,8 @@ export const SettingsModal: FC = () => {
   const { setConfigOpen } = useAbfahrtenModalToggle();
   const configOpen = useAbfahrtenConfigOpen();
   const setConfigKey = useAbfahrtenSetConfig();
-  const { fahrzeugGruppe, showUIC, time, autoUpdate } = useCommonConfig();
+  const { fahrzeugGruppe, showUIC, time, autoUpdate, hideTravelynx } =
+    useCommonConfig();
   const setCommonConfigKey = useSetCommonConfig();
   const handleSelectChange = useCallback(
     (key: keyof AbfahrtenConfig) => (e: ChangeEvent<HTMLSelectElement>) =>
@@ -157,6 +158,20 @@ export const SettingsModal: FC = () => {
             />
           }
           label="Zeige ausfallende Fahrten"
+        />
+        <Label
+          control={
+            <Switch
+              data-testid="hideTravelynx"
+              checked={hideTravelynx}
+              value="hideTravelynx"
+              onChange={handleConfigCheckedChange(
+                'hideTravelynx',
+                setCommonConfigKey,
+              )}
+            />
+          }
+          label="Verstecke Travelynx button"
         />
         <Label
           control={

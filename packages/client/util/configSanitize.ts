@@ -26,6 +26,7 @@ export const abfahrtenConfigSanitize: AbfahrtenConfigSanitize = {
 
 export const commonConfigSanitize: CommonConfigSanitize = {
   autoUpdate: (value) => numberCheck(value, 0),
+  hideTravelynx: booleanCheck,
   showUIC: booleanCheck,
   fahrzeugGruppe: booleanCheck,
   time: booleanCheck,
