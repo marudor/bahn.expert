@@ -11,6 +11,7 @@ const noncdRequest = Axios.create({
   headers: {
     'user-agent': '',
   },
+  timeout: 5000,
 });
 
 // eslint-disable-next-line import/no-mutable-exports
