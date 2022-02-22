@@ -1,5 +1,6 @@
-import { css, Paper } from '@mui/material';
+import { css } from '@emotion/react';
 import { Fragment } from 'react';
+import { Paper } from '@mui/material';
 import { partition } from 'client/util';
 import { TrainRun } from 'client/TrainRuns/Components/TrainRun';
 import styled from '@emotion/styled';
