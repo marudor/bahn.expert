@@ -3,7 +3,7 @@ import { CacheProvider } from '@emotion/react';
 import { LocalizationProvider } from '@mui/lab';
 import { StyledEngineProvider } from '@mui/material';
 import { ThemeHeaderTags } from 'client/Common/Components/ThemeHeaderTags';
-import { ThemeProvider } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
 import { useTheme } from 'client/Common/provider/ThemeProvider';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import createEmotionCache from '@emotion/cache';

@@ -119,7 +119,6 @@ export default (): http.Server => {
   const server = http.createServer();
 
   Axios.defaults.baseURL = `http://localhost:${port}`;
-  Axios.defaults.timeout = 10000;
 
   const app = createApp();
 

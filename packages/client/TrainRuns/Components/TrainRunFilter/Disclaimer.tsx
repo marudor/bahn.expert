@@ -1,5 +1,6 @@
-import { Dialog, DialogContent, DialogTitle, styled } from '@mui/material';
+import { Dialog, DialogContent, DialogTitle } from '@mui/material';
 import { useCallback, useState } from 'react';
+import styled from '@emotion/styled';
 import type { FC, ReactElement, SyntheticEvent } from 'react';
 
 const Title = styled(DialogTitle)`

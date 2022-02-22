@@ -15,6 +15,10 @@ spec:
       app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
+      annotations:
+        prometheus.io/path: /metrics
+        prometheus.io/port: 9000
+        prometheus.io/scrape: true
       labels:
         app.kubernetes.io/name: {{ include "bahnhofsAbfahrten.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}

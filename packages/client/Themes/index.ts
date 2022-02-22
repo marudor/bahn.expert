@@ -1,5 +1,5 @@
 import { createMuiTheme } from './mui';
-import { css } from '@mui/material';
+import { css } from '@emotion/react';
 import { getColors } from './colors';
 import type { Theme as MaruTheme } from 'maru';
 import type { Theme as MuiTheme } from '@mui/material';

@@ -1,5 +1,5 @@
 import { blue, purple } from '@mui/material/colors';
-import { createTheme } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
 import { ThemeType } from './type';
 import type { Theme as MuiTheme, ThemeOptions } from '@mui/material';
 
