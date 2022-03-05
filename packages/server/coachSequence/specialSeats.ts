@@ -12,6 +12,7 @@ export function getComfortSeats(
     case '401':
       return klasse === 1 ? '11-36' : '11-57';
     case '401.9':
+    case '401.LDV':
       return klasse === 1 ? '12-31' : '11-44';
     case '402':
       return klasse === 1 ? '11-16, 21, 22' : '81-108';
@@ -52,6 +53,7 @@ export function getDisabledSeats(
     case '401':
       return klasse === 1 ? '51, 52, 53, 55' : '111-116';
     case '401.9':
+    case '401.LDV':
       return klasse === 1 ? '11, 13, 15' : '11, 13, 111-116';
     case '402':
       return klasse === 1 ? '12, 21' : '81, 85-88';
@@ -112,6 +114,7 @@ export function getFamilySeats(
     case '401':
       return '81-116';
     case '401.9':
+    case '401.LDV':
       return '91-116';
     case '402':
       return '61-78';
