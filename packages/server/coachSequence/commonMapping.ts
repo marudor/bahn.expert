@@ -58,6 +58,14 @@ function enrichCoachSequenceGroup(
     }
     group.baureihe = calculateBR(group.coaches, tzn);
     if (group.baureihe) {
+      if (group.baureihe.identifier === '401.LDV') {
+        const wagen4 = group.coaches.find(
+          (c) => c.identificationNumber === '6',
+        );
+        if (wagen4) {
+          wagen4.features.disabled = false;
+        }
+      }
       for (const c of group.coaches) {
         c.seats = getSeatsForCoach(c, group.baureihe.identifier);
       }
