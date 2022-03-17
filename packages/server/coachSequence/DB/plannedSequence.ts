@@ -33,6 +33,7 @@ export async function getPlannedSequence(
 
     plannedSequence.sequence.groups.forEach((g) => {
       const br = getBRFromGroupName(g.name);
+      g.baureihe = br;
       g.name = `${g.number}-planned`;
       if (br) {
         g.coaches.forEach((coach) => {
