@@ -8,6 +8,7 @@ import type { FC } from 'react';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 0 0.5em;
 `;
 
 export const Routing: FC = () => (
