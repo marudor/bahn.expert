@@ -9,9 +9,11 @@ import {
   subDays,
 } from 'date-fns';
 import { Button, Divider, TextField } from '@mui/material';
+import { css } from '@emotion/react';
 import {
   FavoriteBorder,
   Search as SearchIcon,
+  SwapVert,
   Today,
 } from '@mui/icons-material';
 import { getRouteLink } from 'client/Routing/util';
@@ -41,19 +43,30 @@ const setStopPlaceById = async (
   }
 };
 
-const DateTimePickerContainer = styled.div`
-  position: relative;
+const FlexContainer = styled.div`
+  display: flex;
+`;
+
+const DateTimeContainer = styled(FlexContainer)`
+  & input {
+    cursor: pointer;
+  }
+`;
+
+const iconCss = css`
+  right: 0.4em;
+  position: absolute;
+  align-self: center;
+  cursor: pointer;
 `;
 
 const TodayIcon = styled(Today)`
-  top: 50%;
-  right: 0;
-  position: absolute;
-  transform: translateY(-50%);
+  pointer-events: none;
+  ${iconCss}
 `;
 
-const Destination = styled.div`
-  display: flex;
+const SwapOriginDest = styled(SwapVert)`
+  ${iconCss}
 `;
 
 const Buttons = styled.div(({ theme }) => ({
@@ -147,6 +160,11 @@ export const Search: FC = () => {
     }
   }, [params.via, updateVia]);
 
+  const swapOriginDest = useCallback(() => {
+    setDestination(start);
+    setStart(destination);
+  }, [start, destination]);
+
   const searchRoute = useCallback(
     (e: SyntheticEvent) => {
       e.preventDefault();
@@ -192,15 +210,16 @@ export const Search: FC = () => {
           />
         )}
       </div>
-      <Destination>
+      <FlexContainer>
         <StopPlaceSearch
           id="routingDestinationSearch"
           value={destination}
           onChange={setDestination}
           placeholder="Destination"
         />
-      </Destination>
-      <DateTimePickerContainer>
+        <SwapOriginDest onClick={swapOriginDest} />
+      </FlexContainer>
+      <DateTimeContainer>
         <MobileDateTimePicker
           openTo="hours"
           clearText="Jetzt"
@@ -222,7 +241,7 @@ export const Search: FC = () => {
           toolbarTitle=""
         />
         <TodayIcon />
-      </DateTimePickerContainer>
+      </DateTimeContainer>
       <SettingsPanel />
       <Buttons>
         <Button
