@@ -61,8 +61,7 @@ export function getDisabledSeats(
     case '403.R':
     case '403.S1':
     case '403.S2':
-      // 406 has no seat 64/66 Looks like no disabled seats either. At least for trains going to Amsterdam/NL
-      // case '406':
+    case '406':
       if (klasse === 1) return '64, 66';
       if (wagenordnungsnummer === '25' || wagenordnungsnummer === '35') {
         // redesign slighlty different
