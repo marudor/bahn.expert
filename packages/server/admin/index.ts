@@ -1,19 +1,14 @@
-import './metrics';
-import { register } from 'prom-client';
 import Koa from 'koa';
 import type { Server } from 'http';
 
 export default (adminPort = 9000): Server => {
   const koa = new Koa();
 
-  koa.use(async (ctx) => {
+  koa.use((ctx) => {
     try {
       switch (ctx.request.url) {
         case '/ping':
           ctx.body = 'pong';
-          break;
-        case '/metrics':
-          ctx.body = await register.metrics();
           break;
         default:
           break;
