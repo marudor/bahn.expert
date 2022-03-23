@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@emotion/server": "^11.4.0",
+    "@koa/cors": "^3.2.0",
     "@koa/router": "^10.1.1",
     "@loadable/component": "^5.15.2",
     "@loadable/server": "^5.15.2",
@@ -39,7 +40,6 @@
     "pino": "^7.6.1",
     "pino-pretty": "^7.3.0",
     "pino-std-serializers": "^5.0.0",
-    "prom-client": "^14.0.1",
     "qs": "^6.10.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -61,6 +61,7 @@
     "@types/koa": "2.13.4",
     "@types/koa-bodyparser": "4.3.5",
     "@types/koa-static": "4.0.2",
+    "@types/koa__cors": "^3",
     "@types/koa__router": "8.0.11",
     "@types/loadable__component": "5.13.4",
     "@types/loadable__server": "5.12.6",

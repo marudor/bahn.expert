@@ -2287,6 +2287,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@koa/cors@npm:^3.2.0":
+  version: 3.2.0
+  resolution: "@koa/cors@npm:3.2.0"
+  dependencies:
+    vary: ^1.1.2
+  checksum: 58614f983fda89a3640ae4423a07e5c661d9dc745508918bc6173d374a9bf7653415abf733053d2e41c884679363d812f5c90eab552965073da40d03f59e91e4
+  languageName: node
+  linkType: hard
+
 "@koa/router@npm:^10.1.1":
   version: 10.1.1
   resolution: "@koa/router@npm:10.1.1"
@@ -3600,6 +3609,15 @@ __metadata:
     "@types/koa-compose": "*"
     "@types/node": "*"
   checksum: 35a54e68944f74d6763537d55d01f8ed870d0ef816b5f27fce97a317b237540b7c249dc4a54abab44ad0afd0ce010b335122c9efb490b9589affe7929201d707
+  languageName: node
+  linkType: hard
+
+"@types/koa__cors@npm:^3":
+  version: 3.1.1
+  resolution: "@types/koa__cors@npm:3.1.1"
+  dependencies:
+    "@types/koa": "*"
+  checksum: 7ef2c09a453383f7813c25657633a3fe1c3321fe5cdd30a5806aa8be61d02f475deeb44a472bae046c48849d4a60165410b3ea0a7b931ed720da02e3f26515f7
   languageName: node
   linkType: hard
 
@@ -5132,13 +5150,6 @@ __metadata:
   dependencies:
     file-uri-to-path: 1.0.0
   checksum: 65b6b48095717c2e6105a021a7da4ea435aa8d3d3cd085cb9e85bcb6e5773cf318c4745c3f7c504412855940b585bdf9b918236612a1c7a7942491de176f1ae7
-  languageName: node
-  linkType: hard
-
-"bintrees@npm:1.0.1":
-  version: 1.0.1
-  resolution: "bintrees@npm:1.0.1"
-  checksum: 71d00ce450ee7ad080a3c86ae5f05fac841bdf95c0d78f3b3bbf8f754c19d7cb732f0f9213a46ed27cbec47eb124ffe2b686bef870718a4b9918c23210b55c73
   languageName: node
   linkType: hard
 
@@ -11867,15 +11878,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prom-client@npm:^14.0.1":
-  version: 14.0.1
-  resolution: "prom-client@npm:14.0.1"
-  dependencies:
-    tdigest: ^0.1.1
-  checksum: 864c19b7086eda8fae652385bc8b8aeb155f85922e58672d07a64918a603341e120e65e08f9d77ccab546518dc18930284da8743c2aac3c968f626d7063d6bba
-  languageName: node
-  linkType: hard
-
 "promise-inflight@npm:^1.0.1":
   version: 1.0.1
   resolution: "promise-inflight@npm:1.0.1"
@@ -12843,6 +12845,7 @@ __metadata:
     "@babel/cli": ^7.16.0
     "@babel/core": ^7.16.5
     "@emotion/server": ^11.4.0
+    "@koa/cors": ^3.2.0
     "@koa/router": ^10.1.1
     "@loadable/component": ^5.15.2
     "@loadable/server": ^5.15.2
@@ -12857,6 +12860,7 @@ __metadata:
     "@types/koa": 2.13.4
     "@types/koa-bodyparser": 4.3.5
     "@types/koa-static": 4.0.2
+    "@types/koa__cors": ^3
     "@types/koa__router": 8.0.11
     "@types/loadable__component": 5.13.4
     "@types/loadable__server": 5.12.6
@@ -12898,7 +12902,6 @@ __metadata:
     pino: ^7.6.1
     pino-pretty: ^7.3.0
     pino-std-serializers: ^5.0.0
-    prom-client: ^14.0.1
     qs: ^6.10.2
     react: ^17.0.2
     react-dom: ^17.0.2
@@ -13668,15 +13671,6 @@ __metadata:
     mkdirp: ^1.0.3
     yallist: ^4.0.0
   checksum: a04c07bb9e2d8f46776517d4618f2406fb977a74d914ad98b264fc3db0fe8224da5bec11e5f8902c5b9bcb8ace22d95fbe3c7b36b8593b7dfc8391a25898f32f
-  languageName: node
-  linkType: hard
-
-"tdigest@npm:^0.1.1":
-  version: 0.1.1
-  resolution: "tdigest@npm:0.1.1"
-  dependencies:
-    bintrees: 1.0.1
-  checksum: 4d05fd70fb0aa70aa101d01557722b7ef9a91b2ebf8dfc274ca9852220397a74e4ed6e59c55335b4b1dd0ac5e1b65d25b8d32ae01278fc3b783c40f6d84303e2
   languageName: node
   linkType: hard
 
