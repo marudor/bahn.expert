@@ -2129,8 +2129,8 @@ export function RegisterRoutes(router: KoaRouter) {
             return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        router.get('/api/hafas/v1/station/:searchTerm',
-            async function HafasController_station(context: any, next: any) {
+        router.get('/api/hafas/v1/stopPlace/:searchTerm',
+            async function HafasController_stopPlaceSearch(context: any, next: any) {
             const args = {
                     req: {"in":"request","name":"req","required":true,"dataType":"object"},
                     searchTerm: {"in":"path","name":"searchTerm","required":true,"dataType":"string"},
@@ -2149,7 +2149,7 @@ export function RegisterRoutes(router: KoaRouter) {
 
             const controller = new HafasController();
 
-            const promise = controller.station.apply(controller, validatedArgs as any);
+            const promise = controller.stopPlaceSearch.apply(controller, validatedArgs as any);
             return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

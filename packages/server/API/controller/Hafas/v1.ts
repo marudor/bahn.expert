@@ -88,10 +88,13 @@ export class HafasController extends Controller {
     );
   }
 
-  @Get('/station/{searchTerm}')
+  /**
+   * Only uses this for non DB profiles. If you need DB stopPlace search use Operation tagged with StopPlace
+   */
+  @Get('/stopPlace/{searchTerm}')
   @Tags('HAFAS')
-  @Hidden()
-  station(
+  @OperationId('StopPlace search v1')
+  stopPlaceSearch(
     @Request() req: KRequest,
     searchTerm: string,
     @Query() type?: 'S' | 'ALL',
