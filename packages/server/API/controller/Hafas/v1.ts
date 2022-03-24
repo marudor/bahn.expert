@@ -68,6 +68,9 @@ export class HafasController extends Controller {
     return enrichedJourneyMatch(options, profile);
   }
 
+  /**
+   * Can be used to find all stopPlaces within a radius around a specific geo location
+   */
   @Get('/geoStation')
   @Tags('HAFAS')
   @OperationId('Geo Station v1')
@@ -89,15 +92,19 @@ export class HafasController extends Controller {
   }
 
   /**
-   * Only uses this for non DB profiles. If you need DB stopPlace search use Operation tagged with StopPlace
+   * Only uses this for non DB profiles. If you need DB stopPlace search use Operation tagged with StopPlace.
+   * Used to search for stopPlaces based on a name.
    */
   @Get('/stopPlace/{searchTerm}')
   @Tags('HAFAS')
-  @OperationId('StopPlace search v1')
+  @OperationId('StopPlaceSearch v1')
   stopPlaceSearch(
     @Request() req: KRequest,
     searchTerm: string,
-    @Query() type?: 'S' | 'ALL',
+    /**
+     * S returns only StopPlaces, ALL also returns Point of Interests
+     */
+    @Query() type: 'S' | 'ALL' = 'ALL',
     @Query() profile?: AllowedHafasProfile,
   ): Promise<HafasStation[]> {
     // @ts-expect-error untyped
@@ -116,6 +123,12 @@ export class HafasController extends Controller {
     return JourneyGeoPos(body, profile, req.query.raw);
   }
 
+  /**
+   * Used to find the position of a specific journey. Based on predictions, not GPS.
+   *
+   * @example trainName "ICE 23"
+   * @example trainName "STR 1988"
+   */
   @Get('/positionForTrain/{trainName}')
   @Tags('HAFAS')
   @OperationId('Position for Train v1')

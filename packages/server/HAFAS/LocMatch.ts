@@ -30,7 +30,7 @@ function parseFn(
 
 export default async (
   searchTerm: string,
-  type: 'S' | 'ALL' = 'ALL',
+  type: 'S' | 'ALL',
   profile?: AllowedHafasProfile,
   raw?: boolean,
 ): Promise<HafasStation[]> => {

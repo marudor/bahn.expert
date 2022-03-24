@@ -16,6 +16,10 @@ import type { TripSearchOptionsV3 } from 'types/HAFAS/TripSearch';
 
 @Route('/hafas/v3')
 export class HafasControllerV3 extends Controller {
+  /**
+   * Used to find trips [Verbindungssuche]
+   * A lot of the request options are raw HAFAS and not documented.
+   */
   @Post('/tripSearch')
   @Tags('HAFAS')
   @OperationId('TripSearch v3')

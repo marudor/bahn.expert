@@ -16,10 +16,7 @@
             "format": "double"
           }
         },
-        "required": [
-          "name",
-          "icoX"
-        ],
+        "required": ["name", "icoX"],
         "type": "object",
         "additionalProperties": false
       },
@@ -44,9 +41,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "type": "object",
         "additionalProperties": false
       },
@@ -64,10 +59,7 @@
             "format": "double"
           }
         },
-        "required": [
-          "lat",
-          "lng"
-        ],
+        "required": ["lat", "lng"],
         "type": "object",
         "additionalProperties": false
       },
@@ -89,11 +81,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "coordinates",
-          "title",
-          "id"
-        ],
+        "required": ["coordinates", "title", "id"],
         "type": "object",
         "additionalProperties": false
       },
@@ -115,13 +103,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "name",
-          "fDate",
-          "fTime",
-          "tDate",
-          "tTime"
-        ],
+        "required": ["name", "fDate", "fTime", "tDate", "tTime"],
         "type": "object",
         "additionalProperties": false
       },
@@ -266,9 +248,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "messages"
-        ],
+        "required": ["messages"],
         "type": "object",
         "additionalProperties": false
       },
@@ -317,10 +297,7 @@
             "format": "double"
           }
         },
-        "required": [
-          "x",
-          "y"
-        ],
+        "required": ["x", "y"],
         "type": "object",
         "additionalProperties": false
       },
@@ -366,12 +343,7 @@
       },
       "HimFilterMode": {
         "type": "string",
-        "enum": [
-          "BIT",
-          "EXC",
-          "INC",
-          "UNDEF"
-        ]
+        "enum": ["BIT", "EXC", "INC", "UNDEF"]
       },
       "HimFilterType": {
         "type": "string",
@@ -404,11 +376,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "mode",
-          "type",
-          "value"
-        ],
+        "required": ["mode", "type", "value"],
         "type": "object",
         "additionalProperties": false
       },
@@ -491,30 +459,29 @@
             "format": "double"
           }
         },
-        "required": [
-          "type",
-          "code",
-          "icoX",
-          "txtN"
-        ],
+        "required": ["type", "code", "icoX", "txtN"],
         "type": "object",
         "additionalProperties": false
       },
       "StopInfo": {
         "properties": {
           "scheduledPlatform": {
-            "type": "string"
+            "type": "string",
+            "description": "Scheduled Platform"
           },
           "platform": {
-            "type": "string"
+            "type": "string",
+            "description": "Best known platform, might be identical to scheduledPlatform"
           },
           "scheduledTime": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "scheduled time for this stop"
           },
           "time": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "best known time for this stop, might be identical to scheduledTime"
           },
           "delay": {
             "type": "integer",
@@ -536,16 +503,14 @@
             "items": {
               "type": "string"
             },
-            "type": "array"
+            "type": "array",
+            "description": "MediumIds of journeys that are wings of this journey at this stop."
           },
           "hidden": {
             "type": "boolean"
           }
         },
-        "required": [
-          "scheduledTime",
-          "time"
-        ],
+        "required": ["scheduledTime", "time"],
         "type": "object",
         "additionalProperties": false
       },
@@ -558,10 +523,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "name",
-          "evaNumber"
-        ],
+        "required": ["name", "evaNumber"],
         "type": "object",
         "description": "From T, pick a set of properties whose keys are in the union K"
       },
@@ -570,12 +532,7 @@
       },
       "MessagePrio": {
         "type": "string",
-        "enum": [
-          "1",
-          "2",
-          "3",
-          "4"
-        ],
+        "enum": ["1", "2", "3", "4"],
         "description": "1: High; 2: Medium; 3: Low; 4: Done"
       },
       "IrisMessage": {
@@ -598,10 +555,7 @@
             "format": "double"
           }
         },
-        "required": [
-          "text",
-          "value"
-        ],
+        "required": ["text", "value"],
         "type": "object",
         "additionalProperties": false
       },
@@ -631,11 +585,7 @@
             "$ref": "#/components/schemas/HafasStation"
           }
         },
-        "required": [
-          "text",
-          "value",
-          "head"
-        ],
+        "required": ["text", "value", "head"],
         "type": "object",
         "additionalProperties": false
       },
@@ -670,11 +620,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "qos",
-          "delay",
-          "him"
-        ],
+        "required": ["qos", "delay", "him"],
         "type": "object",
         "additionalProperties": {
           "items": {
@@ -695,11 +641,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "trainNumber",
-          "trainType",
-          "train"
-        ],
+        "required": ["trainNumber", "trainType", "train"],
         "type": "object",
         "additionalProperties": false
       },
@@ -718,9 +660,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "type": "object",
         "additionalProperties": false
       },
@@ -748,11 +688,7 @@
             "type": "boolean"
           }
         },
-        "required": [
-          "name",
-          "type",
-          "number"
-        ],
+        "required": ["name", "type", "number"],
         "type": "object",
         "additionalProperties": false
       },
@@ -781,10 +717,12 @@
             "type": "string"
           },
           "additional": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Is this stop unplanned and additional?"
           },
           "cancelled": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Is this stop cancelled for this journey?"
           },
           "mediumId": {
             "type": "string"
@@ -849,6 +787,7 @@
         "additionalProperties": false
       },
       "Wings": {
+        "description": "Map of \"mediumId\" to Abfahrt.",
         "properties": {},
         "type": "object",
         "additionalProperties": {
@@ -861,37 +800,32 @@
             "items": {
               "$ref": "#/components/schemas/Abfahrt"
             },
-            "type": "array"
+            "type": "array",
+            "description": "Journeys that have not yet departed (or arrived if they end here)"
           },
           "lookbehind": {
             "items": {
               "$ref": "#/components/schemas/Abfahrt"
             },
-            "type": "array"
+            "type": "array",
+            "description": "Journeys that have already departed (or arrived if they end here)"
           },
           "wings": {
             "$ref": "#/components/schemas/Wings"
           },
           "strike": {
             "type": "number",
-            "format": "double"
+            "format": "double",
+            "description": "amount of departures/arrivals that are affected by a strike [Streik]"
           }
         },
-        "required": [
-          "departures",
-          "lookbehind"
-        ],
+        "required": ["departures", "lookbehind"],
         "type": "object",
         "additionalProperties": false
       },
       "JourneyFilterMode": {
         "type": "string",
-        "enum": [
-          "BIT",
-          "EXC",
-          "INC",
-          "UNDEF"
-        ]
+        "enum": ["BIT", "EXC", "INC", "UNDEF"]
       },
       "JourneyFilterType": {
         "type": "string",
@@ -934,11 +868,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "mode",
-          "type",
-          "value"
-        ],
+        "required": ["mode", "type", "value"],
         "type": "object",
         "additionalProperties": false
       },
@@ -951,10 +881,7 @@
             "$ref": "#/components/schemas/Crd"
           }
         },
-        "required": [
-          "llCrd",
-          "urCrd"
-        ],
+        "required": ["llCrd", "urCrd"],
         "type": "object",
         "additionalProperties": false
       },
@@ -972,10 +899,7 @@
             "format": "double"
           }
         },
-        "required": [
-          "cCrd",
-          "maxDist"
-        ],
+        "required": ["cCrd", "maxDist"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1043,11 +967,7 @@
       },
       "HafasDirection": {
         "type": "string",
-        "enum": [
-          "B",
-          "F",
-          "FB"
-        ]
+        "enum": ["B", "F", "FB"]
       },
       "JourneyCourseRequestOptions": {
         "properties": {
@@ -1107,10 +1027,7 @@
             "description": "HHmm"
           }
         },
-        "required": [
-          "date",
-          "jid"
-        ],
+        "required": ["date", "jid"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1121,9 +1038,7 @@
             "format": "double"
           }
         },
-        "required": [
-          "subscriptionId"
-        ],
+        "required": ["subscriptionId"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1133,9 +1048,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "channelId"
-        ],
+        "required": ["channelId"],
         "type": "object",
         "description": "From T, pick a set of properties whose keys are in the union K"
       },
@@ -1152,11 +1065,7 @@
             "description": "1 or 0 for each day, starts at monday\nexample: 1001001\nMonday, Thursday, Sunday selected"
           }
         },
-        "required": [
-          "endDate",
-          "beginDate",
-          "selectedWeekdays"
-        ],
+        "required": ["endDate", "beginDate", "selectedWeekdays"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1219,11 +1128,7 @@
             "$ref": "#/components/schemas/SubscrInterval"
           }
         },
-        "required": [
-          "userId",
-          "channels",
-          "intvlSubscr"
-        ],
+        "required": ["userId", "channels", "intvlSubscr"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1235,9 +1140,7 @@
                 "type": "string"
               }
             },
-            "required": [
-              "resultCode"
-            ],
+            "required": ["resultCode"],
             "type": "object"
           },
           "userId": {
@@ -1247,11 +1150,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "result",
-          "userId",
-          "subscrId"
-        ],
+        "required": ["result", "userId", "subscrId"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1265,10 +1164,7 @@
             "format": "double"
           }
         },
-        "required": [
-          "userId",
-          "subscrId"
-        ],
+        "required": ["userId", "subscrId"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1278,9 +1174,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "userId"
-        ],
+        "required": ["userId"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1288,23 +1182,16 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "NO_SOUND"
-            ],
+            "enum": ["NO_SOUND"],
             "nullable": false
           },
           "value": {
             "type": "string",
-            "enum": [
-              "1"
-            ],
+            "enum": ["1"],
             "nullable": false
           }
         },
-        "required": [
-          "type",
-          "value"
-        ],
+        "required": ["type", "value"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1312,19 +1199,14 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "CUSTOMER_TYPE"
-            ],
+            "enum": ["CUSTOMER_TYPE"],
             "nullable": false
           },
           "value": {
             "type": "string"
           }
         },
-        "required": [
-          "type",
-          "value"
-        ],
+        "required": ["type", "value"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1361,13 +1243,7 @@
             "description": "PUSH_IPHONE"
           }
         },
-        "required": [
-          "channelId",
-          "address",
-          "type",
-          "options",
-          "name"
-        ],
+        "required": ["channelId", "address", "type", "options", "name"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1387,10 +1263,7 @@
             "description": "de"
           }
         },
-        "required": [
-          "userId",
-          "channels"
-        ],
+        "required": ["userId", "channels"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1402,9 +1275,7 @@
                 "type": "string"
               }
             },
-            "required": [
-              "resultCode"
-            ],
+            "required": ["resultCode"],
             "type": "object"
           },
           "userId": {
@@ -1435,10 +1306,7 @@
                 },
                 "status": {
                   "type": "string",
-                  "enum": [
-                    "ACTIVE",
-                    "EXPIRED"
-                  ]
+                  "enum": ["ACTIVE", "EXPIRED"]
                 }
               },
               "required": [
@@ -1454,11 +1322,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "result",
-          "userId",
-          "intvlSubscrL"
-        ],
+        "required": ["result", "userId", "intvlSubscrL"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1470,19 +1334,14 @@
                 "type": "string"
               }
             },
-            "required": [
-              "resultCode"
-            ],
+            "required": ["resultCode"],
             "type": "object"
           },
           "userId": {
             "type": "string"
           }
         },
-        "required": [
-          "result",
-          "userId"
-        ],
+        "required": ["result", "userId"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1492,9 +1351,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "userId"
-        ],
+        "required": ["userId"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1523,10 +1380,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "rtEvents",
-          "himEvents"
-        ],
+        "required": ["rtEvents", "himEvents"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1538,9 +1392,7 @@
                 "type": "string"
               }
             },
-            "required": [
-              "resultCode"
-            ],
+            "required": ["resultCode"],
             "type": "object"
           },
           "userId": {
@@ -1552,10 +1404,7 @@
           },
           "status": {
             "type": "string",
-            "enum": [
-              "ACTIVE",
-              "EXPIRED"
-            ]
+            "enum": ["ACTIVE", "EXPIRED"]
           },
           "channels": {
             "items": {
@@ -1585,18 +1434,22 @@
       "CommonStopInfo": {
         "properties": {
           "scheduledPlatform": {
-            "type": "string"
+            "type": "string",
+            "description": "Scheduled Platform"
           },
           "platform": {
-            "type": "string"
+            "type": "string",
+            "description": "Best known platform, might be identical to scheduledPlatform"
           },
           "scheduledTime": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "scheduled time for this stop"
           },
           "time": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "best known time for this stop, might be identical to scheduledTime"
           },
           "delay": {
             "type": "integer",
@@ -1615,10 +1468,7 @@
             "type": "boolean"
           }
         },
-        "required": [
-          "scheduledTime",
-          "time"
-        ],
+        "required": ["scheduledTime", "time"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1631,21 +1481,13 @@
             "type": "string"
           }
         },
-        "required": [
-          "title",
-          "id"
-        ],
+        "required": ["title", "id"],
         "type": "object",
         "additionalProperties": false
       },
       "AuslastungsValue": {
         "description": "1: Gering\n2: Hoch\n3: Sehr Hoch\n4: Ausgebucht",
-        "enum": [
-          1,
-          2,
-          3,
-          4
-        ],
+        "enum": [1, 2, 3, 4],
         "type": "number"
       },
       "Route$Auslastung": {
@@ -1693,9 +1535,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "station"
-        ],
+        "required": ["station"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1726,39 +1566,36 @@
             "type": "array"
           }
         },
-        "required": [
-          "train",
-          "stops",
-          "jid",
-          "firstStop",
-          "lastStop"
-        ],
+        "required": ["train", "stops", "jid", "firstStop", "lastStop"],
         "type": "object",
         "additionalProperties": false
       },
       "EnrichedJourneyMatchOptions": {
         "properties": {
           "trainName": {
-            "type": "string"
+            "type": "string",
+            "description": "Usually \"<Gattung> <Fahrtnummer>\"",
+            "example": "ICE 23"
           },
           "initialDepartureDate": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "Used to find the correct journey for a specific day.",
+            "default": "now"
           },
           "jnyFltrL": {
             "items": {
               "$ref": "#/components/schemas/JourneyFilter"
             },
-            "type": "array"
+            "type": "array",
+            "description": "These are raw HAFAS Filter and quite advanced."
           },
           "limit": {
             "type": "number",
             "format": "double"
           }
         },
-        "required": [
-          "trainName"
-        ],
+        "required": ["trainName"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1784,13 +1621,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "jid",
-          "date",
-          "train",
-          "position",
-          "stops"
-        ],
+        "required": ["jid", "date", "train", "position", "stops"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1802,12 +1633,7 @@
       },
       "InOutMode": {
         "type": "string",
-        "enum": [
-          "B",
-          "I",
-          "N",
-          "O"
-        ]
+        "enum": ["B", "I", "N", "O"]
       },
       "JourneyTrainPosMode": {
         "type": "string",
@@ -1922,10 +1748,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "station",
-          "departure"
-        ],
+        "required": ["station", "departure"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1962,10 +1785,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "station",
-          "arrival"
-        ],
+        "required": ["station", "arrival"],
         "type": "object",
         "additionalProperties": false
       },
@@ -1999,13 +1819,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "train",
-          "jid",
-          "firstStop",
-          "lastStop",
-          "stops"
-        ],
+        "required": ["train", "jid", "firstStop", "lastStop", "stops"],
         "type": "object",
         "additionalProperties": false
       },
@@ -2054,7 +1868,8 @@
       },
       "EvaNumber": {
         "type": "string",
-        "description": "Usually 7 digits"
+        "example": "8000105",
+        "description": "Usually 7 digits, leading zeros can be omitted"
       },
       "DepartureStationBoardEntry": {
         "properties": {
@@ -2102,22 +1917,25 @@
       "JourneyMatchOptions": {
         "properties": {
           "trainName": {
-            "type": "string"
+            "type": "string",
+            "description": "Usually \"<Gattung> <Fahrtnummer>\"",
+            "example": "ICE 23"
           },
           "initialDepartureDate": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "Used to find the correct journey for a specific day.",
+            "default": "now"
           },
           "jnyFltrL": {
             "items": {
               "$ref": "#/components/schemas/JourneyFilter"
             },
-            "type": "array"
+            "type": "array",
+            "description": "These are raw HAFAS Filter and quite advanced."
           }
         },
-        "required": [
-          "trainName"
-        ],
+        "required": ["trainName"],
         "type": "object",
         "additionalProperties": false
       },
@@ -2165,11 +1983,7 @@
             "format": "double"
           }
         },
-        "required": [
-          "name",
-          "cls",
-          "icoX"
-        ],
+        "required": ["name", "cls", "icoX"],
         "type": "object",
         "additionalProperties": false
       },
@@ -2206,11 +2020,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "name",
-          "icoX",
-          "cls"
-        ],
+        "required": ["name", "icoX", "cls"],
         "type": "object",
         "additionalProperties": false
       },
@@ -2246,11 +2056,7 @@
             "format": "double"
           }
         },
-        "required": [
-          "r",
-          "g",
-          "b"
-        ],
+        "required": ["r", "g", "b"],
         "type": "object",
         "additionalProperties": false
       },
@@ -2285,15 +2091,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "type",
-          "remX",
-          "txtC",
-          "prio",
-          "fIdx",
-          "tIdx",
-          "tagL"
-        ],
+        "required": ["type", "remX", "txtC", "prio", "fIdx", "tIdx", "tagL"],
         "type": "object",
         "additionalProperties": false
       },
@@ -2352,12 +2150,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "locX",
-          "dInS",
-          "dInR",
-          "dTimeS"
-        ],
+        "required": ["locX", "dInS", "dInR", "dTimeS"],
         "type": "object",
         "additionalProperties": false
       },
@@ -2413,11 +2206,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "locX",
-          "aOutR",
-          "aTimeS"
-        ],
+        "required": ["locX", "aOutR", "aTimeS"],
         "type": "object",
         "additionalProperties": false
       },
@@ -2511,14 +2300,7 @@
             "type": "boolean"
           }
         },
-        "required": [
-          "locX",
-          "aOutR",
-          "aTimeS",
-          "dInS",
-          "dInR",
-          "dTimeS"
-        ],
+        "required": ["locX", "aOutR", "aTimeS", "dInS", "dInR", "dTimeS"],
         "type": "object",
         "additionalProperties": false
       },
@@ -2595,12 +2377,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "minC",
-          "maxC",
-          "numC",
-          "jnyL"
-        ],
+        "required": ["minC", "maxC", "numC", "jnyL"],
         "type": "object",
         "additionalProperties": false
       },
@@ -2681,9 +2458,7 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "JNY"
-            ],
+            "enum": ["JNY"],
             "nullable": false
           },
           "icoX": {
@@ -2707,11 +2482,7 @@
           },
           "resState": {
             "type": "string",
-            "enum": [
-              "N",
-              "B",
-              "S"
-            ]
+            "enum": ["N", "B", "S"]
           },
           "resRecommendation": {
             "type": "string"
@@ -2771,10 +2542,7 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "WALK",
-              "TRSF"
-            ]
+            "enum": ["WALK", "TRSF"]
           },
           "icoX": {
             "type": "number",
@@ -2790,13 +2558,7 @@
             "$ref": "#/components/schemas/Gis"
           }
         },
-        "required": [
-          "type",
-          "icoX",
-          "dep",
-          "arr",
-          "gis"
-        ],
+        "required": ["type", "icoX", "dep", "arr", "gis"],
         "type": "object",
         "additionalProperties": false
       },
@@ -2804,15 +2566,11 @@
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "KISS"
-            ],
+            "enum": ["KISS"],
             "nullable": false
           }
         },
-        "required": [
-          "type"
-        ],
+        "required": ["type"],
         "type": "object",
         "additionalProperties": false
       },
@@ -2869,24 +2627,13 @@
             "type": "array"
           }
         },
-        "required": [
-          "fares"
-        ],
+        "required": ["fares"],
         "type": "object",
         "additionalProperties": false
       },
       "PossibleShort": {
         "type": "string",
-        "enum": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "3R",
-          "T",
-          "3V",
-          "M"
-        ]
+        "enum": ["1", "2", "3", "4", "3R", "T", "3V", "M"]
       },
       "PlannedSequence": {
         "properties": {
@@ -2900,10 +2647,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "rawType",
-          "type"
-        ],
+        "required": ["rawType", "type"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3037,9 +2781,7 @@
           },
           "type": {
             "type": "string",
-            "enum": [
-              "JNY"
-            ],
+            "enum": ["JNY"],
             "nullable": false
           },
           "arrival": {
@@ -3132,9 +2874,7 @@
           },
           "type": {
             "type": "string",
-            "enum": [
-              "JNY"
-            ],
+            "enum": ["JNY"],
             "nullable": false
           },
           "arrival": {
@@ -3175,18 +2915,14 @@
             "format": "date-time"
           }
         },
-        "required": [
-          "time"
-        ],
+        "required": ["time"],
         "type": "object"
       },
       "Route$JourneySegmentWalk": {
         "properties": {
           "type": {
             "type": "string",
-            "enum": [
-              "WALK"
-            ],
+            "enum": ["WALK"],
             "nullable": false
           },
           "train": {
@@ -3296,10 +3032,7 @@
       },
       "AllowedSotMode": {
         "type": "string",
-        "enum": [
-          "JI",
-          "RC"
-        ]
+        "enum": ["JI", "RC"]
       },
       "SearchOnTripBody": {
         "properties": {
@@ -3310,10 +3043,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "sotMode",
-          "id"
-        ],
+        "required": ["sotMode", "id"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3334,17 +3064,11 @@
                 "type": "string"
               }
             },
-            "required": [
-              "later",
-              "earlier"
-            ],
+            "required": ["later", "earlier"],
             "type": "object"
           }
         },
-        "required": [
-          "routes",
-          "context"
-        ],
+        "required": ["routes", "context"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3358,25 +3082,16 @@
             "format": "double"
           }
         },
-        "required": [
-          "evaId"
-        ],
+        "required": ["evaId"],
         "type": "object",
         "additionalProperties": false
       },
       "JnyCl": {
-        "enum": [
-          1,
-          2
-        ],
+        "enum": [1, 2],
         "type": "number"
       },
       "TravelerType": {
-        "enum": [
-          "E",
-          "K",
-          "B"
-        ],
+        "enum": ["E", "K", "B"],
         "type": "string"
       },
       "LoyalityCard": {
@@ -3407,9 +3122,7 @@
             "description": "Testing Comment"
           }
         },
-        "required": [
-          "type"
-        ],
+        "required": ["type"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3425,10 +3138,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "class",
-          "traveler"
-        ],
+        "required": ["class", "traveler"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3495,10 +3205,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "start",
-          "destination"
-        ],
+        "required": ["start", "destination"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3513,10 +3220,7 @@
                 "type": "string"
               }
             },
-            "required": [
-              "title",
-              "id"
-            ],
+            "required": ["title", "id"],
             "type": "object"
           },
           "pt": {
@@ -3527,11 +3231,7 @@
             "type": "boolean"
           }
         },
-        "required": [
-          "station",
-          "pt",
-          "fl"
-        ],
+        "required": ["station", "pt", "fl"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3558,10 +3258,7 @@
             "format": "int32"
           }
         },
-        "required": [
-          "scheduled",
-          "reported"
-        ],
+        "required": ["scheduled", "reported"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3574,9 +3271,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "scheduled"
-        ],
+        "required": ["scheduled"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3595,11 +3290,7 @@
             "format": "int32"
           }
         },
-        "required": [
-          "days",
-          "hours",
-          "minutes"
-        ],
+        "required": ["days", "hours", "minutes"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3612,9 +3303,7 @@
             "$ref": "#/components/schemas/OEBBTimeFormat"
           }
         },
-        "required": [
-          "scheduled"
-        ],
+        "required": ["scheduled"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3629,10 +3318,7 @@
             "description": "`${type} ${number}`"
           }
         },
-        "required": [
-          "trainNr",
-          "trainName"
-        ],
+        "required": ["trainNr", "trainName"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3779,10 +3465,7 @@
                 "type": "string"
               }
             },
-            "required": [
-              "seasoningString",
-              "startDate"
-            ],
+            "required": ["seasoningString", "startDate"],
             "type": "object"
           }
         },
@@ -3865,11 +3548,7 @@
       },
       "OEBBAccessType": {
         "type": "string",
-        "enum": [
-          "STIEGENAUFGANG",
-          "AUFZUG",
-          "ROLLTREPPE"
-        ]
+        "enum": ["STIEGENAUFGANG", "AUFZUG", "ROLLTREPPE"]
       },
       "OEBBAccess": {
         "properties": {
@@ -3887,12 +3566,7 @@
             "$ref": "#/components/schemas/OEBBAccessType"
           }
         },
-        "required": [
-          "platform",
-          "distance",
-          "name",
-          "type"
-        ],
+        "required": ["platform", "distance", "name", "type"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3906,10 +3580,7 @@
             "type": "boolean"
           }
         },
-        "required": [
-          "position",
-          "departureTowardsFirstSector"
-        ],
+        "required": ["position", "departureTowardsFirstSector"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3923,10 +3594,7 @@
             "format": "double"
           }
         },
-        "required": [
-          "name",
-          "length"
-        ],
+        "required": ["name", "length"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3947,11 +3615,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "platform",
-          "length",
-          "sectors"
-        ],
+        "required": ["platform", "length", "sectors"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3976,10 +3640,7 @@
             "$ref": "#/components/schemas/OEBBPlatformInfo"
           }
         },
-        "required": [
-          "timeTableInfo",
-          "accessess"
-        ],
+        "required": ["timeTableInfo", "accessess"],
         "type": "object",
         "additionalProperties": false
       },
@@ -3998,10 +3659,7 @@
             "format": "double"
           }
         },
-        "required": [
-          "startPercent",
-          "endPercent"
-        ],
+        "required": ["startPercent", "endPercent"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4014,10 +3672,7 @@
             "$ref": "#/components/schemas/CoachSequencePosition"
           }
         },
-        "required": [
-          "name",
-          "position"
-        ],
+        "required": ["name", "position"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4033,10 +3688,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "stopPlace",
-          "sectors"
-        ],
+        "required": ["stopPlace", "sectors"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4052,10 +3704,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "number",
-          "type"
-        ],
+        "required": ["number", "type"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4136,13 +3785,7 @@
         "properties": {
           "class": {
             "type": "number",
-            "enum": [
-              0,
-              1,
-              2,
-              3,
-              4
-            ],
+            "enum": [0, 1, 2, 3, 4],
             "description": "0: Unknown; 1: erste; 2: zweite; 3: 1&2; 4: Not for passengers"
           },
           "category": {
@@ -4152,7 +3795,8 @@
             "type": "boolean"
           },
           "uic": {
-            "type": "string"
+            "type": "string",
+            "description": "only filled for real time information"
           },
           "type": {
             "type": "string"
@@ -4171,12 +3815,7 @@
             "$ref": "#/components/schemas/CoachSequenceCoachSeats"
           }
         },
-        "required": [
-          "class",
-          "category",
-          "position",
-          "features"
-        ],
+        "required": ["class", "category", "position", "features"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4235,10 +3874,7 @@
             "$ref": "#/components/schemas/AvailableIdentifier"
           }
         },
-        "required": [
-          "name",
-          "identifier"
-        ],
+        "required": ["name", "identifier"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4288,9 +3924,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "groups"
-        ],
+        "required": ["groups"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4319,12 +3953,7 @@
             "description": "true = in direction of first sector in array\nfalse = in direction of last sector in array\nundefined = we do not know"
           }
         },
-        "required": [
-          "stop",
-          "product",
-          "sequence",
-          "isRealtime"
-        ],
+        "required": ["stop", "product", "sequence", "isRealtime"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4345,10 +3974,7 @@
             "format": "date-time"
           }
         },
-        "required": [
-          "name",
-          "evaNumber"
-        ],
+        "required": ["name", "evaNumber"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4377,13 +4003,7 @@
             "type": "array"
           }
         },
-        "required": [
-          "product",
-          "origin",
-          "destination",
-          "via",
-          "dates"
-        ],
+        "required": ["product", "origin", "destination", "via", "dates"],
         "type": "object",
         "description": "From T, pick a set of properties whose keys are in the union K"
       },
@@ -4415,13 +4035,7 @@
             "$ref": "#/components/schemas/CoachSequenceBaureihe"
           }
         },
-        "required": [
-          "product",
-          "origin",
-          "destination",
-          "via",
-          "dates"
-        ],
+        "required": ["product", "origin", "destination", "via", "dates"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4471,10 +4085,7 @@
             "description": "Latitude position in reference system."
           }
         },
-        "required": [
-          "longitude",
-          "latitude"
-        ],
+        "required": ["longitude", "latitude"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4500,9 +4111,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "evaNumber"
-        ],
+        "required": ["evaNumber"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4527,11 +4136,7 @@
             "$ref": "#/components/schemas/StopPlaceIdentifier"
           }
         },
-        "required": [
-          "evaNumber",
-          "name",
-          "availableTransports"
-        ],
+        "required": ["evaNumber", "name", "availableTransports"],
         "type": "object",
         "additionalProperties": false
       },
@@ -4574,9 +4179,7 @@
             }
           }
         },
-        "tags": [
-          "IRIS"
-        ],
+        "tags": ["IRIS"],
         "security": [],
         "parameters": [
           {
@@ -4593,6 +4196,7 @@
             "name": "lookahead",
             "required": false,
             "schema": {
+              "default": 150,
               "format": "int32",
               "type": "integer"
             }
@@ -4603,6 +4207,7 @@
             "name": "lookbehind",
             "required": false,
             "schema": {
+              "default": 0,
               "format": "int32",
               "type": "integer"
             }
@@ -4628,13 +4233,11 @@
             }
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "description": "Used to get all arrivals at a specific stopPlace",
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
-            "description": "evaNumber",
             "in": "query",
             "name": "station",
             "required": true,
@@ -4662,7 +4265,7 @@
         ]
       }
     },
-    "/hafas/v2/auslastung/{start}/{destination}/{trainNumber}/{time}": {
+    "/hafas/v2/auslastung/{start}/{destination}/{trainNumber}/{plannedDepartureTime}": {
       "get": {
         "operationId": "Auslastung v2",
         "responses": {
@@ -4677,26 +4280,29 @@
             }
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "description": "Provides Auslstaung based on DB Vertrieb HAFAS (DB Navigator).\nBased on a rough estimate, handles first and second class.",
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
+            "description": "Name of the start stop",
             "in": "path",
             "name": "start",
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "Frankfurt (Main) Hbf"
           },
           {
+            "description": "Name of the destination stop",
             "in": "path",
             "name": "destination",
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "Basel SBB"
           },
           {
             "in": "path",
@@ -4704,16 +4310,19 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "23"
           },
           {
+            "description": "Planned Departure time of the stop you want the occpuancy for",
             "in": "path",
-            "name": "time",
+            "name": "plannedDepartureTime",
             "required": true,
             "schema": {
               "format": "date-time",
               "type": "string"
-            }
+            },
+            "example": "2022-03-24T11:50:00.000Z"
           }
         ]
       }
@@ -4736,9 +4345,8 @@
             }
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "description": "Used to get all departures at a specific stopPlace.\nOptionally filterable to get only Journeys that travel via a specific stopPlace",
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -4795,9 +4403,8 @@
             "description": "Train not found"
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "description": "This combines several HAFAS endpoint as well as IRIS data to get the best possible information for a specific journey.",
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -4806,7 +4413,8 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "ICE 23"
           },
           {
             "in": "query",
@@ -4814,10 +4422,11 @@
             "required": false,
             "schema": {
               "type": "string"
-            }
+            },
+            "deprecated": true
           },
           {
-            "description": "EvaNumber of a stop of your train",
+            "description": "EvaNumber of a stop of your train, might not work for profiles other than DB",
             "in": "query",
             "name": "station",
             "required": false,
@@ -4826,6 +4435,7 @@
             }
           },
           {
+            "description": "This is the initialDepartureDate of your desired journey",
             "in": "query",
             "name": "date",
             "required": false,
@@ -4857,9 +4467,7 @@
           }
         },
         "description": "This redirects to the current Details Page with a provided HAFAS TripId / JourneyId / JID",
-        "tags": [
-          "HAFAS"
-        ],
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -4899,9 +4507,8 @@
             }
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "description": "Can be used to find all stopPlaces within a radius around a specific geo location",
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -4958,9 +4565,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS Experimental"
-        ],
+        "tags": ["HAFAS Experimental"],
         "security": [],
         "parameters": [
           {
@@ -5000,9 +4605,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS Experimental"
-        ],
+        "tags": ["HAFAS Experimental"],
         "security": [],
         "parameters": [
           {
@@ -5039,9 +4642,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS Experimental"
-        ],
+        "tags": ["HAFAS Experimental"],
         "security": [],
         "parameters": [
           {
@@ -5080,9 +4681,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -5119,9 +4718,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS Experimental"
-        ],
+        "tags": ["HAFAS Experimental"],
         "security": [],
         "parameters": [
           {
@@ -5163,9 +4760,8 @@
             }
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "description": "\nUsed to find a specific journey based on name, date and HAFAS filter.",
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -5202,9 +4798,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS Experimental"
-        ],
+        "tags": ["HAFAS Experimental"],
         "security": [],
         "parameters": [
           {
@@ -5243,9 +4837,8 @@
             }
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "description": "provides Details for a specific Journey [Fahrt]",
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -5282,9 +4875,7 @@
             }
           }
         },
-        "tags": [
-          "StopPlace"
-        ],
+        "tags": ["StopPlace"],
         "security": [],
         "parameters": [
           {
@@ -5321,9 +4912,8 @@
             }
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "description": "Used to find the position of a specific journey. Based on predictions, not GPS.",
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -5332,6 +4922,14 @@
             "required": true,
             "schema": {
               "type": "string"
+            },
+            "examples": {
+              "Example 1": {
+                "value": "ICE 23"
+              },
+              "Example 2": {
+                "value": "STR 1988"
+              }
             }
           },
           {
@@ -5363,9 +4961,8 @@
             }
           }
         },
-        "tags": [
-          "Reihung"
-        ],
+        "description": "Returns all journeys that run on a specific date. Only works for DB Fernverkehr",
+        "tags": ["Reihung"],
         "security": [],
         "parameters": [
           {
@@ -5378,6 +4975,7 @@
             }
           },
           {
+            "description": "Used to filter for specific Baureihen",
             "in": "query",
             "name": "baureihen",
             "required": false,
@@ -5389,6 +4987,7 @@
             }
           },
           {
+            "description": "Used to filter for specific identifier (identifier are defined by me, not DB)",
             "in": "query",
             "name": "identifier",
             "required": false,
@@ -5400,6 +4999,7 @@
             }
           },
           {
+            "description": "Used to filter for runs that stop at specific stopPlaces in the specifed order",
             "in": "query",
             "name": "stopsAt",
             "required": false,
@@ -5408,7 +5008,8 @@
               "items": {
                 "$ref": "#/components/schemas/EvaNumber"
               }
-            }
+            },
+            "example": "[8000105, 8000191]"
           }
         ]
       }
@@ -5428,9 +5029,8 @@
             }
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "description": "Advanced HAFAS Method, not used by marudor.de and therefore quite undocumented",
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -5454,61 +5054,6 @@
         }
       }
     },
-    "/hafas/v1/stopPlace/{searchTerm}": {
-      "get": {
-        "operationId": "StopPlace search v1",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "items": {
-                    "$ref": "#/components/schemas/HafasStation"
-                  },
-                  "type": "array"
-                }
-              }
-            }
-          }
-        },
-        "description": "Only uses this for non DB profiles. If you need DB stopPlace search use Operation tagged with StopPlace",
-        "tags": [
-          "HAFAS"
-        ],
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "searchTerm",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "type",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "enum": [
-                "S",
-                "ALL"
-              ]
-            }
-          },
-          {
-            "in": "query",
-            "name": "profile",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/AllowedHafasProfile"
-            }
-          }
-        ]
-      }
-    },
     "/stopPlace/v1/{evaNumber}": {
       "get": {
         "operationId": "StopPlaceByEva",
@@ -5527,9 +5072,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "StopPlace"
-        ],
+        "tags": ["StopPlace"],
         "security": [],
         "parameters": [
           {
@@ -5561,9 +5104,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "StopPlace"
-        ],
+        "tags": ["StopPlace"],
         "security": [],
         "parameters": [
           {
@@ -5596,9 +5137,7 @@
           }
         },
         "description": "This might fall back to use HAFAS",
-        "tags": [
-          "StopPlace"
-        ],
+        "tags": ["StopPlace"],
         "security": [],
         "parameters": [
           {
@@ -5640,6 +5179,58 @@
         ]
       }
     },
+    "/hafas/v1/stopPlace/{searchTerm}": {
+      "get": {
+        "operationId": "StopPlaceSearch v1",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/HafasStation"
+                  },
+                  "type": "array"
+                }
+              }
+            }
+          }
+        },
+        "description": "Only uses this for non DB profiles. If you need DB stopPlace search use Operation tagged with StopPlace.\nUsed to search for stopPlaces based on a name.",
+        "tags": ["HAFAS"],
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "searchTerm",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "S returns only StopPlaces, ALL also returns Point of Interests",
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "schema": {
+              "default": "ALL",
+              "type": "string",
+              "enum": ["S", "ALL"]
+            }
+          },
+          {
+            "in": "query",
+            "name": "profile",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/AllowedHafasProfile"
+            }
+          }
+        ]
+      }
+    },
     "/hafas/subscribe/create": {
       "post": {
         "operationId": "Subscribe create",
@@ -5655,9 +5246,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS Subscribe"
-        ],
+        "tags": ["HAFAS Subscribe"],
         "security": [],
         "parameters": [
           {
@@ -5696,9 +5285,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS Subscribe"
-        ],
+        "tags": ["HAFAS Subscribe"],
         "security": [],
         "parameters": [
           {
@@ -5737,9 +5324,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS Subscribe"
-        ],
+        "tags": ["HAFAS Subscribe"],
         "security": [],
         "parameters": [
           {
@@ -5778,9 +5363,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS Subscribe"
-        ],
+        "tags": ["HAFAS Subscribe"],
         "security": [],
         "parameters": [
           {
@@ -5819,9 +5402,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS Subscribe"
-        ],
+        "tags": ["HAFAS Subscribe"],
         "security": [],
         "parameters": [
           {
@@ -5867,9 +5448,7 @@
             }
           }
         },
-        "tags": [
-          "HAFAS Subscribe"
-        ],
+        "tags": ["HAFAS Subscribe"],
         "security": [],
         "parameters": [
           {
@@ -5909,9 +5488,7 @@
             "description": ""
           }
         },
-        "tags": [
-          "Reihung"
-        ],
+        "tags": ["Reihung"],
         "security": [],
         "parameters": [
           {
@@ -5941,9 +5518,7 @@
             }
           }
         },
-        "tags": [
-          "OEBB"
-        ],
+        "tags": ["OEBB"],
         "security": [],
         "parameters": [
           {
@@ -5994,9 +5569,7 @@
           }
         },
         "description": "Currently only for VRR. <br>\nSource: https://github.com/derf/eva-to-efa-gw<br>\nThanks derf.",
-        "tags": [
-          "StopPlace"
-        ],
+        "tags": ["StopPlace"],
         "security": [],
         "parameters": [
           {
@@ -6025,9 +5598,8 @@
             }
           }
         },
-        "tags": [
-          "HAFAS"
-        ],
+        "description": "Used to find trips [Verbindungssuche]\nA lot of the request options are raw HAFAS and not documented.",
+        "tags": ["HAFAS"],
         "security": [],
         "parameters": [
           {
@@ -6071,9 +5643,8 @@
             }
           }
         },
-        "tags": [
-          "Reihung"
-        ],
+        "description": "Returns the coachSequence at a specific stop for a specific train.\nWorks for OEBB stops and DB stops.\n\nReturns plannedSequence if no real time information is available",
+        "tags": ["Reihung"],
         "security": [],
         "parameters": [
           {
@@ -6083,9 +5654,18 @@
             "schema": {
               "format": "int32",
               "type": "integer"
+            },
+            "examples": {
+              "Example 1": {
+                "value": "23"
+              },
+              "Example 2": {
+                "value": "42023"
+              }
             }
           },
           {
+            "description": "Departure at the stop you want the coachSequence for",
             "in": "query",
             "name": "departure",
             "required": true,
@@ -6131,9 +5711,7 @@
             }
           }
         },
-        "tags": [
-          "IRIS"
-        ],
+        "tags": ["IRIS"],
         "security": [],
         "parameters": [
           {
@@ -6163,7 +5741,8 @@
   ],
   "tags": [
     {
-      "name": "HAFAS"
+      "name": "HAFAS",
+      "description": "All Operation use a HAFAS backend. By default it will be the HAFAS backend by DB Vertrieb (DB Navigator). Different backends can be selected by providing the query paramter profile."
     },
     {
       "name": "HAFAS Subscribe"

@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Deprecated,
   Get,
   OperationId,
   Post,
@@ -41,6 +42,9 @@ export interface SearchOnTripBody {
 
 @Route('/hafas/v2')
 export class HafasControllerV2 extends Controller {
+  /**
+   * provides Details for a specific Journey [Fahrt]
+   */
   @Get('/journeyDetails')
   @Tags('HAFAS')
   @OperationId('JourneyDetails v2')
@@ -53,27 +57,47 @@ export class HafasControllerV2 extends Controller {
     return JourneyDetails(jid, profile, req.query.raw);
   }
 
-  @Get('/auslastung/{start}/{destination}/{trainNumber}/{time}')
+  /**
+   * Provides Auslstaung based on DB Vertrieb HAFAS (DB Navigator).
+   * Based on a rough estimate, handles first and second class.
+   * @example start "Frankfurt (Main) Hbf"
+   * @example destination "Basel SBB"
+   * @example trainNumber "23"
+   * @example plannedDepartureTime "2022-03-24T11:50:00.000Z"
+   */
+  @Get('/auslastung/{start}/{destination}/{trainNumber}/{plannedDepartureTime}')
   @Tags('HAFAS')
   @OperationId('Auslastung v2')
   auslastung(
+    /**
+     * Name of the start stop
+     */
     start: string,
+    /**
+     * Name of the destination stop
+     */
     destination: string,
+    /**
+     *
+     */
     trainNumber: string,
-    time: Date,
+    /**
+     * Planned Departure time of the stop you want the occpuancy for
+     */
+    plannedDepartureTime: Date,
   ): Promise<Route$Auslastung> {
     // @ts-expect-error TODO: use @res with 404
-    return Auslastung(start, destination, trainNumber, time);
+    return Auslastung(start, destination, trainNumber, plannedDepartureTime);
   }
 
+  /**
+   * Used to get all arrivals at a specific stopPlace
+   */
   @Get('/arrivalStationBoard')
   @Tags('HAFAS')
   @OperationId('Arrival Station Board v2')
   arrivalStationBoard(
     @Request() req: KRequest,
-    /**
-     * evaNumber
-     */
     @Query() station: EvaNumber,
     @Query() date?: Date,
     @Query() profile?: AllowedHafasProfile,
@@ -90,6 +114,10 @@ export class HafasControllerV2 extends Controller {
     );
   }
 
+  /**
+   * Used to get all departures at a specific stopPlace.
+   * Optionally filterable to get only Journeys that travel via a specific stopPlace
+   */
   @Get('/departureStationBoard')
   @Tags('HAFAS')
   @OperationId('Departure Station Board v2')
@@ -113,6 +141,10 @@ export class HafasControllerV2 extends Controller {
     );
   }
 
+  /**
+   *
+   * Used to find a specific journey based on name, date and HAFAS filter.
+   */
   @Post('/journeyMatch')
   @Tags('HAFAS')
   @OperationId('Journey Match v2')
@@ -125,17 +157,24 @@ export class HafasControllerV2 extends Controller {
     return JourneyMatch(options, profile, req.query.raw);
   }
 
+  /**
+   * This combines several HAFAS endpoint as well as IRIS data to get the best possible information for a specific journey.
+   * @example trainName "ICE 23"
+   */
   @Response(404, 'Train not found')
   @Get('/details/{trainName}')
   @Tags('HAFAS')
   @OperationId('Details v2')
   async details(
     trainName: string,
-    @Query() stop?: string,
+    @Deprecated() @Query() stop?: string,
     /**
-     * EvaNumber of a stop of your train
+     * EvaNumber of a stop of your train, might not work for profiles other than DB
      */
     @Query() station?: EvaNumber,
+    /**
+     * This is the initialDepartureDate of your desired journey
+     */
     @Query() date?: Date,
     @Query() profile?: AllowedHafasProfile,
   ): Promise<ParsedSearchOnTripResponse> {
@@ -149,6 +188,9 @@ export class HafasControllerV2 extends Controller {
     return details;
   }
 
+  /**
+   * Advanced HAFAS Method, not used by marudor.de and therefore quite undocumented
+   */
   @Post('/searchOnTrip')
   @Tags('HAFAS')
   @OperationId('Search on Trip v2')

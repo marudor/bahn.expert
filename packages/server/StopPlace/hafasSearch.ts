@@ -8,7 +8,7 @@ export async function searchWithHafas(
   filterForIris?: boolean,
 ): Promise<GroupedStopPlace[]> {
   if (!searchTerm) return [];
-  let hafasResult = await LocMatch(searchTerm);
+  let hafasResult = await LocMatch(searchTerm, 'S');
   if (max) {
     hafasResult = hafasResult.splice(0, max);
   }

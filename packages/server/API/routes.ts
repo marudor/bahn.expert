@@ -718,7 +718,7 @@ const models: TsoaRoute.Models = {
         "dataType": "refObject",
         "properties": {
             "trainName": {"dataType":"string","required":true},
-            "initialDepartureDate": {"dataType":"datetime"},
+            "initialDepartureDate": {"dataType":"datetime","default":"now"},
             "jnyFltrL": {"dataType":"array","array":{"dataType":"refObject","ref":"JourneyFilter"}},
             "limit": {"dataType":"double"},
         },
@@ -864,7 +864,7 @@ const models: TsoaRoute.Models = {
         "dataType": "refObject",
         "properties": {
             "trainName": {"dataType":"string","required":true},
-            "initialDepartureDate": {"dataType":"datetime"},
+            "initialDepartureDate": {"dataType":"datetime","default":"now"},
             "jnyFltrL": {"dataType":"array","array":{"dataType":"refObject","ref":"JourneyFilter"}},
         },
         "additionalProperties": false,
@@ -2134,7 +2134,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const args = {
                     req: {"in":"request","name":"req","required":true,"dataType":"object"},
                     searchTerm: {"in":"path","name":"searchTerm","required":true,"dataType":"string"},
-                    type: {"in":"query","name":"type","dataType":"union","subSchemas":[{"dataType":"enum","enums":["S"]},{"dataType":"enum","enums":["ALL"]}]},
+                    type: {"default":"ALL","in":"query","name":"type","dataType":"union","subSchemas":[{"dataType":"enum","enums":["S"]},{"dataType":"enum","enums":["ALL"]}]},
                     profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
             };
 
@@ -2243,13 +2243,13 @@ export function RegisterRoutes(router: KoaRouter) {
             return promiseHandler(controller, promise, context, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        router.get('/api/hafas/v2/auslastung/:start/:destination/:trainNumber/:time',
+        router.get('/api/hafas/v2/auslastung/:start/:destination/:trainNumber/:plannedDepartureTime',
             async function HafasControllerV2_auslastung(context: any, next: any) {
             const args = {
                     start: {"in":"path","name":"start","required":true,"dataType":"string"},
                     destination: {"in":"path","name":"destination","required":true,"dataType":"string"},
                     trainNumber: {"in":"path","name":"trainNumber","required":true,"dataType":"string"},
-                    time: {"in":"path","name":"time","required":true,"dataType":"datetime"},
+                    plannedDepartureTime: {"in":"path","name":"plannedDepartureTime","required":true,"dataType":"datetime"},
             };
 
             let validatedArgs: any[] = [];
@@ -2436,8 +2436,8 @@ export function RegisterRoutes(router: KoaRouter) {
             async function IrisControllerv2_abfahrten(context: any, next: any) {
             const args = {
                     evaNumber: {"in":"path","name":"evaNumber","required":true,"ref":"EvaNumber"},
-                    lookahead: {"in":"query","name":"lookahead","dataType":"integer","validators":{"isInt":{"errorMsg":"lookahead"}}},
-                    lookbehind: {"in":"query","name":"lookbehind","dataType":"integer","validators":{"isInt":{"errorMsg":"lookbehind"}}},
+                    lookahead: {"default":150,"in":"query","name":"lookahead","dataType":"integer","validators":{"isInt":{"errorMsg":"lookahead"}}},
+                    lookbehind: {"default":0,"in":"query","name":"lookbehind","dataType":"integer","validators":{"isInt":{"errorMsg":"lookbehind"}}},
             };
 
             let validatedArgs: any[] = [];

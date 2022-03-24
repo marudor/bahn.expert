@@ -194,9 +194,21 @@ export interface CommonProductInfo {
   admin?: string;
 }
 export interface CommonStopInfo {
+  /**
+   * Scheduled Platform
+   */
   scheduledPlatform?: string;
+  /**
+   * Best known platform, might be identical to scheduledPlatform
+   */
   platform?: string;
+  /**
+   * scheduled time for this stop
+   */
   scheduledTime: Date;
+  /**
+   * best known time for this stop, might be identical to scheduledTime
+   */
   time: Date;
   /**
    * @isInt
