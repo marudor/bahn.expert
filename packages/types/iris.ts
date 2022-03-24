@@ -33,11 +33,22 @@ export interface WingDefinition {
   end?: WingInfo;
 }
 
+/**
+ * @isInt strike
+ */
 export interface AbfahrtenResult {
+  /**
+   * Journeys that have not yet departed (or arrived if they end here)
+   */
   departures: Abfahrt[];
+  /**
+   * Journeys that have already departed (or arrived if they end here)
+   */
   lookbehind: Abfahrt[];
   wings?: Wings;
-  // @isInt
+  /**
+   * amount of departures/arrivals that are affected by a strike [Streik]
+   */
   strike?: number;
 }
 
@@ -49,7 +60,13 @@ export interface Abfahrt {
   departure?: StopInfo;
   destination: string;
   id: string;
+  /**
+   * Is this stop unplanned and additional?
+   */
   additional?: boolean;
+  /**
+   * Is this stop cancelled for this journey?
+   */
   cancelled?: boolean;
   mediumId: string;
   messages: Messages;
@@ -99,6 +116,9 @@ export interface Messages {
 }
 
 export interface StopInfo extends CommonStopInfo {
+  /**
+   * MediumIds of journeys that are wings of this journey at this stop.
+   */
   wingIds?: string[];
   cancelled?: boolean;
   hidden?: boolean;
@@ -123,6 +143,9 @@ export interface TrainInfo extends CommonProductInfo {
   number: string;
 }
 
+/**
+ * Map of "mediumId" to Abfahrt.
+ */
 export interface Wings {
-  [name: string]: Abfahrt;
+  [mediumId: string]: Abfahrt;
 }

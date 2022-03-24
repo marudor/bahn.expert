@@ -24,9 +24,9 @@ export class IrisControllerv2 extends Controller {
   abfahrten(
     evaNumber: EvaNumber,
     /** minutes */
-    @Query() lookahead?: number,
+    @Query() lookahead = 150,
     /** minutes */
-    @Query() lookbehind?: number,
+    @Query() lookbehind = 0,
   ): Promise<AbfahrtenResult> {
     return getAbfahrten(evaNumber, true, {
       lookahead,
