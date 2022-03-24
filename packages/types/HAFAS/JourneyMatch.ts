@@ -39,8 +39,20 @@ export interface ParsedJourneyMatchResponse {
   messages?: RemL[];
 }
 export interface JourneyMatchOptions {
+  /**
+   * Usually "<Gattung> <Fahrtnummer>"
+   * @example "ICE 23"
+   * @Example "Bus 94212"
+   */
   trainName: string;
+  /**
+   * Used to find the correct journey for a specific day.
+   * @default now
+   */
   initialDepartureDate?: Date;
+  /**
+   * These are raw HAFAS Filter and quite advanced.
+   */
   jnyFltrL?: JourneyFilter[];
 }
 

@@ -11,6 +11,7 @@ export async function coachSequenceMonitoring(): Promise<
 > {
   const abfahrten = await getAbfahrten('8002549', false, {
     lookahead: 300,
+    lookbehind: 0,
   });
   const maybeDepartures = abfahrten.departures.filter(
     (d) => d.reihung && d.departure,

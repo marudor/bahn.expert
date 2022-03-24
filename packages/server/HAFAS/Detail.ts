@@ -45,17 +45,20 @@ export default async (
 
   if (station) {
     try {
-      possibleTrains = await JourneyMatch({
-        trainName,
-        initialDepartureDate: date,
-        jnyFltrL: [
-          {
-            type: 'STATIONS',
-            mode: 'INC',
-            value: station,
-          },
-        ],
-      });
+      possibleTrains = await JourneyMatch(
+        {
+          trainName,
+          initialDepartureDate: date,
+          jnyFltrL: [
+            {
+              type: 'STATIONS',
+              mode: 'INC',
+              value: station,
+            },
+          ],
+        },
+        hafasProfile,
+      );
     } catch {
       // ignore
     }

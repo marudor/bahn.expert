@@ -5,14 +5,10 @@ import Timetable from './Timetable';
 import type { Abfahrt, AbfahrtenResult } from 'types/iris';
 
 interface AbfahrtenOptions {
-  lookahead?: number;
-  lookbehind?: number;
+  lookahead: number;
+  lookbehind: number;
   currentDate?: Date;
 }
-const defaultOptions = {
-  lookahead: 150,
-  lookbehind: 0,
-};
 
 const baseResult: AbfahrtenResult = {
   departures: [],
@@ -103,10 +99,10 @@ function getRawIdsToRemove(
 export async function getAbfahrten(
   evaId: string,
   withRelated = true,
-  options: AbfahrtenOptions = {},
+  options: AbfahrtenOptions,
 ): Promise<AbfahrtenResult> {
-  const lookahead = options.lookahead || defaultOptions.lookahead;
-  const lookbehind = options.lookbehind || defaultOptions.lookbehind;
+  const lookahead = options.lookahead;
+  const lookbehind = options.lookbehind;
 
   const { station, relatedStations } = await getStation(evaId, 1);
   let relatedAbfahrten = Promise.resolve(baseResult);

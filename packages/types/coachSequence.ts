@@ -48,6 +48,9 @@ export interface CoachSequenceCoach {
   class: 0 | 1 | 2 | 3 | 4;
   category: FahrzeugKategorie;
   closed?: boolean;
+  /**
+   * only filled for real time information
+   */
   uic?: string;
   type?: string;
   /**
