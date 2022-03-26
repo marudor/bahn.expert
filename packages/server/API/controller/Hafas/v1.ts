@@ -104,7 +104,7 @@ export class HafasController extends Controller {
     /**
      * S returns only StopPlaces, ALL also returns Point of Interests
      */
-    @Query() type: 'S' | 'ALL' = 'ALL',
+    @Query() type: 'S' | 'ALL' = 'S',
     @Query() profile?: AllowedHafasProfile,
   ): Promise<HafasStation[]> {
     // @ts-expect-error untyped

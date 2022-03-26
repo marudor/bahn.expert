@@ -2134,7 +2134,7 @@ export function RegisterRoutes(router: KoaRouter) {
             const args = {
                     req: {"in":"request","name":"req","required":true,"dataType":"object"},
                     searchTerm: {"in":"path","name":"searchTerm","required":true,"dataType":"string"},
-                    type: {"default":"ALL","in":"query","name":"type","dataType":"union","subSchemas":[{"dataType":"enum","enums":["S"]},{"dataType":"enum","enums":["ALL"]}]},
+                    type: {"default":"S","in":"query","name":"type","dataType":"union","subSchemas":[{"dataType":"enum","enums":["S"]},{"dataType":"enum","enums":["ALL"]}]},
                     profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
             };
 
