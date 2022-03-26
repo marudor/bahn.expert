@@ -30,4 +30,5 @@ declare global {
       thisArg?: any,
     ): Exclude<S, Falsy>[];
   }
+  type E<T extends const> = T[keyof T];
 }

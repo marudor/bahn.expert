@@ -37,6 +37,12 @@ module.exports = (on, config) => {
     },
   };
 
+  /**
+   * Workaround for the "Automatic publicPath is not supported in this browser" fail
+   *
+   * See https://github.com/cypress-io/cypress/issues/18435 for more
+   * details. Should be removed when cypress switches to webpack 5.
+   */
   const publicPath = ' ';
   let outputOptions;
   Object.defineProperty(webpackOptions, 'output', {

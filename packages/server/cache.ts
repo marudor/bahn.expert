@@ -13,7 +13,7 @@ const redisSettings = process.env.REDIS_HOST
     }
   : undefined;
 
-export enum CacheDatabases {
+export const enum CacheDatabases {
   Station,
   Timetable,
   DBLageplan,
