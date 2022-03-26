@@ -15,30 +15,44 @@ const webpack = require('@cypress/webpack-preprocessor');
 
 // eslint-disable-next-line no-unused-vars
 module.exports = (on, config) => {
-  on(
-    'file:preprocessor',
-    webpack({
-      webpackOptions: {
-        resolve: {
-          extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'],
-        },
-        module: {
-          rules: [
+  const webpackOptions = {
+    resolve: {
+      extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'],
+    },
+    module: {
+      rules: [
+        {
+          test: /\.(j|t)s$/,
+          exclude: [/node_modules/],
+          use: [
             {
-              test: /\.(j|t)s$/,
-              exclude: [/node_modules/],
-              use: [
-                {
-                  loader: 'babel-loader',
-                  options: {
-                    rootMode: 'upward',
-                  },
-                },
-              ],
+              loader: 'babel-loader',
+              options: {
+                rootMode: 'upward',
+              },
             },
           ],
         },
-      },
+      ],
+    },
+  };
+
+  const publicPath = ' ';
+  let outputOptions;
+  Object.defineProperty(webpackOptions, 'output', {
+    get: () => {
+      return { ...outputOptions, publicPath };
+    },
+    set: function (x) {
+      outputOptions = x;
+    },
+  });
+
+  on(
+    'file:preprocessor',
+    webpack({
+      webpackOptions,
+      typescript: require.resolve('typescript'),
     }),
   );
 };
