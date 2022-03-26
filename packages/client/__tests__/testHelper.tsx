@@ -7,15 +7,16 @@ import { Navigation } from 'client/Common/Components/Navigation';
 import { render as realRender } from '@testing-library/react';
 import { StorageContext } from 'client/useStorage';
 import { ThemeProvider } from 'client/Common/provider/ThemeProvider';
-import { ThemeType } from 'client/Themes/type';
 import { ThemeWrap } from 'client/ThemeWrap';
 import Cookies from 'universal-cookie';
 import type { CommonConfig } from 'client/Common/config';
 import type { Location } from 'history';
 import type { ReactElement } from 'react';
 import type { Theme } from '@mui/material';
+import type { ThemeType } from 'client/Themes/type';
 
-let currentThemeType: ThemeType;
+let currentThemeType: E<typeof ThemeType>;
+
 let theme: Theme;
 
 interface ContextWithOptions<V = any> extends React.Context<V> {
@@ -59,7 +60,7 @@ export function render(
   cookies: Cookies;
   getLocation: () => Location;
 } {
-  const themeType = ThemeType.dark;
+  const themeType = 'dark';
 
   if (currentThemeType !== themeType) {
     currentThemeType = themeType;
