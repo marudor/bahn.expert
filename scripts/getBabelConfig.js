@@ -46,8 +46,7 @@ const getBabelConfig = (type) => {
     ],
     '@loadable/babel-plugin',
     ['@babel/plugin-proposal-decorators', { legacy: true }],
-    'babel-plugin-parameter-decorator',
-    // './scripts/babelTransform/debugStyleNames.js',
+    './scripts/babelTransform/parameterDecorator.js',
     [
       'module-resolver',
       {
