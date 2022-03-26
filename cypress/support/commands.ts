@@ -22,7 +22,7 @@ Cypress.Commands.add(
   },
 );
 
-Cypress.Commands.add('theme', (type: 'dark' | 'light' | 'black') => {
+Cypress.Commands.add('theme', (type) => {
   cy.findByTestId('navToggle').click();
   cy.findByTestId('themes').click();
   cy.findByTestId('themeList').find(`[data-value="${type}"]`).click();

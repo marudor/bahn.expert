@@ -3,7 +3,7 @@ import { createTheme } from '@mui/material/styles';
 import { ThemeType } from './type';
 import type { Theme as MuiTheme, ThemeOptions } from '@mui/material';
 
-const getPaletteType = (themeType: ThemeType) => {
+const getPaletteType = (themeType: E<typeof ThemeType>) => {
   switch (themeType) {
     case ThemeType.black:
     case ThemeType.dark:
@@ -47,7 +47,7 @@ const overrides = {
   },
 };
 
-const getMuiOptions = (themeType: ThemeType): ThemeOptions => {
+const getMuiOptions = (themeType: E<typeof ThemeType>): ThemeOptions => {
   return {
     palette: {
       background: {
@@ -99,5 +99,5 @@ const getMuiOptions = (themeType: ThemeType): ThemeOptions => {
   };
 };
 
-export const createMuiTheme = (themeType: ThemeType): MuiTheme =>
+export const createMuiTheme = (themeType: E<typeof ThemeType>): MuiTheme =>
   createTheme(getMuiOptions(themeType));

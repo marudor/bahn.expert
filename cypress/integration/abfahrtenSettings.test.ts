@@ -19,51 +19,50 @@ describe('Abfahrten Settings', () => {
       cy.percySnapshot('Zugnummer & Linie');
     });
 
-    it('Show fahrzeuggruppe', () => {
-      cy.intercept(
-        {
-          url: '/api/reihung/v4/wagen/371?*',
-          query: {
-            evaNumber: '8000105',
-            departure: '2019-08-07T12:50:00.000Z',
+    describe('Reihung', () => {
+      beforeEach(() => {
+        cy.intercept(
+          {
+            url: '/api/reihung/v4/wagen/371?*',
+            query: {
+              evaNumber: '8000105',
+              departure: '2019-08-07T12:50:00.000Z',
+            },
           },
-        },
-        {
-          fixture: 'sequence/genericICE1',
-        },
-      );
-      cy.findByTestId('abfahrtICE371').click();
-      cy.openSettings();
-      cy.findByTestId('fahrzeugGruppeConfig').click();
-      cy.closeModal();
-      cy.findByTestId('reihungFahrzeugGruppe').should('exist');
-      cy.percySnapshot('Fahrzeuggruppe');
-    });
+          {
+            fixture: 'sequence/genericICE1',
+          },
+        );
+        cy.findByTestId('abfahrtICE371').click();
+        cy.openSettings();
+      });
 
-    it('Show uic', () => {
-      cy.intercept(
-        {
-          url: '/api/reihung/v4/wagen/371?*',
-          query: {
-            evaNumber: '8000105',
-            departure: '2019-08-07T12:50:00.000Z',
-          },
-        },
-        {
-          fixture: 'sequence/genericICE1',
-        },
-      );
-      cy.findByTestId('abfahrtICE371').click();
-      cy.openSettings();
-      cy.findByTestId('showUIC').click();
-      cy.closeModal();
-      cy.findAllByTestId('uic').should('exist');
-      cy.findByTestId('via-Berlin Ostbahnhof').should(
-        'have.css',
-        'text-decoration-line',
-        'line-through',
-      );
-      cy.percySnapshot('UIC');
+      it('Show fahrzeuggruppe', () => {
+        cy.findByTestId('fahrzeugGruppeConfig').click();
+        cy.closeModal();
+        cy.findByTestId('reihungFahrzeugGruppe').should('exist');
+        cy.percySnapshot('Fahrzeuggruppe');
+      });
+
+      it('Show uic', () => {
+        cy.findAllByTestId('uic').should('not.exist');
+        cy.findByTestId('showUIC').click();
+        cy.closeModal();
+        cy.findAllByTestId('uic').should('exist');
+        cy.findByTestId('via-Berlin Ostbahnhof').should(
+          'have.css',
+          'text-decoration-line',
+          'line-through',
+        );
+        cy.percySnapshot('UIC');
+      });
+
+      it('Full Info', () => {
+        cy.findByTestId('fahrzeugGruppeConfig').click();
+        cy.findByTestId('showUIC').click();
+        cy.closeModal();
+        cy.percySnapshot('reihungFull');
+      });
     });
   });
 

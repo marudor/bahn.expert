@@ -6,7 +6,11 @@ import { useStorage } from 'client/useStorage';
 import constate from 'constate';
 import type { FC } from 'react';
 
-function useThemeInner({ initialThemeType }: { initialThemeType?: ThemeType }) {
+function useThemeInner({
+  initialThemeType,
+}: {
+  initialThemeType?: E<typeof ThemeType>;
+}) {
   const [themeType, setThemeType] = useState(
     initialThemeType || ThemeType.dark,
   );
@@ -28,7 +32,7 @@ function useThemeInner({ initialThemeType }: { initialThemeType?: ThemeType }) {
   return {
     themeType,
     theme,
-    setThemeType: (newThemeType: ThemeType) => {
+    setThemeType: (newThemeType: E<typeof ThemeType>) => {
       setThemeType(newThemeType);
       storage.set('theme', newThemeType);
     },

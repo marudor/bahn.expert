@@ -25,7 +25,7 @@ export const ThemeSelection: FC = () => {
     (e: SyntheticEvent<HTMLElement>) => {
       const newThemeType = e.currentTarget.dataset.value as
         | undefined
-        | ThemeType;
+        | E<typeof ThemeType>;
 
       if (newThemeType) {
         setThemeType(newThemeType);
@@ -52,7 +52,7 @@ export const ThemeSelection: FC = () => {
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <ThemeList disablePadding data-testid="themeList">
-          {Object.values(ThemeType).map((themeOption) => {
+          {Object.values(ThemeType).map((themeOption: string) => {
             const name = themeOption[0].toUpperCase() + themeOption.slice(1);
 
             return (

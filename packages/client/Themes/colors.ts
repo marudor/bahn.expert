@@ -20,7 +20,10 @@ interface Colors {
   transparentBackground: string;
 }
 
-export function getColors(theme: Theme, themeType: ThemeType): Colors {
+export function getColors(
+  theme: Theme,
+  themeType: E<typeof ThemeType>,
+): Colors {
   const backgroundAugment = theme.palette.augmentColor({
     color: {
       main: theme.palette.background.default,

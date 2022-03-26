@@ -30,6 +30,7 @@ module.exports = {
       },
       rules: {
         '@typescript-eslint/no-unsafe-argument': 0,
+        '@typescript-eslint/no-misused-promises': 0,
       },
     },
     {

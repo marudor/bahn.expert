@@ -25,7 +25,7 @@ declare global {
       mockHannover(options?: MockOptions): void;
       openSettings(): void;
       force404(): void;
-      theme(type: 'dark' | 'light' | 'black'): void;
+      theme(type: string): void;
     }
   }
 }

@@ -169,6 +169,7 @@ export interface Props extends InheritedProps {
   destination?: string;
   wrongWing?: boolean;
   showUIC: boolean;
+  'data-testid'?: string;
 }
 
 export const Fahrzeug: FC<Props> = ({
