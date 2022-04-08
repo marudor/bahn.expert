@@ -97,7 +97,9 @@ export const useRefreshCurrent = (visible = false) => {
         lookbehind,
       );
 
-      setDepartures(r);
+      if (r) {
+        setDepartures(r);
+      }
     }
   }, [
     currentStopPlace,
