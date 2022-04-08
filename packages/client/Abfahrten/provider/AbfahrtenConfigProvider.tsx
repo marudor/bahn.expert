@@ -3,7 +3,7 @@ import { useQuery } from 'client/Common/hooks/useQuery';
 import { useStorage } from 'client/useStorage';
 import constate from 'constate';
 import type { AbfahrtenConfig } from 'client/Common/config';
-import type { FC, ReactNode } from 'react';
+import type { FC, PropsWithChildren, ReactNode } from 'react';
 
 export interface Filter {
   onlyDepartures?: boolean;
@@ -71,9 +71,9 @@ export interface AbfahrtenConfigProviderValue {
 
 const useAbfahrtenConfigInner = ({
   initialState,
-}: {
+}: PropsWithChildren<{
   initialState: AbfahrtenConfigProviderValue;
-}) => {
+}>) => {
   const filterConfig = useFilter(initialState.filter);
   const config = useConfig(initialState.config);
 

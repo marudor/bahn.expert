@@ -1,6 +1,9 @@
 describe('Homepage', () => {
   beforeEach(() => {
     cy.visit('/');
+    // Waiting becuase hydration might now have hapened yet
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
+    cy.wait(50);
   });
 
   const currentKölnCookie =

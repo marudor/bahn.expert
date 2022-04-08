@@ -23,7 +23,7 @@ const nonÖPNVTypes = [
 ];
 
 const axiosWithTimeout = axios.create({
-  timeout: 4000,
+  timeout: 4500,
 });
 
 const stopPlaceClient = new StopPlacesApi(

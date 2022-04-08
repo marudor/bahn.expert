@@ -19,7 +19,6 @@ const LazyDetails = loadable(
   lazyOptions,
 );
 const LazyAbfahrten = loadable(() => import('./Abfahrten'), lazyOptions);
-const LazyMap = loadable(() => import('./Map'), lazyOptions);
 const LazyRegional = loadable(() => import('./Regional'), lazyOptions);
 const About = loadable(() => import('./Common/Components/About'), lazyOptions);
 const LazyTrainRuns = loadable(() => import('./TrainRuns'), lazyOptions);
@@ -59,7 +58,6 @@ export const App: FC = () => {
               <RoutingProvider>
                 <Routes>
                   <Route path="/about" element={<About />} />
-                  <Route path="/map" element={<LazyMap />} />
                   {/* If you change this route also change hafasDetailsRedirect.ts */}
                   <Route
                     path="/details/:train/:initialDeparture/*"

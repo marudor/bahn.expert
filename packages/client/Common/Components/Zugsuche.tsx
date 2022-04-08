@@ -64,7 +64,7 @@ export const Zugsuche: FC<Props> = ({ children }) => {
   const [match, setMatch] = useState<ParsedJourneyMatchResponse | null>();
   const [date, setDate] = useState<Date | null>(subHours(new Date(), 1));
   const toggleModal = useCallback(
-    (e) => {
+    (e: SyntheticEvent) => {
       e.stopPropagation();
       setOpen(!open);
     },

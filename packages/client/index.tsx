@@ -1,7 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
 import { ClientStorage } from 'client/Common/Storage';
 import { HelmetProvider } from 'react-helmet-async';
-import { hydrate, render } from 'react-dom';
+import { hydrateRoot } from 'react-dom/client';
 import { loadableReady } from '@loadable/component';
 import { StorageContext } from 'client/useStorage';
 import { ThemeProvider } from 'client/Common/provider/ThemeProvider';
@@ -53,10 +53,12 @@ const renderApp = (App: ComponentType) => (
   </React.StrictMode>
 );
 
-const container = document.getElementById('app');
+const container = document.getElementById('app')!;
+
+let root: ReturnType<typeof hydrateRoot>;
 
 void loadableReady(() => {
-  hydrate(renderApp(ThemeWrap), container);
+  root = hydrateRoot(container, renderApp(ThemeWrap));
 });
 
 // @ts-expect-error hot not typed
@@ -65,6 +67,8 @@ if (module.hot) {
   module.hot.accept('./ThemeWrap', () => {
     const App = require('./ThemeWrap').default;
 
-    render(renderApp(App), container);
+    if (root) {
+      root.render(renderApp(App));
+    }
   });
 }

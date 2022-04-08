@@ -1,11 +1,12 @@
 import { useCallback, useState } from 'react';
 import constate from 'constate';
+import type { PropsWithChildren } from 'react';
 
 const defaultDescription =
   'Zugabfahrten für Stationen der Deutsche Bahn. Nutzt verschiedene Quellen um möglichst genaue Informationen bereitzustellen. Nutzt teilweise offizielle, teilweise inoffizielle Quellen.';
 const defaultTitle = 'BahnhofsAbfahrten';
 
-function useHeaderTagInner() {
+function useHeaderTagInner(_p: PropsWithChildren<unknown>) {
   const [title, setTitle] = useState(defaultTitle);
   const [description, setDescription] = useState(defaultDescription);
 

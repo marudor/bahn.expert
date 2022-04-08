@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useStorage } from 'client/useStorage';
 import constate from 'constate';
-import type { ComponentType, FC, ReactNode } from 'react';
+import type { ComponentType, FC, PropsWithChildren, ReactNode } from 'react';
 import type { MinimalStopPlace } from 'types/stopPlace';
 
 export interface Favs {
@@ -14,7 +14,9 @@ interface FavStorageSetup {
   MostUsedComponent?: ComponentType;
 }
 
-function useFavStorage({ initial }: { initial: FavStorageSetup }) {
+function useFavStorage({
+  initial,
+}: PropsWithChildren<{ initial: FavStorageSetup }>) {
   const [favs, setFavs] = useState<Favs>(initial.favs);
 
   const storage = useStorage();
