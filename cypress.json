@@ -5,5 +5,8 @@
   "numTestsKeptInMemory": 0,
   "video": false,
   "requestTimeout": 10000,
-  "retries": 1
+  "retries": {
+    "runMode": 2,
+    "openMode": 0
+  }
 }

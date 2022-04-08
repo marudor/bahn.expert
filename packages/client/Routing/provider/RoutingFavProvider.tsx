@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useStorage } from 'client/useStorage';
 import constate from 'constate';
-import type { FC } from 'react';
+import type { FC, PropsWithChildren } from 'react';
 import type { MinimalStopPlace } from 'types/stopPlace';
 
 export interface RoutingFav {
@@ -23,7 +23,9 @@ interface InitialRoutingFavStorageProps {
   initialFavs?: RoutingFavs;
 }
 
-function useRoutingFavStorage({ initialFavs }: InitialRoutingFavStorageProps) {
+function useRoutingFavStorage({
+  initialFavs,
+}: PropsWithChildren<InitialRoutingFavStorageProps>) {
   const [favs, setFavs] = useState<RoutingFavs>(initialFavs || {});
   const storage = useStorage();
   const updateFavs = useCallback(
@@ -79,7 +81,9 @@ export const [InnerRoutingFavProvider, useRoutingFavs, useRoutingFavActions] =
     }),
   );
 
-export const RoutingFavProvider: FC = ({ children }) => {
+export const RoutingFavProvider: FC<PropsWithChildren<unknown>> = ({
+  children,
+}) => {
   const storage = useStorage();
   const savedRoutingFavs = storage.get('rfavs');
 

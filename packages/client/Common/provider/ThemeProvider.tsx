@@ -4,13 +4,13 @@ import { useEffect, useMemo, useState } from 'react';
 import { useQuery } from 'client/Common/hooks/useQuery';
 import { useStorage } from 'client/useStorage';
 import constate from 'constate';
-import type { FC } from 'react';
+import type { FC, PropsWithChildren } from 'react';
 
 function useThemeInner({
   initialThemeType,
-}: {
+}: PropsWithChildren<{
   initialThemeType?: E<typeof ThemeType>;
-}) {
+}>) {
   const [themeType, setThemeType] = useState(
     initialThemeType || ThemeType.dark,
   );
@@ -41,7 +41,7 @@ function useThemeInner({
 
 export const [InnerThemeProvider, useTheme] = constate(useThemeInner);
 
-export const ThemeProvider: FC = ({ children }) => {
+export const ThemeProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
   const storage = useStorage();
   const query = useQuery();
 

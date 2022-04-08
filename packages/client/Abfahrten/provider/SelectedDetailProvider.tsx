@@ -1,15 +1,15 @@
 import { useCallback, useState } from 'react';
 import { useStorage } from 'client/useStorage';
 import constate from 'constate';
-import type { FC } from 'react';
+import type { FC, PropsWithChildren } from 'react';
 
 const selectedDetailCookieName = 'selectedDetail';
 
 const useSelectedDetailInternal = ({
   initialSelectedDetail,
-}: {
+}: PropsWithChildren<{
   initialSelectedDetail?: string;
-}) => {
+}>) => {
   const storage = useStorage();
   const [selectedDetail, realSetSelectedDetail] = useState<string | undefined>(
     initialSelectedDetail,
@@ -49,7 +49,9 @@ export const [
   (v) => v.setSelectedDetail,
 );
 
-export const SelectedDetailProvider: FC = ({ children }) => {
+export const SelectedDetailProvider: FC<PropsWithChildren<unknown>> = ({
+  children,
+}) => {
   const storage = useStorage();
   const savedSelectedDetail = storage.get(selectedDetailCookieName);
 

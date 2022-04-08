@@ -8,29 +8,39 @@ import Axios from 'axios';
 import constate from 'constate';
 import type { AbfahrtenResult } from 'types/iris';
 import type { AxiosError } from 'axios';
-import type { FC, ReactNode } from 'react';
+import type { FC, PropsWithChildren, ReactNode } from 'react';
 import type { MinimalStopPlace } from 'types/stopPlace';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 let cancelGetAbfahrten = () => {};
 
+/**
+ * Returns null for cancelled requests that should be ignored
+ */
 export const fetchAbfahrten = async (
   urlWithStationId: string,
   lookahead: string,
   lookbehind: string,
-): Promise<AbfahrtenResult> => {
+): Promise<AbfahrtenResult | null> => {
   cancelGetAbfahrten();
-  const r = await Axios.get<AbfahrtenResult>(urlWithStationId, {
-    cancelToken: new Axios.CancelToken((c) => {
-      cancelGetAbfahrten = c;
-    }),
-    params: {
-      lookahead,
-      lookbehind,
-    },
-  });
-
-  return r.data;
+  try {
+    return (
+      await Axios.get<AbfahrtenResult>(urlWithStationId, {
+        cancelToken: new Axios.CancelToken((c) => {
+          cancelGetAbfahrten = c;
+        }),
+        params: {
+          lookahead,
+          lookbehind,
+        },
+      })
+    ).data;
+  } catch (e) {
+    if (Axios.isCancel(e)) {
+      return null;
+    }
+    throw e;
+  }
 };
 
 export type AbfahrtenError =
@@ -54,9 +64,9 @@ interface AbfahrtenError$Default extends AxiosError {
 
 const useAbfahrtenInner = ({
   searchFunction,
-}: {
+}: PropsWithChildren<{
   searchFunction: (searchTerm: string) => Promise<MinimalStopPlace[]>;
-}) => {
+}>) => {
   const [currentStopPlace, setCurrentStopPlace] = useState<MinimalStopPlace>();
   const [departures, setDepartures] = useState<AbfahrtenResult>();
   const [error, setError] = useState<AbfahrtenError>();
@@ -108,10 +118,17 @@ const useAbfahrtenInner = ({
       `${fetchApiUrl}/${currentStopPlace.evaNumber}`,
       lookahead,
       lookbehind,
-    ).then(setDepartures, (e) => {
-      e.station = currentStopPlace.name;
-      setError(e);
-    });
+    ).then(
+      (deps) => {
+        if (deps) {
+          setDepartures(deps);
+        }
+      },
+      (e) => {
+        e.station = currentStopPlace.name;
+        setError(e);
+      },
+    );
   }, [currentStopPlace, fetchApiUrl, lookahead, lookbehind]);
 
   return {

@@ -1,7 +1,17 @@
 import { Helmet } from 'react-helmet-async';
 import { useHeaderTags } from 'client/Common/provider/HeaderTagProvider';
 import { useLocation } from 'react-router';
-import type { FC } from 'react';
+import type { FC, ReactNode } from 'react';
+
+// types need to be updated by react-helmet-async to reflect implicit children change
+declare module 'react-helmet-async' {
+  export interface HelmetProps {
+    children: ReactNode;
+  }
+  export interface ProviderProps {
+    children: ReactNode;
+  }
+}
 
 export const HeaderTags: FC = () => {
   const { title, description } = useHeaderTags();

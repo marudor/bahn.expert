@@ -4,7 +4,7 @@ import { Menu } from '@mui/icons-material';
 import { NavigationContext } from 'client/Common/Components/Navigation/NavigationContext';
 import { useContext } from 'react';
 import styled from '@emotion/styled';
-import type { FC } from 'react';
+import type { FC, PropsWithChildren } from 'react';
 
 const NotchFix = styled.div(({ theme }) => ({
   top: '-5em',
@@ -14,7 +14,7 @@ const NotchFix = styled.div(({ theme }) => ({
   background: theme.palette.background.default,
 }));
 
-export const BaseHeader: FC = ({ children }) => {
+export const BaseHeader: FC<PropsWithChildren<unknown>> = ({ children }) => {
   const { toggleDrawer } = useContext(NavigationContext);
 
   return (
