@@ -11,6 +11,7 @@ import type {
   SingleParsedJourneyGeoPos,
 } from 'types/HAFAS/JourneyGeoPos';
 import type { ParsedPolyline } from 'types/HAFAS';
+import type { PropsWithChildren } from 'react';
 
 function useMapDefaults() {
   const query = useQuery();
@@ -52,7 +53,7 @@ function useMapDefaults() {
   );
 }
 
-function useMap() {
+function useMap(_p: PropsWithChildren<unknown>) {
   const defaults = useMapDefaults();
   const [includeFV, toggleIncludeFV] = useToggleState(defaults.includeFV);
   const [includeNV, toggleIncludeNV] = useToggleState(defaults.includeNV);

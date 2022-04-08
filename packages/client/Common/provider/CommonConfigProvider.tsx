@@ -3,13 +3,13 @@ import { useCallback, useState } from 'react';
 import { useStorage } from 'client/useStorage';
 import constate from 'constate';
 import type { CommonConfig } from 'client/Common/config';
-import type { FC, ReactNode } from 'react';
+import type { FC, PropsWithChildren, ReactNode } from 'react';
 
 const useCommonConfigInternal = ({
   initialConfig,
-}: {
+}: PropsWithChildren<{
   initialConfig: CommonConfig;
-}) => {
+}>) => {
   const [config, setConfig] = useState(initialConfig);
   const storage = useStorage();
   const setCommonConfigKey = useCallback(

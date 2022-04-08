@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from 'react';
 import { useStorage } from 'client/useStorage';
 import constate from 'constate';
-import type { FC, SyntheticEvent } from 'react';
+import type { FC, PropsWithChildren, SyntheticEvent } from 'react';
 import type { MinimalStopPlace } from 'types/stopPlace';
 
 export interface RoutingSettings {
@@ -12,9 +12,9 @@ export interface RoutingSettings {
 
 const useRoutingConfigInternal = ({
   initialSettings,
-}: {
+}: PropsWithChildren<{
   initialSettings: RoutingSettings;
-}) => {
+}>) => {
   const [start, setStart] = useState<MinimalStopPlace>();
   const [destination, setDestination] = useState<MinimalStopPlace>();
   const [via, setVia] = useState<MinimalStopPlace[]>([]);
@@ -113,7 +113,9 @@ export const [
   }),
 );
 
-export const RoutingConfigProvider: FC = ({ children }) => {
+export const RoutingConfigProvider: FC<PropsWithChildren<unknown>> = ({
+  children,
+}) => {
   const storage = useStorage();
 
   const savedRoutingSettings: RoutingSettings = {

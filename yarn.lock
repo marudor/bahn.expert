@@ -3719,12 +3719,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:*, @types/react-dom@npm:17.0.15":
-  version: 17.0.15
-  resolution: "@types/react-dom@npm:17.0.15"
+"@types/react-dom@npm:*, @types/react-dom@npm:18.0.0":
+  version: 18.0.0
+  resolution: "@types/react-dom@npm:18.0.0"
   dependencies:
-    "@types/react": ^17
-  checksum: 7b90372bd7207d3860e1043ebfe10fd21fbd9ec3417a29593ca14359774830c888ba4ebb25cf0510628607496f8d35b09d23d329ea709b9311f5866185c5fd67
+    "@types/react": "*"
+  checksum: 0d8c9cb3e72aefe0dd2b58a49845a200369f01ae92f3f11f642e04efc95dfd1c9380b6592d4273dd6113fb8707947d15b66d56c75c41f39f28bd897f0c08dfa9
   languageName: node
   linkType: hard
 
@@ -3767,14 +3767,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:17.0.44, @types/react@npm:^17":
-  version: 17.0.44
-  resolution: "@types/react@npm:17.0.44"
+"@types/react@npm:*, @types/react@npm:18.0.0":
+  version: 18.0.0
+  resolution: "@types/react@npm:18.0.0"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: ebee02778ca08f954c316dc907802264e0121c87b8fa2e7e0156ab0ef2a1b0a09d968c016a3600ec4c9a17dc09b4274f292d9b15a1a5369bb7e4072def82808f
+  checksum: 8a9769e2cabe335c86179881577e6ca32f3a6abdd5adbe2d498e48b78d532130da828a53ef25f21915179da454654b811292e0a8191c8a81af3bf4b05f5673bd
   languageName: node
   linkType: hard
 
@@ -5650,8 +5650,8 @@ __metadata:
     "@types/leaflet": 1.7.9
     "@types/loadable__component": 5.13.4
     "@types/qs": 6.9.7
-    "@types/react": 17.0.44
-    "@types/react-dom": 17.0.15
+    "@types/react": 18.0.0
+    "@types/react-dom": 18.0.0
     "@types/react-router": 5.1.18
     "@types/react-router-dom": 5.3.3
     "@types/rimraf": ^3.0.2
@@ -12894,8 +12894,8 @@ __metadata:
     "@types/loadable__server": 5.12.6
     "@types/on-finished": 2.3.1
     "@types/qs": 6.9.7
-    "@types/react": 17.0.44
-    "@types/react-dom": 17.0.15
+    "@types/react": 18.0.0
+    "@types/react-dom": 18.0.0
     "@types/rimraf": ^3.0.2
     "@types/supertest": 2.0.12
     "@types/webpack": ^5.28.0

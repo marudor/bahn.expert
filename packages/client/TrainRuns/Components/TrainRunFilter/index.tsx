@@ -18,6 +18,7 @@ import { useTrainRuns } from 'client/TrainRuns/provider/TrainRunProvider';
 import styled from '@emotion/styled';
 import type { AvailableBR, AvailableIdentifierOnly } from 'types/coachSequence';
 import type { FC } from 'react';
+import type { SelectChangeEvent } from '@mui/material';
 
 const FilterContainer = styled.div`
   margin-top: 1em;
@@ -48,19 +49,27 @@ export const TrainRunFilter: FC = () => {
     setIdentifier([]);
   }, []);
 
-  const handleBaureihenChange = useCallback((e) => {
-    const {
-      target: { value },
-    } = e;
-    setBaureihen(typeof value === 'string' ? value.split(',') : value);
-  }, []);
+  const handleBaureihenChange = useCallback(
+    (e: SelectChangeEvent<string | string[]>) => {
+      const {
+        target: { value },
+      } = e;
+      // @ts-expect-error this works
+      setBaureihen(typeof value === 'string' ? value.split(',') : value);
+    },
+    [],
+  );
 
-  const handleIdentifierChange = useCallback((e) => {
-    const {
-      target: { value },
-    } = e;
-    setIdentifier(typeof value === 'string' ? value.split(',') : value);
-  }, []);
+  const handleIdentifierChange = useCallback(
+    (e: SelectChangeEvent<string | string[]>) => {
+      const {
+        target: { value },
+      } = e;
+      // @ts-expect-error this works
+      setIdentifier(typeof value === 'string' ? value.split(',') : value);
+    },
+    [],
+  );
 
   const update = useCallback(
     () => fetchTrainRuns(date, baureihen, identifier),

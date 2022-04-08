@@ -8,7 +8,7 @@ import Axios from 'axios';
 import constate from 'constate';
 import type { AbfahrtenResult } from 'types/iris';
 import type { AxiosError } from 'axios';
-import type { FC, ReactNode } from 'react';
+import type { FC, PropsWithChildren, ReactNode } from 'react';
 import type { MinimalStopPlace } from 'types/stopPlace';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -54,9 +54,9 @@ interface AbfahrtenError$Default extends AxiosError {
 
 const useAbfahrtenInner = ({
   searchFunction,
-}: {
+}: PropsWithChildren<{
   searchFunction: (searchTerm: string) => Promise<MinimalStopPlace[]>;
-}) => {
+}>) => {
   const [currentStopPlace, setCurrentStopPlace] = useState<MinimalStopPlace>();
   const [departures, setDepartures] = useState<AbfahrtenResult>();
   const [error, setError] = useState<AbfahrtenError>();
