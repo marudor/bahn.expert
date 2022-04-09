@@ -18,6 +18,7 @@ interface Colors {
   blue: string;
   shadedBackground: string;
   transparentBackground: string;
+  pride: string;
 }
 
 export function getColors(
@@ -30,9 +31,13 @@ export function getColors(
     },
   });
 
+  const pride =
+    'linear-gradient(180deg, #FE0000 16.66%,#FD8C00 16.66%, 33.32%,#FFE500 33.32%, 49.98%,#119F0B 49.98%, 66.64%,#0644B3 66.64%, 83.3%,#C22EDC 83.3%);';
+
   switch (themeType) {
     case ThemeType.black:
       return {
+        pride,
         red: red.A400,
         green: lightGreen[600],
         yellow: yellow[400],
@@ -43,6 +48,7 @@ export function getColors(
       };
     case ThemeType.dark:
       return {
+        pride,
         red: red.A400,
         green: lightGreen[600],
         yellow: yellow[400],
@@ -53,6 +59,7 @@ export function getColors(
       };
     case ThemeType.light:
       return {
+        pride,
         red: red[700],
         green: green[800],
         yellow: yellow[600],

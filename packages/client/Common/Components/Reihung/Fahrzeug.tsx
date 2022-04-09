@@ -43,7 +43,11 @@ export const icons: {
   comfort: null,
 };
 
-const Container = styled.div<{ wrongWing?: boolean; closed?: boolean }>(
+const Container = styled.div<{
+  wrongWing?: boolean;
+  closed?: boolean;
+  pride?: boolean;
+}>(
   ({ theme }) => ({
     position: 'absolute',
     height: '2.5em',
@@ -69,6 +73,16 @@ const Container = styled.div<{ wrongWing?: boolean; closed?: boolean }>(
       },
     },
 );
+
+const Pride = styled.span(({ theme }) => ({
+  background: theme.colors.pride,
+  position: 'absolute',
+  top: '-1em',
+  height: '1em',
+  left: -1,
+  right: -1,
+  opacity: 0.7,
+}));
 
 const DoppelstockIndicator = styled.span(({ theme }) => ({
   position: 'absolute',
@@ -169,6 +183,7 @@ export interface Props extends InheritedProps {
   destination?: string;
   wrongWing?: boolean;
   showUIC: boolean;
+  pride?: boolean;
   'data-testid'?: string;
 }
 
@@ -180,6 +195,7 @@ export const Fahrzeug: FC<Props> = ({
   showUIC,
   identifier,
   type,
+  pride,
 }) => {
   const { startPercent, endPercent } = fahrzeug.position;
 
@@ -195,6 +211,7 @@ export const Fahrzeug: FC<Props> = ({
       data-testid={`reihungFahrzeug${fahrzeug.identificationNumber}`}
       style={position}
     >
+      {pride && <Pride />}
       {fahrzeug.category.includes('DOPPELSTOCK') && <DoppelstockIndicator />}
       <Fahrzeugklasse coach={fahrzeug} />
       {fahrzeug.identificationNumber && (

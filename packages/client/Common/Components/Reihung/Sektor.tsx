@@ -7,6 +7,7 @@ const Container = styled.div`
   position: absolute;
   font-weight: bolder;
   text-align: center;
+  z-index: 100;
 `;
 
 interface Props {
