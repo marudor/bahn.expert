@@ -21,6 +21,9 @@
     "rules": {
       "footer-leading-blank": [
         0
+      ],
+      "subject-case": [
+        0
       ]
     }
   },
