@@ -26,6 +26,8 @@ interface Props extends InheritedProps {
 
 const RPFRegex = /(RP)(F\d)(\d{5})/;
 
+const prideTZName = ['ICE0304'];
+
 export const Gruppe: FC<Props> = ({
   gruppe,
   showDestination,
@@ -63,6 +65,7 @@ export const Gruppe: FC<Props> = ({
       return (
         <Fahrzeug
           {...rest}
+          pride={prideTZName.includes(gruppe.name)}
           identifier={gruppe.baureihe?.identifier}
           wrongWing={wrongWing}
           key={`${c.uic}${c.position.startPercent}`}

@@ -19,6 +19,7 @@ declare module 'maru' {
       blue: string;
       shadedBackground: string;
       transparentBackground: string;
+      pride: string;
     };
     mixins: Mixins;
   }
