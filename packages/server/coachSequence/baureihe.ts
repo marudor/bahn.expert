@@ -1,4 +1,3 @@
-import { isRedesignByTZ } from 'server/coachSequence/tzInfo';
 import type {
   AvailableIdentifier,
   CoachSequenceBaureihe,
@@ -109,14 +108,12 @@ const getDEBR = (
     case '5403':
       return {
         baureihe: '403',
-        identifier: `403.S${
-          Number.parseInt(uicOrdnungsnummer.substr(1), 10) <= 37 ? '1' : '2'
-        }`,
+        identifier: `403.R`,
       };
     case '5406':
       return {
         baureihe: '406',
-        identifier: '406',
+        identifier: '406.R',
       };
     case '5407':
       return {
@@ -150,7 +147,7 @@ const getDEBR = (
 export const getBaureiheByUIC = (
   uic: string,
   coaches: Pick<CoachSequenceCoach, 'class'>[],
-  tzn?: string,
+  _tzn?: string,
 ): undefined | CoachSequenceBaureihe => {
   const country = uic.substr(2, 2);
   const code = uic.substr(4, 4);
@@ -165,12 +162,6 @@ export const getBaureiheByUIC = (
       break;
   }
   if (!br) return undefined;
-
-  if (isRedesignByTZ(tzn)) {
-    // @ts-expect-error this works
-    br.identifier = br.identifier.replace('.S1', '').replace('.S2', '');
-    br.identifier += '.R';
-  }
 
   return {
     ...br,
