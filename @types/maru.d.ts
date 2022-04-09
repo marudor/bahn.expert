@@ -9,6 +9,7 @@ declare module 'maru' {
     additional: SerializedStyles;
     early: SerializedStyles;
     singleLineText: SerializedStyles;
+    stripe: SerializedStyles;
   }
   interface Theme {
     colors: {
@@ -20,6 +21,7 @@ declare module 'maru' {
       shadedBackground: string;
       transparentBackground: string;
       pride: string;
+      europe: string;
     };
     mixins: Mixins;
   }

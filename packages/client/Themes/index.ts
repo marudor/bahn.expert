@@ -53,6 +53,14 @@ export const createTheme = (themeType: E<typeof ThemeType>): MuiTheme => {
       textOverflow: 'ellipsis',
       whiteSpace: 'nowrap',
     },
+    stripe: {
+      position: 'absolute',
+      top: '-1.4em',
+      height: '1.3em',
+      left: -1,
+      right: -1,
+      opacity: 0.8,
+    },
   };
 
   const maruTheme = {
