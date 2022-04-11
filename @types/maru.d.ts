@@ -22,6 +22,7 @@ declare module 'maru' {
       transparentBackground: string;
       pride: string;
       europe: string;
+      germany: string;
     };
     mixins: Mixins;
   }

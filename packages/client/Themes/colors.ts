@@ -24,6 +24,9 @@ export function getColors(
   const pride =
     'linear-gradient(180deg, #FE0000 16.66%,#FD8C00 16.66%, 33.32%,#FFE500 33.32%, 49.98%,#119F0B 49.98%, 66.64%,#0644B3 66.64%, 83.3%,#C22EDC 83.3%);';
 
+  const germany =
+    'linear-gradient(180deg, #000000 33.33%, 33.33%, #FF0000 33.33%, 66.66%, #FFCC00 66.66%);';
+
   const europe = '#001489';
 
   switch (themeType) {
@@ -38,6 +41,7 @@ export function getColors(
         shadedBackground: backgroundAugment.light,
         transparentBackground: 'rgba(0, 0, 0, 0.55)',
         europe,
+        germany,
       };
     case ThemeType.dark:
       return {
@@ -50,6 +54,7 @@ export function getColors(
         shadedBackground: backgroundAugment.light,
         transparentBackground: 'rgba(48, 48, 48, 0.55)',
         europe,
+        germany,
       };
     case ThemeType.light:
       return {
@@ -62,6 +67,7 @@ export function getColors(
         shadedBackground: backgroundAugment.dark,
         transparentBackground: 'rgba(255, 255, 255, 0.55)',
         europe,
+        germany,
       };
   }
 }

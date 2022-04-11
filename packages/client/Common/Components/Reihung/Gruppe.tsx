@@ -2,6 +2,7 @@
 import { BRInfo } from 'client/Common/Components/Reihung/BRInfo';
 import { EuropeStripe } from 'client/Common/Components/Reihung/Stripes/EuropeStripe';
 import { Fahrzeug } from './Fahrzeug';
+import { GermanyStripe } from 'client/Common/Components/Reihung/Stripes/GermanyStripe';
 import { PrideStripe } from 'client/Common/Components/Reihung/Stripes/PrideStripe';
 import { useMemo } from 'react';
 import styled from '@emotion/styled';
@@ -30,6 +31,7 @@ const RPFRegex = /(RP)(F\d)(\d{5})/;
 
 const prideTZName = 'ICE0304';
 const europeTZName = 'ICE4601';
+const germanyTZName = 'ICE9457';
 
 export const Gruppe: FC<Props> = ({
   gruppe,
@@ -69,6 +71,8 @@ export const Gruppe: FC<Props> = ({
         ? PrideStripe
         : gruppe.name === europeTZName
         ? EuropeStripe
+        : gruppe.name === germanyTZName
+        ? GermanyStripe
         : undefined;
     return gruppe.coaches.map((c) => {
       return (
