@@ -49,6 +49,9 @@ window.matchMedia = () => ({
 
 beforeAll(() => {
   Nock.disableNetConnect();
+  Nock.emitter.on('no match', (req) => {
+    throw new Error(`No nock mock for ${req.method} ${req.path}`);
+  });
 
   globalThis.nock = Nock('http://localhost');
   globalThis.nock.intercept = ((oldFn) => {

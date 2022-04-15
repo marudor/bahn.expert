@@ -1,7 +1,6 @@
 import { App } from './App';
 import { CacheProvider } from '@emotion/react';
 import { LocalizationProvider } from '@mui/lab';
-import { StrictMode } from 'react';
 import { StyledEngineProvider } from '@mui/material';
 import { ThemeHeaderTags } from 'client/Common/Components/ThemeHeaderTags';
 import { ThemeProvider } from '@mui/material/styles';
@@ -28,17 +27,15 @@ export const ThemeWrap = ({
   const { theme } = useTheme();
 
   return (
-    <StrictMode>
-      <StyledEngineProvider injectFirst>
-        <LocalizationProvider dateAdapter={AdapterDateFns} locale={deLocale}>
-          <CacheProvider value={emotionCache}>
-            <ThemeProvider theme={theme}>
-              <ThemeHeaderTags />
-              {children}
-            </ThemeProvider>
-          </CacheProvider>
-        </LocalizationProvider>
-      </StyledEngineProvider>
-    </StrictMode>
+    <StyledEngineProvider injectFirst>
+      <LocalizationProvider dateAdapter={AdapterDateFns} locale={deLocale}>
+        <CacheProvider value={emotionCache}>
+          <ThemeProvider theme={theme}>
+            <ThemeHeaderTags />
+            {children}
+          </ThemeProvider>
+        </CacheProvider>
+      </LocalizationProvider>
+    </StyledEngineProvider>
   );
 };
