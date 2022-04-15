@@ -23,6 +23,10 @@ spec:
         app.kubernetes.io/name: {{ include "bahnhofsAbfahrten.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: node
+        whenUnsatisfiable: ScheduleAnyway
       containers:
         - name: "{{ .Chart.Name }}"
           image: "{{ .Values.imageRepository }}:{{ .Values.imageTag }}"
