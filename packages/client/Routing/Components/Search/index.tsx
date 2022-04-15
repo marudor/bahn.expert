@@ -21,7 +21,7 @@ import { getStopPlaceFromAPI } from 'client/Common/service/stopPlaceSearch';
 import { MobileDateTimePicker } from '@mui/lab';
 import { SettingsPanel } from './SettingsPanel';
 import { StopPlaceSearch } from 'client/Common/Components/StopPlaceSearch';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useFetchRouting } from 'client/Routing/provider/useFetchRouting';
 import { useNavigate, useParams } from 'react-router';
 import {
@@ -98,12 +98,11 @@ export const Search: FC = () => {
     useRoutingConfigActions();
   const { start, destination, date, via, touchedDate } = useRoutingConfig();
   const { fetchRoutes, clearRoutes } = useFetchRouting();
-
-  const params = useParams<'start' | 'destination' | 'date' | 'via'>();
-
-  const formattedDate = useMemo(() => {
+  const [formattedDate, setFormattedDate] = useState('');
+  const updateFormattedDate = useCallback(() => {
     if (!touchedDate) {
-      return `Jetzt (Heute ${lightFormat(new Date(), 'HH:mm')})`;
+      setFormattedDate(`Jetzt (Heute ${lightFormat(new Date(), 'HH:mm')})`);
+      return;
     }
     const today = startOfDay(new Date());
     const tomorrow = endOfDay(addDays(today, 1));
@@ -127,8 +126,13 @@ export const Search: FC = () => {
     }
     relativeDayString += ` ${lightFormat(date, 'HH:mm')}`;
 
-    return relativeDayString;
+    setFormattedDate(relativeDayString);
   }, [touchedDate, date]);
+  useEffect(() => {
+    updateFormattedDate();
+  }, [updateFormattedDate]);
+
+  const params = useParams<'start' | 'destination' | 'date' | 'via'>();
 
   const navigate = useNavigate();
 
@@ -168,6 +172,7 @@ export const Search: FC = () => {
   const searchRoute = useCallback(
     (e: SyntheticEvent) => {
       e.preventDefault();
+      updateFormattedDate();
 
       if (start && destination && start.evaNumber !== destination.evaNumber) {
         void fetchRoutes();
@@ -176,7 +181,16 @@ export const Search: FC = () => {
         );
       }
     },
-    [date, destination, fetchRoutes, navigate, start, via, touchedDate],
+    [
+      date,
+      destination,
+      fetchRoutes,
+      navigate,
+      start,
+      via,
+      touchedDate,
+      updateFormattedDate,
+    ],
   );
 
   const mappedViaList = useMemo(
