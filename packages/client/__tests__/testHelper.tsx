@@ -104,9 +104,7 @@ export function render(
             <LocationHelper>
               <StorageContext.Provider value={cookies}>
                 <ThemeProvider>
-                  <ThemeWrap /*generateClassName={generateClassName}*/>
-                    {result}
-                  </ThemeWrap>
+                  <ThemeWrap>{result}</ThemeWrap>
                 </ThemeProvider>
               </StorageContext.Provider>
             </LocationHelper>
