@@ -1,13 +1,8 @@
-import {
-  PlatformsApi,
-  StopPlaceKeyFilter,
-  StopPlacesApi,
-} from 'business-hub/generated';
 import { risStationsConfiguration } from 'business-hub/config';
+import { StopPlaceKeyFilter, StopPlacesApi } from 'business-hub/generated';
 import { TransportType } from 'business-hub/types';
 import axios from 'axios';
 import type {
-  Platform,
   ResolvedStopPlaceGroups,
   StopPlace,
   StopPlaceKey,
@@ -26,14 +21,11 @@ const axiosWithTimeout = axios.create({
   timeout: 4500,
 });
 
+const basePath = 'https://apis.deutschebahn.com/db/apis/ris-stations/v1';
+
 const stopPlaceClient = new StopPlacesApi(
   risStationsConfiguration,
-  undefined,
-  axiosWithTimeout,
-);
-const platformsClient = new PlatformsApi(
-  risStationsConfiguration,
-  undefined,
+  basePath,
   axiosWithTimeout,
 );
 
@@ -105,22 +97,6 @@ export async function byPosition(
       })
     ).data;
     return result.stopPlaces || [];
-  } catch {
-    return [];
-  }
-}
-
-export async function platforms(evaNumber: string): Promise<Platform[]> {
-  try {
-    const result = (
-      await platformsClient.platforms({
-        evaNumber,
-        includeSubPlatforms: true,
-        includeOperational: true,
-        includeAccessibility: true,
-      })
-    ).data;
-    return result.platforms || [];
   } catch {
     return [];
   }
