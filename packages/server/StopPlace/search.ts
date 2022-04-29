@@ -76,7 +76,10 @@ export async function searchStopPlace(
 ): Promise<GroupedStopPlace[]> {
   try {
     return await searchStopPlaceRisStations(searchTerm, max, filterForIris);
-  } catch {
+  } catch (e) {
+    // debug this shit
+    // eslint-disable-next-line no-console
+    console.error(e);
     return searchWithHafas(searchTerm, max, filterForIris);
   }
 }
