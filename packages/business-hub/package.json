@@ -7,7 +7,7 @@
     "build:babel": "babel -x .ts --root-mode upward . --out-dir . --ignore 'node_modules/**'",
     "build:clean": "rimraf '*[!node_modules]**/**/*.js' && rimraf '*.js'",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
-    "generate:apiClient": "openapi-generator-cli generate --additional-properties=useSingleRequestParameter=true -i https://gateway.businesshub.deutschebahn.com/ris-stations/v1/docs/openapi -o generated -g typescript-axios"
+    "generate:apiClient": "openapi-generator-cli generate --additional-properties=useSingleRequestParameter=true -i <add api spec file here> -o generated -g typescript-axios"
   },
   "dependencies": {
     "@openapitools/openapi-generator-cli": "^2.4.26",
