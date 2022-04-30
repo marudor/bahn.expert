@@ -4,7 +4,7 @@
   "author": "marudor",
   "scripts": {
     "build": "run-s build:clean build:babel",
-    "build:babel": "babel -x .ts --root-mode upward . --out-dir . --ignore 'node_modules/**'",
+    "build:babel": "SERVER=1 babel -x .ts --root-mode upward . --out-dir . --ignore 'node_modules/**'",
     "build:clean": "rimraf '*[!node_modules]**/**/*.js' && rimraf '*.js'",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "generate:apiClient": "openapi-generator-cli generate --additional-properties=useSingleRequestParameter=true -i <add api spec file here> -o generated -g typescript-axios"

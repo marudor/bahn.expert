@@ -21,11 +21,9 @@ const axiosWithTimeout = axios.create({
   timeout: 4500,
 });
 
-const basePath = 'https://apis.deutschebahn.com/db/apis/ris-stations/v1';
-
 const stopPlaceClient = new StopPlacesApi(
   risStationsConfiguration,
-  basePath,
+  undefined,
   axiosWithTimeout,
 );
 

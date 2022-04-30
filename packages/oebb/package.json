@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "run-s build:clean build:babel",
-    "build:babel": "babel -x .ts --root-mode upward . --out-dir . --ignore 'node_modules/**'",
+    "build:babel": "SERVER=1 babel -x .ts --root-mode upward . --out-dir . --ignore 'node_modules/**'",
     "build:clean": "rimraf '*[!node_modules]**/**/*.js' && rimraf '*.js'",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ."
   },
