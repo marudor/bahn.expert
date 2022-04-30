@@ -1,3 +1,4 @@
+import notRedesigned from './notRedesigned.json';
 import type {
   AvailableIdentifier,
   CoachSequenceBaureihe,
@@ -47,6 +48,7 @@ const getDEBR = (
   code: string,
   uicOrdnungsnummer: string,
   coaches: Pick<CoachSequenceCoach, 'class'>[],
+  tzn?: string,
 ): undefined | Omit<CoachSequenceBaureihe, 'name'> => {
   switch (code) {
     case '0812':
@@ -105,11 +107,15 @@ const getDEBR = (
         baureihe: '402',
         identifier: '402',
       };
-    case '5403':
+    case '5403': {
+      const identifier: AvailableIdentifier = `403.S${
+        Number.parseInt(uicOrdnungsnummer.substring(1), 10) <= 37 ? '1' : '2'
+      }`;
       return {
         baureihe: '403',
-        identifier: `403.R`,
+        identifier: tzn && notRedesigned.includes(tzn) ? identifier : '403.R',
       };
+    }
     case '5406':
       return {
         baureihe: '406',
@@ -147,7 +153,7 @@ const getDEBR = (
 export const getBaureiheByUIC = (
   uic: string,
   coaches: Pick<CoachSequenceCoach, 'class'>[],
-  _tzn?: string,
+  tzn?: string,
 ): undefined | CoachSequenceBaureihe => {
   const country = uic.substr(2, 2);
   const code = uic.substr(4, 4);
@@ -155,7 +161,7 @@ export const getBaureiheByUIC = (
   let br: undefined | Omit<CoachSequenceBaureihe, 'name'>;
   switch (country) {
     case '80':
-      br = getDEBR(code, serial, coaches);
+      br = getDEBR(code, serial, coaches, tzn);
       break;
     case '81':
       br = getATBR(code, serial, coaches);
