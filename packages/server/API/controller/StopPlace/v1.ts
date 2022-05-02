@@ -2,7 +2,6 @@ import { AuslastungsValue } from 'types/routing';
 import {
   Controller,
   Get,
-  Hidden,
   OperationId,
   Query,
   Res,
@@ -11,6 +10,7 @@ import {
   Tags,
 } from 'tsoa';
 import {
+  geoSearchStopPlace,
   getIdentifiers,
   getStopPlaceByEva,
   searchStopPlace,
@@ -75,18 +75,18 @@ export class StopPlaceController extends Controller {
    * @isInt radius
    * @isInt max
    */
-  @Hidden()
   @Get('/geoSearch')
   @Tags('StopPlace')
-  stopPlaceGeoSearch(): // @Query() lat: number,
-  // @Query() lng: number,
-  // /** meter */
-  // @Query() radius = 5000,
-  // /** Only returns stopPlaces iris-tts can handle (/abfahrten) */
-  // @Query() filterForIris = false,
-  // @Query() max?: number,
-  Promise<GroupedStopPlace[]> {
-    throw new Error('Due to rate-limit unreliable, disabled');
+  stopPlaceGeoSearch(
+    @Query() lat: number,
+    @Query() lng: number,
+    /** meter */
+    @Query() radius = 5000,
+    /** Only returns stopPlaces iris-tts can handle (/abfahrten) */
+    @Query() filterForIris = false,
+    @Query() max?: number,
+  ): Promise<GroupedStopPlace[]> {
+    return geoSearchStopPlace(lat, lng, radius, max, filterForIris);
   }
 
   @Response(404)
