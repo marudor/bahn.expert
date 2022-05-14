@@ -1,6 +1,6 @@
+import * as cheerio from 'cheerio';
 import { CacheDatabases, createNewCache } from 'server/cache';
 import Axios from 'axios';
-import cheerio from 'cheerio';
 
 // 48 hours in seconds
 const cache = createNewCache<string, string | null>(
@@ -29,7 +29,10 @@ export async function getDBLageplan(
   ).data;
 
   let $ = cheerio.load(searchHtml);
-  const firstResultLink = $('#result .title > a').first().attr('href');
+  const firstResultLink = [...$('#result .title > a')]
+    .map((node) => node.attribs['href'])
+    .filter(Boolean)
+    .find((href) => href.startsWith('/bahnhof'));
 
   if (!firstResultLink) {
     void cache.set(stationName, null);
