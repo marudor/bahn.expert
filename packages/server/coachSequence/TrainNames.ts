@@ -264,6 +264,7 @@ const naming = {
   9026: 'Zürichsee',
   9028: 'Freistaat Sachsen',
   9041: 'Baden-Württemberg',
+  9046: 'Female ICE',
   9050: 'Metropole Ruhr',
   9202: 'Schleswig-Holstein',
   9457: 'Bundesrepublik Deutschland',
