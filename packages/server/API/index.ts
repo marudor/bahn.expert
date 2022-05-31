@@ -5,7 +5,6 @@ import router from './validationOverwrites';
 
 // const router = new KoaRouter();
 
-RegisterRoutes(router);
 router.use(
   cors({
     allowMethods: 'GET,POST',
@@ -13,4 +12,5 @@ router.use(
     maxAge: 3600 * 24,
   }),
 );
+RegisterRoutes(router);
 export default router;
