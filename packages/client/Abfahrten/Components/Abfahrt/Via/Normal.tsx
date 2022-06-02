@@ -5,7 +5,9 @@ import styled from '@emotion/styled';
 import type { FC, ReactNode } from 'react';
 import type { Stop } from 'types/iris';
 
-export const StyledViaStop = styled.span<{ stop: Stop }>(({ theme, stop }) => ({
+export const StyledViaStop = styled('span', {
+  shouldForwardProp: (p) => p !== 'stop',
+})<{ stop: Stop }>(({ theme, stop }) => ({
   color: theme.palette.text.primary,
   ...(isHbf(stop) && {
     fontWeight: 'bold',

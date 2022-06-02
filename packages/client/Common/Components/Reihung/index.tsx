@@ -121,9 +121,10 @@ export const Reihung: FC<Props> = ({
 
   const mainStyle = useMemo(() => {
     if (!sequence) return {};
-    let height = 7.5;
+    let height = 6.5;
     if (fahrzeugGruppe) height += 1;
     if (showUIC) height += 1;
+    if (showCoachType) height += 1;
     if (sequence.multipleDestinations) height += 1;
     if (sequence.multipleTrainNumbers) height += 1;
 
@@ -145,7 +146,7 @@ export const Reihung: FC<Props> = ({
     return {
       height: `${height}em`,
     };
-  }, [fahrzeugGruppe, showUIC, sequence]);
+  }, [fahrzeugGruppe, showUIC, sequence, showCoachType]);
 
   if (sequence === null || (!sequence && loadHidden)) {
     return null;
