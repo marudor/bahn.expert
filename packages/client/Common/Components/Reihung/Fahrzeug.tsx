@@ -151,14 +151,18 @@ const ComfortIcon = styled.span(({ theme }) => ({
   borderRadius: '50%',
 }));
 
-const ExtraInfoContainer = styled.span`
-  position: absolute;
-  top: 150%;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-`;
+const ExtraInfoContainer = styled.span<{ showCoachType: boolean }>(
+  {
+    position: 'absolute',
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+    alignItems: 'center',
+  },
+  ({ showCoachType }) => ({
+    top: showCoachType ? '150%' : '100%',
+  }),
+);
 
 export interface InheritedProps {
   scale: number;
@@ -172,6 +176,7 @@ export interface Props extends InheritedProps {
   destination?: string;
   wrongWing?: boolean;
   showUIC: boolean;
+  showCoachType: boolean;
   Stripe?: FC;
   'data-testid'?: string;
 }
@@ -182,6 +187,7 @@ export const Fahrzeug: FC<Props> = ({
   scale,
   correctLeft,
   showUIC,
+  showCoachType,
   identifier,
   type,
   Stripe,
@@ -221,8 +227,10 @@ export const Fahrzeug: FC<Props> = ({
         })}
       </span>
       {fahrzeug.features.comfort && <ComfortIcon />}
-      <WagenLink fahrzeug={fahrzeug} identifier={identifier} type={type} />
-      <ExtraInfoContainer>
+      {showCoachType && (
+        <WagenLink fahrzeug={fahrzeug} identifier={identifier} type={type} />
+      )}
+      <ExtraInfoContainer showCoachType={showCoachType}>
         <SitzplatzInfo
           identificationNumber={fahrzeug.identificationNumber}
           seats={fahrzeug.seats}

@@ -43,8 +43,8 @@ export const HimIrisMessage: FC<Props> = ({
     : null;
 
   return (
-    <Container superseded={message.superseded} onClick={toggleOpen}>
-      {dateWithText}
+    <Container superseded={message.superseded}>
+      <span onClick={toggleOpen}>{dateWithText}</span>
       <Dialog open={open} onClose={toggleOpen}>
         <DialogTitle>
           {dateWithText}
