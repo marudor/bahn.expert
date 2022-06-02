@@ -30,7 +30,6 @@ const Title = styled(DialogTitle)`
 `;
 
 const Content = styled(DialogContent)`
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   width: 80%;
@@ -78,6 +77,7 @@ export const SettingsModal: FC = () => {
     <Dialog
       maxWidth="sm"
       fullWidth
+      scroll="body"
       open={configOpen}
       onClose={() => setConfigOpen(false)}
     >
@@ -193,7 +193,9 @@ export const SettingsModal: FC = () => {
           }
           label="Lookbehind in Minuten"
         />
-        <Title>Reihungsoptionen</Title>
+      </Content>
+      <Title>Reihungsoptionen</Title>
+      <Content>
         <Label
           control={
             <Switch
