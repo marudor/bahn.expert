@@ -24,6 +24,7 @@ interface Props extends InheritedProps {
   showFahrzeugGruppe: boolean;
   originalTrainNumber: string;
   showUIC: boolean;
+  showCoachType: boolean;
 }
 
 const RPFRegex = /(RP)(F\d)(\d{5})/;

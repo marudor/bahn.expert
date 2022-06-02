@@ -85,7 +85,7 @@ export const Reihung: FC<Props> = ({
 }) => {
   const sequences = useSequences();
   const { getSequences } = useSequencesActions();
-  const { fahrzeugGruppe, showUIC } = useCommonConfig();
+  const { fahrzeugGruppe, showUIC, showCoachType } = useCommonConfig();
   const sequence =
     sequences[sequenceId(trainNumber, currentEvaNumber, scheduledDeparture)];
 
@@ -170,6 +170,7 @@ export const Reihung: FC<Props> = ({
         <Sequence>
           {sequence.sequence.groups.map((g, i) => (
             <Gruppe
+              showCoachType={showCoachType}
               showUIC={showUIC}
               originalTrainNumber={trainNumber}
               showFahrzeugGruppe={fahrzeugGruppe}

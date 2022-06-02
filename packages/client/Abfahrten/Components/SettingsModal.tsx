@@ -54,8 +54,14 @@ export const SettingsModal: FC = () => {
   const { setConfigOpen } = useAbfahrtenModalToggle();
   const configOpen = useAbfahrtenConfigOpen();
   const setConfigKey = useAbfahrtenSetConfig();
-  const { fahrzeugGruppe, showUIC, time, autoUpdate, hideTravelynx } =
-    useCommonConfig();
+  const {
+    fahrzeugGruppe,
+    showUIC,
+    time,
+    autoUpdate,
+    hideTravelynx,
+    showCoachType,
+  } = useCommonConfig();
   const setCommonConfigKey = useSetCommonConfig();
   const handleSelectChange = useCallback(
     (key: keyof AbfahrtenConfig) => (e: ChangeEvent<HTMLSelectElement>) =>
@@ -75,7 +81,7 @@ export const SettingsModal: FC = () => {
       open={configOpen}
       onClose={() => setConfigOpen(false)}
     >
-      <Title>Einstellungen</Title>
+      <Title>Abfahrtsoptionen</Title>
       <Content data-testid="settingsContent">
         <Label
           control={
@@ -115,35 +121,7 @@ export const SettingsModal: FC = () => {
               )}
             />
           }
-          label="Zeige Linie und Zugnummer"
-        />
-        <Label
-          control={
-            <Switch
-              data-testid="showUIC"
-              checked={showUIC}
-              value="showUIC"
-              onChange={handleConfigCheckedChange(
-                'showUIC',
-                setCommonConfigKey,
-              )}
-            />
-          }
-          label="Zeige UIC Nummer"
-        />
-        <Label
-          control={
-            <Switch
-              data-testid="fahrzeugGruppeConfig"
-              checked={fahrzeugGruppe}
-              value="fahrzeugGruppeConfig"
-              onChange={handleConfigCheckedChange(
-                'fahrzeugGruppe',
-                setCommonConfigKey,
-              )}
-            />
-          }
-          label="Zeige Fahrzeuggruppen Name"
+          label="Linie und Zugnummer"
         />
         <Label
           control={
@@ -214,6 +192,49 @@ export const SettingsModal: FC = () => {
             </NativeSelect>
           }
           label="Lookbehind in Minuten"
+        />
+        <Title>Reihungsoptionen</Title>
+        <Label
+          control={
+            <Switch
+              data-testid="showCoachType"
+              checked={showCoachType}
+              value="showCoachType"
+              onChange={handleConfigCheckedChange(
+                'showCoachType',
+                setCommonConfigKey,
+              )}
+            />
+          }
+          label="Wagentyp"
+        />
+        <Label
+          control={
+            <Switch
+              data-testid="fahrzeugGruppeConfig"
+              checked={fahrzeugGruppe}
+              value="fahrzeugGruppeConfig"
+              onChange={handleConfigCheckedChange(
+                'fahrzeugGruppe',
+                setCommonConfigKey,
+              )}
+            />
+          }
+          label="Fahrzeuggruppen Name"
+        />
+        <Label
+          control={
+            <Switch
+              data-testid="showUIC"
+              checked={showUIC}
+              value="showUIC"
+              onChange={handleConfigCheckedChange(
+                'showUIC',
+                setCommonConfigKey,
+              )}
+            />
+          }
+          label="UIC Nummer"
         />
       </Content>
     </Dialog>
