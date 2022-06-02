@@ -80,11 +80,16 @@ export const WagenLink: FC<Props> = ({ fahrzeug, identifier, type }) => {
   }, [fahrzeug.category, fahrzeug.type, fahrzeug.uic, identifier, type]);
 
   if (!imageName) {
-    return <span css={linkCss}>{fahrzeug.type}</span>;
+    return (
+      <span data-testid="coachType" css={linkCss}>
+        {fahrzeug.type}
+      </span>
+    );
   }
 
   return (
     <a
+      data-testid="coachType"
       css={linkCss}
       onClick={stopPropagation}
       href={`https://lib.finalrewind.org/dbdb/db_wagen/${imageName}.png`}

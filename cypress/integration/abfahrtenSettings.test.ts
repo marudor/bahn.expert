@@ -57,9 +57,25 @@ describe('Abfahrten Settings', () => {
         cy.percySnapshot('UIC');
       });
 
+      it('show coach type', () => {
+        cy.findAllByTestId('coachType').should('not.exist');
+        cy.findByTestId('showCoachType').click();
+        cy.closeModal();
+        cy.findAllByTestId('coachType').should('exist');
+        cy.percySnapshot('coachType');
+      });
+
+      it('uic & coachType', () => {
+        cy.findByTestId('showCoachType').click();
+        cy.findByTestId('showUIC').click();
+        cy.closeModal();
+        cy.percySnapshot('UIC&coachType');
+      });
+
       it('Full Info', () => {
         cy.findByTestId('fahrzeugGruppeConfig').click();
         cy.findByTestId('showUIC').click();
+        cy.findByTestId('showCoachType').click();
         cy.closeModal();
         cy.percySnapshot('reihungFull');
       });
