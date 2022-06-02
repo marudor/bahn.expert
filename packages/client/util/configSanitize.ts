@@ -30,4 +30,5 @@ export const commonConfigSanitize: CommonConfigSanitize = {
   showUIC: booleanCheck,
   fahrzeugGruppe: booleanCheck,
   time: booleanCheck,
+  showCoachType: booleanCheck,
 };

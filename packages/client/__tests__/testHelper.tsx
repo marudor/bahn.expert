@@ -94,6 +94,7 @@ export function render(
       fahrzeugGruppe: false,
       autoUpdate: 0,
       hideTravelynx: false,
+      showCoachType: false,
       ...commonConfig,
     };
 
