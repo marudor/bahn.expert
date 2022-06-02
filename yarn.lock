@@ -2365,14 +2365,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mapbox/node-pre-gyp@npm:^1.0.5":
-  version: 1.0.8
-  resolution: "@mapbox/node-pre-gyp@npm:1.0.8"
+"@mapbox/node-pre-gyp@npm:^1.0.9":
+  version: 1.0.9
+  resolution: "@mapbox/node-pre-gyp@npm:1.0.9"
   dependencies:
-    detect-libc: ^1.0.3
+    detect-libc: ^2.0.0
     https-proxy-agent: ^5.0.0
     make-dir: ^3.1.0
-    node-fetch: ^2.6.5
+    node-fetch: ^2.6.7
     nopt: ^5.0.0
     npmlog: ^5.0.1
     rimraf: ^3.0.2
@@ -2380,7 +2380,7 @@ __metadata:
     tar: ^6.1.11
   bin:
     node-pre-gyp: bin/node-pre-gyp
-  checksum: 29a38f39575107fa1665edf14defcfdf62e12bb38e9c27f7457ba42be84060125015171d12b8de3065155a465992f1854a363e2985f071fcbea9ff0701362b05
+  checksum: 1b9c4c87a68d200daa13151d0fe033aa7aa8f7b26f3585255424dd8dfee2ec672c3e9bea4071c624469bc0aebbbcde08f8a300c8a958db52c50abadd5fb56920
   languageName: node
   linkType: hard
 
@@ -6564,12 +6564,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"detect-libc@npm:^1.0.3":
-  version: 1.0.3
-  resolution: "detect-libc@npm:1.0.3"
-  bin:
-    detect-libc: ./bin/detect-libc.js
-  checksum: daaaed925ffa7889bd91d56e9624e6c8033911bb60f3a50a74a87500680652969dbaab9526d1e200a4c94acf80fc862a22131841145a0a8482d60a99c24f4a3e
+"detect-libc@npm:^2.0.0":
+  version: 2.0.1
+  resolution: "detect-libc@npm:2.0.1"
+  checksum: ccb05fcabbb555beb544d48080179c18523a343face9ee4e1a86605a8715b4169f94d663c21a03c310ac824592f2ba9a5270218819bb411ad7be578a527593d7
   languageName: node
   linkType: hard
 
@@ -10191,14 +10189,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"libxmljs2@npm:^0.29.0":
-  version: 0.29.0
-  resolution: "libxmljs2@npm:0.29.0"
+"libxmljs2@npm:^0.30.1":
+  version: 0.30.1
+  resolution: "libxmljs2@npm:0.30.1"
   dependencies:
-    "@mapbox/node-pre-gyp": ^1.0.5
+    "@mapbox/node-pre-gyp": ^1.0.9
     bindings: ~1.5.0
     nan: ~2.15.0
-  checksum: 4bcb4e851c3147def990aef2f4fc0813bfe0cb09ee6192eb8eead20beb64fefbad78b7ebea5794076a90fd7410ecfd5edb415797e8f3b73b9cd65f332cffb112
+  checksum: f40619e7f4886341f85804045b0a7c3f608d9938d7323a830786eefc4c21c2fda23c6423aee044e44454053aa662a10d6482b37f71365be1fd39b601c1875a90
   languageName: node
   linkType: hard
 
@@ -12886,7 +12884,7 @@ __metadata:
     koa: ^2.13.4
     koa-bodyparser: ^4.3.0
     koa-static: ^5.0.0
-    libxmljs2: ^0.29.0
+    libxmljs2: ^0.30.1
     nanoid: ^3.3.2
     nock: ^13.2.4
     npm-run-all: ^4.1.5
