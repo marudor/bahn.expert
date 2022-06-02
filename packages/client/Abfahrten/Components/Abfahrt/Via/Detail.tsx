@@ -6,6 +6,7 @@ import type { FC, ReactNode } from 'react';
 import type { Stop } from 'types/iris';
 
 const StyledStationLink = StyledViaStop.withComponent(StationLink);
+
 interface Props {
   stops: Stop[];
 }
