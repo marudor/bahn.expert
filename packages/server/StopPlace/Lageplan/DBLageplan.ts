@@ -11,54 +11,58 @@ const cache = createNewCache<string, string | null>(
 export async function getDBLageplan(
   stationName: string,
 ): Promise<string | undefined> {
-  const cached = await getCachedDBLageplan(stationName);
+  try {
+    const cached = await getCachedDBLageplan(stationName);
 
-  if (cached) return cached;
-  // undefined = haven't tried yet
-  // null = already tried to fetch, but nothing found
-  if (cached === null) return undefined;
-  const searchHtml = (
-    await Axios.get<string>(
-      `https://www.bahnhof.de/service/search/bahnhof-de/520608`,
-      {
-        params: {
-          query: stationName,
+    if (cached) return cached;
+    // undefined = haven't tried yet
+    // null = already tried to fetch, but nothing found
+    if (cached === null) return undefined;
+    const searchHtml = (
+      await Axios.get<string>(
+        `https://www.bahnhof.de/service/search/bahnhof-de/3464932`,
+        {
+          params: {
+            query: stationName,
+          },
         },
-      },
-    )
-  ).data;
+      )
+    ).data;
 
-  let $ = cheerio.load(searchHtml);
-  const firstResultLink = [...$('#result .title > a')]
-    .map((node) => node.attribs['href'])
-    .filter(Boolean)
-    .find((href) => href.startsWith('/bahnhof'));
+    let $ = cheerio.load(searchHtml);
+    const firstResultLink = [...$('#result .title > a')]
+      .map((node) => node.attribs['href'])
+      .filter(Boolean)
+      .find((href) => href.startsWith('/bahnhof'));
 
-  if (!firstResultLink) {
-    void cache.set(stationName, null);
+    if (!firstResultLink) {
+      void cache.set(stationName, null);
 
+      return undefined;
+    }
+
+    const bahnhofHtml = (
+      await Axios.get<string>(`https://www.bahnhof.de${firstResultLink}`)
+    ).data;
+
+    $ = cheerio.load(bahnhofHtml);
+    const rawPdfLink = $('.bahnhof > .embeddedDownload > .download-asset > a')
+      .first()
+      .attr('href');
+
+    if (!rawPdfLink) {
+      void cache.set(stationName, null);
+
+      return undefined;
+    }
+    const pdfLink = `https://www.bahnhof.de${rawPdfLink}`;
+
+    void cache.set(stationName, pdfLink);
+
+    return pdfLink;
+  } catch {
     return undefined;
   }
-
-  const bahnhofHtml = (
-    await Axios.get<string>(`https://www.bahnhof.de${firstResultLink}`)
-  ).data;
-
-  $ = cheerio.load(bahnhofHtml);
-  const rawPdfLink = $('.bahnhof > .embeddedDownload > .download-asset > a')
-    .first()
-    .attr('href');
-
-  if (!rawPdfLink) {
-    void cache.set(stationName, null);
-
-    return undefined;
-  }
-  const pdfLink = `https://www.bahnhof.de${rawPdfLink}`;
-
-  void cache.set(stationName, pdfLink);
-
-  return pdfLink;
 }
 export function getCachedDBLageplan(
   stationName: string,
