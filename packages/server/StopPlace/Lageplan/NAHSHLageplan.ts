@@ -24,28 +24,32 @@ function normalizeStationName(stationName: string) {
 export async function getNAHSHLageplan(
   evaId: string,
 ): Promise<string | undefined> {
-  const cached = await getCachedNAHSHLageplan(evaId);
-  if (cached) return cached;
-  if (cached === null) return undefined;
+  try {
+    const cached = await getCachedNAHSHLageplan(evaId);
+    if (cached) return cached;
+    if (cached === null) return undefined;
 
-  const station = (
-    await LocMatch(evaId, 'S', AllowedHafasProfile['NAH.SH'])
-  )[0];
-  if (station) {
-    const fullLink = `https://www.nah.sh/assets/downloads/Stationsplaene/${normalizeStationName(
-      station.title,
-    )}.pdf`;
+    const station = (
+      await LocMatch(evaId, 'S', AllowedHafasProfile['NAH.SH'])
+    )[0];
+    if (station) {
+      const fullLink = `https://www.nah.sh/assets/downloads/Stationsplaene/${normalizeStationName(
+        station.title,
+      )}.pdf`;
 
-    try {
-      await Axios.get(fullLink);
-      void cache.set(evaId, fullLink);
-      return fullLink;
-    } catch {
-      // we ignore failing requests and fall back to undefined for lageplanURL
+      try {
+        await Axios.get(fullLink);
+        void cache.set(evaId, fullLink);
+        return fullLink;
+      } catch {
+        // we ignore failing requests and fall back to undefined for lageplanURL
+      }
     }
+    void cache.set(evaId, null);
+    return undefined;
+  } catch {
+    return undefined;
   }
-  void cache.set(evaId, null);
-  return undefined;
 }
 
 export function getCachedNAHSHLageplan(
