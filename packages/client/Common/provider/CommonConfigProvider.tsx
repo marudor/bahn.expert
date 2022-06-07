@@ -47,6 +47,7 @@ export const CommonConfigProvider: FC<Props> = ({ children }) => {
     time: storage.get('time') ?? true,
     showUIC: storage.get('showUIC') ?? false,
     fahrzeugGruppe: storage.get('fahrzeugGruppe') ?? false,
+    showCoachType: storage.get('showCoachType') ?? false,
     ...globalThis.configOverride.common,
   };
 
