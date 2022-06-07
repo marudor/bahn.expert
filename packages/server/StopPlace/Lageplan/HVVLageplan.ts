@@ -11,28 +11,32 @@ const cache = createNewCache<string, string | null>(
 export async function getHVVLageplan(
   evaId: string,
 ): Promise<string | undefined> {
-  const cached = await getCachedHVVLageplan(evaId);
-  if (cached) return cached;
-  if (cached === null) return undefined;
+  try {
+    const cached = await getCachedHVVLageplan(evaId);
+    if (cached) return cached;
+    if (cached === null) return undefined;
 
-  const searchHtml = (
-    await Axios.get<string>(
-      `https://geofox.hvv.de/jsf/showMobiInformation.seam?id=DB-EFZ_${evaId}`,
-    )
-  ).data;
+    const searchHtml = (
+      await Axios.get<string>(
+        `https://geofox.hvv.de/jsf/showMobiInformation.seam?id=DB-EFZ_${evaId}`,
+      )
+    ).data;
 
-  const $ = cheerio.load(searchHtml);
-  const possibleLinks = $('#stationDescription li > a')
-    .toArray()
-    .map((e) => e.attribs.href);
-  const actualLink = possibleLinks.find((l) => l.endsWith('.pdf'));
-  if (actualLink) {
-    const fullLink = `https://geofox.hvv.de${actualLink}`;
-    void cache.set(evaId, fullLink);
-    return fullLink;
+    const $ = cheerio.load(searchHtml);
+    const possibleLinks = $('#stationDescription li > a')
+      .toArray()
+      .map((e) => e.attribs.href);
+    const actualLink = possibleLinks.find((l) => l.endsWith('.pdf'));
+    if (actualLink) {
+      const fullLink = `https://geofox.hvv.de${actualLink}`;
+      void cache.set(evaId, fullLink);
+      return fullLink;
+    }
+    void cache.set(evaId, null);
+    return undefined;
+  } catch {
+    return undefined;
   }
-  void cache.set(evaId, null);
-  return undefined;
 }
 
 export function getCachedHVVLageplan(

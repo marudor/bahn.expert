@@ -20,7 +20,7 @@ describe('Lageplan', () => {
   describe('Example without Lageplan', () => {
     it('is undefined if non existant', async () => {
       nock
-        .get('/service/search/bahnhof-de/520608')
+        .get('/service/search/bahnhof-de/3464932')
         .query({
           query: 'Langenfelde',
         })
@@ -38,7 +38,7 @@ describe('Lageplan', () => {
 
     it('is undefined if html has no result', async () => {
       nock
-        .get('/service/search/bahnhof-de/520608')
+        .get('/service/search/bahnhof-de/3464932')
         .query({
           query: 'Langenfeld',
         })
@@ -51,7 +51,7 @@ describe('Lageplan', () => {
   describe('Example with Lageplan', () => {
     it('is null if non existant', async () => {
       nock
-        .get('/service/search/bahnhof-de/520608')
+        .get('/service/search/bahnhof-de/3464932')
         .query({
           query: 'Hamburg Hbf',
         })
