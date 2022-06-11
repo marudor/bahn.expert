@@ -48,6 +48,7 @@ export const CommonConfigProvider: FC<Props> = ({ children }) => {
     showUIC: storage.get('showUIC') ?? false,
     fahrzeugGruppe: storage.get('fahrzeugGruppe') ?? false,
     showCoachType: storage.get('showCoachType') ?? false,
+    hideTravelynx: storage.get('hideTravelynx') ?? false,
     ...globalThis.configOverride.common,
   };
 
