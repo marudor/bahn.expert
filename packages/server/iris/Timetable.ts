@@ -377,10 +377,17 @@ export default class Timetable {
       return undefined;
     }
 
+    // @ts-expect-error ???
+    const lookedUpMessage = messageLookup[value];
+
+    // Freitext, nicht auflösbar
+    if (!lookedUpMessage && indexType === 'f') {
+      return undefined;
+    }
+
     const message: IrisMessage = {
       superseded: undefined,
-      // @ts-expect-error ???
-      text: messageLookup[value] || `${value} (?)`,
+      text: lookedUpMessage || `${value} (?)`,
       timestamp: parseTs(getAttr(mNode, 'ts'))!,
       priority: getAttr(mNode, 'pr'),
       value,
