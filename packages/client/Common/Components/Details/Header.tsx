@@ -1,8 +1,9 @@
 import { BaseHeader } from '../BaseHeader';
 import { DetailsContext } from './DetailsContext';
 import { format } from 'date-fns';
+import { IconButton, Tooltip } from '@mui/material';
 import { PlannedType } from 'client/Common/Components/PlannedType';
-import { Tooltip } from '@mui/material';
+import { Refresh } from '@mui/icons-material';
 import { useContext } from 'react';
 import styled from '@emotion/styled';
 import type { FC } from 'react';
@@ -41,7 +42,7 @@ interface Props {
   train: string;
 }
 export const Header: FC<Props> = ({ train }) => {
-  const { details } = useContext(DetailsContext);
+  const { details, refresh } = useContext(DetailsContext);
 
   const trainText = details ? details.train.name : train;
   const showLine =
@@ -80,6 +81,9 @@ export const Header: FC<Props> = ({ train }) => {
           </>
         )}
       </Container>
+      <IconButton onClick={refresh} aria-label="refresh" color="inherit">
+        <Refresh />
+      </IconButton>
     </BaseHeader>
   );
 };

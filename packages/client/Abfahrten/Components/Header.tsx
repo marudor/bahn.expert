@@ -39,31 +39,29 @@ export const Header: FC<Props> = ({ regional = false }: Props) => {
   );
 
   return (
-    <>
-      <BaseHeader>
-        <StopPlaceSearch
-          id="abfahrtenHeaderSearch"
-          autoFocus={!currentStopPlace}
-          filterForIris={!regional}
-          groupedBySales={regional}
-          value={currentEnteredStopPlace}
-          onChange={submit}
-          placeholder={`Bahnhof (z.B. ${
-            currentStopPlace ? currentStopPlace.name : 'Kiel Hbf'
-          })`}
-        />
-        {!globalThis.navigator?.standalone && Boolean(currentStopPlace) && (
-          <IconButton
-            onClick={refreshCurrentAbfahrten}
-            aria-label="refresh"
-            color="inherit"
-            edge="end"
-          >
-            <Refresh />
-          </IconButton>
-        )}
-        <ExtraMenu />
-      </BaseHeader>
-    </>
+    <BaseHeader>
+      <StopPlaceSearch
+        id="abfahrtenHeaderSearch"
+        autoFocus={!currentStopPlace}
+        filterForIris={!regional}
+        groupedBySales={regional}
+        value={currentEnteredStopPlace}
+        onChange={submit}
+        placeholder={`Bahnhof (z.B. ${
+          currentStopPlace ? currentStopPlace.name : 'Kiel Hbf'
+        })`}
+      />
+      {!globalThis.navigator?.standalone && Boolean(currentStopPlace) && (
+        <IconButton
+          onClick={refreshCurrentAbfahrten}
+          aria-label="refresh"
+          color="inherit"
+          edge="end"
+        >
+          <Refresh />
+        </IconButton>
+      )}
+      <ExtraMenu />
+    </BaseHeader>
   );
 };

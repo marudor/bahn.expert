@@ -6,4 +6,5 @@ export const DetailsContext = createContext<{
   details?: ParsedSearchOnTripResponse;
   error?: AxiosError;
   urlPrefix?: string;
+  refresh?: () => any;
 }>({});
