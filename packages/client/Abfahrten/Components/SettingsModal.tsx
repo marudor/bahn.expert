@@ -48,7 +48,7 @@ const AutoUpdateField = styled(TextField)`
 `;
 
 export const SettingsModal: FC = () => {
-  const { lineAndNumber, lookahead, lookbehind, showCancelled } =
+  const { lineAndNumber, lookahead, lookbehind, showCancelled, sortByTime } =
     useAbfahrtenConfig();
   const { setConfigOpen } = useAbfahrtenModalToggle();
   const configOpen = useAbfahrtenConfigOpen();
@@ -108,6 +108,17 @@ export const SettingsModal: FC = () => {
             />
           }
           label="Neue Ankunft bei Verspätung"
+        />
+        <Label
+          control={
+            <Switch
+              data-testid="sortByTime"
+              checked={sortByTime}
+              value="sortByTime"
+              onChange={handleConfigCheckedChange('sortByTime', setConfigKey)}
+            />
+          }
+          label="Sortiere Abfahrten nach Echtzeit"
         />
         <Label
           control={
