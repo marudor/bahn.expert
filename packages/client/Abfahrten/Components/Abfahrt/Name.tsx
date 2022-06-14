@@ -20,7 +20,8 @@ export const Name: FC<Props> = () => {
         <Extra>
           {abfahrt.train.longDistance
             ? `Linie ${abfahrt.train.line}`
-            : `${abfahrt.train.type} ${abfahrt.train.number}`}
+            : abfahrt.train.number !== '0' &&
+              `${abfahrt.train.type} ${abfahrt.train.number}`}
         </Extra>
       )}
     </>
