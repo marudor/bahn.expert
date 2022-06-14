@@ -135,6 +135,7 @@ export const AbfahrtenConfigProvider: FC<Props> = ({
       lookbehind: storage.get('lookbehind') ?? '10',
       showSupersededMessages: storage.get('showSupersededMessages') ?? false,
       showCancelled: storage.get('showCancelled') ?? true,
+      sortByTime: storage.get('sortByTime') ?? false,
       ...globalThis.configOverride.abfahrten,
     },
     fetchApiUrl,
