@@ -34,6 +34,11 @@ const parseStationBoardResponse = (
     messages: parseMessages(jny.msgL, common),
   };
 
+  if (!commonResponse.finalDestination && commonResponse.stops) {
+    commonResponse.finalDestination =
+      commonResponse.stops[commonResponse.stops.length - 1].station.title;
+  }
+
   if (isArrival(jny.stbStop)) {
     return {
       ...commonResponse,
