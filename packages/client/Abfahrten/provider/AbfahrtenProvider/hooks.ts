@@ -12,10 +12,16 @@ import {
 import { useCallback, useMemo } from 'react';
 import type { Abfahrt } from 'types/iris';
 
+function sortAbfahrtenByTime(a: Abfahrt, b: Abfahrt) {
+  const aTime = (a.departure?.time || a.arrival?.time)!;
+  const bTime = (b.departure?.time || b.arrival?.time)!;
+  return aTime > bTime ? 1 : -1;
+}
+
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const useAbfahrten = () => {
   const departures = useAbfahrtenDepartures();
-  const { showCancelled } = useAbfahrtenConfig();
+  const { showCancelled, sortByTime } = useAbfahrtenConfig();
   const { onlyDepartures, productFilter } = useAbfahrtenFilter();
 
   return {
@@ -47,8 +53,17 @@ export const useAbfahrten = () => {
         filtered.lookbehind = filtered.lookbehind.filter(f);
       }
 
+      if (sortByTime) {
+        filtered.departures = [...filtered.departures].sort(
+          sortAbfahrtenByTime,
+        );
+        filtered.lookbehind = [...filtered.lookbehind].sort(
+          sortAbfahrtenByTime,
+        );
+      }
+
       return filtered;
-    }, [departures, onlyDepartures, productFilter, showCancelled]),
+    }, [departures, onlyDepartures, productFilter, showCancelled, sortByTime]),
     unfilteredAbfahrten: departures,
   };
 };

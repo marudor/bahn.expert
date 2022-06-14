@@ -5,6 +5,7 @@ export interface AbfahrtenConfig {
   readonly lookbehind: string;
   readonly lineAndNumber: boolean;
   readonly showCancelled: boolean;
+  readonly sortByTime: boolean;
 }
 
 export interface CommonConfig {
