@@ -3,8 +3,8 @@ import { format } from 'date-fns';
 import { getDetails } from 'client/Common/service/details';
 import { Header } from './Header';
 import { StopList } from './StopList';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useCommonConfig } from 'client/Common/provider/CommonConfigProvider';
-import { useEffect, useMemo, useState } from 'react';
 import { useHeaderTagsActions } from 'client/Common/provider/HeaderTagProvider';
 import { useQuery } from 'client/Common/hooks/useQuery';
 import type { AxiosError } from 'axios';
@@ -61,7 +61,7 @@ export const Details: FC<Props> = ({
     updateDescription(description);
   }, [details, initialDepartureDate, train, updateDescription, updateTitle]);
 
-  useEffect(() => {
+  const refresh = useCallback(() => {
     setDetails(undefined);
     getDetails(
       train,
@@ -77,6 +77,10 @@ export const Details: FC<Props> = ({
       .catch((e) => {
         setError(e);
       });
+  }, []);
+
+  useEffect(() => {
+    refresh();
     let intervalId: NodeJS.Timeout;
     const cleanup = () => clearInterval(intervalId);
     if (autoUpdate) {
@@ -105,6 +109,7 @@ export const Details: FC<Props> = ({
         details,
         error,
         urlPrefix,
+        refresh,
       }}
     >
       <Header train={train} />
