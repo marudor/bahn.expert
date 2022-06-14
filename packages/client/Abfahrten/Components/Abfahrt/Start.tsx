@@ -35,7 +35,7 @@ export const Start: FC = () => {
   return (
     <Container data-testid="abfahrtStart">
       <Name />
-      {detail && (
+      {detail && abfahrt.train.number !== '0' && (
         <Links>
           <TravelynxLink
             arrival={abfahrt.arrival}

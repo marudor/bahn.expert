@@ -47,7 +47,7 @@ function useAuslastungInner(_p: PropsWithChildren<unknown>) {
     try {
       occupancyList = (
         await Axios.get<TrainOccupancyList>(
-          `api/stopPlace/v1/${abfahrt.currentStopPlace.evaNumber}/trainOccupancy`,
+          `/api/stopPlace/v1/${abfahrt.currentStopPlace.evaNumber}/trainOccupancy`,
         )
       ).data;
     } catch {
@@ -64,7 +64,7 @@ function useAuslastungInner(_p: PropsWithChildren<unknown>) {
       const auslastungForEva =
         vrrAuslastungen[abfahrt.currentStopPlace.evaNumber];
       if (!auslastungForEva) return auslastungForEva;
-      return auslastungForEva[abfahrt.train.number] || null;
+      return auslastungForEva[abfahrt.train.number];
     },
     [vrrAuslastungen],
   );
