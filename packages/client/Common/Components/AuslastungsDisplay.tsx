@@ -33,6 +33,9 @@ export const AuslastungsDisplay: FC<Props> = ({
   oneLine,
   ...rest
 }) => {
+  if (!auslastung.first && !auslastung.second) {
+    return null;
+  }
   return (
     <Container oneLine={oneLine} data-testid="auslastungDisplay" {...rest}>
       Auslastung

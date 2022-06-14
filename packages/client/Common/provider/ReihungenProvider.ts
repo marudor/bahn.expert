@@ -10,6 +10,9 @@ async function fetchSequence(
   evaNumber: string,
   initialDeparture?: Date,
 ): Promise<CoachSequenceInformation | undefined> {
+  if (trainNumber === '0') {
+    return undefined;
+  }
   try {
     const r = await Axios.get<CoachSequenceInformation>(
       `/api/reihung/v4/wagen/${trainNumber}`,
