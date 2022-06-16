@@ -4,7 +4,6 @@
   "noImplicitAdditionalProperties": "silently-remove-extras",
   "spec": {
     "name": "Bahnhofs Abfahrten",
-    "description": "<a rel=\"me\" style=\"display:none\" href=\"https://chaos.social/@marudor\"></a>",
     "specVersion": 3,
     "outputDirectory": "../../public",
     "host": "marudor.de",
