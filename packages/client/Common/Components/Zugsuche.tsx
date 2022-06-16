@@ -6,7 +6,7 @@ import {
   FormControl,
   TextField,
 } from '@mui/material';
-import { MobileDatePicker } from '@mui/lab';
+import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { NavigationContext } from './Navigation/NavigationContext';
 import { Search, Today, Train } from '@mui/icons-material';
 import { stopPropagation } from 'client/Common/stopPropagation';

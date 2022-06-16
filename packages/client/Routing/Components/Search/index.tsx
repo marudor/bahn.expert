@@ -18,7 +18,7 @@ import {
 } from '@mui/icons-material';
 import { getRouteLink } from 'client/Routing/util';
 import { getStopPlaceFromAPI } from 'client/Common/service/stopPlaceSearch';
-import { MobileDateTimePicker } from '@mui/lab';
+import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
 import { SettingsPanel } from './SettingsPanel';
 import { StopPlaceSearch } from 'client/Common/Components/StopPlaceSearch';
 import { useCallback, useEffect, useMemo, useState } from 'react';

@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import { Disclaimer } from 'client/TrainRuns/Components/TrainRunFilter/Disclaimer';
 import { Info } from '@mui/icons-material';
-import { MobileDatePicker } from '@mui/lab';
+import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { useCallback, useEffect, useState } from 'react';
 import { useTrainRuns } from 'client/TrainRuns/provider/TrainRunProvider';
 import styled from '@emotion/styled';

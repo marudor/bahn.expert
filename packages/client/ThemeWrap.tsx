@@ -1,11 +1,11 @@
 import { App } from './App';
 import { CacheProvider } from '@emotion/react';
-import { LocalizationProvider } from '@mui/lab';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StyledEngineProvider } from '@mui/material';
 import { ThemeHeaderTags } from 'client/Common/Components/ThemeHeaderTags';
 import { ThemeProvider } from '@mui/material/styles';
 import { useTheme } from 'client/Common/provider/ThemeProvider';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import AdapterDateFns from '@mui/x-date-pickers/AdapterDateFns';
 import createEmotionCache from '@emotion/cache';
 import deLocale from 'date-fns/locale/de';
 import type { EmotionCache } from '@emotion/react';
