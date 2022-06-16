@@ -34,6 +34,7 @@ request.interceptors.request.use((config) => {
     .createHmac('sha1', key)
     .update(urlPath + today)
     .digest('base64');
+  // @ts-expect-error this actually works
   Object.assign(config.headers, {
     'X-API-DATE': today,
     'X-API-AUTHORIZATION': apiKey,
