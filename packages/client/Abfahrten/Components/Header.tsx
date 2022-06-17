@@ -51,7 +51,7 @@ export const Header: FC<Props> = ({ regional = false }: Props) => {
           currentStopPlace ? currentStopPlace.name : 'Kiel Hbf'
         })`}
       />
-      {!globalThis.navigator?.standalone && Boolean(currentStopPlace) && (
+      {Boolean(currentStopPlace) && (
         <IconButton
           onClick={refreshCurrentAbfahrten}
           aria-label="refresh"
