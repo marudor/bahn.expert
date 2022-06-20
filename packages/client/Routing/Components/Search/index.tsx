@@ -236,21 +236,25 @@ export const Search: FC = () => {
       <DateTimeContainer>
         <MobileDateTimePicker
           openTo="hours"
-          clearText="Jetzt"
-          cancelText="Abbrechen"
+          componentsProps={{
+            actionBar: {
+              actions: ['clear', 'cancel', 'accept'],
+            },
+          }}
           value={date}
           renderInput={(props) => (
             <DateTimePickerInput
               {...props}
+              error={false}
               inputProps={{
                 ...props.inputProps,
                 'data-testid': 'routingDatePicker',
                 value: formattedDate,
+                required: false,
               }}
             />
           )}
           onChange={setDate}
-          clearable
           minutesStep={5}
           toolbarTitle=""
         />

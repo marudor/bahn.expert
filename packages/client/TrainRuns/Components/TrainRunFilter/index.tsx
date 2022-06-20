@@ -94,8 +94,8 @@ export const TrainRunFilter: FC = () => {
               }}
             />
           )}
+          closeOnSelect
           value={date}
-          clearable={false}
           onChange={setDate as any}
         />
         <FormControl>
