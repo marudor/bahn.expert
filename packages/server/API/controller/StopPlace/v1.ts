@@ -14,7 +14,6 @@ import {
   getIdentifiers,
   getStopPlaceByEva,
   searchStopPlace,
-  searchStopPlaceGroupedBySales,
 } from 'server/StopPlace/search';
 import { getLageplan } from 'server/StopPlace/Lageplan';
 import axios from 'axios';
@@ -61,14 +60,12 @@ export class StopPlaceController extends Controller {
     @Query() filterForIris = false,
     @Query() groupedBySales = false,
   ): Promise<GroupedStopPlace[]> {
-    if (groupedBySales) {
-      return await searchStopPlaceGroupedBySales(
-        searchTerm,
-        max,
-        filterForIris,
-      );
-    }
-    return await searchStopPlace(searchTerm, max, filterForIris);
+    return await searchStopPlace(
+      searchTerm,
+      max,
+      filterForIris,
+      groupedBySales,
+    );
   }
 
   /**

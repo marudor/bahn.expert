@@ -1,5 +1,9 @@
 import { risStationsConfiguration } from 'business-hub/config';
-import { StopPlaceKeyFilter, StopPlacesApi } from 'business-hub/generated';
+import {
+  StopPlaceKeyFilter,
+  StopPlacesApi,
+  StopPlaceSearchGroupByKey,
+} from 'business-hub/generated';
 import { TransportType } from 'business-hub/types';
 import axios from 'axios';
 import type {
@@ -34,11 +38,15 @@ function withoutÖPNV(stopPlace: StopPlaceSearchResult) {
 export async function byName(
   searchTerm?: string,
   onlySPNV?: boolean,
+  groupBySales?: boolean,
 ): Promise<StopPlaceSearchResult[]> {
   if (!searchTerm) return [];
   const result = (
-    await stopPlaceClient.byName({
+    await stopPlaceClient.getStopPlacesByName({
       query: searchTerm,
+      groupBy: groupBySales
+        ? StopPlaceSearchGroupByKey.Sales
+        : StopPlaceSearchGroupByKey.Station,
     })
   ).data;
   if (onlySPNV) {
@@ -50,7 +58,7 @@ export async function byName(
 
 export async function keys(evaNumber: string): Promise<StopPlaceKey[]> {
   return (
-    await stopPlaceClient.keys({
+    await stopPlaceClient.getStopPlaceKeys({
       evaNumber,
     })
   ).data.keys;
@@ -58,7 +66,7 @@ export async function keys(evaNumber: string): Promise<StopPlaceKey[]> {
 
 export async function byRl100(rl100: string): Promise<StopPlace | undefined> {
   try {
-    const result = await stopPlaceClient.byKey({
+    const result = await stopPlaceClient.getStopPlacesByKey({
       keyType: StopPlaceKeyFilter.Rl100,
       key: rl100,
     });
@@ -71,7 +79,7 @@ export async function byRl100(rl100: string): Promise<StopPlace | undefined> {
 export async function byEva(evaNumber: string): Promise<StopPlace | undefined> {
   try {
     const result = (
-      await stopPlaceClient.byEvaNumber({
+      await stopPlaceClient.getStopPlacesByEvaNumber({
         evaNumber,
       })
     ).data;
@@ -85,13 +93,17 @@ export async function byPosition(
   latitude: number,
   longitude: number,
   radius: number,
+  groupBySales?: boolean,
 ): Promise<StopPlaceSearchResult[]> {
   try {
     const result = (
-      await stopPlaceClient.byPosition({
+      await stopPlaceClient.getStopPlacesByPosition({
         longitude,
         latitude,
         radius,
+        groupBy: groupBySales
+          ? StopPlaceSearchGroupByKey.Sales
+          : StopPlaceSearchGroupByKey.Station,
       })
     ).data;
     return result.stopPlaces || [];
@@ -104,7 +116,7 @@ export async function groups(
   evaNumber: string,
 ): Promise<ResolvedStopPlaceGroups> {
   const groups = (
-    await stopPlaceClient.groups({
+    await stopPlaceClient.getStopPlaceGroups({
       evaNumber,
     })
   ).data.groups;
