@@ -13,9 +13,13 @@ import type {
 
 const ttl = 5 * 24 * 60 * 60;
 
-const stopPlaceSearchCache = createNewCache<string, GroupedStopPlace[]>(
+const stopPlaceStationSearchCache = createNewCache<string, GroupedStopPlace[]>(
   ttl,
   CacheDatabases.StopPlaceSearch,
+);
+const stopPlaceSalesSearchCache = createNewCache<string, GroupedStopPlace[]>(
+  ttl,
+  CacheDatabases.StopPlaceSalesSearch,
 );
 const stopPlaceGeoCache = createNewCache<string, GroupedStopPlace[]>(
   ttl,
@@ -73,9 +77,15 @@ export async function searchStopPlace(
   searchTerm?: string,
   max?: number,
   filterForIris?: boolean,
+  groupBySales?: boolean,
 ): Promise<GroupedStopPlace[]> {
   try {
-    return await searchStopPlaceRisStations(searchTerm, max, filterForIris);
+    return await searchStopPlaceRisStations(
+      searchTerm,
+      max,
+      filterForIris,
+      groupBySales,
+    );
   } catch (e) {
     // debug this shit
     // eslint-disable-next-line no-console
@@ -88,14 +98,19 @@ export async function searchStopPlaceRisStations(
   searchTerm?: string,
   max?: number,
   filterForIris?: boolean,
+  groupBySales?: boolean,
 ): Promise<GroupedStopPlace[]> {
   if (!searchTerm) return [];
 
   searchTerm = manualNameOverrides.get(searchTerm.toLowerCase()) || searchTerm;
 
+  const searchCache = stopPlaceStationSearchCache
+    ? stopPlaceSalesSearchCache
+    : stopPlaceStationSearchCache;
+
   let groupedStopPlaces =
-    (await stopPlaceSearchCache.get(searchTerm)) ||
-    (await searchStopPlaceRemote(searchTerm));
+    (await searchCache.get(searchTerm)) ||
+    (await searchStopPlaceRemote(searchTerm, groupBySales));
 
   if (filterForIris) {
     groupedStopPlaces = await irisFilter(groupedStopPlaces);
@@ -106,63 +121,6 @@ export async function searchStopPlaceRisStations(
   }
 
   return groupedStopPlaces;
-}
-
-async function groupBySales(
-  stopPlaces: GroupedStopPlace[],
-): Promise<GroupedStopPlace[]> {
-  const groups = (
-    await Promise.all(
-      stopPlaces.map(async (r) => ({
-        groups: await getGroups(r.evaNumber),
-        evaNumber: r.evaNumber,
-      })),
-    )
-  ).reduce(
-    (agg, c) => {
-      if (c) {
-        agg[c.evaNumber] = c.groups;
-      }
-      return agg;
-    },
-    {} as {
-      [key: string]: ResolvedStopPlaceGroups;
-    },
-  );
-
-  const seenEvas = new Set();
-  const result: GroupedStopPlace[] = [];
-
-  stopPlaces.forEach((r) => {
-    if (seenEvas.has(r.evaNumber)) {
-      return;
-    }
-    result.push(r);
-    groups[r.evaNumber]?.SALES?.forEach((m) => seenEvas.add(m));
-    seenEvas.add(r.evaNumber);
-  });
-
-  return result;
-}
-
-export async function searchStopPlaceGroupedBySales(
-  searchTerm?: string,
-  max?: number,
-  filterForIris?: boolean,
-): Promise<GroupedStopPlace[]> {
-  const ungroupedResult = await searchStopPlace(
-    searchTerm,
-    undefined,
-    filterForIris,
-  );
-
-  const grouped = await groupBySales(ungroupedResult);
-
-  if (max) {
-    return grouped.splice(0, max);
-  }
-
-  return grouped;
 }
 
 export async function getStopPlaceByEva(
@@ -208,17 +166,16 @@ async function geoSearchStopPlaceRemote(
   radius: number,
 ) {
   const cacheKey = `${lat}_${lng}_${radius}`;
-  const result = await byPosition(lat, lng, radius);
-  const grouped = (
-    await groupBySales(result.map(mapToGroupedStopPlace))
-  ).filter((s) => s.availableTransports.length);
-  await addIdentifiers(grouped);
+  const result = (await byPosition(lat, lng, radius, true))
+    .map(mapToGroupedStopPlace)
+    .filter((s) => s.availableTransports.length);
+  await addIdentifiers(result);
 
-  void stopPlaceGeoCache.set(cacheKey, grouped);
-  grouped.forEach((s) => {
+  void stopPlaceGeoCache.set(cacheKey, result);
+  result.forEach((s) => {
     void stopPlaceByEvaCache.set(s.evaNumber, s);
   });
-  return grouped;
+  return result;
 }
 
 export async function byRl100WithSpaceHandling(
@@ -243,9 +200,12 @@ export async function byRl100WithSpaceHandling(
   return result;
 }
 
-async function searchStopPlaceRemote(searchTerm: string) {
+async function searchStopPlaceRemote(
+  searchTerm: string,
+  groupBySales?: boolean,
+) {
   const [risResult, rl100Result] = await Promise.all([
-    byName(searchTerm),
+    byName(searchTerm, undefined, groupBySales),
     byRl100WithSpaceHandling(searchTerm.toUpperCase()),
   ]);
   const groupedStopPlaces = risResult.map(mapToGroupedStopPlace);
@@ -259,7 +219,11 @@ async function searchStopPlaceRemote(searchTerm: string) {
   }
   await addIdentifiers(groupedStopPlaces);
 
-  void stopPlaceSearchCache.set(searchTerm, groupedStopPlaces);
+  const searchCache = groupBySales
+    ? stopPlaceSalesSearchCache
+    : stopPlaceStationSearchCache;
+
+  void searchCache.set(searchTerm, groupedStopPlaces);
   groupedStopPlaces.forEach((s) => {
     void stopPlaceByEvaCache.set(s.evaNumber, s);
   });

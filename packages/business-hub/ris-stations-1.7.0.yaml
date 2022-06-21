@@ -1,0 +1,2580 @@
+components:
+  schemas:
+    Accessibility:
+      description: Accessibility [Barrierefreiheit] information for a particular platform.
+      properties:
+        audibleSignalsAvailable:
+          $ref: '#/components/schemas/AccessibilityStatus'
+        automaticDoor:
+          $ref: '#/components/schemas/AccessibilityStatus'
+        boardingAid:
+          $ref: '#/components/schemas/AccessibilityStatus'
+        passengerInformationDisplay:
+          $ref: '#/components/schemas/AccessibilityStatus'
+        platformSign:
+          $ref: '#/components/schemas/AccessibilityStatus'
+        stairsMarking:
+          $ref: '#/components/schemas/AccessibilityStatus'
+        standardPlatformHeight:
+          $ref: '#/components/schemas/AccessibilityStatus'
+        stepFreeAccess:
+          $ref: '#/components/schemas/AccessibilityStatus'
+        tactileGuidingStrips:
+          $ref: '#/components/schemas/AccessibilityStatus'
+        tactileHandrailLabel:
+          $ref: '#/components/schemas/AccessibilityStatus'
+        tactilePlatformAccess:
+          $ref: '#/components/schemas/AccessibilityStatus'
+      type: object
+    AccessibilityStatus:
+      description: |-
+        Status of platform accessibility [Barrierefreiheit] information.
+        - AVAILABLE (accessibility item is available)
+        - NOT_AVAILABLE (accessibility item is not available)
+        - PARTIAL (accessibility item is only partial available, for instance available for 12a but not for 12b and therefore not for 12 in total)
+        - NOT_APPLICABLE (accessibility item is not applicable because it depends on availability of other items, for instance stair mark depends on step free access)
+        - UNKNOWN (no information on availability for accessibility item)
+      enum:
+        - AVAILABLE
+        - NOT_AVAILABLE
+        - PARTIAL
+        - NOT_APPLICABLE
+        - UNKNOWN
+      type: string
+    AddressWithWeb:
+      description: Address information with www info.
+      properties:
+        city:
+          description: City of address the position should be retrieved for.
+          type: string
+        country:
+          description: Country of address the position should be retrieved for.
+          type: string
+        houseNumber:
+          description: House-number of address the position should be retrieved for.
+          type: string
+        postalCode:
+          description: Postalcode [Postleitzahl] of address the position should be retrieved for.
+          type: string
+        state:
+          description: State of address the position should be retrieved for.
+          type: string
+        street:
+          description: Street name of address the position should be retrieved for.
+          type: string
+        website:
+          description: Web site for address.
+          type: string
+      type: object
+    ConnectingTime:
+      description: Connecting time [Umsteigezeit] from a particular stop place [Haltestelle], platform [Gleis, Bahnsteig, Plattform] and optional sector [Gleisabschnitt, Steigabschnitt] to a particular station, platform and optional sector.
+      properties:
+        fromEvaNumber:
+          description: Eva number of stop place [Haltestelle] to connect from.
+          type: string
+        fromPlatform:
+          description: Platform [Gleis, Bahnsteig, Plattform] of stop place to connect from.
+          type: string
+        fromSector:
+          description: Sector [Gleisabschnitt, Steigabschnitt] of stop place to connect from.
+          type: string
+        identicalPhysicalPlatform:
+          description: Indicates whether connection takes place on the same physical platform [Bahnsteig] (platform '12' and '13' belong to physical platform '12/13' for instance).
+          type: boolean
+        source:
+          $ref: '#/components/schemas/ConnectingTimeSource'
+        times:
+          description: Connecting times fo different personae.
+          items:
+            $ref: '#/components/schemas/ConnectionTime'
+          type: array
+        toEvaNumber:
+          description: Eva number stop place to connect to.
+          type: string
+        toPlatform:
+          description: Platform [Gleis, Bahnsteig, Plattform] of stop place [Haltestelle] to connect to.
+          type: string
+        toSector:
+          description: Sector [Gleisabschnitt, Steigabschnitt] of stop place [Haltestelle] to connect to.
+          type: string
+      required:
+        - fromEvaNumber
+        - identicalPhysicalPlatform
+        - source
+        - times
+        - toEvaNumber
+      type: object
+    ConnectingTimeGroup:
+      description: |-
+        Possible groups to consider when returning connecting-times for particular stop-place.
+        - STATION (return connecting-times for stop-place and all members of the same station [Bahnhof]
+        - SALES (return connecting-times for stop-place and all members of the sales group [EFZ / Vertrieb inkl. ÖPNV]
+        - ALL (return connecting-times for stop-place and all members of all groups the stop-place belongs to [all we have]
+      enum:
+        - STATION
+        - SALES
+        - ALL
+      type: string
+    ConnectingTimeSource:
+      description: |-
+        Enumerates all possible sources for connecting times [Umsteigezeiten].
+        - RIL420 (connecting time is based on DB guideline RIL420)
+        - EFZ (connecting time is based on EFZ = Europäisches Fahrplanzentrum)
+        - INDOOR_ROUTING (connecting time is based on real indoor routing information from ris-maps system)
+      enum:
+        - RIL420
+        - EFZ
+        - INDOOR_ROUTING
+      type: string
+    ConnectingTimeSourceFilter:
+      description: |-
+        Enumerates all possible sources to filter connecting times [Umsteigezeiten] for.
+        - RIL420 (connecting time is based on DB guideline RIL420)
+        - EFZ (connecting time is based on EFZ = Europäisches Fahrplanzentrum)
+        - INDOOR_ROUTING (connecting time is based on real indoor routing information from ris-maps system)
+      enum:
+        - RIL420
+        - EFZ
+        - INDOOR_ROUTING
+      type: string
+    ConnectingTimesBatch:
+      description: List of connecting times [Umsteigezeiten] for requested list of stop-places [Haltestellen].
+      properties:
+        connectingTimesList:
+          description: List of connecting times.
+          items:
+            $ref: '#/components/schemas/ConnectingTime'
+          type: array
+      required:
+        - connectingTimesList
+      type: object
+    ConnectingTimesSingle:
+      description: Connecting time [Umsteigezeit] for a particular combination of stop-places, platforms and sectors.
+      properties:
+        connectingTime:
+          $ref: '#/components/schemas/ConnectingTime'
+        fallbackTimes:
+          description: Fallback times for different personae in case no information is available.
+          items:
+            $ref: '#/components/schemas/ConnectionTimeFallback'
+          type: array
+      required:
+        - fallbackTimes
+      type: object
+    ConnectionTime:
+      description: Connection time [Anschlusszeit] for persona.
+      properties:
+        distance:
+          description: Distance in meters.
+          type: number
+        duration:
+          description: Duration of connect in ISO8601 (for instance 'P3Y6M4DT12H30M17S').
+          format: duration
+          type: string
+        persona:
+          $ref: '#/components/schemas/PersonaType'
+      required:
+        - duration
+        - persona
+      type: object
+    ConnectionTimeFallback:
+      description: Fallback connection time [Anschlusszeit] for persona in case no information on stop-places and or plattform is available.
+      properties:
+        duration:
+          description: Duration of connect in ISO8601 (for instance 'P3Y6M4DT12H30M17S').
+          format: duration
+          type: string
+        persona:
+          $ref: '#/components/schemas/PersonaType'
+        source:
+          $ref: '#/components/schemas/ConnectingTimeSource'
+      required:
+        - duration
+        - persona
+        - source
+      type: object
+    Contact:
+      description: Contact details for public use.
+      properties:
+        contactPerson:
+          description: Name of a person.
+          type: string
+        email:
+          description: EMail address in iso-format.
+          type: string
+        furtherDetails:
+          description: further details of contact.
+          type: string
+        phoneNumbers:
+          description: phone number of contact.
+          items:
+            $ref: '#/components/schemas/PhoneNumber'
+          type: array
+        url:
+          description: contact url.
+          type: string
+      type: object
+    Coordinate2D:
+      description: 2D coordinate within geo reference system.
+      properties:
+        latitude:
+          description: Latitude position in reference system.
+          format: double
+          type: number
+        longitude:
+          description: Longitude position in reference system.
+          format: double
+          type: number
+      required:
+        - latitude
+        - longitude
+      type: object
+    EquipmentLocker:
+      description: Locker [Schließfächer] equipments of a station [Bahnhof] search result. Take care that one particular equipment id may result in multiple lockers.
+      properties:
+        equipmentID:
+          description: Unique id of a locker equipment.
+          type: string
+        lockers:
+          description: 'Lockers that are provided for this equipment id. (explanation: one locker rack may have one equipment id but may contain multiple lockers.)'
+          items:
+            $ref: '#/components/schemas/Locker'
+          type: array
+        stationID:
+          description: Unique id of station [Bahnhof], usually the STADA for S&S owned stations.
+          type: string
+      required:
+        - equipmentID
+        - lockers
+        - stationID
+      type: object
+    EquipmentLockerKeyType:
+      description: |-
+        Enumerates all identifiers a locker [Schließfach] equipment of a particular station [Bahnhof] can be mapped into or mapped from.
+        - EVA (eva number of stop-place [Haltestelle])
+        - STATION_ID (id of the station [Bahnhof], usually the STADA for S&S owned stations)
+      enum:
+        - EVA
+        - STATION_ID
+      type: string
+    EquipmentLockers:
+      description: Locker [Schließfächer] equipments of a station [Bahnhof] search result.
+      properties:
+        lockerList:
+          description: List of lockers [Schließfach] that matched the search result.
+          items:
+            $ref: '#/components/schemas/EquipmentLocker'
+          type: array
+      required:
+        - lockerList
+      type: object
+    ErrorDetail:
+      description: Detailed error information on field level.
+      properties:
+        detail:
+          description: Detailed information for error.
+          type: string
+        errorCode:
+          description: Unique code that identifies error.
+          format: int32
+          type: integer
+        field:
+          description: Name of field / element that raised the error.
+          type: string
+        title:
+          description: Common description of error.
+          type: string
+      required:
+        - detail
+        - field
+        - title
+      type: object
+    ErrorResponse:
+      description: API error object conforming to RFC7807.
+      properties:
+        detail:
+          description: Detailed information for error.
+          type: string
+        errorCode:
+          description: Unique code that identifies error.
+          format: int32
+          type: integer
+        errors:
+          description: List of detailed errors in case multiple errors have lead to the surrounding error.
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+          type: array
+        instanceId:
+          description: Unique identifier for instance that raised the error.
+          type: string
+        status:
+          description: Http status for error origin.
+          format: int32
+          type: integer
+        title:
+          description: Common description of error.
+          type: string
+      required:
+        - detail
+        - title
+      type: object
+    LocalService:
+      description: Information on local service [Bahnhofsnahe Dienstleistungen].
+      properties:
+        address:
+          $ref: '#/components/schemas/AddressWithWeb'
+        contact:
+          $ref: '#/components/schemas/Contact'
+        description:
+          description: Description of the local service.
+          type: string
+        externalID:
+          description: ID of the local service for external usage.
+          type: string
+        localServiceID:
+          description: Unique id of the local service [Bahnhofsnahe Dienstleistungen].
+          type: string
+        name:
+          description: Name of the local service.
+          type: string
+        openingHours:
+          description: Opening times for local-service in OSM notation (see https://wiki.openstreetmap.org/wiki/DE:Key:opening_hours).
+          example: Mo-Fr 08:00-18:00
+          externalDocs:
+            description: OSM specification of opening hours
+            url: https://wiki.openstreetmap.org/wiki/DE:Key:opening_hours
+          type: string
+        position:
+          $ref: '#/components/schemas/Coordinate2D'
+        stationID:
+          description: Unique id of station [Bahnhof], usually the STADA for S&S owned stations.
+          type: string
+        type:
+          description: |-
+            Types of local service. Possible values are:
+            - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)]
+            - TRAVEL_CENTER [Reisezentrum]
+            - VIDEO_TRAVEL_CENTER [Video Reisezentrum]
+            - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit & Sauberkeit]
+            - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)]
+            - LOST_PROPERTY_OFFICE [Fundbüro]
+            - RAILWAY_MISSION [Bahnhofsmission]
+            - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende]
+            - LOCKER [Schließfächer]
+            - WIFI [WLan]
+            - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig]
+            - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig]
+            - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig]
+            - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf]
+            - CAR_RENTAL [Car-Sharer oder Mietwagen]
+            - BICYCLE_RENTAL [Mieträder]
+            - TAXI_RANK [Taxi Stand]
+            - MOBILE_TRAVEL_SERVICE [Mobiler Service]
+            - RAD_PLUS (Rad+ Gebiet)
+          type: string
+        validFrom:
+          description: Date the local service is valid from.
+          format: date-time
+          type: string
+        validTo:
+          description: Date the local service is valid to.
+          format: date-time
+          type: string
+      required:
+        - localServiceID
+        - stationID
+        - type
+      type: object
+    LocalServiceKeyType:
+      description: |-
+        Enumerates all identifiers a travel-center [Reisezentrum] can be mapped into or mapped from.
+        - EVA (eva number of stop-place [Haltestelle])
+        - STATION_ID (id of the station [Bahnhof], usually the STADA for S&S owned stations)
+      enum:
+        - EVA
+        - STATION_ID
+      type: string
+    LocalServices:
+      description: List of local services [Bahnhofsnahe Dienstleistungen].
+      properties:
+        localServices:
+          description: List of local services.
+          items:
+            $ref: '#/components/schemas/LocalService'
+          type: array
+      required:
+        - localServices
+      type: object
+    LocalServicesCursoring:
+      description: Cursoring local-services [Bahnhofsnahe Dienstleistungen] search result.
+      properties:
+        after:
+          description: Value for the next page.
+          type: string
+        before:
+          description: Value for the previous page.
+          type: string
+        localServices:
+          description: List of local-services.
+          items:
+            $ref: '#/components/schemas/LocalService'
+          type: array
+        total:
+          description: Total number of items.
+          format: int32
+          type: integer
+      required:
+        - localServices
+        - total
+      type: object
+    Locale:
+      description: |-
+        Locale to use, defaults to DE.
+        - DE (German)
+        - EN (English)
+        - FR (French)
+        - IT (Italian)
+      enum:
+        - DE
+        - EN
+        - FR
+        - IT
+      type: string
+    Locker:
+      description: Locker [Schließfach] equipment of a particular station [Bahnhof].
+      properties:
+        amount:
+          description: Amount of units of the locker.
+          format: int32
+          type: integer
+        dimension:
+          $ref: '#/components/schemas/LockerDimension'
+        fee:
+          $ref: '#/components/schemas/LockerFee'
+        maxLeaseDuration:
+          description: Maximum lease duration [Mietdauer] for use of a single unit of the locker in ISO8601 (for instance 'P3Y6M4DT12H30M17S').
+          format: duration
+          type: string
+        paymentTypes:
+          description: |-
+            Supported payment types for locker usage. Possible values are:
+            - CASH (cash payment available)
+            - CASHLESS (other payment options than cash available)
+          items:
+            description: |-
+              Supported payment types for locker usage. Possible values are:
+              - CASH (cash payment available)
+              - CASHLESS (other payment options than cash available)
+            type: string
+          type: array
+        size:
+          description: |-
+            Size of the locker. Possible values are:
+            - SMALL
+            - MEDIUM
+            - LARGE
+            - JUMBO
+          type: string
+      required:
+        - amount
+        - paymentTypes
+        - size
+      type: object
+    LockerDimension:
+      description: Dimension [Ausmaße] for lockers [Schließfächer].
+      properties:
+        depth:
+          description: Locker depth of a single unit in mm of the locker.
+          format: int32
+          type: integer
+        height:
+          description: Locker height of a single unit in mm of the locker.
+          format: int32
+          type: integer
+        width:
+          description: Locker width of a single unit in mm of the locker.
+          format: int32
+          type: integer
+      required:
+        - depth
+        - height
+        - width
+      type: object
+    LockerFee:
+      description: Fee [Mietgebühr] for leasing lockers [Schliefächer].
+      properties:
+        fee:
+          description: Fee for locker usage in cents (currency is EUR). Refers to fee period.
+          format: int32
+          type: integer
+        feePeriod:
+          description: |-
+            Period the refers to. Possible values are:
+            - PER_MAX_LEASE_DURATION (fee must be payed per max lease duration)
+            - PER_HOUR (fee must be payed per hour)
+            - PER_DAY (fee must be payed per day)
+          type: string
+      required:
+        - fee
+        - feePeriod
+      type: object
+    PersonaType:
+      description: |-
+        Specifies different personae.
+        - HANDICAPPED (Handicaped [MER] slow traveller, not able to use stairs and escalators)
+        - OCCASIONAL_TRAVELLER (Occasional traveller [Gelegenheits-Reisender / Standard-Reisender] having mean walking speed. This is the default traveller.)
+        - FREQUENT_TRAVELLER (Frequent traveller [Pendler] having higher speed than occasional traveller.)
+      enum:
+        - HANDICAPPED
+        - OCCASIONAL_TRAVELLER
+        - FREQUENT_TRAVELLER
+      type: string
+    PhoneNumber:
+      description: a phone number.
+      properties:
+        number:
+          description: phone number of contact.
+          type: string
+        type:
+          $ref: '#/components/schemas/PhoneNumberType'
+      required:
+        - number
+        - type
+      type: object
+    PhoneNumberType:
+      description: Enumerates all phone types.
+      enum:
+        - BUSINESS
+        - MOBILE
+        - FAX
+      type: string
+    Platform:
+      description: Platform [Gleis, Bahnsteig, Plattform] information. All ranges and positions of objects are given in meter in local coordinates, e.g. as a distance to a fixed point somewhere on the platform and differentiating between the two possible directions by a plus- and a minus-sign.
+      properties:
+        accessibility:
+          $ref: '#/components/schemas/Accessibility'
+        end:
+          description: End of the usable part of the platform given in meter in local coordinates.
+          format: double
+          type: number
+        headPlatform:
+          description: Indicates whether platform is a head platform [Kopfgleis].
+          type: boolean
+        ifopt:
+          description: IFOPT (transmodel identifier for fixed objects, in germany DHID = Deutschlandweite Halt ID also known as global id) of the platform [Gleis] (for instance 'de:06412:10:17:18').
+          type: string
+        length:
+          description: Total length of platform [Baulicher Bereich].
+          format: double
+          type: number
+        linkedPlatforms:
+          description: List of platforms [Gleise] that share the same physical platform [Bahnsteig].
+          items:
+            description: List of platforms [Gleise] that share the same physical platform [Bahnsteig].
+            type: string
+          type: array
+        name:
+          description: Name of the platform (12, 1a, Nord, Süd etc.).
+          type: string
+        parentPlatform:
+          description: Name of parent platform in case this is a sub platform [Teilgleis].
+          type: string
+        sectors:
+          description: List of sectors [Sektoren] that belong to the platform.
+          items:
+            $ref: '#/components/schemas/Sector'
+          type: array
+        start:
+          description: Start of the usable part of the platform given in meter in local coordinates. This value may differ from zero and may be positive as well as negative.
+          format: double
+          type: number
+      required:
+        - name
+      type: object
+    Platforms:
+      description: List of platforms [Gleise, Bahnsteige, Plattformen] for a station.
+      properties:
+        platforms:
+          description: List of platforms.
+          items:
+            $ref: '#/components/schemas/Platform'
+          type: array
+      required:
+        - platforms
+      type: object
+    ReferencePoint:
+      description: Reference point that indicates where a vehicle [Fahrzeug] stops at a platform [Gleis, Bahnsteig, Plattform].
+      properties:
+        maxLength:
+          description: Length up to the reference point is to be used by a stopping formation.
+          format: double
+          type: number
+        name:
+          description: Name of the reference point.
+          type: string
+        position:
+          description: Position of the reference point in meter in local coordinates.
+          format: double
+          type: number
+        readableFromOrigin:
+          description: Determines the direction the reference point is to be used. If true, the formation moves from origin to positive values in local coordinates.
+          type: boolean
+        referencePointType:
+          $ref: '#/components/schemas/ReferencePointType'
+        uuid:
+          description: Unique ID of reference point.
+          type: string
+      required:
+        - name
+        - position
+        - readableFromOrigin
+        - referencePointType
+        - uuid
+      type: object
+    ReferencePointType:
+      description: |-
+        Type of a reference point.
+        - STOP_SIGNAL (Haltesignal)
+        - STOP_BOARD (Haltetafel)
+      enum:
+        - STOP_SIGNAL
+        - STOP_BOARD
+      type: string
+    Sector:
+      description: Platform [Gleis, Bahnsteig, Plattform] sector [Gleisabschnitt, Steigabschnitt] information.
+      properties:
+        cubePosition:
+          description: Position of the cube [Sektorwürfel] given in meters in local coordinates.
+          format: double
+          type: number
+        cubeSignage:
+          description: Indicates whether cube [Sektorwürfel] has signage [Beschilderung] nor not.
+          type: boolean
+        end:
+          description: End of the sector given in meters in local coordinates.
+          format: double
+          type: number
+        name:
+          description: Name of the sector [Sektor / Mast etc.].
+          type: string
+        start:
+          description: Start of the sector given in meters in local coordinates.
+          format: double
+          type: number
+      required:
+        - end
+        - name
+        - start
+      type: object
+    Station:
+      description: Base information for a station [Bahnhof].
+      properties:
+        address:
+          $ref: '#/components/schemas/AddressWithWeb'
+        availableLocalServices:
+          deprecated: true
+          description: |-
+            Deprecated: Use for example '/local-services/by-key?keyType=STATION_ID&key=1866' to get all available local-services for Frankfurt Hbf.
+            All local services [Bahnhofsnahe Dienstleistungen] that are available at the station.
+            - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)]
+            - TRAVEL_CENTER [Reisezentrum]
+            - VIDEO_TRAVEL_CENTER [Video Reisezentrum]
+            - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit & Sauberkeit]
+            - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)]
+            - LOST_PROPERTY_OFFICE [Fundbüro]
+            - RAILWAY_MISSION [Bahnhofsmission]
+            - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende]
+            - LOCKER [Schließfächer]
+            - WIFI [WLan]
+            - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig]
+            - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig]
+            - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig]
+            - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf]
+            - CAR_RENTAL [Car-Sharer oder Mietwagen]
+            - BICYCLE_RENTAL [Mieträder]
+            - TAXI_RANK [Taxi Stand]
+            - MOBILE_TRAVEL_SERVICE [Mobiler Service]
+            - RAD_PLUS (Rad+ Gebiet)
+          items:
+            deprecated: true
+            description: |-
+              Deprecated: Use for example '/local-services/by-key?keyType=STATION_ID&key=1866' to get all available local-services for Frankfurt Hbf.
+              All local services [Bahnhofsnahe Dienstleistungen] that are available at the station.
+              - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)]
+              - TRAVEL_CENTER [Reisezentrum]
+              - VIDEO_TRAVEL_CENTER [Video Reisezentrum]
+              - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit & Sauberkeit]
+              - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)]
+              - LOST_PROPERTY_OFFICE [Fundbüro]
+              - RAILWAY_MISSION [Bahnhofsmission]
+              - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende]
+              - LOCKER [Schließfächer]
+              - WIFI [WLan]
+              - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig]
+              - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig]
+              - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig]
+              - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf]
+              - CAR_RENTAL [Car-Sharer oder Mietwagen]
+              - BICYCLE_RENTAL [Mieträder]
+              - TAXI_RANK [Taxi Stand]
+              - MOBILE_TRAVEL_SERVICE [Mobiler Service]
+              - RAD_PLUS (Rad+ Gebiet)
+            type: string
+          type: array
+        availableTransports:
+          description: Available transport types [Verkehrsarten] at station.
+          items:
+            $ref: '#/components/schemas/TransportType'
+          type: array
+        countryCode:
+          description: Country [Staat / Land] the station belongs to as ISO 3166-1 alpha-2 code [germany = 'DE' for instance].
+          type: string
+        district:
+          description: The district [Landkreis] the stop place belongs to.
+          type: string
+        metropolis:
+          additionalProperties:
+            description: Language dependent names for metropolis [Metropole].
+            type: string
+          description: Language dependent names for metropolis [Metropole].
+          type: object
+        names:
+          additionalProperties:
+            $ref: '#/components/schemas/StationName'
+          description: Language dependent names for a station, may contain different station names for a specific language depending on names filter.
+          type: object
+        openingHours:
+          description: Opening times for station in OSM notation (see https://wiki.openstreetmap.org/wiki/DE:Key:opening_hours).
+          example: Mo-Fr 08:00-18:00
+          externalDocs:
+            description: OSM specification of opening hours
+            url: https://wiki.openstreetmap.org/wiki/DE:Key:opening_hours
+          type: string
+        owner:
+          $ref: '#/components/schemas/StationOwner'
+        position:
+          $ref: '#/components/schemas/Coordinate2D'
+        roofing:
+          $ref: '#/components/schemas/StationRoofingType'
+        state:
+          description: The state [Bundesland] the stop place belongs to.
+          type: string
+        stationCategory:
+          $ref: '#/components/schemas/StationCategory'
+        stationID:
+          description: Unique id of station [Bahnhof], usually the STADA for S&S owned stations.
+          type: string
+        timeZone:
+          description: Timezone the station belongs to, for instance 'Europe/Berlin'. Must not necessarily be the time zone of the geo coordinate.
+          type: string
+        transportAssociations:
+          description: Available transport associations [Verkehrsverbünde] at station.
+          items:
+            description: Available transport associations [Verkehrsverbünde] at station.
+            type: string
+          type: array
+        validFrom:
+          description: Date the station is valid from.
+          format: date-time
+          type: string
+        validTo:
+          description: Date the station is valid to.
+          format: date-time
+          type: string
+      required:
+        - address
+        - availableLocalServices
+        - availableTransports
+        - countryCode
+        - names
+        - owner
+        - stationID
+        - timeZone
+        - validFrom
+      type: object
+    StationCategory:
+      description: Category of station conforming to DB Station & Service..
+      enum:
+        - CATEGORY_1
+        - CATEGORY_2
+        - CATEGORY_3
+        - CATEGORY_4
+        - CATEGORY_5
+        - CATEGORY_6
+        - CATEGORY_7
+      type: string
+    StationName:
+      description: Name information for a station [Bahnhof].
+      properties:
+        name:
+          description: Name for station.
+          type: string
+      required:
+        - name
+      type: object
+    StationOrganisationalUnit:
+      description: Organisational unit [Regionalbereich] information, usually from DB Netz.
+      properties:
+        id:
+          description: Number of organisational unit.
+          format: int32
+          type: integer
+        name:
+          description: Name of organisational unit.
+          type: string
+        nameShort:
+          description: Short name of organisational unit, may be empty.
+          type: string
+      required:
+        - id
+        - name
+      type: object
+    StationOwner:
+      description: Base information for a stations [Bahnhof] owner [Eigentümer / Betreiber].
+      properties:
+        name:
+          description: Name of owner.
+          type: string
+        organisationalUnit:
+          $ref: '#/components/schemas/StationOrganisationalUnit'
+      required:
+        - name
+      type: object
+    StationRoofingType:
+      description: |-
+        Defines station roofing [Bahnhofsüberdachung].
+        - COVERED [überdacht]
+        - PARTIALLY_COVERED [teilweise überdacht]
+        - NOT_COVERED [nicht überdacht]
+      enum:
+        - COVERED
+        - PARTIALLY_COVERED
+        - NOT_COVERED
+      type: string
+    Stations:
+      description: Stations [Bahnhof] result.
+      properties:
+        stations:
+          description: List of stations.
+          items:
+            $ref: '#/components/schemas/Station'
+          type: array
+      required:
+        - stations
+      type: object
+    StationsPageable:
+      description: Pageable stations search result.
+      properties:
+        limit:
+          description: Maximum number of results that may be returned for one page, provided by the consumer.
+          format: int32
+          type: integer
+        offset:
+          description: Pagination offset of the results, provided by the consumer.
+          format: int32
+          type: integer
+        stations:
+          description: List of stations.
+          items:
+            $ref: '#/components/schemas/Station'
+          type: array
+        total:
+          description: Total number of available results.
+          format: int32
+          type: integer
+      required:
+        - limit
+        - offset
+        - stations
+        - total
+      type: object
+    StopPlace:
+      description: Base information for a stop-place [Haltestelle].
+      properties:
+        availableTransports:
+          description: Available transport types [Verkehrsarten] at stop place.
+          items:
+            $ref: '#/components/schemas/TransportType'
+          type: array
+        countryCode:
+          description: Country [Staat / Land] the stop place belongs to as ISO 3166-1 alpha-2 code [germany = 'DE' for instance].
+          type: string
+        evaNumber:
+          description: Eva number of stop place.
+          type: string
+        metropolis:
+          additionalProperties:
+            description: Language dependent name for metropolis [Metropole].
+            type: string
+          description: Language dependent name for metropolis [Metropole].
+          type: object
+        names:
+          additionalProperties:
+            $ref: '#/components/schemas/StopPlaceName'
+          description: Language dependent names for stop place, may contain different stop place names for a specific language depending on names filter.
+          type: object
+        position:
+          $ref: '#/components/schemas/Coordinate2D'
+        state:
+          description: The state code [Bundeslandkürzel] the stop place belongs to.
+          externalDocs:
+            url: https://www.datenportal.bmbf.de/portal/de/G122.html
+          type: string
+        stationID:
+          description: ID of station [Bahnhof] the stop place belongs to [usually the STADA code for DB S&S], may be empty when stop place is not part of a station.
+          type: string
+        timeZone:
+          description: Timezone the stop place belongs to, for instance 'Europe/Berlin'. Must not necessarily be the time zone of the geo coordinate.
+          type: string
+        transportAssociations:
+          description: Available transport associations [Verkehrsverbünde] at stop place.
+          items:
+            description: Available transport associations [Verkehrsverbünde] at stop place.
+            type: string
+          type: array
+        validFrom:
+          description: Date the stop place is valid from.
+          format: date-time
+          type: string
+        validTo:
+          description: Date the stop place is valid to.
+          format: date-time
+          type: string
+      required:
+        - availableTransports
+        - countryCode
+        - evaNumber
+        - names
+        - timeZone
+      type: object
+    StopPlaceGroup:
+      description: Group for stop places [Haltestellen] with all group members.
+      properties:
+        members:
+          description: List of stop place ids [Eva-Number] that belong to the group.
+          items:
+            description: List of stop place ids [Eva-Number] that belong to the group.
+            type: string
+          type: array
+        type:
+          $ref: '#/components/schemas/StopPlaceGroupType'
+      required:
+        - members
+        - type
+      type: object
+    StopPlaceGroupType:
+      description: |-
+        Possible groups [Station] a set of stop places [Haltestellen] may belong to.
+        - STATION (group defined by station, for instance FFM = Hoch + Tief, maintained by S&S STADA hierarchy)
+        - SALES (group defined by sales [Vertrieb], for instance FFM = Hoch + Tief + Bus + Tram + Subway, maintained by DB Vertrieb via EFZ [Europäisches Fahrplanzentrum])
+        - METROPOLITAN_AREA (group defined by sales [Vertrieb], for instance Stadtgebiet FFM = all big stations within FFM, maintained by DB Vertrieb via EFZ [Europäisches Fahrplanzentrum])
+      enum:
+        - STATION
+        - SALES
+        - METROPOLITAN_AREA
+      type: string
+    StopPlaceGroups:
+      description: List of groups a stop place [Haltestelle] belongs to with all associated group members.
+      properties:
+        groups:
+          description: List of groups the passed eva numbers belongs to including group members.
+          items:
+            $ref: '#/components/schemas/StopPlaceGroup'
+          type: array
+      required:
+        - groups
+      type: object
+    StopPlaceKey:
+      description: Key mapping for a stop place [Haltestelle].
+      properties:
+        key:
+          description: Key value.
+          type: string
+        type:
+          $ref: '#/components/schemas/StopPlaceKeyType'
+      required:
+        - key
+        - type
+      type: object
+    StopPlaceKeyFilter:
+      description: |-
+        Enumerates all identifiers a stop-place [Haltestelle] can be mapped from.
+        - IFOPT (Transmodel identifier for fixed objects, in germany DHID = Deutschlandweite Halt ID also known as global id)
+        - EVA (eva number)
+        - RL100 (primary or alternative rl100 / ds100)
+        - EPA (epa uic number)
+        - STADA (Stationsdatenbank number)
+        - IBNR (internal station number [interne bahnhofsnummer])
+        - EBHF ([Tarifpunktnummer / Einheitliche Bahnhofsdatei Nr.])
+        - UIC (international station number)
+        - PLC (primary location code)
+      enum:
+        - IFOPT
+        - EVA
+        - RL100
+        - EPA
+        - STADA
+        - IBNR
+        - EBHF
+        - UIC
+        - PLC
+      type: string
+    StopPlaceKeyType:
+      description: |-
+        Enumerates all identifiers a stop-place [Haltestelle] can be mapped into or mapped from.
+        - IFOPT (Transmodel identifier for fixed objects, in germany DHID = Deutschlandweite Halt ID also known as global id)
+        - EVA (eva number)
+        - RL100 (primary rl100 / ds100)
+        - RL100_ALTERNATIVE (alternative rl100 / ds100)
+        - EPA (epa number)
+        - STADA (Stationsdatenbank number)
+        - IBNR (internal station number [interne bahnhofsnummer])
+        - EBHF ([Tarifpunktnummer / Einheitliche Bahnhofsdatei Nr.])
+        - UIC (international station number)
+        - PLC (primary location code)
+      enum:
+        - IFOPT
+        - EVA
+        - RL100
+        - RL100_ALTERNATIVE
+        - EPA
+        - STADA
+        - IBNR
+        - EBHF
+        - UIC
+        - PLC
+      type: string
+    StopPlaceKeys:
+      description: Different key mappings a stop place [Haltestelle] may have.
+      properties:
+        keys:
+          description: List of stop place keys.
+          items:
+            $ref: '#/components/schemas/StopPlaceKey'
+          type: array
+      required:
+        - keys
+      type: object
+    StopPlaceName:
+      description: Name information for stop place [Haltestelle].
+      properties:
+        nameLocal:
+          description: Name that is applicable for local areas, for instance 'Berlin Zoologischer Garten' may become 'B Zoologischer Garten'.
+          type: string
+        nameLong:
+          description: Full long name for stop place.
+          type: string
+        nameShort:
+          description: Short name (max. 20 characters) for stop place, if available.
+          type: string
+        speechLong:
+          description: Long name speech information for stop place [Haltestelle].
+          type: string
+        speechShort:
+          description: Short name speech information for stop place [Haltestelle].
+          type: string
+        symbol:
+          description: Symbol information [UTF-8] for stop place [Haltestelle].
+          type: string
+      required:
+        - nameLong
+      type: object
+    StopPlaceSearchGroupByKey:
+      description: |-
+        Different grouping options for stop places name query.
+        - STATION (group by parent station that is defined by DB Station & Services STADA-ID)
+        - SALES (group defined by sales [Vertrieb], for instance FFM = Hoch + Tief + Bus + Tram + Subway, maintained by DB Vertrieb via EFZ [Europäisches Fahrplanzentrum])
+        - NONE (no grouping is applied, just stop-places are returned)
+      enum:
+        - STATION
+        - SALES
+        - NONE
+      type: string
+    StopPlaceSearchResult:
+      description: Search result information for a stop place [Haltestelle].
+      properties:
+        availableTransports:
+          description: Available transport types [Verkehrsarten] at stop place.
+          items:
+            $ref: '#/components/schemas/TransportType'
+          type: array
+        evaNumber:
+          description: Eva number of stop place.
+          type: string
+        groupMembers:
+          description: TBD
+          items:
+            description: TBD
+            type: string
+          type: array
+        names:
+          additionalProperties:
+            $ref: '#/components/schemas/StopPlaceName'
+          description: Language dependent names for stop place.
+          type: object
+        position:
+          $ref: '#/components/schemas/Coordinate2D'
+        stationID:
+          description: ID of station [Bahnhof] the stop place belongs to [usually the STADA code for DB S&S], may be empty when stop place is not part of a station.
+          type: string
+      required:
+        - availableTransports
+        - evaNumber
+        - groupMembers
+        - names
+      type: object
+    StopPlaceSearchResults:
+      description: Stop place [Haltestelle] search result.
+      properties:
+        stopPlaces:
+          description: Stop places matching provided search criteria.
+          items:
+            $ref: '#/components/schemas/StopPlaceSearchResult'
+          type: array
+      type: object
+    StopPlaceSortKey:
+      description: |-
+        Different sorting keys for stop place queries.
+        - RELEVANCE (stop places are sorted by relevance descending (central stations etc. first))
+        - QUERY_MATCH (stop places are sorted by matching the provided query descending)
+      enum:
+        - RELEVANCE
+        - QUERY_MATCH
+      type: string
+    StopPlaces:
+      description: Stop place [Haltestelle] result.
+      properties:
+        stopPlaces:
+          description: Stop places matching provided criteria.
+          items:
+            $ref: '#/components/schemas/StopPlace'
+          type: array
+      type: object
+    StopPlacesPageable:
+      description: Pageable stop place [Haltestelle] search result.
+      properties:
+        limit:
+          description: Maximum number of results that may be returned for one page, provided by the consumer.
+          format: int32
+          type: integer
+        offset:
+          description: Pagination offset of the results, provided by the consumer.
+          format: int32
+          type: integer
+        stopPlaces:
+          description: Stop places matching provided search criteria.
+          items:
+            $ref: '#/components/schemas/StopPlace'
+          type: array
+        total:
+          description: Total number of available results.
+          format: int32
+          type: integer
+      required:
+        - limit
+        - offset
+        - total
+      type: object
+    TransportType:
+      description: |-
+        Type of transport.
+        - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.)
+        - INTERCITY_TRAIN (Inter city train [Intercityzug])
+        - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug])
+        - REGIONAL_TRAIN (Regional train [Regionalzug])
+        - CITY_TRAIN (City train [S-Bahn])
+        - SUBWAY (Subway [U-Bahn])
+        - TRAM (Tram [Strassenbahn])
+        - BUS (Bus [Bus])
+        - FERRY (Ferry [Faehre])
+        - FLIGHT (Flight [Flugzeug])
+        - CAR (Car [Auto])
+        - TAXI (Taxi)
+        - SHUTTLE (Shuttle [Ruftaxi])
+        - BIKE ((E-)Bike [Fahrrad])
+        - SCOOTER ((E-)Scooter [Roller])
+        - WALK (Walk ([Laufen])
+        - UNKNOWN (Unknown)
+      enum:
+        - HIGH_SPEED_TRAIN
+        - INTERCITY_TRAIN
+        - INTER_REGIONAL_TRAIN
+        - REGIONAL_TRAIN
+        - CITY_TRAIN
+        - SUBWAY
+        - TRAM
+        - BUS
+        - FERRY
+        - FLIGHT
+        - CAR
+        - TAXI
+        - SHUTTLE
+        - BIKE
+        - SCOOTER
+        - WALK
+        - UNKNOWN
+      type: string
+  securitySchemes:
+    ClientSecret:
+      name: DB-Api-Key
+      type: apiKey
+      in: header
+      x-key-type: client_secret
+    ClientId:
+      name: DB-Client-Id
+      type: apiKey
+      in: header
+      x-key-type: client_id
+info:
+  contact:
+    email: doServices.Titan.Support@deutschebahn.com
+    name: DB Systel - Business Services 1 (doServices Titan)
+  description: |-
+    ## Info
+
+    * member of the **RIS-API** family
+
+    ## Capabilities
+
+    ### Stations
+
+    Information on stations [Bahnhöfe] from DB Station & Service and DB Regio like:
+
+    * name, address, category [Bahnhofskategorie], owner [Betreiber / Verwaltung], country, timezone and geo coordinate
+    * region information the station belongs [Regionalbereich]
+    * available local services [bahnhofsnahe Dienstleistungen] at station
+
+    ### Stop Places
+
+    Information on a huge amount of stop-places [Haltestellen] coming from different source like EFZ [Europäisches Fahrplanzentrum] and DB Station & Service. The service offers therefore all stop-place that are part or that were part of the official sales time table for germany including foreign stop-places for transports driving into germany / leaving germany and connecting journeys in foreign
+    countries that are part of the rail team alliance. ÖPNV stop-places are returned as well.
+
+    Brief information for particular stop-place like
+
+    * language dependent short, long, speech and symbol names from different sources [EFZ or BHW]
+    * metropolis information [Metropole]
+    * parent station [Bahnhof]
+    * geo coordinates, country and timezone
+    * transport types [Verkehrsmittel / Produktart] that depart / arrive
+    * foreign key mappings [Fremdschlüssel] like EVA, RL100 / DS100, EPA, IBNR, DHID / IFOPT, STADA, EBHF, PLC and UIC
+    * validity ranges [Gültigkeitsbereiche]
+
+    Different query options for stop-places like
+
+    * by name query with fuzzy-search [fehlertolerante Suche] and order by relevance [gewichtete Suche] and optional grouping by station [Bahnhof] in case stop-places belong to a station
+    * by geo-coordinate and radius ordered by distance
+    * by foreign key
+
+    Multiple groups a stop-place may belong to like
+
+    * Station [selber Bahnhof]
+    * Sales [vertrieblicher Umsteigebereich inkl. ÖPNV]s
+    * Metropolitan Area [Stadtgebiet]
+
+    ### Platforms
+
+    General information on platforms [Gleise, Bussteige, Plattformen etc.] for a particular stop-place like:
+
+    * name, start and end in meters, linked platforms [selber Bahnsteig], parent platform [für Teilgleise]s
+    * sectors with name, start and end in meters, cube position [Würfelposition] and information ob cube signage [Beschilderung]
+    * accessibility information [Barrierefreier Zugang] like audible signals, automatic doors, stair markings and a lot more
+
+    ### Connecting-Times
+
+    Connecting-times [Umsteigezeiten / Anschlusszeiten] for a stop-place [Haltestelle] and all members of stop-place group [Umsteigebereich] including foreign stop-places [Auslandshalte gemäß Railteam-Flag etc.]:
+
+    * for different kind of stop-place groups
+        * Station [selber Bahnhof]
+        * Sales [vertrieblicher Umsteigebereich inkl. ÖPNV]
+        * All [alle Umsteigebereiche] supported
+    * and different personae, if available
+        * Occasional Traveller [Gelegenheitsreisender]
+        * Frequent Traveller [Pendler]
+        * Handicapped Traveller [Mobilitätseingeschränkter Reisender]
+    * from various sources
+        * RIL420 [Konzernrichtlinie]
+        * EFZ [Europäisches Fahrplanzentrum inkl. ÖPNV & Auslandshalte]
+        * IndoorRouting [Indoor Routing RIS-Maps] available
+
+    ### Local Services
+
+    Information about Travel-Center, Triple-S-Center [3S Zentrale],Railway Mission[Bahnhofsmission] and many more available by position or station.
+
+    ### Station Equipments
+
+    Detailed information about equipment at the train station such as:
+
+    * Locker with payment types, size, fee and many more.
+    * **stay tuned*
+
+    ## Limitations
+
+    * *[backlog]* support active and inactive versions of stop-places/stations (differing date ranges)
+    * *[backlog]* raise stop-place change events with RIS::Events in case stop-place data changes
+    * *[backlog]* include Station & Service Bahnhofswissen with it's fully functional API starting from ~Q4 2021
+  title: RIS::Stations
+  version: 1.7.0
+  x-ibm-name: ris-stations
+  x-pathalias: ris-stations
+openapi: 3.0.1
+paths:
+  /connecting-times/{evaNumber}:
+    get:
+      description: |-
+        Returns connecting times [Umsteigezeiten] matrix for a set of stop-places [Haltestellen] belonging to a particular group on a platform [Gleis, Bahnsteig, Plattform] or optional sector [Gleisabschnitt, Steigabschnitt] level. Source for connecting times is at least the DB guideline RIL420, if available information from the EFZ and in case of a digitalized station a real indoor mapping with different persona types. Returned connecting-times are not transitive, meaning if you ask for 'FFM Hbf' you get all times starting from there for instance 'FFM Hbf' to 'FFM Hbf (tief)', and not the opposite direction from 'FFM Hbf (tief)' to 'FFM Hbf'. The returned information must be read in the following way:
+        - find a combination of fromEvaNumber, fromPlatform, fromSector and toEvaNumber, toPlatform, toSector
+        - if nothing found, try the same without the sector information
+        - if nothing found, try the same without the platform information
+        - if nothing found, try the same with fromEvaNumber = toEvaNumber
+      operationId: getConnectingTimes
+      parameters:
+        - description: eva number of desired origin stop place
+          in: path
+          name: evaNumber
+          required: true
+          schema:
+            type: string
+        - description: |-
+            stop place group [Bahnhof / Umsteigebereich] to consider connecting times for, defaults to SALES if omitted
+            - STATION (return connecting-times for stop-place and all members of the same station [Bahnhof]
+            - SALES (return connecting-times for stop-place and all members of the sales group [EFZ / Vertrieb inkl. ÖPNV]
+            - ALL (return connecting-times for stop-place and all members of all groups the stop-place belongs to [all we have]
+          in: query
+          name: group
+          schema:
+            $ref: '#/components/schemas/ConnectingTimeGroup'
+        - description: should connecting times be calculated based on sector level, otherwise platform level
+          in: query
+          name: calculateSectors
+          schema:
+            default: false
+            type: boolean
+        - description: |-
+            persona types that should be returned (if more than 1 is available), defaults to all personae if omitted
+            - HANDICAPPED (Handicapped [MER] slow traveller, not able to use stairs and escalators)
+            - OCCASIONAL_TRAVELLER (Occasional traveller [Gelegenheits-Reisender / Standard-Reisender] having mean walking speed. This is the default traveller.)
+            - FREQUENT_TRAVELLER (Frequent traveller [Pendler] having higher speed than occasional traveller.)
+          in: query
+          name: personaTypes
+          schema:
+            items:
+              $ref: '#/components/schemas/PersonaType'
+            type: array
+        - description: |-
+            sources for connecting-times to consider for building the result, if omitted the best available source will be returned [order is RIL420 < EFZ < INDOOR_ROUTING]; in case nothing can be found FALLBACK will be returned although the filter may not contain it
+            - RIL420 (connecting time is based on DB guideline RIL420)
+            - EFZ (connecting time is based on EFZ = Europäisches Fahrplanzentrum)
+            - INDOOR_ROUTING (connecting time is based on real indoor routing information from ris-maps system)
+          in: query
+          name: source
+          schema:
+            items:
+              $ref: '#/components/schemas/ConnectingTimeSourceFilter'
+            type: array
+      responses:
+        '200':
+          content:
+            application/vnd.de.db.ris+json:
+              schema:
+                $ref: '#/components/schemas/ConnectingTimesBatch'
+          description: Success
+          headers:
+            Cache-Control:
+              description: Controls whether and how long response can be cached by consumers, defaults to 'no-cache, no-store'.
+              schema:
+                type: string
+              style: simple
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error
+      tags:
+        - Connecting Times
+  /connecting-times/{fromEvaNumber}/{toEvaNumber}:
+    get:
+      description: Returns a particular connecting time [Umsteigezeiten] for a combination of from / to stop-place [Haltestelle] with optional consideration of platform [Gleis, Bahnsteig, Plattform] and sectors [Gleisabschnitt, Steigabschnitt]. Source for connecting times is at least the DB guideline RIL420, if available information from the EFZ and in case of a digitalized station a real indoor mapping with different persona types. In case the combination of from / to can't be found or we don't have detailed information for this combination, a fallback structure is returned that contains the best available information. Meaning if sectors can't be found, but platforms, we use them. If platforms can't be found, but stop-places we use them. If stop-places can't be found, we use the default connecting-time for fromEvaNumber.
+      operationId: getConnectingTime
+      parameters:
+        - description: eva number of desired origin stop place
+          in: path
+          name: fromEvaNumber
+          required: true
+          schema:
+            type: string
+        - description: eva number of desired destination stop place
+          in: path
+          name: toEvaNumber
+          required: true
+          schema:
+            type: string
+        - description: platform to calculate time origin, if omitted fallback structure will be used
+          in: query
+          name: fromPlatform
+          schema:
+            type: string
+        - description: sector to calculate time origin, if omitted fallback is platform level
+          in: query
+          name: fromSector
+          schema:
+            type: string
+        - description: platform to calculate time destination, if omitted fallback structure will be used
+          in: query
+          name: toPlatform
+          schema:
+            type: string
+        - description: sector to calculate times destination, if omitted fallback is platform level
+          in: query
+          name: toSector
+          schema:
+            type: string
+        - description: |-
+            persona types that should be returned (if more than 1 is available), defaults to all personae if omitted
+            - HANDICAPPED (Handicapped [MER] slow traveller, not able to use stairs and escalators)
+            - OCCASIONAL_TRAVELLER (Occasional traveller [Gelegenheits-Reisender / Standard-Reisender] having mean walking speed. This is the default traveller.)
+            - FREQUENT_TRAVELLER (Frequent traveller [Pendler] having higher speed than occasional traveller.)
+          in: query
+          name: personaTypes
+          schema:
+            items:
+              $ref: '#/components/schemas/PersonaType'
+            type: array
+        - description: |-
+            sources for connecting-times to consider for building the result, if omitted the best available source will be returned [order is RIL420 < EFZ < INDOOR_ROUTING]
+            - RIL420 (connecting time is based on DB guideline RIL420)
+            - EFZ (connecting time is based on EFZ = Europäisches Fahrplanzentrum)
+            - INDOOR_ROUTING (connecting time is based on real indoor routing information from ris-maps system)
+          in: query
+          name: source
+          schema:
+            items:
+              $ref: '#/components/schemas/ConnectingTimeSource'
+            type: array
+      responses:
+        '200':
+          content:
+            application/vnd.de.db.ris+json:
+              schema:
+                $ref: '#/components/schemas/ConnectingTimesSingle'
+          description: Success
+          headers:
+            Cache-Control:
+              description: Controls whether and how long response can be cached by consumers, defaults to 'no-cache, no-store'.
+              schema:
+                type: string
+              style: simple
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error
+      tags:
+        - Connecting Times
+  /local-services:
+    get:
+      description: Returns all local-services [Bahnhofsnahe Dienstleistungen].
+      operationId: getLocalServices
+      parameters:
+        - description: |-
+            Types of local service. Possible values are:
+            - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)]
+            - TRAVEL_CENTER [Reisezentrum]
+            - VIDEO_TRAVEL_CENTER [Video Reisezentrum]
+            - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit & Sauberkeit]
+            - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)]
+            - LOST_PROPERTY_OFFICE [Fundbüro]
+            - RAILWAY_MISSION [Bahnhofsmission]
+            - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende]
+            - LOCKER [Schließfächer]
+            - WIFI [WLan]
+            - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig]
+            - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig]
+            - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig]
+            - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf]
+            - CAR_RENTAL [Car-Sharer oder Mietwagen]
+            - BICYCLE_RENTAL [Mieträder]
+            - TAXI_RANK [Taxi Stand]
+            - MOBILE_TRAVEL_SERVICE [Mobiler Service]
+            - RAD_PLUS (Rad+ Gebiet)
+          in: query
+          name: types
+          required: true
+          schema:
+            items:
+              type: string
+            type: array
+        - description: Cursor for retrieving the previous page in order to navigate through result list
+          in: query
+          name: before
+          schema:
+            type: string
+        - description: Cursor for retrieving the next page in order to navigate through result list
+          in: query
+          name: after
+          schema:
+            type: string
+        - description: Limit total amount of results
+          in: query
+          name: limit
+          schema:
+            default: 100
+            format: int32
+            maximum: 100
+            type: integer
+      responses:
+        '200':
+          content:
+            application/vnd.de.db.ris+json:
+              schema:
+                $ref: '#/components/schemas/LocalServicesCursoring'
+          description: Success
+          headers:
+            Cache-Control:
+              description: Controls whether and how long response can be cached by consumers, defaults to 'no-cache, no-store'.
+              schema:
+                type: string
+              style: simple
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error
+      tags:
+        - Local-Services
+  /local-services/by-key:
+    get:
+      description: Returns a list of local-services [Bahnhofsnahe Dienstleistungen] that match the provided key.
+      operationId: getLocalServicesByKey
+      parameters:
+        - description: |-
+            type of local-service key
+            - EVA (eva number of stop-place [Haltestelle])
+            - STATION_ID (id of the station [Bahnhof], usually the STADA for S&S owned stations)
+          in: query
+          name: keyType
+          required: true
+          schema:
+            $ref: '#/components/schemas/LocalServiceKeyType'
+        - description: key to return local-services [Bahnhofsnahe Dienstleistungen] for
+          in: query
+          name: key
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/vnd.de.db.ris+json:
+              schema:
+                $ref: '#/components/schemas/LocalServices'
+          description: Success
+          headers:
+            Cache-Control:
+              description: Controls whether and how long response can be cached by consumers, defaults to 'no-cache, no-store'.
+              schema:
+                type: string
+              style: simple
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error
+      tags:
+        - Local-Services
+  /local-services/by-position:
+    get:
+      description: Returns a list of local-services [Bahnhofsnahe Dienstleistungen] around geo position within provided radius ordered by distance asc.
+      operationId: getLocalServicesByPosition
+      parameters:
+        - description: |-
+            Types of local service. Possible values are:
+            - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)]
+            - TRAVEL_CENTER [Reisezentrum]
+            - VIDEO_TRAVEL_CENTER [Video Reisezentrum]
+            - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit & Sauberkeit]
+            - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)]
+            - LOST_PROPERTY_OFFICE [Fundbüro]
+            - RAILWAY_MISSION [Bahnhofsmission]
+            - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende]
+            - LOCKER [Schließfächer]
+            - WIFI [WLan]
+            - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig]
+            - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig]
+            - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig]
+            - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf]
+            - CAR_RENTAL [Car-Sharer oder Mietwagen]
+            - BICYCLE_RENTAL [Mieträder]
+            - TAXI_RANK [Taxi Stand]
+            - MOBILE_TRAVEL_SERVICE [Mobiler Service]
+            - RAD_PLUS (Rad+ Gebiet)
+          in: query
+          name: types
+          required: true
+          schema:
+            items:
+              type: string
+            type: array
+        - description: geo reference position latitude
+          in: query
+          name: latitude
+          required: true
+          schema:
+            format: double
+            type: number
+        - description: geo reference position longitude
+          in: query
+          name: longitude
+          required: true
+          schema:
+            format: double
+            type: number
+        - description: radius in meters around geo position
+          in: query
+          name: radius
+          schema:
+            default: 200
+            format: int32
+            maximum: 1000
+            type: integer
+        - description: limit parameter in order to limit total amount of results, if omitted no truncation applies
+          in: query
+          name: limit
+          schema:
+            format: int32
+            maximum: 100
+            type: integer
+      responses:
+        '200':
+          content:
+            application/vnd.de.db.ris+json:
+              schema:
+                $ref: '#/components/schemas/LocalServices'
+          description: Success
+          headers:
+            Cache-Control:
+              description: Controls whether and how long response can be cached by consumers, defaults to 'no-cache, no-store'.
+              schema:
+                type: string
+              style: simple
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error
+      tags:
+        - Local-Services
+  /local-services/{localServiceID}:
+    get:
+      description: Returns details of a local-service [Bahnhofsnahe Dienstleistung] for requested ID.
+      operationId: getLocalService
+      parameters:
+        - description: id of desired local-service [Bahnhofsnahe Dienstleistung]
+          in: path
+          name: localServiceID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/vnd.de.db.ris+json:
+              schema:
+                $ref: '#/components/schemas/LocalService'
+          description: Success
+          headers:
+            Cache-Control:
+              description: Controls whether and how long response can be cached by consumers, defaults to 'no-cache, no-store'.
+              schema:
+                type: string
+              style: simple
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error
+      tags:
+        - Local-Services
+  /platforms/by-key:
+    get:
+      description: Returns platforms [Gleise, Plattformen] that match the provided key.
+      operationId: getPlatformsByKey
+      parameters:
+        - description: |-
+            type of key the platforms belong to
+            - IFOPT (transmodel identifier for fixed objects aka DHID, may be provided on level of stop-place or plattform, other levels not supported yet)
+            - EVA (eva number)
+            - RL100 (primary or alternative rl100 / ds100)
+            - EPA (epa number)
+            - STADA (Stationsdatenbank number)
+            - IBNR (internal station number [interne bahnhofsnummer])
+          in: query
+          name: keyType
+          required: true
+          schema:
+            $ref: '#/components/schemas/StopPlaceKeyFilter'
+        - description: key to return platforms for
+          in: query
+          name: key
+          required: true
+          schema:
+            type: string
+        - description: should sector information be included
+          in: query
+          name: includeSectors
+          schema:
+            default: false
+            type: boolean
+        - description: should accessibility information [Barrierefreiheit] be included
+          in: query
+          name: includeAccessibility
+          schema:
+            default: false
+            type: boolean
+        - description: should sub platforms [Teilgleise] be included
+          in: query
+          name: includeSubPlatforms
+          schema:
+            default: true
+            type: boolean
+        - description: indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validity time ranges are returned
+          in: query
+          name: onlyActive
+          schema:
+            default: true
+            type: boolean
+      responses:
+        '200':
+          content:
+            application/vnd.de.db.ris+json:
+              schema:
+                $ref: '#/components/schemas/Platforms'
+          description: Success
+          headers:
+            Cache-Control:
+              description: Controls whether and how long response can be cached by consumers, defaults to 'no-cache, no-store'.
+              schema:
+                type: string
+              style: simple
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error
+      tags:
+        - Platforms
+  /platforms/{evaNumber}:
+    get:
+      description: Returns all platforms [Gleise, Plattformen] and optional their sectors [Sektoren] for requested eva number.
+      operationId: getPlatforms
+      parameters:
+        - description: eva number of desired stop place [Haltestelle]
+          in: path
+          name: evaNumber
+          required: true
+          schema:
+            type: string
+        - description: should sector information be included
+          in: query
+          name: includeSectors
+          schema:
+            default: false
+            type: boolean
+        - description: should accessibility information [Barrierefreiheit] be included
+          in: query
+          name: includeAccessibility
+          schema:
+            default: false
+            type: boolean
+        - description: should sub platforms [Teilgleise] be included
+          in: query
+          name: includeSubPlatforms
+          schema:
+            default: true
+            type: boolean
+        - description: indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validity time ranges are returned
+          in: query
+          name: onlyActive
+          schema:
+            default: true
+            type: boolean
+      responses:
+        '200':
+          content:
+            application/vnd.de.db.ris+json:
+              schema:
+                $ref: '#/components/schemas/Platforms'
+          description: Success
+          headers:
+            Cache-Control:
+              description: Controls whether and how long response can be cached by consumers, defaults to 'no-cache, no-store'.
+              schema:
+                type: string
+              style: simple
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error
+      tags:
+        - Platforms
+  /platforms/{evaNumber}/{platformName}:
+    get:
+      description: Returns detailed information for a particular platform [Gleis, Plattform] and optional its sectors [Sektoren].
+      operationId: getPlatform
+      parameters:
+        - description: eva number of desired stop place [Haltestelle]
+          in: path
+          name: evaNumber
+          required: true
+          schema:
+            type: string
+        - description: name of desired platform
+          in: path
+          name: platformName
+          required: true
+          schema:
+            type: string
+        - description: should sector information be included
+          in: query
+          name: includeSectors
+          schema:
+            default: false
+            type: boolean
+        - description: should accessibility information [Barrierefreiheit] be included
+          in: query
+          name: includeAccessibility
+          schema:
+            default: false
+            type: boolean
+        - description: indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validity time ranges are returned
+          in: query
+          name: onlyActive
+          schema:
+            default: true
+            type: boolean
+      responses:
+        '200':
+          content:
+            application/vnd.de.db.ris+json:
+              schema:
+                $ref: '#/components/schemas/Platform'
+          description: Success
+          headers:
+            Cache-Control:
+              description: Controls whether and how long response can be cached by consumers, defaults to 'no-cache, no-store'.
+              schema:
+                type: string
+              style: simple
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error
+      tags:
+        - Platforms
+  /station-equipments/locker/by-key:
+    get:
+      description: Returns a list of locker [Schließfächer] equipments that are associated with the provided key.
+      operationId: getLockersByKey
+      parameters:
+        - description: |-
+            type of associated locker equipment key
+            - EVA (eva number of stop-place [Haltestelle])
+            - STATION_ID (id of the station [Bahnhof], usually the STADA for S&S owned stations)
+          in: query
+          name: keyType
+          required: true
+          schema:
+            $ref: '#/components/schemas/EquipmentLockerKeyType'
+        - description: key to return locker equipments for
+          in: query
+          name: key
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/vnd.de.db.ris+json:
+              schema:
+                $ref: '#/components/schemas/EquipmentLockers'
+          description: Success
+          headers:
+            Cache-Control:
+              description: Controls whether and how long response can be cached by consumers, defaults to 'no-cache, no-store'.
+              schema:
+                type: string
+              style: simple
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error
+      tags:
+        - Station Equipments
+  /station-equipments/locker/{lockerEquipmentID}:
+    get:
+      description: Returns details of a locker [Schließfächer] equipment for requested ID.
+      operationId: getLockerByEquipmentID
+      parameters:
+        - description: id of desired locker [Schließfach] equipment
+          in: path
+          name: lockerEquipmentID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/vnd.de.db.ris+json:
+              schema:
+                $ref: '#/components/schemas/EquipmentLocker'
+          description: Success
+          headers:
+            Cache-Control:
+              description: Controls whether and how long response can be cached by consumers, defaults to 'no-cache, no-store'.
+              schema:
+                type: string
+              style: simple
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error
+      tags:
+        - Station Equipments
+  /stations:
+    get:
+      description: Returns all available stations [Bahnhöfe].
+      operationId: getStations
+      parameters:
+        - description: state [Bundesland] to limit search results for
+          in: query
+          name: state
+          schema:
+            type: string
+        - description: indicates whether only active stations should be returned, defaults to true, if false inactive and future stations for different validity time ranges are returned
+          in: query
+          name: onlyActive
+          schema:
+            default: true
+            type: boolean
+        - description: |-
+            Locale to use, defaults to DE.
+            - DE (German)
+            - EN (English)
+            - FR (French)
+            - IT (Italian)
+
+            *DE only*
+          in: query
+          name: locales
+          schema:
+            items:
+              $ref: '#/components/schemas/Locale'
+            type: array
+        - description: limits result to all stations that have been changed (anything) after passed fully qualified date (YYYY-MM-dd), can be used to get deltas, if omitted all stations are returned
+          in: query
+          name: lastChanged
+          schema:
+            format: date
+            type: string
+        - description: pagination offset parameter in order to navigate through result list, defaults to 0
+          in: query
+          name: offset
+          schema:
+            default: 0
+            format: int32
+            type: integer
+        - description: pagination limit parameter in order to limit total amount of results, defaults to 100
+          in: query
+          name: limit
+          schema:
+            default: 100
+            format: int32
+            maximum: 100
+            type: integer
+      responses:
+        '200':
+          content:
+            application/vnd.de.db.ris+json:
+              schema:
+                $ref: '#/components/schemas/StationsPageable'
+          description: Success
+          headers:
+            Cache-Control:
+              description: Controls whether and how long response can be cached by consumers, defaults to 'no-cache, no-store'.
+              schema:
+                type: string
+              style: simple
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error
+      tags:
+        - Stations
+  /stations/by-organisational-unit:
+    get:
+      description: Returns a list of stations [Bahnhof] that match the specified organisational unit [Regionalbereich].
+      operationId: getStationsByOrganisationalUnit
+      parameters:
+        - description: name of organisational unit
+          in: query
+          name: organisationalUnit
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/vnd.de.db.ris+json:
+              schema:
+                $ref: '#/components/schemas/Stations'
+          description: Success
+          headers:
+            Cache-Control:
+              description: Controls whether and how long response can be cached by consumers, defaults to 'no-cache, no-store'.
+              schema:
+                type: string
+              style: simple
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error
+      tags:
+        - Stations
+  /stations/{stationID}:
+    get:
+      description: Returns details on station [Bahnhof] for requested stationID [BahnhofsID].
+      operationId: getStation
+      parameters:
+        - description: id of desired station [Bahnhof], usually the STADA id from Station & Service
+          in: path
+          name: stationID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/vnd.de.db.ris+json:
+              schema:
+                $ref: '#/components/schemas/Station'
+          description: Success
+          headers:
+            Cache-Control:
+              description: Controls whether and how long response can be cached by consumers, defaults to 'no-cache, no-store'.
+              schema:
+                type: string
+              style: simple
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error
+      tags:
+        - Stations
+  /stop-places:
+    get:
+      description: Returns all available stop places.
+      operationId: getStopPlaces
+      parameters:
+        - description: transport associations [Verkehrsverbünde] to limit search results for
+          in: query
+          name: transportAssociations
+          schema:
+            items:
+              type: string
+            type: array
+        - description: indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
+          in: query
+          name: onlyActive
+          schema:
+            default: true
+            type: boolean
+        - description: |-
+            Locale to use, defaults to DE.
+            - DE (German)
+            - EN (English)
+            - FR (French)
+            - IT (Italian)
+
+            *DE only*
+          in: query
+          name: locales
+          schema:
+            items:
+              $ref: '#/components/schemas/Locale'
+            type: array
+        - description: limits result to all stop-places that have been changed (anything) after passed fully qualified date (YYYY-MM-dd), can be used to get deltas, if omitted all stop-places are returned
+          in: query
+          name: lastChanged
+          schema:
+            format: date
+            type: string
+        - description: pagination offset parameter in order to navigate through result list, defaults to 0
+          in: query
+          name: offset
+          schema:
+            default: 0
+            format: int32
+            type: integer
+        - description: pagination limit parameter in order to limit total amount of results, defaults to 100
+          in: query
+          name: limit
+          schema:
+            default: 100
+            format: int32
+            maximum: 100
+            type: integer
+      responses:
+        '200':
+          content:
+            application/vnd.de.db.ris+json:
+              schema:
+                $ref: '#/components/schemas/StopPlacesPageable'
+          description: Success
+          headers:
+            Cache-Control:
+              description: Controls whether and how long response can be cached by consumers, defaults to 'no-cache, no-store'.
+              schema:
+                type: string
+              style: simple
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error
+      tags:
+        - Stop Places
+  /stop-places/by-key:
+    get:
+      description: Returns stop places that match the provided key.
+      operationId: getStopPlacesByKey
+      parameters:
+        - description: |-
+            type of stop place key
+            - IFOPT (transmodel identifier for fixed objects aka DHID, may be provided on level of stop-place or plattform, other levels not supported yet)
+            - EVA (eva number)
+            - RL100 (primary or alternative rl100 / ds100)
+            - EPA (epa number)
+            - STADA (Stationsdatenbank number)
+            - IBNR (internal station number [interne bahnhofsnummer])
+            - EBHF ([Tarifpunktnummer / Einheitliche Bahnhofsdatei Nr.]
+            - UIC (international station number)
+            - PLC (primary location code)
+          in: query
+          name: keyType
+          required: true
+          schema:
+            $ref: '#/components/schemas/StopPlaceKeyFilter'
+        - description: key to return stop places [Haltestellen] for
+          in: query
+          name: key
+          required: true
+          schema:
+            type: string
+        - description: indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
+          in: query
+          name: onlyActive
+          schema:
+            default: true
+            type: boolean
+        - description: |-
+            Locale to use, defaults to DE.
+            - DE (German)
+            - EN (English)
+            - FR (French)
+            - IT (Italian)
+
+            *DE only*
+          in: query
+          name: locales
+          schema:
+            items:
+              $ref: '#/components/schemas/Locale'
+            type: array
+      responses:
+        '200':
+          content:
+            application/vnd.de.db.ris+json:
+              schema:
+                $ref: '#/components/schemas/StopPlaces'
+          description: Success
+          headers:
+            Cache-Control:
+              description: Controls whether and how long response can be cached by consumers, defaults to 'no-cache, no-store'.
+              schema:
+                type: string
+              style: simple
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error
+      tags:
+        - Stop Places
+  /stop-places/by-name/{query}:
+    get:
+      description: Returns a list of stop places [Haltestelle] matching the provided name query, optional limited to a max radius around a provided geo coordinate, ordered by relevance or name matching desc and (configurable) grouped by stations [Bahnhöfe], if stop-places belong to a parent stations (like for instance 'Frankfurt Main Hbf' and 'Frankfurt tief' belong to 'Frankfurt Main Hbf'). The query has support for fuzzy searching, means minimal typos are ignored even without providing wildcards.
+      operationId: getStopPlacesByName
+      parameters:
+        - description: query for stop place names [Haltestellenname] to search for
+          in: path
+          name: query
+          required: true
+          schema:
+            type: string
+        - description: optional geo reference position latitude, if provided results are also ranked by distance
+          in: query
+          name: latitude
+          schema:
+            format: double
+            type: number
+        - description: optional geo reference position longitude, if provided results are also ranked by distance
+          in: query
+          name: longitude
+          schema:
+            format: double
+            type: number
+        - description: 'The state code [Bundeslandkürzel] the stop place belongs to. (Reference: https://www.datenportal.bmbf.de/portal/de/G122.html)'
+          in: query
+          name: state
+          schema:
+            type: string
+        - description: transport associations [Verkehrsverbünde] to limit search results for
+          in: query
+          name: transportAssociations
+          schema:
+            items:
+              type: string
+            type: array
+        - description: |-
+            group returned stop-places by their parent station [Bahnhof], defaults to grouping by STATION if omitted
+            - STATION (group by parent station that is defined by DB Station & Services STADA-ID)
+            - SALES (group defined by sales [Vertrieb], for instance FFM = Hoch + Tief + Bus + Tram + Subway, maintained by DB Vertrieb via EFZ [Europäisches Fahrplanzentrum])
+            - NONE (no grouping is applied, just stop-places are returned)
+          in: query
+          name: groupBy
+          schema:
+            $ref: '#/components/schemas/StopPlaceSearchGroupByKey'
+        - description: |-
+            sorting for search results, if omitted RELEVANCE will be used
+            - RELEVANCE (stop places are sorted by relevance descending (main stations etc. first))
+            - QUERY_MATCH (stop places are sorted by matching the provided query string descending aka Levenshtein Distance)
+          in: query
+          name: sortBy
+          schema:
+            $ref: '#/components/schemas/StopPlaceSortKey'
+        - description: indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
+          in: query
+          name: onlyActive
+          schema:
+            default: true
+            type: boolean
+        - description: |-
+            Locale to use, defaults to DE.
+            - DE (German)
+            - EN (English)
+            - FR (French)
+            - IT (Italian)
+
+            *DE only*
+          in: query
+          name: locales
+          schema:
+            items:
+              $ref: '#/components/schemas/Locale'
+            type: array
+        - description: limit parameter in order to limit total amount of results, defaults to 25
+          in: query
+          name: limit
+          schema:
+            default: 25
+            format: int32
+            maximum: 100
+            type: integer
+      responses:
+        '200':
+          content:
+            application/vnd.de.db.ris+json:
+              schema:
+                $ref: '#/components/schemas/StopPlaceSearchResults'
+          description: Success
+          headers:
+            Cache-Control:
+              description: Controls whether and how long response can be cached by consumers, defaults to 'no-cache, no-store'.
+              schema:
+                type: string
+              style: simple
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error
+      tags:
+        - Stop Places
+  /stop-places/by-position:
+    get:
+      description: Returns a list of stop places [Haltestellen] around geo position within provided radius ordered by distance asc and (configurable) grouped by stations [Bahnhöfe], if stop-places belong to a parent stations (like for instance 'Frankfurt Main Hbf' and 'Frankfurt tief' belong to 'Frankfurt Main Hbf').
+      operationId: getStopPlacesByPosition
+      parameters:
+        - description: 'The state code [Bundeslandkürzel] the stop place belongs to. (Reference: https://www.datenportal.bmbf.de/portal/de/G122.html)'
+          in: query
+          name: state
+          schema:
+            type: string
+        - description: geo position latitude
+          in: query
+          name: latitude
+          required: true
+          schema:
+            format: double
+            type: number
+        - description: geo position longitude
+          in: query
+          name: longitude
+          required: true
+          schema:
+            format: double
+            type: number
+        - description: radius in meters around geo position
+          in: query
+          name: radius
+          schema:
+            default: 200
+            format: int32
+            maximum: 1000
+            type: integer
+        - description: transport associations [Verkehrsverbünde] to limit search results for
+          in: query
+          name: transportAssociations
+          schema:
+            items:
+              type: string
+            type: array
+        - description: |-
+            group returned stop-places by their parent station [Bahnhof], defaults to grouping by STATION if omitted
+            - STATION (group by parent station that is defined by DB Station & Services STADA-ID)
+            - SALES (group defined by sales [Vertrieb], for instance FFM = Hoch + Tief + Bus + Tram + Subway, maintained by DB Vertrieb via EFZ [Europäisches Fahrplanzentrum])
+            - NONE (no grouping is applied, just stop-places are returned)
+          in: query
+          name: groupBy
+          schema:
+            $ref: '#/components/schemas/StopPlaceSearchGroupByKey'
+        - description: indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
+          in: query
+          name: onlyActive
+          schema:
+            default: true
+            type: boolean
+        - description: |-
+            Locale to use, defaults to DE.
+            - DE (German)
+            - EN (English)
+            - FR (French)
+            - IT (Italian)
+
+            *DE only*
+          in: query
+          name: locales
+          schema:
+            items:
+              $ref: '#/components/schemas/Locale'
+            type: array
+        - description: limit parameter in order to limit total amount of results, if omitted no truncation applies
+          in: query
+          name: limit
+          schema:
+            format: int32
+            maximum: 100
+            type: integer
+      responses:
+        '200':
+          content:
+            application/vnd.de.db.ris+json:
+              schema:
+                $ref: '#/components/schemas/StopPlaceSearchResults'
+          description: Success
+          headers:
+            Cache-Control:
+              description: Controls whether and how long response can be cached by consumers, defaults to 'no-cache, no-store'.
+              schema:
+                type: string
+              style: simple
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error
+      tags:
+        - Stop Places
+  /stop-places/{evaNumber}:
+    get:
+      description: Returns stop place for provided eva number. May return multiple stop places in case differing validity time ranges exist and the flag onlyValid = false.
+      operationId: getStopPlacesByEvaNumber
+      parameters:
+        - description: eva number to return stop place [Haltestelle] for
+          in: path
+          name: evaNumber
+          required: true
+          schema:
+            type: string
+        - description: indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
+          in: query
+          name: onlyActive
+          schema:
+            default: true
+            type: boolean
+        - description: |-
+            Locale to use, defaults to DE.
+            - DE (German)
+            - EN (English)
+            - FR (French)
+            - IT (Italian)
+
+            *DE only*
+          in: query
+          name: locales
+          schema:
+            items:
+              $ref: '#/components/schemas/Locale'
+            type: array
+      responses:
+        '200':
+          content:
+            application/vnd.de.db.ris+json:
+              schema:
+                $ref: '#/components/schemas/StopPlaces'
+          description: Success
+          headers:
+            Cache-Control:
+              description: Controls whether and how long response can be cached by consumers, defaults to 'no-cache, no-store'.
+              schema:
+                type: string
+              style: simple
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error
+      tags:
+        - Stop Places
+  /stop-places/{evaNumber}/groups:
+    get:
+      description: Returns all groups the stop place belongs with all group members.
+      operationId: getStopPlaceGroups
+      parameters:
+        - description: eva number to return stop place [Haltestelle] groups for
+          in: path
+          name: evaNumber
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/vnd.de.db.ris+json:
+              schema:
+                $ref: '#/components/schemas/StopPlaceGroups'
+          description: Success
+          headers:
+            Cache-Control:
+              description: Controls whether and how long response can be cached by consumers, defaults to 'no-cache, no-store'.
+              schema:
+                type: string
+              style: simple
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error
+      tags:
+        - Stop Places
+  /stop-places/{evaNumber}/keys:
+    get:
+      description: Returns all known keys of specific key type for the stop place with the provided eva number. Take care that associated keys may belong to some kind of group [Station for instance] and that relations between keys are most likely n:m and not 1:1.
+      operationId: getStopPlaceKeys
+      parameters:
+        - description: eva number to return stop place [Haltestelle] keys for
+          in: path
+          name: evaNumber
+          required: true
+          schema:
+            type: string
+        - description: filter mapped keys by specific key type, if omitted all keys are returned
+          in: query
+          name: keyType
+          schema:
+            $ref: '#/components/schemas/StopPlaceKeyType'
+      responses:
+        '200':
+          content:
+            application/vnd.de.db.ris+json:
+              schema:
+                $ref: '#/components/schemas/StopPlaceKeys'
+          description: Success
+          headers:
+            Cache-Control:
+              description: Controls whether and how long response can be cached by consumers, defaults to 'no-cache, no-store'.
+              schema:
+                type: string
+              style: simple
+        '500':
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Error
+      tags:
+        - Stop Places
+servers:
+  - url: https://apis.deutschebahn.com/db-api-marketplace/apis/ris-stations/v1
+tags:
+  - description: Station [Bahnhof] information like meta information, administration, points of interest and geographies.
+    name: Stations
+  - description: Equipment information for stations [Bahnhöfe].
+    name: Station Equipments
+  - description: Information on connecting-times for a particular stop-place or a group of stop-places.
+    name: Connecting Times
+  - description: Information on stop places like base data, connecting times, platforms and all kind of mappings by position, name and foreign keys.
+    name: Stop Places
+  - description: Information platforms like length, sectors, barrier free access and keys.
+    name: Platforms
+  - description: Local-Services [Bahnhofsnahe Dienstleistungen] information like names, ids, locations and opening hours.
+    name: Local-Services
+x-ibm-configuration:
+  phase: realized
+  testable: true
+  enforced: true
+  application-authentication:
+    certificate: false
+  type: rest
+  cors:
+    enabled: true
+security:
+  - ClientSecret: []
+    ClientId: []
+x-ibm-endpoints:
+  - url: https://apis.deutschebahn.com/db-api-marketplace/apis/ris-stations/v1
