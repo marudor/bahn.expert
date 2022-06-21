@@ -1,11 +1,11 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * RIS :: Stations
- * ## Info * member of the **[RIS-API](https://db.de/ris-api)** family * powered by [DB Systel BusinessHub - doServices](https://user-portal.hub.ose.db.de/) * powered by [T.R Reisendeninformation](https://db-planet.deutschebahn.com/pages/reisendeninformation/apps/content/willkommen) * implements model: *1.0.201-SNAPSHOT*  ## Capabilities  ### Stations *stay tuned*  ### Travel Centers *stay tuned*  ### Stop Places Information on a huge amount of stop-places [Haltestellen] coming from different source like EFZ [Europäisches Fahrplanzentrum] and DB Station & Service. The service offers therefore all stop-place that are part or that were part of the official sales time table for germany including foreign stop-places for transpors driving into germany / leaving germany and connecting journeys in foreign countries that are part of the railteam alliance. OEPNV stop-places are returned as well.  Brief information for particular stop-place like * language dependent short, long, speech and symbol names from different sources [EFZ or BHW] * metropolis information [Metropole] * parent station [Bahnhof] * geo coordinates, country and timezone * transport types [Verkehrsmittel / Produkart] that depart / arrive * foreign key mappings [Fremdschluessel] like EVA, RL100 / DS100, EPA, IBNR, DHID / IFOPT, STADA and UIC * validity ranges [Gueltigkeitsbereiche]  Different query options for stop-places like * by name query with fuzzy-search [fehlertolerante Suche] and order by relevance [gewichtete Suche] * by geo-coordinate and radius ordered by distance * by foreign key  Multiple groups a stop-place may belong to like * Station [selber Bahnhof] * Sales [vertrieblicher Umsteigebereich inkl. OEPNV]  * Metropolitan Area [Stadtgebiet]  ### Platforms General information on platforms [Gleise, Bussteige, Plattformen etc.] for a particular stop-place like: * name, start and end in meters, linked platforms [selber Bahnsteig], parent platform [fuer Teilgleise]  * sectors with name, start and end in meters, cube position [Wuerfelposition] and information ob cube signage [Beschilderung] * accessibility information [Barrierefreier Zugang] like audible signals, automatic doors, stair markings and a lot more * informaton on operational platforms [Betriebsgleise], optics [Optiken], reference points [Refeenzpunkte] and orientations [Orientierung gemaess Nullpunkt]  ### Connecting-Times Connecting-times [Umsteigezeiten / Anschlusszeiten] for a stop-place [Haltestelle] and all members of stop-place group [Umsteigebereich] including foreign stop-places [Auslandshalte gemaess Railteam-Flag etc.]: * for different kind of stop-place groups    * Station [selber Bahnhof]   * Sales [vertrieblicher Umsteigebereich inkl. OEPNV]   * All [alle Umsteigebereiche] supported * and different personae, if available   * Occasional Traveller [Gelegenheitsreisender]   * Frequent Traveller [Pendler]   * Handicapped Traveller [Mobilitaetseingeschraenkter Reisender] * from various sources   * RIL420 [Konzernrichtlinie]   * EFZ [Europäisches Fahrplanzentrum inkl. OEPNV & Auslandshalte]   * IndoorRouting [Indoor Routing RIS-Maps] available  ## Limitations * *[backlog]* support active and inactive versions of stop-places/stations (differing date ranges) * *[backlog]* support foreign keys EPA & IBNR * *[backlog]* raise stop-place change events with RIS::Events in case stop-place data changes * *[backlog]* enable query of all stop-places that have been changed since a certain datetime * *[backlog]* include Station & Service Bahnhofswissen with it\'s fully functional API starting from ~Q1/Q2 2021  ## Getting Started * get to know the vision behind [RIS-API](https://db.de/ris-api) * visit our [Coding Dojo](https://ris.gitpages.tech.rz.db.de/risapi/documentation/) and learn how to get started  ## Licenses * The usage of the station data of DB Station & Services is subject to the Creative Commons Attribution 4.0 International (CC BY 4.0) license
+ * RIS::Stations
+ * ## Info  * member of the **RIS-API** family  ## Capabilities  ### Stations  Information on stations [Bahnhöfe] from DB Station & Service and DB Regio like:  * name, address, category [Bahnhofskategorie], owner [Betreiber / Verwaltung], country, timezone and geo coordinate * region information the station belongs [Regionalbereich] * available local services [bahnhofsnahe Dienstleistungen] at station  ### Stop Places  Information on a huge amount of stop-places [Haltestellen] coming from different source like EFZ [Europäisches Fahrplanzentrum] and DB Station & Service. The service offers therefore all stop-place that are part or that were part of the official sales time table for germany including foreign stop-places for transports driving into germany / leaving germany and connecting journeys in foreign countries that are part of the rail team alliance. ÖPNV stop-places are returned as well.  Brief information for particular stop-place like  * language dependent short, long, speech and symbol names from different sources [EFZ or BHW] * metropolis information [Metropole] * parent station [Bahnhof] * geo coordinates, country and timezone * transport types [Verkehrsmittel / Produktart] that depart / arrive * foreign key mappings [Fremdschlüssel] like EVA, RL100 / DS100, EPA, IBNR, DHID / IFOPT, STADA, EBHF, PLC and UIC * validity ranges [Gültigkeitsbereiche]  Different query options for stop-places like  * by name query with fuzzy-search [fehlertolerante Suche] and order by relevance [gewichtete Suche] and optional grouping by station [Bahnhof] in case stop-places belong to a station * by geo-coordinate and radius ordered by distance * by foreign key  Multiple groups a stop-place may belong to like  * Station [selber Bahnhof] * Sales [vertrieblicher Umsteigebereich inkl. ÖPNV]s * Metropolitan Area [Stadtgebiet]  ### Platforms  General information on platforms [Gleise, Bussteige, Plattformen etc.] for a particular stop-place like:  * name, start and end in meters, linked platforms [selber Bahnsteig], parent platform [für Teilgleise]s * sectors with name, start and end in meters, cube position [Würfelposition] and information ob cube signage [Beschilderung] * accessibility information [Barrierefreier Zugang] like audible signals, automatic doors, stair markings and a lot more  ### Connecting-Times  Connecting-times [Umsteigezeiten / Anschlusszeiten] for a stop-place [Haltestelle] and all members of stop-place group [Umsteigebereich] including foreign stop-places [Auslandshalte gemäß Railteam-Flag etc.]:  * for different kind of stop-place groups     * Station [selber Bahnhof]     * Sales [vertrieblicher Umsteigebereich inkl. ÖPNV]     * All [alle Umsteigebereiche] supported * and different personae, if available     * Occasional Traveller [Gelegenheitsreisender]     * Frequent Traveller [Pendler]     * Handicapped Traveller [Mobilitätseingeschränkter Reisender] * from various sources     * RIL420 [Konzernrichtlinie]     * EFZ [Europäisches Fahrplanzentrum inkl. ÖPNV & Auslandshalte]     * IndoorRouting [Indoor Routing RIS-Maps] available  ### Local Services  Information about Travel-Center, Triple-S-Center [3S Zentrale],Railway Mission[Bahnhofsmission] and many more available by position or station.  ### Station Equipments  Detailed information about equipment at the train station such as:  * Locker with payment types, size, fee and many more. * **stay tuned*  ## Limitations  * *[backlog]* support active and inactive versions of stop-places/stations (differing date ranges) * *[backlog]* raise stop-place change events with RIS::Events in case stop-place data changes * *[backlog]* include Station & Service Bahnhofswissen with it\'s fully functional API starting from ~Q4 2021
  *
- * The version of the OpenAPI document: 1.0
- * Contact: BusinessHub.doServices.Titan.Team@deutschebahn.com
+ * The version of the OpenAPI document: 1.7.0
+ * Contact: doServices.Titan.Support@deutschebahn.com
  *
  * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
  * https://openapi-generator.tech
@@ -20,12 +20,22 @@ import {
   DUMMY_BASE_URL,
   assertParamExists,
   setApiKeyToObject,
+  setBasicAuthToObject,
+  setBearerAuthToObject,
+  setOAuthToObject,
   setSearchParams,
+  serializeDataIfNeeded,
   toPathString,
   createRequestFunction,
 } from './common';
 // @ts-ignore
-import { BASE_PATH, RequestArgs, BaseAPI } from './base';
+import {
+  BASE_PATH,
+  COLLECTION_FORMATS,
+  RequestArgs,
+  BaseAPI,
+  RequiredError,
+} from './base';
 
 /**
  * Accessibility [Barrierefreiheit] information for a particular platform.
@@ -62,12 +72,6 @@ export interface Accessibility {
    * @type {AccessibilityStatus}
    * @memberof Accessibility
    */
-  standardPlatformHeight?: AccessibilityStatus;
-  /**
-   *
-   * @type {AccessibilityStatus}
-   * @memberof Accessibility
-   */
   platformSign?: AccessibilityStatus;
   /**
    *
@@ -75,6 +79,12 @@ export interface Accessibility {
    * @memberof Accessibility
    */
   stairsMarking?: AccessibilityStatus;
+  /**
+   *
+   * @type {AccessibilityStatus}
+   * @memberof Accessibility
+   */
+  standardPlatformHeight?: AccessibilityStatus;
   /**
    *
    * @type {AccessibilityStatus}
@@ -101,7 +111,7 @@ export interface Accessibility {
   tactilePlatformAccess?: AccessibilityStatus;
 }
 /**
- * Status of platform accessibility [Barrierefreiheit] information. - AVAILABLE (accessibility item is available) - NOT_AVAILABLE (accessibility item is not available) - PARTIAL (accessibility item is only partial available, for instance availble for 12a but not for 12b and therefore not for 12 in total) - NOT_APPLICABLE (accessibility item is not applicable because it depends on availability of other items, for instance stair mark depends on step free access) - UNKNOWN (no information on availability for accessibility item)
+ * Status of platform accessibility [Barrierefreiheit] information. - AVAILABLE (accessibility item is available) - NOT_AVAILABLE (accessibility item is not available) - PARTIAL (accessibility item is only partial available, for instance available for 12a but not for 12b and therefore not for 12 in total) - NOT_APPLICABLE (accessibility item is not applicable because it depends on availability of other items, for instance stair mark depends on step free access) - UNKNOWN (no information on availability for accessibility item)
  * @export
  * @enum {string}
  */
@@ -121,41 +131,41 @@ export enum AccessibilityStatus {
  */
 export interface AddressWithWeb {
   /**
-   * Street name of address the position should be retrived for.
-   * @type {string}
-   * @memberof AddressWithWeb
-   */
-  street?: string;
-  /**
-   * Housenumber of address the position should be retrived for.
-   * @type {string}
-   * @memberof AddressWithWeb
-   */
-  houseNumber?: string;
-  /**
-   * Postalcode [Postleitzahl] of address the position should be retrived for.
-   * @type {string}
-   * @memberof AddressWithWeb
-   */
-  postalCode?: string;
-  /**
-   * City of address the position should be retrived for.
+   * City of address the position should be retrieved for.
    * @type {string}
    * @memberof AddressWithWeb
    */
   city?: string;
   /**
-   * State of address the position should be retrived for.
+   * Country of address the position should be retrieved for.
+   * @type {string}
+   * @memberof AddressWithWeb
+   */
+  country?: string;
+  /**
+   * House-number of address the position should be retrieved for.
+   * @type {string}
+   * @memberof AddressWithWeb
+   */
+  houseNumber?: string;
+  /**
+   * Postalcode [Postleitzahl] of address the position should be retrieved for.
+   * @type {string}
+   * @memberof AddressWithWeb
+   */
+  postalCode?: string;
+  /**
+   * State of address the position should be retrieved for.
    * @type {string}
    * @memberof AddressWithWeb
    */
   state?: string;
   /**
-   * Country of address the position should be retrived for.
+   * Street name of address the position should be retrieved for.
    * @type {string}
    * @memberof AddressWithWeb
    */
-  country?: string;
+  street?: string;
   /**
    * Web site for address.
    * @type {string}
@@ -188,6 +198,24 @@ export interface ConnectingTime {
    */
   fromSector?: string;
   /**
+   * Indicates whether connection takes place on the same physical platform [Bahnsteig] (platform \'12\' and \'13\' belong to physical platform \'12/13\' for instance).
+   * @type {boolean}
+   * @memberof ConnectingTime
+   */
+  identicalPhysicalPlatform: boolean;
+  /**
+   *
+   * @type {ConnectingTimeSource}
+   * @memberof ConnectingTime
+   */
+  source: ConnectingTimeSource;
+  /**
+   * Connecting times fo different personae.
+   * @type {Array<ConnectionTime>}
+   * @memberof ConnectingTime
+   */
+  times: Array<ConnectionTime>;
+  /**
    * Eva number stop place to connect to.
    * @type {string}
    * @memberof ConnectingTime
@@ -205,27 +233,9 @@ export interface ConnectingTime {
    * @memberof ConnectingTime
    */
   toSector?: string;
-  /**
-   * Indicates whether connection takes place on the same physical platform [Bahnsteig] (platform \'12\' and \'13\' belong to physical platform \'12/13\' for instance).
-   * @type {boolean}
-   * @memberof ConnectingTime
-   */
-  identicalPhysicalPlatform: boolean;
-  /**
-   * Connecting times fo different personae.
-   * @type {Array<ConnectionTime>}
-   * @memberof ConnectingTime
-   */
-  times: Array<ConnectionTime>;
-  /**
-   *
-   * @type {ConnectingTimeSource}
-   * @memberof ConnectingTime
-   */
-  source: ConnectingTimeSource;
 }
 /**
- * Possible groups to consider when returning connecting-times for particular stop-place. - STATION (return connecting-times for stop-place and all members of the same station [Bahnhof] - SALES (return connecting-times for stop-place and all members of the sales group [EFZ / Vertrieb inkl. OEPNV] - ALL (return connecting-times for stop-place and all members of all groups the stop-place belongs to [all we have]
+ * Possible groups to consider when returning connecting-times for particular stop-place. - STATION (return connecting-times for stop-place and all members of the same station [Bahnhof] - SALES (return connecting-times for stop-place and all members of the sales group [EFZ / Vertrieb inkl. ÖPNV] - ALL (return connecting-times for stop-place and all members of all groups the stop-place belongs to [all we have]
  * @export
  * @enum {string}
  */
@@ -280,17 +290,17 @@ export interface ConnectingTimesBatch {
  */
 export interface ConnectingTimesSingle {
   /**
-   * Fallback times for different personae in case no information is available.
-   * @type {Array<ConnectionTimeFallback>}
-   * @memberof ConnectingTimesSingle
-   */
-  fallbackTimes: Array<ConnectionTimeFallback>;
-  /**
    *
    * @type {ConnectingTime}
    * @memberof ConnectingTimesSingle
    */
   connectingTime?: ConnectingTime;
+  /**
+   * Fallback times for different personae in case no information is available.
+   * @type {Array<ConnectionTimeFallback>}
+   * @memberof ConnectingTimesSingle
+   */
+  fallbackTimes: Array<ConnectionTimeFallback>;
 }
 /**
  * Connection time [Anschlusszeit] for persona.
@@ -298,12 +308,6 @@ export interface ConnectingTimesSingle {
  * @interface ConnectionTime
  */
 export interface ConnectionTime {
-  /**
-   *
-   * @type {PersonaType}
-   * @memberof ConnectionTime
-   */
-  persona: PersonaType;
   /**
    * Distance in meters.
    * @type {number}
@@ -316,6 +320,12 @@ export interface ConnectionTime {
    * @memberof ConnectionTime
    */
   duration: string;
+  /**
+   *
+   * @type {PersonaType}
+   * @memberof ConnectionTime
+   */
+  persona: PersonaType;
 }
 /**
  * Fallback connection time [Anschlusszeit] for persona in case no information on stop-places and or plattform is available.
@@ -324,17 +334,17 @@ export interface ConnectionTime {
  */
 export interface ConnectionTimeFallback {
   /**
-   *
-   * @type {PersonaType}
-   * @memberof ConnectionTimeFallback
-   */
-  persona: PersonaType;
-  /**
    * Duration of connect in ISO8601 (for instance \'P3Y6M4DT12H30M17S\').
    * @type {string}
    * @memberof ConnectionTimeFallback
    */
   duration: string;
+  /**
+   *
+   * @type {PersonaType}
+   * @memberof ConnectionTimeFallback
+   */
+  persona: PersonaType;
   /**
    *
    * @type {ConnectingTimeSource}
@@ -355,6 +365,12 @@ export interface Contact {
    */
   contactPerson?: string;
   /**
+   * EMail address in iso-format.
+   * @type {string}
+   * @memberof Contact
+   */
+  email?: string;
+  /**
    * further details of contact.
    * @type {string}
    * @memberof Contact
@@ -366,12 +382,6 @@ export interface Contact {
    * @memberof Contact
    */
   phoneNumbers?: Array<PhoneNumber>;
-  /**
-   * EMail address in iso-format.
-   * @type {string}
-   * @memberof Contact
-   */
-  email?: string;
   /**
    * contact url.
    * @type {string}
@@ -386,17 +396,140 @@ export interface Contact {
  */
 export interface Coordinate2D {
   /**
-   * Longitude position in reference system.
-   * @type {number}
-   * @memberof Coordinate2D
-   */
-  longitude: number;
-  /**
    * Latitude position in reference system.
    * @type {number}
    * @memberof Coordinate2D
    */
   latitude: number;
+  /**
+   * Longitude position in reference system.
+   * @type {number}
+   * @memberof Coordinate2D
+   */
+  longitude: number;
+}
+/**
+ * Locker [Schließfächer] equipments of a station [Bahnhof] search result. Take care that one particular equipment id may result in multiple lockers.
+ * @export
+ * @interface EquipmentLocker
+ */
+export interface EquipmentLocker {
+  /**
+   * Unique id of a locker equipment.
+   * @type {string}
+   * @memberof EquipmentLocker
+   */
+  equipmentID: string;
+  /**
+   * Lockers that are provided for this equipment id. (explanation: one locker rack may have one equipment id but may contain multiple lockers.)
+   * @type {Array<Locker>}
+   * @memberof EquipmentLocker
+   */
+  lockers: Array<Locker>;
+  /**
+   * Unique id of station [Bahnhof], usually the STADA for S&S owned stations.
+   * @type {string}
+   * @memberof EquipmentLocker
+   */
+  stationID: string;
+}
+/**
+ * Enumerates all identifiers a locker [Schließfach] equipment of a particular station [Bahnhof] can be mapped into or mapped from. - EVA (eva number of stop-place [Haltestelle]) - STATION_ID (id of the station [Bahnhof], usually the STADA for S&S owned stations)
+ * @export
+ * @enum {string}
+ */
+
+export enum EquipmentLockerKeyType {
+  Eva = 'EVA',
+  StationId = 'STATION_ID',
+}
+
+/**
+ * Locker [Schließfächer] equipments of a station [Bahnhof] search result.
+ * @export
+ * @interface EquipmentLockers
+ */
+export interface EquipmentLockers {
+  /**
+   * List of lockers [Schließfach] that matched the search result.
+   * @type {Array<EquipmentLocker>}
+   * @memberof EquipmentLockers
+   */
+  lockerList: Array<EquipmentLocker>;
+}
+/**
+ * Detailed error information on field level.
+ * @export
+ * @interface ErrorDetail
+ */
+export interface ErrorDetail {
+  /**
+   * Detailed information for error.
+   * @type {string}
+   * @memberof ErrorDetail
+   */
+  detail: string;
+  /**
+   * Unique code that identifies error.
+   * @type {number}
+   * @memberof ErrorDetail
+   */
+  errorCode?: number;
+  /**
+   * Name of field / element that raised the error.
+   * @type {string}
+   * @memberof ErrorDetail
+   */
+  field: string;
+  /**
+   * Common description of error.
+   * @type {string}
+   * @memberof ErrorDetail
+   */
+  title: string;
+}
+/**
+ * API error object conforming to RFC7807.
+ * @export
+ * @interface ErrorResponse
+ */
+export interface ErrorResponse {
+  /**
+   * Detailed information for error.
+   * @type {string}
+   * @memberof ErrorResponse
+   */
+  detail: string;
+  /**
+   * Unique code that identifies error.
+   * @type {number}
+   * @memberof ErrorResponse
+   */
+  errorCode?: number;
+  /**
+   * List of detailed errors in case multiple errors have lead to the surrounding error.
+   * @type {Array<ErrorDetail>}
+   * @memberof ErrorResponse
+   */
+  errors?: Array<ErrorDetail>;
+  /**
+   * Unique identifier for instance that raised the error.
+   * @type {string}
+   * @memberof ErrorResponse
+   */
+  instanceId?: string;
+  /**
+   * Http status for error origin.
+   * @type {number}
+   * @memberof ErrorResponse
+   */
+  status?: number;
+  /**
+   * Common description of error.
+   * @type {string}
+   * @memberof ErrorResponse
+   */
+  title: string;
 }
 /**
  * Information on local service [Bahnhofsnahe Dienstleistungen].
@@ -404,36 +537,6 @@ export interface Coordinate2D {
  * @interface LocalService
  */
 export interface LocalService {
-  /**
-   * ID of the local service.
-   * @type {string}
-   * @memberof LocalService
-   */
-  localServiceID: string;
-  /**
-   * ID of the local service for external usage.
-   * @type {string}
-   * @memberof LocalService
-   */
-  externalID: string;
-  /**
-   * Type of local service. Possible values are - MOBILITY [Mobilitätseingeschränkten-Service] - LOST_PROPERTY [Fundbuero] - INFORMATION [Information] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [Information] - DB_LOUNGE [DB Lounge] - RAILWAY_MISSION [Bahnhofsmission] - CAR_HIRE [Mietwagen] - CYCLE_HIRE [Mieträder] - TAXI [Taxi Stand]
-   * @type {string}
-   * @memberof LocalService
-   */
-  type: string;
-  /**
-   * Name of the local service.
-   * @type {string}
-   * @memberof LocalService
-   */
-  name: string;
-  /**
-   * Description of the local service.
-   * @type {string}
-   * @memberof LocalService
-   */
-  description?: string;
   /**
    *
    * @type {AddressWithWeb}
@@ -447,11 +550,53 @@ export interface LocalService {
    */
   contact?: Contact;
   /**
+   * Description of the local service.
+   * @type {string}
+   * @memberof LocalService
+   */
+  description?: string;
+  /**
+   * ID of the local service for external usage.
+   * @type {string}
+   * @memberof LocalService
+   */
+  externalID?: string;
+  /**
+   * Unique id of the local service [Bahnhofsnahe Dienstleistungen].
+   * @type {string}
+   * @memberof LocalService
+   */
+  localServiceID: string;
+  /**
+   * Name of the local service.
+   * @type {string}
+   * @memberof LocalService
+   */
+  name?: string;
+  /**
    * Opening times for local-service in OSM notation (see https://wiki.openstreetmap.org/wiki/DE:Key:opening_hours).
    * @type {string}
    * @memberof LocalService
    */
   openingHours?: string;
+  /**
+   *
+   * @type {Coordinate2D}
+   * @memberof LocalService
+   */
+  position?: Coordinate2D;
+  /**
+   * Unique id of station [Bahnhof], usually the STADA for S&S owned stations.
+   * @type {string}
+   * @memberof LocalService
+   */
+  stationID: string;
+  /**
+   * Types of local service. Possible values are: - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit & Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundbüro] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
+   * @type {string}
+   * @memberof LocalService
+   */
+  type: string;
   /**
    * Date the local service is valid from.
    * @type {string}
@@ -464,13 +609,18 @@ export interface LocalService {
    * @memberof LocalService
    */
   validTo?: string;
-  /**
-   *
-   * @type {Coordinate2D}
-   * @memberof LocalService
-   */
-  position?: Coordinate2D;
 }
+/**
+ * Enumerates all identifiers a travel-center [Reisezentrum] can be mapped into or mapped from. - EVA (eva number of stop-place [Haltestelle]) - STATION_ID (id of the station [Bahnhof], usually the STADA for S&S owned stations)
+ * @export
+ * @enum {string}
+ */
+
+export enum LocalServiceKeyType {
+  Eva = 'EVA',
+  StationId = 'STATION_ID',
+}
+
 /**
  * List of local services [Bahnhofsnahe Dienstleistungen].
  * @export
@@ -478,11 +628,42 @@ export interface LocalService {
  */
 export interface LocalServices {
   /**
-   * List of local services
+   * List of local services.
    * @type {Array<LocalService>}
    * @memberof LocalServices
    */
   localServices: Array<LocalService>;
+}
+/**
+ * Cursoring local-services [Bahnhofsnahe Dienstleistungen] search result.
+ * @export
+ * @interface LocalServicesCursoring
+ */
+export interface LocalServicesCursoring {
+  /**
+   * Value for the next page.
+   * @type {string}
+   * @memberof LocalServicesCursoring
+   */
+  after?: string;
+  /**
+   * Value for the previous page.
+   * @type {string}
+   * @memberof LocalServicesCursoring
+   */
+  before?: string;
+  /**
+   * List of local-services.
+   * @type {Array<LocalService>}
+   * @memberof LocalServicesCursoring
+   */
+  localServices: Array<LocalService>;
+  /**
+   * Total number of items.
+   * @type {number}
+   * @memberof LocalServicesCursoring
+   */
+  total: number;
 }
 /**
  * Locale to use, defaults to DE. - DE (German) - EN (English) - FR (French) - IT (Italian)
@@ -498,41 +679,91 @@ export enum Locale {
 }
 
 /**
- * Detailed operational [Betrieb] information.
+ * Locker [Schließfach] equipment of a particular station [Bahnhof].
  * @export
- * @interface Operational
+ * @interface Locker
  */
-export interface Operational {
+export interface Locker {
   /**
-   * Total length of platform [Baulicher Bereich].
+   * Amount of units of the locker.
    * @type {number}
-   * @memberof Operational
+   * @memberof Locker
    */
-  length?: number;
+  amount: number;
   /**
-   * Orientation of the platform in degrees (north=0, east=90, ...), seen from the origin of the local coordinates.
+   *
+   * @type {LockerDimension}
+   * @memberof Locker
+   */
+  dimension?: LockerDimension;
+  /**
+   *
+   * @type {LockerFee}
+   * @memberof Locker
+   */
+  fee?: LockerFee;
+  /**
+   * Maximum lease duration [Mietdauer] for use of a single unit of the locker in ISO8601 (for instance \'P3Y6M4DT12H30M17S\').
+   * @type {string}
+   * @memberof Locker
+   */
+  maxLeaseDuration?: string;
+  /**
+   * Supported payment types for locker usage. Possible values are: - CASH (cash payment available) - CASHLESS (other payment options than cash available)
+   * @type {Array<string>}
+   * @memberof Locker
+   */
+  paymentTypes: Array<string>;
+  /**
+   * Size of the locker. Possible values are: - SMALL - MEDIUM - LARGE - JUMBO
+   * @type {string}
+   * @memberof Locker
+   */
+  size: string;
+}
+/**
+ * Dimension [Ausmaße] for lockers [Schließfächer].
+ * @export
+ * @interface LockerDimension
+ */
+export interface LockerDimension {
+  /**
+   * Locker depth of a single unit in mm of the locker.
    * @type {number}
-   * @memberof Operational
+   * @memberof LockerDimension
    */
-  orientation?: number;
+  depth: number;
   /**
-   * Positions of the reference points that determine the position of a stopping train at the platform.
-   * @type {Array<ReferencePoint>}
-   * @memberof Operational
+   * Locker height of a single unit in mm of the locker.
+   * @type {number}
+   * @memberof LockerDimension
    */
-  referencePoints?: Array<ReferencePoint>;
+  height: number;
   /**
-   * Names of the operational units [Optiken] that belong to the platform.
-   * @type {Array<string>}
-   * @memberof Operational
+   * Locker width of a single unit in mm of the locker.
+   * @type {number}
+   * @memberof LockerDimension
    */
-  optics?: Array<string>;
+  width: number;
+}
+/**
+ * Fee [Mietgebühr] for leasing lockers [Schliefächer].
+ * @export
+ * @interface LockerFee
+ */
+export interface LockerFee {
   /**
-   * Names of the network platforms [Netzgleis] that belong to the platform.
-   * @type {Array<string>}
-   * @memberof Operational
+   * Fee for locker usage in cents (currency is EUR). Refers to fee period.
+   * @type {number}
+   * @memberof LockerFee
    */
-  networkPlatforms?: Array<string>;
+  fee: number;
+  /**
+   * Period the refers to. Possible values are: - PER_MAX_LEASE_DURATION (fee must be payed per max lease duration) - PER_HOUR (fee must be payed per hour) - PER_DAY (fee must be payed per day)
+   * @type {string}
+   * @memberof LockerFee
+   */
+  feePeriod: string;
 }
 /**
  * Specifies different personae. - HANDICAPPED (Handicaped [MER] slow traveller, not able to use stairs and escalators) - OCCASIONAL_TRAVELLER (Occasional traveller [Gelegenheits-Reisender / Standard-Reisender] having mean walking speed. This is the default traveller.) - FREQUENT_TRAVELLER (Frequent traveller [Pendler] having higher speed than occasional traveller.)
@@ -553,17 +784,17 @@ export enum PersonaType {
  */
 export interface PhoneNumber {
   /**
-   *
-   * @type {PhoneNumberType}
-   * @memberof PhoneNumber
-   */
-  type: PhoneNumberType;
-  /**
    * phone number of contact.
    * @type {string}
    * @memberof PhoneNumber
    */
   number: string;
+  /**
+   *
+   * @type {PhoneNumberType}
+   * @memberof PhoneNumber
+   */
+  type: PhoneNumberType;
 }
 /**
  * Enumerates all phone types.
@@ -584,23 +815,29 @@ export enum PhoneNumberType {
  */
 export interface Platform {
   /**
-   * Name of the platform (12, 1a, Nord, Süd etc.).
-   * @type {string}
+   *
+   * @type {Accessibility}
    * @memberof Platform
    */
-  name: string;
-  /**
-   * Start of the usable part of the platform given in meter in local coordinates. This value may differ from zero and may be positive as well as negative.
-   * @type {number}
-   * @memberof Platform
-   */
-  start?: number;
+  accessibility?: Accessibility;
   /**
    * End of the usable part of the platform given in meter in local coordinates.
    * @type {number}
    * @memberof Platform
    */
   end?: number;
+  /**
+   * Indicates whether platform is a head platform [Kopfgleis].
+   * @type {boolean}
+   * @memberof Platform
+   */
+  headPlatform?: boolean;
+  /**
+   * IFOPT (transmodel identifier for fixed objects, in germany DHID = Deutschlandweite Halt ID also known as global id) of the platform [Gleis] (for instance \'de:06412:10:17:18\').
+   * @type {string}
+   * @memberof Platform
+   */
+  ifopt?: string;
   /**
    * Total length of platform [Baulicher Bereich].
    * @type {number}
@@ -614,17 +851,17 @@ export interface Platform {
    */
   linkedPlatforms?: Array<string>;
   /**
-   * Name of parent platform in case this is a subplatform [Teilgleis].
+   * Name of the platform (12, 1a, Nord, Süd etc.).
+   * @type {string}
+   * @memberof Platform
+   */
+  name: string;
+  /**
+   * Name of parent platform in case this is a sub platform [Teilgleis].
    * @type {string}
    * @memberof Platform
    */
   parentPlatform?: string;
-  /**
-   * Indicates whether platform is a head platform [Kopfgleis].
-   * @type {boolean}
-   * @memberof Platform
-   */
-  headPlatform?: boolean;
   /**
    * List of sectors [Sektoren] that belong to the platform.
    * @type {Array<Sector>}
@@ -632,17 +869,11 @@ export interface Platform {
    */
   sectors?: Array<Sector>;
   /**
-   *
-   * @type {Accessibility}
+   * Start of the usable part of the platform given in meter in local coordinates. This value may differ from zero and may be positive as well as negative.
+   * @type {number}
    * @memberof Platform
    */
-  accessibility?: Accessibility;
-  /**
-   *
-   * @type {Operational}
-   * @memberof Platform
-   */
-  operational?: Operational;
+  start?: number;
 }
 /**
  * List of platforms [Gleise, Bahnsteige, Plattformen] for a station.
@@ -651,11 +882,11 @@ export interface Platform {
  */
 export interface Platforms {
   /**
-   *
+   * List of platforms.
    * @type {Array<Platform>}
    * @memberof Platforms
    */
-  platforms?: Array<Platform>;
+  platforms: Array<Platform>;
 }
 /**
  * Reference point that indicates where a vehicle [Fahrzeug] stops at a platform [Gleis, Bahnsteig, Plattform].
@@ -664,11 +895,11 @@ export interface Platforms {
  */
 export interface ReferencePoint {
   /**
-   * Unique ID of reference point.
-   * @type {string}
+   * Length up to the reference point is to be used by a stopping formation.
+   * @type {number}
    * @memberof ReferencePoint
    */
-  uuid: string;
+  maxLength?: number;
   /**
    * Name of the reference point.
    * @type {string}
@@ -676,29 +907,29 @@ export interface ReferencePoint {
    */
   name: string;
   /**
-   *
-   * @type {ReferencePointType}
-   * @memberof ReferencePoint
-   */
-  referencePointType: ReferencePointType;
-  /**
    * Position of the reference point in meter in local coordinates.
    * @type {number}
    * @memberof ReferencePoint
    */
   position: number;
   /**
-   * Length up to the reference point is to be used by a stopping formation.
-   * @type {number}
-   * @memberof ReferencePoint
-   */
-  maxLength?: number;
-  /**
    * Determines the direction the reference point is to be used. If true, the formation moves from origin to positive values in local coordinates.
    * @type {boolean}
    * @memberof ReferencePoint
    */
   readableFromOrigin: boolean;
+  /**
+   *
+   * @type {ReferencePointType}
+   * @memberof ReferencePoint
+   */
+  referencePointType: ReferencePointType;
+  /**
+   * Unique ID of reference point.
+   * @type {string}
+   * @memberof ReferencePoint
+   */
+  uuid: string;
 }
 /**
  * Type of a reference point. - STOP_SIGNAL (Haltesignal) - STOP_BOARD (Haltetafel)
@@ -718,6 +949,24 @@ export enum ReferencePointType {
  */
 export interface Sector {
   /**
+   * Position of the cube [Sektorwürfel] given in meters in local coordinates.
+   * @type {number}
+   * @memberof Sector
+   */
+  cubePosition?: number;
+  /**
+   * Indicates whether cube [Sektorwürfel] has signage [Beschilderung] nor not.
+   * @type {boolean}
+   * @memberof Sector
+   */
+  cubeSignage?: boolean;
+  /**
+   * End of the sector given in meters in local coordinates.
+   * @type {number}
+   * @memberof Sector
+   */
+  end: number;
+  /**
    * Name of the sector [Sektor / Mast etc.].
    * @type {string}
    * @memberof Sector
@@ -729,24 +978,6 @@ export interface Sector {
    * @memberof Sector
    */
   start: number;
-  /**
-   * End of the sector given in meters in local coordinates.
-   * @type {number}
-   * @memberof Sector
-   */
-  end: number;
-  /**
-   * Position of the cube [Sektorwuerfel] given in meters in local coordinates.
-   * @type {number}
-   * @memberof Sector
-   */
-  cubePosition?: number;
-  /**
-   * Indicates whether cube [Sektorwuerfel] has signage [Beschilderung] nor not.
-   * @type {boolean}
-   * @memberof Sector
-   */
-  cubeSignage?: boolean;
 }
 /**
  * Base information for a station [Bahnhof].
@@ -755,35 +986,18 @@ export interface Sector {
  */
 export interface Station {
   /**
-   * Unique id of station [Bahnhof], usually the STADA for S&S owned stations.
-   * @type {string}
-   * @memberof Station
-   */
-  stationID: string;
-  /**
-   * Language dependent names for a station, may contain different station names for a specific language depending on names filter.
-   * @type {{ [key: string]: StationName; }}
-   * @memberof Station
-   */
-  names: { [key: string]: StationName };
-  /**
-   * Language dependent names for metropolis [Metropole].
-   * @type {{ [key: string]: string; }}
-   * @memberof Station
-   */
-  metropolis?: { [key: string]: string };
-  /**
    *
    * @type {AddressWithWeb}
    * @memberof Station
    */
   address: AddressWithWeb;
   /**
-   *
-   * @type {StationCategory}
+   * Deprecated: Use for example \'/local-services/by-key?keyType=STATION_ID&key=1866\' to get all available local-services for Frankfurt Hbf. All local services [Bahnhofsnahe Dienstleistungen] that are available at the station. - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit & Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundbüro] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
+   * @type {Array<string>}
    * @memberof Station
+   * @deprecated
    */
-  stationCategory?: StationCategory;
+  availableLocalServices: Array<string>;
   /**
    * Available transport types [Verkehrsarten] at station.
    * @type {Array<TransportType>}
@@ -791,23 +1005,29 @@ export interface Station {
    */
   availableTransports: Array<TransportType>;
   /**
-   * All local services [Bahnhofsnahe Dienstleistungen] that are available at the station. - MOBILITY [Mobilitätseingeschränkten-Service] - LOST_PROPERTY [Fundbuero] - INFORMATION [Information] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [Information] - DB_LOUNGE [DB Lounge] - RAILWAY_MISSION [Bahnhofsmission] - CAR_HIRE [Mietwagen] - CYCLE_HIRE [Mieträder] - TAXI [Taxi Stand]
-   * @type {Array<string>}
+   * Country [Staat / Land] the station belongs to as ISO 3166-1 alpha-2 code [germany = \'DE\' for instance].
+   * @type {string}
    * @memberof Station
    */
-  availableLocalServices: Array<string>;
+  countryCode: string;
   /**
-   *
-   * @type {StationRoofingType}
+   * The district [Landkreis] the stop place belongs to.
+   * @type {string}
    * @memberof Station
    */
-  roofing?: StationRoofingType;
+  district?: string;
   /**
-   *
-   * @type {StationOwner}
+   * Language dependent names for metropolis [Metropole].
+   * @type {{ [key: string]: string; }}
    * @memberof Station
    */
-  owner: StationOwner;
+  metropolis?: { [key: string]: string };
+  /**
+   * Language dependent names for a station, may contain different station names for a specific language depending on names filter.
+   * @type {{ [key: string]: StationName; }}
+   * @memberof Station
+   */
+  names: { [key: string]: StationName };
   /**
    * Opening times for station in OSM notation (see https://wiki.openstreetmap.org/wiki/DE:Key:opening_hours).
    * @type {string}
@@ -815,17 +1035,53 @@ export interface Station {
    */
   openingHours?: string;
   /**
-   * Country [Staat / Land] the station belongs to as ISO 3166-1 alpha-2 code [germany = \'DE\' for instance].
+   *
+   * @type {StationOwner}
+   * @memberof Station
+   */
+  owner: StationOwner;
+  /**
+   *
+   * @type {Coordinate2D}
+   * @memberof Station
+   */
+  position?: Coordinate2D;
+  /**
+   *
+   * @type {StationRoofingType}
+   * @memberof Station
+   */
+  roofing?: StationRoofingType;
+  /**
+   * The state [Bundesland] the stop place belongs to.
    * @type {string}
    * @memberof Station
    */
-  countryCode: string;
+  state?: string;
   /**
-   * Timezone the station belongs to, for instance \'Europe/Berlin\'. Must not necessarly be the time zone of the geo coordinate.
+   *
+   * @type {StationCategory}
+   * @memberof Station
+   */
+  stationCategory?: StationCategory;
+  /**
+   * Unique id of station [Bahnhof], usually the STADA for S&S owned stations.
+   * @type {string}
+   * @memberof Station
+   */
+  stationID: string;
+  /**
+   * Timezone the station belongs to, for instance \'Europe/Berlin\'. Must not necessarily be the time zone of the geo coordinate.
    * @type {string}
    * @memberof Station
    */
   timeZone: string;
+  /**
+   * Available transport associations [Verkehrsverbünde] at station.
+   * @type {Array<string>}
+   * @memberof Station
+   */
+  transportAssociations?: Array<string>;
   /**
    * Date the station is valid from.
    * @type {string}
@@ -838,12 +1094,6 @@ export interface Station {
    * @memberof Station
    */
   validTo?: string;
-  /**
-   *
-   * @type {Coordinate2D}
-   * @memberof Station
-   */
-  position?: Coordinate2D;
 }
 /**
  * Category of station conforming to DB Station & Service..
@@ -862,48 +1112,6 @@ export enum StationCategory {
 }
 
 /**
- * Key mapping for a station [Bahnhof].
- * @export
- * @interface StationKey
- */
-export interface StationKey {
-  /**
-   *
-   * @type {StationKeyType}
-   * @memberof StationKey
-   */
-  type: StationKeyType;
-  /**
-   * Key value.
-   * @type {string}
-   * @memberof StationKey
-   */
-  key: string;
-}
-/**
- * Enumerates all identifiers a station [Bahnhof] can be mapped into or mapped from. - STADA (statitionsdatenbank number)
- * @export
- * @enum {string}
- */
-
-export enum StationKeyType {
-  Stada = 'STADA',
-}
-
-/**
- * Different key mappings a station [Bahnhof] may have.
- * @export
- * @interface StationKeys
- */
-export interface StationKeys {
-  /**
-   * List of station keys.
-   * @type {Array<StationKey>}
-   * @memberof StationKeys
-   */
-  keys: Array<StationKey>;
-}
-/**
  * Name information for a station [Bahnhof].
  * @export
  * @interface StationName
@@ -917,116 +1125,29 @@ export interface StationName {
   name: string;
 }
 /**
- * Station occupancy [Bahnhofauslastung] list for a week.
+ * Organisational unit [Regionalbereich] information, usually from DB Netz.
  * @export
- * @interface StationOccupancies
+ * @interface StationOrganisationalUnit
  */
-export interface StationOccupancies {
+export interface StationOrganisationalUnit {
   /**
-   *
-   * @type {Array<StationOccupancyPerDay>}
-   * @memberof StationOccupancies
+   * Number of organisational unit.
+   * @type {number}
+   * @memberof StationOrganisationalUnit
    */
-  occupancies?: Array<StationOccupancyPerDay>;
-}
-/**
- * Possible station occupancy [Bahnhofauslastung] indications. - LESS_THAN_NORMAL (Less visitors than usual [Weniger Besucher als üblich]) - NORMAL (Usual number of visitors [Übliches Besucheraufkommen]) - MORE_THAN_NORMAL (More visitors than usual [Mehr Besucher als üblich]) - UNKNOWN (There is currently no information about the number of visitors [Es liegen zur Zeit keine Informationen über das Besucheraufkommen vor])
- * @export
- * @enum {string}
- */
-
-export enum StationOccupancyIndicator {
-  LessThanNormal = 'LESS_THAN_NORMAL',
-  Normal = 'NORMAL',
-  MoreThanNormal = 'MORE_THAN_NORMAL',
-  Unknown = 'UNKNOWN',
-}
-
-/**
- * Station occupancy [Bahnhofauslastung] for a particular day.
- * @export
- * @interface StationOccupancyPerDay
- */
-export interface StationOccupancyPerDay {
+  id: number;
   /**
-   * Start datetime of the occupancy for this particular day as fully qualified datetime (for instance \'2019-08-19T12:56:14+02:00\' or \'2019-08-19T10:56:14Z\').
+   * Name of organisational unit.
    * @type {string}
-   * @memberof StationOccupancyPerDay
+   * @memberof StationOrganisationalUnit
    */
-  start: string;
+  name: string;
   /**
-   * End datetime of the occupancy for this particular day as fully qualified datetime (for instance \'2019-08-19T12:56:14+02:00\' or \'2019-08-19T10:56:14Z\').
+   * Short name of organisational unit, may be empty.
    * @type {string}
-   * @memberof StationOccupancyPerDay
+   * @memberof StationOrganisationalUnit
    */
-  end: string;
-  /**
-   * Max value of the current occupancy for the timespan defined by start and end.
-   * @type {number}
-   * @memberof StationOccupancyPerDay
-   */
-  currentCountMax: number;
-  /**
-   * Max value of the average occupancy for the timespan defined by start and end.
-   * @type {number}
-   * @memberof StationOccupancyPerDay
-   */
-  averageCountMax: number;
-  /**
-   * List of occupancy time slots.
-   * @type {Array<StationOccupancyTimeSlot>}
-   * @memberof StationOccupancyPerDay
-   */
-  timeSlots: Array<StationOccupancyTimeSlot>;
-}
-/**
- * Station occupancy [Bahnhofauslastung] time slot with information about current and average counts.
- * @export
- * @interface StationOccupancyTimeSlot
- */
-export interface StationOccupancyTimeSlot {
-  /**
-   * Start datetime of the occupancy for this particular time slot as fully qualified datetime (for instance \'2019-08-19T12:56:14+02:00\' or \'2019-08-19T10:56:14Z\').
-   * @type {string}
-   * @memberof StationOccupancyTimeSlot
-   */
-  start: string;
-  /**
-   * End datetime of the occupancy for this particular time slot as fully qualified datetime (for instance \'2019-08-19T12:56:14+02:00\' or \'2019-08-19T10:56:14Z\').
-   * @type {string}
-   * @memberof StationOccupancyTimeSlot
-   */
-  end: string;
-  /**
-   * Current occupancy of the time slot.
-   * @type {number}
-   * @memberof StationOccupancyTimeSlot
-   */
-  currentCount?: number;
-  /**
-   * Average occupancy of the time slot.
-   * @type {number}
-   * @memberof StationOccupancyTimeSlot
-   */
-  averageCount?: number;
-  /**
-   * Current occupancy percentage of the time slot.
-   * @type {number}
-   * @memberof StationOccupancyTimeSlot
-   */
-  currentPercentage?: number;
-  /**
-   *
-   * @type {StationOccupancyIndicator}
-   * @memberof StationOccupancyTimeSlot
-   */
-  value: StationOccupancyIndicator;
-  /**
-   * Language dependent occupancy level description.
-   * @type {{ [key: string]: string; }}
-   * @memberof StationOccupancyTimeSlot
-   */
-  descriptions: { [key: string]: string };
+  nameShort?: string;
 }
 /**
  * Base information for a stations [Bahnhof] owner [Eigentümer / Betreiber].
@@ -1035,14 +1156,20 @@ export interface StationOccupancyTimeSlot {
  */
 export interface StationOwner {
   /**
-   * Name of owner
+   * Name of owner.
    * @type {string}
    * @memberof StationOwner
    */
   name: string;
+  /**
+   *
+   * @type {StationOrganisationalUnit}
+   * @memberof StationOwner
+   */
+  organisationalUnit?: StationOrganisationalUnit;
 }
 /**
- * Defines station roofing [Bahnhofsueberdachung]. - COVERED [überdacht] - PARTIALLY_COVERED [teilweise überdacht] - NOT_COVERED [nicht überdacht]
+ * Defines station roofing [Bahnhofsüberdachung]. - COVERED [überdacht] - PARTIALLY_COVERED [teilweise überdacht] - NOT_COVERED [nicht überdacht]
  * @export
  * @enum {string}
  */
@@ -1054,17 +1181,24 @@ export enum StationRoofingType {
 }
 
 /**
+ * Stations [Bahnhof] result.
+ * @export
+ * @interface Stations
+ */
+export interface Stations {
+  /**
+   * List of stations.
+   * @type {Array<Station>}
+   * @memberof Stations
+   */
+  stations: Array<Station>;
+}
+/**
  * Pageable stations search result.
  * @export
  * @interface StationsPageable
  */
 export interface StationsPageable {
-  /**
-   * Pagination offset of the results, provided by the consumer.
-   * @type {number}
-   * @memberof StationsPageable
-   */
-  offset: number;
   /**
    * Maximum number of results that may be returned for one page, provided by the consumer.
    * @type {number}
@@ -1072,48 +1206,30 @@ export interface StationsPageable {
    */
   limit: number;
   /**
+   * Pagination offset of the results, provided by the consumer.
+   * @type {number}
+   * @memberof StationsPageable
+   */
+  offset: number;
+  /**
+   * List of stations.
+   * @type {Array<Station>}
+   * @memberof StationsPageable
+   */
+  stations: Array<Station>;
+  /**
    * Total number of available results.
    * @type {number}
    * @memberof StationsPageable
    */
   total: number;
-  /**
-   *
-   * @type {Array<Station>}
-   * @memberof StationsPageable
-   */
-  stations?: Array<Station>;
 }
 /**
- * Base information for a stop place [Haltestelle].
+ * Base information for a stop-place [Haltestelle].
  * @export
  * @interface StopPlace
  */
 export interface StopPlace {
-  /**
-   * Eva number of stop place.
-   * @type {string}
-   * @memberof StopPlace
-   */
-  evaNumber: string;
-  /**
-   * ID of station [Bahnhof] the stop place belongs to [usually the STADA code for S&S], may be empty when stop place is not part of a station.
-   * @type {string}
-   * @memberof StopPlace
-   */
-  stationID?: string;
-  /**
-   * Language dependent names for stop place, may contain different stop place names for a specific language depending on names filter.
-   * @type {{ [key: string]: StopPlaceName; }}
-   * @memberof StopPlace
-   */
-  names: { [key: string]: StopPlaceName };
-  /**
-   * Language dependent name for metropolis [Metropole].
-   * @type {{ [key: string]: string; }}
-   * @memberof StopPlace
-   */
-  metropolis?: { [key: string]: string };
   /**
    * Available transport types [Verkehrsarten] at stop place.
    * @type {Array<TransportType>}
@@ -1127,11 +1243,53 @@ export interface StopPlace {
    */
   countryCode: string;
   /**
-   * Timezone the stop place belongs to, for instance \'Europe/Berlin\'. Must not necessarly be the time zone of the geo coordinate.
+   * Eva number of stop place.
+   * @type {string}
+   * @memberof StopPlace
+   */
+  evaNumber: string;
+  /**
+   * Language dependent name for metropolis [Metropole].
+   * @type {{ [key: string]: string; }}
+   * @memberof StopPlace
+   */
+  metropolis?: { [key: string]: string };
+  /**
+   * Language dependent names for stop place, may contain different stop place names for a specific language depending on names filter.
+   * @type {{ [key: string]: StopPlaceName; }}
+   * @memberof StopPlace
+   */
+  names: { [key: string]: StopPlaceName };
+  /**
+   *
+   * @type {Coordinate2D}
+   * @memberof StopPlace
+   */
+  position?: Coordinate2D;
+  /**
+   * The state code [Bundeslandkürzel] the stop place belongs to.
+   * @type {string}
+   * @memberof StopPlace
+   */
+  state?: string;
+  /**
+   * ID of station [Bahnhof] the stop place belongs to [usually the STADA code for DB S&S], may be empty when stop place is not part of a station.
+   * @type {string}
+   * @memberof StopPlace
+   */
+  stationID?: string;
+  /**
+   * Timezone the stop place belongs to, for instance \'Europe/Berlin\'. Must not necessarily be the time zone of the geo coordinate.
    * @type {string}
    * @memberof StopPlace
    */
   timeZone: string;
+  /**
+   * Available transport associations [Verkehrsverbünde] at stop place.
+   * @type {Array<string>}
+   * @memberof StopPlace
+   */
+  transportAssociations?: Array<string>;
   /**
    * Date the stop place is valid from.
    * @type {string}
@@ -1144,12 +1302,6 @@ export interface StopPlace {
    * @memberof StopPlace
    */
   validTo?: string;
-  /**
-   *
-   * @type {Coordinate2D}
-   * @memberof StopPlace
-   */
-  position?: Coordinate2D;
 }
 /**
  * Group for stop places [Haltestellen] with all group members.
@@ -1158,20 +1310,20 @@ export interface StopPlace {
  */
 export interface StopPlaceGroup {
   /**
-   *
-   * @type {StopPlaceGroupType}
-   * @memberof StopPlaceGroup
-   */
-  type: StopPlaceGroupType;
-  /**
    * List of stop place ids [Eva-Number] that belong to the group.
    * @type {Array<string>}
    * @memberof StopPlaceGroup
    */
   members: Array<string>;
+  /**
+   *
+   * @type {StopPlaceGroupType}
+   * @memberof StopPlaceGroup
+   */
+  type: StopPlaceGroupType;
 }
 /**
- * Possible groups [Station] a set of stop places [Haltestellen] may belong to. - STATION (group defined by station, for instance FFM = Hoch + Tief, maintained by S&S STADA hierachy) - SALES (group defined by sales [Vertrieb], for instance FFM = Hoch + Tief + Bus + Tram + Subway, maintained by DB Vertrieb via EFZ [Europäisches Fahrplanzentrum]) - METROPOLITAN_AREA (group defined by sales [Vertrieb], for instance Stadtgebiet FFM = all big stations within FFM, maintained by DB Vertrieb via EFZ [Europäisches Fahrplanzentrum])
+ * Possible groups [Station] a set of stop places [Haltestellen] may belong to. - STATION (group defined by station, for instance FFM = Hoch + Tief, maintained by S&S STADA hierarchy) - SALES (group defined by sales [Vertrieb], for instance FFM = Hoch + Tief + Bus + Tram + Subway, maintained by DB Vertrieb via EFZ [Europäisches Fahrplanzentrum]) - METROPOLITAN_AREA (group defined by sales [Vertrieb], for instance Stadtgebiet FFM = all big stations within FFM, maintained by DB Vertrieb via EFZ [Europäisches Fahrplanzentrum])
  * @export
  * @enum {string}
  */
@@ -1202,20 +1354,20 @@ export interface StopPlaceGroups {
  */
 export interface StopPlaceKey {
   /**
-   *
-   * @type {StopPlaceKeyType}
-   * @memberof StopPlaceKey
-   */
-  type: StopPlaceKeyType;
-  /**
    * Key value.
    * @type {string}
    * @memberof StopPlaceKey
    */
   key: string;
+  /**
+   *
+   * @type {StopPlaceKeyType}
+   * @memberof StopPlaceKey
+   */
+  type: StopPlaceKeyType;
 }
 /**
- * Enumerates all identifiers a stop-place [Haltestelle] can be mapped from. - IFOPT (transmodel identifier for fixed objects, in germany dhid = Deutschlandweite Halt ID also known as global id) - EVA (eva number) - RL100 (primary or alternative rl100 / ds100) - EPA (epa uic number) - STADA (statitionsdatenbank number) - IBNR (internal station number [interne bahnhofsnummer]) - EBHF ([Tarifpunktnummer / Einheitliche Bahnhofsdatei Nr.]) - UIC (international station number)
+ * Enumerates all identifiers a stop-place [Haltestelle] can be mapped from. - IFOPT (Transmodel identifier for fixed objects, in germany DHID = Deutschlandweite Halt ID also known as global id) - EVA (eva number) - RL100 (primary or alternative rl100 / ds100) - EPA (epa uic number) - STADA (Stationsdatenbank number) - IBNR (internal station number [interne bahnhofsnummer]) - EBHF ([Tarifpunktnummer / Einheitliche Bahnhofsdatei Nr.]) - UIC (international station number) - PLC (primary location code)
  * @export
  * @enum {string}
  */
@@ -1229,10 +1381,11 @@ export enum StopPlaceKeyFilter {
   Ibnr = 'IBNR',
   Ebhf = 'EBHF',
   Uic = 'UIC',
+  Plc = 'PLC',
 }
 
 /**
- * Enumerates all identifiers a stop-place [Haltestelle] can be mapped into or mapped from. - IFOPT (transmodel identifier for fixed objects, in germany dhid = Deutschlandweite Halt ID also known as global id) - EVA (eva number) - RL100 (primary rl100 / ds100) - RL100_ALTERNATIVE (alternative rl100 / ds100) - EPA (epa number) - STADA (statitionsdatenbank number) - IBNR (internal station number [interne bahnhofsnummer]) - EBHF ([Tarifpunktnummer / Einheitliche Bahnhofsdatei Nr.]) - UIC (international station number)
+ * Enumerates all identifiers a stop-place [Haltestelle] can be mapped into or mapped from. - IFOPT (Transmodel identifier for fixed objects, in germany DHID = Deutschlandweite Halt ID also known as global id) - EVA (eva number) - RL100 (primary rl100 / ds100) - RL100_ALTERNATIVE (alternative rl100 / ds100) - EPA (epa number) - STADA (Stationsdatenbank number) - IBNR (internal station number [interne bahnhofsnummer]) - EBHF ([Tarifpunktnummer / Einheitliche Bahnhofsdatei Nr.]) - UIC (international station number) - PLC (primary location code)
  * @export
  * @enum {string}
  */
@@ -1247,6 +1400,7 @@ export enum StopPlaceKeyType {
   Ibnr = 'IBNR',
   Ebhf = 'EBHF',
   Uic = 'UIC',
+  Plc = 'PLC',
 }
 
 /**
@@ -1269,6 +1423,12 @@ export interface StopPlaceKeys {
  */
 export interface StopPlaceName {
   /**
+   * Name that is applicable for local areas, for instance \'Berlin Zoologischer Garten\' may become \'B Zoologischer Garten\'.
+   * @type {string}
+   * @memberof StopPlaceName
+   */
+  nameLocal?: string;
+  /**
    * Full long name for stop place.
    * @type {string}
    * @memberof StopPlaceName
@@ -1280,12 +1440,6 @@ export interface StopPlaceName {
    * @memberof StopPlaceName
    */
   nameShort?: string;
-  /**
-   * Name that is applicable for local areas, for instance \'Berlin Zoologischer Garten\' may become \'B Zoologischer Garten\'.
-   * @type {string}
-   * @memberof StopPlaceName
-   */
-  nameLocal?: string;
   /**
    * Long name speech information for stop place [Haltestelle].
    * @type {string}
@@ -1306,13 +1460,14 @@ export interface StopPlaceName {
   symbol?: string;
 }
 /**
- * Different grouping options for stop places name query. - STATION (group by parent station that is defined by DB Station & Services STADA-ID) - NONE (no grouping is applied, just stop-places are returned)
+ * Different grouping options for stop places name query. - STATION (group by parent station that is defined by DB Station & Services STADA-ID) - SALES (group defined by sales [Vertrieb], for instance FFM = Hoch + Tief + Bus + Tram + Subway, maintained by DB Vertrieb via EFZ [Europäisches Fahrplanzentrum]) - NONE (no grouping is applied, just stop-places are returned)
  * @export
  * @enum {string}
  */
 
 export enum StopPlaceSearchGroupByKey {
   Station = 'STATION',
+  Sales = 'SALES',
   None = 'NONE',
 }
 
@@ -1323,17 +1478,17 @@ export enum StopPlaceSearchGroupByKey {
  */
 export interface StopPlaceSearchResult {
   /**
+   * Available transport types [Verkehrsarten] at stop place.
+   * @type {Array<TransportType>}
+   * @memberof StopPlaceSearchResult
+   */
+  availableTransports: Array<TransportType>;
+  /**
    * Eva number of stop place.
    * @type {string}
    * @memberof StopPlaceSearchResult
    */
   evaNumber: string;
-  /**
-   * ID of station [Bahnhof] the stop place belongs to [usually the STADA code for S&S], may be empty when stop place is not part of a station.
-   * @type {string}
-   * @memberof StopPlaceSearchResult
-   */
-  stationID?: string;
   /**
    * TBD
    * @type {Array<string>}
@@ -1347,17 +1502,17 @@ export interface StopPlaceSearchResult {
    */
   names: { [key: string]: StopPlaceName };
   /**
-   * Available transport types [Verkehrsarten] at stop place.
-   * @type {Array<TransportType>}
-   * @memberof StopPlaceSearchResult
-   */
-  availableTransports: Array<TransportType>;
-  /**
    *
    * @type {Coordinate2D}
    * @memberof StopPlaceSearchResult
    */
   position?: Coordinate2D;
+  /**
+   * ID of station [Bahnhof] the stop place belongs to [usually the STADA code for DB S&S], may be empty when stop place is not part of a station.
+   * @type {string}
+   * @memberof StopPlaceSearchResult
+   */
+  stationID?: string;
 }
 /**
  * Stop place [Haltestelle] search result.
@@ -1366,7 +1521,7 @@ export interface StopPlaceSearchResult {
  */
 export interface StopPlaceSearchResults {
   /**
-   *
+   * Stop places matching provided search criteria.
    * @type {Array<StopPlaceSearchResult>}
    * @memberof StopPlaceSearchResults
    */
@@ -1390,7 +1545,7 @@ export enum StopPlaceSortKey {
  */
 export interface StopPlaces {
   /**
-   *
+   * Stop places matching provided criteria.
    * @type {Array<StopPlace>}
    * @memberof StopPlaces
    */
@@ -1403,29 +1558,29 @@ export interface StopPlaces {
  */
 export interface StopPlacesPageable {
   /**
-   * Pagination offset of the results, provided by the consumer.
-   * @type {number}
-   * @memberof StopPlacesPageable
-   */
-  offset: number;
-  /**
    * Maximum number of results that may be returned for one page, provided by the consumer.
    * @type {number}
    * @memberof StopPlacesPageable
    */
   limit: number;
   /**
+   * Pagination offset of the results, provided by the consumer.
+   * @type {number}
+   * @memberof StopPlacesPageable
+   */
+  offset: number;
+  /**
+   * Stop places matching provided search criteria.
+   * @type {Array<StopPlace>}
+   * @memberof StopPlacesPageable
+   */
+  stopPlaces?: Array<StopPlace>;
+  /**
    * Total number of available results.
    * @type {number}
    * @memberof StopPlacesPageable
    */
   total: number;
-  /**
-   *
-   * @type {Array<StopPlace>}
-   * @memberof StopPlacesPageable
-   */
-  stopPlaces?: Array<StopPlace>;
 }
 /**
  * Type of transport. - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - FLIGHT (Flight [Flugzeug]) - CAR (Car [Auto]) - TAXI (Taxi) - SHUTTLE (Shuttle [Ruftaxi]) - BIKE ((E-)Bike [Fahrrad]) - SCOOTER ((E-)Scooter [Roller]) - WALK (Walk ([Laufen]) - UNKNOWN (Unknown)
@@ -1462,19 +1617,19 @@ export const ConnectingTimesApiAxiosParamCreator = function (
 ) {
   return {
     /**
-     * Returns a particular connecting time [Umsteigezeite] for a combination of from / to stop-place [Haltestelle] with optional consideration of platform [Gleis, Bahnsteig, Plattform] and sectors [Gleisabschnitt, Steigabschnitt]. Source for connecting times is at least the DB guideline RIL420, if available information from the EFZ and in case of a digitialized station a real indoor mapping with different persona types. In case the combination of from / to can\'t be found or we don\'t have detailed information for this combination, a fallback structure is returned that contains the best available information. Meaning if sectors can\'t be found, but platforms, we use them. If platorms can\'t be found, but stop-places we use them. If stop-places can\'t be found, we use the default connecting-time for fromEvaNumber.
+     * Returns a particular connecting time [Umsteigezeiten] for a combination of from / to stop-place [Haltestelle] with optional consideration of platform [Gleis, Bahnsteig, Plattform] and sectors [Gleisabschnitt, Steigabschnitt]. Source for connecting times is at least the DB guideline RIL420, if available information from the EFZ and in case of a digitalized station a real indoor mapping with different persona types. In case the combination of from / to can\'t be found or we don\'t have detailed information for this combination, a fallback structure is returned that contains the best available information. Meaning if sectors can\'t be found, but platforms, we use them. If platforms can\'t be found, but stop-places we use them. If stop-places can\'t be found, we use the default connecting-time for fromEvaNumber.
      * @param {string} fromEvaNumber eva number of desired origin stop place
      * @param {string} toEvaNumber eva number of desired destination stop place
      * @param {string} [fromPlatform] platform to calculate time origin, if omitted fallback structure will be used
      * @param {string} [fromSector] sector to calculate time origin, if omitted fallback is platform level
      * @param {string} [toPlatform] platform to calculate time destination, if omitted fallback structure will be used
-     * @param {string} [toSector] sector to calculate times destination, if omitted fallback is platorm level
-     * @param {Array<PersonaType>} [personaTypes] persona types that should be returned (if more than 1 is available), defaults to all personae if omitted - HANDICAPPED (Handicaped [MER] slow traveller, not able to use stairs and escalators) - OCCASIONAL_TRAVELLER (Occasional traveller [Gelegenheits-Reisender / Standard-Reisender] having mean walking speed. This is the default traveller.) - FREQUENT_TRAVELLER (Frequent traveller [Pendler] having higher speed than occasional traveller.)
+     * @param {string} [toSector] sector to calculate times destination, if omitted fallback is platform level
+     * @param {Array<PersonaType>} [personaTypes] persona types that should be returned (if more than 1 is available), defaults to all personae if omitted - HANDICAPPED (Handicapped [MER] slow traveller, not able to use stairs and escalators) - OCCASIONAL_TRAVELLER (Occasional traveller [Gelegenheits-Reisender / Standard-Reisender] having mean walking speed. This is the default traveller.) - FREQUENT_TRAVELLER (Frequent traveller [Pendler] having higher speed than occasional traveller.)
      * @param {Array<ConnectingTimeSource>} [source] sources for connecting-times to consider for building the result, if omitted the best available source will be returned [order is RIL420 &lt; EFZ &lt; INDOOR_ROUTING] - RIL420 (connecting time is based on DB guideline RIL420) - EFZ (connecting time is based on EFZ &#x3D; Europäisches Fahrplanzentrum) - INDOOR_ROUTING (connecting time is based on real indoor routing information from ris-maps system)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    connectingTime: async (
+    getConnectingTime: async (
       fromEvaNumber: string,
       toEvaNumber: string,
       fromPlatform?: string,
@@ -1486,9 +1641,9 @@ export const ConnectingTimesApiAxiosParamCreator = function (
       options: any = {},
     ): Promise<RequestArgs> => {
       // verify required parameter 'fromEvaNumber' is not null or undefined
-      assertParamExists('connectingTime', 'fromEvaNumber', fromEvaNumber);
+      assertParamExists('getConnectingTime', 'fromEvaNumber', fromEvaNumber);
       // verify required parameter 'toEvaNumber' is not null or undefined
-      assertParamExists('connectingTime', 'toEvaNumber', toEvaNumber);
+      assertParamExists('getConnectingTime', 'toEvaNumber', toEvaNumber);
       const localVarPath = `/connecting-times/{fromEvaNumber}/{toEvaNumber}`
         .replace(
           `{${'fromEvaNumber'}}`,
@@ -1510,7 +1665,14 @@ export const ConnectingTimesApiAxiosParamCreator = function (
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
 
-      // authentication DB-Api-Key required
+      // authentication ClientId required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Client-Id',
+        configuration,
+      );
+
+      // authentication ClientSecret required
       await setApiKeyToObject(
         localVarHeaderParameter,
         'DB-Api-Key',
@@ -1556,16 +1718,16 @@ export const ConnectingTimesApiAxiosParamCreator = function (
       };
     },
     /**
-     * Returns connecting times [Umsteigezeiten] matrix for a set of stop-places [Haltestellen] belonging to a particular group on a platform [Gleis, Bahnsteig, Plattform] or optional sector [Gleisabschnitt, Steigabschnitt] level. Source for connecting times is at least the DB guideline RIL420, if available information from the EFZ and in case of a digitialized station a real indoor mapping with different persona types. Returned connecting-times are not transitive, meaning if you ask for \'FFM Hbf\' you get all times starting from there for instance \'FFM Hbf\' to \'FFM Hbf (tief)\', and not the opposite direction from \'FFM Hbf (tief)\' to \'FFM Hbf\'. The returned information must be read in the following way: - find a combination of fromEvaNumber, fromPlatform, fromSector and toEvaNumber, toPlatform, toSector - if nothing found, try the same without the sector information - if nothing found, try the same without the platform information - if nothing found, try the same with fromEvaNumber = toEvaNumber
+     * Returns connecting times [Umsteigezeiten] matrix for a set of stop-places [Haltestellen] belonging to a particular group on a platform [Gleis, Bahnsteig, Plattform] or optional sector [Gleisabschnitt, Steigabschnitt] level. Source for connecting times is at least the DB guideline RIL420, if available information from the EFZ and in case of a digitalized station a real indoor mapping with different persona types. Returned connecting-times are not transitive, meaning if you ask for \'FFM Hbf\' you get all times starting from there for instance \'FFM Hbf\' to \'FFM Hbf (tief)\', and not the opposite direction from \'FFM Hbf (tief)\' to \'FFM Hbf\'. The returned information must be read in the following way: - find a combination of fromEvaNumber, fromPlatform, fromSector and toEvaNumber, toPlatform, toSector - if nothing found, try the same without the sector information - if nothing found, try the same without the platform information - if nothing found, try the same with fromEvaNumber = toEvaNumber
      * @param {string} evaNumber eva number of desired origin stop place
-     * @param {ConnectingTimeGroup} [group] stop place group [Bahnhof / Umsteigebereich] to consider connecting times for, defaults to SALES if omitted - STATION (return connecting-times for stop-place and all members of the same station [Bahnhof] - SALES (return connecting-times for stop-place and all members of the sales group [EFZ / Vertrieb inkl. OEPNV] - ALL (return connecting-times for stop-place and all members of all groups the stop-place belongs to [all we have]
+     * @param {ConnectingTimeGroup} [group] stop place group [Bahnhof / Umsteigebereich] to consider connecting times for, defaults to SALES if omitted - STATION (return connecting-times for stop-place and all members of the same station [Bahnhof] - SALES (return connecting-times for stop-place and all members of the sales group [EFZ / Vertrieb inkl. ÖPNV] - ALL (return connecting-times for stop-place and all members of all groups the stop-place belongs to [all we have]
      * @param {boolean} [calculateSectors] should connecting times be calculated based on sector level, otherwise platform level
-     * @param {Array<PersonaType>} [personaTypes] persona types that should be returned (if more than 1 is available), defaults to all personae if omitted - HANDICAPPED (Handicaped [MER] slow traveller, not able to use stairs and escalators) - OCCASIONAL_TRAVELLER (Occasional traveller [Gelegenheits-Reisender / Standard-Reisender] having mean walking speed. This is the default traveller.) - FREQUENT_TRAVELLER (Frequent traveller [Pendler] having higher speed than occasional traveller.)
-     * @param {Array<ConnectingTimeSourceFilter>} [source] sources for connecting-times to consider for building the result, if omitted the best available source will be returned [order is RIL420 &lt; EFZ &lt; INDOOR_ROUTING]; in case nothing can be found FALLBACK will be returned allthough the filter may not contain it - RIL420 (connecting time is based on DB guideline RIL420) - EFZ (connecting time is based on EFZ &#x3D; Europäisches Fahrplanzentrum) - INDOOR_ROUTING (connecting time is based on real indoor routing information from ris-maps system)
+     * @param {Array<PersonaType>} [personaTypes] persona types that should be returned (if more than 1 is available), defaults to all personae if omitted - HANDICAPPED (Handicapped [MER] slow traveller, not able to use stairs and escalators) - OCCASIONAL_TRAVELLER (Occasional traveller [Gelegenheits-Reisender / Standard-Reisender] having mean walking speed. This is the default traveller.) - FREQUENT_TRAVELLER (Frequent traveller [Pendler] having higher speed than occasional traveller.)
+     * @param {Array<ConnectingTimeSourceFilter>} [source] sources for connecting-times to consider for building the result, if omitted the best available source will be returned [order is RIL420 &lt; EFZ &lt; INDOOR_ROUTING]; in case nothing can be found FALLBACK will be returned although the filter may not contain it - RIL420 (connecting time is based on DB guideline RIL420) - EFZ (connecting time is based on EFZ &#x3D; Europäisches Fahrplanzentrum) - INDOOR_ROUTING (connecting time is based on real indoor routing information from ris-maps system)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    connectingTimes: async (
+    getConnectingTimes: async (
       evaNumber: string,
       group?: ConnectingTimeGroup,
       calculateSectors?: boolean,
@@ -1574,7 +1736,7 @@ export const ConnectingTimesApiAxiosParamCreator = function (
       options: any = {},
     ): Promise<RequestArgs> => {
       // verify required parameter 'evaNumber' is not null or undefined
-      assertParamExists('connectingTimes', 'evaNumber', evaNumber);
+      assertParamExists('getConnectingTimes', 'evaNumber', evaNumber);
       const localVarPath = `/connecting-times/{evaNumber}`.replace(
         `{${'evaNumber'}}`,
         encodeURIComponent(String(evaNumber)),
@@ -1594,7 +1756,14 @@ export const ConnectingTimesApiAxiosParamCreator = function (
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
 
-      // authentication DB-Api-Key required
+      // authentication ClientId required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Client-Id',
+        configuration,
+      );
+
+      // authentication ClientSecret required
       await setApiKeyToObject(
         localVarHeaderParameter,
         'DB-Api-Key',
@@ -1643,19 +1812,19 @@ export const ConnectingTimesApiFp = function (configuration?: Configuration) {
     ConnectingTimesApiAxiosParamCreator(configuration);
   return {
     /**
-     * Returns a particular connecting time [Umsteigezeite] for a combination of from / to stop-place [Haltestelle] with optional consideration of platform [Gleis, Bahnsteig, Plattform] and sectors [Gleisabschnitt, Steigabschnitt]. Source for connecting times is at least the DB guideline RIL420, if available information from the EFZ and in case of a digitialized station a real indoor mapping with different persona types. In case the combination of from / to can\'t be found or we don\'t have detailed information for this combination, a fallback structure is returned that contains the best available information. Meaning if sectors can\'t be found, but platforms, we use them. If platorms can\'t be found, but stop-places we use them. If stop-places can\'t be found, we use the default connecting-time for fromEvaNumber.
+     * Returns a particular connecting time [Umsteigezeiten] for a combination of from / to stop-place [Haltestelle] with optional consideration of platform [Gleis, Bahnsteig, Plattform] and sectors [Gleisabschnitt, Steigabschnitt]. Source for connecting times is at least the DB guideline RIL420, if available information from the EFZ and in case of a digitalized station a real indoor mapping with different persona types. In case the combination of from / to can\'t be found or we don\'t have detailed information for this combination, a fallback structure is returned that contains the best available information. Meaning if sectors can\'t be found, but platforms, we use them. If platforms can\'t be found, but stop-places we use them. If stop-places can\'t be found, we use the default connecting-time for fromEvaNumber.
      * @param {string} fromEvaNumber eva number of desired origin stop place
      * @param {string} toEvaNumber eva number of desired destination stop place
      * @param {string} [fromPlatform] platform to calculate time origin, if omitted fallback structure will be used
      * @param {string} [fromSector] sector to calculate time origin, if omitted fallback is platform level
      * @param {string} [toPlatform] platform to calculate time destination, if omitted fallback structure will be used
-     * @param {string} [toSector] sector to calculate times destination, if omitted fallback is platorm level
-     * @param {Array<PersonaType>} [personaTypes] persona types that should be returned (if more than 1 is available), defaults to all personae if omitted - HANDICAPPED (Handicaped [MER] slow traveller, not able to use stairs and escalators) - OCCASIONAL_TRAVELLER (Occasional traveller [Gelegenheits-Reisender / Standard-Reisender] having mean walking speed. This is the default traveller.) - FREQUENT_TRAVELLER (Frequent traveller [Pendler] having higher speed than occasional traveller.)
+     * @param {string} [toSector] sector to calculate times destination, if omitted fallback is platform level
+     * @param {Array<PersonaType>} [personaTypes] persona types that should be returned (if more than 1 is available), defaults to all personae if omitted - HANDICAPPED (Handicapped [MER] slow traveller, not able to use stairs and escalators) - OCCASIONAL_TRAVELLER (Occasional traveller [Gelegenheits-Reisender / Standard-Reisender] having mean walking speed. This is the default traveller.) - FREQUENT_TRAVELLER (Frequent traveller [Pendler] having higher speed than occasional traveller.)
      * @param {Array<ConnectingTimeSource>} [source] sources for connecting-times to consider for building the result, if omitted the best available source will be returned [order is RIL420 &lt; EFZ &lt; INDOOR_ROUTING] - RIL420 (connecting time is based on DB guideline RIL420) - EFZ (connecting time is based on EFZ &#x3D; Europäisches Fahrplanzentrum) - INDOOR_ROUTING (connecting time is based on real indoor routing information from ris-maps system)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async connectingTime(
+    async getConnectingTime(
       fromEvaNumber: string,
       toEvaNumber: string,
       fromPlatform?: string,
@@ -1671,17 +1840,18 @@ export const ConnectingTimesApiFp = function (configuration?: Configuration) {
         basePath?: string,
       ) => AxiosPromise<ConnectingTimesSingle>
     > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.connectingTime(
-        fromEvaNumber,
-        toEvaNumber,
-        fromPlatform,
-        fromSector,
-        toPlatform,
-        toSector,
-        personaTypes,
-        source,
-        options,
-      );
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.getConnectingTime(
+          fromEvaNumber,
+          toEvaNumber,
+          fromPlatform,
+          fromSector,
+          toPlatform,
+          toSector,
+          personaTypes,
+          source,
+          options,
+        );
       return createRequestFunction(
         localVarAxiosArgs,
         globalAxios,
@@ -1690,16 +1860,16 @@ export const ConnectingTimesApiFp = function (configuration?: Configuration) {
       );
     },
     /**
-     * Returns connecting times [Umsteigezeiten] matrix for a set of stop-places [Haltestellen] belonging to a particular group on a platform [Gleis, Bahnsteig, Plattform] or optional sector [Gleisabschnitt, Steigabschnitt] level. Source for connecting times is at least the DB guideline RIL420, if available information from the EFZ and in case of a digitialized station a real indoor mapping with different persona types. Returned connecting-times are not transitive, meaning if you ask for \'FFM Hbf\' you get all times starting from there for instance \'FFM Hbf\' to \'FFM Hbf (tief)\', and not the opposite direction from \'FFM Hbf (tief)\' to \'FFM Hbf\'. The returned information must be read in the following way: - find a combination of fromEvaNumber, fromPlatform, fromSector and toEvaNumber, toPlatform, toSector - if nothing found, try the same without the sector information - if nothing found, try the same without the platform information - if nothing found, try the same with fromEvaNumber = toEvaNumber
+     * Returns connecting times [Umsteigezeiten] matrix for a set of stop-places [Haltestellen] belonging to a particular group on a platform [Gleis, Bahnsteig, Plattform] or optional sector [Gleisabschnitt, Steigabschnitt] level. Source for connecting times is at least the DB guideline RIL420, if available information from the EFZ and in case of a digitalized station a real indoor mapping with different persona types. Returned connecting-times are not transitive, meaning if you ask for \'FFM Hbf\' you get all times starting from there for instance \'FFM Hbf\' to \'FFM Hbf (tief)\', and not the opposite direction from \'FFM Hbf (tief)\' to \'FFM Hbf\'. The returned information must be read in the following way: - find a combination of fromEvaNumber, fromPlatform, fromSector and toEvaNumber, toPlatform, toSector - if nothing found, try the same without the sector information - if nothing found, try the same without the platform information - if nothing found, try the same with fromEvaNumber = toEvaNumber
      * @param {string} evaNumber eva number of desired origin stop place
-     * @param {ConnectingTimeGroup} [group] stop place group [Bahnhof / Umsteigebereich] to consider connecting times for, defaults to SALES if omitted - STATION (return connecting-times for stop-place and all members of the same station [Bahnhof] - SALES (return connecting-times for stop-place and all members of the sales group [EFZ / Vertrieb inkl. OEPNV] - ALL (return connecting-times for stop-place and all members of all groups the stop-place belongs to [all we have]
+     * @param {ConnectingTimeGroup} [group] stop place group [Bahnhof / Umsteigebereich] to consider connecting times for, defaults to SALES if omitted - STATION (return connecting-times for stop-place and all members of the same station [Bahnhof] - SALES (return connecting-times for stop-place and all members of the sales group [EFZ / Vertrieb inkl. ÖPNV] - ALL (return connecting-times for stop-place and all members of all groups the stop-place belongs to [all we have]
      * @param {boolean} [calculateSectors] should connecting times be calculated based on sector level, otherwise platform level
-     * @param {Array<PersonaType>} [personaTypes] persona types that should be returned (if more than 1 is available), defaults to all personae if omitted - HANDICAPPED (Handicaped [MER] slow traveller, not able to use stairs and escalators) - OCCASIONAL_TRAVELLER (Occasional traveller [Gelegenheits-Reisender / Standard-Reisender] having mean walking speed. This is the default traveller.) - FREQUENT_TRAVELLER (Frequent traveller [Pendler] having higher speed than occasional traveller.)
-     * @param {Array<ConnectingTimeSourceFilter>} [source] sources for connecting-times to consider for building the result, if omitted the best available source will be returned [order is RIL420 &lt; EFZ &lt; INDOOR_ROUTING]; in case nothing can be found FALLBACK will be returned allthough the filter may not contain it - RIL420 (connecting time is based on DB guideline RIL420) - EFZ (connecting time is based on EFZ &#x3D; Europäisches Fahrplanzentrum) - INDOOR_ROUTING (connecting time is based on real indoor routing information from ris-maps system)
+     * @param {Array<PersonaType>} [personaTypes] persona types that should be returned (if more than 1 is available), defaults to all personae if omitted - HANDICAPPED (Handicapped [MER] slow traveller, not able to use stairs and escalators) - OCCASIONAL_TRAVELLER (Occasional traveller [Gelegenheits-Reisender / Standard-Reisender] having mean walking speed. This is the default traveller.) - FREQUENT_TRAVELLER (Frequent traveller [Pendler] having higher speed than occasional traveller.)
+     * @param {Array<ConnectingTimeSourceFilter>} [source] sources for connecting-times to consider for building the result, if omitted the best available source will be returned [order is RIL420 &lt; EFZ &lt; INDOOR_ROUTING]; in case nothing can be found FALLBACK will be returned although the filter may not contain it - RIL420 (connecting time is based on DB guideline RIL420) - EFZ (connecting time is based on EFZ &#x3D; Europäisches Fahrplanzentrum) - INDOOR_ROUTING (connecting time is based on real indoor routing information from ris-maps system)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async connectingTimes(
+    async getConnectingTimes(
       evaNumber: string,
       group?: ConnectingTimeGroup,
       calculateSectors?: boolean,
@@ -1712,14 +1882,15 @@ export const ConnectingTimesApiFp = function (configuration?: Configuration) {
         basePath?: string,
       ) => AxiosPromise<ConnectingTimesBatch>
     > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.connectingTimes(
-        evaNumber,
-        group,
-        calculateSectors,
-        personaTypes,
-        source,
-        options,
-      );
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.getConnectingTimes(
+          evaNumber,
+          group,
+          calculateSectors,
+          personaTypes,
+          source,
+          options,
+        );
       return createRequestFunction(
         localVarAxiosArgs,
         globalAxios,
@@ -1742,19 +1913,19 @@ export const ConnectingTimesApiFactory = function (
   const localVarFp = ConnectingTimesApiFp(configuration);
   return {
     /**
-     * Returns a particular connecting time [Umsteigezeite] for a combination of from / to stop-place [Haltestelle] with optional consideration of platform [Gleis, Bahnsteig, Plattform] and sectors [Gleisabschnitt, Steigabschnitt]. Source for connecting times is at least the DB guideline RIL420, if available information from the EFZ and in case of a digitialized station a real indoor mapping with different persona types. In case the combination of from / to can\'t be found or we don\'t have detailed information for this combination, a fallback structure is returned that contains the best available information. Meaning if sectors can\'t be found, but platforms, we use them. If platorms can\'t be found, but stop-places we use them. If stop-places can\'t be found, we use the default connecting-time for fromEvaNumber.
+     * Returns a particular connecting time [Umsteigezeiten] for a combination of from / to stop-place [Haltestelle] with optional consideration of platform [Gleis, Bahnsteig, Plattform] and sectors [Gleisabschnitt, Steigabschnitt]. Source for connecting times is at least the DB guideline RIL420, if available information from the EFZ and in case of a digitalized station a real indoor mapping with different persona types. In case the combination of from / to can\'t be found or we don\'t have detailed information for this combination, a fallback structure is returned that contains the best available information. Meaning if sectors can\'t be found, but platforms, we use them. If platforms can\'t be found, but stop-places we use them. If stop-places can\'t be found, we use the default connecting-time for fromEvaNumber.
      * @param {string} fromEvaNumber eva number of desired origin stop place
      * @param {string} toEvaNumber eva number of desired destination stop place
      * @param {string} [fromPlatform] platform to calculate time origin, if omitted fallback structure will be used
      * @param {string} [fromSector] sector to calculate time origin, if omitted fallback is platform level
      * @param {string} [toPlatform] platform to calculate time destination, if omitted fallback structure will be used
-     * @param {string} [toSector] sector to calculate times destination, if omitted fallback is platorm level
-     * @param {Array<PersonaType>} [personaTypes] persona types that should be returned (if more than 1 is available), defaults to all personae if omitted - HANDICAPPED (Handicaped [MER] slow traveller, not able to use stairs and escalators) - OCCASIONAL_TRAVELLER (Occasional traveller [Gelegenheits-Reisender / Standard-Reisender] having mean walking speed. This is the default traveller.) - FREQUENT_TRAVELLER (Frequent traveller [Pendler] having higher speed than occasional traveller.)
+     * @param {string} [toSector] sector to calculate times destination, if omitted fallback is platform level
+     * @param {Array<PersonaType>} [personaTypes] persona types that should be returned (if more than 1 is available), defaults to all personae if omitted - HANDICAPPED (Handicapped [MER] slow traveller, not able to use stairs and escalators) - OCCASIONAL_TRAVELLER (Occasional traveller [Gelegenheits-Reisender / Standard-Reisender] having mean walking speed. This is the default traveller.) - FREQUENT_TRAVELLER (Frequent traveller [Pendler] having higher speed than occasional traveller.)
      * @param {Array<ConnectingTimeSource>} [source] sources for connecting-times to consider for building the result, if omitted the best available source will be returned [order is RIL420 &lt; EFZ &lt; INDOOR_ROUTING] - RIL420 (connecting time is based on DB guideline RIL420) - EFZ (connecting time is based on EFZ &#x3D; Europäisches Fahrplanzentrum) - INDOOR_ROUTING (connecting time is based on real indoor routing information from ris-maps system)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    connectingTime(
+    getConnectingTime(
       fromEvaNumber: string,
       toEvaNumber: string,
       fromPlatform?: string,
@@ -1766,7 +1937,7 @@ export const ConnectingTimesApiFactory = function (
       options?: any,
     ): AxiosPromise<ConnectingTimesSingle> {
       return localVarFp
-        .connectingTime(
+        .getConnectingTime(
           fromEvaNumber,
           toEvaNumber,
           fromPlatform,
@@ -1780,16 +1951,16 @@ export const ConnectingTimesApiFactory = function (
         .then((request) => request(axios, basePath));
     },
     /**
-     * Returns connecting times [Umsteigezeiten] matrix for a set of stop-places [Haltestellen] belonging to a particular group on a platform [Gleis, Bahnsteig, Plattform] or optional sector [Gleisabschnitt, Steigabschnitt] level. Source for connecting times is at least the DB guideline RIL420, if available information from the EFZ and in case of a digitialized station a real indoor mapping with different persona types. Returned connecting-times are not transitive, meaning if you ask for \'FFM Hbf\' you get all times starting from there for instance \'FFM Hbf\' to \'FFM Hbf (tief)\', and not the opposite direction from \'FFM Hbf (tief)\' to \'FFM Hbf\'. The returned information must be read in the following way: - find a combination of fromEvaNumber, fromPlatform, fromSector and toEvaNumber, toPlatform, toSector - if nothing found, try the same without the sector information - if nothing found, try the same without the platform information - if nothing found, try the same with fromEvaNumber = toEvaNumber
+     * Returns connecting times [Umsteigezeiten] matrix for a set of stop-places [Haltestellen] belonging to a particular group on a platform [Gleis, Bahnsteig, Plattform] or optional sector [Gleisabschnitt, Steigabschnitt] level. Source for connecting times is at least the DB guideline RIL420, if available information from the EFZ and in case of a digitalized station a real indoor mapping with different persona types. Returned connecting-times are not transitive, meaning if you ask for \'FFM Hbf\' you get all times starting from there for instance \'FFM Hbf\' to \'FFM Hbf (tief)\', and not the opposite direction from \'FFM Hbf (tief)\' to \'FFM Hbf\'. The returned information must be read in the following way: - find a combination of fromEvaNumber, fromPlatform, fromSector and toEvaNumber, toPlatform, toSector - if nothing found, try the same without the sector information - if nothing found, try the same without the platform information - if nothing found, try the same with fromEvaNumber = toEvaNumber
      * @param {string} evaNumber eva number of desired origin stop place
-     * @param {ConnectingTimeGroup} [group] stop place group [Bahnhof / Umsteigebereich] to consider connecting times for, defaults to SALES if omitted - STATION (return connecting-times for stop-place and all members of the same station [Bahnhof] - SALES (return connecting-times for stop-place and all members of the sales group [EFZ / Vertrieb inkl. OEPNV] - ALL (return connecting-times for stop-place and all members of all groups the stop-place belongs to [all we have]
+     * @param {ConnectingTimeGroup} [group] stop place group [Bahnhof / Umsteigebereich] to consider connecting times for, defaults to SALES if omitted - STATION (return connecting-times for stop-place and all members of the same station [Bahnhof] - SALES (return connecting-times for stop-place and all members of the sales group [EFZ / Vertrieb inkl. ÖPNV] - ALL (return connecting-times for stop-place and all members of all groups the stop-place belongs to [all we have]
      * @param {boolean} [calculateSectors] should connecting times be calculated based on sector level, otherwise platform level
-     * @param {Array<PersonaType>} [personaTypes] persona types that should be returned (if more than 1 is available), defaults to all personae if omitted - HANDICAPPED (Handicaped [MER] slow traveller, not able to use stairs and escalators) - OCCASIONAL_TRAVELLER (Occasional traveller [Gelegenheits-Reisender / Standard-Reisender] having mean walking speed. This is the default traveller.) - FREQUENT_TRAVELLER (Frequent traveller [Pendler] having higher speed than occasional traveller.)
-     * @param {Array<ConnectingTimeSourceFilter>} [source] sources for connecting-times to consider for building the result, if omitted the best available source will be returned [order is RIL420 &lt; EFZ &lt; INDOOR_ROUTING]; in case nothing can be found FALLBACK will be returned allthough the filter may not contain it - RIL420 (connecting time is based on DB guideline RIL420) - EFZ (connecting time is based on EFZ &#x3D; Europäisches Fahrplanzentrum) - INDOOR_ROUTING (connecting time is based on real indoor routing information from ris-maps system)
+     * @param {Array<PersonaType>} [personaTypes] persona types that should be returned (if more than 1 is available), defaults to all personae if omitted - HANDICAPPED (Handicapped [MER] slow traveller, not able to use stairs and escalators) - OCCASIONAL_TRAVELLER (Occasional traveller [Gelegenheits-Reisender / Standard-Reisender] having mean walking speed. This is the default traveller.) - FREQUENT_TRAVELLER (Frequent traveller [Pendler] having higher speed than occasional traveller.)
+     * @param {Array<ConnectingTimeSourceFilter>} [source] sources for connecting-times to consider for building the result, if omitted the best available source will be returned [order is RIL420 &lt; EFZ &lt; INDOOR_ROUTING]; in case nothing can be found FALLBACK will be returned although the filter may not contain it - RIL420 (connecting time is based on DB guideline RIL420) - EFZ (connecting time is based on EFZ &#x3D; Europäisches Fahrplanzentrum) - INDOOR_ROUTING (connecting time is based on real indoor routing information from ris-maps system)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    connectingTimes(
+    getConnectingTimes(
       evaNumber: string,
       group?: ConnectingTimeGroup,
       calculateSectors?: boolean,
@@ -1798,7 +1969,7 @@ export const ConnectingTimesApiFactory = function (
       options?: any,
     ): AxiosPromise<ConnectingTimesBatch> {
       return localVarFp
-        .connectingTimes(
+        .getConnectingTimes(
           evaNumber,
           group,
           calculateSectors,
@@ -1812,106 +1983,106 @@ export const ConnectingTimesApiFactory = function (
 };
 
 /**
- * Request parameters for connectingTime operation in ConnectingTimesApi.
+ * Request parameters for getConnectingTime operation in ConnectingTimesApi.
  * @export
- * @interface ConnectingTimesApiConnectingTimeRequest
+ * @interface ConnectingTimesApiGetConnectingTimeRequest
  */
-export interface ConnectingTimesApiConnectingTimeRequest {
+export interface ConnectingTimesApiGetConnectingTimeRequest {
   /**
    * eva number of desired origin stop place
    * @type {string}
-   * @memberof ConnectingTimesApiConnectingTime
+   * @memberof ConnectingTimesApiGetConnectingTime
    */
   readonly fromEvaNumber: string;
 
   /**
    * eva number of desired destination stop place
    * @type {string}
-   * @memberof ConnectingTimesApiConnectingTime
+   * @memberof ConnectingTimesApiGetConnectingTime
    */
   readonly toEvaNumber: string;
 
   /**
    * platform to calculate time origin, if omitted fallback structure will be used
    * @type {string}
-   * @memberof ConnectingTimesApiConnectingTime
+   * @memberof ConnectingTimesApiGetConnectingTime
    */
   readonly fromPlatform?: string;
 
   /**
    * sector to calculate time origin, if omitted fallback is platform level
    * @type {string}
-   * @memberof ConnectingTimesApiConnectingTime
+   * @memberof ConnectingTimesApiGetConnectingTime
    */
   readonly fromSector?: string;
 
   /**
    * platform to calculate time destination, if omitted fallback structure will be used
    * @type {string}
-   * @memberof ConnectingTimesApiConnectingTime
+   * @memberof ConnectingTimesApiGetConnectingTime
    */
   readonly toPlatform?: string;
 
   /**
-   * sector to calculate times destination, if omitted fallback is platorm level
+   * sector to calculate times destination, if omitted fallback is platform level
    * @type {string}
-   * @memberof ConnectingTimesApiConnectingTime
+   * @memberof ConnectingTimesApiGetConnectingTime
    */
   readonly toSector?: string;
 
   /**
-   * persona types that should be returned (if more than 1 is available), defaults to all personae if omitted - HANDICAPPED (Handicaped [MER] slow traveller, not able to use stairs and escalators) - OCCASIONAL_TRAVELLER (Occasional traveller [Gelegenheits-Reisender / Standard-Reisender] having mean walking speed. This is the default traveller.) - FREQUENT_TRAVELLER (Frequent traveller [Pendler] having higher speed than occasional traveller.)
+   * persona types that should be returned (if more than 1 is available), defaults to all personae if omitted - HANDICAPPED (Handicapped [MER] slow traveller, not able to use stairs and escalators) - OCCASIONAL_TRAVELLER (Occasional traveller [Gelegenheits-Reisender / Standard-Reisender] having mean walking speed. This is the default traveller.) - FREQUENT_TRAVELLER (Frequent traveller [Pendler] having higher speed than occasional traveller.)
    * @type {Array<PersonaType>}
-   * @memberof ConnectingTimesApiConnectingTime
+   * @memberof ConnectingTimesApiGetConnectingTime
    */
   readonly personaTypes?: Array<PersonaType>;
 
   /**
    * sources for connecting-times to consider for building the result, if omitted the best available source will be returned [order is RIL420 &lt; EFZ &lt; INDOOR_ROUTING] - RIL420 (connecting time is based on DB guideline RIL420) - EFZ (connecting time is based on EFZ &#x3D; Europäisches Fahrplanzentrum) - INDOOR_ROUTING (connecting time is based on real indoor routing information from ris-maps system)
    * @type {Array<ConnectingTimeSource>}
-   * @memberof ConnectingTimesApiConnectingTime
+   * @memberof ConnectingTimesApiGetConnectingTime
    */
   readonly source?: Array<ConnectingTimeSource>;
 }
 
 /**
- * Request parameters for connectingTimes operation in ConnectingTimesApi.
+ * Request parameters for getConnectingTimes operation in ConnectingTimesApi.
  * @export
- * @interface ConnectingTimesApiConnectingTimesRequest
+ * @interface ConnectingTimesApiGetConnectingTimesRequest
  */
-export interface ConnectingTimesApiConnectingTimesRequest {
+export interface ConnectingTimesApiGetConnectingTimesRequest {
   /**
    * eva number of desired origin stop place
    * @type {string}
-   * @memberof ConnectingTimesApiConnectingTimes
+   * @memberof ConnectingTimesApiGetConnectingTimes
    */
   readonly evaNumber: string;
 
   /**
-   * stop place group [Bahnhof / Umsteigebereich] to consider connecting times for, defaults to SALES if omitted - STATION (return connecting-times for stop-place and all members of the same station [Bahnhof] - SALES (return connecting-times for stop-place and all members of the sales group [EFZ / Vertrieb inkl. OEPNV] - ALL (return connecting-times for stop-place and all members of all groups the stop-place belongs to [all we have]
+   * stop place group [Bahnhof / Umsteigebereich] to consider connecting times for, defaults to SALES if omitted - STATION (return connecting-times for stop-place and all members of the same station [Bahnhof] - SALES (return connecting-times for stop-place and all members of the sales group [EFZ / Vertrieb inkl. ÖPNV] - ALL (return connecting-times for stop-place and all members of all groups the stop-place belongs to [all we have]
    * @type {ConnectingTimeGroup}
-   * @memberof ConnectingTimesApiConnectingTimes
+   * @memberof ConnectingTimesApiGetConnectingTimes
    */
   readonly group?: ConnectingTimeGroup;
 
   /**
    * should connecting times be calculated based on sector level, otherwise platform level
    * @type {boolean}
-   * @memberof ConnectingTimesApiConnectingTimes
+   * @memberof ConnectingTimesApiGetConnectingTimes
    */
   readonly calculateSectors?: boolean;
 
   /**
-   * persona types that should be returned (if more than 1 is available), defaults to all personae if omitted - HANDICAPPED (Handicaped [MER] slow traveller, not able to use stairs and escalators) - OCCASIONAL_TRAVELLER (Occasional traveller [Gelegenheits-Reisender / Standard-Reisender] having mean walking speed. This is the default traveller.) - FREQUENT_TRAVELLER (Frequent traveller [Pendler] having higher speed than occasional traveller.)
+   * persona types that should be returned (if more than 1 is available), defaults to all personae if omitted - HANDICAPPED (Handicapped [MER] slow traveller, not able to use stairs and escalators) - OCCASIONAL_TRAVELLER (Occasional traveller [Gelegenheits-Reisender / Standard-Reisender] having mean walking speed. This is the default traveller.) - FREQUENT_TRAVELLER (Frequent traveller [Pendler] having higher speed than occasional traveller.)
    * @type {Array<PersonaType>}
-   * @memberof ConnectingTimesApiConnectingTimes
+   * @memberof ConnectingTimesApiGetConnectingTimes
    */
   readonly personaTypes?: Array<PersonaType>;
 
   /**
-   * sources for connecting-times to consider for building the result, if omitted the best available source will be returned [order is RIL420 &lt; EFZ &lt; INDOOR_ROUTING]; in case nothing can be found FALLBACK will be returned allthough the filter may not contain it - RIL420 (connecting time is based on DB guideline RIL420) - EFZ (connecting time is based on EFZ &#x3D; Europäisches Fahrplanzentrum) - INDOOR_ROUTING (connecting time is based on real indoor routing information from ris-maps system)
+   * sources for connecting-times to consider for building the result, if omitted the best available source will be returned [order is RIL420 &lt; EFZ &lt; INDOOR_ROUTING]; in case nothing can be found FALLBACK will be returned although the filter may not contain it - RIL420 (connecting time is based on DB guideline RIL420) - EFZ (connecting time is based on EFZ &#x3D; Europäisches Fahrplanzentrum) - INDOOR_ROUTING (connecting time is based on real indoor routing information from ris-maps system)
    * @type {Array<ConnectingTimeSourceFilter>}
-   * @memberof ConnectingTimesApiConnectingTimes
+   * @memberof ConnectingTimesApiGetConnectingTimes
    */
   readonly source?: Array<ConnectingTimeSourceFilter>;
 }
@@ -1924,18 +2095,18 @@ export interface ConnectingTimesApiConnectingTimesRequest {
  */
 export class ConnectingTimesApi extends BaseAPI {
   /**
-   * Returns a particular connecting time [Umsteigezeite] for a combination of from / to stop-place [Haltestelle] with optional consideration of platform [Gleis, Bahnsteig, Plattform] and sectors [Gleisabschnitt, Steigabschnitt]. Source for connecting times is at least the DB guideline RIL420, if available information from the EFZ and in case of a digitialized station a real indoor mapping with different persona types. In case the combination of from / to can\'t be found or we don\'t have detailed information for this combination, a fallback structure is returned that contains the best available information. Meaning if sectors can\'t be found, but platforms, we use them. If platorms can\'t be found, but stop-places we use them. If stop-places can\'t be found, we use the default connecting-time for fromEvaNumber.
-   * @param {ConnectingTimesApiConnectingTimeRequest} requestParameters Request parameters.
+   * Returns a particular connecting time [Umsteigezeiten] for a combination of from / to stop-place [Haltestelle] with optional consideration of platform [Gleis, Bahnsteig, Plattform] and sectors [Gleisabschnitt, Steigabschnitt]. Source for connecting times is at least the DB guideline RIL420, if available information from the EFZ and in case of a digitalized station a real indoor mapping with different persona types. In case the combination of from / to can\'t be found or we don\'t have detailed information for this combination, a fallback structure is returned that contains the best available information. Meaning if sectors can\'t be found, but platforms, we use them. If platforms can\'t be found, but stop-places we use them. If stop-places can\'t be found, we use the default connecting-time for fromEvaNumber.
+   * @param {ConnectingTimesApiGetConnectingTimeRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ConnectingTimesApi
    */
-  public connectingTime(
-    requestParameters: ConnectingTimesApiConnectingTimeRequest,
+  public getConnectingTime(
+    requestParameters: ConnectingTimesApiGetConnectingTimeRequest,
     options?: any,
   ) {
     return ConnectingTimesApiFp(this.configuration)
-      .connectingTime(
+      .getConnectingTime(
         requestParameters.fromEvaNumber,
         requestParameters.toEvaNumber,
         requestParameters.fromPlatform,
@@ -1950,18 +2121,18 @@ export class ConnectingTimesApi extends BaseAPI {
   }
 
   /**
-   * Returns connecting times [Umsteigezeiten] matrix for a set of stop-places [Haltestellen] belonging to a particular group on a platform [Gleis, Bahnsteig, Plattform] or optional sector [Gleisabschnitt, Steigabschnitt] level. Source for connecting times is at least the DB guideline RIL420, if available information from the EFZ and in case of a digitialized station a real indoor mapping with different persona types. Returned connecting-times are not transitive, meaning if you ask for \'FFM Hbf\' you get all times starting from there for instance \'FFM Hbf\' to \'FFM Hbf (tief)\', and not the opposite direction from \'FFM Hbf (tief)\' to \'FFM Hbf\'. The returned information must be read in the following way: - find a combination of fromEvaNumber, fromPlatform, fromSector and toEvaNumber, toPlatform, toSector - if nothing found, try the same without the sector information - if nothing found, try the same without the platform information - if nothing found, try the same with fromEvaNumber = toEvaNumber
-   * @param {ConnectingTimesApiConnectingTimesRequest} requestParameters Request parameters.
+   * Returns connecting times [Umsteigezeiten] matrix for a set of stop-places [Haltestellen] belonging to a particular group on a platform [Gleis, Bahnsteig, Plattform] or optional sector [Gleisabschnitt, Steigabschnitt] level. Source for connecting times is at least the DB guideline RIL420, if available information from the EFZ and in case of a digitalized station a real indoor mapping with different persona types. Returned connecting-times are not transitive, meaning if you ask for \'FFM Hbf\' you get all times starting from there for instance \'FFM Hbf\' to \'FFM Hbf (tief)\', and not the opposite direction from \'FFM Hbf (tief)\' to \'FFM Hbf\'. The returned information must be read in the following way: - find a combination of fromEvaNumber, fromPlatform, fromSector and toEvaNumber, toPlatform, toSector - if nothing found, try the same without the sector information - if nothing found, try the same without the platform information - if nothing found, try the same with fromEvaNumber = toEvaNumber
+   * @param {ConnectingTimesApiGetConnectingTimesRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ConnectingTimesApi
    */
-  public connectingTimes(
-    requestParameters: ConnectingTimesApiConnectingTimesRequest,
+  public getConnectingTimes(
+    requestParameters: ConnectingTimesApiGetConnectingTimesRequest,
     options?: any,
   ) {
     return ConnectingTimesApiFp(this.configuration)
-      .connectingTimes(
+      .getConnectingTimes(
         requestParameters.evaNumber,
         requestParameters.group,
         requestParameters.calculateSectors,
@@ -1974,40 +2145,29 @@ export class ConnectingTimesApi extends BaseAPI {
 }
 
 /**
- * PlatformsApi - axios parameter creator
+ * LocalServicesApi - axios parameter creator
  * @export
  */
-export const PlatformsApiAxiosParamCreator = function (
+export const LocalServicesApiAxiosParamCreator = function (
   configuration?: Configuration,
 ) {
   return {
     /**
-     * Returns platforms [Gleise, Plattformen] that match the provided key.
-     * @param {StopPlaceKeyFilter} keyType type of stop place key the platforms belong to - IFOPT (transmodel identifier for fixed objects, in germany dhid &#x3D; Deutschlandweite Halt ID also known as global id) - EVA (eva number) - RL100 (primary or alternative rl100 / ds100) - EPA (epa number) - STADA (statitionsdatenbank number) - IBNR (internal station number [interne bahnhofsnummer])
-     * @param {string} key key to return platforms for
-     * @param {boolean} [includeSectors] should sector information be included
-     * @param {boolean} [includeAccessibility] should accessibility information [Barrierefreiheit] be included
-     * @param {boolean} [includeOperational] should operational information [Betriebsinformationen] be included
-     * @param {boolean} [includeSubPlatforms] should subplatforms [Teilgleise] be included
-     * @param {boolean} [onlyActive] indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validility time ranges are returned
+     * Returns details of a local-service [Bahnhofsnahe Dienstleistung] for requested ID.
+     * @param {string} localServiceID id of desired local-service [Bahnhofsnahe Dienstleistung]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    byKey1: async (
-      keyType: StopPlaceKeyFilter,
-      key: string,
-      includeSectors?: boolean,
-      includeAccessibility?: boolean,
-      includeOperational?: boolean,
-      includeSubPlatforms?: boolean,
-      onlyActive?: boolean,
+    getLocalService: async (
+      localServiceID: string,
       options: any = {},
     ): Promise<RequestArgs> => {
-      // verify required parameter 'keyType' is not null or undefined
-      assertParamExists('byKey1', 'keyType', keyType);
-      // verify required parameter 'key' is not null or undefined
-      assertParamExists('byKey1', 'key', key);
-      const localVarPath = `/platforms/by-key`;
+      // verify required parameter 'localServiceID' is not null or undefined
+      assertParamExists('getLocalService', 'localServiceID', localServiceID);
+      const localVarPath = `/local-services/{localServiceID}`.replace(
+        `{${'localServiceID'}}`,
+        encodeURIComponent(String(localServiceID)),
+      );
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
       let baseOptions;
@@ -2023,39 +2183,96 @@ export const PlatformsApiAxiosParamCreator = function (
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
 
-      // authentication DB-Api-Key required
+      // authentication ClientId required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Client-Id',
+        configuration,
+      );
+
+      // authentication ClientSecret required
       await setApiKeyToObject(
         localVarHeaderParameter,
         'DB-Api-Key',
         configuration,
       );
 
-      if (keyType !== undefined) {
-        localVarQueryParameter['keyType'] = keyType;
+      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Returns all local-services [Bahnhofsnahe Dienstleistungen].
+     * @param {Array<string>} types Types of local service. Possible values are: - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit &amp; Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundbüro] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
+     * @param {string} [before] Cursor for retrieving the previous page in order to navigate through result list
+     * @param {string} [after] Cursor for retrieving the next page in order to navigate through result list
+     * @param {number} [limit] Limit total amount of results
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getLocalServices: async (
+      types: Array<string>,
+      before?: string,
+      after?: string,
+      limit?: number,
+      options: any = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'types' is not null or undefined
+      assertParamExists('getLocalServices', 'types', types);
+      const localVarPath = `/local-services`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
       }
 
-      if (key !== undefined) {
-        localVarQueryParameter['key'] = key;
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ClientId required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Client-Id',
+        configuration,
+      );
+
+      // authentication ClientSecret required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Api-Key',
+        configuration,
+      );
+
+      if (types) {
+        localVarQueryParameter['types'] = types;
       }
 
-      if (includeSectors !== undefined) {
-        localVarQueryParameter['includeSectors'] = includeSectors;
+      if (before !== undefined) {
+        localVarQueryParameter['before'] = before;
       }
 
-      if (includeAccessibility !== undefined) {
-        localVarQueryParameter['includeAccessibility'] = includeAccessibility;
+      if (after !== undefined) {
+        localVarQueryParameter['after'] = after;
       }
 
-      if (includeOperational !== undefined) {
-        localVarQueryParameter['includeOperational'] = includeOperational;
-      }
-
-      if (includeSubPlatforms !== undefined) {
-        localVarQueryParameter['includeSubPlatforms'] = includeSubPlatforms;
-      }
-
-      if (onlyActive !== undefined) {
-        localVarQueryParameter['onlyActive'] = onlyActive;
+      if (limit !== undefined) {
+        localVarQueryParameter['limit'] = limit;
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
@@ -2073,29 +2290,621 @@ export const PlatformsApiAxiosParamCreator = function (
       };
     },
     /**
+     * Returns a list of local-services [Bahnhofsnahe Dienstleistungen] that match the provided key.
+     * @param {LocalServiceKeyType} keyType type of local-service key - EVA (eva number of stop-place [Haltestelle]) - STATION_ID (id of the station [Bahnhof], usually the STADA for S&amp;S owned stations)
+     * @param {string} key key to return local-services [Bahnhofsnahe Dienstleistungen] for
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getLocalServicesByKey: async (
+      keyType: LocalServiceKeyType,
+      key: string,
+      options: any = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'keyType' is not null or undefined
+      assertParamExists('getLocalServicesByKey', 'keyType', keyType);
+      // verify required parameter 'key' is not null or undefined
+      assertParamExists('getLocalServicesByKey', 'key', key);
+      const localVarPath = `/local-services/by-key`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ClientId required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Client-Id',
+        configuration,
+      );
+
+      // authentication ClientSecret required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Api-Key',
+        configuration,
+      );
+
+      if (keyType !== undefined) {
+        localVarQueryParameter['keyType'] = keyType;
+      }
+
+      if (key !== undefined) {
+        localVarQueryParameter['key'] = key;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Returns a list of local-services [Bahnhofsnahe Dienstleistungen] around geo position within provided radius ordered by distance asc.
+     * @param {Array<string>} types Types of local service. Possible values are: - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit &amp; Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundbüro] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
+     * @param {number} latitude geo reference position latitude
+     * @param {number} longitude geo reference position longitude
+     * @param {number} [radius] radius in meters around geo position
+     * @param {number} [limit] limit parameter in order to limit total amount of results, if omitted no truncation applies
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getLocalServicesByPosition: async (
+      types: Array<string>,
+      latitude: number,
+      longitude: number,
+      radius?: number,
+      limit?: number,
+      options: any = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'types' is not null or undefined
+      assertParamExists('getLocalServicesByPosition', 'types', types);
+      // verify required parameter 'latitude' is not null or undefined
+      assertParamExists('getLocalServicesByPosition', 'latitude', latitude);
+      // verify required parameter 'longitude' is not null or undefined
+      assertParamExists('getLocalServicesByPosition', 'longitude', longitude);
+      const localVarPath = `/local-services/by-position`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ClientId required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Client-Id',
+        configuration,
+      );
+
+      // authentication ClientSecret required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Api-Key',
+        configuration,
+      );
+
+      if (types) {
+        localVarQueryParameter['types'] = types;
+      }
+
+      if (latitude !== undefined) {
+        localVarQueryParameter['latitude'] = latitude;
+      }
+
+      if (longitude !== undefined) {
+        localVarQueryParameter['longitude'] = longitude;
+      }
+
+      if (radius !== undefined) {
+        localVarQueryParameter['radius'] = radius;
+      }
+
+      if (limit !== undefined) {
+        localVarQueryParameter['limit'] = limit;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+  };
+};
+
+/**
+ * LocalServicesApi - functional programming interface
+ * @export
+ */
+export const LocalServicesApiFp = function (configuration?: Configuration) {
+  const localVarAxiosParamCreator =
+    LocalServicesApiAxiosParamCreator(configuration);
+  return {
+    /**
+     * Returns details of a local-service [Bahnhofsnahe Dienstleistung] for requested ID.
+     * @param {string} localServiceID id of desired local-service [Bahnhofsnahe Dienstleistung]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getLocalService(
+      localServiceID: string,
+      options?: any,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<LocalService>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getLocalService(
+        localServiceID,
+        options,
+      );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration,
+      );
+    },
+    /**
+     * Returns all local-services [Bahnhofsnahe Dienstleistungen].
+     * @param {Array<string>} types Types of local service. Possible values are: - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit &amp; Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundbüro] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
+     * @param {string} [before] Cursor for retrieving the previous page in order to navigate through result list
+     * @param {string} [after] Cursor for retrieving the next page in order to navigate through result list
+     * @param {number} [limit] Limit total amount of results
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getLocalServices(
+      types: Array<string>,
+      before?: string,
+      after?: string,
+      limit?: number,
+      options?: any,
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string,
+      ) => AxiosPromise<LocalServicesCursoring>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.getLocalServices(
+          types,
+          before,
+          after,
+          limit,
+          options,
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration,
+      );
+    },
+    /**
+     * Returns a list of local-services [Bahnhofsnahe Dienstleistungen] that match the provided key.
+     * @param {LocalServiceKeyType} keyType type of local-service key - EVA (eva number of stop-place [Haltestelle]) - STATION_ID (id of the station [Bahnhof], usually the STADA for S&amp;S owned stations)
+     * @param {string} key key to return local-services [Bahnhofsnahe Dienstleistungen] for
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getLocalServicesByKey(
+      keyType: LocalServiceKeyType,
+      key: string,
+      options?: any,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<LocalServices>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.getLocalServicesByKey(
+          keyType,
+          key,
+          options,
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration,
+      );
+    },
+    /**
+     * Returns a list of local-services [Bahnhofsnahe Dienstleistungen] around geo position within provided radius ordered by distance asc.
+     * @param {Array<string>} types Types of local service. Possible values are: - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit &amp; Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundbüro] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
+     * @param {number} latitude geo reference position latitude
+     * @param {number} longitude geo reference position longitude
+     * @param {number} [radius] radius in meters around geo position
+     * @param {number} [limit] limit parameter in order to limit total amount of results, if omitted no truncation applies
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getLocalServicesByPosition(
+      types: Array<string>,
+      latitude: number,
+      longitude: number,
+      radius?: number,
+      limit?: number,
+      options?: any,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<LocalServices>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.getLocalServicesByPosition(
+          types,
+          latitude,
+          longitude,
+          radius,
+          limit,
+          options,
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration,
+      );
+    },
+  };
+};
+
+/**
+ * LocalServicesApi - factory interface
+ * @export
+ */
+export const LocalServicesApiFactory = function (
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance,
+) {
+  const localVarFp = LocalServicesApiFp(configuration);
+  return {
+    /**
+     * Returns details of a local-service [Bahnhofsnahe Dienstleistung] for requested ID.
+     * @param {string} localServiceID id of desired local-service [Bahnhofsnahe Dienstleistung]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getLocalService(
+      localServiceID: string,
+      options?: any,
+    ): AxiosPromise<LocalService> {
+      return localVarFp
+        .getLocalService(localServiceID, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * Returns all local-services [Bahnhofsnahe Dienstleistungen].
+     * @param {Array<string>} types Types of local service. Possible values are: - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit &amp; Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundbüro] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
+     * @param {string} [before] Cursor for retrieving the previous page in order to navigate through result list
+     * @param {string} [after] Cursor for retrieving the next page in order to navigate through result list
+     * @param {number} [limit] Limit total amount of results
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getLocalServices(
+      types: Array<string>,
+      before?: string,
+      after?: string,
+      limit?: number,
+      options?: any,
+    ): AxiosPromise<LocalServicesCursoring> {
+      return localVarFp
+        .getLocalServices(types, before, after, limit, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * Returns a list of local-services [Bahnhofsnahe Dienstleistungen] that match the provided key.
+     * @param {LocalServiceKeyType} keyType type of local-service key - EVA (eva number of stop-place [Haltestelle]) - STATION_ID (id of the station [Bahnhof], usually the STADA for S&amp;S owned stations)
+     * @param {string} key key to return local-services [Bahnhofsnahe Dienstleistungen] for
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getLocalServicesByKey(
+      keyType: LocalServiceKeyType,
+      key: string,
+      options?: any,
+    ): AxiosPromise<LocalServices> {
+      return localVarFp
+        .getLocalServicesByKey(keyType, key, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * Returns a list of local-services [Bahnhofsnahe Dienstleistungen] around geo position within provided radius ordered by distance asc.
+     * @param {Array<string>} types Types of local service. Possible values are: - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit &amp; Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundbüro] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
+     * @param {number} latitude geo reference position latitude
+     * @param {number} longitude geo reference position longitude
+     * @param {number} [radius] radius in meters around geo position
+     * @param {number} [limit] limit parameter in order to limit total amount of results, if omitted no truncation applies
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getLocalServicesByPosition(
+      types: Array<string>,
+      latitude: number,
+      longitude: number,
+      radius?: number,
+      limit?: number,
+      options?: any,
+    ): AxiosPromise<LocalServices> {
+      return localVarFp
+        .getLocalServicesByPosition(
+          types,
+          latitude,
+          longitude,
+          radius,
+          limit,
+          options,
+        )
+        .then((request) => request(axios, basePath));
+    },
+  };
+};
+
+/**
+ * Request parameters for getLocalService operation in LocalServicesApi.
+ * @export
+ * @interface LocalServicesApiGetLocalServiceRequest
+ */
+export interface LocalServicesApiGetLocalServiceRequest {
+  /**
+   * id of desired local-service [Bahnhofsnahe Dienstleistung]
+   * @type {string}
+   * @memberof LocalServicesApiGetLocalService
+   */
+  readonly localServiceID: string;
+}
+
+/**
+ * Request parameters for getLocalServices operation in LocalServicesApi.
+ * @export
+ * @interface LocalServicesApiGetLocalServicesRequest
+ */
+export interface LocalServicesApiGetLocalServicesRequest {
+  /**
+   * Types of local service. Possible values are: - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit &amp; Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundbüro] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
+   * @type {Array<string>}
+   * @memberof LocalServicesApiGetLocalServices
+   */
+  readonly types: Array<string>;
+
+  /**
+   * Cursor for retrieving the previous page in order to navigate through result list
+   * @type {string}
+   * @memberof LocalServicesApiGetLocalServices
+   */
+  readonly before?: string;
+
+  /**
+   * Cursor for retrieving the next page in order to navigate through result list
+   * @type {string}
+   * @memberof LocalServicesApiGetLocalServices
+   */
+  readonly after?: string;
+
+  /**
+   * Limit total amount of results
+   * @type {number}
+   * @memberof LocalServicesApiGetLocalServices
+   */
+  readonly limit?: number;
+}
+
+/**
+ * Request parameters for getLocalServicesByKey operation in LocalServicesApi.
+ * @export
+ * @interface LocalServicesApiGetLocalServicesByKeyRequest
+ */
+export interface LocalServicesApiGetLocalServicesByKeyRequest {
+  /**
+   * type of local-service key - EVA (eva number of stop-place [Haltestelle]) - STATION_ID (id of the station [Bahnhof], usually the STADA for S&amp;S owned stations)
+   * @type {LocalServiceKeyType}
+   * @memberof LocalServicesApiGetLocalServicesByKey
+   */
+  readonly keyType: LocalServiceKeyType;
+
+  /**
+   * key to return local-services [Bahnhofsnahe Dienstleistungen] for
+   * @type {string}
+   * @memberof LocalServicesApiGetLocalServicesByKey
+   */
+  readonly key: string;
+}
+
+/**
+ * Request parameters for getLocalServicesByPosition operation in LocalServicesApi.
+ * @export
+ * @interface LocalServicesApiGetLocalServicesByPositionRequest
+ */
+export interface LocalServicesApiGetLocalServicesByPositionRequest {
+  /**
+   * Types of local service. Possible values are: - INFORMATION_COUNTER [Informationsstand für Belange im Bahnhof (kein Fahrkartenverkauf)] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [3S Zentrale für Service, Sicherheit &amp; Sauberkeit] - TRAVEL_LOUNGE [Lounge (DB Lounge z.B.)] - LOST_PROPERTY_OFFICE [Fundbüro] - RAILWAY_MISSION [Bahnhofsmission] - HANDICAPPED_TRAVELLER_SERVICE [Service für mobilitätseingeschränkte Reisende] - LOCKER [Schließfächer] - WIFI [WLan] - CAR_PARKING [Autoparkplatz, ggf. kostenpflichtig] - BICYCLE_PARKING [Fahrradparkplätze, ggf. kostenpflichtig] - PUBLIC_RESTROOM [Öffentliches WC, ggf. kostenpflichtig] - TRAVEL_NECESSITIES [Geschäft für den Reisendenbedarf] - CAR_RENTAL [Car-Sharer oder Mietwagen] - BICYCLE_RENTAL [Mieträder] - TAXI_RANK [Taxi Stand] - MOBILE_TRAVEL_SERVICE [Mobiler Service] - RAD_PLUS (Rad+ Gebiet)
+   * @type {Array<string>}
+   * @memberof LocalServicesApiGetLocalServicesByPosition
+   */
+  readonly types: Array<string>;
+
+  /**
+   * geo reference position latitude
+   * @type {number}
+   * @memberof LocalServicesApiGetLocalServicesByPosition
+   */
+  readonly latitude: number;
+
+  /**
+   * geo reference position longitude
+   * @type {number}
+   * @memberof LocalServicesApiGetLocalServicesByPosition
+   */
+  readonly longitude: number;
+
+  /**
+   * radius in meters around geo position
+   * @type {number}
+   * @memberof LocalServicesApiGetLocalServicesByPosition
+   */
+  readonly radius?: number;
+
+  /**
+   * limit parameter in order to limit total amount of results, if omitted no truncation applies
+   * @type {number}
+   * @memberof LocalServicesApiGetLocalServicesByPosition
+   */
+  readonly limit?: number;
+}
+
+/**
+ * LocalServicesApi - object-oriented interface
+ * @export
+ * @class LocalServicesApi
+ * @extends {BaseAPI}
+ */
+export class LocalServicesApi extends BaseAPI {
+  /**
+   * Returns details of a local-service [Bahnhofsnahe Dienstleistung] for requested ID.
+   * @param {LocalServicesApiGetLocalServiceRequest} requestParameters Request parameters.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof LocalServicesApi
+   */
+  public getLocalService(
+    requestParameters: LocalServicesApiGetLocalServiceRequest,
+    options?: any,
+  ) {
+    return LocalServicesApiFp(this.configuration)
+      .getLocalService(requestParameters.localServiceID, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Returns all local-services [Bahnhofsnahe Dienstleistungen].
+   * @param {LocalServicesApiGetLocalServicesRequest} requestParameters Request parameters.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof LocalServicesApi
+   */
+  public getLocalServices(
+    requestParameters: LocalServicesApiGetLocalServicesRequest,
+    options?: any,
+  ) {
+    return LocalServicesApiFp(this.configuration)
+      .getLocalServices(
+        requestParameters.types,
+        requestParameters.before,
+        requestParameters.after,
+        requestParameters.limit,
+        options,
+      )
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Returns a list of local-services [Bahnhofsnahe Dienstleistungen] that match the provided key.
+   * @param {LocalServicesApiGetLocalServicesByKeyRequest} requestParameters Request parameters.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof LocalServicesApi
+   */
+  public getLocalServicesByKey(
+    requestParameters: LocalServicesApiGetLocalServicesByKeyRequest,
+    options?: any,
+  ) {
+    return LocalServicesApiFp(this.configuration)
+      .getLocalServicesByKey(
+        requestParameters.keyType,
+        requestParameters.key,
+        options,
+      )
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Returns a list of local-services [Bahnhofsnahe Dienstleistungen] around geo position within provided radius ordered by distance asc.
+   * @param {LocalServicesApiGetLocalServicesByPositionRequest} requestParameters Request parameters.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof LocalServicesApi
+   */
+  public getLocalServicesByPosition(
+    requestParameters: LocalServicesApiGetLocalServicesByPositionRequest,
+    options?: any,
+  ) {
+    return LocalServicesApiFp(this.configuration)
+      .getLocalServicesByPosition(
+        requestParameters.types,
+        requestParameters.latitude,
+        requestParameters.longitude,
+        requestParameters.radius,
+        requestParameters.limit,
+        options,
+      )
+      .then((request) => request(this.axios, this.basePath));
+  }
+}
+
+/**
+ * PlatformsApi - axios parameter creator
+ * @export
+ */
+export const PlatformsApiAxiosParamCreator = function (
+  configuration?: Configuration,
+) {
+  return {
+    /**
      * Returns detailed information for a particular platform [Gleis, Plattform] and optional its sectors [Sektoren].
      * @param {string} evaNumber eva number of desired stop place [Haltestelle]
      * @param {string} platformName name of desired platform
      * @param {boolean} [includeSectors] should sector information be included
      * @param {boolean} [includeAccessibility] should accessibility information [Barrierefreiheit] be included
-     * @param {boolean} [includeOperational] should operational information [Betriebsinformationen] be included
-     * @param {boolean} [onlyActive] indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validility time ranges are returned
+     * @param {boolean} [onlyActive] indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validity time ranges are returned
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    platform: async (
+    getPlatform: async (
       evaNumber: string,
       platformName: string,
       includeSectors?: boolean,
       includeAccessibility?: boolean,
-      includeOperational?: boolean,
       onlyActive?: boolean,
       options: any = {},
     ): Promise<RequestArgs> => {
       // verify required parameter 'evaNumber' is not null or undefined
-      assertParamExists('platform', 'evaNumber', evaNumber);
+      assertParamExists('getPlatform', 'evaNumber', evaNumber);
       // verify required parameter 'platformName' is not null or undefined
-      assertParamExists('platform', 'platformName', platformName);
+      assertParamExists('getPlatform', 'platformName', platformName);
       const localVarPath = `/platforms/{evaNumber}/{platformName}`
         .replace(`{${'evaNumber'}}`, encodeURIComponent(String(evaNumber)))
         .replace(
@@ -2117,7 +2926,14 @@ export const PlatformsApiAxiosParamCreator = function (
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
 
-      // authentication DB-Api-Key required
+      // authentication ClientId required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Client-Id',
+        configuration,
+      );
+
+      // authentication ClientSecret required
       await setApiKeyToObject(
         localVarHeaderParameter,
         'DB-Api-Key',
@@ -2130,10 +2946,6 @@ export const PlatformsApiAxiosParamCreator = function (
 
       if (includeAccessibility !== undefined) {
         localVarQueryParameter['includeAccessibility'] = includeAccessibility;
-      }
-
-      if (includeOperational !== undefined) {
-        localVarQueryParameter['includeOperational'] = includeOperational;
       }
 
       if (onlyActive !== undefined) {
@@ -2159,23 +2971,21 @@ export const PlatformsApiAxiosParamCreator = function (
      * @param {string} evaNumber eva number of desired stop place [Haltestelle]
      * @param {boolean} [includeSectors] should sector information be included
      * @param {boolean} [includeAccessibility] should accessibility information [Barrierefreiheit] be included
-     * @param {boolean} [includeOperational] should operational information [Betriebsinformationen] be included
-     * @param {boolean} [includeSubPlatforms] should subplatforms [Teilgleise] be included
-     * @param {boolean} [onlyActive] indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validility time ranges are returned
+     * @param {boolean} [includeSubPlatforms] should sub platforms [Teilgleise] be included
+     * @param {boolean} [onlyActive] indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validity time ranges are returned
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    platforms: async (
+    getPlatforms: async (
       evaNumber: string,
       includeSectors?: boolean,
       includeAccessibility?: boolean,
-      includeOperational?: boolean,
       includeSubPlatforms?: boolean,
       onlyActive?: boolean,
       options: any = {},
     ): Promise<RequestArgs> => {
       // verify required parameter 'evaNumber' is not null or undefined
-      assertParamExists('platforms', 'evaNumber', evaNumber);
+      assertParamExists('getPlatforms', 'evaNumber', evaNumber);
       const localVarPath = `/platforms/{evaNumber}`.replace(
         `{${'evaNumber'}}`,
         encodeURIComponent(String(evaNumber)),
@@ -2195,7 +3005,14 @@ export const PlatformsApiAxiosParamCreator = function (
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
 
-      // authentication DB-Api-Key required
+      // authentication ClientId required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Client-Id',
+        configuration,
+      );
+
+      // authentication ClientSecret required
       await setApiKeyToObject(
         localVarHeaderParameter,
         'DB-Api-Key',
@@ -2210,8 +3027,96 @@ export const PlatformsApiAxiosParamCreator = function (
         localVarQueryParameter['includeAccessibility'] = includeAccessibility;
       }
 
-      if (includeOperational !== undefined) {
-        localVarQueryParameter['includeOperational'] = includeOperational;
+      if (includeSubPlatforms !== undefined) {
+        localVarQueryParameter['includeSubPlatforms'] = includeSubPlatforms;
+      }
+
+      if (onlyActive !== undefined) {
+        localVarQueryParameter['onlyActive'] = onlyActive;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Returns platforms [Gleise, Plattformen] that match the provided key.
+     * @param {StopPlaceKeyFilter} keyType type of key the platforms belong to - IFOPT (transmodel identifier for fixed objects aka DHID, may be provided on level of stop-place or plattform, other levels not supported yet) - EVA (eva number) - RL100 (primary or alternative rl100 / ds100) - EPA (epa number) - STADA (Stationsdatenbank number) - IBNR (internal station number [interne bahnhofsnummer])
+     * @param {string} key key to return platforms for
+     * @param {boolean} [includeSectors] should sector information be included
+     * @param {boolean} [includeAccessibility] should accessibility information [Barrierefreiheit] be included
+     * @param {boolean} [includeSubPlatforms] should sub platforms [Teilgleise] be included
+     * @param {boolean} [onlyActive] indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validity time ranges are returned
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPlatformsByKey: async (
+      keyType: StopPlaceKeyFilter,
+      key: string,
+      includeSectors?: boolean,
+      includeAccessibility?: boolean,
+      includeSubPlatforms?: boolean,
+      onlyActive?: boolean,
+      options: any = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'keyType' is not null or undefined
+      assertParamExists('getPlatformsByKey', 'keyType', keyType);
+      // verify required parameter 'key' is not null or undefined
+      assertParamExists('getPlatformsByKey', 'key', key);
+      const localVarPath = `/platforms/by-key`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ClientId required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Client-Id',
+        configuration,
+      );
+
+      // authentication ClientSecret required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Api-Key',
+        configuration,
+      );
+
+      if (keyType !== undefined) {
+        localVarQueryParameter['keyType'] = keyType;
+      }
+
+      if (key !== undefined) {
+        localVarQueryParameter['key'] = key;
+      }
+
+      if (includeSectors !== undefined) {
+        localVarQueryParameter['includeSectors'] = includeSectors;
+      }
+
+      if (includeAccessibility !== undefined) {
+        localVarQueryParameter['includeAccessibility'] = includeAccessibility;
       }
 
       if (includeSubPlatforms !== undefined) {
@@ -2248,74 +3153,30 @@ export const PlatformsApiFp = function (configuration?: Configuration) {
     PlatformsApiAxiosParamCreator(configuration);
   return {
     /**
-     * Returns platforms [Gleise, Plattformen] that match the provided key.
-     * @param {StopPlaceKeyFilter} keyType type of stop place key the platforms belong to - IFOPT (transmodel identifier for fixed objects, in germany dhid &#x3D; Deutschlandweite Halt ID also known as global id) - EVA (eva number) - RL100 (primary or alternative rl100 / ds100) - EPA (epa number) - STADA (statitionsdatenbank number) - IBNR (internal station number [interne bahnhofsnummer])
-     * @param {string} key key to return platforms for
-     * @param {boolean} [includeSectors] should sector information be included
-     * @param {boolean} [includeAccessibility] should accessibility information [Barrierefreiheit] be included
-     * @param {boolean} [includeOperational] should operational information [Betriebsinformationen] be included
-     * @param {boolean} [includeSubPlatforms] should subplatforms [Teilgleise] be included
-     * @param {boolean} [onlyActive] indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validility time ranges are returned
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async byKey1(
-      keyType: StopPlaceKeyFilter,
-      key: string,
-      includeSectors?: boolean,
-      includeAccessibility?: boolean,
-      includeOperational?: boolean,
-      includeSubPlatforms?: boolean,
-      onlyActive?: boolean,
-      options?: any,
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Platforms>
-    > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.byKey1(
-        keyType,
-        key,
-        includeSectors,
-        includeAccessibility,
-        includeOperational,
-        includeSubPlatforms,
-        onlyActive,
-        options,
-      );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration,
-      );
-    },
-    /**
      * Returns detailed information for a particular platform [Gleis, Plattform] and optional its sectors [Sektoren].
      * @param {string} evaNumber eva number of desired stop place [Haltestelle]
      * @param {string} platformName name of desired platform
      * @param {boolean} [includeSectors] should sector information be included
      * @param {boolean} [includeAccessibility] should accessibility information [Barrierefreiheit] be included
-     * @param {boolean} [includeOperational] should operational information [Betriebsinformationen] be included
-     * @param {boolean} [onlyActive] indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validility time ranges are returned
+     * @param {boolean} [onlyActive] indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validity time ranges are returned
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async platform(
+    async getPlatform(
       evaNumber: string,
       platformName: string,
       includeSectors?: boolean,
       includeAccessibility?: boolean,
-      includeOperational?: boolean,
       onlyActive?: boolean,
       options?: any,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Platform>
     > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.platform(
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getPlatform(
         evaNumber,
         platformName,
         includeSectors,
         includeAccessibility,
-        includeOperational,
         onlyActive,
         options,
       );
@@ -2331,32 +3192,68 @@ export const PlatformsApiFp = function (configuration?: Configuration) {
      * @param {string} evaNumber eva number of desired stop place [Haltestelle]
      * @param {boolean} [includeSectors] should sector information be included
      * @param {boolean} [includeAccessibility] should accessibility information [Barrierefreiheit] be included
-     * @param {boolean} [includeOperational] should operational information [Betriebsinformationen] be included
-     * @param {boolean} [includeSubPlatforms] should subplatforms [Teilgleise] be included
-     * @param {boolean} [onlyActive] indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validility time ranges are returned
+     * @param {boolean} [includeSubPlatforms] should sub platforms [Teilgleise] be included
+     * @param {boolean} [onlyActive] indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validity time ranges are returned
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async platforms(
+    async getPlatforms(
       evaNumber: string,
       includeSectors?: boolean,
       includeAccessibility?: boolean,
-      includeOperational?: boolean,
       includeSubPlatforms?: boolean,
       onlyActive?: boolean,
       options?: any,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Platforms>
     > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.platforms(
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getPlatforms(
         evaNumber,
         includeSectors,
         includeAccessibility,
-        includeOperational,
         includeSubPlatforms,
         onlyActive,
         options,
       );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration,
+      );
+    },
+    /**
+     * Returns platforms [Gleise, Plattformen] that match the provided key.
+     * @param {StopPlaceKeyFilter} keyType type of key the platforms belong to - IFOPT (transmodel identifier for fixed objects aka DHID, may be provided on level of stop-place or plattform, other levels not supported yet) - EVA (eva number) - RL100 (primary or alternative rl100 / ds100) - EPA (epa number) - STADA (Stationsdatenbank number) - IBNR (internal station number [interne bahnhofsnummer])
+     * @param {string} key key to return platforms for
+     * @param {boolean} [includeSectors] should sector information be included
+     * @param {boolean} [includeAccessibility] should accessibility information [Barrierefreiheit] be included
+     * @param {boolean} [includeSubPlatforms] should sub platforms [Teilgleise] be included
+     * @param {boolean} [onlyActive] indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validity time ranges are returned
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getPlatformsByKey(
+      keyType: StopPlaceKeyFilter,
+      key: string,
+      includeSectors?: boolean,
+      includeAccessibility?: boolean,
+      includeSubPlatforms?: boolean,
+      onlyActive?: boolean,
+      options?: any,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Platforms>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.getPlatformsByKey(
+          keyType,
+          key,
+          includeSectors,
+          includeAccessibility,
+          includeSubPlatforms,
+          onlyActive,
+          options,
+        );
       return createRequestFunction(
         localVarAxiosArgs,
         globalAxios,
@@ -2379,67 +3276,29 @@ export const PlatformsApiFactory = function (
   const localVarFp = PlatformsApiFp(configuration);
   return {
     /**
-     * Returns platforms [Gleise, Plattformen] that match the provided key.
-     * @param {StopPlaceKeyFilter} keyType type of stop place key the platforms belong to - IFOPT (transmodel identifier for fixed objects, in germany dhid &#x3D; Deutschlandweite Halt ID also known as global id) - EVA (eva number) - RL100 (primary or alternative rl100 / ds100) - EPA (epa number) - STADA (statitionsdatenbank number) - IBNR (internal station number [interne bahnhofsnummer])
-     * @param {string} key key to return platforms for
-     * @param {boolean} [includeSectors] should sector information be included
-     * @param {boolean} [includeAccessibility] should accessibility information [Barrierefreiheit] be included
-     * @param {boolean} [includeOperational] should operational information [Betriebsinformationen] be included
-     * @param {boolean} [includeSubPlatforms] should subplatforms [Teilgleise] be included
-     * @param {boolean} [onlyActive] indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validility time ranges are returned
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    byKey1(
-      keyType: StopPlaceKeyFilter,
-      key: string,
-      includeSectors?: boolean,
-      includeAccessibility?: boolean,
-      includeOperational?: boolean,
-      includeSubPlatforms?: boolean,
-      onlyActive?: boolean,
-      options?: any,
-    ): AxiosPromise<Platforms> {
-      return localVarFp
-        .byKey1(
-          keyType,
-          key,
-          includeSectors,
-          includeAccessibility,
-          includeOperational,
-          includeSubPlatforms,
-          onlyActive,
-          options,
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
      * Returns detailed information for a particular platform [Gleis, Plattform] and optional its sectors [Sektoren].
      * @param {string} evaNumber eva number of desired stop place [Haltestelle]
      * @param {string} platformName name of desired platform
      * @param {boolean} [includeSectors] should sector information be included
      * @param {boolean} [includeAccessibility] should accessibility information [Barrierefreiheit] be included
-     * @param {boolean} [includeOperational] should operational information [Betriebsinformationen] be included
-     * @param {boolean} [onlyActive] indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validility time ranges are returned
+     * @param {boolean} [onlyActive] indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validity time ranges are returned
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    platform(
+    getPlatform(
       evaNumber: string,
       platformName: string,
       includeSectors?: boolean,
       includeAccessibility?: boolean,
-      includeOperational?: boolean,
       onlyActive?: boolean,
       options?: any,
     ): AxiosPromise<Platform> {
       return localVarFp
-        .platform(
+        .getPlatform(
           evaNumber,
           platformName,
           includeSectors,
           includeAccessibility,
-          includeOperational,
           onlyActive,
           options,
         )
@@ -2450,27 +3309,56 @@ export const PlatformsApiFactory = function (
      * @param {string} evaNumber eva number of desired stop place [Haltestelle]
      * @param {boolean} [includeSectors] should sector information be included
      * @param {boolean} [includeAccessibility] should accessibility information [Barrierefreiheit] be included
-     * @param {boolean} [includeOperational] should operational information [Betriebsinformationen] be included
-     * @param {boolean} [includeSubPlatforms] should subplatforms [Teilgleise] be included
-     * @param {boolean} [onlyActive] indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validility time ranges are returned
+     * @param {boolean} [includeSubPlatforms] should sub platforms [Teilgleise] be included
+     * @param {boolean} [onlyActive] indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validity time ranges are returned
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    platforms(
+    getPlatforms(
       evaNumber: string,
       includeSectors?: boolean,
       includeAccessibility?: boolean,
-      includeOperational?: boolean,
       includeSubPlatforms?: boolean,
       onlyActive?: boolean,
       options?: any,
     ): AxiosPromise<Platforms> {
       return localVarFp
-        .platforms(
+        .getPlatforms(
           evaNumber,
           includeSectors,
           includeAccessibility,
-          includeOperational,
+          includeSubPlatforms,
+          onlyActive,
+          options,
+        )
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * Returns platforms [Gleise, Plattformen] that match the provided key.
+     * @param {StopPlaceKeyFilter} keyType type of key the platforms belong to - IFOPT (transmodel identifier for fixed objects aka DHID, may be provided on level of stop-place or plattform, other levels not supported yet) - EVA (eva number) - RL100 (primary or alternative rl100 / ds100) - EPA (epa number) - STADA (Stationsdatenbank number) - IBNR (internal station number [interne bahnhofsnummer])
+     * @param {string} key key to return platforms for
+     * @param {boolean} [includeSectors] should sector information be included
+     * @param {boolean} [includeAccessibility] should accessibility information [Barrierefreiheit] be included
+     * @param {boolean} [includeSubPlatforms] should sub platforms [Teilgleise] be included
+     * @param {boolean} [onlyActive] indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validity time ranges are returned
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPlatformsByKey(
+      keyType: StopPlaceKeyFilter,
+      key: string,
+      includeSectors?: boolean,
+      includeAccessibility?: boolean,
+      includeSubPlatforms?: boolean,
+      onlyActive?: boolean,
+      options?: any,
+    ): AxiosPromise<Platforms> {
+      return localVarFp
+        .getPlatformsByKey(
+          keyType,
+          key,
+          includeSectors,
+          includeAccessibility,
           includeSubPlatforms,
           onlyActive,
           options,
@@ -2481,155 +3369,134 @@ export const PlatformsApiFactory = function (
 };
 
 /**
- * Request parameters for byKey1 operation in PlatformsApi.
+ * Request parameters for getPlatform operation in PlatformsApi.
  * @export
- * @interface PlatformsApiByKey1Request
+ * @interface PlatformsApiGetPlatformRequest
  */
-export interface PlatformsApiByKey1Request {
-  /**
-   * type of stop place key the platforms belong to - IFOPT (transmodel identifier for fixed objects, in germany dhid &#x3D; Deutschlandweite Halt ID also known as global id) - EVA (eva number) - RL100 (primary or alternative rl100 / ds100) - EPA (epa number) - STADA (statitionsdatenbank number) - IBNR (internal station number [interne bahnhofsnummer])
-   * @type {StopPlaceKeyFilter}
-   * @memberof PlatformsApiByKey1
-   */
-  readonly keyType: StopPlaceKeyFilter;
-
-  /**
-   * key to return platforms for
-   * @type {string}
-   * @memberof PlatformsApiByKey1
-   */
-  readonly key: string;
-
-  /**
-   * should sector information be included
-   * @type {boolean}
-   * @memberof PlatformsApiByKey1
-   */
-  readonly includeSectors?: boolean;
-
-  /**
-   * should accessibility information [Barrierefreiheit] be included
-   * @type {boolean}
-   * @memberof PlatformsApiByKey1
-   */
-  readonly includeAccessibility?: boolean;
-
-  /**
-   * should operational information [Betriebsinformationen] be included
-   * @type {boolean}
-   * @memberof PlatformsApiByKey1
-   */
-  readonly includeOperational?: boolean;
-
-  /**
-   * should subplatforms [Teilgleise] be included
-   * @type {boolean}
-   * @memberof PlatformsApiByKey1
-   */
-  readonly includeSubPlatforms?: boolean;
-
-  /**
-   * indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validility time ranges are returned
-   * @type {boolean}
-   * @memberof PlatformsApiByKey1
-   */
-  readonly onlyActive?: boolean;
-}
-
-/**
- * Request parameters for platform operation in PlatformsApi.
- * @export
- * @interface PlatformsApiPlatformRequest
- */
-export interface PlatformsApiPlatformRequest {
+export interface PlatformsApiGetPlatformRequest {
   /**
    * eva number of desired stop place [Haltestelle]
    * @type {string}
-   * @memberof PlatformsApiPlatform
+   * @memberof PlatformsApiGetPlatform
    */
   readonly evaNumber: string;
 
   /**
    * name of desired platform
    * @type {string}
-   * @memberof PlatformsApiPlatform
+   * @memberof PlatformsApiGetPlatform
    */
   readonly platformName: string;
 
   /**
    * should sector information be included
    * @type {boolean}
-   * @memberof PlatformsApiPlatform
+   * @memberof PlatformsApiGetPlatform
    */
   readonly includeSectors?: boolean;
 
   /**
    * should accessibility information [Barrierefreiheit] be included
    * @type {boolean}
-   * @memberof PlatformsApiPlatform
+   * @memberof PlatformsApiGetPlatform
    */
   readonly includeAccessibility?: boolean;
 
   /**
-   * should operational information [Betriebsinformationen] be included
+   * indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validity time ranges are returned
    * @type {boolean}
-   * @memberof PlatformsApiPlatform
-   */
-  readonly includeOperational?: boolean;
-
-  /**
-   * indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validility time ranges are returned
-   * @type {boolean}
-   * @memberof PlatformsApiPlatform
+   * @memberof PlatformsApiGetPlatform
    */
   readonly onlyActive?: boolean;
 }
 
 /**
- * Request parameters for platforms operation in PlatformsApi.
+ * Request parameters for getPlatforms operation in PlatformsApi.
  * @export
- * @interface PlatformsApiPlatformsRequest
+ * @interface PlatformsApiGetPlatformsRequest
  */
-export interface PlatformsApiPlatformsRequest {
+export interface PlatformsApiGetPlatformsRequest {
   /**
    * eva number of desired stop place [Haltestelle]
    * @type {string}
-   * @memberof PlatformsApiPlatforms
+   * @memberof PlatformsApiGetPlatforms
    */
   readonly evaNumber: string;
 
   /**
    * should sector information be included
    * @type {boolean}
-   * @memberof PlatformsApiPlatforms
+   * @memberof PlatformsApiGetPlatforms
    */
   readonly includeSectors?: boolean;
 
   /**
    * should accessibility information [Barrierefreiheit] be included
    * @type {boolean}
-   * @memberof PlatformsApiPlatforms
+   * @memberof PlatformsApiGetPlatforms
    */
   readonly includeAccessibility?: boolean;
 
   /**
-   * should operational information [Betriebsinformationen] be included
+   * should sub platforms [Teilgleise] be included
    * @type {boolean}
-   * @memberof PlatformsApiPlatforms
-   */
-  readonly includeOperational?: boolean;
-
-  /**
-   * should subplatforms [Teilgleise] be included
-   * @type {boolean}
-   * @memberof PlatformsApiPlatforms
+   * @memberof PlatformsApiGetPlatforms
    */
   readonly includeSubPlatforms?: boolean;
 
   /**
-   * indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validility time ranges are returned
+   * indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validity time ranges are returned
    * @type {boolean}
-   * @memberof PlatformsApiPlatforms
+   * @memberof PlatformsApiGetPlatforms
+   */
+  readonly onlyActive?: boolean;
+}
+
+/**
+ * Request parameters for getPlatformsByKey operation in PlatformsApi.
+ * @export
+ * @interface PlatformsApiGetPlatformsByKeyRequest
+ */
+export interface PlatformsApiGetPlatformsByKeyRequest {
+  /**
+   * type of key the platforms belong to - IFOPT (transmodel identifier for fixed objects aka DHID, may be provided on level of stop-place or plattform, other levels not supported yet) - EVA (eva number) - RL100 (primary or alternative rl100 / ds100) - EPA (epa number) - STADA (Stationsdatenbank number) - IBNR (internal station number [interne bahnhofsnummer])
+   * @type {StopPlaceKeyFilter}
+   * @memberof PlatformsApiGetPlatformsByKey
+   */
+  readonly keyType: StopPlaceKeyFilter;
+
+  /**
+   * key to return platforms for
+   * @type {string}
+   * @memberof PlatformsApiGetPlatformsByKey
+   */
+  readonly key: string;
+
+  /**
+   * should sector information be included
+   * @type {boolean}
+   * @memberof PlatformsApiGetPlatformsByKey
+   */
+  readonly includeSectors?: boolean;
+
+  /**
+   * should accessibility information [Barrierefreiheit] be included
+   * @type {boolean}
+   * @memberof PlatformsApiGetPlatformsByKey
+   */
+  readonly includeAccessibility?: boolean;
+
+  /**
+   * should sub platforms [Teilgleise] be included
+   * @type {boolean}
+   * @memberof PlatformsApiGetPlatformsByKey
+   */
+  readonly includeSubPlatforms?: boolean;
+
+  /**
+   * indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validity time ranges are returned
+   * @type {boolean}
+   * @memberof PlatformsApiGetPlatformsByKey
    */
   readonly onlyActive?: boolean;
 }
@@ -2642,45 +3509,22 @@ export interface PlatformsApiPlatformsRequest {
  */
 export class PlatformsApi extends BaseAPI {
   /**
-   * Returns platforms [Gleise, Plattformen] that match the provided key.
-   * @param {PlatformsApiByKey1Request} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof PlatformsApi
-   */
-  public byKey1(requestParameters: PlatformsApiByKey1Request, options?: any) {
-    return PlatformsApiFp(this.configuration)
-      .byKey1(
-        requestParameters.keyType,
-        requestParameters.key,
-        requestParameters.includeSectors,
-        requestParameters.includeAccessibility,
-        requestParameters.includeOperational,
-        requestParameters.includeSubPlatforms,
-        requestParameters.onlyActive,
-        options,
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
-
-  /**
    * Returns detailed information for a particular platform [Gleis, Plattform] and optional its sectors [Sektoren].
-   * @param {PlatformsApiPlatformRequest} requestParameters Request parameters.
+   * @param {PlatformsApiGetPlatformRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof PlatformsApi
    */
-  public platform(
-    requestParameters: PlatformsApiPlatformRequest,
+  public getPlatform(
+    requestParameters: PlatformsApiGetPlatformRequest,
     options?: any,
   ) {
     return PlatformsApiFp(this.configuration)
-      .platform(
+      .getPlatform(
         requestParameters.evaNumber,
         requestParameters.platformName,
         requestParameters.includeSectors,
         requestParameters.includeAccessibility,
-        requestParameters.includeOperational,
         requestParameters.onlyActive,
         options,
       )
@@ -2689,23 +3533,379 @@ export class PlatformsApi extends BaseAPI {
 
   /**
    * Returns all platforms [Gleise, Plattformen] and optional their sectors [Sektoren] for requested eva number.
-   * @param {PlatformsApiPlatformsRequest} requestParameters Request parameters.
+   * @param {PlatformsApiGetPlatformsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof PlatformsApi
    */
-  public platforms(
-    requestParameters: PlatformsApiPlatformsRequest,
+  public getPlatforms(
+    requestParameters: PlatformsApiGetPlatformsRequest,
     options?: any,
   ) {
     return PlatformsApiFp(this.configuration)
-      .platforms(
+      .getPlatforms(
         requestParameters.evaNumber,
         requestParameters.includeSectors,
         requestParameters.includeAccessibility,
-        requestParameters.includeOperational,
         requestParameters.includeSubPlatforms,
         requestParameters.onlyActive,
+        options,
+      )
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Returns platforms [Gleise, Plattformen] that match the provided key.
+   * @param {PlatformsApiGetPlatformsByKeyRequest} requestParameters Request parameters.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PlatformsApi
+   */
+  public getPlatformsByKey(
+    requestParameters: PlatformsApiGetPlatformsByKeyRequest,
+    options?: any,
+  ) {
+    return PlatformsApiFp(this.configuration)
+      .getPlatformsByKey(
+        requestParameters.keyType,
+        requestParameters.key,
+        requestParameters.includeSectors,
+        requestParameters.includeAccessibility,
+        requestParameters.includeSubPlatforms,
+        requestParameters.onlyActive,
+        options,
+      )
+      .then((request) => request(this.axios, this.basePath));
+  }
+}
+
+/**
+ * StationEquipmentsApi - axios parameter creator
+ * @export
+ */
+export const StationEquipmentsApiAxiosParamCreator = function (
+  configuration?: Configuration,
+) {
+  return {
+    /**
+     * Returns details of a locker [Schließfächer] equipment for requested ID.
+     * @param {string} lockerEquipmentID id of desired locker [Schließfach] equipment
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getLockerByEquipmentID: async (
+      lockerEquipmentID: string,
+      options: any = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'lockerEquipmentID' is not null or undefined
+      assertParamExists(
+        'getLockerByEquipmentID',
+        'lockerEquipmentID',
+        lockerEquipmentID,
+      );
+      const localVarPath =
+        `/station-equipments/locker/{lockerEquipmentID}`.replace(
+          `{${'lockerEquipmentID'}}`,
+          encodeURIComponent(String(lockerEquipmentID)),
+        );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ClientId required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Client-Id',
+        configuration,
+      );
+
+      // authentication ClientSecret required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Api-Key',
+        configuration,
+      );
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Returns a list of locker [Schließfächer] equipments that are associated with the provided key.
+     * @param {EquipmentLockerKeyType} keyType type of associated locker equipment key - EVA (eva number of stop-place [Haltestelle]) - STATION_ID (id of the station [Bahnhof], usually the STADA for S&amp;S owned stations)
+     * @param {string} key key to return locker equipments for
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getLockersByKey: async (
+      keyType: EquipmentLockerKeyType,
+      key: string,
+      options: any = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'keyType' is not null or undefined
+      assertParamExists('getLockersByKey', 'keyType', keyType);
+      // verify required parameter 'key' is not null or undefined
+      assertParamExists('getLockersByKey', 'key', key);
+      const localVarPath = `/station-equipments/locker/by-key`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ClientId required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Client-Id',
+        configuration,
+      );
+
+      // authentication ClientSecret required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Api-Key',
+        configuration,
+      );
+
+      if (keyType !== undefined) {
+        localVarQueryParameter['keyType'] = keyType;
+      }
+
+      if (key !== undefined) {
+        localVarQueryParameter['key'] = key;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+  };
+};
+
+/**
+ * StationEquipmentsApi - functional programming interface
+ * @export
+ */
+export const StationEquipmentsApiFp = function (configuration?: Configuration) {
+  const localVarAxiosParamCreator =
+    StationEquipmentsApiAxiosParamCreator(configuration);
+  return {
+    /**
+     * Returns details of a locker [Schließfächer] equipment for requested ID.
+     * @param {string} lockerEquipmentID id of desired locker [Schließfach] equipment
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getLockerByEquipmentID(
+      lockerEquipmentID: string,
+      options?: any,
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string,
+      ) => AxiosPromise<EquipmentLocker>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.getLockerByEquipmentID(
+          lockerEquipmentID,
+          options,
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration,
+      );
+    },
+    /**
+     * Returns a list of locker [Schließfächer] equipments that are associated with the provided key.
+     * @param {EquipmentLockerKeyType} keyType type of associated locker equipment key - EVA (eva number of stop-place [Haltestelle]) - STATION_ID (id of the station [Bahnhof], usually the STADA for S&amp;S owned stations)
+     * @param {string} key key to return locker equipments for
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getLockersByKey(
+      keyType: EquipmentLockerKeyType,
+      key: string,
+      options?: any,
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string,
+      ) => AxiosPromise<EquipmentLockers>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getLockersByKey(
+        keyType,
+        key,
+        options,
+      );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration,
+      );
+    },
+  };
+};
+
+/**
+ * StationEquipmentsApi - factory interface
+ * @export
+ */
+export const StationEquipmentsApiFactory = function (
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance,
+) {
+  const localVarFp = StationEquipmentsApiFp(configuration);
+  return {
+    /**
+     * Returns details of a locker [Schließfächer] equipment for requested ID.
+     * @param {string} lockerEquipmentID id of desired locker [Schließfach] equipment
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getLockerByEquipmentID(
+      lockerEquipmentID: string,
+      options?: any,
+    ): AxiosPromise<EquipmentLocker> {
+      return localVarFp
+        .getLockerByEquipmentID(lockerEquipmentID, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * Returns a list of locker [Schließfächer] equipments that are associated with the provided key.
+     * @param {EquipmentLockerKeyType} keyType type of associated locker equipment key - EVA (eva number of stop-place [Haltestelle]) - STATION_ID (id of the station [Bahnhof], usually the STADA for S&amp;S owned stations)
+     * @param {string} key key to return locker equipments for
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getLockersByKey(
+      keyType: EquipmentLockerKeyType,
+      key: string,
+      options?: any,
+    ): AxiosPromise<EquipmentLockers> {
+      return localVarFp
+        .getLockersByKey(keyType, key, options)
+        .then((request) => request(axios, basePath));
+    },
+  };
+};
+
+/**
+ * Request parameters for getLockerByEquipmentID operation in StationEquipmentsApi.
+ * @export
+ * @interface StationEquipmentsApiGetLockerByEquipmentIDRequest
+ */
+export interface StationEquipmentsApiGetLockerByEquipmentIDRequest {
+  /**
+   * id of desired locker [Schließfach] equipment
+   * @type {string}
+   * @memberof StationEquipmentsApiGetLockerByEquipmentID
+   */
+  readonly lockerEquipmentID: string;
+}
+
+/**
+ * Request parameters for getLockersByKey operation in StationEquipmentsApi.
+ * @export
+ * @interface StationEquipmentsApiGetLockersByKeyRequest
+ */
+export interface StationEquipmentsApiGetLockersByKeyRequest {
+  /**
+   * type of associated locker equipment key - EVA (eva number of stop-place [Haltestelle]) - STATION_ID (id of the station [Bahnhof], usually the STADA for S&amp;S owned stations)
+   * @type {EquipmentLockerKeyType}
+   * @memberof StationEquipmentsApiGetLockersByKey
+   */
+  readonly keyType: EquipmentLockerKeyType;
+
+  /**
+   * key to return locker equipments for
+   * @type {string}
+   * @memberof StationEquipmentsApiGetLockersByKey
+   */
+  readonly key: string;
+}
+
+/**
+ * StationEquipmentsApi - object-oriented interface
+ * @export
+ * @class StationEquipmentsApi
+ * @extends {BaseAPI}
+ */
+export class StationEquipmentsApi extends BaseAPI {
+  /**
+   * Returns details of a locker [Schließfächer] equipment for requested ID.
+   * @param {StationEquipmentsApiGetLockerByEquipmentIDRequest} requestParameters Request parameters.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof StationEquipmentsApi
+   */
+  public getLockerByEquipmentID(
+    requestParameters: StationEquipmentsApiGetLockerByEquipmentIDRequest,
+    options?: any,
+  ) {
+    return StationEquipmentsApiFp(this.configuration)
+      .getLockerByEquipmentID(requestParameters.lockerEquipmentID, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Returns a list of locker [Schließfächer] equipments that are associated with the provided key.
+   * @param {StationEquipmentsApiGetLockersByKeyRequest} requestParameters Request parameters.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof StationEquipmentsApi
+   */
+  public getLockersByKey(
+    requestParameters: StationEquipmentsApiGetLockersByKeyRequest,
+    options?: any,
+  ) {
+    return StationEquipmentsApiFp(this.configuration)
+      .getLockersByKey(
+        requestParameters.keyType,
+        requestParameters.key,
         options,
       )
       .then((request) => request(this.axios, this.basePath));
@@ -2721,16 +3921,77 @@ export const StationsApiAxiosParamCreator = function (
 ) {
   return {
     /**
-     * Returns all available stations [Bahnhoefe].
-     * @param {boolean} [onlyActive] indicates whether only active stations should be returned, defaults to true, if false inactive and future stations for different validility time ranges are returned
-     * @param {Array<Locale>} [locales] languages to include, defaults to DE only - DE (German) - EN (English) - FR (French) - IT (Italian)
+     * Returns details on station [Bahnhof] for requested stationID [BahnhofsID].
+     * @param {string} stationID id of desired station [Bahnhof], usually the STADA id from Station &amp; Service
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getStation: async (
+      stationID: string,
+      options: any = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'stationID' is not null or undefined
+      assertParamExists('getStation', 'stationID', stationID);
+      const localVarPath = `/stations/{stationID}`.replace(
+        `{${'stationID'}}`,
+        encodeURIComponent(String(stationID)),
+      );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ClientId required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Client-Id',
+        configuration,
+      );
+
+      // authentication ClientSecret required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Api-Key',
+        configuration,
+      );
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Returns all available stations [Bahnhöfe].
+     * @param {string} [state] state [Bundesland] to limit search results for
+     * @param {boolean} [onlyActive] indicates whether only active stations should be returned, defaults to true, if false inactive and future stations for different validity time ranges are returned
+     * @param {Array<Locale>} [locales] Locale to use, defaults to DE. - DE (German) - EN (English) - FR (French) - IT (Italian)  *DE only*
      * @param {string} [lastChanged] limits result to all stations that have been changed (anything) after passed fully qualified date (YYYY-MM-dd), can be used to get deltas, if omitted all stations are returned
      * @param {number} [offset] pagination offset parameter in order to navigate through result list, defaults to 0
      * @param {number} [limit] pagination limit parameter in order to limit total amount of results, defaults to 100
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    all1: async (
+    getStations: async (
+      state?: string,
       onlyActive?: boolean,
       locales?: Array<Locale>,
       lastChanged?: string,
@@ -2754,12 +4015,23 @@ export const StationsApiAxiosParamCreator = function (
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
 
-      // authentication DB-Api-Key required
+      // authentication ClientId required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Client-Id',
+        configuration,
+      );
+
+      // authentication ClientSecret required
       await setApiKeyToObject(
         localVarHeaderParameter,
         'DB-Api-Key',
         configuration,
       );
+
+      if (state !== undefined) {
+        localVarQueryParameter['state'] = state;
+      }
 
       if (onlyActive !== undefined) {
         localVarQueryParameter['onlyActive'] = onlyActive;
@@ -2799,33 +4071,16 @@ export const StationsApiAxiosParamCreator = function (
       };
     },
     /**
-     * Returns a list of stations [Bahnhof] matching the provided name query, optional limited to a max radius around a provided geo coordinate, ordered by relevance or name matching desc and (configurable) grouped by stations [Bahnhoefe], if stations belong to a parent stations (like for instance \'Frankfurt Main Hbf\' and \'Frankfurt tief\' belong to \'Frankfurt Main Hbf\'). The query has support for fuzzy searching, means minimal typos are ignored even without providing wildcards. This query won\'t return stop-places, only stations.
-     * @param {string} query query for station names [Bahnhofsname] to search for, use * for wildcards if necessary
-     * @param {number} [latitude] optional geo reference position latitude
-     * @param {number} [longitude] optional geo reference position longitude
-     * @param {number} [radius] optional radius in meters around geo reference position to search for stations matching query
-     * @param {boolean} [onlyActive] indicates whether only active stations should be returned, defaults to true, if false inactive and future stations for different validility time ranges are returned
-     * @param {Array<Locale>} [locales] languages to include, defaults to DE only - DE (German) - EN (English) - FR (French) - IT (Italian)
-     * @param {number} [limit] limit parameter in order to limit total amount of results, defaults to 25
+     * Returns a list of stations [Bahnhof] that match the specified organisational unit [Regionalbereich].
+     * @param {string} [organisationalUnit] name of organisational unit
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    byName1: async (
-      query: string,
-      latitude?: number,
-      longitude?: number,
-      radius?: number,
-      onlyActive?: boolean,
-      locales?: Array<Locale>,
-      limit?: number,
+    getStationsByOrganisationalUnit: async (
+      organisationalUnit?: string,
       options: any = {},
     ): Promise<RequestArgs> => {
-      // verify required parameter 'query' is not null or undefined
-      assertParamExists('byName1', 'query', query);
-      const localVarPath = `/stations/by-name/{query}`.replace(
-        `{${'query'}}`,
-        encodeURIComponent(String(query)),
-      );
+      const localVarPath = `/stations/by-organisational-unit`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
       let baseOptions;
@@ -2841,329 +4096,23 @@ export const StationsApiAxiosParamCreator = function (
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
 
-      // authentication DB-Api-Key required
+      // authentication ClientId required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Client-Id',
+        configuration,
+      );
+
+      // authentication ClientSecret required
       await setApiKeyToObject(
         localVarHeaderParameter,
         'DB-Api-Key',
         configuration,
       );
 
-      if (latitude !== undefined) {
-        localVarQueryParameter['latitude'] = latitude;
+      if (organisationalUnit !== undefined) {
+        localVarQueryParameter['organisationalUnit'] = organisationalUnit;
       }
-
-      if (longitude !== undefined) {
-        localVarQueryParameter['longitude'] = longitude;
-      }
-
-      if (radius !== undefined) {
-        localVarQueryParameter['radius'] = radius;
-      }
-
-      if (onlyActive !== undefined) {
-        localVarQueryParameter['onlyActive'] = onlyActive;
-      }
-
-      if (locales) {
-        localVarQueryParameter['locales'] = locales;
-      }
-
-      if (limit !== undefined) {
-        localVarQueryParameter['limit'] = limit;
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Returns all known keys of specific key type for the station [Bahnhof] with the provided stationID.
-     * @param {string} stationID id of desired station [Bahnhof], usually the STADA id from Station &amp; Service
-     * @param {StationKeyType} [keyType] filter mapped keys by specific key type, if omitted all keys are returned
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    keys1: async (
-      stationID: string,
-      keyType?: StationKeyType,
-      options: any = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'stationID' is not null or undefined
-      assertParamExists('keys1', 'stationID', stationID);
-      const localVarPath = `/stations/{stationID}/keys`.replace(
-        `{${'stationID'}}`,
-        encodeURIComponent(String(stationID)),
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication DB-Api-Key required
-      await setApiKeyToObject(
-        localVarHeaderParameter,
-        'DB-Api-Key',
-        configuration,
-      );
-
-      if (keyType !== undefined) {
-        localVarQueryParameter['keyType'] = keyType;
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Returns all local services [Bahnhofsnahe Dienstleistungen] for the station [Bahnhof] for requested stationID [BahnhofsID].
-     * @param {string} stationID id of desired station [Bahnhof], usually the STADA id from Station &amp; Service
-     * @param {Array<string>} [types] supported types of local services of a station [Bahnhof] - MOBILITY [Mobilitätseingeschränkten-Service] - LOST_PROPERTY [Fundbuero] - INFORMATION [Information] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [Information] - DB_LOUNGE [DB Lounge] - RAILWAY_MISSION [Bahnhofsmission] - CAR_HIRE [Mietwagen] - CYCLE_HIRE [Mieträder] - TAXI [Taxi Stand]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    localServices: async (
-      stationID: string,
-      types?: Array<string>,
-      options: any = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'stationID' is not null or undefined
-      assertParamExists('localServices', 'stationID', stationID);
-      const localVarPath = `/stations/{stationID}/local-services`.replace(
-        `{${'stationID'}}`,
-        encodeURIComponent(String(stationID)),
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication DB-Api-Key required
-      await setApiKeyToObject(
-        localVarHeaderParameter,
-        'DB-Api-Key',
-        configuration,
-      );
-
-      if (types) {
-        localVarQueryParameter['types'] = types;
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Returns occupancy [Auslastung] for the station [Bahnhof] for requested stationID [BahnhofsID] for the current week or a period (max. 7 days).
-     * @param {string} stationID id of desired station [Bahnhof], usually the STADA id from Station &amp; Service
-     * @param {string} [startDay] start date (yyyy-mm-dd) of requested station occupancy [Bahnhofsauslastung].
-     * @param {string} [endDay] end date (yyyy-mm-dd) of requested station occupancy [Bahnhofsauslastung].
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    occupancy: async (
-      stationID: string,
-      startDay?: string,
-      endDay?: string,
-      options: any = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'stationID' is not null or undefined
-      assertParamExists('occupancy', 'stationID', stationID);
-      const localVarPath = `/stations/{stationID}/occupancy`.replace(
-        `{${'stationID'}}`,
-        encodeURIComponent(String(stationID)),
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication DB-Api-Key required
-      await setApiKeyToObject(
-        localVarHeaderParameter,
-        'DB-Api-Key',
-        configuration,
-      );
-
-      if (startDay !== undefined) {
-        localVarQueryParameter['startDay'] =
-          (startDay as any) instanceof Date
-            ? (startDay as any).toISOString().substr(0, 10)
-            : startDay;
-      }
-
-      if (endDay !== undefined) {
-        localVarQueryParameter['endDay'] =
-          (endDay as any) instanceof Date
-            ? (endDay as any).toISOString().substr(0, 10)
-            : endDay;
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Returns occupancy [Auslastung] by day for the station [Bahnhof] for requested stationID [BahnhofsID].
-     * @param {string} stationID id of desired station [Bahnhof], usually the STADA id from Station &amp; Service
-     * @param {string} day day (yyyy-mm-dd) of requested station occupancy
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    occupancyByDay: async (
-      stationID: string,
-      day: string,
-      options: any = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'stationID' is not null or undefined
-      assertParamExists('occupancyByDay', 'stationID', stationID);
-      // verify required parameter 'day' is not null or undefined
-      assertParamExists('occupancyByDay', 'day', day);
-      const localVarPath = `/stations/{stationID}/occupancy/{day}`
-        .replace(`{${'stationID'}}`, encodeURIComponent(String(stationID)))
-        .replace(`{${'day'}}`, encodeURIComponent(String(day)));
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication DB-Api-Key required
-      await setApiKeyToObject(
-        localVarHeaderParameter,
-        'DB-Api-Key',
-        configuration,
-      );
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Returns details on station [Bahnhof] for requested stationID [BahnhofsID].
-     * @param {string} stationID id of desired station [Bahnhof], usually the STADA id from Station &amp; Service
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    station: async (
-      stationID: string,
-      options: any = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'stationID' is not null or undefined
-      assertParamExists('station', 'stationID', stationID);
-      const localVarPath = `/stations/{stationID}`.replace(
-        `{${'stationID'}}`,
-        encodeURIComponent(String(stationID)),
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication DB-Api-Key required
-      await setApiKeyToObject(
-        localVarHeaderParameter,
-        'DB-Api-Key',
-        configuration,
-      );
 
       setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
       let headersFromBaseOptions =
@@ -3190,16 +4139,41 @@ export const StationsApiFp = function (configuration?: Configuration) {
   const localVarAxiosParamCreator = StationsApiAxiosParamCreator(configuration);
   return {
     /**
-     * Returns all available stations [Bahnhoefe].
-     * @param {boolean} [onlyActive] indicates whether only active stations should be returned, defaults to true, if false inactive and future stations for different validility time ranges are returned
-     * @param {Array<Locale>} [locales] languages to include, defaults to DE only - DE (German) - EN (English) - FR (French) - IT (Italian)
+     * Returns details on station [Bahnhof] for requested stationID [BahnhofsID].
+     * @param {string} stationID id of desired station [Bahnhof], usually the STADA id from Station &amp; Service
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getStation(
+      stationID: string,
+      options?: any,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Station>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getStation(
+        stationID,
+        options,
+      );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration,
+      );
+    },
+    /**
+     * Returns all available stations [Bahnhöfe].
+     * @param {string} [state] state [Bundesland] to limit search results for
+     * @param {boolean} [onlyActive] indicates whether only active stations should be returned, defaults to true, if false inactive and future stations for different validity time ranges are returned
+     * @param {Array<Locale>} [locales] Locale to use, defaults to DE. - DE (German) - EN (English) - FR (French) - IT (Italian)  *DE only*
      * @param {string} [lastChanged] limits result to all stations that have been changed (anything) after passed fully qualified date (YYYY-MM-dd), can be used to get deltas, if omitted all stations are returned
      * @param {number} [offset] pagination offset parameter in order to navigate through result list, defaults to 0
      * @param {number} [limit] pagination limit parameter in order to limit total amount of results, defaults to 100
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async all1(
+    async getStations(
+      state?: string,
       onlyActive?: boolean,
       locales?: Array<Locale>,
       lastChanged?: string,
@@ -3212,7 +4186,8 @@ export const StationsApiFp = function (configuration?: Configuration) {
         basePath?: string,
       ) => AxiosPromise<StationsPageable>
     > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.all1(
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getStations(
+        state,
         onlyActive,
         locales,
         lastChanged,
@@ -3228,178 +4203,22 @@ export const StationsApiFp = function (configuration?: Configuration) {
       );
     },
     /**
-     * Returns a list of stations [Bahnhof] matching the provided name query, optional limited to a max radius around a provided geo coordinate, ordered by relevance or name matching desc and (configurable) grouped by stations [Bahnhoefe], if stations belong to a parent stations (like for instance \'Frankfurt Main Hbf\' and \'Frankfurt tief\' belong to \'Frankfurt Main Hbf\'). The query has support for fuzzy searching, means minimal typos are ignored even without providing wildcards. This query won\'t return stop-places, only stations.
-     * @param {string} query query for station names [Bahnhofsname] to search for, use * for wildcards if necessary
-     * @param {number} [latitude] optional geo reference position latitude
-     * @param {number} [longitude] optional geo reference position longitude
-     * @param {number} [radius] optional radius in meters around geo reference position to search for stations matching query
-     * @param {boolean} [onlyActive] indicates whether only active stations should be returned, defaults to true, if false inactive and future stations for different validility time ranges are returned
-     * @param {Array<Locale>} [locales] languages to include, defaults to DE only - DE (German) - EN (English) - FR (French) - IT (Italian)
-     * @param {number} [limit] limit parameter in order to limit total amount of results, defaults to 25
+     * Returns a list of stations [Bahnhof] that match the specified organisational unit [Regionalbereich].
+     * @param {string} [organisationalUnit] name of organisational unit
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async byName1(
-      query: string,
-      latitude?: number,
-      longitude?: number,
-      radius?: number,
-      onlyActive?: boolean,
-      locales?: Array<Locale>,
-      limit?: number,
+    async getStationsByOrganisationalUnit(
+      organisationalUnit?: string,
       options?: any,
     ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string,
-      ) => AxiosPromise<StationsPageable>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Stations>
     > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.byName1(
-        query,
-        latitude,
-        longitude,
-        radius,
-        onlyActive,
-        locales,
-        limit,
-        options,
-      );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration,
-      );
-    },
-    /**
-     * Returns all known keys of specific key type for the station [Bahnhof] with the provided stationID.
-     * @param {string} stationID id of desired station [Bahnhof], usually the STADA id from Station &amp; Service
-     * @param {StationKeyType} [keyType] filter mapped keys by specific key type, if omitted all keys are returned
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async keys1(
-      stationID: string,
-      keyType?: StationKeyType,
-      options?: any,
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<StationKeys>
-    > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.keys1(
-        stationID,
-        keyType,
-        options,
-      );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration,
-      );
-    },
-    /**
-     * Returns all local services [Bahnhofsnahe Dienstleistungen] for the station [Bahnhof] for requested stationID [BahnhofsID].
-     * @param {string} stationID id of desired station [Bahnhof], usually the STADA id from Station &amp; Service
-     * @param {Array<string>} [types] supported types of local services of a station [Bahnhof] - MOBILITY [Mobilitätseingeschränkten-Service] - LOST_PROPERTY [Fundbuero] - INFORMATION [Information] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [Information] - DB_LOUNGE [DB Lounge] - RAILWAY_MISSION [Bahnhofsmission] - CAR_HIRE [Mietwagen] - CYCLE_HIRE [Mieträder] - TAXI [Taxi Stand]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async localServices(
-      stationID: string,
-      types?: Array<string>,
-      options?: any,
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<LocalServices>
-    > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.localServices(
-        stationID,
-        types,
-        options,
-      );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration,
-      );
-    },
-    /**
-     * Returns occupancy [Auslastung] for the station [Bahnhof] for requested stationID [BahnhofsID] for the current week or a period (max. 7 days).
-     * @param {string} stationID id of desired station [Bahnhof], usually the STADA id from Station &amp; Service
-     * @param {string} [startDay] start date (yyyy-mm-dd) of requested station occupancy [Bahnhofsauslastung].
-     * @param {string} [endDay] end date (yyyy-mm-dd) of requested station occupancy [Bahnhofsauslastung].
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async occupancy(
-      stationID: string,
-      startDay?: string,
-      endDay?: string,
-      options?: any,
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string,
-      ) => AxiosPromise<StationOccupancies>
-    > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.occupancy(
-        stationID,
-        startDay,
-        endDay,
-        options,
-      );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration,
-      );
-    },
-    /**
-     * Returns occupancy [Auslastung] by day for the station [Bahnhof] for requested stationID [BahnhofsID].
-     * @param {string} stationID id of desired station [Bahnhof], usually the STADA id from Station &amp; Service
-     * @param {string} day day (yyyy-mm-dd) of requested station occupancy
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async occupancyByDay(
-      stationID: string,
-      day: string,
-      options?: any,
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string,
-      ) => AxiosPromise<StationOccupancyPerDay>
-    > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.occupancyByDay(
-        stationID,
-        day,
-        options,
-      );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration,
-      );
-    },
-    /**
-     * Returns details on station [Bahnhof] for requested stationID [BahnhofsID].
-     * @param {string} stationID id of desired station [Bahnhof], usually the STADA id from Station &amp; Service
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async station(
-      stationID: string,
-      options?: any,
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Station>
-    > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.station(
-        stationID,
-        options,
-      );
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.getStationsByOrganisationalUnit(
+          organisationalUnit,
+          options,
+        );
       return createRequestFunction(
         localVarAxiosArgs,
         globalAxios,
@@ -3422,16 +4241,29 @@ export const StationsApiFactory = function (
   const localVarFp = StationsApiFp(configuration);
   return {
     /**
-     * Returns all available stations [Bahnhoefe].
-     * @param {boolean} [onlyActive] indicates whether only active stations should be returned, defaults to true, if false inactive and future stations for different validility time ranges are returned
-     * @param {Array<Locale>} [locales] languages to include, defaults to DE only - DE (German) - EN (English) - FR (French) - IT (Italian)
+     * Returns details on station [Bahnhof] for requested stationID [BahnhofsID].
+     * @param {string} stationID id of desired station [Bahnhof], usually the STADA id from Station &amp; Service
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getStation(stationID: string, options?: any): AxiosPromise<Station> {
+      return localVarFp
+        .getStation(stationID, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * Returns all available stations [Bahnhöfe].
+     * @param {string} [state] state [Bundesland] to limit search results for
+     * @param {boolean} [onlyActive] indicates whether only active stations should be returned, defaults to true, if false inactive and future stations for different validity time ranges are returned
+     * @param {Array<Locale>} [locales] Locale to use, defaults to DE. - DE (German) - EN (English) - FR (French) - IT (Italian)  *DE only*
      * @param {string} [lastChanged] limits result to all stations that have been changed (anything) after passed fully qualified date (YYYY-MM-dd), can be used to get deltas, if omitted all stations are returned
      * @param {number} [offset] pagination offset parameter in order to navigate through result list, defaults to 0
      * @param {number} [limit] pagination limit parameter in order to limit total amount of results, defaults to 100
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    all1(
+    getStations(
+      state?: string,
       onlyActive?: boolean,
       locales?: Array<Locale>,
       lastChanged?: string,
@@ -3440,325 +4272,109 @@ export const StationsApiFactory = function (
       options?: any,
     ): AxiosPromise<StationsPageable> {
       return localVarFp
-        .all1(onlyActive, locales, lastChanged, offset, limit, options)
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Returns a list of stations [Bahnhof] matching the provided name query, optional limited to a max radius around a provided geo coordinate, ordered by relevance or name matching desc and (configurable) grouped by stations [Bahnhoefe], if stations belong to a parent stations (like for instance \'Frankfurt Main Hbf\' and \'Frankfurt tief\' belong to \'Frankfurt Main Hbf\'). The query has support for fuzzy searching, means minimal typos are ignored even without providing wildcards. This query won\'t return stop-places, only stations.
-     * @param {string} query query for station names [Bahnhofsname] to search for, use * for wildcards if necessary
-     * @param {number} [latitude] optional geo reference position latitude
-     * @param {number} [longitude] optional geo reference position longitude
-     * @param {number} [radius] optional radius in meters around geo reference position to search for stations matching query
-     * @param {boolean} [onlyActive] indicates whether only active stations should be returned, defaults to true, if false inactive and future stations for different validility time ranges are returned
-     * @param {Array<Locale>} [locales] languages to include, defaults to DE only - DE (German) - EN (English) - FR (French) - IT (Italian)
-     * @param {number} [limit] limit parameter in order to limit total amount of results, defaults to 25
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    byName1(
-      query: string,
-      latitude?: number,
-      longitude?: number,
-      radius?: number,
-      onlyActive?: boolean,
-      locales?: Array<Locale>,
-      limit?: number,
-      options?: any,
-    ): AxiosPromise<StationsPageable> {
-      return localVarFp
-        .byName1(
-          query,
-          latitude,
-          longitude,
-          radius,
+        .getStations(
+          state,
           onlyActive,
           locales,
+          lastChanged,
+          offset,
           limit,
           options,
         )
         .then((request) => request(axios, basePath));
     },
     /**
-     * Returns all known keys of specific key type for the station [Bahnhof] with the provided stationID.
-     * @param {string} stationID id of desired station [Bahnhof], usually the STADA id from Station &amp; Service
-     * @param {StationKeyType} [keyType] filter mapped keys by specific key type, if omitted all keys are returned
+     * Returns a list of stations [Bahnhof] that match the specified organisational unit [Regionalbereich].
+     * @param {string} [organisationalUnit] name of organisational unit
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    keys1(
-      stationID: string,
-      keyType?: StationKeyType,
+    getStationsByOrganisationalUnit(
+      organisationalUnit?: string,
       options?: any,
-    ): AxiosPromise<StationKeys> {
+    ): AxiosPromise<Stations> {
       return localVarFp
-        .keys1(stationID, keyType, options)
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Returns all local services [Bahnhofsnahe Dienstleistungen] for the station [Bahnhof] for requested stationID [BahnhofsID].
-     * @param {string} stationID id of desired station [Bahnhof], usually the STADA id from Station &amp; Service
-     * @param {Array<string>} [types] supported types of local services of a station [Bahnhof] - MOBILITY [Mobilitätseingeschränkten-Service] - LOST_PROPERTY [Fundbuero] - INFORMATION [Information] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [Information] - DB_LOUNGE [DB Lounge] - RAILWAY_MISSION [Bahnhofsmission] - CAR_HIRE [Mietwagen] - CYCLE_HIRE [Mieträder] - TAXI [Taxi Stand]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    localServices(
-      stationID: string,
-      types?: Array<string>,
-      options?: any,
-    ): AxiosPromise<LocalServices> {
-      return localVarFp
-        .localServices(stationID, types, options)
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Returns occupancy [Auslastung] for the station [Bahnhof] for requested stationID [BahnhofsID] for the current week or a period (max. 7 days).
-     * @param {string} stationID id of desired station [Bahnhof], usually the STADA id from Station &amp; Service
-     * @param {string} [startDay] start date (yyyy-mm-dd) of requested station occupancy [Bahnhofsauslastung].
-     * @param {string} [endDay] end date (yyyy-mm-dd) of requested station occupancy [Bahnhofsauslastung].
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    occupancy(
-      stationID: string,
-      startDay?: string,
-      endDay?: string,
-      options?: any,
-    ): AxiosPromise<StationOccupancies> {
-      return localVarFp
-        .occupancy(stationID, startDay, endDay, options)
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Returns occupancy [Auslastung] by day for the station [Bahnhof] for requested stationID [BahnhofsID].
-     * @param {string} stationID id of desired station [Bahnhof], usually the STADA id from Station &amp; Service
-     * @param {string} day day (yyyy-mm-dd) of requested station occupancy
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    occupancyByDay(
-      stationID: string,
-      day: string,
-      options?: any,
-    ): AxiosPromise<StationOccupancyPerDay> {
-      return localVarFp
-        .occupancyByDay(stationID, day, options)
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Returns details on station [Bahnhof] for requested stationID [BahnhofsID].
-     * @param {string} stationID id of desired station [Bahnhof], usually the STADA id from Station &amp; Service
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    station(stationID: string, options?: any): AxiosPromise<Station> {
-      return localVarFp
-        .station(stationID, options)
+        .getStationsByOrganisationalUnit(organisationalUnit, options)
         .then((request) => request(axios, basePath));
     },
   };
 };
 
 /**
- * Request parameters for all1 operation in StationsApi.
+ * Request parameters for getStation operation in StationsApi.
  * @export
- * @interface StationsApiAll1Request
+ * @interface StationsApiGetStationRequest
  */
-export interface StationsApiAll1Request {
+export interface StationsApiGetStationRequest {
   /**
-   * indicates whether only active stations should be returned, defaults to true, if false inactive and future stations for different validility time ranges are returned
+   * id of desired station [Bahnhof], usually the STADA id from Station &amp; Service
+   * @type {string}
+   * @memberof StationsApiGetStation
+   */
+  readonly stationID: string;
+}
+
+/**
+ * Request parameters for getStations operation in StationsApi.
+ * @export
+ * @interface StationsApiGetStationsRequest
+ */
+export interface StationsApiGetStationsRequest {
+  /**
+   * state [Bundesland] to limit search results for
+   * @type {string}
+   * @memberof StationsApiGetStations
+   */
+  readonly state?: string;
+
+  /**
+   * indicates whether only active stations should be returned, defaults to true, if false inactive and future stations for different validity time ranges are returned
    * @type {boolean}
-   * @memberof StationsApiAll1
+   * @memberof StationsApiGetStations
    */
   readonly onlyActive?: boolean;
 
   /**
-   * languages to include, defaults to DE only - DE (German) - EN (English) - FR (French) - IT (Italian)
+   * Locale to use, defaults to DE. - DE (German) - EN (English) - FR (French) - IT (Italian)  *DE only*
    * @type {Array<Locale>}
-   * @memberof StationsApiAll1
+   * @memberof StationsApiGetStations
    */
   readonly locales?: Array<Locale>;
 
   /**
    * limits result to all stations that have been changed (anything) after passed fully qualified date (YYYY-MM-dd), can be used to get deltas, if omitted all stations are returned
    * @type {string}
-   * @memberof StationsApiAll1
+   * @memberof StationsApiGetStations
    */
   readonly lastChanged?: string;
 
   /**
    * pagination offset parameter in order to navigate through result list, defaults to 0
    * @type {number}
-   * @memberof StationsApiAll1
+   * @memberof StationsApiGetStations
    */
   readonly offset?: number;
 
   /**
    * pagination limit parameter in order to limit total amount of results, defaults to 100
    * @type {number}
-   * @memberof StationsApiAll1
+   * @memberof StationsApiGetStations
    */
   readonly limit?: number;
 }
 
 /**
- * Request parameters for byName1 operation in StationsApi.
+ * Request parameters for getStationsByOrganisationalUnit operation in StationsApi.
  * @export
- * @interface StationsApiByName1Request
+ * @interface StationsApiGetStationsByOrganisationalUnitRequest
  */
-export interface StationsApiByName1Request {
+export interface StationsApiGetStationsByOrganisationalUnitRequest {
   /**
-   * query for station names [Bahnhofsname] to search for, use * for wildcards if necessary
+   * name of organisational unit
    * @type {string}
-   * @memberof StationsApiByName1
+   * @memberof StationsApiGetStationsByOrganisationalUnit
    */
-  readonly query: string;
-
-  /**
-   * optional geo reference position latitude
-   * @type {number}
-   * @memberof StationsApiByName1
-   */
-  readonly latitude?: number;
-
-  /**
-   * optional geo reference position longitude
-   * @type {number}
-   * @memberof StationsApiByName1
-   */
-  readonly longitude?: number;
-
-  /**
-   * optional radius in meters around geo reference position to search for stations matching query
-   * @type {number}
-   * @memberof StationsApiByName1
-   */
-  readonly radius?: number;
-
-  /**
-   * indicates whether only active stations should be returned, defaults to true, if false inactive and future stations for different validility time ranges are returned
-   * @type {boolean}
-   * @memberof StationsApiByName1
-   */
-  readonly onlyActive?: boolean;
-
-  /**
-   * languages to include, defaults to DE only - DE (German) - EN (English) - FR (French) - IT (Italian)
-   * @type {Array<Locale>}
-   * @memberof StationsApiByName1
-   */
-  readonly locales?: Array<Locale>;
-
-  /**
-   * limit parameter in order to limit total amount of results, defaults to 25
-   * @type {number}
-   * @memberof StationsApiByName1
-   */
-  readonly limit?: number;
-}
-
-/**
- * Request parameters for keys1 operation in StationsApi.
- * @export
- * @interface StationsApiKeys1Request
- */
-export interface StationsApiKeys1Request {
-  /**
-   * id of desired station [Bahnhof], usually the STADA id from Station &amp; Service
-   * @type {string}
-   * @memberof StationsApiKeys1
-   */
-  readonly stationID: string;
-
-  /**
-   * filter mapped keys by specific key type, if omitted all keys are returned
-   * @type {StationKeyType}
-   * @memberof StationsApiKeys1
-   */
-  readonly keyType?: StationKeyType;
-}
-
-/**
- * Request parameters for localServices operation in StationsApi.
- * @export
- * @interface StationsApiLocalServicesRequest
- */
-export interface StationsApiLocalServicesRequest {
-  /**
-   * id of desired station [Bahnhof], usually the STADA id from Station &amp; Service
-   * @type {string}
-   * @memberof StationsApiLocalServices
-   */
-  readonly stationID: string;
-
-  /**
-   * supported types of local services of a station [Bahnhof] - MOBILITY [Mobilitätseingeschränkten-Service] - LOST_PROPERTY [Fundbuero] - INFORMATION [Information] - TRAVEL_CENTER [Reisezentrum] - VIDEO_TRAVEL_CENTER [Video Reisezentrum] - TRIPLE_S_CENTER [Information] - DB_LOUNGE [DB Lounge] - RAILWAY_MISSION [Bahnhofsmission] - CAR_HIRE [Mietwagen] - CYCLE_HIRE [Mieträder] - TAXI [Taxi Stand]
-   * @type {Array<string>}
-   * @memberof StationsApiLocalServices
-   */
-  readonly types?: Array<string>;
-}
-
-/**
- * Request parameters for occupancy operation in StationsApi.
- * @export
- * @interface StationsApiOccupancyRequest
- */
-export interface StationsApiOccupancyRequest {
-  /**
-   * id of desired station [Bahnhof], usually the STADA id from Station &amp; Service
-   * @type {string}
-   * @memberof StationsApiOccupancy
-   */
-  readonly stationID: string;
-
-  /**
-   * start date (yyyy-mm-dd) of requested station occupancy [Bahnhofsauslastung].
-   * @type {string}
-   * @memberof StationsApiOccupancy
-   */
-  readonly startDay?: string;
-
-  /**
-   * end date (yyyy-mm-dd) of requested station occupancy [Bahnhofsauslastung].
-   * @type {string}
-   * @memberof StationsApiOccupancy
-   */
-  readonly endDay?: string;
-}
-
-/**
- * Request parameters for occupancyByDay operation in StationsApi.
- * @export
- * @interface StationsApiOccupancyByDayRequest
- */
-export interface StationsApiOccupancyByDayRequest {
-  /**
-   * id of desired station [Bahnhof], usually the STADA id from Station &amp; Service
-   * @type {string}
-   * @memberof StationsApiOccupancyByDay
-   */
-  readonly stationID: string;
-
-  /**
-   * day (yyyy-mm-dd) of requested station occupancy
-   * @type {string}
-   * @memberof StationsApiOccupancyByDay
-   */
-  readonly day: string;
-}
-
-/**
- * Request parameters for station operation in StationsApi.
- * @export
- * @interface StationsApiStationRequest
- */
-export interface StationsApiStationRequest {
-  /**
-   * id of desired station [Bahnhof], usually the STADA id from Station &amp; Service
-   * @type {string}
-   * @memberof StationsApiStation
-   */
-  readonly stationID: string;
+  readonly organisationalUnit?: string;
 }
 
 /**
@@ -3769,15 +4385,35 @@ export interface StationsApiStationRequest {
  */
 export class StationsApi extends BaseAPI {
   /**
-   * Returns all available stations [Bahnhoefe].
-   * @param {StationsApiAll1Request} requestParameters Request parameters.
+   * Returns details on station [Bahnhof] for requested stationID [BahnhofsID].
+   * @param {StationsApiGetStationRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof StationsApi
    */
-  public all1(requestParameters: StationsApiAll1Request = {}, options?: any) {
+  public getStation(
+    requestParameters: StationsApiGetStationRequest,
+    options?: any,
+  ) {
     return StationsApiFp(this.configuration)
-      .all1(
+      .getStation(requestParameters.stationID, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Returns all available stations [Bahnhöfe].
+   * @param {StationsApiGetStationsRequest} requestParameters Request parameters.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof StationsApi
+   */
+  public getStations(
+    requestParameters: StationsApiGetStationsRequest = {},
+    options?: any,
+  ) {
+    return StationsApiFp(this.configuration)
+      .getStations(
+        requestParameters.state,
         requestParameters.onlyActive,
         requestParameters.locales,
         requestParameters.lastChanged,
@@ -3789,111 +4425,21 @@ export class StationsApi extends BaseAPI {
   }
 
   /**
-   * Returns a list of stations [Bahnhof] matching the provided name query, optional limited to a max radius around a provided geo coordinate, ordered by relevance or name matching desc and (configurable) grouped by stations [Bahnhoefe], if stations belong to a parent stations (like for instance \'Frankfurt Main Hbf\' and \'Frankfurt tief\' belong to \'Frankfurt Main Hbf\'). The query has support for fuzzy searching, means minimal typos are ignored even without providing wildcards. This query won\'t return stop-places, only stations.
-   * @param {StationsApiByName1Request} requestParameters Request parameters.
+   * Returns a list of stations [Bahnhof] that match the specified organisational unit [Regionalbereich].
+   * @param {StationsApiGetStationsByOrganisationalUnitRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof StationsApi
    */
-  public byName1(requestParameters: StationsApiByName1Request, options?: any) {
-    return StationsApiFp(this.configuration)
-      .byName1(
-        requestParameters.query,
-        requestParameters.latitude,
-        requestParameters.longitude,
-        requestParameters.radius,
-        requestParameters.onlyActive,
-        requestParameters.locales,
-        requestParameters.limit,
-        options,
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
-
-  /**
-   * Returns all known keys of specific key type for the station [Bahnhof] with the provided stationID.
-   * @param {StationsApiKeys1Request} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof StationsApi
-   */
-  public keys1(requestParameters: StationsApiKeys1Request, options?: any) {
-    return StationsApiFp(this.configuration)
-      .keys1(requestParameters.stationID, requestParameters.keyType, options)
-      .then((request) => request(this.axios, this.basePath));
-  }
-
-  /**
-   * Returns all local services [Bahnhofsnahe Dienstleistungen] for the station [Bahnhof] for requested stationID [BahnhofsID].
-   * @param {StationsApiLocalServicesRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof StationsApi
-   */
-  public localServices(
-    requestParameters: StationsApiLocalServicesRequest,
+  public getStationsByOrganisationalUnit(
+    requestParameters: StationsApiGetStationsByOrganisationalUnitRequest = {},
     options?: any,
   ) {
     return StationsApiFp(this.configuration)
-      .localServices(
-        requestParameters.stationID,
-        requestParameters.types,
+      .getStationsByOrganisationalUnit(
+        requestParameters.organisationalUnit,
         options,
       )
-      .then((request) => request(this.axios, this.basePath));
-  }
-
-  /**
-   * Returns occupancy [Auslastung] for the station [Bahnhof] for requested stationID [BahnhofsID] for the current week or a period (max. 7 days).
-   * @param {StationsApiOccupancyRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof StationsApi
-   */
-  public occupancy(
-    requestParameters: StationsApiOccupancyRequest,
-    options?: any,
-  ) {
-    return StationsApiFp(this.configuration)
-      .occupancy(
-        requestParameters.stationID,
-        requestParameters.startDay,
-        requestParameters.endDay,
-        options,
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
-
-  /**
-   * Returns occupancy [Auslastung] by day for the station [Bahnhof] for requested stationID [BahnhofsID].
-   * @param {StationsApiOccupancyByDayRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof StationsApi
-   */
-  public occupancyByDay(
-    requestParameters: StationsApiOccupancyByDayRequest,
-    options?: any,
-  ) {
-    return StationsApiFp(this.configuration)
-      .occupancyByDay(
-        requestParameters.stationID,
-        requestParameters.day,
-        options,
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
-
-  /**
-   * Returns details on station [Bahnhof] for requested stationID [BahnhofsID].
-   * @param {StationsApiStationRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof StationsApi
-   */
-  public station(requestParameters: StationsApiStationRequest, options?: any) {
-    return StationsApiFp(this.configuration)
-      .station(requestParameters.stationID, options)
       .then((request) => request(this.axios, this.basePath));
   }
 }
@@ -3907,16 +4453,142 @@ export const StopPlacesApiAxiosParamCreator = function (
 ) {
   return {
     /**
+     * Returns all groups the stop place belongs with all group members.
+     * @param {string} evaNumber eva number to return stop place [Haltestelle] groups for
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getStopPlaceGroups: async (
+      evaNumber: string,
+      options: any = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'evaNumber' is not null or undefined
+      assertParamExists('getStopPlaceGroups', 'evaNumber', evaNumber);
+      const localVarPath = `/stop-places/{evaNumber}/groups`.replace(
+        `{${'evaNumber'}}`,
+        encodeURIComponent(String(evaNumber)),
+      );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ClientId required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Client-Id',
+        configuration,
+      );
+
+      // authentication ClientSecret required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Api-Key',
+        configuration,
+      );
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Returns all known keys of specific key type for the stop place with the provided eva number. Take care that associated keys may belong to some kind of group [Station for instance] and that relations between keys are most likely n:m and not 1:1.
+     * @param {string} evaNumber eva number to return stop place [Haltestelle] keys for
+     * @param {StopPlaceKeyType} [keyType] filter mapped keys by specific key type, if omitted all keys are returned
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getStopPlaceKeys: async (
+      evaNumber: string,
+      keyType?: StopPlaceKeyType,
+      options: any = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'evaNumber' is not null or undefined
+      assertParamExists('getStopPlaceKeys', 'evaNumber', evaNumber);
+      const localVarPath = `/stop-places/{evaNumber}/keys`.replace(
+        `{${'evaNumber'}}`,
+        encodeURIComponent(String(evaNumber)),
+      );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: 'GET',
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication ClientId required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Client-Id',
+        configuration,
+      );
+
+      // authentication ClientSecret required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Api-Key',
+        configuration,
+      );
+
+      if (keyType !== undefined) {
+        localVarQueryParameter['keyType'] = keyType;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
      * Returns all available stop places.
-     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validility time ranges are returned
-     * @param {Array<Locale>} [locales] languages to include, defaults to DE only - DE (German) - EN (English) - FR (French) - IT (Italian)
+     * @param {Array<string>} [transportAssociations] transport associations [Verkehrsverbünde] to limit search results for
+     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
+     * @param {Array<Locale>} [locales] Locale to use, defaults to DE. - DE (German) - EN (English) - FR (French) - IT (Italian)  *DE only*
      * @param {string} [lastChanged] limits result to all stop-places that have been changed (anything) after passed fully qualified date (YYYY-MM-dd), can be used to get deltas, if omitted all stop-places are returned
      * @param {number} [offset] pagination offset parameter in order to navigate through result list, defaults to 0
      * @param {number} [limit] pagination limit parameter in order to limit total amount of results, defaults to 100
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    all: async (
+    getStopPlaces: async (
+      transportAssociations?: Array<string>,
       onlyActive?: boolean,
       locales?: Array<Locale>,
       lastChanged?: string,
@@ -3940,12 +4612,23 @@ export const StopPlacesApiAxiosParamCreator = function (
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
 
-      // authentication DB-Api-Key required
+      // authentication ClientId required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Client-Id',
+        configuration,
+      );
+
+      // authentication ClientSecret required
       await setApiKeyToObject(
         localVarHeaderParameter,
         'DB-Api-Key',
         configuration,
       );
+
+      if (transportAssociations) {
+        localVarQueryParameter['transportAssociations'] = transportAssociations;
+      }
 
       if (onlyActive !== undefined) {
         localVarQueryParameter['onlyActive'] = onlyActive;
@@ -3987,19 +4670,19 @@ export const StopPlacesApiAxiosParamCreator = function (
     /**
      * Returns stop place for provided eva number. May return multiple stop places in case differing validity time ranges exist and the flag onlyValid = false.
      * @param {string} evaNumber eva number to return stop place [Haltestelle] for
-     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validility time ranges are returned
-     * @param {Array<Locale>} [locales] languages to include, defaults to DE only - DE (German) - EN (English) - FR (French) - IT (Italian)
+     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
+     * @param {Array<Locale>} [locales] Locale to use, defaults to DE. - DE (German) - EN (English) - FR (French) - IT (Italian)  *DE only*
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    byEvaNumber: async (
+    getStopPlacesByEvaNumber: async (
       evaNumber: string,
       onlyActive?: boolean,
       locales?: Array<Locale>,
       options: any = {},
     ): Promise<RequestArgs> => {
       // verify required parameter 'evaNumber' is not null or undefined
-      assertParamExists('byEvaNumber', 'evaNumber', evaNumber);
+      assertParamExists('getStopPlacesByEvaNumber', 'evaNumber', evaNumber);
       const localVarPath = `/stop-places/{evaNumber}`.replace(
         `{${'evaNumber'}}`,
         encodeURIComponent(String(evaNumber)),
@@ -4019,7 +4702,14 @@ export const StopPlacesApiAxiosParamCreator = function (
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
 
-      // authentication DB-Api-Key required
+      // authentication ClientId required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Client-Id',
+        configuration,
+      );
+
+      // authentication ClientSecret required
       await setApiKeyToObject(
         localVarHeaderParameter,
         'DB-Api-Key',
@@ -4050,14 +4740,14 @@ export const StopPlacesApiAxiosParamCreator = function (
     },
     /**
      * Returns stop places that match the provided key.
-     * @param {StopPlaceKeyFilter} keyType type of stop place key - IFOPT (transmodel identifier for fixed objects, in germany dhid &#x3D; Deutschlandweite Halt ID also known as global id) - EVA (eva number) - RL100 (primary or alternative rl100 / ds100) - EPA (epa number) - STADA (statitionsdatenbank number) - IBNR (internal station number [interne bahnhofsnummer]) - EBHF ([Tarifpunktnummer / Einheitliche Bahnhofsdatei Nr.] - UIC (international station number)
+     * @param {StopPlaceKeyFilter} keyType type of stop place key - IFOPT (transmodel identifier for fixed objects aka DHID, may be provided on level of stop-place or plattform, other levels not supported yet) - EVA (eva number) - RL100 (primary or alternative rl100 / ds100) - EPA (epa number) - STADA (Stationsdatenbank number) - IBNR (internal station number [interne bahnhofsnummer]) - EBHF ([Tarifpunktnummer / Einheitliche Bahnhofsdatei Nr.] - UIC (international station number) - PLC (primary location code)
      * @param {string} key key to return stop places [Haltestellen] for
-     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validility time ranges are returned
-     * @param {Array<Locale>} [locales] languages to include, defaults to DE only - DE (German) - EN (English) - FR (French) - IT (Italian)
+     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
+     * @param {Array<Locale>} [locales] Locale to use, defaults to DE. - DE (German) - EN (English) - FR (French) - IT (Italian)  *DE only*
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    byKey: async (
+    getStopPlacesByKey: async (
       keyType: StopPlaceKeyFilter,
       key: string,
       onlyActive?: boolean,
@@ -4065,9 +4755,9 @@ export const StopPlacesApiAxiosParamCreator = function (
       options: any = {},
     ): Promise<RequestArgs> => {
       // verify required parameter 'keyType' is not null or undefined
-      assertParamExists('byKey', 'keyType', keyType);
+      assertParamExists('getStopPlacesByKey', 'keyType', keyType);
       // verify required parameter 'key' is not null or undefined
-      assertParamExists('byKey', 'key', key);
+      assertParamExists('getStopPlacesByKey', 'key', key);
       const localVarPath = `/stop-places/by-key`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4084,7 +4774,14 @@ export const StopPlacesApiAxiosParamCreator = function (
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
 
-      // authentication DB-Api-Key required
+      // authentication ClientId required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Client-Id',
+        configuration,
+      );
+
+      // authentication ClientSecret required
       await setApiKeyToObject(
         localVarHeaderParameter,
         'DB-Api-Key',
@@ -4122,24 +4819,26 @@ export const StopPlacesApiAxiosParamCreator = function (
       };
     },
     /**
-     * Returns a list of stop places [Haltestelle] matching the provided name query, optional limited to a max radius around a provided geo coordinate, ordered by relevance or name matching desc and (configurable) grouped by stations [Bahnhoefe], if stop-places belong to a parent stations (like for instance \'Frankfurt Main Hbf\' and \'Frankfurt tief\' belong to \'Frankfurt Main Hbf\'). The query has support for fuzzy searching, means minimal typos are ignored even without providing wildcards.
-     * @param {string} query query for stop place names [Haltestellenname] to search for, use * for wildcards if necessary
-     * @param {number} [latitude] optional geo reference position latitude
-     * @param {number} [longitude] optional geo reference position longitude
-     * @param {number} [radius] optional radius in meters around geo reference position to search for stop places matching query
-     * @param {StopPlaceSearchGroupByKey} [groupBy] group returned stop-places by their parent station [Bahnhof], defaults to grouping by STATION if omitted - STATION (group by parent station that is defined by DB Station &amp; Services STADA-ID) - NONE (no grouping is applied, just stop-places are returned)
-     * @param {StopPlaceSortKey} [sortBy] sorting for search results, if omitted RELEVANCE will be used - RELEVANCE (stop places are sorted by relevance descending (main stations etc. first)) - QUERY_MATCH (stop places are sorted by matching the provided query string descending aka Levensthein Distance)
-     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validility time ranges are returned
-     * @param {Array<Locale>} [locales] languages to include, defaults to DE only - DE (German) - EN (English) - FR (French) - IT (Italian)
+     * Returns a list of stop places [Haltestelle] matching the provided name query, optional limited to a max radius around a provided geo coordinate, ordered by relevance or name matching desc and (configurable) grouped by stations [Bahnhöfe], if stop-places belong to a parent stations (like for instance \'Frankfurt Main Hbf\' and \'Frankfurt tief\' belong to \'Frankfurt Main Hbf\'). The query has support for fuzzy searching, means minimal typos are ignored even without providing wildcards.
+     * @param {string} query query for stop place names [Haltestellenname] to search for
+     * @param {number} [latitude] optional geo reference position latitude, if provided results are also ranked by distance
+     * @param {number} [longitude] optional geo reference position longitude, if provided results are also ranked by distance
+     * @param {string} [state] The state code [Bundeslandkürzel] the stop place belongs to. (Reference: https://www.datenportal.bmbf.de/portal/de/G122.html)
+     * @param {Array<string>} [transportAssociations] transport associations [Verkehrsverbünde] to limit search results for
+     * @param {StopPlaceSearchGroupByKey} [groupBy] group returned stop-places by their parent station [Bahnhof], defaults to grouping by STATION if omitted - STATION (group by parent station that is defined by DB Station &amp; Services STADA-ID) - SALES (group defined by sales [Vertrieb], for instance FFM &#x3D; Hoch + Tief + Bus + Tram + Subway, maintained by DB Vertrieb via EFZ [Europäisches Fahrplanzentrum]) - NONE (no grouping is applied, just stop-places are returned)
+     * @param {StopPlaceSortKey} [sortBy] sorting for search results, if omitted RELEVANCE will be used - RELEVANCE (stop places are sorted by relevance descending (main stations etc. first)) - QUERY_MATCH (stop places are sorted by matching the provided query string descending aka Levenshtein Distance)
+     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
+     * @param {Array<Locale>} [locales] Locale to use, defaults to DE. - DE (German) - EN (English) - FR (French) - IT (Italian)  *DE only*
      * @param {number} [limit] limit parameter in order to limit total amount of results, defaults to 25
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    byName: async (
+    getStopPlacesByName: async (
       query: string,
       latitude?: number,
       longitude?: number,
-      radius?: number,
+      state?: string,
+      transportAssociations?: Array<string>,
       groupBy?: StopPlaceSearchGroupByKey,
       sortBy?: StopPlaceSortKey,
       onlyActive?: boolean,
@@ -4148,7 +4847,7 @@ export const StopPlacesApiAxiosParamCreator = function (
       options: any = {},
     ): Promise<RequestArgs> => {
       // verify required parameter 'query' is not null or undefined
-      assertParamExists('byName', 'query', query);
+      assertParamExists('getStopPlacesByName', 'query', query);
       const localVarPath = `/stop-places/by-name/{query}`.replace(
         `{${'query'}}`,
         encodeURIComponent(String(query)),
@@ -4168,7 +4867,14 @@ export const StopPlacesApiAxiosParamCreator = function (
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
 
-      // authentication DB-Api-Key required
+      // authentication ClientId required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Client-Id',
+        configuration,
+      );
+
+      // authentication ClientSecret required
       await setApiKeyToObject(
         localVarHeaderParameter,
         'DB-Api-Key',
@@ -4183,8 +4889,12 @@ export const StopPlacesApiAxiosParamCreator = function (
         localVarQueryParameter['longitude'] = longitude;
       }
 
-      if (radius !== undefined) {
-        localVarQueryParameter['radius'] = radius;
+      if (state !== undefined) {
+        localVarQueryParameter['state'] = state;
+      }
+
+      if (transportAssociations) {
+        localVarQueryParameter['transportAssociations'] = transportAssociations;
       }
 
       if (groupBy !== undefined) {
@@ -4222,21 +4932,25 @@ export const StopPlacesApiAxiosParamCreator = function (
       };
     },
     /**
-     * Returns a list of stop places [Haltestellen] arround geo position within provided radius ordered by distance asc and (configurable) grouped by stations [Bahnhoefe], if stop-places belong to a parent stations (like for instance \'Frankfurt Main Hbf\' and \'Frankfurt tief\' belong to \'Frankfurt Main Hbf\').
+     * Returns a list of stop places [Haltestellen] around geo position within provided radius ordered by distance asc and (configurable) grouped by stations [Bahnhöfe], if stop-places belong to a parent stations (like for instance \'Frankfurt Main Hbf\' and \'Frankfurt tief\' belong to \'Frankfurt Main Hbf\').
      * @param {number} latitude geo position latitude
      * @param {number} longitude geo position longitude
+     * @param {string} [state] The state code [Bundeslandkürzel] the stop place belongs to. (Reference: https://www.datenportal.bmbf.de/portal/de/G122.html)
      * @param {number} [radius] radius in meters around geo position
-     * @param {StopPlaceSearchGroupByKey} [groupBy] group returned stop-places by their parent station [Bahnhof], defaults to grouping by STATION if omitted - STATION (group by parent station that is defined by DB Station &amp; Services STADA-ID) - NONE (no grouping is applied, just stop-places are returned)
-     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validility time ranges are returned
-     * @param {Array<Locale>} [locales] languages to include, defaults to DE only - DE (German) - EN (English) - FR (French) - IT (Italian)
+     * @param {Array<string>} [transportAssociations] transport associations [Verkehrsverbünde] to limit search results for
+     * @param {StopPlaceSearchGroupByKey} [groupBy] group returned stop-places by their parent station [Bahnhof], defaults to grouping by STATION if omitted - STATION (group by parent station that is defined by DB Station &amp; Services STADA-ID) - SALES (group defined by sales [Vertrieb], for instance FFM &#x3D; Hoch + Tief + Bus + Tram + Subway, maintained by DB Vertrieb via EFZ [Europäisches Fahrplanzentrum]) - NONE (no grouping is applied, just stop-places are returned)
+     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
+     * @param {Array<Locale>} [locales] Locale to use, defaults to DE. - DE (German) - EN (English) - FR (French) - IT (Italian)  *DE only*
      * @param {number} [limit] limit parameter in order to limit total amount of results, if omitted no truncation applies
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    byPosition: async (
+    getStopPlacesByPosition: async (
       latitude: number,
       longitude: number,
+      state?: string,
       radius?: number,
+      transportAssociations?: Array<string>,
       groupBy?: StopPlaceSearchGroupByKey,
       onlyActive?: boolean,
       locales?: Array<Locale>,
@@ -4244,9 +4958,9 @@ export const StopPlacesApiAxiosParamCreator = function (
       options: any = {},
     ): Promise<RequestArgs> => {
       // verify required parameter 'latitude' is not null or undefined
-      assertParamExists('byPosition', 'latitude', latitude);
+      assertParamExists('getStopPlacesByPosition', 'latitude', latitude);
       // verify required parameter 'longitude' is not null or undefined
-      assertParamExists('byPosition', 'longitude', longitude);
+      assertParamExists('getStopPlacesByPosition', 'longitude', longitude);
       const localVarPath = `/stop-places/by-position`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4263,12 +4977,23 @@ export const StopPlacesApiAxiosParamCreator = function (
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
 
-      // authentication DB-Api-Key required
+      // authentication ClientId required
+      await setApiKeyToObject(
+        localVarHeaderParameter,
+        'DB-Client-Id',
+        configuration,
+      );
+
+      // authentication ClientSecret required
       await setApiKeyToObject(
         localVarHeaderParameter,
         'DB-Api-Key',
         configuration,
       );
+
+      if (state !== undefined) {
+        localVarQueryParameter['state'] = state;
+      }
 
       if (latitude !== undefined) {
         localVarQueryParameter['latitude'] = latitude;
@@ -4280,6 +5005,10 @@ export const StopPlacesApiAxiosParamCreator = function (
 
       if (radius !== undefined) {
         localVarQueryParameter['radius'] = radius;
+      }
+
+      if (transportAssociations) {
+        localVarQueryParameter['transportAssociations'] = transportAssociations;
       }
 
       if (groupBy !== undefined) {
@@ -4312,116 +5041,6 @@ export const StopPlacesApiAxiosParamCreator = function (
         options: localVarRequestOptions,
       };
     },
-    /**
-     * Returns all groups the stop place belongs with all group members.
-     * @param {string} evaNumber eva number to return stop place [Haltestelle] groups for
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    groups: async (
-      evaNumber: string,
-      options: any = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'evaNumber' is not null or undefined
-      assertParamExists('groups', 'evaNumber', evaNumber);
-      const localVarPath = `/stop-places/{evaNumber}/groups`.replace(
-        `{${'evaNumber'}}`,
-        encodeURIComponent(String(evaNumber)),
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication DB-Api-Key required
-      await setApiKeyToObject(
-        localVarHeaderParameter,
-        'DB-Api-Key',
-        configuration,
-      );
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Returns all known keys of specific key type for the stop place with the provided eva number. Take care that associated keys may belong to some kind of group [Station for instance] and that relations between keys are most likely n:m and not 1:1.
-     * @param {string} evaNumber eva number to return stop place [Haltestelle] keys for
-     * @param {StopPlaceKeyType} [keyType] filter mapped keys by specific key type, if omitted all keys are returned
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    keys: async (
-      evaNumber: string,
-      keyType?: StopPlaceKeyType,
-      options: any = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'evaNumber' is not null or undefined
-      assertParamExists('keys', 'evaNumber', evaNumber);
-      const localVarPath = `/stop-places/{evaNumber}/keys`.replace(
-        `{${'evaNumber'}}`,
-        encodeURIComponent(String(evaNumber)),
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: 'GET',
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication DB-Api-Key required
-      await setApiKeyToObject(
-        localVarHeaderParameter,
-        'DB-Api-Key',
-        configuration,
-      );
-
-      if (keyType !== undefined) {
-        localVarQueryParameter['keyType'] = keyType;
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
   };
 };
 
@@ -4434,16 +5053,69 @@ export const StopPlacesApiFp = function (configuration?: Configuration) {
     StopPlacesApiAxiosParamCreator(configuration);
   return {
     /**
+     * Returns all groups the stop place belongs with all group members.
+     * @param {string} evaNumber eva number to return stop place [Haltestelle] groups for
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getStopPlaceGroups(
+      evaNumber: string,
+      options?: any,
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string,
+      ) => AxiosPromise<StopPlaceGroups>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.getStopPlaceGroups(evaNumber, options);
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration,
+      );
+    },
+    /**
+     * Returns all known keys of specific key type for the stop place with the provided eva number. Take care that associated keys may belong to some kind of group [Station for instance] and that relations between keys are most likely n:m and not 1:1.
+     * @param {string} evaNumber eva number to return stop place [Haltestelle] keys for
+     * @param {StopPlaceKeyType} [keyType] filter mapped keys by specific key type, if omitted all keys are returned
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getStopPlaceKeys(
+      evaNumber: string,
+      keyType?: StopPlaceKeyType,
+      options?: any,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<StopPlaceKeys>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.getStopPlaceKeys(
+          evaNumber,
+          keyType,
+          options,
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration,
+      );
+    },
+    /**
      * Returns all available stop places.
-     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validility time ranges are returned
-     * @param {Array<Locale>} [locales] languages to include, defaults to DE only - DE (German) - EN (English) - FR (French) - IT (Italian)
+     * @param {Array<string>} [transportAssociations] transport associations [Verkehrsverbünde] to limit search results for
+     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
+     * @param {Array<Locale>} [locales] Locale to use, defaults to DE. - DE (German) - EN (English) - FR (French) - IT (Italian)  *DE only*
      * @param {string} [lastChanged] limits result to all stop-places that have been changed (anything) after passed fully qualified date (YYYY-MM-dd), can be used to get deltas, if omitted all stop-places are returned
      * @param {number} [offset] pagination offset parameter in order to navigate through result list, defaults to 0
      * @param {number} [limit] pagination limit parameter in order to limit total amount of results, defaults to 100
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async all(
+    async getStopPlaces(
+      transportAssociations?: Array<string>,
       onlyActive?: boolean,
       locales?: Array<Locale>,
       lastChanged?: string,
@@ -4456,7 +5128,8 @@ export const StopPlacesApiFp = function (configuration?: Configuration) {
         basePath?: string,
       ) => AxiosPromise<StopPlacesPageable>
     > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.all(
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getStopPlaces(
+        transportAssociations,
         onlyActive,
         locales,
         lastChanged,
@@ -4474,12 +5147,12 @@ export const StopPlacesApiFp = function (configuration?: Configuration) {
     /**
      * Returns stop place for provided eva number. May return multiple stop places in case differing validity time ranges exist and the flag onlyValid = false.
      * @param {string} evaNumber eva number to return stop place [Haltestelle] for
-     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validility time ranges are returned
-     * @param {Array<Locale>} [locales] languages to include, defaults to DE only - DE (German) - EN (English) - FR (French) - IT (Italian)
+     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
+     * @param {Array<Locale>} [locales] Locale to use, defaults to DE. - DE (German) - EN (English) - FR (French) - IT (Italian)  *DE only*
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async byEvaNumber(
+    async getStopPlacesByEvaNumber(
       evaNumber: string,
       onlyActive?: boolean,
       locales?: Array<Locale>,
@@ -4487,12 +5160,13 @@ export const StopPlacesApiFp = function (configuration?: Configuration) {
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<StopPlaces>
     > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.byEvaNumber(
-        evaNumber,
-        onlyActive,
-        locales,
-        options,
-      );
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.getStopPlacesByEvaNumber(
+          evaNumber,
+          onlyActive,
+          locales,
+          options,
+        );
       return createRequestFunction(
         localVarAxiosArgs,
         globalAxios,
@@ -4502,14 +5176,14 @@ export const StopPlacesApiFp = function (configuration?: Configuration) {
     },
     /**
      * Returns stop places that match the provided key.
-     * @param {StopPlaceKeyFilter} keyType type of stop place key - IFOPT (transmodel identifier for fixed objects, in germany dhid &#x3D; Deutschlandweite Halt ID also known as global id) - EVA (eva number) - RL100 (primary or alternative rl100 / ds100) - EPA (epa number) - STADA (statitionsdatenbank number) - IBNR (internal station number [interne bahnhofsnummer]) - EBHF ([Tarifpunktnummer / Einheitliche Bahnhofsdatei Nr.] - UIC (international station number)
+     * @param {StopPlaceKeyFilter} keyType type of stop place key - IFOPT (transmodel identifier for fixed objects aka DHID, may be provided on level of stop-place or plattform, other levels not supported yet) - EVA (eva number) - RL100 (primary or alternative rl100 / ds100) - EPA (epa number) - STADA (Stationsdatenbank number) - IBNR (internal station number [interne bahnhofsnummer]) - EBHF ([Tarifpunktnummer / Einheitliche Bahnhofsdatei Nr.] - UIC (international station number) - PLC (primary location code)
      * @param {string} key key to return stop places [Haltestellen] for
-     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validility time ranges are returned
-     * @param {Array<Locale>} [locales] languages to include, defaults to DE only - DE (German) - EN (English) - FR (French) - IT (Italian)
+     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
+     * @param {Array<Locale>} [locales] Locale to use, defaults to DE. - DE (German) - EN (English) - FR (French) - IT (Italian)  *DE only*
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async byKey(
+    async getStopPlacesByKey(
       keyType: StopPlaceKeyFilter,
       key: string,
       onlyActive?: boolean,
@@ -4518,13 +5192,14 @@ export const StopPlacesApiFp = function (configuration?: Configuration) {
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<StopPlaces>
     > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.byKey(
-        keyType,
-        key,
-        onlyActive,
-        locales,
-        options,
-      );
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.getStopPlacesByKey(
+          keyType,
+          key,
+          onlyActive,
+          locales,
+          options,
+        );
       return createRequestFunction(
         localVarAxiosArgs,
         globalAxios,
@@ -4533,24 +5208,26 @@ export const StopPlacesApiFp = function (configuration?: Configuration) {
       );
     },
     /**
-     * Returns a list of stop places [Haltestelle] matching the provided name query, optional limited to a max radius around a provided geo coordinate, ordered by relevance or name matching desc and (configurable) grouped by stations [Bahnhoefe], if stop-places belong to a parent stations (like for instance \'Frankfurt Main Hbf\' and \'Frankfurt tief\' belong to \'Frankfurt Main Hbf\'). The query has support for fuzzy searching, means minimal typos are ignored even without providing wildcards.
-     * @param {string} query query for stop place names [Haltestellenname] to search for, use * for wildcards if necessary
-     * @param {number} [latitude] optional geo reference position latitude
-     * @param {number} [longitude] optional geo reference position longitude
-     * @param {number} [radius] optional radius in meters around geo reference position to search for stop places matching query
-     * @param {StopPlaceSearchGroupByKey} [groupBy] group returned stop-places by their parent station [Bahnhof], defaults to grouping by STATION if omitted - STATION (group by parent station that is defined by DB Station &amp; Services STADA-ID) - NONE (no grouping is applied, just stop-places are returned)
-     * @param {StopPlaceSortKey} [sortBy] sorting for search results, if omitted RELEVANCE will be used - RELEVANCE (stop places are sorted by relevance descending (main stations etc. first)) - QUERY_MATCH (stop places are sorted by matching the provided query string descending aka Levensthein Distance)
-     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validility time ranges are returned
-     * @param {Array<Locale>} [locales] languages to include, defaults to DE only - DE (German) - EN (English) - FR (French) - IT (Italian)
+     * Returns a list of stop places [Haltestelle] matching the provided name query, optional limited to a max radius around a provided geo coordinate, ordered by relevance or name matching desc and (configurable) grouped by stations [Bahnhöfe], if stop-places belong to a parent stations (like for instance \'Frankfurt Main Hbf\' and \'Frankfurt tief\' belong to \'Frankfurt Main Hbf\'). The query has support for fuzzy searching, means minimal typos are ignored even without providing wildcards.
+     * @param {string} query query for stop place names [Haltestellenname] to search for
+     * @param {number} [latitude] optional geo reference position latitude, if provided results are also ranked by distance
+     * @param {number} [longitude] optional geo reference position longitude, if provided results are also ranked by distance
+     * @param {string} [state] The state code [Bundeslandkürzel] the stop place belongs to. (Reference: https://www.datenportal.bmbf.de/portal/de/G122.html)
+     * @param {Array<string>} [transportAssociations] transport associations [Verkehrsverbünde] to limit search results for
+     * @param {StopPlaceSearchGroupByKey} [groupBy] group returned stop-places by their parent station [Bahnhof], defaults to grouping by STATION if omitted - STATION (group by parent station that is defined by DB Station &amp; Services STADA-ID) - SALES (group defined by sales [Vertrieb], for instance FFM &#x3D; Hoch + Tief + Bus + Tram + Subway, maintained by DB Vertrieb via EFZ [Europäisches Fahrplanzentrum]) - NONE (no grouping is applied, just stop-places are returned)
+     * @param {StopPlaceSortKey} [sortBy] sorting for search results, if omitted RELEVANCE will be used - RELEVANCE (stop places are sorted by relevance descending (main stations etc. first)) - QUERY_MATCH (stop places are sorted by matching the provided query string descending aka Levenshtein Distance)
+     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
+     * @param {Array<Locale>} [locales] Locale to use, defaults to DE. - DE (German) - EN (English) - FR (French) - IT (Italian)  *DE only*
      * @param {number} [limit] limit parameter in order to limit total amount of results, defaults to 25
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async byName(
+    async getStopPlacesByName(
       query: string,
       latitude?: number,
       longitude?: number,
-      radius?: number,
+      state?: string,
+      transportAssociations?: Array<string>,
       groupBy?: StopPlaceSearchGroupByKey,
       sortBy?: StopPlaceSortKey,
       onlyActive?: boolean,
@@ -4563,18 +5240,20 @@ export const StopPlacesApiFp = function (configuration?: Configuration) {
         basePath?: string,
       ) => AxiosPromise<StopPlaceSearchResults>
     > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.byName(
-        query,
-        latitude,
-        longitude,
-        radius,
-        groupBy,
-        sortBy,
-        onlyActive,
-        locales,
-        limit,
-        options,
-      );
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.getStopPlacesByName(
+          query,
+          latitude,
+          longitude,
+          state,
+          transportAssociations,
+          groupBy,
+          sortBy,
+          onlyActive,
+          locales,
+          limit,
+          options,
+        );
       return createRequestFunction(
         localVarAxiosArgs,
         globalAxios,
@@ -4583,21 +5262,25 @@ export const StopPlacesApiFp = function (configuration?: Configuration) {
       );
     },
     /**
-     * Returns a list of stop places [Haltestellen] arround geo position within provided radius ordered by distance asc and (configurable) grouped by stations [Bahnhoefe], if stop-places belong to a parent stations (like for instance \'Frankfurt Main Hbf\' and \'Frankfurt tief\' belong to \'Frankfurt Main Hbf\').
+     * Returns a list of stop places [Haltestellen] around geo position within provided radius ordered by distance asc and (configurable) grouped by stations [Bahnhöfe], if stop-places belong to a parent stations (like for instance \'Frankfurt Main Hbf\' and \'Frankfurt tief\' belong to \'Frankfurt Main Hbf\').
      * @param {number} latitude geo position latitude
      * @param {number} longitude geo position longitude
+     * @param {string} [state] The state code [Bundeslandkürzel] the stop place belongs to. (Reference: https://www.datenportal.bmbf.de/portal/de/G122.html)
      * @param {number} [radius] radius in meters around geo position
-     * @param {StopPlaceSearchGroupByKey} [groupBy] group returned stop-places by their parent station [Bahnhof], defaults to grouping by STATION if omitted - STATION (group by parent station that is defined by DB Station &amp; Services STADA-ID) - NONE (no grouping is applied, just stop-places are returned)
-     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validility time ranges are returned
-     * @param {Array<Locale>} [locales] languages to include, defaults to DE only - DE (German) - EN (English) - FR (French) - IT (Italian)
+     * @param {Array<string>} [transportAssociations] transport associations [Verkehrsverbünde] to limit search results for
+     * @param {StopPlaceSearchGroupByKey} [groupBy] group returned stop-places by their parent station [Bahnhof], defaults to grouping by STATION if omitted - STATION (group by parent station that is defined by DB Station &amp; Services STADA-ID) - SALES (group defined by sales [Vertrieb], for instance FFM &#x3D; Hoch + Tief + Bus + Tram + Subway, maintained by DB Vertrieb via EFZ [Europäisches Fahrplanzentrum]) - NONE (no grouping is applied, just stop-places are returned)
+     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
+     * @param {Array<Locale>} [locales] Locale to use, defaults to DE. - DE (German) - EN (English) - FR (French) - IT (Italian)  *DE only*
      * @param {number} [limit] limit parameter in order to limit total amount of results, if omitted no truncation applies
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async byPosition(
+    async getStopPlacesByPosition(
       latitude: number,
       longitude: number,
+      state?: string,
       radius?: number,
+      transportAssociations?: Array<string>,
       groupBy?: StopPlaceSearchGroupByKey,
       onlyActive?: boolean,
       locales?: Array<Locale>,
@@ -4609,68 +5292,19 @@ export const StopPlacesApiFp = function (configuration?: Configuration) {
         basePath?: string,
       ) => AxiosPromise<StopPlaceSearchResults>
     > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.byPosition(
-        latitude,
-        longitude,
-        radius,
-        groupBy,
-        onlyActive,
-        locales,
-        limit,
-        options,
-      );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration,
-      );
-    },
-    /**
-     * Returns all groups the stop place belongs with all group members.
-     * @param {string} evaNumber eva number to return stop place [Haltestelle] groups for
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async groups(
-      evaNumber: string,
-      options?: any,
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string,
-      ) => AxiosPromise<StopPlaceGroups>
-    > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.groups(
-        evaNumber,
-        options,
-      );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration,
-      );
-    },
-    /**
-     * Returns all known keys of specific key type for the stop place with the provided eva number. Take care that associated keys may belong to some kind of group [Station for instance] and that relations between keys are most likely n:m and not 1:1.
-     * @param {string} evaNumber eva number to return stop place [Haltestelle] keys for
-     * @param {StopPlaceKeyType} [keyType] filter mapped keys by specific key type, if omitted all keys are returned
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async keys(
-      evaNumber: string,
-      keyType?: StopPlaceKeyType,
-      options?: any,
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<StopPlaceKeys>
-    > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.keys(
-        evaNumber,
-        keyType,
-        options,
-      );
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.getStopPlacesByPosition(
+          latitude,
+          longitude,
+          state,
+          radius,
+          transportAssociations,
+          groupBy,
+          onlyActive,
+          locales,
+          limit,
+          options,
+        );
       return createRequestFunction(
         localVarAxiosArgs,
         globalAxios,
@@ -4693,16 +5327,48 @@ export const StopPlacesApiFactory = function (
   const localVarFp = StopPlacesApiFp(configuration);
   return {
     /**
+     * Returns all groups the stop place belongs with all group members.
+     * @param {string} evaNumber eva number to return stop place [Haltestelle] groups for
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getStopPlaceGroups(
+      evaNumber: string,
+      options?: any,
+    ): AxiosPromise<StopPlaceGroups> {
+      return localVarFp
+        .getStopPlaceGroups(evaNumber, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * Returns all known keys of specific key type for the stop place with the provided eva number. Take care that associated keys may belong to some kind of group [Station for instance] and that relations between keys are most likely n:m and not 1:1.
+     * @param {string} evaNumber eva number to return stop place [Haltestelle] keys for
+     * @param {StopPlaceKeyType} [keyType] filter mapped keys by specific key type, if omitted all keys are returned
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getStopPlaceKeys(
+      evaNumber: string,
+      keyType?: StopPlaceKeyType,
+      options?: any,
+    ): AxiosPromise<StopPlaceKeys> {
+      return localVarFp
+        .getStopPlaceKeys(evaNumber, keyType, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
      * Returns all available stop places.
-     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validility time ranges are returned
-     * @param {Array<Locale>} [locales] languages to include, defaults to DE only - DE (German) - EN (English) - FR (French) - IT (Italian)
+     * @param {Array<string>} [transportAssociations] transport associations [Verkehrsverbünde] to limit search results for
+     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
+     * @param {Array<Locale>} [locales] Locale to use, defaults to DE. - DE (German) - EN (English) - FR (French) - IT (Italian)  *DE only*
      * @param {string} [lastChanged] limits result to all stop-places that have been changed (anything) after passed fully qualified date (YYYY-MM-dd), can be used to get deltas, if omitted all stop-places are returned
      * @param {number} [offset] pagination offset parameter in order to navigate through result list, defaults to 0
      * @param {number} [limit] pagination limit parameter in order to limit total amount of results, defaults to 100
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    all(
+    getStopPlaces(
+      transportAssociations?: Array<string>,
       onlyActive?: boolean,
       locales?: Array<Locale>,
       lastChanged?: string,
@@ -4711,37 +5377,45 @@ export const StopPlacesApiFactory = function (
       options?: any,
     ): AxiosPromise<StopPlacesPageable> {
       return localVarFp
-        .all(onlyActive, locales, lastChanged, offset, limit, options)
+        .getStopPlaces(
+          transportAssociations,
+          onlyActive,
+          locales,
+          lastChanged,
+          offset,
+          limit,
+          options,
+        )
         .then((request) => request(axios, basePath));
     },
     /**
      * Returns stop place for provided eva number. May return multiple stop places in case differing validity time ranges exist and the flag onlyValid = false.
      * @param {string} evaNumber eva number to return stop place [Haltestelle] for
-     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validility time ranges are returned
-     * @param {Array<Locale>} [locales] languages to include, defaults to DE only - DE (German) - EN (English) - FR (French) - IT (Italian)
+     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
+     * @param {Array<Locale>} [locales] Locale to use, defaults to DE. - DE (German) - EN (English) - FR (French) - IT (Italian)  *DE only*
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    byEvaNumber(
+    getStopPlacesByEvaNumber(
       evaNumber: string,
       onlyActive?: boolean,
       locales?: Array<Locale>,
       options?: any,
     ): AxiosPromise<StopPlaces> {
       return localVarFp
-        .byEvaNumber(evaNumber, onlyActive, locales, options)
+        .getStopPlacesByEvaNumber(evaNumber, onlyActive, locales, options)
         .then((request) => request(axios, basePath));
     },
     /**
      * Returns stop places that match the provided key.
-     * @param {StopPlaceKeyFilter} keyType type of stop place key - IFOPT (transmodel identifier for fixed objects, in germany dhid &#x3D; Deutschlandweite Halt ID also known as global id) - EVA (eva number) - RL100 (primary or alternative rl100 / ds100) - EPA (epa number) - STADA (statitionsdatenbank number) - IBNR (internal station number [interne bahnhofsnummer]) - EBHF ([Tarifpunktnummer / Einheitliche Bahnhofsdatei Nr.] - UIC (international station number)
+     * @param {StopPlaceKeyFilter} keyType type of stop place key - IFOPT (transmodel identifier for fixed objects aka DHID, may be provided on level of stop-place or plattform, other levels not supported yet) - EVA (eva number) - RL100 (primary or alternative rl100 / ds100) - EPA (epa number) - STADA (Stationsdatenbank number) - IBNR (internal station number [interne bahnhofsnummer]) - EBHF ([Tarifpunktnummer / Einheitliche Bahnhofsdatei Nr.] - UIC (international station number) - PLC (primary location code)
      * @param {string} key key to return stop places [Haltestellen] for
-     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validility time ranges are returned
-     * @param {Array<Locale>} [locales] languages to include, defaults to DE only - DE (German) - EN (English) - FR (French) - IT (Italian)
+     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
+     * @param {Array<Locale>} [locales] Locale to use, defaults to DE. - DE (German) - EN (English) - FR (French) - IT (Italian)  *DE only*
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    byKey(
+    getStopPlacesByKey(
       keyType: StopPlaceKeyFilter,
       key: string,
       onlyActive?: boolean,
@@ -4749,28 +5423,30 @@ export const StopPlacesApiFactory = function (
       options?: any,
     ): AxiosPromise<StopPlaces> {
       return localVarFp
-        .byKey(keyType, key, onlyActive, locales, options)
+        .getStopPlacesByKey(keyType, key, onlyActive, locales, options)
         .then((request) => request(axios, basePath));
     },
     /**
-     * Returns a list of stop places [Haltestelle] matching the provided name query, optional limited to a max radius around a provided geo coordinate, ordered by relevance or name matching desc and (configurable) grouped by stations [Bahnhoefe], if stop-places belong to a parent stations (like for instance \'Frankfurt Main Hbf\' and \'Frankfurt tief\' belong to \'Frankfurt Main Hbf\'). The query has support for fuzzy searching, means minimal typos are ignored even without providing wildcards.
-     * @param {string} query query for stop place names [Haltestellenname] to search for, use * for wildcards if necessary
-     * @param {number} [latitude] optional geo reference position latitude
-     * @param {number} [longitude] optional geo reference position longitude
-     * @param {number} [radius] optional radius in meters around geo reference position to search for stop places matching query
-     * @param {StopPlaceSearchGroupByKey} [groupBy] group returned stop-places by their parent station [Bahnhof], defaults to grouping by STATION if omitted - STATION (group by parent station that is defined by DB Station &amp; Services STADA-ID) - NONE (no grouping is applied, just stop-places are returned)
-     * @param {StopPlaceSortKey} [sortBy] sorting for search results, if omitted RELEVANCE will be used - RELEVANCE (stop places are sorted by relevance descending (main stations etc. first)) - QUERY_MATCH (stop places are sorted by matching the provided query string descending aka Levensthein Distance)
-     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validility time ranges are returned
-     * @param {Array<Locale>} [locales] languages to include, defaults to DE only - DE (German) - EN (English) - FR (French) - IT (Italian)
+     * Returns a list of stop places [Haltestelle] matching the provided name query, optional limited to a max radius around a provided geo coordinate, ordered by relevance or name matching desc and (configurable) grouped by stations [Bahnhöfe], if stop-places belong to a parent stations (like for instance \'Frankfurt Main Hbf\' and \'Frankfurt tief\' belong to \'Frankfurt Main Hbf\'). The query has support for fuzzy searching, means minimal typos are ignored even without providing wildcards.
+     * @param {string} query query for stop place names [Haltestellenname] to search for
+     * @param {number} [latitude] optional geo reference position latitude, if provided results are also ranked by distance
+     * @param {number} [longitude] optional geo reference position longitude, if provided results are also ranked by distance
+     * @param {string} [state] The state code [Bundeslandkürzel] the stop place belongs to. (Reference: https://www.datenportal.bmbf.de/portal/de/G122.html)
+     * @param {Array<string>} [transportAssociations] transport associations [Verkehrsverbünde] to limit search results for
+     * @param {StopPlaceSearchGroupByKey} [groupBy] group returned stop-places by their parent station [Bahnhof], defaults to grouping by STATION if omitted - STATION (group by parent station that is defined by DB Station &amp; Services STADA-ID) - SALES (group defined by sales [Vertrieb], for instance FFM &#x3D; Hoch + Tief + Bus + Tram + Subway, maintained by DB Vertrieb via EFZ [Europäisches Fahrplanzentrum]) - NONE (no grouping is applied, just stop-places are returned)
+     * @param {StopPlaceSortKey} [sortBy] sorting for search results, if omitted RELEVANCE will be used - RELEVANCE (stop places are sorted by relevance descending (main stations etc. first)) - QUERY_MATCH (stop places are sorted by matching the provided query string descending aka Levenshtein Distance)
+     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
+     * @param {Array<Locale>} [locales] Locale to use, defaults to DE. - DE (German) - EN (English) - FR (French) - IT (Italian)  *DE only*
      * @param {number} [limit] limit parameter in order to limit total amount of results, defaults to 25
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    byName(
+    getStopPlacesByName(
       query: string,
       latitude?: number,
       longitude?: number,
-      radius?: number,
+      state?: string,
+      transportAssociations?: Array<string>,
       groupBy?: StopPlaceSearchGroupByKey,
       sortBy?: StopPlaceSortKey,
       onlyActive?: boolean,
@@ -4779,11 +5455,12 @@ export const StopPlacesApiFactory = function (
       options?: any,
     ): AxiosPromise<StopPlaceSearchResults> {
       return localVarFp
-        .byName(
+        .getStopPlacesByName(
           query,
           latitude,
           longitude,
-          radius,
+          state,
+          transportAssociations,
           groupBy,
           sortBy,
           onlyActive,
@@ -4794,21 +5471,25 @@ export const StopPlacesApiFactory = function (
         .then((request) => request(axios, basePath));
     },
     /**
-     * Returns a list of stop places [Haltestellen] arround geo position within provided radius ordered by distance asc and (configurable) grouped by stations [Bahnhoefe], if stop-places belong to a parent stations (like for instance \'Frankfurt Main Hbf\' and \'Frankfurt tief\' belong to \'Frankfurt Main Hbf\').
+     * Returns a list of stop places [Haltestellen] around geo position within provided radius ordered by distance asc and (configurable) grouped by stations [Bahnhöfe], if stop-places belong to a parent stations (like for instance \'Frankfurt Main Hbf\' and \'Frankfurt tief\' belong to \'Frankfurt Main Hbf\').
      * @param {number} latitude geo position latitude
      * @param {number} longitude geo position longitude
+     * @param {string} [state] The state code [Bundeslandkürzel] the stop place belongs to. (Reference: https://www.datenportal.bmbf.de/portal/de/G122.html)
      * @param {number} [radius] radius in meters around geo position
-     * @param {StopPlaceSearchGroupByKey} [groupBy] group returned stop-places by their parent station [Bahnhof], defaults to grouping by STATION if omitted - STATION (group by parent station that is defined by DB Station &amp; Services STADA-ID) - NONE (no grouping is applied, just stop-places are returned)
-     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validility time ranges are returned
-     * @param {Array<Locale>} [locales] languages to include, defaults to DE only - DE (German) - EN (English) - FR (French) - IT (Italian)
+     * @param {Array<string>} [transportAssociations] transport associations [Verkehrsverbünde] to limit search results for
+     * @param {StopPlaceSearchGroupByKey} [groupBy] group returned stop-places by their parent station [Bahnhof], defaults to grouping by STATION if omitted - STATION (group by parent station that is defined by DB Station &amp; Services STADA-ID) - SALES (group defined by sales [Vertrieb], for instance FFM &#x3D; Hoch + Tief + Bus + Tram + Subway, maintained by DB Vertrieb via EFZ [Europäisches Fahrplanzentrum]) - NONE (no grouping is applied, just stop-places are returned)
+     * @param {boolean} [onlyActive] indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
+     * @param {Array<Locale>} [locales] Locale to use, defaults to DE. - DE (German) - EN (English) - FR (French) - IT (Italian)  *DE only*
      * @param {number} [limit] limit parameter in order to limit total amount of results, if omitted no truncation applies
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    byPosition(
+    getStopPlacesByPosition(
       latitude: number,
       longitude: number,
+      state?: string,
       radius?: number,
+      transportAssociations?: Array<string>,
       groupBy?: StopPlaceSearchGroupByKey,
       onlyActive?: boolean,
       locales?: Array<Locale>,
@@ -4816,10 +5497,12 @@ export const StopPlacesApiFactory = function (
       options?: any,
     ): AxiosPromise<StopPlaceSearchResults> {
       return localVarFp
-        .byPosition(
+        .getStopPlacesByPosition(
           latitude,
           longitude,
+          state,
           radius,
+          transportAssociations,
           groupBy,
           onlyActive,
           locales,
@@ -4828,300 +5511,301 @@ export const StopPlacesApiFactory = function (
         )
         .then((request) => request(axios, basePath));
     },
-    /**
-     * Returns all groups the stop place belongs with all group members.
-     * @param {string} evaNumber eva number to return stop place [Haltestelle] groups for
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    groups(evaNumber: string, options?: any): AxiosPromise<StopPlaceGroups> {
-      return localVarFp
-        .groups(evaNumber, options)
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Returns all known keys of specific key type for the stop place with the provided eva number. Take care that associated keys may belong to some kind of group [Station for instance] and that relations between keys are most likely n:m and not 1:1.
-     * @param {string} evaNumber eva number to return stop place [Haltestelle] keys for
-     * @param {StopPlaceKeyType} [keyType] filter mapped keys by specific key type, if omitted all keys are returned
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    keys(
-      evaNumber: string,
-      keyType?: StopPlaceKeyType,
-      options?: any,
-    ): AxiosPromise<StopPlaceKeys> {
-      return localVarFp
-        .keys(evaNumber, keyType, options)
-        .then((request) => request(axios, basePath));
-    },
   };
 };
 
 /**
- * Request parameters for all operation in StopPlacesApi.
+ * Request parameters for getStopPlaceGroups operation in StopPlacesApi.
  * @export
- * @interface StopPlacesApiAllRequest
+ * @interface StopPlacesApiGetStopPlaceGroupsRequest
  */
-export interface StopPlacesApiAllRequest {
-  /**
-   * indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validility time ranges are returned
-   * @type {boolean}
-   * @memberof StopPlacesApiAll
-   */
-  readonly onlyActive?: boolean;
-
-  /**
-   * languages to include, defaults to DE only - DE (German) - EN (English) - FR (French) - IT (Italian)
-   * @type {Array<Locale>}
-   * @memberof StopPlacesApiAll
-   */
-  readonly locales?: Array<Locale>;
-
-  /**
-   * limits result to all stop-places that have been changed (anything) after passed fully qualified date (YYYY-MM-dd), can be used to get deltas, if omitted all stop-places are returned
-   * @type {string}
-   * @memberof StopPlacesApiAll
-   */
-  readonly lastChanged?: string;
-
-  /**
-   * pagination offset parameter in order to navigate through result list, defaults to 0
-   * @type {number}
-   * @memberof StopPlacesApiAll
-   */
-  readonly offset?: number;
-
-  /**
-   * pagination limit parameter in order to limit total amount of results, defaults to 100
-   * @type {number}
-   * @memberof StopPlacesApiAll
-   */
-  readonly limit?: number;
-}
-
-/**
- * Request parameters for byEvaNumber operation in StopPlacesApi.
- * @export
- * @interface StopPlacesApiByEvaNumberRequest
- */
-export interface StopPlacesApiByEvaNumberRequest {
-  /**
-   * eva number to return stop place [Haltestelle] for
-   * @type {string}
-   * @memberof StopPlacesApiByEvaNumber
-   */
-  readonly evaNumber: string;
-
-  /**
-   * indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validility time ranges are returned
-   * @type {boolean}
-   * @memberof StopPlacesApiByEvaNumber
-   */
-  readonly onlyActive?: boolean;
-
-  /**
-   * languages to include, defaults to DE only - DE (German) - EN (English) - FR (French) - IT (Italian)
-   * @type {Array<Locale>}
-   * @memberof StopPlacesApiByEvaNumber
-   */
-  readonly locales?: Array<Locale>;
-}
-
-/**
- * Request parameters for byKey operation in StopPlacesApi.
- * @export
- * @interface StopPlacesApiByKeyRequest
- */
-export interface StopPlacesApiByKeyRequest {
-  /**
-   * type of stop place key - IFOPT (transmodel identifier for fixed objects, in germany dhid &#x3D; Deutschlandweite Halt ID also known as global id) - EVA (eva number) - RL100 (primary or alternative rl100 / ds100) - EPA (epa number) - STADA (statitionsdatenbank number) - IBNR (internal station number [interne bahnhofsnummer]) - EBHF ([Tarifpunktnummer / Einheitliche Bahnhofsdatei Nr.] - UIC (international station number)
-   * @type {StopPlaceKeyFilter}
-   * @memberof StopPlacesApiByKey
-   */
-  readonly keyType: StopPlaceKeyFilter;
-
-  /**
-   * key to return stop places [Haltestellen] for
-   * @type {string}
-   * @memberof StopPlacesApiByKey
-   */
-  readonly key: string;
-
-  /**
-   * indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validility time ranges are returned
-   * @type {boolean}
-   * @memberof StopPlacesApiByKey
-   */
-  readonly onlyActive?: boolean;
-
-  /**
-   * languages to include, defaults to DE only - DE (German) - EN (English) - FR (French) - IT (Italian)
-   * @type {Array<Locale>}
-   * @memberof StopPlacesApiByKey
-   */
-  readonly locales?: Array<Locale>;
-}
-
-/**
- * Request parameters for byName operation in StopPlacesApi.
- * @export
- * @interface StopPlacesApiByNameRequest
- */
-export interface StopPlacesApiByNameRequest {
-  /**
-   * query for stop place names [Haltestellenname] to search for, use * for wildcards if necessary
-   * @type {string}
-   * @memberof StopPlacesApiByName
-   */
-  readonly query: string;
-
-  /**
-   * optional geo reference position latitude
-   * @type {number}
-   * @memberof StopPlacesApiByName
-   */
-  readonly latitude?: number;
-
-  /**
-   * optional geo reference position longitude
-   * @type {number}
-   * @memberof StopPlacesApiByName
-   */
-  readonly longitude?: number;
-
-  /**
-   * optional radius in meters around geo reference position to search for stop places matching query
-   * @type {number}
-   * @memberof StopPlacesApiByName
-   */
-  readonly radius?: number;
-
-  /**
-   * group returned stop-places by their parent station [Bahnhof], defaults to grouping by STATION if omitted - STATION (group by parent station that is defined by DB Station &amp; Services STADA-ID) - NONE (no grouping is applied, just stop-places are returned)
-   * @type {StopPlaceSearchGroupByKey}
-   * @memberof StopPlacesApiByName
-   */
-  readonly groupBy?: StopPlaceSearchGroupByKey;
-
-  /**
-   * sorting for search results, if omitted RELEVANCE will be used - RELEVANCE (stop places are sorted by relevance descending (main stations etc. first)) - QUERY_MATCH (stop places are sorted by matching the provided query string descending aka Levensthein Distance)
-   * @type {StopPlaceSortKey}
-   * @memberof StopPlacesApiByName
-   */
-  readonly sortBy?: StopPlaceSortKey;
-
-  /**
-   * indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validility time ranges are returned
-   * @type {boolean}
-   * @memberof StopPlacesApiByName
-   */
-  readonly onlyActive?: boolean;
-
-  /**
-   * languages to include, defaults to DE only - DE (German) - EN (English) - FR (French) - IT (Italian)
-   * @type {Array<Locale>}
-   * @memberof StopPlacesApiByName
-   */
-  readonly locales?: Array<Locale>;
-
-  /**
-   * limit parameter in order to limit total amount of results, defaults to 25
-   * @type {number}
-   * @memberof StopPlacesApiByName
-   */
-  readonly limit?: number;
-}
-
-/**
- * Request parameters for byPosition operation in StopPlacesApi.
- * @export
- * @interface StopPlacesApiByPositionRequest
- */
-export interface StopPlacesApiByPositionRequest {
-  /**
-   * geo position latitude
-   * @type {number}
-   * @memberof StopPlacesApiByPosition
-   */
-  readonly latitude: number;
-
-  /**
-   * geo position longitude
-   * @type {number}
-   * @memberof StopPlacesApiByPosition
-   */
-  readonly longitude: number;
-
-  /**
-   * radius in meters around geo position
-   * @type {number}
-   * @memberof StopPlacesApiByPosition
-   */
-  readonly radius?: number;
-
-  /**
-   * group returned stop-places by their parent station [Bahnhof], defaults to grouping by STATION if omitted - STATION (group by parent station that is defined by DB Station &amp; Services STADA-ID) - NONE (no grouping is applied, just stop-places are returned)
-   * @type {StopPlaceSearchGroupByKey}
-   * @memberof StopPlacesApiByPosition
-   */
-  readonly groupBy?: StopPlaceSearchGroupByKey;
-
-  /**
-   * indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validility time ranges are returned
-   * @type {boolean}
-   * @memberof StopPlacesApiByPosition
-   */
-  readonly onlyActive?: boolean;
-
-  /**
-   * languages to include, defaults to DE only - DE (German) - EN (English) - FR (French) - IT (Italian)
-   * @type {Array<Locale>}
-   * @memberof StopPlacesApiByPosition
-   */
-  readonly locales?: Array<Locale>;
-
-  /**
-   * limit parameter in order to limit total amount of results, if omitted no truncation applies
-   * @type {number}
-   * @memberof StopPlacesApiByPosition
-   */
-  readonly limit?: number;
-}
-
-/**
- * Request parameters for groups operation in StopPlacesApi.
- * @export
- * @interface StopPlacesApiGroupsRequest
- */
-export interface StopPlacesApiGroupsRequest {
+export interface StopPlacesApiGetStopPlaceGroupsRequest {
   /**
    * eva number to return stop place [Haltestelle] groups for
    * @type {string}
-   * @memberof StopPlacesApiGroups
+   * @memberof StopPlacesApiGetStopPlaceGroups
    */
   readonly evaNumber: string;
 }
 
 /**
- * Request parameters for keys operation in StopPlacesApi.
+ * Request parameters for getStopPlaceKeys operation in StopPlacesApi.
  * @export
- * @interface StopPlacesApiKeysRequest
+ * @interface StopPlacesApiGetStopPlaceKeysRequest
  */
-export interface StopPlacesApiKeysRequest {
+export interface StopPlacesApiGetStopPlaceKeysRequest {
   /**
    * eva number to return stop place [Haltestelle] keys for
    * @type {string}
-   * @memberof StopPlacesApiKeys
+   * @memberof StopPlacesApiGetStopPlaceKeys
    */
   readonly evaNumber: string;
 
   /**
    * filter mapped keys by specific key type, if omitted all keys are returned
    * @type {StopPlaceKeyType}
-   * @memberof StopPlacesApiKeys
+   * @memberof StopPlacesApiGetStopPlaceKeys
    */
   readonly keyType?: StopPlaceKeyType;
+}
+
+/**
+ * Request parameters for getStopPlaces operation in StopPlacesApi.
+ * @export
+ * @interface StopPlacesApiGetStopPlacesRequest
+ */
+export interface StopPlacesApiGetStopPlacesRequest {
+  /**
+   * transport associations [Verkehrsverbünde] to limit search results for
+   * @type {Array<string>}
+   * @memberof StopPlacesApiGetStopPlaces
+   */
+  readonly transportAssociations?: Array<string>;
+
+  /**
+   * indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
+   * @type {boolean}
+   * @memberof StopPlacesApiGetStopPlaces
+   */
+  readonly onlyActive?: boolean;
+
+  /**
+   * Locale to use, defaults to DE. - DE (German) - EN (English) - FR (French) - IT (Italian)  *DE only*
+   * @type {Array<Locale>}
+   * @memberof StopPlacesApiGetStopPlaces
+   */
+  readonly locales?: Array<Locale>;
+
+  /**
+   * limits result to all stop-places that have been changed (anything) after passed fully qualified date (YYYY-MM-dd), can be used to get deltas, if omitted all stop-places are returned
+   * @type {string}
+   * @memberof StopPlacesApiGetStopPlaces
+   */
+  readonly lastChanged?: string;
+
+  /**
+   * pagination offset parameter in order to navigate through result list, defaults to 0
+   * @type {number}
+   * @memberof StopPlacesApiGetStopPlaces
+   */
+  readonly offset?: number;
+
+  /**
+   * pagination limit parameter in order to limit total amount of results, defaults to 100
+   * @type {number}
+   * @memberof StopPlacesApiGetStopPlaces
+   */
+  readonly limit?: number;
+}
+
+/**
+ * Request parameters for getStopPlacesByEvaNumber operation in StopPlacesApi.
+ * @export
+ * @interface StopPlacesApiGetStopPlacesByEvaNumberRequest
+ */
+export interface StopPlacesApiGetStopPlacesByEvaNumberRequest {
+  /**
+   * eva number to return stop place [Haltestelle] for
+   * @type {string}
+   * @memberof StopPlacesApiGetStopPlacesByEvaNumber
+   */
+  readonly evaNumber: string;
+
+  /**
+   * indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
+   * @type {boolean}
+   * @memberof StopPlacesApiGetStopPlacesByEvaNumber
+   */
+  readonly onlyActive?: boolean;
+
+  /**
+   * Locale to use, defaults to DE. - DE (German) - EN (English) - FR (French) - IT (Italian)  *DE only*
+   * @type {Array<Locale>}
+   * @memberof StopPlacesApiGetStopPlacesByEvaNumber
+   */
+  readonly locales?: Array<Locale>;
+}
+
+/**
+ * Request parameters for getStopPlacesByKey operation in StopPlacesApi.
+ * @export
+ * @interface StopPlacesApiGetStopPlacesByKeyRequest
+ */
+export interface StopPlacesApiGetStopPlacesByKeyRequest {
+  /**
+   * type of stop place key - IFOPT (transmodel identifier for fixed objects aka DHID, may be provided on level of stop-place or plattform, other levels not supported yet) - EVA (eva number) - RL100 (primary or alternative rl100 / ds100) - EPA (epa number) - STADA (Stationsdatenbank number) - IBNR (internal station number [interne bahnhofsnummer]) - EBHF ([Tarifpunktnummer / Einheitliche Bahnhofsdatei Nr.] - UIC (international station number) - PLC (primary location code)
+   * @type {StopPlaceKeyFilter}
+   * @memberof StopPlacesApiGetStopPlacesByKey
+   */
+  readonly keyType: StopPlaceKeyFilter;
+
+  /**
+   * key to return stop places [Haltestellen] for
+   * @type {string}
+   * @memberof StopPlacesApiGetStopPlacesByKey
+   */
+  readonly key: string;
+
+  /**
+   * indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
+   * @type {boolean}
+   * @memberof StopPlacesApiGetStopPlacesByKey
+   */
+  readonly onlyActive?: boolean;
+
+  /**
+   * Locale to use, defaults to DE. - DE (German) - EN (English) - FR (French) - IT (Italian)  *DE only*
+   * @type {Array<Locale>}
+   * @memberof StopPlacesApiGetStopPlacesByKey
+   */
+  readonly locales?: Array<Locale>;
+}
+
+/**
+ * Request parameters for getStopPlacesByName operation in StopPlacesApi.
+ * @export
+ * @interface StopPlacesApiGetStopPlacesByNameRequest
+ */
+export interface StopPlacesApiGetStopPlacesByNameRequest {
+  /**
+   * query for stop place names [Haltestellenname] to search for
+   * @type {string}
+   * @memberof StopPlacesApiGetStopPlacesByName
+   */
+  readonly query: string;
+
+  /**
+   * optional geo reference position latitude, if provided results are also ranked by distance
+   * @type {number}
+   * @memberof StopPlacesApiGetStopPlacesByName
+   */
+  readonly latitude?: number;
+
+  /**
+   * optional geo reference position longitude, if provided results are also ranked by distance
+   * @type {number}
+   * @memberof StopPlacesApiGetStopPlacesByName
+   */
+  readonly longitude?: number;
+
+  /**
+   * The state code [Bundeslandkürzel] the stop place belongs to. (Reference: https://www.datenportal.bmbf.de/portal/de/G122.html)
+   * @type {string}
+   * @memberof StopPlacesApiGetStopPlacesByName
+   */
+  readonly state?: string;
+
+  /**
+   * transport associations [Verkehrsverbünde] to limit search results for
+   * @type {Array<string>}
+   * @memberof StopPlacesApiGetStopPlacesByName
+   */
+  readonly transportAssociations?: Array<string>;
+
+  /**
+   * group returned stop-places by their parent station [Bahnhof], defaults to grouping by STATION if omitted - STATION (group by parent station that is defined by DB Station &amp; Services STADA-ID) - SALES (group defined by sales [Vertrieb], for instance FFM &#x3D; Hoch + Tief + Bus + Tram + Subway, maintained by DB Vertrieb via EFZ [Europäisches Fahrplanzentrum]) - NONE (no grouping is applied, just stop-places are returned)
+   * @type {StopPlaceSearchGroupByKey}
+   * @memberof StopPlacesApiGetStopPlacesByName
+   */
+  readonly groupBy?: StopPlaceSearchGroupByKey;
+
+  /**
+   * sorting for search results, if omitted RELEVANCE will be used - RELEVANCE (stop places are sorted by relevance descending (main stations etc. first)) - QUERY_MATCH (stop places are sorted by matching the provided query string descending aka Levenshtein Distance)
+   * @type {StopPlaceSortKey}
+   * @memberof StopPlacesApiGetStopPlacesByName
+   */
+  readonly sortBy?: StopPlaceSortKey;
+
+  /**
+   * indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
+   * @type {boolean}
+   * @memberof StopPlacesApiGetStopPlacesByName
+   */
+  readonly onlyActive?: boolean;
+
+  /**
+   * Locale to use, defaults to DE. - DE (German) - EN (English) - FR (French) - IT (Italian)  *DE only*
+   * @type {Array<Locale>}
+   * @memberof StopPlacesApiGetStopPlacesByName
+   */
+  readonly locales?: Array<Locale>;
+
+  /**
+   * limit parameter in order to limit total amount of results, defaults to 25
+   * @type {number}
+   * @memberof StopPlacesApiGetStopPlacesByName
+   */
+  readonly limit?: number;
+}
+
+/**
+ * Request parameters for getStopPlacesByPosition operation in StopPlacesApi.
+ * @export
+ * @interface StopPlacesApiGetStopPlacesByPositionRequest
+ */
+export interface StopPlacesApiGetStopPlacesByPositionRequest {
+  /**
+   * geo position latitude
+   * @type {number}
+   * @memberof StopPlacesApiGetStopPlacesByPosition
+   */
+  readonly latitude: number;
+
+  /**
+   * geo position longitude
+   * @type {number}
+   * @memberof StopPlacesApiGetStopPlacesByPosition
+   */
+  readonly longitude: number;
+
+  /**
+   * The state code [Bundeslandkürzel] the stop place belongs to. (Reference: https://www.datenportal.bmbf.de/portal/de/G122.html)
+   * @type {string}
+   * @memberof StopPlacesApiGetStopPlacesByPosition
+   */
+  readonly state?: string;
+
+  /**
+   * radius in meters around geo position
+   * @type {number}
+   * @memberof StopPlacesApiGetStopPlacesByPosition
+   */
+  readonly radius?: number;
+
+  /**
+   * transport associations [Verkehrsverbünde] to limit search results for
+   * @type {Array<string>}
+   * @memberof StopPlacesApiGetStopPlacesByPosition
+   */
+  readonly transportAssociations?: Array<string>;
+
+  /**
+   * group returned stop-places by their parent station [Bahnhof], defaults to grouping by STATION if omitted - STATION (group by parent station that is defined by DB Station &amp; Services STADA-ID) - SALES (group defined by sales [Vertrieb], for instance FFM &#x3D; Hoch + Tief + Bus + Tram + Subway, maintained by DB Vertrieb via EFZ [Europäisches Fahrplanzentrum]) - NONE (no grouping is applied, just stop-places are returned)
+   * @type {StopPlaceSearchGroupByKey}
+   * @memberof StopPlacesApiGetStopPlacesByPosition
+   */
+  readonly groupBy?: StopPlaceSearchGroupByKey;
+
+  /**
+   * indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
+   * @type {boolean}
+   * @memberof StopPlacesApiGetStopPlacesByPosition
+   */
+  readonly onlyActive?: boolean;
+
+  /**
+   * Locale to use, defaults to DE. - DE (German) - EN (English) - FR (French) - IT (Italian)  *DE only*
+   * @type {Array<Locale>}
+   * @memberof StopPlacesApiGetStopPlacesByPosition
+   */
+  readonly locales?: Array<Locale>;
+
+  /**
+   * limit parameter in order to limit total amount of results, if omitted no truncation applies
+   * @type {number}
+   * @memberof StopPlacesApiGetStopPlacesByPosition
+   */
+  readonly limit?: number;
 }
 
 /**
@@ -5132,15 +5816,55 @@ export interface StopPlacesApiKeysRequest {
  */
 export class StopPlacesApi extends BaseAPI {
   /**
-   * Returns all available stop places.
-   * @param {StopPlacesApiAllRequest} requestParameters Request parameters.
+   * Returns all groups the stop place belongs with all group members.
+   * @param {StopPlacesApiGetStopPlaceGroupsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof StopPlacesApi
    */
-  public all(requestParameters: StopPlacesApiAllRequest = {}, options?: any) {
+  public getStopPlaceGroups(
+    requestParameters: StopPlacesApiGetStopPlaceGroupsRequest,
+    options?: any,
+  ) {
     return StopPlacesApiFp(this.configuration)
-      .all(
+      .getStopPlaceGroups(requestParameters.evaNumber, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Returns all known keys of specific key type for the stop place with the provided eva number. Take care that associated keys may belong to some kind of group [Station for instance] and that relations between keys are most likely n:m and not 1:1.
+   * @param {StopPlacesApiGetStopPlaceKeysRequest} requestParameters Request parameters.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof StopPlacesApi
+   */
+  public getStopPlaceKeys(
+    requestParameters: StopPlacesApiGetStopPlaceKeysRequest,
+    options?: any,
+  ) {
+    return StopPlacesApiFp(this.configuration)
+      .getStopPlaceKeys(
+        requestParameters.evaNumber,
+        requestParameters.keyType,
+        options,
+      )
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Returns all available stop places.
+   * @param {StopPlacesApiGetStopPlacesRequest} requestParameters Request parameters.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof StopPlacesApi
+   */
+  public getStopPlaces(
+    requestParameters: StopPlacesApiGetStopPlacesRequest = {},
+    options?: any,
+  ) {
+    return StopPlacesApiFp(this.configuration)
+      .getStopPlaces(
+        requestParameters.transportAssociations,
         requestParameters.onlyActive,
         requestParameters.locales,
         requestParameters.lastChanged,
@@ -5153,17 +5877,17 @@ export class StopPlacesApi extends BaseAPI {
 
   /**
    * Returns stop place for provided eva number. May return multiple stop places in case differing validity time ranges exist and the flag onlyValid = false.
-   * @param {StopPlacesApiByEvaNumberRequest} requestParameters Request parameters.
+   * @param {StopPlacesApiGetStopPlacesByEvaNumberRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof StopPlacesApi
    */
-  public byEvaNumber(
-    requestParameters: StopPlacesApiByEvaNumberRequest,
+  public getStopPlacesByEvaNumber(
+    requestParameters: StopPlacesApiGetStopPlacesByEvaNumberRequest,
     options?: any,
   ) {
     return StopPlacesApiFp(this.configuration)
-      .byEvaNumber(
+      .getStopPlacesByEvaNumber(
         requestParameters.evaNumber,
         requestParameters.onlyActive,
         requestParameters.locales,
@@ -5174,14 +5898,17 @@ export class StopPlacesApi extends BaseAPI {
 
   /**
    * Returns stop places that match the provided key.
-   * @param {StopPlacesApiByKeyRequest} requestParameters Request parameters.
+   * @param {StopPlacesApiGetStopPlacesByKeyRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof StopPlacesApi
    */
-  public byKey(requestParameters: StopPlacesApiByKeyRequest, options?: any) {
+  public getStopPlacesByKey(
+    requestParameters: StopPlacesApiGetStopPlacesByKeyRequest,
+    options?: any,
+  ) {
     return StopPlacesApiFp(this.configuration)
-      .byKey(
+      .getStopPlacesByKey(
         requestParameters.keyType,
         requestParameters.key,
         requestParameters.onlyActive,
@@ -5192,19 +5919,23 @@ export class StopPlacesApi extends BaseAPI {
   }
 
   /**
-   * Returns a list of stop places [Haltestelle] matching the provided name query, optional limited to a max radius around a provided geo coordinate, ordered by relevance or name matching desc and (configurable) grouped by stations [Bahnhoefe], if stop-places belong to a parent stations (like for instance \'Frankfurt Main Hbf\' and \'Frankfurt tief\' belong to \'Frankfurt Main Hbf\'). The query has support for fuzzy searching, means minimal typos are ignored even without providing wildcards.
-   * @param {StopPlacesApiByNameRequest} requestParameters Request parameters.
+   * Returns a list of stop places [Haltestelle] matching the provided name query, optional limited to a max radius around a provided geo coordinate, ordered by relevance or name matching desc and (configurable) grouped by stations [Bahnhöfe], if stop-places belong to a parent stations (like for instance \'Frankfurt Main Hbf\' and \'Frankfurt tief\' belong to \'Frankfurt Main Hbf\'). The query has support for fuzzy searching, means minimal typos are ignored even without providing wildcards.
+   * @param {StopPlacesApiGetStopPlacesByNameRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof StopPlacesApi
    */
-  public byName(requestParameters: StopPlacesApiByNameRequest, options?: any) {
+  public getStopPlacesByName(
+    requestParameters: StopPlacesApiGetStopPlacesByNameRequest,
+    options?: any,
+  ) {
     return StopPlacesApiFp(this.configuration)
-      .byName(
+      .getStopPlacesByName(
         requestParameters.query,
         requestParameters.latitude,
         requestParameters.longitude,
-        requestParameters.radius,
+        requestParameters.state,
+        requestParameters.transportAssociations,
         requestParameters.groupBy,
         requestParameters.sortBy,
         requestParameters.onlyActive,
@@ -5216,53 +5947,29 @@ export class StopPlacesApi extends BaseAPI {
   }
 
   /**
-   * Returns a list of stop places [Haltestellen] arround geo position within provided radius ordered by distance asc and (configurable) grouped by stations [Bahnhoefe], if stop-places belong to a parent stations (like for instance \'Frankfurt Main Hbf\' and \'Frankfurt tief\' belong to \'Frankfurt Main Hbf\').
-   * @param {StopPlacesApiByPositionRequest} requestParameters Request parameters.
+   * Returns a list of stop places [Haltestellen] around geo position within provided radius ordered by distance asc and (configurable) grouped by stations [Bahnhöfe], if stop-places belong to a parent stations (like for instance \'Frankfurt Main Hbf\' and \'Frankfurt tief\' belong to \'Frankfurt Main Hbf\').
+   * @param {StopPlacesApiGetStopPlacesByPositionRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof StopPlacesApi
    */
-  public byPosition(
-    requestParameters: StopPlacesApiByPositionRequest,
+  public getStopPlacesByPosition(
+    requestParameters: StopPlacesApiGetStopPlacesByPositionRequest,
     options?: any,
   ) {
     return StopPlacesApiFp(this.configuration)
-      .byPosition(
+      .getStopPlacesByPosition(
         requestParameters.latitude,
         requestParameters.longitude,
+        requestParameters.state,
         requestParameters.radius,
+        requestParameters.transportAssociations,
         requestParameters.groupBy,
         requestParameters.onlyActive,
         requestParameters.locales,
         requestParameters.limit,
         options,
       )
-      .then((request) => request(this.axios, this.basePath));
-  }
-
-  /**
-   * Returns all groups the stop place belongs with all group members.
-   * @param {StopPlacesApiGroupsRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof StopPlacesApi
-   */
-  public groups(requestParameters: StopPlacesApiGroupsRequest, options?: any) {
-    return StopPlacesApiFp(this.configuration)
-      .groups(requestParameters.evaNumber, options)
-      .then((request) => request(this.axios, this.basePath));
-  }
-
-  /**
-   * Returns all known keys of specific key type for the stop place with the provided eva number. Take care that associated keys may belong to some kind of group [Station for instance] and that relations between keys are most likely n:m and not 1:1.
-   * @param {StopPlacesApiKeysRequest} requestParameters Request parameters.
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof StopPlacesApi
-   */
-  public keys(requestParameters: StopPlacesApiKeysRequest, options?: any) {
-    return StopPlacesApiFp(this.configuration)
-      .keys(requestParameters.evaNumber, requestParameters.keyType, options)
       .then((request) => request(this.axios, this.basePath));
   }
 }

@@ -4074,18 +4074,18 @@
       "Coordinate2D": {
         "description": "2D coordinate within geo reference system.",
         "properties": {
-          "longitude": {
-            "type": "number",
-            "format": "double",
-            "description": "Longitude position in reference system."
-          },
           "latitude": {
             "type": "number",
             "format": "double",
             "description": "Latitude position in reference system."
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double",
+            "description": "Longitude position in reference system."
           }
         },
-        "required": ["longitude", "latitude"],
+        "required": ["latitude", "longitude"],
         "type": "object",
         "additionalProperties": false
       },

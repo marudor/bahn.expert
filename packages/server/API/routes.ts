@@ -1744,8 +1744,8 @@ const models: TsoaRoute.Models = {
     "Coordinate2D": {
         "dataType": "refObject",
         "properties": {
-            "longitude": {"dataType":"double","required":true},
             "latitude": {"dataType":"double","required":true},
+            "longitude": {"dataType":"double","required":true},
         },
         "additionalProperties": false,
     },

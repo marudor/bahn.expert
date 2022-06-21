@@ -27,6 +27,7 @@ export const enum CacheDatabases {
   StopPlaceByEva,
   StopPlaceByRil,
   StopPlaceGroups,
+  StopPlaceSalesSearch,
 }
 const activeCaches = new Set();
 

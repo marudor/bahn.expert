@@ -7,7 +7,7 @@
     "build:babel": "SERVER=1 babel -x .ts --root-mode upward . --out-dir . --ignore 'node_modules/**'",
     "build:clean": "rimraf '*[!node_modules]**/**/*.js' && rimraf '*.js'",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
-    "generate:apiClient": "openapi-generator-cli generate --additional-properties=useSingleRequestParameter=true -i <add api spec file here> -o generated -g typescript-axios"
+    "generate:apiClient": "openapi-generator-cli generate --additional-properties=useSingleRequestParameter=true -i ./ris-stations-1.7.0.yaml -o generated -g typescript-axios"
   },
   "dependencies": {
     "@openapitools/openapi-generator-cli": "^2.4.26",
