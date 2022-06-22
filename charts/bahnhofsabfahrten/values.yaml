@@ -4,7 +4,7 @@
 
 replicaCount: 1
 
-imageRepository: docker.pkg.github.com/marudor/bahnhofsabfahrten/standalone
+imageRepository: ghcr.io/marudor/bahnhofsabfahrten/standalone
 imageTag: latest
 imagePullPolicy: IfNotPresent
 imagePullSecret: github
