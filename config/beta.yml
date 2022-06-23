@@ -6,4 +6,4 @@ env:
 
 hostName: beta.marudor.de
 
-replicaCount: 2
+replicaCount: 1
