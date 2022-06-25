@@ -2,6 +2,7 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "resolveJsonModule": true,
+    "allowJs": true,
     "noEmit": true,
     "strict": true,
     "target": "es5",

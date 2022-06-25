@@ -4,7 +4,7 @@
   "description": "",
   "license": "MIT",
   "engines": {
-    "node": "^16.0.0"
+    "node": "^18.0.0"
   },
   "private": true,
   "workspaces": [
@@ -113,7 +113,7 @@
     "chokidar": "^3.5.3",
     "compression-webpack-plugin": "^9.2.0",
     "css-loader": "^6.7.1",
-    "cypress": "^10.1.0",
+    "cypress": "^10.2.0",
     "eslint": "^8.18.0",
     "eslint-config-marudor": "^9.0.0",
     "eslint-import-resolver-typescript": "^2.7.1",

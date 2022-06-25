@@ -37,7 +37,7 @@ export const ThemeWrap = ({
     <StyledEngineProvider injectFirst>
       <LocalizationProvider
         dateAdapter={AdapterDateFns}
-        locale={deLocale}
+        adapterLocale={deLocale}
         localeText={customDeLocaleText}
       >
         <CacheProvider value={emotionCache}>
