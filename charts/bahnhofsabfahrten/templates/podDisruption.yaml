@@ -3,7 +3,7 @@ kind: PodDisruptionBudget
 metadata:
   name: '{{ include "bahnhofsAbfahrten.fullname" . }}'
 spec:
-  maxUnavailable: { { .Values.disruption.maxUnavailable } }
+  maxUnavailable: {{ .Values.disruption.maxUnavailable }}
   selector:
     matchLabels:
       app.kubernetes.io/name: '{{ include "bahnhofsAbfahrten.name" . }}'
