@@ -153,7 +153,6 @@
     "lodash": "^4.17.15",
     "chokidar": "^3",
     "lru-cache": "^6",
-    "ws": "^7",
     "typescript": "^4"
   },
   "repository": {
