@@ -18,7 +18,7 @@ import {
 } from '@mui/icons-material';
 import { getRouteLink } from 'client/Routing/util';
 import { getStopPlaceFromAPI } from 'client/Common/service/stopPlaceSearch';
-import { MobileDateTimePicker } from '@mui/lab';
+import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
 import { SettingsPanel } from './SettingsPanel';
 import { StopPlaceSearch } from 'client/Common/Components/StopPlaceSearch';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -236,21 +236,25 @@ export const Search: FC = () => {
       <DateTimeContainer>
         <MobileDateTimePicker
           openTo="hours"
-          clearText="Jetzt"
-          cancelText="Abbrechen"
+          componentsProps={{
+            actionBar: {
+              actions: ['clear', 'cancel', 'accept'],
+            },
+          }}
           value={date}
           renderInput={(props) => (
             <DateTimePickerInput
               {...props}
+              error={false}
               inputProps={{
                 ...props.inputProps,
                 'data-testid': 'routingDatePicker',
                 value: formattedDate,
+                required: false,
               }}
             />
           )}
           onChange={setDate}
-          clearable
           minutesStep={5}
           toolbarTitle=""
         />

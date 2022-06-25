@@ -17,31 +17,6 @@ describe('Routing Settings', () => {
         'Jetzt (Heute 13:10)',
       );
     });
-
-    it('Setting a time and resetting with "jetzt" resets untouched', () => {
-      cy.findByTestId('routingDatePicker').click();
-      cy.tick(600 * 1000);
-      cy.findByText('OK').click();
-      cy.findByTestId('routingDatePicker').should(
-        'have.value',
-        'Heute, Do 14.04. 13:00',
-      );
-      cy.findByTestId('search').click({ force: true });
-      cy.findByTestId('routingDatePicker')
-        .should('have.value', 'Heute, Do 14.04. 13:00')
-        .click({ force: true });
-      cy.findByText('Jetzt').click();
-      cy.findByTestId('routingDatePicker').should(
-        'have.value',
-        'Jetzt (Heute 13:10)',
-      );
-      cy.tick(600 * 1000);
-      cy.findByTestId('search').click();
-      cy.findByTestId('routingDatePicker').should(
-        'have.value',
-        'Jetzt (Heute 13:20)',
-      );
-    });
   });
 
   describe('normal', () => {

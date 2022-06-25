@@ -11,7 +11,7 @@
     "noEmit": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "preserveConstEnums": false,
+    // "preserveConstEnums": false,
     "removeComments": false,
     "skipLibCheck": true,
     "sourceMap": false,
@@ -32,5 +32,5 @@
     ],
     "jsxImportSource": "@emotion/react"
   },
-  "include": ["@types", "./packages"]
+  "include": ["@types", "./packages", "cypress.config.ts"]
 }

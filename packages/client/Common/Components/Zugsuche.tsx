@@ -6,7 +6,7 @@ import {
   FormControl,
   TextField,
 } from '@mui/material';
-import { MobileDatePicker } from '@mui/lab';
+import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { NavigationContext } from './Navigation/NavigationContext';
 import { Search, Today, Train } from '@mui/icons-material';
 import { stopPropagation } from 'client/Common/stopPropagation';
@@ -118,9 +118,12 @@ export const Zugsuche: FC<Props> = ({ children }) => {
             <FormControl fullWidth component="fieldset">
               <InputContainer>
                 <MobileDatePicker
-                  allowSameDateSelection
-                  showTodayButton
-                  disableCloseOnSelect={false}
+                  componentsProps={{
+                    actionBar: {
+                      actions: ['today', 'cancel', 'accept'],
+                    },
+                  }}
+                  closeOnSelect
                   renderInput={(props) => <DateInputField {...props} />}
                   label="Datum"
                   value={date}
