@@ -6,5 +6,5 @@ spec:
   maxUnavailable: '{{ .Values.disruption.maxUnavailable }}'
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "bahnhofsAbfahrten.name" . }}
-        app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/name: '{{ include "bahnhofsAbfahrten.name" . }}'
+      app.kubernetes.io/instance: '{{ .Release.Name }}'
