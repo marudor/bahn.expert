@@ -25,7 +25,7 @@ spec:
     spec:
       topologySpreadConstraints:
       - maxSkew: 1
-        topologyKey: node
+        topologyKey: kubernetes.io/hostname
         whenUnsatisfiable: ScheduleAnyway
       containers:
         - name: "{{ .Chart.Name }}"

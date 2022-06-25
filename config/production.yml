@@ -14,6 +14,9 @@ hostName: marudor.de
 
 replicaCount: 10
 
+disruption:
+  maxUnavailable: 4
+
 resources:
   requests:
     memory: '1Gi'
