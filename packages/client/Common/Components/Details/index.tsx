@@ -77,7 +77,7 @@ export const Details: FC<Props> = ({
       .catch((e) => {
         setError(e);
       });
-  }, []);
+  }, [train, initialDepartureDate, currentStopId, stationId, query.profile]);
 
   useEffect(() => {
     refresh();
