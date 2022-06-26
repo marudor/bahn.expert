@@ -73,11 +73,12 @@ export const TrainRunFilter: FC = () => {
 
   const update = useCallback(
     () => fetchTrainRuns(date, baureihen, identifier),
-    [date, baureihen, identifier],
+    [date, baureihen, identifier, fetchTrainRuns],
   );
 
   useEffect(() => {
     void update();
+    // eslint-disable-next-line
   }, []);
 
   return (

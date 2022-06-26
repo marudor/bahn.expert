@@ -70,7 +70,7 @@ export const SettingsModal: FC = () => {
   const handleNumberValueChange = useCallback(
     (key: keyof CommonConfig) => (e: ChangeEvent<HTMLInputElement>) =>
       setCommonConfigKey(key, Number.parseInt(e.currentTarget.value, 10)),
-    [setConfigKey],
+    [setCommonConfigKey],
   );
 
   return (

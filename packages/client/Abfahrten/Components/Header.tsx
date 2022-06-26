@@ -35,7 +35,7 @@ export const Header: FC<Props> = ({ regional = false }: Props) => {
       }
       navigate(`${urlPrefix}${encodeURIComponent(stopPlace.name)}`);
     },
-    [urlPrefix],
+    [urlPrefix, navigate],
   );
 
   return (

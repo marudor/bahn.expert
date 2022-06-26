@@ -65,7 +65,7 @@ export const ZugsucheAutocomplete: FC<Props> = ({
       }
       setLoading((old) => old - 1);
     },
-    [initialDeparture, storage],
+    [initialDeparture, storage, filtered],
   );
 
   return (

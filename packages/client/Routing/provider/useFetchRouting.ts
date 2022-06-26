@@ -65,6 +65,7 @@ export const useFetchRouting = () => {
       setError,
       setLaterContext,
       setRoutes,
+      touchedDate,
     ],
   );
 
