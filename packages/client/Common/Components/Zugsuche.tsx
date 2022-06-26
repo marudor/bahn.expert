@@ -94,7 +94,7 @@ export const Zugsuche: FC<Props> = ({ children }) => {
         toggleDrawer();
       }
     },
-    [date, storage, toggleModal, toggleDrawer],
+    [date, storage, toggleModal, toggleDrawer, navigate],
   );
 
   return (

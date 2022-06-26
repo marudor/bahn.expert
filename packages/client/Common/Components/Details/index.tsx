@@ -101,7 +101,15 @@ export const Details: FC<Props> = ({
       cleanup();
     }
     return cleanup;
-  }, [train, initialDepartureDate, currentStopId, query.profile, stationId]);
+  }, [
+    train,
+    initialDepartureDate,
+    currentStopId,
+    query.profile,
+    stationId,
+    autoUpdate,
+    refresh,
+  ]);
 
   return (
     <DetailsContext.Provider
