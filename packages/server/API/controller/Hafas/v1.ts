@@ -65,6 +65,15 @@ export class HafasController extends Controller {
     @Body() options: EnrichedJourneyMatchOptions,
     @Query() profile?: AllowedHafasProfile,
   ): Promise<ParsedJourneyMatchResponse[]> {
+    if (options.filtered) {
+      options.onlyRT = true;
+      options.jnyFltrL = options.jnyFltrL || [];
+      options.jnyFltrL.push({
+        mode: 'INC',
+        type: 'PROD',
+        value: '7',
+      });
+    }
     return enrichedJourneyMatch(options, profile);
   }
 

@@ -54,8 +54,12 @@ export interface JourneyMatchOptions {
    * These are raw HAFAS Filter and quite advanced.
    */
   jnyFltrL?: JourneyFilter[];
+
+  onlyRT?: boolean;
 }
 
 export interface EnrichedJourneyMatchOptions extends JourneyMatchOptions {
   limit?: number;
+  // Only FV, will also use "onlyRT" (unknown what  the exact purpose is)
+  filtered?: boolean;
 }

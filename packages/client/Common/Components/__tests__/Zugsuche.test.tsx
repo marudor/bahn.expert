@@ -33,15 +33,6 @@ describe('Zugsuche', () => {
     expect(screen.getByTestId('Zugsuche')).toBeInTheDocument();
   });
 
-  it('entering nothing & submit keeps it open', async () => {
-    renderZugsuche();
-
-    fireEvent.click(screen.getByTestId('dummytoggle'));
-    fireEvent.click(screen.getByTestId('ZugsucheSubmit'));
-    await new Promise((resolve) => setTimeout(resolve, 200));
-    expect(screen.getByTestId('Zugsuche')).toBeInTheDocument();
-  });
-
   describe('Uses Search', () => {
     beforeEach(() => {
       nock
@@ -70,6 +61,7 @@ describe('Zugsuche', () => {
           },
         ]);
     });
+
     it('Navigates to details', async () => {
       const { getLocation } = renderZugsuche();
 
@@ -79,7 +71,6 @@ describe('Zugsuche', () => {
       });
       await screen.findByTestId('zugsucheAutocompleteItem');
       fireEvent.click(screen.getByTestId('zugsucheAutocompleteItem'));
-      fireEvent.click(screen.getByTestId('ZugsucheSubmit'));
       await waitForElementToBeRemoved(() => screen.queryByTestId('Zugsuche'));
       expect(screen.queryByTestId('Zugsuche')).toBeNull();
       expect(getLocation().pathname.startsWith('/details/EC 6')).toBeTruthy();
@@ -93,11 +84,10 @@ describe('Zugsuche', () => {
       fireEvent.change(screen.getByTestId('zugsucheAutocompleteInput'), {
         target: { value: 'EC 6' },
       });
+      cookies.set('hafasProfile', 'oebb');
       await screen.findByTestId('zugsucheAutocompleteItem');
       fireEvent.click(screen.getByTestId('zugsucheAutocompleteItem'));
-      cookies.set('hafasProfile', 'oebb');
 
-      fireEvent.click(screen.getByTestId('ZugsucheSubmit'));
       expect(getLocation().search).toBe('?profile=oebb&station=6000');
     });
   });

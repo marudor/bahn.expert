@@ -34,7 +34,7 @@ const parseJourneyMatch = (
 };
 
 const JourneyMatch = (
-  { trainName, initialDepartureDate, jnyFltrL }: JourneyMatchOptions,
+  { trainName, initialDepartureDate, jnyFltrL, onlyRT }: JourneyMatchOptions,
   profile: AllowedHafasProfile = AllowedHafasProfile.DB,
   raw?: boolean,
 ): Promise<ParsedJourneyMatchResponse[]> => {
@@ -55,6 +55,7 @@ const JourneyMatch = (
       date: format(date, 'yyyyMMdd'),
       input: trainName,
       jnyFltrL,
+      onlyRT,
     },
     meth: 'JourneyMatch',
   };
@@ -77,7 +78,10 @@ export async function enrichedJourneyMatch(
   options: EnrichedJourneyMatchOptions,
   profile?: AllowedHafasProfile,
 ): Promise<ParsedJourneyMatchResponse[]> {
-  const journeyMatches = await JourneyMatch(options, profile);
+  const journeyMatches = (await JourneyMatch(options, profile)).filter(
+    (match) => match.train.type !== 'Flug',
+  );
+
   const limitedJourneyMatches = options.limit
     ? journeyMatches.slice(0, options.limit)
     : journeyMatches;
@@ -90,7 +94,7 @@ export async function enrichedJourneyMatch(
       j.firstStop = details.firstStop;
       j.lastStop = details.lastStop;
       j.stops = details.stops;
-      j.train = details.train;
+      // j.train = details.train;
     } catch {
       // ignore
     }
