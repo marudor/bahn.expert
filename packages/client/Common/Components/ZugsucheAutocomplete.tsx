@@ -30,6 +30,7 @@ const StyledMenuItem = styled(MenuItem)`
 
 interface Props {
   initialDeparture?: Date;
+  filtered?: boolean;
   onChange: (match: ParsedJourneyMatchResponse | null) => any;
 }
 const itemToString = (j: ParsedJourneyMatchResponse | null) =>
@@ -37,6 +38,7 @@ const itemToString = (j: ParsedJourneyMatchResponse | null) =>
 export const ZugsucheAutocomplete: FC<Props> = ({
   initialDeparture = new Date(),
   onChange,
+  filtered,
 }) => {
   const [suggestions, setSuggestions] = useState<ParsedJourneyMatchResponse[]>(
     [],
@@ -50,6 +52,7 @@ export const ZugsucheAutocomplete: FC<Props> = ({
         const suggestions = await debouncedJourneyMatch(
           value,
           initialDeparture,
+          filtered,
           storage.get('hafasProfile'),
           'zugsuche',
         );

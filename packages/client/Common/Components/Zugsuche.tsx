@@ -1,16 +1,17 @@
 import {
-  Button,
   Dialog,
   DialogContent,
   DialogTitle,
   FormControl,
+  FormControlLabel,
+  Switch,
   TextField,
 } from '@mui/material';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { NavigationContext } from './Navigation/NavigationContext';
-import { Search, Today, Train } from '@mui/icons-material';
 import { stopPropagation } from 'client/Common/stopPropagation';
 import { subHours } from 'date-fns';
+import { Today, Train } from '@mui/icons-material';
 import { useCallback, useContext, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useStorage } from 'client/useStorage';
@@ -47,12 +48,6 @@ const InputContainer = styled.div`
   margin: 0 auto;
 `;
 
-const SearchButton = styled(Button)`
-  height: 45px;
-  margin: 10px;
-  width: 95%;
-`;
-
 interface Props {
   children?: (toggle: (e: SyntheticEvent) => void) => ReactElement;
 }
@@ -61,19 +56,17 @@ export const Zugsuche: FC<Props> = ({ children }) => {
   const storage = useStorage();
   const { toggleDrawer } = useContext(NavigationContext);
   const [open, setOpen] = useState(false);
-  const [match, setMatch] = useState<ParsedJourneyMatchResponse | null>();
   const [date, setDate] = useState<Date | null>(subHours(new Date(), 1));
+  const [filtered, setFiltered] = useState<boolean>(true);
   const toggleModal = useCallback(
-    (e: SyntheticEvent) => {
-      e.stopPropagation();
+    (e?: SyntheticEvent) => {
+      e?.stopPropagation();
       setOpen(!open);
     },
     [open],
   );
-  const onSubmit = useCallback(
-    (e: SyntheticEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
+  const submit = useCallback(
+    (match: ParsedJourneyMatchResponse | null) => {
       if (match) {
         const link = [
           '',
@@ -97,11 +90,11 @@ export const Zugsuche: FC<Props> = ({ children }) => {
         );
 
         navigate(link.join('/'));
-        toggleModal(e);
+        toggleModal();
         toggleDrawer();
       }
     },
-    [match, date, storage, toggleModal, toggleDrawer],
+    [date, storage, toggleModal, toggleDrawer],
   );
 
   return (
@@ -109,12 +102,13 @@ export const Zugsuche: FC<Props> = ({ children }) => {
       <Dialog
         maxWidth="md"
         open={open}
+        // @ts-expect-error stupid ts cant handle optional here
         onClose={toggleModal}
         data-testid="Zugsuche"
       >
         <Title onClick={stopPropagation}>Zugsuche</Title>
         <Content onClick={stopPropagation}>
-          <form onSubmit={onSubmit}>
+          <form>
             <FormControl fullWidth component="fieldset">
               <InputContainer>
                 <MobileDatePicker
@@ -132,21 +126,25 @@ export const Zugsuche: FC<Props> = ({ children }) => {
                 <TodayIcon />
               </InputContainer>
               <InputContainer>
+                <FormControlLabel
+                  control={
+                    <Switch
+                      checked={filtered}
+                      value="filtered"
+                      onChange={(_e, checked) => setFiltered(checked)}
+                    />
+                  }
+                  label="Nur Fernverkehr, nur aktuelle Züge"
+                />
+              </InputContainer>
+              <InputContainer>
                 <ZugsucheAutocomplete
-                  onChange={setMatch}
+                  filtered={filtered}
+                  onChange={submit}
                   initialDeparture={date || undefined}
                 />
                 <TrainIcon />
               </InputContainer>
-              <SearchButton
-                data-testid="ZugsucheSubmit"
-                type="submit"
-                variant="contained"
-                color="primary"
-                startIcon={<Search />}
-              >
-                Suche
-              </SearchButton>
             </FormControl>
           </form>
         </Content>

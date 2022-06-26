@@ -1590,9 +1590,15 @@
             "type": "array",
             "description": "These are raw HAFAS Filter and quite advanced."
           },
+          "onlyRT": {
+            "type": "boolean"
+          },
           "limit": {
             "type": "number",
             "format": "double"
+          },
+          "filtered": {
+            "type": "boolean"
           }
         },
         "required": ["trainName"],
@@ -1933,6 +1939,9 @@
             },
             "type": "array",
             "description": "These are raw HAFAS Filter and quite advanced."
+          },
+          "onlyRT": {
+            "type": "boolean"
           }
         },
         "required": ["trainName"],
