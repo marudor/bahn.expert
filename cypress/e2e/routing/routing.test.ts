@@ -119,7 +119,7 @@ describe('Routing', () => {
       );
     });
 
-    it('with start, destination, time & 2 via', () => {
+    it('with start, destination, time & 2 via, can remove via', () => {
       cy.visit(
         '/routing/8000105/8002549/2020-11-17T10:00:15.589Z/8000244|8000105|',
       );
@@ -132,6 +132,10 @@ describe('Routing', () => {
         'contain.value',
         'Dienstag 17.11.2020 10:00',
       );
+      cy.findByTestId('clearVia0').click();
+      searchInput('via0', 'Frankfurt(Main)Hbf');
+      cy.findByTestId('clearVia0').click();
+      cy.findByTestId('via0').should('not.exist');
     });
   });
 });
