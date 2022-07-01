@@ -29,7 +29,7 @@ const RouteHeaderTags = () => {
         } @ ${format(date || Date.now(), 'HH:mm dd.MM.yy')}`,
       );
     }
-  }, [start, destination, via, date]);
+  }, [start, destination, via, date, updateDescription, updateTitle]);
 
   return null;
 };

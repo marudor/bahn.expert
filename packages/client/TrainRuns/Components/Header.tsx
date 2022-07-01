@@ -17,6 +17,6 @@ export const Header: FC = () => {
       })})`,
     [selectedDate],
   );
-  useEffect(() => updateTitle(title), [title]);
+  useEffect(() => updateTitle(title), [title, updateTitle]);
   return <BaseHeader>{title}</BaseHeader>;
 };

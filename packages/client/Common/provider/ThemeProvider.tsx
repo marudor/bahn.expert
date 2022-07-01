@@ -27,6 +27,7 @@ function useThemeInner({
       }
       setThemeType(prefferedTheme);
     }
+    // eslint-disable-next-line
   }, []);
   const theme = useMemo(() => createTheme(themeType), [themeType]);
   return {

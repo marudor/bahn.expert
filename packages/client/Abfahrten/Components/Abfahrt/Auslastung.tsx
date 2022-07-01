@@ -44,7 +44,7 @@ export const Auslastung: FC = () => {
     if (auslastung === undefined && abfahrt.departure) {
       void fetchAuslastung(abfahrt);
     }
-  }, [abfahrt.departure, auslastung, fetchAuslastung]);
+  }, [abfahrt.departure, auslastung, fetchAuslastung, abfahrt]);
 
   if (abfahrt.auslastung && auslastung === undefined) {
     return <Loading type={1} />;

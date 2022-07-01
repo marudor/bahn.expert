@@ -165,12 +165,12 @@ export const Search: FC = () => {
         },
       );
     }
-  }, [params.via, updateVia]);
+  }, [params.via, setVia]);
 
   const swapOriginDest = useCallback(() => {
     setDestination(start);
     setStart(destination);
-  }, [start, destination]);
+  }, [start, destination, setStart, setDestination]);
 
   const searchRoute = useCallback(
     (e: SyntheticEvent) => {

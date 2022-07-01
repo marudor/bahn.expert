@@ -29,7 +29,7 @@ export async function getDetails(
   return r.data;
 }
 
-const journeyMatchCacnelTokens: { [key: string]: Canceler } = {};
+const journeyMatchCancelTokens: { [key: string]: Canceler } = {};
 
 export async function journeyMatch(
   trainName: string,
@@ -41,9 +41,9 @@ export async function journeyMatch(
   let cancelToken;
 
   if (cancelIdent) {
-    journeyMatchCacnelTokens[cancelIdent]?.();
+    journeyMatchCancelTokens[cancelIdent]?.();
     cancelToken = new Axios.CancelToken((c) => {
-      journeyMatchCacnelTokens[cancelIdent] = c;
+      journeyMatchCancelTokens[cancelIdent] = c;
     });
   }
   const body: EnrichedJourneyMatchOptions = {

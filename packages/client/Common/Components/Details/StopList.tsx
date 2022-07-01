@@ -83,7 +83,7 @@ export const StopList: FC<Props> = ({ initialDepartureDate }) => {
         />
       );
     });
-  }, [details, currentSequenceStop]);
+  }, [details, currentSequenceStop, onStopClick, initialDepartureDate]);
 
   if (error) {
     return (
