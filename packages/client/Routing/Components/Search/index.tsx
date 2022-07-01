@@ -10,6 +10,7 @@ import {
 } from 'date-fns';
 import { Button, Divider, TextField } from '@mui/material';
 import { css } from '@emotion/react';
+import { Delete } from '@mui/icons-material';
 import {
   FavoriteBorder,
   Search as SearchIcon,
@@ -68,6 +69,8 @@ const TodayIcon = styled(Today)`
 const SwapOriginDest = styled(SwapVert)`
   ${iconCss}
 `;
+
+const ClearIcon = SwapOriginDest.withComponent(Delete);
 
 const Buttons = styled.div(({ theme }) => ({
   display: 'flex',
@@ -196,12 +199,17 @@ export const Search: FC = () => {
   const mappedViaList = useMemo(
     () =>
       via.map((v, index) => (
-        <StopPlaceSearch
-          id={`via${index}`}
-          onChange={(s) => updateVia(index, s)}
-          value={v}
-          key={index}
-        />
+        <FlexContainer key={index}>
+          <StopPlaceSearch
+            id={`via${index}`}
+            onChange={(s) => updateVia(index, s)}
+            value={v}
+          />
+          <ClearIcon
+            data-testid={`clearVia${index}`}
+            onClick={() => updateVia(index)}
+          />
+        </FlexContainer>
       )),
     [updateVia, via],
   );
