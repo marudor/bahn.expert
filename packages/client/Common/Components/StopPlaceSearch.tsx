@@ -139,7 +139,6 @@ export const StopPlaceSearch: FC<Props> = ({
                   'data-testid': 'stopPlaceSearchInput',
                 }}
               />
-
               <div {...getMenuProps()}>
                 {isOpen && (
                   <SuggestionContainer square>
