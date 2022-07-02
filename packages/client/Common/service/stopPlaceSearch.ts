@@ -15,7 +15,7 @@ export async function getStopPlaceFromAPI(
 export async function getStopPlacesFromAPI(
   filterForIris?: boolean,
   max?: number,
-  groupedBySales?: boolean,
+  _groupedBySales?: boolean,
   searchTerm?: string,
 ): Promise<GroupedStopPlace[]> {
   if (searchTerm) {
