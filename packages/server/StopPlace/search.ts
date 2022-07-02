@@ -104,7 +104,7 @@ export async function searchStopPlaceRisStations(
 
   searchTerm = manualNameOverrides.get(searchTerm.toLowerCase()) || searchTerm;
 
-  const searchCache = stopPlaceStationSearchCache
+  const searchCache = groupBySales
     ? stopPlaceSalesSearchCache
     : stopPlaceStationSearchCache;
 
