@@ -26,7 +26,8 @@ export async function getStopPlacesFromAPI(
           params: {
             filterForIris,
             max,
-            groupedBySales,
+            // this is buggy currently
+            groupedBySales: false,
           },
         },
       )
