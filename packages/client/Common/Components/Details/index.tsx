@@ -121,7 +121,10 @@ export const Details: FC<Props> = ({
       }}
     >
       <Header train={train} />
-      <StopList initialDepartureDate={initialDepartureDate} />
+      <StopList
+        initialDepartureDate={initialDepartureDate}
+        stationId={stationId}
+      />
     </DetailsContext.Provider>
   );
 };

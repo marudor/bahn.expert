@@ -37,9 +37,10 @@ const ErrorIcon = styled(Error)(ErrorStyle);
 
 interface Props {
   initialDepartureDate?: Date;
+  stationId?: string;
 }
 
-export const StopList: FC<Props> = ({ initialDepartureDate }) => {
+export const StopList: FC<Props> = ({ initialDepartureDate, stationId }) => {
   const { details, error } = useContext(DetailsContext);
   const [currentSequenceStop, setCurrentSequenceStop] = useState(
     details?.currentStop?.station.id,
@@ -50,15 +51,16 @@ export const StopList: FC<Props> = ({ initialDepartureDate }) => {
   }, []);
 
   useEffect(() => {
-    if (details && details.currentStop) {
-      setCurrentSequenceStop(details.currentStop.station.id);
-      const scrollDom = document.getElementById(details.currentStop.station.id);
+    if (!stationId && details && details.currentStop) {
+      const station = stationId ?? details.currentStop.station.id;
+      setCurrentSequenceStop(station);
+      const scrollDom = document.getElementById(station);
 
       if (scrollDom) {
         scrollDom.scrollIntoView();
       }
     }
-  }, [details]);
+  }, [stationId, details]);
 
   const detailsStops = useMemo(() => {
     if (!details) return null;
