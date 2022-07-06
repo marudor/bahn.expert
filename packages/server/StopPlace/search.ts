@@ -11,34 +11,26 @@ import type {
   StopPlaceSearchResult,
 } from 'business-hub/types';
 
-const ttl = 5 * 24 * 60 * 60;
-
 const stopPlaceStationSearchCache = createNewCache<string, GroupedStopPlace[]>(
-  ttl,
   CacheDatabases.StopPlaceSearch,
 );
 const stopPlaceSalesSearchCache = createNewCache<string, GroupedStopPlace[]>(
-  ttl,
   CacheDatabases.StopPlaceSalesSearch,
 );
 const stopPlaceGeoCache = createNewCache<string, GroupedStopPlace[]>(
-  ttl,
   CacheDatabases.StopPlaceGeo,
 );
 const stopPlaceIdentifierCache = createNewCache<
   string,
   StopPlaceIdentifier | undefined
->(ttl, CacheDatabases.StopPlaceIdentifier);
+>(CacheDatabases.StopPlaceIdentifier);
 const stopPlaceByRilCache = createNewCache<string, StopPlace>(
-  ttl,
   CacheDatabases.StopPlaceByRil,
 );
 const stopPlaceByEvaCache = createNewCache<string, GroupedStopPlace>(
-  ttl,
   CacheDatabases.StopPlaceByEva,
 );
 const stopPlaceGroupCache = createNewCache<string, ResolvedStopPlaceGroups>(
-  ttl,
   CacheDatabases.StopPlaceGroups,
 );
 

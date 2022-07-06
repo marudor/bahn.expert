@@ -8,8 +8,8 @@ import type { IrisStation, IrisStationWithRelated } from 'types/iris';
 
 // 4 Hours in seconds
 const cache = createNewCache<string, IrisStation | null>(
-  4 * 60 * 60,
   CacheDatabases.Station,
+  4 * 60 * 60,
 );
 
 export function parseStation(stationNode: xmljs.Element): IrisStation {

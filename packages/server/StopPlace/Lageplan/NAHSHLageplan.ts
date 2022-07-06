@@ -5,8 +5,8 @@ import LocMatch from 'server/HAFAS/LocMatch';
 
 // 48 hours in seconds
 const cache = createNewCache<string, string | null>(
-  48 * 60 * 60,
   CacheDatabases.NAHSHLageplan,
+  48 * 60 * 60,
 );
 
 function normalizeStationName(stationName: string) {
