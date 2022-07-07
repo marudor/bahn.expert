@@ -66,11 +66,6 @@ baseEnv:
       secretKeyRef:
         name: bahnhofs-abfahrten-config
         key: imprint_town
-  - name: OPENDATA_AUTH_KEY
-    valueFrom:
-      secretKeyRef:
-        name: bahnhofs-abfahrten-config
-        key: opendata_auth_key
   - name: RIS_STATIONS_KEY
     valueFrom:
       secretKeyRef:
