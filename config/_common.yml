@@ -39,6 +39,12 @@ tolerations: []
 affinity: {}
 
 baseEnv:
+  - name: USER_AGENT
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: user_agent
+        optional: true
   - name: DEFAULT_TTL
     valueFrom:
       secretKeyRef:
