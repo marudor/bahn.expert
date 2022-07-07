@@ -40,12 +40,12 @@ describe('Cache', () => {
   };
 
   describe('memory', () => {
-    defineCacheTests(() => createNewCache(100, 0, false));
+    defineCacheTests(() => createNewCache(0, 100, false));
   });
 
   if (process.env.REDIS_HOST) {
     describe('redis', () => {
-      defineCacheTests(() => createNewCache(100, 1, true));
+      defineCacheTests(() => createNewCache(1, 100, true));
     });
   }
 });

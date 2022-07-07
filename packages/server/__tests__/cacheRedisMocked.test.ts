@@ -42,7 +42,7 @@ jest.mock('cache-manager', () => {
 });
 
 describe('Cache - redis mocked', () => {
-  const cache = createNewCache(100, 0, true);
+  const cache = createNewCache(0, 100, true);
 
   it('get after set', async () => {
     await cache.set('test', 2);

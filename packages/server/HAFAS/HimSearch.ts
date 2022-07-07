@@ -60,8 +60,8 @@ export default HimSearch;
 
 // 24 hours in seconds
 const himMessageCache = createNewCache<string, ParsedHimMessage>(
-  24 * 60 * 60,
   CacheDatabases.HIMMessage,
+  24 * 60 * 60,
 );
 
 const maxNum =

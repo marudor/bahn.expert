@@ -39,6 +39,12 @@ tolerations: []
 affinity: {}
 
 baseEnv:
+  - name: DEFAULT_TTL
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: default_ttl
+        optional: true
   - name: IMPRINT_NAME
     valueFrom:
       secretKeyRef:

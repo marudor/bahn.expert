@@ -11,8 +11,8 @@ import type { LocMatchRequest, LocMatchResponse } from 'types/HAFAS/LocMatch';
 
 // 8 Hours in seconds
 const cache = createNewCache<string, HafasStation[]>(
-  8 * 60 * 60,
   CacheDatabases.LocMatch,
+  8 * 60 * 60,
 );
 
 function parseFn(
