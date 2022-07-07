@@ -8,7 +8,7 @@ export const risStationsConfiguration = new Configuration({
   basePath: 'https://apis.deutschebahn.com/db/apis/ris-stations/v1',
   baseOptions: {
     headers: {
-      'user-agent': 'marudor.de',
+      'user-agent': process.env.USER_AGENT || 'bahnhofs-abfahrten-default',
     },
   },
 });
