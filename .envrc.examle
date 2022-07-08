@@ -1,6 +1,5 @@
 export WEB_PORT=9042
 export DOCS_PORT=9023
-export OPENDATA_AUTH_KEY=
 export LOGGLY_TOKEN=
 export ENVIRONMENT=
 export RIS_STATIONS_KEY=

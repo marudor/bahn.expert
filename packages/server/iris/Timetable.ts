@@ -57,8 +57,8 @@ type ParsedAr = ArDp & {
 
 // 6 Hours in seconds
 const timetableCache = createNewCache<string, string>(
-  6 * 60 * 60,
   CacheDatabases.Timetable,
+  6 * 60 * 60,
 );
 
 interface Route {

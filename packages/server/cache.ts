@@ -60,11 +60,14 @@ function serialize(raw: any) {
   return JSON.stringify(raw, dateSerialize);
 }
 
+const parsedEnvTTL = Number.parseInt(process.env.DEFAULT_TTL!);
+const defaultTTL = Number.isNaN(parsedEnvTTL) ? 12 * 60 * 60 : parsedEnvTTL;
+
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function createNewCache<K extends string, V>(
   /** in seconds */
-  ttl: number,
   db: CacheDatabases,
+  ttl: number = defaultTTL,
   useRedis = Boolean(redisSettings),
 ) {
   let baseCache: Cache;
