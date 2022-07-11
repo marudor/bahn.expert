@@ -29,8 +29,8 @@ Promise.all(mostUsedNames.map((s) => search(s).then((s) => s[0]))).then(
     console.log(
       JSON.stringify(
         stopPlaces.map((s) => ({
-          title: s.title,
-          id: s.id,
+          name: s.name,
+          evaNumber: s.evaNumber,
         })),
       ),
     );
