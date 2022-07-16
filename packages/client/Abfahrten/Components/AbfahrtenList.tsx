@@ -120,7 +120,7 @@ const InnerAbfahrtenList = () => {
       let scrollDom: HTMLElement | null = null;
 
       if (selectedDetail) {
-        scrollDom = document.getElementById(`${selectedDetail}Scroll`);
+        scrollDom = document.getElementById(selectedDetail);
       }
       if (!scrollDom && unfilteredAbfahrten.lookbehind.length) {
         scrollDom = document.getElementById('lookaheadMarker');

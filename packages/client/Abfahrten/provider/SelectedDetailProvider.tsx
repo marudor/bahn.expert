@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react';
+import { useLocation } from 'react-router';
 import { useStorage } from 'client/useStorage';
 import constate from 'constate';
 import type { FC, PropsWithChildren } from 'react';
@@ -54,9 +55,12 @@ export const SelectedDetailProvider: FC<PropsWithChildren<unknown>> = ({
 }) => {
   const storage = useStorage();
   const savedSelectedDetail = storage.get(selectedDetailCookieName);
+  const hash = useLocation().hash?.substring(1);
 
   return (
-    <InnerSelectedDetailProvider initialSelectedDetail={savedSelectedDetail}>
+    <InnerSelectedDetailProvider
+      initialSelectedDetail={hash || savedSelectedDetail}
+    >
       {children}
     </InnerSelectedDetailProvider>
   );
