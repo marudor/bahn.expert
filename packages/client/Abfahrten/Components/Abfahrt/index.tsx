@@ -36,7 +36,7 @@ export const Abfahrt: FC<Props> = ({ abfahrt }) => {
   return (
     <>
       <BaseAbfahrt
-        detail={abfahrt.id === selectedDetail}
+        detail={abfahrt.train.number === selectedDetail}
         abfahrt={abfahrt}
         sameTrainWing={sameTrainWing}
         wingNumbers={wingNumbers}
@@ -45,7 +45,7 @@ export const Abfahrt: FC<Props> = ({ abfahrt }) => {
       {wings &&
         wings.map((w, index) => (
           <BaseAbfahrt
-            detail={w.id === selectedDetail}
+            detail={w.train.number === selectedDetail}
             sameTrainWing={sameTrainWing}
             abfahrt={w}
             key={w.rawId}

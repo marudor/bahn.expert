@@ -100,8 +100,8 @@ export const BaseAbfahrt = memo(function BaseAbfahrt({
   );
   const setSelectedDetail = useSetSelectedDetail();
   const handleClick = useCallback(() => {
-    setSelectedDetail(abfahrt.id);
-  }, [abfahrt.id, setSelectedDetail]);
+    setSelectedDetail(abfahrt.train.number || abfahrt.id);
+  }, [abfahrt, setSelectedDetail]);
   const contextValue = useMemo(
     () => ({
       detail,
@@ -137,7 +137,7 @@ export const BaseAbfahrt = memo(function BaseAbfahrt({
           {detail && (
             <ScrollMarker
               data-testid="scrollMarker"
-              id={`${abfahrt.id}Scroll`}
+              id={`${abfahrt.train.number}Scroll`}
             />
           )}
         </Entry>
