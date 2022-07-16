@@ -8,7 +8,6 @@ import { ThemeProvider } from 'client/Common/provider/ThemeProvider';
 import { ThemeWrap } from './ThemeWrap';
 import Axios from 'axios';
 import qs from 'qs';
-import React from 'react';
 import type { ComponentType } from 'react';
 // 15s timeout
 Axios.defaults.timeout = 15000;
@@ -40,17 +39,15 @@ Axios.defaults.paramsSerializer = (p) =>
 const storage = new ClientStorage();
 
 const renderApp = (App: ComponentType) => (
-  <React.StrictMode>
-    <HelmetProvider>
-      <BrowserRouter>
-        <StorageContext.Provider value={storage}>
-          <ThemeProvider>
-            <App />
-          </ThemeProvider>
-        </StorageContext.Provider>
-      </BrowserRouter>
-    </HelmetProvider>
-  </React.StrictMode>
+  <HelmetProvider>
+    <BrowserRouter>
+      <StorageContext.Provider value={storage}>
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
+      </StorageContext.Provider>
+    </BrowserRouter>
+  </HelmetProvider>
 );
 
 const container = document.getElementById('app')!;
