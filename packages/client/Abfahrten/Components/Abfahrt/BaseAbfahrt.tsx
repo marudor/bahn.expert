@@ -112,7 +112,7 @@ export const BaseAbfahrt = memo(function BaseAbfahrt({
 
   return (
     <AbfahrtContext.Provider value={contextValue}>
-      <Container square id={abfahrt.id} onClick={handleClick}>
+      <Container square id={`${abfahrt.id}container`} onClick={handleClick}>
         {wingNumbers && (
           <WingIndicator wingEnd={wingEnd} wingStart={wingStart} />
         )}
@@ -135,10 +135,7 @@ export const BaseAbfahrt = memo(function BaseAbfahrt({
             />
           )}
           {detail && (
-            <ScrollMarker
-              data-testid="scrollMarker"
-              id={`${abfahrt.id}Scroll`}
-            />
+            <ScrollMarker data-testid="scrollMarker" id={abfahrt.id} />
           )}
         </Entry>
       </Container>
