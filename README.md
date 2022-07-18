@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- node v14
+- node v18
 - yarn (yarnpkg.com)
 
 ## Quickstart

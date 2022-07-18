@@ -3,19 +3,14 @@ WORKDIR /app
 ENV CYPRESS_INSTALL_BINARY=0
 COPY package.json yarn.lock .yarnrc.yml ./
 COPY .yarn/ ./.yarn/
-COPY packages/ ./packages/
+COPY src/ ./src/
 COPY scripts/ ./scripts/
 
-FROM base as fulldeps
+FROM base as build
 RUN yarn --immutable --immutable-cache
-
-
-FROM fulldeps as build
-
-COPY webpack.config.js babel.config.js ./
-COPY .git ./.git
+COPY webpack.config.js babel.config.cjs ./
 ENV NODE_ENV=production
-RUN yarn all:build
+RUN yarn build
 RUN yarn dlx modclean -r -f -a '*.ts|*.tsx' -I 'example*'
 RUN node scripts/checkAssetFiles.js
 
@@ -30,6 +25,6 @@ WORKDIR /app
 COPY public/ ./dist/client/
 COPY --from=cleanedDeps /app/node_modules/ ./node_modules/
 COPY --from=build /app/dist/ ./dist/
-COPY --from=build /app/packages/ ./packages/
+COPY --from=build /app/src/ ./src/
 USER node
-CMD [ "node", "packages/server/index.js" ]
+CMD [ "node", "src/server/index.js" ]
