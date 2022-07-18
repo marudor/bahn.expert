@@ -7,7 +7,7 @@ import {
   Request,
   Route,
   Tags,
-} from 'tsoa';
+} from '@tsoa/runtime';
 import TripSearch from 'server/HAFAS/TripSearch';
 import type { AllowedHafasProfile } from 'types/HAFAS';
 import type { Request as KRequest } from 'koa';

@@ -9,7 +9,7 @@ import {
   Request,
   Route,
   Tags,
-} from 'tsoa';
+} from '@tsoa/runtime';
 import HimSearch from 'server/HAFAS/HimSearch';
 import JourneyCourse from 'server/HAFAS/JourneyCourse';
 import JourneyGraph from 'server/HAFAS/JourneyGraph';

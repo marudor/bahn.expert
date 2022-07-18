@@ -7,7 +7,7 @@ import {
   Query,
   Route,
   Tags,
-} from 'tsoa';
+} from '@tsoa/runtime';
 import { SubscribeCreate } from 'server/HAFAS/Subscribe/Create';
 import { SubscribeDelete } from 'server/HAFAS/Subscribe/Delete';
 import { SubscribeDetails } from 'server/HAFAS/Subscribe/Details';

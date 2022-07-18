@@ -1,7 +1,7 @@
 import { coachSequenceMonitoring } from 'server/coachSequence/monitoring';
-import { Controller, Get, Hidden, Res, Route } from 'tsoa';
+import { Controller, Get, Hidden, Res, Route } from '@tsoa/runtime';
 import type { CoachSequenceInformation } from 'types/coachSequence';
-import type { TsoaResponse } from 'tsoa';
+import type { TsoaResponse } from '@tsoa/runtime';
 
 @Route('/reihung/monitoring')
 export class ReihungMonitoringController extends Controller {

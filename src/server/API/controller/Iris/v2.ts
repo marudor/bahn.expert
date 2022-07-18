@@ -1,4 +1,11 @@
-import { Controller, Get, OperationId, Query, Route, Tags } from 'tsoa';
+import {
+  Controller,
+  Get,
+  OperationId,
+  Query,
+  Route,
+  Tags,
+} from '@tsoa/runtime';
 import { getAbfahrten } from 'server/iris';
 import wingInfo from 'server/iris/wings';
 import type { AbfahrtenResult, WingDefinition } from 'types/iris';

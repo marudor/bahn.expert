@@ -10,7 +10,7 @@ import {
   Response,
   Route,
   Tags,
-} from 'tsoa';
+} from '@tsoa/runtime';
 import Auslastung from 'server/HAFAS/Auslastung';
 import Detail from 'server/HAFAS/Detail';
 import JourneyDetails from 'server/HAFAS/JourneyDetails';

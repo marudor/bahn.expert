@@ -8,7 +8,7 @@ import {
   Response,
   Route,
   Tags,
-} from 'tsoa';
+} from '@tsoa/runtime';
 import {
   geoSearchStopPlace,
   getIdentifiers,
@@ -27,7 +27,7 @@ import type {
   VRRTrainOccupancyValues,
 } from 'types/stopPlace';
 import type { LageplanResponse } from 'types/bahnhof';
-import type { TsoaResponse } from 'tsoa';
+import type { TsoaResponse } from '@tsoa/runtime';
 
 @Route('/stopPlace/v1')
 export class StopPlaceController extends Controller {

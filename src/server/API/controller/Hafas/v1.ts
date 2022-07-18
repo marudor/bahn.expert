@@ -12,7 +12,7 @@ import {
   Route,
   SuccessResponse,
   Tags,
-} from 'tsoa';
+} from '@tsoa/runtime';
 import { enrichedJourneyMatch } from 'server/HAFAS/JourneyMatch';
 import JourneyDetails from 'server/HAFAS/JourneyDetails';
 import JourneyGeoPos from 'server/HAFAS/JourneyGeoPos';
@@ -30,7 +30,7 @@ import type {
   ParsedJourneyGeoPosResponse,
 } from 'types/HAFAS/JourneyGeoPos';
 import type { Request as KRequest } from 'koa';
-import type { TsoaResponse } from 'tsoa';
+import type { TsoaResponse } from '@tsoa/runtime';
 
 @Route('/hafas/v1')
 export class HafasController extends Controller {
