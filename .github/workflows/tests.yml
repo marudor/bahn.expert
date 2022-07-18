@@ -39,7 +39,7 @@ jobs:
           yarn test:jest
       - name: lint
         run: |
-          yarn all:lint
+          yarn lint
       - name: types
         run: |
           yarn test:ts
@@ -78,7 +78,7 @@ jobs:
           install: false
           record: true
           parallel: true
-          build: yarn all:build
+          build: yarn build
           group: ${{ matrix.browser }}
           ci-build-id: '${{github.sha}}-${{ github.workflow }}-${{ github.event_name }}'
           start: node packages/server/index.js
