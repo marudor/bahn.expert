@@ -10,7 +10,7 @@ import { ThemeProvider } from 'client/Common/provider/ThemeProvider';
 import { ThemeWrap } from 'client/ThemeWrap';
 import Cookies from 'universal-cookie';
 import type { CommonConfig } from 'client/Common/config';
-import type { Location } from 'history';
+import type { Location } from 'react-router';
 import type { ReactElement } from 'react';
 import type { Theme } from '@mui/material';
 import type { ThemeType } from 'client/Themes/type';
