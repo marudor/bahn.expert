@@ -81,7 +81,7 @@ jobs:
           build: yarn build
           group: ${{ matrix.browser }}
           ci-build-id: '${{github.sha}}-${{ github.workflow }}-${{ github.event_name }}'
-          start: node packages/server/index.js
+          start: node src/server/index.js
           wait-on: http://localhost:9042
           browser: ${{ matrix.browser}}
           command-prefix: 'percy exec --parallel -- yarn'
