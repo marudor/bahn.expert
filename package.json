@@ -8,6 +8,7 @@
   },
   "private": true,
   "engineStrict": true,
+  "packageManager": "pnpm@7.5.2",
   "jest-junit": {
     "output": "./reports/junitresults.xml"
   },
@@ -56,7 +57,7 @@
     "e2e:local:run": "TZ=Etc/UTC percy exec -- cypress run",
     "doc:start": "./startDocServer.sh",
     "doc:build": "tsoa spec-and-routes && node ./scripts/adjustSpecJson.cjs",
-    "doc:build:gitadd": "yarn doc:build && git add public/swagger.json && git add src/server/API/routes.ts",
+    "doc:build:gitadd": "pnpm doc:build && git add public/swagger.json && git add src/server/API/routes.ts",
     "lint-staged": "lint-staged",
     "postinstall": "husky install",
     "precommit": "run-s doc:build:gitadd lint-staged",
@@ -143,6 +144,7 @@
     "eslint-import-resolver-typescript": "^2.7.1",
     "eslint-import-resolver-webpack": "^0.13.2",
     "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-import": "^2.26.0",
     "file-loader": "^6.2.0",
     "jest": "^27.5.1",
     "jest-watch-typeahead": "^1.1.0",
@@ -233,6 +235,5 @@
   },
   "keywords": [],
   "contributors": [],
-  "homepage": "http://marudor.de",
-  "packageManager": "yarn@3.2.1"
+  "homepage": "http://marudor.de"
 }

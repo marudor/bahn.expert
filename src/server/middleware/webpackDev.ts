@@ -33,7 +33,7 @@ export default function webpackDev(koa: Koa): Promise<unknown> {
     if (file.includes('packages/server/API/controller/')) {
       // eslint-disable-next-line no-console
       console.log('Rebuilding Routes & doc');
-      childProcess.exec('yarn doc:build', (err, _, stderr) => {
+      childProcess.exec('pnpm doc:build', (err, _, stderr) => {
         if (err) {
           // eslint-disable-next-line no-console
           console.error(stderr);

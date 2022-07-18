@@ -9,7 +9,7 @@ import path from 'path';
 import routes from 'server/API';
 
 if (fs.existsSync(path.resolve(__dirname, 'setup.js'))) {
-  throw new Error('Run `yarn all:clean`. State dirty');
+  throw new Error('Run `pnpm build:clean`. State dirty');
   // eslint-disable-next-line no-unreachable
   process.exit(1);
 }

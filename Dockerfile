@@ -1,22 +1,21 @@
 FROM node:18-alpine as base
 WORKDIR /app
 ENV CYPRESS_INSTALL_BINARY=0
-COPY package.json yarn.lock .yarnrc.yml ./
-COPY .yarn/ ./.yarn/
+COPY package.json pnpm-lock.yaml ./
 COPY src/ ./src/
 COPY scripts/ ./scripts/
 
 FROM base as build
-RUN yarn --immutable --immutable-cache
+RUN pnpm i --frozen-lockfile
 COPY webpack.config.js babel.config.cjs ./
 ENV NODE_ENV=production
-RUN yarn build
-RUN yarn dlx modclean -r -f -a '*.ts|*.tsx' -I 'example*'
+RUN pnpm build
+RUN pnpx modclean -r -f -a '*.ts|*.tsx' -I 'example*'
 RUN node scripts/checkAssetFiles.js
 
 FROM base as cleanedDeps
-RUN yarn workspaces focus --production
-RUN yarn dlx modclean -r -f -a '*.ts|*.tsx' -I 'example*'
+RUN pnpm i --production --frozen-lockfile
+RUN pnpx modclean -r -f -a '*.ts|*.tsx' -I 'example*'
 
 FROM node:18-alpine
 ENV NODE_ENV=production
