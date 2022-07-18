@@ -218,15 +218,6 @@
     "react-router-dom": "^6.3.0",
     "universal-cookie": "^4.0.4"
   },
-  "resolutions": {
-    "iconv-lite": "^0.5.1",
-    "node-fetch": "^2",
-    "ejs": "^3",
-    "lodash": "^4.17.15",
-    "chokidar": "^3",
-    "lru-cache": "^6",
-    "typescript": "^4"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/marudor/BahnhofsAbfahrten.git"
