@@ -23,6 +23,7 @@ specifiers:
   '@commitlint/config-conventional': ^17.0.3
   '@cypress/webpack-preprocessor': ^5.12.0
   '@emotion/babel-plugin': ^11.9.2
+  '@emotion/cache': ^11.9.3
   '@emotion/jest': ^11.9.4
   '@emotion/react': ^11.9.3
   '@emotion/server': ^11.4.0
@@ -45,6 +46,8 @@ specifiers:
   '@testing-library/cypress': 8.0.3
   '@testing-library/jest-dom': ^5.16.4
   '@testing-library/react': ^13.3.0
+  '@tsoa/cli': 4.1.1
+  '@tsoa/runtime': 4.1.0
   '@types/babel__core': 7.1.19
   '@types/cache-manager': 3.4.3
   '@types/cookie': 0.5.1
@@ -138,7 +141,6 @@ specifiers:
   style-loader: ^3.3.1
   supertest: ^6.2.4
   terser-webpack-plugin: ^5.3.3
-  tsoa: 4.1.1
   typescript: ^4
   typescript-styled-plugin: ^0.18.2
   universal-cookie: ^4.0.4
@@ -152,6 +154,7 @@ specifiers:
   workbox-webpack-plugin: ^6.5.3
 
 dependencies:
+  '@emotion/cache': 11.9.3
   '@emotion/react': 11.9.3_szkdlbnthht4v3jvm76fn7u6na
   '@emotion/server': 11.4.0
   '@emotion/styled': 11.9.3_y2x62d5bbinncmisoeyv36jqse
@@ -163,6 +166,8 @@ dependencies:
   '@mui/material': 5.9.0_bl6qrq6463ovzmqn4cmwv7vydq
   '@mui/system': 5.9.0_kgoqblbzxlux4bm4vftowiq75m
   '@mui/x-date-pickers': 5.0.0-beta.1_rucrrzx7cwvijf52oha4jx7jty
+  '@tsoa/cli': 4.1.1
+  '@tsoa/runtime': 4.1.0
   axios: 0.27.2
   cache-manager: 3.6.3
   cache-manager-ioredis: 2.1.0
@@ -195,7 +200,6 @@ dependencies:
   react-helmet-async: 1.3.0_biqbaboplfbrettd7655fr4n2y
   react-router: 6.3.0_react@18.2.0
   react-router-dom: 6.3.0_biqbaboplfbrettd7655fr4n2y
-  tsoa: 4.1.1
   universal-cookie: 4.0.4
 
 devDependencies:
@@ -10937,15 +10941,6 @@ packages:
 
   /tslib/2.4.0:
     resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
-
-  /tsoa/4.1.1:
-    resolution: {integrity: sha512-CndUFJFU87auMMWoFxuMbgxLvM+l2FmnHoHQsPaEvk/7/lcg7+ptndZg1YKIZgYoTS7KjoXY2YJyjm18XwYlYg==}
-    engines: {node: '>=12.0.0', yarn: '>=1.9.4'}
-    hasBin: true
-    dependencies:
-      '@tsoa/cli': 4.1.1
-      '@tsoa/runtime': 4.1.0
-    dev: false
 
   /tsscmp/1.0.6:
     resolution: {integrity: sha512-LxhtAkPDTkVCMQjt2h6eBVY28KCjikZqZfMcC15YBeNjkgUpdCfBu5HoiOTDu86v6smE8yOjyEktJ8hlbANHQA==}
