@@ -109,7 +109,7 @@ jobs:
       - name: finalize percy
         run: |
           corepack enable
-          npx percy build:finalize
+          pnpm dlx @percy/cli build:finalize
         env:
           PERCY_TOKEN: 5cf53deda8dca3c09d13bfa3eb02edb0f4c6c80e7f96ed29086fec0c28a38380
   docker:
