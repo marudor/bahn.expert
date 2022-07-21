@@ -39,7 +39,7 @@ module.exports = {
       env: { jest: true },
     },
     {
-      files: ['packages/client/**'],
+      files: ['src/client/**'],
       globals: {
         TEST: false,
       },

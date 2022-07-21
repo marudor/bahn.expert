@@ -1,6 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
 import { BRInfo } from 'client/Common/Components/Reihung/BRInfo';
-import { EuropeStripe } from 'client/Common/Components/Reihung/Stripes/EuropeStripe';
 import { Fahrzeug } from './Fahrzeug';
 import { PrideStripe } from 'client/Common/Components/Reihung/Stripes/PrideStripe';
 import { useMemo } from 'react';
@@ -30,7 +29,6 @@ interface Props extends InheritedProps {
 const RPFRegex = /(RP)(F\d)(\d{5})/;
 
 const prideTZName = 'ICE0304';
-const europeTZName = 'ICE4601';
 
 export const Gruppe: FC<Props> = ({
   gruppe,
@@ -65,12 +63,7 @@ export const Gruppe: FC<Props> = ({
     const wrongWing =
       originalTrainNumber !== gruppe.number &&
       gruppe.coaches.some((f) => !f.closed);
-    const StripeElement =
-      gruppe.name === prideTZName
-        ? PrideStripe
-        : gruppe.name === europeTZName
-        ? EuropeStripe
-        : undefined;
+    const StripeElement = gruppe.name === prideTZName ? PrideStripe : undefined;
     return gruppe.coaches.map((c) => {
       return (
         <Fahrzeug
