@@ -21,7 +21,7 @@
     "resolveJsonModule": true,
     "types": ["jest", "@testing-library/jest-dom"],
     "keyofStringsOnly": true,
-    "baseUrl": "./packages/",
+    "baseUrl": "src",
     "paths": {
       "@sinonjs/fake-timers": ["../node_modules/@types/sinonjs__fake-timers"]
     },
@@ -32,5 +32,5 @@
     ],
     "jsxImportSource": "@emotion/react"
   },
-  "include": ["@types", "./packages", "cypress.config.ts"]
+  "include": ["@types", "./src", "cypress.config.ts"]
 }

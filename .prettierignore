@@ -1,4 +1,2 @@
 **/__fixtures__/**
-packages/server/API/routes.ts
-packages/app/android
-packages/app/ios
+src/server/API/routes.ts

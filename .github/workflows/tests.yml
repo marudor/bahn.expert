@@ -31,18 +31,19 @@ jobs:
           node-version: 18
       - name: install
         run: |
-          yarn --immutable --immutable-cache
+          corepack enable
+          pnpm i --frozen-lockfile
         env:
           CYPRESS_INSTALL_BINARY: 0
       - name: jest
         run: |
-          yarn test:jest
+          pnpm test:jest
       - name: lint
         run: |
-          yarn all:lint
+          pnpm lint
       - name: types
         run: |
-          yarn test:ts
+          pnpm test:ts
   e2e:
     runs-on: ubuntu-latest
     container:
@@ -71,20 +72,21 @@ jobs:
           key: cypress-${{ runner.os }}-${{ hashFiles('package.json') }}
       - name: Install Deps
         run: |
-          yarn --immutable --immutable-cache
+          corepack enable
+          pnpm i --frozen-lockfile
       - name: Run Cypress
         uses: cypress-io/github-action@v4
         with:
           install: false
           record: true
           parallel: true
-          build: yarn all:build
+          build: pnpm build
           group: ${{ matrix.browser }}
           ci-build-id: '${{github.sha}}-${{ github.workflow }}-${{ github.event_name }}'
-          start: node packages/server/index.js
+          start: node src/server/index.js
           wait-on: http://localhost:9042
           browser: ${{ matrix.browser}}
-          command-prefix: 'percy exec --parallel -- yarn'
+          command-prefix: 'percy exec --parallel -- pnpm'
         env:
           PERCY_TOKEN: 5cf53deda8dca3c09d13bfa3eb02edb0f4c6c80e7f96ed29086fec0c28a38380
           PERCY_BROWSER_EXECUTABLE: /usr/bin/google-chrome
@@ -106,8 +108,8 @@ jobs:
           node-version: 18
       - name: finalize percy
         run: |
-          yarn --immutable --immutable-cache
-          yarn percy build:finalize
+          corepack enable
+          pnpm dlx @percy/cli build:finalize
         env:
           PERCY_TOKEN: 5cf53deda8dca3c09d13bfa3eb02edb0f4c6c80e7f96ed29086fec0c28a38380
   docker:

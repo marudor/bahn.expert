@@ -2,14 +2,14 @@
 
 ## Prerequisites
 
-- node v14
-- yarn (yarnpkg.com)
+- node v18
+- pnpm/corepack
 
 ## Quickstart
 
 ```
-yarn
-yarn dev
+pnpm i
+pnpm dev
 ```
 
 Open http://localhost:9042

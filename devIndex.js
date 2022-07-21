@@ -1,5 +1,5 @@
 if (process.env.NODE_ENV !== 'production') {
-  const config = require('./scripts/getBabelConfig')('server');
+  const config = require('./scripts/getBabelConfig.cjs')('server');
 
   // eslint-disable-next-line import/no-extraneous-dependencies
   require('@babel/register')({
@@ -9,4 +9,4 @@ if (process.env.NODE_ENV !== 'production') {
   });
 }
 
-require('./packages/server/index.ts');
+require('./src/server/index.ts');

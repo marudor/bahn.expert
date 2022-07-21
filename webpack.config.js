@@ -18,7 +18,7 @@ const plugins = [
     ),
   }),
 ];
-const entry = ['./packages/client/entry.ts'];
+const entry = ['./src/client/entry.ts'];
 
 const rules = [
   {
