@@ -63,8 +63,7 @@ export const Gruppe: FC<Props> = ({
     const wrongWing =
       originalTrainNumber !== gruppe.number &&
       gruppe.coaches.some((f) => !f.closed);
-    const StripeElement =
-      gruppe.name === prideTZName ? PrideStripe : PrideStripe;
+    const StripeElement = gruppe.name === prideTZName ? PrideStripe : undefined;
     return gruppe.coaches.map((c) => {
       return (
         <Fahrzeug
