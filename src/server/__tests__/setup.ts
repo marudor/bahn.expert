@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-module */
 import 'core-js/stable';
 import Nock from 'nock';
 
@@ -5,14 +6,12 @@ import Nock from 'nock';
 expect(new Date().getTimezoneOffset()).toBe(0);
 
 const isoDateRegex =
-  /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/;
+  /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}\.\d*)(?:Z|([+-])([\d:|]*))?$/;
 globalThis.parseJson = (json: string) => {
   try {
     return JSON.parse(json, (_key, value) => {
-      if (typeof value === 'string') {
-        if (isoDateRegex.exec(value)) {
-          return new Date(value);
-        }
+      if (typeof value === 'string' && isoDateRegex.test(value)) {
+        return new Date(value);
       }
       return value;
     });

@@ -243,22 +243,25 @@ export default class Timetable {
 
     const timetables: any[] = Object.values(this.timetable);
 
-    timetables
-      .filter((t) => !this.realtimeIds.includes(t.rawId))
-      .forEach((t) => {
-        t.messages = {
-          qos: [],
-          delay: [],
-          him: [],
-        };
-        // t.platform = t.scheduledPlatform;
-      });
+    const filtered = timetables.filter(
+      (t) => !this.realtimeIds.includes(t.rawId),
+    );
+
+    for (const t of filtered) {
+      t.messages = {
+        qos: [],
+        delay: [],
+        him: [],
+      };
+      // t.platform = t.scheduledPlatform;
+    }
 
     const wings: { [key: string]: any } = {};
 
     const departures = [] as any[];
     const lookbehind = [] as any[];
 
+    // eslint-disable-next-line unicorn/no-array-for-each
     uniqBy(timetables, 'rawId').forEach((a: any) => {
       const referenceWingId = this.wingIds.get(a.mediumId);
 
@@ -302,8 +305,9 @@ export default class Timetable {
       }
     });
 
-    departures.forEach((t: any) => this.computeExtra(t));
-    lookbehind.forEach((t: any) => this.computeExtra(t));
+    for (const t of [...departures, ...lookbehind]) {
+      this.computeExtra(t);
+    }
 
     return {
       departures,
@@ -326,7 +330,7 @@ export default class Timetable {
 
     if (!id) return undefined;
 
-    const himMessage = await getSingleHimMessageOfToday(id.substr(1));
+    const himMessage = await getSingleHimMessageOfToday(id.slice(1));
 
     if (!himMessage) return undefined;
     // Sadly this is not accurate. Often affected Products is not corectly set
@@ -439,31 +443,31 @@ export default class Timetable {
       mArr.map((m) => this.parseMessage(m, this.timetable[rawId].train.number)),
     );
 
-    parsedMessages
+    for (const { type, message, value } of parsedMessages
       .filter(Boolean)
       .sort((a, b) =>
         compareAsc(a.message.timestamp || 0, b.message.timestamp || 0),
-      )
-      .forEach(({ type, message, value }) => {
-        // @ts-expect-error This ´works...
-        const supersedes: undefined | number[] = supersededMessages[value];
+      )) {
+      // @ts-expect-error This ´works...
+      const supersedes: undefined | number[] = supersededMessages[value];
 
-        if (!messages[type]) messages[type] = {};
-        if (supersedes) {
-          supersedes.forEach((v) => {
-            if (messages[type][v]) {
-              messages[type][v].superseded = true;
-            }
-          });
+      if (!messages[type]) messages[type] = {};
+      if (supersedes) {
+        for (const v of supersedes) {
+          if (messages[type][v]) {
+            messages[type][v].superseded = true;
+          }
         }
-        messages[type][value] = message;
-      });
+      }
+      messages[type][value] = message;
+    }
 
     return {
       id,
       mediumId,
       rawId,
       initialDeparture,
+      // eslint-disable-next-line unicorn/no-array-reduce
       messages: Object.keys(messages).reduce((agg, messageKey) => {
         const messageValues = Object.values(messages[messageKey]);
 
@@ -539,7 +543,9 @@ export default class Timetable {
         })),
       );
     } else if (timetable.departure.cancelled && timetable.routePost) {
-      timetable.routePost.forEach((r: any) => (r.cancelled = true));
+      for (const r of timetable.routePost) {
+        r.cancelled = true;
+      }
     }
     timetable.departure.platform =
       dp.platform || timetable.departure.scheduledPlatform;
@@ -550,7 +556,7 @@ export default class Timetable {
     const result = await irisGetRequest<string>(url);
 
     if (result.includes('<soapenv:Reason')) {
-      return Promise.reject(result);
+      throw result;
     }
 
     return result;
@@ -591,7 +597,7 @@ export default class Timetable {
     const mediumWings = rawWings.map<string>((w) => parseRawId(w).mediumId);
 
     if (displayAsWing) {
-      mediumWings.forEach((i) => this.wingIds.set(i, referenceTrainRawId));
+      for (const i of mediumWings) this.wingIds.set(i, referenceTrainRawId);
     }
 
     return mediumWings;
@@ -683,12 +689,12 @@ export default class Timetable {
     const timetables: { [key: string]: any } = {};
 
     if (sArr) {
-      sArr.forEach((s) => {
+      for (const s of sArr) {
         const departure = this.parseTimetableS(s);
 
-        if (!departure) return;
+        if (!departure) continue;
         timetables[departure.rawId] = departure;
-      });
+      }
     }
 
     return timetables;
@@ -702,8 +708,8 @@ export default class Timetable {
         if (!rawXml) {
           try {
             rawXml = await irisGetRequest<string>(key);
-          } catch (e) {
-            this.errors.push(e);
+          } catch (error) {
+            this.errors.push(error);
 
             return;
           }

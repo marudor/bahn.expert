@@ -13,13 +13,13 @@ import type {
   StopPlaceSearchResult,
 } from 'business-hub/types';
 
-const nonÖPNVTypes = [
+const nonÖPNVTypes = new Set([
   TransportType.HighSpeedTrain,
   TransportType.IntercityTrain,
   TransportType.InterRegionalTrain,
   TransportType.RegionalTrain,
   TransportType.CityTrain,
-];
+]);
 
 const axiosWithTimeout = axios.create({
   timeout: 4500,
@@ -32,7 +32,7 @@ const stopPlaceClient = new StopPlacesApi(
 );
 
 function withoutÖPNV(stopPlace: StopPlaceSearchResult) {
-  return stopPlace.availableTransports.some((t) => nonÖPNVTypes.includes(t));
+  return stopPlace.availableTransports.some((t) => nonÖPNVTypes.has(t));
 }
 
 export async function byName(
@@ -121,8 +121,11 @@ export async function groups(
     })
   ).data.groups;
 
-  return groups.reduce((agg, g) => {
-    agg[g.type] = g.members;
-    return agg;
-  }, {} as ResolvedStopPlaceGroups);
+  const resolvedStopPlaceGroups: ResolvedStopPlaceGroups = {};
+
+  for (const group of groups) {
+    resolvedStopPlaceGroups[group.type] = group.members;
+  }
+
+  return resolvedStopPlaceGroups;
 }

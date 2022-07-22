@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-module */
 // ***********************************************************
 // This example plugins/index.js can be used to load plugins
 //

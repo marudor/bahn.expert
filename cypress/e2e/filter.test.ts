@@ -1,8 +1,9 @@
+function openFilter() {
+  cy.findByTestId('menu').click();
+  cy.findByTestId('openFilter').click();
+}
+
 describe('Filter', () => {
-  function openFilter() {
-    cy.findByTestId('menu').click();
-    cy.findByTestId('openFilter').click();
-  }
   beforeEach(() => {
     cy.mockFrankfurt();
   });

@@ -3,8 +3,6 @@ import cors from '@koa/cors';
 // import KoaRouter from '@koa/router';
 import router from './validationOverwrites';
 
-// const router = new KoaRouter();
-
 router.use(
   cors({
     allowMethods: 'GET,POST',
@@ -13,4 +11,5 @@ router.use(
   }),
 );
 RegisterRoutes(router);
+
 export default router;

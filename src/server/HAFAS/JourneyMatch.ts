@@ -43,11 +43,7 @@ const JourneyMatch = (
   if (!date) {
     const now = new Date();
 
-    if (now.getHours() < 3) {
-      date = subDays(now, 1);
-    } else {
-      date = now;
-    }
+    date = now.getHours() < 3 ? subDays(now, 1) : now;
   }
 
   const req: JourneyMatchRequest = {
@@ -61,11 +57,11 @@ const JourneyMatch = (
   };
 
   return makeRequest(req, raw ? undefined : parseJourneyMatch, profile).catch(
-    (e) => {
-      if (e.errorCode === 'NO_MATCH') {
-        e.status = 404;
+    (error) => {
+      if (error.errorCode === 'NO_MATCH') {
+        error.status = 404;
       }
-      throw e;
+      throw error;
     },
   );
 };
@@ -86,8 +82,7 @@ export async function enrichedJourneyMatch(
     ? journeyMatches.slice(0, options.limit)
     : journeyMatches;
 
-  for (let i = 0; i < limitedJourneyMatches.length; i++) {
-    const j = limitedJourneyMatches[i];
+  for (const j of limitedJourneyMatches) {
     try {
       const details = await JourneyDetails(j.jid, profile);
 

@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 import { getColors } from './colors';
 import type { Theme as MaruTheme } from 'maru';
 import type { Theme as MuiTheme } from '@mui/material';
+import type { SerializedStyles } from '@emotion/react';
 import type { ThemeType } from './type';
 
 type MaruMixins = MaruTheme['mixins'];
@@ -63,15 +64,18 @@ export const createTheme = (themeType: E<typeof ThemeType>): MuiTheme => {
     },
   };
 
+  const reducedMixins: Record<string, SerializedStyles> = {};
+
+  for (const mixinKey of Object.keys(mixins)) {
+    // @ts-expect-error workaround for now
+    reducedMixins[mixinKey] = css(mixins[mixinKey]);
+  }
+
   const maruTheme = {
     colors,
     mixins: {
       ...mui.mixins,
-      ...Object.keys(mixins).reduce((m, mixinKey) => {
-        // @ts-expect-error workaround for now
-        m[mixinKey] = css(mixins[mixinKey]);
-        return m;
-      }, {}),
+      ...reducedMixins,
     },
   };
 

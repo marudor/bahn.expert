@@ -1,8 +1,8 @@
 import { nanoid } from 'nanoid';
 import onFinished from 'on-finished';
-import util from 'util';
+import util from 'node:util';
 import type { Context, Next } from 'koa';
-import type { IncomingMessage } from 'http';
+import type { IncomingMessage } from 'node:http';
 import type { RouterContext } from '@koa/router';
 import type P from 'pino';
 
@@ -97,8 +97,8 @@ export default (logger: P.Logger) =>
     };
 
     return next()
-      .catch((e) => {
-        err = e;
+      .catch((error) => {
+        err = error;
       })
       .then(() => {
         if (process.env.NODE_ENV === 'production') {

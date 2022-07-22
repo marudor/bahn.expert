@@ -1,4 +1,4 @@
-import Crypto from 'crypto';
+import Crypto from 'node:crypto';
 
 function getSecret() {
   const enc = Buffer.from(
@@ -17,7 +17,6 @@ function getSecret() {
 
 export const secret = getSecret();
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function createChecksum(data: any): string {
   const hasher = Crypto.createHash('md5');
 

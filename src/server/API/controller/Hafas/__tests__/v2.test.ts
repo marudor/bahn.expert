@@ -1,6 +1,7 @@
+/* eslint-disable unicorn/prefer-module */
 import { createTestServer } from 'server/testHelper';
 import Nock from 'nock';
-import path from 'path';
+import path from 'node:path';
 import request from 'supertest';
 
 describe('Hafas V2', () => {

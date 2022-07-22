@@ -76,15 +76,15 @@ export function render(
     }
 
     if (context) {
-      context.forEach((c) => {
+      for (const c of context) {
         result = <c.Provider value={c.initialState}>{result}</c.Provider>;
-      });
+      }
     }
 
     if (provider) {
-      provider.forEach(({ Provider, initialState }) => {
+      for (const { Provider, initialState } of provider) {
         result = <Provider {...initialState}>{result}</Provider>;
-      });
+      }
     }
 
     const mergedCommonConfig = {

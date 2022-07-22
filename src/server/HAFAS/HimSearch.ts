@@ -78,11 +78,11 @@ async function fetchTodaysHimMessages() {
     if (!messages.messages) return;
 
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
-    messages.messages.forEach((message) => {
+    for (const message of messages.messages) {
       void himMessageCache.set(message.hid, message);
-    });
+    }
     logger.debug('Fetched HimMessages');
-  } catch (e: any) {
+  } catch {
     logger.error('HimMessages fetch failed');
   }
 }

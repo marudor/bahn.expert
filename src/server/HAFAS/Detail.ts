@@ -107,7 +107,7 @@ export default async (
     relevantSegment = route.segments.find(
       (s) => s.type === 'JNY',
     ) as Route$JourneySegmentTrain;
-  } catch (e) {
+  } catch {
     relevantSegment = {
       type: 'JNY',
       cancelled: journeyDetails.stops.every((s) => s.cancelled),
@@ -125,11 +125,11 @@ export default async (
   }
 
   if (relevantSegment.stops.length !== journeyDetails.stops.length) {
-    journeyDetails.stops.forEach((stop, index) => {
+    for (const [index, stop] of journeyDetails.stops.entries()) {
       if (stop.additional) {
         relevantSegment.stops.splice(index, 0, stop);
       }
-    });
+    }
   }
 
   const lastStop = relevantSegment.stops
@@ -143,10 +143,10 @@ export default async (
   }
 
   if (!lastStop || !lastStop.arrival || lastStop.arrival.delay == null) {
-    relevantSegment.stops.forEach((stop, index) => {
+    for (const [index, stop] of relevantSegment.stops.entries()) {
       const jDetailStop = journeyDetails.stops[index];
 
-      if (jDetailStop.station.id !== stop.station.id) return;
+      if (jDetailStop.station.id !== stop.station.id) continue;
       if (jDetailStop.arrival && stop.arrival) {
         stop.arrival.delay = jDetailStop.arrival.delay;
         stop.arrival.time = jDetailStop.arrival.time;
@@ -155,7 +155,7 @@ export default async (
         stop.departure.delay = jDetailStop.departure.delay;
         stop.departure.time = jDetailStop.departure.time;
       }
-    });
+    }
   }
 
   relevantSegment.currentStop = calculateCurrentStopPlace(
@@ -183,16 +183,11 @@ export default async (
         );
 
         if (irisDeparture) {
-          // if (irisDeparture.arrival && irisStop.arrival) {
-          //   irisDeparture.arrival.reihung = irisStop.arrival.reihung;
-          // }
-          // if (irisDeparture.departure && irisStop.departure) {
-          //   irisDeparture.departure.reihung = irisStop.departure.reihung;
-          // }
-
-          irisStop.irisMessages = irisDeparture.messages.delay
-            .concat(irisDeparture.messages.qos)
-            .concat(irisDeparture.messages.him);
+          irisStop.irisMessages = [
+            ...irisDeparture.messages.delay,
+            ...irisDeparture.messages.qos,
+            ...irisDeparture.messages.him,
+          ];
         }
       } catch {
         // ignore

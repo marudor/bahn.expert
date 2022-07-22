@@ -1,42 +1,44 @@
 import type { Context, Next } from 'koa';
 
-const handledHafasError = ['H9380', 'NO_MATCH'];
+const handledHafasError = new Set(['H9380', 'NO_MATCH']);
 
 export default async (ctx: Context, next: Next): Promise<void> => {
   try {
     // eslint-disable-next-line callback-return
     await next();
-  } catch (e: any) {
+  } catch (error: any) {
     ctx.set('Content-Type', 'application/json');
-    if (e.response && !e.customError) {
+    if (error.response && !error.customError) {
       ctx.body = {
-        statusText: e.response.statusText,
-        data: JSON.stringify(e.response.data),
+        statusText: error.response.statusText,
+        data: JSON.stringify(error.response.data),
       };
-      ctx.status = e.response.status || 500;
+      ctx.status = error.response.status || 500;
     } else {
-      // @ts-expect-error works
-      if (e instanceof Error && !handledHafasError.includes(e.errorCode)) {
+      if (
+        error instanceof Error &&
         // @ts-expect-error works
-        if (e.status === 400) {
-          try {
-            const parsed = JSON.parse(e.message);
+        !handledHafasError.has(error.errorCode) &&
+        // @ts-expect-error works
+        error.status === 400
+      ) {
+        try {
+          const parsed = JSON.parse(error.message);
 
-            ctx.body = parsed;
-            // @ts-expect-error works
-            ctx.status = e.status || 500;
+          ctx.body = parsed;
+          // @ts-expect-error works
+          ctx.status = error.status || 500;
 
-            return;
-          } catch (e) {
-            // ignored
-          }
+          return;
+        } catch {
+          // ignored
         }
       }
-      if (e.message) {
+      if (error.message) {
         ctx.res.setHeader('Content-Type', 'text');
-        ctx.body = e.message;
+        ctx.body = error.message;
       }
-      ctx.status = e.status || 500;
+      ctx.status = error.status || 500;
     }
   }
 };

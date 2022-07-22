@@ -1,18 +1,20 @@
+/* eslint-disable unicorn/prefer-module */
 /* eslint no-sync: 0 */
 import {
   getCachedDBLageplan,
   getDBLageplan,
 } from 'server/StopPlace/Lageplan/DBLageplan';
-import fs from 'fs';
+import fs from 'node:fs';
 import Nock from 'nock';
-import path from 'path';
+import path from 'node:path';
+
+function readFixutre(f: string) {
+  return fs.readFileSync(path.resolve(__dirname, '__fixtures__/', f));
+}
 
 describe('Lageplan', () => {
   const nock = Nock('https://www.bahnhof.de');
 
-  function readFixutre(f: string) {
-    return fs.readFileSync(path.resolve(__dirname, '__fixtures__/', f));
-  }
   it('first time cached is undefined', async () => {
     expect(await getCachedDBLageplan('Hamburg Hbf')).toBeUndefined();
   });

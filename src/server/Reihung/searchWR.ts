@@ -7,8 +7,8 @@ import type { CoachSequenceInformation } from 'types/coachSequence';
 const getPossibleWRs = async (): Promise<string[] | undefined> => {
   try {
     await Axios.get(getDBCoachSequenceUrl('1', new Date(), 'noncd'));
-  } catch (e: any) {
-    const tryThese = e.response?.data?.tryThese;
+  } catch (error: any) {
+    const tryThese = error.response?.data?.tryThese;
     if (tryThese && Array.isArray(tryThese)) {
       return tryThese;
     }
@@ -56,7 +56,7 @@ export const WRForNumber = async (
       return number === trainNumber;
     });
     for (const relevantLine of relevantLines) {
-      const [, , time] = relevantLine.split('/');
+      const time = relevantLine.split('/')[2];
       try {
         const wr = await coachSequence(
           trainNumber,

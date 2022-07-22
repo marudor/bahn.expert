@@ -1,11 +1,12 @@
+/* eslint-disable unicorn/prefer-module */
 import { middlewares } from './logger';
 import Axios from 'axios';
 import createAdmin from './admin';
-import http from 'http';
+import http from 'node:http';
 import Koa from 'koa';
 import KoaBodyparser from 'koa-bodyparser';
 import koaStatic from 'koa-static';
-import path from 'path';
+import path from 'node:path';
 import storageMiddleware from './middleware/storageMiddleware';
 import type { Context, Middleware } from 'koa';
 
@@ -60,7 +61,7 @@ export function createApp(): Koa {
     app.use(hotHelper(() => errorHandler));
     app.use(hotHelper(() => normalizePathMiddleware()));
     app.use(storageMiddleware());
-    middlewares.forEach((m) => app.use(m));
+    for (const m of middlewares) app.use(m);
     app.use(KoaBodyparser());
 
     app.use(hotHelper(() => apiRoutes.routes()));

@@ -20,7 +20,7 @@ function sanitizeFavs(
     return;
   }
   let modified = false;
-  Object.keys(favs).forEach((favKey) => {
+  for (const favKey of Object.keys(favs)) {
     // @ts-expect-error migrating old format
     if (favs[favKey].title || favs[favKey].id) {
       favs[favKey] = migrateOldFav(favs[favKey]);
@@ -31,7 +31,7 @@ function sanitizeFavs(
       delete favs[favKey];
       modified = true;
     }
-  });
+  }
   if (modified) storage.set(storageKey, favs);
 }
 
@@ -42,7 +42,7 @@ function isCurrentFormatFav(stop?: MinimalStopPlace): boolean {
 function migrateOldFav(oldFav: any): MinimalStopPlace {
   return {
     name: oldFav.title,
-    evaNumber: oldFav.id.length > 7 ? oldFav.id.substring(2) : oldFav.id,
+    evaNumber: oldFav.id.length > 7 ? oldFav.id.slice(2) : oldFav.id,
   };
 }
 
@@ -59,7 +59,7 @@ export function sanitizeRoutingFavs(
     return;
   }
   let modified = false;
-  Object.keys(favs).forEach((favKey) => {
+  for (const favKey of Object.keys(favs)) {
     const fav = favs[favKey];
     // @ts-expect-error migrateOldFormat
     if (fav.start.id) {
@@ -79,6 +79,6 @@ export function sanitizeRoutingFavs(
       delete favs[favKey];
       modified = true;
     }
-  });
+  }
   if (modified) storage.set(storageKey, favs);
 }

@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-module */
 import { BrowserRouter } from 'react-router-dom';
 import { ClientStorage } from 'client/Common/Storage';
 import { HelmetProvider } from 'react-helmet-async';
@@ -9,20 +10,18 @@ import { ThemeWrap } from './ThemeWrap';
 import Axios from 'axios';
 import qs from 'qs';
 import type { ComponentType } from 'react';
-// 15s timeout
-Axios.defaults.timeout = 15000;
+// 25s timeout
+Axios.defaults.timeout = 25000;
 
 const isoDateRegex =
-  /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/;
+  /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}\.\d*)(?:Z|([+-])([\d:|]*))?$/;
 Axios.defaults.transformResponse = [
   (data) => {
     if (typeof data === 'string') {
       try {
         return JSON.parse(data, (_key, value) => {
-          if (typeof value === 'string') {
-            if (isoDateRegex.exec(value)) {
-              return new Date(value);
-            }
+          if (typeof value === 'string' && isoDateRegex.test(value)) {
+            return new Date(value);
           }
           return value;
         });

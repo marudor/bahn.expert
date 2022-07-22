@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['../.eslintrc.js', 'plugin:cypress/recommended'],
+  extends: ['../.eslintrc.cjs', 'plugin:cypress/recommended'],
   env: {
     'cypress/globals': true,
   },

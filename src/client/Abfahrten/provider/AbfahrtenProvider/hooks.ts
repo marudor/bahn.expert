@@ -78,19 +78,19 @@ export const useAllTrainTypes = () => {
     const typeSet = new Set<string>(defaultTypes);
 
     if (departures) {
-      departures.departures.forEach((a) => {
+      for (const a of departures.departures) {
         if (a.train.type) {
           typeSet.add(a.train.type);
         }
-      });
-      departures.lookbehind.forEach((a) => {
+      }
+      for (const a of departures.lookbehind) {
         if (a.train.type) {
           typeSet.add(a.train.type);
         }
-      });
+      }
     }
 
-    return Array.from(typeSet);
+    return [...typeSet];
   }, [departures]);
 };
 

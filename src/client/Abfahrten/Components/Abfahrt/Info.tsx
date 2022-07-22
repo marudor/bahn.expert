@@ -16,9 +16,11 @@ const Container = styled.div`
 export const Info: FC = () => {
   const { abfahrt, detail } = useAbfahrt();
   const messages = useMemo(() => {
-    const messages = abfahrt.messages.delay
-      .concat(abfahrt.messages.qos)
-      .concat(abfahrt.messages.him);
+    const messages = [
+      ...abfahrt.messages.delay,
+      ...abfahrt.messages.qos,
+      ...abfahrt.messages.him,
+    ];
 
     if (!detail) {
       return messages.filter((m) => !m.superseded);
@@ -29,7 +31,7 @@ export const Info: FC = () => {
   const MessagesComp = detail ? DetailMessages : NormalMessages;
   const ViaComp = detail ? DetailVia : NormalVia;
 
-  const info = Boolean(messages.length) && <MessagesComp messages={messages} />;
+  const info = messages.length > 0 && <MessagesComp messages={messages} />;
   const via = (detail || !info) && <ViaComp stops={abfahrt.route} />;
 
   if (!info && !via) return null;

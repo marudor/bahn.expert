@@ -12,11 +12,11 @@ describe('Explain', () => {
     fireEvent.click(screen.getByTestId('reihungLegendOpener'));
   }
 
-  Object.keys(iconExplanation).forEach((icon) => {
+  for (const icon of Object.keys(iconExplanation)) {
     it(`ensures ${icon} exists`, () => {
       openLegende();
 
       expect(screen.getByTestId(icon)).toBeInTheDocument();
     });
-  });
+  }
 });

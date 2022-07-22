@@ -11,8 +11,7 @@ export default (segments: Route$JourneySegment[]): Route$JourneySegment[] => {
       mergedSegments.push(currentSegment);
       currentSegment = nextSegment;
     } else if (nextSegment.type !== 'WALK') {
-      mergedSegments.push(currentSegment);
-      mergedSegments.push(nextSegment);
+      mergedSegments.push(currentSegment, nextSegment);
       currentSegment = segments.shift();
     } else {
       currentSegment.arrival = nextSegment.arrival;

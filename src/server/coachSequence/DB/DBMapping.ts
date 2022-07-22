@@ -63,7 +63,7 @@ const mapFeatures = (fahrzeug: BaseFahrzeug): CoachSequenceCoachFeatures => {
   if (fahrzeug.kategorie.includes('SPEISEWAGEN')) {
     features.dining = true;
   }
-  fahrzeug.allFahrzeugausstattung.forEach((ausstattung) => {
+  for (const ausstattung of fahrzeug.allFahrzeugausstattung) {
     switch (ausstattung.ausstattungsart) {
       case 'PLAETZEROLLSTUHL':
         features.wheelchair = true;
@@ -93,7 +93,7 @@ const mapFeatures = (fahrzeug: BaseFahrzeug): CoachSequenceCoachFeatures => {
         features.toddler = true;
         break;
     }
-  });
+  }
 
   return features;
 };
@@ -133,7 +133,8 @@ const mapGroup = (
 };
 
 const mapSequence = (formation: BaseFormation): CoachSequence | undefined => {
-  const grouped = formation.allFahrzeuggruppe.reduce((agg, g) => {
+  const grouped: Record<string, BaseFahrzeuggruppe[]> = {};
+  for (const g of formation.allFahrzeuggruppe) {
     const key =
       g.verkehrlichezugnummer +
       g.zielbetriebsstellename +
@@ -141,10 +142,9 @@ const mapSequence = (formation: BaseFormation): CoachSequence | undefined => {
       (g.fahrzeuggruppebezeichnung.includes('IC')
         ? g.fahrzeuggruppebezeichnung
         : '');
-    agg[key] = agg[key] || [];
-    agg[key].push(g);
-    return agg;
-  }, {} as Record<string, BaseFahrzeuggruppe[]>);
+    grouped[key] = grouped[key] || [];
+    grouped[key].push(g);
+  }
 
   const regrouped: BaseFahrzeuggruppe[] = Object.values(grouped).map(
     (groups) => {
@@ -152,7 +152,8 @@ const mapSequence = (formation: BaseFormation): CoachSequence | undefined => {
         ...groups[0],
         fahrzeuggruppebezeichnung:
           groups.length > 1
-            ? groups.reduce(
+            ? // eslint-disable-next-line unicorn/no-array-reduce
+              groups.reduce(
                 (n, g) => `${n}-${g.fahrzeuggruppebezeichnung}`,
                 'regrouped',
               )

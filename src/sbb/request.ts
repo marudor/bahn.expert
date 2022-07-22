@@ -1,10 +1,11 @@
+/* eslint-disable unicorn/prefer-module */
 import { format } from 'date-fns';
 import Axios from 'axios';
-import crypto from 'crypto';
-import fs from 'fs';
-import https from 'https';
-import path from 'path';
-import url from 'url';
+import crypto from 'node:crypto';
+import fs from 'node:fs';
+import https from 'node:https';
+import path from 'node:path';
+import url from 'node:url';
 
 // Directly in SBB APP. (ch/sbb/mobile/android/repository/common/h/g.smali)
 const staticKey = 'c3eAd3eC3a7845dE98f73942b3d5f9c0';

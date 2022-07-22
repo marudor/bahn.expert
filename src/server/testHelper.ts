@@ -1,5 +1,5 @@
 import { createApp } from 'server/app';
-import type { Server } from 'http';
+import type { Server } from 'node:http';
 
 export function createTestServer(): Server {
   const app = createApp();

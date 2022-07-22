@@ -75,23 +75,23 @@ function getRawIdsToRemove(
   lookbehind: Abfahrt[],
 ): string[] {
   const groupedByMediumId = new Map<string, Abfahrt[]>();
-  [...lookbehind, ...departures].forEach((a) => {
+  for (const a of [...lookbehind, ...departures]) {
     const currentList = groupedByMediumId.get(a.mediumId) || [];
     currentList.push(a);
     groupedByMediumId.set(a.mediumId, currentList);
-  });
+  }
   const idsToRemove: string[] = [];
 
-  groupedByMediumId.forEach((list) => {
+  for (const [, list] of groupedByMediumId) {
     if (list.length) {
       const cancelledInList = list.filter((a) => a.cancelled);
       if (cancelledInList.length !== list.length) {
-        cancelledInList.forEach((cancelledAbfahrt) => {
+        for (const cancelledAbfahrt of cancelledInList) {
           idsToRemove.push(cancelledAbfahrt.rawId);
-        });
+        }
       }
     }
-  });
+  }
 
   return idsToRemove;
 }
@@ -110,6 +110,7 @@ export async function getAbfahrten(
   if (withRelated) {
     relatedAbfahrten = Promise.all(
       relatedStations.map((s) => getAbfahrten(s.eva, false, options)),
+      // eslint-disable-next-line unicorn/no-array-reduce
     ).then((r) => r.reduce(reduceResults, baseResult));
   }
 
@@ -118,9 +119,9 @@ export async function getAbfahrten(
     lookbehind,
     currentDate: options.currentDate,
   });
-  const result = (
-    await Promise.all([timetable.start(), relatedAbfahrten])
-  ).reduce(reduceResults, baseResult);
+  const result = (await Promise.all([timetable.start(), relatedAbfahrten]))
+    // eslint-disable-next-line unicorn/no-array-reduce
+    .reduce(reduceResults, baseResult);
 
   /**
    * We search if trains with the same mediumId exist. Should only happen if the same train departs or arrives at the same station (like Stuttgart Hbf and Stuttgart Hbf (tief))

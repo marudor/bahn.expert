@@ -34,7 +34,7 @@ export function enrichCoachSequence(
   }
 }
 
-const allowedBR = ['IC', 'EC', 'ICE', 'ECE'];
+const allowedBR = new Set(['IC', 'EC', 'ICE', 'ECE']);
 const tznRegex = /(\d+)/;
 function enrichCoachSequenceGroup(
   group: CoachSequenceGroup,
@@ -43,14 +43,14 @@ function enrichCoachSequenceGroup(
   // https://inside.bahn.de/entstehung-zugnummern/?dbkanal_006=L01_S01_D088_KTL0006_INSIDE-BAHN-2019_Zugnummern_LZ01
   const trainNumberAsNumber = Number.parseInt(group.number, 10);
   if (trainNumberAsNumber >= 9550 && trainNumberAsNumber <= 9599) {
-    group.coaches.forEach((c) => {
+    for (const c of group.coaches) {
       if (c.features.comfort) {
         c.features.comfort = false;
       }
-    });
+    }
   }
 
-  if (allowedBR.includes(product.type)) {
+  if (allowedBR.has(product.type)) {
     let tzn: string | undefined;
     if (group.name.startsWith('IC')) {
       tzn = tznRegex.exec(group.name)?.[0];

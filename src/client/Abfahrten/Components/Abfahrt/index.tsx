@@ -28,7 +28,7 @@ export const Abfahrt: FC<Props> = ({ abfahrt }) => {
   const wingNumbers = useMemo(
     () =>
       wings?.length
-        ? wings.map((w) => w.train.number).concat([abfahrt.train.number])
+        ? [...wings.map((w) => w.train.number), abfahrt.train.number]
         : undefined,
     [abfahrt.train.number, wings],
   );

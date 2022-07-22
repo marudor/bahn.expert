@@ -36,15 +36,11 @@ export default async (
   });
 
   const relevantTrip = trips.routes.find((t) =>
-    Boolean(
-      t.segments.find(
-        (s) =>
-          s.type === 'JNY' &&
-          (s.train.number === trainNumber ||
-            Boolean(
-              s.wings && s.wings.find((w) => w.train.number === trainNumber),
-            )),
-      ),
+    t.segments.some(
+      (s) =>
+        s.type === 'JNY' &&
+        (s.train.number === trainNumber ||
+          Boolean(s.wings?.some((w) => w.train.number === trainNumber))),
     ),
   );
 
