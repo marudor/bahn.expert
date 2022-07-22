@@ -15,7 +15,7 @@
 const webpack = require('@cypress/webpack-preprocessor');
 
 // eslint-disable-next-line no-unused-vars
-module.exports = (on, config) => {
+export default (on, config) => {
   const webpackOptions = {
     resolve: {
       extensions: ['.js', '.json', '.jsx', '.ts', '.tsx'],
