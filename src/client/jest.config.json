@@ -16,5 +16,6 @@
   "snapshotSerializers": ["@emotion/jest/serializer"],
   "transform": {
     "\\.[jt]sx?$": ["babel-jest", { "rootMode": "upward" }]
-  }
+  },
+  "resolver": "./__tests__/resolver.cjs"
 }
