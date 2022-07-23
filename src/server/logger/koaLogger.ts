@@ -1,13 +1,10 @@
+import { nanoid } from 'nanoid';
 import onFinished from 'on-finished';
 import util from 'node:util';
 import type { Context, Next } from 'koa';
 import type { IncomingMessage } from 'node:http';
 import type { RouterContext } from '@koa/router';
 import type P from 'pino';
-
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
-let nanoid: typeof import('nanoid')['nanoid'];
-void import('nanoid').then((i) => (nanoid = i.nanoid));
 
 declare module 'koa' {
   interface BaseContext {

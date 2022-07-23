@@ -112,7 +112,7 @@ specifiers:
   koa-static: ^5.0.0
   libxmljs2: ^0.30.1
   lint-staged: ^13.0.3
-  nanoid: ^4.0.0
+  nanoid: ^3.0.0
   ncp: ^2.0.0
   nock: ^13.2.9
   npm-run-all: ^4.1.5
@@ -180,7 +180,7 @@ dependencies:
   koa-bodyparser: 4.3.0
   koa-static: 5.0.0
   libxmljs2: 0.30.1
-  nanoid: 4.0.0
+  nanoid: 3.3.4
   on-finished: 2.4.1
   pino: 8.3.0
   pino-pretty: 8.1.0
@@ -8936,13 +8936,6 @@ packages:
     resolution: {integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
-    dev: true
-
-  /nanoid/4.0.0:
-    resolution: {integrity: sha512-IgBP8piMxe/gf73RTQx7hmnhwz0aaEXYakvqZyE302IXW3HyVNhdNGC+O2MwMAVhLEnvXlvKtGbtJf6wvHihCg==}
-    engines: {node: ^14 || ^16 || >=18}
-    hasBin: true
-    dev: false
 
   /natural-compare/1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
