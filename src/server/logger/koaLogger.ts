@@ -1,6 +1,6 @@
-import { nanoid } from 'nanoid';
 import onFinished from 'on-finished';
 import util from 'node:util';
+import uuid from 'uuid';
 import type { Context, Next } from 'koa';
 import type { IncomingMessage } from 'node:http';
 import type { RouterContext } from '@koa/router';
@@ -54,7 +54,7 @@ export default (logger: P.Logger) =>
   (ctx: Context & RouterContext, next: Next): Promise<void> => {
     ctx.log = logger;
 
-    const reqId = ctx.request.get(headerName) || nanoid();
+    const reqId = ctx.request.get(headerName) || uuid.v4();
 
     ctx[ctxProp] = reqId;
     ctx.request[ctxProp] = reqId;
