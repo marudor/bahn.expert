@@ -54,8 +54,8 @@ export const useFetchRouting = () => {
         setRoutes(routingResult.routes);
         setEarlierContext(routingResult.context.earlier);
         setLaterContext(routingResult.context.later);
-      } catch (e: any) {
-        setError(e);
+      } catch (error: any) {
+        setError(error);
       }
     },
     [
@@ -82,13 +82,10 @@ export const useFetchRouting = () => {
         ).data;
 
         setRoutes((oldRoutes = []) => {
-          let newRoutes;
-
-          if (type === 'earlier') {
-            newRoutes = [...routingResult.routes, ...oldRoutes];
-          } else {
-            newRoutes = [...oldRoutes, ...routingResult.routes];
-          }
+          const newRoutes =
+            type === 'earlier'
+              ? [...routingResult.routes, ...oldRoutes]
+              : [...oldRoutes, ...routingResult.routes];
 
           return uniqBy(newRoutes, 'checksum');
         });

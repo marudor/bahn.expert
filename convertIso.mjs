@@ -1,6 +1,5 @@
-const fs = require('fs');
-// eslint-disable-next-line import/no-extraneous-dependencies
-const path = require('path');
+import fs from 'node:fs';
+import path from 'node:path';
 
 const filePath = process.argv[2];
 if (!filePath) {
@@ -13,7 +12,9 @@ const parsedJson = JSON.parse(rawJson);
 function convertEpochToIso(o) {
   if (!o) return;
   if (Array.isArray(o)) {
-    o.forEach(convertEpochToIso);
+    for (const e of o) {
+      convertEpochToIso(e);
+    }
   } else if (o.constructor === Object) {
     for (const [key, value] of Object.entries(o)) {
       convertEpochToIso(value);

@@ -1,9 +1,10 @@
+/* eslint-disable unicorn/prefer-module */
 import { parse } from 'date-fns';
 import { render } from 'client/__tests__/testHelper';
 import { screen } from '@testing-library/react';
 import { TravelynxLink } from 'client/Common/Components/CheckInLink/TravelynxLink';
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 import type { Abfahrt } from 'types/iris';
 
 const MockAbfahrt = globalThis.parseJson<Abfahrt>(
@@ -15,7 +16,7 @@ const MockAbfahrt = globalThis.parseJson<Abfahrt>(
 
 describe('Travellynx', () => {
   beforeAll(() => {
-    jest.useFakeTimers('modern');
+    jest.useFakeTimers();
   });
   afterEach(() => {
     jest.runAllTimers();

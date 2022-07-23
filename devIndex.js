@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-module */
 if (process.env.NODE_ENV !== 'production') {
   const config = require('./scripts/getBabelConfig.cjs')('server');
 

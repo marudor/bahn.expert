@@ -16,7 +16,7 @@ export default (
     second?: number;
   } = {};
 
-  dTrnCmpSX.tcocX.forEach((i) => {
+  for (const i of dTrnCmpSX.tcocX) {
     const a = tcocL[i];
 
     switch (a.c) {
@@ -29,7 +29,7 @@ export default (
       default:
         break;
     }
-  });
+  }
 
   return auslastung;
 };

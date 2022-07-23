@@ -164,9 +164,9 @@ async function geoSearchStopPlaceRemote(
   await addIdentifiers(result);
 
   void stopPlaceGeoCache.set(cacheKey, result);
-  result.forEach((s) => {
+  for (const s of result) {
     void stopPlaceByEvaCache.set(s.evaNumber, s);
-  });
+  }
   return result;
 }
 
@@ -174,7 +174,7 @@ export async function byRl100WithSpaceHandling(
   rl100: string,
 ): Promise<StopPlace | undefined> {
   if (rl100.length > 5) {
-    return Promise.resolve(undefined);
+    return undefined;
   }
   const cached = await stopPlaceByRilCache.get(rl100);
   if (cached) {
@@ -216,9 +216,9 @@ async function searchStopPlaceRemote(
     : stopPlaceStationSearchCache;
 
   void searchCache.set(searchTerm, groupedStopPlaces);
-  groupedStopPlaces.forEach((s) => {
+  for (const s of groupedStopPlaces) {
     void stopPlaceByEvaCache.set(s.evaNumber, s);
-  });
+  }
   return groupedStopPlaces;
 }
 
@@ -240,7 +240,7 @@ export async function getIdentifiers(
   };
   try {
     const stopPlaceKeys = await keys(evaNumber);
-    stopPlaceKeys.forEach(({ type, key }) => {
+    for (const { type, key } of stopPlaceKeys) {
       switch (type) {
         case StopPlaceKeyType.Ifopt:
           identifier.ifopt = key;
@@ -258,7 +258,7 @@ export async function getIdentifiers(
           identifier.stationId = key;
           break;
       }
-    });
+    }
     void stopPlaceIdentifierCache.set(evaNumber, identifier);
     if (Object.keys(identifier).length > 0) {
       return identifier;

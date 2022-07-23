@@ -64,10 +64,9 @@ export async function rawDBCoachSequence(
 ): Promise<Wagenreihung | undefined> {
   try {
     return coachSequence(trainNumber, date);
-  } catch (e) {
-    if (Axios.isCancel(e)) {
-      if (retry) return rawDBCoachSequence(trainNumber, date, retry - 1);
-    }
+  } catch (error) {
+    if (Axios.isCancel(error) && retry)
+      return rawDBCoachSequence(trainNumber, date, retry - 1);
   }
 }
 

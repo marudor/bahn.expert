@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-module */
 const config = require('../babel.config');
 
 require('@babel/register')({
@@ -5,7 +6,7 @@ require('@babel/register')({
   ...config,
 });
 
-const search = require('../packages/server/StopPlace/search').searchStopPlace;
+const search = require('../src/server/StopPlace/search').searchStopPlace;
 
 const mostUsedNames = [
   'Frankfurt (Main) Hbf',
@@ -33,7 +34,7 @@ Promise.all(mostUsedNames.map((s) => search(s).then((s) => s[0]))).then(
         })),
       ),
     );
-    // eslint-disable-next-line no-process-exit
+    // eslint-disable-next-line unicorn/no-process-exit
     process.exit(0);
   },
 );

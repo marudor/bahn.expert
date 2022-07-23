@@ -29,12 +29,12 @@ export async function irisGetRequest<T>(url: string): Promise<T> {
   try {
     const result = (await noncdRequest.get<T>(url)).data;
     return result;
-  } catch (e) {
-    if (fallbackRequest && Axios.isAxiosError(e)) {
+  } catch (error) {
+    if (fallbackRequest && Axios.isAxiosError(error)) {
       const fallbackResult = (await fallbackRequest.get<T>(url)).data;
       return fallbackResult;
     }
-    throw e;
+    throw error;
   }
 }
 
@@ -98,5 +98,5 @@ export function calculateVia(route: any, maxParts = 3): void {
       showing.push(stop);
     }
   }
-  showing.forEach((v) => (v.showVia = true));
+  for (const v of showing) v.showVia = true;
 }

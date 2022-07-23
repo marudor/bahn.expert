@@ -13,7 +13,7 @@ async function fetchPlanWR() {
     logger.debug('Fetching planWR');
     plannedSequences = (await Axios.get<PlannedSequenceMeta>(planWRUrl)).data;
     logger.debug('Fetched planWR');
-  } catch (e: any) {
+  } catch {
     logger.error('Fetching planWR failed');
   }
 }
@@ -24,7 +24,7 @@ if (process.env.NODE_ENV !== 'test') {
   setInterval(fetchPlanWR, 8 * 60 * 1000 * 60);
 }
 
-const allowedPlannedProductTypes = ['IC', 'ICE', 'EC', 'ECE'];
+const allowedPlannedProductTypes = new Set(['IC', 'ICE', 'EC', 'ECE']);
 
 export const getPlannedSequence = (
   product: ParsedProduct,
@@ -32,7 +32,7 @@ export const getPlannedSequence = (
   if (
     !plannedSequences ||
     !product.number ||
-    !allowedPlannedProductTypes.includes(product.type!)
+    !allowedPlannedProductTypes.has(product.type!)
   )
     return;
 

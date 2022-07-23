@@ -7,13 +7,11 @@ const sitemap = () => {
   let xml =
     '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
 
-  rawStations
-    .filter((s) => filterRegex.exec(s.name))
-    .forEach((s) => {
-      xml += `<url><loc>${globalThis.BASE_URL}/${encodeURIComponent(
-        s.name,
-      )}</loc><changefreq>always</changefreq></url>`;
-    });
+  for (const s of rawStations.filter((s) => filterRegex.exec(s.name))) {
+    xml += `<url><loc>${globalThis.BASE_URL}/${encodeURIComponent(
+      s.name,
+    )}</loc><changefreq>always</changefreq></url>`;
+  }
 
   xml += '</urlset>';
 

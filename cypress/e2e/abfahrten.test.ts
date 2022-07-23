@@ -69,13 +69,13 @@ describe('Abfahrten', () => {
         'text-decoration-line',
         'line-through',
       );
-      ['destination', 'platform', 'timeContainer'].forEach((id) => {
+      for (const id of ['destination', 'platform', 'timeContainer']) {
         cy.findByTestId(id).should(
           'have.css',
           'text-decoration-line',
           'line-through',
         );
-      });
+      }
     });
     cy.percySnapshot('Abfahrten');
   });

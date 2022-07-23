@@ -1,3 +1,9 @@
+function searchInput(id: string, value: string) {
+  cy.findByTestId(id)
+    .findByTestId('stopPlaceSearchInput')
+    .should('have.value', value);
+}
+
 describe('Routing', () => {
   beforeEach(() => {
     cy.intercept(
@@ -73,12 +79,6 @@ describe('Routing', () => {
         fixture: 'stopPlace/8000244',
       });
     });
-
-    function searchInput(id: string, value: string) {
-      cy.findByTestId(id)
-        .findByTestId('stopPlaceSearchInput')
-        .should('have.value', value);
-    }
 
     it('with start', () => {
       cy.visit('/routing/8000105');

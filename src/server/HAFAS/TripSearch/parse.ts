@@ -77,7 +77,7 @@ function adjustToLastTrain(
   }
 }
 
-const AllowedLegTypes = ['JNY', 'WALK', 'TRSF'];
+const AllowedLegTypes = new Set(['JNY', 'WALK', 'TRSF']);
 
 export class Journey {
   raw: OutConL;
@@ -89,7 +89,7 @@ export class Journey {
     this.common = common;
     this.date = parse(raw.date, 'yyyyMMdd', new Date());
     const allSegments = raw.secL
-      .filter((leg) => AllowedLegTypes.includes(leg.type))
+      .filter((leg) => AllowedLegTypes.has(leg.type))
       .map(this.parseSegment)
       .filter<Route$JourneySegment>(Boolean as any);
 
@@ -126,6 +126,7 @@ export class Journey {
     return stops.map((stop) => parseStop(stop, this.common, this.date, train));
   };
   parseSegmentJourney = (jny: Jny): Route$Journey => {
+    // eslint-disable-next-line unicorn/no-unreadable-array-destructuring
     const [, fullStart, fullDestination, , , , , , ,] = jny.ctxRecon.split('$');
     const product = this.common.prodL[jny.prodX];
 

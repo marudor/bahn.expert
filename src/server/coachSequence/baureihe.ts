@@ -87,11 +87,10 @@ const getDEBR = (
     case '5804': {
       let identifier: '401' | '401.LDV' | '401.9' = '401';
       if (coaches.length === 11) {
-        if (coaches.filter((f) => f.class === 1).length === 2) {
-          identifier = '401.LDV';
-        } else {
-          identifier = '401.9';
-        }
+        identifier =
+          coaches.filter((f) => f.class === 1).length === 2
+            ? '401.LDV'
+            : '401.9';
       }
       return {
         identifier,
@@ -109,7 +108,7 @@ const getDEBR = (
       };
     case '5403': {
       const identifier: AvailableIdentifier = `403.S${
-        Number.parseInt(uicOrdnungsnummer.substring(1), 10) <= 37 ? '1' : '2'
+        Number.parseInt(uicOrdnungsnummer.slice(1), 10) <= 37 ? '1' : '2'
       }`;
       return {
         baureihe: '403',
@@ -155,9 +154,9 @@ export const getBaureiheByUIC = (
   coaches: Pick<CoachSequenceCoach, 'class'>[],
   tzn?: string,
 ): undefined | CoachSequenceBaureihe => {
-  const country = uic.substr(2, 2);
-  const code = uic.substr(4, 4);
-  const serial = uic.substr(8, 3);
+  const country = uic.slice(2, 4);
+  const code = uic.slice(4, 8);
+  const serial = uic.slice(8, 11);
   let br: undefined | Omit<CoachSequenceBaureihe, 'name'>;
   switch (country) {
     case '80':

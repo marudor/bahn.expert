@@ -1,29 +1,28 @@
+/* eslint-disable unicorn/prefer-module */
 /* eslint-disable no-underscore-dangle */
 import '@testing-library/jest-dom';
 import { cleanup } from '@testing-library/react';
 import Axios from 'axios';
-import fs from 'fs';
+import fs from 'node:fs';
 import Nock from 'nock';
-import path from 'path';
+import path from 'node:path';
 // eslint-disable-next-line no-restricted-imports
 import routes from 'server/API';
 
 if (fs.existsSync(path.resolve(__dirname, 'setup.js'))) {
   throw new Error('Run `pnpm build:clean`. State dirty');
-  // eslint-disable-next-line no-unreachable
+  // eslint-disable-next-line no-unreachable, unicorn/no-process-exit
   process.exit(1);
 }
 
 const isoDateRegex =
-  /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/;
+  /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}\.\d*)(?:Z|([+-])([\d:|]*))?$/;
 
 globalThis.parseJson = (json: string) => {
   try {
     return JSON.parse(json, (_key, value) => {
-      if (typeof value === 'string') {
-        if (isoDateRegex.exec(value)) {
-          return new Date(value);
-        }
+      if (typeof value === 'string' && isoDateRegex.test(value)) {
+        return new Date(value);
       }
       return value;
     });
@@ -68,11 +67,11 @@ const routeRegexp = /\/v(\d+|experimental)\//;
 afterEach(() => {
   const allRoutes = routes.stack.filter((s) => routeRegexp.exec(s.path));
   // @ts-expect-error this exsits
-  globalThis.nock.interceptors.forEach((i) => {
+  for (const i of globalThis.nock.interceptors) {
     if (!allRoutes.some((r) => r.match(i.path))) {
       throw new Error(`${i.path} does not match available routes`);
     }
-  });
+  }
 });
 
 afterAll(() => {

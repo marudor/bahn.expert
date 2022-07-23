@@ -1,35 +1,32 @@
+/* eslint-disable unicorn/prefer-module */
 /* eslint no-sync: 0 */
 import {
   mockFchg,
   mockLageplan,
   mockSearch,
 } from 'server/__tests__/mockHelper';
-import fakeTimers from '@sinonjs/fake-timers';
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 import Timetable from 'server/iris/Timetable';
-import type { InstalledClock } from '@sinonjs/fake-timers';
 
 jest.mock('server/cache');
 
 describe('withFchg', () => {
-  let clock: InstalledClock;
-
   beforeAll(() => {
-    clock = fakeTimers.install({
-      shouldAdvanceTime: true,
+    jest.useFakeTimers({
+      advanceTimers: true,
       now: 1552824000000,
     });
   });
   afterAll(() => {
-    clock.uninstall();
+    jest.useRealTimers();
   });
   const baseFixturePath = '__fixtures__';
   const fchgFixtures = fs.readdirSync(
     path.resolve(__dirname, baseFixturePath, 'fchg'),
   );
 
-  fchgFixtures.forEach((file) => {
+  for (const file of fchgFixtures) {
     // eslint-disable-next-line jest/valid-title
     it(file, async () => {
       const fchgXml = fs.readFileSync(
@@ -51,5 +48,5 @@ describe('withFchg', () => {
 
       await expect(timetable.start()).resolves.toMatchSnapshot();
     });
-  });
+  }
 });

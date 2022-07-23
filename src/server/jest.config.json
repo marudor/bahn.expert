@@ -9,5 +9,8 @@
   },
   "globalSetup": "./__tests__/setupGlobal.ts",
   "setupFilesAfterEnv": ["./__tests__/setup.ts"],
-  "testMatch": ["**/__tests__/**/?(*.)+(spec|test).[jt]s?(x)"]
+  "testMatch": ["**/__tests__/**/?(*.)+(spec|test).[jt]s?(x)"],
+  "transform": {
+    "\\.[jt]sx?$": ["babel-jest", { "rootMode": "upward" }]
+  }
 }

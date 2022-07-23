@@ -29,7 +29,7 @@ function useAuslastungInner(_p: PropsWithChildren<unknown>) {
           `/api/hafas/v2/auslastung/${key}/${abfahrt.departure?.scheduledTime.toISOString()}`,
         )
       ).data;
-    } catch (e) {
+    } catch {
       auslastung = null;
     }
 

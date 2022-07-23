@@ -20,7 +20,7 @@ interface Props {
   type: string;
 }
 
-const wagenWithImage = [
+const wagenWithImage = new Set([
   'ARkimbz',
   'ARkimmbz',
   'Apmmz',
@@ -39,16 +39,16 @@ const wagenWithImage = [
   'DApza',
   'DBpza',
   'DBpbzfa',
-];
+]);
 
-const allowedTypes = ['IC', 'ICE'];
+const allowedTypes = new Set(['IC', 'ICE']);
 
 const seriesRegex = /\.S(\d)/;
 
 export const WagenLink: FC<Props> = ({ fahrzeug, identifier, type }) => {
   const imageName = useMemo(() => {
     if (
-      !allowedTypes.includes(type) ||
+      !allowedTypes.has(type) ||
       fahrzeug.category === 'TRIEBKOPF' ||
       fahrzeug.category === 'LOK'
     ) {
@@ -57,7 +57,7 @@ export const WagenLink: FC<Props> = ({ fahrzeug, identifier, type }) => {
     if (
       (!identifier || identifier === 'IC2.TWIN') &&
       fahrzeug.type &&
-      wagenWithImage.includes(fahrzeug.type)
+      wagenWithImage.has(fahrzeug.type)
     ) {
       return fahrzeug.type;
     }
@@ -68,7 +68,7 @@ export const WagenLink: FC<Props> = ({ fahrzeug, identifier, type }) => {
       identifier !== 'MET' &&
       fahrzeug.uic
     ) {
-      let relevantUIC = fahrzeug.uic.substr(4, 5);
+      let relevantUIC = fahrzeug.uic.slice(4, 9);
       if (identifier.endsWith('R')) {
         relevantUIC += '.r';
       } else if (identifier.includes('.S')) {

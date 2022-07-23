@@ -52,14 +52,14 @@ const mapGroups = (info: OEBBInfo): CoachSequenceGroup[] => {
   let currentWagons: OEBBCoachSequenceWagon[] = [];
   const wagonsForGroups: OEBBCoachSequenceWagon[][] = [];
   let oldDestination: string | undefined = undefined;
-  info.train.wagons.forEach((w) => {
+  for (const w of info.train.wagons) {
     if (oldDestination && oldDestination !== w.destination) {
       wagonsForGroups.push(currentWagons);
       currentWagons = [];
     }
     currentWagons.push(w);
     oldDestination = w.destination;
-  });
+  }
   wagonsForGroups.push(currentWagons);
 
   let startOffset = info.trainOnPlatform?.position || 0;
@@ -83,7 +83,7 @@ const mapGroups = (info: OEBBInfo): CoachSequenceGroup[] => {
       startOffset = endMeter;
     }
 
-    wagons.forEach((w, i) => {
+    for (const [i, w] of wagons.entries()) {
       coaches.push({
         class: mapClass(w),
         features: mapFeatures(w),
@@ -94,7 +94,7 @@ const mapGroups = (info: OEBBInfo): CoachSequenceGroup[] => {
         uic: w.uicNumber,
         type: w.kind,
       });
-    });
+    }
     let trainNumber = '';
     const destinationDB640 = wagons[0].destination;
     const train = info.train;
@@ -141,7 +141,7 @@ const mapSectors = (platformInfo?: OEBBPlatformInfo): CoachSequenceSector[] => {
   let startMeter = 0;
   const maxMeter = platformInfo.length;
 
-  platformInfo.sectors.forEach((s) => {
+  for (const s of platformInfo.sectors) {
     sectors.push({
       name: s.name,
       position: {
@@ -150,7 +150,7 @@ const mapSectors = (platformInfo?: OEBBPlatformInfo): CoachSequenceSector[] => {
       },
     });
     startMeter += s.length;
-  });
+  }
   return sectors;
 };
 

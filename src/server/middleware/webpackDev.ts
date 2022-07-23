@@ -1,9 +1,10 @@
+/* eslint-disable unicorn/prefer-module */
 // istanbul ignore file
-import childProcess from 'child_process';
+import childProcess from 'node:child_process';
 import chokidar from 'chokidar';
-import path from 'path';
+import path from 'node:path';
 import webpack from 'webpack';
-import webpackConfig from '../../../webpack.config';
+import webpackConfig from '../../../webpack.config.cjs';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackMiddleware from 'webpack-dev-middleware';
 import type Koa from 'koa';
@@ -19,11 +20,11 @@ export default function webpackDev(koa: Koa): Promise<unknown> {
   compiler.hooks.done.tap('CacheBusting', () => {
     // eslint-disable-next-line no-console
     console.log('Clearing webpack module cache from server');
-    Object.keys(require.cache).forEach((id) => {
-      if (clientRegexp.exec(id)) {
+    for (const id of Object.keys(require.cache)) {
+      if (clientRegexp.test(id)) {
         delete require.cache[id];
       }
-    });
+    }
     delete require.cache[path.resolve('packages/server/render.tsx')];
   });
   const watcher = chokidar.watch(path.resolve('./packages/**'));
@@ -43,11 +44,11 @@ export default function webpackDev(koa: Koa): Promise<unknown> {
         }
       });
     }
-    Object.keys(require.cache).forEach((id) => {
-      if (serverRegexp.exec(id)) {
+    for (const id of Object.keys(require.cache)) {
+      if (serverRegexp.test(id)) {
         delete require.cache[id];
       }
-    });
+    }
   });
 
   return new Promise<void>((resolve) => {

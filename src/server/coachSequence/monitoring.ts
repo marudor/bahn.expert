@@ -35,7 +35,7 @@ export async function coachSequenceMonitoring(): Promise<
 
         if (wr) return wr;
         departure = maybeDepartures.shift();
-      } catch (e) {
+      } catch {
         // eslint-disable-next-line no-console
         // console.warn(
         //   'Failed to get WR for Monitoring!',

@@ -134,14 +134,14 @@ export class StopPlaceController extends Controller {
       ).data;
 
       const normalizedResult: TrainOccupancyList = {};
-      Object.entries(result.train).forEach(([trainNumber, vrrOccupancy]) => {
+      for (const [trainNumber, vrrOccupancy] of Object.entries(result.train)) {
         normalizedResult[trainNumber] = vrrOccupancy?.occupancy
           ? {
               first: mapVrrOccupancy(vrrOccupancy.occupancy),
               second: mapVrrOccupancy(vrrOccupancy.occupancy),
             }
           : null;
-      });
+      }
 
       return normalizedResult;
     } catch {

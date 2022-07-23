@@ -29,7 +29,7 @@ export const enum CacheDatabases {
   StopPlaceGroups,
   StopPlaceSalesSearch,
 }
-const activeCaches = new Set();
+const activeCaches: Set<any> = new Set();
 
 function dateSerialize(this: any, key: string, value: any): any {
   // eslint-disable-next-line babel/no-invalid-this
@@ -42,7 +42,7 @@ function dateSerialize(this: any, key: string, value: any): any {
 
 function dateDeserialze(_key: string, value: any): any {
   if (typeof value === 'string' && value.startsWith('DATE')) {
-    return new Date(value.substr(4));
+    return new Date(value.slice(4));
   }
   return value;
 }
@@ -78,6 +78,7 @@ export function createNewCache<K extends string, V>(
   if (useRedis) {
     baseCache = cacheManager.caching({
       ...redisSettings,
+      // eslint-disable-next-line unicorn/prefer-module
       store: require('cache-manager-ioredis'),
       ttl,
       db,
@@ -119,7 +120,7 @@ export function createNewCache<K extends string, V>(
         const rawResult = await mgetFn(keys);
 
         return rawResult.map(deserialize);
-      } catch (e) {
+      } catch {
         return [];
       }
     },
@@ -132,21 +133,21 @@ export function createNewCache<K extends string, V>(
         const result = await baseCache.get<string>(key).then(deserialize);
 
         return result;
-      } catch (e) {
+      } catch {
         return undefined;
       }
     },
     async set(key: K, value: V) {
       try {
         return await baseCache.set(key, serialize(value), ttl);
-      } catch (e) {
+      } catch {
         // ignoring
       }
     },
     async del(key: K) {
       try {
         return await baseCache.del(key);
-      } catch (e) {
+      } catch {
         // ignoring
       }
     },
@@ -165,6 +166,8 @@ export function createNewCache<K extends string, V>(
 }
 
 export function cleanupCaches(): void {
-  activeCaches.forEach((c: any) => c.disconnect());
+  for (const c of activeCaches) {
+    c.disconnect();
+  }
   activeCaches.clear();
 }

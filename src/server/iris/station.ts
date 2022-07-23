@@ -15,14 +15,10 @@ const cache = createNewCache<string, IrisStation | null>(
 export function parseStation(stationNode: xmljs.Element): IrisStation {
   const station: any = {};
 
-  stationNode.attrs().forEach((a) => {
+  for (const a of stationNode.attrs()) {
     station[a.name()] = a.value();
-  });
-  if (station.meta) {
-    station.meta = station.meta.split('|');
-  } else {
-    station.meta = [];
   }
+  station.meta = station.meta ? station.meta.split('|') : [];
 
   const excludeList = stationMetaFilter[station.eva];
   if (excludeList) {

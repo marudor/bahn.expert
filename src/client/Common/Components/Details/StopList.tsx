@@ -11,10 +11,8 @@ import type { Route$Stop } from 'types/routing';
 
 function getErrorText(error: AxiosError) {
   if (error.code === 'ECONNABORTED') return 'Timeout, bitte neuladen.';
-  if (error.response) {
-    if (error.response.status === 404) {
-      return 'Unbekannter Zug';
-    }
+  if (error.response?.status === 404) {
+    return 'Unbekannter Zug';
   }
 
   return 'Unbekannter Fehler';

@@ -55,7 +55,7 @@ export const SelectedDetailProvider: FC<PropsWithChildren<unknown>> = ({
 }) => {
   const storage = useStorage();
   const savedSelectedDetail = storage.get(selectedDetailCookieName);
-  const hash = useLocation().hash?.substring(1);
+  const hash = useLocation().hash?.slice(1);
   if (hash) {
     window.location.href = '';
     storage.set(selectedDetailCookieName, hash);

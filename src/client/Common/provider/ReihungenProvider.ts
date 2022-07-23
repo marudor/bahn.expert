@@ -25,7 +25,7 @@ async function fetchSequence(
       },
     );
     return r.data;
-  } catch (e) {
+  } catch {
     return undefined;
   }
 }
@@ -67,15 +67,15 @@ function useReihungInner(_p: PropsWithChildren<unknown>) {
           ),
         ),
       ]);
-      const newSequence = sequence.reduce((agg, s) => {
+      const newSequence: Record<string, CoachSequenceInformation> = {};
+      for (const s of sequence) {
         if (s) {
-          agg[
+          newSequence[
             sequenceId(s.product.number, currentEvaNumber, scheduledDeparture)
           ] = s;
         }
-        return agg;
-      }, {} as Record<string, CoachSequenceInformation>);
-      reihung = sequence.find((f) => f);
+      }
+      reihung = sequence.find(Boolean);
       if (!reihung) {
         reihung = null;
       }

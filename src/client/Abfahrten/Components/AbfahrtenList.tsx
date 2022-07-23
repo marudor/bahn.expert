@@ -122,8 +122,8 @@ const InnerAbfahrtenList = () => {
       if (selectedDetail) {
         scrollDom = document.getElementById(selectedDetail);
       }
-      if (!scrollDom && unfilteredAbfahrten.lookbehind.length) {
-        scrollDom = document.getElementById('lookaheadMarker');
+      if (!scrollDom && unfilteredAbfahrten.lookbehind.length > 0) {
+        scrollDom = document.querySelector('#lookaheadMarker');
       }
       if (scrollDom) {
         const scrollIntoView = () =>
@@ -146,13 +146,13 @@ const InnerAbfahrtenList = () => {
           {error ? (
             <Navigate to={urlPrefix} />
           ) : filteredAbfahrten &&
-            (filteredAbfahrten.departures.length ||
-              filteredAbfahrten.lookbehind.length) ? (
+            (filteredAbfahrten.departures.length > 0 ||
+              filteredAbfahrten.lookbehind.length > 0) ? (
             <>
               {Boolean(
                 unfilteredAbfahrten?.strike && unfilteredAbfahrten.strike > 10,
               ) && <Streik />}
-              {Boolean(filteredAbfahrten.lookbehind.length) && (
+              {filteredAbfahrten.lookbehind.length > 0 && (
                 <Lookbehind id="lookbehind" data-testid="lookbehind">
                   {filteredAbfahrten.lookbehind.map((a) => (
                     <Abfahrt abfahrt={a} key={a.rawId} />

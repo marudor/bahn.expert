@@ -1,4 +1,4 @@
-import Crypto from 'crypto';
+import Crypto from 'node:crypto';
 
 function getSecret(hciChecksum: string) {
   const enc = Buffer.from(hciChecksum, 'base64');

@@ -1,5 +1,5 @@
 import Koa from 'koa';
-import type { Server } from 'http';
+import type { Server } from 'node:http';
 
 export default (adminPort = 9000): Server => {
   const koa = new Koa();
@@ -13,7 +13,7 @@ export default (adminPort = 9000): Server => {
         default:
           break;
       }
-    } catch (e) {
+    } catch {
       ctx.status = 500;
     }
   });

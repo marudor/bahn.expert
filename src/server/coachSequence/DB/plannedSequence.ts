@@ -31,18 +31,18 @@ export async function getPlannedSequence(
       )
     ).data;
 
-    plannedSequence.sequence.groups.forEach((g) => {
+    for (const g of plannedSequence.sequence.groups) {
       const br = getBRFromGroupName(g.name);
       g.baureihe = br;
       g.name = `${g.number}-planned`;
       if (br) {
-        g.coaches.forEach((coach) => {
+        for (const coach of g.coaches) {
           coach.seats = getSeatsForCoach(coach, br.identifier);
-        });
+        }
       }
-    });
+    }
     return plannedSequence;
-  } catch (e) {
+  } catch {
     return undefined;
   }
 }

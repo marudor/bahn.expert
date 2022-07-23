@@ -7,7 +7,7 @@ interface Props {
   className?: string;
 }
 
-const identifierWithPDF = [
+const identifierWithPDF = new Set([
   '401',
   '402',
   '403.R',
@@ -23,10 +23,10 @@ const identifierWithPDF = [
   'IC2.KISS',
   'IC2.TWIN',
   'MET',
-];
+]);
 
 export const BRInfo: FC<Props> = ({ br, className }) => {
-  if (!identifierWithPDF.includes(br.identifier))
+  if (!identifierWithPDF.has(br.identifier))
     return <span className={className}>{br.name}</span>;
 
   return (

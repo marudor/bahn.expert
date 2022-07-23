@@ -1,10 +1,11 @@
+/* eslint-disable unicorn/prefer-module */
 import { AbfahrtContext } from 'client/Abfahrten/Components/Abfahrt/BaseAbfahrt';
 import { Auslastung } from 'client/Abfahrten/Components/Abfahrt/Auslastung';
 import { AuslastungsProvider } from 'client/Abfahrten/provider/AuslastungsProvider';
 import { render } from 'client/__tests__/testHelper';
 import { screen, waitForElementToBeRemoved } from '@testing-library/react';
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 import type { Abfahrt } from 'types/iris';
 
 const mockAbfahrt: Abfahrt = globalThis.parseJson(

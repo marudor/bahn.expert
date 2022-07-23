@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-const path = require('path');
+const path = require('node:path');
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
@@ -50,8 +50,10 @@ const optimization = {};
 
 if (isDev) {
   rules[0].use.unshift('cache-loader');
-  plugins.push(new webpack.HotModuleReplacementPlugin());
-  plugins.push(new ReactRefreshWebpackPlugin());
+  plugins.push(
+    new webpack.HotModuleReplacementPlugin(),
+    new ReactRefreshWebpackPlugin(),
+  );
   entry.push('webpack-hot-middleware/client');
 } else {
   plugins.push(
@@ -59,8 +61,6 @@ if (isDev) {
       clientsClaim: true,
       skipWaiting: true,
     }),
-  );
-  plugins.push(
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
       openAnalyzer: false,
@@ -78,30 +78,28 @@ if (isDev) {
   optimization.splitChunks = {
     cacheGroups: {
       vendor: {
-        test: /[\\/]node_modules[\\/](axios|react|react-dom|react-router|react-router-dom|@mui|@emotion|downshift|date-fns)[\\/]/,
+        test: /[/\\]node_modules[/\\](axios|react|react-dom|react-router|react-router-dom|@mui|@emotion|downshift|date-fns)[/\\]/,
         name: 'vendor',
         chunks: 'all',
       },
     },
   };
   plugins.push(
-    ...[
-      new CompressionPlugin({
-        filename: '[path]/[base].br[query]',
-        test: /\.(js|css|svg)$/,
-        algorithm: 'brotliCompress',
-        compressionOptions: { level: 11 },
-        threshold: 0,
-        minRatio: 1,
-      }),
-      new CompressionPlugin({
-        filename: '[path]/[base].gz[query]',
-        test: /\.(js|css|svg)$/,
-        algorithm: 'gzip',
-        threshold: 0,
-        minRatio: 1,
-      }),
-    ],
+    new CompressionPlugin({
+      filename: '[path]/[base].br[query]',
+      test: /\.(js|css|svg)$/,
+      algorithm: 'brotliCompress',
+      compressionOptions: { level: 11 },
+      threshold: 0,
+      minRatio: 1,
+    }),
+    new CompressionPlugin({
+      filename: '[path]/[base].gz[query]',
+      test: /\.(js|css|svg)$/,
+      algorithm: 'gzip',
+      threshold: 0,
+      minRatio: 1,
+    }),
   );
 }
 

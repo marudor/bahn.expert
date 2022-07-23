@@ -200,19 +200,17 @@ export class HafasControllerV2 extends Controller {
     @Query() profile?: AllowedHafasProfile,
   ): Promise<SingleRoute> {
     const { sotMode, id } = body;
-    let hafasRequest;
 
-    if (sotMode === 'RC') {
-      hafasRequest = {
-        sotMode,
-        ctxRecon: id,
-      };
-    } else {
-      hafasRequest = {
-        sotMode,
-        jid: id,
-      };
-    }
+    const hafasRequest =
+      sotMode === 'RC'
+        ? {
+            sotMode,
+            ctxRecon: id,
+          }
+        : {
+            sotMode,
+            jid: id,
+          };
 
     // @ts-expect-error untyped
     return SearchOnTrip(hafasRequest, profile, req.query.raw);

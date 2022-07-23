@@ -43,9 +43,8 @@ export default (
   const townSuffix = `,${splittedName[splittedName.length - 1]}`;
 
   if (j.stops.every((s) => s.station.title.endsWith(townSuffix))) {
-    j.stops.forEach(
-      (s) => (s.station.title = s.station.title.replace(townSuffix, '')),
-    );
+    for (const s of j.stops)
+      s.station.title = s.station.title.replace(townSuffix, '');
   }
 
   return {
@@ -76,7 +75,7 @@ export default (
       him:
         j.messages?.map((m) => ({
           text: m.txtN,
-          head: !m.txtS ? 'Information' : m.txtS,
+          head: m.txtS || 'Information',
           value: -1,
         })) || [],
     },

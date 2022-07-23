@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-module */
 module.exports = {
   projects: ['src/client/jest.config.json', 'src/server/jest.config.json'],
   reporters: ['default'],

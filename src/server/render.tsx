@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-module */
 import { abfahrtenConfigSanitize, commonConfigSanitize } from 'client/util';
 import { ChunkExtractor } from '@loadable/server';
 import { renderToString } from 'react-dom/server';
@@ -6,8 +7,8 @@ import { ServerBaseComponent } from 'client/ServerBaseComponent';
 import createEmotionCache from '@emotion/cache';
 import createEmotionServer from '@emotion/server/create-instance';
 import ejs from 'ejs';
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 import type {
   AbfahrtenConfigSanitize,
   CommonConfigSanitize,
@@ -47,7 +48,7 @@ export default (ctx: Context): void => {
     abfahrten: {},
   };
 
-  Object.keys(ctx.query).forEach((key: any) => {
+  for (const key of Object.keys(ctx.query)) {
     if (commonConfigSanitize.hasOwnProperty(key)) {
       const value = commonConfigSanitize[key as keyof CommonConfigSanitize](
         ctx.query[key],
@@ -62,7 +63,7 @@ export default (ctx: Context): void => {
 
       globalThis.configOverride.abfahrten[key] = value;
     }
-  });
+  }
 
   const context: any = {};
   const App = extractor.collectChunks(
