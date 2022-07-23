@@ -19,12 +19,9 @@
     "target": "esnext",
     "emitDecoratorMetadata": false,
     "resolveJsonModule": true,
-    "types": ["jest", "@testing-library/jest-dom"],
+    "types": ["@jest/globals", "@testing-library/jest-dom"],
     "keyofStringsOnly": true,
     "baseUrl": "src",
-    "paths": {
-      "@sinonjs/fake-timers": ["../node_modules/@types/sinonjs__fake-timers"]
-    },
     "plugins": [
       {
         "name": "typescript-styled-plugin"

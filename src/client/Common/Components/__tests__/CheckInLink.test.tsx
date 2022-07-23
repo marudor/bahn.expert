@@ -16,7 +16,7 @@ const MockAbfahrt = globalThis.parseJson<Abfahrt>(
 
 describe('Travellynx', () => {
   beforeAll(() => {
-    jest.useFakeTimers('modern');
+    jest.useFakeTimers();
   });
   afterEach(() => {
     jest.runAllTimers();

@@ -5,25 +5,21 @@ import {
   mockLageplan,
   mockSearch,
 } from 'server/__tests__/mockHelper';
-import fakeTimers from '@sinonjs/fake-timers';
 import fs from 'node:fs';
 import path from 'node:path';
 import Timetable from 'server/iris/Timetable';
-import type { InstalledClock } from '@sinonjs/fake-timers';
 
 jest.mock('server/cache');
 
 describe('withFchg', () => {
-  let clock: InstalledClock;
-
   beforeAll(() => {
-    clock = fakeTimers.install({
-      shouldAdvanceTime: true,
+    jest.useFakeTimers({
+      advanceTimers: true,
       now: 1552824000000,
     });
   });
   afterAll(() => {
-    clock.uninstall();
+    jest.useRealTimers();
   });
   const baseFixturePath = '__fixtures__';
   const fchgFixtures = fs.readdirSync(
