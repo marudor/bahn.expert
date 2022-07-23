@@ -11,8 +11,8 @@ import type Koa from 'koa';
 
 // @ts-expect-error typing wrong
 const compiler: any = webpack(webpackConfig);
-const clientRegexp = /packages\/client/;
-const serverRegexp = /packages\/(?!client)/;
+const clientRegexp = /src\/client/;
+const serverRegexp = /src\/(?!client)/;
 export default function webpackDev(koa: Koa): Promise<unknown> {
   // Do "hot-reloading" of react stuff on the server
   // Throw away the cached client modules and let them be re-required next time
@@ -25,13 +25,13 @@ export default function webpackDev(koa: Koa): Promise<unknown> {
         delete require.cache[id];
       }
     }
-    delete require.cache[path.resolve('packages/server/render.tsx')];
+    delete require.cache[path.resolve('src/server/render.tsx')];
   });
-  const watcher = chokidar.watch(path.resolve('./packages/**'));
+  const watcher = chokidar.watch(path.resolve('./src/**'));
 
   watcher.on('change', (file) => {
-    if (file.includes('packages/client')) return;
-    if (file.includes('packages/server/API/controller/')) {
+    if (file.includes('src/client')) return;
+    if (file.includes('src/server/API/controller/')) {
       // eslint-disable-next-line no-console
       console.log('Rebuilding Routes & doc');
       childProcess.exec('pnpm doc:build', (err, _, stderr) => {

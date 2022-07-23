@@ -54,6 +54,10 @@ export interface AbfahrtenResult {
 
 export interface Abfahrt {
   initialDeparture: Date;
+  /**
+   * evaNumber of first stopPlace in route
+   */
+  initialStopPlace: string;
   arrival?: StopInfo;
   auslastung: boolean;
   currentStopPlace: MinimalStopPlace;

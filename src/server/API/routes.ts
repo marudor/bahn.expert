@@ -330,6 +330,7 @@ const models: TsoaRoute.Models = {
         "dataType": "refObject",
         "properties": {
             "initialDeparture": {"dataType":"datetime","required":true},
+            "initialStopPlace": {"dataType":"string","required":true},
             "arrival": {"ref":"StopInfo"},
             "auslastung": {"dataType":"boolean","required":true},
             "currentStopPlace": {"ref":"MinimalStopPlace","required":true},

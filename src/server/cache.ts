@@ -82,7 +82,7 @@ export function createNewCache<K extends string, V>(
       store: require('cache-manager-ioredis'),
       ttl,
       db,
-      max: 10000,
+      max: 1000000,
     });
     // @ts-expect-error baseCache untyped
     const client = baseCache.store.getClient();
@@ -102,7 +102,7 @@ export function createNewCache<K extends string, V>(
     baseCache = cacheManager.caching({
       store: 'memory',
       ttl,
-      max: 10000,
+      max: 1000000,
     });
     // eslint-disable-next-line @typescript-eslint/unbound-method
     existsFn = baseCache.get;
@@ -126,10 +126,6 @@ export function createNewCache<K extends string, V>(
     },
     async get(key: K): Promise<V | undefined> {
       try {
-        const exists = await existsFn(key);
-
-        if (!exists) return undefined;
-
         const result = await baseCache.get<string>(key).then(deserialize);
 
         return result;
@@ -139,7 +135,7 @@ export function createNewCache<K extends string, V>(
     },
     async set(key: K, value: V) {
       try {
-        return await baseCache.set(key, serialize(value), ttl);
+        return baseCache.set(key, serialize(value), ttl);
       } catch {
         // ignoring
       }

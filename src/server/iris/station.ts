@@ -6,10 +6,10 @@ import xmljs from 'libxmljs2';
 import type { Element } from 'libxmljs2';
 import type { IrisStation, IrisStationWithRelated } from 'types/iris';
 
-// 4 Hours in seconds
+// 12 Hours in seconds
 const cache = createNewCache<string, IrisStation | null>(
   CacheDatabases.Station,
-  4 * 60 * 60,
+  12 * 60 * 60,
 );
 
 export function parseStation(stationNode: xmljs.Element): IrisStation {
@@ -30,8 +30,16 @@ export function parseStation(stationNode: xmljs.Element): IrisStation {
   return station;
 }
 
-export async function getSingleStation(evaId: string): Promise<IrisStation> {
-  const cached = await cache.get(evaId);
+/**
+ *
+ * @param searchTerm Mainly eva, can also be the name
+ */
+export async function getSingleStation(
+  searchTerm: string,
+): Promise<IrisStation> {
+  // console.log(await cache.keys());
+
+  const cached = await cache.get(searchTerm);
 
   if (cached) {
     return cached;
@@ -40,19 +48,21 @@ export async function getSingleStation(evaId: string): Promise<IrisStation> {
     throw {
       status: 404,
       error: {
-        errroType: '404',
+        errorType: '404',
         description: 'Unbekannte Station',
       },
     };
   }
-  const rawXml = await irisGetRequest<string>(`/station/${evaId}`);
+  const rawXml = await irisGetRequest<string>(
+    `/station/${encodeURIComponent(searchTerm)}`,
+  );
 
   const xml = xmljs.parseXml(rawXml);
 
   const xmlStation = xml.get<Element>('//station');
 
   if (!xmlStation) {
-    void cache.set(evaId, null);
+    void cache.set(searchTerm, null);
     throw {
       status: 404,
       error: {
@@ -63,7 +73,7 @@ export async function getSingleStation(evaId: string): Promise<IrisStation> {
   }
   const station = parseStation(xmlStation);
 
-  void cache.set(evaId, station);
+  void cache.set(searchTerm, station);
 
   return station;
 }
