@@ -330,6 +330,7 @@ const models: TsoaRoute.Models = {
         "dataType": "refObject",
         "properties": {
             "initialDeparture": {"dataType":"datetime","required":true},
+            "initialStopPlace": {"dataType":"string","required":true},
             "arrival": {"ref":"StopInfo"},
             "auslastung": {"dataType":"boolean","required":true},
             "currentStopPlace": {"ref":"MinimalStopPlace","required":true},
@@ -1378,6 +1379,19 @@ const models: TsoaRoute.Models = {
         "properties": {
             "start": {"ref":"WingInfo"},
             "end": {"ref":"WingInfo"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "MatchedIrisMessage": {
+        "dataType": "refObject",
+        "properties": {
+            "text": {"dataType":"string","required":true},
+            "timestamp": {"dataType":"datetime"},
+            "superseded": {"dataType":"boolean"},
+            "priority": {"ref":"MessagePrio"},
+            "value": {"dataType":"double","required":true},
+            "message": {"dataType":"string"},
         },
         "additionalProperties": false,
     },
@@ -2543,6 +2557,34 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new IrisControllerv2();
 
             const promise = controller.abfahrten.apply(controller, validatedArgs as any);
+            return promiseHandler(controller, promise, context, undefined, undefined);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        router.post('/api/iris/v2/freitext/:trainNumber/:initialDepartureDate/:initialDepartureEvaNumber',
+            ...(fetchMiddlewares<Middleware>(IrisControllerv2)),
+            ...(fetchMiddlewares<Middleware>(IrisControllerv2.prototype.matchMessagesToFreitext)),
+
+            async function IrisControllerv2_matchMessagesToFreitext(context: any, next: any) {
+            const args = {
+                    trainNumber: {"in":"path","name":"trainNumber","required":true,"dataType":"string"},
+                    initialDepartureDate: {"in":"path","name":"initialDepartureDate","required":true,"dataType":"datetime"},
+                    initialDepartureEvaNumber: {"in":"path","name":"initialDepartureEvaNumber","required":true,"dataType":"string"},
+                    messages: {"in":"body","name":"messages","required":true,"dataType":"array","array":{"dataType":"refObject","ref":"IrisMessage"}},
+                    notFoundResponse: {"in":"res","name":"404","required":true,"dataType":"void"},
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+              validatedArgs = getValidatedArgs(args, context, next);
+            } catch (err) {
+              const error = err as any;
+              context.status = error.status;
+              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+            }
+
+            const controller = new IrisControllerv2();
+
+            const promise = controller.matchMessagesToFreitext.apply(controller, validatedArgs as any);
             return promiseHandler(controller, promise, context, undefined, undefined);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

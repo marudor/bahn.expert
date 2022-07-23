@@ -1,13 +1,10 @@
+import { v4 as uuid } from 'uuid';
 import onFinished from 'on-finished';
 import util from 'node:util';
 import type { Context, Next } from 'koa';
 import type { IncomingMessage } from 'node:http';
 import type { RouterContext } from '@koa/router';
 import type P from 'pino';
-
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
-let nanoid: typeof import('nanoid')['nanoid'];
-void import('nanoid').then((i) => (nanoid = i.nanoid));
 
 declare module 'koa' {
   interface BaseContext {
@@ -57,7 +54,7 @@ export default (logger: P.Logger) =>
   (ctx: Context & RouterContext, next: Next): Promise<void> => {
     ctx.log = logger;
 
-    const reqId = ctx.request.get(headerName) || nanoid();
+    const reqId = ctx.request.get(headerName) || uuid();
 
     ctx[ctxProp] = reqId;
     ctx.request[ctxProp] = reqId;

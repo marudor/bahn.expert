@@ -27,6 +27,7 @@ import {
 import { diffArrays } from 'diff';
 import { getLineFromNumber } from 'server/journeys/lineNumberMapping';
 import { getSingleHimMessageOfToday } from 'server/HAFAS/HimSearch';
+import { getSingleStation } from 'server/iris/station';
 import { uniqBy } from 'client/util';
 import messageLookup, {
   ignoredMessageNumbers,
@@ -175,7 +176,7 @@ export default class Timetable {
     }
     this.currentStopPlaceName = normalizeRouteName(currentStopPlaceName);
   }
-  computeExtra(timetable: any) {
+  async computeExtra(timetable: any) {
     timetable.cancelled =
       (timetable.arrival &&
         timetable.arrival.cancelled &&
@@ -236,6 +237,14 @@ export default class Timetable {
     if (timetable.departure) {
       delete timetable.departure.additional;
     }
+
+    try {
+      const firstStop = timetable.route[0];
+      const stopOfFirst = await getSingleStation(firstStop.name);
+      timetable.initialStopPlace = stopOfFirst.eva;
+    } catch {
+      // failed to fetch initialStopPlace we ignore that in that case
+    }
   }
   async start(): Promise<AbfahrtenResult> {
     await this.getTimetables();
@@ -261,8 +270,7 @@ export default class Timetable {
     const departures = [] as any[];
     const lookbehind = [] as any[];
 
-    // eslint-disable-next-line unicorn/no-array-for-each
-    uniqBy(timetables, 'rawId').forEach((a: any) => {
+    const computePromises = uniqBy(timetables, 'rawId').map(async (a: any) => {
       const referenceWingId = this.wingIds.get(a.mediumId);
 
       if (referenceWingId) {
@@ -276,9 +284,7 @@ export default class Timetable {
               a.departure?.scheduledTime.getTime())
         ) {
           wings[a.mediumId] = a;
-          this.computeExtra(a);
-
-          return;
+          return this.computeExtra(a);
         }
       }
 
@@ -303,11 +309,10 @@ export default class Timetable {
           departures.push(a);
         }
       }
+      return this.computeExtra(a);
     });
 
-    for (const t of [...departures, ...lookbehind]) {
-      this.computeExtra(t);
-    }
+    await Promise.all(computePromises);
 
     return {
       departures,

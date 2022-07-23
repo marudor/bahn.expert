@@ -8,7 +8,7 @@ COPY scripts/ ./scripts/
 
 FROM base as build
 RUN pnpm i --frozen-lockfile
-COPY webpack.config.js babel.config.cjs ./
+COPY webpack.config.cjs babel.config.cjs ./
 ENV NODE_ENV=production
 RUN pnpm build
 RUN pnpx modclean -r -f -a '*.ts|*.tsx' -I 'example*'

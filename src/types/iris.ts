@@ -54,6 +54,10 @@ export interface AbfahrtenResult {
 
 export interface Abfahrt {
   initialDeparture: Date;
+  /**
+   * evaNumber of first stopPlace in route
+   */
+  initialStopPlace: string;
   arrival?: StopInfo;
   auslastung: boolean;
   currentStopPlace: MinimalStopPlace;
@@ -94,6 +98,10 @@ export interface IrisMessage {
   superseded?: boolean;
   priority?: MessagePrio;
   value: number;
+}
+
+export interface MatchedIrisMessage extends IrisMessage {
+  message?: string;
 }
 
 export interface HimIrisMessage extends IrisMessage {

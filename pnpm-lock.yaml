@@ -64,6 +64,7 @@ specifiers:
   '@types/rimraf': ^3.0.2
   '@types/supertest': 2.0.12
   '@types/testing-library__jest-dom': 5.14.5
+  '@types/uuid': ^8.3.4
   '@types/webpack': ^5.28.0
   '@types/webpack-bundle-analyzer': 4.4.1
   '@types/webpack-hot-middleware': 2.25.6
@@ -112,7 +113,6 @@ specifiers:
   koa-static: ^5.0.0
   libxmljs2: ^0.30.1
   lint-staged: ^13.0.3
-  nanoid: ^4.0.0
   ncp: ^2.0.0
   nock: ^13.2.9
   npm-run-all: ^4.1.5
@@ -136,6 +136,7 @@ specifiers:
   typescript-styled-plugin: ^0.18.2
   universal-cookie: ^4.0.4
   url-loader: ^4.1.1
+  uuid: ^8.3.2
   wait-for: ^2.1.1
   webpack: ^5.73.0
   webpack-bundle-analyzer: ^4.5.0
@@ -180,7 +181,6 @@ dependencies:
   koa-bodyparser: 4.3.0
   koa-static: 5.0.0
   libxmljs2: 0.30.1
-  nanoid: 4.0.0
   on-finished: 2.4.1
   pino: 8.3.0
   pino-pretty: 8.1.0
@@ -192,6 +192,7 @@ dependencies:
   react-router: 6.3.0_react@18.2.0
   react-router-dom: 6.3.0_biqbaboplfbrettd7655fr4n2y
   universal-cookie: 4.0.4
+  uuid: 8.3.2
 
 devDependencies:
   '@babel/cli': 7.18.9_@babel+core@7.18.9
@@ -243,6 +244,7 @@ devDependencies:
   '@types/rimraf': 3.0.2
   '@types/supertest': 2.0.12
   '@types/testing-library__jest-dom': 5.14.5
+  '@types/uuid': 8.3.4
   '@types/webpack': 5.28.0_webpack-cli@4.10.0
   '@types/webpack-bundle-analyzer': 4.4.1_webpack-cli@4.10.0
   '@types/webpack-hot-middleware': 2.25.6_webpack-cli@4.10.0
@@ -3635,6 +3637,10 @@ packages:
 
   /@types/trusted-types/2.0.2:
     resolution: {integrity: sha512-F5DIZ36YVLE+PN+Zwws4kJogq47hNgX3Nx6WyDJ3kcplxyke3XIzB8uK5n/Lpm1HBsbGzd6nmGehL8cPekP+Tg==}
+    dev: true
+
+  /@types/uuid/8.3.4:
+    resolution: {integrity: sha512-c/I8ZRb51j+pYGAu5CrFMRxqZ2ke4y2grEBO5AUjgSkSk+qT2Ea+OdWElz/OiMf5MNpn2b17kuVBwZLQJXzihw==}
     dev: true
 
   /@types/webpack-bundle-analyzer/4.4.1_webpack-cli@4.10.0:
@@ -8938,12 +8944,6 @@ packages:
     hasBin: true
     dev: true
 
-  /nanoid/4.0.0:
-    resolution: {integrity: sha512-IgBP8piMxe/gf73RTQx7hmnhwz0aaEXYakvqZyE302IXW3HyVNhdNGC+O2MwMAVhLEnvXlvKtGbtJf6wvHihCg==}
-    engines: {node: ^14 || ^16 || >=18}
-    hasBin: true
-    dev: false
-
   /natural-compare/1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
@@ -11271,7 +11271,6 @@ packages:
   /uuid/8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
     hasBin: true
-    dev: true
 
   /v8-compile-cache-lib/3.0.1:
     resolution: {integrity: sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==}

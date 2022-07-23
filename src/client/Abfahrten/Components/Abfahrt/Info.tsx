@@ -31,7 +31,9 @@ export const Info: FC = () => {
   const MessagesComp = detail ? DetailMessages : NormalMessages;
   const ViaComp = detail ? DetailVia : NormalVia;
 
-  const info = messages.length > 0 && <MessagesComp messages={messages} />;
+  const info = messages.length > 0 && (
+    <MessagesComp abfahrt={abfahrt} messages={messages} />
+  );
   const via = (detail || !info) && <ViaComp stops={abfahrt.route} />;
 
   if (!info && !via) return null;
