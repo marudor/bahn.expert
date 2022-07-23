@@ -100,6 +100,10 @@ export interface IrisMessage {
   value: number;
 }
 
+export interface MatchedIrisMessage extends IrisMessage {
+  message?: string;
+}
+
 export interface HimIrisMessage extends IrisMessage {
   head: string;
   stopPlace?: HafasStation;

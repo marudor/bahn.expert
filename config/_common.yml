@@ -97,3 +97,13 @@ baseEnv:
       secretKeyRef:
         name: bahnhofs-abfahrten-config
         key: iris_fallback_url
+  - name: FREITEXT_API_URL
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: FREITEXT_API_URL
+  - name: FREITEXT_API_KEY
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: FREITEXT_API_KEY

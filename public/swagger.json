@@ -3261,6 +3261,33 @@
         "type": "object",
         "additionalProperties": false
       },
+      "MatchedIrisMessage": {
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "superseded": {
+            "type": "boolean"
+          },
+          "priority": {
+            "$ref": "#/components/schemas/MessagePrio"
+          },
+          "value": {
+            "type": "number",
+            "format": "double"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": ["text", "value"],
+        "type": "object",
+        "additionalProperties": false
+      },
       "OEBBPlatforms": {
         "properties": {
           "scheduled": {
