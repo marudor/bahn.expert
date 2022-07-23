@@ -135,7 +135,7 @@ export function createNewCache<K extends string, V>(
     },
     async set(key: K, value: V) {
       try {
-        return baseCache.set(key, serialize(value), ttl);
+        return await baseCache.set(key, serialize(value), ttl);
       } catch {
         // ignoring
       }
