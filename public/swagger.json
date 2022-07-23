@@ -604,8 +604,7 @@
           }
         },
         "required": [
-          "text",
-          "value"
+          "text"
         ],
         "type": "object",
         "additionalProperties": false
@@ -638,7 +637,6 @@
         },
         "required": [
           "text",
-          "value",
           "head"
         ],
         "type": "object",
@@ -3611,8 +3609,7 @@
           }
         },
         "required": [
-          "text",
-          "value"
+          "text"
         ],
         "type": "object",
         "additionalProperties": false

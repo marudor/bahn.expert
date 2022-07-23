@@ -97,7 +97,7 @@ export interface IrisMessage {
   timestamp?: Date;
   superseded?: boolean;
   priority?: MessagePrio;
-  value: number;
+  value?: number;
 }
 
 export interface MatchedIrisMessage extends IrisMessage {
