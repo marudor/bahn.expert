@@ -21,7 +21,7 @@
           "icoX"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "CommonProductInfo": {
         "properties": {
@@ -48,7 +48,7 @@
           "name"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "ParsedProduct": {
         "$ref": "#/components/schemas/CommonProductInfo"
@@ -69,7 +69,7 @@
           "lng"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "HafasStation": {
         "properties": {
@@ -95,7 +95,7 @@
           "id"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "PubChL": {
         "properties": {
@@ -123,7 +123,7 @@
           "tTime"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "ParsedHimMessage": {
         "properties": {
@@ -255,7 +255,7 @@
           "endTime"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "ParsedHimSearchResponse": {
         "properties": {
@@ -270,7 +270,7 @@
           "messages"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "AllowedHafasProfile": {
         "enum": [
@@ -322,7 +322,7 @@
           "y"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "OptionalLocL": {
         "properties": {
@@ -362,7 +362,7 @@
           }
         },
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "HimFilterMode": {
         "type": "string",
@@ -410,7 +410,7 @@
           "value"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "HimSearchRequestOptions": {
         "properties": {
@@ -462,7 +462,7 @@
           }
         },
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "RemL": {
         "properties": {
@@ -498,7 +498,7 @@
           "txtN"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "StopInfo": {
         "properties": {
@@ -552,7 +552,7 @@
           "time"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "Pick_GroupedStopPlace.name-or-evaNumber_": {
         "properties": {
@@ -607,7 +607,7 @@
           "text"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "HimIrisMessage": {
         "properties": {
@@ -640,7 +640,7 @@
           "head"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "Message": {
         "anyOf": [
@@ -704,7 +704,7 @@
           "train"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "Stop": {
         "properties": {
@@ -725,7 +725,7 @@
           "name"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "TrainInfo": {
         "properties": {
@@ -757,7 +757,7 @@
           "number"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "Abfahrt": {
         "properties": {
@@ -856,7 +856,7 @@
           "train"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "Wings": {
         "description": "Map of \"mediumId\" to Abfahrt.",
@@ -896,7 +896,7 @@
           "lookbehind"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "JourneyFilterMode": {
         "type": "string",
@@ -954,7 +954,7 @@
           "value"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "GeoRect": {
         "properties": {
@@ -970,7 +970,7 @@
           "urCrd"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "GeoRing": {
         "properties": {
@@ -991,7 +991,7 @@
           "maxDist"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "JourneyTreeRequestOptions": {
         "properties": {
@@ -1031,7 +1031,7 @@
           }
         },
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "JourneyGraphRequestOptions": {
         "properties": {
@@ -1053,7 +1053,7 @@
           }
         },
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "HafasDirection": {
         "type": "string",
@@ -1126,7 +1126,7 @@
           "jid"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "ParsedSubscrCreateResponse": {
         "properties": {
@@ -1139,7 +1139,7 @@
           "subscriptionId"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "Pick_SubscrChannel.channelId_": {
         "properties": {
@@ -1172,7 +1172,7 @@
           "selectedWeekdays"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "SubscrInterval": {
         "properties": {
@@ -1216,7 +1216,7 @@
           "serviceDays"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "SubscrCreateOptions": {
         "properties": {
@@ -1239,7 +1239,7 @@
           "intvlSubscr"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "SubscrDeleteResponse": {
         "properties": {
@@ -1267,7 +1267,7 @@
           "subscrId"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "SubscrDeleteOptions": {
         "properties": {
@@ -1284,7 +1284,7 @@
           "subscrId"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "ParsedSubscrUserResponse": {
         "properties": {
@@ -1296,7 +1296,7 @@
           "userId"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "SubscrChannelNoSoundOption": {
         "properties": {
@@ -1320,7 +1320,7 @@
           "value"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "SubscrChannelCustomerTypeOption": {
         "properties": {
@@ -1340,7 +1340,7 @@
           "value"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "SubscrChannelOption": {
         "anyOf": [
@@ -1383,7 +1383,7 @@
           "name"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "SubscrUserCreateOptions": {
         "properties": {
@@ -1406,7 +1406,7 @@
           "channels"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "SubscrSearchResponse": {
         "properties": {
@@ -1474,7 +1474,7 @@
           "intvlSubscrL"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "SubscrUserDeleteResponse": {
         "properties": {
@@ -1498,7 +1498,7 @@
           "userId"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "SubscrUserDeleteOptions": {
         "properties": {
@@ -1510,17 +1510,17 @@
           "userId"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "SubscrRTEvent": {
         "properties": {},
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "SubscrHIMEvent": {
         "properties": {},
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "SubscrEventHistory": {
         "properties": {
@@ -1542,7 +1542,7 @@
           "himEvents"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "SubscrDetailsResponse": {
         "properties": {
@@ -1594,7 +1594,7 @@
           "eventHisotry"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "CommonStopInfo": {
         "properties": {
@@ -1638,7 +1638,7 @@
           "time"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "RoutingStation": {
         "properties": {
@@ -1654,7 +1654,7 @@
           "id"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "AuslastungsValue": {
         "description": "1: Gering\n2: Hoch\n3: Sehr Hoch\n4: Ausgebucht",
@@ -1676,7 +1676,7 @@
           }
         },
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "Route$Stop": {
         "properties": {
@@ -1715,7 +1715,7 @@
           "station"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "ParsedJourneyMatchResponse": {
         "properties": {
@@ -1752,7 +1752,7 @@
           "lastStop"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "EnrichedJourneyMatchOptions": {
         "properties": {
@@ -1789,7 +1789,7 @@
           "trainName"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "SingleParsedJourneyGeoPos": {
         "properties": {
@@ -1821,7 +1821,7 @@
           "stops"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "ParsedJourneyGeoPosResponse": {
         "items": {
@@ -1913,7 +1913,7 @@
           }
         },
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "JourneyGeoPosOptions": {
         "$ref": "#/components/schemas/JourneyGeoPosRequestOptions"
@@ -1956,7 +1956,7 @@
           "departure"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "Route$ValidArrivalStop": {
         "properties": {
@@ -1996,7 +1996,7 @@
           "arrival"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "ParsedJourneyDetails": {
         "properties": {
@@ -2036,7 +2036,7 @@
           "stops"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "ArrivalStationBoardEntry": {
         "properties": {
@@ -2079,7 +2079,7 @@
           "arrival"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "EvaNumber": {
         "type": "string",
@@ -2127,7 +2127,7 @@
           "departure"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "JourneyMatchOptions": {
         "properties": {
@@ -2157,7 +2157,7 @@
           "trainName"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "ProdCtx": {
         "properties": {
@@ -2209,7 +2209,7 @@
           "icoX"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "ProdL": {
         "properties": {
@@ -2250,7 +2250,7 @@
           "cls"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "TrnCmpSX": {
         "properties": {
@@ -2267,7 +2267,7 @@
           }
         },
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "TxtC": {
         "properties": {
@@ -2290,7 +2290,7 @@
           "b"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "MsgL": {
         "properties": {
@@ -2333,7 +2333,7 @@
           "tagL"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "CommonDeparture": {
         "properties": {
@@ -2397,7 +2397,7 @@
           "dTimeS"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "CommonArrival": {
         "properties": {
@@ -2457,7 +2457,7 @@
           "aTimeS"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "CommonStop": {
         "properties": {
@@ -2558,7 +2558,7 @@
           "dTimeS"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "JnyL": {
         "properties": {
@@ -2610,7 +2610,7 @@
           "stopL"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "Freq": {
         "properties": {
@@ -2640,7 +2640,7 @@
           "jnyL"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "Jny": {
         "properties": {
@@ -2713,7 +2713,7 @@
           "freq"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "SecLJNY": {
         "properties": {
@@ -2765,7 +2765,7 @@
           "resRecommendation"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "Gis": {
         "properties": {
@@ -2803,7 +2803,7 @@
           "getPoly"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "SecLWALK": {
         "properties": {
@@ -2836,7 +2836,7 @@
           "gis"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "SecLKISS": {
         "properties": {
@@ -2852,7 +2852,7 @@
           "type"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "SecL": {
         "anyOf": [
@@ -2896,7 +2896,7 @@
           "targetContext"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "Route$TarifFareSet": {
         "properties": {
@@ -2911,7 +2911,7 @@
           "fares"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "PossibleShort": {
         "type": "string",
@@ -2943,7 +2943,7 @@
           "type"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "Route$Journey": {
         "properties": {
@@ -3013,7 +3013,7 @@
           "train"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "ParsedSearchOnTripResponse": {
         "properties": {
@@ -3108,7 +3108,7 @@
           "departure"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "Route$JourneySegmentTrain": {
         "properties": {
@@ -3200,7 +3200,7 @@
           "departure"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "WalkStopInfo": {
         "properties": {
@@ -3257,7 +3257,7 @@
           "segmentDestination"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "Route$JourneySegment": {
         "anyOf": [
@@ -3330,7 +3330,7 @@
           "segmentTypes"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "AllowedSotMode": {
         "type": "string",
@@ -3353,7 +3353,7 @@
           "id"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "RoutingResult": {
         "properties": {
@@ -3384,7 +3384,7 @@
           "context"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "TripSearchVia": {
         "properties": {
@@ -3400,7 +3400,7 @@
           "evaId"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "JnyCl": {
         "enum": [
@@ -3449,7 +3449,7 @@
           "type"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "TripSearchTarifRequest": {
         "properties": {
@@ -3468,7 +3468,7 @@
           "traveler"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "TripSearchOptionsV3": {
         "properties": {
@@ -3538,7 +3538,7 @@
           "destination"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "WingInfo": {
         "properties": {
@@ -3571,7 +3571,7 @@
           "fl"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "WingDefinition": {
         "properties": {
@@ -3583,7 +3583,7 @@
           }
         },
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "MatchedIrisMessage": {
         "properties": {
@@ -3612,7 +3612,7 @@
           "text"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "OEBBPlatforms": {
         "properties": {
@@ -3630,7 +3630,7 @@
           "reported"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "OEBBSectorInfo": {
         "properties": {
@@ -3645,7 +3645,7 @@
           "scheduled"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "OEBBTimeFormat": {
         "properties": {
@@ -3668,7 +3668,7 @@
           "minutes"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "OEBBTime": {
         "properties": {
@@ -3683,7 +3683,7 @@
           "scheduled"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "OEBBPortion": {
         "properties": {
@@ -3701,7 +3701,7 @@
           "trainName"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "OEBBTimeTableInfo": {
         "properties": {
@@ -3745,7 +3745,7 @@
           "portions"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "OEBBIdentifier": {
         "type": "string",
@@ -3879,7 +3879,7 @@
           "destinationTime"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "OEBBTrainInfo": {
         "properties": {
@@ -3928,7 +3928,7 @@
           "wagons"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "OEBBAccessType": {
         "type": "string",
@@ -3961,7 +3961,7 @@
           "type"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "OEBBTrainOnPlatform": {
         "properties": {
@@ -3978,7 +3978,7 @@
           "departureTowardsFirstSector"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "OEBBSector": {
         "properties": {
@@ -3995,7 +3995,7 @@
           "length"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "OEBBPlatformInfo": {
         "properties": {
@@ -4020,7 +4020,7 @@
           "sectors"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "OEBBInfo": {
         "properties": {
@@ -4048,7 +4048,7 @@
           "accessess"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "ReturnType_typeofinfo_": {
         "$ref": "#/components/schemas/OEBBInfo",
@@ -4070,7 +4070,7 @@
           "endPercent"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "CoachSequenceSector": {
         "properties": {
@@ -4086,7 +4086,7 @@
           "position"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "CoachSequenceStop": {
         "properties": {
@@ -4105,7 +4105,7 @@
           "sectors"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "CoachSequenceProduct": {
         "properties": {
@@ -4124,7 +4124,7 @@
           "type"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "FahrzeugKategorie": {
         "type": "string",
@@ -4182,7 +4182,7 @@
           }
         },
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "CoachSequenceCoachSeats": {
         "properties": {
@@ -4197,7 +4197,7 @@
           }
         },
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "CoachSequenceCoach": {
         "properties": {
@@ -4246,7 +4246,7 @@
           "features"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "AvailableBR": {
         "type": "string",
@@ -4308,7 +4308,7 @@
           "identifier"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "CoachSequenceGroup": {
         "properties": {
@@ -4345,7 +4345,7 @@
           "number"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "CoachSequence": {
         "properties": {
@@ -4360,7 +4360,7 @@
           "groups"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "CoachSequenceInformation": {
         "properties": {
@@ -4394,7 +4394,7 @@
           "isRealtime"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "TrainRunStop": {
         "properties": {
@@ -4418,7 +4418,7 @@
           "evaNumber"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "Pick_TrainRun.Exclude_keyofTrainRun.primaryVehicleGroupName__": {
         "properties": {
@@ -4491,7 +4491,7 @@
           "dates"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "LageplanResponse": {
         "properties": {
@@ -4500,7 +4500,7 @@
           }
         },
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "TransportType": {
         "description": "Type of transport. - HIGH_SPEED_TRAIN (High speed train [Hochgeschwindigkeitszug] like ICE or TGV etc.) - INTERCITY_TRAIN (Inter city train [Intercityzug]) - INTER_REGIONAL_TRAIN (Inter regional train [Interregiozug]) - REGIONAL_TRAIN (Regional train [Regionalzug]) - CITY_TRAIN (City train [S-Bahn]) - SUBWAY (Subway [U-Bahn]) - TRAM (Tram [Strassenbahn]) - BUS (Bus [Bus]) - FERRY (Ferry [Faehre]) - FLIGHT (Flight [Flugzeug]) - CAR (Car [Auto]) - TAXI (Taxi) - SHUTTLE (Shuttle [Ruftaxi]) - BIKE ((E-)Bike [Fahrrad]) - SCOOTER ((E-)Scooter [Roller]) - WALK (Walk ([Laufen]) - UNKNOWN (Unknown)",
@@ -4544,7 +4544,7 @@
           "longitude"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "StopPlaceIdentifier": {
         "properties": {
@@ -4572,7 +4572,7 @@
           "evaNumber"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "GroupedStopPlace": {
         "properties": {
@@ -4601,7 +4601,7 @@
           "availableTransports"
         ],
         "type": "object",
-        "additionalProperties": false
+        "additionalProperties": true
       },
       "TrainOccupancyList": {
         "properties": {},

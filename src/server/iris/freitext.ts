@@ -1,6 +1,6 @@
 import { differenceInSeconds, formatISO, parseISO } from 'date-fns';
 import Axios from 'axios';
-import type { IrisMessage, MatchedIrisMessage } from 'types/iris';
+import type { HimIrisMessage, MatchedIrisMessage, Message } from 'types/iris';
 
 export interface FreitextResponse {
   // UUID
@@ -53,8 +53,8 @@ const forbiddenWords = new Set(['krank', 'personal']);
 
 export function matchFreitexte(
   freitexte: FreitextResponse,
-  messages: IrisMessage[],
-): MatchedIrisMessage[] {
+  messages: Message[],
+): (MatchedIrisMessage | HimIrisMessage)[] {
   const internalFreitexte = freitexte.liveText
     .filter((t) => t.type === 'Intern')
     .filter((t) => {

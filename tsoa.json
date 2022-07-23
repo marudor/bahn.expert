@@ -1,7 +1,7 @@
 {
   "entryFile": "./src/server/API/index.ts",
   "controllerPathGlobs": ["./src/server/API/controller/**"],
-  "noImplicitAdditionalProperties": "silently-remove-extras",
+  "noImplicitAdditionalProperties": "ignore",
   "spec": {
     "name": "Bahnhofs Abfahrten",
     "specVersion": 3,
