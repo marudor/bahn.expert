@@ -8,4 +8,5 @@ globalThis.BASE_URL = `${
 globalThis.RAW_BASE_URL = process.env.BASE_URL || 'localhost:9042';
 globalThis.IMPRINT = imprint;
 
-void import('./app').then((app) => app.default());
+// eslint-disable-next-line unicorn/prefer-module
+require('./app').default();
