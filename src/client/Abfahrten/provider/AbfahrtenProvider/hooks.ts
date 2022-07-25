@@ -75,22 +75,22 @@ export const useAllTrainTypes = () => {
   const departures = useAbfahrtenDepartures();
 
   return useMemo(() => {
-    const typeSet = new Set<string>(defaultTypes);
+    const typeSet = [...defaultTypes];
 
     if (departures) {
       for (const a of departures.departures) {
         if (a.train.type) {
-          typeSet.add(a.train.type);
+          typeSet.push(a.train.type);
         }
       }
       for (const a of departures.lookbehind) {
         if (a.train.type) {
-          typeSet.add(a.train.type);
+          typeSet.push(a.train.type);
         }
       }
     }
 
-    return [...typeSet];
+    return typeSet;
   }, [departures]);
 };
 
