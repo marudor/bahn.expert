@@ -49,7 +49,7 @@ export async function getFreitexte(
   }
 }
 
-const forbiddenWords = new Set(['krank', 'personal']);
+const forbiddenWords = new Set(['krank', ' personal']);
 
 export function matchFreitexte(
   freitexte: LiveText[],
