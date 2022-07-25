@@ -122,7 +122,12 @@ export const AbfahrtenConfigProvider: FC<Props> = ({
 }) => {
   const storage = useStorage();
   const query = useQuery();
-  const savedFilter = storage.get(filterCookieName);
+  const queryFilter = Array.isArray(query.filter)
+    ? (query.filter as string[])
+    : typeof query.filter === 'string'
+    ? query.filter.split(',')
+    : undefined;
+  const savedFilter = queryFilter || storage.get(filterCookieName);
 
   const savedConfig: AbfahrtenConfigProviderValue = {
     filter: {
