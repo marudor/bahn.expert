@@ -45,6 +45,7 @@ module.exports = {
         TEST: false,
       },
       rules: {
+        'unicorn/no-array-for-each': 0,
         'import/no-default-export': 2,
         'no-restricted-imports': [
           'error',

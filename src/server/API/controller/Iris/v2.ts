@@ -70,10 +70,10 @@ export class IrisControllerv2 extends Controller {
       initialDepartureEvaNumber,
       trainNumber,
     );
-    if (!freitexte) {
+    if (!freitexte?.liveText) {
       return notFoundResponse(404);
     }
 
-    return matchFreitexte(freitexte, messages);
+    return matchFreitexte(freitexte.liveText, messages);
   }
 }

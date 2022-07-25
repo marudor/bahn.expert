@@ -52,10 +52,10 @@ export async function getFreitexte(
 const forbiddenWords = new Set(['krank', 'personal']);
 
 export function matchFreitexte(
-  freitexte: FreitextResponse,
+  freitexte: LiveText[],
   messages: Message[],
 ): (MatchedIrisMessage | HimIrisMessage)[] {
-  const internalFreitexte = freitexte.liveText
+  const internalFreitexte = freitexte
     .filter((t) => t.type === 'Intern')
     .filter((t) => {
       const lowercaseText = t.text.toLowerCase();
