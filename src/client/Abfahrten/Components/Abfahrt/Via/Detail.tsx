@@ -16,7 +16,7 @@ export const DetailVia: FC<Props> = ({ stops }) => {
   const stopsToRender = useMemo(() => {
     const result: ReactNode[] = [];
 
-    stops.forEach((s, i) => {
+    for (const [i, s] of stops.entries()) {
       result.push(
         <StyledStationLink
           stop={s}
@@ -29,7 +29,7 @@ export const DetailVia: FC<Props> = ({ stops }) => {
       if (i + 1 !== stops.length) {
         result.push(' - ');
       }
-    });
+    }
 
     return result;
   }, [stops, urlPrefix]);
