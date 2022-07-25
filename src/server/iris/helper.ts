@@ -1,4 +1,4 @@
-import { parse } from 'date-fns';
+import { isValid, parse } from 'date-fns';
 import { zonedTimeToUtc } from 'date-fns-tz';
 import Axios from 'axios';
 import type { AxiosInstance } from 'axios';
@@ -38,6 +38,17 @@ export async function irisGetRequest<T>(url: string): Promise<T> {
   }
 }
 
+/**
+ * Works if node has 'ts' or 'ts-tts'
+ */
+export function getTsOfNode(node: null | Element): ReturnType<typeof parseTs> {
+  let timestamp = parseTs(getAttr(node, 'ts-tts'));
+  if (!timestamp) {
+    timestamp = parseTs(getAttr(node, 'ts'));
+  }
+  return timestamp;
+}
+
 export function getAttr<T extends string>(
   node: null | Element,
   name: string,
@@ -72,7 +83,11 @@ export function getBoolAttr(node: null | Element, name: string): boolean {
 
 export function parseTs(ts?: string): undefined | Date {
   if (ts) {
-    return zonedTimeToUtc(parse(ts, 'yyMMddHHmm', Date.now()), 'Europe/Berlin');
+    const format = ts.includes('-') ? 'yy-MM-dd HH:mm:ss.SSS' : 'yyMMddHHmm';
+    const parsedDate = parse(ts, format, Date.now());
+    if (isValid(parsedDate)) {
+      return zonedTimeToUtc(parsedDate, 'Europe/Berlin');
+    }
   }
 }
 

@@ -21,6 +21,7 @@ import {
   calculateVia,
   getAttr,
   getNumberAttr,
+  getTsOfNode,
   irisGetRequest,
   parseTs,
 } from './helper';
@@ -79,6 +80,8 @@ const processRawRouteString = (rawRouteString?: string) =>
 const routeMap: (s: string) => Route = (name) => ({ name });
 const normalizeRouteName = (name: string) =>
   name.replace('(', ' (').replace(')', ') ').trim();
+const deNormalizeRouteName = (name: string) =>
+  name.replace(' (', '(').replace(') ', ')');
 
 export function parseRealtimeDp(
   dp: null | xmljs.Element,
@@ -240,7 +243,9 @@ export default class Timetable {
 
     try {
       const firstStop = timetable.route[0];
-      const stopOfFirst = await getSingleStation(firstStop.name);
+      const stopOfFirst = await getSingleStation(
+        deNormalizeRouteName(firstStop.name),
+      );
       timetable.initialStopPlace = stopOfFirst.eva;
     } catch {
       // failed to fetch initialStopPlace we ignore that in that case
@@ -351,7 +356,7 @@ export default class Timetable {
     }
 
     const message = {
-      timestamp: parseTs(getAttr(mNode, 'ts')),
+      timestamp: getTsOfNode(mNode),
       priority: getAttr(mNode, 'pr'),
       head: himMessage.head,
       text: himMessage.text,
@@ -397,7 +402,7 @@ export default class Timetable {
     const message: IrisMessage = {
       superseded: undefined,
       text: lookedUpMessage || `${value} (?)`,
-      timestamp: parseTs(getAttr(mNode, 'ts'))!,
+      timestamp: getTsOfNode(mNode)!,
       priority: getAttr(mNode, 'pr'),
       value,
     };

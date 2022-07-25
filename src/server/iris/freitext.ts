@@ -73,8 +73,8 @@ export function matchFreitexte(
     const relevantInternalMessage = internalFreitexte.find((f) => {
       const createdAt = parseISO(f.createdAt);
       const diff = differenceInSeconds(createdAt, m.timestamp!);
-      // Alles innerhalb von 60 Sekunden zählt als eine Message
-      if (Math.abs(diff) < 60) {
+      // Alles innerhalb von 45 Sekunden zählt als eine Message
+      if (Math.abs(diff) < 45) {
         return f;
       }
     });

@@ -37,8 +37,6 @@ export function parseStation(stationNode: xmljs.Element): IrisStation {
 export async function getSingleStation(
   searchTerm: string,
 ): Promise<IrisStation> {
-  // console.log(await cache.keys());
-
   const cached = await cache.get(searchTerm);
 
   if (cached) {
