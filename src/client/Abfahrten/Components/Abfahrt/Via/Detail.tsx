@@ -14,10 +14,10 @@ export const DetailVia: FC<Props> = ({ stops }) => {
   const urlPrefix = useAbfahrtenUrlPrefix();
 
   const stopsToRender = useMemo(() => {
-    const stopsToRender: ReactNode[] = [];
+    const result: ReactNode[] = [];
 
-    for (const [i, s] of stops.entries()) {
-      stopsToRender.push(
+    stops.forEach((s, i) => {
+      result.push(
         <StyledStationLink
           stop={s}
           urlPrefix={urlPrefix}
@@ -27,11 +27,11 @@ export const DetailVia: FC<Props> = ({ stops }) => {
         />,
       );
       if (i + 1 !== stops.length) {
-        stopsToRender.push(' - ');
+        result.push(' - ');
       }
-    }
+    });
 
-    return stopsToRender;
+    return result;
   }, [stops, urlPrefix]);
 
   return <>{stopsToRender}</>;

@@ -28,7 +28,7 @@ export const NormalVia: FC<Props> = ({ stops }) => {
     const stopsToRender: ReactNode[] = [];
     const filteredStops = stops.filter((s) => s.showVia);
 
-    for (const [i, s] of filteredStops.entries()) {
+    filteredStops.forEach((s, i) => {
       stopsToRender.push(
         <StyledViaStop stop={s} data-testid={`via-${s.name}`} key={i}>
           {s.name}
@@ -37,7 +37,7 @@ export const NormalVia: FC<Props> = ({ stops }) => {
       if (i + 1 !== filteredStops.length) {
         stopsToRender.push(' - ');
       }
-    }
+    });
 
     return stopsToRender;
   }, [stops]);

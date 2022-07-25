@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import styled from '@emotion/styled';
+import type { Abfahrt, Message } from 'types/iris';
 import type { FC } from 'react';
-import type { Message } from 'types/iris';
 
 export const MessageContainer = styled.div(({ theme }) => ({
   color: theme.colors.red,
@@ -11,6 +11,7 @@ export const MessageContainer = styled.div(({ theme }) => ({
 
 interface Props {
   messages: Message[];
+  abfahrt: Abfahrt;
 }
 export const NormalMessages: FC<Props> = ({ messages }) => {
   const messagesDisplay = useMemo(
