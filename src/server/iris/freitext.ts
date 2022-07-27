@@ -49,7 +49,14 @@ export async function getFreitexte(
   }
 }
 
-const forbiddenWords = new Set(['krank', ' personal']);
+const forbiddenWords = new Set([
+  'krank',
+  ' personal',
+  ' kin',
+  'kin ',
+  'prognose ',
+]);
+const allowedTextCodes = new Set([70, 71, 82, 85, 93, 95, 98]);
 
 export function matchFreitexte(
   freitexte: LiveText[],
@@ -67,21 +74,28 @@ export function matchFreitexte(
       return true;
     });
   return messages.map((m) => {
-    if (m.value !== 98 || !m.timestamp) {
+    if (!allowedTextCodes.has(m.value!) || !m.timestamp) {
       return m;
     }
-    const relevantInternalMessage = internalFreitexte.find((f) => {
-      const createdAt = parseISO(f.createdAt);
-      const diff = differenceInSeconds(createdAt, m.timestamp!);
-      // Alles innerhalb von 45 Sekunden zählt als eine Message
-      if (Math.abs(diff) < 45) {
-        return f;
-      }
-    });
-    if (relevantInternalMessage) {
+    const relevantInternalMessages = internalFreitexte
+      .map((f) => {
+        const createdAt = parseISO(f.createdAt);
+        const diff = Math.abs(differenceInSeconds(createdAt, m.timestamp!));
+        if (diff < 40) {
+          return {
+            diff,
+            f,
+          };
+        }
+        return undefined;
+      })
+      .filter(Boolean)
+      .sort((a, b) => (a.diff > b.diff ? 1 : -1));
+
+    if (relevantInternalMessages.length) {
       return {
         ...m,
-        message: relevantInternalMessage.text,
+        message: relevantInternalMessages[0].f.text,
       };
     }
     return m;
