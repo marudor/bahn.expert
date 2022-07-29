@@ -56,7 +56,7 @@ const forbiddenWords = new Set([
   'kin ',
   'prognose ',
 ]);
-const allowedTextCodes = new Set([70, 71, 82, 85, 93, 95, 98]);
+const allowedTextCodes = new Set([39, 70, 71, 82, 85, 93, 95, 98]);
 
 export function matchFreitexte(
   freitexte: LiveText[],
