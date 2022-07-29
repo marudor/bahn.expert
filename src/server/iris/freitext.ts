@@ -81,7 +81,7 @@ export function matchFreitexte(
       .map((f) => {
         const createdAt = parseISO(f.createdAt);
         const diff = Math.abs(differenceInSeconds(createdAt, m.timestamp!));
-        if (diff < 40) {
+        if (diff < 25) {
           return {
             diff,
             f,
