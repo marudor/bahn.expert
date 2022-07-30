@@ -29,7 +29,8 @@ export const Details: FC<Props> = ({
   const query = useQuery();
   const [details, setDetails] = useState<ParsedSearchOnTripResponse>();
   const [error, setError] = useState<AxiosError>();
-  const { updateTitle, updateDescription } = useHeaderTagsActions();
+  const { updateTitle, updateDescription, updateKeywords } =
+    useHeaderTagsActions();
   const { autoUpdate } = useCommonConfig();
 
   const initialDepartureDate = useMemo(() => {
@@ -50,6 +51,7 @@ export const Details: FC<Props> = ({
           'dd.MM.yyyy',
         )}`,
       );
+      updateKeywords([details.train.name]);
     } else {
       updateTitle(train);
     }
@@ -59,7 +61,14 @@ export const Details: FC<Props> = ({
       description += ` am ${format(initialDepartureDate, 'dd.MM.yyyy')}`;
     }
     updateDescription(description);
-  }, [details, initialDepartureDate, train, updateDescription, updateTitle]);
+  }, [
+    details,
+    initialDepartureDate,
+    train,
+    updateDescription,
+    updateTitle,
+    updateKeywords,
+  ]);
 
   const refresh = useCallback(() => {
     setDetails(undefined);

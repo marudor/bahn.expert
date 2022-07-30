@@ -1,15 +1,14 @@
 import KoaRouter from '@koa/router';
-import rawStations from 'db-stations/data.json';
+import seoStationNames from './seoStations.json';
 
-const filterRegex = /(hbf|airport|flughafen)/i;
 const router = new KoaRouter();
 const sitemap = () => {
   let xml =
     '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
 
-  for (const s of rawStations.filter((s) => filterRegex.exec(s.name))) {
+  for (const stationName of seoStationNames) {
     xml += `<url><loc>${globalThis.BASE_URL}/${encodeURIComponent(
-      s.name,
+      stationName,
     )}</loc><changefreq>always</changefreq></url>`;
   }
 
