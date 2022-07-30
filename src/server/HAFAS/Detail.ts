@@ -1,4 +1,5 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
+import { findAndMatchFreitexte } from 'server/iris/freitext';
 import { getAbfahrten } from 'server/iris';
 import { getPlannedSequence } from 'server/Reihung/plan';
 import { isAfter, subMinutes } from 'date-fns';
@@ -183,11 +184,18 @@ export default async (
         );
 
         if (irisDeparture) {
-          irisStop.irisMessages = [
+          const irisMessages = [
             ...irisDeparture.messages.delay,
             ...irisDeparture.messages.qos,
             ...irisDeparture.messages.him,
           ];
+          const matchedMessages = await findAndMatchFreitexte(
+            relevantSegment.departure.scheduledTime,
+            relevantSegment.segmentStart.id,
+            relevantSegment.train.number!,
+            irisMessages,
+          );
+          irisStop.irisMessages = matchedMessages || irisMessages;
         }
       } catch {
         // ignore

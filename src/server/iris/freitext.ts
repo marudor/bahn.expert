@@ -1,6 +1,11 @@
 import { differenceInSeconds, formatISO, parseISO } from 'date-fns';
 import Axios from 'axios';
-import type { HimIrisMessage, MatchedIrisMessage, Message } from 'types/iris';
+import type {
+  HimIrisMessage,
+  IrisMessage,
+  MatchedIrisMessage,
+  Message,
+} from 'types/iris';
 
 export interface FreitextResponse {
   // UUID
@@ -31,7 +36,7 @@ const freitextAxios = Axios.create({
   },
 });
 
-export async function getFreitexte(
+async function getFreitexte(
   initialDepartureDate: Date,
   initialDepartureEvaNumber: string,
   trainNumber: string,
@@ -58,7 +63,7 @@ const forbiddenWords = new Set([
 ]);
 const allowedTextCodes = new Set([39, 70, 71, 82, 85, 93, 95, 98]);
 
-export function matchFreitexte(
+function matchFreitexte(
   freitexte: LiveText[],
   messages: Message[],
 ): (MatchedIrisMessage | HimIrisMessage)[] {
@@ -100,4 +105,22 @@ export function matchFreitexte(
     }
     return m;
   });
+}
+
+export async function findAndMatchFreitexte(
+  initialDepartureDate: Date,
+  initialDepartureEvaNumber: string,
+  trainNumber: string,
+  messages: IrisMessage[],
+): Promise<MatchedIrisMessage[] | undefined> {
+  const freitexte = await getFreitexte(
+    initialDepartureDate,
+    initialDepartureEvaNumber,
+    trainNumber,
+  );
+  if (!freitexte?.liveText) {
+    return undefined;
+  }
+
+  return matchFreitexte(freitexte.liveText, messages);
 }
