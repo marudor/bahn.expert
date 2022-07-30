@@ -11,8 +11,8 @@ import {
   Route,
   Tags,
 } from '@tsoa/runtime';
+import { findAndMatchFreitexte } from 'server/iris/freitext';
 import { getAbfahrten } from 'server/iris';
-import { getFreitexte, matchFreitexte } from 'server/iris/freitext';
 import wingInfo from 'server/iris/wings';
 import type {
   AbfahrtenResult,
@@ -65,15 +65,15 @@ export class IrisControllerv2 extends Controller {
     @Body() messages: IrisMessage[],
     @Res() notFoundResponse: TsoaResponse<404, void>,
   ): Promise<MatchedIrisMessage[]> {
-    const freitexte = await getFreitexte(
+    const matchedMessages = await findAndMatchFreitexte(
       initialDepartureDate,
       initialDepartureEvaNumber,
       trainNumber,
+      messages,
     );
-    if (!freitexte?.liveText) {
+    if (!matchedMessages) {
       return notFoundResponse(404);
     }
-
-    return matchFreitexte(freitexte.liveText, messages);
+    return matchedMessages;
   }
 }
