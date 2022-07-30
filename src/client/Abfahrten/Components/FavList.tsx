@@ -61,11 +61,13 @@ export const FavList: FC<Props> = ({ staticContext, children }) => {
   }, [favs]);
   const error = useAbfahrtenError();
   const [savedError] = useState(error);
-  const { updateTitle, updateDescription } = useHeaderTagsActions();
+  const { updateTitle, updateDescription, updateKeywords } =
+    useHeaderTagsActions();
 
   useEffect(() => {
     updateTitle();
     updateDescription();
+    updateKeywords();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

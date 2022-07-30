@@ -7,13 +7,15 @@ import { useRoutingConfig } from 'client/Routing/provider/RoutingConfigProvider'
 import type { FC } from 'react';
 
 const RouteHeaderTags = () => {
-  const { updateTitle, updateDescription } = useHeaderTagsActions();
+  const { updateTitle, updateDescription, updateKeywords } =
+    useHeaderTagsActions();
   const { start, destination, via, date } = useRoutingConfig();
 
   useEffect(() => {
     if (!start && !destination) {
       updateTitle();
       updateDescription();
+      updateKeywords();
     } else {
       updateTitle(
         `${start?.name ?? '?'} -> ${destination?.name ?? '?'} @ ${format(
@@ -29,7 +31,15 @@ const RouteHeaderTags = () => {
         } @ ${format(date || Date.now(), 'HH:mm dd.MM.yy')}`,
       );
     }
-  }, [start, destination, via, date, updateDescription, updateTitle]);
+  }, [
+    start,
+    destination,
+    via,
+    date,
+    updateDescription,
+    updateTitle,
+    updateKeywords,
+  ]);
 
   return null;
 };

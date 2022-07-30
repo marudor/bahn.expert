@@ -53,17 +53,20 @@ const InnerAbfahrtenList = () => {
   const { autoUpdate } = useCommonConfig();
   const urlPrefix = useAbfahrtenUrlPrefix();
   const refreshCurrentAbfahrten = useRefreshCurrent();
-  const { updateTitle, updateDescription } = useHeaderTagsActions();
+  const { updateTitle, updateDescription, updateKeywords } =
+    useHeaderTagsActions();
 
   useEffect(() => {
     if (!currentStopPlace) {
       updateTitle();
       updateDescription();
+      updateKeywords();
     } else {
       updateTitle(currentStopPlace.name);
       updateDescription(`Zugabfahrten für ${currentStopPlace.name}`);
+      updateKeywords([currentStopPlace.name]);
     }
-  }, [currentStopPlace, updateDescription, updateTitle]);
+  }, [currentStopPlace, updateDescription, updateTitle, updateKeywords]);
 
   useEffect(() => {
     return () => {

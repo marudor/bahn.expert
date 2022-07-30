@@ -14,7 +14,7 @@ declare module 'react-helmet-async' {
 }
 
 export const HeaderTags: FC = () => {
-  const { title, description } = useHeaderTags();
+  const { title, description, keywords } = useHeaderTags();
   const url = `${globalThis.BASE_URL}${useLocation().pathname}`;
   const image = `${globalThis.BASE_URL}/android-chrome-384x384.png`;
 
@@ -23,6 +23,7 @@ export const HeaderTags: FC = () => {
       <title>{title}</title>
       <link data-testid="canonicalLink" rel="canonical" href={url} />
       <meta name="description" content={description} />
+      <meta name="keywords" content={[...keywords].join(', ')} />
       {/* Twitter Start */}
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="@marudor" />
