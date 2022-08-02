@@ -72,12 +72,14 @@ export async function searchStopPlace(
   groupBySales?: boolean,
 ): Promise<GroupedStopPlace[]> {
   try {
-    return await searchStopPlaceRisStations(
+    const result = await searchStopPlaceRisStations(
       searchTerm,
       max,
       filterForIris,
       groupBySales,
     );
+    if (result?.length || filterForIris || groupBySales) return result;
+    return searchWithHafas(searchTerm, max, filterForIris);
   } catch (e) {
     // debug this shit
     // eslint-disable-next-line no-console
