@@ -127,6 +127,16 @@ export async function getStopPlaceByEva(
     const groupedStopPlace = mapToGroupedStopPlace(risResult);
     void stopPlaceByEvaCache.set(groupedStopPlace.evaNumber, groupedStopPlace);
     return groupedStopPlace;
+  } else {
+    const hafasResults = await searchWithHafas(evaNumber, 1, false);
+    const groupedHafasResult = hafasResults[0];
+    if (groupedHafasResult && groupedHafasResult.evaNumber === evaNumber) {
+      void stopPlaceByEvaCache.set(
+        groupedHafasResult.evaNumber,
+        groupedHafasResult,
+      );
+      return groupedHafasResult;
+    }
   }
 }
 
