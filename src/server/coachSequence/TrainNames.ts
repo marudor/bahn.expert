@@ -233,6 +233,7 @@ const naming = {
   2875: 'Magdeburger Börde',
   //
   // Intercity2 KISS - BR 4110
+  4103: 'Allgäu',
   4111: 'Gäu',
   4114: 'Dresden Elbland',
   4117: 'Mecklenburgische Ostseeküste',
@@ -268,6 +269,7 @@ const naming = {
   9050: 'Metropole Ruhr',
   9202: 'Schleswig-Holstein',
   9457: 'Bundesrepublik Deutschland',
+  9481: 'Rheinland-Pfalz',
 };
 
 export default (tzn?: string): string | undefined => {
