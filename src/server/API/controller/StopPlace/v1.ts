@@ -2,6 +2,7 @@ import { AuslastungsValue } from 'types/routing';
 import {
   Controller,
   Get,
+  Hidden,
   OperationId,
   Query,
   Res,
@@ -98,6 +99,29 @@ export class StopPlaceController extends Controller {
       return notFoundResponse(404);
     }
     return stopPlace;
+  }
+
+  @Hidden()
+  @Response(404)
+  @Get('/{evaNumber}/live')
+  @Tags('StopPlace')
+  async stopPlaceByEvaLive(
+    evaNumber: EvaNumber,
+    @Res() notFoundResponse: TsoaResponse<404, void>,
+    @Res() notAuthorized: TsoaResponse<401, void>,
+  ): Promise<GroupedStopPlace> {
+    try {
+      const stopPlace = await getStopPlaceByEva(evaNumber, true);
+      if (!stopPlace) {
+        return notFoundResponse(404);
+      }
+      return stopPlace;
+    } catch (e) {
+      if (axios.isAxiosError(e) && e.response?.status === 401) {
+        return notAuthorized(401);
+      }
+      return notFoundResponse(404);
+    }
   }
 
   @Response(404)

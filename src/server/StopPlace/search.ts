@@ -119,15 +119,23 @@ export async function searchStopPlaceRisStations(
 
 export async function getStopPlaceByEva(
   evaNumber: string,
+  forceLive?: boolean,
 ): Promise<GroupedStopPlace | undefined> {
-  const cached = await stopPlaceByEvaCache.get(evaNumber);
-  if (cached) return cached;
+  if (!forceLive) {
+    const cached = await stopPlaceByEvaCache.get(evaNumber);
+    if (cached) return cached;
+  }
   const risResult = await byEva(evaNumber);
   if (risResult) {
     const groupedStopPlace = mapToGroupedStopPlace(risResult);
-    void stopPlaceByEvaCache.set(groupedStopPlace.evaNumber, groupedStopPlace);
+    if (!forceLive) {
+      void stopPlaceByEvaCache.set(
+        groupedStopPlace.evaNumber,
+        groupedStopPlace,
+      );
+    }
     return groupedStopPlace;
-  } else {
+  } else if (!forceLive) {
     const hafasResults = await searchWithHafas(evaNumber, 1, false);
     const groupedHafasResult = hafasResults[0];
     if (groupedHafasResult && groupedHafasResult.evaNumber === evaNumber) {

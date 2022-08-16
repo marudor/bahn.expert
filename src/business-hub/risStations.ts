@@ -84,7 +84,10 @@ export async function byEva(evaNumber: string): Promise<StopPlace | undefined> {
       })
     ).data;
     return result.stopPlaces?.[0];
-  } catch {
+  } catch (e) {
+    if (axios.isAxiosError(e) && e.response?.status) {
+      throw e;
+    }
     return undefined;
   }
 }

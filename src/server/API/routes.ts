@@ -2872,6 +2872,32 @@ export function RegisterRoutes(router: KoaRouter) {
             return promiseHandler(controller, promise, context, undefined, undefined);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        router.get('/api/stopPlace/v1/:evaNumber/live',
+            ...(fetchMiddlewares<Middleware>(StopPlaceController)),
+            ...(fetchMiddlewares<Middleware>(StopPlaceController.prototype.stopPlaceByEvaLive)),
+
+            async function StopPlaceController_stopPlaceByEvaLive(context: any, next: any) {
+            const args = {
+                    evaNumber: {"in":"path","name":"evaNumber","required":true,"ref":"EvaNumber"},
+                    notFoundResponse: {"in":"res","name":"404","required":true,"dataType":"void"},
+                    notAuthorized: {"in":"res","name":"401","required":true,"dataType":"void"},
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+              validatedArgs = getValidatedArgs(args, context, next);
+            } catch (err) {
+              const error = err as any;
+              context.status = error.status;
+              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+            }
+
+            const controller = new StopPlaceController();
+
+            const promise = controller.stopPlaceByEvaLive.apply(controller, validatedArgs as any);
+            return promiseHandler(controller, promise, context, undefined, undefined);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/stopPlace/v1/:evaNumber/identifier',
             ...(fetchMiddlewares<Middleware>(StopPlaceController)),
             ...(fetchMiddlewares<Middleware>(StopPlaceController.prototype.stopPlaceIdentifier)),
