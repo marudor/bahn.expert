@@ -5687,6 +5687,7 @@
         "tags": [
           "StopPlace"
         ],
+        "deprecated": true,
         "security": [],
         "parameters": [
           {

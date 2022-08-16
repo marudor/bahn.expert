@@ -1,6 +1,7 @@
 import { AuslastungsValue } from 'types/routing';
 import {
   Controller,
+  Deprecated,
   Get,
   Hidden,
   OperationId,
@@ -125,6 +126,7 @@ export class StopPlaceController extends Controller {
   }
 
   @Response(404)
+  @Deprecated()
   @Get('/{evaNumber}/identifier')
   @Tags('StopPlace')
   async stopPlaceIdentifier(
