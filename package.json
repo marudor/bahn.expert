@@ -61,7 +61,7 @@
     "lint-staged": "lint-staged",
     "postinstall": "husky install",
     "precommit": "run-s doc:build:gitadd lint-staged",
-    "generate:apiClient": "openapi-generator-cli generate --additional-properties=useSingleRequestParameter=true -i ./src/business-hub/ris-stations-1.7.0.yaml -o src/business-hub/generated -g typescript-axios"
+    "generate:apiClient": "openapi-generator-cli generate --additional-properties=useSingleRequestParameter=true -i ./src/business-hub/ris-stations-1.8.0.yaml -o src/business-hub/generated -g typescript-axios"
   },
   "lint-staged": {
     "*.{t,j,cj,mj}s?(x)": [

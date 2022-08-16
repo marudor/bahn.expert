@@ -501,7 +501,7 @@ components:
         - width
       type: object
     LockerFee:
-      description: Fee [Mietgebühr] for leasing lockers [Schliefächer].
+      description: Fee [Mietgebühr] for leasing lockers [Schließfächer].
       properties:
         fee:
           description: Fee for locker usage in cents (currency is EUR). Refers to fee period.
@@ -602,44 +602,6 @@ components:
       required:
         - platforms
       type: object
-    ReferencePoint:
-      description: Reference point that indicates where a vehicle [Fahrzeug] stops at a platform [Gleis, Bahnsteig, Plattform].
-      properties:
-        maxLength:
-          description: Length up to the reference point is to be used by a stopping formation.
-          format: double
-          type: number
-        name:
-          description: Name of the reference point.
-          type: string
-        position:
-          description: Position of the reference point in meter in local coordinates.
-          format: double
-          type: number
-        readableFromOrigin:
-          description: Determines the direction the reference point is to be used. If true, the formation moves from origin to positive values in local coordinates.
-          type: boolean
-        referencePointType:
-          $ref: '#/components/schemas/ReferencePointType'
-        uuid:
-          description: Unique ID of reference point.
-          type: string
-      required:
-        - name
-        - position
-        - readableFromOrigin
-        - referencePointType
-        - uuid
-      type: object
-    ReferencePointType:
-      description: |-
-        Type of a reference point.
-        - STOP_SIGNAL (Haltesignal)
-        - STOP_BOARD (Haltetafel)
-      enum:
-        - STOP_SIGNAL
-        - STOP_BOARD
-      type: string
     Sector:
       description: Platform [Gleis, Bahnsteig, Plattform] sector [Gleisabschnitt, Steigabschnitt] information.
       properties:
@@ -1150,31 +1112,6 @@ components:
             $ref: '#/components/schemas/StopPlace'
           type: array
       type: object
-    StopPlacesPageable:
-      description: Pageable stop place [Haltestelle] search result.
-      properties:
-        limit:
-          description: Maximum number of results that may be returned for one page, provided by the consumer.
-          format: int32
-          type: integer
-        offset:
-          description: Pagination offset of the results, provided by the consumer.
-          format: int32
-          type: integer
-        stopPlaces:
-          description: Stop places matching provided search criteria.
-          items:
-            $ref: '#/components/schemas/StopPlace'
-          type: array
-        total:
-          description: Total number of available results.
-          format: int32
-          type: integer
-      required:
-        - limit
-        - offset
-        - total
-      type: object
     TransportType:
       description: |-
         Type of transport.
@@ -1313,7 +1250,7 @@ info:
     * *[backlog]* raise stop-place change events with RIS::Events in case stop-place data changes
     * *[backlog]* include Station & Service Bahnhofswissen with it's fully functional API starting from ~Q4 2021
   title: RIS::Stations
-  version: 1.7.0
+  version: 1.8.0
   x-ibm-name: ris-stations
   x-pathalias: ris-stations
 openapi: 3.0.1
@@ -1742,12 +1679,6 @@ paths:
           schema:
             default: true
             type: boolean
-        - description: indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validity time ranges are returned
-          in: query
-          name: onlyActive
-          schema:
-            default: true
-            type: boolean
       responses:
         '200':
           content:
@@ -1795,12 +1726,6 @@ paths:
         - description: should sub platforms [Teilgleise] be included
           in: query
           name: includeSubPlatforms
-          schema:
-            default: true
-            type: boolean
-        - description: indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validity time ranges are returned
-          in: query
-          name: onlyActive
           schema:
             default: true
             type: boolean
@@ -1853,12 +1778,6 @@ paths:
           name: includeAccessibility
           schema:
             default: false
-            type: boolean
-        - description: indicates whether only active platforms should be returned, defaults to true, if false inactive and future platforms for different validity time ranges are returned
-          in: query
-          name: onlyActive
-          schema:
-            default: true
             type: boolean
       responses:
         '200':
@@ -1964,12 +1883,6 @@ paths:
           name: state
           schema:
             type: string
-        - description: indicates whether only active stations should be returned, defaults to true, if false inactive and future stations for different validity time ranges are returned
-          in: query
-          name: onlyActive
-          schema:
-            default: true
-            type: boolean
         - description: |-
             Locale to use, defaults to DE.
             - DE (German)
@@ -2089,80 +2002,6 @@ paths:
           description: Error
       tags:
         - Stations
-  /stop-places:
-    get:
-      description: Returns all available stop places.
-      operationId: getStopPlaces
-      parameters:
-        - description: transport associations [Verkehrsverbünde] to limit search results for
-          in: query
-          name: transportAssociations
-          schema:
-            items:
-              type: string
-            type: array
-        - description: indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
-          in: query
-          name: onlyActive
-          schema:
-            default: true
-            type: boolean
-        - description: |-
-            Locale to use, defaults to DE.
-            - DE (German)
-            - EN (English)
-            - FR (French)
-            - IT (Italian)
-
-            *DE only*
-          in: query
-          name: locales
-          schema:
-            items:
-              $ref: '#/components/schemas/Locale'
-            type: array
-        - description: limits result to all stop-places that have been changed (anything) after passed fully qualified date (YYYY-MM-dd), can be used to get deltas, if omitted all stop-places are returned
-          in: query
-          name: lastChanged
-          schema:
-            format: date
-            type: string
-        - description: pagination offset parameter in order to navigate through result list, defaults to 0
-          in: query
-          name: offset
-          schema:
-            default: 0
-            format: int32
-            type: integer
-        - description: pagination limit parameter in order to limit total amount of results, defaults to 100
-          in: query
-          name: limit
-          schema:
-            default: 100
-            format: int32
-            maximum: 100
-            type: integer
-      responses:
-        '200':
-          content:
-            application/vnd.de.db.ris+json:
-              schema:
-                $ref: '#/components/schemas/StopPlacesPageable'
-          description: Success
-          headers:
-            Cache-Control:
-              description: Controls whether and how long response can be cached by consumers, defaults to 'no-cache, no-store'.
-              schema:
-                type: string
-              style: simple
-        '500':
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-          description: Error
-      tags:
-        - Stop Places
   /stop-places/by-key:
     get:
       description: Returns stop places that match the provided key.
@@ -2190,12 +2029,6 @@ paths:
           required: true
           schema:
             type: string
-        - description: indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
-          in: query
-          name: onlyActive
-          schema:
-            default: true
-            type: boolean
         - description: |-
             Locale to use, defaults to DE.
             - DE (German)
@@ -2283,7 +2116,7 @@ paths:
           name: sortBy
           schema:
             $ref: '#/components/schemas/StopPlaceSortKey'
-        - description: indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
+        - description: indicates whether only active stop places should be returned (ie meaning that at least one transport is actually driving at this stop-place), defaults to true
           in: query
           name: onlyActive
           schema:
@@ -2380,7 +2213,7 @@ paths:
           name: groupBy
           schema:
             $ref: '#/components/schemas/StopPlaceSearchGroupByKey'
-        - description: indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
+        - description: indicates whether only active stop places should be returned (ie meaning that at least one transport is actually driving at this stop-place), defaults to true
           in: query
           name: onlyActive
           schema:
@@ -2439,12 +2272,6 @@ paths:
           required: true
           schema:
             type: string
-        - description: indicates whether only active stop places should be returned, defaults to true, if false inactive and future stop places for different validity time ranges are returned
-          in: query
-          name: onlyActive
-          schema:
-            default: true
-            type: boolean
         - description: |-
             Locale to use, defaults to DE.
             - DE (German)

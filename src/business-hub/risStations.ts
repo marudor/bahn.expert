@@ -13,7 +13,7 @@ import type {
   StopPlaceSearchResult,
 } from 'business-hub/types';
 
-const nonÖPNVTypes = new Set([
+const nonÖPNVTypes: Set<TransportType> = new Set([
   TransportType.HighSpeedTrain,
   TransportType.IntercityTrain,
   TransportType.InterRegionalTrain,
