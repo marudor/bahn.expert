@@ -66,11 +66,21 @@ baseEnv:
       secretKeyRef:
         name: bahnhofs-abfahrten-config
         key: imprint_town
-  - name: RIS_STATIONS_KEY
+  - name: RIS_STATIONS_CLIENT_SECRET
     valueFrom:
       secretKeyRef:
         name: bahnhofs-abfahrten-config
-        key: RIS_STATIONS_KEY
+        key: RIS_STATIONS_CLIENT_SECRET
+  - name: RIS_STATIONS_CLIENT_ID
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: RIS_STATIONS_CLIENT_ID
+  - name: RIS_STATIONS_URL
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: RIS_STATIONS_URL
   - name: HIM_MAX_FETCH
     valueFrom:
       secretKeyRef:
