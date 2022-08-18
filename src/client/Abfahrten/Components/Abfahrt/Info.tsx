@@ -1,3 +1,4 @@
+import { compareDesc } from 'date-fns';
 import { DetailMessages } from 'client/Common/Components/Messages/Detail';
 import { DetailVia } from './Via/Detail';
 import { NormalMessages } from 'client/Common/Components/Messages/Normal';
@@ -26,7 +27,7 @@ export const Info: FC = () => {
       return messages.filter((m) => !m.superseded);
     }
 
-    return messages;
+    return messages.sort((m1, m2) => compareDesc(m1.timestamp!, m2.timestamp!));
   }, [abfahrt.messages, detail]);
   const MessagesComp = detail ? DetailMessages : NormalMessages;
   const ViaComp = detail ? DetailVia : NormalVia;

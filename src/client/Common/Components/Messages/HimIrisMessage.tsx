@@ -3,10 +3,7 @@ import { format, getDate } from 'date-fns';
 import { useCallback, useState } from 'react';
 import styled from '@emotion/styled';
 import type { FC, SyntheticEvent } from 'react';
-import type {
-  HimIrisMessage as HimIrisMessageType,
-  MatchedIrisMessage,
-} from 'types/iris';
+import type { HimIrisMessage as HimIrisMessageType } from 'types/iris';
 
 const Container = styled.div<{ superseded?: boolean }>(
   {
@@ -17,7 +14,7 @@ const Container = styled.div<{ superseded?: boolean }>(
 );
 
 interface Props {
-  message: HimIrisMessageType | MatchedIrisMessage;
+  message: HimIrisMessageType;
   today?: number;
 }
 
@@ -58,10 +55,7 @@ export const HimIrisMessage: FC<Props> = ({
         </DialogTitle>
         <DialogContent
           dangerouslySetInnerHTML={{
-            __html:
-              'message' in message && message.message
-                ? message.message
-                : message.text,
+            __html: message.text,
           }}
         />
       </Dialog>
