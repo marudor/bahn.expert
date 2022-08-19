@@ -18,7 +18,6 @@ spec:
     app.kubernetes.io/name: {{ include "bahnhofsAbfahrten.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
 ---
-{{ if .Values.docs }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -38,5 +37,4 @@ spec:
   selector:
     app.kubernetes.io/name: {{ include "bahnhofsAbfahrten.name" . }}
     app.kubernetes.io/instance: docs-{{ .Release.Name }}
-    {{ end }}
   

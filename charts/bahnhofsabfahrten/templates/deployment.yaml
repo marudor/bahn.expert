@@ -45,11 +45,7 @@ spec:
               value: "{{ .Values.redis.port }}"
             {{ end }}
             - name: BASE_URL
-            {{ if .Values.hostName }}
               value: {{ .Values.hostName }}
-            {{ else }}
-              value: {{ .Release.Name }}.marudor.de
-            {{ end }}
 {{ if .Values.baseEnv }}
 {{ toYaml .Values.baseEnv | indent 12 }}
 {{ end }}

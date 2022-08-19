@@ -15,41 +15,9 @@ fullnameOverride: ''
 disruption:
   maxUnavailable: 1
 
-service:
-  type: ClusterIP
-  port: 9042
-
 env:
   - name: test
     value: test
-
-redis: {}
-
-docs: false
-
-certificate:
-  enabled: false
-  # commonName: example.foo
-  # dnsNames:
-  #   - test.example.foo
-  # domains:
-  #   - example.foo
-  #   - test.example.foo
-  # issuerName: marudor-issuer
-  # isserKind: ClusterIssuer
-
-ingress:
-  enabled: false
-  annotations:
-    {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  path: /
-  hosts:
-  tls:
-  # - secretName:
-  #    hosts:
-  #      - chart-example.local
 
 resources:
   {}

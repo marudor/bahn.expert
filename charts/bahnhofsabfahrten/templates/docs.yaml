@@ -27,4 +27,4 @@ spec:
             - name: SPEC_URL
               value: /swagger.json
             - name: PAGE_TITLE
-              value: "marudor.de API documentation"
+              value: "{{ .Values.hostName }} API documentation"
