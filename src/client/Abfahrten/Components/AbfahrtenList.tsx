@@ -21,6 +21,7 @@ import { useEffect, useState } from 'react';
 import { useHeaderTagsActions } from 'client/Common/provider/HeaderTagProvider';
 import { useSequencesActions } from 'client/Common/provider/ReihungenProvider';
 import styled from '@emotion/styled';
+import type { AbfahrtenResult } from 'types/iris';
 import type { FC } from 'react';
 
 const LookaheadMarker = styled.div`
@@ -170,12 +171,28 @@ const InnerAbfahrtenList = () => {
               </div>
             </>
           ) : (
-            <div>Leider keine Abfahrten in nächster Zeit</div>
+            <NothingFound unfilteredAbfahrten={unfilteredAbfahrten} />
           )}
         </Container>
       )}
     </Loading>
   );
+};
+
+const NothingFound: FC<{
+  unfilteredAbfahrten?: AbfahrtenResult;
+}> = ({ unfilteredAbfahrten }) => {
+  let text = 'Leider keine Abfahrten in nächster Zeit';
+  if (unfilteredAbfahrten) {
+    const hasUnfiltered =
+      unfilteredAbfahrten.departures.length > 0 ||
+      unfilteredAbfahrten.lookbehind.length > 0;
+    if (hasUnfiltered) {
+      text =
+        'Es gibt Abfahrten, diese werden aber durch den gesetzten Filter nicht angezeigt.';
+    }
+  }
+  return <div>{text}</div>;
 };
 
 export const AbfahrtenList: FC = () => (

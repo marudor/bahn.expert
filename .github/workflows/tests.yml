@@ -21,97 +21,97 @@ jobs:
         with:
           fetch-depth: 0
       - uses: wagoid/commitlint-github-action@v1
-  # node:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - name: Use Node.js 18
-  #       uses: actions/setup-node@v2
-  #       with:
-  #         node-version: 18
-  #     - name: install
-  #       run: |
-  #         corepack enable
-  #         pnpm i --frozen-lockfile
-  #       env:
-  #         CYPRESS_INSTALL_BINARY: 0
-  #     - name: jest
-  #       run: |
-  #         pnpm test:jest
-  #     - name: lint
-  #       run: |
-  #         pnpm lint
-  #     - name: types
-  #       run: |
-  #         pnpm test:ts
-  # e2e:
-  #   runs-on: ubuntu-latest
-  #   container:
-  #     image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
-  #     options: --user 1001
-  #   strategy:
-  #     matrix:
-  #       container: [1, 2, 3, 4]
-  #       browser: [firefox, chrome]
-  #     fail-fast: false
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - name: Use Node.js 18
-  #       uses: actions/setup-node@v2
-  #       with:
-  #         node-version: 18
-  #     - name: browser versions
-  #       run: |
-  #         firefox --version
-  #         google-chrome --version
-  #     - name: Cache Cypress
-  #       id: cache-cypress
-  #       uses: actions/cache@v2
-  #       with:
-  #         path: ~/.cache/Cypress
-  #         key: cypress-${{ runner.os }}-${{ hashFiles('package.json') }}
-  #     - name: Install Deps
-  #       run: |
-  #         corepack enable
-  #         pnpm i --frozen-lockfile
-  #     - name: Run Cypress
-  #       uses: cypress-io/github-action@v4
-  #       with:
-  #         install: false
-  #         record: true
-  #         parallel: true
-  #         build: pnpm build
-  #         group: ${{ matrix.browser }}
-  #         ci-build-id: '${{github.sha}}-${{ github.workflow }}-${{ github.event_name }}'
-  #         start: node src/server/index.js
-  #         wait-on: http://localhost:9042
-  #         browser: ${{ matrix.browser}}
-  #         command-prefix: 'percy exec --parallel -- pnpm'
-  #       env:
-  #         PERCY_TOKEN: 5cf53deda8dca3c09d13bfa3eb02edb0f4c6c80e7f96ed29086fec0c28a38380
-  #         PERCY_BROWSER_EXECUTABLE: /usr/bin/google-chrome
-  #         CYPRESS_RECORD_KEY: 0af1d817-e8ac-4c69-ac15-c0da1e69182d
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #         BASE_URL: localhost:9042
-  #         NODE_ENV: production
-  #         BABEL_ENV: testProduction
-  #         TEST_RUN: 1
-  # finalizeE2e:
-  #   runs-on: ubuntu-latest
-  #   needs:
-  #     - e2e
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - name: Use Node.js 18
-  #       uses: actions/setup-node@v2
-  #       with:
-  #         node-version: 18
-  #     - name: finalize percy
-  #       run: |
-  #         corepack enable
-  #         pnpm dlx @percy/cli build:finalize
-  #       env:
-  #         PERCY_TOKEN: 5cf53deda8dca3c09d13bfa3eb02edb0f4c6c80e7f96ed29086fec0c28a38380
+  node:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 18
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+      - name: install
+        run: |
+          corepack enable
+          pnpm i --frozen-lockfile
+        env:
+          CYPRESS_INSTALL_BINARY: 0
+      - name: jest
+        run: |
+          pnpm test:jest
+      - name: lint
+        run: |
+          pnpm lint
+      - name: types
+        run: |
+          pnpm test:ts
+  e2e:
+    runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      options: --user 1001
+    strategy:
+      matrix:
+        container: [1, 2, 3, 4]
+        browser: [firefox, chrome]
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 18
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+      - name: browser versions
+        run: |
+          firefox --version
+          google-chrome --version
+      - name: Cache Cypress
+        id: cache-cypress
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-${{ hashFiles('package.json') }}
+      - name: Install Deps
+        run: |
+          corepack enable
+          pnpm i --frozen-lockfile
+      - name: Run Cypress
+        uses: cypress-io/github-action@v4
+        with:
+          install: false
+          record: true
+          parallel: true
+          build: pnpm build
+          group: ${{ matrix.browser }}
+          ci-build-id: '${{github.sha}}-${{ github.workflow }}-${{ github.event_name }}'
+          start: node src/server/index.js
+          wait-on: http://localhost:9042
+          browser: ${{ matrix.browser}}
+          command-prefix: 'percy exec --parallel -- pnpm'
+        env:
+          PERCY_TOKEN: 5cf53deda8dca3c09d13bfa3eb02edb0f4c6c80e7f96ed29086fec0c28a38380
+          PERCY_BROWSER_EXECUTABLE: /usr/bin/google-chrome
+          CYPRESS_RECORD_KEY: 0af1d817-e8ac-4c69-ac15-c0da1e69182d
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BASE_URL: localhost:9042
+          NODE_ENV: production
+          BABEL_ENV: testProduction
+          TEST_RUN: 1
+  finalizeE2e:
+    runs-on: ubuntu-latest
+    needs:
+      - e2e
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 18
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+      - name: finalize percy
+        run: |
+          corepack enable
+          pnpm dlx @percy/cli build:finalize
+        env:
+          PERCY_TOKEN: 5cf53deda8dca3c09d13bfa3eb02edb0f4c6c80e7f96ed29086fec0c28a38380
   docker:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
@@ -132,8 +132,8 @@ jobs:
     if: github.ref == 'refs/heads/main'
     needs:
       - docker
-      # - e2e
-      # - node
+      - e2e
+      - node
     steps:
       - name: 'Create Deployment'
         uses: avakar/create-deployment@v1.0.1

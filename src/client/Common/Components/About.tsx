@@ -1,6 +1,4 @@
 import { BaseHeader } from 'client/Common/Components/BaseHeader';
-import { BugReport, Extension, Message } from '@mui/icons-material';
-import { Button } from '@mui/material';
 import styled from '@emotion/styled';
 import type { FC } from 'react';
 
@@ -42,29 +40,9 @@ const Privacy = () => (
 );
 
 const Container = styled.div(({ theme }) => ({
-  margin: `${theme.shape.headerSpacing}px 10px 0`,
+  margin: `${theme.shape.headerSpacing + 5}px 10px 0`,
   display: 'flex',
   flexDirection: 'column',
-}));
-
-const ButtonsContainer = styled.div(({ theme }) => ({
-  [theme.breakpoints.down('md')]: {
-    height: '10em',
-  },
-}));
-
-const Buttons = styled.div(({ theme }) => ({
-  '& svg': {
-    marginRight: 5,
-  },
-  display: 'flex',
-  justifyContent: 'space-around',
-  marginTop: '1em',
-  [theme.breakpoints.down('md')]: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
 }));
 
 export const About: FC = () => {
@@ -90,40 +68,32 @@ export const About: FC = () => {
             @marudor@chaos.social
           </a>
         </span>
-        <ButtonsContainer>
-          <Buttons>
-            <a
-              href="https://twitter.com/marudor"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button variant="outlined">
-                <Message />
-                Kontakt
-              </Button>
-            </a>
-            <a
-              href="https://github.com/marudor/BahnhofsAbfahrten/issues/new?assignees=&labels=bug&template=bug_report.md&title="
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button variant="outlined">
-                <BugReport />
-                Bugs?
-              </Button>
-            </a>
-            <a
-              href="https://github.com/marudor/BahnhofsAbfahrten/issues/new?assignees=&labels=feature&template=feature_request.md&title="
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button variant="outlined">
-                <Extension />
-                Features?
-              </Button>
-            </a>
-          </Buttons>
-        </ButtonsContainer>
+        <span>
+          Featurewünsche und Bugreports sind mir am liebsten über Github. Dafür
+          gibt es jeweils ein eigenes Formular.{' '}
+        </span>
+        <span>
+          <a
+            href="https://github.com/marudor/BahnhofsAbfahrten/issues/new?assignees=&labels=bug&template=bug_report.md&title="
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Bugs
+          </a>{' '}
+          sowie{' '}
+          <a
+            href="https://github.com/marudor/BahnhofsAbfahrten/issues/new?assignees=&labels=bug&template=bug_report.md&title="
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Features
+          </a>
+        </span>
+        <span>
+          Wer mich anderweitig kontaktieren möchte kann dies neben den
+          verlinkten Social Media Profilen per mail an info (at) bahn (dot)
+          expert
+        </span>
         <Privacy />
       </Container>
     </>

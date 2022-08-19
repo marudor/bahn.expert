@@ -54,7 +54,7 @@ export const Navigation: FC<Props> = ({ children }) => {
   return (
     <NavigationContext.Provider value={navigationContext}>
       <SwipeableDrawer open={open} onClose={toggleDrawer} onOpen={toggleDrawer}>
-        <Headline>BahnhofsAbfahrten</Headline>
+        <Headline>Bahn Experte</Headline>
         <Drawer onClick={toggleDrawer}>
           <Link to="/">
             <ListItem button>

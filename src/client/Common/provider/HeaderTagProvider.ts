@@ -6,6 +6,7 @@ const defaultDescription =
   'Dein Begleiter um Stressfrei Bahn zu fahren. Sucht die besten Informationen aus allen Quellen um dich ans Ziel zu bringen.';
 const defaultTitle = 'Bahn Experte';
 const defaultKeywords = new Set([
+  'marudor',
   'Bahn',
   'Experte',
   'Bahn Expert',
@@ -37,7 +38,7 @@ function useHeaderTagInner(_p: PropsWithChildren<unknown>) {
   );
   const updateKeywords = useCallback((addedKeywords?: string[]) => {
     if (addedKeywords) {
-      setKeywords(new Set([...defaultKeywords, ...addedKeywords]));
+      setKeywords(new Set([...addedKeywords, ...defaultKeywords]));
     } else {
       setKeywords(defaultKeywords);
     }

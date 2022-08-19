@@ -35,7 +35,7 @@ export const logger = pino(
       paths: ['req.remoteAddress', 'req.remotePort', 'res.headers'],
       remove: true,
     },
-    name: 'BahnhofsAbfahrten',
+    name: 'BahnExperte',
     level: process.env.NODE_ENV === 'production' ? 'info' : 'trace',
     serializers: {
       req: serializers.wrapRequestSerializer((req) => {
