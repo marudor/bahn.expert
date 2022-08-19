@@ -5,5 +5,8 @@ env:
     value: https://beta.marudor.de/api/event
 
 hostName: beta.marudor.de
+alternativeHostNames:
+  - beta.abfahrten.in
+  - beta.bahn.expert
 
 replicaCount: 1
