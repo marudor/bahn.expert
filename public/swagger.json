@@ -4590,8 +4590,8 @@
     "securitySchemes": {}
   },
   "info": {
-    "title": "Bahnhofs Abfahrten",
-    "version": "0.0.2",
+    "title": "Bahn.expert",
+    "version": "0.1.0",
     "license": {
       "name": "MIT"
     },
@@ -6321,7 +6321,7 @@
   },
   "servers": [
     {
-      "url": "https://marudor.de/api"
+      "url": "https://bahn.expert/api"
     }
   ],
   "tags": [

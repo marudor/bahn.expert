@@ -3,10 +3,10 @@
   "controllerPathGlobs": ["./src/server/API/controller/**"],
   "noImplicitAdditionalProperties": "ignore",
   "spec": {
-    "name": "Bahnhofs Abfahrten",
+    "name": "Bahn.expert",
     "specVersion": 3,
     "outputDirectory": "./public",
-    "host": "marudor.de",
+    "host": "bahn.expert",
     "basePath": "api/",
     "tags": [
       {

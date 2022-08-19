@@ -3,9 +3,13 @@ import constate from 'constate';
 import type { PropsWithChildren } from 'react';
 
 const defaultDescription =
-  'Zugabfahrten für Stationen der Deutsche Bahn. Nutzt verschiedene Quellen um möglichst genaue Informationen bereitzustellen.';
-const defaultTitle = 'BahnhofsAbfahrten';
+  'Dein Begleiter um Stressfrei Bahn zu fahren. Sucht die besten Informationen aus allen Quellen um dich ans Ziel zu bringen.';
+const defaultTitle = 'Bahn Experte';
 const defaultKeywords = new Set([
+  'Bahn',
+  'Experte',
+  'Bahn Expert',
+  'Bahn.expert',
   'Zugabfahrten',
   'BahnhofsAbfahrten',
   'Zugabfahrtszeiten',
