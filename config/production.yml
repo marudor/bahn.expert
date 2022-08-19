@@ -8,9 +8,12 @@ env:
         key: loggly_token
         optional: true
   - name: PLAUSIBLE_URL
-    value: https://marudor.de/api/event
+    value: https://bahn.expert/api/event
 
-hostName: marudor.de
+hostName: bahn.expert
+alternativeHostNames:
+  - abfahrten.in
+  - marudor.de
 
 replicaCount: 10
 
