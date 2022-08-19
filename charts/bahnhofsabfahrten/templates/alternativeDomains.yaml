@@ -42,7 +42,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: 'https://docs.{{$.Values.hostName}}/$1'
 spec:
   rules:
-    - host: {{ . }}
+    - host: docs.{{ . }}
       http:
         paths:
           - path: /(.*)
@@ -54,8 +54,8 @@ spec:
                   name: http
   tls:
     - hosts:
-        - {{ . }}
-        - www.{{ . }}
+        - docs.{{ . }}
+        - www.docs.{{ . }}
       secretName: {{ $altName }}
 ---
 apiVersion: cert-manager.io/v1
