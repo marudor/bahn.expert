@@ -1,8 +1,1 @@
-1. Get the application URL by running these commands:
-{{- if .Values.ingress.enabled }}
-  {{ if .Values.hostName }}
-  {{ .Values.hostName }}
-  {{ else }}
-  https://{{ .Release.Name }}.marudor.de/
-  {{ end }}
-{{- end }}
+All done.

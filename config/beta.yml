@@ -2,11 +2,11 @@ env:
   - name: ENVIRONMENT
     value: beta
   - name: PLAUSIBLE_URL
-    value: https://beta.marudor.de/api/event
+    value: https://beta.bahn.expert/api/event
 
-hostName: beta.marudor.de
+hostName: beta.bahn.expert
 alternativeHostNames:
   - beta.abfahrten.in
-  - beta.bahn.expert
+  - beta.marudor.de
 
 replicaCount: 1

@@ -16,11 +16,11 @@ Open http://localhost:9042
 
 ## API Documentation
 
-https://docs.marudor.de
+https://docs.bahn.expert
 
 ## Demo
 
-Currently running at https://marudor.de
+Currently running at https://bahn.expert
 
 ## Cross browser testing
 
