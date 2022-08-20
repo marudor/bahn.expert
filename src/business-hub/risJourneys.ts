@@ -1,3 +1,4 @@
+import { addRandomUseragent } from 'business-hub/randomUseragent';
 import { format } from 'date-fns';
 import { JourneysApi, TransportType } from 'business-hub/generated/risJourneys';
 import { risJourneysConfiguration } from 'business-hub/config';
@@ -14,6 +15,7 @@ import type { Route$Stop } from 'types/routing';
 const axiosWithTimeout = axios.create({
   timeout: 4500,
 });
+axiosWithTimeout.interceptors.request.use(addRandomUseragent);
 
 const risJourneysClient = new JourneysApi(
   risJourneysConfiguration,

@@ -23,7 +23,7 @@ export class JourneysV1Controller extends Controller {
     if (!Number.isNaN(trainNumber)) {
       risPromise = findJourneyHafasCompatible(
         trainNumber,
-        category,
+        category?.length ? category : undefined,
         initialDepartureDate,
         filtered,
       );
