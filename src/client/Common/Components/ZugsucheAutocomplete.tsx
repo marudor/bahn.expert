@@ -1,8 +1,7 @@
-import { journeyMatch } from 'client/Common/service/details';
+import { journeyFind } from 'client/Common/service/details';
 import { Loading, LoadingType } from 'client/Common/Components/Loading';
 import { MenuItem, Paper, TextField } from '@mui/material';
 import { useCallback, useState } from 'react';
-import { useStorage } from 'client/useStorage';
 import Axios from 'axios';
 import debounce from 'debounce-promise';
 import Downshift from 'downshift';
@@ -10,7 +9,7 @@ import styled from '@emotion/styled';
 import type { FC } from 'react';
 import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 
-const debouncedJourneyMatch = debounce(journeyMatch, 300);
+const debouncedJourneyFind = debounce(journeyFind, 300);
 
 const Container = styled.div`
   position: relative;
@@ -43,17 +42,15 @@ export const ZugsucheAutocomplete: FC<Props> = ({
   const [suggestions, setSuggestions] = useState<ParsedJourneyMatchResponse[]>(
     [],
   );
-  const storage = useStorage();
   const [loading, setLoading] = useState(0);
   const loadOptions = useCallback(
     async (value: string) => {
       setLoading((old) => old + 1);
       try {
-        const suggestions = await debouncedJourneyMatch(
+        const suggestions = await debouncedJourneyFind(
           value,
           initialDeparture,
           filtered,
-          storage.get('hafasProfile'),
           'zugsuche',
         );
 
@@ -65,7 +62,7 @@ export const ZugsucheAutocomplete: FC<Props> = ({
       }
       setLoading((old) => old - 1);
     },
-    [initialDeparture, storage, filtered],
+    [initialDeparture, filtered],
   );
 
   return (

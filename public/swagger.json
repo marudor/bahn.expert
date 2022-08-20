@@ -1717,80 +1717,6 @@
         "type": "object",
         "additionalProperties": true
       },
-      "ParsedJourneyMatchResponse": {
-        "properties": {
-          "train": {
-            "$ref": "#/components/schemas/ParsedProduct"
-          },
-          "stops": {
-            "items": {
-              "$ref": "#/components/schemas/Route$Stop"
-            },
-            "type": "array"
-          },
-          "jid": {
-            "type": "string"
-          },
-          "firstStop": {
-            "$ref": "#/components/schemas/Route$Stop"
-          },
-          "lastStop": {
-            "$ref": "#/components/schemas/Route$Stop"
-          },
-          "messages": {
-            "items": {
-              "$ref": "#/components/schemas/RemL"
-            },
-            "type": "array"
-          }
-        },
-        "required": [
-          "train",
-          "stops",
-          "jid",
-          "firstStop",
-          "lastStop"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "EnrichedJourneyMatchOptions": {
-        "properties": {
-          "trainName": {
-            "type": "string",
-            "description": "Usually \"<Gattung> <Fahrtnummer>\"",
-            "example": "ICE 23"
-          },
-          "initialDepartureDate": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Used to find the correct journey for a specific day.",
-            "default": "now"
-          },
-          "jnyFltrL": {
-            "items": {
-              "$ref": "#/components/schemas/JourneyFilter"
-            },
-            "type": "array",
-            "description": "These are raw HAFAS Filter and quite advanced."
-          },
-          "onlyRT": {
-            "type": "boolean"
-          },
-          "limit": {
-            "type": "number",
-            "format": "double"
-          },
-          "filtered": {
-            "type": "boolean"
-          }
-        },
-        "required": [
-          "trainName"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
       "SingleParsedJourneyGeoPos": {
         "properties": {
           "jid": {
@@ -2125,6 +2051,43 @@
           "jid",
           "currentStation",
           "departure"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
+      "ParsedJourneyMatchResponse": {
+        "properties": {
+          "train": {
+            "$ref": "#/components/schemas/ParsedProduct"
+          },
+          "stops": {
+            "items": {
+              "$ref": "#/components/schemas/Route$Stop"
+            },
+            "type": "array"
+          },
+          "jid": {
+            "type": "string"
+          },
+          "firstStop": {
+            "$ref": "#/components/schemas/Route$Stop"
+          },
+          "lastStop": {
+            "$ref": "#/components/schemas/Route$Stop"
+          },
+          "messages": {
+            "items": {
+              "$ref": "#/components/schemas/RemL"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "train",
+          "stops",
+          "jid",
+          "firstStop",
+          "lastStop"
         ],
         "type": "object",
         "additionalProperties": true

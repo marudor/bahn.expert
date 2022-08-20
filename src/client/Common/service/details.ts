@@ -1,10 +1,7 @@
 import Axios from 'axios';
 import type { AllowedHafasProfile } from 'types/HAFAS';
 import type { Canceler } from 'axios';
-import type {
-  EnrichedJourneyMatchOptions,
-  ParsedJourneyMatchResponse,
-} from 'types/HAFAS/JourneyMatch';
+import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 import type { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
 
 export async function getDetails(
@@ -31,11 +28,10 @@ export async function getDetails(
 
 const journeyMatchCancelTokens: { [key: string]: Canceler } = {};
 
-export async function journeyMatch(
+export async function journeyFind(
   trainName: string,
   initialDepartureDate?: Date,
   filtered?: boolean,
-  profile?: AllowedHafasProfile,
   cancelIdent?: string,
 ): Promise<ParsedJourneyMatchResponse[]> {
   let cancelToken;
@@ -46,19 +42,14 @@ export async function journeyMatch(
       journeyMatchCancelTokens[cancelIdent] = c;
     });
   }
-  const body: EnrichedJourneyMatchOptions = {
-    trainName,
-    initialDepartureDate,
-    limit: 5,
-    filtered,
-  };
-  const r = await Axios.post<ParsedJourneyMatchResponse[]>(
-    '/api/hafas/v1/enrichedJourneyMatch',
-    body,
+  const r = await Axios.get<ParsedJourneyMatchResponse[]>(
+    `/api/journeys/v1/find/${trainName}`,
     {
       cancelToken,
       params: {
-        profile,
+        initialDepartureDate,
+        filtered,
+        limit: 5,
       },
     },
   );
