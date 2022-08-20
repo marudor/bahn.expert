@@ -13,7 +13,6 @@ import {
   SuccessResponse,
   Tags,
 } from '@tsoa/runtime';
-import { enrichedJourneyMatch } from 'server/HAFAS/JourneyMatch';
 import JourneyDetails from 'server/HAFAS/JourneyDetails';
 import JourneyGeoPos from 'server/HAFAS/JourneyGeoPos';
 import LocGeoPos from 'server/HAFAS/LocGeoPos';
@@ -21,10 +20,6 @@ import LocMatch from 'server/HAFAS/LocMatch';
 import makeRequest from 'server/HAFAS/Request';
 import PositionForTrain from 'server/HAFAS/PositionForTrain';
 import type { AllowedHafasProfile, HafasStation } from 'types/HAFAS';
-import type {
-  EnrichedJourneyMatchOptions,
-  ParsedJourneyMatchResponse,
-} from 'types/HAFAS/JourneyMatch';
 import type {
   JourneyGeoPosOptions,
   ParsedJourneyGeoPosResponse,
@@ -57,24 +52,6 @@ export class HafasController extends Controller {
     res(302, undefined, {
       location: `/details/${trainName}/${dataUrlPart}?stopEva=${evaNumber}${profileUrlPart}`,
     });
-  }
-
-  @Post('/enrichedJourneyMatch')
-  @Hidden()
-  enrichedJourneyMatch(
-    @Body() options: EnrichedJourneyMatchOptions,
-    @Query() profile?: AllowedHafasProfile,
-  ): Promise<ParsedJourneyMatchResponse[]> {
-    if (options.filtered) {
-      options.onlyRT = true;
-      options.jnyFltrL = options.jnyFltrL || [];
-      options.jnyFltrL.push({
-        mode: 'INC',
-        type: 'PROD',
-        value: '7',
-      });
-    }
-    return enrichedJourneyMatch(options, profile);
   }
 
   /**

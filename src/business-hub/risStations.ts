@@ -3,7 +3,7 @@ import {
   StopPlaceKeyFilter,
   StopPlacesApi,
   StopPlaceSearchGroupByKey,
-} from 'business-hub/generated';
+} from 'business-hub/generated/risStations';
 import { TransportType } from 'business-hub/types';
 import axios from 'axios';
 import type {

@@ -15,6 +15,8 @@ import { HafasControllerV3 } from './controller/Hafas/v3';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { IrisControllerv2 } from './controller/Iris/v2';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { JourneysV1Controller } from './controller/journeys/v1';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { OEBBExperimentalController } from './controller/OEBB/experimental';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { ReihungMonitoringController } from './controller/Reihung/monitor';
@@ -703,32 +705,6 @@ const models: TsoaRoute.Models = {
         "additionalProperties": true,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "ParsedJourneyMatchResponse": {
-        "dataType": "refObject",
-        "properties": {
-            "train": {"ref":"ParsedProduct","required":true},
-            "stops": {"dataType":"array","array":{"dataType":"refObject","ref":"Route%24Stop"},"required":true},
-            "jid": {"dataType":"string","required":true},
-            "firstStop": {"ref":"Route%24Stop","required":true},
-            "lastStop": {"ref":"Route%24Stop","required":true},
-            "messages": {"dataType":"array","array":{"dataType":"refObject","ref":"RemL"}},
-        },
-        "additionalProperties": true,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "EnrichedJourneyMatchOptions": {
-        "dataType": "refObject",
-        "properties": {
-            "trainName": {"dataType":"string","required":true},
-            "initialDepartureDate": {"dataType":"datetime","default":"now"},
-            "jnyFltrL": {"dataType":"array","array":{"dataType":"refObject","ref":"JourneyFilter"}},
-            "onlyRT": {"dataType":"boolean"},
-            "limit": {"dataType":"double"},
-            "filtered": {"dataType":"boolean"},
-        },
-        "additionalProperties": true,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "SingleParsedJourneyGeoPos": {
         "dataType": "refObject",
         "properties": {
@@ -860,6 +836,19 @@ const models: TsoaRoute.Models = {
             "currentStation": {"ref":"HafasStation","required":true},
             "messages": {"dataType":"array","array":{"dataType":"refObject","ref":"RemL"}},
             "departure": {"ref":"CommonStopInfo","required":true},
+        },
+        "additionalProperties": true,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "ParsedJourneyMatchResponse": {
+        "dataType": "refObject",
+        "properties": {
+            "train": {"ref":"ParsedProduct","required":true},
+            "stops": {"dataType":"array","array":{"dataType":"refObject","ref":"Route%24Stop"},"required":true},
+            "jid": {"dataType":"string","required":true},
+            "firstStop": {"ref":"Route%24Stop","required":true},
+            "lastStop": {"ref":"Route%24Stop","required":true},
+            "messages": {"dataType":"array","array":{"dataType":"refObject","ref":"RemL"}},
         },
         "additionalProperties": true,
     },
@@ -2126,31 +2115,6 @@ export function RegisterRoutes(router: KoaRouter) {
             return promiseHandler(controller, promise, context, 302, undefined);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        router.post('/api/hafas/v1/enrichedJourneyMatch',
-            ...(fetchMiddlewares<Middleware>(HafasController)),
-            ...(fetchMiddlewares<Middleware>(HafasController.prototype.enrichedJourneyMatch)),
-
-            async function HafasController_enrichedJourneyMatch(context: any, next: any) {
-            const args = {
-                    options: {"in":"body","name":"options","required":true,"ref":"EnrichedJourneyMatchOptions"},
-                    profile: {"in":"query","name":"profile","ref":"AllowedHafasProfile"},
-            };
-
-            let validatedArgs: any[] = [];
-            try {
-              validatedArgs = getValidatedArgs(args, context, next);
-            } catch (err) {
-              const error = err as any;
-              context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
-            }
-
-            const controller = new HafasController();
-
-            const promise = controller.enrichedJourneyMatch.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/hafas/v1/geoStation',
             ...(fetchMiddlewares<Middleware>(HafasController)),
             ...(fetchMiddlewares<Middleware>(HafasController.prototype.geoStation)),
@@ -2544,6 +2508,33 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new IrisControllerv2();
 
             const promise = controller.abfahrten.apply(controller, validatedArgs as any);
+            return promiseHandler(controller, promise, context, undefined, undefined);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        router.get('/api/journeys/v1/find/:trainName',
+            ...(fetchMiddlewares<Middleware>(JourneysV1Controller)),
+            ...(fetchMiddlewares<Middleware>(JourneysV1Controller.prototype.find)),
+
+            async function JourneysV1Controller_find(context: any, next: any) {
+            const args = {
+                    trainName: {"in":"path","name":"trainName","required":true,"dataType":"string"},
+                    initialDepartureDate: {"in":"query","name":"initialDepartureDate","dataType":"datetime"},
+                    filtered: {"in":"query","name":"filtered","dataType":"boolean"},
+                    limit: {"in":"query","name":"limit","dataType":"double"},
+            };
+
+            let validatedArgs: any[] = [];
+            try {
+              validatedArgs = getValidatedArgs(args, context, next);
+            } catch (err) {
+              const error = err as any;
+              context.status = error.status;
+              context.throw(error.status, JSON.stringify({ fields: error.fields }));
+            }
+
+            const controller = new JourneysV1Controller();
+
+            const promise = controller.find.apply(controller, validatedArgs as any);
             return promiseHandler(controller, promise, context, undefined, undefined);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
