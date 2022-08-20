@@ -142,6 +142,6 @@ jobs:
           task: deploy
           environment: beta
           required_contexts: docker
-          payload: '{"value_files": ["./config/beta.yml","./config/_common.yml"],"release": "bahnhofs-abfahrten-beta","namespace": "marudor","track": "stable"}'
+          payload: '{"value_files": ["./config/beta.yml","./config/_common.yml"],"release": "bahn-expert-beta","namespace": "marudor","track": "stable"}'
         env:
           GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
