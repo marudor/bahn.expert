@@ -56,7 +56,9 @@ beforeAll(() => {
   globalThis.nock.intercept = ((oldFn) => {
     // eslint-disable-next-line func-names
     return function (this: any, ...args: any) {
-      args[0] = args[0].replace(/ /g, '%20');
+      if (typeof args[0] === 'string') {
+        args[0] = args[0].replace(/ /g, '%20');
+      }
 
       return oldFn.apply(this, args);
     };

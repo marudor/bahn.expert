@@ -36,10 +36,8 @@ describe('Zugsuche', () => {
   describe('Uses Search', () => {
     beforeEach(() => {
       nock
-        .post(
-          '/api/hafas/v1/enrichedJourneyMatch',
-          (body) => body.trainName === 'EC 6',
-        )
+        .get('/api/journeys/v1/find/EC 6')
+        .query(true)
         .reply(200, [
           {
             jid: 'test',
@@ -75,20 +73,6 @@ describe('Zugsuche', () => {
       expect(screen.queryByTestId('Zugsuche')).toBeNull();
       expect(getLocation().pathname.startsWith('/details/EC 6')).toBeTruthy();
       expect(getLocation().search.includes('station=6000')).toBeTruthy();
-    });
-
-    it('Navigates to OEBB if cookie set', async () => {
-      const { getLocation, cookies } = renderZugsuche();
-
-      fireEvent.click(screen.getByTestId('dummytoggle'));
-      fireEvent.change(screen.getByTestId('zugsucheAutocompleteInput'), {
-        target: { value: 'EC 6' },
-      });
-      cookies.set('hafasProfile', 'oebb');
-      await screen.findByTestId('zugsucheAutocompleteItem');
-      fireEvent.click(screen.getByTestId('zugsucheAutocompleteItem'));
-
-      expect(getLocation().search).toBe('?profile=oebb&station=6000');
     });
   });
 });
