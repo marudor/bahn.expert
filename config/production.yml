@@ -7,8 +7,6 @@ env:
         name: bahnhofs-abfahrten-config
         key: loggly_token
         optional: true
-  - name: PLAUSIBLE_URL
-    value: https://bahn.expert/api/event
 
 hostName: bahn.expert
 alternativeHostNames:

@@ -1,8 +1,6 @@
 env:
   - name: ENVIRONMENT
     value: beta
-  - name: PLAUSIBLE_URL
-    value: https://beta.bahn.expert/api/event
 
 hostName: beta.bahn.expert
 alternativeHostNames:
