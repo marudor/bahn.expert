@@ -89,6 +89,7 @@ export default (ctx: Context): void => {
     emotionCss,
     baseUrl: globalThis.BASE_URL,
     rawBaseUrl: globalThis.RAW_BASE_URL,
+    renderedTheme: globalThis.RENDERED_THEME,
   });
   ctx.body += app;
 

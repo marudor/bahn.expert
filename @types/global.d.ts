@@ -14,6 +14,7 @@ declare global {
     };
     declare var BASE_URL: string;
     declare var RAW_BASE_URL: string;
+    declare var RENDERED_THEME: string;
 
     // test only
     declare var nock: nock.Scope;

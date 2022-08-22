@@ -29,7 +29,10 @@ function useThemeInner({
     }
     // eslint-disable-next-line
   }, []);
-  const theme = useMemo(() => createTheme(themeType), [themeType]);
+  const theme = useMemo(() => {
+    globalThis.RENDERED_THEME = themeType;
+    return createTheme(themeType);
+  }, [themeType]);
   return {
     themeType,
     theme,
@@ -51,15 +54,16 @@ export const ThemeProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
   if (!initialTheme) {
     // @ts-expect-error works
     initialTheme = ThemeType[storage.get('theme')];
-    // if (!initialTheme) {
-    //   initialTheme = globalThis.matchMedia?.('(prefers-color-scheme: light)')
-    //     .matches
-    //     ? ThemeType.light
-    //     : ThemeType.dark;
-    //   if (initialTheme === ThemeType.light) {
-    //     storage.set('theme', initialTheme);
-    //   }
-    // }
+    // Workaround if cookies failed to be send
+    if (
+      // @ts-expect-error not typed
+      globalThis.SERVER_RENDERED_THEME &&
+      // @ts-expect-error not typed
+      globalThis.SERVER_RENDERED_THEME !== initialTheme
+    ) {
+      // @ts-expect-error not typed
+      initialTheme = globalThis.SERVER_RENDERED_THEME;
+    }
   }
 
   return (
