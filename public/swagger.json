@@ -2997,6 +2997,26 @@
         "type": "object",
         "additionalProperties": true
       },
+      "Record_EvaNumber.Route$Auslastung_": {
+        "properties": {},
+        "type": "object",
+        "description": "Construct a type with a set of properties K of type T"
+      },
+      "AdditionalJourneyInformation": {
+        "properties": {
+          "operatorName": {
+            "type": "string"
+          },
+          "occupancy": {
+            "$ref": "#/components/schemas/Record_EvaNumber.Route$Auslastung_"
+          }
+        },
+        "required": [
+          "occupancy"
+        ],
+        "type": "object",
+        "additionalProperties": true
+      },
       "WingInfo": {
         "properties": {
           "station": {
@@ -4302,7 +4322,7 @@
             }
           },
           "404": {
-            "description": "Train not found"
+            "description": ""
           }
         },
         "description": "This combines several HAFAS endpoint as well as IRIS data to get the best possible information for a specific journey.",

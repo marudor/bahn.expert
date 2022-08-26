@@ -30,7 +30,7 @@ export const TrainRun: FC<Props> = ({ trainRun, selectedDate }) => {
         <DetailsLink
           train={trainRun.product}
           initialDeparture={initialDeparture}
-          evaNumber={trainRun.origin.evaNumber}
+          evaNumberAlongRoute={trainRun.origin.evaNumber}
         />
       </span>
     </>

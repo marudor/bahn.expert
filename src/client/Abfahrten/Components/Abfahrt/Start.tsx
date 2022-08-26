@@ -46,7 +46,7 @@ export const Start: FC = () => {
           <DetailsLink
             urlPrefix={urlPrefix}
             train={abfahrt.train}
-            evaNumber={abfahrt.currentStopPlace.evaNumber}
+            evaNumberAlongRoute={abfahrt.currentStopPlace.evaNumber}
             initialDeparture={abfahrt.initialDeparture}
           />
         </Links>

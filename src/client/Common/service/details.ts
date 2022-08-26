@@ -1,29 +1,47 @@
 import Axios from 'axios';
-import type { AllowedHafasProfile } from 'types/HAFAS';
+import type { AdditionalJourneyInformation } from 'types/HAFAS/JourneyDetails';
 import type { Canceler } from 'axios';
 import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 import type { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
 
 export async function getDetails(
   train: string,
-  initialDeparture?: Date,
-  stop?: string,
-  stationId?: string,
-  profile?: AllowedHafasProfile,
+  initialDepartureDate?: Date,
+  evaNumberAlongRoute?: string,
 ): Promise<ParsedSearchOnTripResponse> {
   const r = await Axios.get<ParsedSearchOnTripResponse>(
-    `/api/hafas/v2/details/${train}`,
+    `/api/journeys/v1/details/${train}`,
     {
       params: {
-        stop,
-        station: stationId,
-        profile,
-        date: initialDeparture,
+        evaNumberAlongRoute,
+        initialDepartureDate,
       },
     },
   );
 
   return r.data;
+}
+
+export async function getAdditionalJourneyInformation(
+  trainName: string,
+  initialDepartureDate?: Date,
+  evaNumberAlongRoute?: string,
+): Promise<AdditionalJourneyInformation | undefined> {
+  try {
+    return (
+      await Axios.get<AdditionalJourneyInformation>(
+        `/api/hafas/v3/additionalInformation/${trainName}`,
+        {
+          params: {
+            evaNumberAlongRoute,
+            initialDepartureDate,
+          },
+        },
+      )
+    ).data;
+  } catch {
+    return undefined;
+  }
 }
 
 const journeyMatchCancelTokens: { [key: string]: Canceler } = {};

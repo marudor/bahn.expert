@@ -1,13 +1,13 @@
 import { AuslastungsDisplay } from 'client/Common/Components/AuslastungsDisplay';
 import { DetailMessages } from '../Messages/Detail';
-import { DetailsContext } from './DetailsContext';
 import { Messages } from './Messages';
 import { Platform } from 'client/Common/Components/Platform';
 import { Reihung } from '../Reihung';
 import { StationLink } from 'client/Common/Components/StationLink';
 import { Time } from 'client/Common/Components/Time';
 import { TravelynxLink } from 'client/Common/Components/CheckInLink/TravelynxLink';
-import { useCallback, useContext } from 'react';
+import { useCallback, useMemo } from 'react';
+import { useDetails } from 'client/Common/provider/DetailsProvider';
 import styled from '@emotion/styled';
 import type { FC, MouseEvent } from 'react';
 import type { ParsedProduct } from 'types/HAFAS';
@@ -98,7 +98,11 @@ export const Stop: FC<Props> = ({
   onStopClick,
   doNotRenderOccupancy,
 }) => {
-  const { urlPrefix } = useContext(DetailsContext);
+  const { urlPrefix, additionalInformation } = useDetails();
+  const occupancy = useMemo(
+    () => additionalInformation?.occupancy[stop.station.id] || stop.auslastung,
+    [stop, additionalInformation],
+  );
   const depOrArrival = stop.departure || stop.arrival;
   const platforms = stop.departure
     ? {
@@ -122,7 +126,7 @@ export const Stop: FC<Props> = ({
 
   return (
     <Container
-      hasOccupancy={Boolean(stop.auslastung) && !doNotRenderOccupancy}
+      hasOccupancy={Boolean(occupancy) && !doNotRenderOccupancy}
       past={isPast}
       data-testid={stop.station.id}
       onClick={onClick}
@@ -139,8 +143,8 @@ export const Stop: FC<Props> = ({
       <StopName stop={stop}>
         <StationLink stationName={stop.station.title} urlPrefix={urlPrefix} />
       </StopName>
-      {!doNotRenderOccupancy && stop.auslastung && (
-        <StyledOccupancy oneLine auslastung={stop.auslastung} />
+      {!doNotRenderOccupancy && occupancy && (
+        <StyledOccupancy oneLine auslastung={occupancy} />
       )}
       {train && (
         <StyledTravelynxLink

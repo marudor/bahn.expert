@@ -20,10 +20,10 @@ describe('Regional', () => {
     );
     cy.intercept(
       {
-        url: `/api/hafas/v2/details/${encodeURIComponent('STR 1761')}?*`,
+        url: `/api/journeys/v1/details/${encodeURIComponent('STR 1761')}?*`,
         query: {
-          station: '723870',
-          date: '2020-05-02T17:54:00.000Z',
+          evaNumberAlongRoute: '723870',
+          initialDepartureDate: '2020-05-02T17:54:00.000Z',
         },
       },
       { fixture: 'regional/detailsStr1761' },

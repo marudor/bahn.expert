@@ -1,9 +1,9 @@
 import { css } from '@emotion/react';
-import { DetailsContext } from './DetailsContext';
 import { Error } from '@mui/icons-material';
 import { Loading } from '../Loading';
 import { Stop } from 'client/Common/Components/Details/Stop';
-import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useDetails } from 'client/Common/provider/DetailsProvider';
 import styled from '@emotion/styled';
 import type { AxiosError } from 'axios';
 import type { FC } from 'react';
@@ -33,12 +33,8 @@ const ErrorStyle = css`
 const ErrorContainer = styled(Container)(ErrorStyle);
 const ErrorIcon = styled(Error)(ErrorStyle);
 
-interface Props {
-  initialDepartureDate?: Date;
-}
-
-export const StopList: FC<Props> = ({ initialDepartureDate }) => {
-  const { details, error } = useContext(DetailsContext);
+export const StopList: FC = () => {
+  const { details, error, initialDepartureDate } = useDetails();
   const [currentSequenceStop, setCurrentSequenceStop] = useState(
     details?.currentStop?.station.id,
   );

@@ -1,9 +1,9 @@
 import { BaseHeader } from '../BaseHeader';
-import { DetailsContext } from './DetailsContext';
 import { format } from 'date-fns';
-import { IconButton, Tooltip } from '@mui/material';
+import { IconButton } from '@mui/material';
 import { Refresh } from '@mui/icons-material';
-import { useContext } from 'react';
+import { useCallback, useMemo } from 'react';
+import { useDetails } from 'client/Common/provider/DetailsProvider';
 import styled from '@emotion/styled';
 import type { CommonProductInfo } from 'types/HAFAS';
 import type { FC } from 'react';
@@ -56,25 +56,26 @@ const FullTrainName: FC<FTNProps> = ({ train, fallback }) => {
     </span>
   );
 };
-interface Props {
-  train: string;
-}
-export const Header: FC<Props> = ({ train }) => {
-  const { details, refresh } = useContext(DetailsContext);
+
+export const Header: FC = () => {
+  const { details, additionalInformation, refreshDetails, trainName } =
+    useDetails();
+  const refresh = useCallback(() => refreshDetails(), [refreshDetails]);
+
+  const operatorName = useMemo(
+    () => additionalInformation?.operatorName || details?.train.operator?.name,
+    [additionalInformation, details],
+  );
 
   return (
     <BaseHeader>
       <Container data-testid="detailsHeader">
         <TrainText>
-          <FullTrainName train={details?.train} fallback={train} />
+          <FullTrainName train={details?.train} fallback={trainName} />
         </TrainText>
         {details && (
           <>
-            {details.train.operator && (
-              <Tooltip title={details.train.operator.name}>
-                <Operator>{details.train.operator.name}</Operator>
-              </Tooltip>
-            )}
+            {operatorName && <Operator>{operatorName}</Operator>}
             <DateDisplay>
               {format(details.departure.time, 'dd.MM.yyyy')}
             </DateDisplay>
