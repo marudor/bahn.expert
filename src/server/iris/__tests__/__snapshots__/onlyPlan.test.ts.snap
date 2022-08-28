@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`onlyPlan arrivalCancelled.xml 1`] = `
-Object {
-  "departures": Array [
-    Object {
+{
+  "departures": [
+    {
       "additional": undefined,
-      "arrival": Object {
+      "arrival": {
         "hidden": false,
         "platform": "13",
         "scheduledPlatform": "13",
@@ -15,11 +15,11 @@ Object {
       },
       "auslastung": false,
       "cancelled": undefined,
-      "currentStopPlace": Object {
+      "currentStopPlace": {
         "evaNumber": "test",
         "name": "test",
       },
-      "departure": Object {
+      "departure": {
         "hidden": false,
         "platform": "13",
         "scheduledPlatform": "13",
@@ -31,141 +31,141 @@ Object {
       "id": "6062058741531589910",
       "initialDeparture": 2019-03-16T14:24:00.000Z,
       "mediumId": "6062058741531589910-1903161424",
-      "messages": Object {
-        "delay": Array [],
-        "him": Array [],
-        "qos": Array [],
+      "messages": {
+        "delay": [],
+        "him": [],
+        "qos": [],
       },
       "o": "800354",
       "platform": "13",
       "productClass": "S",
       "rawId": "-6062058741531589910-1903161424-13",
       "reihung": false,
-      "route": Array [
-        Object {
+      "route": [
+        {
           "name": "Mönchengladbach Hbf",
         },
-        Object {
+        {
           "name": "Mönchengladbach-Lürrip",
         },
-        Object {
+        {
           "name": "Korschenbroich",
         },
-        Object {
+        {
           "name": "Kleinenbroich",
         },
-        Object {
+        {
           "name": "Büttgen",
         },
-        Object {
+        {
           "name": "Neuss Hbf",
         },
-        Object {
+        {
           "name": "Neuss Am Kaiser",
         },
-        Object {
+        {
           "name": "Neuss Rheinparkcenter",
         },
-        Object {
+        {
           "name": "Düsseldorf-Hamm",
         },
-        Object {
+        {
           "name": "Düsseldorf Völklinger Str.",
         },
-        Object {
+        {
           "name": "Düsseldorf-Bilk",
         },
-        Object {
+        {
           "name": "Düsseldorf Friedrichstadt",
         },
-        Object {
+        {
           "additional": undefined,
           "cancelled": undefined,
           "name": "test",
         },
-        Object {
+        {
           "name": "Düsseldorf-Flingern",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Düsseldorf-Gerresheim",
         },
-        Object {
+        {
           "name": "Erkrath",
         },
-        Object {
+        {
           "name": "Hochdahl",
         },
-        Object {
+        {
           "name": "Hochdahl-Millrath",
         },
-        Object {
+        {
           "name": "Haan-Gruiten",
         },
-        Object {
+        {
           "name": "Wuppertal-Vohwinkel",
         },
-        Object {
+        {
           "name": "Wuppertal-Sonnborn",
         },
-        Object {
+        {
           "name": "Wuppertal-Zoologischer Garten",
         },
-        Object {
+        {
           "name": "Wuppertal-Steinbeck",
         },
-        Object {
+        {
           "name": "Wuppertal Hbf",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Wuppertal-Unterbarmen",
         },
-        Object {
+        {
           "name": "Wuppertal-Barmen",
         },
-        Object {
+        {
           "name": "Wuppertal-Oberbarmen",
         },
-        Object {
+        {
           "name": "Wuppertal-Langerfeld",
         },
-        Object {
+        {
           "name": "Schwelm West",
         },
-        Object {
+        {
           "name": "Schwelm",
         },
-        Object {
+        {
           "name": "Gevelsberg West",
         },
-        Object {
+        {
           "name": "Gevelsberg-Kipp",
         },
-        Object {
+        {
           "name": "Gevelsberg Hbf",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Gevelsberg-Knapp",
         },
-        Object {
+        {
           "name": "Hagen-Westerbauer",
         },
-        Object {
+        {
           "name": "Hagen-Heubing",
         },
-        Object {
+        {
           "name": "Hagen-Wehringhausen",
         },
-        Object {
+        {
           "name": "Hagen Hbf",
         },
       ],
       "scheduledDestination": "Hagen Hbf",
       "scheduledPlatform": "13",
       "substitute": false,
-      "train": Object {
+      "train": {
         "line": "8",
         "longDistance": false,
         "name": "S 8",
@@ -174,33 +174,33 @@ Object {
       },
     },
   ],
-  "lookbehind": Array [],
-  "wings": Object {},
+  "lookbehind": [],
+  "wings": {},
 }
 `;
 
 exports[`onlyPlan arrivalWing.xml 1`] = `
-Object {
-  "departures": Array [
-    Object {
+{
+  "departures": [
+    {
       "additional": undefined,
-      "arrival": Object {
+      "arrival": {
         "hidden": false,
         "platform": "8",
         "scheduledPlatform": "8",
         "scheduledTime": 2019-03-17T12:32:00.000Z,
         "time": 2019-03-17T12:32:00.000Z,
-        "wingIds": Array [
+        "wingIds": [
           "4550748245722881479-1903170818",
         ],
       },
       "auslastung": true,
       "cancelled": undefined,
-      "currentStopPlace": Object {
+      "currentStopPlace": {
         "evaNumber": "test",
         "name": "test",
       },
-      "departure": Object {
+      "departure": {
         "hidden": false,
         "platform": "8 D-G",
         "scheduledPlatform": "8 D-G",
@@ -212,68 +212,68 @@ Object {
       "id": "4771830392602697451",
       "initialDeparture": 2019-03-17T08:18:00.000Z,
       "mediumId": "4771830392602697451-1903170818",
-      "messages": Object {
-        "delay": Array [],
-        "him": Array [],
-        "qos": Array [],
+      "messages": {
+        "delay": [],
+        "him": [],
+        "qos": [],
       },
       "o": "80",
       "platform": "8 D-G",
       "productClass": "F",
       "rawId": "4771830392602697451-1903170818-10",
       "reihung": true,
-      "route": Array [
-        Object {
+      "route": [
+        {
           "name": "München Hbf",
         },
-        Object {
+        {
           "name": "München-Pasing",
         },
-        Object {
+        {
           "name": "Augsburg Hbf",
         },
-        Object {
+        {
           "name": "Donauwörth",
         },
-        Object {
+        {
           "name": "Nürnberg Hbf",
         },
-        Object {
+        {
           "name": "Würzburg Hbf",
         },
-        Object {
+        {
           "name": "Fulda",
         },
-        Object {
+        {
           "name": "Kassel-Wilhelmshöhe",
         },
-        Object {
+        {
           "name": "Göttingen",
         },
-        Object {
+        {
           "additional": undefined,
           "cancelled": undefined,
           "name": "test",
         },
-        Object {
+        {
           "name": "Hamburg-Harburg",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Hamburg Hbf",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Hamburg Dammtor",
         },
-        Object {
+        {
           "name": "Hamburg-Altona",
         },
       ],
       "scheduledDestination": "Hamburg-Altona",
       "scheduledPlatform": "8 D-G",
       "substitute": false,
-      "train": Object {
+      "train": {
         "line": undefined,
         "longDistance": true,
         "name": "ICE 1680",
@@ -281,9 +281,9 @@ Object {
         "type": "ICE",
       },
     },
-    Object {
+    {
       "additional": undefined,
-      "arrival": Object {
+      "arrival": {
         "hidden": false,
         "platform": "8",
         "scheduledPlatform": "8",
@@ -293,11 +293,11 @@ Object {
       },
       "auslastung": true,
       "cancelled": undefined,
-      "currentStopPlace": Object {
+      "currentStopPlace": {
         "evaNumber": "test",
         "name": "test",
       },
-      "departure": Object {
+      "departure": {
         "hidden": false,
         "platform": "8 A-D",
         "scheduledPlatform": "8 A-D",
@@ -309,57 +309,57 @@ Object {
       "id": "4550748245722881479",
       "initialDeparture": 2019-03-17T08:18:00.000Z,
       "mediumId": "4550748245722881479-1903170818",
-      "messages": Object {
-        "delay": Array [],
-        "him": Array [],
-        "qos": Array [],
+      "messages": {
+        "delay": [],
+        "him": [],
+        "qos": [],
       },
       "o": "80",
       "platform": "8 A-D",
       "productClass": "F",
       "rawId": "-4550748245722881479-1903170818-10",
       "reihung": true,
-      "route": Array [
-        Object {
+      "route": [
+        {
           "name": "München Hbf",
         },
-        Object {
+        {
           "name": "München-Pasing",
         },
-        Object {
+        {
           "name": "Augsburg Hbf",
         },
-        Object {
+        {
           "name": "Donauwörth",
         },
-        Object {
+        {
           "name": "Nürnberg Hbf",
         },
-        Object {
+        {
           "name": "Würzburg Hbf",
         },
-        Object {
+        {
           "name": "Fulda",
         },
-        Object {
+        {
           "name": "Kassel-Wilhelmshöhe",
         },
-        Object {
+        {
           "name": "Göttingen",
         },
-        Object {
+        {
           "additional": undefined,
           "cancelled": undefined,
           "name": "test",
         },
-        Object {
+        {
           "name": "Bremen Hbf",
         },
       ],
       "scheduledDestination": "Bremen Hbf",
       "scheduledPlatform": "8 A-D",
       "substitute": false,
-      "train": Object {
+      "train": {
         "line": "24",
         "longDistance": true,
         "name": "ICE 1580",
@@ -368,17 +368,17 @@ Object {
       },
     },
   ],
-  "lookbehind": Array [],
-  "wings": Object {},
+  "lookbehind": [],
+  "wings": {},
 }
 `;
 
 exports[`onlyPlan cancelled.xml 1`] = `
-Object {
-  "departures": Array [
-    Object {
+{
+  "departures": [
+    {
       "additional": undefined,
-      "arrival": Object {
+      "arrival": {
         "hidden": false,
         "platform": "13",
         "scheduledPlatform": "13",
@@ -388,11 +388,11 @@ Object {
       },
       "auslastung": false,
       "cancelled": undefined,
-      "currentStopPlace": Object {
+      "currentStopPlace": {
         "evaNumber": "test",
         "name": "test",
       },
-      "departure": Object {
+      "departure": {
         "hidden": false,
         "platform": "13",
         "scheduledPlatform": "13",
@@ -404,141 +404,141 @@ Object {
       "id": "6062058741531589910",
       "initialDeparture": 2019-03-16T14:24:00.000Z,
       "mediumId": "6062058741531589910-1903161424",
-      "messages": Object {
-        "delay": Array [],
-        "him": Array [],
-        "qos": Array [],
+      "messages": {
+        "delay": [],
+        "him": [],
+        "qos": [],
       },
       "o": "800354",
       "platform": "13",
       "productClass": "S",
       "rawId": "-6062058741531589910-1903161424-13",
       "reihung": false,
-      "route": Array [
-        Object {
+      "route": [
+        {
           "name": "Mönchengladbach Hbf",
         },
-        Object {
+        {
           "name": "Mönchengladbach-Lürrip",
         },
-        Object {
+        {
           "name": "Korschenbroich",
         },
-        Object {
+        {
           "name": "Kleinenbroich",
         },
-        Object {
+        {
           "name": "Büttgen",
         },
-        Object {
+        {
           "name": "Neuss Hbf",
         },
-        Object {
+        {
           "name": "Neuss Am Kaiser",
         },
-        Object {
+        {
           "name": "Neuss Rheinparkcenter",
         },
-        Object {
+        {
           "name": "Düsseldorf-Hamm",
         },
-        Object {
+        {
           "name": "Düsseldorf Völklinger Str.",
         },
-        Object {
+        {
           "name": "Düsseldorf-Bilk",
         },
-        Object {
+        {
           "name": "Düsseldorf Friedrichstadt",
         },
-        Object {
+        {
           "additional": undefined,
           "cancelled": undefined,
           "name": "test",
         },
-        Object {
+        {
           "name": "Düsseldorf-Flingern",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Düsseldorf-Gerresheim",
         },
-        Object {
+        {
           "name": "Erkrath",
         },
-        Object {
+        {
           "name": "Hochdahl",
         },
-        Object {
+        {
           "name": "Hochdahl-Millrath",
         },
-        Object {
+        {
           "name": "Haan-Gruiten",
         },
-        Object {
+        {
           "name": "Wuppertal-Vohwinkel",
         },
-        Object {
+        {
           "name": "Wuppertal-Sonnborn",
         },
-        Object {
+        {
           "name": "Wuppertal-Zoologischer Garten",
         },
-        Object {
+        {
           "name": "Wuppertal-Steinbeck",
         },
-        Object {
+        {
           "name": "Wuppertal Hbf",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Wuppertal-Unterbarmen",
         },
-        Object {
+        {
           "name": "Wuppertal-Barmen",
         },
-        Object {
+        {
           "name": "Wuppertal-Oberbarmen",
         },
-        Object {
+        {
           "name": "Wuppertal-Langerfeld",
         },
-        Object {
+        {
           "name": "Schwelm West",
         },
-        Object {
+        {
           "name": "Schwelm",
         },
-        Object {
+        {
           "name": "Gevelsberg West",
         },
-        Object {
+        {
           "name": "Gevelsberg-Kipp",
         },
-        Object {
+        {
           "name": "Gevelsberg Hbf",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Gevelsberg-Knapp",
         },
-        Object {
+        {
           "name": "Hagen-Westerbauer",
         },
-        Object {
+        {
           "name": "Hagen-Heubing",
         },
-        Object {
+        {
           "name": "Hagen-Wehringhausen",
         },
-        Object {
+        {
           "name": "Hagen Hbf",
         },
       ],
       "scheduledDestination": "Hagen Hbf",
       "scheduledPlatform": "13",
       "substitute": false,
-      "train": Object {
+      "train": {
         "line": "8",
         "longDistance": false,
         "name": "S 8",
@@ -547,17 +547,17 @@ Object {
       },
     },
   ],
-  "lookbehind": Array [],
-  "wings": Object {},
+  "lookbehind": [],
+  "wings": {},
 }
 `;
 
 exports[`onlyPlan departureCancelled.xml 1`] = `
-Object {
-  "departures": Array [
-    Object {
+{
+  "departures": [
+    {
       "additional": undefined,
-      "arrival": Object {
+      "arrival": {
         "hidden": false,
         "platform": "13",
         "scheduledPlatform": "13",
@@ -567,11 +567,11 @@ Object {
       },
       "auslastung": false,
       "cancelled": undefined,
-      "currentStopPlace": Object {
+      "currentStopPlace": {
         "evaNumber": "test",
         "name": "test",
       },
-      "departure": Object {
+      "departure": {
         "hidden": false,
         "platform": "13",
         "scheduledPlatform": "13",
@@ -583,141 +583,141 @@ Object {
       "id": "6062058741531589910",
       "initialDeparture": 2019-03-16T14:24:00.000Z,
       "mediumId": "6062058741531589910-1903161424",
-      "messages": Object {
-        "delay": Array [],
-        "him": Array [],
-        "qos": Array [],
+      "messages": {
+        "delay": [],
+        "him": [],
+        "qos": [],
       },
       "o": "800354",
       "platform": "13",
       "productClass": "S",
       "rawId": "-6062058741531589910-1903161424-13",
       "reihung": false,
-      "route": Array [
-        Object {
+      "route": [
+        {
           "name": "Mönchengladbach Hbf",
         },
-        Object {
+        {
           "name": "Mönchengladbach-Lürrip",
         },
-        Object {
+        {
           "name": "Korschenbroich",
         },
-        Object {
+        {
           "name": "Kleinenbroich",
         },
-        Object {
+        {
           "name": "Büttgen",
         },
-        Object {
+        {
           "name": "Neuss Hbf",
         },
-        Object {
+        {
           "name": "Neuss Am Kaiser",
         },
-        Object {
+        {
           "name": "Neuss Rheinparkcenter",
         },
-        Object {
+        {
           "name": "Düsseldorf-Hamm",
         },
-        Object {
+        {
           "name": "Düsseldorf Völklinger Str.",
         },
-        Object {
+        {
           "name": "Düsseldorf-Bilk",
         },
-        Object {
+        {
           "name": "Düsseldorf Friedrichstadt",
         },
-        Object {
+        {
           "additional": undefined,
           "cancelled": undefined,
           "name": "test",
         },
-        Object {
+        {
           "name": "Düsseldorf-Flingern",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Düsseldorf-Gerresheim",
         },
-        Object {
+        {
           "name": "Erkrath",
         },
-        Object {
+        {
           "name": "Hochdahl",
         },
-        Object {
+        {
           "name": "Hochdahl-Millrath",
         },
-        Object {
+        {
           "name": "Haan-Gruiten",
         },
-        Object {
+        {
           "name": "Wuppertal-Vohwinkel",
         },
-        Object {
+        {
           "name": "Wuppertal-Sonnborn",
         },
-        Object {
+        {
           "name": "Wuppertal-Zoologischer Garten",
         },
-        Object {
+        {
           "name": "Wuppertal-Steinbeck",
         },
-        Object {
+        {
           "name": "Wuppertal Hbf",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Wuppertal-Unterbarmen",
         },
-        Object {
+        {
           "name": "Wuppertal-Barmen",
         },
-        Object {
+        {
           "name": "Wuppertal-Oberbarmen",
         },
-        Object {
+        {
           "name": "Wuppertal-Langerfeld",
         },
-        Object {
+        {
           "name": "Schwelm West",
         },
-        Object {
+        {
           "name": "Schwelm",
         },
-        Object {
+        {
           "name": "Gevelsberg West",
         },
-        Object {
+        {
           "name": "Gevelsberg-Kipp",
         },
-        Object {
+        {
           "name": "Gevelsberg Hbf",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Gevelsberg-Knapp",
         },
-        Object {
+        {
           "name": "Hagen-Westerbauer",
         },
-        Object {
+        {
           "name": "Hagen-Heubing",
         },
-        Object {
+        {
           "name": "Hagen-Wehringhausen",
         },
-        Object {
+        {
           "name": "Hagen Hbf",
         },
       ],
       "scheduledDestination": "Hagen Hbf",
       "scheduledPlatform": "13",
       "substitute": false,
-      "train": Object {
+      "train": {
         "line": "8",
         "longDistance": false,
         "name": "S 8",
@@ -726,17 +726,17 @@ Object {
       },
     },
   ],
-  "lookbehind": Array [],
-  "wings": Object {},
+  "lookbehind": [],
+  "wings": {},
 }
 `;
 
 exports[`onlyPlan departureWing.xml 1`] = `
-Object {
-  "departures": Array [
-    Object {
+{
+  "departures": [
+    {
       "additional": undefined,
-      "arrival": Object {
+      "arrival": {
         "hidden": false,
         "platform": "4 D-G",
         "scheduledPlatform": "4 D-G",
@@ -746,17 +746,17 @@ Object {
       },
       "auslastung": true,
       "cancelled": undefined,
-      "currentStopPlace": Object {
+      "currentStopPlace": {
         "evaNumber": "test",
         "name": "test",
       },
-      "departure": Object {
+      "departure": {
         "hidden": false,
         "platform": "4",
         "scheduledPlatform": "4",
         "scheduledTime": 2019-03-17T13:26:00.000Z,
         "time": 2019-03-17T13:26:00.000Z,
-        "wingIds": Array [
+        "wingIds": [
           "8086827825752200553-1903171315",
         ],
       },
@@ -764,63 +764,63 @@ Object {
       "id": "6523045328284948841",
       "initialDeparture": 2019-03-17T12:46:00.000Z,
       "mediumId": "6523045328284948841-1903171246",
-      "messages": Object {
-        "delay": Array [],
-        "him": Array [],
-        "qos": Array [],
+      "messages": {
+        "delay": [],
+        "him": [],
+        "qos": [],
       },
       "o": "80",
       "platform": "4",
       "productClass": "F",
       "rawId": "6523045328284948841-1903171246-5",
       "reihung": true,
-      "route": Array [
-        Object {
+      "route": [
+        {
           "name": "Hamburg-Altona",
         },
-        Object {
+        {
           "name": "Hamburg Dammtor",
         },
-        Object {
+        {
           "name": "Hamburg Hbf",
         },
-        Object {
+        {
           "name": "Hamburg-Harburg",
         },
-        Object {
+        {
           "additional": undefined,
           "cancelled": undefined,
           "name": "test",
         },
-        Object {
+        {
           "name": "Göttingen",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Kassel-Wilhelmshöhe",
         },
-        Object {
+        {
           "name": "Fulda",
         },
-        Object {
+        {
           "name": "Würzburg Hbf",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Nürnberg Hbf",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Ingolstadt Hbf",
         },
-        Object {
+        {
           "name": "München Hbf",
         },
       ],
       "scheduledDestination": "München Hbf",
       "scheduledPlatform": "4",
       "substitute": false,
-      "train": Object {
+      "train": {
         "line": "24",
         "longDistance": true,
         "name": "ICE 1689",
@@ -829,11 +829,11 @@ Object {
       },
     },
   ],
-  "lookbehind": Array [],
-  "wings": Object {
-    "8086827825752200553-1903171315": Object {
+  "lookbehind": [],
+  "wings": {
+    "8086827825752200553-1903171315": {
       "additional": undefined,
-      "arrival": Object {
+      "arrival": {
         "hidden": false,
         "platform": "4 A-C",
         "scheduledPlatform": "4 A-C",
@@ -843,11 +843,11 @@ Object {
       },
       "auslastung": true,
       "cancelled": undefined,
-      "currentStopPlace": Object {
+      "currentStopPlace": {
         "evaNumber": "test",
         "name": "test",
       },
-      "departure": Object {
+      "departure": {
         "hidden": false,
         "platform": "4",
         "scheduledPlatform": "4",
@@ -859,54 +859,54 @@ Object {
       "id": "8086827825752200553",
       "initialDeparture": 2019-03-17T13:15:00.000Z,
       "mediumId": "8086827825752200553-1903171315",
-      "messages": Object {
-        "delay": Array [],
-        "him": Array [],
-        "qos": Array [],
+      "messages": {
+        "delay": [],
+        "him": [],
+        "qos": [],
       },
       "o": "80",
       "platform": "4",
       "productClass": "F",
       "rawId": "-8086827825752200553-1903171315-2",
       "reihung": true,
-      "route": Array [
-        Object {
+      "route": [
+        {
           "name": "Bremen Hbf",
         },
-        Object {
+        {
           "additional": undefined,
           "cancelled": undefined,
           "name": "test",
         },
-        Object {
+        {
           "name": "Göttingen",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Kassel-Wilhelmshöhe",
         },
-        Object {
+        {
           "name": "Fulda",
         },
-        Object {
+        {
           "name": "Würzburg Hbf",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Nürnberg Hbf",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Ingolstadt Hbf",
         },
-        Object {
+        {
           "name": "München Hbf",
         },
       ],
       "scheduledDestination": "München Hbf",
       "scheduledPlatform": "4",
       "substitute": false,
-      "train": Object {
+      "train": {
         "line": undefined,
         "longDistance": true,
         "name": "ICE 1589",
@@ -919,19 +919,19 @@ Object {
 `;
 
 exports[`onlyPlan filteredDueToTime.xml 1`] = `
-Object {
-  "departures": Array [],
-  "lookbehind": Array [],
-  "wings": Object {},
+{
+  "departures": [],
+  "lookbehind": [],
+  "wings": {},
 }
 `;
 
 exports[`onlyPlan lookbehind.xml 1`] = `
-Object {
-  "departures": Array [
-    Object {
+{
+  "departures": [
+    {
       "additional": undefined,
-      "arrival": Object {
+      "arrival": {
         "hidden": false,
         "platform": "16",
         "scheduledPlatform": "16",
@@ -941,11 +941,11 @@ Object {
       },
       "auslastung": true,
       "cancelled": undefined,
-      "currentStopPlace": Object {
+      "currentStopPlace": {
         "evaNumber": "test",
         "name": "test",
       },
-      "departure": Object {
+      "departure": {
         "hidden": false,
         "platform": "16",
         "scheduledPlatform": "16",
@@ -957,53 +957,53 @@ Object {
       "id": "1869793107893408377",
       "initialDeparture": 2019-03-17T10:38:00.000Z,
       "mediumId": "1869793107893408377-1903171038",
-      "messages": Object {
-        "delay": Array [],
-        "him": Array [],
-        "qos": Array [],
+      "messages": {
+        "delay": [],
+        "him": [],
+        "qos": [],
       },
       "o": "84",
       "platform": "16",
       "productClass": "F",
       "rawId": "1869793107893408377-1903171038-6",
       "reihung": true,
-      "route": Array [
-        Object {
+      "route": [
+        {
           "name": "Amsterdam Centraal",
         },
-        Object {
+        {
           "name": "Utrecht Centraal",
         },
-        Object {
+        {
           "name": "Arnhem Centraal",
         },
-        Object {
+        {
           "name": "Oberhausen Hbf",
         },
-        Object {
+        {
           "name": "Duisburg Hbf",
         },
-        Object {
+        {
           "additional": undefined,
           "cancelled": undefined,
           "name": "test",
         },
-        Object {
+        {
           "name": "Köln Hbf",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Frankfurt (M)  Flughafen Fernbf",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Frankfurt (Main) Hbf",
         },
       ],
       "scheduledDestination": "Frankfurt (Main) Hbf",
       "scheduledPlatform": "16",
       "substitute": false,
-      "train": Object {
+      "train": {
         "line": "78",
         "longDistance": true,
         "name": "ICE 123",
@@ -1012,30 +1012,30 @@ Object {
       },
     },
   ],
-  "lookbehind": Array [],
-  "wings": Object {},
+  "lookbehind": [],
+  "wings": {},
 }
 `;
 
 exports[`onlyPlan multipleWings.xml 1`] = `
-Object {
-  "departures": Array [
-    Object {
+{
+  "departures": [
+    {
       "additional": undefined,
       "arrival": undefined,
       "auslastung": false,
       "cancelled": undefined,
-      "currentStopPlace": Object {
+      "currentStopPlace": {
         "evaNumber": "test",
         "name": "test",
       },
-      "departure": Object {
+      "departure": {
         "hidden": false,
         "platform": "34",
         "scheduledPlatform": "34",
         "scheduledTime": 2019-03-17T12:04:00.000Z,
         "time": 2019-03-17T12:04:00.000Z,
-        "wingIds": Array [
+        "wingIds": [
           "2583448959431566845-1903171304",
           "7715731422484591852-1903171304",
         ],
@@ -1044,69 +1044,69 @@ Object {
       "id": "4645697665836328305",
       "initialDeparture": 2019-03-17T13:04:00.000Z,
       "mediumId": "4645697665836328305-1903171304",
-      "messages": Object {
-        "delay": Array [],
-        "him": Array [],
-        "qos": Array [],
+      "messages": {
+        "delay": [],
+        "him": [],
+        "qos": [],
       },
       "o": "T8",
       "platform": "34",
       "productClass": "D",
       "rawId": "4645697665836328305-1903171304-1",
       "reihung": false,
-      "route": Array [
-        Object {
+      "route": [
+        {
           "additional": undefined,
           "cancelled": undefined,
           "name": "test",
         },
-        Object {
+        {
           "name": "München Harras",
           "showVia": true,
         },
-        Object {
+        {
           "name": "München-Solln",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Holzkirchen",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Darching",
         },
-        Object {
+        {
           "name": "Miesbach",
         },
-        Object {
+        {
           "name": "Agatharied",
         },
-        Object {
+        {
           "name": "Hausham",
         },
-        Object {
+        {
           "name": "Schliersee",
         },
-        Object {
+        {
           "name": "Fischhausen-Neuhaus",
         },
-        Object {
+        {
           "name": "Fischbachau",
         },
-        Object {
+        {
           "name": "Geitau",
         },
-        Object {
+        {
           "name": "Osterhofen (Oberbay)",
         },
-        Object {
+        {
           "name": "Bayrischzell",
         },
       ],
       "scheduledDestination": "Bayrischzell",
       "scheduledPlatform": "34",
       "substitute": false,
-      "train": Object {
+      "train": {
         "line": undefined,
         "longDistance": false,
         "name": "BOB 86871",
@@ -1115,18 +1115,18 @@ Object {
       },
     },
   ],
-  "lookbehind": Array [],
-  "wings": Object {
-    "2583448959431566845-1903171304": Object {
+  "lookbehind": [],
+  "wings": {
+    "2583448959431566845-1903171304": {
       "additional": undefined,
       "arrival": undefined,
       "auslastung": false,
       "cancelled": undefined,
-      "currentStopPlace": Object {
+      "currentStopPlace": {
         "evaNumber": "test",
         "name": "test",
       },
-      "departure": Object {
+      "departure": {
         "hidden": false,
         "platform": "34",
         "scheduledPlatform": "34",
@@ -1138,57 +1138,57 @@ Object {
       "id": "2583448959431566845",
       "initialDeparture": 2019-03-17T13:04:00.000Z,
       "mediumId": "2583448959431566845-1903171304",
-      "messages": Object {
-        "delay": Array [],
-        "him": Array [],
-        "qos": Array [],
+      "messages": {
+        "delay": [],
+        "him": [],
+        "qos": [],
       },
       "o": "T8",
       "platform": "34",
       "productClass": "D",
       "rawId": "-2583448959431566845-1903171304-1",
       "reihung": false,
-      "route": Array [
-        Object {
+      "route": [
+        {
           "additional": undefined,
           "cancelled": undefined,
           "name": "test",
         },
-        Object {
+        {
           "name": "München Harras",
           "showVia": true,
         },
-        Object {
+        {
           "name": "München-Solln",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Holzkirchen",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Warngau",
         },
-        Object {
+        {
           "name": "Schaftlach",
         },
-        Object {
+        {
           "name": "Moosrain",
         },
-        Object {
+        {
           "name": "Finsterwald",
         },
-        Object {
+        {
           "name": "Gmund (Tegernsee)",
         },
-        Object {
+        {
           "name": "Tegernsee",
         },
       ],
       "scheduledDestination": "Tegernsee",
       "scheduledPlatform": "34",
       "substitute": false,
-      "train": Object {
+      "train": {
         "line": undefined,
         "longDistance": false,
         "name": "BOB 86971",
@@ -1196,16 +1196,16 @@ Object {
         "type": "BOB",
       },
     },
-    "7715731422484591852-1903171304": Object {
+    "7715731422484591852-1903171304": {
       "additional": undefined,
       "arrival": undefined,
       "auslastung": false,
       "cancelled": undefined,
-      "currentStopPlace": Object {
+      "currentStopPlace": {
         "evaNumber": "test",
         "name": "test",
       },
-      "departure": Object {
+      "departure": {
         "hidden": false,
         "platform": "34",
         "scheduledPlatform": "34",
@@ -1217,60 +1217,60 @@ Object {
       "id": "7715731422484591852",
       "initialDeparture": 2019-03-17T13:04:00.000Z,
       "mediumId": "7715731422484591852-1903171304",
-      "messages": Object {
-        "delay": Array [],
-        "him": Array [],
-        "qos": Array [],
+      "messages": {
+        "delay": [],
+        "him": [],
+        "qos": [],
       },
       "o": "T8",
       "platform": "34",
       "productClass": "D",
       "rawId": "-7715731422484591852-1903171304-1",
       "reihung": false,
-      "route": Array [
-        Object {
+      "route": [
+        {
           "additional": undefined,
           "cancelled": undefined,
           "name": "test",
         },
-        Object {
+        {
           "name": "München Harras",
           "showVia": true,
         },
-        Object {
+        {
           "name": "München-Solln",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Holzkirchen",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Warngau",
         },
-        Object {
+        {
           "name": "Schaftlach",
         },
-        Object {
+        {
           "name": "Reichersbeuern",
         },
-        Object {
+        {
           "name": "Bad Tölz",
         },
-        Object {
+        {
           "name": "Gaißach",
         },
-        Object {
+        {
           "name": "Obergries",
         },
-        Object {
+        {
           "name": "Lenggries",
         },
       ],
       "scheduledDestination": "Lenggries",
       "scheduledPlatform": "34",
       "substitute": false,
-      "train": Object {
+      "train": {
         "line": undefined,
         "longDistance": false,
         "name": "BOB 86921",
@@ -1283,11 +1283,11 @@ Object {
 `;
 
 exports[`onlyPlan onlyArrival.xml 1`] = `
-Object {
-  "departures": Array [
-    Object {
+{
+  "departures": [
+    {
       "additional": undefined,
-      "arrival": Object {
+      "arrival": {
         "hidden": false,
         "platform": "10",
         "scheduledPlatform": "10",
@@ -1297,7 +1297,7 @@ Object {
       },
       "auslastung": false,
       "cancelled": undefined,
-      "currentStopPlace": Object {
+      "currentStopPlace": {
         "evaNumber": "test",
         "name": "test",
       },
@@ -1306,48 +1306,48 @@ Object {
       "id": "425081070176277607",
       "initialDeparture": 2019-03-17T11:00:00.000Z,
       "mediumId": "425081070176277607-1903171100",
-      "messages": Object {
-        "delay": Array [],
-        "him": Array [],
-        "qos": Array [],
+      "messages": {
+        "delay": [],
+        "him": [],
+        "qos": [],
       },
       "o": "AR",
       "platform": "10",
       "productClass": "D",
       "rawId": "425081070176277607-1903171100-11",
       "reihung": false,
-      "route": Array [
-        Object {
+      "route": [
+        {
           "name": "Hamm (Westf)",
         },
-        Object {
+        {
           "name": "Kamen",
         },
-        Object {
+        {
           "name": "Kamen-Methler",
         },
-        Object {
+        {
           "name": "Dortmund Hbf",
         },
-        Object {
+        {
           "name": "Bochum Hbf",
         },
-        Object {
+        {
           "name": "Wattenscheid",
         },
-        Object {
+        {
           "name": "Essen Hbf",
         },
-        Object {
+        {
           "name": "Mülheim (Ruhr) Hbf",
         },
-        Object {
+        {
           "name": "Duisburg Hbf",
         },
-        Object {
+        {
           "name": "Düsseldorf Flughafen",
         },
-        Object {
+        {
           "additional": undefined,
           "cancelled": undefined,
           "name": "test",
@@ -1356,7 +1356,7 @@ Object {
       "scheduledDestination": "test",
       "scheduledPlatform": "10",
       "substitute": false,
-      "train": Object {
+      "train": {
         "line": "RE11",
         "longDistance": false,
         "name": "ABR RE11",
@@ -1365,24 +1365,24 @@ Object {
       },
     },
   ],
-  "lookbehind": Array [],
-  "wings": Object {},
+  "lookbehind": [],
+  "wings": {},
 }
 `;
 
 exports[`onlyPlan onlyDeparture.xml 1`] = `
-Object {
-  "departures": Array [
-    Object {
+{
+  "departures": [
+    {
       "additional": undefined,
       "arrival": undefined,
       "auslastung": false,
       "cancelled": undefined,
-      "currentStopPlace": Object {
+      "currentStopPlace": {
         "evaNumber": "test",
         "name": "test",
       },
-      "departure": Object {
+      "departure": {
         "hidden": false,
         "platform": "10",
         "scheduledPlatform": "10",
@@ -1394,69 +1394,69 @@ Object {
       "id": "1178432179369711067",
       "initialDeparture": 2019-03-17T12:36:00.000Z,
       "mediumId": "1178432179369711067-1903171236",
-      "messages": Object {
-        "delay": Array [],
-        "him": Array [],
-        "qos": Array [],
+      "messages": {
+        "delay": [],
+        "him": [],
+        "qos": [],
       },
       "o": "AR",
       "platform": "10",
       "productClass": "D",
       "rawId": "1178432179369711067-1903171236-1",
       "reihung": false,
-      "route": Array [
-        Object {
+      "route": [
+        {
           "additional": undefined,
           "cancelled": undefined,
           "name": "test",
         },
-        Object {
+        {
           "name": "Düsseldorf Flughafen",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Duisburg Hbf",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Mülheim (Ruhr) Hbf",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Essen Hbf",
         },
-        Object {
+        {
           "name": "Wattenscheid",
         },
-        Object {
+        {
           "name": "Bochum Hbf",
         },
-        Object {
+        {
           "name": "Dortmund Hbf",
         },
-        Object {
+        {
           "name": "Kamen-Methler",
         },
-        Object {
+        {
           "name": "Kamen",
         },
-        Object {
+        {
           "name": "Hamm (Westf)",
         },
-        Object {
+        {
           "name": "Soest",
         },
-        Object {
+        {
           "name": "Lippstadt",
         },
-        Object {
+        {
           "name": "Paderborn Hbf",
         },
       ],
       "scheduledDestination": "Paderborn Hbf",
       "scheduledPlatform": "10",
       "substitute": false,
-      "train": Object {
+      "train": {
         "line": "RE11",
         "longDistance": false,
         "name": "ABR RE11",
@@ -1465,17 +1465,17 @@ Object {
       },
     },
   ],
-  "lookbehind": Array [],
-  "wings": Object {},
+  "lookbehind": [],
+  "wings": {},
 }
 `;
 
 exports[`onlyPlan simple1.xml 1`] = `
-Object {
-  "departures": Array [
-    Object {
+{
+  "departures": [
+    {
       "additional": undefined,
-      "arrival": Object {
+      "arrival": {
         "hidden": false,
         "platform": "13",
         "scheduledPlatform": "13",
@@ -1485,11 +1485,11 @@ Object {
       },
       "auslastung": false,
       "cancelled": undefined,
-      "currentStopPlace": Object {
+      "currentStopPlace": {
         "evaNumber": "test",
         "name": "test",
       },
-      "departure": Object {
+      "departure": {
         "hidden": false,
         "platform": "13",
         "scheduledPlatform": "13",
@@ -1501,141 +1501,141 @@ Object {
       "id": "6062058741531589910",
       "initialDeparture": 2019-03-16T14:24:00.000Z,
       "mediumId": "6062058741531589910-1903161424",
-      "messages": Object {
-        "delay": Array [],
-        "him": Array [],
-        "qos": Array [],
+      "messages": {
+        "delay": [],
+        "him": [],
+        "qos": [],
       },
       "o": "800354",
       "platform": "13",
       "productClass": "S",
       "rawId": "-6062058741531589910-1903161424-13",
       "reihung": false,
-      "route": Array [
-        Object {
+      "route": [
+        {
           "name": "Mönchengladbach Hbf",
         },
-        Object {
+        {
           "name": "Mönchengladbach-Lürrip",
         },
-        Object {
+        {
           "name": "Korschenbroich",
         },
-        Object {
+        {
           "name": "Kleinenbroich",
         },
-        Object {
+        {
           "name": "Büttgen",
         },
-        Object {
+        {
           "name": "Neuss Hbf",
         },
-        Object {
+        {
           "name": "Neuss Am Kaiser",
         },
-        Object {
+        {
           "name": "Neuss Rheinparkcenter",
         },
-        Object {
+        {
           "name": "Düsseldorf-Hamm",
         },
-        Object {
+        {
           "name": "Düsseldorf Völklinger Str.",
         },
-        Object {
+        {
           "name": "Düsseldorf-Bilk",
         },
-        Object {
+        {
           "name": "Düsseldorf Friedrichstadt",
         },
-        Object {
+        {
           "additional": undefined,
           "cancelled": undefined,
           "name": "test",
         },
-        Object {
+        {
           "name": "Düsseldorf-Flingern",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Düsseldorf-Gerresheim",
         },
-        Object {
+        {
           "name": "Erkrath",
         },
-        Object {
+        {
           "name": "Hochdahl",
         },
-        Object {
+        {
           "name": "Hochdahl-Millrath",
         },
-        Object {
+        {
           "name": "Haan-Gruiten",
         },
-        Object {
+        {
           "name": "Wuppertal-Vohwinkel",
         },
-        Object {
+        {
           "name": "Wuppertal-Sonnborn",
         },
-        Object {
+        {
           "name": "Wuppertal-Zoologischer Garten",
         },
-        Object {
+        {
           "name": "Wuppertal-Steinbeck",
         },
-        Object {
+        {
           "name": "Wuppertal Hbf",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Wuppertal-Unterbarmen",
         },
-        Object {
+        {
           "name": "Wuppertal-Barmen",
         },
-        Object {
+        {
           "name": "Wuppertal-Oberbarmen",
         },
-        Object {
+        {
           "name": "Wuppertal-Langerfeld",
         },
-        Object {
+        {
           "name": "Schwelm West",
         },
-        Object {
+        {
           "name": "Schwelm",
         },
-        Object {
+        {
           "name": "Gevelsberg West",
         },
-        Object {
+        {
           "name": "Gevelsberg-Kipp",
         },
-        Object {
+        {
           "name": "Gevelsberg Hbf",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Gevelsberg-Knapp",
         },
-        Object {
+        {
           "name": "Hagen-Westerbauer",
         },
-        Object {
+        {
           "name": "Hagen-Heubing",
         },
-        Object {
+        {
           "name": "Hagen-Wehringhausen",
         },
-        Object {
+        {
           "name": "Hagen Hbf",
         },
       ],
       "scheduledDestination": "Hagen Hbf",
       "scheduledPlatform": "13",
       "substitute": false,
-      "train": Object {
+      "train": {
         "line": "8",
         "longDistance": false,
         "name": "S 8",
@@ -1644,17 +1644,17 @@ Object {
       },
     },
   ],
-  "lookbehind": Array [],
-  "wings": Object {},
+  "lookbehind": [],
+  "wings": {},
 }
 `;
 
 exports[`onlyPlan simple2.xml 1`] = `
-Object {
-  "departures": Array [
-    Object {
+{
+  "departures": [
+    {
       "additional": undefined,
-      "arrival": Object {
+      "arrival": {
         "hidden": false,
         "platform": "16",
         "scheduledPlatform": "16",
@@ -1664,11 +1664,11 @@ Object {
       },
       "auslastung": true,
       "cancelled": undefined,
-      "currentStopPlace": Object {
+      "currentStopPlace": {
         "evaNumber": "test",
         "name": "test",
       },
-      "departure": Object {
+      "departure": {
         "hidden": false,
         "platform": "16",
         "scheduledPlatform": "16",
@@ -1680,53 +1680,53 @@ Object {
       "id": "1869793107893408377",
       "initialDeparture": 2019-03-17T10:38:00.000Z,
       "mediumId": "1869793107893408377-1903171038",
-      "messages": Object {
-        "delay": Array [],
-        "him": Array [],
-        "qos": Array [],
+      "messages": {
+        "delay": [],
+        "him": [],
+        "qos": [],
       },
       "o": "84",
       "platform": "16",
       "productClass": "F",
       "rawId": "1869793107893408377-1903171038-6",
       "reihung": true,
-      "route": Array [
-        Object {
+      "route": [
+        {
           "name": "Amsterdam Centraal",
         },
-        Object {
+        {
           "name": "Utrecht Centraal",
         },
-        Object {
+        {
           "name": "Arnhem Centraal",
         },
-        Object {
+        {
           "name": "Oberhausen Hbf",
         },
-        Object {
+        {
           "name": "Duisburg Hbf",
         },
-        Object {
+        {
           "additional": undefined,
           "cancelled": undefined,
           "name": "test",
         },
-        Object {
+        {
           "name": "Köln Hbf",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Frankfurt (M)  Flughafen Fernbf",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Frankfurt (Main) Hbf",
         },
       ],
       "scheduledDestination": "Frankfurt (Main) Hbf",
       "scheduledPlatform": "16",
       "substitute": false,
-      "train": Object {
+      "train": {
         "line": "78",
         "longDistance": true,
         "name": "ICE 123",
@@ -1735,47 +1735,47 @@ Object {
       },
     },
   ],
-  "lookbehind": Array [],
-  "wings": Object {},
+  "lookbehind": [],
+  "wings": {},
 }
 `;
 
 exports[`onlyPlan visibleDueToDelay.xml 1`] = `
-Object {
-  "departures": Array [],
-  "lookbehind": Array [],
-  "wings": Object {},
+{
+  "departures": [],
+  "lookbehind": [],
+  "wings": {},
 }
 `;
 
 exports[`onlyPlan wings.xml 1`] = `
-Object {
-  "departures": Array [
-    Object {
+{
+  "departures": [
+    {
       "additional": undefined,
-      "arrival": Object {
+      "arrival": {
         "hidden": false,
         "platform": "4",
         "scheduledPlatform": "4",
         "scheduledTime": 2019-03-17T13:51:00.000Z,
         "time": 2019-03-17T13:51:00.000Z,
-        "wingIds": Array [
+        "wingIds": [
           "4249721926697031159-1903171328",
         ],
       },
       "auslastung": true,
       "cancelled": undefined,
-      "currentStopPlace": Object {
+      "currentStopPlace": {
         "evaNumber": "test",
         "name": "test",
       },
-      "departure": Object {
+      "departure": {
         "hidden": false,
         "platform": "4",
         "scheduledPlatform": "4",
         "scheduledTime": 2019-03-17T13:54:00.000Z,
         "time": 2019-03-17T13:54:00.000Z,
-        "wingIds": Array [
+        "wingIds": [
           "4249721926697031159-1903171328",
         ],
       },
@@ -1783,66 +1783,66 @@ Object {
       "id": "7616096009230090656",
       "initialDeparture": 2019-03-17T13:28:00.000Z,
       "mediumId": "7616096009230090656-1903171328",
-      "messages": Object {
-        "delay": Array [],
-        "him": Array [],
-        "qos": Array [],
+      "messages": {
+        "delay": [],
+        "him": [],
+        "qos": [],
       },
       "o": "80",
       "platform": "4",
       "productClass": "F",
       "rawId": "7616096009230090656-1903171328-5",
       "reihung": true,
-      "route": Array [
-        Object {
+      "route": [
+        {
           "name": "Hamburg Hbf",
         },
-        Object {
+        {
           "name": "Hamburg-Harburg",
         },
-        Object {
+        {
           "name": "Lüneburg",
         },
-        Object {
+        {
           "name": "Uelzen",
         },
-        Object {
+        {
           "additional": undefined,
           "cancelled": undefined,
           "name": "test",
         },
-        Object {
+        {
           "name": "Göttingen",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Kassel-Wilhelmshöhe",
         },
-        Object {
+        {
           "name": "Fulda",
         },
-        Object {
+        {
           "name": "Würzburg Hbf",
           "showVia": true,
         },
-        Object {
+        {
           "name": "Treuchtlingen",
         },
-        Object {
+        {
           "name": "Donauwörth",
         },
-        Object {
+        {
           "name": "Augsburg Hbf",
           "showVia": true,
         },
-        Object {
+        {
           "name": "München Hbf",
         },
       ],
       "scheduledDestination": "München Hbf",
       "scheduledPlatform": "4",
       "substitute": false,
-      "train": Object {
+      "train": {
         "line": "24",
         "longDistance": true,
         "name": "ICE 1587",
@@ -1851,7 +1851,7 @@ Object {
       },
     },
   ],
-  "lookbehind": Array [],
-  "wings": Object {},
+  "lookbehind": [],
+  "wings": {},
 }
 `;

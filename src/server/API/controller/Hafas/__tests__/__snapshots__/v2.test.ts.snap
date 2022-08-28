@@ -1,15 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Hafas V2 /journeyDetails Parses JourneyDetails result 1`] = `
-Object {
-  "firstStop": Object {
-    "departure": Object {
+{
+  "firstStop": {
+    "departure": {
       "platform": "5",
       "scheduledTime": "2019-12-10T21:07:00.000Z",
       "time": "2019-12-10T21:07:00.000Z",
     },
-    "station": Object {
-      "coordinates": Object {
+    "station": {
+      "coordinates": {
         "lat": 48.948044,
         "lng": 9.137499,
       },
@@ -18,14 +18,14 @@ Object {
     },
   },
   "jid": "1|295600|0|80|10122019",
-  "lastStop": Object {
-    "arrival": Object {
+  "lastStop": {
+    "arrival": {
       "platform": "1",
       "scheduledTime": "2019-12-10T21:38:00.000Z",
       "time": "2019-12-10T21:38:00.000Z",
     },
-    "station": Object {
-      "coordinates": Object {
+    "station": {
+      "coordinates": {
         "lat": 48.770193,
         "lng": 9.156574,
       },
@@ -33,15 +33,15 @@ Object {
       "title": "Stuttgart Schwabstr.",
     },
   },
-  "messages": Array [
-    Object {
+  "messages": [
+    {
       "code": "FB",
       "icoX": 5,
       "prio": 260,
       "txtN": "Fahrradmitnahme begrenzt möglich",
       "type": "A",
     },
-    Object {
+    {
       "code": "ZB",
       "icoX": 6,
       "prio": 560,
@@ -49,15 +49,15 @@ Object {
       "type": "A",
     },
   ],
-  "stops": Array [
-    Object {
-      "departure": Object {
+  "stops": [
+    {
+      "departure": {
         "platform": "5",
         "scheduledTime": "2019-12-10T21:07:00.000Z",
         "time": "2019-12-10T21:07:00.000Z",
       },
-      "station": Object {
-        "coordinates": Object {
+      "station": {
+        "coordinates": {
           "lat": 48.948044,
           "lng": 9.137499,
         },
@@ -65,19 +65,19 @@ Object {
         "title": "Bietigheim-Bissingen",
       },
     },
-    Object {
-      "arrival": Object {
+    {
+      "arrival": {
         "platform": "2",
         "scheduledTime": "2019-12-10T21:10:00.000Z",
         "time": "2019-12-10T21:10:00.000Z",
       },
-      "departure": Object {
+      "departure": {
         "platform": "2",
         "scheduledTime": "2019-12-10T21:10:00.000Z",
         "time": "2019-12-10T21:10:00.000Z",
       },
-      "station": Object {
-        "coordinates": Object {
+      "station": {
+        "coordinates": {
           "lat": 48.921679,
           "lng": 9.12575,
         },
@@ -85,19 +85,19 @@ Object {
         "title": "Tamm(Württ)",
       },
     },
-    Object {
-      "arrival": Object {
+    {
+      "arrival": {
         "platform": "3",
         "scheduledTime": "2019-12-10T21:12:00.000Z",
         "time": "2019-12-10T21:12:00.000Z",
       },
-      "departure": Object {
+      "departure": {
         "platform": "3",
         "scheduledTime": "2019-12-10T21:13:00.000Z",
         "time": "2019-12-10T21:13:00.000Z",
       },
-      "station": Object {
-        "coordinates": Object {
+      "station": {
+        "coordinates": {
           "lat": 48.907431,
           "lng": 9.147801,
         },
@@ -105,19 +105,19 @@ Object {
         "title": "Asperg",
       },
     },
-    Object {
-      "arrival": Object {
+    {
+      "arrival": {
         "platform": "3",
         "scheduledTime": "2019-12-10T21:16:00.000Z",
         "time": "2019-12-10T21:16:00.000Z",
       },
-      "departure": Object {
+      "departure": {
         "platform": "3",
         "scheduledTime": "2019-12-10T21:16:00.000Z",
         "time": "2019-12-10T21:16:00.000Z",
       },
-      "station": Object {
-        "coordinates": Object {
+      "station": {
+        "coordinates": {
           "lat": 48.892374,
           "lng": 9.185115,
         },
@@ -125,19 +125,19 @@ Object {
         "title": "Ludwigsburg",
       },
     },
-    Object {
-      "arrival": Object {
+    {
+      "arrival": {
         "platform": "3",
         "scheduledTime": "2019-12-10T21:19:00.000Z",
         "time": "2019-12-10T21:19:00.000Z",
       },
-      "departure": Object {
+      "departure": {
         "platform": "3",
         "scheduledTime": "2019-12-10T21:20:00.000Z",
         "time": "2019-12-10T21:20:00.000Z",
       },
-      "station": Object {
-        "coordinates": Object {
+      "station": {
+        "coordinates": {
           "lat": 48.862224,
           "lng": 9.179955,
         },
@@ -145,19 +145,19 @@ Object {
         "title": "Kornwestheim Pbf",
       },
     },
-    Object {
-      "arrival": Object {
+    {
+      "arrival": {
         "platform": "2",
         "scheduledTime": "2019-12-10T21:23:00.000Z",
         "time": "2019-12-10T21:23:00.000Z",
       },
-      "departure": Object {
+      "departure": {
         "platform": "2",
         "scheduledTime": "2019-12-10T21:24:00.000Z",
         "time": "2019-12-10T21:24:00.000Z",
       },
-      "station": Object {
-        "coordinates": Object {
+      "station": {
+        "coordinates": {
           "lat": 48.829647,
           "lng": 9.166669,
         },
@@ -165,19 +165,19 @@ Object {
         "title": "Stuttgart-Zuffenhausen",
       },
     },
-    Object {
-      "arrival": Object {
+    {
+      "arrival": {
         "platform": "1",
         "scheduledTime": "2019-12-10T21:26:00.000Z",
         "time": "2019-12-10T21:26:00.000Z",
       },
-      "departure": Object {
+      "departure": {
         "platform": "1",
         "scheduledTime": "2019-12-10T21:26:00.000Z",
         "time": "2019-12-10T21:26:00.000Z",
       },
-      "station": Object {
-        "coordinates": Object {
+      "station": {
+        "coordinates": {
           "lat": 48.813674,
           "lng": 9.169411,
         },
@@ -185,19 +185,19 @@ Object {
         "title": "Stuttgart-Feuerbach",
       },
     },
-    Object {
-      "arrival": Object {
+    {
+      "arrival": {
         "platform": "4",
         "scheduledTime": "2019-12-10T21:28:00.000Z",
         "time": "2019-12-10T21:28:00.000Z",
       },
-      "departure": Object {
+      "departure": {
         "platform": "4",
         "scheduledTime": "2019-12-10T21:29:00.000Z",
         "time": "2019-12-10T21:29:00.000Z",
       },
-      "station": Object {
-        "coordinates": Object {
+      "station": {
+        "coordinates": {
           "lat": 48.803399,
           "lng": 9.189331,
         },
@@ -205,19 +205,19 @@ Object {
         "title": "Stuttgart Nord",
       },
     },
-    Object {
-      "arrival": Object {
+    {
+      "arrival": {
         "platform": "101",
         "scheduledTime": "2019-12-10T21:32:00.000Z",
         "time": "2019-12-10T21:32:00.000Z",
       },
-      "departure": Object {
+      "departure": {
         "platform": "101",
         "scheduledTime": "2019-12-10T21:33:00.000Z",
         "time": "2019-12-10T21:33:00.000Z",
       },
-      "station": Object {
-        "coordinates": Object {
+      "station": {
+        "coordinates": {
           "lat": 48.783002,
           "lng": 9.179811,
         },
@@ -225,19 +225,19 @@ Object {
         "title": "Stuttgart Hbf (tief)",
       },
     },
-    Object {
-      "arrival": Object {
+    {
+      "arrival": {
         "platform": "1",
         "scheduledTime": "2019-12-10T21:34:00.000Z",
         "time": "2019-12-10T21:34:00.000Z",
       },
-      "departure": Object {
+      "departure": {
         "platform": "1",
         "scheduledTime": "2019-12-10T21:35:00.000Z",
         "time": "2019-12-10T21:35:00.000Z",
       },
-      "station": Object {
-        "coordinates": Object {
+      "station": {
+        "coordinates": {
           "lat": 48.77635,
           "lng": 9.172881,
         },
@@ -245,19 +245,19 @@ Object {
         "title": "Stuttgart Stadtmitte",
       },
     },
-    Object {
-      "arrival": Object {
+    {
+      "arrival": {
         "platform": "1",
         "scheduledTime": "2019-12-10T21:36:00.000Z",
         "time": "2019-12-10T21:36:00.000Z",
       },
-      "departure": Object {
+      "departure": {
         "platform": "1",
         "scheduledTime": "2019-12-10T21:36:00.000Z",
         "time": "2019-12-10T21:36:00.000Z",
       },
-      "station": Object {
-        "coordinates": Object {
+      "station": {
+        "coordinates": {
           "lat": 48.772647,
           "lng": 9.165743,
         },
@@ -265,14 +265,14 @@ Object {
         "title": "Stuttgart Feuersee",
       },
     },
-    Object {
-      "arrival": Object {
+    {
+      "arrival": {
         "platform": "1",
         "scheduledTime": "2019-12-10T21:38:00.000Z",
         "time": "2019-12-10T21:38:00.000Z",
       },
-      "station": Object {
-        "coordinates": Object {
+      "station": {
+        "coordinates": {
           "lat": 48.770193,
           "lng": 9.156574,
         },
@@ -281,12 +281,12 @@ Object {
       },
     },
   ],
-  "train": Object {
+  "train": {
     "admin": "800643",
     "line": "5",
     "name": "S 5",
     "number": "7567",
-    "operator": Object {
+    "operator": {
       "icoX": 1,
       "name": "DB Regio AG S-Bahn Stuttgart",
     },
