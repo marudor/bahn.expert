@@ -43,16 +43,17 @@ export const HimIrisMessage: FC<Props> = ({
   const stopPlaceInfo =
     'stopPlace' in message && message.stopPlace
       ? ` - ${message.stopPlace.title}`
-      : null;
+      : '';
+
+  const text = `${
+    dateWithText.endsWith('.') ? dateWithText.slice(0, -1) : dateWithText
+  }${stopPlaceInfo}`;
 
   return (
     <Container superseded={message.superseded}>
-      <span onClick={toggleOpen}>{dateWithText}</span>
+      <span onClick={toggleOpen}>{text}</span>
       <Dialog open={open} onClose={toggleOpen}>
-        <DialogTitle>
-          {dateWithText}
-          {stopPlaceInfo}
-        </DialogTitle>
+        <DialogTitle>{text}</DialogTitle>
         <DialogContent
           dangerouslySetInnerHTML={{
             __html: message.text,

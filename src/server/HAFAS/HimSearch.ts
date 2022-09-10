@@ -81,9 +81,9 @@ async function fetchTodaysHimMessages() {
     for (const message of messages.messages) {
       void himMessageCache.set(message.hid, message);
     }
-    logger.debug('Fetched HimMessages');
+    logger.debug(`fetched ${messages.messages.length} HIM Messages`);
   } catch {
-    logger.error('HimMessages fetch failed');
+    logger.error('HIM Messages fetch failed');
   }
 }
 
