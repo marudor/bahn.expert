@@ -1,7 +1,7 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { CacheDatabases, createNewCache } from 'server/cache';
+import { locMatch } from 'server/HAFAS/LocMatch';
 import Axios from 'axios';
-import LocMatch from 'server/HAFAS/LocMatch';
 
 // 48 hours in seconds
 const cache = createNewCache<string, string | null>(
@@ -30,7 +30,7 @@ export async function getNAHSHLageplan(
     if (cached === null) return undefined;
 
     const station = (
-      await LocMatch(evaId, 'S', AllowedHafasProfile['NAH.SH'])
+      await locMatch(evaId, 'S', AllowedHafasProfile['NAH.SH'])
     )[0];
     if (station) {
       const fullLink = `https://www.nah.sh/assets/downloads/Stationsplaene/${normalizeStationName(

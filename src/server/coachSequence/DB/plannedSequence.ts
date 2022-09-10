@@ -6,11 +6,11 @@ import type {
   CoachSequenceInformation,
 } from 'types/coachSequence';
 
-const apiUrl = process.env.PLANNED_API_URL;
-const apiKey = process.env.PLANNED_API_KEY;
+const apiUrl = process.env.PRIVATE_API_URL;
+const apiKey = process.env.PRIVATE_API_KEY;
 
 export const planSequenceAxios = Axios.create({
-  baseURL: apiUrl,
+  baseURL: `${apiUrl}/plannedSequence/v1`,
   headers: {
     'x-api-key': apiKey || '',
   },

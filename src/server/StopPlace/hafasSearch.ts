@@ -1,5 +1,5 @@
 import { irisFilter } from 'server/StopPlace/search';
-import LocMatch from 'server/HAFAS/LocMatch';
+import { locMatch } from 'server/HAFAS/LocMatch';
 import type { GroupedStopPlace } from 'types/stopPlace';
 
 export async function searchWithHafas(
@@ -8,7 +8,7 @@ export async function searchWithHafas(
   filterForIris?: boolean,
 ): Promise<GroupedStopPlace[]> {
   if (!searchTerm) return [];
-  let hafasResult = await LocMatch(searchTerm, 'S');
+  let hafasResult = await locMatch(searchTerm, 'S');
   if (max) {
     hafasResult = hafasResult.splice(0, max);
   }

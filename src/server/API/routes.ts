@@ -2595,56 +2595,6 @@ export function RegisterRoutes(router: KoaRouter) {
             return promiseHandler(controller, promise, context, undefined, undefined);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        router.get('/api/reihung/v1/forTZ/:tz',
-            ...(fetchMiddlewares<Middleware>(ReihungControllerV1)),
-            ...(fetchMiddlewares<Middleware>(ReihungControllerV1.prototype.forTZ)),
-
-            async function ReihungControllerV1_forTZ(context: any, next: any) {
-            const args = {
-                    tz: {"in":"path","name":"tz","required":true,"dataType":"string"},
-                    notFoundResponse: {"in":"res","name":"404","required":true,"dataType":"void"},
-            };
-
-            let validatedArgs: any[] = [];
-            try {
-              validatedArgs = getValidatedArgs(args, context, next);
-            } catch (err) {
-              const error = err as any;
-              context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
-            }
-
-            const controller = new ReihungControllerV1();
-
-            const promise = controller.forTZ.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        router.get('/api/reihung/v1/forNumber/:number',
-            ...(fetchMiddlewares<Middleware>(ReihungControllerV1)),
-            ...(fetchMiddlewares<Middleware>(ReihungControllerV1.prototype.forNumber)),
-
-            async function ReihungControllerV1_forNumber(context: any, next: any) {
-            const args = {
-                    number: {"in":"path","name":"number","required":true,"dataType":"string"},
-                    notFoundResponse: {"in":"res","name":"404","required":true,"dataType":"void"},
-            };
-
-            let validatedArgs: any[] = [];
-            try {
-              validatedArgs = getValidatedArgs(args, context, next);
-            } catch (err) {
-              const error = err as any;
-              context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
-            }
-
-            const controller = new ReihungControllerV1();
-
-            const promise = controller.forNumber.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         router.get('/api/reihung/v4/wagen/:trainNumber',
             ...(fetchMiddlewares<Middleware>(ReihungControllerV4)),
             ...(fetchMiddlewares<Middleware>(ReihungControllerV4.prototype.wagenreihung)),

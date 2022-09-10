@@ -360,7 +360,7 @@ exports[`onlyPlan arrivalWing.xml 1`] = `
       "scheduledPlatform": "8 A-D",
       "substitute": false,
       "train": {
-        "line": "24",
+        "line": undefined,
         "longDistance": true,
         "name": "ICE 1580",
         "number": "1580",
@@ -821,7 +821,7 @@ exports[`onlyPlan departureWing.xml 1`] = `
       "scheduledPlatform": "4",
       "substitute": false,
       "train": {
-        "line": "24",
+        "line": undefined,
         "longDistance": true,
         "name": "ICE 1689",
         "number": "1689",
@@ -1004,7 +1004,7 @@ exports[`onlyPlan lookbehind.xml 1`] = `
       "scheduledPlatform": "16",
       "substitute": false,
       "train": {
-        "line": "78",
+        "line": undefined,
         "longDistance": true,
         "name": "ICE 123",
         "number": "123",
@@ -1727,7 +1727,7 @@ exports[`onlyPlan simple2.xml 1`] = `
       "scheduledPlatform": "16",
       "substitute": false,
       "train": {
-        "line": "78",
+        "line": undefined,
         "longDistance": true,
         "name": "ICE 123",
         "number": "123",
@@ -1843,7 +1843,7 @@ exports[`onlyPlan wings.xml 1`] = `
       "scheduledPlatform": "4",
       "substitute": false,
       "train": {
-        "line": "24",
+        "line": undefined,
         "longDistance": true,
         "name": "ICE 1587",
         "number": "1587",

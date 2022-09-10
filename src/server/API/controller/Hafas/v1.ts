@@ -13,10 +13,10 @@ import {
   SuccessResponse,
   Tags,
 } from '@tsoa/runtime';
+import { locMatch } from 'server/HAFAS/LocMatch';
 import JourneyDetails from 'server/HAFAS/JourneyDetails';
 import JourneyGeoPos from 'server/HAFAS/JourneyGeoPos';
 import LocGeoPos from 'server/HAFAS/LocGeoPos';
-import LocMatch from 'server/HAFAS/LocMatch';
 import makeRequest from 'server/HAFAS/Request';
 import PositionForTrain from 'server/HAFAS/PositionForTrain';
 import type { AllowedHafasProfile, HafasStation } from 'types/HAFAS';
@@ -94,7 +94,7 @@ export class HafasController extends Controller {
     @Query() profile?: AllowedHafasProfile,
   ): Promise<HafasStation[]> {
     // @ts-expect-error untyped
-    return LocMatch(searchTerm, type, profile, req.query.raw);
+    return locMatch(searchTerm, type, profile, req.query.raw);
   }
 
   @Post('/journeyGeoPos')

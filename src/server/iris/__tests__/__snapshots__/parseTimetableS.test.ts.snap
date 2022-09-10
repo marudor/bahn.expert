@@ -308,7 +308,7 @@ exports[`parseTimetableS arrivalWing.xml 2`] = `
   "scheduledDestination": "Bremen Hbf",
   "substitute": false,
   "train": {
-    "line": "24",
+    "line": undefined,
     "longDistance": true,
     "name": "ICE 1580",
     "number": "1580",
@@ -700,7 +700,7 @@ exports[`parseTimetableS departureWing.xml 1`] = `
   "scheduledDestination": "München Hbf",
   "substitute": false,
   "train": {
-    "line": "24",
+    "line": undefined,
     "longDistance": true,
     "name": "ICE 1689",
     "number": "1689",
@@ -994,7 +994,7 @@ exports[`parseTimetableS lookbehind.xml 1`] = `
   "scheduledDestination": "Frankfurt (Main) Hbf",
   "substitute": false,
   "train": {
-    "line": "78",
+    "line": undefined,
     "longDistance": true,
     "name": "ICE 123",
     "number": "123",
@@ -1572,7 +1572,7 @@ exports[`parseTimetableS simple2.xml 1`] = `
   "scheduledDestination": "Frankfurt (Main) Hbf",
   "substitute": false,
   "train": {
-    "line": "78",
+    "line": undefined,
     "longDistance": true,
     "name": "ICE 123",
     "number": "123",
@@ -1813,7 +1813,7 @@ exports[`parseTimetableS wings.xml 1`] = `
   "scheduledDestination": "München Hbf",
   "substitute": false,
   "train": {
-    "line": "24",
+    "line": undefined,
     "longDistance": true,
     "name": "ICE 1587",
     "number": "1587",
