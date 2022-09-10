@@ -28,7 +28,7 @@ function parseFn(
   );
 }
 
-export default async (
+export const locMatch = async (
   searchTerm: string,
   type: 'S' | 'ALL',
   profile?: AllowedHafasProfile,
