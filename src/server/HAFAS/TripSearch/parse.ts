@@ -1,5 +1,4 @@
 import { differenceInMilliseconds, parse } from 'date-fns';
-import { getPlannedSequence } from 'server/Reihung/plan';
 import mergeSegments from 'server/HAFAS/TripSearch/mergeSegments';
 import parseAuslastung from '../helper/parseAuslastung';
 import parseCommonArrival from '../helper/parseCommonArrival';
@@ -131,7 +130,6 @@ export class Journey {
     const product = this.common.prodL[jny.prodX];
 
     return {
-      plannedSequence: getPlannedSequence(product),
       train: product,
       cancelled: jny.isCncl,
       changeDuration: jny.chgDurR,

@@ -1,6 +1,5 @@
 import { AllowedHafasProfile } from 'types/HAFAS';
 import { getAbfahrten } from 'server/iris';
-import { getPlannedSequence } from 'server/Reihung/plan';
 import { isAfter, subMinutes } from 'date-fns';
 import createCtxRecon from 'server/HAFAS/helper/createCtxRecon';
 import JourneyDetails from 'server/HAFAS/JourneyDetails';
@@ -120,7 +119,6 @@ export default async (
       messages: journeyDetails.messages,
       arrival: journeyDetails.lastStop.arrival,
       departure: journeyDetails.firstStop.departure,
-      plannedSequence: getPlannedSequence(train.train),
     };
   }
 

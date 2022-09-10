@@ -1,6 +1,5 @@
 import { AuslastungsDisplay } from 'client/Common/Components/AuslastungsDisplay';
 import { DetailsLink } from 'client/Common/Components/Details/DetailsLink';
-import { PlannedType } from 'client/Common/Components/PlannedType';
 import { Reihung } from 'client/Common/Components/Reihung';
 import { segmentStyles } from './style';
 import { StopList } from 'client/Routing/Components/RouteList/StopList';
@@ -32,12 +31,7 @@ export const JnySegmentTrain: FC<Props> = ({
         <span css={segmentStyles.margin}>
           <span>
             <Tooltip title={tooltipTitle ?? segment.train.name}>
-              <span>
-                {segment.train.name}{' '}
-                {segment.plannedSequence && (
-                  <PlannedType plannedSequence={segment.plannedSequence} />
-                )}
-              </span>
+              <span>{segment.train.name}</span>
             </Tooltip>
           </span>
         </span>
