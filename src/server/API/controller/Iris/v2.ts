@@ -1,5 +1,6 @@
 import {
   Controller,
+  Deprecated,
   Get,
   OperationId,
   Query,
@@ -13,6 +14,7 @@ import type { EvaNumber } from 'types/common';
 
 @Route('/iris/v2')
 export class IrisControllerv2 extends Controller {
+  @Deprecated()
   @Get('/wings/{rawId1}/{rawId2}')
   @Tags('IRIS')
   @OperationId('WingInfo v2')
