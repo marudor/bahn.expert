@@ -1133,21 +1133,6 @@ const models: TsoaRoute.Models = {
         "additionalProperties": true,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "PossibleShort": {
-        "dataType": "refAlias",
-        "type": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["3R"]},{"dataType":"enum","enums":["3"]},{"dataType":"enum","enums":["4"]},{"dataType":"enum","enums":["2"]},{"dataType":"enum","enums":["1"]},{"dataType":"enum","enums":["T"]},{"dataType":"enum","enums":["3V"]},{"dataType":"enum","enums":["M"]}],"validators":{}},
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "PlannedSequence": {
-        "dataType": "refObject",
-        "properties": {
-            "rawType": {"dataType":"string","required":true},
-            "shortType": {"ref":"PossibleShort"},
-            "type": {"dataType":"string","required":true},
-        },
-        "additionalProperties": true,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Route%24Journey": {
         "dataType": "refObject",
         "properties": {
@@ -1165,7 +1150,6 @@ const models: TsoaRoute.Models = {
             "auslastung": {"ref":"Route%24Auslastung"},
             "messages": {"dataType":"array","array":{"dataType":"refObject","ref":"RemL"}},
             "tarifSet": {"dataType":"array","array":{"dataType":"refObject","ref":"Route%24TarifFareSet"}},
-            "plannedSequence": {"ref":"PlannedSequence"},
         },
         "additionalProperties": true,
     },
@@ -1187,7 +1171,6 @@ const models: TsoaRoute.Models = {
             "auslastung": {"ref":"Route%24Auslastung"},
             "messages": {"dataType":"array","array":{"dataType":"refObject","ref":"RemL"}},
             "tarifSet": {"dataType":"array","array":{"dataType":"refObject","ref":"Route%24TarifFareSet"}},
-            "plannedSequence": {"ref":"PlannedSequence"},
             "type": {"dataType":"enum","enums":["JNY"],"required":true},
             "arrival": {"ref":"CommonStopInfo","required":true},
             "departure": {"ref":"CommonStopInfo","required":true},
@@ -1214,7 +1197,6 @@ const models: TsoaRoute.Models = {
             "auslastung": {"ref":"Route%24Auslastung"},
             "messages": {"dataType":"array","array":{"dataType":"refObject","ref":"RemL"}},
             "tarifSet": {"dataType":"array","array":{"dataType":"refObject","ref":"Route%24TarifFareSet"}},
-            "plannedSequence": {"ref":"PlannedSequence"},
             "type": {"dataType":"enum","enums":["JNY"],"required":true},
             "arrival": {"ref":"CommonStopInfo","required":true},
             "departure": {"ref":"CommonStopInfo","required":true},

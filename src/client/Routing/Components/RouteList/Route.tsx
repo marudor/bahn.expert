@@ -1,6 +1,5 @@
 import { formatDuration } from 'client/Routing/util';
 import { Paper } from '@mui/material';
-import { PlannedType } from 'client/Common/Components/PlannedType';
 import { RouteSegments } from './RouteSegments';
 import { Time } from 'client/Common/Components/Time';
 import { useMemo } from 'react';
@@ -48,14 +47,7 @@ export const Route: FC<Props> = ({ route, detail, onClick }) => {
 
     if (!firstSegment) return null;
 
-    return (
-      <span>
-        {firstSegment.train.name}
-        {'plannedSequence' in firstSegment && (
-          <PlannedType plannedSequence={firstSegment.plannedSequence} />
-        )}
-      </span>
-    );
+    return <span>{firstSegment.train.name}</span>;
   }, [route]);
 
   return (

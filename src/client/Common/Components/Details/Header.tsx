@@ -2,7 +2,6 @@ import { BaseHeader } from '../BaseHeader';
 import { DetailsContext } from './DetailsContext';
 import { format } from 'date-fns';
 import { IconButton, Tooltip } from '@mui/material';
-import { PlannedType } from 'client/Common/Components/PlannedType';
 import { Refresh } from '@mui/icons-material';
 import { useContext } from 'react';
 import styled from '@emotion/styled';
@@ -62,9 +61,6 @@ export const Header: FC<Props> = ({ train }) => {
           <Tooltip title={tooltipText ?? trainText}>
             <span>{trainText}</span>
           </Tooltip>
-          {details?.plannedSequence && (
-            <PlannedType plannedSequence={details.plannedSequence} />
-          )}
         </TrainText>
         {details && (
           <>

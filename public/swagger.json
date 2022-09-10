@@ -2876,38 +2876,6 @@
         "type": "object",
         "additionalProperties": true
       },
-      "PossibleShort": {
-        "type": "string",
-        "enum": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "3R",
-          "T",
-          "3V",
-          "M"
-        ]
-      },
-      "PlannedSequence": {
-        "properties": {
-          "rawType": {
-            "type": "string"
-          },
-          "shortType": {
-            "$ref": "#/components/schemas/PossibleShort"
-          },
-          "type": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "rawType",
-          "type"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
       "Route$Journey": {
         "properties": {
           "cancelled": {
@@ -2962,9 +2930,6 @@
               "$ref": "#/components/schemas/Route$TarifFareSet"
             },
             "type": "array"
-          },
-          "plannedSequence": {
-            "$ref": "#/components/schemas/PlannedSequence"
           }
         },
         "required": [
@@ -3032,9 +2997,6 @@
               "$ref": "#/components/schemas/Route$TarifFareSet"
             },
             "type": "array"
-          },
-          "plannedSequence": {
-            "$ref": "#/components/schemas/PlannedSequence"
           },
           "type": {
             "type": "string",
@@ -3127,9 +3089,6 @@
               "$ref": "#/components/schemas/Route$TarifFareSet"
             },
             "type": "array"
-          },
-          "plannedSequence": {
-            "$ref": "#/components/schemas/PlannedSequence"
           },
           "type": {
             "type": "string",
