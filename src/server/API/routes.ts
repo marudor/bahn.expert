@@ -1329,6 +1329,7 @@ const models: TsoaRoute.Models = {
             "maxChanges": {"dataType":"double"},
             "searchForDeparture": {"dataType":"boolean"},
             "onlyRegional": {"dataType":"boolean"},
+            "onlyNetzcard": {"dataType":"boolean"},
             "tarif": {"ref":"TripSearchTarifRequest"},
             "via": {"dataType":"array","array":{"dataType":"refObject","ref":"TripSearchVia"}},
         },

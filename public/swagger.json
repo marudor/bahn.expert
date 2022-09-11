@@ -3445,6 +3445,9 @@
           "onlyRegional": {
             "type": "boolean"
           },
+          "onlyNetzcard": {
+            "type": "boolean"
+          },
           "tarif": {
             "$ref": "#/components/schemas/TripSearchTarifRequest"
           },

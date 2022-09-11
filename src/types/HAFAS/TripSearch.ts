@@ -32,6 +32,8 @@ interface BaseTripSearchOptions
   maxChanges?: number;
   searchForDeparture?: boolean;
   onlyRegional?: boolean;
+  // Experimental filter to only use stuff that Netzcard allows. Use at own risk!
+  onlyNetzcard?: boolean;
   tarif?: TripSearchTarifRequest;
 }
 

@@ -1,13 +1,28 @@
 import { format } from 'date-fns-tz';
 import makeRequest from '../Request';
 import mapLoyalityCard from 'server/HAFAS/TripSearch/mapLoyalityCard';
+import NetzcardBetreiber from './NetzcardBetreiber.json';
 import tripSearchParse from './parse';
-import type { AllowedHafasProfile } from 'types/HAFAS';
+import type { AllowedHafasProfile, JourneyFilter } from 'types/HAFAS';
 import type { RoutingResult } from 'types/routing';
 import type {
   TripSearchOptionsV3,
   TripSearchRequest,
 } from 'types/HAFAS/TripSearch';
+
+const netzcardFilter: JourneyFilter[] = NetzcardBetreiber.map((betreiber) => ({
+  mode: 'INC',
+  type: 'OP',
+  value: betreiber,
+}));
+
+const onlyRegionalFilter: JourneyFilter[] = [
+  {
+    value: '1016',
+    mode: 'INC',
+    type: 'PROD',
+  },
+];
 
 const profileConfig = {
   db: {
@@ -34,6 +49,7 @@ function route(
     numF = 6,
     ctxScr,
     onlyRegional,
+    onlyNetzcard,
     tarif,
   }: TripSearchOptionsV3,
   profile?: AllowedHafasProfile,
@@ -58,17 +74,17 @@ function route(
     throw new Error('Either Time or Context required');
   }
 
+  const journeyFilter: JourneyFilter[] = [];
+  if (onlyRegional) {
+    journeyFilter.push(...onlyRegionalFilter);
+  }
+  if (onlyNetzcard) {
+    journeyFilter.push(...netzcardFilter);
+  }
+
   const req: TripSearchRequest = {
     req: {
-      jnyFltrL: onlyRegional
-        ? [
-            {
-              value: '1016',
-              mode: 'INC',
-              type: 'PROD',
-            },
-          ]
-        : undefined,
+      jnyFltrL: journeyFilter.length ? journeyFilter : undefined,
       getPT: true,
       numF,
       ...requestTypeSpecific,

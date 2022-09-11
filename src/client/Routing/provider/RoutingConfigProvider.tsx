@@ -8,6 +8,7 @@ export interface RoutingSettings {
   maxChanges: string;
   transferTime: string;
   onlyRegional: boolean;
+  onlyNetzcard: boolean;
 }
 
 const useRoutingConfigInternal = ({
@@ -122,6 +123,7 @@ export const RoutingConfigProvider: FC<PropsWithChildren<unknown>> = ({
     maxChanges: storage.get('maxChanges') ?? '-1',
     transferTime: storage.get('transferTime') ?? '0',
     onlyRegional: storage.get('onlyRegional') ?? false,
+    onlyNetzcard: storage.get('onlyNetzcard') ?? false,
   };
 
   return (
