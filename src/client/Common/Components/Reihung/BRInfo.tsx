@@ -1,5 +1,8 @@
 import { stopPropagation } from 'client/Common/stopPropagation';
-import type { CoachSequenceBaureihe } from 'types/coachSequence';
+import type {
+  AvailableIdentifier,
+  CoachSequenceBaureihe,
+} from 'types/coachSequence';
 import type { FC } from 'react';
 
 interface Props {
@@ -7,8 +10,9 @@ interface Props {
   className?: string;
 }
 
-const identifierWithPDF = new Set([
+const identifierWithPDF = new Set<AvailableIdentifier>([
   '401',
+  '401.LDV',
   '402',
   '403.R',
   '403.S1',
@@ -18,7 +22,9 @@ const identifierWithPDF = new Set([
   '407',
   '411.S1',
   '411.S2',
+  '412.7',
   '412',
+  '412.13',
   '415',
   'IC2.KISS',
   'IC2.TWIN',

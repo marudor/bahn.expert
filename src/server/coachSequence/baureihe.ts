@@ -8,7 +8,7 @@ import type {
 export const nameMap: Record<AvailableIdentifier, string> = {
   '401': 'ICE 1 (BR401)',
   '401.9': 'ICE 1 Kurz (BR401)',
-  '401.LDV': 'ICE 1 LDV (BR401)',
+  '401.LDV': 'ICE 1 Modernisiert (BR401)',
   '402': 'ICE 2 (BR402)',
   '403': 'ICE 3 (BR403)',
   '403.S1': 'ICE 3 (BR403 1. Serie)',
