@@ -23,7 +23,7 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr min-content 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  grid-template-areas: 'p a g' 'o a g' 'd a g';
+  grid-template-areas: 'p a g' 'd a g' 'o o o';
   align-items: center;
   justify-items: center;
 `;

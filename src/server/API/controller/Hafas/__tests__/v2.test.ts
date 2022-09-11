@@ -13,7 +13,7 @@ describe('Hafas V2', () => {
       nock
         .post('/bin/mgate.exe')
         .query({
-          checksum: 'e7152163831a365b30238e4edbb09423',
+          checksum: 'e9a84c4b2e75c45a5e104001fccce14f',
         })
         .replyWithFile(
           200,

@@ -108,11 +108,11 @@ export const db = {
   config: {
     client: {
       id: 'DB',
-      v: '19040000',
-      type: 'AND',
+      v: '20100000',
+      type: 'IPH',
       name: 'DB Navigator',
     },
-    ext: 'DB.R21.12.a',
+    ext: 'DB.R22.04.a',
     lang: 'de',
     ver: '1.18',
     auth: {

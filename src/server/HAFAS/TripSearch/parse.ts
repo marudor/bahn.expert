@@ -1,3 +1,4 @@
+import { adjustProductOperator } from 'server/HAFAS/helper/adjustProductOperator';
 import { differenceInMilliseconds, parse } from 'date-fns';
 import mergeSegments from 'server/HAFAS/TripSearch/mergeSegments';
 import parseAuslastung from '../helper/parseAuslastung';
@@ -128,6 +129,7 @@ export class Journey {
     // eslint-disable-next-line unicorn/no-unreadable-array-destructuring
     const [, fullStart, fullDestination, , , , , , ,] = jny.ctxRecon.split('$');
     const product = this.common.prodL[jny.prodX];
+    adjustProductOperator(product, this.common, jny.stopL);
 
     return {
       train: product,
