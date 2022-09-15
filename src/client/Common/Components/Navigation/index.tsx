@@ -5,14 +5,14 @@ import {
   Search,
   Train,
 } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
 import {
+  Drawer,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
-  SwipeableDrawer,
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 import { NavigationContext } from './NavigationContext';
 import { ThemeSelection } from './ThemeSelection';
 import { useCallback, useMemo, useState } from 'react';
@@ -24,7 +24,7 @@ const Headline = styled.h3`
   text-align: center;
 `;
 
-const Drawer = styled(List)`
+const DrawerContent = styled(List)`
   width: 230px;
   overflow-x: hidden;
   & a {
@@ -53,9 +53,9 @@ export const Navigation: FC<Props> = ({ children }) => {
 
   return (
     <NavigationContext.Provider value={navigationContext}>
-      <SwipeableDrawer open={open} onClose={toggleDrawer} onOpen={toggleDrawer}>
+      <Drawer open={open} onClose={toggleDrawer}>
         <Headline>Bahn Experte</Headline>
-        <Drawer onClick={toggleDrawer}>
+        <DrawerContent onClick={toggleDrawer}>
           <Link to="/">
             <ListItem button>
               <ListItemIcon>
@@ -107,8 +107,8 @@ export const Navigation: FC<Props> = ({ children }) => {
               <ListItemText primary="About" />
             </ListItem>
           </Link>
-        </Drawer>
-      </SwipeableDrawer>
+        </DrawerContent>
+      </Drawer>
       {children}
     </NavigationContext.Provider>
   );
