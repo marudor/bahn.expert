@@ -16,4 +16,13 @@ describe('Details', () => {
     cy.wait('@details');
     cy.findByTestId('header').should('have.css', 'height', '54px');
   });
+
+  it('renders train line & number for regional stuff', () => {
+    cy.intercept('/api/hafas/v2/details/S30665', {
+      fixture: 'details/S6',
+    }).as('details');
+    cy.visit('/details/S30665');
+    cy.wait('@details');
+    cy.findByTestId('detailsTrainName').should('have.text', 'S 6 (30665)');
+  });
 });
