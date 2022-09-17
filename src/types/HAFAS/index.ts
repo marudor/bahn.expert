@@ -9,12 +9,6 @@ import type { LocGeoPosRequest } from './LocGeoPos';
 import type { LocMatchRequest } from './LocMatch';
 import type { SearchOnTripRequest } from 'types/HAFAS/SearchOnTrip';
 import type { StationBoardRequest } from 'types/HAFAS/StationBoard';
-import type { SubscrCreateRequest } from 'types/HAFAS/Subscr/SubscrCreate';
-import type { SubscrDeleteRequest } from 'types/HAFAS/Subscr/SubscrDelete';
-import type { SubscrDetailsRequest } from 'types/HAFAS/Subscr/SubscrDetails';
-import type { SubscrSearchRequest } from 'types/HAFAS/Subscr/SubscrSearch';
-import type { SubscrUserCreateRequest } from 'types/HAFAS/Subscr/SubscrUserCreate';
-import type { SubscrUserDeleteRequest } from 'types/HAFAS/Subscr/SubscrUserDelete';
 import type { TripSearchRequest } from './TripSearch';
 
 export type JourneyFilterMode = 'BIT' | 'EXC' | 'INC' | 'UNDEF';
@@ -284,14 +278,6 @@ export type SingleHafasRequest =
   | SearchOnTripRequest
   | TripSearchRequest
   | JourneyGeoPosRequest;
-
-export type UncommonHafasRequest =
-  | SubscrCreateRequest
-  | SubscrDeleteRequest
-  | SubscrUserDeleteRequest
-  | SubscrUserCreateRequest
-  | SubscrSearchRequest
-  | SubscrDetailsRequest;
 
 interface CInfo {
   code: string;
