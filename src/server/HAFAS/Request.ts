@@ -10,7 +10,6 @@ import type {
   HafasResponse,
   ParsedCommon,
   SingleHafasRequest,
-  UncommonHafasRequest,
 } from 'types/HAFAS';
 import type {
   HimSearchRequest,
@@ -54,36 +53,12 @@ import type {
   StationBoardResponse,
 } from 'types/HAFAS/StationBoard';
 import type {
-  SubscrCreateRequest,
-  SubscrCreateResponse,
-} from 'types/HAFAS/Subscr/SubscrCreate';
-import type {
-  SubscrDeleteRequest,
-  SubscrDeleteResponse,
-} from 'types/HAFAS/Subscr/SubscrDelete';
-import type {
-  SubscrDetailsRequest,
-  SubscrDetailsResponse,
-} from 'types/HAFAS/Subscr/SubscrDetails';
-import type {
-  SubscrSearchRequest,
-  SubscrSearchResponse,
-} from 'types/HAFAS/Subscr/SubscrSearch';
-import type {
-  SubscrUserCreateRequest,
-  SubscrUserCreateResponse,
-} from 'types/HAFAS/Subscr/SubscrUserCreate';
-import type {
-  SubscrUserDeleteRequest,
-  SubscrUserDeleteResponse,
-} from 'types/HAFAS/Subscr/SubscrUserDelete';
-import type {
   TripSearchRequest,
   TripSearchResponse,
 } from 'types/HAFAS/TripSearch';
 
 function createRequest(
-  req: SingleHafasRequest | UncommonHafasRequest,
+  req: SingleHafasRequest,
   profileType: AllowedHafasProfile,
 ) {
   const profile = HafasProfiles[profileType];
@@ -122,13 +97,13 @@ function parseCommon(common: Common): ParsedCommon {
 export class HafasError extends Error {
   customError = true;
   data: {
-    request: SingleHafasRequest | UncommonHafasRequest;
+    request: SingleHafasRequest;
     response: HafasResponse<any>;
     profile: AllowedHafasProfile;
   };
   errorCode: string | undefined;
   constructor(
-    request: SingleHafasRequest | UncommonHafasRequest,
+    request: SingleHafasRequest,
     response: HafasResponse<any>,
     profile: AllowedHafasProfile,
   ) {
@@ -208,38 +183,3 @@ async function makeRequest<
 }
 
 export default makeRequest;
-
-type UncommonHafasResponse<R> = R extends SubscrCreateRequest
-  ? SubscrCreateResponse
-  : R extends SubscrDeleteRequest
-  ? SubscrDeleteResponse
-  : R extends SubscrUserCreateRequest
-  ? SubscrUserCreateResponse
-  : R extends SubscrUserDeleteRequest
-  ? SubscrUserDeleteResponse
-  : R extends SubscrDetailsRequest
-  ? SubscrDetailsResponse
-  : R extends SubscrSearchRequest
-  ? SubscrSearchResponse
-  : never;
-
-export async function makeUncommonRequest<
-  R extends UncommonHafasRequest,
-  HR = UncommonHafasResponse<R>,
-  P = HR,
->(
-  hafasRequest: R,
-  parseFn: (d: HR) => P = (d) => d as any,
-  profile: AllowedHafasProfile = AllowedHafasProfile.DB,
-): Promise<P> {
-  const { data, extraParam } = createRequest(hafasRequest, profile);
-  const r = (
-    await Axios.post<HafasResponse<HR>>(HafasProfiles[profile].url, data, {
-      params: extraParam,
-    })
-  ).data;
-  if (('err' in r && r.err !== 'OK') || r.svcResL[0].err !== 'OK') {
-    throw new HafasError(hafasRequest, r, profile);
-  }
-  return parseFn(r.svcResL[0].res);
-}
