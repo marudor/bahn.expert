@@ -11,6 +11,7 @@ module.exports = {
     react: { version: 'detect' },
   },
   rules: {
+    'react/no-unknown-property': [2, { ignore: ['css'] }],
     'prettier/prettier': 0,
     'react/react-in-jsx-scope': 0,
     'require-await': 0,
