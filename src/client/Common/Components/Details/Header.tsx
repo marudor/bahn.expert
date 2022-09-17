@@ -5,6 +5,7 @@ import { IconButton, Tooltip } from '@mui/material';
 import { Refresh } from '@mui/icons-material';
 import { useContext } from 'react';
 import styled from '@emotion/styled';
+import type { CommonProductInfo } from 'types/HAFAS';
 import type { FC } from 'react';
 
 const Operator = styled.span(({ theme }) => theme.mixins.singleLineText, {
@@ -37,30 +38,35 @@ const Arrow = styled.span`
   min-width: 1.5em;
 `;
 
+interface FTNProps {
+  train?: CommonProductInfo;
+  fallback: string;
+}
+
+const FullTrainName: FC<FTNProps> = ({ train, fallback }) => {
+  if (!train) {
+    return <span>{fallback}</span>;
+  }
+  const usesNumberAsIdentification =
+    train?.number && train.name.endsWith(train.number);
+  return (
+    <span data-testid="detailsTrainName">
+      {train.name}
+      {!usesNumberAsIdentification && ` (${train.number})`}
+    </span>
+  );
+};
 interface Props {
   train: string;
 }
 export const Header: FC<Props> = ({ train }) => {
   const { details, refresh } = useContext(DetailsContext);
 
-  const trainText = details ? details.train.name : train;
-  const showLine =
-    details &&
-    details.train.number &&
-    details.train.name.endsWith(details.train.number);
-  const tooltipText =
-    details &&
-    (showLine
-      ? `Linie ${details.train.line}`
-      : `Nummer ${details.train.number}`);
-
   return (
     <BaseHeader>
       <Container data-testid="detailsHeader">
         <TrainText>
-          <Tooltip title={tooltipText ?? trainText}>
-            <span>{trainText}</span>
-          </Tooltip>
+          <FullTrainName train={details?.train} fallback={train} />
         </TrainText>
         {details && (
           <>
