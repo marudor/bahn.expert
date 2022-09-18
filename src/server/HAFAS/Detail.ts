@@ -1,18 +1,18 @@
+import { addIrisMessagesToDetails } from 'server/journeys/journeyDetails';
 import { AllowedHafasProfile } from 'types/HAFAS';
-import { getAbfahrten } from 'server/iris';
-import { isAfter, subMinutes } from 'date-fns';
+import { isAfter } from 'date-fns';
 import createCtxRecon from 'server/HAFAS/helper/createCtxRecon';
 import JourneyDetails from 'server/HAFAS/JourneyDetails';
 import JourneyMatch from 'server/HAFAS/JourneyMatch';
 import searchOnTrip from './SearchOnTrip';
 import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 import type { ParsedSearchOnTripResponse } from 'types/HAFAS/SearchOnTrip';
-import type { Route$JourneySegmentTrain } from 'types/routing';
+import type { Route$JourneySegmentTrain, Route$Stop } from 'types/routing';
 
-function calculateCurrentStopPlace(
+export function calculateCurrentStopPlace(
   segment: ParsedSearchOnTripResponse,
   currentStopId?: string,
-) {
+): Route$Stop | undefined {
   const currentDate = Date.now();
   let currentStop;
 
@@ -161,38 +161,7 @@ export default async (
     currentStopId,
   );
 
-  const irisStop =
-    relevantSegment.currentStop ||
-    relevantSegment.stops[relevantSegment.stops.length - 1];
-
-  if (irisStop) {
-    const stopInfo = irisStop.departure || irisStop.arrival;
-
-    if (stopInfo) {
-      try {
-        const irisData = await getAbfahrten(irisStop.station.id, false, {
-          lookahead: 10,
-          lookbehind: 0,
-          currentDate: subMinutes(stopInfo.scheduledTime, 5),
-        });
-
-        const irisDeparture = irisData.departures.find(
-          (a) => a.train.name === relevantSegment.train.name,
-        );
-
-        if (irisDeparture) {
-          const irisMessages = [
-            ...irisDeparture.messages.delay,
-            ...irisDeparture.messages.qos,
-            ...irisDeparture.messages.him,
-          ];
-          irisStop.irisMessages = irisMessages;
-        }
-      } catch {
-        // ignore
-      }
-    }
-  }
+  await addIrisMessagesToDetails(relevantSegment);
 
   return relevantSegment;
 };

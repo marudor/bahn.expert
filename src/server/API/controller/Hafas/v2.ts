@@ -7,6 +7,7 @@ import {
   Post,
   Query,
   Request,
+  Res,
   Response,
   Route,
   Tags,
@@ -34,6 +35,7 @@ import type {
 import type { Request as KRequest } from 'koa';
 import type { ParsedJourneyDetails } from 'types/HAFAS/JourneyDetails';
 import type { Route$Auslastung, SingleRoute } from 'types/routing';
+import type { TsoaResponse } from '@tsoa/runtime';
 
 export interface SearchOnTripBody {
   sotMode: AllowedSotMode;
@@ -166,6 +168,7 @@ export class HafasControllerV2 extends Controller {
   @Tags('HAFAS')
   @OperationId('Details v2')
   async details(
+    @Res() notFoundResponse: TsoaResponse<404, void>,
     trainName: string,
     @Deprecated() @Query() stop?: string,
     /**
@@ -181,9 +184,7 @@ export class HafasControllerV2 extends Controller {
     const details = await Detail(trainName, stop, station, date, profile);
 
     if (!details) {
-      throw {
-        status: 404,
-      };
+      return notFoundResponse(404);
     }
     return details;
   }

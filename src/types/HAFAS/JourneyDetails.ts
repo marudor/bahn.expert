@@ -6,7 +6,14 @@ import type {
   ParsedProduct,
   RemL,
 } from '.';
+import type { EvaNumber } from 'types/common';
 import type { Route$Auslastung, Route$Stop } from 'types/routing';
+
+// Additional Information we can only get from HAFAS in case of RIS Details. (Occupancy & correct operator names)
+export interface AdditionalJourneyInformation {
+  operatorName?: string;
+  occupancy: Record<EvaNumber, Route$Auslastung>;
+}
 
 export interface JourneyDetailsResponse {
   common: Common;

@@ -1,4 +1,5 @@
 import { Details } from 'client/Common/Components/Details';
+import { DetailsProvider } from 'client/Common/provider/DetailsProvider';
 import { useParams } from 'react-router';
 import { useQuery } from 'client/Common/hooks/useQuery';
 import type { FC } from 'react';
@@ -8,20 +9,21 @@ interface Props {
 }
 
 export const DetailsRoute: FC<Props> = ({ urlPrefix }) => {
-  /**
-   * If you change query params also change hafasDetailsRedirect.ts
-   */
   const query = useQuery();
   const { train, initialDeparture } = useParams();
+  const evaNumberAlongRoute = (query.evaNumberAlongRoute ||
+    query.stopEva ||
+    query.station) as string | undefined;
 
   return (
-    <Details
-      train={train!}
-      stationId={(query.stopEva || query.station) as string}
-      initialDeparture={initialDeparture}
-      currentStopId={query.stop as string}
+    <DetailsProvider
+      trainName={train!}
+      evaNumberAlongRoute={evaNumberAlongRoute}
+      initialDepartureDateString={initialDeparture}
       urlPrefix={urlPrefix}
-    />
+    >
+      <Details />
+    </DetailsProvider>
   );
 };
 // eslint-disable-next-line import/no-default-export

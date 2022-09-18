@@ -9,7 +9,7 @@ describe('Details', () => {
   });
 
   it('can render & header height correct', () => {
-    cy.intercept('/api/hafas/v2/details/S30665', {
+    cy.intercept('/api/journeys/v1/details/S30665', {
       fixture: 'details/S6',
     }).as('details');
     cy.visit('/details/S30665');
@@ -18,7 +18,7 @@ describe('Details', () => {
   });
 
   it('renders train line & number for regional stuff', () => {
-    cy.intercept('/api/hafas/v2/details/S30665', {
+    cy.intercept('/api/journeys/v1/details/S30665', {
       fixture: 'details/S6',
     }).as('details');
     cy.visit('/details/S30665');

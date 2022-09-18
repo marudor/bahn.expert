@@ -4,6 +4,7 @@ import { JourneysApi, TransportType } from 'business-hub/generated/risJourneys';
 import { risJourneysConfiguration } from 'business-hub/config';
 import axios from 'axios';
 import type {
+  JourneyEventBased,
   JourneyMatch,
   StationShort,
   TransportPublic,
@@ -64,6 +65,7 @@ export async function findJourney(
   category?: string,
   date?: Date,
   onlyFv?: boolean,
+  originEvaNumber?: string,
 ): Promise<JourneyMatch[]> {
   try {
     const result = await risJourneysClient.find({
@@ -71,6 +73,7 @@ export async function findJourney(
       category,
       date: date && format(date, 'yyyy-MM-dd'),
       transports: onlyFv ? longDistanceTypes : undefined,
+      originEvaNumber,
     });
 
     return result.data.journeys;
@@ -88,4 +91,19 @@ export async function findJourneyHafasCompatible(
   const risReuslt = await findJourney(trainNumber, category, date, onlyFv);
 
   return risReuslt.map(mapToParsedJourneyMatchResponse);
+}
+
+export async function getJourneyDetails(
+  journeyId: string,
+): Promise<JourneyEventBased | undefined> {
+  try {
+    const r = await risJourneysClient.journeyEventbasedById({
+      journeyID: journeyId,
+      includeJourneyReferences: true,
+    });
+
+    return r.data;
+  } catch {
+    return undefined;
+  }
 }
