@@ -35,7 +35,8 @@
             "type": "string"
           },
           "type": {
-            "type": "string"
+            "type": "string",
+            "description": "This is actually category"
           },
           "operator": {
             "$ref": "#/components/schemas/OpL"
@@ -739,7 +740,8 @@
             "type": "string"
           },
           "type": {
-            "type": "string"
+            "type": "string",
+            "description": "This is actually category"
           },
           "operator": {
             "$ref": "#/components/schemas/OpL"

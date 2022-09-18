@@ -183,6 +183,9 @@ export interface CommonProductInfo {
   name: string;
   line?: string;
   number?: string;
+  /**
+   * This is actually category
+   */
   type?: string;
   operator?: OpL;
   admin?: string;

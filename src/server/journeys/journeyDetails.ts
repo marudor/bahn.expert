@@ -164,6 +164,7 @@ export async function journeyDetails(
     departure: firstStop.departure!,
     finalDestination: journey.destinationSchedule.name,
     train: {
+      type: firstEvent.transport.category,
       number: firstEvent.transport.number.toString(),
       name: `${firstEvent.transport.category} ${
         firstEvent.transport.line || firstEvent.transport.number
