@@ -29,6 +29,7 @@ export const enum CacheDatabases {
   StopPlaceGroups,
   StopPlaceSalesSearch,
   JourneyFind,
+  NegativeNewSequence,
 }
 const activeCaches: Set<any> = new Set();
 

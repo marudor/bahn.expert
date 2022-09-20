@@ -2335,10 +2335,12 @@ export function RegisterRoutes(router: KoaRouter) {
 
             async function ReihungControllerV4_wagenreihung(context: any, next: any) {
             const args = {
+                    notFoundResponse: {"in":"res","name":"404","required":true,"dataType":"void"},
                     trainNumber: {"in":"path","name":"trainNumber","required":true,"dataType":"integer","validators":{"isInt":{"errorMsg":"trainNumber"}}},
                     departure: {"in":"query","name":"departure","required":true,"dataType":"datetime"},
                     evaNumber: {"in":"query","name":"evaNumber","ref":"EvaNumber"},
                     initialDeparture: {"in":"query","name":"initialDeparture","dataType":"datetime"},
+                    category: {"in":"query","name":"category","dataType":"string"},
             };
 
             let validatedArgs: any[] = [];

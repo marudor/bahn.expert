@@ -1,3 +1,4 @@
+import { Configuration as CoachSequenceConfiguration } from 'business-hub/generated/coachSequence';
 import { Configuration as RisJourneysConfiguration } from 'business-hub/generated/risJourneys';
 import { Configuration as RisStationsConfiguration } from 'business-hub/generated/risStations';
 
@@ -18,6 +19,16 @@ export const risJourneysConfiguration = new RisJourneysConfiguration({
     headers: {
       'DB-Api-Key': process.env.RIS_JOURNEYS_CLIENT_SECRET,
       'DB-Client-Id': process.env.RIS_JOURNEYS_CLIENT_ID,
+    },
+  },
+});
+
+export const coachSequenceConfiguration = new CoachSequenceConfiguration({
+  basePath: process.env.COACH_SEQUENCE_URL,
+  baseOptions: {
+    headers: {
+      'DB-Api-Key': process.env.COACH_SEQUENCE_CLIENT_SECRET,
+      'DB-Client-Id': process.env.COACH_SEQUENCE_CLIENT_ID,
     },
   },
 });

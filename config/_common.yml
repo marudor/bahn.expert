@@ -122,3 +122,24 @@ baseEnv:
       secretKeyRef:
         name: bahnhofs-abfahrten-config
         key: RIS_JOURNEYS_URL
+  - name: COACH_SEQUENCE_CLIENT_ID
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: COACH_SEQUENCE_CLIENT_ID
+  - name: COACH_SEQUENCE_CLIENT_SECRET
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: COACH_SEQUENCE_CLIENT_SECRET
+  - name: COACH_SEQUENCE_URL
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: COACH_SEQUENCE_URL
+  - name: COACH_SEQUENCE_DISABLED
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: COACH_SEQUENCE_DISABLED
+        optional: true

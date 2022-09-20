@@ -53,6 +53,7 @@ export const JnySegmentTrain: FC<Props> = ({
             <Reihung
               css={segmentStyles.reihung}
               trainNumber={segment.train.number}
+              trainCategory={segment.train.type}
               currentEvaNumber={segment.segmentStart.id}
               scheduledDeparture={segment.departure.scheduledTime}
               loadHidden={!segment.departure.reihung}

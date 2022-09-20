@@ -168,6 +168,7 @@ export const Stop: FC<Props> = ({
         {showWR?.number && depOrArrival && (
           <Reihung
             trainNumber={showWR.number}
+            trainCategory={showWR.type}
             currentEvaNumber={stop.station.id}
             scheduledDeparture={depOrArrival.scheduledTime}
             initialDeparture={initialDepartureDate}
