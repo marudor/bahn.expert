@@ -62,6 +62,7 @@ export function getDisabledSeats(
     case '403.S1':
     case '403.S2':
     case '406':
+    case '406.R':
       if (klasse === 1) return '64, 66';
       if (wagenordnungsnummer === '25' || wagenordnungsnummer === '35') {
         // redesign slighlty different
