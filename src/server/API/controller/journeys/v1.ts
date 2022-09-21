@@ -44,10 +44,7 @@ export class JourneysV1Controller extends Controller {
       );
     }
     const risResult = await risPromise;
-    if (risResult.length) {
-      return risResult.slice(0, limit);
-    }
-    return enrichedJourneyMatch({
+    const hafasPromise = enrichedJourneyMatch({
       onlyRT: true,
       jnyFltrL: filtered
         ? [
@@ -62,6 +59,12 @@ export class JourneysV1Controller extends Controller {
       initialDepartureDate,
       limit,
     });
+
+    if (risResult.length) {
+      return risResult.slice(0, limit);
+    }
+
+    return await hafasPromise;
   }
 
   @Hidden()

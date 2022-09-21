@@ -1,5 +1,6 @@
 import { addRandomUseragent } from 'business-hub/randomUseragent';
-import { format } from 'date-fns';
+import { CacheDatabases, createNewCache } from 'server/cache';
+import { differenceInHours, format } from 'date-fns';
 import { JourneysApi, TransportType } from 'business-hub/generated/risJourneys';
 import { risJourneysConfiguration } from 'business-hub/config';
 import axios from 'axios';
@@ -12,6 +13,11 @@ import type {
 import type { ParsedJourneyMatchResponse } from 'types/HAFAS/JourneyMatch';
 import type { ParsedProduct } from 'types/HAFAS';
 import type { Route$Stop } from 'types/routing';
+
+const journeyFindCache = createNewCache<string, JourneyMatch[]>(
+  CacheDatabases.JourneyFind,
+  8 * 60 * 60,
+);
 
 const axiosWithTimeout = axios.create({
   timeout: 4500,
@@ -59,7 +65,6 @@ function mapToParsedJourneyMatchResponse(
     lastStop: mapStationShortToRouteStops(journeyMatch.destinationSchedule),
   };
 }
-
 export async function findJourney(
   trainNumber: number,
   category?: string,
@@ -68,6 +73,16 @@ export async function findJourney(
   originEvaNumber?: string,
 ): Promise<JourneyMatch[]> {
   try {
+    const isWithin30Hours = !date || differenceInHours(date, Date.now()) <= 30;
+    const cacheKey = `${trainNumber}|${category}|${
+      date && format(date, 'yyyy-MM-dd')
+    }|${onlyFv ?? false}|${originEvaNumber}`;
+    if (isWithin30Hours) {
+      const cacheHit = await journeyFindCache.get(cacheKey);
+      if (cacheHit) {
+        return cacheHit;
+      }
+    }
     const result = await risJourneysClient.find({
       number: trainNumber,
       category,
@@ -75,6 +90,10 @@ export async function findJourney(
       transports: onlyFv ? longDistanceTypes : undefined,
       originEvaNumber,
     });
+
+    if (isWithin30Hours) {
+      void journeyFindCache.set(cacheKey, result.data.journeys);
+    }
 
     return result.data.journeys;
   } catch {
