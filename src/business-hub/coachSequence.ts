@@ -1,6 +1,7 @@
 import { CacheDatabases, createNewCache } from 'server/cache';
 import { coachSequenceConfiguration } from 'business-hub/config';
 import { format, formatISO } from 'date-fns';
+import { logger } from 'server/logger';
 import { TransportsApi } from 'business-hub/generated/coachSequence';
 import Axios from 'axios';
 import type { VehicleSequenceDeparture } from 'business-hub/generated/coachSequence';
@@ -33,6 +34,7 @@ export async function getDepartureSequence(
     if (wasNotFound) {
       return undefined;
     }
+    logger.debug('Trying new coachSequence');
     const r = await coachSequenceClient.vehicleSequenceDepartureUnmatched({
       category: trainCategory,
       number: trainNumber,
@@ -43,10 +45,9 @@ export async function getDepartureSequence(
       // includeOccupancy: 'DETAIL',
       includePosition: true,
     });
-
-    console.debug(JSON.stringify(r.data));
     return r.data;
   } catch (e) {
+    logger.debug(e, `new coach sequence errored (${e.response?.status})`);
     if (Axios.isAxiosError(e) && e.response?.status === 404) {
       void negativeHitCache.set(cacheKey, true);
     }
