@@ -116,6 +116,7 @@ export interface CoachSequence {
 }
 
 export interface CoachSequenceInformation {
+  source: 'OEBB' | 'NEW' | 'DB';
   stop: CoachSequenceStop;
   product: CoachSequenceProduct;
   sequence: CoachSequence;

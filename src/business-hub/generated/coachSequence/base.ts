@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* tslint:disable */
 /* eslint-disable */
 /**
@@ -21,8 +22,7 @@ import globalAxios, {
   AxiosRequestConfig,
 } from 'axios';
 
-export const BASE_PATH =
-  'https://apis.deutschebahn.com/db/apis/ris-transports/v2'.replace(/\/+$/, '');
+export const BASE_PATH = '';
 
 /**
  *

@@ -226,12 +226,13 @@ export const mapInformation = (
   const allCoaches = sequence.groups.flatMap((g) => g.coaches);
 
   const information: CoachSequenceInformation = {
+    source: 'NEW',
     product: {
       number: trainNumber.toString(),
       type: trainCategory,
       line: getLineFromNumber(trainNumber.toString()),
     },
-    isRealtime: true,
+    isRealtime: allCoaches.every((c) => c.uic || c.category === 'LOK'),
     stop,
     sequence,
     direction: mapDirection(allCoaches),

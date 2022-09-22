@@ -175,6 +175,7 @@ export const mapInformation = (
   );
 
   const coachsequenceInfo: CoachSequenceInformation = {
+    source: 'OEBB',
     isRealtime: info.train?.isReported ?? false,
     product: mapProduct(info.timeTableInfo),
     direction: info.trainOnPlatform

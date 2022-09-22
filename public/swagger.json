@@ -3814,6 +3814,14 @@
       },
       "CoachSequenceInformation": {
         "properties": {
+          "source": {
+            "type": "string",
+            "enum": [
+              "OEBB",
+              "NEW",
+              "DB"
+            ]
+          },
           "stop": {
             "$ref": "#/components/schemas/CoachSequenceStop"
           },
@@ -3838,6 +3846,7 @@
           }
         },
         "required": [
+          "source",
           "stop",
           "product",
           "sequence",

@@ -217,7 +217,8 @@ export const mapInformation = (
   if (!sequence) return;
   const allCoaches = sequence.groups.flatMap((g) => g.coaches);
 
-  const information = {
+  const information: CoachSequenceInformation = {
+    source: 'DB',
     sequence,
     product: mapProduct(formation),
     stop: mapStop(formation.halt),

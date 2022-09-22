@@ -1494,6 +1494,7 @@ const models: TsoaRoute.Models = {
     "CoachSequenceInformation": {
         "dataType": "refObject",
         "properties": {
+            "source": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["OEBB"]},{"dataType":"enum","enums":["NEW"]},{"dataType":"enum","enums":["DB"]}],"required":true},
             "stop": {"ref":"CoachSequenceStop","required":true},
             "product": {"ref":"CoachSequenceProduct","required":true},
             "sequence": {"ref":"CoachSequence","required":true},
