@@ -66,6 +66,7 @@ const DirectionOfTravel = styled.span<{ reversed?: boolean }>(
 interface Props {
   className?: string;
   trainNumber: string;
+  trainCategory?: string;
   fallbackTrainNumbers?: string[];
   currentEvaNumber: string;
   scheduledDeparture: Date;
@@ -82,6 +83,7 @@ export const Reihung: FC<Props> = ({
   initialDeparture,
   loadHidden,
   fallbackTrainNumbers,
+  trainCategory,
 }) => {
   const sequences = useSequences();
   const { getSequences } = useSequencesActions();
@@ -97,6 +99,7 @@ export const Reihung: FC<Props> = ({
         scheduledDeparture,
         initialDeparture,
         fallbackTrainNumbers,
+        trainCategory,
       );
     }
   }, [
@@ -107,6 +110,7 @@ export const Reihung: FC<Props> = ({
     sequence,
     scheduledDeparture,
     trainNumber,
+    trainCategory,
   ]);
 
   const [scale, startPercent] = useMemo(() => {

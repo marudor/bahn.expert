@@ -1,5 +1,6 @@
 import { DBCoachSequence } from 'server/coachSequence/DB';
 import { differenceInHours } from 'date-fns';
+import { newDBCoachSequence } from 'server/coachSequence/newDB';
 import { OEBBCoachSequence } from 'server/coachSequence/OEBB';
 import type { CoachSequenceInformation } from 'types/coachSequence';
 import type { EvaNumber } from 'types/common';
@@ -9,6 +10,7 @@ export async function coachSequence(
   departure: Date,
   evaNumber?: EvaNumber,
   initialDeparture?: Date,
+  trainCategory?: string,
 ): Promise<CoachSequenceInformation | undefined> {
   if (evaNumber && initialDeparture && !evaNumber.startsWith('80')) {
     const oebbSequence = await OEBBCoachSequence(
@@ -24,5 +26,23 @@ export async function coachSequence(
     return undefined;
   }
 
-  return await DBCoachSequence(trainNumber, departure);
+  let newDBSequencePromise: Promise<CoachSequenceInformation | void> =
+    Promise.resolve();
+  const dbSequencePromise = DBCoachSequence(trainNumber, departure);
+  // We only use the new API for ICEs (for now)
+  if (evaNumber && initialDeparture && trainCategory === 'ICE') {
+    newDBSequencePromise = newDBCoachSequence(
+      trainCategory,
+      Number.parseInt(trainNumber),
+      evaNumber,
+      departure,
+      initialDeparture,
+    );
+  }
+
+  const newDBSequence = await newDBSequencePromise;
+  if (newDBSequence) {
+    return newDBSequence;
+  }
+  return await dbSequencePromise;
 }

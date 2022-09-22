@@ -3,6 +3,7 @@ import {
   getBaureiheByUIC,
 } from 'server/coachSequence/baureihe';
 import { getSeatsForCoach } from 'server/coachSequence/specialSeats';
+import { logger } from 'server/logger';
 import TrainNames from './TrainNames';
 import type {
   CoachSequenceBaureihe,
@@ -45,6 +46,7 @@ function enrichCoachSequenceGroup(
   if (trainNumberAsNumber >= 9550 && trainNumberAsNumber <= 9599) {
     for (const c of group.coaches) {
       if (c.features.comfort) {
+        logger.debug('had to fix comfort flag for stuff going to france');
         c.features.comfort = false;
       }
     }

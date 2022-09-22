@@ -9,6 +9,7 @@ async function fetchSequence(
   scheduledDeparture: Date,
   evaNumber: string,
   initialDeparture?: Date,
+  trainCategory?: string,
 ): Promise<CoachSequenceInformation | undefined> {
   if (trainNumber === '0') {
     return undefined;
@@ -21,6 +22,7 @@ async function fetchSequence(
           evaNumber,
           departure: scheduledDeparture.toISOString(),
           initialDeparture: initialDeparture?.toISOString(),
+          category: trainCategory,
         },
       },
     );
@@ -48,6 +50,7 @@ function useReihungInner(_p: PropsWithChildren<unknown>) {
       scheduledDeparture: Date,
       initialDeparture?: Date,
       fallbackTrainNumbers: string[] = [],
+      trainCategory?: string,
     ) => {
       let reihung: CoachSequenceInformation | undefined | null;
 
@@ -57,6 +60,7 @@ function useReihungInner(_p: PropsWithChildren<unknown>) {
           scheduledDeparture,
           currentEvaNumber,
           initialDeparture,
+          trainCategory,
         ),
         ...fallbackTrainNumbers.map((fallback) =>
           fetchSequence(
@@ -64,6 +68,7 @@ function useReihungInner(_p: PropsWithChildren<unknown>) {
             scheduledDeparture,
             currentEvaNumber,
             initialDeparture,
+            trainCategory,
           ),
         ),
       ]);

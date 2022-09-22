@@ -12,7 +12,8 @@ import type Koa from 'koa';
 // @ts-expect-error typing wrong
 const compiler: any = webpack(webpackConfig);
 const clientRegexp = /src\/client/;
-const serverRegexp = /src\/(?!client)/;
+const serverRegexp =
+  /src\/(?!(client|server\/logger|server\/HAFAS\/HimSearch))/;
 export default function webpackDev(koa: Koa): Promise<unknown> {
   // Do "hot-reloading" of react stuff on the server
   // Throw away the cached client modules and let them be re-required next time
@@ -45,7 +46,7 @@ export default function webpackDev(koa: Koa): Promise<unknown> {
       });
     }
     for (const id of Object.keys(require.cache)) {
-      if (serverRegexp.test(id)) {
+      if (!id.includes('/node_modules/') && serverRegexp.test(id)) {
         delete require.cache[id];
       }
     }

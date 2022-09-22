@@ -3814,6 +3814,14 @@
       },
       "CoachSequenceInformation": {
         "properties": {
+          "source": {
+            "type": "string",
+            "enum": [
+              "OEBB",
+              "NEW",
+              "DB"
+            ]
+          },
           "stop": {
             "$ref": "#/components/schemas/CoachSequenceStop"
           },
@@ -3838,6 +3846,7 @@
           }
         },
         "required": [
+          "source",
           "stop",
           "product",
           "sequence",
@@ -5450,6 +5459,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": ""
           }
         },
         "description": "Returns the coachSequence at a specific stop for a specific train.\nWorks for OEBB stops and DB stops.\n\nReturns plannedSequence if no real time information is available",
@@ -5501,6 +5513,15 @@
             "required": false,
             "schema": {
               "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "description": "needed for new DB Reihung",
+            "in": "query",
+            "name": "category",
+            "required": false,
+            "schema": {
               "type": "string"
             }
           }
