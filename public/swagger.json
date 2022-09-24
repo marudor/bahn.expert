@@ -3019,51 +3019,6 @@
         "type": "object",
         "additionalProperties": true
       },
-      "WingInfo": {
-        "properties": {
-          "station": {
-            "properties": {
-              "title": {
-                "type": "string"
-              },
-              "id": {
-                "type": "string"
-              }
-            },
-            "required": [
-              "title",
-              "id"
-            ],
-            "type": "object"
-          },
-          "pt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "fl": {
-            "type": "boolean"
-          }
-        },
-        "required": [
-          "station",
-          "pt",
-          "fl"
-        ],
-        "type": "object",
-        "additionalProperties": true
-      },
-      "WingDefinition": {
-        "properties": {
-          "start": {
-            "$ref": "#/components/schemas/WingInfo"
-          },
-          "end": {
-            "$ref": "#/components/schemas/WingInfo"
-          }
-        },
-        "type": "object",
-        "additionalProperties": true
-      },
       "OEBBPlatforms": {
         "properties": {
           "scheduled": {
@@ -5521,46 +5476,6 @@
             "in": "query",
             "name": "category",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ]
-      }
-    },
-    "/iris/v2/wings/{rawId1}/{rawId2}": {
-      "get": {
-        "operationId": "WingInfo v2",
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/WingDefinition"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "IRIS"
-        ],
-        "deprecated": true,
-        "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "rawId1",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "path",
-            "name": "rawId2",
-            "required": true,
             "schema": {
               "type": "string"
             }

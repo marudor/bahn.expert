@@ -1165,25 +1165,6 @@ const models: TsoaRoute.Models = {
         "additionalProperties": true,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "WingInfo": {
-        "dataType": "refObject",
-        "properties": {
-            "station": {"dataType":"nestedObjectLiteral","nestedProperties":{"title":{"dataType":"string","required":true},"id":{"dataType":"string","required":true}},"required":true},
-            "pt": {"dataType":"datetime","required":true},
-            "fl": {"dataType":"boolean","required":true},
-        },
-        "additionalProperties": true,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "WingDefinition": {
-        "dataType": "refObject",
-        "properties": {
-            "start": {"ref":"WingInfo"},
-            "end": {"ref":"WingInfo"},
-        },
-        "additionalProperties": true,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "OEBBPlatforms": {
         "dataType": "refObject",
         "properties": {
@@ -2147,31 +2128,6 @@ export function RegisterRoutes(router: KoaRouter) {
             const controller = new HafasControllerV3();
 
             const promise = controller.additionalInformation.apply(controller, validatedArgs as any);
-            return promiseHandler(controller, promise, context, undefined, undefined);
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        router.get('/api/iris/v2/wings/:rawId1/:rawId2',
-            ...(fetchMiddlewares<Middleware>(IrisControllerv2)),
-            ...(fetchMiddlewares<Middleware>(IrisControllerv2.prototype.wings)),
-
-            async function IrisControllerv2_wings(context: any, next: any) {
-            const args = {
-                    rawId1: {"in":"path","name":"rawId1","required":true,"dataType":"string"},
-                    rawId2: {"in":"path","name":"rawId2","required":true,"dataType":"string"},
-            };
-
-            let validatedArgs: any[] = [];
-            try {
-              validatedArgs = getValidatedArgs(args, context, next);
-            } catch (err) {
-              const error = err as any;
-              context.status = error.status;
-              context.throw(error.status, JSON.stringify({ fields: error.fields }));
-            }
-
-            const controller = new IrisControllerv2();
-
-            const promise = controller.wings.apply(controller, validatedArgs as any);
             return promiseHandler(controller, promise, context, undefined, undefined);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

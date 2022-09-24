@@ -104,7 +104,7 @@ export default {
   // Generic Message - real message is freitext
   '1000': 'Kundentext',
   '1001': 'Keine Zusatzhinweise',
-};
+} as const;
 
 export const messageTypeLookup = {
   d: 'delay',
@@ -116,7 +116,7 @@ export const messageTypeLookup = {
   u: 'IBIS (Generated IRIS-AP, not yet assigned to train)',
   r: 'disruption',
   c: 'connection',
-};
+} as const;
 
 export const supersededMessages = {
   '84': [80, 82, 85],
@@ -124,7 +124,7 @@ export const supersededMessages = {
   '89': [86, 87],
   '96': [97],
   '97': [96],
-};
+} as const;
 
 export const ignoredMessageNumbers = [1000, 1001];
 
