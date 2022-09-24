@@ -19,7 +19,6 @@ export const enum CacheDatabases {
   DBLageplan,
   LocMatch,
   HIMMessage,
-  HVVLageplan,
   NAHSHLageplan,
   StopPlaceSearch,
   StopPlaceGeo,
@@ -67,8 +66,8 @@ const defaultTTL = Number.isNaN(parsedEnvTTL) ? 12 * 60 * 60 : parsedEnvTTL;
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function createNewCache<K extends string, V>(
-  /** in seconds */
   db: CacheDatabases,
+  /** in seconds */
   ttl: number = defaultTTL,
   useRedis = Boolean(redisSettings),
 ) {
