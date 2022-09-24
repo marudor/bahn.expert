@@ -65,10 +65,10 @@ export default (ctx: Context): void => {
     }
   }
 
-  const context: any = {};
+  const headTags: any = [];
   const App = extractor.collectChunks(
     <ServerBaseComponent
-      helmetContext={context}
+      headTags={headTags}
       url={ctx.url}
       storage={ctx.request.storage}
       emotionCache={emotionCache}
@@ -81,7 +81,7 @@ export default (ctx: Context): void => {
   const emotionCss = constructStyleTagsFromChunks(emotionChunks);
   ctx.body = headerTemplate({
     withStats: process.env.NODE_ENV === 'production',
-    header: context.helmet,
+    header: renderToString(headTags),
     cssTags: extractor.getStyleTags(),
     linkTags: extractor.getLinkTags(),
     configOverride: JSON.stringify(globalThis.configOverride),

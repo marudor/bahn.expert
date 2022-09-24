@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import { createTheme } from 'client/Themes';
-import { HelmetProvider } from 'react-helmet-async';
+import { HeadProvider } from 'react-head';
 import { InnerCommonConfigProvider } from 'client/Common/provider/CommonConfigProvider';
 import { MemoryRouter, useLocation } from 'react-router';
 import { Navigation } from 'client/Common/Components/Navigation';
@@ -100,7 +100,7 @@ export function render(
 
     return (
       <InnerCommonConfigProvider initialConfig={mergedCommonConfig}>
-        <HelmetProvider>
+        <HeadProvider>
           <MemoryRouter>
             <LocationHelper>
               <StorageContext.Provider value={cookies}>
@@ -110,7 +110,7 @@ export function render(
               </StorageContext.Provider>
             </LocationHelper>
           </MemoryRouter>
-        </HelmetProvider>
+        </HeadProvider>
       </InnerCommonConfigProvider>
     );
   };

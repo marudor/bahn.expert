@@ -1,7 +1,7 @@
 /* eslint-disable unicorn/prefer-module */
 import { BrowserRouter } from 'react-router-dom';
 import { ClientStorage } from 'client/Common/Storage';
-import { HelmetProvider } from 'react-helmet-async';
+import { HeadProvider } from 'react-head';
 import { hydrateRoot } from 'react-dom/client';
 import { loadableReady } from '@loadable/component';
 import { StorageContext } from 'client/useStorage';
@@ -38,7 +38,7 @@ Axios.defaults.paramsSerializer = (p) =>
 const storage = new ClientStorage();
 
 const renderApp = (App: ComponentType) => (
-  <HelmetProvider>
+  <HeadProvider>
     <BrowserRouter>
       <StorageContext.Provider value={storage}>
         <ThemeProvider>
@@ -46,7 +46,7 @@ const renderApp = (App: ComponentType) => (
         </ThemeProvider>
       </StorageContext.Provider>
     </BrowserRouter>
-  </HelmetProvider>
+  </HeadProvider>
 );
 
 const container = document.getElementById('app')!;
