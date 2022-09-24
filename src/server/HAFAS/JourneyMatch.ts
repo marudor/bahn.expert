@@ -33,37 +33,35 @@ const parseJourneyMatch = (
   });
 };
 
-const JourneyMatch = (
+const JourneyMatch = async (
   { trainName, initialDepartureDate, jnyFltrL, onlyRT }: JourneyMatchOptions,
   profile: AllowedHafasProfile = AllowedHafasProfile.DB,
   raw?: boolean,
 ): Promise<ParsedJourneyMatchResponse[]> => {
-  let date = initialDepartureDate;
+  try {
+    let date = initialDepartureDate;
 
-  if (!date) {
-    const now = new Date();
+    if (!date) {
+      const now = new Date();
 
-    date = now.getHours() < 3 ? subDays(now, 1) : now;
+      date = now.getHours() < 3 ? subDays(now, 1) : now;
+    }
+
+    const req: JourneyMatchRequest = {
+      req: {
+        date: format(date, 'yyyyMMdd'),
+        input: trainName,
+        jnyFltrL,
+        onlyRT,
+      },
+      meth: 'JourneyMatch',
+    };
+
+    return await makeRequest(req, raw ? undefined : parseJourneyMatch, profile);
+  } catch {
+    // We just ignore errors and pretend nothing got returned.
+    return [];
   }
-
-  const req: JourneyMatchRequest = {
-    req: {
-      date: format(date, 'yyyyMMdd'),
-      input: trainName,
-      jnyFltrL,
-      onlyRT,
-    },
-    meth: 'JourneyMatch',
-  };
-
-  return makeRequest(req, raw ? undefined : parseJourneyMatch, profile).catch(
-    (error) => {
-      if (error.errorCode === 'NO_MATCH') {
-        error.status = 404;
-      }
-      throw error;
-    },
-  );
 };
 
 export default JourneyMatch;
