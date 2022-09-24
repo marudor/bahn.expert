@@ -1,4 +1,4 @@
-import { HelmetProvider } from 'react-helmet-async';
+import { HeadProvider } from 'react-head';
 import { StaticRouter } from 'react-router-dom/server';
 import { StorageContext } from 'client/useStorage';
 import { ThemeProvider } from 'client/Common/provider/ThemeProvider';
@@ -8,19 +8,19 @@ import type { ReactElement } from 'react';
 import type { StorageInterface } from 'client/Common/Storage';
 
 interface Props {
-  helmetContext: any;
+  headTags: any[];
   url: string;
   storage: StorageInterface;
   emotionCache: EmotionCache;
 }
 export function ServerBaseComponent({
-  helmetContext,
+  headTags,
   url,
   storage,
   emotionCache,
 }: Props): ReactElement {
   return (
-    <HelmetProvider context={helmetContext}>
+    <HeadProvider headTags={headTags}>
       <StaticRouter location={url}>
         <StorageContext.Provider value={storage}>
           <ThemeProvider>
@@ -28,6 +28,6 @@ export function ServerBaseComponent({
           </ThemeProvider>
         </StorageContext.Provider>
       </StaticRouter>
-    </HelmetProvider>
+    </HeadProvider>
   );
 }

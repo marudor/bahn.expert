@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import { Meta } from 'react-head';
 import { useTheme } from '@mui/system';
 import type { FC } from 'react';
 
@@ -6,13 +6,13 @@ export const ThemeHeaderTags: FC = () => {
   const theme = useTheme();
 
   return (
-    <Helmet>
-      <meta name="theme-color" content={theme.palette.background.default} />
-      <meta
+    <>
+      <Meta name="theme-color" content={theme.palette.background.default} />
+      <Meta
         name="apple-mobile-web-app-status-bar-style"
         content="black-translucent"
       />
-      <meta name="apple-mobile-web-app-capable" content="yes" />
-    </Helmet>
+      <Meta name="apple-mobile-web-app-capable" content="yes" />
+    </>
   );
 };

@@ -216,7 +216,7 @@
     "qs": "^6.11.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-helmet-async": "^1.3.0",
+    "react-head": "^3.4.2",
     "react-router": "^6.4.1",
     "react-router-dom": "^6.4.1",
     "universal-cookie": "^4.0.4",
