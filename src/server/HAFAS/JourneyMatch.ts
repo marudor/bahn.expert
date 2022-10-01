@@ -81,16 +81,13 @@ export async function enrichedJourneyMatch(
     : journeyMatches;
 
   for (const j of limitedJourneyMatches) {
-    try {
-      const details = await JourneyDetails(j.jid, profile);
+    const details = await JourneyDetails(j.jid, profile);
+    if (!details) continue;
 
-      j.firstStop = details.firstStop;
-      j.lastStop = details.lastStop;
-      j.stops = details.stops;
-      // j.train = details.train;
-    } catch {
-      // ignore
-    }
+    j.firstStop = details.firstStop;
+    j.lastStop = details.lastStop;
+    j.stops = details.stops;
+    // j.train = details.train;
 
     if (!j.train.type) {
       j.train.type = fallbackTypeRegex.exec(j.train.name)?.[1];

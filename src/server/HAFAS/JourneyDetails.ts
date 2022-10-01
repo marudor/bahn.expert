@@ -43,15 +43,24 @@ const parseJourneyDetails = (
   return parsedJourney as ParsedJourneyDetails;
 };
 
-export default (
+export default async (
   jid: string,
   profile?: AllowedHafasProfile,
   raw?: boolean,
-): Promise<ParsedJourneyDetails> => {
+): Promise<ParsedJourneyDetails | undefined> => {
   const req: JourneyDetailsRequest = {
     req: { jid },
     meth: 'JourneyDetails',
   };
 
-  return makeRequest(req, raw ? undefined : parseJourneyDetails, profile);
+  try {
+    const result = await makeRequest(
+      req,
+      raw ? undefined : parseJourneyDetails,
+      profile,
+    );
+    return result;
+  } catch {
+    return undefined;
+  }
 };

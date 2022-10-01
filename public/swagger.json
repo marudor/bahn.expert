@@ -4353,7 +4353,7 @@
             "description": ""
           },
           "500": {
-            "description": "Failed to fetch a journey for this tripId"
+            "description": ""
           }
         },
         "description": "This redirects to the current Details Page with a provided HAFAS TripId / JourneyId / JID",
