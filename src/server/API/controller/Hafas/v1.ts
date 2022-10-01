@@ -38,10 +38,11 @@ export class HafasController extends Controller {
   @Get('/detailsRedirect/{tripId}')
   async detailsRedirect(
     tripId: string,
-    @Res() res: TsoaResponse<302, void>,
+    @Res() res: TsoaResponse<500 | 302, void>,
     @Query() profile?: AllowedHafasProfile,
   ): Promise<void> {
     const hafasDetails = await JourneyDetails(tripId);
+    if (!hafasDetails) return res(500);
 
     const trainName = `${hafasDetails.train.type} ${hafasDetails.train.number}`;
     const evaNumber = hafasDetails.stops[0].station.id;
@@ -49,7 +50,7 @@ export class HafasController extends Controller {
     const dataUrlPart = date?.toISOString() || '';
     const profileUrlPart = profile ? `&profile=${profile}` : '';
 
-    res(302, undefined, {
+    return res(302, undefined, {
       location: `/details/${trainName}/${dataUrlPart}?stopEva=${evaNumber}${profileUrlPart}`,
     });
   }
