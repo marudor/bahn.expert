@@ -47,7 +47,7 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     container:
-      image: cypress/browsers:node16.14.2-slim-chrome100-ff99-edge
+      image: cypress/browsers:node18.6.0-chrome105-ff104
       options: --user 1001
     strategy:
       matrix:
