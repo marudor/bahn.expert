@@ -1,12 +1,6 @@
 env:
   - name: ENVIRONMENT
     value: production
-  - name: LOGGLY_TOKEN
-    valueFrom:
-      secretKeyRef:
-        name: bahnhofs-abfahrten-config
-        key: loggly_token
-        optional: true
 
 hostName: bahn.expert
 alternativeHostNames:

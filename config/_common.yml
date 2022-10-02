@@ -43,29 +43,29 @@ baseEnv:
     valueFrom:
       secretKeyRef:
         name: bahnhofs-abfahrten-config
-        key: user_agent
+        key: USER_AGENT
         optional: true
   - name: DEFAULT_TTL
     valueFrom:
       secretKeyRef:
         name: bahnhofs-abfahrten-config
-        key: default_ttl
+        key: DEFAULT_TTL
         optional: true
   - name: IMPRINT_NAME
     valueFrom:
       secretKeyRef:
         name: bahnhofs-abfahrten-config
-        key: imprint_name
+        key: IMPRINT_NAME
   - name: IMPRINT_STREET
     valueFrom:
       secretKeyRef:
         name: bahnhofs-abfahrten-config
-        key: imprint_street
+        key: IMPRINT_STREET
   - name: IMPRINT_TOWN
     valueFrom:
       secretKeyRef:
         name: bahnhofs-abfahrten-config
-        key: imprint_town
+        key: IMPRINT_TOWN
   - name: RIS_STATIONS_CLIENT_SECRET
     valueFrom:
       secretKeyRef:
@@ -85,7 +85,7 @@ baseEnv:
     valueFrom:
       secretKeyRef:
         name: bahnhofs-abfahrten-config
-        key: him_max_fetch
+        key: HIM_MAX_FETCH
         optional: true
   - name: PRIVATE_API_URL
     valueFrom:
@@ -101,12 +101,12 @@ baseEnv:
     valueFrom:
       secretKeyRef:
         name: bahnhofs-abfahrten-config
-        key: iris_url
+        key: IRIS_URL
   - name: IRIS_FALLBACK_URL
     valueFrom:
       secretKeyRef:
         name: bahnhofs-abfahrten-config
-        key: iris_fallback_url
+        key: IRIS_FALLBACK_URL
   - name: RIS_JOURNEYS_CLIENT_SECRET
     valueFrom:
       secretKeyRef:
