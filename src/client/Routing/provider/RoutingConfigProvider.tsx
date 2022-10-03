@@ -22,6 +22,7 @@ const useRoutingConfigInternal = ({
   const [date, setDate] = useState<Date>(new Date());
   const [touchedDate, setTouchedDate] = useState(false);
   const [settings, setSettings] = useState<RoutingSettings>(initialSettings);
+  const [departureMode, setDepartureMode] = useState<'an' | 'ab'>('ab');
   const storage = useStorage();
 
   const updateSetting = useCallback(
@@ -71,6 +72,12 @@ const useRoutingConfigInternal = ({
     setDate(date);
   }, []);
 
+  const updateDepartureMode = useCallback((_e: any, value: string) => {
+    if (value === 'ab' || value === 'an') {
+      setDepartureMode(value);
+    }
+  }, []);
+
   return {
     start,
     setStart,
@@ -85,6 +92,8 @@ const useRoutingConfigInternal = ({
     swapStartDestination,
     settings,
     updateSetting,
+    departureMode,
+    updateDepartureMode,
   };
 };
 
@@ -101,6 +110,7 @@ export const [
     date: v.date,
     via: v.via,
     touchedDate: v.touchedDate,
+    departureMode: v.departureMode,
   }),
   (v) => v.settings,
   (v) => ({
@@ -111,6 +121,7 @@ export const [
     setVia: v.setVia,
     swapStartDestination: v.swapStartDestination,
     updateSettings: v.updateSetting,
+    updateDepartureMode: v.updateDepartureMode,
   }),
 );
 

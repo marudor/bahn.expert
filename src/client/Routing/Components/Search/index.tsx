@@ -8,7 +8,14 @@ import {
   startOfDay,
   subDays,
 } from 'date-fns';
-import { Button, Divider, TextField } from '@mui/material';
+import {
+  Button,
+  Divider,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+  TextField,
+} from '@mui/material';
 import { css } from '@emotion/react';
 import { Delete } from '@mui/icons-material';
 import {
@@ -49,9 +56,16 @@ const FlexContainer = styled.div`
 `;
 
 const DateTimeContainer = styled(FlexContainer)`
+  align-items: center;
   & input {
     cursor: pointer;
   }
+`;
+
+const StyledRadioGroup = styled(RadioGroup)`
+  flex-direction: row;
+  flex: 1;
+  flex-wrap: nowrap;
 `;
 
 const iconCss = css`
@@ -97,9 +111,16 @@ const DateTimePickerInput = styled(TextField)`
 `;
 
 export const Search: FC = () => {
-  const { setStart, setDestination, updateVia, setDate, setVia } =
-    useRoutingConfigActions();
-  const { start, destination, date, via, touchedDate } = useRoutingConfig();
+  const {
+    setStart,
+    setDestination,
+    updateVia,
+    setDate,
+    setVia,
+    updateDepartureMode,
+  } = useRoutingConfigActions();
+  const { start, destination, date, via, touchedDate, departureMode } =
+    useRoutingConfig();
   const { fetchRoutes, clearRoutes } = useFetchRouting();
   const [formattedDate, setFormattedDate] = useState('');
   const updateFormattedDate = useCallback(() => {
@@ -242,6 +263,18 @@ export const Search: FC = () => {
         <SwapOriginDest onClick={swapOriginDest} />
       </FlexContainer>
       <DateTimeContainer>
+        <StyledRadioGroup value={departureMode} onChange={updateDepartureMode}>
+          <FormControlLabel
+            value="ab"
+            control={<Radio size="small" />}
+            label="Ab"
+          />
+          <FormControlLabel
+            value="an"
+            control={<Radio size="small" />}
+            label="An"
+          />
+        </StyledRadioGroup>
         <MobileDateTimePicker
           openTo="hours"
           componentsProps={{
