@@ -1,6 +1,6 @@
 import { calculateCurrentStopPlace } from 'server/HAFAS/Detail';
 import { differenceInMinutes, parseISO, subMinutes } from 'date-fns';
-import { EventType } from 'business-hub/generated/risJourneys';
+import { EventType, TimeType } from 'business-hub/generated/risJourneys';
 import { getAbfahrten } from 'server/iris';
 import { getJourneyDetails } from 'business-hub/risJourneys';
 import type { ArrivalDepartureEvent } from 'business-hub/generated/risJourneys';
@@ -73,7 +73,11 @@ function mapEventToCommonStopInfo(
 ): StopInfoWithAdditional {
   const scheduledTime = parseISO(e.timeSchedule);
   const time = parseISO(e.time);
-  const delay = differenceInMinutes(time, scheduledTime);
+  // Delay is undefined for scheduled stuff => no real time Information
+  const delay =
+    e.timeType !== TimeType.Schedule
+      ? differenceInMinutes(time, scheduledTime)
+      : undefined;
 
   return {
     scheduledTime,
