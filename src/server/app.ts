@@ -1,4 +1,5 @@
 /* eslint-disable unicorn/prefer-module */
+import { blockMiddleware } from './blockMiddleware';
 import { middlewares } from './logger';
 import Axios from 'axios';
 import createAdmin from './admin';
@@ -20,6 +21,8 @@ function hotHelper(getMiddleware: () => Middleware) {
 
 export function createApp(): Koa {
   const app = new Koa();
+
+  app.use(blockMiddleware);
 
   let apiRoutes = require('./API').default;
   let serverRender = require('./render').default;

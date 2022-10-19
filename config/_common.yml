@@ -143,3 +143,9 @@ baseEnv:
         name: bahnhofs-abfahrten-config
         key: COACH_SEQUENCE_DISABLED
         optional: true
+  - name: REFERER_BLOCK_LIST
+    valueFrom:
+      secretKeyRef:
+        name: bahnhofs-abfahrten-config
+        key: REFERER_BLOCK_LIST
+        optional: true
