@@ -7,12 +7,7 @@ alternativeHostNames:
   - abfahrten.in
   - marudor.de
 
-replicaCount: 10
+replicaCount: 16
 
 disruption:
   maxUnavailable: 4
-
-resources:
-  requests:
-    memory: '1Gi'
-    cpu: '500m'
