@@ -32,8 +32,9 @@ Axios.defaults.transformResponse = [
     return data;
   },
 ];
-Axios.defaults.paramsSerializer = (p) =>
-  qs.stringify(p, { arrayFormat: 'repeat' });
+Axios.defaults.paramsSerializer = {
+  serialize: (p) => qs.stringify(p, { arrayFormat: 'repeat' }),
+};
 
 const storage = new ClientStorage();
 

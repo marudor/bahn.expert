@@ -194,7 +194,7 @@
     "@mui/x-date-pickers": "5.0.5",
     "@tsoa/cli": "4.1.3",
     "@tsoa/runtime": "4.1.3",
-    "axios": "^0.27.2",
+    "axios": "^1.1.3",
     "cache-manager": "^4.1.0",
     "cache-manager-ioredis": "^2.1.0",
     "cheerio": "^1.0.0-rc.12",
