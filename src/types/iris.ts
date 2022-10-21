@@ -84,10 +84,6 @@ export interface Abfahrt {
   productClass: string;
   rawId: string;
   ref?: SubstituteRef;
-  /**
-   * Most likely has coach sequence
-   */
-  reihung: boolean;
   route: Stop[];
   scheduledDestination: string;
   scheduledPlatform: string;

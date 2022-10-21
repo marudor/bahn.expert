@@ -88,7 +88,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Karlsruhe Bahnhofsvorplatz"
@@ -213,7 +212,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Hauptbahnhof (Vorplatz), Karlsruhe"
@@ -336,7 +334,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Waldstadt Europäische Schule, Karlsruhe"
@@ -495,7 +492,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Knielingen Lassallestraße, Karlsruhe"
@@ -671,7 +667,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Karlsruhe Bahnhofsvorplatz"
@@ -830,7 +825,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Hochstetten"
@@ -1029,7 +1023,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Ettlinger Tor, Karlsruhe"
@@ -1149,7 +1142,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Ittersbach Rathaus"
@@ -1425,7 +1417,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Wolfartsweier Nord, Karlsruhe"
@@ -1641,7 +1632,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Karlsruhe Bahnhofsvorplatz"
@@ -1766,7 +1756,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Hauptbahnhof (Vorplatz), Karlsruhe"
@@ -1889,7 +1878,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Waldstadt Europäische Schule, Karlsruhe"
@@ -2048,7 +2036,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Knielingen Lassallestraße, Karlsruhe"
@@ -2224,7 +2211,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Karlsruhe Bahnhofsvorplatz"
@@ -2383,7 +2369,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Karlsruhe-Neureut Kirchfeld"
@@ -2608,7 +2593,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Karlsruhe Albtalbahnhof"
@@ -2837,7 +2821,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Ettlinger Tor, Karlsruhe"
@@ -2957,7 +2940,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Heilbronn Pfühlpark"
@@ -3228,7 +3210,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Albgaubad, Ettlingen"
@@ -3429,7 +3410,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Wolfartsweier Nord, Karlsruhe"
@@ -3645,7 +3625,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Karlsruhe Bahnhofsvorplatz"
@@ -3770,7 +3749,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Hauptbahnhof (Vorplatz), Karlsruhe"
@@ -3893,7 +3871,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Waldstadt Europäische Schule, Karlsruhe"
@@ -4052,7 +4029,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Knielingen Lassallestraße, Karlsruhe"
@@ -4268,7 +4244,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Hochstetten"
@@ -4500,7 +4475,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Ettlinger Tor, Karlsruhe"
@@ -4620,7 +4594,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Albgaubad, Ettlingen"
@@ -4863,7 +4836,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Wolfartsweier Nord, Karlsruhe"
@@ -5079,7 +5051,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Bondorf(b Herrenberg)"
@@ -5367,7 +5338,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Karlsruhe Bahnhofsvorplatz"
@@ -5492,7 +5462,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Hauptbahnhof (Vorplatz), Karlsruhe"
@@ -5615,7 +5584,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Waldstadt Europäische Schule, Karlsruhe"
@@ -5774,7 +5742,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Knielingen Lassallestraße, Karlsruhe"
@@ -5948,7 +5915,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Karlsruhe Bahnhofsvorplatz"
@@ -6107,7 +6073,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Karlsruhe-Neureut Kirchfeld"
@@ -6262,7 +6227,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Ettlinger Tor, Karlsruhe"
@@ -6382,7 +6346,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Ittersbach Rathaus"
@@ -6616,7 +6579,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Wolfartsweier Nord, Karlsruhe"
@@ -6830,7 +6792,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Karlsruhe Bahnhofsvorplatz"
@@ -6953,7 +6914,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Hauptbahnhof (Vorplatz), Karlsruhe"
@@ -7074,7 +7034,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Tullastraße/Verkehrsbetriebe, Karlsruhe"
@@ -7329,7 +7288,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Waldstadt Europäische Schule, Karlsruhe"
@@ -7488,7 +7446,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Knielingen Lassallestraße, Karlsruhe"
@@ -7662,7 +7619,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Karlsruhe Bahnhofsvorplatz"
@@ -7821,7 +7777,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Hochstetten"
@@ -8062,7 +8017,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Karlsruhe Albtalbahnhof"
@@ -8289,7 +8243,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Ettlinger Tor, Karlsruhe"
@@ -8407,7 +8360,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Wolfartsweier Nord, Karlsruhe"
@@ -8621,7 +8573,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Karlsruhe Bahnhofsvorplatz"
@@ -8744,7 +8695,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Hauptbahnhof (Vorplatz), Karlsruhe"
@@ -8865,7 +8815,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Waldstadt Europäische Schule, Karlsruhe"
@@ -9022,7 +8971,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Karlsruhe-Neureut Kirchfeld"
@@ -9254,7 +9202,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Knielingen Lassallestraße, Karlsruhe"
@@ -9424,7 +9371,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Ettlinger Tor, Karlsruhe"
@@ -9544,7 +9490,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Heilbronn Pfühlpark"
@@ -9813,7 +9758,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Bad Herrenalb"
@@ -10038,7 +9982,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Hauptbahnhof (Vorplatz), Karlsruhe"
@@ -10159,7 +10102,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Wolfartsweier Nord, Karlsruhe"
@@ -10373,7 +10315,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Hochstetten"
@@ -10574,7 +10515,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Karlsruhe Bahnhofsvorplatz"
@@ -10731,7 +10671,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Karlsruhe Bahnhofsvorplatz"
@@ -10850,7 +10789,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Ettlinger Tor, Karlsruhe"
@@ -10968,7 +10906,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Waldstadt Europäische Schule, Karlsruhe"
@@ -11125,7 +11062,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Ittersbach Rathaus"
@@ -11357,7 +11293,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Knielingen Lassallestraße, Karlsruhe"
@@ -11531,7 +11466,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Hauptbahnhof (Vorplatz), Karlsruhe"
@@ -11652,7 +11586,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Tullastraße/Verkehrsbetriebe, Karlsruhe"
@@ -11905,7 +11838,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Karlsruhe-Neureut Kirchfeld"
@@ -12128,7 +12060,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Karlsruhe Albtalbahnhof"
@@ -12359,7 +12290,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Karlsruhe Bahnhofsvorplatz"
@@ -12472,7 +12402,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Ettlinger Tor, Karlsruhe"
@@ -12590,7 +12519,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Wolfartsweier Nord, Karlsruhe"
@@ -12804,7 +12732,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Karlsruhe Bahnhofsvorplatz"
@@ -12927,7 +12854,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Hauptbahnhof (Vorplatz), Karlsruhe"
@@ -13048,7 +12974,6 @@
       },
       "platform": "",
       "scheduledPlatform": "",
-      "reihung": false,
       "route": [
         {
           "name": "Waldstadt Europäische Schule, Karlsruhe"

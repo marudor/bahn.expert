@@ -14,7 +14,7 @@ export async function coachSequenceMonitoring(): Promise<
     lookbehind: 0,
   });
   const maybeDepartures = abfahrten.departures.filter(
-    (d) => d.reihung && d.departure,
+    (d) => d.train.type === 'ICE' && d.departure,
   );
 
   let departure = maybeDepartures.shift();

@@ -71,8 +71,8 @@ interface Props {
   currentEvaNumber: string;
   scheduledDeparture: Date;
   initialDeparture?: Date;
-  loadHidden?: boolean;
   withLegend?: boolean;
+  loadHidden?: boolean;
 }
 
 export const Reihung: FC<Props> = ({
@@ -81,15 +81,16 @@ export const Reihung: FC<Props> = ({
   scheduledDeparture,
   trainNumber,
   initialDeparture,
-  loadHidden,
   fallbackTrainNumbers,
   trainCategory,
+  loadHidden,
 }) => {
   const sequences = useSequences();
   const { getSequences } = useSequencesActions();
   const { fahrzeugGruppe, showUIC, showCoachType } = useCommonConfig();
   const sequence =
     sequences[sequenceId(trainNumber, currentEvaNumber, scheduledDeparture)];
+  const trainNumberNumber = Number.parseInt(trainNumber);
 
   useEffect(() => {
     if (sequence === undefined) {
@@ -152,7 +153,10 @@ export const Reihung: FC<Props> = ({
     };
   }, [fahrzeugGruppe, showUIC, sequence, showCoachType]);
 
-  if (sequence === null || (!sequence && loadHidden)) {
+  if (
+    sequence === null ||
+    (!sequence && (loadHidden || trainNumberNumber > 3000))
+  ) {
     return null;
   }
   if (sequence === undefined) {
