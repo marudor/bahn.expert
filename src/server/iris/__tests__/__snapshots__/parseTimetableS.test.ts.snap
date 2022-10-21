@@ -148,7 +148,6 @@ exports[`parseTimetableS arrivalCancelled.xml 1`] = `
   "substitute": false,
   "train": {
     "line": "8",
-    "longDistance": false,
     "name": "S 8",
     "number": "30889",
     "type": "S",
@@ -234,7 +233,6 @@ exports[`parseTimetableS arrivalWing.xml 1`] = `
   "substitute": false,
   "train": {
     "line": undefined,
-    "longDistance": true,
     "name": "ICE 1680",
     "number": "1680",
     "type": "ICE",
@@ -309,7 +307,6 @@ exports[`parseTimetableS arrivalWing.xml 2`] = `
   "substitute": false,
   "train": {
     "line": undefined,
-    "longDistance": true,
     "name": "ICE 1580",
     "number": "1580",
     "type": "ICE",
@@ -465,7 +462,6 @@ exports[`parseTimetableS cancelled.xml 1`] = `
   "substitute": false,
   "train": {
     "line": "8",
-    "longDistance": false,
     "name": "S 8",
     "number": "30889",
     "type": "S",
@@ -621,7 +617,6 @@ exports[`parseTimetableS departureCancelled.xml 1`] = `
   "substitute": false,
   "train": {
     "line": "8",
-    "longDistance": false,
     "name": "S 8",
     "number": "30889",
     "type": "S",
@@ -701,7 +696,6 @@ exports[`parseTimetableS departureWing.xml 1`] = `
   "substitute": false,
   "train": {
     "line": undefined,
-    "longDistance": true,
     "name": "ICE 1689",
     "number": "1689",
     "type": "ICE",
@@ -770,7 +764,6 @@ exports[`parseTimetableS departureWing.xml 2`] = `
   "substitute": false,
   "train": {
     "line": undefined,
-    "longDistance": true,
     "name": "ICE 1589",
     "number": "1589",
     "type": "ICE",
@@ -926,7 +919,6 @@ exports[`parseTimetableS filteredDueToTime.xml 1`] = `
   "substitute": false,
   "train": {
     "line": "8",
-    "longDistance": false,
     "name": "S 8",
     "number": "30889",
     "type": "S",
@@ -995,7 +987,6 @@ exports[`parseTimetableS lookbehind.xml 1`] = `
   "substitute": false,
   "train": {
     "line": undefined,
-    "longDistance": true,
     "name": "ICE 123",
     "number": "123",
     "type": "ICE",
@@ -1074,7 +1065,6 @@ exports[`parseTimetableS multipleWings.xml 1`] = `
   "substitute": false,
   "train": {
     "line": undefined,
-    "longDistance": false,
     "name": "BOB 86871",
     "number": "86871",
     "type": "BOB",
@@ -1138,7 +1128,6 @@ exports[`parseTimetableS multipleWings.xml 2`] = `
   "substitute": false,
   "train": {
     "line": undefined,
-    "longDistance": false,
     "name": "BOB 86971",
     "number": "86971",
     "type": "BOB",
@@ -1205,7 +1194,6 @@ exports[`parseTimetableS multipleWings.xml 3`] = `
   "substitute": false,
   "train": {
     "line": undefined,
-    "longDistance": false,
     "name": "BOB 86921",
     "number": "86921",
     "type": "BOB",
@@ -1272,7 +1260,6 @@ exports[`parseTimetableS onlyArrival.xml 1`] = `
   "substitute": false,
   "train": {
     "line": "RE11",
-    "longDistance": false,
     "name": "ABR RE11",
     "number": "26712",
     "type": "ABR",
@@ -1348,7 +1335,6 @@ exports[`parseTimetableS onlyDeparture.xml 1`] = `
   "substitute": false,
   "train": {
     "line": "RE11",
-    "longDistance": false,
     "name": "ABR RE11",
     "number": "26719",
     "type": "ABR",
@@ -1504,7 +1490,6 @@ exports[`parseTimetableS simple1.xml 1`] = `
   "substitute": false,
   "train": {
     "line": "8",
-    "longDistance": false,
     "name": "S 8",
     "number": "30889",
     "type": "S",
@@ -1573,7 +1558,6 @@ exports[`parseTimetableS simple2.xml 1`] = `
   "substitute": false,
   "train": {
     "line": undefined,
-    "longDistance": true,
     "name": "ICE 123",
     "number": "123",
     "type": "ICE",
@@ -1729,7 +1713,6 @@ exports[`parseTimetableS visibleDueToDelay.xml 1`] = `
   "substitute": false,
   "train": {
     "line": "8",
-    "longDistance": false,
     "name": "S 8",
     "number": "30889",
     "type": "S",
@@ -1814,7 +1797,6 @@ exports[`parseTimetableS wings.xml 1`] = `
   "substitute": false,
   "train": {
     "line": undefined,
-    "longDistance": true,
     "name": "ICE 1587",
     "number": "1587",
     "type": "ICE",

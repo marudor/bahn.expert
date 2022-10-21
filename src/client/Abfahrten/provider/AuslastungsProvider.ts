@@ -42,12 +42,33 @@ function useAuslastungInner(_p: PropsWithChildren<unknown>) {
   const [vrrAuslastungen, setVRRAuslastungen] = useState<{
     [evaNumber: string]: undefined | null | TrainOccupancyList;
   }>({});
-  const fetchVRRAuslastung = useCallback(async (abfahrt: Abfahrt) => {
+
+  const getAuslastung = useCallback(
+    (abfahrt: Abfahrt) => {
+      const vrrAuslastungForEva =
+        vrrAuslastungen[abfahrt.currentStopPlace.evaNumber];
+      const vrrAuslastung = vrrAuslastungForEva?.[abfahrt.train.number];
+      if (vrrAuslastung) {
+        return vrrAuslastung;
+      }
+
+      const auslastungKey = getAuslastungKey(abfahrt);
+      const dbAuslastung = auslastungen[auslastungKey];
+      if (dbAuslastung === undefined && abfahrt.departure) {
+        void fetchDBAuslastung(abfahrt);
+      } else {
+        return dbAuslastung;
+      }
+    },
+    [vrrAuslastungen, fetchDBAuslastung, auslastungen],
+  );
+
+  const fetchVRRAuslastungForEva = useCallback(async (eva: string) => {
     let occupancyList: TrainOccupancyList | null;
     try {
       occupancyList = (
         await Axios.get<TrainOccupancyList>(
-          `/api/stopPlace/v1/${abfahrt.currentStopPlace.evaNumber}/trainOccupancy`,
+          `/api/stopPlace/v1/${eva}/trainOccupancy`,
         )
       ).data;
     } catch {
@@ -55,32 +76,13 @@ function useAuslastungInner(_p: PropsWithChildren<unknown>) {
     }
     setVRRAuslastungen((old) => ({
       ...old,
-      [abfahrt.currentStopPlace.evaNumber]: occupancyList,
+      [eva]: occupancyList,
     }));
   }, []);
 
-  const getVRRAuslastung = useCallback(
-    (abfahrt: Abfahrt) => {
-      const auslastungForEva =
-        vrrAuslastungen[abfahrt.currentStopPlace.evaNumber];
-      if (!auslastungForEva) return auslastungForEva;
-      return auslastungForEva[abfahrt.train.number];
-    },
-    [vrrAuslastungen],
-  );
-
-  const getDBAuslastung = useCallback(
-    (abfahrt: Abfahrt) => {
-      return auslastungen[getAuslastungKey(abfahrt)];
-    },
-    [auslastungen],
-  );
-
   return {
-    fetchDBAuslastung,
-    getDBAuslastung,
-    fetchVRRAuslastung,
-    getVRRAuslastung,
+    getAuslastung,
+    fetchVRRAuslastungForEva,
   };
 }
 

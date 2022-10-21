@@ -22,7 +22,6 @@
   "mediumId": "1494893474156392079-1911301032",
   "substitute": false,
   "train": {
-    "longDistance": false,
     "name": "ME RB31",
     "number": "81616",
     "trainCategory": "ME",
@@ -85,7 +84,6 @@
   "destination": "Hamburg Hbf",
   "platform": "12",
   "scheduledPlatform": "12",
-  "auslastung": false,
   "reihung": false,
   "cancelled": true
 }

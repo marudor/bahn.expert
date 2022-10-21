@@ -3,6 +3,7 @@ import {
   useAbfahrtenConfig,
   useAbfahrtenFetchAPIUrl,
 } from 'client/Abfahrten/provider/AbfahrtenConfigProvider';
+import { useAuslastung } from 'client/Abfahrten/provider/AuslastungsProvider';
 import { useCallback, useEffect, useState } from 'react';
 import Axios from 'axios';
 import constate from 'constate';
@@ -72,6 +73,15 @@ const useAbfahrtenInner = ({
   const [error, setError] = useState<AbfahrtenError>();
   const { lookahead, lookbehind } = useAbfahrtenConfig();
   const fetchApiUrl = useAbfahrtenFetchAPIUrl();
+  const { fetchVRRAuslastungForEva } = useAuslastung();
+
+  useEffect(() => {
+    if (departures?.stopPlaces) {
+      for (const eva of departures.stopPlaces) {
+        void fetchVRRAuslastungForEva(eva);
+      }
+    }
+  }, [fetchVRRAuslastungForEva, departures]);
 
   const updateCurrentStopPlaceByString = useCallback(
     async (stopPlaceName: string) => {

@@ -15,7 +15,7 @@ const redisSettings = process.env.REDIS_HOST
 
 export const enum CacheDatabases {
   Station,
-  Timetable,
+  TimetableXML,
   DBLageplan,
   LocMatch,
   HIMMessage,
@@ -29,6 +29,7 @@ export const enum CacheDatabases {
   StopPlaceSalesSearch,
   JourneyFind,
   NegativeNewSequence,
+  TimetableParsedPlan,
 }
 const activeCaches: Set<any> = new Set();
 
@@ -109,7 +110,8 @@ export function createNewCache<K extends string, V>(
     existsFn = baseCache.get;
     // @ts-expect-error baseCache untyped
     keysFn = baseCache.keys;
-    mgetFn = (keys) => baseCache.store.mget!(...keys);
+    // @ts-expect-error baseCache untyped
+    mgetFn = (keys) => baseCache.store.mget(...keys);
   }
 
   return {

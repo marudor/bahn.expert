@@ -4,7 +4,7 @@ import type { Message } from 'types/iris';
  ** Initially this file is copied from https://github.com/derf/Travel-Status-DE-IRIS
  ** Thanks for finding these!
  */
-export default {
+export const messages = {
   '1': 'Nähere Informationen in Kürze',
   '2': 'Polizeieinsatz',
   '3': 'Feuerwehreinsatz auf der Strecke',

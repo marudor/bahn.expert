@@ -12,13 +12,14 @@ interface Props {}
 export const Name: FC<Props> = () => {
   const { lineAndNumber } = useAbfahrtenConfig();
   const { abfahrt } = useAbfahrt();
+  const longDistance = abfahrt.train.name.endsWith(abfahrt.train.number);
 
   return (
     <>
       <span>{abfahrt.train.name}</span>
       {lineAndNumber && abfahrt.train.line && (
         <Extra>
-          {abfahrt.train.longDistance
+          {longDistance
             ? `Linie ${abfahrt.train.line}`
             : abfahrt.train.number !== '0' &&
               `${abfahrt.train.type} ${abfahrt.train.number}`}

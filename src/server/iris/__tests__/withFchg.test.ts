@@ -5,9 +5,9 @@ import {
   mockLageplan,
   mockSearch,
 } from 'server/__tests__/mockHelper';
+import { Timetable } from 'server/iris/Timetable';
 import fs from 'node:fs';
 import path from 'node:path';
-import Timetable from 'server/iris/Timetable';
 
 jest.mock('server/cache');
 

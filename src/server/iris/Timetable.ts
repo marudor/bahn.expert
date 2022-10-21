@@ -29,12 +29,13 @@ import { diffArrays } from 'diff';
 import { getLineFromNumber } from 'server/journeys/lineNumberMapping';
 import { getSingleHimMessageOfToday } from 'server/HAFAS/HimSearch';
 import { getSingleStation } from 'server/iris/station';
-import { uniqBy } from 'client/util';
-import messageLookup, {
+import {
   ignoredMessageNumbers,
+  messages,
   messageTypeLookup,
   supersededMessages,
 } from './messageLookup';
+import { uniqBy } from 'client/util';
 import xmljs from 'libxmljs2';
 import type { AbfahrtenResult, IrisMessage, Messages } from 'types/iris';
 import type { Element } from 'libxmljs2';
@@ -58,8 +59,8 @@ type ParsedAr = ArDp & {
 };
 
 // 6 Hours in seconds
-const timetableCache = createNewCache<string, string>(
-  CacheDatabases.Timetable,
+const timetableCache = createNewCache<string, Record<string, any>>(
+  CacheDatabases.TimetableParsedPlan,
   6 * 60 * 60,
 );
 
@@ -147,9 +148,7 @@ function parseRawId(rawId: string) {
   };
 }
 
-const longDistanceRegex = /(ICE?|TGV|ECE?|RJ|D).*/;
-
-export default class Timetable {
+export class Timetable {
   errors: any[] = [];
   timetable: {
     [key: string]: any;
@@ -224,13 +223,6 @@ export default class Timetable {
       timetable.platform = timetable.arrival.platform;
       timetable.scheduledPlatform = timetable.arrival.scheduledPlatform;
     }
-
-    timetable.auslastung =
-      !timetable.cancelled &&
-      timetable.train.longDistance &&
-      timetable.departure &&
-      !timetable.departure.hidden;
-    timetable.reihung = !timetable.cancelled && timetable.train.longDistance;
 
     delete timetable.routePre;
     delete timetable.routePost;
@@ -323,6 +315,7 @@ export default class Timetable {
       departures,
       lookbehind,
       wings,
+      stopPlaces: [this.evaNumber],
     };
   }
   parseRef(tl: xmljs.Element) {
@@ -392,7 +385,7 @@ export default class Timetable {
     }
 
     // @ts-expect-error ???
-    const lookedUpMessage = messageLookup[value];
+    const lookedUpMessage = messages[value];
 
     // Freitext, nicht auflösbar
     if (!lookedUpMessage && indexType === 'f') {
@@ -630,10 +623,10 @@ export default class Timetable {
     const scheduledArrival = parseTs(getAttr(ar, 'pt'));
     const scheduledDeparture = parseTs(getAttr(dp, 'pt'));
     const { trainNumber, trainCategory, t, o, productClass } = parseTl(tl);
-    const lineNumber = getAttr(dp || ar, 'l') || getLineFromNumber(trainNumber);
-    const longDistance = longDistanceRegex.test(trainCategory);
+    const timetableLineNumber = getAttr(dp || ar, 'l');
+    const customLineNumber = getLineFromNumber(trainNumber);
     const fullTrainText = `${trainCategory} ${
-      longDistance ? trainNumber : lineNumber || trainNumber
+      timetableLineNumber || trainNumber
     }`;
 
     function getNormalizedRoute(node: null | xmljs.Element) {
@@ -682,10 +675,9 @@ export default class Timetable {
       // transfer: getAttr(dp || ar, 'tra'),
       substitute: t === 'e',
       train: {
-        longDistance: longDistanceRegex.test(fullTrainText),
         name: fullTrainText,
         number: trainNumber,
-        line: lineNumber,
+        line: timetableLineNumber || customLineNumber,
         type: trainCategory,
       },
       additional: undefined as undefined | boolean,
@@ -713,23 +705,28 @@ export default class Timetable {
     return Promise.all(
       this.segments.map(async (date) => {
         const key = `/plan/${this.evaNumber}/${format(date, 'yyMMdd/HH')}`;
-        let rawXml = await timetableCache.get(key);
-
-        if (!rawXml) {
-          try {
-            rawXml = await irisGetRequest<string>(key);
-          } catch (error) {
-            this.errors.push(error);
-
-            return;
-          }
+        const cached = await timetableCache.get(key);
+        if (cached) {
+          this.timetable = {
+            ...this.timetable,
+            ...cached,
+          };
+          return;
         }
 
-        this.timetable = {
-          ...this.timetable,
-          ...this.getTimetable(rawXml),
-        };
-        void timetableCache.set(key, rawXml);
+        try {
+          const rawXml = await irisGetRequest<string>(key);
+          const newDepartures = this.getTimetable(rawXml);
+
+          this.timetable = {
+            ...this.timetable,
+            ...this.getTimetable(rawXml),
+          };
+
+          void timetableCache.set(key, newDepartures);
+        } catch (error) {
+          this.errors.push(error);
+        }
       }),
     );
   }

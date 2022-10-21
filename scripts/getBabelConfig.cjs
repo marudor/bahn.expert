@@ -112,7 +112,11 @@ const getBabelConfig = (type) => {
     env: {
       production: {
         compact: true,
-        plugins: ['@emotion', 'babel-plugin-jsx-remove-data-test-id'],
+        plugins: [
+          '@emotion',
+          'babel-plugin-jsx-remove-data-test-id',
+          'transform-remove-console',
+        ],
       },
       development: {
         plugins: ['@emotion'],

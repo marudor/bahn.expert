@@ -15,7 +15,6 @@ exports[`withFchg arrivalCancelled.xml 1`] = `
         "time": 2019-03-17T12:58:00.000Z,
         "wingIds": undefined,
       },
-      "auslastung": false,
       "cancelled": undefined,
       "currentStopPlace": {
         "evaNumber": "test",
@@ -43,7 +42,6 @@ exports[`withFchg arrivalCancelled.xml 1`] = `
       "productClass": "S",
       "rawId": "-6062058741531589910-1903161424-13",
       "ref": undefined,
-      "reihung": false,
       "route": [
         {
           "name": "Mönchengladbach Hbf",
@@ -170,7 +168,6 @@ exports[`withFchg arrivalCancelled.xml 1`] = `
       "substitute": false,
       "train": {
         "line": "8",
-        "longDistance": false,
         "name": "S 8",
         "number": "30889",
         "type": "S",
@@ -178,6 +175,9 @@ exports[`withFchg arrivalCancelled.xml 1`] = `
     },
   ],
   "lookbehind": [],
+  "stopPlaces": [
+    "test",
+  ],
   "wings": {},
 }
 `;
@@ -199,7 +199,6 @@ exports[`withFchg arrivalWing.xml 1`] = `
           "4550748245722881479-1903170818",
         ],
       },
-      "auslastung": true,
       "cancelled": false,
       "currentStopPlace": {
         "evaNumber": "test",
@@ -229,7 +228,6 @@ exports[`withFchg arrivalWing.xml 1`] = `
       "productClass": "F",
       "rawId": "4771830392602697451-1903170818-10",
       "ref": undefined,
-      "reihung": true,
       "route": [
         {
           "name": "München Hbf",
@@ -283,7 +281,6 @@ exports[`withFchg arrivalWing.xml 1`] = `
       "substitute": false,
       "train": {
         "line": undefined,
-        "longDistance": true,
         "name": "ICE 1680",
         "number": "1680",
         "type": "ICE",
@@ -301,7 +298,6 @@ exports[`withFchg arrivalWing.xml 1`] = `
         "time": 2019-03-17T12:32:00.000Z,
         "wingIds": undefined,
       },
-      "auslastung": true,
       "cancelled": false,
       "currentStopPlace": {
         "evaNumber": "test",
@@ -331,7 +327,6 @@ exports[`withFchg arrivalWing.xml 1`] = `
       "productClass": "F",
       "rawId": "-4550748245722881479-1903170818-10",
       "ref": undefined,
-      "reihung": true,
       "route": [
         {
           "name": "München Hbf",
@@ -374,7 +369,6 @@ exports[`withFchg arrivalWing.xml 1`] = `
       "substitute": false,
       "train": {
         "line": undefined,
-        "longDistance": true,
         "name": "ICE 1580",
         "number": "1580",
         "type": "ICE",
@@ -382,6 +376,9 @@ exports[`withFchg arrivalWing.xml 1`] = `
     },
   ],
   "lookbehind": [],
+  "stopPlaces": [
+    "test",
+  ],
   "wings": {},
 }
 `;
@@ -401,7 +398,6 @@ exports[`withFchg cancelled.xml 1`] = `
         "time": 2019-03-17T12:58:00.000Z,
         "wingIds": undefined,
       },
-      "auslastung": false,
       "cancelled": true,
       "currentStopPlace": {
         "evaNumber": "test",
@@ -431,7 +427,6 @@ exports[`withFchg cancelled.xml 1`] = `
       "productClass": "S",
       "rawId": "-6062058741531589910-1903161424-13",
       "ref": undefined,
-      "reihung": false,
       "route": [
         {
           "name": "Mönchengladbach Hbf",
@@ -580,7 +575,6 @@ exports[`withFchg cancelled.xml 1`] = `
       "substitute": false,
       "train": {
         "line": "8",
-        "longDistance": false,
         "name": "S 8",
         "number": "30889",
         "type": "S",
@@ -588,6 +582,9 @@ exports[`withFchg cancelled.xml 1`] = `
     },
   ],
   "lookbehind": [],
+  "stopPlaces": [
+    "test",
+  ],
   "wings": {},
 }
 `;
@@ -605,7 +602,6 @@ exports[`withFchg departureCancelled.xml 1`] = `
         "time": 2019-03-17T12:58:00.000Z,
         "wingIds": undefined,
       },
-      "auslastung": false,
       "cancelled": false,
       "currentStopPlace": {
         "evaNumber": "test",
@@ -635,7 +631,6 @@ exports[`withFchg departureCancelled.xml 1`] = `
       "productClass": "S",
       "rawId": "-6062058741531589910-1903161424-13",
       "ref": undefined,
-      "reihung": false,
       "route": [
         {
           "name": "Mönchengladbach Hbf",
@@ -784,7 +779,6 @@ exports[`withFchg departureCancelled.xml 1`] = `
       "substitute": false,
       "train": {
         "line": "8",
-        "longDistance": false,
         "name": "S 8",
         "number": "30889",
         "type": "S",
@@ -792,6 +786,9 @@ exports[`withFchg departureCancelled.xml 1`] = `
     },
   ],
   "lookbehind": [],
+  "stopPlaces": [
+    "test",
+  ],
   "wings": {},
 }
 `;
@@ -811,7 +808,6 @@ exports[`withFchg departureWing.xml 1`] = `
         "time": 2019-03-17T13:21:00.000Z,
         "wingIds": undefined,
       },
-      "auslastung": true,
       "cancelled": false,
       "currentStopPlace": {
         "evaNumber": "test",
@@ -843,7 +839,6 @@ exports[`withFchg departureWing.xml 1`] = `
       "productClass": "F",
       "rawId": "6523045328284948841-1903171246-5",
       "ref": undefined,
-      "reihung": true,
       "route": [
         {
           "name": "Hamburg-Altona",
@@ -892,7 +887,6 @@ exports[`withFchg departureWing.xml 1`] = `
       "substitute": false,
       "train": {
         "line": undefined,
-        "longDistance": true,
         "name": "ICE 1689",
         "number": "1689",
         "type": "ICE",
@@ -900,6 +894,9 @@ exports[`withFchg departureWing.xml 1`] = `
     },
   ],
   "lookbehind": [],
+  "stopPlaces": [
+    "test",
+  ],
   "wings": {
     "8086827825752200553-1903171315": {
       "additional": undefined,
@@ -913,7 +910,6 @@ exports[`withFchg departureWing.xml 1`] = `
         "time": 2019-03-17T13:14:00.000Z,
         "wingIds": undefined,
       },
-      "auslastung": true,
       "cancelled": false,
       "currentStopPlace": {
         "evaNumber": "test",
@@ -943,7 +939,6 @@ exports[`withFchg departureWing.xml 1`] = `
       "productClass": "F",
       "rawId": "-8086827825752200553-1903171315-2",
       "ref": undefined,
-      "reihung": true,
       "route": [
         {
           "name": "Bremen Hbf",
@@ -983,7 +978,6 @@ exports[`withFchg departureWing.xml 1`] = `
       "substitute": false,
       "train": {
         "line": undefined,
-        "longDistance": true,
         "name": "ICE 1589",
         "number": "1589",
         "type": "ICE",
@@ -997,6 +991,9 @@ exports[`withFchg filteredDueToTime.xml 1`] = `
 {
   "departures": [],
   "lookbehind": [],
+  "stopPlaces": [
+    "test",
+  ],
   "wings": {},
 }
 `;
@@ -1016,7 +1013,6 @@ exports[`withFchg lookbehind.xml 1`] = `
         "time": 2019-03-17T12:38:00.000Z,
         "wingIds": undefined,
       },
-      "auslastung": true,
       "cancelled": false,
       "currentStopPlace": {
         "evaNumber": "test",
@@ -1054,7 +1050,6 @@ exports[`withFchg lookbehind.xml 1`] = `
       "productClass": "F",
       "rawId": "1869793107893408377-1903171038-6",
       "ref": undefined,
-      "reihung": true,
       "route": [
         {
           "additional": undefined,
@@ -1108,7 +1103,6 @@ exports[`withFchg lookbehind.xml 1`] = `
       "substitute": false,
       "train": {
         "line": undefined,
-        "longDistance": true,
         "name": "ICE 123",
         "number": "123",
         "type": "ICE",
@@ -1116,6 +1110,9 @@ exports[`withFchg lookbehind.xml 1`] = `
     },
   ],
   "lookbehind": [],
+  "stopPlaces": [
+    "test",
+  ],
   "wings": {},
 }
 `;
@@ -1126,7 +1123,6 @@ exports[`withFchg multipleWings.xml 1`] = `
     {
       "additional": undefined,
       "arrival": undefined,
-      "auslastung": false,
       "cancelled": false,
       "currentStopPlace": {
         "evaNumber": "test",
@@ -1159,7 +1155,6 @@ exports[`withFchg multipleWings.xml 1`] = `
       "productClass": "D",
       "rawId": "4645697665836328305-1903171304-1",
       "ref": undefined,
-      "reihung": false,
       "route": [
         {
           "additional": undefined,
@@ -1245,7 +1240,6 @@ exports[`withFchg multipleWings.xml 1`] = `
       "substitute": false,
       "train": {
         "line": undefined,
-        "longDistance": false,
         "name": "BOB 86871",
         "number": "86871",
         "type": "BOB",
@@ -1253,11 +1247,13 @@ exports[`withFchg multipleWings.xml 1`] = `
     },
   ],
   "lookbehind": [],
+  "stopPlaces": [
+    "test",
+  ],
   "wings": {
     "2583448959431566845-1903171304": {
       "additional": undefined,
       "arrival": undefined,
-      "auslastung": false,
       "cancelled": false,
       "currentStopPlace": {
         "evaNumber": "test",
@@ -1287,7 +1283,6 @@ exports[`withFchg multipleWings.xml 1`] = `
       "productClass": "D",
       "rawId": "-2583448959431566845-1903171304-1",
       "ref": undefined,
-      "reihung": false,
       "route": [
         {
           "additional": undefined,
@@ -1353,7 +1348,6 @@ exports[`withFchg multipleWings.xml 1`] = `
       "substitute": false,
       "train": {
         "line": undefined,
-        "longDistance": false,
         "name": "BOB 86971",
         "number": "86971",
         "type": "BOB",
@@ -1362,7 +1356,6 @@ exports[`withFchg multipleWings.xml 1`] = `
     "7715731422484591852-1903171304": {
       "additional": undefined,
       "arrival": undefined,
-      "auslastung": false,
       "cancelled": false,
       "currentStopPlace": {
         "evaNumber": "test",
@@ -1392,7 +1385,6 @@ exports[`withFchg multipleWings.xml 1`] = `
       "productClass": "D",
       "rawId": "-7715731422484591852-1903171304-1",
       "ref": undefined,
-      "reihung": false,
       "route": [
         {
           "additional": undefined,
@@ -1463,7 +1455,6 @@ exports[`withFchg multipleWings.xml 1`] = `
       "substitute": false,
       "train": {
         "line": undefined,
-        "longDistance": false,
         "name": "BOB 86921",
         "number": "86921",
         "type": "BOB",
@@ -1488,7 +1479,6 @@ exports[`withFchg onlyArrival.xml 1`] = `
         "time": 2019-03-17T12:24:00.000Z,
         "wingIds": undefined,
       },
-      "auslastung": false,
       "cancelled": undefined,
       "currentStopPlace": {
         "evaNumber": "test",
@@ -1509,7 +1499,6 @@ exports[`withFchg onlyArrival.xml 1`] = `
       "productClass": "D",
       "rawId": "425081070176277607-1903171100-11",
       "ref": undefined,
-      "reihung": false,
       "route": [
         {
           "name": "Hamm (Westf)",
@@ -1552,7 +1541,6 @@ exports[`withFchg onlyArrival.xml 1`] = `
       "substitute": false,
       "train": {
         "line": "RE11",
-        "longDistance": false,
         "name": "ABR RE11",
         "number": "26712",
         "type": "ABR",
@@ -1560,6 +1548,9 @@ exports[`withFchg onlyArrival.xml 1`] = `
     },
   ],
   "lookbehind": [],
+  "stopPlaces": [
+    "test",
+  ],
   "wings": {},
 }
 `;
@@ -1570,7 +1561,6 @@ exports[`withFchg onlyDeparture.xml 1`] = `
     {
       "additional": undefined,
       "arrival": undefined,
-      "auslastung": false,
       "cancelled": false,
       "currentStopPlace": {
         "evaNumber": "test",
@@ -1600,7 +1590,6 @@ exports[`withFchg onlyDeparture.xml 1`] = `
       "productClass": "D",
       "rawId": "1178432179369711067-1903171236-1",
       "ref": undefined,
-      "reihung": false,
       "route": [
         {
           "additional": undefined,
@@ -1655,7 +1644,6 @@ exports[`withFchg onlyDeparture.xml 1`] = `
       "substitute": false,
       "train": {
         "line": "RE11",
-        "longDistance": false,
         "name": "ABR RE11",
         "number": "26719",
         "type": "ABR",
@@ -1663,6 +1651,9 @@ exports[`withFchg onlyDeparture.xml 1`] = `
     },
   ],
   "lookbehind": [],
+  "stopPlaces": [
+    "test",
+  ],
   "wings": {},
 }
 `;
@@ -1680,7 +1671,6 @@ exports[`withFchg simple1.xml 1`] = `
         "time": 2019-03-17T12:58:00.000Z,
         "wingIds": undefined,
       },
-      "auslastung": false,
       "cancelled": undefined,
       "currentStopPlace": {
         "evaNumber": "test",
@@ -1707,7 +1697,6 @@ exports[`withFchg simple1.xml 1`] = `
       "platform": "13",
       "productClass": "S",
       "rawId": "-6062058741531589910-1903161424-13",
-      "reihung": false,
       "route": [
         {
           "name": "Mönchengladbach Hbf",
@@ -1834,7 +1823,6 @@ exports[`withFchg simple1.xml 1`] = `
       "substitute": false,
       "train": {
         "line": "8",
-        "longDistance": false,
         "name": "S 8",
         "number": "30889",
         "type": "S",
@@ -1842,6 +1830,9 @@ exports[`withFchg simple1.xml 1`] = `
     },
   ],
   "lookbehind": [],
+  "stopPlaces": [
+    "test",
+  ],
   "wings": {},
 }
 `;
@@ -1861,7 +1852,6 @@ exports[`withFchg simple2.xml 1`] = `
         "time": 2019-03-17T12:49:00.000Z,
         "wingIds": undefined,
       },
-      "auslastung": true,
       "cancelled": false,
       "currentStopPlace": {
         "evaNumber": "test",
@@ -1899,7 +1889,6 @@ exports[`withFchg simple2.xml 1`] = `
       "productClass": "F",
       "rawId": "1869793107893408377-1903171038-6",
       "ref": undefined,
-      "reihung": true,
       "route": [
         {
           "additional": undefined,
@@ -1953,7 +1942,6 @@ exports[`withFchg simple2.xml 1`] = `
       "substitute": false,
       "train": {
         "line": undefined,
-        "longDistance": true,
         "name": "ICE 123",
         "number": "123",
         "type": "ICE",
@@ -1961,6 +1949,9 @@ exports[`withFchg simple2.xml 1`] = `
     },
   ],
   "lookbehind": [],
+  "stopPlaces": [
+    "test",
+  ],
   "wings": {},
 }
 `;
@@ -1980,7 +1971,6 @@ exports[`withFchg visibleDueToDelay.xml 1`] = `
         "time": 2019-03-17T12:58:00.000Z,
         "wingIds": undefined,
       },
-      "auslastung": false,
       "cancelled": false,
       "currentStopPlace": {
         "evaNumber": "test",
@@ -2010,7 +2000,6 @@ exports[`withFchg visibleDueToDelay.xml 1`] = `
       "productClass": "S",
       "rawId": "-6062058741531589910-1903161424-13",
       "ref": undefined,
-      "reihung": false,
       "route": [
         {
           "name": "Mönchengladbach Hbf",
@@ -2137,7 +2126,6 @@ exports[`withFchg visibleDueToDelay.xml 1`] = `
       "substitute": false,
       "train": {
         "line": "8",
-        "longDistance": false,
         "name": "S 8",
         "number": "30889",
         "type": "S",
@@ -2145,6 +2133,9 @@ exports[`withFchg visibleDueToDelay.xml 1`] = `
     },
   ],
   "lookbehind": [],
+  "stopPlaces": [
+    "test",
+  ],
   "wings": {},
 }
 `;
@@ -2166,7 +2157,6 @@ exports[`withFchg wings.xml 1`] = `
           "4249721926697031159-1903171328",
         ],
       },
-      "auslastung": true,
       "cancelled": false,
       "currentStopPlace": {
         "evaNumber": "test",
@@ -2198,7 +2188,6 @@ exports[`withFchg wings.xml 1`] = `
       "productClass": "F",
       "rawId": "7616096009230090656-1903171328-5",
       "ref": undefined,
-      "reihung": true,
       "route": [
         {
           "name": "Hamburg Hbf",
@@ -2250,7 +2239,6 @@ exports[`withFchg wings.xml 1`] = `
       "substitute": false,
       "train": {
         "line": undefined,
-        "longDistance": true,
         "name": "ICE 1587",
         "number": "1587",
         "type": "ICE",
@@ -2258,6 +2246,9 @@ exports[`withFchg wings.xml 1`] = `
     },
   ],
   "lookbehind": [],
+  "stopPlaces": [
+    "test",
+  ],
   "wings": {},
 }
 `;
