@@ -98,8 +98,7 @@
       ],
       "destination": "Hamburg-Altona",
       "platform": "",
-      "scheduledPlatform": "",
-      "reihung": true
+      "scheduledPlatform": ""
     },
     {
       "o": "800164",
@@ -176,8 +175,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "14",
-      "scheduledPlatform": "14",
-      "reihung": false
+      "scheduledPlatform": "14"
     },
     {
       "o": "R1",
@@ -265,7 +263,6 @@
       "destination": "Hamburg Hbf",
       "platform": "12",
       "scheduledPlatform": "12",
-      "reihung": false,
       "cancelled": true
     },
     {
@@ -381,8 +378,7 @@
       ],
       "destination": "Aumühle",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "0S",
@@ -500,8 +496,7 @@
       ],
       "destination": "Pinneberg",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "0S",
@@ -619,8 +614,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "0S",
@@ -748,8 +742,7 @@
       ],
       "destination": "Hamburg-Blankenese",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "0S",
@@ -855,8 +848,7 @@
       ],
       "destination": "Hamburg Elbgaustraße",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "80",
@@ -959,8 +951,7 @@
       ],
       "destination": "München Hbf",
       "platform": "11",
-      "scheduledPlatform": "11",
-      "reihung": true
+      "scheduledPlatform": "11"
     },
     {
       "o": "0S",
@@ -1045,8 +1036,7 @@
       ],
       "destination": "Hamburg-Altona (S)",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "80",
@@ -1125,8 +1115,7 @@
       ],
       "destination": "Hamburg-Altona",
       "platform": "",
-      "scheduledPlatform": "",
-      "reihung": true
+      "scheduledPlatform": ""
     },
     {
       "o": "0S",
@@ -1211,8 +1200,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "80",
@@ -1313,8 +1301,7 @@
       ],
       "destination": "Hamburg-Altona",
       "platform": "14",
-      "scheduledPlatform": "14",
-      "reihung": true
+      "scheduledPlatform": "14"
     },
     {
       "o": "0S",
@@ -1437,8 +1424,7 @@
       ],
       "destination": "Hamburg Airport",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "0S",
@@ -1544,8 +1530,7 @@
       ],
       "destination": "Hamburg-Bergedorf",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "R1",
@@ -1637,8 +1622,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "11",
-      "scheduledPlatform": "11",
-      "reihung": false
+      "scheduledPlatform": "11"
     },
     {
       "o": "0S",
@@ -1756,8 +1740,7 @@
       ],
       "destination": "Pinneberg",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "80",
@@ -1852,8 +1835,7 @@
       ],
       "destination": "München Hbf",
       "platform": "6",
-      "scheduledPlatform": "6",
-      "reihung": true
+      "scheduledPlatform": "6"
     },
     {
       "o": "800201",
@@ -1918,8 +1900,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "7G-I",
-      "scheduledPlatform": "7G-I",
-      "reihung": false
+      "scheduledPlatform": "7G-I"
     },
     {
       "o": "R1",
@@ -2011,8 +1992,7 @@
       ],
       "destination": "Bremen Hbf",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": false
+      "scheduledPlatform": "12"
     },
     {
       "o": "800155",
@@ -2110,8 +2090,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "7A-D",
-      "scheduledPlatform": "7A-D",
-      "reihung": false
+      "scheduledPlatform": "7A-D"
     },
     {
       "o": "0S",
@@ -2229,8 +2208,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "0S",
@@ -2345,8 +2323,7 @@
       ],
       "destination": "Hamburg Elbgaustraße",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "0S",
@@ -2481,8 +2458,7 @@
       ],
       "destination": "Wedel (Holst)",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "800279",
@@ -2554,8 +2530,7 @@
       ],
       "destination": "Bad Oldesloe",
       "platform": "5D-E",
-      "scheduledPlatform": "5D-E",
-      "reihung": false
+      "scheduledPlatform": "5D-E"
     },
     {
       "o": "0S",
@@ -2634,8 +2609,7 @@
       ],
       "destination": "Hamburg-Altona (S)",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "0S",
@@ -2714,8 +2688,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "R1",
@@ -2775,8 +2748,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "13A-C",
-      "scheduledPlatform": "13A-C",
-      "reihung": false
+      "scheduledPlatform": "13A-C"
     },
     {
       "o": "800279",
@@ -2835,8 +2807,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "5D-E",
-      "scheduledPlatform": "5D-E",
-      "reihung": false
+      "scheduledPlatform": "5D-E"
     },
     {
       "o": "800201",
@@ -2903,8 +2874,7 @@
       ],
       "destination": "Kiel Hbf",
       "platform": "13D-F",
-      "scheduledPlatform": "13D-F",
-      "reihung": false
+      "scheduledPlatform": "13D-F"
     },
     {
       "o": "0S",
@@ -3044,8 +3014,7 @@
       ],
       "destination": "Hamburg Airport",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "0S",
@@ -3154,8 +3123,7 @@
       ],
       "destination": "Aumühle",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "0S",
@@ -3273,8 +3241,7 @@
       ],
       "destination": "Pinneberg",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "80",
@@ -3378,8 +3345,7 @@
       ],
       "destination": "Stuttgart Hbf",
       "platform": "13",
-      "scheduledPlatform": "13",
-      "reihung": true
+      "scheduledPlatform": "13"
     },
     {
       "o": "0S",
@@ -3497,8 +3463,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "0S",
@@ -3621,8 +3586,7 @@
       ],
       "destination": "Hamburg-Blankenese",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "0S",
@@ -3722,8 +3686,7 @@
       ],
       "destination": "Hamburg Elbgaustraße",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "0S",
@@ -3802,8 +3765,7 @@
       ],
       "destination": "Hamburg-Altona (S)",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "800279",
@@ -3856,8 +3818,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "5A-C",
-      "scheduledPlatform": "5A-C",
-      "reihung": false
+      "scheduledPlatform": "5A-C"
     },
     {
       "o": "0S",
@@ -3936,8 +3897,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "O0",
@@ -4012,8 +3972,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "13D-F",
-      "scheduledPlatform": "13D-F",
-      "reihung": false
+      "scheduledPlatform": "13D-F"
     },
     {
       "o": "0S",
@@ -4130,8 +4089,7 @@
       ],
       "destination": "Hamburg Airport",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "0S",
@@ -4231,8 +4189,7 @@
       ],
       "destination": "Hamburg-Bergedorf",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "0S",
@@ -4344,8 +4301,7 @@
       ],
       "destination": "Pinneberg",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "R1",
@@ -4413,8 +4369,7 @@
       ],
       "destination": "Uelzen",
       "platform": "13A-C",
-      "scheduledPlatform": "13A-C",
-      "reihung": false
+      "scheduledPlatform": "13A-C"
     },
     {
       "o": "0S",
@@ -4532,8 +4487,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "0S",
@@ -4642,8 +4596,7 @@
       ],
       "destination": "Hamburg Elbgaustraße",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "0S",
@@ -4772,8 +4725,7 @@
       ],
       "destination": "Wedel (Holst)",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "80",
@@ -4878,8 +4830,7 @@
       ],
       "destination": "Kiel Hbf",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": true
+      "scheduledPlatform": "12"
     },
     {
       "o": "0S",
@@ -4958,8 +4909,7 @@
       ],
       "destination": "Hamburg-Altona (S)",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "80",
@@ -5060,8 +5010,7 @@
       ],
       "destination": "Zürich HB",
       "platform": "14",
-      "scheduledPlatform": "14",
-      "reihung": true
+      "scheduledPlatform": "14"
     },
     {
       "o": "0S",
@@ -5140,8 +5089,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "0S",
@@ -5276,8 +5224,7 @@
       ],
       "destination": "Hamburg Airport",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "0S",
@@ -5386,8 +5333,7 @@
       ],
       "destination": "Aumühle",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "800279",
@@ -5440,8 +5386,7 @@
       ],
       "destination": "Lübeck Hbf",
       "platform": "5A-C",
-      "scheduledPlatform": "5A-C",
-      "reihung": false
+      "scheduledPlatform": "5A-C"
     },
     {
       "o": "R1",
@@ -5528,8 +5473,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "13A-C",
-      "scheduledPlatform": "13A-C",
-      "reihung": false
+      "scheduledPlatform": "13A-C"
     },
     {
       "o": "0S",
@@ -5641,8 +5585,7 @@
       ],
       "destination": "Pinneberg",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "O0",
@@ -5722,8 +5665,7 @@
       ],
       "destination": "Itzehoe",
       "platform": "13D-F",
-      "scheduledPlatform": "13D-F",
-      "reihung": false
+      "scheduledPlatform": "13D-F"
     },
     {
       "o": "0S",
@@ -5835,8 +5777,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "0S",
@@ -5953,8 +5894,7 @@
       ],
       "destination": "Hamburg-Blankenese",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "0S",
@@ -6054,8 +5994,7 @@
       ],
       "destination": "Hamburg Elbgaustraße",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "800279",
@@ -6115,8 +6054,7 @@
       ],
       "destination": "Ahrensburg",
       "platform": "5D-E",
-      "scheduledPlatform": "5D-E",
-      "reihung": false
+      "scheduledPlatform": "5D-E"
     },
     {
       "o": "0S",
@@ -6195,8 +6133,7 @@
       ],
       "destination": "Hamburg-Altona (S)",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "0S",
@@ -6275,8 +6212,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "800279",
@@ -6357,8 +6293,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "6D-E",
-      "scheduledPlatform": "6D-E",
-      "reihung": false
+      "scheduledPlatform": "6D-E"
     },
     {
       "o": "0S",
@@ -6475,8 +6410,7 @@
       ],
       "destination": "Hamburg Airport",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "0S",
@@ -6576,8 +6510,7 @@
       ],
       "destination": "Hamburg-Bergedorf",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "800201",
@@ -6657,8 +6590,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "11D-F",
-      "scheduledPlatform": "11D-F",
-      "reihung": false
+      "scheduledPlatform": "11D-F"
     },
     {
       "o": "800201",
@@ -6723,8 +6655,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "11D-F",
-      "scheduledPlatform": "11D-F",
-      "reihung": false
+      "scheduledPlatform": "11D-F"
     },
     {
       "o": "R1",
@@ -6789,8 +6720,7 @@
       ],
       "destination": "Bremen Hbf",
       "platform": "13A-C",
-      "scheduledPlatform": "13A-C",
-      "reihung": false
+      "scheduledPlatform": "13A-C"
     },
     {
       "o": "86",
@@ -6844,8 +6774,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "6A-C",
-      "scheduledPlatform": "6A-C",
-      "reihung": true
+      "scheduledPlatform": "6A-C"
     },
     {
       "o": "0S",
@@ -6957,8 +6886,7 @@
       ],
       "destination": "Pinneberg",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "0S",
@@ -7070,8 +6998,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "0S",
@@ -7180,8 +7107,7 @@
       ],
       "destination": "Hamburg Elbgaustraße",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "0S",
@@ -7310,8 +7236,7 @@
       ],
       "destination": "Wedel (Holst)",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "0S",
@@ -7390,8 +7315,7 @@
       ],
       "destination": "Hamburg-Altona (S)",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "HK",
@@ -7471,8 +7395,7 @@
       ],
       "destination": "Hamburg-Altona",
       "platform": "8",
-      "scheduledPlatform": "8",
-      "reihung": false
+      "scheduledPlatform": "8"
     },
     {
       "o": "800155",
@@ -7571,8 +7494,7 @@
       ],
       "destination": "Rostock Hbf",
       "platform": "7A-D",
-      "scheduledPlatform": "7A-D",
-      "reihung": false
+      "scheduledPlatform": "7A-D"
     },
     {
       "o": "R1",
@@ -7644,8 +7566,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "13D-F",
-      "scheduledPlatform": "13D-F",
-      "reihung": false
+      "scheduledPlatform": "13D-F"
     },
     {
       "o": "0S",
@@ -7724,8 +7645,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "800201",
@@ -7791,8 +7711,7 @@
       ],
       "destination": "Kiel Hbf",
       "platform": "7G-I",
-      "scheduledPlatform": "7G-I",
-      "reihung": false
+      "scheduledPlatform": "7G-I"
     },
     {
       "o": "0S",
@@ -7921,8 +7840,7 @@
       ],
       "destination": "Hamburg Airport",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "0S",
@@ -8031,8 +7949,7 @@
       ],
       "destination": "Aumühle",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "R1",
@@ -8119,8 +8036,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "13A-C",
-      "scheduledPlatform": "13A-C",
-      "reihung": false
+      "scheduledPlatform": "13A-C"
     },
     {
       "o": "80",
@@ -8247,8 +8163,7 @@
       ],
       "destination": "Ostseebad Binz",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": true
+      "scheduledPlatform": "12"
     },
     {
       "o": "0S",
@@ -8360,8 +8275,7 @@
       ],
       "destination": "Pinneberg",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "80",
@@ -8440,8 +8354,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": true
+      "scheduledPlatform": "12"
     },
     {
       "o": "0S",
@@ -8553,8 +8466,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "0S",
@@ -8671,8 +8583,7 @@
       ],
       "destination": "Hamburg-Blankenese",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "0S",
@@ -8772,8 +8683,7 @@
       ],
       "destination": "Hamburg Elbgaustraße",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "80",
@@ -8865,8 +8775,7 @@
       ],
       "destination": "München Hbf",
       "platform": "14",
-      "scheduledPlatform": "14",
-      "reihung": true
+      "scheduledPlatform": "14"
     },
     {
       "o": "R1",
@@ -8953,8 +8862,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "11A-C",
-      "scheduledPlatform": "11A-C",
-      "reihung": false
+      "scheduledPlatform": "11A-C"
     },
     {
       "o": "0S",
@@ -9033,8 +8941,7 @@
       ],
       "destination": "Hamburg-Altona (S)",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "0S",
@@ -9113,8 +9020,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "R1",
@@ -9191,8 +9097,7 @@
       ],
       "destination": "Lüneburg",
       "platform": "13A-C",
-      "scheduledPlatform": "13A-C",
-      "reihung": false
+      "scheduledPlatform": "13A-C"
     },
     {
       "o": "0S",
@@ -9309,8 +9214,7 @@
       ],
       "destination": "Hamburg Airport",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "0S",
@@ -9410,8 +9314,7 @@
       ],
       "destination": "Hamburg-Bergedorf",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "80",
@@ -9500,8 +9403,7 @@
       ],
       "destination": "München Hbf",
       "platform": "8",
-      "scheduledPlatform": "8",
-      "reihung": true
+      "scheduledPlatform": "8"
     },
     {
       "o": "80",
@@ -9601,8 +9503,7 @@
       ],
       "destination": "Kiel Hbf",
       "platform": "5",
-      "scheduledPlatform": "5",
-      "reihung": true
+      "scheduledPlatform": "5"
     },
     {
       "o": "0S",
@@ -9714,8 +9615,7 @@
       ],
       "destination": "Pinneberg",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "800201",
@@ -9778,8 +9678,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "7G-I",
-      "scheduledPlatform": "7G-I",
-      "reihung": false
+      "scheduledPlatform": "7G-I"
     },
     {
       "o": "R1",
@@ -9871,8 +9770,7 @@
       ],
       "destination": "Bremen Hbf",
       "platform": "13D-F",
-      "scheduledPlatform": "13D-F",
-      "reihung": false
+      "scheduledPlatform": "13D-F"
     },
     {
       "o": "80",
@@ -9978,8 +9876,7 @@
       ],
       "destination": "Hamburg-Altona",
       "platform": "",
-      "scheduledPlatform": "",
-      "reihung": true
+      "scheduledPlatform": ""
     },
     {
       "o": "0S",
@@ -10091,8 +9988,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "0S",
@@ -10201,8 +10097,7 @@
       ],
       "destination": "Hamburg Elbgaustraße",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "0S",
@@ -10331,8 +10226,7 @@
       ],
       "destination": "Wedel (Holst)",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "800279",
@@ -10413,8 +10307,7 @@
       ],
       "destination": "Bad Oldesloe",
       "platform": "5",
-      "scheduledPlatform": "5",
-      "reihung": false
+      "scheduledPlatform": "5"
     },
     {
       "o": "0S",
@@ -10493,8 +10386,7 @@
       ],
       "destination": "Hamburg-Altona (S)",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "800279",
@@ -10548,8 +10440,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "11A-C",
-      "scheduledPlatform": "11A-C",
-      "reihung": false
+      "scheduledPlatform": "11A-C"
     },
     {
       "o": "0S",
@@ -10628,8 +10519,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "800279",
@@ -10686,8 +10576,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "7A-D",
-      "scheduledPlatform": "7A-D",
-      "reihung": false
+      "scheduledPlatform": "7A-D"
     },
     {
       "o": "800201",
@@ -10758,8 +10647,7 @@
       ],
       "destination": "Kiel Hbf",
       "platform": "11D-F",
-      "scheduledPlatform": "11D-F",
-      "reihung": false
+      "scheduledPlatform": "11D-F"
     },
     {
       "o": "0S",
@@ -10888,8 +10776,7 @@
       ],
       "destination": "Hamburg Airport",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "0S",
@@ -10998,8 +10885,7 @@
       ],
       "destination": "Aumühle",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "R1",
@@ -11059,8 +10945,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "12A-B",
-      "scheduledPlatform": "12A-B",
-      "reihung": false
+      "scheduledPlatform": "12A-B"
     },
     {
       "o": "0S",
@@ -11172,8 +11057,7 @@
       ],
       "destination": "Pinneberg",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "0S",
@@ -11285,8 +11169,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "0S",
@@ -11403,8 +11286,7 @@
       ],
       "destination": "Hamburg-Blankenese",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "0S",
@@ -11504,8 +11386,7 @@
       ],
       "destination": "Hamburg Elbgaustraße",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "0S",
@@ -11584,8 +11465,7 @@
       ],
       "destination": "Hamburg-Altona (S)",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "800279",
@@ -11636,8 +11516,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "6",
-      "scheduledPlatform": "6",
-      "reihung": false
+      "scheduledPlatform": "6"
     },
     {
       "o": "80",
@@ -11729,8 +11608,7 @@
       ],
       "destination": "Praha hl.n.",
       "platform": "5",
-      "scheduledPlatform": "5",
-      "reihung": true
+      "scheduledPlatform": "5"
     },
     {
       "o": "0S",
@@ -11809,8 +11687,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "O0",
@@ -11885,8 +11762,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "12C-F",
-      "scheduledPlatform": "12C-F",
-      "reihung": false
+      "scheduledPlatform": "12C-F"
     },
     {
       "o": "0S",
@@ -12003,8 +11879,7 @@
       ],
       "destination": "Hamburg Airport",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "0S",
@@ -12104,8 +11979,7 @@
       ],
       "destination": "Hamburg-Bergedorf",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "0S",
@@ -12217,8 +12091,7 @@
       ],
       "destination": "Pinneberg",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "80",
@@ -12301,8 +12174,7 @@
       ],
       "destination": "Hamburg-Altona",
       "platform": "13",
-      "scheduledPlatform": "13",
-      "reihung": true
+      "scheduledPlatform": "13"
     },
     {
       "o": "R1",
@@ -12394,8 +12266,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "12A-B",
-      "scheduledPlatform": "12A-B",
-      "reihung": false
+      "scheduledPlatform": "12A-B"
     },
     {
       "o": "0S",
@@ -12507,8 +12378,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "0S",
@@ -12617,8 +12487,7 @@
       ],
       "destination": "Hamburg Elbgaustraße",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "0S",
@@ -12747,8 +12616,7 @@
       ],
       "destination": "Wedel (Holst)",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "0S",
@@ -12827,8 +12695,7 @@
       ],
       "destination": "Hamburg-Altona (S)",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "80",
@@ -12908,8 +12775,7 @@
       ],
       "destination": "Stuttgart Hbf",
       "platform": "14",
-      "scheduledPlatform": "14",
-      "reihung": true
+      "scheduledPlatform": "14"
     },
     {
       "o": "0S",
@@ -12988,8 +12854,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "R1",
@@ -13052,8 +12917,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "12A-B",
-      "scheduledPlatform": "12A-B",
-      "reihung": false
+      "scheduledPlatform": "12A-B"
     },
     {
       "o": "0S",
@@ -13182,8 +13046,7 @@
       ],
       "destination": "Hamburg Airport",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "0S",
@@ -13292,8 +13155,7 @@
       ],
       "destination": "Aumühle",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "800279",
@@ -13350,8 +13212,7 @@
       ],
       "destination": "Lübeck Hbf",
       "platform": "6",
-      "scheduledPlatform": "6",
-      "reihung": false
+      "scheduledPlatform": "6"
     },
     {
       "o": "0S",
@@ -13463,8 +13324,7 @@
       ],
       "destination": "Pinneberg",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "O0",
@@ -13544,8 +13404,7 @@
       ],
       "destination": "Itzehoe",
       "platform": "12C-F",
-      "scheduledPlatform": "12C-F",
-      "reihung": false
+      "scheduledPlatform": "12C-F"
     },
     {
       "o": "0S",
@@ -13657,8 +13516,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "0S",
@@ -13775,8 +13633,7 @@
       ],
       "destination": "Hamburg-Blankenese",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "0S",
@@ -13876,8 +13733,7 @@
       ],
       "destination": "Hamburg Elbgaustraße",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "800279",
@@ -13937,8 +13793,7 @@
       ],
       "destination": "Ahrensburg",
       "platform": "7A-D",
-      "scheduledPlatform": "7A-D",
-      "reihung": false
+      "scheduledPlatform": "7A-D"
     },
     {
       "o": "0S",
@@ -14017,8 +13872,7 @@
       ],
       "destination": "Hamburg-Altona (S)",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "0S",
@@ -14097,8 +13951,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "800279",
@@ -14167,8 +14020,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "7A-D",
-      "scheduledPlatform": "7A-D",
-      "reihung": false
+      "scheduledPlatform": "7A-D"
     },
     {
       "o": "0S",
@@ -14285,8 +14137,7 @@
       ],
       "destination": "Hamburg Airport",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "0S",
@@ -14386,8 +14237,7 @@
       ],
       "destination": "Hamburg-Bergedorf",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "800201",
@@ -14462,8 +14312,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "6D-E",
-      "scheduledPlatform": "6D-E",
-      "reihung": false
+      "scheduledPlatform": "6D-E"
     },
     {
       "o": "800201",
@@ -14526,8 +14375,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "6D-E",
-      "scheduledPlatform": "6D-E",
-      "reihung": false
+      "scheduledPlatform": "6D-E"
     },
     {
       "o": "R1",
@@ -14592,8 +14440,7 @@
       ],
       "destination": "Bremen Hbf",
       "platform": "12A-B",
-      "scheduledPlatform": "12A-B",
-      "reihung": false
+      "scheduledPlatform": "12A-B"
     },
     {
       "o": "0S",
@@ -14705,8 +14552,7 @@
       ],
       "destination": "Pinneberg",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "80",
@@ -14819,8 +14665,7 @@
       ],
       "destination": "Hamburg-Altona",
       "platform": "",
-      "scheduledPlatform": "",
-      "reihung": true
+      "scheduledPlatform": ""
     },
     {
       "o": "0S",
@@ -14932,8 +14777,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "0S",
@@ -15042,8 +14886,7 @@
       ],
       "destination": "Hamburg Elbgaustraße",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "0S",
@@ -15172,8 +15015,7 @@
       ],
       "destination": "Wedel (Holst)",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "0S",
@@ -15252,8 +15094,7 @@
       ],
       "destination": "Hamburg-Altona (S)",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "800279",
@@ -15310,8 +15151,7 @@
       ],
       "destination": "Büchen",
       "platform": "11D-F",
-      "scheduledPlatform": "11D-F",
-      "reihung": false
+      "scheduledPlatform": "11D-F"
     },
     {
       "o": "0S",
@@ -15390,8 +15230,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "800201",
@@ -15457,8 +15296,7 @@
       ],
       "destination": "Kiel Hbf",
       "platform": "7G-I",
-      "scheduledPlatform": "7G-I",
-      "reihung": false
+      "scheduledPlatform": "7G-I"
     },
     {
       "o": "R1",
@@ -15530,8 +15368,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "12C-F",
-      "scheduledPlatform": "12C-F",
-      "reihung": false
+      "scheduledPlatform": "12C-F"
     },
     {
       "o": "0S",
@@ -15660,8 +15497,7 @@
       ],
       "destination": "Hamburg Airport",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "0S",
@@ -15770,8 +15606,7 @@
       ],
       "destination": "Aumühle",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "R1",
@@ -15858,8 +15693,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "12A-B",
-      "scheduledPlatform": "12A-B",
-      "reihung": false
+      "scheduledPlatform": "12A-B"
     },
     {
       "o": "0S",
@@ -15971,8 +15805,7 @@
       ],
       "destination": "Pinneberg",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "0S",
@@ -16084,8 +15917,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "0S",
@@ -16202,8 +16034,7 @@
       ],
       "destination": "Hamburg-Blankenese",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "0S",
@@ -16303,8 +16134,7 @@
       ],
       "destination": "Hamburg Elbgaustraße",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "80",
@@ -16396,8 +16226,7 @@
       ],
       "destination": "München Hbf",
       "platform": "13",
-      "scheduledPlatform": "13",
-      "reihung": true
+      "scheduledPlatform": "13"
     },
     {
       "o": "80",
@@ -16451,8 +16280,7 @@
       ],
       "destination": "Roedby",
       "platform": "8",
-      "scheduledPlatform": "8",
-      "reihung": true
+      "scheduledPlatform": "8"
     },
     {
       "o": "0S",
@@ -16531,8 +16359,7 @@
       ],
       "destination": "Hamburg-Altona (S)",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "0S",
@@ -16611,8 +16438,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "80",
@@ -16718,8 +16544,7 @@
       ],
       "destination": "Hamburg-Altona",
       "platform": "",
-      "scheduledPlatform": "",
-      "reihung": true
+      "scheduledPlatform": ""
     },
     {
       "o": "R1",
@@ -16796,8 +16621,7 @@
       ],
       "destination": "Lüneburg",
       "platform": "12A-B",
-      "scheduledPlatform": "12A-B",
-      "reihung": false
+      "scheduledPlatform": "12A-B"
     },
     {
       "o": "0S",
@@ -16914,8 +16738,7 @@
       ],
       "destination": "Hamburg Airport",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "0S",
@@ -17015,8 +16838,7 @@
       ],
       "destination": "Hamburg-Bergedorf",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "R1",
@@ -17103,8 +16925,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "14D-F",
-      "scheduledPlatform": "14D-F",
-      "reihung": false
+      "scheduledPlatform": "14D-F"
     },
     {
       "o": "0S",
@@ -17216,8 +17037,7 @@
       ],
       "destination": "Pinneberg",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "800201",
@@ -17280,8 +17100,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "7G-I",
-      "scheduledPlatform": "7G-I",
-      "reihung": false
+      "scheduledPlatform": "7G-I"
     },
     {
       "o": "R1",
@@ -17373,8 +17192,7 @@
       ],
       "destination": "Bremen Hbf",
       "platform": "12C-F",
-      "scheduledPlatform": "12C-F",
-      "reihung": false
+      "scheduledPlatform": "12C-F"
     },
     {
       "o": "800155",
@@ -17472,8 +17290,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "6A-C",
-      "scheduledPlatform": "6A-C",
-      "reihung": false
+      "scheduledPlatform": "6A-C"
     },
     {
       "o": "0S",
@@ -17585,8 +17402,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "0S",
@@ -17695,8 +17511,7 @@
       ],
       "destination": "Hamburg Elbgaustraße",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "0S",
@@ -17825,8 +17640,7 @@
       ],
       "destination": "Wedel (Holst)",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "80",
@@ -17915,8 +17729,7 @@
       ],
       "destination": "München Hbf",
       "platform": "5",
-      "scheduledPlatform": "5",
-      "reihung": true
+      "scheduledPlatform": "5"
     },
     {
       "o": "800279",
@@ -17988,8 +17801,7 @@
       ],
       "destination": "Bad Oldesloe",
       "platform": "7A-D",
-      "scheduledPlatform": "7A-D",
-      "reihung": false
+      "scheduledPlatform": "7A-D"
     },
     {
       "o": "80",
@@ -18079,8 +17891,7 @@
       ],
       "destination": "Hamburg-Altona",
       "platform": "",
-      "scheduledPlatform": "",
-      "reihung": true
+      "scheduledPlatform": ""
     },
     {
       "o": "0S",
@@ -18159,8 +17970,7 @@
       ],
       "destination": "Hamburg-Altona (S)",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "0S",
@@ -18239,8 +18049,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "R1",
@@ -18300,8 +18109,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "13A-C",
-      "scheduledPlatform": "13A-C",
-      "reihung": false
+      "scheduledPlatform": "13A-C"
     },
     {
       "o": "80",
@@ -18396,8 +18204,7 @@
       ],
       "destination": "Ostseebad Binz",
       "platform": "11",
-      "scheduledPlatform": "11",
-      "reihung": true
+      "scheduledPlatform": "11"
     },
     {
       "o": "800279",
@@ -18454,8 +18261,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "5D-E",
-      "scheduledPlatform": "5D-E",
-      "reihung": false
+      "scheduledPlatform": "5D-E"
     },
     {
       "o": "800201",
@@ -18522,8 +18328,7 @@
       ],
       "destination": "Kiel Hbf",
       "platform": "6D-E",
-      "scheduledPlatform": "6D-E",
-      "reihung": false
+      "scheduledPlatform": "6D-E"
     },
     {
       "o": "0S",
@@ -18652,8 +18457,7 @@
       ],
       "destination": "Hamburg Airport",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "0S",
@@ -18762,8 +18566,7 @@
       ],
       "destination": "Aumühle",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "80",
@@ -18894,8 +18697,7 @@
       ],
       "destination": "Stuttgart Hbf",
       "platform": "11",
-      "scheduledPlatform": "11",
-      "reihung": true
+      "scheduledPlatform": "11"
     },
     {
       "o": "80",
@@ -19018,8 +18820,7 @@
       ],
       "destination": "Frankfurt (Main) Hbf",
       "platform": "14",
-      "scheduledPlatform": "14",
-      "reihung": false
+      "scheduledPlatform": "14"
     },
     {
       "o": "0S",
@@ -19131,8 +18932,7 @@
       ],
       "destination": "Pinneberg",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "0S",
@@ -19244,8 +19044,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "0S",
@@ -19362,8 +19161,7 @@
       ],
       "destination": "Hamburg-Blankenese",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "0S",
@@ -19463,8 +19261,7 @@
       ],
       "destination": "Hamburg Elbgaustraße",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "0S",
@@ -19543,8 +19340,7 @@
       ],
       "destination": "Hamburg-Altona (S)",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "800279",
@@ -19597,8 +19393,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "5A-C",
-      "scheduledPlatform": "5A-C",
-      "reihung": false
+      "scheduledPlatform": "5A-C"
     },
     {
       "o": "HK",
@@ -19675,8 +19470,7 @@
       ],
       "destination": "Köln Hbf",
       "platform": "14",
-      "scheduledPlatform": "14",
-      "reihung": false
+      "scheduledPlatform": "14"
     },
     {
       "o": "0S",
@@ -19755,8 +19549,7 @@
       ],
       "destination": "Hamburg-Harburg Rathaus",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "O0",
@@ -19831,8 +19624,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "13D-F",
-      "scheduledPlatform": "13D-F",
-      "reihung": false
+      "scheduledPlatform": "13D-F"
     },
     {
       "o": "0S",
@@ -19949,8 +19741,7 @@
       ],
       "destination": "Hamburg Airport",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "0S",
@@ -20050,8 +19841,7 @@
       ],
       "destination": "Hamburg-Bergedorf",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     }
   ],
   "lookbehind": [],
@@ -20129,8 +19919,7 @@
       ],
       "destination": "Flensburg",
       "platform": "13D-F",
-      "scheduledPlatform": "13D-F",
-      "reihung": false
+      "scheduledPlatform": "13D-F"
     },
     "4039469425671528170-1911301243": {
       "o": "800201",
@@ -20209,8 +19998,7 @@
       ],
       "destination": "Flensburg",
       "platform": "11D-F",
-      "scheduledPlatform": "11D-F",
-      "reihung": false
+      "scheduledPlatform": "11D-F"
     },
     "1687578433996553139-1911301343": {
       "o": "800201",
@@ -20285,8 +20073,7 @@
       ],
       "destination": "Flensburg",
       "platform": "6D-E",
-      "scheduledPlatform": "6D-E",
-      "reihung": false
+      "scheduledPlatform": "6D-E"
     },
     "7412834530678165209-1911301443": {
       "o": "800201",
@@ -20361,8 +20148,7 @@
       ],
       "destination": "Flensburg",
       "platform": "12C-F",
-      "scheduledPlatform": "12C-F",
-      "reihung": false
+      "scheduledPlatform": "12C-F"
     },
     "9109709213801137737-1911301043": {
       "o": "800201",
@@ -20441,8 +20227,7 @@
       ],
       "destination": "Flensburg",
       "platform": "13D-F",
-      "scheduledPlatform": "13D-F",
-      "reihung": false
+      "scheduledPlatform": "13D-F"
     },
     "5367438647545958387-1911301047": {
       "o": "0S",
@@ -20590,8 +20375,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "7440948382797739729-1911301119": {
       "o": "0S",
@@ -20721,8 +20505,7 @@
       ],
       "destination": "Hamburg-Blankenese",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "698142480475912228-1911301109": {
       "o": "0S",
@@ -20864,8 +20647,7 @@
       ],
       "destination": "Wedel (Holst)",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "3759246301279391203-1911301103": {
       "o": "0S",
@@ -21007,8 +20789,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "1825339416904800641-1911301059": {
       "o": "0S",
@@ -21143,8 +20924,7 @@
       ],
       "destination": "Hamburg-Blankenese",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "5064008227077142242-1911301039": {
       "o": "0S",
@@ -21274,8 +21054,7 @@
       ],
       "destination": "Hamburg-Blankenese",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "4925550873009141464-1911301023": {
       "o": "0S",
@@ -21417,8 +21196,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "4824035606402589556-1911301107": {
       "o": "0S",
@@ -21548,8 +21326,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "6944902359726372531-1911301049": {
       "o": "0S",
@@ -21691,8 +21468,7 @@
       ],
       "destination": "Wedel (Holst)",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "5472254006308011284-1911301043": {
       "o": "0S",
@@ -21834,8 +21610,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "2363687393968313743-1911301127": {
       "o": "0S",
@@ -21959,8 +21734,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "2253211385183153076-1911301129": {
       "o": "0S",
@@ -22096,8 +21870,7 @@
       ],
       "destination": "Wedel (Holst)",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "5242166522454428329-1911301203": {
       "o": "0S",
@@ -22233,8 +22006,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "4020467174808887142-1911301147": {
       "o": "0S",
@@ -22358,8 +22130,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "42564079979081586-1911301139": {
       "o": "0S",
@@ -22483,8 +22254,7 @@
       ],
       "destination": "Hamburg-Blankenese",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "27204670265056589-1911301219": {
       "o": "0S",
@@ -22608,8 +22378,7 @@
       ],
       "destination": "Hamburg-Blankenese",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "1712618767779414048-1911301227": {
       "o": "0S",
@@ -22733,8 +22502,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "1612548017760054961-1911301123": {
       "o": "0S",
@@ -22876,8 +22644,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "8711316388160984905-1911301229": {
       "o": "0S",
@@ -23013,8 +22780,7 @@
       ],
       "destination": "Wedel (Holst)",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "3901142906405953257-1911301159": {
       "o": "0S",
@@ -23138,8 +22904,7 @@
       ],
       "destination": "Hamburg-Blankenese",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "3186524107149826288-1911301149": {
       "o": "0S",
@@ -23275,8 +23040,7 @@
       ],
       "destination": "Wedel (Holst)",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "2648134038006527929-1911301143": {
       "o": "0S",
@@ -23412,8 +23176,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "7737888705604473953-1911301209": {
       "o": "0S",
@@ -23549,8 +23312,7 @@
       ],
       "destination": "Wedel (Holst)",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "3763783510578728487-1911301207": {
       "o": "0S",
@@ -23674,8 +23436,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "1771987211812626597-1911301327": {
       "o": "0S",
@@ -23799,8 +23560,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "9052702819312580247-1911301243": {
       "o": "0S",
@@ -23936,8 +23696,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "1634979690266506546-1911301247": {
       "o": "0S",
@@ -24061,8 +23820,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "6564252413990975436-1911301319": {
       "o": "0S",
@@ -24186,8 +23944,7 @@
       ],
       "destination": "Hamburg-Blankenese",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "6370868157721217980-1911301303": {
       "o": "0S",
@@ -24323,8 +24080,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "5700177111237437690-1911301259": {
       "o": "0S",
@@ -24448,8 +24204,7 @@
       ],
       "destination": "Hamburg-Blankenese",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "6697348168660899199-1911301329": {
       "o": "0S",
@@ -24585,8 +24340,7 @@
       ],
       "destination": "Wedel (Holst)",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "1972681094537759269-1911301223": {
       "o": "0S",
@@ -24722,8 +24476,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "2836705208891855570-1911301249": {
       "o": "0S",
@@ -24859,8 +24612,7 @@
       ],
       "destination": "Wedel (Holst)",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "6466181558478075299-1911301309": {
       "o": "0S",
@@ -24996,8 +24748,7 @@
       ],
       "destination": "Wedel (Holst)",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "1800108602608416714-1911301307": {
       "o": "0S",
@@ -25121,8 +24872,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "3692757439469485571-1911301239": {
       "o": "0S",
@@ -25246,8 +24996,7 @@
       ],
       "destination": "Hamburg-Blankenese",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "8379953264893158754-1911301429": {
       "o": "0S",
@@ -25383,8 +25132,7 @@
       ],
       "destination": "Wedel (Holst)",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "2853662787869745645-1911301339": {
       "o": "0S",
@@ -25508,8 +25256,7 @@
       ],
       "destination": "Hamburg-Blankenese",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "8430324648289081751-1911301323": {
       "o": "0S",
@@ -25645,8 +25392,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "5827236813959639941-1911301403": {
       "o": "0S",
@@ -25782,8 +25528,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "8254480534566868635-1911301343": {
       "o": "0S",
@@ -25919,8 +25664,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "5697501305537618430-1911301419": {
       "o": "0S",
@@ -26044,8 +25788,7 @@
       ],
       "destination": "Hamburg-Blankenese",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "9038388446319928736-1911301349": {
       "o": "0S",
@@ -26181,8 +25924,7 @@
       ],
       "destination": "Wedel (Holst)",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "3516441429893083970-1911301409": {
       "o": "0S",
@@ -26318,8 +26060,7 @@
       ],
       "destination": "Wedel (Holst)",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "3817558370482750225-1911301347": {
       "o": "0S",
@@ -26443,8 +26184,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "2145442407591060334-1911301359": {
       "o": "0S",
@@ -26568,8 +26308,7 @@
       ],
       "destination": "Hamburg-Blankenese",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "354799385917966852-1911301407": {
       "o": "0S",
@@ -26693,8 +26432,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "3516591086552309235-1911301427": {
       "o": "0S",
@@ -26818,8 +26556,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "135219235991582258-1911300939": {
       "o": "0S",
@@ -26949,8 +26686,7 @@
       ],
       "destination": "Hamburg-Blankenese",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "5229540442106619834-1911300943": {
       "o": "0S",
@@ -27097,8 +26833,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "7121004600371568989-1911300947": {
       "o": "0S",
@@ -27228,8 +26963,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "8479847089095301097-1911301029": {
       "o": "0S",
@@ -27376,8 +27110,7 @@
       ],
       "destination": "Wedel (Holst)",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "7641473899416857173-1911300959": {
       "o": "0S",
@@ -27507,8 +27240,7 @@
       ],
       "destination": "Hamburg-Blankenese",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "1204121542220777134-1911300949": {
       "o": "0S",
@@ -27650,8 +27382,7 @@
       ],
       "destination": "Wedel (Holst)",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "4381321087133436549-1911301007": {
       "o": "0S",
@@ -27781,8 +27512,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "4460116205121041496-1911301019": {
       "o": "0S",
@@ -27917,8 +27647,7 @@
       ],
       "destination": "Hamburg-Blankenese",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "810672474454030491-1911301027": {
       "o": "0S",
@@ -28048,8 +27777,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "5934233633416555667-1911300923": {
       "o": "0S",
@@ -28191,8 +27919,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     "7095676071326727140-1911301009": {
       "o": "0S",
@@ -28339,8 +28066,7 @@
       ],
       "destination": "Wedel (Holst)",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     "7486183059515541139-1911301003": {
       "o": "0S",
@@ -28482,8 +28208,7 @@
       ],
       "destination": "Hamburg-Poppenbüttel",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     }
   }
 }

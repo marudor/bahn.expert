@@ -343,7 +343,6 @@ const models: TsoaRoute.Models = {
             "productClass": {"dataType":"string","required":true},
             "rawId": {"dataType":"string","required":true},
             "ref": {"ref":"SubstituteRef"},
-            "reihung": {"dataType":"boolean","required":true},
             "route": {"dataType":"array","array":{"dataType":"refObject","ref":"Stop"},"required":true},
             "scheduledDestination": {"dataType":"string","required":true},
             "scheduledPlatform": {"dataType":"string","required":true},

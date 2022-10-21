@@ -59,8 +59,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "14 A-C",
-      "scheduledPlatform": "14 A-C",
-      "reihung": false
+      "scheduledPlatform": "14 A-C"
     },
     {
       "o": "W3",
@@ -126,8 +125,7 @@
       ],
       "destination": "Braunschweig Hbf",
       "platform": "12",
-      "scheduledPlatform": "11",
-      "reihung": false
+      "scheduledPlatform": "11"
     },
     {
       "o": "800244",
@@ -232,8 +230,7 @@
       ],
       "destination": "Hildesheim Hbf",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "85",
@@ -355,8 +352,7 @@
       ],
       "destination": "Hamburg-Altona",
       "platform": "7",
-      "scheduledPlatform": "7",
-      "reihung": true
+      "scheduledPlatform": "7"
     },
     {
       "o": "800295",
@@ -440,8 +436,7 @@
       ],
       "destination": "Bremerhaven-Lehe",
       "platform": "11",
-      "scheduledPlatform": "12",
-      "reihung": false
+      "scheduledPlatform": "12"
     },
     {
       "o": "800244",
@@ -511,8 +506,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "13",
-      "scheduledPlatform": "13",
-      "reihung": false
+      "scheduledPlatform": "13"
     },
     {
       "o": "800244",
@@ -600,8 +594,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "800244",
@@ -703,8 +696,7 @@
       ],
       "destination": "Hameln",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "80",
@@ -793,8 +785,7 @@
       ],
       "destination": "München Hbf",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": true
+      "scheduledPlatform": "4"
     },
     {
       "o": "800244",
@@ -874,8 +865,7 @@
       ],
       "destination": "Minden (Westf)",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "800244",
@@ -954,8 +944,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "80",
@@ -1057,8 +1046,7 @@
       ],
       "destination": "Berlin Gesundbrunnen",
       "platform": "9",
-      "scheduledPlatform": "9",
-      "reihung": true
+      "scheduledPlatform": "9"
     },
     {
       "o": "80",
@@ -1147,8 +1135,7 @@
       ],
       "destination": "Düsseldorf Hbf",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": true
+      "scheduledPlatform": "12"
     },
     {
       "o": "R1",
@@ -1271,8 +1258,7 @@
       ],
       "destination": "Göttingen",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "800244",
@@ -1361,8 +1347,7 @@
       ],
       "destination": "Haste",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "800244",
@@ -1433,8 +1418,7 @@
       ],
       "destination": "Hildesheim Hbf",
       "platform": "13 A-C",
-      "scheduledPlatform": "13 A-C",
-      "reihung": false
+      "scheduledPlatform": "13 A-C"
     },
     {
       "o": "800244",
@@ -1536,8 +1520,7 @@
       ],
       "destination": "Hannover Flughafen",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "80",
@@ -1627,8 +1610,7 @@
       ],
       "destination": "Kiel Hbf",
       "platform": "7",
-      "scheduledPlatform": "7",
-      "reihung": true
+      "scheduledPlatform": "7"
     },
     {
       "o": "80",
@@ -1742,8 +1724,7 @@
       ],
       "destination": "Dresden Hbf",
       "platform": "10",
-      "scheduledPlatform": "10",
-      "reihung": true
+      "scheduledPlatform": "10"
     },
     {
       "o": "800295",
@@ -1854,8 +1835,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "9",
-      "scheduledPlatform": "9",
-      "reihung": false
+      "scheduledPlatform": "9"
     },
     {
       "o": "80",
@@ -1961,8 +1941,7 @@
       ],
       "destination": "Amsterdam Centraal",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": true
+      "scheduledPlatform": "12"
     },
     {
       "o": "R1",
@@ -2076,8 +2055,7 @@
       ],
       "destination": "Uelzen",
       "platform": "8",
-      "scheduledPlatform": "8",
-      "reihung": false
+      "scheduledPlatform": "8"
     },
     {
       "o": "800244",
@@ -2187,8 +2165,7 @@
       ],
       "destination": "Bennemühlen",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "80",
@@ -2270,8 +2247,7 @@
       ],
       "destination": "Stuttgart Hbf",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": true
+      "scheduledPlatform": "4"
     },
     {
       "o": "800244",
@@ -2345,8 +2321,7 @@
       ],
       "destination": "Celle",
       "platform": "14 A-C",
-      "scheduledPlatform": "14 A-C",
-      "reihung": false
+      "scheduledPlatform": "14 A-C"
     },
     {
       "o": "W3",
@@ -2407,8 +2382,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "10",
-      "scheduledPlatform": "10",
-      "reihung": false
+      "scheduledPlatform": "10"
     },
     {
       "o": "80",
@@ -2525,8 +2499,7 @@
       ],
       "destination": "Emden Hbf",
       "platform": "11",
-      "scheduledPlatform": "11",
-      "reihung": true
+      "scheduledPlatform": "11"
     },
     {
       "o": "800244",
@@ -2594,8 +2567,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "X2",
@@ -2666,8 +2638,7 @@
       ],
       "destination": "Bad Harzburg",
       "platform": "8",
-      "scheduledPlatform": "8",
-      "reihung": false
+      "scheduledPlatform": "8"
     },
     {
       "o": "R0",
@@ -2744,8 +2715,7 @@
       ],
       "destination": "Wolfsburg Hbf",
       "platform": "13 D-F",
-      "scheduledPlatform": "13 D-F",
-      "reihung": false
+      "scheduledPlatform": "13 D-F"
     },
     {
       "o": "X1",
@@ -2850,8 +2820,7 @@
       ],
       "destination": "Hamburg-Harburg",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "R1",
@@ -2942,8 +2911,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "W3",
@@ -3077,8 +3045,7 @@
       ],
       "destination": "Braunschweig Hbf",
       "platform": "9",
-      "scheduledPlatform": "9",
-      "reihung": false
+      "scheduledPlatform": "9"
     },
     {
       "o": "800244",
@@ -3151,8 +3118,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "14",
-      "scheduledPlatform": "14",
-      "reihung": false
+      "scheduledPlatform": "14"
     },
     {
       "o": "800244",
@@ -3266,8 +3232,7 @@
       ],
       "destination": "Altenbeken",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "800244",
@@ -3405,8 +3370,7 @@
       ],
       "destination": "Nienburg (Weser)",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "80",
@@ -3528,8 +3492,7 @@
       ],
       "destination": "Hamburg-Altona",
       "platform": "7",
-      "scheduledPlatform": "7",
-      "reihung": true
+      "scheduledPlatform": "7"
     },
     {
       "o": "800244",
@@ -3661,8 +3624,7 @@
       ],
       "destination": "Haste",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "800244",
@@ -3736,8 +3698,7 @@
       ],
       "destination": "Celle",
       "platform": "14",
-      "scheduledPlatform": "14",
-      "reihung": false
+      "scheduledPlatform": "14"
     },
     {
       "o": "800244",
@@ -3857,8 +3818,7 @@
       ],
       "destination": "Hannover Flughafen",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "R1",
@@ -3948,8 +3908,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "X1",
@@ -4049,8 +4008,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "W3",
@@ -4179,8 +4137,7 @@
       ],
       "destination": "Rheine",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": false
+      "scheduledPlatform": "12"
     },
     {
       "o": "X2",
@@ -4247,8 +4204,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "8",
-      "scheduledPlatform": "8",
-      "reihung": false
+      "scheduledPlatform": "8"
     },
     {
       "o": "800244",
@@ -4319,8 +4275,7 @@
       ],
       "destination": "Bennemühlen",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "R0",
@@ -4392,8 +4347,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "13",
-      "scheduledPlatform": "13",
-      "reihung": false
+      "scheduledPlatform": "13"
     },
     {
       "o": "R1",
@@ -4483,8 +4437,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "800244",
@@ -4558,8 +4511,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "14",
-      "scheduledPlatform": "14",
-      "reihung": false
+      "scheduledPlatform": "14"
     },
     {
       "o": "W3",
@@ -4625,8 +4577,7 @@
       ],
       "destination": "Braunschweig Hbf",
       "platform": "11",
-      "scheduledPlatform": "11",
-      "reihung": false
+      "scheduledPlatform": "11"
     },
     {
       "o": "800244",
@@ -4725,8 +4676,7 @@
       ],
       "destination": "Hildesheim Hbf",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "80",
@@ -4873,8 +4823,7 @@
       ],
       "destination": "Hamburg-Altona",
       "platform": "7",
-      "scheduledPlatform": "7",
-      "reihung": true
+      "scheduledPlatform": "7"
     },
     {
       "o": "80",
@@ -4979,8 +4928,7 @@
       ],
       "destination": "Hamburg-Altona",
       "platform": "7",
-      "scheduledPlatform": "7",
-      "reihung": false
+      "scheduledPlatform": "7"
     },
     {
       "o": "800295",
@@ -5096,8 +5044,7 @@
       ],
       "destination": "Norddeich Mole",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": false
+      "scheduledPlatform": "12"
     },
     {
       "o": "84",
@@ -5208,8 +5155,7 @@
       ],
       "destination": "Berlin Ostbahnhof",
       "platform": "9",
-      "scheduledPlatform": "9",
-      "reihung": true
+      "scheduledPlatform": "9"
     },
     {
       "o": "800244",
@@ -5279,8 +5225,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "14",
-      "scheduledPlatform": "13",
-      "reihung": false
+      "scheduledPlatform": "13"
     },
     {
       "o": "800244",
@@ -5366,8 +5311,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "800244",
@@ -5463,8 +5407,7 @@
       ],
       "destination": "Hameln",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "80",
@@ -5557,8 +5500,7 @@
       ],
       "destination": "München Hbf",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": true
+      "scheduledPlatform": "3"
     },
     {
       "o": "R1",
@@ -5634,8 +5576,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "7",
-      "scheduledPlatform": "7",
-      "reihung": false
+      "scheduledPlatform": "7"
     },
     {
       "o": "800244",
@@ -5715,8 +5656,7 @@
       ],
       "destination": "Minden (Westf)",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "800244",
@@ -5793,8 +5733,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "80",
@@ -5895,8 +5834,7 @@
       ],
       "destination": "Berlin Gesundbrunnen",
       "platform": "9",
-      "scheduledPlatform": "9",
-      "reihung": true
+      "scheduledPlatform": "9"
     },
     {
       "o": "80",
@@ -5983,8 +5921,7 @@
       ],
       "destination": "Düsseldorf Hbf",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": true
+      "scheduledPlatform": "12"
     },
     {
       "o": "80",
@@ -6069,8 +6006,7 @@
       ],
       "destination": "Berlin Gesundbrunnen",
       "platform": "9",
-      "scheduledPlatform": "9",
-      "reihung": true
+      "scheduledPlatform": "9"
     },
     {
       "o": "800244",
@@ -6159,8 +6095,7 @@
       ],
       "destination": "Haste",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "800244",
@@ -6235,8 +6170,7 @@
       ],
       "destination": "Hildesheim Hbf",
       "platform": "14",
-      "scheduledPlatform": "13",
-      "reihung": false
+      "scheduledPlatform": "13"
     },
     {
       "o": "800244",
@@ -6332,8 +6266,7 @@
       ],
       "destination": "Hannover Flughafen",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "80",
@@ -6421,8 +6354,7 @@
       ],
       "destination": "Hamburg-Altona",
       "platform": "8 D-G",
-      "scheduledPlatform": "8 D-G",
-      "reihung": true
+      "scheduledPlatform": "8 D-G"
     },
     {
       "o": "R1",
@@ -6503,8 +6435,7 @@
       ],
       "destination": "Göttingen",
       "platform": "7",
-      "scheduledPlatform": "7",
-      "reihung": false
+      "scheduledPlatform": "7"
     },
     {
       "o": "80",
@@ -6638,8 +6569,7 @@
       ],
       "destination": "Leipzig Hbf",
       "platform": "10",
-      "scheduledPlatform": "10",
-      "reihung": true
+      "scheduledPlatform": "10"
     },
     {
       "o": "800295",
@@ -6718,8 +6648,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "9",
-      "scheduledPlatform": "9",
-      "reihung": false
+      "scheduledPlatform": "9"
     },
     {
       "o": "80",
@@ -6837,8 +6766,7 @@
       ],
       "destination": "Köln Hbf",
       "platform": "11",
-      "scheduledPlatform": "11",
-      "reihung": true
+      "scheduledPlatform": "11"
     },
     {
       "o": "800244",
@@ -6937,8 +6865,7 @@
       ],
       "destination": "Bennemühlen",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "R1",
@@ -7028,8 +6955,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "80",
@@ -7131,8 +7057,7 @@
       ],
       "destination": "Zürich HB",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": true
+      "scheduledPlatform": "3"
     },
     {
       "o": "W3",
@@ -7193,8 +7118,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": false
+      "scheduledPlatform": "12"
     },
     {
       "o": "800244",
@@ -7268,8 +7192,7 @@
       ],
       "destination": "Celle",
       "platform": "14",
-      "scheduledPlatform": "14",
-      "reihung": false
+      "scheduledPlatform": "14"
     },
     {
       "o": "80",
@@ -7345,8 +7268,7 @@
       ],
       "destination": "Bremen Hbf",
       "platform": "8 A-D",
-      "scheduledPlatform": "8 A-D",
-      "reihung": true
+      "scheduledPlatform": "8 A-D"
     },
     {
       "o": "800244",
@@ -7414,8 +7336,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "R0",
@@ -7492,8 +7413,7 @@
       ],
       "destination": "Wolfsburg Hbf",
       "platform": "13",
-      "scheduledPlatform": "13",
-      "reihung": false
+      "scheduledPlatform": "13"
     },
     {
       "o": "X2",
@@ -7564,8 +7484,7 @@
       ],
       "destination": "Bad Harzburg",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "X1",
@@ -7670,8 +7589,7 @@
       ],
       "destination": "Hamburg-Harburg",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "W3",
@@ -7776,8 +7694,7 @@
       ],
       "destination": "Braunschweig Hbf",
       "platform": "9",
-      "scheduledPlatform": "9",
-      "reihung": false
+      "scheduledPlatform": "9"
     },
     {
       "o": "800244",
@@ -7848,8 +7765,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "14",
-      "scheduledPlatform": "14",
-      "reihung": false
+      "scheduledPlatform": "14"
     },
     {
       "o": "800244",
@@ -7963,8 +7879,7 @@
       ],
       "destination": "Altenbeken",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "800244",
@@ -8096,8 +8011,7 @@
       ],
       "destination": "Nienburg (Weser)",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "80",
@@ -8230,8 +8144,7 @@
       ],
       "destination": "Westerland (Sylt)",
       "platform": "7",
-      "scheduledPlatform": "7",
-      "reihung": true
+      "scheduledPlatform": "7"
     },
     {
       "o": "80",
@@ -8367,8 +8280,7 @@
       ],
       "destination": "Karlsruhe Hbf",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": true
+      "scheduledPlatform": "4"
     },
     {
       "o": "800244",
@@ -8500,8 +8412,7 @@
       ],
       "destination": "Haste",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "800244",
@@ -8575,8 +8486,7 @@
       ],
       "destination": "Celle",
       "platform": "14",
-      "scheduledPlatform": "14",
-      "reihung": false
+      "scheduledPlatform": "14"
     },
     {
       "o": "800244",
@@ -8690,8 +8600,7 @@
       ],
       "destination": "Hannover Flughafen",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "X1",
@@ -8791,8 +8700,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "W3",
@@ -8897,8 +8805,7 @@
       ],
       "destination": "Bielefeld Hbf",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": false
+      "scheduledPlatform": "12"
     },
     {
       "o": "X2",
@@ -8965,8 +8872,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "8",
-      "scheduledPlatform": "8",
-      "reihung": false
+      "scheduledPlatform": "8"
     },
     {
       "o": "800244",
@@ -9037,8 +8943,7 @@
       ],
       "destination": "Bennemühlen",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "R0",
@@ -9110,8 +9015,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "14 D-F",
-      "scheduledPlatform": "14 D-F",
-      "reihung": false
+      "scheduledPlatform": "14 D-F"
     },
     {
       "o": "800244",
@@ -9185,8 +9089,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "14 A-C",
-      "scheduledPlatform": "14 A-C",
-      "reihung": false
+      "scheduledPlatform": "14 A-C"
     },
     {
       "o": "W3",
@@ -9252,8 +9155,7 @@
       ],
       "destination": "Braunschweig Hbf",
       "platform": "13",
-      "scheduledPlatform": "13",
-      "reihung": false
+      "scheduledPlatform": "13"
     },
     {
       "o": "800244",
@@ -9352,8 +9254,7 @@
       ],
       "destination": "Hildesheim Hbf",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "85",
@@ -9460,8 +9361,7 @@
       ],
       "destination": "Hamburg-Altona",
       "platform": "7",
-      "scheduledPlatform": "7",
-      "reihung": true
+      "scheduledPlatform": "7"
     },
     {
       "o": "800295",
@@ -9541,8 +9441,7 @@
       ],
       "destination": "Bremerhaven-Lehe",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": false
+      "scheduledPlatform": "12"
     },
     {
       "o": "800244",
@@ -9610,8 +9509,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "13",
-      "scheduledPlatform": "13",
-      "reihung": false
+      "scheduledPlatform": "13"
     },
     {
       "o": "800244",
@@ -9697,8 +9595,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "800244",
@@ -9794,8 +9691,7 @@
       ],
       "destination": "Hameln",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "80",
@@ -9878,8 +9774,7 @@
       ],
       "destination": "München Hbf",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": true
+      "scheduledPlatform": "4"
     },
     {
       "o": "800244",
@@ -9959,8 +9854,7 @@
       ],
       "destination": "Minden (Westf)",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "800244",
@@ -10037,8 +9931,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "80",
@@ -10138,8 +10031,7 @@
       ],
       "destination": "Berlin Gesundbrunnen",
       "platform": "9",
-      "scheduledPlatform": "9",
-      "reihung": true
+      "scheduledPlatform": "9"
     },
     {
       "o": "80",
@@ -10235,8 +10127,7 @@
       ],
       "destination": "Düsseldorf Hbf",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": true
+      "scheduledPlatform": "12"
     },
     {
       "o": "R1",
@@ -10350,8 +10241,7 @@
       ],
       "destination": "Göttingen",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "800244",
@@ -10440,8 +10330,7 @@
       ],
       "destination": "Haste",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "800244",
@@ -10512,8 +10401,7 @@
       ],
       "destination": "Hildesheim Hbf",
       "platform": "13",
-      "scheduledPlatform": "13",
-      "reihung": false
+      "scheduledPlatform": "13"
     },
     {
       "o": "800244",
@@ -10609,8 +10497,7 @@
       ],
       "destination": "Hannover Flughafen",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "80",
@@ -10697,8 +10584,7 @@
       ],
       "destination": "Hamburg-Altona",
       "platform": "7",
-      "scheduledPlatform": "7",
-      "reihung": true
+      "scheduledPlatform": "7"
     },
     {
       "o": "80",
@@ -10807,8 +10693,7 @@
       ],
       "destination": "Dresden Hbf",
       "platform": "10",
-      "scheduledPlatform": "10",
-      "reihung": true
+      "scheduledPlatform": "10"
     },
     {
       "o": "800295",
@@ -10919,8 +10804,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "9",
-      "scheduledPlatform": "9",
-      "reihung": false
+      "scheduledPlatform": "9"
     },
     {
       "o": "80",
@@ -11020,8 +10904,7 @@
       ],
       "destination": "Amsterdam Centraal",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": true
+      "scheduledPlatform": "12"
     },
     {
       "o": "R1",
@@ -11135,8 +11018,7 @@
       ],
       "destination": "Uelzen",
       "platform": "8",
-      "scheduledPlatform": "8",
-      "reihung": false
+      "scheduledPlatform": "8"
     },
     {
       "o": "800244",
@@ -11235,8 +11117,7 @@
       ],
       "destination": "Bennemühlen",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "80",
@@ -11318,8 +11199,7 @@
       ],
       "destination": "Stuttgart Hbf",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": true
+      "scheduledPlatform": "4"
     },
     {
       "o": "W3",
@@ -11380,8 +11260,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "13",
-      "scheduledPlatform": "13",
-      "reihung": false
+      "scheduledPlatform": "13"
     },
     {
       "o": "800244",
@@ -11443,8 +11322,7 @@
       ],
       "destination": "Celle",
       "platform": "14 A-C",
-      "scheduledPlatform": "14 A-C",
-      "reihung": false
+      "scheduledPlatform": "14 A-C"
     },
     {
       "o": "80",
@@ -11566,8 +11444,7 @@
       ],
       "destination": "Emden Hbf",
       "platform": "11",
-      "scheduledPlatform": "11",
-      "reihung": true
+      "scheduledPlatform": "11"
     },
     {
       "o": "800244",
@@ -11635,8 +11512,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "X2",
@@ -11707,8 +11583,7 @@
       ],
       "destination": "Bad Harzburg",
       "platform": "8",
-      "scheduledPlatform": "8",
-      "reihung": false
+      "scheduledPlatform": "8"
     },
     {
       "o": "R0",
@@ -11785,8 +11660,7 @@
       ],
       "destination": "Wolfsburg Hbf",
       "platform": "14",
-      "scheduledPlatform": "14",
-      "reihung": false
+      "scheduledPlatform": "14"
     },
     {
       "o": "X1",
@@ -11891,8 +11765,7 @@
       ],
       "destination": "Hamburg-Harburg",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "W3",
@@ -12021,8 +11894,7 @@
       ],
       "destination": "Braunschweig Hbf",
       "platform": "11",
-      "scheduledPlatform": "11",
-      "reihung": false
+      "scheduledPlatform": "11"
     },
     {
       "o": "800244",
@@ -12093,8 +11965,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "14",
-      "scheduledPlatform": "14",
-      "reihung": false
+      "scheduledPlatform": "14"
     },
     {
       "o": "800244",
@@ -12208,8 +12079,7 @@
       ],
       "destination": "Altenbeken",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "800244",
@@ -12341,8 +12211,7 @@
       ],
       "destination": "Nienburg (Weser)",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "800244",
@@ -12474,8 +12343,7 @@
       ],
       "destination": "Haste",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "800244",
@@ -12549,8 +12417,7 @@
       ],
       "destination": "Celle",
       "platform": "14",
-      "scheduledPlatform": "14",
-      "reihung": false
+      "scheduledPlatform": "14"
     },
     {
       "o": "800244",
@@ -12670,8 +12537,7 @@
       ],
       "destination": "Hannover Flughafen",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "X1",
@@ -12771,8 +12637,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "W3",
@@ -12901,8 +12766,7 @@
       ],
       "destination": "Rheine",
       "platform": "13",
-      "scheduledPlatform": "13",
-      "reihung": false
+      "scheduledPlatform": "13"
     },
     {
       "o": "X2",
@@ -12969,8 +12833,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "8",
-      "scheduledPlatform": "8",
-      "reihung": false
+      "scheduledPlatform": "8"
     },
     {
       "o": "800244",
@@ -13041,8 +12904,7 @@
       ],
       "destination": "Bennemühlen",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "R0",
@@ -13114,8 +12976,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "14 D-F",
-      "scheduledPlatform": "14 D-F",
-      "reihung": false
+      "scheduledPlatform": "14 D-F"
     },
     {
       "o": "R1",
@@ -13200,8 +13061,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "800244",
@@ -13275,8 +13135,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "14 A-C",
-      "scheduledPlatform": "14 A-C",
-      "reihung": false
+      "scheduledPlatform": "14 A-C"
     },
     {
       "o": "W3",
@@ -13342,8 +13201,7 @@
       ],
       "destination": "Braunschweig Hbf",
       "platform": "11",
-      "scheduledPlatform": "11",
-      "reihung": false
+      "scheduledPlatform": "11"
     },
     {
       "o": "800244",
@@ -13442,8 +13300,7 @@
       ],
       "destination": "Hildesheim Hbf",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "80",
@@ -13524,8 +13381,7 @@
       ],
       "destination": "Hamburg-Altona",
       "platform": "7",
-      "scheduledPlatform": "7",
-      "reihung": true
+      "scheduledPlatform": "7"
     },
     {
       "o": "800295",
@@ -13641,8 +13497,7 @@
       ],
       "destination": "Norddeich Mole",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": false
+      "scheduledPlatform": "12"
     },
     {
       "o": "84",
@@ -13753,8 +13608,7 @@
       ],
       "destination": "Berlin Ostbahnhof",
       "platform": "9",
-      "scheduledPlatform": "9",
-      "reihung": true
+      "scheduledPlatform": "9"
     },
     {
       "o": "800244",
@@ -13822,8 +13676,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "13",
-      "scheduledPlatform": "13",
-      "reihung": false
+      "scheduledPlatform": "13"
     },
     {
       "o": "800244",
@@ -13909,8 +13762,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "800244",
@@ -14006,8 +13858,7 @@
       ],
       "destination": "Hameln",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "80",
@@ -14098,8 +13949,7 @@
       ],
       "destination": "München Hbf",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": true
+      "scheduledPlatform": "3"
     },
     {
       "o": "R1",
@@ -14175,8 +14025,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "7",
-      "scheduledPlatform": "7",
-      "reihung": false
+      "scheduledPlatform": "7"
     },
     {
       "o": "800244",
@@ -14256,8 +14105,7 @@
       ],
       "destination": "Minden (Westf)",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "800244",
@@ -14334,8 +14182,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "80",
@@ -14412,8 +14259,7 @@
       ],
       "destination": "Berlin Gesundbrunnen",
       "platform": "9",
-      "scheduledPlatform": "9",
-      "reihung": true
+      "scheduledPlatform": "9"
     },
     {
       "o": "80",
@@ -14497,8 +14343,7 @@
       ],
       "destination": "Köln Hbf",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": true
+      "scheduledPlatform": "12"
     },
     {
       "o": "80",
@@ -14602,8 +14447,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "8 A-D",
-      "scheduledPlatform": "8 A-D",
-      "reihung": true
+      "scheduledPlatform": "8 A-D"
     },
     {
       "o": "800244",
@@ -14692,8 +14536,7 @@
       ],
       "destination": "Haste",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "800244",
@@ -14764,8 +14607,7 @@
       ],
       "destination": "Hildesheim Hbf",
       "platform": "13",
-      "scheduledPlatform": "13",
-      "reihung": false
+      "scheduledPlatform": "13"
     },
     {
       "o": "800244",
@@ -14861,8 +14703,7 @@
       ],
       "destination": "Hannover Flughafen",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "80",
@@ -14978,8 +14819,7 @@
       ],
       "destination": "Hamburg-Altona",
       "platform": "8 D-G",
-      "scheduledPlatform": "8 D-G",
-      "reihung": true
+      "scheduledPlatform": "8 D-G"
     },
     {
       "o": "R1",
@@ -15060,8 +14900,7 @@
       ],
       "destination": "Göttingen",
       "platform": "7",
-      "scheduledPlatform": "7",
-      "reihung": false
+      "scheduledPlatform": "7"
     },
     {
       "o": "80",
@@ -15181,8 +15020,7 @@
       ],
       "destination": "Berlin Ostbahnhof",
       "platform": "10",
-      "scheduledPlatform": "10",
-      "reihung": true
+      "scheduledPlatform": "10"
     },
     {
       "o": "800295",
@@ -15259,8 +15097,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": false
+      "scheduledPlatform": "12"
     },
     {
       "o": "80",
@@ -15378,8 +15215,7 @@
       ],
       "destination": "Köln Hbf",
       "platform": "11",
-      "scheduledPlatform": "11",
-      "reihung": true
+      "scheduledPlatform": "11"
     },
     {
       "o": "800244",
@@ -15478,8 +15314,7 @@
       ],
       "destination": "Bennemühlen",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "R1",
@@ -15569,8 +15404,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "80",
@@ -15658,8 +15492,7 @@
       ],
       "destination": "Zürich HB",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": true
+      "scheduledPlatform": "3"
     },
     {
       "o": "W3",
@@ -15720,8 +15553,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "13",
-      "scheduledPlatform": "13",
-      "reihung": false
+      "scheduledPlatform": "13"
     },
     {
       "o": "800244",
@@ -15795,8 +15627,7 @@
       ],
       "destination": "Celle",
       "platform": "14 A-C",
-      "scheduledPlatform": "14 A-C",
-      "reihung": false
+      "scheduledPlatform": "14 A-C"
     },
     {
       "o": "80",
@@ -15873,8 +15704,7 @@
       ],
       "destination": "Bremen Hbf",
       "platform": "8 A-D",
-      "scheduledPlatform": "8 A-D",
-      "reihung": true
+      "scheduledPlatform": "8 A-D"
     },
     {
       "o": "800244",
@@ -15942,8 +15772,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "R0",
@@ -16020,8 +15849,7 @@
       ],
       "destination": "Wolfsburg Hbf",
       "platform": "14 D-F",
-      "scheduledPlatform": "14 D-F",
-      "reihung": false
+      "scheduledPlatform": "14 D-F"
     },
     {
       "o": "X2",
@@ -16092,8 +15920,7 @@
       ],
       "destination": "Bad Harzburg",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "X1",
@@ -16198,8 +16025,7 @@
       ],
       "destination": "Hamburg-Harburg",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "W3",
@@ -16304,8 +16130,7 @@
       ],
       "destination": "Braunschweig Hbf",
       "platform": "9",
-      "scheduledPlatform": "9",
-      "reihung": false
+      "scheduledPlatform": "9"
     },
     {
       "o": "800244",
@@ -16376,8 +16201,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "14",
-      "scheduledPlatform": "14",
-      "reihung": false
+      "scheduledPlatform": "14"
     },
     {
       "o": "800244",
@@ -16491,8 +16315,7 @@
       ],
       "destination": "Altenbeken",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "800244",
@@ -16624,8 +16447,7 @@
       ],
       "destination": "Nienburg (Weser)",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "80",
@@ -16761,8 +16583,7 @@
       ],
       "destination": "Stralsund Hbf",
       "platform": "8",
-      "scheduledPlatform": "8",
-      "reihung": true
+      "scheduledPlatform": "8"
     },
     {
       "o": "80",
@@ -16898,8 +16719,7 @@
       ],
       "destination": "Karlsruhe Hbf",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": true
+      "scheduledPlatform": "4"
     },
     {
       "o": "800244",
@@ -17031,8 +16851,7 @@
       ],
       "destination": "Haste",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "800244",
@@ -17106,8 +16925,7 @@
       ],
       "destination": "Celle",
       "platform": "14",
-      "scheduledPlatform": "14",
-      "reihung": false
+      "scheduledPlatform": "14"
     },
     {
       "o": "800244",
@@ -17227,8 +17045,7 @@
       ],
       "destination": "Hannover Flughafen",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "X1",
@@ -17328,8 +17145,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "W3",
@@ -17434,8 +17250,7 @@
       ],
       "destination": "Bielefeld Hbf",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": false
+      "scheduledPlatform": "12"
     },
     {
       "o": "X2",
@@ -17502,8 +17317,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "8",
-      "scheduledPlatform": "8",
-      "reihung": false
+      "scheduledPlatform": "8"
     },
     {
       "o": "800244",
@@ -17574,8 +17388,7 @@
       ],
       "destination": "Bennemühlen",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "R0",
@@ -17647,8 +17460,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "14 D-F",
-      "scheduledPlatform": "14 D-F",
-      "reihung": false
+      "scheduledPlatform": "14 D-F"
     },
     {
       "o": "800244",
@@ -17707,8 +17519,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "14 A-C",
-      "scheduledPlatform": "14 A-C",
-      "reihung": false
+      "scheduledPlatform": "14 A-C"
     },
     {
       "o": "W3",
@@ -17770,8 +17581,7 @@
       ],
       "destination": "Braunschweig Hbf",
       "platform": "13",
-      "scheduledPlatform": "13",
-      "reihung": false
+      "scheduledPlatform": "13"
     },
     {
       "o": "800244",
@@ -17870,8 +17680,7 @@
       ],
       "destination": "Hildesheim Hbf",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "85",
@@ -17972,8 +17781,7 @@
       ],
       "destination": "Kiel Hbf",
       "platform": "7",
-      "scheduledPlatform": "7",
-      "reihung": true
+      "scheduledPlatform": "7"
     },
     {
       "o": "800295",
@@ -18053,8 +17861,7 @@
       ],
       "destination": "Bremerhaven-Lehe",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": false
+      "scheduledPlatform": "12"
     },
     {
       "o": "FLX30",
@@ -18126,8 +17933,7 @@
       ],
       "destination": "Köln Hbf",
       "platform": "9",
-      "scheduledPlatform": "9",
-      "reihung": false
+      "scheduledPlatform": "9"
     },
     {
       "o": "800244",
@@ -18195,8 +18001,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "13",
-      "scheduledPlatform": "13",
-      "reihung": false
+      "scheduledPlatform": "13"
     },
     {
       "o": "800244",
@@ -18282,8 +18087,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "800244",
@@ -18379,8 +18183,7 @@
       ],
       "destination": "Hameln",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "80",
@@ -18460,8 +18263,7 @@
       ],
       "destination": "München Hbf",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": true
+      "scheduledPlatform": "4"
     },
     {
       "o": "800244",
@@ -18541,8 +18343,7 @@
       ],
       "destination": "Minden (Westf)",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "800244",
@@ -18619,8 +18420,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "80",
@@ -18700,8 +18500,7 @@
       ],
       "destination": "Berlin Südkreuz",
       "platform": "9",
-      "scheduledPlatform": "9",
-      "reihung": true
+      "scheduledPlatform": "9"
     },
     {
       "o": "80",
@@ -18779,8 +18578,7 @@
       ],
       "destination": "Düsseldorf Hbf",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": true
+      "scheduledPlatform": "12"
     },
     {
       "o": "R1",
@@ -18894,8 +18692,7 @@
       ],
       "destination": "Göttingen",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "800244",
@@ -18984,8 +18781,7 @@
       ],
       "destination": "Haste",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "800244",
@@ -19056,8 +18852,7 @@
       ],
       "destination": "Hildesheim Hbf",
       "platform": "13",
-      "scheduledPlatform": "13",
-      "reihung": false
+      "scheduledPlatform": "13"
     },
     {
       "o": "800244",
@@ -19153,8 +18948,7 @@
       ],
       "destination": "Hannover Flughafen",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "80",
@@ -19235,8 +19029,7 @@
       ],
       "destination": "Hamburg-Altona",
       "platform": "7",
-      "scheduledPlatform": "7",
-      "reihung": true
+      "scheduledPlatform": "7"
     },
     {
       "o": "80",
@@ -19364,8 +19157,7 @@
       ],
       "destination": "Leipzig Hbf",
       "platform": "10",
-      "scheduledPlatform": "10",
-      "reihung": true
+      "scheduledPlatform": "10"
     },
     {
       "o": "80",
@@ -19482,8 +19274,7 @@
       ],
       "destination": "Leipzig Hbf",
       "platform": "10",
-      "scheduledPlatform": "10",
-      "reihung": false
+      "scheduledPlatform": "10"
     },
     {
       "o": "800295",
@@ -19587,8 +19378,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "9",
-      "scheduledPlatform": "9",
-      "reihung": false
+      "scheduledPlatform": "9"
     },
     {
       "o": "80",
@@ -19688,8 +19478,7 @@
       ],
       "destination": "Amsterdam Centraal",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": true
+      "scheduledPlatform": "12"
     },
     {
       "o": "R1",
@@ -19803,8 +19592,7 @@
       ],
       "destination": "Uelzen",
       "platform": "8",
-      "scheduledPlatform": "8",
-      "reihung": false
+      "scheduledPlatform": "8"
     },
     {
       "o": "800244",
@@ -19903,8 +19691,7 @@
       ],
       "destination": "Bennemühlen",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "80",
@@ -19980,8 +19767,7 @@
       ],
       "destination": "Stuttgart Hbf",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": true
+      "scheduledPlatform": "4"
     },
     {
       "o": "W3",
@@ -20042,8 +19828,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "13",
-      "scheduledPlatform": "13",
-      "reihung": false
+      "scheduledPlatform": "13"
     },
     {
       "o": "800244",
@@ -20105,8 +19890,7 @@
       ],
       "destination": "Celle",
       "platform": "14 A-C",
-      "scheduledPlatform": "14 A-C",
-      "reihung": false
+      "scheduledPlatform": "14 A-C"
     },
     {
       "o": "80",
@@ -20218,8 +20002,7 @@
       ],
       "destination": "Emden Hbf",
       "platform": "11",
-      "scheduledPlatform": "11",
-      "reihung": true
+      "scheduledPlatform": "11"
     },
     {
       "o": "R0",
@@ -20292,8 +20075,7 @@
       ],
       "destination": "Wolfsburg Hbf",
       "platform": "14 D-F",
-      "scheduledPlatform": "14 D-F",
-      "reihung": false
+      "scheduledPlatform": "14 D-F"
     },
     {
       "o": "800244",
@@ -20361,8 +20143,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "X2",
@@ -20429,8 +20210,7 @@
       ],
       "destination": "Bad Harzburg",
       "platform": "7",
-      "scheduledPlatform": "7",
-      "reihung": false
+      "scheduledPlatform": "7"
     },
     {
       "o": "X1",
@@ -20531,8 +20311,7 @@
       ],
       "destination": "Hamburg-Harburg",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "W3",
@@ -20661,8 +20440,7 @@
       ],
       "destination": "Braunschweig Hbf",
       "platform": "9",
-      "scheduledPlatform": "9",
-      "reihung": false
+      "scheduledPlatform": "9"
     },
     {
       "o": "800244",
@@ -20733,8 +20511,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "14",
-      "scheduledPlatform": "14",
-      "reihung": false
+      "scheduledPlatform": "14"
     },
     {
       "o": "800244",
@@ -20848,8 +20625,7 @@
       ],
       "destination": "Altenbeken",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "80",
@@ -20976,8 +20752,7 @@
       ],
       "destination": "Hamburg-Altona",
       "platform": "7",
-      "scheduledPlatform": "7",
-      "reihung": true
+      "scheduledPlatform": "7"
     },
     {
       "o": "800244",
@@ -21109,8 +20884,7 @@
       ],
       "destination": "Nienburg (Weser)",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "800244",
@@ -21242,8 +21016,7 @@
       ],
       "destination": "Haste",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "800244",
@@ -21317,8 +21090,7 @@
       ],
       "destination": "Celle",
       "platform": "14",
-      "scheduledPlatform": "14",
-      "reihung": false
+      "scheduledPlatform": "14"
     },
     {
       "o": "800244",
@@ -21438,8 +21210,7 @@
       ],
       "destination": "Hannover Flughafen",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "X1",
@@ -21539,8 +21310,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "W3",
@@ -21663,8 +21433,7 @@
       ],
       "destination": "Rheine",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": false
+      "scheduledPlatform": "12"
     },
     {
       "o": "X2",
@@ -21731,8 +21500,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "8",
-      "scheduledPlatform": "8",
-      "reihung": false
+      "scheduledPlatform": "8"
     },
     {
       "o": "800244",
@@ -21803,8 +21571,7 @@
       ],
       "destination": "Bennemühlen",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "R0",
@@ -21874,8 +21641,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "14 D-F",
-      "scheduledPlatform": "14 D-F",
-      "reihung": false
+      "scheduledPlatform": "14 D-F"
     }
   ],
   "lookbehind": [
@@ -21978,8 +21744,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "R0",
@@ -22061,8 +21826,7 @@
       ],
       "destination": "Wolfsburg Hbf",
       "platform": "13",
-      "scheduledPlatform": "13",
-      "reihung": false
+      "scheduledPlatform": "13"
     },
     {
       "o": "80",
@@ -22168,8 +21932,7 @@
       ],
       "destination": "Hamburg-Altona",
       "platform": "7",
-      "scheduledPlatform": "7",
-      "reihung": true
+      "scheduledPlatform": "7"
     },
     {
       "o": "W3",
@@ -22279,8 +22042,7 @@
       ],
       "destination": "Braunschweig Hbf",
       "platform": "9",
-      "scheduledPlatform": "9",
-      "reihung": false
+      "scheduledPlatform": "9"
     },
     {
       "o": "800244",
@@ -22353,8 +22115,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "14",
-      "scheduledPlatform": "14",
-      "reihung": false
+      "scheduledPlatform": "14"
     },
     {
       "o": "800244",
@@ -22474,8 +22235,7 @@
       ],
       "destination": "Altenbeken",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "800244",
@@ -22618,8 +22378,7 @@
       ],
       "destination": "Nienburg (Weser)",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "80",
@@ -22766,8 +22525,7 @@
       ],
       "destination": "Ostseebad Binz",
       "platform": "8",
-      "scheduledPlatform": "8",
-      "reihung": true
+      "scheduledPlatform": "8"
     },
     {
       "o": "80",
@@ -22929,8 +22687,7 @@
       ],
       "destination": "Karlsruhe Hbf",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": true
+      "scheduledPlatform": "4"
     },
     {
       "o": "80",
@@ -23071,8 +22828,7 @@
       ],
       "destination": "Karlsruhe Hbf",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "800244",
@@ -23215,8 +22971,7 @@
       ],
       "destination": "Haste",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "800244",
@@ -23294,8 +23049,7 @@
       ],
       "destination": "Celle",
       "platform": "14",
-      "scheduledPlatform": "14",
-      "reihung": false
+      "scheduledPlatform": "14"
     },
     {
       "o": "800244",
@@ -23415,8 +23169,7 @@
       ],
       "destination": "Hannover Flughafen",
       "platform": "2",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "R1",
@@ -23517,8 +23270,7 @@
       ],
       "destination": "Hamburg Hbf",
       "platform": "3",
-      "scheduledPlatform": "3",
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "X1",
@@ -23618,8 +23370,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "W3",
@@ -23724,8 +23475,7 @@
       ],
       "destination": "Bielefeld Hbf",
       "platform": "11",
-      "scheduledPlatform": "12",
-      "reihung": false
+      "scheduledPlatform": "12"
     },
     {
       "o": "X2",
@@ -23792,8 +23542,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "8",
-      "scheduledPlatform": "8",
-      "reihung": false
+      "scheduledPlatform": "8"
     },
     {
       "o": "800244",
@@ -23868,8 +23617,7 @@
       ],
       "destination": "Bennemühlen",
       "platform": "3",
-      "scheduledPlatform": "2",
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "R0",
@@ -23941,8 +23689,7 @@
       ],
       "destination": "Hannover Hbf",
       "platform": "13",
-      "scheduledPlatform": "13",
-      "reihung": false
+      "scheduledPlatform": "13"
     }
   ],
   "wings": {
@@ -24030,8 +23777,7 @@
       ],
       "destination": "Berlin Gesundbrunnen",
       "platform": "9",
-      "scheduledPlatform": "9",
-      "reihung": true
+      "scheduledPlatform": "9"
     },
     "5480249421472748019-2002221035": {
       "o": "80",
@@ -24115,8 +23861,7 @@
       ],
       "destination": "Köln Hbf",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": true
+      "scheduledPlatform": "12"
     },
     "3757333051659636301-2002221115": {
       "o": "80",
@@ -24195,8 +23940,7 @@
       ],
       "destination": "München Hbf",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": true
+      "scheduledPlatform": "4"
     },
     "8614664585551473503-2002221048": {
       "o": "80",
@@ -24290,8 +24034,7 @@
       ],
       "destination": "Berlin Gesundbrunnen",
       "platform": "9",
-      "scheduledPlatform": "9",
-      "reihung": true
+      "scheduledPlatform": "9"
     },
     "8435242070287707292-2002221135": {
       "o": "80",
@@ -24373,8 +24116,7 @@
       ],
       "destination": "Köln Hbf",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": true
+      "scheduledPlatform": "12"
     },
     "3966313825661476920-2002221235": {
       "o": "80",
@@ -24483,8 +24225,7 @@
       ],
       "destination": "Hamm (Westf) Hbf",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": true
+      "scheduledPlatform": "12"
     },
     "9221432942161771616-2002221148": {
       "o": "80",
@@ -24570,8 +24311,7 @@
       ],
       "destination": "Berlin Gesundbrunnen",
       "platform": "9",
-      "scheduledPlatform": "9",
-      "reihung": true
+      "scheduledPlatform": "9"
     },
     "1266697995060816588-2002221315": {
       "o": "80",
@@ -24644,8 +24384,7 @@
       ],
       "destination": "München Hbf",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": true
+      "scheduledPlatform": "4"
     },
     "360379485333124722-2002221335": {
       "o": "80",
@@ -24721,8 +24460,7 @@
       ],
       "destination": "Köln Hbf",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": true
+      "scheduledPlatform": "12"
     },
     "5886092952094503689-2002221248": {
       "o": "80",
@@ -24794,8 +24532,7 @@
       ],
       "destination": "Berlin Gesundbrunnen",
       "platform": "9",
-      "scheduledPlatform": "9",
-      "reihung": true
+      "scheduledPlatform": "9"
     },
     "4020550040361167307-2002221348": {
       "o": "80",
@@ -24870,8 +24607,7 @@
       ],
       "destination": "Berlin Südkreuz",
       "platform": "9",
-      "scheduledPlatform": "9",
-      "reihung": true
+      "scheduledPlatform": "9"
     },
     "8603587689572102071-2002221515": {
       "o": "80",
@@ -24944,8 +24680,7 @@
       ],
       "destination": "München Hbf",
       "platform": "4",
-      "scheduledPlatform": "4",
-      "reihung": true
+      "scheduledPlatform": "4"
     },
     "543689973036291538-2002221435": {
       "o": "80",
@@ -25018,8 +24753,7 @@
       ],
       "destination": "Köln Hbf",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": true
+      "scheduledPlatform": "12"
     },
     "1951882110793686742-2002221538": {
       "o": "80",
@@ -25095,8 +24829,7 @@
       ],
       "destination": "Köln Hbf",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": true
+      "scheduledPlatform": "12"
     },
     "6270903731699972278-2002221448": {
       "o": "80",
@@ -25168,8 +24901,7 @@
       ],
       "destination": "Berlin Gesundbrunnen",
       "platform": "9",
-      "scheduledPlatform": "9",
-      "reihung": true
+      "scheduledPlatform": "9"
     },
     "2625224039751841654-2002220948": {
       "o": "80",
@@ -25248,8 +24980,7 @@
       ],
       "destination": "Köln Hbf",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": true
+      "scheduledPlatform": "12"
     },
     "5067205027928923412-2002220848": {
       "o": "80",
@@ -25332,8 +25063,7 @@
       ],
       "destination": "Berlin Gesundbrunnen",
       "platform": "10",
-      "scheduledPlatform": "9",
-      "reihung": true
+      "scheduledPlatform": "9"
     }
   }
 }

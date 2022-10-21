@@ -84,6 +84,5 @@
   "destination": "Hamburg Hbf",
   "platform": "12",
   "scheduledPlatform": "12",
-  "reihung": false,
   "cancelled": true
 }

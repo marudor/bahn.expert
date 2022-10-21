@@ -78,8 +78,7 @@
       ],
       "destination": "Frankfurt (Main) Hbf",
       "platform": "1",
-      "scheduledPlatform": "1",
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "800574",
@@ -174,9 +173,7 @@
       ],
       "destination": "Frankfurt (Main) Hbf",
       "platform": "17",
-      "scheduledPlatform": "17",
-
-      "reihung": false
+      "scheduledPlatform": "17"
     },
     {
       "o": "800574",
@@ -292,9 +289,7 @@
       ],
       "destination": "Frankfurt (Main) Hbf",
       "platform": "10",
-      "scheduledPlatform": "10",
-
-      "reihung": false
+      "scheduledPlatform": "10"
     },
     {
       "o": "800574",
@@ -397,9 +392,7 @@
       ],
       "destination": "Frankfurt (Main) Hbf",
       "platform": "10",
-      "scheduledPlatform": "10",
-
-      "reihung": false
+      "scheduledPlatform": "10"
     },
     {
       "o": "800640",
@@ -487,9 +480,7 @@
       ],
       "destination": "Frankfurt (Main) Hbf",
       "platform": "20",
-      "scheduledPlatform": "20",
-
-      "reihung": false
+      "scheduledPlatform": "20"
     },
     {
       "o": "80",
@@ -650,9 +641,7 @@
       ],
       "destination": "Interlaken Ost",
       "platform": "9",
-      "scheduledPlatform": "9",
-
-      "reihung": true
+      "scheduledPlatform": "9"
     },
     {
       "o": "80",
@@ -735,9 +724,7 @@
       ],
       "destination": "München Hbf",
       "platform": "7",
-      "scheduledPlatform": "7",
-
-      "reihung": true
+      "scheduledPlatform": "7"
     },
     {
       "o": "80",
@@ -794,8 +781,7 @@
       ],
       "destination": "Frankfurt (Main) Hbf",
       "platform": "12",
-      "scheduledPlatform": "12",
-      "reihung": true
+      "scheduledPlatform": "12"
     },
     {
       "o": "800528",
@@ -918,9 +904,7 @@
       ],
       "destination": "Frankfurt (Main) Süd",
       "platform": "101",
-      "scheduledPlatform": "101",
-
-      "reihung": false
+      "scheduledPlatform": "101"
     },
     {
       "o": "800528",
@@ -1032,9 +1016,7 @@
       ],
       "destination": "Hochheim (Main)",
       "platform": "103",
-      "scheduledPlatform": "103",
-
-      "reihung": false
+      "scheduledPlatform": "103"
     },
     {
       "o": "80",
@@ -1125,9 +1107,7 @@
       ],
       "destination": "Hamburg-Altona",
       "platform": "8",
-      "scheduledPlatform": "8",
-
-      "reihung": true
+      "scheduledPlatform": "8"
     },
     {
       "o": "800553",
@@ -1195,9 +1175,7 @@
       ],
       "destination": "Frankfurt (Main) Hbf",
       "platform": "1",
-      "scheduledPlatform": "1",
-
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "800528",
@@ -1332,9 +1310,7 @@
       ],
       "destination": "Hanau Hbf",
       "platform": "102",
-      "scheduledPlatform": "102",
-
-      "reihung": false
+      "scheduledPlatform": "102"
     },
     {
       "o": "800528",
@@ -1455,9 +1431,7 @@
       ],
       "destination": "Kronberg (Taunus)",
       "platform": "104",
-      "scheduledPlatform": "104",
-
-      "reihung": false
+      "scheduledPlatform": "104"
     },
     {
       "o": "8005A4",
@@ -1552,9 +1526,7 @@
       ],
       "destination": "Frankfurt (Main) Hbf",
       "platform": "11",
-      "scheduledPlatform": "11",
-
-      "reihung": false
+      "scheduledPlatform": "11"
     },
     {
       "o": "800553",
@@ -1623,9 +1595,7 @@
       ],
       "destination": "Limburg (Lahn)",
       "platform": "4",
-      "scheduledPlatform": "4",
-
-      "reihung": false
+      "scheduledPlatform": "4"
     },
     {
       "o": "800528",
@@ -1760,9 +1730,7 @@
       ],
       "destination": "Wiesbaden Hbf",
       "platform": "103",
-      "scheduledPlatform": "103",
-
-      "reihung": false
+      "scheduledPlatform": "103"
     },
     {
       "o": "800528",
@@ -1883,9 +1851,7 @@
       ],
       "destination": "Langen (Hess)",
       "platform": "101",
-      "scheduledPlatform": "101",
-
-      "reihung": false
+      "scheduledPlatform": "101"
     },
     {
       "o": "80",
@@ -1943,9 +1909,7 @@
       ],
       "destination": "Berlin Gesundbrunnen",
       "platform": "13",
-      "scheduledPlatform": "13",
-
-      "reihung": true
+      "scheduledPlatform": "13"
     },
     {
       "o": "800528",
@@ -2063,9 +2027,7 @@
       ],
       "destination": "Friedberg (Hess)",
       "platform": "104",
-      "scheduledPlatform": "104",
-
-      "reihung": false
+      "scheduledPlatform": "104"
     },
     {
       "o": "800528",
@@ -2189,9 +2151,7 @@
       ],
       "destination": "Rödermark-Ober Roden",
       "platform": "102",
-      "scheduledPlatform": "102",
-
-      "reihung": false
+      "scheduledPlatform": "102"
     },
     {
       "o": "R4RH",
@@ -2317,9 +2277,7 @@
       ],
       "destination": "Frankfurt (Main) Hbf",
       "platform": "24",
-      "scheduledPlatform": "24",
-
-      "reihung": false
+      "scheduledPlatform": "24"
     },
     {
       "o": "80",
@@ -2409,9 +2367,7 @@
       ],
       "destination": "Stuttgart Hbf",
       "platform": "6",
-      "scheduledPlatform": "6",
-
-      "reihung": true
+      "scheduledPlatform": "6"
     },
     {
       "o": "800528",
@@ -2489,9 +2445,7 @@
       ],
       "destination": "Frankfurt-Niederrad",
       "platform": "2",
-      "scheduledPlatform": "2",
-
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "800574",
@@ -2612,9 +2566,7 @@
       ],
       "destination": "Wiesloch-Walldorf",
       "platform": "10",
-      "scheduledPlatform": "10",
-
-      "reihung": false
+      "scheduledPlatform": "10"
     },
     {
       "o": "800528",
@@ -2720,9 +2672,7 @@
       ],
       "destination": "Frankfurt (Main) Süd",
       "platform": "101",
-      "scheduledPlatform": "101",
-
-      "reihung": false
+      "scheduledPlatform": "101"
     },
     {
       "o": "800528",
@@ -2828,9 +2778,7 @@
       ],
       "destination": "Hofheim (Taunus)",
       "platform": "103",
-      "scheduledPlatform": "103",
-
-      "reihung": false
+      "scheduledPlatform": "103"
     },
     {
       "o": "800640",
@@ -2923,9 +2871,7 @@
       ],
       "destination": "Koblenz Hbf",
       "platform": "20",
-      "scheduledPlatform": "20",
-
-      "reihung": false
+      "scheduledPlatform": "20"
     },
     {
       "o": "800528",
@@ -2978,9 +2924,7 @@
       ],
       "destination": "Frankfurt (M)  Flughafen Regionalbf",
       "platform": "21",
-      "scheduledPlatform": "21",
-
-      "reihung": false
+      "scheduledPlatform": "21"
     },
     {
       "o": "800528",
@@ -3116,9 +3060,7 @@
       ],
       "destination": "Dietzenbach Bahnhof",
       "platform": "102",
-      "scheduledPlatform": "102",
-
-      "reihung": false
+      "scheduledPlatform": "102"
     },
     {
       "o": "800528",
@@ -3212,9 +3154,7 @@
       ],
       "destination": "Bad Homburg",
       "platform": "104",
-      "scheduledPlatform": "104",
-
-      "reihung": false
+      "scheduledPlatform": "104"
     },
     {
       "o": "80",
@@ -3300,9 +3240,7 @@
       ],
       "destination": "Düsseldorf Hbf",
       "platform": "7",
-      "scheduledPlatform": "7",
-
-      "reihung": true
+      "scheduledPlatform": "7"
     },
     {
       "o": "800528",
@@ -3453,9 +3391,7 @@
       ],
       "destination": "Wiesbaden Hbf",
       "platform": "103",
-      "scheduledPlatform": "103",
-
-      "reihung": false
+      "scheduledPlatform": "103"
     },
     {
       "o": "800528",
@@ -3561,9 +3497,7 @@
       ],
       "destination": "Frankfurt (Main) Süd",
       "platform": "101",
-      "scheduledPlatform": "101",
-
-      "reihung": false
+      "scheduledPlatform": "101"
     },
     {
       "o": "800574",
@@ -3664,9 +3598,7 @@
       ],
       "destination": "Mannheim Hbf",
       "platform": "17",
-      "scheduledPlatform": "17",
-
-      "reihung": false
+      "scheduledPlatform": "17"
     },
     {
       "o": "800553",
@@ -3747,9 +3679,7 @@
       ],
       "destination": "Limburg (Lahn)",
       "platform": "1",
-      "scheduledPlatform": "1",
-
-      "reihung": false
+      "scheduledPlatform": "1"
     },
     {
       "o": "85",
@@ -3883,9 +3813,7 @@
       ],
       "destination": "Berlin Ostbahnhof",
       "platform": "8",
-      "scheduledPlatform": "8",
-
-      "reihung": true
+      "scheduledPlatform": "8"
     },
     {
       "o": "8005ND",
@@ -3974,9 +3902,7 @@
       ],
       "destination": "Frankfurt (Main) Hbf",
       "platform": "14",
-      "scheduledPlatform": "14",
-
-      "reihung": false
+      "scheduledPlatform": "14"
     },
     {
       "o": "800528",
@@ -4115,9 +4041,7 @@
       ],
       "destination": "Hanau Hbf",
       "platform": "102",
-      "scheduledPlatform": "102",
-
-      "reihung": false
+      "scheduledPlatform": "102"
     },
     {
       "o": "800528",
@@ -4259,9 +4183,7 @@
       ],
       "destination": "Bad Soden (Taunus)",
       "platform": "104",
-      "scheduledPlatform": "104",
-
-      "reihung": false
+      "scheduledPlatform": "104"
     },
     {
       "o": "8005KG",
@@ -4341,9 +4263,7 @@
       ],
       "destination": "Frankfurt (Main) Hbf",
       "platform": "5",
-      "scheduledPlatform": "5",
-
-      "reihung": false
+      "scheduledPlatform": "5"
     },
     {
       "o": "8005A4",
@@ -4438,9 +4358,7 @@
       ],
       "destination": "Dieburg",
       "platform": "11",
-      "scheduledPlatform": "11",
-
-      "reihung": false
+      "scheduledPlatform": "11"
     },
     {
       "o": "80",
@@ -4497,9 +4415,7 @@
       ],
       "destination": "Köln Hbf",
       "platform": "19",
-      "scheduledPlatform": "19",
-
-      "reihung": true
+      "scheduledPlatform": "19"
     },
     {
       "o": "K4RB",
@@ -4617,9 +4533,7 @@
       ],
       "destination": "Königstein (Taunus)",
       "platform": "22",
-      "scheduledPlatform": "22",
-
-      "reihung": false
+      "scheduledPlatform": "22"
     },
     {
       "o": "800528",
@@ -4761,9 +4675,7 @@
       ],
       "destination": "Darmstadt Hbf",
       "platform": "101",
-      "scheduledPlatform": "101",
-
-      "reihung": false
+      "scheduledPlatform": "101"
     },
     {
       "o": "800528",
@@ -4895,9 +4807,7 @@
       ],
       "destination": "Wiesbaden Hbf",
       "platform": "103",
-      "scheduledPlatform": "103",
-
-      "reihung": false
+      "scheduledPlatform": "103"
     },
     {
       "o": "800528",
@@ -5048,9 +4958,7 @@
       ],
       "destination": "Rödermark-Ober Roden",
       "platform": "102",
-      "scheduledPlatform": "102",
-
-      "reihung": false
+      "scheduledPlatform": "102"
     },
     {
       "o": "800528",
@@ -5150,9 +5058,7 @@
       ],
       "destination": "Groß Karben",
       "platform": "104",
-      "scheduledPlatform": "104",
-
-      "reihung": false
+      "scheduledPlatform": "104"
     },
     {
       "o": "80",
@@ -5237,9 +5143,7 @@
       ],
       "destination": "Heidelberg Hbf",
       "platform": "13",
-      "scheduledPlatform": "13",
-
-      "reihung": true
+      "scheduledPlatform": "13"
     },
     {
       "o": "800640",
@@ -5309,9 +5213,7 @@
       ],
       "destination": "Frankfurt (Main) Hbf",
       "platform": "1a",
-      "scheduledPlatform": "1a",
-
-      "reihung": false
+      "scheduledPlatform": "1a"
     },
     {
       "o": "R4",
@@ -5380,9 +5282,7 @@
       ],
       "destination": "Frankfurt (Main) Hbf",
       "platform": "12",
-      "scheduledPlatform": "12",
-
-      "reihung": false
+      "scheduledPlatform": "12"
     },
     {
       "o": "80",
@@ -5474,9 +5374,7 @@
       ],
       "destination": "Dresden Hbf",
       "platform": "9",
-      "scheduledPlatform": "9",
-
-      "reihung": true
+      "scheduledPlatform": "9"
     },
     {
       "o": "800528",
@@ -5557,9 +5455,7 @@
       ],
       "destination": "Riedstadt-Goddelau",
       "platform": "2",
-      "scheduledPlatform": "2",
-
-      "reihung": false
+      "scheduledPlatform": "2"
     },
     {
       "o": "8005MW",
@@ -5637,9 +5533,7 @@
       ],
       "destination": "Kassel Hbf",
       "platform": "16",
-      "scheduledPlatform": "16",
-
-      "reihung": false
+      "scheduledPlatform": "16"
     },
     {
       "o": "800528",
@@ -5775,9 +5669,7 @@
       ],
       "destination": "Niedernhausen (Taunus)",
       "platform": "103",
-      "scheduledPlatform": "103",
-
-      "reihung": false
+      "scheduledPlatform": "103"
     },
     {
       "o": "800528",
@@ -5871,9 +5763,7 @@
       ],
       "destination": "Frankfurt (Main) Süd",
       "platform": "101",
-      "scheduledPlatform": "101",
-
-      "reihung": false
+      "scheduledPlatform": "101"
     },
     {
       "o": "800528",
@@ -5927,9 +5817,7 @@
       ],
       "destination": "Frankfurt (Main) Hbf",
       "platform": "21",
-      "scheduledPlatform": "21",
-
-      "reihung": false
+      "scheduledPlatform": "21"
     },
     {
       "o": "R4RH",
@@ -6050,9 +5938,7 @@
       ],
       "destination": "Koblenz Hbf",
       "platform": "24",
-      "scheduledPlatform": "24",
-
-      "reihung": false
+      "scheduledPlatform": "24"
     },
     {
       "o": "800772",
@@ -6144,9 +6030,7 @@
       ],
       "destination": "Frankfurt (Main) Hbf",
       "platform": "6",
-      "scheduledPlatform": "6",
-
-      "reihung": false
+      "scheduledPlatform": "6"
     },
     {
       "o": "800574",
@@ -6220,9 +6104,7 @@
       ],
       "destination": "Frankfurt (Main) Hbf",
       "platform": "11",
-      "scheduledPlatform": "11",
-
-      "reihung": false
+      "scheduledPlatform": "11"
     },
     {
       "o": "800528",
@@ -6322,9 +6204,7 @@
       ],
       "destination": "Friedrichsdorf (Taunus)",
       "platform": "104",
-      "scheduledPlatform": "104",
-
-      "reihung": false
+      "scheduledPlatform": "104"
     },
     {
       "o": "800528",
@@ -6421,9 +6301,7 @@
       ],
       "destination": "Dietzenbach Bahnhof",
       "platform": "102",
-      "scheduledPlatform": "102",
-
-      "reihung": false
+      "scheduledPlatform": "102"
     },
     {
       "o": "V6RE",
@@ -6520,9 +6398,7 @@
       ],
       "destination": "Saarbrücken Hbf",
       "platform": "3",
-      "scheduledPlatform": "3",
-
-      "reihung": false
+      "scheduledPlatform": "3"
     },
     {
       "o": "R4",
@@ -6616,9 +6492,7 @@
       ],
       "destination": "Erbach (Odenw)",
       "platform": "12",
-      "scheduledPlatform": "12",
-
-      "reihung": false
+      "scheduledPlatform": "12"
     }
   ],
   "lookbehind": [],
@@ -6724,9 +6598,7 @@
       ],
       "destination": "Mannheim Hbf",
       "platform": "11",
-      "scheduledPlatform": "11",
-
-      "reihung": false
+      "scheduledPlatform": "11"
     },
     "859374122770042489-1908071421": {
       "o": "K4RE",
@@ -6796,9 +6668,7 @@
       ],
       "destination": "Siegen Hbf",
       "platform": "15",
-      "scheduledPlatform": "15",
-
-      "reihung": false
+      "scheduledPlatform": "15"
     },
     "1181097143050291141-1908071431": {
       "o": "800535",
@@ -6913,9 +6783,7 @@
       ],
       "destination": "Dillenburg",
       "platform": "16",
-      "scheduledPlatform": "16",
-
-      "reihung": false
+      "scheduledPlatform": "16"
     },
     "8791795277896736185-1908071551": {
       "o": "800535",
@@ -7011,9 +6879,7 @@
       ],
       "destination": "Dillenburg",
       "platform": "14",
-      "scheduledPlatform": "14",
-
-      "reihung": false
+      "scheduledPlatform": "14"
     },
     "1186458192854678463-1908071506": {
       "o": "800574",
@@ -7121,9 +6987,7 @@
       ],
       "destination": "Mannheim Hbf",
       "platform": "10",
-      "scheduledPlatform": "10",
-
-      "reihung": false
+      "scheduledPlatform": "10"
     },
     "5512194522829670175-1908071306": {
       "o": "800574",
@@ -7226,9 +7090,7 @@
       ],
       "destination": "Mannheim Hbf",
       "platform": "12",
-      "scheduledPlatform": "12",
-
-      "reihung": false
+      "scheduledPlatform": "12"
     },
     "7497450269011895840-1908071351": {
       "o": "800535",
@@ -7328,9 +7190,7 @@
       ],
       "destination": "Dillenburg",
       "platform": "13",
-      "scheduledPlatform": "13",
-
-      "reihung": false
+      "scheduledPlatform": "13"
     },
     "3626013332719834621-1908070826": {
       "o": "80",
@@ -7406,9 +7266,7 @@
       ],
       "destination": "Bruxelles Midi",
       "platform": "18",
-      "scheduledPlatform": "18",
-
-      "reihung": true
+      "scheduledPlatform": "18"
     },
     "8922294650485137672-1908070815": {
       "o": "K4RE",
@@ -7480,9 +7338,7 @@
       ],
       "destination": "Siegen Hbf",
       "platform": "15",
-      "scheduledPlatform": "12",
-
-      "reihung": false
+      "scheduledPlatform": "12"
     }
   },
   "lageplan": "https://www.bahnhof.de/resource/blob/1038882/60baa6e8ee9692d4abd7a742c0d3b129/Frankfurt-Main-Hbf_locationPdf-data.pdf"

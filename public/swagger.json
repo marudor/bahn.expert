@@ -810,10 +810,6 @@
           "ref": {
             "$ref": "#/components/schemas/SubstituteRef"
           },
-          "reihung": {
-            "type": "boolean",
-            "description": "Most likely has coach sequence"
-          },
           "route": {
             "items": {
               "$ref": "#/components/schemas/Stop"
@@ -844,7 +840,6 @@
           "platform",
           "productClass",
           "rawId",
-          "reihung",
           "route",
           "scheduledDestination",
           "scheduledPlatform",
