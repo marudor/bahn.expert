@@ -73,7 +73,7 @@ export async function findJourney(
   originEvaNumber?: string,
 ): Promise<JourneyMatch[]> {
   try {
-    const isWithin30Hours = !date || differenceInHours(date, Date.now()) <= 30;
+    const isWithin30Hours = date && differenceInHours(date, Date.now()) <= 30;
     const cacheKey = `${trainNumber}|${category}|${
       date && format(date, 'yyyy-MM-dd')
     }|${onlyFv ?? false}|${originEvaNumber}`;
